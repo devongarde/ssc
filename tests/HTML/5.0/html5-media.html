@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+<title>Media query level 3 tests</title>
+<!--    note that ssc only does a sanity test on media queries. There is at least one query here that passes but is in
+        fact erroneous (speech does not have a device-width). This might change should ssc ever check css properly -->
+
+<link rel="stylesheet" type="text/css" media="" href="css-good.css">
+<link rel="stylesheet" type="text/css" media="screen" href="css-good.css">
+<link rel="stylesheet" type="text/css" media="print" href="css-good-too.css">
+<link rel="stylesheet" media="screen and (color)" href="css-good.css" />
+<link rel="stylesheet" media="not screen and (color)" href="css-good-too.css" />
+<link rel="stylesheet" media="only screen and (color)" href="css-good.css" />
+<link rel="stylesheet" media="screen and (color), projection and (color)" href="css-good-too.css">
+<link rel="stylesheet" media="screen and (color), projection and (color)" href="css-good.css">
+<link rel="stylesheet" media="aural and (device-aspect-ratio: 16/9)" href="css-good.css">
+<link rel="stylesheet" media="speech and (min-device-width: 800px)" href="css-good-too.css">
+<link rel="stylesheet" media="print and (monochrome)" href="css-good.css">
+
+<link rel="stylesheet" media="note screen and (color)" href="css-good-too.css" />
+<link rel="stylesheet" media="not screen and (colour)" href="css-good.css" />
+<link rel="stylesheet" media="screen and (monochrome), projection and (color), virtual-reality and (aroma)" href="css-good-too.css">
+<link rel="stylesheet" media="min-device-width: 800px" href="css-good.css">
+<link rel="stylesheet" media="(min-device-width: 800px)" href="css-good-too.css">
+<link rel="stylesheet" media="monochrome" href="css-good.css">
+
+</head>
+<body>
+
+<h1>Media query level 3 tests</h1>
+
+ </body>
+</html>

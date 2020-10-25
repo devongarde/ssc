@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>schema postal address</title>
+</head>
+
+<body>
+
+<h1>schema postal address</h1>
+
+    <div itemscope itemtype="https://schema.org/Person">
+      <span itemprop="name">Jane Doe</span>
+      <img src="example.jpg" itemprop="image" alt="Photo of Jane Doe"/>
+      <span itemprop="jobTitle">Professor</span>
+      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">
+          20341 Whitworth Institute
+          405 N. Whitworth
+        </span>
+        <span itemprop="addressLocality">Seattle</span>,
+        <span itemprop="addressRegion">WA</span>
+        <span itemprop="postalCode">98052</span>
+      </div>
+      <span itemprop="telephone">(425) 123-4567</span>
+      <a href="mailto:jane-doe@example.edu" itemprop="email">
+        jane-doe@example.edu</a>
+      Jane's home page:
+      <a href="http://www.example.com" itemprop="url">example.com</a>
+      Graduate students:
+      <a href="http://www.example.edu/students/alicejones.html" itemprop="colleague">
+        Alice Jones</a>
+      <a href="http://www.example.edu/students/bobsmith.html" itemprop="colleague">
+        Bob Smith</a>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/Organization">
+      <span itemprop="name">Google.org (GOOG)</span>
+    Contact Details:
+      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        Main address:
+          <span itemprop="streetAddress">38 avenue de l'Opera</span>
+          <span itemprop="postalCode">F-75002</span>
+          <span itemprop="addressLocality">Paris, France</span>
+        ,
+      </div>
+        Tel:<span itemprop="telephone">( 33 1) 42 68 53 00 </span>,
+        Fax:<span itemprop="faxNumber">( 33 1) 42 68 53 01 </span>,
+        E-mail: <span itemprop="email">secretariat(at)google.org</span>
+    Members:
+    - National Scientific Members in 100 countries and territories: Country1, Country2, ...
+    - Scientific Union Members, 30 organizations listed in this Yearbook:
+    List of Alumni:
+     <span itemprop="alumni" itemscope itemtype="https://schema.org/Person">
+       <span itemprop="name">Jack Dan</span>
+     </span>,
+     <span itemprop="alumni" itemscope itemtype="https://schema.org/Person">
+       <span itemprop="name">John Smith</span>
+     </span>,
+    History:
+    </div>
+
+    <div itemscope itemtype="https://schema.org/Event">
+      <a itemprop="url" href="nba-miami-philidelphia-game3.html">
+      NBA Eastern Conference First Round Playoff Tickets:
+      <span itemprop="name"> Miami Heat at Philadelphia 76ers - Game 3 (Home Game 1) </span>
+      </a>
+      <meta itemprop="startDate" content="2016-04-21T20:00">
+        Thu, 04/21/16
+        8:00 p.m.
+      <div itemprop="location" itemscope itemtype="https://schema.org/Place">
+        <a itemprop="url" href="wells-fargo-center.html">
+        Wells Fargo Center
+        </a>
+        <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <span itemprop="addressLocality">Philadelphia</span>,
+          <span itemprop="addressRegion">PA</span>
+        </div>
+      </div>
+      <div itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer">
+        Priced from: <span itemprop="lowPrice">$35</span>
+        <span itemprop="offerCount">1938</span> tickets left
+      </div>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/LocalBusiness">
+      <h1><span itemprop="name">Beachwalk Beachwear & Giftware</span></h1>
+      <span itemprop="description"> A superb collection of fine gifts and clothing
+      to accent your stay in Mexico Beach.</span>
+      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">3102 Highway 98</span>
+        <span itemprop="addressLocality">Mexico Beach</span>,
+        <span itemprop="addressRegion">FL</span>
+      </div>
+      Phone: <span itemprop="telephone">850-648-4200</span>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/PostalAddress">
+     <span itemprop="name">Google Inc.</span>
+     P.O. Box<span itemprop="postOfficeBoxNumber">1234</span>
+     <span itemprop="addressLocality">Mountain View</span>,
+     <span itemprop="addressRegion">CA</span>
+     <span itemprop="postalCode">94043</span>
+     <span itemprop="addressCountry">United States</span>
+    </div>
+
+    <div class="event-wrapper" itemscope itemtype="https://schema.org/Event">
+        <div class="event-date" itemprop="startDate" content="2013-09-14T21:30">
+            Sat Sep 14
+        </div>
+        <div class="event-title" itemprop="name">
+            Typhoon with Radiation City
+        </div>
+        <div class="event-venue" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <span itemprop="name">The Hi-Dive</span>
+            <div class="address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itemprop="streetAddress">7 S. Broadway</span><br>
+                <span itemprop="addressLocality">Denver</span>, <span itemprop="addressRegion">CO</span> <span itemprop="postalCode">80209</span>
+            </div>
+        </div>
+        <div class="event-time">9:30 PM</div>
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <div class="event-price" itemprop="price" content="13.00">$13.00</div>
+            <meta itemprop="priceCurrency" content="USD"><a itemprop="url" href="http://www.example.com/purchase/309433">Tickets</a>
+        </div>
+    </div>
+
+    <div class="event-wrapper" itemscope itemtype="https://schema.org/Event">
+        <div class="event-date" itemprop="startDate" content="2013-09-14T21:30">
+            Sat Sep 14
+        </div>
+        <div class="event-title" itemprop="name">
+            CANCELLED - Typhoon with Radiation City
+        </div>
+        <meta itemprop="eventStatus" content="https://schema.org/EventCancelled">
+        <div class="event-venue" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <span itemprop="name">The Hi-Dive</span>
+            <div class="address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itemprop="streetAddress">7 S. Broadway</span><br>
+                <span itemprop="addressLocality">Denver</span>, <span itemprop="addressRegion">CO</span> <span itemprop="postalCode">80209</span>
+            </div>
+        </div>
+        <div class="event-time">9:30 PM</div>
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <div class="event-price" itemprop="price" content="13.00">$13.00</div>
+            <meta itemprop="priceCurrency" content="USD">
+            <a itemprop="url" href="http://www.example.com/purchase/309433">Tickets</a>
+        </div>
+    </div>
+
+    <div class="event-wrapper" itemscope itemtype="https://schema.org/Event">
+        <div class="event-date" itemprop="startDate" content="2013-10-12T22:00">
+            Sat Oct 12
+        </div>
+        <div class="event-title" itemprop="name">
+            Typhoon with Radiation City
+        </div>
+        <meta itemprop="eventStatus" content="https://schema.org/EventRescheduled"><span itemprop="previousStartDate" content="2013-09-14T21:30">(previously scheduled for Sept 14th)</span>
+        <div class="event-venue" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <span itemprop="name">The Hi-Dive</span>
+            <div class="address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itemprop="streetAddress">7 S. Broadway</span><br>
+                <span itemprop="addressLocality">Denver</span>, <span itemprop="addressRegion">CO</span> <span itemprop="postalCode">80209</span>
+            </div>
+        </div>
+        <div class="event-time">
+            10:00 PM
+        </div>
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <div class="event-price" itemprop="price" content="13.00">$13.00</div>
+            <meta itemprop="priceCurrency" content="USD"><a itemprop="url" href="http://www.example.com/purchase/309433">Tickets</a>
+        </div>
+    </div>
+
+    <div class="event-wrapper" itemscope itemtype="https://schema.org/Event">
+        <div class="event-date" itemprop="startDate" content="2013-09-14T21:30">
+            Sat Sep 14
+        </div>
+        <div class="event-title" itemprop="name">
+            SOLD OUT! Typhoon with Radiation City
+        </div>
+        <div class="event-venue" itemprop="location" itemscope itemtype="https://schema.org/Place">
+            <span itemprop="name">The Hi-Dive</span>
+            <div class="address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itemprop="streetAddress">7 S. Broadway</span><br>
+                <span itemprop="addressLocality">Denver</span>, <span itemprop="addressRegion">CO</span> <span itemprop="postalCode">80209</span>
+            </div>
+        </div>
+        <div class="event-time">9:30 PM</div>
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <meta itemprop="availability" content="https://schema.org/SoldOut">
+            <div class="event-price" itemprop="price" content="13.00">$13.00</div>
+            <meta itemprop="priceCurrency" content="USD"><a itemprop="url" href="http://www.example.com/purchase/309433">Tickets</a>
+        </div>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/Store">
+      <div>
+        <h1 itemprop="name">Delia's Daily Supplies</h1>
+        <p itemprop="description">For your daily newspapers, candies, snacks and (via our in-store pharmacy)
+          drugs and healthcare products to keep you and your family happy, healthy and supplied with all your daily needs.</p>
+        <p>Open: <span itemprop="openingHours" content="Mo-Fr 07:00-23:00">Monday-Friday 7am-11pm</span></p>
+        <p>Phone: <span itemprop="telephone" content="+155501001110">555-0100-1110</span></p>
+      </div>
+      <address itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress"> Unit 42, Land of Bargains Shopping Paradise, 12 Highway 101</span>,
+        <span itemprop="addressLocality">Boston</span>,
+        <span itemprop="addressRegion">MA</span>, <span itemprop="addressCountry">USA</span>
+      </address>
+     <div itemprop="department" itemscope itemtype="https://schema.org/Pharmacy">
+       <h2 itemprop="name">Philippa's Pharmacy</h2>
+       <p itemprop="description">A superb collection of fine pharmaceuticals...</p>
+       <p>Open: <span itemprop="openingHours" content="Mo-Th 09:00-12:00">Monday-Thursday 9am-noon</span></p>
+       <p>Phone: <span itemprop="telephone" content="+155501001111">555-0100-1111</span></p>
+     </div>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/Store">
+      <div>
+        <h1 itemprop="name">Delia's Daily Supplies</h1>
+        <p itemprop="description">For your daily newspapers, candies, snacks and (via our in-store pharmacy)
+          drugs and healthcare products to keep you and your family happy, healthy and supplied with all your daily needs.</p>
+        <p>Open: <span itemprop="openingHours" content="Mo-Fr 07:00-23:00">Monday-Friday 7am-11pm</span></p>
+        <p>Phone: <span itemprop="telephone" content="+155501001110">555-0100-1110</span></p>
+      </div>
+      <address itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">Unit 42, Land of Bargains Shopping Paradise, 12 Highway 101</span>,
+        <span itemprop="addressLocality">Boston</span>,
+        <span itemprop="addressRegion">MA</span>, <span itemprop="addressCountry">USA</span>
+      </address>
+      <div itemprop="department" itemscope itemtype="https://schema.org/Pharmacy">
+        <h2 itemprop="name">Philippa's Pharmacy</h2>
+        <p itemprop="description">A superb collection of fine pharmaceuticals...</p>
+        <p>Open: <span itemprop="openingHours" content="Mo-Th 09:00-12:00">Monday-Thursday 9am-noon</span></p>
+        <p>Phone: <span itemprop="telephone" content="+155501001111">555-0100-1111</span></p>
+        <address itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <span itemprop="streetAddress">Unit 42b, Land of Bargains Shopping Paradise, 12 Highway 101</span>,
+          <span itemprop="addressLocality">Boston</span>,
+          <span itemprop="addressRegion">MA</span>, <span itemprop="addressCountry">USA</span>
+        </address>
+      </div>
+    </div>
+
+</body>
+</html>

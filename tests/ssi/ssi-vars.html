@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+
+<!--#set var="one" value="een" -->
+<!--#set var="two" value="deux" -->
+<!--#set var="three" value="drei" -->
+<!--#set var="four" value="vier" -->
+
+<head>
+<title>SSI test page</title>
+
+</head>
+
+<body>
+
+<h1>SSI Test Page</h1>
+
+<p>
+<!--#echo encoding="none" var="one" -->,
+<!--#echo encoding="none" var="two" -->,
+<!--#echo encoding="none" var="three" -->,
+<!--#echo encoding="none" var="four" -->.
+</p>
+
+<p class="<!--#echo encoding="none" var="one" -->">one</p>
+
+<p>
+Hello!
+</p>
+
+</body>
+</html>
+

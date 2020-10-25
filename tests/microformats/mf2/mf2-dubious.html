@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>dubious microformats2</title>
+
+</head>
+
+<body>
+
+<h1>Dubious microformats2</h1>
+
+<p>
+H-Adr with dubious properties, and possibly valid properties with invalid values
+</p>
+
+<p class="h-adr">
+  <span class="p-name">The B-52s</span>,
+  <span class="u-geo">So why no example, RFC-5870?</span>
+</p>
+
+<p class="h-breadcrumb">
+<a class="u-url" href="http://example.com/index.html">Fred Bloggs</a>
+</p>
+
+<p class="h-card">
+  <img class="u-photo" src="http://example.org/photo.png" alt="photo" />,
+  <a class="p-name u-url" href="http://example.org">Joe Bloggs</a>,
+  <a class="u-email" href="mailto:test@example.com">joebloggs@example.com</a> <!-- addresses differ -->
+</p>
+
+<p class="h-cite">
+  <a class="p-name u-url" href="http://example.org">Joe Bloggs</a>
+    <span class="dt-published">2025-04-01</span>,
+    <span class="dt-accessed">2020-02-30</span>
+</p>
+
+<p class="h-entry">
+<img class="u-photo u-featured" src="missing.jpg" alt="photo" />
+<a class="p-name u-url" href="https://example.com/index.html">Joe Bloggs</a>
+<span class="dt-published">2202-04-10</span>,
+<span class="dt-updated">2202-04-02</span>,
+</p>
+
+<p class="h-feed">
+<img class="u-photo" src="http://example.com/photo.jpg" alt="photo" />
+<a class="p-name u-url p-author" href="http://example.com/index.html"></a>
+</p>
+
+<p class="h-geo">
+  <span class="p-name">&ldquo;Arosfa&rdquo;</span>,
+  <span class="p-altitude">-0.0</span>,
+  <span class="p-latitude">3.14159</span>,
+  <span class="p-longitude">11</span>,
+  <span class="p-altitude">-1</span>
+</p>
+
+<p class="h-item">
+  <img class="u-photo" src="http://example.org/photo.png" alt="photo" />
+  <a class="p-name u-url" href="http://example.org">L&rsquo;Item</a>:
+  <span class="u-cheese">some cheese</span>
+</p>
+
+<p class="h-listing">
+<a class="u-url" href="http://example.com/index.html">Joe Bloggs</a>
+<span class="dt-listed">2020-04-01</span>,
+<span class="dt-expired">2020-03-01</span>,
+<span class="p-price">USD -1</span>,  <!-- need to check t_price values -->
+</p>
+
+<p class="h-product">
+  <img class="u-photo" src="http://example.org/photo.png" alt="photo" />
+  <a class="u-url" href="http://example.org">Joe Bloggs</a>
+<a class="u-identifier" href="http://example.org/index.html">not an ISBN code etc.</a> <!-- need to invent and check t_identifier values -->
+</p>
+
+<p class="h-recipe">
+  <img class="u-photo" src="http://example.org/photo.png" alt="photo" />
+</p>
+
+<p class="h-resume">
+  <a class="p-name" href="http://example.org">Joe Bloggs</a>
+</p>
+
+<p class="h-review-aggregate">
+  <a class="p-name" href="http://example.org">Joe Bloggs</a>
+<span class="p-count">0</span>
+<span class="p-votes">0</span>
+</p>
+
+<div class="h-review">
+  <a class="p-name u-url" href="http://example.org">Joe Bloggs</a>
+<span class="p-wurst">3</span>
+<a class="u-syndication" href="http://example.org/index.html">syndicated here!</a>
+<p class="e-content"></p> <!-- add content to strip for this test -->
+</div>
+
+</body>
+</html>

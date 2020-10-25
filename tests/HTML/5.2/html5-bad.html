@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>bad HTML5 test page</title>
+<META http-equiv="Content-Style-Type" content="video/css">
+<base href="/">
+<base href="/">
+</head>
+
+<body role="document">
+
+<h1>bad HTML5 Test Page</h1>
+
+<form>
+
+<textarea autocapitalize=words>
+This can contain character references like &amp;, &lt; and &gt;,
+but such characters and also be written directly as &, < and >.
+Strings that look like <!-- comments --> or other elements <span>
+are treated as plain text, instead of markup.
+</textarea>
+
+<textarea inputmode="text">
+An unknown named character reference like &this
+gives an ambiguous ampersand error.
+</textarea>
+
+<textarea is=mud name="_charset_">
+This text cannot contain a string like </textarea because
+it looks like an end tag for the element.
+</textarea>
+
+<textarea name=isindex>
+This can contain character references like &amp;, &lt; and &gt;.
+Unlike the HTML syntax, this can also contain comments.
+<!-- just like other normal elements -->
+
+If the string is intended to be rendered, the special characters must be escaped
+&lt;!-- like this --&gt;.
+</textarea>
+
+<textarea><![CDATA[This can contain special characters like &, < and >.
+Strings that look like markup, like <!-- comments -->,
+character references &amp;, &lt; and &gt;,
+or other elements <span> are treated as plain text, instead of markup.
+]]></textarea>
+
+<input disabled>...</div>
+<input disabled="">...</div>
+
+<label>Carpet: <input type="carpet" name="c" texture="deep pile"></label>
+
+</form>
+
+<div class="example" lang="en">...</div>
+<section id="example">...</section id="example">
+<div CLASS="example" Lang="en">...</div>
+<img src=example.png height=200 width=300/>
+<img src  =  image.png>
+<img src="example.jpg" title="An example photograph">
+<img src  =  "example.png">
+<img src='example.jpg' title='An example photograph'>
+<img src  =  'example.png'>
+
+<p>This markup contains a <em><strong>mistake</em></strong></p>
+
+<section>
+  <ins><h1>Example of paragraphs</h1>
+  This is the <em>first</em> paragraph in</ins> this example<del>.
+  <p>This is the second.</p></del>
+  <!-- This is not a paragraph. -->
+</section>
+
+<section>
+ <h1>My Cats</h1>
+ You can play with my cat simulator.
+ <object data="cats.sim">
+  To see the cat simulator, use one of the following links:
+  <ul>
+   <li><a href="cats.sim">Download simulator file</a>
+   <li><a href="http://sims.example.com/watch?v=LYds5xY4INU">Use online simulator</a>
+  </ul>
+  Alternatively, upgrade to the Mellblom Browser.
+ </object> I'm quite proud of it.
+</section>
+
+<ADDRESS>Last Modified: 1999/12/24 23:37:50</ADDRESS>
+
+<dl>
+  <dt>term</dt><dd>definition</dd>
+  <dd>definition</dd><dt>term</dt>
+  <div>naughty div</div>
+</dl>
+
+<dl>
+  <div>div</div>
+  <dt>term</dt><dd>definition</dd>
+  <dd>definition</dd><dt>term</dt>
+</dl>
+
+<audio src="brave.mp3" autoplay>
+    <source src='audio.mp4' type='audio/mp3'>
+    <track kind=captions src=brave.en.hoh.vtt srclang=en label="English for the Hard of Hearing">
+    <p>tiddles purrs like a waterfall</p>
+</audio>
+
+<audio src="brave.mp3">
+    <track kind=subtitles src=brave.en.vtt srclang=en label="English">
+    <p>tiddles purrs like a waterfall</p>
+    <source src='audio.mp3' type='audio/mp3'>
+</audio>
+
+<audio src="brave.mp3" id=xyzzy>
+    <p>tiddles purrs like a waterfall</p>
+    <track kind=subtitles src=brave.en.vtt srclang=en label="English">
+    <source src='audio.mp3' type='audio/mp3'>
+</audio>
+
+<form>
+<label> <input type=checkbox> Cheese
+        <input type=checkbox> Cheesy cheese</label>
+<label for=agnes><input type='checkbox' id=agnes> Cheese</label>
+<label for=doris> cheese <textarea></textarea></label>
+<label for=sid> cheese <textarea id=doris></textarea></label>
+<label for=bert> cheese <textarea id=bert></textarea></label>
+
+<label for=xyzzy>Carpet: <input type="text"></label>
+
+<input type=file accept="audio/*,video/*,image/*">
+<input type=file accept="audio/*,.jpg,application/*,video/mp4,example/*">
+<input type=month value="july 2023">
+<input type=month value="2023-07">
+<input type=week value="michaelmas">
+<input type=week value="1983:51">
+<input type=datetime-local value="1984-01-01T13:00:00.0">
+<input type=datetime-local value="1984-01-01T13:00:00.0Z">
+<input type=time value="13:00:00.0">
+<input type=time value="1984-01-01T13:00:00.0" id="time">
+<input type=date value="1984-01-01T13:00:00.0">
+<input type=date value="1984-01-01">
+<input type=number value=sausages min=1.0E+7 max=2>
+<input type=number value=3 min=1.0E+7 max=2>
+<input type=range value=sausages min=1.0E+7 max=2>
+<input type=range value=3 min=1.0E+7 max=2>
+<input type=color value=offwhite>
+<input type=color value=#000000>
+<input type=color value=#0>
+<input type=color value=blue>
+<input type=color value=#000000000000>
+<input type=date value="1984-03-03" min="1984-03-04" max="1984-03-02">
+<input type=date value="1984-03-03" min="1984-03-02" max="1984-03-04">
+<input type=text value="tiddles" minlength=10 maxlength=20>
+<input type=text value="tiddles" minlength=1 maxlength=2>
+<input type=text value="tiddles" minlength=1 maxlength=20>
+<input type=text value="tiddles" minlength=20 maxlength=1>
+<input type=text value="tiddles" min=1 max=20>
+<input type=text pattern="tiddles">
+<input type=text placeholder="short">
+<input type=text placeholder="this is a rather longwinded sentence to show that perhaps this help text might be slightly too much on the long side">
+<input type=text list="time">
+<input type=text list="animals">
+<input type=text list="tiddles">
+  <datalist id=tiddles>
+    <option value="Cat">Tiddles</option>
+    <option value="Dog">Fido</option>
+  </datalist>
+</form>
+
+<form>
+  <datalist id=animals>
+    <option value="Cat">Tiddles</option>
+    <option value="Dog">Fido</option>
+  </datalist>
+</form>
+
+<form>
+    <select>
+        <option label=Tiddles value=Cat>Tiddles</option>
+        <option label=Cat></option>
+        <option value=Dog>   </option>
+    </select>
+</form>
+
+<script type="module"></script>
+<script type="module" src="script.js" async></script>
+<script type="module" defer></script>
+<script type="module" nomodule></script>
+<script type="application/lost+xml"></script>
+<script type="text/plain"></script>
+<script type="text/css" src="css-good.css"></script>
+<script type="text/css" src="css-good.css" async></script>
+<script type="text/css" async></script>
+<script type="application/tcl"></script>
+<script type="application/lost+xml" charset="utf-14"></script>
+<script type="application/lost+xml" nonce="4"></script> <!-- https://xkcd.com/221/ -->
+<script type="application/lost+xml" integrity="none"></script>
+<script type="text/javascript"></script>
+
+</body>
+</html>

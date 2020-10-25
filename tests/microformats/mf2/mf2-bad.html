@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>microformats2 horridness</title>
+</head>
+
+<body>
+
+<h1>>microformats2 horridness</h1>
+
+<p class="h-card">
+<span class="dt-bday">2525-11-11</span>,
+<span class="dt-anniversary">1911-02-30</span>,
+
+<span class="p-sex">Z</span>,  <!-- https://tools.ietf.org/html/rfc6350 -->
+<span class="p-gender-identity">I don&rsquo;t think s/he knows &hellip; er &hellip;</span>
+</p>
+
+<p class="h-card">
+<img class="u-photo" src="http://example.org/photo.png" alt="photo" />
+<a class="p-name u-url" href="http://example.org">Joe Bloggs</a>
+<a class="u-email" href="mailto:invalid_format">joebloggs@example.com</a>,
+
+<a class="u-email" href="mailto:fredbloggs@example.com">bertscroggins@example.com</a>,
+
+<span class="p-tel">Macclesfield</span>,
+
+<span class="dt-bday dt-anniversary">April Fools Day</span>,
+
+<span class="p-sex">Male</span>,  <!-- https://tools.ietf.org/html/rfc6350 -->
+<span class="p-gender-identity">Unknown</span>
+
+</p>
+
+<p class="h-entry">
+<span class="p-altitude">123.456789</span>
+<data class="p-rsvp" value="sausages">yes</data>
+</p>
+
+<p class="h-geo">
+  <span class="p-altitude">six foot one</span>,
+  <span class="p-latitude">donkeys</span>,
+  <span class="p-longitude">sausages and chips</span>
+</p>
+
+<p class="h-listing">
+<span class="p-price">a pound of sausages</span>,
+<span class="p-action">laze 10.0</span>,
+</p>
+
+<p class="h-product">
+<span class="p-price">a small portion of chips</span>, <!-- need to check t_price values -->
+</p>
+
+<p class="h-recipe">
+    <!-- add tests for regressions here -->
+<span class="dt-published">never</span>,
+<span class="dt-duration">two hundred years</span>
+</p>
+
+<p class="h-review-aggregate">
+    <!-- add tests for regressions here -->
+<span class="p-count">-7</span>
+<span class="p-votes">-7</span>
+<span class="p-best p-worst">3</span>
+<span class="p-average">99</span>
+</p>
+
+<p class="h-review">
+    <!-- add tests for regressions here -->
+<span class="p-rating">6</span>
+<span class="p-best p-worst">99</span>
+<span class="dt-published">today</span>,
+</p>
+
+</body>
+</html>

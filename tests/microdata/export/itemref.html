@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>microdata itemref test</title>
+</head>
+
+<body>
+
+<h1>microdata itemref test</h1>
+
+<!-- https://developer.mozilla.org/ca/docs/Web/HTML/Global_attributes/itemref -->
+
+<div itemscope id="amanda" itemref="a b"></div>
+<p id="a">Name: <span itemprop="name">Amanda</span> </p>
+<div id="b" itemprop="band" itemscope itemref="c"></div>
+<div id="c">
+    <p>Band: <span itemprop="name">Jazz Band</span> </p>
+    <p>Size: <span itemprop="size">12</span> players</p>
+</div>
+
+<!-- https://moz.com/blog/search-marketers-guide-to-itemref-itemid -->
+
+<div itemscope>
+    <span itemprop="commentCount" id="comments">108</span>
+</div>
+
+<div itemscope itemtype="http://schema.org/BlogPosting" itemref="comments a">
+
+<div itemid="#mozOrg" itemscope itemtype="http://schema.org/organization" >...</div>
+
+<div itemscope itemtype="http://schema.org/blogPosting">
+    <link itemprop="publisher" href="#mozOrg"/>
+</div>
+
+</body>
+</html>

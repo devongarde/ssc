@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>microdata itemprop test</title>
+</head>
+
+<body>
+
+<h1>microdata itemprop test</h1>
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop -->
+
+<div itemscope itemtype="http://schema.org/Movie">
+  <h1 itemprop="name">Avatar</h1>
+  <span>Director:
+    <span itemprop="director">James Cameron</span>
+    (born August 16, 1954)</span>
+  <span itemprop="genre">Science fiction</span>
+  <a href="../movies/avatar-theatrical-trailer.html"
+    itemprop="trailer">Trailer</a>
+</div>
+
+<div itemscope>
+ <p>My name is
+   <span itemprop="name">Neil</span>.</p>
+ <p>My band is called
+   <span itemprop="band">Four Parts Water</span>.</p>
+ <p>I am
+   <span itemprop="nationality">British</span>.</p>
+</div>
+
+<div itemscope>
+ <img itemprop="image"
+   src="google-logo.png" alt="Google">
+</div>
+
+<h1 itemscope>
+ <data itemprop="product-id"
+   value="9678AOU879">The Instigator 2000</data>
+</h1>
+
+<div itemscope itemtype="http://schema.org/Product">
+ <span itemprop="name">Panasonic White
+   60L Refrigerator</span>
+ <img src="panasonic-fridge-60l-white.jpg" alt="">
+  <div itemprop="aggregateRating"
+       itemscope
+       itemtype="http://schema.org/AggregateRating">
+   <meter itemprop="ratingValue"
+     min=0 value=3.5 max=5>Rated 3.5/5</meter>
+   (based on <span
+     itemprop="reviewCount">11</span>
+     customer reviews)
+  </div>
+</div>
+
+<div itemscope>
+ I was born on <time
+   itemprop="birthday"
+   datetime="2009-05-10">May 10th 2009</time>.
+</div>
+
+<div itemscope>
+ <p>Name:
+   <span itemprop="name">Amanda</span></p>
+ <p>Band:
+   <span itemprop="band" itemscope>
+     <span itemprop="name">Jazz Band</span>
+     (<span itemprop="size">12</span>
+     players)</span></p>
+</div>
+
+<div itemscope id="amanda" itemref="a b"></div>
+<p id="a">Name:
+  <span itemprop="name">Amanda</span></p>
+<div id="b"
+  itemprop="band"
+  itemscope itemref="c"></div>
+<div id="c">
+ <p>Band:
+   <span itemprop="name">Jazz Band</span></p>
+ <p>Size:
+   <span itemprop="size">12</span> players</p>
+</div>
+
+<div itemscope>
+ <p>Flavors in my favorite ice cream:</p>
+ <ul>
+  <li itemprop="flavor">Lemon sorbet</li>
+  <li itemprop="flavor">Apricot sorbet</li>
+ </ul>
+</div>
+
+<div itemscope>
+ <span
+  itemprop="favorite-color
+    favorite-fruit">orange</span>
+</div>
+
+<figure>
+ <img src="castle.jpeg">
+ <figcaption><span
+   itemscope><span
+   itemprop="name">The Castle</span></span>
+     (1986)</figcaption>
+</figure>
+
+<span itemscope><meta
+  itemprop="name"
+  content="The Castle"></span>
+<figure>
+ <img src="castle.jpeg">
+ <figcaption>The Castle
+  (1986)</figcaption>
+</figure>
+
+<dl itemscope
+  itemtype="http://vocab.example.net/book"
+  itemid="urn:isbn:0-330-34032-8">
+ <dt>Title
+   <dd
+    itemprop="title">The Reality Dysfunction
+ <dt>Author
+   <dd
+     itemprop="author">Peter F. Hamilton
+ <dt>Publication date
+ <dd><time
+   itemprop="pubdate"
+   datetime="1996-01-26">26 January 1996</time>
+</dl>
+
+<div itemscope>
+ <p itemprop="a">1</p>
+ <p itemprop="a">2</p>
+ <p itemprop="b">test</p>
+</div>
+
+<div itemscope>
+ <p itemprop="b">test</p>
+ <p itemprop="a">1</p>
+ <p itemprop="a">2</p>
+</div>
+
+<div itemscope>
+ <p itemprop="a">1</p>
+ <p itemprop="b">test</p>
+ <p itemprop="a">2</p>
+</div>
+
+<div id="x">
+ <p itemprop="a">1</p>
+</div>
+<div itemscope itemref="x">
+ <p itemprop="b">test</p>
+ <p itemprop="a">2</p>
+</div>
+
+</body>
+</html>

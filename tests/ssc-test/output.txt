@@ -1,0 +1,44 @@
+ssc
+0.0.58
+(c) 2020 Dylan Harris, https://dylanharris.org/
+
+*** tests/ssc-test/lines.txt
+1  202
+2  123 261
+11  29
+13  115 115
+14  315 315
+14  29
+20  213
+
+*** tests/ssc-test/good.txt
+1  202
+6  176
+10  110 119
+14  135
+25  59
+26  59
+
+*** tests/ssc-test/un.txt
+1  202
+6  176
+12  110 119
+14  135
+25  59
+26  59
+
+*** tests/ssc-test/unexpected.txt
+1  202
+6  176
+7  3
+10  110 119 201
+14  135
+25  59
+26  59
+
+*** tests/ssc-test/unreported.txt
+1  202
+6  176
+10  110
+14  135
+26  59
