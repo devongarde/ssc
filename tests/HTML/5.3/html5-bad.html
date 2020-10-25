@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>bad HTML5 test page</title>
+<META http-equiv="Content-Style-Type" content="video/css">
+<base href="/">
+<base href="/">
+<link href="index.html" rel="bookmark">
+</head>
+
+<body role="document">
+
+<h1>bad HTML5 Test Page</h1>
+
+<form>
+
+<textarea autocapitalize=sentences>
+This can contain character references like &amp;, &lt; and &gt;,
+but such characters and also be written directly as &, < and >.
+Strings that look like <!-- comments --> or other elements <span>
+are treated as plain text, instead of markup.
+</textarea>
+
+<textarea autocapitalize=none autofocus>
+An unknown named character reference like &this
+gives an ambiguous ampersand error.
+</textarea>
+
+<textarea autocapitalize=default>
+This text cannot contain a string like </textarea because
+it looks like an end tag for the element.
+</textarea>
+
+<textarea autofocus>
+This can contain character references like &amp;, &lt; and &gt;.
+Unlike the HTML syntax, this can also contain comments.
+<!-- just like other normal elements -->
+
+If the string is intended to be rendered, the special characters must be escaped
+&lt;!-- like this --&gt;.
+</textarea>
+
+<textarea is=wrong><![CDATA[This can contain special characters like &, < and >.
+Strings that look like markup, like <!-- comments -->,
+character references &amp;, &lt; and &gt;,
+or other elements <span> are treated as plain text, instead of markup.
+]]></textarea>
+
+<input disabled>...</div>
+<input disabled="">...</div>
+
+<label>Carpet: <input type="carpet" name="c" texture="deep pile"></label>
+
+</form>
+
+<div class="example" lang="en">...</div>
+<section id="example">...</section id="example">
+<div CLASS="example" Lang="en">...</div>
+<img src=example.png height=200 width=300/>
+<img src  =  image.png>
+<img src="example.jpg" title="An example photograph">
+<img src  =  "example.png">
+<img src='example.jpg' title='An example photograph'>
+<img src  =  'example.png'>
+
+<p>This markup contains a <em><strong>mistake</em></strong></p>
+
+<section>
+  <ins><h1>Example of paragraphs</h1>
+  This is the <em>first</em> paragraph in</ins> this example<del>.
+  <p>This is the second.</p></del>
+  <!-- This is not a paragraph. -->
+</section>
+
+<section>
+ <h1>My Cats</h1>
+ You can play with my cat simulator.
+ <object data="cats.sim">
+  To see the cat simulator, use one of the following links:
+  <ul>
+   <li><a href="cats.sim">Download simulator file</a>
+   <li><a href="http://sims.example.com/watch?v=LYds5xY4INU">Use online simulator</a>
+  </ul>
+  Alternatively, upgrade to the Mellblom Browser.
+ </object> I'm quite proud of it.
+</section>
+
+<ADDRESS>Last Modified: 1999/12/24 23:37:50</ADDRESS>
+
+<link href="index.html" rel="icon">
+
+<video src="brave.webm" autoplay>
+    <source src='video.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+    <track kind=captions src=brave.en.hoh.vtt srclang=en label="English for the Hard of Hearing">
+    <p>tiddles purrs like a waterfall</p>
+</video>
+
+<video src="brave.webm">
+    <track kind=subtitles src=brave.en.vtt srclang=en label="English">
+    <p>tiddles purrs like a waterfall</p>
+    <source src='video.mp4' type='video/mp4; codecs="avc1.58A01E, mp4a.40.2"'>
+</video>
+
+<video src="brave.webm">
+    <p>tiddles purrs like a waterfall</p>
+    <track kind=subtitles src=brave.en.vtt srclang=en label="English">
+    <source src='video.mp4' type='video/mp4; codecs="avc1.58A01E, mp4a.40.2"'>
+</video>
+
+<form>
+ <label for="unittype">Select unit type:</label>
+ <select id="unittype" name="unittype" required>
+  <option value="1"> Miner </option>
+  <option value="2"> Puffer </option>
+  <option value="3" selected> Snipey </option>
+  <option value="4"> Max </option>
+  <option value="5"> Firebot </option>
+  </select>
+</form>
+
+<form>
+ <label for="unittype2">Select unit type:</label>
+ <select id="unittype2" name="unittype" required>
+  <option value="1" selected> Miner </option>
+  <option value="2"> Puffer </option>
+  <option value="3" selected> Snipey </option>
+  <option value="4"> Max </option>
+  <option value="5" selected> Firebot </option>
+  </select>
+</form>
+
+<form>
+ <label for="unittype3">Select unit type:</label>
+ <select id="unittype3" name="unittype" required>
+  <option value=""> Miner </option>
+  <option value="1"> Miner </option>
+  <option value="2"> Puffer </option>
+  <option value="3" selected> Snipey </option>
+  <option value="4"> Max </option>
+  <option value="5"> Firebot </option>
+  </select>
+</form>
+
+<form>
+    <datalist>
+        <option value="cat">tiddles</option>
+        <option value="dog">fido</option>
+    </datalist>
+    <datalist>
+        <option value="cat">tiddles</option>
+        <span>the war of the pets</span>
+        <option value="dog">fido</option>
+    </datalist>
+    <datalist>
+        <span>the war of the pets</span>
+    </datalist>
+</form>
+
+</body>
+</html>

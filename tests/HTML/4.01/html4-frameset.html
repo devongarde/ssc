@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html40/frameset.dtd">
+<HTML>
+<HEAD>
+    <TITLE>A simple frameset document</TITLE>
+</HEAD>
+<FRAMESET cols="20%, 80%">
+  <FRAMESET rows="100, 200">
+      <FRAME name="first" src="index.html" scrolling="no">
+      <FRAME src="x.jpg" marginwidth="10" marginheight="15" noresize>
+  </FRAMESET>
+  <FRAME name="third" src="index.html" frameborder="0">
+  <NOFRAMES>
+      <P>This frameset document contains:
+      <UL>
+         <LI><A href="index.html">Some neat contents</A>
+         <LI><IMG src="x.jpg" alt="A neat image">
+         <LI><A href="index.html">Some other neat contents</A>
+      </UL>
+  </NOFRAMES>
+ </FRAMESET>
+</HTML>
+

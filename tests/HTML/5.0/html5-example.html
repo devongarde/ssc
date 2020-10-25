@@ -1,0 +1,1585 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+
+<META CHARSET="UTF-8">
+<BASE HREF="http://www.example.edu/">
+<title>examples from HTML 5.0 spec.</title>
+<LINK REL="STYLESHEET" HREF="default.css">
+<LINK REL="STYLESHEET ALTERNATE" HREF="big.css" TITLE="Big Text">
+<SCRIPT SRC="support.js"></SCRIPT>
+<META NAME="APPLICATION-NAME" CONTENT="Long headed application">
+
+<script>
+    function isLeap(year
+    ) {
+        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+    }
+
+    function compare(a, b) {
+        if (a < b)
+            return -1;
+        else if (a > b)
+            return 1;
+        return 0;
+    }
+</script>
+
+<script>
+    function isLeap(year) {
+        return year % 4 == 0 & amp;& amp; year % 100 != 0 || year % 400 == 0;
+    }
+
+    function compare(a, b) {
+        if (a & lt; b)
+            return -1;
+        else if (a & gt; b)
+            return 1;
+         return 0;
+    }
+</script>
+
+<script>//<![CDATA[
+    function isLeap(year) {
+        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+    }
+
+    function compare(a, b) {
+        if (a < b)
+            return -1;
+        else if (a > b)
+            return 1;
+        return 0;
+    }
+//]]></script>
+
+ <style>
+   body { color: black; background: white; }
+   em { font-style: normal; color: red; }
+</style>
+
+</head>
+
+<!-- this is a comment -->
+<!-- and so is this one,
+    which occupies more than one line -->
+
+<body>
+
+<h1>HTML 5 examples</h1>
+
+<p>The quick brown fox jumps over the lazy dog.</p>
+
+<p>The quick brown fox<br/> jumps over the lazy dog.</p>
+
+<DIV>...</DIV>
+
+<hr>
+<hr/>
+
+<form>
+<label><input type=checkbox checked name=cheese disabled> Cheese</label>
+<label><input type=checkbox checked=checked name=cheese disabled=disabled> Cheese</label>
+<label><input type='checkbox' checked name=cheese disabled=""> Cheese</label>
+
+<label>Carpet: <input type="text" class="carpet" name="c" data-texture="deep pile"></label>
+</form>
+
+<p><object><param><ins><map><a href="/">Apples</a></map></ins></object></p>
+<section>
+  <h1>Example of paragraphs</h1>
+  This is the <em>first</em> paragraph in this example.
+  <p>This is the second.</p>
+  <!-- This is not a paragraph. -->
+</section>
+
+<header>
+ Welcome!
+ <a href="about.html">
+  This is home of...
+  <h1>The Falcons!</h1>
+  The Lockheed Martin multirole jet fighter aircraft!
+ </a>
+ This page discusses the F-16 Fighting Falcon's innermost secrets.
+</header>
+
+<header>
+ <p>Welcome!
+ <a href="about.html">This is home of...</a></p>
+ <h1><a href="about.html">The Falcons!</a></h1>
+ <p><a href="about.html">The Lockheed Martin multirole jet fighter aircraft!</a>
+ This page discusses the F-16 Fighting Falcon's innermost secrets.</p>
+</header>
+
+<section>
+ <h1>My Cats</h1>
+ <p>You can play with my cat simulator.</p>
+ <object data="cats.sim">
+  <p>To see the cat simulator, use one of the following links:</p>
+  <ul>
+   <li><a href="cats.sim">Download simulator file</a>
+   <li><a href="http://sims.example.com/watch?v=LYds5xY4INU">Use online simulator</a>
+  </ul>
+  <p>Alternatively, upgrade to the Mellblom Browser.</p>
+ </object>
+ <p>I'm quite proud of it.</p>
+</section>
+
+<p>The Bee Game is a text adventure game in English.</p>
+<p>When the game launches, the first thing you should do is type
+<kbd translate=no>eat honey</kbd>. The game will respond with:</p>
+<pre><samp translate=no>Yum yum! That was some good honey!</samp></pre>
+
+<div class="spaceship" data-ship-id="92432"
+     data-weapons="laser 2" data-shields="50%"
+     data-x="30" data-y="10" data-z="90">
+ <button class="fire"
+         onclick="spaceships[this.parentNode.dataset.shipId].fire()">
+  Fire </button>
+</div>
+
+<figure role="img" aria-labelledby="fish-caption">
+  <pre>
+ o           .'`/
+     '      /  (
+   O    .-'` ` `'-._      .')
+      _/ (o)        '.  .' /
+      )       )))     ><  <
+      `\  |_\      _.'  '. \
+        '-._  _ .-'       '.)
+    jgs     `\__\
+ </pre>
+ <figcaption id="fish-caption">
+  Joan G. Stark, "<cite>fish</cite>".
+  October 1997. ASCII on electrons. 28×8.
+ </figcaption>
+</figure>
+
+<article itemscope itemtype="http://example.org/BlogPosting">
+ <header>
+  <h1 itemprop="headline">The Very First Rule of Life</h1>
+  <p><time itemprop="datePublished" datetime="2009-10-09">3 days ago</time></p>
+  <!-- <link itemprop="url" href="?comments=0"> -->  <!-- without itemprop et al turned on, this breaks stuff -->
+ </header>
+ <p>If there's a microphone anywhere near you, assume it's hot and
+ sending whatever you're saying to the world. Seriously.</p>
+ <p>...</p>
+ <footer>
+  <a itemprop="discussionUrl" href="?comments=1">Show comments...</a>
+ </footer>
+</article>
+
+<article itemscope itemtype="http://example.org/BlogPosting">
+ <header>
+  <h1 itemprop="headline">The Very First Rule of Life</h1>
+  <p><time itemprop="datePublished" datetime="2009-10-09">3 days ago</time></p>
+  <!-- <link itemprop="url" href="?comments=0"> -->
+ </header>
+ <p>If there's a microphone anywhere near you, assume it's hot and
+ sending whatever you're saying to the world. Seriously.</p>
+ <p>...</p>
+ <section>
+  <h1>Comments</h1>
+  <article itemprop="comment" itemscope itemtype="http://example.org/UserComments" id="c1">
+   <!-- <link itemprop="url" href="#c1"> -->
+   <footer>
+    <p>Posted by: <span itemprop="creator" itemscope itemtype="http://example.org/Person">
+     <span itemprop="name">George Washington</span>
+    </span></p>
+    <p><time itemprop="commentTime" datetime="2009-10-10">15 minutes ago</time></p>
+   </footer>
+   <p>Yeah! Especially when talking about your lobbyist friends!</p>
+  </article>
+  <article itemprop="comment" itemscope itemtype="http://example.org/UserComments" id="c2">
+   <!-- <link itemprop="url" href="#c2"> -->
+   <footer>
+    <p>Posted by: <span itemprop="creator" itemscope itemtype="http://example.org/Person">
+     <span itemprop="name">George Hammond</span>
+    </span></p>
+    <p><time itemprop="commentTime" datetime="2009-10-10">5 minutes ago</time></p>
+   </footer>
+   <p>Hey, you have the same first name as me.</p>
+  </article>
+ </section>
+</article>
+
+<H1
+     >Graduation</H1
+   ><Section
+     ><H2
+       >Ceremony</H2
+     ><P
+       >Opening Procession</P
+     ><P
+       >Speech by Validactorian</P
+     ><P
+       >Speech by Class President</P
+     ><P
+       >Presentation of Diplomas</P
+     ><P
+       >Closing Speech by Headmaster</P
+   ></Section
+   ><Section
+     ><H2
+       >Graduates</H2
+     ><Ul
+       ><Li
+         >Molly Carpenter</Li
+       ><Li
+         >Anastasia Luccio</Li
+       ><Li
+         >Ebenezar McCoy</Li
+       ><Li
+         >Karrin Murphy</Li
+       ><Li
+         >Thomas Raith</Li
+       ><Li
+         >Susan Rodriguez</Li
+     ></Ul
+   ></Section >
+
+<nav>
+ <h1>Navigation</h1>
+ <p>You are on my home page. To the north lies <a href="/blog">my blog</a>,
+ from whence the sounds of battle can be heard. To the east
+ you can see a large mountain, upon which many <a
+ href="/school">school papers</a> are littered. Far up thus mountain
+ you can spy a little figure who appears to be me, desperately
+ scribbling a <a href="/school/thesis">thesis</a>.</p>
+ <p>To the west are several exits. One fun-looking exit is labeled <a
+ href="http://games.example.com/">"games"</a>. Another more
+ boring-looking exit is labeled <a
+ href="http://isp.example.net/">ISP™</a>.</p>
+ <p>To the south lies a dark and dank <a href="/about">contacts
+ page</a>. Cobwebs cover its disused entrance, and at one point you
+ see a rat run quickly out of the page.</p>
+</nav>
+
+<aside>
+ <h1>Switzerland</h1>
+ <p>Switzerland, a land-locked country in the middle of geographic
+ Europe, has not joined the geopolitical European Union, though it is
+ a signatory to a number of European treaties.</p>
+</aside>
+
+<p>He later joined a large company, continuing on the same work.
+ <q>I love my job. People ask me what I do for fun when I'm not at
+ work. But I'm paid to do my hobby, so I never know what to
+ answer. Some people wonder what they would do if they didn't have to
+ work... but I know what I would do, because I was unemployed for a
+year, and I filled that time doing exactly what I do now.</q></p>
+<aside>
+ <q> People ask me what I do for fun when I'm not at work. But I'm
+ paid to do my hobby, so I never know what to answer. </q>
+</aside>
+<p>Of course his work — or should that be hobby? —
+ isn't his only passion. He also enjoys other pleasures.</p>
+
+<h1>Let's call it a draw(ing surface)</h1>
+ <h2>Diving in</h2>
+ <h2>Simple shapes</h2>
+ <h2>Canvas coordinates</h2>
+ <h3>Canvas coordinates diagram</h3>
+ <h2>Paths</h2>
+
+<h1>Let's call it a draw(ing surface)</h1>
+ <section>
+  <h1>Diving in</h1>
+ </section>
+ <section>
+  <h1>Simple shapes</h1>
+ </section>
+ <section>
+  <h1>Canvas coordinates</h1>
+  <section>
+   <h1>Canvas coordinates diagram</h1>
+  </section>
+ </section>
+ <section>
+  <h1>Paths</h1>
+ </section>
+
+<header>
+ <p>Welcome to...</p>
+ <h1>Voidwars!</h1>
+</header>
+
+<header>
+  <h1>Scalable Vector Graphics (SVG) 1.2</h1>
+  <p>W3C Working Draft 27 October 2004</p>
+ <dl>
+  <dt>This version:</dt>
+  <dd><a href="http://www.w3.org/TR/2004/WD-SVG12-20041027/">http://www.w3.org/TR/2004/WD-SVG12-20041027/</a></dd>
+  <dt>Previous version:</dt>
+  <dd><a href="http://www.w3.org/TR/2004/WD-SVG12-20040510/">http://www.w3.org/TR/2004/WD-SVG12-20040510/</a></dd>
+  <dt>Latest version of SVG 1.2:</dt>
+  <dd><a href="http://www.w3.org/TR/SVG12/">http://www.w3.org/TR/SVG12/</a></dd>
+  <dt>Latest SVG Recommendation:</dt>
+  <dd><a href="http://www.w3.org/TR/SVG/">http://www.w3.org/TR/SVG/</a></dd>
+  <dt>Editor:</dt>
+  <dd>Dean Jackson, W3C, <a href="mailto:dean@w3.org">dean@w3.org</a></dd>
+  <dt>Authors:</dt>
+  <dd>See <a href="#authors">Author List</a></dd>
+ </dl>
+ <p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice">
+</header>
+
+<header>
+  <h1>Little Green Guys With Guns</h1>
+  <nav>
+   <ul>
+    <li><a href="/games">Games</a>
+    <li><a href="/forum">Forum</a>
+    <li><a href="/download">Download</a>
+   </ul>
+  </nav>
+  <h2>Important News</h2>
+ <!-- this starts a second subsection -->
+  <!-- this is part of the subsection entitled "Important News" -->
+  <p>To play today's games you will need to update your client.</p>
+  <h2>Games</h2> <!-- this starts a third subsection -->
+ </header>
+ <p>You have three active games:</p>
+ <!-- this is still part of the subsection entitled "Games" -->
+
+<footer><a href="../">Back to index...</a></footer>
+ <div>
+  <h1>Lorem ipsum</h1>
+  <p>The ipsum of all lorems</p>
+ </div>
+ <p>A dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+ veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+ ea commodo consequat. Duis aute irure dolor in reprehenderit in
+ voluptate velit esse cillum dolore eu fugiat nulla
+ pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+ culpa qui officia deserunt mollit anim id est laborum.</p>
+ <footer><a href="../">Back to index...</a></footer>
+
+<H1>The Ramblings of a Scientist</H1>
+ <MAIN>
+ <ARTICLE> <H1>Episode 15</H1>
+ <VIDEO SRC="/fm/015.ogv" CONTROLS PRELOAD>
+  <P><A HREF="/fm/015.ogv">Download video</A>.</P>
+ </VIDEO>
+ <FOOTER> <!-- footer for article -->
+  <P>Published <TIME DATETIME="2009-10-21T18:26-07:00">on 2009/10/21 at 6:26pm</TIME></P>
+ </FOOTER>
+ </ARTICLE>
+ <ARTICLE>
+ <H1>My Favorite Trains</H1>
+ <P>I love my trains. My favorite train of all time is a Köf.</P>
+ <P>It is fun to see them pull some coal cars because they look so
+ dwarfed in comparison.</P>
+ <FOOTER> <!-- footer for article -->
+  <P>Published <TIME DATETIME="2009-09-15T14:54-07:00">on 2009/09/15 at 2:54pm</TIME></P>
+ </FOOTER>
+ </ARTICLE>
+ </MAIN>
+ <FOOTER> <!-- site wide footer --> <NAV>
+  <P><A HREF="/credits.html">Credits</A> —
+     <A HREF="/tos.html">Terms of Service</A> —
+     <A HREF="/index.html">Blog Index</A></P>
+ </NAV>
+ <P>Copyright © 2009 Gordon Freeman</P>
+</FOOTER>
+
+<footer>
+  <nav>
+   <section>
+    <h1>Articles</h1>
+    <p><img src="images/somersaults.jpeg" alt=""> Go to the gym with
+    our somersaults class! Our teacher Jim takes you through the paces
+    in this two-part article. <a href="articles/somersaults/1">Part
+    1</a> · <a href="articles/somersaults/2">Part 2</a></p>
+    <p><img src="images/kindplus.jpeg"> Tired of walking on the edge of
+    a clif<!-- sic -->? Our guest writer Lara shows you how to bumble
+    your way through the bars. <a href="articles/kindplus/1">Read
+    more...</a></p>
+    <p><img src="images/crisps.jpeg"> The chips are down, now all
+    that's left is a potato. What can you do with it? <a
+    href="articles/crisps/1">Read more...</a></p>
+   </section>
+   <ul>
+    <li> <a href="/about">About us...</a>
+    <li> <a href="/feedback">Send feedback!</a>
+    <li> <a href="/sitemap">Sitemap</a>
+   </ul>
+  </nav>
+  <p><small>Copyright © 2015 The Snacker —
+  <a href="/tos">Terms of Service</a></small></p>
+</footer>
+
+<ADDRESS>
+ <A href="../People/Raggett/">Dave Raggett</A>,
+ <A href="../People/Arnaud/">Arnaud Le Hors</A>,
+ contact persons for the <A href="Activity">W3C HTML Activity</A>
+</ADDRESS>
+
+<footer>
+ <address>
+  For more details, contact
+  <a href="mailto:js@example.com">John Smith</a>.
+ </address>
+ <p><small>© copyright 2038 Example Corp.</small></p>
+</footer>
+
+ <h1>Foo</h1>
+ <h2>Bar</h2>
+ <blockquote>
+  <h3>Bla</h3>
+ </blockquote>
+ <p>Baz</p>
+ <h2>Quux</h2>
+ <section>
+  <h3>Thud</h3>
+ </section>
+ <p>Grunt</p>
+
+<h1>Apples</h1>
+ <p>Apples are fruit.</p>
+ <section>
+  <h1>Taste</h1>
+  <p>They taste lovely.</p>
+  <section>
+   <h1>Sweet</h1>
+   <p>Red apples are sweeter than green ones.</p>
+  </section>
+ </section>
+ <section>
+  <h1>Color</h1>
+  <p>Apples come in various colors.</p>
+ </section>
+
+<h1>The Tax Book</h1>
+ <h2>Earning money</h2>
+ <p>Earning money is good.</p>
+ <h3>Getting a job</h3>
+ <p>To earn money you typically need a job.</p>
+ <h2>Spending money</h2>
+ <p>Spending is what money is mainly used for.</p>
+ <h3>Cheap things</h3>
+ <p>Buying cheap things often not cost-effective.</p>
+ <h3>Expensive things</h3>
+ <p>The most expensive thing is often not the most cost-effective either.</p>
+ <h2>Investing money</h2>
+ <p>You can lend your money to other people.</p>
+ <h2>Losing money</h2>
+ <p>If you spend money or invest money, sooner or later you will lose money.
+ <h3>Poor judgement</h3>
+ <p>Usually if you lose money it's because you made a mistake.</p>
+
+<p>The little kitten gently seated himself on a piece of
+ carpet. Later in his life, this would be referred to as the time the
+ cat sat on the mat.</p>
+
+<fieldset>
+ <legend>Personal information</legend>
+ <p>
+   <label>Name: <input name="n"></label>
+   <label><input name="anon" type="checkbox"> Hide from other users</label>
+ </p>
+ <p><label>Address: <textarea name="a"></textarea></label></p>
+ </fieldset>
+
+<p>There was once an example from Femley,<br>
+Whose markup was of dubious quality.<br>
+The validator complained,<br>
+So the author was pained,<br>
+To move the error from the markup to the rhyming.</p>
+
+<section>
+ <!-- ... -->
+ <footer>
+  <p>Last modified: 2001-04-23</p>
+  <address>Author: fred@example.com</address>
+ </footer>
+</section>
+
+<p>For instance, this fantastic sentence has bullets relating to</p>
+ <ul>
+ <li>wizards,
+ <li>faster-than-light travel, and
+ <li>telepathy,
+ </ul>
+ <p>and is further discussed below.</p>
+
+<section>
+ <h1>Communication</h1>
+ <p>There are various methods of communication. This section
+ covers a few of the important ones used by the project.</p>
+ <hr>
+ <p>Communication stones seem to come in pairs and have mysterious
+ properties:</p>
+ <ul>
+  <li>They can transfer thoughts in two directions once activated
+  if used alone.</li>
+  <li>If used with another device, they can transfer one's
+  consciousness to another body.</li>
+  <li>If both stones are used with another device, the
+  consciousnesses switch bodies.</li>
+ </ul>
+ <hr>
+ <p>Radios use the electromagnetic spectrum in the meter range and longer.</p>
+ <hr>
+ <p>Signal flares use the electromagnetic spectrum in the nanometer range.</p>
+ </section>
+ <section>
+ <h1>Food</h1>
+ <p>All food at the project is rationed:</p>
+ <dl>
+  <dt>Potatoes</dt>
+  <dd>Two per day</dd>
+  <dt>Soup</dt>
+  <dd>One bowl per day</dd>
+ </dl>
+ <hr>
+ <p>Cooking is done by the chefs on a set rotation.</p>
+</section>
+
+<p>Dudley was ninety-two, in his second life, and fast approaching
+ time for another rejuvenation. Despite his body having the physical
+ age of a standard fifty-year-old, the prospect of a long degrading
+ campaign within academia was one he regarded with dread. For a
+ supposedly advanced civilization, the Intersolar Commonwealth could be
+ appallingly backward at times, not to mention cruel.</p>
+ <p><i>Maybe it won't be that bad</i>, he told himself. The lie was
+ comforting enough to get him through the rest of the night's
+shift.</p>
+ <hr>
+ <p>The Carlton AllLander drove Dudley home just after dawn. Like the
+ astronomer, the vehicle was old and worn, but perfectly capable of
+ doing its job. It had a cheap diesel engine, common enough on a
+ semi-frontier world like Gralmond, although its drive array was a
+ thoroughly modern photoneural processor. With its high suspension and
+ deep-tread tyres it could plough along the dirt track to the
+ observatory in all weather and seasons, including the metre-deep snow
+ of Gralmond's winters.</p>
+
+<p>This is the <code>Panel</code> constructor:</p>
+ <pre><code>function Panel(element, canClose, closeHandler) {
+  this.element = element;
+  this.canClose = canClose;
+  this.closeHandler = function () { if (closeHandler) closeHandler() }; }
+</code></pre>
+
+<pre>                maxling
+
+it is with a          heart
+               heavy
+
+that i admit loss of a feline
+        so           loved
+
+a friend lost to the
+        unknown
+                                (night)
+
+~cdr 11dec07</pre>
+
+ <figure>
+<blockquote>
+ "That monster custom, who all sense doth eat
+ Of habit's devil," <abbr title="et cetera">&c.</abbr> not in Folio
+
+ "What a falling off was there !
+ From me, whose love was of that dignity
+ That it went hand in hand even with the vow
+ I made to her in marriage, and to decline
+ Upon a wretch."
+ </blockquote>
+ <footer>
+ — <cite class="title">Shakespeare manual</cite> by <cite class="author">Frederick Gard Fleay</cite>,
+  p19 (in Google Books)
+ </footer>
+ </figure>
+
+<p>His next piece was the aptly named <cite>Sonnet 130</cite>:</p>
+ <blockquote cite="http://quotes.example.org/s/sonnet130.html">
+  <p>My mistress' eyes are nothing like the sun,<br>
+  Coral is far more red, than her lips red,
+  ...
+</blockquote>
+
+<p>He began his list of "lessons" with the following:</p>
+ <blockquote>One should never assume that his side of
+ the issue will be recognized, let alone that it will
+ be conceded to have merits.</blockquote>
+ <p>He continued with a number of similar points, ending with:</p>
+ <blockquote>Finally, one should be prepared for the threat
+ of breakdown in negotiations at any given moment and not
+ be cowed by the possibility.</blockquote>
+ <p>We shall now discuss these points... </p>
+
+<p>I have lived in the following countries (given in the order of when I first lived there):</p>
+ <ol>
+
+ <li>Switzerland
+ <li>United Kingdom
+ <li>United States
+ <li>Norway
+ </ol>
+
+<p>I have lived in the following countries (given in the order of when I first lived there):</p>
+ <ol>
+ <li>United Kingdom
+ <li>Switzerland
+ <li>United States
+ <li>Norway
+</ol>
+
+<p>I have lived in the following countries:</p>
+ <ul>
+ <li>United Kingdom
+ <li>Switzerland
+ <li>United States
+ <li>Narnia
+</ul>
+
+<figure>
+ <figcaption>The top 10 movies of all time</figcaption>
+ <ol reversed>
+  <li><cite>Josie and the Pussycats</cite>, 2001</li>
+  <li><cite lang="sh">Црна мачка, бели мачор</cite>, 1998</li>
+  <li><cite>A Bug's Life</cite>, 1998</li>
+  <li><cite>Toy Story</cite>, 1995</li>
+  <li><cite>Monsters, Inc</cite>, 2001</li>
+  <li><cite>Cars</cite>, 2006</li>
+  <li><cite>Toy Story 2</cite>, 1999</li>
+  <li><cite>Finding Nemo</cite>, 2003</li>
+  <li><cite>The Incredibles</cite>, 2004</li>
+  <li><cite>Ratatouille</cite>, 2007</li>
+ </ol>
+</figure>
+
+<dl>
+ <dt> Last modified time </dt>
+ <dd> 2004-12-23T23:33Z </dd>
+ <dt> Recommended update interval </dt>
+ <dd> 60s </dd>
+ <dt> Authors </dt>
+ <dt> Editors </dt>
+ <dd> Robert Rothman </dd>
+ <dd> Daniel Jackson </dd>
+</dl>
+
+<dl>
+ <dt><dfn>Apartment</dfn>, n.</dt>
+ <dd>An execution context grouping one or more threads with one or more COM objects.</dd>
+ <dt><dfn>Flat</dfn>, n.</dt>
+ <dd>A deflated tire.</dd>
+ <dt><dfn>Home</dfn>, n.</dt>
+ <dd>The user's login directory.</dd>
+</dl>
+
+<dl>
+ <dt><dfn>happiness</dfn></dt>
+ <dd class="pronunciation">/'hæ p. nes/</dd>
+ <dd class="part-of-speech"><i><abbr>n.</abbr></i></dd> <dd>The state of being happy.</dd>
+ <dd>Good fortune; success. <q>Oh <b>happiness</b>! It worked!</q></dd>
+ <dt><dfn>rejoice</dfn></dt> <dd class="pronunciation">/ri jois'/</dd>
+ <dd><i class="part-of-speech"><abbr>v.intr.</abbr></i> To be delighted oneself.</dd>
+ <dd><i class="part-of-speech"><abbr>v.tr.</abbr></i> To cause one to be delighted.</dd>
+</dl>
+
+<p>In <a href="#l4">listing 4</a> we see the primary core interface
+ API declaration.</p>
+ <figure id="l4">
+ <figcaption>Listing 4. The primary core interface API declaration.</figcaption>
+ <pre><code>interface PrimaryCore {
+ boolean verifyDataLine();
+ void sendData(in sequence&lt;byte> data);
+ void initSelfDestruct();
+ }</code></pre>
+ </figure>
+<p>The API is designed to use UTF-8.</p>
+
+<figure>
+ <img src="bubbles-work.jpeg"
+      alt="Bubbles, sitting in his office chair, works on his
+           latest project intently.">
+ <figcaption>Bubbles at work</figcaption>
+</figure>
+<nav><a href="19414.html">Prev</a> — <a href="19416.html">Next</a></nav>
+
+<h2>Malinko's comics</h2>
+
+<p>This case centered on some sort of "intellectual property"
+ infringement related to a comic (see Exhibit A). The suit started
+ after a trailer ending with these words:
+
+<blockquote>
+ <img src="promblem-packed-action.png" alt="ROUGH COPY! Promblem-Packed Action!">
+ </blockquote>
+
+<p>...was aired. A lawyer, armed with a Bigger Notebook, launched a
+ preemptive strike using snowballs. A complete copy of the trailer is
+ included with Exhibit B.
+
+<figure>
+ <img src="ex-a.png" alt="Two squiggles on a dirty piece of paper.">
+ <figcaption>Exhibit A. The alleged <cite>rough copy</cite> comic.
+</figcaption>
+
+
+</figure>
+<figure>
+ <video src="ex-b.mov"></video>
+ <figcaption>Exhibit B. The <cite>Rough Copy</cite> trailer.</figcaption>
+ </figure>
+
+<p>The case was resolved out of court.</p>
+
+<figure>
+ <p>'Twas brillig, and the slithy toves<br>
+ Did gyre and gimble in the wabe;<br>
+ All mimsy were the borogoves,<br>
+ And the mome raths outgrabe.</p>
+ <figcaption><cite>Jabberwocky</cite> (first verse). Lewis Carroll, 1832-98</figcaption>
+</figure>
+
+<article lang="en-US">
+ <h1>My use of language and my cats</h1>
+ <p>My cat's behavior hasn't changed much since her absence, except
+ that she plays her new physique to the neighbors regularly, in an
+ attempt to get pets.</p>
+ <div lang="en-GB">
+  <p>My other cat, coloured black and white, is a sweetie. He followed
+  us to the pool today, walking down the pavement with us. Yesterday
+  he apparently visited our neighbours. I wonder if he recognises that
+  their flat is a mirror image of ours.</p>
+  <p>Hm, I just noticed that in the last paragraph I used British
+  English. But I'm supposed to write in American English. So I
+  shouldn't say "pavement" or "flat" or "colour"...</p>
+ </div>
+ <p>I should say "sidewalk" and "apartment" and "color"!</p>
+</article>
+
+<main>
+  <h1>Skateboards</h1>
+  <p>The skateboard is the way cool kids get around</p>
+    <article>
+  <h2>Longboards</h2>
+  <p>Longboards are a type of skateboard with a longer
+   wheelbase and larger, softer wheels.</p>
+  <p>... </p>
+  <p>... </p>
+  </article>
+  <article>
+  <h2>Electric Skateboards</h2>
+  <p>These no longer require the propelling of the skateboard
+  by means of the feet; rather an electric motor propels the board,
+   fed by an electric battery.</p>
+  <p>... </p>
+  <p>... </p>
+  </article>
+</main>
+
+<aside class="advertising">
+ <h1>Advertising</h1>
+ <a href="http://ad.example.com/?adid=1929&amp;pubid=1422">
+  <section>
+   <h1>Mellblomatic 9000!</h1>
+   <p>Turn all your widgets into mellbloms!</p>
+   <p>Only $9.99 plus shipping and handling.</p>
+  </section>
+ </a>
+ <a href="http://ad.example.com/?adid=375&amp;pubid=1422">
+  <section>
+   <h1>The Mellblom Browser</h1>
+   <p>Web browsing at the speed of light.</p>
+   <p>No other browser goes faster!</p>
+  </section>
+ </a>
+</aside>
+
+<p>Cats are cute animals.</p>
+<p><em>Cats</em> are cute animals.</p>
+<p>Cats <em>are</em> cute animals.</p>
+<p>Cats are <em>cute</em> animals.</p>
+<p>Cats are cute <em>animals</em>.</p>
+<p><em>Cats are cute animals!</em></p>
+<p><em>Cats are <em>cute</em> animals!</em></p>
+
+<h1>Chapter 1: <strong>The Praxis</strong></h1>
+
+<figcaption>Figure 1. <strong>Ant colony dynamics</strong>. The ants in this colony are
+affected by the heat source (upper left) and the food source (lower right).</figcaption>
+<h1><strong>Flowers, Bees, and Honey</strong> and other things I don't understand</h1>
+<p><strong>Warning.</strong> This dungeon is dangerous.
+ <strong>Avoid the ducks.</strong> Take any gold you find.
+ <strong><strong>Do not take any of the diamonds</strong>,
+ they are explosive and <strong>will destroy anything within
+ ten meters.</strong></strong> You have been warned.</p>
+<p>Welcome to Remy, the reminder system.</p>
+<p>Your tasks for today:</p>
+<ul>
+<li><p><strong>Turn off the oven.</strong></p></li>
+<li><p>Put out the trash.</p></li>
+<li><p>Do the laundry.</p></li>
+</ul>
+
+<dl>
+ <dt>Single room
+ <dd>199 € <small>breakfast included, VAT not included</small>
+ <dt>Double room
+ <dd>239 € <small>breakfast included, VAT not included</small>
+</dl>
+
+<p>Example Corp today announced record profits for the
+second quarter <small>(Full Disclosure: Foo News is a subsidiary of
+Example Corp)</small>, leading to speculation about a third quarter
+merger with Demo Group.</p>
+
+<aside>
+ <h1>Example Corp</h1>
+ <p>This company mostly creates small software and Web sites.</p>
+ <p>The Example Corp company mission is "To provide entertainment
+ and news on a sample basis".</p>
+ <p><small>Information obtained from <a
+ href="http://example.com/about.html">example.com</a> home
+ page.</small></p>
+</aside>
+
+<p><strong><small>Continued use of this service will result in a kiss.</small></strong></p>
+
+<p>Buy our Iced Tea and Lemonade!</p>
+<p><s>Recommended retail price: $3.99 per bottle</s></p>
+<p><strong>Now selling for just $2.99 a bottle!</strong></p>
+
+ <p>In the words of <cite>Charles Bukowski</cite> -
+    <q>An intellectual says a simple thing in a hard way. An artist says a hard thing in a simple way.</q></p>
+
+<blockquote class="twitter-tweet">
+  <p>♥ Bukowski in <a href="https://twitter.com/search?q=%23HTML5&src=hash">#HTML5</a> spec examples
+  <a href="http://t.co/0FIEiYN1pC">http://t.co/0FIEiYN1pC</a></p><cite>— karl dubost (@karlpro)
+  <a href="https://twitter.com/karlpro/statuses/370905307293442048">August 23, 2013</a></cite>
+</blockquote>
+
+<p><cite>Universal Declaration of Human Rights</cite>, United Nations,
+December 1948. Adopted by General Assembly resolution 217 A (III).</p>
+
+<p>Who is your favorite doctor (in <cite>Doctor Who</cite>)?</p>
+
+  <article id="comment-1">
+   Comment by <cite><a href="http://oli.jp">Oli Studholme</a></cite>
+   <time datetime="2013-08-19T16:01">August 19th, 2013 at 4:01 pm</time>
+  <p>Unfortunately I don't think adding names back into the definition of <code>cite</code>
+  solves the problem: of the 12 blockquote examples in
+  <a href="http://oli.jp/example/blockquote-metadata/">Examples of block quote metadata</a>,
+  there's not even one that's <em>just</em> a person’s name.</p>
+  <p>A subset of the problem, maybe…</p>
+  </article>
+
+  <div id="resultStats">About 416,000,000 results 0.33 seconds) </div>
+  ...
+  <p><a href="http://www.w3.org/html/wg/">W3C <i>HTML Working Group</i></a></p>
+  <p><cite>www.w3.org/<b>html</b>/wg/</cite></p>
+  <p>15 Apr 2013 - The <i>HTML Working Group</i> is currently chartered to continue its
+   work through 31 December 2014. A Plan 2014 document published by the...</p>
+  ...
+
+    <p><q>This is correct, said Hillary.</q> is a quote from the
+    popular daytime TV drama <cite>When Ian became Hillary</cite>.</p>
+
+<p>The man said <q>Things that are impossible just take
+longer</q>. I disagreed with him.</p>
+
+<p>The W3C page <cite>About W3C</cite> says the W3C's
+mission is <q cite="http://www.w3.org/Consortium/">To lead the
+World Wide Web to its full potential by developing protocols and
+guidelines that ensure long-term growth for the Web</q>. I
+disagree with this mission.</p>
+
+<p>In <cite>Example One</cite>, he writes <q>The man
+said <q>Things that are impossible just take longer</q>. I
+disagreed with him</q>. Well, I disagree even more!</p>
+
+<p>His best argument was ❝I disagree❞, which
+I thought was laughable.</p>
+
+<p>The word "ineffable" could have been used to describe the disaster
+resulting from the campaign's mismanagement.</p>
+
+<p>The <dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>
+is a device that allows off-world teams to open the iris.</p>
+<!-- ... later in the document: -->
+<p>Teal'c activated his <abbr title="Garage Door Opener">GDO</abbr>
+and so Hammond ordered the iris to be opened.</p>
+
+<p>The <dfn id=gdo><abbr title="Garage Door Opener">GDO</abbr></dfn>
+is a device that allows off-world teams to open the iris.</p>
+<!-- ... later in the document: -->
+<p>Teal'c activated his <a href=#gdo><abbr title="Garage Door Opener">GDO</abbr></a>
+and so Hammond ordered the iris to be opened.</p>
+
+<p>The <dfn id=whatwg><abbr
+ title="Web Hypertext Application Technology Working Group">WHATWG</abbr></dfn>
+ is a loose unofficial collaboration of Web browser manufacturers and
+ interested parties who wish to develop new technologies designed to
+ allow authors to write and deploy Applications over the World Wide
+ Web.</p>
+
+<p>The <dfn id=whatwg>Web Hypertext Application Technology
+ Working Group</dfn> (<abbr
+ title="Web Hypertext Application Technology Working Group">WHATWG</abbr>)
+ is a loose unofficial collaboration of Web browser manufacturers and
+ interested parties who wish to develop new technologies designed to
+ allow authors to write and deploy Applications over the World Wide
+ Web.</p>
+
+<p>The
+ <abbr title="Web Hypertext Application Technology Working Group">WHATWG</abbr>
+ started working on HTML5 in 2004.</p>
+
+<p>The <a href="#whatwg"><abbr
+ title="Web Hypertext Application Technology Working Group">WHATWG</abbr></a>
+ community does not have much representation from Asia.</p>
+
+<p>Philip` and Dashiva both denied that they were going to
+ get the issue counts from past revisions of the specification to
+ backfill the <abbr>WHATWG</abbr> issue graph.</p>
+
+<p>Two <abbr title="Working Group">WG</abbr>s worked on
+ this specification: the <abbr>WHATWG</abbr> and the
+ <abbr>HTMLWG</abbr>.</p>
+
+<p>Two <abbr title="Working Groups">WGs</abbr> worked on
+ this specification: the <abbr>WHATWG</abbr> and the
+ <abbr>HTMLWG</abbr>.</p>
+
+<time>2011-11</time>
+<time>2011-11-12</time>
+<time>11-12</time>
+<time>14:54</time>
+<time>14:54:39</time>
+<time>14:54:39.929</time>
+<time>2011-11-12T14:54</time>
+<time>2011-11-12T14:54:39</time>
+<time>2011-11-12T14:54:39.929</time>
+<time>2011-11-12 14:54</time>
+<time>2011-11-12 14:54:39</time>
+<time>2011-11-12 14:54:39.929</time>
+<time>Z</time>
+<time>+0000</time>
+<time>+00:00</time>
+<time>-0800</time>
+<time>-08:00</time>
+<time>2011-11-12T14:54Z</time>
+<time>2011-11-12T14:54:39Z</time>
+<time>2011-11-12T14:54:39.929Z</time>
+<time>2011-11-12T14:54+0000</time>
+<time>2011-11-12T14:54:39+0000</time>
+<time>2011-11-12T14:54:39.929+0000</time>
+<time>2011-11-12T14:54+00:00</time>
+<time>2011-11-12T14:54:39+00:00</time>
+<time>2011-11-12T14:54:39.929+00:00</time>
+<time>2011-11-12T06:54-0800</time>
+<time>2011-11-12T06:54:39-0800</time>
+<time>2011-11-12T06:54:39.929-0800</time>
+<time>2011-11-12T06:54-08:00</time>
+<time>2011-11-12T06:54:39-08:00</time>
+<time>2011-11-12T06:54:39.929-08:00</time>
+<time>2011-11-12 14:54Z</time>
+<time>2011-11-12 14:54:39Z</time>
+<time>2011-11-12 14:54:39.929Z</time>
+<time>2011-11-12 14:54+0000</time>
+<time>2011-11-12 14:54:39+0000</time>
+<time>2011-11-12 14:54:39.929+0000</time>
+<time>2011-11-12 14:54+00:00</time>
+<time>2011-11-12 14:54:39+00:00</time>
+<time>2011-11-12 14:54:39.929+00:00</time>
+<time>2011-11-12 06:54-0800</time>
+<time>2011-11-12 06:54:39-0800</time>
+<time>2011-11-12 06:54:39.929-0800</time>
+<time>2011-11-12 06:54-08:00</time>
+<time>2011-11-12 06:54:39-08:00</time>
+<time>2011-11-12 06:54:39.929-08:00</time>
+<time>2011-W46</time>
+<time>2011</time>
+<time>0001</time>
+<time>P0T4H18M3S</time>
+<time>4h 18m 3s</time>
+
+<div class="vevent">
+  <a class="url" href="http://www.web2con.com/">http://www.web2con.com/</a>
+  <span class="summary">Web 2.0 Conference</span>:
+  <time class="dtstart" datetime="2005-10-05">October 5</time>
+   <time class="dtend" datetime="2005-10-07">7</time>,
+  at the <span class="location">Argent Hotel, San Francisco, CA</span>
+</div>
+
+<article itemscope itemtype="http://n.example.org/rfc4287">
+ <h1 itemprop="title">Big tasks</h1> <footer>Published
+ <time itemprop="published" datetime="2009-08-29">two days ago</time>.</footer>
+ <p itemprop="content">Today, I went out and bought a bike for my kid.</p>
+</article>
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+ <h1 itemprop="headline">Small tasks</h1>
+ <footer>Published <time itemprop="datePublished" datetime="2009-08-30">yesterday</time>.</footer>
+ <p itemprop="articleBody">I put a bike bell on his bike.</p>
+</article>
+
+<p>Our first date was <time datetime="2006-09-23">a Saturday</time>.</p>
+
+<p>We stopped talking at <time datetime="2006-09-24T05:00-07:00">5am the next morning</time>.</p>
+
+Today is <time datetime="2011-11-12">Tuesday</time>.
+
+Your next meeting is at <time datetime="2011-11-12T15:00-08:00">3pm</time>.
+
+<p>The <code>code</code> element represents a fragment of computer
+code.</p>
+
+<p>When you call the <code>activate()</code> method on the
+<code>robotSnowman</code> object, the eyes glow.</p>
+
+<p>The example below uses the <code>begin</code> keyword to indicate
+the start of a statement block. It is paired with an <code>end</code>
+keyword, which is followed by the <code>.</code> punctuation character
+(full stop) to indicate the end of the program.</p>
+
+<pre><code class="language-pascal">var i: Integer;
+begin
+   i := 1;
+end.</code></pre>
+
+<p>If there are <var>n</var> pipes leading to the ice
+cream factory then I expect at <em>least</em> <var>n</var>
+flavors of ice cream to be available for purchase!</p>
+
+<figure>
+ <math>
+  <mi>a</mi>
+  <mo>=</mo>
+  <msqrt>
+   <msup><mi>b</mi><mn>2</mn></msup>
+   <mi>+</mi>
+   <msup><mi>c</mi><mn>2</mn></msup>
+  </msqrt>
+ </math>
+ <figcaption>
+  Using Pythagoras' theorem to solve for the hypotenuse <var>a</var> of
+  a triangle with sides <var>b</var> and <var>c</var>
+ </figcaption>
+</figure>
+
+<p>Then he turned to the blackboard and picked up the chalk. After a few moment's
+thought, he wrote <var>E</var> = <var>m</var> <var>c</var><sup>2</sup>. The teacher
+looked pleased.</p>
+
+<p>The computer said <samp>Too much cheese in tray
+two</samp> but I didn't know what that meant.</p>
+
+<pre><samp><span class="prompt">jdoe@mowmow:~$</span> <kbd>ssh demo.example.com</kbd>
+Last login: Tue Apr 12 09:10:17 2005 from mowmow.example.com on pts/1
+Linux demo 2.6.10-grsec+gg3+e+fhs6b+nfs+gr0501+++p3+c4a+gr2b-reslog-v6.189 #1 SMP Tue Feb 1 11:22:36 PST 2005 i686 unknown
+
+<span class="prompt">jdoe@demo:~$</span> <span class="cursor">_</span></samp></pre>
+
+<p>To make George eat an apple, press <kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd></p>
+
+<p>To make George eat an apple, select
+    <kbd><kbd><samp>File</samp></kbd>|<kbd><samp>Eat Apple...</samp></kbd></kbd>
+</p>
+
+<p>To make George eat an apple, select <kbd>File | Eat Apple...</kbd></p>
+
+<p>The most beautiful women are
+ <span lang="fr"><abbr>M<sup>lle</sup></abbr> Gwendoline</span> and
+ <span lang="fr"><abbr>M<sup>me</sup></abbr> Denise</span>.</p>
+
+<p>The coordinate of the <var>i</var>th point is
+ (<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>).
+ For example, the 10th point has coordinate (<var>x<sub>10</sub></var>, <var>y<sub>10</sub></var>).</p>
+
+<var>E</var>=<var>m</var><var>c</var><sup>2</sup>
+f(<var>x</var>, <var>n</var>) = log<sub>4</sub><var>x</var><sup><var>n</var></sup>
+
+<p>The <i class="taxonomy">Felis silvestris catus</i> is cute.</p>
+<p>The term <i>prose content</i> is defined above.</p>
+<p>There is a certain <i lang="fr">je ne sais quoi</i> in the air.</p>
+
+ <p>Raymond tried to sleep.</p>
+ <p><i>The ship sailed away on Thursday</i>, he
+ dreamt. <i>The ship had many people aboard, including a beautiful
+ princess called Carey. He watched her, day-in, day-out, hoping she
+ would notice him, but she never did.</i></p>
+ <p><i>Finally one night he picked up the courage to speak with
+ her—</i></p> <p>Raymond woke with a start as the fire alarm rang out.</p>
+
+<p>The <b>frobonitor</b> and <b>barbinator</b> components are fried.</p>
+
+<p>You enter a small room. Your <b>sword</b> glows
+brighter. A <b>rat</b> scurries past the corner wall.</p>
+
+<article>
+ <h2>Kittens 'adopted' by pet rabbit</h2>
+ <p><b class="lede">Six abandoned kittens have found an
+ unexpected new mother figure — a pet rabbit.</b></p>
+ <p>Veterinary nurse Melanie Humble took the three-week-old
+ kittens to her Aberdeen home.</p>
+ [...]</article>
+
+<p lang="en-US">Consider the following quote:</p>
+ <blockquote lang="en-GB"> <p>Look around and you will find, no-one's really
+ <mark>colour</mark> blind.</p>
+</blockquote>
+<p lang="en-US">As we can tell from the <em>spelling</em> of the word,
+the person writing this quote is clearly not American.</p>
+
+<p>I also have some <mark>kitten</mark>s who are visiting me
+these days. They're really cute. I think they like my garden! Maybe I
+should adopt a <mark>kitten</mark>.</p>
+
+<p>The highlighted part below is where the error lies:</p>
+<pre><code>var i: Integer;
+ begin
+   i := <mark>1.1</mark>;
+ end.</code></pre>
+
+<p>The highlighted part below is where the error lies:</p>
+<pre><code><span class=keyword>var</span> <span class=ident>i</span>: <span class=type>Integer</span>;
+<span class=keyword>begin</span>
+   <span class=ident>i</span> := <span class=literal><mark>1.1</mark></span>;
+<span class=keyword>end</span>.</code></pre>
+
+<h3>Wormhole Physics Introduction</h3>
+<p><mark>A wormhole in normal conditions can be held open for a maximum of just under 39 minutes.</mark> Conditions that can increase the time include a powerful energy source coupled to one or both of the gates connecting the wormhole, and a large gravity well (such as a black hole).</p>
+<p><mark>Momentum is preserved across the wormhole. Electromagnetic radiation can travel in both directions through a wormhole, but matter cannot.</mark></p>
+<p>When a wormhole is created, a vortex normally forms. <strong>Warning: The vortex caused by the wormhole opening will annihilate anything in its path.</strong> Vortexes can be avoided when using sufficiently advanced dialing technology.</p>
+<p><mark>An obstruction in a gate will prevent it from accepting a wormhole connection.</mark></p>
+
+<ruby>base<rt>annotation</ruby>
+
+<ruby><rb>base<rt>annotation</ruby>
+
+<ruby>日<rt>に</rt></ruby><ruby>本<rt>ほん</rt></ruby>
+<ruby>語<rt>ご</rt></ruby>で<ruby>書<rt>か</rt></ruby>
+いた<ruby>作<rt>さく</rt></ruby><ruby>文<rt>ぶん</rt></ruby>です。
+
+<ruby>日<rt>に</rt>本<rt>ほん</rt>語<rt>ご</rt></ruby>
+で<ruby>書<rt>か</rt></ruby>
+いた<ruby>作<rt>さく</rt>文<rt>ぶん</rt></ruby>です。
+
+<ruby>今日<rt>きょう</ruby>
+
+<ruby>法<rb>華<rb>経<rt>ほ<rt>け<rt>きょう</ruby>
+
+<ruby>東<rb>京<rt>とう<rt>きょう</ruby>
+
+<ruby>東<rb>京<rp>(<rt>とう<rt>きょう<rp>)</ruby>
+
+<ruby><rb>旧<rb>金<rb>山<rt>jiù<rt>jīn<rt>shān<rtc>San Francisco</ruby>
+
+<ruby><rb>上<rb>手<rt>じよう<rt>ず<rtc><rt>jou<rt>zu</ruby>
+
+<ruby>
+  ♥<rt>Heart<rtc lang=fr>Cœur</rtc>
+  ☘<rt>Shamrock<rtc lang=fr>Trèfle</rtc>
+  ✶<rt>Star<rtc lang=fr>Étoile
+</ruby>
+
+<ruby>
+  <rb>♥</rb><rtc><rt>Heart</rt></rtc><rtc lang=fr><rt>Cœur</rt></rtc>
+  <rb>☘</rb><rtc><rt>Shamrock</rt></rtc><rtc lang=fr><rt>Trèfle</rt></rtc>
+  <rb>✶</rb><rtc><rt>Star</rt></rtc><rtc lang=fr><rt>Étoile</rt></rtc>
+</ruby>
+
+<ruby>
+  漢
+ <rb>字</rb>
+  <rp> (</rp>
+  <rt>かん</rt>
+  <rt>じ</rt>
+  <rp>) </rp>
+</ruby>
+
+<ruby>
+  ♥<rp>: </rp><rt>Heart</rt><rp>, </rp><rtc><rt lang=fr>Cœur</rt></rtc><rp>.</rp>
+  ☘<rp>: </rp><rt>Shamrock</rt><rp>, </rp><rtc><rt lang=fr>Trèfle</rt></rtc><rp>.</rp>
+  ✶<rp>: </rp><rt>Star</rt><rp>, </rp><rtc><rt lang=fr>Étoile</rt></rtc><rp>.</rp>
+</ruby>
+
+<ul>
+ <li>User <bdi>jcranmer</bdi>: 12 posts.
+ <li>User <bdi>hober</bdi>: 5 posts.
+ <li>User <bdi>ﺇ ﻳﺎﻥ</bdi>: 3 posts.
+</ul>
+
+<pre><code class="lang-c"><span class="keyword">for</span> (<span class="ident">j</span> = 0; <span class="ident">j</span> &lt; 256; <span class="ident">j</span>++) {
+  <span class="ident">i_t3</span> = (<span class="ident">i_t3</span> & 0x1ffff) | (<span class="ident">j</span> &lt;&lt; 17);
+  <span class="ident">i_t6</span> = (((((((<span class="ident">i_t3</span> >> 3) ^ <span class="ident">i_t3</span>) >> 1) ^ <span class="ident">i_t3</span>) >> 8) ^ <span class="ident">i_t3</span>) >> 5) & 0xff;
+  <span class="keyword">if</span> (<span class="ident">i_t6</span> == <span class="ident">i_t1</span>)
+    <span class="keyword">break</span>;
+}</code></pre>
+
+<p>P. Sherman<br>
+42 Wallaby Way<br>
+Sydney</p>
+
+<p><a ...>34 comments.</a></p>
+<p><a ...>Add a comment.</a></p>
+
+<p><label>Name: <input name="name"></label></p>
+<p><label>Address: <input name="address"></label></p>
+
+<p>So then he pointed at the tiger and screamed
+"there<wbr>is<wbr>no<wbr>way<wbr>you<wbr>are<wbr>ever<wbr>going<wbr>to<wbr>catch<wbr>me"!</p>
+
+<pre>
+... Heading heading = Helm.HeadingFactory(HeadingCoordinates[1], <wbr>HeadingCoordinates[2], <wbr>HeadingCoordinates[3],
+<wbr>HeadingCoordinates[4]);
+Course course = Helm.CourseFactory(Heading, <wbr>Maps.MapFactoryFromHeading(heading),
+<wbr>Speeds.GetMaximumSpeed().ConvertToWarp()); ...</pre>
+
+<aside>
+ <ins>
+  <p> I like fruit. </p>
+ </ins>
+</aside>
+
+<aside>
+ <ins>
+  Apples are <em>tasty</em>.
+ </ins>
+ <ins>
+  So are pears.
+ </ins>
+</aside>
+
+<aside>
+ <ins datetime="2005-03-16 00:00Z">
+  <p> I like fruit. </p>
+ </ins>
+ <ins datetime="2005-03-16 00:00Z">
+  Apples are <em>tasty</em>.
+ </ins>
+ <ins datetime="2007-12-19 00:00Z">
+  So are pears.
+ </ins>
+</aside>
+
+<h1>To Do</h1>
+ <ul>
+ <li>Empty the dishwasher</li>
+ <li><del datetime="2009-10-11T01:25-07:00">Watch Walter Lewin's lectures</del></li>
+ <li><del datetime="2009-10-10T23:38-07:00">Download more tracks</del></li>
+ <li>Buy a printer</li>
+</ul>
+
+<section>
+ <ins>
+  <p>
+   This is a paragraph that was inserted.
+  </p>
+  This is another paragraph whose first sentence was inserted
+  at the same time as the paragraph above.
+ </ins>
+ This is a second sentence, which was there all along.
+</section>
+
+<section>
+ <p>This is the first paragraph. <del>This sentence was
+ deleted.</del></p>
+ <p><del>This sentence was deleted too.</del> That
+ sentence needed a separate &lt;del&gt; element.</p>
+</section>
+
+<h1>Stop-ship bugs</h1>
+<ol>
+ <li><ins datetime="2008-02-12T15:20Z">Bug 225:
+ Rain detector doesn't work in snow</ins></li>
+ <li><del datetime="2008-03-01T20:22Z"><ins datetime="2008-02-14T12:02Z">Bug 228:
+ Water buffer overflows in April</ins></del></li>
+ <li><ins datetime="2008-02-16T13:50Z">Bug 230:
+ Water heater doesn't use renewable fuels</ins></li>
+ <li><del datetime="2008-02-20T21:15Z"><ins datetime="2008-02-16T14:25Z">Bug 232:
+ Carbon dioxide emissions detected after startup</ins></del></li>
+</ol>
+
+<h1>List of <del>fruits</del><ins>colors</ins></h1>
+ <ul>
+ <li><del>Lime</del><ins>Green</ins></li>
+ <li><del>Apple</del></li>
+ <li>Orange</li>
+ <li><del>Pear</del></li>
+ <li><ins>Teal</ins></li>
+ <li><del>Lemon</del><ins>Yellow</ins></li>
+ <li>Olive</li>
+ <li><ins>Purple</ins></li>
+</ul>
+
+<a href="http://example.org">
+<img src="images/w3c_home.png" width="72" height="48" alt="W3C web site">
+</a>
+
+<a href="preview.html">
+<img src="images/preview.png" width="32" height="30" alt="Print preview.">
+</a>
+
+  <img src="shalott.jpeg" alt="Painting of a  young woman with long hair, sitting in a wooden boat. ">
+  <p><a href="#des">Description of the painting</a>.</p>
+  <!-- Full Recitation of Alfred, Lord Tennyson's Poem.  -->
+  ...
+  ...
+  ...
+  <p id="des">The woman in the painting is wearing a flowing white dress. A large piece of intricately
+   patterned fabric is draped over the side. In her right hand she holds the chain mooring the boat. Her expression
+   is mournful. She stares at a crucifix lying in front of her. Beside it are three candles. Two have blown out.
+   <a href="http://example.org/5HJvVZ">Further information about the painting</a>.</p>
+
+<p>View houses for sale in North Katoomba or South Katoomba:</p>
+ <p><img src="imagemap.png" width="209" alt="Map of Katoomba" height="249" usemap="#Map">
+ <map name="Map">
+  <area shape="poly" coords="78,124,124,10,189,29,173,93,168,132,136,151,110,130"
+  href="north.html" alt="Houses in North Katoomba">
+  <area shape="poly" coords="66,63,80,135,106,138,137,154,167,137,175,133,144,240,49,223,17,137,17,61"
+  alt="Houses in South Katoomba" href="south.html">
+ </map>
+</p>
+
+<figure>
+  <img src="webcam1.jpg" alt="Sopwith house weather cam. Taken on the 21/04/10 at 11:51 and 34 seconds.
+  In the foreground are the safety rails on the flat part of the roof. Nearby there are low rise industrial buildings,
+  beyond are blocks of flats. In the distance there's a church steeple.">
+  <figcaption>View from Sopwith house, looking towards north Kingston. This image is updated every hour.</figcaption>
+</figure>
+<p>View the <a href="http://news.bbc.co.uk/weather/forecast/4296?area=Kingston">latest weather details</a> for Kingston upon Thames.</p>
+
+<img src="http://example.com/count.pl?NeonMeatDream.com" width="0" height="0" alt="">
+
+<iframe src="http://ads.example.com/?customerid=923513721&amp;format=banner"
+        width="468" height="60"></iframe>
+
+<iframe sandbox="allow-same-origin allow-forms allow-scripts"
+        src="http://maps.example.com/embedded.html"></iframe>
+
+<iframe sandbox="allow-same-origin allow-forms" src=B></iframe>
+
+<p>
+    <object type="application/vnd.o3d.auto">
+     <param name="o3d_features" value="FloatingPointTextures">
+     <img src="o3d-teapot.png"
+          title="3D Utah Teapot illustration rendered using O3D."
+          alt="When O3D renders the Utah Teapot, it appears as a squat
+          teapot with a shiny metallic finish on which the
+          surroundings are reflected, with a faint shadow caused by
+          the lighting.">
+     <p>To see the teapot actually rendered by O3D on your
+     computer, please download and install the <a
+     href="http://code.example.com/apis/o3d/docs/gettingstarted.html#install">O3D plugin</a>.</p>
+    </object>
+    <script src="o3d-teapot.js"></script>
+</p>
+
+<audio>
+    <source src='video.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+    <source src='video.mp4' type='video/mp4; codecs="avc1.58A01E, mp4a.40.2"'>
+    <source src='video.mp4' type='video/mp4; codecs="avc1.4D401E, mp4a.40.2"'>
+    <source src='video.mp4' type='video/mp4; codecs="avc1.64001E, mp4a.40.2"'>
+    <source src='video.mp4' type='video/mp4; codecs="mp4v.20.8, mp4a.40.2"'>
+    <source src='video.mp4' type='video/mp4; codecs="mp4v.20.240, mp4a.40.2"'>
+    <source src='video.3gp' type='video/3gpp; codecs="mp4v.20.8, samr"'>
+    <source src='video.ogv' type='video/ogg; codecs="theora, vorbis"'>
+    <source src='video.ogv' type='video/ogg; codecs="theora, speex"'>
+    <source src='audio.ogg' type='audio/ogg; codecs=vorbis'>
+    <source src='audio.spx' type='audio/ogg; codecs=speex'>
+    <source src='audio.oga' type='audio/ogg; codecs=flac'>
+    <source src='video.ogv' type='video/ogg; codecs="dirac, vorbis"'>
+</audio>
+
+<video src="brave.webm">
+ <track kind=subtitles src=brave.en.vtt srclang=en label="English">
+ <track kind=captions src=brave.en.hoh.vtt srclang=en label="English for the Hard of Hearing">
+ <track kind=subtitles src=brave.fr.vtt srclang=fr lang=fr label="Français">
+ <track kind=subtitles src=brave.de.vtt srclang=de lang=de label="Deutsch">
+</video>
+
+<p>
+ Please select a shape:
+ <img src="shapes.png" usemap="#shapes"
+      alt="Four shapes are available: a red hollow box, a green circle, a blue triangle, and a yellow four-pointed star.">
+ <map name="shapes">
+  <area shape=rect coords="50,50,100,100"> <!-- the hole in the red box -->
+  <area shape=rect coords="25,25,125,125" href="red.html" alt="Red box.">
+  <area shape=circle coords="200,75,50" href="green.html" alt="Green circle.">
+  <area shape=poly coords="325,25,262,125,388,125" href="blue.html" alt="Blue triangle.">
+  <area shape=poly coords="450,25,435,60,400,75,435,90,450,125,465,90,500,75,465,60"
+        href="yellow.html" alt="Yellow star.">
+ </map>
+</p>
+
+<section>
+ <style>
+  table { border-collapse: collapse; border: solid thick; }
+  colgroup, tbody { border: solid medium; }
+  td { border: solid thin; height: 1.4em; width: 1.4em; text-align: center; padding: 0; }
+ </style>
+ <h1>Today's Sudoku</h1>
+ <table>
+  <colgroup><col><col><col>
+  <colgroup><col><col><col>
+  <colgroup><col><col><col>
+  <tbody>
+   <tr> <td> 1 <td>   <td> 3 <td> 6 <td>   <td> 4 <td> 7 <td>   <td> 9
+   <tr> <td>   <td> 2 <td>   <td>   <td> 9 <td>   <td>   <td> 1 <td>
+   <tr> <td> 7 <td>   <td>   <td>   <td>   <td>   <td>   <td>   <td> 6
+  <tbody>
+   <tr> <td> 2 <td>   <td> 4 <td>   <td> 3 <td>   <td> 9 <td>   <td> 8
+   <tr> <td>   <td>   <td>   <td>   <td>   <td>   <td>   <td>   <td>
+   <tr> <td> 5 <td>   <td>   <td> 9 <td>   <td> 7 <td>   <td>   <td> 1
+  <tbody>
+   <tr> <td> 6 <td>   <td>   <td>   <td> 5 <td>   <td>   <td>   <td> 2
+   <tr> <td>   <td>   <td>   <td>   <td> 7 <td>   <td>   <td>   <td>
+   <tr> <td> 9 <td>   <td>   <td> 8 <td>   <td> 2 <td>   <td>   <td> 5
+ </table>
+</section>
+
+<p>
+   <math>
+    <mi>x</mi>
+    <mo>=</mo>
+    <mfrac>
+     <mrow>
+      <mo form="prefix">−</mo> <mi>b</mi>
+      <mo>±</mo>
+      <msqrt>
+       <msup> <mi>b</mi> <mn>2</mn> </msup>
+       <mo>−</mo>
+       <mn>4</mn> <mo></mo> <mi>a</mi> <mo></mo> <mi>c</mi>
+      </msqrt>
+     </mrow>
+     <mrow>
+      <mn>2</mn> <mo></mo> <mi>a</mi>
+     </mrow>
+    </mfrac>
+   </math>
+</p>
+
+<p>
+My sweat suit is <span style="color: green; background: transparent">green</span>
+and my eyes are <span style="color: blue; background: transparent">blue</span>.
+</p>
+
+<embed src="catgame.swf" quality="high">
+<embed src="catgame.swf" quality="high" vspace="72">
+
+<table>
+ <caption> School auction sign-up sheet </caption>
+ <thead>
+  <tr>
+   <th><label for=e1>Name</label>
+   <th><label for=e2>Product</label>
+   <th><label for=e3>Picture</label>
+   <th><label for=e4>Price</label>
+  <tr>
+   <td>Your name here
+   <td>What are you selling?
+   <td>Link to a picture
+   <td>Your reserve price
+ <tbody>
+  <tr>
+   <td>Ms Danus
+   <td>Doughnuts
+   <td><img src="http://example.com/mydoughnuts.png" title="Doughnuts from Ms Danus">
+   <td>$45
+  <tr>
+   <td><input id=e1 type=text name=who required form=f>
+   <td><input id=e2 type=text name=what required form=f>
+   <td><input id=e3 type=url name=pic form=f>
+   <td><input id=e4 type=number step=0.01 min=0 value=0 required form=f>
+ </table>
+ <form id=f action="/auction.cgi">
+ <input type=button name=add value="Submit">
+ </form>
+
+<table>
+   <caption>Measurement of legs and tails in Cats and English speakers</caption>
+ <thead>
+  <tr> <th> ID <th> Measurement <th> Average <th> Maximum
+ <tbody>
+  <tr> <td> <th scope=rowgroup> Cats <td> <td>
+  <tr> <td> 93 <th scope=row> Legs <td> 3.5 <td> 4
+  <tr> <td> 10 <th scope=row> Tails <td> 1 <td> 1
+ </tbody>
+ <tbody>
+  <tr> <td> <th scope=rowgroup> English speakers <td> <td>
+  <tr> <td> 32 <th scope=row> Legs <td> 2.67 <td> 4
+  <tr> <td> 35 <th scope=row> Tails <td> 0.33 <td> 1
+ </tbody>
+</table>
+
+<p id="summary">In the following table, characteristics are
+ given in the second column, with the negative side in the left column and the positive
+ side in the right column.</p>
+ <table aria-describedby="summary">
+ <caption>Characteristics with positive and negative sides</caption>
+ <thead>
+  <tr>
+   <th id="n"> Negative
+   <th> Characteristic
+   <th> Positive
+ <tbody>
+  <tr>
+   <td headers="n r1"> Sad
+   <th id="r1"> Mood
+   <td> Happy
+  <tr>
+   <td headers="n r2"> Failing
+   <th id="r2"> Grade
+   <td> Passing
+</table>
+
+<form action="courseselector.dll" method="get">
+ <p>Which course would you like to watch today?
+ <p><label>Course:
+     <select name="c">
+         <optgroup label="8.01 Physics I: Classical Mechanics">
+             <option value="8.01.1">Lecture 01: Powers of Ten
+             <option value="8.01.2">Lecture 02: 1D Kinematics
+             <option value="8.01.3">Lecture 03: Vectors
+         <optgroup label="8.02 Electricity and Magnestism">
+             <option value="8.02.1">Lecture 01: What holds our world together?
+             <option value="8.02.2">Lecture 02: Electric Field
+             <option value="8.02.3">Lecture 03: Electric Flux
+         <optgroup label="8.03 Physics III: Vibrations and Waves">
+             <option value="8.03.1">Lecture 01: Periodic Phenomenon
+             <option value="8.03.2">Lecture 02: Beats
+             <option value="8.03.3">Lecture 03: Forced Oscillations with Damping
+     </select>
+ </label>
+ <p><input type=submit value="▶ Play">
+ </form>
+
+<form action="processkey.cgi" method="post" enctype="multipart/form-data">
+ <p><keygen name="key"></p>
+ <p><input type=submit value="Submit key..."></p>
+</form>
+
+<ul>
+ <li>
+ <p><a href="/group/comp.infosystems.www.authoring.stylesheets/ view">comp.infosystems.www.authoring.stylesheets</a>
+ <a href="/group/comp.infosystems.www.authoring.stylesheets/subscribe">join</a></p>
+ <p>Group description: <strong>Layout/presentation on the WWW.</strong></p>
+ <p><meter value="0.5">Moderate activity,</meter> Usenet, 618 subscribers</p>
+ </li>
+ <li>
+ <p><a href="/group/netscape.public.mozilla.xpinstall/view">netscape.public.mozilla.xpinstall</a>
+ <a href="/group/netscape.public.mozilla.xpinstall/subscribe">join</a></p>
+ <p>Group description: <strong>Mozilla XPInstall discussion.</strong></p>
+ <p><meter value="0.25">Low activity,</meter> Usenet, 22 subscribers</p>
+ </li>
+ <li>
+ <p><a href="/group/mozilla.dev.general/view">mozilla.dev.general</a>
+ <a href="/group/mozilla.dev.general/subscribe">join</a></p>
+ <p><meter value="0.25">Low activity,</meter> Usenet, 66 subscribers</p>
+ </li>
+</ul>
+
+<p>Disk usage: <meter min=0 value=170261928 max=233257824>170261928 bytes used
+ out of 233257824 bytes available</meter></p>
+
+</body>
+</html>

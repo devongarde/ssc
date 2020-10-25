@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+
+<!--#include file="ssi.inc" -->
+<!--#include file="ribbit.inc" -->
+<!--#include onerror="ribbit.inc" -->
+<!--#include virtual="/tests/ssi/ribbit.inc" -->
+<!--#include virtual="/tests/ssi/ssi.inc" -->
+<!--#include file="info/../ribbit.inc" -->
+<!--#include file="/ribbit.inc" -->
+<!--#include virtual="https://fleabag.invalid/ribbit.inc" -->
+
+<head>
+<title>SSI includes</title>
+
+</head>
+
+<body>
+
+<h1>SSI Include Test Page</h1>
+
+<p>
+<!--#echo encoding="none" var="one" -->,
+<!--#echo encoding="none" var="two" -->,
+<!--#echo encoding="none" var="three" -->,
+<!--#echo encoding="none" var="four" -->.
+</p>
+
+<p>
+Hello!
+</p>
+
+</body>
+</html>

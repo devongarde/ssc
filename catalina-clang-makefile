@@ -1,0 +1,12 @@
+# Unfortunately, macos documentation is often pretty awful. In this case, they've forgotten to document
+# makefile format. I am resorting to following the rather good openbsd docs. If something breaks, apologies.
+
+CPP = clang++
+CC = clang
+LD = clang++
+CCARGS = -I../../automatic/Library/boost_1_72_0 -std=c++17 -Wall -Wextra -Wno-dangling-else -c -O3 -DUNIX -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden
+CARGS = -c -O3 -DUNIX -DNDEBUG -Wall -Wextra
+LARGS = -DUNIX -DNDEBUG -O3 -std=c++17 -L /usr/lib -L ../../automatic/Library/boost_1_72_0/stage/lib -o ssc -l boost_date_time-clang-darwin120-mt-s-x64-1_72 -l boost_filesystem-clang-darwin120-mt-s-x64-1_72 -l boost_program_options-clang-darwin120-mt-s-x64-1_72 -l pthread -l stdc++
+LTARGS = -DUNIX -DNDEBUG -O3 -std=c++17 -L /usr/lib -L ../../automatic/Library/boost_1_72_0/stage/lib -o ssc-test -l boost_filesystem-clang-darwin120-mt-s-x64-1_72 -l pthread -l stdc++
+
+include dependencies.mk

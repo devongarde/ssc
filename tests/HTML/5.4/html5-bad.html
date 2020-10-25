@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>bad HTML5 test page</title>
+<META http-equiv="Content-Style-Type" content="video/css">
+<base href="/">
+<base href="/">
+</head>
+
+<body role="document">
+
+<h1>bad HTML5 Test Page</h1>
+
+<form accept-charset="utf-16le korean">
+
+<textarea autocapitalise="spelling" enterkeyhint=next>
+This can contain character references like &amp;, &lt; and &gt;,
+but such characters and also be written directly as &, < and >.
+Strings that look like <!-- comments --> or other elements <span>
+are treated as plain text, instead of markup.
+</textarea>
+
+<textarea autocapitalize="drat" enterkeyhint=coffee>
+An unknown named character reference like &this
+gives an ambiguous ampersand error.
+</textarea>
+
+<textarea autocapitalize=words name="_charset_">
+This text cannot contain a string like </textarea because
+it looks like an end tag for the element.
+</textarea>
+
+<textarea autocapitalize=none name=isindex>
+This can contain character references like &amp;, &lt; and &gt;.
+Unlike the HTML syntax, this can also contain comments.
+<!-- just like other normal elements -->
+
+If the string is intended to be rendered, the special characters must be escaped
+&lt;!-- like this --&gt;.
+</textarea>
+
+<textarea><![CDATA[This can contain special characters like &, < and >.
+Strings that look like markup, like <!-- comments -->,
+character references &amp;, &lt; and &gt;,
+or other elements <span> are treated as plain text, instead of markup.
+]]></textarea>
+
+<input disabled>...</div>
+<input disabled="">...</div>
+
+<label>Carpet: <input type="carpet" name="c" texture="deep pile"></label>
+
+</form>
+
+<div class="example" lang="en">...</div>
+<section id="example">...</section id="example">
+<div CLASS="example" Lang="en">...</div>
+<img src=example.png height=200 width=300/>
+<img src  =  image.png>
+<img src="example.jpg" title="An example photograph">
+<img src  =  "example.png">
+<img src='example.jpg' title='An example photograph'>
+<img src  =  'example.png'>
+
+<p>This markup contains a <em><strong>mistake</em></strong></p>
+
+<section is=porkie>
+  <ins><h1>Example of paragraphs</h1>
+  This is the <em>first</em> paragraph in</ins> this example<del>.
+  <p>This is the second.</p></del>
+  <!-- This is not a paragraph. -->
+</section>
+
+<section>
+ <h1>My Cats</h1>
+ You can play with my cat simulator.
+ <object data="cats.sim">
+  To see the cat simulator, use one of the following links:
+  <ul>
+   <li><a href="cats.sim">Download simulator file</a>
+   <li><a href="http://sims.example.com/watch?v=LYds5xY4INU">Use online simulator</a>
+  </ul>
+  Alternatively, upgrade to the Mellblom Browser.
+ </object> I'm quite proud of it.
+</section>
+
+<ADDRESS>Last Modified: 1999/12/24 23:37:50</ADDRESS>
+
+<figure>
+ <p>'Twas brillig, and the slithy toves<br>
+ Did gyre and gimble in the wabe;<br>
+ <figcaption><cite>Jabberwocky</cite> (first verse). Lewis Carroll, 1832-98</figcaption>
+ All mimsy were the borogoves,<br>
+ And the mome raths outgrabe.</p>
+</figure>
+
+<picture>
+    <source srcset="x.jpg" media="all">
+    <source srcset="x.jpg" media="(max-width: 500px)">
+    <img src="x.jpg" alt="y">
+</picture>
+
+<object type="application/x-shockwave-flash" itemprop="nonsense">
+<p>dull as dishwater</p>
+ <param name=allowfullscreen value=true>
+</object>
+
+<form>
+<input type=month value="july 2023" autocomplete="cc-exp">
+<input type=month value="2023-07" autocomplete="work sex">
+<input type=week value="michaelmas" autocomplete="current-password">
+<input type=week value="1983:51" autocomplete="fax sex">
+<input type=number value=sausages min=1.0E+7 max=2 autocomplete="shipping off">
+<input type=number value=3 min=1.0E+7 max=7 autocomplete="section-nuts shipping transaction-amount">
+<input type=color value=blue autocomplete="on">
+<input type=color value=#000000000000 autocomplete="off">
+<input type=password value="123456" autocomplete="current-password">
+<input type=password value="123456" autocomplete="one-time-code">
+<input type=password value="123456" autocomplete="off new-password">
+<input type=password value="123456" autocomplete="new-password billing off">
+<input type=url value="x.jpg" autocomplete="photo">
+<input type=url value="x.jpg" autocomplete="url">
+<input type=url value="x.jpg" autocomplete="tel">
+<input type=tel value="0044444444445" autocomplete="work fax">
+<input type=tel value="0044444444445" autocomplete="home email">
+<input type=tel value="0044444444445" autocomplete="mobile tel">
+<input type=tel value="0044444444445" autocomplete="fax sausage">
+<input type=tel value="0044444444445" autocomplete="pager photo">
+<input type=tel value="0044444444445" autocomplete="off">
+<input type=hidden value="shush" autocomplete="off">
+</form>
+
+<script type="module"></script>
+<script type="module" src="script.js" async></script>
+<script type="module" defer></script>
+<script type="module" nomodule></script>
+<script type="application/lost+xml"></script>
+<script type="text/plain"></script>
+<script type="text/css" src="css-good.css"></script>
+<script type="text/css" src="css-good.css" async></script>
+<script type="text/css" async></script>
+<script type="application/tcl"></script>
+<script type="application/lost+xml" charset="utf-14"></script>
+<script type="application/lost+xml" nonce="4"></script> <!-- https://xkcd.com/221/ -->
+<script type="application/lost+xml" integrity="none"></script>
+<script type="text/javascript"></script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>microdata test page</title>
+</head>
+
+<body>
+
+<h1>microdata test page</h1>
+
+<div hidden id="tid">
+  <meta itemprop="description" content="this is mostly valid information about thingy">
+  <meta itemprop="name" content="Tiddles">
+  <meta itemprop="usedToDiagnose" content="Tiddles">
+  <link itemprop="url" href="https://example.com/tiddles.html">
+</div>
+
+<div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+  <meta itemprop="name" content="Tiddles the wonder cat">
+  <meta itemprop="founder" itemscope itemtype="https://schema.org/Person" itemref="tid">
+  <link itemprop="url" href="https://example.com/tiddles.html">
+</div>
+
+<div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+  <meta itemprop="name" content="Tiddles the wonder cat TNG">
+  <meta itemprop="founder" itemscope itemtype="https://schema.org/Person" itemref="tid">
+  <link itemprop="url" href="https://example.com/tiddles2.html">
+</div>
+
+</body>
+</html>

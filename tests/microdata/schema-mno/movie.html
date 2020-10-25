@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>schema movie</title>
+</head>
+
+<body>
+
+<h1>schema movie</h1>
+
+    <div itemscope itemtype="https://schema.org/Movie">
+    <h1 itemprop="name">Pirates of the Carribean: On Stranger Tides (2011)</h1>
+    <span itemprop="description">Jack Sparrow and Barbossa embark on a quest to
+     find the elusive fountain of youth, only to discover that Blackbeard and
+     his daughter are after it too.</span>
+    Director:
+     <div itemprop="director" itemscope itemtype="https://schema.org/Person">
+    <span itemprop="name">Rob Marshall</span>
+    </div>
+    Writers:
+     <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <span itemprop="name">Ted Elliott</span>
+    </div>
+    <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+    <span itemprop="name">Terry Rossio</span>
+    </div>
+    , and 7 more credits
+    Stars:
+     <div itemprop="actor" itemscope itemtype="https://schema.org/Person">
+    <span itemprop="name">Johnny Depp</span>,
+     </div>
+    <div itemprop="actor" itemscope itemtype="https://schema.org/Person">
+    <span itemprop="name">Penelope Cruz</span>,
+    </div>
+    <div itemprop="actor" itemscope itemtype="https://schema.org/Person">
+    <span itemprop="name">Ian McShane</span>
+    </div>
+    <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+      <span itemprop="ratingValue">8</span>/<span itemprop="bestRating">10</span> stars from
+      <span itemprop="ratingCount">200</span> users.
+      Reviews: <span itemprop="reviewCount">50</span>.
+    </div>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/Movie">
+      <meta itemprop="name" content="Footloose">
+      <div itemprop="potentialAction" itemscope itemtype="https://schema.org/WatchAction">
+        <a itemprop="target" href="http://example.com/player?id=123">Watch <cite>Footloose</cite></a>
+      </div>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/ScreeningEvent">
+      <h1 itemprop="name">Jaws 3-D"</h1>
+      <div itemprop="description">Jaws 3-D shown in 3D.</div>
+      <p>Location: <span itemprop="location" itemscope itemtype="https://schema.org/MovieTheater">
+        <span itemprop="name">ACME Cinemas 10</span>
+        <span itemprop="screenCount">10</span>
+        </span>
+      </p>
+      <div itemprop="workPresented" itemscope itemtype="https://schema.org/Movie">
+        <span itemprop="name">Jaws 3-D</span>
+        <link itemprop="sameAs" href="www.imdb.com/title/tt0085750/"/>
+      </div>
+      <p>Language: <span itemprop="inLanguage" content="en">English</span></p>
+      <p>Film format: <span itemprop="videoFormat">3D</span></p>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/Movie">
+      <h1 itemprop="name">Ghostbusters</h1>
+      <div itemprop="productionCompany" itemscope itemtype="https://schema.org/Organization">
+        Produced by: <span itemprop="name">Black Rhino</span><p>
+      </div>
+      <div itemprop="countryOfOrigin" itemscope itemtype="https://schema.org/Country">
+        Country: <span itemprop="name" content="USA">United States</span><p>
+      </div>
+    </div>
+
+</body>
+</html>

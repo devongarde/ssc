@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SVG 1.0 under HTML 5 test page</title>
+</head>
+
+<body>
+
+<h1>SVG 1.0 under HTML 5 Test Page</h1>
+
+<svg width="4in" height="3in">
+  <desc>Four separate rectangles
+  </desc>
+    <rect width="20" height="60"/>
+    <rect width="30" height="70"/>
+    <rect width="40" height="80"/>
+    <rect width="50" height="90"/>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>Two groups, each of two rectangles
+  </desc>
+  <g style="fillcolor:red">
+    <rect x="100" y="100" width="100" height="100" />
+    <rect x="300" y="100" width="100" height="100" />
+  </g>
+  <g style="fillcolor:blue">
+    <rect x="100" y="300" width="100" height="100" />
+    <rect x="300" y="300" width="100" height="100" />
+  </g>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>Two named groups
+  </desc>
+  <g id="OBJECT1">
+    <rect x="100" y="100" width="100" height="100" />
+  </g>
+  <g id="OBJECT2">
+    <circle cx="150" cy="300" r="25" />
+  </g>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>Groups can nest
+  </desc>
+  <g>
+     <g>
+       <g>
+       </g>
+     </g>
+   </g>
+</svg>
+
+<svg width="4in" height="3in">
+  <defs>
+    <rect id="TemplateObject01" width="100" height="37.34"/>
+    <lineargradient id="Gradient01">
+      <stop offset="30%" style="color:#39F"/>
+    </lineargradient>
+  </defs>
+  <desc>Defining things for later use
+  </desc>
+  <!-- SVG elements in here would reference/use
+        the elements defined in the <defs> -->
+</svg>
+
+<svg width="4in" height="3in">
+  <defs>
+    <style><![CDATA[
+      .TitleText { font-size: 16; font-family: Helvetica } ]]>
+    </style>
+  </defs>
+  <text class="TitleText">Here is my title</text>
+</svg>
+
+<svg width="4in" height="3in">
+  <defs>
+    <script>< ![CDATA
+        [      /* Beep on mouseclick */
+            MouseClickHandler
+                () { beep(); }]]>
+    </script>
+  </defs>
+  <circle onclick="MouseClickHandler()" r="85"/>
+</svg>
+
+<svg width="4in" height="3in">
+  <defs>
+    <symbol id="TemplateObject01">
+      <!-- symbol definition here -->
+    </symbol>
+  </defs>
+
+  <desc>Examples of inline and referenced content
+  </desc>
+    <!-- <g> with inline content -->
+  <g>
+    <!-- Inline content goes here -->
+  </g>
+
+  <!-- referenced content -->
+  <use href="#TemplateObject01" />
+
+  <!-- <g> with both referenced and inline content -->
+  <g>
+    <use href="#TemplateObject01" />
+    <!-- Inline content goes here -->
+  </g>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>Example of using a mask
+  </desc>
+  <g>
+    <defs>
+      <mask id="MyMask">
+        <image href="transp.png" />
+      </mask>
+    </defs>
+    <rect style="mask: url(#MyMask)" width="12.5" height="30" />
+  </g>
+</svg>
+
+<!-- SVG graphic -->
+<svg xmlns='http://www.w3.org/Graphics/SVG/svg-19990706.dtd'
+      width="100px" height="200px">
+      <path d="M100,100 Q200,400,300,100"/>
+      <!-- rest of SVG graphic would go here -->
+</svg>
+
+<svg width="4in" height="3in" fit-box-to-viewport="0 0 40 30">
+  <desc>This SVG drawing uses the fit-box-to-viewport
+    attribute to automatically create an initial user coordinate
+   system which causes the graphic to scale to fit into the
+   viewport no matter what size the viewport is.
+  </desc>
+  <!-- This rectangle goes from (0,0) to (40,30) in user space.
+       Because of the fit-box-to-viewport attribute above,
+       the rectangle will end up filling the entire area
+       reserved for the SVG document. -->
+  <rect x="0" y="0" width="40" height="30" style="fill: blue" />
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>This SVG drawing embeds another one,
+    thus establishing a new viewport
+  </desc>
+  <!-- The following statement establishing a new viewport
+       and renders SVG drawing B into that viewport -->
+  <svg style="left: 25%; top: 25%" width="50%" height="50%">
+     <!-- drawing B goes here -->
+  </svg>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>Demonstration of coordinate transforms
+  </desc>
+  <!-- The following two text elements will both draw with a
+         font height of 12 pixels -->
+   <text style="font-size: 12">This prints 12 pixels high.</text>
+   <text style="font-size: 12px">This prints 12 pixels high.</text>
+   <!-- Now scale the coordinate system by 2. -->
+   <g transform="scale(2)">
+      <!-- The following text will actually draw 24 pixels high
+           because each unit in the new coordinate system equals
+           2 units in the previous coordinate system. -->
+      <text style="font-size: 12">This prints 24 pixels high.</text>
+      <!-- The following text will actually still draw 12 pixels high
+           because the CSS unit specifier has been provided. -->
+      <text style="font-size: 12px">This prints 12 pixels high.</text>
+   </g>
+</svg>
+
+<svg width="300px" height="300px">
+  <desc>Transformation with establishment of a new viewport
+  </desc>
+  <!-- The following two text elements will both draw with a
+         font height of 12 pixels -->
+   <text style="font-size: 12">This prints 12 pixels high.</text>
+   <text style="font-size: 12px">This prints 12 pixels high.</text>
+
+   <!-- Now scale the coordinate system by 2. -->
+   <g style="transform: scale(2)">
+
+      <!-- The following text will actually draw 24 pixels high
+           because each unit in the new coordinate system equals
+           2 units in the previous coordinate system. -->
+      <text style="font-size: 12">This prints 24 pixels high.</text>
+
+      <!-- The following text will actually still draw 12 pixels high
+           because the CSS unit specifier has been provided. -->
+      <text style="font-size: 12px">This prints 12 pixels high.</text>
+   </g>
+
+   <!-- This time, scale the coordinate system by 3. -->
+   <g style="transform: scale(3)">
+
+      <!-- Establish a new viewport and thus change the meaning of
+           some CSS unit specifiers. -->
+      <svg style="left:0; top:0; right:100; bottom:100"
+            width="100%" height="100%">
+
+         <!-- The following two text elements will both draw with a
+               font height of 36 screen pixels. The first text element
+              defines its height in user coordinates, which have been
+              scaled by 3. The second text element defines its height
+              in CSS px units, which have been redefined to be three times
+              as big as screen pixels due the <svg> element establishing
+              a new viewport. -->
+         <text style="font-size: 12">This prints 36 pixels high.</text>
+         <text style="font-size: 12px">This prints 36 pixels high.</text>
+
+      </svg>
+   </g>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>Linear gradient example
+  </desc>
+  <g>
+    <defs>
+      <lineargradient id="MyGradient">
+        <stop offset="0%" style="color:#F60"/>
+        <stop offset="70%" style="color:#FF6"/>
+      </lineargradient>
+    </defs>
+    <rect style="fill: url(#MyGradient)" width="20" height="15.8"/>
+  </g>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>Radial gradient example with three gradient stops
+  </desc>
+  <g>
+    <defs>
+      <radialgradient id="MyGradient">
+         <stop offset="0%" style="color:white"/>
+         <stop offset="50%" style="color:red"/>
+         <stop offset="100%" style="color:black"/>
+      </radialgradient>
+    </defs>
+    <circle style="fill: url(#MyGradient)" r="42"/>
+  </g>
+</svg>
+
+<svg width="4in" height="3in" >
+  <defs>
+    <pattern id="TrianglePattern"
+              pattern-units="userspace"
+             x="0" y="0" width="25" height="25"
+             pattern-transform="skew-x(45)"
+             fit-bbox="0 0 10 10" >
+      <path d="M 0 0 L 10 0 L 5 10 z" />
+  </defs>
+  <!-- Fill this ellipse with the above pattern -->
+  <ellipse style="fill: url(#TrianglePattern)" rx="40" ry="27" />
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>Gradients apply to leaf nodes
+  </desc>
+  <g>
+    <defs>
+      <lineargradient id="MyGradient">
+        <stop offset="0%" style="color:#F60"/>
+        <stop offset="70%" style="color:#FF6"/>
+      </lineargradient>
+    </defs>
+    <g style="fill: url(#MyGradient)">
+      <rect width="20" height="15.8"/>
+      <rect width="35" height="8"/>
+   </g>
+  </g>
+</svg>
+
+<svg width="4in" height="3in"
+     xmlns = 'http://www.w3.org/Graphics/SVG/svg-19990706.dtd'>
+  <path d="M 100 100 L 140 100 L 120 140 z"/>
+</svg>
+
+<svg width="4in" height="3in">
+  <path d="M 100 100">
+    <data d="L 140 100"/>
+    <data d="L 120 140"/>
+    <data d="z"/>
+  </path>
+</svg>
+
+<svg width="4in" height="4in"
+      fit-box-to-viewport="0 0 4000 4000" >
+  <defs>
+    <marker id="Triangle"
+      fit-bbox="0 0 10 10" ref-x="0" ref-y="5"
+       marker-width="1.25" marker-height="1.75"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+  </defs>
+  <desc>Placing an arrowhead at the end of a path.
+  </desc>
+  <path d="M 1000 1000 L 2000 1000 L 3000 2000"
+        style="fill:none; stroke:black; stroke-width:100;"
+         marker-end="url(#Triangle)" />
+</svg>
+
+
+
+
+
+
+
+
+<!-- ooops ... same example here twice -->
+
+
+
+
+
+
+
+
+
+<svg width="4in" height="4in"
+      fit-box-to-viewport="0 0 4000 4000" >
+  <defs>
+    <!-- Note: to illustrate the effect of "marker",
+      replace "marker" with "symbol" and remove the various
+       marker-specific attributes -->
+    <symbol id="Triangle"
+      fit-bbox="0 0 10 10" ref-x="0" ref-y="5">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </symbol>
+  </defs>
+  <desc>File which produces the same effect
+      as the marker example file, but without
+      using markers.
+  </desc>
+  <!-- The path draws as before, but without the marker properties -->
+  <path d="M 1000 1000 L 2000 1000 L 3000 2000"
+        style="fill:none; stroke:black; stroke-width:100" />
+
+  <!-- The following logic simulates drawing a marker
+        at final vertex of the path. -->
+
+  <!-- First off, move the origin of the user coordinate system
+       so that the origin is now aligned with the end point of the path. -->
+  <g transform="translate(3000 2000)" >
+
+    <!-- Now, rotate the coordinate system 45 degrees because
+         the marker specified orient="auto" and the final segment
+         of the path is going in the direction of 45 degrees. -->
+    <g transform="rotate(45)" >
+
+      <!-- Establish a new viewport with an <svg> element.
+           The width/height of the viewport are 1.25 and 1.75 times
+           the current stroke-width, respectively. Since the
+           current stroke-width is 100, the viewport's width/height
+           is 125 by 175. Apply the fit-box-to-viewport attribute
+           from the <marker> element onto this <svg> element.
+           Transform the marker symbol to align (ref-x,ref-y) with
+           the origin of the viewport. -->
+      <svg width="125" height="175"
+            fit-box-to-viewport="0 0 10 10"
+           transform="translate(0,-5)" >
+
+        <!-- Expand out the contents of the <marker> element. -->
+        <path d="M 0 0 L 10 5 L 0 10 z" />
+      </svg>
+    </g>
+  </g>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>This is a blue circle with a red outline
+  </desc>
+  <g>
+    <circle style="fill: blue; stroke: red"
+       cx="200" cy="200" r="100"/>
+  </g>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>This is an ellipse, axis aligned and centered on the origin
+  </desc>
+  <g>
+    <ellipse rx="85" ry="45"/>
+  </g>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>A sample polyline, and equivalent path
+  </desc>
+  <polyline points="20,20 50,100 200,80 70,300"/>
+  <path d="M20,20 L50,100 L200,80 L70,300"/>
+</svg>
+
+<svg width="4in" height="3in">
+  <text x=".5in" y="2in"
+         style="fill:blue">Hello, out there</text>
+</svg>
+
+<svg width="4in" height="3in">
+  <defs>
+    <text id="TextToUse">XYZ</text>
+  </defs>
+  <text>ABC</text>
+  <text>
+    <tspan href="#TextToUse"/>
+  </text>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>Simple text on a path
+  </desc>
+  <path id="MyPath" style="visibility: hidden"
+        d="M 100 100 C 125 125 175 125 200 100" />
+  <text>
+    <textpath href="#MyPath">Text on path</textpath>
+  </text>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>This graphic links to an external image
+  </desc>
+  <image x="200" y="200" style="width: 100px; height: 100px"
+   href="myimage.png">
+    <title>My image</title>
+  </image>
+</svg>
+
+<svg width="4in" height="3in" xmlns='http://www.w3.org/Graphics/SVG/svg-19990706.dtd'>
+  <desc>This links to an external image
+  </desc>
+  <image x="200" y="200" style="width: 100px; height: 100px"
+   xml:link = 'simple' show = 'embed' actuate = 'auto'  href="myimage.png">
+    <title>My image</title>
+  </image>
+</svg>
+
+<svg width="4in" height="3in">
+  <defs>
+    <filter id="CoolTextEffect">
+      <!-- Definition of filter goes here -->
+    </filter>
+  </defs>
+  <text style="filter:url(#CoolTextEffect)">Text with a cool effect</text>
+</svg>
+
+<svg width="4in" height="3in">
+ <filter id="Shadow">
+    <feGaussianBlur     in="SourceAlpha"
+                        radius="3"
+                        nodeid="blurredAlpha" />
+    <feOffset           in="blurredAlpha"
+                        dx="2" dy="1"
+                        nodeid="offsetBlurredAlpha" />
+     <feDiffuseLighting  in="blurredAlpha"
+                         diffuse-constant=".5"
+                        nodeid="bumpMapDiffuse" >
+      <feDistantLight/>
+    </feDiffuseLighting>
+     <feComposite       in="bumpMapDiffuse" in2="SourcePaint"
+                        operator="arithmetic" k1="1"
+                        nodeid="litPaint" />
+      <feSpecularLighting in="blurredAlpha"
+                         specular-constant=".5"
+                        specular-exponent="10"
+                        light-color="feDistantLight"
+                        nodeid="bumpMapSpecular" >
+        <feDistantLight/>
+    </feSpecularLighting>
+     <feComposite       in="litPaint" in2="bumpMapSpecular"
+                        operator="arithmetic" k2="1" k3="1"
+                        nodeid="litPaint" />
+      <feComposite      in="litPaint"
+                        in2="SourceAlpha"
+                         mode="AinB"
+                        nodeid="litPaint" />
+     <feMerge>
+      <feMergeNode in="litPaint" />
+      <feMergeNode in="offsetBlurredAlpha" />
+    </feMerge>
+  </filter>
+
+  <text style="font-size:36; fill:red; filter:url(#Shadow)"
+        x="10" y="250">Shadowed Text</text>
+</svg>
+
+<svg width="4in" height="3in">
+  <desc>This valid svg document draws a triangle which is a hyperlink
+  </desc>  <a href="http://www.w3.org">
+    <path d="M 0 0 L 200 0 L 100 200 z"/>
+  </a>
+</svg>
+
+<svg width="4in" height="3in" xmlns = 'http://www.w3.org/Graphics/SVG/svg-19990706.dtd'>
+  <desc>This well formed svg document draws a triangle which is a hyperlink
+  </desc>
+  <a xml:link="simple" show="replace" actuate="user" href="http://www.w3.org">
+    <path d="M 0 0 L 200 0 L 100 200 z"/>
+  </a>
+</svg>
+
+<svg width="4in" height="3in"
+      fit-box-to-viewport="0 0 400 300"
+     onload="StartAnimation()" >
+
+  <defs>
+    <script>< ![CDATA
+        [      var timer_increment = 50.
+        var max_time = 10000
+        var text_element
+        StartAnimation
+            () { text_element = document.getElementById("TextElement"); ShowAndGrowElement(0); }
+        ShowAndGrowElement(timevalue) {
+            timevalue = timevalue + timer_increment
+            if (timevalue > max_time) timevalue = timevalue - floor(timevalue / max_time) * max_time
+
+        // Scale the text string gradually until it is 20 times larger
+        scalefactor = (timevalue * 20.) / max_time
+        text_element.SetAttribute("transform", "scale(" + scalefactor + ")")
+
+        // Make the string more opaque
+        opacityfactor = timevalue / max_time
+        text_element.getStyle().setProperty("opacity", "opacity:" + opacityfactor, "")
+
+        // Call ShowAndGrowElement again <timer_increment> milliseconds later.
+        setTimeout("ShowAndGrowElement(" + timer_increment + ")")      }    ]]></script>  </defs>
+
+  <g transform="translate(50,300)" style="fill:red; font-size:10">
+    <text id="TextElement">SVG</text>
+  </g>
+</svg>
+
+<svg width="4in" height="3in">
+ <g>
+  <title>
+    Company sales by region
+  </title>
+  <desc>
+    This is a bar chart which shows
+     company sales by region.
+  </desc>
+  <!-- Bar chart defined as vector data -->
+ </g>
+</svg>
+
+<svg width="4in" height="3in"
+  xmlns="http://www.w3.org/Graphics/SVG/svg-19990706.dtd">
+   <desc xmlns:mydoc="http://foo.org/mydoc">
+      <mydoc:title>This is an example SVG file</mydoc:title>
+      <mydoc:para>The global description uses markup from the
+         <mydoc:emph>mydoc</mydoc:emph> namespace.</mydoc:para>
+   </desc>
+   <g>
+   <!-- the picture goes here -->
+   </g>
+</svg>
+
+<svg width="4in" height="3in"
+ xmlns = 'http://www.w3.org/Graphics/SVG/svg-19990706.dtd'>
+  <desc>This example uses the switch element to provide a
+   fallback graphical representation of an equation, if
+   MathML is not supported.
+  </desc>
+  <!-- The <switch> element will process the first child element
+       whose testing attributes evaluate to true.-->
+  <switch>
+    <!-- Process the MathML if the system-required attribute
+         evaluates to true (i.e., the user agent supports MathML
+         embedded within SVG). -->
+    <foreignobject
+        system-required="http://www.w3.org/TR/REC-MathML-19980407"
+        width="100" height="50">
+      <!-- MathML content goes here -->
+    </foreignobject>
+    <!-- Else, process the following alternate SVG.
+         Note that there are no testing attributes on the <g> element.
+         If no testing attributes are provided, it is as if there
+         were testing attributes and they evaluated to true.-->
+    <g>
+      <!-- Draw a red rectangle with a text string on top. -->
+
+      <rect style="fill: red"/>
+      <text>Formula goes here</text>
+    </g>
+  </switch>
+</svg>
+
+</body>
+</html>

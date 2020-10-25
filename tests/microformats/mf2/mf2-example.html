@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html lang="nl-be">
+<head>
+<title>Microformats 2 Examples</title>
+
+</head>
+
+<body>
+
+<h1>Microformats 2 Examples</h1>
+
+<p class="h-adr">
+  <span class="p-street-address">17 Austerstræti</span>
+  <span class="p-locality">Reykjavík</span>
+  <span class="p-country-name">Iceland</span>
+  <span class="p-postal-code">107</span>
+</p>
+
+<p class="h-adr adr">
+  <span class="p-street-address street-address">123 Main St.</span>,
+  <span class="p-locality locality">Pleasantville</span>
+  ...
+</p>
+
+<a class="h-card" href="https://example.com/">Bert Scroggins</a>,
+
+<span class="h-card">
+  <a class="p-name p-org u-url" href="https://example.org/">microformats.org</a>
+</span>
+
+<div class="h-card">
+  <a class="p-name u-url"
+     href="https://blog.lizardwrangler.example.com/"
+    >Mitchell Baker</a>
+  (<a class="p-org h-card"
+      href="https://mozilla.example.org/"
+     >Mozilla Foundation</a>)
+</div>
+
+<div class="h-card">
+  <p class="p-name">Joe Bloggs</p>
+  <p class="p-adr h-adr">
+    <span class="p-street-address">17 Austerstraeti</span>
+    <span class="p-locality">Reykjavík</span>
+    <span class="p-country-name">Iceland</span>
+  </p>
+</div>
+
+<p class="h-card vcard">
+  <span class="p-name fn">Joe Bloggs</span>,
+  <span class="p-org org">Awesome Nonprofit</span>
+  ...
+</p>
+
+<article class="h-entry">
+  <h1 class="p-name">Microformats are amazing</h1>
+  <p>Published by <a class="p-author h-card" href="http://example.com">W. Developer</a>
+     on <time class="dt-published" datetime="2013-06-13 12:00:00">13<sup>th</sup> June 2013</time></p>
+
+  <p class="p-summary">In which I extoll the virtues of using microformats.</p>
+
+  <div class="e-content">
+    <p>Blah blah blah</p>
+  </div>
+</article>
+
+<article class="h-entry hentry">
+  <h1 class="p-name entry-title">A Tale Of Two Tags</h1>
+  <address class="p-author author h-card vcard">
+    <a href="https://chandra.example.com/" class="u-url url p-name fn" rel="author">Chandra</a>
+  </address>
+  <time class="dt-published published" datetime="2012-06-20T08:34:46-07:00">June 20, 2012</time>
+  <div class="e-content entry-content">
+    <p>It was the best of visible tags, it was the alternative invisible tags.</p>
+    <p>The a tag is perhaps the best of HTML, yet its corresponding invisible link tag has uses too.</p>
+  </div>
+  <a href="/category/uncategorized/" rel="category tag" class="p-category">General</a>
+</article>
+
+<div class="h-event">
+  <h1 class="p-name">Microformats Meetup</h1>
+  <p>From
+    <time class="dt-start" datetime="2013-06-30 12:00">30<sup>th</sup> June 2013, 12:00</time>
+    to <time class="dt-end" datetime="2013-06-30 18:00">18:00</time>
+    at <span class="p-location">Some bar in SF</span></p>
+  <p class="p-summary">Get together and discuss all things microformats-related.</p>
+</div>
+
+<p class="p-location h-adr">
+  <span class="p-street-address">17 Austerstraeti</span>
+  <span class="p-locality">Reykjavík</span>
+  <span class="p-country-name">Iceland</span>
+</p>
+
+<div class="h-event vevent">
+  <h1 class="p-name summary">Some great event</h1>
+</div>
+
+<p class="h-geo">
+  <span class="p-latitude">-27.116667</span>,
+  <span class="p-longitude">-109.366667</span>
+</p>
+
+<p class="h-geo">
+  <data class="p-longitude" value="-27.116667">27 7 0 S</data>,
+  <data class="p-latitude" value="-109.366667">109 22 0 W</data>
+</p>
+
+<p class="h-geo geo">
+  <span class="p-latitude latitude">-27.116667</span>,
+  <span class="p-longitude longitude">-109.366667</span>
+</p>
+
+<a class="h-item" href="http://example.org/items/1">
+  <img src="http://example.org/items/1/photo.png" alt="" />
+  The Item Name
+</a>
+
+<div class="h-product">
+  <h1 class="p-name">Microformats For Dummies</h1>
+  <img class="u-photo" src="http://example.org/mfd.png" alt="" />
+  <div class="e-description">
+    <p>Want to get started using microformats, but intimidated by hyphens and mediawiki? This book contains everything you need to know!</p>
+  </div>
+  <p>Yours today for only <data class="p-price" value="20.00">$20.00</data>
+     from <a class="p-brand h-card" href="http://example.com/acme">ACME Publishing inc.</a>
+  </p>
+</div>
+
+<article class="h-recipe">
+  <h1 class="p-name">Bagels</h1>
+
+  <ul>
+    <li class="p-ingredient">Flour</li>
+    <li class="p-ingredient">Sugar</li>
+    <li class="p-ingredient">Yeast</li>
+  </ul>
+
+  <p>Takes <time class="dt-duration" datetime="1H">1 hour</time>,
+     serves <data class="p-yield" value="4">four people</data>.</p>
+
+  <div class="e-instructions">
+    <ol>
+      <li>Start by mixing all the ingredients together.</li>
+    </ol>
+  </div>
+</article>
+
+<div class="h-resume">
+  <span class="p-name">
+   <a class="p-contact h-card" href="http://example.org">
+    <img src="http://example.org/photo.png" alt="" />
+    Joe Bloggs
+   </a>
+   resume
+  </span>
+
+  <p class="p-summary">Joe is a top-notch llama farmer with a degree in <span class="p-skill">Llama husbandry</span> and a thirst to produce the finest wool known to man</p>
+</div>
+
+<div class="h-review">
+  <h1 class="p-name">Microformats: is structured data worth it?</h1>
+
+  <blockquote>
+    <a class="p-item h-item" href="http://microformats.example.org">Microformats</a> are the simplest way to publish structured data on the web.
+  </blockquote>
+
+  <p>
+    <data class="p-rating" value="5">*****</data>
+    Published <time class="dt-published" datetime="2013-06-12 12:00:00">12<sup>th</sup> June 2013</time>
+    by <a class="p-author h-card" href="http://example.com">Joe Bloggs</a>.
+  </p>
+
+  <div class="e-content">
+    <p>Yes, microformats are undoubtedly great. They are the simplest way to markup structured data in HTML and reap the benefits thereof, including using your web page as your API by automatic conversion to JSON. The alternatives of microdata/schema and RDFa are much more work, require more markup, and are more complicated (harder to get right, more likely to break).</p>
+  </div>
+</div>
+
+<div class="h-review hreview">
+  <h1 class="p-name fn">My great review</h1>
+</div>
+
+<article class="h-review-aggregate">
+ <h1 class="p-item">Mediterranean Wraps</h1>
+ <p class="p-name">Customers flock to this small restaurant for their
+ tasty falafel and shawerma wraps and welcoming staff.</p>
+ <span class="p-average">4.5</span> out of 5
+ based on <span class="p-count">17</span> reviews
+</article>
+
+</body>
+</html>

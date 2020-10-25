@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<svg width="5cm" height="4cm" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny">
+ <title>Example cubic01- cubic Bézier commands in path data</title>
+ <desc>Picture showing a simple example of path data using both a "C" and an "S" command, along with annotations showing the control points and end points</desc>
+ <rect fill="none" stroke="blue" stroke-width="1" x="1" y="1" width="498" height="398" />
+ <polyline fill="none" stroke="#888888" stroke-width="1" points="100,200 100,100" />
+ <polyline fill="none" stroke="#888888" stroke-width="1" points="250,100 250,200" />
+ <polyline fill="none" stroke="#888888" stroke-width="1" points="250,200 250,300" />
+ <polyline fill="none" stroke="#888888" stroke-width="1" points="400,300 400,200" />
+ <path fill="none" stroke="red" stroke-width="5" d="M100,200 C100,100 250,100 250,200 S400,300 400,200" />
+ <circle fill="#888888" stroke="none" stroke-width="2" cx="100" cy="200" r="10" />
+ <circle fill="#888888" stroke="none" stroke-width="2" cx="250" cy="200" r="10" />
+ <circle fill="#888888" stroke="none" stroke-width="2" cx="400" cy="200" r="10" />
+ <circle fill="#888888" stroke="none" cx="100" cy="100" r="10" />
+ <circle fill="#888888" stroke="none" cx="250" cy="100" r="10" />
+ <circle fill="#888888" stroke="none" cx="400" cy="300" r="10" />
+ <circle fill="none" stroke="blue" stroke-width="4" cx="250" cy="300" r="9" />
+ <text font-size="22" font-family="Verdana" x="25" y="70">M100,200 C100,100 250,100 250,200</text>
+ <text font-size="22" font-family="Verdana" x="325" y="350" text-anchor="middle">S400,300 400,200</text>
+</svg>
+
+<svg width="12cm" height="6cm" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny">
+ <title>Example quad01 - quadratic Bezier commands in path data</title>
+ <desc>Picture showing a "Q" a "T" command, along with annotations showing the control points and end points</desc>
+ <rect x="1" y="1" width="1198" height="598" fill="none" stroke="blue" stroke-width="1" />
+ <path d="M200,300 Q400,50 600,300 T1000,300" fill="none" stroke="red" stroke-width="5"  />
+<!-- End points -->
+ <g fill="black" >
+ <circle cx="200" cy="300" r="10"/>
+ <circle cx="600" cy="300" r="10"/>
+ <circle cx="1000" cy="300" r="10"/>
+ </g>
+<!-- Control points and lines from end points to control points -->
+ <g fill="#888888" >
+ <circle cx="400" cy="50" r="10"/>
+ <circle cx="800" cy="550" r="10"/>
+ </g> <path d="M200,300 L400,50 L600,300 L800,550 L1000,300" fill="none" stroke="#888888" stroke-width="2" />
+</svg>
+
+<svg width="12cm" height="4cm" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny">
+ <desc>Example rect01 - rectangle with sharp corners</desc>
+<!-- Show outline of canvas using 'rect' element -->
+ <rect x="1" y="1" width="1198" height="398" fill="none" stroke="blue" stroke-width="2"/>
+ <rect x="400" y="100" width="400" height="200" fill="yellow" stroke="navy" stroke-width="10"  />
+</svg>
+
+<svg width="12cm" height="4cm" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny">
+ <desc>Example rect02 - rounded rectangles</desc>
+<!-- Show outline of canvas using 'rect' element -->
+ <rect x="1" y="1" width="1198" height="398" fill="none" stroke="blue" stroke-width="2"/>
+ <rect x="100" y="100" width="400" height="200" rx="50" fill="green" />
+ <g transform="translate(700 210) rotate(-30)">
+ <rect x="0" y="0" width="400" height="200" rx="50" fill="none" stroke="purple" stroke-width="30" />
+ </g>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny" viewBox="0 0 400 300" snapshotTime="3">
+<title>Snapshot time example</title>
+ <desc>This example shows the use of snapshotTime on an animation of color.</desc>
+<rect x="60" y="85" width="256" height="65" fill="none" stroke="rgb(60,126,220)" stroke-width="4"/>
+<text x="65" y="140" fill="white" font-size="60">
+ Hello SVG
+ <animateColor attributeName="fill" begin="0" dur="3" from="white" to="rgb(60,126,220)"/>
+ </text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1." baseProfile="tiny" width="5cm" height="5cm" viewBox="0 0 5 5">
+<desc>Two groups, each of two rectangles</desc>
+<g xml:id="group1" fill="red">
+ <desc>First group of two red rectangles</desc>
+ <rect x="1" y="1" width="1" height="1"/> <rect x="3" y="1" width="1" height="1"/>
+ </g>
+ <g xml:id="group2" fill="blue">
+ <desc>Second group of two blue rectangles</desc>
+ <rect x="1" y="3" width="1" height="1"/>
+ <rect x="3" y="3" width="1" height="1"/>
+ </g>
+<!-- Show outline of canvas using 'rect' element -->
+ <rect x=".01" y=".01" width="4.98" height="4.98" fill="none" stroke="blue" stroke-width=".02"/>
+</svg>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>basic microdata test page</title>
+</head>
+
+<body>
+
+<h1 id="ok">>basic microdata test page</h1>
+
+<div itemscope>
+ <p>My name is <span itemprop="name">Elizabeth</span>.</p>
+</div>
+
+<div itemscope>
+ <p>My name is <span itemprop="name">Daniel</span>.</p>
+</div>
+
+<div itemscope>
+ <p>My <em>name</em> is <span itemprop="name">E<strong>liz</strong>abeth</span>.</p>
+</div>
+
+<section>
+ <div itemscope>
+  <aside>
+   <p>My name is <span itemprop="name"><a href="/?user=daniel">Daniel</a></span>.</p>
+  </aside>
+ </div>
+</section>
+
+<div itemscope>
+ <p>My name is <span itemprop="name">Neil</span>.</p>
+ <p>My band is called <span itemprop="band">Four Parts Water</span>.</p>
+ <p>I am <span itemprop="nationality">British</span>.</p>
+</div>
+
+<div itemscope>
+ <img itemprop="image" src="google-logo.png" alt="Google">
+</div>
+
+<h1 itemscope>
+ <data itemprop="product-id" value="9678AOU879">The Instigator 2000</data>
+</h1>
+
+<div itemscope itemtype="http://schema.org/Product">
+ <span itemprop="name">Panasonic White 60L Refrigerator</span>
+  <img src="panasonic-fridge-60l-white.jpg" alt="">
+  <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+   <meter itemprop="ratingValue" min=0 value=3.5 max=5>Rated 3.5/5</meter>
+  (based on <span itemprop="reviewCount">11</span> customer reviews)
+ </div>
+</div>
+
+<div itemscope>
+ I was born on <time itemprop="birthday" datetime="2009-05-10">May 10th 2009</time>.
+</div>
+
+<div itemscope>
+ <p>Name: <span itemprop="name">Amanda</span></p>
+ <p>Band: <span itemprop="band" itemscope>
+ <span itemprop="name">Jazz Band</span>
+ (<span itemprop="size">12</span> players)</span></p>
+</div>
+
+<div itemscope id="amanda" itemref="a b"></div>
+<p id="a">Name: <span itemprop="name">Amanda</span></p>
+<div id="b" itemprop="band" itemscope itemref="c"></div>
+<div id="c">
+ <p>Band: <span itemprop="name">Jazz Band</span></p>
+ <p>Size: <span itemprop="size">12</span> players</p>
+</div>
+
+<div itemscope>
+ <p>Flavours in my favorite ice cream:</p>
+ <ul>
+  <li itemprop="flavor">Lemon sorbet</li>
+  <li itemprop="flavor">Apricot sorbet</li>
+ </ul>
+</div>
+
+<div itemscope>
+ <span itemprop="favorite-color favorite-fruit">orange</span>
+</div>
+
+<figure>
+ <img src="castle.jpeg">
+ <figcaption><span itemscope><span itemprop="name">The Castle</span></span> (1986)</figcaption>
+</figure>
+<!-- <div itemscope><meta itemprop="name" content="The Castle"></div> -->
+<!-- await completion of meta -->
+<figure>
+ <img src="castle.jpeg">
+ <figcaption>The Castle (1986)</figcaption>
+</figure>
+
+<section itemscope itemtype="https://example.org/animals#cat">
+ <h1 itemprop="name">Hedral</h1>
+ <p itemprop="desc">Hedral is a male american domestic shorthair,
+                    with a fluffy black fur with white paws and belly.</p>
+ <img itemprop="img" src="hedral.jpeg" alt="" title="Hedral, age 18 months">
+</section>
+
+<dl itemscope itemtype="https://vocab.example.net/book" itemid="urn:isbn:0-330-34032-8">
+ <dt>Title <dd itemprop="title">The Reality Dysfunction
+ <dt>Author <dd itemprop="author">Peter F. Hamilton
+ <dt>Publication date
+ <dd><time itemprop="pubdate" datetime="1996-01-26">26 January 1996</time>
+</dl>
+
+<section itemscope itemtype="https://example.org/animals#cat">
+ <h1 itemprop="name https://example.com/fn">Hedral</h1>
+ <p itemprop="desc">Hedral is a male american domestic shorthair, with a fluffy
+                    <span itemprop="https://example.com/color">black</span>
+                    fur with
+                    <span itemprop="https://example.com/color">white</span>
+                    paws and belly.</p>
+ <img itemprop="img" src="hedral.jpeg" alt="" title="Hedral, age 18 months">
+</section>
+
+<dl itemscope itemtype="https://md.example.com/loco https://md.example.com/lighting">
+ <dt>Name: <dd itemprop="name">Tank Locomotive (DB 80)
+ <dt>Product code: <dd itemprop="product-code">33041
+ <dt>Scale:
+ <dd itemprop="scale">HO
+ <dt>Digital:
+ <dd itemprop="digital">Delta
+</dl>
+
+<dl itemscope itemtype="https://md.example.com/track https://md.example.com/lighting">
+ <dt>Name:
+ <dd itemprop="name">Turnout Lantern Kit
+ <dt>Product code:
+ <dd itemprop="product-code">74470
+ <dt>Purpose:
+ <dd>For retrofitting 2
+ <span itemprop="track-type">C</span>
+ Track turnouts.
+ <data itemprop="scale" value="HO">
+</dl>
+
+<dl itemscope itemtype="https://md.example.com/passengers">
+ <dt>Name:
+ <dd itemprop="name">Express Train Passenger Car (DB Am 203)
+ <dt>Product code:
+ <dd itemprop="product-code">8710 <dt>Scale:
+ <dd itemprop="scale">Z
+</dl>
+
+<div itemscope> <p itemprop="a">1</p> <p itemprop="a">2</p> <p itemprop="b">test</p> </div>
+
+<div itemscope> <p itemprop="b">test</p> <p itemprop="a">1</p> <p itemprop="a">2</p> </div>
+
+<div itemscope> <p itemprop="a">1</p> <p itemprop="b">test</p> <p itemprop="a">2</p> </div>
+
+<div id="x">
+ <p itemprop="a">1</p>
+</div>
+<div itemscope itemref="x">
+ <p itemprop="b">test</p>
+ <p itemprop="a">2</p>
+</div>
+
+</body>
+</html>

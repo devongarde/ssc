@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>examples</title>
+</head>
+
+<body>
+
+<h1>examples</h1>
+
+<div itemscope itemtype ="http://schema.org/Movie">
+  <h1 itemprop="name">Avatar</h1>
+  <span>Director: <span itemprop="director">James Cameron</span> (born August 16, 1954)</span>
+  <span itemprop="genre">Science fiction</span>
+  <a href="../movies/avatar-theatrical-trailer.html" itemprop="trailer">Trailer</a>
+</div>
+
+<div itemscope itemtype ="http://schema.org/Movie">
+  <h1 itemprop="name">Avatar</h1>
+  <div itemprop="director" itemscope itemtype="http://schema.org/Person">
+  Director: <span itemprop="name">James Cameron</span> (born <span itemprop="birthDate">August 16, 1954</span>)
+  </div>
+  <span itemprop="genre">Science fiction</span>
+  <a href="../movies/avatar-theatrical-trailer.html" itemprop="trailer">Trailer</a>
+</div>
+
+<div itemscope itemtype="http://schema.org/Person">
+  <a href="alice.html" itemprop="url">Alice Jones</a>
+</div>
+<div itemscope itemtype="http://schema.org/Person">
+  <a href="bob.html" itemprop="url">Bob Smith</a>
+</div>
+
+<div itemscope itemtype="http://schema.org/Event">
+  <div itemprop="name">Spinal Tap</div>
+  <span itemprop="description">One of the loudest bands ever
+  reunites for an unforgettable two-day show.</span>
+  Event date:
+  <time itemprop="startDate" datetime="2011-05-08T19:30">May 8, 7:30pm</time>
+</div>
+
+<time itemprop="cookTime" datetime="PT1H30M">1 1/2 hrs</time>
+
+<div itemscope itemtype="http://schema.org/Offer">
+  <span itemprop="name">Blend-O-Matic</span>
+  <span itemprop="price">$19.95</span>
+  <span itemprop="availability">Available today!</span>
+</div>
+
+<div itemscope itemtype="http://schema.org/Offer">
+  <span itemprop="name">Blend-O-Matic</span>
+  <span itemprop="price">$19.95</span>
+  <link itemprop="availability" href="http://schema.org/InStock"/>Available today!
+</div>
+
+<div itemscope itemtype="http://schema.org/Book">
+  <span itemprop="name">The Catcher in the Rye</span>—
+  by <span itemprop="author">J.D. Salinger</span>
+  Here is the book's <a itemprop="url" href="http://en.wikipedia.org/wiki/The_Catcher_in_the_Rye">Wikipedia page</a>.
+</div>
+
+<div itemscope itemtype="http://schema.org/Book">
+  <span itemprop="name">The Catcher in the Rye</span>—
+  <link itemprop="url" href="http://en.wikipedia.org/wiki/The_Catcher_in_the_Rye" />
+  by <span itemprop="author">J.D. Salinger</span>
+</div>
+
+<div itemscope itemtype="http://schema.org/Offer">
+  <span itemprop="name">Blend-O-Matic</span>
+  <span itemprop="price">$19.95</span>
+  <div itemprop="reviews" itemscope itemtype="http://schema.org/AggregateRating">
+    <img src="four-stars.jpg" />
+    <meta itemprop="ratingValue" content="4" />
+    <meta itemprop="bestRating" content="5" />
+    Based on <span itemprop="ratingCount">25</span> user ratings
+  </div>
+</div>
+
+</body>
+</html>
