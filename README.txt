@@ -69,5 +69,5 @@ written by dylan harris
 https://dylanharris.org/
 
 dylan harris
-swlc@dylanharris.org
+swlc AT dylanharris.org
 October 2020
