@@ -1,5 +1,5 @@
 ssc
-0.0.57
+0.0.58
 (c) 2020 Dylan Harris, https://dylanharris.org/
 
 *** tests/ssc-test/lines.txt
