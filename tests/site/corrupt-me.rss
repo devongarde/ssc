@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+ <title>corrupt press</title>
+ <copyright>copyright 2011-2018 corrupt press limited</copyright>
+ <generator>xCode</generator>
+ <description>corrupt press puts poetry into people&apos;s heads</description>
+ <link>http://corruptpress.net/index.shtml</link>
+ <docs>http://validator.w3.org/feed/docs/rss2.html</docs>
+ <ttl>1800</ttl>
+ <image>
+  <url>http://corruptpress.net/smalllogo.jpg</url>
+  <title>corrupt press</title>
+  <link>http://corruptpress.net/index.shtml</link>
+  <description>corrupt press: putting poetry into people&apos;s heads</description>
+  <width>100</width>
+  <height>100</height>
+ </image>
+ 
+  <item>
+  <title>end of RSS</title>
+  <description>With regret, I have decided to abandon maintaining this RSS feed. Hardly anyone touches it. :-(</description>
+  <link>https://corruptpress.net/</link>
+  <guid>bye</guid>
+  <source url="https://corruptpress.net/corrupt-me.rss">arts \ ego</source>
+  <category>blog</category>
+  <pubDate>10 June 2018 00:00:00 +0100</pubDate>
+ </item>
+
+</channel>
+</rss>

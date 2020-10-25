@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+Server: nginx/1.14.2
+Date: Mon, 17 Jun 2019 09:55:49 GMT
+Content-Type: text/html; charset=UTF-8
+Connection: keep-alive
+LinK: <https://webmention.rocks/test/7/webmention?head=true>; rel=webmention
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST
+

@@ -1,0 +1,16 @@
+{
+    "app": "swlc",
+    "version": "0.0.16",
+    "context": "reply",
+    "reply": {
+        "length": "1",
+        "0": {
+            "page": "index.shtml",
+            "id": "sg",
+            "server": "https:\/\/dylanharris.org\/sensors\/webmention",
+            "target": "http:\/\/dylanharris.org\/index.shtml",
+            "content": "",
+            "when": "2019.07.01 07:58:37"
+        }
+    }
+}
