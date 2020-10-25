@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700' rel='stylesheet' type='text/css'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<title>
+view cart
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="author" content="dylan harris">
+<meta name="classification" content="07540"> 
+<meta name="contact" content="dh@corruptpress.com">
+<meta name="copyright" content="(c) 2011-2019 dylan harris">
+<meta name="description" content="corrupt press is a small poetry press">
+<meta name="keywords" content="corrupt&nbsp;press">
+<meta name="revised" content="Thursday, 25-Apr-2019 11:28:42 CEST">
+<meta name="theme-color" content="#000000">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+<meta name="DC.creator" content="corrupt&nbsp;press">
+<meta name="DC.description" content="corrupt press is a small poetry press">
+<meta name="DC.identifier" content="https://corruptpress.com/info/cart.shtml" >
+<meta name="DC.language" content="(none)">
+<meta name="DC.modified" content="Thursday, 25-Apr-2019 11:28:42 CEST">
+<meta name="DC.title" content="view cart">
+
+
+<meta name="og:image" content="/favicon.ico">
+<meta name="og:description" content="corrupt press is a small poetry press">
+<meta name="og:locale" content="(none)">
+<meta name="og:site_name" content="(none)">
+<meta name="og:title" content="view cart">
+<meta name="og:url" content="https://corruptpress.com/info/cart.shtml" >
+
+<link rel="apple-touch-icon" href="/favicon.ico">
+<link rel="author" href="https://dylanharris.org/">
+<link rel="canonical" href="https://corruptpress.com/info/cart.shtml" >
+<link rel="home" href="/index.shtml">
+<link rel="icon" href="/favicon.ico">
+<link rel="index" href="/index.shtml">
+<link rel="sitemap" href="/sitemap.xml">
+<link rel="stylesheet" href="/plumbing/songshade.css" type="text/css">
+
+</head>
+
+<body>
+
+<div itemprop="author copyrightHolder" itemscope itemtype="https://schema.org/Person" id="dh">
+  <meta itemprop="name" content="dylan harris">
+  <link itemprop="sameAs url" href="https://dylanharris.org/">
+</div>
+
+<div itemprop="publisher" itemscope itemtype="https://schema.org/Organization" id="self">
+  <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+    <meta itemprop="addressCountry" content="The Grand Duchy of Luxembourg">
+    <meta itemprop="addressLocality" content="Esch&ndash;sur&ndash;Alzette">
+  </div>
+  <meta itemprop="description" content="corrupt press is a small poetry press">
+  <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject" itemref="dh">
+    <link itemprop="url contentUrl" href="https://corruptpress.com/logo.jpg">
+  </div>
+  <meta itemprop="name" content="corrupt&nbsp;press">
+  <link itemprop="sameAs" href="https://corruptpress.com">
+</div>
+
+<div class="site h-entry" itemscope itemtype="https://schema.org/WebPage" itemref="dh self">
+<meta itemprop="dateModified" content="Thursday, 25-Apr-2019 11:28:42 CEST">
+<meta itemprop="description" content="corrupt press is a small poetry press">
+<meta itemprop="headline" content="view cart">
+<meta itemprop="inLanguage" content="en-GB">
+<link itemprop="mainEntityOfPage" href="https://corruptpress.com/info/cart.shtml">
+<meta itemprop="name" content="view cart">
+
+<meta NAME="description" CONTENT="Link to view your shopping cart from corrupt press.">
+</head>
+<body class="words">
+<div class="site">
+<div class="info section">
+<nav>
+<p class="menu-top">
+<span class="separator">:&nbsp;:</span>&nbsp;<a href="/index.shtml">home</a>&nbsp;<span class="separator">:&nbsp;:</span>
+<a href="/info/about.shtml">about</a>&nbsp;<span class="separator">&cir;</span>
+<a href="/authors/index.shtml">authors</a>&nbsp;<span class="separator">&cir;</span>
+<a href="/index.shtml">books</a>&nbsp;<span class="separator">&cir;</span>
+<a href="/info/submissions.shtml">submissions</a>&nbsp;<span class="separator">&cir;</span>
+<a href="/info/cart.shtml">view&nbsp;cart</a>&nbsp;<span class="separator">:&nbsp;:</span>
+</p>
+</nav>
+
+
+<p>
+<img src="/logo.jpg" title="corrupt press logo" class="inline_illustration_left mw10">
+</p>
+
+<h1>
+view cart
+</h1>
+
+<p>
+This page will vamoosh once I&rsquo;ve worked out how to link the paypal cart directly from a text menu item.
+In the meantime, to view your cart, please click the button below.
+Apologies for the complication.
+</p>
+
+<p>
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="cart.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" class="illustration">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</p>
+
+<br><br>
+
+</div>
+<div class="under section first-under">
+
+</div>
+
+<p class="under menu-base">
+
+<span class="separator">:&nbsp;:</span>&nbsp;<a href="mailto:dh@corruptpress.com">contact</a>&nbsp;<span class="separator">&cir;</span>
+<a href="/info/use.shtml">terms&nbsp;of&nbsp;use</a>&nbsp;<span class="separator">&cir;</span>
+<a href="/info/privacy.shtml">privacy&nbsp;&amp;&nbsp;cookies</a>&nbsp;<span class="separator">&cir;</span>
+<a href="/info/sale.shtml">terms&nbsp;of&nbsp;sale</a>&nbsp;<span class="separator">&cir;</span>
+<a href="/info/returns.shtml">returns</a>&nbsp;<span class="separator">&cir;</span>
+<a href="/info/delivery.shtml">delivery</a>&nbsp;<span class="separator">:&nbsp;:</span><br>
+
+<span class="separator">:&nbsp;:</span><a href="https://dylanharris.org/">dylan&nbsp;harris</a>
+trades&nbsp;as
+<a href="/info/about.shtml">corrupt&nbsp;press</a>&nbsp;<span class="separator">&cir;</span>
+<span itemprop="copyrightHolder">&copy;&nbsp;2011&ndash;2019&nbsp;dylan&nbsp;harris</span>&nbsp;<span class="separator">:&nbsp;:</span>
+
+</p>
+
+</div>
+</body>
+</html>
+
