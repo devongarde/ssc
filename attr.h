@@ -27,7 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct attr : symbol < e_attribute >
 {   static e_attribute parse (nitpick& nits, const html_version& v, const ::std::string& x);
     static void init (nitpick& nits);
-//    bool unknown () const { return symbol < e_attribute > :: unknown () == a_unknown); }
     static e_namespace ns (const uint64_t f)
     {   return static_cast < e_namespace > (f & AP_NAMESPACE_MASK); }
     e_namespace ns () const

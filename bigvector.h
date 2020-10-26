@@ -22,19 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-template < class MEMBER, ::std::size_t CHUNK > class big_vector
+template < class MEMBER, size_t CHUNK > class big_vector
 {   typedef ::std::vector < MEMBER > base_t;
     typedef ::std::shared_ptr < base_t > chunk_t;
     typedef ::std::vector < chunk_t > data_t;
     data_t data_;
-    uint64_t size_ = 0;
-    uint64_t chunk (const uint64_t index) const
+    size_t size_ = 0;
+    size_t chunk (const size_t index) const
     {   return index / CHUNK; }
-    uint64_t offset (const uint64_t index) const
+    size_t offset (const size_t index) const
     {   return index % CHUNK; }
     void pre_push_back ()
     {   if ((size_ % CHUNK) == 0)
-        {   uint64_t c = chunk (size_);
+        {   size_t c = chunk (size_);
             assert (c <= data_.size ());
             if (c == data_.size ())
                 data_.push_back (chunk_t (new base_t));
@@ -55,22 +55,22 @@ public:
     void reset (const big_vector& bv)
     {   data_ = bv.data_;
         size_ = bv.size_; }
-    uint64_t size () const
+    size_t size () const
     {   return size_; }
-    MEMBER& at (const uint64_t index)
+    MEMBER& at (const size_t index)
     {   assert (index < size_);
-        uint64_t c = chunk (index);
+        size_t c = chunk (index);
         assert (c < data_.size ());
         assert (data_.at (c) != nullptr);
-        uint64_t o = offset (index);
+        size_t o = offset (index);
         assert (o < data_.at (c) -> size ());
         return data_.at (c) -> at (o); }
-    const MEMBER& at (const uint64_t index) const
+    const MEMBER& at (const size_t index) const
     {   assert (index < size_);
-        uint64_t c = chunk (index);
+        size_t c = chunk (index);
         assert (c < data_.size ());
         assert (data_.at (c) != nullptr);
-        uint64_t o = offset (index);
+        size_t o = offset (index);
         assert (o < data_.at (c) -> size ());
         return data_.at (c) -> at (o); }
     void pop_back () { --size_; }
@@ -78,7 +78,7 @@ public:
     {   pre_push_back ();
         chunk_t ptr = data_.at (chunk (size_));
         assert (ptr != nullptr);
-        uint64_t off (offset (size_));
+        size_t off (offset (size_));
         assert (off <= ptr -> size ());
         if (off == ptr -> size ())
         {   ptr -> push_back (m);
@@ -88,15 +88,15 @@ public:
     {   pre_push_back ();
         chunk_t ptr = data_.at (chunk (size_));
         assert (ptr != nullptr);
-        uint64_t off (offset (size_));
+        size_t off (offset (size_));
         assert (off <= ptr -> size ());
         if (off == ptr -> size ())
         {   ptr -> push_back (m);
             ++size_; }
         else ptr -> at (off).reset (m); }
-    MEMBER& operator [] (const uint64_t index)
+    MEMBER& operator [] (const size_t index)
     {   return at (index); }
-    const MEMBER& operator [] (const uint64_t index) const
+    const MEMBER& operator [] (const size_t index) const
     {   return at (index); }
     MEMBER& back ()
     {   return at (size_ - 1); }

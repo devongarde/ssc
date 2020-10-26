@@ -44,7 +44,6 @@ void headers::parse (nitpick& nits, const html_version& , const ::std::string& h
             if (key == LINK) process_rels (nits, value); } } }
 
 void headers::process_rels (nitpick& nits, const ::std::string& value)
-// < uri-reference >; param1=value1; param2="value2"
 {   vstr_t links (split_by_charset (value, ";"));
     ::std::size_t len = links.size ();
     if (len < 2) return;

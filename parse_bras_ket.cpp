@@ -131,6 +131,7 @@ html_version bras_ket::parse (const ::std::string& content)
     bool had_xml = false;
     bool backslashed = false;
     bool aftercab = false;
+    bool silent_content = false;
     e_element xmp_tag = elem_undefined;
     const char* cc = "character code";
     const char* ccnu = "character code, or a character code has not been used";
@@ -272,10 +273,10 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_dull ", ch);
                 switch (ch)
                 {   case '<' :  status = s_open; soe = twas = i; break;
-                    case '>' : if (aftercab) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double > intentional?"); break;
+                    case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double > intentional?"); break;
                     case '&' :  if (xmp_mode) break; status= s_amper; twas = i; break;
-                    case '\'' : if (xmp_mode) break; if (res >= html_4_0) nits.pick (nit_use_quote_code, es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)"); break;
-                    case '"' :  if (xmp_mode) break; if (res >= html_4_0) nits.pick (nit_use_double_quote_code, es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)"); }
+                    case '\'' : if (xmp_mode) break; if (! silent_content) if (res >= html_4_0) nits.pick (nit_use_quote_code, es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)"); break;
+                    case '"' :  if (xmp_mode) break; if (! silent_content) if (res >= html_4_0) nits.pick (nit_use_double_quote_code, es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)"); }
                 break;
             case s_amper :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_amper ", ch);
@@ -719,19 +720,22 @@ html_version bras_ket::parse (const ::std::string& content)
                                     ve_.emplace_back (nits, line_, collect, i, i, closure, false);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_node ", quoted_limited_string (::std::string (collect, i), 30));
                                     nits.reset ();
-                                    if ((res <= html_2) && ! closure)
+                                    if (closure) silent_content = false;
+                                    else
                                     {   bra_element_ket& current = ve_.back ();
-                                        if (current.is_plaintext ())
-                                        {   plaintext = true;
-                                            if (i + 1 != e)
-                                            {   ve_.emplace_back (nits, line_, i+1, e);
-                                                if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (i+1, e), 30)); } }
-                                        else
-                                        {   if (current.is_xmp ())
-                                            {   xmp_tag = elem_xmp; xmp_mode = true; }
-                                            else if (current.is_comment ())
-                                            {   xmp_tag = elem_comment; xmp_mode = true; }
-                                            x = i + 1; } } }
+                                        silent_content = current.is_silent_content ();
+                                        if (res <= html_2)
+                                        {   if (current.is_plaintext ())
+                                            {   plaintext = true;
+                                                if (i + 1 != e)
+                                                {   ve_.emplace_back (nits, line_, i+1, e);
+                                                    if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (i+1, e), 30)); } }
+                                            else
+                                            {   if (current.is_xmp ())
+                                                {   xmp_tag = elem_xmp; xmp_mode = true; }
+                                                else if (current.is_comment ())
+                                                {   xmp_tag = elem_comment; xmp_mode = true; }
+                                                x = i + 1; } } } }
                                 aftercab = true;
                                 status = s_dull; text = twas = i+1; break;
                     case '/' :  if (xmp_mode) { status= s_dull; break; }

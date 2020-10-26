@@ -26,7 +26,7 @@ bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, c
     if (expected == 0)
     {   if (pts) if (args.size () % 2 != 0) return false; }
     else if (args.size () < expected) return false;
-    else if ((max > 0) && (args.size () > max)) return false;
+    else if ((max > 0) && (args.size () > static_cast < size_t > (max))) return false;
     else if ((max == 0) && (args.size () != expected)) return false;
     for (auto arg : args)
     {   type_master < t_measure > m;

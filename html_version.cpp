@@ -99,10 +99,6 @@ void html_version::swap (html_version& v) noexcept
                 default:
                     res << minor_to_date (*this);
                     break; } }
-//    return res.str (); }
-//
-//::std::string html_version::detailed_report () const
-//{   ::std::ostringstream res (report ());
     if ((flags_ & HV_LEVEL_MASK) != 0) res << "." << (flags_ & HV_LEVEL_MASK);
     if ((flags_ & HV_STRICT) == HV_STRICT) res << "/strict";
     if ((flags_ & HV_FRAMESET) == HV_FRAMESET) res << "/frameset";
@@ -488,7 +484,6 @@ bool does_apply (const html_version& v, const html_version& from, const html_ver
                     assert (false);
                     break;
         default :   if (v.major () == 0) break;
-                    //if (extension_conflict (v, from) != emi_good) return false;
                     if (from.xhtml () && from.notx5 ()) return false;
                     switch (w3_minor_5 (v))
                     {   case 0 : return ! from.not50 ();

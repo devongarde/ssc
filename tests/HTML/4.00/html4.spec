@@ -26,7 +26,6 @@ PASS tests/HTML/4.00/svg1-example.html
 488 inserted_missing_closure
 500 attribute_unrecognised unrecognised_attribute
 510 attribute_required
-529 use_double_quote_code
 551 attribute_unrecognised unrecognised_attribute
 552 ignoring_unknown ignoring_unknown
 553 ignoring_unknown

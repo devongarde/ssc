@@ -15,16 +15,14 @@ PASS tests/parsing/index.html
 
 PASS tests/parsing/parsing-bad.html
 2 missing_close naughty_lang
-9 unrecognised_value
+9 unrecognised_value double_gin_and_tonic
 11 attribute_repeated attribute_repeated unrecognised_value unrecognised_value unrecognised_value
 13 bizarre_character_code invalid_character_code denary_too_long mixed_mess
-17 double_gin_and_tonic
 28 eof_in_cdata
 
 PASS tests/parsing/quotes.html
 2 inserted_missing_parent naughty_lang
-7 use_double_quote_code inserted_missing_closure enquote_value enquote_value inserted_missing_closure
-9 use_double_quote_code
+7 inserted_missing_closure enquote_value enquote_value inserted_missing_closure
 
 PASS tests/parsing/scripts.html
 2 naughty_lang

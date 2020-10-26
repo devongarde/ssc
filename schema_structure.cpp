@@ -2376,9 +2376,6 @@ void microdata_init (nitpick& )
 #endif // _DEBUG
 } }
 
-//bool test_microdata (nitpick& , const schema_version& , const ::std::string& , const ::std::string& )
-//{  return true; }
-
 bool is_schema_property (const e_schema s, const e_schema_property p)
 {   mmd_t::const_iterator i = micromap.find (mmd_key (s, p));
     if (i == micromap.cend ()) return false;

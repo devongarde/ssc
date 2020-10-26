@@ -70,6 +70,11 @@ void bra_element_ket::test_specific ()
                 case 'P' :
                 case 'p' :  plaintext_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_plaintext));
                             break;
+                case 'S' :
+                case 's' :  silent_content_ = ! closure_ && ! closed_ &&
+                                              ( compare_no_case (::std::string (start_, eofe_), elem::name (elem_script)) ||
+                                                compare_no_case (::std::string (start_, eofe_), elem::name (elem_style)));
+                            break;
                 case 'X' :
                 case 'x' :  xmp_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_xmp));
                             break;
@@ -87,6 +92,10 @@ bool bra_element_ket::is_comment ()
 bool bra_element_ket::is_plaintext ()
 {   test_specific ();
     return plaintext_; }
+
+bool bra_element_ket::is_silent_content ()
+{   test_specific ();
+    return silent_content_; }
 
 bool bra_element_ket::is_whitespace () const
 {   if (status_ != bk_text) return false;

@@ -21,5 +21,4 @@ PASS tests/SVG/1.0/svg1-example.html
 470 unrecognised_value bad_colour
 475 id_exists
 479 attribute_barred id_exists
-529 use_double_quote_code
 551 xmlns_namespace unrecognised_value

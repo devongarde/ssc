@@ -30,7 +30,7 @@ class bra_element_ket
     ::std::string::const_iterator end_;
     int line_ = 0;
     bk_status status_ = bk_text;
-    bool closure_ = false, closed_ = false, xmp_ = false, plaintext_ = false, comment_ = false, tested_ = false;
+    bool closure_ = false, closed_ = false, xmp_ = false, plaintext_ = false, comment_ = false, tested_ = false, silent_content_ = false;
     nitpick nits_;
     void test_specific ();
 public:
@@ -56,6 +56,7 @@ public:
     bool is_xmp ();
     bool is_plaintext ();
     bool is_whitespace () const;
+    bool is_silent_content ();
     bool is_closed () const { return closed_; }
     bool is_closure () const { return closure_; }
     ::std::string arg () const { return arg_; }

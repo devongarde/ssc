@@ -83,7 +83,6 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
         case itemprop_schema :
             return is_valid_schema_property (nits, v, static_cast < e_schema> (itemtype & uint32_item_mask), static_cast < e_schema_property > (ndx & uint32_item_mask), value, is_link);
         case itemprop_microformat :
-            // return prop::name (static_cast < e_property > (ndx & uint32_category_mask));
             return true;
         default : assert (false); break; }
     return false; }
@@ -95,7 +94,6 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
         case itemprop_schema :
             return is_valid_schema_property (nits, v, static_cast < e_schema> (itemtype & uint32_item_mask), static_cast < e_schema_property > (ndx & uint32_item_mask), static_cast < e_schema> (value & uint32_item_mask));
         case itemprop_microformat :
-            // return prop::name (static_cast < e_property > (ndx & uint32_category_mask));
             return true;
         default : assert (false); break; }
     return false; }

@@ -830,7 +830,7 @@ void attr::init (nitpick& nits)
 e_attribute attr::parse (nitpick& nits, const html_version& v, const ::std::string& x)
 {   ::std::string lc (x);
     e_namespace n (examine_namespace (nits, v, lc));
-    if (n >= first_runtime_namespace)
+    if (static_cast < size_t > (n) >= first_runtime_namespace)
     {   type_master < t_xmlns > newspace;
         html_version vv (v);
         nitpick knot;

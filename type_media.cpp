@@ -45,11 +45,9 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
                 else switch (s [0])
                 {   case '(' :
                         if (! feature) feature = true;
-//                        else fail = true;
                         break;
                     case ')' :
                         if (feature) feature = lhs = measure = slash = false;
-//                       else fail = true;
                         break;
                     case '/' :
                         if (lhs) slash = true;

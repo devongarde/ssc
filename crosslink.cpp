@@ -51,7 +51,6 @@ inline bool operator >= (const seeker_t& lhs, const seeker_t& rhs) { return lhs.
 
 struct sought_t
 {   fileindex_t page_;    // sought page
-//    ids_t declared_;      // ids declared on sought page
     vcl_t declared_;      // ids declared on sought page
     vsk_t seekers_;       // list of seekers searching for ids on this page
     sought_t (const fileindex_t p, const vcl_t& ids) : page_ (p), declared_ (ids) { } };

@@ -236,7 +236,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
                                 else id.reset (elem_faux_text);
                                 break; }
         if (id.unknown ())
-            if (id.ns () < first_runtime_namespace)
+            if (static_cast < size_t > (id.ns ()) < first_runtime_namespace)
                 e.nits_.pick (nit_ignoring_unknown, es_warning, ec_element, "unknown element <", ::std::string (e.start_, e.eofe_), ">");
         insert (v, previous, parent, e, id); }
     report_missing_closures (v, parent, document);

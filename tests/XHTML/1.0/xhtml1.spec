@@ -54,5 +54,4 @@ PASS tests/XHTML/1.0/svg1-example.xhtml
 476 id_exists
 480 attribute_barred id_exists
 511 attribute_required
-530 use_double_quote_code
 552 xmlns_namespace unrecognised_value invalid_attribute_version wrong_version

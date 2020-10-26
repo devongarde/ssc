@@ -25,17 +25,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 {   assert (quotesep.length () >= 2);
     ::std::string res;
     char quote = quotesep [0];
-//    if (str.find_first_of (quotesep) != ::std::string::npos) res += str;
-//    else
-    {   res += quote;
-        for (auto ch : str)
-        {   if (ch == quote)
-                res += quote;
-            else if ((ch > 0x7F) || (ch < 0x20))
-            {   res += 0x7F;
-                continue; }
-            res += ch; }
-        res += quote; }
+    res += quote;
+    for (auto ch : str)
+    {   if (ch == quote)
+            res += quote;
+        else if ((ch > 0x7F) || (ch < 0x20))
+        {   res += 0x7F;
+            continue; }
+        res += ch; }
+    res += quote;
     return res; }
 
 ::std::string enquote (const vstr_t vs, const ::std::string& quotesep)

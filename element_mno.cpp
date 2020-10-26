@@ -42,7 +42,6 @@ void element::examine_map ()
 
 void element::examine_media_element (e_element , const char* ref, const char* name)
 {   assert (ref != nullptr);
-//    check_ancestors (elem, element_bit_set (elem_object));
     if (a_.known (a_controls)) no_anchor_daddy ();
     bool had_track = false, had_other = false, noted_src = false, noted_track = false, noted_source = false,
         def_subcap = false, def_desc = false, def_chap = false;
