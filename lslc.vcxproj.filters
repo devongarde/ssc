@@ -1,0 +1,2940 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Sauce">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Sauce\element">
+      <UniqueIdentifier>{ae13b1cd-01b3-4bc1-a641-1a41ea505a8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\main">
+      <UniqueIdentifier>{223d6164-a693-4ede-9376-a3bb5b8d3ac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\microformat">
+      <UniqueIdentifier>{f0544288-59b0-4b74-96a5-6a4d6488df40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\webpage">
+      <UniqueIdentifier>{cd9f63d5-58c6-4715-bbb3-a7a0590b99d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\webmention">
+      <UniqueIdentifier>{4663a793-939b-4272-9d64-de662f38798c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\utility">
+      <UniqueIdentifier>{f7940d90-6ac3-4d39-abd6-79bfd8e3fe81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\url">
+      <UniqueIdentifier>{db78ed18-b313-4c05-9a70-d75751a126f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\css">
+      <UniqueIdentifier>{225b65a3-85ef-48f7-bee1-e4d2df3578a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\type">
+      <UniqueIdentifier>{b81f5794-d26b-4b34-85c7-624104faa8b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\parser">
+      <UniqueIdentifier>{b35acc49-363f-457f-86ad-8374e9e96414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\stats">
+      <UniqueIdentifier>{4e8442d9-d928-4d1e-b998-d6348ef087c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\feedback">
+      <UniqueIdentifier>{98e97d61-8216-4c9e-b5f3-17f4acf1e34c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\microdata">
+      <UniqueIdentifier>{7e3cd5e8-13dd-475d-8a0b-ee884b4c5a52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\symbol">
+      <UniqueIdentifier>{3d92911c-9624-4957-bf0d-39f5845925b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast">
+      <UniqueIdentifier>{85ba86e4-ec33-4152-9b56-8afca837e2ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Simple">
+      <UniqueIdentifier>{09baf3d8-0a59-4db7-8c3c-c442fccdedf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats">
+      <UniqueIdentifier>{e5ca0711-1333-4e47-9959-2c5409962f44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats\Rel">
+      <UniqueIdentifier>{4a3731b9-46e7-4aa8-a932-228f5c5617b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats\mf1">
+      <UniqueIdentifier>{4585be5d-d4a6-40fa-9ce5-5a57e9f7cf0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats\mf2">
+      <UniqueIdentifier>{e0f02ea6-34e2-458b-b5c3-1cb68901e8b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML">
+      <UniqueIdentifier>{0ec75916-99d6-463d-a6d5-9466be1c4f80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\Tags">
+      <UniqueIdentifier>{45746945-9ca2-493a-b709-0df6260b3bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\1.0">
+      <UniqueIdentifier>{0292291d-c9b4-4cc8-9154-a2bd7848ad94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\2.0">
+      <UniqueIdentifier>{1b1696d0-55c3-437b-9148-d1f8b119513e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\3.2">
+      <UniqueIdentifier>{6290ff10-dd72-421d-99a4-42ede1f55571}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\4.01">
+      <UniqueIdentifier>{342d6b24-88ea-4f73-9e64-582375c8d980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\Plus">
+      <UniqueIdentifier>{80d4d81a-4bd7-496e-9d5f-77b18b821977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\minimal">
+      <UniqueIdentifier>{2f23daed-5549-4a71-b2ce-dd36f87ec270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\3.0">
+      <UniqueIdentifier>{2203d328-8943-4675-8fa4-bc09719a398f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\4.00">
+      <UniqueIdentifier>{87e1094b-31c2-4688-a03b-ae2a5f91652c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\5.0">
+      <UniqueIdentifier>{8ed02a16-c132-4a55-a456-5c43fa912c37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\5.1">
+      <UniqueIdentifier>{ed1f810f-3f72-4922-8ea1-e39d2122e958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\5.2">
+      <UniqueIdentifier>{40b1bee8-564b-4e59-b509-161dc52be575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\5.3">
+      <UniqueIdentifier>{75abb3e9-e298-4d77-a49e-bb1b7e93c920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\HTML\5.4">
+      <UniqueIdentifier>{d0ba8baf-1e0c-4fc3-9bde-e776c30b4492}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\webmention">
+      <UniqueIdentifier>{b5635531-0c88-4e71-a643-9e63c201b6cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Parsing">
+      <UniqueIdentifier>{421df98c-0f58-4d3f-86c3-94dd40fbc057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf">
+      <UniqueIdentifier>{9e334828-9b65-4335-a0f5-086afc9a43e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS">
+      <UniqueIdentifier>{d015eacd-6855-42d7-8757-09da744d002f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Type">
+      <UniqueIdentifier>{43edb420-4f98-44d7-b0fc-28b06cb4344d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Type\metaname">
+      <UniqueIdentifier>{9e47bf39-aed6-4a2b-bf95-ea0ed0814c5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Type\mimetype">
+      <UniqueIdentifier>{f2790b3c-41a2-4844-ad95-8866d9a49d75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Type\url">
+      <UniqueIdentifier>{19030dfb-f341-4f4f-91e7-9188795b690c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\SSI">
+      <UniqueIdentifier>{c76e4541-023b-40cd-86e8-14225f07bad7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Link">
+      <UniqueIdentifier>{3d30c222-e23d-426d-aa50-2df4118917b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Link\subdir">
+      <UniqueIdentifier>{3032948f-c297-477a-a26a-0f324ead26da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\virtual">
+      <UniqueIdentifier>{7c096606-c54d-49b2-87fe-4a21bd53276d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata">
+      <UniqueIdentifier>{2e6ac9c5-17c8-4a2f-86b3-0ecd0a47aa6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\addendum">
+      <UniqueIdentifier>{6d2500a1-8f8e-4e84-b95c-575ec56d0e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Heaters\element">
+      <UniqueIdentifier>{8e7750b4-6b27-4dbb-9fa3-dff697141731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\microformat">
+      <UniqueIdentifier>{b2264458-bfe7-425b-bc8d-7eef0cd88672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\type">
+      <UniqueIdentifier>{d196c697-0ab2-4ad5-b962-da19b3d41ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\webmention">
+      <UniqueIdentifier>{93ae7e62-5dc9-4d13-92b1-ed784d92fa06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\symbol">
+      <UniqueIdentifier>{c38aa2dd-49dc-49c0-afb3-5bd4ee61e1d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\utility">
+      <UniqueIdentifier>{9f77805e-d7cb-40b3-ba4c-f6aa33ac910d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\webpage">
+      <UniqueIdentifier>{31abbbbd-ec87-47b0-8bad-ab63cfc5f63e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\url">
+      <UniqueIdentifier>{5d296603-75fb-4049-9dbe-f1257d2cedf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\css">
+      <UniqueIdentifier>{d9f79c5d-9013-4337-994c-ad31e23a4d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\parser">
+      <UniqueIdentifier>{94375088-1a9b-45f4-9238-3fb67e94e1ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\stats">
+      <UniqueIdentifier>{fa670e93-d04a-48f5-9673-43d6d96d0884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\feedback">
+      <UniqueIdentifier>{653b933b-d1bd-492a-929f-fa95e706525c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\main">
+      <UniqueIdentifier>{cc8800d3-9ad8-4559-b162-bc3dea8cc49a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\microdata">
+      <UniqueIdentifier>{0e2387e7-e3b9-4e5f-b1b8-646c7da87b0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\schema">
+      <UniqueIdentifier>{94826bf8-a8f4-49ab-a3d3-71f2d34a0544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\schema">
+      <UniqueIdentifier>{484c223a-fe20-4e98-8c06-663ebc982864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\attribute">
+      <UniqueIdentifier>{39a32c3a-5ac2-4f3a-b00d-f707cdc09797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heaters\attribute">
+      <UniqueIdentifier>{c9d9511b-b6ed-490b-9219-eab26a03a87b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\basic">
+      <UniqueIdentifier>{f4e617d9-6f24-4754-b46e-16ffaa0999d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\export">
+      <UniqueIdentifier>{0fe21046-99e7-496a-b26f-8f14bc480e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\schema-abc">
+      <UniqueIdentifier>{1ab5794b-6957-4b8f-9513-712bc57ffa7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\schema-hijkl">
+      <UniqueIdentifier>{0f814f0b-39f4-4c7e-9899-c923cd58b8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\schema-mno">
+      <UniqueIdentifier>{f34eeb88-df19-4ede-9e28-d903fef7dab7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\schema-pqrs">
+      <UniqueIdentifier>{d20ed189-61d4-448f-a5ca-33c2c178c47d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\schema-tuv">
+      <UniqueIdentifier>{56d7e4a6-fb4c-472d-8078-36093af626ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\schema-wxyz">
+      <UniqueIdentifier>{3c22b4df-e2e9-45cf-8ebc-c9512e529432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\schema-defg">
+      <UniqueIdentifier>{7c43917b-ad57-43ab-9e84-219557fd5ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Stats">
+      <UniqueIdentifier>{b6c6d1b5-8903-49fc-89eb-819e599a408d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Stats\Summary">
+      <UniqueIdentifier>{e4d9f236-e53a-41a2-824e-1793b017bd65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Stats\Detail">
+      <UniqueIdentifier>{576c0d7d-b390-4652-9cd3-ab3e85f13e87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Stats\Single">
+      <UniqueIdentifier>{180e6585-69c6-44b4-b175-b7b99678738a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gubbins">
+      <UniqueIdentifier>{fb7df864-ffb8-4e37-afc4-0a97f8aba73f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\XHTML">
+      <UniqueIdentifier>{2b881bf0-a45a-494c-9cf0-e136f247ed98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\SVG">
+      <UniqueIdentifier>{acd3c7e8-7b5d-4cdd-bacf-15bb176850e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Math">
+      <UniqueIdentifier>{a5f93c65-089a-4425-a019-eeef56ce4f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Math\1">
+      <UniqueIdentifier>{d5296369-362d-4390-be99-e69ed88bb01f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Math\2">
+      <UniqueIdentifier>{e89211c1-21dd-4e1b-bf7e-5fc3ded41412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Math\3">
+      <UniqueIdentifier>{7a444634-0a1c-48cd-b3c2-b84c21136824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Math\4">
+      <UniqueIdentifier>{a322dadf-0205-46e0-b7da-10576cd11382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\XHTML\1.0">
+      <UniqueIdentifier>{ed1e25e0-3c41-4934-8126-9b3f1f7c82cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\XHTML\1.1">
+      <UniqueIdentifier>{926352f3-79c3-488e-b91b-7d14f1d4c0c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\XHTML\2.0">
+      <UniqueIdentifier>{96ea3c83-e66c-45bc-afbe-dab77bb4a2fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\SVG\1.0">
+      <UniqueIdentifier>{b240ac28-8820-44a3-b18f-fec4ee6a7d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\SVG\1.1">
+      <UniqueIdentifier>{84665115-4a03-4a22-b651-40b45ed26bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\SVG\1.2">
+      <UniqueIdentifier>{8b2745a6-de47-4150-b5b3-b650e1e87edd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\SVG\2.0">
+      <UniqueIdentifier>{fd279bee-932e-4e51-af71-44fc01fdbfce}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="elem.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="type_enum.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_url.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="microformats.cpp">
+      <Filter>Sauce\microformat</Filter>
+    </ClCompile>
+    <ClCompile Include="directory.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="page.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="external.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="family.cpp">
+      <Filter>Sauce\microformat</Filter>
+    </ClCompile>
+    <ClCompile Include="field.cpp">
+      <Filter>Sauce\microformat</Filter>
+    </ClCompile>
+    <ClCompile Include="webmention.cpp">
+      <Filter>Sauce\webmention</Filter>
+    </ClCompile>
+    <ClCompile Include="hook.cpp">
+      <Filter>Sauce\webmention</Filter>
+    </ClCompile>
+    <ClCompile Include="irt.cpp">
+      <Filter>Sauce\webmention</Filter>
+    </ClCompile>
+    <ClCompile Include="headers.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="microformat_constructor.cpp">
+      <Filter>Sauce\microformat</Filter>
+    </ClCompile>
+    <ClCompile Include="webmentions.cpp">
+      <Filter>Sauce\webmention</Filter>
+    </ClCompile>
+    <ClCompile Include="ssc.cpp">
+      <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="byteorder.cpp">
+      <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="microformat_export.cpp">
+      <Filter>Sauce\microformat</Filter>
+    </ClCompile>
+    <ClCompile Include="quote.cpp">
+      <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="url.cpp">
+      <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="url_parameters.cpp">
+      <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="url_protocol.cpp">
+      <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="url_scheme.cpp">
+      <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="url_sanitise.cpp">
+      <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="css.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="css_cache.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="type_currency.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_metaname.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_mime.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_rel.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_class.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_lang.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_httpequiv.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_element.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_attribute.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_bras_ket.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_bra_ket.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="html_version.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="type_sgml.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_attributes.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_elements.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_css.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="parentage.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="type_charset.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="stats.cpp">
+      <Filter>Sauce\stats</Filter>
+    </ClCompile>
+    <ClCompile Include="stats_impl.cpp">
+      <Filter>Sauce\stats</Filter>
+    </ClCompile>
+    <ClCompile Include="options.cpp">
+      <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="standard.cpp">
+      <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="nit.cpp">
+      <Filter>Sauce\feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="nitpick.cpp">
+      <Filter>Sauce\feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="text.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="context.cpp">
+      <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="property_value.cpp">
+      <Filter>Sauce\microformat</Filter>
+    </ClCompile>
+    <ClCompile Include="sibling.cpp">
+      <Filter>Sauce\microformat</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_ssi.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="xhtml_xml.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="type_aria.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_reals.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_xmlns.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="symbol_table.cpp">
+      <Filter>Sauce\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="type_time.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="crosslink.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="fileindex.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="root.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="id.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="state.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="type_media.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_colour.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_autocomplete.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="microdata_itemid.cpp">
+      <Filter>Sauce\microdata</Filter>
+    </ClCompile>
+    <ClCompile Include="microdata_itemscope.cpp">
+      <Filter>Sauce\microdata</Filter>
+    </ClCompile>
+    <ClCompile Include="schema_version.cpp">
+      <Filter>Sauce\schema</Filter>
+    </ClCompile>
+    <ClCompile Include="schema_type.cpp">
+      <Filter>Sauce\schema</Filter>
+    </ClCompile>
+    <ClCompile Include="schema_property.cpp">
+      <Filter>Sauce\schema</Filter>
+    </ClCompile>
+    <ClCompile Include="schema_hierarchy.cpp">
+      <Filter>Sauce\schema</Filter>
+    </ClCompile>
+    <ClCompile Include="schema_structure.cpp">
+      <Filter>Sauce\schema</Filter>
+    </ClCompile>
+    <ClCompile Include="attr.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="avm.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="type_core.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="microdata_itemprop.cpp">
+      <Filter>Sauce\microdata</Filter>
+    </ClCompile>
+    <ClCompile Include="microdata_itemtype.cpp">
+      <Filter>Sauce\microdata</Filter>
+    </ClCompile>
+    <ClCompile Include="type.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="microdata_export.cpp">
+      <Filter>Sauce\microdata</Filter>
+    </ClCompile>
+    <ClCompile Include="symbol.cpp">
+      <Filter>Sauce\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="type_d.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_transform.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="type_svg_feature.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="element_classes.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute_constructor.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="attributes.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="element_tuvwxyz.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_abcd.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_attributes.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_efghi.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_examine.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_input.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_jkl.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_microdata.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_microformats.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_mno.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_pqr.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="element_s.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="type_paint.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="elem.h">
+      <Filter>Heaters\element</Filter>
+    </ClInclude>
+    <ClInclude Include="element.h">
+      <Filter>Heaters\element</Filter>
+    </ClInclude>
+    <ClInclude Include="element_attribute.h">
+      <Filter>Heaters\element</Filter>
+    </ClInclude>
+    <ClInclude Include="element_classes.h">
+      <Filter>Heaters\element</Filter>
+    </ClInclude>
+    <ClInclude Include="microformat.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="microformat_classes.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="microformat_properties.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="microformats.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="microformats_ptr.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="type.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_1.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_2.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_3.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_4.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_base.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_core.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_enum.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_master.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_relational.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_url.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="family.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="field.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="hook.h">
+      <Filter>Heaters\webmention</Filter>
+    </ClInclude>
+    <ClInclude Include="irt.h">
+      <Filter>Heaters\webmention</Filter>
+    </ClInclude>
+    <ClInclude Include="webmention.h">
+      <Filter>Heaters\webmention</Filter>
+    </ClInclude>
+    <ClInclude Include="symbol.h">
+      <Filter>Heaters\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="symbol_table.h">
+      <Filter>Heaters\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Heaters\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="tuple.h">
+      <Filter>Heaters\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="directory.h">
+      <Filter>Heaters\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="external.h">
+      <Filter>Heaters\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="headers.h">
+      <Filter>Heaters\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="page.h">
+      <Filter>Heaters\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="microformat_constructor.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="webmentions.h">
+      <Filter>Heaters\webmention</Filter>
+    </ClInclude>
+    <ClInclude Include="byteorder.h">
+      <Filter>Heaters\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="microformat_export.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="microformat_export_rel.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="quote.h">
+      <Filter>Heaters\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="url.h">
+      <Filter>Heaters\url</Filter>
+    </ClInclude>
+    <ClInclude Include="url_protocol.h">
+      <Filter>Heaters\url</Filter>
+    </ClInclude>
+    <ClInclude Include="url_parameters.h">
+      <Filter>Heaters\url</Filter>
+    </ClInclude>
+    <ClInclude Include="url_scheme.h">
+      <Filter>Heaters\url</Filter>
+    </ClInclude>
+    <ClInclude Include="url_schemes.h">
+      <Filter>Heaters\url</Filter>
+    </ClInclude>
+    <ClInclude Include="url_sanitise.h">
+      <Filter>Heaters\url</Filter>
+    </ClInclude>
+    <ClInclude Include="css.h">
+      <Filter>Heaters\css</Filter>
+    </ClInclude>
+    <ClInclude Include="css_cache.h">
+      <Filter>Heaters\css</Filter>
+    </ClInclude>
+    <ClInclude Include="type_currency.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_mime.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_rel.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="reldef.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_class.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="connection.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="type_varied.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_lang.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_enum_vec.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_httpequiv.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="parse_element.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parse_attribute.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parse_bra_ket.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parse_bras_ket.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="html_version.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parse_attributes.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parse_elements.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="type_colour.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="parse_css.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="parentage.h">
+      <Filter>Heaters\element</Filter>
+    </ClInclude>
+    <ClInclude Include="type_time.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="bigvector.h">
+      <Filter>Heaters\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="stats.h">
+      <Filter>Heaters\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="stats0.h">
+      <Filter>Heaters\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="stats1.h">
+      <Filter>Heaters\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="stats2.h">
+      <Filter>Heaters\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="stats_impl.h">
+      <Filter>Heaters\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="standard.h">
+      <Filter>Heaters\main</Filter>
+    </ClInclude>
+    <ClInclude Include="options.h">
+      <Filter>Heaters\main</Filter>
+    </ClInclude>
+    <ClInclude Include="nit.h">
+      <Filter>Heaters\feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="nitpick.h">
+      <Filter>Heaters\feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="lexical.h">
+      <Filter>Heaters\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="text.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Heaters\main</Filter>
+    </ClInclude>
+    <ClInclude Include="context.h">
+      <Filter>Heaters\main</Filter>
+    </ClInclude>
+    <ClInclude Include="sibling.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="prop.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="property.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="property_classes.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="property_value.h">
+      <Filter>Heaters\microformat</Filter>
+    </ClInclude>
+    <ClInclude Include="parse_ssi.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="nitnames.h">
+      <Filter>Heaters\feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="sz.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_van.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="xhtml_xml.h">
+      <Filter>Heaters\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="type_aria.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_xmlns.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_reals.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="crosslink.h">
+      <Filter>Heaters\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="fileindex.h">
+      <Filter>Heaters\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="root.h">
+      <Filter>Heaters\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="id.h">
+      <Filter>Heaters\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="args.h">
+      <Filter>Heaters\main</Filter>
+    </ClInclude>
+    <ClInclude Include="state.h">
+      <Filter>Heaters\element</Filter>
+    </ClInclude>
+    <ClInclude Include="type_media.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="type_autocomplete.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="microdata_itemid.h">
+      <Filter>Heaters\microdata</Filter>
+    </ClInclude>
+    <ClInclude Include="microdata_itemscope.h">
+      <Filter>Heaters\microdata</Filter>
+    </ClInclude>
+    <ClInclude Include="schema_version.h">
+      <Filter>Heaters\schema</Filter>
+    </ClInclude>
+    <ClInclude Include="schema_type.h">
+      <Filter>Heaters\schema</Filter>
+    </ClInclude>
+    <ClInclude Include="schema_property.h">
+      <Filter>Heaters\schema</Filter>
+    </ClInclude>
+    <ClInclude Include="schema_hierarchy.h">
+      <Filter>Heaters\schema</Filter>
+    </ClInclude>
+    <ClInclude Include="schema_structure.h">
+      <Filter>Heaters\schema</Filter>
+    </ClInclude>
+    <ClInclude Include="attr.h">
+      <Filter>Heaters\attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="attribute.h">
+      <Filter>Heaters\attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="attribute_classes.h">
+      <Filter>Heaters\attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="avm.h">
+      <Filter>Heaters\attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="microdata_itemprop.h">
+      <Filter>Heaters\microdata</Filter>
+    </ClInclude>
+    <ClInclude Include="microdata_itemtype.h">
+      <Filter>Heaters\microdata</Filter>
+    </ClInclude>
+    <ClInclude Include="type_rdf.h">
+      <Filter>Heaters\type</Filter>
+    </ClInclude>
+    <ClInclude Include="microdata_export.h">
+      <Filter>Heaters\microdata</Filter>
+    </ClInclude>
+    <ClInclude Include="include.h">
+      <Filter>Heaters\main</Filter>
+    </ClInclude>
+    <ClInclude Include="attributes.h">
+      <Filter>Heaters\attribute</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tests\simple\index.html">
+      <Filter>Toast\Simple</Filter>
+    </None>
+    <None Include="tests\webmention\change.tpl">
+      <Filter>Toast\webmention</Filter>
+    </None>
+    <None Include="tests\webmention\delete.tpl">
+      <Filter>Toast\webmention</Filter>
+    </None>
+    <None Include="tests\webmention\new.tpl">
+      <Filter>Toast\webmention</Filter>
+    </None>
+    <None Include="tests\webmention\static.tpl">
+      <Filter>Toast\webmention</Filter>
+    </None>
+    <None Include="tests\webmention\webmention.conf">
+      <Filter>Toast\webmention</Filter>
+    </None>
+    <None Include="tests\parsing\index.html">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\parsing\elementerror.html">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\parsing\scripts.html">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\parsing\ssi.html">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\parsing\stringerror.html">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\parsing\parsing.spec">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\parsing\parsing.conf">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\CSS\css-empty.html">
+      <Filter>Toast\CSS</Filter>
+    </None>
+    <None Include="tests\CSS\css-good.css">
+      <Filter>Toast\CSS</Filter>
+    </None>
+    <None Include="tests\CSS\css-good.html">
+      <Filter>Toast\CSS</Filter>
+    </None>
+    <None Include="tests\CSS\css-bad.html">
+      <Filter>Toast\CSS</Filter>
+    </None>
+    <None Include="tests\CSS\css-dubious.css">
+      <Filter>Toast\CSS</Filter>
+    </None>
+    <None Include="tests\CSS\css-dubious.html">
+      <Filter>Toast\CSS</Filter>
+    </None>
+    <None Include="tests\CSS\css-empty.css">
+      <Filter>Toast\CSS</Filter>
+    </None>
+    <None Include="tests\HTML\1.0\html1-bad.html">
+      <Filter>Toast\HTML\1.0</Filter>
+    </None>
+    <None Include="tests\HTML\1.0\html1-bad2.html">
+      <Filter>Toast\HTML\1.0</Filter>
+    </None>
+    <None Include="tests\HTML\1.0\html1-good.html">
+      <Filter>Toast\HTML\1.0</Filter>
+    </None>
+    <None Include="tests\HTML\3.2\html32.html">
+      <Filter>Toast\HTML\3.2</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-bad.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-frameset.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-loose.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-strict.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\tags\tags-bad.html">
+      <Filter>Toast\HTML\Tags</Filter>
+    </None>
+    <None Include="tests\HTML\tags\tags-bad2.html">
+      <Filter>Toast\HTML\Tags</Filter>
+    </None>
+    <None Include="tests\HTML\tags\tags-example.html">
+      <Filter>Toast\HTML\Tags</Filter>
+    </None>
+    <None Include="tests\HTML\tags\tags.conf">
+      <Filter>Toast\HTML\Tags</Filter>
+    </None>
+    <None Include="tests\HTML\tags\tags.spec">
+      <Filter>Toast\HTML\Tags</Filter>
+    </None>
+    <None Include="tests\HTML\tags\index.html">
+      <Filter>Toast\HTML\Tags</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\index.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\3.2\index.html">
+      <Filter>Toast\HTML\3.2</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\index.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\1.0\index.html">
+      <Filter>Toast\HTML\1.0</Filter>
+    </None>
+    <None Include="tests\HTML\tags\tags-oddities.html">
+      <Filter>Toast\HTML\Tags</Filter>
+    </None>
+    <None Include="tests\HTML\1.0\html1.conf">
+      <Filter>Toast\HTML\1.0</Filter>
+    </None>
+    <None Include="tests\HTML\1.0\html1.spec">
+      <Filter>Toast\HTML\1.0</Filter>
+    </None>
+    <None Include="tests\HTML\1.0\html1-simple.html">
+      <Filter>Toast\HTML\1.0</Filter>
+    </None>
+    <None Include="tests\HTML\Plus\index.html">
+      <Filter>Toast\HTML\Plus</Filter>
+    </None>
+    <None Include="tests\HTML\Plus\plus.conf">
+      <Filter>Toast\HTML\Plus</Filter>
+    </None>
+    <None Include="tests\HTML\Plus\plus.spec">
+      <Filter>Toast\HTML\Plus</Filter>
+    </None>
+    <None Include="tests\HTML\Plus\plus-bad.html">
+      <Filter>Toast\HTML\Plus</Filter>
+    </None>
+    <None Include="tests\HTML\Plus\plus-bad2.html">
+      <Filter>Toast\HTML\Plus</Filter>
+    </None>
+    <None Include="tests\HTML\Plus\plus-simple.html">
+      <Filter>Toast\HTML\Plus</Filter>
+    </None>
+    <None Include="tests\ssi\index.html">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\ssi\ssi.conf">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\ssi\ssi.spec">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\ssi\ssi-config.html">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\ssi\ssi-if.html">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\ssi\ssi-include.html">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\ssi\ssi-vars.html">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\ssi\ssi.inc">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\ssi\ssi-printenv.html">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\HTML\Plus\plus-example.html">
+      <Filter>Toast\HTML\Plus</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\html2-example.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\html2-bad.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\parsing\parsing-bad.html">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\html2.conf">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\html2.spec">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\html2-sample.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\html2-badl1.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\rfc1867.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\minimal\index.html">
+      <Filter>Toast\HTML\minimal</Filter>
+    </None>
+    <None Include="tests\HTML\minimal\minimal.conf">
+      <Filter>Toast\HTML\minimal</Filter>
+    </None>
+    <None Include="tests\HTML\minimal\minimal.spec">
+      <Filter>Toast\HTML\minimal</Filter>
+    </None>
+    <None Include="tests\HTML\minimal\rfc1867.html">
+      <Filter>Toast\HTML\minimal</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\rfc1942.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\minimal\rfc1942.html">
+      <Filter>Toast\HTML\minimal</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\rfc1980.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\minimal\rfc1980.html">
+      <Filter>Toast\HTML\minimal</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\rfc1980-bad.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\rfc2070.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\rfc2070-bad.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\minimal\rfc2070.html">
+      <Filter>Toast\HTML\minimal</Filter>
+    </None>
+    <None Include="tests\HTML\3.0\html3.conf">
+      <Filter>Toast\HTML\3.0</Filter>
+    </None>
+    <None Include="tests\HTML\3.0\html3.spec">
+      <Filter>Toast\HTML\3.0</Filter>
+    </None>
+    <None Include="tests\HTML\3.0\html3-sample.html">
+      <Filter>Toast\HTML\3.0</Filter>
+    </None>
+    <None Include="tests\HTML\3.0\index.html">
+      <Filter>Toast\HTML\3.0</Filter>
+    </None>
+    <None Include="tests\HTML\3.0\html3-deprecated.html">
+      <Filter>Toast\HTML\3.0</Filter>
+    </None>
+    <None Include="tests\HTML\3.0\html3-recommended.html">
+      <Filter>Toast\HTML\3.0</Filter>
+    </None>
+    <None Include="tests\HTML\3.0\html3-math.html">
+      <Filter>Toast\HTML\3.0</Filter>
+    </None>
+    <None Include="tests\HTML\3.2\html32.conf">
+      <Filter>Toast\HTML\3.2</Filter>
+    </None>
+    <None Include="tests\HTML\3.2\html32.spec">
+      <Filter>Toast\HTML\3.2</Filter>
+    </None>
+    <None Include="tests\HTML\3.2\html32-sgml.html">
+      <Filter>Toast\HTML\3.2</Filter>
+    </None>
+    <None Include="tests\CSS\css.conf">
+      <Filter>Toast\CSS</Filter>
+    </None>
+    <None Include="tests\CSS\css.spec">
+      <Filter>Toast\CSS</Filter>
+    </None>
+    <None Include="tests\HTML\3.2\html32-good.html">
+      <Filter>Toast\HTML\3.2</Filter>
+    </None>
+    <None Include="tests\HTML\3.2\html32-bad.html">
+      <Filter>Toast\HTML\3.2</Filter>
+    </None>
+    <None Include="tests\HTML\2.0\html2-good.html">
+      <Filter>Toast\HTML\2.0</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4.conf">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4.spec">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-example.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-good.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-simple.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.00\index.html">
+      <Filter>Toast\HTML\4.00</Filter>
+    </None>
+    <None Include="tests\HTML\4.00\html4.conf">
+      <Filter>Toast\HTML\4.00</Filter>
+    </None>
+    <None Include="tests\HTML\4.00\html4.spec">
+      <Filter>Toast\HTML\4.00</Filter>
+    </None>
+    <None Include="tests\HTML\4.00\html4-simple.html">
+      <Filter>Toast\HTML\4.00</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-deprecated.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-lang.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\css-good.css">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-frameset-bad.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="catalina-clang-makefile">
+      <Filter>Gubbins</Filter>
+    </None>
+    <None Include="centos-clang-makefile">
+      <Filter>Gubbins</Filter>
+    </None>
+    <None Include="centos-gcc-makefile">
+      <Filter>Gubbins</Filter>
+    </None>
+    <None Include="highsierra-clang-makefile">
+      <Filter>Gubbins</Filter>
+    </None>
+    <None Include="tests\parsing\xhtml-xml.html">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\microformats\mf1\hcard-simple-bad.html">
+      <Filter>Toast\Microformats\mf1</Filter>
+    </None>
+    <None Include="tests\microformats\mf1\hcard-simple-deduce.html">
+      <Filter>Toast\Microformats\mf1</Filter>
+    </None>
+    <None Include="tests\microformats\mf1\hcard-simple-dubious.html">
+      <Filter>Toast\Microformats\mf1</Filter>
+    </None>
+    <None Include="tests\microformats\mf1\hcard-simple-good.html">
+      <Filter>Toast\Microformats\mf1</Filter>
+    </None>
+    <None Include="tests\microformats\mf1\index.html">
+      <Filter>Toast\Microformats\mf1</Filter>
+    </None>
+    <None Include="tests\microformats\mf1\mf1.conf">
+      <Filter>Toast\Microformats\mf1</Filter>
+    </None>
+    <None Include="tests\microformats\mf1\mf1.spec">
+      <Filter>Toast\Microformats\mf1</Filter>
+    </None>
+    <None Include="tests\microformats\mf2\index.html">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </None>
+    <None Include="tests\microformats\mf2\mf2.conf">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </None>
+    <None Include="tests\microformats\mf2\mf2.spec">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </None>
+    <None Include="tests\microformats\mf2\mf2-bad.html">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </None>
+    <None Include="tests\microformats\mf2\mf2-dubious.html">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </None>
+    <None Include="tests\microformats\mf2\mf2-empty.html">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </None>
+    <None Include="tests\microformats\mf2\mf2-good.html">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </None>
+    <None Include="tests\microformats\mf2\mf2-infer.html">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\index.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\html5.conf">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\html5.spec">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\html5-bad.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\html5-example.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\html5-good.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\template-1.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\template-2.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\template-3.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\template-4.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\example-1.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\example-2.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\html5-legacy.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\html5-bad-2.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\example-3.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\example-4.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\example-5.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\css-good.css">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\parsing\quotes.html">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\parsing\doctype-missing.html">
+      <Filter>Toast\Parsing</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\math.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\math-example-1.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\4.00\svg1-example.html">
+      <Filter>Toast\HTML\4.00</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\css-good.css">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\example-1.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\example-2.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\example-3.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\example-4.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\example-5.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\html5.conf">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\html5.spec">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\html5-bad.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\html5-bad-2.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\html5-example.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\html5-good.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\html5-legacy.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\index.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\math-example-1.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\template-1.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\template-2.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\template-3.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\template-4.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\html5-good.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\html5-legacy.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\index.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\math-example-1.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\template-1.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\template-2.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\template-3.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\template-4.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\css-good.css">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\example-1.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\example-2.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\example-3.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\example-4.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\example-5.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\html5.conf">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\html5.spec">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\html5-bad.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\html5-bad-2.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\html5-example.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\example-2.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\example-3.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\example-4.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\example-5.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\html5.conf">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\html5.spec">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\html5-bad.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\html5-bad-2.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\html5-example.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\html5-good.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\html5-legacy.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\index.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\math-example-1.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\template-1.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\template-2.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\template-3.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\template-4.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\css-good.css">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.3\example-1.html">
+      <Filter>Toast\HTML\5.3</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\css-good.css">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\example-1.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\example-2.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\example-3.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\example-4.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\example-5.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\html5.conf">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\html5.spec">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\html5-bad.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\html5-bad-2.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\html5-example.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\html5-good.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\html5-legacy.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\index.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\math-example-1.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\template-1.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\template-2.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\template-3.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\template-4.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\5.1\example-6.html">
+      <Filter>Toast\HTML\5.1</Filter>
+    </None>
+    <None Include="tests\link\css-good.css">
+      <Filter>Toast\Link</Filter>
+    </None>
+    <None Include="tests\link\index.html">
+      <Filter>Toast\Link</Filter>
+    </None>
+    <None Include="tests\link\target.html">
+      <Filter>Toast\Link</Filter>
+    </None>
+    <None Include="tests\link\link.conf">
+      <Filter>Toast\Link</Filter>
+    </None>
+    <None Include="tests\link\link.spec">
+      <Filter>Toast\Link</Filter>
+    </None>
+    <None Include="tests\link\subdir\target.html">
+      <Filter>Toast\Link\subdir</Filter>
+    </None>
+    <None Include="tests\virtual\target.html">
+      <Filter>Toast\virtual</Filter>
+    </None>
+    <None Include="tests\microdata\basic\basic.conf">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\basic\basic.spec">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\basic\index.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\basic\examples.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\addendum\add.conf">
+      <Filter>Toast\Microdata\addendum</Filter>
+    </None>
+    <None Include="tests\microdata\addendum\add.spec">
+      <Filter>Toast\Microdata\addendum</Filter>
+    </None>
+    <None Include="tests\microdata\addendum\index.html">
+      <Filter>Toast\Microdata\addendum</Filter>
+    </None>
+    <None Include="tests\microdata\basic\md-bad.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\HTML\5.2\example-6.html">
+      <Filter>Toast\HTML\5.2</Filter>
+    </None>
+    <None Include="tests\HTML\4.01\html4-bad2.html">
+      <Filter>Toast\HTML\4.01</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\html5-media.html">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.0\css-good-too.css">
+      <Filter>Toast\HTML\5.0</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\example-6.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\example-7.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\HTML\5.4\example-8.html">
+      <Filter>Toast\HTML\5.4</Filter>
+    </None>
+    <None Include="tests\type\metaname\index.html">
+      <Filter>Toast\Type\metaname</Filter>
+    </None>
+    <None Include="tests\type\metaname\metaname.conf">
+      <Filter>Toast\Type\metaname</Filter>
+    </None>
+    <None Include="tests\type\metaname\metaname.spec">
+      <Filter>Toast\Type\metaname</Filter>
+    </None>
+    <None Include="tests\type\mimetype\index.html">
+      <Filter>Toast\Type\mimetype</Filter>
+    </None>
+    <None Include="tests\type\mimetype\mimetype.conf">
+      <Filter>Toast\Type\mimetype</Filter>
+    </None>
+    <None Include="tests\type\mimetype\mimetype.spec">
+      <Filter>Toast\Type\mimetype</Filter>
+    </None>
+    <None Include="tests\type\url\index.html">
+      <Filter>Toast\Type\url</Filter>
+    </None>
+    <None Include="tests\type\url\url.conf">
+      <Filter>Toast\Type\url</Filter>
+    </None>
+    <None Include="tests\type\url\url.spec">
+      <Filter>Toast\Type\url</Filter>
+    </None>
+    <None Include="tests\type\metaname\bad.html">
+      <Filter>Toast\Type\metaname</Filter>
+    </None>
+    <None Include="tests\type\metaname\dubious.html">
+      <Filter>Toast\Type\metaname</Filter>
+    </None>
+    <None Include="tests\type\metaname\good.html">
+      <Filter>Toast\Type\metaname</Filter>
+    </None>
+    <None Include="tests\type\metaname\old.html">
+      <Filter>Toast\Type\metaname</Filter>
+    </None>
+    <None Include="tests\type\mimetype\bad.html">
+      <Filter>Toast\Type\mimetype</Filter>
+    </None>
+    <None Include="tests\type\mimetype\dubious.html">
+      <Filter>Toast\Type\mimetype</Filter>
+    </None>
+    <None Include="tests\type\mimetype\good.html">
+      <Filter>Toast\Type\mimetype</Filter>
+    </None>
+    <None Include="tests\type\url\bad.html">
+      <Filter>Toast\Type\url</Filter>
+    </None>
+    <None Include="tests\type\url\dubious.html">
+      <Filter>Toast\Type\url</Filter>
+    </None>
+    <None Include="tests\type\url\good.html">
+      <Filter>Toast\Type\url</Filter>
+    </None>
+    <None Include="tests\microdata\basic\md-ref.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\basic\itemscope.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\basic\itemref.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\basic\itemid.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\basic\itemprop.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\basic\itemtype.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\export\export.conf">
+      <Filter>Toast\Microdata\export</Filter>
+    </None>
+    <None Include="tests\microdata\export\export.spec">
+      <Filter>Toast\Microdata\export</Filter>
+    </None>
+    <None Include="tests\microdata\export\index.html">
+      <Filter>Toast\Microdata\export</Filter>
+    </None>
+    <None Include="tests\microdata\export\itemref.html">
+      <Filter>Toast\Microdata\export</Filter>
+    </None>
+    <None Include="tests\microdata\export\md-ref.html">
+      <Filter>Toast\Microdata\export</Filter>
+    </None>
+    <None Include="tests\microdata\export\itemref.html.model">
+      <Filter>Toast\Microdata\export</Filter>
+    </None>
+    <None Include="tests\microdata\export\md-ref.html.model">
+      <Filter>Toast\Microdata\export</Filter>
+    </None>
+    <None Include="tests\microdata\basic\md-lynx.html">
+      <Filter>Toast\Microdata\basic</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\creativework-1.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\creativework-2.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\abc.conf">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\abc.spec">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\answer.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\archivecomponent.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\article.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\atlas.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\audiobook.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\audioobject.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\blogposting.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\book-1.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\book-2.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\book-3.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\categorycodeset.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\chapter.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\collection.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\comiccoverart.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\comicissue.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\conversation.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\course.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\game.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\guide.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\datacatalogue.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\datafeed.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\defg.conf">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\defg.spec">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\definedtermset.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\discussionforumposting.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\emailmessage.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\eooc.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\examples.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\hijkl.conf">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\hijkl.spec">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\howto.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\howtodirection.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\howtosection.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\howtostep.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\howtotip.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\imageobject.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\index.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\legislation.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\legislationobject.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\map.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\mediaobject.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalscholarlyarticle.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\menu.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\menusection.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\message.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\mno.conf">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\mno.spec">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\movie.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\musicalbum.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\musicplaylist.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\newspaper.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\periodical.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\person.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\podcastepisode.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\podcastseason.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\podcastseries.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\pqrs.conf">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\pqrs.spec">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\question.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\radioepisode.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\radioseason.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\radioseries.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\recipe.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\scholarlyarticle.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\socialmediaposting.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\tuv.conf">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\tuv.spec">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\tvepisode.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\tvseason.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\tvseries.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\videogame-1.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\videogame-2.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\videogame-3.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\videogame-4.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\videoobject.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-wxyz\wxyz.conf">
+      <Filter>Toast\Microdata\schema-wxyz</Filter>
+    </None>
+    <None Include="tests\microdata\schema-wxyz\wxyz.spec">
+      <Filter>Toast\Microdata\schema-wxyz</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\index.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\index.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\index.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\index.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\index.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-wxyz\index.html">
+      <Filter>Toast\Microdata\schema-wxyz</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\musicrecording.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\painting.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\photograph.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\publicationissue.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\stats\detail\index.html">
+      <Filter>Toast\Stats\Detail</Filter>
+    </None>
+    <None Include="tests\stats\detail\stats.conf">
+      <Filter>Toast\Stats\Detail</Filter>
+    </None>
+    <None Include="tests\stats\detail\stats.spec">
+      <Filter>Toast\Stats\Detail</Filter>
+    </None>
+    <None Include="tests\stats\summary\index.html">
+      <Filter>Toast\Stats\Summary</Filter>
+    </None>
+    <None Include="tests\stats\summary\stats.conf">
+      <Filter>Toast\Stats\Summary</Filter>
+    </None>
+    <None Include="tests\stats\summary\stats.spec">
+      <Filter>Toast\Stats\Summary</Filter>
+    </None>
+    <None Include="tests\stats\single\index.html">
+      <Filter>Toast\Stats\Single</Filter>
+    </None>
+    <None Include="tests\stats\single\stats.conf">
+      <Filter>Toast\Stats\Single</Filter>
+    </None>
+    <None Include="tests\stats\single\stats.spec">
+      <Filter>Toast\Stats\Single</Filter>
+    </None>
+    <None Include="tests\stats\summary\itemref.html">
+      <Filter>Toast\Stats\Summary</Filter>
+    </None>
+    <None Include="tests\stats\summary\md-ref.html">
+      <Filter>Toast\Stats\Summary</Filter>
+    </None>
+    <None Include="tests\stats\detail\itemref.html">
+      <Filter>Toast\Stats\Detail</Filter>
+    </None>
+    <None Include="tests\stats\detail\md-ref.html">
+      <Filter>Toast\Stats\Detail</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\publicationvolume.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\review.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\ssi\ssi-comment.html">
+      <Filter>Toast\SSI</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\claimreview.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\thesis.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\visualartwork.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\coverart.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-wxyz\webpage-1.html">
+      <Filter>Toast\Microdata\schema-wxyz</Filter>
+    </None>
+    <None Include="tests\microdata\schema-wxyz\webpage-2.html">
+      <Filter>Toast\Microdata\schema-wxyz</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalwebpage.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\table.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-wxyz\website.html">
+      <Filter>Toast\Microdata\schema-wxyz</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\event.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\courseinstance.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\exhibitionevent.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\musicevent.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\broadcastevent.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\ondemandevent.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\screeningevent.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\sportsevent.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\theatreevent.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\alignmentobject.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\educationalaudience.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\televisionchannel.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\broadcastfrequencyspecification.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\definedterm.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\categorycode.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\invoice.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\itemlist.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\breadcrumblist.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\offercatalogue.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\jobposting.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\language.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\listitem.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\occupation.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\offer-1.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\offer-2.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\offer-3.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\aggregateoffer.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\conf\2002.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\ae.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\aei.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\and.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\betsy-live.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\blog.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\concrete.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\corona-live.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\corrupt.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\cv.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\cyberspace.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\data.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\de.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\dg.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\dia.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\en.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\eu.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\event.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\ffoto.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\foto.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\fr.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\front.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\goodies.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\hackingtimes.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\html.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\js.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\lb.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\live.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\logo.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\microformats1.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\microformats2.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\music.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\nc.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\nl.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\past.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\pastdg.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\pastfront.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\photographs.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\pl.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\plumbing.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\podcast.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\podnblog.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\poetry.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\press.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\prose.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\reflets.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\ru.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\schema.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\sensors.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\simple.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\ssc.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\swlc.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\tp.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\wurm.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\wurmfest.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\wurmimapfel.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\wurmpress.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\conf\xenakis.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\order.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\orderitem.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\governmentpermit.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\rating.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\aggregaterating-2.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\aggregaterating-1.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\role.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\organisationrole.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\performancerole.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\service.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\broadcastservice.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\cableorsatelliteservice.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\financialproduct.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\bankaccount.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\depositaccount.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="debug-catalina-clang-makefile">
+      <Filter>Gubbins</Filter>
+    </None>
+    <None Include="tests\conf\2013.conf">
+      <Filter>Toast\Conf</Filter>
+    </None>
+    <None Include="debug-centos-gcc-makefile">
+      <Filter>Gubbins</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\investmentfund.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\brokerageaccount.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\loanorcredit.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\investmentordeposit.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\creditcard.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\mortgageloan.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\paymentcard.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\paymentservice.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\governmentservice.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\taxiservice.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\speakablespecification.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\monetaryamount-2.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\monetaryamount-1.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\postaladdress.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\exchangeratespecification.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\geocoordinates.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\geocircle.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\interactioncounter.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\nutritioninformation.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\openinghoursspecification.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\pricespecification.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\deliverychargespecification.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\unitpricespecification.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\propertyvalue.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\locationfeaturespecification.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\repaymentspecification.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\trip.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\touristtrip.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\drugclass.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalcause.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalcondition.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalsignorsymptom.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalsymptom.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\SVG\1.0\index.html">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="tests\SVG\1.0\svg.conf">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="tests\SVG\1.0\svg.spec">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="tests\SVG\1.0\svg1-example.html">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\svg.conf">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\svg.spec">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\svg11.html">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\svg11.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\index.html">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.2\index.html">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="tests\SVG\1.2\svg.conf">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="tests\SVG\1.2\svg.spec">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="tests\SVG\1.2\svg12.html">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="tests\SVG\1.2\svg12.xhtml">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="tests\SVG\2.0\index.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="tests\SVG\2.0\svg.conf">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="tests\SVG\2.0\svg.spec">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="tests\SVG\2.0\svg20.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="tests\SVG\2.0\svg20.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.0\math-example.xhtml">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.0\mathml-1.xhtml">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.0\parsing.xhtml">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.0\svg1-example.xhtml">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.0\x1-bad.xhtml">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.0\x1-good.xhtml">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.0\xhtml1.conf">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.0\xhtml1.spec">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.0\index.xhtml">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </None>
+    <None Include="tests\XHTML\1.1\index.xhtml">
+      <Filter>Toast\XHTML\1.1</Filter>
+    </None>
+    <None Include="tests\XHTML\1.1\x11-bad.xhtml">
+      <Filter>Toast\XHTML\1.1</Filter>
+    </None>
+    <None Include="tests\XHTML\1.1\x11-good.xhtml">
+      <Filter>Toast\XHTML\1.1</Filter>
+    </None>
+    <None Include="tests\XHTML\1.1\xhtml11.conf">
+      <Filter>Toast\XHTML\1.1</Filter>
+    </None>
+    <None Include="tests\XHTML\1.1\xhtml11.spec">
+      <Filter>Toast\XHTML\1.1</Filter>
+    </None>
+    <None Include="tests\XHTML\2.0\index.xhtml">
+      <Filter>Toast\XHTML\2.0</Filter>
+    </None>
+    <None Include="tests\XHTML\2.0\x2-bad.xhtml">
+      <Filter>Toast\XHTML\2.0</Filter>
+    </None>
+    <None Include="tests\XHTML\2.0\x2-example.xhtml">
+      <Filter>Toast\XHTML\2.0</Filter>
+    </None>
+    <None Include="tests\XHTML\2.0\x2-good.xhtml">
+      <Filter>Toast\XHTML\2.0</Filter>
+    </None>
+    <None Include="tests\XHTML\2.0\xhtml2.conf">
+      <Filter>Toast\XHTML\2.0</Filter>
+    </None>
+    <None Include="tests\XHTML\2.0\xhtml2.spec">
+      <Filter>Toast\XHTML\2.0</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\bad.html">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\dubious.html">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\good.html">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\desc.html">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\2.0\bad.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="tests\SVG\2.0\dubious.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="tests\SVG\2.0\good.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="tests\SVG\1.2\bad.html">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="tests\SVG\1.2\dubious.html">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="tests\SVG\1.2\good.html">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="tests\microformats\rel\bad.html">
+      <Filter>Toast\Microformats\Rel</Filter>
+    </None>
+    <None Include="tests\microformats\rel\good.html">
+      <Filter>Toast\Microformats\Rel</Filter>
+    </None>
+    <None Include="tests\microformats\rel\index.html">
+      <Filter>Toast\Microformats\Rel</Filter>
+    </None>
+    <None Include="tests\microformats\rel\rel.conf">
+      <Filter>Toast\Microformats\Rel</Filter>
+    </None>
+    <None Include="tests\microformats\rel\rel.spec">
+      <Filter>Toast\Microformats\Rel</Filter>
+    </None>
+    <None Include="tests\microformats\rel\dubious.html">
+      <Filter>Toast\Microformats\Rel</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalguideline.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalguidelinecontraindication.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalguidelinerecommendation.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\ddxelement.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\medicalriskfactor.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\organisation.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\corporation.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\educationalorganisation.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\governmentorganisation.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\collegeoruniversity-1.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\collegeoruniversity-2.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microformats\mf2\mf2-example.html">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </None>
+    <None Include="tests\microformats\mf1\mf1-example.html">
+      <Filter>Toast\Microformats\mf1</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\localbusiness.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\archiveorganisation.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\drycleaningorlaundry.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\amusementpark.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\movietheatre.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\bankorcreditunion.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-defg\foodestablishment.html">
+      <Filter>Toast\Microdata\schema-defg</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\restaurant.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-wxyz\winery.html">
+      <Filter>Toast\Microdata\schema-wxyz</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\library.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\hotel.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\pharmacy.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\store.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\ngo.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\musicgroup.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\sportsteam.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\place.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\hotelroom.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\administrativearea.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\civicstructure.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\cemetery.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="tests\microdata\schema-mno\museum.html">
+      <Filter>Toast\Microdata\schema-mno</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\performingartstheatre.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\touristattraction.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-tuv\touristdestination.html">
+      <Filter>Toast\Microdata\schema-tuv</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\product.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-hijkl\industrialproduct.html">
+      <Filter>Toast\Microdata\schema-hijkl</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\productmodel.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-pqrs\someproducts.html">
+      <Filter>Toast\Microdata\schema-pqrs</Filter>
+    </None>
+    <None Include="tests\microdata\schema-abc\car.html">
+      <Filter>Toast\Microdata\schema-abc</Filter>
+    </None>
+    <None Include="dependencies.mk">
+      <Filter>Gubbins</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\example-1.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\example-2.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\example-3.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\SVG\1.1\example-4.html">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="tests\simple\simple.conf">
+      <Filter>Toast\Simple</Filter>
+    </None>
+    <None Include="tests\simple\simple.spec">
+      <Filter>Toast\Simple</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="tests\HTML\2.0\x.jpg">
+      <Filter>Toast\HTML\2.0</Filter>
+    </Image>
+    <Image Include="tests\HTML\3.0\x.jpg">
+      <Filter>Toast\HTML\3.0</Filter>
+    </Image>
+    <Image Include="tests\HTML\3.2\x.jpg">
+      <Filter>Toast\HTML\3.2</Filter>
+    </Image>
+    <Image Include="tests\HTML\4.01\x.jpg">
+      <Filter>Toast\HTML\4.01</Filter>
+    </Image>
+    <Image Include="tests\microformats\mf1\photo.jpg">
+      <Filter>Toast\Microformats\mf1</Filter>
+    </Image>
+    <Image Include="tests\microformats\mf2\photo.jpg">
+      <Filter>Toast\Microformats\mf2</Filter>
+    </Image>
+    <Image Include="tests\HTML\5.4\x.jpg">
+      <Filter>Toast\HTML\5.4</Filter>
+    </Image>
+    <Image Include="tests\type\metaname\x.jpg">
+      <Filter>Toast\Type\metaname</Filter>
+    </Image>
+    <Image Include="tests\type\mimetype\x.jpg">
+      <Filter>Toast\Type\mimetype</Filter>
+    </Image>
+    <Image Include="tests\type\url\x.jpg">
+      <Filter>Toast\Type\url</Filter>
+    </Image>
+    <Image Include="tests\XHTML\1.0\x.jpg">
+      <Filter>Toast\XHTML\1.0</Filter>
+    </Image>
+    <Image Include="tests\XHTML\1.1\x.jpg">
+      <Filter>Toast\XHTML\1.1</Filter>
+    </Image>
+    <Image Include="tests\XHTML\2.0\x.jpg">
+      <Filter>Toast\XHTML\2.0</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="README.txt" />
+  </ItemGroup>
+</Project>

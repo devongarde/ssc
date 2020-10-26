@@ -95,9 +95,7 @@ bool url::verify (nitpick& nits, const html_version& v, const directory& d, cons
     if (is_simple_id ()) return true; // verify_id will check the id is valid
     if (! d.verify_url (nits, v, *this, state, itemtypes)) return false;
     if (context.crosslinks () && is_local () && has_id () && (has_path () || has_file ()))
-    {   //::std::string dvp (d.get_site_path (*this));
-        //if (dvp.empty ()) return false;
-        ::boost::filesystem::path target (d.get_disk_path (nits, *this));
+    {   ::boost::filesystem::path target (d.get_disk_path (nits, *this));
         if (target.empty ()) return false;
         if (get_fileindex (pagename) != get_fileindex (target))
             add_sought (pagename, line, target, id (), state.test (a_hidden), itemtypes); }

@@ -43,7 +43,6 @@ template < > struct type_master < t_content_type > : tidy_string < t_content_typ
                         if (cs.good ()) return; } }
             tidy_string < t_content_type > :: status (s_invalid); } } } };
 
-// t_content_encoding : https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding
 template < > struct type_master < t_refresh > : tidy_string < t_refresh >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_refresh > :: set_value (nits, v, s);

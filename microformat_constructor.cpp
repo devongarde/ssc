@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 template < class MICROFORMAT, class... X > struct microformat_constructor : public microformat_constructor < X... >
 {   static void alloc_microformat_pv (microformat_pv& mf)
-    {   if (mf.index_ == MICROFORMAT :: whoami ()) mf.microformat_.reset (new MICROFORMAT ());
+    {   if (mf.index_ == static_cast < size_t > (MICROFORMAT :: whoami ())) mf.microformat_.reset (new MICROFORMAT ());
         else microformat_constructor < X... > :: alloc_microformat_pv (mf); } };
 
 template < > struct microformat_constructor < mf_error >

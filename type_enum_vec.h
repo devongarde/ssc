@@ -91,7 +91,6 @@ template < e_type E, typename ENUM > struct enum_vec : public enum_vec_base < EN
         for (auto e : enum_vec_base < ENUM, E > :: value_)
         {   if (! res.empty ()) res += " ";
             res += e.name (); }
-//            res += symbol < ENUM > :: name (e.get ()); }
         return res; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& ss);
     ::std::string name () const

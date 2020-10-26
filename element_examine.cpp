@@ -266,10 +266,6 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
 
     examine_children (d);
 
-//    if (node_.version ().svg () >= sv_1_1)
-//        if ((node_.id ().categories () & EF_SVG_FILTER) != 0)
-//            examine_descendant_in (this);
-
     if (post_examine)
     {   post_examine_element (tag);
         if (a_.known (a_itemref)) examine_itemref (itemscope_); }

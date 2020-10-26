@@ -22,5 +22,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema_type.h"
 
 void microdata_init (nitpick& nits);
-//bool test_microdata (nitpick& nits, const schema_version& v, const ::std::string& itemprop, const ::std::string& itemvalue);
 bool is_schema_property (const e_schema s, const e_schema_property p);

@@ -124,7 +124,6 @@ e_element element::has_immediate_descendant (const e_element e []) const
 
 void element::check_required_type (const e_element tag)
 {   if (tag != elem_img) return;
-    // if (! a_.has (a_type) || a_.has (a_href)) return;
     if (a_.known (a_type)) return;
     if (node_.version () < html_3_0) return;
     pick (nit_element_no_type, es_comment, ec_element, "has no TYPE attribute"); }

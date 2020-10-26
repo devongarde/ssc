@@ -64,5 +64,5 @@ public:
     html_version version () const { return version_; }
     ::std::string text () const;
     ::std::string rpt () const;
-    ::std::size_t size () const { return ven_.size (); }
+    uint64_t size () const { return ven_.size (); }
     bool invalid () const { return (invalid_ && (size () > 0)); } };
