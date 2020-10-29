@@ -1,7 +1,0 @@
-CPP = gcc
-LD = gcc
-CCARGS = -I/home/dylan/depot/automatic/Library/boost_1_72_0 -std=c++17 -Wno-dangling-else -Wno-undefined-var-template -g -D_DEBUG -DUNIX
-LARGS = -g -D_DEBUG -DUNIX -std=c++17 -L /usr/lib64 -L /usr/lib/gcc/x86_64-redhat-linux/8 -L /home/dylan/depot/automatic/Library/boost_1_72_0/stage/lib -o ssc -l boost_date_time-gcc8-md-sd-x64-1_72 -l boost_filesystem-gcc8-md-sd-x64-1_72 -l boost_program_options-gcc8-md-sd-x64-1_72 -l pthread -l stdc++ -l c-2.28
-LTARGS = -g -D_DEBUG -DUNIX -std=c++17 -L /usr/lib64 -L /usr/lib/gcc/x86_64-redhat-linux/8 -L /home/dylan/depot/automatic/Library/boost_1_72_0/stage/lib -o ssc-test -l boost_filesystem-gcc8-md-sd-x64-1_72 -l pthread -l stdc++ -l c-2.28
-
-include dependencies.mk

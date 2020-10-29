@@ -1,0 +1,21 @@
+-f ../toast/HTML/minimal/minimal.conf
+
+PASS ../toast/HTML/minimal/rfc1867.html
+10 invalid_attribute_version wrong_version
+12 rfc_1867 invalid_attribute_version wrong_version rfc_1867
+
+PASS ../toast/HTML/minimal/rfc1942.html
+10 attribute_unrecognised_here attribute_unrecognised unrecognised_attribute invalid_element_version
+11 invalid_element_version
+12 invalid_element_version
+15 attribute_unrecognised_here attribute_unrecognised_here attribute_unrecognised_here attribute_unrecognised_here attribute_unrecognised_here attribute_unrecognised_here unrecognised_attribute unrecognised_attribute unrecognised_attribute invalid_element_version
+16 invalid_element_version
+17 invalid_element_version
+
+PASS ../toast/HTML/minimal/rfc1980.html
+10 attribute_unrecognised_here attribute_unrecognised unrecognised_attribute
+12 invalid_element_version
+13 attribute_unrecognised_here attribute_unrecognised unrecognised_attribute invalid_element_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+
+PASS ../toast/HTML/minimal/rfc2070.html
+0 rfc_2070

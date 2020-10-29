@@ -1,8 +1,0 @@
-CPP = clang++
-LD = clang++
-CLANGLIBS=-lclangTooling -lclangFrontendTool -lclangFrontend -lclangDriver -lclangSerialization -lclangCodeGen -lclangParse -lclangSema -lclangStaticAnalyzerFrontend -lclangStaticAnalyzerCheckers -lclangStaticAnalyzerCore -lclangAnalysis -lclangARCMigrate -lclangRewrite -lclangRewriteFrontend -lclangEdit -lclangAST -lclangLex -lclangBasic -lclang
-CCARGS = -I../../automatic/Library/boost_1_72_0 -g -std=gnu++17 -Wno-dangling-else -Wno-undefined-var-template -O3 -DUNIX
-LARGS = -O3 -std=gnu++17 $(CLANGLIBS) -L /usr/lib64 -L /usr/lib/gcc/x86_64-redhat-linux/8 -L ../../automatic/Library/boost_1_72_0/stage/lib -o ssc -l boost_filesystem-gcc8-mt-s-x64-1_72 -l boost_program_options-gcc8-mt-s-x64-1_72 -l pthread -l stdc++ -l c-2.28
-LTARGS = -O3 -std=gnu++17 $(CLANGLIBS) -L /usr/lib64 -L /usr/lib/gcc/x86_64-redhat-linux/8 -L ../../automatic/Library/boost_1_72_0/stage/lib -o ssc -l boost_filesystem-gcc8-mt-s-x64-1_72 -l pthread -l stdc++ -l c-2.28
-
-include dependencies.mk
