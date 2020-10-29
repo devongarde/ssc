@@ -1,0 +1,4 @@
+﻿@charset "utf-8";
+/* CSS test file for css-dubious.html */
+
+.footnote, .h-card, .boing, .vcard, .p-adr, .bday { min-width: 250px; margin: 0 auto; position: relative; }

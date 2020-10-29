@@ -1,1 +1,0 @@
-This directory is used by the link tests (and tests the virtual directory code).

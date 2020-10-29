@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>schema service</title>
+</head>
+
+<body>
+
+<h1>schema service</h1>
+
+    <div itemscope itemtype="https://schema.org/Invoice">
+      <h1 itemprop="description">New furnace and installation</h1>
+      <div itemprop="broker" itemscope itemtype="https://schema.org/LocalBusiness">
+        <b itemprop="name">ACME Home Heating</b>
+      </div>
+      <div itemprop="customer" itemscope itemtype="https://schema.org/Person">
+        <b itemprop="name">Jane Doe</b>
+      </div>
+      <time itemprop="paymentDueDate">2015-01-30</time>
+      <div itemprop="minimumPaymentDue" itemscope itemtype="https://schema.org/PriceSpecification">
+        <span itemprop="price">0.00</span>
+        <span itemprop="priceCurrency">USD</span>
+      </div>
+      <div itemprop="totalPaymentDue" itemscope itemtype="https://schema.org/PriceSpecification">
+        <span itemprop="price">0.00</span>
+        <span itemprop="priceCurrency">USD</span>
+      </div>
+      <link itemprop="paymentStatus" href="https://schema.org/PaymentComplete" />
+      <div itemprop="referencesOrder" itemscope itemtype="https://schema.org/Order">
+        <span itemprop="description">furnace</span>
+        <time itemprop="orderDate">2014-12-01</time>
+        <span itemprop="orderNumber">123ABC</span>
+        <div itemprop="orderedItem" itemscope itemtype="https://schema.org/Product">
+          <span itemprop="name">ACME Furnace 3000</span>
+          <meta itemprop="productID" content="ABC123" />
+        </div>
+      </div>
+      <div itemprop="referencesOrder" itemscope itemtype="https://schema.org/Order">
+        <span itemprop="description">furnace installation</span>
+        <time itemprop="orderDate">2014-12-02</time>
+        <div itemprop="orderedItem" itemscope itemtype="https://schema.org/Service">
+          <span itemprop="description">furnace installation</span>
+        </div>
+      </div>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/Service">
+      <meta itemprop="serviceType" content="Home cleaning" />
+      <span itemprop="provider" itemscope itemtype="https://schema.org/LocalBusiness">
+        <span itemprop="name">ACME Home Cleaning</span>
+      </span>
+      offers a variety of services in
+      <span itemprop="areaServed" itemscope itemtype="https://schema.org/State">
+        <span itemprop="name">Massachusetts</span>, including
+      </span>
+      <ul itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/OfferCatalog">
+          <span itemprop="name">House cleaning</span>
+          <ul itemprop="itemListElement" itemscope itemtype="https://schema.org/OfferCatalog">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/Offer">
+              <div itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+                <span itemprop="name">Apartment light cleaning</span>
+              </div>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/Offer">
+              <div itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+                <span itemprop="name">House light cleaning up to 2 bedrooms</span>
+              </div>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/Offer">
+              <div itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+                <span itemprop="name">House light cleaning 3+ bedrooms</span>
+              </div>
+            </li>
+          </ul>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/OfferCatalog">
+          <span itemprop="name">One-time services</span>
+          <ul itemprop="itemListElement" itemscope itemtype="https://schema.org/OfferCatalog">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/Offer">
+              <div itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+                <span itemprop="name">Window washing</span>
+              </div>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/Offer">
+              <div itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+                <span itemprop="name">Carpet deep cleaning</span>
+              </div>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/Offer">
+              <div itemprop="itemOffered" itemscope itemtype="https://schema.org/Service">
+                <span itemprop="name">Move in/out cleaning</span>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/TaxiService">
+      <div itemprop="provider" itemscope itemtype="https://schema.org/LocalBusiness">
+        <span itemprop="name">driver #123</span>
+        <div itemprop="location" itemscope itemtype="https://schema.org/Place">
+          <div itemprop="geo" itemscope itemtype="https://schema.org/GeoCircle">
+            <div itemprop="geoMidpoint" itemscope itemtype="https://schema.org/GeoCoordinates">
+              <meta itemprop="latitude" content="42.362757" />
+              <meta itemprop="longitude" content="-71.087109" />
+            </div>
+            <meta itemprop="geoRadius" content="50" />
+          </div>
+        </div>
+      </div>
+      <meta itemprop="providerMobility" content="dynamic" />
+    </div>
+
+</body>
+</html>

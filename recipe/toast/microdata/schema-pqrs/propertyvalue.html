@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>schema property value</title>
+</head>
+
+<body>
+
+<h1>schema propertyvalue</h1>
+
+    <div itemscope itemtype="https://schema.org/ImageObject">
+      <h2 itemprop="name">Beach in Mexico</h2>
+      <img src="mexico-beach.jpg" alt="" itemprop="contentUrl" />
+      By <span itemprop="author">Jane Doe</span>
+      Photographed in
+        <span itemprop="contentLocation">Puerto Vallarta, Mexico</span>
+      Date uploaded:
+        <meta itemprop="datePublished" content="2008-01-25">Jan 25, 2008
+      <span itemprop="description">I took this picture while on vacation last year.</span>
+    <!-- Note: We do not split value strings in unit and value information, since this the raw EXIF data does not provide this granularity. If you are able to separate the unit, you can use the unitText property -->
+      <div itemprop="exifData" itemscope itemtype="https://schema.org/PropertyValue">
+          <meta itemprop="name" content="Exposure Time">
+          <meta itemprop="value" content="1/659 sec.">
+      </div>
+      <div itemprop="exifData" itemscope itemtype="https://schema.org/PropertyValue">
+          <meta itemprop="name" content="FNumber">
+          <meta itemprop="value" content="f/4.0">
+      </div>
+      <div itemprop="exifData" itemscope itemtype="https://schema.org/PropertyValue">
+          <meta itemprop="name" content="MaxApertureValue">
+          <meta itemprop="value" content="2.00">
+      </div>
+      <div itemprop="exifData" itemscope itemtype="https://schema.org/PropertyValue">
+          <meta itemprop="name" content="Metering Mode">
+          <meta itemprop="value" content="Pattern">
+      </div>
+      <div itemprop="exifData" itemscope itemtype="https://schema.org/PropertyValue">
+          <meta itemprop="name" content="Flash">
+          <meta itemprop="value" content="Flash did not fire.">
+      </div>
+    </div>
+
+    <!-- Product: Point Value, with unit as text -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Approx. Weight</span>
+          <span itemprop="value">450</span>
+          <span itemprop="unitText">gram</span>
+      </div>
+    </div>
+
+    <!-- Product: Point Value, with unit as UN/CEFACT Common Code -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Approx. Weight</span>
+          <span itemprop="value">450</span>
+          <meta itemprop="unitCode" content="GRM">g
+      </div>
+    </div>
+
+    <!-- Product: Range, with unit as UN/CEFACT Common Code -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Operating Voltage</span>
+          <span itemprop="minValue">100</span>-
+          <span itemprop="maxValue">250</span>
+          <meta itemprop="unitCode" content="VLT">volts
+      </div>
+    </div>
+
+    <!-- Product: Open Interval, with unit as UN/CEFACT Common Code -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Wifi range</span>: up to
+          <span itemprop="maxValue">30</span>
+    <!-- Note: The UN/CEFACT Common Code for foot is FOT -->
+          <meta itemprop="unitCode" content="FOT">ft.
+      </div>
+    </div>
+
+    <!-- Product: Multiple Intervals -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Operating voltage</span>:
+          <span itemprop="value">9-12</span> or
+          <span itemprop="value">100-250</span>
+          <meta itemprop="unitCode" content="VLT">volts
+      </div>
+    </div>
+
+    <!-- Product: Range and Enumerated Values -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">ISO Sensitivity</span>:
+          <span itemprop="value">100-6400</span>/
+          <span itemprop="value">12,800</span> (Hi-1)
+          <span itemprop="unitText">ISO</span>
+      </div>
+    </div>
+
+    <!-- Product: Boolean Value -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">USB interface</span>:
+          <meta itemprop="value" content="True">Yes
+      </div>
+    </div>
+
+    <!-- Product: Qualitative Value -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Interface</span>:
+          <span itemprop="value">USB</span>
+      </div>
+    </div>
+
+    <!-- Product: Qualitative Value (multiple) -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Interfaces</span>:
+          <span itemprop="value">USB</span>,
+          <span itemprop="value">Ethernet</span>
+      </div>
+    </div>
+
+    <!-- Product: Property ID for clarifying the meaning of a property: URI from external vocabulary -->
+    <div itemscope itemtype="https://schema.org/Car">
+      <img itemprop="image" src="station_waggon123.jpg" alt="" />
+      <span itemprop="name">Station Waggon 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Luggage Capacity (seats folded)</span>:
+          <span itemprop="value">500</span>
+          <meta itemprop="unitCode" content="LTR">liter
+          <link itemprop="propertyID" href="http://purl.org/vvo/ns#luggageCapacitySeatsFolded" />
+      </div>
+    </div>
+
+    <!-- Product: Property ID for clarifying the meaning of a property: Code from eCl@ss Standard -->
+    <!-- The Property code 02-AAM226 is for "USB interface present" in eCl@ss 8.1 -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">USB Interface</span>:
+          <meta itemprop="value" content="True">Yes
+          <meta itemprop="propertyID" content="eclass81:02-AAM226">
+      </div>
+    </div>
+
+    <!-- Product: Value References -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Operating Voltage</span>
+          <span itemprop="minValue">100</span>-
+          <span itemprop="maxValue">250</span>
+          <meta itemprop="unitCode" content="VLT">volts
+          at
+          <div itemprop="valueReference" itemscope itemtype="https://schema.org/PropertyValue">
+             <span itemprop="value">50</span>
+             <span itemprop="unitText">Hz</span>
+          </div>
+      </div>
+    </div>
+
+    <!-- Product: Ratios -->
+    <div itemscope itemtype="https://schema.org/Car">
+      <img itemprop="image" src="station_waggon123.jpg" alt="" />
+      <span itemprop="name">Station Waggon 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <span itemprop="name">Fuel consumption</span>:
+          <span itemprop="value">5</span>
+          <meta itemprop="unitCode" content="LTR">liter /
+          <div itemprop="valueReference" itemscope itemtype="https://schema.org/PropertyValue">
+            <span itemprop="value">100</span>
+            <span itemprop="unitText">km</span>
+          </div>
+      </div>
+    </div>
+
+    <!-- Product: Grouping and Hierarchical Order of Properties -->
+    <div itemscope itemtype="https://schema.org/Product">
+      <img itemprop="image" src="camera123.jpg" alt="" />
+      <span itemprop="name">Digital Camera 123</span>
+      <div itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+          <strong itemprop="name">Focus/Autofocus</strong>
+          <div itemprop="value" itemscope itemtype="https://schema.org/PropertyValue">
+            <span itemprop="name">Picture Control</span>
+            <span itemprop="value">Landscape</span>
+            <span itemprop="value">Monochrome</span>
+            <span itemprop="value">Portrait</span>
+          </div>
+          <div itemprop="value" itemscope itemtype="https://schema.org/PropertyValue">
+            <span itemprop="name">Single-point AF Mode</span>:
+            <meta itemprop="value" content="True">Yes
+          </div>
+      </div>
+    </div>
+
+</body>
+</html>

@@ -1,8 +1,10 @@
-ssc 0.0.59
+ssc 0.0.60
 Static Site Checker
 
-an opinionated HTML nitpicker
-for hand-made websites
+(an opinionated HTML nitpicker
+for hand-made websites)
+
+
 
 see LICENCE.txt for copyright & licence notice
 GPL 3 applies
@@ -48,7 +50,7 @@ ssc -h
 for a usage summary.
 
 ssc -f config_file
-analyse site using prepared configuration
+analyse site using preprepared configuration
 
 ssc directory
 analyse website based in directory
@@ -56,10 +58,22 @@ analyse website based in directory
 
 
 To build & run:
-1. Build and install boost 1.72
-2. Under Windows, open ssc.sln in Visual Studio 2019 & build 64 bit
-3. Under Centos 8 / Macos Catalina / Macos HighSierra, build using appropriate makefile
-4. install curl (curl.haxx.se)
+1. Set the environment variable SSCPATH to point to the ssc root directory (the one containing recipe)
+2. Build and install boost 1.71 or better (perhaps from boost.org)
+3. You may need to set the environment variable BOOST to point to the BOOST home directory
+4. EITHER build with CMake 3.10 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
+5. OR open recipe\tea\ssc.sln in Visual Studio 2019 under Windows then build 64bit release
+6. If necessary install curl (perhaps from curl.haxx.se)
+7. Gleefully run ssc
+
+
+
+Notes on folder name word play:
+- recipe: a nod to Vernor Vinge's "A Fire Upon the Deep"
+- tea: without tea, nothing works / builders' tea
+- sauce: identifies people who presume / obvious
+- toast: toasts code / i like burnt toast
+- heater: i'm not stopping now
 
 
 

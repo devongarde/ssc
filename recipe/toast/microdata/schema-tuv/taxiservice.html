@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>schema taxi service</title>
+</head>
+
+<body>
+
+<h1>schema taxi service</h1>
+
+    <div itemscope itemtype="https://schema.org/TaxiService">
+      <div itemprop="provider" itemscope itemtype="https://schema.org/LocalBusiness">
+        <span itemprop="name">driver #123</span>
+        <div itemprop="location" itemscope itemtype="https://schema.org/Place">
+          <div itemprop="geo" itemscope itemtype="https://schema.org/GeoCircle">
+            <div itemprop="geoMidpoint" itemscope itemtype="https://schema.org/GeoCoordinates">
+              <meta itemprop="latitude" content="42.362757" />
+              <meta itemprop="longitude" content="-71.087109" />
+            </div>
+            <meta itemprop="geoRadius" content="50" />
+          </div>
+        </div>
+      </div>
+      <meta itemprop="providerMobility" content="dynamic" />
+    </div>
+
+</body>
+</html>

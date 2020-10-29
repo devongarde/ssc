@@ -1,0 +1,86 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 1.1 HTML</title>
+</head>
+
+<body>
+
+<h1>SVG 1.1 HTML</h1>
+
+<!-- use HTML5, not this -->
+<svg width="4in" height="3in" version="1.1" xmlns = 'http://www.w3.org/2000/svg'>
+ <desc xmlns:myfoo="http://example.org/myfoo">
+ <myfoo:title>This is a financial report</myfoo:title>
+ <myfoo:descr>The global description uses markup from the
+ <myfoo:emph>myfoo</myfoo:emph> namespace.</myfoo:descr>
+ <myfoo:scene><myfoo:what>widget $growth</myfoo:what>
+ <myfoo:contains>$three $graph-bar</myfoo:contains>
+ <myfoo:when>1998 $through 2000</myfoo:when>
+ </myfoo:scene>
+ </desc>
+ <metadata>
+ <rdf:RDF
+ xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#"
+ xmlns:dc = "http://purl.org/dc/elements/1.1/" >
+ <rdf:Description about="http://example.org/myfoo"
+ dc:title="MyFoo Financial Report"
+ dc:description="$three $bar $thousands $dollars $from 1998 $through 2000"
+ dc:publisher="Example Organization"
+ dc:date="2000-04-11"
+ dc:format="image/svg+xml"
+ dc:language="en" >
+<dc:creator>
+ <rdf:Bag>
+ <rdf:li>Irving Bird</rdf:li>
+ <rdf:li>Mary Lambert</rdf:li>
+ </rdf:Bag>
+ </dc:creator>
+ </rdf:Description>
+ </rdf:RDF>
+ </metadata>
+</svg>
+
+<?xml version="1.0" standalone="yes"?>
+ <svg width="4in" height="3in" version="1.1" xmlns = 'http://www.w3.org/2000/svg'>
+ <defs>
+ <myapp:piechart xmlns:myapp="http://example.org/myapp" title="Sales by Region">
+ <myapp:pieslice label="Northern Region" value="1.23"/>
+ <myapp:pieslice label="Eastern Region" value="2.53"/>
+ <myapp:pieslice label="Southern Region" value="3.89"/>
+ <myapp:pieslice label="Western Region" value="2.04"/>
+ <!-- Other private data goes here -->
+ </myapp:piechart>
+</defs>
+ <desc>This chart includes private data in another namespace </desc>
+ <!-- In here would be the actual SVG graphics elements which draw the pie chart -->
+</svg>
+
+<svg width="4in" height="3in" version="1.1" xmlns = 'http://www.w3.org/2000/svg'>
+ <desc>This example uses the 'switch' element to provide a fallback graphical
+ representation of an paragraph, if
+XMHTML is not supported.</desc>
+ <!-- The 'switch' element will process the first child element whose testing attributes evaluate to true.-->
+ <switch>
+ <!-- Process the embedded XHTML if the requiredExtensions attribute evaluates to true
+ (i.e., the user agent supports XHTML embedded within SVG). -->
+ <foreignObject width="100" height="50" requiredExtensions="http://example.com/SVGExtensions/EmbeddedXHTML">
+ <!-- XHTML content goes here -->
+ <body xmlns="http://www.w3.org/1999/xhtml">
+ <p>Here is a paragraph that requires word wrap</p>
+ </body>
+ </foreignObject>
+ <!-- Else, process the following alternate SVG. Note that there are no testing
+ attributes on the 'text' element. If no testing attributes are provided,
+ it is as if there were testing attributes and they evaluated to true.-->
+ <text font-size="10" font-family="Verdana">
+ <tspan x="10" y="10">Here is a paragraph that</tspan>
+ <tspan x="10" y="20">requires word wrap.</tspan>
+ </text>
+ </switch>
+</svg>
+
+</body>
+</html>
+

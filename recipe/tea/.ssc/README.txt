@@ -1,0 +1,1 @@
+Certain experimental code uses this directory for persistence.

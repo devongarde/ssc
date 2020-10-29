@@ -1,1 +1,0 @@
-This conf files are used in development, and refer to directories which exist on my systems, but probably not on yours.

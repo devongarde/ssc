@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>bad URL test page</title>
+</head>
+
+<body>
+
+<h1>Bad URL Test Page</h1>
+
+<a href="index.html#id">first id ok</a>
+<a href="#id">second id bad</a>
+<a href="index.html?a=b&c=d#xxq">third id bad</a> <!-- not checked because of ? parameters -->
+
+<a href="duff://index.html">duff</a>
+<a href="!lan://index.html">&eacute;lan</a>
+<a href="321://index.html">&eacute;lan</a>
+<a href="://index.html">no protocol</a>
+<a href="http://123.456.789.0/index.html">one two three &hellip;</a>
+<a href="http://123456.0.0.0/index.html" wibble="1">one two three &hellip;</a>
+<a href="http://123456.0/index.html">one two three &hellip;</a>
+<a href="http://[CABB::AGE]/index.html">bad ipv6</a>
+<a href="http://[]/index.html">bad ipv6</a>
+<a href="http://[::1/index.html">bad ipv6</a>
+<a href="http://[CABB::AGE]/index.html">bad ipv6</a>
+<a href="http:">protocol alone</a>
+<a href="http://example.com:65557">daft port</a>
+<a href="http://example.com:1234">protocol alone</a>
+
+<a href="ftp://@example.com/crackmaster.zip">ftp</a>
+<a href="ftp://:@example.com/crackmaster.zip">ftp</a>
+<a href="ftp://ethel@/crackmaster.zip">ftp</a>
+<a href="ftp://nopass:@example.com/crackmaster.zip">ftp</a>
+<a href="ftp://nopass:@/crackmaster.zip">ftp</a>
+<a href="ftp://dingbat:secret@example.com/crackmaster.zip">ftp</a>
+
+<a href="http://z1234.example.com">example</a>
+
+<a href="mailto:@example.com">email</a>
+<a href="mailto:x@">email</a>
+<a href="mailto:uunet!moria!janet">email</a>
+
+</body>
+</html>
+

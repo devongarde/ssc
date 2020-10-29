@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>valid microformats 2</title>
+
+</head>
+
+<body>
+
+<h1>Valid microformats 2</h1>
+
+<div class="h-adr">
+<span class="p-extended-address">(the shed round the back)</span>,
+<span class="p-post-office-box">PO Box 007</span>,
+<span class="p-street-address">1 Acacia Avenue</span>,
+<span class="p-locality">Sector 7</span>,
+<span class="p-postal-code">007</span>,
+<span class="p-region">City 17</span>,
+<span class="p-country-name">Ul Qoma</span>;
+<span class="p-label">Sid, left after the shop, Europe</span>;
+<span class="p-altitude">123.456789</span>,
+<span class="p-latitude">-27.116667</span>,
+<span class="p-longitude">-109.366667</span>
+<span class="p-geo">geo stuff</span>,
+<span class="u-geo">So why no example, RFC-5870?</span>
+<p class="h-geo">
+    <span class="p-altitude">123.456789</span>,
+    <span class="p-latitude">-27.116667</span>,
+    <span class="p-longitude">-109.366667</span>
+</p>
+</div>
+
+<div class="h-breadcrumb">
+    <a class="p-name u-url" href="index.html">Fred</a>
+    <span class="h-breadcrumb">
+    <a class="p-name u-url" href="index.html">U</a>
+        <span class="h-breadcrumb">
+            <a class="p-name u-url" href="index.html">Bloggs</a>
+        </span>
+    </span>
+</div>
+
+<div class="h-card">
+<img class="u-photo u-logo" src="photo.jpg" alt="photo" />
+<a class="p-name u-url u-uid u-impp" href="index.html">
+<span class="p-honorific-prefix">Don</span>
+<span class="p-given-name">Bert</span>
+&ldquo;<span class="p-nickname">Fido</span>&rdquo;
+<span class="p-additional-name">Xerces</span>
+<span class="p-family-name">Scroggins</span>
+<span class="p-honorific-suffix">Esq.</span></a>
+(<span class="p-category">drongo</span>);
+
+<a class="u-email" href="mailto:bertscroggins@example.com">bertscroggins@example.com</a>,
+
+<span class="p-job-title p-role">The Officious Eejet</span>,
+<span class="p-org">The Organisation</span>,
+<span class="p-adr h-adr"> <!-- as per http://microformats.org/wiki/h-card -->
+    <span class="p-extended-address">(the shed round the back)</span>,
+    <span class="p-post-office-box">PO Box 007</span>,
+    <span class="p-street-address">1 Acacia Avenue</span>,
+    <span class="p-locality">Sector 7</span>,
+    <span class="p-postal-code">007</span>,
+    <span class="p-region">City 17</span>,
+    <span class="p-country-name">Ul Qoma</span></span>;
+
+<span class="p-altitude">123.456789</span>,
+<span class="p-latitude">-27.116667</span>,
+<span class="p-longitude">-109.366667</span>;
+
+<p class="p-geo h-geo">
+    <span class="p-altitude">123.456789</span>,
+    <span class="p-latitude">-27.116667</span>,
+    <span class="p-longitude">-109.366667</span>
+</p>
+
+<span class="p-tel">tel:(+44/0) 123 456 789</span>,
+<span class="p-tel">tel:(+33/0) 12.34.56.78</span>,
+<span class="p-tel">tel:+352 012345</span>,
+
+<span class="p-label">Sid, left after the shop, Europe</span>,
+
+(<span class="p-note">the boss&rsquo;s son, a remarkably annoying plonker</span>),
+
+<span class="dt-bday dt-anniversary">1911-11-11</span>,
+
+<a class="u-key" href="index.html">ye olde PGP key</a>,
+
+<span class="p-sex">M</span>,  <!-- https://tools.ietf.org/html/rfc6350 -->
+<span class="p-gender-identity">U</span>
+
+<audio class="u-sound">
+ <source src="x.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<p class="h-card">
+  <img class="u-photo" src="photo.jpg" alt="photo" />
+  <a class="p-name u-url" href="index.html">Joe Bloggs</a>
+  <a class="u-email" href="mailto:joebloggs@example.com">joebloggs@example.com</a>,
+  <span class="p-street-address">1 Acacia Avenue</span>
+  <span class="p-locality">Smallville</span>
+  <span class="p-country-name">Iceland</span>
+</p>
+
+<p class="h-cite">
+<a class="p-name u-url u-uid p-author p-publication p-content" href="index.html">Joe Bloggs</a>
+<span class="dt-published dt-accessed">2020-04-01</span>,
+</p>
+
+<div class="h-entry">
+<img class="u-photo u-featured" src="photo.jpg" alt="photo" />
+<a class="p-name u-url u-uid" href="index.html">Joe Bloggs</a>
+    <p class="p-author h-card">
+    <img class="u-photo u-logo" src="photo.jpg" alt="photo" />
+    <a class="p-name u-url u-uid u-impp" href="index.html">Joe Bloggs</a>
+    </p>
+<span class="dt-published">2020-04-01</span>,
+<span class="dt-updated">2020-04-02</span>,
+<span class="p-category">online</span>
+<a class="p-comment u-like u-bookmark-of" href="index.html">gosh</a>
+<a class="u-syndication u-in-reply-to" href="index.html">Syndication</a>
+<data class="p-rsvp" value="yes">sausages</data>,
+<a class="u-repost-of u-like-of" href="index.html">Really really really</a>
+<span class="p-latitude">-27.116667</span>,
+<span class="p-longitude">-109.366667</span>;
+<audio>
+ <source src="x.mp3" type="audio/mpeg"  class="u-audio">
+</audio>
+<video>
+ <source src="thearush.mp4" type="video/mp4" class="u-video">
+</video>
+</div>
+
+<div class="h-event">
+<a class="p-name u-url p-attendee" href="index.html">Joe Bloggs</a>
+<span class="p-summary p-category">An event</span>
+<span class="dt-start">1911-11-11T11:00</span>,
+<span class="dt-end">1911-11-11T11:30</span>,
+<span class="p-description">A nice  description.</span>
+<span class="e-content">A nice <b>big</b> description.</span>
+<div class="p-location h-adr">
+    <span class="p-extended-address">(the shed round the back)</span>,
+    <span class="p-post-office-box">PO Box 007</span>,
+</div>
+</div>
+
+<div class="h-feed">
+<img class="u-photo" src="photo.jpg" alt="photo" />
+<a class="p-name u-url p-author" href="index.html">Fred Bloggs</a>
+<div class="p-entry h-entry">
+    <span class="dt-published">2020-04-01</span>,
+    <span class="dt-updated">2020-04-02</span>,
+</div>
+<span class="p-summary">Summary</span>
+</div>
+
+<p class="h-geo">
+  <span class="p-altitude">123.456789</span>,
+  <span class="p-latitude">-27.116667</span>,
+  <span class="p-longitude">-109.366667</span>
+</p>
+
+<p class="h-item">
+  <img class="u-photo" src="photo.jpg" alt="item photo" />
+  <a class="p-name u-url" href="index.html">The Item</a> (not)
+</p>
+
+<p class="h-listing">
+<!-- add p-lister properly when embedded microformats are ready for testing -->
+<a class="u-url p-lister" href="index.html">Joe Bloggs</a>
+<span class="dt-listed">2020-04-01</span>,
+<span class="dt-expired">2020-04-02</span>,
+<span class="p-price">EUR 1</span>,  <!-- need to check t_price values -->
+<span class="p-category">category</span>,
+<span class="p-action">announce</span>,
+</p>
+
+<div class="h-product">
+<img class="u-photo" src="photo.jpg" alt="photo" />
+<a class="p-name u-url p-brand" href="index.html">Joe Bloggs</a>
+<span class="p-category">category</span>,
+
+<p class="e-description">long
+winded
+description</p>, <!-- add content to strip for this test -->
+
+<span class="p-review">review</span>,
+<span class="p-price">EUR 1</span>, <!-- need to check t_price values -->
+<a class="u-identifier" href="index.html">ISBN x-y-zz-y</a> <!-- need to invent and check t_identifier values -->
+</div>
+
+<div class="h-recipe">
+<img class="u-photo" src="photo.jpg" alt="photo" />
+<span class="p-author">Bert Scroggins</span>
+<span class="p-name">Roast Cheese</span>
+<span class="p-ingredient">1 metric tonne of molasses</span>
+<span class="p-nutrition">none</span>
+<span class="p-yield">One ounce of disappointed goat</span>
+<p class="e-instructions">cross your fingers and think of unicorns</p> <!-- add content to strip for this test -->
+<span class="dt-published">1911-11-11</span>,
+<span class="dt-duration">P2000D</span>
+</div>
+
+<p class="h-resume">
+<!-- add p-contact, p-affiliation, p-education & p-experience properly when embedded microformats are ready for testing -->
+<!-- look at proposed p-skill expansion: http://microformats.org/wiki/hresume-skill-brainstorm -->
+  <a href="index.hmtl" class="p-name">Joe Bloggs</a>
+  <a href="index.hmtl" class="p-summary">callous childminder</a>
+  <a href="index.hmtl" class="p-contact">contact info</a>
+  <a href="index.hmtl" class="p-education">education</a>
+  <a href="index.hmtl" class="p-experience">experience</a>
+  <a href="index.hmtl" class="p-affiliation">affiliation</a>
+  <a href="index.hmtl" class="p-skill">skill</a>
+</p>
+
+<p class="h-review-aggregate">
+<a class="p-name" href="index.html">Joe Bloggs</a>
+<!-- add p-item properly when embedded microformats are ready for testing -->
+<span class="p-item">Thingymajig</span>
+<span class="p-best p-worst p-average">3</span>
+<span class="p-count">1</span>
+<span class="p-votes">1</span>
+</p>
+
+<div class="h-review">
+<a class="p-name p-author u-url" href="index.html">Joe Bloggs</a>
+<!-- add p-item properly when embedded microformats are ready for testing -->
+<span class="p-item">Thingymajig</span>
+<span class="dt-published">2020-04-01</span>,
+<span class="p-rating">3</span>
+<span class="p-best p-worst">3</span>
+<p class="e-content">cross your fingers and think of unicorns</p> <!-- add content to strip for this test -->
+<span class="p-category">category</span>
+<!-- add p-location properly when embedded microformats are ready for testing -->
+<span class="p-location">location</span>
+<span class="p-summary">unicorns</span>
+<a class="u-syndication" href="index.html">syndicated here!</a>
+</div>
+
+</body>
+</html>

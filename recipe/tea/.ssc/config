@@ -1,0 +1,65 @@
+[general]
+verbose=5
+class=yes
+# output=ssc.out
+
+[site]
+domain=corruptpress.com
+# domain=dylanharris.org
+
+# extension=shtml
+# index=index.shtml
+# root=D:\Depot\applications\ssc\tests\site
+
+extension=html
+index=index.html
+# root=D:\Depot\applications\ssc\tests\simple
+root=tests\site
+
+# extension=html
+# index=index.html
+# root=D:\Depot\applications\ssc\tests\microformats\microformats2
+
+# extension=html
+# index=index.html
+# root=D:\Depot\applications\ssc\tests\microformats\h-card\valid
+
+# extension=html
+# index=index.html
+# root=D:\Depot\applications\ssc\tests\HTML
+
+# extension=shtml
+# index=index.shtml
+# root=E:\www\corrupt
+
+# extension=shtml
+# extension=html
+# extension=htm
+# extension=asp
+# index=index.shtml
+# root=E:\www\live
+
+[link]
+check=yes
+
+[microformat]
+verify=yes
+# export=yes
+
+# [validation]
+# metaname=test
+# mimetype=text/test
+
+# [webmention_in]
+# mention=source=http://dylanharris.org/blog/2018/b15.shtml&target=http://corruptpress.net/
+# mention=source=http://www.antwerp.dylanharris.org/blog/2018/b15.shtml&target=http://corruptpress.net/
+# template=new.tpl,changed.tpl,deleted.tpl,unchanged.tpl
+# macrostart={{
+# macroend=}}
+# filenamemask=%F_inc.%E
+# file=test.db
+
+# [webmention_out]
+# notify=no
+
+# [schema]

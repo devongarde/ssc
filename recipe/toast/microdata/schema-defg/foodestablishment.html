@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>schema food establishment</title>
+</head>
+
+<body>
+
+<h1>schema food establishment</h1>
+
+    <div itemscope itemtype="https://schema.org/Restaurant">
+      <span itemprop="name">GreatFood</span>
+      <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+        <span itemprop="ratingValue">4</span> stars -
+        based on <span itemprop="reviewCount">250</span> reviews
+      </div>
+      <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">1901 Lemur Ave</span>
+        <span itemprop="addressLocality">Sunnyvale</span>,
+        <span itemprop="addressRegion">CA</span> <span itemprop="postalCode">94086</span>
+      </div>
+      <span itemprop="telephone">(408) 714-1489</span>
+      <a itemprop="url" href="http://www.greatfood.com">www.greatfood.com</a>
+      Hours:
+      <meta itemprop="openingHours" content="Mo-Sa 11:00-14:30">Mon-Sat 11am - 2:30pm
+      <meta itemprop="openingHours" content="Mo-Th 17:00-21:30">Mon-Thu 5pm - 9:30pm
+      <meta itemprop="openingHours" content="Fr-Sa 17:00-22:00">Fri-Sat 5pm - 10:00pm
+      Categories:
+      <span itemprop="servesCuisine">
+        Middle Eastern
+      </span>,
+      <span itemprop="servesCuisine">
+        Mediterranean
+      </span>
+      Price Range: <span itemprop="priceRange">$$</span>
+      Takes Reservations: Yes
+    </div>
+
+    <div itemscope itemtype="https://schema.org/FoodEstablishment">
+      <span itemprop="name">Joe's Pizza</span>
+      <div itemprop="location" itemscope itemtype="https://schema.org/PostalAddress">
+        <span itemprop="streetAddress">123 Main Street</span>
+        <span itemprop="addressLocality">Cambridge</span>
+        <span itemprop="addressRegion">MA</span>
+        <span itemprop="postalCode">02142</span>
+      </div>
+      delivers within 5 km of its store
+      <div itemprop="makesOffer" itemscope itemtype="https://schema.org/Offer">
+        <div itemprop="eligibleRegion" itemscope itemtype="https://schema.org/GeoCircle">
+          <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+            <meta itemprop="streetAddress" content="123 Main Street" />
+            <meta itemprop="addressLocality" content="Cambridge" />
+            <meta itemprop="addressRegion" content="MA" />
+            <meta itemprop="postalCode" content="02142" />
+          </div>
+          <meta itemprop="geoRadius" content="5000" />
+        </div>
+        with a minium order of $20.
+        <div itemprop="priceSpecification" itemscope itemtype="https://schema.org/DeliveryChargeSpecification">
+          <meta itemprop="appliesToDeliveryMethod" link="http://purl.org/goodrelations/v1#DeliveryModeOwnFleet">
+          <div itemprop="eligibleTransactionVolume" itemscope itemtype="https://schema.org/PriceSpecification">
+            <meta itemprop="price" content="20.00" />
+            <meta itemprop="priceCurrency" content="USD" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>

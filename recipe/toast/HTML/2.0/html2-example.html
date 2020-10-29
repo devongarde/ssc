@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+<title>RFC 1866 examples</title>
+<!-- Id: html-sgml.sgm,v 1.5 1995/05/26 21:29:50 connolly Exp  -->
+<!-- another -- -- comment -->
+<!>
+<META HTTP-EQUIV="Expires" CONTENT="Tue, 04 Dec 1993 21:29:02 GMT">
+<meta http-equiv="Keywords" CONTENT="Fred">
+<META HTTP-EQUIV="Reply-to" content="fielding@ics.uci.edu (Roy Fielding)">>
+<Meta Http-equiv="Keywords" CONTENT="Barney">
+
+</head>
+
+<BODY>
+
+<h1>RFC 1866 examples</h1>
+
+<p>Some text. <em>&#42;wow&#42;</em></p>
+
+<p>
+abc&lt;def
+abc&#60;def
+abc &lt def
+abc &#60 def
+abc & lt def
+abc &# 60 def
+</p>
+
+<IMG SRC="x.jpg" alt="First &quot;real&quot; example">
+
+<UL COMPACT="compact">
+<UL COMPACT>
+
+ <p> <!- not a comment, just regular old data characters ->
+
+<H1>This is a heading</H1>
+Here is some text
+<H2>Second level heading</H2>
+Here is some more text.
+
+<H1>This Heading Precedes the Paragraph</H1>
+<P>This is the text of the first paragraph.
+<P>This is the text of the second paragraph. Although you do not
+need to start paragraphs on new lines, maintaining this
+convention facilitates document maintenance.</P>
+<P>This is the text of a third paragraph.</P>
+
+ <PRE>
+Line 1.
+        Line 2 is to the right of line 1.     <a href="abc">abc</a>
+        Line 3 aligns with line 2.            <a href="def">def</a>
+</PRE>
+
+<ADDRESS>
+Newsletter editor<BR>
+J.R. Brown<BR>
+JimquickPost News, Jimquick, CT 01234<BR>
+Tel (123) 456 7890
+</ADDRESS>
+
+I think the play ends
+<BLOCKQUOTE>
+<P>Soft you now, the fair Ophelia. Nymph, in thy orisons, be all
+my sins remembered.
+</BLOCKQUOTE>
+but I am not sure.
+
+<UL>
+<LI>First list item
+<LI>Second list item
+<p>second paragraph of second item
+<LI>Third list item
+</UL>
+
+<OL>
+<LI>Click the Web button to open URI window.
+<LI>Enter the URI number in the text field of the Open URI
+window. The Web document you specified is displayed.
+    <ol>
+        <li>substep 1
+        <li>substep 2
+    </ol>
+<LI>Click highlighted text to move from one link to another.
+</OL>
+
+<DIR>
+<LI>A-H<LI>I-M
+<LI>M-R<LI>S-Z
+</DIR>
+
+<DL>
+<DT>Term<DD>This is the definition of the first term.
+<DT>Term<DD>This is the definition of the second term.
+</DL>
+
+<DL COMPACT>
+<DT>Term<DD>This is the first definition in compact format.
+<DT>Term<DD>This is the second definition in compact format.
+</DL>
+
+<p>
+plain <B>bold <I>italic</I></B> may be rendered
+the same as plain <B>bold </B><I>italic</I>
+He just couldn't get enough of <cite>The Grapes of Wrath</cite>.
+The expression <code>x += 1</code>
+is short for <code>x = x + 1</code>.
+A singular subject <em>always</em> takes a singular verb.
+Enter <kbd>FIND IT</kbd> to search the database.
+The only word containing the letters <samp>mt</samp> is dreamt.
+<strong>STOP</strong>, or I'll say "<strong>STOP</strong>" again!
+Type <SAMP>html-check <VAR>file</VAR> | more</SAMP>
+to check <VAR>file</VAR> for markup errors.
+</p>
+
+<P> Pease porridge hot<BR>
+Pease porridge cold<BR>
+Pease porridge in the pot<BR>
+Nine days old.
+</P>
+
+<IMG SRC="x.jpg" ALT="Warning:"> Be sure
+to read these instructions.
+
+<a href="http://machine/htbin/imagemap/sample">
+<IMG SRC="x.jpg" ISMAP>
+</a>
+
+<p> Choose any of these icons:<br>
+<a href="/cgi-bin/imagemap"><img ismap src="icons.gif"></a>
+
+<form>
+<p>Street Address: <input name=street><br>
+Postal City code: <input name=city size=16 maxlength=16><br>
+Zip Code: <input name=zip size=10 maxlength=10 value="99999-9999"><br>
+<p>Name: <input name=login> Password: <input type=password name=passwd>
+<p>What flavors do you like?
+<input type=checkbox name=flavor value=vanilla>Vanilla<br>
+<input type=checkbox name=flavor value=strawberry>Strawberry<br>
+<input type=checkbox name=flavor value=chocolate checked>Chocolate<br>
+<p>Which is your favorite?
+<input type=radio name=flavor value=vanilla>Vanilla<br>
+<input type=radio name=flavor value=strawberry>Strawberry<br>
+<input type=radio name=flavor value=chocolate>Chocolate<br>
+ <p>Choose a point on the map:
+<input type=image name=point src="map.gif">
+<input type=hidden name=context value="l2k3j4l2k3j4l2k3j4lk23">
+You may submit this request internally:
+<input type=submit name=recipient value=internal><br>
+or to the external world:
+<input type=submit name=recipient value=world>
+When you are finished, you may submit this request:
+<input type=submit><br>
+You may clear the form and start over at any time: <input type=reset>
+<SELECT NAME="flavor">
+<OPTION>Vanilla
+<OPTION>Strawberry
+<OPTION value="RumRasin">Rum and Raisin
+<OPTION selected>Peach and Orange
+</SELECT>
+<TEXTAREA NAME="address" ROWS=6 COLS=64>
+HaL Computer Systems
+1315 Dell Avenue
+Campbell, California 95008
+</TEXTAREA>
+</FORM>
+
+<P>Please fill out this questionnaire:
+<FORM METHOD="POST" ACTION="http://www.w3.org/sample">
+<P>Your name: <INPUT NAME="name" size="48">
+<P>Male <INPUT NAME="gender" TYPE=RADIO VALUE="male">
+<P>Female <INPUT NAME="gender" TYPE=RADIO VALUE="female">
+<P>Number in family: <INPUT NAME="family" TYPE=text>
+<P>Cities in which you maintain a residence:
+<UL>
+<LI>Kent <INPUT NAME="city" TYPE=checkbox VALUE="kent">
+<LI>Miami <INPUT NAME="city" TYPE=checkbox VALUE="miami">
+<LI>Other <TEXTAREA NAME="other" cols=48 rows=4></textarea>
+</UL>
+Nickname: <INPUT NAME="nickname" SIZE="42">
+<P>Thank you for responding to this questionnaire.
+<P><INPUT TYPE=SUBMIT> <INPUT TYPE=RESET>
+</FORM>
+
+
+<HR>
+<ADDRESS>February 8, 1995, CERN</ADDRESS>
+</BODY>
+</html>
+

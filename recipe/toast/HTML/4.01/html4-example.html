@@ -1,0 +1,887 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<title>HTML4 examples</title>
+
+<META name="Author" content="Ignatius Peanut">
+<META name="Author" lang="fr" content="Arnaud Le Hors">
+<META name="DC.identifier" content="http://www.ietf.org/rfc/rfc1866.txt">
+<META http-equiv="Content-Style-Type" content="text/css">
+
+<LINK rel="DC.identifier" type="text/plain" href="http://www.ietf.org/rfc/rfc1866.txt">
+<LINK href="css-good.css" title="compact" rel="stylesheet" type="text/css">
+
+<META http-equiv="Expires" content="Tue, 20 Aug 1996 14:25:27 GMT">
+<!-- For speakers of US English -->
+<META name="keywords" lang="en-us" content="vacation, Greece, sunshine">
+<!-- For speakers of British English -->
+<META name="keywords" lang="en" content="holiday, Greece, sunshine">
+<!-- For speakers of French -->
+<META name="keywords" lang="fr" content="vacances, Gr&egrave;ce, soleil">
+<META http-equiv="PICS-Label" content=’'(PICS-1.1 "http://www.example.org/v2.5" labels on "1994.11.05T08:15-0500" until "1995.12.31T23:59-0000" for "http://example.org/PICS/Overview.html" ratings (suds 0.5 density 0 color/hue 1))' ’>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-5">
+<META scheme="ISBN"  name="identifier" content="0-8230-2355-9">
+<META http-equiv="Default-Style" content="compact">
+
+<LINK title="The manual in Dutch"
+      type="text/html"
+      rel="alternate"
+      hreflang="nl"
+       href="http://example.com/manual/dutch.html">
+<LINK title="The manual in Portuguese"
+      type="text/html"
+      rel="alternate"
+      hreflang="pt"
+      href="http://example.com/manual/portuguese.html">
+<LINK title="The manual in Arabic"
+      type="text/html"
+      rel="alternate"
+      charset="ISO-8859-6"
+      hreflang="ar"
+       href="http://example.com/manual/arabic.html">
+<LINK lang="fr" title="La documentation en Fran&ccedil;ais"
+      type="text/html"
+      rel="alternate"
+      hreflang="fr"
+      href="http://example.com/manual/french.html">
+<LINK media="print" title="The manual in postscript"
+      type="application/postscript"
+      rel="alternate"
+      href="http://someplace.com/manual/postscript.ps">
+
+<LINK rel="stylesheet" media="aural" href="css-good.css" type="text/css">
+<LINK rel="stylesheet" media="screen" href="css-good.css" type="text/css">
+<LINK rel="stylesheet" media="print" href="css-good.css" type="text/css">
+<LINK rel="stylesheet" href="css-good.css" type="text/css">
+
+<STYLE media="screen, print" type="text/css">
+    p.special { color: rgb(230, 100, 180) }
+</STYLE>
+
+<STYLE type="text/css">
+    PRE.example { background : green }
+    DIV.section { text-align: justify; font-size: 12pt }
+    DIV.subsection { text-indent: 2em }
+    H1 { font-style: italic; color: green }
+    H2 { color: green }
+    #myid {border-width: 1; border: solid; text-align: center }
+    DIV.Abstract { text-align: justify }
+    A { cue-before: uri(bell.aiff); cue-after: uri(dong.wav) }
+    .client, .client-title, .client-data { }
+    <!--
+    H1 {
+        color: red
+    }
+   P  { color: blue}
+   -->
+</STYLE>
+
+<STYLE type="text/css">
+OL.withroman { list-style-type: lower-roman }
+</STYLE>
+
+</head>
+
+<!-- this is a comment -->
+<!-- and so is this one,
+    which occupies more than one line -->
+
+<body>
+
+<h1>HTML4 examples</h1>
+
+<UL>
+<LI><P> ...list item 1...
+<LI><P> ...list item 2...
+</UL>
+
+<P>This is the first paragraph.
+
+Here’s a photo of <A href="http://example.com/neatstuff.gif" title="Me scuba diving">
+me scuba diving last summer
+</A>
+</P>
+
+<DIV>
+<P>This is the paragraph.
+</DIV>
+
+<H1 id="section1">
+This is an identified heading thanks to the id attribute
+</H1>
+
+<P id="myparagraph"> This is a uniquely named paragraph.</P>
+<P id="yourparagraph"> This is also a uniquely named paragraph.</P>
+
+<!-- English messages -->
+<P><SPAN id="msg1" class="info" lang="en">Variable declared twice</SPAN>
+<P><SPAN id="msg2" class="warning" lang="en">Undeclared variable</SPAN>
+<P><SPAN id="msg3" class="error" lang="en">Bad syntax for variable name</SPAN>
+
+<PRE class="example" id="example-1">
+printf ("hello world!");
+</PRE>
+
+<!-- Example of data from the client database: -->
+<!-- Name: Stephane Boyera, Tel: (000) 000-0000, Email: fred.bloggs@example.net -->
+
+<DIV id="client-boyera" class="client">
+<P><SPAN class="client-title">Client information:</SPAN>
+<TABLE class="client-data">
+<TR><TH>Last name:<TD>Boyera</TR>
+<TR><TH>First name:<TD>Stephane</TR>
+<TR><TH>Tel:<TD>(212) 555-1212</TR>
+<TR><TH>Email:<TD>sb@example.org</TR>
+</TABLE>
+</DIV>
+
+<DIV id="client-lafon" class="client">
+<P><SPAN class="client-title">Client information:</SPAN>
+<TABLE class="client-data">
+<TR><TH>Last name:<TD>Lafon</TR>
+ <TR><TH>First name:<TD>Yves</TR>
+<TR><TH>Tel:<TD>(617) 555-1212</TR>
+<TR><TH>Email:<TD>yves@example.com</TR>
+</TABLE>
+</DIV>
+
+<P>aaaaaaaaa<DIV>bbbbbbbbb</DIV><DIV>ccccc<P>ccccc</DIV>
+
+<DIV class="section" id="forest-elephants" >
+<H1>Forest elephants</H1>
+<P>In this section, we discuss the lesser known forest elephants.
+...this section continues...
+<DIV class="subsection" id="forest-habitat" >
+<H2>Habitat</H2>
+<P>Forest elephants do not live in trees but among them.
+...this subsection continues...
+</DIV>
+</DIV>
+
+<ADDRESS>
+<A href="index.html">Dave Raggett</A>,
+<A href="index.html">Arnaud Le Hors</A>,
+contact persons for the
+<A href="index.html">W3C HTML Activity</A>
+<BR>
+$Date: 1999/08/19 23:31:05 $
+</ADDRESS>
+
+<P><Q lang="en">Her super-powers were the result of drinking too much &gamma;-irradiated guinness,</Q> he explained.</P>
+
+<Q lang="he" dir="rtl">...a Hebrew quotation...</Q>
+
+<P dir="rtl">...right-to-left text...</P>
+
+<PRE>
+<BDO dir="LTR">english1 2WERBEH english3</BDO>
+<BDO dir="LTR">4WERBEH english5 6WERBEH</BDO>
+</PRE>
+
+As <CITE>Harry S. Truman</CITE> said, <Q lang="en-us">The buck stops here.</Q>
+More information can be found in <CITE>[ISO-0000]</CITE>.
+Please refer to the following reference number in future correspondence: <STRONG>1-234-55</STRONG>
+
+
+<P>
+<ABBR title="World Wide Web">WWW</ABBR>
+<ABBR lang="fr" title="Soci&eacute;t&eacute; Nationale des Chemins de Fer">SNCF</ABBR>
+<ABBR lang="es" title="Do&ntilde;a">Do&ntilde;a</ABBR>
+<ABBR title="Abbreviation">abbr.</ABBR>
+</P>
+
+<BLOCKQUOTE cite="http://www.example.com/tolkien/twotowers.html">
+<P>They went in single file, running like hounds on a strong scent,
+and an eager light was in their eyes. Nearly due west the broad
+swath of the marching Orcs tramped its ugly slot; the sweet grass
+of Rohan had been bruised and blackened as they passed.</P>
+</BLOCKQUOTE>
+
+<p>
+John said, <Q lang="en-us">I saw Lucy at lunch, she told me
+<Q lang="en-us">Mary wants you
+to get some ice cream on your way home.</Q> I think I will get
+some at Ben and Jerry’s, on Gloucester Road.</Q>
+</p>
+
+<p>
+ H<sub>2</sub>O
+E = mc<sup>2</sup>
+<SPAN lang="fr">M<sup>lle</sup> Dupont</SPAN>
+</p>
+
+<PRE>
+       Higher still and higher
+         From the earth thou springest
+       Like a cloud of fire;
+         The blue deep thou wingest,
+And singing still dost soar, and soaring ever singest.
+</PRE>
+
+<p>
+At the same time, there began to take form a system of numbering,  the calendar, hieroglyphic writing, and a technically advanced  art, all of which later influenced other peoples.
+  Within the framework of this gradual evolution or cultural  progress the Preclassic horizon has been divided into Lower,  Middle and Upper periods, to which can be added a transitional  or Protoclassic period with several features that would later  distinguish the emerging civilizations of Mesoamerica.
+</p>
+
+<P>
+A Sheriff can employ <DEL>3</DEL><INS>5</INS> deputies.
+</P>
+
+<INS datetime="1994-11-05T08:15:30-05:00"
+cite="http://www.foo.org/mydoc/comments.html">
+Furthermore, the latest figures from the marketing department
+suggest that such practice is on the rise.
+</INS>
+
+<INS datetime="1994-11-05T08:15:30-05:00"
+        title="Changed as a result of Steve B’s comments in meeting.">
+Furthermore, the latest figures from the marketing department
+suggest that such practice is on the rise.
+</INS>
+
+<UL>
+<LI>Unordered information.
+<LI>Ordered information.
+<LI>Definitions.
+</UL>
+
+<DL>
+<DT><STRONG>Lower cost</STRONG>
+<DD>The new version of this product costs significantly less than the previous one!
+<DT><STRONG>Easier to use</STRONG>
+<DD>We’ve changed the product so that it’s much easier to use!
+<DT><STRONG>Safe for kids</STRONG>
+<DD>You can leave your kids alone in a room with this product and they won’t get hurt (not a guarantee).
+</DL>
+
+<UL>
+<LI> ... first list item...
+<LI> ... second list item...
+...
+</UL>
+
+<ol>
+<li value="30"> makes this list item number 30.
+<li value="40"> makes this list item number 40.
+<li> makes this list item number 41.
+</ol>
+
+<DL>
+  <DT>Dweeb
+  <DD>young excitable person who may mature
+    into a <EM>Nerd</EM> or <EM>Geek</EM>
+
+  <DT>Hacker
+  <DD>a clever programmer
+
+  <DT>Nerd
+  <DD>technically bright but socially inept person
+
+</DL>
+
+<DL>
+   <DT>Center
+   <DT>Centre
+   <DD> A point equidistant from all points
+              on the surface of a sphere.
+   <DD> In some field sports, the player who
+              holds the middle position on the field, court,
+              or forward line.
+</DL>
+
+<OL class="withroman">
+<LI> Step one ...
+<LI> Step two ...
+</OL>
+
+<TABLE border="1"
+          summary="This table gives some statistics about fruit
+                   flies: average height and weight, and percentage
+                   with red eyes (for both males and females).">
+<CAPTION><EM>A test table with merged cells</EM></CAPTION>
+<TR><TH rowspan="2"><TH colspan="2">Average
+    <TH rowspan="2">Red<BR>eyes
+<TR><TH>height<TH>weight
+<TR><TH>Males<TD>1.9<TD>0.003<TD>40%
+<TR><TH>Females<TD>1.7<TD>0.002<TD>43%
+</TABLE>
+
+<TABLE>
+<THEAD>
+     <TR> ...header information...
+</THEAD>
+<TFOOT>
+     <TR> ...footer information...
+</TFOOT>
+<TBODY>
+     <TR> ...first row of block one data...
+     <TR> ...second row of block one data...
+</TBODY>
+<TBODY>
+     <TR> ...first row of block two data...
+     <TR> ...second row of block two data...
+     <TR> ...third row of block two data...
+</TBODY>
+</TABLE>
+
+<COLGROUP span="40" width="20">
+</COLGROUP>
+
+<COLGROUP>
+      <COL width="20">
+      <COL width="20">
+      ...a total of forty COL elements...
+</COLGROUP>
+
+ <COLGROUP width="20">
+      <COL span="39">
+      <COL id="format-me-specially">
+</COLGROUP>
+
+<TABLE>
+<COLGROUP span="10" width="50">
+<COLGROUP span="5" width="0*">
+<THEAD>
+<TR><TD> ...
+</TABLE>
+
+<TABLE> <COLGROUP span="3"></COLGROUP> <TR><TD> ... ...rows... </TABLE>
+<TABLE> <COLGROUP> <COL> <COL span="2"> </COLGROUP> <TR><TD> ... ...rows... </TABLE>
+<TABLE> <COLGROUP> <COL> </COLGROUP> <COLGROUP span="2"> <TR><TD> ... ...rows... </TABLE>
+<TABLE> <TR>  <TD><TD><TD> </TR> </TABLE>
+
+<TABLE>
+<COLGROUP>
+   <COL width="30">
+<COLGROUP>
+   <COL width="30">
+   <COL width="0*">
+   <COL width="2*">
+<COLGROUP align="center">
+   <COL width="1*">
+   <COL width="3*" align="char" char=":">
+<THEAD>
+<TR><TD> ...
+...rows...
+</TABLE>
+
+<TABLE width="200">
+<COLGROUP span="10" width="15">
+<COLGROUP width="*">
+   <COL id="penultimate-column">
+   <COL id="last-column">
+<THEAD>
+<TR><TD> ...
+...rows...
+</TABLE>
+
+<TABLE summary="This table charts the number of cups
+                   of coffee consumed by each senator, the type
+                    of coffee (decaf or regular), and whether
+                    taken with sugar.">
+<CAPTION>Cups of coffee consumed by each senator</CAPTION>
+<TR> ...A header row...
+<TR> ...First row of data...
+<TR> ...Second row of data...
+...the rest of the table...
+</TABLE>
+
+<TABLE summary="This table charts the number of cups
+                   of coffee consumed by each senator, the type
+                    of coffee (decaf or regular), and whether
+                    taken with sugar.">
+<CAPTION>Cups of coffee consumed by each senator</CAPTION>
+<TR>
+   <TH>Name</TH>
+   <TH>Cups</TH>
+   <TH>Type of Coffee</TH>
+   <TH>Sugar?</TH>
+<TR>
+   <TD>T. Sexton</TD>
+   <TD>10</TD>
+   <TD>Espresso</TD>
+   <TD>No</TD>
+<TR>
+   <TD>J. Dinnen</TD>
+   <TD>5</TD>
+   <TD>Decaf</TD>
+   <TD>Yes</TD>
+</TABLE>
+
+<TABLE border="1">
+<CAPTION>Cups of coffee consumed by each senator</CAPTION>
+<TR><TH>Name<TH>Cups<TH>Type of Coffee<TH>Sugar?
+<TR><TD>T. Sexton<TD>10<TD>Espresso<TD>No
+<TR><TD>J. Dinnen<TD>5<TD>Decaf<TD>Yes
+<TR><TD>A. Soria<TD colspan="3"><em>Not available</em>
+</TABLE>
+
+<TABLE border="1">
+<TR><TD>1 <TD rowspan="2">2 <TD>3
+<TR><TD>4 <TD>6
+<TR><TD>7 <TD>8 <TD>9
+</TABLE>
+
+<TABLE border="1">
+<TR><TD>1 <TD>2 <TD>3
+<TR><TD colspan="2">4 <TD>6
+<TR><TD>7 <TD>8 <TD>9
+</TABLE>
+
+<TABLE border="1">
+<TR><TD>1 <TD>2 <TD>3
+<TR><TD>4 <TD rowspan="2">5 <TD>6
+<TR><TD colspan="2">7 <TD>9
+</TABLE>
+
+<TABLE border="1"
+        summary="This table charts the number of cups
+                of coffee consumed by each senator, the type
+                 of coffee (decaf or regular), and whether
+                 taken with sugar.">
+<CAPTION>Cups of coffee consumed by each senator</CAPTION>
+<TR>
+   <TH id="t1">Name</TH>
+   <TH id="t2">Cups</TH>
+   <TH id="t3" abbr="Type">Type of Coffee</TH>
+   <TH id="t4">Sugar?</TH>
+<TR>
+   <TD headers="t1">T. Sexton</TD>
+   <TD headers="t2">10</TD>
+   <TD headers="t3">Espresso</TD>
+   <TD headers="t4">No</TD>
+<TR>
+   <TD headers="t1">J. Dinnen</TD>
+   <TD headers="t2">5</TD>
+   <TD headers="t3">Decaf</TD>
+   <TD headers="t4">Yes</TD>
+</TABLE>
+
+<TABLE border="1" cellpadding="5" cellspacing="2"
+  summary="History courses offered in the community of
+           Bath arranged by course name, tutor, summary,
+            code, and fee">
+  <TR>
+    <TH colspan="5" scope="colgroup">Community Courses -- Bath Autumn 1997</TH>
+  </TR>
+  <TR>
+    <TH scope="col" abbr="Name">Course Name</TH>
+    <TH scope="col" abbr="Tutor">Course Tutor</TH>
+    <TH scope="col">Summary</TH>
+    <TH scope="col">Code</TH>
+    <TH scope="col">Fee</TH>
+  </TR>
+  <TR>
+    <TD scope="row">After the Civil War</TD>
+ <TD>Dr. John Wroughton</TD>
+    <TD>
+       The course will examine the turbulent years in England
+       after 1646. <EM>6 weekly meetings starting Monday 13th
+      October.</EM>
+    </TD>
+    <TD>H27</TD>
+    <TD>&pound;32</TD>
+  </TR>
+  <TR>
+    <TD scope="row">An Introduction to Anglo-Saxon England</TD>
+    <TD>Mark Cottle</TD>
+    <TD>
+       One day course introducing the early medieval
+       period reconstruction the Anglo-Saxons and
+       their society. <EM>Saturday 18th October.</EM>
+    </TD>
+    <TD>H28</TD>
+    <TD>&pound;18</TD>
+  </TR>
+  <TR>
+    <TD scope="row">The Glory that was Greece</TD>
+    <TD>Valerie Lorenz</TD>
+    <TD>
+     Birthplace of democracy, philosophy, heartland of theater, home of
+     argument. The Romans may have done it but the Greeks did it
+    first. <EM>Saturday day school 25th October 1997</EM>
+    </TD>
+    <TD>H30</TD>
+    <TD>&pound;18</TD>
+  </TR>
+</TABLE>
+
+<TABLE border="1"
+          summary="This table summarizes travel expenses
+                   incurred during August trips to
+                   San Jose and Seattle">
+ <CAPTION>
+  Travel Expense Report
+ </CAPTION> <TR>
+  <TH></TH>
+  <TH id="a2" axis="expenses">Meals</TH>
+  <TH id="a3" axis="expenses">Hotels</TH>
+  <TH id="a4" axis="expenses">Transport</TH>
+  <TD>subtotals</TD> </TR> <TR>
+  <TH id="a6" axis="location">San Jose</TH>
+  <TH></TH>
+  <TH></TH>
+  <TH></TH>
+  <TD></TD> </TR> <TR>
+  <TD id="a7" axis="date">25-Aug-97</TD>
+  <TD headers="a6 a7 a2">37.74</TD>
+  <TD headers="a6 a7 a3">112.00</TD>
+  <TD headers="a6 a7 a4">45.00</TD>
+ <TD></TD> </TR> <TR>
+  <TD id="a8" axis="date">26-Aug-97</TD>
+  <TD headers="a6 a8 a2">27.28</TD>
+  <TD headers="a6 a8 a3">112.00</TD>
+  <TD headers="a6 a8 a4">45.00</TD>
+  <TD></TD> </TR> <TR>
+  <TD>subtotals</TD>
+  <TD>65.02</TD>
+  <TD>224.00</TD>
+  <TD>90.00</TD>
+  <TD>379.02</TD> </TR> <TR>
+  <TH id="a10" axis="location">Seattle</TH>
+  <TH></TH>
+  <TH></TH>
+  <TH></TH>
+  <TD></TD> </TR> <TR>
+  <TD id="a11" axis="date">27-Aug-97</TD>
+  <TD headers="a10 a11 a2">96.25</TD>
+  <TD headers="a10 a11 a3">109.00</TD>
+  <TD headers="a10 a11 a4">36.00</TD>
+  <TD></TD> </TR> <TR>
+  <TD id="a12" axis="date">28-Aug-97</TD>
+  <TD headers="a10 a12 a2">35.00</TD>
+  <TD headers="a10 a12 a3">109.00</TD>
+  <TD headers="a10 a12 a4">36.00</TD>
+  <TD></TD> </TR> <TR>
+  <TD>subtotals</TD>
+  <TD>131.25</TD>
+  <TD>218.00</TD>
+  <TD>72.00</TD>
+  <TD>421.25</TD> </TR> <TR>
+  <TH>Totals</TH>
+  <TD>196.27</TD>
+  <TD>442.00</TD>
+  <TD>162.00</TD>
+  <TD>800.27</TD> </TR>
+</TABLE>
+
+<TABLE border="2" frame="hsides" rules="groups"
+          summary="Code page support in different versions
+                   of MS Windows.">
+ <CAPTION>CODE-PAGE SUPPORT IN MICROSOFT WINDOWS</CAPTION>
+ <COLGROUP align="center"> <COLGROUP align="left">
+ <COLGROUP align="center" span="2"> <COLGROUP align="center" span="3">
+ <THEAD valign="top"> <TR>
+<TH>Code-Page<BR>ID
+<TH>Name
+<TH>ACP
+<TH>OEMCP
+<TH>Windows<BR>NT 3.1
+<TH>Windows<BR>NT 3.51
+<TH>Windows<BR>95
+<TBODY>
+<TR><TD>1200<TD>Unicode (BMP of ISO/IEC-10646)<TD><TD><TD>X<TD>X<TD>*
+<TR><TD>1250<TD>Windows 3.1 Eastern European<TD>X<TD><TD>X<TD>X<TD>X
+<TR><TD>1251<TD>Windows 3.1 Cyrillic<TD>X<TD><TD>X<TD>X<TD>X
+<TR><TD>1252<TD>Windows 3.1 US (ANSI)<TD>X<TD><TD>X<TD>X<TD>X
+<TR><TD>1253<TD>Windows 3.1 Greek<TD>X<TD><TD>X<TD>X<TD>X
+<TR><TD>1254<TD>Windows 3.1 Turkish<TD>X<TD><TD>X<TD>X<TD>X
+<TR><TD>1255<TD>Hebrew<TD>X<TD><TD><TD><TD>X
+<TR><TD>1256<TD>Arabic<TD>X<TD><TD><TD><TD>X
+<TR><TD>1257<TD>Baltic<TD>X<TD><TD><TD><TD>X
+<TR><TD>1361<TD>Korean (Johab)<TD>X<TD><TD><TD>**<TD>X
+<TBODY>
+<TR><TD>437<TD>MS-DOS United States<TD><TD>X<TD>X<TD>X<TD>X
+<TR><TD>708<TD>Arabic (ASMO 708)<TD><TD>X<TD><TD><TD>X
+<TR><TD>709<TD>Arabic (ASMO 449+, BCON V4)<TD><TD>X<TD><TD><TD>X
+<TR><TD>710<TD>Arabic (Transparent Arabic)<TD><TD>X<TD><TD><TD>X
+<TR><TD>720<TD>Arabic (Transparent ASMO)<TD><TD>X<TD><TD><TD>X
+</TABLE>
+
+<H1>Table of Contents</H1>
+<P><A href="#section1">Introduction</A><BR>
+<A href="#section2">Some background</A><BR>
+<A href="#section2.1">On a more personal note</A><BR>
+ ...the rest of the table of contents...
+ ...the document body...
+<H2 id="section1">Introduction</H2>
+ ...section 1...
+<H2 id="section2">Some background</H2>
+ ...section 2...
+<H3 id="section2.1">On a more personal note</H3>
+ ...section 2.1...
+
+<p>
+You may read more about this in <A href="#section2">Section Two</A>.
+...later in the document
+</p>
+
+<H2 id="section2">Section Two</H2>
+...later in the document
+
+<P>Please refer to <A href="#section2">Section Two</A>
+above for more details.
+</P>
+
+<P>                 <!-- First, try the Python applet -->
+<OBJECT title="The Earth as seen from space"
+         classid="http://www.example.com/TheEarth.py">
+                    <!-- Else, try the MPEG video -->
+  <OBJECT data="TheEarth.mpeg" type="video/mpeg">
+                    <!-- Else, try the GIF image -->
+    <OBJECT data="TheEarth.gif" type="image/gif">
+                    <!-- Else render the text -->
+     The <STRONG>Earth</STRONG> as seen from space.
+    </OBJECT>
+  </OBJECT>
+</OBJECT>
+
+<OBJECT id="clock1"
+        classid="clsid:663C8FEF-1EF9-11CF-A3DB-080036F12502"
+        data="data:application/x-oleobject;base64, ...base64 data...">
+    A clock.
+</OBJECT>
+
+<P>
+<OBJECT declare
+     id="tribune"
+     type="application/x-webfont"
+     data="tribune.gif">
+ </OBJECT>
+ ...view the poem in KublaKhan.txt here...
+ <P>
+<OBJECT classid="http://foo.example.com/poem_viewer"
+            data="KublaKhan.txt">
+<PARAM name="font" valuetype="object" value="#tribune">
+<P>You’re missing a really cool poem viewer ...
+ </OBJECT>
+
+<OBJECT codetype="application/java"
+        classid="AudioItem"
+         width="15" height="15">
+<PARAM name="snd" value="Hello.au|Welcome.au">
+ Java applet that plays a welcoming sound.
+</OBJECT>
+
+ <P><OBJECT data="navbar1.gif" type="image/gif" usemap="#map1">
+     <MAP name="map1">
+       <P>Navigate the site:
+       <A href="guide.html" shape="rect" coords="0,0,118,28">Access Guide</a> |
+       <A href="shortcut.html" shape="rect" coords="118,0,184,28">Go</A> |
+       <A href="search.html" shape="circle" coords="184,200,60">Search</A> |
+       <A href="top10.html" shape="poly" coords="276,0,276,28,100,200,50,50,276,0">Top Ten</A>
+     </MAP>
+   </OBJECT>
+</P>
+
+<P><OBJECT data="navbar1.gif" type="image/gif" usemap="#map1">
+   <P>This is a navigation bar.
+   </OBJECT>
+<MAP name="map1">
+ <AREA href="guide.html"
+           alt="Access Guide"
+           shape="rect"
+           coords="0,0,118,28">
+<AREA href="search.html"
+           alt="Search"
+           shape="rect"
+           coords="184,0,276,28">
+<AREA href="shortcut.html"
+           alt="Go"
+           shape="circle"
+          coords="184,200,60">
+<AREA href="top10.html"
+           alt="Top Ten"
+           shape="poly"
+           coords="276,0,276,28,100,200,50,50,276,0">
+</MAP>
+
+<P style="font-size: 12pt; color: fuchsia">Aren’t style sheets wonderful?
+
+
+<H1 class="myclass"> This H1 is not affected </H1>
+<H1 id="myid"> This H1 is affected by style </H1>
+<H1> This H1 is not affected </H1>
+
+<DIV class="Abstract">
+   <P>The Chieftain product range is our market winner for
+     the coming year. This report sets out how to position
+     Chieftain against competing products.
+   <P>Chieftain replaces the Commander range, which will
+     remain on the price list until further notice.
+</DIV>
+
+<P><b>bold</b>,
+<i>italic</i>, <b><i>bold italic</i></b>, <tt>teletype text</tt>, and
+<big>big</big> and <small>small</small> text.</P>
+
+<P>You're doing great. Now on to
+    <A href="html4-frameset.html" target="third">slide 3.</A>
+</P>
+
+<IFRAME src="index.html" width="400" height="500"
+             scrolling="auto" frameborder="1">
+  [Your user agent does not support frames or is currently configured
+  not to display frames. However, you may visit
+  <A href="index.html">the related document.</A>]
+</IFRAME>
+
+ <FORM action="http://somesite.com/prog/adduser" method="post">
+    <P>
+    <LABEL for="firstname">First name: </LABEL>
+              <INPUT type="text" id="firstname"><BR>
+    <LABEL for="lastname">Last name: </LABEL>
+              <INPUT type="text" id="lastname"><BR>
+    <LABEL for="email">email: </LABEL>
+              <INPUT type="text" id="email"><BR>
+    <INPUT type="radio" name="sex" value="Male"> Male<BR>
+    <INPUT type="radio" name="sex" value="Female"> Female<BR>
+    <INPUT type="submit" value="Send"> <INPUT type="reset">
+    </P>
+</FORM>
+
+ <FORM action="http://somesite.com/prog/adduser" method="post">
+    <P>
+    First name: <INPUT type="text" name="firstname"><BR>
+    Last name: <INPUT type="text" name="lastname"><BR>
+    email: <INPUT type="text" name="email"><BR>
+    <INPUT type="radio" name="sex" value="Male"> Male<BR>
+    <INPUT type="radio" name="sex" value="Female"> Female<BR>
+    <BUTTON name="submit" value="submit" type="submit">
+    Send<IMG src="/icons/wow.gif" alt="wow"></BUTTON>
+    <BUTTON name="reset" type="reset">
+    Reset<IMG src="/icons/oops.gif" alt="oops"></BUTTON>
+    </P>
+</FORM>
+
+<FORM action="http://somesite.com/prog/someprog" method="post">
+<P>
+<SELECT name="ComOS">
+     <OPTGROUP label="PortMaster 3">
+       <OPTION label="3.7.1" value="pm3_3.7.1">PortMaster 3 with ComOS 3.7.1
+       <OPTION label="3.7" value="pm3_3.7">PortMaster 3 with ComOS 3.7
+       <OPTION label="3.5" value="pm3_3.5">PortMaster 3 with ComOS 3.5
+     </OPTGROUP>
+     <OPTGROUP label="PortMaster 2">
+       <OPTION label="3.7" value="pm2_3.7">PortMaster 2 with ComOS 3.7
+       <OPTION label="3.5" value="pm2_3.5">PortMaster 2 with ComOS 3.5
+     </OPTGROUP>
+     <OPTGROUP label="IRX">
+       <OPTION label="3.7R" value="IRX_3.7R">IRX with ComOS 3.7R
+       <OPTION label="3.5R" value="IRX_3.5R">IRX with ComOS 3.5R
+     </OPTGROUP>
+</SELECT>
+</FORM>
+
+<FORM action="http://somesite.com/prog/text-read" method="post">
+   <P>
+   <TEXTAREA name="thetext" rows="20" cols="80">
+   First line of initial text.
+   Second line of initial text.
+   </TEXTAREA>
+   <INPUT type="submit" value="Send"><INPUT type="reset">
+   </P>
+</FORM>
+
+<FORM action="..." method="post">
+ <P>Enter your search phrase:
+ <INPUT type="text"></P>
+</FORM>
+
+<FORM action="..." method="post">
+<P>
+<LABEL>
+   First Name
+   <INPUT type="text" name="firstname">
+</LABEL>
+<LABEL>
+   <INPUT type="text" name="lastname">
+   Last Name
+</LABEL>
+</P>
+</FORM>
+
+<FORM action="..." method="post">
+ <P>
+ <FIELDSET>
+  <LEGEND>Personal Information</LEGEND>
+  Last Name: <INPUT name="personal_lastname" type="text" tabindex="1">
+  First Name: <INPUT name="personal_firstname" type="text" tabindex="2">
+  Address: <INPUT name="personal_address" type="text" tabindex="3">
+  ...more personal information...
+ </FIELDSET>
+ <FIELDSET>
+  <LEGEND>Medical History</LEGEND>
+  <INPUT name="history_illness"
+          type="checkbox"
+          value="Smallpox" tabindex="20"> Smallpox
+  <INPUT name="history_illness"
+          type="checkbox"
+          value="Mumps" tabindex="21"> Mumps
+  <INPUT name="history_illness"
+          type="checkbox"
+          value="Dizziness" tabindex="22"> Dizziness
+  <INPUT name="history_illness"
+          type="checkbox"
+          value="Sneezing" tabindex="23"> Sneezing
+  ...more medical history...
+ </FIELDSET>
+ <FIELDSET>
+  <LEGEND>Current Medication</LEGEND>
+  Are you currently taking any medication?
+   <INPUT name="medication_now"
+          type="radio"
+          value="Yes" tabindex="35">Yes
+  <INPUT name="medication_now"
+          type="radio"
+          value="No" tabindex="35">No
+  If you are currently taking medication, please indicate
+  it in the space below:  <TEXTAREA name="current_medication"
+             rows="20" cols="50"
+            tabindex="40">
+  </TEXTAREA>
+ </FIELDSET>
+</FORM>
+
+<P>Go to the <A tabindex="10" href="http://www.w3.org/">W3C Web site.</A>
+...some more...
+<BUTTON type="button" name="get-database"
+           tabindex="1" onclick="get-database">
+ Get the current database.
+</BUTTON>
+...some more...
+<FORM action="..." method="post">
+<P>
+<INPUT tabindex="1" type="text" name="field1">
+<INPUT tabindex="2" type="text" name="field2">
+<INPUT tabindex="3" type="submit" name="submit">
+<INPUT disabled name="fred" value="stone">
+</P>
+</FORM>
+
+<P><A accesskey="C"
+       rel="contents"
+      href="http://example.com/specification/contents.html">
+    Table of Contents</A>
+
+<INPUT NAME="num"
+    onchange="if (!checkNum(this.value, 1, 10)) { this.focus(); this.select(); } else { thanks() }"
+    VALUE="0">
+ <INPUT name="edit1" size="50">
+    <SCRIPT type="text/tcl">
+      proc edit1_changed {} {
+        if {[edit value] == abc} {
+          button1 enable 1
+        } else {
+          button1 enable 0
+        }
+      }
+      edit1 onChange edit1_changed
+</SCRIPT>
+<NOSCRIPT>
+<P>Access the <A href="http://example.com/data">data.</A>
+</NOSCRIPT>
+
+</body>
+</html>
