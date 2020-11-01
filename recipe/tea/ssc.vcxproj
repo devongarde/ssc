@@ -457,6 +457,14 @@
     <None Include="..\toast\link\link.spec" />
     <None Include="..\toast\link\subdir\target.html" />
     <None Include="..\toast\link\target.html" />
+    <None Include="..\toast\math\1\index.html" />
+    <None Include="..\toast\math\1\math.conf" />
+    <None Include="..\toast\math\1\math.spec" />
+    <None Include="..\toast\math\1\math1-example.html" />
+    <None Include="..\toast\math\1\math2-example.html" />
+    <None Include="..\toast\math\1\math3-example.html" />
+    <None Include="..\toast\math\1\math4-example.html" />
+    <None Include="..\toast\math\1\math5-example.html" />
     <None Include="..\toast\microdata\addendum\add.conf" />
     <None Include="..\toast\microdata\addendum\add.spec" />
     <None Include="..\toast\microdata\addendum\index.html" />
@@ -962,6 +970,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -988,10 +998,10 @@ $(ProjectDir)..\..\ssc-test -x $(ProjectDir)..\..\ssc.exe -v -f $(ProjectDir)..\
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <IntelJCCErratum>true</IntelJCCErratum>
-      <GuardEHContMetadata>true</GuardEHContMetadata>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -1021,6 +1031,8 @@ $(ProjectDir)..\..\ssc-test -x $(ProjectDir)..\..\ssc.exe -v -f $(ProjectDir)..\
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <ControlFlowGuard>false</ControlFlowGuard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -1050,6 +1062,7 @@ $(ProjectDir)..\..\ssc-test -x $(ProjectDir)..\..\ssc.exe -v -f $(ProjectDir)..\
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

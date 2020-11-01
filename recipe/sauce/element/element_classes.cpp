@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MATHSIZE    a_depth, WIDEHIGH
 #define MATHTABLE   a_align, a_alignmentscope, a_columnalign, a_columnlines, a_columnspacing, a_displaystyle, a_equalcolumns, a_equalrows, a_frame, a_framespacing, \
                     a_groupalign, a_rowalign, a_rowlines, a_rowspacing
-#define MATHDEFCOM  a_definition, MATHCOMMON
+#define MATHDEFCOM  a_definitionurl, MATHCOMMON
 
 #define SVGXY       a_x, a_y
 #define SVGDXY      a_dx, a_dy
@@ -302,7 +302,7 @@ element_init_t ei [] =
     { elem_flowroot, { COMMON54, a_unknown } },
     { elem_flowspan, { COMMON54, a_unknown } },
     { elem_flowtref, { COMMON54, a_unknown } },
-    { elem_fn, { a_definition, a_other, a_style, LANGCLASS3, a_unknown } },
+    { elem_fn, { a_definitionurl, a_other, a_style, LANGCLASS3, a_unknown } },
     { elem_font, { a_externalresourcesrequired, a_face, a_horizadvx, a_horizoriginx, a_horizoriginy, a_size, a_vertadvy, a_vertoriginx, a_vertoriginy, SVGPRES, COMMON54, a_unknown } },
     { elem_fontface, {  a_accentheight, a_alphabetic, a_ascent, a_bbox, a_capheight, a_descent, a_font_family, a_font_size, a_font_stretch, a_font_style,
                         a_font_variant, a_font_weight, a_hanging, a_ideographic, a_mathematical, a_overlineposition, a_overlinethickness, a_panose1,
@@ -516,7 +516,7 @@ element_init_t ei [] =
     { elem_removeeventlistener, { XHTML2, a_unknown } },
     { elem_render, { a_style, a_tag, a_unknown } },
     { elem_right, { a_unknown } },
-    { elem_root, { a_definition, a_other, a_style, LANGCLASS3, a_unknown } },
+    { elem_root, { a_definitionurl, a_other, a_style, LANGCLASS3, a_unknown } },
     { elem_row, { a_unknown } },
     { elem_rp, { COMMON54, a_unknown } },
     { elem_rt, { COMMON54, a_unknown } },

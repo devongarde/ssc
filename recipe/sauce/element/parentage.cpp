@@ -1577,6 +1577,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_and :
         case elem_annotation :
         case elem_annotation_xml :
+        case elem_bvar :
         case elem_condition :
         case elem_conjugate :
         case elem_cos :
@@ -1586,6 +1587,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_csc :
         case elem_csch :
         case elem_declare :
+        case elem_degree :
         case elem_determinant :
         case elem_diff :
         case elem_divide :
@@ -1607,6 +1609,8 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_limit :
         case elem_ln :
         case elem_log :
+        case elem_logbase :
+        case elem_lowlimit :
         case elem_lt :
         case elem_max :
         case elem_mean :
@@ -1646,6 +1650,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_times :
         case elem_transpose :
         case elem_union :
+        case elem_uplimit :
         case elem_variance :
         case elem_xor :
             return elem_apply;

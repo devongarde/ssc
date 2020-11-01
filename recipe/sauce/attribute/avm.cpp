@@ -317,7 +317,7 @@ struct hav_t
     { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_style }
 
 #define MATH1_DEFS_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_definition }, \
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_definitionurl }, \
     MATH1_STANDARD_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM)
 
 #define MATH1_FONT_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
@@ -1453,7 +1453,7 @@ hav_t havt [] =
     SVGx_PRES_ATTRIBUTES (elem_filter),
     STANDARD_HTML54_ATTRIBUTES (elem_filter),
 
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_fn, a_definition },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_fn, a_definitionurl },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_fn, a_other },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_fn, a_style },
     HTML23_CLID_ATTRIBUTES (elem_fn),
@@ -2048,7 +2048,7 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_altimg },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_alttext },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_baseline },
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_definition },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_definitionurl },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_height },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_macros },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_mode },
@@ -2492,7 +2492,7 @@ hav_t havt [] =
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_root, a_other },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_root, a_style },
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_root, a_definition },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_root, a_definitionurl },
     HTML3_CLID_ATTRIBUTES (elem_root),
 
     STANDARD_HTML54_ATTRIBUTES (elem_rp),

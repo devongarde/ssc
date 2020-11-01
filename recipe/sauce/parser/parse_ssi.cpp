@@ -119,6 +119,7 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                     arg = womble_time (ln, nits, c, gmtime (&t));
                     break; }
                 default : break; } }
+    nits.pick (nit_debug, es_debug, ec_ssi, "get_variable_value: ", quote (var), " == ", quote (arg));
     return arg; }
 
 bool validate_file (::std::string& ln, nitpick& nits, const directory& d, const ::std::string& f)
@@ -279,7 +280,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         res += ::boost::algorithm::to_upper_copy (i -> first) + " = " + i -> second + "\n";
     return res; }
 
-::std::string set_command (::std::string& ln, nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const vstr_t& args)
+::std::string set_command (::std::string& ln, nitpick& nits, const html_version& v, const directory& , ssi_compedium& c, const vstr_t& args)
 {   ::std::string var, value, arg;
     e_ssi_encoding dec = ssi_encoding_none, enc = ssi_encoding_none;
     for (auto s : args)
@@ -295,12 +296,12 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     {   set_ssi_context (ln, nits, es_error);
         nits.pick (nit_invalid_set, es_error, ec_ssi, "it is difficult to set the value of a variable without naming it"); }
     else
-    {   value = get_variable_value (ln, nits, v, d, c, value, false, true);
+    {   // value = get_variable_value (ln, nits, v, d, c, value, false, true);
         if (dec == ssi_encoding_url) value = decode (value);
         if (enc == ssi_encoding_url) value = sanitise (value);
         ustr_t::iterator i = c.var_.find (var);
         if (i == c.var_.end ())
-            c.var_.insert (ustr_t::value_type (var,  value));
+            c.var_.insert (ustr_t::value_type (var, value));
         else
             i -> second = value; }
 

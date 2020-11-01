@@ -154,7 +154,7 @@ microdata_structure schema_structure [] =
 
     { { 3, 5 }, { 0, 0 }, sch_bankaccount, sp_accountminimuminflow },
     { { 3, 5 }, { 0, 0 }, sch_bankaccount, sp_accountoverdraftlimit },
-    { { 3, 5 }, { 0, 0 }, sch_bankaccount, sp_backaccounttype },
+    { { 3, 5 }, { 0, 0 }, sch_bankaccount, sp_bankaccounttype },
 
     { { 3, 1 }, { 0, 0 }, sch_beddetails, sp_numberofbeds },
     { { 3, 1 }, { 0, 0 }, sch_beddetails, sp_typeofbed },

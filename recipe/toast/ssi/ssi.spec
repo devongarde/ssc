@@ -19,7 +19,7 @@ PASS ../toast/ssi/ssi-include.html
 
 PASS ../toast/ssi/ssi-vars.html
 2 naughty_lang
-25 unrecognised_value
+27 unrecognised_value
 
 PASS ../toast/ssi/ssi-printenv.html
 2 naughty_lang

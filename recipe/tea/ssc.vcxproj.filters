@@ -2718,6 +2718,30 @@
     <None Include="..\toast\HTML\1.0\index.html">
       <Filter>Toast\HTML\1.0</Filter>
     </None>
+    <None Include="..\toast\math\1\index.html">
+      <Filter>Toast\Math\1</Filter>
+    </None>
+    <None Include="..\toast\math\1\math.conf">
+      <Filter>Toast\Math\1</Filter>
+    </None>
+    <None Include="..\toast\math\1\math.spec">
+      <Filter>Toast\Math\1</Filter>
+    </None>
+    <None Include="..\toast\math\1\math1-example.html">
+      <Filter>Toast\Math\1</Filter>
+    </None>
+    <None Include="..\toast\math\1\math2-example.html">
+      <Filter>Toast\Math\1</Filter>
+    </None>
+    <None Include="..\toast\math\1\math3-example.html">
+      <Filter>Toast\Math\1</Filter>
+    </None>
+    <None Include="..\toast\math\1\math4-example.html">
+      <Filter>Toast\Math\1</Filter>
+    </None>
+    <None Include="..\toast\math\1\math5-example.html">
+      <Filter>Toast\Math\1</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">

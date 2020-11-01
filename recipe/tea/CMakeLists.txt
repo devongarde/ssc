@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.60 LANGUAGES CXX)
+project (ssc VERSION 0.0.61 LANGUAGES CXX)
 
 set (BOOST_ROOT ${BOOST})
 set (CMAKE_CXX_STANDARD 17)
@@ -13,12 +13,21 @@ set (S ${R}/sauce)
 set (T ${R}/toast)
 set (TT ${T}/ssc-test)
 
+# Debug / Release (https://riptutorial.com/cmake/example/26702/setting-a-release-debug-configuration)
+set (CMAKE_CONFIGURATION_TYPES "Debug;Release;MinSizeRel" CACHE STRING "Configs" FORCE)
+if (DEFINED CMAKE_BUILD_TYPE)
+  set_property (CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES})
+endif ()
+set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an installation path")
+set (CMAKE_DEBUG_POSTFIX "d")
+
+set (Boost_USE_STATIC_LIBS ON)
 find_package(Boost 1.71 REQUIRED COMPONENTS date_time filesystem program_options)
 
-# litter here, not the source directories
 add_executable (ssc-test)
 add_executable (ssc)
 
+# better to litter in one place (here) than in the source directories with an extra gadzillion files
 target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h)
 target_sources (ssc PRIVATE
     ${H}/attribute/attr.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h ${H}/attribute/avm.h ${H}/css/css.h ${H}/css/css_cache.h
@@ -62,20 +71,40 @@ target_sources (ssc PRIVATE
 target_include_directories (ssc-test PRIVATE ${H} ${BOOST})
 target_include_directories (ssc PRIVATE ${H} ${BOOST})
 
-target_compile_options (ssc-test PRIVATE -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wno-dangling-else -Wno-write-strings)
-target_compile_options (ssc PRIVATE -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wno-dangling-else -Wno-write-strings)
+target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
+target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
 
 if (UNIX)
-  message ("UNIX")
-  target_compile_options (ssc-test PRIVATE -DUNIX)
-  target_compile_options (ssc PRIVATE -DUNIX)
+  message ("unix")
+  target_compile_definitions (ssc-test PRIVATE UNIX)
+  target_compile_definitions (ssc PRIVATE UNIX)
+endif ()
+
+# -g -O0
+if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
+  message ("debug")
+  target_compile_definitions (ssc-test PRIVATE _DEBUG)
+  target_compile_definitions (ssc PRIVATE _DEBUG)
+  target_compile_options (ssc-test PRIVATE "-g;-O0")
+  target_compile_options (ssc PRIVATE "-g;-O0")
+else ()
+  message ("release")
+  target_compile_definitions (ssc-test PRIVATE NDEBUG)
+  target_compile_definitions (ssc PRIVATE NDEBUG)
+  if (${CMAKE_BUILD_TYPE} MATCHES "MinSizeRel")
+    target_compile_options (ssc-test PRIVATE "-Os")
+    target_compile_options (ssc PRIVATE "-Os")
+  else ()
+    target_compile_options (ssc-test PRIVATE "-O3")
+    target_compile_options (ssc PRIVATE "-O3")
+  endif ()
 endif ()
 
 if (${CMAKE_CXX_COMPILER_ID} MATCHES "AppleClang")
   if (${CMAKE_CXX_COMPILER_VERSION} STRLESS "11.0.0")
-    message ("FUDDYDUDDY")
-    target_compile_options (ssc-test PRIVATE -DFUDDYDUDDY)
-    target_compile_options (ssc PRIVATE -DFUDDYDUDDY)
+    message ("elderly")
+    target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
+    target_compile_definitions (ssc PRIVATE FUDDYDUDDY)
   endif ()
 endif ()
 
@@ -97,4 +126,3 @@ enable_testing ()
 
 add_test (NAME toasty_toast COMMAND ssc-test -d -i ${TT}/output.txt ${TT}/input.spec)
 add_test (NAME toast COMMAND ssc-test -v -f ${TT}/ssc.lst)
-
