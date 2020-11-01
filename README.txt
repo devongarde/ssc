@@ -1,4 +1,4 @@
-ssc 0.0.60
+ssc 0.0.61
 Static Site Checker
 
 (an opinionated HTML nitpicker
@@ -28,9 +28,9 @@ ssc analyses static HTML sites at source:
 - MathML 1
 - XHTML 1.0/1.1/2.0, -ish
 - broken links (requires curl)
-- server side includes
+- server side includes, mostly
 - schema.org microdata 2.x/3.x/4.0/5.0/6.0/7.x/8.0/9.0/10.0
-- microformats v1 & v2, as per microformats.org
+- microformats v1 & v2
 
 with opinions on:
 - standard english where dialect is required
@@ -59,11 +59,11 @@ analyse website based in directory
 
 To build & run:
 1. Set the environment variable SSCPATH to point to the ssc root directory (the one containing recipe)
-2. Build and install boost 1.71 or better (perhaps from boost.org)
-3. You may need to set the environment variable BOOST to point to the BOOST home directory
-4. EITHER build with CMake 3.10 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
-5. OR open recipe\tea\ssc.sln in Visual Studio 2019 under Windows then build 64bit release
-6. If necessary install curl (perhaps from curl.haxx.se)
+2. If need be download, build and install boost 1.71 or better (perhaps from boost.org)
+3. Set the environment variable BOOST to point to the BOOST home directory
+4. -EITHER- build with CMake 3.10 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
+5. -OR- open recipe\tea\ssc.sln in Visual Studio 2019 under Windows then build 64bit release
+6. If need be download, build and install curl (perhaps from curl.haxx.se)
 7. Gleefully run ssc
 
 
@@ -82,4 +82,4 @@ https://dylanharris.org/
 
 dylan harris
 ssc@dylanharris.org
-October 2020
+November 2020

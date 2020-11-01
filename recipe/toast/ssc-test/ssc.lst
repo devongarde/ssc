@@ -14,6 +14,7 @@
 ../toast/HTML/Plus/plus.spec
 ../toast/HTML/tags/tags.spec
 ../toast/link/link.spec
+../toast/math/1/math.spec
 ../toast/microdata/addendum/add.spec
 ../toast/microdata/basic/basic.spec
 ../toast/microdata/export/export.spec

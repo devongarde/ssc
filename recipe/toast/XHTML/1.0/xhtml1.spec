@@ -26,8 +26,8 @@ PASS ../toast/XHTML/1.0/parsing.xhtml
 
 PASS ../toast/XHTML/1.0/mathml-1.xhtml
 1 xhtml_1_0
-211 xhtml_enum_lc unrecognised_value
-238 xhtml_enum_lc unrecognised_value
+211 xhtml_enum_lc
+238 xhtml_enum_lc
 
 PASS ../toast/XHTML/1.0/math-example.xhtml
 1 xhtml_1_0

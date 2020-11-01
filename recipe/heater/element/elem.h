@@ -137,7 +137,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define EF_X_MATH           ( EF_M_PRESINCONTENT | EF_M_CONTENT | EF_M_CONTINPRES | EF_M_PRES )
 #define EF_M_CONTENTEXPR    ( EF_M_PRESINCONTENT | EF_M_CONTENT )
-#define EF_M_PRESEXPR       ( EF_M_PRESINCONTENT | EF_M_PRES )
+#define EF_M_PRESEXPR       ( EF_M_PRESINCONTENT | EF_M_CONTINPRES | EF_M_PRES )
 #define EF_M_MATH           ( EF_M_PRESINCONTENT | EF_M_CONTINPRES )
 
 #define EF_X2_FLOW          ( EF_X2_STRUCT | EF_HEAD | EF_X2_TEXT )

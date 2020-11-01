@@ -283,17 +283,17 @@ struct symbol_entry < e_charset > charset_symbol_table [] =
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_10367-box", cs_iso_10367_box },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_2033-1983", cs_iso_2033_1983 },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_5427", cs_iso_5427 },
-    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_5427:1981", cs_cs_iso_5427_1981 },
-    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_5428:1980", cs_cs_iso_5428_1980 },
-    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_646.basic:1983", cs_cs_iso_646_basic_1983 },
-    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_646.irv:1983", cs_cs_iso_646_irv_1983 },
+    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_5427:1981", cs_iso_5427_1981 },
+    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_5428:1980", cs_iso_5428_1980 },
+    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_646.basic:1983", cs_iso_646_basic_1983 },
+    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_646.irv:1983", cs_iso_646_irv_1983 },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_6937-2-25", cs_iso_6937_2_25 },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_6937-2-add", cs_iso_6937_2_add },
-    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_8859-3:1988", cs_cs_iso_8859_3_1988 },
-    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_8859-4:1988", cs_cs_iso_8859_4_1988 },
+    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_8859-3:1988", cs_iso_8859_3_1988 },
+    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_8859-4:1988", cs_iso_8859_4_1988 },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_8859-8-e", cs_iso_8859_8_e },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_8859-8-i", cs_iso_8859_8_i },
-    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_8859-9:1989", cs_cs_iso_8859_9_1989 },
+    { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_8859-9:1989", cs_iso_8859_9_1989 },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "iso_8859-supp", cs_iso_8859_supp },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "it", cs_it },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "jis_c6220-1969-jp", cs_jis_c6220_1969_jp },
@@ -455,6 +455,16 @@ struct symbol_entry < e_charset > charset_symbol_table [] =
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "windows-1258", cs_windows_1258 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "x-cp1258", cs_windows_1258 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "x-user-defined", cs_x_user_defined },
+
+    // MathML 1
+    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "axiom", cs_axiom },
+    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "maple", cs_maple },
+    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathematica", cs_mathematica },
+    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathml-content", cs_mathml_content },
+    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathml-presentation", cs_mathml_presentation },
+    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "openmath", cs_openmath },
+    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "tex", cs_tex },
+
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, nullptr, cs_illegal } };
 
 void charset_init (nitpick& nits)

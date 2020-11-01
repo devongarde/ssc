@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 3</title>
+</head>
+
+<body>
+
+<h1>math 3</h1>
+
+<math>
+<apply>
+<declare>
+  <ci> A </ci>
+  <vector>
+    <ci> a </ci>
+    <ci> b </ci>
+    <ci> c </ci>
+  </vector>
+ </declare>
+</apply>
+</math>
+
+<math>
+<apply><exists/>
+  <bvar><ci> x </ci></bvar>
+  <condition>
+    <reln><lt/>
+      <apply><power/>
+        <ci>x</ci>
+        <cn>5</cn>
+      </apply>
+      <cn>3</cn>
+    </reln>
+  </condition>
+</apply>
+</math>
+
+<math>
+<apply><forall/>
+  <bvar><ci>x</ci></bvar>
+  <bvar><ci>y</ci></bvar>
+  <condition>
+    <apply><and/>
+      <reln>
+        <lt/>
+        <apply><power/>
+          <ci>x</ci>
+          <ci>y</ci>
+        </apply>
+        <cn>1</cn>
+      </reln>
+      <reln>
+        <lt/>
+        <apply><power/>
+          <ci>y</ci>
+          <ci>x</ci>
+        </apply>
+        <apply><plus/>
+          <ci>y</ci>
+          <ci>x</ci>
+        </apply>
+      </reln>
+    </apply>
+  </condition>
+  <reln><lt/>
+     <ci> x </ci>
+     <apply>
+       <fn><ci> x </ci></fn>
+       <ci> y </ci>
+     </apply>
+  </reln>
+ </apply>
+</math>
+
+<math>
+<apply>
+  <exists/>
+  <bvar><ci> x </ci></bvar>
+  <condition>
+    <reln><lt/><ci>x</ci><cn>3</cn></reln>
+  </condition>
+  <reln>
+    <eq/>
+    <apply>
+      <power/><ci>x</ci><cn>2</cn>
+    </apply>
+    <cn>4</cn>
+  </reln>
+ </apply>
+</math>
+
+<math>
+<semantics>
+  <apply> <divide/>
+    <cn>123</cn>
+    <cn>456</cn>
+  </apply>
+  <annotation encoding="Mathematica">
+    N[123/456, 39]
+  </annotation>
+  <annotation encoding="TeX">
+    $0.269736842105263157894736842105263157894\ldots$
+  </annotation>
+  <annotation encoding="Maple">
+    evalf(123/456, 39);
+  </annotation>
+  <annotation-xml encoding="MathML-Presentation">
+    <mrow>
+      <mn> 0.269736842105263157894 </mn>
+      <mover accent='true'>
+        <mn> 736842105263157894 </mn>
+        <mo> &obar; </mo>
+      </mover>
+    </mrow>
+  </annotation-xml>
+  <annotation-xml encoding="OpenMath">
+    <OMA>..</OMA>
+  </annotation-xml>
+ </semantics>
+</math>
+
+<p>
+&pi;
+&ExponentialE;
+&ee;
+&ImaginaryI;
+&ii;
+&gamma;
+&infin;
+&infty;
+&true;
+&false;
+&NotANumber;
+&NaN;
+</p>
+
+<math>
+<apply other='display="scriptstyle"'>
+  <divide/>
+  <mn> 1 </mn>
+  <mi> x </mi>
+ </apply>
+</math>
+
+</body>
+</html>
+

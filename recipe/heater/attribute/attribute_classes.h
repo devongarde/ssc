@@ -191,7 +191,7 @@ typedef typed_attribute < t_decoding, a_decoding > attr_decoding;
 typedef typed_attribute < t_html_boolean, a_default > attr_default;
 typedef typed_attribute < t_defaultaction, a_defaultaction > attr_defaultaction;
 typedef typed_attribute < t_html_boolean, a_defer > attr_defer;
-typedef typed_attribute < t_url, a_definition > attr_definition;
+typedef typed_attribute < t_url, a_definitionurl > attr_definition;
 typedef typed_attribute < t_measure, a_depth > attr_depth;
 typedef typed_attribute < t_real, a_descent > attr_descent;
 typedef typed_attribute < t_real, a_diffuseconstant > attr_diffuse_constant;

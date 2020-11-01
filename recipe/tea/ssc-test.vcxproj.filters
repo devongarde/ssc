@@ -38,7 +38,7 @@
     <None Include="..\toast\ssc-test\input.spec">
       <Filter>toasty-toast</Filter>
     </None>
-    <None Include="..\toast\ssc-test\scc.lst">
+    <None Include="..\toast\ssc-test\ssc.lst">
       <Filter>toasty-toast</Filter>
     </None>
   </ItemGroup>

@@ -292,6 +292,7 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
         { "motorised", d_none, nullptr },
         { "neighbour", d_johnson, "1356" },
         { "optimise", d_none, nullptr },
+        { "organisation", d_none, nullptr },
         { "organiser", d_none, nullptr },
         { "organise", d_none, nullptr },
         { "paediatric", d_none, nullptr },
