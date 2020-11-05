@@ -294,6 +294,18 @@
     <Filter Include="Toast\XHTML\2.0">
       <UniqueIdentifier>{9aea2cd7-bc1c-43cb-9139-7f7c78dd3e42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tea">
+      <UniqueIdentifier>{f502dc84-5469-43e2-b6c3-5f854d2abfc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Type\lang">
+      <UniqueIdentifier>{e374c44a-ba93-4bfc-9dc0-131b8cbc66a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Type\Colour">
+      <UniqueIdentifier>{e10e397e-c235-4abc-a0fb-128af930b8e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Type\SGML">
+      <UniqueIdentifier>{1a9430e6-2f16-4dcb-8154-70c09666afa5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2742,6 +2754,81 @@
     <None Include="..\toast\math\1\math5-example.html">
       <Filter>Toast\Math\1</Filter>
     </None>
+    <None Include="..\toast\math\2\index.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math.conf">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math.spec">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math1-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math2-example.xhtml">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math3-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\microdata\schema-pqrs\softwareapplication.html">
+      <Filter>Toast\Microdata\Schema-PQRS</Filter>
+    </None>
+    <None Include="..\toast\type\lang\bad.html">
+      <Filter>Toast\Type\lang</Filter>
+    </None>
+    <None Include="..\toast\type\lang\good.html">
+      <Filter>Toast\Type\lang</Filter>
+    </None>
+    <None Include="..\toast\type\lang\index.html">
+      <Filter>Toast\Type\lang</Filter>
+    </None>
+    <None Include="..\toast\type\lang\lang.conf">
+      <Filter>Toast\Type\lang</Filter>
+    </None>
+    <None Include="..\toast\type\lang\lang.spec">
+      <Filter>Toast\Type\lang</Filter>
+    </None>
+    <None Include="..\toast\type\colour\bad.html">
+      <Filter>Toast\Type\Colour</Filter>
+    </None>
+    <None Include="..\toast\type\colour\colour.conf">
+      <Filter>Toast\Type\Colour</Filter>
+    </None>
+    <None Include="..\toast\type\colour\colour.spec">
+      <Filter>Toast\Type\Colour</Filter>
+    </None>
+    <None Include="..\toast\type\colour\good.html">
+      <Filter>Toast\Type\Colour</Filter>
+    </None>
+    <None Include="..\toast\type\colour\index.html">
+      <Filter>Toast\Type\Colour</Filter>
+    </None>
+    <None Include="..\toast\type\sgml\bad.html">
+      <Filter>Toast\Type\SGML</Filter>
+    </None>
+    <None Include="..\toast\type\sgml\good.html">
+      <Filter>Toast\Type\SGML</Filter>
+    </None>
+    <None Include="..\toast\type\sgml\index.html">
+      <Filter>Toast\Type\SGML</Filter>
+    </None>
+    <None Include="..\toast\type\sgml\sgml.conf">
+      <Filter>Toast\Type\SGML</Filter>
+    </None>
+    <None Include="..\toast\type\sgml\sgml.spec">
+      <Filter>Toast\Type\SGML</Filter>
+    </None>
+    <None Include="..\toast\type\colour\dubious.html">
+      <Filter>Toast\Type\Colour</Filter>
+    </None>
+    <None Include="..\toast\type\sgml\dubious.html">
+      <Filter>Toast\Type\SGML</Filter>
+    </None>
+    <None Include="..\toast\type\sgml\dubious2.html">
+      <Filter>Toast\Type\SGML</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -2823,7 +2910,15 @@
     </Text>
     <Text Include="..\..\LICENCE.txt" />
     <Text Include="..\..\LICENSE.txt" />
-    <Text Include="..\..\LICENSE_1_0.txt" />
     <Text Include="..\..\README.txt" />
+    <Text Include="CMakeLists.txt">
+      <Filter>Tea</Filter>
+    </Text>
+    <Text Include="README.txt">
+      <Filter>Tea</Filter>
+    </Text>
+    <Text Include="..\..\releasenotes.txt" />
+    <Text Include="..\..\build.txt" />
+    <Text Include="..\..\usage.txt" />
   </ItemGroup>
 </Project>

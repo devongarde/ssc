@@ -310,57 +310,79 @@ struct hav_t
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1x2 }, { HTML_UNDEF }, ELEM, a_writingmode }
 
 
-#define MATH1_STANDARD_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_class }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_id }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_other }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_style }
+#define MATH1_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_class }, \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_id }, \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_other }, \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_style }
 
-#define MATH1_DEFS_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_definitionurl }, \
-    MATH1_STANDARD_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM)
+#define MATH1_STANDARD_ATTRIBUTES(ELEM) \
+    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, 0)
 
-#define MATH1_FONT_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_colour }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_fontfamily }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_fontsize }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_fontstyle }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_fontweight }
+#define MATH1_DEFS_ATTRIBUTES_EX(ELEM, FLAGS) \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_definitionurl }, \
+    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
 
-#define MATH1_OPINFO_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_accent }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_form }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_fence }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_largeop }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_lspace }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_maxsize }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_minsize }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_movablelimits }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_rspace }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_separator }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_stretchy }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_symmetric }
+#define MATH1_DEFS_ATTRIBUTES(ELEM) \
+    MATH1_DEFS_ATTRIBUTES_EX (ELEM, 0)
 
-#define MATH1_SIZEINFO_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_depth }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_height }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_width }
+#define MATH1_FONT_ATTRIBUTES(ELEM) \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_colour }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontfamily }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontsize }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontstyle }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontweight }
 
-#define MATH1_TABLE_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_align }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_alignmentscope }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_columnalign }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_columnlines }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_columnspacing }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_equalcolumns }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_equalrows }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_frame }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_framespacing }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_groupalign }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_rowalign }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_rowlines }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_rowspacing }
+#define MATH1_OPINFO_ATTRIBUTES(ELEM) \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_accent }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_form }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fence }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_largeop }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_lspace }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_maxsize }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_minsize }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_movablelimits }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rspace }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_separator }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_stretchy }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_symmetric }
+
+#define MATH1_SIZEINFO_ATTRIBUTES(ELEM) \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_depth }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_height }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_width }
+
+#define MATH1_TABLE_ATTRIBUTES(ELEM) \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_align }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_alignmentscope }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnalign }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnlines }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnspacing }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_equalcolumns }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_equalrows }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_frame }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_framespacing }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_groupalign }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowalign }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowlines }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowspacing }
+
+#define MATH2_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
+    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_2 ) ), \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xlinkhref }, \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xref }
+
+#define MATH2_STANDARD_ATTRIBUTES(ELEM) \
+    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, 0)
+
+#define MATH2_STYLE_ATTRIBUTES(ELEM) \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, ELEM, a_mathsize }, \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, ELEM, a_mathvariant }
+
+
 
 #define XHTML1_STANDARD_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
     { { XHTML_1_1, 0, HE_RDF_1_0 }, { HTML_UNDEF }, ELEM, a_about }, \
@@ -685,7 +707,7 @@ hav_t havt [] =
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_above, a_sym },
 
-    MATH1_DEFS_ATTRIBUTES (elem_abs, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_abs),
 
     HTMLPLUS_ATTRIBUTES (elem_abstract),
 
@@ -735,7 +757,7 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_altglyphitem),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_altglyphitem),
 
-    MATH1_DEFS_ATTRIBUTES (elem_and, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_and),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_animate, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_animate, a_from },
@@ -795,10 +817,10 @@ hav_t havt [] =
     STANDARD_HTML_4_54_ATTRIBUTES (elem_animation),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_annotation, a_encoding },
-    MATH1_STANDARD_ATTRIBUTES (elem_annotation, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_annotation),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_annotation_xml, a_encoding },
-    MATH1_STANDARD_ATTRIBUTES (elem_annotation_xml, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_annotation_xml),
 
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_align },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_alt },
@@ -816,13 +838,13 @@ hav_t havt [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_vspace },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_width },
 
-    MATH1_STANDARD_ATTRIBUTES (elem_apply, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_apply),
 
-    MATH1_DEFS_ATTRIBUTES (elem_arccos, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_arccos),
 
-    MATH1_DEFS_ATTRIBUTES (elem_arcsin, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_arcsin),
 
-    MATH1_DEFS_ATTRIBUTES (elem_arctan, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_arctan),
 
     { { HTML_2_0, HV_NOT30 | HV_RFC_1980 }, { HTML_UNDEF }, elem_area, a_alt },
     { { HTML_2_0, HV_RFC_1980 | HV_NOT30 | REQUIRED }, { HTML_UNDEF }, elem_area, a_coords },
@@ -982,7 +1004,7 @@ hav_t havt [] =
     HTML4_FORM_ATTRIBUTES (elem_button),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_button),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_bvar, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_bvar),
 
     HTMLPLUS_ATTRIBUTES (elem_byline),
 
@@ -1000,7 +1022,7 @@ hav_t havt [] =
     HTMLPLUS_ATTRIBUTES (elem_changed),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_ci, a_type },
-    MATH1_STANDARD_ATTRIBUTES (elem_ci, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_ci),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_circle, a_cx },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_circle, a_cy },
@@ -1029,7 +1051,7 @@ hav_t havt [] =
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_cn, a_base },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_cn, a_type },
-    MATH1_STANDARD_ATTRIBUTES (elem_cn, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_cn),
 
     HTMLPLUS_ATTRIBUTES (elem_code),
     HTML23_CLID_ATTRIBUTES (elem_code),
@@ -1065,9 +1087,9 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_colourprofile),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_colourprofile),
 
-    MATH1_DEFS_ATTRIBUTES (elem_compose, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_compose),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_condition, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_condition),
 
     { { MAJOR_5_0, MINOR_5_0 }, { MAJOR_5_0, MINOR_5_0 }, elem_command, a_checked },
     { { MAJOR_5_0, MINOR_5_0 }, { MAJOR_5_0, MINOR_5_0 }, elem_command, a_disabled },
@@ -1079,24 +1101,24 @@ hav_t havt [] =
     { { HTML_2_0 }, { HTML_4_01 }, elem_comment, a_data },
     HTML4_STANDARD_TSL_ATTRIBUTES (elem_comment, MAJOR_4_0, MINOR_4_0),
 
-    MATH1_DEFS_ATTRIBUTES (elem_conjugate, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_conjugate),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_content, a_select },
     STANDARD_HTML54_ATTRIBUTES (elem_content),
 
-    MATH1_DEFS_ATTRIBUTES (elem_cos, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_cos),
 
-    MATH1_DEFS_ATTRIBUTES (elem_cosh, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_cosh),
 
-    MATH1_DEFS_ATTRIBUTES (elem_cot, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_cot),
 
-    MATH1_DEFS_ATTRIBUTES (elem_coth, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_coth),
 
     HTML3_CLID_ATTRIBUTES (elem_credit),
 
-    MATH1_DEFS_ATTRIBUTES (elem_csc, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_csc),
 
-    MATH1_DEFS_ATTRIBUTES (elem_csch, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_csch),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_cursor, a_externalresourcesrequired },
     SVG10_XY_ATTRIBUTES (elem_cursor),
@@ -1120,7 +1142,7 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_declare, a_occurrence },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_declare, a_scope },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_declare, a_type },
-    MATH1_DEFS_ATTRIBUTES (elem_declare, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_declare),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_defs, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_defs, a_transform },
@@ -1130,7 +1152,7 @@ hav_t havt [] =
     SVGx_PRES_ATTRIBUTES (elem_defs),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_defs),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_degree, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_degree),
 
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_del, a_cite },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_del, a_datetime },
@@ -1144,7 +1166,7 @@ hav_t havt [] =
     { { HTML_5_1 }, { HTML_UNDEF }, elem_details, a_open },
     STANDARD_HTML_4_54_ATTRIBUTES (elem_details),
 
-    MATH1_DEFS_ATTRIBUTES (elem_determinant, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_determinant),
 
     HTMLPLUS_ATTRIBUTES (elem_dfn),
     HTML3_CLID_ATTRIBUTES (elem_dfn),
@@ -1155,7 +1177,7 @@ hav_t havt [] =
     { { HTML_5_2 }, { HTML_UNDEF }, elem_dialogue, a_open },
     STANDARD_HTML54_ATTRIBUTES (elem_dialogue),
 
-    MATH1_DEFS_ATTRIBUTES (elem_diff, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_diff),
 
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_dir, a_align },
     { { HTML_3_2 }, { MAJOR_3_0, MINOR_3_0 }, elem_dir, a_clear },
@@ -1179,7 +1201,7 @@ hav_t havt [] =
     HTML3_CLID_ATTRIBUTES (elem_div),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_div),
 
-    MATH1_DEFS_ATTRIBUTES (elem_divide, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_divide),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_dl, a_clear },
     { { HTML_1_0 }, { HTML_3_2 }, elem_dl, a_compact },
@@ -1221,13 +1243,13 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0, REJECT }, { HTML_UNDEF }, elem_embed, a_vspace },
     STANDARD_HTML54_ATTRIBUTES (elem_embed),
 
-    MATH1_DEFS_ATTRIBUTES (elem_eq, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_eq),
 
-    MATH1_DEFS_ATTRIBUTES (elem_exists, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_exists),
 
-    MATH1_DEFS_ATTRIBUTES (elem_exp, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_exp),
 
-    MATH1_DEFS_ATTRIBUTES (elem_factorial, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_factorial),
 
     // faux_doctype and faux_xml processed before getting here,
     // so no need to add corresponding attribute information
@@ -1529,7 +1551,7 @@ hav_t havt [] =
 
     HTMLPLUS_ATTRIBUTES (elem_footnote),
 
-    MATH1_DEFS_ATTRIBUTES (elem_forall, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_forall),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_foreignobject, a_externalresourcesrequired },
     SVG10_BOX_ATTRIBUTES (elem_foreignobject),
@@ -1588,9 +1610,9 @@ hav_t havt [] =
     SVGx_PRES_ATTRIBUTES (elem_g),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_g),
 
-    MATH1_DEFS_ATTRIBUTES (elem_gcd, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_gcd),
 
-    MATH1_DEFS_ATTRIBUTES (elem_geq, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_geq),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_glyph, a_arabicform },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_glyph, a_d },
@@ -1613,7 +1635,7 @@ hav_t havt [] =
     SVGx_PRES_ATTRIBUTES (elem_glyphref),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_glyphref),
 
-    MATH1_DEFS_ATTRIBUTES (elem_gt, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_gt),
 
     XHTML2_ATTRIBUTES (elem_h),
     STANDARD_H_ATTRIBUTES (elem_h1),
@@ -1677,7 +1699,7 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_i),
     STANDARD_HTML54_ATTRIBUTES (elem_i),
 
-    MATH1_DEFS_ATTRIBUTES (elem_ident, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_ident),
 
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_iframe, a_align },
     { { HTML_JUL20, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, elem_iframe, a_allow },
@@ -1766,7 +1788,7 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_img),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_img),
 
-    MATH1_DEFS_ATTRIBUTES (elem_implies, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_implies),
 
     { { HTML_2_0, HV_RFC_1867 | HV_NOT32 }, { HTML_UNDEF }, elem_input, a_accept },
     { { HTML_PLUS, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_input, a_align },
@@ -1828,14 +1850,14 @@ hav_t havt [] =
     HTML3_CLID_ATTRIBUTES (elem_ins),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_ins),
 
-    MATH1_DEFS_ATTRIBUTES (elem_int, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_int),
 
-    MATH1_DEFS_ATTRIBUTES (elem_intersect, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_intersect),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_interval, a_closure },
-    MATH1_STANDARD_ATTRIBUTES (elem_interval, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_interval),
 
-    MATH1_DEFS_ATTRIBUTES (elem_inverse, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_inverse),
 
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_isindex, a_class },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_isindex, a_dir },
@@ -1872,7 +1894,7 @@ hav_t havt [] =
     HTML3_CLID_ATTRIBUTES (elem_label),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_label),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_lambda, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_lambda),
 
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_above },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_background },
@@ -1895,7 +1917,7 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_legend, a_align },
     STANDARD_HTML_4_54_ATTRIBUTES (elem_legend),
 
-    MATH1_DEFS_ATTRIBUTES (elem_leq, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_leq),
 
     HTML3_CLID_ATTRIBUTES (elem_lh),
 
@@ -1911,7 +1933,7 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_li),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_li),
 
-    MATH1_DEFS_ATTRIBUTES (elem_limit, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_limit),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_line, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_line, a_x1 },
@@ -1972,31 +1994,34 @@ hav_t havt [] =
     STANDARD_HTML_4_54_ATTRIBUTES (elem_listener),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_list, a_order },
-    MATH1_STANDARD_ATTRIBUTES (elem_list, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_list),
 
     HTML23_CLID_ATTRIBUTES (elem_listing),
 
     HTMLPLUS_ATTRIBUTES (elem_lit),
 
-    MATH1_DEFS_ATTRIBUTES (elem_ln, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_ln),
 
-    MATH1_DEFS_ATTRIBUTES (elem_log, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_log),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_logbase, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_logbase),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_lowlimit, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_lowlimit),
 
-    MATH1_DEFS_ATTRIBUTES (elem_lt, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_lt),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_maction, a_actiontype },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_maction, a_selection },
-    MATH1_STANDARD_ATTRIBUTES (elem_maction, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_maction),
+    MATH2_STANDARD_ATTRIBUTES (elem_maction),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_maligngroup, a_groupalign },
-    MATH1_STANDARD_ATTRIBUTES (elem_maligngroup, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_maligngroup),
+    MATH2_STANDARD_ATTRIBUTES (elem_maligngroup),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_malignmark, a_edge },
-    MATH1_STANDARD_ATTRIBUTES (elem_malignmark, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_malignmark),
+    MATH2_STANDARD_ATTRIBUTES (elem_malignmark),
 
     STANDARD_HTML54_ATTRIBUTES (elem_main),
 
@@ -2060,17 +2085,18 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_xmlns },
     HTML3_CLID_ATTRIBUTES (elem_math),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_matrix, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_matrix),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_matrixrow, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_matrixrow),
 
-    MATH1_DEFS_ATTRIBUTES (elem_max, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_max),
 
-    MATH1_DEFS_ATTRIBUTES (elem_mean, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_mean),
 
-    MATH1_DEFS_ATTRIBUTES (elem_median, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_median),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_merror, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_menclose),
+    MATH2_STANDARD_ATTRIBUTES (elem_menclose),
 
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_menu, a_align },
     { { HTML_3_2 }, { HTML_3_2 }, elem_menu, a_clear },
@@ -2091,6 +2117,9 @@ hav_t havt [] =
     { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_radiogroup },
     { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_type },
     STANDARD_HTML51_ATTRIBUTES (elem_menuitem),
+
+    MATH2_STYLE_ATTRIBUTES (elem_merror),
+    MATH2_STANDARD_ATTRIBUTES (elem_merror),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_meta, a_charset },
     { { HTML_2_0, REQUIRED }, { XHTML_1_1 }, elem_meta, a_content },
@@ -2122,22 +2151,33 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mfenced, a_close },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mfenced, a_open },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mfenced, a_separators },
-    MATH1_STANDARD_ATTRIBUTES (elem_mfenced, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_mfenced),
+    MATH2_STANDARD_ATTRIBUTES (elem_mfenced),
 
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mfrac, a_bevelled },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mfrac, a_denomalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mfrac, a_linethickness },
-    MATH1_STANDARD_ATTRIBUTES (elem_mfrac, MAJOR_X1_0, MINOR_X1_0),
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mfrac, a_numalign },
+    MATH2_STYLE_ATTRIBUTES (elem_mfrac),
+    MATH2_STANDARD_ATTRIBUTES (elem_mfrac),
+
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mglyph, a_alt },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mglyph, a_fontfamily },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mglyph, a_index },
+    MATH2_STANDARD_ATTRIBUTES (elem_mglyph),
 
     { { HTML_PLUS }, { HTML_PLUS }, elem_mh, a_action },
     { { HTML_PLUS }, { HTML_PLUS }, elem_mh, a_hidden },
     { { HTML_PLUS }, { HTML_PLUS }, elem_mh, a_method },
     HTMLPLUS_ATTRIBUTES (elem_mh),
 
-    MATH1_FONT_ATTRIBUTES (elem_mi, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_STANDARD_ATTRIBUTES (elem_mi, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_FONT_ATTRIBUTES (elem_mi),
+    MATH2_STYLE_ATTRIBUTES (elem_mi),
+    MATH2_STANDARD_ATTRIBUTES (elem_mi),
 
-    MATH1_DEFS_ATTRIBUTES (elem_min, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_min),
 
-    MATH1_DEFS_ATTRIBUTES (elem_minus, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_minus),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_missingglyph, a_d },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_missingglyph, a_horizadvx },
@@ -2148,50 +2188,63 @@ hav_t havt [] =
     SVGx_PRES_ATTRIBUTES (elem_missingglyph),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_missingglyph),
 
+    MATH2_STYLE_ATTRIBUTES (elem_mlabeledtr),
+    MATH2_STANDARD_ATTRIBUTES (elem_mlabeledtr),
+
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mmultiscripts, a_subscriptshift },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mmultiscripts, a_superscriptshift },
-    MATH1_STANDARD_ATTRIBUTES (elem_mmultiscripts, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_mmultiscripts),
+    MATH2_STANDARD_ATTRIBUTES (elem_mmultiscripts),
 
-    MATH1_FONT_ATTRIBUTES (elem_mn, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_STANDARD_ATTRIBUTES (elem_mn, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_FONT_ATTRIBUTES (elem_mn),
+    MATH2_STYLE_ATTRIBUTES (elem_mn),
+    MATH2_STANDARD_ATTRIBUTES (elem_mn),
 
-    MATH1_FONT_ATTRIBUTES (elem_mo, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_OPINFO_ATTRIBUTES (elem_mo, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_STANDARD_ATTRIBUTES (elem_mo, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_FONT_ATTRIBUTES (elem_mo),
+    MATH1_OPINFO_ATTRIBUTES (elem_mo),
+    MATH2_STYLE_ATTRIBUTES (elem_mo),
+    MATH2_STANDARD_ATTRIBUTES (elem_mo),
 
-    MATH1_DEFS_ATTRIBUTES (elem_mode, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_mode),
 
-    MATH1_DEFS_ATTRIBUTES (elem_moment, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_moment),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mover, a_accent },
-    MATH1_STANDARD_ATTRIBUTES (elem_mover, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_mover),
+    MATH2_STANDARD_ATTRIBUTES (elem_mover),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mpadded, a_lspace },
-    MATH1_SIZEINFO_ATTRIBUTES (elem_mpadded, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_STANDARD_ATTRIBUTES (elem_mpadded, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_SIZEINFO_ATTRIBUTES (elem_mpadded),
+    MATH2_STYLE_ATTRIBUTES (elem_mpadded),
+    MATH2_STANDARD_ATTRIBUTES (elem_mpadded),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_mpath, a_externalresourcesrequired },
     SVG11_XLINK_ATTRIBUTES (elem_mpath),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_mpath),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_mpath),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_mphantom, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_mphantom),
+    MATH2_STANDARD_ATTRIBUTES (elem_mphantom),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_mprescripts, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_mprescripts),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_mroot, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_mroot),
+    MATH2_STANDARD_ATTRIBUTES (elem_mroot),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_mrow, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_mrow),
+    MATH2_STANDARD_ATTRIBUTES (elem_mrow),
 
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_msub, a_subscriptshift },
-    MATH1_STANDARD_ATTRIBUTES (elem_msub, MAJOR_X1_0, MINOR_X1_0),
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_ms, a_lquote },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_ms, a_rquote },
+    MATH1_FONT_ATTRIBUTES (elem_ms),
+    MATH2_STYLE_ATTRIBUTES (elem_ms),
+    MATH2_STANDARD_ATTRIBUTES (elem_ms),
 
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_msubsup, a_subscriptshift },
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_msubsup, a_superscriptshift },
-    MATH1_STANDARD_ATTRIBUTES (elem_msubsup, MAJOR_X1_0, MINOR_X1_0),
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mspace, a_linebreak },
+    MATH2_STANDARD_ATTRIBUTES (elem_mspace),
 
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_msup, a_superscriptshift },
-    MATH1_STANDARD_ATTRIBUTES (elem_msup, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_msqrt),
+    MATH2_STANDARD_ATTRIBUTES (elem_msqrt),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_accentunder },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_actiontype },
@@ -2201,6 +2254,7 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_edge },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_linethickness },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_lquote },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_mediummathspace },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_open },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_rowspan },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_rquote },
@@ -2211,48 +2265,65 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_scriptminsize },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_subscriptshift },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_superscriptshift },
-    MATH1_FONT_ATTRIBUTES (elem_mstyle, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_OPINFO_ATTRIBUTES (elem_mstyle, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_TABLE_ATTRIBUTES (elem_mstyle, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_STANDARD_ATTRIBUTES (elem_mstyle, MAJOR_X1_0, MINOR_X1_0),
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_thickmathspace },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_thinmathspace },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_verythickmathspace },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_verythinmathspace },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_veryverythickmathspace },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_veryverythinmathspace },
+    MATH1_FONT_ATTRIBUTES (elem_mstyle),
+    MATH1_OPINFO_ATTRIBUTES (elem_mstyle),
+    MATH1_TABLE_ATTRIBUTES (elem_mstyle),
+    MATH2_STYLE_ATTRIBUTES (elem_mstyle),
+    MATH2_STANDARD_ATTRIBUTES (elem_mstyle),
 
-    MATH1_TABLE_ATTRIBUTES (elem_mtable, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_STANDARD_ATTRIBUTES (elem_mtable, MAJOR_X1_0, MINOR_X1_0),
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_msub, a_subscriptshift },
+    MATH2_STYLE_ATTRIBUTES (elem_msub),
+    MATH2_STANDARD_ATTRIBUTES (elem_msub),
 
-    MATH1_FONT_ATTRIBUTES (elem_mtext, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_STANDARD_ATTRIBUTES (elem_mtext, MAJOR_X1_0, MINOR_X1_0),
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_msubsup, a_subscriptshift },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_msubsup, a_superscriptshift },
+    MATH2_STYLE_ATTRIBUTES (elem_msubsup),
+    MATH2_STANDARD_ATTRIBUTES (elem_msubsup),
 
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_ms, a_lquote },
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_ms, a_rquote },
-    MATH1_FONT_ATTRIBUTES (elem_ms, MAJOR_X1_0, MINOR_X1_0),
-    MATH1_STANDARD_ATTRIBUTES (elem_ms, MAJOR_X1_0, MINOR_X1_0),
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_msup, a_superscriptshift },
+    MATH2_STYLE_ATTRIBUTES (elem_msup),
+    MATH2_STANDARD_ATTRIBUTES (elem_msup),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_mspace, MAJOR_X1_0, MINOR_X1_0),
-
-    MATH1_STANDARD_ATTRIBUTES (elem_msqrt, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_TABLE_ATTRIBUTES (elem_mtable),
+    MATH2_STYLE_ATTRIBUTES (elem_mtable),
+    MATH2_STANDARD_ATTRIBUTES (elem_mtable),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mtd, a_columnalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mtd, a_columnspan },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mtd, a_groupalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mtd, a_rowalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mtd, a_rowspan },
-    MATH1_STANDARD_ATTRIBUTES (elem_mtd, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_mtd),
+    MATH2_STANDARD_ATTRIBUTES (elem_mtd),
+
+    MATH1_FONT_ATTRIBUTES (elem_mtext),
+    MATH2_STYLE_ATTRIBUTES (elem_mtext),
+    MATH2_STANDARD_ATTRIBUTES (elem_mtext),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mtr, a_columnalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mtr, a_groupalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mtr, a_rowalign },
-    MATH1_STANDARD_ATTRIBUTES (elem_mtr, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_mtr),
+    MATH2_STANDARD_ATTRIBUTES (elem_mtr),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_munder, a_accentunder },
-    MATH1_STANDARD_ATTRIBUTES (elem_munder, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_munder),
+    MATH2_STANDARD_ATTRIBUTES (elem_munder),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_munderover, a_accent },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_munderover, a_accentunder },
-    MATH1_STANDARD_ATTRIBUTES (elem_munderover, MAJOR_X1_0, MINOR_X1_0),
+    MATH2_STYLE_ATTRIBUTES (elem_munderover),
+    MATH2_STANDARD_ATTRIBUTES (elem_munderover),
 
     STANDARD_HTML54_ATTRIBUTES (elem_nav),
 
-    MATH1_DEFS_ATTRIBUTES (elem_neq, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_neq),
 
     { { HTML_TAGS }, { HTML_1_0 }, elem_nextid, a_n },
     { { HTML_1_0, REQUIRED }, { MAJOR_3_0, MINOR_3_0 }, elem_nextid, a_n },
@@ -2261,15 +2332,15 @@ hav_t havt [] =
 
     COMMON_HTML4_ATTRIBUTES (elem_noframes),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_none, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_none),
 
-    MATH1_DEFS_ATTRIBUTES (elem_not, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_not),
 
-    MATH1_DEFS_ATTRIBUTES (elem_notin, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_notin),
 
-    MATH1_DEFS_ATTRIBUTES (elem_notprsubset, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_notprsubset),
 
-    MATH1_DEFS_ATTRIBUTES (elem_notsubset, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_notsubset),
 
     STANDARD_HTML_4_54_ATTRIBUTES (elem_noscript),
 
@@ -2331,7 +2402,7 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_option),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_option),
 
-    MATH1_DEFS_ATTRIBUTES (elem_or, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_or),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_output, a_for },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_output, a_form },
@@ -2363,7 +2434,7 @@ hav_t havt [] =
     HTML4_ATTRIBUTES_BASE (elem_param, MAJOR_5_0, MINOR_5_0),
     NEW_HTML54_ATTRIBUTES (elem_param),
 
-    MATH1_DEFS_ATTRIBUTES (elem_partialdiff, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_partialdiff),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_path, a_d },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_path, a_externalresourcesrequired },
@@ -2397,7 +2468,7 @@ hav_t havt [] =
 
     STANDARD_HTML54_ATTRIBUTES (elem_picture),
 
-    MATH1_DEFS_ATTRIBUTES (elem_plus, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_plus),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_polygon, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 | REQUIRED }, { HTML_UNDEF }, elem_polygon, a_points },
@@ -2417,7 +2488,7 @@ hav_t havt [] =
     SVGx_PRES_ATTRIBUTES (elem_polyline),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_polyline),
 
-    MATH1_DEFS_ATTRIBUTES (elem_power, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_power),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_pre, a_clear },
     { { HTML_2_0, HV_NOT30, HE_MOZILLA | HE_NETSCAPE }, { HTML_3_2 }, elem_pre, a_cols },
@@ -2431,13 +2502,13 @@ hav_t havt [] =
 
     XHTML2_ATTRIBUTES (elem_preventdefault),
 
-    MATH1_DEFS_ATTRIBUTES (elem_product, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_product),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_progress, a_max },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_progress, a_value },
     STANDARD_HTML54_ATTRIBUTES (elem_progress),
 
-    MATH1_DEFS_ATTRIBUTES (elem_prsubset, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_prsubset),
 
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_q, a_align },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_q, a_cite },
@@ -2447,7 +2518,7 @@ hav_t havt [] =
 
     HTMLPLUS_ATTRIBUTES (elem_quote),
 
-    MATH1_DEFS_ATTRIBUTES (elem_quotient, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_quotient),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_radialgradient, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_radialgradient, a_cx },
@@ -2478,9 +2549,9 @@ hav_t havt [] =
     SVGx_PRES_ATTRIBUTES (elem_rect),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_rect),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_reln, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_reln),
 
-    MATH1_DEFS_ATTRIBUTES (elem_rem, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_rem),
 
     HTMLPLUS_ATTRIBUTES (elem_removed),
 
@@ -2532,15 +2603,15 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_script),
     STANDARD_HTML54_ATTRIBUTES (elem_script),
 
-    MATH1_DEFS_ATTRIBUTES (elem_sdev, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_sdev),
 
-    MATH1_DEFS_ATTRIBUTES (elem_sec, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_sec),
 
-    MATH1_DEFS_ATTRIBUTES (elem_sech, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_sech),
 
     STANDARD_HTML54_ATTRIBUTES (elem_section),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_set, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_set),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_select, a_align },
     { { HTML_5_2 }, { HTML_UNDEF }, elem_select, a_autocomplete },
@@ -2569,11 +2640,11 @@ hav_t havt [] =
     HTML4_FORM_ATTRIBUTES (elem_select),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_select),
 
-    MATH1_DEFS_ATTRIBUTES (elem_selector, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_selector),
 
-    MATH1_DEFS_ATTRIBUTES (elem_semantics, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_semantics),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_sep, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_sep),
 
     XHTML2_ATTRIBUTES (elem_separator),
 
@@ -2587,13 +2658,13 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_set),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_set),
 
-    MATH1_DEFS_ATTRIBUTES (elem_setdiff, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_setdiff),
 
     STANDARD_HTML54_ATTRIBUTES (elem_shadow),
 
-    MATH1_DEFS_ATTRIBUTES (elem_sin, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_sin),
 
-    MATH1_DEFS_ATTRIBUTES (elem_sinh, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_sinh),
 
     { { HTML_JUL20, HV_WHATWG }, { HTML_UNDEF }, elem_slot, a_name },
     STANDARD_HTML54_ATTRIBUTES (elem_slot),
@@ -2654,9 +2725,9 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_sub),
     STANDARD_HTML54_ATTRIBUTES (elem_sub),
 
-    MATH1_DEFS_ATTRIBUTES (elem_subset, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_subset),
 
-    MATH1_DEFS_ATTRIBUTES (elem_sum, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_sum),
 
     STANDARD_HTML_4_54_ATTRIBUTES (elem_summary),
 
@@ -2742,9 +2813,9 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_table),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_table),
 
-    MATH1_DEFS_ATTRIBUTES (elem_tan, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_tan),
 
-    MATH1_DEFS_ATTRIBUTES (elem_tanh, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_tanh),
 
     { { MAJOR_4_0, MINOR_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_tbody, a_align },
     { { HTML_2_0, 0, HE_IE | HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_tbody, a_bgcolour },
@@ -2783,7 +2854,7 @@ hav_t havt [] =
 
     STANDARD_HTML54_ATTRIBUTES (elem_template),
 
-    MATH1_DEFS_ATTRIBUTES (elem_tendsto, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_tendsto),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_text, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_text, a_lengthadjust },
@@ -2894,7 +2965,7 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_time, a_datetime },
     STANDARD_HTML54_ATTRIBUTES (elem_time),
 
-    MATH1_DEFS_ATTRIBUTES (elem_times, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_times),
 
     HTMLPLUS_ATTRIBUTES (elem_title),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_title),
@@ -2918,7 +2989,7 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_track, a_srclang },
     STANDARD_HTML54_ATTRIBUTES(elem_track),
 
-    MATH1_DEFS_ATTRIBUTES (elem_transpose, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_transpose),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_tspan, a_externalresourcesrequired },
     SVG11_XLINK_ATTRIBUTES (elem_tref),
@@ -2965,7 +3036,7 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_ul),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_ul),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_uplimit, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_uplimit),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_use, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_use, a_xlinkhref },
@@ -2978,17 +3049,17 @@ hav_t havt [] =
     SVGx_PRES_ATTRIBUTES (elem_use),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_use),
 
-    MATH1_DEFS_ATTRIBUTES (elem_union, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_union),
 
     HTMLPLUS_ATTRIBUTES (elem_var),
     HTML23_CLID_ATTRIBUTES (elem_var),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_var),
 
-    MATH1_DEFS_ATTRIBUTES (elem_variance, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_DEFS_ATTRIBUTES (elem_variance),
 
     HTML3_CLID_ATTRIBUTES (elem_vec),
 
-    MATH1_STANDARD_ATTRIBUTES (elem_vector, MAJOR_X1_0, MINOR_X1_0),
+    MATH1_STANDARD_ATTRIBUTES (elem_vector),
 
     { { MAJOR_5_0, MINOR_5_0, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, elem_video, a_autopictureinpicture },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_video, a_autoplay },
@@ -3032,7 +3103,7 @@ hav_t havt [] =
 
     HTML23_CLID_ATTRIBUTES (elem_xmp),
 
-    MATH1_DEFS_ATTRIBUTES (elem_xor, MAJOR_X1_0, MINOR_X1_0)
+    MATH1_DEFS_ATTRIBUTES (elem_xor)
 };
 
 typedef ::std::multimap < uint64_t, hav_t > avm_t;

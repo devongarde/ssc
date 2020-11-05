@@ -322,6 +322,47 @@ PASS ../toast/microdata/schema-pqrs/screeningevent.html
 PASS ../toast/microdata/schema-pqrs/service.html
 76 inserted_missing_closure
 
+PASS ../toast/microdata/schema-pqrs/softwareapplication.html
+157 no_such_folder url_not_found
+159 url_not_found
+160 no_such_folder url_not_found
+162 no_such_folder url_not_found
+164 url_not_found
+165 no_such_folder url_not_found no_such_folder cannot_load_css
+184 unrecognised_value
+192 no_such_folder url_not_found
+198 unrecognised_value unrecognised_value
+200 unrecognised_value
+201 unrecognised_value url_not_found unrecognised_value no_such_folder url_not_found unrecognised_value
+203 unrecognised_value no_such_folder url_not_found
+205 unrecognised_value no_such_folder url_not_found
+207 unrecognised_value no_such_folder url_not_found
+209 unrecognised_value no_such_folder url_not_found unrecognised_value
+220 no_such_folder url_not_found
+226 no_such_folder url_not_found
+260 no_such_folder url_not_found
+261 unrecognised_value unrecognised_value no_such_folder url_not_found
+329 bang_path
+340 unrecognised_value
+346 unrecognised_value unrecognised_value unrecognised_value
+348 unrecognised_value
+349 unrecognised_value unrecognised_value
+350 no_such_folder url_not_found unrecognised_value
+351 no_such_folder url_not_found unrecognised_value
+389 unrecognised_value unrecognised_value
+390 unrecognised_value
+391 no_such_folder url_not_found unrecognised_value
+392 no_such_folder url_not_found unrecognised_value
+393 no_such_folder url_not_found unrecognised_value
+394 no_such_folder url_not_found unrecognised_value
+395 no_such_folder url_not_found unrecognised_value
+396 no_such_folder url_not_found unrecognised_value
+397 url_not_found unrecognised_value
+398 unrecognised_value
+399 unrecognised_value
+400 url_not_found unrecognised_value
+402 no_such_folder url_not_found
+
 PASS ../toast/microdata/schema-pqrs/speakablespecification.html
 2 naughty_lang
 3 invalid_attribute_version wrong_version invalid_attribute_version wrong_version

@@ -39,19 +39,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_DEP_3034     0x007B0000
 
 typedef unsigned int schema_flag_t;
-const BYTE schema_major_max = 10;
+const unsigned char schema_major_max = 10;
 class html_version;
 class schema_version;
 
 schema_version html_to_schema_version (const html_version& v);
-bool is_valid_schema_version (const BYTE major, const BYTE minor);
+bool is_valid_schema_version (const unsigned char major, const unsigned char minor);
 
 class schema_version
-{   BYTE major_ = 0, minor_ = 0;
+{   unsigned char major_ = 0, minor_ = 0;
     schema_flag_t flags_ = 0;
 public:
     schema_version () : major_ (0), minor_ (0), flags_ (0) { }
-    schema_version (const BYTE major, const BYTE minor, const schema_flag_t sf = 0)
+    schema_version (const unsigned char major, const unsigned char minor, const schema_flag_t sf = 0)
         :   major_ (major), minor_ (minor), flags_ (sf)
     { if (invalid ()) major_ = minor_ = 0; }
     schema_version (const schema_version& ) = default;
@@ -65,14 +65,14 @@ public:
     void reset (const schema_version& v) { schema_version vv (v); swap (vv); }
     bool unknown () const { return (major_ == 0) && (minor_ == 0); }
     bool known () const { return ! unknown (); }
-    bool is_not (const BYTE major, const BYTE minor = 0xFF) const
+    bool is_not (const unsigned char major, const unsigned char minor = 0xFF) const
     {   if (unknown ()) return false;
         if (major != major_) return true;
         return ((minor != 0xFF) && (minor != minor_)); }
     bool is_not (const schema_version& v) const
     {   return is_not (v.major_, v.minor_); }
-    BYTE major () const { return major_; }
-    BYTE minor () const { return minor_; }
+    unsigned char major () const { return major_; }
+    unsigned char minor () const { return minor_; }
     bool invalid () const { return ! is_valid_schema_version (major_, minor_); }
     schema_flag_t flags () const { return flags_; }
     ::std::string report () const; };

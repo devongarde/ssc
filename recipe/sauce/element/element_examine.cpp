@@ -102,7 +102,25 @@ void element::post_examine_element (const e_element tag)
         case elem_header : examine_header (); break;
         case elem_input : examine_input (); break;
         case elem_label : examine_label (); break;
+        case elem_maction :
+//        case elem_menclose :
+        case elem_merror :
+//        case elem_mlabelledtr :
+        case elem_mmultiscripts :
+        case elem_mpadded :
+        case elem_mphantom :
+        case elem_msqrt :
+        case elem_mstyle :
+        case elem_mtd : check_math_children (1, true); break;
         case elem_meta : examine_meta (); break;
+        case elem_mfrac :
+        case elem_mover :
+        case elem_mroot :
+        case elem_msub :
+        case elem_msup :
+        case elem_munder : check_math_children (2); break;
+        case elem_msubsup :
+        case elem_munderover : check_math_children (3); break;
         case elem_nav : examine_nav (); break;
         case elem_noscript : examine_noscript (); break;
         case elem_object : examine_object (); break;
@@ -291,7 +309,10 @@ void element::examine_children (const directory& d)
     {   element_bitset sibling_elements, ancestral_elements;
         attribute_bitset ancestral_attributes, sibling_attributes;
         itemscope_ptr itemscope;
-        if (tag () != elem_template)
+        if (tag () == elem_template)
+        {   ancestral_attributes = own_attributes_;
+            ancestral_elements.set (node_.tag ()); }
+        else
         {   ancestral_attributes = ancestral_attributes_;
             ancestral_elements = ancestral_elements_ | node_.tag ();
             itemscope = itemscope_; }

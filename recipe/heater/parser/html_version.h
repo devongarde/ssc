@@ -171,6 +171,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_SVG_X2       0x0000000000200000
 #define HE_SVG_OLD_H    0x0000000000400000
 #define HE_NOT_SVG      0x0000000000800000
+#define HE_M2_DEPRECAT  0x0000000001000000
 
 #define MATH_MASK       ( HE_MATH_1 | HE_MATH_2 | HE_MATH_3 | HE_MATH_4 )
 #define HE_SVG_1_2      ( HE_SVG_1_2_TINY | HE_SVG_1_2_FULL )
@@ -242,14 +243,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HR_EXTERNAL     ( HR_50_EXTERNAL | HR_51_EXTERNAL | HR_52_EXTERNAL | HR_53_EXTERNAL | HR_54_EXTERNAL )
 
 class html_version
-{   BYTE major_ = 0, minor_ = 0;
+{   unsigned char major_ = 0, minor_ = 0;
     uint64_t flags_ = 0, ext_ = 0;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
 public:
     html_version () : major_ (0), minor_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
-    explicit html_version (const BYTE major) : major_ (major), minor_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
+    explicit html_version (const unsigned char major) : major_ (major), minor_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
     explicit html_version (const schema_version sv) : major_ (sv.major ()), minor_ (sv.minor ()), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
-    html_version (const BYTE major, const BYTE minor, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
+    html_version (const unsigned char major, const unsigned char minor, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
     html_version (const html_version& ) = default;
     html_version (html_version&& ) = default;
     ~html_version () = default;
@@ -260,15 +261,15 @@ public:
     void reset (const html_version& v) { html_version vv (v); swap (vv); }
     bool unknown () const { return (major_ == 0) && (minor_ == 0); }
     bool known () const { return ! unknown (); }
-    bool is_not (const BYTE major, const BYTE minor = 0xFF) const
+    bool is_not (const unsigned char major, const unsigned char minor = 0xFF) const
     {   if (unknown ()) return false;
         if (major != major_) return true;
         return ((minor != 0xFF) && (minor != minor_)); }
     bool is_not (const html_version& v) const
     {   return is_not (v.major_, v.minor_); }
-    BYTE major () const { return major_; }
-    BYTE minor () const { return minor_; }
-    BYTE level () const { return (flags_ & HV_LEVEL_MASK); }
+    unsigned char major () const { return major_; }
+    unsigned char minor () const { return minor_; }
+    unsigned char level () const { return (flags_ & HV_LEVEL_MASK); }
     bool bespoke () const { return ((ext_ & HE_BESPOKE) == HE_BESPOKE); }
     bool chrome () const { return ((ext_ & HE_CHROME) == HE_CHROME); }
     bool dinosaur () const { return ((flags_ & HV_DINOSAUR) == HV_DINOSAUR); }

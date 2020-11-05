@@ -1300,7 +1300,7 @@ wotsit_t wotsit_table [] =
     { { HTML_5_0 }, { HTML_UNDEF }, "ldrdhar" },
     { { HTML_5_0 }, { HTML_UNDEF }, "ldrushar" },
     { { HTML_5_0 }, { HTML_UNDEF }, "ldsh" },
-    { { HTML_PLUS }, { HTML_PLUS }, "le", "≤" },
+    { { HTML_PLUS }, { HTML_UNDEF }, "le", "≤" },
     { { HTML_5_0 }, { HTML_UNDEF }, "leftarrow" },
     { { HTML_5_0 }, { HTML_UNDEF }, "leftarrowtail" },
     { { HTML_5_0 }, { HTML_UNDEF }, "leftharpoondown" },

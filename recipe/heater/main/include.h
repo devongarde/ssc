@@ -83,10 +83,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/version.h"
 
-#ifdef UNIX
-typedef unsigned char BYTE;
-#endif
-
 #define PR_FILE "file"
 #define PR_FTP "ftp"
 #define PR_FTPS "ftps"

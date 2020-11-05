@@ -162,6 +162,7 @@ struct symbol_entry < e_fixedcolour > fixedcolour_symbol_table [] =
     { { HTML_3_2 }, { HTML_UNDEF }, "teal", fc_teal },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "thistle", fc_thistle },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "tomato", fc_tomato },
+    { { XHTML_1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, "transparent", fc_transparent },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "turquoise", fc_turquoise },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "violet", fc_violet },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "wheat", fc_wheat },
@@ -169,7 +170,6 @@ struct symbol_entry < e_fixedcolour > fixedcolour_symbol_table [] =
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "whitesmoke", fc_whitesmoke },
     { { HTML_3_2 }, { HTML_UNDEF }, "yellow", fc_yellow },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "yellowgreen", fc_yellowgreen } };
-// transparent??
 
 void fixedcolour_init (nitpick& nits)
 {   type_master < t_fixedcolour > :: init (nits, fixedcolour_symbol_table, sizeof (fixedcolour_symbol_table) / sizeof (symbol_entry < e_fixedcolour >)); }

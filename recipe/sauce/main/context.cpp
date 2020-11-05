@@ -104,7 +104,7 @@ void context_t::process_incoming_webmention (nitpick& nits, const html_version& 
 context_t& context_t::html_minor (const int i)
 {   if ((i < 0) || (i > 255)) { html_major_ = 0; html_minor_ = 1; }
     else
-    {   html_minor_ = static_cast < BYTE > (i);
+    {   html_minor_ = static_cast < unsigned char > (i);
         if ((sch_major_ == 0) && (html_major_ >= 5))
         {   schema_version v (html_to_schema_version (html_ver ()));
             sch_major_ = v.major ();
@@ -114,7 +114,7 @@ context_t& context_t::html_minor (const int i)
 context_t& context_t::html_major (const int i)
 {   if ((i < 0) || (i > 255)) { html_major_ = 0; html_minor_ = 1; }
     else
-    {   html_major_ = static_cast < BYTE > (i);
+    {   html_major_ = static_cast < unsigned char > (i);
         if ((sch_major_ == 0) && (i >= 5))
         {   schema_version v (html_to_schema_version (html_ver ()));
             sch_major_ = v.major ();

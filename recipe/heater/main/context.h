@@ -48,7 +48,7 @@ class context_t
                     repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, schema_ = false, slob_ = false, ssi_ = false,
                     stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false;
     int             code_ = 0;
-    BYTE            html_major_ = 5, html_minor_ = 4, mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
+    unsigned char            html_major_ = 5, html_minor_ = 4, mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
     e_svg_version   svg_version_ = sv_none;
     e_math_version  math_version_ = math_none;
     long            max_file_size_ = DEFAULT_MAX_FILE_SIZE * 1024 * 1024;
@@ -76,8 +76,8 @@ public:
     bool external () const { return external_; }
     const ::std::string filename () const { return filename_; }
     bool forwarded () const { return forwarded_; }
-    BYTE html_major () const { return html_major_; }
-    BYTE html_minor () const { return html_minor_; }
+    unsigned char html_major () const { return html_major_; }
+    unsigned char html_minor () const { return html_minor_; }
     html_version html_ver () const;
     const ::std::string incoming () const { return incoming_; }
     const ::std::string index () const { return index_; }
@@ -115,10 +115,10 @@ public:
     bool rfc_2070 () const { return rfc_2070_; }
     const ::std::string root () const { return root_; }
     bool schema () const { return schema_; }
-    BYTE schema_major () const
+    unsigned char schema_major () const
     {   if (! is_valid_schema_version (sch_major_, sch_minor_)) return 0;
         return sch_major_; }
-    BYTE schema_minor () const
+    unsigned char schema_minor () const
     {   if (! is_valid_schema_version (sch_major_, sch_minor_)) return 0;
         return sch_minor_; }
     schema_version schema_ver () const
@@ -179,7 +179,7 @@ public:
     context_t& md_export (const bool b) { md_export_ = b; return *this; }
     context_t& mf_export (const bool b) { mf_export_ = b; return *this; }
     context_t& mf_verify (const bool b) { mf_verify_ = b; return *this; }
-    context_t& mf_version (const BYTE n) { mf_version_ = n; return *this; }
+    context_t& mf_version (const unsigned char n) { mf_version_ = n; return *this; }
     context_t& microdata (const bool b)
     {   microdata_ = b;
         if (b) external (b);
@@ -218,8 +218,8 @@ public:
         {   sch_major_ = schema_major_max;
             sch_minor_ = 0; }
         return *this; }
-    context_t& schema_major (const BYTE n) { sch_major_ = (n > schema_major_max) ? 0 : n; return *this; }
-    context_t& schema_minor (const BYTE n) { sch_minor_ = (n > 9) ? 0 : n; return *this; }
+    context_t& schema_major (const unsigned char n) { sch_major_ = (n > schema_major_max) ? 0 : n; return *this; }
+    context_t& schema_minor (const unsigned char n) { sch_minor_ = (n > 9) ? 0 : n; return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
     context_t& site (const vstr_t& s) { site_ = s; return *this; }

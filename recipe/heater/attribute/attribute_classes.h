@@ -115,6 +115,7 @@ typedef typed_attribute < t_text, a_bbox > attr_bbox;
 typedef typed_attribute < t_beginvaluelist, a_begin > attr_begin;
 typedef typed_attribute < t_behaviour, a_behaviour > attr_behaviour;
 typedef typed_attribute < t_idref, a_below > attr_below;
+typedef typed_attribute < t_bool, a_bevelled > attr_bevelled;
 typedef typed_attribute < t_colour, a_bgcolour > attr_bgcolour;
 typedef typed_attribute < t_generic, a_bias > attr_bias;
 typedef typed_attribute < t_border, a_border > attr_border;
@@ -192,6 +193,7 @@ typedef typed_attribute < t_html_boolean, a_default > attr_default;
 typedef typed_attribute < t_defaultaction, a_defaultaction > attr_defaultaction;
 typedef typed_attribute < t_html_boolean, a_defer > attr_defer;
 typedef typed_attribute < t_url, a_definitionurl > attr_definition;
+typedef typed_attribute < t_lcralign, a_denomalign > attr_denomalign;
 typedef typed_attribute < t_measure, a_depth > attr_depth;
 typedef typed_attribute < t_real, a_descent > attr_descent;
 typedef typed_attribute < t_real, a_diffuseconstant > attr_diffuse_constant;
@@ -325,7 +327,7 @@ typedef typed_attribute < t_in, a_in2 > attr_in2;
 typedef typed_attribute < t_in, a_in > attr_in;
 typedef typed_attribute < t_html_boolean, a_incremental > attr_incremental;
 typedef typed_attribute < t_unsigned, a_indent > attr_indent;
-typedef typed_attribute < t_text, a_index > attr_index;
+typedef typed_attribute < t_index, a_index > attr_index;
 typedef typed_attribute < t_generic, a_initialvisibility > attr_initialvisibility;
 typedef typed_attribute < t_inlist, a_inlist > attr_inlist;
 typedef typed_attribute < t_inputmode, a_inputmode > attr_inputmode;
@@ -369,7 +371,8 @@ typedef typed_attribute < t_measure_ai, a_letter_spacing > attr_letter_spacing;
 typedef typed_attribute < t_colour, a_lightcolour > attr_lightcolour;
 typedef typed_attribute < t_marker, a_lighting_colour > attr_lighting_colour;
 typedef typed_attribute < t_angle, a_limitingconeangle > attr_limitingconeangle;
-typedef typed_attribute < t_measure, a_linethickness > attr_linethickness;
+typedef typed_attribute < t_linebreak, a_linebreak > attr_linebreak;
+typedef typed_attribute < t_linethickness, a_linethickness > attr_linethickness;
 typedef typed_attribute < t_colour, a_link > attr_link;
 typedef typed_attribute < t_idref, a_list > attr_list;
 typedef typed_attribute < t_loading, a_loading > attr_loading;
@@ -378,7 +381,7 @@ typedef typed_attribute < t_url, a_longdesc > attr_longdesc;
 typedef typed_attribute < t_loop, a_loop > attr_loop;
 typedef typed_attribute < t_real, a_low > attr_low;
 typedef typed_attribute < t_text, a_lquote > attr_lquote;
-typedef typed_attribute < t_measure, a_lspace > attr_lspace;
+typedef typed_attribute < t_mathspace, a_lspace > attr_lspace;
 typedef typed_attribute < t_urls, a_macros > attr_macros;
 typedef typed_attribute < t_url, a_manifest > attr_manifest;
 typedef typed_attribute < t_unsigned, a_marginheight > attr_marginheight;
@@ -395,10 +398,14 @@ typedef typed_attribute < t_coordinatesystem, a_maskcontentunits > attr_maskcont
 typedef typed_attribute < t_svg_units, a_mask_units > attr_mask_units;
 typedef typed_attribute < t_coordinatesystem, a_maskunits > attr_maskunits;
 typedef typed_attribute < t_existential, a_math > attr_math;
+typedef typed_attribute < t_colour, a_mathbackground > attr_mathbackground;
+typedef typed_attribute < t_colour, a_mathcolour > attr_mathcolour;
 typedef typed_attribute < t_real, a_mathematical > attr_mathematical;
+typedef typed_attribute < t_mathsize, a_mathsize > attr_mathsize;
+typedef typed_attribute < t_mathvariant, a_mathvariant > attr_mathvariant;
 typedef typed_attribute < t_duration_media, a_max > attr_max;
 typedef typed_attribute < t_unsigned, a_maxlength > attr_maxlength;
-typedef typed_attribute < t_measure, a_maxsize > attr_maxsize;
+typedef typed_attribute < t_mathspaceinfinity, a_maxsize > attr_maxsize;
 typedef typed_attribute < t_generic, a_md > attr_md;
 typedef typed_attribute < t_mql, a_media > attr_media;
 typedef typed_attribute < t_charset, a_mediacharacterencoding > attr_mediacharacterencoding;
@@ -406,12 +413,13 @@ typedef typed_attribute < t_content_encodings, a_mediacontentencodings > attr_me
 typedef typed_attribute < t_generic, a_mediagroup > attr_mediagroup;
 typedef typed_attribute < t_unsigned, a_mediasize > attr_mediasize;
 typedef typed_attribute < t_duration, a_mediatime > attr_mediatime;
+typedef typed_attribute < t_measure, a_mediummathspace > attr_mediummathspace;
 typedef typed_attribute < t_id, a_menu > attr_menu;
 typedef typed_attribute < t_methodological, a_method > attr_method;
 typedef typed_attribute < t_generic, a_methods > attr_methods;
 typedef typed_attribute < t_duration_media, a_min > attr_min;
 typedef typed_attribute < t_unsigned, a_minlength > attr_minlength;
-typedef typed_attribute < t_measure, a_minsize > attr_minsize;
+typedef typed_attribute < t_mathspace, a_minsize > attr_minsize;
 typedef typed_attribute < t_text, a_mode > attr_mode;
 typedef typed_attribute < t_bool, a_movablelimits > attr_movablelimits;
 typedef typed_attribute < t_mah, a_mozactionhint > attr_mozactionhint;
@@ -442,6 +450,7 @@ typedef typed_attribute < t_existential, a_noshade > attr_noshade;
 typedef typed_attribute < t_notations, a_notation > attr_notation;
 typedef typed_attribute < t_generic, a_novalidate > attr_novalidate;
 typedef typed_attribute < t_existential, a_nowrap > attr_nowrap;
+typedef typed_attribute < t_lcralign, a_numalign > attr_numalign;
 typedef typed_attribute < t_text, a_numberonce > attr_numberonce;
 typedef typed_attribute < t_real, a_numoctaves > attr_numoctaves;
 typedef typed_attribute < t_generic, a_object > attr_object;
@@ -624,7 +633,7 @@ typedef typed_attribute < t_rowscols, a_rows > attr_rows;
 typedef typed_attribute < t_measure, a_rowspacing > attr_rowspacing;
 typedef typed_attribute < t_unsigned, a_rowspan > attr_rowspan;
 typedef typed_attribute < t_text, a_rquote > attr_rquote;
-typedef typed_attribute < t_measure, a_rspace > attr_rspace;
+typedef typed_attribute < t_mathspace, a_rspace > attr_rspace;
 typedef typed_attribute < t_rules, a_rules > attr_rules;
 typedef typed_attribute < t_measure, a_rx > attr_rx;
 typedef typed_attribute < t_measure, a_ry > attr_ry;
@@ -634,7 +643,7 @@ typedef typed_attribute < t_generic, a_scheme > attr_scheme;
 typedef typed_attribute < t_scope, a_scope > attr_scope;
 typedef typed_attribute < t_generic, a_scoped > attr_scoped;
 typedef typed_attribute < t_url, a_script > attr_script;
-typedef typed_attribute < t_generic, a_scriptlevel > attr_scriptlevel;
+typedef typed_attribute < t_integer, a_scriptlevel > attr_scriptlevel;
 typedef typed_attribute < t_measure, a_scriptminsize > attr_scriptminsize;
 typedef typed_attribute < t_real, a_scriptsizemultiplier > attr_scriptsizemultiplier;
 typedef typed_attribute < t_unsigned, a_scrollamount > attr_scrollamount;
@@ -726,6 +735,8 @@ typedef typed_attribute < t_smei, a_textanchor > attr_textanchor;
 typedef typed_attribute < t_textdecoration, a_textdecoration > attr_textdecoration;
 typedef typed_attribute < t_textrendering, a_textrendering > attr_textrendering;
 typedef typed_attribute < t_real, a_textlength > attr_textlength;
+typedef typed_attribute < t_measure, a_thickmathspace > attr_thickmathspace;
+typedef typed_attribute < t_measure, a_thinmathspace > attr_thinmathspace;
 typedef typed_attribute < t_svg_timelinebegin, a_timelinebegin > attr_timelinebegin;
 typedef typed_attribute < t_text, a_title > attr_title;
 typedef typed_attribute < t_vid, a_to > attr_to;
@@ -760,6 +771,10 @@ typedef typed_attribute < t_version, a_version > attr_version;
 typedef typed_attribute < t_real, a_vertadvy > attr_vertadvy;
 typedef typed_attribute < t_real, a_vertoriginx > attr_vertoriginx;
 typedef typed_attribute < t_real, a_vertoriginy > attr_vertoriginy;
+typedef typed_attribute < t_measure, a_verythickmathspace > attr_verythickmathspace;
+typedef typed_attribute < t_measure, a_verythinmathspace > attr_verythinmathspace;
+typedef typed_attribute < t_measure, a_veryverythickmathspace > attr_veryverythickmathspace;
+typedef typed_attribute < t_measure, a_veryverythinmathspace > attr_veryverythinmathspace;
 typedef typed_attribute < t_real, a_vhanging > attr_vhanging;
 typedef typed_attribute < t_real, a_videographic > attr_videographic;
 typedef typed_attribute < t_svg_viewbox, a_viewbox > attr_viewbox;
@@ -772,7 +787,7 @@ typedef typed_attribute < t_negative, a_volume > attr_volume;
 typedef typed_attribute < t_integer, a_vspace > attr_vspace;
 typedef typed_attribute < t_html_boolean, a_webkitdirectory > attr_webkitdirectory;
 typedef typed_attribute < t_conditional, a_while > attr_while;
-typedef typed_attribute < t_measure, a_width > attr_width;
+typedef typed_attribute < t_mathspace, a_width > attr_width;
 typedef typed_attribute < t_text, a_widths > attr_widths;
 typedef typed_attribute < t_measure_ai, a_word_spacing > attr_word_spacing;
 typedef typed_attribute < t_rap, a_wrap > attr_wrap;
@@ -794,6 +809,7 @@ typedef typed_attribute < t_id, a_xmlid > attr_xmlid;
 typedef typed_attribute < t_lang, a_xmllang > attr_xmllang;
 typedef typed_attribute < t_xmllink, a_xmllink > attr_xmllink;
 typedef typed_attribute < t_xmlns, a_xmlns > attr_xmlns;
+typedef typed_attribute < t_generic, a_xref > attr_xref;
 typedef typed_attribute < t_xmlspace, a_xmlspace > attr_xmlspace;
 typedef typed_attribute < t_url, a_xsischemaloc > attr_xsischemaloc;
 typedef typed_attribute < t_measure, a_y1 > attr_y1;
@@ -898,6 +914,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_begin, \
     attr_behaviour, \
     attr_below, \
+    attr_bevelled, \
     attr_bgcolour, \
     attr_bias, \
     attr_border, \
@@ -975,6 +992,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_defaultaction, \
     attr_defer, \
     attr_definition, \
+    attr_denomalign, \
     attr_depth, \
     attr_descent, \
     attr_diffuse_constant, \
@@ -1152,6 +1170,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_lightcolour, \
     attr_lighting_colour, \
     attr_limitingconeangle, \
+    attr_linebreak, \
     attr_linethickness, \
     attr_link, \
     attr_list, \
@@ -1178,7 +1197,11 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_mask_units, \
     attr_maskunits, \
     attr_math, \
+    attr_mathbackground, \
+    attr_mathcolour, \
     attr_mathematical, \
+    attr_mathsize, \
+    attr_mathvariant, \
     attr_max, \
     attr_maxlength, \
     attr_maxsize, \
@@ -1189,6 +1212,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_mediagroup, \
     attr_mediasize, \
     attr_mediatime, \
+    attr_mediummathspace, \
     attr_menu, \
     attr_method, \
     attr_methods, \
@@ -1230,6 +1254,7 @@ constexpr e_attribute last_am = a_muted;
     attr_notation, \
     attr_novalidate, \
     attr_nowrap, \
+    attr_numalign, \
     attr_numberonce, \
     attr_numoctaves, \
     attr_object, \
@@ -1514,6 +1539,8 @@ constexpr e_attribute last_am = a_muted;
     attr_textdecoration, \
     attr_textrendering, \
     attr_textlength, \
+    attr_thickmathspace, \
+    attr_thinmathspace, \
     attr_timelinebegin, \
     attr_title, \
     attr_to, \
@@ -1548,6 +1575,10 @@ constexpr e_attribute last_am = a_muted;
     attr_vertadvy, \
     attr_vertoriginx, \
     attr_vertoriginy, \
+    attr_verythickmathspace, \
+    attr_verythinmathspace, \
+    attr_veryverythickmathspace, \
+    attr_veryverythinmathspace, \
     attr_vhanging, \
     attr_videographic, \
     attr_viewbox, \
@@ -1583,6 +1614,7 @@ constexpr e_attribute last_am = a_muted;
     attr_xmllink, \
     attr_xmlns, \
     attr_xmlspace, \
+    attr_xref, \
     attr_xsischemaloc, \
     attr_y1, \
     attr_y2, \

@@ -49,6 +49,10 @@ void nit::init ()
         case ed_51 : return "HTML 5.1";
         case ed_52 : return "HTML 5.2";
         case ed_53 : return "HTML 5.3";
+        case ed_math_1 : return "MathML 1.01";
+        case ed_math_2 : return "MathML 2 2nd Ed.";
+        case ed_math_3 : return "MathML 3 2nd Ed.";
+        case ed_math_4 : return "MathML 4 Draft";
         case ed_rdf : return "RDFa";
         case ed_rfc_1867 : return "RFC 1867";
         case ed_rfc_1980 : return "RGC 1980";

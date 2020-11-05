@@ -465,6 +465,12 @@
     <None Include="..\toast\math\1\math3-example.html" />
     <None Include="..\toast\math\1\math4-example.html" />
     <None Include="..\toast\math\1\math5-example.html" />
+    <None Include="..\toast\math\2\index.html" />
+    <None Include="..\toast\math\2\math.conf" />
+    <None Include="..\toast\math\2\math.spec" />
+    <None Include="..\toast\math\2\math1-example.html" />
+    <None Include="..\toast\math\2\math2-example.xhtml" />
+    <None Include="..\toast\math\2\math3-example.html" />
     <None Include="..\toast\microdata\addendum\add.conf" />
     <None Include="..\toast\microdata\addendum\add.spec" />
     <None Include="..\toast\microdata\addendum\index.html" />
@@ -671,6 +677,7 @@
     <None Include="..\toast\microdata\schema-pqrs\screeningevent.html" />
     <None Include="..\toast\microdata\schema-pqrs\service.html" />
     <None Include="..\toast\microdata\schema-pqrs\socialmediaposting.html" />
+    <None Include="..\toast\microdata\schema-pqrs\softwareapplication.html" />
     <None Include="..\toast\microdata\schema-pqrs\someproducts.html" />
     <None Include="..\toast\microdata\schema-pqrs\speakablespecification.html" />
     <None Include="..\toast\microdata\schema-pqrs\sportsevent.html" />
@@ -801,6 +808,17 @@
     <None Include="..\toast\SVG\2.0\svg.spec" />
     <None Include="..\toast\SVG\2.0\svg20.html" />
     <None Include="..\toast\SVG\2.0\svg20.xhtml" />
+    <None Include="..\toast\type\colour\bad.html" />
+    <None Include="..\toast\type\colour\colour.conf" />
+    <None Include="..\toast\type\colour\colour.spec" />
+    <None Include="..\toast\type\colour\dubious.html" />
+    <None Include="..\toast\type\colour\good.html" />
+    <None Include="..\toast\type\colour\index.html" />
+    <None Include="..\toast\type\lang\bad.html" />
+    <None Include="..\toast\type\lang\good.html" />
+    <None Include="..\toast\type\lang\index.html" />
+    <None Include="..\toast\type\lang\lang.conf" />
+    <None Include="..\toast\type\lang\lang.spec" />
     <None Include="..\toast\type\metaname\bad.html" />
     <None Include="..\toast\type\metaname\dubious.html" />
     <None Include="..\toast\type\metaname\good.html" />
@@ -814,6 +832,13 @@
     <None Include="..\toast\type\mimetype\index.html" />
     <None Include="..\toast\type\mimetype\mimetype.conf" />
     <None Include="..\toast\type\mimetype\mimetype.spec" />
+    <None Include="..\toast\type\sgml\bad.html" />
+    <None Include="..\toast\type\sgml\dubious.html" />
+    <None Include="..\toast\type\sgml\dubious2.html" />
+    <None Include="..\toast\type\sgml\good.html" />
+    <None Include="..\toast\type\sgml\index.html" />
+    <None Include="..\toast\type\sgml\sgml.conf" />
+    <None Include="..\toast\type\sgml\sgml.spec" />
     <None Include="..\toast\type\url\bad.html" />
     <None Include="..\toast\type\url\dubious.html" />
     <None Include="..\toast\type\url\good.html" />
@@ -863,10 +888,12 @@
     <Image Include="..\toast\XHTML\2.0\x.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\..\build.txt" />
     <Text Include="..\..\LICENCE.txt" />
     <Text Include="..\..\LICENSE.txt" />
-    <Text Include="..\..\LICENSE_1_0.txt" />
     <Text Include="..\..\README.txt" />
+    <Text Include="..\..\releasenotes.txt" />
+    <Text Include="..\..\usage.txt" />
     <Text Include="..\toast\conf\README.txt" />
     <Text Include="..\toast\virtual\README.txt" />
     <Text Include="..\toast\webmention\headers\1.txt" />
@@ -879,6 +906,8 @@
     <Text Include="..\toast\webmention\headers\8.txt" />
     <Text Include="..\toast\webmention\headers\9.txt" />
     <Text Include="..\toast\webmention\README.txt" />
+    <Text Include="CMakeLists.txt" />
+    <Text Include="README.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
