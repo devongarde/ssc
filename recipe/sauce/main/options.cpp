@@ -171,6 +171,7 @@ void options::process (int argc, char** argv)
         (GENERAL RDF, "check RDFa attributes")
         (GENERAL TEST ",T", "machine readable output formatted for tests")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "user name to supply when requested")
+        (VALIDATION COLOR, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid colour. May be repeated")
         (VALIDATION MINOR ",4", ::boost::program_options::value < int > (), "Validate HTML5 with this minor version (e.g. 3 for HTML 5.3)")
         (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "use this file to test header parsing code")
         (WMIN HOOK, ::boost::program_options::value < ::std::string > (), "process incoming " WEBMENTION ", in JSON format, in specified file")
@@ -232,13 +233,16 @@ void options::process (int argc, char** argv)
 
         (VALIDATION CHARSET, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid charset. May be repeated")
         (VALIDATION CLASS, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid class. May be repeated")
+        (VALIDATION COLOUR, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid colour. May be repeated")
         (VALIDATION CURRENCY, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid currency. May be repeated")
         (VALIDATION DINGBATARG, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid dingbat (HTML 3.0 only). May be repeated")
         (VALIDATION HTTPEQUIV, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid meta httpequiv. May be repeated")
+        (VALIDATION LANG, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid languade code (such as ma for marain). May be repeated")
         (VALIDATION MICRODATAARG, "Validate HTML5 microdata")
         (VALIDATION METANAME, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid meta name. May be repeated")
         (VALIDATION MIMETYPE, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid mimetype. May be repeated")
         (VALIDATION REL, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid rel. May be repeated")
+        (VALIDATION SGML, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid SGML schema identification. May be repeated")
 
         (WEBSITE ROOT ",g", ::boost::program_options::value < ::std::string > (), "website root directory (default current directory)")
         (WEBSITE EXTENSION ",x", ::boost::program_options::value < vstr_t > () -> composing (), "check files with this extension (default html). May be repeated")
@@ -353,21 +357,25 @@ void options::contextualise ()
     if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
     if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose > (var_ [GENERAL VERBOSE].as < int > ()));
 
-    if (var_.count (MF VERSION)) context.mf_version (static_cast < BYTE > (var_ [MF VERSION].as < int > ()));
+    if (var_.count (MF VERSION)) context.mf_version (static_cast < unsigned char > (var_ [MF VERSION].as < int > ()));
 
-    if (var_.count (MICRODATA VERSION)) context.schema_major (static_cast < BYTE > (var_ [MICRODATA VERSION].as < int > ()));
-    if (var_.count (MICRODATA MINOR)) context.schema_minor (static_cast < BYTE > (var_ [MICRODATA MINOR].as < int > ()));
+    if (var_.count (MICRODATA VERSION)) context.schema_major (static_cast < unsigned char > (var_ [MICRODATA VERSION].as < int > ()));
+    if (var_.count (MICRODATA MINOR)) context.schema_minor (static_cast < unsigned char > (var_ [MICRODATA MINOR].as < int > ()));
 
     if (var_.count (VALIDATION CHARSET)) type_master < t_charset > :: extend (var_ [VALIDATION CHARSET].as < vstr_t > ());
     if (var_.count (VALIDATION CLASS)) type_master < t_class > :: extend (var_ [VALIDATION CLASS].as < vstr_t > ());
+    if (var_.count (VALIDATION COLOR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOR].as < vstr_t > ());
+    if (var_.count (VALIDATION COLOUR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOUR].as < vstr_t > ());
     if (var_.count (VALIDATION CURRENCY)) type_master < t_currency > :: extend (var_ [VALIDATION CURRENCY].as < vstr_t > ());
     if (var_.count (VALIDATION DINGBATARG)) type_master < t_dingbat > :: extend (var_ [VALIDATION DINGBATARG].as < vstr_t > ());
     if (var_.count (VALIDATION HTTPEQUIV)) type_master < t_httpequiv > :: extend (var_ [VALIDATION HTTPEQUIV].as < vstr_t > ());
+    if (var_.count (VALIDATION LANG)) type_master < t_lang > :: extend (var_ [VALIDATION LANG].as < vstr_t > ());
     context.microdata (var_.count (VALIDATION MICRODATAARG));
-    if (var_.count (VALIDATION MINOR)) context.html_minor (static_cast < BYTE > (var_ [VALIDATION MINOR].as < int > ()));
+    if (var_.count (VALIDATION MINOR)) context.html_minor (static_cast < unsigned char > (var_ [VALIDATION MINOR].as < int > ()));
     if (var_.count (VALIDATION METANAME)) type_master < t_metaname  > :: extend (var_ [VALIDATION METANAME].as < vstr_t > ());
     if (var_.count (VALIDATION MIMETYPE)) type_master < t_mime > :: extend (var_ [VALIDATION MIMETYPE].as < vstr_t > ());
     if (var_.count (VALIDATION REL)) type_master < t_rel > :: extend (var_ [VALIDATION REL].as < vstr_t > ());
+    if (var_.count (VALIDATION SGML)) type_master < t_sgml > :: extend (var_ [VALIDATION SGML].as < vstr_t > (), static_cast < ::std::size_t > (doc_context));
 
     if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
     if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());
@@ -450,13 +458,17 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     if (var_.count (VALIDATION CHARSET)) { res << VALIDATION CHARSET ": "; pvs (res, var_ [VALIDATION CHARSET].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION CLASS)) { res << VALIDATION CLASS ": "; pvs (res, var_ [VALIDATION CLASS].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (VALIDATION COLOR)) { res << VALIDATION COLOUR ": "; pvs (res, var_ [VALIDATION COLOR].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (VALIDATION COLOUR)) { res << VALIDATION COLOUR ": "; pvs (res, var_ [VALIDATION COLOUR].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION CURRENCY)) { res << VALIDATION CURRENCY ": "; pvs (res, var_ [VALIDATION CURRENCY].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION DINGBATARG)) { res << VALIDATION DINGBATARG ": "; pvs (res, var_ [VALIDATION DINGBATARG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION HTTPEQUIV)) { res << VALIDATION HTTPEQUIV ": "; pvs (res, var_ [VALIDATION HTTPEQUIV].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (VALIDATION LANG)) { res << VALIDATION LANG ": "; pvs (res, var_ [VALIDATION LANG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION MINOR)) res << VALIDATION MINOR ": " << var_ [VALIDATION MINOR].as < int > () << "\n";
     if (var_.count (VALIDATION METANAME)) { res << VALIDATION METANAME ": "; pvs (res, var_ [VALIDATION MIMETYPE].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION MIMETYPE)) { res << VALIDATION MIMETYPE ": "; pvs (res, var_ [VALIDATION METANAME].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION REL)) { res << VALIDATION REL ": "; pvs (res, var_ [VALIDATION REL].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (VALIDATION SGML)) { res << VALIDATION SGML ": "; pvs (res, var_ [VALIDATION SGML].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (WEBSITE EXTENSION)) { res << WEBSITE EXTENSION ": "; pvs (res, var_ [WEBSITE EXTENSION].as < vstr_t > ()); res << "\n"; }
     if (var_.count (WEBSITE INDEX)) res << WEBSITE INDEX ": " << var_ [WEBSITE INDEX].as < ::std::string > () << "\n";

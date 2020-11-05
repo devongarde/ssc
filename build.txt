@@ -1,0 +1,42 @@
+BUILD NOTES
+static site checker
+https://dylanharris.org/ssc/index.shtml
+(c) 2020 Dylan Harris
+
+
+Introduction
+------------
+SSC can be built from the unix command line using CMake or Visual Studio 2019 under Windows.
+
+
+Boost
+-----
+Before you can build SSC, you may find you need to install and build boost version 1.71 or better
+(I use version 1.74).
+
+You will need to set two environment variables:
+SSCPATH to point to the ssc directory;
+BOOST to point to the boost root directory.
+
+
+Windows
+-------
+To build from Visual Studio 2019, navigate to recipe\tea, open ssc.sln, and build the 64 bit version.
+The 32bit version is not yet ready for playtime, although you can build it and find out why if you wish.
+
+
+Macos and Centos
+----------------
+You will need CMake 3.11 or better on your system.
+
+From the home ssc directory, compile thus:
+
+cd recipe/tea
+cmake .
+make
+ctest
+make install
+
+If everything works correctly, then everything will be built, a series of tests run, with a final result
+at the very end saying no failures. Having said that, given SSC is pre–alpha, don’t be too surprised to
+see some warnings or some final test errors.

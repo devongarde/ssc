@@ -86,8 +86,8 @@ template < e_type E, typename ENUM, class LC = sz_true > struct enum_n : public 
     {   symbol < ENUM, LC > :: init (nits, table, size, wildcards); }
     static void extend (const ::std::string& extension, const ::std::size_t e = 0)
     {   symbol < ENUM, LC > :: extend (extension, e); }
-    static void extend (const vstr_t& extension)
-    {   for (auto ext : extension) extend (ext); }
+    static void extend (const vstr_t& extension, const ::std::size_t e = 0)
+    {   for (auto ext : extension) extend (ext, e); }
     enum_n () = default;
     enum_n (const enum_n& ) = default;
     enum_n (enum_n&& ) = default;
@@ -188,9 +188,11 @@ template < > class type_master < t_inputtype32 > : public enum_n < t_inputtype32
 template < > class type_master < t_inputtype4 > : public enum_n < t_inputtype4, e_inputtype4 > { };
 template < > class type_master < t_inputtype5 > : public enum_n < t_inputtype5, e_inputtype5 > { };
 template < > class type_master < t_kind > : public enum_n < t_kind, e_kind > { };
+template < > class type_master < t_linebreak > : public enum_n < t_linebreak, e_linebreak > { };
 template < > class type_master < t_lang > : public enum_n < t_lang, e_lang > { };
 template < > class type_master < t_listtype > : public enum_n < t_listtype, e_listtype, sz_false > { };
 template < > class type_master < t_mah > : public enum_n < t_mah, e_mah > { };
+template < > class type_master < t_mathvariant > : public enum_n < t_mathvariant, e_mathvariant > { };
 template < > class type_master < t_matrix_type > : public enum_n < t_matrix_type, e_matrix_type > { };
 template < > class type_master < t_media > : public enum_n < t_media, e_media > { };
 template < > class type_master < t_media_feature > : public enum_n < t_media_feature, e_media_feature > { };
@@ -199,6 +201,7 @@ template < > class type_master < t_metaname > : public enum_n < t_metaname, e_me
 template < > class type_master < t_method > : public enum_n < t_method, e_method > { };
 template < > class type_master < t_microdata_domain > : public enum_n < t_microdata_domain, e_microdata_domain > { };
 template < > class type_master < t_mime > : public enum_n < t_mime, e_mimetype > { };
+template < > class type_master < t_namedspace > : public enum_n < t_namedspace, e_namedspace > { };
 template < > class type_master < t_namespace > : public enum_n < t_namespace, e_namespace > { };
 template < > class type_master < t_paintkeyword > : public enum_n < t_paintkeyword, e_paintkeyword > { };
 template < > class type_master < t_print > : public enum_n < t_print, e_print > { };

@@ -842,6 +842,7 @@ parentage parent_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mfenced, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mfrac, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mi, elem_malignmark },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_mi, elem_mglyph },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_missingglyph, elem_a },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_missingglyph, elem_altglyph },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_missingglyph, elem_clippath },
@@ -1539,10 +1540,13 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_malignmark :
         case elem_matrix :
         case elem_matrixrow :
+        case elem_menclose :
         case elem_merror :
         case elem_mfenced :
         case elem_mfrac :
+        case elem_mglyph :
         case elem_mi :
+        case elem_mlabeledtr :
         case elem_mmultiscripts :
         case elem_mn :
         case elem_mo :

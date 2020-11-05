@@ -248,6 +248,12 @@ template < > struct type_master < t_frame > : varied < tidy_string < t_frame > >
                 default :
                     validate_type < type_master < t_frame4 > > (nits, v); } } } };
 
+template < > struct type_master < t_index > : varied < tidy_string < t_index > >
+{   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+    {   if (good () || empty ())
+            if (e.is_math ()) validate_type < type_master < t_integer > > (nits, v);
+            else validate_type < type_master < t_text > > (nits, v); } };
+
 template < > struct type_master < t_inputmode > : varied < tidy_string < t_inputmode > >
 {   void validate (nitpick& nits, const html_version& v, const e_element , const ::std::string& )
     {   if (good () && (v.major () >= 5))

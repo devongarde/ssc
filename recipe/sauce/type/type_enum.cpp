@@ -405,6 +405,14 @@ struct symbol_entry < e_kind > kind_symbol_table [] =
     { { HTML_5_0 }, { HTML_UNDEF }, "chapters", k_chapters },
     { { HTML_5_0 }, { HTML_UNDEF }, "metadata", k_metadata } };
 
+struct symbol_entry < e_linebreak > linebreak_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "auto", lb_auto },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "newline", lb_newline },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "indentingnewline", lb_indentingnewline },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "nobreak", lb_nobreak },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "goodbreak", lb_goodbreak },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "badbreak", lb_badbreak } };
+
 struct symbol_entry < e_listtype > listtype_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "1", li_1 },
     { { HTML_UNDEF }, { HTML_UNDEF }, "a", li_a },
@@ -418,6 +426,22 @@ struct symbol_entry < e_mah > mah_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "next", mah_next },
     { { HTML_UNDEF }, { HTML_UNDEF }, "search", mah_search },
     { { HTML_UNDEF }, { HTML_UNDEF }, "send", mah_send } };
+
+struct symbol_entry < e_mathvariant > mathvariant_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "normal", mv_normal },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "bold", mv_bold },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "italic", mv_italic },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "bold-italic", mv_bolditalic },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "double-struck", mv_doublestruck },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "bold-fraktur", mv_boldfraktur },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "script", mv_script },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "bold-script", mv_boldscript },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "fraktur", mv_fraktur },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "sans-serif", mv_sansserif },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "bold-sans-serif", mv_boldsansserif },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "sans-serif-italic", mv_sansserifitalic },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "sans-serif-bold-italic", mv_sansserifbolditalic },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "monospace", mv_monospace } };
 
 struct symbol_entry < e_matrix_type > matrix_type_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "matrix", mt_matrix },
@@ -509,6 +533,22 @@ struct symbol_entry < e_microdata_domain > microdata_domain_symbol_table [] =
     { { HTML_4_01 }, { HTML_UNDEF }, "https://purl.org/", mdd_purl },
     { { HTML_4_01 }, { HTML_UNDEF }, "http://schema.org/", mdd_schema },
     { { HTML_4_01 }, { HTML_UNDEF }, "https://schema.org/", mdd_schema } };
+
+struct symbol_entry < e_namedspace > namedspace_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "negativeveryverythinmathspace", nd_negativeveryverythinmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "negativeverythinmathspace", nd_negativeverythinmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "negativethinmathspace", nd_negativethinmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "negativemediummathspace", nd_negativemediummathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "negativethickmathspace", nd_negativethickmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "negativeverythickmathspace", nd_negativeverythickmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "negativeveryverythickmathspace", nd_negativeveryverythickmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "veryverythinmathspace", nd_veryverythinmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "verythinmathspace", nd_verythinmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "thinmathspace", nd_thinmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "mediummathspace", nd_mediummathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "thickmathspace", nd_thickmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "verythickmathspace", nd_verythickmathspace },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "veryverythickmathspace", nd_veryverythickmathspace } };
 
 struct symbol_entry < e_namespace > namespace_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "cc", ns_cc },
@@ -889,14 +929,17 @@ void enum_init (nitpick& nits)
     INIT_ENUM (inputtype4);
     INIT_ENUM (inputtype5);
     INIT_ENUM (kind);
+    INIT_ENUM (linebreak);
     INIT_ENUM (listtype);
     INIT_ENUM (mah);
+    INIT_ENUM (mathvariant);
     INIT_ENUM (matrix_type);
     INIT_ENUM (media);
     INIT_ENUM (media_feature);
     INIT_ENUM (media_keyword);
     INIT_ENUM (method);
     INIT_ENUM (microdata_domain);
+    INIT_ENUM (namedspace);
     INIT_ENUM (namespace);
     INIT_ENUM (paintkeyword);
     INIT_ENUM (plusstyle);

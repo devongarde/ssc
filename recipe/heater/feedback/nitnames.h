@@ -500,6 +500,7 @@ nitname nitnames [] =
     { nit_rotate, "rotate" },
     { nit_origin, "origin" },
     { nit_colour_matrix, "colour_matrix" },
+    { nit_math_kids, "math_kids" },
 
     { nit_off, "" } };
 

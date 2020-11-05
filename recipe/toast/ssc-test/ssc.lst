@@ -15,6 +15,7 @@
 ../toast/HTML/tags/tags.spec
 ../toast/link/link.spec
 ../toast/math/1/math.spec
+../toast/math/2/math.spec
 ../toast/microdata/addendum/add.spec
 ../toast/microdata/basic/basic.spec
 ../toast/microdata/export/export.spec
@@ -36,8 +37,11 @@
 ../toast/stats/detail/stats.spec
 ../toast/stats/single/stats.spec
 ../toast/stats/summary/stats.spec
+../toast/type/colour/colour.spec
+../toast/type/lang/lang.spec
 ../toast/type/metaname/metaname.spec
 ../toast/type/mimetype/mimetype.spec
+../toast/type/sgml/sgml.spec
 ../toast/type/url/url.spec
 ../toast/XHTML/1.0/xhtml1.spec
 ../toast/XHTML/1.1/xhtml11.spec

@@ -78,6 +78,7 @@ class element
     void remove_category (const uint64_t c);
     void check_ancestors (const e_element self, const element_bitset& gf);
     void check_descendants (const e_element self, const element_bitset& gf);
+    void check_math_children (const int expected, const bool or_more = false);
     bool naughty_label_descendents (const element* e, const uid_t uid, bool& first);
     void no_anchor_daddy ();
     template < typename ATTRIBUTE > element* ancestor_known (const e_attribute a) const;

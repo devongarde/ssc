@@ -97,7 +97,7 @@ schema_version html_to_schema_version (const html_version& v)
                 assert (false); }
     return schema_0; }
 
-bool is_valid_schema_version (const BYTE major, const BYTE minor)
+bool is_valid_schema_version (const unsigned char major, const unsigned char minor)
 {   if ((major == 0) && (minor == 0)) return true;
     if ((major > schema_major_max) || (major < 2)) return false;
     if (minor > 9) return false;

@@ -184,6 +184,20 @@ template < > struct type_master < t_enablebackground > : tidy_string < t_enableb
                 else nits.pick (nit_background, es_error, ec_type, "'accumulate', 'new', or 'inherit' expected"); } }
         tidy_string < t_enablebackground > :: status (s_invalid); } };
 
+template < > struct type_master < t_linethickness > : tidy_string < t_linethickness >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_linethickness > :: set_value (nits, v, s);
+        if (v.math () >= math_2)
+        {   if (tidy_string < t_linethickness > :: empty ())
+                nits.pick (nit_empty, ed_math_2, "3.3.2.2 Attributes of mfrac", es_error, ec_type, "thin, medium, thick, or a measurement expected");
+            else if (tidy_string < t_linethickness > :: good ())
+            {   ::std::string ss (tidy_string < t_linethickness > :: get_string ());
+                if (compare_no_case (ss, "thin")) return;
+                if (compare_no_case (ss, "medium")) return;
+                if (compare_no_case (ss, "thick")) return; } }
+        if (test_value < t_measure > (nits, v, s)) return;
+        tidy_string < t_linethickness > :: status (s_invalid); } };
+
 template < > struct type_master < t_marker > : tidy_string < t_marker >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_marker > :: set_value (nits, v, s);
@@ -199,6 +213,47 @@ template < > struct type_master < t_marker > : tidy_string < t_marker >
                 if ((bra != ::std::string::npos) && (ket != ::std::string::npos))
                     if (++bra < ket) if (test_value < t_url > (nits, v, ss.substr (bra, ket-bra))) return; } }
         tidy_string < t_marker > :: status (s_invalid); } };
+
+template < > struct type_master < t_mathsize > : tidy_string < t_mathsize >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_mathsize > :: set_value (nits, v, s);
+        if (tidy_string < t_mathsize > :: empty ())
+            nits.pick (nit_empty, ed_math_2, "3.2.2 Mathematics style attributes common to token elements", es_error, ec_type, "small, normal, big, or a measurement expected");
+        else if (tidy_string < t_mathsize > :: good ())
+        {   ::std::string ss (tidy_string < t_mathsize > :: get_string ());
+            if (compare_no_case (ss, "small")) return;
+            if (compare_no_case (ss, "normal")) return;
+            if (compare_no_case (ss, "big")) return;
+            if (test_value < t_measure > (nits, v, ss)) return; }
+        tidy_string < t_mathsize > :: status (s_invalid); } };
+
+template < > struct type_master < t_mathspace > : tidy_string < t_mathspace >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_mathspace > :: set_value (nits, v, s);
+        if (tidy_string < t_mathspace > :: empty ())
+            nits.pick (nit_empty, ed_math_2, "3.2.2 Mathematics style attributes common to token elements", es_error, ec_type, "small, normal, big, or a measurement expected");
+        else if (tidy_string < t_mathspace > :: good ())
+        {   ::std::string ss (tidy_string < t_mathspace > :: get_string ());
+            nitpick nuts;
+            if ((v.math_version () > math_1) && test_value < t_namedspace > (nuts, v, ss))
+            {   nits.merge (nuts); return; }
+            if (test_value < t_measure > (nits, v, ss)) return; }
+        tidy_string < t_mathspace > :: status (s_invalid); } };
+
+template < > struct type_master < t_mathspaceinfinity > : tidy_string < t_mathspaceinfinity >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_mathspaceinfinity > :: set_value (nits, v, s);
+        if (tidy_string < t_mathspaceinfinity > :: empty ())
+            nits.pick (nit_empty, ed_math_2, "3.2.2 Mathematics style attributes common to token elements", es_error, ec_type, "small, normal, big, or a measurement expected");
+        else if (tidy_string < t_mathspaceinfinity > :: good ())
+        {   ::std::string ss (tidy_string < t_mathspaceinfinity > :: get_string ());
+            if (v.math_version () > math_1)
+            {   if (compare_no_case (ss, "infinity")) return;
+                nitpick nuts;
+                if (test_value < t_namedspace > (nuts, v, ss))
+                {   nits.merge (nuts); return; } }
+            if (test_value < t_measure > (nits, v, ss)) return; }
+        tidy_string < t_mathspaceinfinity > :: status (s_invalid); } };
 
 template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

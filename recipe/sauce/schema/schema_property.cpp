@@ -2816,7 +2816,8 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
             valid_type = true;
             knots.merge (nuts); }
         if (unfound.empty ())
-            unfound = quote (schema_property_name (prop)) + " is not a valid property of " + quote (sch::name (gen)); }
+            unfound = quote (schema_property_name (prop)) + " is not a valid property of " + quote (sch::name (gen)); 
+}
     if (! unfound.empty () && ! valid_type)
         knots.pick (nit_not_schema_property, es_error, ec_microdata, unfound);
     nits.merge (knots);

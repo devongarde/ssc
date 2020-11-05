@@ -1,4 +1,4 @@
-ssc 0.0.61
+ssc 0.0.62
 Static Site Checker
 
 (an opinionated HTML nitpicker
@@ -74,6 +74,15 @@ Notes on folder name word play:
 - sauce: identifies people who presume / obvious
 - toast: toasts code / i like burnt toast
 - heater: i'm not stopping now
+
+
+
+SEE ALSO
+build.txt        notes on building ssc
+usage.txt        how to use ssc
+releasenotes.txt release notes for the current version of ssc
+LICENCE.txt      ssc licence information
+LICENSE.txt      formal GPL 3 licence
 
 
 

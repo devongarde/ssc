@@ -3,27 +3,31 @@ static site checker
 https://dylanharris.org/ssc/index.shtml
 (c) 2020 Dylan Harris
 
+0.0.62
+- allow ID attributes on templates to filter down to child elements
+- users can add bespoke colours, languages, and SGML declarations (type 'ssc -h' for details)
+- added release notes and build instructions to the source (taken from arts & ego)
 
 0.0.61
-- Add more MathML 1 tests, and fix some issues that arose
-- Fix issue where SSI #echo looked up variables twice causing incorrect substitutions when values contained variable names
+- add more MathML 1 tests, and fix some issues that arose
+- fix issue where SSI #echo looked up variables twice causing incorrect substitutions when values contained variable names
 
 0.0.60
 - switched to boost static libraries
 - CMake can now produce a debug build
-- suppress certain warnings in STYLE and SCRIPT blocks
+- suppress inappropriate warnings in STYLE and SCRIPT blocks
 
 0.0.59
 - restructured project
 - introduced CMake builds
-- removed hard coded boost directories from build files
+- removed hard coded boost directories from builds
 
 0.0.58
 - added many READMEs
 - removed private email addresses from test files (even though those addresses were published elsewhere)
 
 0.0.57
-- Removed SVG 1.2 and 2.0 tests for now (until the code is written!)
+- removed SVG 1.2 and 2.0 tests for now (until the code is written!)
 
 0.0.56
-- Completed SVG 1.1
+- completed SVG 1.1

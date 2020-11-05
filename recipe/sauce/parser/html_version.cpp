@@ -28,7 +28,7 @@ const char* doctype = "DOCTYPE";
 const ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
-html_version::html_version (const BYTE major, const BYTE minor, const uint64_t flags, const uint64_t extensions)
+html_version::html_version (const unsigned char major, const unsigned char minor, const uint64_t flags, const uint64_t extensions)
         :   major_ (major), minor_ (minor), flags_ (flags), ext_ (extensions)
 {   if (minor_ == 0xFF)
         if (major_ == 5) minor_ = context.html_minor ();
@@ -193,6 +193,10 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_html : found_html = true; break;
                 case doc_public: found_public = true; break;
                 case doc_system: found_system = true; break;
+                case doc_context :
+                    nits.pick (nit_html_unrecognised, es_info, ec_parser, "bespoke SGML specification encountered; am pretending it's HTML 5");
+                    note_parsed_version (nits, nit_html_5_0, html_5_0, "HTML 5");
+                    break;
                 case doc_htmlplus :
                     if (note_parsed_version (nits, nit_html_plus, html_plus, "HTML+"))
                         found_html = true;

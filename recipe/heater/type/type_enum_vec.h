@@ -81,9 +81,9 @@ template < e_type E, typename ENUM > struct enum_vec : public enum_vec_base < EN
         swap (tmp); }
     static void init (nitpick& nits, const symbol_entry < ENUM > table [], const ::std::size_t size, const bool wildcards = false)
     {   symbol < ENUM > :: init (nits, table, size, wildcards); }
-    static void extend (const vstr_t& extension)
+    static void extend (const vstr_t& extension, const std::size_t s = 0)
     {   for (auto e : extension)
-            symbol < ENUM > :: extend (e, static_cast < ENUM > (0)); }
+            symbol < ENUM > :: extend (e, static_cast < ENUM > (s)); }
     ::std::string values (const html_version& v) const
     {   return symbol < ENUM > :: value_list (v); }
     ::std::string get_string () const
