@@ -24,27 +24,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 
 // categories
-constexpr int c_generic = 0;
-constexpr int c_html3 = 0x00000001;
-constexpr int c_microformat = 0x00000002;
-constexpr int c_html4 = 0x00000004;
-constexpr int c_xfn = 0x00000008;
-constexpr int c_its = 0x00000010;
-constexpr int c_grddl = 0x00000020;
-constexpr int c_vcs = 0x00000040;
-constexpr int c_atom = 0x00000080;  // RFC 4287
-constexpr int c_amp_html = 0x00000100;
-constexpr int c_safari = 0x00000200;
-constexpr int c_indieauth = 0x00000400;
-constexpr int c_dcterms = 0x00000800;
-constexpr int c_lightbox = 0x00001000;
-constexpr int c_openid = 0x00002000;
-constexpr int c_hcal = 0x00004000;
-constexpr int c_cc = 0x00008000;
-constexpr int c_mf1 = 0x00010000;
-constexpr int c_rejected = 0x10000000;
-constexpr int c_dropped = 0x20000000;
-constexpr int c_draft = 0x40000000;
+const int c_generic = 0;
+const int c_html3 = 0x00000001;
+const int c_microformat = 0x00000002;
+const int c_html4 = 0x00000004;
+const int c_xfn = 0x00000008;
+const int c_its = 0x00000010;
+const int c_grddl = 0x00000020;
+const int c_vcs = 0x00000040;
+const int c_atom = 0x00000080;  // RFC 4287
+const int c_amp_html = 0x00000100;
+const int c_safari = 0x00000200;
+const int c_indieauth = 0x00000400;
+const int c_dcterms = 0x00000800;
+const int c_lightbox = 0x00001000;
+const int c_openid = 0x00002000;
+const int c_hcal = 0x00004000;
+const int c_cc = 0x00008000;
+const int c_mf1 = 0x00010000;
+const int c_rejected = 0x10000000;
+const int c_dropped = 0x20000000;
+const int c_draft = 0x40000000;
 
 // effects on link, a, area
 typedef enum
@@ -58,9 +58,13 @@ protected:
 public:
     microformat_base () : declared_ (false) {}
     microformat_base (const microformat_base&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     microformat_base (microformat_base&&) = default;
+#endif
     microformat_base& operator = (const microformat_base&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     microformat_base& operator = (microformat_base&&) = default;
+#endif
     virtual ~microformat_base () = default;
     explicit microformat_base (bool b) : declared_ (b) {}
 
@@ -77,7 +81,7 @@ public:
     virtual ::std::string get_string (const e_property ) { return ::std::string (); }
     virtual bool has_prop (const e_property ) const { return false; }
     virtual void reset () { declared_ = false; }
-    void swap (microformat_base& mf) noexcept
+    void swap (microformat_base& mf) NOEXCEPT
     {   ::std::swap (declared_, mf.declared_); }
     virtual bool invalid () const { return true; }
     virtual bool has_url () const { return false; }
@@ -97,15 +101,19 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
 public:
     microformat () = default;
     microformat (const microformat&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     microformat (microformat&&) = default;
+#endif
     microformat& operator = (const microformat&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     microformat& operator = (microformat&&) = default;
+#endif
     virtual ~microformat () = default;
     explicit microformat (bool b) : microformat_base (b) {}
     virtual void reset ();
-    void swap (microformat& mf) noexcept;
-    constexpr static typename ENUM :: value_type whoami () { return VOCAB; }
-    constexpr static typename ENUM :: value_type html_class () { return VOCAB; }
+    void swap (microformat& mf) NOEXCEPT;
+    CONSTEXPR static typename ENUM :: value_type whoami () { return VOCAB; }
+    CONSTEXPR static typename ENUM :: value_type html_class () { return VOCAB; }
     template < class PROPERTY > bool has () const
     {   return has_property < PROPERTY, PROPERTIES... > (); }
     template < class PROPERTY > void get (PROPERTY** p)
@@ -150,7 +158,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
     swap (mf); }
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
-    void microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: swap (microformat& mf) noexcept
+    void microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: swap (microformat& mf) NOEXCEPT
 {   ::std::swap (p_, mf.p_);
     microformat_base::swap (mf); }
 

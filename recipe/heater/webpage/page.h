@@ -59,11 +59,15 @@ public:
     page (nitpick& nits, const ::std::string& name, ::std::string& content, directory* d = nullptr, const e_charcode encoding = cc_ansi);
     page (const ::std::string& name, ::std::string& content, const fileindex_t ndx, directory* d = nullptr, const e_charcode encoding = cc_ansi);
     page (const page& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     page (page&& ) = default;
+#endif
     page& operator = (const page& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     page& operator = (page&& ) = default;
+#endif
     ~page () = default;
-    void swap (page& p) noexcept;
+    void swap (page& p) NOEXCEPT;
     void reset ();
     void reset (const page& p);
     nitpick& nits () { return nits_; }

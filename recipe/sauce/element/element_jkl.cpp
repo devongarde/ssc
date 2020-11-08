@@ -37,7 +37,7 @@ bool element::naughty_label_descendents (const element* e, const uid_t uid, bool
     return res; }
 
 void element::examine_label ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   check_ancestors (elem_label, element_bit_set (elem_label));
         no_anchor_daddy ();
         uid_t uid = 0;
@@ -59,7 +59,7 @@ void element::examine_label ()
                 pick (nit_label_parentage, ed_50, "4.10.4 The label element", es_error, ec_element, "a <LABEL> cannot have any form control descendants, except that indicated by FOR"); } }
 
 void element::examine_li ()
-{   if ((node_.version ().major () >= 5) && a_.known (a_value))
+{   if ((node_.version ().mjr () >= 5) && a_.known (a_value))
         switch (w3_minor_5 (node_.version ()))
         {   case 0 :
                 if (! ancestral_elements_.test (elem_ol))
@@ -76,7 +76,7 @@ void element::examine_li ()
                 break; } }
 
 void element::examine_link ()
-{   if (node_.version ().major () < 4) return;
+{   if (node_.version ().mjr () < 4) return;
     bool has_rel = a_.known (a_rel);
     bool has_itemprop = a_.known (a_itemprop);
     if (has_rel && has_itemprop)
@@ -90,7 +90,7 @@ void element::examine_link ()
         return; }
     ::std::string content (a_.get_string (a_rel));
     if (content.empty ())
-    {   if (node_.version ().major () >= 5) pick (nit_link_rel_off, ed_50, "4.2.4 The link element", es_error, ec_attribute, "REL cannot be empty");
+    {   if (node_.version ().mjr () >= 5) pick (nit_link_rel_off, ed_50, "4.2.4 The link element", es_error, ec_attribute, "REL cannot be empty");
         return; }
     vstr_t entries;
     ::boost::algorithm::split (entries, content, ::boost::algorithm::is_any_of (" "), ::boost::algorithm::token_compress_on);

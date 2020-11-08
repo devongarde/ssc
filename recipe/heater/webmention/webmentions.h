@@ -32,7 +32,7 @@ public:
     webmentions (nitpick& nits, const ::boost::filesystem::path& filename, const url& target)
     {   invalid_ = ! read (nits, filename);
         make_generated_filename (target); }
-    void swap (webmentions& w) noexcept
+    void swap (webmentions& w) NOEXCEPT
     {   w_.swap (w.w_);
         ::std::swap (invalid_, w.invalid_); }
     void reset ()

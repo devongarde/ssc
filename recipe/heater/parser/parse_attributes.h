@@ -33,11 +33,15 @@ class attributes_node
 public:
     attributes_node ();
     attributes_node (const attributes_node& an) = default;
-    attributes_node (attributes_node&& an) = default;
-    ~attributes_node () = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	attributes_node(attributes_node&& an) = default;
+#endif
+	~attributes_node() = default;
     attributes_node& operator = (const attributes_node& an) = default;
-    attributes_node& operator = (attributes_node&& an) = default;
-    void swap (attributes_node& an)
+#ifndef NO_MOVE_CONSTRUCTOR
+	attributes_node& operator = (attributes_node&& an) = default;
+#endif
+	void swap (attributes_node& an)
     {   va_.swap (an.va_); }
     void reset ()
     {   attributes_node an;

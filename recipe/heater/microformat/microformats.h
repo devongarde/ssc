@@ -43,7 +43,7 @@ class microformats
     bool empty (const ::std::size_t ndx) const;
 public:
     microformats () { mf_.resize (vocab_size + rel_size); } // needs fixing for valid microformat rels
-    void swap (microformats& m) noexcept
+    void swap (microformats& m) NOEXCEPT
     {   mf_.swap (m.mf_); }
     bool allocated (const e_class v) const { return allocated (index (v)); }
     bool allocated (const e_rel v) const { return allocated (index (v)); }

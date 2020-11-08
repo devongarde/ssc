@@ -37,7 +37,7 @@ class microformat_export
     bool initiated_ = false;
 public:
     microformat_export ();
-    void swap (microformat_export& m) noexcept
+    void swap (microformat_export& m) NOEXCEPT
     {   tree_.swap (m.tree_);
         rel_.swap (m.rel_);
         url_.swap (m.url_);

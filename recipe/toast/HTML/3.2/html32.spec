@@ -1,7 +1,7 @@
 -f ../toast/HTML/3.2/html32.conf
 
 PASS ../toast/HTML/3.2/html32.html
-11 wrong_version unknown_rel
+11 unrecognised_value unknown_rel
 27 inserted_missing_closure
 29 correct_spelling attribute_unrecognised unrecognised_attribute
 31 inserted_missing_closure
@@ -37,7 +37,7 @@ PASS ../toast/HTML/3.2/html32-bad.html
 11 1_to_7
 13 unrecognised_value bad_colour not_an_integer
 15 correct_spelling unrecognised_value bad_colour
-16 wrong_version bad_colour
+16 unrecognised_value bad_colour
 17 unrecognised_value bad_colour
 18 unrecognised_value bad_colour
 21 correct_spelling
@@ -53,4 +53,4 @@ PASS ../toast/HTML/3.2/html32-bad.html
 43 unrecognised_value
 44 unrecognised_value
 45 correct_spelling unrecognised_value unrecognised_value unrecognised_value
-48 attribute_unrecognised_here attribute_unrecognised_here unrecognised_attribute
+48 attribute_unrecognised_here unrecognised_attribute

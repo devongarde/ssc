@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_enum.h"
+#include "type/type_master.h"
 
 template < > inline void enum_n < t_lang, e_lang > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty () || (s.length () > 8))
@@ -33,19 +34,6 @@ template < > inline void enum_n < t_lang, e_lang > :: set_value (nitpick& nits, 
         {   enum_base < e_lang, t_lang > :: status (s_good);
             return; }
     nits.pick (nit_lingo, es_warning, ec_type, quote (s), " is a rare or invalid language code");
-    enum_base < e_lang, t_lang > :: status (s_invalid); }
+    enum_base < e_lang, t_lang > :: status (s_invalid); };
 
-template < > struct type_master < t_langs > : string_vector < t_langs, sz_comma >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_langs, sz_comma > :: set_value (nits, v, s);
-        if (string_vector < t_langs, sz_comma > :: empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "a comma separated list of languages is expected");
-            string_vector < t_langs, sz_comma > :: status (s_invalid); }
-        else if (string_vector < t_langs, sz_comma > :: good ())
-        {   bool allgood = true;
-            for (auto arg : string_vector < t_langs, sz_comma > :: get ())
-            {   type_master < t_lang > ar;
-                ar.set_value (nits, v, arg);
-                if (! ar.good ()) allgood = false; }
-            if (allgood) return; }
-        string_vector < t_langs, sz_comma > :: status (s_invalid); } };
+template < > struct type_master < t_langs > : type_at_least_one < t_langs, sz_comma, t_lang > { };

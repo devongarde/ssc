@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "symbol/symbol_table.h"
 
-void symbol_store::swap (symbol_store& ss) noexcept
+void symbol_store::swap (symbol_store& ss) NOEXCEPT
 {   first_.swap (ss.first_);
     last_.swap (ss.last_);
     sz_.swap (ss.sz_);
@@ -30,7 +30,7 @@ void symbol_store::swap (symbol_store& ss) noexcept
     ::std::swap (flags_, ss.flags_);
     ::std::swap (flags2_, ss.flags2_); }
 
-void symbol_table :: swap (symbol_table& s) noexcept
+void symbol_table :: swap (symbol_table& s) NOEXCEPT
 {   symbol_.swap (s.symbol_);
     reverse_.swap (s.reverse_);
     ::std::swap (wildcards_, s.wildcards_); }
@@ -82,9 +82,9 @@ uint64_t symbol_table :: flags2 (const ::std::size_t x) const
     res += i -> second.sz_;
     return res; }
 
-bool symbol_table :: find (const ::std::string& x, ::std::size_t& res, const e_namespace ns, html_version* first, html_version* last, uint64_t* flags, uint64_t* flags2) const
+bool symbol_table :: find (const html_version& v, const ::std::string& x, ::std::size_t& res, const e_namespace ns, html_version* first, html_version* last, uint64_t* flags, uint64_t* flags2) const
 {   auto i = symbol_.find (symbol_key (x, ns));
-    if (i != symbol_.end ())
+    if (i != symbol_.end () && may_apply (v, i -> second.first_, i -> second.last_))
     {   res = i -> second.v_;
         if (first != nullptr) *first = i -> second.first_;
         if (last != nullptr) *last = i -> second.last_;
@@ -94,11 +94,11 @@ bool symbol_table :: find (const ::std::string& x, ::std::size_t& res, const e_n
     if (! wildcards_) return false;
     auto p = x.find_first_of (":-");
     if ((p == 0) || (p == x.npos) || (p == x.length () - 1)) return false;
-    return find (x.substr (0, p+1), res, ns, first, last, flags); }
+    return find (v, x.substr (0, p+1), res, ns, first, last, flags); }
 
-::std::size_t symbol_table :: find (const ::std::string& x, const e_namespace ns, html_version* first, html_version* last, uint64_t* flags, uint64_t* flags2) const
+::std::size_t symbol_table :: find (const html_version& v, const ::std::string& x, const e_namespace ns, html_version* first, html_version* last, uint64_t* flags, uint64_t* flags2) const
 {   auto i = symbol_.find (symbol_key (x, ns));
-    if (i != symbol_.end ())
+    if (i != symbol_.end () && may_apply (v, i -> second.first_, i -> second.last_))
     {   if (first != nullptr) *first = i -> second.first_;
         if (last != nullptr) *last = i -> second.last_;
         if (flags != nullptr) *flags = i -> second.flags_;
@@ -109,7 +109,7 @@ bool symbol_table :: find (const ::std::string& x, ::std::size_t& res, const e_n
     if ((p == 0) || (p == x.npos))
     {   p = x.find (':');
         if ((p == 0) || (p == x.npos)) return 0; }
-    return find (x.substr (0, p), ns, first, last, flags); }
+    return find (v, x.substr (0, p), ns, first, last, flags); }
 
 void symbol_table :: extend (const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const e_namespace ns, const html_version& first, const html_version& last, const uint64_t flags, const uint64_t flags2)
 {   symbol_.insert (typename symbol_t::value_type (symbol_key (key, ns), symbol_store (first, last, symbol, value, ns, flags, flags2)));

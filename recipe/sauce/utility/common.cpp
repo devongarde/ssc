@@ -192,8 +192,16 @@ bool separate (const ::std::string& s, ::std::string& head, ::std::string& tail,
 
 ::boost::filesystem::path get_tmp_filename ()
 {   ::boost::system::error_code ec;
+#ifdef FS_THROWS
+	::boost::filesystem::path model;
+    try
+	{	model = ::boost::filesystem::temp_directory_path(ec); }
+	catch (...)
+	{ return ::boost::filesystem::path(); }
+#else
     ::boost::filesystem::path model (::boost::filesystem::temp_directory_path (ec));
     if (ec.failed ()) return ::boost::filesystem::path ();
+#endif
     model /= TEMP_FILE_MASK;
     return ::boost::filesystem::unique_path (model); }
 

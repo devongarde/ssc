@@ -29,7 +29,7 @@ element::element (const ::std::string& name, element_node& en, element* parent, 
 {   if (! node_.invalid ()) return text ();
     return ::std::string ("empty base"); }
 
-void element::swap (element& e) noexcept
+void element::swap (element& e) NOEXCEPT
 {   a_.swap (e.a_);
     mf_.swap (e.mf_);
     name_.swap (e.name_);
@@ -129,7 +129,7 @@ void element::check_required_type (const e_element tag)
     pick (nit_element_no_type, es_comment, ec_element, "has no TYPE attribute"); }
 
 void element::no_anchor_daddy ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
         if (ancestral_elements_.test (elem_a))
             pick (nit_interactive, ed_50, "4.5.1 The a element", es_warning, ec_element, "<A> cannot have an interactive descendant element."); }
 

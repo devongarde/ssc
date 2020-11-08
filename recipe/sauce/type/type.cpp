@@ -84,8 +84,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_attributename);
         TEST_VALUE (t_attributetype);
         TEST_VALUE (t_autocapitalise);
-        TEST_VALUE (t_autocapitalise53);
-        TEST_VALUE (t_autocapitalise54);
         TEST_VALUE (t_autocomplete);
         TEST_VALUE (t_autocompletes);
         TEST_VALUE (t_background);
@@ -146,9 +144,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_defaultaction);
         TEST_VALUE (t_dingbat);
         TEST_VALUE (t_dir);
-        TEST_VALUE (t_dir2);
-        TEST_VALUE (t_dir4);
-        TEST_VALUE (t_dir5);
         TEST_VALUE (t_direction);
         TEST_VALUE (t_display);
         TEST_VALUE (t_dominantbaseline);
@@ -217,8 +212,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_inlist);
         TEST_VALUE (t_inputaccept);
         TEST_VALUE (t_inputmode);
-        TEST_VALUE (t_inputmode51);
-        TEST_VALUE (t_inputmode54);
         TEST_VALUE (t_inputplus);
         TEST_VALUE (t_inputtype);
         TEST_VALUE (t_inputtype3);

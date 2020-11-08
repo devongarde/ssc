@@ -13,7 +13,7 @@ PASS ../toast/type/metaname/bad.html
 PASS ../toast/type/metaname/dubious.html
 2 naughty_lang
 5 unrecognised_value
-6 wrong_version
+6 unrecognised_value
 7 unrecognised_value bad_namespace unrecognised_value
 15 not_img
 16 bad_srcset saucy_source
@@ -22,4 +22,4 @@ PASS ../toast/type/metaname/good.html
 2 naughty_lang
 
 PASS ../toast/type/metaname/old.html
-5 wrong_version
+5 unrecognised_value

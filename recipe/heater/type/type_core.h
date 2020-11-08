@@ -31,7 +31,7 @@ template < e_type TYPE > struct string_value : public type_base < ::std::string,
 {   ::std::string value_;
     static ::std::string default_value () { return ::std::string (); }
     string_value () = default;
-    void swap (string_value& t) noexcept
+    void swap (string_value& t) NOEXCEPT
     {   value_.swap (t.value_);
         type_base < ::std::string, TYPE >::swap (t); }
     ::std::string get_string () const
@@ -56,7 +56,7 @@ template < e_type TYPE > struct tidy_string : public string_value < TYPE >
 template < e_type TYPE > struct string_vector_base : public tidy_string < TYPE >
 {   typedef vstr_t value_type;
     value_type value_;
-    void swap (string_vector_base& t) noexcept
+    void swap (string_vector_base& t) NOEXCEPT
     {   value_.swap (t.value_);
         tidy_string < TYPE >::swap (t); }
     ::std::string get_string () const
@@ -90,7 +90,7 @@ template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct num
 {   NUMERIC_TYPE value_ = def;
     static NUMERIC_TYPE default_value () { return def; }
     numeric_value () = default;
-    void swap (numeric_value& t) noexcept
+    void swap (numeric_value& t) NOEXCEPT
     {   ::std::swap (value_, t.value_);
         type_base < NUMERIC_TYPE, TYPE >::swap (t); }
     void get_number (NUMERIC_TYPE& i) const

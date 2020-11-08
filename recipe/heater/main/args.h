@@ -71,7 +71,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MAXFILESIZE "maxfilesize"
 #define METANAME    "metaname"
 #define MICRODATAARG "microdata"
-#define MINOR       "minor"
+#define MINOR       "mnr"
 #define MIMETYPE    "mimetype"
 #define NIDS        "nids"
 #define NITS        "nits"

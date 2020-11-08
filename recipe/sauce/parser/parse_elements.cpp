@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/text.h"
 #include "element/parentage.h"
 
-void elements_node::swap (elements_node& en) noexcept
+void elements_node::swap (elements_node& en) NOEXCEPT
 {   ::std::swap (invalid_, en.invalid_);
     version_.swap (en.version_);
     ven_.swap (en.ven_); }

@@ -31,7 +31,7 @@ class bras_ket
     void nodoctype (nitpick& nits, html_version& v, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
     void mixed_mess (nitpick& nits, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char* item, const char* inside);
 public:
-    void swap (bras_ket& bk) noexcept
+    void swap (bras_ket& bk) NOEXCEPT
     {   ve_.swap (bk.ve_);
         ::std::swap (line_, bk.line_); }
     html_version parse (const ::std::string& content);

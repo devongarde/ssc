@@ -32,15 +32,19 @@ class nitpick
 public:
     nitpick () = default;
     nitpick (const nitpick& np) = default;
-    nitpick (nitpick&& np) = default;
-    explicit nitpick (const ::std::string c) : context_ (c) { }
+#ifndef NO_MOVE_CONSTRUCTOR
+	nitpick(nitpick&& np) = default;
+#endif
+	explicit nitpick(const ::std::string c) : context_(c) { }
     explicit nitpick (const int line, const ::std::string c) : context_ (c), line_ (line) { }
-    ~nitpick () = default;
+	~nitpick() = default;
     nitpick& operator = (const nitpick& np) = default;
-    nitpick& operator = (nitpick&& np) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	nitpick& operator = (nitpick&& np) = default;
+#endif
     nitpick& operator += (const nitpick& np) { merge (np); return *this; }
     nitpick& operator += (nitpick&& np) { merge (np); return *this; }
-    void swap (nitpick& np) noexcept;
+    void swap (nitpick& np) NOEXCEPT;
     void reset ();
     void reset (const nitpick& np);
     void merge (const nitpick& np);

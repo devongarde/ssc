@@ -29,7 +29,7 @@ void element::examine_tab ()
             pick (nit_chocolate_teapot, ed_3, "Horizontal Tabs (Page 38)", es_warning, ec_element, "TO and INDENT should not be combined in <TAB>"); }
 
 void element::examine_table ()
-{   if (! has_child () || (node_.version ().major () < 5)) return;
+{   if (! has_child () || (node_.version ().mjr () < 5)) return;
     typedef enum { to_start, to_caption, to_colgroup, to_head, to_foot_start, to_tr, to_foot_end } table_order;
     table_order tor = to_start;
     bool ooo = false, footed = false, doubled = false, mixed = false, body = false, tr = false;
@@ -77,7 +77,7 @@ void element::examine_table ()
         if (ooo || doubled || mixed) break; } }
 
 void element::examine_td ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     span_check (); }
 
 void element::examine_textarea ()
@@ -96,7 +96,7 @@ void element::examine_textarea ()
         if ((max > 0) && (len > max)) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_error, ec_element, "<TEXTAREA> content is longer than MAXLENGTH"); } }
 
 void element::examine_th ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     bool is3 = (w3_minor_5 (node_.version ()) == 3);
     element_bitset bs (descendant_elements_);
     if (is3) bs &= sectioning_bitset | header_bitset | elem_header | elem_footer | elem_main;
@@ -127,7 +127,7 @@ void element::examine_title ()
     page_.confirm_title (); }
 
 void element::examine_track ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   e_kind k = static_cast < e_kind > (a_.get_int (a_kind));
         if ((k == k_subtitles) && ! a_.known (a_srclang))
             pick (nit_data_type, ed_50, "4.7.9 The track element", es_error, ec_element, "<TRACK> with KIND=subtitles requires SRCLANG");

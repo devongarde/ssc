@@ -61,12 +61,12 @@ PASS ../toast/HTML/5.2/html5-bad.html
 7 only_once
 10 default_role
 14 attribute_required
-16 attribute_unrecognised_here attribute_unrecognised_here missing_close unrecognised_attribute
+16 attribute_unrecognised_here missing_close unrecognised_attribute
 18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent
 19 inserted_missing_closure inserted_missing_closure missing_close
 21 missing_open
-23 invalid_attribute_version wrong_version
-28 attribute_unrecognised_here attribute_unrecognised_here unrecognised_attribute
+23 unrecognised_value invalid_attribute_version wrong_version
+28 attribute_unrecognised_here unrecognised_attribute
 31 mixed_mess
 33 special_name
 48 missing_open
@@ -141,7 +141,7 @@ PASS ../toast/HTML/5.2/html5-bad.html
 193 bad_script
 194 unrecognised_value bad_script bad_script
 195 bad_script bad_script
-196 attribute_unrecognised_here attribute_unrecognised_here unrecognised_attribute bad_script
+196 attribute_unrecognised_here unrecognised_attribute bad_script
 197 bad_script
 
 PASS ../toast/HTML/5.2/html5-bad-2.html
@@ -443,7 +443,7 @@ PASS ../toast/HTML/5.2/template-2.html
 2 naughty_lang
 
 PASS ../toast/HTML/5.2/template-3.html
-1 presume_html_1 attribute_unrecognised_here attribute_unrecognised_here unrecognised_attribute
+1 presume_html_1 attribute_unrecognised_here unrecognised_attribute
 
 PASS ../toast/HTML/5.2/template-4.html
 2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close

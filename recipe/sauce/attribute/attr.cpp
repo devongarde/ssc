@@ -165,6 +165,7 @@ struct symbol_entry < e_attribute > attribute_symbol_table [] =
     { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "columnlines", a_columnlines },
     { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "columnspacing", a_columnspacing },
     { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "columnspan", a_columnspan },
+    { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "columnwidth", a_columnwidth },
     { { HTML_PLUS }, { HTML_UNDEF }, "compact", a_compact },
     { { HTML_2_0 }, { HTML_UNDEF }, "content", a_content },
     { { HTML_5_0 }, { HTML_UNDEF }, "contenteditable", a_contenteditable },
@@ -422,6 +423,7 @@ struct symbol_entry < e_attribute > attribute_symbol_table [] =
     { { HTML_PLUS }, { HTML_UNDEF }, "method", a_method },
     { { HTML_1_0 }, { HTML_UNDEF }, "methods", a_methods },
     { { HTML_PLUS, HV_NOT2 }, { HTML_UNDEF }, "min", a_min },
+    { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "minilabelspacing", a_minilabelspacing },
     { { HTML_5_0 }, { HTML_UNDEF }, "minlength", a_minlength },
     { { XHTML_1_0, 0, HE_MATH_1 | HE_MATH_2 }, { HTML_UNDEF }, "minsize", a_minsize },
     { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "mode", a_mode },
@@ -451,7 +453,7 @@ struct symbol_entry < e_attribute > attribute_symbol_table [] =
     { { HTML_5_0, HV_WHATWG }, { HTML_UNDEF }, "nomodule", a_nomodule },
     { { HTML_4_0 }, { HTML_UNDEF }, "noresize", a_noresize },
     { { HTML_3_2 }, { HTML_UNDEF }, "noshade", a_noshade },
-    { { HTML_3_0 }, { HTML_3_0 }, "notation", a_notation },
+    { { HTML_3_0 }, { HTML_UNDEF }, "notation", a_notation },
     { { HTML_5_0 }, { HTML_UNDEF }, "novalidate", a_novalidate },
     { { HTML_2_0, HV_RFC_1942 }, { HTML_UNDEF }, "nowrap", a_nowrap },
     { { HTML_5_1 }, { HTML_UNDEF }, "nonce", a_numberonce }, // A nonce is a paedophile. Why is the word used in HTML?
@@ -851,7 +853,7 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const ::std::stri
     if (lc.empty ()) return a_unknown;
     if (((v == xhtml_1_0) || (v == xhtml_1_1)) && (x.find_first_of (UPPERCASE) != ::std::string::npos))
         nits.pick (nit_xhtml_attribute_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "attribute names must be lower cased in ", v.report ());
-    symbol < e_attribute > a (lc, n);
+    symbol < e_attribute > a (v, lc, n);
     if (! a.unknown ())
         if (! does_apply (v, a.first (), a.last ()))
             nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, quote (x), " is not valid in ", v.report ());

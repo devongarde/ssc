@@ -5,7 +5,7 @@ PASS ../toast/HTML/4.01/math.html
 
 PASS ../toast/HTML/4.01/html4-bad.html
 5 mime
-12 deprecated_element wrong_version bad_colour deprecated_attribute
+12 deprecated_element unrecognised_value bad_colour deprecated_attribute
 15 inserted_missing_closure
 16 missing_open
 19 inserted_missing_closure

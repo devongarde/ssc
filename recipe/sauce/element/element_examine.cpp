@@ -142,7 +142,7 @@ void element::remove_category (const uint64_t cat)
     node_.id ().refresh (EP_5_REFRESHED); }
 
 void element::congeal_dynamism ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
         if ((node_.id ().flags () & EP_5_REFRESHED) == 0)
             switch (tag ())
             {   case elem_audio :
@@ -235,9 +235,9 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
         if (parent_ == nullptr) is_permitted_parent (nits (), node_.version (), node_.id (), elem ());
         else is_permitted_parent (nits (), node_.version (), node_.id (), parent_ -> node_.id ());
 
-        if (node_.version ().major () >= 4) verify_microdata ();
+        if (node_.version ().mjr () >= 4) verify_microdata ();
 
-        if (node_.version ().major () >= 5)
+        if (node_.version ().mjr () >= 5)
             if (a_.known (a_xmllang))
                 if (! a_.known (a_lang))
                     pick (nit_no_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "Authors must not use LANG in the XML namespace on HTML elements in HTML documents");
@@ -347,9 +347,9 @@ void element::verify ()
     if (a_.has (a_list)) validate_input_id (); }
 
 void element::verify_document ()
-{   if ((node_.version ().major () < 5) && (page_.count (elem_title) == 0))
+{   if ((node_.version ().mjr () < 5) && (page_.count (elem_title) == 0))
         pick (nit_title_required, es_error, ec_element, "every document header must have <TITLE>");
-    switch (node_.version ().major ())
+    switch (node_.version ().mjr ())
     {   case 0 :
         case 1 :
         case 3 :

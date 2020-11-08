@@ -33,7 +33,7 @@ e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::stri
             s = ss.substr (pos+1);
             if (! ns.good ()) return ns_error;
             if (ns.get () != ns_xmlns) return ns.get ();
-            e_namespace e = type_master < t_namespace > :: find (s);
+            e_namespace e = type_master < t_namespace > :: find (v, s);
             if (e != ns_default) { s = lhs; return ns_default; }
             static ::std::size_t next_free_namespace = first_runtime_namespace;
             if (next_free_namespace == 0xFF)

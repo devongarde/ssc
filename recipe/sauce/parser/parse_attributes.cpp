@@ -254,9 +254,9 @@ e_svg_version attributes_node::get_svg (const html_version& v) const
                 if (compare_no_case (s, "full")) return sv_1_2_full;
                 return sv_1_2_tiny; }
     if (context.svg_version () != sv_none) return context.svg_version ();
-    switch (v.major ())
+    switch (v.mjr ())
     {   case 4 :
-            switch (v.minor ())
+            switch (v.mnr ())
             {   case 0 :
                 case 1 : return sv_1_0;
                 case 2 :
@@ -270,7 +270,7 @@ e_svg_version attributes_node::get_svg (const html_version& v) const
 
 e_math_version attributes_node::get_math (const html_version& v) const
 {   if (context.math_version () != math_none) return context.math_version ();
-    if (v.major () == 5)
+    if (v.mjr () == 5)
         if (v >= html_5_3) return math_3;
         else return math_2;
     return math_1; }

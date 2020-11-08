@@ -36,8 +36,10 @@ public:
     reply (const reply& r)
         :   file_ (r.file_), id_ (r.id_), server_ (r.server_), content_ (r.content_), when_ (r.when_), activity_ (r.activity_)
     { }
-    reply (reply&& ) = default;
-    void swap (reply& r) noexcept;
+#ifndef NO_MOVE_CONSTRUCTOR
+	reply(reply&&) = default;
+#endif // VS
+    void swap (reply& r) NOEXCEPT;
     bool invalid () const { return file_.empty (); }
     void mark ();
     bool operator == (const reply& rhs) const;
@@ -69,7 +71,7 @@ class replies
     bool enact (nitpick& nits, const html_version& v);
 public:
     replies () {}
-    void swap (replies& r) noexcept { reply_.swap (r.reply_); }
+    void swap (replies& r) NOEXCEPT { reply_.swap (r.reply_); }
     void append (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content);
     ::std::string report (const char* comment = nullptr) const;
     bool process (nitpick& nits, const html_version& v); };

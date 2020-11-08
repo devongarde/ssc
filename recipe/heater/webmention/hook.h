@@ -34,7 +34,7 @@ public:
     hook (const hook& h) : source_ (h.source_), target_ (h.target_), deleted_ (h.deleted_), valid_ (h.valid_) { }
     hook (nitpick& nits, const html_version& v, const ::std::string& filename);
     hook (nitpick& nits, const html_version& v, const ::std::string& source, const ::std::string& target);
-    void swap (hook& h) noexcept
+    void swap (hook& h) NOEXCEPT
     {   source_.swap (h.source_);
         target_.swap (h.target_);
         ::std::swap (deleted_, h.deleted_);
@@ -49,6 +49,6 @@ class hooks
 {   ::std::vector < hook > hooks_;
 public:
     hooks () {}
-    void swap (hooks& h) noexcept { hooks_.swap (h.hooks_); }
+    void swap (hooks& h) NOEXCEPT { hooks_.swap (h.hooks_); }
     bool empty () const { return hooks_.empty (); }
     bool process (nitpick& nits, const html_version& v); };

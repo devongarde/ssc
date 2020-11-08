@@ -45,7 +45,7 @@ public:
     static bool is_relational () { return false; }
     static bool is_url () { return false; }
     static bool is_existential () { return false; }
-    void swap (type_base& t) noexcept { id_.swap (t.id_); ::std::swap (status_, t.status_); }
+    void swap (type_base& t) NOEXCEPT { id_.swap (t.id_); ::std::swap (status_, t.status_); }
     void reset () { status_ = s_unset; id_.clear (); }
     void validate (nitpick& , const html_version& , const elem& , const ::std::string& ) { }
     bool verify_url (nitpick& , const html_version& , const directory& , const ::boost::filesystem::path& , const int , const attribute_bitset& , const vit_t& ) { return true; }

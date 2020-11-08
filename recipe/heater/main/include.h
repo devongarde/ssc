@@ -24,16 +24,77 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Wall"
 #pragma GCC diagnostic ignored "-Wextra"
-#endif
+#define CONSTEXPR constexpr
+#define NOEXCEPT noexcept
+#endif // __clang__
+
+#ifdef __GNUC__
+#define CONSTEXPR constexpr
+#define NOEXCEPT noexcept
+#endif // __GNUC__
+
+#ifdef _MSC_VER
+#if defined (VS2019)
+#define _WIN32_WINNT 0x0A00 // 10
+#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // thanks, boost
+#define _CRT_SECURE_NO_WARNINGS // thanks, boost
+#define CONSTEXPR constexpr
+#define NOEXCEPT noexcept
+#define VS 19
+#elif defined (VS2017)
+#define _WIN32_WINNT 0x0603 // 8.1
+#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // thanks, boost
+#define _CRT_SECURE_NO_WARNINGS // thanks, boost
+#define CONSTEXPR constexpr
+#define NOEXCEPT noexcept
+#define VS 17
+#elif defined (VS2015)
+#define BOOVAR 1
+#define ORDERED
+#define _WIN32_WINNT 0x0501 // XP
+#define _SCL_SECURE_NO_WARNINGS // thanks, boost
+#define _CRT_SECURE_NO_WARNINGS
+#define CONSTEXPR
+#define NOEXCEPT
+#define FS_THROWS
+#define REQUIRE_CONSTRUCTOR
+#define NO_PCF_STR
+#define VS 15
+#elif defined (VS2013)
+#define BOOVAR 1
+#define ORDERED
+#define _SCL_SECURE_NO_WARNINGS // thanks, boost
+#define _CRT_SECURE_NO_WARNINGS
+#define CONSTEXPR
+#define NOEXCEPT
+#define FS_THROWS
+#define REQUIRE_CONSTRUCTOR
+#define NO_PCF_STR
+#define VS 13
+#define NO_PROCESS
+#define NO_MOVE_CONSTRUCTOR
+#else // VS...
+#error unsupported version of visual C++
+#endif // VS...
+#endif // _MSC_VER
+
+#ifdef FUDDYDUDDY
+#define BOOVAR 2
+#define ORDERED
+#endif // FUDDYDUDDY
 
 #include <iostream>
-#include <string>
 #include <vector>
+#include <set>
+#include <assert.h>
+#include <map>
+
+#ifndef SSC_TEST
+#include <string>
 #include <sstream>
 #include <algorithm>
 #include <tuple>
 #include <memory>
-#include <set>
 #include <cstddef>
 #include <utility>
 #include <type_traits>
@@ -44,44 +105,59 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <array>
 #include <bitset>
 #include <set>
-#include <map>
 #include <array>
+#endif // SSC_TEST
 
-#ifdef FUDDYDUDDY
-// at least macos 10.13
+#include <boost/filesystem.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/algorithm/string.hpp>
+
+#ifndef SSC_TEST
+
+#if BOOVAR == 1
+#include <boost/variant.hpp>
+#define ssc_variant ::boost::variant
+#define ssc_get ::boost::variant::get
+#elif BOOVAR == 2
 #include <boost/variant2/variant.hpp>
+#define ssc_variant ::boost::variant2::variant
+#define ssc_get ::boost::variant2::get
+#else // BOOVAR
+#include <variant>
+#define ssc_variant ::std::variant
+#define ssc_get ::std::get
+#endif // BOOVAR
+
+#ifdef ORDERED
 #define ssc_set ::std::set
 #define ssc_map ::std::map
 #define ssc_mm ::std::multimap
-#define ssc_variant ::boost::variant2::variant
-#define ssc_get ::boost::variant2::get
-#else // FUDDYDUDDY
-#include <variant>
+#else // ORDERED
 #include <unordered_set>
 #include <unordered_map>
 #define ssc_set ::std::unordered_set
 #define ssc_map ::std::unordered_map
 #define ssc_mm ::std::unordered_multimap
-#define ssc_variant ::std::variant
-#define ssc_get ::std::get
-#endif // FUDDYDUDDY
+#endif // ORDERED
 
-#include <boost/algorithm/string.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/format.hpp>
-#include <boost/lexical_cast.hpp>
+#ifndef NO_PROCESS
 #include <boost/process.hpp>
+#endif // NO_PROCESS
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/string_path.hpp>
+#endif // SSC_TEST
 
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
 
 #include "main/version.h"
+
+#ifndef SCC_TEST
 
 #define PR_FILE "file"
 #define PR_FTP "ftp"
@@ -138,3 +214,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NOFLAGS 0
 
 #define EXPORT_EXTENSION ".json"
+
+#endif // SCC_TEST

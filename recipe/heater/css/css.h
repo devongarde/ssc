@@ -38,10 +38,12 @@ public:
     css (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding, bool snippet = false)
         :   snippet_ (snippet)
     {   parse (nits, v, content, encoding); }
-    css (const css& c) = default;
-    css (css&& c) = default;
-    ~css () { }
-    void swap (css& c) noexcept
+	css(const css& c) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	css (css&& c) = default;
+#endif // VS
+	~css () { }
+    void swap (css& c) NOEXCEPT
     {   ::std::swap (active_, c.active_);
         ::std::swap (snippet_, c.snippet_);
         ids_.swap (c.ids_); }

@@ -52,7 +52,7 @@ protected:
 public:
     explicit directory (const path_root_ptr& root);
     directory (const ::std::string& name, const bool offsite);
-    void swap (directory& d) noexcept;
+    void swap (directory& d) NOEXCEPT;
     bool is_root () const { return root_.get () != nullptr; }
     bool empty () const { return content_.empty (); }
     bool offsite () const { return offsite_; }

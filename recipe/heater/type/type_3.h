@@ -29,7 +29,7 @@ public:
     three_value () = default;
     ::std::string get_string () const;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
-    void swap (three_value& t) noexcept { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }
+    void swap (three_value& t) NOEXCEPT { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }
     static base_type default_value () { return static_cast <base_type> (0); }
     base_type get () const { return value_; }
     int get_int () const { return static_cast < int > (value_); }
@@ -38,13 +38,11 @@ public:
 
 template < > class type_master < t_aria_live > : public three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite > { };
 template < > class type_master < t_attributetype > : public three_value < t_attributetype, e_attributetype, sz_auto, sz_css, sz_xml > { };
-template < > class type_master < t_autocapitalise53 > : public three_value < t_autocapitalise53, e_autocapitalise53, sz_sentences, sz_words, sz_characters > { };
 template < > class type_master < t_behaviour > : public three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide > { };
 template < > class type_master < t_button > : public three_value < t_button, e_button, sz_button, sz_submit, sz_reset > { };
 template < > class type_master < t_command > : public three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > { };
 template < > class type_master < t_controlslist > : public three_value < t_controlslist, e_controlslist, sz_nodownload, sz_nofullscreen, sz_noremoteplayback > { };
 template < > class type_master < t_decoding > : public three_value < t_decoding, e_decoding, sz_auto, sz_sync, sz_async > { };
-template < > class type_master < t_dir5 > : public three_value < t_dir5, e_dir5, sz_auto, sz_ltr, sz_rtl > { };
 template < > class type_master < t_dsc > : public three_value < t_dsc, e_dsc, sz_disc, sz_square, sz_circle > { };
 template < > class type_master < t_edgemode > : public three_value < t_edgemode, e_edgemode, sz_duplicate, sz_wrap, sz_none > { };
 template < > class type_master < t_enctype > : public three_value < t_enctype, e_enctype, sz_app_urlencoded, sz_multipart_form_data, sz_text_plain > { };
@@ -53,10 +51,11 @@ template < > class type_master < t_fontnia > : public three_value < t_fontnia, e
 template < > class type_master < t_mathform > : public three_value < t_mathform, e_mathform, sz_infix, sz_postfix, sz_prefix > { };
 template < > class type_master < t_importance > : public three_value < t_importance, e_importance, sz_auto, sz_high, sz_low > { };
 template < > class type_master < t_keytype > : public three_value < t_keytype, e_keytype, sz_dsa, sz_ec, sz_rsa > { };
-template < > class type_master < t_lcralign > : public three_value < t_lcralign, e_lcralign, sz_left, sz_center, sz_right > { };
+template < > class type_master < t_lcralign > : public three_value < t_lcralign, e_lcralign, sz_left, sz_centre, sz_right > { };
 template < > class type_master < t_lraalign > : public three_value < t_lraalign, e_lraalign, sz_left, sz_right, sz_all > { };
 template < > class type_master < t_mathframe > : public three_value < t_mathframe, e_mathframe, sz_dashed, sz_none, sz_solid > { };
 template < > class type_master < t_menuitem > : public three_value < t_menuitem, e_menuitem, sz_command, sz_checkbox, sz_radio > { };
+template < > class type_master < t_nsd > : public three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed > { };
 template < > class type_master < t_preload5 > : public three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none > { };
 template < > class type_master < t_restart > : public three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never > { };
 template < > class type_master < t_shape_rcp > : public three_value < t_shape_rcp, e_shape_rcp, sz_circle, sz_poly, sz_rect > { };

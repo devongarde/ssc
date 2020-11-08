@@ -8,7 +8,7 @@ PASS ../toast/type/colour/bad.html
 13 correct_spelling attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/type/colour/dubious.html
-12 wrong_version bad_colour
+12 unrecognised_value bad_colour
 25 correct_spelling unrecognised_value bad_colour
 
 PASS ../toast/type/colour/good.html

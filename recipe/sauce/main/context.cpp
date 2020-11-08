@@ -107,8 +107,8 @@ context_t& context_t::html_minor (const int i)
     {   html_minor_ = static_cast < unsigned char > (i);
         if ((sch_major_ == 0) && (html_major_ >= 5))
         {   schema_version v (html_to_schema_version (html_ver ()));
-            sch_major_ = v.major ();
-            sch_minor_ = v.minor (); } }
+            sch_major_ = v.mjr ();
+            sch_minor_ = v.mnr (); } }
     return *this; }
 
 context_t& context_t::html_major (const int i)
@@ -117,17 +117,17 @@ context_t& context_t::html_major (const int i)
     {   html_major_ = static_cast < unsigned char > (i);
         if ((sch_major_ == 0) && (i >= 5))
         {   schema_version v (html_to_schema_version (html_ver ()));
-            sch_major_ = v.major ();
-            sch_minor_ = v.minor (); } }
+            sch_major_ = v.mjr ();
+            sch_minor_ = v.mnr (); } }
     return *this; }
 
-context_t& context_t::svg_version (const int major, const int minor)
+context_t& context_t::svg_version (const int mjr, const int mnr)
 {   if (html_major_ > 3)
-    {  if (major == 2)
-        {   if (minor == 0)
+    {  if (mjr == 2)
+        {   if (mnr == 0)
             {   svg_version_ = sv_2_0; return *this; } }
-        else if (major == 1)
-            switch (minor)
+        else if (mjr == 1)
+            switch (mnr)
             {   case 0 : svg_version_ = sv_1_0; return *this;
                 case 1 : svg_version_ = sv_1_1; return *this;
                 case 2 : svg_version_ = sv_1_2_tiny; return *this;

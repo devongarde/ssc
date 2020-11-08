@@ -52,13 +52,14 @@ void nit::init ()
         case ed_math_1 : return "MathML 1.01";
         case ed_math_2 : return "MathML 2 2nd Ed.";
         case ed_math_3 : return "MathML 3 2nd Ed.";
-        case ed_math_4 : return "MathML 4 Draft";
+        case ed_math_4 : return "MathML 4";
         case ed_rdf : return "RDFa";
         case ed_rfc_1867 : return "RFC 1867";
         case ed_rfc_1980 : return "RGC 1980";
         case ed_svg_1_0 : return "SVG 1.0";
         case ed_svg_1_1 : return "SVG 1.1";
-        case ed_svg_1_2 : return "SVG 1.2";
+        case ed_svg_1_2_tiny : return "SVG 1.2 Tiny";
+        case ed_svg_1_2_full : return "SVG 1.2 Full";
         case ed_svg_2_0 : return "SVG 2.0";
         case ed_w3 : return "World Wide Web Consortium";
         case ed_apache : return "Apache";
@@ -82,7 +83,7 @@ nit::nit (const e_nit code, const e_severity severity, const e_category category
     : code_ (code), severity_ (severity), category_ (category), doc_ (ed_mishmash), msg_ (msg)
 {   if (context.nits ()) context.out () << "adding nit " << severity << ", " << msg << "\n"; }
 
-void nit::swap (nit& n) noexcept
+void nit::swap (nit& n) NOEXCEPT
 {   ::std::swap (code_, n.code_);
     ::std::swap (severity_, n.severity_);
     ::std::swap (category_, n.category_);

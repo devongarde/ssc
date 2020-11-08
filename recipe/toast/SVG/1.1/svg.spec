@@ -369,7 +369,7 @@ PASS ../toast/SVG/1.1/svg11.html
 1498 empty url_id_unfound
 1500 mixed_mess
 1503 xmlns_namespace unrecognised_value
-1504 attribute_unrecognised_here attribute_unrecognised xmlns_namespace unrecognised_attribute unrecognised_value
+1504 attribute_unrecognised xmlns_namespace unrecognised_attribute unrecognised_value
 1506 inserted_missing_closure
 1508 svg_version
 1513 id_exists

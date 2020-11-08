@@ -293,6 +293,7 @@ parentage parent_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_condition, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_cursor, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_3_0 }, { HTML_3_0 }, elem_credit, elem_undefined, 0, EF_3_TEXTIN },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_csymbol, elem_undefined, 0, EF_M_PRESINCONTENT },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_data, elem_undefined, 0, EF_5_PHRASE },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_datalist, elem_option },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_datalist, elem_undefined, 0, EF_5_PHRASE },
@@ -924,6 +925,7 @@ parentage parent_table [] =
     { { HTML_PLUS }, { HTML_PLUS }, elem_online, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_optgroup, elem_option },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_optgroup, elem_undefined, 0, EF_5_SCRIPT },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_otherwise, elem_undefined, 0, EF_M_PRESINCONTENT },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_output, elem_undefined, 0, EF_5_PHRASE },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_p, elem_blockcode },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_p, elem_blockquote },
@@ -978,6 +980,9 @@ parentage parent_table [] =
     { { XHTML_2_0, 0, HE_SVG_2_0 }, { HTML_UNDEF }, elem_path, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_PSGRAD },
     { { HTML_PLUS }, { HTML_PLUS }, elem_person, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_3_0 }, { HTML_3_0 }, elem_person, elem_undefined, 0, EF_3_TEXTIN },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_piece, elem_undefined, 0, EF_M_PRESINCONTENT },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_piecewise, elem_otherwise },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_piecewise, elem_piece },
     { { HTML_5_1 }, { HTML_UNDEF }, elem_picture, elem_source },
     { { HTML_5_1 }, { HTML_UNDEF }, elem_picture, elem_img },
     { { HTML_5_1 }, { HTML_UNDEF }, elem_picture, elem_script },
@@ -1507,7 +1512,7 @@ bool is_permitted_parent (const html_version& v, const elem& self, const elem& p
     return false; }
 
 e_element default_parent (const html_version& v, const elem& self)
-{   if (v.major () == 0) return elem_faux_document;
+{   if (v.mjr () == 0) return elem_faux_document;
     switch (self.get ())
     {   case elem_html :
         case elem_htmlplus :
@@ -1795,7 +1800,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_mtr:
             return elem_mtable;
         case elem_col :
-            if (v.major () >= 5) return elem_colgroup;
+            if (v.mjr () >= 5) return elem_colgroup;
             return elem_table;
         case elem_colgroup :
         case elem_tbody :
@@ -1822,7 +1827,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_page :
             return elem_pageset;
         case elem_param :
-            if (v.major () == 3) return elem_applet;
+            if (v.mjr () == 3) return elem_applet;
             return elem_object;
         case elem_prototype :
             return elem_elementdef;
@@ -1836,7 +1841,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_th :
             return elem_tr;
         case elem_tr :
-            if (v.major () == 3) return elem_table;
+            if (v.mjr () == 3) return elem_table;
             return elem_tbody;
         case elem_row :
             return elem_array;

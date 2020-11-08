@@ -53,7 +53,7 @@ mxp_t site_x, disk_x;  // note ::boost::filesystem::path and ::std::map are not 
 void fileindex_init ()
 {   assert (disk_x.empty ());
     assert (site_x.empty ());
-#ifndef FUDDYDUDDY
+#ifndef ORDERED
     disk_x.reserve (16384);
     site_x.reserve (16384);
 #endif // FUDDYDUDDY

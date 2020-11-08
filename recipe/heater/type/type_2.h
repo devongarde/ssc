@@ -50,7 +50,7 @@ public:
         {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
             else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (t), " is invalid; it can be \"", OFF::sz (), "\" or \"", ON::sz (), "\"");
             type_base < base_type, TYPE > :: status (s_invalid); } }
-    void swap (two_value& t) noexcept
+    void swap (two_value& t) NOEXCEPT
     {   ::std::swap (true_, t.true_);
         type_base < base_type, TYPE > :: swap (t); }
     static bool default_value () { return false; }
@@ -68,7 +68,6 @@ template < > struct type_master < t_capture > : two_value < t_capture, ev_captur
 template < > struct type_master < t_cors > : two_value < t_cors, ev_cors, sz_anonymous, sz_use_credentials, false > { };
 template < > struct type_master < t_dataformatas > : two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false > { };
 template < > struct type_master < t_defaultaction > : two_value < t_defaultaction, e_defaultaction, sz_cancel, sz_perform, false > { };
-template < > struct type_master < t_dir4 > : two_value < t_dir4, e_dir4, sz_ltr, sz_rtl, false > { };
 template < > struct type_master < t_coordinatesystem > : two_value < t_coordinatesystem, e_gradientunits, sz_userspaceonuse, sz_objectboundingbox, false > { };
 template < > struct type_master < t_fillanim > : two_value < t_fillanim, e_fillanim, sz_freeze, sz_remove, false > { };
 template < > struct type_master < t_hv > : two_value < t_hv, e_hv, sz_horizontal, sz_vertical, false > { };

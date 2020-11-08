@@ -42,7 +42,7 @@ template < > struct type_master < t_url > : type_base < url, t_url >
         else
         {   value_.reset (nits, ss);
             type_base < url, t_url > :: status (s_good); } }
-    void swap (type_master < t_url >& t) noexcept
+    void swap (type_master < t_url >& t) NOEXCEPT
     {   value_.swap (t.value_);
         type_base < url, t_url >::swap (t); }
     void reset ()
@@ -124,7 +124,7 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
             {   type_base < url, t_urls > :: status (s_invalid);
                 return; }
         type_base < url, t_urls > :: status (s_good); }
-    void swap (type_master < t_urls >& t) noexcept
+    void swap (type_master < t_urls >& t) NOEXCEPT
     {   value_.swap (t.value_);
         type_base < url, t_urls > :: swap (t); }
     void reset ()

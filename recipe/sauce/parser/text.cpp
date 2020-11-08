@@ -2170,7 +2170,7 @@ void text_check (nitpick& nits, const html_version& v, const ::std::string& text
         if (text.length () > max_wotsit_len + 1)
         {   nits.pick (nit_bizarre_character_code, es_error, ec_parser, "&", text, "; is neither a known text entity nor a normalised URL");
             return; }
-        if (v.major () >= 2)
+        if (v.mjr () >= 2)
         {   if (::std::string (ALPHABET HASHES).find (after) == ::std::string::npos) return;
             if (after == HASH)
             {   if (text.length () == 1)

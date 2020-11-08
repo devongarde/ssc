@@ -42,7 +42,7 @@ class ids_t
     mif_t ids_;
     ::std::size_t data_ = 0;
 public:
-    void swap (ids_t& x) noexcept
+    void swap (ids_t& x) NOEXCEPT
     {   ::std::swap (ndx_, x.ndx_);
         ::std::swap (data_, x.data_);
         ids_.swap (x.ids_); }

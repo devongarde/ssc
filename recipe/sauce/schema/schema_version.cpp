@@ -24,11 +24,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 schema_version::schema_version (const html_version& v)
 {   schema_version sv;
-    sv.major_ = v.major ();
-    sv.minor_ = v.minor ();
+    sv.major_ = v.mjr ();
+    sv.minor_ = v.mnr ();
     if (! sv.invalid ()) swap (sv); }
 
-void schema_version::swap (schema_version& v) noexcept
+void schema_version::swap (schema_version& v) NOEXCEPT
 {   ::std::swap (major_, v.major_);
     ::std::swap (minor_, v.minor_);
     ::std::swap (flags_, v.flags_); }
@@ -43,8 +43,8 @@ void schema_version::swap (schema_version& v) noexcept
 
 bool operator == (const schema_version& lhs, const schema_version& rhs)
 {   if (lhs.unknown () || rhs.unknown ()) return false;
-    if (lhs.major () != rhs.major ()) return false;
-    return (lhs.minor () == rhs.minor ()); }
+    if (lhs.mjr () != rhs.mjr ()) return false;
+    return (lhs.mnr () == rhs.mnr ()); }
 
 bool operator != (const schema_version& lhs, const schema_version& rhs)
 {   if (lhs.unknown () || rhs.unknown ()) return false;
@@ -52,9 +52,9 @@ bool operator != (const schema_version& lhs, const schema_version& rhs)
 
 bool operator < (const schema_version& lhs, const schema_version& rhs)
 {   if (lhs.unknown () || rhs.unknown ()) return false;
-    if (lhs.major () > rhs.major ()) return false;
-    if (lhs.major () < rhs.major ()) return true;
-    return (lhs.minor () < rhs.minor ()); }
+    if (lhs.mjr () > rhs.mjr ()) return false;
+    if (lhs.mjr () < rhs.mjr ()) return true;
+    return (lhs.mnr () < rhs.mnr ()); }
 
 bool operator > (const schema_version& lhs, const schema_version& rhs)
 {   if (lhs.unknown () || rhs.unknown ()) return false;
@@ -81,7 +81,7 @@ bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, cons
     return (lhs_to.unknown () || (lhs_to >= rhs_from)); }
 
 schema_version html_to_schema_version (const html_version& v)
-{   if (v.major () >= 5)
+{   if (v.mjr () >= 5)
         switch (w3_minor_5 (v))
         {   case 0 :
                 return schema_2_0;
@@ -97,12 +97,12 @@ schema_version html_to_schema_version (const html_version& v)
                 assert (false); }
     return schema_0; }
 
-bool is_valid_schema_version (const unsigned char major, const unsigned char minor)
-{   if ((major == 0) && (minor == 0)) return true;
-    if ((major > schema_major_max) || (major < 2)) return false;
-    if (minor > 9) return false;
-    switch (major)
-    {   case 2 : return minor < 3;
+bool is_valid_schema_version (const unsigned char mjr, const unsigned char mnr)
+{   if ((mjr == 0) && (mnr == 0)) return true;
+    if ((mjr > schema_major_max) || (mjr < 2)) return false;
+    if (mnr > 9) return false;
+    switch (mjr)
+    {   case 2 : return mnr < 3;
         case 3 : return true;
-        case 7 : return minor < 5;
-        default : return minor == 0; } }
+        case 7 : return mnr < 5;
+        default : return mnr == 0; } }

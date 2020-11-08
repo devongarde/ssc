@@ -28,35 +28,35 @@ const char* doctype = "DOCTYPE";
 const ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
-html_version::html_version (const unsigned char major, const unsigned char minor, const uint64_t flags, const uint64_t extensions)
-        :   major_ (major), minor_ (minor), flags_ (flags), ext_ (extensions)
+html_version::html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags, const uint64_t extensions)
+        :   major_ (mjr), minor_ (mnr), flags_ (flags), ext_ (extensions)
 {   if (minor_ == 0xFF)
         if (major_ == 5) minor_ = context.html_minor ();
         else minor_ = 0; }
 
-void html_version::swap (html_version& v) noexcept
+void html_version::swap (html_version& v) NOEXCEPT
 {   ::std::swap (major_, v.major_);
     ::std::swap (minor_, v.minor_);
     ::std::swap (flags_, v.flags_);
     ::std::swap (ext_, v.ext_); }
 
 ::std::string minor_to_date (const html_version& v)
-{   assert (v.major () >= 5);
+{   assert (v.mjr () >= 5);
     if (v == html_5_0) return "5.0";
     if (v == html_5_1) return "5.1";
     if (v == html_5_2) return "5.2";
     if (v == html_5_3) return "5.3";
     ::std::string res ("5:");
-    if (v.major () <= 9)
+    if (v.mjr () <= 9)
     {   res += "0";
-        res += static_cast <char> (v.major () + '0'); }
-    else res += ::boost::lexical_cast < ::std::string > (static_cast < int > (v.major ()));
-    int mon = v.minor () / 16;
+        res += static_cast <char> (v.mjr () + '0'); }
+    else res += ::boost::lexical_cast < ::std::string > (static_cast < int > (v.mjr ()));
+    int mon = v.mnr () / 16;
     if (mon <= 9)
     {   res += "0";
         res += static_cast <char> (mon + '0'); }
     else res += ::boost::lexical_cast < ::std::string > (mon);
-    int day = v.minor () % 16;
+    int day = v.mnr () % 16;
     day *= 2;
     day += 1;
     if (day <= 9)
@@ -149,7 +149,7 @@ bool html_version::invalid_addendum (const html_version& v) const
 {   if (microdata ())
         if (context.microdata ()) return false;
         else if (v.whatwg ()) return false;
-        else return (v.major () < 5) || (w3_minor_5 (v) < 4);
+        else return (v.mjr () < 5) || (w3_minor_5 (v) < 4);
     if (rdf ()) return (! context.rdf ()) && (v != xhtml_2);
     return (frameset () && ! v.frameset ()); }
 
@@ -186,8 +186,8 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
             pos = s.length ();
             if (pos == 0) continue;
             if (s.at (pos - 1) == '"') s = s.substr (0, pos - 1);
-            e_sgml d = symbol < e_sgml > :: find (s); // crude way to handle case
-            if (d == doc_unknown) d = symbol < e_sgml > :: find (::boost::algorithm::to_lower_copy (s));
+            e_sgml d = symbol < e_sgml > :: find (html_0, s); // crude way to handle case
+            if (d == doc_unknown) d = symbol < e_sgml > :: find (html_0, ::boost::algorithm::to_lower_copy (s));
             switch (d)
             {   case doc_unknown : found_unknown = true; break;
                 case doc_html : found_html = true; break;
@@ -375,13 +375,13 @@ bool html_version::lazy () const
 
 typedef enum { emi_good, emi_math, emi_not_svg, emi_svg, emi_rdf } e_emi;
 e_emi extension_conflict (const html_version& lhs, const html_version& rhs)
-{   if (lhs.major () < 4) return emi_good;
+{   if (lhs.mjr () < 4) return emi_good;
     if (! lhs.has_math () && rhs.has_math ()) return emi_math;
     if (! lhs.has_svg () && rhs.has_svg ())
-    {   if (rhs.svg_old_html () && (lhs.major () == 4)) return emi_good;
+    {   if (rhs.svg_old_html () && (lhs.mjr () == 4)) return emi_good;
         if (rhs.rdf () && lhs.has_rdf ()) return emi_good;
-        if (rhs.svg_x1 () && (lhs.major () == 4) && (lhs.minor () >= 2) && (lhs.minor () <= 3)) return emi_good;
-        if (rhs.svg_x2 () && (lhs.major () == 4) && (lhs.minor () == 4)) return emi_good;
+        if (rhs.svg_x1 () && (lhs.mjr () == 4) && (lhs.mnr () >= 2) && (lhs.mnr () <= 3)) return emi_good;
+        if (rhs.svg_x2 () && (lhs.mjr () == 4) && (lhs.mnr () == 4)) return emi_good;
         return emi_svg; }
     else if (lhs.has_svg () && rhs.not_svg ()) return emi_not_svg;
     if (! lhs.has_rdf () && rhs.has_rdf ()) return emi_rdf;
@@ -437,8 +437,8 @@ bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::c
 
 bool operator == (const html_version& lhs, const html_version& rhs)
 {   if (lhs.unknown () || rhs.unknown ()) return false;
-    if (lhs.major () != rhs.major ()) return false;
-    return (lhs.minor () == rhs.minor ()); }
+    if (lhs.mjr () != rhs.mjr ()) return false;
+    return (lhs.mnr () == rhs.mnr ()); }
 
 bool operator != (const html_version& lhs, const html_version& rhs)
 {   if (lhs.unknown () || rhs.unknown ()) return false;
@@ -446,9 +446,9 @@ bool operator != (const html_version& lhs, const html_version& rhs)
 
 bool operator < (const html_version& lhs, const html_version& rhs)
 {   if (lhs.unknown () || rhs.unknown ()) return false;
-    if (lhs.major () > rhs.major ()) return false;
-    if (lhs.major () < rhs.major ()) return true;
-    return (lhs.minor () < rhs.minor ()); }
+    if (lhs.mjr () > rhs.mjr ()) return false;
+    if (lhs.mjr () < rhs.mjr ()) return true;
+    return (lhs.mnr () < rhs.mnr ()); }
 
 bool operator > (const html_version& lhs, const html_version& rhs)
 {   if (lhs.unknown () || rhs.unknown ()) return false;
@@ -465,10 +465,10 @@ bool operator >= (const html_version& lhs, const html_version& rhs)
 bool does_apply (const html_version& v, const html_version& from, const html_version& to)
 {   if (! from.unknown () && (v < from)) return false;
     if (! to.unknown () && (v > to)) return false;
-    switch (v.major ())
+    switch (v.mjr ())
     {   case 0 :    break;
-        case 1 :    if (v.minor () == 0) return ! from.not10 ();
-                    assert (v.minor () == 1);
+        case 1 :    if (v.mnr () == 0) return ! from.not10 ();
+                    assert (v.mnr () == 1);
                     return ! from.notplus ();
         case 2 :    if (from.not2 ()) return false;
                     if (from.not2l1 () && (v.level () == 1)) return false;
@@ -477,11 +477,11 @@ bool does_apply (const html_version& v, const html_version& from, const html_ver
                     if (! context.rfc_1980 () && from.rfc_1980 ()) return false;
                     if (! context.rfc_2070 () && from.rfc_2070 ()) return false;
                     break;
-        case 3 :    if (v.minor () == 2) return ! from.not32 ();
-                    assert (v.minor () == 0);
+        case 3 :    if (v.mnr () == 2) return ! from.not32 ();
+                    assert (v.mnr () == 0);
                     return ! from.not30 ();
         case 4 :    //if (extension_conflict (v, from) != emi_good) return false;
-                    switch (v.minor ())
+                    switch (v.mnr ())
                     {   case 0 :
                         case 1 : return ! from.not4 ();
                         case 2 :
@@ -489,7 +489,7 @@ bool does_apply (const html_version& v, const html_version& from, const html_ver
                         case 4 : return ! from.notx2 (); }
                     assert (false);
                     break;
-        default :   if (v.major () == 0) break;
+        default :   if (v.mjr () == 0) break;
                     if (from.xhtml () && from.notx5 ()) return false;
                     switch (w3_minor_5 (v))
                     {   case 0 : return ! from.not50 ();
@@ -505,13 +505,13 @@ bool may_apply (const html_version& v, const html_version& from, const html_vers
 {   return (v.unknown () || does_apply (v, from, to)); }
 
 int w3_minor_5 (const html_version& v)
-{   if (v.major () < 5) return v.minor ();
-    if (v.major () < MAJOR_5_0) return 0;
-    if ((v.major () == MAJOR_5_0) && (v.minor () <= MINOR_5_0)) return 0;
-    if (v.major () < MAJOR_5_1) return 1;
-    if ((v.major () == MAJOR_5_1) && (v.minor () <= MINOR_5_1)) return 1;
-    if (v.major () < MAJOR_5_2) return 2;
-    if ((v.major () == MAJOR_5_2) && (v.minor () <= MINOR_5_2)) return 2;
-    if (v.major () < MAJOR_5_3) return 3;
-    if ((v.major () == MAJOR_5_3) && (v.minor () <= MINOR_5_3)) return 3;
+{   if (v.mjr () < 5) return v.mnr ();
+    if (v.mjr () < MAJOR_5_0) return 0;
+    if ((v.mjr () == MAJOR_5_0) && (v.mnr () <= MINOR_5_0)) return 0;
+    if (v.mjr () < MAJOR_5_1) return 1;
+    if ((v.mjr () == MAJOR_5_1) && (v.mnr () <= MINOR_5_1)) return 1;
+    if (v.mjr () < MAJOR_5_2) return 2;
+    if ((v.mjr () == MAJOR_5_2) && (v.mnr () <= MINOR_5_2)) return 2;
+    if (v.mjr () < MAJOR_5_3) return 3;
+    if ((v.mjr () == MAJOR_5_3) && (v.mnr () <= MINOR_5_3)) return 3;
     return 4; }

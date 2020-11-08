@@ -30,7 +30,7 @@ void for_each_impl (TUPLE&& tuple, F&& f, ::std::index_sequence < INDICES... >)
 
 template < typename TUPLE, typename F >
 void for_each_attribute (TUPLE&& tuple, F&& f)
-{   constexpr ::std::size_t N = ::std::tuple_size <::std::remove_reference_t < TUPLE > >::value;
+{   const ::std::size_t N = ::std::tuple_size <::std::remove_reference_t < TUPLE > >::value;
     for_each_impl (::std::forward < TUPLE > (tuple), ::std::forward < F > (f), ::std::make_index_sequence < N > {}); }
 
 // based on https://stackoverflow.com/questions/25958259/how-do-i-find-out-if-a-tuple-contains-a-type

@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct attribute_base
 {   bool deprecated_ = false;
     bool excluded_ = false;
-    void swap (attribute_base& b) noexcept
+    void swap (attribute_base& b) NOEXCEPT
     {   ::std::swap (deprecated_, b.deprecated_);
         ::std::swap (excluded_, b.excluded_); }
     virtual void reset ()
@@ -61,10 +61,10 @@ struct attribute_base
 
 template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public attribute_base, public typed_value < e_attribute, TYPE, IDENTITY >
 {   static ::std::string name () { return attr :: name (IDENTITY); }
-    constexpr static e_attribute whoami () { return IDENTITY; }
+    CONSTEXPR static e_attribute whoami () { return IDENTITY; }
     typed_attribute (nitpick& nits, const html_version& v, const attribute_node& node)
     {   parse (nits, v, node); }
-    void swap (typed_attribute& t) noexcept
+    void swap (typed_attribute& t) NOEXCEPT
     {   attribute_base :: swap (t);
         typed_value < e_attribute, TYPE, IDENTITY > :: swap (t); }
     void reset ()
@@ -93,7 +93,7 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
             {   nits.pick (nit_xhtml_existential_makework, es_error, ec_type, "in ", v.report (), ", the attribute ", quote (name ()), " must be assigned ", quote (name ()));
                 typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); } }
         else if (typed_value < e_attribute, TYPE, IDENTITY > :: good ())
-            if (v.major () < 2)
+            if (v.mjr () < 2)
             {   nits.pick (nit_existential_value, es_warning, ec_type, "in ", v.report (), ", ", name (), " cannot be given a value");
                 typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); }
             else
@@ -141,5 +141,5 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
 typedef ::std::shared_ptr < attribute_base > attribute_v_ptr;
 attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, const attribute_node& node);
 
-constexpr size_t aar_size = last_attribute + 1;
+const size_t aar_size = last_attribute + 1;
 typedef ::std::array < attribute_v_ptr, aar_size > aar_t;

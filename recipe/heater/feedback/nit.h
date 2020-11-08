@@ -34,12 +34,16 @@ public:
     nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg);
     nit (const e_nit code, const e_severity severity, const e_category category, const ::std::string& msg);
     nit (const nit& n) = default;
-    nit (nit&& n) = default;
-    ~nit () = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	nit (nit&& n) = default;
+#endif
+	~nit() = default;
     nit& operator = (const nit& n) = default;
-    nit& operator = (nit&& n) = default;
-    static void init ();
-    void swap (nit& n) noexcept;
+#ifndef NO_MOVE_CONSTRUCTOR
+	nit& operator = (nit&& n) = default;
+#endif
+	static void init();
+    void swap (nit& n) NOEXCEPT;
     void reset ();
     void reset (const nit& n);
     ::std::string review () const;

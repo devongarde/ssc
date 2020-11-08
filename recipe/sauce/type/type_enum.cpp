@@ -75,12 +75,12 @@ struct symbol_entry < e_as > as_symbol_table [] =
     { { HTML_5_0 }, { HTML_UNDEF }, "video", as_video },
     { { HTML_5_0 }, { HTML_UNDEF }, "worker", as_worker } };
 
-struct symbol_entry < e_autocapitalise54 > autocapitalise54_symbol_table [] =
-{   { { HTML_3_0 }, { HTML_UNDEF }, "characters", ac4_characters },
-    { { HTML_3_0 }, { HTML_UNDEF }, "default", ec4_default },
-    { { HTML_3_0 }, { HTML_UNDEF }, "none", ac4_none },
-    { { HTML_3_0 }, { HTML_UNDEF }, "sentences", ac4_sentences },
-    { { HTML_3_0 }, { HTML_UNDEF }, "words", ac4_words } };
+struct symbol_entry < e_autocapitalise > autocapitalise_symbol_table [] =
+{   { { HTML_5_3 }, { HTML_UNDEF }, "characters", ac4_characters },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "default", ec4_default },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "none", ac4_none },
+    { { HTML_5_3 }, { HTML_UNDEF }, "sentences", ac4_sentences },
+    { { HTML_5_3 }, { HTML_UNDEF }, "words", ac4_words } };
 
 struct symbol_entry < e_autocomplete > autocomplete_symbol_table [] =
 {   { { HTML_5_2 }, { HTML_UNDEF }, "additional-name", aco_additional_name },
@@ -222,6 +222,13 @@ struct symbol_entry < e_dingbat > dingbat_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "tn3270", db_tn3270 },
     { { HTML_3_0 }, { HTML_3_0 }, "trash", db_trash } };
 
+struct symbol_entry < e_dir > dir_symbol_table [] =
+{   { { HTML_5_0 }, { HTML_UNDEF }, "auto",  di_auto },
+    { { XHTML_2_0 }, { XHTML_2_0 }, "lro", di_lro },
+    { { XHTML_2_0 }, { XHTML_2_0 }, "rlo", di_rlo },
+    { { HTML_2_0 }, { HTML_UNDEF }, "ltr", di_ltr },
+    { { HTML_2_0 }, { HTML_UNDEF }, "rtl", di_rtl } };
+
 struct symbol_entry < e_display > display_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "inline",  ds_inline },
     { { HTML_4_0 }, { HTML_UNDEF }, "block", ds_block },
@@ -288,29 +295,22 @@ struct symbol_entry < e_inky > inky_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "fillpaint", ink_fillpaint },
     { { HTML_2_0 }, { HTML_UNDEF }, "strokepaint", ink_strokepaint } };
 
-struct symbol_entry < e_inputmode51 > inputmode51_symbol_table [] =
-{   { { HTML_5_1 }, { HTML_5_1 }, "email", i1_email },
-    { { HTML_5_1 }, { HTML_5_1 }, "full-width-latin", i1_fullwidthlatin },
-    { { HTML_5_1 }, { HTML_5_1 }, "katakana", i1_katakana },
-    { { HTML_5_1 }, { HTML_5_1 }, "kana", i1_kana },
-    { { HTML_5_1 }, { HTML_5_1 }, "kana-name", i1_kananame },
-    { { HTML_5_1 }, { HTML_5_1 }, "latin", i1_latin },
-    { { HTML_5_1 }, { HTML_5_1 }, "latin-name", i1_latinname },
-    { { HTML_5_1 }, { HTML_5_1 }, "latin-prose", i1_latinprose },
-    { { HTML_5_1 }, { HTML_5_1 }, "numeric",i1_numeric },
-    { { HTML_5_1 }, { HTML_5_1 }, "tel", i1_tel },
-    { { HTML_5_1 }, { HTML_5_1 }, "url", i1_url },
-    { { HTML_5_1 }, { HTML_5_1 }, "verbatim", i1_verbatim } };
-
-struct symbol_entry < e_inputmode54 > inputmode54_symbol_table [] =
+struct symbol_entry < e_inputmode > inputmode_symbol_table [] =
 {   { { HTML_JUL20 }, { HTML_UNDEF }, "decimal", im_decimal },
-    { { HTML_JUL20 }, { HTML_UNDEF }, "email", im_email },
+    { { HTML_5_0 }, { HTML_5_1 }, "email", im_email },
+    { { HTML_5_0 }, { HTML_5_1 }, "full-width-latin", im_fullwidthlatin },
+    { { HTML_5_0 }, { HTML_5_1 }, "katakana", im_katakana },
+    { { HTML_5_0 }, { HTML_5_1 }, "kana", im_kana },
+    { { HTML_5_0 }, { HTML_5_1 }, "kana-name", im_kananame },
+    { { HTML_5_0 }, { HTML_5_1 }, "latin", im_latin },
+    { { HTML_5_0 }, { HTML_5_1 }, "latin-name", im_latinname },
+    { { HTML_5_0 }, { HTML_5_1 }, "latin-prose", im_latinprose },
     { { HTML_JUL20 }, { HTML_UNDEF }, "none", im_none },
-    { { HTML_JUL20 }, { HTML_UNDEF }, "numeric", im_numeric  },
+    { { HTML_5_0 }, { HTML_UNDEF }, "numeric", im_numeric  },
     { { HTML_JUL20 }, { HTML_UNDEF }, "search", im_search },
-    { { HTML_JUL20 }, { HTML_UNDEF }, "tel", im_tel },
+    { { HTML_5_0 }, { HTML_UNDEF }, "tel", im_tel },
     { { HTML_JUL20 }, { HTML_UNDEF }, "text", im_text },
-    { { HTML_JUL20 }, { HTML_UNDEF }, "url", im_url } };
+    { { HTML_5_0 }, { HTML_UNDEF }, "url", im_url } };
 
 struct symbol_entry < e_inputplus > inputplus_symbol_table [] =
 {   { { HTML_PLUS }, { HTML_PLUS }, "audio", ip_audio },
@@ -426,6 +426,29 @@ struct symbol_entry < e_mah > mah_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "next", mah_next },
     { { HTML_UNDEF }, { HTML_UNDEF }, "search", mah_search },
     { { HTML_UNDEF }, { HTML_UNDEF }, "send", mah_send } };
+
+struct symbol_entry < e_mathalign > mathalign_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "axis", ma_axis },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "baseline", ma_baseline },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "bottom", ma_bottom },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "center", ma_centre },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "top", ma_top } };
+
+struct symbol_entry < e_mathnotation > mathnotation_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "longdiv", mn_longdiv },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "actuarial", mn_actuarial },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "radical", mn_radical },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "box", mn_box },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "roundedbox", mn_roundedbox },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "circle", mn_circle },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "left", mn_left },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "right", mn_right },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "top", mn_top },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "bottom", mn_bottom },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "updiagonalstrike", mn_updiagonalstrike },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "downdiagonalstrike", mn_downdiagonalstrike },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "verticalstrike", mn_verticalstrike },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "horizontalstrike", mn_horizontalstrike } };
 
 struct symbol_entry < e_mathvariant > mathvariant_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "normal", mv_normal },
@@ -910,18 +933,18 @@ void enum_init (nitpick& nits)
     INIT_ENUM (align3);
     INIT_ENUM (alignplus);
     INIT_ENUM (as);
-    INIT_ENUM (autocapitalise54);
+    INIT_ENUM (autocapitalise);
     INIT_ENUM (autocomplete);
     INIT_ENUM (decalign);
     INIT_ENUM (composite_operator);
     INIT_ENUM (dingbat);
+    INIT_ENUM (dir);
     INIT_ENUM (display);
     INIT_ENUM (dominantbaseline);
     INIT_ENUM (enterkeyhint);
     INIT_ENUM (figalign);
     INIT_ENUM (halign);
-    INIT_ENUM (inputmode51);
-    INIT_ENUM (inputmode54);
+    INIT_ENUM (inputmode);
     INIT_ENUM (inputplus);
     INIT_ENUM (inputtype);
     INIT_ENUM (inputtype3);
@@ -932,6 +955,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (linebreak);
     INIT_ENUM (listtype);
     INIT_ENUM (mah);
+    INIT_ENUM (mathalign);
     INIT_ENUM (mathvariant);
     INIT_ENUM (matrix_type);
     INIT_ENUM (media);
@@ -941,6 +965,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (microdata_domain);
     INIT_ENUM (namedspace);
     INIT_ENUM (namespace);
+    INIT_ENUM (mathnotation);
     INIT_ENUM (paintkeyword);
     INIT_ENUM (plusstyle);
     INIT_ENUM (pointerevents);

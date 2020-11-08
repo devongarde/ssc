@@ -37,7 +37,7 @@ void element::span_check ()
             pick (nit_1000, ed_50, "4.9.11 Attributes common to td and th element", es_error, ec_attribute, "ROWSPAN must be a positive integer less than 65535"); } }
 
 void element::examine_autofocus ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     element* anc (this);
     if (tag () != elem_dialogue)
     {   anc = get_ancestor (elem_dialogue);
@@ -169,25 +169,25 @@ void element::examine_css (const e_element tag)
 void element::examine_content ()
 {   if (tag () == elem_meta) return;
     if (context.rdf () || (node_.version().svg_version () == sv_1_2_tiny) || (node_.version().svg_version () == sv_1_2_full)) return;
-    switch (node_.version ().major ())
+    switch (node_.version ().mjr ())
     {   case 0 :
         case 1 :
         case 2 :
         case 3 :    return;
-        case 4 :    if (node_.version ().minor () == 4) return;
+        case 4 :    if (node_.version ().mnr () == 4) return;
                     break;
         default : break; }
     pick (nit_svg_rdf, es_info, ec_attribute, "CONTENT requires <META>, RDFa, SVG 1.2, or XHTML 2.0"); }
 
 void element::examine_draggable ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     assert (a_.has (a_draggable) && a_.known (a_draggable));
     if (! a_.known (a_title))
         pick (nit_title_required, ed_51, "5.7.7. The draggable attribute", es_warning, ec_attribute, "An element with DRAGGABLE should also define TITLE"); }
 
 void element::examine_headers ()
 {   if (! a_.known (a_headers)) return;
-    if (node_.version ().major () < 5) return;
+    if (node_.version ().mjr () < 5) return;
     uid_t tuid_first, tuid_last;
     if (! family_uids (elem_table, tuid_first, tuid_last))
         pick (nit_bad_header_id, ed_50, "4.9.11 Attributes common to td and th elements", es_error, ec_attribute, "HEADERS must be on a descendant of <TABLE>");
