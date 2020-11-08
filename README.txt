@@ -1,4 +1,4 @@
-ssc 0.0.62
+ssc 0.0.64
 Static Site Checker
 
 (an opinionated HTML nitpicker

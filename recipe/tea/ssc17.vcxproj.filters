@@ -81,6 +81,9 @@
     <Filter Include="Heater\parser">
       <UniqueIdentifier>{5eadd391-6a7f-42b3-b559-f7b7e6a9532b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Heater\schema">
+      <UniqueIdentifier>{acbe307a-039a-4fed-ad19-20d217dea9ed}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Heater\stats">
       <UniqueIdentifier>{1ae820a1-efcf-4b25-8671-5e2f5ee62fff}</UniqueIdentifier>
     </Filter>
@@ -293,18 +296,6 @@
     </Filter>
     <Filter Include="Tea">
       <UniqueIdentifier>{f502dc84-5469-43e2-b6c3-5f854d2abfc6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Type\lang">
-      <UniqueIdentifier>{e374c44a-ba93-4bfc-9dc0-131b8cbc66a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Type\Colour">
-      <UniqueIdentifier>{e10e397e-c235-4abc-a0fb-128af930b8e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Type\SGML">
-      <UniqueIdentifier>{1a9430e6-2f16-4dcb-8154-70c09666afa5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Heater\schema">
-      <UniqueIdentifier>{acbe307a-039a-4fed-ad19-20d217dea9ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2804,72 +2795,6 @@
     </None>
     <None Include="..\toast\microdata\schema-pqrs\softwareapplication.html">
       <Filter>Toast\Microdata\Schema-PQRS</Filter>
-    </None>
-    <None Include="..\toast\type\lang\bad.html">
-      <Filter>Toast\Type\lang</Filter>
-    </None>
-    <None Include="..\toast\type\lang\good.html">
-      <Filter>Toast\Type\lang</Filter>
-    </None>
-    <None Include="..\toast\type\lang\index.html">
-      <Filter>Toast\Type\lang</Filter>
-    </None>
-    <None Include="..\toast\type\lang\lang.conf">
-      <Filter>Toast\Type\lang</Filter>
-    </None>
-    <None Include="..\toast\type\lang\lang.spec">
-      <Filter>Toast\Type\lang</Filter>
-    </None>
-    <None Include="..\toast\type\colour\bad.html">
-      <Filter>Toast\Type\Colour</Filter>
-    </None>
-    <None Include="..\toast\type\colour\colour.conf">
-      <Filter>Toast\Type\Colour</Filter>
-    </None>
-    <None Include="..\toast\type\colour\colour.spec">
-      <Filter>Toast\Type\Colour</Filter>
-    </None>
-    <None Include="..\toast\type\colour\good.html">
-      <Filter>Toast\Type\Colour</Filter>
-    </None>
-    <None Include="..\toast\type\colour\index.html">
-      <Filter>Toast\Type\Colour</Filter>
-    </None>
-    <None Include="..\toast\type\sgml\bad.html">
-      <Filter>Toast\Type\SGML</Filter>
-    </None>
-    <None Include="..\toast\type\sgml\good.html">
-      <Filter>Toast\Type\SGML</Filter>
-    </None>
-    <None Include="..\toast\type\sgml\index.html">
-      <Filter>Toast\Type\SGML</Filter>
-    </None>
-    <None Include="..\toast\type\sgml\sgml.conf">
-      <Filter>Toast\Type\SGML</Filter>
-    </None>
-    <None Include="..\toast\type\sgml\sgml.spec">
-      <Filter>Toast\Type\SGML</Filter>
-    </None>
-    <None Include="..\toast\type\colour\dubious.html">
-      <Filter>Toast\Type\Colour</Filter>
-    </None>
-    <None Include="..\toast\type\sgml\dubious.html">
-      <Filter>Toast\Type\SGML</Filter>
-    </None>
-    <None Include="..\toast\type\sgml\dubious2.html">
-      <Filter>Toast\Type\SGML</Filter>
-    </None>
-    <None Include="..\toast\math\2\math4-example.html">
-      <Filter>Toast\Math\2</Filter>
-    </None>
-    <None Include="..\toast\math\2\math5-example.html">
-      <Filter>Toast\Math\2</Filter>
-    </None>
-    <None Include="..\toast\math\2\math6-example.html">
-      <Filter>Toast\Math\2</Filter>
-    </None>
-    <None Include="..\toast\math\2\math7-example.html">
-      <Filter>Toast\Math\2</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
