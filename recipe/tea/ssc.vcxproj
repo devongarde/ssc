@@ -96,6 +96,7 @@
     <ClInclude Include="..\heater\type\type_aria.h" />
     <ClInclude Include="..\heater\type\type_autocomplete.h" />
     <ClInclude Include="..\heater\type\type_base.h" />
+    <ClInclude Include="..\heater\type\type_basic.h" />
     <ClInclude Include="..\heater\type\type_class.h" />
     <ClInclude Include="..\heater\type\type_colour.h" />
     <ClInclude Include="..\heater\type\type_core.h" />
@@ -103,14 +104,23 @@
     <ClInclude Include="..\heater\type\type_enum.h" />
     <ClInclude Include="..\heater\type\type_enum_vec.h" />
     <ClInclude Include="..\heater\type\type_httpequiv.h" />
+    <ClInclude Include="..\heater\type\type_id.h" />
     <ClInclude Include="..\heater\type\type_lang.h" />
+    <ClInclude Include="..\heater\type\type_layout.h" />
     <ClInclude Include="..\heater\type\type_master.h" />
+    <ClInclude Include="..\heater\type\type_math.h" />
+    <ClInclude Include="..\heater\type\type_measure.h" />
     <ClInclude Include="..\heater\type\type_media.h" />
+    <ClInclude Include="..\heater\type\type_microdata.h" />
+    <ClInclude Include="..\heater\type\type_microformat.h" />
     <ClInclude Include="..\heater\type\type_mime.h" />
+    <ClInclude Include="..\heater\type\type_misc.h" />
+    <ClInclude Include="..\heater\type\type_numeric.h" />
     <ClInclude Include="..\heater\type\type_rdf.h" />
     <ClInclude Include="..\heater\type\type_reals.h" />
     <ClInclude Include="..\heater\type\type_rel.h" />
     <ClInclude Include="..\heater\type\type_relational.h" />
+    <ClInclude Include="..\heater\type\type_svg.h" />
     <ClInclude Include="..\heater\type\type_time.h" />
     <ClInclude Include="..\heater\type\type_url.h" />
     <ClInclude Include="..\heater\type\type_van.h" />
@@ -471,6 +481,10 @@
     <None Include="..\toast\math\2\math1-example.html" />
     <None Include="..\toast\math\2\math2-example.xhtml" />
     <None Include="..\toast\math\2\math3-example.html" />
+    <None Include="..\toast\math\2\math4-example.html" />
+    <None Include="..\toast\math\2\math5-example.html" />
+    <None Include="..\toast\math\2\math6-example.html" />
+    <None Include="..\toast\math\2\math7-example.html" />
     <None Include="..\toast\microdata\addendum\add.conf" />
     <None Include="..\toast\microdata\addendum\add.spec" />
     <None Include="..\toast\microdata\addendum\index.html" />
@@ -990,7 +1004,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_WIN32_WINNT=0x0A00;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1021,7 +1035,7 @@ $(ProjectDir)..\..\ssc-test -x $(ProjectDir)..\..\ssc.exe -v -f $(ProjectDir)..\
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_WIN32_WINNT=0x0A00;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1050,7 +1064,7 @@ $(ProjectDir)..\..\ssc-test -x $(ProjectDir)..\..\ssc.exe -v -f $(ProjectDir)..\
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_WIN32_WINNT=0x0A00;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1082,7 +1096,7 @@ $(ProjectDir)..\..\ssc-test -x $(ProjectDir)..\..\ssc.exe -v -f $(ProjectDir)..\
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_WIN32_WINNT=0x0A00;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
