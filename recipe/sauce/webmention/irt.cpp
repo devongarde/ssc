@@ -39,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CONTENT "content"
 #define WHEN "when"
 
-void reply::swap (reply& r) noexcept
+void reply::swap (reply& r) NOEXCEPT
 {   file_.swap (r.file_);
     id_.swap (r.id_);
     server_.swap (r.server_);

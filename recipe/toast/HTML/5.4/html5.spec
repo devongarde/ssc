@@ -482,7 +482,7 @@ PASS ../toast/HTML/5.4/template-2.html
 2 naughty_lang
 
 PASS ../toast/HTML/5.4/template-3.html
-1 presume_html_1 attribute_unrecognised_here attribute_unrecognised_here unrecognised_attribute
+1 presume_html_1 attribute_unrecognised_here unrecognised_attribute
 
 PASS ../toast/HTML/5.4/template-4.html
 2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close

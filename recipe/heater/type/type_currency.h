@@ -26,19 +26,19 @@ template < > struct type_master < t_dosh > : tidy_string < t_dosh >
     double value_ = 0.0;
     e_currency unit_ = e_iso_context;
     type_master () = default;
-    void swap (type_master < t_dosh >& t) noexcept
+    void swap (type_master < t_dosh >& t) NOEXCEPT
     {   ::std::swap (value_, t.value_);
         ::std::swap (unit_, t.unit_);
         tidy_string < t_dosh > :: swap (t); }
-    bool parse (const html_version& , const ::std::string& s) // see http://microformats.org/wiki/h-listing
+    bool parse (const html_version& v, const ::std::string& s) // see http://microformats.org/wiki/h-listing
     {   const vstr_t args (split_by_space (s));
         if (args.size () > 2) return false;
         ::std::string amount;
         if (args.size () == 1) amount = trim_the_lot_off (args [0]);
         if (args.size () == 2)
         {   const ::std::string c (args [0]);
-            if (symbol < e_currency > :: find (args [0], unit_)) amount = trim_the_lot_off (args [1]);
-            else if (! symbol < e_currency > :: find (amount, unit_)) return false; }
+            if (symbol < e_currency > :: find (v, args [0], unit_)) amount = trim_the_lot_off (args [1]);
+            else if (! symbol < e_currency > :: find (v, amount, unit_)) return false; }
         if (amount.empty ()) return false;
         bool res = false;
         value_ = lexical < double > :: cast2 (amount, res);

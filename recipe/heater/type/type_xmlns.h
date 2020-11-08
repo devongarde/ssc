@@ -49,14 +49,6 @@ template < > inline void enum_n < t_xmlns, e_xmlns > :: set_value (nitpick& nits
     if (symbol < e_xmlns > :: parse (nits, v, t, enum_base < e_xmlns, t_xmlns > :: value_, ns_default, &from, &to))
     {   if (may_apply (v, from, to))
         {   enum_base < e_xmlns, t_xmlns > :: status (s_good);
-/*            switch (get ())
-            {   case x_mathml : if (! v.math ()) v.ext_set (HE_MATH_1); break;
-                case x_svg : if (! v.svg ()) v.ext_set (HE_SVG_1_0); break;
-                case x_xlink : if (! v.xlink ()) v.ext_set (HE_XLINK_1_0); break;
-                case x_xhtml_1 : if (v.unknown ()) v = xhtml_1_0; break;
-                case x_xhtml_11 : if (v.unknown ()) v = xhtml_1_1; break;
-                case x_xhtml_2 : if (v.unknown ()) v = xhtml_2; break;
-                default : break; } */
             enum_base < e_xmlns, t_xmlns > :: post_set_value (nits, v);
             return; }
         nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ()); }

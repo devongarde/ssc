@@ -55,7 +55,7 @@ decode_map_t decode_map;
 encode_map_t encode_map;
 
 void code_map_init (nitpick& nits)
-{   constexpr ::std::size_t max = sizeof (encoded) / sizeof (escape_t);
+{   CONSTEXPR ::std::size_t max = sizeof (encoded) / sizeof (escape_t);
     for (::std::size_t i = 0; i < max; i++)
     {   if (decode_map.find (encoded [i].encoding_) != decode_map.cend ())
             nits.pick (nit_symbol_aleady_defined, es_error, ec_program,  "Program error: decoder ", encoded [i].encoding_, " already defined");

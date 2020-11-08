@@ -148,7 +148,7 @@ void options::process (int argc, char** argv)
         2
         3 rpt forwards (30x)
         4
-        5 HTML 5 minor
+        5 HTML 5 mnr
         6
         7
         8
@@ -172,7 +172,7 @@ void options::process (int argc, char** argv)
         (GENERAL TEST ",T", "machine readable output formatted for tests")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "user name to supply when requested")
         (VALIDATION COLOR, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid colour. May be repeated")
-        (VALIDATION MINOR ",4", ::boost::program_options::value < int > (), "Validate HTML5 with this minor version (e.g. 3 for HTML 5.3)")
+        (VALIDATION MINOR ",4", ::boost::program_options::value < int > (), "Validate HTML5 with this mnr version (e.g. 3 for HTML 5.3)")
         (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "use this file to test header parsing code")
         (WMIN HOOK, ::boost::program_options::value < ::std::string > (), "process incoming " WEBMENTION ", in JSON format, in specified file")
         (WMIN STUB, ::boost::program_options::value < ::std::string > () -> default_value ("_" PROG), "mask for file containing " WEBMENTION " HTML snippet")
@@ -222,8 +222,8 @@ void options::process (int argc, char** argv)
         (MF EXPORT, "export microformat data (only verified data if " MF VERIFY " is set)")
 
         (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands schema.org microdata)")
-        (MICRODATA VERSION, ::boost::program_options::value < int > (), "set default schema.org major version (default 10)")
-        (MICRODATA MINOR, ::boost::program_options::value < int > (), "set default schema.org minor version (default 0)")
+        (MICRODATA VERSION, ::boost::program_options::value < int > (), "set default schema.org mjr version (default 10)")
+        (MICRODATA MINOR, ::boost::program_options::value < int > (), "set default schema.org mnr version (default 0)")
         (MICRODATA EXPORT, "export microformat data (only verified data if " MICRODATA MICRODATAARG " is set)")
 
         (STATS PAGE, "report statistics for each page")
@@ -268,7 +268,12 @@ void options::process (int argc, char** argv)
         {   loaded += "Cannot find "; loaded += file.string () + "\n";
             title (loaded.c_str ()); return; }
         try
+#ifdef  NO_PCF_STR
+        {   ::std::ifstream fis (file.string ().c_str ());
+            ::boost::program_options::store (::boost::program_options::parse_config_file (fis, config, true), var_); }
+#else
         {   ::boost::program_options::store (::boost::program_options::parse_config_file (file.string ().c_str (), config, true), var_); }
+#endif
         catch (...)
         {   loaded += "Error in "; loaded += file.string () + "\n";
             title (loaded.c_str ()); return; } }

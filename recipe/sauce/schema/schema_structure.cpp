@@ -27,7 +27,12 @@ struct microdata_structure
 {   schema_version from_;
     schema_version to_;
     e_schema record_ = sch_context;
-    e_schema_property property_ = sp_context; };
+    e_schema_property property_ = sp_context;
+#ifdef REQUIRE_CONSTRUCTOR 
+    microdata_structure (const schema_version& from, const schema_version& to, const e_schema record = sch_context, const e_schema_property prop = sp_context)
+        : from_ (from), to_ (to), record_ (record), property_ (prop) { }
+#endif
+};
 
 microdata_structure schema_structure [] =
 {
@@ -2359,7 +2364,7 @@ mmd_t micromap;
 void microdata_init (nitpick& )
 {   assert (micromap.empty ());
     for (microdata_structure* p = &schema_structure [0]; p -> record_ != sch_illegal; ++p)
-        if (micromap.find (::std::pair (p -> record_, p -> property_)) != micromap.end ())
+        if (micromap.find (::std::pair < e_schema, e_schema_property > (p -> record_, p -> property_)) != micromap.end ())
             ::std::cerr << "microdata_init reports " << sch::name (p -> record_) << " (" << p -> record_ << "), " << schema_property_name (p -> property_) << " (" << p -> property_ << ") repeated\n";
         else
         {   mmd_key k (p -> record_, p -> property_);

@@ -33,18 +33,23 @@ template < typename VALUE, class LC = sz_true > class symbol : public enlc < LC 
     uint64_t flags_ = NOFLAGS, flags2_ = NOFLAGS;
 public:
     typedef VALUE value_type;
-    symbol () = default;
+	symbol() = default;
     symbol (const symbol& s) = default;
-    symbol (symbol&&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	symbol(symbol&&) = default;
+#endif // VS
     explicit symbol (const VALUE& v, const e_namespace ns = ns_default) : value_ (v), ns_ (ns), unknown_ (false)
     {   first_ = table_.first_version (v);
         last_ = table_.final_version (v);
         flags_ = table_.flags (v);
         flags2_ = table_.flags2 (v); }
-    explicit symbol (const ::std::string& x, const e_namespace ns = ns_default) { unknown_ = ! find (x, value_, ns, &first_, &last_, &flags_, &flags2_); }
-    symbol& operator = (const symbol&) = default;
-    symbol& operator = (symbol&&) = default;
-    void swap (symbol& s) noexcept
+    explicit symbol (const html_version& v, const ::std::string& x, const e_namespace ns = ns_default)
+    { unknown_ = ! find (v, x, value_, ns, &first_, &last_, &flags_, &flags2_); }
+	symbol& operator = (const symbol&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	symbol& operator = (symbol&&) = default;
+#endif // VS
+    void swap (symbol& s) NOEXCEPT
     {   ::std::swap (unknown_, s.unknown_);
         ::std::swap (value_, s.value_);
         ::std::swap (ns_, s.ns_);
@@ -56,10 +61,10 @@ public:
     void reset (const VALUE& v) { symbol tmp (v); swap (tmp); }
     static void init (nitpick& nits, const symbol_entry < VALUE > table [], const ::std::size_t size, const bool wildcards = false)
     {   table_.init < VALUE, LC > (nits, table, size, wildcards); }
-    static bool find (const ::std::string& x, VALUE& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
-    {   return table_.find < VALUE, LC > (x, res, ns, first, last, flags, flags2); }
-    static VALUE find (const ::std::string& x, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
-    {   return static_cast < VALUE > (table_.find (enlc < LC > :: to (x), ns, first, last, flags, flags2)); }
+    static bool find (const html_version& v, const ::std::string& x, VALUE& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    {   return table_.find < VALUE, LC > (v, x, res, ns, first, last, flags, flags2); }
+    static VALUE find (const html_version& v, const ::std::string& x, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    {   return static_cast < VALUE > (table_.find (v, enlc < LC > :: to (x), ns, first, last, flags, flags2)); }
     static bool exists (const ::std::string& x) { return table_.exists (x); }
     static bool parse (nitpick& , const html_version& v, const ::std::string& x, VALUE& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
     {   return table_.parse < VALUE, LC > (v, x, res, ns, first, last, flags, flags2); }

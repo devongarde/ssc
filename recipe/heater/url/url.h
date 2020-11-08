@@ -45,11 +45,15 @@ public:
     url (nitpick& nits, const html_version& v, const ::std::string& u, const e_protocol current = pr_http)
         :   valid_ (true), current_ (current), v_ (v)
     {   set (nits, v, u, current); }
-    url (const url&) = default;
-    url (url&&) = default;
-    url& operator = (const url&) = default;
-    url& operator = (url&&) = default;
-    bool operator == (const url& rhs) const;
+	url(const url&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	url (url&&) = default;
+#endif // VS
+	url& operator = (const url&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	url& operator = (url&&) = default;
+#endif // VS
+	bool operator == (const url& rhs) const;
     void reset (const url& u)
     {   url f (u);
         swap (f); }
@@ -59,7 +63,7 @@ public:
         set (nits, v_, u, current); }
     void reset ()
     {   clear (); }
-    void swap (url& u) noexcept;
+    void swap (url& u) NOEXCEPT;
     static void init (nitpick& nits);
     bool empty () const { return ! has_component (es_original); }
     int compare (const url& u) const { return get ().compare (u.get ()); }

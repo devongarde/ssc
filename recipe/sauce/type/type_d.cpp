@@ -114,11 +114,11 @@ bool parse_d (nitpick& nits, const html_version& v, const ::std::string& d)
         {   case ' ' :
             case ',' : break;
             case 'A' : if ((v.svg () == sv_1_2_tiny) || (v.svg () == sv_1_2_full))
-                       {    nits.pick (nit_path_spec, ed_svg_1_2, "8 Paths", es_error, ec_type, "SVG 1.2 excludes path command 'A'");
+                       {    nits.pick (nit_path_spec, ed_svg_1_2_tiny, "8 Paths", es_error, ec_type, "SVG 1.2 excludes path command 'A'");
                             good = false; break; }
                        last = ch; cmd = d_a_ea; was = expected = 7; twas = false; break;
             case 'a' : if ((v.svg () == sv_1_2_tiny) || (v.svg () == sv_1_2_full))
-                       {    nits.pick (nit_path_spec, ed_svg_1_2, "8 Paths", es_error, ec_type, "SVG 1.2 excludes path command 'a'");
+                       {    nits.pick (nit_path_spec, ed_svg_1_2_tiny, "8 Paths", es_error, ec_type, "SVG 1.2 excludes path command 'a'");
                             good = false; break; }
                        last = ch; cmd = d_r_ea; was = expected = 7; twas = false; break;
             case 'C' : last = ch; cmd = d_a_curve; was = expected = 6; twas = false; break;

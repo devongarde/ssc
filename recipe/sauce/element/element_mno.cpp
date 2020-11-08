@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void element::examine_main ()
 {   only_one_of (elem_main);
-    if (node_.version ().major () >= 5)
+    if (node_.version ().mjr () >= 5)
         if (w3_minor_5 (node_.version ()) < 3)
             check_ancestors (elem_main, empty_element_bitset | elem_article | elem_aside | elem_footer | elem_header | elem_nav);
         else
@@ -35,7 +35,7 @@ void element::examine_main ()
                 pick (nit_bad_ancestor, ed_53, "4.4.14. The main element", es_error, ec_element, "<MAIN> can only have <HTML>, <BODY>, <DIV> or <FORM> parents."); } }
 
 void element::examine_map ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
         if (a_.known (a_name) && a_.known (a_id))
             if (! compare_no_case (a_.get_string (a_name), a_.get_string (a_id)))
                 pick (nit_name_id, ed_50, "4.7.11 The map element", es_error, ec_attribute, "If NAME and ID are both specified, they must have the same value"); }
@@ -101,7 +101,7 @@ void element::examine_meta ()
     bool nk = a_.known (a_name);
     bool csk = a_.known (a_charset);
     bool hek = a_.known (a_httpequiv);
-    if (node_.version ().major () < 5)
+    if (node_.version ().mjr () < 5)
     {   if (ipk)
             if (nk || csk || hek)
                 pick (nit_itemprop_name_charset_equiv, ed_mozilla, "", es_error, ec_element, "ITEMPROP cannot be used where a <META> defines NAME, CHARSET, or HTTP-EQUIV"); }
@@ -121,7 +121,7 @@ void element::examine_meta ()
             pick (nit_no_content, ed_50, "4.2.5 The meta element", es_error, ec_element, "CONTENT cannot be used with CHARSET");
        if (page_.charset_defined ())
             pick (nit_charset_redefined, ed_50, "4.2.5 The meta element", es_error, ec_element, "there can be no more than one <META> with a CHARSET per document");
-        if ((node_.version ().major () == 4) && (node_.version ().major () > 1))
+        if ((node_.version ().mjr () == 4) && (node_.version ().mjr () > 1))
             if (a_.get_string (a_charset) != "UTF-8")
                 pick (nit_not_utf_8, es_error, ec_element, node_.version ().report (), " requires the UTF-8 charset"); }
     else if (hek)
@@ -146,7 +146,7 @@ void element::examine_meta ()
             pick (nit_no_content, ed_50, "4.2.5 The meta element", es_error, ec_element, "NAME requires CONTENT"); } }
 
 void element::examine_meter ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   check_ancestors (elem_progress, element_bit_set (elem_meter));
         double min = 0.0, max = 1.0, low = 0.0, high = 0.0, optimum = 0.0, value = 0.0;
         bool kx = a_.known (a_max);
@@ -184,7 +184,7 @@ void element::examine_nav ()
         pick (nit_no_main_kids, ed_50, "4.3.4 The nav element", es_warning, ec_element, "<NAV> can have no <MAIN> descendants"); }
 
 void element::examine_noscript ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     check_ancestors (elem_noscript, element_bit_set (elem_noscript));
     if (ancestral_elements_.test (elem_head))
     {   element_bitset bs (descendant_elements_);
@@ -193,7 +193,7 @@ void element::examine_noscript ()
             pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "in a document's header, <NOSCRIPT> can only have <LINK>, <STYLE>, or <META> descendants"); } }
 
 void element::examine_object ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   if ((! a_.known (a_data) && ! a_.known (a_type)))
             pick (nit_data_type, ed_50, "4.7.4 The object element", es_error, ec_element, "either DATA or TYPE must be present");
         if (a_.known (a_itemprop) && ! a_.known (a_data))
@@ -217,10 +217,10 @@ void element::examine_object ()
                     if (node_.version () == xhtml_2) break;
                     // drop thru'
                 default :
-                    if ((node_.version ().major () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } }
+                    if ((node_.version ().mjr () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } }
 
 void element::examine_option ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
         if (a_.known (a_label))
         {   if (a_.known (a_value))
                 if (has_child ()) pick (nit_bad_option, ed_50, "4.10.10 The option element", es_error, ec_element, "<OPTION> with both LABEL and VALUE defined cannot have content"); }

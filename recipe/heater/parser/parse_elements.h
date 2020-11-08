@@ -43,13 +43,17 @@ class elements_node
 public:
     elements_node () = default;
     elements_node (const elements_node& en) = default;
-    elements_node (elements_node&& en) = default;
-    elements_node (nitpick& nits, const ::std::string& content)
+#ifndef NO_MOVE_CONSTRUCTOR
+	elements_node(elements_node&& en) = default;
+#endif
+	elements_node (nitpick& nits, const ::std::string& content)
     {   invalid_ = ! parse (nits, content); }
     ~elements_node () = default;
     elements_node& operator = (const elements_node& en) = default;
-    elements_node& operator = (elements_node&& en) = default;
-    void swap (elements_node& en) noexcept;
+#ifndef NO_MOVE_CONSTRUCTOR
+	elements_node& operator = (elements_node&& en) = default;
+#endif
+	void swap (elements_node& en) NOEXCEPT;
     void reset ();
     void reset (elements_node& en);
     bool parse (nitpick& nits, const ::std::string& content);

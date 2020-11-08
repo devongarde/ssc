@@ -29,14 +29,18 @@ template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE,
     ::std::string original_;
     enum_base () = default;
     enum_base (const enum_base& ) = default;
-    enum_base (enum_base&&) = default;
-    explicit enum_base (const html_version& v, const ::std::string& s);
+#ifndef NO_MOVE_CONSTRUCTOR
+	enum_base(enum_base&&) = default;
+#endif
+	explicit enum_base (const html_version& v, const ::std::string& s);
     enum_base& operator = (const enum_base&) = default;
-    enum_base& operator = (enum_base&&) = default;
-    ~enum_base () = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	enum_base& operator = (enum_base&&) = default;
+#endif
+	~enum_base () = default;
     static ::std::string values (const html_version& ) { return ::std::string (); }
     static ::std::size_t value_count () { return 0; }
-    void swap (enum_base& t) noexcept;
+    void swap (enum_base& t) NOEXCEPT;
     ::std::string get_string () const { return ::std::string (); }
     ::std::string name () const { return ::std::string (); }
     static ::std::string name (const TYPE ) { return ::std::string (); }
@@ -57,7 +61,7 @@ template < typename TYPE, e_type E > enum_base < TYPE, E > :: enum_base (const h
     e.set_value (v, e);
     if (e.good ()) swap (e); }
 
-template < typename TYPE, e_type E > void enum_base < TYPE, E > :: swap (enum_base& t) noexcept
+template < typename TYPE, e_type E > void enum_base < TYPE, E > :: swap (enum_base& t) NOEXCEPT
 {   ::std::swap (value_, t.value_);
     original_.swap (t.original_);
     type_base < TYPE, E >::swap (t); }
@@ -90,11 +94,15 @@ template < e_type E, typename ENUM, class LC = sz_true > struct enum_n : public 
     {   for (auto ext : extension) extend (ext, e); }
     enum_n () = default;
     enum_n (const enum_n& ) = default;
-    enum_n (enum_n&& ) = default;
-    ~enum_n () = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	enum_n(enum_n&&) = default;
+#endif
+	~enum_n() = default;
     enum_n& operator = (const enum_n& ) = default;
-    enum_n& operator = (enum_n&& ) = default;
-    void swap (enum_n& t) noexcept
+#ifndef NO_MOVE_CONSTRUCTOR
+	enum_n& operator = (enum_n&&) = default;
+#endif
+	void swap (enum_n& t) NOEXCEPT
     {   type_base < ENUM, E >::swap (t);
         symbol < ENUM, LC > :: swap (t); }
     void reset ()
@@ -163,7 +171,7 @@ template < > class type_master < t_align3 > : public enum_n < t_align3, e_align3
 template < > class type_master < t_alignmentbaseline > : public enum_n < t_alignmentbaseline, e_alignmentbaseline > { };
 template < > class type_master < t_alignplus > : public enum_n < t_alignplus, e_alignplus > { };
 template < > class type_master < t_as > : public enum_n < t_as, e_as > { };
-template < > class type_master < t_autocapitalise54 > : public enum_n < t_autocapitalise54, e_autocapitalise54 > { };
+template < > class type_master < t_autocapitalise > : public enum_n < t_autocapitalise, e_autocapitalise > { };
 template < > class type_master < t_autocomplete > : public enum_n < t_autocomplete, e_autocomplete > { };
 template < > class type_master < t_charset > : public enum_n < t_charset, e_charset > { };
 template < > class type_master < t_composite_operator > : public enum_n < t_composite_operator, e_composite_operator > { };
@@ -171,6 +179,7 @@ template < > class type_master < t_currency > : public enum_n < t_currency, e_cu
 template < > class type_master < t_cursor > : public enum_n < t_cursor, e_cursor > { };
 template < > class type_master < t_decalign > : public enum_n < t_decalign, e_decalign > { };
 template < > class type_master < t_dingbat > : public enum_n < t_dingbat, e_dingbat > { };
+template < > class type_master < t_dir > : public enum_n < t_dir, e_dir > { };
 template < > class type_master < t_display > : public enum_n < t_display, e_display > { };
 template < > class type_master < t_dominantbaseline > : public enum_n < t_dominantbaseline, e_dominantbaseline > { };
 template < > class type_master < t_enterkeyhint > : public enum_n < t_enterkeyhint, e_enterkeyhint > { };
@@ -179,8 +188,7 @@ template < > class type_master < t_fixedcolour > : public enum_n < t_fixedcolour
 template < > class type_master < t_halign > : public enum_n < t_halign, e_halign > { };
 template < > class type_master < t_httpequiv > : public enum_n < t_httpequiv, e_httpequiv > { };
 template < > class type_master < t_inky > : public enum_n < t_inky, e_inky > { };
-template < > class type_master < t_inputmode51 > : public enum_n < t_inputmode51, e_inputmode51 > { };
-template < > class type_master < t_inputmode54 > : public enum_n < t_inputmode54, e_inputmode54 > { };
+template < > class type_master < t_inputmode > : public enum_n < t_inputmode, e_inputmode > { };
 template < > class type_master < t_inputplus > : public enum_n < t_inputplus, e_inputplus > { };
 template < > class type_master < t_inputtype > : public enum_n < t_inputtype, e_inputtype > { };
 template < > class type_master < t_inputtype3 > : public enum_n < t_inputtype3, e_inputtype3 > { };
@@ -192,6 +200,7 @@ template < > class type_master < t_linebreak > : public enum_n < t_linebreak, e_
 template < > class type_master < t_lang > : public enum_n < t_lang, e_lang > { };
 template < > class type_master < t_listtype > : public enum_n < t_listtype, e_listtype, sz_false > { };
 template < > class type_master < t_mah > : public enum_n < t_mah, e_mah > { };
+template < > class type_master < t_mathalign > : public enum_n < t_mathalign, e_mathalign > { };
 template < > class type_master < t_mathvariant > : public enum_n < t_mathvariant, e_mathvariant > { };
 template < > class type_master < t_matrix_type > : public enum_n < t_matrix_type, e_matrix_type > { };
 template < > class type_master < t_media > : public enum_n < t_media, e_media > { };
@@ -203,6 +212,7 @@ template < > class type_master < t_microdata_domain > : public enum_n < t_microd
 template < > class type_master < t_mime > : public enum_n < t_mime, e_mimetype > { };
 template < > class type_master < t_namedspace > : public enum_n < t_namedspace, e_namedspace > { };
 template < > class type_master < t_namespace > : public enum_n < t_namespace, e_namespace > { };
+template < > class type_master < t_mathnotation > : public enum_n < t_mathnotation, e_mathnotation > { };
 template < > class type_master < t_paintkeyword > : public enum_n < t_paintkeyword, e_paintkeyword > { };
 template < > class type_master < t_print > : public enum_n < t_print, e_print > { };
 template < > class type_master < t_pointerevents > : public enum_n < t_pointerevents, e_pointerevents > { };

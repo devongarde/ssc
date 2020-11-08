@@ -1258,7 +1258,7 @@ e_schema sch::parse (nitpick& nits, const html_version& v, const ::std::string& 
     {   nits.pick (nit_unrecognised_schema, es_error, ec_microdata, "A schema cannot have an empty name");
         return sch_illegal; }
     if (lc.at (0) == '/') lc = lc.substr (1);
-    symbol < e_schema > s (lc);
+    symbol < e_schema > s (html_0, lc);
     if (s.unknown ())
     {   if (! check_spelling (nits, v, lc))
             nits.pick (nit_unrecognised_schema, es_error, ec_microdata, "Unknown schema ITEMTYPE ", quote (x)); }

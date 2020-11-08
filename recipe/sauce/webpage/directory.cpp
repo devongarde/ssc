@@ -42,7 +42,7 @@ directory::directory (const ::std::string& name, const bool offsite)
     : name_ (name), offsite_ (offsite), mummy_ (nullptr)
 {   if (! offsite) ndx_ = insert_disk_path (get_disk_path (), 0, this); }
 
-void directory::swap (directory& d) noexcept
+void directory::swap (directory& d) NOEXCEPT
 {   name_.swap (d.name_);
     content_.swap (d.content_);
     ::std::swap (offsite_, d.offsite_);

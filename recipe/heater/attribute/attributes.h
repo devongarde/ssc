@@ -37,7 +37,7 @@ public:
     void reset ()
     {   aar_.fill (attribute_v_ptr ());
         unrecognised_.clear (); }
-    void swap (attributes& w) noexcept
+    void swap (attributes& w) NOEXCEPT
     {   aar_.swap (w.aar_);
         unrecognised_.swap (w.unrecognised_); }
     e_element tag () const { return tag_; }

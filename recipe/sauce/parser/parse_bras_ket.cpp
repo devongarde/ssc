@@ -176,7 +176,7 @@ html_version bras_ket::parse (const ::std::string& content)
             case '\t' :
                 ch = ' '; }
         ++ll;
-        if ((ll > 254) && (res.major () < 4) && (! ll_warned))
+        if ((ll > 254) && (res.mjr () < 4) && (! ll_warned))
         {   nits.pick (nit_mosaic_crash, es_warning, ec_parser, "long lines crash older versions of MOSAIC");
             ll_warned = true; }
         if (ch < ' ') { aftercab = false; continue; }

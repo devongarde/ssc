@@ -72,7 +72,7 @@ void declare_crosslinks (const fileindex_t sought, ids_t& ids)
     vcl_t declare;
     vx_t::iterator i = xlynx.find (sought);
     if (i == xlynx.cend ())
-    {   auto p = xlynx.emplace (::std::pair (sought, sought_t (ids.ndx (), vcl_t ())));
+    {   auto p = xlynx.emplace (::std::pair < fileindex_t, sought_t > (sought, sought_t (ids.ndx (), vcl_t ())));
         assert (p.second);
         i = p.first; }
     for (auto d : ids.mif ())
@@ -88,7 +88,7 @@ void add_sought (const fileindex_t seeker, const ::std::size_t line, const filei
     if (seeker == sought) return;
     vx_t::iterator sought_i = xlynx.find (sought);
     if (sought_i == xlynx.cend ())
-    {   auto e = xlynx.emplace (::std::pair (sought, sought_t (sought, vcl_t ())));
+    {   auto e = xlynx.emplace (::std::pair < fileindex_t, sought_t > (sought, sought_t (sought, vcl_t ())));
         sought_i = e.first; }
     vsk_t& seek (sought_i -> second.seekers_);
     vsk_t::iterator seek_i = seek.find (seeker);
@@ -156,7 +156,7 @@ void reconcile_crosslinks (nitpick& nits)
             for (auto is : ix.second.seekers_)
                 if (ix.second.page_ != is.second.page_)
                     for (auto c : is.second.ids_)
-                        if (! has_id (ix.second.declared_, c.id_))
+					{   if (! has_id (ix.second.declared_, c.id_))
                             if (context.test ()) nits.pick (nit_url_id_unfound, es_error, ec_link, is.second.page_, " ", c.line_, " ", ix.second.page_ , " ", c.id_);
                             else nits.pick (nit_url_id_unfound, es_error, ec_link, get_filename (is.second.page_).string (), " ", c.line_, ": ", get_filename (ix.second.page_).string (), "#", c.id_, " is undefined");
                         else if (! c.type_.empty ())
@@ -170,4 +170,4 @@ void reconcile_crosslinks (nitpick& nits)
                                     nits.pick (nit_incompatible_itemtype, es_error, ec_link, msg); } }
                        else if (! compatible_id_state (c.hidden_, is_hidden (ix.second.declared_, c.id_)))
                             if (context.test ()) nits.pick (nit_id_hidden, es_error, ec_link, is.second.page_, " ", c.line_, " ", ix.second.page_ , " ", c.id_);
-                            else nits.pick (nit_id_hidden, es_error, ec_link, get_filename (is.second.page_).string (), " ", c.line_, ": ", get_filename (ix.second.page_).string (), "#", c.id_, " is hidden"); }
+                            else nits.pick (nit_id_hidden, es_error, ec_link, get_filename (is.second.page_).string (), " ", c.line_, ": ", get_filename (ix.second.page_).string (), "#", c.id_, " is hidden"); } }

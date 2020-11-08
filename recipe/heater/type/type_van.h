@@ -23,16 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_autocomplete.h"
 #include "microdata/microdata_itemtype.h"
 
-template < > struct type_master < t_1_more_i > : tidy_string < t_1_more_i >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_1_more_i > :: set_value (nits, v, s);
-        const ::std::string& ss = tidy_string < t_1_more_i > :: get_string ();
-        if (ss.empty ())
-            nits.pick (nit_empty, es_error, ec_type, "a value is expected");
-        else if (good ())
-        {   if (compare_no_case ("inherit", ss)) return;
-            if (test_value < t_1_more > (nits, v, ss)) return; }
-        tidy_string < t_1_more_i > :: status (s_invalid); } };
+template < > struct type_master < t_1_more_i > : type_or_string < t_1_more_i, t_1_more, sz_inherit > { };
+template < > struct type_master < t_bools > : type_at_least_one < t_bools, sz_space, t_bool > { };
 
 template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -56,27 +48,8 @@ template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
             if (m.good ()) return; }
         tidy_string < t_clear30 > :: status (s_invalid); } };
 
-template < > struct type_master < t_colour_i > : tidy_string < t_colour_i >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_colour_i > :: set_value (nits, v, s);
-        const ::std::string& ss = tidy_string < t_colour_i > :: get_string ();
-        if (ss.empty ())
-            nits.pick (nit_empty, es_error, ec_type, "a value is expected");
-        else if (good ())
-        {   if (compare_no_case ("inherit", ss)) return;
-            if (test_value < t_colour > (nits, v, ss)) return; }
-        tidy_string < t_colour_i > :: status (s_invalid); } };
-
-template < > struct type_master < t_colour_ci > : tidy_string < t_colour_ci >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_colour_ci > :: set_value (nits, v, s);
-        const ::std::string& ss = tidy_string < t_colour_ci > :: get_string ();
-        if (ss.empty ())
-            nits.pick (nit_empty, es_error, ec_type, "a value is expected");
-        else if (good ())
-        {   if (compare_no_case ("currentcolor", ss)) return;
-            if (test_value < t_colour_i > (nits, v, ss)) return; }
-        tidy_string < t_colour_ci > :: status (s_invalid); } };
+template < > struct type_master < t_colour_i > : type_or_string < t_colour_i, t_colour, sz_inherit > { };
+template < > struct type_master < t_colour_ci > : type_or_string < t_colour_ci, t_colour_i, sz_currentcolour > { };
 
 template < > struct type_master < t_context_menu > : tidy_string < t_context_menu >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -184,6 +157,17 @@ template < > struct type_master < t_enablebackground > : tidy_string < t_enableb
                 else nits.pick (nit_background, es_error, ec_type, "'accumulate', 'new', or 'inherit' expected"); } }
         tidy_string < t_enablebackground > :: status (s_invalid); } };
 
+template < > struct type_master < t_lcraligns > : type_at_least_one < t_lcraligns, sz_space, t_lcralign > { };
+template < > struct type_master < t_lcrds > : type_at_least_one < t_lcrds, sz_space, t_lcrd > { };
+
+template < > struct type_master < t_lcrdss > : string_vector < t_lcrdss, sz_space >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        ::boost::replace_all (ss, "{", " ");
+        ::boost::replace_all (ss, "}", " ");
+        if (test_value < t_lcrds > (nits, v, trim_the_lot_off (ss))) return;
+        string_vector < t_lcrdss, sz_space > :: status (s_invalid); } };
+
 template < > struct type_master < t_linethickness > : tidy_string < t_linethickness >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_linethickness > :: set_value (nits, v, s);
@@ -195,7 +179,7 @@ template < > struct type_master < t_linethickness > : tidy_string < t_linethickn
                 if (compare_no_case (ss, "thin")) return;
                 if (compare_no_case (ss, "medium")) return;
                 if (compare_no_case (ss, "thick")) return; } }
-        if (test_value < t_measure > (nits, v, s)) return;
+        if (test_value < t_vunit > (nits, v, s)) return;
         tidy_string < t_linethickness > :: status (s_invalid); } };
 
 template < > struct type_master < t_marker > : tidy_string < t_marker >
@@ -214,6 +198,22 @@ template < > struct type_master < t_marker > : tidy_string < t_marker >
                     if (++bra < ket) if (test_value < t_url > (nits, v, ss.substr (bra, ket-bra))) return; } }
         tidy_string < t_marker > :: status (s_invalid); } };
 
+template < > struct type_master < t_mathalign_n > : string_vector < t_mathalign_n, sz_space >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_mathalign_n, sz_space > :: set_value (nits, v, s);
+        if (string_vector < t_mathalign_n, sz_space > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "TYPE requires a value");
+        else if (string_vector < t_mathalign_n, sz_space > :: good ())
+        {   vstr_t args (string_vector < t_mathalign_n, sz_space > :: get ());
+            if (test_value < t_mathalign > (nits, v, args.at (0)))
+                if (args.size () == 1) return;
+                else if (test_value < t_integer > (nits, v, args.at (1)))
+                    if (args.size () == 2) return;
+                    else nits.pick (nit_too_many, ed_math_2, "3.5.1 Table or Matrix (mtable)", es_error, ec_type, "expecting one position and, optionally one number"); }
+        string_vector < t_mathalign_n, sz_space > :: status (s_invalid); } };
+
+template < > struct type_master < t_mathaligns > : type_at_least_one < t_mathaligns, sz_space, t_mathalign > { };
+
 template < > struct type_master < t_mathsize > : tidy_string < t_mathsize >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_mathsize > :: set_value (nits, v, s);
@@ -224,36 +224,26 @@ template < > struct type_master < t_mathsize > : tidy_string < t_mathsize >
             if (compare_no_case (ss, "small")) return;
             if (compare_no_case (ss, "normal")) return;
             if (compare_no_case (ss, "big")) return;
-            if (test_value < t_measure > (nits, v, ss)) return; }
+            if (test_value < t_vunit > (nits, v, ss)) return; }
         tidy_string < t_mathsize > :: status (s_invalid); } };
 
-template < > struct type_master < t_mathspace > : tidy_string < t_mathspace >
+template < > struct type_master < t_mathspace > : type_either_or < t_mathspace, t_namedspace, t_hunit > { };
+template < > struct type_master < t_mathspaceauto > : type_or_string < t_mathspaceauto, t_mathspace, sz_auto > { };
+template < > struct type_master < t_mathspacefit > : type_or_either_string < t_mathspacefit, t_mathspace, sz_auto, sz_fit > { };
+template < > struct type_master < t_mathspaceinfinity > : type_or_string < t_mathspaceinfinity, t_mathspace, sz_infinity > { };
+
+template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudonamedspace >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_mathspace > :: set_value (nits, v, s);
-        if (tidy_string < t_mathspace > :: empty ())
-            nits.pick (nit_empty, ed_math_2, "3.2.2 Mathematics style attributes common to token elements", es_error, ec_type, "small, normal, big, or a measurement expected");
-        else if (tidy_string < t_mathspace > :: good ())
-        {   ::std::string ss (tidy_string < t_mathspace > :: get_string ());
+    {   tidy_string < t_pseudonamedspace > :: set_value (nits, v, s);
+        if (tidy_string < t_pseudonamedspace > :: empty ())
+            nits.pick (nit_empty, ed_math_2, ".3.6.2 Attributes", es_error, ec_type, "value missing");
+        else if (tidy_string < t_pseudonamedspace > :: good ())
+        {   ::std::string ss (tidy_string < t_pseudonamedspace > :: get_string ());
             nitpick nuts;
             if ((v.math_version () > math_1) && test_value < t_namedspace > (nuts, v, ss))
             {   nits.merge (nuts); return; }
-            if (test_value < t_measure > (nits, v, ss)) return; }
-        tidy_string < t_mathspace > :: status (s_invalid); } };
-
-template < > struct type_master < t_mathspaceinfinity > : tidy_string < t_mathspaceinfinity >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_mathspaceinfinity > :: set_value (nits, v, s);
-        if (tidy_string < t_mathspaceinfinity > :: empty ())
-            nits.pick (nit_empty, ed_math_2, "3.2.2 Mathematics style attributes common to token elements", es_error, ec_type, "small, normal, big, or a measurement expected");
-        else if (tidy_string < t_mathspaceinfinity > :: good ())
-        {   ::std::string ss (tidy_string < t_mathspaceinfinity > :: get_string ());
-            if (v.math_version () > math_1)
-            {   if (compare_no_case (ss, "infinity")) return;
-                nitpick nuts;
-                if (test_value < t_namedspace > (nuts, v, ss))
-                {   nits.merge (nuts); return; } }
-            if (test_value < t_measure > (nits, v, ss)) return; }
-        tidy_string < t_mathspaceinfinity > :: status (s_invalid); } };
+            if (test_value < t_pseudo > (nits, v, ss)) return; }
+        tidy_string < t_pseudonamedspace > :: status (s_invalid); } };
 
 template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -281,6 +271,8 @@ template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept 
                     if (! m.good ()) ok = false; }
                 if (ok) return; } }
         tidy_string < t_inputaccept > :: status (s_invalid); } };
+
+template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_space, t_nsd > { };
 
 template < > struct type_master < t_panose1 > : tidy_string < t_panose1 >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -328,28 +320,6 @@ template < > struct type_master < t_preserveaspectratio > : tidy_string < t_pres
                         return; } } }
         tidy_string < t_preserveaspectratio > :: status (s_invalid); } };
 
-template < > struct type_master < t_measure_i > : tidy_string < t_measure_i >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_measure_i > :: set_value (nits, v, s);
-        const ::std::string& ss = tidy_string < t_measure_i > :: get_string ();
-        if (ss.empty ())
-            nits.pick (nit_empty, es_error, ec_type, "a value is expected");
-        else if (good ())
-        {   if (compare_no_case ("inherit", ss)) return;
-            if (test_value < t_measure > (nits, v, ss)) return; }
-        tidy_string < t_measure_i > :: status (s_invalid); } };
-
-template < > struct type_master < t_measure_ai > : tidy_string < t_measure_ai >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_measure_ai > :: set_value (nits, v, s);
-        const ::std::string& ss = tidy_string < t_measure_ai > :: get_string ();
-        if (ss.empty ())
-            nits.pick (nit_empty, es_error, ec_type, "a value is expected");
-        else if (good ())
-        {   if (compare_no_case ("auto", ss)) return;
-            if (test_value < t_measure_i > (nits, v, ss)) return; }
-        tidy_string < t_measure_ai > :: status (s_invalid); } };
-
 template < > struct type_master < t_opacity > : tidy_string < t_opacity >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_opacity > :: set_value (nits, v, s);
@@ -360,17 +330,6 @@ template < > struct type_master < t_opacity > : tidy_string < t_opacity >
         {   if (compare_no_case ("inherit", ss)) return;
             if (test_value < t_normalised > (nits, v, ss)) return; }
         tidy_string < t_opacity > :: status (s_invalid); } };
-
-template < > struct type_master < t_reals > : tidy_string < t_reals >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_reals > :: set_value (nits, v, s);
-        if (tidy_string < t_reals > :: good ())
-        {   vstr_t sss (split_by_charset (tidy_string < t_reals > :: get_string (), ", "));
-            bool ok = true;
-            for (auto arg : sss)
-                if (! test_value < t_real > (nits, v, arg)) ok = false;
-            if (ok) return; }
-        tidy_string < t_reals > :: status (s_invalid); } };
 
 template < > struct type_master < t_roles > : string_vector < t_roles, sz_space >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -415,20 +374,6 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
             if (allgood) return; }
         string_vector < t_sandboxen, sz_space > :: status (s_invalid); } };
 
-template < > struct type_master < t_itemtype > : string_vector < t_itemtype, sz_space >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_itemtype, sz_space > :: set_value (nits, v, s);
-        if (string_vector < t_itemtype, sz_space > :: empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "ITEMTYPE requires a value");
-            string_vector < t_itemtype, sz_space > :: status (s_invalid); }
-        else if (string_vector < t_itemtype, sz_space > :: good ())
-        {   bool allgood = true;
-            for (auto arg : string_vector < t_itemtype, sz_space > :: get ())
-                if (find_itemtype_index (nits, v, arg) == invalid_itemtype)
-                    allgood = false;
-            if (allgood) return; }
-        string_vector < t_itemtype, sz_space > :: status (s_invalid); } };
-
 template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_shape3 > :: set_value (nits, v, s);
@@ -441,161 +386,6 @@ template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >
             if (args.size () > 0)
                 if (test_value < t_shape4 > (nits, v, args.at (0))) return; // should check coordinates too
             tidy_string < t_shape3 > :: status (s_invalid); } } };
-
-template < > struct type_master < t_fontsize > : tidy_string < t_fontsize >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_fontsize > :: set_value (nits, v, s);
-        if (tidy_string < t_fontsize > :: good () || tidy_string < t_fontsize > :: empty ())
-        {   ::std::string ss (tidy_string < t_fontsize > :: get_string ());
-            if (compare_no_case (ss, "inherit")) return;
-            if (test_value < t_measure > (nits, v, ss)) return;
-            tidy_string < t_fontsize > :: status (s_invalid); } } };
-
-template < > struct type_master < t_fontsizeadjust > : tidy_string < t_fontsizeadjust >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_fontsizeadjust > :: set_value (nits, v, s);
-        if (tidy_string < t_fontsizeadjust > :: good () || tidy_string < t_fontsizeadjust > :: empty ())
-        {   ::std::string ss (tidy_string < t_fontsizeadjust > :: get_string ());
-            if (compare_no_case (ss, "inherit")) return;
-            if (compare_no_case (ss, "none")) return;
-            if (test_value < t_real > (nits, v, ss)) return;
-            tidy_string < t_fontsizeadjust > :: status (s_invalid); } } };
-
-template < > struct type_master < t_svg_baselineshift > : tidy_string < t_svg_baselineshift >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   if (test_value < t_baselineshift > (nits, v, s) || test_value < t_measure > (nits, v, s))
-            tidy_string < t_svg_baselineshift > :: status (s_good);
-        else
-            tidy_string < t_svg_baselineshift > :: status (s_invalid); } };
-
-template < > struct type_master < t_svg_fontstyle_ff > : public tidy_string < t_svg_fontstyle_ff >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   if (! v.svg ()) nits.pick (nit_svg_math, es_error, ec_type, "font style requires SVG or MathML");
-        else
-        {   tidy_string < t_svg_fontstyle_ff > :: set_value (nits, v, s);
-            if (tidy_string < t_svg_fontstyle_ff > :: empty ())
-                nits.pick (nit_fontstyle, es_error, ec_type, "font style cannot be empty");
-            else if (tidy_string < t_svg_fontstyle_ff > :: good ())
-            {   ::std::string ss (tidy_string < t_svg_fontstyle_ff > :: get_string ());
-                if (compare_no_case (ss, "all")) return;
-                ::std::string::size_type comma = ss.find (",");
-                if (comma != ::std::string::npos) ss.replace (comma, comma+1, " ");
-                vstr_t fs (split_by_space (ss));
-                if (fs.size () == 0)
-                    nits.pick (nit_fontstyle, es_error, ec_type, "font style is effectively empty");
-                else if (fs.size () > 2)
-                    nits.pick (nit_fontstyle, es_error, ec_type, "too many font style keywords");
-                else
-                {   bool bad = false;
-                    for (auto sss : fs)
-                        if (! test_value < t_fontnia > (nits, v, sss)) bad = true;
-                    if (! bad) return; } } }
-        nits.pick (nit_fontstyle, ed_svg_1_1, "20.8.3 The 'font-face' element", es_info, ec_type, "an SVG font style can be 'all', or one or two of 'normal', 'italic', 'oblique'");
-        tidy_string < t_svg_fontstyle_ff > :: status (s_invalid); } };
-
-template < > struct type_master < t_fontstretches > : public tidy_string < t_fontstretches >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   if (! v.svg ()) nits.pick (nit_svg_math, es_error, ec_type, "font stretch requires SVG");
-        else
-        {   tidy_string < t_fontstretches > :: set_value (nits, v, s);
-            if (tidy_string < t_fontstretches > :: empty ())
-                nits.pick (nit_fontstyle, es_error, ec_type, "font stretch cannot be empty");
-            else if (tidy_string < t_fontstretches > :: good ())
-            {   ::std::string ss (tidy_string < t_fontstretches > :: get_string ());
-                if (compare_no_case (ss, "all")) return;
-                ::std::string::size_type comma = ss.find (",");
-                if (comma != ::std::string::npos) ss.replace (comma, comma+1, " ");
-                vstr_t fs (split_by_space (ss));
-                if (fs.size () == 0)
-                    nits.pick (nit_fontstyle, es_error, ec_type, "font stretch is effectively empty");
-                else
-                {   bool bad = false;
-                    for (auto sss : fs)
-                        if (! test_value < t_svg_fontstretch_ff > (nits, v, sss)) bad = true;
-                    if (! bad) return; } } }
-        nits.pick (nit_fontstyle, ed_svg_1_1, "20.8.3 The 'font-face' element", es_info, ec_type, "an SVG font stretch can be 'all', or one or more condensed and/or expanded values");
-        tidy_string < t_fontstretches > :: status (s_invalid); } };
-
-template < > struct type_master < t_fontvariants > : public tidy_string < t_fontvariants >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   if (! v.svg ()) nits.pick (nit_svg_math, es_error, ec_type, "font variant requires SVG");
-        else
-        {   tidy_string < t_fontvariants > :: set_value (nits, v, s);
-            if (tidy_string < t_fontvariants > :: empty ())
-                nits.pick (nit_fontvariant, es_error, ec_type, "font variant cannot be empty");
-            else if (tidy_string < t_fontvariants > :: good ())
-            {   ::std::string ss (tidy_string < t_fontvariants > :: get_string ());
-                ::std::string::size_type comma = ss.find (",");
-                if (comma != ::std::string::npos) ss.replace (comma, comma+1, " ");
-                vstr_t fs (split_by_space (ss));
-                if (fs.size () == 0)
-                    nits.pick (nit_fontvariant, es_error, ec_type, "font variant is effectively empty");
-                else if (fs.size () > 2)
-                    nits.pick (nit_fontvariant, es_error, ec_type, "too many font variant keywords");
-                else
-                {   bool bad = false;
-                    for (auto sss : fs)
-                        if (! test_value < t_svg_fontvariant_ff > (nits, v, sss)) bad = true;
-                    if (! bad) return; } } }
-        nits.pick (nit_fontvariant, ed_svg_1_1, "20.8.3 The 'font-face' element", es_info, ec_type, "an SVG font variant can be'normal', 'small-caps', or both of them");
-        tidy_string < t_fontvariants > :: status (s_invalid); } };
-
-template < > struct type_master < t_svg_fontweights > : public tidy_string < t_svg_fontweights >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   if (! v.svg ()) nits.pick (nit_svg_math, es_error, ec_type, "font weight requires SVG or MathML");
-        else
-        {   tidy_string < t_svg_fontweights > :: set_value (nits, v, s);
-            if (tidy_string < t_svg_fontweights > :: empty ())
-                nits.pick (nit_fontweight, es_error, ec_type, "font style cannot be empty");
-            else if (tidy_string < t_svg_fontweights > :: good ())
-            {   ::std::string ss (tidy_string < t_svg_fontweights > :: get_string ());
-                if (compare_no_case (ss, "all")) return;
-                ::std::string::size_type comma = ss.find (",");
-                if (comma != ::std::string::npos) ss.replace (comma, comma+1, " ");
-                vstr_t fs (split_by_space (ss));
-                if (fs.size () == 0)
-                    nits.pick (nit_fontweight, es_error, ec_type, "font style is effectively empty");
-                else
-                {   bool bad = false;
-                    for (auto sss : fs)
-                        if (! test_value < t_svg_fontweight_ff > (nits, v, sss)) bad = true;
-                    if (! bad) return; } } }
-        nits.pick (nit_fontweight, ed_svg_1_1, "20.8.3 The 'font-face' element", es_info, ec_type, "an SVG font weight can be 'all', or one or more of 'normal', 'bold', and / or specific weights");
-        tidy_string < t_svg_fontweights > :: status (s_invalid); } };
-
-template < > struct type_master < t_svg_transform > : tidy_string < t_svg_transform >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_svg_transform > :: set_value (nits, v, s);
-        const ::std::string& ss = tidy_string < t_svg_transform > :: get_string ();
-        if (s.empty ())
-            nits.pick (nit_empty, es_error, ec_type, "SVG:TRANSFORM requires a value");
-        else if (good ())
-        {   if (compare_no_case ("none", ss)) return;
-            if (test_value < t_transform > (nits, v, ss)) return; }
-        tidy_string < t_svg_transform > :: status (s_invalid); } };
-
-template < > struct type_master < t_svg_values > : tidy_string < t_svg_values >
-{   vdbl_t value_;
-    void swap (type_master < t_svg_values >& t)
-    {   value_.swap (t.value_);
-        tidy_string < t_svg_values >::swap (t); }
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_svg_values > :: set_value (nits, v, s);
-        if (tidy_string < t_svg_values > :: good ())
-        {   vstr_t ss (split_by_charset (tidy_string < t_svg_values > :: get_string (), ";"));
-            if (ss.size () > 0)
-            {   bool ok = true;
-                for (auto sss : ss)
-                    if (! test_value < t_real > (nits, v, sss))
-                        ok = false;
-                if (ok) return; } }
-        nits.pick (nit_svg_values, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "a semi-colon separated series of numbers expected");
-        tidy_string < t_svg_values > :: status (s_invalid); }
-    void reset ()
-    {   value_.clear ();
-        tidy_string < t_svg_values > :: reset (); }
-    static ::std::string default_value () { return ""; }
-    ::std::string get () const { return get_string (); } };
 
 template < > struct type_master < t_normalisations > : tidy_string < t_normalisations >
 {   vdbl_t value_;
@@ -684,17 +474,6 @@ template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
     {   u_.reset (); width_ = 0; density_ = 0.0;
         tidy_string < t_imcastr > :: reset (); }
     static ::std::string default_value () { return ::std::string (); } };
-
-template < > struct type_master < t_rotate_anim > : tidy_string < t_rotate_anim >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_rotate_anim > :: set_value (nits, v, s);
-        if (tidy_string < t_rotate_anim > :: good ())
-        {   ::std::string ss (tidy_string < t_rotate_anim > :: get_string ());
-            if (compare_no_case (ss, "auto")) return;
-            if (compare_no_case (ss, "auto-reverse")) return;
-            if (test_value < t_real > (nits, v, ss)) return; }
-        nits.pick (nit_rotate, ed_svg_1_1, "19.2.14 The 'animateMotion' element", es_error, ec_attribute, "expected 'auto', 'auto-reverse', or a number");
-        tidy_string < t_rotate_anim > :: status (s_invalid); } };
 
 template < > struct type_master < t_srcset > : tidy_string < t_srcset >
 {   typedef ::std::vector < type_master < t_imcastr > > vix_t;

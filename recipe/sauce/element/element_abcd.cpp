@@ -24,13 +24,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 
 void element::examine_address ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   check_ancestors (elem_address, empty_element_bitset | elem_address);
         check_descendants (elem_address, header_bitset | sectioning_bitset | elem_address | elem_header | elem_footer); } }
 
 void element::examine_anchor ()
 {   const bool href_known = a_.known (a_href);
-    const bool five = node_.version ().major () >= 5;
+    const bool five = node_.version ().mjr () >= 5;
     if (href_known) no_anchor_daddy ();
     else if (a_.known (a_rel) || a_.known (a_rev))
         pick (nit_rel_requires_href, ed_1, "Anchors", es_error, ec_element, "REL and REV both require HREF");
@@ -63,7 +63,7 @@ void element::examine_animatemotion ()
                     return; } }
 
 void element::examine_area ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   if (! any (ancestral_elements_, empty_element_bitset | elem_map | elem_template))
             pick (nit_area_map_template, ed_50, "4.7.12 The area element", es_error, ec_element, "<AREA> requires a <MAP> or a <TEMPLATE> ancestor");
         if (a_.known (a_href))
@@ -115,7 +115,7 @@ void element::examine_base ()
         return; }
     if (! only_one_of (elem_base)) return;
     if (sibling_attributes_.test (a_href) != 0)
-        switch (node_.version ().major ())
+        switch (node_.version ().mjr ())
         {   case 0 :
             case 1 :
             case 2 :
@@ -137,7 +137,7 @@ void element::examine_base ()
         else context.base (u.original ()); }
 
 void element::examine_button ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   no_anchor_daddy ();
         if (has_child ())
         {   element_bitset bs (descendant_elements_);
@@ -153,12 +153,12 @@ void element::examine_button ()
                 pick (nit_bad_form, ed_50, "", es_error, ec_attribute, "FORM... attributes require <BUTTON> TYPE='submit'"); } }
 
 void element::examine_col ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
         if (a_.known (a_span))
             if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.4 The col element", es_error, ec_element, "SPAN cannot exceed 1000"); }
 
 void element::examine_colgroup ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
         if (a_.known (a_span))
         {   element_bitset bs (descendant_elements_);
             bs &= empty_element_bitset | elem_col | elem_template;
@@ -166,7 +166,7 @@ void element::examine_colgroup ()
             if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "SPAN cannot exceed 1000"); } }
 
 void element::examine_caption ()
-{   if (node_.version ().major () >= 5) check_descendants (elem_caption, element_bit_set (elem_table)); }
+{   if (node_.version ().mjr () >= 5) check_descendants (elem_caption, element_bit_set (elem_table)); }
 
 void element::examine_datalist ()
 {   if (! has_child ()) pick (nit_bad_datalist, ed_50, "4.10.8 The datalist element", es_warning, ec_element, "is the empty <DATALIST> intentional");
@@ -205,16 +205,16 @@ void element::examine_details ()
                     break; } }
 
 void element::examine_dd ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   element_bitset bs (ancestral_elements_);
         bs &= elem_dl;
         if (! bs.any ()) pick (nit_dl_ancestor, ed_52, "4.4.11. The dd element", es_error, ec_element, "<DD> must have a <DL> ancestor."); } }
 
 void element::examine_dfn ()
-{   if (node_.version ().major () >= 5) check_ancestors (elem_dfn, element_bit_set (elem_dfn)); }
+{   if (node_.version ().mjr () >= 5) check_ancestors (elem_dfn, element_bit_set (elem_dfn)); }
 
 void element::examine_div ()
-{   if (has_child () && (node_.version ().major () >= 5) && (w3_minor_5 (node_.version ()) >= 2))
+{   if (has_child () && (node_.version ().mjr () >= 5) && (w3_minor_5 (node_.version ()) >= 2))
     {   bool dt = false;
         if (parent_ -> tag () == elem_dl)
             for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
@@ -235,7 +235,7 @@ void element::examine_div ()
 
 void element::examine_dl ()
 {   bool dtdd = false, dt = false, div = false;
-    if (has_child () && (node_.version ().major () >= 5))
+    if (has_child () && (node_.version ().mjr () >= 5))
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
             switch (c -> tag ())
             {   case elem_div :
@@ -259,7 +259,7 @@ void element::examine_dl ()
                     break; } }
 
 void element::examine_dt ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   element_bitset bs (ancestral_elements_);
         bs &= elem_dl;
         if (! bs.any ()) pick (nit_dl_ancestor, ed_52, "4.4.10. The dt element", es_error, ec_element, "<DT> must have a <DL> ancestor.");

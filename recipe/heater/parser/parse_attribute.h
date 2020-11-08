@@ -39,11 +39,15 @@ public:
     attribute_node (nitpick& nits, const html_version& v, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end);
     attribute_node (nitpick& nits, const html_version& v, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end);
     attribute_node (const attribute_node& an) = default;
-    attribute_node (attribute_node&& an) = default;
-    ~attribute_node () = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	attribute_node(attribute_node&& an) = default;
+#endif
+	~attribute_node () = default;
     attribute_node& operator = (const attribute_node& an) = default;
-    attribute_node& operator = (attribute_node&& an) = default;
-    void swap (attribute_node& an);
+#ifndef NO_MOVE_CONSTRUCTOR
+	attribute_node& operator = (attribute_node&& an) = default;
+#endif
+	void swap (attribute_node& an);
     void reset ()
     {   attribute_node an;
         swap (an); }

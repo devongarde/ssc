@@ -50,12 +50,16 @@ template < > inline bool type_base < e_rel, t_rel > :: is_relational ()
 struct rel : enum_n < t_rel, e_rel >
 {   rel () = default;
     rel (const rel& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     rel (rel&& ) = default;
+#endif
     explicit rel (nitpick& nits, const html_version& v, const ::std::string& s)
     {   enum_n < t_rel, e_rel > :: set_value (nits, v, s); }
     ~rel () = default;
     rel& operator = (const rel& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     rel& operator = (rel&& ) = default;
+#endif
     static bool is_microformat (const e_rel value)
     {   return value >= first_mf1_rel && value <= last_mf2_rel; }
     static bool is_microformat_vocabulary (const e_rel )
@@ -66,7 +70,7 @@ struct rel : enum_n < t_rel, e_rel >
     {   return (value >= first_mf1_rel && value <= last_mf1_rel); }
     static bool is_microformat_v2 (const e_rel value)
     {   return (value >= first_mf2_rel && value <= last_mf2_rel); }
-    constexpr static bool is_rel () { return true; }
+    CONSTEXPR static bool is_rel () { return true; }
     bool is_microformat () const { return good () && is_microformat (enum_base < e_rel, t_rel > :: value_); }
     bool is_microformat_property () const { return is_microformat_property (enum_base < e_rel, t_rel > :: value_); }
     bool is_microformat_vocabulary () const { return is_microformat_vocabulary (enum_base < e_rel, t_rel > :: value_); }

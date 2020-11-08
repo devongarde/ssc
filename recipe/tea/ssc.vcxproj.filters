@@ -81,9 +81,6 @@
     <Filter Include="Heater\parser">
       <UniqueIdentifier>{5eadd391-6a7f-42b3-b559-f7b7e6a9532b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Heater\schema">
-      <UniqueIdentifier>{acbe307a-039a-4fed-ad19-20d217dea9ed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Heater\stats">
       <UniqueIdentifier>{1ae820a1-efcf-4b25-8671-5e2f5ee62fff}</UniqueIdentifier>
     </Filter>
@@ -305,6 +302,9 @@
     </Filter>
     <Filter Include="Toast\Type\SGML">
       <UniqueIdentifier>{1a9430e6-2f16-4dcb-8154-70c09666afa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\schema">
+      <UniqueIdentifier>{acbe307a-039a-4fed-ad19-20d217dea9ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -670,6 +670,36 @@
     </ClInclude>
     <ClInclude Include="..\heater\webpage\root.h">
       <Filter>Heater\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_basic.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_id.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_layout.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_math.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_measure.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_microdata.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_microformat.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_misc.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_numeric.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_svg.h">
+      <Filter>Heater\type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2828,6 +2858,18 @@
     </None>
     <None Include="..\toast\type\sgml\dubious2.html">
       <Filter>Toast\Type\SGML</Filter>
+    </None>
+    <None Include="..\toast\math\2\math4-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math5-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math6-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math7-example.html">
+      <Filter>Toast\Math\2</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

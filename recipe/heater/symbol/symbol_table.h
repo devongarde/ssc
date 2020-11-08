@@ -34,7 +34,13 @@ template < typename VALUE > struct symbol_entry
     VALUE           v_ = static_cast < VALUE > (0);
     e_namespace     ns_ = ns_default;
     uint64_t        flags_ = 0;
-    uint64_t        flags2_ = 0; };
+    uint64_t        flags2_ = 0;
+#ifdef REQUIRE_CONSTRUCTOR 
+    symbol_entry (  const html_version& first, const html_version& last, const char* sz, const VALUE v,
+                    const e_namespace ns = ns_default, const uint64_t flags = 0, const uint64_t flags2 = 0)
+        : first_ (first), last_ (last), sz_ (sz), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { } 
+#endif
+};
 
 struct symbol_entry_t
 {   html_version    first_, last_;
@@ -51,10 +57,12 @@ struct symbol_store
     e_namespace     ns_ = ns_default;
     uint64_t        flags_ = 0;
     uint64_t        flags2_ = 0;
-    symbol_store () = default;
+	symbol_store() = default;
     symbol_store (const symbol_store& ss) = default;
-    symbol_store (symbol_store&& ss) = default;
-    ~symbol_store () = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	symbol_store (symbol_store&& ss) = default;
+#endif // VS
+	~symbol_store() = default;
     symbol_store (const html_version& first, const html_version& last, const ::std::string& str, const ::std::size_t v, const e_namespace ns = ns_default, const uint64_t flags = NOFLAGS, const uint64_t flags2 = NOFLAGS)
         : first_ (first), last_ (last), sz_ (str), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
     symbol_store (const html_version& first, const html_version& last, const char* sz, const ::std::size_t v, const e_namespace ns = ns_default, const uint64_t flags = NOFLAGS, const uint64_t flags2 = NOFLAGS)
@@ -62,8 +70,10 @@ struct symbol_store
     symbol_store (const symbol_entry_t& se)
         : first_ (se.first_), last_ (se.last_), sz_ (se.sz_), v_ (se.v_), ns_ (se.ns_), flags_ (se.flags_), flags2_ (se.flags2_) { }
     symbol_store& operator = (const symbol_store& ss) = default;
-    symbol_store& operator = (symbol_store&& ss) = default;
-    void swap (symbol_store& ss) noexcept;
+#ifndef NO_MOVE_CONSTRUCTOR
+	symbol_store& operator = (symbol_store&& ss) = default;
+#endif
+    void swap (symbol_store& ss) NOEXCEPT;
     void reset () { symbol_store ss; swap (ss); }
     void reset (const symbol_store& s) { symbol_store ss (s); swap (ss); } };
 
@@ -101,7 +111,7 @@ class symbol_table
     reverse_t reverse_;
     bool wildcards_ = false;
 public:
-    void swap (symbol_table& s) noexcept;
+    void swap (symbol_table& s) NOEXCEPT;
     void extend (   const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const e_namespace ns = ns_default,
                     const html_version& first = html_0, const html_version& last = html_0, const uint64_t flags = 0, const uint64_t flags2 = 0);
     bool redefine (const e_namespace old_ns, const ::std::size_t old_value, const e_namespace new_ns, const ::std::size_t new_value);
@@ -114,16 +124,16 @@ public:
                 if (symbol_.find (symbol_key (key, table [i].ns_)) != symbol_.end ())
                     nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "program error: symbol ", table [i].sz_, " already defined");
                 else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); } }
-    bool find (const ::std::string& x, ::std::size_t& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const;
-    ::std::size_t find (const ::std::string& x, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const;
-    template < typename VALUE, class LC > bool find (const ::std::string& x, VALUE& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
+    bool find (const html_version& v, const ::std::string& x, ::std::size_t& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const;
+    ::std::size_t find (const html_version& v, const ::std::string& x, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const;
+    template < typename VALUE, class LC > bool find (const html_version& v, const ::std::string& x, VALUE& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
     {   ::std::size_t val = 0;
-        if (! find (enlc < LC > :: to (x), val, ns, first, last, flags, flags2)) return false;
+        if (! find (v, enlc < LC > :: to (x), val, ns, first, last, flags, flags2)) return false;
         res = static_cast < VALUE > (val); return true; }
     bool exists (const ::std::string& x, const e_namespace ns = ns_default) const
     {   return (symbol_.find (symbol_key (x, ns)) != symbol_.end ()); }
-    bool parse (const html_version& , const ::std::string& x, ::std::size_t& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
-    {   return find (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)), res, ns, first, last, flags, flags2); }
+    bool parse (const html_version& v, const ::std::string& x, ::std::size_t& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    {   return find (v, ::boost::algorithm::to_lower_copy (trim_the_lot_off (x)), res, ns, first, last, flags, flags2); }
     template < typename VALUE, class LC > bool parse (const html_version& v, const ::std::string& x, VALUE& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
     {   ::std::size_t val = 0;
         if (! parse (v, enlc < LC > :: to (x), val, ns, first, last, flags, flags2)) return false;

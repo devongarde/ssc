@@ -179,7 +179,7 @@ public:
     element (const ::std::string& name, element_node& en, element* parent, ids_t& ids, sstr_t* access, page& p);
 
     ~element () = default;
-    void swap (element& e) noexcept;
+    void swap (element& e) NOEXCEPT;
     const element_node& node () const
     {   return node_; }
     const ::std::string name () const { return name_; }
@@ -215,10 +215,12 @@ public:
         return parent_; }
     bool reportable () const
     {   return ((tag () != elem_undefined) || context.tell (e_splurge) || (child_ != nullptr)); }
+#if VS >= 17
     void pick (const e_nit code, const e_doc doc, char* const ref, const e_severity severity, const e_category category, char* const msg)
     {   node_.pick (code, doc, ref, severity, category, msg); }
     void pick (const e_nit code, const e_severity severity, const e_category category, const char* msg)
     {   node_.pick (code, severity, category, msg); }
+#endif // VS
     template < typename ... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg)
     {   node_.pick (code, doc, ref, severity, category, msg...); }
     template < typename ... Ts > void pick (const e_nit code, const e_severity severity, const e_category category, Ts... msg)

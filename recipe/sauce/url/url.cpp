@@ -43,7 +43,7 @@ void url::init (nitpick& )
     standard_image_extensions_ [2] = "gif";
     standard_image_extensions_ [2] = "png"; }
 
-void url::swap (url& u) noexcept
+void url::swap (url& u) NOEXCEPT
 {   ::std::swap (valid_, u.valid_);
     ::std::swap (current_, u.current_);
     v_.swap (u.v_);

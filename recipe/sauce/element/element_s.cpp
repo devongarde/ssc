@@ -24,13 +24,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute_classes.h"
 
 void element::examine_section ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   if (w3_minor_5 (node_.version ()) > 0)
             check_ancestors (tag (), empty_element_bitset | elem_section | elem_dt);
         check_ancestors (tag (), empty_element_bitset | elem_address | elem_dt); } }
 
 void element::examine_script ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     check_ancestors (elem_script, element_bit_set (elem_script));
     bool datablock = false, module = false;
     if (a_.known (a_type))
@@ -99,7 +99,7 @@ void element::examine_script ()
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "ASYNC requires SRC"); } }
 
 void element::examine_select ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     no_anchor_daddy ();
     int size = 1;
     bool multiple = a_.known (a_multiple);
@@ -176,7 +176,7 @@ void element::examine_svg ()
         case sv_1_2_tiny:
         case sv_1_2_full :
             if (ancestor)
-                pick (nit_svg_ancestor, ed_svg_1_2, "5.1.1 ... the 'svg' element: overview", es_error, ec_element, "An <SVG> cannot descend from another <SVG>");
+                pick (nit_svg_ancestor, ed_svg_1_2_tiny, "5.1.1 ... the 'svg' element: overview", es_error, ec_element, "An <SVG> cannot descend from another <SVG>");
             break;
         default : break; } }
 

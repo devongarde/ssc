@@ -21,8 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "symbol/symbol.h"
 
-constexpr ::std::size_t last_component = static_cast <::std::size_t> (es_file);
-constexpr ::std::size_t component_count = last_component + 1;
+const ::std::size_t last_component = static_cast <::std::size_t> (es_file);
+const ::std::size_t component_count = last_component + 1;
 
 typedef vstr_t vc_t;
 
@@ -32,17 +32,21 @@ class protocol : public symbol < e_protocol >
 public:
     protocol () : default_ (false)
     {   component_.resize (component_count); }
-    protocol (const protocol&) = default;
-    protocol (protocol&&) = default;
+	protocol(const protocol&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	protocol (protocol&&) = default;
+#endif // VS
     protocol (nitpick& nits, const html_version& v, const ::std::string& x, const e_protocol current = pr_https)
     {   component_.resize (component_count);
         parse (nits, v, x, current); }
-    protocol& operator = (const protocol&) = default;
-    protocol& operator = (protocol&&) = default;
-    ~protocol () = default;
+	protocol& operator = (const protocol&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	protocol& operator = (protocol&&) = default;
+#endif // VS
+	~protocol() = default;
     bool operator == (const protocol& rhs) const;
     bool parse (nitpick& nits, const html_version& v, const ::std::string& x, e_protocol current = pr_https);
-    void swap (protocol& p) noexcept
+    void swap (protocol& p) NOEXCEPT
     {   ::std::swap (default_, p.default_);
         component_.swap (p.component_);
         symbol < e_protocol > :: swap (p); }

@@ -41,13 +41,15 @@ template < class MEMBER, size_t CHUNK > class big_vector
             assert (data_.at (c) != nullptr);
             data_.at (c) -> reserve (CHUNK); } }
 public:
-    big_vector () = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	big_vector() = default;
     big_vector (const big_vector& bv) = default;
     big_vector (big_vector&& bv) = default;
     big_vector& operator = (const big_vector& bv) = default;
     big_vector& operator = (big_vector&& bv) = default;
     ~big_vector () = default;
-    void swap (big_vector& bv) noexcept
+#endif
+    void swap (big_vector& bv) NOEXCEPT
     {   data_.swap (bv.data_);
         ::std::swap (size_, bv.size_); }
     void reset ()

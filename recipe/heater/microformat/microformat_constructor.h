@@ -26,23 +26,27 @@ class microformat_pv
 public:
     ::std::size_t           index_ = 0;
     microformat_base_ptr    microformat_ = nullptr;
-    microformat_pv () noexcept
+    microformat_pv () NOEXCEPT
         :   index_ (c_error)
     { }
-    explicit microformat_pv (const ::std::size_t v) noexcept
+    explicit microformat_pv (const ::std::size_t v) NOEXCEPT
         :   index_ (v)
     { }
-    explicit microformat_pv (const e_class v) noexcept
+    explicit microformat_pv (const e_class v) NOEXCEPT
         :   index_ (index (v))
     { }
-    explicit microformat_pv (const e_rel v) noexcept
+    explicit microformat_pv (const e_rel v) NOEXCEPT
         :   index_ (index (v))
     { }
 
     microformat_pv (const microformat_pv& mf) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     microformat_pv (microformat_pv&& mf) = default;
+#endif
     microformat_pv& operator = (const microformat_pv& mf) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     microformat_pv& operator = (microformat_pv&& mf) = default;
+#endif
     ~microformat_pv () = default;
 
     static const ::std::size_t first_rel_ = static_cast < ::std::size_t > (r_entry_category);
@@ -54,7 +58,7 @@ public:
     static microformat_pv alloc_microformat_pv (const e_rel v) { return alloc_microformat_pv (index (v)); }
 
     void reset () { if (is_allocated ()) microformat_ -> reset (); }
-    void swap (microformat_pv& m) noexcept
+    void swap (microformat_pv& m) NOEXCEPT
     {   ::std::swap (index_, m.index_);
         microformat_.swap (m.microformat_); }
 

@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute_classes.h"
 
 void element::examine_embed ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     no_anchor_daddy ();
     if (a_.known (a_itemprop) && ! a_.known (a_src))
         pick (nit_bad_embed, ed_July2020, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>"); }
@@ -76,13 +76,13 @@ void element::examine_fieldset ()
                     break; } };
 
 void element::examine_figcaption ()
-{   if ((node_.version ().major () >= 5) && (w3_minor_5 (node_.version ()) == 0))
+{   if ((node_.version ().mjr () >= 5) && (w3_minor_5 (node_.version ()) == 0))
         if (node_.has_previous () && node_.has_next ())
             pick (nit_figcaption_middle, ed_50, "4.4.12 The figcaption element", es_error, ec_element, "<FIGCAPTION> must be the first or last child of <FIGURE>"); }
 
 void element::examine_figure ()
 {   bool had_figcaption = false, first = true, last_was_fig = false;
-    if (has_child () && (node_.version ().major () >= 5))
+    if (has_child () && (node_.version ().mjr () >= 5))
         if ((w3_minor_5 (node_.version ()) == 0) || (w3_minor_5 (node_.version ()) == 4))
             for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
             {   e_element tag = c -> node_.tag ();
@@ -113,14 +113,14 @@ void element::examine_fontymacfontface ()
                     return; } }
 
 void element::examine_footer ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   check_ancestors (elem_footer, empty_element_bitset | elem_address | elem_footer | elem_header | elem_dt);
         check_descendants (elem_footer, empty_element_bitset | elem_main);
         if (w3_minor_5 (node_.version ()) == 0)
             check_descendants (elem_footer, empty_element_bitset | elem_header | elem_footer); } }
 
 void element::examine_form ()
-{   switch (node_.version ().major ())
+{   switch (node_.version ().mjr ())
     {   case 0 :
         case 1 :
         case 3 :
@@ -155,11 +155,11 @@ void element::examine_form ()
                             rk -> pick (nit_lonely_radio, ed_50, "4.10.5.1.13 Radio Button state", es_error, ec_element, "radio buttons require company; there must be multiple <INPUT> TYPE=radio with NAME ", quote (n)); } } } } }
 
 void element::examine_h123456 ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
         check_ancestors (tag (), empty_element_bitset | elem_address | elem_dt); }
 
 void element::examine_header ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   check_ancestors (elem_header, empty_element_bitset | elem_address | elem_footer | elem_header | elem_dt);
         check_descendants (elem_header, empty_element_bitset | elem_main);
         if (w3_minor_5 (node_.version ()) == 0)
@@ -170,7 +170,7 @@ void element::examine_html ()
         pick (nit_use_htmlplus, es_error, ec_element, "HTML+ uses the <HTMLPLUS> element, not <HTML>");
     else
     {   only_one_of (elem_html);
-        if (node_.version ().major () >= 5)
+        if (node_.version ().mjr () >= 5)
         {   if (! a_.known (a_lang) && ! a_.known (a_xmllang))
                 pick (nit_naughty_lang, ed_50, "4.1.1 The html element", es_warning, ec_attribute, "use LANG to specify a default language");
             if (w3_minor_5 (node_.version ()) >= 2)
@@ -178,7 +178,7 @@ void element::examine_html ()
                     pick (nit_avoid_manifest, ed_52, "4.1.1 The html element", es_warning, ec_attribute, "MANIFEST is deprecated & should be avoided because application caches are doomed"); } } }
 
 void element::examine_iframe ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     no_anchor_daddy ();
     if (a_.known (a_itemprop) && ! a_.known (a_src))
         pick (nit_bad_iframe, ed_July2020, "4.8.5 The iframe element", es_error, ec_attribute, "SRC is required when ITEMPROP is used with <IFRAME>");
@@ -188,11 +188,11 @@ void element::examine_iframe ()
 void element::examine_img ()
 {   check_required_type (elem_img);
     if (a_.known (a_usemap)) no_anchor_daddy ();
-    if ((node_.version ().major () >= 5) && (w3_minor_5 (node_.version ()) > 0))
+    if ((node_.version ().mjr () >= 5) && (w3_minor_5 (node_.version ()) > 0))
         if (! ancestral_elements_.test (elem_figure))
             if (! a_.known (a_alt) || a_.get_string (a_alt).empty ())
                 if (! a_.known (a_title))
                     pick (nit_naughty_alt, ed_51, "4.7.5.1.2. General guidelines", es_warning, ec_element, "generally, ALT should not be empty");
-    if ((node_.version ().major () >= 4) && a_.known (a_alt) && a_.known (a_title))
+    if ((node_.version ().mjr () >= 4) && a_.known (a_alt) && a_.known (a_title))
         if (compare_no_case (a_.get_string (a_alt), a_.get_string (a_title)))
             pick (nit_alt_title, ed_51, "4.7.5.1.2. General guidelines", es_warning, ec_element, "ALT and TITLE must have different values"); }

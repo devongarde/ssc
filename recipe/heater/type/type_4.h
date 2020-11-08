@@ -28,16 +28,18 @@ public:
     typedef true_type has_int_type;
     ::std::string get_string () const;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
-    void swap (four_value& t) noexcept { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }
+    void swap (four_value& t) NOEXCEPT { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }
     static base_type default_value () { return static_cast <base_type> (0); }
     base_type get () const { return value_; }
     int get_int () const { return static_cast < int > (value_); }
     ::std::size_t type () const { return static_cast < ::std::size_t > (get ()); }
     bool has_value (const base_type& b) const { return type_base < base_type, TYPE > :: good () && (value_ == b); } };
 
-template < > class type_master < t_align2070 > : public four_value < t_align2070, e_align2070, sz_center, sz_justify, sz_left, sz_right > { };
-template < > class type_master < t_aligndec > : public four_value < t_aligndec, e_aligndec, sz_center, sz_decimal, sz_left, sz_right > { };
-template < > class type_master < t_alignfig > : public four_value < t_alignfig, e_alignfig, sz_center, sz_float, sz_left, sz_right > { };
+// typedef enum { at_toggle, at_statusline, at_tooltip, at_highlight } e_actiontype;
+template < > class type_master < t_actiontype > : public four_value < t_actiontype, e_actiontype, sz_toggle, sz_statusline, sz_tooltip, sz_highlight > { };
+template < > class type_master < t_align2070 > : public four_value < t_align2070, e_align2070, sz_centre, sz_justify, sz_left, sz_right > { };
+template < > class type_master < t_aligndec > : public four_value < t_aligndec, e_aligndec, sz_centre, sz_decimal, sz_left, sz_right > { };
+template < > class type_master < t_alignfig > : public four_value < t_alignfig, e_alignfig, sz_centre, sz_float, sz_left, sz_right > { };
 template < > class type_master < t_arabicform > : public four_value < t_arabicform, e_arabicform, sz_initial, sz_medial, sz_terminal, sz_isolated > { };
 template < > class type_master < t_aria_autocomplete > : public four_value < t_aria_autocomplete, e_aria_autocomplete, sz_both, sz_inline, sz_list, sz_none > { };
 template < > class type_master < t_aria_invalidity > : public four_value < t_aria_invalidity, e_aria_invalidity, sz_false, sz_grammar, sz_spelling, sz_true > { };
@@ -47,7 +49,6 @@ template < > class type_master < t_captionalign > : public four_value < t_captio
 template < > class type_master < t_channel_selector > : public four_value < t_channel_selector, e_channel_selector, sz_a, sz_b, sz_g, sz_r > { };
 template < > class type_master < t_colourinterpolation > : public four_value < t_colourinterpolation, e_colourinterpolation, sz_auto, sz_srgb, sz_linearrgb, sz_inherit > { };
 template < > class type_master < t_colourrendering > : public four_value < t_colourrendering, e_colourrendering, sz_auto, sz_optimisespeed, sz_optimisequality, sz_inherit > { };
-template < > class type_master < t_dir2 > : public four_value < t_dir4, e_dir4, sz_ltr, sz_rtl, sz_lro, sz_rlo > { };
 template < > class type_master < t_content_encoding > : public four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity > { };
 template < > class type_master < t_uplr > : public four_value < t_uplr, e_uplr, sz_down, sz_left, sz_right, sz_up > { };
 template < > class type_master < t_dsctv > : public four_value < t_dsctv, e_dsctv, sz_disc, sz_square, sz_circle, sz_triangle > { };
@@ -56,7 +57,8 @@ template < > class type_master < t_effect > : public four_value < t_effect, e_ef
 template < > class type_master < t_frame4 > : public four_value < t_frame4, e_frame4, sz__blank, sz__parent, sz__self, sz__top > { };
 template < > class type_master < t_imagerendering > : public four_value < t_imagerendering, e_imagerendering, sz_auto, sz_optimisespeed, sz_optimisequality, sz_inherit > { };
 template < > class type_master < t_larnalign > : public four_value < t_larnalign, e_larnalign, sz_left, sz_all, sz_right, sz_none > { };
-template < > class type_master < t_lcrnalign > : public four_value < t_lcrnalign, e_lcrnalign, sz_left, sz_center, sz_right, sz_none> { };
+template < > class type_master < t_lcrnalign > : public four_value < t_lcrnalign, e_lcrnalign, sz_left, sz_centre, sz_right, sz_none > { };
+template < > class type_master < t_lcrd > : public four_value < t_lcrd, e_lcrd, sz_left, sz_centre, sz_right, sz_decimalpoint > { };
 template < > class type_master < t_linecap > : public four_value < t_linecap, e_linecap, sz_butt, sz_round, sz_square, sz_inherit > { };
 template < > class type_master < t_linejoin > : public four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit > { };
 template < > class type_master < t_math_overflow > : public four_value < t_math_overflow, e_math_overflow, sz_elide, sz_scale, sz_scroll, sz_truncate > { };
@@ -65,6 +67,7 @@ template < > class type_master < t_rsvp > : public four_value < t_rsvp, e_rsvp, 
 template < > class type_master < t_scope > : public four_value < t_scope, e_scope, sz_row, sz_col, sz_rowgroup, sz_colgroup > { };
 template < > class type_master < t_shape4 > : public four_value < t_shape4, e_shape4, sz_circle, sz_default, sz_poly, sz_rect > { };
 template < > class type_master < t_size3 > : public four_value < t_size3, e_size3, sz_normal, sz_medium, sz_large, sz_huge > { };
+template < > class type_master < t_side > : public four_value < t_side, e_side, sz_left, sz_right, sz_leftoverlap, sz_rightoverlap > { };
 template < > class type_master < t_smei > : public four_value < t_smei, e_smei, sz_start, sz_middle, sz_end, sz_inherit > { };
 template < > class type_master < t_ssi_config > : public four_value < t_ssi_config, e_ssi_config, sz_echomsg, sz_errmsg, sz_sizefmt, sz_timefmt > { };
 template < > class type_master < t_ssi_set > : public four_value < t_ssi_set, e_ssi_set, sz_decoding, sz_encoding, sz_value, sz_var > { };

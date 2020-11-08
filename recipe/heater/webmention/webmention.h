@@ -33,7 +33,7 @@ public:
         : activity_ (act_static)
     {   try { read (nits, tree, container); }
         catch (...) { invalid_ = true; activity_ = act_unknown; } }
-    void swap (webmention& w) noexcept
+    void swap (webmention& w) NOEXCEPT
     {   source_.swap (w.source_);
         target_.swap (w.target_);
         html_.swap (w.html_);

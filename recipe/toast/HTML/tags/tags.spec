@@ -8,8 +8,9 @@ PASS ../toast/HTML/tags/tags-bad.html
 1 presume_html_tags ignoring_unknown ignoring_unknown
 2 invalid_attribute_version wrong_version base_undefined
 5 code_unrecognised_here invalid_character_code
-6 invalid_element_version
-7 empty_character_code invalid_element_version
+6 ignoring_unknown ignoring_unknown
+7 empty_character_code ignoring_unknown missing_close
+8 mime
 9 chocolate_teapot
 13 only_elements
 18 inserted_missing_closure

@@ -228,7 +228,7 @@ public:
     context_t& stats_summary (const bool b) { stats_summary_ = b; return *this; }
     context_t& stats_page (const bool b) { stats_page_ = b; return *this; }
     context_t& stub (const ::std::string& s) { stub_ = s; return *this; }
-    context_t& svg_version (const int major, const int minor);
+    context_t& svg_version (const int mjr, const int mnr);
     context_t& svg_version (const e_svg_version v) { svg_version_ = v; return *this; }
     context_t& math_version (const int v)
     {   if ((v >= 1) && (v <= 4)) math_version_ = static_cast < e_math_version > (v);

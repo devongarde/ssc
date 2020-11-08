@@ -25,7 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // issues: not just / versus \  but also root version X: and \\xyzzy\ and how
 // WSL and other utilities mount windows volumes in 'nix
 
-typedef uint64_t fileindex_t;
+typedef size_t fileindex_t;
+// typedef uint64_t fileindex_t;
 typedef unsigned int fileindex_flags;
 class directory;
 

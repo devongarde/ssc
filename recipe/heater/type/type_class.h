@@ -64,12 +64,16 @@ struct html_class : enum_n < t_class, e_class >
 {   typedef enum_n < t_class, e_class > :: value_type value_type;
     html_class () = default;
     html_class (const html_class& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     html_class (html_class&& ) = default;
+#endif
     explicit html_class (nitpick& nits, const html_version& v, const ::std::string& s)
     {   enum_n < t_class, e_class > :: set_value (nits, v, s); }
     ~html_class () = default;
     html_class& operator = (const html_class& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     html_class& operator = (html_class&& ) = default;
+#endif
     static bool is_microformat_property (const e_class value)
     {   return value >= first_mf1_property && value <= last_mf2_property; }
     static bool is_microformat_vocabulary (const e_class value)
@@ -80,7 +84,7 @@ struct html_class : enum_n < t_class, e_class >
     {   return (value >= first_mf1_vocab && value <= last_mf1_vocab) || (value >= first_mf1_property && value <= last_mf1_property); }
     static bool is_microformat_v2 (const e_class value)
     {   return (value >= first_mf2_vocab && value <= last_mf2_vocab) || (value >= first_mf2_property && value <= last_mf2_property); }
-    constexpr static bool is_rel () { return false; }
+    CONSTEXPR static bool is_rel () { return false; }
     bool is_microformat_property () const { return is_microformat_property (enum_base < e_class, t_class >  :: value_); }
     bool is_microformat_vocabulary () const { return is_microformat_vocabulary (enum_base < e_class, t_class > :: value_); }
     bool is_microformat () const { return is_microformat (enum_base < e_class, t_class > :: value_); }

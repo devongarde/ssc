@@ -148,7 +148,7 @@ class context;
 struct elem : symbol < e_element >
 {   static ::std::size_t max_tag_;
     elem () {}
-    elem (const ::std::string& x) : symbol (x) { }
+    elem (const html_version& v, const ::std::string& x) : symbol (v, x) { }
     elem (const elem& e) = default;
     explicit elem (const e_element e) : symbol (e) { }
     elem (nitpick& nits, const html_version& v, const ::std::string& x);
@@ -165,8 +165,8 @@ struct elem : symbol < e_element >
     {   elem e; swap (e); }
     void reset (const elem& e)
     {   elem tmp (e); swap (tmp); }
-    void reset (const ::std::string& s)
-    {   elem tmp (s); swap (tmp); }
+    void reset (const html_version& v, const ::std::string& s)
+    {   elem tmp (v, s); swap (tmp); }
     void reset (nitpick& nits, const html_version& v, const ::std::string& x)
     {   elem tmp (nits, v, x);
         swap (tmp); }

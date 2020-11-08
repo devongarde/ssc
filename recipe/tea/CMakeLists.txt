@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.62 LANGUAGES CXX)
+project (ssc VERSION 0.0.64 LANGUAGES CXX)
 
 set (BOOST_ROOT ${BOOST})
 set (CMAKE_CXX_STANDARD 17)
@@ -22,7 +22,7 @@ set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an insta
 set (CMAKE_DEBUG_POSTFIX "d")
 
 set (Boost_USE_STATIC_LIBS ON)
-find_package(Boost 1.71 REQUIRED COMPONENTS date_time filesystem program_options)
+find_package(Boost 1.67 REQUIRED COMPONENTS date_time filesystem program_options)
 
 add_executable (ssc-test)
 add_executable (ssc)
@@ -45,6 +45,8 @@ target_sources (ssc PRIVATE
     ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_class.h ${H}/type/type_colour.h ${H}/type/type_core.h ${H}/type/type_currency.h
     ${H}/type/type_enum.h ${H}/type/type_enum_vec.h ${H}/type/type_httpequiv.h ${H}/type/type_lang.h ${H}/type/type_master.h ${H}/type/type_media.h ${H}/type/type_mime.h
     ${H}/type/type_rdf.h ${H}/type/type_reals.h ${H}/type/type_rel.h ${H}/type/type_relational.h ${H}/type/type_time.h ${H}/type/type_url.h ${H}/type/type_van.h
+    ${H}/type/type_basic.h ${H}/type/type_id.h ${H}/type/type_layout.h ${H}/type/type_math.h ${H}/type/type_measure.h ${H}/type/type_microdata.h ${H}/type/type_microformat.h
+    ${H}/type/type_misc.h ${H}/type/type_numeric.h ${H}/type/type_svg.h
     ${H}/type/type_varied.h ${H}/type/type_xmlns.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h
     ${H}/url/url_schemes.h ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
     ${H}/webmention/hook.h ${H}/webmention/irt.h ${H}/webmention/webmention.h ${H}/webmention/webmentions.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h
@@ -73,6 +75,8 @@ target_include_directories (ssc PRIVATE ${H} ${BOOST})
 
 target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
 target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
+
+target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 
 if (UNIX)
   message ("unix")

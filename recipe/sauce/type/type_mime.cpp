@@ -1767,7 +1767,7 @@ struct symbol_entry < e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "text/n3", mime_text_n3 },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/parameters", mime_text_parameters },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/parityfec", mime_text_parityfec },
-    { { HTML_4_0 }, { HTML_UNDEF }, "text/plain", mime_text_plain, ns_default, NOT_SCRIPT },
+    { { HTML_2_0 }, { HTML_UNDEF }, "text/plain", mime_text_plain, ns_default, NOT_SCRIPT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/provenance-notation", mime_text_provenance_notation },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/prs.fallenstein.rst", mime_text_prs_fallenstein_rst },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/prs.lines.tag", mime_text_prs_lines_tag },

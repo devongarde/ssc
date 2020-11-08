@@ -30,7 +30,7 @@ class headers
 public:
     headers (nitpick& nits,const html_version& v, const ::std::string http) : code_ (0), abusive_site_ (false)
     {   parse (nits, v, http); }
-    void swap (headers& h) noexcept
+    void swap (headers& h) NOEXCEPT
     {   header_.swap (h.header_);
         links_.swap (h.links_);
         ::std::swap (code_, h.code_);

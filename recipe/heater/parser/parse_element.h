@@ -44,11 +44,15 @@ public:
     element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const e_element tag, const ::std::string str = ::std::string ());
     element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const elem& el, const ::std::string str = ::std::string ());
     element_node (const element_node& en) = default;
-    element_node (element_node&& en) = default;
-    ~element_node ();
+#ifndef NO_MOVE_CONSTRUCTOR
+	element_node(element_node&& en) = default;
+#endif
+	~element_node ();
     element_node& operator = (const element_node& en) = default;
-    element_node& operator = (element_node&& en) = default;
-    void swap (element_node& en) noexcept;
+#ifndef NO_MOVE_CONSTRUCTOR
+	element_node& operator = (element_node&& en) = default;
+#endif
+	void swap(element_node& en) NOEXCEPT;
     void reset ();
     void reset (const element_node& en);
     void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e);

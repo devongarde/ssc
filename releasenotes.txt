@@ -3,6 +3,13 @@ static site checker
 https://dylanharris.org/ssc/index.shtml
 (c) 2020 Dylan Harris
 
+0.0.64
+- added VS2015 project for windows 8.1 executables
+- 32 bit windows executables
+
+0.0.63
+- MathML 2 Presentation elements
+
 0.0.62
 - allow ID attributes on templates to filter down to child elements
 - users can add bespoke colours, languages, and SGML declarations (type 'ssc -h' for details)

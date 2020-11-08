@@ -56,7 +56,7 @@ void page::reset (const page& p)
 {   page tmp (p);
     swap (tmp); }
 
-void page::swap (page& p) noexcept
+void page::swap (page& p) NOEXCEPT
 {   ids_.swap (p.ids_);
     access_.swap (p.access_);
     document_.swap (p.document_);

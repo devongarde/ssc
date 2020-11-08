@@ -56,17 +56,21 @@ public:
     typedef e_property value_type;
     prop () = default;
     prop (const prop& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     prop (prop&& ) = default;
+#endif
     ~prop () = default;
     prop& operator = (const prop& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     prop& operator = (prop&& ) = default;
+#endif
     explicit prop (const html_class& c) { reset (c); }
     explicit prop (const rel& r) { reset (r); }
     explicit prop (const e_class c) { reset (c); }
     explicit prop (const e_rel r) { reset (r); }
     explicit prop (const e_property p) { reset (p); }
     explicit prop (nitpick& nits, const html_version& v, const ::std::string& s) { set_value (nits, v, s); }
-    void swap (prop& p) noexcept
+    void swap (prop& p) NOEXCEPT
     {   ::std::swap (value_, p.value_);
         ::std::swap (state_, p.state_); }
     void reset () { prop p; swap (p); }

@@ -30,14 +30,18 @@ template < typename TYPE, e_type E > struct enum_vec_base : public type_base < T
     ::std::string original_;
     enum_vec_base () = default;
     enum_vec_base (const enum_vec_base& s) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     enum_vec_base (enum_vec_base&&) = default;
+#endif
     explicit enum_vec_base (const html_version& v, const ::std::string& s);
     enum_vec_base& operator = (const enum_vec_base&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     enum_vec_base& operator = (enum_vec_base&&) = default;
+#endif
     ~enum_vec_base () = default;
     static ::std::string values (const html_version& ) { return ::std::string (); }
     static ::std::size_t value_count () { return 0; }
-    void swap (enum_vec_base& t) noexcept;
+    void swap (enum_vec_base& t) NOEXCEPT;
     ::std::string get_string () const { return ::std::string (); }
     ::std::string name () const { return ::std::string (); }
     static ::std::string name (const TYPE ) { return ::std::string (); }
@@ -54,7 +58,7 @@ template < typename TYPE, e_type E > enum_vec_base < TYPE, E > :: enum_vec_base 
     e.set_value (v, s);
     if (e.good ()) swap (e); }
 
-template < typename TYPE, e_type E > void enum_vec_base < TYPE, E > :: swap (enum_vec_base& t) noexcept
+template < typename TYPE, e_type E > void enum_vec_base < TYPE, E > :: swap (enum_vec_base& t) NOEXCEPT
 {   ::std::swap (value_, t.value_);
     original_.swap (t.original_);
     type_base < TYPE, E >::swap (t); }
@@ -67,10 +71,14 @@ template < typename TYPE, e_type E > void enum_vec_base < TYPE, E > :: set_value
 template < e_type E, typename ENUM > struct enum_vec : public enum_vec_base < ENUM, E >
 {   enum_vec () = default;
     enum_vec (const enum_vec& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     enum_vec (enum_vec&& ) = default;
+#endif
     ~enum_vec () = default;
     enum_vec& operator = (const enum_vec& ) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     enum_vec& operator = (enum_vec&& ) = default;
+#endif
     void swap (enum_vec& n)
     {   enum_vec_base < ENUM, E > :: swap (n); }
     void reset ()

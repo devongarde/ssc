@@ -248,27 +248,31 @@ class html_version
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
 public:
     html_version () : major_ (0), minor_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
-    explicit html_version (const unsigned char major) : major_ (major), minor_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
-    explicit html_version (const schema_version sv) : major_ (sv.major ()), minor_ (sv.minor ()), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
-    html_version (const unsigned char major, const unsigned char minor, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
-    html_version (const html_version& ) = default;
-    html_version (html_version&& ) = default;
-    ~html_version () = default;
+    explicit html_version (const unsigned char mjr) : major_ (mjr), minor_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
+    explicit html_version (const schema_version sv) : major_ (sv.mjr ()), minor_ (sv.mnr ()), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
+    html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
+	html_version(const html_version&) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
+	html_version (html_version&& ) = default;
+#endif // VS
+	~html_version() = default;
     html_version& operator = (const html_version& ) = default;
-    html_version& operator = (html_version&& ) = default;
-    void swap (html_version& v) noexcept;
+#ifndef NO_MOVE_CONSTRUCTOR
+	html_version& operator = (html_version&&) = default;
+#endif // VS
+    void swap (html_version& v) NOEXCEPT;
     void reset () { html_version v; swap (v); }
     void reset (const html_version& v) { html_version vv (v); swap (vv); }
     bool unknown () const { return (major_ == 0) && (minor_ == 0); }
     bool known () const { return ! unknown (); }
-    bool is_not (const unsigned char major, const unsigned char minor = 0xFF) const
+    bool is_not (const unsigned char mjr, const unsigned char mnr = 0xFF) const
     {   if (unknown ()) return false;
-        if (major != major_) return true;
-        return ((minor != 0xFF) && (minor != minor_)); }
+        if (mjr != major_) return true;
+        return ((mnr != 0xFF) && (mnr != minor_)); }
     bool is_not (const html_version& v) const
     {   return is_not (v.major_, v.minor_); }
-    unsigned char major () const { return major_; }
-    unsigned char minor () const { return minor_; }
+    unsigned char mjr () const { return major_; }
+    unsigned char mnr () const { return minor_; }
     unsigned char level () const { return (flags_ & HV_LEVEL_MASK); }
     bool bespoke () const { return ((ext_ & HE_BESPOKE) == HE_BESPOKE); }
     bool chrome () const { return ((ext_ & HE_CHROME) == HE_CHROME); }
@@ -360,8 +364,8 @@ const html_version xhtml_2 (4, 4, HV_XHTML);
 //   HTML 5.2 14 December 2017
 //   HTML 5.3 18 October 2018
 // The internal versions of HTML5 are thus:
-//   major = year-2000
-//   minor:
+//   mjr = year-2000
+//   mnr:
 //     high nibble = month
 //      low nibble = day / 2
 

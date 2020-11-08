@@ -110,7 +110,14 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
 ::std::string microdata_itemscope::report (const ::std::size_t offset) const
 {   ::std::string res, indent (offset*2, ' ');
     for (mpv_t::const_iterator i = itemprop_.cbegin (); i != itemprop_.cend (); ++i)
+#ifndef BOOVAR
         if (! i -> second.valueless_by_exception ())
+#endif // BOOVAR
+#if BOOVAR == 1
+// I can't honest be arsed to work my around around ::boost::variants' restrictions, and in particular VS2015's (presuming) bizarre
+// belief that code that contains no consts suffers from too many consts
+            ;
+#else
             switch (i -> second.index ())
             {   case ip_itemscope :
                     assert (ssc_get < itemscope_ptr > (i -> second).get () != nullptr);
@@ -120,6 +127,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                 case ip_string :
                     res += indent + itemprop_index_name (i -> first) + " = " + quote (ssc_get < ::std::string > (i -> second)) + "\n";
                     break; }
+#endif // BOOVAR
     return res; }
 
 bool microdata_itemscope::write (nitpick& nits, const ::boost::filesystem::path& name)

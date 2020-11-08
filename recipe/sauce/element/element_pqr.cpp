@@ -52,7 +52,7 @@ void element::examine_picture ()
         pick (nit_not_img, ed_52, "4.7.4. The source element", es_error, ec_element, "under <PICTURE>, <SOURCE> must precede <IMG>"); }
 
 void element::examine_progress ()
-{   if (node_.version ().major () >= 5)
+{   if (node_.version ().mjr () >= 5)
     {   check_ancestors (elem_progress, element_bit_set (elem_progress));
         if (a_.known (a_value))
         {   bool kn = a_.known (a_max);
@@ -68,7 +68,7 @@ void element::examine_progress ()
                 else pick (nit_no_progress, ed_50, "4.10.14 The progress element", es_warning, ec_element, "<PROGRESS> VALUE exceeds 1.0, the default for MAX"); } } }
 
 void element::examine_ruby ()
-{   if (node_.version ().major () < 5) return;
+{   if (node_.version ().mjr () < 5) return;
     bool had_ruby = false, had_non_ruby = false, had_rt = false, had_rp = false, rp_mode = false;
     bool over_3 = (w3_minor_5 (node_.version ()) >= 4);
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())

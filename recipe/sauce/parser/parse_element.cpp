@@ -57,7 +57,7 @@ void element_node::reset (const element_node& en)
 
 void element_node::parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   va_.parse (nits_, v, b, e, line_, elem_);
-    if (v.major () < 4) return;
+    if (v.mjr () < 4) return;
     if (parent_ != nullptr) version_ = parent_ -> version_;
     if (! va_.empty ())
     {   va_.manage_xmlns (version_);
@@ -66,7 +66,7 @@ void element_node::parse_attributes (const html_version& v, const ::std::string:
             case elem_math : version_.math_version (va_.get_math (v)); break;
             default : break; } } }
 
-void element_node::swap (element_node& en) noexcept
+void element_node::swap (element_node& en) NOEXCEPT
 {   ::std::swap (parent_, en.parent_);
     ::std::swap (child_, en.child_);
     ::std::swap (last_, en.last_);
