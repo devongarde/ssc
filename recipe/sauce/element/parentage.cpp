@@ -925,7 +925,7 @@ parentage parent_table [] =
     { { HTML_PLUS }, { HTML_PLUS }, elem_online, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_optgroup, elem_option },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_optgroup, elem_undefined, 0, EF_5_SCRIPT },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_otherwise, elem_undefined, 0, EF_M_PRESINCONTENT },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_otherwise, elem_undefined, 0, EF_M_PRESINCONTENT | EF_M_CONTENTEXPR },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_output, elem_undefined, 0, EF_5_PHRASE },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_p, elem_blockcode },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_p, elem_blockquote },
@@ -980,7 +980,7 @@ parentage parent_table [] =
     { { XHTML_2_0, 0, HE_SVG_2_0 }, { HTML_UNDEF }, elem_path, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_PSGRAD },
     { { HTML_PLUS }, { HTML_PLUS }, elem_person, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_3_0 }, { HTML_3_0 }, elem_person, elem_undefined, 0, EF_3_TEXTIN },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_piece, elem_undefined, 0, EF_M_PRESINCONTENT },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_piece, elem_undefined, 0, EF_M_PRESINCONTENT | EF_M_CONTENTEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_piecewise, elem_otherwise },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_piecewise, elem_piece },
     { { HTML_5_1 }, { HTML_UNDEF }, elem_picture, elem_source },
@@ -1580,13 +1580,27 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_vector :
             return elem_math;
         case elem_abs :
-        case elem_arccos :
-        case elem_arcsin :
-        case elem_arctan :
         case elem_and :
         case elem_annotation :
         case elem_annotation_xml :
+        case elem_approx :
+        case elem_arccos :
+        case elem_arccosh :
+        case elem_arccot :
+        case elem_arccoth :
+        case elem_arccsc :
+        case elem_arccsch :
+        case elem_arcsec :
+        case elem_arcsech :
+        case elem_arcsin :
+        case elem_arcsinh :
+        case elem_arctan :
+        case elem_arctanh :
         case elem_bvar :
+        case elem_card :
+        case elem_cartesianproduct :
+        case elem_ceiling :
+        case elem_codomain :
         case elem_condition :
         case elem_conjugate :
         case elem_cos :
@@ -1595,25 +1609,36 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_coth :
         case elem_csc :
         case elem_csch :
+        case elem_curl :
         case elem_declare :
         case elem_degree :
         case elem_determinant :
         case elem_diff :
+        case elem_divergence :
         case elem_divide :
+        case elem_domain :
+        case elem_domainofapplication :
         case elem_eq :
+        case elem_equivalent :
         case elem_exists :
         case elem_exp :
         case elem_factorial :
+        case elem_factorof :
+        case elem_floor :
         case elem_forall :
         case elem_gcd :
         case elem_geq :
+        case elem_grad :
         case elem_gt :
         case elem_ident :
+        case elem_imaginary :
         case elem_implies :
         case elem_in :
         case elem_int :
         case elem_intersect :
         case elem_inverse :
+        case elem_laplacian :
+        case elem_lcm :
         case elem_leq :
         case elem_limit :
         case elem_ln :
@@ -1628,6 +1653,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_minus :
         case elem_mode :
         case elem_moment :
+        case elem_momentabout :
         case elem_mprescripts :
         case elem_neq :
         case elem_none :
@@ -1636,13 +1662,16 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_notsubset :
         case elem_notprsubset :
         case elem_or :
+        case elem_outerproduct :
         case elem_partialdiff :
         case elem_plus :
         case elem_power :
         case elem_product :
         case elem_prsubset :
         case elem_quotient :
+        case elem_real :
         case elem_rem :
+        case elem_scalarproduct :
         case elem_sdev :
         case elem_sec :
         case elem_sech :
@@ -1661,6 +1690,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_union :
         case elem_uplimit :
         case elem_variance :
+        case elem_vectorproduct :
         case elem_xor :
             return elem_apply;
         case elem_altglyph :
@@ -1776,6 +1806,9 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_handler :
             return elem_use;
         case elem_image :
+            if (v.has_math ()) return elem_apply;
+            if (v.has_svg ()) return elem_svg;
+            break;
         case elem_text :
             if (v.has_svg ()) return elem_svg;
             break;

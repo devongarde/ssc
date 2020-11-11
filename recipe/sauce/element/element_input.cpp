@@ -423,9 +423,11 @@ void element::examine_input ()
                             case role_spinbutton :
                                 if (! list_known) pick (nit_input_bad_aria, ed_53, "4.10.5.1.2 Text (type=text) and State (type=search)", es_error, ec_attribute, "when <INPUT> TYPE is 'text'/'search' do not set ROLE to 'spinbutton', it is the default");
                                 else pick (nit_input_bad_aria, ed_53, "4.10.5.1.2 Text (type=text) and State (type=search)", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'search'");
+                                break;
                             case role_combobox :
                                 if (list_known) pick (nit_input_bad_aria, ed_53, "4.10.5.1.2 Text (type=text) and State (type=search)", es_error, ec_attribute, "when <INPUT> TYPE is 'text'/'search' do not set ROLE to 'combobox', it is the default");
                                 else pick (nit_input_bad_aria, ed_53, "4.10.5.1.2 Text (type=text) and State (type=search)", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'text'/'search'");
+                                break;
                             default :
                                 pick (nit_input_bad_aria, ed_53, "4.10.5.1.2 Text (type=text) and State (type=search)", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'text'/'search'");
                                 break; }

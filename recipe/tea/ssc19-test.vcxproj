@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{19e11ed4-2652-40e1-9ebb-f69a244c7301}</ProjectGuid>
-    <RootNamespace>ssctest</RootNamespace>
+    <RootNamespace>ssc19test</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

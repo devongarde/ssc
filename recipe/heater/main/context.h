@@ -50,7 +50,7 @@ class context_t
     int             code_ = 0;
     unsigned char            html_major_ = 5, html_minor_ = 4, mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
     e_svg_version   svg_version_ = sv_none;
-    e_math_version  math_version_ = math_none;
+    e_mathversion  math_version_ = math_none;
     long            max_file_size_ = DEFAULT_MAX_FILE_SIZE * 1024 * 1024;
     e_verbose       verbose_ = default_output;
     ::std::string   base_, filename_, stub_, hook_, incoming_, index_, macro_end_, macro_start_, output_, path_, persisted_, root_, secret_, server_,
@@ -134,7 +134,7 @@ public:
     bool has_svg () const { return ((html_major_ > 3) || (svg_version_ != sv_none)); }
     e_svg_version svg_version () const { return svg_version_; }
     bool has_math () const { return ((html_major_ > 3) || (math_version_ != math_none)); }
-    e_math_version math_version () const { return math_version_; }
+    e_mathversion math_version () const { return math_version_; }
     const vstr_t templates () const { return templates_; }
     bool test () const { return test_; }
     const ::std::string test_header () const { return test_header_; }
@@ -231,10 +231,10 @@ public:
     context_t& svg_version (const int mjr, const int mnr);
     context_t& svg_version (const e_svg_version v) { svg_version_ = v; return *this; }
     context_t& math_version (const int v)
-    {   if ((v >= 1) && (v <= 4)) math_version_ = static_cast < e_math_version > (v);
+    {   if ((v >= 1) && (v <= 4)) math_version_ = static_cast < e_mathversion > (v);
         else math_version_ = math_none;
         return *this; }
-    context_t& math_version (const e_math_version v) { math_version_ = v; return *this; }
+    context_t& math_version (const e_mathversion v) { math_version_ = v; return *this; }
     context_t& templates (const vstr_t& s) { templates_ = s; return *this; }
     context_t& test (const bool b) { test_ = b; return *this; }
     context_t& test_header (const ::std::string& s) { test_header_ = s; return *this; }

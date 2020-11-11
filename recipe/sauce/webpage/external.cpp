@@ -26,10 +26,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "utility/lexical.h"
 
+#ifndef NO_PROCESS
 using namespace boost::process;
 using boost::lexical_cast;
 using boost::bad_lexical_cast;
+#endif // NO_PROCESS
 
+#ifndef NO_PROCESS
 int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdline, const int oops, bool pure_code)
 {   int code = 0;
     try
@@ -52,6 +55,10 @@ int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdlin
         code = oops;
         context.external (false); }
     return code; }
+#else // NO_PROCESS
+int call_curl (nitpick& , const html_version& , const ::std::string& , const int , bool )
+{   return 0; }
+#endif // NO_PROCESS
 
 void test_hypertext (nitpick& nits, const html_version& v, const url& u)
 {   if (u.has_domain ())
@@ -91,6 +98,7 @@ bool external::verify (nitpick& nits, const html_version& v, const url& u, const
     if (! context.forwarded ()) return true;
     return ((context.code () != 301) && (context.code () != 308)); };   // consider checking for ids
 
+#ifndef NO_PROCESS
 ::std::string external::load (const url& u)
 {   ::std::string res;
     if (u.empty ()) return res;
@@ -111,6 +119,10 @@ bool external::verify (nitpick& nits, const html_version& v, const url& u, const
     catch (...)
     {  res.clear (); }
     return res; }
+#else // NO_PROCESS
+::std::string external::load (const url& )
+{   return ::std::string (); }
+#endif // NO_PROCESS
 
 bool fetch_common (nitpick& nits, const html_version& v, const url& u, const ::boost::filesystem::path& file, const char* curl)
 {   if (! u.is_usable ())

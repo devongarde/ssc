@@ -112,7 +112,8 @@ template < e_type E, typename ENUM > void enum_vec < E, ENUM > :: set_value (nit
 {   enum_vec_base < ENUM, E > :: original_ = ss;
     bool res = true;
     vstr_t strs;
-    ::boost::algorithm::split (strs, trim_the_lot_off (ss), ::boost::algorithm::is_any_of (" "), ::boost::algorithm::token_compress_on);
+    ::std::string sss (trim_the_lot_off (ss));
+    ::boost::algorithm::split (strs, sss, ::boost::algorithm::is_any_of (" "), ::boost::algorithm::token_compress_on);
     for (auto s : strs)
     {   typename enum_vec_base < ENUM, E > :: base_t t;
         t.set_value (nits, v, s);

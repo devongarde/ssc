@@ -108,11 +108,11 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
                     if (! slash) lhs = true;
                     else { lhs = false; slash = false; } }
                 else
-                {   type_master < t_media_feature > f;
+                {   type_master < t_mediafeature > f;
                     f.set_value (nits, v, s);
                     if (! f.good ()) return false; }
                 continue; }
-            type_master < t_media_keyword > key;
+            type_master < t_mediakeyword > key;
             nitpick knots;
             key.set_value (knots, v, s);
             if (key.good ())

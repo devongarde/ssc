@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 2 8</title>
+</head>
+
+<body>
+
+<h1>math 2 8</h1>
+
+<math>
+<apply>
+<lt/>
+<ci>a</ci>
+<ci>b</ci>
+</apply>
+</math>
+
+<math>
+<apply>
+<exists/>
+<bvar><ci> x </ci></bvar>
+<condition>
+<apply><lt/>
+<apply>
+<power/>
+<ci>x</ci>
+<cn>5</cn>
+</apply>
+<cn>3</cn>
+</apply>
+</condition>
+<true/>
+</apply>
+</math>
+
+<math>
+<apply>
+<forall/>
+<bvar><ci>x</ci></bvar>
+<condition>
+<apply><in/>
+<ci>x</ci>
+<csymbol encoding="OpenMath" definitionURL="http://www.openmath.org/cd/setname1#N"> N </csymbol>
+</apply>
+</condition>
+<apply><exists/>
+<bvar><ci>p</ci></bvar>
+<bvar><ci>q</ci></bvar>
+<condition>
+<apply><and/>
+<apply><in/><ci>p</ci>
+<csymbol encoding="OpenMath" definitionURL="http://www.openmath.org/cd/setname1#P"> P </csymbol>
+</apply>
+<apply><in/><ci>q</ci>
+<csymbol encoding="OpenMath" definitionURL="http://www.openmath.org/cd/setname1#P"> P </csymbol>
+</apply>
+</apply>
+</condition>
+<apply><eq/>
+<apply><plus/><ci>p</ci><ci>q</ci></apply>
+<apply><times/><cn>2</cn><ci>x</ci></apply>
+</apply>
+</apply>
+</apply>
+</math>
+
+<math>
+<apply>
+<exists/>
+<bvar><ci> x </ci></bvar>
+<condition>
+<apply><lt/><ci>x</ci><cn>3</cn></apply>
+</condition>
+<apply>
+<eq/>
+<apply>
+<power/><ci>x</ci><cn>2</cn>
+</apply>
+<cn>4</cn>
+</apply>
+</apply>
+</math>
+
+<math>
+<semantics>
+<apply>
+<divide/>
+<cn>123</cn>
+<cn>456</cn>
+</apply>
+<annotation encoding="Mathematica"> N[123/456, 39] </annotation>
+<annotation encoding="TeX"> $0.269736842105263157894736842105263157894\ldots$ </annotation>
+<annotation encoding="Maple"> evalf(123/456, 39); </annotation>
+<annotation-xml encoding="MathML-Presentation">
+<mrow>
+<mn> 0.269736842105263157894 </mn>
+<mover accent='true'>
+<mn> 736842105263157894 </mn>
+<mo> &OverBar; </mo>
+</mover>
+</mrow>
+</annotation-xml>
+<annotation-xml encoding="OpenMath">
+<OMA xmlns="http://www.openmath.org/OpenMath">
+<OMS cd="arith1" name="divide"/>
+<OMI>123</OMI>
+<OMI>456</OMI>
+</OMA>
+</annotation-xml>
+</semantics>
+</math>
+
+</body>
+</html>
+

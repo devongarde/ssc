@@ -33,15 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // remaining lines each contain
 // line number, error name
 
-
-#include <iostream>
-#include <vector>
-#include <set>
-#include <assert.h>
-#include <boost/filesystem.hpp>
-#include <boost/lexical_cast.hpp>
-#include <boost/algorithm/string.hpp>
-#include "main/version.h"
+#include "main/include.h"
 #include "feedback/nitnames.h"
 
 // 64M

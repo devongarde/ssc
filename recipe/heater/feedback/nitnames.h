@@ -504,6 +504,7 @@ nitname nitnames [] =
     { nit_bad_hunit, "bad_hunit" },
     { nit_bad_vunit, "bad_vunit" },
     { nit_too_many, "too_many" },
+    { nit_use_apply, "use_apply" },
 
     { nit_off, "" } };
 

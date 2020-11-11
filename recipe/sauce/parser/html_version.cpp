@@ -29,14 +29,14 @@ const ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
 html_version::html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags, const uint64_t extensions)
-        :   major_ (mjr), minor_ (mnr), flags_ (flags), ext_ (extensions)
-{   if (minor_ == 0xFF)
-        if (major_ == 5) minor_ = context.html_minor ();
-        else minor_ = 0; }
+        :   mjr_ (mjr), mnr_ (mnr), flags_ (flags), ext_ (extensions)
+{   if (mnr_ == 0xFF)
+        if (mjr_ == 5) mnr_ = context.html_minor ();
+        else mnr_ = 0; }
 
 void html_version::swap (html_version& v) NOEXCEPT
-{   ::std::swap (major_, v.major_);
-    ::std::swap (minor_, v.minor_);
+{   ::std::swap (mjr_, v.mjr_);
+    ::std::swap (mnr_, v.mnr_);
     ::std::swap (flags_, v.flags_);
     ::std::swap (ext_, v.ext_); }
 
@@ -67,33 +67,33 @@ void html_version::swap (html_version& v) NOEXCEPT
 
 ::std::string html_version::report () const
 {   ::std::ostringstream res;
-    if (known () && (major_ == 4) && (minor_ > 1))
+    if (known () && (mjr_ == 4) && (mnr_ > 1))
     {   res << "XHTML";
-        switch (minor_)
+        switch (mnr_)
         {   case 2 : res << "1.0"; break;
             case 3 : res << "1.1"; break;
             case 4 : res << "2.0"; break; } }
     else
     {   res << "HTML";
         if (known ())
-            switch (major_)
+            switch (mjr_)
             {   case 0 :
-                    if (minor_ == 1) res << "Tags";
+                    if (mnr_ == 1) res << "Tags";
                     break;
                 case 1 :
-                    if (minor_ == 0) res << "1";
-                    else if (minor_ == 1) res << "+";
+                    if (mnr_ == 0) res << "1";
+                    else if (mnr_ == 1) res << "+";
                     break;
                 case 2 :
                     res <<  "2";
                     if (level () > 0) res << "/" << level ();
                     break;
                 case 3 :
-                    res <<  "3." << static_cast <char> (minor_ + '0');
+                    res <<  "3." << static_cast <char> (mnr_ + '0');
                     break;
                 case 4 :
                     res <<  "4";
-                    if (minor_ == 1) res << ".01";
+                    if (mnr_ == 1) res << ".01";
                     else res << ".00";
                     break;
                 default:
@@ -334,7 +334,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 nits.pick (nit_public_unexpected, es_warning, ec_parser, "PUBLIC is unexpected"); }
         else
         {   if (! found_public && ! found_system)
-                if ((major_ > 1) || ((major_ == 1) && (minor_ == 1)))
+                if ((mjr_ > 1) || ((mjr_ == 1) && (mnr_ == 1)))
                     nits.pick (nit_public_missing, es_info, ec_parser, "Either PUBLIC or SYSTEM expected");
             if (found_unknown) if (context.tell (e_warning))
                 nits.pick (nit_unexpected_doctype_content, es_warning, ec_parser, "Ignoring unexpected content found in <!DOCTYPE>"); }
@@ -343,16 +343,16 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
     return false; }
 
 bool html_version::deprecated (const html_version& current) const
-{   switch (current.major_)
+{   switch (current.mjr_)
     {   case 1 : return (current.flags_ & HV_DEPRECATED1) != 0;
         case 2 : return (current.flags_ & HV_DEPRECATED2) != 0;
         case 3 :
-            switch (current.minor_)
+            switch (current.mnr_)
             {   case 0 : return (flags_ & HV_DEPRECATED30) != 0;
                 case 2 : return (flags_ & HV_DEPRECATED32) != 0; }
             assert (false); break;
         case 4:
-            switch (current.minor_)
+            switch (current.mnr_)
             {   case 0 :
                 case 1 : return (flags_ & HV_DEPRECATED4) != 0;
                 case 2 : return (flags_ & HV_DEPRECATEDX1) != 0;
@@ -368,9 +368,9 @@ bool html_version::deprecated (const html_version& current) const
     return false; }
 
 bool html_version::lazy () const
-{   if (major_ > 1) return true;
-    if (major_ == 0) return false;
-    return (minor_ > 0); }
+{   if (mjr_ > 1) return true;
+    if (mjr_ == 0) return false;
+    return (mnr_ > 0); }
 
 
 typedef enum { emi_good, emi_math, emi_not_svg, emi_svg, emi_rdf } e_emi;
@@ -414,14 +414,14 @@ void html_version::svg_version (const e_svg_version v)
         case sv_2_0 : ext_set (HE_SVG_2_0); break;
         default : break; } }
 
-e_math_version html_version::math_version () const
+e_mathversion html_version::math_version () const
 {   if ((ext_ & HE_MATH_4) == HE_MATH_4) return math_4;
     if ((ext_ & HE_MATH_3) == HE_MATH_3) return math_3;
     if ((ext_ & HE_MATH_2) == HE_MATH_2) return math_2;
     if ((ext_ & HE_MATH_1) == HE_MATH_1) return math_1;
     return math_none; }
 
-void html_version::math_version (const e_math_version v)
+void html_version::math_version (const e_mathversion v)
 {   ext_reset (MATH_MASK);
     switch (v)
     {   case math_1 : ext_set (HE_MATH_1); break;

@@ -61,10 +61,11 @@ template < > class type_master < t_lcrnalign > : public four_value < t_lcrnalign
 template < > class type_master < t_lcrd > : public four_value < t_lcrd, e_lcrd, sz_left, sz_centre, sz_right, sz_decimalpoint > { };
 template < > class type_master < t_linecap > : public four_value < t_linecap, e_linecap, sz_butt, sz_round, sz_square, sz_inherit > { };
 template < > class type_master < t_linejoin > : public four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit > { };
-template < > class type_master < t_math_overflow > : public four_value < t_math_overflow, e_math_overflow, sz_elide, sz_scale, sz_scroll, sz_truncate > { };
+template < > class type_master < t_mathclosure > : public four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen > { };
+template < > class type_master < t_mathoverflow > : public four_value < t_mathoverflow, e_mathoverflow, sz_elide, sz_scale, sz_scroll, sz_truncate > { };
 template < > class type_master < t_phase > : public four_value < t_phase, e_phase, sz_bubble, sz_capture, sz_default, sz_target > { };
 template < > class type_master < t_rsvp > : public four_value < t_rsvp, e_rsvp, sz_yes, sz_no, sz_maybe, sz_interested > { };
-template < > class type_master < t_scope > : public four_value < t_scope, e_scope, sz_row, sz_col, sz_rowgroup, sz_colgroup > { };
+template < > class type_master < t_tdscope > : public four_value < t_tdscope, e_tdscope, sz_row, sz_col, sz_rowgroup, sz_colgroup > { };
 template < > class type_master < t_shape4 > : public four_value < t_shape4, e_shape4, sz_circle, sz_default, sz_poly, sz_rect > { };
 template < > class type_master < t_size3 > : public four_value < t_size3, e_size3, sz_normal, sz_medium, sz_large, sz_huge > { };
 template < > class type_master < t_side > : public four_value < t_side, e_side, sz_left, sz_right, sz_leftoverlap, sz_rightoverlap > { };

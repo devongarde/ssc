@@ -67,6 +67,10 @@ void element::examine_progress ()
                 if (kn) pick (nit_no_progress, ed_50, "4.10.14 The progress element", es_warning, ec_element, "<PROGRESS> VALUE exceeds MAX");
                 else pick (nit_no_progress, ed_50, "4.10.14 The progress element", es_warning, ec_element, "<PROGRESS> VALUE exceeds 1.0, the default for MAX"); } } }
 
+void element::examine_reln ()
+{   if (page_.version ().math () > math_1)
+        pick (nit_use_apply, ed_math_2, "4.2.1.3 The apply construct", es_comment, ec_element, "use <APPLY>, not <RELN>"); }
+
 void element::examine_ruby ()
 {   if (node_.version ().mjr () < 5) return;
     bool had_ruby = false, had_non_ruby = false, had_rt = false, had_rp = false, rp_mode = false;

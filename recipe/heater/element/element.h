@@ -155,6 +155,7 @@ class element
     void examine_option ();
     void examine_picture ();
     void examine_progress ();
+    void examine_reln ();
     void examine_ruby ();
     void examine_script ();
     void examine_section ();

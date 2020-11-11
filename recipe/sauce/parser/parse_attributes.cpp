@@ -268,7 +268,7 @@ e_svg_version attributes_node::get_svg (const html_version& v) const
         default : break; }
     return sv_1_1; }
 
-e_math_version attributes_node::get_math (const html_version& v) const
+e_mathversion attributes_node::get_math (const html_version& v) const
 {   if (context.math_version () != math_none) return context.math_version ();
     if (v.mjr () == 5)
         if (v >= html_5_3) return math_3;

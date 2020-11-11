@@ -62,6 +62,7 @@ void element::pre_examine_element (const e_element tag)
             break;
         case elem_option : examine_option (); break;
         case elem_progress : examine_progress (); break;
+        case elem_reln : examine_reln (); break;
         case elem_render :
             pick (nit_render, es_warning, ec_element, "With apologies, " PROG " does not understand <RENDER>");
             break;
