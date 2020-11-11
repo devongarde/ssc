@@ -31,10 +31,12 @@ struct wotsit_t
     wotsit_t (html_version first, html_version last, const char* wotsit, const char* sz = nullptr)
         :   first_ (first), last_ (last), wotsit_ (wotsit), char_ (sz) { }
     wotsit_t (const wotsit_t& w) = default;
+#ifndef NO_MOVE_CONSTRUCTOR
     wotsit_t (wotsit_t&& w) = default;
+    wotsit_t& operator = (wotsit_t&& w) = default;
+#endif // NO_MOVE_CONSTRUCTOR
     ~wotsit_t () = default;
-    wotsit_t& operator = (const wotsit_t& w) = default;
-    wotsit_t& operator = (wotsit_t&& w) = default; };
+    wotsit_t& operator = (const wotsit_t& w) = default; };
 
 wotsit_t wotsit_table [] =
 {   { { HTML_1_0 }, { HTML_UNDEF }, "AElig", "Æ" },
@@ -2149,7 +2151,7 @@ wotsit_t wotsit_table [] =
     { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { HTML_UNDEF }, "zwj" },
     { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { HTML_UNDEF }, "zwnj" },
 
-    { { HTML_UNDEF }, { HTML_UNDEF }, nullptr } };
+    { { HTML_UNDEF }, { HTML_UNDEF }, nullptr, nullptr } };
 
 typedef ssc_map < ::std::string, wotsit_t > vw_t;
 vw_t wotsit;

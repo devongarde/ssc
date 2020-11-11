@@ -54,6 +54,7 @@ template < > class type_master < t_keytype > : public three_value < t_keytype, e
 template < > class type_master < t_lcralign > : public three_value < t_lcralign, e_lcralign, sz_left, sz_centre, sz_right > { };
 template < > class type_master < t_lraalign > : public three_value < t_lraalign, e_lraalign, sz_left, sz_right, sz_all > { };
 template < > class type_master < t_mathframe > : public three_value < t_mathframe, e_mathframe, sz_dashed, sz_none, sz_solid > { };
+template < > class type_master < t_mathoccurence > : public three_value < t_mathoccurence, e_mathoccurence, sz_prefix, sz_infix, sz_functionmodel > { };
 template < > class type_master < t_menuitem > : public three_value < t_menuitem, e_menuitem, sz_command, sz_checkbox, sz_radio > { };
 template < > class type_master < t_nsd > : public three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed > { };
 template < > class type_master < t_preload5 > : public three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none > { };
@@ -66,6 +67,7 @@ template < > class type_master < t_ssi_include > : public three_value < t_ssi_in
 template < > class type_master < t_spread_method > : public three_value < t_spread_method, e_spread_method, sz_reflect, sz_repeat, sz_stick > { };
 template < > class type_master < t_svg_direction > : public three_value < t_svg_direction, e_svg_direction, sz_ltr, sz_rtl, sz_inherit > { };
 template < > class type_master < t_svg_fontvariant > : public three_value < t_svg_fontvariant, e_svg_fontvariant, sz_normal, sz_smallcaps, sz_inherit > { };
+template < > class type_master < t_tendstotype > : public three_value < t_tendstotype, e_tendstotype, sz_above, sz_below, sz_twosided > { };
 template < > class type_master < t_tfa > : public three_value < t_tfa, e_tfa, sz_auto, sz_false, sz_true > { };
 template < > class type_master < t_tfu > : public three_value < t_tfu, e_tfu, sz_false, sz_true, sz_undefined > { };
 template < > class type_master < t_units > : public three_value < t_units, e_units, sz_en, sz_pixels, sz_relative > { };

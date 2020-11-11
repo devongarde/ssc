@@ -222,8 +222,8 @@ void options::process (int argc, char** argv)
         (MF EXPORT, "export microformat data (only verified data if " MF VERIFY " is set)")
 
         (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands schema.org microdata)")
-        (MICRODATA VERSION, ::boost::program_options::value < int > (), "set default schema.org mjr version (default 10)")
-        (MICRODATA MINOR, ::boost::program_options::value < int > (), "set default schema.org mnr version (default 0)")
+        (MICRODATA VERSION, ::boost::program_options::value < int > (), "set default schema.org major version (default 10)")
+        (MICRODATA MINOR, ::boost::program_options::value < int > (), "set default schema.org minor version (default 0)")
         (MICRODATA EXPORT, "export microformat data (only verified data if " MICRODATA MICRODATAARG " is set)")
 
         (STATS PAGE, "report statistics for each page")

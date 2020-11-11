@@ -147,6 +147,23 @@ struct symbol_entry < e_autocomplete > autocomplete_symbol_table [] =
     { { HTML_5_2 }, { HTML_UNDEF }, "username", aco_username },
     { { HTML_5_2 }, { HTML_UNDEF }, "work", aco_work } };
 
+struct symbol_entry < e_citype > citype_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "integer", ci_integer },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rational", ci_rational },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "real", ci_real },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "complex-polar", ci_complexpolar },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "complex-cartesian", ci_complexcartesian },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "constant", ci_constant } };
+
+struct symbol_entry < e_cntype > cntype_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "e-notation", cn_enotation },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "integer", cn_integer },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rational", cn_rational },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "real", cn_real },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "complex-polar", cn_complexpolar },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "complex-cartesian", cn_complexcartesian },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "constant", cn_constant } };
+
 struct symbol_entry < e_composite_operator > composite_operator_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "arithmetic",  co_arithmetic },
     { { HTML_4_0 }, { HTML_UNDEF }, "atop", co_atop },
@@ -466,7 +483,7 @@ struct symbol_entry < e_mathvariant > mathvariant_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "sans-serif-bold-italic", mv_sansserifbolditalic },
     { { XHTML_1_0 }, { HTML_UNDEF }, "monospace", mv_monospace } };
 
-struct symbol_entry < e_matrix_type > matrix_type_symbol_table [] =
+struct symbol_entry < e_matrixtype > matrixtype_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "matrix", mt_matrix },
     { { HTML_4_0 }, { HTML_UNDEF }, "saturate", mt_saturate },
     { { HTML_4_0 }, { HTML_UNDEF }, "huerotate", mt_hue_rotate },
@@ -487,7 +504,7 @@ struct symbol_entry < e_media > media_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "tty", md_tty },
     { { HTML_4_0 }, { HTML_UNDEF }, "tv", md_tv } };
 
-struct symbol_entry < e_media_feature > media_feature_symbol_table [] =
+struct symbol_entry < e_mediafeature > mediafeature_symbol_table [] =
 {   { { HTML_5_0 }, { HTML_UNDEF }, "width", mef_width },
     { { HTML_5_0 }, { HTML_UNDEF }, "min-width", mef_min_width },
     { { HTML_5_0 }, { HTML_UNDEF }, "max-width", mef_max_width },
@@ -530,7 +547,7 @@ struct symbol_entry < e_media_feature > media_feature_symbol_table [] =
     { { HTML_5_0 }, { HTML_UNDEF }, "scan", mef_scan },
     { { HTML_5_0 }, { HTML_UNDEF }, "update", mef_update } };
 
-struct symbol_entry < e_media_keyword > media_keyword_symbol_table [] =
+struct symbol_entry < e_mediakeyword > mediakeyword_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "and", mk_and },
     { { HTML_5_0 }, { HTML_UNDEF }, "=", mk_eq },
     { { HTML_5_0 }, { HTML_UNDEF }, ">=", mk_ge },
@@ -936,6 +953,8 @@ void enum_init (nitpick& nits)
     INIT_ENUM (autocapitalise);
     INIT_ENUM (autocomplete);
     INIT_ENUM (decalign);
+    INIT_ENUM (citype);
+    INIT_ENUM (cntype);
     INIT_ENUM (composite_operator);
     INIT_ENUM (dingbat);
     INIT_ENUM (dir);
@@ -957,10 +976,10 @@ void enum_init (nitpick& nits)
     INIT_ENUM (mah);
     INIT_ENUM (mathalign);
     INIT_ENUM (mathvariant);
-    INIT_ENUM (matrix_type);
+    INIT_ENUM (matrixtype);
     INIT_ENUM (media);
-    INIT_ENUM (media_feature);
-    INIT_ENUM (media_keyword);
+    INIT_ENUM (mediafeature);
+    INIT_ENUM (mediakeyword);
     INIT_ENUM (method);
     INIT_ENUM (microdata_domain);
     INIT_ENUM (namedspace);

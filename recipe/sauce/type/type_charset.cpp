@@ -464,6 +464,7 @@ struct symbol_entry < e_charset > charset_symbol_table [] =
     { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathml-presentation", cs_mathml_presentation },
     { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "openmath", cs_openmath },
     { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "tex", cs_tex },
+    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "text", cs_text },
 
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, nullptr, cs_illegal } };
 

@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.64 LANGUAGES CXX)
+project (ssc VERSION 0.0.65 LANGUAGES CXX)
 
 set (BOOST_ROOT ${BOOST})
 set (CMAKE_CXX_STANDARD 17)

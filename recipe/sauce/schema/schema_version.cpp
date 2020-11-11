@@ -24,21 +24,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 schema_version::schema_version (const html_version& v)
 {   schema_version sv;
-    sv.major_ = v.mjr ();
-    sv.minor_ = v.mnr ();
+    sv.mjr_ = v.mjr ();
+    sv.mnr_ = v.mnr ();
     if (! sv.invalid ()) swap (sv); }
 
 void schema_version::swap (schema_version& v) NOEXCEPT
-{   ::std::swap (major_, v.major_);
-    ::std::swap (minor_, v.minor_);
+{   ::std::swap (mjr_, v.mjr_);
+    ::std::swap (mnr_, v.mnr_);
     ::std::swap (flags_, v.flags_); }
 
 ::std::string schema_version::report () const
 {   ::std::ostringstream res;
     if (known ())
-        if (major_ == 7)
-            res << static_cast < int > (major_) << ".0" << static_cast < int > (minor_);
-        else res << static_cast < int > (major_) << "." << static_cast < int > (minor_);
+        if (mjr_ == 7)
+            res << static_cast < int > (mjr_) << ".0" << static_cast < int > (mnr_);
+        else res << static_cast < int > (mjr_) << "." << static_cast < int > (mnr_);
     return res.str (); }
 
 bool operator == (const schema_version& lhs, const schema_version& rhs)

@@ -30,8 +30,8 @@ void element::examine_embed ()
         pick (nit_bad_embed, ed_July2020, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>"); }
 
 void element::examine_fecolourmatrix ()
-{   e_matrix_type mt = mt_matrix;
-    if (a_.known (a_type)) mt = static_cast < e_matrix_type > (a_.get_int (a_type));
+{   e_matrixtype mt = mt_matrix;
+    if (a_.known (a_type)) mt = static_cast < e_matrixtype > (a_.get_int (a_type));
     bool vals = a_.known (a_values);
     if (mt == mt_luminance_alpha)
     {   if (vals) pick (nit_colour_matrix, ed_svg_1_1, "15.10 Filter primitive feColorMatrix", es_warning, ec_attribute, "when TYPE is luminance-alpha, VALUES should be omitted");

@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 bool css_cache::parse_file (nitpick& nits, const page& p, const url& u)
 {   csss_it cc = csss_.find (u.original ());
     if (cc == csss_.cend ())
-        return csss_.insert (csss_vt (u.original (), new css (nits, p, u))).second;
+        return csss_.insert (csss_vt (u.original (), css_ptr (new css (nits, p, u)))).second;
     if (cc -> second -> invalid ()) return false;
     cc -> second -> active (true);
     return true; }
@@ -34,7 +34,7 @@ bool css_cache::parse_file (nitpick& nits, const page& p, const url& u)
 bool css_cache::parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding)
 {   csss_it cc = csss_.find (content);
     if (cc == csss_.cend ())
-        return csss_.insert (csss_vt (content, new css (nits, v, content, encoding, true))).second;
+        return csss_.insert (csss_vt (content, css_ptr (new css (nits, v, content, encoding, true)))).second;
     if (cc -> second -> invalid ()) return false;
     cc -> second -> active (true);
     return true; }

@@ -104,6 +104,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_clear);
         TEST_VALUE (t_clear30);
         TEST_VALUE (t_clip);
+        TEST_VALUE (t_closure);
         TEST_VALUE (t_colour);
         TEST_VALUE (t_colour_ci);
         TEST_VALUE (t_colour_i);
@@ -251,13 +252,16 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_marker);
         TEST_VALUE (t_marked_up);
         TEST_VALUE (t_markerunits);
-        TEST_VALUE (t_math_fontstyle);
-        TEST_VALUE (t_math_fontweight);
+        TEST_VALUE (t_mathfontstyle);
+        TEST_VALUE (t_mathfontweight);
         TEST_VALUE (t_mathform);
         TEST_VALUE (t_mathframe);
-        TEST_VALUE (t_math_mode);
-        TEST_VALUE (t_math_overflow);
-        TEST_VALUE (t_matrix_type);
+        TEST_VALUE (t_mathmode);
+        TEST_VALUE (t_mathoccurence);
+        TEST_VALUE (t_mathorder);
+        TEST_VALUE (t_mathoverflow);
+        TEST_VALUE (t_mathscope);
+        TEST_VALUE (t_matrixtype);
         TEST_VALUE (t_matrix_values);
         TEST_VALUE (t_measure);
         TEST_VALUE (t_measure_ai);
@@ -265,8 +269,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_measure_or_more);
         TEST_VALUE (t_measures);
         TEST_VALUE (t_media);
-        TEST_VALUE (t_media_feature);
-        TEST_VALUE (t_media_keyword);
+        TEST_VALUE (t_mediafeature);
+        TEST_VALUE (t_mediakeyword);
         TEST_VALUE (t_meetslice);
         TEST_VALUE (t_menuitem);
         TEST_VALUE (t_menutype);
@@ -349,7 +353,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_scope);
         TEST_VALUE (t_script);
         TEST_VALUE (t_scrolling);
-        TEST_VALUE (t_set_cookie);
+        TEST_VALUE (t_setcookie);
         TEST_VALUE (t_sex);
         TEST_VALUE (t_sgml);
         TEST_VALUE (t_shape);
@@ -417,6 +421,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_table_values);
         TEST_VALUE (t_target);
         TEST_VALUE (t_tbalign);
+        TEST_VALUE (t_tdscope);
         TEST_VALUE (t_tel);
         TEST_VALUE (t_text);
         TEST_VALUE (t_textdecoration);
@@ -468,6 +473,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_xmlns);
         TEST_VALUE (t_xmlspace);
         TEST_VALUE (t_xmlurl);
+        TEST_VALUE (t_xorder);
         TEST_VALUE (t_yesno);
         TEST_VALUE (t_yesnoempty);
         TEST_VALUE (t_zoompan);

@@ -243,13 +243,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HR_EXTERNAL     ( HR_50_EXTERNAL | HR_51_EXTERNAL | HR_52_EXTERNAL | HR_53_EXTERNAL | HR_54_EXTERNAL )
 
 class html_version
-{   unsigned char major_ = 0, minor_ = 0;
+{   unsigned char mjr_ = 0, mnr_ = 0;
     uint64_t flags_ = 0, ext_ = 0;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
 public:
-    html_version () : major_ (0), minor_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
-    explicit html_version (const unsigned char mjr) : major_ (mjr), minor_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
-    explicit html_version (const schema_version sv) : major_ (sv.mjr ()), minor_ (sv.mnr ()), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
+    html_version () : mjr_ (0), mnr_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
+    explicit html_version (const unsigned char mjr) : mjr_ (mjr), mnr_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
+    explicit html_version (const schema_version sv) : mjr_ (sv.mjr ()), mnr_ (sv.mnr ()), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
     html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
 	html_version(const html_version&) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
@@ -263,16 +263,16 @@ public:
     void swap (html_version& v) NOEXCEPT;
     void reset () { html_version v; swap (v); }
     void reset (const html_version& v) { html_version vv (v); swap (vv); }
-    bool unknown () const { return (major_ == 0) && (minor_ == 0); }
+    bool unknown () const { return (mjr_ == 0) && (mnr_ == 0); }
     bool known () const { return ! unknown (); }
     bool is_not (const unsigned char mjr, const unsigned char mnr = 0xFF) const
     {   if (unknown ()) return false;
-        if (mjr != major_) return true;
-        return ((mnr != 0xFF) && (mnr != minor_)); }
+        if (mjr != mjr_) return true;
+        return ((mnr != 0xFF) && (mnr != mnr_)); }
     bool is_not (const html_version& v) const
-    {   return is_not (v.major_, v.minor_); }
-    unsigned char mjr () const { return major_; }
-    unsigned char mnr () const { return minor_; }
+    {   return is_not (v.mjr_, v.mnr_); }
+    unsigned char mjr () const { return mjr_; }
+    unsigned char mnr () const { return mnr_; }
     unsigned char level () const { return (flags_ & HV_LEVEL_MASK); }
     bool bespoke () const { return ((ext_ & HE_BESPOKE) == HE_BESPOKE); }
     bool chrome () const { return ((ext_ & HE_CHROME) == HE_CHROME); }
@@ -290,8 +290,8 @@ public:
     bool not_svg () const { return (ext_ & HE_NOT_SVG) != 0; }
     e_svg_version svg_version () const;
     void svg_version (const e_svg_version v);
-    e_math_version math_version () const;
-    void math_version (const e_math_version v);
+    e_mathversion math_version () const;
+    void math_version (const e_mathversion v);
     int xlink () const { return static_cast < int > ((ext_ & XLINK_MASK) >> XLINK_SHIFT); }
     void ext_set (const uint64_t u) { ext_ |= u; }
     void ext_reset (const uint64_t u) { ext_ &= ~u; }
@@ -364,8 +364,8 @@ const html_version xhtml_2 (4, 4, HV_XHTML);
 //   HTML 5.2 14 December 2017
 //   HTML 5.3 18 October 2018
 // The internal versions of HTML5 are thus:
-//   mjr = year-2000
-//   mnr:
+//   major = year-2000
+//   minor:
 //     high nibble = month
 //      low nibble = day / 2
 

@@ -47,13 +47,13 @@ schema_version html_to_schema_version (const html_version& v);
 bool is_valid_schema_version (const unsigned char mjr, const unsigned char mnr);
 
 class schema_version
-{   unsigned char major_ = 0, minor_ = 0;
+{   unsigned char mjr_ = 0, mnr_ = 0;
     schema_flag_t flags_ = 0;
 public:
-    schema_version () : major_ (0), minor_ (0), flags_ (0) { }
+    schema_version () : mjr_ (0), mnr_ (0), flags_ (0) { }
     schema_version (const unsigned char mjr, const unsigned char mnr, const schema_flag_t sf = 0)
-        :   major_ (mjr), minor_ (mnr), flags_ (sf)
-    { if (invalid ()) major_ = minor_ = 0; }
+        :   mjr_ (mjr), mnr_ (mnr), flags_ (sf)
+    { if (invalid ()) mjr_ = mnr_ = 0; }
     schema_version (const schema_version& ) = default;
     schema_version (const html_version& v);
 #ifndef NO_MOVE_CONSTRUCTOR
@@ -67,17 +67,17 @@ public:
     void swap (schema_version& v) NOEXCEPT;
     void reset () { schema_version v; swap (v); }
     void reset (const schema_version& v) { schema_version vv (v); swap (vv); }
-    bool unknown () const { return (major_ == 0) && (minor_ == 0); }
+    bool unknown () const { return (mjr_ == 0) && (mnr_ == 0); }
     bool known () const { return ! unknown (); }
     bool is_not (const unsigned char mjr, const unsigned char mnr = 0xFF) const
     {   if (unknown ()) return false;
-        if (mjr != major_) return true;
-        return ((mnr != 0xFF) && (mnr != minor_)); }
+        if (mjr != mjr_) return true;
+        return ((mnr != 0xFF) && (mnr != mnr_)); }
     bool is_not (const schema_version& v) const
-    {   return is_not (v.major_, v.minor_); }
-    unsigned char mjr () const { return major_; }
-    unsigned char mnr () const { return minor_; }
-    bool invalid () const { return ! is_valid_schema_version (major_, minor_); }
+    {   return is_not (v.mjr_, v.mnr_); }
+    unsigned char mjr () const { return mjr_; }
+    unsigned char mnr () const { return mnr_; }
+    bool invalid () const { return ! is_valid_schema_version (mjr_, mnr_); }
     schema_flag_t flags () const { return flags_; }
     ::std::string report () const; };
 

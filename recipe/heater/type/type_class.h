@@ -42,7 +42,8 @@ template < > inline void enum_n < t_class, e_class > :: set_value (nitpick& nits
 template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
 {   enum_vec_base < e_class, t_class > :: original_ = ss;
     bool res = true; vstr_t strs;
-    ::boost::algorithm::split (strs, trim_the_lot_off (ss), ::boost::algorithm::is_any_of (" "), ::boost::algorithm::token_compress_on);
+    ::std::string sss (trim_the_lot_off (ss));
+    ::boost::algorithm::split (strs, sss, ::boost::algorithm::is_any_of (" "), ::boost::algorithm::token_compress_on);
     if (strs.size () == 0)
     {   enum_vec_base < e_class, t_class > :: status (s_empty); return; }
     for (auto s : strs)

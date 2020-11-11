@@ -94,7 +94,7 @@ template < e_type TYPE > ::std::string validate_he_content (nitpick& nits, const
         case he_pics_label : return validate_he_content < t_pics > (nits, v, content);
         case he_pragma : return validate_he_content < t_pragma > (nits, v, content);
         case he_refresh : return validate_he_content < t_refresh > (nits, v, content);
-        case he_set_cookie : return validate_he_content < t_set_cookie > (nits, v, content);
+        case he_set_cookie : return validate_he_content < t_setcookie > (nits, v, content);
         case he_window_target : break;
         case he_keywords :
         case he_reply_to :  nits.pick (nit_use_metaname, es_warning, ec_type, "use the NAME attribute, not HTTP-EQUIV, for this information");

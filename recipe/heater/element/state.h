@@ -53,8 +53,17 @@ inline element_bitset operator | (const element_bitset& bs, const e_element e)
     res.set (e);
     return res; }
 
+inline element_bitset operator & (const element_bitset& bs, const e_element e)
+{   if (! bs.test (e)) return element_bitset ();
+    return element_bitset (e); }
+
 inline element_bitset& operator |= (element_bitset& bs, const e_element e)
 {   bs.set (static_cast < ::std::size_t > (e));
+    return bs; }
+
+inline element_bitset& operator &= (element_bitset& bs, const e_element e)
+{   if (bs.test (e)) bs = element_bitset (e);
+    else bs = element_bitset ();
     return bs; }
 
 inline attribute_bitset operator | (const attribute_bitset& bs, const e_attribute e)
@@ -62,8 +71,17 @@ inline attribute_bitset operator | (const attribute_bitset& bs, const e_attribut
     res.set (e);
     return res; }
 
+inline attribute_bitset operator & (const attribute_bitset& bs, const e_attribute e)
+{   if (! bs.test (e)) return attribute_bitset ();
+    return attribute_bitset (e); }
+
 inline attribute_bitset& operator |= (attribute_bitset& bs, const e_attribute e)
 {   bs.set (static_cast < ::std::size_t > (e));
+    return bs; }
+
+inline attribute_bitset& operator &= (attribute_bitset& bs, const e_attribute e)
+{   if (bs.test (e)) bs = attribute_bitset (e);
+    else bs = attribute_bitset ();
     return bs; }
 
 inline bool any (const element_bitset& lhs, const element_bitset& rhs)
@@ -72,6 +90,14 @@ inline bool any (const element_bitset& lhs, const element_bitset& rhs)
 
 inline bool all (const element_bitset& lhs, const element_bitset& rhs)
 {   element_bitset tst (lhs & rhs);
+    return tst == rhs; }
+
+inline bool any (const attribute_bitset& lhs, const attribute_bitset& rhs)
+{   attribute_bitset tst (lhs & rhs);
+    return tst.any (); }
+
+inline bool all (const attribute_bitset& lhs, const attribute_bitset& rhs)
+{   attribute_bitset tst (lhs & rhs);
     return tst == rhs; }
 
 ::std::string nameset (const element_bitset& bs);
