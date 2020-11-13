@@ -10,3 +10,5 @@ make
 ctest .
 make install
 
+Because ssc is very alpha, the make install does not install in a standard location,
+but in the ssc parent directory.

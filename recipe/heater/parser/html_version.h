@@ -336,6 +336,7 @@ public:
     bool parse_doctype (nitpick& nits, const ::std::string& content);
     bool lazy () const;
     uint64_t flags () const { return flags_; }
+    uint64_t ext () const { return ext_; }
     ::std::string report () const;
     ::std::string detailed_report () const; };
 
@@ -385,3 +386,4 @@ bool does_apply (const html_version& v, const html_version& from, const html_ver
 bool may_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
 int w3_minor_5 (const html_version& v);
+e_emi extension_conflict (const html_version& lhs, const html_version& rhs);

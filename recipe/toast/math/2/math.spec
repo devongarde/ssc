@@ -37,40 +37,54 @@ PASS ../toast/math/2/math5-example.html
 
 PASS ../toast/math/2/math6-example.html
 2 naughty_lang
-130 inserted_missing_parent
-132 inserted_missing_closure inserted_missing_closure
-137 missing_open
-152 inserted_missing_parent missing_close
-155 inserted_missing_closure
-172 inserted_missing_parent missing_close
-188 inserted_missing_closure
-191 inserted_missing_parent missing_close
-209 inserted_missing_closure
+72 deprecated_element
 213 inserted_missing_parent missing_close
 223 inserted_missing_closure
-239 ignoring_unknown
 
 PASS ../toast/math/2/math7-example.html
 2 naughty_lang
-122 inserted_missing_parent missing_close
-123 inserted_missing_closure
-126 inserted_missing_parent missing_close
-139 inserted_missing_closure
-149 inserted_missing_parent missing_close
-152 inserted_missing_closure
-190 unrecognised_value
-200 unrecognised_value
-202 unrecognised_value
-309 unrecognised_value
+85 deprecated_element
 
 PASS ../toast/math/2/math8-example.html
 2 naughty_lang
-33 ignoring_unknown
-105 ignoring_unknown attribute_barred
-106 ignoring_unknown unrecognised_attribute attribute_barred
-107 ignoring_unknown ignoring_unknown
-108 ignoring_unknown ignoring_unknown
-109 ignoring_unknown
+92 annotation
+93 annotation
+94 annotation
 
 PASS ../toast/math/2/math9-example.html
 2 naughty_lang
+80 deprecated_element
+88 deprecated_element
+137 attempted_escape url_not_found
+156 inserted_missing_parent missing_close
+159 inserted_missing_closure
+162 inserted_missing_parent missing_close
+169 inserted_missing_closure
+
+PASS ../toast/math/2/math10-example.html
+2 naughty_lang
+
+PASS ../toast/math/2/math11-example.html
+2 naughty_lang
+134 inserted_missing_parent missing_close
+143 inserted_missing_closure
+239 inserted_missing_parent missing_close
+254 inserted_missing_closure
+364 unrecognised_value
+
+PASS ../toast/math/2/math12-example.html
+2 naughty_lang
+
+PASS ../toast/math/2/math13-example.html
+2 naughty_lang
+144 annotation
+160 annotation
+167 annotation
+170 annotation
+
+PASS ../toast/math/2/math14-example.html
+2 naughty_lang
+130 inserted_missing_parent missing_close
+131 inserted_missing_closure
+134 inserted_missing_parent missing_close
+135 inserted_missing_closure

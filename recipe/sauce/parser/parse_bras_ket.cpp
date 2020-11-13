@@ -102,6 +102,14 @@ e_statemachine ket_quote (nitpick& nits, char ch, const e_statemachine status, c
     else if (ch == qu) return new_state;
     return status; }
 
+void faux_xmp_check (bra_element_ket& current, e_element& xmp_tag, bool& xmp_mode, const ::std::string::const_iterator& i, ::std::string::const_iterator& x)
+{   if (current.is_comment ())
+    {   xmp_tag = elem_comment; xmp_mode = true; x = i + 1; }
+    else if (current.is_annotation ())
+    {   xmp_tag = elem_annotation; xmp_mode = true; x = i + 1; }
+    else if (current.is_annotation_xml ())
+    {   xmp_tag = elem_annotation_xml; xmp_mode = true; x = i + 1; } }
+
 // this parser is horrid, and, worse, it works
 html_version bras_ket::parse (const ::std::string& content)
 {   html_version res;
@@ -697,10 +705,11 @@ html_version bras_ket::parse (const ::std::string& content)
                                     if (! compare_no_case (n, ::std::string (collect, i)))
                                     {   assert (collect - b > 2);
                                         assert (e - 1 > i);
-                                        nits.set_context (line_, collect-2, i+1);
-                                        nits.pick (nit_closure_not_xmp, ed_1, "ELEMENT XMP", es_error, ec_element, "a closure started inside <", n, "> must be </", n, ">");
-                                        ve_.emplace_back (nits, line_, collect, i, i, true, false);
-                                        nits.reset ();
+                                        if (xmp_tag == elem_xmp)
+                                        {   nits.set_context (line_, collect-2, i+1);
+                                            nits.pick (nit_closure_not_xmp, ed_1, "ELEMENT XMP", es_error, ec_element, "a closure started inside <", n, "> must be </", n, ">");
+                                            ve_.emplace_back (nits, line_, collect, i, i, true, false);
+                                            nits.reset (); }
                                         break; }
                                     nits.set_context (line_, x, collect-1);
                                     xmp_mode = false;
@@ -734,9 +743,9 @@ html_version bras_ket::parse (const ::std::string& content)
                                             else
                                             {   if (current.is_xmp ())
                                                 {   xmp_tag = elem_xmp; xmp_mode = true; }
-                                                else if (current.is_comment ())
-                                                {   xmp_tag = elem_comment; xmp_mode = true; }
-                                                x = i + 1; } } } }
+                                                x = i + 1; } }
+                                        if (! plaintext && ! xmp_mode)
+                                            faux_xmp_check (current, xmp_tag, xmp_mode, i, x); } }
                                 aftercab = true;
                                 status = s_dull; text = twas = i+1; break;
                     case '/' :  if (xmp_mode) { status= s_dull; break; }
@@ -763,6 +772,8 @@ html_version bras_ket::parse (const ::std::string& content)
                                 else ve_.emplace_back (nits, line_, collect, eofe, i, closure, true);
                                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_node ", quoted_limited_string (::std::string (collect, i), 30));
                                 nits.reset ();
+                                if (! closure && ! plaintext && ! xmp_mode)
+                                    faux_xmp_check (ve_.back (), xmp_tag, xmp_mode, i, x);
                                 aftercab = true;
                                 status = s_dull; text = twas = i+1; break;;
                     case '<' :  mixed_mess (nits, b, e, i, oel, ano); status = s_open; twas = i; break;
@@ -781,6 +792,8 @@ html_version bras_ket::parse (const ::std::string& content)
                                 ve_.emplace_back (nits, line_, collect, eofe, i, closure, false);
                                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_ncode ", quoted_limited_string (::std::string (collect, i), 30));
                                 nits.reset ();
+                                if (! closure && ! plaintext && ! xmp_mode)
+                                    faux_xmp_check (ve_.back (), xmp_tag, xmp_mode, i, x);
                                 aftercab = true;
                                 status = s_dull; text = twas = i+1; break;
                     case '<' :  mixed_mess (nits, b, e, i, oel, ano); status = s_open; twas = soe = i; break;
@@ -848,7 +861,21 @@ html_version bras_ket::parse (const ::std::string& content)
     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "end of input");
     if (xmp_mode)
     {   nits.set_context (line_, near_here (x, e, e));
-        nits.pick (nit_ends_in_xmp, es_warning, ec_parser, "document finishes in <XMP> (use <PLAINTEXT>");
+        switch (xmp_tag)
+        {   case elem_xmp :
+                nits.pick (nit_ends_in_xmp, es_warning, ec_parser, "document finishes in <XMP> (use <PLAINTEXT>");
+                break;
+            case elem_comment :
+                nits.pick (nit_eof_in_comment, es_error, ec_parser, "document finishes in a comment");
+                break;
+            case elem_annotation :
+            case elem_annotation_xml :
+                nits.pick (nit_eof_in_annotation, es_error, ec_parser, "document finishes in an annotation");
+                break;
+            default :
+                assert (false);
+                nits.pick (nit_eof_unexpected, es_error, ec_parser, "document finishes unexpectedly in xmp mode");
+                break; }
         ve_.emplace_back (nits, line_, x, e);
         if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (x, e), 30)); }
     else

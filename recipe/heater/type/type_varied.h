@@ -483,6 +483,7 @@ template < > struct type_master < t_type > : varied < tidy_string < t_type > >
                 case elem_ci :
                     validate_type < type_master < t_citype > > (nits, v); break;
                 case elem_cn :
+                    validate_type < type_master < t_cntype > > (nits, v); break;
                 case elem_declare :
                     validate_type < type_master < t_text > > (nits, v); break;
                 case elem_command :

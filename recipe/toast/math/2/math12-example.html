@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 2 12</title>
+</head>
+
+<body>
+
+<h1>math 2 12</h1>
+
+<math>
+<apply>
+<sum/>
+<bvar><ci> x </ci></bvar>
+<lowlimit>
+<ci> a </ci>
+</lowlimit>
+<uplimit>
+<ci> b </ci>
+</uplimit>
+<apply><ci type="function"> f </ci>
+<ci> x </ci>
+</apply>
+</apply>
+</math>
+
+<math>
+<apply>
+<sum/>
+<bvar><ci> x </ci></bvar>
+<condition>
+<apply> <in/>
+<ci> x </ci>
+<ci type="set"> B </ci>
+</apply>
+</condition>
+<apply><ci type="function"> f </ci>
+<ci> x </ci>
+</apply>
+</apply>
+</math>
+
+<math>
+<apply>
+<sum/>
+<domainofapplication>
+<ci type="set"> B </ci>
+</domainofapplication>
+<ci type="function"> f </ci>
+</apply>
+</math>
+
+<math>
+<apply>
+<product/>
+<bvar><ci> x </ci></bvar>
+<lowlimit><ci> a </ci></lowlimit>
+<uplimit><ci> b </ci></uplimit>
+<apply>
+<ci type="function"> f </ci>
+<ci> x </ci>
+</apply>
+</apply></math>
+
+<math>
+<apply>
+<product/>
+<bvar><ci> x </ci></bvar>
+<condition>
+<apply> <in/>
+<ci> x </ci>
+<ci type="set"> B </ci>
+</apply>
+</condition>
+<apply><ci type="function"> f </ci>
+<ci> x </ci>
+</apply>
+</apply>
+</math>
+
+<math>
+<apply>
+<limit/>
+<bvar><ci> x </ci></bvar>
+<lowlimit><cn> 0 </cn></lowlimit>
+<apply><sin/><ci> x </ci></apply>
+</apply></math>
+
+<math>
+<apply>
+<limit/>
+<bvar><ci> x </ci></bvar>
+<condition>
+<apply>
+<tendsto type="above"/>
+<ci> x </ci>
+<ci> a </ci>
+</apply>
+</condition>
+<apply><sin/>
+<ci> x </ci>
+</apply>
+</apply></math>
+
+<math>
+<apply>
+<tendsto type="above"/>
+<apply>
+<power/>
+<ci> x </ci>
+<cn> 2 </cn>
+</apply>
+<apply>
+<power/>
+<ci> a </ci>
+<cn> 2 </cn>
+</apply>
+</apply>
+</math>
+
+<math>
+<apply>
+<tendsto/>
+<vector>
+<ci> x </ci>
+<ci> y </ci>
+</vector>
+<vector>
+<apply><ci type="function"> f </ci>
+<ci> x </ci>
+<ci> y </ci>
+</apply>
+<apply><ci type="function"> g </ci>
+<ci> x </ci>
+<ci> y </ci>
+</apply>
+</vector>
+</apply>
+</math>
+
+<math>
+<apply>
+<sin/>
+<ci> x </ci>
+</apply></math>
+
+<math>
+<apply>
+<sin/>
+<apply>
+<plus/>
+<apply><cos/>
+<ci> x </ci>
+</apply>
+<apply>
+<power/>
+<ci> x </ci>
+<cn> 3 </cn>
+</apply>
+</apply>
+</apply>
+</math>
+
+<math>
+<apply>
+<exp/>
+<ci> x </ci>
+</apply>
+</math>
+
+<math>
+<apply>
+<ln/>
+<ci> a </ci>
+</apply>
+</math>
+
+<math>
+<apply>
+<log/>
+<logbase>
+<cn> 3 </cn>
+</logbase>
+<ci> x </ci>
+</apply>
+</math>
+
+<math>
+<apply>
+<mean/>
+<ci> X </ci>
+</apply>
+</math>
+
+<math>
+<apply>
+<sdev/>
+<ci> X </ci>
+</apply>
+</math>
+
+<math>
+<apply>
+<variance/>
+<ci> X </ci>
+</apply></math>
+
+<math>
+<apply>
+<median/>
+<ci> X </ci>
+</apply>
+</math>
+
+<math>
+<apply>
+<mode/>
+<ci> X </ci>
+</apply></math>
+
+<math>
+<apply>
+<moment/>
+<degree><cn> 3 </cn></degree>
+<momentabout>
+<ci> p </ci>
+</momentabout>
+<ci> X </ci>
+</apply></math>
+
+<math>
+<apply>
+<moment/>
+<degree><cn> 3 </cn></degree>
+<momentabout><ci> p </ci></momentabout>
+<ci> X </ci>
+</apply></math>
+
+</body>
+</html>
+

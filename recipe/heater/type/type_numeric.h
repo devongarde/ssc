@@ -21,6 +21,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 
+template < > struct type_master < t_base > : public numeric_value < t_base, unsigned int >
+{   typedef true_type has_int_type;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   numeric_value < t_base, unsigned int > :: set_value (nits, v, s);
+        if (numeric_value < t_base, unsigned int > :: empty ())
+            nits.pick (nit_empty, es_error, ec_attribute, "value expected");
+        else if (numeric_value < t_base, unsigned int > :: good ())
+        {   if (v.math_version () < math_2) return;
+            if ((value_ >= 2) && (value_ <= 36)) return;
+            nits.pick (nit_base, ed_math_2, "4.4.1.1 Number (cn)", es_error, ec_type, quote (s), " is not between 2 and 36 (inclusive)"); }
+        numeric_value < t_base, unsigned int > :: status (s_invalid); } };
+
 template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpoint >
 {   double value_ = 0.0;
     type_master () = default;

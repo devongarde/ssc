@@ -62,7 +62,7 @@ PASS ../toast/HTML/5.0/html5-bad.html
 10 default_role
 14 unrecognised_value unrecognised_value deprecated_value deprecated_value attribute_required
 16 missing_close
-18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent
+18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent arg_count arg_count
 19 inserted_missing_closure inserted_missing_closure missing_close
 21 missing_open
 23 unrecognised_value

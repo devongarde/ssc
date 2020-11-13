@@ -64,7 +64,11 @@ void bra_element_ket::test_specific ()
 {   if (! tested_)
     {   if ((status_ == bk_node) && (start_ != eofe_))
             switch (*start_)
-            {   case 'C' :
+            {   case 'a' :
+                case 'A' :  annotation_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_annotation));
+                            annotation_xml_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_annotation_xml));
+                            break;
+                case 'C' :
                 case 'c' :  comment_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_comment));
                             break;
                 case 'P' :
@@ -80,6 +84,14 @@ void bra_element_ket::test_specific ()
                             break;
                 default  :  break; }
         tested_ = true; } }
+
+bool bra_element_ket::is_annotation ()
+{   test_specific ();
+    return annotation_; }
+
+bool bra_element_ket::is_annotation_xml ()
+{   test_specific ();
+    return annotation_xml_; }
 
 bool bra_element_ket::is_xmp ()
 {   test_specific ();

@@ -98,7 +98,7 @@ output=ssc.out
 domain=example.edu
 extension=html
 index=index.html
-root=~/www.htdocs
+root=~/www/htdocs
 virtual=/net=tests/virtual
 
 [link]
@@ -123,7 +123,7 @@ class=yes
 domain=example.edu
 extension=html
 index=index.html
-root=~/www.htdocs
+root=~/www/htdocs
 
 [microformat]
 verify=yes
@@ -142,7 +142,7 @@ class=yes
 domain=example.edu
 extension=html
 index=index.html
-root=~/www.htdocs
+root=~/www/htdocs
 
 There need be nothing special in the configuration file for microdata. However, if you use itemref in your
 pages, then it is possible that ssc will give false warnings in the section referenced by the itemref. This
@@ -150,6 +150,7 @@ is because ssc does not always know that the referenced data is not intended to 
 unless you put it under a TEMPLATE element.
 
 Note that you can export the microdata encountered in JSON file format by using the export setting.
+
 
 Statistics
 ----------
@@ -174,6 +175,46 @@ summary for individual page stats).
 
 Also note that server side includes have been turned on using general.ssi, and files with the SHTML extension
 will be treated as web pages.
+
+
+MathML 2
+--------
+This configuration file could be used to test MathML 2. NOTE: MathML is not fully implemented yet
+
+[general]
+verbose=4
+output=m2.out
+class=yes
+
+[link]
+check=yes
+
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=~/www/htdocs
+
+[math]
+version=2
+
+[validation]
+citype=function
+citype=list
+citype=logical
+citype=matrix
+citype=set
+citype=var-x
+citype=vector
+
+What's interesting here is the validation section. The MathML documentation lists a specific set of values that
+can be used with the TYPE attribute on the CI element. The examples in the specification give this attribute many
+additional, and apparently illegal, values. (This apparent inconsistency is not uncommon amongst web specifications.)
+The way to avoid SSC complaining about these extra values is to give CI TYPE additional values in the configuration
+file, as noted.
+
+Indeed, many enumerated attribute values can be extended in this way. Use the new --validation switch to get a
+complete list.
 
 
 arts & ego

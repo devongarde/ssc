@@ -29,6 +29,58 @@ void element::examine_embed ()
     if (a_.known (a_itemprop) && ! a_.known (a_src))
         pick (nit_bad_embed, ed_July2020, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>"); }
 
+void element::examine_equation ()
+{   if (node_.version ().math () < math_2) return;
+    if (tag () == elem_reln) pick (nit_deprecated_element, ed_math_2, "4.4.2.2 Relation (reln)", es_warning, ec_element, "<RELN> is deprecated");
+    uint64_t fl = 0;
+    bool start = true;
+    int args = 0;
+    e_element op = elem_undefined;
+    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        if (c -> node_.id ().is_math ())
+            if (start)
+            {   fl = c -> node_.id ().flags ();
+                op = c -> tag ();
+                start = false; }
+            else if (! c -> node_.is_closure ()) ++args;
+    if (start)
+    {   pick (nit_operator_required, ed_math_2, "4.4.2.1 Apply (apply)", es_error, ec_element, "<", elem::name (tag ()), "> requires an operator");
+        return; }
+    if ((fl & EP_ARGS_COUNT_MASK) == 0) return;
+    bool more = (fl & EP_ARGS_MORE) == EP_ARGS_MORE;
+    bool none = (fl & EP_ARGS_0) == EP_ARGS_0;
+    if (more && none) return;
+    bool a1 = (fl & EP_ARGS_1) == EP_ARGS_1;
+    bool a2 = (fl & EP_ARGS_2) == EP_ARGS_2;
+    bool a3 = (fl & EP_ARGS_3) == EP_ARGS_3;
+    switch (args)
+    {   case 0 : if (none) return;
+                 break;
+        case 1 : if (a1) return;
+                 break;
+        case 2 : if (a2) return;
+                 if (a1 && more) return;
+                 break;
+        case 3 : if (a3) return;
+                 if (a1 && more) return;
+                 if (a2 && more) return;
+                 break;
+        default : if (more) return;
+                 break; }
+    pick (nit_arg_count, ed_math_2, "4.4.2.1 Apply (apply)", es_error, ec_element, "<", elem::name (tag ()), "> has ", args, " arguments, which is wrong");
+    ::std::string msg ("<");
+    msg += elem::name (op);
+    msg += "> expects";
+    bool singular = true;
+    if (none) { singular = false; msg += " 0"; }
+    if (a1) { if (none) msg += " or"; msg += " 1"; }
+    if (a2) { singular = false; if (a1) msg += " or"; msg += " 2"; }
+    if (a3) { singular = false; if (a1 || a2) msg += " or"; msg += " 3"; }
+    if (more) msg += " or more";
+    msg += " argument";
+    if (! singular) msg += "s";
+    pick (nit_arg_count, ed_math_2, "4.4.2.1 Apply (apply)", es_info, ec_element, msg); }
+
 void element::examine_fecolourmatrix ()
 {   e_matrixtype mt = mt_matrix;
     if (a_.known (a_type)) mt = static_cast < e_matrixtype > (a_.get_int (a_type));

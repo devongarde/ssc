@@ -75,7 +75,7 @@ PASS ../toast/HTML/5.4/html5-bad.html
 10 default_role
 14 attribute_required form_charset
 16 correct_spelling attribute_unrecognised missing_close unrecognised_attribute
-18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent
+18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent arg_count arg_count
 19 inserted_missing_closure inserted_missing_closure missing_close
 21 missing_open
 23 unrecognised_value unrecognised_value

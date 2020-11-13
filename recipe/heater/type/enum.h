@@ -325,12 +325,12 @@ typedef enum {
         elem_body, elem_box, elem_bq, elem_br, elem_bt, elem_button, elem_bvar, elem_byline,
     elem_canvas, elem_caption, elem_card, elem_cartesianproduct, elem_cdata, elem_ceiling, elem_centre, elem_changed, elem_choose, elem_ci, elem_circle, elem_cite, elem_clippath, elem_cmd, elem_cn,
         elem_code, elem_codomain, elem_col,
-        elem_colgroup, elem_colourprofile, elem_command, elem_comment, elem_compose, elem_condition, elem_conjugate, elem_content, elem_cos, elem_cosh, elem_cot, elem_coth,
+        elem_colgroup, elem_colourprofile, elem_command, elem_comment, elem_complexes, elem_compose, elem_condition, elem_conjugate, elem_content, elem_cos, elem_cosh, elem_cot, elem_coth,
         elem_credit, elem_csc, elem_csch, elem_csymbol, elem_curl, elem_cursor,
     elem_data, elem_datalist, elem_dd, elem_ddot, elem_declare, elem_defs, elem_degree, elem_del, elem_desc, elem_details, elem_determinant, elem_dfn, elem_di, elem_dialogue,
         elem_diff, elem_dir, elem_discard, elem_dispatchevent, elem_div, elem_divergence, elem_divide, elem_dl, elem_domain, elem_domainofapplication, elem_dot, elem_dt,
-    elem_element, elem_elementdef, elem_ellipse, elem_em, elem_embed, elem_eq, elem_equivalent, elem_exists, elem_exp, elem_extensiondefs,
-    elem_factorial, elem_factorof, elem_feblend, elem_fecolour, elem_fecolourmatrix, elem_fecomponenttransfer, elem_fecomposite, elem_feconvolvematrix, elem_fediffuselighting, elem_fedisplacementmap,
+    elem_element, elem_elementdef, elem_ellipse, elem_em, elem_embed, elem_emptyset, elem_eq, elem_equivalent, elem_eulergamma, elem_exists, elem_exp, elem_exponentiale, elem_extensiondefs,
+    elem_factorial, elem_factorof, elem_false, elem_feblend, elem_fecolour, elem_fecolourmatrix, elem_fecomponenttransfer, elem_fecomposite, elem_feconvolvematrix, elem_fediffuselighting, elem_fedisplacementmap,
         elem_fedistantlight, elem_fedropshadow, elem_feflood, elem_fefunca, elem_fefuncb, elem_fefuncg, elem_fefuncr, elem_fegaussianblur, elem_feimage, elem_femerge,
         elem_femergenode, elem_femorphology, elem_feoffset, elem_fepointlight, elem_fespecularlighting, elem_fespotlight, elem_fetile, elem_feturbulence,
         elem_fieldset, elem_fig, elem_figcaption, elem_figure, elem_filter, elem_floor, elem_flowdiv, elem_flowimage, elem_flowline, elem_flowpara, elem_flowref, elem_flowregion,
@@ -339,7 +339,7 @@ typedef enum {
     elem_g, elem_gcd, elem_geq, elem_glyph, elem_glyphref, elem_grad, elem_gt,
     elem_h, elem_h1, elem_h2, elem_h3, elem_h4, elem_h5, elem_h6, elem_handler, elem_hat, elem_head, elem_header, elem_hgroup, elem_hint, elem_hkern, elem_hp1, elem_hp2,
         elem_hp3, elem_hp4, elem_hp5, elem_hp6, elem_hr, elem_html, elem_htmlplus,
-    elem_i, elem_ident, elem_iframe, elem_ilayer, elem_image, elem_imaginary, elem_img, elem_implies, elem_in, elem_input, elem_ins, elem_int, elem_intersect, elem_interval, elem_inverse,
+    elem_i, elem_ident, elem_iframe, elem_ilayer, elem_image, elem_imaginary, elem_imaginaryi, elem_img, elem_implies, elem_in, elem_infinity, elem_integers, elem_input, elem_ins, elem_int, elem_intersect, elem_interval, elem_inverse,
         elem_isindex, elem_item,
     elem_kbd, elem_keygen,
     elem_l, elem_label, elem_lambda, elem_lang, elem_laplacian, elem_layer, elem_lcm, elem_left, elem_legend, elem_leq, elem_lh, elem_li, elem_limit, elem_line, elem_lineargradient, elem_link,
@@ -349,20 +349,20 @@ typedef enum {
         elem_minus, elem_missingglyph, elem_mlabeledtr, elem_mmultiscripts, elem_mn, elem_mo, elem_mode, elem_moment, elem_momentabout, elem_mover, elem_mpadded, elem_mpath, elem_mphantom, elem_mprescripts,
         elem_mroot, elem_mrow, elem_ms, elem_mspace, elem_msqrt, elem_mstyle, elem_msub, elem_msubsup, elem_msup, elem_mtable, elem_mtd, elem_mtext, elem_mtr, elem_multicol,
         elem_munder, elem_munderover,
-    elem_nav, elem_neq, elem_nextid, elem_nl, elem_nobr, elem_noembed, elem_noframes, elem_none, elem_noscript, elem_not, elem_note, elem_notin, elem_notprsubset,
+    elem_naturalnumbers, elem_nav, elem_neq, elem_nextid, elem_nl, elem_nobr, elem_noembed, elem_noframes, elem_none, elem_noscript, elem_not, elem_notanumber, elem_note, elem_notin, elem_notprsubset,
         elem_notsubset,
     elem_object, elem_of, elem_ol, elem_online, elem_optgroup, elem_option, elem_or, elem_otherwise, elem_outerproduct, elem_output, elem_over, elem_overlay,
-    elem_p, elem_page, elem_pageset, elem_param, elem_partialdiff, elem_path, elem_pattern, elem_person, elem_picture, elem_piece, elem_piecewise, elem_plaintext, elem_plus,
-        elem_polygon, elem_polyline, elem_power, elem_pre, elem_prefetch, elem_preventdefault, elem_printed, elem_product, elem_progress, elem_prototype, elem_prsubset,
+    elem_p, elem_page, elem_pageset, elem_param, elem_partialdiff, elem_path, elem_pattern, elem_person, elem_pi, elem_picture, elem_piece, elem_piecewise, elem_plaintext, elem_plus,
+        elem_polygon, elem_polyline, elem_power, elem_pre, elem_prefetch, elem_preventdefault, elem_primes, elem_printed, elem_product, elem_progress, elem_prototype, elem_prsubset,
     elem_q, elem_quote, elem_quotient,
-    elem_radialgradient, elem_range, elem_rb, elem_rbc, elem_real, elem_rect, elem_refcontent, elem_reln, elem_rem, elem_removed, elem_removeeventlistener, elem_render, elem_right,
+    elem_radialgradient, elem_range, elem_rationals, elem_rb, elem_rbc, elem_real, elem_reals, elem_rect, elem_refcontent, elem_reln, elem_rem, elem_removed, elem_removeeventlistener, elem_render, elem_right,
         elem_root, elem_row, elem_rp, elem_rt, elem_rtc, elem_ruby,
     elem_s, elem_samp, elem_scalarproduct, elem_script, elem_sdev, elem_sec, elem_sech, elem_section, elem_select, elem_selector, elem_semantics, elem_sep, elem_separator, elem_set, elem_setdiff,
         elem_shadow, elem_sin, elem_sinh, elem_slot, elem_small, elem_solidcolour, elem_source, elem_spacer, elem_span, elem_spot, elem_sqrt, elem_standby, elem_stop,
         elem_stoppropagation, elem_strike, elem_strong, elem_style, elem_sub, elem_subset, elem_sum, elem_summary, elem_sup, elem_svg, elem_switch, elem_symbol,
     elem_t, elem_tab, elem_table, elem_tan, elem_tanh, elem_tbody, elem_tbreak, elem_td, elem_template, elem_tendsto, elem_text, elem_textarea, elem_textpath, elem_tfoot,
         elem_th, elem_thead, elem_tilde, elem_time, elem_times, elem_title, elem_tr, elem_track, elem_traitdef, elem_transition, elem_transformer, elem_transpose, elem_tref,
-        elem_tspan, elem_tt,
+        elem_true, elem_tspan, elem_tt,
     elem_u, elem_ul, elem_union, elem_uplimit, elem_use,
     elem_var, elem_variance, elem_veaffine, elem_vec, elem_vector, elem_vectoreffect, elem_vectorproduct, elem_veexclude, elem_vefill, elem_veintersect, elem_vejoin, elem_vemarker, elem_vemarkerpath,
         elem_vepath, elem_vepathref, elem_vereverse, elem_vesetback, elem_vestroke, elem_vestrokepath, elem_veunion, elem_video, elem_view, elem_vkern,
@@ -381,6 +381,7 @@ inline bool is_standard_element (const e_element e) { return (e >= elem_a) && (e
 
 typedef enum { ee_www, e_multi, ee_text } e_enctype;
 typedef enum { ekh_done, ekh_enter, ekh_go, ekh_next, ekh_previous, ekh_search, ekh_send } e_enterkeyhint;
+typedef enum { emi_good, emi_math, emi_not_svg, emi_svg, emi_rdf } e_emi;
 typedef enum { fa_bleedleft, fa_left, fa_centre, fa_right, fa_bleedright, fa_justify } e_figalign;
 typedef enum { fa_freeze, fa_remove } e_fillanim;
 typedef enum { fr_nonzero, fr_evenodd, fr_inherit } e_fillrule;
@@ -1276,7 +1277,8 @@ typedef enum
     nit_fontstretch, nit_fontvariant, nit_fontweight, nit_panose_1, nit_icarus, nit_vector_effect, nit_paint, nit_0_1, nit_1_more,
     nit_dashed, nit_marker, nit_background, nit_bad_result, nit_not_schema_property, nit_curses, nit_xlinktype, nit_xlinkactuate,
     nit_dur, nit_svg_values, nit_rotate, nit_origin, nit_colour_matrix, nit_math_kids, nit_bad_hunit, nit_bad_vunit, nit_too_many,
-    nit_use_apply,
+    nit_use_apply, nit_base, nit_declare_first, nit_arg_count, nit_operator_required, nit_bad_bvar, nit_bad_doa, nit_bad_piece,
+    nit_annotation, nit_eof_in_annotation,
 
     nit_context,
 
@@ -1776,7 +1778,7 @@ typedef enum {
     t_absolute_url, t_accept, t_accumulate, t_action, t_actiontype, t_actuate, t_additive, t_align, t_align2070, t_align3, t_aligndec, t_alignfig, t_alignmentbaseline, t_alignplus,
         t_angle, t_angle_ai, t_angle_i, t_arabicform, t_aria_autocomplete, t_aria_invalidity, t_aria_live, t_aria_pressed,  t_aria_sort, t_as, t_attributename,
         t_attributetype, t_autocapitalise, t_autocomplete, t_autocompletes,
-    t_background, t_baselineshift, t_beginvaluelist, t_behaviour, t_border, t_bool, t_bools, t_button,
+    t_background, t_base, t_baselineshift, t_beginvaluelist, t_behaviour, t_border, t_bool, t_bools, t_button,
     t_calcmode, t_captionalign, t_capture, t_channel_selector, t_char, t_charset, t_charsets, t_citype, t_class, t_clear, t_clear30, t_clip, t_closure, t_colour, t_colour_ci, t_colour_i,
         t_colourinterpolation, t_colourrendering, t_colour_v, t_command, t_compact, t_composite_operator, t_conditional, t_content_encoding, t_content_encodings,
         t_content_type, t_context_menu, t_controlslist, t_coordinatesystem, t_coords, t_cors, t_cntype, t_css, t_csp, t_curie, t_curie_safe, t_curies, t_currency, t_cursor,

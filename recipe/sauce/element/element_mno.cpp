@@ -40,6 +40,17 @@ void element::examine_map ()
             if (! compare_no_case (a_.get_string (a_name), a_.get_string (a_id)))
                 pick (nit_name_id, ed_50, "4.7.11 The map element", es_error, ec_attribute, "If NAME and ID are both specified, they must have the same value"); }
 
+void element::examine_math ()
+{   if (! has_child ()) return;
+    if (page_.version ().math () < math_2) return;
+    bool other = false;
+    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
+            if (c -> node_.tag () != elem_declare) other = true;
+            else if (other)
+            {   pick (nit_declare_first, ed_math_2, "4.4.2.8 Declare (declare)", es_error, ec_element, "All <DECLARE> elements must occur at the beginning of a <MATH> element");
+                break; } }
+
 void element::examine_media_element (e_element , const char* ref, const char* name)
 {   assert (ref != nullptr);
     if (a_.known (a_controls)) no_anchor_daddy ();

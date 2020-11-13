@@ -133,10 +133,12 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
         if (got.has_svg ())
             if (! has_svg () || (got.svg_version () >= svg_version ()))
             {   nits.pick (nit_svg, es_comment, ec_parser, "SVG recognised");
+                math_version (got.math_version ());
                 return true; }
         if (got.has_math ())
             if (! has_math ())
             {   nits.pick (nit_svg, es_comment, ec_parser, "MathML recognised");
+                svg_version (got.svg_version ());
                 return true; }
         nits.pick (nit_html_contradictory, es_warning, ec_parser, "contradictory ", gen, " statement encountered");
         return true; }
@@ -324,12 +326,20 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 return false; }
             ::std::string ver ("HTML 5.");
             ver += static_cast < char > ('0' + context.html_minor ());
+            html_version vvv;
+            e_nit wit = nit_free;
+            e_mathversion ev = context.math_version ();
+            e_svg_version sv = context.svg_version ();
             switch (context.html_minor ())
-            {   case 0 : note_parsed_version (nits, nit_html_5_0, html_5_0, ver); break;
-                case 1 : note_parsed_version (nits, nit_html_5_1, html_5_1, ver); break;
-                case 2 : note_parsed_version (nits, nit_html_5_2, html_5_2, ver); break;
-                case 3 : note_parsed_version (nits, nit_html_5_3, html_5_3, ver); break;
-                default : note_parsed_version (nits, nit_html_20_07, html_jul_20, ver); break; }
+            {   case 0 : wit = nit_html_5_0; vvv = html_5_0; break;
+                case 1 : wit = nit_html_5_1; vvv = html_5_1; break;
+                case 2 : wit = nit_html_5_2; vvv = html_5_2; break;
+                case 3 : wit = nit_html_5_3; vvv = html_5_3; break;
+                default : wit = nit_html_20_07; vvv = html_jul_20; break; }
+            assert (wit != nit_free);
+            if (ev > math_none) vvv.math_version (ev);
+            if (sv > sv_none) vvv.svg_version (sv);
+            note_parsed_version (nits, wit, vvv, ver);
             if (found_public)
                 nits.pick (nit_public_unexpected, es_warning, ec_parser, "PUBLIC is unexpected"); }
         else
@@ -372,8 +382,6 @@ bool html_version::lazy () const
     if (mjr_ == 0) return false;
     return (mnr_ > 0); }
 
-
-typedef enum { emi_good, emi_math, emi_not_svg, emi_svg, emi_rdf } e_emi;
 e_emi extension_conflict (const html_version& lhs, const html_version& rhs)
 {   if (lhs.mjr () < 4) return emi_good;
     if (! lhs.has_math () && rhs.has_math ()) return emi_math;

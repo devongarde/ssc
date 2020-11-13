@@ -505,6 +505,15 @@ nitname nitnames [] =
     { nit_bad_vunit, "bad_vunit" },
     { nit_too_many, "too_many" },
     { nit_use_apply, "use_apply" },
+    { nit_base, "base" },
+    { nit_declare_first, "declare_first" },
+    { nit_arg_count, "arg_count" },
+    { nit_operator_required, "operator_required" },
+    { nit_bad_bvar, "bad_bvar" },
+    { nit_bad_doa, "bad_doa" },
+    { nit_bad_piece, "bad_piece" },
+    { nit_annotation, "annotation" },
+    { nit_eof_in_annotation, "eof_in_annotation" },
 
     { nit_off, "" } };
 

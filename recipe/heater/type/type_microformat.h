@@ -63,7 +63,7 @@ template < > struct type_master < t_sex > : tidy_string < t_sex >
                 sex_ = s [0];
                 gender_ = s.substr (2);
                 break;
-#if VS > 13
+#if ! defined (_MSC_VER) || (VS > 13)
             case ::std::string::npos :
                 if (s.length () != 1) return false;
                 sex_ = s [0];

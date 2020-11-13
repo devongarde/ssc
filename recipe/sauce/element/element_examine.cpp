@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void element::pre_examine_element (const e_element tag)
 {   switch (tag) // should integrate this into individual element verification
     {   case elem_area : examine_area (); break;
+        case elem_annotation : examine_annotation (); break;
         case elem_base : examine_base (); break;
         case elem_body :
         case elem_head :
@@ -80,14 +81,24 @@ void element::post_examine_element (const e_element tag)
     {   case elem_a : examine_anchor (); break;
         case elem_address : examine_address (); break;
         case elem_animatemotion : examine_animatemotion (); break;
+        case elem_apply : examine_equation (); break;
         case elem_article : examine_article (); break;
         case elem_aside : examine_aside (); break;
         case elem_audio : examine_audio (); break;
         case elem_button : examine_button (); break;
+        case elem_degree :
+        case elem_lowlimit :
+        case elem_uplimit : if (page_.version ().math () <= math_1) break;
+                            check_math_children (1); break;
         case elem_caption : examine_caption (); break;
         case elem_colgroup : examine_colgroup (); break;
+        case elem_condition :
+        case elem_fn :          if (page_.version ().math () > math_1) check_math_children (1);
+                                break;
         case elem_datalist : examine_datalist (); break;
         case elem_dd : examine_dd (); break;
+        case elem_declare : if (page_.version ().math () > math_1) check_math_children (1, 2);
+                            break;
         case elem_details : examine_details (); break;
         case elem_div : examine_div (); break;
         case elem_dl : examine_dl (); break;
@@ -102,7 +113,12 @@ void element::post_examine_element (const e_element tag)
         case elem_form : examine_form (); break;
         case elem_header : examine_header (); break;
         case elem_input : examine_input (); break;
+        case elem_interval :if (page_.version ().math () <= math_1) break;
+                            // drop thru'
+        case elem_piece :   check_math_children (2); break;
         case elem_label : examine_label (); break;
+        case elem_math : examine_math (); break;
+        case elem_bvar :
         case elem_maction :
 //        case elem_menclose :
         case elem_merror :
@@ -112,7 +128,8 @@ void element::post_examine_element (const e_element tag)
         case elem_mphantom :
         case elem_msqrt :
         case elem_mstyle :
-        case elem_mtd : check_math_children (1, true); break;
+        case elem_mtd :
+        case elem_semantics : check_math_children (1, true); break;
         case elem_meta : examine_meta (); break;
         case elem_mfrac :
         case elem_mover :
@@ -126,7 +143,9 @@ void element::post_examine_element (const e_element tag)
         case elem_noscript : examine_noscript (); break;
         case elem_object : examine_object (); break;
         case elem_select : examine_select (); break;
+        case elem_piecewise : examine_piecewise (); break;
         case elem_picture : examine_picture (); break;
+        case elem_reln : examine_equation (); break;
         case elem_ruby : examine_ruby (); break;
         case elem_source : examine_source (); break;
         case elem_switch : examine_switch (); break;

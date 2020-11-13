@@ -58,6 +58,29 @@ void element::examine_label ()
             else if (naughty_label_descendents (this, uid, first))
                 pick (nit_label_parentage, ed_50, "4.10.4 The label element", es_error, ec_element, "a <LABEL> cannot have any form control descendants, except that indicated by FOR"); } }
 
+void element::examine_lambda ()
+{   if (node_.version ().math () < math_2) return;
+    bool domain = false, other = false, bnoted = false, dnoted = false;
+    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
+            switch (c -> tag ())
+            {   case elem_bvar :
+                    if (domain || other)
+                        if (! bnoted)
+                        {   pick (nit_bad_bvar, ed_math_2, "4.4.2.9 Lambda (lambda)", es_error, ec_element, "Under <LAMBDA>, all <BVAR>s must precede other elements.");
+                            bnoted = true; }
+                    break;
+                case elem_domainofapplication :
+                    domain = true;
+                    if (other)
+                        if (! dnoted)
+                        {   pick (nit_bad_doa, ed_math_2, "4.4.2.9 Lambda (lambda)", es_error, ec_element, "Under <LAMBDA>, a <DOMAINOFAPPLICATION> must follow any <BVAR>s but precede other elements.");
+                            dnoted = true; }
+                    break;
+                default :
+                    other = true;
+                    break; } }
+
 void element::examine_li ()
 {   if ((node_.version ().mjr () >= 5) && a_.known (a_value))
         switch (w3_minor_5 (node_.version ()))

@@ -2877,6 +2877,21 @@
     <None Include="..\toast\math\2\math9-example.html">
       <Filter>Toast\Math\2</Filter>
     </None>
+    <None Include="..\toast\math\2\math10-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math11-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math12-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math13-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
+    <None Include="..\toast\math\2\math14-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
