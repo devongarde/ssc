@@ -249,7 +249,7 @@ parentage parent_table [] =
     { { HTML_5_0 }, { HTML_UNDEF }, elem_canvas, elem_undefined },
     { { HTML_3_2 }, { HTML_UNDEF }, elem_centre, elem_undefined, 0, EF_32_BODY },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_centre, elem_undefined, 0, EF_4_FLOW },
-    { { HTML_5_0 }, { HTML_UNDEF }, elem_centre, elem_undefined },
+//    { { HTML_5_0 }, { HTML_UNDEF }, elem_centre, elem_undefined },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_ci, elem_undefined, 0, EF_M_PRESINCONTENT },
     { { XHTML_2_0, 0, HE_SVG_2_0 }, { HTML_UNDEF }, elem_circle, elem_clippath },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_circle, elem_discard },
@@ -290,6 +290,8 @@ parentage parent_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, elem_colgroup, elem_col },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_colgroup, elem_template },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_colourprofile, elem_undefined, 0, EF_SVG_DESC },
+    { { XHTML_1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, elem_condition, elem_apply },
+    { { XHTML_1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, elem_condition, elem_reln },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_condition, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_cursor, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_3_0 }, { HTML_3_0 }, elem_credit, elem_undefined, 0, EF_3_TEXTIN },
@@ -823,8 +825,9 @@ parentage parent_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, elem_math, elem_right },
     { { HTML_PLUS }, { HTML_PLUS }, elem_math, elem_undefined, 0, EF_MATH | EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_3_0 }, { HTML_3_0 }, elem_math, elem_undefined, 0, EF_3_MATHIN },
+    { { XHTML_1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, elem_math, elem_declare },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_math, elem_undefined, 0, EF_M_MATH },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_matrix, elem_undefined, 0, EF_M_CONTENTEXPR },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_matrix, elem_matrixrow },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_matrixrow, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_TAGS }, { HTML_1_0 }, elem_menu, elem_a },
     { { HTML_5_1 }, { HTML_5_1 }, elem_menu, elem_hr },
@@ -1452,14 +1455,15 @@ bool is_permitted_parent_child (nitpick& nits, const html_version& v, const elem
             if (i -> second.child_ == seek)
                 if (does_apply (v, i -> second.first_, i -> second.last_))
                     if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
-                    {   if (i -> second.flags_ == 0) return true;
-                        if ((i -> second.flags_ & DENY) != 0)
-                        {   nits.pick (nit_wrong_parent, es_error, ec_element, "<", parent.name (), "> cannot have a child <", self.name (), "> element"); return false; }
-                        if (! parent.is_unclosed (v)) return true;
-                        if ((i -> second.first_ > html_tags) || i -> second.last_.known ())
-                            nits.pick (nit_wrong_parent, es_error, ec_element, "<", self.name (), "> does not go inside <", parent.name (), "> in ", v.report ());
-                        else nits.pick (nit_wrong_parent, es_error, ec_element, "<", self.name (), "> does not go inside <", parent.name (), ">");
-                        break; }
+                        if (! i -> second.first_.has_math () || ((i -> second.first_.ext () & v.ext ()) != 0))
+                        {   if (i -> second.flags_ == 0) return true;
+                            if ((i -> second.flags_ & DENY) != 0)
+                            {   nits.pick (nit_wrong_parent, es_error, ec_element, "<", parent.name (), "> cannot have a child <", self.name (), "> element"); return false; }
+                            if (! parent.is_unclosed (v)) return true;
+                            if ((i -> second.first_ > html_tags) || i -> second.last_.known ())
+                                nits.pick (nit_wrong_parent, es_error, ec_element, "<", self.name (), "> does not go inside <", parent.name (), "> in ", v.report ());
+                            else nits.pick (nit_wrong_parent, es_error, ec_element, "<", self.name (), "> does not go inside <", parent.name (), ">");
+                            break; }
     return false; }
 
 bool is_permitted_parent_child (const html_version& v, const elem& self, const e_element seek, const elem& parent)
@@ -1469,10 +1473,11 @@ bool is_permitted_parent_child (const html_version& v, const elem& self, const e
             if (i -> second.child_ == seek)
                 if (does_apply (v, i -> second.first_, i -> second.last_))
                     if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
-                    {   if (i -> second.flags_ == 0) return true;
-                        if ((i -> second.flags_ & DENY) != 0) return false;
-                        if (! parent.is_unclosed (v)) return true;
-                        break; }
+                        if (! i -> second.first_.has_math () || ((i -> second.first_.ext () & v.ext ()) != 0))
+                        {   if (i -> second.flags_ == 0) return true;
+                            if ((i -> second.flags_ & DENY) != 0) return false;
+                            if (! parent.is_unclosed (v)) return true;
+                            break; }
     return false; }
 
 bool is_permitted_parent (nitpick& nits, const html_version& v, const elem& self, const elem& parent)
@@ -1601,6 +1606,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_cartesianproduct :
         case elem_ceiling :
         case elem_codomain :
+        case elem_complexes :
         case elem_condition :
         case elem_conjugate :
         case elem_cos :
@@ -1618,12 +1624,16 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_divide :
         case elem_domain :
         case elem_domainofapplication :
+        case elem_emptyset :
         case elem_eq :
         case elem_equivalent :
+        case elem_eulergamma :
         case elem_exists :
+        case elem_exponentiale :
         case elem_exp :
         case elem_factorial :
         case elem_factorof :
+        case elem_false :
         case elem_floor :
         case elem_forall :
         case elem_gcd :
@@ -1632,9 +1642,12 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_gt :
         case elem_ident :
         case elem_imaginary :
+        case elem_imaginaryi :
         case elem_implies :
         case elem_in :
+        case elem_infinity :
         case elem_int :
+        case elem_integers :
         case elem_intersect :
         case elem_inverse :
         case elem_laplacian :
@@ -1655,21 +1668,27 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_moment :
         case elem_momentabout :
         case elem_mprescripts :
+        case elem_naturalnumbers :
         case elem_neq :
         case elem_none :
         case elem_not :
+        case elem_notanumber :
         case elem_notin :
         case elem_notsubset :
         case elem_notprsubset :
         case elem_or :
         case elem_outerproduct :
         case elem_partialdiff :
+        case elem_pi :
         case elem_plus :
         case elem_power :
+        case elem_primes :
         case elem_product :
         case elem_prsubset :
         case elem_quotient :
+        case elem_rationals :
         case elem_real :
+        case elem_reals :
         case elem_rem :
         case elem_scalarproduct :
         case elem_sdev :
@@ -1687,6 +1706,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_tendsto :
         case elem_times :
         case elem_transpose :
+        case elem_true :
         case elem_union :
         case elem_uplimit :
         case elem_variance :

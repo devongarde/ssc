@@ -62,6 +62,16 @@ void element::examine_animatemotion ()
                 {   pick (nit_animatemotion, ed_svg_1_1, "19.2.14 The animateMotion element", es_error, ec_element, "<ANIMATEMOTION> can only have ONE child <MPATH>");
                     return; } }
 
+void element::examine_annotation ()
+{   if (node_.version ().math () < math_2) return;
+    if (has_child ())
+        pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes to effort to analyse the content of <ANNOTATION>"); }
+
+void element::examine_annotation_xml ()
+{   if (node_.version ().math () < math_2) return;
+    if (has_child ())
+        pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes to effort to analyse the content of <ANNOTATION-XML>"); }
+
 void element::examine_area ()
 {   if (node_.version ().mjr () >= 5)
     {   if (! any (ancestral_elements_, empty_element_bitset | elem_map | elem_template))

@@ -79,6 +79,7 @@ class element
     void check_ancestors (const e_element self, const element_bitset& gf);
     void check_descendants (const e_element self, const element_bitset& gf);
     void check_math_children (const int expected, const bool or_more = false);
+    void check_math_children (const int from, const int to);
     bool naughty_label_descendents (const element* e, const uid_t uid, bool& first);
     void no_anchor_daddy ();
     template < typename ATTRIBUTE > element* ancestor_known (const e_attribute a) const;
@@ -108,6 +109,8 @@ class element
     {   return node_.text (); }
     void examine_address ();
     void examine_animatemotion ();
+    void examine_annotation ();
+    void examine_annotation_xml ();
     void examine_area ();
     void examine_article ();
     void examine_aside ();
@@ -127,6 +130,7 @@ class element
     void examine_dl ();
     void examine_dt ();
     void examine_embed ();
+    void examine_equation ();
     void examine_fecolourmatrix ();
     void examine_felighting ();
     void examine_fieldset ();
@@ -143,10 +147,12 @@ class element
     void examine_img ();
     void examine_input ();
     void examine_label ();
+    void examine_lambda ();
     void examine_li ();
     void examine_link ();
     void examine_main ();
     void examine_map ();
+    void examine_math ();
     void examine_meta ();
     void examine_meter ();
     void examine_nav ();
@@ -154,6 +160,7 @@ class element
     void examine_object ();
     void examine_option ();
     void examine_picture ();
+    void examine_piecewise ();
     void examine_progress ();
     void examine_reln ();
     void examine_ruby ();

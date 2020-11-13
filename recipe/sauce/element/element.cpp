@@ -147,3 +147,12 @@ void element::check_math_children (const int expected, const bool or_more)
         if (or_more)
             pick (nit_math_kids, ed_math_2, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<", elem::name (tag ()), "> has  ", n, " math child elements; it requires ", expected, " or more");
         else pick (nit_math_kids, ed_math_2, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<", elem::name (tag ()), "> has  ", n, " math child elements; it requires ", expected); }
+
+void element::check_math_children (const int from, const int to)
+{   assert (to > from);
+    int n = 0;
+    if (has_child ())
+        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+            if (! c -> node_.is_closure ()) if (c -> node_.id ().is_math ()) ++n;
+    if ((n < from) || (n > to))
+        pick (nit_math_kids, ed_math_2, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<", elem::name (tag ()), "> has  ", n, " math child elements; it requires between ", from, " and ", to); }

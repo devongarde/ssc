@@ -51,7 +51,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #elif defined (VS2015)
 #define BOOVAR 1
 #define ORDERED
-#define _WIN32_WINNT 0x0501 // XP
+#define _WIN32_WINNT 0x0601 // 7 SP1
 #define _SCL_SECURE_NO_WARNINGS // thanks, boost
 #define _CRT_SECURE_NO_WARNINGS
 #define CONSTEXPR
@@ -63,6 +63,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #elif defined (VS2013)
 #define BOOVAR 1
 #define ORDERED
+#define _WIN32_WINNT 0x0501 // XP
 #define _SCL_SECURE_NO_WARNINGS // thanks, boost
 #define _CRT_SECURE_NO_WARNINGS
 #define CONSTEXPR

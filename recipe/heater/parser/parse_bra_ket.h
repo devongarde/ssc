@@ -30,7 +30,7 @@ class bra_element_ket
     ::std::string::const_iterator end_;
     int line_ = 0;
     bk_status status_ = bk_text;
-    bool closure_ = false, closed_ = false, xmp_ = false, plaintext_ = false, comment_ = false, tested_ = false, silent_content_ = false;
+    bool closure_ = false, closed_ = false, xmp_ = false, plaintext_ = false, comment_ = false, tested_ = false, silent_content_ = false, annotation_ = false, annotation_xml_ = false;
     nitpick nits_;
     void test_specific ();
 public:
@@ -56,6 +56,8 @@ public:
 #ifndef NO_MOVE_CONSTRUCTOR
 	bra_element_ket& operator = (bra_element_ket&& bek) = default;
 #endif
+	bool is_annotation ();
+	bool is_annotation_xml ();
 	bool is_comment ();
     bool is_xmp ();
     bool is_plaintext ();

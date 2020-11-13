@@ -62,6 +62,7 @@ class context_t
     css_cache       css_;
     ::std::unique_ptr < ::std::ofstream > fos_;
     stats_t         data_;
+    ::boost::program_options::options_description   validation_;
 public:
     context_t () = default;
     int parameters (int argc, char** argv);
@@ -279,6 +280,8 @@ public:
     {   out () << data_.report (true); }
     uint64_t file_count () const
     {   return data_.file_count (); }
+    ::boost::program_options::options_description& validation () { return validation_; }
+    const ::boost::program_options::options_description& validation () const { return validation_; }
     ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const; };
 
 extern context_t context;

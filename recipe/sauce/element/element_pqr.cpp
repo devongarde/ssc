@@ -51,6 +51,22 @@ void element::examine_picture ()
     else if (! was_img || order_warn)
         pick (nit_not_img, ed_52, "4.7.4. The source element", es_error, ec_element, "under <PICTURE>, <SOURCE> must precede <IMG>"); }
 
+void element::examine_piecewise ()
+{   bool otherwise = false, noted = false;
+    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
+        switch (c -> tag ())
+        {   case elem_otherwise :
+                otherwise = true; break;
+            case elem_piece :
+                if (otherwise && ! noted)
+                {   pick (nit_bad_piece, ed_math_2, "4.4.2.16 Piecewise declaration (piecewise, piece, otherwise)", es_error, ec_element, "<PIECE> cannot follow <OTHERWISE>");
+                    noted = true; }
+                break;
+            default :
+                assert (false);
+                break; } }
+
 void element::examine_progress ()
 {   if (node_.version ().mjr () >= 5)
     {   check_ancestors (elem_progress, element_bit_set (elem_progress));

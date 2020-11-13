@@ -63,7 +63,7 @@ PASS ../toast/HTML/5.3/html5-bad.html
 11 default_role
 15 attribute_required
 17 missing_close
-19 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent
+19 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent arg_count arg_count
 20 inserted_missing_closure inserted_missing_closure missing_close
 22 missing_open
 24 unrecognised_value autofocus

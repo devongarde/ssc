@@ -108,7 +108,7 @@ struct symbol_entry < e_attribute > attribute_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "background", a_background },
     { { HTML_2_0, 0, HE_IE }, { HTML_UNDEF }, "balance", a_balance },
     { { XHTML_1_0, 0, HE_SVG_1_2 }, { HTML_UNDEF }, "bandwidth", a_bandwidth },
-    { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "base", a_base },
+    { { XHTML_1_0, 0, HE_MATH_1 | HE_MATH_2 }, { HTML_UNDEF }, "base", a_base },
     { { HTML_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, "base-frequency", a_basefrequency },
     { { HTML_4_0, 0, HE_SVG_1_1 | HE_SVG_2_0 }, { HTML_UNDEF }, "basefrequency", a_basefrequency },
     { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "baseline", a_baseline },

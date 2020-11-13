@@ -943,7 +943,9 @@ struct symbol_entry < e_xmlns > xmlns_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/2000/xmlns/", x_xmlns },
     { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/2000/xmlns/", x_xmlns } };
 
-#define INIT_ENUM(XX) type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < e_##XX >))
+#define INIT_ENUM(XX) \
+    type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < e_##XX >)); \
+    context.validation ().add_options () (VALIDATION #XX, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid '" #XX "'.")
 
 void enum_init (nitpick& nits)
 {   INIT_ENUM (action);

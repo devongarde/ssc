@@ -106,7 +106,7 @@ typedef typed_attribute < t_angle, a_azimuth > attr_azimuth;
 typedef typed_attribute < t_background, a_background > attr_background;
 typedef typed_attribute < t_integer, a_balance > attr_balance;
 typedef typed_attribute < t_unsigned, a_bandwidth > attr_bandwidth;
-typedef typed_attribute < t_real, a_base > attr_base;
+typedef typed_attribute < t_base, a_base > attr_base;
 typedef typed_attribute < t_real_1_2, a_basefrequency > attr_base_frequency;
 typedef typed_attribute < t_measure, a_baseline > attr_baseline;
 typedef typed_attribute < t_svg_baselineshift, a_baselineshift > attr_baselineshift;

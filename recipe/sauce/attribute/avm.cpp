@@ -337,7 +337,7 @@ struct hav_t
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontstyle }, \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontweight }
 
-#define MATH1_OPINFO_ATTRIBUTES(ELEM) \
+#define MATH_OPINFO_ATTRIBUTES(ELEM) \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_accent }, \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_form }, \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fence }, \
@@ -375,6 +375,7 @@ struct hav_t
 #define MATH2_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
     MATH1_STANDARD_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_2 ) ), \
     { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xlinkhref }, \
+    { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xlinktype }, \
     { { MAJOR_X1_0, MINOR_X1_0, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xref }
 
 #define MATH2_STANDARD_ATTRIBUTES(ELEM) \
@@ -387,19 +388,26 @@ struct hav_t
 #define MATH2_DEFS_ATTRIBUTES(ELEM) \
     MATH2_DEFS_ATTRIBUTES_EX (ELEM, 0)
 
+#define MATH2_SIZEINFO_ATTRIBUTES(ELEM) \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_linebreak }, \
+    MATH1_SIZEINFO_ATTRIBUTES (ELEM)
+
 #define MATH2_STYLE_ATTRIBUTES(ELEM) \
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, ELEM, a_mathsize }, \
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, ELEM, a_mathvariant }
 
+#define MATH2_FONT_ATTRIBUTES(ELEM) \
+    MATH1_FONT_ATTRIBUTES (ELEM), \
+    MATH2_STYLE_ATTRIBUTES (ELEM)
+
 #define MATH2_TABLE_ATTRIBUTES(ELEM) \
-    MATH1_TABLE_ATTRIBUTES(ELEM), \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnwidth }, \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_minilabelspacing }, \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_side }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_width }
-
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_width }, \
+    MATH1_TABLE_ATTRIBUTES(ELEM)
 
 #define XHTML1_STANDARD_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
     { { XHTML_1_1, 0, HE_RDF_1_0 }, { HTML_UNDEF }, ELEM, a_about }, \
@@ -1066,7 +1074,7 @@ hav_t havt [] =
     HTMLPLUS_ATTRIBUTES (elem_changed),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_ci, a_type },
-    MATH2_STANDARD_ATTRIBUTES (elem_ci),
+    MATH1_DEFS_ATTRIBUTES (elem_ci),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_circle, a_cx },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_circle, a_cy },
@@ -1130,6 +1138,8 @@ hav_t havt [] =
     SVG11_XLINK_ATTRIBUTES (elem_colourprofile),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_colourprofile),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_colourprofile),
+
+    MATH2_DEFS_ATTRIBUTES (elem_complexes),
 
     MATH2_DEFS_ATTRIBUTES (elem_compose),
 
@@ -1297,17 +1307,25 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0, REJECT }, { HTML_UNDEF }, elem_embed, a_vspace },
     STANDARD_HTML54_ATTRIBUTES (elem_embed),
 
+    MATH2_DEFS_ATTRIBUTES (elem_emptyset),
+
     MATH2_DEFS_ATTRIBUTES (elem_eq),
 
     MATH2_DEFS_ATTRIBUTES (elem_equivalent),
+
+    MATH2_DEFS_ATTRIBUTES (elem_eulergamma),
 
     MATH2_DEFS_ATTRIBUTES (elem_exists),
 
     MATH2_DEFS_ATTRIBUTES (elem_exp),
 
+    MATH2_DEFS_ATTRIBUTES (elem_exponentiale),
+
     MATH2_DEFS_ATTRIBUTES (elem_factorial),
 
     MATH2_DEFS_ATTRIBUTES (elem_factorof),
+
+    MATH2_DEFS_ATTRIBUTES (elem_false),
 
     // faux_doctype and faux_xml processed before getting here,
     // so no need to add corresponding attribute information
@@ -1820,6 +1838,8 @@ hav_t havt [] =
 
     MATH2_DEFS_ATTRIBUTES (elem_imaginary),
 
+    MATH2_DEFS_ATTRIBUTES (elem_imaginaryi),
+
     { { HTML_1_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_img, a_align },
     { { HTML_1_0 }, { XHTML_2_0 }, elem_img, a_alt },
     { { MAJOR_5_0, MINOR_5_0, REQUIRED }, { HTML_UNDEF }, elem_img, a_alt },
@@ -1850,9 +1870,11 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_img),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_img),
 
+    MATH2_DEFS_ATTRIBUTES (elem_implies),
+
     MATH2_DEFS_ATTRIBUTES (elem_in),
 
-    MATH2_DEFS_ATTRIBUTES (elem_implies),
+    MATH2_DEFS_ATTRIBUTES (elem_infinity),
 
     { { HTML_2_0, HV_RFC_1867 | HV_NOT32 }, { HTML_UNDEF }, elem_input, a_accept },
     { { HTML_PLUS, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_input, a_align },
@@ -1915,6 +1937,8 @@ hav_t havt [] =
     STANDARD_HTML_4_54_ATTRIBUTES (elem_ins),
 
     MATH2_DEFS_ATTRIBUTES (elem_int),
+
+    MATH2_DEFS_ATTRIBUTES (elem_integers),
 
     MATH2_DEFS_ATTRIBUTES (elem_intersect),
 
@@ -2240,8 +2264,7 @@ hav_t havt [] =
     { { HTML_PLUS }, { HTML_PLUS }, elem_mh, a_method },
     HTMLPLUS_ATTRIBUTES (elem_mh),
 
-    MATH1_FONT_ATTRIBUTES (elem_mi),
-    MATH2_STYLE_ATTRIBUTES (elem_mi),
+    MATH2_FONT_ATTRIBUTES (elem_mi),
     MATH2_STANDARD_ATTRIBUTES (elem_mi),
 
     MATH2_DEFS_ATTRIBUTES (elem_min),
@@ -2268,13 +2291,11 @@ hav_t havt [] =
     MATH2_STYLE_ATTRIBUTES (elem_mmultiscripts),
     MATH2_STANDARD_ATTRIBUTES (elem_mmultiscripts),
 
-    MATH1_FONT_ATTRIBUTES (elem_mn),
-    MATH2_STYLE_ATTRIBUTES (elem_mn),
+    MATH2_FONT_ATTRIBUTES (elem_mn),
     MATH2_STANDARD_ATTRIBUTES (elem_mn),
 
-    MATH1_FONT_ATTRIBUTES (elem_mo),
-    MATH1_OPINFO_ATTRIBUTES (elem_mo),
-    MATH2_STYLE_ATTRIBUTES (elem_mo),
+    MATH2_FONT_ATTRIBUTES (elem_mo),
+    MATH_OPINFO_ATTRIBUTES (elem_mo),
     MATH2_STANDARD_ATTRIBUTES (elem_mo),
 
     MATH2_DEFS_ATTRIBUTES (elem_mode),
@@ -2288,7 +2309,7 @@ hav_t havt [] =
     MATH2_STANDARD_ATTRIBUTES (elem_mover),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mpadded, a_lspace },
-    MATH1_SIZEINFO_ATTRIBUTES (elem_mpadded),
+    MATH2_SIZEINFO_ATTRIBUTES (elem_mpadded),
     MATH2_STYLE_ATTRIBUTES (elem_mpadded),
     MATH2_STANDARD_ATTRIBUTES (elem_mpadded),
 
@@ -2310,12 +2331,11 @@ hav_t havt [] =
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_ms, a_lquote },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_ms, a_rquote },
-    MATH1_FONT_ATTRIBUTES (elem_ms),
-    MATH2_STYLE_ATTRIBUTES (elem_ms),
+    MATH2_FONT_ATTRIBUTES (elem_ms),
     MATH2_STANDARD_ATTRIBUTES (elem_ms),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mspace, a_linebreak },
-    MATH1_SIZEINFO_ATTRIBUTES (elem_mspace),
+    MATH2_SIZEINFO_ATTRIBUTES (elem_mspace),
     MATH2_STANDARD_ATTRIBUTES (elem_mspace),
 
     MATH2_STYLE_ATTRIBUTES (elem_msqrt),
@@ -2346,10 +2366,9 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_verythinmathspace },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_veryverythickmathspace },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_veryverythinmathspace },
-    MATH1_FONT_ATTRIBUTES (elem_mstyle),
-    MATH1_OPINFO_ATTRIBUTES (elem_mstyle),
-    MATH1_TABLE_ATTRIBUTES (elem_mstyle),
-    MATH2_STYLE_ATTRIBUTES (elem_mstyle),
+    MATH2_FONT_ATTRIBUTES (elem_mstyle),
+    MATH_OPINFO_ATTRIBUTES (elem_mstyle),
+    MATH2_TABLE_ATTRIBUTES (elem_mstyle),
     MATH2_STANDARD_ATTRIBUTES (elem_mstyle),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_msub, a_subscriptshift },
@@ -2377,8 +2396,7 @@ hav_t havt [] =
     MATH2_STYLE_ATTRIBUTES (elem_mtd),
     MATH2_STANDARD_ATTRIBUTES (elem_mtd),
 
-    MATH1_FONT_ATTRIBUTES (elem_mtext),
-    MATH2_STYLE_ATTRIBUTES (elem_mtext),
+    MATH2_FONT_ATTRIBUTES (elem_mtext),
     MATH2_STANDARD_ATTRIBUTES (elem_mtext),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mtr, a_columnalign },
@@ -2395,6 +2413,8 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_munderover, a_accentunder },
     MATH2_STYLE_ATTRIBUTES (elem_munderover),
     MATH2_STANDARD_ATTRIBUTES (elem_munderover),
+
+    MATH2_DEFS_ATTRIBUTES (elem_naturalnumbers),
 
     STANDARD_HTML54_ATTRIBUTES (elem_nav),
 
@@ -2419,6 +2439,8 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_note, a_md },
     HTMLPLUS_ATTRIBUTES (elem_note),
     HTML3_CLID_ATTRIBUTES (elem_note),
+
+    MATH2_DEFS_ATTRIBUTES (elem_notanumber),
 
     MATH2_DEFS_ATTRIBUTES (elem_notin),
 
@@ -2545,6 +2567,8 @@ hav_t havt [] =
     HTMLPLUS_ATTRIBUTES (elem_person),
     HTML23_CLID_ATTRIBUTES (elem_person),
 
+    MATH2_DEFS_ATTRIBUTES (elem_pi),
+
     STANDARD_HTML54_ATTRIBUTES (elem_picture),
 
     MATH1_STANDARD_ATTRIBUTES (elem_piece),
@@ -2585,6 +2609,8 @@ hav_t havt [] =
 
     XHTML2_ATTRIBUTES (elem_preventdefault),
 
+    MATH2_DEFS_ATTRIBUTES (elem_primes),
+
     MATH2_DEFS_ATTRIBUTES (elem_product),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_progress, a_max },
@@ -2619,9 +2645,13 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0, REQUIRED }, { MAJOR_3_0, MINOR_3_0 }, elem_range, a_until },
     HTML_CID_ATTRIBUTES (elem_range, MAJOR_3_0, MINOR_3_0, MAJOR_3_0, MINOR_3_0),
 
+    MATH2_DEFS_ATTRIBUTES (elem_rationals),
+
     STANDARD_HTML54_ATTRIBUTES (elem_rb),
 
     MATH2_DEFS_ATTRIBUTES (elem_real),
+
+    MATH2_DEFS_ATTRIBUTES (elem_reals),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_rect, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_rect, a_rx },
@@ -2940,6 +2970,7 @@ hav_t havt [] =
 
     STANDARD_HTML54_ATTRIBUTES (elem_template),
 
+    { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, elem_tendsto, a_type },
     MATH1_DEFS_ATTRIBUTES (elem_tendsto),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_text, a_externalresourcesrequired },
@@ -3086,6 +3117,8 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_tref),
     SVGx_PRES_ATTRIBUTES (elem_tref),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_tref),
+
+    MATH2_DEFS_ATTRIBUTES (elem_true),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_tspan, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_tspan, a_lengthadjust },
