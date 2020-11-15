@@ -84,7 +84,29 @@ PASS ../toast/math/2/math13-example.html
 
 PASS ../toast/math/2/math14-example.html
 2 naughty_lang
-130 inserted_missing_parent missing_close
-131 inserted_missing_closure
-134 inserted_missing_parent missing_close
-135 inserted_missing_closure
+
+PASS ../toast/math/2/math15-example.html
+2 naughty_lang
+96 inserted_missing_parent missing_close math_kids math_kids
+97 inserted_missing_closure
+194 id_exists
+195 id_exists
+196 id_exists
+197 id_exists
+198 id_exists
+199 id_exists
+200 id_exists
+202 id_exists
+203 id_exists
+204 id_exists
+205 id_exists
+206 id_exists
+207 id_exists
+208 id_exists
+224 xmlns_namespace attribute_barred attribute_barred
+270 arg_count arg_count
+272 unrecognised_value ignoring_unknown unrecognised_value ignoring_unknown
+273 unrecognised_value ignoring_unknown
+275 unrecognised_value ignoring_unknown
+300 unrecognised_value ignoring_unknown
+301 arg_count arg_count unrecognised_value ignoring_unknown unrecognised_value ignoring_unknown
