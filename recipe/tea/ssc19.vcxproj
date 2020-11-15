@@ -484,6 +484,7 @@
     <None Include="..\toast\math\2\math12-example.html" />
     <None Include="..\toast\math\2\math13-example.html" />
     <None Include="..\toast\math\2\math14-example.html" />
+    <None Include="..\toast\math\2\math15-example.html" />
     <None Include="..\toast\math\2\math2-example.xhtml" />
     <None Include="..\toast\math\2\math3-example.html" />
     <None Include="..\toast\math\2\math4-example.html" />
