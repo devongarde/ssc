@@ -3,6 +3,11 @@ static site checker
 https://dylanharris.org/ssc/index.shtml
 (c) 2020 Dylan Harris
 
+0.0.68
+- completely ignore content of SCRIPT and STYLE elements
+- option to ignore content of other elements
+- options to suppress or recategorise nits
+
 0.0.67
 - completed MathML 2
 

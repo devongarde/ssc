@@ -1,4 +1,3 @@
-../toast/CSS/css.spec
 ../toast/HTML/1.0/html1.spec
 ../toast/HTML/2.0/html2.spec
 ../toast/HTML/3.0/html3.spec
@@ -29,9 +28,13 @@
 ../toast/microformats/mf1/mf1.spec
 ../toast/microformats/mf2/mf2.spec
 ../toast/microformats/rel/rel.spec
-../toast/parsing/parsing.spec
-../toast/simple/simple.spec
-../toast/ssi/ssi.spec
+../toast/other/CSS/css.spec
+../toast/other/ignore/ignore.spec
+../toast/other/nits/nits.spec
+../toast/other/parsing/parsing.spec
+../toast/other/RDF/rdf.spec
+../toast/other/simple/simple.spec
+../toast/other/ssi/ssi.spec
 ../toast/SVG/1.0/svg.spec
 ../toast/SVG/1.1/svg.spec
 ../toast/stats/detail/stats.spec

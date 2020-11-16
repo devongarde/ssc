@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ignore HTML test pages</title>
+</head>
+
+<body>
+
+<h1>ignore HTML Test Pages</h1>
+
+<script>
+
+function getNextImage () {
+
+  var jpgs = [
+
+    'dualmodepaint/animationsloopactionpenmouse/generalexamples!edgesbubblerloopactionmouse',
+    'dualmodepaint/animationsloopactionpenmouse/generalexamples!fracturedoutloopaction',
+    'dualmodepaint/animationsloopactionpenmouse/generalexamples!gridscaleloopactionmouse',
+    'dualmodepaint/animationsloopactionpenmouse/generalexamples!pushpullloopactionmouse',
+    'dualmodepaint/animationsloopactionpenmouse/kaleidospirowarploopactionmouse!circledroploopactionmouse',
+    'dualmodepaint/animationsloopactionpenmouse/kaleidospirowarploopactionmouse!diagonalaffineloopactionmouse',
+    'dualmodepaint/stillartloopactionoraction/stillartstyles!rotatescaleloopactionmouse',
+    'msg/openevolutioneditortocreateyourown/generalexamplespressaction!dentata',
+    'msg/openevolutioneditortocreateyourown/generalexamplespressaction!factory',
+    'msg/openevolutioneditortocreateyourown/generalexamplespressaction!map',
+    'msg/openevolutioneditortocreateyourown/generalexamplespressaction!map2',
+    'msg/openevolutioneditortocreateyourown/generalexamplespressaction!map3',
+    'msg/openevolutioneditortocreateyourown/generalexamplespressaction!schematic',
+    'msg/openevolutioneditortocreateyourown/generalexamplespressaction!schematic2',
+    'msg/openevolutioneditortocreateyourown/generalexamplespressaction!tv',
+    'source!black'
+     ];
+
+  return jpgs [ Math.floor ((Math.random () * jpgs.length) + 1) ];
+}
+
+function showImage () {
+  var image = getNextImage ();
+  var src = '/concrete/' + image.replace ('!','/pictures/') + '.jpg'
+  var href = '/concrete/' + image.replace ('!','/') + '.shtml'
+  var naam = 'set ' + image.replace ('!',', image ')
+  document.getElementById ("slideshow").setAttribute ("src", src);
+  document.getElementById ("slideshow").setAttribute ("alt", naam);
+  document.getElementById ("slideshow").setAttribute ("title", naam);
+  document.getElementById ("link").setAttribute ("href", href);
+}
+
+window.onload=function(){
+  setInterval ("showImage()", 6000);
+}
+
+</script>
+
+<pre>
+#!/bin/sh
+#
+
+set -e
+
+if [[ "$6" == "" ]] ; then
+  /bin/echo "prep.sh IP USER IF FILE HOSTNAME COUNTRY"
+  /bin/echo "IP machine ip address"
+  /bin/echo "USER init file named for new user account containing password"
+  /bin/echo "IF interface name for /etc/hostname.IF"
+  /bin/echo "FILE file containing contents of new /etc/hostname.IF"
+  /bin/echo "HOSTNAME new hostname"
+  /bin/echo "COUNTRY two letter code for host country"
+  return 3
+fi
+
+if [[ ! -f "$4" ]] ; then
+  /bin/echo cannot find $4.
+  return
+fi
+
+if [[ ! -f "~/ansible/prep/init/profile.$6" ]] ; then
+  /bin/echo cannot find ~/ansible/prep/init/profile.$6.
+  return
+fi
+
+cd ~/ansible/prep
+
+if [[ -f init.tgz ]] ; then
+  rm -f init.tgz
+fi
+
+/bin/cp -f "$4" init/hostname.$3
+/bin/echo $6 >init/country
+/bin/echo $5 >init/hn
+/bin/echo $3 >init/if
+/bin/echo $2 >init/user
+#/bin/echo python-3.6.8p0 >init/package
+/bin/echo python-3.7.4 >init/package
+/bin/tar czf init.tgz init
+/bin/rm -f init/hostname.$3 init/if init/user init/package
+
+/bin/cat $USER | /usr/local/bin/sshpass /usr/bin/ssh -o StrictHostKeyChecking=accept-new $USER@$1 "/bin/rm -rf init init.tgz"
+/bin/cat $USER | /usr/local/bin/sshpass /usr/bin/scp init.tgz "$USER@$1:."
+/bin/rm init.tgz
+/bin/cat $USER | /usr/local/bin/sshpass /usr/bin/ssh $USER@$1 "/bin/tar xzf init.tgz"
+/bin/cat $USER | /usr/local/bin/sshpass /usr/bin/ssh $USER@$1 "/bin/cat init/authorized_keys.$USER >> .ssh/authorized_keys"
+/bin/cat root | /usr/bin/ssh $USER@$1 /usr/bin/su root -c /home/$USER/init/init.sh
+</pre>
+
+</body>
+</html>

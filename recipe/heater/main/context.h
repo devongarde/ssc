@@ -26,18 +26,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/html_version.h"
 #include "schema/schema_version.h"
 
-const e_verbose default_output = e_warning;
-
 #define VALID_RESULT 0
 #define STOP_OK 1
 #define NOTHING_TO_DO 2
 #define ERROR_STATE 3
-
 #define DEFAULT_MAX_FILE_SIZE 4
 
+const e_verbose default_output = e_warning;
 class hook;
 class replies;
-
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
 
@@ -48,9 +45,9 @@ class context_t
                     repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, schema_ = false, slob_ = false, ssi_ = false,
                     stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false;
     int             code_ = 0;
-    unsigned char            html_major_ = 5, html_minor_ = 4, mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
+    unsigned char   html_major_ = 5, html_minor_ = 4, mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
     e_svg_version   svg_version_ = sv_none;
-    e_mathversion  math_version_ = math_none;
+    e_mathversion   math_version_ = math_none;
     long            max_file_size_ = DEFAULT_MAX_FILE_SIZE * 1024 * 1024;
     e_verbose       verbose_ = default_output;
     ::std::string   base_, filename_, stub_, hook_, incoming_, index_, macro_end_, macro_start_, output_, path_, persisted_, root_, secret_, server_,
@@ -167,6 +164,7 @@ public:
     context_t& html_major (const int i);
     context_t& html_minor (const int i);
     context_t& incoming (const ::std::string& s) { incoming_ = s; return *this; }
+    context_t& ignore (const vstr_t& s);
     context_t& index (const ::std::string& s) { index_ = s; return *this; }
     context_t& load_css (const bool b) { load_css_ = ! b; return *this; }
     context_t& links (const bool b)

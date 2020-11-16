@@ -558,11 +558,11 @@ struct symbol_entry < e_element > elem_symbol_table [] =
     { { XHTML_1_1, 0, HE_SVG_1_2_FULL }, { HTML_UNDEF }, "xa", elem_xa },
     { { HTML_2_0, 0, HE_IE }, { HTML_4_01 }, "xml", elem_xml, ns_default, EP_SIMPLE },
     { { HTML_TAGS, HV_DEPRECATED123 }, { HTML_3_2 }, "xmp", elem_xmp, ns_default, EP_SIMPLE | EP_XMP, EF_LIT },
-    { { XHTML_1_0, 0, HE_MATH_1 | HE_MATH_2 }, { HTML_UNDEF }, "xor", elem_xor, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT }
-};
+    { { XHTML_1_0, 0, HE_MATH_1 | HE_MATH_2 }, { HTML_UNDEF }, "xor", elem_xor, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT } };
 
 e_element max_tag = last_element_tag;
-
+element_bitset elem::ignored_;
+    
 void elem::init (nitpick& nits)
 {   symbol::init (nits, elem_symbol_table, sizeof (elem_symbol_table) / sizeof (symbol_entry < e_element >), true); }
 

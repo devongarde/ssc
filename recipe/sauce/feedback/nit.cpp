@@ -29,6 +29,11 @@ timmap quick_tim;
 void nit::init ()
 {  preload_nits (); }
 
+e_nit nit::lookup (const ::std::string& name)
+{   nitmap::const_iterator i = quick_nit.find (name);
+    if (i == quick_nit.cend ()) return nit_off;
+    return i -> second; }
+
 ::std::string doc_title (const e_doc doc)
 {   switch (doc)
     {   case ed_mishmash : return "(no reference)";
@@ -133,28 +138,29 @@ bool ignore_this_slob_stuff (const e_nit code)
 {   ::std::ostringstream res;
     ::std::string info;
     if (! empty ())
-        if (! ignore_this_slob_stuff (code ()))
-        {   if (context.tell (static_cast < e_verbose > (static_cast < unsigned > (severity_))))
-            {   if (code () != nit_context)
-                    if (context.codes ()) res << nitcode (code_, severity_) << "  ";
-                    else switch (severity_)
-                    {   case es_catastrophic : res << " >>> "; break;
-                        case es_error : res << " ==> "; break;
-                        case es_warning : res << " --> "; break;
-                        case es_info : res << " ..> "; break;
-                        case es_comment : res << " . > "; break;
-                        default : res << "     "; break; }
-                res << msg_;
-                if (doc_ != ed_mishmash)
-                {   res << " [" << doc_title (doc_);
-                    if (! ref_.empty ())
-                    {   res << ", ";
-                        res << ref_; }
-                    res << "]"; }
-                if (context.nids ())
-                {   timmap::const_iterator i = quick_tim.find (code_);
-                    res << " (" << nitcode (code_, severity_);
-                    if (i != quick_tim.end ()) res << ", " << i -> second;
-                    res << ")"; }
-                res << "\n"; } }
+        if (severity_ != es_silence)
+            if (! ignore_this_slob_stuff (code ()))
+            {   if (context.tell (static_cast < e_verbose > (static_cast < unsigned > (severity_))))
+                {   if (code () != nit_context)
+                        if (context.codes ()) res << nitcode (code_, severity_) << "  ";
+                        else switch (severity_)
+                        {   case es_catastrophic : res << " >>> "; break;
+                            case es_error : res << " ==> "; break;
+                            case es_warning : res << " --> "; break;
+                            case es_info : res << " ..> "; break;
+                            case es_comment : res << " . > "; break;
+                            default : res << "     "; break; }
+                    res << msg_;
+                    if (doc_ != ed_mishmash)
+                    {   res << " [" << doc_title (doc_);
+                        if (! ref_.empty ())
+                        {   res << ", ";
+                            res << ref_; }
+                        res << "]"; }
+                    if (context.nids ())
+                    {   timmap::const_iterator i = quick_tim.find (code_);
+                        res << " (" << nitcode (code_, severity_);
+                        if (i != quick_tim.end ()) res << ", " << i -> second;
+                        res << ")"; }
+                    res << "\n"; } }
     return res.str (); }

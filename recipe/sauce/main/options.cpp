@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "main/args.h"
 #include "utility/lexical.h"
+#include "feedback/nitpick.h"
 
 /*
 -N
@@ -168,10 +169,9 @@ void options::process (int argc, char** argv)
         (GENERAL WEBMENTION ",w", "process webmentions.")
         (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "maximum file size to read, in megabytes (zero to set no limit).")
         (GENERAL NIDS, "output nit identifiers.")
-        (GENERAL NITS, "debug nits (error reporting mechanism).")
-        (GENERAL RDF, "check RDFa attributes.")
         (GENERAL TEST ",T", "machine readable output formatted for tests.")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "user name to supply when requested.")
+        (NITS WATCH, "debug nits (error reporting mechanism).")
         (VALIDATION COLOR, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid colour. May be repeated.")
         (VALIDATION MINOR ",4", ::boost::program_options::value < int > (), "Validate HTML5 with this mnr version (e.g. 3 for HTML 5.3).")
         (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "use this file to test header parsing code.")
@@ -193,13 +193,14 @@ void options::process (int argc, char** argv)
         (DEFCONF ",F", "load configuration from " CONFIGURATION ".")
         ;
     primary.add_options ()
-        (GENERAL CODES, "output feedback codes.")
         (GENERAL CSS_OPTION, "do NOT load css files.")
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute. May be repeated.")
         (GENERAL FILE ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "file for persistent data, requires -N (note " GENERAL PATH ").")
-        (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "output file (default to the console).")
+        (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore attributes and content of specified element. May be repeated.")
         (GENERAL NOCHANGE ",n", "report what will do, but do not actually do it.")
+        (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "output file (default to the console).")
         (GENERAL PATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "root directory for all " PROG " files.")
+        (GENERAL RDF, "check RDFa attributes.")
         (GENERAL SLOB, "ignore slob HTML, such as forgotten closures.")
         (GENERAL SSI ",I", "process simple Server Side Includes.")
         (GENERAL VERBOSE ",v", ::boost::program_options::value < int > () -> default_value (static_cast <int> (default_output)), "output extra information.")
@@ -229,6 +230,16 @@ void options::process (int argc, char** argv)
         (MICRODATA MINOR, ::boost::program_options::value < int > (), "set default schema.org minor version (default: 0).")
         (MICRODATA EXPORT, "export microformat data (only verified data if " MICRODATA MICRODATAARG " is set).")
 
+        (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a catastrophe. Use nid. May be repeated.")
+        (NITS CODES, "output nit codes.")
+        (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a comment. Use nid. May be repeated.")
+        (NITS DEBUG, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a debug message. Use nid. May be repeated.")
+        (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as an error. Use nid. May be repeated.")
+        (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as info. Use nid. May be repeated.")
+        (NITS NIDS, "output nit identifiers.")
+        (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "silence nit. Use nid. May be repeated.")
+        (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a warning. Use nid. May be repeated.")
+
         (STATS PAGE, "report statistics for each page.")
         (STATS SUMMARY ",S", "report site statistics.")
 
@@ -247,7 +258,6 @@ void options::process (int argc, char** argv)
         (VALIDATION CLASS, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid class.")
         (VALIDATION COLOUR, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid colour.")
         (VALIDATION CURRENCY, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid currency.")
-//        (VALIDATION DINGBATARG, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid dingbat (HTML 3.0 only).")
         (VALIDATION HTTPEQUIV, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid meta httpequiv.")
         (VALIDATION LANG, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid language code (such as ma for marain).")
         (VALIDATION METANAME, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid meta name.")
@@ -308,7 +318,6 @@ void options::contextualise ()
 
     context.load_css (var_.count (GENERAL CSS_OPTION) == 0);
     context.nids (var_.count (GENERAL NIDS));
-    context.nits (var_.count (GENERAL NITS));
     context.nochange (var_.count (GENERAL NOCHANGE));
     context.rdf (var_.count (GENERAL RDF));
     context.ssi (var_.count (GENERAL SSI));
@@ -372,6 +381,7 @@ void options::contextualise ()
         context.max_file_size (max * meg); }
 
     if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
+    if (var_.count (GENERAL IGNORED)) context.ignore (var_ [GENERAL IGNORED].as < vstr_t > ());
     if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
     if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose > (var_ [GENERAL VERBOSE].as < int > ()));
 
@@ -379,6 +389,45 @@ void options::contextualise ()
 
     if (var_.count (MICRODATA VERSION)) context.schema_major (static_cast < unsigned char > (var_ [MICRODATA VERSION].as < int > ()));
     if (var_.count (MICRODATA MINOR)) context.schema_minor (static_cast < unsigned char > (var_ [MICRODATA MINOR].as < int > ()));
+
+    context.codes (var_.count (NITS CODES));
+    context.nids (var_.count (NITS NIDS));
+    context.nits (var_.count (NITS WATCH));
+
+    if (var_.count (NITS CATASTROPHE))
+        for (auto s : var_ [NITS CATASTROPHE].as < vstr_t > ())
+            if (! nitpick::modify_severity (s, es_catastrophic))
+                context.err () << quote (s) << ": no such nit.\n";
+
+    if (var_.count (NITS COMMENT))
+        for (auto s : var_ [NITS COMMENT].as < vstr_t > ())
+            if (! nitpick::modify_severity (s, es_comment))
+                context.err () << quote (s) << ": no such nit.\n";
+
+    if (var_.count (NITS DEBUG))
+        for (auto s : var_ [NITS DEBUG].as < vstr_t > ())
+            if (! nitpick::modify_severity (s, es_debug))
+                context.err () << quote (s) << ": no such nit.\n";
+
+    if (var_.count (NITS ERR))
+        for (auto s : var_ [NITS ERR].as < vstr_t > ())
+            if (! nitpick::modify_severity (s, es_error))
+                context.err () << quote (s) << ": no such nit.\n";
+
+    if (var_.count (NITS INFO))
+        for (auto s : var_ [NITS INFO].as < vstr_t > ())
+            if (! nitpick::modify_severity (s, es_info))
+                context.err () << quote (s) << ": no such nit.\n";
+
+    if (var_.count (NITS SILENCE))
+        for (auto s : var_ [NITS SILENCE].as < vstr_t > ())
+            if (! nitpick::modify_severity (s, es_silence))
+                context.err () << quote (s) << ": no such nit.\n";
+
+    if (var_.count (NITS WARNING))
+        for (auto s : var_ [NITS WARNING].as < vstr_t > ())
+            if (! nitpick::modify_severity (s, es_warning))
+                context.err () << quote (s) << ": no such nit.\n";
 
     context.microdata (var_.count (VALIDATION MICRODATAARG));
 
@@ -506,16 +555,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (GENERAL CLASS)) res << GENERAL CLASS "\n";
     if (var_.count (GENERAL CSS_OPTION)) res << GENERAL CSS_OPTION "\n";
     if (var_.count (GENERAL CUSTOM)) { res << GENERAL CUSTOM ": "; pvs (res, var_ [GENERAL CUSTOM].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (GENERAL FILE)) res << GENERAL FILE ": " << var_ [GENERAL FILE].as< ::std::string > () << "\n";
+    if (var_.count (GENERAL FILE)) res << GENERAL FILE ": " << var_ [GENERAL FILE].as < ::std::string > () << "\n";
+    if (var_.count (GENERAL IGNORED)) { res << GENERAL IGNORED ": "; pvs (res, var_ [GENERAL IGNORED].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL MAXFILESIZE)) res << GENERAL MAXFILESIZE ": " << var_ [GENERAL MAXFILESIZE].as < int > () << "\n";
-    if (var_.count (GENERAL NIDS)) res << GENERAL NIDS "\n";
-    if (var_.count (GENERAL NITS)) res << GENERAL NITS "\n";
     if (var_.count (GENERAL NOCHANGE)) res << GENERAL NOCHANGE "\n";
-    if (var_.count (GENERAL PATH)) res << GENERAL PATH ": " << var_ [GENERAL PATH].as< ::std::string > () << "\n";
+    if (var_.count (GENERAL PATH)) res << GENERAL PATH ": " << var_ [GENERAL PATH].as < ::std::string > () << "\n";
     if (var_.count (GENERAL RDF)) res << GENERAL RDF "\n";
     if (var_.count (GENERAL SSI)) res << GENERAL SSI "\n";
     if (var_.count (GENERAL TEST)) res << GENERAL TEST "\n";
-    if (var_.count (GENERAL USER)) res << GENERAL USER ": " << var_ [GENERAL USER].as< ::std::string > () << "\n";
+    if (var_.count (GENERAL USER)) res << GENERAL USER ": " << var_ [GENERAL USER].as < ::std::string > () << "\n";
     if (var_.count (GENERAL VERBOSE)) res << GENERAL VERBOSE ": " << var_ [GENERAL VERBOSE].as < int > () << "\n";
     if (var_.count (GENERAL WEBMENTION)) res << GENERAL WEBMENTION "\n";
 
@@ -527,6 +575,16 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (HTML VERSION)) res << HTML VERSION "\n";
 
     if (var_.count (MATH VERSION)) res << MATH VERSION ": " << var_ [MATH VERSION].as < int > () << "\n";
+
+    if (var_.count (NITS CATASTROPHE)) { res << NITS CATASTROPHE ": "; pvs (res, var_ [NITS CATASTROPHE].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS COMMENT)) { res << NITS COMMENT ": "; pvs (res, var_ [NITS COMMENT].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS DEBUG)) { res << NITS DEBUG ": "; pvs (res, var_ [NITS DEBUG].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS ERR)) { res << NITS ERR ": "; pvs (res, var_ [NITS ERR].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS INFO)) { res << NITS INFO ": "; pvs (res, var_ [NITS INFO].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS NIDS)) res << NITS NIDS "\n";
+    if (var_.count (NITS SILENCE)) { res << NITS SILENCE ": "; pvs (res, var_ [NITS SILENCE].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS WARNING)) { res << NITS WARNING ": "; pvs (res, var_ [NITS WARNING].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS WATCH)) res << NITS WATCH "\n";
 
     if (var_.count (STATS PAGE)) res << STATS PAGE "\n";
     if (var_.count (STATS SUMMARY)) res << STATS SUMMARY "\n";

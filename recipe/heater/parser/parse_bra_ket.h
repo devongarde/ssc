@@ -30,22 +30,24 @@ class bra_element_ket
     ::std::string::const_iterator end_;
     int line_ = 0;
     bk_status status_ = bk_text;
-    bool closure_ = false, closed_ = false, xmp_ = false, plaintext_ = false, comment_ = false, tested_ = false, silent_content_ = false, annotation_ = false, annotation_xml_ = false;
+    e_element suspender_ = elem_undefined;
+    bool closure_ = false, closed_ = false, tested_ = false;
+// xmp_ = false, plaintext_ = false, comment_ = false, annotation_ = false, annotation_xml_ = false, script_ = false, style_ = false;
     nitpick nits_;
     void test_specific ();
 public:
     bra_element_ket () = delete;
     bra_element_ket (nitpick& nits, const int line, const ::std::string::const_iterator s, const ::std::string::const_iterator eofe, const ::std::string::const_iterator e, const bool closure, const bool closed)
-        : start_ (s), eofe_ (eofe), end_ (e), line_ (line), status_ (bk_node), closure_ (closure), closed_ (closed), xmp_ (false), plaintext_ (false), comment_ (false), tested_ (false), nits_ (nits.nick ())
+        : start_ (s), eofe_ (eofe), end_ (e), line_ (line), status_ (bk_node), closure_ (closure), closed_ (closed), tested_ (false), nits_ (nits.nick ())
     { }
     bra_element_ket (nitpick& nits, const int line, const bk_status bks, const ::std::string::const_iterator s, const ::std::string::const_iterator e)
-        : start_ (s), eofe_ (e), end_ (e), line_ (line), status_ (bks), closure_ (false), closed_ (true), xmp_ (false), plaintext_ (false), comment_ (false), tested_ (false), nits_ (nits.nick ())
+        : start_ (s), eofe_ (e), end_ (e), line_ (line), status_ (bks), closure_ (false), closed_ (true), tested_ (false), nits_ (nits.nick ())
     { }
     bra_element_ket (nitpick& nits, const int line, const bk_status bks, const ::std::string arg)
-        : arg_ (arg), start_ (arg_.begin ()), eofe_ (arg_.end ()), end_ (arg_.end ()), line_ (line), status_ (bks), closure_ (false), closed_ (true), xmp_ (false), plaintext_ (false), comment_ (false), tested_ (false), nits_ (nits.nick ())
+        : arg_ (arg), start_ (arg_.begin ()), eofe_ (arg_.end ()), end_ (arg_.end ()), line_ (line), status_ (bks), closure_ (false), closed_ (true), tested_ (false), nits_ (nits.nick ())
     { }
     bra_element_ket (nitpick& nits, const int line, const ::std::string::const_iterator s, const ::std::string::const_iterator e)
-        : start_ (s), eofe_ (e), end_ (e), line_ (line), status_ (bk_text), closure_ (false), closed_ (true), xmp_ (false), plaintext_ (false), comment_ (false), tested_ (false), nits_ (nits.nick ())
+        : start_ (s), eofe_ (e), end_ (e), line_ (line), status_ (bk_text), closure_ (false), closed_ (true), tested_ (false), nits_ (nits.nick ())
     { }
     bra_element_ket (const bra_element_ket& bek) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
@@ -56,9 +58,12 @@ public:
 #ifndef NO_MOVE_CONSTRUCTOR
 	bra_element_ket& operator = (bra_element_ket&& bek) = default;
 #endif
-	bool is_annotation ();
-	bool is_annotation_xml ();
-	bool is_comment ();
+    e_element suspender ();
+//	bool is_annotation ();
+//	bool is_annotation_xml ();
+//	bool is_comment ();
+//	bool is_script ();
+//	bool is_style ();
     bool is_xmp ();
     bool is_plaintext ();
     bool is_whitespace () const;

@@ -152,7 +152,9 @@ bool html_version::invalid_addendum (const html_version& v) const
         if (context.microdata ()) return false;
         else if (v.whatwg ()) return false;
         else return (v.mjr () < 5) || (w3_minor_5 (v) < 4);
-    if (rdf ()) return (! context.rdf ()) && (v != xhtml_2);
+    if (rdf ())
+        if (context.rdf ()) return false;
+        else return (v != xhtml_2);
     return (frameset () && ! v.frameset ()); }
 
 bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
@@ -205,6 +207,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_math :
                 case doc_svg :
+                case doc_rdf :
                     break;
                 case doc_math1 :
                     if (note_parsed_version (nits, nit_math, xhtml_1_0, "XHTML 1.0 with MathML 1"))
@@ -392,7 +395,7 @@ e_emi extension_conflict (const html_version& lhs, const html_version& rhs)
         if (rhs.svg_x2 () && (lhs.mjr () == 4) && (lhs.mnr () == 4)) return emi_good;
         return emi_svg; }
     else if (lhs.has_svg () && rhs.not_svg ()) return emi_not_svg;
-    if (! lhs.has_rdf () && rhs.has_rdf ()) return emi_rdf;
+    if (! context.rdf () && ! lhs.has_rdf () && rhs.has_rdf ()) return emi_rdf;
     return emi_good; }
 
 bool html_version::check_math_svg (nitpick& nits, const html_version& a, const ::std::string& x) const

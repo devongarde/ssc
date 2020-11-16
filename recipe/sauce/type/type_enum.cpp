@@ -591,17 +591,28 @@ struct symbol_entry < e_namedspace > namedspace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "veryverythickmathspace", nd_veryverythickmathspace } };
 
 struct symbol_entry < e_namespace > namespace_symbol_table [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, "cc", ns_cc },
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "bibo", ns_bibo },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "cc", ns_cc },
     { { XHTML_1_0 }, { HTML_UNDEF }, "crs", ns_crs },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "dbp", ns_dbp },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "dbp-owl", ns_dbp_owl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "dbr", ns_dbr },
     { { XHTML_1_0 }, { HTML_UNDEF }, "dc", ns_dc },
     { { XHTML_1_0 }, { HTML_UNDEF }, "dcterms", ns_dcterms },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ex", ns_ex },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "foaf", ns_foaf },
     { { XHTML_1_0 }, { HTML_UNDEF }, "its", ns_its },
     { { XHTML_1_0 }, { HTML_UNDEF }, "math", ns_math },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "owl", ns_owl },
     { { XHTML_1_0 }, { HTML_UNDEF }, "rdf", ns_rdf },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rdfa", ns_rdfa },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rdfs", ns_rdfs },
     { { XHTML_1_0 }, { HTML_UNDEF }, "svg", ns_svg },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "xhv", ns_xhv },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xlink", ns_xlink },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xml", ns_xhtml },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xmlns", ns_xmlns },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "xsd", ns_xsd },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xsi", ns_xsi } };
 
 struct symbol_entry < e_paintkeyword > paintkeyword_symbol_table [] =
@@ -914,7 +925,9 @@ struct symbol_entry < e_xlinkshow > xlinkshow_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "none", xls_none } };
 
 struct symbol_entry < e_xmlns > xmlns_symbol_table [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/1999/xhtml", x_xhtml_1 },
+{   { { HTML_4_0 }, { HTML_UNDEF }, "http://purl.org/ontology/bibo", x_bibo },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://purl.org/ontology/bibo", x_bibo },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/1999/xhtml", x_xhtml_1 },
     { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/1999/xhtml", x_xhtml_1 },
     { { XHTML_1_1 }, { HTML_UNDEF }, "http://www.w3.org/2000/xhtml", x_xhtml_11 },
     { { XHTML_1_1 }, { HTML_UNDEF }, "https://www.w3.org/2000/xhtml", x_xhtml_11 },
@@ -924,24 +937,44 @@ struct symbol_entry < e_xmlns > xmlns_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "https://creativecommons.org/ns#", x_cc },
     { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.ogc.org/crs", x_crs },
     { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.ogc.org/crs", x_crs },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://dbpedia.org/property/", x_dbp },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://dbpedia.org/property/", x_dbp },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://dbpedia.org/ontology/", x_dbp_owl },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://dbpedia.org/ontology/", x_dbp_owl },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://dbpedia.org/resource/", x_dbr },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://dbpedia.org/resource/", x_dbr },
     { { HTML_4_0 }, { HTML_UNDEF }, "http://purl.org/dc/terms/", x_dc },
     { { HTML_4_0 }, { HTML_UNDEF }, "https://purl.org/dc/terms/", x_dc },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://example.org/", x_ex },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://example.org/", x_ex },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://xmlns.com/foaf/0.1/", x_foaf },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://xmlns.com/foaf/0.1/", x_foaf },
     { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/1998/math/mathml", x_mathml },
     { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/1998/math/mathml", x_mathml },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/1999/02/22-rdf-syntax-ns#", x_rdf },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/1999/02/22-rdf-syntax-ns#", x_rdf },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://www.w3.org/2002/07/owl/#", x_owl },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://www.w3.org/2002/07/owl/#", x_owl },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://www.w3.org/1999/02/22-rdf-syntax-ns#", x_rdf },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://www.w3.org/1999/02/22-rdf-syntax-ns#", x_rdf },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/rdfa#", x_rdfa },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://www.w3.org/ns/rdfa#", x_rdfa },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://www.w3.org/2000/01/rdf-schema#", x_rdfs },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://www.w3.org/2000/01/rdf-schema#", x_rdfs },
     { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/2000/svg", x_svg },
     { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/2000/svg", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, "http://www.w3.org/tr/rec-mathml-19980407", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, "https://www.w3.org/tr/rec-mathml-19980407", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, "http://www.w3.org/graphics/svg/svg-19990706.dtd", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, "https://www.w3.org/graphics/svg/svg-19990706.dtd", x_svg },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/1999/xhtml/vocab#", x_xhv },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/1999/xhtml/vocab#", x_xhv },
     { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/1999/xlink", x_xlink },
     { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/1999/xlink", x_xlink },
     { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/xml/1998/namespace", x_xml },
     { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/xml/1998/namespace", x_xml },
     { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/2000/xmlns/", x_xmlns },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/2000/xmlns/", x_xmlns } };
+    { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/2000/xmlns/", x_xmlns },
+    { { HTML_4_0 }, { HTML_UNDEF }, "http://www.w3.org/2001/XMLSchema#", x_xsd },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://www.w3.org/2001/XMLSchema#", x_xsd } };
 
 #define INIT_ENUM(XX) \
     type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < e_##XX >)); \

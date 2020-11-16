@@ -35,10 +35,10 @@ template < typename VALUE > struct symbol_entry
     e_namespace     ns_ = ns_default;
     uint64_t        flags_ = 0;
     uint64_t        flags2_ = 0;
-#ifdef REQUIRE_CONSTRUCTOR 
+#ifdef REQUIRE_CONSTRUCTOR
     symbol_entry (  const html_version& first, const html_version& last, const char* sz, const VALUE v,
                     const e_namespace ns = ns_default, const uint64_t flags = 0, const uint64_t flags2 = 0)
-        : first_ (first), last_ (last), sz_ (sz), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { } 
+        : first_ (first), last_ (last), sz_ (sz), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
 #endif
 };
 

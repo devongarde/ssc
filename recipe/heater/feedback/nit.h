@@ -43,6 +43,7 @@ public:
 	nit& operator = (nit&& n) = default;
 #endif
 	static void init();
+    static e_nit lookup (const ::std::string& name);
     void swap (nit& n) NOEXCEPT;
     void reset ();
     void reset (const nit& n);

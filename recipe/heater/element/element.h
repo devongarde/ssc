@@ -185,9 +185,9 @@ class element
 public:
     element () = delete;
     element (const ::std::string& name, element_node& en, element* parent, ids_t& ids, sstr_t* access, page& p);
-
     ~element () = default;
     void swap (element& e) NOEXCEPT;
+
     const element_node& node () const
     {   return node_; }
     const ::std::string name () const { return name_; }

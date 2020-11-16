@@ -78,6 +78,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SVG20COND   SVG11COND
 #define SVGPRES     a_textanchor, a_textrendering, SVG11PRES
 
+#define RDFa        a_about, a_content, a_datatype, a_inlist, a_prefix, a_property, a_rel, a_resource, a_rev, a_src, a_typeof, a_vocab
+
 #define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
 #define BLUR        a_onfocus, a_onblur
 #define DINGBAT     a_dingbat, a_md, a_seqnum, a_skip, a_align, a_clear, a_nowrap
@@ -85,7 +87,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                     a_onmouseover, a_onmouseout
 #define ITEM        a_itemid, a_itemprop, a_itemref, a_itemscope, a_itemtype
 #define RESERVED4   a_datafld, a_dataformatas, a_datasrc
-#define XHTML       a_xmlns, a_xmllang, SVG11
+#define XHTML       a_xmlns, a_xmllang, RDFa, SVG11
 
 #define LANGDIR     a_dir, a_lang
 #define CLID        a_class, a_id
@@ -107,11 +109,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X2_CORE     a_layout, a_xmlid
 #define X2_HYPER    a_cite, a_href, a_hreflang, a_hrefmedia, a_hreftype, a_nextfocus, a_prevfocus, a_target, a_itstranslate
 #define X2_SOLO     a_class, a_dir, a_id, a_style, a_title, XHTML
-#define X2_EMBED    a_encoding, a_src, a_srctype
+#define X2_EMBED    a_encoding, a_srctype
 #define X2_MAP      a_usemap, a_ismap, a_shape, a_coords
-#define X2_META     a_about, a_content, a_datatype, a_inlist, a_prefix, a_property, a_rel, a_resource, a_rev, a_typeof, a_vocab
 #define X2_EVENT    a_event, a_observer, a_eventtarget, a_function, a_handler, a_phase, a_propagate, a_defaultaction
-#define X2_COMMON   a_edit, a_media, a_role, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_META, X2_EVENT, SVG20
+#define X2_COMMON   a_edit, a_media, a_role, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_EVENT, SVG20
 #define X2          X2_COMMON, COMMON4
 #define XHTML2      X2_COMMON, X2_SOLO
 #define COMMON50    a_accesskey, a_contenteditable, a_generator_unable, a_hidden, a_spellcheck, \

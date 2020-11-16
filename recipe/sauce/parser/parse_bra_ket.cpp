@@ -62,52 +62,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void bra_element_ket::test_specific ()
 {   if (! tested_)
-    {   if ((status_ == bk_node) && (start_ != eofe_))
-            switch (*start_)
-            {   case 'a' :
-                case 'A' :  annotation_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_annotation));
-                            annotation_xml_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_annotation_xml));
-                            break;
-                case 'C' :
-                case 'c' :  comment_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_comment));
-                            break;
-                case 'P' :
-                case 'p' :  plaintext_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_plaintext));
-                            break;
-                case 'S' :
-                case 's' :  silent_content_ = ! closure_ && ! closed_ &&
-                                              ( compare_no_case (::std::string (start_, eofe_), elem::name (elem_script)) ||
-                                                compare_no_case (::std::string (start_, eofe_), elem::name (elem_style)));
-                            break;
-                case 'X' :
-                case 'x' :  xmp_ = compare_no_case (::std::string (start_, eofe_), elem::name (elem_xmp));
-                            break;
-                default  :  break; }
+    {   if ((status_ == bk_node) && (start_ != eofe_) && ! closure_ && ! closed_)
+        {   e_element el = elem::find (html_0, ::std::string (start_, eofe_));
+            switch (el)
+            {   case elem_comment :
+                case elem_plaintext :
+                case elem_xmp :
+                    suspender_ = el;
+                    break;
+                case elem_annotation :
+                case elem_annotation_xml :
+                case elem_script :
+                case elem_style :
+                    if (! elem::ignored (el)) suspender_ = el;
+                    break;
+                default :
+                    if (elem::ignored (el)) suspender_ = el;
+                    break; } }
         tested_ = true; } }
 
-bool bra_element_ket::is_annotation ()
+e_element bra_element_ket::suspender ()
 {   test_specific ();
-    return annotation_; }
-
-bool bra_element_ket::is_annotation_xml ()
-{   test_specific ();
-    return annotation_xml_; }
-
-bool bra_element_ket::is_xmp ()
-{   test_specific ();
-    return xmp_; }
-
-bool bra_element_ket::is_comment ()
-{   test_specific ();
-    return comment_; }
+    return suspender_; }
 
 bool bra_element_ket::is_plaintext ()
 {   test_specific ();
-    return plaintext_; }
+    return (suspender_ == elem_plaintext); }
+
+bool bra_element_ket::is_xmp ()
+{   test_specific ();
+    return (suspender_ == elem_xmp); }
 
 bool bra_element_ket::is_silent_content ()
 {   test_specific ();
-    return silent_content_; }
+    return (suspender_ == elem_script) || (suspender_ == elem_style); }
 
 bool bra_element_ket::is_whitespace () const
 {   if (status_ != bk_text) return false;

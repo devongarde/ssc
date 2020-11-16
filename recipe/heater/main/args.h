@@ -18,12 +18,14 @@ Licence along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+#define ELEMENT_    "element"
 #define GENERAL_    "general"
 #define HTML_       "html"
 #define LINKS_      "link"
 #define MATH_       "math"
 #define MF_         "microformat"
 #define MICRODATA_  "microdata"
+#define NITS_       "nits"
 #define STATS_      "stats"
 #define SVG_        "svg"
 #define VALIDATION_ "validation"
@@ -33,12 +35,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define JOIN        "."
 
+#define ELEMENT     ELEMENT_ JOIN
 #define GENERAL     GENERAL_ JOIN
 #define HTML        HTML_ JOIN
 #define LINKS       LINKS_ JOIN
 #define MF          MF_ JOIN
 #define MATH        MATH_ JOIN
 #define MICRODATA   MICRODATA_ JOIN
+#define NITS        NITS_ JOIN
 #define STATS       STATS_ JOIN
 #define SVG         SVG_ JOIN
 #define VALIDATION  VALIDATION_ JOIN
@@ -46,18 +50,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WMIN        WMIN_ JOIN
 #define WMOUT       WMOUT_ JOIN
 
+#define CATASTROPHE "catastrophe"
 #define CHARSET     "charset"
 #define CHECK       "check"
 #define CLASS       "class"
 #define CODES       "codes"
 #define COLOUR      "colour"
 #define COLOR       "color"
+#define COMMENT     "comment"
 #define CONFIG      "config"
 #define CSS_OPTION  "css"
 #define CURRENCY    "currency"
 #define CUSTOM      "custom"
+#define DEBUG       "debug"
 #define DEFCONF     "defconf"
 #define DINGBATARG  "dingbat"
+#define ERR         "error"
 #define EXPORT      "export"
 #define EXTENSION   "extension"
 #define EXTERNAL    "external"
@@ -66,7 +74,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HELP        "help"
 #define HTTPEQUIV   "httpequiv"
 #define HOOK        "hook"
+#define IGNORED     "ignore"
 #define INDEX       "index"
+#define INFO        "info"
 #define LANG        "lang"
 #define MAXFILESIZE "maxfilesize"
 #define METANAME    "metaname"
@@ -74,7 +84,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MINOR       "minor"
 #define MIMETYPE    "mimetype"
 #define NIDS        "nids"
-#define NITS        "nits"
 #define ONCE        "once"
 #define OUTPUT      "output"
 #define PATH        "datapath"
@@ -89,6 +98,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ROOT        "root"
 #define SECRET      "secret"
 #define SGML        "sgml"
+#define SILENCE     "silence"
 #define SITE        "domain"
 #define SLOB        "slob"
 #define SSI         "ssi"
@@ -100,6 +110,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VERIFY      "verify"
 #define VERSION     "version"
 #define VIRTUAL     "virtual"
+#define WARNING     "warning"
+#define WATCH       "watch"
 #define XLINK       "xlink"
 
 #define CLEAR       "clear"

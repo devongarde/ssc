@@ -5,7 +5,6 @@ PASS ../toast/microdata/schema-mno/map.html
 
 PASS ../toast/microdata/schema-mno/mediaobject.html
 13 bad_script
-16 use_double_quote_code
 20 bad_datetime
 
 PASS ../toast/microdata/schema-mno/medicalcondition.html

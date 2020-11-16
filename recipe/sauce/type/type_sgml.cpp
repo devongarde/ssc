@@ -26,6 +26,7 @@ struct symbol_entry < e_sgml > doctype_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF },  "html", doc_html },
     { { HTML_UNDEF }, { HTML_UNDEF },  "htmlplus", doc_htmlplus },
     { { HTML_UNDEF }, { HTML_UNDEF },  "math", doc_math },
+    { { HTML_UNDEF }, { HTML_UNDEF },  "rdfa", doc_rdf },
     { { HTML_UNDEF }, { HTML_UNDEF },  "public", doc_public },
     { { HTML_UNDEF }, { HTML_UNDEF },  "system", doc_system },
     { { HTML_UNDEF }, { HTML_UNDEF },  "svg", doc_svg },
@@ -263,6 +264,13 @@ struct symbol_entry < e_sgml > doctype_symbol_table [] =
     { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "https://www.w3.org/Math/DTD/mathml1/mathml.dtd", doc_math1 },
     { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "http://www.w3.org/TR/REC-MathML-19980407", doc_math1 },
     { { XHTML_1_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "https://www.w3.org/TR/REC-MathML-19980407", doc_math1 },
+
+    { { XHTML_1_0, 0, HE_RDF_1_0 }, { HTML_UNDEF }, "-//W3C//DTD XHTML+RDFa 1.0//EN", doc_rdfa_1_0 },
+    { { XHTML_1_0, 0, HE_RDF_1_0 }, { HTML_UNDEF }, "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd", doc_rdfa_1_0 },
+    { { XHTML_1_0, 0, HE_RDF_1_0 }, { HTML_UNDEF }, "https://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd", doc_rdfa_1_0 },
+    { { XHTML_1_1, 0, HE_RDF_1_1 }, { HTML_UNDEF }, "-//W3C//DTD XHTML+RDFa 1.1//EN", doc_rdfa_1_1 },
+    { { XHTML_1_1, 0, HE_RDF_1_1 }, { HTML_UNDEF }, "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-2.dtd", doc_rdfa_1_1 },
+    { { XHTML_1_1, 0, HE_RDF_1_1 }, { HTML_UNDEF }, "https://www.w3.org/MarkUp/DTD/xhtml-rdfa-2.dtd", doc_rdfa_1_1 },
 
     { { XHTML_1_1, 0, HE_MATH_1 | HE_SVG_1_0 }, { HTML_UNDEF }, "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.0//EN", doc_compound },
     { { XHTML_1_1, 0, HE_MATH_1 | HE_SVG_1_0 }, { HTML_UNDEF }, "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd", doc_compound },

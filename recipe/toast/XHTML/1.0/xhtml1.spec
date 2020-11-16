@@ -19,9 +19,7 @@ PASS ../toast/XHTML/1.0/x1-bad.xhtml
 
 PASS ../toast/XHTML/1.0/parsing.xhtml
 1 xhtml_1_0
-9 xhtml_cdata
 22 attribute_required
-23 xhtml_cdata
 26 attribute_required
 
 PASS ../toast/XHTML/1.0/mathml-1.xhtml

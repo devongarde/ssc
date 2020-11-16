@@ -112,6 +112,7 @@ void element::examine_meta ()
     bool nk = a_.known (a_name);
     bool csk = a_.known (a_charset);
     bool hek = a_.known (a_httpequiv);
+    bool prp = a_.known (a_property);
     if (node_.version ().mjr () < 5)
     {   if (ipk)
             if (nk || csk || hek)
@@ -122,6 +123,7 @@ void element::examine_meta ()
         if (csk) ++c;
         if (nk) ++c;
         if (md && ipk) ++c;
+        if ((c == 0) && prp) ++c;
         if (c != 1)
             if (md) pick (nit_nahtch, ed_July2020, "4.2.5 The meta element", es_error, ec_element, "exactly one of NAME, HTTP-EQUIV, CHARSET, or ITEMPROP must be specified");
             else pick (nit_nahtch, ed_50, "4.2.5 The meta element", es_error, ec_element, "exactly one of NAME, HTTP-EQUIV, or CHARSET must be specified"); }
