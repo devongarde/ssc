@@ -40,9 +40,9 @@ template < > struct type_master < t_inlist > : tidy_string < t_inlist >
         {   nits.pick (nit_inlist, ed_rdf, "5. Attributes and Syntax", es_error, ec_rdf, "never give INLIST a value");
             tidy_string < t_inlist > :: status (s_invalid); } } };
 
-template < > struct type_master < t_prefix > : string_vector < t_prefix, sz_space >
+template < > struct type_master < t_prefix > : tidy_string < t_prefix >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_prefix, sz_space > :: set_value (nits, v, s); } };
+    {   tidy_string < t_prefix > :: set_value (nits, v, s); } };
 
 template < > struct type_master < t_vocab > : tidy_string < t_curie >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

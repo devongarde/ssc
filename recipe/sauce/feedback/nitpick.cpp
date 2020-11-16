@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "main/context.h"
 
+nitpick::mns_t nitpick::mns_;
+
 const char* doc_ref (const e_doc doc)
 {   switch (doc)
     {   case ed_mishmash : return "(no reference)";
@@ -145,3 +147,9 @@ void nitpick::set_context (const int line, const ::std::string& c)
 
 void nitpick::set_context (const int line, const ::std::string::const_iterator b, ::std::string::const_iterator e)
 {   set_context (line, ::std::string (b, e)); }
+
+bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
+{   e_nit code = nit::lookup (name);
+    if (code == nit_off) return false;
+    modify_severity (code, s);
+    return true; }

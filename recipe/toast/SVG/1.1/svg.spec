@@ -56,7 +56,7 @@ PASS ../toast/SVG/1.1/example-4.html
 2 naughty_lang
 12 svg_version
 13 xmlns_namespace unrecognised_value
-26 ignoring_unknown xmlns_namespace attribute_barred attribute_barred attribute_barred
+26 ignoring_unknown attribute_barred attribute_barred attribute_barred
 33 ignoring_unknown attribute_barred unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
 34 ignoring_unknown
 35 ignoring_unknown

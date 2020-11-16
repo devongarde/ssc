@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        prefix="foaf: http://xmlns.com/foaf/0.1/ dc: http://purl.org/dc/terms/" >
+<head>
+ <meta property="dc:creator" content="Mark Birbeck" />
+ <link rel="foaf:topic" href="http://www.example.com/#us" />
+<title>RDF example 2</title>
+</head>
+
+<body>
+
+<h1 property="dc:title">My home-page</h1>
+ <p>Last modified: 16 September 2015</p>
+
+<p>Last modified: <span property="dc:modified"
+ content="2015-09-16T16:00:00-05:00"
+ datatype="xsd:dateTime">16 September 2015</span>.</p>
+
+<div vocab="http://xmlns.com/foaf/0.1/" about="#me">
+ My name is <span property="name">John Doe</span> and my blog is called
+ <a rel="homepage" href="http://example.org/blog/">Understanding Semantics</a>.
+</div>
+<div vocab="http://xmlns.com/foaf/0.1/" about="#me">
+ My name is <span property="name">John Doe</span> and my blog is called
+ <a property="homepage" href="http://example.org/blog/">Understanding Semantics</a>.
+</div>
+</body>
+</html>

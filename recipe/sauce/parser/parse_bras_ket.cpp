@@ -103,12 +103,11 @@ e_statemachine ket_quote (nitpick& nits, char ch, const e_statemachine status, c
     return status; }
 
 void faux_xmp_check (bra_element_ket& current, e_element& xmp_tag, bool& xmp_mode, const ::std::string::const_iterator& i, ::std::string::const_iterator& x)
-{   if (current.is_comment ())
-    {   xmp_tag = elem_comment; xmp_mode = true; x = i + 1; }
-    else if (current.is_annotation ())
-    {   xmp_tag = elem_annotation; xmp_mode = true; x = i + 1; }
-    else if (current.is_annotation_xml ())
-    {   xmp_tag = elem_annotation_xml; xmp_mode = true; x = i + 1; } }
+{   e_element ee = current.suspender ();
+    if (ee != elem_undefined)
+    {   xmp_tag = ee;
+        xmp_mode = true;
+        x = i + 1; } }
 
 // this parser is horrid, and, worse, it works
 html_version bras_ket::parse (const ::std::string& content)
@@ -742,7 +741,8 @@ html_version bras_ket::parse (const ::std::string& content)
                                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (i+1, e), 30)); } }
                                             else
                                             {   if (current.is_xmp ())
-                                                {   xmp_tag = elem_xmp; xmp_mode = true; }
+                                                {   xmp_tag = elem_xmp;
+                                                    xmp_mode = true; }
                                                 x = i + 1; } }
                                         if (! plaintext && ! xmp_mode)
                                             faux_xmp_check (current, xmp_tag, xmp_mode, i, x); } }

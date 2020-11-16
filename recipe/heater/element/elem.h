@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "symbol/symbol.h"
+#include "element/state.h"
 
 #define EP_CLOSED           0x0000000000000100
 #define EP_SIMPLE           0x0000000000000200 // open, but only text content
@@ -153,7 +154,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class context;
 
 struct elem : symbol < e_element >
-{   static ::std::size_t max_tag_;
+{   static element_bitset ignored_;
     elem () {}
     elem (const html_version& v, const ::std::string& x) : symbol (v, x) { }
     elem (const elem& e) = default;
@@ -161,6 +162,8 @@ struct elem : symbol < e_element >
     elem (nitpick& nits, const html_version& v, const ::std::string& x);
     bool parse (nitpick& nits, const html_version& v, const ::std::string& x);
     static void init (nitpick& nits);
+    static void ignore (const e_element e) { ignored_.set (e); }
+    static bool ignored (const e_element e) { return ignored_.test (e); }
     bool is_unclosed (const html_version& v) const;
     bool is_closed (const html_version& v) const;
     bool is_math () const

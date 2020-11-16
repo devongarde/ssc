@@ -26,9 +26,15 @@ const char* doc_ref (const e_doc doc);
 
 class nitpick
 {   typedef ::std::vector < nit > vn_t;
+    typedef ssc_map < e_nit, e_severity > mns_t;
     vn_t nits_;
+    static mns_t mns_;
     ::std::string context_;
     int line_ = 0;
+    static e_severity user_severity (const e_nit code, const e_severity s)
+    {   mns_t::const_iterator i = mns_.find (code);
+        if (i != mns_.cend ()) return i -> second;
+        return s; }
 public:
     nitpick () = default;
     nitpick (const nitpick& np) = default;
@@ -44,6 +50,9 @@ public:
 #endif
     nitpick& operator += (const nitpick& np) { merge (np); return *this; }
     nitpick& operator += (nitpick&& np) { merge (np); return *this; }
+    static void modify_severity (const e_nit code, const e_severity s)
+    {   mns_.emplace (mns_t::value_type (code, s)); }
+    static bool modify_severity (const ::std::string& name, const e_severity s);
     void swap (nitpick& np) NOEXCEPT;
     void reset ();
     void reset (const nitpick& np);
@@ -52,11 +61,11 @@ public:
     nitpick nick ();
 
     template < typename... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg)
-    {   nits_.emplace_back (code, doc, ref, severity, category, com < Ts... > :: bine (msg...)); }
+    {   nits_.emplace_back (code, doc, ref, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
     template < typename... Ts > void pick (const e_nit code, const e_doc doc, const e_severity severity, const e_category category, Ts... msg)
-    {   nits_.emplace_back (code, doc, ::std::string (), severity, category, com < Ts... > :: bine (msg...)); }
+    {   nits_.emplace_back (code, doc, ::std::string (), user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
     template < typename... Ts > void pick (const e_nit code, const e_severity severity, const e_category category, Ts... msg)
-    {   nits_.emplace_back (code, severity, category, com < Ts... > :: bine (msg...)); }
+    {   nits_.emplace_back (code, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
 
     void pick (const nit& n);
     void pick (nit&& n);

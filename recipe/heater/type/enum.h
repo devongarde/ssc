@@ -1210,10 +1210,11 @@ typedef enum {
 
 typedef enum { mo_dilate, mo_erode } e_morphology_operator;
 typedef enum { mo_display, mo_inline } e_mode;
-typedef enum {  nd_negativeveryverythinmathspace, nd_negativeverythinmathspace, nd_negativethinmathspace, nd_negativemediummathspace, nd_negativethickmathspace,
-                nd_negativeverythickmathspace, nd_negativeveryverythickmathspace,
-                nd_veryverythinmathspace, nd_verythinmathspace, nd_thinmathspace, nd_mediummathspace, nd_thickmathspace, nd_verythickmathspace, nd_veryverythickmathspace } e_namedspace;
-typedef enum { ns_default, ns_cc, ns_crs, ns_dc, ns_dcterms, ns_its, ns_math, ns_rdf, ns_svg, ns_xlink, ns_xhtml, ns_xmlns, ns_xsi, ns_error } e_namespace;
+typedef enum {  nd_negativeveryverythinmathspace, nd_negativeverythinmathspace, nd_negativethinmathspace, nd_negativemediummathspace,
+                nd_negativethickmathspace, nd_negativeverythickmathspace, nd_negativeveryverythickmathspace, nd_veryverythinmathspace,
+                nd_verythinmathspace, nd_thinmathspace, nd_mediummathspace, nd_thickmathspace, nd_verythickmathspace, nd_veryverythickmathspace } e_namedspace;
+typedef enum {  ns_default, ns_bibo, ns_cc, ns_crs, ns_dbp, ns_dbp_owl, ns_dbr, ns_dc, ns_dcterms, ns_ex, ns_foaf, ns_its, ns_math, ns_owl,
+                ns_rdf, ns_rdfa, ns_rdfs, ns_svg, ns_xhv, ns_xlink, ns_xhtml, ns_xmlns, ns_xsd, ns_xsi, ns_error } e_namespace;
 const ::std::size_t first_runtime_namespace = static_cast < ::std::size_t > (ns_error) + 1;
 
 typedef enum
@@ -1701,11 +1702,12 @@ typedef enum { SCHEMES } e_scheme;
 
 typedef enum { s_auto, s_no, s_yes } e_scrolling;
 typedef enum { st_normal, st_multiset } e_settype;
-typedef enum { es_undefined, es_catastrophic, es_error, es_warning, es_info, es_comment, es_debug, es_detail, es_splurge, es_all } e_severity;
+typedef enum { es_undefined, es_catastrophic, es_error, es_warning, es_info, es_comment, es_debug, es_detail, es_splurge, es_all, es_silence } e_severity;
 const e_severity last_severity = es_all;
 
-typedef enum {  doc_unknown, doc_context, doc_html, doc_public, doc_system, doc_math, doc_svg, doc_xhtml,
+typedef enum {  doc_unknown, doc_context, doc_html, doc_public, doc_system, doc_math, doc_rdf, doc_svg, doc_xhtml,
                 doc_math1, doc_math2, doc_math3, doc_math4,
+                doc_rdfa_1_0, doc_rdfa_1_1,
                 doc_svg1, doc_svg11, doc_svg2,
                 doc_html5,
                 doc_xhtml2,
@@ -1856,7 +1858,8 @@ typedef enum { w_soft, w_hard } e_wrap;
 typedef enum { w_horiz, w_vert } e_wrap3;
 typedef enum { wm_lrtb, wm_rltb, wm_tbrl, wm_lr, wm_rl, wm_tb, wm_inherit } e_writingmode;
 typedef enum { xls_new, xls_replace, xls_embed, xls_other, xls_none } e_xlinkshow;
-typedef enum { x_xhtml_1, x_xhtml_11, x_xhtml_2, x_cc, x_crs, x_dc, x_mathml, x_rdf, x_svg, x_xlink, x_xml, x_xmlns } e_xmlns;
+typedef enum {  x_xhtml_1, x_xhtml_11, x_xhtml_2, x_bibo, x_cc, x_crs, x_dbp, x_dbp_owl, x_dbr, x_dc, x_ex, x_foaf, x_mathml, x_owl,
+                x_rdf, x_rdfa, x_rdfs, x_svg, x_xhv, x_xlink, x_xml, x_xmlns, x_xsd } e_xmlns;
 typedef enum { xs_default, xs_preserve } e_xmlspace;
 typedef enum { or_document, or_list } e_xorder;
 typedef enum { y_yes, y_no } e_yesno;
