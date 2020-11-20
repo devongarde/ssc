@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 
+e_namespace map_xmlns_to_namespace (const e_xmlns x);
+
 template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE, E >
 {   typedef typename type_base < TYPE, E > :: value_type value_type;
     typedef typename type_base < TYPE, E > :: base_type base_type;
@@ -78,11 +80,27 @@ template < typename TYPE, e_type E > void enum_base < TYPE, E > :: validate (nit
 template < typename TYPE, e_type E > void enum_base < TYPE, E > :: post_set_value (nitpick& , const html_version& )
 { }
 
+template < > inline void enum_base < e_dir, t_dir > :: validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+{   if (type_base < e_dir, t_dir > :: good ())
+        if (e.is_math ())
+            if (v.math_version () > math_2)
+                if ((value_ != di_ltr) && (value_ != di_rtl))
+                {   nits.pick (nit_dir_rtl_ltr, ed_math_3, "3.2.2 Mathematics style attributes common to token elements", es_error, ec_attribute, "the DIR attribute can be 'ltr' or 'rtl' on a MathML 3 element");
+                    type_base < e_dir, t_dir > :: status (s_invalid); } }
+
 template < > inline void enum_base < e_inputtype, t_inputtype > :: post_set_value (nitpick& nits, const html_version& v)
 {   if (type_base < e_inputtype, t_inputtype > :: good ())
         if ((get () == it_file) && (v == html_2) && ! context.rfc_1867 ())
         {   nits.pick (nit_rfc_1867, es_error, ec_type, "INPUT=file in ", v.report (), " requires RFC 1867, which has been disabled");
             type_base < e_inputtype, t_inputtype > :: status (s_invalid); } }
+
+template < > inline void enum_base < e_linebreak, t_linebreak > :: validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+{   if (type_base < e_linebreak, t_linebreak > :: good ())
+        if (e.is_math ())
+            if (v.math_version () > math_2)
+                if (value_ == lb_indentingnewline)
+                {   nits.pick (nit_dir_rtl_ltr, ed_math_3, "3.2.5.2 Attributes", es_error, ec_attribute, "the value 'indentingnewline' for LINEBREAK is not valid in MathML 3");
+                    type_base < e_linebreak, t_linebreak > :: status (s_invalid); } }
 
 template < e_type E, typename ENUM, class LC = sz_true > struct enum_n : public symbol < ENUM, LC >, public enum_base < ENUM, E >
 {   typedef typename enum_base < ENUM, E > :: value_type value_type;
@@ -157,7 +175,10 @@ template < e_type E, typename ENUM, class LC > void enum_n < E, ENUM, LC > :: se
             else if (f.reject ())
                 nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());
             else
-            {   if (f.deprecated (v)) nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report ());
+            {   if (f.deprecated (v))
+                    nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report ());
+                else if ((f.ext () & HE_M3_NONSTAND) != 0)
+                    nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers.");
                 enum_base < ENUM, E > :: status (s_good);
                 enum_base < ENUM, E > :: post_set_value (nits, v);
                 return; } }
@@ -177,6 +198,7 @@ template < > class type_master < t_charset > : public enum_n < t_charset, e_char
 template < > class type_master < t_citype > : public enum_n < t_citype, e_citype > { };
 template < > class type_master < t_cntype > : public enum_n < t_cntype, e_cntype > { };
 template < > class type_master < t_composite_operator > : public enum_n < t_composite_operator, e_composite_operator > { };
+template < > class type_master < t_crossout > : public enum_n < t_crossout, e_crossout > { };
 template < > class type_master < t_currency > : public enum_n < t_currency, e_currency > { };
 template < > class type_master < t_cursor > : public enum_n < t_cursor, e_cursor > { };
 template < > class type_master < t_decalign > : public enum_n < t_decalign, e_decalign > { };
@@ -186,9 +208,11 @@ template < > class type_master < t_display > : public enum_n < t_display, e_disp
 template < > class type_master < t_dominantbaseline > : public enum_n < t_dominantbaseline, e_dominantbaseline > { };
 template < > class type_master < t_enterkeyhint > : public enum_n < t_enterkeyhint, e_enterkeyhint > { };
 template < > class type_master < t_figalign > : public enum_n < t_figalign, e_figalign > { };
+template < > class type_master < t_filter_in > : public enum_n < t_filter_in, e_filter_in > { };
 template < > class type_master < t_fixedcolour > : public enum_n < t_fixedcolour, e_fixedcolour > { };
 template < > class type_master < t_halign > : public enum_n < t_halign, e_halign > { };
 template < > class type_master < t_httpequiv > : public enum_n < t_httpequiv, e_httpequiv > { };
+template < > class type_master < t_indentalign > : public enum_n < t_indentalign, e_indentalign > { };
 template < > class type_master < t_inky > : public enum_n < t_inky, e_inky > { };
 template < > class type_master < t_inputmode > : public enum_n < t_inputmode, e_inputmode > { };
 template < > class type_master < t_inputplus > : public enum_n < t_inputplus, e_inputplus > { };
@@ -201,8 +225,11 @@ template < > class type_master < t_kind > : public enum_n < t_kind, e_kind > { }
 template < > class type_master < t_linebreak > : public enum_n < t_linebreak, e_linebreak > { };
 template < > class type_master < t_lang > : public enum_n < t_lang, e_lang > { };
 template < > class type_master < t_listtype > : public enum_n < t_listtype, e_listtype, sz_false > { };
+template < > class type_master < t_longdivstyle > : public enum_n < t_longdivstyle, e_longdivstyle > { };
 template < > class type_master < t_mah > : public enum_n < t_mah, e_mah > { };
 template < > class type_master < t_mathalign > : public enum_n < t_mathalign, e_mathalign > { };
+template < > class type_master < t_mathlocation > : public enum_n < t_mathlocation, e_mathlocation > { };
+template < > class type_master < t_mathoverflow > : public enum_n < t_mathoverflow, e_mathoverflow > { };
 template < > class type_master < t_mathvariant > : public enum_n < t_mathvariant, e_mathvariant > { };
 template < > class type_master < t_matrixtype > : public enum_n < t_matrixtype, e_matrixtype > { };
 template < > class type_master < t_media > : public enum_n < t_media, e_media > { };
@@ -239,6 +266,7 @@ template < > class type_master < t_svg_fontweight > : public enum_n < t_svg_font
 template < > class type_master < t_svg_fontweight_ff > : public enum_n < t_svg_fontweight_ff, e_svg_fontweight_ff > { };
 template < > class type_master < t_svg_mode > : public enum_n < t_svg_mode, e_svg_mode > { };
 template < > class type_master < t_svg_overflow > : public enum_n < t_svg_overflow, e_svg_overflow > { };
+template < > class type_master < t_svg_type_11 > : public enum_n < t_svg_type_11, e_svg_type_11 > { };
 template < > class type_master < t_svg_version > : public enum_n < t_svg_version, e_svg_version > { };
 template < > class type_master < t_tableframe > : public enum_n < t_tableframe, e_tableframe > { };
 template < > class type_master < t_textdecoration > : public enum_n < t_textdecoration, e_textdecoration > { };

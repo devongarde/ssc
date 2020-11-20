@@ -78,6 +78,7 @@ class element
     void remove_category (const uint64_t c);
     void check_ancestors (const e_element self, const element_bitset& gf);
     void check_descendants (const e_element self, const element_bitset& gf);
+    void check_mscarries_pos (const e_element self);
     void check_math_children (const int expected, const bool or_more = false);
     void check_math_children (const int from, const int to);
     bool naughty_label_descendents (const element* e, const uid_t uid, bool& first);
@@ -97,13 +98,16 @@ class element
     void examine_content ();
     void examine_css (const e_element tag);
     void examine_draggable ();
+    void examine_href ();
     void examine_headers ();
     void examine_descendant_in (const element* filter);
     itemscope_ptr examine_itemscope (itemscope_ptr& itemscope);
     void examine_itemprop (itemscope_ptr& itemscope);
     void examine_itemref (itemscope_ptr& itemscope);
     void examine_itemtype (itemscope_ptr& itemscope);
+    void examine_other ();
     bool examine_rel (const ::std::string& content);
+    void examine_xlinkhref ();
     void validate_input_id ();
     ::std::string text () const
     {   return node_.text (); }
@@ -137,6 +141,7 @@ class element
     void examine_figcaption ();
     void examine_figure ();
     void examine_filter ();
+    void examine_fn ();
     void examine_fontymacfontface ();
     void examine_footer ();
     void examine_form ();
@@ -155,6 +160,7 @@ class element
     void examine_math ();
     void examine_meta ();
     void examine_meter ();
+    void examine_mglyph ();
     void examine_nav ();
     void examine_noscript ();
     void examine_object ();

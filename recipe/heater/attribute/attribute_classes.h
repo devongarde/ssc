@@ -49,6 +49,8 @@ typedef typed_attribute < t_bool, a_allow_zoom_pan > attr_allowzoompan;
 typedef typed_attribute < t_real, a_alphabetic > attr_alphabetic;
 typedef typed_attribute < t_text, a_alt > attr_alt;
 typedef typed_attribute < t_url, a_altimg > attr_altimg;
+typedef typed_attribute < t_measure, a_altimg_height > attr_altimg_height;
+typedef typed_attribute < t_measure, a_altimg_width > attr_altimg_width;
 typedef typed_attribute < t_text, a_alttext > attr_alttext;
 typedef typed_attribute < t_real, a_amplitude > attr_amplitude;
 typedef typed_attribute < t_arabicform, a_arabicform > attr_arabicform;
@@ -128,13 +130,16 @@ typedef typed_attribute < t_calcmode, a_calcmode > attr_calcmode;
 typedef typed_attribute < t_existential, a_cancelable > attr_cancelable;
 typedef typed_attribute < t_real, a_capheight > attr_capheight;
 typedef typed_attribute < t_capture, a_capture > attr_capture;
+typedef typed_attribute < t_url, a_cdgroup > attr_cdgroup;
 typedef typed_attribute < t_generic, a_cell > attr_cell;
 typedef typed_attribute < t_generic, a_cellpadding > attr_cellpadding;
 typedef typed_attribute < t_generic, a_cellspacing > attr_cellspacing;
 typedef typed_attribute < t_generic, a_challenge > attr_challenge;
 typedef typed_attribute < t_char, a_char > attr_char;
+typedef typed_attribute < t_lcralign, a_charalign > attr_charalign;
 typedef typed_attribute < t_generic, a_charoff > attr_charoff;
 typedef typed_attribute < t_charset, a_charset > attr_charset;
+typedef typed_attribute < t_charspacing, a_charspacing > attr_charspacing;
 typedef typed_attribute < t_existential, a_checked > attr_checked;
 typedef typed_attribute < t_url, a_cite > attr_cite;
 typedef typed_attribute < t_class, a_class > attr_class;
@@ -175,6 +180,7 @@ typedef typed_attribute < t_html_boolean, a_controls > attr_controls;
 typedef typed_attribute < t_controlslist, a_controlslist > attr_controlslist;
 typedef typed_attribute < t_coords, a_coords > attr_coords;
 typedef typed_attribute < t_cors, a_crossorigin > attr_crossorigin;
+typedef typed_attribute < t_crossout, a_crossout > attr_crossout;
 typedef typed_attribute < t_csp, a_csp > attr_csp;
 typedef typed_attribute < t_real, a_currenttime > attr_currenttime;
 typedef typed_attribute < t_cursor_f, a_cursor > attr_cursor;
@@ -188,6 +194,7 @@ typedef typed_attribute < t_url, a_datasrc > attr_datasrc;
 typedef typed_attribute < t_data, a_datawild > attr_datastar;
 typedef typed_attribute < t_curie, a_datatype > attr_datatype;
 typedef typed_attribute < t_datetime, a_datetime > attr_datetime;
+typedef typed_attribute < t_char, a_decimalpoint > attr_decimalpoint;
 typedef typed_attribute < t_existential, a_declare > attr_declare;
 typedef typed_attribute < t_decoding, a_decoding > attr_decoding;
 typedef typed_attribute < t_html_boolean, a_default > attr_default;
@@ -328,7 +335,15 @@ typedef typed_attribute < t_in, a_in2 > attr_in2;
 typedef typed_attribute < t_in, a_in > attr_in;
 typedef typed_attribute < t_html_boolean, a_incremental > attr_incremental;
 typedef typed_attribute < t_unsigned, a_indent > attr_indent;
+typedef typed_attribute < t_indentalign, a_indentalign > attr_indentalign;
+typedef typed_attribute < t_indentalign2, a_indentalignfirst > attr_indentalignfirst;
+typedef typed_attribute < t_indentalign2, a_indentalignlast > attr_indentalignlast;
+typedef typed_attribute < t_measure, a_indentshift > attr_indentshift;
+typedef typed_attribute < t_indentshift2, a_indentshiftfirst > attr_indentshiftfirst;
+typedef typed_attribute < t_indentshift2, a_indentshiftlast > attr_indentshiftlast;
+typedef typed_attribute < t_idref, a_indenttarget > attr_indenttarget;
 typedef typed_attribute < t_index, a_index > attr_index;
+typedef typed_attribute < t_infixlinebreakstyle, a_infixlinebreakstyle > attr_infixlinebreakstyle;
 typedef typed_attribute < t_generic, a_initialvisibility > attr_initialvisibility;
 typedef typed_attribute < t_inlist, a_inlist > attr_inlist;
 typedef typed_attribute < t_inputmode, a_inputmode > attr_inputmode;
@@ -367,18 +382,25 @@ typedef typed_attribute < t_layout, a_layout > attr_layout;
 typedef typed_attribute < t_char, a_ldelim > attr_ldelim;
 typedef typed_attribute < t_unsigned, a_left > attr_left;
 typedef typed_attribute < t_unsigned, a_leftmargin > attr_leftmargin;
+typedef typed_attribute < t_measure, a_leftoverhang > attr_leftoverhang;
+typedef typed_attribute < t_unsigned, a_length > attr_length;
 typedef typed_attribute < t_lengthadjust, a_lengthadjust > attr_lengthadjust;
 typedef typed_attribute < t_measure_ai, a_letter_spacing > attr_letter_spacing;
 typedef typed_attribute < t_colour, a_lightcolour > attr_lightcolour;
 typedef typed_attribute < t_marker, a_lighting_colour > attr_lighting_colour;
 typedef typed_attribute < t_angle, a_limitingconeangle > attr_limitingconeangle;
 typedef typed_attribute < t_linebreak, a_linebreak > attr_linebreak;
+typedef typed_attribute < t_text, a_linebreakmultichar > attr_linebreakmultichar;
+typedef typed_attribute < t_linebreakstyle, a_linebreakstyle > attr_linebreakstyle;
+typedef typed_attribute < t_measure, a_lineleading > attr_lineleading;
 typedef typed_attribute < t_linethickness, a_linethickness > attr_linethickness;
 typedef typed_attribute < t_colour, a_link > attr_link;
 typedef typed_attribute < t_idref, a_list > attr_list;
 typedef typed_attribute < t_loading, a_loading > attr_loading;
 typedef typed_attribute < t_id, a_local > attr_local;
+typedef typed_attribute < t_mathlocation, a_location > attr_location;
 typedef typed_attribute < t_url, a_longdesc > attr_longdesc;
+typedef typed_attribute < t_longdivstyle, a_longdivstyle > attr_longdivstyle;
 typedef typed_attribute < t_loop, a_loop > attr_loop;
 typedef typed_attribute < t_real, a_low > attr_low;
 typedef typed_attribute < t_text, a_lquote > attr_lquote;
@@ -407,6 +429,7 @@ typedef typed_attribute < t_mathvariant, a_mathvariant > attr_mathvariant;
 typedef typed_attribute < t_duration_media, a_max > attr_max;
 typedef typed_attribute < t_unsigned, a_maxlength > attr_maxlength;
 typedef typed_attribute < t_mathspaceinfinity, a_maxsize > attr_maxsize;
+typedef typed_attribute < t_measure, a_maxwidth > attr_maxwidth;
 typedef typed_attribute < t_generic, a_md > attr_md;
 typedef typed_attribute < t_mql, a_media > attr_media;
 typedef typed_attribute < t_charset, a_mediacharacterencoding > attr_mediacharacterencoding;
@@ -426,6 +449,7 @@ typedef typed_attribute < t_text, a_mode > attr_mode;
 typedef typed_attribute < t_bool, a_movablelimits > attr_movablelimits;
 typedef typed_attribute < t_mah, a_mozactionhint > attr_mozactionhint;
 typedef typed_attribute < t_existential, a_mozbrowser > attr_mozbrowser;
+typedef typed_attribute < t_linethickness, a_mslinethickness > attr_mslinethickness;
 typedef typed_attribute < t_existential, a_multiple > attr_multiple;
 typedef typed_attribute < t_html_boolean, a_muted > attr_muted;
 typedef typed_attribute < t_not_empty, a_n > attr_n;
@@ -586,6 +610,7 @@ typedef typed_attribute < t_points, a_points > attr_points;
 typedef typed_attribute < t_points, a_pointsatx > attr_pointsatx;
 typedef typed_attribute < t_points, a_pointsaty > attr_pointsaty;
 typedef typed_attribute < t_points, a_pointsatz > attr_pointsatz;
+typedef typed_attribute < t_integer, a_position > attr_position;
 typedef typed_attribute < t_generic, a_poster > attr_poster;
 typedef typed_attribute < t_url, a_prefetch > attr_prefetch;
 typedef typed_attribute < t_prefix, a_prefix > attr_prefix;
@@ -624,6 +649,7 @@ typedef typed_attribute < t_unsigned, a_results > attr_results;
 typedef typed_attribute < t_real, a_resultscale > attr_resultscale;
 typedef typed_attribute < t_rel, a_rev > attr_rev;
 typedef typed_attribute < t_html_boolean, a_reversed > attr_reversed;
+typedef typed_attribute < t_measure, a_rightoverhang > attr_rightoverhang;
 typedef typed_attribute < t_unsigned, a_rightmargin > attr_rightmargin;
 typedef typed_attribute < t_role, a_role > attr_role;
 typedef typed_attribute < t_rotate, a_rotate > attr_rotate;
@@ -662,6 +688,7 @@ typedef typed_attribute < t_unsigned, a_seqnum > attr_seqnum;
 typedef typed_attribute < t_existential, a_several > attr_several;
 typedef typed_attribute < t_shape, a_shape > attr_shape;
 typedef typed_attribute < t_shaperendering, a_shaperendering > attr_shaperendering;
+typedef typed_attribute < t_integer, a_shift > attr_shift;
 typedef typed_attribute < t_show, a_show > attr_show;
 typedef typed_attribute < t_side, a_side > attr_side;
 typedef typed_attribute < t_size, a_size > attr_size;
@@ -684,6 +711,7 @@ typedef typed_attribute < t_lang, a_srclang > attr_srclang;
 typedef typed_attribute < t_srcset, a_srcset > attr_srcset;
 typedef typed_attribute < t_mimelist, a_srctype > attr_srctype;
 typedef typed_attribute < t_text, a_standby > attr_standby;
+typedef typed_attribute < t_lcrd, a_stackalign > attr_stackalign;
 typedef typed_attribute < t_integer, a_start > attr_start;
 typedef typed_attribute < t_measure, a_start_offset > attr_start_offset;
 typedef typed_attribute < t_measure, a_startoffset > attr_startoffset;
@@ -785,6 +813,7 @@ typedef typed_attribute < t_visibility, a_visibility > attr_visibility;
 typedef typed_attribute < t_colour, a_vlink > attr_vlink;
 typedef typed_attribute < t_real, a_vmathematical > attr_vmathematical;
 typedef typed_attribute < t_vocab, a_vocab > attr_vocab;
+typedef typed_attribute < t_pseudonamedspace, a_voffset > attr_voffset;
 typedef typed_attribute < t_negative, a_volume > attr_volume;
 typedef typed_attribute < t_integer, a_vspace > attr_vspace;
 typedef typed_attribute < t_html_boolean, a_webkitdirectory > attr_webkitdirectory;
@@ -934,8 +963,10 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_cellspacing, \
     attr_challenge, \
     attr_char, \
+    attr_charalign, \
     attr_charoff, \
     attr_charset, \
+    attr_charspacing, \
     attr_checked, \
     attr_cite, \
     attr_class, \
@@ -976,6 +1007,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_controlslist, \
     attr_coords, \
     attr_crossorigin, \
+    attr_crossout, \
     attr_csp, \
     attr_currenttime, \
     attr_cursor, \
@@ -989,6 +1021,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_datastar, \
     attr_datatype, \
     attr_datetime, \
+    attr_decimalpoint, \
     attr_declare, \
     attr_decoding, \
     attr_default, \
@@ -1129,7 +1162,15 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_in, \
     attr_incremental, \
     attr_indent, \
+    attr_indentalign, \
+    attr_indentalignfirst, \
+    attr_indentalignlast, \
+    attr_indentshift, \
+    attr_indentshiftfirst, \
+    attr_indentshiftlast, \
+    attr_indenttarget, \
     attr_index, \
+    attr_infixlinebreakstyle, \
     attr_initialvisibility, \
     attr_inlist, \
     attr_inputmode, \
@@ -1168,18 +1209,25 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_ldelim, \
     attr_left, \
     attr_leftmargin, \
+    attr_leftoverhang, \
+    attr_length, \
     attr_lengthadjust, \
     attr_letter_spacing, \
     attr_lightcolour, \
     attr_lighting_colour, \
     attr_limitingconeangle, \
     attr_linebreak, \
+    attr_linebreakmultichar, \
+    attr_linebreakstyle, \
+    attr_lineleading, \
     attr_linethickness, \
     attr_link, \
     attr_list, \
     attr_loading, \
     attr_local, \
+    attr_location, \
     attr_longdesc, \
+    attr_longdivstyle, \
     attr_loop, \
     attr_low, \
     attr_lquote, \
@@ -1227,6 +1275,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_movablelimits, \
     attr_mozactionhint, \
     attr_mozbrowser, \
+    attr_mslinethickness, \
     attr_multiple, \
     attr_muted, \
     attr_unknown
@@ -1392,6 +1441,7 @@ const e_attribute last_am = a_muted;
     attr_pointsatx, \
     attr_pointsaty, \
     attr_pointsatz, \
+    attr_position, \
     attr_poster, \
     attr_prefetch, \
     attr_prefix, \
@@ -1431,6 +1481,7 @@ const e_attribute last_am = a_muted;
     attr_rev, \
     attr_reversed, \
     attr_rightmargin, \
+    attr_rightoverhang, \
     attr_role, \
     attr_rotate, \
     attr_row, \
@@ -1468,6 +1519,7 @@ const e_attribute last_am = a_muted;
     attr_several, \
     attr_shape, \
     attr_shaperendering, \
+    attr_shift, \
     attr_show, \
     attr_side, \
     attr_size, \
@@ -1489,6 +1541,7 @@ const e_attribute last_am = a_muted;
     attr_srclang, \
     attr_srcset, \
     attr_srctype, \
+    attr_stackalign, \
     attr_standby, \
     attr_start, \
     attr_start_offset, \
@@ -1591,6 +1644,7 @@ const e_attribute last_am = a_muted;
     attr_vlink, \
     attr_vmathematical, \
     attr_vocab, \
+    attr_voffset, \
     attr_volume, \
     attr_vspace, \
     attr_webkitdirectory, \

@@ -3,6 +3,11 @@ static site checker
 https://dylanharris.org/ssc/index.shtml
 (c) 2020 Dylan Harris
 
+0.0.69
+- added version info to output file
+- MathML 3 presentation markup
+- various bug fixes
+
 0.0.68
 - completely ignore content of SCRIPT and STYLE elements
 - option to ignore content of other elements

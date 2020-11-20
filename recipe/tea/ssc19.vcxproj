@@ -150,6 +150,7 @@
     <ClInclude Include="..\heater\webpage\id.h" />
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp" />
@@ -483,6 +484,15 @@
     <None Include="..\toast\math\2\math7-example.html" />
     <None Include="..\toast\math\2\math8-example.html" />
     <None Include="..\toast\math\2\math9-example.html" />
+    <None Include="..\toast\math\3\index.html" />
+    <None Include="..\toast\math\3\math.conf" />
+    <None Include="..\toast\math\3\math.spec" />
+    <None Include="..\toast\math\3\math1-example.html" />
+    <None Include="..\toast\math\3\math2-example.html" />
+    <None Include="..\toast\math\3\math3-example.html" />
+    <None Include="..\toast\math\3\math4-example.html" />
+    <None Include="..\toast\math\3\math5-example.html" />
+    <None Include="..\toast\math\3\math6-example.html" />
     <None Include="..\toast\microdata\addendum\add.conf" />
     <None Include="..\toast\microdata\addendum\add.spec" />
     <None Include="..\toast\microdata\addendum\index.html" />
@@ -943,6 +953,9 @@
     <Text Include="..\toast\webmention\README.txt" />
     <Text Include="CMakeLists.txt" />
     <Text Include="README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ssc.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

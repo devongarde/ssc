@@ -14,6 +14,7 @@ PASS ../toast/math/2/math2-example.xhtml
 PASS ../toast/math/2/math3-example.html
 2 naughty_lang
 232 math_kids
+375 math_empty
 376 ignoring_unknown
 385 ignoring_unknown
 404 math_kids
@@ -53,6 +54,7 @@ PASS ../toast/math/2/math8-example.html
 
 PASS ../toast/math/2/math9-example.html
 2 naughty_lang
+12 deprecated_attribute
 80 deprecated_element
 88 deprecated_element
 137 attempted_escape url_not_found

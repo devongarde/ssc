@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 template < > struct type_master < t_1_more_i > : type_or_string < t_1_more_i, t_1_more, sz_inherit > { };
 template < > struct type_master < t_bools > : type_at_least_one < t_bools, sz_space, t_bool > { };
+template < > struct type_master < t_charspacing > : type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight > { };
 
 template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -157,6 +158,8 @@ template < > struct type_master < t_enablebackground > : tidy_string < t_enableb
                 else nits.pick (nit_background, es_error, ec_type, "'accumulate', 'new', or 'inherit' expected"); } }
         tidy_string < t_enablebackground > :: status (s_invalid); } };
 
+template < > struct type_master < t_indentalign2 > : type_or_string < t_indentalign2, t_indentalign, sz_indentalign > { };
+template < > struct type_master < t_indentshift2 > : type_or_string < t_indentshift2, t_measure, sz_indentshift > { };
 template < > struct type_master < t_lcraligns > : type_at_least_one < t_lcraligns, sz_space, t_lcralign > { };
 template < > struct type_master < t_lcrds > : type_at_least_one < t_lcrds, sz_space, t_lcrd > { };
 
@@ -213,6 +216,7 @@ template < > struct type_master < t_mathalign_n > : string_vector < t_mathalign_
         string_vector < t_mathalign_n, sz_space > :: status (s_invalid); } };
 
 template < > struct type_master < t_mathaligns > : type_at_least_one < t_mathaligns, sz_space, t_mathalign > { };
+template < > struct type_master < t_mathnotations > : type_at_least_one < t_mathnotations, sz_space, t_mathnotation > { };
 
 template < > struct type_master < t_mathsize > : tidy_string < t_mathsize >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -240,8 +244,21 @@ template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudon
         else if (tidy_string < t_pseudonamedspace > :: good ())
         {   ::std::string ss (tidy_string < t_pseudonamedspace > :: get_string ());
             nitpick nuts;
-            if ((v.math_version () > math_1) && test_value < t_namedspace > (nuts, v, ss))
-            {   nits.merge (nuts); return; }
+            switch (v.math_version ())
+            {   case math_2 :
+                    if (test_value < t_namedspace > (nuts, v, ss))
+                    {   nits.merge (nuts); return; }
+                    break;
+                case math_3 :
+                    {   ::std::string::size_type len = ss.length ();
+                        if (len >= 5)
+                            if ((ss.substr (len - 5) == "width") || (ss.substr (len - 5) == "depth"))
+                                ss = ss.substr (0, len - 5);
+                            else if (len >= 6)
+                            if (ss.substr (len - 6) == "height")
+                                ss = ss.substr (0, len - 6); }
+                    break;
+                default : break; }
             if (test_value < t_pseudo > (nits, v, ss)) return; }
         tidy_string < t_pseudonamedspace > :: status (s_invalid); } };
 

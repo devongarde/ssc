@@ -202,6 +202,13 @@ void element::examine_headers ()
                     if ((uid < tuid_first) || (uid > tuid_last))
                         pick (nit_bad_header_id, ed_50, "4.9.11 Attributes common to td and th elements", es_error, ec_attribute, "id ", quote (s), " is on a <TH> in a different <TABLE>"); } } }
 
+void element::examine_href ()
+{   if (page_.version () == xhtml_2) return;
+    if (node_.id ().is_math ())
+        if (context.math_version () < math_3)
+            if (tag () != elem_image)
+                pick (nit_math_href, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_error, ec_attribute, "HREF requires MathML 3"); }
+
 void element::examine_descendant_in (const element* filter)
 {   assert (filter != nullptr);
     if (a_.known (a_in))
@@ -216,6 +223,11 @@ void element::examine_descendant_in (const element* filter)
         do
         {   e -> examine_descendant_in (filter); }
         while (to_sibling (e)); } }
+
+void element::examine_other ()
+{   if (node_.id ().is_math ())
+        if (context.math_version () > math_1)
+            pick (nit_deprecated_attribute, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "except in MathML 1, OTHER is deprecated"); }
 
 bool element::examine_rel (const ::std::string& content)
 {   if (! context.microformats ()) return true;
@@ -247,3 +259,8 @@ bool element::examine_rel (const ::std::string& content)
                     ve.push_back (x); }
                 res = true; } } }
     return res; }
+
+void element::examine_xlinkhref ()
+{   if (node_.id ().is_math ())
+        if (context.math_version () >= math_3)
+            pick (nit_math_href, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "prefer HREF to XLINK:HREF in MathML 3"); }

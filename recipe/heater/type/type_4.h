@@ -36,7 +36,7 @@ public:
     bool has_value (const base_type& b) const { return type_base < base_type, TYPE > :: good () && (value_ == b); } };
 
 // typedef enum { at_toggle, at_statusline, at_tooltip, at_highlight } e_actiontype;
-template < > class type_master < t_actiontype > : public four_value < t_actiontype, e_actiontype, sz_toggle, sz_statusline, sz_tooltip, sz_highlight > { };
+template < > class type_master < t_actiontype2 > : public four_value < t_actiontype2, e_actiontype, sz_toggle, sz_statusline, sz_tooltip, sz_highlight > { };
 template < > class type_master < t_align2070 > : public four_value < t_align2070, e_align2070, sz_centre, sz_justify, sz_left, sz_right > { };
 template < > class type_master < t_aligndec > : public four_value < t_aligndec, e_aligndec, sz_centre, sz_decimal, sz_left, sz_right > { };
 template < > class type_master < t_alignfig > : public four_value < t_alignfig, e_alignfig, sz_centre, sz_float, sz_left, sz_right > { };
@@ -59,10 +59,10 @@ template < > class type_master < t_imagerendering > : public four_value < t_imag
 template < > class type_master < t_larnalign > : public four_value < t_larnalign, e_larnalign, sz_left, sz_all, sz_right, sz_none > { };
 template < > class type_master < t_lcrnalign > : public four_value < t_lcrnalign, e_lcrnalign, sz_left, sz_centre, sz_right, sz_none > { };
 template < > class type_master < t_lcrd > : public four_value < t_lcrd, e_lcrd, sz_left, sz_centre, sz_right, sz_decimalpoint > { };
+template < > class type_master < t_linebreakstyle > : public four_value < t_linebreakstyle, e_linebreakstyle, sz_before, sz_after, sz_duplicate, sz_infixlinebreakstyle > { };
 template < > class type_master < t_linecap > : public four_value < t_linecap, e_linecap, sz_butt, sz_round, sz_square, sz_inherit > { };
 template < > class type_master < t_linejoin > : public four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit > { };
 template < > class type_master < t_mathclosure > : public four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen > { };
-template < > class type_master < t_mathoverflow > : public four_value < t_mathoverflow, e_mathoverflow, sz_elide, sz_scale, sz_scroll, sz_truncate > { };
 template < > class type_master < t_phase > : public four_value < t_phase, e_phase, sz_bubble, sz_capture, sz_default, sz_target > { };
 template < > class type_master < t_rsvp > : public four_value < t_rsvp, e_rsvp, sz_yes, sz_no, sz_maybe, sz_interested > { };
 template < > class type_master < t_tdscope > : public four_value < t_tdscope, e_tdscope, sz_row, sz_col, sz_rowgroup, sz_colgroup > { };

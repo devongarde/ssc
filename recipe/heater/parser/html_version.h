@@ -172,8 +172,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_SVG_OLD_H    0x0000000000400000
 #define HE_NOT_SVG      0x0000000000800000
 #define HE_M2_DEPRECAT  0x0000000001000000
+#define HE_M3_DEPRECAT  0x0000000002000000
+#define HE_M3_NONSTAND  0x0000000010000000
 
 #define MATH_MASK       ( HE_MATH_1 | HE_MATH_2 | HE_MATH_3 | HE_MATH_4 )
+#define MATH_1_2        ( HE_MATH_1 | HE_MATH_2 )
+#define MATH_1_2_3      ( HE_MATH_1 | HE_MATH_2 | HE_MATH_3 )
+#define MATH_2_3        ( HE_MATH_2 | HE_MATH_3 )
 #define HE_SVG_1_2      ( HE_SVG_1_2_TINY | HE_SVG_1_2_FULL )
 #define HE_SVG_1        ( HE_SVG_1_0 | HE_SVG_1_1 | HE_SVG_1_2 )
 #define HE_SVG_1x2      ( HE_SVG_1_1 | HE_SVG_1_2 | HE_SVG_2_0 )

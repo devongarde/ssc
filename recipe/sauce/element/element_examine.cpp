@@ -44,6 +44,7 @@ void element::pre_examine_element (const e_element tag)
         case elem_dialogue : examine_dialogue (); break;
         case elem_embed : examine_embed (); break;
         case elem_fecolourmatrix : examine_fecolourmatrix (); break;
+        case elem_fn : examine_fn (); break;
         case elem_h1:
         case elem_h2:
         case elem_h3:
@@ -86,6 +87,17 @@ void element::post_examine_element (const e_element tag)
         case elem_aside : examine_aside (); break;
         case elem_audio : examine_audio (); break;
         case elem_button : examine_button (); break;
+        case elem_bvar :
+        case elem_maction :
+        case elem_merror :
+        case elem_mmultiscripts :
+        case elem_mpadded :
+        case elem_mphantom :
+        case elem_mscarry :
+        case elem_msqrt :
+        case elem_mstyle :
+        case elem_mtd :
+        case elem_semantics : check_math_children (1, true); break;
         case elem_degree :
         case elem_lowlimit :
         case elem_uplimit : if (page_.version ().math () <= math_1) break;
@@ -118,18 +130,6 @@ void element::post_examine_element (const e_element tag)
         case elem_piece :   check_math_children (2); break;
         case elem_label : examine_label (); break;
         case elem_math : examine_math (); break;
-        case elem_bvar :
-        case elem_maction :
-//        case elem_menclose :
-        case elem_merror :
-//        case elem_mlabelledtr :
-        case elem_mmultiscripts :
-        case elem_mpadded :
-        case elem_mphantom :
-        case elem_msqrt :
-        case elem_mstyle :
-        case elem_mtd :
-        case elem_semantics : check_math_children (1, true); break;
         case elem_meta : examine_meta (); break;
         case elem_mfrac :
         case elem_mover :
@@ -137,6 +137,10 @@ void element::post_examine_element (const e_element tag)
         case elem_msub :
         case elem_msup :
         case elem_munder : check_math_children (2); break;
+        case elem_mlongdiv :    check_math_children (3, true);
+                                check_mscarries_pos (tag);
+                                break;
+        case elem_mstack : check_mscarries_pos (tag); break;
         case elem_msubsup :
         case elem_munderover : check_math_children (3); break;
         case elem_nav : examine_nav (); break;
@@ -266,6 +270,7 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
 
         if (a_.known (a_clip)) examine_clip ();
         if (a_.known (a_content)) examine_content ();
+        if (a_.known (a_href)) examine_href ();
         if (a_.known (a_itemscope)) examine_itemscope (itemscope_);
         if (a_.known (a_itemtype)) examine_itemtype (itemscope_);
 
@@ -278,6 +283,9 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
         if (context.links ())
             if (a_.has_url ())
                 a_.verify_url (nits (), node_.version (), d, page_.get_disk_path (), node_.line (), ancestral_attributes_, vit_);
+
+        if (a_.known (a_other)) examine_other ();
+        if (a_.known (a_xlinkhref)) examine_xlinkhref ();
 
         if (node_.line () >= 0) ids_.data (node_.line ());
         a_.invalid_id (nits (), node_.version (), ids_, this);

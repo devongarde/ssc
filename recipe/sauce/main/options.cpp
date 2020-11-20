@@ -93,7 +93,7 @@ needs rel type and probably context info
 
 void options::title (const char* addendum) const
 {   if (context.tell (e_severe))
-    {   ::std::cout << FULLNAME " version " VERSION_STRING  " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n";
+    {   // ::std::cout << FULLNAME " version " VERSION_STRING  " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n";
         if (addendum != nullptr) ::std::cout << addendum; }
     else ::std::cout << "\n"; }
 
@@ -306,10 +306,15 @@ void options::process (int argc, char** argv)
 
 void options::contextualise ()
 {   context.clear (var_.count (WMOUT CLEAR));
+    context.test (var_.count (GENERAL TEST));
 
     if (var_.count (GENERAL OUTPUT))
     {   context.output (var_ [GENERAL OUTPUT].as < ::std::string > ());
-        if (var_.count (GENERAL TEST) == 0) ::std::cout << "Writing to " << var_ [GENERAL OUTPUT].as < ::std::string > () << "\n"; }
+        if (! context.test ())
+            ::std::cout << "Writing to " << var_ [GENERAL OUTPUT].as < ::std::string > () << "\n"; }
+
+    if (context.test ()) context.out () << PROG "\n" VERSION_STRING "\n" COPYRIGHT"\n";
+    else context.out () << FULLNAME " version " VERSION_STRING " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n";
 
     context.path (var_ [GENERAL PATH].as < ::std::string > ());
     if (! ::boost::filesystem::exists (context.path ()))
@@ -321,7 +326,6 @@ void options::contextualise ()
     context.nochange (var_.count (GENERAL NOCHANGE));
     context.rdf (var_.count (GENERAL RDF));
     context.ssi (var_.count (GENERAL SSI));
-    context.test (var_.count (GENERAL TEST));
     context.persisted (path_in_context (var_ [GENERAL FILE].as < ::std::string > ()));
     context.stats_page (var_.count (STATS PAGE));
     context.stats_summary (var_.count (STATS SUMMARY));

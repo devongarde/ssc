@@ -156,3 +156,11 @@ void element::check_math_children (const int from, const int to)
             if (! c -> node_.is_closure ()) if (c -> node_.id ().is_math ()) ++n;
     if ((n < from) || (n > to))
         pick (nit_math_kids, ed_math_2, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<", elem::name (tag ()), "> has  ", n, " math child elements; it requires between ", from, " and ", to); }
+
+void element::check_mscarries_pos (const e_element self)
+{   bool last = false;
+    if (has_child ())
+        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+            last = (c -> tag () == elem_mscarries);
+    if (last)
+        pick (nit_mscarries_last, ed_math_3, "3.6.5 Carries, Borrows, and Crossouts <mscarries>", es_error, ec_element, "<MSCARRIES> cannot be the last child of <", elem::name (self), ">"); }

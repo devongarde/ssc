@@ -27,29 +27,17 @@ PASS ../toast/SVG/1.1/example-3.xhtml
 4 inserted_missing_parent missing_close inserted_missing_parent missing_close xhtml_attribute_lc svg_version
 13 use_double_quote_code
 14 xhtml_attribute_lc
-16 unrecognised_value bad_result
 22 xhtml_attribute_lc
-24 unrecognised_value bad_result
 30 xhtml_attribute_lc
-32 unrecognised_value bad_result
 38 xhtml_attribute_lc
-40 unrecognised_value bad_result
 46 xhtml_attribute_lc
-48 unrecognised_value bad_result
 54 xhtml_attribute_lc
-56 unrecognised_value bad_result
 62 xhtml_attribute_lc
-63 unrecognised_value bad_result
 65 xhtml_attribute_lc
-66 unrecognised_value bad_result
 68 xhtml_attribute_lc
-69 unrecognised_value bad_result
 71 xhtml_attribute_lc
-72 unrecognised_value bad_result
 74 xhtml_attribute_lc
-75 unrecognised_value bad_result
 77 xhtml_attribute_lc
-78 unrecognised_value bad_result
 141 use_double_quote_code
 
 PASS ../toast/SVG/1.1/example-4.html
@@ -320,29 +308,12 @@ PASS ../toast/SVG/1.1/svg11.html
 1031 svg_version
 1069 svg_version
 1073 use_double_quote_code
-1076 unrecognised_value bad_result
-1082 unrecognised_value bad_result
 1099 svg_version
-1108 unrecognised_value bad_result
-1115 unrecognised_value bad_result
-1119 unrecognised_value bad_result
 1132 use_quote_code
-1180 unrecognised_value bad_result
-1181 unrecognised_value bad_result
 1209 svg_version
 1213 id_exists
-1220 unrecognised_value bad_result
-1223 unrecognised_value bad_result
-1226 unrecognised_value bad_result
-1229 unrecognised_value bad_result
-1232 unrecognised_value bad_result
 1247 svg_version
 1255 id_exists
-1261 unrecognised_value bad_result
-1264 unrecognised_value bad_result
-1267 unrecognised_value bad_result
-1270 unrecognised_value bad_result
-1271 unrecognised_value bad_result
 1285 svg_version
 1286 long_title
 1292 id_exists
@@ -351,11 +322,7 @@ PASS ../toast/SVG/1.1/svg11.html
 1350 url_not_found
 1364 svg_version
 1367 use_quote_code
-1370 unrecognised_value bad_result
-1373 unrecognised_value bad_result
 1375 mixed_mess inserted_missing_closure
-1376 unrecognised_value bad_result
-1379 unrecognised_value bad_result
 1393 svg_version
 1439 svg_version
 1442 chocolate_teapot

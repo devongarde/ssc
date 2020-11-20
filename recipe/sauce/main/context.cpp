@@ -29,13 +29,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 context_t context;
 
+context_t& context_t::output (const ::std::string& s)
+{   output_ = s;
+    fos_.reset (new ::std::ofstream (s));
+    if (fos_ -> fail ())
+    {   ::std::cerr << "cannot open " << s << " for output.\n";
+        fos_.reset (); }
+    return *this; }
+
 int context_t::parameters (int argc, char** argv)
 {   options o (argc, argv);
     if (o.stop ()) return STOP_OK;
     if (o.invalid ()) return ERROR_STATE;
     o.contextualise ();
-    if (context.test ()) out () << PROG "\n" VERSION_STRING "\n" COPYRIGHT"\n";
-    else if (tell (e_debug)) out () << o.report ();
+    if (! test () && tell (e_debug)) out () << o.report ();
     for (const ::std::string& name : site_)
         if (name.find_first_not_of (ALPHABET DDD) != ::std::string::npos)
         {   valid_ = false;
