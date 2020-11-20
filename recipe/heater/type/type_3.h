@@ -49,6 +49,7 @@ template < > class type_master < t_enctype > : public three_value < t_enctype, e
 template < > class type_master < t_fillrule > : public three_value < t_fillrule, e_fillrule, sz_nonzero, sz_evenodd, sz_inherit > { };
 template < > class type_master < t_fontnia > : public three_value < t_fontnia, e_fontnia, sz_normal, sz_italic, sz_oblique > { };
 template < > class type_master < t_importance > : public three_value < t_importance, e_importance, sz_auto, sz_high, sz_low > { };
+template < > class type_master < t_infixlinebreakstyle > : public three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate > { };
 template < > class type_master < t_keytype > : public three_value < t_keytype, e_keytype, sz_dsa, sz_ec, sz_rsa > { };
 template < > class type_master < t_lcralign > : public three_value < t_lcralign, e_lcralign, sz_left, sz_centre, sz_right > { };
 template < > class type_master < t_lraalign > : public three_value < t_lraalign, e_lraalign, sz_left, sz_right, sz_all > { };

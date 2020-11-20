@@ -191,10 +191,7 @@ public:
     {   once_ = b;
         if (b) external (b);
         return *this; }
-    context_t& output (const ::std::string& s)
-    {   output_ = s;
-        fos_.reset (new ::std::ofstream (s));
-        return *this; }
+    context_t& output (const ::std::string& s);
     context_t& path (const ::std::string& s) { path_ = s; return *this; }
     context_t& persisted (const ::std::string& s) { persisted_ = s; return *this; }
     context_t& presume_tags (const bool b) { presume_tags_ = b; return *this; }

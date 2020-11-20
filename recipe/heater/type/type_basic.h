@@ -24,9 +24,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < > struct type_master < t_char > : string_value < t_char >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string val (trim_the_lot_off (s));
-        if (s.length () == 1) string_value < t_char > :: set_value (nits, v, s);
+        if (val.length () == 1)
+            string_value < t_char > :: set_value (nits, v, val);
+        else if ((val.length () > 1) && (val.at (0) == '&') && (val.at (val.length () - 1) == ';'))
+            string_value < t_char > :: set_value (nits, v, val);
         else
-        {   nits.pick (nit_single_character, es_error, ec_type, quote(s), " is not a single character");
+        {   nits.pick (nit_single_character, es_error, ec_type, quote (val), " is not a single character");
             string_value < t_char > :: status (s_invalid); } } };
 
 template < > struct type_master < t_compact > : tidy_string < t_compact >

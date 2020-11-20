@@ -10,7 +10,6 @@ PASS ../toast/other/RDF/rdf1-example.html
 PASS ../toast/other/RDF/rdf2-example.html
 4 naughty_lang
 7 unrecognised_value unknown_rel link_rel_off
-18 invalid_attribute_version wrong_version
 22 unrecognised_value unknown_rel
 
 PASS ../toast/other/RDF/rdf3-example.html

@@ -154,6 +154,12 @@ void element::examine_filter ()
 {   if (node_.version ().svg () >= sv_1_1)
         examine_descendant_in (this); }
 
+void element::examine_fn ()
+{   e_mathversion mv = node_.version ().math_version ();
+    if (mv == math_none) mv = page_.version ().math_version ();
+    if (mv < math_3) return;
+    pick (nit_no_fn, ed_math_3, "F.2 Changes between MathML 2.0 Second Edition and MathML 3.0", es_error, ec_element, "<FN> is not part of MathML 3."); }
+
 void element::examine_fontymacfontface ()
 {   bool had = false;
     if (has_child ())

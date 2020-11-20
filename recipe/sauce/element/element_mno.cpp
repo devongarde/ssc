@@ -42,14 +42,29 @@ void element::examine_map ()
 
 void element::examine_math ()
 {   if (! has_child ()) return;
-    if (page_.version ().math () < math_2) return;
-    bool other = false;
+    e_mathversion mv = node_.version ().math_version ();
+    if (mv == math_none) mv = page_.version ().math_version ();
+    switch (mv)
+    {   case math_2 : break;
+        case math_3 :
+        case math_4 :
+            if (a_.known (a_macros))
+                pick (nit_deprecated_attribute, ed_math_3, "2.2.2 Deprecated Attributes", es_warning, ec_attribute, "the attribute MACROS is deprecated in MathML 3");
+            if (a_.known (a_mode))
+                pick (nit_deprecated_attribute, ed_math_3, "2.2.2 Deprecated Attributes", es_warning, ec_attribute, "the attribute MODE is deprecated in MathML 3; use DISPLAY instead");
+            break;
+        default :
+            return; }
+    bool other = false; bool content = false;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
         if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
+        {   if (c -> node_.id ().is_math ()) content = true;
             if (c -> node_.tag () != elem_declare) other = true;
             else if (other)
             {   pick (nit_declare_first, ed_math_2, "4.4.2.8 Declare (declare)", es_error, ec_element, "All <DECLARE> elements must occur at the beginning of a <MATH> element");
                 break; } }
+    if (! content)
+        pick (nit_math_empty, ed_math_3, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<MATH> should contain some math."); }
 
 void element::examine_media_element (e_element , const char* ref, const char* name)
 {   assert (ref != nullptr);
@@ -191,6 +206,28 @@ void element::examine_meter ()
         if (ko)
         {   if (optimum < min) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "MIN (", min, ") cannot exceed OPTIMUM (", optimum, ")");
             if (max < optimum) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "OPTIMUM (", optimum, ") cannot exceed MAX (", max, ")"); } } }
+
+void element::examine_mglyph ()
+{   if (page_.version ().math_version () == math_2)
+    {   if (! a_.known (a_fontfamily))
+            pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "FONTFAMILY is required for correct usage of <MGLYPH> in MathML 2");
+        if ( a_.known (a_index))
+            pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "INDEX is required for correct usage of <MGLYPH> in MathML 2");
+        if (! a_.known (a_alt))
+            pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "ALT, is required for correct usage of <MGLYPH> in MathML 2"); }
+    else if (page_.version ().math_version () == math_3)
+    {   if (! a_.known (a_src))
+            pick (nit_mglyph_alt_src, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "SRC is required for correct usage of <MGLYPH> in MathML 3");
+        if (! a_.known (a_alt))
+            pick (nit_mglyph_alt_src, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "ALT is required for correct usage of <MGLYPH> in MathML 3");
+        if (a_.known (a_mathvariant))
+            pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "MATHVARIANT is deprecated with <MGLYPH> in MathML 3");
+        if (a_.known (a_mathsize))
+            pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "MATHSIZE is deprecated with <MGLYPH> in MathML 3");
+        if (a_.known (a_fontfamily))
+            pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "FONTFAMILY is deprecated with <MGLYPH> in MathML 3");
+        if (a_.known (a_index))
+            pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "INDEX is deprecated with <MGLYPH> in MathML 3"); } }
 
 void element::examine_nav ()
 {   if (has_this_descendant (elem_main))

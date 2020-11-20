@@ -69,78 +69,84 @@ template < > struct type_master < t_accept > : varied < string_value < t_accept 
                 default :
                     validate_type < type_master < t_generic > > (nits, v); } } };
 
+template < > struct type_master < t_actiontype > : varied < string_value < t_actiontype > >
+{   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
+    {   if (good () || empty ())
+            if (v.math_version () == math_2)
+                validate_type < type_master < t_actiontype2 > > (nits, v); } };
+
 template < > struct type_master < t_align > : varied < tidy_string < t_align > >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
-            if (! e.is_math ()) // not defined in MathML 1.0, merely mentioned
-            {   switch (e.get ())
-                {   case elem_applet :
-                        validate_type < type_master < t_align3 > > (nits, v); return;
-                    case elem_array :
-                        return;
-                    case elem_br :
-                        validate_type < type_master < t_lcrnalign > > (nits, v); return;
-                    case elem_caption :
-                        switch (v.mjr ())
-                        {   case 0 :
-                            case 1 : break;
-                            case 2 :    validate_type < type_master < t_align2070 > > (nits, v);
-                                        break;
-                            case 3 :    if (v.mnr () == 2) validate_type < type_master < t_tbalign > > (nits, v);
-                                        else validate_type < type_master < t_captionalign > > (nits, v);
-                                        break;
-                            case 4 :    validate_type < type_master < t_captionalign > > (nits, v);  break;
-                            default :   validate_type < type_master < t_lcralign > > (nits, v); break; }
-                        return;
-                    case elem_div :
-                    case elem_hr :
-                    case elem_p :
-                        if (v >= html_3_2) { validate_type < type_master < t_lcralign > > (nits, v); return; }
-                        else if (v == html_plus) { validate_type < type_master < t_alignplus > > (nits, v); return; }
-                        break;
-                    case elem_fig :
-                        if (v == html_plus) { validate_type < type_master < t_alignfig > > (nits, v); return; }
-                        validate_type < type_master < t_figalign > > (nits, v); return;
-                    case elem_legend :
-                        validate_type < type_master < t_captionalign > > (nits, v); return;
-                    case elem_image :
-                        if (v == html_plus) { validate_type < type_master < t_valign_tmb > > (nits, v); return; }
-                        return;
-                    case elem_img :
-                        if (v >= html_3_0) validate_type < type_master < t_align3 > > (nits, v);
-                        else if ((v == html_plus) || (v == html_2)) validate_type < type_master < t_valign_tmb > > (nits, v);
-                        else validate_type < type_master < t_lcralign > > (nits, v);
-                        return;
-                    case elem_input :
-                        if ((v == html_2) || (v == html_plus)) { validate_type < type_master < t_valign_tmb > > (nits, v); return; }
-                        break;
-                    case elem_l :
-                        validate_type < type_master < t_alignplus > > (nits, v); return;
-                    case elem_mtable :
-                        validate_type < type_master < t_mathalign_n > > (nits, v); return;
-                    case elem_spacer :
-                    case elem_sub :
-                    case elem_sup :
-                        validate_type < type_master < t_lcralign > > (nits, v); return;
-                    case elem_tab :
-                        if ((v == html_plus) || (v == html_2)) validate_type < type_master < t_aligndec > > (nits, v);
-                        return;
-                    case elem_table :
-                        if (v == html_3_0) { validate_type < type_master < t_figalign > > (nits, v); return; }
-                        else if (v == html_3_2) { validate_type < type_master < t_lcralign > > (nits, v); return; }
-                        else if (v == html_4_1) { validate_type < type_master < t_halign > > (nits, v); return; }
-                        break;
-                    case elem_td :
-                    case elem_th :
-                    case elem_tr :
-                        if ((v == html_3_2) || (v == html_plus))
-                        {   validate_type < type_master < t_lcralign > > (nits, v); return; }
-                        else if (v == html_3_0)
-                        {   validate_type < type_master < t_decalign > > (nits, v); return; }
-                        break;
-                    default : break; }
-                if ((v == html_2) && context.rfc_2070 ()) validate_type < type_master < t_align2070 > > (nits, v);
-                else validate_type < type_master < t_halign > > (nits, v); } } };
+        {   switch (e.get ())
+            {   case elem_applet :
+                    validate_type < type_master < t_align3 > > (nits, v); return;
+                case elem_array :
+                    return;
+                case elem_br :
+                    validate_type < type_master < t_lcrnalign > > (nits, v); return;
+                case elem_caption :
+                    switch (v.mjr ())
+                    {   case 0 :
+                        case 1 : break;
+                        case 2 :    validate_type < type_master < t_align2070 > > (nits, v);
+                                    break;
+                        case 3 :    if (v.mnr () == 2) validate_type < type_master < t_tbalign > > (nits, v);
+                                    else validate_type < type_master < t_captionalign > > (nits, v);
+                                    break;
+                        case 4 :    validate_type < type_master < t_captionalign > > (nits, v);  break;
+                        default :   validate_type < type_master < t_lcralign > > (nits, v); break; }
+                    return;
+                case elem_div :
+                case elem_hr :
+                case elem_p :
+                    if (v >= html_3_2) { validate_type < type_master < t_lcralign > > (nits, v); return; }
+                    else if (v == html_plus) { validate_type < type_master < t_alignplus > > (nits, v); return; }
+                    break;
+                case elem_fig :
+                    if (v == html_plus) { validate_type < type_master < t_alignfig > > (nits, v); return; }
+                    validate_type < type_master < t_figalign > > (nits, v); return;
+                case elem_legend :
+                    validate_type < type_master < t_captionalign > > (nits, v); return;
+                case elem_image :
+                    if (v == html_plus) { validate_type < type_master < t_valign_tmb > > (nits, v); return; }
+                    return;
+                case elem_img :
+                    if (v >= html_3_0) validate_type < type_master < t_align3 > > (nits, v);
+                    else if ((v == html_plus) || (v == html_2)) validate_type < type_master < t_valign_tmb > > (nits, v);
+                    else validate_type < type_master < t_lcralign > > (nits, v);
+                    return;
+                case elem_input :
+                    if ((v == html_2) || (v == html_plus)) { validate_type < type_master < t_valign_tmb > > (nits, v); return; }
+                    break;
+                case elem_l :
+                    validate_type < type_master < t_alignplus > > (nits, v); return;
+                case elem_mstack :
+                case elem_mtable :
+                    validate_type < type_master < t_mathalign_n > > (nits, v); return;
+                case elem_spacer :
+                case elem_sub :
+                case elem_sup :
+                    validate_type < type_master < t_lcralign > > (nits, v); return;
+                case elem_tab :
+                    if ((v == html_plus) || (v == html_2)) validate_type < type_master < t_aligndec > > (nits, v);
+                    return;
+                case elem_table :
+                    if (v == html_3_0) { validate_type < type_master < t_figalign > > (nits, v); return; }
+                    else if (v == html_3_2) { validate_type < type_master < t_lcralign > > (nits, v); return; }
+                    else if (v == html_4_1) { validate_type < type_master < t_halign > > (nits, v); return; }
+                    break;
+                case elem_td :
+                case elem_th :
+                case elem_tr :
+                    if ((v == html_3_2) || (v == html_plus))
+                    {   validate_type < type_master < t_lcralign > > (nits, v); return; }
+                    else if (v == html_3_0)
+                    {   validate_type < type_master < t_decalign > > (nits, v); return; }
+                    break;
+                default : break; }
+            if ((v == html_2) && context.rfc_2070 ()) validate_type < type_master < t_align2070 > > (nits, v);
+            else validate_type < type_master < t_halign > > (nits, v); } } };
 
 template < > struct type_master < t_background > : varied < tidy_string < t_background > >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
@@ -270,10 +276,11 @@ template < > struct type_master < t_in > : varied < tidy_string < t_in > >
     {   if (good ())
             if (v.svg () >= sv_1_1)
                 if ((e.categories () & EF_SVG_FILTER) != 0)
-                    concerned_ = true; }
+                {   nitpick nuts;
+                    concerned_ = test_value < t_filter_in > (nuts, v, varied < tidy_string < t_in > > :: get_string ()); } }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe)
     {   if (concerned_) return false;
-        return check_id_defined < type_master < t_idref > > (nits, v, ids, pe); } };
+        return  check_id_defined < type_master < t_idref > > (nits, v, ids, pe); } };
 
 template < > struct type_master < t_loop > : varied < tidy_string < t_loop > >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
@@ -340,7 +347,9 @@ template < > struct type_master < t_name > : varied < tidy_string < t_name > >
 template < > struct type_master < t_notation > : varied < tidy_string < t_notation > >
 {   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
     {   if (good () || empty ())
-            if (v.mjr () > 3) validate_type < type_master < t_mathnotation > > (nits, v);
+            if (v.mjr () > 3)
+                if (v.math_version () == math_2) validate_type < type_master < t_mathnotation > > (nits, v);
+                else if (v.math_version () > math_2) validate_type < type_master < t_mathnotations > > (nits, v);
             else validate_type < type_master < t_notations > > (nits, v); } };
 
 template < > struct type_master < t_occurence > : varied < tidy_string < t_occurence > >

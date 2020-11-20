@@ -514,6 +514,18 @@ nitname nitnames [] =
     { nit_bad_piece, "bad_piece" },
     { nit_annotation, "annotation" },
     { nit_eof_in_annotation, "eof_in_annotation" },
+    { nit_prefix_odd, "prefix_odd" },
+    { nit_prefix_format, "prefix_format" },
+    { nit_rdf_redefine, "rdf_redefine" },
+    { nit_rdf_confusion, "rdf_confusion" },
+    { nit_rdf_protocol, "rdf_protocol" },
+    { nit_math_href, "math_href" },
+    { nit_math_empty, "math_empty" },
+    { nit_mglyph_alt_src, "mglyph_alt_src" },
+    { nit_dir_rtl_ltr, "dir_rtl_ltr" },
+    { nit_bad_linebreak, "bad_linebreak" },
+    { nit_non_standard_value, "non_standard_value" },
+    { nit_mscarries_last, "mscarries_last" },
 
     { nit_off, "" } };
 

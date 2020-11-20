@@ -172,7 +172,14 @@ struct symbol_entry < e_composite_operator > composite_operator_symbol_table [] 
     { { HTML_4_0 }, { HTML_UNDEF }, "over", co_over },
     { { HTML_4_0 }, { HTML_UNDEF }, "xor", co_xor } };
 
-struct symbol_entry < e_cursor > cursor_operator_symbol_table [] =
+struct symbol_entry < e_crossout > crossout_symbol_table [] =
+{   { { HTML_5_2 }, { HTML_UNDEF }, "none", co_none },
+    { { HTML_5_2 }, { HTML_UNDEF }, "updiagonalstrike", co_updiagonalstrike },
+    { { HTML_5_2 }, { HTML_UNDEF }, "downdiagonalstrike", co_downdiagonalstrike },
+    { { HTML_5_2 }, { HTML_UNDEF }, "verticalstrike", co_verticalstrike },
+    { { HTML_5_2 }, { HTML_UNDEF }, "horizontalstrike", co_horizontalstrike } };
+
+struct symbol_entry < e_cursor > cursor_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "auto",  cu_auto },
     { { HTML_4_0 }, { HTML_UNDEF }, "crosshair", cu_crosshair },
     { { HTML_4_0 }, { HTML_UNDEF }, "default", cu_default },
@@ -297,12 +304,27 @@ struct symbol_entry < e_figalign > figalign_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "bleedright", fa_bleedright },
     { { HTML_3_0 }, { HTML_3_0 }, "justify", fa_justify } };
 
+struct symbol_entry < e_filter_in > filter_in_symbol_table [] =
+{   { { HTML_3_0 }, { HTML_3_0 }, "sourcegraphic", fi_sourcegraphic },
+    { { HTML_3_0 }, { HTML_3_0 }, "sourcealpha", fi_sourcealpha },
+    { { HTML_3_0 }, { HTML_3_0 }, "backgroundimage", fi_backgroundimage },
+    { { HTML_3_0 }, { HTML_3_0 }, "backgroundalpha", fi_backgroundalpha },
+    { { HTML_3_0 }, { HTML_3_0 }, "fillpaint", fi_fillpaint },
+    { { HTML_3_0 }, { HTML_3_0 }, "strokepaint", fi_strokepaint } };
+
 struct symbol_entry < e_halign > halign_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "left", al_left },
     { { HTML_2_0 }, { HTML_UNDEF }, "center", al_center },
     { { HTML_2_0 }, { HTML_UNDEF }, "right", al_right },
     { { HTML_2_0 }, { HTML_UNDEF }, "justify", al_justify },
     { { HTML_2_0 }, { HTML_UNDEF }, "char", al_char } };
+
+struct symbol_entry < e_indentalign > indentalign_symbol_table [] =
+{   { { HTML_5_2 }, { HTML_UNDEF }, "left", ia_left },
+    { { HTML_5_2 }, { HTML_UNDEF }, "center", ia_centre },
+    { { HTML_5_2 }, { HTML_UNDEF }, "right", ia_right },
+    { { HTML_5_2 }, { HTML_UNDEF }, "auto", ia_auto },
+    { { HTML_5_2 }, { HTML_UNDEF }, "id", ia_id } };
 
 struct symbol_entry < e_inky > inky_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "sourcegraphic", ink_sourcegraphic },
@@ -437,6 +459,18 @@ struct symbol_entry < e_listtype > listtype_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "i", li_i },
     { { HTML_UNDEF }, { HTML_UNDEF }, "I", li_I } };
 
+struct symbol_entry < e_longdivstyle > longdivstyle_symbol_table [] =
+{   { { HTML_5_2 }, { HTML_UNDEF }, "lefttop", ls_lefttop },
+    { { HTML_5_2 }, { HTML_UNDEF }, "stackedrightright", ls_stackedrightright },
+    { { HTML_5_2 }, { HTML_UNDEF }, "mediumstackedrightright", ls_mediumstackedrightright },
+    { { HTML_5_2 }, { HTML_UNDEF }, "shortstackedrightright", ls_shortstackedrightright },
+    { { HTML_5_2 }, { HTML_UNDEF }, "righttop", ls_righttop },
+    { { HTML_5_2 }, { HTML_UNDEF }, "left/\\right", ls_leftslashright },
+    { { HTML_5_2 }, { HTML_UNDEF }, "left)(right", ls_leftketbraright },
+    { { HTML_5_2 }, { HTML_UNDEF }, ":right=right", ls_rightequalright },
+    { { HTML_5_2 }, { HTML_UNDEF }, "stackedleftleft", ls_stackedleftleft },
+    { { HTML_5_2 }, { HTML_UNDEF }, "stackedleftlinetop", ls_stackedleftlinetop } };
+
 struct symbol_entry < e_mah > mah_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "go", mah_go },
     { { HTML_UNDEF }, { HTML_UNDEF }, "done", mah_done },
@@ -450,6 +484,23 @@ struct symbol_entry < e_mathalign > mathalign_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "bottom", ma_bottom },
     { { XHTML_1_0 }, { HTML_UNDEF }, "center", ma_centre },
     { { XHTML_1_0 }, { HTML_UNDEF }, "top", ma_top } };
+
+struct symbol_entry < e_mathlocation > mathlocation_symbol_table [] =
+{   { { HTML_5_2 }, { HTML_UNDEF }, "w", ml_w },
+    { { HTML_5_2 }, { HTML_UNDEF }, "nw", ml_nw },
+    { { HTML_5_2 }, { HTML_UNDEF }, "n", ml_n },
+    { { HTML_5_2 }, { HTML_UNDEF }, "ne", ml_ne },
+    { { HTML_5_2 }, { HTML_UNDEF }, "e", ml_e },
+    { { HTML_5_2 }, { HTML_UNDEF }, "se", ml_se },
+    { { HTML_5_2 }, { HTML_UNDEF }, "s", ml_s },
+    { { HTML_5_2 }, { HTML_UNDEF }, "sw", ml_sw } };
+
+struct symbol_entry < e_mathoverflow > mathoverflow_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "elide", ov_elide },
+    { { HTML_5_2 }, { HTML_UNDEF }, "linebreak", ov_linebreak },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "scale", ov_scale },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "scroll", ov_scroll },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "truncate", ov_truncate } };
 
 struct symbol_entry < e_mathnotation > mathnotation_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "longdiv", mn_longdiv },
@@ -465,7 +516,22 @@ struct symbol_entry < e_mathnotation > mathnotation_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "updiagonalstrike", mn_updiagonalstrike },
     { { XHTML_1_0 }, { HTML_UNDEF }, "downdiagonalstrike", mn_downdiagonalstrike },
     { { XHTML_1_0 }, { HTML_UNDEF }, "verticalstrike", mn_verticalstrike },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "horizontalstrike", mn_horizontalstrike } };
+    { { XHTML_1_0 }, { HTML_UNDEF }, "horizontalstrike", mn_horizontalstrike },
+    { { HTML_5_2 }, { HTML_UNDEF }, "phasorangle", mn_phasorangle },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_uparrow", mn_uparrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_rightarrow", mn_rightarrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_downarrow", mn_downarrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_leftarrow", mn_leftarrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_northwestarrow", mn_northwestarrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_southwestarrow", mn_southwestarrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_southeastarrow", mn_southeastarrow },
+    { { HTML_5_2 }, { HTML_UNDEF }, "northeastarrow", mn_northeastarrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_updownarrow", mn_updownarrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_leftrightarrow", mn_leftrightarrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_northwestsoutheastarrow", mn_northwestsoutheastarrow },
+    { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_northeastsouthwestarrow", mn_northeastsouthwestarrow },
+    { { HTML_5_2 }, { HTML_UNDEF }, "madruwb", mn_madruwb } };
+
 
 struct symbol_entry < e_mathvariant > mathvariant_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "normal", mv_normal },
@@ -481,7 +547,11 @@ struct symbol_entry < e_mathvariant > mathvariant_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "bold-sans-serif", mv_boldsansserif },
     { { XHTML_1_0 }, { HTML_UNDEF }, "sans-serif-italic", mv_sansserifitalic },
     { { XHTML_1_0 }, { HTML_UNDEF }, "sans-serif-bold-italic", mv_sansserifbolditalic },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "monospace", mv_monospace } };
+    { { XHTML_1_0 }, { HTML_UNDEF }, "monospace", mv_monospace },
+    { { HTML_5_2 }, { HTML_UNDEF }, "initial", mv_initial },
+    { { HTML_5_2 }, { HTML_UNDEF }, "tailed", mv_tailed },
+    { { HTML_5_2 }, { HTML_UNDEF }, "looped", mv_looped },
+    { { HTML_5_2 }, { HTML_UNDEF }, "stretched", mv_stretched } };
 
 struct symbol_entry < e_matrixtype > matrixtype_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "matrix", mt_matrix },
@@ -925,8 +995,8 @@ struct symbol_entry < e_xlinkshow > xlinkshow_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "none", xls_none } };
 
 struct symbol_entry < e_xmlns > xmlns_symbol_table [] =
-{   { { HTML_4_0 }, { HTML_UNDEF }, "http://purl.org/ontology/bibo", x_bibo },
-    { { HTML_4_0 }, { HTML_UNDEF }, "https://purl.org/ontology/bibo", x_bibo },
+{   { { HTML_4_0 }, { HTML_UNDEF }, "http://purl.org/ontology/bibo/", x_bibo },
+    { { HTML_4_0 }, { HTML_UNDEF }, "https://purl.org/ontology/bibo/", x_bibo },
     { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/1999/xhtml", x_xhtml_1 },
     { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.w3.org/1999/xhtml", x_xhtml_1 },
     { { XHTML_1_1 }, { HTML_UNDEF }, "http://www.w3.org/2000/xhtml", x_xhtml_11 },
@@ -983,21 +1053,27 @@ struct symbol_entry < e_xmlns > xmlns_symbol_table [] =
 void enum_init (nitpick& nits)
 {   INIT_ENUM (action);
     INIT_ENUM (align3);
+    INIT_ENUM (alignmentbaseline);
     INIT_ENUM (alignplus);
     INIT_ENUM (as);
     INIT_ENUM (autocapitalise);
     INIT_ENUM (autocomplete);
-    INIT_ENUM (decalign);
     INIT_ENUM (citype);
     INIT_ENUM (cntype);
     INIT_ENUM (composite_operator);
+    INIT_ENUM (crossout);
+    INIT_ENUM (cursor);
+    INIT_ENUM (decalign);
     INIT_ENUM (dingbat);
     INIT_ENUM (dir);
     INIT_ENUM (display);
     INIT_ENUM (dominantbaseline);
     INIT_ENUM (enterkeyhint);
     INIT_ENUM (figalign);
+    INIT_ENUM (filter_in);
     INIT_ENUM (halign);
+    INIT_ENUM (indentalign);
+    INIT_ENUM (inky);
     INIT_ENUM (inputmode);
     INIT_ENUM (inputplus);
     INIT_ENUM (inputtype);
@@ -1008,8 +1084,11 @@ void enum_init (nitpick& nits)
     INIT_ENUM (kind);
     INIT_ENUM (linebreak);
     INIT_ENUM (listtype);
+    INIT_ENUM (longdivstyle);
     INIT_ENUM (mah);
     INIT_ENUM (mathalign);
+    INIT_ENUM (mathlocation);
+    INIT_ENUM (mathnotation);
     INIT_ENUM (mathvariant);
     INIT_ENUM (matrixtype);
     INIT_ENUM (media);
@@ -1019,7 +1098,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (microdata_domain);
     INIT_ENUM (namedspace);
     INIT_ENUM (namespace);
-    INIT_ENUM (mathnotation);
+    INIT_ENUM (mathoverflow);
     INIT_ENUM (paintkeyword);
     INIT_ENUM (plusstyle);
     INIT_ENUM (pointerevents);
@@ -1041,6 +1120,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (svg_fontweight_ff);
     INIT_ENUM (svg_mode);
     INIT_ENUM (svg_overflow);
+    INIT_ENUM (svg_type_11);
     INIT_ENUM (svg_version);
     INIT_ENUM (tableframe);
     INIT_ENUM (textdecoration);
@@ -1049,5 +1129,31 @@ void enum_init (nitpick& nits)
     INIT_ENUM (transform_fn);
     INIT_ENUM (turbulence_type);
     INIT_ENUM (vectoreffect_2);
+    INIT_ENUM (writingmode);
     INIT_ENUM (xlinkshow);
     INIT_ENUM (xmlns); }
+
+e_namespace map_xmlns_to_namespace (const e_xmlns x)
+{   switch (x)
+    {   case x_bibo : return ns_bibo;
+        case x_cc : return ns_cc;
+        case x_crs : return ns_crs;
+        case x_dbp : return ns_dbp;
+        case x_dbp_owl : return ns_dbp_owl;
+        case x_dbr : return ns_dbr;
+        case x_dc : return ns_dc;
+        case x_ex : return ns_ex;
+        case x_foaf : return ns_foaf;
+        case x_mathml : return ns_math;
+        case x_owl : return ns_owl;
+        case x_rdf : return ns_rdf;
+        case x_rdfa : return ns_rdfa;
+        case x_rdfs : return ns_rdfs;
+        case x_svg : return ns_svg;
+        case x_xhv : return ns_xhv;
+        case x_xlink : return ns_xlink;
+        case x_xsd : return ns_xsd;
+        default : break; }
+    return ns_default; }
+
+   // ns_bibo
