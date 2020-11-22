@@ -209,7 +209,13 @@ void element::examine_meter ()
 
 void element::examine_mglyph ()
 {   if (page_.version ().math_version () == math_2)
-    {   if (! a_.known (a_fontfamily))
+    {   attribute_bitset as (own_attributes_);
+        as.reset (a_fontfamily);
+        as.reset (a_index);
+        as.reset (a_alt);
+        if (as.any ())
+            pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "Only ALT, FONTFAMILY and INDEX are valid on <MGLYPH> in mathML 2");
+        if (! a_.known (a_fontfamily))
             pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "FONTFAMILY is required for correct usage of <MGLYPH> in MathML 2");
         if ( a_.known (a_index))
             pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "INDEX is required for correct usage of <MGLYPH> in MathML 2");
@@ -228,6 +234,16 @@ void element::examine_mglyph ()
             pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "FONTFAMILY is deprecated with <MGLYPH> in MathML 3");
         if (a_.known (a_index))
             pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "INDEX is deprecated with <MGLYPH> in MathML 3"); } }
+
+void element::examine_mstyle ()
+{   if (page_.version ().math_version () < math_3) return;
+    if (a_.known (a_background))
+        pick (nit_attribute_unrecognised_here, ed_math_3, "3.3.4.2 Attributes", es_error, ec_attribute, "the BACKGROUND attribute is not associated with <MSTYLE> in MathML 3");
+    attribute_bitset bs = a_verythickmathspace | a_verythinmathspace | a_veryverythickmathspace | a_veryverythinmathspace |
+            a_thinmathspace | a_thickmathspace | a_mediummathspace;
+    bs &= own_attributes_;
+    if (bs.any ())
+        pick (nit_deprecated_attribute, es_warning, ec_attribute, "the ...MATHSPACE attributes are deprecated in MathML 3"); }
 
 void element::examine_nav ()
 {   if (has_this_descendant (elem_main))

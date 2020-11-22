@@ -30,7 +30,8 @@ void element::examine_embed ()
         pick (nit_bad_embed, ed_July2020, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>"); }
 
 void element::examine_equation ()
-{   if (node_.version ().math () < math_2) return;
+{   if (node_.version ().math () != math_2) return;
+        // there's an inconsistency in MathML 3 that I've not got my head around yet, so I'm disabling this check for now.
     if (tag () == elem_reln) pick (nit_deprecated_element, ed_math_2, "4.4.2.2 Relation (reln)", es_warning, ec_element, "<RELN> is deprecated");
     uint64_t fl = 0;
     bool start = true;
@@ -42,7 +43,17 @@ void element::examine_equation ()
             {   fl = c -> node_.id ().flags ();
                 op = c -> tag ();
                 start = false; }
-            else if (! c -> node_.is_closure ()) ++args;
+//            else if (! c -> node_.is_closure ()) ++args;
+            else
+            {   if (node_.version ().math () > math_2)
+                    switch (c -> tag ())
+                    {   case elem_bvar :
+                        case elem_bind :
+                        case elem_condition :
+                        case elem_lowlimit :
+                        case elem_uplimit : continue;
+                        default : break; }
+                if (! c -> node_.is_closure ()) ++args; }
     if (start)
     {   pick (nit_operator_required, ed_math_2, "4.4.2.1 Apply (apply)", es_error, ec_element, "<", elem::name (tag ()), "> requires an operator");
         return; }

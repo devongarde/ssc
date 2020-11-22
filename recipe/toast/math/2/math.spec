@@ -7,6 +7,8 @@ PASS ../toast/math/2/math1-example.html
 2 naughty_lang
 12 missing_close
 23 inserted_missing_closure
+219 annotation
+249 annotation
 
 PASS ../toast/math/2/math2-example.xhtml
 1 xhtml_1_0
@@ -26,6 +28,7 @@ PASS ../toast/math/2/math3-example.html
 410 math_kids
 411 math_kids
 412 math_kids
+434 annotation
 560 math_kids
 570 math_kids
 582 math_kids
@@ -51,6 +54,8 @@ PASS ../toast/math/2/math8-example.html
 92 annotation
 93 annotation
 94 annotation
+95 annotation
+104 annotation
 
 PASS ../toast/math/2/math9-example.html
 2 naughty_lang
@@ -81,16 +86,27 @@ PASS ../toast/math/2/math13-example.html
 2 naughty_lang
 144 annotation
 160 annotation
+163 annotation
 167 annotation
 170 annotation
+173 annotation
+191 annotation
 
 PASS ../toast/math/2/math14-example.html
 2 naughty_lang
 
 PASS ../toast/math/2/math15-example.html
 2 naughty_lang
+45 annotation
+60 annotation
+80 annotation
 96 inserted_missing_parent missing_close math_kids math_kids
 97 inserted_missing_closure
+124 annotation
+138 annotation
+145 annotation
+150 annotation
+178 annotation
 194 id_exists
 195 id_exists
 196 id_exists
@@ -105,10 +121,13 @@ PASS ../toast/math/2/math15-example.html
 206 id_exists
 207 id_exists
 208 id_exists
-224 xmlns_namespace attribute_barred attribute_barred
+211 annotation
+224 xmlns_namespace unrecognised_value annotation
+254 annotation
 270 arg_count arg_count
 272 unrecognised_value ignoring_unknown unrecognised_value ignoring_unknown
 273 unrecognised_value ignoring_unknown
 275 unrecognised_value ignoring_unknown
+283 annotation
 300 unrecognised_value ignoring_unknown
 301 arg_count arg_count unrecognised_value ignoring_unknown unrecognised_value ignoring_unknown

@@ -526,6 +526,8 @@ nitname nitnames [] =
     { nit_bad_linebreak, "bad_linebreak" },
     { nit_non_standard_value, "non_standard_value" },
     { nit_mscarries_last, "mscarries_last" },
+    { nit_bad_bind, "bad_bind" },
+    { nit_bad_share, "bad_share" },
 
     { nit_off, "" } };
 

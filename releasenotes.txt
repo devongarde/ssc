@@ -3,6 +3,11 @@ static site checker
 https://dylanharris.org/ssc/index.shtml
 (c) 2020 Dylan Harris
 
+0.0.70
+- MathML 3
+- suppress MSVC compiler warnings in boost libraries
+- various bug fixes
+
 0.0.69
 - added version info to output file
 - MathML 3 presentation markup

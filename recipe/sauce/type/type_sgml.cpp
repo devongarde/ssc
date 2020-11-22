@@ -255,8 +255,10 @@ struct symbol_entry < e_sgml > doctype_symbol_table [] =
     { { XHTML_2_0, HV_XHTML }, { HTML_UNDEF },  "http://www.w3.org/MarkUp/DTD/xhtml2.dtd", doc_xhtml2 },
     { { XHTML_2_0, HV_XHTML }, { HTML_UNDEF },  "https://www.w3.org/MarkUp/DTD/xhtml2.dtd", doc_xhtml2 },
 
-    { { HTML_5_2, 0, HE_MATH_1 }, { HTML_UNDEF }, "-//W3C//DTD MathML 4.0//EN", doc_math4 },
-    { { HTML_5_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "-//W3C//DTD MathML 3.0//EN", doc_math3 },
+    { { HTML_5_2, 0, HE_MATH_4 }, { HTML_UNDEF }, "-//W3C//DTD MathML 4.0//EN", doc_math4 },
+    { { HTML_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, "-//W3C//DTD MathML 3.0//EN", doc_math3 },
+    { { HTML_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, "-//W3C//ENTITIES MathML 3.0 Qualified Names 1.0//EN", doc_math3 },
+    { { HTML_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, "-//W3C//ENTITIES HTML MathML Set//EN//XML", doc_math3 },
     { { XHTML_1_1, 0, HE_MATH_1 }, { HTML_UNDEF }, "-//W3C//DTD MathML 2.0//EN", doc_math2 },
     { { XHTML_1_1, 0, HE_MATH_1 }, { HTML_UNDEF }, "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd", doc_math2 },
     { { XHTML_1_1, 0, HE_MATH_1 }, { HTML_UNDEF }, "https://www.w3.org/Math/DTD/mathml2/mathml2.dtd", doc_math2 },

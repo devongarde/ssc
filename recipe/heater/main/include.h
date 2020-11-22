@@ -34,6 +34,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // __GNUC__
 
 #ifdef _MSC_VER
+#pragma warning (push,3)
+#pragma warning ( disable : 4244 ) // boost
 #if defined (VS2019)
 #define _WIN32_WINNT 0x0A00 // 10
 #define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // thanks, boost
@@ -154,6 +156,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef __clang__
 #pragma clang diagnostic pop
+#endif
+
+#ifdef _MSC_VER
+#pragma warning (pop)
 #endif
 
 #include "main/version.h"

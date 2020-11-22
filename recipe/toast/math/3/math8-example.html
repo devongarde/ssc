@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 3 8</title>
+</head>
+
+<body>
+
+<h1>math 3 8</h1>
+
+<math>
+<bind><csymbol cd="quant1">forall</csymbol>
+<bvar><ci id="var-x">x</ci></bvar>
+<apply><csymbol cd="relation1">lt</csymbol>
+<ci xref="var-x">x</ci>
+<cn>1</cn>
+</apply>
+</bind></math>
+
+<math>
+<bind><csymbol cd="quant1">forall</csymbol>
+<bvar><ci>x</ci></bvar>
+<apply><csymbol cd="relation1">eq</csymbol>
+<apply><csymbol cd="arith1">plus</csymbol><ci>x</ci><ci>y</ci></apply>
+<apply><csymbol cd="arith1">plus</csymbol><ci>y</ci><ci>x</ci></apply>
+</apply>
+</bind>
+</math>
+
+<math>
+<mrow>
+B
+<mrow>
+x1
+<mo separator="true">,</mo>
+...
+<mo separator="true">,</mo>
+xn
+</mrow>
+<mo separator="true">.</mo>
+S
+</mrow>
+</math>
+
+<math>
+<apply><ci>f</ci>
+<apply><ci>f</ci>
+<apply><ci>f</ci>
+<ci>a</ci>
+<ci>a</ci>
+</apply>
+<apply><ci>f</ci>
+<ci>a</ci>
+<ci>a</ci>
+</apply>
+</apply>
+<apply><ci>f</ci>
+<apply><ci>f</ci>
+<ci>a</ci>
+<ci>a</ci>
+</apply>
+<apply><ci>f</ci>
+<ci>a</ci>
+<ci>a</ci>
+</apply>
+</apply>
+</apply>
+</math>
+
+<math>
+<apply><ci>f</ci>
+<apply id="t1"><ci>f</ci>
+<apply id="t11"><ci>f</ci>
+<ci>a</ci>
+<ci>a</ci>
+</apply>
+<share href="#t11"/>
+</apply>
+<share href="#t1"/>
+</apply>
+</math>
+
+<math>
+<apply id="badid1"><csymbol cd="arith1">divide</csymbol>
+<cn>1</cn>
+<apply><csymbol cd="arith1">plus</csymbol>
+<cn>1</cn>
+<share href="#badid1"/>
+</apply>
+</apply>
+</math>
+
+<math>
+<apply id="bar">
+<csymbol cd="arith1">plus</csymbol>
+<cn>1</cn>
+<share href="#baz"/>
+</apply>
+<apply id="baz">
+<csymbol cd="arith1">plus</csymbol>
+<cn>1</cn>
+<share href="#bar"/>
+</apply>
+</math>
+
+<math>
+<bind id="outer"><csymbol cd="fns1">lambda</csymbol>
+<bvar><ci>x</ci></bvar>
+<apply><ci>f</ci>
+<bind id="inner"><csymbol cd="fns1">lambda</csymbol>
+<bvar><ci>x</ci></bvar>
+<share id="copy" href="#orig"/>
+</bind>
+<apply id="orig"><ci>g</ci><ci>x</ci></apply>
+</apply>
+</bind>
+</math>
+
+<math>
+<cerror>
+<csymbol cd="aritherror">DivisionByZero</csymbol>
+<apply><csymbol cd="arith1">divide</csymbol><ci>x</ci><cn>0</cn></apply>
+</cerror>
+</math>
+
+<math>
+<apply><csymbol cd="relation1">eq</csymbol>
+<cerror>
+<csymbol cd="aritherror">DivisionByZero</csymbol>
+<apply><csymbol cd="arith1">divide</csymbol><ci>x</ci><cn>0</cn></apply>
+</cerror>
+<cn>0</cn>
+</apply>
+</math>
+
+<math>
+<cerror>
+<csymbol cd="aritherror">DivisionByZero</csymbol>
+<apply><csymbol cd="arith1">divide</csymbol><ci>x</ci><cn>0</cn></apply>
+</cerror>
+<merror>
+<mtext>DivisionByZero:&#160;</mtext>
+<mfrac><mi>x</mi><mn>0</mn></mfrac>
+</merror>
+</math>
+
+<math>
+<cerror>
+<csymbol cd="error">Illegal bound variable</csymbol>
+<cs> &lt;bvar&gt;&lt;plus/&gt;&lt;/bvar&gt; </cs>
+</cerror></math>
+
+</body>
+</html>

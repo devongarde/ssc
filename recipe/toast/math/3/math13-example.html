@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 3 13</title>
+</head>
+
+<body>
+
+<h1>math 3 13</h1>
+
+<math>
+<apply><partialdiff/>
+<bvar><ci>x</ci><degree><ci>n</ci></degree></bvar>
+<bvar><ci>y</ci><degree><ci>m</ci></degree></bvar>
+<apply><sin/>
+<apply><times/><ci>x</ci><ci>y</ci></apply>
+</apply>
+</apply>
+<apply>
+<apply><csymbol cd="calculus1">partialdiffdegree</csymbol>
+<apply><csymbol cd="list1">list</csymbol>
+<ci>n</ci><ci>m</ci>
+</apply>
+<apply><csymbol cd="arith1">plus</csymbol>
+<ci>n</ci><ci>m</ci>
+</apply>
+<bind><csymbol cd="fns1">lambda</csymbol>
+<bvar><ci>x</ci></bvar>
+<bvar><ci>y</ci></bvar>
+<apply><csymbol cd="transc1">sin</csymbol>
+<apply><csymbol cd="arith1">times</csymbol>
+<ci>x</ci><ci>y</ci>
+</apply>
+</apply>
+</bind>
+<ci>x</ci>
+<ci>y</ci>
+</apply>
+</apply></math>
+
+<math>
+<apply><divergence/><ci>a</ci></apply><mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mi>a</mi></mfenced></mrow>
+</math>
+
+<math>
+<apply><divergence/>
+<ci type="vector">E</ci>
+</apply>
+<mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mi>E</mi></mfenced></mrow><mrow><mo>&#x2207;</mo><mo>&#x22c5;</mo><mi>E</mi></mrow>
+</math>
+
+<math>
+<apply><divergence/>
+<bvar><ci>x</ci></bvar>
+<bvar><ci>y</ci></bvar>
+<bvar><ci>z</ci></bvar>
+<vector>
+<apply><plus/><ci>x</ci><ci>y</ci></apply>
+<apply><plus/><ci>x</ci><ci>z</ci></apply>
+<apply><plus/><ci>z</ci><ci>y</ci></apply>
+</vector>
+</apply>
+<mrow>
+<mi>div</mi>
+<mo>&#x2061;</mo>
+<mo>(</mo>
+<mtable>
+<mtr><mtd>
+<mi>x</mi>
+<mo>&#x21a6;</mo>
+<mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow>
+</mtd></mtr>
+<mtr><mtd>
+<mi>y</mi>
+<mo>&#x21a6;</mo>
+<mrow><mi>x</mi><mo>+</mo><mi>z</mi></mrow>
+</mtd></mtr>
+<mtr><mtd>
+<mi>z</mi>
+<mo>&#x21a6;</mo>
+<mrow><mi>z</mi><mo>+</mo><mi>y</mi></mrow>
+</mtd></mtr>
+</mtable>
+<mo>)</mo>
+</mrow>
+</math>
+
+<math>
+<apply><grad/><ci type="function">f</ci></apply><mrow><mi>grad</mi><mo>&#x2061;</mo><mfenced><mi>f</mi></mfenced></mrow>
+<mrow><mo>&#x2207;</mo><mo>&#x2061;</mo><mfenced><mi>f</mi></mfenced></mrow>
+</math>
+
+<math>
+<apply><grad/>
+<bvar><ci>x</ci></bvar>
+<bvar><ci>y</ci></bvar>
+<bvar><ci>z</ci></bvar>
+<apply><times/><ci>x</ci><ci>y</ci><ci>z</ci></apply>
+</apply><mrow>
+<mi>grad</mi>
+<mo>&#x2061;</mo>
+<mrow>
+<mo>(</mo>
+<mfenced><mi>x</mi><mi>y</mi><mi>z</mi></mfenced>
+<mo>&#x21a6;</mo>
+<mrow>
+<mi>x</mi><mo>&#x2062;</mo><mi>y</mi><mo>&#x2062;</mo><mi>z</mi>
+</mrow>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+
+<math>
+<apply><curl/><ci>a</ci></apply><mrow><mi>curl</mi><mo>&#x2061;</mo><mfenced><mi>a</mi></mfenced></mrow><mrow><mo>&#x2207;</mo><mo>&#xd7;</mo><mi>a</mi></mrow></math>
+
+<math>
+<apply><laplacian/><ci type="vector">E</ci></apply><mrow>
+<msup><mo>&#x2207;</mo><mn>2</mn></msup>
+<mo>&#x2061;</mo>
+<mfenced><mi>E</mi></mfenced>
+</mrow>
+</math>
+
+<math>
+<apply><laplacian/>
+<bvar><ci>x</ci></bvar>
+<bvar><ci>y</ci></bvar>
+<bvar><ci>z</ci></bvar>
+<apply><ci>f</ci><ci>x</ci><ci>y</ci></apply>
+</apply>
+<mrow>
+<msup><mo>&#x2207;</mo><mn>2</mn></msup>
+<mo>&#x2061;</mo>
+<mrow>
+<mo>(</mo>
+<mfenced><mi>x</mi><mi>y</mi><mi>z</mi></mfenced>
+<mo>&#x21a6;</mo>
+<mrow>
+<mi>f</mi>
+<mo>&#x2061;</mo>
+<mfenced><mi>x</mi><mi>y</mi></mfenced>
+</mrow>
+<mo>)</mo>
+</mrow>
+</mrow>
+</math>
+
+<math>
+<set>
+<ci>a</ci><ci>b</ci><ci>c</ci>
+</set>
+<mrow>
+<mo>{</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>}</mo>
+</mrow>
+</math>
+
+<math>
+<set>
+<bvar><ci>x</ci></bvar>
+<condition>
+<apply><lt/><ci>x</ci><cn>5</cn></apply>
+</condition>
+<ci>x</ci>
+</set><mrow>
+<mo>{</mo>
+<mi>x</mi>
+<mo>|</mo>
+<mrow><mi>x</mi><mo>&lt;</mo><mn>5</mn></mrow>
+<mo>}</mo>
+</mrow>
+</math>
+
+<math>
+<set>
+<bvar><ci type="set">S</ci></bvar>
+<condition>
+<apply><in/><ci>S</ci><ci type="list">T</ci></apply>
+</condition>
+<ci>S</ci>
+</set><mrow>
+<mo>{</mo>
+<mi>S</mi>
+<mo>|</mo>
+<mrow><mi>S</mi><mo>&#x2208;</mo><mi>T</mi></mrow>
+<mo>}</mo>
+</mrow>
+</math>
+
+<math>
+<set>
+<bvar><ci> x </ci></bvar>
+<condition>
+<apply><and/>
+<apply><lt/><ci>x</ci><cn>5</cn></apply>
+<apply><in/><ci>x</ci><naturalnumbers/></apply>
+</apply>
+</condition>
+<ci>x</ci>
+</set>
+<mrow>
+<mo>{</mo>
+<mi>x</mi>
+<mo>|</mo>
+<mrow>
+<mrow><mo>(</mo><mi>x</mi><mo>&lt;</mo><mn>5</mn><mo>)</mo></mrow>
+<mo>&#x2227;</mo>
+<mrow>
+<mi>x</mi><mo>&#x2208;</mo><mi mathvariant="double-struck">N</mi>
+</mrow>
+</mrow>
+<mo>}</mo>
+</mrow>
+{</math>
+
+<math>
+<list>
+<ci>a</ci><ci>b</ci><ci>c</ci>
+</list>
+<mrow>
+<mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>)</mo>
+</mrow></math>
+
+<math>
+<list order="numeric">
+<bvar><ci>x</ci></bvar>
+<condition>
+<apply><lt/><ci>x</ci><cn>5</cn></apply>
+</condition>
+</list>
+<mrow>
+<mo>(</mo>
+<mi>x</mi>
+<mo>|</mo>
+<mrow><mi>x</mi><mo>&lt;</mo><mn>5</mn></mrow>
+<mo>)</mo>
+</mrow></math>
+
+<math>
+<apply><union/><ci>A</ci><ci>B</ci></apply>
+<mrow><mi>A</mi><mo>&#x222a;</mo><mi>B</mi></mrow></math>
+
+<math>
+<apply><union/>
+<bvar><ci type="set">S</ci></bvar>
+<domainofapplication>
+<ci type="list">L</ci>
+</domainofapplication>
+<ci type="set"> S</ci>
+</apply>
+<mrow><munder><mo>&#x22c3;</mo><mi>L</mi></munder><mi>S</mi></mrow>
+</math>
+
+<math>
+<apply><intersect/>
+<ci type="set"> A </ci>
+<ci type="set"> B </ci>
+</apply>
+<mrow><mi>A</mi><mo>&#x2229;</mo><mi>B</mi></mrow>
+</math>
+
+<math>
+<apply><intersect/>
+<bvar><ci type="set">S</ci></bvar>
+<domainofapplication><ci type="list">L</ci></domainofapplication>
+<ci type="set"> S </ci>
+</apply>
+<mrow><munder><mo>&#x22c2;</mo><mi>L</mi></munder><mi>S</mi></mrow>
+</math>
+
+<math>
+<apply><in/><ci>a</ci><ci type="set">A</ci></apply>
+<mrow><mi>a</mi><mo>&#x2208;</mo><mi>A</mi></mrow></math>
+
+<math>
+<apply><notin/><ci>a</ci><ci type="set">A</ci></apply>
+<mrow><mi>a</mi><mo>&#x2209;</mo><mi>A</mi></mrow>
+</math>
+
+<math>
+<apply><subset/>
+<ci type="set">A</ci>
+<ci type="set">B</ci>
+</apply>
+<mrow><mi>A</mi><mo>&#x2286;</mo><mi>B</mi></mrow>
+</math>
+
+<math>
+<apply><prsubset/>
+<ci type="set">A</ci>
+<ci type="set">B</ci>
+</apply>
+<mrow><mi>A</mi><mo>&#x2282;</mo><mi>B</mi></mrow>
+</math>
+
+<math>
+<apply><notsubset/>
+<ci type="set">A</ci>
+<ci type="set">B</ci>
+</apply>
+<mrow><mi>A</mi><mo>&#x2288;</mo><mi>B</mi></mrow>
+</math>
+
+<math>
+<apply><notprsubset/>
+<ci type="set">A</ci>
+<ci type="set">B</ci>
+</apply>
+<mrow><mi>A</mi><mo>&#x2284;</mo><mi>B</mi></mrow>
+</math>
+
+<math>
+<apply><setdiff/>
+<ci type="set">A</ci>
+<ci type="set">B</ci>
+</apply>
+<mrow><mi>A</mi><mo>&#x2216;</mo><mi>B</mi></mrow></math>
+
+<math>
+<apply><eq/>
+<apply><card/><ci>A</ci></apply>
+<cn>5</cn>
+</apply>
+<mrow>
+<mrow><mo>|</mo><mi>A</mi><mo>|</mo></mrow>
+<mo>=</mo>
+<mn>5</mn>
+</mrow>
+</math>
+
+<math>
+<apply><cartesianproduct/><ci>A</ci><ci>B</ci></apply>
+<mrow><mi>A</mi><mo>&#xd7;</mo><mi>B</mi></mrow>
+</math>
+
+</body>
+</html>

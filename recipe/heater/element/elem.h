@@ -80,6 +80,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_FONT             0x0000000000010000
 #define EF_PHRASE           0x0000000000020000
 #define EF_PRE              0x0000000000040000
+#define EF_M_DQ             0x0000000000080000
 
 #define EF_3_LIST           0x0000000000100000
 #define EF_3_BQ             0x0000000000200000

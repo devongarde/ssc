@@ -141,6 +141,21 @@ void element::examine_select ()
         else if (selectedness > 1)
             pick (nit_bad_select, ed_50, "4.10.7 The select element", es_warning, ec_attribute, "<SELECT> has no MULTIPLE yet multiple child <OPTION>s have SELECTED specified"); } }
 
+void element::examine_share ()
+{   if (! a_.known (a_href))
+        pick (nit_requires_href, ed_math_3, "4.2.7.1 The share element", es_error, ec_attribute, "<SHARE> requires an HREF");
+    else
+    {   url u (a_.get_x < attr_href > ());
+        if (! u.is_simple_id ()) return;
+        ::std::string i (u.id ());
+        if (ids_.has_id (i))
+        {   element* pide = ids_.get_element (i);
+            if (pide != nullptr)
+                for (element* p = parent_; p != nullptr; p = p -> parent_)
+                    if (p == pide)
+                    {   pick (nit_bad_share, ed_math_3, "4.2.7.2 An Acyclicity Constraint", es_error, ec_attribute, quote (i), " is recursive");
+                        break; } } } }
+
 void element::examine_source ()
 {   if (ancestral_elements_.test (elem_picture))
     {   if (! a_.known (a_srcset))

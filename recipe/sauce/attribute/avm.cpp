@@ -724,7 +724,6 @@ struct hav_t
     STANDARD_HTML_23_H_ATTRIBUTES (ELEM), \
     STANDARD_HTML_4_54_ATTRIBUTES (ELEM)
 
-
 hav_t havt [] =
 {   { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { XHTML_2_0 }, elem_a, a_charset },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_a, a_coords },
@@ -880,10 +879,18 @@ hav_t havt [] =
 
     STANDARD_HTML_4_54_ATTRIBUTES (elem_animation),
 
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation, a_cd },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation, a_definitionurl },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_annotation, a_encoding },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation, a_name },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation, a_src },
     MATH3_STANDARD_ATTRIBUTES (elem_annotation),
 
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation_xml, a_cd },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation_xml, a_definitionurl },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_annotation_xml, a_encoding },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation_xml, a_name },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation_xml, a_src },
     MATH3_STANDARD_ATTRIBUTES (elem_annotation_xml),
 
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_align },
@@ -1007,13 +1014,15 @@ hav_t havt [] =
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_below, a_sym },
 
-    HTML3_CLID_ATTRIBUTES (elem_big),
-    COMMON_HTML4_ATTRIBUTES (elem_big),
-
     { { HTML_2_0 }, { HTML_UNDEF }, elem_bgsound, a_balance },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_bgsound, a_loop },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_bgsound, a_src },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_bgsound, a_volume },
+
+    HTML3_CLID_ATTRIBUTES (elem_big),
+    COMMON_HTML4_ATTRIBUTES (elem_big),
+
+    MATH3_STANDARD_ATTRIBUTES (elem_bind),
 
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_blockquote, a_align },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_blockquote, a_cite },
@@ -1107,7 +1116,11 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_cartesianproduct),
 
+    MATH3_STANDARD_ATTRIBUTES (elem_cbytes),
+
     MATH3_DEFS_ATTRIBUTES (elem_ceiling),
+
+    MATH3_STANDARD_ATTRIBUTES (elem_cerror),
 
     { { HTML_PLUS }, { HTML_PLUS }, elem_changed, a_idref },
     HTMLPLUS_ATTRIBUTES (elem_changed),
@@ -1209,10 +1222,13 @@ hav_t havt [] =
 
     HTML3_CLID_ATTRIBUTES (elem_credit),
 
+    MATH3_DEFS_ATTRIBUTES (elem_cs),
+
     MATH3_DEFS_ATTRIBUTES (elem_csc),
 
     MATH3_DEFS_ATTRIBUTES (elem_csch),
 
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_csymbol, a_cd },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_csymbol, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_csymbol),
 
@@ -2353,6 +2369,7 @@ hav_t havt [] =
     MATH3_DEFS_ATTRIBUTES (elem_momentabout),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mover, a_accent },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_mover, a_align },
     MATH3_PRES_ATTRIBUTES (elem_mover),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mpadded, a_lspace },
@@ -2419,28 +2436,44 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_accentunder },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_background },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_bevelled },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_charalign },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_charspacing },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_close },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_columnspan },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_crossout },
     { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_decimalpoint },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_denomalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_depth },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_edge },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_height },
     { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_infixlinebreakstyle },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_leftoverhang },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_length },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_linethickness },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_location },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_longdivstyle },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_lquote },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_mediummathspace },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_mslinethickness },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_notation },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_numalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_open },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_position },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_rightoverhang },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_rowspan },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_rquote },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_scriptlevel },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_scriptminsize },
+    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_scriptsizemultiplier },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_selection },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_separators },
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_scriptlevel },
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_scriptsizemultiplier },
-    { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_scriptminsize },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_shift },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_stackalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_subscriptshift },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_superscriptshift },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_thickmathspace },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_thinmathspace },
+    { { MAJOR_5_2, MINOR_5_2 }, { HTML_UNDEF }, elem_mstyle, a_valign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_verythickmathspace },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_verythinmathspace },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mstyle, a_veryverythickmathspace },
@@ -2480,10 +2513,12 @@ hav_t havt [] =
     MATH3_PRES_ATTRIBUTES (elem_mtr),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_munder, a_accentunder },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_munder, a_align },
     MATH3_PRES_ATTRIBUTES (elem_munder),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_munderover, a_accent },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_munderover, a_accentunder },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_munderover, a_align },
     MATH3_PRES_ATTRIBUTES (elem_munderover),
 
     MATH3_DEFS_ATTRIBUTES (elem_naturalnumbers),
@@ -2827,6 +2862,10 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_selector),
 
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_semantics, a_cd },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_semantics, a_definitionurl },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_semantics, a_encoding },
+    { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_semantics, a_name },
     MATH3_DEFS_ATTRIBUTES (elem_semantics),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_1 | HE_MATH_2 }, { HTML_UNDEF }, elem_sep, a_xmlns },
@@ -2848,6 +2887,9 @@ hav_t havt [] =
     MATH3_DEFS_ATTRIBUTES (elem_setdiff),
 
     STANDARD_HTML54_ATTRIBUTES (elem_shadow),
+
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_share, a_src },
+    MATH3_STANDARD_ATTRIBUTES (elem_share),
 
     MATH3_DEFS_ATTRIBUTES (elem_sin),
 
