@@ -356,7 +356,17 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
     return false; }
 
 bool html_version::deprecated (const html_version& current) const
-{   switch (current.mjr_)
+{   switch (context.math_version ())
+    {   case math_2 :
+            if ((current.ext_ & HE_M2_DEPRECAT) == HE_M2_DEPRECAT)
+                return true;
+            break;
+        case math_3 :
+            if ((current.ext_ & HE_M3_DEPRECAT) == HE_M3_DEPRECAT)
+                return true;
+            break;
+        default : break; }
+    switch (current.mjr_)
     {   case 1 : return (current.flags_ & HV_DEPRECATED1) != 0;
         case 2 : return (current.flags_ & HV_DEPRECATED2) != 0;
         case 3 :

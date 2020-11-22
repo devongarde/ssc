@@ -27,7 +27,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void element::pre_examine_element (const e_element tag)
 {   switch (tag) // should integrate this into individual element verification
     {   case elem_area : examine_area (); break;
-        case elem_annotation : examine_annotation (); break;
+        case elem_annotation :
+        case elem_annotation_xml : examine_annotation (tag); break;
         case elem_base : examine_base (); break;
         case elem_body :
         case elem_head :
@@ -59,6 +60,7 @@ void element::pre_examine_element (const e_element tag)
         case elem_main : examine_main (); break;
         case elem_map : examine_map (); break;
         case elem_meter : examine_meter (); break;
+        case elem_mstyle : examine_mstyle (); break;
         case elem_nextid :
             pick (nit_deprecated_element, es_warning, ec_element, "Really? <NEXTID> was obsolete in HTML Tags!");
             break;
@@ -70,6 +72,7 @@ void element::pre_examine_element (const e_element tag)
             break;
         case elem_script : examine_script (); break;
         case elem_section : examine_section (); break;
+        case elem_share : examine_share (); break;
         case elem_style : examine_style (); break;
         case elem_svg : examine_svg (); break;
         case elem_tab : examine_tab (); break;
@@ -86,6 +89,7 @@ void element::post_examine_element (const e_element tag)
         case elem_article : examine_article (); break;
         case elem_aside : examine_aside (); break;
         case elem_audio : examine_audio (); break;
+        case elem_bind : examine_bind (); break;
         case elem_button : examine_button (); break;
         case elem_bvar :
         case elem_maction :

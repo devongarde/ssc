@@ -79,7 +79,7 @@ class element
     void check_ancestors (const e_element self, const element_bitset& gf);
     void check_descendants (const e_element self, const element_bitset& gf);
     void check_mscarries_pos (const e_element self);
-    void check_math_children (const int expected, const bool or_more = false);
+    bool check_math_children (const int expected, const bool or_more = false);
     void check_math_children (const int from, const int to);
     bool naughty_label_descendents (const element* e, const uid_t uid, bool& first);
     void no_anchor_daddy ();
@@ -113,14 +113,15 @@ class element
     {   return node_.text (); }
     void examine_address ();
     void examine_animatemotion ();
-    void examine_annotation ();
-    void examine_annotation_xml ();
+    void examine_annotation (const e_element e);
+//    void examine_annotation_xml ();
     void examine_area ();
     void examine_article ();
     void examine_aside ();
     void examine_audio ();
     void examine_anchor ();
     void examine_base ();
+    void examine_bind ();
     void examine_button ();
     void examine_caption ();
     void examine_col ();
@@ -161,6 +162,7 @@ class element
     void examine_meta ();
     void examine_meter ();
     void examine_mglyph ();
+    void examine_mstyle ();
     void examine_nav ();
     void examine_noscript ();
     void examine_object ();
@@ -173,6 +175,7 @@ class element
     void examine_script ();
     void examine_section ();
     void examine_select ();
+    void examine_share ();
     void examine_source ();
     void examine_style ();
     void examine_svg ();

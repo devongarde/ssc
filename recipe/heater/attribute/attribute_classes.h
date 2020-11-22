@@ -50,6 +50,7 @@ typedef typed_attribute < t_real, a_alphabetic > attr_alphabetic;
 typedef typed_attribute < t_text, a_alt > attr_alt;
 typedef typed_attribute < t_url, a_altimg > attr_altimg;
 typedef typed_attribute < t_measure, a_altimg_height > attr_altimg_height;
+typedef typed_attribute < t_generic, a_altimg_valign > attr_altimg_valign;
 typedef typed_attribute < t_measure, a_altimg_width > attr_altimg_width;
 typedef typed_attribute < t_text, a_alttext > attr_alttext;
 typedef typed_attribute < t_real, a_amplitude > attr_amplitude;
@@ -131,6 +132,7 @@ typedef typed_attribute < t_existential, a_cancelable > attr_cancelable;
 typedef typed_attribute < t_real, a_capheight > attr_capheight;
 typedef typed_attribute < t_capture, a_capture > attr_capture;
 typedef typed_attribute < t_url, a_cdgroup > attr_cdgroup;
+typedef typed_attribute < t_text, a_cd > attr_cd;
 typedef typed_attribute < t_generic, a_cell > attr_cell;
 typedef typed_attribute < t_generic, a_cellpadding > attr_cellpadding;
 typedef typed_attribute < t_generic, a_cellspacing > attr_cellspacing;
@@ -230,7 +232,8 @@ typedef typed_attribute < t_edit, a_edit > attr_edit;
 typedef typed_attribute < t_generic, a_editable > attr_editable;
 typedef typed_attribute < t_effect, a_effect > attr_effect;
 typedef typed_attribute < t_angle, a_elevation > attr_elevation;
-typedef typed_attribute < t_charset, a_encoding > attr_encoding;
+// typedef typed_attribute < t_charset, a_encoding > attr_encoding;
+typedef typed_attribute < t_text, a_encoding > attr_encoding;
 typedef typed_attribute < t_enctype, a_enctype > attr_enctype;
 typedef typed_attribute < t_enablebackground, a_enablebackground > attr_enablebackground;
 typedef typed_attribute < t_endvaluelist, a_end > attr_end;
@@ -879,6 +882,9 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_alphabetic, \
     attr_alt, \
     attr_altimg, \
+    attr_altimg_height, \
+    attr_altimg_valign, \
+    attr_altimg_width, \
     attr_alttext, \
     attr_amplitude, \
     attr_arabicform, \
@@ -958,6 +964,8 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_cancelable, \
     attr_capheight, \
     attr_capture, \
+    attr_cdgroup, \
+    attr_cd, \
     attr_cell, \
     attr_cellpadding, \
     attr_cellspacing, \

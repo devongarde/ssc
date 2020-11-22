@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.69 LANGUAGES CXX)
+project (ssc VERSION 0.0.70 LANGUAGES CXX)
 
 set (BOOST_ROOT ${BOOST})
 set (CMAKE_CXX_STANDARD 17)
@@ -73,8 +73,8 @@ target_sources (ssc PRIVATE
 target_include_directories (ssc-test PRIVATE ${H} ${BOOST})
 target_include_directories (ssc PRIVATE ${H} ${BOOST})
 
-target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
-target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
+target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-parameter")
+target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-parameter")
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 

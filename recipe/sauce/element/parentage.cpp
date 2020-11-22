@@ -146,7 +146,11 @@ parentage parent_table [] =
     { { HTML_3_2 }, { HTML_3_2 }, elem_applet, elem_undefined, 0, EF_32_TEXTIN },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_applet, elem_undefined, 0, EF_4_FLOW },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_applet, elem_undefined },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_apply, elem_undefined, 0, EF_M_CONTENTEXPR },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_apply, elem_degree },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_apply, elem_logbase },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_apply, elem_momentabout },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_apply, elem_undefined, 0, EF_M_DQ },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_apply, elem_undefined, 0, EF_M_CONTENTEXPR  },
     { { HTML_PLUS }, { HTML_PLUS }, elem_arg, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_PLUS }, { HTML_PLUS }, elem_array, elem_array },
     { { HTML_PLUS }, { HTML_PLUS }, elem_array, elem_item },
@@ -181,6 +185,11 @@ parentage parent_table [] =
     { { HTML_3_2 }, { HTML_3_2 }, elem_big, elem_undefined, 0, EF_32_TEXTIN },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_big, elem_undefined, 0, EF_4_INLINE },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_big, elem_undefined },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_bind, elem_degree },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_bind, elem_logbase },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_bind, elem_momentabout },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_bind, elem_undefined, 0, EF_M_DQ },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_bind, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_3_0 }, { HTML_3_0 }, elem_blockquote, elem_credit },
     { { HTML_1_0 }, { HTML_1_0 }, elem_blockquote, elem_img },
     { { HTML_1_0 }, { HTML_2_0 }, elem_blockquote, elem_p },
@@ -235,7 +244,10 @@ parentage parent_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_button, elem_textarea, DENY },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, elem_undefined, 0, EF_4_FLOW },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_button, elem_undefined, 0, EF_5_PHRASE },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_bvar, elem_undefined, 0, EF_M_CONTENTEXPR },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_bvar, elem_ci },
+    { { HTML_5_0, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_bvar, elem_degree },
+    { { HTML_5_0, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_bvar, elem_semantics },
+    { { XHTML_1_0, 0, MATH_1_2 }, { HTML_UNDEF }, elem_bvar, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_PLUS }, { HTML_PLUS }, elem_byline, elem_p },
     { { HTML_PLUS }, { HTML_PLUS }, elem_byline, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_PLUS }, { HTML_PLUS }, elem_caption, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
@@ -249,6 +261,8 @@ parentage parent_table [] =
     { { HTML_5_0 }, { HTML_UNDEF }, elem_canvas, elem_undefined },
     { { HTML_3_2 }, { HTML_UNDEF }, elem_centre, elem_undefined, 0, EF_32_BODY },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_centre, elem_undefined, 0, EF_4_FLOW },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_cerror, elem_csymbol },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_cerror, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_ci, elem_mglyph },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_ci, elem_undefined, 0, EF_M_PRESINCONTENT },
     { { XHTML_2_0, 0, HE_SVG_2_0 }, { HTML_UNDEF }, elem_circle, elem_clippath },
@@ -277,10 +291,11 @@ parentage parent_table [] =
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_clippath, elem_text },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_clippath, elem_use },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_clippath, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM | EF_SVG_SHAPE },
-    { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_cn, elem_mglyph },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_ci, elem_mglyph },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_cn, elem_sep },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_cn, elem_undefined, 0, EF_M_PRESINCONTENT },
+    { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_ci, elem_undefined, 0, EF_M_PRESINCONTENT },
+    { { XHTML_1_0, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_cn, elem_mglyph },
+    { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_cn, elem_sep },
+    { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_cn, elem_undefined, 0, EF_M_PRESINCONTENT },
     { { HTML_PLUS }, { HTML_PLUS }, elem_cmd, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_PLUS }, { HTML_PLUS }, elem_code, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_2_0 }, { HTML_2_0 }, elem_code, elem_undefined, 0, EF_TEXT | EF_PHRASE | EF_FONT },
@@ -741,6 +756,7 @@ parentage parent_table [] =
     { { HTML_4_0 }, { XHTML_1_1 }, elem_kbd, elem_undefined, 0, EF_4_INLINE },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_kbd, elem_undefined, 0, EF_X2_TEXT },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_kbd, elem_undefined, 0, EF_5_PHRASE },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_lambda, elem_undefined, 0, EF_M_DQ },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_lambda, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_3_0 }, { HTML_UNDEF }, elem_lang, elem_undefined, 0, EF_3_TEXTIN },
     { { HTML_PLUS }, { HTML_PLUS }, elem_l, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
@@ -781,6 +797,7 @@ parentage parent_table [] =
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_lineargradient, elem_switch },
     { { XHTML_1_0, 0, HE_SVG_1_1 | HE_SVG_2_0 }, { HTML_UNDEF }, elem_lineargradient, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_lineargradient, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_list, elem_undefined, 0, EF_M_DQ },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_list, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_listing, elem_undefined },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_listing, elem_form },
@@ -830,7 +847,9 @@ parentage parent_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, elem_math, elem_undefined, 0, EF_3_MATHIN },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_math, elem_declare },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_math, elem_undefined, 0, EF_M_MATH },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_matrix, elem_undefined, 0, EF_M_DQ },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_matrix, elem_undefined, 0, EF_M_CONTENTEXPR },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_matrixrow, elem_undefined, 0, EF_M_DQ },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_matrixrow, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_menclose, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_TAGS }, { HTML_1_0 }, elem_menu, elem_a },
@@ -872,7 +891,10 @@ parentage parent_table [] =
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_missingglyph, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_missingglyph, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mlabeledtr, elem_undefined, 0, EF_M_CONTENTEXPR },
+    { { HTML_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_mlabeledtr, elem_mtd },
+    { { XHTML_1_0, 0, MATH_1_2 }, { HTML_UNDEF }, elem_mlabeledtr, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_5_2 }, { HTML_UNDEF }, elem_mlongdiv, elem_undefined, 0, EF_M_PRESEXPR },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_mmultiscripts, elem_none },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mmultiscripts, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mn, elem_malignmark },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_mn, elem_mglyph },
@@ -893,18 +915,26 @@ parentage parent_table [] =
     { { HTML_5_2 }, { HTML_UNDEF }, elem_msgroup, elem_undefined, 0, EF_M_PRESEXPR },
     { { HTML_5_2 }, { HTML_UNDEF }, elem_msline, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_msqrt, elem_undefined, 0, EF_M_PRESEXPR },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_msrow, elem_none },
     { { HTML_5_2 }, { HTML_UNDEF }, elem_msrow, elem_undefined, 0, EF_M_PRESEXPR },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_mstack, elem_mscarries },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_mstack, elem_msgroup },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_mstack, elem_msline },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_mstack, elem_msrow },
     { { HTML_5_2 }, { HTML_UNDEF }, elem_mstack, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mstyle, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_msub, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_msubsup, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_msup, elem_undefined, 0, EF_M_PRESEXPR },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_mtable, elem_undefined, 0, EF_M_PRESEXPR },
+    { { HTML_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_mtable, elem_mlabeledtr },
+    { { HTML_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_mtable, elem_mtr },
+    { { XHTML_1_0, 0, MATH_1_2 }, { HTML_UNDEF }, elem_mtable, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mtext, elem_malignmark },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_mtext, elem_mglyph },
-    { { HTML_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_mtext, elem_undefined },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_mtext, elem_undefined },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mtd, elem_undefined, 0, EF_M_PRESEXPR },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_mtr, elem_undefined, 0, EF_M_PRESEXPR },
+    { { HTML_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_mtr, elem_mtd },
+    { { XHTML_1_0, 0, MATH_1_2 }, { HTML_UNDEF }, elem_mtr, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_munder, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_munderover, elem_undefined, 0, EF_M_PRESEXPR },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_nav, elem_main, DENY },
@@ -1135,6 +1165,8 @@ parentage parent_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_semantics, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_set, elem_handler },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_set, elem_switch },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_set, elem_undefined, 0, EF_M_DQ },
+    { { XHTML_1_0, 0, MATH_1_2_3 }, { HTML_UNDEF }, elem_set, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_0, 0, HE_SVG_1_1 | HE_SVG_1_2 }, { HTML_UNDEF }, elem_set, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_set, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_3_0 }, { HTML_3_0 }, elem_small, elem_undefined, 0, EF_3_TEXTIN },
@@ -1418,6 +1450,7 @@ parentage parent_table [] =
     { { HTML_4_0 }, { XHTML_1_1 }, elem_var, elem_undefined, 0, EF_4_INLINE },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_var, elem_undefined, 0, EF_X2_TEXT },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_var, elem_undefined, 0, EF_5_PHRASE },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_vector, elem_undefined, 0, EF_M_DQ },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_vector, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_1, 0, HE_SVG_1_2_FULL }, { HTML_UNDEF }, elem_vectoreffect, elem_veaffine },
     { { XHTML_1_1, 0, HE_SVG_1_2_FULL }, { HTML_UNDEF }, elem_vectoreffect, elem_veexclude },
@@ -1476,7 +1509,7 @@ bool is_permitted_parent_child (nitpick& nits, const html_version& v, const elem
             if (i -> second.child_ == seek)
                 if (does_apply (v, i -> second.first_, i -> second.last_))
                     if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
-                        if (! i -> second.first_.has_math () || ((i -> second.first_.ext () & v.ext ()) != 0))
+                        if (! i -> second.first_.has_math () || ((i -> second.first_.ext () & self.first ().ext () & context.html_ver ().ext ()) != 0))
                         {   if (i -> second.flags_ == 0) return true;
                             if ((i -> second.flags_ & DENY) != 0)
                             {   nits.pick (nit_wrong_parent, es_error, ec_element, "<", parent.name (), "> cannot have a child <", self.name (), "> element"); return false; }
@@ -1494,7 +1527,7 @@ bool is_permitted_parent_child (const html_version& v, const elem& self, const e
             if (i -> second.child_ == seek)
                 if (does_apply (v, i -> second.first_, i -> second.last_))
                     if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
-                        if (! i -> second.first_.has_math () || ((i -> second.first_.ext () & v.ext ()) != 0))
+                        if (! i -> second.first_.has_math () || ((i -> second.first_.ext () & self.first ().ext () & context.html_ver ().ext ()) != 0))
                         {   if (i -> second.flags_ == 0) return true;
                             if ((i -> second.flags_ & DENY) != 0) return false;
                             if (! parent.is_unclosed (v)) return true;
@@ -1558,6 +1591,8 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_box :
         case elem_ci :
         case elem_cn :
+        case elem_cs :
+        case elem_csymbol :
         case elem_dot :
         case elem_ddot :
         case elem_fn :
@@ -1577,7 +1612,6 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_mfrac :
         case elem_mglyph :
         case elem_mi :
-        case elem_mlabeledtr :
         case elem_mlongdiv :
         case elem_mmultiscripts :
         case elem_mn :
@@ -1614,8 +1648,6 @@ e_element default_parent (const html_version& v, const elem& self)
             return elem_math;
         case elem_abs :
         case elem_and :
-        case elem_annotation :
-        case elem_annotation_xml :
         case elem_approx :
         case elem_arccos :
         case elem_arccosh :
@@ -1629,9 +1661,12 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_arcsinh :
         case elem_arctan :
         case elem_arctanh :
+        case elem_bind :
         case elem_bvar :
         case elem_card :
         case elem_cartesianproduct :
+        case elem_cbytes :
+        case elem_cerror :
         case elem_ceiling :
         case elem_codomain :
         case elem_complexes :
@@ -1725,6 +1760,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_selector :
         case elem_sep :
         case elem_setdiff :
+        case elem_share :
         case elem_sin :
         case elem_sinh :
         case elem_subset :
@@ -1741,6 +1777,9 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_vectorproduct :
         case elem_xor :
             return elem_apply;
+        case elem_annotation :
+        case elem_annotation_xml :
+            return elem_semantics;
         case elem_altglyph :
             return elem_glyph;
         case elem_altglyphdef :
@@ -1878,7 +1917,9 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_right :
             return elem_box;
         case elem_mtd:
+            return elem_mtr;
         case elem_mtr:
+        case elem_mlabeledtr :
             return elem_mtable;
         case elem_col :
             if (v.mjr () >= 5) return elem_colgroup;

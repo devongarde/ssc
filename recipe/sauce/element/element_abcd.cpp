@@ -62,15 +62,17 @@ void element::examine_animatemotion ()
                 {   pick (nit_animatemotion, ed_svg_1_1, "19.2.14 The animateMotion element", es_error, ec_element, "<ANIMATEMOTION> can only have ONE child <MPATH>");
                     return; } }
 
-void element::examine_annotation ()
-{   if (node_.version ().math () < math_2) return;
+void element::examine_annotation (const e_element e)
+{   switch (node_.version ().math ())
+    {   case math_2 :
+            if (a_.known (a_definitionurl) || a_.known (a_cd) || a_.known (a_name) || a_.known (a_src))
+                pick (nit_annotation, es_info, ec_element, "CD, DEFINITIONURL, NAME, SRC are invalid with <", elem::name (e), "> in MathML 2.0");
+            break;
+        case math_3 :
+            break;
+        default : return; }
     if (has_child ())
-        pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes to effort to analyse the content of <ANNOTATION>"); }
-
-void element::examine_annotation_xml ()
-{   if (node_.version ().math () < math_2) return;
-    if (has_child ())
-        pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes to effort to analyse the content of <ANNOTATION-XML>"); }
+        pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes no effort to analyse the content of <", elem::name (e), ">"); }
 
 void element::examine_area ()
 {   if (node_.version ().mjr () >= 5)
@@ -145,6 +147,22 @@ void element::examine_base ()
         else if (u.has_component (es_fragment) || u.has_component (es_query))
         {  pick (nit_element_bizarre_base, es_error, ec_element, context.filename (), " ignoring bizarre base ", quote (u.original ())); }
         else context.base (u.original ()); }
+
+void element::examine_bind ()
+{   if (! check_math_children (3, true)) return;
+    bool first = true, other = false, bound = false;
+    if (has_child ())
+        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        {   if (c -> tag () != elem_bvar) other = true;
+            else if (first)
+            {   pick (nit_bad_bind, ed_math_3, "4.2.6.1 Bindings", es_error, ec_element, "<BVAR> cannot be the first child of <BIND>");
+                return; }
+            else bound = true;
+            first = false; }
+    if (! bound)
+        pick (nit_bad_bind, ed_math_3, "4.2.6.1 Bindings", es_error, ec_element, "<BIND> requires at least one <BVAR> child");
+    else if (! other)
+        pick (nit_bad_bind, ed_math_3, "4.2.6.1 Bindings", es_error, ec_element, "<BVAR> cannot be the last child of <BIND>"); }
 
 void element::examine_button ()
 {   if (node_.version ().mjr () >= 5)

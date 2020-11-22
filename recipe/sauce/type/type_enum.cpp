@@ -153,10 +153,18 @@ struct symbol_entry < e_citype > citype_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "real", ci_real },
     { { XHTML_1_0 }, { HTML_UNDEF }, "complex-polar", ci_complexpolar },
     { { XHTML_1_0 }, { HTML_UNDEF }, "complex-cartesian", ci_complexcartesian },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "constant", ci_constant } };
+    { { XHTML_1_0 }, { HTML_UNDEF }, "constant", ci_constant },
+    { { HTML_5_2 }, { HTML_UNDEF }, "complex", ci_complex },
+    { { HTML_5_2 }, { HTML_UNDEF }, "function", ci_function },
+    { { HTML_5_2 }, { HTML_UNDEF }, "vector", ci_vector },
+    { { HTML_5_2 }, { HTML_UNDEF }, "list", ci_list },
+    { { HTML_5_2 }, { HTML_UNDEF }, "set", ci_set },
+    { { HTML_5_2 }, { HTML_UNDEF }, "matrix", ci_matrix } };
 
 struct symbol_entry < e_cntype > cntype_symbol_table [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, "e-notation", cn_enotation },
+{   { { HTML_5_2 }, { HTML_UNDEF }, "double", cn_double },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "e-notation", cn_enotation },
+    { { HTML_5_2 }, { HTML_UNDEF }, "hexdouble", cn_hexdouble },
     { { XHTML_1_0 }, { HTML_UNDEF }, "integer", cn_integer },
     { { XHTML_1_0 }, { HTML_UNDEF }, "rational", cn_rational },
     { { XHTML_1_0 }, { HTML_UNDEF }, "real", cn_real },

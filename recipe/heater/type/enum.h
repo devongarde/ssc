@@ -53,8 +53,8 @@ typedef enum
 {   a_unknown,
         a_abbr, a_about, a_above, a_accent, a_accentheight, a_accentunder, a_accept, a_acceptcharset, a_accesskey, a_accumulate, a_action,
         a_actiontype, a_activate, a_actuate, a_additive, a_align, a_alignmentbaseline, a_alignmentscope, a_alink, a_allow, a_allow_zoom_pan,
-        a_allowfullscreen, a_allowpaymentrequest, a_allowusermedia, a_alphabetic, a_alt, a_altimg, a_altimg_height, a_altimg_width, a_alttext,
-        a_amplitude, a_arabicform,
+        a_allowfullscreen, a_allowpaymentrequest, a_allowusermedia, a_alphabetic, a_alt, a_altimg, a_altimg_height, a_altimg_width,
+        a_altimg_valign, a_alttext, a_amplitude, a_arabicform,
         a_archive, a_ariaactivedescendant, a_ariaatomic, a_ariaautocomplete, a_ariabusy, a_ariachecked, a_ariacontrols, a_ariadescribedby,
         a_ariadisabled, a_ariadropeffect, a_ariaexpanded, a_ariaflowto, a_ariagrabbed, a_ariahaspopup, a_ariahidden, a_ariainvalid,
         a_arialabel, a_arialabelledby, a_arialevel, a_arialive, a_ariamultiline, a_ariamultiselectable, a_ariaorientation, a_ariaowns,
@@ -63,7 +63,7 @@ typedef enum
         a_autocomplete, a_autocorrect, a_autofocus, a_autopictureinpicture, a_autoplay, a_axes, a_axis, a_azimuth,
     a_background, a_balance, a_bandwidth, a_base, a_basefrequency, a_baseline, a_baselineshift, a_baseprofile, a_bbox, a_begin, a_behaviour,
         a_below, a_bevelled, a_bgcolour, a_bias, a_border, a_bottommargin, a_box, a_bubbles, a_buffered, a_by,
-    a_calcmode, a_cancelable, a_capheight, a_capture, a_cdgroup, a_cell, a_cellpadding, a_cellspacing, a_challenge, a_char, a_charalign, a_charoff,
+    a_calcmode, a_cancelable, a_capheight, a_capture, a_cd, a_cdgroup, a_cell, a_cellpadding, a_cellspacing, a_challenge, a_char, a_charalign, a_charoff,
         a_charset, a_charspacing,
         a_checked, a_cite, a_class, a_classid, a_clear, a_clip, a_clip_path, a_clip_rule, a_clippathunits, a_close, a_closure, a_code, a_codebase,
         a_codetype, a_coldef, a_colour, a_colour_interpolation, a_colour_interpolation_filters, a_colour_profile, a_colour_rendering, a_cols,
@@ -220,7 +220,8 @@ typedef enum {  cs_context,
                 cs_windows_1254, cs_windows_1255, cs_windows_1256, cs_windows_1257, cs_windows_1258, cs_windows_874, cs_x_user_defined, cs_illegal
 } e_charset;
 
-typedef enum { ci_integer, ci_rational, ci_real, ci_complexpolar, ci_complexcartesian, ci_constant } e_citype;
+typedef enum {  ci_integer, ci_rational, ci_real, ci_complexpolar, ci_complexcartesian, ci_constant,
+                ci_complex, ci_function, ci_vector, ci_list, ci_set, ci_matrix } e_citype;
 
 typedef enum {  c_context,
 
@@ -266,7 +267,8 @@ typedef enum {  c_context,
                 c_error
 } e_class;
 
-typedef enum { cn_enotation, cn_integer, cn_rational, cn_real, cn_complexpolar, cn_complexcartesian, cn_constant } e_cntype;
+typedef enum {  cn_enotation, cn_integer, cn_rational, cn_real, cn_complexpolar, cn_complexcartesian, cn_constant,
+                cn_double, cn_hexdouble } e_cntype;
 typedef enum { ci_auto, ci_srgb, ci_linearrgb, ci_inerit } e_colourinterpolation;
 typedef enum { cr_auto, cr_optimisespeed, cr_optimisequality, cr_inerit } e_colourrendering;
 typedef enum { co_command, co_checkbox, co_radio } e_command;
@@ -338,12 +340,12 @@ typedef enum {
         elem_animatetransform, elem_animation, elem_annotation, elem_annotation_xml, elem_applet, elem_apply, elem_approx, elem_arccos, elem_arcsin,
         elem_arctan, elem_arccosh, elem_arccot, elem_arccoth, elem_arccsc, elem_arccsch, elem_arcsec, elem_arcsech, elem_arcsinh, elem_arctanh,
         elem_area, elem_arg, elem_array, elem_article, elem_aside, elem_atop, elem_au, elem_audio,
-    elem_b, elem_banner, elem_bar, elem_base, elem_basefont, elem_bdi, elem_bdo, elem_below, elem_bgsound, elem_big, elem_blink, elem_blockcode,
+    elem_b, elem_banner, elem_bar, elem_base, elem_basefont, elem_bdi, elem_bdo, elem_below, elem_bgsound, elem_big, elem_bind, elem_blink, elem_blockcode,
         elem_blockquote, elem_body, elem_box, elem_bq, elem_br, elem_bt, elem_button, elem_bvar, elem_byline,
-    elem_canvas, elem_caption, elem_card, elem_cartesianproduct, elem_cdata, elem_ceiling, elem_centre, elem_changed, elem_choose, elem_ci, elem_circle,
+    elem_canvas, elem_caption, elem_card, elem_cartesianproduct, elem_cbytes, elem_cdata, elem_ceiling, elem_centre, elem_cerror, elem_changed, elem_choose, elem_ci, elem_circle,
         elem_cite, elem_clippath, elem_cmd, elem_cn, elem_code, elem_codomain, elem_col, elem_colgroup, elem_colourprofile, elem_command, elem_comment,
-        elem_complexes, elem_compose, elem_condition, elem_conjugate, elem_content, elem_cos, elem_cosh, elem_cot, elem_coth, elem_credit, elem_csc,
-        elem_csch, elem_csymbol, elem_curl, elem_cursor,
+        elem_complexes, elem_compose, elem_condition, elem_conjugate, elem_content, elem_cos, elem_cosh, elem_cot, elem_coth, elem_credit, elem_cs,
+        elem_csc, elem_csch, elem_csymbol, elem_curl, elem_cursor,
     elem_data, elem_datalist, elem_dd, elem_ddot, elem_declare, elem_defs, elem_degree, elem_del, elem_desc, elem_details, elem_determinant, elem_dfn,
         elem_di, elem_dialogue, elem_diff, elem_dir, elem_discard, elem_dispatchevent, elem_div, elem_divergence, elem_divide, elem_dl, elem_domain,
         elem_domainofapplication, elem_dot, elem_dt,
@@ -382,7 +384,7 @@ typedef enum {
     elem_radialgradient, elem_range, elem_rationals, elem_rb, elem_rbc, elem_real, elem_reals, elem_rect, elem_refcontent, elem_reln, elem_rem, elem_removed,
         elem_removeeventlistener, elem_render, elem_right, elem_root, elem_row, elem_rp, elem_rt, elem_rtc, elem_ruby,
     elem_s, elem_samp, elem_scalarproduct, elem_script, elem_sdev, elem_sec, elem_sech, elem_section, elem_select, elem_selector, elem_semantics, elem_sep,
-        elem_separator, elem_set, elem_setdiff, elem_shadow, elem_sin, elem_sinh, elem_slot, elem_small, elem_solidcolour, elem_source, elem_spacer, elem_span,
+        elem_separator, elem_set, elem_setdiff, elem_shadow, elem_share, elem_sin, elem_sinh, elem_slot, elem_small, elem_solidcolour, elem_source, elem_spacer, elem_span,
         elem_spot, elem_sqrt, elem_standby, elem_stop, elem_stoppropagation, elem_strike, elem_strong, elem_style, elem_sub, elem_subset, elem_sum, elem_summary,
         elem_sup, elem_svg, elem_switch, elem_symbol,
     elem_t, elem_tab, elem_table, elem_tan, elem_tanh, elem_tbody, elem_tbreak, elem_td, elem_template, elem_tendsto, elem_text, elem_textarea, elem_textpath,
@@ -1320,6 +1322,7 @@ typedef enum
     nit_use_apply, nit_base, nit_declare_first, nit_arg_count, nit_operator_required, nit_bad_bvar, nit_bad_doa, nit_bad_piece,
     nit_annotation, nit_eof_in_annotation, nit_prefix_odd, nit_prefix_format, nit_rdf_redefine, nit_rdf_confusion, nit_rdf_protocol,
     nit_math_href, nit_math_empty, nit_mglyph_alt_src, nit_dir_rtl_ltr, nit_bad_linebreak, nit_non_standard_value, nit_mscarries_last,
+    nit_bad_bind, nit_bad_share,
 
     nit_context,
 
