@@ -10,4 +10,4 @@ Until a release version becomes available, it is strongly recommended that you d
 
 ## Reporting a Vulnerability
 
-Please email a report to dylan.harris@live.ie.
+Please email a report to mail@ssc.lu.
