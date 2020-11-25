@@ -114,7 +114,6 @@ class element
     void examine_address ();
     void examine_animatemotion ();
     void examine_annotation (const e_element e);
-//    void examine_annotation_xml ();
     void examine_area ();
     void examine_article ();
     void examine_aside ();

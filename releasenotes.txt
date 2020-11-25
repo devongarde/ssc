@@ -1,7 +1,12 @@
 RELEASE NOTES
 static site checker
-https://dylanharris.org/ssc/index.shtml
+https://ssc.lu/
 (c) 2020 Dylan Harris
+
+0.0.71
+- ssc has its own website, https://ssc.lu/
+- change contact email address to mail@ssc.lu
+- added gpg signing keys (maybe!)
 
 0.0.70
 - MathML 3

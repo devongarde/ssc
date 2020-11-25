@@ -1,6 +1,6 @@
-USEAGE NOTES
+USAGE NOTES
 static site checker
-https://dylanharris.org/ssc/index.shtml
+https://ssc.lu/
 (c) 2020 Dylan Harris
 
 
