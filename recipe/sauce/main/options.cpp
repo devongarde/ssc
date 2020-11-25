@@ -92,9 +92,11 @@ needs rel type and probably context info
     return res.string (); }
 
 void options::title (const char* addendum) const
-{   if (context.tell (e_severe))
-    {   // ::std::cout << FULLNAME " version " VERSION_STRING  " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n";
-        if (addendum != nullptr) ::std::cout << addendum; }
+{   if (! context.test ())
+        ::std::cout << FULLNAME " " VERSION_STRING ", " WEBADDR "\n" COPYRIGHT "\n(" __DATE__ " " __TIME__ ")\n";
+
+    if (context.tell (e_severe))
+    {   if (addendum != nullptr) ::std::cout << addendum; }
     else ::std::cout << "\n"; }
 
 void options::help (const ::boost::program_options::options_description& aid) const

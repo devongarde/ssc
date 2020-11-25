@@ -2883,6 +2883,75 @@
     <None Include="..\toast\other\nits\nits.spec">
       <Filter>Toast\Other\nits</Filter>
     </None>
+    <None Include="..\toast\math\3\math14-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math15-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math16-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math17-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math18-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math19-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\index.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math.conf">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math.spec">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math1-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math2-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math3-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math4-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math5-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math6-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math7-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math8-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math9-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math10-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math11-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math12-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math13-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\2\math15-example.html">
+      <Filter>Toast\Math\2</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
