@@ -46,9 +46,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource1.h" />
+    <ResourceCompile Include="ssc19-test.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ssc19-test.rc" />
+    <ClInclude Include="resource1.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

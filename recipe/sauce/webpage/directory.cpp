@@ -29,10 +29,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 external directory::external_;
 
-directory::directory (const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check)
+directory::directory (nitpick& nits, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check)
     : name_ (name), offsite_ (false), mummy_ (mummy), ndx_ (ndx)
 {   assert (mummy_ != nullptr);
-    if (check) scan (site); }
+    if (check) scan (nits, site); }
 
 directory::directory (const path_root_ptr& root)
     : name_ (root -> get_site_path ()), offsite_ (false), mummy_ (nullptr), root_ (root)
@@ -40,7 +40,7 @@ directory::directory (const path_root_ptr& root)
 
 directory::directory (const ::std::string& name, const bool offsite)
     : name_ (name), offsite_ (offsite), mummy_ (nullptr)
-{   if (! offsite) ndx_ = insert_disk_path (get_disk_path (), 0, this); }
+{   if (! offsite) ndx_ = insert_directory_path (get_disk_path (), 0, this); }
 
 void directory::swap (directory& d) NOEXCEPT
 {   name_.swap (d.name_);
@@ -110,15 +110,34 @@ void directory::internal_get_disk_path (const ::std::string& item, ::boost::file
     internal_get_disk_path (get_site_path (nits, item), res);
     return res; }
 
-bool directory::scan (const ::std::string& site)
+bool directory::scan (nitpick& nits, const ::std::string& site)
 {   assert (! offsite_);
     for (::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (get_disk_path ()))
-        if (! add_to_content (x, site)) return false;
+        if (! add_to_content (nits, x, site)) return false;
     return true; }
 
-bool directory::add_to_content (::boost::filesystem::directory_entry& i, const ::std::string& site)
+bool directory::add_to_content (nitpick& nits, ::boost::filesystem::directory_entry& i, const ::std::string& site)
 {   ::boost::filesystem::path q (i.path ());
-    fileindex_t ndx = insert_disk_path (q, 0, this);
+    fileindex_t ndx = nullfileindex;
+    if (::boost::filesystem::is_directory (q)) ndx = insert_directory_path (q, 0, this);
+    else
+    {   ::std::time_t last_write = 0;
+        uintmax_t size = 0;
+#ifdef FS_THROWS
+        try
+	    {	size = ::boost::filesystem::file_size (q);
+            last_write = ::boost::filesystem::last_write_time (q);
+            ndx = insert_disk_path (q, 0, this, size, last_write); }
+	    catch (...)
+#else // FS_THROWS
+        ::boost::system::error_code ec;
+        size = ::boost::filesystem::file_size (q, ec);
+        if (! ec.failed ()) last_write = ::boost::filesystem::last_write_time (q, ec);
+        if (! ec.failed ()) ndx = insert_disk_path (q, 0, this, size, last_write);
+        else
+#endif // FS_THROWS
+        {   ndx = insert_borked_path (q, 0, this);
+            nits.pick (nit_cannot_read, es_warning, ec_directory, "ignoring ", quote (q.string ())); } }
     ::std::string p;
     if (site.empty ()) p = get_site_path ();
     else p = site;
@@ -128,7 +147,7 @@ bool directory::add_to_content (::boost::filesystem::directory_entry& i, const :
     if (is_regular_file (q))
         return content_.insert (value_t (f, nullptr)).second;
     if (is_directory (q))
-        return content_.insert (value_t (f, self_ptr (new directory (f, ndx, this, p)))).second;
+        return content_.insert (value_t (f, self_ptr (new directory (nits, f, ndx, this, p)))).second;
     return false; }
 
 void directory::examine ()
@@ -303,3 +322,39 @@ bool is_webpage (const ::std::string& name, const vstr_t& extensions)
 {   ::std::string ext (::boost::filesystem::path (name).extension ().string ());
     if (ext.empty ()) return false;
     return is_one_of (ext.substr (1), extensions); }
+
+void directory::shadow (nitpick& nits)
+{   assert (! offsite_);
+/*    for (auto i : content_)
+        if (i.second != nullptr)
+            i.second -> examine ();
+        else if (is_webpage (i.first, context.extensions ()))
+        {   ::std::ostringstream ss;
+            ::boost::filesystem::path p (get_disk_path ());
+            ::std::string sp (get_site_path () + i.first);
+            p /= i.first;
+            fileindex_t ndx (get_fileindex (p));
+            if (! get_flag (ndx, FX_SCANNED))
+            {   context.filename (sp);
+                try
+                {   ::std::string content (read_text_file (p));
+                    if (! content.empty ())
+                    {   e_charcode encoding = bom_to_encoding (get_byte_order (content));
+                        if (encoding == cc_fkd) ss << "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)\n";
+                        else
+                        {   page web (i.first, content, ndx, this, encoding);
+                            if (! web.invalid ())
+                            {   web.examine (*this);
+                                web.mf_write (p);
+                                web.lynx ();
+                                ss << web.report (); }
+                            ss << web.nits ().review (); } } }
+                catch (...)
+                {   if (context.tell (e_error)) ss << "Cannot parse " << context.filename () << "\n"; }
+                if (! ss.str ().empty ()) context.out () << "\n\n*** " << local_path_to_nix (p.string ()) << "\n" << ss.str ();
+                else if (context.tell (e_comment)) context.out () << "\n\n*** " << local_path_to_nix (p.string ()) << "\n";
+                context.css ().post_process ();
+                context.out () << ::std::flush;
+                set_flag (ndx, FX_SCANNED); } } */ }
+
+

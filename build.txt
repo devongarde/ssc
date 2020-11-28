@@ -25,9 +25,13 @@ To build from Visual Studio, navigate to recipe\tea, open the appropriate .sln f
 Both 32bit and 64bit builds work. However, the 32bit executable cannot analyse large websites.
 
 
-Macos and Centos
-----------------
+Unix Flavours
+--------------
 You will need CMake 3.11 or better on your system.
+
+Linux: only Centos 8 amd64 is tested.
+OpenBSD 6.8 note: only amd64 is tested. The versions of CMake and Boost in packages is good.
+MacOS: only Catalina and High Sierra 64bit are tested. The version of CMake in macports is good.
 
 From the home ssc directory, compile thus:
 
@@ -40,3 +44,11 @@ make install
 If everything works correctly, then everything will be built, a series of tests run, with a final result
 at the very end saying no failures. Having said that, given SSC is pre–alpha, don’t be too surprised to
 see some warnings or some final test errors.
+
+
+OpenBSD amd64
+-------------
+
+The versions of boost and cmake in packages are sufficient.
+Significantly increase available memory in login.conf for your account.
+

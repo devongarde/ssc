@@ -819,6 +819,9 @@
     <None Include="..\toast\other\ssi\ssi.conf" />
     <None Include="..\toast\other\ssi\ssi.inc" />
     <None Include="..\toast\other\ssi\ssi.spec" />
+    <None Include="..\toast\shadow\dedu\dedu.conf" />
+    <None Include="..\toast\shadow\dedu\dedu.spec" />
+    <None Include="..\toast\shadow\dedu\index.html" />
     <None Include="..\toast\stats\detail\index.html" />
     <None Include="..\toast\stats\detail\itemref.html" />
     <None Include="..\toast\stats\detail\md-ref.html" />
@@ -938,6 +941,9 @@
     <Image Include="..\toast\HTML\5.4\x.jpg" />
     <Image Include="..\toast\microformats\mf1\photo.jpg" />
     <Image Include="..\toast\microformats\mf2\photo.jpg" />
+    <Image Include="..\toast\shadow\dedu\x.jpg" />
+    <Image Include="..\toast\shadow\dedu\y.jpg" />
+    <Image Include="..\toast\shadow\dedu\z.jpg" />
     <Image Include="..\toast\type\metaname\x.jpg" />
     <Image Include="..\toast\type\mimetype\x.jpg" />
     <Image Include="..\toast\type\url\x.jpg" />
@@ -953,6 +959,7 @@
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
     <Text Include="..\toast\conf\README.txt" />
+    <Text Include="..\toast\tmp\README.txt" />
     <Text Include="..\toast\virtual\README.txt" />
     <Text Include="..\toast\webmention\headers\1.txt" />
     <Text Include="..\toast\webmention\headers\2.txt" />

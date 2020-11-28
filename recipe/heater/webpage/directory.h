@@ -43,12 +43,12 @@ class directory
     path_root_ptr root_;
     fileindex_t ndx_ = nullfileindex;
     static external external_;
-    bool add_to_content (::boost::filesystem::directory_entry& i, const ::std::string& site);
+    bool add_to_content (nitpick& nits, ::boost::filesystem::directory_entry& i, const ::std::string& site);
     bool unguarded_verify_url (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& state, const vit_t& itemtypes) const;
     void internal_get_disk_path (const ::std::string& item, ::boost::filesystem::path& res) const;
     ::std::string internal_get_site_path (nitpick& nits, const ::std::string& item) const;
 protected:
-    directory (const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check = true);
+    directory (nitpick& nits, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check = true);
 public:
     explicit directory (const path_root_ptr& root);
     directory (const ::std::string& name, const bool offsite);
@@ -56,8 +56,9 @@ public:
     bool is_root () const { return root_.get () != nullptr; }
     bool empty () const { return content_.empty (); }
     bool offsite () const { return offsite_; }
-    bool scan (const ::std::string& site);
+    bool scan (nitpick& nits, const ::std::string& site);
     void examine ();
+    void shadow (nitpick& nits);
     uint64_t url_size (nitpick& nits, const url& u) const;
     ::std::time_t url_last_write_time (nitpick& nits, const url& u) const;
     ::std::string load_url (nitpick& nits, const url& u) const;

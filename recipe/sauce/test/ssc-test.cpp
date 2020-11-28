@@ -63,7 +63,7 @@ timmap quick_tim;
 
 unsigned verbose = 0;
 bool numbers = false, easy_in = false;
-::std::string expected_lynx;
+::std::string expected_lynx, expected_shadow;
 classic expected_classes;
 sstr_t expected_itemids;
 vstr_t correct_export, created_export, grand_stats;
@@ -143,6 +143,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
     bool exports = false;
     bool file_stats = false;
     bool overall_stats = false;
+    bool shadow = false;
     sstr_t correct_set, created_set;
     vstr_t stats;
     for (auto ss : spec)
@@ -156,6 +157,10 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         if (lynx)
         {   lynx = false;
             expected_lynx = s;
+            continue; }
+        if (shadow)
+        {   shadow = false;
+            expected_shadow = s;
             continue; }
         if (itemid)
         {   expected_itemids.insert (s);
@@ -205,27 +210,28 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
             continue; }
         if (cmdline.empty ()) { cmdline = s; continue; }
         else switch (s.at (0))
-        {   case 'C' :  classed = true; lynx = itemid = exports = file_stats = overall_stats = false; continue;
-            case 'E' :  exports = true; classed = lynx = itemid = file_stats = overall_stats = false; continue;
-            case 'G' :  overall_stats = true; classed = lynx = exports = itemid = file_stats = false; continue;
-            case 'i' :  itemid = true; classed = lynx = exports = file_stats = overall_stats = false; continue;
-            case 'L' :  lynx = true; classed = itemid = exports = file_stats = overall_stats = false; continue;
-            case 'S' :  file_stats = true; stats.clear (); classed = lynx = exports = itemid = overall_stats = false; continue;
+        {   case 'C' :  classed = true; shadow = lynx = itemid = exports = file_stats = overall_stats = false; continue;
+            case 'E' :  exports = true; shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
+            case 'G' :  overall_stats = true; shadow = classed = lynx = exports = itemid = file_stats = false; continue;
+            case 'i' :  itemid = true; shadow = classed = lynx = exports = file_stats = overall_stats = false; continue;
+            case 'L' :  lynx = true; shadow = classed = itemid = exports = file_stats = overall_stats = false; continue;
+            case 'S' :  file_stats = true; stats.clear (); shadow = classed = lynx = exports = itemid = overall_stats = false; continue;
+            case 's' :  shadow = true; lynx = classed = itemid = exports = file_stats = overall_stats = false; continue;
             case 'I' :
             case 'F' :
             case 'P' :
             case '*' :
-                    {   classed = lynx = itemid = exports = false;
-                        if (! previous.empty ()) expected.insert (knotted::value_type (previous, expect));
-                        if (spaced == ::std::string::npos)
-                        {   ::std::cerr << "Missing filename " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
-                        ::std::string fn (::boost::trim_copy (s.substr (spaced)));
-                        if (! testfile (fn)) return false;
-                        expect.flags_ = (s.at (0) == 'F') ? NW_FAIL : 0;
-                        expect.flags_ += (s.at (0) == 'I') ? NW_IGNORE : 0;
-                        previous = fn;
-                        expect.nits_.clear (); }
-                    continue;
+                {   classed = lynx = itemid = exports = false;
+                    if (! previous.empty ()) expected.insert (knotted::value_type (previous, expect));
+                    if (spaced == ::std::string::npos)
+                    {   ::std::cerr << "Missing filename " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
+                    ::std::string fn (::boost::trim_copy (s.substr (spaced)));
+                    if (! testfile (fn)) return false;
+                    expect.flags_ = (s.at (0) == 'F') ? NW_FAIL : 0;
+                    expect.flags_ += (s.at (0) == 'I') ? NW_IGNORE : 0;
+                    previous = fn;
+                    expect.nits_.clear (); }
+                continue;
             default : break; }
         if (spaced == ::std::string::npos)
         {   ::std::cerr << "Unexpected content " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
@@ -235,7 +241,8 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         catch (...)
         {   ::std::cerr << "Invalid line number " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
         vstr_t v;
-        ::boost::algorithm::split (v, s.substr (spaced), ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
+        ::std::string sss (s.substr (spaced));
+        ::boost::algorithm::split (v, sss, ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
         if (v.empty ())
         {   ::std::cerr << s << " has no feedback list (line "<< line << " of " << f.string () << ")\n"; return false; }
         nits ns;
@@ -348,6 +355,20 @@ bool crosslinks (const vstr_t& line)
     else if (verbose) ::std::cout << "crosslink counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
     return false; }
 
+bool shadowcheck (const vstr_t& line)
+{   vstr_t expected;
+    bool blooper = false;
+    ::boost::algorithm::split (expected, expected_shadow, ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
+    expected_shadow.clear ();
+    if (line.size () == expected.size ())
+    {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
+            if (line.at (x) != expected.at (x))
+            {   blooper = true;
+                if (verbose) ::std::cout << "shadow " << x << " differs\n"; }
+        if (! blooper) return true; }
+    else if (verbose) ::std::cout << "shadows differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
+    return false; }
+
 bool classcheck (vstr_t& line)
 {   classic::iterator i = expected_classes.find (line.at (0));
     if (i == expected_classes.end ())
@@ -444,6 +465,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
     ::std::string fn, previous;
     bool res = true;
     bool shush = false;
+    bool shadow = false;
     bool classes = false;
     bool lynx = false;
     bool oops = false;
@@ -473,6 +495,9 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
             if (lynx)
             {   if (! crosslinks (line)) { oops = true; res = false; }
                 lynx = false; shush = true; continue; }
+            if (shadow)
+            {   if (! shadowcheck (line)) { oops = true; res = false; }
+                shadow = false; shush = true; continue; }
             if (classes)
             {   if (! classcheck (line)) { oops = true; res = false; }
                 continue; }
@@ -517,6 +542,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
             {   if (fn == "classes") classes = true;
                 else if (fn == "link") lynx = true;
                 else if (fn == "itemids") itemid = true;
+                else if (fn == "shadow") shadow = true;
                 else if (fn == "Statistics:") file_stats = true;
                 else if (fn == "Grand") overall_stats = true;
                 else

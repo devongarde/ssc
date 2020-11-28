@@ -309,6 +309,15 @@
     <Filter Include="Toast\Other\Nits">
       <UniqueIdentifier>{f260306f-c656-4900-9005-0e13f96b438a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{f9da4fcf-967b-4b22-85da-f289a47b68f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow">
+      <UniqueIdentifier>{788c68f9-96ed-40e7-bc7f-4575045bc078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\Dedu">
+      <UniqueIdentifier>{19d35ba4-7ff9-45ea-93fb-e904adea5150}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -703,6 +712,9 @@
     </ClInclude>
     <ClInclude Include="..\heater\type\type_svg.h">
       <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2913,6 +2925,54 @@
     <None Include="..\toast\math\2\math15-example.html">
       <Filter>Toast\Math\2</Filter>
     </None>
+    <None Include="..\toast\math\3\math7-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math8-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math9-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math10-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math11-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math12-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math13-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math14-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math15-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math16-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math17-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math18-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\math\3\math19-example.html">
+      <Filter>Toast\Math\3</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\dedu.conf">
+      <Filter>Toast\Shadow\Dedu</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\dedu.spec">
+      <Filter>Toast\Shadow\Dedu</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\index.html">
+      <Filter>Toast\Shadow\Dedu</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -2953,6 +3013,15 @@
     </Image>
     <Image Include="..\toast\HTML\2.0\x.jpg">
       <Filter>Toast\HTML\2.0</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedu\x.jpg">
+      <Filter>Toast\Shadow\Dedu</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedu\y.jpg">
+      <Filter>Toast\Shadow\Dedu</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedu\z.jpg">
+      <Filter>Toast\Shadow\Dedu</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -3004,5 +3073,10 @@
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\build.txt" />
     <Text Include="..\..\usage.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ssc.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

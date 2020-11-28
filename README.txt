@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.71
+version 0.0.72
 https://ssc.lu/
 
 
@@ -89,5 +89,4 @@ as reference, to facilitate conversation, and to enable precise bug reports.
 
 written by dylan harris
 mail@ssc.lu
-https://dylanharris.org/
 November 2020

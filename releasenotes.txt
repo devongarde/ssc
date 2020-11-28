@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020 Dylan Harris
 
+0.0.72
+- can identify duplicate non-HTML files
+- OpenBSD 6.8 amd64 build
+
 0.0.71
 - ssc has its own website, https://ssc.lu/
 - change contact email address to mail@ssc.lu

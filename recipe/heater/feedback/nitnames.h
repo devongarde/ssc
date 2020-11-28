@@ -528,6 +528,10 @@ nitname nitnames [] =
     { nit_mscarries_last, "mscarries_last" },
     { nit_bad_bind, "bad_bind" },
     { nit_bad_share, "bad_share" },
+    { nit_shadow, "shadow" },
+    { nit_out_of_memory, "out_of_memory" },
+    { nit_duplicate, "duplicate" },
+    { nit_shadow_failed, "shadow_failed" },
 
     { nit_off, "" } };
 
