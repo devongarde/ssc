@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MF_         "microformat"
 #define MICRODATA_  "microdata"
 #define NITS_       "nits"
+#define SHADOW_     "shadow"
 #define STATS_      "stats"
 #define SVG_        "svg"
 #define VALIDATION_ "validation"
@@ -43,6 +44,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MATH        MATH_ JOIN
 #define MICRODATA   MICRODATA_ JOIN
 #define NITS        NITS_ JOIN
+#define SHADOW      SHADOW_ JOIN
 #define STATS       STATS_ JOIN
 #define SVG         SVG_ JOIN
 #define VALIDATION  VALIDATION_ JOIN
@@ -59,6 +61,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COLOR       "color"
 #define COMMENT     "comment"
 #define CONFIG      "config"
+#define COPY        "copy"
 #define CSS_OPTION  "css"
 #define CURRENCY    "currency"
 #define CUSTOM      "custom"

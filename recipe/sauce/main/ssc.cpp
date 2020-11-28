@@ -63,11 +63,16 @@ void init (nitpick& nits)
     url::init (nits);
     wotsit_init (nits); }
 
-void configure (nitpick& nits, std::time_t& start_time)
+void dump_nits (nitpick& nits, const char* burble)
+{   if (! nits.empty ())
+    {   context.out () << "\n\n*** " << burble << "\n";
+        context.out () << nits.review (); }
+    nits.reset (); }
+
+void configure (std::time_t& start_time)
 {   if (! context.test ())
     {   if (context.tell (e_severe)) context.out () << "\nStart: " << ::std::ctime (&start_time);
-        if (context.tell (e_info)) context.out () << "Gathering site information...\n";
-        context.out () << nits.review (); } }
+        if (context.tell (e_info)) context.out () << "Gathering site information...\n"; } }
 
 void ciao ()
 {   if (context.unknown_class () && context.tell (e_warning))
@@ -77,13 +82,13 @@ void ciao ()
         {   nitpick nits;
             reconcile_crosslinks (nits);
             if (! nits.empty ())
-            {   context.out () << "\n\n*** link errors:\n";
+            {   context.out () << "\n\n*** link errors\n";
                 context.out () << nits.review (); } }
         if (! ss.str ().empty ())
         {   context.out () << "\n\n*** classes\n";
             context.out () << ss.str (); }
         if (! empty_itemid ())
-         {   context.out () << "\n\n*** itemids\n";
+        {   context.out () << "\n\n*** itemids\n";
             context.out () << report_itemids (); } }
     if (context.stats_summary ()) context.report_stats ();
     if (context.tell (e_debug)) context.out () << fileindex_report (); }
@@ -92,8 +97,17 @@ int examine (nitpick& nits)
 {   int res = VALID_RESULT;
     paths_root virt (paths_root::virtual_roots ());
     virt.add_root (nix_path_to_local (context.root ()), "/");
-    for (auto v : context.virtuals ())
-        virt.add_virtual (nits, v);
+    if (! context.shadow ().empty ())
+        if (! virt.at (0) -> shadow (nits, context.shadow ()))
+            res = ERROR_STATE;
+    if (res != ERROR_STATE)
+    {   for (auto v : context.virtuals ())
+            virt.add_virtual (nits, v);
+        for (auto vv : context.shadows ())
+            if (! virt.add_shadow (nits, vv))
+            {   res = ERROR_STATE; break; } }
+    dump_nits (nits, "shadow");
+    if (res == ERROR_STATE) return ERROR_STATE;
     const ::std::size_t vmax (virt.size ());
     vd_t vd;
     vd.reserve (vmax);
@@ -102,7 +116,7 @@ int examine (nitpick& nits)
     for (::std::size_t n = 0; n < vmax; ++n)
     {   if (context.tell (e_info) && ! context.test ()) context.out () << "Scanning " << virt.at (n) -> get_disk_path () << " ...\n";
         try
-        {   if (! vd [n] -> scan (virt.at (n) -> get_site_path ()))
+        {   if (! vd [n] -> scan (nits, virt.at (n) -> get_site_path ()))
             {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " failed");
                 res = ERROR_STATE; } }
         catch (const ::std::system_error& e)
@@ -111,11 +125,14 @@ int examine (nitpick& nits)
         catch (...)
         {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " caused an exception");
             res = ERROR_STATE; } }
-    if (res != VALID_RESULT) return res;
+    if (res != VALID_RESULT)
+    {   dump_nits (nits, "examine");
+        return res; }
     assert (vd.size () > 0);
     ::std::size_t n = integrate_virtuals (virt, vd);
     if (n != 0)
     {   nits.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());
+        dump_nits (nits, "examine");
         return ERROR_STATE; }
     for (n = 0; n < vmax; ++n)
     {   if (context.tell (e_info) && ! context.test ()) context.out () << "Checking " << virt.at (n) -> get_disk_path () <<  "...\n";
@@ -130,6 +147,21 @@ int examine (nitpick& nits)
         catch (...)
         {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examination of ", virt.at (n) -> get_disk_path (), " caused an exception");
             res = ERROR_STATE; } }
+    dump_nits (nits, "examine");
+    if (res == VALID_RESULT)
+    {   if (context.copy () == c_deduplicate) dedu (nits);
+        if (context.copy () > c_none)
+            for (n = 0; n < vmax; ++n)
+                try
+                {   if (! vd.at (n) -> empty ())
+                        vd.at (n) -> shadow (nits); }
+                catch (const ::std::system_error& e)
+                {   nits.pick (nit_shadow_failed, es_catastrophic, ec_init, "shadowing to ", virt.at (n) -> shadow (), " caused ", e.what ());
+                    res = ERROR_STATE; }
+                catch (...)
+                {   nits.pick (nit_shadow_failed, es_catastrophic, ec_init, "shadowing to ", virt.at (n) -> shadow (), " caused an exception");
+                    res = ERROR_STATE; }
+        dump_nits (nits, "shadow"); }
     return res; };
 
 int main (int argc, char** argv)
@@ -138,17 +170,16 @@ int main (int argc, char** argv)
     nitpick nits;
     nits.set_context (0, PROG " initialisation");
     init (nits);
+    dump_nits (nits, "initialisation");
     int res = context.parameters (argc, argv);
     if (res == VALID_RESULT)
-    {   configure (nits, start_time);
+    {   configure (start_time);
         res = examine (nits);
-        if (! nits.empty ()) context.out () << nits.review ();
         if ((res == VALID_RESULT) && context.process_webmentions ())
-        {   nits.reset ();
-            html_version v (5, context.html_minor ());
+        {   html_version v (5, context.html_minor ());
             context.process_outgoing_webmention (nits, v);
             context.process_incoming_webmention (nits, v);
-            if (! nits.empty ()) context.out () << nits.review (); }
+            dump_nits (nits, "webmention"); }
         ciao ();
         if (! context.test ())
         {   auto fin = std::chrono :: system_clock :: now();

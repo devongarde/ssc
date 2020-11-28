@@ -26,10 +26,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // WSL and other utilities mount windows volumes in 'nix
 
 typedef size_t fileindex_t;
-// typedef uint64_t fileindex_t;
 typedef unsigned int fileindex_flags;
 class directory;
 
+typedef ::boost::crc_32_type crc_calc;
+typedef crc_calc::value_type crc_t;
+const crc_t crc_initrem = 0xFFFFFFFF; // CRC 32 initial remainder; see boost docs
 const fileindex_t nullfileindex = UINT_MAX;
 
 ::std::string local_path_to_nix (const ::std::string& win);
@@ -38,9 +40,14 @@ const fileindex_t nullfileindex = UINT_MAX;
 #define FX_SCANNED  0x00000001
 #define FX_EXISTS   0x00000002
 #define FX_TESTED   0x00000004
+#define FX_CRC      0x00000008
+#define FX_DIR      0x00000010
+#define FX_BORKED   0x00000020
 
 void fileindex_init ();
-fileindex_t insert_disk_path (const ::boost::filesystem::path& name, const fileindex_flags flags, directory* pd);
+fileindex_t insert_disk_path (const ::boost::filesystem::path& name, const fileindex_flags flags, directory* pd, const uintmax_t size, const ::std::time_t& last_write);
+fileindex_t insert_directory_path (const ::boost::filesystem::path& name, const fileindex_flags flags, directory* pd);
+fileindex_t insert_borked_path (const ::boost::filesystem::path& name, const fileindex_flags flags, directory* pd);
 void add_site_path (const ::std::string& name, const fileindex_t s);
 fileindex_t get_fileindex (const ::boost::filesystem::path& name);
 fileindex_t get_fileindex (const ::std::string& name);
@@ -49,5 +56,10 @@ fileindex_flags get_flags (const fileindex_t ndx);
 bool get_flag (const fileindex_t ndx, const fileindex_flags flag);
 void set_flag (const fileindex_t ndx, const fileindex_flags flag);
 void reset_flag (const fileindex_t ndx, const fileindex_flags flag);
+uintmax_t get_size (const fileindex_t ndx);
+::std::time_t last_write (const fileindex_t ndx);
+crc_t get_crc (nitpick& nits, const fileindex_t ndx);
+void set_crc (const fileindex_t ndx, const crc_t& crc);
 ::std::string fileindex_report ();
 ::std::string join_site_paths (const ::std::string& lhs, const ::std::string& rhs);
+void dedu (nitpick& nits);

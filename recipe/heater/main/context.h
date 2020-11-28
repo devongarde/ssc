@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NOTHING_TO_DO 2
 #define ERROR_STATE 3
 #define DEFAULT_MAX_FILE_SIZE 4
+#define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
 
 const e_verbose default_output = e_warning;
 class hook;
@@ -45,15 +46,16 @@ class context_t
                     repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, schema_ = false, slob_ = false, ssi_ = false,
                     stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false;
     int             code_ = 0;
+    e_copy          copy_ = c_none;
     unsigned char   html_major_ = 5, html_minor_ = 4, mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
     e_svg_version   svg_version_ = sv_none;
     e_mathversion   math_version_ = math_none;
-    long            max_file_size_ = DEFAULT_MAX_FILE_SIZE * 1024 * 1024;
+    long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
     ::std::string   base_, filename_, stub_, hook_, incoming_, index_, macro_end_, macro_start_, output_, path_, persisted_, root_, secret_, server_,
-                    test_header_, user_, webmention_, write_path_;
+                    shadow_, shadow_persist_, test_header_, user_, webmention_, write_path_;
     e_wm_status     wm_status_ = wm_undefined;
-    vstr_t          custom_elements_, extensions_, mentions_, site_, templates_, virtuals_;
+    vstr_t          custom_elements_, extensions_, mentions_, site_, templates_, virtuals_, shadows_;
     replies         replies_;
     hooks           hooks_;
     css_cache       css_;
@@ -66,14 +68,17 @@ public:
     const ::std::string base () const { return base_; }
     bool checking_urls () const { return checking_urls_; }
     bool clear () const { return clear_; }
-    bool crosslinks () const { return crosslinks_; }
     int code () const { return code_; }
     bool codes () const { return codes_; }
+    e_copy copy () const { return copy_; }
+    bool crosslinks () const { return crosslinks_; }
     const vstr_t custom_elements () const { return custom_elements_; }
     const vstr_t extensions () const { return extensions_; }
     bool external () const { return external_; }
     const ::std::string filename () const { return filename_; }
     bool forwarded () const { return forwarded_; }
+    bool has_math () const { return ((html_major_ > 3) || (math_version_ != math_none)); }
+    bool has_svg () const { return ((html_major_ > 3) || (svg_version_ != sv_none)); }
     unsigned char html_major () const { return html_major_; }
     unsigned char html_minor () const { return html_minor_; }
     html_version html_ver () const;
@@ -84,6 +89,7 @@ public:
     bool links () const { return links_; }
     const ::std::string macro_end () const { return macro_end_; }
     const ::std::string macro_start () const { return macro_start_; }
+    e_mathversion math_version () const { return math_version_; }
     unsigned long max_file_size () const { return static_cast < unsigned long > (max_file_size_); }
     const vstr_t mentions () const { return mentions_; }
     bool md_export () const { return md_export_; }
@@ -123,16 +129,16 @@ public:
     {   return schema_version (schema_major (), schema_minor ()); }
     const ::std::string secret () const { return secret_; }
     const ::std::string server () const { return server_; }
+    const ::std::string shadow () const { return shadow_; }
+    const ::std::string shadow_persist () const { return shadow_persist_; }
+    const vstr_t shadows () const { return shadows_; }
     const vstr_t site () const { return site_; }
     bool slob () const { return slob_; }
     bool ssi () const { return ssi_; }
     bool stats_summary () const { return stats_summary_; }
     bool stats_page () const { return stats_page_; }
     const ::std::string stub () const { return stub_; }
-    bool has_svg () const { return ((html_major_ > 3) || (svg_version_ != sv_none)); }
     e_svg_version svg_version () const { return svg_version_; }
-    bool has_math () const { return ((html_major_ > 3) || (math_version_ != math_none)); }
-    e_mathversion math_version () const { return math_version_; }
     const vstr_t templates () const { return templates_; }
     bool test () const { return test_; }
     const ::std::string test_header () const { return test_header_; }
@@ -145,9 +151,12 @@ public:
     context_t& base (const ::std::string& s) { base_ = s; return *this; }
     context_t& checking_urls (const bool b) { checking_urls_ = b; return *this; }
     context_t& clear (const bool b) { clear_ = b; return *this; }
-    context_t& crosslinks (const bool b) { crosslinks_ = b; return *this; }
     context_t& code (const int i) { code_ = i; return *this; }
     context_t& codes (const bool b) { codes_ = b; return *this; }
+    context_t& copy (const e_copy c) { copy_ = c; return *this; }
+    context_t& crosslinks (const bool b) { crosslinks_ = b; return *this; }
+    css_cache& css () { return css_; }
+    const css_cache& css () const { return css_; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; return *this; }
     context_t& extensions (const vstr_t& s) { extensions_ = s; return *this; }
     context_t& external (const bool b)
@@ -173,6 +182,11 @@ public:
         return *this; }
     context_t& macro_end (const ::std::string& s) { macro_end_ = s; return *this; }
     context_t& macro_start (const ::std::string& s) { macro_start_ = s; return *this; }
+    context_t& math_version (const int v)
+    {   if ((v >= 1) && (v <= 4)) math_version_ = static_cast < e_mathversion > (v);
+        else math_version_ = math_none;
+        return *this; }
+    context_t& math_version (const e_mathversion v) { math_version_ = v; return *this; }
     context_t& max_file_size (const long l) { max_file_size_ = l; return *this; }
     context_t& mentions (const vstr_t& s) { mentions_ = s; return *this; }
     context_t& md_export (const bool b) { md_export_ = b; return *this; }
@@ -218,6 +232,9 @@ public:
     context_t& schema_minor (const unsigned char n) { sch_minor_ = (n > 9) ? 0 : n; return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
+    context_t& shadow (const ::std::string& s) { shadow_ = s; return *this; }
+    context_t& shadow_persist (const ::std::string& s) { shadow_persist_ = s; return *this; }
+    context_t& shadows (const vstr_t& s) { shadows_ = s; return *this; }
     context_t& site (const vstr_t& s) { site_ = s; return *this; }
     context_t& slob (const bool b) { slob_ = b; return *this; }
     context_t& ssi (const bool b) { ssi_ = b; return *this; }
@@ -226,11 +243,6 @@ public:
     context_t& stub (const ::std::string& s) { stub_ = s; return *this; }
     context_t& svg_version (const int mjr, const int mnr);
     context_t& svg_version (const e_svg_version v) { svg_version_ = v; return *this; }
-    context_t& math_version (const int v)
-    {   if ((v >= 1) && (v <= 4)) math_version_ = static_cast < e_mathversion > (v);
-        else math_version_ = math_none;
-        return *this; }
-    context_t& math_version (const e_mathversion v) { math_version_ = v; return *this; }
     context_t& templates (const vstr_t& s) { templates_ = s; return *this; }
     context_t& test (const bool b) { test_ = b; return *this; }
     context_t& test_header (const ::std::string& s) { test_header_ = s; return *this; }
@@ -240,8 +252,6 @@ public:
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; return *this; }
     context_t& webmention (const ::std::string& w, const e_wm_status status);
     context_t& write_path (const ::std::string& s) { write_path_ = s; return *this; }
-    css_cache& css () { return css_; }
-    const css_cache& css () const { return css_; }
     void reset_webmention ()
     {   webmention_.clear ();
         wm_status_ = wm_undefined; }

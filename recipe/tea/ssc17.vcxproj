@@ -150,6 +150,7 @@
     <ClInclude Include="..\heater\webpage\id.h" />
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp" />
@@ -488,11 +489,24 @@
     <None Include="..\toast\math\3\math.conf" />
     <None Include="..\toast\math\3\math.spec" />
     <None Include="..\toast\math\3\math1-example.html" />
+    <None Include="..\toast\math\3\math10-example.html" />
+    <None Include="..\toast\math\3\math11-example.html" />
+    <None Include="..\toast\math\3\math12-example.html" />
+    <None Include="..\toast\math\3\math13-example.html" />
+    <None Include="..\toast\math\3\math14-example.html" />
+    <None Include="..\toast\math\3\math15-example.html" />
+    <None Include="..\toast\math\3\math16-example.html" />
+    <None Include="..\toast\math\3\math17-example.html" />
+    <None Include="..\toast\math\3\math18-example.html" />
+    <None Include="..\toast\math\3\math19-example.html" />
     <None Include="..\toast\math\3\math2-example.html" />
     <None Include="..\toast\math\3\math3-example.html" />
     <None Include="..\toast\math\3\math4-example.html" />
     <None Include="..\toast\math\3\math5-example.html" />
     <None Include="..\toast\math\3\math6-example.html" />
+    <None Include="..\toast\math\3\math7-example.html" />
+    <None Include="..\toast\math\3\math8-example.html" />
+    <None Include="..\toast\math\3\math9-example.html" />
     <None Include="..\toast\microdata\addendum\add.conf" />
     <None Include="..\toast\microdata\addendum\add.spec" />
     <None Include="..\toast\microdata\addendum\index.html" />
@@ -806,6 +820,9 @@
     <None Include="..\toast\other\ssi\ssi.conf" />
     <None Include="..\toast\other\ssi\ssi.inc" />
     <None Include="..\toast\other\ssi\ssi.spec" />
+    <None Include="..\toast\shadow\dedu\dedu.conf" />
+    <None Include="..\toast\shadow\dedu\dedu.spec" />
+    <None Include="..\toast\shadow\dedu\index.html" />
     <None Include="..\toast\stats\detail\index.html" />
     <None Include="..\toast\stats\detail\itemref.html" />
     <None Include="..\toast\stats\detail\md-ref.html" />
@@ -907,6 +924,9 @@
     <Image Include="..\toast\HTML\5.4\x.jpg" />
     <Image Include="..\toast\microformats\mf1\photo.jpg" />
     <Image Include="..\toast\microformats\mf2\photo.jpg" />
+    <Image Include="..\toast\shadow\dedu\x.jpg" />
+    <Image Include="..\toast\shadow\dedu\y.jpg" />
+    <Image Include="..\toast\shadow\dedu\z.jpg" />
     <Image Include="..\toast\type\metaname\x.jpg" />
     <Image Include="..\toast\type\mimetype\x.jpg" />
     <Image Include="..\toast\type\url\x.jpg" />
@@ -1115,6 +1135,7 @@ $(ProjectDir)..\..\ssc17-test -x $(SSCPATH)\ssc17.exe -v -f $(ProjectDir)..\toas
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ResourceCompile Include="ssc.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

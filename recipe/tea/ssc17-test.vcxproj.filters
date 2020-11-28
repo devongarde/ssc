@@ -12,6 +12,9 @@
     <Filter Include="toasty-toast">
       <UniqueIdentifier>{beca3906-afad-4543-b9dc-f7f349a2bde8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{13b2cfee-9508-49df-b856-a20b4454ea7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\test\ssc-test.cpp">
@@ -45,5 +48,15 @@
     <None Include="..\toast\ssc-test\ssc.lst">
       <Filter>toasty-toast</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ssc19-test.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource1.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -152,6 +152,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/string_path.hpp>
+
+#ifdef _MSC_VER
+#pragma warning ( disable : 4701 ) // CRC
+#endif
+
+#include <boost/crc.hpp>
+
 #endif // SSC_TEST
 
 #ifdef __clang__

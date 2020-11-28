@@ -286,37 +286,28 @@
       <UniqueIdentifier>{f502dc84-5469-43e2-b6c3-5f854d2abfc6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\Other">
-      <UniqueIdentifier>{392b2c99-cb1d-4300-8b19-1b238cc84479}</UniqueIdentifier>
+      <UniqueIdentifier>{14784e26-a60e-4e93-ab6b-59b57647963f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\Other\CSS">
-      <UniqueIdentifier>{bdadb068-62e6-4f83-a4d6-d64123439a88}</UniqueIdentifier>
+      <UniqueIdentifier>{f6509831-5822-4b2e-9b76-5a2b91151089}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\Other\Ignore">
-      <UniqueIdentifier>{5bb58e0f-56cf-407c-8d69-809f2384c53e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Other\SSI">
-      <UniqueIdentifier>{007b1ac6-fbfb-474c-8589-ded693e39a41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Other\Simple">
-      <UniqueIdentifier>{4836d543-4366-49e0-9ae5-fe03fc568d6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Other\RDF">
-      <UniqueIdentifier>{c62a0d64-3418-4931-8d80-11de96cc44c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Other\Parsing">
-      <UniqueIdentifier>{bba3daa8-7d61-4d26-93a4-7bf2a233ace2}</UniqueIdentifier>
+      <UniqueIdentifier>{63f612bc-a414-48e2-b077-455cf6a5789c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\Other\Nits">
-      <UniqueIdentifier>{f260306f-c656-4900-9005-0e13f96b438a}</UniqueIdentifier>
+      <UniqueIdentifier>{17be6c71-815b-44dc-842c-fc8562b7f78f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{f9da4fcf-967b-4b22-85da-f289a47b68f2}</UniqueIdentifier>
+    <Filter Include="Toast\Other\Parsing">
+      <UniqueIdentifier>{e470102a-d368-4842-a378-1e778eaf9502}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Shadow">
-      <UniqueIdentifier>{788c68f9-96ed-40e7-bc7f-4575045bc078}</UniqueIdentifier>
+    <Filter Include="Toast\Other\RDF">
+      <UniqueIdentifier>{70e9901d-b7ed-4e34-a02f-53a3100c67f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Shadow\Dedu">
-      <UniqueIdentifier>{19d35ba4-7ff9-45ea-93fb-e904adea5150}</UniqueIdentifier>
+    <Filter Include="Toast\Other\Simple">
+      <UniqueIdentifier>{04e05c7f-4422-499e-852f-fe6b013e320a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\SSI">
+      <UniqueIdentifier>{e566a3a7-1ffd-4ad8-9e4f-9b974865bbe3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -712,9 +703,6 @@
     </ClInclude>
     <ClInclude Include="..\heater\type\type_svg.h">
       <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2715,38 +2703,32 @@
     <None Include="..\toast\microdata\schema-pqrs\softwareapplication.html">
       <Filter>Toast\Microdata\Schema-PQRS</Filter>
     </None>
-    <None Include="..\toast\math\2\math4-example.html">
-      <Filter>Toast\Math\2</Filter>
+    <None Include="..\toast\other\CSS\css.conf">
+      <Filter>Toast\Other\CSS</Filter>
     </None>
-    <None Include="..\toast\math\2\math5-example.html">
-      <Filter>Toast\Math\2</Filter>
+    <None Include="..\toast\other\CSS\css.spec">
+      <Filter>Toast\Other\CSS</Filter>
     </None>
-    <None Include="..\toast\math\2\math6-example.html">
-      <Filter>Toast\Math\2</Filter>
+    <None Include="..\toast\other\CSS\css-bad.html">
+      <Filter>Toast\Other\CSS</Filter>
     </None>
-    <None Include="..\toast\math\2\math7-example.html">
-      <Filter>Toast\Math\2</Filter>
+    <None Include="..\toast\other\CSS\css-dubious.css">
+      <Filter>Toast\Other\CSS</Filter>
     </None>
-    <None Include="..\toast\math\2\math8-example.html">
-      <Filter>Toast\Math\2</Filter>
+    <None Include="..\toast\other\CSS\css-dubious.html">
+      <Filter>Toast\Other\CSS</Filter>
     </None>
-    <None Include="..\toast\math\2\math9-example.html">
-      <Filter>Toast\Math\2</Filter>
+    <None Include="..\toast\other\CSS\css-empty.css">
+      <Filter>Toast\Other\CSS</Filter>
     </None>
-    <None Include="..\toast\math\2\math10-example.html">
-      <Filter>Toast\Math\2</Filter>
+    <None Include="..\toast\other\CSS\css-empty.html">
+      <Filter>Toast\Other\CSS</Filter>
     </None>
-    <None Include="..\toast\math\2\math11-example.html">
-      <Filter>Toast\Math\2</Filter>
+    <None Include="..\toast\other\CSS\css-good.css">
+      <Filter>Toast\Other\CSS</Filter>
     </None>
-    <None Include="..\toast\math\2\math12-example.html">
-      <Filter>Toast\Math\2</Filter>
-    </None>
-    <None Include="..\toast\math\2\math13-example.html">
-      <Filter>Toast\Math\2</Filter>
-    </None>
-    <None Include="..\toast\math\2\math14-example.html">
-      <Filter>Toast\Math\2</Filter>
+    <None Include="..\toast\other\CSS\css-good.html">
+      <Filter>Toast\Other\CSS</Filter>
     </None>
     <None Include="..\toast\other\ssi\index.html">
       <Filter>Toast\Other\SSI</Filter>
@@ -2778,44 +2760,14 @@
     <None Include="..\toast\other\ssi\ssi-vars.html">
       <Filter>Toast\Other\SSI</Filter>
     </None>
-    <None Include="..\toast\other\simple\css-good.css">
-      <Filter>Toast\Other\Simple</Filter>
+    <None Include="..\toast\other\nits\index.html">
+      <Filter>Toast\Other\Nits</Filter>
     </None>
-    <None Include="..\toast\other\simple\index.html">
-      <Filter>Toast\Other\Simple</Filter>
+    <None Include="..\toast\other\nits\nits.conf">
+      <Filter>Toast\Other\Nits</Filter>
     </None>
-    <None Include="..\toast\other\simple\index.xhtml">
-      <Filter>Toast\Other\Simple</Filter>
-    </None>
-    <None Include="..\toast\other\simple\simple.conf">
-      <Filter>Toast\Other\Simple</Filter>
-    </None>
-    <None Include="..\toast\other\simple\simple.spec">
-      <Filter>Toast\Other\Simple</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\index.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf.conf">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf.spec">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf1-example.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf2-example.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf3-example.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf4-example.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf5-example.html">
-      <Filter>Toast\Other\RDF</Filter>
+    <None Include="..\toast\other\nits\nits.spec">
+      <Filter>Toast\Other\Nits</Filter>
     </None>
     <None Include="..\toast\other\parsing\doctype-missing.html">
       <Filter>Toast\Other\Parsing</Filter>
@@ -2850,14 +2802,44 @@
     <None Include="..\toast\other\parsing\xhtml-xml.html">
       <Filter>Toast\Other\Parsing</Filter>
     </None>
-    <None Include="..\toast\other\nits\index.html">
-      <Filter>Toast\Other\Nits</Filter>
+    <None Include="..\toast\other\RDF\index.html">
+      <Filter>Toast\Other\RDF</Filter>
     </None>
-    <None Include="..\toast\other\nits\nits.conf">
-      <Filter>Toast\Other\Nits</Filter>
+    <None Include="..\toast\other\RDF\rdf.conf">
+      <Filter>Toast\Other\RDF</Filter>
     </None>
-    <None Include="..\toast\other\nits\nits.spec">
-      <Filter>Toast\Other\Nits</Filter>
+    <None Include="..\toast\other\RDF\rdf.spec">
+      <Filter>Toast\Other\RDF</Filter>
+    </None>
+    <None Include="..\toast\other\RDF\rdf1-example.html">
+      <Filter>Toast\Other\RDF</Filter>
+    </None>
+    <None Include="..\toast\other\RDF\rdf2-example.html">
+      <Filter>Toast\Other\RDF</Filter>
+    </None>
+    <None Include="..\toast\other\RDF\rdf3-example.html">
+      <Filter>Toast\Other\RDF</Filter>
+    </None>
+    <None Include="..\toast\other\RDF\rdf4-example.html">
+      <Filter>Toast\Other\RDF</Filter>
+    </None>
+    <None Include="..\toast\other\RDF\rdf5-example.html">
+      <Filter>Toast\Other\RDF</Filter>
+    </None>
+    <None Include="..\toast\other\simple\css-good.css">
+      <Filter>Toast\Other\Simple</Filter>
+    </None>
+    <None Include="..\toast\other\simple\index.html">
+      <Filter>Toast\Other\Simple</Filter>
+    </None>
+    <None Include="..\toast\other\simple\index.xhtml">
+      <Filter>Toast\Other\Simple</Filter>
+    </None>
+    <None Include="..\toast\other\simple\simple.conf">
+      <Filter>Toast\Other\Simple</Filter>
+    </None>
+    <None Include="..\toast\other\simple\simple.spec">
+      <Filter>Toast\Other\Simple</Filter>
     </None>
     <None Include="..\toast\other\ignore\ignore.conf">
       <Filter>Toast\Other\Ignore</Filter>
@@ -2867,111 +2849,6 @@
     </None>
     <None Include="..\toast\other\ignore\index.html">
       <Filter>Toast\Other\Ignore</Filter>
-    </None>
-    <None Include="..\toast\other\CSS\css.conf">
-      <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\other\CSS\css.spec">
-      <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\other\CSS\css-bad.html">
-      <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\other\CSS\css-dubious.css">
-      <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\other\CSS\css-dubious.html">
-      <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\other\CSS\css-empty.css">
-      <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\other\CSS\css-empty.html">
-      <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\other\CSS\css-good.css">
-      <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\other\CSS\css-good.html">
-      <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\math\3\index.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math.conf">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math.spec">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math1-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math2-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math3-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math4-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math5-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math6-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\2\math15-example.html">
-      <Filter>Toast\Math\2</Filter>
-    </None>
-    <None Include="..\toast\math\3\math7-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math8-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math9-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math10-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math11-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math12-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math13-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math14-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math15-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math16-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math17-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math18-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\math\3\math19-example.html">
-      <Filter>Toast\Math\3</Filter>
-    </None>
-    <None Include="..\toast\shadow\dedu\dedu.conf">
-      <Filter>Toast\Shadow\Dedu</Filter>
-    </None>
-    <None Include="..\toast\shadow\dedu\dedu.spec">
-      <Filter>Toast\Shadow\Dedu</Filter>
-    </None>
-    <None Include="..\toast\shadow\dedu\index.html">
-      <Filter>Toast\Shadow\Dedu</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -3013,15 +2890,6 @@
     </Image>
     <Image Include="..\toast\HTML\2.0\x.jpg">
       <Filter>Toast\HTML\2.0</Filter>
-    </Image>
-    <Image Include="..\toast\shadow\dedu\x.jpg">
-      <Filter>Toast\Shadow\Dedu</Filter>
-    </Image>
-    <Image Include="..\toast\shadow\dedu\y.jpg">
-      <Filter>Toast\Shadow\Dedu</Filter>
-    </Image>
-    <Image Include="..\toast\shadow\dedu\z.jpg">
-      <Filter>Toast\Shadow\Dedu</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -3073,10 +2941,5 @@
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\build.txt" />
     <Text Include="..\..\usage.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ssc.rc">
-      <Filter>Resources</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

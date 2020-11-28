@@ -169,19 +169,14 @@ void options::process (int argc, char** argv)
     hidden.add_options ()
         (GENERAL CLASS, "do not report unrecognised classes.")
         (GENERAL WEBMENTION ",w", "process webmentions.")
-        (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "maximum file size to read, in megabytes (zero to set no limit).")
-        (GENERAL NIDS, "output nit identifiers.")
         (GENERAL TEST ",T", "machine readable output formatted for tests.")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "user name to supply when requested.")
         (NITS WATCH, "debug nits (error reporting mechanism).")
-        (VALIDATION COLOR, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid colour. May be repeated.")
-        (VALIDATION MINOR ",4", ::boost::program_options::value < int > (), "Validate HTML5 with this mnr version (e.g. 3 for HTML 5.3).")
         (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "use this file to test header parsing code.")
         (WMIN HOOK, ::boost::program_options::value < ::std::string > (), "process incoming " WEBMENTION ", in JSON format, in specified file.")
         (WMIN STUB, ::boost::program_options::value < ::std::string > () -> default_value ("_" PROG), "mask for file containing " WEBMENTION " HTML snippet.")
         (WMIN MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "start of template macro.")
         (WMIN MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "start of template macro.")
-        (WMOUT SECRET, ::boost::program_options::value < ::std::string > (), WEBMENTION " secret.")
         (WMIN WRITE , ::boost::program_options::value < ::std::string > (), "when writing " WEBMENTION " includes, write them to this path (default: site.root).")
         (WMIN MENTION, ::boost::program_options::value < vstr_t > () -> composing (), "a " WEBMENTION ", string must be source=url,target=url. May be repeated.")
         (WMIN PATH, ::boost::program_options::value < ::std::string > () -> default_value (MENTION), "path for incoming web mention data files (note " GENERAL PATH ").") // not yet noted below
@@ -189,6 +184,7 @@ void options::process (int argc, char** argv)
         (WMOUT CLEAR ",C", "clear out all web mention data")
         (WMOUT NOTIFY ",N", "notify appropriate servers of web mention updates")
         (WMOUT RESET ",R", "reset web mention data")
+        (WMOUT SECRET, ::boost::program_options::value < ::std::string > (), WEBMENTION " secret.")
         ;
     line.add_options ()
         (CONFIG ",f", ::boost::program_options::value < ::std::string > (), "load configuration from this file.")
@@ -199,6 +195,7 @@ void options::process (int argc, char** argv)
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute. May be repeated.")
         (GENERAL FILE ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "file for persistent data, requires -N (note " GENERAL PATH ").")
         (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore attributes and content of specified element. May be repeated.")
+        (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "maximum file size to read, in megabytes (zero to set no limit).")
         (GENERAL NOCHANGE ",n", "report what will do, but do not actually do it.")
         (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "output file (default to the console).")
         (GENERAL PATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "root directory for all " PROG " files.")
@@ -212,7 +209,7 @@ void options::process (int argc, char** argv)
         (HTML RFC1942, "Reject RFC 1942 (tables) when processing HTML 2.0.")
         (HTML RFC1980, "Reject RFC 1980 (client side image maps) when processing HTML 2.0.")
         (HTML RFC2070, "Reject RFC 2070 (internationalisation) when processing HTML 2.0.")
-        (HTML VERSION, ::boost::program_options::value < ::std::string > (), "version of HTML presumed if no DOCTYPE is encountered (default: '1.0').")
+        (HTML VERSION, ::boost::program_options::value < ::std::string > (), "version of HTML presumed if no DOCTYPE (default: '1.0', note HTML 5 is year.month).")
 
         (LINKS EXTERNAL ",e", "check external links (requires curl, sets " LINKS CHECK ").")
         (LINKS FORWARD ",3", "report http forwarding errors, e.g. 301 and 308 (sets " LINKS EXTERNAL ").")
@@ -242,18 +239,25 @@ void options::process (int argc, char** argv)
         (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "silence nit. Use nid. May be repeated.")
         (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a warning. Use nid. May be repeated.")
 
-        (STATS PAGE, "report statistics for each page.")
-        (STATS SUMMARY ",S", "report site statistics.")
-
-        (SVG VERSION, ::boost::program_options::value < ::std::string > (), "preferred version of SVG if version attribute missing (requires HTML 4 or greater).")
-
-        (VALIDATION MICRODATAARG, "Validate HTML5 microdata")
+//        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non HTML files: 0=no (default), 1=hard link, 2=soft link, 3=copy, 4=copy+dedu.")
+//        (SHADOW FILE, ::boost::program_options::value < ::std::string > (), "where to persist deduplication data")
+//        (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "shadow root directory.")
+//        (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "shadow virtual directory, arg syntax virtual=shadow. Must correspond to " WEBSITE VIRTUAL)
+        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non HTML files: 0=no (default), 4=report duplicates.")
 
         (WEBSITE ROOT ",g", ::boost::program_options::value < ::std::string > (), "website root directory (default: current directory).")
         (WEBSITE EXTENSION ",x", ::boost::program_options::value < vstr_t > () -> composing (), "check files with this extension (default html). May be repeated.")
         (WEBSITE INDEX ",i", ::boost::program_options::value < ::std::string > (), "index file in directories (default: none).")
         (WEBSITE SITE ",s", ::boost::program_options::value < vstr_t > () -> composing (), "domain name(s) for local site (default none). May be repeated.")
         (WEBSITE VIRTUAL ",L", ::boost::program_options::value < vstr_t > () -> composing (), "define virtual directory, arg syntax virtual=physical. May be repeated.")
+
+        (STATS PAGE, "report statistics for each page.")
+        (STATS SUMMARY ",S", "report site statistics.")
+
+        (SVG VERSION, ::boost::program_options::value < ::std::string > (), "preferred version of SVG if version attribute missing (requires HTML 4 or greater).")
+
+        (VALIDATION MINOR ",4", ::boost::program_options::value < int > (), "Validate HTML5 with this mnr version (e.g. 3 for HTML 5.3).")
+        (VALIDATION MICRODATAARG, "Validate HTML5 microdata")
         	;
     valid.add_options ()
         (VALIDATION CHARSET, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid charset.")
@@ -324,7 +328,7 @@ void options::contextualise ()
         ::boost::filesystem::create_directories (context.path ()); }   // if throws, then exit
 
     context.load_css (var_.count (GENERAL CSS_OPTION) == 0);
-    context.nids (var_.count (GENERAL NIDS));
+//    context.nids (var_.count (GENERAL NIDS));
     context.nochange (var_.count (GENERAL NOCHANGE));
     context.rdf (var_.count (GENERAL RDF));
     context.ssi (var_.count (GENERAL SSI));
@@ -436,6 +440,14 @@ void options::contextualise ()
                 context.err () << quote (s) << ": no such nit.\n";
 
     context.microdata (var_.count (VALIDATION MICRODATAARG));
+
+    if (var_.count (SHADOW COPY))
+    {   int c = var_ [SHADOW COPY].as < int > ();
+        if ((c >= c_none) && (c <= c_deduplicate))
+            context.copy (static_cast < e_copy > (c)); }
+    if (var_.count (SHADOW FILE)) context.shadow_persist (var_ [SHADOW FILE].as < ::std::string > ());
+    if (var_.count (SHADOW ROOT)) context.shadow (var_ [SHADOW ROOT].as < ::std::string > ());
+    if (var_.count (SHADOW VIRTUAL)) context.virtuals (var_ [SHADOW VIRTUAL].as < vstr_t > ());
 
     if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
     if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());

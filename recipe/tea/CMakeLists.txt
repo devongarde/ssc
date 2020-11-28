@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.71 LANGUAGES CXX)
+project (ssc VERSION 0.0.72 LANGUAGES CXX)
 
 set (BOOST_ROOT ${BOOST})
 set (CMAKE_CXX_STANDARD 17)
@@ -15,9 +15,11 @@ set (TT ${T}/ssc-test)
 
 # Debug / Release (https://riptutorial.com/cmake/example/26702/setting-a-release-debug-configuration)
 set (CMAKE_CONFIGURATION_TYPES "Debug;Release;MinSizeRel" CACHE STRING "Configs" FORCE)
+
 if (DEFINED CMAKE_BUILD_TYPE)
   set_property (CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES})
 endif ()
+
 set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an installation path")
 set (CMAKE_DEBUG_POSTFIX "d")
 
@@ -27,7 +29,7 @@ find_package(Boost 1.67 REQUIRED COMPONENTS date_time filesystem program_options
 add_executable (ssc-test)
 add_executable (ssc)
 
-# better to litter in one place (here) than in the source directories with an extra gadzillion files
+# better to list the build files in one place (here) rather than litter all the source directories with a gadzillion untidy wee files
 target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h)
 target_sources (ssc PRIVATE
     ${H}/attribute/attr.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h ${H}/attribute/avm.h ${H}/css/css.h ${H}/css/css_cache.h
@@ -73,18 +75,53 @@ target_sources (ssc PRIVATE
 target_include_directories (ssc-test PRIVATE ${H} ${BOOST})
 target_include_directories (ssc PRIVATE ${H} ${BOOST})
 
-target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-parameter")
-target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-parameter")
+target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
+target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 
-if (UNIX)
-  message ("unix")
-  target_compile_definitions (ssc-test PRIVATE UNIX)
-  target_compile_definitions (ssc PRIVATE UNIX)
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+  message ("Only Visual Studios 2015/7/9 are known to build")
 endif ()
 
-# -g -O0
+if (UNIX)
+  target_compile_definitions (ssc-test PRIVATE UNIX)
+  target_compile_definitions (ssc PRIVATE UNIX)
+
+  if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
+
+    if (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.8")
+      message ("OpenBSD 6.8")
+      target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS)
+      target_compile_definitions (ssc PRIVATE NO_PCF_STR FS_THROWS)
+    else ()
+      message ("only OpenBSD 6.8 amd64 is known to build")
+    endif ()
+  endif ()
+
+  if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    message ("Linux")
+    message ("only Centos 8 amd64 is known to build")
+    target_compile_options (ssc-test PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
+    target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
+  endif ()
+
+  if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    if (${CMAKE_SYSTEM} MATCHES "Darwin-19.6.0")
+      message ("MacOS Catalina")
+    else ()
+      if (${CMAKE_SYSTEM} MATCHES "Darwin-17.7.0")
+        message ("MacOS High Sierra")
+        target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
+        target_compile_definitions (ssc PRIVATE FUDDYDUDDY)
+      else ()
+        message ("only MacOSs Catalina and High Sierra x64 are known to build")
+      endif ()
+    endif ()
+  endif ()
+
+endif ()
+
 if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
   message ("debug")
   target_compile_definitions (ssc-test PRIVATE _DEBUG)
@@ -95,6 +132,8 @@ else ()
   message ("release")
   target_compile_definitions (ssc-test PRIVATE NDEBUG)
   target_compile_definitions (ssc PRIVATE NDEBUG)
+  target_compile_options (ssc-test PRIVATE "-Wno-unused-parameter")
+  target_compile_options (ssc PRIVATE "-Wno-unused-parameter")
   if (${CMAKE_BUILD_TYPE} MATCHES "MinSizeRel")
     target_compile_options (ssc-test PRIVATE "-Os")
     target_compile_options (ssc PRIVATE "-Os")
@@ -103,17 +142,6 @@ else ()
     target_compile_options (ssc PRIVATE "-O3")
   endif ()
 endif ()
-
-if (${CMAKE_CXX_COMPILER_ID} MATCHES "AppleClang")
-  if (${CMAKE_CXX_COMPILER_VERSION} STRLESS "11.0.0")
-    message ("elderly")
-    target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
-    target_compile_definitions (ssc PRIVATE FUDDYDUDDY)
-  endif ()
-endif ()
-
-# target_compile_features (ssc-test PRIVATE cxx_std_17)
-# target_compile_features (ssc PRIVATE cxx_std_17)
 
 target_link_libraries (ssc-test PRIVATE Boost::filesystem)
 target_link_libraries (ssc-test PRIVATE pthread)
