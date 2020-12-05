@@ -65,6 +65,7 @@ public:
     {   clear (); }
     void swap (url& u) NOEXCEPT;
     static void init (nitpick& nits);
+    void shadow (::std::stringstream& ss, const html_version& v);
     bool empty () const { return ! has_component (es_original); }
     int compare (const url& u) const { return get ().compare (u.get ()); }
     bool has_component (const e_component c) const { return ! get_component (c).empty (); }

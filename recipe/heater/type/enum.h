@@ -175,7 +175,7 @@ typedef enum {
 typedef enum { bsb_baseline, bsb_sub, bsb_super, bsb_inherit } e_baselineshift;
 typedef enum { as_audio, as_document, as_embed, as_fetch, as_font, as_image, as_object, as_script, as_style, as_track, as_video, as_worker } e_as;
 typedef enum { be_alternative, be_scroll, be_slide } e_behaviour;
-typedef enum { bk_asp, bk_cdata, bk_code, bk_doctype, bk_node, bk_num, bk_php, bk_ssi, bk_stylesheet, bk_text, bk_xml } bk_status;
+typedef enum { bk_asp, bk_cdata, bk_code, bk_comment, bk_doctype, bk_node, bk_num, bk_php, bk_ssi, bk_stylesheet, bk_text, bk_xml } bk_status;
 typedef enum { b_true, b_false } e_bool;
 typedef enum { bu_button, bu_submit, bu_reset } e_button;
 typedef enum { bm_ansi, bm_utf8, bm_utf16_be, bm_utf16_le, bm_utf32_be, bm_utf32_le, bm_utf7, bm_utf1, bm_utf_ebcdic, bm_scsu, bm_bocu_1, bm_gb_1830, bm_error } byte_order_mark;
@@ -183,7 +183,7 @@ typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
 typedef enum {  ec_undefined, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_incorrectness, ec_init, ec_link, ec_microdata, ec_microformat, ec_mql,
-                ec_namespace, ec_parser, ec_program, ec_rdf, ec_rudeness, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
+                ec_namespace, ec_parser, ec_program, ec_rdf, ec_rudeness, ec_shadow, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
 const e_category last_category = ec_webmention;
 typedef enum {  cc_ansi, cc_utf8, cc_utf16be, cc_utf16le, cc_gb, cc_fkd } e_charcode;
 typedef enum {  ch_a, ch_b, ch_g, ch_r } e_channel_selector;
@@ -276,7 +276,7 @@ typedef enum { es_original, es_query, es_fragment, es_scheme, es_authority, es_u
 typedef enum { co_arithmetic, co_atop, co_in, co_out, co_over, co_xor } e_composite_operator;
 typedef enum { ce_gzip, ce_compress, ce_deflate, ce_identity } e_content_encoding;
 typedef enum { cl_nodownload, cl_nofullscreen, cl_noremoteplayback } e_controlslist;
-typedef enum { c_none, c_hard, c_soft, c_copy, c_deduplicate } e_copy;
+typedef enum { c_none, c_html, c_hard, c_soft, c_copy, c_deduplicate, c_rpt } e_copy;
 typedef enum { cc_anonymous, cc_credentials } ev_cors;
 typedef enum { co_none, co_updiagonalstrike, co_downdiagonalstrike, co_verticalstrike, co_horizontalstrike } e_crossout;
 
@@ -333,8 +333,8 @@ typedef enum { ef_embed, ef_overlay, ef_new, ef_replace } e_effect;
 typedef enum {
     elem_undefined,
 
-    elem_faux_document, elem_faux_asp, elem_faux_comment, elem_faux_doctype, elem_faux_php, elem_faux_ssi, elem_faux_stylesheet, elem_faux_text,
-        elem_faux_xml, elem_faux_whitespace,
+    elem_faux_document, elem_faux_asp, elem_faux_cdata, elem_faux_char, elem_faux_code, elem_faux_comment, elem_faux_doctype, elem_faux_php,
+        elem_faux_ssi, elem_faux_stylesheet, elem_faux_text, elem_faux_xml, elem_faux_whitespace,
 
     elem_a, elem_abbr, elem_abbrev, elem_above, elem_abs, elem_abstract, elem_access, elem_acronym, elem_action, elem_added, elem_addeventlistener,
         elem_address, elem_altglyph, elem_altglyphdef, elem_altglyphitem, elem_and, elem_animate, elem_animatecolour, elem_animatemotion,
@@ -1323,7 +1323,7 @@ typedef enum
     nit_use_apply, nit_base, nit_declare_first, nit_arg_count, nit_operator_required, nit_bad_bvar, nit_bad_doa, nit_bad_piece,
     nit_annotation, nit_eof_in_annotation, nit_prefix_odd, nit_prefix_format, nit_rdf_redefine, nit_rdf_confusion, nit_rdf_protocol,
     nit_math_href, nit_math_empty, nit_mglyph_alt_src, nit_dir_rtl_ltr, nit_bad_linebreak, nit_non_standard_value, nit_mscarries_last,
-    nit_bad_bind, nit_bad_share, nit_shadow, nit_out_of_memory, nit_duplicate, nit_shadow_failed,
+    nit_bad_bind, nit_bad_share, nit_shadow, nit_out_of_memory, nit_duplicate, nit_shadow_failed, nit_create_folder, nit_internal_file_error,
 
     nit_context,
 

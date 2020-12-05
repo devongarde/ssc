@@ -276,8 +276,10 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
 
 ::std::string printenv_command (nitpick& , ssi_compedium& c, const vstr_t& )
 {   ::std::string res;
+    bool started = false;
     for (ustr_t::const_iterator i = c.var_.cbegin (); i != c.var_.cend (); ++i)
-        res += ::boost::algorithm::to_upper_copy (i -> first) + " = " + i -> second + "\n";
+    {   if (started) res += '\n'; else started = true;
+        res += ::boost::algorithm::to_upper_copy (i -> first) + " = " + i -> second; }
     return res; }
 
 ::std::string set_command (::std::string& ln, nitpick& nits, const html_version& v, const directory& , ssi_compedium& c, const vstr_t& args)
@@ -296,8 +298,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     {   set_ssi_context (ln, nits, es_error);
         nits.pick (nit_invalid_set, es_error, ec_ssi, "it is difficult to set the value of a variable without naming it"); }
     else
-    {   // value = get_variable_value (ln, nits, v, d, c, value, false, true);
-        if (dec == ssi_encoding_url) value = decode (value);
+    {   if (dec == ssi_encoding_url) value = decode (value);
         if (enc == ssi_encoding_url) value = sanitise (value);
         ustr_t::iterator i = c.var_.find (var);
         if (i == c.var_.end ())

@@ -85,6 +85,8 @@ needs rel type and probably context info
 */
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
+#define DEFAULT_LINE_LENGTH 120
+#define DESCRIPTION_LENGTH 80
 
 ::std::string path_in_context (const ::std::string& file)
 {   ::boost::filesystem::path res (context.path ());
@@ -157,8 +159,15 @@ void options::process (int argc, char** argv)
         8
         9
 */
-
-    ::boost::program_options::options_description basic ("Console Options"), primary ("Standard Options"), hidden, cmd, config, aid, line, valid("validation options");
+    ::boost::program_options::options_description
+        basic ("Console Options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        primary ("Standard Options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        hidden,
+        cmd (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        config (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        aid (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        line (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        valid("validation options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH);
     ::boost::program_options::positional_options_description pos;
     pos.add (WEBSITE ROOT, 1);
     basic.add_options ()
@@ -239,11 +248,17 @@ void options::process (int argc, char** argv)
         (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "silence nit. Use nid. May be repeated.")
         (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a warning. Use nid. May be repeated.")
 
-//        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non HTML files: 0=no (default), 1=hard link, 2=soft link, 3=copy, 4=copy+dedu.")
-//        (SHADOW FILE, ::boost::program_options::value < ::std::string > (), "where to persist deduplication data")
-//        (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "shadow root directory.")
-//        (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "shadow virtual directory, arg syntax virtual=shadow. Must correspond to " WEBSITE VIRTUAL)
-        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non HTML files: 0=no (default), 4=report duplicates.")
+        (SHADOW COMMENT, "do NOT squish comments on shadow pages")
+#ifdef NOLYNX
+        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non-HTML files: 0=no (default), 1=pages, 2/3/4=copy all, 5=copy+dedu, 6=rpt dups.")
+#else // NOLYNX
+        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non-HTML files: 0=no (default), 1=pages, 2=hard link all, 3=soft link all, 4=copy all, 5=copy+dedu, 6=rpt dups.")
+#endif // NOLYNX
+        (SHADOW FILE, ::boost::program_options::value < ::std::string > (), "where to persist deduplication data")
+        (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "shadow root directory.")
+        (SHADOW SSI, "do NOT resolve SSIs on shadow pages when " GENERAL SSI " is set")
+        (SHADOW SPACING, "do NOT merge spacing on shadow pages")
+        (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "shadow virtual directory, arg syntax virtual=shadow. Must correspond to " WEBSITE VIRTUAL)
 
         (WEBSITE ROOT ",g", ::boost::program_options::value < ::std::string > (), "website root directory (default: current directory).")
         (WEBSITE EXTENSION ",x", ::boost::program_options::value < vstr_t > () -> composing (), "check files with this extension (default html). May be repeated.")
@@ -315,24 +330,23 @@ void options::contextualise ()
     context.test (var_.count (GENERAL TEST));
 
     if (var_.count (GENERAL OUTPUT))
-    {   context.output (var_ [GENERAL OUTPUT].as < ::std::string > ());
+    {   context.output (nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
         if (! context.test ())
             ::std::cout << "Writing to " << var_ [GENERAL OUTPUT].as < ::std::string > () << "\n"; }
 
     if (context.test ()) context.out () << PROG "\n" VERSION_STRING "\n" COPYRIGHT"\n";
     else context.out () << FULLNAME " version " VERSION_STRING " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n";
 
-    context.path (var_ [GENERAL PATH].as < ::std::string > ());
+    context.path (nix_path_to_local (var_ [GENERAL PATH].as < ::std::string > ()));
     if (! ::boost::filesystem::exists (context.path ()))
     {   context.err () << context.path () << " does not exist, am creating it.";
         ::boost::filesystem::create_directories (context.path ()); }   // if throws, then exit
 
     context.load_css (var_.count (GENERAL CSS_OPTION) == 0);
-//    context.nids (var_.count (GENERAL NIDS));
     context.nochange (var_.count (GENERAL NOCHANGE));
     context.rdf (var_.count (GENERAL RDF));
     context.ssi (var_.count (GENERAL SSI));
-    context.persisted (path_in_context (var_ [GENERAL FILE].as < ::std::string > ()));
+    context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FILE].as < ::std::string > ())));
     context.stats_page (var_.count (STATS PAGE));
     context.stats_summary (var_.count (STATS SUMMARY));
 
@@ -441,18 +455,25 @@ void options::contextualise ()
 
     context.microdata (var_.count (VALIDATION MICRODATAARG));
 
+    context.shadow_comment (var_.count (SHADOW COMMENT));
+#ifdef NOLYNX
     if (var_.count (SHADOW COPY))
-    {   int c = var_ [SHADOW COPY].as < int > ();
-        if ((c >= c_none) && (c <= c_deduplicate))
-            context.copy (static_cast < e_copy > (c)); }
-    if (var_.count (SHADOW FILE)) context.shadow_persist (var_ [SHADOW FILE].as < ::std::string > ());
-    if (var_.count (SHADOW ROOT)) context.shadow (var_ [SHADOW ROOT].as < ::std::string > ());
+    {   int n = var_ [SHADOW COPY].as < int > ();
+        if ((n == 2) || (n == 3)) n = 4;
+        context.copy (n); }
+#else // NOLYNX
+    if (var_.count (SHADOW COPY)) context.copy (var_ [SHADOW COPY].as < int > ());
+#endif // NOLYNX
+    if (var_.count (SHADOW FILE)) context.shadow_persist (path_in_context (nix_path_to_local (var_ [SHADOW FILE].as < ::std::string > ())));
+    if (var_.count (SHADOW ROOT)) context.shadow (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
+    context.shadow_space (var_.count (SHADOW SPACING));
+    context.shadow_ssi (var_.count (SHADOW SSI));
     if (var_.count (SHADOW VIRTUAL)) context.virtuals (var_ [SHADOW VIRTUAL].as < vstr_t > ());
 
     if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
     if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());
     else { vstr_t ex; ex.push_back ("html"); context.extensions (ex); }
-    if (var_.count (WEBSITE ROOT)) context.root (var_ [WEBSITE ROOT].as < ::std::string > ());
+    if (var_.count (WEBSITE ROOT)) context.root (nix_path_to_local (var_ [WEBSITE ROOT].as < ::std::string > ()));
     if (var_.count (WEBSITE SITE)) context.site (var_ [WEBSITE SITE].as < vstr_t > ());
     if (var_.count (WEBSITE VIRTUAL)) context.virtuals (var_ [WEBSITE VIRTUAL].as < vstr_t > ());
 
@@ -461,7 +482,7 @@ void options::contextualise ()
     if (var_.count (WMIN HOOK)) context.hook (var_ [WMIN HOOK].as < ::std::string > ());
     if (var_.count (WMIN MACROEND)) context.macro_end (var_ [WMIN MACROEND].as < ::std::string > ());
     if (var_.count (WMIN MACROSTART)) context.macro_start (var_ [WMIN MACROSTART].as < ::std::string > ());
-    if (var_.count (WMIN PATH)) context.incoming (path_in_context (var_ [WMIN PATH].as < ::std::string > ()));
+    if (var_.count (WMIN PATH)) context.incoming (path_in_context (nix_path_to_local (var_ [WMIN PATH].as < ::std::string > ())));
     if (var_.count (WMIN MENTION)) context.mentions (var_ [WMIN MENTION].as < vstr_t > ());
     if (var_.count (WMIN TEMPLATE)) context.templates ( var_ [WMIN TEMPLATE].as < vstr_t > ());
     if (var_.count (WMIN TEST_HEADER)) context.test_header (var_ [WMIN TEST_HEADER].as < ::std::string > ());
@@ -624,6 +645,14 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (MICRODATA EXPORT)) res << MICRODATA EXPORT "\n";
     if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < int > () << "\n";
     if (var_.count (MICRODATA MINOR)) res << MICRODATA MINOR ": " << var_ [MICRODATA MINOR].as < int > () << "\n";
+
+    if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT "\n";
+    if (var_.count (SHADOW COPY)) res << SHADOW COPY ": " << var_ [SHADOW COPY].as < int > () << "\n";
+    if (var_.count (SHADOW FILE)) res << SHADOW FILE ": " << var_ [SHADOW FILE].as < ::std::string > () << "\n";
+    if (var_.count (SHADOW ROOT)) res << SHADOW ROOT ": " << var_ [SHADOW ROOT].as < ::std::string > () << "\n";
+    if (var_.count (SHADOW SPACING)) res << SHADOW SPACING "\n";
+    if (var_.count (SHADOW SSI)) res << SHADOW SSI "\n";
+    if (var_.count (SHADOW VIRTUAL)) { res << SHADOW VIRTUAL ": "; pvs (res, var_ [SHADOW VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (VALIDATION CHARSET)) { res << VALIDATION CHARSET ": "; pvs (res, var_ [VALIDATION CHARSET].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION CLASS)) { res << VALIDATION CLASS ": "; pvs (res, var_ [VALIDATION CLASS].as < vstr_t > ()); res << "\n"; }

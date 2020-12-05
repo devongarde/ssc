@@ -59,6 +59,8 @@ template < > struct type_master < t_url > : type_base < url, t_url >
     static url default_value () { return url (); }
     bool has_value (const url& b) const { return good () && (value_ == b); }
     url get () const { return value_; }
+    void shadow (::std::stringstream& ss, const html_version& v)
+    {   ss << "=\""; value_.shadow (ss, v); ss << '"'; }
     ::std::string original () const { return get_string (); } };
 
 template < > struct type_master < t_local_url > : type_master < t_url >

@@ -532,6 +532,8 @@ nitname nitnames [] =
     { nit_out_of_memory, "out_of_memory" },
     { nit_duplicate, "duplicate" },
     { nit_shadow_failed, "shadow_failed" },
+    { nit_create_folder, "create_folder" },
+    { nit_internal_file_error, "internal_file_error" },
 
     { nit_off, "" } };
 

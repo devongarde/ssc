@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 struct index_t
 {   ::boost::filesystem::path disk_path_;
+    ::std::string site_path_;
     fileindex_flags flags_ = 0;
     directory* pd_ = nullptr;
     uintmax_t size_ = 0;
@@ -88,7 +89,7 @@ void fileindex_init ()
 #ifndef ORDERED
     disk_x.reserve (16384);
     site_x.reserve (16384);
-#endif // FUDDYDUDDY
+#endif // ORDERED
  }
 
 fileindex_t insert_disk_path (const ::boost::filesystem::path& name, fileindex_flags flags, directory* pd, const uintmax_t size, const ::std::time_t& last_write)
@@ -118,7 +119,8 @@ fileindex_t insert_borked_path (const ::boost::filesystem::path& name, const fil
 void add_site_path (const ::std::string& name, const fileindex_t s)
 {   assert (s < vx.size ());
     auto i = site_x.emplace (name, s);
-    if (! i.second) i.first -> second = s; }
+    if (! i.second) i.first -> second = s;
+    if (vx [s].site_path_.empty ()) vx [s].site_path_ = name; }
 
 fileindex_t get_fileindex (const ::boost::filesystem::path& name)
 {   mxp_t :: const_iterator i = disk_x.find (name.string ());
@@ -130,9 +132,13 @@ fileindex_t get_fileindex (const ::std::string& name)
     if (i != site_x.cend ()) return i -> second;
     return nullfileindex; }
 
-::boost::filesystem::path get_filename (const fileindex_t ndx)
+::boost::filesystem::path get_disk_path (const fileindex_t ndx)
 {   if (ndx >= vx.size ()) return ::boost::filesystem::path ();
     return vx [ndx].disk_path_; }
+
+::std::string get_site_path (const fileindex_t ndx)
+{   if (ndx >= vx.size ()) return ::std::string ();
+    return vx [ndx].site_path_; }
 
 fileindex_flags get_flags (const fileindex_t ndx)
 {   assert (ndx < vx.size ());
@@ -169,24 +175,24 @@ crc_t get_crc (nitpick& nits, const fileindex_t ndx)
             return crc_initrem; }
         unsigned long max = context.max_file_size ();
         if (max == 0) max = DMFS_BYTES;
-#ifdef _MSC_VER
+#ifdef CLEAN_SHAREDPTR_ARRAY
         ::std::shared_ptr < char [] > buf (new char [max]);
         if (buf.get () == nullptr)
-#else // _MSC_VER
-	    char* buf = (char *) malloc (max);  // oh dear
+#else // CLEAN_SHAREDPTR_ARRAY
+	    char* buf = (char *) malloc (max);
         if (buf == nullptr)
-#endif // _MSC_VER
+#endif // CLEAN_SHAREDPTR_ARRAY
         {   f.close ();
             nits.pick (nit_out_of_memory, es_error, ec_crc, "out of memory reading ", vx [ndx].disk_path_);
             set_crc (ndx, 0);
             return crc_initrem; }
-#ifdef _MSC_VER
+#ifdef CLEAN_SHAREDPTR_ARRAY
         while (! f.eof ())
         {   f.read (buf.get (), max);
             ::std::streamsize s = f.gcount ();
             if (s == 0) break;
             crc.process_bytes (buf.get (), s); }
-#else // _MSC_VER
+#else // CLEAN_SHAREDPTR_ARRAY
         try
         {   while (! f.eof ())
             {   f.read (buf, max);
@@ -196,7 +202,7 @@ crc_t get_crc (nitpick& nits, const fileindex_t ndx)
         catch (...)
         {   free (buf); throw; }
         free (buf); buf = nullptr;
-#endif // _MSC_VER
+#endif // CLEAN_SHAREDPTR_ARRAY
         set_crc (ndx, crc.checksum ()); }
     return vx [ndx].crc_; }
 
@@ -311,7 +317,7 @@ void write_crcs (nitpick& nits, const ::boost::filesystem::path& persist)
             nits.pick (nit_cannot_write, es_error, ec_crc, "cannot write to ", persist.string ());
         else for (auto v : vx)
             if ((v.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)
-                if (v.crc_ != crc_initrem)
+                if ((v.crc_ != crc_initrem) && (v.crc_ != 0))
                 {   ln = v.persist ();
                     if (! ln.empty ())
                     {   ln += "\n";
@@ -331,7 +337,7 @@ void dedu (nitpick& nits)
     {   index_t& x = vx.at (i);
         if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)
         {   crc_t crc = get_crc (nits, i);
-            if (crc == crc_initrem) continue;
+            if ((crc == 0) || (crc == crc_initrem)) continue;
             mcrc_t::const_iterator ci = mcrc.find (crc);
             if (ci != mcrc.cend ())
             {   index_t& y = vx.at (ci -> second);
@@ -343,3 +349,10 @@ void dedu (nitpick& nits)
             mcrc.emplace (crc, i); } }
     write_crcs (nits, persist); }
 
+bool isdu (const fileindex_t ndx)
+{   assert (ndx < vx.size ());
+    return vx [ndx].dedu_ != nullfileindex; }
+
+fileindex_t du (const fileindex_t ndx)
+{   assert (ndx < vx.size ());
+    return vx [ndx].dedu_; }

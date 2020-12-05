@@ -42,10 +42,13 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
             nits.pick (nit_bad_compact, es_error, ec_type, "in ", v.report (), ", compact has no value"); }
         if (! compare_no_case (string_value < t_compact > :: get_string (), "compact"))
         {   string_value < t_compact > :: status (s_invalid);
-            nits.pick (nit_bad_border, es_error, ec_type, "if compact is given a value, it must be \"compact\""); } } };
+            nits.pick (nit_bad_border, es_error, ec_type, "if compact is given a value, it must be \"compact\""); } }
+    void shadow (::std::stringstream& ss, const html_version& v)
+    {   if (v.xhtml ()) ss << "=\"compact\""; } };
 
 template < > struct type_master < t_existential > : type_base < mono, t_existential >
 {   static bool is_existential () { return true; }
+    void shadow (::std::stringstream& , const html_version& ) { }
     void set_value (nitpick& , const html_version& , const ::std::string& )
     {   type_base < mono, t_existential > :: status (s_good); } };
 
@@ -64,7 +67,8 @@ template < > struct type_master < t_html > : tidy_string < t_html >
 
 template < > struct type_master < t_illegal > : type_base < mono, t_illegal >
 {   void set_value (nitpick& nits, const html_version& , const ::std::string& )
-    {   nits.pick (nit_evermore, es_error, ec_type, "always illegal"); }
+    {   nits.pick (nit_evermore, es_error, ec_type, "always illegal");
+        type_base < mono, t_illegal > :: status (s_invalid); }
     static mono default_value () { return static_cast <mono> (0); }
     mono get () const { assert (false); return static_cast <mono> (0); } };
 

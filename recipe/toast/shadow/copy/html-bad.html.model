@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>shadow bad HTML</title>
+<meta content="video/css" http-equiv=content-style-type>
+<base href="/">
+<base href="/">
+</head>
+<body role=document>
+<h1>shadow bad HTML</h1>
+<form>
+<textarea>
+This can contain character references like &#40;, &amp;, &lt; and &gt;,
+but such characters and also be written directly as &, </textarea><math><apply><and>.
+Strings that look like  or other elements </apply></math><span>
+are treated as plain text, instead of markup.
+</textarea>
+<textarea>
+An unknown named character reference like &this
+gives an ambiguous ampersand error.
+</textarea>
+<textarea name=_charset_>
+This text cannot contain a string like </textarea because
+it looks like an end tag for the element.
+</textarea>
+<textarea name=isindex>
+This can contain character references like &#20;, &amp;, &lt; and &gt;.
+Unlike the HTML syntax, this can also contain comments.
+
+
+If the string is intended to be rendered, the special characters must be escaped
+&lt;!-- like this --&gt;.
+</textarea>
+<textarea><![CDATA[This can contain special characters like &, < and >.
+Strings that look like markup, like <!-- comments -->,
+character references &amp;, &lt; and &gt;,
+or other elements <span> are treated as plain text, instead of markup.
+]]></textarea>
+<input disabled>...</div>
+<input disabled>...</div>
+<label>Carpet: <input name=c></label>
+<input name=_charset_ type=hidden value=binary>
+</span></form>
+<div lang=en>...</div>
+<section id=example>...</section>
+<div lang=en>...</div>
+<img height=200 src="example.png" width=300>
+<img src="image.png">
+<img src="example.jpg" title="An example photograph">
+<img src="example.png">
+<img src="example.jpg" title="An example photograph">
+<img src="example.png">
+<p>This markup contains a <em><strong>mistake</strong></em></strong></p>
+<section>
+<ins><h1>Example of paragraphs</h1>
+  This is the <em>first</em> paragraph in</ins> this example<del>.
+  <p>This is the second.</p></del>
+ </section>
+<section>
+<h1>My Cats</h1>
+ You can play with my cat simulator.
+ <object data="cats.sim">
+  To see the cat simulator, use one of the following links:
+  <ul>
+<li value=7><a href="cats.sim">Download simulator file</a>
+</li><li><a href="http://sims.example.com/watch?v=LYds5xY4INU">Use online simulator</a>
+</li></ul>
+  Alternatively, upgrade to the Mellblom Browser.
+ </object> I'm quite proud of it.
+</section>
+<address>Last Modified: 1999/12/24 23:37:50</address>
+<article>
+<nav>
+<main>no main kids</main>
+</nav>
+</article>
+<address>
+    27b Baker Street
+    <h4>london</h4>
+<p>
+        secret sauce
+        <script>
+            a := a + b;
+        </script>
+<noscript>
+            wot, no pascal?
+        </noscript>
+</p>
+</address>
+<dl>
+<dd>definition</dd><dt>term</dt>
+<dt>term</dt><dd>definition</dd>
+</dl><div>naughty div</div>
+</dl>
+<video src="brave.webm">
+<track kind=subtitles label=English src="brave.en.vtt" srclang=en>
+<track kind=captions label="English for the Hard of Hearing" src="brave.en.hoh.vtt" srclang=en>
+<track kind=subtitles label=Deutsch lang=de src="brave.de.vtt" srclang=de>
+<track kind=subtitles label=English src="brave.en.vtt" srclang=en>
+</video>
+<video id=y src="brave.webm">
+<track default=true kind=subtitles label=English src="brave.en.vtt" srclang=en>
+<track default=true kind=chapters label="English for the Hard of Hearing" src="brave.en.hoh.vtt" srclang=en>
+<track default=true kind=descriptions label=Deutsch lang=de src="brave.de.vtt" srclang=de>
+<track default=true kind=subtitles label=Français lang=fr src="brave.fr.vtt" srclang=fr>
+<track default=true kind=chapters label=Letzebuergesch src="brave.en.hoh.vtt" srclang=lb>
+<track default=true kind=descriptions label=Nederlands lang=de src="brave.de.vtt" srclang=nl>
+</video>
+<map id=map name=Map></map>
+<map id=plan name=Map></map>
+<table>
+<caption>sausages of the ages</caption>
+<colgroup><col span=999></colgroup>
+<thead><tr>name</tr><tr>content</tr></thead>
+<tfoot><tr></tr><tr>(note: no guarantee of accuracy)</tr></tfoot>
+<tbody>
+<tr><td>banger</td><td>bread soaked in monkey blood</td></tr>
+<tr><td>mash</td><td>ground up monkey, without the blood</td></tr>
+</tbody>
+</table>
+<table>
+<tfoot><tr></tr><tr>(note: no guarantee of accuracy)</tr></tfoot>
+<thead><tr>name</tr><tr>content</tr></thead>
+<caption>sausages of the ages<div><table></table></div></caption>
+<tbody>
+<tr><td>banger</td><td>bread soaked in monkey blood</td></tr>
+<tr><td>mash</td><td>ground up monkey, without the blood</td></tr>
+</tbody>
+<colgroup><col span=1001></colgroup>
+</table>
+<table>
+<tfoot><tr></tr><tr>(note: no guarantee of accuracy)</tr></tfoot>
+<thead><tr>name</tr><tr>content</tr></thead>
+<caption>sausages of the ages<div><table></table></div></caption>
+<tbody>
+<tr><td>banger</td><td>bread soaked in monkey blood</td></tr>
+<tr><td>mash</td><td>ground up monkey, without the blood</td></tr>
+</tbody>
+<colgroup span=1010></colgroup>
+</table>
+<table>
+<tfoot><tr></tr><tr>(note: no guarantee of accuracy)</tr></tfoot>
+<thead><tr><th id=x>name</th><th>content</th></tr></thead>
+<caption>sausages of the ages<div><table></table></div></caption>
+<tbody>
+<tr><td>banger</td><td>bread soaked in monkey blood</td></tr>
+<tr><td>mash</td><td>ground up monkey, without the blood</td></tr>
+</tbody>
+<colgroup span=1010></colgroup>
+</table>
+<p id=summary>In the following table, characteristics are
+ given in the second column, with the negative side in the left column and the positive
+ side in the right column.</p>
+<table aria-describedby=summary>
+<caption>Characteristics with positive and negative sides</caption>
+<thead>
+<tr>
+<th id=n> Negative
+   </th><th> Characteristic
+   </th><th> Positive
+ </th></tr></thead><tbody>
+<tr>
+<td headers=n r1> Sad
+   </td><th id=r1> Mood
+   </th><td> Happy
+  </td></tr><tr>
+<td headers=n r2 x y> Failing
+   </td><th id=r2> Grade
+   </th><td> Passing
+</td></tr></tbody></table>
+<form>
+<input value="two
+                lines">
+</form>
+<p>The grapefruit pie had a radius of <meter value=12>12cm</meter>
+ and a height of <meter value=2>2cm</meter>.</p>
+ <meter max=3 min=2 value=1></meter>
+<meter min=2 value=1></meter>
+<meter low=7 value=1></meter>
+<meter high=7 value=1></meter>
+<meter high=0 low=1 value=1></meter>
+<meter optimum=83 value=1></meter>
+<meter high=6 low=8 max=2 min=4 optimum=83 value=1></meter>
+<script></script>
+<script async=true src="script.js"></script>
+<script defer=true></script>
+<script nomodule></script>
+<script type="application/lost+xml"></script>
+<script type="text/plain"></script>
+<script src="css-good.css" type="text/css"></script>
+<script async=true src="css-good.css" type="text/css"></script>
+<script async=true type="text/css"></script>
+<script type="application/tcl"></script>
+<script type="application/lost+xml"></script>
+<script type="application/lost+xml"></script>
+ <script type="application/lost+xml"></script>
+<script type="text/javascript"></script>
+</body>
+</html>

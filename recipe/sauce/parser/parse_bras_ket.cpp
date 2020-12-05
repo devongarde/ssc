@@ -78,7 +78,6 @@ typedef enum
     s_grsq  // <! ... [
 } e_statemachine;
 
-
 void bras_ket::nodoctype (nitpick& nits, html_version& v, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
 {   if (! v.unknown ()) return;
     nits.set_context (line_, near_here (b, e, i));
@@ -135,7 +134,6 @@ html_version bras_ket::parse (const ::std::string& content)
     bool xmp_mode = false;
     bool plaintext = false;
     bool had_doctype = false;
-//    bool had_xml = false;
     bool backslashed = false;
     bool aftercab = false;
     bool silent_content = false;
@@ -282,9 +280,9 @@ html_version bras_ket::parse (const ::std::string& content)
                 switch (ch)
                 {   case '<' :  status = s_open; soe = twas = i; break;
                     case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double > intentional?"); break;
-                    case '&' :  if (xmp_mode) break; status= s_amper; twas = i; break;
-                    case '\'' : if (xmp_mode) break; if (! silent_content) if (res >= html_4_0) nits.pick (nit_use_quote_code, es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)"); break;
-                    case '"' :  if (xmp_mode) break; if (! silent_content) if (res >= html_4_0) nits.pick (nit_use_double_quote_code, es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)"); }
+                    case '&' :  if (! xmp_mode) { status= s_amper; twas = i; } break;
+                    case '\'' : if (! xmp_mode && ! silent_content && (res >= html_4_0)) nits.pick (nit_use_quote_code, es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)"); break;
+                    case '"' :  if (! xmp_mode && ! silent_content && (res >= html_4_0)) nits.pick (nit_use_double_quote_code, es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)"); }
                 break;
             case s_amper :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_amper ", ch);
@@ -551,7 +549,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                 ve_.emplace_back (nits, line_, bk_ssi, collect, i-1);
                                 nits.reset ();
                                 aftercab = true;
-                                status = s_dull; text = twas = i; break;
+                                status = s_dull; text = twas = i+1; break;
                     case '"' :  status = s_ssi_double_quote; break;
                     case '\'' : status = s_ssi_quote; break;
                     default :   status = s_ssi; break; }
@@ -646,8 +644,8 @@ html_version bras_ket::parse (const ::std::string& content)
                 {   status = s_dull;
                     nits.set_context (line_, soe, i);
                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_cdata ", quoted_limited_string (::std::string (text, twas), 30));
-                    ve_.emplace_back (nits, line_, bk_cdata, text, i-1);
-                    aftercab = true;
+                    ve_.emplace_back (nits, line_, bk_cdata, text+9, i-2);
+                    aftercab = true; text = twas = i+1;
                     nits.reset (); }
                 break;
             case s_comment_first_open :
@@ -685,7 +683,12 @@ html_version bras_ket::parse (const ::std::string& content)
                                     ve_.emplace_back (nits, line_, text, twas);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                     nits.reset (); }
-                                if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "not inserting comment");
+                                if (context.shadow_comment ())
+                                {   nits.set_context (line_, soe, i);
+                                    if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace comment ", quoted_limited_string (::std::string (text, twas), 30));
+                                    ve_.emplace_back (nits, line_, bk_comment, text+6, i-2);
+                                    nits.reset (); }
+                                else if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "not inserting comment");
                                 aftercab = true;
                                 status = s_dull; text = twas = i+1; break;
                     case ' ' :  if (res < html_2) break;
@@ -710,10 +713,10 @@ html_version bras_ket::parse (const ::std::string& content)
                                             ve_.emplace_back (nits, line_, collect, i, i, true, false);
                                             nits.reset (); }
                                         break; }
-                                    nits.set_context (line_, x, collect-1);
+                                    nits.set_context (line_, x, collect-2);
                                     xmp_mode = false;
-                                    ve_.emplace_back (nits, line_, x, collect-1);
-                                    if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (x, collect - 1), 30));
+                                    ve_.emplace_back (nits, line_, x, collect-2);
+                                    if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (x, collect - 2), 30));
                                     nits.reset ();
                                     nits.set_context (line_, soe, i+1);
                                     ve_.emplace_back (nits, line_, collect, i, i, closure, false);

@@ -71,6 +71,7 @@ public:
     VALUE_TYPE get () const { return default_value (); }
     int get_int () const { return 0; }
     bool has_value (const VALUE_TYPE ) const { return false; }
+    void shadow (::std::stringstream& , const html_version& ) { }
     ::std::string report () const
     {   ::std::string s;
         if (status_ == s_invalid) s = "x";

@@ -41,10 +41,10 @@ class replies;
 
 class context_t
 {   bool            checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, load_css_ = false, links_ = false,
-                    md_export_ = false, mf_export_ = false, mf_verify_ = false,
-                    microdata_ = false, nids_ = false, nits_ = false, nochange_ = false, notify_ = false, once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false,
-                    repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, schema_ = false, slob_ = false, ssi_ = false,
-                    stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false;
+                    md_export_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nochange_ = false, notify_ = false, once_ = false,
+                    presume_tags_ = false, process_webmentions_ = false, rdf_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true,
+                    rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, schema_ = false, shadow_comment_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false,
+                    ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false;
     int             code_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   html_major_ = 5, html_minor_ = 4, mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
@@ -130,7 +130,10 @@ public:
     const ::std::string secret () const { return secret_; }
     const ::std::string server () const { return server_; }
     const ::std::string shadow () const { return shadow_; }
+    bool shadow_comment () const { return shadow_comment_; }
     const ::std::string shadow_persist () const { return shadow_persist_; }
+    bool shadow_ssi () const { return shadow_ssi_; }
+    bool shadow_space () const { return shadow_space_; }
     const vstr_t shadows () const { return shadows_; }
     const vstr_t site () const { return site_; }
     bool slob () const { return slob_; }
@@ -148,12 +151,19 @@ public:
     const vstr_t virtuals () const { return virtuals_; }
     const ::std::string webmention () const { return webmention_; }
     const ::std::string write_path () const { return write_path_; }
+
+    bool shadow_pages () const { return ((copy_ > c_none) && (copy_ <= c_deduplicate)); }
+    bool shadow_files () const { return ((copy_ > c_html) && (copy_ <= c_deduplicate)); }
+    bool shadow_any () const { return shadow_pages (); }
+    bool dodedu () const { return (copy_ >= c_deduplicate); }
+
     context_t& base (const ::std::string& s) { base_ = s; return *this; }
     context_t& checking_urls (const bool b) { checking_urls_ = b; return *this; }
     context_t& clear (const bool b) { clear_ = b; return *this; }
     context_t& code (const int i) { code_ = i; return *this; }
     context_t& codes (const bool b) { codes_ = b; return *this; }
-    context_t& copy (const e_copy c) { copy_ = c; return *this; }
+    context_t& copy (const int c)
+    {   if ((c > c_none) && (c <= c_rpt)) copy_ = static_cast < e_copy > (c); else copy_ = c_none; return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; return *this; }
     css_cache& css () { return css_; }
     const css_cache& css () const { return css_; }
@@ -233,7 +243,10 @@ public:
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
     context_t& shadow (const ::std::string& s) { shadow_ = s; return *this; }
+    context_t& shadow_comment (const bool b) { shadow_comment_ = b; return *this; }
     context_t& shadow_persist (const ::std::string& s) { shadow_persist_ = s; return *this; }
+    context_t& shadow_ssi (const bool b) { shadow_ssi_ = b; return *this; }
+    context_t& shadow_space (const bool b) { shadow_space_ = b; return *this; }
     context_t& shadows (const vstr_t& s) { shadows_ = s; return *this; }
     context_t& site (const vstr_t& s) { site_ = s; return *this; }
     context_t& slob (const bool b) { slob_ = b; return *this; }

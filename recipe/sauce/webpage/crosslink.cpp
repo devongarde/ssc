@@ -158,16 +158,16 @@ void reconcile_crosslinks (nitpick& nits)
                     for (auto c : is.second.ids_)
 					{   if (! has_id (ix.second.declared_, c.id_))
                             if (context.test ()) nits.pick (nit_url_id_unfound, es_error, ec_link, is.second.page_, " ", c.line_, " ", ix.second.page_ , " ", c.id_);
-                            else nits.pick (nit_url_id_unfound, es_error, ec_link, get_filename (is.second.page_).string (), " ", c.line_, ": ", get_filename (ix.second.page_).string (), "#", c.id_, " is undefined");
+                            else nits.pick (nit_url_id_unfound, es_error, ec_link, get_disk_path (is.second.page_).string (), " ", c.line_, ": ", get_disk_path (ix.second.page_).string (), "#", c.id_, " is undefined");
                         else if (! c.type_.empty ())
                         {   if (! has_itemtype (ix.second.declared_, c.type_))
                                 if (context.test ()) nits.pick (nit_incompatible_itemtype, es_error, ec_link, is.second.page_, " ", c.line_, " ", ix.second.page_ , " ", c.id_);
                                 else
-                                {   ::std::string msg ("the itemprop(s) at " + get_filename (is.second.page_).string () + ":" + ::boost::lexical_cast < ::std::string > (c.line_) + " seeks ");
+                                {   ::std::string msg ("the itemprop(s) at " + get_disk_path (is.second.page_).string () + ":" + ::boost::lexical_cast < ::std::string > (c.line_) + " seeks ");
                                     msg += itemtype_string (c.type_);
-                                    msg += "; " + get_filename (ix.second.page_).string () + "#" + c.id_ + " offers ";
+                                    msg += "; " + get_disk_path (ix.second.page_).string () + "#" + c.id_ + " offers ";
                                     msg += itemtype_string (ix.second.declared_);
                                     nits.pick (nit_incompatible_itemtype, es_error, ec_link, msg); } }
                        else if (! compatible_id_state (c.hidden_, is_hidden (ix.second.declared_, c.id_)))
                             if (context.test ()) nits.pick (nit_id_hidden, es_error, ec_link, is.second.page_, " ", c.line_, " ", ix.second.page_ , " ", c.id_);
-                            else nits.pick (nit_id_hidden, es_error, ec_link, get_filename (is.second.page_).string (), " ", c.line_, ": ", get_filename (ix.second.page_).string (), "#", c.id_, " is hidden"); } }
+                            else nits.pick (nit_id_hidden, es_error, ec_link, get_disk_path (is.second.page_).string (), " ", c.line_, ": ", get_disk_path (ix.second.page_).string (), "#", c.id_, " is hidden"); } }

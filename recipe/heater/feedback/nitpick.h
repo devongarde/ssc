@@ -74,4 +74,5 @@ public:
     ::std::string get_context () const { return context_; }
     int get_line () const { return line_; }
     ::std::string review () const;
+    e_severity worst () const;
     bool empty () const { return nits_.empty (); } };

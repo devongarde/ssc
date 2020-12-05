@@ -318,6 +318,45 @@
     <Filter Include="Toast\Shadow\Dedu">
       <UniqueIdentifier>{19d35ba4-7ff9-45ea-93fb-e904adea5150}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Shadow\Comment">
+      <UniqueIdentifier>{88b10a4a-6fdd-489f-9dd0-fee6cc3c084a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\Copy">
+      <UniqueIdentifier>{50e13785-28c2-4ffb-8800-c002f2ece55e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\CopyOver">
+      <UniqueIdentifier>{3c3322e2-142d-4822-ab92-0f05527455a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\DeduOver">
+      <UniqueIdentifier>{442bddf8-ea97-4212-bb07-3b39e6ee896f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\SoftOver">
+      <UniqueIdentifier>{9a4ffe7e-e201-4b20-bf60-06f5313b6b68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\Hard">
+      <UniqueIdentifier>{5b18e2a7-ed03-49ba-97eb-3e66fd578770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\Soft">
+      <UniqueIdentifier>{3d5d66db-e40c-4add-a254-4a1d7544b939}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\Pages">
+      <UniqueIdentifier>{e3a592e8-26b1-4d07-a91d-f1ada82cdb32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\SSI">
+      <UniqueIdentifier>{13d96069-5ab4-404a-a287-de4bbb414495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\Dedu\a">
+      <UniqueIdentifier>{d3bb3258-5b84-4397-913f-4ff1efd268fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\Dedu\b">
+      <UniqueIdentifier>{6eee6a73-ed87-4b04-af3f-6f343421abb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\Dedu\c">
+      <UniqueIdentifier>{46bdb4e6-7272-492f-bb46-8532f69bb54e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Tmp">
+      <UniqueIdentifier>{fc9a4fd4-0271-40b1-9f46-1584c8bb32e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2973,6 +3012,252 @@
     <None Include="..\toast\shadow\dedu\index.html">
       <Filter>Toast\Shadow\Dedu</Filter>
     </None>
+    <None Include="..\toast\shadow\copy\copy.spec">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\html-bad.html">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\html-bad.html.model">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\html-good.html">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\html-good.html.model">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\index.html">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\index.html.model">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\pre.bat">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\pre.sh">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\space.html">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\space.html.model">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\ssi.html">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\ssi.html.model">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\ssi.inc">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\copy\copy.conf">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </None>
+    <None Include="..\toast\shadow\comment\comment.conf">
+      <Filter>Toast\Shadow\Comment</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\index.html.model">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\pre.bat">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\pre.sh">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\space.html">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\space.html.model">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\ssi.html">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\ssi.html.model">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\ssi.inc">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\copyover.conf">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\copyover.spec">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\html-bad.html">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\html-bad.html.model">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\html-good.html">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\html-good.html.model">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\copyover\index.html">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\index.html.model">
+      <Filter>Toast\Shadow\Dedu</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\pre.bat">
+      <Filter>Toast\Shadow\Dedu</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\pre.sh">
+      <Filter>Toast\Shadow\Dedu</Filter>
+    </None>
+    <None Include="..\toast\shadow\deduover\deduover.spec">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\deduover\index.html">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\deduover\index.html.model">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\deduover\pre.bat">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\deduover\pre.sh">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\deduover\deduover.conf">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\hard\hard.conf">
+      <Filter>Toast\Shadow\Hard</Filter>
+    </None>
+    <None Include="..\toast\shadow\hard\hard.spec">
+      <Filter>Toast\Shadow\Hard</Filter>
+    </None>
+    <None Include="..\toast\shadow\hard\index.html">
+      <Filter>Toast\Shadow\Hard</Filter>
+    </None>
+    <None Include="..\toast\shadow\hard\index.html.model">
+      <Filter>Toast\Shadow\Hard</Filter>
+    </None>
+    <None Include="..\toast\shadow\hard\pre.bat">
+      <Filter>Toast\Shadow\Hard</Filter>
+    </None>
+    <None Include="..\toast\shadow\hard\pre.sh">
+      <Filter>Toast\Shadow\Hard</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\pre.sh">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\space.html">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\space.html.model">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\ssi.html">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\ssi.html.model">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\ssi.inc">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\html-bad.html">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\html-bad.html.model">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\html-good.html">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\html-good.html.model">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\index.html">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\index.html.model">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\pages.conf">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\pages.spec">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\pages\pre.bat">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </None>
+    <None Include="..\toast\shadow\soft\index.html">
+      <Filter>Toast\Shadow\Soft</Filter>
+    </None>
+    <None Include="..\toast\shadow\soft\index.html.model">
+      <Filter>Toast\Shadow\Soft</Filter>
+    </None>
+    <None Include="..\toast\shadow\soft\pre.bat">
+      <Filter>Toast\Shadow\Soft</Filter>
+    </None>
+    <None Include="..\toast\shadow\soft\pre.sh">
+      <Filter>Toast\Shadow\Soft</Filter>
+    </None>
+    <None Include="..\toast\shadow\soft\soft.conf">
+      <Filter>Toast\Shadow\Soft</Filter>
+    </None>
+    <None Include="..\toast\shadow\soft\soft.spec">
+      <Filter>Toast\Shadow\Soft</Filter>
+    </None>
+    <None Include="..\toast\shadow\softover\index.html">
+      <Filter>Toast\Shadow\SoftOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\softover\index.html.model">
+      <Filter>Toast\Shadow\SoftOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\softover\pre.bat">
+      <Filter>Toast\Shadow\SoftOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\softover\pre.sh">
+      <Filter>Toast\Shadow\SoftOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\softover\softover.conf">
+      <Filter>Toast\Shadow\SoftOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\softover\softover.spec">
+      <Filter>Toast\Shadow\SoftOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\index.html.model">
+      <Filter>Toast\Shadow\SSI</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\pre.bat">
+      <Filter>Toast\Shadow\SSI</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\pre.sh">
+      <Filter>Toast\Shadow\SSI</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\ssi.conf">
+      <Filter>Toast\Shadow\SSI</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\ssi.html">
+      <Filter>Toast\Shadow\SSI</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\ssi.html.model">
+      <Filter>Toast\Shadow\SSI</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\ssi.inc">
+      <Filter>Toast\Shadow\SSI</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\ssi.spec">
+      <Filter>Toast\Shadow\SSI</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\index.html">
+      <Filter>Toast\Shadow\SSI</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -3022,6 +3307,78 @@
     </Image>
     <Image Include="..\toast\shadow\dedu\z.jpg">
       <Filter>Toast\Shadow\Dedu</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\copy\x.jpg">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\copy\y.jpg">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\copy\z.jpg">
+      <Filter>Toast\Shadow\Copy</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\copyover\x.jpg">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\copyover\y.jpg">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\copyover\z.jpg">
+      <Filter>Toast\Shadow\CopyOver</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedu\a\favicon.ico">
+      <Filter>Toast\Shadow\Dedu\a</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedu\b\favicon.ico">
+      <Filter>Toast\Shadow\Dedu\b</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedu\c\favicon.ico">
+      <Filter>Toast\Shadow\Dedu\c</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\deduover\x.jpg">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\deduover\y.jpg">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\deduover\z.jpg">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\hard\x.jpg">
+      <Filter>Toast\Shadow\Hard</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\hard\y.jpg">
+      <Filter>Toast\Shadow\Hard</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\hard\z.jpg">
+      <Filter>Toast\Shadow\Hard</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\pages\x.jpg">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\pages\y.jpg">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\pages\z.jpg">
+      <Filter>Toast\Shadow\Pages</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\soft\x.jpg">
+      <Filter>Toast\Shadow\Soft</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\soft\y.jpg">
+      <Filter>Toast\Shadow\Soft</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\soft\z.jpg">
+      <Filter>Toast\Shadow\Soft</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\softover\x.jpg">
+      <Filter>Toast\Shadow\SoftOver</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\softover\y.jpg">
+      <Filter>Toast\Shadow\SoftOver</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\softover\z.jpg">
+      <Filter>Toast\Shadow\SoftOver</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -3073,6 +3430,9 @@
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\build.txt" />
     <Text Include="..\..\usage.txt" />
+    <Text Include="..\toast\tmp\README.txt">
+      <Filter>Toast\Tmp</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ssc.rc">

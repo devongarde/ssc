@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     {   case bk_asp : return (ln (l) + "ASP...");
         case bk_cdata : return (ln (l) + "<![CDATA[...");
         case bk_code : return ln (l) + ::std::string ("&") + ::std::string (s, e) + ::std::string (";");
+        case bk_comment : return (ln (l) + "comment...");
         case bk_doctype : return (ln (l) + "<!DOCTYPE>");
         case bk_node : break;
         case bk_num : return ln (l) + ::std::string ("&#") + ::std::string (s, e) + ::std::string (";");

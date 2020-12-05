@@ -28,6 +28,8 @@ public:
     typedef true_type has_int_type;
     three_value () = default;
     ::std::string get_string () const;
+    void shadow (::std::stringstream& ss, const html_version& )
+    {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     void swap (three_value& t) NOEXCEPT { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }
     static base_type default_value () { return static_cast <base_type> (0); }

@@ -36,7 +36,16 @@
 ../toast/other/RDF/rdf.spec
 ../toast/other/simple/simple.spec
 ../toast/other/ssi/ssi.spec
+../toast/shadow/comment/comment.spec
+../toast/shadow/copy/copy.spec
+../toast/shadow/copyover/copyover.spec
 ../toast/shadow/dedu/dedu.spec
+../toast/shadow/deduover/deduover.spec
+../toast/shadow/hard/hard.spec
+../toast/shadow/pages/pages.spec
+../toast/shadow/soft/soft.spec
+../toast/shadow/softover/softover.spec
+../toast/shadow/ssi/ssi.spec
 ../toast/SVG/1.0/svg.spec
 ../toast/SVG/1.1/svg.spec
 ../toast/stats/detail/stats.spec

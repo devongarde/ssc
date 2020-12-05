@@ -153,3 +153,10 @@ bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
     if (code == nit_off) return false;
     modify_severity (code, s);
     return true; }
+
+e_severity nitpick::worst () const
+{   e_severity res = es_silence;
+    for (auto n : nits_)
+        if (n.severity () < res)
+            res = n.severity ();
+    return res; }

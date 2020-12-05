@@ -81,6 +81,7 @@ class element
     void check_mscarries_pos (const e_element self);
     bool check_math_children (const int expected, const bool or_more = false);
     void check_math_children (const int from, const int to);
+    void do_shadow (::std::stringstream& ss, const html_version& v, bool& was_closure, bool& allspace, bool& was_nl);
     bool naughty_label_descendents (const element* e, const uid_t uid, bool& first);
     void no_anchor_daddy ();
     template < typename ATTRIBUTE > element* ancestor_known (const e_attribute a) const;
@@ -258,6 +259,7 @@ public:
     itemscope_ptr itemscope () const { return itemscope_; }
     vit_t own_itemtype () const;
     ::std::string get_microdata_value () const;
+    void shadow (::std::stringstream& ss, const html_version& v);
     ::std::string report (); };
 
 template < class PROPERTY > void element::note_reply ()

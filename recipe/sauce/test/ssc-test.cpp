@@ -593,13 +593,35 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
         else tmp = tmppath;
         tmp /= ::boost::filesystem::unique_path ();
         tmp += "." PROG;
+        ::boost::filesystem::path prepare = canonical (absolute (f));
+        prepare.remove_filename ();
+        ::boost::filesystem::path clean = prepare;
 #if defined (UNIX)
+        ::boost::filesystem::file_status stat;
+        prepare /= "pre.sh";
         cmdline = ::std::string (" ./") + xeq.string () + ::std::string (" -F -T -o ") + tmp.string () + " " + cmdline;
+        clean /= "post.sh";
+        if (::boost::filesystem::exists (prepare))
+        {   stat = ::boost::filesystem::status (prepare);
+            if ((stat.permissions () & ::boost::filesystem::perms::owner_exe) == 0)
+                ::boost::filesystem::permissions (prepare, ::boost::filesystem::perms::owner_exe | ::boost::filesystem::perms::add_perms); }
+        if (::boost::filesystem::exists (clean))
+        {   stat = ::boost::filesystem::status (clean);
+            if ((stat.permissions () & ::boost::filesystem::perms::owner_exe) == 0)
+                ::boost::filesystem::permissions (clean, ::boost::filesystem::perms::owner_exe | ::boost::filesystem::perms::add_perms); }
 #else // UNIX
+        prepare /= "pre.bat";
         cmdline = xeq.string () + ::std::string (" -F -T -o ") + tmp.string () + " " + cmdline;
+        clean /= "post.bat";
 #endif // UNIX
+        if (::boost::filesystem::exists (prepare))
+        {   if (verbose) ::std::cout << prepare.string () << "\n";
+            system (prepare.string ().c_str ()); }
         if (verbose) ::std::cout << cmdline << "\n";
         system (cmdline.c_str ());
+        if (::boost::filesystem::exists (clean))
+        {   if (verbose) ::std::cout << clean.string () << "\n";
+            system (clean.string ().c_str ()); }
         if (! testfile (tmp)) return ERROR_EXIT;
         if (::boost::filesystem::file_size (tmp) > MAXOUTPUTFILESIZE)
         {   ::std::cerr << "Too much output.\n";
@@ -676,7 +698,6 @@ int main (int argc, char** argv)
                     case 'f' : file = true; continue; }
             ::std::cerr << "unknown switch " << argv [a] << "\n" << argv [0] << " -h for help.\n\n";
             return ERROR_EXIT; }
-//       if (! testfile (argv [a])) return ERROR_EXIT;
         if (file)
         {   if (! testfile (argv [a]) || ! load_file_list (argv [a], specs)) return ERROR_EXIT; file = false; }
         else if (xn)

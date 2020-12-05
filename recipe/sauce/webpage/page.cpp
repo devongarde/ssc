@@ -151,3 +151,24 @@ void page::lynx ()
 uid_t page::euid ()
 {   if (euid_ < uid_max) ++euid_;
     return euid_; }
+
+void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
+{   ::std::stringstream ss;
+    bool changed = false;
+    try
+    {   if (::boost::filesystem::exists (s))
+        {   ::boost::filesystem::file_status stat = ::boost::filesystem::status (s);
+            if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)
+            {   ::boost::filesystem::permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
+                changed = true; } }
+        ::boost::filesystem::ofstream f (s, ::std::ios_base::trunc | ::std::ios_base::out);
+        if (f.fail ())
+            nits.pick (nit_cannot_create_file, es_catastrophic, ec_shadow, "cannot create ", s.string ());
+        else
+        {   document_ -> shadow (ss, version ());
+            f << ss.str ();
+            f.close ();
+            if (changed) ::boost::filesystem::permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms); } }
+    catch (...)
+    {   nits.pick (nit_shadow_failed, es_catastrophic, ec_shadow, "error writing ", s.string ());
+        throw; } }

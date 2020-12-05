@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.72
+version 0.0.73
 https://ssc.lu/
 
 
@@ -39,6 +39,8 @@ It does NOT:
 - analyse or understand scripts
 - analyse or understand styles, beyond nicking class names from CSS
 - analyse or understand XML or derivatives except as noted above
+
+It can output 'repaired' HTML (not XHTML) with Server Side Includes merged in place.
 
 
 

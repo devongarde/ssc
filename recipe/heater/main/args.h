@@ -104,6 +104,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SILENCE     "silence"
 #define SITE        "domain"
 #define SLOB        "slob"
+#define SPACING     "space"
 #define SSI         "ssi"
 #define SUMMARY     "summary"
 #define TAGS        "tags"
