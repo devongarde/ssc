@@ -43,8 +43,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 
 void init (nitpick& nits)
-{   fileindex_init ();
-    nit::init ();
+{   nit::init ();
     attr::init (nits);
     avm_init (nits);
     code_map_init (nits);
@@ -97,71 +96,58 @@ int examine (nitpick& nits)
 {   int res = VALID_RESULT;
     paths_root virt (paths_root::virtual_roots ());
     virt.add_root (nix_path_to_local (context.root ()), "/");
+    nitpick shadow;
+//    shadow.set_context (0, PROG " shadow");
     if (! context.shadow ().empty ())
-        if (! virt.at (0) -> shadow (nits, context.shadow ()))
+        if (! virt.at (0) -> shadow (shadow, context.shadow ()))
             res = ERROR_STATE;
     if (res != ERROR_STATE)
     {   for (auto v : context.virtuals ())
-            virt.add_virtual (nits, v);
+            virt.add_virtual (shadow, v);
         for (auto vv : context.shadows ())
-            if (! virt.add_shadow (nits, vv))
+            if (! virt.add_shadow (shadow, vv))
             {   res = ERROR_STATE; break; } }
-    dump_nits (nits, "shadow");
-    if (res == ERROR_STATE) return ERROR_STATE;
-    const ::std::size_t vmax (virt.size ());
-    vd_t vd;
-    vd.reserve (vmax);
-    for (::std::size_t n = 0; n < vmax; ++n)
-        vd.emplace_back (new directory (virt.at (n)));
-    for (::std::size_t n = 0; n < vmax; ++n)
-    {   if (context.tell (e_info) && ! context.test ()) context.out () << "Scanning " << virt.at (n) -> get_disk_path () << " ...\n";
-        try
-        {   if (! vd [n] -> scan (nits, virt.at (n) -> get_site_path ()))
-            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " failed");
+    if (res != ERROR_STATE)
+    {   const ::std::size_t vmax (virt.size ());
+        vd_t vd;
+        vd.reserve (vmax);
+        for (::std::size_t n = 0; n < vmax; ++n)
+            vd.emplace_back (new directory (virt.at (n)));
+        for (::std::size_t n = 0; n < vmax; ++n)
+        {   if (context.tell (e_info) && ! context.test ()) context.out () << "Scanning " << virt.at (n) -> get_disk_path () << " ...\n";
+            try
+            {   if (! vd [n] -> scan (nits, virt.at (n) -> get_site_path ()))
+                {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " failed");
+                    res = ERROR_STATE; } }
+            catch (const ::std::system_error& e)
+            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " caused ", e.what ());
+                res = ERROR_STATE; }
+            catch (...)
+            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " caused an exception");
                 res = ERROR_STATE; } }
-        catch (const ::std::system_error& e)
-        {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " caused ", e.what ());
-            res = ERROR_STATE; }
-        catch (...)
-        {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " caused an exception");
-            res = ERROR_STATE; } }
-    if (res != VALID_RESULT)
-    {   dump_nits (nits, "examine");
-        return res; }
-    assert (vd.size () > 0);
-    ::std::size_t n = integrate_virtuals (virt, vd);
-    if (n != 0)
-    {   nits.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());
-        dump_nits (nits, "examine");
-        return ERROR_STATE; }
-    for (n = 0; n < vmax; ++n)
-    {   if (context.tell (e_info) && ! context.test ()) context.out () << "Checking " << virt.at (n) -> get_disk_path () <<  "...\n";
-        try
-        {   if (vd.at (n) -> empty ())
-                nits.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
+        if (res == VALID_RESULT)
+        {   assert (vd.size () > 0);
+            ::std::size_t n = integrate_virtuals (virt, vd);
+            if (n != 0)
+            {   nits.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());
+                res = ERROR_STATE; }
             else
-                vd.at (n) -> examine (); }
-        catch (const ::std::system_error& e)
-        {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examination of ", virt.at (n) -> get_disk_path (), " caused ", e.what ());
-            res = ERROR_STATE; }
-        catch (...)
-        {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examination of ", virt.at (n) -> get_disk_path (), " caused an exception");
-            res = ERROR_STATE; } }
+            {   if (context.dodedu ()) dedu (shadow);
+                for (n = 0; n < vmax; ++n)
+                {   if (context.tell (e_info) && ! context.test ()) context.out () << "Checking " << virt.at (n) -> get_disk_path () <<  "...\n";
+                    try
+                    {   if (vd.at (n) -> empty ())
+                            nits.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
+                        else
+                            vd.at (n) -> examine (nits); }
+                    catch (const ::std::system_error& e)
+                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examination of ", virt.at (n) -> get_disk_path (), " caused ", e.what ());
+                        res = ERROR_STATE; }
+                    catch (...)
+                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examination of ", virt.at (n) -> get_disk_path (), " caused an exception");
+                        res = ERROR_STATE; } } } } }
     dump_nits (nits, "examine");
-    if (res == VALID_RESULT)
-    {   if (context.copy () == c_deduplicate) dedu (nits);
-        if (context.copy () > c_none)
-            for (n = 0; n < vmax; ++n)
-                try
-                {   if (! vd.at (n) -> empty ())
-                        vd.at (n) -> shadow (nits); }
-                catch (const ::std::system_error& e)
-                {   nits.pick (nit_shadow_failed, es_catastrophic, ec_init, "shadowing to ", virt.at (n) -> shadow (), " caused ", e.what ());
-                    res = ERROR_STATE; }
-                catch (...)
-                {   nits.pick (nit_shadow_failed, es_catastrophic, ec_init, "shadowing to ", virt.at (n) -> shadow (), " caused an exception");
-                    res = ERROR_STATE; }
-        dump_nits (nits, "shadow"); }
+    dump_nits (shadow, "shadow");
     return res; };
 
 int main (int argc, char** argv)

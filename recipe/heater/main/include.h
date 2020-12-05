@@ -34,6 +34,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // __GNUC__
 
 #ifdef _MSC_VER
+#define CLEAN_SHAREDPTR_ARRAY
+#define NOLYNX
 #pragma warning (push,3)
 #pragma warning ( disable : 4244 ) // boost
 #if defined (VS2019)

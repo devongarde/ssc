@@ -129,6 +129,11 @@ void attributes :: mark (page& p)
         if ((a.get () != nullptr) && ! a -> unknown ())
             p.mark (tag_, a -> id ()); }
 
+void attributes :: shadow (::std::stringstream& ss, const html_version& v)
+{   for (auto a : aar_)
+        if (a.get () != nullptr)
+            a -> shadow (ss, v); }
+
 ::std::string attributes :: report () const
 {   if (! context.tell (e_debug)) return ::std::string ();
     if (tag_ == elem_undefined)

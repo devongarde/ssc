@@ -451,6 +451,35 @@ void html_version::math_version (const e_mathversion v)
         case math_4 : ext_set (HE_MATH_4); break;
         default : break; } }
 
+::std::string html_version::get_doctype () const
+{   switch (mjr ())
+    {   case 0 : break;
+        case 1 :
+            switch (mnr ())
+            {   case 0 : return "HTML PUBLIC \"-//IETF//DTD HTML//EN\"";
+                case 1 : return "htmlplus PUBLIC \"-//Internet/RFC xxxx//EN\""; }
+            break;
+        case 2 :
+            switch (level ())
+            {   case 1 : return "HTML PUBLIC \"-//IETF//DTD HTML 2.0 Level 1//EN\"";
+                case 2 : return "HTML PUBLIC \"-//IETF//DTD HTML 2.0 Level 2//EN\"";
+                default : return "HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\""; }
+        case 3 :
+            switch (mnr ())
+            {   case 0 : return "HTML PUBLIC \"-//IETF//DTD HTML 3.0//EN\"";
+                case 2 : return "HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\""; }
+            break;
+        case 4 :
+            switch (mnr ())
+            {   case 0 : return "HTML PUBLIC \"-//IETF//DTD HTML 4.0 Transitional//EN\" \"http://www.w3.org/TR/REC-html40/loose.dtd\"";
+                case 1 : return "HTML PUBLIC \"-//IETF//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html40/loose.dtd\"";
+                case 2 : return "html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"";
+                case 3 : return "html PUBLIC \"-//W3C//DTD XHTML Basic 1.1//EN\" \"http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd\"";
+                case 4 : return "html PUBLIC \"-//W3C//DTD XHTML 2.0//EN\" \"http://www.w3.org/MarkUp/DTD/xhtml2.dtd\""; }
+            break;
+        default : return "HTML"; }
+    return ::std::string (); }
+
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   bool res = version.parse_doctype (nits, ::std::string (b, e));
     if (! res) version.reset (html_0);

@@ -30,35 +30,35 @@ template < class T, class V > struct basic_value
 template < class T > struct basic_value < T, true_type >
 {   static int get_int (const T& t) { return static_cast < int > (t.get ()); } };
 
-template < class BASE > struct varied : BASE
+template < e_type BASE > struct varied : tidy_string < BASE >
 {   ::std::size_t type_ = 0;
     int int_ = 0;
-    void swap (BASE& t) NOEXCEPT
-    {   BASE :: swap (t); }
+    void swap (tidy_string < BASE >& t) NOEXCEPT
+    {   tidy_string < BASE > :: swap (t); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   BASE :: set_value (nits, v, s); }
+    {   tidy_string < BASE > :: set_value (nits, v, s); }
     ::std::size_t type () const { return type_; }
     int get_int () const { return int_; }
     template < class T > void validate_type (nitpick& nits, const html_version& v)
     {   T t;
-        t.set_value (nits, v, BASE :: get_string ());
+        t.set_value (nits, v, tidy_string < BASE > :: get_string ());
         if (t.good ())
         {   type_ = t.type ();
             int_ = basic_value < T, typename T :: has_int_type > :: get_int (t); }
-        else BASE :: status (s_invalid); }
+        else tidy_string < BASE > :: status (s_invalid); }
    template < class T > void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
-    {   if (BASE :: good ())
+    {   if (tidy_string < BASE > :: good ())
         {   T t;
-            t.set_value (nits, v, BASE :: get_string ());
+            t.set_value (nits, v, tidy_string < BASE > :: get_string ());
             t.validate (nits, v, e);
-            if (! t.good ()) BASE :: status (s_invalid); } }
+            if (! t.good ()) tidy_string < BASE > :: status (s_invalid); } }
     template < class T > bool check_id_defined (nitpick& nits, const html_version& v, ids_t& ids, element* pe)
     {   T t;
-        t.set_value (nits, v, BASE :: get_string ());
+        t.set_value (nits, v, tidy_string < BASE > :: get_string ());
         if (t.good ()) return t.invalid_id (nits, v, ids, pe);
         return false; } };
 
-template < > struct type_master < t_accept > : varied < string_value < t_accept > >
+template < > struct type_master < t_accept > : varied < t_accept >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -69,13 +69,13 @@ template < > struct type_master < t_accept > : varied < string_value < t_accept 
                 default :
                     validate_type < type_master < t_generic > > (nits, v); } } };
 
-template < > struct type_master < t_actiontype > : varied < string_value < t_actiontype > >
+template < > struct type_master < t_actiontype > : varied < t_actiontype >
 {   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
     {   if (good () || empty ())
             if (v.math_version () == math_2)
                 validate_type < type_master < t_actiontype2 > > (nits, v); } };
 
-template < > struct type_master < t_align > : varied < tidy_string < t_align > >
+template < > struct type_master < t_align > : varied < t_align >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
         {   switch (e.get ())
@@ -148,13 +148,13 @@ template < > struct type_master < t_align > : varied < tidy_string < t_align > >
             if ((v == html_2) && context.rfc_2070 ()) validate_type < type_master < t_align2070 > > (nits, v);
             else validate_type < type_master < t_halign > > (nits, v); } } };
 
-template < > struct type_master < t_background > : varied < tidy_string < t_background > >
+template < > struct type_master < t_background > : varied < t_background >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.is_math ()) validate_type < type_master < t_colour > > (nits, v);
             else validate_type < type_master < t_url > > (nits, v); } };
 
-template < > struct type_master < t_clear > : varied < tidy_string < t_clear > >
+template < > struct type_master < t_clear > : varied < t_clear >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -163,39 +163,39 @@ template < > struct type_master < t_clear > : varied < tidy_string < t_clear > >
                 default :
                     validate_type < type_master < t_clear30 > > (nits, v); } } };
 
-template < > struct type_master < t_closure > : varied < tidy_string < t_closure > >
+template < > struct type_master < t_closure > : varied < t_closure >
 {   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
     {   if (good () || empty ())
             if (v.math_version () == math_1) validate_type < type_master < t_text > > (nits, v);
             else validate_type < type_master < t_mathclosure > > (nits, v); } };
 
-template < > struct type_master < t_colour_v > : varied < tidy_string < t_colour_v > >
+template < > struct type_master < t_colour_v > : varied < t_colour_v >
 {   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
     {   if (good () || empty ())
             if (v.svg () != sv_none) validate_type < type_master < t_colour_i > > (nits, v);
             else validate_type < type_master < t_colour > > (nits, v); } };
 
-template < > struct type_master < t_direction > : varied < tidy_string < t_direction > >
+template < > struct type_master < t_direction > : varied < t_direction >
 {   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
     {   if (good () || empty ())
             if (v.svg () >= sv_1_1) validate_type < type_master < t_svg_direction > > (nits, v);
             else validate_type < type_master < t_uplr > > (nits, v); } };
 
-template < > struct type_master < t_fill > : varied < tidy_string < t_fill > >
+template < > struct type_master < t_fill > : varied < t_fill >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if ((elem :: categories (e) & EF_SVG_ANIM) != 0)
                 validate_type < type_master < t_fillanim > > (nits, v);
             else validate_type < type_master < t_paint > > (nits, v); } };
 
-template < > struct type_master < t_fontstretch > : varied < tidy_string < t_fontstretch > >
+template < > struct type_master < t_fontstretch > : varied < t_fontstretch >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.get () == elem_fontface)
                 validate_type < type_master < t_fontstretches > > (nits, v);
             else validate_type < type_master < t_svg_fontstretch > > (nits, v); } };
 
-template < > struct type_master < t_fontstyle > : varied < tidy_string < t_fontstyle > >
+template < > struct type_master < t_fontstyle > : varied < t_fontstyle >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.is_math ())
@@ -204,14 +204,14 @@ template < > struct type_master < t_fontstyle > : varied < tidy_string < t_fonts
                 validate_type < type_master < t_svg_fontstyle_ff > > (nits, v);
             else validate_type < type_master < t_svg_fontstyle > > (nits, v); } };
 
-template < > struct type_master < t_fontvariant > : varied < tidy_string < t_fontvariant > >
+template < > struct type_master < t_fontvariant > : varied < t_fontvariant >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.get () == elem_fontface)
                 validate_type < type_master < t_svg_fontstyle_ff > > (nits, v);
             else validate_type < type_master < t_svg_fontstyle > > (nits, v); } };
 
-template < > struct type_master < t_fontweight > : varied < tidy_string < t_fontweight > >
+template < > struct type_master < t_fontweight > : varied < t_fontweight >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.is_math ()) validate_type < type_master < t_mathfontweight > > (nits, v);
@@ -219,7 +219,7 @@ template < > struct type_master < t_fontweight > : varied < tidy_string < t_font
                 validate_type < type_master < t_svg_fontweights > > (nits, v);
             else validate_type < type_master < t_svg_fontweight > > (nits, v); } };
 
-template < > struct type_master < t_form > : varied < tidy_string < t_form > >
+template < > struct type_master < t_form > : varied < t_form >
 {   bool math_ = false;
     void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   math_ = e.is_math ();
@@ -229,7 +229,7 @@ template < > struct type_master < t_form > : varied < tidy_string < t_form > >
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe)
     {   if (math_) return false;
         type_master < t_idref > t;
-        ::std::string s (trim_the_lot_off (varied < tidy_string < t_form > > :: get_string ()));
+        ::std::string s (trim_the_lot_off (varied < t_form > :: get_string ()));
         t.set_value (nits, v, s);
         if (t.invalid_id (nits, v, ids, pe)) return true;
         if (! ids.has_id (s)) return true;
@@ -239,7 +239,7 @@ template < > struct type_master < t_form > : varied < tidy_string < t_form > >
         nits.pick (nit_not_form, ed_50, "4.10.18.3 Association of controls and forms", es_error, ec_attribute, quote (s), " is <", elem::name (e), ">, not <FORM>");
         return true; } };
 
-template < > struct type_master < t_frame > : varied < tidy_string < t_frame > >
+template < > struct type_master < t_frame > : varied < t_frame >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
         {   if (e.is_math ()) validate_type < type_master < t_mathframe > > (nits, v);
@@ -251,7 +251,7 @@ template < > struct type_master < t_frame > : varied < tidy_string < t_frame > >
                 default :
                     validate_type < type_master < t_frame4 > > (nits, v); } } } };
 
-template < > struct type_master < t_groupalign > : varied < tidy_string < t_groupalign > >
+template < > struct type_master < t_groupalign > : varied < t_groupalign >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -264,25 +264,25 @@ template < > struct type_master < t_groupalign > : varied < tidy_string < t_grou
                 default :
                     validate_type < type_master < t_lcrd > > (nits, v); } } };
 
-template < > struct type_master < t_index > : varied < tidy_string < t_index > >
+template < > struct type_master < t_index > : varied < t_index >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.is_math ()) validate_type < type_master < t_integer > > (nits, v);
             else validate_type < type_master < t_text > > (nits, v); } };
 
-template < > struct type_master < t_in > : varied < tidy_string < t_in > >
+template < > struct type_master < t_in > : varied < t_in >
 {   bool concerned_ = false;
     void validate (nitpick& , const html_version& v, const elem& e, const ::std::string& )
     {   if (good ())
             if (v.svg () >= sv_1_1)
                 if ((e.categories () & EF_SVG_FILTER) != 0)
                 {   nitpick nuts;
-                    concerned_ = test_value < t_filter_in > (nuts, v, varied < tidy_string < t_in > > :: get_string ()); } }
+                    concerned_ = test_value < t_filter_in > (nuts, v, varied < t_in > :: get_string ()); } }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe)
     {   if (concerned_) return false;
         return  check_id_defined < type_master < t_idref > > (nits, v, ids, pe); } };
 
-template < > struct type_master < t_loop > : varied < tidy_string < t_loop > >
+template < > struct type_master < t_loop > : varied < t_loop >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -292,7 +292,7 @@ template < > struct type_master < t_loop > : varied < tidy_string < t_loop > >
                 case elem_bgsound :
                     validate_type < type_master < t_loopie > > (nits, v); } } };
 
-template < > struct type_master < t_methodological > : varied < tidy_string < t_methodological > >
+template < > struct type_master < t_methodological > : varied < t_methodological >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.get () == elem_textpath)
@@ -300,7 +300,7 @@ template < > struct type_master < t_methodological > : varied < tidy_string < t_
             else
                 validate_type < type_master < t_method > > (nits, v); } };
 
-template < > struct type_master < t_mode > : varied < tidy_string < t_mode > >
+template < > struct type_master < t_mode > : varied < t_mode >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -309,7 +309,7 @@ template < > struct type_master < t_mode > : varied < tidy_string < t_mode > >
                 case elem_feblend :
                     validate_type < type_master < t_svg_mode > > (nits, v); } } };
 
-template < > struct type_master < t_name > : varied < tidy_string < t_name > >
+template < > struct type_master < t_name > : varied < t_name >
 {   e_element e_ = 0;
     void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
@@ -327,7 +327,7 @@ template < > struct type_master < t_name > : varied < tidy_string < t_name > >
                 case elem_textarea :
                     validate_type < type_master < t_not_empty > > (nits, v); break; }
         if (good () && (v >= html_5_0) && form_bitset.test (e.get ()))
-        {   ::std::string s (varied < tidy_string < t_name > > :: get_string ());
+        {   ::std::string s (varied < t_name > :: get_string ());
             if (compare_no_case ("_charset_", s))
                 nits.pick (nit_special_name, ed_50, "4.10.19.1 Naming form controls: the name attribute", es_comment, ec_type, "note that ", quote (s), " causes special behaviour");
             if (compare_no_case ("isindex", s))
@@ -344,7 +344,7 @@ template < > struct type_master < t_name > : varied < tidy_string < t_name > >
     {   if ((e_ != elem_a) && (e_ != elem_map)) return false;
         return check_id_defined < type_master < t_id > > (nits, v, ids, pe); } };
 
-template < > struct type_master < t_notation > : varied < tidy_string < t_notation > >
+template < > struct type_master < t_notation > : varied < t_notation >
 {   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
     {   if (good () || empty ())
             if (v.mjr () > 3)
@@ -352,18 +352,18 @@ template < > struct type_master < t_notation > : varied < tidy_string < t_notati
                 else if (v.math_version () > math_2) validate_type < type_master < t_mathnotations > > (nits, v);
             else validate_type < type_master < t_notations > > (nits, v); } };
 
-template < > struct type_master < t_occurence > : varied < tidy_string < t_occurence > >
+template < > struct type_master < t_occurence > : varied < t_occurence >
 {   void validate (nitpick& nits, const html_version& v, const elem&  , const ::std::string& )
     {   if (good () || empty ())
             if (v.math_version () == math_1) validate_type < type_master < t_text > > (nits, v);
             else validate_type < type_master < t_mathoccurence > > (nits, v); } };
 
-template < > struct type_master < t_open > : varied < tidy_string < t_open > >
+template < > struct type_master < t_open > : varied < t_open >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (! e.is_math ()) validate_type < type_master < t_html_boolean > > (nits, v); } };
 
-template < > struct type_master < t_operator > : varied < tidy_string < t_operator > >
+template < > struct type_master < t_operator > : varied < t_operator >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -372,26 +372,26 @@ template < > struct type_master < t_operator > : varied < tidy_string < t_operat
                 case elem_femorphology :
                     validate_type < type_master < t_morphology_operator > > (nits, v); } } };
 
-template < > struct type_master < t_order > : varied < tidy_string < t_order > >
+template < > struct type_master < t_order > : varied < t_order >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.is_math ()) validate_type < type_master < t_mathorder > > (nits, v);
             else validate_type < type_master < t_xorder > > (nits, v); } };
 
-template < > struct type_master < t_overflow > : varied < tidy_string < t_overflow > >
+template < > struct type_master < t_overflow > : varied < t_overflow >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.is_math ()) validate_type < type_master < t_mathoverflow > > (nits, v);
             else validate_type < type_master < t_svg_overflow > > (nits, v); } };
 
-template < > struct type_master < t_preload > : varied < tidy_string < t_preload > >
+template < > struct type_master < t_preload > : varied < t_preload >
 {   void validate (nitpick& nits, const html_version& v, const elem&  , const ::std::string& )
     {   assert (v >= html_4_0);
         if (good () || empty ())
             if (v <= html_4_1) validate_type < type_master < t_html_boolean > > (nits, v);
             else if (good ()) validate_type < type_master < t_preload5 > > (nits, v); } };
 
-template < > struct type_master < t_rap > : varied < tidy_string < t_rap > >
+template < > struct type_master < t_rap > : varied < t_rap >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -406,7 +406,7 @@ template < > struct type_master < t_rap > : varied < tidy_string < t_rap > >
                 default :
                     validate_type < type_master < t_integer > > (nits, v); break; } } };
 
-template < > struct type_master < t_rowscols > : varied < tidy_string < t_rowscols > >
+template < > struct type_master < t_rowscols > : varied < t_rowscols >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -415,13 +415,13 @@ template < > struct type_master < t_rowscols > : varied < tidy_string < t_rowsco
                 case elem_frameset :
                     validate_type < type_master < t_measures > > (nits, v); break; } } };
 
-template < > struct type_master < t_scope > : varied < tidy_string < t_scope > >
+template < > struct type_master < t_scope > : varied < t_scope >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.is_math ()) validate_type < type_master < t_mathscope > > (nits, v);
             else validate_type < type_master < t_tdscope > > (nits, v); } };
 
-template < > struct type_master < t_shape > : varied < tidy_string < t_shape > >
+template < > struct type_master < t_shape > : varied < t_shape >
 {   void validate (nitpick& nits, const html_version& v, const elem&  , const ::std::string& )
     {   if (good () || empty ())
             switch (v.mjr ())
@@ -433,7 +433,7 @@ template < > struct type_master < t_shape > : varied < tidy_string < t_shape > >
                 case 4 :    validate_type < type_master < t_shape4 > > (nits, v); return;
                 default :   validate_type < type_master < t_shape7 > > (nits, v); } } };
 
-template < > struct type_master < t_size > : varied < tidy_string < t_size > >
+template < > struct type_master < t_size > : varied < t_size >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -452,13 +452,13 @@ template < > struct type_master < t_size > : varied < tidy_string < t_size > >
                 default :
                     validate_type < type_master < t_unsigned > > (nits, v); } } };
 
-template < > struct type_master < t_style > : varied < tidy_string < t_style > >
+template < > struct type_master < t_style > : varied < t_style >
 {   void validate (nitpick& nits, const html_version& v, const elem&  , const ::std::string& )
     {   if (good () || empty ())
             if (v == html_plus) validate_type < type_master < t_plusstyle > > (nits, v);
             else validate_type < type_master < t_css > > (nits, v); } };
 
-template < > struct type_master < t_measure_or_more > : varied < tidy_string < t_measure_or_more > >
+template < > struct type_master < t_measure_or_more > : varied < t_measure_or_more >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (v.svg ())
@@ -474,14 +474,14 @@ template < > struct type_master < t_measure_or_more > : varied < tidy_string < t
                     // drop thru
                 default : validate_type < type_master < t_measure > > (nits, v); } } };
 
-template < > struct type_master < t_rotate > : varied < tidy_string < t_rotate > >
+template < > struct type_master < t_rotate > : varied < t_rotate >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e == elem_animatemotion)
                 validate_type < type_master < t_rotate_anim > > (nits, v);
             else validate_type < type_master < t_reals > > (nits, v); } };
 
-template < > struct type_master < t_type > : varied < tidy_string < t_type > >
+template < > struct type_master < t_type > : varied < t_type >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
@@ -546,8 +546,8 @@ template < > struct type_master < t_type > : varied < tidy_string < t_type > >
                     validate_type < type_master < t_mime > > (nits, v); break;
                 case elem_script :
                     if (v >= html_5_2)
-                        if (compare_no_case ("module", varied < tidy_string < t_type > > :: get_string ()))
-                        {   varied < tidy_string < t_type > > :: type_ = static_cast < ::std::size_t > (mime_faux_module);
+                        if (compare_no_case ("module", varied < t_type > :: get_string ()))
+                        {   varied < t_type > :: type_ = static_cast < ::std::size_t > (mime_faux_module);
                             break; }
                     validate_type < type_master < t_mime > > (nits, v); break;
                 case elem_set :
@@ -557,19 +557,19 @@ template < > struct type_master < t_type > : varied < tidy_string < t_type > >
                 case elem_tendsto :
                     validate_type < type_master < t_tendstotype > > (nits, v); break; } } };
 
-template < > struct type_master < t_valign > : varied < tidy_string < t_valign > >
+template < > struct type_master < t_valign > : varied < t_valign >
 {   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
     {   if (good () || empty ())
             if (v == html_3_0) validate_type < type_master < t_valign3 > > (nits, v);
             else validate_type < type_master < t_valign_tmb > > (nits, v); } };
 
-template < > struct type_master < t_value > : varied < tidy_string < t_value > >
+template < > struct type_master < t_value > : varied < t_value >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (e.get () == elem_li)
             if (empty ()) nits.pick (nit_empty, es_error, ec_attribute, "value expected");
             else validate_type < type_master < t_integer > > (nits, v); } };
 
-template < > struct type_master < t_values > : varied < tidy_string < t_values > >
+template < > struct type_master < t_values > : varied < t_values >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.get () == elem_fecolourmatrix) return;  // process separately
@@ -577,7 +577,7 @@ template < > struct type_master < t_values > : varied < tidy_string < t_values >
                 validate_type < type_master < t_svg_values > > (nits, v);
             else validate_type < type_master < t_matrix_values > > (nits, v); } };
 
-template < > struct type_master < t_vectoreffect > : varied < tidy_string < t_vectoreffect > >
+template < > struct type_master < t_vectoreffect > : varied < t_vectoreffect >
 {   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
     {   if (empty ())
             nits.pick (nit_vector_effect, es_error, ec_attribute, "vector effect should not be empty");
@@ -592,11 +592,11 @@ template < > struct type_master < t_vectoreffect > : varied < tidy_string < t_ve
                     nits.pick (nit_vector_effect, es_error, ec_attribute, "vector effect requires SVG 1.2 or SVG 2.0");
                     break; } } };
 
-template < > struct type_master < t_version > : varied < tidy_string < t_version > >
+template < > struct type_master < t_version > : varied < t_version >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () && (e.get () == elem_svg))
         {   type_master < t_svg_version > sv;
-            sv.set_value (nits, v, varied < tidy_string < t_version > > :: get_string ());
+            sv.set_value (nits, v, varied < t_version > :: get_string ());
             if (sv.good ())
             {   ::std::string svgv ("SVG ");
                 switch (sv.get ())
@@ -609,14 +609,14 @@ template < > struct type_master < t_version > : varied < tidy_string < t_version
                 nits.pick (nit_svg_version, es_info, ec_type, svgv); } } } };
 
 // R.I.P. David Senior, 'vid', murdered in Prague, 1996
-template < > struct type_master < t_vid > : varied < tidy_string < t_vid > >
+template < > struct type_master < t_vid > : varied < t_vid >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if ((elem :: categories (e) & EF_SVG_ANIM) != 0)
                 validate_type < type_master < t_generic > > (nits, v);
             else validate_type < type_master < t_idref > > (nits, v); } };
 
-template < > struct type_master < t_depth > : varied < tidy_string < t_depth > >
+template < > struct type_master < t_depth > : varied < t_depth >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e)
@@ -627,7 +627,7 @@ template < > struct type_master < t_depth > : varied < tidy_string < t_depth > >
                 default :
                     validate_type < type_master < t_measure > > (nits, v); } } };
 
-template < > struct type_master < t_height > : varied < tidy_string < t_height > >
+template < > struct type_master < t_height > : varied < t_height >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e)
@@ -638,7 +638,7 @@ template < > struct type_master < t_height > : varied < tidy_string < t_height >
                 default :
                     validate_type < type_master < t_measure > > (nits, v); } } };
 
-template < > struct type_master < t_lspace > : varied < tidy_string < t_lspace > >
+template < > struct type_master < t_lspace > : varied < t_lspace >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e)
@@ -649,7 +649,7 @@ template < > struct type_master < t_lspace > : varied < tidy_string < t_lspace >
                 default :
                     validate_type < type_master < t_measure > > (nits, v); } } };
 
-template < > struct type_master < t_width > : varied < tidy_string < t_width > >
+template < > struct type_master < t_width > : varied < t_width >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             switch (e)

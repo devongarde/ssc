@@ -134,6 +134,8 @@ template < e_type E, typename ENUM, class LC = sz_true > struct enum_n : public 
     {   return symbol < ENUM, LC > :: value_list (v); }
     ::std::string get_string () const
     {   return symbol < ENUM, LC > :: name (enum_base < ENUM, E > :: value_); }
+    void shadow (::std::stringstream& ss, const html_version& )
+    {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     void validate (nitpick& , const html_version& , const elem& , const ::std::string& ) { }
     bool invalid () const { return enum_base < ENUM, E > :: invalid (); }

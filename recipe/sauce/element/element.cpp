@@ -165,3 +165,55 @@ void element::check_mscarries_pos (const e_element self)
             last = (c -> tag () == elem_mscarries);
     if (last)
         pick (nit_mscarries_last, ed_math_3, "3.6.5 Carries, Borrows, and Crossouts <mscarries>", es_error, ec_element, "<MSCARRIES> cannot be the last child of <", elem::name (self), ">"); }
+
+void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& was_closure, bool& allspace, bool& was_nl)
+{   assert (examined_);
+    switch (tag ())
+    {   case elem_faux_asp : ss << "<%" << node_.raw () << "%>"; was_nl = false; break;
+        case elem_faux_cdata : ss << "<![CDATA[" << node_.raw () << "]]>"; was_nl = false; break;
+        case elem_faux_char : ss << '&' << node_.raw () << ';'; was_nl = false; break;
+        case elem_faux_code : ss << "&#" << node_.raw () << ';'; was_nl = false; break;
+        case elem_faux_comment : if (context.shadow_comment ()) { was_nl = false; ss << "<!--" << node_.raw () << "-->"; } break;
+        case elem_faux_doctype : ss << "<!DOCTYPE " << v.get_doctype () << ">"; was_nl = false; break;
+        case elem_faux_document : was_closure = allspace = false; break;
+        case elem_faux_php : ss << "<$" << node_.raw () << "$>"; was_nl = false; break;
+        case elem_faux_ssi : if (context.shadow_comment ()) { ss << "<!--" << node_.raw () << "-->"; was_nl = false; } break;
+        case elem_faux_stylesheet : ss << "<?xml.stylesheet" << node_.raw () << "?>"; was_nl = false; break;
+        case elem_faux_text : ss << node_.raw (); was_nl = false; break;
+        case elem_faux_whitespace :
+            if (context.shadow_space () || allspace) { ss << node_.raw (); was_nl = false; }
+            else if (! was_nl && (was_closure || (node_.raw ().find_first_of ("\n\r\f") != ::std::string::npos)))
+            {   ss << "\n"; was_nl = true; }
+            else { was_nl = false; ss << " "; }
+            was_closure = false; break;
+        case elem_faux_xml : ss << "<?xml" << node_.raw () << "?>"; was_nl = false; break;
+        case elem_annotation :
+        case elem_annotation_xml :
+        case elem_comment :
+        case elem_plaintext :
+        case elem_pre :
+        case elem_script :
+        case elem_style :
+        case elem_xmp : allspace = ! node_.is_closure ();
+            // drop thru'
+        default :
+            ss << "<";
+            was_closure = node_.is_closure ();
+            if (was_closure) ss << "/";
+            ss << node_.id ().name ();
+            a_.shadow (ss, v);
+            if (node_.id ().is_closed (v) && v.xhtml ()) ss << "/";
+            ss << ">";
+            was_nl = false;
+            break; }
+    if (has_child ())
+    {   element_ptr e = child ();
+        do
+        {   e -> do_shadow (ss, v, was_closure, allspace, was_nl); }
+        while (to_sibling (e)); } }
+
+void element::shadow (::std::stringstream& ss, const html_version& v)
+{   bool was_closure = false;
+    bool allspace = false;
+    bool was_nl = true;
+    do_shadow (ss, v, was_closure, allspace, was_nl); }

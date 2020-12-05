@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020 Dylan Harris
 
+0.0.73
+- can output repaired HTML (does NOT work with XHTML)
+- improved display of help text
+
 0.0.72
 - can identify duplicate non-HTML files
 - OpenBSD 6.8 amd64 build

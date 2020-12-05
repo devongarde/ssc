@@ -46,7 +46,10 @@ class directory
     bool add_to_content (nitpick& nits, ::boost::filesystem::directory_entry& i, const ::std::string& site);
     bool unguarded_verify_url (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& state, const vit_t& itemtypes) const;
     void internal_get_disk_path (const ::std::string& item, ::boost::filesystem::path& res) const;
+    void internal_get_shadow_path (const ::std::string& item, ::boost::filesystem::path& res) const;
     ::std::string internal_get_site_path (nitpick& nits, const ::std::string& item) const;
+    bool shadow_folder (nitpick& nits);
+    bool shadow_file (nitpick& nits, const ::std::string& name);
 protected:
     directory (nitpick& nits, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check = true);
 public:
@@ -57,19 +60,22 @@ public:
     bool empty () const { return content_.empty (); }
     bool offsite () const { return offsite_; }
     bool scan (nitpick& nits, const ::std::string& site);
-    void examine ();
-    void shadow (nitpick& nits);
+    void examine (nitpick& nits);
+    bool shadow (nitpick& nits);
     uint64_t url_size (nitpick& nits, const url& u) const;
     ::std::time_t url_last_write_time (nitpick& nits, const url& u) const;
     ::std::string load_url (nitpick& nits, const url& u) const;
     bool verify_url (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& flags, const vit_t& itemtypes) const;
     bool verify_external (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& flags, const vit_t& itemtypes) const;
     bool integrate_virtual (const ::std::string& v, path_root_ptr& r, dir_ptr p);
-    ::boost::filesystem::path get_disk_path (nitpick& nits, const url& u) const;
     ::std::string get_site_path () const;
-    ::boost::filesystem::path get_disk_path () const;
     ::std::string get_site_path (nitpick& nits, const ::std::string& item) const;
-    ::boost::filesystem::path get_disk_path (nitpick& nits, const ::std::string& item) const; };
+    ::boost::filesystem::path get_disk_path (nitpick& nits, const url& u) const;
+    ::boost::filesystem::path get_disk_path () const;
+    ::boost::filesystem::path get_disk_path (nitpick& nits, const ::std::string& item) const;
+    ::boost::filesystem::path get_shadow_path (nitpick& nits, const url& u) const;
+    ::boost::filesystem::path get_shadow_path () const;
+    ::boost::filesystem::path get_shadow_path (nitpick& nits, const ::std::string& item) const; };
 
 bool is_webpage (const ::std::string& name, const vstr_t& extensions);
 ::std::size_t integrate_virtuals (paths_root& virt, vd_t& dirs);

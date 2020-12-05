@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 const element_bitset empty_element_bitset;
 const attribute_bitset empty_attribute_bitset;
 const element_bitset autocapitalise_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_output | elem_select | elem_textarea;
-const element_bitset faux_bitset = empty_element_bitset | elem_faux_document | elem_faux_asp | elem_faux_comment | elem_faux_doctype | elem_faux_php | elem_faux_ssi |
-        elem_faux_stylesheet | elem_faux_text | elem_faux_xml | elem_faux_whitespace;
+const element_bitset faux_bitset = empty_element_bitset | elem_faux_document | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_comment |
+        elem_faux_doctype | elem_faux_php | elem_faux_ssi | elem_faux_stylesheet | elem_faux_text | elem_faux_xml | elem_faux_whitespace;
 const element_bitset form_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea | elem_img;
 const element_bitset header_bitset = empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_hgroup;
 const element_bitset interactive_bitset = empty_element_bitset | elem_a | elem_audio | elem_button | elem_details | elem_embed | elem_iframe |

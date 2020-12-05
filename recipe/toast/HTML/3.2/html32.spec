@@ -48,7 +48,7 @@ PASS ../toast/HTML/3.2/html32-bad.html
 30 missing_open
 32 correct_spelling unrecognised_value
 36 only_elements
-39 bizarre_character_code invalid_character_code only_elements
+39 bizarre_character_code invalid_character_code
 41 only_elements
 43 unrecognised_value
 44 unrecognised_value

@@ -101,6 +101,8 @@ template < e_type E, typename ENUM > struct enum_vec : public enum_vec_base < EN
             res += e.name (); }
         return res; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& ss);
+    void shadow (::std::stringstream& ss, const html_version& )
+    {   ss << "=\"" << get_string () << '"'; }
     ::std::string name () const
     {   return get_string (); }
     static ::std::string name (const ENUM e)

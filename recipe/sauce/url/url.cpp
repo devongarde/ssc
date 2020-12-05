@@ -107,7 +107,7 @@ bool url::verify (nitpick& nits, const html_version& v, const directory& d, cons
         {   bool is_me = ! has_file () && ! has_path ();
             if (! is_me)
             {   fileindex_t host_ndx = ids.ndx ();
-                ::boost::filesystem::path host_path (get_filename (host_ndx));
+                ::boost::filesystem::path host_path (get_disk_path (host_ndx));
                 if (! has_path ())
                 {   is_me = (filename () == host_path.filename ().string ());
                     if (! is_me)
@@ -120,7 +120,7 @@ bool url::verify (nitpick& nits, const html_version& v, const directory& d, cons
                     {   fileindex_t ndx = get_fileindex (fp);
                         is_me = (host_ndx == ndx);
                         if (! is_me)
-                            add_sought (host_path, ids.data (), get_filename (ndx), fragment (), state.test (a_hidden), itemtypes); } } }
+                            add_sought (host_path, ids.data (), get_disk_path (ndx), fragment (), state.test (a_hidden), itemtypes); } } }
             if (is_me)
                 if (! ids.has_id (fragment ()))
                     nits.pick (nit_url_id_unfound, es_error, ec_url, "id(s) ", quote (fragment ()), " not found");
@@ -132,7 +132,9 @@ bool url::verify (nitpick& nits, const html_version& v, const directory& d, cons
 {   ::std::string fn, pt;
     if (! has_file ()) fn = context.index ();
     else fn = filename ();
-    if (! has_domain ()) pt = path ();
+    if (! has_domain ())
+    {   pt = path ();
+        if (pt.empty ()) pt = "/"; }
     else
     {   pt = "/";
         if (has_path ())
@@ -143,3 +145,13 @@ bool url::verify (nitpick& nits, const html_version& v, const directory& d, cons
     pt += fn;
     return sanitise (pt); }
 
+void url::shadow (::std::stringstream& ss, const html_version& v)
+{   if ((context.copy () >= c_deduplicate) && is_local () && has_file ())
+    {   fileindex_t ndx = get_fileindex (get_filepath ());
+        if ((ndx != nullfileindex) && isdu (ndx))
+        {   url u2 (*this);
+            nitpick nits;
+            u2.reset (nits, get_site_path (du (ndx)));
+            if (nits.worst () > es_error)
+            {   u2.shadow (ss, v); return; } } }
+    ss << original (); }

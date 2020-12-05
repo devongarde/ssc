@@ -83,7 +83,22 @@ void element_node::swap (element_node& en) NOEXCEPT
 ::std::string element_node::rpt (const int level) const
 {   ::std::string res (::boost::lexical_cast < ::std::string > (level) + ": ");
     switch (elem_.get ())
-    {   case elem_faux_text :
+    {   case elem_faux_cdata :
+            {   ::std::string s (trim_the_lot_off (text ()));
+                if (s.empty ()) res += ln (line_) + "(cdata)\n";
+                else res += ln (line_) + "(cata) " + quoted_limited_string (s, 30) + "\n"; }
+            break;
+        case elem_faux_char :
+            {   ::std::string s (trim_the_lot_off (text ()));
+                if (s.empty ()) res += ln (line_) + "&...;\n";
+                else res += ln (line_) + "&...; " + quoted_limited_string (s, 30) + "\n"; }
+            break;
+        case elem_faux_code :
+            {   ::std::string s (trim_the_lot_off (text ()));
+                if (s.empty ()) res += ln (line_) + "&#...;\n";
+                else res += ln (line_) + "&#...; " + quoted_limited_string (s, 30) + "\n"; }
+            break;
+        case elem_faux_text :
             {   ::std::string s (trim_the_lot_off (text ()));
                 if (s.empty ()) res += ln (line_) + "(text)\n";
                 else res += ln (line_) + "(text) " + quoted_limited_string (s, 30) + "\n"; }

@@ -342,6 +342,7 @@ public:
     bool lazy () const;
     uint64_t flags () const { return flags_; }
     uint64_t ext () const { return ext_; }
+    ::std::string get_doctype () const;
     ::std::string report () const;
     ::std::string detailed_report () const; };
 

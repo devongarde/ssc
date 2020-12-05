@@ -4,4 +4,4 @@ PASS ../toast/shadow/dedu/index.html
 2 naughty_lang
 
 shadow
-0 502 502
+0 500 502 502 502 502

@@ -110,6 +110,42 @@ void directory::internal_get_disk_path (const ::std::string& item, ::boost::file
     internal_get_disk_path (get_site_path (nits, item), res);
     return res; }
 
+::boost::filesystem::path directory::get_disk_path (nitpick& nits, const url& u) const
+{   ::std::string p (join_site_paths (u.path (), u.filename ()));
+    return get_disk_path (nits, p); }
+
+::boost::filesystem::path directory::get_shadow_path () const
+{   if (root_.get () != nullptr)
+        return root_ -> shadow ();
+    assert (mummy_ != nullptr);
+    return mummy_ -> get_shadow_path () / name_; }
+
+void directory::internal_get_shadow_path (const ::std::string& item, ::boost::filesystem::path& res) const
+{   if (item.empty ()) { res = get_shadow_path (); return; }
+    if (item.at (0) == '/')
+    {   if (mummy_ != nullptr) mummy_ -> internal_get_shadow_path (item, res);
+        else internal_get_shadow_path (item.substr (1), res);
+        return; }
+    ::std::string lhs, rhs;
+    if (root_.get () == nullptr) res /= name_;
+    else res = root_ -> get_disk_path ();
+    bool sep = separate_first (item, lhs, rhs, '/');
+    auto i = content_.find (lhs);
+    if (i == content_.end ()) res /= nix_path_to_local (item);
+    else if (i -> second != nullptr) i -> second -> internal_get_shadow_path (rhs, res);
+    else if (sep) res /= nix_path_to_local (item);
+    else res /= lhs;
+    return; }
+
+::boost::filesystem::path directory::get_shadow_path (nitpick& nits, const ::std::string& item) const
+{   ::boost::filesystem::path res;
+    internal_get_shadow_path (get_site_path (nits, item), res);
+    return res; }
+
+::boost::filesystem::path directory::get_shadow_path (nitpick& nits, const url& u) const
+{   ::std::string p (join_site_paths (u.path (), u.filename ()));
+    return get_shadow_path (nits, p); }
+
 bool directory::scan (nitpick& nits, const ::std::string& site)
 {   assert (! offsite_);
     for (::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (get_disk_path ()))
@@ -150,19 +186,21 @@ bool directory::add_to_content (nitpick& nits, ::boost::filesystem::directory_en
         return content_.insert (value_t (f, self_ptr (new directory (nits, f, ndx, this, p)))).second;
     return false; }
 
-void directory::examine ()
+void directory::examine (nitpick& nits)
 {   assert (! offsite_);
+    if (context.shadow_any ()) shadow_folder (nits);
     for (auto i : content_)
         if (i.second != nullptr)
-            i.second -> examine ();
-        else if (is_webpage (i.first, context.extensions ()))
+            i.second -> examine (nits);
+        else if (! is_webpage (i.first, context.extensions ()))
+        {   if (context.shadow_files ()) shadow_file (nits, i.first); }
+        else
         {   ::std::ostringstream ss;
-            ::boost::filesystem::path p (get_disk_path ());
-            ::std::string sp (get_site_path () + i.first);
-            p /= i.first;
+            ::boost::filesystem::path p (get_disk_path () / i.first);
             fileindex_t ndx (get_fileindex (p));
             if (! get_flag (ndx, FX_SCANNED))
-            {   context.filename (sp);
+            {   ::std::string sp (get_site_path () + i.first);
+                context.filename (sp);
                 try
                 {   ::std::string content (read_text_file (p));
                     if (! content.empty ())
@@ -174,6 +212,7 @@ void directory::examine ()
                             {   web.examine (*this);
                                 web.mf_write (p);
                                 web.lynx ();
+                                if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
                                 ss << web.report (); }
                             ss << web.nits ().review (); } } }
                 catch (...)
@@ -183,10 +222,6 @@ void directory::examine ()
                 context.css ().post_process ();
                 context.out () << ::std::flush;
                 set_flag (ndx, FX_SCANNED); } } }
-
-::boost::filesystem::path directory::get_disk_path (nitpick& nits, const url& u) const
-{   ::std::string p (join_site_paths (u.path (), u.filename ()));
-    return get_disk_path (nits, p); }
 
 bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& state, const vit_t& itemtypes) const
 {   if (u.empty ()) return false; // self?
@@ -323,38 +358,95 @@ bool is_webpage (const ::std::string& name, const vstr_t& extensions)
     if (ext.empty ()) return false;
     return is_one_of (ext.substr (1), extensions); }
 
-void directory::shadow (nitpick& nits)
-{   assert (! offsite_);
-/*    for (auto i : content_)
-        if (i.second != nullptr)
-            i.second -> examine ();
-        else if (is_webpage (i.first, context.extensions ()))
-        {   ::std::ostringstream ss;
-            ::boost::filesystem::path p (get_disk_path ());
-            ::std::string sp (get_site_path () + i.first);
-            p /= i.first;
-            fileindex_t ndx (get_fileindex (p));
-            if (! get_flag (ndx, FX_SCANNED))
-            {   context.filename (sp);
-                try
-                {   ::std::string content (read_text_file (p));
-                    if (! content.empty ())
-                    {   e_charcode encoding = bom_to_encoding (get_byte_order (content));
-                        if (encoding == cc_fkd) ss << "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)\n";
-                        else
-                        {   page web (i.first, content, ndx, this, encoding);
-                            if (! web.invalid ())
-                            {   web.examine (*this);
-                                web.mf_write (p);
-                                web.lynx ();
-                                ss << web.report (); }
-                            ss << web.nits ().review (); } } }
-                catch (...)
-                {   if (context.tell (e_error)) ss << "Cannot parse " << context.filename () << "\n"; }
-                if (! ss.str ().empty ()) context.out () << "\n\n*** " << local_path_to_nix (p.string ()) << "\n" << ss.str ();
-                else if (context.tell (e_comment)) context.out () << "\n\n*** " << local_path_to_nix (p.string ()) << "\n";
-                context.css ().post_process ();
-                context.out () << ::std::flush;
-                set_flag (ndx, FX_SCANNED); } } */ }
+bool directory::shadow_folder (nitpick& nits)
+{   assert (context.shadow_any ());
+    ::boost::filesystem::path moi (get_shadow_path ());
+#ifdef FS_THROWS
+    bool res = true;
+    if (! ::boost::filesystem::exists (moi)) try
+    {   res = ::boost::filesystem::create_directories (moi); }
+    catch (...)
+    {   res = false; }
+    if (! res)
+#else // FS_THROWS
+    ::boost::system::error_code ec;
+    if (! ::boost::filesystem::exists (moi) &&
+        ! ::boost::filesystem::create_directories (moi, ec))
+#endif // FS_THROWS
+    {   nits.pick (nit_create_folder, es_catastrophic, ec_shadow, "cannot create ", moi.string ());
+        return false; }
+    return true; }
 
-
+bool directory::shadow_file (nitpick& nits, const ::std::string& name)
+{   assert (context.shadow_files ());
+    ::boost::filesystem::path original (get_disk_path () / name);
+    ::boost::filesystem::path imitation (get_shadow_path () / name);
+    e_copy todo = context.copy ();
+    assert (todo > c_none);
+    if (todo <= c_html) return true;
+    fileindex_t ndx = get_fileindex (original);
+    if (ndx == nullfileindex)
+    {   nits.pick (nit_internal_file_error, es_catastrophic, ec_shadow, "internal data error: lost information about ", original.string ());
+        return false; }
+    if (get_flag (ndx, FX_BORKED))
+    {   nits.pick (nit_shadow_failed, es_warning, ec_shadow, "cannot shadow borked file ", original.string ());
+        return true; }
+    bool changed = false;
+    ::boost::filesystem::file_status stat;
+#ifndef NOLYNX
+    if (::boost::filesystem::is_symlink (imitation)) try
+    {   ::boost::filesystem::path target = ::boost::filesystem::read_symlink (imitation);
+        if (target == original) return true;
+        ::boost::filesystem::remove (imitation); }
+    catch (::boost::filesystem::filesystem_error& ex)
+    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, ex.what (), " when unlinking ", imitation.string ());
+        return false; }
+    catch (...)
+    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "exception when unlinking ", imitation.string ());
+        return false; }
+#endif // NOLYNX
+    if (::boost::filesystem::exists (imitation)) try
+    {   uintmax_t origsize = get_size (ndx);
+        uintmax_t copysize = ::boost::filesystem::file_size (imitation);
+        if (origsize == copysize)
+        {   ::std::time_t origwrite = last_write (ndx);
+            ::std::time_t copywrite = ::boost::filesystem::last_write_time (imitation);
+            if (copywrite >= origwrite) return true; }
+        if (todo >= c_copy)
+        {   stat = ::boost::filesystem::status (imitation);
+            if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)
+            {   ::boost::filesystem::permissions (imitation, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
+                changed = true; } }
+        else if (! ::boost::filesystem::remove (imitation))
+        {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "cannot remove previous ", imitation.string ());
+            return true; } }
+    catch (::boost::filesystem::filesystem_error& ex)
+    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, ex.what (), " when removing old ", imitation.string ());
+        return false; }
+    catch (...)
+    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "exception when removing old ", imitation.string ());
+        return false; }
+    try
+    {   switch (todo)
+        {   case c_none :
+            case c_html :
+            case c_rpt : assert (false); break;
+            case c_hard : ::boost::filesystem::create_hard_link (original, imitation); break;
+            case c_soft : ::boost::filesystem::create_symlink (original, imitation); break;
+            case c_copy : ::boost::filesystem::copy_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists); break;
+            case c_deduplicate : if (! isdu (ndx)) ::boost::filesystem::copy_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists); } }
+    catch (::boost::filesystem::filesystem_error& ex)
+    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, ex.what (), " when shadowing ", original.string (), " to ", imitation.string ());
+        return false; }
+    catch (...)
+    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "exception when shadowing ", original.string (), " to ", imitation.string ());
+        return false; }
+    if (changed) try
+    {   ::boost::filesystem::permissions (imitation, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms); }
+    catch (::boost::filesystem::filesystem_error& ex)
+    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, ex.what (), " when uprighting ", imitation.string ());
+        return false; }
+    catch (...)
+    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "exception when uprighting ", imitation.string ());
+        return false; }
+return true; }

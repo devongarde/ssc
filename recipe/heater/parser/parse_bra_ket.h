@@ -32,7 +32,6 @@ class bra_element_ket
     bk_status status_ = bk_text;
     e_element suspender_ = elem_undefined;
     bool closure_ = false, closed_ = false, tested_ = false;
-// xmp_ = false, plaintext_ = false, comment_ = false, annotation_ = false, annotation_xml_ = false, script_ = false, style_ = false;
     nitpick nits_;
     void test_specific ();
 public:
@@ -59,11 +58,6 @@ public:
 	bra_element_ket& operator = (bra_element_ket&& bek) = default;
 #endif
     e_element suspender ();
-//	bool is_annotation ();
-//	bool is_annotation_xml ();
-//	bool is_comment ();
-//	bool is_script ();
-//	bool is_style ();
     bool is_xmp ();
     bool is_plaintext ();
     bool is_whitespace () const;

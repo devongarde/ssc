@@ -112,6 +112,7 @@ public:
     unsigned count (const e_element e) const
     {   return stats_.count (e); }
     void lynx ();
+    void shadow (nitpick& nits, const ::boost::filesystem::path& s);
     uid_t euid ();
     void itemscope (const itemscope_ptr itemscope);
     const itemscope_ptr itemscope () const { return itemscope_; }

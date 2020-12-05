@@ -33,7 +33,7 @@ class element_node
     bool closure_ = false;
     elem elem_;
     attributes_node va_;
-    ::std::string text_;
+    ::std::string text_, raw_;
     nitpick nits_;
     html_version version_;
     ::std::string inner_text (const ::std::size_t tag) const;
@@ -58,7 +58,9 @@ public:
     void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
     ::std::size_t attribute_count () const { return va_.size (); }
     ::std::string text () const;
+    ::std::string raw () const { return raw_; }
     ::std::string rpt (const int level = 0) const;
+    void set_raw (const ::std::string& raw) { raw_ = raw; }
     int line () const { return line_; }
     bool invalid () const { return elem_.unknown (); }
     bool is_closure () const { return closure_; }

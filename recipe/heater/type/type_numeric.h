@@ -40,6 +40,8 @@ template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpo
     {   ::std::swap (value_, t.value_);
         type_base < double, t_fixedpoint >::swap (t); }
     ::std::string get_string () const { return ::boost::lexical_cast < ::std::string > (value_); }
+    void shadow (::std::stringstream& ss, const html_version& )
+    {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
     {   value_ = lexical < double > :: cast (trim_the_lot_off (s), 0.0);
         if ((s.find_first_not_of (DECIMAL) == ::std::string::npos) && (lexical < double > :: test (s)))
@@ -82,6 +84,8 @@ template < > struct type_master < t_real > : type_base < double, t_real >
     {   ::std::swap (value_, t.value_);
         type_base < double, t_real >::swap (t); }
     ::std::string get_string () const { return ::boost::lexical_cast < ::std::string > (value_); }
+    void shadow (::std::stringstream& ss, const html_version& )
+    {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
     {   value_ = lexical < double > :: cast (trim_the_lot_off (s), 0.0);
         if ((s.find_first_not_of (REAL) == ::std::string::npos) && (lexical < double > :: test (s)))
