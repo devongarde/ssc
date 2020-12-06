@@ -39,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_DEP_3034     0x007B0000
 
 typedef unsigned int schema_flag_t;
-const unsigned char schema_major_max = 10;
+const unsigned char schema_major_max = 11;
 class html_version;
 class schema_version;
 
@@ -106,6 +106,7 @@ const schema_version schema_7_04 (7, 4);
 const schema_version schema_8 (8, 0);
 const schema_version schema_9 (9, 0);
 const schema_version schema_10 (10, 0);
+const schema_version schema_11 (11, 0);
 
 bool operator == (const schema_version& lhs, const schema_version& rhs);
 bool operator != (const schema_version& lhs, const schema_version& rhs);

@@ -51,6 +51,7 @@ const char* doc_ref (const e_doc doc)
         case ed_math_4 : return "MathML 4.0, draft, January 2019";
         case ed_rfc_1867 : return "RFC 1867, Form-based File Upload in HTML";
         case ed_rfc_1980 : return "RFC 1980, Client-Side Image Maps";
+        case ed_rfc_3966 : return "RFC 3966, The tel URI for Telephone Numbers";
         case ed_svg_1_0 : return "Scalable Vector Graphics (SVG) Specification 1.0";
         case ed_svg_1_1 : return "Scalable Vector Graphics (SVG) 1.1, Second Edition";
         case ed_svg_1_2_tiny : return "Scalable Vector Graphics (SVG) Tiny 1.2 Specification";
@@ -62,6 +63,7 @@ const char* doc_ref (const e_doc doc)
         case ed_apache : return "Apache 2.4 mod_include, 2020, https://httpd.apache.org/docs/current/mod/mod_include.html";
         case ed_May2020 : return "HTML 5 living standard, WhatWG, May 2020";
         case ed_July2020 : return "HTML 5 living standard, WhatWG, July 2020";
+        case ed_so_11 : return "schema.org 11.0 (https://schema.org/)";
         case ed_mozilla : return "moz://a, May 2020, https://developer.mozilla.org/en-US/docs/Web/HTML/Reference";
         case ed_microdata : return "HTML 5 living standard, WhatWG, July 2020";
         case ed_microformats : return "microformats, May 2020, http://microformats.org/"; }

@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.73 LANGUAGES CXX)
+project (ssc VERSION 0.0.74 LANGUAGES CXX)
 
 set (BOOST_ROOT ${BOOST})
 set (CMAKE_CXX_STANDARD 17)
@@ -100,8 +100,7 @@ if (UNIX)
   endif ()
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    message ("Linux")
-    message ("only Centos 8 amd64 is known to build")
+    message ("Linux (only Centos 8 amd64 has been built)")
     target_compile_options (ssc-test PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
     target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
   endif ()

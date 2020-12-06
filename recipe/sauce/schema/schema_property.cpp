@@ -34,8 +34,8 @@ struct property_gen
     e_schema_property prop_;
     e_type field_type_ = t_generic;
     e_schema field_schema_ = sch_context;
-    uint32_t flags_ = 0; 
-#ifdef REQUIRE_CONSTRUCTOR 
+    uint32_t flags_ = 0;
+#ifdef REQUIRE_CONSTRUCTOR
     property_gen (  const schema_version& from, const schema_version& to, const char* name, const e_schema_property prop, const e_type field_type = t_generic,
                     const e_schema field_schema = sch_context, const uint32_t flags = 0)
         : from_ (from), to_ (to), name_ (name), prop_ (prop), field_type_ (field_type), field_schema_ (field_schema), flags_ (flags) { }
@@ -349,10 +349,16 @@ property_gen gentab [] =
     { { 2, 0 }, { 0, 0 }, "bestRating", sp_bestrating, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "bestRating", sp_bestrating, t_text },
     { { 2, 0 }, { 0, 0 }, "billingAddress", sp_billingaddress, t_schema, sch_postaladdress },
+    { { 11, 0 }, { 0, 0 }, "billingDuration", sp_billingduration, t_schema, sch_quantitativevalue },
+    { { 11, 0 }, { 0, 0 }, "billingDuration", sp_billingduration, t_schema, sch_number },
+    { { 11, 0 }, { 0, 0 }, "billingDuration", sp_billingduration, t_duration },
+    { { 11, 0 }, { 0, 0 }, "billingDuration", sp_billingduration, t_fixedpoint },
     { { 2, 0 }, { 0, 0 }, "billingIncrement", sp_billingincrement, t_schema, sch_float },
     { { 2, 0 }, { 0, 0 }, "billingIncrement", sp_billingincrement, t_fixedpoint },
     { { 2, 0 }, { 0, 0 }, "billingPeriod", sp_billingperiod, t_schema, sch_duration },
     { { 2, 0 }, { 0, 0 }, "billingPeriod", sp_billingperiod, t_duration },
+    { { 11, 0 }, { 0, 0 }, "billingStart", sp_billingstart, t_schema, sch_number  },
+    { { 11, 0 }, { 0, 0 }, "billingStart", sp_billingstart, t_fixedpoint },
     { { 2, 0 }, { 0, 0 }, "biomechanicalClass", sp_biomechanicalclass, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "biomechanicalClass", sp_biomechanicalclass, t_text },
     { { 2, 0 }, { 0, 0 }, "birthDate", sp_birthdate, t_schema, sch_date },
@@ -572,6 +578,8 @@ property_gen gentab [] =
     { { 2, 0 }, { 0, 0 }, "cookingMethod", sp_cookingmethod, t_text },
     { { 2, 0 }, { 0, 0 }, "copyrightHolder", sp_copyrightholder, t_schema, sch_organisation },
     { { 2, 0 }, { 0, 0 }, "copyrightHolder", sp_copyrightholder, t_schema, sch_person },
+    { { 11, 0 }, { 0, 0 }, "copyrightNotice", sp_copyrightnotice, t_schema, sch_text },
+    { { 11, 0 }, { 0, 0 }, "copyrightNotice", sp_copyrightnotice, t_text },
     { { 2, 0 }, { 0, 0 }, "copyrightYear", sp_copyrightyear, t_schema, sch_number },
     { { 2, 0 }, { 0, 0 }, "copyrightYear", sp_copyrightyear, t_fixedpoint },
     { { 3, 5 }, { 0, 0 }, "correction", sp_correction, t_schema, sch_correctioncomment },
@@ -626,10 +634,12 @@ property_gen gentab [] =
     { { 3, 5 }, { 0, 0 }, "credentialCategory", sp_credentialcategory, t_url },
     { { 2, 0 }, { 0, 0 }, "creditedTo", sp_creditedto, t_schema, sch_organisation },
     { { 2, 0 }, { 0, 0 }, "creditedTo", sp_creditedto, t_schema, sch_person },
+    { { 11, 0 }, { 0, 0 }, "creditText", sp_credittext, t_schema, sch_text },
+    { { 11, 0 }, { 0, 0 }, "creditText", sp_credittext, t_text },
     { { 3, 5 }, { 0, 0 }, "cssSelector", sp_cssselector, t_schema, sch_cssselectortype },
+    { { 2, 0 }, { 0, 0 }, "currenciesAccepted", sp_currenciesaccepted, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "currenciesAccepted", sp_currenciesaccepted, t_text },
-    { { 2, 0 }, { 0, 0 }, "currenciesAccepted", sp_currenciesaccepted, t_text },
-    { { 2, 0 }, { 0, 0 }, "currency", sp_currency, t_text },
+    { { 2, 0 }, { 0, 0 }, "currency", sp_currency, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "currency", sp_currency, t_text },
     { { 3, 5 }, { 0, 0 }, "currentExchangeRate", sp_currentexchangerate, t_schema, sch_unitpricespecification },
     { { 2, 0 }, { 0, 0 }, "customer", sp_customer, t_schema, sch_organisation },
@@ -856,7 +866,7 @@ property_gen gentab [] =
     { { 6, 0 }, { 0, 0 }, "educationalProgramMode", sp_educationalprogrammode, t_url },
     { { 2, 0 }, { 0, 0 }, "educationalRole", sp_educationalrole, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "educationalRole", sp_educationalrole, t_text },
-    { { 2, 0 }, { 0, 0 }, "educationalUse", sp_educationaluse, t_schema, sch_text },
+    { { 11, 0 }, { 0, 0 }, "educationalUse", sp_educationaluse, t_schema, sch_definedterm },
     { { 2, 0 }, { 0, 0 }, "educationalUse", sp_educationaluse, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "educationalUse", sp_educationaluse, t_text },
     { { 10, 0 }, { 0, 0 }, "eduQuestionType", sp_eduquestiontype, t_text },
@@ -898,6 +908,7 @@ property_gen gentab [] =
     { { 2, 0 }, { 0, 0 }, "endDate", sp_enddate, t_datetime },
     { { 6, 0 }, { 0, 0 }, "endDate", sp_enddate, t_schema, sch_date },
     { { 6, 0 }, { 0, 0 }, "endDate", sp_enddate, t_just_date },
+    { { 11, 0 }, { 0, 0 }, "endOffset", sp_endoffset, t_schema, sch_hypertocentry },
     { { 3, 5 }, { 0, 0 }, "endOffset", sp_endoffset, t_schema, sch_number },
     { { 3, 5 }, { 0, 0 }, "endOffset", sp_endoffset, t_fixedpoint },
     { { 2, 0 }, { 0, 0 }, "endTime", sp_endtime, t_schema, sch_datetime },
@@ -1406,6 +1417,8 @@ property_gen gentab [] =
     { { 10, 0 }, { 0, 0 }, "layoutImage", sp_layoutimage, t_schema, sch_imageobject },
     { { 10, 0 }, { 0, 0 }, "layoutImage", sp_layoutimage, t_schema, sch_url },
     { { 10, 0 }, { 0, 0 }, "layoutImage", sp_layoutimage, t_url },
+    { { 11, 0 }, { 0, 0 }, "learningResourceType", sp_learningresourcetype, t_schema, sch_definedterm  },
+    { { 2, 0 }, { 0, 0 }, "learningResourceType", sp_learningresourcetype, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "learningResourceType", sp_learningresourcetype, t_text },
     { { 5, 0 }, { 0, 0 }, "leaseLength", sp_leaselength, t_schema, sch_duration },
     { { 5, 0 }, { 0, 0 }, "leaseLength", sp_leaselength, t_duration },
@@ -1513,6 +1526,9 @@ property_gen gentab [] =
     { { 3, 5 }, { 0, 0 }, "materialExtent", sp_materialextent, t_schema, sch_quantitativevalue },
     { { 3, 5 }, { 0, 0 }, "materialExtent", sp_materialextent, t_schema, sch_text },
     { { 3, 5 }, { 0, 0 }, "materialExtent", sp_materialextent, t_text },
+    { { 11, 0 }, { 0, 0 }, "mathExpression", sp_mathexpression, t_schema, sch_solvemathaction },
+    { { 11, 0 }, { 0, 0 }, "mathExpression", sp_mathexpression, t_schema, sch_text },
+    { { 11, 0 }, { 0, 0 }, "mathExpression", sp_mathexpression, t_text },
     { { 2, 0 }, { 0, 0 }, "maxPrice", sp_maxprice, t_schema, sch_number },
     { { 2, 0 }, { 0, 0 }, "maxPrice", sp_maxprice, t_fixedpoint },
     { { 2, 0 }, { 0, 0 }, "maxValue", sp_maxvalue, t_schema, sch_number },
@@ -1933,11 +1949,13 @@ property_gen gentab [] =
     { { 2, 0 }, { 0, 0 }, "price", sp_price, t_fixedpoint },
     { { 2, 0 }, { 0, 0 }, "price", sp_price, t_text },
     { { 3, 0 }, { 0, 0 }, "priceComponent", sp_pricecomponent, t_schema, sch_unitpricespecification },
+    { { 11, 0 }, { 0, 0 }, "priceComponentType", sp_pricecomponenttype, t_schema, sch_pricecomponenttypeenumeration },
     { { 2, 0 }, { 0, 0 }, "priceCurrency", sp_pricecurrency, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "priceCurrency", sp_pricecurrency, t_text },
     { { 2, 0 }, { 0, 0 }, "priceRange", sp_pricerange, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "priceRange", sp_pricerange, t_text },
     { { 2, 0 }, { 0, 0 }, "priceSpecification", sp_pricespecification, t_schema, sch_pricespecification },
+    { { 2, 0 }, { 0, 0 }, "priceType", sp_pricetype, t_schema, sch_pricetypeenumeration },
     { { 2, 0 }, { 0, 0 }, "priceType", sp_pricetype, t_schema, sch_text },
     { { 2, 0 }, { 0, 0 }, "priceType", sp_pricetype, t_text },
     { { 2, 0 }, { 0, 0 }, "priceValidUntil", sp_pricevaliduntil, t_schema, sch_date },
@@ -2342,6 +2360,7 @@ property_gen gentab [] =
     { { 2, 0 }, { 0, 0 }, "startDate", sp_startdate, t_datetime },
     { { 6, 0 }, { 0, 0 }, "startDate", sp_startdate, t_schema, sch_date },
     { { 6, 0 }, { 0, 0 }, "startDate", sp_startdate, t_just_date },
+    { { 11, 0 }, { 0, 0 }, "startOffset", sp_startoffset, t_schema, sch_hypertocentry },
     { { 3, 5 }, { 0, 0 }, "startOffset", sp_startoffset, t_schema, sch_number },
     { { 3, 5 }, { 0, 0 }, "startOffset", sp_startoffset, t_fixedpoint },
     { { 2, 0 }, { 0, 0 }, "startTime", sp_starttime, t_schema, sch_datetime },
@@ -2486,6 +2505,8 @@ property_gen gentab [] =
     { { 8, 0 }, { 0, 0 }, "titleEIDR", sp_titleeidr, t_text },
     { { 8, 0 }, { 0, 0 }, "titleEIDR", sp_titleeidr, t_schema, sch_url },
     { { 8, 0 }, { 0, 0 }, "titleEIDR", sp_titleeidr, t_url },
+    { { 11, 0 }, { 0, 0 }, "tocContinuation", sp_toccontinuation, t_schema, sch_hypertocentry },
+    { { 11, 0 }, { 0, 0 }, "tocEntry", sp_tocentry, t_schema, sch_hypertocentry },
     { { 2, 0 }, { 0, 0 }, "toLocation", sp_tolocation, t_schema, sch_place },
     { { 3, 3 }, { 0, 0 }, "toRecipient", sp_torecipient, t_schema, sch_audience },
     { { 3, 3 }, { 0, 0 }, "toRecipient", sp_torecipient, t_schema, sch_contactpoint },
@@ -2583,6 +2604,8 @@ property_gen gentab [] =
     { { 3, 5 }, { 0, 0 }, "usesHealthPlanIdStandard", sp_useshealthplanidstandard, t_text },
     { { 3, 5 }, { 0, 0 }, "usesHealthPlanIdStandard", sp_useshealthplanidstandard, t_schema, sch_url },
     { { 3, 5 }, { 0, 0 }, "usesHealthPlanIdStandard", sp_useshealthplanidstandard, t_url },
+    { { 11, 0 }, { 0, 0 }, "utterances", sp_utterances, t_schema, sch_text },
+    { { 11, 0 }, { 0, 0 }, "utterances", sp_utterances, t_text },
     { { 2, 0 }, { 0, 0 }, "validFor", sp_validfor, t_schema, sch_duration },
     { { 2, 0 }, { 0, 0 }, "validFor", sp_validfor, t_duration },
     { { 2, 0 }, { 0, 0 }, "validFrom", sp_validfrom, t_schema, sch_datetime },
@@ -2822,7 +2845,7 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
             valid_type = true;
             knots.merge (nuts); }
         if (unfound.empty ())
-            unfound = quote (schema_property_name (prop)) + " is not a valid property of " + quote (sch::name (gen)); 
+            unfound = quote (schema_property_name (prop)) + " is not a valid property of " + quote (sch::name (gen));
 }
     if (! unfound.empty () && ! valid_type)
         knots.pick (nit_not_schema_property, es_error, ec_microdata, unfound);

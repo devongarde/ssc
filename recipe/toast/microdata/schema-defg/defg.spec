@@ -112,6 +112,8 @@ PASS ../toast/microdata/schema-defg/event.html
 309 use_quote_code
 310 use_quote_code
 311 use_quote_code use_double_quote_code use_quote_code
+318 url_not_found
+328 url_not_found
 
 PASS ../toast/microdata/schema-defg/examples.html
 15 attempted_escape no_such_folder url_not_found
@@ -138,7 +140,6 @@ PASS ../toast/microdata/schema-defg/foodestablishment.html
 60 attribute_barred
 
 PASS ../toast/microdata/schema-defg/game.html
-12 bad_ancestor
 15 no_such_folder url_not_found
 22 inserted_missing_closure
 
@@ -148,15 +149,12 @@ PASS ../toast/microdata/schema-defg/geocircle.html
 
 PASS ../toast/microdata/schema-defg/governmentorganisation.html
 14 use_double_quote_code
-22 bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-defg/governmentpermit.html
 14 use_double_quote_code
-22 bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-defg/governmentservice.html
 14 use_double_quote_code
-22 bad_datetime bad_datetime bad_datetime
 
 itemids
 http://dbpedia.org/resource/Seismic_hazard

@@ -2,7 +2,6 @@
 
 PASS ../toast/microdata/schema-abc/administrativearea.html
 14 use_double_quote_code
-22 bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-abc/aggregateoffer.html
 12 url_not_found
@@ -91,12 +90,6 @@ PASS ../toast/microdata/schema-abc/audiobook.html
 PASS ../toast/microdata/schema-abc/audioobject.html
 13 bad_script
 20 bad_datetime
-
-PASS ../toast/microdata/schema-abc/bankaccount.html
-11 missing_close
-27 missing_open
-38 missing_close
-40 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/microdata/schema-abc/blogposting.html
 13 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime

@@ -28,7 +28,7 @@ struct microdata_structure
     schema_version to_;
     e_schema record_ = sch_context;
     e_schema_property property_ = sp_context;
-#ifdef REQUIRE_CONSTRUCTOR 
+#ifdef REQUIRE_CONSTRUCTOR
     microdata_structure (const schema_version& from, const schema_version& to, const e_schema record = sch_context, const e_schema_property prop = sp_context)
         : from_ (from), to_ (to), record_ (record), property_ (prop) { }
 #endif
@@ -306,6 +306,7 @@ microdata_structure schema_structure [] =
     { { 2, 0 }, { 0, 0 }, sch_communicateaction, sp_recipient },
 
     { { 3, 0 }, { 0, 0 }, sch_compoundpricespecification, sp_pricecomponent },
+    { { 11, 0 }, { 0, 0 }, sch_compoundpricespecification, sp_pricetype },
 
     { { 3, 5 }, { 0, 0 }, sch_consumeaction, sp_actionaccessibilityrequirement },
     { { 2, 0 }, { 0, 0 }, sch_consumeaction, sp_expectsacceptanceof },
@@ -366,10 +367,12 @@ microdata_structure schema_structure [] =
     { { 3, 5 }, { 0, 0 }, sch_creativework, sp_contentreferencetime },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_contributor },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_copyrightholder },
+    { { 11, 0 }, { 0, 0 }, sch_creativework, sp_copyrightnotice },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_copyrightyear },
     { { 3, 5 }, { 0, 0 }, sch_creativework, sp_correction },
     { { 3, 8 }, { 0, 0 }, sch_creativework, sp_creativeworkstatus },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_creator },
+    { { 11, 0 }, { 0, 0 }, sch_creativework, sp_credittext },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_datecreated },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_datemodified },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_datepublished },
@@ -927,6 +930,13 @@ microdata_structure schema_structure [] =
 
     { { 3, 3 }, { 0, 0 }, sch_howtosupply, sp_estimatedcost },
 
+    { { 11, 0 }, { 0, 0 }, sch_hypertoc, sp_associatedmedia },
+    { { 11, 0 }, { 0, 0 }, sch_hypertoc, sp_tocentry },
+
+    { { 11, 0 }, { 0, 0 }, sch_hypertocentry, sp_associatedmedia },
+    { { 11, 0 }, { 0, 0 }, sch_hypertocentry, sp_toccontinuation },
+    { { 11, 0 }, { 0, 0 }, sch_hypertocentry, sp_utterances },
+
     { { 2, 0 }, { 0, 0 }, sch_imageobject, sp_caption },
     { { 2, 0 }, { 0, 0 }, sch_imageobject, sp_exifdata },
     { { 2, 0 }, { 0, 0 }, sch_imageobject, sp_representativeofpage },
@@ -1012,6 +1022,7 @@ microdata_structure schema_structure [] =
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, sch_joint, sp_structuralclass },
 
     { { 9, 0 }, { 0, 0 }, sch_learningresource, sp_assesses },
+    { { 11, 0 }, { 0, 0 }, sch_learningresource, sp_competencyrequired },
     { { 9, 0 }, { 0, 0 }, sch_learningresource, sp_educationalalignment },
     { { 9, 0 }, { 0, 0 }, sch_learningresource, sp_educationallevel },
     { { 9, 0 }, { 0, 0 }, sch_learningresource, sp_educationaluse },
@@ -1088,6 +1099,8 @@ microdata_structure schema_structure [] =
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, sch_lymphaticvessel, sp_runsto },
 
     { { 2, 0 }, { 0, 0 }, sch_map, sp_maptype },
+
+    { { 11, 0 }, { 0, 0 }, sch_mathsolver, sp_mathexpression },
 
     { { 2, 0 }, { 0, 0 }, sch_mediaobject, sp_associatedarticle },
     { { 2, 0 }, { 0, 0 }, sch_mediaobject, sp_bitrate },
@@ -2065,6 +2078,8 @@ microdata_structure schema_structure [] =
 
     { { 2, 0 }, { 0, 0 }, sch_someproducts, sp_inventorylevel },
 
+    { { 11, 0 }, { 0, 0 }, sch_solvemathaction, sp_eduquestiontype },
+
     { { 3, 5 }, { 0, 0 }, sch_speakablespecification, sp_cssselector },
     { { 3, 5 }, { 0, 0 }, sch_speakablespecification, sp_xpath },
 
@@ -2210,7 +2225,10 @@ microdata_structure schema_structure [] =
     { { 2, 0 }, { 0, 0 }, sch_typeandquantitynode, sp_unitcode },
     { { 2, 0 }, { 0, 0 }, sch_typeandquantitynode, sp_unittext },
 
+    { { 11, 0 }, { 0, 0 }, sch_unitpricespecification, sp_billingduration },
     { { 2, 0 }, { 0, 0 }, sch_unitpricespecification, sp_billingincrement },
+    { { 11, 0 }, { 0, 0 }, sch_unitpricespecification, sp_billingstart },
+    { { 11, 0 }, { 0, 0 }, sch_unitpricespecification, sp_pricecomponenttype },
     { { 2, 0 }, { 0, 0 }, sch_unitpricespecification, sp_pricetype },
     { { 3, 0 }, { 0, 0 }, sch_unitpricespecification, sp_referencequantity },
     { { 2, 0 }, { 0, 0 }, sch_unitpricespecification, sp_unitcode },

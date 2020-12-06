@@ -7,34 +7,18 @@ PASS ../toast/microdata/schema-mno/mediaobject.html
 13 bad_script
 20 bad_datetime
 
-PASS ../toast/microdata/schema-mno/medicalcondition.html
-11 missing_close
-109 inserted_missing_closure
-
 PASS ../toast/microdata/schema-mno/medicalguideline.html
-13 not_schema_property
-15 not_schema_property
-21 not_schema_property
-23 not_schema_property
 87 missing_open
 
 PASS ../toast/microdata/schema-mno/medicalguidelinecontraindication.html
 37 missing_open
 
 PASS ../toast/microdata/schema-mno/medicalguidelinerecommendation.html
-13 not_schema_property
-15 not_schema_property
-21 not_schema_property
-23 not_schema_property
 31 bad_itemid
 42 bad_itemid
 87 missing_open
 
 PASS ../toast/microdata/schema-mno/medicalscholarlyarticle.html
-13 not_schema_property
-15 not_schema_property
-21 not_schema_property
-23 not_schema_property
 31 bad_itemid
 42 bad_itemid
 

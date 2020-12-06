@@ -255,6 +255,7 @@ bool verify_duration (const ::std::string::const_iterator e, ::std::string::cons
     bool got = false;
     bool time = grab_char (e, i, 'T') || grab_char (e, i, 't');
     bool week = false;
+    bool year = false;
     while (grab_digits < int64_t > (e, i, 12, 0, true, x) && (i < e))
     {   while (grab_char (e, i, ' ')); // yup, no loop content
         if (i == e) break;
@@ -266,26 +267,40 @@ bool verify_duration (const ::std::string::const_iterator e, ::std::string::cons
             if (! grab_char (e, i, "Ss")) return false;
             s += x; }
         else switch (*i)
-        {   case 'W' :
+        {   case 'Y' :
+            case 'y' :  if (time) return false;
+                        year = true;
+                        if (INT64_MAX - (x * 86400 * 365) < s) return false;
+                        s += x * 86400 * 365; break;
+            case 'W' :
             case 'w' :  if (time) return false;
-                        week = true;
+                        week = true; year = false;
                         if (INT64_MAX - (x * 604800) < s) return false;
                         s += x * 604800; break;
             case 'D' :
             case 'd' :  if (time) return false;
+                        year = false;
                         if (INT64_MAX - (x * 86400) < s) return false;
                         s += x * 86400; break;
             case 'H' :
             case 'h' :  if (INT64_MAX - (x * 3600) < s) return false;
+                        year = false;
                         s += x * 3600; break;
             case 'M' :
-            case 'm' :  if (INT64_MAX - (x * 60) < s) return false;
-                        s += x * 60; break;
+            case 'm' :  if (year)
+                        {   if (INT64_MAX - (x * 86400 * 30) < s) return false;
+                            s += x * 86400 * 30; }
+                        else
+                        {   if (INT64_MAX - (x * 60) < s) return false;
+                            s += x * 60; }
+                        break;
             case 'S' :
             case 's' :  if (INT64_MAX - x < s) return false;
+                        year = false;
                         s += x; break;
             case 'T' :
             case 't' :  if (week) return false;
+                        year = false;
                         time = true; break;
             default :   return false; }
         got = true; ++i; }
