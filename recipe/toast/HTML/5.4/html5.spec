@@ -194,7 +194,6 @@ PASS ../toast/HTML/5.4/html5-example.html
 274 use_quote_code
 276 use_quote_code
 283 use_quote_code
-292 bad_ancestor
 320 url_id_unfound
 322 missing_close unrecognised_value missing_close
 323 inserted_missing_closure inserted_missing_closure
@@ -225,7 +224,6 @@ PASS ../toast/HTML/5.4/html5-example.html
 412 attempted_escape no_such_folder url_not_found
 413 attempted_escape no_such_folder url_not_found
 414 url_not_found
-442 bad_ancestor
 467 inserted_missing_closure
 468 use_quote_code
 500 inserted_missing_closure
@@ -450,8 +448,6 @@ PASS ../toast/HTML/5.4/html5-example.html
 1800 attempted_escape no_such_folder url_not_found
 1801 attempted_escape no_such_folder url_not_found
 1802 url_not_found
-1842 bad_ancestor
-1858 bad_ancestor
 1873 only_elements
 1885 missing_close
 1890 use_quote_code

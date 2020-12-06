@@ -234,7 +234,7 @@ void options::process (int argc, char** argv)
         (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (0 for value implied by HTML version).")
 
         (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands schema.org microdata).")
-        (MICRODATA VERSION, ::boost::program_options::value < int > (), "set default schema.org major version (default: 10).")
+        (MICRODATA VERSION, ::boost::program_options::value < int > (), "set default schema.org major version (default: 11).")
         (MICRODATA MINOR, ::boost::program_options::value < int > (), "set default schema.org minor version (default: 0).")
         (MICRODATA EXPORT, "export microformat data (only verified data if " MICRODATA MICRODATAARG " is set).")
 

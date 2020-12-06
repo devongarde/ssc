@@ -61,6 +61,7 @@ e_nit nit::lookup (const ::std::string& name)
         case ed_rdf : return "RDFa";
         case ed_rfc_1867 : return "RFC 1867";
         case ed_rfc_1980 : return "RGC 1980";
+        case ed_rfc_3966 : return "RFC 3966";
         case ed_svg_1_0 : return "SVG 1.0";
         case ed_svg_1_1 : return "SVG 1.1";
         case ed_svg_1_2_tiny : return "SVG 1.2 Tiny";
@@ -74,6 +75,7 @@ e_nit nit::lookup (const ::std::string& name)
         case ed_microdata : return "WhatWG Microdata";
         case ed_microformats : return "microformats.org (May 2020)";
         case ed_ariaAug2020 : return "Aria (August 2020)";
+        case ed_so_11 : return "schema.org 11.0";
         case ed_mql : return "Media Queries"; }
     return "Unknown reference"; }
 

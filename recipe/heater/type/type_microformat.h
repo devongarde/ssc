@@ -91,10 +91,10 @@ template < > struct type_master < t_tel > : public tidy_string < t_tel >
         ::std::string val = tidy_string < t_tel > :: get_string ();
         if (tidy_string < t_tel > :: good ())
         {   if (val.substr (0, 4) != "tel:")
-                nits.pick (nit_no_tel, es_warning, ec_type, quote (s), " should start with 'tel:' (see RFC 3966)");
+                nits.pick (nit_no_tel, ed_rfc_3966, "3. URI Syntax", es_warning, ec_type, quote (s), " should start with 'tel:'");
             else val = val.substr (4);
             ::std::string::size_type pos = val.find (';');
             if (pos != ::std::string::npos) val = val.substr (0, pos);
             if (val.find_first_not_of (TEL) != ::std::string::npos)
-            {   nits.pick (nit_phone, es_error, ec_type, quote (s), " does not appear to be a phone number (see RFC 3966)");
+            {   nits.pick (nit_phone, ed_rfc_3966, "3. URI Syntax", es_error, ec_type, quote (s), " does not appear to be a phone number");
                 tidy_string < t_tel > :: status (s_invalid); } } } };

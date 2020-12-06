@@ -540,7 +540,6 @@ struct symbol_entry < e_mathnotation > mathnotation_symbol_table [] =
     { { HTML_5_2, 0, HE_M3_NONSTAND }, { HTML_UNDEF }, "mn_northeastsouthwestarrow", mn_northeastsouthwestarrow },
     { { HTML_5_2 }, { HTML_UNDEF }, "madruwb", mn_madruwb } };
 
-
 struct symbol_entry < e_mathvariant > mathvariant_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "normal", mv_normal },
     { { XHTML_1_0 }, { HTML_UNDEF }, "bold", mv_bold },

@@ -30,13 +30,13 @@ void element::verify_microdata ()
     bool has_itemscope = a_.known (a_itemscope);
     if (has_itemtype)
         if (! has_itemscope)
-            node_.pick (nit_requires_itemscope, es_error, ec_attribute, "missing ITEMSCOPE; ITEMTYPE ignored");
+            node_.pick (nit_requires_itemscope, ed_July2020, "5.2.2 Items", es_error, ec_attribute, "missing ITEMSCOPE; ITEMTYPE ignored");
     if (has_itemid)
         if (! has_itemscope || ! has_itemtype)
-            node_.pick (nit_requires_itemscope, es_error, ec_attribute, "ITEMID requires both ITEMSCOPE and ITEMTYPE");
+            node_.pick (nit_requires_itemscope, ed_July2020, "5.2.2 Items", es_error, ec_attribute, "ITEMID requires both ITEMSCOPE and ITEMTYPE");
     if (has_itemref)
         if (! has_itemscope)
-            node_.pick (nit_requires_itemscope, es_error, ec_attribute, "missing ITEMSCOPE; ITEMREF ignored"); }
+            node_.pick (nit_requires_itemscope, ed_July2020, "5.2.2 Items", es_error, ec_attribute, "missing ITEMSCOPE; ITEMREF ignored"); }
 
 ::std::string element::get_microdata_value () const
 {   // need to rethink template structures, since this should be templated based on the tag

@@ -3,8 +3,12 @@ static site checker
 https://ssc.lu/
 (c) 2020 Dylan Harris
 
+0.0.74
+- schema.org 11.0 microdata
+- various bug fixes
+
 0.0.73
-- can output repaired HTML (does NOT work with XHTML)
+- can output 'repaired' HTML (does NOT work with XHTML)
 - improved display of help text
 
 0.0.72
