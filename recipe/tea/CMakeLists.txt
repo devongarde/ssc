@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.74 LANGUAGES CXX)
+project (ssc VERSION 0.0.75 LANGUAGES CXX)
 
 set (BOOST_ROOT ${BOOST})
 set (CMAKE_CXX_STANDARD 17)
@@ -23,11 +23,59 @@ endif ()
 set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an installation path")
 set (CMAKE_DEBUG_POSTFIX "d")
 
-set (Boost_USE_STATIC_LIBS ON)
-find_package(Boost 1.67 REQUIRED COMPONENTS date_time filesystem program_options)
-
 add_executable (ssc-test)
 add_executable (ssc)
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+  message ("Only Visual Studios 2015/7/9 are known to build")
+endif ()
+
+if (UNIX)
+  target_compile_definitions (ssc-test PRIVATE UNIX)
+  target_compile_definitions (ssc PRIVATE UNIX)
+
+  if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
+
+    if (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.8")
+      message ("OpenBSD 6.8")
+      target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS)
+      target_compile_definitions (ssc PRIVATE NO_PCF_STR FS_THROWS)
+      set (Boost_USE_STATIC_LIBS ON)
+    else ()
+      message ("only OpenBSD 6.8 amd64 is known to build")
+    endif ()
+  endif ()
+
+  if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    message ("Linux: only Centos 8 amd64 and Ubuntu Server 20.10 amd64 have been built")
+    set (Boost_USE_STATIC_LIBS ON)
+    target_compile_options (ssc-test PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
+    target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
+  endif ()
+
+  if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    if (${CMAKE_SYSTEM} MATCHES "Darwin-20.1.0")
+      message ("MacOS Big Sur")
+      set (Boost_USE_STATIC_LIBS ON)
+    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-19.6.0")
+      message ("MacOS Catalina")
+      # not sure why cmake gets boost static library names wrong under catalina
+    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-18.7.0")
+      message ("MacOS Mojave")
+      # not sure why cmake gets boost static library names wrong under mojave
+    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-17.7.0")
+      message ("MacOS High Sierra")
+      target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
+      target_compile_definitions (ssc PRIVATE FUDDYDUDDY)
+      set (Boost_USE_STATIC_LIBS ON)
+    else ()
+      message ("unknown, untested MacOS")
+    endif ()
+  endif ()
+
+endif ()
+
+find_package(Boost 1.67 REQUIRED COMPONENTS date_time filesystem program_options)
 
 # better to list the build files in one place (here) rather than litter all the source directories with a gadzillion untidy wee files
 target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h)
@@ -41,7 +89,7 @@ target_sources (ssc PRIVATE
     ${H}/microformat/microformats.h ${H}/microformat/microformats_ptr.h ${H}/microformat/prop.h ${H}/microformat/property.h ${H}/microformat/property_classes.h
     ${H}/microformat/property_value.h ${H}/microformat/sibling.h ${H}/parser/html_version.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h ${H}/parser/parse_bra_ket.h
     ${H}/parser/parse_bras_ket.h ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h ${H}/parser/text.h
-    ${H}/parser/xhtml_xml.h ${H}/schema/schema_hierarchy.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h ${H}/schema/schema_version.h
+    ${H}/parser/xhtml_xml.h ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h ${H}/schema/schema_version.h
     ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats_impl.h ${H}/symbol/symbol.h ${H}/symbol/symbol_table.h
     ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
     ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_class.h ${H}/type/type_colour.h ${H}/type/type_core.h ${H}/type/type_currency.h
@@ -62,7 +110,7 @@ target_sources (ssc PRIVATE
     ${S}/microformat/field.cpp ${S}/microformat/microformat_constructor.cpp ${S}/microformat/microformat_export.cpp ${S}/microformat/microformats.cpp ${S}/microformat/property_value.cpp
     ${S}/microformat/sibling.cpp ${S}/parser/html_version.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_bra_ket.cpp ${S}/parser/parse_bras_ket.cpp
     ${S}/parser/parse_css.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp ${S}/parser/text.cpp ${S}/parser/xhtml_xml.cpp
-    ${S}/schema/schema_hierarchy.cpp ${S}/schema/schema_property.cpp ${S}/schema/schema_structure.cpp ${S}/schema/schema_type.cpp ${S}/schema/schema_version.cpp ${S}/stats/stats.cpp
+    ${S}/schema/schema_hierarchy.cpp ${S}/schema/schema_name.cpp ${S}/schema/schema_property.cpp ${S}/schema/schema_structure.cpp ${S}/schema/schema_type.cpp ${S}/schema/schema_version.cpp ${S}/stats/stats.cpp
     ${S}/stats/stats_impl.cpp ${S}/symbol/symbol.cpp ${S}/symbol/symbol_table.cpp ${S}/type/type.cpp ${S}/type/type_aria.cpp ${S}/type/type_autocomplete.cpp ${S}/type/type_charset.cpp
     ${S}/type/type_class.cpp ${S}/type/type_colour.cpp ${S}/type/type_core.cpp ${S}/type/type_currency.cpp ${S}/type/type_d.cpp ${S}/type/type_enum.cpp ${S}/type/type_httpequiv.cpp
     ${S}/type/type_lang.cpp ${S}/type/type_media.cpp ${S}/type/type_metaname.cpp ${S}/type/type_mime.cpp ${S}/type/type_paint.cpp ${S}/type/type_reals.cpp ${S}/type/type_rel.cpp
@@ -79,47 +127,6 @@ target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlin
 target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
-
-if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  message ("Only Visual Studios 2015/7/9 are known to build")
-endif ()
-
-if (UNIX)
-  target_compile_definitions (ssc-test PRIVATE UNIX)
-  target_compile_definitions (ssc PRIVATE UNIX)
-
-  if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
-
-    if (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.8")
-      message ("OpenBSD 6.8")
-      target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS)
-      target_compile_definitions (ssc PRIVATE NO_PCF_STR FS_THROWS)
-    else ()
-      message ("only OpenBSD 6.8 amd64 is known to build")
-    endif ()
-  endif ()
-
-  if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    message ("Linux (only Centos 8 amd64 has been built)")
-    target_compile_options (ssc-test PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
-    target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
-  endif ()
-
-  if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    if (${CMAKE_SYSTEM} MATCHES "Darwin-20.1.0")
-      message ("MacOS Big Sur")
-    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-19.6.0")
-      message ("MacOS Catalina")
-    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-17.7.0")
-      message ("MacOS High Sierra")
-      target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
-      target_compile_definitions (ssc PRIVATE FUDDYDUDDY)
-    else ()
-      message ("only MacOSs Big Sur (intel), Catalina and High Sierra (x64) are known to build")
-    endif ()
-  endif ()
-
-endif ()
 
 if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
   message ("debug")

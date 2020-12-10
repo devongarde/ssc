@@ -63,7 +63,7 @@ timmap quick_tim;
 
 unsigned verbose = 0;
 bool numbers = false, easy_in = false;
-::std::string expected_lynx, expected_shadow;
+::std::string expected_lynx, expected_shadow, expected_export_errors;
 classic expected_classes;
 sstr_t expected_itemids;
 vstr_t correct_export, created_export, grand_stats;
@@ -141,6 +141,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
     bool classed = false;
     bool itemid = false;
     bool exports = false;
+    bool exporterrors = false;
     bool file_stats = false;
     bool overall_stats = false;
     bool shadow = false;
@@ -161,6 +162,10 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         if (shadow)
         {   shadow = false;
             expected_shadow = s;
+            continue; }
+        if (exporterrors)
+        {   exporterrors = false;
+            expected_export_errors = s;
             continue; }
         if (itemid)
         {   expected_itemids.insert (s);
@@ -210,18 +215,19 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
             continue; }
         if (cmdline.empty ()) { cmdline = s; continue; }
         else switch (s.at (0))
-        {   case 'C' :  classed = true; shadow = lynx = itemid = exports = file_stats = overall_stats = false; continue;
-            case 'E' :  exports = true; shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
-            case 'G' :  overall_stats = true; shadow = classed = lynx = exports = itemid = file_stats = false; continue;
-            case 'i' :  itemid = true; shadow = classed = lynx = exports = file_stats = overall_stats = false; continue;
-            case 'L' :  lynx = true; shadow = classed = itemid = exports = file_stats = overall_stats = false; continue;
-            case 'S' :  file_stats = true; stats.clear (); shadow = classed = lynx = exports = itemid = overall_stats = false; continue;
-            case 's' :  shadow = true; lynx = classed = itemid = exports = file_stats = overall_stats = false; continue;
+        {   case 'C' :  classed = true; exporterrors = shadow = lynx = itemid = exports = file_stats = overall_stats = false; continue;
+            case 'E' :  exports = true; exporterrors = shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
+            case 'e' :  exporterrors = true; exports = shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
+            case 'G' :  overall_stats = true; exporterrors = shadow = classed = lynx = exports = itemid = file_stats = false; continue;
+            case 'i' :  itemid = true; exporterrors = shadow = classed = lynx = exports = file_stats = overall_stats = false; continue;
+            case 'L' :  lynx = true; exporterrors = shadow = classed = itemid = exports = file_stats = overall_stats = false; continue;
+            case 'S' :  file_stats = true; stats.clear (); exporterrors = shadow = classed = lynx = exports = itemid = overall_stats = false; continue;
+            case 's' :  shadow = true; exporterrors = lynx = classed = itemid = exports = file_stats = overall_stats = false; continue;
             case 'I' :
             case 'F' :
             case 'P' :
             case '*' :
-                {   classed = lynx = itemid = exports = false;
+                {   exporterrors = shadow = classed = lynx = itemid = exports = false;
                     if (! previous.empty ()) expected.insert (knotted::value_type (previous, expect));
                     if (spaced == ::std::string::npos)
                     {   ::std::cerr << "Missing filename " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
@@ -369,6 +375,20 @@ bool shadowcheck (const vstr_t& line)
     else if (verbose) ::std::cout << "shadows differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
     return false; }
 
+bool exporterrorcheck (const vstr_t& line)
+{   vstr_t expected;
+    bool blooper = false;
+    ::boost::algorithm::split (expected, expected_export_errors, ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
+    expected_export_errors.clear ();
+    if (line.size () == expected.size ())
+    {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
+            if (line.at (x) != expected.at (x))
+            {   blooper = true;
+                if (verbose) ::std::cout << "export errors " << x << " differs\n"; }
+        if (! blooper) return true; }
+    else if (verbose) ::std::cout << "export errors differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
+    return false; }
+
 bool classcheck (vstr_t& line)
 {   classic::iterator i = expected_classes.find (line.at (0));
     if (i == expected_classes.end ())
@@ -466,6 +486,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
     bool res = true;
     bool shush = false;
     bool shadow = false;
+    bool exporterrors = false;
     bool classes = false;
     bool lynx = false;
     bool oops = false;
@@ -498,6 +519,9 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
             if (shadow)
             {   if (! shadowcheck (line)) { oops = true; res = false; }
                 shadow = false; shush = true; continue; }
+            if (exporterrors)
+            {   if (! exporterrorcheck (line)) { oops = true; res = false; }
+                exporterrors = false; shush = true; continue; }
             if (classes)
             {   if (! classcheck (line)) { oops = true; res = false; }
                 continue; }
@@ -543,6 +567,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                 else if (fn == "link") lynx = true;
                 else if (fn == "itemids") itemid = true;
                 else if (fn == "shadow") shadow = true;
+                else if (fn == "exports") exporterrors = true;
                 else if (fn == "Statistics:") file_stats = true;
                 else if (fn == "Grand") overall_stats = true;
                 else

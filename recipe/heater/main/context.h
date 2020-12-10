@@ -53,9 +53,10 @@ class context_t
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
     ::std::string   base_, filename_, stub_, hook_, incoming_, index_, macro_end_, macro_start_, output_, path_, persisted_, root_, secret_, server_,
-                    shadow_, shadow_persist_, test_header_, user_, webmention_, write_path_;
+                    shadow_, shadow_persist_, test_header_, user_, webmention_, write_path_, export_root_;
+    ::boost::filesystem::path config_;
     e_wm_status     wm_status_ = wm_undefined;
-    vstr_t          custom_elements_, extensions_, mentions_, site_, templates_, virtuals_, shadows_;
+    vstr_t          custom_elements_, extensions_, mentions_, site_, templates_, virtuals_, shadows_, exports_;
     replies         replies_;
     hooks           hooks_;
     css_cache       css_;
@@ -70,9 +71,13 @@ public:
     bool clear () const { return clear_; }
     int code () const { return code_; }
     bool codes () const { return codes_; }
+    ::boost::filesystem::path config () const { return config_; }
     e_copy copy () const { return copy_; }
     bool crosslinks () const { return crosslinks_; }
     const vstr_t custom_elements () const { return custom_elements_; }
+    bool export_defined () const { return ! export_root_.empty (); }
+    const ::std::string export_root () const { return export_root_; }
+    const vstr_t exports () const { return exports_; }
     const vstr_t extensions () const { return extensions_; }
     bool external () const { return external_; }
     const ::std::string filename () const { return filename_; }
@@ -162,12 +167,15 @@ public:
     context_t& clear (const bool b) { clear_ = b; return *this; }
     context_t& code (const int i) { code_ = i; return *this; }
     context_t& codes (const bool b) { codes_ = b; return *this; }
+    context_t& config (const ::boost::filesystem::path& config) { config_ = config; return *this; }
     context_t& copy (const int c)
     {   if ((c > c_none) && (c <= c_rpt)) copy_ = static_cast < e_copy > (c); else copy_ = c_none; return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; return *this; }
     css_cache& css () { return css_; }
     const css_cache& css () const { return css_; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; return *this; }
+    context_t& export_root (const ::std::string& s) { export_root_ = s; return *this; }
+    context_t& exports (const vstr_t& s) { exports_ = s; return *this; }
     context_t& extensions (const vstr_t& s) { extensions_ = s; return *this; }
     context_t& external (const bool b)
     {   external_ = b;

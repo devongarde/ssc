@@ -47,6 +47,7 @@ class directory
     bool unguarded_verify_url (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& state, const vit_t& itemtypes) const;
     void internal_get_disk_path (const ::std::string& item, ::boost::filesystem::path& res) const;
     void internal_get_shadow_path (const ::std::string& item, ::boost::filesystem::path& res) const;
+    void internal_get_export_path (const ::std::string& item, ::boost::filesystem::path& res) const;
     ::std::string internal_get_site_path (nitpick& nits, const ::std::string& item) const;
     bool shadow_folder (nitpick& nits);
     bool shadow_file (nitpick& nits, const ::std::string& name);
@@ -73,6 +74,9 @@ public:
     ::boost::filesystem::path get_disk_path (nitpick& nits, const url& u) const;
     ::boost::filesystem::path get_disk_path () const;
     ::boost::filesystem::path get_disk_path (nitpick& nits, const ::std::string& item) const;
+    ::boost::filesystem::path get_export_path (nitpick& nits, const url& u) const;
+    ::boost::filesystem::path get_export_path () const;
+    ::boost::filesystem::path get_export_path (nitpick& nits, const ::std::string& item) const;
     ::boost::filesystem::path get_shadow_path (nitpick& nits, const url& u) const;
     ::boost::filesystem::path get_shadow_path () const;
     ::boost::filesystem::path get_shadow_path (nitpick& nits, const ::std::string& item) const; };

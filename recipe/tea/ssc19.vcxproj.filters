@@ -366,6 +366,15 @@
     <Filter Include="Toast\Shadow\DeduOver">
       <UniqueIdentifier>{6d40bb3c-dd6f-48ac-91d3-4dc8a7ce9cde}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Shadow\DeduOver\a">
+      <UniqueIdentifier>{eeda3906-84ae-4f73-a6ae-d961b134134f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\DeduOver\b">
+      <UniqueIdentifier>{3712dd29-ca15-4c30-94f2-3b35f82532b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\DeduOver\c">
+      <UniqueIdentifier>{22111d07-704a-4664-8e0c-a18e082dd65a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -764,6 +773,9 @@
     <ClInclude Include="resource.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\schema\schema_name.h">
+      <Filter>Heater\schema</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1080,6 +1092,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\root.cpp">
       <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\schema\schema_name.cpp">
+      <Filter>Sauce\schema</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3333,6 +3348,12 @@
     <None Include="..\toast\shadow\comment\index.html.model">
       <Filter>Toast\Shadow\Comment</Filter>
     </None>
+    <None Include="..\toast\microdata\export\pre.bat">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
+    <None Include="..\toast\microdata\export\pre.sh">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -3454,6 +3475,15 @@
     </Image>
     <Image Include="..\toast\shadow\deduover\z.jpg">
       <Filter>Toast\Shadow\DeduOver</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\deduover\a\favicon.ico">
+      <Filter>Toast\Shadow\DeduOver\a</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\deduover\b\favicon.ico">
+      <Filter>Toast\Shadow\DeduOver\b</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\deduover\c\favicon.ico">
+      <Filter>Toast\Shadow\DeduOver\c</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

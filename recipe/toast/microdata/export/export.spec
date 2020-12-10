@@ -14,8 +14,11 @@ PASS ../toast/microdata/export/md-ref.html
 14 not_schema_property not_schema_property
 
 EXPORTS
-../toast/microdata/export/md-ref.html.model ../toast/microdata/export/md-ref.html.json
-../toast/microdata/export/itemref.html.model ../toast/microdata/export/itemref.html.json
+../toast/microdata/export/md-ref.html.model ../toast/tmp/export/md-ref.html.json
+../toast/microdata/export/itemref.html.model ../toast/tmp/export/itemref.html.json
+
+exports
+0 500
 
 itemid
 #mozOrg

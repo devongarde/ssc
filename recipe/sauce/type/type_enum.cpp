@@ -1055,7 +1055,7 @@ struct symbol_entry < e_xmlns > xmlns_symbol_table [] =
 
 #define INIT_ENUM(XX) \
     type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < e_##XX >)); \
-    context.validation ().add_options () (VALIDATION #XX, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid '" #XX "'.")
+    context.validation ().add_options () (VALIDATION #XX, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid '" #XX "'; may be repeated")
 
 void enum_init (nitpick& nits)
 {   INIT_ENUM (action);

@@ -34,7 +34,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // __GNUC__
 
 #ifdef _MSC_VER
-#define CLEAN_SHAREDPTR_ARRAY
 #define NOLYNX
 #pragma warning (push,3)
 #pragma warning ( disable : 4244 ) // boost
@@ -45,6 +44,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CONSTEXPR constexpr
 #define NOEXCEPT noexcept
 #define VS 19
+#define CLEAN_SHAREDPTR_ARRAY
 #elif defined (VS2017)
 #define _WIN32_WINNT 0x0603 // 8.1
 #define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // thanks, boost
@@ -52,6 +52,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CONSTEXPR constexpr
 #define NOEXCEPT noexcept
 #define VS 17
+#define CLEAN_SHAREDPTR_ARRAY
 #elif defined (VS2015)
 #define BOOVAR 1
 #define ORDERED

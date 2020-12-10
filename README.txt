@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.74
+version 0.0.75
 https://ssc.lu/
 
 
@@ -25,13 +25,13 @@ ssc analyses static HTML sites at source:
 - XHTML 1.0/1.1/2.0, -ish
 - finds broken links (requires curl)
 - server side includes, mostly
-- schema.org microdata 2.x/3.x/4.0/5.0/6.0/7.x/8.0/9.0/10.0
+- schema.org microdata 2.x/3.x/4.0/5.0/6.0/7.x/8.0/9.0/10.0/11.0
 - microformats v1 & v2
 
 with opinions on:
 - standard english where dialect is required
-- perfectly legal but miserably untidy HTML
-- abhorrent HTML
+- perfectly legal but rather untidy HTML
+- abhorrent HTML such as autoplay on video
 
 It does NOT:
 - do what you want or expect

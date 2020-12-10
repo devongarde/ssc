@@ -35,6 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_itemid.h"
 #include "schema/schema_structure.h"
 #include "schema/schema_property.h"
+#include "schema/schema_name.h"
 #include "webpage/root.h"
 #include "parser/text.h"
 #include "type/type.h"
@@ -56,6 +57,7 @@ void init (nitpick& nits)
     parentage_init (nits);
     protocol::init (nits);
     sch::init (nits);
+    schema_name_init (nits);
     schema_property_init (nits);
     hierarchy_init (nits);
     microdata_init (nits);
@@ -96,17 +98,24 @@ int examine (nitpick& nits)
 {   int res = VALID_RESULT;
     paths_root virt (paths_root::virtual_roots ());
     virt.add_root (nix_path_to_local (context.root ()), "/");
-    nitpick shadow;
-//    shadow.set_context (0, PROG " shadow");
+    nitpick shadow, exp;
     if (! context.shadow ().empty ())
         if (! virt.at (0) -> shadow (shadow, context.shadow ()))
             res = ERROR_STATE;
+    if (res != ERROR_STATE)
+        if (! context.export_root ().empty ())
+            if (! virt.at (0) -> set_export (exp, context.export_root ()))
+                res = ERROR_STATE;
     if (res != ERROR_STATE)
     {   for (auto v : context.virtuals ())
             virt.add_virtual (shadow, v);
         for (auto vv : context.shadows ())
             if (! virt.add_shadow (shadow, vv))
             {   res = ERROR_STATE; break; } }
+    if (res != ERROR_STATE)
+       for (auto v : context.exports ())
+            if (! virt.add_export (exp, v))
+            {   res = ERROR_STATE; break; }
     if (res != ERROR_STATE)
     {   const ::std::size_t vmax (virt.size ());
         vd_t vd;
@@ -147,6 +156,7 @@ int examine (nitpick& nits)
                     {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examination of ", virt.at (n) -> get_disk_path (), " caused an exception");
                         res = ERROR_STATE; } } } } }
     dump_nits (nits, "examine");
+    dump_nits (exp, "exports");
     dump_nits (shadow, "shadow");
     return res; };
 

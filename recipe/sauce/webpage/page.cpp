@@ -89,7 +89,7 @@ void page::examine (const directory& d)
         assert (document_ -> tag () == elem_faux_document);
         document_ -> examine_self (d);
         document_ -> verify_document ();
-        if (context.md_export ()) md_export_.write (nits_, get_disk_path ());
+        if (context.md_export ()) md_export_.write (nits_, get_export_path ());
         ids_.cover_arse (); } }
 
 ::std::string page::get_export_root () const
@@ -139,6 +139,11 @@ const ::std::string page::get_site_path () const
 const ::boost::filesystem::path page::get_disk_path () const
 {   assert (directory_ != nullptr);
     return (directory_ -> get_disk_path () / name ()); }
+
+const ::boost::filesystem::path page::get_export_path () const
+{   if (! context.export_defined ()) return get_disk_path ();
+    assert (directory_ != nullptr);
+    return directory_ -> get_export_path () / name (); }
 
 bool page::verify_url (nitpick& nits, const ::std::string& s, const attribute_bitset& state, const vit_t& itemtypes) const
 {   assert (directory_ != nullptr);
