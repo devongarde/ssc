@@ -1182,7 +1182,7 @@ microdata_structure schema_structure [] =
 
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, sch_medicalobservationalstudy, sp_studydesign },
 
-    { { 3, 5 }, { 0, 0 }, sch_medicalorganisation, sp_dystopianhealthplannetworkid },
+    { { 3, 5 }, { 0, 0 }, sch_medicalorganisation, sp_healthplannetworkid },
     { { 3, 5 }, { 0, 0 }, sch_medicalorganisation, sp_isacceptingnewpatients },
     { { 3, 5 }, { 0, 0 }, sch_medicalorganisation, sp_medicalspeciality },
 

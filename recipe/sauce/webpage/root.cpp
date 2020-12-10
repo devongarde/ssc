@@ -24,6 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 #include "utility/quote.h"
 
+bool make_export_directory (nitpick& nits, const ::boost::filesystem::path& p);
+bool make_shadow_directory (nitpick& nits, const ::boost::filesystem::path& p);
+
 path_root::path_root (const ::boost::filesystem::path& disk, const ::std::string& site)
     : disk_path_ (disk), site_path_ (local_path_to_nix (site))
 {   add_site_path (site, insert_directory_path (disk, 0, nullptr)); }
@@ -32,71 +35,87 @@ bool path_root::applicable (const ::std::string& path) const
 {   if (path.length () < site_path_.length ()) return false;
     return (local_path_to_nix (path.substr (0, site_path_.length ())) == site_path_); }
 
-::boost::filesystem::path path_root::get_disk_filename (const ::std::string& path) const
+::boost::filesystem::path path_root::get_xxx_filename (const ::std::string& path, const ::boost::filesystem::path& p) const
 {   assert (applicable (path));
     ::std::string::size_type pos = site_path_.length ();
-    ::boost::filesystem::path res (disk_path_);
+    ::boost::filesystem::path res (p);
     res /= path.substr (pos);
     return res; }
 
+::boost::filesystem::path path_root::get_disk_filename (const ::std::string& path) const
+{   return get_xxx_filename (path, disk_path_); }
+
 ::boost::filesystem::path path_root::get_shadow_filename (const ::std::string& path) const
-{   assert (applicable (path));
-    ::std::string::size_type pos = site_path_.length ();
-    ::boost::filesystem::path res (shadow_);
-    res /= path.substr (pos);
-    return res; }
+{   return get_xxx_filename (path, shadow_); }
+
+::boost::filesystem::path path_root::get_export_filename (const ::std::string& path) const
+{   return get_xxx_filename (path, export_); }
 
 bool path_root::shadow (nitpick& nits, const ::boost::filesystem::path& shadow)
 {   if (! make_shadow_directory (nits, shadow)) return false;
     shadow_ = shadow;
     return true; }
 
-::boost::filesystem::path paths_root::get_filename (const ::std::string& filename)
+bool path_root::set_export (nitpick& nits, const ::boost::filesystem::path& ex)
+{   if (! make_export_directory (nits, ex)) return false;
+    export_ = ex;
+    return true; }
+
+::std::size_t paths_root::get_xxx (const ::std::string& f) const
 {   assert (root_.size () > 0);
-    ::std::string f (local_path_to_nix (filename));
     for (::std::size_t i = root_.size () - 1; i > 0; --i)
-        if (root_ [i] -> applicable (f))
-            return root_ [i] -> get_disk_filename (f);
-    return root_ [0] -> get_disk_filename (f); }
+        if (root_ [i] -> applicable (f)) return i;
+    return 0; }
+
+::boost::filesystem::path paths_root::get_filename (const ::std::string& filename)
+{   return root_ [get_xxx (filename)] -> get_disk_filename (local_path_to_nix (filename)); }
 
 ::boost::filesystem::path paths_root::get_shadow (const ::std::string& filename)
-{   assert (root_.size () > 0);
-    ::std::string f (local_path_to_nix (filename));
-    for (::std::size_t i = root_.size () - 1; i > 0; --i)
-        if (root_ [i] -> applicable (f))
-            return root_ [i] -> get_shadow_filename (f);
-    return root_ [0] -> get_shadow_filename (f); }
+{   return root_ [get_xxx (filename)] -> get_shadow_filename (local_path_to_nix (filename)); }
 
-bool paths_root::add_virtual (nitpick& nits, const ::std::string& assignment)
+::boost::filesystem::path paths_root::get_export (const ::std::string& filename)
+{   return root_ [get_xxx (filename)] -> get_export_filename (local_path_to_nix (filename)); }
+
+bool paths_root::prep_xxx (nitpick& nits, const ::std::string& assignment, ::std::string& virt, ::boost::filesystem::path& p) const
 {   ::std::size_t len = assignment.length ();
     ::std::size_t sz = assignment.find ('=');
     if ((sz == ::std::string::npos) || (sz < 1) || (sz >= len - 1))
-        nits.pick (nit_bad_parameter, es_error, ec_init, quote (assignment), " is badly formed");
-    else
-    {   ::boost::filesystem::path p (nix_path_to_local (assignment.substr (sz + 1)));
+    {   nits.pick (nit_bad_parameter, es_error, ec_init, quote (assignment), " is badly formed");
+        return false; }
+    virt = assignment.substr (0, sz);
+    p = nix_path_to_local (assignment.substr (sz + 1));
+    return true; }
+
+bool paths_root::add_virtual (nitpick& nits, const ::std::string& assignment)
+{   ::boost::filesystem::path p;
+    ::std::string virt;
+    if (prep_xxx (nits, assignment, virt, p))
         if (! ::boost::filesystem::exists (p))
             nits.pick (nit_bad_path, es_error, ec_init, quote (p.string ()), " does not exist or cannot be accessed");
         else if (! ::boost::filesystem::is_directory (p))
             nits.pick (nit_bad_path, es_error, ec_init, quote (p.string ()), " exists but is not a directory");
         else
-        {   add_root (p, assignment.substr (0, sz));
-            return true; } }
+        {   add_root (p, virt);
+            return true; }
     return false; }
 
 bool paths_root::add_shadow (nitpick& nits, const ::std::string& assignment)
-{   ::std::size_t len = assignment.length ();
-    ::std::size_t sz = assignment.find ('=');
-    if ((sz == ::std::string::npos) || (sz < 1) || (sz >= len - 1))
-        nits.pick (nit_bad_parameter, es_error, ec_init, quote (assignment), " is badly formed");
-    else
-    {   bool ok = false;
-        ::std::string virt (assignment.substr (0, sz));
-        for (size_t n = 1; n < root_.size (); ++n)
+{   ::boost::filesystem::path p;
+    ::std::string virt;
+    if (prep_xxx (nits, assignment, virt, p))
+    {   for (size_t n = 1; n < root_.size (); ++n)
             if (root_.at (n) -> get_site_path () == virt)
-            {   ::boost::filesystem::path p (nix_path_to_local (virt));
-                if (! root_.at (n) -> shadow (nits, ::boost::filesystem::path (p.string ()))) return false;
-                ok = true; break; }
-        if (ok) return true;
+                return root_.at (n) -> shadow (nits, p);
+        nits.pick (nit_bad_parameter, es_error, ec_init, quote (virt), " is no virtual directory"); }
+    return false; }
+
+bool paths_root::add_export (nitpick& nits, const ::std::string& assignment)
+{   ::boost::filesystem::path p;
+    ::std::string virt;
+    if (prep_xxx (nits, assignment, virt, p))
+    {   for (size_t n = 1; n < root_.size (); ++n)
+            if (root_.at (n) -> get_site_path () == virt)
+                return root_.at (n) -> set_export (nits, p);
         nits.pick (nit_bad_parameter, es_error, ec_init, quote (virt), " is no virtual directory"); }
     return false; }
 
@@ -104,7 +123,7 @@ paths_root& paths_root::virtual_roots ()
 {   static paths_root virtuals;
     return virtuals; }
 
-bool make_shadow_directory (nitpick& nits, const ::boost::filesystem::path& p)
+bool make_xxx_directory (nitpick& nits, const ::boost::filesystem::path& p)
 {   if (::boost::filesystem::exists (p))
     {   if (! ::boost::filesystem::is_directory (p))
         {   nits.pick (nit_shadow, es_error, ec_init, quote (p.string ()), " exists but is not a directory");
@@ -114,3 +133,9 @@ bool make_shadow_directory (nitpick& nits, const ::boost::filesystem::path& p)
     else
     {   nits.pick (nit_shadow, es_error, ec_init, "cannot create ", quote (p.string ())); return false; }
     return true; }
+
+bool make_shadow_directory (nitpick& nits, const ::boost::filesystem::path& p)
+{   return make_xxx_directory (nits, p); }
+
+bool make_export_directory (nitpick& nits, const ::boost::filesystem::path& p)
+{   return make_xxx_directory (nits, p); }

@@ -60,6 +60,8 @@ PASS ../toast/microdata/basic/itemprop.html
 126 inserted_missing_closure
 127 inserted_missing_closure missing_close
 130 inserted_missing_closure
+161 not_schema_property unrecognised_value bad_itemprop
+162 not_schema_property
 
 PASS ../toast/microdata/basic/itemref.html
 27 missing_close

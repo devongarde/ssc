@@ -3,6 +3,12 @@ static site checker
 https://ssc.lu/
 (c) 2020 Dylan Harris
 
+0.0.75
+- added --microdata.root and --microdata.virtual for microdata exports
+- Ubuntu Server 20.10 amd64 build
+- default dedu cache now based on config file name
+- various betterments, bug fixes & optimisations
+
 0.0.74
 - schema.org 11.0 microdata
 - various bug fixes

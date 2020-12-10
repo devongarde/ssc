@@ -176,134 +176,142 @@ void options::process (int argc, char** argv)
         (VERSION ",V", "display version & copyright info, then exit")
         ;
     hidden.add_options ()
-        (GENERAL CLASS, "do not report unrecognised classes.")
-        (GENERAL WEBMENTION ",w", "process webmentions.")
-        (GENERAL TEST ",T", "machine readable output formatted for tests.")
-        (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "user name to supply when requested.")
-        (NITS WATCH, "debug nits (error reporting mechanism).")
-        (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "use this file to test header parsing code.")
-        (WMIN HOOK, ::boost::program_options::value < ::std::string > (), "process incoming " WEBMENTION ", in JSON format, in specified file.")
-        (WMIN STUB, ::boost::program_options::value < ::std::string > () -> default_value ("_" PROG), "mask for file containing " WEBMENTION " HTML snippet.")
-        (WMIN MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "start of template macro.")
-        (WMIN MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "start of template macro.")
-        (WMIN WRITE , ::boost::program_options::value < ::std::string > (), "when writing " WEBMENTION " includes, write them to this path (default: site.root).")
-        (WMIN MENTION, ::boost::program_options::value < vstr_t > () -> composing (), "a " WEBMENTION ", string must be source=url,target=url. May be repeated.")
-        (WMIN PATH, ::boost::program_options::value < ::std::string > () -> default_value (MENTION), "path for incoming web mention data files (note " GENERAL PATH ").") // not yet noted below
-        (WMIN TEMPLATE ",t", ::boost::program_options::value < vstr_t > () -> composing (), "HTML snippets for adding mentions (new, changed, deleted, unchanged, unknown). May be repeated.")
+        (GENERAL CLASS, "do not report unrecognised classes")
+        (GENERAL FILE ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "file for persistent data, requires -N (note " GENERAL PATH ")")
+        (GENERAL TEST ",T", "output format for automated tests")
+        (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "user name to supply when requested (for webmentions)")
+        (GENERAL WEBMENTION, "process webmentions (experimental)")
+        (NITS WATCH, "output debug nits, which you'll need to manage particular error messages")
+        (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "use this file to test header parsing code")
+        (WMIN HOOK, ::boost::program_options::value < ::std::string > (), "process incoming " WEBMENTION ", in JSON format, in specified file")
+        (WMIN STUB, ::boost::program_options::value < ::std::string > () -> default_value ("_" PROG), "mask for file containing " WEBMENTION " HTML snippet")
+        (WMIN MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "start of " WEBMENTION " template macro")
+        (WMIN MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "end of " WEBMENTION " template macro")
+        (WMIN WRITE , ::boost::program_options::value < ::std::string > (), "when writing " WEBMENTION " includes, write them to this path (default: site.root)")
+        (WMIN MENTION, ::boost::program_options::value < vstr_t > () -> composing (), "a " WEBMENTION ", string must be source=url,target=url; may be repeated")
+        (WMIN PATH, ::boost::program_options::value < ::std::string > () -> default_value (MENTION), "path for incoming web mention data files (note " GENERAL PATH ")") // not yet noted below
+        (WMIN TEMPLATE ",t", ::boost::program_options::value < vstr_t > () -> composing (), "HTML snippets for adding mentions (new, changed, deleted, unchanged, unknown); may be repeated")
         (WMOUT CLEAR ",C", "clear out all web mention data")
         (WMOUT NOTIFY ",N", "notify appropriate servers of web mention updates")
         (WMOUT RESET ",R", "reset web mention data")
-        (WMOUT SECRET, ::boost::program_options::value < ::std::string > (), WEBMENTION " secret.")
+        (WMOUT SECRET, ::boost::program_options::value < ::std::string > (), WEBMENTION " secret")
         ;
     line.add_options ()
-        (CONFIG ",f", ::boost::program_options::value < ::std::string > (), "load configuration from this file.")
-        (DEFCONF ",F", "load configuration from " CONFIGURATION ".")
+        (CONFIG ",f", ::boost::program_options::value < ::std::string > (), "load configuration from this file")
+        (DEFCONF ",F", "load configuration from " CONFIGURATION)
         ;
     primary.add_options ()
-        (GENERAL CSS_OPTION, "do NOT load css files.")
-        (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute. May be repeated.")
-        (GENERAL FILE ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "file for persistent data, requires -N (note " GENERAL PATH ").")
-        (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore attributes and content of specified element. May be repeated.")
-        (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "maximum file size to read, in megabytes (zero to set no limit).")
-        (GENERAL NOCHANGE ",n", "report what will do, but do not actually do it.")
-        (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "output file (default to the console).")
-        (GENERAL PATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "root directory for all " PROG " files.")
-        (GENERAL RDF, "check RDFa attributes.")
-        (GENERAL SLOB, "ignore slob HTML, such as forgotten closures.")
-        (GENERAL SSI ",I", "process simple Server Side Includes.")
-        (GENERAL VERBOSE ",v", ::boost::program_options::value < int > () -> default_value (static_cast <int> (default_output)), "output extra information.")
+        (GENERAL CSS_OPTION, "do NOT process .css files")
+        (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated")
+        (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore attributes and content of specified element; may be repeated")
+        (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "maximum file size to read, in megabytes (zero for no limit)")
+        (GENERAL NOCHANGE ",n", "report what will do, but do not do it")
+        (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "output file (default to the console)")
+        (GENERAL PATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "root directory for all " PROG " files")
+        (GENERAL RDF, "check RDFa attributes")
+        (GENERAL SLOB, "ignore slob HTML, such as forgotten closures")
+        (GENERAL SSI ",I", "process (simple) Server Side Includes")
+        (GENERAL VERBOSE ",v", ::boost::program_options::value < int > () -> default_value (static_cast <int> (default_output)), "output extra information")
 
-        (HTML TAGS, "presume HTML files with no DOCTYPE declaration are HTML Tags, not HTML 1.0.")
-        (HTML RFC1867, "Reject RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
-        (HTML RFC1942, "Reject RFC 1942 (tables) when processing HTML 2.0.")
-        (HTML RFC1980, "Reject RFC 1980 (client side image maps) when processing HTML 2.0.")
-        (HTML RFC2070, "Reject RFC 2070 (internationalisation) when processing HTML 2.0.")
-        (HTML VERSION, ::boost::program_options::value < ::std::string > (), "version of HTML presumed if no DOCTYPE (default: '1.0', note HTML 5 is year.month).")
+        (HTML TAGS, "presume HTML files with no DOCTYPE declaration are HTML Tags, not HTML 1.0")
+        (HTML RFC1867, "Reject RFC 1867 (INPUT=FILE) when processing HTML 2.0")
+        (HTML RFC1942, "Reject RFC 1942 (tables) when processing HTML 2.0")
+        (HTML RFC1980, "Reject RFC 1980 (client side image maps) when processing HTML 2.0")
+        (HTML RFC2070, "Reject RFC 2070 (internationalisation) when processing HTML 2.0")
+        (HTML VERSION, ::boost::program_options::value < ::std::string > (), "version of HTML presumed if no DOCTYPE (default: '1.0', note HTML 5 is year.month)")
 
-        (LINKS EXTERNAL ",e", "check external links (requires curl, sets " LINKS CHECK ").")
-        (LINKS FORWARD ",3", "report http forwarding errors, e.g. 301 and 308 (sets " LINKS EXTERNAL ").")
-        (LINKS CHECK ",l", "check links.")
-        (LINKS ONCE ",O", "report each broken external link once (sets " LINKS EXTERNAL ").")
-        (LINKS REVOKE ",r", "do not check whether https certificates have been revoked (sets " LINKS EXTERNAL ").")
-        (LINKS XLINK ",X", "check crosslinked ids (uses additional memory).")
+        (LINKS EXTERNAL ",e", "check external links (requires curl, sets " LINKS CHECK ")")
+        (LINKS FORWARD ",3", "report http forwarding errors, e.g. 301 and 308 (sets " LINKS EXTERNAL ")")
+        (LINKS CHECK ",l", "check internal links")
+        (LINKS ONCE ",O", "report each broken external link once (sets " LINKS EXTERNAL ")")
+        (LINKS REVOKE ",r", "do not check whether https certificates have been revoked (sets " LINKS EXTERNAL ")")
+        (LINKS XLINK ",X", "check crosslink ids")
 
-        (MF VERIFY ",M", "check microformats (see https://microformats.org/).")
-        (MF VERSION, ::boost::program_options::value < int > () -> default_value (3), "check this version of microformats (1, 2, or 3 for both).")
-        (MF EXPORT, "export microformat data (only verified data if " MF VERIFY " is set).")
+        (MF VERIFY ",M", "check microformats in class and rel attributes (see https://microformats.org/)")
+        (MF VERSION, ::boost::program_options::value < int > () -> default_value (3), "check this version of microformats (1, 2, or 3 for both)")
+        (MF EXPORT, "export microformat data (requires " MF VERIFY ")")
 
-        (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (0 for value implied by HTML version).")
+        (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (0 to determine by HTML version)")
 
-        (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands schema.org microdata).")
-        (MICRODATA VERSION, ::boost::program_options::value < int > (), "set default schema.org major version (default: 11).")
-        (MICRODATA MINOR, ::boost::program_options::value < int > (), "set default schema.org minor version (default: 0).")
-        (MICRODATA EXPORT, "export microformat data (only verified data if " MICRODATA MICRODATAARG " is set).")
+        (MICRODATA EXPORT, "export microformat data (only verified data if " MICRODATA MICRODATAARG " is set)")
+        (MICRODATA MINOR, ::boost::program_options::value < int > (), "set default schema.org minor version (default: 0)")
+        (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands schema.org microdata)")
+        (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "export root directory (requires " MICRODATA EXPORT ")")
+        (MICRODATA VERSION, ::boost::program_options::value < int > (), "set default schema.org major version (default: 11)")
+        (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "export virtual directory, syntax virtual=directory. Must correspond to " WEBSITE VIRTUAL)
 
-        (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a catastrophe. Use nid. May be repeated.")
-        (NITS CODES, "output nit codes.")
-        (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a comment. Use nid. May be repeated.")
-        (NITS DEBUG, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a debug message. Use nid. May be repeated.")
-        (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as an error. Use nid. May be repeated.")
-        (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as info. Use nid. May be repeated.")
-        (NITS NIDS, "output nit identifiers.")
-        (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "silence nit. Use nid. May be repeated.")
-        (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a warning. Use nid. May be repeated.")
+        (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a catastrophe; may be repeated")
+        (NITS CODES, "output nit codes")
+        (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a comment; may be repeated")
+        (NITS DEBUG, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a debug message; may be repeated")
+        (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as an error; may be repeated")
+        (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as info; may be repeated")
+        (NITS NIDS, "output nit identifiers (used to recategorise nits)")
+        (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "silence nit; may be repeated")
+        (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a warning; may be repeated")
 
         (SHADOW COMMENT, "do NOT squish comments on shadow pages")
 #ifdef NOLYNX
-        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non-HTML files: 0=no (default), 1=pages, 2/3/4=copy all, 5=copy+dedu, 6=rpt dups.")
+        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non-HTML files: 0=no (default), 1=pages, 2/3/4=copy all, 5=copy+deduplicate, 6=only report duplicates")
 #else // NOLYNX
-        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non-HTML files: 0=no (default), 1=pages, 2=hard link all, 3=soft link all, 4=copy all, 5=copy+dedu, 6=rpt dups.")
+        (SHADOW COPY, ::boost::program_options::value < int > (), "copy non-HTML files: 0=no (default), 1=pages, 2=hard link all, 3=soft link all, 4=copy all, 5=copy+deduplicate, 6=only report duplicates")
 #endif // NOLYNX
         (SHADOW FILE, ::boost::program_options::value < ::std::string > (), "where to persist deduplication data")
-        (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "shadow root directory.")
+        (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "shadow output root directory")
         (SHADOW SSI, "do NOT resolve SSIs on shadow pages when " GENERAL SSI " is set")
         (SHADOW SPACING, "do NOT merge spacing on shadow pages")
-        (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "shadow virtual directory, arg syntax virtual=shadow. Must correspond to " WEBSITE VIRTUAL)
+        (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "shadow virtual directory, syntax virtual=shadow; must correspond to " WEBSITE VIRTUAL)
 
-        (WEBSITE ROOT ",g", ::boost::program_options::value < ::std::string > (), "website root directory (default: current directory).")
-        (WEBSITE EXTENSION ",x", ::boost::program_options::value < vstr_t > () -> composing (), "check files with this extension (default html). May be repeated.")
-        (WEBSITE INDEX ",i", ::boost::program_options::value < ::std::string > (), "index file in directories (default: none).")
-        (WEBSITE SITE ",s", ::boost::program_options::value < vstr_t > () -> composing (), "domain name(s) for local site (default none). May be repeated.")
-        (WEBSITE VIRTUAL ",L", ::boost::program_options::value < vstr_t > () -> composing (), "define virtual directory, arg syntax virtual=physical. May be repeated.")
+        (WEBSITE ROOT ",g", ::boost::program_options::value < ::std::string > (), "website root directory (default: current directory)")
+        (WEBSITE EXTENSION ",x", ::boost::program_options::value < vstr_t > () -> composing (), "check files with this extension (default html); may be repeated")
+        (WEBSITE INDEX ",i", ::boost::program_options::value < ::std::string > (), "index file in directories (default: none)")
+        (WEBSITE SITE ",s", ::boost::program_options::value < vstr_t > () -> composing (), "domain name(s) for local site (default none); may be repeated")
+        (WEBSITE VIRTUAL ",L", ::boost::program_options::value < vstr_t > () -> composing (), "define virtual directory, arg syntax virtual=physical; may be repeated")
 
-        (STATS PAGE, "report statistics for each page.")
-        (STATS SUMMARY ",S", "report site statistics.")
+        (STATS PAGE, "report individual page statistics")
+        (STATS SUMMARY ",S", "report overall statistics")
 
-        (SVG VERSION, ::boost::program_options::value < ::std::string > (), "preferred version of SVG if version attribute missing (requires HTML 4 or greater).")
+        (SVG VERSION, ::boost::program_options::value < ::std::string > (), "presumed version of SVG if version attribute missing (requires HTML 4 or greater)")
 
-        (VALIDATION MINOR ",4", ::boost::program_options::value < int > (), "Validate HTML5 with this mnr version (e.g. 3 for HTML 5.3).")
-        (VALIDATION MICRODATAARG, "Validate HTML5 microdata")
+        (VALIDATION MINOR ",4", ::boost::program_options::value < int > (), "validate HTML 5 with this w3 minor version (e.g. 3 for HTML 5.3)")
+        (VALIDATION MICRODATAARG, "validate HTML5 microdata")
         	;
     valid.add_options ()
-        (VALIDATION CHARSET, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid charset.")
-        (VALIDATION CLASS, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid class.")
-        (VALIDATION COLOUR, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid colour.")
-        (VALIDATION CURRENCY, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid currency.")
-        (VALIDATION HTTPEQUIV, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid meta httpequiv.")
-        (VALIDATION LANG, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid language code (such as ma for marain).")
-        (VALIDATION METANAME, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid meta name.")
-        (VALIDATION MIMETYPE, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid mimetype.")
-        (VALIDATION REL, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid rel.")
-        (VALIDATION SGML, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid SGML schema identification.")
+        (VALIDATION CHARSET, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid charset; may be repeated")
+        (VALIDATION CLASS, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid class; may be repeated")
+        (VALIDATION COLOUR, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid colour; may be repeated")
+        (VALIDATION CURRENCY, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid currency; may be repeated")
+        (VALIDATION HTTPEQUIV, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid meta httpequiv; may be repeated")
+        (VALIDATION LANG, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid language code (such as ma for marain); may be repeated")
+        (VALIDATION METANAME, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid meta name; may be repeated")
+        (VALIDATION MIMETYPE, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid mimetype; may be repeated")
+        (VALIDATION REL, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid rel; may be repeated")
+        (VALIDATION SGML, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid SGML schema identification; may be repeated")
         ;
-
-    valid.add (context.validation());
+   valid.add (context.validation ());
 
     cmd.add (basic).add (primary).add (valid).add (line).add (hidden);
     config.add (primary).add (valid).add (hidden);
     aid.add (basic).add (line).add (primary);
+    ::std::string loaded;
     try
     {   ::boost::program_options::store (::boost::program_options::command_line_parser (argc, argv).options (cmd).positional (pos).run (), var_); }
+    catch (const ::boost::program_options::error& err)
+    {   loaded = "\n";
+        loaded += err.what ();
+        loaded += "\n" TYPE_HELP "\n";
+        title (loaded.c_str ());
+        return; }
     catch (...)
     {   title ("\nCommand line parameter error. " TYPE_HELP "\n");
         return; }
-    ::std::string loaded;
     if (var_.count (CONFIG) || var_.count (DEFCONF))
     {   ::boost::filesystem::path file (CONFIGURATION);
         if (var_.count (CONFIG)) file = var_ [CONFIG].as < ::std::string > ();
         if (var_.count (GENERAL TEST) == 0)
         {   loaded = "\nLoading configuration "; loaded += file.string () + " ...\n"; }
-        if (! ::boost::filesystem::exists (file))
+        if (::boost::filesystem::exists (file)) context.config (canonical (file));
+        else
         {   loaded += "Cannot find "; loaded += file.string () + "\n";
             title (loaded.c_str ()); return; }
         try
@@ -313,6 +321,13 @@ void options::process (int argc, char** argv)
 #else
         {   ::boost::program_options::store (::boost::program_options::parse_config_file (file.string ().c_str (), config, true), var_); }
 #endif
+        catch (const ::boost::program_options::error& err)
+        {   loaded += err.what ();
+            loaded += " in ";
+            loaded += file.string ();
+            loaded += "\n";
+            title (loaded.c_str ());
+            return; }
         catch (...)
         {   loaded += "Error in "; loaded += file.string () + "\n";
             title (loaded.c_str ()); return; } }
@@ -382,19 +397,6 @@ void options::contextualise ()
     {   int n = var_ [MATH VERSION].as < int > ();
         if ((n > 0) && (n < 5)) context.math_version (static_cast < e_mathversion > (n)); }
 
-    context.forwarded (var_.count (LINKS FORWARD));
-    context.revoke (var_.count (LINKS REVOKE));
-    context.md_export (var_.count (MICRODATA EXPORT));
-    context.mf_export (var_.count (MF EXPORT));
-    context.mf_verify (var_.count (MF VERIFY));
-    context.schema (var_.count (MICRODATA MICRODATAARG));
-    context.once (var_.count (LINKS ONCE));
-    context.external (var_.count (LINKS EXTERNAL));
-    context.links (var_.count (LINKS CHECK));
-    context.process_webmentions (var_.count (GENERAL WEBMENTION));
-    context.unknown_class (var_.count (GENERAL CLASS));
-    context.crosslinks (var_.count (LINKS XLINK));
-
     const long meg = 1024*1024;
 
     if (! var_.count (GENERAL MAXFILESIZE))
@@ -404,15 +406,30 @@ void options::contextualise ()
         if (max < 0 || (max > (LONG_MAX / meg))) max = DEFAULT_MAX_FILE_SIZE;
         context.max_file_size (max * meg); }
 
+    context.unknown_class (var_.count (GENERAL CLASS));
     if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
     if (var_.count (GENERAL IGNORED)) context.ignore (var_ [GENERAL IGNORED].as < vstr_t > ());
     if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
     if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose > (var_ [GENERAL VERBOSE].as < int > ()));
+    context.process_webmentions (var_.count (GENERAL WEBMENTION));
 
+    context.links (var_.count (LINKS CHECK));
+    context.external (var_.count (LINKS EXTERNAL));
+    context.forwarded (var_.count (LINKS FORWARD));
+    context.once (var_.count (LINKS ONCE));
+    context.revoke (var_.count (LINKS REVOKE));
+    context.crosslinks (var_.count (LINKS XLINK));
+
+    context.mf_export (var_.count (MF EXPORT));
+    context.mf_verify (var_.count (MF VERIFY));
     if (var_.count (MF VERSION)) context.mf_version (static_cast < unsigned char > (var_ [MF VERSION].as < int > ()));
 
-    if (var_.count (MICRODATA VERSION)) context.schema_major (static_cast < unsigned char > (var_ [MICRODATA VERSION].as < int > ()));
+    context.md_export (var_.count (MICRODATA EXPORT));
+    context.schema (var_.count (MICRODATA MICRODATAARG));
     if (var_.count (MICRODATA MINOR)) context.schema_minor (static_cast < unsigned char > (var_ [MICRODATA MINOR].as < int > ()));
+    if (var_.count (MICRODATA ROOT)) context.export_root (nix_path_to_local (var_ [MICRODATA ROOT].as < ::std::string > ()));
+    if (var_.count (MICRODATA VERSION)) context.schema_major (static_cast < unsigned char > (var_ [MICRODATA VERSION].as < int > ()));
+    if (var_.count (MICRODATA VIRTUAL)) context.exports (var_ [MICRODATA VIRTUAL].as < vstr_t > ());
 
     context.codes (var_.count (NITS CODES));
     context.nids (var_.count (NITS NIDS));
@@ -464,7 +481,7 @@ void options::contextualise ()
 #else // NOLYNX
     if (var_.count (SHADOW COPY)) context.copy (var_ [SHADOW COPY].as < int > ());
 #endif // NOLYNX
-    if (var_.count (SHADOW FILE)) context.shadow_persist (path_in_context (nix_path_to_local (var_ [SHADOW FILE].as < ::std::string > ())));
+    if (var_.count (SHADOW FILE)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FILE].as < ::std::string > ()));
     if (var_.count (SHADOW ROOT)) context.shadow (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
     context.shadow_space (var_.count (SHADOW SPACING));
     context.shadow_ssi (var_.count (SHADOW SSI));
@@ -576,6 +593,7 @@ void options::contextualise ()
     TEST_VAR (vectoreffect_2);
     TEST_VAR (xlinkshow);
     TEST_VAR (xmlns);
+#undef TEST_VAR
 
     if (context.write_path ().empty ()) context.write_path (context.root ()); }
 
@@ -641,10 +659,13 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (MF VERIFY)) res << MF VERIFY "\n";
     if (var_.count (MF VERSION)) res << MF VERSION ": " << var_ [MF VERSION].as < int > () << "\n";
 
-    if (var_.count (MICRODATA MICRODATAARG)) res << MICRODATA MICRODATAARG "\n";
     if (var_.count (MICRODATA EXPORT)) res << MICRODATA EXPORT "\n";
-    if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < int > () << "\n";
+    if (var_.count (MICRODATA MICRODATAARG)) res << MICRODATA MICRODATAARG "\n";
     if (var_.count (MICRODATA MINOR)) res << MICRODATA MINOR ": " << var_ [MICRODATA MINOR].as < int > () << "\n";
+    if (var_.count (MICRODATA ROOT)) res << MICRODATA ROOT ": " << var_ [MICRODATA ROOT].as < ::std::string > () << "\n";
+    if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < int > () << "\n";
+    if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < int > () << "\n";
+    if (var_.count (MICRODATA VIRTUAL)) { res << MICRODATA VIRTUAL ": "; pvs (res, var_ [MICRODATA VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT "\n";
     if (var_.count (SHADOW COPY)) res << SHADOW COPY ": " << var_ [SHADOW COPY].as < int > () << "\n";
@@ -667,6 +688,79 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (VALIDATION MIMETYPE)) { res << VALIDATION MIMETYPE ": "; pvs (res, var_ [VALIDATION METANAME].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION REL)) { res << VALIDATION REL ": "; pvs (res, var_ [VALIDATION REL].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION SGML)) { res << VALIDATION SGML ": "; pvs (res, var_ [VALIDATION SGML].as < vstr_t > ()); res << "\n"; }
+
+#define RPT_VAR(XX) if (var_.count (VALIDATION #XX)) { res << VALIDATION #XX ": "; pvs (res, var_ [VALIDATION #XX].as < vstr_t > ()); res << "\n"; }
+    RPT_VAR (action);
+    RPT_VAR (align3);
+    RPT_VAR (alignplus);
+    RPT_VAR (as);
+    RPT_VAR (autocapitalise);
+    RPT_VAR (autocomplete);
+    RPT_VAR (decalign);
+    RPT_VAR (citype);
+    RPT_VAR (cntype);
+    RPT_VAR (composite_operator);
+    RPT_VAR (dingbat);
+    RPT_VAR (dir);
+    RPT_VAR (display);
+    RPT_VAR (dominantbaseline);
+    RPT_VAR (enterkeyhint);
+    RPT_VAR (figalign);
+    RPT_VAR (halign);
+    RPT_VAR (inputmode);
+    RPT_VAR (inputplus);
+    RPT_VAR (inputtype);
+    RPT_VAR (inputtype3);
+    RPT_VAR (inputtype32);
+    RPT_VAR (inputtype4);
+    RPT_VAR (inputtype5);
+    RPT_VAR (kind);
+    RPT_VAR (linebreak);
+    RPT_VAR (listtype);
+    RPT_VAR (mah);
+    RPT_VAR (mathalign);
+    RPT_VAR (mathvariant);
+    RPT_VAR (matrixtype);
+    RPT_VAR (media);
+    RPT_VAR (mediafeature);
+    RPT_VAR (mediakeyword);
+    RPT_VAR (method);
+    RPT_VAR (microdata_domain);
+    RPT_VAR (namedspace);
+    RPT_VAR (namespace);
+    RPT_VAR (mathnotation);
+    RPT_VAR (paintkeyword);
+    RPT_VAR (plusstyle);
+    RPT_VAR (pointerevents);
+    RPT_VAR (print);
+    RPT_VAR (referrer);
+    RPT_VAR (renderingintent);
+    RPT_VAR (rules);
+    RPT_VAR (sandbox);
+    RPT_VAR (shape7);
+    RPT_VAR (shaperendering);
+    RPT_VAR (ssi);
+    RPT_VAR (ssi_comparison);
+    RPT_VAR (ssi_encoding);
+    RPT_VAR (ssi_env);
+    RPT_VAR (svg_align);
+    RPT_VAR (svg_fontstretch);
+    RPT_VAR (svg_fontstretch_ff);
+    RPT_VAR (svg_fontweight);
+    RPT_VAR (svg_fontweight_ff);
+    RPT_VAR (svg_mode);
+    RPT_VAR (svg_overflow);
+    RPT_VAR (svg_version);
+    RPT_VAR (tableframe);
+    RPT_VAR (textdecoration);
+    RPT_VAR (textrendering);
+    RPT_VAR (transform_anim);
+    RPT_VAR (transform_fn);
+    RPT_VAR (turbulence_type);
+    RPT_VAR (vectoreffect_2);
+    RPT_VAR (xlinkshow);
+    RPT_VAR (xmlns);
+#undef RPT_VAR
 
     if (var_.count (WEBSITE EXTENSION)) { res << WEBSITE EXTENSION ": "; pvs (res, var_ [WEBSITE EXTENSION].as < vstr_t > ()); res << "\n"; }
     if (var_.count (WEBSITE INDEX)) res << WEBSITE INDEX ": " << var_ [WEBSITE INDEX].as < ::std::string > () << "\n";

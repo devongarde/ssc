@@ -74,6 +74,7 @@
     <ClInclude Include="..\heater\parser\text.h" />
     <ClInclude Include="..\heater\parser\xhtml_xml.h" />
     <ClInclude Include="..\heater\schema\schema_hierarchy.h" />
+    <ClInclude Include="..\heater\schema\schema_name.h" />
     <ClInclude Include="..\heater\schema\schema_property.h" />
     <ClInclude Include="..\heater\schema\schema_structure.h" />
     <ClInclude Include="..\heater\schema\schema_type.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="..\sauce\parser\text.cpp" />
     <ClCompile Include="..\sauce\parser\xhtml_xml.cpp" />
     <ClCompile Include="..\sauce\schema\schema_hierarchy.cpp" />
+    <ClCompile Include="..\sauce\schema\schema_name.cpp" />
     <ClCompile Include="..\sauce\schema\schema_property.cpp" />
     <ClCompile Include="..\sauce\schema\schema_structure.cpp" />
     <ClCompile Include="..\sauce\schema\schema_type.cpp" />
@@ -528,6 +530,8 @@
     <None Include="..\toast\microdata\export\itemref.html.model" />
     <None Include="..\toast\microdata\export\md-ref.html" />
     <None Include="..\toast\microdata\export\md-ref.html.model" />
+    <None Include="..\toast\microdata\export\pre.bat" />
+    <None Include="..\toast\microdata\export\pre.sh" />
     <None Include="..\toast\microdata\schema-abc\abc.conf" />
     <None Include="..\toast\microdata\schema-abc\abc.spec" />
     <None Include="..\toast\microdata\schema-abc\administrativearea.html" />
@@ -1034,6 +1038,9 @@
     <Image Include="..\toast\shadow\copy\x.jpg" />
     <Image Include="..\toast\shadow\copy\y.jpg" />
     <Image Include="..\toast\shadow\copy\z.jpg" />
+    <Image Include="..\toast\shadow\deduover\a\favicon.ico" />
+    <Image Include="..\toast\shadow\deduover\b\favicon.ico" />
+    <Image Include="..\toast\shadow\deduover\c\favicon.ico" />
     <Image Include="..\toast\shadow\deduover\x.jpg" />
     <Image Include="..\toast\shadow\deduover\y.jpg" />
     <Image Include="..\toast\shadow\deduover\z.jpg" />

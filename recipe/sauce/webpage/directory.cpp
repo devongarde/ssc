@@ -120,6 +120,12 @@ void directory::internal_get_disk_path (const ::std::string& item, ::boost::file
     assert (mummy_ != nullptr);
     return mummy_ -> get_shadow_path () / name_; }
 
+::boost::filesystem::path directory::get_export_path () const
+{   if (root_.get () != nullptr)
+        return root_ -> get_export ();
+    assert (mummy_ != nullptr);
+    return mummy_ -> get_export_path () / name_; }
+
 void directory::internal_get_shadow_path (const ::std::string& item, ::boost::filesystem::path& res) const
 {   if (item.empty ()) { res = get_shadow_path (); return; }
     if (item.at (0) == '/')
@@ -137,14 +143,31 @@ void directory::internal_get_shadow_path (const ::std::string& item, ::boost::fi
     else res /= lhs;
     return; }
 
-::boost::filesystem::path directory::get_shadow_path (nitpick& nits, const ::std::string& item) const
+void directory::internal_get_export_path (const ::std::string& item, ::boost::filesystem::path& res) const
+{   if (item.empty ()) { res = get_export_path (); return; }
+    if (item.at (0) == '/')
+    {   if (mummy_ != nullptr) mummy_ -> internal_get_export_path (item, res);
+        else internal_get_export_path (item.substr (1), res);
+        return; }
+    ::std::string lhs, rhs;
+    if (root_.get () == nullptr) res /= name_;
+    else res = root_ -> get_disk_path ();
+    bool sep = separate_first (item, lhs, rhs, '/');
+    auto i = content_.find (lhs);
+    if (i == content_.end ()) res /= nix_path_to_local (item);
+    else if (i -> second != nullptr) i -> second -> internal_get_export_path (rhs, res);
+    else if (sep) res /= nix_path_to_local (item);
+    else res /= lhs;
+    return; }
+
+::boost::filesystem::path directory::get_export_path (nitpick& nits, const ::std::string& item) const
 {   ::boost::filesystem::path res;
-    internal_get_shadow_path (get_site_path (nits, item), res);
+    internal_get_export_path (get_site_path (nits, item), res);
     return res; }
 
-::boost::filesystem::path directory::get_shadow_path (nitpick& nits, const url& u) const
+::boost::filesystem::path directory::get_export_path (nitpick& nits, const url& u) const
 {   ::std::string p (join_site_paths (u.path (), u.filename ()));
-    return get_shadow_path (nits, p); }
+    return get_export_path (nits, p); }
 
 bool directory::scan (nitpick& nits, const ::std::string& site)
 {   assert (! offsite_);

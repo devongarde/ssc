@@ -5,12 +5,12 @@ https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public Licence as published by
-the Free Software Foundation, either version 3 of the Licence,  or
+the Free Software Foundation, either version 3 of the Licence, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public Licence for more details.
 
 You should have received a copy of the GNU General Public
@@ -19,10 +19,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "main/standard.h"
+#include "type/enum.h"
+#include "feedback/nitpick.h"
 
-#define PROG "ssc"
-#define TESTPROG "ssc-test"
-#define FULLNAME "Static Site Checker"
-#define WEBADDR "https://ssc.lu/"
-#define VERSION_STRING "0.0.75"
-#define COPYRIGHT "(c) 2020 Dylan Harris, https://dylanharris.org/"
+void schema_name_init (nitpick& nits);
+::std::string schema_property_name (const e_schema_property p);
+e_schema_property get_schema_property (const ::std::string& n);

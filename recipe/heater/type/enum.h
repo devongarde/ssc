@@ -1617,7 +1617,7 @@ typedef enum
     sp_dietfeatures, sp_differentialdiagnosis, sp_director, sp_disambiguatingdescription, sp_discount, sp_discountcode, sp_discountcurrency, sp_discusses, sp_discussionurl, sp_diseasepreventioninfo, sp_diseasespreadstatistics,
     sp_dissolutiondate, sp_distance, sp_distinguishingsign, sp_distribution, sp_diversitypolicy, sp_diversitystaffingreport, sp_documentation, sp_doesnotship, sp_domainincludes, sp_domiciledmortgage, sp_doortime, sp_dosageform,
     sp_doseschedule, sp_doseunit, sp_dosevalue, sp_downloadurl, sp_downpayment, sp_downvotecount, sp_drainsto, sp_drivewheelconfiguration, sp_dropofflocation, sp_dropofftime, sp_drug, sp_drugclass, sp_drugunit, sp_duns,
-    sp_duplicatetherapy, sp_duration, sp_durationofwarranty, sp_duringmedia, sp_dystopianhealthplannetworkid,
+    sp_duplicatetherapy, sp_duration, sp_durationofwarranty, sp_duringmedia,
 
     sp_earlyprepaymentpenalty, sp_editeidr, sp_editor, sp_educationalalignment, sp_educationalcredentialawarded, sp_educationalframework, sp_educationallevel, sp_educationalprogrammode, sp_educationalrole, sp_educationaluse,
     sp_educationcredentialawarded, sp_educationrequirements, sp_eduquestiontype, sp_elevation, sp_eligibilecustomertype, sp_eligibilitytoworkrequirement, sp_eligiblecustomertype, sp_eligibleduration, sp_eligiblequantity, sp_eligibleregion,

@@ -81,6 +81,7 @@ public:
     const ::std::string name () const { return name_; }
     const ::std::string get_site_path () const;
     const ::boost::filesystem::path get_disk_path () const;
+    const ::boost::filesystem::path get_export_path () const;
     void export_rel (const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type)
     {   mf_export_.rel (url, hreflang, media, rels, text, title, type); }
     void export_item (const ::std::string& wo, const ::std::string& was)

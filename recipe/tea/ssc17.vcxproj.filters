@@ -755,6 +755,9 @@
     <ClInclude Include="resource.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\schema\schema_name.h">
+      <Filter>Heater\schema</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1071,6 +1074,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\root.cpp">
       <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\schema\schema_name.cpp">
+      <Filter>Sauce\schema</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

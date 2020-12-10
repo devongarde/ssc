@@ -327,11 +327,10 @@ void write_crcs (nitpick& nits, const ::boost::filesystem::path& persist)
                             break; } } } } }
 
 void dedu (nitpick& nits)
-{   ::std::string s (context.shadow_persist ());
-    if (s.empty ()) s = "fileindex.asc";
-    ::boost::filesystem::path persist (s);
-    if (persist.is_relative ())
-        persist = ::boost::filesystem::path (context.path ()) / persist;
+{   ::boost::filesystem::path persist;
+    ::std::string s (context.shadow_persist ());
+    if (! s.empty ()) persist = s;
+    else persist = context.config ().replace_extension ("ndx");
     if (::boost::filesystem::exists (persist)) load_crcs (nits, persist);
     for (fileindex_t i = 0; i < vx.size (); ++i)
     {   index_t& x = vx.at (i);
