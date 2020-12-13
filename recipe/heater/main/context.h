@@ -56,7 +56,7 @@ class context_t
                     shadow_, shadow_persist_, test_header_, user_, webmention_, write_path_, export_root_;
     ::boost::filesystem::path config_;
     e_wm_status     wm_status_ = wm_undefined;
-    vstr_t          custom_elements_, extensions_, mentions_, site_, templates_, virtuals_, shadows_, exports_;
+    vstr_t          custom_elements_, exports_, extensions_, mentions_, shadow_ignore_, shadows_, site_, templates_, virtuals_;
     replies         replies_;
     hooks           hooks_;
     css_cache       css_;
@@ -136,6 +136,7 @@ public:
     const ::std::string server () const { return server_; }
     const ::std::string shadow () const { return shadow_; }
     bool shadow_comment () const { return shadow_comment_; }
+    const vstr_t shadow_ignore () const { return shadow_ignore_; }
     const ::std::string shadow_persist () const { return shadow_persist_; }
     bool shadow_ssi () const { return shadow_ssi_; }
     bool shadow_space () const { return shadow_space_; }
@@ -252,6 +253,7 @@ public:
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
     context_t& shadow (const ::std::string& s) { shadow_ = s; return *this; }
     context_t& shadow_comment (const bool b) { shadow_comment_ = b; return *this; }
+    context_t& shadow_ignore (const vstr_t& s) { shadow_ignore_ = s; return *this; }
     context_t& shadow_persist (const ::std::string& s) { shadow_persist_ = s; return *this; }
     context_t& shadow_ssi (const bool b) { shadow_ssi_ = b; return *this; }
     context_t& shadow_space (const bool b) { shadow_space_ = b; return *this; }

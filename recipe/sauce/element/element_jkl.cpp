@@ -106,10 +106,11 @@ void element::examine_link ()
     {   pick (nit_link_rel_off, ed_July2020, "4.2.4 The link element", es_error, ec_attribute, "<LINK > must have either REL or ITEMPROP, but not both");
         return; }
     if (! has_rel)
-    {   if (w3_minor_5 (node_.version ()) < 4)
-            pick (nit_link_rel_off, ed_50, "4.2.4 The link element", es_error, ec_attribute, "<LINK> must have REL");
-        else if (! has_itemprop)
-            pick (nit_link_rel_off, ed_July2020, "4.2.4 The link element", es_error, ec_attribute, "<LINK> must have either REL or ITEMPROP");
+    {   if (node_.version ().mjr () >= 5)
+            if (w3_minor_5 (node_.version ()) < 4)
+                pick (nit_link_rel_off, ed_50, "4.2.4 The link element", es_error, ec_attribute, "<LINK> must have REL");
+            else if (! has_itemprop)
+                pick (nit_link_rel_off, ed_July2020, "4.2.4 The link element", es_error, ec_attribute, "<LINK> must have either REL or ITEMPROP");
         return; }
     ::std::string content (a_.get_string (a_rel));
     if (content.empty ())

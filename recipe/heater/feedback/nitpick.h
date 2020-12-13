@@ -22,8 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nit.h"
 #include "utility/lexical.h"
 
-const char* doc_ref (const e_doc doc);
-
 class nitpick
 {   typedef ::std::vector < nit > vn_t;
     typedef ssc_map < e_nit, e_severity > mns_t;

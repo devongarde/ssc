@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>dedu c test page</title>
+<link href="/test.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>dedu c test page</h1>
+<p class="info doris warning">
+<img alt=c src="/a/favicon.ico">
+<img alt=a src="../a/favicon.ico">
+<img alt=b src="/a/favicon.ico">
+<img alt=c src="/a/favicon.ico">
+<img alt=x src="../x.jpg">
+<img alt=y src="/x.jpg">
+<img alt=z src="/x.jpg">
+<img alt=a src="/a/favicon.ico">
+<img alt=b src="/a/favicon.ico">
+<img alt=c src="/a/favicon.ico">
+<img alt=x src="/x.jpg">
+<img alt=y src="/x.jpg">
+<img alt=z src="/x.jpg">
+</p>
+</body>
+</html>

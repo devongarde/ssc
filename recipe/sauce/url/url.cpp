@@ -24,8 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url_protocol.h"
 #include "url/url_sanitise.h"
 #include "webpage/directory.h"
+#include "webpage/page.h"
 #include "utility/quote.h"
 #include "webpage/crosslink.h"
+#include "element/element.h"
 
 vstr_t url::standard_image_extensions_, url::standard_text_extensions_;
 
@@ -133,8 +135,7 @@ bool url::verify (nitpick& nits, const html_version& v, const directory& d, cons
     if (! has_file ()) fn = context.index ();
     else fn = filename ();
     if (! has_domain ())
-    {   pt = path ();
-        if (pt.empty ()) pt = "/"; }
+        pt = path ();
     else
     {   pt = "/";
         if (has_path ())
@@ -145,13 +146,20 @@ bool url::verify (nitpick& nits, const html_version& v, const directory& d, cons
     pt += fn;
     return sanitise (pt); }
 
-void url::shadow (::std::stringstream& ss, const html_version& v)
+void url::shadow (::std::stringstream& ss, const html_version& v, element* e)
 {   if ((context.copy () >= c_deduplicate) && is_local () && has_file ())
-    {   fileindex_t ndx = get_fileindex (get_filepath ());
+    {   ::std::string f (get_filepath ());
+        assert (! f.empty ());
+        if (f.at (0) != '/')
+        {   assert (e != nullptr);
+            const directory* const d = e -> get_page ().get_directory ();
+            assert (d != nullptr);
+            f = join_and_sanatise_site_paths (d -> get_site_path (), f); }
+        fileindex_t ndx = get_fileindex (f);
         if ((ndx != nullfileindex) && isdu (ndx))
         {   url u2 (*this);
             nitpick nits;
             u2.reset (nits, get_site_path (du (ndx)));
-            if (nits.worst () > es_error)
-            {   u2.shadow (ss, v); return; } } }
+            if (nits.worst () > es_error) // e.g. no error
+            {   u2.shadow (ss, v, e); return; } } }
     ss << original (); }

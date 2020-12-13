@@ -62,6 +62,7 @@ crc_t get_crc (nitpick& nits, const fileindex_t ndx);
 void set_crc (const fileindex_t ndx, const crc_t& crc);
 ::std::string fileindex_report ();
 ::std::string join_site_paths (const ::std::string& lhs, const ::std::string& rhs);
+::std::string join_and_sanatise_site_paths (const ::std::string& lhs, const ::std::string& rhs);
 void dedu (nitpick& nits);
 bool isdu (const fileindex_t ndx);
 fileindex_t du (const fileindex_t ndx);

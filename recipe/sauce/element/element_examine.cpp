@@ -379,8 +379,9 @@ void element::verify ()
     if (a_.has (a_list)) validate_input_id (); }
 
 void element::verify_document ()
-{   if ((node_.version ().mjr () < 5) && (page_.count (elem_title) == 0))
-        pick (nit_title_required, es_error, ec_element, "every document header must have <TITLE>");
+{   bool titled = (node_.version ().mjr () < 5) && (page_.count (elem_title) == 0);
+    if (titled)
+        pick (nit_title_required, ed_2, "5.2.1. Title", es_error, ec_element, "every document header must have <TITLE>");
     switch (node_.version ().mjr ())
     {   case 0 :
         case 1 :
@@ -421,11 +422,11 @@ void element::verify_document ()
             break;
         case 4 :
             if ((page_.count (elem_frameset) > 0) && (page_.count (elem_body) > 0))
-                pick (nit_frameset_body, es_error, ec_element, "either <FRAMESET> or <BODY>, not both");
+                pick (nit_frameset_body, ed_4, "16.2 Layout of frames", es_error, ec_element, "either <FRAMESET> or <BODY>, not both");
             break;
         default :
-            if (page_.count (elem_title) == 0)
-                pick (nit_title_required, es_warning, ec_element, "the document header has no <TITLE>");
+            if (! titled && (page_.count (elem_title) == 0))
+                pick (nit_title_required, ed_2, "5.2.1. Title", es_warning, ec_element, "the document header has no <TITLE>");
             if (! page_.charset_defined ())
                 pick (nit_charset_redefined, ed_50, "4.2.5.5 Specifying the document's character encoding", es_comment, ec_element, "Consider specifying a charset in the document header");
             break; }

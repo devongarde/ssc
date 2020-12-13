@@ -34,51 +34,6 @@ e_nit nit::lookup (const ::std::string& name)
     if (i == quick_nit.cend ()) return nit_off;
     return i -> second; }
 
-::std::string doc_title (const e_doc doc)
-{   switch (doc)
-    {   case ed_mishmash : return "(no reference)";
-        case ed_imaginary : return "Invalid reference";
-        case ed_dict: return "Dictionary";
-        case ed_tags : return "HTML Tags";
-        case ed_plus : return "HTML Plus";
-        case ed_1 : return "HTML 1.0";
-        case ed_2 : return "HTML 2.0";
-        case ed_3 : return "HTML 3.0";
-        case ed_32 : return "HTML 3.2";
-        case ed_4 : return "HTML 4.0";
-        case ed_41 : return "HTML 4.01";
-        case ed_x1 : return "XHTML 1.0";
-        case ed_x11 : return "XHTML 1.1";
-        case ed_x2 : return "XHTML 2.0";
-        case ed_50 : return "HTML 5.0";
-        case ed_51 : return "HTML 5.1";
-        case ed_52 : return "HTML 5.2";
-        case ed_53 : return "HTML 5.3";
-        case ed_math_1 : return "MathML 1.01";
-        case ed_math_2 : return "MathML 2 2nd Ed.";
-        case ed_math_3 : return "MathML 3 2nd Ed.";
-        case ed_math_4 : return "MathML 4";
-        case ed_rdf : return "RDFa";
-        case ed_rfc_1867 : return "RFC 1867";
-        case ed_rfc_1980 : return "RGC 1980";
-        case ed_rfc_3966 : return "RFC 3966";
-        case ed_svg_1_0 : return "SVG 1.0";
-        case ed_svg_1_1 : return "SVG 1.1";
-        case ed_svg_1_2_tiny : return "SVG 1.2 Tiny";
-        case ed_svg_1_2_full : return "SVG 1.2 Full";
-        case ed_svg_2_0 : return "SVG 2.0";
-        case ed_w3 : return "World Wide Web Consortium";
-        case ed_apache : return "Apache";
-        case ed_May2020 : return "HTML 5, WhatWG (May 2020)";
-        case ed_July2020 : return "HTML 5, WhatWG (July 2020)";
-        case ed_mozilla : return "mozilla.org (May 2020)";
-        case ed_microdata : return "WhatWG Microdata";
-        case ed_microformats : return "microformats.org (May 2020)";
-        case ed_ariaAug2020 : return "Aria (August 2020)";
-        case ed_so_11 : return "schema.org 11.0";
-        case ed_mql : return "Media Queries"; }
-    return "Unknown reference"; }
-
 nit::nit () : code_ (nit_free), severity_ (es_undefined), category_ (ec_undefined), doc_ (ed_mishmash), ref_ (nullptr)
 {   if (context.nits ()) context.out () << "adding empty nit\n"; }
 
@@ -154,11 +109,8 @@ bool ignore_this_slob_stuff (const e_nit code)
                             default : res << "     "; break; }
                     res << msg_;
                     if (doc_ != ed_mishmash)
-                    {   res << " [" << doc_title (doc_);
-                        if (! ref_.empty ())
-                        {   res << ", ";
-                            res << ref_; }
-                        res << "]"; }
+                        if (ref_.empty ()) res << " [" << doc_ref (doc_) << "]";
+                        else res << " [" << doc_title (doc_) << ", "<< ref_ << "]";
                     if (context.nids ())
                     {   timmap::const_iterator i = quick_tim.find (code_);
                         res << " (" << nitcode (code_, severity_);
@@ -166,3 +118,93 @@ bool ignore_this_slob_stuff (const e_nit code)
                         res << ")"; }
                     res << "\n"; } }
     return res.str (); }
+
+::std::string doc_title (const e_doc doc)
+{   switch (doc)
+    {   case ed_mishmash : return "(no reference)";
+        case ed_imaginary : return "(invalid)";
+        case ed_dict: return "Dictionary";
+        case ed_tags : return "HTML Tags";
+        case ed_plus : return "HTML Plus";
+        case ed_1 : return "HTML 1.0";
+        case ed_2 : return "HTML 2.0";
+        case ed_3 : return "HTML 3.0";
+        case ed_32 : return "HTML 3.2";
+        case ed_4 : return "HTML 4.0";
+        case ed_41 : return "HTML 4.01";
+        case ed_x1 : return "XHTML 1.0";
+        case ed_x11 : return "XHTML 1.1";
+        case ed_x2 : return "XHTML 2.0";
+        case ed_50 : return "HTML 5.0";
+        case ed_51 : return "HTML 5.1";
+        case ed_52 : return "HTML 5.2";
+        case ed_53 : return "HTML 5.3";
+        case ed_math_1 : return "MathML 1.01";
+        case ed_math_2 : return "MathML 2 2nd Ed.";
+        case ed_math_3 : return "MathML 3 2nd Ed.";
+        case ed_math_4 : return "MathML 4";
+        case ed_rdf : return "RDFa";
+        case ed_rfc_1867 : return "RFC 1867";
+        case ed_rfc_1980 : return "RGC 1980";
+        case ed_rfc_3966 : return "RFC 3966";
+        case ed_svg_1_0 : return "SVG 1.0";
+        case ed_svg_1_1 : return "SVG 1.1";
+        case ed_svg_1_2_tiny : return "SVG 1.2 Tiny";
+        case ed_svg_1_2_full : return "SVG 1.2 Full";
+        case ed_svg_2_0 : return "SVG 2.0";
+        case ed_w3 : return "World Wide Web Consortium";
+        case ed_apache : return "Apache";
+        case ed_May2020 : return "HTML 5 (May 2020)";
+        case ed_July2020 : return "HTML 5 (July 2020)";
+        case ed_mozilla : return "mozilla.org (May 2020)";
+        case ed_microdata : return "WhatWG Microdata";
+        case ed_microformats : return "microformats.org (May 2020)";
+        case ed_ariaAug2020 : return "Aria (August 2020)";
+        case ed_so_11 : return "schema.org 11.0";
+        case ed_mql : return "Media Queries"; }
+    return "Unknown reference"; }
+
+::std::string doc_ref (const e_doc doc)
+{   switch (doc)
+    {   case ed_mishmash : return "(no reference)";
+        case ed_imaginary : return "(invalid reference)";
+        case ed_dict : return "A Dictionary of the English Language, Apr 1755";
+        case ed_tags : return "HTML Tags, 1991, informal";
+        case ed_plus : return "HTML Plus, Nov 1993, draft";
+        case ed_1 : return "HTML 1.0, Jun 1993, draft";
+        case ed_2 : return "HTML 2.0, Nov 1995, RFC 1866";
+        case ed_3 : return "HTML 3.0, Mar 1995, draft";
+        case ed_32 : return "HTML 3.2, Jan 1997";
+        case ed_4 : return "HTML 4.0, Apr 1998";
+        case ed_41 : return "HTML 4.01, Dec 1999";
+        case ed_x1 : return "XHTML 1.0, Aug 2002";
+        case ed_x11 : return "XHTML 1.1, Nov 2010";
+        case ed_x2 : return "XHTML 2.0, Dec 2010";
+        case ed_50 : return "HTML 5.0 (W3), Oct 2014";
+        case ed_51 : return "HTML 5.1 (W3), Nov 2016";
+        case ed_52 : return "HTML 5.2 (W3), Dec 2017";
+        case ed_53 : return "HTML 5.3 (W3), Oct 2018, draft";
+        case ed_rdf : return "RDFa Core 1.1 - Third Edition";
+        case ed_math_1 : return "MathML 1.01";
+        case ed_math_2 : return "MathML 2.0 - Second Edition";
+        case ed_math_3 : return "MathML 3.0 - Second Edition";
+        case ed_math_4 : return "MathML 4.0, draft, January 2019";
+        case ed_rfc_1867 : return "RFC 1867, Form-based File Upload in HTML";
+        case ed_rfc_1980 : return "RFC 1980, Client-Side Image Maps";
+        case ed_rfc_3966 : return "RFC 3966, The tel URI for Telephone Numbers";
+        case ed_svg_1_0 : return "Scalable Vector Graphics (SVG) Specification 1.0";
+        case ed_svg_1_1 : return "Scalable Vector Graphics (SVG) 1.1, Second Edition";
+        case ed_svg_1_2_tiny : return "Scalable Vector Graphics (SVG) Tiny 1.2 Specification";
+        case ed_svg_1_2_full : return "Scalable Vector Graphics (SVG) Full 1.2, draft, May 2004";
+        case ed_svg_2_0 : return "Scalable Vector Graphics (SVG) 2 W3C Candidate Recommendation";
+        case ed_w3 : return "The World Wide Web Consortium";
+        case ed_mql : return "Media Queries, W3C recommendation, June 2012";
+        case ed_ariaAug2020 : return "WhatWG Aria requirements, draft, August 2020";
+        case ed_apache : return "Apache 2.4 mod_include, 2020";
+        case ed_May2020 : return "HTML 5 living standard, WhatWG, May 2020";
+        case ed_July2020 : return "HTML 5 living standard, WhatWG, July 2020";
+        case ed_so_11 : return "schema.org 11.0";
+        case ed_mozilla : return "moz://a, May 2020";
+        case ed_microdata : return "HTML 5 living standard, WhatWG, July 2020";
+        case ed_microformats : return "Microformats (microformats.org), May 2020"; }
+    return "unknown reference"; }

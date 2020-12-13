@@ -5,3 +5,8 @@ PASS ../toast/shadow/deduover/index.html
 
 shadow
 0 502 502 502 502
+
+CLASS
+doris 1
+info 1
+warning 1

@@ -27,7 +27,7 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
 public:
     typedef true_type has_int_type;
     ::std::string get_string () const;
-    void shadow (::std::stringstream& ss, const html_version& )
+    void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     void swap (four_value& t) NOEXCEPT { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }

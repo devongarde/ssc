@@ -57,7 +57,7 @@ struct attribute_base
     virtual ::std::size_t type () const { return 0; }
     virtual vurl_t get_urls () const { return vurl_t (); }
     virtual int get_int () const { return 0; }
-    virtual void shadow (::std::stringstream& , const html_version& ) { }
+    virtual void shadow (::std::stringstream& , const html_version& , element* ) { }
     virtual ::std::string report () const { return ::std::string (); } };
 
 template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public attribute_base, public typed_value < e_attribute, TYPE, IDENTITY >
@@ -135,10 +135,10 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     typename typed_value < e_attribute, TYPE, IDENTITY > :: value_type get () const { return typed_value < e_attribute, TYPE, IDENTITY > :: get (); }
     bool has_value (const typename typed_value < e_attribute, TYPE, IDENTITY > :: value_type t) const { return typed_value < e_attribute, TYPE, IDENTITY > :: has_value (t); }
     virtual int get_int () const { return typed_value < e_attribute, TYPE, IDENTITY > :: get_int (); }
-    virtual void shadow (::std::stringstream& ss, const html_version& v)
+    virtual void shadow (::std::stringstream& ss, const html_version& v, element* e)
     {   if (typed_value < e_attribute, TYPE, IDENTITY > :: unknown () || typed_value < e_attribute, TYPE, IDENTITY > :: invalid ()) return;
         ss << " " << name ();
-        typed_value < e_attribute, TYPE, IDENTITY > :: shadow (ss, v); }
+        typed_value < e_attribute, TYPE, IDENTITY > :: shadow (ss, v, e); }
 
     virtual ::std::string report () const
     {   return typed_value < e_attribute, TYPE, IDENTITY > :: report (name ()); } };

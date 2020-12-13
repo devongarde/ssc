@@ -260,6 +260,7 @@ public:
     vit_t own_itemtype () const;
     ::std::string get_microdata_value () const;
     void shadow (::std::stringstream& ss, const html_version& v);
+    const page& get_page () const { return page_; }
     ::std::string report (); };
 
 template < class PROPERTY > void element::note_reply ()

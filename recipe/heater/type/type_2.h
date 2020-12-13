@@ -37,7 +37,7 @@ public:
     {   if (! type_base < base_type, TYPE > :: unknown ())
             if (true_) return ON::sz (); else return OFF::sz ();
         return ::std::string (); }
-    void shadow (::std::stringstream& ss, const html_version& )
+    void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string t (trim_the_lot_off (s));

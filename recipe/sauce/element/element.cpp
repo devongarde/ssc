@@ -201,7 +201,7 @@ void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& w
             was_closure = node_.is_closure ();
             if (was_closure) ss << "/";
             ss << node_.id ().name ();
-            a_.shadow (ss, v);
+            a_.shadow (ss, v, this);
             if (node_.id ().is_closed (v) && v.xhtml ()) ss << "/";
             ss << ">";
             was_nl = false;

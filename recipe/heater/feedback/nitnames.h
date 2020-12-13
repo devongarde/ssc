@@ -534,6 +534,9 @@ nitname nitnames [] =
     { nit_shadow_failed, "shadow_failed" },
     { nit_create_folder, "create_folder" },
     { nit_internal_file_error, "internal_file_error" },
+    { nit_shadow_ignore, "shadow_ignore" },
+    { nit_shadow_link, "shadow_link" },
+    { nit_shadow_copy, "shadow_copy" },
 
     { nit_off, "" } };
 

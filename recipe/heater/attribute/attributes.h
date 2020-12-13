@@ -95,5 +95,5 @@ public:
     void verify_attributes (nitpick& nits, const html_version& v, attribute_bitset& state);
     void mark (page& p, const e_attribute a);
     void mark (page& p);
-    void shadow (::std::stringstream& ss, const html_version& v);
+    void shadow (::std::stringstream& ss, const html_version& v, element* e);
     ::std::string report () const; };

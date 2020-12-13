@@ -403,6 +403,9 @@ bool directory::shadow_folder (nitpick& nits)
 bool directory::shadow_file (nitpick& nits, const ::std::string& name)
 {   assert (context.shadow_files ());
     ::boost::filesystem::path original (get_disk_path () / name);
+    if (contains (context.shadow_ignore (), original.extension ().string ()))
+    {   nits.pick (nit_shadow_failed, es_debug, ec_shadow, "not shadowing ", original);
+        return true;  }
     ::boost::filesystem::path imitation (get_shadow_path () / name);
     e_copy todo = context.copy ();
     assert (todo > c_none);
@@ -453,11 +456,20 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name)
     {   switch (todo)
         {   case c_none :
             case c_html :
-            case c_rpt : assert (false); break;
-            case c_hard : ::boost::filesystem::create_hard_link (original, imitation); break;
-            case c_soft : ::boost::filesystem::create_symlink (original, imitation); break;
-            case c_copy : ::boost::filesystem::copy_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists); break;
-            case c_deduplicate : if (! isdu (ndx)) ::boost::filesystem::copy_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists); } }
+            case c_rpt :        assert (false); break;
+            case c_hard :       ::boost::filesystem::create_hard_link (original, imitation);
+                                nits.pick (nit_shadow_link, es_debug, ec_shadow, "hard linked ", original, " and ", imitation);
+                                break;
+            case c_soft :       ::boost::filesystem::create_symlink (original, imitation);
+                                nits.pick (nit_shadow_link, es_debug, ec_shadow, "soft linked ", original, " and ", imitation);
+                                break;
+            case c_copy :       ::boost::filesystem::copy_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists);
+                                nits.pick (nit_shadow_copy, es_debug, ec_shadow, "copied ", original, " to ", imitation);
+                                break;
+            case c_deduplicate :if (isdu (ndx)) break;
+                                ::boost::filesystem::copy_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists);
+                                nits.pick (nit_shadow_copy, es_debug, ec_shadow, "copied ", original, " to ", imitation);
+                                break; } }
     catch (::boost::filesystem::filesystem_error& ex)
     {   nits.pick (nit_shadow_failed, es_error, ec_shadow, ex.what (), " when shadowing ", original.string (), " to ", imitation.string ());
         return false; }

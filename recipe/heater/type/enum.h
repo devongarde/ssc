@@ -1324,6 +1324,7 @@ typedef enum
     nit_annotation, nit_eof_in_annotation, nit_prefix_odd, nit_prefix_format, nit_rdf_redefine, nit_rdf_confusion, nit_rdf_protocol,
     nit_math_href, nit_math_empty, nit_mglyph_alt_src, nit_dir_rtl_ltr, nit_bad_linebreak, nit_non_standard_value, nit_mscarries_last,
     nit_bad_bind, nit_bad_share, nit_shadow, nit_out_of_memory, nit_duplicate, nit_shadow_failed, nit_create_folder, nit_internal_file_error,
+    nit_shadow_ignore, nit_shadow_link, nit_shadow_copy,
 
     nit_context,
 

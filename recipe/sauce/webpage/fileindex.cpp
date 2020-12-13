@@ -255,6 +255,31 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
 ::std::string join_site_paths (const ::std::string& lhs, const ::std::string& rhs)
 {   return ::boost::replace_all_copy (inner_join_site_paths (lhs, rhs), "//", "/"); }
 
+::std::string::size_type crap_find_last_of_that_works (const ::std::string& s, const ::std::string& ss, const ::std::string::size_type pos = ::std::string::npos)
+    // I don't understand why some systems' find_last_of returns 0 when it fails to find "/.." ; it should return npos.
+{   ::std::string::size_type smax = pos;
+    if (smax == ::std::string::npos) smax = s.length ();
+    ::std::string::size_type ssmax = ss.length ();
+    if (smax >= ssmax)
+    {   smax -= ssmax;
+        ++smax;
+        while (smax > 0)
+            if (s.at (--smax) == ss.at (0))
+                if (s.substr (smax, ssmax) == ss) return smax; }
+    return ::std::string::npos; }
+
+::std::string join_and_sanatise_site_paths (const ::std::string& lhs, const ::std::string& rhs)
+{   ::std::string res = join_site_paths (lhs, rhs);
+    ::boost::replace_all (res, "/./", "/");
+    int paranoia = 0;
+    for (::std::string::size_type pos = crap_find_last_of_that_works (res, "/.."); pos != ::std::string::npos; pos = crap_find_last_of_that_works (res, "/.."))
+    {   if (pos == 0) break;
+        ::std::string::size_type prepos = res.substr (0, pos).find_last_of ('/');
+        if (prepos == ::std::string::npos) res = res.substr (pos);
+        else res = res.substr (0, prepos) + res.substr (pos + 3);
+        if (++paranoia == 10) break; }
+    return res; }
+
 void load_crcs (nitpick& nits, const ::boost::filesystem::path& persist)
 {   if (! ::boost::filesystem::exists (persist)) return;
     const int max = 4096;

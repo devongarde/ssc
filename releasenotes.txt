@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020 Dylan Harris
 
+0.0.76
+- added --shadow.ignore to specify extensions of files to ignore when shadowing
+- various bug fixes
+
 0.0.75
 - added --microdata.root and --microdata.virtual for microdata exports
 - Ubuntu Server 20.10 amd64 build

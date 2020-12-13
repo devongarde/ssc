@@ -5,7 +5,7 @@ PASS ../toast/SVG/1.1/bad.html
 
 PASS ../toast/SVG/1.1/desc.html
 1 xhtml_1_0
-3 inserted_missing_parent missing_close inserted_missing_parent missing_close svg_version
+3 svg_version
 
 PASS ../toast/SVG/1.1/dubious.html
 2 naughty_lang
@@ -14,17 +14,17 @@ PASS ../toast/SVG/1.1/dubious.html
 PASS ../toast/SVG/1.1/example-1.xhtml
 0 title_required
 1 xhtml_1_0
-4 inserted_missing_parent missing_close inserted_missing_parent missing_close xhtml_attribute_lc svg_version
+4 xhtml_attribute_lc svg_version
 
 PASS ../toast/SVG/1.1/example-2.xhtml
 0 title_required
 1 xhtml_1_0
-4 inserted_missing_parent missing_close inserted_missing_parent missing_close xhtml_attribute_lc svg_version
+4 xhtml_attribute_lc svg_version
 6 xhtml_attribute_lc xhtml_attribute_lc xhtml_attribute_lc xhtml_attribute_lc xhtml_attribute_lc xhtml_attribute_lc unrecognised_value
 
 PASS ../toast/SVG/1.1/example-3.xhtml
 1 xhtml_1_0
-4 inserted_missing_parent missing_close inserted_missing_parent missing_close xhtml_attribute_lc svg_version
+4 xhtml_attribute_lc svg_version
 13 use_double_quote_code
 14 xhtml_attribute_lc
 22 xhtml_attribute_lc
@@ -351,7 +351,7 @@ PASS ../toast/SVG/1.1/svg11.html
 
 PASS ../toast/SVG/1.1/svg11.xhtml
 1 xhtml_1_0
-4 inserted_missing_parent inserted_missing_parent svg_version
+4 svg_version
 15 svg_version
 27 xhtml_attribute_lc
 32 svg_version
