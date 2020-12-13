@@ -51,6 +51,13 @@ template < typename TYPE, e_type E > struct enum_vec_base : public type_base < T
     bool has_value (const base_type& b) const
     {   if (! type_base < TYPE, E > :: good ()) return false;
         return (value_.find (b) != vec_t::npos); }
+    void shadow (::std::stringstream& ss, const html_version& , element* )
+    {   ss << "=\""; bool first = true;
+        for (auto e : value_)
+        {   if (! first) ss << ' ';
+            first = false;
+            ss << e.get_string (); }
+        ss << '"'; }
     vec_t get () const { return value_; } };
 
 template < typename TYPE, e_type E > enum_vec_base < TYPE, E > :: enum_vec_base (const html_version& v, const ::std::string& s)
@@ -98,15 +105,28 @@ template < e_type E, typename ENUM > struct enum_vec : public enum_vec_base < EN
     {   ::std::string res;
         for (auto e : enum_vec_base < ENUM, E > :: value_)
         {   if (! res.empty ()) res += " ";
-            res += e.name (); }
+            if (e.good ())
+            {   ::std::string s (e.get_string ());
+                if (s.empty ()) s = e.original ();
+                res += s; } }
         return res; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& ss);
-    void shadow (::std::stringstream& ss, const html_version& )
-    {   ss << "=\"" << get_string () << '"'; }
     ::std::string name () const
     {   return get_string (); }
     static ::std::string name (const ENUM e)
     {   return symbol < ENUM > :: name (e); }
+    void shadow (::std::stringstream& ss, const html_version& , element* )
+    {   bool bitten = false;
+        ss << "=\"";
+        for (auto e : enum_vec_base < ENUM, E > :: value_)
+            if (! e.empty ())
+            {   ::std::string s (e.get_string ());
+                if (s.empty ()) s = e.original ();
+                if (! s.empty ())
+                {   if (bitten) ss << " ";
+                    ss << s;
+                    bitten = true; } }
+        ss << "\""; }
     static ::std::size_t value_count ()
     {   return symbol < ENUM > :: value_count (); } };
 

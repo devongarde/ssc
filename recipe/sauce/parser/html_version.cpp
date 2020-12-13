@@ -177,6 +177,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
     bool found_unknown = false;
     bool sq_bra_ket = false;
     ::std::string::size_type pos = doctype_len;
+    ::std::string wtf;
     vstr_t keywords = split_quoted_by_space (trim_the_lot_off (content.substr (pos)));
     if (keywords.empty ())
     {   nits.pick (nit_html_unrecognised, es_error, ec_parser, "Document type not specified. This is not an HTML file. Abandoning verification");
@@ -193,7 +194,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
             e_sgml d = symbol < e_sgml > :: find (html_0, s); // crude way to handle case
             if (d == doc_unknown) d = symbol < e_sgml > :: find (html_0, ::boost::algorithm::to_lower_copy (s));
             switch (d)
-            {   case doc_unknown : found_unknown = true; break;
+            {   case doc_unknown : found_unknown = true; wtf = s; break;
                 case doc_html : found_html = true; break;
                 case doc_public: found_public = true; break;
                 case doc_system: found_system = true; break;
@@ -325,7 +326,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
     if (found_html)
     {   if (unknown ())
         {   if (found_unknown)
-            {   nits.pick (nit_html_unknown_sgml, es_warning, ec_parser, "The HTML declaration in <!DOCTYPE ...> contains unrecognised content. Abandoning verification");
+            {   nits.pick (nit_html_unknown_sgml, es_warning, ec_parser, "The HTML declaration in <!DOCTYPE ...> contains unrecognised content (", quote (wtf), "). Abandoning verification");
                 return false; }
             ::std::string ver ("HTML 5.");
             ver += static_cast < char > ('0' + context.html_minor ());
@@ -350,7 +351,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 if ((mjr_ > 1) || ((mjr_ == 1) && (mnr_ == 1)))
                     nits.pick (nit_public_missing, es_info, ec_parser, "Either PUBLIC or SYSTEM expected");
             if (found_unknown) if (context.tell (e_warning))
-                nits.pick (nit_unexpected_doctype_content, es_warning, ec_parser, "Ignoring unexpected content found in <!DOCTYPE>"); }
+                nits.pick (nit_unexpected_doctype_content, es_warning, ec_parser, "Ignoring unexpected content (", quote (wtf), ") found in <!DOCTYPE>"); }
         return true; }
     nits.pick (nit_doctype_incomprehensible, es_catastrophic, ec_parser, PROG " does not understand the <!DOCTYPE>. Is HTML missing? Abandoning verification");
     return false; }

@@ -1,12 +1,13 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.75
+version 0.0.76
 https://ssc.lu/
 
 
 
 (c) 2020 dylan harris
 see LICENCE.txt for copyright & licence notice
+see W3-LICENCE.txt for additional copyright & licence information
 
 
 
@@ -57,7 +58,7 @@ analyse website based in directory
 
 To build & run:
 1. Set the environment variable SSCPATH to point to the ssc root directory (the one containing recipe)
-2. If need be download, build and install boost 1.71 or better (perhaps from boost.org)
+2. If need be download, build and install boost 1.67 or better (perhaps from boost.org)
 3. Set the environment variable BOOST to point to the BOOST home directory
 4. -EITHER- build with CMake 3.11 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
 5. -OR- build with recipe\tea\ssc201?.sln in Visual Studios 2015/2017/2019 under Windows
@@ -81,6 +82,7 @@ usage.txt        how to use ssc
 releasenotes.txt release notes for the current version of ssc
 LICENCE.txt      ssc licence information
 LICENSE.txt      formal GPL 3 licence
+more licences    licences for content copied from elsewhere 
 
 
 

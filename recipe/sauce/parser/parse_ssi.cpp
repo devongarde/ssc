@@ -399,14 +399,17 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, const dir
 
 void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, const ::std::string::const_iterator i, ::std::string::const_iterator e, bool& warned)
 {   if (i >= e - 1) return;
+    if (e - b <= 5) return;
     ::std::string msg;
     e_severity severity = es_error;
     switch (*i)
-    {   case '<' :  if ((e - b > 5) && (e - i > 5) && (::std::string (i, i+5) == "<!--#"))
-                        msg = "one SSID element starts inside another";
+    {   case '<' :  if ((e - i <= 6) || (::std::string (i, i+5) != "<!--#")) return;
+                    if (*(i-1) == '>') return;
+                    msg = "one SSID element starts inside another";
                     break;
-        case '-' :  if ((e - i > 3) && (::std::string (i, i+3) == "-->"))
-                    {   msg = "space missing before attempted end of SSI"; severity = es_warning; }
+        case '-' :  if ((e - i <= 5) || (::std::string (i, i+3) != "-->")) return;
+                    if (::std::iswspace (*(i-1))) return;
+                    msg = "space missing before attempted end of SSI"; severity = es_warning;
                     break;
         default :   if (((*i >= 'A') && (*i <= 'Z')) || ((*i >= 'a') && (*i <= 'z')) || ((*i >= '0') && (*i <= '9')) || (*i <= ' ') || (*i == '=')) return; }
     if (msg.empty ())

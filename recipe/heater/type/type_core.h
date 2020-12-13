@@ -44,7 +44,7 @@ template < e_type TYPE > struct string_value : public type_base < ::std::string,
         else type_base < ::std::string, TYPE > :: status (s_good); }
     bool has_value (const ::std::string& s) const { return type_base < ::std::string, TYPE > :: good () && (value_ == s); }
     int get_int () const { return lexical < int > :: cast (value_); }
-    void shadow (::std::stringstream& ss, const html_version& v)
+    void shadow (::std::stringstream& ss, const html_version& v, element* )
     {   if (! v.xhtml () && (value_.find_first_of ("\n\r\f\t\"' <>-/\\,;&[]")) == ::std::string::npos) ss << '=' << value_;
         else if (value_.find_first_of ('\"') == ::std::string::npos) ss << '=' << '"' << value_ << '"';
         else if (value_.find_first_of ("'") == ::std::string::npos) ss << "='" << value_ << "'";
@@ -84,7 +84,7 @@ template < e_type TYPE, class SZ > struct string_vector : public string_vector_b
 #endif // FUDDYDUDDY
             for (auto ss : tmp)
                 string_vector_base < TYPE > :: value_.emplace_back (make_tidy (nits, v, ss)); } }
-    void shadow (::std::stringstream& ss, const html_version& )
+    void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << "=\""; bool first = true;
         for (auto s : string_vector_base < TYPE > :: value_)
         {   if (! first) ss << SZ :: sz () [0];
@@ -97,12 +97,13 @@ template < e_type TYPE > struct string_vector < TYPE, sz_space > : public string
     {   string_vector_base < TYPE > :: set_value (nits, v, s);
         if (string_vector_base < TYPE > :: good ())
             string_vector_base < TYPE > :: value_ = split_by_space (string_vector_base < TYPE > :: get_string ()); }
-    void shadow (::std::stringstream& ss, const html_version& )
-    {   ss << '='; bool first = true;
+    void shadow (::std::stringstream& ss, const html_version& , element* )
+    {   ss << "=\""; bool first = true;
         for (auto s : string_vector_base < TYPE > :: value_)
         {   if (! first) ss << ' ';
             first = false;
-            ss << s; } } };
+            ss << s; }
+        ss << '"'; } };
 
 template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct numeric_value : public type_base < NUMERIC_TYPE, TYPE >
 {   NUMERIC_TYPE value_ = def;
@@ -111,7 +112,7 @@ template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct num
     void swap (numeric_value& t) NOEXCEPT
     {   ::std::swap (value_, t.value_);
         type_base < NUMERIC_TYPE, TYPE >::swap (t); }
-    void shadow (::std::stringstream& ss, const html_version& )
+    void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << value_; }
     void get_number (NUMERIC_TYPE& i) const
     {   i = value_; }

@@ -62,7 +62,7 @@ public:
     bool offsite () const { return offsite_; }
     bool scan (nitpick& nits, const ::std::string& site);
     void examine (nitpick& nits);
-    bool shadow (nitpick& nits);
+//    bool shadow (nitpick& nits);
     uint64_t url_size (nitpick& nits, const url& u) const;
     ::std::time_t url_last_write_time (nitpick& nits, const url& u) const;
     ::std::string load_url (nitpick& nits, const url& u) const;
@@ -77,9 +77,9 @@ public:
     ::boost::filesystem::path get_export_path (nitpick& nits, const url& u) const;
     ::boost::filesystem::path get_export_path () const;
     ::boost::filesystem::path get_export_path (nitpick& nits, const ::std::string& item) const;
-    ::boost::filesystem::path get_shadow_path (nitpick& nits, const url& u) const;
-    ::boost::filesystem::path get_shadow_path () const;
-    ::boost::filesystem::path get_shadow_path (nitpick& nits, const ::std::string& item) const; };
+//    ::boost::filesystem::path get_shadow_path (nitpick& nits, const url& u) const;
+//    ::boost::filesystem::path get_shadow_path (nitpick& nits, const ::std::string& item) const;
+    ::boost::filesystem::path get_shadow_path () const; };
 
 bool is_webpage (const ::std::string& name, const vstr_t& extensions);
 ::std::size_t integrate_virtuals (paths_root& virt, vd_t& dirs);

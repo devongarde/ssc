@@ -66,8 +66,9 @@ void init (nitpick& nits)
 
 void dump_nits (nitpick& nits, const char* burble)
 {   if (! nits.empty ())
-    {   context.out () << "\n\n*** " << burble << "\n";
-        context.out () << nits.review (); }
+        if (context.tell (static_cast < e_verbose > (nits.worst ())))
+        {   context.out () << "\n\n*** " << burble << "\n";
+            context.out () << nits.review (); }
     nits.reset (); }
 
 void configure (std::time_t& start_time)

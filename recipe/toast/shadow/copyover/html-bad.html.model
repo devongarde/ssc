@@ -151,7 +151,7 @@ or other elements <span> are treated as plain text, instead of markup.
 <p id=summary>In the following table, characteristics are
  given in the second column, with the negative side in the left column and the positive
  side in the right column.</p>
-<table aria-describedby=summary>
+<table aria-describedby="summary">
 <caption>Characteristics with positive and negative sides</caption>
 <thead>
 <tr>
@@ -160,11 +160,11 @@ or other elements <span> are treated as plain text, instead of markup.
    </th><th> Positive
  </th></tr></thead><tbody>
 <tr>
-<td headers=n r1> Sad
+<td headers="n r1"> Sad
    </td><th id=r1> Mood
    </th><td> Happy
   </td></tr><tr>
-<td headers=n r2 x y> Failing
+<td headers="n r2 x y"> Failing
    </td><th id=r2> Grade
    </th><td> Passing
 </td></tr></tbody></table>

@@ -55,3 +55,4 @@ public:
     bool empty () const { return code_ == nit_free; } };
 
 ::std::string doc_title (const e_doc doc);
+::std::string doc_ref (const e_doc doc);

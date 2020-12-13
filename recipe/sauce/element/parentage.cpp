@@ -441,6 +441,8 @@ parentage parent_table [] =
     { { XHTML_1_1, 0, HE_SVG_1_2_FULL }, { HTML_UNDEF }, elem_extensiondefs, elem_elementdef },
     { { XHTML_1_1, 0, HE_SVG_1_2_FULL }, { HTML_UNDEF }, elem_extensiondefs, elem_defs },
     { { HTML_1_0, HV_NOTPLUS }, { HTML_UNDEF }, elem_faux_document, elem_html },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_faux_document, elem_svg },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_faux_document, elem_math },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_faux_document, elem_faux_xml },
     { { HTML_PLUS }, { HTML_PLUS }, elem_faux_document, elem_htmlplus },
     { { HTML_TAGS }, { HTML_TAGS }, elem_faux_document, elem_undefined },
@@ -1955,6 +1957,8 @@ e_element default_parent (const html_version& v, const elem& self)
             return elem_ul;
         case elem_mh :
             return elem_form;
+        case elem_noframes :
+            return elem_frameset;
         case elem_page :
             return elem_pageset;
         case elem_param :

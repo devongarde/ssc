@@ -120,6 +120,7 @@ public:
     itemscope_ptr itemscope () { return itemscope_; }
     microdata_export* md_export () { return &md_export_; }
     ::std::string get_export_root () const;
+    const directory* get_directory () const { return directory_; }
     ::std::string report (); };
 
 ::std::string get_page_url (const ::std::string& url);

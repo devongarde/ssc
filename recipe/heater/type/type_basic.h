@@ -43,12 +43,12 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
         if (! compare_no_case (string_value < t_compact > :: get_string (), "compact"))
         {   string_value < t_compact > :: status (s_invalid);
             nits.pick (nit_bad_border, es_error, ec_type, "if compact is given a value, it must be \"compact\""); } }
-    void shadow (::std::stringstream& ss, const html_version& v)
+    void shadow (::std::stringstream& ss, const html_version& v, element* )
     {   if (v.xhtml ()) ss << "=\"compact\""; } };
 
 template < > struct type_master < t_existential > : type_base < mono, t_existential >
 {   static bool is_existential () { return true; }
-    void shadow (::std::stringstream& , const html_version& ) { }
+    void shadow (::std::stringstream& , const html_version& , element* ) { }
     void set_value (nitpick& , const html_version& , const ::std::string& )
     {   type_base < mono, t_existential > :: status (s_good); } };
 

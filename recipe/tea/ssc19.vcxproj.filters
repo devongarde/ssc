@@ -375,6 +375,9 @@
     <Filter Include="Toast\Shadow\DeduOver\c">
       <UniqueIdentifier>{22111d07-704a-4664-8e0c-a18e082dd65a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\w3">
+      <UniqueIdentifier>{6c950466-096f-4631-87b6-f2a9210af804}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -3354,6 +3357,399 @@
     <None Include="..\toast\microdata\export\pre.sh">
       <Filter>Toast\Microdata\Export</Filter>
     </None>
+    <None Include="..\toast\w3\197-iso88591_alias.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\857-svg_nodoctype.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\1574-charset_iso_8859_7_greek.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\2329-html401-strict_iframe.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\2329-html401-transitional_iframe.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\2342-opensp_type_X.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\2689-attribute-no-space.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-10-doctype.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-10-doctypeless.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-11-doctype.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-11-doctypeless.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-basic-11-doctype.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-basic-11-doctypeless.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-noversion-doctype.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-noversion-doctype2.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-noversion-doctypeless.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-tiny-11-doctype.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\3663-svg-tiny-11-doctypeless.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\4412-fuzzymatch.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\4476-svg_nodoctype.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\4520-iso88591-meta.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\4520-iso88591-no_meta.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\4848-html40-transitional_FPI-SI-mismatch.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\4848-xhtml1-strict_FPI-SI-mismatch.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\4892-entity.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\4917-meta_charset_case.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\ampersand-as-data.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\ampersand-as-data_html401.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\application-xhtml_xml.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\bogus-fpi.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\bogus-fpi2.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\bogus-fpi3.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\bogus-fpi4.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\bogus-fpi5.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\bogus-xmlpi.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\bogus-xmlpi.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\charset_mismatch-http_meta.html.utf8">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\charset_mismatch-http_xmldec.xhtml.utf8">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\charset-xmldecl.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\colons.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\error_pls_warning.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\errors_sorting.smi">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\fpi_mismatch1.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\fpi_mismatch2.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html_xmlns.html.utf8">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html5-error-explanation.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html5-ok.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html5-precise-error.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html5-range-error.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html5-warning.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html20.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html20-strict.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html40-frameset.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html40-strict.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html40-transitional.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html401_doctypecase.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html401_system.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html401-strict.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\html401-strict.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\index.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\invalid_meta_multibyte.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\iso-html.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\long-lines.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\mathml2.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\mathml2.mml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\nocharset.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\nocharset_notutf8.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\no-newlines.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\nonSGML-chars.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\outline.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\rddl_fpi.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\rddl_fpi.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\rddl_si.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\REC-SVG-1_0-minimal.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\REC-SVG-1_0-minimal.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\sgml_customdtd.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\sgml-nodoctype-syntaxnotok.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\sgml-nodoctype-syntaxok.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\shorttags.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\shorttags2.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\smil10-minimal.smi">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\smil20.smi">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\smil20-profile-doctype.smi">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\SMIL21.smil">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\SMIL21_Mobile.smil">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\svg_tiny_1_1.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\svg11.svg">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\texthtml_nocharset.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\texthtml_nocharset-utf8.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\texthtml_nodoctype.html.utf8">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\texthtml_unknownparsemode.html.utf8">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\trailing-nul.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\uppercase_element.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\W11-ht401-namespace.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml_mathml_svg_newlines.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml_rdfa.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-appc-empty.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-appc-emptycontent.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-appc-xmldecl.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-blank-1st-line.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-bogus-attribute.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-bogus-element.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-missing-doctype-and-xmlns.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-missing-doctype-and-xmlns.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-missing-doctype-has-xmlns.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-missing-doctype-has-xmlns.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-strict.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-strict-minimal.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml1-strict-missing-xmlns.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml11-basic-w3c.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml11-minimal.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-basic10.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-basic11.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-mathml2.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-mathml2-fpi.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-mp-1_2.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-print_1_0.html">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-print_1_0.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-print_1_0-invalid.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-utf8-bom.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\xhtml-windows-1250.xhtml">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\w3.conf">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\w3\w3.spec">
+      <Filter>Toast\w3</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\test.css">
+      <Filter>Toast\Shadow\Dedu</Filter>
+    </None>
+    <None Include="..\toast\shadow\deduover\test.css">
+      <Filter>Toast\Shadow\DeduOver</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\a\index.html">
+      <Filter>Toast\Shadow\Dedu\a</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\b\index.html">
+      <Filter>Toast\Shadow\Dedu\b</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\c\index.html">
+      <Filter>Toast\Shadow\Dedu\c</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\a\index.html.model">
+      <Filter>Toast\Shadow\Dedu\a</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\b\index.html.model">
+      <Filter>Toast\Shadow\Dedu\b</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedu\c\index.html.model">
+      <Filter>Toast\Shadow\Dedu\c</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -3538,10 +3934,31 @@
     <Text Include="..\toast\tmp\README.txt">
       <Filter>Toast\Tmp</Filter>
     </Text>
+    <Text Include="..\..\W3-LICENCE.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ssc.rc">
       <Filter>Resources</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\toast\w3\5031-root_dash.xml">
+      <Filter>Toast\w3</Filter>
+    </Xml>
+    <Xml Include="..\toast\w3\plane20-char.xml">
+      <Filter>Toast\w3</Filter>
+    </Xml>
+    <Xml Include="..\toast\w3\textxml_html401.xml">
+      <Filter>Toast\w3</Filter>
+    </Xml>
+    <Xml Include="..\toast\w3\textxml_nocharset.xml">
+      <Filter>Toast\w3</Filter>
+    </Xml>
+    <Xml Include="..\toast\w3\xml-nodoctype-notwf.xml">
+      <Filter>Toast\w3</Filter>
+    </Xml>
+    <Xml Include="..\toast\w3\xml-nodoctype-wf.xml">
+      <Filter>Toast\w3</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

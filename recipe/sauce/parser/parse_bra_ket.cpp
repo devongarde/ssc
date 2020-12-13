@@ -101,6 +101,6 @@ bool bra_element_ket::is_silent_content ()
 bool bra_element_ket::is_whitespace () const
 {   if (status_ != bk_text) return false;
     for (::std::string::const_iterator i = start_; i < end_; ++i)
-        if (*i > ' ') return false;
+        if (! ::std::iswspace (*i)) return false;
     return true; }
 

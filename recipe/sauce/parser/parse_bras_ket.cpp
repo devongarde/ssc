@@ -83,10 +83,10 @@ void bras_ket::nodoctype (nitpick& nits, html_version& v, ::std::string::const_i
     nits.set_context (line_, near_here (b, e, i));
     if (context.presume_tags ())
     {   v.reset (html_tags);
-        nits.pick (nit_presume_html_tags, es_warning, ec_parser, "No <!DOCTYPE ... > found at beginning of content; presuming HTML Tags"); }
+        nits.pick (nit_presume_html_tags, ed_tags, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at beginning of content; presuming HTML Tags"); }
     else
     {   v.reset (html_1);
-        nits.pick (nit_presume_html_1, es_warning, ec_parser, "No <!DOCTYPE ... > found at beginning of content; presuming HTML 1.0 (draft)"); } }
+        nits.pick (nit_presume_html_1, ed_1, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at beginning of content; presuming HTML 1.0"); } }
 
 void bras_ket::mixed_mess (nitpick& nits, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char* item, const char* inside)
 {   assert (item != nullptr);
@@ -171,20 +171,22 @@ html_version bras_ket::parse (const ::std::string& content)
             case '\r' :
                 ++line_; ll = 0;
                 bol = e;
-                break;
+                continue;
             case '\n' :
             case '\f' :
                 newline = true;
                 ++line_; ll = 0;
                 bol = e;
-                // drop thru'
+                ch = ' ';
+                break;
             case '\t' :
                 ch = ' '; }
         ++ll;
         if ((ll > 254) && (res.mjr () < 4) && (! ll_warned))
         {   nits.pick (nit_mosaic_crash, es_warning, ec_parser, "long lines crash older versions of MOSAIC");
             ll_warned = true; }
-        if (ch < ' ') { aftercab = false; continue; }
+        if (::std::iswcntrl (ch)) { aftercab = false; continue; }
+        if (::std::iswspace (ch)) ch = ' ';
         if (aftercab && (ch != '>')) aftercab = false;
         if (bol == e) bol = i;
         ::std::string s;
@@ -281,8 +283,10 @@ html_version bras_ket::parse (const ::std::string& content)
                 {   case '<' :  status = s_open; soe = twas = i; break;
                     case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double > intentional?"); break;
                     case '&' :  if (! xmp_mode) { status= s_amper; twas = i; } break;
-                    case '\'' : if (! xmp_mode && ! silent_content && (res >= html_4_0)) nits.pick (nit_use_quote_code, es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)"); break;
-                    case '"' :  if (! xmp_mode && ! silent_content && (res >= html_4_0)) nits.pick (nit_use_double_quote_code, es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)"); }
+                    case '\'' : if (! xmp_mode && ! silent_content && (res >= html_4_0))
+                        nits.pick (nit_use_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)"); break;
+                    case '"' :  if (! xmp_mode && ! silent_content && (res >= html_4_0))
+                        nits.pick (nit_use_double_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)"); }
                 break;
             case s_amper :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_amper ", ch);
@@ -297,8 +301,9 @@ html_version bras_ket::parse (const ::std::string& content)
                     default :   if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')))
                                 {   status = s_symbol; collect = i; }
                                 else
-                                {   nits.set_context (line_, bol, i+1);
-                                    nits.pick (nit_lonely_ampersand, es_warning, ec_parser, "consider using character codes for ampersands (e.g. '&amp;')");
+                                {   if (! xmp_mode && ! silent_content && (res >= html_4_0))
+                                    {   nits.set_context (line_, bol, i+1);
+                                        nits.pick (nit_lonely_ampersand, ed_4, "24 Character entity references in HTML 4.0", es_warning, ec_parser, "consider using character codes for ampersands (e.g. '&amp;')"); }
                                     status = s_dull; } }
                 break;
             case s_hash :
@@ -313,7 +318,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                     status = s_dull; break; }
                                 // drop thru'
                     case 'x' :  if (res < html_4_0)
-                                {   nits.pick (nit_hex_code_version, es_warning, ec_parser, "hex character codes require HTML 4.0 or later");
+                                {   nits.pick (nit_hex_code_version, ed_4, "5.3.1 Numeric character references", es_warning, ec_parser, "hex character codes require HTML 4.0 or later");
                                     status = s_dull; }
                                 else
                                 {   status = s_hex; collect = i; }
@@ -352,16 +357,18 @@ html_version bras_ket::parse (const ::std::string& content)
                                 status= s_amper; twas = i; break;
                     default :   if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')) || ((ch >= '0') && (ch <= '9')))
                                 {   if (i - collect <= max_wotsit_len) break;
-                                    nits.set_context (line_, near_here (b, e, collect));
-                                    nits.pick (nit_encode_ampersand, es_warning, ec_parser, "should that ampersand be '&amp;' ?"); }
+                                    if (! xmp_mode && ! silent_content && (res >= html_4_0))
+                                    {   nits.set_context (line_, near_here (b, e, collect));
+                                        nits.pick (nit_encode_ampersand, ed_4, "24 Character entity references in HTML 4.0", es_warning, ec_parser, "should that ampersand be '&amp;' ?"); } }
                                 status = s_dull; break; }
                 break;
             case s_num :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_num ", ch);
                 switch (ch)
                 {   case ';' :  if (res < html_1)
-                                {   nits.set_context (line_, near_here (b, e, i));
-                                    nits.pick (nit_invalid_character_code, ed_tags, nullptr, es_error, ec_parser, "numeric characters codes are not part of HTML tags"); }
+                                {   if (! xmp_mode && ! silent_content)
+                                    {   nits.set_context (line_, near_here (b, e, i));
+                                        nits.pick (nit_invalid_character_code, ed_tags, "", es_error, ec_parser, "numeric characters codes are not part of HTML tags"); } }
                                 else
                                 {   if (twas > text)
                                     {   nits.set_context (line_, text, twas);
@@ -757,7 +764,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                 mixed_mess (nits, b, e, i, oel, ano); status = s_open; twas = i; break;
                     case '&' :  if (xmp_mode) { status = s_dull; break; }
                                 mixed_mess (nits, b, e, i, cc, elmt); status= s_amper; twas = i;break;
-                    case '=' :  nits.pick (nit_forgotten_name, es_warning, ec_parser, "perhaps an attribute name has been forgotten");
+                    case '=' :  nits.pick (nit_forgotten_name, es_warning, ec_parser, "has an attribute name been omitted?");
                                 twas = text; status = s_dull; break;
                     default :   if (((ch < 'A') || (ch > 'Z')) && ((ch < 'a') || (ch > 'z')) && ((ch < '0') || (ch > '9')) && (ch != '-') && (ch != ':'))
                                 {   twas = text; status = s_dull; } }

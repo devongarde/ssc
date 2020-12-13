@@ -257,10 +257,11 @@ void options::process (int argc, char** argv)
         (SHADOW COPY, ::boost::program_options::value < int > (), "copy non-HTML files: 0=no (default), 1=pages, 2=hard link all, 3=soft link all, 4=copy all, 5=copy+deduplicate, 6=only report duplicates")
 #endif // NOLYNX
         (SHADOW FILE, ::boost::program_options::value < ::std::string > (), "where to persist deduplication data")
+        (SHADOW IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore files with this extension; may be repeated")
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "shadow output root directory")
         (SHADOW SSI, "do NOT resolve SSIs on shadow pages when " GENERAL SSI " is set")
         (SHADOW SPACING, "do NOT merge spacing on shadow pages")
-        (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "shadow virtual directory, syntax virtual=shadow; must correspond to " WEBSITE VIRTUAL)
+        (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "shadow virtual directory, syntax virtual=shadow; must correspond to " WEBSITE VIRTUAL "; may be repeated")
 
         (WEBSITE ROOT ",g", ::boost::program_options::value < ::std::string > (), "website root directory (default: current directory)")
         (WEBSITE EXTENSION ",x", ::boost::program_options::value < vstr_t > () -> composing (), "check files with this extension (default html); may be repeated")
@@ -482,6 +483,7 @@ void options::contextualise ()
     if (var_.count (SHADOW COPY)) context.copy (var_ [SHADOW COPY].as < int > ());
 #endif // NOLYNX
     if (var_.count (SHADOW FILE)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FILE].as < ::std::string > ()));
+    if (var_.count (SHADOW IGNORED)) context.shadow_ignore (var_ [SHADOW IGNORED].as < vstr_t > ());
     if (var_.count (SHADOW ROOT)) context.shadow (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
     context.shadow_space (var_.count (SHADOW SPACING));
     context.shadow_ssi (var_.count (SHADOW SSI));
@@ -670,6 +672,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT "\n";
     if (var_.count (SHADOW COPY)) res << SHADOW COPY ": " << var_ [SHADOW COPY].as < int > () << "\n";
     if (var_.count (SHADOW FILE)) res << SHADOW FILE ": " << var_ [SHADOW FILE].as < ::std::string > () << "\n";
+    if (var_.count (SHADOW IGNORED)) { res << SHADOW IGNORED ": "; pvs (res, var_ [SHADOW IGNORED].as < vstr_t > ()); res << "\n"; }
     if (var_.count (SHADOW ROOT)) res << SHADOW ROOT ": " << var_ [SHADOW ROOT].as < ::std::string > () << "\n";
     if (var_.count (SHADOW SPACING)) res << SHADOW SPACING "\n";
     if (var_.count (SHADOW SSI)) res << SHADOW SSI "\n";

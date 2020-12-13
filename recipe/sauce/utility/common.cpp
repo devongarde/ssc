@@ -98,7 +98,7 @@ bool write_text_file (const ::std::string& name, const ::std::string& content)
 {   bool whitespace = false;
     ::std::string res;
     for (auto ch : s)
-        if (ch > ' ')
+        if (! ::std::iswspace (ch))
         {   whitespace = false; res += ::std::string (1, ch); }
         else if (! whitespace)
         {   whitespace = true; res += ::std::string (1, ' '); }
@@ -341,7 +341,7 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
 
 bool is_whitespace (const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   for (::std::string::const_iterator i = b; i != e; ++i)
-        if (! ::std::isspace (*i)) return false;
+        if (! ::std::iswspace (*i)) return false;
     return true; }
 
 bool contains (const vstr_t& con, const ::std::string& val)

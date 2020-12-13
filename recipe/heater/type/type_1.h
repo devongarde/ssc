@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < e_type TYPE, class SZ > struct one_value : public type_base < mono, TYPE >
 {   ::std::string get_string () const
     {   if (! type_base < mono, TYPE > :: unknown ()) return SZ::sz (); return ::std::string (); }
-    void shadow (::std::stringstream& ss, const html_version& )
+    void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     static mono default_value () { return static_cast <mono> (0); }
