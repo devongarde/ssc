@@ -29,6 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/avm.h"
 #include "parser/text.h"
 #include "webpage/crosslink.h"
+#include "icu/wrapper.h"
+#include "icu/charset.h"
 
 #define DOCTYPE "<!DOCTYPE"
 #define DOCTYPE_LC "<!doctype"
@@ -48,10 +50,6 @@ page::page (nitpick& nits, const ::std::string& name, ::std::string& content, di
     directory_ = d;
     parse (content, encoding); }
 
-void page::reset ()
-{   page p;
-    swap (p); }
-
 void page::reset (const page& p)
 {   page tmp (p);
     swap (tmp); }
@@ -67,9 +65,28 @@ void page::swap (page& p) NOEXCEPT
     schema_version_.swap (p.schema_version_);
     ssi_.swap (p.ssi_);
     nits_.swap (p.nits_);
+    itemscope_.swap (p.itemscope_);
     ::std::swap (directory_, p.directory_);
     ::std::swap (has_title_, p.has_title_);
-    ::std::swap (euid_, p.euid_); }
+    ::std::swap (euid_, p.euid_);
+    ::std::swap (stats_ , p.stats_);
+    ::std::swap (lang_ , p.lang_);
+    ::std::swap (charset_ , p.charset_); }
+
+void page::lang (nitpick& nits, const html_version& , const ::std::string& l)
+{   if (! lang_.empty ())
+        if (! compare_no_case (l, lang_))
+            nits.pick (nit_lang_redefined, es_warning, ec_page, "lang defined as ", l, ", but previously defined as ", lang_);
+    lang_ = l; }
+
+void page::charset (nitpick& nits, const html_version& v, const ::std::string& cs)
+{   if (charset_defined ())
+        if (! compare_no_case (cs, charset_))
+            nits.pick (nit_charset_redefined, es_warning, ec_attribute, "charset defined as ", cs, ", but previously defined as ", charset_);
+    if ((v.mjr () >= 5))
+        if (! compare_no_case (cs, "UTF-8"))
+            nits.pick (nit_not_utf_8, es_error, ec_attribute, v.report (), " requires the UTF-8 charset");
+    charset_ = cs; }
 
 bool page::parse (::std::string& content, const e_charcode )
 {   nits_.reset ();
@@ -91,6 +108,12 @@ void page::examine (const directory& d)
         document_ -> verify_document ();
         if (context.md_export ()) md_export_.write (nits_, get_export_path ());
         ids_.cover_arse (); } }
+
+void page::verify_locale (const ::boost::filesystem::path& p)
+{   if (lang_.empty ())
+    {   lang_ = context.lang ();
+        if (lang_.empty ()) lang_ = "lb-LU"; }
+    verify_file_charset (nits_, version (), p, charset_); }
 
 ::std::string page::get_export_root () const
 {   return get_disk_path ().stem ().string (); }

@@ -21,6 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type_time.h"
 
+bool grab_whitespace (const ::std::string::const_iterator e, ::std::string::const_iterator& i)
+{   if ((i == e) || (! ::std::iswspace (*i))) return false;
+    ++i; return true; }
+
 bool grab_char (const ::std::string::const_iterator e, ::std::string::const_iterator& i, const char ch)
 {   if ((i == e) || (*i != ch)) return false;
     ++i; return true; }
@@ -257,12 +261,12 @@ bool verify_duration (const ::std::string::const_iterator e, ::std::string::cons
     bool week = false;
     bool year = false;
     while (grab_digits < int64_t > (e, i, 12, 0, true, x) && (i < e))
-    {   while (grab_char (e, i, ' ')); // yup, no loop content
+    {   while (grab_whitespace (e, i)); // yup, no loop content
         if (i == e) break;
         if (grab_char (e, i, '.'))
         {   if (week) return false;
             if (! grab_digits < int > (e, i, 3, 0, true, ms)) return false;
-            while (grab_char (e, i, ' ')); // similarly
+            while (grab_whitespace (e, i)); // similarly
             if (i == e) return false;
             if (! grab_char (e, i, "Ss")) return false;
             s += x; }
@@ -305,7 +309,7 @@ bool verify_duration (const ::std::string::const_iterator e, ::std::string::cons
             default :   return false; }
         got = true; ++i; }
     if (! got) return false;
-    while (grab_char (e, i, ' ')); // as above
+    while (grab_whitespace (e, i)); // as above
     second = s;
     micro = ms;
     c = i;
@@ -467,9 +471,11 @@ bool verify_year (const ::std::string& str)
     int y = 0, m = 0, d = 0;
     return verify_year (e, i, y, m, d); }
 
-bool verify_time_4 (nitpick& nits, const html_version& , const ::std::string& s)
+bool verify_time_4 (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (verify_absolute (s)) return true;
-    nits.pick (nit_bad_datetime, es_error, ec_type, quote (s), " is dubious: datetime format is 'yyyy-mm-ddThh:mm:ssTZD', where TZD is 'Z' or 'Shh:mm', and S is '+' or '-' (see ISO 8601)");
+    if (v.mjr () < 4)
+        nits.pick (nit_bad_datetime, es_warning, ec_type, quote (s), " is dubious: ISO-8601 datetime format is 'yyyy-mm-ddThh:mm:ssTZD', where TZD is 'Z' or 'Shh:mm', and S is '+' or '-'");
+    else nits.pick (nit_bad_datetime, ed_4, "6.11 Dates and times", es_error, ec_type, quote (s), " is not in ISO-8601 datetime format: 'yyyy-mm-ddThh:mm:ssTZD', where TZD is 'Z' or 'Shh:mm', and S is '+' or '-'");
     return false; }
 
 bool verify_time_5 (nitpick& nits, const html_version& , const ::std::string& s)

@@ -371,10 +371,10 @@ struct symbol_entry < e_charset > charset_symbol_table [] =
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "utf-32be", cs_utf_32be },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "utf-32le", cs_utf_32le },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "utf-7", cs_utf_7 },
+    { { HTML_4_0 }, { HTML_UNDEF }, "utf-8", cs_utf_8 }, // must be first of utf-8
     { { HTML_4_0 }, { HTML_UNDEF }, "unicode-1-1-utf-8", cs_utf_8 },
     { { HTML_4_0 }, { HTML_UNDEF }, "unicode11utf8", cs_utf_8 },
     { { HTML_4_0 }, { HTML_UNDEF }, "unicode20utf8", cs_utf_8 },
-    { { HTML_4_0 }, { HTML_UNDEF }, "utf-8", cs_utf_8 },
     { { HTML_4_0 }, { HTML_UNDEF }, "utf8", cs_utf_8 },
     { { HTML_4_0 }, { HTML_UNDEF }, "x-unicode20utf8", cs_utf_8 },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "viqr", cs_viqr },
@@ -412,13 +412,14 @@ struct symbol_entry < e_charset > charset_symbol_table [] =
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "cp1251", cs_windows_1251 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "windows-1251", cs_windows_1251 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "x-cp1251", cs_windows_1251 },
+    { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso-8859-1", cs_windows_1252 }, // must be first of 1252
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "ansi_x3.4-1968", cs_windows_1252 },
-    { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "ascii", cs_windows_1252 },
+    { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "us-ascii", cs_ascii },  // must be first of ascii
+    { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "ascii", cs_ascii },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "cp1252", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "cp819", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "csisolatin1", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "ibm819", cs_windows_1252 },
-    { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso-8859-1", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso8859-1", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso88591", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso_8859-1", cs_windows_1252 },

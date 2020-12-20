@@ -49,25 +49,27 @@ bool parse_rfc3986 (nitpick& nits, const html_version& , const e_protocol prot, 
     if (url.find ('!') != ::std::string::npos)
     {   nits.pick (nit_bang_path, es_warning, ec_type, "apologies, but " PROG " does not understand bang paths"); return false; }
 
-    if (! separate_first (url, scheme, hier_part, COLON))
+    ::std::string fore, queries;
+    if (! separate_first (url, fore, queries, QUESTION)) fore = url;
+    if (! separate_first (fore, scheme, hier_part, COLON))
     {   scheme = PR_HTTP;
-        hier_part = url;
+        hier_part = fore;
         absolute = (hier_part [0] == '/'); }
     else
     {   if (scheme.empty ())
-        {   nits.pick (nit_protocol_empty, es_error, ec_url, "protocol cannot be empty"); return false; }
-        if (scheme.find_first_not_of (ALPHABET DENARY "+-") != ::std::string::npos)
-        {   nits.pick (nit_bad_char, es_error, ec_url, "illegal character in protocol"); return false; }
+        {   nits.pick (nit_protocol_empty, ed_rfc_3986, "3.1. Scheme", es_error, ec_url, "protocol cannot be empty"); return false; }
+        ::std::string::size_type pos = scheme.find_first_not_of (ALPHABET DENARY "+-");
+        if (pos != ::std::string::npos)
+        {   nits.pick (nit_bad_char, ed_rfc_3986, "2. Characters", es_error, ec_url, "illegal character ('", scheme.at (pos), "') in protocol"); return false; }
         if (scheme.substr (0, 1).find_first_not_of (ALPHABET) != ::std::string::npos)
-        {   nits.pick (nit_bad_char, es_error, ec_url, "first character of protocol must be a letter"); return false; }
+        {   nits.pick (nit_bad_char, ed_rfc_3986, "3.1. Scheme", es_error, ec_url, "first character of protocol  ('", scheme.at (0), "') must be a letter"); return false; }
         if (prot == pr_other)
         {   nits.pick (nit_unknown_protocol, es_warning, ec_url, PROG " doesn't know about the ", quote (scheme), " protocol"); return false; } }
 
-    if (hier_part.empty ())
-    {   nits.pick (nit_not_just_protocol, es_error, ec_url, "a URL needs more than just a protocol"); return false; }
+    if (hier_part.empty () && queries.empty ())
+    {   nits.pick (nit_not_just_protocol, ed_rfc_3986, "3. Syntax Components", es_error, ec_url, "a URL needs more than just a protocol"); return false; }
 
     ::std::string fragments = remove_tail (hier_part, HASH);
-    ::std::string queries = remove_tail (hier_part, QUESTION);
 
     if ((hier_part.length () > 1) && (hier_part [0] == SLASH) && (hier_part [1] == SLASH))
     {   authority = trim_the_lot_off (hier_part.substr (2));
@@ -80,54 +82,54 @@ bool parse_rfc3986 (nitpick& nits, const html_version& , const e_protocol prot, 
     if (! authority_empty)
     {   if (remove_head (authority, user, AT))
         {   if (remove_tail (user, insecure_password, COLON))
-            {   if (insecure_password.empty ()) nits.pick (nit_url_empty_password, es_warning, ec_url, "the URL password is empty");
-                else nits.pick (nit_url_insecure_password, es_warning, ec_url, "passwords in URLs are insecure, prefer an alternative authentication mechanism"); }
+            {   if (insecure_password.empty ()) nits.pick (nit_url_empty_password, es_info, ec_url, "the URL password is empty");
+                else nits.pick (nit_url_insecure_password, ed_rfc_3986, "3.2. Authority", es_warning, ec_url, "passwords in URLs are deprecated, prefer an alternative authentication mechanism"); }
             if (user.empty ())
-            {   nits.pick (nit_url_missing_username, es_warning, ec_url, "URL username missing before '@'"); return false; } }
+            {   nits.pick (nit_url_missing_username, ed_rfc_3986, "3.2. Authority", es_warning, ec_url, "URL username missing"); return false; } }
         if (authority [0] == SQOPEN)
         {   authority = authority.substr (1);
             if (! separate_first (authority, host, port, SQCLOSE))
-            {   nits.pick (nit_malformed_ipv6, es_error, ec_url, "malformed ip6 address (no ']' found)"); return false; }
+            {   nits.pick (nit_malformed_ipv6, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "malformed ip6 address (no ']' found)"); return false; }
             if (! port.empty ())
             {   if (port [0] != COLON)
-                {   nits.pick (nit_invalid_ipv6, es_error, ec_url, "unexpected characters follow ip6 address"); return false; }
+                {   nits.pick (nit_invalid_ipv6, ed_rfc_3986, "3.2. Authority", es_error, ec_url, "unexpected characters follow ip6 address"); return false; }
                 port = port.substr (1); }
             if (host.empty ())
-            {   nits.pick (nit_empty_ipv6, es_error, ec_url, "empty ipv6 address"); return false; }
+            {   nits.pick (nit_empty_ipv6, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "empty ipv6 address"); return false; }
             if ((host [0] != 'v') && (host [0] != 'V') && (host.find_first_not_of (HEX ":") != host.npos))
-            {   nits.pick (nit_invalid_ipv6, es_error, ec_url, "invalid ipv6 address"); return false; }
+            {   nits.pick (nit_invalid_ipv6, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "invalid ipv6 address"); return false; }
             ipv6 = host; }
         else if (separate_last (authority, host, port, COLON))
             if (! port.empty ())
                 if (port.find_first_not_of (DENARY) != port.npos)
-                {   nits.pick (nit_bad_port, es_error, ec_url, "port must be an unsigned integer"); return false; }
+                {   nits.pick (nit_bad_port, ed_rfc_3986, "3.2.3. Port", es_error, ec_url, "port must be an unsigned integer"); return false; }
                 else
                 {   int tst = lexical < int > :: cast (port, 65536);
                     if ((tst < 0) || (tst > 65535))
-                    {   nits.pick (nit_bad_port, es_error, ec_url, "port out of range"); return false; } }
+                    {   nits.pick (nit_bad_port, ed_rfc_3986, "3.2.3. Port", es_error, ec_url, "port out of range"); return false; } }
 
         if (ipv6.empty ())
             if (host.empty ())
-            {   nits.pick (nit_empty_host, es_error, ec_url, "host cannot be empty"); return false; }
+            {   nits.pick (nit_empty_host, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "host cannot be empty"); return false; }
             else if ((host [0] >= '0') && (host [0] <= '9'))
             {   if (host.find_first_not_of (DENARY ".") != host.npos)
-                {   nits.pick (nit_invalid_ipv4, es_error, ec_url, "illegal character in ipv4 address"); return false; }
+                {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "illegal character in ipv4 address"); return false; }
                 vstr_t octal;
                 octal.resize (4);
                 for (int i = 0; i < 4; ++i)
                 {   ::std::string::size_type dot = host.find (DOT);
                     if ((dot == host.npos) && (i < 3))
-                    {   nits.pick (nit_invalid_ipv4, es_error, ec_url, "invalid ipv4 address"); return false; }
+                    {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "invalid ipv4 address"); return false; }
                     octal [i] = host.substr (0, dot);
                     if (lexical < int > :: cast (octal [i], 256) > 255) // yeah, yeah, I know, but it's just a value check
-                    {   nits.pick (nit_invalid_ipv4, es_error, ec_url, "all four ipv4 octals must be present and none may exceed 255"); return false; }
+                    {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "all four ipv4 octals must be present and none may exceed 255"); return false; }
                     host = host.substr (dot+1); }
                 if (octal [3].empty ())
-                {   nits.pick (nit_invalid_ipv4, es_error, ec_url, "incomplete ipv4 address"); return false; }
+                {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "incomplete ipv4 address"); return false; }
                 ipv4 = host; }
             else
             {   if (host.find_first_not_of (ALPHABET DDD) != host.npos)
-                {   nits.pick (nit_invalid_domain, es_error, ec_url, "illegal character in domain"); return false; }
+                {   nits.pick (nit_invalid_domain, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "illegal character in domain"); return false; }
                 domain = host; } }
 
     if (! path.empty ())

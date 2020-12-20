@@ -13,10 +13,13 @@ PASS ../toast/other/RDF/rdf2-example.html
 22 unrecognised_value unknown_rel
 
 PASS ../toast/other/RDF/rdf3-example.html
+0 charset_mismatch charset_used charset_invalid
 5 naughty_lang
 
 PASS ../toast/other/RDF/rdf4-example.html
+0 charset_mismatch charset_used charset_invalid
 5 naughty_lang
 
 PASS ../toast/other/RDF/rdf5-example.html
+0 charset_mismatch charset_used charset_invalid
 2 naughty_lang

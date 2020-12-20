@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "type/type_httpequiv.h"
+#include "webpage/page.h"
 
 struct symbol_entry < e_httpequiv > httpequiv_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF },  "context", he_context },
@@ -65,36 +66,52 @@ struct symbol_entry < e_httpequiv > httpequiv_symbol_table [] =
 void httpequiv_init (nitpick& nits)
 {   type_master < t_httpequiv > :: init (nits, httpequiv_symbol_table, sizeof (httpequiv_symbol_table) / sizeof (symbol_entry < e_httpequiv >)); }
 
-template < e_type TYPE > ::std::string validate_he_content (nitpick& nits, const html_version& v, const ::std::string& content)
+template < e_type TYPE > ::std::string validate_he_content (nitpick& nits, const html_version& v, const ::std::string& content, page& )
 {   type_master < TYPE > t;
     t.set_value (nits, v, content);
     if (! t.good ()) return ::std::string ();
     return t.get_string (); }
 
-::std::string validate_httpequiv_content (nitpick& nits, const html_version& v, const e_httpequiv he, const ::std::string& content)
+template < > ::std::string validate_he_content < t_content_type > (nitpick& nits, const html_version& v, const ::std::string& content, page& p)
+{   type_master < t_content_type > t;
+    t.set_value (nits, v, content);
+    if (! t.good ()) return ::std::string ();
+    ::std::string cs (t.get_charset ());
+    p.charset (nits, v, cs);
+    return t.get_string (); }
+
+template < > ::std::string validate_he_content < t_lang > (nitpick& nits, const html_version& v, const ::std::string& content, page& p)
+{   type_master < t_lang > t;
+    t.set_value (nits, v, content);
+    if (! t.good ()) return ::std::string ();
+    ::std::string l (t.get_string ());
+    p.lang (nits, v, l);
+    return t.get_string (); }
+
+::std::string validate_httpequiv_content (nitpick& nits, const html_version& v, const e_httpequiv he, const ::std::string& content, page& p)
 {   switch (he)
     {   case he_cache_control :
-        case he_content_encoding : return validate_he_content < t_content_encoding > (nits, v, content);
+        case he_content_encoding : return validate_he_content < t_content_encoding > (nits, v, content, p);
         case he_content_disposition : break;
-        case he_content_language : return validate_he_content < t_lang > (nits, v, content);
-        case he_content_script_type : return validate_he_content < t_mime > (nits, v, content);
-        case he_content_style_type : return validate_he_content < t_mime > (nits, v, content);
-        case he_content_type : return validate_he_content < t_content_type > (nits, v, content);
+        case he_content_language : return validate_he_content < t_lang > (nits, v, content, p);
+        case he_content_script_type : return validate_he_content < t_mime > (nits, v, content, p);
+        case he_content_style_type : return validate_he_content < t_mime > (nits, v, content, p);
+        case he_content_type : return validate_he_content < t_content_type > (nits, v, content, p);
         case he_context : break;
-        case he_default_style :  return validate_he_content < t_compact > (nits, v, content);
+        case he_default_style :  return validate_he_content < t_compact > (nits, v, content, p);
         case he_date :
-        case he_expires : return validate_he_content < t_datetime > (nits, v, content);
+        case he_expires : return validate_he_content < t_datetime > (nits, v, content, p);
         case he_ext_cache : break;
-        case he_imagetoolbar : return validate_he_content < t_yesno > (nits, v, content);
-        case he_location : return validate_he_content < t_location > (nits, v, content);
+        case he_imagetoolbar : return validate_he_content < t_yesno > (nits, v, content,p);
+        case he_location : return validate_he_content < t_location > (nits, v, content, p);
         case he_site_enter :
         case he_site_exit :
         case he_page_enter :
-        case he_page_exit : return validate_he_content < t_reveal_trans > (nits, v, content);
-        case he_pics_label : return validate_he_content < t_pics > (nits, v, content);
-        case he_pragma : return validate_he_content < t_pragma > (nits, v, content);
-        case he_refresh : return validate_he_content < t_refresh > (nits, v, content);
-        case he_set_cookie : return validate_he_content < t_setcookie > (nits, v, content);
+        case he_page_exit : return validate_he_content < t_reveal_trans > (nits, v, content, p);
+        case he_pics_label : return validate_he_content < t_pics > (nits, v, content, p);
+        case he_pragma : return validate_he_content < t_pragma > (nits, v, content, p);
+        case he_refresh : return validate_he_content < t_refresh > (nits, v, content, p);
+        case he_set_cookie : return validate_he_content < t_setcookie > (nits, v, content, p);
         case he_window_target : break;
         case he_keywords :
         case he_reply_to :  nits.pick (nit_use_metaname, es_warning, ec_type, "use the NAME attribute, not HTTP-EQUIV, for this information");

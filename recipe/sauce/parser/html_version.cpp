@@ -24,6 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "type/type.h"
 
+#define US_ASCII "US-ASCII"
+#define LATIN_1 "ISO-8859-1"
+#define UTF_8 "UTF-8"
+
 const char* doctype = "DOCTYPE";
 const ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
@@ -384,6 +388,9 @@ bool html_version::deprecated (const html_version& current) const
                 case 4 : return (flags_ & HV_DEPRECATEDX2) != 0; }
             assert (false); break;
         default :
+            if ((current.flags_ & HV_WHATWG) != 0)
+                if ((flags_ & HV_DEPRECATEDWWG) != 0)
+                    return true;
             switch (w3_minor_5 (current))
             {   case 0 : return (flags_ & HV_DEPRECATED50) != 0;
                 case 1 : return (flags_ & HV_DEPRECATED51) != 0;
@@ -481,6 +488,21 @@ void html_version::math_version (const e_mathversion v)
         default : return "HTML"; }
     return ::std::string (); }
 
+bool html_version::restricted_charset () const
+{   return (mjr () >= 5); }
+
+bool html_version::valid_charset (const ::std::string& charset) const
+{   if (mjr () >= 5) return compare_no_case (charset, UTF_8);
+    if (mjr () <= 1) return compare_no_case (charset, US_ASCII);
+    return true; }
+
+const char *html_version::default_charset () const
+{ return ::default_charset (*this); }
+
+const char *html_version::alternative_charset () const
+{ return ::alternative_charset (*this); }
+
+
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   bool res = version.parse_doctype (nits, ::std::string (b, e));
     if (! res) version.reset (html_0);
@@ -566,3 +588,16 @@ int w3_minor_5 (const html_version& v)
     if (v.mjr () < MAJOR_5_3) return 3;
     if ((v.mjr () == MAJOR_5_3) && (v.mnr () <= MINOR_5_3)) return 3;
     return 4; }
+
+const char *default_charset (const html_version& v)
+{   switch (v.mjr ())
+    {   case 0 :
+        case 1 : return US_ASCII;
+        case 2 :
+        case 3 :
+        case 4 : return LATIN_1;
+        default : return UTF_8; } }
+
+const char *alternative_charset (const html_version& v)
+{   if ((v.mjr () < 2) || (v.mjr () > 3)) return "";
+    return US_ASCII; }

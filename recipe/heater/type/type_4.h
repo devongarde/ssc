@@ -37,7 +37,6 @@ public:
     ::std::size_t type () const { return static_cast < ::std::size_t > (get ()); }
     bool has_value (const base_type& b) const { return type_base < base_type, TYPE > :: good () && (value_ == b); } };
 
-// typedef enum { at_toggle, at_statusline, at_tooltip, at_highlight } e_actiontype;
 template < > class type_master < t_actiontype2 > : public four_value < t_actiontype2, e_actiontype, sz_toggle, sz_statusline, sz_tooltip, sz_highlight > { };
 template < > class type_master < t_align2070 > : public four_value < t_align2070, e_align2070, sz_centre, sz_justify, sz_left, sz_right > { };
 template < > class type_master < t_aligndec > : public four_value < t_aligndec, e_aligndec, sz_centre, sz_decimal, sz_left, sz_right > { };

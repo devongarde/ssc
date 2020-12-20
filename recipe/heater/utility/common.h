@@ -37,6 +37,13 @@ typedef ssc_map < ::std::string, ::std::size_t > msid_t;
 typedef ::std::map < ::std::string, ::std::size_t > smsid_t;
 typedef ssc_map < ::std::size_t, ::std::string > misd_t;
 typedef ustr_t::value_type ustrv_t;
+typedef ::std::basic_string < char32_t > string32;
+typedef ::std::basic_stringstream < char32_t > stringstream32;
+
+// gcc and clang have problems with shared_ptr < void >, so I'm substituting this. MSVC is, as normal, up to the task.
+typedef ::std::shared_ptr < void > void_ptr;
+struct really_free { void operator () (void *p) { free (p); } };
+inline void_ptr alloc_void_ptr (const ::std::size_t sz) { return void_ptr (malloc (sz), really_free ()); }
 
 const uint32_t uint32_category_shift =  28;
 const uint32_t uint32_item_mask =       0x0FFFFFFF;
@@ -56,6 +63,7 @@ vstr_t split_by_charset (const ::std::string& s, const char* charset);
 vstr_t split_quoted_by_space (const ::std::string& s);
 ::std::string read_text_file (const ::boost::filesystem::path& name);
 ::std::string read_text_file (const ::std::string& name);
+void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok = false);
 bool write_text_file (const ::std::string& name, const ::std::string& content);
 ::boost::filesystem::path get_tmp_filename ();
 bool contains (const vstr_t& con, const ::std::string& val);

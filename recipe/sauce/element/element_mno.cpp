@@ -145,13 +145,14 @@ void element::examine_meta ()
     if (csk)
     {   if (! in_head)
             pick (nit_bad_meta_place, ed_50, "4.2.5 The meta element", es_error, ec_element, "CHARSET can only be used on a <META> in a <HEAD>");
-        if (a_.known (a_content))
+        else if (a_.known (a_content))
             pick (nit_no_content, ed_50, "4.2.5 The meta element", es_error, ec_element, "CONTENT cannot be used with CHARSET");
-       if (page_.charset_defined ())
+        else if (page_.charset_defined ())
             pick (nit_charset_redefined, ed_50, "4.2.5 The meta element", es_error, ec_element, "there can be no more than one <META> with a CHARSET per document");
-        if ((node_.version ().mjr () == 4) && (node_.version ().mjr () > 1))
-            if (a_.get_string (a_charset) != "UTF-8")
-                pick (nit_not_utf_8, es_error, ec_element, node_.version ().report (), " requires the UTF-8 charset"); }
+        else
+        {   type_master < t_charset > cs;
+            cs.set_value (nits (), page_.version (), a_.get_string (a_charset));
+            if (cs.good ()) page_.charset (nits (), page_.version (), cs.get_string ()); } }
     else if (hek)
     {   if (! in_head)
             pick (nit_bad_meta_place, ed_50, "4.2.5 The meta element", es_error, ec_element, "HTTP-EQUIV can only be used on a <META> in a <HEAD>");
@@ -159,7 +160,7 @@ void element::examine_meta ()
             pick (nit_no_content, ed_50, "4.2.5 The meta element", es_error, ec_element, "HTTP-EQUIV requires CONTENT");
         attr_httpequiv* he = reinterpret_cast < attr_httpequiv* > (a_.get (a_httpequiv).get ());
         if (he != nullptr)
-        {   ::std::string ct (validate_httpequiv_content (nits (), node_.version (), he -> get (), trim_the_lot_off (a_.get_string (a_content))));
+        {   ::std::string ct (validate_httpequiv_content (nits (), node_.version (), he -> get (), trim_the_lot_off (a_.get_string (a_content)), page_));
             switch (he -> get_int ())
             {   case he_content_style_type :
                     page_.style_css (compare_no_case (CSS_TYPE, ct));

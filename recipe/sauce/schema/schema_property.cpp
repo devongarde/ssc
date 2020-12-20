@@ -31,15 +31,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct property_gen
 {   schema_version from_;
     schema_version to_;
-//    const char* name_ = nullptr;
     e_schema_property prop_;
     e_type field_type_ = t_generic;
     e_schema field_schema_ = sch_context;
     uint32_t flags_ = 0;
 #ifdef REQUIRE_CONSTRUCTOR
-//    property_gen (  const schema_version& from, const schema_version& to, const char* name, const e_schema_property prop, const e_type field_type = t_generic,
-//                    const e_schema field_schema = sch_context, const uint32_t flags = 0)
-//        : from_ (from), to_ (to), name_ (name), prop_ (prop), field_type_ (field_type), field_schema_ (field_schema), flags_ (flags) { }
     property_gen (  const schema_version& from, const schema_version& to, const e_schema_property prop, const e_type field_type = t_generic,
                     const e_schema field_schema = sch_context, const uint32_t flags = 0)
         : from_ (from), to_ (to), prop_ (prop), field_type_ (field_type), field_schema_ (field_schema), flags_ (flags) { }

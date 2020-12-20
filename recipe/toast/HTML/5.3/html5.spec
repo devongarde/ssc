@@ -110,6 +110,7 @@ PASS ../toast/HTML/5.3/html5-bad.html
 154 bad_datalist
 
 PASS ../toast/HTML/5.3/html5-bad-2.html
+0 charset_mismatch charset_used charset_invalid
 4 unrecognised_value
 
 PASS ../toast/HTML/5.3/html5-example.html

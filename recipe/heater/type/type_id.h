@@ -55,7 +55,7 @@ template < > struct type_master < t_id > : tidy_string < t_id >
                     tidy_string < t_id > :: status (s_invalid); }
                 break;
             case 5 :
-                if (s.find (' ') != ::std::string::npos)
+                if (find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
                 {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " may not contain a space");
                     tidy_string < t_id > :: status (s_invalid); } }
         tested_ = predefined_ = false; }
@@ -74,8 +74,11 @@ template < > struct type_master < t_id > : tidy_string < t_id >
 template < > struct type_master < t_idref > : tidy_string < t_idref >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_idref > :: set_value (nits, v, s);
-        if (s.empty () || s.find (' ') != s.npos)
-        {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " can neither be empty nor contain a space");
+        if (s.empty ())
+        {   nits.pick (nit_bad_id, es_error, ec_type, "an id cannot be empty");
+            tidy_string < t_idref > :: status (s_invalid); }
+        else if (::std::find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
+        {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " contains a space");
             tidy_string < t_idref > :: status (s_invalid); } }
     bool verify_id (nitpick& nits, const html_version& , ids_t& ids, const attribute_bitset& state, const vit_t& )
     {   if (! tidy_string < t_idref > :: good ()) return false;
@@ -112,8 +115,11 @@ template < > struct type_master < t_idrefs > : string_vector < t_idrefs, sz_spac
 template < > struct type_master < t_navigation > : tidy_string < t_navigation >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_navigation > :: set_value (nits, v, s);
-        if (s.empty () || s.find (' ') != s.npos)
-        {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " can neither be empty nor contain a space");
+        if (s.empty ())
+        {   nits.pick (nit_bad_id, es_error, ec_type, "an id cannot be empty");
+            tidy_string < t_navigation > :: status (s_invalid); }
+        else if (::std::find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
+        {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " contains a space");
             tidy_string < t_navigation > :: status (s_invalid); } }
     bool verify_id (nitpick& nits, const html_version& , ids_t& ids, const attribute_bitset& state, const vit_t& )
     {   if (! tidy_string < t_navigation > :: good ()) return false;

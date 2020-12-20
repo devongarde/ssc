@@ -18,6 +18,8 @@ Licence along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+#pragma once
+
 #define ELEMENT_    "element"
 #define GENERAL_    "general"
 #define HTML_       "html"
@@ -72,7 +74,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EXPORT      "export"
 #define EXTENSION   "extension"
 #define EXTERNAL    "external"
-#define FILE        "file"
+#define FICHIER        "file"
 #define FORWARD     "301"
 #define HELP        "help"
 #define HTTPEQUIV   "httpequiv"

@@ -232,7 +232,6 @@ typedef typed_attribute < t_edit, a_edit > attr_edit;
 typedef typed_attribute < t_generic, a_editable > attr_editable;
 typedef typed_attribute < t_effect, a_effect > attr_effect;
 typedef typed_attribute < t_angle, a_elevation > attr_elevation;
-// typedef typed_attribute < t_charset, a_encoding > attr_encoding;
 typedef typed_attribute < t_text, a_encoding > attr_encoding;
 typedef typed_attribute < t_enctype, a_enctype > attr_enctype;
 typedef typed_attribute < t_enablebackground, a_enablebackground > attr_enablebackground;

@@ -1,6 +1,7 @@
 -f ../toast/shadow/copyover/copyover.conf
 
 PASS ../toast/shadow/copyover/html-bad.html
+0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 5 mime
 7 only_once

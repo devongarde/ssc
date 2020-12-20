@@ -177,7 +177,7 @@ void options::process (int argc, char** argv)
         ;
     hidden.add_options ()
         (GENERAL CLASS, "do not report unrecognised classes")
-        (GENERAL FILE ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "file for persistent data, requires -N (note " GENERAL PATH ")")
+        (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "file for persistent data, requires -N (note " GENERAL PATH ")")
         (GENERAL TEST ",T", "output format for automated tests")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "user name to supply when requested (for webmentions)")
         (GENERAL WEBMENTION, "process webmentions (experimental)")
@@ -204,6 +204,7 @@ void options::process (int argc, char** argv)
         (GENERAL CSS_OPTION, "do NOT process .css files")
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated")
         (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore attributes and content of specified element; may be repeated")
+        (GENERAL LANG, ::boost::program_options::value < ::std::string > () -> composing (), "default language (such as 'en_GB', 'lb_LU', etc.)")
         (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "maximum file size to read, in megabytes (zero for no limit)")
         (GENERAL NOCHANGE ",n", "report what will do, but do not do it")
         (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "output file (default to the console)")
@@ -256,7 +257,7 @@ void options::process (int argc, char** argv)
 #else // NOLYNX
         (SHADOW COPY, ::boost::program_options::value < int > (), "copy non-HTML files: 0=no (default), 1=pages, 2=hard link all, 3=soft link all, 4=copy all, 5=copy+deduplicate, 6=only report duplicates")
 #endif // NOLYNX
-        (SHADOW FILE, ::boost::program_options::value < ::std::string > (), "where to persist deduplication data")
+        (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "where to persist deduplication data")
         (SHADOW IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore files with this extension; may be repeated")
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "shadow output root directory")
         (SHADOW SSI, "do NOT resolve SSIs on shadow pages when " GENERAL SSI " is set")
@@ -362,7 +363,7 @@ void options::contextualise ()
     context.nochange (var_.count (GENERAL NOCHANGE));
     context.rdf (var_.count (GENERAL RDF));
     context.ssi (var_.count (GENERAL SSI));
-    context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FILE].as < ::std::string > ())));
+    context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
     context.stats_page (var_.count (STATS PAGE));
     context.stats_summary (var_.count (STATS SUMMARY));
 
@@ -410,6 +411,7 @@ void options::contextualise ()
     context.unknown_class (var_.count (GENERAL CLASS));
     if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
     if (var_.count (GENERAL IGNORED)) context.ignore (var_ [GENERAL IGNORED].as < vstr_t > ());
+    if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());
     if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
     if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose > (var_ [GENERAL VERBOSE].as < int > ()));
     context.process_webmentions (var_.count (GENERAL WEBMENTION));
@@ -482,7 +484,7 @@ void options::contextualise ()
 #else // NOLYNX
     if (var_.count (SHADOW COPY)) context.copy (var_ [SHADOW COPY].as < int > ());
 #endif // NOLYNX
-    if (var_.count (SHADOW FILE)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FILE].as < ::std::string > ()));
+    if (var_.count (SHADOW FICHIER)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FICHIER].as < ::std::string > ()));
     if (var_.count (SHADOW IGNORED)) context.shadow_ignore (var_ [SHADOW IGNORED].as < vstr_t > ());
     if (var_.count (SHADOW ROOT)) context.shadow (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
     context.shadow_space (var_.count (SHADOW SPACING));
@@ -614,8 +616,9 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (GENERAL CLASS)) res << GENERAL CLASS "\n";
     if (var_.count (GENERAL CSS_OPTION)) res << GENERAL CSS_OPTION "\n";
     if (var_.count (GENERAL CUSTOM)) { res << GENERAL CUSTOM ": "; pvs (res, var_ [GENERAL CUSTOM].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (GENERAL FILE)) res << GENERAL FILE ": " << var_ [GENERAL FILE].as < ::std::string > () << "\n";
+    if (var_.count (GENERAL FICHIER)) res << GENERAL FICHIER ": " << var_ [GENERAL FICHIER].as < ::std::string > () << "\n";
     if (var_.count (GENERAL IGNORED)) { res << GENERAL IGNORED ": "; pvs (res, var_ [GENERAL IGNORED].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (GENERAL LANG)) res << GENERAL LANG ": " << var_ [GENERAL LANG].as < ::std::string > () << "\n";
     if (var_.count (GENERAL MAXFILESIZE)) res << GENERAL MAXFILESIZE ": " << var_ [GENERAL MAXFILESIZE].as < int > () << "\n";
     if (var_.count (GENERAL NOCHANGE)) res << GENERAL NOCHANGE "\n";
     if (var_.count (GENERAL PATH)) res << GENERAL PATH ": " << var_ [GENERAL PATH].as < ::std::string > () << "\n";
@@ -671,7 +674,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT "\n";
     if (var_.count (SHADOW COPY)) res << SHADOW COPY ": " << var_ [SHADOW COPY].as < int > () << "\n";
-    if (var_.count (SHADOW FILE)) res << SHADOW FILE ": " << var_ [SHADOW FILE].as < ::std::string > () << "\n";
+    if (var_.count (SHADOW FICHIER)) res << SHADOW FICHIER ": " << var_ [SHADOW FICHIER].as < ::std::string > () << "\n";
     if (var_.count (SHADOW IGNORED)) { res << SHADOW IGNORED ": "; pvs (res, var_ [SHADOW IGNORED].as < vstr_t > ()); res << "\n"; }
     if (var_.count (SHADOW ROOT)) res << SHADOW ROOT ": " << var_ [SHADOW ROOT].as < ::std::string > () << "\n";
     if (var_.count (SHADOW SPACING)) res << SHADOW SPACING "\n";

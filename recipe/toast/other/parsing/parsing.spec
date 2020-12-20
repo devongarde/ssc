@@ -22,8 +22,8 @@ PASS ../toast/other/parsing/parsing-bad.html
 
 PASS ../toast/other/parsing/quotes.html
 2 inserted_missing_parent naughty_lang
-14 attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute
-15 attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute
+14 attribute_unrecognised attribute_name_unexpected_character unrecognised_attribute
+15 attribute_unrecognised attribute_name_unexpected_character unrecognised_attribute
 
 PASS ../toast/other/parsing/scripts.html
 2 naughty_lang

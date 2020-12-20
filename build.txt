@@ -9,20 +9,22 @@ Introduction
 SSC can be built from the unix command line using CMake, or with Visual Studios 2015 / 2017 / 2019 under Windows.
 
 
-Boost
------
-Before you can build SSC, you may find you need to install and build boost version 1.71 or better
-(I use version 1.74).
+Libraries
+---------
+Before you can build SSC, you may find you need to install and build boost version 1.67 or better
+(I use version 1.74) and a recent version of the ICU libraries. Warning: boost 1.75 will soon be
+preferred; it has an improved JSON library. Most unii have both available as packages.
 
-You may need to set two environment variables:
-SSCPATH to point to the ssc directory;
-BOOST to point to the boost root directory.
+You may need to set these environment variables:
+BOOST to point to the boost source root directory (https://boost.org);
+ICU_PATH to point to the ICU library source root directory (https://icu-project.org/);
+SSCPATH to point to the ssc source directory (https://ssc.lu/).
 
 
 Windows
 -------
 To build from Visual Studio, navigate to recipe\tea, open the appropriate .sln file, then build.
-Both 32bit and 64bit builds work. However, the 32bit executable cannot analyse large websites.
+Both 32bit and 64bit builds work, although the 32bit executable cannot analyse larger websites.
 Visual Studios 2015, 2017 & 2019 have been built & tested, for Windows 7, 8.1 & 10 respectively.
 
 
@@ -40,17 +42,19 @@ make install
 
 If everything works correctly, then everything will be built, a series of tests run, with a final result
 at the very end saying no failures. Having said that, given SSC is pre–alpha, don’t be too surprised to
-see some warnings or some final test errors.
+see some warnings or some final test errors. Note in particular that complaints about being unable to find
+or copy files during testing are not of concern, these come from scripts that are setting up or tearing down
+individual tests, and they complain if they can't find files they're supposed to delete rather than saying
+thank you for the reduced work.
 
 The following have successfully built:
 Linux: Centos 8 amd64, Ubuntu Server 20.10
 OpenBSD 6.8: amd64
-MacOS: intel Big Sur, Catalina, Mojave, & High Sierra x64
+MacOS: Catalina, Mojave, & High Sierra x64 (Bug Sur builds are blocked by an SDK bug (20/12/20))
 
 
 OpenBSD amd64
 -------------
 
 The versions of boost and cmake in packages are sufficient.
-Significantly increase available memory in login.conf for your account.
-
+Significantly increase available memory in login.conf for the build account.

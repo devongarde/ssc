@@ -6,6 +6,7 @@ PASS ../toast/microdata/schema-tuv/theatreevent.html
 21 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-tuv/touristattraction.html
+0 charset_mismatch charset_used charset_invalid
 14 use_quote_code
 27 use_quote_code
 76 use_quote_code
@@ -23,9 +24,11 @@ PASS ../toast/microdata/schema-tuv/touristattraction.html
 203 not_schema_property
 
 PASS ../toast/microdata/schema-tuv/touristdestination.html
+0 charset_mismatch charset_used charset_invalid
 16 newline_in_string newline_in_string
 
 PASS ../toast/microdata/schema-tuv/touristtrip.html
+0 charset_mismatch charset_used charset_invalid
 84 not_schema_property
 125 not_schema_property
 163 use_quote_code
@@ -65,6 +68,7 @@ PASS ../toast/microdata/schema-tuv/tvseries.html
 35 svg_rdf
 
 PASS ../toast/microdata/schema-tuv/unitpricespecification.html
+0 charset_mismatch charset_used charset_invalid
 15 svg_rdf
 17 svg_rdf sunk sunk
 22 svg_rdf
@@ -74,6 +78,9 @@ PASS ../toast/microdata/schema-tuv/videogame-1.html
 22 untidy_string
 52 data_type
 53 attribute_required attribute_required
+
+PASS ../toast/microdata/schema-tuv/videogame-2.html
+0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/microdata/schema-tuv/videogame-3.html
 16 use_quote_code
@@ -114,6 +121,7 @@ PASS ../toast/microdata/schema-tuv/videoobject.html
 113 svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
 
 PASS ../toast/microdata/schema-tuv/visualartwork.html
+0 charset_mismatch charset_used charset_invalid
 21 attribute_required naughty_alt
 25 use_quote_code
 27 use_double_quote_code

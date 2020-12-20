@@ -52,8 +52,8 @@ class context_t
     e_mathversion   math_version_ = math_none;
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
-    ::std::string   base_, filename_, stub_, hook_, incoming_, index_, macro_end_, macro_start_, output_, path_, persisted_, root_, secret_, server_,
-                    shadow_, shadow_persist_, test_header_, user_, webmention_, write_path_, export_root_;
+    ::std::string   base_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, output_, path_, persisted_, root_, secret_, server_,
+                    shadow_, shadow_persist_, stub_, test_header_, user_, webmention_, write_path_, export_root_;
     ::boost::filesystem::path config_;
     e_wm_status     wm_status_ = wm_undefined;
     vstr_t          custom_elements_, exports_, extensions_, mentions_, shadow_ignore_, shadows_, site_, templates_, virtuals_;
@@ -90,8 +90,9 @@ public:
     const ::std::string incoming () const { return incoming_; }
     const ::std::string index () const { return index_; }
     bool invalid () const { return ! valid_; }
-    bool load_css () const { return ! load_css_; }
+    ::std::string lang () const { return lang_; }
     bool links () const { return links_; }
+    bool load_css () const { return ! load_css_; }
     const ::std::string macro_end () const { return macro_end_; }
     const ::std::string macro_start () const { return macro_start_; }
     e_mathversion math_version () const { return math_version_; }
@@ -194,11 +195,12 @@ public:
     context_t& incoming (const ::std::string& s) { incoming_ = s; return *this; }
     context_t& ignore (const vstr_t& s);
     context_t& index (const ::std::string& s) { index_ = s; return *this; }
-    context_t& load_css (const bool b) { load_css_ = ! b; return *this; }
+    context_t& lang (const ::std::string& s) { lang_ = s; return *this; }
     context_t& links (const bool b)
     {   links_ = b;
         if (! b) { external (false); }
         return *this; }
+    context_t& load_css (const bool b) { load_css_ = ! b; return *this; }
     context_t& macro_end (const ::std::string& s) { macro_end_ = s; return *this; }
     context_t& macro_start (const ::std::string& s) { macro_start_ = s; return *this; }
     context_t& math_version (const int v)

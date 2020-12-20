@@ -76,7 +76,7 @@ bool parse_d (nitpick& nits, const html_version& v, const ::std::string& d)
     else if (d.length () > 1023)
         nits.pick (nit_path_spec, ed_svg_1_0, "11.2.1 General information about path data", es_error, ec_type, "a path specification cannot exceed 1023 characters");
     else for (auto ch : d)
-    {   if (ch < ' ') continue;
+    {   if (::std::iswcntrl (ch)) continue;
         switch (ch)
         {   case '.' : if (! num)
                        {    nits.pick (nit_path_spec, ed_svg_1_0, "11.2.6 The grammar for path data", es_error, ec_type, "A number in path data cannot start with a decimal point");

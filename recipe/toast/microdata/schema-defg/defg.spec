@@ -22,6 +22,7 @@ PASS ../toast/microdata/schema-defg/deliverychargespecification.html
 32 attribute_barred
 
 PASS ../toast/microdata/schema-defg/depositaccount.html
+0 charset_mismatch charset_used charset_invalid
 19 svg_rdf svg_rdf sunk sunk
 26 svg_rdf svg_rdf sunk sunk
 33 svg_rdf sunk sunk svg_rdf sunk sunk
@@ -38,9 +39,11 @@ PASS ../toast/microdata/schema-defg/drycleaningorlaundry.html
 35 use_quote_code
 
 PASS ../toast/microdata/schema-defg/eooc.html
+0 charset_mismatch charset_used charset_invalid
 58 attribute_required svg_rdf empty_link empty_link
 
 PASS ../toast/microdata/schema-defg/event.html
+0 charset_mismatch charset_used charset_invalid
 12 url_not_found
 20 url_not_found
 43 data_type
@@ -116,6 +119,7 @@ PASS ../toast/microdata/schema-defg/event.html
 328 url_not_found
 
 PASS ../toast/microdata/schema-defg/examples.html
+0 charset_mismatch charset_used charset_invalid
 15 attempted_escape no_such_folder url_not_found
 21 bad_datetime bad_datetime
 24 attempted_escape no_such_folder url_not_found
@@ -127,11 +131,16 @@ PASS ../toast/microdata/schema-defg/examples.html
 72 attribute_required url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-defg/exchangeratespecification.html
+0 charset_mismatch charset_used charset_invalid
 9 inserted_missing_closure only_once
 20 svg_rdf
 28 svg_rdf
 
+PASS ../toast/microdata/schema-defg/exhibitionevent.html
+0 charset_mismatch charset_used charset_invalid
+
 PASS ../toast/microdata/schema-defg/financialproduct.html
+0 charset_mismatch charset_used charset_invalid
 12 svg_rdf svg_rdf sunk sunk svg_rdf sunk sunk
 
 PASS ../toast/microdata/schema-defg/foodestablishment.html
@@ -140,6 +149,7 @@ PASS ../toast/microdata/schema-defg/foodestablishment.html
 60 attribute_barred
 
 PASS ../toast/microdata/schema-defg/game.html
+0 charset_mismatch charset_used charset_invalid
 15 no_such_folder url_not_found
 22 inserted_missing_closure
 

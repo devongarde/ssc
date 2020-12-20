@@ -231,13 +231,15 @@ void directory::examine (nitpick& nits)
                         if (encoding == cc_fkd) ss << "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)\n";
                         else
                         {   page web (i.first, content, ndx, this, encoding);
-                            if (! web.invalid ())
+                            if (web.invalid ()) ss << web.nits ().review ();
+                            else
                             {   web.examine (*this);
+                                web.verify_locale (p);
                                 web.mf_write (p);
                                 web.lynx ();
                                 if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
-                                ss << web.report (); }
-                            ss << web.nits ().review (); } } }
+                                ss << web.nits ().review ();
+                                ss << web.report (); } } } }
                 catch (...)
                 {   if (context.tell (e_error)) ss << "Cannot parse " << context.filename () << "\n"; }
                 if (! ss.str ().empty ()) context.out () << "\n\n*** " << local_path_to_nix (p.string ()) << "\n" << ss.str ();

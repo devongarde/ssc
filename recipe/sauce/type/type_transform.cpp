@@ -61,7 +61,7 @@ bool parse_transform (nitpick& nits, const html_version& v, const ::std::string&
         return false; }
     for (auto ch : d)
     {   if (ch != ',') had_comma = false;
-        if (ch < ' ') continue;
+        if (::std::iswcntrl (ch)) continue;
         switch (ch)
         {   case ',' :
                 if (had_comma)

@@ -41,6 +41,7 @@ PASS ../toast/microdata/schema-abc/alignmentobject.html
 69 svg_rdf bad_datetime
 
 PASS ../toast/microdata/schema-abc/amusementpark.html
+0 charset_mismatch charset_used charset_invalid
 14 use_quote_code
 
 PASS ../toast/microdata/schema-abc/answer.html
@@ -77,6 +78,7 @@ PASS ../toast/microdata/schema-abc/archiveorganisation.html
 18 unrecognised_value
 
 PASS ../toast/microdata/schema-abc/article.html
+0 charset_mismatch charset_used charset_invalid
 33 inserted_missing_closure
 67 url_id_unfound
 86 bad_itemid
@@ -91,7 +93,11 @@ PASS ../toast/microdata/schema-abc/audioobject.html
 13 bad_script
 20 bad_datetime
 
+PASS ../toast/microdata/schema-abc/bankaccount.html
+0 charset_mismatch charset_used charset_invalid
+
 PASS ../toast/microdata/schema-abc/blogposting.html
+0 charset_mismatch charset_used charset_invalid
 13 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 22 svg_rdf bad_datetime bad_datetime
 24 attribute_required naughty_alt
@@ -156,6 +162,7 @@ PASS ../toast/microdata/schema-abc/broadcastservice.html
 115 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-abc/brokerageaccount.html
+0 charset_mismatch charset_used charset_invalid
 14 not_schema_property unrecognised_value bad_itemprop
 15 svg_rdf svg_rdf not_schema_property unrecognised_value bad_itemprop
 
@@ -164,6 +171,7 @@ PASS ../toast/microdata/schema-abc/car.html
 29 attribute_required invalid_attribute_version wrong_version attribute_required empty_link empty_link url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-abc/categorycode.html
+0 charset_mismatch charset_used charset_invalid
 26 requires_itemscope
 30 bad_itemid
 35 no_xmllang svg_rdf
@@ -171,12 +179,16 @@ PASS ../toast/microdata/schema-abc/categorycode.html
 37 no_xmllang svg_rdf
 
 PASS ../toast/microdata/schema-abc/categorycodeset.html
+0 charset_mismatch charset_used charset_invalid
 21 bad_itemid
 26 requires_itemscope bad_itemid
 30 bad_itemid
 35 no_xmllang svg_rdf
 36 no_xmllang svg_rdf
 37 no_xmllang svg_rdf
+
+PASS ../toast/microdata/schema-abc/cemetery.html
+0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/microdata/schema-abc/chapter.html
 14 requires_itemscope
@@ -269,6 +281,7 @@ PASS ../toast/microdata/schema-abc/creativework-2.html
 242 bad_itemid
 
 PASS ../toast/microdata/schema-abc/creditcard.html
+0 charset_mismatch charset_used charset_invalid
 15 svg_rdf
 17 svg_rdf sunk sunk
 22 svg_rdf

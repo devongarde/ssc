@@ -114,6 +114,7 @@ PASS ../toast/HTML/5.1/html5-bad.html
 177 bad_ancestor
 
 PASS ../toast/HTML/5.1/html5-bad-2.html
+0 charset_mismatch charset_used charset_invalid
 4 text_content
 5 bad_noscript
 9 unrecognised_value

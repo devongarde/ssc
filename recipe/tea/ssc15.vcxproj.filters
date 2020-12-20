@@ -366,6 +366,12 @@
     <Filter Include="Toast\Shadow\DeduOver\c">
       <UniqueIdentifier>{34a46bf8-71d9-4ffd-bd25-8bca9ec2df8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Heater\icu">
+      <UniqueIdentifier>{cd6f395a-f4dd-4e37-9d6c-bc923333c0ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\icu">
+      <UniqueIdentifier>{23ba9d8a-1ce1-4c3d-bf43-35b7710eeb86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -767,6 +773,12 @@
     <ClInclude Include="..\heater\schema\schema_name.h">
       <Filter>Heater\schema</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\icu\wrapper.h">
+      <Filter>Heater\icu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\icu\charset.h">
+      <Filter>Heater\icu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1086,6 +1098,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\schema\schema_name.cpp">
       <Filter>Sauce\schema</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\icu\wrapper.cpp">
+      <Filter>Sauce\icu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\icu\charset.cpp">
+      <Filter>Sauce\icu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

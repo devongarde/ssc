@@ -148,6 +148,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/format.hpp>
+#include <boost/locale.hpp>
 #ifndef NO_PROCESS
 #include <boost/process.hpp>
 #endif // NO_PROCESS
@@ -159,8 +160,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef _MSC_VER
 #pragma warning ( disable : 4701 ) // CRC
 #endif
-
 #include <boost/crc.hpp>
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif
 
 #endif // SSC_TEST
 
@@ -168,9 +171,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma clang diagnostic pop
 #endif
 
+#ifndef SSC_TEST
+#include "unicode/ucsdet.h"
 #ifdef _MSC_VER
-#pragma warning (pop)
-#endif
+#pragma comment (lib,"icudt.lib")
+#pragma comment (lib,"icuin.lib")
+#pragma comment (lib,"icuio.lib")
+#pragma comment (lib,"icutu.lib")
+#pragma comment (lib,"icuuc.lib")
+#endif // _MSC_VER
+#endif // SSC_TEST
 
 #include "main/version.h"
 
@@ -229,7 +239,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CSS_TYPE "text/css"
 
 #define NOFLAGS 0
-
 #define EXPORT_EXTENSION ".json"
 
 #endif // SCC_TEST

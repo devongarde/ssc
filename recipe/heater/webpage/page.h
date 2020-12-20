@@ -46,16 +46,16 @@ class page
     directory* directory_ = nullptr;
     bool has_title_ = false;
     bool style_css_ = true;
-    bool charset_defined_ = false;
     stats_t stats_;
     schema_version schema_version_;
     ssi_compedium ssi_;
     nitpick nits_;
     uid_t euid_ = 0;
     itemscope_ptr itemscope_;
+    ::std::string lang_, charset_;
     friend class tag;
 public:
-    page () = default;
+    page () = delete;
     page (nitpick& nits, const ::std::string& name, ::std::string& content, directory* d = nullptr, const e_charcode encoding = cc_ansi);
     page (const ::std::string& name, ::std::string& content, const fileindex_t ndx, directory* d = nullptr, const e_charcode encoding = cc_ansi);
     page (const page& ) = default;
@@ -68,7 +68,6 @@ public:
 #endif
     ~page () = default;
     void swap (page& p) NOEXCEPT;
-    void reset ();
     void reset (const page& p);
     nitpick& nits () { return nits_; }
     const nitpick& nits () const { return nits_; }
@@ -96,8 +95,11 @@ public:
     void confirm_title () { has_title_ = true; }
     void style_css (const bool b) { style_css_ = b; }
     bool style_css () const { return style_css_; }
-    void charset_defined (const bool b) { charset_defined_ = b; }
-    bool charset_defined () const { return charset_defined_; }
+    bool charset_defined () const { return ! charset_.empty (); }
+    const ::std::string& lang () const { return lang_; }
+    void lang (nitpick& nits, const html_version& v, const ::std::string& l);
+    const ::std::string& charset () const { return charset_; }
+    void charset (nitpick& nits, const html_version& v, const ::std::string& cs);
     void mark (const e_element e)
     {   stats_.mark (e);
         context.mark (e); }
@@ -121,6 +123,7 @@ public:
     microdata_export* md_export () { return &md_export_; }
     ::std::string get_export_root () const;
     const directory* get_directory () const { return directory_; }
+    void verify_locale (const ::boost::filesystem::path& p);
     ::std::string report (); };
 
 ::std::string get_page_url (const ::std::string& url);

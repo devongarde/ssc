@@ -2279,10 +2279,6 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_meta, a_lang },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_meta, a_name },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_meta, a_scheme },
-//    HTML4_STANDARD_CIST_ATTRIBUTES (elem_meta, MAJOR_5_0, MINOR_5_0),
-//    HTML4_STANDARD_SCRIPT_ATTRIBUTES (elem_meta, MAJOR_5_0, MINOR_5_0),
-//    XHTML2_ATTRIBUTES (elem_meta),
-//    NEW_HTML50_ATTRIBUTES (elem_meta),
     HTML23_CLID_ATTRIBUTES (elem_meta),
     STANDARD_HTML_4_54_ATTRIBUTES (elem_meta),
 

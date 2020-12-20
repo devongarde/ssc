@@ -168,17 +168,14 @@ html_version bras_ket::parse (const ::std::string& content)
                     if (*(i+1) == '"')
                     {   ++i; continue; }
                 break;
-            case '\r' :
-                ++line_; ll = 0;
-                bol = e;
-                continue;
             case '\n' :
             case '\f' :
                 newline = true;
+                // drop thru'
+            case '\r' :
                 ++line_; ll = 0;
                 bol = e;
-                ch = ' ';
-                break;
+                // drop thru'
             case '\t' :
                 ch = ' '; }
         ++ll;
@@ -284,7 +281,8 @@ html_version bras_ket::parse (const ::std::string& content)
                     case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double > intentional?"); break;
                     case '&' :  if (! xmp_mode) { status= s_amper; twas = i; } break;
                     case '\'' : if (! xmp_mode && ! silent_content && (res >= html_4_0))
-                        nits.pick (nit_use_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)"); break;
+                        nits.pick (nit_use_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)");
+                        break;
                     case '"' :  if (! xmp_mode && ! silent_content && (res >= html_4_0))
                         nits.pick (nit_use_double_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)"); }
                 break;
@@ -484,7 +482,7 @@ html_version bras_ket::parse (const ::std::string& content)
                 break;
             case s_pxq :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_pxq ", ch);
-                if (ch == ' ')
+                if (::std::iswspace (ch))
                 {   if (collect+1 == i)
                     {   if (! had_doctype) nodoctype (nits, res, b, e, i);
                         if (! php_warn)

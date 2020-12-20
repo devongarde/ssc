@@ -411,7 +411,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                     if (::std::iswspace (*(i-1))) return;
                     msg = "space missing before attempted end of SSI"; severity = es_warning;
                     break;
-        default :   if (((*i >= 'A') && (*i <= 'Z')) || ((*i >= 'a') && (*i <= 'z')) || ((*i >= '0') && (*i <= '9')) || (*i <= ' ') || (*i == '=')) return; }
+        default :   if (((*i >= 'A') && (*i <= 'Z')) || ((*i >= 'a') && (*i <= 'z')) || ((*i >= '0') && (*i <= '9')) || (*i == '=') || ::std::iswspace (*i) || ::std::iscntrl (*i)) return; }
     if (msg.empty ())
     {   if (warned) return;
         msg = "is '";
@@ -439,8 +439,8 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
         {   if (++nlc < 3) to += *i;
             ++line;
             continue; }
-        if (*i == '\t') { to += ' '; continue; }
-        if (*i > ' ') nlc = 0;
+        if (*i == '\t') { to += *i; continue; }
+        if (! ::std::iswspace (*i) && ! ::std::iswcntrl (*i)) nlc = 0;
         switch (status)
         {   case es_dull : if (*i == '<') { status = es_open; start = i; } else if (c.if_) to += *i; break;
             case es_open : if (*i == '!') status = es_bang; else { if (c.if_) { to += "<"; to += *i; } status = es_dull; } break;
@@ -448,7 +448,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
             case es_om_1 : if (*i == '-') status = es_om_2; else { if (c.if_) { to += "<!-"; to += *i; } status = es_dull; } break;
             case es_om_2 : if (*i == '#') { status = es_ssi; var = i; } else status = es_note; break;
             case es_ssi :
-                if (*i <= ' ') { cmd = trim_the_lot_off (::std::string (var+1, i)); status = es_space; args = i; }
+                if (::std::iswcntrl (*i) || ::std::iswspace (*i)) { cmd = trim_the_lot_off (::std::string (var+1, i)); status = es_space; args = i; }
                 test_for_oops (nits, line, b, i, e, warned);
                 break;
             case es_args :

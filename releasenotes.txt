@@ -3,9 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020 Dylan Harris
 
+0.0.77
+- verify declared and actual charsets match
+- now requires ICU libraries in addition to boost libraries
+- various bug fixes
+
 0.0.76
 - added --shadow.ignore to specify extensions of files to ignore when shadowing
-- various bug fixes
+- multiple bug fixes
 
 0.0.75
 - added --microdata.root and --microdata.virtual for microdata exports

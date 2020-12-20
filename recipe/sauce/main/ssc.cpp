@@ -45,6 +45,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void init (nitpick& nits)
 {   nit::init ();
+    nits.set_context (0, PROG " initialisation");
     attr::init (nits);
     avm_init (nits);
     code_map_init (nits);
@@ -165,7 +166,6 @@ int main (int argc, char** argv)
 {   auto start = ::std::chrono::system_clock::now ();
     std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
     nitpick nits;
-    nits.set_context (0, PROG " initialisation");
     init (nits);
     dump_nits (nits, "initialisation");
     int res = context.parameters (argc, argv);

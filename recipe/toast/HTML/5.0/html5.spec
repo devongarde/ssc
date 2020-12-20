@@ -56,6 +56,7 @@ PASS ../toast/HTML/5.0/example-5.html
 65 url_not_found
 
 PASS ../toast/HTML/5.0/html5-bad.html
+0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 5 mime
 7 only_once
@@ -152,6 +153,7 @@ PASS ../toast/HTML/5.0/html5-bad.html
 228 attribute_unrecognised_here unrecognised_attribute bad_script
 
 PASS ../toast/HTML/5.0/html5-bad-2.html
+0 charset_mismatch charset_used charset_invalid
 4 unrecognised_value
 6 unrecognised_value
 
@@ -465,7 +467,7 @@ PASS ../toast/HTML/5.0/html5-example.html
 1547 inserted_missing_closure
 1548 inserted_missing_closure missing_close
 1549 inserted_missing_closure inserted_missing_closure
-1551 inserted_missing_closure missing_close untidy_string
+1551 inserted_missing_closure missing_close
 1552 inserted_missing_closure
 1554 url_not_found
 1561 no_such_folder url_not_found
