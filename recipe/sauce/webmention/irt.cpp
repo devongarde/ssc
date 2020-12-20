@@ -130,7 +130,7 @@ void reply::mark ()
 {   ::std::string res;
     bool whitespace = false;
     for (auto ch : s)
-    {   if (ch > ' ') { res += ch; whitespace = false; }
+    {   if (! ::std::iswspace (ch) && ! ::std::iswcntrl (ch)) { res += ch; whitespace = false; }
         else if (! whitespace) { res += ' '; whitespace = true; } }
     return res; }
 

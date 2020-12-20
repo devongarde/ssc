@@ -86,8 +86,7 @@ typedef enum
     a_g1, a_g2, a_generator_unable, a_glyph_orientation_vertical, a_glyphname, a_glyphorientation_horizontal, a_glyphref, a_gradienttransform,
         a_gradientunits, a_gradient_units, a_groupalign, a_gutter,
     a_handler, a_hanging, a_headers, a_height, a_hidden, a_high, a_horizadvx, a_horizoriginx, a_horizoriginy, a_href, a_hreflang, a_hrefmedia,
-        a_hreftype,
-        a_hspace, a_html, a_httpequiv,
+        a_hreftype, a_hspace, a_html, a_httpequiv,
     a_icon, a_id, a_ideographic, a_idref, a_if, a_imagerendering, a_imagemap, a_imagesizes, a_imagesrcset, a_implements, a_importance,
         a_in, a_in2, a_incremental, a_indent, a_indentalign, a_indentalignfirst, a_indentalignlast, a_indentshift, a_indentshiftfirst,
         a_indentshiftlast,
@@ -182,14 +181,14 @@ typedef enum { bm_ansi, bm_utf8, bm_utf16_be, bm_utf16_le, bm_utf32_be, bm_utf32
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_incorrectness, ec_init, ec_link, ec_microdata, ec_microformat, ec_mql,
-                ec_namespace, ec_parser, ec_program, ec_rdf, ec_rudeness, ec_shadow, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
+typedef enum {  ec_undefined, ec_io, ec_icu, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_incorrectness, ec_init, ec_link, ec_microdata, ec_microformat, ec_mql,
+                ec_namespace, ec_parser, ec_program, ec_rdf, ec_rudeness, ec_shadow, ec_ssi, ec_page, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
 const e_category last_category = ec_webmention;
 typedef enum {  cc_ansi, cc_utf8, cc_utf16be, cc_utf16le, cc_gb, cc_fkd } e_charcode;
 typedef enum {  ch_a, ch_b, ch_g, ch_r } e_channel_selector;
 
 typedef enum {  cs_context,
-                cs_adobe_standard_encoding, cs_adobe_symbol_encoding, cs_amiga_1251, cs_ansi_x3_110_1983, cs_asmo_449, cs_axiom, cs_bocu_1, cs_brf, cs_bs_4730, cs_bs_viewdata,
+                cs_adobe_standard_encoding, cs_adobe_symbol_encoding, cs_amiga_1251, cs_ansi_x3_110_1983, cs_ascii, cs_asmo_449, cs_axiom, cs_bocu_1, cs_brf, cs_bs_4730, cs_bs_viewdata,
                 cs_big5, cs_cesu_8, cs_cp50220, cs_cp51932, cs_csa_z243_4_1985_1, cs_csa_z243_4_1985_2, cs_csa_z243_4_1985_gr, cs_csn_369103,
                 cs_dec_mcs, cs_din_66003, cs_ds_2089, cs_ebcdic_at_de, cs_ebcdic_at_de_a, cs_ebcdic_ca_fr, cs_ebcdic_dk_no, cs_ebcdic_dk_no_a, cs_ebcdic_es,
                 cs_ebcdic_es_a, cs_ebcdic_es_s, cs_ebcdic_fi_se, cs_ebcdic_fi_se_a, cs_ebcdic_fr, cs_ebcdic_it, cs_ebcdic_pt, cs_ebcdic_uk, cs_ebcdic_us, cs_ecma_cyrillic,
@@ -318,8 +317,8 @@ typedef enum {  ds_inline, ds_block, ds_listitem, ds_runin, ds_compact, ds_marke
                 ds_tablefootergroup, ds_tablerow, ds_tablecolumngroup, ds_tablecolumn, ds_tablecell, ds_tablecaption, ds_none, ds_inherit } e_display;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2, ed_50, ed_51, ed_52, ed_53,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_math_1, ed_math_2, ed_math_3, ed_math_4,
-                ed_rfc_1867, ed_rfc_1980, ed_rfc_3966, ed_May2020, ed_July2020, ed_w3, ed_mql, ed_ariaAug2020, ed_mozilla, ed_microdata, ed_microformats,
-                ed_rdf, ed_apache, ed_so_11,
+                ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_May2020, ed_July2020, ed_w3, ed_mql, ed_ariaAug2020, ed_mozilla,
+                ed_microdata, ed_microformats, ed_rdf, ed_apache, ed_so_11,
                 ed_imaginary } e_doc;
 const e_doc last_doc = ed_imaginary;
 typedef enum {  db_auto, db_usescript, db_nochange, db_resetsize, db_ideographic, db_hanging, db_mathematical,
@@ -1324,7 +1323,8 @@ typedef enum
     nit_annotation, nit_eof_in_annotation, nit_prefix_odd, nit_prefix_format, nit_rdf_redefine, nit_rdf_confusion, nit_rdf_protocol,
     nit_math_href, nit_math_empty, nit_mglyph_alt_src, nit_dir_rtl_ltr, nit_bad_linebreak, nit_non_standard_value, nit_mscarries_last,
     nit_bad_bind, nit_bad_share, nit_shadow, nit_out_of_memory, nit_duplicate, nit_shadow_failed, nit_create_folder, nit_internal_file_error,
-    nit_shadow_ignore, nit_shadow_link, nit_shadow_copy,
+    nit_shadow_ignore, nit_shadow_link, nit_shadow_copy, nit_too_big, nit_icu, nit_lang_redefined, nit_page_charset, nit_charset_mismatch,
+    nit_charset_used, nit_charset_invalid,
 
     nit_context,
 

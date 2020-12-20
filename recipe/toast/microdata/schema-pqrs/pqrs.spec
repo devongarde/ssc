@@ -1,9 +1,11 @@
 -f ../toast/microdata/schema-pqrs/pqrs.conf
 
 PASS ../toast/microdata/schema-pqrs/painting.html
+0 charset_mismatch charset_used charset_invalid
 18 attribute_required naughty_alt
 
 PASS ../toast/microdata/schema-pqrs/paymentcard.html
+0 charset_mismatch charset_used charset_invalid
 16 attribute_required svg_rdf
 
 PASS ../toast/microdata/schema-pqrs/paymentservice.html
@@ -18,11 +20,13 @@ PASS ../toast/microdata/schema-pqrs/performingartstheatre.html
 21 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-pqrs/periodical.html
+0 charset_mismatch charset_used charset_invalid
 16 inserted_missing_closure
 50 url_id_unfound
 69 bad_itemid
 
 PASS ../toast/microdata/schema-pqrs/person.html
+0 charset_mismatch charset_used charset_invalid
 11 not_schema_property  unrecognised_value bad_itemprop
 13 url_not_found
 24 no_tel
@@ -117,6 +121,7 @@ PASS ../toast/microdata/schema-pqrs/place.html
 150 unrecognised_value svg_rdf
 
 PASS ../toast/microdata/schema-pqrs/podcastepisode.html
+0 charset_mismatch charset_used charset_invalid
 11 unrecognised_value
 17 attribute_barred bad_datetime bad_datetime
 18 attribute_barred bad_datetime bad_datetime
@@ -218,6 +223,7 @@ PASS ../toast/microdata/schema-pqrs/propertyvalue.html
 202 url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-pqrs/publicationissue.html
+0 charset_mismatch charset_used charset_invalid
 16 inserted_missing_closure
 20 bad_itemid
 23 bad_itemid
@@ -230,6 +236,7 @@ PASS ../toast/microdata/schema-pqrs/publicationissue.html
 87 use_double_quote_code
 
 PASS ../toast/microdata/schema-pqrs/publicationvolume.html
+0 charset_mismatch charset_used charset_invalid
 16 inserted_missing_closure
 20 bad_itemid
 23 bad_itemid
@@ -279,6 +286,7 @@ PASS ../toast/microdata/schema-pqrs/recipe.html
 16 url_not_found
 
 PASS ../toast/microdata/schema-pqrs/repaymentspecification.html
+0 charset_mismatch charset_used charset_invalid
 20 sunk sunk
 24 svg_rdf svg_rdf not_schema_property
 35 svg_rdf not_schema_property
@@ -303,6 +311,7 @@ PASS ../toast/microdata/schema-pqrs/review.html
 101 use_quote_code
 
 PASS ../toast/microdata/schema-pqrs/scholarlyarticle.html
+0 charset_mismatch charset_used charset_invalid
 16 inserted_missing_closure
 20 bad_itemid
 23 bad_itemid

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "utility/byteorder.h"
 
-// replace with boost functionality
+// replace with ICU functionality
 
 byte_order_mark get_byte_order (::std::string& str)
 {   // https://en.wikipedia.org/wiki/Byte_order_mark

@@ -27,6 +27,7 @@ PASS ../toast/microdata/schema-mno/medicalwebpage.html
 35 inserted_missing_closure
 
 PASS ../toast/microdata/schema-mno/monetaryamount-1.html
+0 charset_mismatch charset_used charset_invalid
 15 svg_rdf
 17 svg_rdf sunk sunk
 22 svg_rdf
@@ -43,11 +44,13 @@ PASS ../toast/microdata/schema-mno/monetaryamount-1.html
 66 svg_rdf
 
 PASS ../toast/microdata/schema-mno/monetaryamount-2.html
+0 charset_mismatch charset_used charset_invalid
 19 svg_rdf svg_rdf sunk sunk
 26 svg_rdf svg_rdf sunk sunk
 33 svg_rdf sunk sunk svg_rdf sunk sunk
 
 PASS ../toast/microdata/schema-mno/mortgageloan.html
+0 charset_mismatch charset_used charset_invalid
 20 sunk sunk
 24 svg_rdf svg_rdf not_schema_property
 35 svg_rdf not_schema_property

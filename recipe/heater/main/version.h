@@ -24,5 +24,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TESTPROG "ssc-test"
 #define FULLNAME "Static Site Checker"
 #define WEBADDR "https://ssc.lu/"
-#define VERSION_STRING "0.0.76"
+#define VERSION_STRING "0.0.77"
 #define COPYRIGHT "(c) 2020 Dylan Harris, https://dylanharris.org/"

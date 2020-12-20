@@ -165,6 +165,7 @@ void stats::mark_file (const unsigned size)
 {   ::std::string res;
     res += saybe (category_.at (ec_html), "    HTML");
     res += saybe (category_.at (ec_attribute), "    Attribute");
+    res += saybe (category_.at (ec_crc), "    CRC");
     res += saybe (category_.at (ec_css), "    CSS");
     res += saybe (category_.at (ec_directory), "    Directory");
     res += saybe (category_.at (ec_element), "    Element");
@@ -175,10 +176,12 @@ void stats::mark_file (const unsigned size)
     res += saybe (category_.at (ec_microformat), "    Microformat");
     res += saybe (category_.at (ec_mql), "    Media Query");
     res += saybe (category_.at (ec_namespace), "    Namespace");
+    res += saybe (category_.at (ec_page), "    Page");
     res += saybe (category_.at (ec_parser), "    Parser");
     res += saybe (category_.at (ec_program), "    Program");
     res += saybe (category_.at (ec_rdf), "    RDFa");
     res += saybe (category_.at (ec_rudeness), "    Rudeness");
+    res += saybe (category_.at (ec_shadow), "    Shadow");
     res += saybe (category_.at (ec_ssi), "    SSI");
     res += saybe (category_.at (ec_tidyness), "    Tidyness");
     res += saybe (category_.at (ec_type), "    Type");

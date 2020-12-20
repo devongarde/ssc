@@ -1,7 +1,8 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.76 LANGUAGES CXX)
+project (ssc VERSION 0.0.77 LANGUAGES CXX)
 
 set (BOOST_ROOT ${BOOST})
+# set (ICU_ROOT ${ICU_PATH})
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
 
@@ -41,29 +42,30 @@ if (UNIX)
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS)
       target_compile_definitions (ssc PRIVATE NO_PCF_STR FS_THROWS)
       set (Boost_USE_STATIC_LIBS ON)
+      target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
     else ()
       message ("only OpenBSD 6.8 amd64 is known to build")
     endif ()
   endif ()
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    message ("Linux: only Centos 8 amd64 and Ubuntu Server 20.10 amd64 have been built")
+    message ("Linux: only built under Centos 8 amd64 and Ubuntu Server 20.10 amd64")
     set (Boost_USE_STATIC_LIBS ON)
-    target_compile_options (ssc-test PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
+    target_compile_options (ssc-test PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-warn-unused-result")
     target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
   endif ()
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    if (${CMAKE_SYSTEM} MATCHES "Darwin-20.1.0")
+    if (${CMAKE_SYSTEM} MATCHES "Darwin-20")
       message ("MacOS Big Sur")
       set (Boost_USE_STATIC_LIBS ON)
-    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-19.6.0")
+    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-19")
       message ("MacOS Catalina")
       # not sure why cmake gets boost static library names wrong under catalina
-    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-18.7.0")
+    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-18")
       message ("MacOS Mojave")
       # not sure why cmake gets boost static library names wrong under mojave
-    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-17.7.0")
+    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-17")
       message ("MacOS High Sierra")
       target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
       target_compile_definitions (ssc PRIVATE FUDDYDUDDY)
@@ -75,14 +77,16 @@ if (UNIX)
 
 endif ()
 
-find_package(Boost 1.67 REQUIRED COMPONENTS date_time filesystem program_options)
+find_package (Boost 1.67 REQUIRED COMPONENTS date_time filesystem locale program_options)
+find_package (ICU 60.0 REQUIRED COMPONENTS dt in io tu uc)
+find_package (Iconv REQUIRED)
 
 # better to list the build files in one place (here) rather than litter all the source directories with a gadzillion untidy wee files
 target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h)
 target_sources (ssc PRIVATE
     ${H}/attribute/attr.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h ${H}/attribute/avm.h ${H}/css/css.h ${H}/css/css_cache.h
     ${H}/element/elem.h ${H}/element/element.h ${H}/element/element_attribute.h ${H}/element/element_classes.h ${H}/element/parentage.h ${H}/element/state.h ${H}/feedback/nit.h
-    ${H}/feedback/nitnames.h ${H}/feedback/nitpick.h ${H}/main/args.h ${H}/main/context.h ${H}/main/include.h ${H}/main/options.h ${H}/main/standard.h ${H}/main/version.h
+    ${H}/feedback/nitnames.h ${H}/feedback/nitpick.h ${H}/icu/charset.h ${H}/icu/wrapper.h ${H}/main/args.h ${H}/main/context.h ${H}/main/include.h ${H}/main/options.h ${H}/main/standard.h ${H}/main/version.h
     ${H}/microdata/microdata_export.h ${H}/microdata/microdata_itemid.h ${H}/microdata/microdata_itemprop.h ${H}/microdata/microdata_itemscope.h ${H}/microdata/microdata_itemtype.h
     ${H}/microformat/connection.h ${H}/microformat/family.h ${H}/microformat/field.h ${H}/microformat/microformat.h ${H}/microformat/microformat_classes.h
     ${H}/microformat/microformat_constructor.h ${H}/microformat/microformat_export.h ${H}/microformat/microformat_export_rel.h ${H}/microformat/microformat_properties.h
@@ -105,7 +109,7 @@ target_sources (ssc PRIVATE
     ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_attributes.cpp ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp
     ${S}/element/element_examine.cpp ${S}/element/element_input.cpp ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp
     ${S}/element/element_mno.cpp ${S}/element/element_pqr.cpp ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp ${S}/element/parentage.cpp ${S}/element/state.cpp
-    ${S}/feedback/nit.cpp ${S}/feedback/nitpick.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/microdata/microdata_export.cpp
+    ${S}/feedback/nit.cpp ${S}/feedback/nitpick.cpp ${S}/icu/charset.cpp ${S}/icu/wrapper.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/microdata/microdata_export.cpp
     ${S}/microdata/microdata_itemid.cpp ${S}/microdata/microdata_itemprop.cpp ${S}/microdata/microdata_itemscope.cpp ${S}/microdata/microdata_itemtype.cpp ${S}/microformat/family.cpp
     ${S}/microformat/field.cpp ${S}/microformat/microformat_constructor.cpp ${S}/microformat/microformat_export.cpp ${S}/microformat/microformats.cpp ${S}/microformat/property_value.cpp
     ${S}/microformat/sibling.cpp ${S}/parser/html_version.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_bra_ket.cpp ${S}/parser/parse_bras_ket.cpp
@@ -121,7 +125,7 @@ target_sources (ssc PRIVATE
 )
 
 target_include_directories (ssc-test PRIVATE ${H} ${BOOST})
-target_include_directories (ssc PRIVATE ${H} ${BOOST})
+target_include_directories (ssc PRIVATE ${H} ${BOOST} ${ICU_INCLUDE_DIRS})
 
 target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
 target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
@@ -155,7 +159,10 @@ target_link_libraries (ssc-test PRIVATE pthread)
 target_link_libraries (ssc PRIVATE Boost::date_time)
 target_link_libraries (ssc PRIVATE Boost::filesystem)
 target_link_libraries (ssc PRIVATE Boost::program_options)
+target_link_libraries (ssc PRIVATE Boost::locale)
 target_link_libraries (ssc PRIVATE pthread)
+# target_link_libraries (ssc PRIVATE iconv)
+target_link_libraries (ssc PRIVATE ${ICU_LIBRARIES})
 
 install (TARGETS ssc-test DESTINATION ${D})
 install (TARGETS ssc DESTINATION ${D})

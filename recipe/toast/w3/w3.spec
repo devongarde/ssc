@@ -179,3 +179,111 @@ PASS ../toast/w3/html5-warning.html
 
 PASS ../toast/w3/index.html
 2 naughty_lang
+
+PASS ../toast/w3/iso-html.html
+2 naughty_lang
+
+PASS ../toast/w3/long-lines.html
+2 naughty_lang
+
+PASS ../toast/w3/mathml2.html
+2 naughty_lang
+
+PASS ../toast/w3/no-newlines.html
+2 naughty_lang
+
+PASS ../toast/w3/nonSGML-chars.html
+2 naughty_lang
+
+PASS ../toast/w3/outline.html
+2 naughty_lang
+
+PASS ../toast/w3/plane20-char.xml
+2 naughty_lang
+
+PASS ../toast/w3/rddl_fpi.html
+2 naughty_lang
+
+PASS ../toast/w3/sgml-nodoctype-syntaxnotok.html
+2 naughty_lang
+
+PASS ../toast/w3/sgml-nodoctype-syntaxok.html
+2 naughty_lang
+
+PASS ../toast/w3/sgml_customdtd.html
+2 naughty_lang
+
+PASS ../toast/w3/shorttags.html
+2 naughty_lang
+
+PASS ../toast/w3/shorttags2.html
+2 naughty_lang
+
+PASS ../toast/w3/svg11.svg
+2 naughty_lang
+
+PASS ../toast/w3/svg_tiny_1_1.svg
+2 naughty_lang
+
+PASS ../toast/w3/texthtml_nocharset-utf8.html
+2 naughty_lang
+
+PASS ../toast/w3/texthtml_nocharset.html
+2 naughty_lang
+
+PASS ../toast/w3/texthtml_nodoctype.html.utf8
+2 naughty_lang
+
+PASS ../toast/w3/texthtml_unknownparsemode.html.utf8
+2 naughty_lang
+
+PASS ../toast/w3/textxml_html401.xml
+2 naughty_lang
+
+PASS ../toast/w3/textxml_nocharset.xml
+2 naughty_lang
+
+PASS ../toast/w3/xhtml-mathml2-fpi.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml-mathml2.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml-print_1_0.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml1-appc-empty.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml1-appc-xmldecl.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml1-blank-1st-line.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml1-bogus-attribute.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml1-bogus-element.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml1-missing-doctype-and-xmlns.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml1-missing-doctype-has-xmlns.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml1-strict-minimal.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml1-strict-missing-xmlns.html
+2 naughty_lang
+
+PASS ../toast/w3/xhtml11-minimal.html
+2 naughty_lang
+
+PASS ../toast/w3/xml-nodoctype-notwf.xml
+2 naughty_lang
+
+PASS ../toast/w3/xml-nodoctype-wf.xml
+2 naughty_lang

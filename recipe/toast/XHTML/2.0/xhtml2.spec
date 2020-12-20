@@ -24,6 +24,7 @@ PASS ../toast/XHTML/2.0/x2-bad.xhtml
 36 inserted_missing_closure
 
 PASS ../toast/XHTML/2.0/x2-example.xhtml
+0 charset_mismatch charset_used
 1 xhtml_1_0
 2 html_contradictory
 61 unknown

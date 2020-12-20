@@ -117,7 +117,8 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     virtual void set_id (const ::std::string& s) { typed_value < e_attribute, TYPE, IDENTITY > :: set_id (s); }
     virtual bool invalid_id (nitpick& nits, const html_version& v, ids_t& i, element* e)
     {   return typed_value < e_attribute, TYPE, IDENTITY > :: invalid_id (nits, v, i, e); }
-    virtual bool invalid_access (nitpick& nits, const html_version& v, sstr_t* ss) { return typed_value < e_attribute, TYPE, IDENTITY > :: invalid_access (nits, v, ss); }
+    virtual bool invalid_access (nitpick& nits, const html_version& v, sstr_t* ss)
+    {   return typed_value < e_attribute, TYPE, IDENTITY > :: invalid_access (nits, v, ss); }
     virtual bool has_id () const { return typed_value < e_attribute, TYPE, IDENTITY > :: has_id (); }
     virtual bool empty () const { return typed_value < e_attribute, TYPE, IDENTITY > :: empty (); }
     virtual bool good () const { return typed_value < e_attribute, TYPE, IDENTITY > :: good (); }

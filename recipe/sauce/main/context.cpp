@@ -94,11 +94,11 @@ void context_t::process_incoming_webmention (nitpick& nits, const html_version& 
     bool nudged = false;
     bool nonblank = false;
     for (::std::string::const_iterator j = mb; j < i; ++j)
-        if (*j < ' ') { mb = j+1; nudged = true; } else nonblank = true;
+        if (::std::iswspace (*j) || ::std::iswcntrl (*j)) { mb = j+1; nudged = true; } else nonblank = true;
     if (! nudged && nonblank) res += "... ";
     nonblank = false;
     for (::std::string::const_iterator j = i; j < e; ++j)
-        if (*j < ' ') { me = j; en = true; break; } else nonblank = true;
+        if (::std::iswspace (*j) || ::std::iswcntrl (*j)) { me = j; en = true; break; } else nonblank = true;
     res += ::std::string (mb, me);
     if (! en && nonblank) res += " ...";
     return res; }

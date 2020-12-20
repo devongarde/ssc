@@ -537,6 +537,13 @@ nitname nitnames [] =
     { nit_shadow_ignore, "shadow_ignore" },
     { nit_shadow_link, "shadow_link" },
     { nit_shadow_copy, "shadow_copy" },
+    { nit_too_big, "too_big" },
+    { nit_icu, "icu" },
+    { nit_lang_redefined, "lang_redefined" },
+    { nit_page_charset, "page_charset" },
+    { nit_charset_mismatch, "charset_mismatch" },
+    { nit_charset_used, "charset_used" },
+    { nit_charset_invalid, "charset_invalid" },
 
     { nit_off, "" } };
 

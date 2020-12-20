@@ -87,7 +87,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
             case '\r' :
             case '\t' :
                 ch = ' '; }
-        if (ch >= ' ') switch (status)
+        if (! ::std::iswcntrl (ch)) switch (status)
         {   case s_dull :
                 if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_dull ", ch);
                 switch (ch)
@@ -191,7 +191,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                 break;
             case s_purgatory :
                 if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_purgatory ", ch);
-                if (ch == ' ') status = s_dull;
+                if (::std::iswspace (ch)) status = s_dull;
                 break; } }
     switch (status)
     {   case s_key :

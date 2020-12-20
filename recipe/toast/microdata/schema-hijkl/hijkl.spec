@@ -1,6 +1,7 @@
 -f ../toast/microdata/schema-hijkl/hijkl.conf
 
 PASS ../toast/microdata/schema-hijkl/hotel.html
+0 charset_mismatch charset_used charset_invalid
 23 no_tel
 24 attempted_escape no_such_folder url_not_found
 32 attempted_escape no_such_folder url_not_found
@@ -9,6 +10,7 @@ PASS ../toast/microdata/schema-hijkl/hotel.html
 47 attribute_required attempted_escape no_such_folder url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-hijkl/hotelroom.html
+0 charset_mismatch charset_used charset_invalid
 17 no_tel
 19 attribute_required attempted_escape no_such_folder url_not_found naughty_alt
 

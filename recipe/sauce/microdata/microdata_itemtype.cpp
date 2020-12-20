@@ -49,7 +49,6 @@ itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const 
         if (! st.invalid ()) return make_itemtype_index (st.get ()); }
     prop p (nuts, v, name);
     if (p.is_class () || p.is_rel ()) return make_itemtype_index (p.get ());
-//    nits.merge (nuts);
     return invalid_itemtype; }
 
 ::std::string itemtype_index_name (const itemtype_index ndx)

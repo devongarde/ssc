@@ -146,6 +146,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_rdf : return "RDFa";
         case ed_rfc_1867 : return "RFC 1867";
         case ed_rfc_1980 : return "RGC 1980";
+        case ed_rfc_3986 : return "RFC 3986";
         case ed_rfc_3966 : return "RFC 3966";
         case ed_svg_1_0 : return "SVG 1.0";
         case ed_svg_1_1 : return "SVG 1.1";
@@ -191,6 +192,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_math_4 : return "MathML 4.0, draft, January 2019";
         case ed_rfc_1867 : return "RFC 1867, Form-based File Upload in HTML";
         case ed_rfc_1980 : return "RFC 1980, Client-Side Image Maps";
+        case ed_rfc_3986 : return "RFC 3986, Uniform Resource Identifier (URI): Generic Syntax";
         case ed_rfc_3966 : return "RFC 3966, The tel URI for Telephone Numbers";
         case ed_svg_1_0 : return "Scalable Vector Graphics (SVG) Specification 1.0";
         case ed_svg_1_1 : return "Scalable Vector Graphics (SVG) 1.1, Second Edition";

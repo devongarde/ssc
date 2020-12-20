@@ -21,11 +21,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_enum.h"
 
-::std::string validate_httpequiv_content (nitpick& nits, const html_version& v, const e_httpequiv he, const ::std::string& content);
+::std::string validate_httpequiv_content (nitpick& nits, const html_version& v, const e_httpequiv he, const ::std::string& content, page& p);
 vstr_t split_sides_at_semi (nitpick& nits, const ::std::string& s, const ::std::size_t min_args = 2, const ::std::size_t max_args = 2);
 
 template < > struct type_master < t_content_type > : tidy_string < t_content_type >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
+{   ::std::string charset_;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_content_type > :: set_value (nits, v, s);
         if (tidy_string < t_content_type > :: good ())
         {   vstr_t sides (split_sides_at_semi (nits, tidy_string < t_content_type > :: get_string ()));
@@ -39,9 +40,12 @@ template < > struct type_master < t_content_type > : tidy_string < t_content_typ
                     ::std::string::size_type pos = ss.find ('=');
                     if ((pos != ::std::string::npos) && compare_no_case (ss.substr (0, pos), "charset"))
                     {   type_master < t_charset > cs;
-                        cs.set_value (nits, v, ss.substr (pos+1));
-                        if (cs.good ()) return; } }
-            tidy_string < t_content_type > :: status (s_invalid); } } } };
+                        ::std::string sss (ss.substr (pos+1));
+                        cs.set_value (nits, v, sss);
+                        if (cs.good ())
+                        {   charset_ = sss; return; } } }
+        tidy_string < t_content_type > :: status (s_invalid); } } }
+    ::std::string get_charset () const { return charset_; } };
 
 template < > struct type_master < t_refresh > : tidy_string < t_refresh >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only

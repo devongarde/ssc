@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "utility/common.h"
 #include "main/context.h"
+#include "main/args.h"
 
 #define TEMP_FILE_MASK "%%%%-%%%%-%%%%-%%%%.tmp"
 
@@ -40,26 +41,93 @@ bool compare_no_case (const std::string& a, const std::string& b)
 bool is_one_of (const ::std::string& s, const vstr_t& v)
 {   return (which_one_of (s, v) != ::std::string::npos); }
 
-::std::string read_text_file (const ::boost::filesystem::path& name)
+uintmax_t test_file (const ::boost::filesystem::path& name)
 {   using namespace boost::filesystem;
     try
     {   path p (name);
         if (exists (p) && is_regular_file (p))
         {   if (context.max_file_size () != 0)
             {   uintmax_t sz = file_size (p);
-                if (sz > context.max_file_size ())
-                    return ::std::string (); }
-            ifstream f (name);
-            if (! f.bad ())
-            {   ::std::stringstream res;
-                res << f.rdbuf ();
-                f.close ();
-                return res.str (); } } }
+                if (sz < context.max_file_size ()) return sz; } } }
+    catch (...) { }
+    return 0; }
+
+::std::string read_text_file (const ::boost::filesystem::path& name)
+{   using namespace boost::filesystem;
+    try
+    {   path p (name);
+        if (test_file (p) == 0) ::std::string ();
+        ifstream f (name);
+        if (! f.bad ())
+        {   ::std::stringstream res;
+            res << f.rdbuf ();
+            f.close ();
+            return res.str (); } }
     catch (...) { }
     return ::std::string (); }
 
 ::std::string read_text_file (const ::std::string& name)
 {   return read_text_file (::boost::filesystem::path (name)); }
+
+/*
+string32 read_text_file (const ::boost::filesystem::path& name, const ::std::locale& loc)
+{   using namespace boost::filesystem;
+    try
+    {   path p (name);
+        if (test_file (p) == 0) ::std::string ();
+        ::std::basic_ifstream < char32_t > f (name.string ());
+        f.imbue (loc);
+        if (! f.bad ())
+        {   stringstream32 res;
+            res.imbue (loc);
+            res << f.rdbuf ();
+            f.close ();
+            return res.str (); } }
+    catch (...) { }
+    return string32 (); }
+
+string32 read_text_file (const ::std::string& name, const ::std::locale& loc)
+{   return read_text_file (::boost::filesystem::path (name), loc); }
+*/
+
+void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok)
+{   using namespace boost::filesystem;
+    FILE* fp = nullptr;
+    sz = 0;
+    try
+    {   path p (name);
+        uintmax_t mz = 0;
+        if (! exists (p)) nits.pick (nit_cannot_open, es_catastrophic, ec_io, name.string (), " either does not exist or " PROG " cannot access it");
+        else if (! is_regular_file (p)) nits.pick (nit_cannot_open, es_catastrophic, ec_io, name.string (), " is not a standard file");
+        else
+        {   mz = file_size (p);
+            if (mz == 0)
+                if (zero_ok) nits.pick (nit_empty, es_comment, ec_io, name.string (), " is empty");
+                else nits.pick (nit_empty, es_error, ec_io, name.string (), " is empty");
+            else if ((context.max_file_size () != 0) && (mz > context.max_file_size ()))
+                nits.pick (nit_too_big, es_catastrophic, ec_io, name.string (), " is too big (reconfigure with " GENERAL MAXFILESIZE ")");
+            else
+            {   void_ptr vp (alloc_void_ptr (mz));
+                if (vp.get () == nullptr) nits.pick (nit_out_of_memory, es_catastrophic, ec_io, "out of memory reading ", name.string ());
+                else
+                {   fp = fopen (name.string ().c_str (), "rb");
+                    if (fp == nullptr) nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", name.string ());
+                    else
+                    {   ::std::size_t rd = fread (vp.get (), 1, mz, fp);
+                        fclose (fp); // if this fails there's sod all we can do about it, so ... :-)
+                        fp = nullptr;
+                        if (rd == mz) { sz = mz; return vp; }
+                        if (rd == 0) nits.pick (nit_cannot_read, es_catastrophic, ec_io, "cannot read any of ", name.string ());
+                        else nits.pick (nit_cannot_read, es_catastrophic, ec_io, "cannot read all of ", name.string ()); } } } } }
+    catch (const ::std::exception& e)
+    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", name.string (), ": ", e.what ());
+        return void_ptr (); }
+    catch (...)
+    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", name.string ());
+        return void_ptr (); }
+    if (fp != nullptr) fclose (fp);
+    return void_ptr (); }
+
 
 bool write_text_file (const ::std::string& name, const ::std::string& content)
 {   using namespace boost::filesystem;
@@ -117,14 +185,14 @@ vstr_t split_quoted_by_space (const ::std::string& s)
     bool slashed = false;
     bool deadzone = false;
     for (::std::string::const_iterator i = s.begin (); i != s.end (); ++i)
-    {   if (*i < ' ') continue;
+    {   if (::std::iswcntrl (*i)) continue;
         if (slashed) { current += *i; slashed = false; continue; }
         if (*i == '\\') { slashed = started = true; continue; }
         else if (*i == '"')
         {   if (! started) started = true;
             if (! quoted) { quoted = true; continue; }
             if (quoted) { started = quoted = false; deadzone = true; v.push_back (current); current.clear (); continue; } }
-        else if (*i == ' ')
+        else if (::std::iswspace (*i))
         {   deadzone = false;
             if (! started) continue;
             if (! quoted) { started = quoted = false; if (! current.empty ()) v.push_back (current); current.clear (); continue; } }

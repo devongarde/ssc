@@ -177,5 +177,6 @@ PASS ../toast/math/3/math18-example.html
 2 naughty_lang
 
 PASS ../toast/math/3/math19-example.html
+0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 16 url_not_found

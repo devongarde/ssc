@@ -43,7 +43,6 @@ void element::examine_equation ()
             {   fl = c -> node_.id ().flags ();
                 op = c -> tag ();
                 start = false; }
-//            else if (! c -> node_.is_closure ()) ++args;
             else
             {   if (node_.version ().math () > math_2)
                     switch (c -> tag ())

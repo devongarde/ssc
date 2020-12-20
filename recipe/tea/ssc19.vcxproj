@@ -35,6 +35,8 @@
     <ClInclude Include="..\heater\feedback\nit.h" />
     <ClInclude Include="..\heater\feedback\nitnames.h" />
     <ClInclude Include="..\heater\feedback\nitpick.h" />
+    <ClInclude Include="..\heater\icu\charset.h" />
+    <ClInclude Include="..\heater\icu\wrapper.h" />
     <ClInclude Include="..\heater\main\args.h" />
     <ClInclude Include="..\heater\main\context.h" />
     <ClInclude Include="..\heater\main\include.h" />
@@ -152,6 +154,7 @@
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="type_charset.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp" />
@@ -179,6 +182,8 @@
     <ClCompile Include="..\sauce\element\state.cpp" />
     <ClCompile Include="..\sauce\feedback\nit.cpp" />
     <ClCompile Include="..\sauce\feedback\nitpick.cpp" />
+    <ClCompile Include="..\sauce\icu\charset.cpp" />
+    <ClCompile Include="..\sauce\icu\wrapper.cpp" />
     <ClCompile Include="..\sauce\main\context.cpp" />
     <ClCompile Include="..\sauce\main\options.cpp" />
     <ClCompile Include="..\sauce\main\ssc.cpp" />
@@ -1295,23 +1300,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

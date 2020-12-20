@@ -319,7 +319,7 @@ void load_crcs (nitpick& nits, const ::boost::filesystem::path& persist)
                                 if (f.fail ())
                                 {   nits.pick (nit_cannot_read, es_error, ec_crc, "error reading content from ", persist.string ());
                                     break; }
-                                if (buf [0] != 0)
+                                else if (buf [0] != 0)
                                 {   buf [max-1] = 0;
                                     vstr_t args (split_by_charset (&buf [0], ","));
                                     if (args.size () >= PERSIST_ARG_COUNT)

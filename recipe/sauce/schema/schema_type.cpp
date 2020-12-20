@@ -1286,8 +1286,7 @@ e_schema sch::parse (nitpick& nits, const html_version& v, const ::std::string& 
     {   schema_version sv (context.schema_ver ());
         if (! sv.unknown ())
         {   if (may_apply (sv, s.first (), s.last ()))
-            {   // context.mark (s.get ());
-                return s.get (); }
+                return s.get ();
             nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid in schema ", sv.report ()); } }
     return sch_illegal; }
 

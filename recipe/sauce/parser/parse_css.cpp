@@ -55,7 +55,7 @@ void parse_css (nitpick& nits, const html_version& , smsid_t& ids, const ::std::
                 // drop thru'
             case '\t' :
                 ch = ' '; }
-        if (ch < ' ') continue;
+        if (::std::iswcntrl (ch)) continue;
         switch (status)
         {   case st_class :
                 if (((ch < 'A') || (ch > 'Z')) && ((ch < 'a') || (ch > 'z')) && ((ch < '0') || (ch > '9')) && (ch != '-') && (ch != '_'))

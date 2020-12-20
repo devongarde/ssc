@@ -73,7 +73,7 @@ PASS ../toast/HTML/5.4/html5-bad.html
 5 mime
 7 only_once
 10 default_role
-14 attribute_required form_charset
+14 deprecated_value deprecated_value attribute_required form_charset
 16 correct_spelling attribute_unrecognised missing_close unrecognised_attribute
 18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent
 19 inserted_missing_closure inserted_missing_closure missing_close
@@ -137,6 +137,7 @@ PASS ../toast/HTML/5.4/html5-bad.html
 146 bad_script
 
 PASS ../toast/HTML/5.4/html5-bad-2.html
+0 charset_mismatch charset_used charset_invalid
 5 link_rel_off
 6 no_itemscope link_rel_off
 7 sizes sizes sizes sizes sizes daft_rel_attr

@@ -18,6 +18,7 @@ PASS ../toast/microdata/schema-wxyz/website.html
 13 attribute_required
 
 PASS ../toast/microdata/schema-wxyz/winery.html
+0 charset_mismatch charset_used charset_invalid
 25 not_schema_property
 26 not_schema_property
 29 no_tel

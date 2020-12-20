@@ -114,7 +114,7 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space >
                         nits.pick (nit_key, ed_July2020, "6.6.2 The accesskey attribute", es_error, ec_type, "access keys must be unique, yet ", quote (k), " is repeated");
                     else check.insert (k);
                 if (string_vector < t_key, sz_space > :: size () == check.size ()) return; }
-            else if ((s.length () == 1) || (s [0] > ' ')) return;
+            else if ((s.length () == 1) || (! ::std::iswspace (s.at (0)) && ! ::std::iswcntrl (s.at (0)))) return;
             else nits.pick (nit_single_character, ed_41, "17.11.2 Access keys", es_error, ec_type, quote (tidy_string < t_key > :: get_string ()), " is not a single character (which cannot be a space)");
         string_vector < t_key, sz_space > :: status (s_invalid); }
    bool invalid_access (nitpick& nits, const html_version& , sstr_t* keys)

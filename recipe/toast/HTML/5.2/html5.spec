@@ -145,6 +145,7 @@ PASS ../toast/HTML/5.2/html5-bad.html
 197 bad_script
 
 PASS ../toast/HTML/5.2/html5-bad-2.html
+0 charset_mismatch charset_used charset_invalid
 4 unrecognised_value
 6 lingo lingo
 7 no_xmllang

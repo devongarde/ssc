@@ -23,10 +23,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string make_tidy (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ()) return s;
-    bool untidy_start = (s.at (0) == ' ');
-    bool untidy_end = (s.at (s.length () - 1) == ' ');
+    bool untidy_start = ::std::iswspace (s.at (0));
+    bool untidy_end = ::std::iswspace (s.at (s.length () - 1));
     if (untidy_start && untidy_end)
-    {   if (s.find_first_not_of (' ') == ::std::string::npos)
+    {   if (::std::find_if_not (s.cbegin (), s.cend (), ::std::iswspace) == s.cend ())
             return ::std::string ();
         nits.pick (nit_untidy_string, es_info, ec_attribute, quote (s), " starts and ends with spaces"); }
     else if (untidy_start)

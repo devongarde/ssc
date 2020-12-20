@@ -50,6 +50,7 @@ PASS ../toast/microformats/mf2/mf2-empty.html
 53 mf_empty
 
 PASS ../toast/microformats/mf2/mf2-example.html
+0 charset_mismatch charset_used charset_invalid
 25 mf_infer
 49 hcard_infer
 57 mf_infer

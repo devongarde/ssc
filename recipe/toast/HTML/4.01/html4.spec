@@ -128,6 +128,8 @@ PASS ../toast/HTML/4.01/html4-deprecated.html
 166 deprecated_attribute
 
 PASS ../toast/HTML/4.01/html4-example.html
+0 charset_mismatch charset_used
+15 bad_datetime
 96 inserted_missing_closure inserted_missing_closure missing_close missing_close
 97 inserted_missing_closure inserted_missing_closure
 107 missing_close

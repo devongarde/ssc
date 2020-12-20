@@ -149,6 +149,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_DEPRECATED51x ( HV_DEPRECATED51 | HV_DEPRECATED52x )
 #define HV_DEPRECATED50x ( HV_DEPRECATED50 | HV_DEPRECATED51x )
 #define HV_DEPRECATED5   ( HV_DEPRECATED50x )
+#define HV_DEPRECATEDWWG ( HV_DEPRECATED54x )
 #define HV_DEPRECATED45  ( HV_DEPRECATED4 | HV_DEPRECATED50x )
 
 #define HV_DEPRECATED_MASK 0x0000000FFF800000
@@ -342,6 +343,10 @@ public:
     bool lazy () const;
     uint64_t flags () const { return flags_; }
     uint64_t ext () const { return ext_; }
+    bool valid_charset (const ::std::string& charset) const;
+    bool restricted_charset () const;
+    const char *default_charset () const;
+    const char *alternative_charset () const;
     ::std::string get_doctype () const;
     ::std::string report () const;
     ::std::string detailed_report () const; };
@@ -393,3 +398,5 @@ bool may_apply (const html_version& v, const html_version& from, const html_vers
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
 int w3_minor_5 (const html_version& v);
 e_emi extension_conflict (const html_version& lhs, const html_version& rhs);
+const char *default_charset (const html_version& v);
+const char *alternative_charset (const html_version& v);

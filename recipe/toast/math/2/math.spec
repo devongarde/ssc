@@ -96,6 +96,7 @@ PASS ../toast/math/2/math14-example.html
 2 naughty_lang
 
 PASS ../toast/math/2/math15-example.html
+0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 45 annotation
 60 annotation

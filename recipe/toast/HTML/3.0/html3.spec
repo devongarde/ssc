@@ -20,6 +20,7 @@ PASS ../toast/HTML/3.0/html3-math.html
 76 inserted_missing_closure
 
 PASS ../toast/HTML/3.0/html3-sample.html
+9 bad_datetime
 10 use_metaname
 11 use_metaname
 12 deprecated_element deprecated_element
