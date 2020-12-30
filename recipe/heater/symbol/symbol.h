@@ -85,8 +85,6 @@ public:
     {   table_.extend (key, symbol, value, ns, first, last, flags, flags2); }
     static void extend (const ::std::string& symbol, const ::std::size_t value, const e_namespace ns = ns_default, const html_version& first = html_0, const html_version& last = html_0, const uint64_t flags = 0, const uint64_t flags2 = 0)
     {   extend (enlc < LC > :: to (symbol), symbol, value, ns, first, last, flags, flags2); }
-    static bool redefine (const e_namespace old_ns, const ::std::size_t old_value, const e_namespace new_ns, const ::std::size_t new_value)
-    {   return table_.redefine (old_ns, old_value, new_ns, new_value); }
     VALUE get () const { if (unknown_) return static_cast <VALUE> (0); return value_; }
     html_version first () const { return first_; }
     html_version last () const { return last_; }

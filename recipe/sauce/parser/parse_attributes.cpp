@@ -211,7 +211,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
             push_back_and_report (nits, v, keyed, key_start, key_end, value_start, e, el);
         default: break; } }
 
-void attributes_node::manage_xmlns (html_version& v)
+void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
 {   nitpick knots;
     for (auto a : va_)
         if (a.id () == a_xmlns)
@@ -221,6 +221,9 @@ void attributes_node::manage_xmlns (html_version& v)
             {   case x_mathml : if (! v.math ()) v.ext_set (HE_MATH_1); break;
                 case x_svg : if (! v.svg ()) v.ext_set (HE_SVG_1_0); break;
                 case x_xlink : if (! v.xlink ()) v.ext_set (HE_XLINK_1_0); break;
+                case x_xhtml_1_superseded :
+                    nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, quote (ver), " is non-standard (it was withdrawn before XHTML 1.0 was published)");
+                    // drop  thru'
                 case x_xhtml_1 : if (v.unknown ()) v = xhtml_1_0; break;
                 case x_xhtml_11 : if (v.unknown ()) v = xhtml_1_1; break;
                 case x_xhtml_2 : if (v.unknown ()) v = xhtml_2; break;

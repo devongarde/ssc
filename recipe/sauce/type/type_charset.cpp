@@ -414,7 +414,7 @@ struct symbol_entry < e_charset > charset_symbol_table [] =
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "x-cp1251", cs_windows_1251 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso-8859-1", cs_windows_1252 }, // must be first of 1252
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "ansi_x3.4-1968", cs_windows_1252 },
-    { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "us-ascii", cs_ascii },  // must be first of ascii
+    { { HTML_2_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "us-ascii", cs_ascii },  // must be first of ascii
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "ascii", cs_ascii },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "cp1252", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "cp819", cs_windows_1252 },
@@ -422,7 +422,7 @@ struct symbol_entry < e_charset > charset_symbol_table [] =
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "ibm819", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso8859-1", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso88591", cs_windows_1252 },
-    { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso_8859-1", cs_windows_1252 },
+    { { HTML_2_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso_8859-1", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "iso_8859-1:1987", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "l1", cs_windows_1252 },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "latin12", cs_windows_1252 },

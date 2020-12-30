@@ -20,5 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "parser/html_version.h"
+#include "utility/common.h"
 
+::std::string identify_probable_charset (void_ptr& vp, const uintmax_t sz);
+void verify_file_charset (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& charset, void_ptr& vp, const uintmax_t sz);
 void verify_file_charset (nitpick& nits, const html_version& v, const ::boost::filesystem::path& p, const ::std::string& charset);

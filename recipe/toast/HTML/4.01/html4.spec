@@ -18,6 +18,7 @@ PASS ../toast/HTML/4.01/html4-bad2.html
 6 base_b4_lynx
 
 PASS ../toast/HTML/4.01/html4-deprecated.html
+1 xhtml_superseded
 6 deprecated_attribute deprecated_attribute deprecated_attribute deprecated_attribute deprecated_attribute
 9 deprecated_element deprecated_attribute
 10 deprecated_element deprecated_attribute

@@ -785,14 +785,17 @@
     <ClInclude Include="..\heater\schema\schema_name.h">
       <Filter>Heater\schema</Filter>
     </ClInclude>
-    <ClInclude Include="type_charset.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\icu\wrapper.h">
       <Filter>Heater\icu</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\icu\charset.h">
       <Filter>Heater\icu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\icu\converter.h">
+      <Filter>Heater\icu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_charset.h">
+      <Filter>Heater\type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1118,6 +1121,9 @@
       <Filter>Sauce\icu</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\icu\charset.cpp">
+      <Filter>Sauce\icu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\icu\converter.cpp">
       <Filter>Sauce\icu</Filter>
     </ClCompile>
   </ItemGroup>
@@ -3770,6 +3776,9 @@
     </None>
     <None Include="..\toast\shadow\dedu\c\index.html.model">
       <Filter>Toast\Shadow\Dedu\c</Filter>
+    </None>
+    <None Include="..\toast\XHTML\1.0\minimal.xhtml">
+      <Filter>Toast\XHTML\1.0</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

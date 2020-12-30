@@ -115,23 +115,6 @@ void symbol_table :: extend (const ::std::string& key, const ::std::string& symb
 {   symbol_.insert (symbol_t::value_type (symbol_key (key, ns), symbol_store (first, last, symbol, value, ns, flags, flags2)));
     reverse_.insert (reverse_t::value_type (value, symbol_store (first, last, symbol, value, ns, flags, flags2))); }
 
-bool symbol_table :: redefine (const e_namespace old_ns, const ::std::size_t old_value, const e_namespace new_ns, const ::std::size_t new_value)
-{   assert (old_ns > ns_error);
-    reverse_t::const_iterator i = reverse_.find (old_value);
-    if (i == reverse_.cend ()) return false;
-    symbol_key key (i -> second.sz_, i -> second.ns_);
-    symbol_t::iterator old_entry = symbol_.find (key);
-    if (old_entry == symbol_.end ()) return false;
-    symbol_store entry (old_entry -> second);
-    entry.ns_ = new_ns;
-    entry.v_ = new_value;
-    symbol_.erase (key);
-    reverse_.erase (old_value);
-    key = symbol_key (i -> second.sz_, new_ns);
-    symbol_.insert (symbol_t::value_type (key, entry));
-    reverse_.insert (reverse_t::value_type (new_value, entry));
-    return true; }
-
 ::std::string symbol_table :: after_start (const ::std::string& s) const
 {   ::std::size_t len = s.length ();
     if (len > 0)

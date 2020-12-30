@@ -60,7 +60,7 @@ void element_node::parse_attributes (const html_version& v, const ::std::string:
     if (v.mjr () < 4) return;
     if (parent_ != nullptr) version_ = parent_ -> version_;
     if (! va_.empty ())
-    {   va_.manage_xmlns (version_);
+    {   va_.manage_xmlns (nits (), version_);
         switch (id ())
         {   case elem_svg : version_.svg_version (va_.get_svg (v)); break;
             case elem_math : version_.math_version (va_.get_math (v)); break;

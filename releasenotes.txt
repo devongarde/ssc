@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020 Dylan Harris
 
+0.0.78
+- integrated W3 tests into test suite
+- various bug fixes
+
 0.0.77
 - verify declared and actual charsets match
 - now requires ICU libraries in addition to boost libraries

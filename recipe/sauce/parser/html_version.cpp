@@ -24,10 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "type/type.h"
 
-#define US_ASCII "US-ASCII"
-#define LATIN_1 "ISO-8859-1"
-#define UTF_8 "UTF-8"
-
 const char* doctype = "DOCTYPE";
 const ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
@@ -163,7 +159,7 @@ bool html_version::invalid_addendum (const html_version& v) const
 
 bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
 {   nits.set_context (0, trim_the_lot_off (content));
-    if (! compare_no_case (doctype, content.substr (0, doctype_len))) // probably best changed to an assert
+    if (! compare_no_case (doctype, content.substr (0, doctype_len)))
     {   if (context.presume_tags ())
         {   nits.pick (nit_presume_html_tags, ed_tags, "", es_info, ec_parser, "no <!DOCTYPE> found, presuming HTML Tags");
             reset (html_tags); }
@@ -171,9 +167,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
         if ((context.html_major () == 0) && (context.html_minor () == 0))
         {   nits.pick (nit_presume_html_1, ed_1, "", es_info, ec_parser, "no <!DOCTYPE> found, presuming HTML 1.0");
             reset (html_1); }
-        else
-        {   reset (context.html_ver ());
-            nits.pick (nit_html, es_info, ec_parser, "no <!DOCTYPE> found, presuming ", report ()); }
+        else nits.pick (nit_html_unknown_sgml, es_error, ec_parser, content.substr (0, doctype_len), " is not understood by " PROG);
         return true; }
     bool found_html = false;
     bool found_public = false;
@@ -249,12 +243,21 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_xhtml10_basic :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Basic")) flags_ |= HV_BASIC;
                     break;
+                case doc_xhtml10_strict_superseded :
+                    nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that strict XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
+                    // drop thru'
                 case doc_xhtml10_strict :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Strict")) flags_ |= HV_STRICT;
                     break;
+                case doc_xhtml10_loose_superseded :
+                    nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that transitional XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
+                    // drop thru'
                 case doc_xhtml10_loose :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Transitional")) flags_ |= HV_TRANSITIONAL;
                     break;
+                case doc_xhtml10_frameset_superseded :
+                    nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that XHTML 1.0 frameset declaration was withdrawn before XHTML 1.0 was published");
+                    // drop thru'
                 case doc_xhtml10_frameset :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Frameset")) flags_ |= HV_FRAMESET;
                     break;
@@ -280,12 +283,21 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_special :
                 case doc_symbols :
                     break;
+                case doc_html401_strict_superseded :
+                    nits.pick (nit_xhtml_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that strict HTML .dtd was withdrawn");
+                    // drop thru'
                 case doc_html401_strict :
                     if (note_parsed_version (nits, nit_html_4_01s, html_4_1, "HTML 4.01 Strict")) flags_ |= HV_STRICT;
                     break;
+                case doc_html401_loose_superseded :
+                    nits.pick (nit_xhtml_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that transitional HTML .dtd was withdrawn");
+                    // drop thru'
                 case doc_html401_loose :
                     if (note_parsed_version (nits, nit_html_4_01, html_4_1, "HTML 4.01 Transitional")) flags_ |= HV_TRANSITIONAL;
                     break;
+                case doc_html401_frameset_superseded :
+                    nits.pick (nit_xhtml_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that HTML frameset .dtd was withdrawn");
+                    // drop thru'
                 case doc_html401_frameset :
                     if (note_parsed_version (nits, nit_html_4_01f, html_4_1, "HTML 4.01 Frameset")) flags_ |= HV_FRAMESET;
                     break;
@@ -501,6 +513,11 @@ const char *html_version::default_charset () const
 
 const char *html_version::alternative_charset () const
 { return ::alternative_charset (*this); }
+
+bool html_version::is_plain_html () const
+{   if (mjr () < 4) return true;
+    if (xhtml () || has_svg () || has_math () || has_rdf ()) return false;
+    return true; }
 
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)

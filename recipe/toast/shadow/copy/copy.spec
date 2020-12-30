@@ -13,6 +13,7 @@ PASS ../toast/shadow/copy/html-bad.html
 21 missing_open
 23 unrecognised_value
 31 mixed_mess
+34 not_iso_8859_1
 48 missing_open
 49 missing_open
 51 attribute_unrecognised unrecognised_attribute unrecognised_value

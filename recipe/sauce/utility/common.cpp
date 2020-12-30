@@ -69,27 +69,6 @@ uintmax_t test_file (const ::boost::filesystem::path& name)
 ::std::string read_text_file (const ::std::string& name)
 {   return read_text_file (::boost::filesystem::path (name)); }
 
-/*
-string32 read_text_file (const ::boost::filesystem::path& name, const ::std::locale& loc)
-{   using namespace boost::filesystem;
-    try
-    {   path p (name);
-        if (test_file (p) == 0) ::std::string ();
-        ::std::basic_ifstream < char32_t > f (name.string ());
-        f.imbue (loc);
-        if (! f.bad ())
-        {   stringstream32 res;
-            res.imbue (loc);
-            res << f.rdbuf ();
-            f.close ();
-            return res.str (); } }
-    catch (...) { }
-    return string32 (); }
-
-string32 read_text_file (const ::std::string& name, const ::std::locale& loc)
-{   return read_text_file (::boost::filesystem::path (name), loc); }
-*/
-
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok)
 {   using namespace boost::filesystem;
     FILE* fp = nullptr;
@@ -107,13 +86,13 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
             else if ((context.max_file_size () != 0) && (mz > context.max_file_size ()))
                 nits.pick (nit_too_big, es_catastrophic, ec_io, name.string (), " is too big (reconfigure with " GENERAL MAXFILESIZE ")");
             else
-            {   void_ptr vp (alloc_void_ptr (mz));
+            {   void_ptr vp (alloc_void_ptr (static_cast < ::std::size_t > (mz)));
                 if (vp.get () == nullptr) nits.pick (nit_out_of_memory, es_catastrophic, ec_io, "out of memory reading ", name.string ());
                 else
                 {   fp = fopen (name.string ().c_str (), "rb");
                     if (fp == nullptr) nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", name.string ());
                     else
-                    {   ::std::size_t rd = fread (vp.get (), 1, mz, fp);
+                    {   ::std::size_t rd = fread (vp.get (), 1, static_cast < ::std::size_t > (mz), fp);
                         fclose (fp); // if this fails there's sod all we can do about it, so ... :-)
                         fp = nullptr;
                         if (rd == mz) { sz = mz; return vp; }

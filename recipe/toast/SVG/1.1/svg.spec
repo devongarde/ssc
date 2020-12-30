@@ -14,30 +14,18 @@ PASS ../toast/SVG/1.1/dubious.html
 PASS ../toast/SVG/1.1/example-1.xhtml
 0 title_required
 1 xhtml_1_0
-4 xhtml_attribute_lc svg_version
+4 svg_version
 
 PASS ../toast/SVG/1.1/example-2.xhtml
 0 title_required
 1 xhtml_1_0
-4 xhtml_attribute_lc svg_version
-6 xhtml_attribute_lc xhtml_attribute_lc xhtml_attribute_lc xhtml_attribute_lc xhtml_attribute_lc xhtml_attribute_lc unrecognised_value
+4 svg_version
+6 unrecognised_value
 
 PASS ../toast/SVG/1.1/example-3.xhtml
 1 xhtml_1_0
-4 xhtml_attribute_lc svg_version
+4 svg_version
 13 use_double_quote_code
-14 xhtml_attribute_lc
-22 xhtml_attribute_lc
-30 xhtml_attribute_lc
-38 xhtml_attribute_lc
-46 xhtml_attribute_lc
-54 xhtml_attribute_lc
-62 xhtml_attribute_lc
-65 xhtml_attribute_lc
-68 xhtml_attribute_lc
-71 xhtml_attribute_lc
-74 xhtml_attribute_lc
-77 xhtml_attribute_lc
 141 use_double_quote_code
 
 PASS ../toast/SVG/1.1/example-4.html
@@ -353,7 +341,6 @@ PASS ../toast/SVG/1.1/svg11.xhtml
 1 xhtml_1_0
 4 svg_version
 15 svg_version
-27 xhtml_attribute_lc
 32 svg_version
-50 xhtml_attribute_lc svg_version
+50 svg_version
 

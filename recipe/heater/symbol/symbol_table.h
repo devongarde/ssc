@@ -114,7 +114,6 @@ public:
     void swap (symbol_table& s) NOEXCEPT;
     void extend (   const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const e_namespace ns = ns_default,
                     const html_version& first = html_0, const html_version& last = html_0, const uint64_t flags = 0, const uint64_t flags2 = 0);
-    bool redefine (const e_namespace old_ns, const ::std::size_t old_value, const e_namespace new_ns, const ::std::size_t new_value);
     template < typename VALUE, class LC > void init (nitpick& nits, const symbol_entry < VALUE > table [], const ::std::size_t size, const bool wildcards = false)
     {   wildcards_ = wildcards;
         for (::std::size_t i = 0; i < size; ++i)

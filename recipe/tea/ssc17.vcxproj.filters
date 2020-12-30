@@ -782,6 +782,9 @@
     <ClInclude Include="..\heater\icu\charset.h">
       <Filter>Heater\icu</Filter>
     </ClInclude>
+    <ClInclude Include="type_charset.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
