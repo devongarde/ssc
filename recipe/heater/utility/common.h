@@ -40,7 +40,6 @@ typedef ustr_t::value_type ustrv_t;
 typedef ::std::basic_string < char32_t > string32;
 typedef ::std::basic_stringstream < char32_t > stringstream32;
 
-// gcc and clang have problems with shared_ptr < void >, so I'm substituting this. MSVC is, as normal, up to the task.
 typedef ::std::shared_ptr < void > void_ptr;
 struct really_free { void operator () (void *p) { free (p); } };
 inline void_ptr alloc_void_ptr (const ::std::size_t sz) { return void_ptr (malloc (sz), really_free ()); }

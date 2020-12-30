@@ -22,19 +22,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "icu/charset.h"
 #include "icu/wrapper.h"
 #include "main/context.h"
-#include "utility/common.h"
 #include "feedback/nitpick.h"
 
-void verify_file_charset (nitpick& nits, const html_version& v, const ::boost::filesystem::path& p, const ::std::string& charset)
+::std::string identify_probable_charset (void_ptr& vp, const uintmax_t sz)
+{   try
+    {   charset_detector detector;
+        if (detector.valid ())
+            if (detector.set_text (reinterpret_cast < const char * > (vp.get ()), static_cast < int32_t > (sz)))
+            {   charset_detector_matches matched (detector.match_all ());
+                if (detector.valid () && (matched.count () > 0) && matched.content ())
+                    return matched [0].name (); } }
+    catch (...) { }
+    return ::std::string (); }
+
+void verify_file_charset (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& charset, void_ptr& vp, const uintmax_t sz)
 {   if (v.mjr () < 2) return;
     ::std::string dcs (v.default_charset ());
     ::std::string acs (v.alternative_charset ());
     ::std::string errmsg ("cannot determine character format of '");
-    errmsg += p.string ();
+    errmsg += name;
     errmsg += "'";
-    uintmax_t sz = 0;
-    void_ptr vp (read_binary_file (nits, p, sz));
-    if (sz == 0) return;
     try
     {   charset_detector detector;
         int32_t input_length = static_cast < int32_t > (sz);
@@ -49,7 +56,7 @@ void verify_file_charset (nitpick& nits, const html_version& v, const ::boost::f
                 if (! detector.valid ())
                     nits.pick (nit_icu, es_catastrophic, ec_icu, errmsg, ": ICU ucsdet_detect error ", static_cast < int > (detector.error ()));
                 else if (matched.count () == 0)
-                    nits.pick (nit_icu, es_error, ec_icu, p.string (), "; is not a text file");
+                    nits.pick (nit_icu, es_error, ec_icu, name, "; is not a text file");
                 else if (! matched.content ())
                     nits.pick (nit_icu, es_catastrophic, ec_icu, errmsg, ": internal ICU ucsdet_detect error (nullptr return)");
                 else
@@ -75,11 +82,17 @@ void verify_file_charset (nitpick& nits, const html_version& v, const ::boost::f
                                 validated = v.valid_charset (matched [i].name ()); }
                     if (! match_found)
                     {   if (charset.empty ())
-                            nits.pick (nit_charset_mismatch, es_warning, ec_page, "The charset of '", p.string (), "' is neither declared nor ", dcs, " (the default for ", v.report (), ")");
-                        else nits.pick (nit_charset_mismatch, es_warning, ec_page, "The content of '", p.string (), "' does not match its declared charset, ", charset);
-                        nits.pick (nit_charset_used, es_info, ec_page, "'", p.string (), "' appears to use ", matched [0].name ()); }
+                            nits.pick (nit_charset_mismatch, es_warning, ec_page, "The charset of '", name, "' is neither declared nor ", dcs, " (the default for ", v.report (), ")");
+                        else nits.pick (nit_charset_mismatch, es_warning, ec_page, "The content of '", name, "' does not match its declared charset, ", charset);
+                        nits.pick (nit_charset_used, es_info, ec_page, "'", name, "' appears to use ", matched [0].name ()); }
                     if (! validated)
-                        nits.pick (nit_charset_invalid, es_error, ec_page, "The actual charset of '", p.string (), "', ", matched [0].name (), ", is invalid in ", v.report (), "; prefer ", dcs);
+                        nits.pick (nit_charset_invalid, es_error, ec_page, "The actual charset of '", name, "', ", matched [0].name (), ", is invalid in ", v.report (), "; prefer ", dcs);
                     if (context.tell (e_debug)) nits.pick (nit_icu, es_debug, ec_icu, rpt.str ()); } } } }
     catch (...)
-    {   nits.pick (nit_page_charset, es_error, ec_page, p.string (), " is incompatible with charset ", charset); } }
+    {   nits.pick (nit_page_charset, es_error, ec_page, name, " is incompatible with charset ", charset); } }
+
+void verify_file_charset (nitpick& nits, const html_version& v, const ::boost::filesystem::path& p, const ::std::string& charset)
+{   uintmax_t sz = 0;
+    void_ptr vp (read_binary_file (nits, p, sz));
+    if (sz == 0) return;
+    verify_file_charset (nits, v, p.string (), charset, vp, sz); }

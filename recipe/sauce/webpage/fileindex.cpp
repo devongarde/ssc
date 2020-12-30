@@ -191,7 +191,7 @@ crc_t get_crc (nitpick& nits, const fileindex_t ndx)
         {   f.read (buf.get (), max);
             ::std::streamsize s = f.gcount ();
             if (s == 0) break;
-            crc.process_bytes (buf.get (), s); }
+            crc.process_bytes (buf.get (), static_cast < ::std::size_t > (s)); }
 #else // CLEAN_SHAREDPTR_ARRAY
         try
         {   while (! f.eof ())

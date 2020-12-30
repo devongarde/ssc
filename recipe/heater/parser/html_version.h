@@ -298,6 +298,7 @@ public:
     void svg_version (const e_svg_version v);
     e_mathversion math_version () const;
     void math_version (const e_mathversion v);
+    bool is_plain_html () const;
     int xlink () const { return static_cast < int > ((ext_ & XLINK_MASK) >> XLINK_SHIFT); }
     void ext_set (const uint64_t u) { ext_ |= u; }
     void ext_reset (const uint64_t u) { ext_ &= ~u; }

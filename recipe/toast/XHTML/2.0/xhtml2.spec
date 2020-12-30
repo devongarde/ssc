@@ -16,7 +16,7 @@ PASS ../toast/XHTML/2.0/x2-bad.xhtml
 11 xhtml_quote_values xhtml_quote_values missing_close xhtml_enum_lc
 12 xhtml_missing_slash
 14 xhtml_hex_lc invalid_attribute_version wrong_version
-15 missing_close xhtml_existential_makework
+15 missing_close xhtml_existential_makework naughty_alt
 16 inserted_missing_closure
 18 inserted_missing_parent
 24 inserted_missing_closure

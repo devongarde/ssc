@@ -317,6 +317,7 @@ typedef enum {  ds_inline, ds_block, ds_listitem, ds_runin, ds_compact, ds_marke
                 ds_tablefootergroup, ds_tablerow, ds_tablecolumngroup, ds_tablecolumn, ds_tablecell, ds_tablecaption, ds_none, ds_inherit } e_display;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2, ed_50, ed_51, ed_52, ed_53,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_math_1, ed_math_2, ed_math_3, ed_math_4,
+                ed_iso_8859_1,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_May2020, ed_July2020, ed_w3, ed_mql, ed_ariaAug2020, ed_mozilla,
                 ed_microdata, ed_microformats, ed_rdf, ed_apache, ed_so_11,
                 ed_imaginary } e_doc;
@@ -1324,7 +1325,7 @@ typedef enum
     nit_math_href, nit_math_empty, nit_mglyph_alt_src, nit_dir_rtl_ltr, nit_bad_linebreak, nit_non_standard_value, nit_mscarries_last,
     nit_bad_bind, nit_bad_share, nit_shadow, nit_out_of_memory, nit_duplicate, nit_shadow_failed, nit_create_folder, nit_internal_file_error,
     nit_shadow_ignore, nit_shadow_link, nit_shadow_copy, nit_too_big, nit_icu, nit_lang_redefined, nit_page_charset, nit_charset_mismatch,
-    nit_charset_used, nit_charset_invalid,
+    nit_charset_used, nit_charset_invalid, nit_no_converters, nit_xhtml_superseded, nit_not_iso_8859_1,
 
     nit_context,
 
@@ -1746,7 +1747,9 @@ typedef enum {  doc_unknown, doc_context, doc_html, doc_public, doc_system, doc_
                 doc_xhtml2,
                 doc_xhtml11,
                 doc_xhtml10_basic, doc_xhtml10_strict, doc_xhtml10_loose, doc_xhtml10_frameset,
+                doc_xhtml10_strict_superseded, doc_xhtml10_loose_superseded, doc_xhtml10_frameset_superseded,
                 doc_html401_strict, doc_html401_loose, doc_html401_frameset,
+                doc_html401_strict_superseded, doc_html401_loose_superseded, doc_html401_frameset_superseded,
                 doc_html400_strict, doc_html400_loose, doc_html400_frameset,
                 doc_latin, doc_special, doc_symbols,
                 doc_html32, doc_html30,
@@ -1891,7 +1894,7 @@ typedef enum { w_soft, w_hard } e_wrap;
 typedef enum { w_horiz, w_vert } e_wrap3;
 typedef enum { wm_lrtb, wm_rltb, wm_tbrl, wm_lr, wm_rl, wm_tb, wm_inherit } e_writingmode;
 typedef enum { xls_new, xls_replace, xls_embed, xls_other, xls_none } e_xlinkshow;
-typedef enum {  x_default, x_xhtml_1, x_xhtml_11, x_xhtml_2, x_bibo, x_cc, x_crs, x_dbp, x_dbp_owl, x_dbr, x_dc, x_ex, x_foaf, x_mathml, x_owl,
+typedef enum {  x_default, x_xhtml_1, x_xhtml_1_superseded, x_xhtml_11, x_xhtml_2, x_bibo, x_cc, x_crs, x_dbp, x_dbp_owl, x_dbr, x_dc, x_ex, x_foaf, x_mathml, x_owl,
                 x_rdf, x_rdfa, x_rdfs, x_svg, x_xhv, x_xlink, x_xml, x_xmlns, x_xsd } e_xmlns;
 typedef enum { xs_default, xs_preserve } e_xmlspace;
 typedef enum { or_document, or_list } e_xorder;

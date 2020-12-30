@@ -154,6 +154,7 @@
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="type_charset.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp" />

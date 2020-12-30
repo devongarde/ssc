@@ -47,6 +47,7 @@ e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::stri
 e_namespace xmlns_to_namespace (nitpick& nits, const html_version& , const e_xmlns x)
 {   switch (x)
     {   case x_xhtml_1 :
+        case x_xhtml_1_superseded :
         case x_xhtml_11 :
         case x_xhtml_2 :return ns_xhtml;
         case x_cc :     return ns_cc;

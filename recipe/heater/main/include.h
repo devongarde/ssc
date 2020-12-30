@@ -172,7 +172,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif
 
 #ifndef SSC_TEST
-#include "unicode/ucsdet.h"
+#include <unicode/ucsdet.h>
+#include <unicode/ucnv.h>
 #ifdef _MSC_VER
 #pragma comment (lib,"icudt.lib")
 #pragma comment (lib,"icuin.lib")
@@ -240,5 +241,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define NOFLAGS 0
 #define EXPORT_EXTENSION ".json"
+
+#define US_ASCII "US-ASCII"
+#define LATIN_1 "ISO-8859-1"
+#define UTF_8 "UTF-8"
 
 #endif // SCC_TEST

@@ -3,6 +3,11 @@
 PASS ../toast/XHTML/1.0/index.xhtml
 1 xhtml_1_0
 
+PASS ../toast/XHTML/1.0/minimal.xhtml
+1 xhtml_1_0
+3 xhtml_superseded
+4 xhtml_superseded
+
 PASS ../toast/XHTML/1.0/x1-good.xhtml
 1 xhtml_1_0
 10 attribute_required
@@ -14,7 +19,7 @@ PASS ../toast/XHTML/1.0/x1-bad.xhtml
 11 xhtml_quote_values xhtml_attribute_lc xhtml_quote_values missing_close xhtml_enum_lc
 12 xhtml_missing_slash
 14 xhtml_hex_lc deprecated_attribute
-15 xhtml_missing_slash xhtml_existential_makework
+15 xhtml_missing_slash xhtml_existential_makework naughty_alt
 17 inserted_missing_closure
 
 PASS ../toast/XHTML/1.0/parsing.xhtml

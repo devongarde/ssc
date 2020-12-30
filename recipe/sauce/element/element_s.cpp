@@ -82,7 +82,7 @@ void element::examine_script ()
         pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "no attribute but TYPE should be used with data blocks");
     if (module)
     {   if (a_.known (a_charset) && (node_.version () <= html_5_3))
-            pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "do not use CHARSET when TYPE='module' (which must be UTF-8)");
+            pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "do not use CHARSET when TYPE='module' (which must be " UTF_8 ")");
         if (a_.known (a_nomodule) && (node_.version () > html_5_3))
             pick (nit_bad_script, ed_July2020, "4.12.1 The script element", es_error, ec_element, "NOMODULE is daft when TYPE='module'");
         if (a_.known (a_defer))

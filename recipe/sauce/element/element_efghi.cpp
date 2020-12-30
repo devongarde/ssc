@@ -256,11 +256,16 @@ void element::examine_iframe ()
 void element::examine_img ()
 {   check_required_type (elem_img);
     if (a_.known (a_usemap)) no_anchor_daddy ();
-    if ((node_.version ().mjr () >= 5) && (w3_minor_5 (node_.version ()) > 0))
+    if (node_.version ().mjr () == 4)
+    {   if (! a_.known (a_alt))
+            pick (nit_naughty_alt, ed_4, "13.2 Including an image", es_error, ec_element, "ALT is required on <IMG>");
+        else if (a_.get_string (a_alt).empty ())
+            pick (nit_naughty_alt, ed_4, "13.2 Including an image", es_info, ec_element, "ALT should not be empty"); }
+    else if ((node_.version ().mjr () >= 5) && (w3_minor_5 (node_.version ()) > 0))
         if (! ancestral_elements_.test (elem_figure))
             if (! a_.known (a_alt) || a_.get_string (a_alt).empty ())
                 if (! a_.known (a_title))
                     pick (nit_naughty_alt, ed_51, "4.7.5.1.2. General guidelines", es_warning, ec_element, "generally, ALT should not be empty");
     if ((node_.version ().mjr () >= 4) && a_.known (a_alt) && a_.known (a_title))
         if (compare_no_case (a_.get_string (a_alt), a_.get_string (a_title)))
-            pick (nit_alt_title, ed_51, "4.7.5.1.2. General guidelines", es_warning, ec_element, "ALT and TITLE must have different values"); }
+            pick (nit_alt_title, ed_51, "4.7.5.1.2. General guidelines", es_warning, ec_element, "ALT and TITLE should have different values"); }

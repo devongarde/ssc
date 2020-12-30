@@ -544,6 +544,9 @@ nitname nitnames [] =
     { nit_charset_mismatch, "charset_mismatch" },
     { nit_charset_used, "charset_used" },
     { nit_charset_invalid, "charset_invalid" },
+    { nit_no_converters, "no_converters" },
+    { nit_xhtml_superseded, "xhtml_superseded" },
+    { nit_not_iso_8859_1, "not_iso_8859_1" },
 
     { nit_off, "" } };
 

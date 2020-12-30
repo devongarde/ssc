@@ -36,6 +36,7 @@
     <ClInclude Include="..\heater\feedback\nitnames.h" />
     <ClInclude Include="..\heater\feedback\nitpick.h" />
     <ClInclude Include="..\heater\icu\charset.h" />
+    <ClInclude Include="..\heater\icu\converter.h" />
     <ClInclude Include="..\heater\icu\wrapper.h" />
     <ClInclude Include="..\heater\main\args.h" />
     <ClInclude Include="..\heater\main\context.h" />
@@ -100,6 +101,7 @@
     <ClInclude Include="..\heater\type\type_autocomplete.h" />
     <ClInclude Include="..\heater\type\type_base.h" />
     <ClInclude Include="..\heater\type\type_basic.h" />
+    <ClInclude Include="..\heater\type\type_charset.h" />
     <ClInclude Include="..\heater\type\type_class.h" />
     <ClInclude Include="..\heater\type\type_colour.h" />
     <ClInclude Include="..\heater\type\type_core.h" />
@@ -154,7 +156,6 @@
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="type_charset.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="..\sauce\feedback\nit.cpp" />
     <ClCompile Include="..\sauce\feedback\nitpick.cpp" />
     <ClCompile Include="..\sauce\icu\charset.cpp" />
+    <ClCompile Include="..\sauce\icu\converter.cpp" />
     <ClCompile Include="..\sauce\icu\wrapper.cpp" />
     <ClCompile Include="..\sauce\main\context.cpp" />
     <ClCompile Include="..\sauce\main\options.cpp" />
@@ -1142,6 +1144,7 @@
     <None Include="..\toast\XHTML\1.0\index.xhtml" />
     <None Include="..\toast\XHTML\1.0\math-example.xhtml" />
     <None Include="..\toast\XHTML\1.0\mathml-1.xhtml" />
+    <None Include="..\toast\XHTML\1.0\minimal.xhtml" />
     <None Include="..\toast\XHTML\1.0\parsing.xhtml" />
     <None Include="..\toast\XHTML\1.0\svg1-example.xhtml" />
     <None Include="..\toast\XHTML\1.0\x1-bad.xhtml" />

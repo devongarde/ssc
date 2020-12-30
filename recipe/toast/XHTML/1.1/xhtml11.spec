@@ -16,7 +16,7 @@ PASS ../toast/XHTML/1.1/x11-bad.xhtml
 11 xhtml_quote_values xhtml_attribute_lc xhtml_quote_values missing_close xhtml_enum_lc
 12 xhtml_missing_slash
 14 xhtml_hex_lc
-15 xhtml_missing_slash xhtml_existential_makework
+15 xhtml_missing_slash xhtml_existential_makework naughty_alt
 18 inserted_missing_parent
 24 inserted_missing_closure
 31 use_quote_code wrong_parent

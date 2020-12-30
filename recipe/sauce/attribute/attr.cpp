@@ -882,12 +882,13 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const ::std::stri
         else nits.pick (nit_xmlns_namespace, es_error, ec_namespace, "namespace ", quote (lc), " has already been declared");
         return a_xmlns; }
     if (lc.empty ()) return a_unknown;
-    if (((v == xhtml_1_0) || (v == xhtml_1_1)) && (x.find_first_of (UPPERCASE) != ::std::string::npos))
-        nits.pick (nit_xhtml_attribute_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "attribute names must be lower cased in ", v.report ());
     symbol < e_attribute > a (v, lc, n);
-    if (! a.unknown ())
+    if (a.unknown ()) check_spelling (nits, v, lc);
+    else
+    {   if (a.first ().is_plain_html ())
+            if (((v == xhtml_1_0) || (v == xhtml_1_1)) && (x.find_first_of (UPPERCASE) != ::std::string::npos))
+                nits.pick (nit_xhtml_attribute_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "attribute names must be lower cased in ", v.report ());
         if (! does_apply (v, a.first (), a.last ()))
             nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, quote (x), " is not valid in ", v.report ());
-        else return a.get ();
-    else check_spelling (nits, v, lc);
+        else return a.get (); }
     return a_unknown; }

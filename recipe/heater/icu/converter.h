@@ -19,10 +19,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "utility/common.h"
+#include "feedback/nitpick.h"
+#include "parser/html_version.h"
 
-#define PROG "ssc"
-#define TESTPROG "ssc-test"
-#define FULLNAME "Static Site Checker"
-#define WEBADDR "https://ssc.lu/"
-#define VERSION_STRING "0.0.78"
-#define COPYRIGHT "(c) 2020 Dylan Harris, https://dylanharris.org/"
+::std::string get_standard_converter_name (nitpick& nits, const ::std::string& name);
+::std::string convert_to_utf_8 (nitpick& nits, const ::std::string& name, void_ptr& vp, uintmax_t& sz);

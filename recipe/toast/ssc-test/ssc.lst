@@ -57,6 +57,7 @@
 ../toast/type/mimetype/mimetype.spec
 ../toast/type/sgml/sgml.spec
 ../toast/type/url/url.spec
+../toast/w3/w3.spec
 ../toast/XHTML/1.0/xhtml1.spec
 ../toast/XHTML/1.1/xhtml11.spec
 ../toast/XHTML/2.0/xhtml2.spec

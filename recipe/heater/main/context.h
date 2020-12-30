@@ -158,12 +158,10 @@ public:
     const vstr_t virtuals () const { return virtuals_; }
     const ::std::string webmention () const { return webmention_; }
     const ::std::string write_path () const { return write_path_; }
-
     bool shadow_pages () const { return ((copy_ > c_none) && (copy_ <= c_deduplicate)); }
     bool shadow_files () const { return ((copy_ > c_html) && (copy_ <= c_deduplicate)); }
     bool shadow_any () const { return shadow_pages (); }
     bool dodedu () const { return (copy_ >= c_deduplicate); }
-
     context_t& base (const ::std::string& s) { base_ = s; return *this; }
     context_t& checking_urls (const bool b) { checking_urls_ = b; return *this; }
     context_t& clear (const bool b) { clear_ = b; return *this; }

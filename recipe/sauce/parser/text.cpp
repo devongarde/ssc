@@ -2247,21 +2247,32 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
         if (n > UINT_MAX / 4) return text; }
     return ::std::string (1, static_cast <char> (n)); }
 
+bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
+{   if (n < 32)
+        nits.pick (nit_not_iso_8859_1, ed_iso_8859_1, "https://en.wikipedia.org/wiki/ISO/IEC_8859-1", es_warning, ec_parser, quote (s), " is a control character");
+    else if ((n >= 127) && (n <= 159))
+        nits.pick (nit_not_iso_8859_1, ed_iso_8859_1, "https://en.wikipedia.org/wiki/ISO/IEC_8859-1", es_warning, ec_parser, quote (s), " is an invalid character code");
+    else if ((n == 65534) || (n == 65535))
+        nits.pick (nit_not_iso_8859_1, ed_41, "24.2 Character entity references for ISO 8859-1 characters", es_warning, ec_parser, quote (s), " is invalid");
+    else return false;
+    return true; }
+
 ::std::string interpret_character_number (nitpick& nits, const ::std::string& text)
 {   assert (! text.empty ());
     unsigned int n = 0;
+    ::std::string res = "&#";
+    res += text;
+    res += ';';
     for (auto ch : text)
     {   n *= 10;
         if ((ch >= '0') && (ch <= '9')) n += ch - '0';
         else
-        {   ::std::string res = "&#";
-            res += text;
-            res += ';';
-            nits.pick (nit_invalid_character_denary, es_error, ec_parser, quote (res), " is not a denary integer");
+        {   nits.pick (nit_invalid_character_denary, ed_41, "24.2 Character entity references for ISO 8859-1 characters", es_error, ec_parser, quote (res), " is not a denary integer");
             return res; }
         if (n > UINT_MAX / 4)
-        {   nits.pick (nit_denary_too_long, es_error, ec_parser, text, " is too big");
-            break; } }
+        {   nits.pick (nit_denary_too_long, ed_41, "24.2 Character entity references for ISO 8859-1 characters", es_error, ec_parser, text, " is too big");
+            return res; } }
+    if (is_naughty_number (nits, res, n)) return res;
     return ::std::string (1, static_cast <char> (n)); }
 
 ::std::string interpret_character_hex (const ::std::string& text)
@@ -2278,6 +2289,9 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
 
 ::std::string interpret_character_hex (nitpick& nits, const ::std::string& text)
 {   assert (! text.empty ());
+    ::std::string res = "&#x";
+    res += text;
+    res += ';';
     unsigned int n = 0;
     for (auto ch : text)
     {   n <<= 4;
@@ -2285,12 +2299,10 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
         else if ((ch >= 'A') && (ch <= 'F')) n += ch - 'A' + 10;
         else if ((ch >= 'a') && (ch <= 'f')) n += ch - 'a' + 10;
         else
-        {   ::std::string res = "&#x";
-            res += text;
-            res += ';';
-            nits.pick (nit_invalid_character_hex, es_error, ec_parser, quote (res), " is not a hexadecimal integer");
+        {   nits.pick (nit_invalid_character_hex, es_error, ec_parser, quote (res), " is not a hexadecimal integer");
             return res; }
         if (n > UINT_MAX / 4)
         {   nits.pick (nit_hex_too_long, es_error, ec_parser, text, " is too big");
             break; } }
+    if (is_naughty_number (nits, res, n)) return res;
     return ::std::string (1, static_cast <char> (n)); }
