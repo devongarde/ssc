@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.77
+version 0.0.78
 https://ssc.lu/
 
 
