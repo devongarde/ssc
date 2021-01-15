@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -419,6 +419,7 @@ template < > struct type_master < t_scope > : varied < t_scope >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
             if (e.is_math ()) validate_type < type_master < t_mathscope > > (nits, v);
+            else if (e.get () == elem_link) validate_type < type_master < t_url > > (nits, v);
             else validate_type < type_master < t_tdscope > > (nits, v); } };
 
 template < > struct type_master < t_shape > : varied < t_shape >

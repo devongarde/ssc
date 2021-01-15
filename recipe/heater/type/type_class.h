@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,9 @@ const e_class first_mf1_property = mf1_additional_name;
 const e_class last_mf1_property = mf1_website;
 const e_class first_mf2_property = dt_accessed;
 const e_class last_mf2_property = u_search;
+const e_class first_jun07_class = h5d_copyright;
+const e_class last_jun07_class = h5d_warning;
+inline bool is_whatwg_class (const e_class c) { return (c >= first_jun07_class) && (c <= last_jun07_class); }
 const ::std::size_t class_size = static_cast < ::std::size_t > (c_error + 1);
 const ::std::size_t vocab_size = static_cast < ::std::size_t > (h_aggregate + 1);  // not last minus first because of c_context etc.
 
@@ -49,7 +52,9 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
     for (auto s : strs)
     {   enum_vec_base < e_class, t_class > :: base_t t;
         t.set_value (nits, v, s);
-        enum_vec_base < e_class, t_class > :: value_.push_back (t);
+        if (is_whatwg_class (t.get ()))
+        {   nits.pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_comment, ec_attribute, "FYI, ", quote (s), " was a draft HTML 5 standard class name.");
+            if ((v.mjr () != HTML_2007) || (v.mnr () >= HTML_JUL)) t.status (s_invalid); }
         if (t.invalid ())
             if (context.css ().note_usage (s))
             {   nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", s, " recognised");
@@ -57,7 +62,8 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
             else
             {   res = false;
                 if (! check_class_spelling (nits, v, s))
-                    nits.pick (nit_unrecognised_value, es_warning, ec_type, quote (s), " is unknown"); } }
+                    nits.pick (nit_unrecognised_value, es_warning, ec_type, quote (s), " is unknown"); }
+        enum_vec_base < e_class, t_class > :: value_.push_back (t); }
     if (res) type_base < e_class, t_class > :: status (s_good);
     else type_base < e_class, t_class > :: status (s_invalid); }
 
@@ -85,11 +91,14 @@ struct html_class : enum_n < t_class, e_class >
     {   return (value >= first_mf1_vocab && value <= last_mf1_vocab) || (value >= first_mf1_property && value <= last_mf1_property); }
     static bool is_microformat_v2 (const e_class value)
     {   return (value >= first_mf2_vocab && value <= last_mf2_vocab) || (value >= first_mf2_property && value <= last_mf2_property); }
+    static bool is_whatwg_draft (const e_class value)
+    {   return is_whatwg_class (value); }
     CONSTEXPR static bool is_rel () { return false; }
     bool is_microformat_property () const { return is_microformat_property (enum_base < e_class, t_class >  :: value_); }
     bool is_microformat_vocabulary () const { return is_microformat_vocabulary (enum_base < e_class, t_class > :: value_); }
     bool is_microformat () const { return is_microformat (enum_base < e_class, t_class > :: value_); }
     bool is_microformat_v1 () const { return is_microformat_v1 (enum_base < e_class, t_class > :: value_ ); }
-    bool is_microformat_v2 () const { return is_microformat_v2 (enum_base < e_class, t_class > :: value_); } };
+    bool is_microformat_v2 () const { return is_microformat_v2 (enum_base < e_class, t_class > :: value_); }
+    bool is_whatwg_draft () const { return is_whatwg_class (enum_base < e_class, t_class > :: value_); } };
 
 typedef  ::std::vector < html_class > vhc_t;

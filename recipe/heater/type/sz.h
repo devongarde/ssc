@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -69,6 +69,7 @@ struct sz_characters { CONSTEXPR static char const* sz () { return "characters";
 struct sz_checkbox { CONSTEXPR static char const* sz () { return "checkbox"; } };
 struct sz_circle { CONSTEXPR static char const* sz () { return "circle"; } };
 struct sz_changed { CONSTEXPR static char const* sz () { return "changed"; } };
+struct sz_classic { CONSTEXPR static char const* sz () { return "classic"; } };
 struct sz_closed { CONSTEXPR static char const* sz () { return "closed"; } };
 struct sz_closedopen { CONSTEXPR static char const* sz () { return "closed-open"; } };
 struct sz_col { CONSTEXPR static char const* sz () { return "col"; } };
@@ -175,9 +176,10 @@ struct sz_meet { CONSTEXPR static char const* sz () { return "meet"; } };
 struct sz_metadata { CONSTEXPR static char const* sz () { return "metadata"; } };
 struct sz_middle { CONSTEXPR static char const* sz () { return "middle"; } };
 struct sz_miter { CONSTEXPR static char const* sz () { return "miter"; } };
-struct sz_multipart_form_data { CONSTEXPR static char const* sz () { return "multipart/form-data"; } };
-struct sz_moved { CONSTEXPR static char const* sz () { return "moved"; } };;
 struct sz_mixed { CONSTEXPR static char const* sz () { return "mixed"; } };;
+struct sz_module { CONSTEXPR static char const* sz () { return "module"; } };;
+struct sz_moved { CONSTEXPR static char const* sz () { return "moved"; } };;
+struct sz_multipart_form_data { CONSTEXPR static char const* sz () { return "multipart/form-data"; } };
 struct sz_multiset { CONSTEXPR static char const* sz () { return "multiset"; } };;
 struct sz_never { CONSTEXPR static char const* sz () { return "never"; } };
 struct sz_new { CONSTEXPR static char const* sz () { return "new"; } };;

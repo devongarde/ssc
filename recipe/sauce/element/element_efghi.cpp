@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ void element::examine_embed ()
 {   if (node_.version ().mjr () < 5) return;
     no_anchor_daddy ();
     if (a_.known (a_itemprop) && ! a_.known (a_src))
-        pick (nit_bad_embed, ed_July2020, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>"); }
+        pick (nit_bad_embed, ed_jul20, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>"); }
 
 void element::examine_equation ()
 {   if (node_.version ().math () != math_2) return;
@@ -201,10 +201,10 @@ void element::examine_form ()
         {   check_ancestors (elem_form, element_bit_set (elem_form));
             if ((w3_minor_5 (node_.version ()) > 3) && a_.good (a_acceptcharset))
             {   auto v = a_.get_x < attr_acceptcharset > ();
-                if (v.size () != 1) pick (nit_form_charset, ed_July2020, "4.10.3 The form element", es_error, ec_attribute, "CHARSET, if supplied, must be the single value 'utf-8'");
+                if (v.size () != 1) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "CHARSET, if supplied, must be the single value 'utf-8'");
                 else
                 {   auto cs = v.at (0);
-                    if (cs != cs_utf_8) pick (nit_form_charset, ed_July2020, "4.10.3 The form element", es_error, ec_attribute, "CHARSET, if supplied, must be set to 'utf-8'"); } }
+                    if (cs != cs_utf_8) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "CHARSET, if supplied, must be set to 'utf-8'"); } }
             if (! radio_kids_.empty ())
             {   msid_t names;
                 for (auto rk : radio_kids_)
@@ -238,18 +238,18 @@ void element::examine_html ()
         pick (nit_use_htmlplus, es_error, ec_element, "HTML+ uses the <HTMLPLUS> element, not <HTML>");
     else
     {   only_one_of (elem_html);
-        if (node_.version ().mjr () >= 5)
-        {   if (! a_.known (a_lang) && ! a_.known (a_xmllang))
+        if (node_.version () >= html_jan13)
+           if (! a_.known (a_lang) && ! a_.known (a_xmllang))
                 pick (nit_naughty_lang, ed_50, "4.1.1 The html element", es_warning, ec_attribute, "use LANG to specify a default language");
-            if (w3_minor_5 (node_.version ()) >= 2)
-                if (a_.known (a_manifest))
-                    pick (nit_avoid_manifest, ed_52, "4.1.1 The html element", es_warning, ec_attribute, "MANIFEST is deprecated & should be avoided because application caches are doomed"); } } }
+        if (node_.version () >= html_jan17)
+            if (a_.known (a_manifest))
+                pick (nit_avoid_manifest, ed_52, "4.1.1 The html element", es_warning, ec_attribute, "MANIFEST is deprecated & should be avoided because application caches are doomed"); } }
 
 void element::examine_iframe ()
 {   if (node_.version ().mjr () < 5) return;
     no_anchor_daddy ();
     if (a_.known (a_itemprop) && ! a_.known (a_src))
-        pick (nit_bad_iframe, ed_July2020, "4.8.5 The iframe element", es_error, ec_attribute, "SRC is required when ITEMPROP is used with <IFRAME>");
+        pick (nit_bad_iframe, ed_jul20, "4.8.5 The iframe element", es_error, ec_attribute, "SRC is required when ITEMPROP is used with <IFRAME>");
     if (! a_.known (a_srcdoc) && ! a_.known (a_src))
         pick (nit_chocolate_teapot, es_info, ec_attribute, "Not sure what use <IFRAME> is without SRC or SRCDOC"); }
 

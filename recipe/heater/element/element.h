@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/microformat_export.h"
 #include "microdata/microdata_itemscope.h"
 
-#define MAX_IDEAL_TITLE_LENGTH 64     // HTML 1, TITLE
 #define MAX_IDEAL_PLACEHOLDER_LENGTH 24
 
 class page;
@@ -93,11 +92,11 @@ class element
     void pre_examine_element (const e_element tag);
     void post_examine_element (const e_element tag);
     void examine_media_element (e_element elem, const char* ref, const char* name);
+    void examine_accesskey ();
     void examine_autofocus ();
     bool examine_class ();
     void examine_clip ();
     void examine_content ();
-    void examine_css (const e_element tag);
     void examine_draggable ();
     void examine_href ();
     void examine_headers ();
@@ -108,6 +107,7 @@ class element
     void examine_itemtype (itemscope_ptr& itemscope);
     void examine_other ();
     bool examine_rel (const ::std::string& content);
+    void examine_style_attr ();
     void examine_xlinkhref ();
     void validate_input_id ();
     ::std::string text () const

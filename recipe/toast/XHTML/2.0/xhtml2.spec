@@ -27,6 +27,7 @@ PASS ../toast/XHTML/2.0/x2-example.xhtml
 0 charset_mismatch charset_used
 1 xhtml_1_0
 2 html_contradictory
+7 long_title
 61 unknown
 72 unrecognised_value
 88 unrecognised_value

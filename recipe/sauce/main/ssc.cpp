@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 
 void init (nitpick& nits)
-{   nit::init ();
+{   nits_init ();
     nits.set_context (0, PROG " initialisation");
     attr::init (nits);
     avm_init (nits);

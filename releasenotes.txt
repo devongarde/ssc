@@ -1,7 +1,12 @@
 RELEASE NOTES
 static site checker
 https://ssc.lu/
-(c) 2020 Dylan Harris
+(c) 2020,2021 Dylan Harris
+
+0.0.79
+- html.version can be used to specify date of WhatWG living HTML standard for HTML 5 verification
+- added -z switch to specify maximum advisable <TITLE> text length (default: 32)
+- various bug fixes
 
 0.0.78
 - integrated W3 tests into test suite

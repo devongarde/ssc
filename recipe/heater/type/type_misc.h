@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -111,7 +111,7 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space >
                     if (k.length () != 1)
                         nits.pick (nit_key, ed_41, "17.11.2 Access keys", es_error, ec_type, quote (k), " is not a single character");
                     else if (check.find (k) != check.cend ())
-                        nits.pick (nit_key, ed_July2020, "6.6.2 The accesskey attribute", es_error, ec_type, "access keys must be unique, yet ", quote (k), " is repeated");
+                        nits.pick (nit_key, ed_jul20, "6.6.2 The accesskey attribute", es_error, ec_type, "access keys must be unique, yet ", quote (k), " is repeated");
                     else check.insert (k);
                 if (string_vector < t_key, sz_space > :: size () == check.size ()) return; }
             else if ((s.length () == 1) || (! ::std::iswspace (s.at (0)) && ! ::std::iswcntrl (s.at (0)))) return;

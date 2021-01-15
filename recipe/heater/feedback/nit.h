@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "main/include.h"
 #include "type/enum.h"
+#include "feedback/nitnames.h"
 
 class nit
 {   e_nit code_ = nit_free;
@@ -42,8 +43,6 @@ public:
 #ifndef NO_MOVE_CONSTRUCTOR
 	nit& operator = (nit&& n) = default;
 #endif
-	static void init();
-    static e_nit lookup (const ::std::string& name);
     void swap (nit& n) NOEXCEPT;
     void reset ();
     void reset (const nit& n);

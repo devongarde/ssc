@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -119,11 +119,12 @@ void element::examine_time ()
 
 void element::examine_title ()
 {   if (! node_.version ().has_svg ()) only_one_of (elem_title);
+    if (! ancestral_elements_.test (elem_head)) return;
     ::std::string txt (text ());
     if (is_whitespace (txt))
         pick (nit_text_content, es_warning, ec_element, "<TITLE> text should be more than whitespace");
-    else if (txt.length () > MAX_IDEAL_TITLE_LENGTH)
-        pick (nit_long_title, ed_tags, "TITLE section", es_warning, ec_element, "the TITLE text (", quote (txt.substr (0, MAX_IDEAL_TITLE_LENGTH)), "...) should be fairly short");
+    else if (txt.length () > context.title ())
+        pick (nit_long_title, ed_tags, "TITLE section", es_warning, ec_element, "the TITLE text (", quote (txt.substr (0, context.title ())), "...) should be fairly short");
     page_.confirm_title (); }
 
 void element::examine_track ()

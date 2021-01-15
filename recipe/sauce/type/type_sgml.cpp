@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,8 @@ struct symbol_entry < e_sgml > doctype_symbol_table [] =
     { { HTML_PLUS }, { HTML_UNDEF },  "]", doc_sqclose },
 
     // https://html.spec.whatwg.org/dev/syntax.html
-    { { HTML_5_0 }, { HTML_UNDEF },  "about:legacy-compat", doc_html5 },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "-//WHATWG//NONSGML HTML5//EN", doc_jan05 },
+    { { HTML_5_0 }, { HTML_UNDEF },   "about:legacy-compat", doc_html5 },
 
     // https://www.w3.org/QA/2002/04/valid-dtd-list.html
     { { HTML_4_01 }, { HTML_UNDEF },  "-//W3C//DTD HTML 4.01//EN", doc_html401_strict },

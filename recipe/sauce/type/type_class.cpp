@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -211,6 +211,14 @@ struct symbol_entry < e_class > class_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, H_RESUME, h_resume },
     { { HTML_UNDEF }, { HTML_UNDEF }, H_REVIEW, h_review },
     { { HTML_UNDEF }, { HTML_UNDEF }, H_AGGREGATE, h_aggregate },
+
+    { { HTML_JAN07 }, { HTML_UNDEF }, "copyright", h5d_copyright },
+    { { HTML_JAN07 }, { HTML_UNDEF }, "error", h5d_error },
+    { { HTML_JAN07 }, { HTML_UNDEF }, "example", h5d_example },
+    { { HTML_JAN07 }, { HTML_UNDEF }, "issue", h5d_issue },
+//    { { HTML_JAN07 }, { HTML_UNDEF }, "note", h5d_note },
+    { { HTML_JAN07 }, { HTML_UNDEF }, "search", h5d_search },
+    { { HTML_JAN07 }, { HTML_UNDEF }, "warning", h5d_warning },
 
     { { HTML_UNDEF }, { HTML_UNDEF }, "additional-name", mf1_additional_name },
 //    { { HTML_UNDEF }, { HTML_UNDEF }, "adr", mf1_adr },
@@ -450,8 +458,8 @@ struct symbol_entry < e_class > class_symbol_table [] =
 void class_init (nitpick& nits)
 {   type_master < t_class > :: init (nits, class_symbol_table, sizeof (class_symbol_table) / sizeof (symbol_entry < e_class >)); }
 
-bool check_class_spelling (nitpick& nits, const html_version& v, const ::std::string& original)
-{   if (check_spelling (nits, v, original)) return true;
+bool check_class_spelling (nitpick& nits, const html_version& , const ::std::string& original)
+{   // if (check_spelling (nits, v, original)) return true;
     ::std::string s (quote (original));
     if (original == "h-cv") nits.pick (nit_confusion, es_warning, ec_microformat, quote (s), ": it's " H_RESUME " (unaccented), not h-cv");
     else if (   (original == "h-addr") ||

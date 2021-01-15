@@ -132,7 +132,6 @@ PASS ../toast/HTML/5.4/html5-bad.html
 141 bad_script
 142 bad_script
 143 unrecognised_value invalid_attribute_version wrong_version
-144 invalid_attribute_version wrong_version
 145 bad_script
 146 bad_script
 
@@ -155,9 +154,8 @@ PASS ../toast/HTML/5.4/html5-example.html
 2 naughty_lang
 6 element_offsite_base
 8 url_not_found cannot_load_css
-9 url_not_found
+9 url_not_found cannot_load_css
 10 url_not_found
-10 attribute_required
 80 attribute_required
 85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required
@@ -210,7 +208,6 @@ PASS ../toast/HTML/5.4/html5-example.html
 378 url_not_found
 379 url_not_found
 389 no_such_folder url_not_found naughty_alt
-391 no_such_folder url_not_found
 391 no_such_folder url_not_found
 392 no_such_folder url_not_found
 393 attribute_required no_such_folder url_not_found naughty_alt

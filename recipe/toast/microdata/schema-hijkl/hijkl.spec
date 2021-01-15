@@ -175,6 +175,7 @@ PASS ../toast/microdata/schema-hijkl/loanorcredit.html
 42 svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/locationfeaturespecification.html
+4 long_title
 19 not_schema_property
 20 not_schema_property
 23 not_schema_property

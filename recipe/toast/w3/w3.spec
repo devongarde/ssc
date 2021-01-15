@@ -135,9 +135,6 @@ PASS ../toast/w3/ampersand-as-data.html
 PASS ../toast/w3/ampersand-as-data_html401.html
 11 mixed_mess
 
-PASS ../toast/w3/bogus-fpi.html
-2 unexpected_doctype_content
-
 PASS ../toast/w3/bogus-fpi2.html
 2 xhtml_superseded unexpected_doctype_content
 9 use_double_quote_code

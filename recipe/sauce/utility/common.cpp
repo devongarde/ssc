@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -343,6 +343,7 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
         { "grey", d_collins, nullptr },
         { "gynaecologic", d_wiki, "https://en.wikipedia.org/wiki/Gynaecology" },
         { "haematologic", d_none, nullptr },
+        { "honour", d_none, nullptr },
         { "licence", d_none, nullptr },
         { "motorised", d_none, nullptr },
         { "neighbour", d_johnson, "1356" },
@@ -355,6 +356,7 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
         { "penciller", d_none, nullptr },
         { "randomised", d_none, nullptr },
         { "speciality", d_johnson, "1895" },
+        { "sought", d_none, nullptr },
         { "theatre", d_johnson, "2042" },
         { "tyre", d_none, nullptr },
         { nullptr, d_none, nullptr } };

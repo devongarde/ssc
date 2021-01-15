@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -31,8 +31,35 @@ const char* docdot = "<!DOCTYPE ...>";
 html_version::html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags, const uint64_t extensions)
         :   mjr_ (mjr), mnr_ (mnr), flags_ (flags), ext_ (extensions)
 {   if (mnr_ == 0xFF)
-        if (mjr_ == 5) mnr_ = context.html_minor ();
+        if (mjr_ == 5) switch (context.html_minor ())
+        {   case 0 : mjr_ = MAJOR_5_0; mnr_ = MINOR_5_0; break;
+            case 1 : mjr_ = MAJOR_5_1; mnr_ = MINOR_5_1; break;
+            case 2 : mjr_ = MAJOR_5_2; mnr_ = MINOR_5_2; break;
+            case 3 : mjr_ = MAJOR_5_3; mnr_ = MINOR_5_3; break;
+            default : mjr_ = HTML_LATEST_YEAR; mnr_ = HTML_LATEST_MONTH; break; }
         else mnr_ = 0; }
+
+html_version::html_version (const boost::gregorian::date& d, const uint64_t flags, const uint64_t extensions)
+        :   flags_ (flags | HV_WHATWG), ext_ (extensions)
+{   if (d.is_not_a_date ()) { mjr_ = 1; mnr_ = 0; return; }
+    int y = d.year ();
+    if ((y > 100) && (y < 2000)) { mjr_ = 1; mnr_ = 0; return; }
+    int m = d.month ();
+    if (y > 2000) y -= 2000;
+    if ((y < HTML_5_EARLIEST_YEAR) || ((y == HTML_5_EARLIEST_YEAR) && (m < HTML_5_EARLIEST_MONTH)))
+    {   y = HTML_5_EARLIEST_YEAR; m = HTML_5_EARLIEST_MONTH; }
+    else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
+    {   y = HTML_LATEST_YEAR; m = HTML_LATEST_MONTH; }
+    assert ((m > 0) && (m < 13));
+    mjr_ = static_cast <unsigned char> (y);
+    mnr_ = static_cast <unsigned char> (m * 16);
+    if ((ext_ & MATH_MASK) == 0)
+        if (mjr_ <= HTML_2010) ext_ |= HE_MATH_2;
+        else ext_ |= HE_MATH_3;
+    if ((ext_ & SVG_MASK) == 0)
+        if (*this >= html_5_3) ext_ |= HE_SVG_2_0;
+        else if (mjr_ > HTML_2008) ext_ |= HE_SVG_1_2_TINY;
+        else ext_ |= HE_SVG_1_1; }
 
 void html_version::swap (html_version& v) NOEXCEPT
 {   ::std::swap (mjr_, v.mjr_);
@@ -267,6 +294,10 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_xhtml2 :
                     note_parsed_version (nits, nit_xhtml_2_0, xhtml_2, "XHTML 2.0");
                     break;
+                case doc_jan05 :
+                    nits.pick (hit_draft_html_5, ed_jan05, "", es_warning, ec_parser, PROG " cannot properly process pre-draft HTML 5");
+                    note_parsed_version (nits, hit_draft_html_5, html_jan05, "HTML 5 (jan 2005)");
+                    break;
                 case doc_html5 :
                     note_parsed_version (nits, nit_html_5_0, html_5_0, "HTML 5");
                     break;
@@ -344,18 +375,22 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
         {   if (found_unknown)
             {   nits.pick (nit_html_unknown_sgml, es_warning, ec_parser, "The HTML declaration in <!DOCTYPE ...> contains unrecognised content (", quote (wtf), "). Abandoning verification");
                 return false; }
-            ::std::string ver ("HTML 5.");
-            ver += static_cast < char > ('0' + context.html_minor ());
             html_version vvv;
+            ::std::string ver ("HTML 5");
             e_nit wit = nit_free;
             e_mathversion ev = context.math_version ();
             e_svg_version sv = context.svg_version ();
-            switch (context.html_minor ())
-            {   case 0 : wit = nit_html_5_0; vvv = html_5_0; break;
-                case 1 : wit = nit_html_5_1; vvv = html_5_1; break;
-                case 2 : wit = nit_html_5_2; vvv = html_5_2; break;
-                case 3 : wit = nit_html_5_3; vvv = html_5_3; break;
-                default : wit = nit_html_20_07; vvv = html_jul_20; break; }
+            if (context.versioned ())
+            {   vvv = context.html_ver ();
+                wit = nit_overriding_html; }
+            else
+            {   ver += static_cast < char > ('0' + context.html_minor ());
+                switch (context.html_minor ())
+                {   case 0 : wit = nit_html_5_0; vvv = html_5_0; break;
+                    case 1 : wit = nit_html_5_1; vvv = html_5_1; break;
+                    case 2 : wit = nit_html_5_2; vvv = html_5_2; break;
+                    case 3 : wit = nit_html_5_3; vvv = html_5_3; break;
+                    default : wit = nit_html_20_07; vvv = html_jul20; break; } }
             assert (wit != nit_free);
             if (ev > math_none) vvv.math_version (ev);
             if (sv > sv_none) vvv.svg_version (sv);
@@ -581,12 +616,16 @@ bool does_apply (const html_version& v, const html_version& from, const html_ver
                     break;
         default :   if (v.mjr () == 0) break;
                     if (from.xhtml () && from.notx5 ()) return false;
+//                    if ((v.mjr () < 7) && from.notdraft ()) return false;
+                    if ((v.mjr () >= 5) && (context.html_ver ().whatwg ()) && (from.notwg ())) return false;
                     switch (w3_minor_5 (v))
-                    {   case 0 : return ! from.not50 ();
+                    {   case 0 : if ((v.mjr () < 7) && from.notdraft ()) return false;
+                                 return ! from.not50 ();
                         case 1 : return ! from.not51 ();
                         case 2 : return ! from.not52 ();
                         case 3 : return ! from.not53 ();
-                        case 4 : return ! from.not54 (); }
+                        case 4 : return true; }
+                        // case 4 : return ! from.not54 (); }
                     assert (false);
                     break; }
     return true; }
@@ -613,6 +652,7 @@ const char *default_charset (const html_version& v)
         case 2 :
         case 3 :
         case 4 : return LATIN_1;
+        case 5 : return LATIN_1;
         default : return UTF_8; } }
 
 const char *alternative_charset (const html_version& v)

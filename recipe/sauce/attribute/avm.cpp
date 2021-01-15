@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -65,28 +65,21 @@ struct hav_t
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, ELEM, a_src },  \
     HTML23_CLID_ATTRIBUTES (ELEM)
 
-#define MICRODATA_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM, FLAG) \
-    { { MAJOR_FROM, MINOR_FROM, 0, FLAG }, { HTML_UNDEF }, ELEM, a_itemid }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, FLAG }, { HTML_UNDEF }, ELEM, a_itemprop }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, FLAG }, { HTML_UNDEF }, ELEM, a_itemref }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, FLAG }, { HTML_UNDEF }, ELEM, a_itemscope }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, FLAG }, { HTML_UNDEF }, ELEM, a_itemtype }
-
 #define HTML4_STANDARD_SCRIPT_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onclick },\
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_ondblclick }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onkeydown }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onkeypress }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onkeyup }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmousedown }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmousemove }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmouseout }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmouseover }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmouseup }
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onclick },\
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_ondblclick }, \
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onkeydown }, \
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onkeypress }, \
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onkeyup }, \
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmousedown }, \
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmousemove }, \
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmouseout }, \
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmouseover }, \
+    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmouseup }
 
 #define HTML4_STANDARD_LANG_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_dir }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_lang }
+    { { MAJOR_FROM, MINOR_FROM, 0 }, { HTML_UNDEF }, ELEM, a_dir }, \
+    { { MAJOR_FROM, MINOR_FROM, 0 }, { HTML_UNDEF }, ELEM, a_lang }
 
 #define HTML4_STANDARD_CI_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
     { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_class }, \
@@ -461,7 +454,8 @@ struct hav_t
 
 #define XHTML1_STANDARD_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
     RDFA_STANDARD_ATTRIBUTES (ELEM), \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_xmlns }, \
+    { { MAJOR_FROM, MINOR_FROM }, { XHTML_2_0 }, ELEM, a_xmlns }, \
+    { { HTML_JAN07 }, { HTML_UNDEF }, ELEM, a_xmlns }, \
     { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_xmllang }
 
 #define XHTML2_COMMON_ATTRIBUTES(ELEM) \
@@ -520,80 +514,129 @@ struct hav_t
     HTML4_STANDARD_LANG_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM), \
     HTML4_STANDARD_CIST_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM)
 
-#define HTML4_ATTRIBUTES_BASE(ELEM, MAJOR_FROM, MINOR_FROM) \
-    HTML4_STANDARD_TSL_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM), \
-    HTML4_STANDARD_SCRIPT_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM), \
-    HTML4_ARIA_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM, HV_ARIA), \
-    MICRODATA_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM, HE_MICRODATA)
+#define HTML4_ATTRIBUTES_BASE(ELEM) \
+    HTML4_STANDARD_TSL_ATTRIBUTES (ELEM, MAJOR_4_0, MINOR_4_0), \
+    HTML4_STANDARD_SCRIPT_ATTRIBUTES (ELEM, MAJOR_4_0, MINOR_4_0), \
+    HTML4_ARIA_ATTRIBUTES (ELEM, MAJOR_4_0, MINOR_4_0, HV_ARIA)
 
 #define COMMON_HTML4_ATTRIBUTES(ELEM) \
-    HTML4_ATTRIBUTES_BASE (ELEM, MAJOR_4_0, MINOR_4_0), \
+    HTML4_ATTRIBUTES_BASE (ELEM), \
     XHTML2_STANDARD_ATTRIBUTES (ELEM, MAJOR_X1_0, MINOR_X1_0)
 
-#define HTML4_FORM_ATTRIBUTES_V(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_accesskey }, \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_tabindex }
+#define HTML4_FORM_ATTRIBUTES_V(ELEM) \
+    { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, ELEM, a_accesskey }, \
+    { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, ELEM, a_tabindex }
 
 #define HTML4_FORM_ATTRIBUTES(ELEM) \
-    HTML4_FORM_ATTRIBUTES_V (ELEM, MAJOR_4_0, MINOR_4_0)
+    HTML4_FORM_ATTRIBUTES_V (ELEM)
 
-#define HTML5_STANDARDISED_HTML4_ATTRIBUTES(ELEM) \
-    HTML4_FORM_ATTRIBUTES_V (ELEM, MAJOR_5_0, MINOR_5_0)
-
-#define EXTRA_HTML50_ATTRIBUTES(ELEM) \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_acceptcharset }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_contenteditable }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_generator_unable }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_hidden }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onabort }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_oncancel }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_oncanplay }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_oncanplaythrough }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_oncuechange }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_ondurationchange }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onemptied }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onended }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onerror }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_oninput }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_oninvalid }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onloadeddata }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onloadedmetadata }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onloadstart }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onmouseenter }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onmouseleave }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onmousewheel }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onpause }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onplay }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onplaying }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onprogress }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onratechange }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onresize }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onscroll }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onseeked }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onseeking }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_5_2 }, ELEM, a_onshow }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onstalled }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onsuspend }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_ontimeupdate }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_ontoggle }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onvolumechange }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onwaiting }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_role }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_spellcheck }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_translate }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_xmlspace }
-
-#define UNFOCUSED_HTML50_ATTRIBUTES(ELEM) \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onchange }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onload }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onreset }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onresize }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onselect }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onsubmit }
-
-#define FOCUSED_HTML50_ATTRIBUTES(ELEM) \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onblur }, \
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, ELEM, a_onfocus }
+#define EXTRA_HTML5_ATTRIBUTES(ELEM) \
+    { { HTML_5_0, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_acceptcharset }, \
+    { { HTML_JAN18 }, { HTML_UNDEF }, ELEM, a_autocapitalise }, \
+    { { HTML_JAN20 }, { HTML_UNDEF }, ELEM, a_autofocus }, \
+    { { HTML_JAN07 }, { HTML_UNDEF }, ELEM, a_contenteditable }, \
+    { { HTML_JAN06, HV_NOT50 | HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_contextmenu }, \
+    { { HTML_JAN07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_draggable }, \
+    { { HTML_JAN11, HV_NOT50 }, { HTML_DEC16, HV_NOT52 | HV_NOT53 }, ELEM, a_dropzone }, \
+    { { HTML_JUL18, HV_NOT53 }, { HTML_UNDEF }, ELEM, a_enterkeyhint }, \
+    { { HTML_5_0, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_generator_unable }, \
+    { { HTML_JAN09 }, { HTML_UNDEF }, ELEM, a_hidden }, \
+    { { HTML_JUL12 }, { HTML_JUN14 }, ELEM, a_inert }, \
+    { { HTML_JUL18 }, { HTML_UNDEF }, ELEM, a_inputmode }, \
+    { { HTML_JUL07 }, { HTML_DEC08 }, ELEM, a_irrelevant }, \
+    { { HTML_JUL16, HV_NOT51 | HV_NOT52 }, { HTML_UNDEF }, ELEM, a_is }, \
+    { { HTML_JUL09 }, { HTML_DEC09 }, ELEM, a_item }, \
+    { { HTML_JAN10, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemid }, \
+    { { HTML_JUL09, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemprop }, \
+    { { HTML_JAN10, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemref }, \
+    { { HTML_JAN10, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemscope }, \
+    { { HTML_JAN10, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemtype }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_numberonce }, \
+    { { HTML_JAN11 }, { HTML_UNDEF }, ELEM, a_onabort }, \
+    { { HTML_JUL14, HV_NOTW3 }, { HTML_UNDEF }, ELEM, a_onautocomplete }, \
+    { { HTML_JUL14, HV_NOTW3 }, { HTML_UNDEF }, ELEM, a_onautocompleteerror }, \
+    { { HTML_JAN17 }, { HTML_UNDEF }, ELEM, a_onauxclick }, \
+    { { HTML_JUL07 }, { HTML_JUN10 }, ELEM, a_onbeforeunload }, \
+    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onblur }, \
+    { { HTML_JUL12 }, { HTML_UNDEF }, ELEM, a_oncancel }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_oncanplay }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_oncanplaythrough }, \
+    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onchange }, \
+    { { HTML_JUL12, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_onclose }, \
+    { { HTML_JUL07, HV_NOT50 | HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_oncontextmenu }, \
+    { { HTML_5_1 }, { HTML_5_1 }, ELEM, a_oncopy }, \
+    { { HTML_JUL19 }, { HTML_UNDEF }, ELEM, a_oncopy }, \
+    { { HTML_JUL10 }, { HTML_UNDEF }, ELEM, a_oncuechange }, \
+    { { HTML_5_1 }, { HTML_5_1 }, ELEM, a_oncut }, \
+    { { HTML_JUL19 }, { HTML_UNDEF }, ELEM, a_oncut }, \
+    { { HTML_5_3, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_datawild }, \
+    { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondrag }, \
+    { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondragend }, \
+    { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondragenter }, \
+    { { HTML_JUL13 }, { HTML_DEC20 }, ELEM, a_ondragexit }, \
+    { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondragleave }, \
+    { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondragover }, \
+    { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondragstart }, \
+    { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondrop }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_ondurationchange }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onemptied }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onended }, \
+    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onerror }, \
+    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onfocus }, \
+    { { HTML_JUL09 }, { HTML_JUN10 }, ELEM, a_onformchange }, \
+    { { HTML_JUL19 }, { HTML_UNDEF }, ELEM, a_onformdata }, \
+    { { HTML_JUL09 }, { HTML_JUN10 }, ELEM, a_onforminput }, \
+    { { HTML_JAN09 }, { HTML_JUN09 }, ELEM, a_onhashchange }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_oninput }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_oninvalid }, \
+    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onload }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onloadeddata }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onloadedmetadata }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onloadstart }, \
+    { { HTML_JUL16 }, { HTML_5_3 }, ELEM, a_onloadend }, \
+    { { HTML_JUL07 }, { HTML_JUN09 }, ELEM, a_onmessage }, \
+    { { HTML_JUL13 }, { HTML_UNDEF }, ELEM, a_onmouseenter }, \
+    { { HTML_JUL13 }, { HTML_UNDEF }, ELEM, a_onmouseleave }, \
+    { { HTML_JUL07 }, { HTML_JUN15 }, ELEM, a_onmousewheel }, \
+    { { HTML_5_1 }, { HTML_5_1 }, ELEM, a_onpaste }, \
+    { { HTML_JUL19 }, { HTML_UNDEF }, ELEM, a_onpaste }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onpause }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onplay }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onplaying }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onprogress }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onratechange }, \
+    { { HTML_JUL09 }, { HTML_DEC11 }, ELEM, a_onreadystatechange }, \
+    { { HTML_JAN11 }, { HTML_UNDEF }, ELEM, a_onreset }, \
+    { { HTML_JUL07 }, { HTML_JUN09 }, ELEM, a_onresize }, \
+    { { HTML_JAN14 }, { HTML_UNDEF }, ELEM, a_onresize }, \
+    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onscroll }, \
+    { { HTML_JAN18, HV_NOT53 }, { HTML_UNDEF }, ELEM, a_onsecuritypolicyviolation }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onseeking }, \
+    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onselect }, \
+    { { HTML_JUL09 }, { HTML_JUN17 }, ELEM, a_onshow }, \
+    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_onslotchange }, \
+    { { HTML_JAN13 }, { HTML_UNDEF }, ELEM, a_onsort }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onsought }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onstalled }, \
+    { { HTML_JUL08 }, { HTML_JUN09 }, ELEM, a_onstorage }, \
+    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onsubmit }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onsuspend }, \
+    { { HTML_JUL09 }, { HTML_JUN13 }, ELEM, a_ontimeupdate }, \
+    { { HTML_JAN14 }, { HTML_UNDEF }, ELEM, a_ontimeupdate }, \
+    { { HTML_JAN14 }, { HTML_UNDEF }, ELEM, a_ontoggle }, \
+    { { HTML_JUL07 }, { HTML_JUN09 }, ELEM, a_onunload }, \
+    { { HTML_JUL09 }, { HTML_JUN13 }, ELEM, a_onvolumechange }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onwaiting }, \
+    { { HTML_JUL15 }, { HTML_UNDEF }, ELEM, a_onwheel }, \
+    { { HTML_JAN08 }, { HTML_DEC08 }, ELEM, a_registrationmark }, \
+    { { HTML_5_0, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_role }, \
+    { { HTML_JUL16, HV_NOT51 | HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_slot }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_spellcheck }, \
+    { { HTML_JUL09, 0, HE_NOT_SVG }, { HTML_DEC09 }, ELEM, a_subject }, \
+    { { HTML_JAN08 }, { HTML_DEC08 }, ELEM, a_template }, \
+    { { HTML_JUL12 }, { HTML_UNDEF }, ELEM, a_translate }, \
+    { { HTML_5_3 }, { HTML_5_3 }, ELEM, a_xmlns }, \
+    { { HTML_5_0, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_xmlspace }
 
 #define HTML_FORM(ELEM, MAJOR_FROM, MINOR_FROM) \
     { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_form }, \
@@ -605,124 +648,20 @@ struct hav_t
 
 #define HTML50_FORM(ELEM) HTML_FORM(ELEM, MAJOR_5_0, MINOR_5_0)
 
-#define NEW_HTML50_ATTRIBUTES(ELEM) \
-    EXTRA_HTML50_ATTRIBUTES (ELEM), \
-    UNFOCUSED_HTML50_ATTRIBUTES (ELEM), \
-    FOCUSED_HTML50_ATTRIBUTES (ELEM)
+#define STANDARD_HTML5_ATTRIBUTES(ELEM) \
+    EXTRA_HTML5_ATTRIBUTES (ELEM), \
+    HTML4_ATTRIBUTES_BASE (ELEM), \
+    HTML4_FORM_ATTRIBUTES_V (ELEM)
 
-#define STANDARD_HTML50_ATTRIBUTES(ELEM) \
-    NEW_HTML50_ATTRIBUTES (ELEM), \
-    HTML4_ATTRIBUTES_BASE (ELEM, MAJOR_5_0, MINOR_5_0), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM)
-
-#define STANDARD_HTML_4_50_ATTRIBUTES(ELEM) \
+#define STANDARD_HTMLS_4_5_ATTRIBUTES(ELEM) \
     COMMON_HTML4_ATTRIBUTES (ELEM), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM), \
-    NEW_HTML50_ATTRIBUTES (ELEM)
-
-#define EXTRA_HTML51_ATTRIBUTES(ELEM) \
-    { { HTML_5_1, HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_contextmenu }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_draggable }, \
-    { { HTML_5_1 }, { HTML_5_1 }, ELEM, a_dropzone }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_onclose }, \
-    { { HTML_5_1, HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_oncontextmenu }, \
-    { { HTML_5_1, HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_oncopy }, \
-    { { HTML_5_1, HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_oncut }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_ondrag }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_ondragend }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_ondragenter }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_ondragexit }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_ondragleave }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_ondragover }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_ondragstart }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_ondrop }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_onfocus }, \
-    { { HTML_5_1 }, { HTML_UNDEF }, ELEM, a_onwheel }, \
-    { { HTML_5_1, HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_onpaste }
-
-#define NEW_HTML51_ATTRIBUTES(ELEM) \
-    EXTRA_HTML51_ATTRIBUTES (ELEM), \
-    NEW_HTML50_ATTRIBUTES (ELEM)
-
-#define STANDARD_HTML51_ATTRIBUTES(ELEM) \
-    NEW_HTML51_ATTRIBUTES (ELEM), \
-    HTML4_ATTRIBUTES_BASE (ELEM, MAJOR_4_0, MINOR_4_0), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM)
-
-#define STANDARD_HTML_4_51_ATTRIBUTES(ELEM) \
-    COMMON_HTML4_ATTRIBUTES (ELEM), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM), \
-    NEW_HTML51_ATTRIBUTES (ELEM)
-
-#define EXTRA_HTML52_ATTRIBUTES(ELEM) \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_onauxclick }, \
-    { { HTML_5_2 }, { HTML_5_3 }, ELEM, a_onloadend }
-
-#define NEW_HTML52_ATTRIBUTES(ELEM) \
-    EXTRA_HTML52_ATTRIBUTES (ELEM), \
-    NEW_HTML51_ATTRIBUTES (ELEM)
-
-#define STANDARD_HTML52_ATTRIBUTES(ELEM) \
-    NEW_HTML52_ATTRIBUTES (ELEM), \
-    HTML4_ATTRIBUTES_BASE (ELEM, MAJOR_4_0, MINOR_4_0), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM)
-
-#define STANDARD_HTML_4_52_ATTRIBUTES(ELEM) \
-    COMMON_HTML4_ATTRIBUTES (ELEM), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM), \
-    NEW_HTML52_ATTRIBUTES (ELEM)
-
-#define EXTRA_HTML53_ATTRIBUTES(ELEM) \
-    { { HTML_5_3 }, { HTML_UNDEF }, ELEM, a_datawild }, \
-    { { HTML_5_3 }, { HTML_UNDEF }, ELEM, a_is }, \
-    { { HTML_5_3 }, { HTML_5_3 }, ELEM, a_numberonce }, \
-    { { HTML_5_3 }, { HTML_5_3 }, ELEM, a_xmlns }
-
-#define NEW_HTML53_ATTRIBUTES(ELEM) \
-    EXTRA_HTML53_ATTRIBUTES (ELEM), \
-    NEW_HTML52_ATTRIBUTES (ELEM)
-
-#define STANDARD_HTML53_ATTRIBUTES(ELEM) \
-    NEW_HTML53_ATTRIBUTES (ELEM), \
-    HTML4_ATTRIBUTES_BASE (ELEM, MAJOR_4_0, MINOR_4_0), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM)
-
-#define STANDARD_HTML_4_53_ATTRIBUTES(ELEM) \
-    COMMON_HTML4_ATTRIBUTES (ELEM), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM), \
-    NEW_HTML53_ATTRIBUTES (ELEM)
-
-#define EXTRA_HTML54_ATTRIBUTES(ELEM) \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_autocapitalise }, \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_autofocus }, \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_enterkeyhint }, \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_inputmode }, \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_is }, \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_onformdata }, \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_onsecuritypolicyviolation }, \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_onslotchange }, \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_onvolumechange }, \
-    { { HTML_JUL20 }, { HTML_UNDEF }, ELEM, a_slot }, \
-    MICRODATA_ATTRIBUTES (ELEM, MAJOR_J20, MINOR_J20, HE_NOT_SVG)
-
-#define NEW_HTML54_ATTRIBUTES(ELEM) \
-    EXTRA_HTML54_ATTRIBUTES (ELEM), \
-    NEW_HTML53_ATTRIBUTES (ELEM)
-
-#define STANDARD_HTML54_ATTRIBUTES(ELEM) \
-    NEW_HTML54_ATTRIBUTES (ELEM), \
-    HTML4_ATTRIBUTES_BASE (ELEM, MAJOR_4_0, MINOR_4_0), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM)
-
-#define STANDARD_HTML_4_54_ATTRIBUTES(ELEM) \
-    COMMON_HTML4_ATTRIBUTES (ELEM), \
-    HTML5_STANDARDISED_HTML4_ATTRIBUTES (ELEM), \
-    NEW_HTML54_ATTRIBUTES (ELEM)
+    HTML4_FORM_ATTRIBUTES_V (ELEM), \
+    EXTRA_HTML5_ATTRIBUTES (ELEM)
 
 #define STANDARD_H_ATTRIBUTES(ELEM) \
     HTMLPLUS_ATTRIBUTES (ELEM), \
     STANDARD_HTML_23_H_ATTRIBUTES (ELEM), \
-    STANDARD_HTML_4_54_ATTRIBUTES (ELEM)
+    STANDARD_HTMLS_4_5_ATTRIBUTES (ELEM)
 
 hav_t havt [] =
 {   { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { XHTML_2_0 }, elem_a, a_charset },
@@ -760,10 +699,10 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_a),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_a),
     SVGx_PRES_ATTRIBUTES (elem_a),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_a),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_a),
 
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_abbr, a_full },
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_abbr),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_abbr),
 
     HTMLPLUS_ATTRIBUTES (elem_abbrev),
     HTML3_CLID_ATTRIBUTES (elem_abbrev),
@@ -799,7 +738,7 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_address, a_clear },
     { { HTML_3_2 }, { XHTML_2_0 }, elem_address, a_nowrap },
     HTML23_CLID_ATTRIBUTES (elem_address),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_address),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_address),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_altglyph, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_altglyph, a_format },
@@ -812,13 +751,13 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_altglyph),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_altglyph),
     SVGx_PRES_ATTRIBUTES (elem_altglyph),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_altglyph),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_altglyph),
 
     SVGx_XTRA_CORE_ATTRIBUTES (elem_altglyphdef),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_altglyphdef),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_altglyphdef),
 
     SVGx_XTRA_CORE_ATTRIBUTES (elem_altglyphitem),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_altglyphitem),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_altglyphitem),
 
     MATH3_DEFS_ATTRIBUTES (elem_and),
 
@@ -834,7 +773,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_animate),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_animate),
     SVGx_PRES_ATTRIBUTES (elem_animate),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_animate),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_animate),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_animatecolour, a_externalresourcesrequired },
     SVG11_ANADD_ATTRIBUTES (elem_animatecolour),
@@ -846,7 +785,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_animatecolour),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_animatecolour),
     SVGx_PRES_ATTRIBUTES (elem_animatecolour),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_animatecolour),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_animatecolour),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_animatemotion, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_animatemotion, a_keypoints },
@@ -860,7 +799,7 @@ hav_t havt [] =
     SVG11_XLINK_ATTRIBUTES (elem_animatemotion),
     SVGx_CONDPROC_ATTRIBUTES (elem_animatemotion),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_animatemotion),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_animatemotion),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_animatemotion),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_animatetransform, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_animatetransform, a_from },
@@ -875,9 +814,9 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_animatetransform),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_animatetransform),
     SVGx_PRES_ATTRIBUTES (elem_animatetransform),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_animatetransform),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_animatetransform),
 
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_animation),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_animation),
 
     { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation, a_cd },
     { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_annotation, a_definitionurl },
@@ -954,7 +893,7 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_5_3 }, elem_area, a_type },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_area, a_usemap },
     HTML4_FORM_ATTRIBUTES (elem_area),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_area),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_area),
 
     MATH3_DEFS_ATTRIBUTES (elem_arg),
     HTMLPLUS_ATTRIBUTES (elem_arg),
@@ -967,9 +906,9 @@ hav_t havt [] =
 
     HTML3_CLID_ATTRIBUTES (elem_array),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_article),
+    STANDARD_HTML5_ATTRIBUTES (elem_article),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_aside),
+    STANDARD_HTML5_ATTRIBUTES (elem_aside),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_audio, a_autoplay },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_audio, a_controls },
@@ -981,22 +920,23 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_audio, a_muted },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_audio, a_preload },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_audio, a_src },
-    STANDARD_HTML54_ATTRIBUTES(elem_audio),
+    STANDARD_HTML5_ATTRIBUTES(elem_audio),
 
     HTML3_CLID_ATTRIBUTES (elem_au),
 
     HTMLPLUS_ATTRIBUTES (elem_b),
     HTML23_CLID_ATTRIBUTES (elem_b),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_b),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_b),
 
     HTML3_CLID_ATTRIBUTES (elem_banner),
 
     HTML3_CLID_ATTRIBUTES (elem_bar),
 
-    { { HTML_2_0, REQUIRED }, { HTML_UNDEF }, elem_base, a_href },
+    { { HTML_2_0, REQUIRED }, { HTML_4_01 }, elem_base, a_href },
+    { { HTML_JAN05 }, { HTML_UNDEF }, elem_base, a_href },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_base, a_id },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_base, a_target },
-    STANDARD_HTML54_ATTRIBUTES (elem_base),
+    { { HTML_JUL07 }, { HTML_UNDEF }, elem_base, a_target },
+    STANDARD_HTML5_ATTRIBUTES (elem_base),
 
     { { MAJOR_4_0, MINOR_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_basefont, a_colour },
     { { MAJOR_4_0, MINOR_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_basefont, a_face },
@@ -1004,13 +944,13 @@ hav_t havt [] =
     HTML4_STANDARD_TSL_ATTRIBUTES (elem_basefont, MAJOR_4_0, MINOR_4_0),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_bdi, a_dir },
-    STANDARD_HTML54_ATTRIBUTES (elem_bdi),
+    STANDARD_HTML5_ATTRIBUTES (elem_bdi),
 
     { { HTML_2_0, HV_RFC_2070 | REQUIRED }, { HTML_2_0 }, elem_bdo, a_dir },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_bdo, a_dir },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_bdo, a_lang },
     HTML2_CLID_ATTRIBUTES (elem_bdo),
-    STANDARD_HTML54_ATTRIBUTES (elem_bdo),
+    STANDARD_HTML5_ATTRIBUTES (elem_bdo),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_below, a_sym },
 
@@ -1029,7 +969,7 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_blockquote, a_clear },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_blockquote, a_nowrap },
     HTML23_CLID_ATTRIBUTES (elem_blockquote),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_blockquote),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_blockquote),
 
     XHTML2_ATTRIBUTES (elem_blockcode),
 
@@ -1041,13 +981,13 @@ hav_t havt [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_link },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onafterprint },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onbeforeprint },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onbeforeunload },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onhashchange },
     { { HTML_5_1 }, { HTML_UNDEF }, elem_body, a_onlanguagechange },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_body, a_onload },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onmessage },
     { { HTML_JUL20 }, { HTML_UNDEF }, elem_body, a_onmessageerror },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onoffline },
+    { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_body, a_onload },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_ononline },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onpagehide },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onpageshow },
@@ -1061,7 +1001,7 @@ hav_t havt [] =
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { HTML_3_2 }, elem_body, a_topmargin },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_vlink },
     HTML23_CLID_ATTRIBUTES (elem_body),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_body),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_body),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_box, a_size },
 
@@ -1078,7 +1018,7 @@ hav_t havt [] =
     HTML3_CLID_ATTRIBUTES (elem_br),
     HTML4_STANDARD_SCRIPT_ATTRIBUTES (elem_br, MAJOR_5_0, MINOR_5_0),
     HTML4_STANDARD_LANG_ATTRIBUTES (elem_br,MAJOR_5_0, MINOR_5_0),
-    NEW_HTML50_ATTRIBUTES (elem_br),
+    EXTRA_HTML5_ATTRIBUTES (elem_br),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_bt, a_class },
 
@@ -1096,7 +1036,7 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_button, a_type },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_button, a_value },
     HTML4_FORM_ATTRIBUTES (elem_button),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_button),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_button),
 
     MATH3_STANDARD_ATTRIBUTES (elem_bvar),
 
@@ -1104,13 +1044,13 @@ hav_t havt [] =
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_canvas, a_height },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_canvas, a_width },
-    STANDARD_HTML54_ATTRIBUTES (elem_canvas),
+    STANDARD_HTML5_ATTRIBUTES (elem_canvas),
 
     { { HTML_2_0, HV_DEPRECATED4 | HV_RFC_1942 }, { XHTML_2_0 }, elem_caption, a_align },
     { { HTML_3_2 }, { HTML_3_2 }, elem_caption, a_valign },
     HTMLPLUS_ATTRIBUTES (elem_caption),
     HTML23_CLID_ATTRIBUTES (elem_caption),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_caption),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_caption),
 
     MATH3_DEFS_ATTRIBUTES (elem_card),
 
@@ -1137,11 +1077,11 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_circle),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_circle),
     SVGx_PRES_ATTRIBUTES (elem_circle),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_circle),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_circle),
 
     HTMLPLUS_ATTRIBUTES (elem_cite),
     HTML23_CLID_ATTRIBUTES (elem_cite),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_cite),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_cite),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_clippath, a_clippathunits },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_clippath, a_externalresourcesrequired },
@@ -1149,7 +1089,7 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_clippath),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_clippath),
     SVGx_PRES_ATTRIBUTES (elem_clippath),
-    STANDARD_HTML54_ATTRIBUTES (elem_clippath),
+    STANDARD_HTML5_ATTRIBUTES (elem_clippath),
 
     HTMLPLUS_ATTRIBUTES (elem_cmd),
 
@@ -1159,7 +1099,7 @@ hav_t havt [] =
 
     HTMLPLUS_ATTRIBUTES (elem_code),
     HTML23_CLID_ATTRIBUTES (elem_code),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_code),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_code),
 
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_col, a_align },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3, HE_IE }, { XHTML_2_0 }, elem_col, a_bgcolour },
@@ -1169,7 +1109,7 @@ hav_t havt [] =
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_col, a_valign },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_col, a_width },
     HTML2_CLID_ATTRIBUTES (elem_col),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_col),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_col),
 
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_colgroup, a_align },
     { { HTML_2_0, HV_NOT3, HE_IE }, { HTML_2_0 }, elem_colgroup, a_bgcolour },
@@ -1183,13 +1123,13 @@ hav_t havt [] =
     { { HTML_2_0, HV_RFC_1942 }, { HTML_2_0 }, elem_colgroup, a_width },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_colgroup, a_width },
     HTML2_CLID_ATTRIBUTES (elem_colgroup),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_colgroup),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_colgroup),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_colourprofile, a_local },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_colourprofile, a_renderingintent },
     SVG11_XLINK_ATTRIBUTES (elem_colourprofile),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_colourprofile),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_colourprofile),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_colourprofile),
 
     MATH3_DEFS_ATTRIBUTES (elem_complexes),
 
@@ -1202,7 +1142,7 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0 }, { MAJOR_5_0, MINOR_5_0 }, elem_command, a_icon },
     { { MAJOR_5_0, MINOR_5_0 }, { MAJOR_5_0, MINOR_5_0 }, elem_command, a_radiogroup },
     { { MAJOR_5_0, MINOR_5_0 }, { MAJOR_5_0, MINOR_5_0 }, elem_command, a_type },
-    STANDARD_HTML50_ATTRIBUTES (elem_command),
+    STANDARD_HTML5_ATTRIBUTES (elem_command),
 
     { { HTML_2_0 }, { HTML_4_01 }, elem_comment, a_data },
     HTML4_STANDARD_TSL_ATTRIBUTES (elem_comment, MAJOR_4_0, MINOR_4_0),
@@ -1210,7 +1150,7 @@ hav_t havt [] =
     MATH3_DEFS_ATTRIBUTES (elem_conjugate),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_content, a_select },
-    STANDARD_HTML54_ATTRIBUTES (elem_content),
+    STANDARD_HTML5_ATTRIBUTES (elem_content),
 
     MATH3_DEFS_ATTRIBUTES (elem_cos),
 
@@ -1238,17 +1178,17 @@ hav_t havt [] =
     SVG10_XY_ATTRIBUTES (elem_cursor),
     SVG11_XLINK_ATTRIBUTES (elem_cursor),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_cursor),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_cursor),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_cursor),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_data, a_d },
     { { MAJOR_5_0, MINOR_5_0, REQUIRED }, { HTML_UNDEF }, elem_data, a_value },
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_data),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_data),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_datalist),
+    STANDARD_HTML5_ATTRIBUTES (elem_datalist),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_dd, a_clear },
     HTML23_CLID_ATTRIBUTES (elem_dd),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_dd),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_dd),
 
     HTML3_CLID_ATTRIBUTES (elem_ddot),
 
@@ -1264,32 +1204,32 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_defs),
     SVG11_GREV_ATTRIBUTES (elem_defs),
     SVGx_PRES_ATTRIBUTES (elem_defs),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_defs),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_defs),
 
     MATH3_STANDARD_ATTRIBUTES (elem_degree),
 
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_del, a_cite },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_del, a_datetime },
     HTML3_CLID_ATTRIBUTES (elem_del),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_del),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_del),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_desc, a_systemrequired },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_desc),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_desc),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_desc),
 
     { { HTML_5_1 }, { HTML_UNDEF }, elem_details, a_open },
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_details),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_details),
 
     MATH3_DEFS_ATTRIBUTES (elem_determinant),
 
     HTMLPLUS_ATTRIBUTES (elem_dfn),
     HTML3_CLID_ATTRIBUTES (elem_dfn),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_dfn),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_dfn),
 
     XHTML2_ATTRIBUTES (elem_di),
 
     { { HTML_5_2 }, { HTML_UNDEF }, elem_dialogue, a_open },
-    STANDARD_HTML54_ATTRIBUTES (elem_dialogue),
+    STANDARD_HTML5_ATTRIBUTES (elem_dialogue),
 
     MATH3_DEFS_ATTRIBUTES (elem_diff),
 
@@ -1300,7 +1240,7 @@ hav_t havt [] =
     HTML2_CLID_ATTRIBUTES (elem_dir),
     COMMON_HTML4_ATTRIBUTES (elem_dir),
 
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_discard),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_discard),
 
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_dispatchevent, a_bubbles },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_dispatchevent, a_cancelable },
@@ -1313,7 +1253,7 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_div, a_datasrc },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_div, a_nowrap },
     HTML3_CLID_ATTRIBUTES (elem_div),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_div),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_div),
 
     MATH3_DEFS_ATTRIBUTES (elem_divergence),
 
@@ -1323,7 +1263,7 @@ hav_t havt [] =
     { { HTML_1_0 }, { HTML_3_2 }, elem_dl, a_compact },
     HTMLPLUS_ATTRIBUTES (elem_dl),
     HTML23_CLID_ATTRIBUTES (elem_dl),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_dl),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_dl),
 
     MATH3_DEFS_ATTRIBUTES (elem_domain),
 
@@ -1333,9 +1273,9 @@ hav_t havt [] =
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_dt, a_clear },
     HTML23_CLID_ATTRIBUTES (elem_dt),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_dt),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_dt),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_element),
+    STANDARD_HTML5_ATTRIBUTES (elem_element),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_ellipse, a_cx },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_ellipse, a_cy },
@@ -1347,11 +1287,11 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_ellipse),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_ellipse),
     SVGx_PRES_ATTRIBUTES (elem_ellipse),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_ellipse),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_ellipse),
 
     HTMLPLUS_ATTRIBUTES (elem_em),
     HTML3_CLID_ATTRIBUTES (elem_em),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_em),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_em),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_embed, a_height },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_embed, a_src },
@@ -1361,7 +1301,7 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0, REJECT }, { HTML_UNDEF }, elem_embed, a_hspace },
     { { MAJOR_5_0, MINOR_5_0, REJECT }, { HTML_UNDEF }, elem_embed, a_name },
     { { MAJOR_5_0, MINOR_5_0, REJECT }, { HTML_UNDEF }, elem_embed, a_vspace },
-    STANDARD_HTML54_ATTRIBUTES (elem_embed),
+    STANDARD_HTML5_ATTRIBUTES (elem_embed),
 
     MATH3_DEFS_ATTRIBUTES (elem_emptyset),
 
@@ -1384,7 +1324,6 @@ hav_t havt [] =
     MATH3_DEFS_ATTRIBUTES (elem_false),
 
     // faux_doctype and faux_xml processed before getting here,
-    // so no need to add corresponding attribute information
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_feblend, a_in2 },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_feblend, a_mode },
@@ -1392,11 +1331,11 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_feblend),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_feblend),
     SVGx_PRES_ATTRIBUTES (elem_feblend),
-    STANDARD_HTML54_ATTRIBUTES (elem_feblend),
+    STANDARD_HTML5_ATTRIBUTES (elem_feblend),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fecolour, a_colour },
     SVG10_FILTER_ATTRIBUTES (elem_fecolour),
-    STANDARD_HTML54_ATTRIBUTES (elem_fecolour),
+    STANDARD_HTML5_ATTRIBUTES (elem_fecolour),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 | REQUIRED }, { HTML_UNDEF }, elem_fecolourmatrix, a_type },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fecolourmatrix, a_values },
@@ -1404,13 +1343,13 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_fecolourmatrix),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fecolourmatrix),
     SVGx_PRES_ATTRIBUTES (elem_fecolourmatrix),
-    STANDARD_HTML54_ATTRIBUTES (elem_fecolourmatrix),
+    STANDARD_HTML5_ATTRIBUTES (elem_fecolourmatrix),
 
     SVG10_FILTER_ATTRIBUTES (elem_fecomponenttransfer),
     SVG11_FILTER_ATTRIBUTES (elem_fecomponenttransfer),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fecomponenttransfer),
     SVGx_PRES_ATTRIBUTES (elem_fecomponenttransfer),
-    STANDARD_HTML54_ATTRIBUTES (elem_fecomponenttransfer),
+    STANDARD_HTML5_ATTRIBUTES (elem_fecomponenttransfer),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fecomposite, a_operator },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fecomposite, a_k1 },
@@ -1422,7 +1361,7 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_fecomposite),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fecomposite),
     SVGx_PRES_ATTRIBUTES (elem_fecomposite),
-    STANDARD_HTML54_ATTRIBUTES (elem_fecomposite),
+    STANDARD_HTML5_ATTRIBUTES (elem_fecomposite),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_feconvolvematrix, a_bias },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_feconvolvematrix, a_divisor },
@@ -1437,14 +1376,14 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_feconvolvematrix),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_feconvolvematrix),
     SVGx_PRES_ATTRIBUTES (elem_feconvolvematrix),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_feconvolvematrix),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_feconvolvematrix),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fediffuselighting, a_diffuseconstant },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fediffuselighting, a_lightcolour },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fediffuselighting, a_resultscale },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fediffuselighting, a_surfacescale },
     SVG10_FILTER_ATTRIBUTES (elem_fediffuselighting),
-    STANDARD_HTML54_ATTRIBUTES (elem_fediffuselighting),
+    STANDARD_HTML5_ATTRIBUTES (elem_fediffuselighting),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fedisplacementmap, a_xchannelselector },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fedisplacementmap, a_ychannelselector },
@@ -1454,35 +1393,35 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_fedisplacementmap),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fedisplacementmap),
     SVGx_PRES_ATTRIBUTES (elem_fedisplacementmap),
-    STANDARD_HTML54_ATTRIBUTES (elem_fedisplacementmap),
+    STANDARD_HTML5_ATTRIBUTES (elem_fedisplacementmap),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fedistantlight, a_azimuth },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fedistantlight, a_elevation },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fedistantlight),
-    STANDARD_HTML54_ATTRIBUTES (elem_fedistantlight),
+    STANDARD_HTML5_ATTRIBUTES (elem_fedistantlight),
 
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_fedropshadow),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_fedropshadow),
 
     SVG11_FILTER_ATTRIBUTES (elem_feflood),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_feflood),
     SVGx_PRES_ATTRIBUTES (elem_feflood),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_feflood),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_feflood),
 
     SVG10_COMP_ATTRIBUTES (elem_fefunca),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fefunca),
-    STANDARD_HTML54_ATTRIBUTES (elem_fefunca),
+    STANDARD_HTML5_ATTRIBUTES (elem_fefunca),
 
     SVG10_COMP_ATTRIBUTES (elem_fefuncb),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fefuncb),
-    STANDARD_HTML54_ATTRIBUTES (elem_fefuncb),
+    STANDARD_HTML5_ATTRIBUTES (elem_fefuncb),
 
     SVG10_COMP_ATTRIBUTES (elem_fefuncg),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fefuncg),
-    STANDARD_HTML54_ATTRIBUTES (elem_fefuncg),
+    STANDARD_HTML5_ATTRIBUTES (elem_fefuncg),
 
     SVG10_COMP_ATTRIBUTES (elem_fefuncr),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fefuncr),
-    STANDARD_HTML54_ATTRIBUTES (elem_fefuncr),
+    STANDARD_HTML5_ATTRIBUTES (elem_fefuncr),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fegaussianblur, a_stddeviation },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 | HE_SVG_2_0 }, { HTML_UNDEF }, elem_fegaussianblur, a_std_deviation },
@@ -1490,7 +1429,7 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_fegaussianblur),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fegaussianblur),
     SVGx_PRES_ATTRIBUTES (elem_fegaussianblur),
-    STANDARD_HTML54_ATTRIBUTES (elem_fegaussianblur),
+    STANDARD_HTML5_ATTRIBUTES (elem_fegaussianblur),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_feimage, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_feimage, a_nodeid },
@@ -1500,17 +1439,17 @@ hav_t havt [] =
     SVG11_XLINK_ATTRIBUTES (elem_feimage),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_feimage),
     SVGx_PRES_ATTRIBUTES (elem_feimage),
-    STANDARD_HTML54_ATTRIBUTES (elem_feimage),
+    STANDARD_HTML5_ATTRIBUTES (elem_feimage),
 
     SVG10_FILTER_ATTRIBUTES (elem_femerge),
     SVG11_FILTER_ATTRIBUTES (elem_femerge),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_femerge),
     SVGx_PRES_ATTRIBUTES (elem_femerge),
-    STANDARD_HTML54_ATTRIBUTES (elem_femerge),
+    STANDARD_HTML5_ATTRIBUTES (elem_femerge),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_femergenode, a_in },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_femergenode),
-    STANDARD_HTML54_ATTRIBUTES (elem_femergenode),
+    STANDARD_HTML5_ATTRIBUTES (elem_femergenode),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_femorphology, a_operator },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_femorphology, a_radius },
@@ -1518,7 +1457,7 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_femorphology),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_femorphology),
     SVGx_PRES_ATTRIBUTES (elem_femorphology),
-    STANDARD_HTML54_ATTRIBUTES (elem_femorphology),
+    STANDARD_HTML5_ATTRIBUTES (elem_femorphology),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_feoffset, a_in },
     SVG10_DXY_ATTRIBUTES (elem_feoffset),
@@ -1526,13 +1465,13 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_feoffset),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_feoffset),
     SVGx_PRES_ATTRIBUTES (elem_feoffset),
-    STANDARD_HTML54_ATTRIBUTES (elem_feoffset),
+    STANDARD_HTML5_ATTRIBUTES (elem_feoffset),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fepointlight, a_x },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fepointlight, a_y },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fepointlight, a_z },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fepointlight),
-    STANDARD_HTML54_ATTRIBUTES (elem_fepointlight),
+    STANDARD_HTML5_ATTRIBUTES (elem_fepointlight),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_fespecularlighting, a_kernelunitlength },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fespecularlighting, a_lightcolour },
@@ -1543,7 +1482,7 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_fespecularlighting),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fespecularlighting),
     SVGx_PRES_ATTRIBUTES (elem_fespecularlighting),
-    STANDARD_HTML54_ATTRIBUTES (elem_fespecularlighting),
+    STANDARD_HTML5_ATTRIBUTES (elem_fespecularlighting),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fespotlight, a_x },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fespotlight, a_y },
@@ -1554,13 +1493,13 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fespotlight, a_pointsatz },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_fespotlight, a_specularexponent },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fespotlight),
-    STANDARD_HTML54_ATTRIBUTES (elem_fespotlight),
+    STANDARD_HTML5_ATTRIBUTES (elem_fespotlight),
 
     SVG10_FILTER_ATTRIBUTES (elem_fetile),
     SVG11_FILTER_ATTRIBUTES (elem_fetile),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fetile),
     SVGx_PRES_ATTRIBUTES (elem_fetile),
-    STANDARD_HTML54_ATTRIBUTES (elem_fetile),
+    STANDARD_HTML5_ATTRIBUTES (elem_fetile),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_feturbulence, a_basefrequency },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_feturbulence, a_numoctaves },
@@ -1571,12 +1510,12 @@ hav_t havt [] =
     SVG11_FILTER_ATTRIBUTES (elem_feturbulence),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_feturbulence),
     SVGx_PRES_ATTRIBUTES (elem_feturbulence),
-    STANDARD_HTML54_ATTRIBUTES (elem_feturbulence),
+    STANDARD_HTML5_ATTRIBUTES (elem_feturbulence),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_fieldset, a_disabled },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_fieldset, a_form },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_fieldset, a_name },
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_fieldset),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_fieldset),
 
     { { HTML_PLUS, HV_NOT2 }, { MAJOR_3_0, MINOR_3_0 }, elem_fig, a_align },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_fig, a_clear },
@@ -1592,9 +1531,9 @@ hav_t havt [] =
     HTMLPLUS_ATTRIBUTES (elem_fig),
     HTML3_CLID_ATTRIBUTES (elem_fig),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_figcaption),
+    STANDARD_HTML5_ATTRIBUTES (elem_figcaption),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_figure),
+    STANDARD_HTML5_ATTRIBUTES (elem_figure),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_ellipse, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_filter, a_filterres },
@@ -1605,7 +1544,7 @@ hav_t havt [] =
     SVG11_XLINK_ATTRIBUTES (elem_filter),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_filter),
     SVGx_PRES_ATTRIBUTES (elem_filter),
-    STANDARD_HTML54_ATTRIBUTES (elem_filter),
+    STANDARD_HTML5_ATTRIBUTES (elem_filter),
 
     MATH3_DEFS_ATTRIBUTES (elem_floor),
 
@@ -1624,7 +1563,7 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_font, a_vertoriginy },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_font),
     SVGx_PRES_ATTRIBUTES (elem_font),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_font),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_font),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_fontface, a_accentheight },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_fontface, a_alphabetic },
@@ -1662,24 +1601,24 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_fontface, a_widths },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_fontface, a_xheight },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fontface),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_fontface),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_fontface),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_fontfaceformat, a_string },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fontfaceformat),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_fontfaceformat),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_fontfaceformat),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_fontfacename, a_name },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fontfacename),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_fontfacename),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_fontfacename),
 
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fontfacesrc),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_fontfacesrc),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_fontfacesrc),
 
     SVG11_XLINK_ATTRIBUTES (elem_fontfaceuri),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_fontfaceuri),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_fontfaceuri),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_fontfaceuri),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_footer),
+    STANDARD_HTML5_ATTRIBUTES (elem_footer),
 
     HTMLPLUS_ATTRIBUTES (elem_footnote),
 
@@ -1691,7 +1630,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_foreignobject),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_foreignobject),
     SVGx_PRES_ATTRIBUTES (elem_foreignobject),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_foreignobject),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_foreignobject),
 
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_form, a_acceptcharset },
     { { HTML_PLUS }, { HTML_2_0 }, elem_form, a_action },
@@ -1708,7 +1647,7 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_form, a_script },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_form, a_target },
     HTMLPLUS_ATTRIBUTES (elem_form),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_form),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_form),
 
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_frame, a_frameborder },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_frame, a_longdesc },
@@ -1740,7 +1679,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_g),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_g),
     SVGx_PRES_ATTRIBUTES (elem_g),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_g),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_g),
 
     MATH3_DEFS_ATTRIBUTES (elem_gcd),
 
@@ -1757,7 +1696,7 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_glyph, a_vertoriginy },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_glyph),
     SVGx_PRES_ATTRIBUTES (elem_glyph),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_glyph),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_glyph),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_glyphref, a_glyphref },
     SVG10_XY_ATTRIBUTES(elem_glyphref),
@@ -1765,7 +1704,7 @@ hav_t havt [] =
     SVG11_XLINK_ATTRIBUTES(elem_glyphref),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_glyphref),
     SVGx_PRES_ATTRIBUTES (elem_glyphref),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_glyphref),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_glyphref),
 
     MATH3_DEFS_ATTRIBUTES (elem_grad),
 
@@ -1781,17 +1720,17 @@ hav_t havt [] =
 
     HTML3_CLID_ATTRIBUTES (elem_hat),
 
-    { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_head, a_profile },
+    { { MAJOR_4_0, MINOR_4_0 }, { HTML_DEC06 }, elem_head, a_profile },
     HTML2_CLID_ATTRIBUTES (elem_head),
     HTML4_STANDARD_LANG_ATTRIBUTES (elem_head, MAJOR_4_0, MINOR_4_0),
     HTML4_STANDARD_SCRIPT_ATTRIBUTES (elem_head, MAJOR_5_0, MINOR_5_0),
-    NEW_HTML54_ATTRIBUTES (elem_head),
+    EXTRA_HTML5_ATTRIBUTES (elem_head),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_header),
+    STANDARD_HTML5_ATTRIBUTES (elem_header),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_hgroup),
+    STANDARD_HTML5_ATTRIBUTES (elem_hgroup),
 
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_handler),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_handler),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_hkern, a_g1 },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_hkern, a_g2 },
@@ -1799,7 +1738,7 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_hkern, a_u1 },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_hkern, a_u1 },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_hkern),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_hkern),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_hkern),
 
     { { HTML_2_0, HV_DEPRECATED4 | HV_RFC_2070 | HV_NOT30 }, { XHTML_2_0 }, elem_hr, a_align },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_hr, a_clear },
@@ -1811,27 +1750,26 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_hr, a_src },
     HTMLPLUS_ATTRIBUTES (elem_hr),
     HTML3_CLID_ATTRIBUTES (elem_hr),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_hr),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_hr),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_html, a_class },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_html, a_dir },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_html, a_lang },
-    { { MAJOR_5_0, MINOR_5_0, HV_DEPRECATED51x }, { HTML_5_1 }, elem_html, a_manifest },
-    { { HTML_5_2 }, { HTML_UNDEF }, elem_html, a_manifest },
+    { { HTML_JAN08, HV_DEPRECATED51x }, { HTML_DEC20 }, elem_html, a_manifest },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_html, a_role },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_html, a_urn },
     { { MAJOR_3_0, MINOR_3_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_html, a_version },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_html, a_xsischemaloc },
     HTML2_CLID_ATTRIBUTES (elem_html),
     XHTML1_STANDARD_ATTRIBUTES (elem_html, MAJOR_X1_0, MINOR_X1_0),
-    NEW_HTML54_ATTRIBUTES (elem_html),
+    EXTRA_HTML5_ATTRIBUTES (elem_html),
 
     { { HTML_PLUS }, { HTML_PLUS }, elem_htmlplus, a_forms },
     { { HTML_PLUS }, { HTML_PLUS }, elem_htmlplus, a_version },
 
     HTMLPLUS_ATTRIBUTES (elem_i),
     HTML23_CLID_ATTRIBUTES (elem_i),
-    STANDARD_HTML54_ATTRIBUTES (elem_i),
+    STANDARD_HTML5_ATTRIBUTES (elem_i),
 
     MATH3_DEFS_ATTRIBUTES (elem_ident),
 
@@ -1857,7 +1795,7 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_iframe, a_src },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_iframe, a_srcdoc },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_iframe, a_width },
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_iframe),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_iframe),
 
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_above },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_background },
@@ -1891,7 +1829,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_image),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_image),
     SVGx_PRES_ATTRIBUTES (elem_image),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_image),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_image),
 
     MATH3_DEFS_ATTRIBUTES (elem_imaginary),
 
@@ -1925,7 +1863,7 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0 }, { HTML_UNDEF }, elem_img, a_width },
     HTMLPLUS_ATTRIBUTES (elem_img),
     HTML23_CLID_ATTRIBUTES (elem_img),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_img),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_img),
 
     MATH3_DEFS_ATTRIBUTES (elem_implies),
 
@@ -1983,7 +1921,7 @@ hav_t havt [] =
     HTMLPLUS_ATTRIBUTES (elem_input),
     HTML23_CLID_ATTRIBUTES (elem_input),
     HTML4_FORM_ATTRIBUTES (elem_input),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_input),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_input),
 
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_ins, a_cite },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_ins, a_class },
@@ -1991,7 +1929,7 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_ins, a_id },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_ins, a_lang },
     HTML3_CLID_ATTRIBUTES (elem_ins),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_ins),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_ins),
 
     MATH3_DEFS_ATTRIBUTES (elem_int),
 
@@ -2020,7 +1958,7 @@ hav_t havt [] =
 
     HTMLPLUS_ATTRIBUTES (elem_kbd),
     HTML23_CLID_ATTRIBUTES (elem_kbd),
-    STANDARD_HTML54_ATTRIBUTES (elem_kbd),
+    STANDARD_HTML5_ATTRIBUTES (elem_kbd),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_keygen, a_autofocus },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_keygen, a_challenge },
@@ -2028,7 +1966,7 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_keygen, a_form },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_keygen, a_keytype },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_keygen, a_name },
-    STANDARD_HTML51_ATTRIBUTES (elem_keygen),
+    STANDARD_HTML5_ATTRIBUTES (elem_keygen),
 
     { { HTML_PLUS }, { HTML_PLUS }, elem_l, a_align },
     HTMLPLUS_ATTRIBUTES (elem_l),
@@ -2037,7 +1975,7 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_label, a_for },
     { { MAJOR_5_0, MINOR_5_0 }, { MAJOR_5_0, MINOR_5_0 }, elem_label, a_form },
     HTML3_CLID_ATTRIBUTES (elem_label),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_label),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_label),
 
     MATH3_STANDARD_ATTRIBUTES (elem_lambda),
 
@@ -2064,7 +2002,7 @@ hav_t havt [] =
     MATH3_DEFS_ATTRIBUTES (elem_lcm),
 
     { { MAJOR_4_0, MINOR_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_legend, a_align },
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_legend),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_legend),
 
     MATH3_DEFS_ATTRIBUTES (elem_leq),
 
@@ -2080,7 +2018,7 @@ hav_t havt [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { HTML_UNDEF }, elem_li, a_value },
     HTMLPLUS_ATTRIBUTES (elem_li),
     HTML23_CLID_ATTRIBUTES (elem_li),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_li),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_li),
 
     MATH3_DEFS_ATTRIBUTES (elem_limit),
 
@@ -2094,7 +2032,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_line),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_line),
     SVGx_PRES_ATTRIBUTES (elem_line),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_line),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_line),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_lineargradient, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_lineargradient, a_spreadmethod },
@@ -2106,44 +2044,50 @@ hav_t havt [] =
     SVG11_XLINK_ATTRIBUTES (elem_lineargradient),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_lineargradient),
     SVGx_PRES_ATTRIBUTES (elem_lineargradient),
-    STANDARD_HTML54_ATTRIBUTES (elem_lineargradient),
+    STANDARD_HTML5_ATTRIBUTES (elem_lineargradient),
 
-    { { HTML_5_3 }, { HTML_UNDEF }, elem_link, a_as },
+    { { HTML_JUL16 }, { HTML_UNDEF }, elem_link, a_as },
     { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { XHTML_2_0 }, elem_link, a_charset },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_link, a_colour },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_link, a_crossorigin },
+    { { HTML_JUL17 }, { HTML_UNDEF }, elem_link, a_colour },
+    { { HTML_JAN13 }, { HTML_UNDEF }, elem_link, a_crossorigin },
     { { MAJOR_5_0, MINOR_5_0, 0, HE_MOZILLA }, { HTML_5_3 }, elem_link, a_disabled },
     { { HTML_JUL20 }, { HTML_UNDEF }, elem_link, a_disabled },
-    { { HTML_PLUS, REQUIRED }, { HTML_UNDEF }, elem_link, a_href },
+    { { HTML_PLUS, REQUIRED }, { XHTML_2_0 }, elem_link, a_href },
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_link, a_href },
+    { { HTML_JAN07, REQUIRED }, { HTML_JUN19 }, elem_link, a_href },
+    { { HTML_JUL19 }, { HTML_UNDEF }, elem_link, a_href },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_link, a_hreflang },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_link, a_imagesizes },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_link, a_imagesrcset },
+    { { HTML_JUL19 }, { HTML_UNDEF }, elem_link, a_imagesizes },
+    { { HTML_JUL19 }, { HTML_UNDEF }, elem_link, a_imagesrcset },
     { { HTML_JUL20, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, elem_link, a_importance },
-    { { HTML_5_3 }, { HTML_UNDEF }, elem_link, a_integrity },
+    { { HTML_JAN17 }, { HTML_UNDEF }, elem_link, a_integrity },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_link, a_media },
     { { HTML_PLUS }, { MAJOR_3_0, MINOR_3_0 }, elem_link, a_methods },
     { { HTML_2_0 }, { HTML_2_0 }, elem_link, a_name },
-    { { HTML_5_2 }, { HTML_5_2 }, elem_link, a_numberonce },
+    { { HTML_JAN17 }, { HTML_5_2 }, elem_link, a_numberonce },
     { { HTML_5_3 }, { HTML_UNDEF }, elem_link, a_ping },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_MOZILLA }, { HTML_UNDEF }, elem_link, a_prefetch },
-    { { HTML_PLUS }, { XHTML_2_0 }, elem_link, a_rel },
-    { { MAJOR_5_0, MINOR_5_0, REQUIRED }, { HTML_5_3 }, elem_link, a_rel },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_link, a_rel },
-    { { HTML_5_2 }, { HTML_UNDEF }, elem_link, a_referrerpolicy },
+    { { HTML_PLUS }, { HTML_DEC06 }, elem_link, a_rel },
+    { { HTML_JAN07, REQUIRED }, { HTML_DEC09 }, elem_link, a_rel },
+    { { HTML_JAN10 }, { HTML_UNDEF }, elem_link, a_rel },
+    { { HTML_JUL16 }, { HTML_UNDEF }, elem_link, a_referrerpolicy },
     { { HTML_PLUS, HV_NOT50 }, { HTML_5_3 }, elem_link, a_rev },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_link, a_sizes },
+    { { HTML_JUL17 }, { HTML_DEC17 }, elem_link, a_scope },
+    { { HTML_JUL08 }, { HTML_UNDEF }, elem_link, a_sizes },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_link, a_target },
     { { HTML_2_0 }, { HTML_3_2 }, elem_link, a_title },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_link, a_type },
+    { { HTML_JUL17 }, { HTML_DEC17 }, elem_link, a_updateviacache },
     { { HTML_2_0 }, { HTML_2_0 }, elem_link, a_urn },
+    { { HTML_JUL17 }, { HTML_DEC17 }, elem_link, a_workertype },
     HTML23_CLID_ATTRIBUTES (elem_link),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_link),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_link),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_list, a_order },
     MATH3_STANDARD_ATTRIBUTES (elem_list),
 
     XHTML2_ATTRIBUTES (elem_listener),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_listener),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_listener),
 
     HTML23_CLID_ATTRIBUTES (elem_listing),
 
@@ -2168,16 +2112,16 @@ hav_t havt [] =
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_malignmark, a_edge },
 
-    STANDARD_HTML54_ATTRIBUTES (elem_main),
+    STANDARD_HTML5_ATTRIBUTES (elem_main),
 
     { { HTML_2_0, REQUIRED }, { HTML_4_01 }, elem_map, a_name },
     { { MAJOR_X1_0, MINOR_X1_0, HV_DEPRECATEDX1 }, { XHTML_2_0 }, elem_map, a_name },
     { { MAJOR_5_0, MINOR_5_0, REQUIRED }, { HTML_UNDEF }, elem_map, a_name },
-    STANDARD_HTML54_ATTRIBUTES (elem_map),
+    STANDARD_HTML5_ATTRIBUTES (elem_map),
 
     HTMLPLUS_ATTRIBUTES (elem_margin),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_mark),
+    STANDARD_HTML5_ATTRIBUTES (elem_mark),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_line, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_marker, a_orient },
@@ -2191,7 +2135,7 @@ hav_t havt [] =
     SVG10_REF_XY_ATTRIBUTES (elem_marker),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_marker),
     SVGx_PRES_ATTRIBUTES (elem_marker),
-    STANDARD_HTML54_ATTRIBUTES (elem_marker),
+    STANDARD_HTML5_ATTRIBUTES (elem_marker),
 
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_marquee, a_behaviour },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_marquee, a_bgcolour },
@@ -2213,7 +2157,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_mask),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_mask),
     SVGx_PRES_ATTRIBUTES (elem_mask),
-    STANDARD_HTML54_ATTRIBUTES (elem_mask),
+    STANDARD_HTML5_ATTRIBUTES (elem_mask),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_math, a_altimg },
     { { MAJOR_5_2, MINOR_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_math, a_altimg_height },
@@ -2258,7 +2202,7 @@ hav_t havt [] =
     { { HTML_5_1 }, { HTML_5_1 }, elem_menu, a_type },
     HTMLPLUS_ATTRIBUTES (elem_menu),
     HTML2_CLID_ATTRIBUTES (elem_menu),
-    STANDARD_HTML_4_51_ATTRIBUTES (elem_menu),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_menu),
 
     { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_checked },
     { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_default },
@@ -2267,11 +2211,11 @@ hav_t havt [] =
     { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_label },
     { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_radiogroup },
     { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_type },
-    STANDARD_HTML51_ATTRIBUTES (elem_menuitem),
+    STANDARD_HTML5_ATTRIBUTES (elem_menuitem),
 
     MATH3_PRES_ATTRIBUTES (elem_merror),
 
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_meta, a_charset },
+    { { HTML_JUL07 }, { HTML_UNDEF }, elem_meta, a_charset },
     { { HTML_2_0, REQUIRED }, { XHTML_1_1 }, elem_meta, a_content },
     { { XHTML_2_0 }, { HTML_UNDEF }, elem_meta, a_content },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_meta, a_dir },
@@ -2280,10 +2224,10 @@ hav_t havt [] =
     { { HTML_2_0 }, { HTML_UNDEF }, elem_meta, a_name },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_meta, a_scheme },
     HTML23_CLID_ATTRIBUTES (elem_meta),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_meta),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_meta),
 
     SVGx_XTRA_CORE_ATTRIBUTES (elem_metadata),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_metadata),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_metadata),
 
     { { MAJOR_5_0, MINOR_5_0, 0, HE_BESPOKE }, { HTML_UNDEF }, elem_meter, a_form },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_meter, a_high },
@@ -2292,7 +2236,7 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_meter, a_min },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_meter, a_optimum },
     { { MAJOR_5_0, MINOR_5_0, REQUIRED }, { HTML_UNDEF }, elem_meter, a_value },
-    STANDARD_HTML50_ATTRIBUTES (elem_meter),
+    STANDARD_HTML5_ATTRIBUTES (elem_meter),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mfenced, a_close },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mfenced, a_open },
@@ -2331,7 +2275,7 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_missingglyph, a_vertoriginy },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_missingglyph),
     SVGx_PRES_ATTRIBUTES (elem_missingglyph),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_missingglyph),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_missingglyph),
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mlabeledtr, a_columnalign },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_mlabeledtr, a_groupalign },
@@ -2376,7 +2320,7 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_mpath, a_externalresourcesrequired },
     SVG11_XLINK_ATTRIBUTES (elem_mpath),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_mpath),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_mpath),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_mpath),
 
     MATH3_PRES_ATTRIBUTES (elem_mphantom),
 
@@ -2519,7 +2463,7 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_naturalnumbers),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_nav),
+    STANDARD_HTML5_ATTRIBUTES (elem_nav),
 
     MATH3_DEFS_ATTRIBUTES (elem_neq),
 
@@ -2532,7 +2476,7 @@ hav_t havt [] =
 
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_none, a_xmlns },
 
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_noscript),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_noscript),
 
     MATH3_DEFS_ATTRIBUTES (elem_not),
 
@@ -2575,7 +2519,7 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_object, a_vspace },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_object, a_width },
     HTML4_FORM_ATTRIBUTES (elem_object),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_object),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_object),
 
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_ol, a_align },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_ol, a_clear },
@@ -2587,11 +2531,11 @@ hav_t havt [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { HTML_UNDEF }, elem_ol, a_start },
     HTMLPLUS_ATTRIBUTES (elem_ol),
     HTML23_CLID_ATTRIBUTES (elem_ol),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_ol),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_ol),
 
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_optgroup, a_disabled },
     { { MAJOR_4_0, MINOR_4_0, REQUIRED }, { HTML_UNDEF }, elem_optgroup, a_label },
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_optgroup),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_optgroup),
 
     { { HTML_PLUS, HV_NOT2 | HV_NOT32 }, { HTML_UNDEF }, elem_option, a_disabled },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_option, a_error },
@@ -2600,7 +2544,7 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_option, a_shape },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_option, a_value },
     HTML23_CLID_ATTRIBUTES (elem_option),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_option),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_option),
 
     MATH3_DEFS_ATTRIBUTES (elem_or),
 
@@ -2611,7 +2555,7 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_output, a_for },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_output, a_form },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_output, a_name },
-    STANDARD_HTML54_ATTRIBUTES (elem_output),
+    STANDARD_HTML5_ATTRIBUTES (elem_output),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_overlay, a_height },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_overlay, a_imagemap },
@@ -2627,7 +2571,7 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_p, a_nowrap },
     HTMLPLUS_ATTRIBUTES (elem_p),
     HTML23_CLID_ATTRIBUTES (elem_p),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_p),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_p),
 
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_param, a_id },
     { { HTML_3_2, REQUIRED }, { HTML_UNDEF }, elem_param, a_name },
@@ -2635,8 +2579,8 @@ hav_t havt [] =
     { { HTML_3_2 }, { XHTML_2_0 }, elem_param, a_value },
     { { MAJOR_5_0, MINOR_5_0, REQUIRED }, { HTML_UNDEF }, elem_param, a_value },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_param, a_valuetype },
-    HTML4_ATTRIBUTES_BASE (elem_param, MAJOR_5_0, MINOR_5_0),
-    NEW_HTML54_ATTRIBUTES (elem_param),
+    HTML4_ATTRIBUTES_BASE (elem_param),
+    EXTRA_HTML5_ATTRIBUTES (elem_param),
 
     MATH3_DEFS_ATTRIBUTES (elem_partialdiff),
 
@@ -2650,7 +2594,7 @@ hav_t havt [] =
     SVG11_GREV_ATTRIBUTES (elem_path),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_path),
     SVGx_PRES_ATTRIBUTES (elem_path),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_path),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_path),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_pattern, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_pattern, a_patterncontentunits },
@@ -2665,14 +2609,14 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_pattern),
     SVG11_XLINK_ATTRIBUTES (elem_pattern),
     SVGx_PRES_ATTRIBUTES (elem_pattern),
-    STANDARD_HTML54_ATTRIBUTES (elem_pattern),
+    STANDARD_HTML5_ATTRIBUTES (elem_pattern),
 
     HTMLPLUS_ATTRIBUTES (elem_person),
     HTML23_CLID_ATTRIBUTES (elem_person),
 
     MATH3_DEFS_ATTRIBUTES (elem_pi),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_picture),
+    STANDARD_HTML5_ATTRIBUTES (elem_picture),
 
     MATH3_STANDARD_ATTRIBUTES (elem_piece),
 
@@ -2687,7 +2631,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_polygon),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_polygon),
     SVGx_PRES_ATTRIBUTES (elem_polygon),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_polygon),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_polygon),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_polyline, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 | REQUIRED }, { HTML_UNDEF }, elem_polyline, a_points },
@@ -2696,7 +2640,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_polyline),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_polyline),
     SVGx_PRES_ATTRIBUTES (elem_polyline),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_polyline),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_polyline),
 
     MATH3_DEFS_ATTRIBUTES (elem_power),
 
@@ -2706,9 +2650,9 @@ hav_t havt [] =
     { { HTML_2_0, 0, HE_MOZILLA | HV_NOT30 }, { HTML_UNDEF }, elem_pre, a_wrap },
     HTMLPLUS_ATTRIBUTES (elem_pre),
     HTML23_CLID_ATTRIBUTES (elem_pre),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_pre),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_pre),
 
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_prefetch),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_prefetch),
 
     XHTML2_ATTRIBUTES (elem_preventdefault),
 
@@ -2718,7 +2662,7 @@ hav_t havt [] =
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_progress, a_max },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_progress, a_value },
-    STANDARD_HTML54_ATTRIBUTES (elem_progress),
+    STANDARD_HTML5_ATTRIBUTES (elem_progress),
 
     MATH3_DEFS_ATTRIBUTES (elem_prsubset),
 
@@ -2726,7 +2670,7 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_q, a_cite },
     HTMLPLUS_ATTRIBUTES (elem_q),
     HTML23_CLID_ATTRIBUTES (elem_q),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_q),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_q),
 
     HTMLPLUS_ATTRIBUTES (elem_quote),
 
@@ -2742,7 +2686,7 @@ hav_t havt [] =
     SVG11_XLINK_ATTRIBUTES (elem_radialgradient),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_radialgradient),
     SVGx_PRES_ATTRIBUTES (elem_radialgradient),
-    STANDARD_HTML54_ATTRIBUTES (elem_radialgradient),
+    STANDARD_HTML5_ATTRIBUTES (elem_radialgradient),
 
     { { MAJOR_3_0, MINOR_3_0, REQUIRED }, { MAJOR_3_0, MINOR_3_0 }, elem_range, a_from },
     { { MAJOR_3_0, MINOR_3_0, REQUIRED }, { MAJOR_3_0, MINOR_3_0 }, elem_range, a_until },
@@ -2750,7 +2694,7 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_rationals),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_rb),
+    STANDARD_HTML5_ATTRIBUTES (elem_rb),
 
     MATH3_DEFS_ATTRIBUTES (elem_real),
 
@@ -2765,7 +2709,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_rect),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_rect),
     SVGx_PRES_ATTRIBUTES (elem_rect),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_rect),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rect),
 
     MATH2_STANDARD_ATTRIBUTES (elem_reln),
 
@@ -2782,21 +2726,21 @@ hav_t havt [] =
     HTML3_CLID_ATTRIBUTES (elem_root),
     MATH3_DEFS_ATTRIBUTES (elem_root),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_rp),
+    STANDARD_HTML5_ATTRIBUTES (elem_rp),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_rt),
+    STANDARD_HTML5_ATTRIBUTES (elem_rt),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_rtc),
+    STANDARD_HTML5_ATTRIBUTES (elem_rtc),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_ruby),
+    STANDARD_HTML5_ATTRIBUTES (elem_ruby),
 
     HTMLPLUS_ATTRIBUTES (elem_s),
     HTML3_CLID_ATTRIBUTES (elem_s),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_s),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_s),
 
     HTMLPLUS_ATTRIBUTES (elem_samp),
     HTML23_CLID_ATTRIBUTES (elem_samp),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_samp),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_samp),
 
     MATH3_DEFS_ATTRIBUTES (elem_scalarproduct),
 
@@ -2819,7 +2763,7 @@ hav_t havt [] =
     SVG10_REPL_ATTRIBUTES (elem_script),
     SVG11_XLINK_ATTRIBUTES (elem_script),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_script),
-    STANDARD_HTML54_ATTRIBUTES (elem_script),
+    STANDARD_HTML5_ATTRIBUTES (elem_script),
 
     MATH3_DEFS_ATTRIBUTES (elem_sdev),
 
@@ -2827,7 +2771,7 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_sech),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_section),
+    STANDARD_HTML5_ATTRIBUTES (elem_section),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_select, a_align },
     { { HTML_5_2 }, { HTML_UNDEF }, elem_select, a_autocomplete },
@@ -2854,7 +2798,7 @@ hav_t havt [] =
     HTMLPLUS_ATTRIBUTES (elem_select),
     HTML23_CLID_ATTRIBUTES (elem_select),
     HTML4_FORM_ATTRIBUTES (elem_select),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_select),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_select),
 
     MATH3_DEFS_ATTRIBUTES (elem_selector),
 
@@ -2878,11 +2822,11 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_set),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_set),
     MATH3_STANDARD_ATTRIBUTES (elem_set),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_set),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_set),
 
     MATH3_DEFS_ATTRIBUTES (elem_setdiff),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_shadow),
+    STANDARD_HTML5_ATTRIBUTES (elem_shadow),
 
     { { HTML_5_2 }, { HTML_UNDEF }, elem_share, a_src },
     MATH3_STANDARD_ATTRIBUTES (elem_share),
@@ -2892,12 +2836,12 @@ hav_t havt [] =
     MATH3_DEFS_ATTRIBUTES (elem_sinh),
 
     { { HTML_JUL20, HV_WHATWG }, { HTML_UNDEF }, elem_slot, a_name },
-    STANDARD_HTML54_ATTRIBUTES (elem_slot),
+    STANDARD_HTML5_ATTRIBUTES (elem_slot),
 
     HTML3_CLID_ATTRIBUTES (elem_small),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_small),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_small),
 
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_solidcolour),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_solidcolour),
 
     { { HTML_5_1 }, { HTML_UNDEF }, elem_source, a_media },
     { { HTML_5_1 }, { HTML_UNDEF }, elem_source, a_sizes },
@@ -2905,7 +2849,7 @@ hav_t havt [] =
     { { HTML_5_1 }, { HTML_UNDEF }, elem_source, a_src },
     { { HTML_5_1 }, { HTML_UNDEF }, elem_source, a_srcset },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_source, a_type },
-    STANDARD_HTML54_ATTRIBUTES (elem_source),
+    STANDARD_HTML5_ATTRIBUTES (elem_source),
 
     { { MAJOR_4_0, MINOR_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_span, a_align },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_span, a_datafld },
@@ -2913,7 +2857,7 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_span, a_datasrc },
     { { MAJOR_4_0, MINOR_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_span, a_align },
     HTML2_CLID_ATTRIBUTES (elem_span),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_span),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_span),
 
     { { MAJOR_3_0, MINOR_3_0, REQUIRED }, { MAJOR_3_0, MINOR_3_0 }, elem_spot, a_id },
 
@@ -2921,7 +2865,7 @@ hav_t havt [] =
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 | REQUIRED }, { HTML_UNDEF }, elem_stop, a_offset },
     SVGx_PRES_ATTRIBUTES (elem_stop),
-    STANDARD_HTML54_ATTRIBUTES (elem_stop),
+    STANDARD_HTML5_ATTRIBUTES (elem_stop),
 
     XHTML2_ATTRIBUTES (elem_stoppropagation),
 
@@ -2929,7 +2873,7 @@ hav_t havt [] =
 
     HTMLPLUS_ATTRIBUTES (elem_strong),
     HTML23_CLID_ATTRIBUTES (elem_strong),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_strong),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_strong),
 
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_style, a_dir },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_style, a_disabled },
@@ -2943,23 +2887,23 @@ hav_t havt [] =
     HTML4_STANDARD_SCRIPT_ATTRIBUTES (elem_style, MAJOR_5_0, MINOR_5_0),
     HTML4_STANDARD_CIS_ATTRIBUTES (elem_style, MAJOR_5_0, MINOR_5_0),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_style),
-    NEW_HTML54_ATTRIBUTES (elem_style),
+    EXTRA_HTML5_ATTRIBUTES (elem_style),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_sub, a_align },
     HTMLPLUS_ATTRIBUTES (elem_sub),
     HTML23_CLID_ATTRIBUTES (elem_sub),
-    STANDARD_HTML54_ATTRIBUTES (elem_sub),
+    STANDARD_HTML5_ATTRIBUTES (elem_sub),
 
     MATH3_DEFS_ATTRIBUTES (elem_subset),
 
     MATH3_DEFS_ATTRIBUTES (elem_sum),
 
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_summary),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_summary),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_sup, a_align },
     HTMLPLUS_ATTRIBUTES (elem_sup),
     HTML23_CLID_ATTRIBUTES (elem_sup),
-    STANDARD_HTML54_ATTRIBUTES (elem_sup),
+    STANDARD_HTML5_ATTRIBUTES (elem_sup),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_svg, a_allow_zoom_pan },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_svg, a_baseprofile },
@@ -2977,7 +2921,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_svg),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_svg),
     SVGx_PRES_ATTRIBUTES (elem_svg),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_svg),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_svg),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_switch, a_externalresourcesrequired },
     SVG10_G_ATTRIBUTES (elem_switch),
@@ -2985,7 +2929,7 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_switch),
     SVG11_GREV_ATTRIBUTES (elem_switch),
     SVGx_PRES_ATTRIBUTES (elem_switch),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_switch),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_switch),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_symbol, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_symbol, a_preserveaspectratio },
@@ -3001,7 +2945,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_symbol),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_symbol),
     SVGx_PRES_ATTRIBUTES (elem_symbol),
-    STANDARD_HTML54_ATTRIBUTES (elem_symbol),
+    STANDARD_HTML5_ATTRIBUTES (elem_symbol),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_t, a_class },
 
@@ -3036,7 +2980,7 @@ hav_t havt [] =
     { { HTML_2_0 }, { XHTML_2_0 }, elem_table, a_width },
     HTMLPLUS_ATTRIBUTES (elem_table),
     HTML23_CLID_ATTRIBUTES (elem_table),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_table),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_table),
 
     MATH3_DEFS_ATTRIBUTES (elem_tan),
 
@@ -3049,9 +2993,9 @@ hav_t havt [] =
     { { HTML_5_2, HV_W3 }, { HTML_UNDEF }, elem_tbody, a_rowgroup },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3}, { XHTML_2_0 }, elem_tbody, a_valign },
     HTML2_CLID_ATTRIBUTES (elem_tbody),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_tbody),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_tbody),
 
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_tbreak),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_tbreak),
 
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_td, a_abbr },
     { { HTML_PLUS, HV_DEPRECATED4 | HV_RFC_1942 }, { XHTML_2_0 }, elem_td, a_align },
@@ -3075,9 +3019,9 @@ hav_t havt [] =
     { { HTML_2_0, HV_RFC_1942 }, { XHTML_2_0 }, elem_td, a_valign },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_td, a_width },
     HTML23_CLID_ATTRIBUTES (elem_td),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_td),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_td),
 
-    STANDARD_HTML54_ATTRIBUTES (elem_template),
+    STANDARD_HTML5_ATTRIBUTES (elem_template),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_MATH_2 }, { HTML_UNDEF }, elem_tendsto, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_tendsto),
@@ -3094,7 +3038,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_text),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_text),
     SVGx_PRES_ATTRIBUTES (elem_text),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_text),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_text),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_textarea, a_align },
     { { HTML_5_3 }, { HTML_5_3 }, elem_textarea, a_autocapitalise },
@@ -3130,7 +3074,7 @@ hav_t havt [] =
     HTMLPLUS_ATTRIBUTES (elem_textarea),
     HTML23_CLID_ATTRIBUTES (elem_textarea),
     HTML4_FORM_ATTRIBUTES (elem_textarea),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_textarea),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_textarea),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_textpath, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_textpath, a_method },
@@ -3143,7 +3087,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_textpath),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_textpath),
     SVGx_PRES_ATTRIBUTES (elem_textpath),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_textpath),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_textpath),
 
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_tfoot, a_align },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3, HE_IE }, { XHTML_2_0 }, elem_tfoot, a_bgcolour },
@@ -3152,7 +3096,7 @@ hav_t havt [] =
     { { HTML_5_2, HV_W3 }, { HTML_UNDEF }, elem_tfoot, a_rowgroup },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_tfoot, a_valign },
     HTML2_CLID_ATTRIBUTES (elem_tfoot),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_tfoot),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_tfoot),
 
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_th, a_abbr },
     { { HTML_PLUS, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_th, a_align },
@@ -3174,7 +3118,7 @@ hav_t havt [] =
     { { HTML_2_0 }, { XHTML_2_0 }, elem_th, a_valign },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_th, a_width },
     HTML23_CLID_ATTRIBUTES (elem_th),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_th),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_th),
 
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_thead, a_align },
     { { HTML_2_0, HV_NOT3 | HV_RFC_1942, HE_IE }, { XHTML_2_0 }, elem_thead, a_bgcolour },
@@ -3183,18 +3127,18 @@ hav_t havt [] =
     { { HTML_5_2, HV_W3 }, { HTML_UNDEF }, elem_thead, a_rowgroup },
     { { HTML_2_0, HV_RFC_1942 }, { XHTML_2_0 }, elem_thead, a_valign },
     HTML2_CLID_ATTRIBUTES (elem_thead),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_thead),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_thead),
 
     HTML3_CLID_ATTRIBUTES (elem_tilde),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_time, a_datetime },
-    STANDARD_HTML54_ATTRIBUTES (elem_time),
+    STANDARD_HTML5_ATTRIBUTES (elem_time),
 
     MATH3_DEFS_ATTRIBUTES (elem_times),
 
     HTMLPLUS_ATTRIBUTES (elem_title),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_title),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_title),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_title),
 
     { { HTML_2_0, HV_RFC_1942 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_tr, a_align },
     { { HTML_2_0, HV_NOT3, HE_IE }, { HTML_2_0 }, elem_tr, a_bgcolour },
@@ -3205,14 +3149,14 @@ hav_t havt [] =
     { { HTML_5_2, HV_W3 }, { HTML_UNDEF }, elem_tr, a_row },
     { { HTML_2_0, HV_RFC_1942 }, { XHTML_2_0 }, elem_tr, a_valign },
     HTML23_CLID_ATTRIBUTES (elem_tr),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_tr),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_tr),
 
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_track, a_default },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_track, a_kind },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_track, a_label },
     { { MAJOR_5_0, MINOR_5_0, REQUIRED }, { HTML_UNDEF }, elem_track, a_src },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_track, a_srclang },
-    STANDARD_HTML54_ATTRIBUTES(elem_track),
+    STANDARD_HTML5_ATTRIBUTES(elem_track),
 
     MATH3_DEFS_ATTRIBUTES (elem_transpose),
 
@@ -3225,7 +3169,7 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_tref),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_tref),
     SVGx_PRES_ATTRIBUTES (elem_tref),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_tref),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_tref),
 
     MATH3_DEFS_ATTRIBUTES (elem_true),
 
@@ -3241,14 +3185,14 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_tspan),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_tspan),
     SVGx_PRES_ATTRIBUTES (elem_tspan),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_tspan),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_tspan),
 
     HTMLPLUS_ATTRIBUTES (elem_tt),
     HTML23_CLID_ATTRIBUTES (elem_tt),
 
     HTMLPLUS_ATTRIBUTES (elem_u),
     HTML3_CLID_ATTRIBUTES (elem_u),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_u),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_u),
 
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_ul, a_align },
     { { MAJOR_3_0, MINOR_3_0, HV_NOT32 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_ul, a_clear },
@@ -3261,7 +3205,7 @@ hav_t havt [] =
     { { HTML_PLUS, HV_NOT2 }, { MAJOR_3_0, MINOR_3_0 }, elem_ul, a_wrap },
     HTMLPLUS_ATTRIBUTES (elem_ul),
     HTML23_CLID_ATTRIBUTES (elem_ul),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_ul),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_ul),
 
     MATH3_DEFS_ATTRIBUTES (elem_union),
 
@@ -3276,11 +3220,11 @@ hav_t havt [] =
     SVGx_CONDPROC_ATTRIBUTES (elem_use),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_use),
     SVGx_PRES_ATTRIBUTES (elem_use),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_use),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_use),
 
     HTMLPLUS_ATTRIBUTES (elem_var),
     HTML23_CLID_ATTRIBUTES (elem_var),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_var),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_var),
 
     MATH3_DEFS_ATTRIBUTES (elem_variance),
 
@@ -3310,7 +3254,7 @@ hav_t havt [] =
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_video, a_preload },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_video, a_src },
     { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_video, a_width },
-    STANDARD_HTML54_ATTRIBUTES(elem_video),
+    STANDARD_HTML5_ATTRIBUTES(elem_video),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_view, a_externalresourcesrequired },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_view, a_preserveaspectratio },
@@ -3318,7 +3262,7 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_view, a_viewtarget },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_view, a_zoomandpan },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_view),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_view),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_view),
 
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_vkern, a_g1 },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_vkern, a_g2 },
@@ -3326,9 +3270,9 @@ hav_t havt [] =
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_vkern, a_u1 },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_vkern, a_u1 },
     SVGx_XTRA_CORE_ATTRIBUTES (elem_vkern),
-    STANDARD_HTML_4_54_ATTRIBUTES (elem_vkern),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_vkern),
 
-    STANDARD_HTML54_ATTRIBUTES(elem_wbr),
+    STANDARD_HTML5_ATTRIBUTES(elem_wbr),
 
     HTML23_CLID_ATTRIBUTES (elem_xmp),
 

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,6 @@ You should have received a copy of the GNU General Public
 Licence along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
-
 
 // parameters: either names of test specification files, or -f file, where file contains a list of filenames
 // -h and -V do the usual
@@ -36,7 +35,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/include.h"
 #include "feedback/nitnames.h"
 
-// 64M
 #define MAXOUTPUTFILESIZE 1024 * 1024 *64
 #define FAUX_CMD "---xxx---"
 #define ERROR_EXIT 3
@@ -57,9 +55,6 @@ typedef ::std::map < ::std::string, vstr_t > mvstr_t;
 
 #define NW_FAIL     1
 #define NW_IGNORE   2
-
-nitmap quick_nit;
-timmap quick_tim;
 
 unsigned verbose = 0;
 bool numbers = false, easy_in = false;
@@ -112,16 +107,13 @@ bool load_file_list (char* name, filelist& specs)
 
 ::std::string tim (const e_nit nit)
 {   if (! numbers)
-    {   timmap::const_iterator i = quick_tim.find (nit);
-        if (i != quick_tim.end ())
-            if (verbose < 2)
-                return i -> second;
+    {   const ::std::string& s = lookup_name (nit);
+        if (! s.empty ())
+            if (verbose < 2) return s;
             else
-            {   ::std::string res (i -> second);
-                res += " (";
+            {   ::std::string res (s + " (");
                 res += ::boost::lexical_cast < ::std::string > (static_cast < size_t > (nit));
-                res += ")";
-                return res; } }
+                return res + ")"; } }
     return ::boost::lexical_cast < ::std::string > (static_cast < size_t > (nit)); }
 
 bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std::string& cmdline)
@@ -133,7 +125,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
     {   ::std::cerr << "No content found in " << f << "\n"; return false; }
     cmdline.clear ();
     if (grand_stats_fn.empty ()) grand_stats_fn = f.parent_path () / "grand.stats";
-    if (quick_nit.empty ()) preload_nits ();
+    nits_init ();
     nitwit expect;
     ::std::string previous;
     int line = 0;
@@ -147,11 +139,15 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
     bool shadow = false;
     sstr_t correct_set, created_set;
     vstr_t stats;
+    size_t last_line = -1;
+    nits last_nits;
     for (auto ss : spec)
     {   ++line;
         ::std::string s (::boost::trim_copy (ss));
         if (s.empty ())
-        {   if (file_stats && ! stats.empty () && ! previous.empty ())
+        {   if (! last_nits.empty ()) expect.nits_.insert (::nitted::value_type (last_line, last_nits));
+            last_line = -1; last_nits.clear ();
+            if (file_stats && ! stats.empty () && ! previous.empty ())
             {   page_stats.insert (mvstr_t::value_type (previous, stats)); stats.clear (); }
             exports = itemid = file_stats = overall_stats = false; continue; }
         if ((! itemid) && (s.at (0) == '#')) continue;
@@ -251,15 +247,17 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         ::boost::algorithm::split (v, sss, ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
         if (v.empty ())
         {   ::std::cerr << s << " has no feedback list (line "<< line << " of " << f.string () << ")\n"; return false; }
-        nits ns;
+//        nits ns;
+        if (last_line != lno)
+        {   if (! last_nits.empty ()) expect.nits_.insert (::nitted::value_type (last_line, last_nits));
+            last_line = lno; last_nits.clear (); }
         for (auto n : v)
         {   if (n.empty ()) continue;
             ::boost::trim (n);
-            nitmap::const_iterator i = quick_nit.find (n);
-            if (i == quick_nit.cend ())
-                ::std::cerr << "No such feedback as '" << n << "' (line "<< line << " of " << f.string () << ")\n";
-            else ns.push_back (static_cast <e_nit> (i -> second)); }
-        expect.nits_.insert (::nitted::value_type (lno, ns)); }
+            e_nit en = lookup_code (n);
+            if (en == nit_off) ::std::cerr << "No such feedback as '" << n << "' (line "<< line << " of " << f.string () << ")\n";
+            else last_nits.push_back (en); } }
+    if (! last_nits.empty ()) expect.nits_.insert (::nitted::value_type (last_line, last_nits));
     if (! expect.nits_.empty () && ! previous.empty ())
         expected.insert (knotted::value_type (previous, expect));
     if (file_stats && ! stats.empty () && ! previous.empty ())

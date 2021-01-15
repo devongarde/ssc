@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -101,16 +101,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define RFC1980     "rfc1980"
 #define RFC2070     "rfc2070"
 #define ROOT        "root"
+#define RPT         "rpt"
 #define SECRET      "secret"
 #define SGML        "sgml"
 #define SILENCE     "silence"
 #define SITE        "domain"
 #define SLOB        "slob"
 #define SPACING     "space"
+#define SPEC        "spec"
 #define SSI         "ssi"
 #define SUMMARY     "summary"
 #define TAGS        "tags"
 #define TEST        "test"
+#define TITLE       "title"
 #define USER        "user"
 #define VERBOSE     "verbose"
 #define VERIFY      "verify"

@@ -189,6 +189,7 @@ $(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\to
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\sauce\feedback\nitnames.cpp" />
     <ClCompile Include="..\sauce\test\ssc-test.cpp" />
   </ItemGroup>
   <ItemGroup>

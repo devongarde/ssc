@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ void element::examine_script ()
                 case mime_text_xml :
                 case mime_application_octet_stream :
                 case mime_application_xml :
-                    if (node_.version () < html_jul_20)
+                    if (node_.version () < html_jul20)
                         pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, quote (type_master < t_mime > :: name (mt)), " is not a scripting language");
                     break;
                 case mime_application_ecmascript :
@@ -71,7 +71,7 @@ void element::examine_script ()
                     {   uint64_t flags = type_master < t_mime > :: flags (mt);
                         if ((flags & SCRIPT) == SCRIPT)
                             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be supported by all browsers on all systems");
-                        else if (node_.version () < html_jul_20)
+                        else if (node_.version () < html_jul20)
                         {   pick (nit_bad_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " will not be processed");
                             datablock = true; } }
                     break; } } }
@@ -84,7 +84,7 @@ void element::examine_script ()
     {   if (a_.known (a_charset) && (node_.version () <= html_5_3))
             pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "do not use CHARSET when TYPE='module' (which must be " UTF_8 ")");
         if (a_.known (a_nomodule) && (node_.version () > html_5_3))
-            pick (nit_bad_script, ed_July2020, "4.12.1 The script element", es_error, ec_element, "NOMODULE is daft when TYPE='module'");
+            pick (nit_bad_script, ed_jul20, "4.12.1 The script element", es_error, ec_element, "NOMODULE is daft when TYPE='module'");
         if (a_.known (a_defer))
             pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "DEFER has no effect when TYPE='module'"); }
     if (! a_.known (a_src))
@@ -93,7 +93,7 @@ void element::examine_script ()
         if (a_.known (a_defer))
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "DEFER requires SRC");
         if (a_.known (a_integrity))
-            pick (nit_bad_script, ed_July2020, "4.12.1 The script element", es_error, ec_element, "INTEGRITY requires SRC");
+            pick (nit_bad_script, ed_jul20, "4.12.1 The script element", es_error, ec_element, "INTEGRITY requires SRC");
         if (a_.known (a_async))
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "ASYNC requires SRC"); } }
 
@@ -168,7 +168,7 @@ void element::examine_source ()
             pick (nit_saucy_source, ed_52, "4.7.4. The source element", es_warning, ec_element, "SRCSET, SIZES and MEDIA have no meaning when <SOURCE> descends from a media element"); } }
 
 void element::examine_summary ()
-{   if ((node_.version () < html_5_1) || (node_.version () >= html_jul_20)) return;
+{   if ((node_.version () < html_5_1) || (node_.version () >= html_jul20)) return;
     bool heading = false;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())

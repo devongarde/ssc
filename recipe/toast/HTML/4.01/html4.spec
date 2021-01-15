@@ -138,7 +138,6 @@ PASS ../toast/HTML/4.01/html4-example.html
 119 inserted_missing_closure
 120 inserted_missing_closure
 122 inserted_missing_closure
-122 inserted_missing_closure
 124 use_double_quote_code
 131 inserted_missing_closure
 132 inserted_missing_parent missing_close inserted_missing_closure missing_close inserted_missing_closure

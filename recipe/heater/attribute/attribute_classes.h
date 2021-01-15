@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -345,6 +345,7 @@ typedef typed_attribute < t_indentshift2, a_indentshiftfirst > attr_indentshiftf
 typedef typed_attribute < t_indentshift2, a_indentshiftlast > attr_indentshiftlast;
 typedef typed_attribute < t_idref, a_indenttarget > attr_indenttarget;
 typedef typed_attribute < t_index, a_index > attr_index;
+typedef typed_attribute < t_html_boolean, a_inert > attr_inert;
 typedef typed_attribute < t_infixlinebreakstyle, a_infixlinebreakstyle > attr_infixlinebreakstyle;
 typedef typed_attribute < t_generic, a_initialvisibility > attr_initialvisibility;
 typedef typed_attribute < t_inlist, a_inlist > attr_inlist;
@@ -352,8 +353,10 @@ typedef typed_attribute < t_inputmode, a_inputmode > attr_inputmode;
 typedef typed_attribute < t_text, a_integrity > attr_integrity;
 typedef typed_attribute < t_real, a_intercept > attr_intercept;
 typedef typed_attribute < t_text, a_intrinsicsize > attr_intrinsicsize;
+typedef typed_attribute < t_html_boolean, a_irrelevant > attr_irrelevant;
 typedef typed_attribute < t_is, a_is > attr_is;
 typedef typed_attribute < t_existential, a_ismap > attr_ismap;
+typedef typed_attribute < t_existential, a_item > attr_item;
 typedef typed_attribute < t_itemid, a_itemid > attr_itemid;
 typedef typed_attribute < t_itemprop, a_itemprop > attr_itemprop;
 typedef typed_attribute < t_idrefs, a_itemref > attr_itemref;
@@ -488,6 +491,8 @@ typedef typed_attribute < t_measure, a_offset > attr_offset;
 typedef typed_attribute < t_script, a_onabort > attr_onabort;
 typedef typed_attribute < t_script, a_onactivate > attr_onactivate;
 typedef typed_attribute < t_script, a_onafterprint > attr_onafterprint;
+typedef typed_attribute < t_script, a_onautocomplete > attr_onautocomplete;
+typedef typed_attribute < t_script, a_onautocompleteerror > attr_onautocompleteerror;
 typedef typed_attribute < t_script, a_onauxclick > attr_onauxclick;
 typedef typed_attribute < t_script, a_onbeforeprint > attr_onbeforeprint;
 typedef typed_attribute < t_script, a_onbeforeunload > attr_onbeforeunload;
@@ -520,7 +525,9 @@ typedef typed_attribute < t_script, a_onerror > attr_onerror;
 typedef typed_attribute < t_script, a_onfocus > attr_onfocus;
 typedef typed_attribute < t_script, a_onfocusin > attr_onfocusin;
 typedef typed_attribute < t_script, a_onfocusout > attr_onfocusout;
+typedef typed_attribute < t_script, a_onformchange > attr_onformchange;
 typedef typed_attribute < t_script, a_onformdata > attr_onformdata;
+typedef typed_attribute < t_script, a_onforminput > attr_onforminput;
 typedef typed_attribute < t_script, a_onhashchange > attr_onhashchange;
 typedef typed_attribute < t_script, a_oninput > attr_oninput;
 typedef typed_attribute < t_script, a_oninvalid > attr_oninvalid;
@@ -554,17 +561,19 @@ typedef typed_attribute < t_script, a_onplaying > attr_onplaying;
 typedef typed_attribute < t_script, a_onpopstate > attr_onpopstate;
 typedef typed_attribute < t_script, a_onprogress > attr_onprogress;
 typedef typed_attribute < t_script, a_onratechange > attr_onratechange;
+typedef typed_attribute < t_script, a_onreadystatechange > attr_onreadystatechange;
 typedef typed_attribute < t_script, a_onrejectionhandled > attr_onrejectionhandled;
 typedef typed_attribute < t_script, a_onrepeat > attr_onrepeat;
 typedef typed_attribute < t_script, a_onreset > attr_onreset;
 typedef typed_attribute < t_script, a_onresize > attr_onresize;
 typedef typed_attribute < t_script, a_onscroll > attr_onscroll;
 typedef typed_attribute < t_script, a_onsecuritypolicyviolation > attr_onsecuritypolicyviolation;
-typedef typed_attribute < t_script, a_onseeked > attr_onseeked;
 typedef typed_attribute < t_script, a_onseeking > attr_onseeking;
 typedef typed_attribute < t_script, a_onselect > attr_onselect;
 typedef typed_attribute < t_script, a_onshow > attr_onshow;
 typedef typed_attribute < t_script, a_onslotchange > attr_onslotchange;
+typedef typed_attribute < t_script, a_onsort > attr_onsort;
+typedef typed_attribute < t_script, a_onsought > attr_onsought;
 typedef typed_attribute < t_script, a_onstalled > attr_onstalled;
 typedef typed_attribute < t_script, a_onstorage > attr_onstorage;
 typedef typed_attribute < t_script, a_onsubmit > attr_onsubmit;
@@ -635,6 +644,7 @@ typedef typed_attribute < t_html_boolean, a_readonly > attr_readonly;
 typedef typed_attribute < t_refx, a_refx > attr_refx;
 typedef typed_attribute < t_refy, a_refy > attr_refy;
 typedef typed_attribute < t_referrer, a_referrerpolicy > attr_referrerpolicy;
+typedef typed_attribute < t_text, a_registrationmark > attr_registrationmark;
 typedef typed_attribute < t_rel, a_rel > attr_rel;
 typedef typed_attribute < t_renderingintent, a_renderingintent > attr_renderingintent;
 typedef typed_attribute < t_repeatcount, a_repeatcount > attr_repeatcount;
@@ -738,6 +748,7 @@ typedef typed_attribute < t_1_more_i, a_stroke_miterlimit > attr_stroke_miterlim
 typedef typed_attribute < t_opacity, a_stroke_opacity > attr_stroke_opacity;
 typedef typed_attribute < t_measure_i, a_stroke_width > attr_stroke_width;
 typedef typed_attribute < t_style, a_style > attr_style;
+typedef typed_attribute < t_idref, a_subject > attr_subject;
 typedef typed_attribute < t_vunit, a_subscriptshift > attr_subscriptshift;
 typedef typed_attribute < t_text, a_summary > attr_summary;
 typedef typed_attribute < t_vunit, a_superscriptshift > attr_superscriptshift;
@@ -762,6 +773,7 @@ typedef typed_attribute < t_idref, a_targetid > attr_targetid;
 typedef typed_attribute < t_curies, a_targetrole > attr_targetrole;
 typedef typed_attribute < t_generic, a_targetx > attr_targetx;
 typedef typed_attribute < t_generic, a_targety > attr_targety;
+typedef typed_attribute < t_url, a_template > attr_template;
 typedef typed_attribute < t_colour, a_text > attr_text;
 typedef typed_attribute < t_smei, a_textanchor > attr_textanchor;
 typedef typed_attribute < t_textdecoration, a_textdecoration > attr_textdecoration;
@@ -791,6 +803,7 @@ typedef typed_attribute < t_urange, a_unicoderange > attr_unicoderange;
 typedef typed_attribute < t_units, a_units > attr_units;
 typedef typed_attribute < t_real, a_unitsperem > attr_unitsperem;
 typedef typed_attribute < t_idref, a_until > attr_until;
+typedef typed_attribute < t_generic, a_updateviacache > attr_updateviacache;
 typedef typed_attribute < t_generic, a_urn > attr_urn;
 typedef typed_attribute < t_url, a_usemap > attr_usemap;
 typedef typed_attribute < t_valign, a_valign > attr_valign;
@@ -823,6 +836,7 @@ typedef typed_attribute < t_conditional, a_while > attr_while;
 typedef typed_attribute < t_width, a_width > attr_width;
 typedef typed_attribute < t_text, a_widths > attr_widths;
 typedef typed_attribute < t_measure_ai, a_word_spacing > attr_word_spacing;
+typedef typed_attribute < t_workertype, a_workertype > attr_workertype;
 typedef typed_attribute < t_rap, a_wrap > attr_wrap;
 typedef typed_attribute < t_writingmode, a_writingmode > attr_writingmode;
 typedef typed_attribute < t_measure, a_x1 > attr_x1;
@@ -1177,6 +1191,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_indentshiftlast, \
     attr_indenttarget, \
     attr_index, \
+    attr_inert, \
     attr_infixlinebreakstyle, \
     attr_initialvisibility, \
     attr_inlist, \
@@ -1184,8 +1199,10 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_integrity, \
     attr_intercept, \
     attr_intrinsicsize, \
+    attr_irrelevant, \
     attr_is, \
     attr_ismap, \
+    attr_item, \
     attr_itemid, \
     attr_itemprop, \
     attr_itemref, \
@@ -1324,6 +1341,8 @@ const e_attribute last_am = a_muted;
     attr_onabort, \
     attr_onactivate, \
     attr_onafterprint, \
+    attr_onautocomplete, \
+    attr_onautocompleteerror, \
     attr_onauxclick, \
     attr_onbeforeprint, \
     attr_onbeforeunload, \
@@ -1356,7 +1375,9 @@ const e_attribute last_am = a_muted;
     attr_onfocus, \
     attr_onfocusin, \
     attr_onfocusout, \
+    attr_onformchange, \
     attr_onformdata, \
+    attr_onforminput, \
     attr_onhashchange, \
     attr_oninput, \
     attr_oninvalid, \
@@ -1390,18 +1411,20 @@ const e_attribute last_am = a_muted;
     attr_onpopstate, \
     attr_onprogress, \
     attr_onratechange, \
+    attr_onreadystatechange, \
     attr_onrejectionhandled, \
     attr_onrepeat, \
     attr_onreset, \
     attr_onresize, \
     attr_onscroll, \
     attr_onsecuritypolicyviolation, \
-    attr_onseeked, \
     attr_onseeking, \
     attr_onselect, \
     attr_onshow, \
     attr_onslotchange, \
     attr_onstalled, \
+    attr_onsort, \
+    attr_onsought, \
     attr_onstorage, \
     attr_onsubmit, \
     attr_onsuspend, \
@@ -1471,6 +1494,7 @@ const e_attribute last_am = a_muted;
     attr_refx, \
     attr_refy, \
     attr_referrerpolicy, \
+    attr_registrationmark, \
     attr_rel, \
     attr_renderingintent, \
     attr_repeatcount, \
@@ -1574,6 +1598,7 @@ const e_attribute last_am = a_muted;
     attr_stroke_opacity, \
     attr_stroke_width, \
     attr_style, \
+    attr_subject, \
     attr_subscriptshift, \
     attr_summary, \
     attr_superscriptshift, \
@@ -1598,6 +1623,7 @@ const e_attribute last_am = a_muted;
     attr_targetrole, \
     attr_targetx, \
     attr_targety, \
+    attr_template, \
     attr_text, \
     attr_textanchor, \
     attr_textdecoration, \
@@ -1628,6 +1654,7 @@ const e_attribute last_am = a_muted;
     attr_unitsperem, \
     attr_until, \
     attr_urn, \
+    attr_updateviacache, \
     attr_usemap, \
     attr_valign, \
     attr_valphabetic, \
@@ -1659,6 +1686,7 @@ const e_attribute last_am = a_muted;
     attr_width, \
     attr_widths, \
     attr_word_spacing, \
+    attr_workertype, \
     attr_wrap, \
     attr_writingmode, \
     attr_x1, \

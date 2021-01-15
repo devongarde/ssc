@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> Demonstration </title> </head>
+ <body>
+
+<div id="example">
+ <p id="p1" class="aaa bbb"/>
+ <p id="p2" class="aaa ccc"/>
+ <p id="p3" class="bbb ccc"/>
+</div>
+
+<p></p>
+<p><em>&#x00A0;</em></p>
+<p>
+ <ol>
+ <li></li>
+ </ol>
+</p>
+
+ <ol>
+ <li>
+ <p> Hello World </p>
+ <meta title="this is an invalid example"/>
+ </li>
+</ol>
+
+<aside>
+ <ol>
+ <li> ... </li>
+ </ol>
+ <ul>
+ <li> ... </li>
+ </ul>
+</aside>
+
+<aside>
+ <ol>
+ <li> ... </li>
+ </ol>
+ Foo
+</aside>
+
+<h1>The Example Game</h1>
+ <section id="login">
+ <h2>Login</h2>
+ <form>
+ ...
+ <!-- calls login() once the user's credentials have been checked -->
+ </form>
+ <script>
+ function login() {
+ // switch screens
+ document.getElementById('login').irrelevant = true;
+ document.getElementById('game').irrelevant = false;
+ }
+ </script>
+ </section>
+ <section id="game">
+ ...
+ </section>
+
+<p>
+ <input type="image" src="frame.png" alt="Play Video"
+ onclick=" nextSibling.load(); disabled = true; return false;"
+ ><video src="video.ogg" controls="" irrelevant=""
+ onloadedfirstframe="irrelevant = false; previousSibling.irrelevant = true; autoplay = true"
+ onerror=" parentNode.irrelevant = true; parentNode.nextSibling.irrelevant = false">
+ </video>
+ </p><p irrelevant="">
+ Playback unavailable.
+ <a href="video.ogg">Download Video</a>
+ </p>
+
+</body>
+</html>

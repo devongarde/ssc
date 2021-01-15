@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -42,10 +42,10 @@ class replies;
 class context_t
 {   bool            checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, load_css_ = false, links_ = false,
                     md_export_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nochange_ = false, notify_ = false, once_ = false,
-                    presume_tags_ = false, process_webmentions_ = false, rdf_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true,
-                    rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, schema_ = false, shadow_comment_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false,
-                    ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false;
-    int             code_ = 0;
+                    presume_tags_ = false, process_webmentions_ = false, rdf_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true,
+                    rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false,
+                    spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false, versioned_ = false;
+    int             code_ = 0, title_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   html_major_ = 5, html_minor_ = 4, mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
     e_svg_version   svg_version_ = sv_none;
@@ -75,6 +75,7 @@ public:
     e_copy copy () const { return copy_; }
     bool crosslinks () const { return crosslinks_; }
     const vstr_t custom_elements () const { return custom_elements_; }
+    bool dodedu () const { return (copy_ >= c_deduplicate); }
     bool export_defined () const { return ! export_root_.empty (); }
     const ::std::string export_root () const { return export_root_; }
     const vstr_t exports () const { return exports_; }
@@ -123,6 +124,7 @@ public:
     bool rfc_1942 () const { return rfc_1942_; }
     bool rfc_1980 () const { return rfc_1980_; }
     bool rfc_2070 () const { return rfc_2070_; }
+    bool rpt_opens () const { return rpt_opens_; }
     const ::std::string root () const { return root_; }
     bool schema () const { return schema_; }
     unsigned char schema_major () const
@@ -144,6 +146,7 @@ public:
     const vstr_t shadows () const { return shadows_; }
     const vstr_t site () const { return site_; }
     bool slob () const { return slob_; }
+    bool spec () const { return spec_; }
     bool ssi () const { return ssi_; }
     bool stats_summary () const { return stats_summary_; }
     bool stats_page () const { return stats_page_; }
@@ -152,6 +155,7 @@ public:
     const vstr_t templates () const { return templates_; }
     bool test () const { return test_; }
     const ::std::string test_header () const { return test_header_; }
+    int title () const { return title_; }
     bool unknown_class () const { return ! unknown_class_; }
     const ::std::string user () const { return user_; }
     e_verbose verbose () const { return verbose_; }
@@ -161,7 +165,7 @@ public:
     bool shadow_pages () const { return ((copy_ > c_none) && (copy_ <= c_deduplicate)); }
     bool shadow_files () const { return ((copy_ > c_html) && (copy_ <= c_deduplicate)); }
     bool shadow_any () const { return shadow_pages (); }
-    bool dodedu () const { return (copy_ >= c_deduplicate); }
+    bool versioned () const { return versioned_; }
     context_t& base (const ::std::string& s) { base_ = s; return *this; }
     context_t& checking_urls (const bool b) { checking_urls_ = b; return *this; }
     context_t& clear (const bool b) { clear_ = b; return *this; }
@@ -190,6 +194,10 @@ public:
     context_t& hook (const ::std::string& s) { hook_ = s; return *this; }
     context_t& html_major (const int i);
     context_t& html_minor (const int i);
+    context_t& html_ver (const html_version& v)
+    {   html_major_ = v.mjr ();
+        html_minor_ = v.mnr ();
+        return *this; }
     context_t& incoming (const ::std::string& s) { incoming_ = s; return *this; }
     context_t& ignore (const vstr_t& s);
     context_t& index (const ::std::string& s) { index_ = s; return *this; }
@@ -241,6 +249,7 @@ public:
     context_t& rfc_1980 (const bool b) { rfc_1980_ = b; return *this; }
     context_t& rfc_2070 (const bool b) { rfc_2070_ = b; return *this; }
     context_t& root (const ::std::string& s) { root_ = s; return *this; }
+    context_t& rpt_opens (const bool b) { rpt_opens_ = b; return *this; }
     context_t& schema (const bool b)
     {   schema_ = b;
         if (sch_major_ == 0)
@@ -260,6 +269,7 @@ public:
     context_t& shadows (const vstr_t& s) { shadows_ = s; return *this; }
     context_t& site (const vstr_t& s) { site_ = s; return *this; }
     context_t& slob (const bool b) { slob_ = b; return *this; }
+    context_t& spec (const bool b) { spec_ = b; return *this; }
     context_t& ssi (const bool b) { ssi_ = b; return *this; }
     context_t& stats_summary (const bool b) { stats_summary_ = b; return *this; }
     context_t& stats_page (const bool b) { stats_page_ = b; return *this; }
@@ -269,9 +279,12 @@ public:
     context_t& templates (const vstr_t& s) { templates_ = s; return *this; }
     context_t& test (const bool b) { test_ = b; return *this; }
     context_t& test_header (const ::std::string& s) { test_header_ = s; return *this; }
+    context_t& title (const int n)
+    { if (n <= 0) title_ = 0; else title_ = n; return *this; }
     context_t& unknown_class (const bool b) { unknown_class_ = ! b; return *this; }
     context_t& user (const ::std::string& s) { user_ = s; return *this; }
     context_t& verbose (const e_verbose i) { verbose_ = i; return *this; }
+    context_t& versioned (const bool b) { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; return *this; }
     context_t& webmention (const ::std::string& w, const e_wm_status status);
     context_t& write_path (const ::std::string& s) { write_path_ = s; return *this; }
