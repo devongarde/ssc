@@ -6,7 +6,7 @@ PASS ../toast/microdata/schema-pqrs/painting.html
 
 PASS ../toast/microdata/schema-pqrs/paymentcard.html
 0 charset_mismatch charset_used charset_invalid
-16 attribute_required svg_rdf
+16 svg_rdf
 
 PASS ../toast/microdata/schema-pqrs/paymentservice.html
 18 svg_rdf
@@ -375,6 +375,7 @@ PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 PASS ../toast/microdata/schema-pqrs/speakablespecification.html
 2 naughty_lang
 3 invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+4 long_title
 
 PASS ../toast/microdata/schema-pqrs/sportsevent.html
 12 use_quote_code

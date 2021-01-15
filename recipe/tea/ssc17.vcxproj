@@ -181,6 +181,7 @@
     <ClCompile Include="..\sauce\element\parentage.cpp" />
     <ClCompile Include="..\sauce\element\state.cpp" />
     <ClCompile Include="..\sauce\feedback\nit.cpp" />
+    <ClCompile Include="..\sauce\feedback\nitnames.cpp" />
     <ClCompile Include="..\sauce\feedback\nitpick.cpp" />
     <ClCompile Include="..\sauce\icu\charset.cpp" />
     <ClCompile Include="..\sauce\icu\wrapper.cpp" />

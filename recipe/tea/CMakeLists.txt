@@ -1,8 +1,6 @@
 cmake_minimum_required (VERSION 3.11)
 project (ssc VERSION 0.0.78 LANGUAGES CXX)
 
-# set (BOOST_ROOT ${BOOST})
-# set (ICU_ROOT ${ICU_PATH})
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
 
@@ -34,6 +32,7 @@ endif ()
 if (UNIX)
   target_compile_definitions (ssc-test PRIVATE UNIX)
   target_compile_definitions (ssc PRIVATE UNIX)
+  set (Boost_USE_STATIC_LIBS ON)
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
 
@@ -41,7 +40,6 @@ if (UNIX)
       message ("OpenBSD 6.8")
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS)
       target_compile_definitions (ssc PRIVATE NO_PCF_STR FS_THROWS)
-      set (Boost_USE_STATIC_LIBS ON)
       target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
     else ()
       message ("only OpenBSD 6.8 amd64 is known to build")
@@ -50,7 +48,6 @@ if (UNIX)
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message ("Linux: only built under Centos 8 amd64 and Ubuntu Server 20.10 amd64")
-    set (Boost_USE_STATIC_LIBS ON)
     target_compile_options (ssc-test PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-warn-unused-result")
     target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
   endif ()
@@ -58,18 +55,14 @@ if (UNIX)
   if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     if (${CMAKE_SYSTEM} MATCHES "Darwin-20")
       message ("MacOS Big Sur")
-      set (Boost_USE_STATIC_LIBS ON)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-19")
       message ("MacOS Catalina")
-      # not sure why cmake gets boost static library names wrong under catalina
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-18")
       message ("MacOS Mojave")
-      # not sure why cmake gets boost static library names wrong under mojave
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-17")
       message ("MacOS High Sierra")
       target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
       target_compile_definitions (ssc PRIVATE FUDDYDUDDY)
-      set (Boost_USE_STATIC_LIBS ON)
     else ()
       message ("unknown, untested MacOS")
     endif ()
@@ -77,12 +70,12 @@ if (UNIX)
 
 endif ()
 
-find_package (Boost 1.67 REQUIRED COMPONENTS date_time filesystem locale program_options)
+find_package (Boost 1.67 REQUIRED COMPONENTS system date_time filesystem locale program_options)
 find_package (ICU 60.0 REQUIRED COMPONENTS dt in io tu uc)
 find_package (Iconv REQUIRED)
 
 # better to list the build files in one place (here) rather than litter all the source directories with a gadzillion untidy wee files
-target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h)
+target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h ${S}/feedback/nitnames.cpp)
 target_sources (ssc PRIVATE
     ${H}/attribute/attr.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h ${H}/attribute/avm.h
         ${H}/css/css.h ${H}/css/css_cache.h
@@ -120,7 +113,7 @@ target_sources (ssc PRIVATE
             ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp ${S}/element/element_jkl.cpp
             ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp ${S}/element/element_pqr.cpp
             ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp ${S}/element/parentage.cpp ${S}/element/state.cpp
-        ${S}/feedback/nit.cpp ${S}/feedback/nitpick.cpp
+        ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitpick.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp  ${S}/icu/wrapper.cpp
         ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp
         ${S}/microdata/microdata_export.cpp ${S}/microdata/microdata_itemid.cpp ${S}/microdata/microdata_itemprop.cpp ${S}/microdata/microdata_itemscope.cpp
@@ -178,6 +171,7 @@ endif ()
 target_link_libraries (ssc-test PRIVATE Boost::filesystem)
 target_link_libraries (ssc-test PRIVATE pthread)
 
+target_link_libraries (ssc PRIVATE Boost::system)
 target_link_libraries (ssc PRIVATE Boost::date_time)
 target_link_libraries (ssc PRIVATE Boost::filesystem)
 target_link_libraries (ssc PRIVATE Boost::program_options)

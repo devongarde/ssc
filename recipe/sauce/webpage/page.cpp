@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -170,7 +170,9 @@ const ::boost::filesystem::path page::get_export_path () const
 
 bool page::verify_url (nitpick& nits, const ::std::string& s, const attribute_bitset& state, const vit_t& itemtypes) const
 {   assert (directory_ != nullptr);
-    return directory_ -> verify_url (nits, version (), url (nits, version (), s), state, itemtypes); }
+    url u (nits, version (), s);
+    if (u.is_local () && ! check_links_) return true;
+    return directory_ -> verify_url (nits, version (), u, state, itemtypes); }
 
 void page::lynx ()
 {   if (! context.crosslinks ()) return;

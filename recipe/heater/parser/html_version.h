@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,42 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "schema/schema_version.h"
 
+// HTML 5 is a living standard form WhatWG, constantly changing.
+// The WhatWG website appeared in 2004, with their first draft
+// of their HTML 5 standard published in June 2007. Many have followed!
+// The W3C HTML standards appeared as follows:
+//   HTML 5.0 28 October 2014
+//   HTML 5.1 first version 1 November 2016
+//   HTML 5.1 second version 3 October 2017
+//   HTML 5.2 14 December 2017
+//   HTML 5.3 18 October 2018
+// The internal versions of HTML5 are thus:
+//   major = year-2000
+//   minor:
+//     high nibble = month
+//      low nibble = day / 2
+
+// use these ids even though their value is obvious; there is no guarantee that
+// the values will continue to be obvious, e.g., for example, if very erly webapp
+// specs should be integrated (not expected, which is why I'm not doing it, but...)
+#define HTML_2005    5
+#define HTML_2006    6
+#define HTML_2007    7
+#define HTML_2008    8
+#define HTML_2009    9
+#define HTML_2010   10
+#define HTML_2011   11
+#define HTML_2012   12
+#define HTML_2013   13
+#define HTML_2014   14
+#define HTML_2015   15
+#define HTML_2016   16
+#define HTML_2017   17
+#define HTML_2018   18
+#define HTML_2019   19
+#define HTML_2020   20
+#define HTML_2021   21
+
 #define MAJOR_TAGS   0
 #define MAJOR_1_0    1
 #define MAJOR_PLUS   1
@@ -33,11 +69,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MAJOR_X1_0   4
 #define MAJOR_X1_1   4
 #define MAJOR_X2_0   4
-#define MAJOR_5_0   14
-#define MAJOR_5_1   16
-#define MAJOR_5_2   17
-#define MAJOR_5_3   18
-#define MAJOR_J20   20
+#define MAJOR_5_0    HTML_2014
+#define MAJOR_5_1    HTML_2016
+#define MAJOR_5_2    HTML_2017
+#define MAJOR_5_3    HTML_2018
+
+#define HTML_JAN     (1 << 4)
+#define HTML_FEB     (2 << 4)
+#define HTML_MAR     (3 << 4)
+#define HTML_APR     (4 << 4)
+#define HTML_MAY     (5 << 4)
+#define HTML_JUN     (6 << 4)
+#define HTML_JUL     (7 << 4)
+#define HTML_AUG     (8 << 4)
+#define HTML_SEP     (9 << 4)
+#define HTML_OCT     (10 << 4)
+#define HTML_NOV     (11 << 4)
+#define HTML_DEC     (12 << 4)
 
 #define MINOR_TAGS   1
 #define MINOR_1_0    0
@@ -50,11 +98,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MINOR_X1_0   2
 #define MINOR_X1_1   3
 #define MINOR_X2_0   4
-#define MINOR_5_0   0xAD
-#define MINOR_5_1   0xB0
-#define MINOR_5_2   0xC7
-#define MINOR_5_3   0xA9
-#define MINOR_J20   0x7A
+#define MINOR_5_0    (HTML_OCT + 14)
+#define MINOR_5_1    (HTML_OCT + 1)
+#define MINOR_5_2    (HTML_DEC + 7)
+#define MINOR_5_3    (HTML_OCT + 9)
 
 #define HTML_TAGS   MAJOR_TAGS, MINOR_TAGS
 #define HTML_1_0    MAJOR_1_0, MINOR_1_0
@@ -71,7 +118,70 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_5_1    MAJOR_5_1, MINOR_5_1
 #define HTML_5_2    MAJOR_5_2, MINOR_5_2
 #define HTML_5_3    MAJOR_5_3, MINOR_5_3
-#define HTML_JUL20  MAJOR_J20, MINOR_J20
+
+#define HTML_JAN05  HTML_2005, (HTML_JAN + 15)
+#define HTML_JUL05  HTML_2005, HTML_JUL
+#define HTML_JAN06  HTML_2006, HTML_JAN
+#define HTML_JUN06  HTML_2006, (HTML_JUN + 13)
+#define HTML_DEC06  HTML_2006, (HTML_DEC + 15)
+#define HTML_JAN07  HTML_2007, HTML_JAN
+#define HTML_JUL07  HTML_2007, HTML_JUL
+#define HTML_OCT07  HTML_2007, HTML_OCT
+#define HTML_JAN08  HTML_2008, HTML_JAN
+#define HTML_JUL08  HTML_2008, HTML_JUL
+#define HTML_DEC08  HTML_2008, (HTML_DEC + 15)
+#define HTML_JUN09  HTML_2009, (HTML_JUN  + 15)
+#define HTML_JAN09  HTML_2009, HTML_JAN
+#define HTML_JUL09  HTML_2009, HTML_JUL
+#define HTML_DEC09  HTML_2009, (HTML_DEC + 15)
+#define HTML_JAN10  HTML_2010, HTML_JAN
+#define HTML_JUN10  HTML_2010, (HTML_JUN  + 15)
+#define HTML_JUL10  HTML_2010, HTML_JUL
+#define HTML_DEC10  HTML_2010, (HTML_DEC + 15)
+#define HTML_JAN11  HTML_2011, HTML_JAN
+#define HTML_JUL11  HTML_2011, HTML_JUL
+#define HTML_DEC11  HTML_2011, (HTML_DEC + 15)
+#define HTML_JAN12  HTML_2012, HTML_JAN
+#define HTML_JUL12  HTML_2012, HTML_JUL
+#define HTML_JAN13  HTML_2013, HTML_JAN
+#define HTML_JUN13  HTML_2013, (HTML_JUN  + 15)
+#define HTML_JUL13  HTML_2013, HTML_JUL
+#define HTML_DEC13  HTML_2013, (HTML_DEC + 15)
+#define HTML_JAN14  HTML_2014, HTML_JAN
+#define HTML_JUN14  HTML_2014, (HTML_JUN  + 15)
+#define HTML_JUL14  HTML_2014, HTML_JUL
+#define HTML_DEC14  HTML_2014, (HTML_DEC + 15)
+#define HTML_JAN15  HTML_2015, HTML_JAN
+#define HTML_JUN15  HTML_2015, (HTML_JUN  + 15)
+#define HTML_JUL15  HTML_2015, HTML_JUL
+#define HTML_DEC15  HTML_2015, (HTML_DEC + 15)
+#define HTML_JAN16  HTML_2016, HTML_JAN
+#define HTML_JUN16  HTML_2016, (HTML_JUN  + 15)
+#define HTML_JUL16  HTML_2016, HTML_JUL
+#define HTML_DEC16  HTML_2016, (HTML_DEC + 15)
+#define HTML_JAN17  HTML_2017, HTML_JAN
+#define HTML_JUN17  HTML_2017, (HTML_JUN  + 15)
+#define HTML_JUL17  HTML_2017, HTML_JUL
+#define HTML_DEC17  HTML_2017, (HTML_DEC + 15)
+#define HTML_JAN18  HTML_2018, HTML_JAN
+#define HTML_JUN18  HTML_2018, (HTML_JUN  + 15)
+#define HTML_JUL18  HTML_2018, HTML_JUL
+#define HTML_DEC18  HTML_2018, (HTML_DEC + 15)
+#define HTML_JAN19  HTML_2019, HTML_JAN
+#define HTML_JUN19  HTML_2019, (HTML_JUN  + 15)
+#define HTML_JUL19  HTML_2019, HTML_JUL
+#define HTML_DEC19  HTML_2019, (HTML_DEC + 15)
+#define HTML_JAN20  HTML_2020, HTML_JAN
+#define HTML_JUN20  HTML_2020, (HTML_JUN  + 15)
+#define HTML_JUL20  HTML_2020, HTML_JUL
+#define HTML_DEC20  HTML_2020, (HTML_DEC + 15)
+#define HTML_JAN21  HTML_2021, HTML_JAN
+
+#define HTML_5_EARLIEST_YEAR    HTML_2005
+#define HTML_5_EARLIEST_MONTH   1
+
+#define HTML_LATEST_YEAR    HTML_2021
+#define HTML_LATEST_MONTH   1
 
 #define HTML_UNDEF  0, 0
 
@@ -83,6 +193,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_XHTML        0x0000000000000020
 #define HV_ARIA         0x0000000000000040
 
+#define HV_NOTDRAFT     0x0000000000100000
 #define HV_WHATWG       0x0000000000200000
 #define HV_W3           0x0000000000400000
 
@@ -128,8 +239,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_NOT51        0x0400000000000000
 #define HV_NOT52        0x0800000000000000
 #define HV_NOT53        0x1000000000000000
-#define HV_NOT54        0x2000000000000000
-#define HV_NOTX5        0x4000000000000000
+#define HV_NOTX5        0x2000000000000000
+#define HV_NOTWG        0x4000000000000000
+
+#define HV_NOTW3        ( HV_NOT50 | HV_NOT51 | HV_NOT52 | HV_NOT53 )
 
 #define HV_NOT3         ( HV_NOT30 | HV_NOT32 )
 #define HV_NOT234       ( HV_NOT2 | HV_NOT3 | HV_NOT32 | HV_NOT4 )
@@ -138,7 +251,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_NOT4XX       ( HV_NOT4 | HV_NOTX1 | HV_NOTX2 )
 #define HV_NOTXX        ( HV_NOTX1 | HV_NOTX2 )
 #define HV_NOTXXX       ( HV_NOTXX | HV_NOTX5 )
-#define HV_NOT5         ( HV_NOT50 | HV_NOT51 | HV_NOT52 | HV_NOT53 | HV_NOT54 )
+#define HV_NOT5         ( HV_NOT50 | HV_NOT51 | HV_NOT52 | HV_NOT53 )
 
 #define HV_DEPRECATED123 ( HV_DEPRECATED1 | HV_DEPRECATED2 | HV_DEPRECATED30 | HV_DEPRECATED32 )
 #define HV_DEPRECATED23  ( HV_DEPRECATED2 | HV_DEPRECATED30 | HV_DEPRECATED32 )
@@ -257,6 +370,7 @@ public:
     explicit html_version (const unsigned char mjr) : mjr_ (mjr), mnr_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
     explicit html_version (const schema_version sv) : mjr_ (sv.mjr ()), mnr_ (sv.mnr ()), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
     html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
+    html_version (const ::boost::gregorian::date& whatwg, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
 	html_version(const html_version&) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	html_version (html_version&& ) = default;
@@ -317,11 +431,13 @@ public:
     bool notx2 () const { return ((flags_ & HV_NOTX2) == HV_NOTX2); }
     bool notx5 () const { return ((flags_ & HV_NOTX5) == HV_NOTX5); }
     bool notplus () const { return ((flags_ & HV_NOTPLUS) == HV_NOTPLUS); }
+    bool notdraft () const { return ((flags_ & HV_NOTDRAFT) == HV_NOTDRAFT); }
     bool not50 () const { return ((flags_ & HV_NOT50) == HV_NOT50); }
     bool not51 () const { return ((flags_ & HV_NOT51) == HV_NOT51); }
     bool not52 () const { return ((flags_ & HV_NOT52) == HV_NOT52); }
     bool not53 () const { return ((flags_ & HV_NOT53) == HV_NOT53); }
-    bool not54 () const { return ((flags_ & HV_NOT54) == HV_NOT54); }
+    bool notw3 () const { return ((flags_ & HV_NOTW3) == HV_NOTW3); }
+    bool notwg () const { return ((flags_ & HV_NOTWG) == HV_NOTWG); }
     bool opera () const { return ((ext_ & HE_OPERA) == HE_OPERA); }
     bool reject () const { return ((flags_ & REJECT) == REJECT); }
     bool required () const { return ((flags_ & REQUIRED) == REQUIRED); }
@@ -367,26 +483,19 @@ const html_version xhtml_1_0 (4, 2, HV_XHTML);
 const html_version xhtml_1_1 (4, 3, HV_XHTML);
 const html_version xhtml_2 (4, 4, HV_XHTML);
 
-// HTML 5 is a living standard form WhatWG, constantly changing.
-// The WhatWG website appeared in 2004, with their first draft
-// of their HTML 5 standard published in June 2007. Many have followed!
-// The W3C HTML standards appeared as follows:
-//   HTML 5.0 28 October 2014
-//   HTML 5.1 first version 1 November 2016
-//   HTML 5.1 second version 3 October 2017
-//   HTML 5.2 14 December 2017
-//   HTML 5.3 18 October 2018
-// The internal versions of HTML5 are thus:
-//   major = year-2000
-//   minor:
-//     high nibble = month
-//      low nibble = day / 2
-
+const html_version html_jan05 (HTML_JAN05, HV_WHATWG, 0);
+const html_version html_jan07 (HTML_JAN07, HV_WHATWG, 0);
+const html_version html_jul07 (HTML_JUL07, HV_WHATWG, 0);
+const html_version html_jan08 (HTML_JAN08, HV_WHATWG, 0);
+const html_version html_jul08 (HTML_JUL08, HV_WHATWG, 0);
+const html_version html_jul09 (HTML_JUL09, HV_WHATWG, 0);
+const html_version html_jan13 (HTML_JAN13, HV_WHATWG, 0);
+const html_version html_jan17 (HTML_JAN17, HV_WHATWG, 0);
+const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MATH_4 | HE_SVG_1_1);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_1_1);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_1_1);
 const html_version html_5_3 (HTML_5_3, HV_W3, HE_MATH_3 | HE_SVG_1_1);
-const html_version html_jul_20 (HTML_JUL20, HV_WHATWG, HE_MATH_4 | HE_SVG_1_1);
 
 bool operator == (const html_version& lhs, const html_version& rhs);
 bool operator != (const html_version& lhs, const html_version& rhs);

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -97,9 +97,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
 #define BLUR        a_onfocus, a_onblur
 #define DINGBAT     a_dingbat, a_md, a_seqnum, a_skip, a_align, a_clear, a_nowrap
-#define KEYMOUSE    a_onclick, a_ondblclick, a_onkeydown, a_onkeypress, a_onkeyup, a_onmousemove, a_onmousedown, a_onmouseup, \
-                    a_onmouseover, a_onmouseout
-#define ITEM        a_itemid, a_itemprop, a_itemref, a_itemscope, a_itemtype
+#define KEYMOUSE    a_onclick, a_ondblclick, a_onkeydown, a_onkeypress, a_onkeyup, a_onmousedown, a_onmousemove, a_onmouseout, a_onmouseover, a_onmouseup
 #define RESERVED4   a_datafld, a_dataformatas, a_datasrc
 #define XHTML       a_xmlns, a_xmllang, RDFa, SVG11
 
@@ -111,7 +109,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define LC3PLUS     a_index, LANGCLASS3
 #define LANGCLASS   a_dir, LANGCLASS3
 #define TIPSYLANG   TIPSY, LANGCLASS
-#define TSL         ITEM, TIPSYLANG, KEYMOUSE
+#define TSL         TIPSYLANG, KEYMOUSE
 #define HTMLPLUS    a_id, a_index, a_lang
 #define TSLPLUS     a_index, TSL
 #define ARIA        a_ariaactivedescendant, a_ariaatomic, a_ariaautocomplete, a_ariabusy, a_ariachecked, a_ariacontrols, a_ariadescribedby, \
@@ -129,16 +127,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X2_COMMON   a_edit, a_media, a_role, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_EVENT, SVG20
 #define X2          X2_COMMON, COMMON4
 #define XHTML2      X2_COMMON, X2_SOLO
-#define COMMON50    a_accesskey, a_contenteditable, a_generator_unable, a_hidden, a_spellcheck, \
-                    a_translate, a_onabort, a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, a_oncuechange, a_ondurationchange, \
-                    a_onemptied, a_onended, a_onerror, a_oninput, a_oninvalid, a_onload, a_onloadeddata, a_onloadedmetadata, \
-                    a_onloadstart, a_onmouseenter, a_onmouseleave,  a_onmousewheel, a_onpause, a_onplay, a_onplaying, a_onprogress, \
-                    a_onratechange, a_onreset, a_onresize, a_onscroll, a_onseeked, a_onseeking,  a_onselect, a_onshow, a_onstalled, \
-                    a_onsubmit, a_onsuspend, a_ontimeupdate, a_ontoggle, a_onvolumechange, a_onwaiting, BLUR, X2
-#define COMMON51    a_contextmenu, a_draggable, a_dropzone, a_onclose, a_oncontextmenu, a_oncopy, a_oncut, a_ondrag, a_ondragend, a_ondragenter, \
-                    a_ondragexit, a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, a_onpaste, a_onwheel, COMMON50
+#define COMMON5     a_accesskey, a_contenteditable, a_contextmenu, a_draggable, a_hidden, a_inert, a_irrelevant, a_item, a_itemid, a_itemprop, \
+                    a_itemref, a_itemscope, a_itemtype, a_numberonce, a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeunload, a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, \
+                    a_onclose, a_oncontextmenu, a_oncuechange, a_ondrag, a_ondragend, a_ondragenter, a_ondragexit, a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, \
+                    a_dropzone, a_ondurationchange, a_onemptied, a_onended, a_onerror, a_onformchange, a_onforminput, a_onhashchange, a_oninput, \
+                    a_oninvalid, a_is, a_onload, a_onloadeddata, a_onloadedmetadata, a_onloadstart, a_onmessage, a_onmouseenter, a_onmouseleave, a_onmousewheel, a_onpause, a_onplay, \
+                    a_onplaying, a_onprogress, a_onratechange, a_onreadystatechange, a_onreset, a_onresize, a_onscroll, a_onsought, a_onseeking, \
+                    a_onselect, a_onstorage, a_onsubmit, a_onunload, a_registrationmark, a_spellcheck, a_onshow, a_onstalled, a_subject, \
+                    a_onsuspend, a_ontimeupdate, a_template, a_ontoggle, a_translate, a_onvolumechange, a_onwaiting, BLUR, X2
+#define COMMON50    a_generator_unable, COMMON5
+#define COMMON51    a_oncopy, a_oncut, a_onpaste, a_onwheel, COMMON50
 #define COMMON52    a_onauxclick, a_onloadend, COMMON51
-#define COMMON53    a_datawild, a_is, a_numberonce, COMMON52
+#define COMMON53    a_datawild, COMMON52
 #define COMMON54    a_autocapitalise, a_autofocus, a_enterkeyhint, a_exportparts, a_inputmode, a_onformdata, a_onsecuritypolicyviolation, \
                     a_onslotchange, a_part, a_slot, COMMON53
 #define COMMON54PLUS a_index, COMMON54
@@ -214,8 +214,8 @@ element_init_t ei [] =
     { elem_blockquote, { a_align, COMMON54, a_unknown } },
     { elem_blockcode, { XHTML2, a_unknown } },
     { elem_body, {  a_alink, a_background, a_bgcolour, a_bottommargin, a_leftmargin, a_link,
-                    a_onafterprint, a_onbeforeprint, a_onbeforeunload, a_onhashchange, a_onlanguagechange, a_onmessage, a_onmessageerror, a_onoffline, a_ononline,
-                    a_onpagehide, a_onpageshow, a_onpopstate, a_onrejectionhandled,  a_onstorage, a_onunhandledrejection, a_onunload,
+                    a_onafterprint, a_onbeforeprint, a_onlanguagechange, a_onmessageerror, a_onoffline, a_ononline,
+                    a_onpagehide, a_onpageshow, a_onpopstate, a_onrejectionhandled, a_onunhandledrejection,
                     a_rightmargin, a_text, a_topmargin, a_vlink, COMMON54, a_unknown } },
     { elem_box, { a_size, LANGCLASS3, a_unknown } },
     { elem_bq, { a_nowrap, a_clear, LANGCLASS3, a_unknown } },
@@ -459,7 +459,7 @@ element_init_t ei [] =
     { elem_line, { a_externalresourcesrequired, a_x1, a_x2, a_y1, a_y2, SVG11GREV, SVG20COND, SVGPRES, SVGG, COMMON54, a_unknown } },
     { elem_lineargradient, { a_externalresourcesrequired, a_spreadmethod, a_x1, a_x2, a_y1, a_y2, SVG11XLINK, SVGPRES, SVGGRAD, COMMON54, a_unknown } },
     { elem_link, {  a_as, a_charset, a_colour, a_crossorigin, a_disabled, a_idref, a_imagesizes, a_imagesrcset, a_importance, a_integrity,
-                    a_methods, a_ping, a_prefetch, a_referrerpolicy, a_sizes, a_type, a_urn, COMMON54, a_unknown } },
+                    a_methods, a_ping, a_prefetch, a_referrerpolicy, a_scope, a_sizes, a_type, a_updateviacache, a_urn, a_workertype, COMMON54, a_unknown } },
     { elem_listener, { COMMON54, a_unknown } },
     { elem_list, { a_order, MATH3COMMON, a_unknown } },
     { elem_listing, { COMMON4, a_unknown } },
@@ -674,7 +674,7 @@ element_init_t ei [] =
     { elem_sum, { MATH3DEFCOM, a_unknown } },
     { elem_summary, { COMMON54, a_unknown } },
     { elem_sup, { a_align, COMMON54PLUS, a_unknown } },
-    { elem_svg, {   a_allow_zoom_pan, a_baseprofile, a_contentscripttype, a_contentstyletype, a_externalresourcesrequired, a_onunload, a_onzoom, a_playbackorder,
+    { elem_svg, {   a_allow_zoom_pan, a_baseprofile, a_contentscripttype, a_contentstyletype, a_externalresourcesrequired, a_onzoom, a_playbackorder,
                     a_systemrequired, a_snapshottime, a_timelinebegin, a_transform, a_version, a_viewbox, a_zoomandpan, SVG11GREV, SVGBOX, SVGFIT, SVGREF, SVG20COND,
                     SVGPRES, COMMON54PLUS, a_unknown } },
     { elem_switch, { a_externalresourcesrequired, SVG11GREV, SVGG, SVG20COND, SVGPRES, COMMON54, a_unknown } },

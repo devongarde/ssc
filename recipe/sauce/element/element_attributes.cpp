@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -36,6 +36,10 @@ void element::span_check ()
         if ((y < 0) || (y > 65534))
             pick (nit_1000, ed_50, "4.9.11 Attributes common to td and th element", es_error, ec_attribute, "ROWSPAN must be a positive integer less than 65535"); } }
 
+void element::examine_accesskey ()
+{   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul09))
+        pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "ACCESSKY requires a different version of HTML"); }
+
 void element::examine_autofocus ()
 {   if (node_.version ().mjr () < 5) return;
     element* anc (this);
@@ -62,7 +66,9 @@ bool element::examine_class ()
     for (auto x : entries)
         vc.push_back (html_class (nits (), node_.version (), x));
     for (auto c : vc)
-        if (c.is_microformat_vocabulary ())
+        if (c.is_whatwg_draft ())
+            pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_info, ec_attribute, "FYI, ", quote (c.name ()), " was once a draft HTML 5 standard class name.");
+        else if (c.is_microformat_vocabulary ())
         {   ++mf_count;
             activate_microformats ();
             if (mf_ -> is_declared (c.get ()))
@@ -147,24 +153,6 @@ void element::examine_clip ()
 {   if (node_.version ().svg_version () != sv_1_1) return;
     if ((tag () != elem_svg) || ancestral_elements_.test (elem_svg))
         pick (nit_clipped, ed_svg_1_1, "6.1 SVG's styling properties", es_error, ec_attribute, "CLIP can only be applied to an outermost <SVG> in SVG 1.1"); }
-
-void element::examine_css (const e_element tag)
-{   if (context.load_css ())
-        if ((tag == elem_link) && a_.good (a_rel))
-            if (a_.get_string (a_rel) == R_STYLESHEET)
-                if (a_.known (a_href) && a_.good (a_href))
-                {   bool is_css = false;
-                    if (a_.known (a_type))
-                    {   if (a_.good (a_type))
-                            is_css = (a_.get_string (a_type) == CSS_TYPE); }
-                    else if (page_.style_css ()) is_css = true;
-                    if (is_css)
-                    {   ::std::string name (a_.get_string (a_href));
-                        vurl_t v (a_.get_urls (a_href));
-                        for (auto u : v)
-                            if (! u.invalid ())
-                            {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
-                                context.css ().parse_file (nits (), page_, u); } } } }
 
 void element::examine_content ()
 {   if (tag () == elem_meta) return;
@@ -259,6 +247,10 @@ bool element::examine_rel (const ::std::string& content)
                     ve.push_back (x); }
                 res = true; } } }
     return res; }
+
+void element::examine_style_attr ()
+{   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul08))
+        pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "STYLE requires a different version of HTML"); }
 
 void element::examine_xlinkhref ()
 {   if (node_.id ().is_math ())

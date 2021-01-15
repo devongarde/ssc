@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -29,8 +29,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "parser/parse_css.h"
 
-// this code is probably ridiculous
-
 bool css::parsing_ = false;
 bool dotty = false;
 smsid_t callback_ids;
@@ -45,6 +43,8 @@ bool css::parse (nitpick& nits, const html_version& v, const ::std::string& cont
 
 bool css::parse_file (nitpick& nits, const page& p, const url& u)
 {   nits.set_context (0, u.original ());
+    if (context.rpt_opens ())
+        nits.pick (nit_opening_file, es_info, ec_css, "Loading ", ::boost::filesystem::absolute (u.original ()));
     ::std::string content (p.load_url (nits, u));
     if (content.empty ())
     {   nits.pick (nit_cannot_load_css, es_error, ec_css, "Cannot load ", quote (u.original ()), ", or it is empty");

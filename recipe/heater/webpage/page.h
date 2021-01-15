@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -46,6 +46,7 @@ class page
     directory* directory_ = nullptr;
     bool has_title_ = false;
     bool style_css_ = true;
+    bool check_links_ = true;
     stats_t stats_;
     schema_version schema_version_;
     ssi_compedium ssi_;
@@ -73,6 +74,8 @@ public:
     const nitpick& nits () const { return nits_; }
     bool parse (::std::string& content, const e_charcode encoding = cc_ansi);
     bool invalid () const { return nodes_.invalid (); }
+    bool check_links () const { return check_links_; }
+    void check_links (const bool b) { check_links_ = b; }
     void examine (const directory& d);
     ::std::string find_webmention () const;
     ::std::string find_mention_info (const url& u, bool text, bool anything);

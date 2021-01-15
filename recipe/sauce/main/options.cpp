@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -147,7 +147,7 @@ void options::process (int argc, char** argv)
         w webmention
         x extensions     X check crosslinked ids
         y
-        z
+        z title max      Z spec
         0
         1
         2
@@ -178,9 +178,11 @@ void options::process (int argc, char** argv)
     hidden.add_options ()
         (GENERAL CLASS, "do not report unrecognised classes")
         (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "file for persistent data, requires -N (note " GENERAL PATH ")")
+        (GENERAL RPT, "report when CSS files opened")
         (GENERAL TEST ",T", "output format for automated tests")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "user name to supply when requested (for webmentions)")
         (GENERAL WEBMENTION, "process webmentions (experimental)")
+        (NITS SPEC ",Z", "output nit codes, not numbers, in tests (scc-test rejects this format)")
         (NITS WATCH, "output debug nits, which you'll need to manage particular error messages")
         (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "use this file to test header parsing code")
         (WMIN HOOK, ::boost::program_options::value < ::std::string > (), "process incoming " WEBMENTION ", in JSON format, in specified file")
@@ -219,7 +221,8 @@ void options::process (int argc, char** argv)
         (HTML RFC1942, "Reject RFC 1942 (tables) when processing HTML 2.0")
         (HTML RFC1980, "Reject RFC 1980 (client side image maps) when processing HTML 2.0")
         (HTML RFC2070, "Reject RFC 2070 (internationalisation) when processing HTML 2.0")
-        (HTML VERSION, ::boost::program_options::value < ::std::string > (), "version of HTML presumed if no DOCTYPE (default: '1.0', note HTML 5 is year.month)")
+        (HTML TITLE ",z", ::boost::program_options::value < int > () -> default_value (MAX_IDEAL_TITLE_LENGTH), "Maximum advisable length of <TITLE> text")
+        (HTML VERSION, ::boost::program_options::value < ::std::string > (), "version of HTML presumed if no DOCTYPE (default: '1.0'). For WhatWG HTML 5 living standard, give the date of publication (e.g. 2020/7/1)")
 
         (LINKS EXTERNAL ",e", "check external links (requires curl, sets " LINKS CHECK ")")
         (LINKS FORWARD ",3", "report http forwarding errors, e.g. 301 and 308 (sets " LINKS EXTERNAL ")")
@@ -362,6 +365,7 @@ void options::contextualise ()
     context.load_css (var_.count (GENERAL CSS_OPTION) == 0);
     context.nochange (var_.count (GENERAL NOCHANGE));
     context.rdf (var_.count (GENERAL RDF));
+    context.rpt_opens (var_.count (GENERAL RPT));
     context.ssi (var_.count (GENERAL SSI));
     context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
     context.stats_page (var_.count (STATS PAGE));
@@ -372,13 +376,27 @@ void options::contextualise ()
     context.rfc_1942 (! var_.count (HTML RFC1942));
     context.rfc_1980 (! var_.count (HTML RFC1980));
     context.rfc_2070 (! var_.count (HTML RFC2070));
+    if (var_.count (HTML TITLE)) context.title (static_cast < unsigned char > (var_ [HTML TITLE].as < int > ()));
 
     if (var_.count (HTML VERSION))
     {   ::std::string ver (var_ [HTML VERSION].as < ::std::string > ());
         if (! ver.empty ())
-        {   ::std::string::size_type pos = ver.find ('.');
+        {   context.versioned (true);
+            ::std::string::size_type pos = ver.find ('.');
             if (pos == ::std::string::npos)
-                if (ver.length () == 1) context.html_major (0).html_minor (1);
+                if (ver.find ('/') != ::std::string::npos)
+                {   ::boost::gregorian::date d (::boost::gregorian::from_string (ver));
+                    if (d.is_not_a_date ()) context.err () << "bad date " << quote (ver) << " ignored\n";
+                    else
+                    {   int y = d.year (); int m = d.month ();
+                        if (y > 2000) y -= 2000;
+                        else if (y > 99) y = 99;
+                        if ((y < HTML_5_EARLIEST_YEAR) || ((y == HTML_5_EARLIEST_YEAR) && (m < HTML_5_EARLIEST_MONTH)))
+                            context.err () << quote (ver) << " is too early, presuming " << HTML_5_EARLIEST_YEAR << "/" << HTML_5_EARLIEST_MONTH << "/1\n";
+                        else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
+                            context.err () << quote (ver) << " is too recent, presuming " << HTML_LATEST_YEAR << "/" << HTML_LATEST_MONTH << "/1\n";
+                        context.html_ver (d); } }
+                else if (ver.length () == 1) context.html_major (0).html_minor (1);
                 else context.html_major (lexical < int > :: cast (ver.substr (0, pos)));
             else if (pos == ver.length () - 1) context.html_major (lexical < int > :: cast (ver.substr (0, pos))).html_minor (0);
             else if (pos == 0) context.html_major (0).html_minor (1);
@@ -436,6 +454,7 @@ void options::contextualise ()
 
     context.codes (var_.count (NITS CODES));
     context.nids (var_.count (NITS NIDS));
+    context.spec (var_.count (NITS SPEC));
     context.nits (var_.count (NITS WATCH));
 
     if (var_.count (NITS CATASTROPHE))
@@ -623,6 +642,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (GENERAL NOCHANGE)) res << GENERAL NOCHANGE "\n";
     if (var_.count (GENERAL PATH)) res << GENERAL PATH ": " << var_ [GENERAL PATH].as < ::std::string > () << "\n";
     if (var_.count (GENERAL RDF)) res << GENERAL RDF "\n";
+    if (var_.count (GENERAL RPT)) res << GENERAL RPT "\n";
     if (var_.count (GENERAL SSI)) res << GENERAL SSI "\n";
     if (var_.count (GENERAL TEST)) res << GENERAL TEST "\n";
     if (var_.count (GENERAL USER)) res << GENERAL USER ": " << var_ [GENERAL USER].as < ::std::string > () << "\n";
@@ -634,6 +654,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (HTML RFC1942)) res << HTML RFC1942 "\n";
     if (var_.count (HTML RFC1980)) res << HTML RFC1980 "\n";
     if (var_.count (HTML RFC2070)) res << HTML RFC2070 "\n";
+    if (var_.count (HTML TITLE)) res << HTML TITLE ": " << var_ [HTML TITLE].as < int > () << "\n";
     if (var_.count (HTML VERSION)) res << HTML VERSION "\n";
 
     if (var_.count (MATH VERSION)) res << MATH VERSION ": " << var_ [MATH VERSION].as < int > () << "\n";
@@ -645,6 +666,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (NITS INFO)) { res << NITS INFO ": "; pvs (res, var_ [NITS INFO].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS NIDS)) res << NITS NIDS "\n";
     if (var_.count (NITS SILENCE)) { res << NITS SILENCE ": "; pvs (res, var_ [NITS SILENCE].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS SPEC)) res << NITS SPEC "\n";
     if (var_.count (NITS WARNING)) { res << NITS WARNING ": "; pvs (res, var_ [NITS WARNING].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS WATCH)) res << NITS WATCH "\n";
 

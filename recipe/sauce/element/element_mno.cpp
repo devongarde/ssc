@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -122,7 +122,7 @@ void element::examine_media_element (e_element , const char* ref, const char* na
 
 void element::examine_meta ()
 {   bool in_head = ancestral_elements_.test (elem_head);
-    bool md = ((node_.version () == html_jul_20) || context.microdata ());
+    bool md = ((node_.version () == html_jul20) || context.microdata ());
     bool ipk = a_.known (a_itemprop);
     bool nk = a_.known (a_name);
     bool csk = a_.known (a_charset);
@@ -140,7 +140,7 @@ void element::examine_meta ()
         if (md && ipk) ++c;
         if ((c == 0) && prp) ++c;
         if (c != 1)
-            if (md) pick (nit_nahtch, ed_July2020, "4.2.5 The meta element", es_error, ec_element, "exactly one of NAME, HTTP-EQUIV, CHARSET, or ITEMPROP must be specified");
+            if (md) pick (nit_nahtch, ed_jul20, "4.2.5 The meta element", es_error, ec_element, "exactly one of NAME, HTTP-EQUIV, CHARSET, or ITEMPROP must be specified");
             else pick (nit_nahtch, ed_50, "4.2.5 The meta element", es_error, ec_element, "exactly one of NAME, HTTP-EQUIV, or CHARSET must be specified"); }
     if (csk)
     {   if (! in_head)
@@ -264,7 +264,7 @@ void element::examine_object ()
     {   if ((! a_.known (a_data) && ! a_.known (a_type)))
             pick (nit_data_type, ed_50, "4.7.4 The object element", es_error, ec_element, "either DATA or TYPE must be present");
         if (a_.known (a_itemprop) && ! a_.known (a_data))
-            pick (nit_bad_object, ed_July2020, "4.8.7 The object element", es_error, ec_attribute, "DATA is required when <OBJECT> has ITEMPROP");
+            pick (nit_bad_object, ed_jul20, "4.8.7 The object element", es_error, ec_attribute, "DATA is required when <OBJECT> has ITEMPROP");
         if (a_.known (a_usemap)) no_anchor_daddy ();
         if (a_.known (a_typemustmatch))
         {    if (! a_.known (a_data) && ! a_.known (a_type))

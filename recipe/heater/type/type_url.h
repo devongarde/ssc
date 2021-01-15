@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ template < > struct type_master < t_schema > : type_master < t_url >
         type_master < t_url > :: set_value (nits, sv, s);
         if (type_master < t_url > :: good ())
             if (! value_.has_domain () || ! value_.has_absolute_path () || ! value_.has_protocol ())
-            {   nits.pick (nit_schema_url, ed_July2020, "5.2.2 Items", es_error, ec_type, quote (s), " must be an absolute URL identifying a standard microdata type (for example, those that start with 'http://schema.org/')");
+            {   nits.pick (nit_schema_url, ed_jul20, "5.2.2 Items", es_error, ec_type, quote (s), " must be an absolute URL identifying a standard microdata type (for example, those that start with 'http://schema.org/')");
                 type_base < url, t_url > :: status (s_invalid); }
             else if (! is_schema_domain (value_.domain ()))
             {   nits.pick (nit_schema_domain, es_error, ec_type, quote (s), " is a microdata domain unknown to " PROG);

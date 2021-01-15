@@ -1111,6 +1111,9 @@
     <ClCompile Include="..\sauce\icu\charset.cpp">
       <Filter>Sauce\icu</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\feedback\nitnames.cpp">
+      <Filter>Sauce\feedback</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\stats\single\index.html">

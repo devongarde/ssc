@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -42,6 +42,7 @@ struct symbol_entry < e_rel > rel_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, R_BIBLIOENTRY, r_biblioentry },
     { { HTML_4_0 }, { HTML_UNDEF }, R_BIBLIOGRAPHY, r_bibliography },
     { { HTML_4_0 }, { HTML_UNDEF }, R_BLOCKED_BY, r_blocked_by },
+    { { HTML_JUL16, HR_LINKBODY }, { HTML_UNDEF }, "body-ok", r_bodyok },
     { { HTML_PLUS, HR_A_AREA }, { HTML_UNDEF }, R_BOOKMARK, r_bookmark },
     { { HTML_4_0, HR_53_A_AREA | HR_54_LINKHEAD }, { HTML_UNDEF }, R_CANONICAL, r_canonical },
     { { HTML_4_0 }, { HTML_UNDEF }, R_CATEGORY, r_category },
@@ -270,6 +271,7 @@ struct symbol_entry < e_rel > rel_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, R_SERVICE_DESC, r_service_desc },
     { { HTML_4_0 }, { HTML_UNDEF }, R_SERVICE_DOC, r_service_doc },
     { { HTML_4_0 }, { HTML_UNDEF }, R_SERVICE_META, r_service_meta },
+    { { HTML_JUL17, HR_52_LINKHEAD }, { HTML_DEC17 }, "serviceworker", r_serviceworker },
     { { HTML_4_0 }, { HTML_UNDEF }, R_SHORTLINK, r_shortlink },
     { { HTML_4_0 }, { HTML_UNDEF }, R_SIBLING, r_sibling },
     { { HTML_4_0 }, { HTML_UNDEF }, R_SIDEBAR, r_sidebar },

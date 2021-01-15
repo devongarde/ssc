@@ -303,7 +303,6 @@ PASS ../toast/SVG/1.1/svg11.html
 1247 svg_version
 1255 id_exists
 1285 svg_version
-1286 long_title
 1292 id_exists
 1344 url_not_found
 1347 url_not_found
@@ -319,7 +318,6 @@ PASS ../toast/SVG/1.1/svg11.html
 1463 svg_version
 1484 use_quote_code
 1493 svg_version
-1497 xmlns_namespace missing_close
 1497 xmlns_namespace missing_close
 1498 empty url_id_unfound
 1500 mixed_mess

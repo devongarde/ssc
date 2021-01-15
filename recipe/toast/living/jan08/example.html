@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> Demonstration </title> </head>
+ <body>
+
+<div id="example">
+ <p id="p1" class="aaa bbb"/>
+ <p id="p2" class="aaa ccc"/>
+ <p id="p3" class="bbb ccc"/>
+</div>
+
+<section>
+ <h1>Example of paragraphs</h1>
+ This is the <em>first</em> paragraph in this example.
+ <p>This is the second.</p>
+ <!-- This is not a paragraph. -->
+</section>
+
+<section>
+ <ins><h1>Example of paragraphs</h1>
+ This is the <em>first</em> paragraph in</ins> this example<del>.
+ <p>This is the second.</p></del>
+ <!-- This is not a paragraph. -->
+</section>
+
+<h1>The Example Game</h1>
+ <section id="login">
+ <h2>Login</h2>
+ <form>
+ ...
+ <!-- calls login() once the user's credentials have been
+checked -->
+ </form>
+ <script>
+ function login() {
+ // switch screens
+ document.getElementById('login').irrelevant = true;
+ document.getElementById('game').irrelevant = false;
+ }
+ </script>
+ </section>
+ <section id="game" irrelevant>
+ ...
+ </section>
+
+
+ </body>
+</html>

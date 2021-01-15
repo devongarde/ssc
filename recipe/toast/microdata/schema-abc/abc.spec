@@ -151,6 +151,9 @@ PASS ../toast/microdata/schema-abc/broadcastevent.html
 85 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 87 use_quote_code
 
+PASS ../toast/microdata/schema-abc/broadcastfrequencyspecification.html
+4 long_title
+
 PASS ../toast/microdata/schema-abc/broadcastservice.html
 26 svg_rdf
 34 svg_rdf
@@ -169,6 +172,9 @@ PASS ../toast/microdata/schema-abc/brokerageaccount.html
 PASS ../toast/microdata/schema-abc/car.html
 28 use_quote_code
 29 attribute_required invalid_attribute_version wrong_version attribute_required empty_link empty_link url_not_found naughty_alt
+
+PASS ../toast/microdata/schema-abc/cableorsatelliteservice.html
+4 long_title
 
 PASS ../toast/microdata/schema-abc/categorycode.html
 0 charset_mismatch charset_used charset_invalid
@@ -192,7 +198,7 @@ PASS ../toast/microdata/schema-abc/cemetery.html
 
 PASS ../toast/microdata/schema-abc/chapter.html
 14 requires_itemscope
-21 attribute_required bad_itemid
+21 bad_itemid
 
 PASS ../toast/microdata/schema-abc/claimreview.html
 30 use_quote_code
@@ -205,20 +211,17 @@ PASS ../toast/microdata/schema-abc/claimreview.html
 49 use_double_quote_code
 
 PASS ../toast/microdata/schema-abc/collection.html
-15 attribute_required
-16 attribute_required
-17 attribute_required
 19 bad_itemid
 20 use_quote_code
 21 requires_itemscope
 23 requires_itemscope
-24 attribute_required bad_itemid
+24 bad_itemid
 26 bad_itemid
 28 requires_itemscope
-29 attribute_required bad_itemid
+29 bad_itemid
 32 bad_itemid
 36 missing_close schema_url requires_itemscope inserted_missing_closure
-37 attribute_required bad_itemid
+37 bad_itemid
 
 PASS ../toast/microdata/schema-abc/collegeoruniversity-2.html
 13 unrecognised_value

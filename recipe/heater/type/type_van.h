@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -460,7 +460,7 @@ template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
         if (! string_value < t_imcastr > :: good ()) return false;
         vstr_t args (split_by_space (ss));
         if ((args.size () == 0) || (args.size () > 2))
-        {   nits.pick (nit_bad_srcset, ed_July2020, "4.8.4.2.1 Srcset attributes", es_error, ec_attribute,
+        {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_attribute,
                 "one SRCSET entry is a URL optionally followed by a width (integer 'w') or a density descriptor (x.y 'x')");
             return false; }
         type_master < t_url > u;
@@ -481,7 +481,7 @@ template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
                     if (density_ > 0.0) return true;
                     break;
                 default : break; }
-        nits.pick (nit_bad_srcset, ed_July2020, "4.8.4.2.1 Srcset attributes", es_error, ec_attribute,
+        nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_attribute,
             quote (args.at (1)), ": the second part of a SRCSET, if present, is a positive integer width immediately followed by 'w', or a positive real density immediately followed by 'x'");
         return false; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -502,7 +502,7 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
     {   string_value < t_srcset > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_srcset > :: get_string ();
         if (tidy_string < t_srcset > :: empty ())
-        {   nits.pick (nit_bad_srcset, ed_July2020, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "a SRCSET attribute cannot be empty");
+        {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "a SRCSET attribute cannot be empty");
             return false; }
         if (! tidy_string < t_srcset > :: good ()) return false;
         vstr_t xs (split_by_charset (ss, ","));
@@ -516,16 +516,16 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
             for (::std::size_t x = 0; x < max - 1; ++x)
                 for (::std::size_t y = x+1; y < max; ++y)
                 {   if ((value_ [x].width_ > 0) && (value_ [x].width_ == value_ [y].width_))
-                    {   nits.pick (nit_bad_srcset, ed_July2020, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each width in a SRCSET attribute must be unique (", value_ [x].width_, " is repeated)");
+                    {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each width in a SRCSET attribute must be unique (", value_ [x].width_, " is repeated)");
                         return false; }
                     if ((value_ [x].density_ > 0.0) && (value_ [x].density_ == value_ [y].density_))
-                    {   nits.pick (nit_bad_srcset, ed_July2020, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each density in a SRCSET attribute must be unique");
+                    {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each density in a SRCSET attribute must be unique");
                         return false; } }
         return res; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (parse (nits, v, s)) string_value < t_srcset > :: status (s_good);
         else
-        {   nits.pick (nit_bad_srcset, ed_July2020, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "SRCSET takes a comma separated list of values, each a url then optionally a space with either a width or a density");
+        {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "SRCSET takes a comma separated list of values, each a url then optionally a space with either a width or a density");
             tidy_string < t_srcset > :: status (s_invalid); } }
     void reset ()
     {   value_.clear ();

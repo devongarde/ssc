@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -114,10 +114,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <array>
 #endif // SSC_TEST
 
-#include <boost/filesystem.hpp>
-#include <boost/lexical_cast.hpp>
-#include <boost/algorithm/string.hpp>
-
 #ifndef SSC_TEST
 
 #if BOOVAR == 1
@@ -146,6 +142,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ssc_mm ::std::unordered_multimap
 #endif // ORDERED
 
+#include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/format.hpp>
 #include <boost/locale.hpp>
@@ -166,6 +163,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif
 
 #endif // SSC_TEST
+
+#include <boost/filesystem.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/algorithm/string.hpp>
 
 #ifdef __clang__
 #pragma clang diagnostic pop
@@ -245,5 +246,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define US_ASCII "US-ASCII"
 #define LATIN_1 "ISO-8859-1"
 #define UTF_8 "UTF-8"
+
+#define MAX_IDEAL_TITLE_LENGTH 32
 
 #endif // SCC_TEST

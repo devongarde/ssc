@@ -11,20 +11,20 @@ PASS ../toast/HTML/5.3/example-2.html
 
 PASS ../toast/HTML/5.3/example-3.html
 0 title_required
-2 inserted_missing_parent missing_close naughty_lang excluded_attribute excluded_attribute
+2 inserted_missing_parent missing_close naughty_lang invalid_attribute_version wrong_version invalid_attribute_version wrong_version
 5 url_not_found
 6 url_not_found
 7 url_not_found
-8 excluded_attribute
+8 invalid_attribute_version wrong_version
 12 url_not_found
 13 url_not_found
 14 url_not_found
-19 excluded_attribute excluded_attribute excluded_attribute
-21 excluded_attribute
-23 excluded_attribute
-28 excluded_attribute
-35 excluded_attribute
-36 excluded_attribute
+19 invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+21 invalid_attribute_version wrong_version
+23 invalid_attribute_version wrong_version
+28 invalid_attribute_version wrong_version
+35 invalid_attribute_version wrong_version
+36 invalid_attribute_version wrong_version
 38 url_not_found
 39 url_not_found
 40 url_not_found
@@ -117,9 +117,8 @@ PASS ../toast/HTML/5.3/html5-example.html
 2 naughty_lang
 6 element_offsite_base
 8 url_not_found cannot_load_css
-9 url_not_found
+9 url_not_found cannot_load_css
 10 url_not_found
-10 attribute_required
 80 attribute_required
 85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required
@@ -139,23 +138,23 @@ PASS ../toast/HTML/5.3/html5-example.html
 147 use_quote_code double_angular_open
 151 use_double_quote_code
 153 use_double_quote_code
-156 schema_domain excluded_attribute excluded_attribute
-158 excluded_attribute
-159 excluded_attribute
+156 schema_domain invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+158 invalid_attribute_version wrong_version
+159 invalid_attribute_version wrong_version
 163 use_quote_code
-166 excluded_attribute
-170 schema_domain excluded_attribute excluded_attribute
-172 excluded_attribute
-173 excluded_attribute
+166 invalid_attribute_version wrong_version
+170 schema_domain invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+172 invalid_attribute_version wrong_version
+173 invalid_attribute_version wrong_version
 177 use_quote_code
-181 schema_domain excluded_attribute excluded_attribute excluded_attribute
-184 schema_domain excluded_attribute excluded_attribute excluded_attribute
-185 excluded_attribute
-187 excluded_attribute
-191 schema_domain excluded_attribute excluded_attribute excluded_attribute
-194 schema_domain excluded_attribute excluded_attribute excluded_attribute
-195 excluded_attribute
-197 excluded_attribute
+181 schema_domain invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+184 schema_domain invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+185 invalid_attribute_version wrong_version
+187 invalid_attribute_version wrong_version
+191 schema_domain invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+194 schema_domain invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+195 invalid_attribute_version wrong_version
+197 invalid_attribute_version wrong_version
 241 url_not_found
 244 url_not_found
 246 no_such_folder url_not_found
@@ -181,7 +180,6 @@ PASS ../toast/HTML/5.3/html5-example.html
 378 url_not_found
 379 url_not_found
 389 no_such_folder url_not_found naughty_alt
-391 no_such_folder url_not_found
 391 no_such_folder url_not_found
 392 no_such_folder url_not_found
 393 attribute_required no_such_folder url_not_found naughty_alt
@@ -259,14 +257,14 @@ PASS ../toast/HTML/5.3/html5-example.html
 905 use_quote_code
 911 use_quote_code
 921 id_exists
-1010 schema_domain excluded_attribute excluded_attribute
-1011 excluded_attribute
-1012 excluded_attribute
-1013 excluded_attribute
-1016 excluded_attribute excluded_attribute
-1017 excluded_attribute
-1018 excluded_attribute
-1019 excluded_attribute
+1010 schema_domain invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+1011 invalid_attribute_version wrong_version
+1012 invalid_attribute_version wrong_version
+1013 invalid_attribute_version wrong_version
+1016 invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+1017 invalid_attribute_version wrong_version
+1018 invalid_attribute_version wrong_version
+1019 invalid_attribute_version wrong_version
 1041 unrecognised_value
 1061 use_quote_code
 1067 use_quote_code

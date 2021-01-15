@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> Demonstration </title> </head>
+ <body>
+
+<p>This is <em>very <strong>wrong</em>!</strong></p>
+
+<p>This <em>is <strong>correct</strong>.</em></p>
+
+<a href="demo.html">simple</a>
+
+<!-- empty attributes -->
+<input name=address disabled>
+<input name=address disabled="">
+<!-- attributes with a value -->
+<input name=address maxlength=200>
+<input name=address maxlength='200'>
+<input name=address maxlength="200">
+
+<form name="main">
+Result: <output name="result"></output>
+<script>
+document.forms.main.elements.result.value = 'Hello World';
+</script>
+</form>
+
+<ul>
+<li><a href="message.cgi?say=Hello">Say Hello</a>
+<li><a href="message.cgi?say=Welcome">Say Welcome</a>
+<li><a href="message.cgi?say=Kittens">Say Kittens</a>
+</ul>
+
+<img src="games.png" alt="Games" onload="gamesLogoHasLoaded(event)">
+
+<script>
+var img = new Image();
+img.src = 'games.png';
+img.alt = 'Games';
+img.onload = gamesLogoHasLoaded;
+// img.addEventListener('load', gamesLogoHasLoaded, false); // would work also
+</script>
+
+<!-- Do not use this style, it has a race condition! -->
+<img id="games" src="games.png" alt="Games">
+<!-- the 'load' event might fire here while the parser is taking a
+break, in which case you will not see it! -->
+<script>
+var img = document.getElementById('games');
+img.onload = gamesLogoHasLoaded; // might never fire!
+</script>
+
+<p><i>He dreamt.
+<p><i>He dreamt that he ate breakfast.
+<p><i>Then lunch.
+<p><i>And finally dinner.
+<a href="?bill&ted">Bill and Ted</a>
+
+<a href="?art&copy">Art and Copy</a>
+
+<a href="?bill&ted">Bill and Ted</a> <!-- &ted is ok, since it's not a named character
+reference -->
+<a href="?art&amp;copy">Art and Copy</a> <!-- the & has to be escaped, since &copy is a
+named character reference -->
+
+<h1>Contact details</h2>
+<hr role="cell">
+
+<input type=radio role=progressbar>
+<p>Welcome. <form><label>Name:</label> <input></form>
+
+<p>Welcome. </p><form><label>Name:</label> <input></form>
+
+<p>This smells of lemons!
+<span x-ferret-smellovision x-ferret-smellcode="LEM01"
+x-mb-outputsmell x-mb-smell="lemon juice"></span></p>
+
+<label><input type=checkbox checked name=cheese disabled> Cheese</label>
+
+<label><input type=checkbox checked=checked name=cheese disabled=disabled> Cheese</label>
+
+<label><input type='checkbox' checked name=cheese disabled=""> Cheese</label>
+
+<img class="tower" id="tower5" data-x="12" data-y="5"
+data-ai="robotarget" data-hp="46" data-ability="flames"
+src="towers/rocket.png" alt="Rocket Tower">
+<h1>ACME Corporation</h1>
+<h2>The leaders in arbitrary fast delivery since 1920</h2>
+<hgroup>
+<h1>ACME Corporation</h1>
+<h2>The leaders in arbitrary fast delivery since 1920</h2>
+</hgroup>
+
+<label>Carpet: <input type="carpet" name="c" texture="deep pile"></label>
+
+<label>Carpet: <input type="text" class="carpet" name="c" data-texture="deep pile"></label>
+
+<p><object><param><ins><map><a href="/">Apples</a></map></ins></object></p>
+<section>
+<h1>Example of paragraphs</h1>
+This is the <em>first</em> paragraph in this example.
+<p>This is the second.</p>
+<!-- This is not a paragraph. -->
+</section>
+
+<section>
+<ins><h1>Example of paragraphs</h1>
+This is the <em>first</em> paragraph in</ins> this example<del>.
+<p>This is the second.</p></del>
+<!-- This is not a paragraph. -->
+</section>
+
+<header>
+Welcome!
+<a href="about.html">
+This is home of...
+<h1>The Falcons!</h1>
+The Lockheed Martin multirole jet fighter aircraft!
+</a>
+This page discusses the F-16 Fighting Falcon's innermost secrets.
+</header>
+
+<header>
+<p>Welcome! <a href="about.html">This is home of...</a></p>
+<h1><a href="about.html">The Falcons!</a></h1>
+<p><a href="about.html">The Lockheed Martin multirole jet
+fighter aircraft!</a> This page discusses the F-16 Fighting
+Falcon's innermost secrets.</p>
+</header>
+
+<section>
+<h1>My Cats</h1>
+You can play with my cat simulator.
+<object data="cats.sim">
+To see the cat simulator, use one of the following links:
+<ul>
+<li><a href="cats.sim">Download simulator file</a>
+<li><a href="http://sims.example.com/watch?v=LYds5xY4INU">Use online simulator</a>
+</ul>
+Alternatively, upgrade to the Mellblom Browser.
+</object>
+I'm quite proud of it.
+</section>
+<section>
+<h1>My Cats</h1>
+<p>You can play with my cat simulator.</p>
+<object data="cats.sim">
+<p>To see the cat simulator, use one of the following links:</p>
+<ul>
+<li><a href="cats.sim">Download simulator file</a>
+<li><a href="http://sims.example.com/watch?v=LYds5xY4INU">Use online simulator</a>
+</ul>
+<p>Alternatively, upgrade to the Mellblom Browser.</p>
+</object>
+<p>I'm quite proud of it.</p>
+</section>
+
+<div xmlns="http://www.w3.org/1999/xhtml" dir="rtl">
+<bogus xmlns="http://example.net/ns" dir="ltr">
+<span xmlns="http://www.w3.org/1999/xhtml">
+</span>
+</bogus>
+</div>
+<p>My logs show that there was some interest in <abbr title="Hypertext
+Transport Protocol">HTTP</abbr> today.</p>
+<p dir=auto class="u1"><b><bdi>Student</bdi>:</b> How do you write "What's your name?" in
+Arabic?</p>
+<p dir=auto class="u2"><b><bdi>Teacher</bdi>:</b> امسك؟ ما/>p>
+<p dir=auto class="u1"><b><bdi>Student</bdi>:</b> Thanks.</p>
+<p dir=auto class="u2"><b><bdi>Teacher</bdi>:</b> That's written "راًشك/>."p>
+<p dir=auto class="u2"><b><bdi>Teacher</bdi>:</b> Do you know how to write "Please"?</p>
+<p dir=auto class="u1"><b><bdi>Student</bdi>:</b> "فضلك من ,"right?</p>
+<p>My sweat suit is <span style="color: green; background:
+transparent">green</span> and my eyes are <span style="color: blue;
+background: transparent">blue</span>.</p>
+<ol>
+<li data-length="2m11s">Beyond The Sea</li>
+...
+</ol>
+
+<p>The third <span data-mytrans-de="Anspruch">claim</span> covers the case of <span
+translate="no">HTML</span> markup.</p>
+<div class="spaceship" data-ship-id="92432"
+data-weapons="laser 2" data-shields="50%"
+data-x="30" data-y="10" data-z="90">
+<button class="fire"
+onclick="spaceships[this.parentNode.dataset.shipId].fire()">
+Fire
+</button>
+</div>
+<figure role="img" aria-labelledby="fish-caption">
+<pre>
+o .'`/
+' / (
+O .-'` ` `'-._ .')
+_/ (o) '. .' /
+) ))) >< <
+`\ |_\ _.' '. \
+'-._ _ .-' '.)
+jgs `\__\
+</pre>
+<figcaption id="fish-caption">
+Joan G. Stark, "<cite>fish</cite>".
+October 1997. ASCII on electrons. 28×8.
+</figcaption>
+</figure>
+
+ </body>
+</html>

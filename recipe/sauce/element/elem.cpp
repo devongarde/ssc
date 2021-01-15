@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -81,15 +81,15 @@ struct symbol_entry < e_element > elem_symbol_table [] =
     { { HTML_2_0, HV_RFC_1980 | HV_NOT30 }, { HTML_UNDEF }, "area", elem_area, ns_default, EP_CLOSED, EF_5_FLOW | EF_5_PHRASE },
     { { HTML_PLUS, 0, MATH_2_3 }, { HTML_UNDEF }, "arg", elem_arg, ns_default, EP_CLOSED | EP_ARGS_1, EF_EMPH | EF_M_CONTENT },
     { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, "array", elem_array, ns_default, 0, EF_MATH },
-    { { HTML_5_0 }, { HTML_UNDEF }, "article", elem_article, ns_default, 0, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
-    { { HTML_5_0 }, { HTML_UNDEF }, "aside", elem_aside, ns_default, EP_SIMPLE, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "article", elem_article, ns_default, 0, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "aside", elem_aside, ns_default, EP_SIMPLE, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
     { { HTML_3_0 }, { HTML_3_0 }, "atop", elem_atop, ns_default, EP_CLOSED },
     { { HTML_3_0 }, { HTML_3_0 }, "au", elem_au, ns_default, 0, EF_3_MISC },
     { { HTML_5_0 }, { HTML_UNDEF }, "audio", elem_audio, ns_default, EP_5_TRANSPARENT, EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_SVG_STR | EF_SVG2_GRAPH },
     { { HTML_1_0 }, { HTML_UNDEF }, "b", elem_b, ns_default, 0, EF_EMPH | EF_FONT | EF_3_TEXT | EF_3_MATHVC | EF_32_FONT | EF_4_FONT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_3_0 }, { HTML_3_0 }, "banner", elem_banner },
     { { HTML_3_0 }, { HTML_3_0 }, "bar", elem_bar, ns_default, 0, EF_3_MATHVC },
-    { { HTML_TAGS }, { HTML_UNDEF }, "base", elem_base, ns_default, EP_CLOSED, EF_METADATA },
+    { { HTML_TAGS, HV_NOTXX }, { HTML_UNDEF }, "base", elem_base, ns_default, EP_CLOSED, EF_METADATA },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_1_1 }, "basefont", elem_basefont, ns_default, EP_CLOSED, EF_SPECIAL | EF_4_SPECIAL },
     { { HTML_5_0 }, { HTML_UNDEF }, "bdi", elem_bdi, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_2_0, HV_RFC_2070 }, { HTML_UNDEF }, "bdo", elem_bdo, ns_default, 0, EF_PRE | EF_TEXT | EF_4_SPECIAL | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
@@ -240,7 +240,7 @@ struct symbol_entry < e_element > elem_symbol_table [] =
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "font-face-name", elem_fontfacename, ns_default, EP_CLOSED },
     { { XHTML_1_0, 0, HE_SVG_1_1 |  HE_SVG_1_2 }, { HTML_UNDEF }, "font-face-src", elem_fontfacesrc },
     { { XHTML_1_0, 0, HE_SVG_1_1 |  HE_SVG_1_2 }, { HTML_UNDEF }, "font-face-uri", elem_fontfaceuri },
-    { { HTML_5_0 }, { HTML_UNDEF }, "footer", elem_footer, ns_default, 0, EF_5_FLOW | EF_5_PALPABLE },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "footer", elem_footer, ns_default, 0, EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_PLUS }, { HTML_PLUS }, "footnote", elem_footnote, ns_default, 0, EF_MISC },
     { { XHTML_1_0, 0, MATH_1_2_3 }, { HTML_UNDEF }, "forall", elem_forall, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_PLUS, HV_NOT2L1 | HV_NOTX2 }, { HTML_UNDEF }, "form", elem_form, ns_default, 0, EF_BLOK | EF_3_BLOCK | EF_32_FORM | EF_4_BLOCK | EF_5_FLOW | EF_5_PALPABLE },
@@ -264,7 +264,7 @@ struct symbol_entry < e_element > elem_symbol_table [] =
     { { XHTML_1_1, 0, HE_SVG_1_2 | HE_SVG_X2 }, { HTML_UNDEF }, "handler", elem_handler, ns_default, EP_SIMPLE },
     { { HTML_3_0 }, { HTML_3_0 }, "hat", elem_hat, ns_default, 0, EF_3_MATHVC },
     { { HTML_1_0 }, { HTML_UNDEF }, "head", elem_head, ns_default, EP_LAZY },
-    { { HTML_5_0 }, { HTML_UNDEF }, "header", elem_header, ns_default, 0, EF_5_FLOW | EF_5_PALPABLE },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "header", elem_header, ns_default, 0, EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_JUL20 }, { HTML_UNDEF }, "hgroup", elem_hgroup, ns_default, 0, EF_HEAD | EF_5_FLOW },
     { { XHTML_1_1, 0, HE_SVG_1_2_FULL }, { HTML_UNDEF }, "hint", elem_hint, ns_default, EP_CLOSED, EF_SVG_DESC },
     { { XHTML_1_0, 0, HE_SVG_1_1 | HE_SVG_1_2 }, { HTML_UNDEF }, "hkern", elem_hkern, ns_default, EP_CLOSED | EP_UNCLOSEDSVG12 },
@@ -392,7 +392,7 @@ struct symbol_entry < e_element > elem_symbol_table [] =
     { { XHTML_1_0, 0, MATH_1_2_3 }, { HTML_UNDEF }, "munder", elem_munder, ns_default, 0, EF_M_PRESINCONTENT },
     { { XHTML_1_0, 0, MATH_1_2_3 }, { HTML_UNDEF }, "munderover", elem_munderover, ns_default, 0, EF_M_PRESINCONTENT },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, "naturalnumbers", elem_naturalnumbers, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
-    { { HTML_5_0 }, { HTML_UNDEF }, "nav", elem_nav, ns_default, 0, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "nav", elem_nav, ns_default, 0, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
     { { XHTML_1_0, 0, MATH_1_2_3 }, { HTML_UNDEF }, "neq", elem_neq, ns_default, EP_CLOSED | EP_ARGS_2, EF_M_CONTENT },
     { { HTML_TAGS, HV_DEPRECATED23 }, { HTML_3_0 }, "nextid", elem_nextid, ns_default, EP_CLOSED, EF_METADATA },
     { { XHTML_2_0 }, { XHTML_2_0 }, "nl", elem_nl, ns_default, 0, EF_X2_STRUCT | EF_X2_LIST }, // riffing; the XHTML2 spec is inconsistent re nl

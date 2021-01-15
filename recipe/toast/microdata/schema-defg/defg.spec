@@ -40,7 +40,7 @@ PASS ../toast/microdata/schema-defg/drycleaningorlaundry.html
 
 PASS ../toast/microdata/schema-defg/eooc.html
 0 charset_mismatch charset_used charset_invalid
-58 attribute_required svg_rdf empty_link empty_link
+58 svg_rdf empty_link empty_link
 
 PASS ../toast/microdata/schema-defg/event.html
 0 charset_mismatch charset_used charset_invalid

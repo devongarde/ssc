@@ -1,0 +1,107 @@
+-f ../toast/living/jul11/living.conf
+
+PASS ../toast/living/jul11/example.html
+6 inserted_missing_closure missing_open
+8 inserted_missing_closure missing_open
+10 url_not_found
+20 attribute_required
+21 ignoring_unknown attribute_barred ignoring_unknown
+22 inserted_missing_closure
+25 missing_open
+28 inserted_missing_closure inserted_missing_closure
+29 inserted_missing_closure inserted_missing_closure
+30 inserted_missing_closure inserted_missing_closure
+32 inserted_missing_closure
+41 inserted_missing_closure invalid_attribute_version wrong_version
+42 invalid_attribute_version wrong_version input_bad_aria
+46 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
+48 inserted_missing_closure missing_open
+50 inserted_missing_closure
+51 missing_open
+53 inserted_missing_closure missing_open
+57 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_value unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute invalid_attribute_version wrong_version no_such_folder url_not_found
+60 unrecognised_value unrecognised_value
+61 unrecognised_value unrecognised_value
+62 unrecognised_value unrecognised_value
+65 inserted_missing_closure attribute_unrecognised unrecognised_attribute unrecognised_value missing_open
+68 newline_in_string inserted_missing_closure newline_in_string attribute_unrecognised unrecognised_value unrecognised_attribute missing_open
+71 newline_in_string newline_in_string
+73 unrecognised_value unrecognised_value ignoring_unknown ignoring_unknown
+74 use_double_quote_code use_quote_code
+75 unrecognised_value unrecognised_value ignoring_unknown ignoring_unknown
+76 inserted_missing_closure unrecognised_value unrecognised_value ignoring_unknown ignoring_unknown
+77 unrecognised_value unrecognised_value ignoring_unknown ignoring_unknown
+78 use_quote_code use_double_quote_code inserted_missing_closure unrecognised_value unrecognised_value ignoring_unknown ignoring_unknown
+79 use_double_quote_code
+80 unrecognised_value unrecognised_value ignoring_unknown ignoring_unknown use_double_quote_code
+83 newline_in_string newline_in_string
+84 newline_in_string newline_in_string
+87 attribute_unrecognised unrecognised_attribute
+89 only_elements
+93 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_value unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
+95 unrecognised_value
+116 url_not_found
+122 use_quote_code
+125 url_not_found
+126 url_not_found
+127 url_not_found
+129 use_quote_code
+135 url_not_found
+138 inserted_missing_closure inserted_missing_closure url_not_found
+139 inserted_missing_parent inserted_missing_closure inserted_missing_closure
+140 missing_open
+144 use_quote_code
+146 ignoring_unknown attribute_barred attribute_barred
+152 use_quote_code double_angular_open
+155 ignoring_unknown attribute_barred
+156 use_double_quote_code
+158 use_double_quote_code ignoring_unknown
+159 ignoring_unknown
+
+PASS ../toast/living/jul11/example-2.html
+4 url_not_found style_not_css
+5 url_not_found
+6 url_not_found
+11 url_not_found
+13 url_not_found
+15 url_not_found
+16 url_not_found
+17 url_not_found
+19 no_such_folder url_not_found
+20 no_such_folder url_not_found
+22 no_such_folder url_not_found
+24 no_such_folder url_not_found
+25 no_such_folder url_not_found
+26 no_such_folder url_not_found
+
+PASS ../toast/living/jul11/index.html
+3 attribute_unrecognised_here unrecognised_attribute
+
+PASS ../toast/living/jul11/ls1.html
+8 url_not_found
+
+PASS ../toast/living/jul11/ls3.html
+0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/living/jul11/ls4.html
+0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/living/jul11/ls5.html
+3 xmlns_namespace
+5 use_quote_code
+8 ignoring_unknown xmlns_namespace attribute_barred attribute_barred
+9 ignoring_unknown ignoring_unknown
+10 ignoring_unknown xmlns_namespace attribute_barred
+11 ignoring_unknown ignoring_unknown
+12 ignoring_unknown
+
+PASS ../toast/living/jul11/ls8.html
+5 element_offsite_base
+7 url_not_found
+8 url_not_found
+9 url_not_found
+
+PASS ../toast/living/jul11/ls9.html
+4 long_title
+5 element_offsite_base
+8 url_not_found

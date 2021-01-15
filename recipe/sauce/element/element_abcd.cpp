@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -46,11 +46,11 @@ void element::examine_anchor ()
         {   if (a_.known (a_target) || a_.known (a_download) || a_.known (a_ping) ||  a_.known (a_referrerpolicy) ||  a_.known (a_rel) ||  a_.known (a_rev) ||  a_.known (a_hreflang) ||  a_.known (a_type))
                 pick (nit_chocolate_teapot, ed_50, "4.5.1 The a element", es_error, ec_element, "An <A> with no HREF can have no DOWNLOAD, HREFLANG, REL, REV, REFERRERPOLICY, PING, TARGET or TYPE attributes.");
             if (a_.known (a_itemprop))
-                pick (nit_chocolate_teapot, ed_July2020, "4.5.1 The a element", es_error, ec_element, "An <A> with an ITEMPROP requires an HREF."); }
+                pick (nit_chocolate_teapot, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> with an ITEMPROP requires an HREF."); }
         if (w3_minor_5 (node_.version ()) >= 4)
         {   attribute_bitset as (descendant_attributes_);
             if (as.test (a_tabindex))
-                pick (nit_tabindex, ed_July2020, "4.5.1 The a element", es_error, ec_element, "An <A> cannot have a descendant with TABINDEX."); } } }
+                pick (nit_tabindex, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> cannot have a descendant with TABINDEX."); } } }
 
 void element::examine_animatemotion ()
 {   bool had = false;
@@ -137,12 +137,21 @@ void element::examine_base ()
                 pick (nit_base_b4_lynx, ed_4, "12.4 Path information: the BASE element", es_error, ec_element, "<BASE> must appear before any element with a link");
                 break;
             default :
-                if (a_.known (a_href) || a_.known (a_target))
-                    pick (nit_base_b4_lynx, ed_50, "4.2.3 The base element", es_error, ec_element, "a <BASE> with TARGET or HREF must appear before any element with a link"); }
+                if (node_.version () >= html_jan08)
+                    if (a_.known (a_href) || a_.known (a_target))
+                        pick (nit_base_b4_lynx, ed_50, "4.2.3 The base element", es_error, ec_element, "a <BASE> with TARGET or HREF must appear before any element with a link"); }
+    if (! a_.known (a_href))
+    {   if (a_.known (a_target))
+        {   pick (nit_target, es_warning, ec_element, context.filename (), " has TARGET; " PROG " is abandoning local link checks");
+            page_.check_links (false); }
+        else if (page_.version ()  >= html_jul07)
+           pick (nit_base, ed_50, "4.2.3 The base element", es_error, ec_element, context.filename (), "<BASE> must have an HREF or a TARGET attribute");
+        return; }
     url u (nits (), node_.version (), a_.get_string (a_href));
     if (! u.empty ())
         if (! u.is_local ())
-        {   pick (nit_element_offsite_base, es_warning, ec_element, context.filename (), " has offsite base ", quote (u.original ()), ", " PROG " is abandoning link checks");
+        {   pick (nit_element_offsite_base, es_warning, ec_element, context.filename (), " has offsite base ", quote (u.original ()), ", " PROG " is abandoning local link checks");
+            page_.check_links (false);
             return; }
         else if (u.has_component (es_fragment) || u.has_component (es_query))
         {  pick (nit_element_bizarre_base, es_error, ec_element, context.filename (), " ignoring bizarre base ", quote (u.original ())); }

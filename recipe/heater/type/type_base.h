@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,6 @@ class html_version;
 struct elem;
 class element;
 
-typedef enum { s_unset, s_invalid, s_empty, s_good } e_status;
 typedef bool mono;
 
 template < typename VALUE_TYPE, e_type E > class type_base

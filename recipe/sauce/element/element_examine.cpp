@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -272,6 +272,7 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
                 else if (a_.get_string (a_lang) != a_.get_string (a_xmllang))
                     pick (nit_lang_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "if both LANG and xml:lang are specified, they must have the same value");
 
+        if (a_.known (a_accesskey)) examine_accesskey ();
         if (a_.known (a_clip)) examine_clip ();
         if (a_.known (a_content)) examine_content ();
         if (a_.known (a_href)) examine_href ();
@@ -289,6 +290,7 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
                 a_.verify_url (nits (), node_.version (), d, page_.get_disk_path (), node_.line (), ancestral_attributes_, vit_);
 
         if (a_.known (a_other)) examine_other ();
+        if (a_.known (a_style)) examine_style_attr ();
         if (a_.known (a_xlinkhref)) examine_xlinkhref ();
 
         if (node_.line () >= 0) ids_.data (node_.line ());
@@ -301,11 +303,9 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
         if (a_.known (a_draggable)) examine_draggable ();
         if (a_.known (a_class)) postprocess = examine_class ();
 
-        if (a_.known (a_rel))
-        {   examine_rel (a_.get_string (a_rel));
-            if (context.unknown_class ())
-                examine_css (tag); }
+        if (a_.known (a_rel)) examine_rel (a_.get_string (a_rel));
         if (a_.known (a_rev)) examine_rel (a_.get_string (a_rev));
+
         if (mf_ && a_.has (a_href))
             if (a_.known (a_href))
             {   ::std::string href (a_.get_string (a_href));

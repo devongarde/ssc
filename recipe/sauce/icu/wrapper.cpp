@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,8 +32,9 @@ charset_detector_match charset_detector_matches::at (const int32_t i) const
 #ifdef __GNUC__
         // GCC won't let me pass a constant C string to a function that requires a constant C string.
         // GCC insist this is required by the standard, but mysteriously neither clang nor msvc do the same.
-        // If GCC can't be bothered to behave, then neither shall I.
-    {   ::std::cerr << "GCC C++ compiler design error revealed by charset_detector_matches overflow. Aborting.\n";
+        // If GCC can't be bothered to behave, then neither shall I. Code on well-behaved compiler correctly
+        // raise an exception.
+    {   ::std::cerr << "GCC C++ compiler problem revealed by charset_detector_matches overflow. Aborting.\n";
         ::std::exit (3); }
 #else //  __GNUC__
         // meanwhile, pragmatic compilers work

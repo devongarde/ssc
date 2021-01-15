@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -22,17 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nit.h"
 #include "feedback/nitnames.h"
 #include "main/context.h"
-
-nitmap quick_nit;
-timmap quick_tim;
-
-void nit::init ()
-{  preload_nits (); }
-
-e_nit nit::lookup (const ::std::string& name)
-{   nitmap::const_iterator i = quick_nit.find (name);
-    if (i == quick_nit.cend ()) return nit_off;
-    return i -> second; }
 
 nit::nit () : code_ (nit_free), severity_ (es_undefined), category_ (ec_undefined), doc_ (ed_mishmash), ref_ (nullptr)
 {   if (context.nits ()) context.out () << "adding empty nit\n"; }
@@ -112,9 +101,9 @@ bool ignore_this_slob_stuff (const e_nit code)
                         if (ref_.empty ()) res << " [" << doc_ref (doc_) << "]";
                         else res << " [" << doc_title (doc_) << ", "<< ref_ << "]";
                     if (context.nids ())
-                    {   timmap::const_iterator i = quick_tim.find (code_);
+                    {   const ::std::string& s = lookup_name (code_);
                         res << " (" << nitcode (code_, severity_);
-                        if (i != quick_tim.end ()) res << ", " << i -> second;
+                        if (! s.empty ()) res << ", " << s;
                         res << ")"; }
                     res << "\n"; } }
     return res.str (); }
@@ -156,8 +145,11 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_svg_2_0 : return "SVG 2.0";
         case ed_w3 : return "World Wide Web Consortium";
         case ed_apache : return "Apache";
-        case ed_May2020 : return "HTML 5 (May 2020)";
-        case ed_July2020 : return "HTML 5 (July 2020)";
+        case ed_jan05 : return "HTML 5 draft (Jan 2005)";
+        case ed_jan07 : return "HTML 5 draft (Jan 2007)";
+        case ed_jul17 : return "HTML 5 (July 2017)";
+        case ed_may20 : return "HTML 5 (May 2020)";
+        case ed_jul20 : return "HTML 5 (July 2020)";
         case ed_mozilla : return "mozilla.org (May 2020)";
         case ed_microdata : return "WhatWG Microdata";
         case ed_microformats : return "microformats.org (May 2020)";
@@ -186,6 +178,11 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_51 : return "HTML 5.1 (W3), Nov 2016";
         case ed_52 : return "HTML 5.2 (W3), Dec 2017";
         case ed_53 : return "HTML 5.3 (W3), Oct 2018, draft";
+        case ed_jan05 : return "WhatWG Web Applications 1.0 Working Draft 31 January 2005";
+        case ed_jan07 : return "WhatWG Web Applications 1.0 Working Draft 4 January 2007";
+        case ed_jul17 : return "HTML 5 living standard, WhatWG, July 2017";
+        case ed_may20 : return "HTML 5 living standard, WhatWG, May 2020";
+        case ed_jul20 : return "HTML 5 living standard, WhatWG, July 2020";
         case ed_rdf : return "RDFa Core 1.1 - Third Edition";
         case ed_math_1 : return "MathML 1.01";
         case ed_math_2 : return "MathML 2.0 - Second Edition";
@@ -205,8 +202,6 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_mql : return "Media Queries, W3C recommendation, June 2012";
         case ed_ariaAug2020 : return "WhatWG Aria requirements, draft, August 2020";
         case ed_apache : return "Apache 2.4 mod_include, 2020";
-        case ed_May2020 : return "HTML 5 living standard, WhatWG, May 2020";
-        case ed_July2020 : return "HTML 5 living standard, WhatWG, July 2020";
         case ed_so_11 : return "schema.org 11.0";
         case ed_mozilla : return "moz://a, May 2020";
         case ed_microdata : return "HTML 5 living standard, WhatWG, July 2020";

@@ -1,6 +1,6 @@
 ﻿/*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ void nitpick::merge (nitpick&& np)
 
 ::std::string nitpick::review () const
 {   ::std::string res;
-    bool quote = false, dq = false, infoed = false, eol = false;;
+    bool quote = false, dq = false, infoed = false, eol = false;
     if (! empty ())
     {   for (auto n : nits_)
         {   switch (n.code ())
@@ -74,7 +74,8 @@ void nitpick::merge (nitpick&& np)
             {   extern bool ignore_this_slob_stuff (const e_nit code);
                 if ((n.code () != nit_context) && context.tell (static_cast < e_verbose > (static_cast < unsigned > (n.severity ()))) && ! ignore_this_slob_stuff (n.code ()))
                 {   res += " ";
-                    res += ::boost::lexical_cast < ::std::string > (n.code ()); } }
+                    if (context.spec ()) res += lookup_name (n.code ());
+                    else res += ::boost::lexical_cast < ::std::string > (n.code ()); } }
             else res += n.review (); }
         if (! res.empty ())
         {   ::std::string ln (::boost::lexical_cast < ::std::string > (line_));
@@ -106,7 +107,7 @@ void nitpick::set_context (const int line, const ::std::string::const_iterator b
 {   set_context (line, ::std::string (b, e)); }
 
 bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
-{   e_nit code = nit::lookup (name);
+{   e_nit code = lookup_code (name);
     if (code == nit_off) return false;
     modify_severity (code, s);
     return true; }

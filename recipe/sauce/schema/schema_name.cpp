@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020 Dylan Harris
+Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -612,8 +612,8 @@ property_name namtab [] =
     { "holdingArchive", sp_holdingarchive },
     { "homeLocation", sp_homelocation },
     { "homeTeam", sp_hometeam },
-    { "honourificPrefix", sp_honourificprefix },
-    { "honourificSuffix", sp_honourificsuffix },
+    { "honorificPrefix", sp_honourificprefix },
+    { "honorificSuffix", sp_honourificsuffix },
     { "hospitalAffiliation", sp_hospitalaffiliation },
     { "hostingOrganization", sp_hostingorganisation },
     { "hoursAvailable", sp_hoursavailable },
