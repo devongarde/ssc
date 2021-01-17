@@ -1,4 +1,4 @@
-Many documents and sometest files come from w3.org, and are licensed as follows:
+Many documents and some test files come from w3.org, and are licensed as follows:
 
 License
 

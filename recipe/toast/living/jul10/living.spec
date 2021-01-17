@@ -87,3 +87,5 @@ PASS ../toast/living/jul10/ls9.html
 4 long_title
 5 element_offsite_base
 8 url_not_found
+
+PASS ../toast/living/jul10/ls10.html

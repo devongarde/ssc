@@ -485,7 +485,7 @@ struct symbol_entry < e_attribute > attribute_symbol_table [] =
     { { HTML_3_0 }, { HTML_UNDEF }, "notation", a_notation },
     { { HTML_5_0 }, { HTML_UNDEF }, "novalidate", a_novalidate },
     { { HTML_2_0, HV_RFC_1942 }, { HTML_UNDEF }, "nowrap", a_nowrap },
-    { { HTML_JAN17 }, { HTML_UNDEF }, "nonce", a_numberonce }, // A nonce is a paedophile. Why are there attempts to normalise paedophilia in the HTML specifications?
+    { { HTML_JAN17 }, { HTML_UNDEF }, DISGUSTING, a_numberonce },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, "numalign", a_numalign },
     { { HTML_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, "num-octaves", a_numoctaves },
     { { XHTML_1_0, 0, HE_SVG_1_1 | HE_SVG_2_0 }, { HTML_UNDEF }, "numoctaves", a_numoctaves },

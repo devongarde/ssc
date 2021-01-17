@@ -38,6 +38,9 @@ public:
     void mark (const e_element f, const e_attribute m);
     void mark (const e_schema s);
     void mark (const e_schema s, const e_schema_property p);
+    void mark_meta (const e_httpequiv he);
+    void mark_meta (const e_metaname mn);
+    void mark_meta (const e_metaname mn, const ::std::string& val);
     void mark_file (const unsigned size);
     uint64_t file_count () const;
     unsigned count (const e_element e) const;

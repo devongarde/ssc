@@ -492,6 +492,21 @@
     <Filter Include="Toast\Other\base">
       <UniqueIdentifier>{bc5e4fde-3370-41c9-871c-7e98edf35473}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Info">
+      <UniqueIdentifier>{f13470c7-f632-44b1-be91-c18a1421bae8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSP">
+      <UniqueIdentifier>{3a030229-d87c-4d26-96e5-79ae90302775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSP\1">
+      <UniqueIdentifier>{cce708dc-1242-434b-a367-3c736a73820c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSP\2">
+      <UniqueIdentifier>{abbbf369-900e-45c8-ac7d-50f8cd33d0c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSP\3">
+      <UniqueIdentifier>{24be58ab-373a-441d-9907-69e5fefc7a85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -905,6 +920,15 @@
     <ClInclude Include="..\heater\type\type_charset.h">
       <Filter>Heater\type</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\type\type_metaname.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\stats\stats3.h">
+      <Filter>Heater\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_csp.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1236,6 +1260,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\feedback\nitnames.cpp">
       <Filter>Sauce\feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_csp.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -5202,6 +5229,147 @@
     <None Include="..\toast\living\jul11\ls9.html">
       <Filter>Toast\Living\jul11</Filter>
     </None>
+    <None Include="..\toast\stats\detail\keyword-1.html">
+      <Filter>Toast\Stats\Detail</Filter>
+    </None>
+    <None Include="..\toast\stats\detail\keyword-2.html">
+      <Filter>Toast\Stats\Detail</Filter>
+    </None>
+    <None Include="..\toast\stats\summary\keyword-1.html">
+      <Filter>Toast\Stats\Summary</Filter>
+    </None>
+    <None Include="..\toast\stats\summary\keyword-2.html">
+      <Filter>Toast\Stats\Summary</Filter>
+    </None>
+    <None Include="..\toast\living\jul10\ls10.html">
+      <Filter>Toast\Living\jul10</Filter>
+    </None>
+    <None Include="..\toast\living\jan11\ls10.html">
+      <Filter>Toast\Living\jan11</Filter>
+    </None>
+    <None Include="..\toast\living\jan12\ls10.html">
+      <Filter>Toast\Living\jan12</Filter>
+    </None>
+    <None Include="..\toast\living\jul11\ls10.html">
+      <Filter>Toast\Living\jul11</Filter>
+    </None>
+    <None Include="..\toast\living\jul12\ls11.html">
+      <Filter>Toast\Living\jul12</Filter>
+    </None>
+    <None Include="..\toast\living\jul13\ls11.html">
+      <Filter>Toast\Living\jul13</Filter>
+    </None>
+    <None Include="..\toast\living\jan14\ls12.html">
+      <Filter>Toast\Living\jan14</Filter>
+    </None>
+    <None Include="..\toast\living\jul14\ls12.html">
+      <Filter>Toast\Living\jul14</Filter>
+    </None>
+    <None Include="..\toast\living\jan15\ls12.html">
+      <Filter>Toast\Living\jan15</Filter>
+    </None>
+    <None Include="..\toast\living\jul15\ls12.html">
+      <Filter>Toast\Living\jul15</Filter>
+    </None>
+    <None Include="..\toast\living\jan16\ls12.html">
+      <Filter>Toast\Living\jan16</Filter>
+    </None>
+    <None Include="..\toast\living\jul16\ls12.html">
+      <Filter>Toast\Living\jul16</Filter>
+    </None>
+    <None Include="..\toast\living\jan17\ls12.html">
+      <Filter>Toast\Living\jan17</Filter>
+    </None>
+    <None Include="..\toast\living\jan13\ls11.html">
+      <Filter>Toast\Living\jan13</Filter>
+    </None>
+    <None Include="..\toast\living\jul17\ls12.html">
+      <Filter>Toast\Living\jul17</Filter>
+    </None>
+    <None Include="..\toast\living\jan18\ls12.html">
+      <Filter>Toast\Living\jan18</Filter>
+    </None>
+    <None Include="..\toast\living\jul18\ls12.html">
+      <Filter>Toast\Living\jul18</Filter>
+    </None>
+    <None Include="..\toast\living\jan19\ls12.html">
+      <Filter>Toast\Living\jan19</Filter>
+    </None>
+    <None Include="..\toast\living\jul20\ls12.html">
+      <Filter>Toast\Living\jul20</Filter>
+    </None>
+    <None Include="..\toast\living\jul19\ls12.html">
+      <Filter>Toast\Living\jul19</Filter>
+    </None>
+    <None Include="..\toast\living\jan21\ls12.html">
+      <Filter>Toast\Living\jan21</Filter>
+    </None>
+    <None Include="..\toast\living\jan20\ls12.html">
+      <Filter>Toast\Living\jan20</Filter>
+    </None>
+    <None Include="..\toast\csp\1\1.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\csp.conf">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\csp.spec">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\index.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\2\1.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\2\csp.conf">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\2\csp.spec">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\2\index.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\3\1.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\csp.conf">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\csp.spec">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\index.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\2\2.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\3\2.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\3.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\1\2.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\3.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\2\3.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\1\bad.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\2\bad.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\3\bad.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -5371,22 +5539,39 @@
     <Text Include="..\toast\conf\README.txt">
       <Filter>Toast\Conf</Filter>
     </Text>
-    <Text Include="..\..\LICENCE.txt" />
-    <Text Include="..\..\LICENSE.txt" />
-    <Text Include="..\..\README.txt" />
     <Text Include="CMakeLists.txt">
       <Filter>Tea</Filter>
     </Text>
     <Text Include="README.txt">
       <Filter>Tea</Filter>
     </Text>
-    <Text Include="..\..\releasenotes.txt" />
-    <Text Include="..\..\build.txt" />
-    <Text Include="..\..\usage.txt" />
     <Text Include="..\toast\tmp\README.txt">
       <Filter>Toast\Tmp</Filter>
     </Text>
-    <Text Include="..\..\W3-LICENCE.txt" />
+    <Text Include="..\..\build.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\LICENCE.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\LICENSE.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\README.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\releasenotes.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\usage.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\W3-LICENCE.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\gen\gen.txt">
+      <Filter>Info</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ssc.rc">

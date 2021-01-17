@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.78 LANGUAGES CXX)
+project (ssc VERSION 0.0.80 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -93,15 +93,15 @@ target_sources (ssc PRIVATE
             ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h ${H}/parser/text.h ${H}/parser/xhtml_xml.h
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
-        ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats_impl.h
+        ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats_impl.h
         ${H}/symbol/symbol.h ${H}/symbol/symbol_table.h
         ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
             ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_charset.h ${H}/type/type_class.h ${H}/type/type_colour.h
-            ${H}/type/type_core.h ${H}/type/type_currency.h ${H}/type/type_enum.h ${H}/type/type_enum_vec.h ${H}/type/type_httpequiv.h ${H}/type/type_lang.h
-            ${H}/type/type_master.h ${H}/type/type_media.h ${H}/type/type_mime.h ${H}/type/type_rdf.h ${H}/type/type_reals.h ${H}/type/type_rel.h
-            ${H}/type/type_relational.h ${H}/type/type_time.h ${H}/type/type_url.h ${H}/type/type_van.h ${H}/type/type_basic.h ${H}/type/type_id.h
-            ${H}/type/type_layout.h ${H}/type/type_math.h ${H}/type/type_measure.h ${H}/type/type_microdata.h ${H}/type/type_microformat.h ${H}/type/type_misc.h
-            ${H}/type/type_numeric.h ${H}/type/type_svg.h ${H}/type/type_varied.h ${H}/type/type_xmlns.h
+            ${H}/type/type_core.h ${H}/type/type_csp.h ${H}/type/type_currency.h ${H}/type/type_enum.h ${H}/type/type_enum_vec.h ${H}/type/type_httpequiv.h
+            ${H}/type/type_lang.h ${H}/type/type_master.h ${H}/type/type_media.h ${H}/type/type_metaname.h ${H}/type/type_mime.h ${H}/type/type_rdf.h
+            ${H}/type/type_reals.h ${H}/type/type_rel.h ${H}/type/type_relational.h ${H}/type/type_time.h ${H}/type/type_url.h ${H}/type/type_van.h
+            ${H}/type/type_basic.h ${H}/type/type_id.h ${H}/type/type_layout.h ${H}/type/type_math.h ${H}/type/type_measure.h ${H}/type/type_microdata.h
+            ${H}/type/type_microformat.h ${H}/type/type_misc.h ${H}/type/type_numeric.h ${H}/type/type_svg.h ${H}/type/type_varied.h ${H}/type/type_xmlns.h
         ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h ${H}/url/url_schemes.h
         ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
         ${H}/webmention/hook.h ${H}/webmention/irt.h ${H}/webmention/webmention.h ${H}/webmention/webmentions.h
@@ -128,9 +128,9 @@ target_sources (ssc PRIVATE
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
         ${S}/symbol/symbol.cpp ${S}/symbol/symbol_table.cpp
         ${S}/type/type.cpp ${S}/type/type_aria.cpp ${S}/type/type_autocomplete.cpp ${S}/type/type_charset.cpp ${S}/type/type_class.cpp ${S}/type/type_colour.cpp
-            ${S}/type/type_core.cpp ${S}/type/type_currency.cpp ${S}/type/type_d.cpp ${S}/type/type_enum.cpp ${S}/type/type_httpequiv.cpp ${S}/type/type_lang.cpp
-            ${S}/type/type_media.cpp ${S}/type/type_metaname.cpp ${S}/type/type_mime.cpp ${S}/type/type_paint.cpp ${S}/type/type_reals.cpp ${S}/type/type_rel.cpp
-            ${S}/type/type_sgml.cpp ${S}/type/type_svg_feature.cpp ${S}/type/type_time.cpp ${S}/type/type_transform.cpp ${S}/type/type_url.cpp
+            ${S}/type/type_core.cpp ${S}/type/type_csp.cpp ${S}/type/type_currency.cpp ${S}/type/type_d.cpp ${S}/type/type_enum.cpp ${S}/type/type_httpequiv.cpp
+            ${S}/type/type_lang.cpp ${S}/type/type_media.cpp ${S}/type/type_metaname.cpp ${S}/type/type_mime.cpp ${S}/type/type_paint.cpp ${S}/type/type_reals.cpp
+            ${S}/type/type_rel.cpp ${S}/type/type_sgml.cpp ${S}/type/type_svg_feature.cpp ${S}/type/type_time.cpp ${S}/type/type_transform.cpp ${S}/type/type_url.cpp
             ${S}/type/type_xmlns.cpp
         ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
         ${S}/utility/byteorder.cpp ${S}/utility/common.cpp ${S}/utility/quote.cpp

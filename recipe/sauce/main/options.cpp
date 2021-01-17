@@ -273,12 +273,14 @@ void options::process (int argc, char** argv)
         (WEBSITE SITE ",s", ::boost::program_options::value < vstr_t > () -> composing (), "domain name(s) for local site (default none); may be repeated")
         (WEBSITE VIRTUAL ",L", ::boost::program_options::value < vstr_t > () -> composing (), "define virtual directory, arg syntax virtual=physical; may be repeated")
 
+        (STATS EXPORT, ::boost::program_options::value < ::std::string > (), "export collected statistical data")
+        (STATS META, "report on <META> data")
         (STATS PAGE, "report individual page statistics")
         (STATS SUMMARY ",S", "report overall statistics")
 
         (SVG VERSION, ::boost::program_options::value < ::std::string > (), "presumed version of SVG if version attribute missing (requires HTML 4 or greater)")
 
-        (VALIDATION MINOR ",4", ::boost::program_options::value < int > (), "validate HTML 5 with this w3 minor version (e.g. 3 for HTML 5.3)")
+        (VALIDATION MINOR ",m", ::boost::program_options::value < int > (), "validate HTML 5 with this w3 minor version (e.g. 3 for HTML 5.3)")
         (VALIDATION MICRODATAARG, "validate HTML5 microdata")
         	;
     valid.add_options ()
@@ -368,8 +370,6 @@ void options::contextualise ()
     context.rpt_opens (var_.count (GENERAL RPT));
     context.ssi (var_.count (GENERAL SSI));
     context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
-    context.stats_page (var_.count (STATS PAGE));
-    context.stats_summary (var_.count (STATS SUMMARY));
 
     context.presume_tags (var_.count (HTML TAGS));
     context.rfc_1867 (! var_.count (HTML RFC1867));
@@ -509,6 +509,11 @@ void options::contextualise ()
     context.shadow_space (var_.count (SHADOW SPACING));
     context.shadow_ssi (var_.count (SHADOW SSI));
     if (var_.count (SHADOW VIRTUAL)) context.virtuals (var_ [SHADOW VIRTUAL].as < vstr_t > ());
+
+    if (var_.count (STATS EXPORT)) context.stats (var_ [STATS EXPORT].as < ::std::string > ());
+    context.meta (var_.count (STATS META));
+    context.stats_page (var_.count (STATS PAGE));
+    context.stats_summary (var_.count (STATS SUMMARY));
 
     if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
     if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());
@@ -657,6 +662,13 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (HTML TITLE)) res << HTML TITLE ": " << var_ [HTML TITLE].as < int > () << "\n";
     if (var_.count (HTML VERSION)) res << HTML VERSION "\n";
 
+    if (var_.count (LINKS EXTERNAL)) res << LINKS EXTERNAL "\n";
+    if (var_.count (LINKS FORWARD)) res << LINKS FORWARD "\n";
+    if (var_.count (LINKS CHECK)) res << LINKS CHECK "\n";
+    if (var_.count (LINKS ONCE)) res << LINKS ONCE "\n";
+    if (var_.count (LINKS REVOKE)) res << LINKS REVOKE "\n";
+    if (var_.count (LINKS XLINK)) res << LINKS XLINK "\n";
+
     if (var_.count (MATH VERSION)) res << MATH VERSION ": " << var_ [MATH VERSION].as < int > () << "\n";
 
     if (var_.count (NITS CATASTROPHE)) { res << NITS CATASTROPHE ": "; pvs (res, var_ [NITS CATASTROPHE].as < vstr_t > ()); res << "\n"; }
@@ -669,18 +681,6 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (NITS SPEC)) res << NITS SPEC "\n";
     if (var_.count (NITS WARNING)) { res << NITS WARNING ": "; pvs (res, var_ [NITS WARNING].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS WATCH)) res << NITS WATCH "\n";
-
-    if (var_.count (STATS PAGE)) res << STATS PAGE "\n";
-    if (var_.count (STATS SUMMARY)) res << STATS SUMMARY "\n";
-
-    if (var_.count (SVG VERSION)) res << SVG VERSION "\n";
-
-    if (var_.count (LINKS EXTERNAL)) res << LINKS EXTERNAL "\n";
-    if (var_.count (LINKS FORWARD)) res << LINKS FORWARD "\n";
-    if (var_.count (LINKS CHECK)) res << LINKS CHECK "\n";
-    if (var_.count (LINKS ONCE)) res << LINKS ONCE "\n";
-    if (var_.count (LINKS REVOKE)) res << LINKS REVOKE "\n";
-    if (var_.count (LINKS XLINK)) res << LINKS XLINK "\n";
 
     if (var_.count (MF EXPORT)) res << MF EXPORT "\n";
     if (var_.count (MF VERIFY)) res << MF VERIFY "\n";
@@ -702,6 +702,13 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (SHADOW SPACING)) res << SHADOW SPACING "\n";
     if (var_.count (SHADOW SSI)) res << SHADOW SSI "\n";
     if (var_.count (SHADOW VIRTUAL)) { res << SHADOW VIRTUAL ": "; pvs (res, var_ [SHADOW VIRTUAL].as < vstr_t > ()); res << "\n"; }
+
+    if (var_.count (STATS EXPORT)) res << STATS EXPORT ": " << var_ [STATS EXPORT].as < ::std::string > () << "\n";
+    if (var_.count (STATS META)) res << STATS META "\n";
+    if (var_.count (STATS PAGE)) res << STATS PAGE "\n";
+    if (var_.count (STATS SUMMARY)) res << STATS SUMMARY "\n";
+
+    if (var_.count (SVG VERSION)) res << SVG VERSION "\n";
 
     if (var_.count (VALIDATION CHARSET)) { res << VALIDATION CHARSET ": "; pvs (res, var_ [VALIDATION CHARSET].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION CLASS)) { res << VALIDATION CLASS ": "; pvs (res, var_ [VALIDATION CLASS].as < vstr_t > ()); res << "\n"; }

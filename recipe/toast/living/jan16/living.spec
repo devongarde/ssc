@@ -130,3 +130,6 @@ PASS ../toast/living/jan16/ls11.html
 4 long_title
 5 element_offsite_base
 8 url_not_found
+
+PASS ../toast/living/jan16/ls12.html
+2 naughty_lang

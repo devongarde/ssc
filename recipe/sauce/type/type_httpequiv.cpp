@@ -38,7 +38,8 @@ struct symbol_entry < e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_5_0 }, { HTML_UNDEF }, "content-encoding", he_content_encoding },
     { { HTML_2_0 }, { HTML_UNDEF }, "content-language", he_content_language },
     { { HTML_4_0 }, { HTML_UNDEF }, "content-script-type", he_content_script_type },
-    { { HTML_5_0 }, { HTML_UNDEF }, "content-security-policy", he_content_security_policy },
+    { { CSP_1 }, { HTML_UNDEF }, "content-security-policy", he_content_security_policy },
+    { { CSP_1 }, { HTML_UNDEF }, "content-security-policy-report-only", he_content_security_policy_report_only },
     { { HTML_2_0 }, { HTML_UNDEF }, "content-type", he_content_type },
     { { HTML_4_0 }, { HTML_UNDEF }, "content-style-type", he_content_style_type },
     { { HTML_5_0 }, { HTML_UNDEF }, "date", he_date },
@@ -89,20 +90,27 @@ template < > ::std::string validate_he_content < t_lang > (nitpick& nits, const 
     return t.get_string (); }
 
 ::std::string validate_httpequiv_content (nitpick& nits, const html_version& v, const e_httpequiv he, const ::std::string& content, page& p)
-{   switch (he)
+{   p.mark_meta (he);
+    switch (he)
     {   case he_cache_control :
         case he_content_encoding : return validate_he_content < t_content_encoding > (nits, v, content, p);
         case he_content_disposition : break;
         case he_content_language : return validate_he_content < t_lang > (nits, v, content, p);
         case he_content_script_type : return validate_he_content < t_mime > (nits, v, content, p);
+        case he_content_security_policy :
+        case he_content_security_policy_report_only : return validate_he_content < t_csp > (nits, v, content, p);
         case he_content_style_type : return validate_he_content < t_mime > (nits, v, content, p);
         case he_content_type : return validate_he_content < t_content_type > (nits, v, content, p);
         case he_context : break;
-        case he_default_style :  return validate_he_content < t_compact > (nits, v, content, p);
         case he_date :
-        case he_expires : return validate_he_content < t_datetime > (nits, v, content, p);
+        case he_expires :
+        case he_last_modified : return validate_he_content < t_datetime > (nits, v, content, p);
+        case he_default_style :  return validate_he_content < t_compact > (nits, v, content, p);
         case he_ext_cache : break;
         case he_imagetoolbar : return validate_he_content < t_yesno > (nits, v, content,p);
+        case he_keywords :
+        case he_reply_to :  nits.pick (nit_use_metaname, es_warning, ec_type, "use the NAME attribute, not HTTP-EQUIV, for this information");
+                            break;
         case he_location : return validate_he_content < t_location > (nits, v, content, p);
         case he_site_enter :
         case he_site_exit :
@@ -112,18 +120,17 @@ template < > ::std::string validate_he_content < t_lang > (nitpick& nits, const 
         case he_pragma : return validate_he_content < t_pragma > (nits, v, content, p);
         case he_refresh : return validate_he_content < t_refresh > (nits, v, content, p);
         case he_set_cookie : return validate_he_content < t_setcookie > (nits, v, content, p);
+        case he_www_authenticate : return validate_he_content < t_existential > (nits, v, content, p);
         case he_window_target : break;
-        case he_keywords :
-        case he_reply_to :  nits.pick (nit_use_metaname, es_warning, ec_type, "use the NAME attribute, not HTTP-EQUIV, for this information");
-                            break;
+        case he_x_ua_compatible : return validate_he_content < t_x_ua_compatible > (nits, v, content, p);
         case he_vary : break;
         default : nits.pick (nit_equiv_error, es_error, ec_program, "missing http_equiv type check for ", static_cast < int > (he)); }
     return ::std::string (); }
 
 vstr_t split_sides_at_semi (nitpick& nits, const ::std::string& s, const ::std::size_t min_args, const ::std::size_t max_args)
 {   vstr_t res (split_by_charset (s, ";"));
-    if (res.size () < min_args)
-        nits.pick (nit_ignoring_extra_content, es_warning, ec_type, "at least ", min_args, " arguments expected in content");
-    else if (res.size () > max_args)
+    if ((min_args > 0) && (res.size () < min_args))
+        nits.pick (nit_missing_content, es_warning, ec_type, "at least ", min_args, " arguments expected in content");
+    else if ((max_args > 0) && (res.size () > max_args))
         nits.pick (nit_ignoring_extra_content, es_warning, ec_type, "ignoring excess arguments in content (no more than ", max_args, " expected)");
     return res; }

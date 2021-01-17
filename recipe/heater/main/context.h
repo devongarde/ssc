@@ -41,10 +41,10 @@ class replies;
 
 class context_t
 {   bool            checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, load_css_ = false, links_ = false,
-                    md_export_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nochange_ = false, notify_ = false, once_ = false,
-                    presume_tags_ = false, process_webmentions_ = false, rdf_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true,
-                    rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false,
-                    spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false, versioned_ = false;
+                    md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nochange_ = false, notify_ = false,
+                    once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true,
+                    rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_ssi_ = false, shadow_space_ = false,
+                    slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   html_major_ = 5, html_minor_ = 4, mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
@@ -53,7 +53,7 @@ class context_t
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
     ::std::string   base_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, output_, path_, persisted_, root_, secret_, server_,
-                    shadow_, shadow_persist_, stub_, test_header_, user_, webmention_, write_path_, export_root_;
+                    shadow_, shadow_persist_, stats_, stub_, test_header_, user_, webmention_, write_path_, export_root_;
     ::boost::filesystem::path config_;
     e_wm_status     wm_status_ = wm_undefined;
     vstr_t          custom_elements_, exports_, extensions_, mentions_, shadow_ignore_, shadows_, site_, templates_, virtuals_;
@@ -98,8 +98,9 @@ public:
     const ::std::string macro_start () const { return macro_start_; }
     e_mathversion math_version () const { return math_version_; }
     unsigned long max_file_size () const { return static_cast < unsigned long > (max_file_size_); }
-    const vstr_t mentions () const { return mentions_; }
     bool md_export () const { return md_export_; }
+    const vstr_t mentions () const { return mentions_; }
+    bool meta () const { return meta_; }
     bool mf_export () const { return mf_export_; }
     bool mf_verify () const { return mf_verify_; }
     bool mf_version1 () const { return (mf_version_ & 1) != 0; }
@@ -148,6 +149,7 @@ public:
     bool slob () const { return slob_; }
     bool spec () const { return spec_; }
     bool ssi () const { return ssi_; }
+    const ::std::string stats () const { return stats_; }
     bool stats_summary () const { return stats_summary_; }
     bool stats_page () const { return stats_page_; }
     const ::std::string stub () const { return stub_; }
@@ -215,8 +217,9 @@ public:
         return *this; }
     context_t& math_version (const e_mathversion v) { math_version_ = v; return *this; }
     context_t& max_file_size (const long l) { max_file_size_ = l; return *this; }
-    context_t& mentions (const vstr_t& s) { mentions_ = s; return *this; }
     context_t& md_export (const bool b) { md_export_ = b; return *this; }
+    context_t& mentions (const vstr_t& s) { mentions_ = s; return *this; }
+    context_t& meta (const bool b) { meta_ = b; return *this; }
     context_t& mf_export (const bool b) { mf_export_ = b; return *this; }
     context_t& mf_verify (const bool b) { mf_verify_ = b; return *this; }
     context_t& mf_version (const unsigned char n) { mf_version_ = n; return *this; }
@@ -271,6 +274,7 @@ public:
     context_t& slob (const bool b) { slob_ = b; return *this; }
     context_t& spec (const bool b) { spec_ = b; return *this; }
     context_t& ssi (const bool b) { ssi_ = b; return *this; }
+    context_t& stats (const ::std::string& s) { stats_ = s; return *this; }
     context_t& stats_summary (const bool b) { stats_summary_ = b; return *this; }
     context_t& stats_page (const bool b) { stats_page_ = b; return *this; }
     context_t& stub (const ::std::string& s) { stub_ = s; return *this; }
@@ -317,7 +321,13 @@ public:
     {   data_.mark (s, p); }
     void mark_file (const unsigned size)
     {   data_.mark_file (size); }
-    void report_stats ()
+    void mark_meta (const e_httpequiv he)
+    {   data_.mark_meta (he); }
+    void mark_meta (const e_metaname mn)
+    {   data_.mark_meta (mn); }
+    void mark_meta (const e_metaname mn, const ::std::string& val)
+    {   data_.mark_meta (mn, val); }
+   void report_stats ()
     {   out () << data_.report (true); }
     uint64_t file_count () const
     {   return data_.file_count (); }

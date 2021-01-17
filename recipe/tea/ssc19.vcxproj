@@ -5,6 +5,14 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="KwikDbg|Win32">
+      <Configuration>KwikDbg</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="KwikDbg|x64">
+      <Configuration>KwikDbg</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -86,6 +94,7 @@
     <ClInclude Include="..\heater\stats\stats0.h" />
     <ClInclude Include="..\heater\stats\stats1.h" />
     <ClInclude Include="..\heater\stats\stats2.h" />
+    <ClInclude Include="..\heater\stats\stats3.h" />
     <ClInclude Include="..\heater\stats\stats_impl.h" />
     <ClInclude Include="..\heater\symbol\symbol.h" />
     <ClInclude Include="..\heater\symbol\symbol_table.h" />
@@ -105,6 +114,7 @@
     <ClInclude Include="..\heater\type\type_class.h" />
     <ClInclude Include="..\heater\type\type_colour.h" />
     <ClInclude Include="..\heater\type\type_core.h" />
+    <ClInclude Include="..\heater\type\type_csp.h" />
     <ClInclude Include="..\heater\type\type_currency.h" />
     <ClInclude Include="..\heater\type\type_enum.h" />
     <ClInclude Include="..\heater\type\type_enum_vec.h" />
@@ -116,6 +126,7 @@
     <ClInclude Include="..\heater\type\type_math.h" />
     <ClInclude Include="..\heater\type\type_measure.h" />
     <ClInclude Include="..\heater\type\type_media.h" />
+    <ClInclude Include="..\heater\type\type_metaname.h" />
     <ClInclude Include="..\heater\type\type_microdata.h" />
     <ClInclude Include="..\heater\type\type_microformat.h" />
     <ClInclude Include="..\heater\type\type_mime.h" />
@@ -192,12 +203,16 @@
     <ClCompile Include="..\sauce\main\ssc.cpp" />
     <ClCompile Include="..\sauce\main\standard.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_export.cpp" />
@@ -240,6 +255,7 @@
     <ClCompile Include="..\sauce\type\type_class.cpp" />
     <ClCompile Include="..\sauce\type\type_colour.cpp" />
     <ClCompile Include="..\sauce\type\type_core.cpp" />
+    <ClCompile Include="..\sauce\type\type_csp.cpp" />
     <ClCompile Include="..\sauce\type\type_currency.cpp" />
     <ClCompile Include="..\sauce\type\type_d.cpp" />
     <ClCompile Include="..\sauce\type\type_enum.cpp" />
@@ -283,6 +299,27 @@
     <None Include="..\toast\conf\corona-live.conf" />
     <None Include="..\toast\conf\corrupt.conf" />
     <None Include="..\toast\conf\live.conf" />
+    <None Include="..\toast\csp\1\1.html" />
+    <None Include="..\toast\csp\1\2.html" />
+    <None Include="..\toast\csp\1\3.html" />
+    <None Include="..\toast\csp\1\bad.html" />
+    <None Include="..\toast\csp\1\csp.conf" />
+    <None Include="..\toast\csp\1\csp.spec" />
+    <None Include="..\toast\csp\1\index.html" />
+    <None Include="..\toast\csp\2\1.html" />
+    <None Include="..\toast\csp\2\2.html" />
+    <None Include="..\toast\csp\2\3.html" />
+    <None Include="..\toast\csp\2\bad.html" />
+    <None Include="..\toast\csp\2\csp.conf" />
+    <None Include="..\toast\csp\2\csp.spec" />
+    <None Include="..\toast\csp\2\index.html" />
+    <None Include="..\toast\csp\3\1.html" />
+    <None Include="..\toast\csp\3\2.html" />
+    <None Include="..\toast\csp\3\3.html" />
+    <None Include="..\toast\csp\3\bad.html" />
+    <None Include="..\toast\csp\3\csp.conf" />
+    <None Include="..\toast\csp\3\csp.spec" />
+    <None Include="..\toast\csp\3\index.html" />
     <None Include="..\toast\HTML\1.0\html1-bad.html" />
     <None Include="..\toast\HTML\1.0\html1-bad2.html" />
     <None Include="..\toast\HTML\1.0\html1-good.html" />
@@ -502,6 +539,7 @@
     <None Include="..\toast\living\jan11\living.conf" />
     <None Include="..\toast\living\jan11\living.spec" />
     <None Include="..\toast\living\jan11\ls1.html" />
+    <None Include="..\toast\living\jan11\ls10.html" />
     <None Include="..\toast\living\jan11\ls2.html" />
     <None Include="..\toast\living\jan11\ls3.html" />
     <None Include="..\toast\living\jan11\ls4.html" />
@@ -516,6 +554,7 @@
     <None Include="..\toast\living\jan12\living.conf" />
     <None Include="..\toast\living\jan12\living.spec" />
     <None Include="..\toast\living\jan12\ls1.html" />
+    <None Include="..\toast\living\jan12\ls10.html" />
     <None Include="..\toast\living\jan12\ls2.html" />
     <None Include="..\toast\living\jan12\ls3.html" />
     <None Include="..\toast\living\jan12\ls4.html" />
@@ -531,6 +570,7 @@
     <None Include="..\toast\living\jan13\living.spec" />
     <None Include="..\toast\living\jan13\ls1.html" />
     <None Include="..\toast\living\jan13\ls10.html" />
+    <None Include="..\toast\living\jan13\ls11.html" />
     <None Include="..\toast\living\jan13\ls2.html" />
     <None Include="..\toast\living\jan13\ls3.html" />
     <None Include="..\toast\living\jan13\ls4.html" />
@@ -547,6 +587,7 @@
     <None Include="..\toast\living\jan14\ls1.html" />
     <None Include="..\toast\living\jan14\ls10.html" />
     <None Include="..\toast\living\jan14\ls11.html" />
+    <None Include="..\toast\living\jan14\ls12.html" />
     <None Include="..\toast\living\jan14\ls2.html" />
     <None Include="..\toast\living\jan14\ls3.html" />
     <None Include="..\toast\living\jan14\ls4.html" />
@@ -563,6 +604,7 @@
     <None Include="..\toast\living\jan15\ls1.html" />
     <None Include="..\toast\living\jan15\ls10.html" />
     <None Include="..\toast\living\jan15\ls11.html" />
+    <None Include="..\toast\living\jan15\ls12.html" />
     <None Include="..\toast\living\jan15\ls2.html" />
     <None Include="..\toast\living\jan15\ls3.html" />
     <None Include="..\toast\living\jan15\ls4.html" />
@@ -579,6 +621,7 @@
     <None Include="..\toast\living\jan16\ls1.html" />
     <None Include="..\toast\living\jan16\ls10.html" />
     <None Include="..\toast\living\jan16\ls11.html" />
+    <None Include="..\toast\living\jan16\ls12.html" />
     <None Include="..\toast\living\jan16\ls2.html" />
     <None Include="..\toast\living\jan16\ls3.html" />
     <None Include="..\toast\living\jan16\ls4.html" />
@@ -595,6 +638,7 @@
     <None Include="..\toast\living\jan17\ls1.html" />
     <None Include="..\toast\living\jan17\ls10.html" />
     <None Include="..\toast\living\jan17\ls11.html" />
+    <None Include="..\toast\living\jan17\ls12.html" />
     <None Include="..\toast\living\jan17\ls2.html" />
     <None Include="..\toast\living\jan17\ls3.html" />
     <None Include="..\toast\living\jan17\ls4.html" />
@@ -611,6 +655,7 @@
     <None Include="..\toast\living\jan18\ls1.html" />
     <None Include="..\toast\living\jan18\ls10.html" />
     <None Include="..\toast\living\jan18\ls11.html" />
+    <None Include="..\toast\living\jan18\ls12.html" />
     <None Include="..\toast\living\jan18\ls2.html" />
     <None Include="..\toast\living\jan18\ls3.html" />
     <None Include="..\toast\living\jan18\ls4.html" />
@@ -627,6 +672,7 @@
     <None Include="..\toast\living\jan19\ls1.html" />
     <None Include="..\toast\living\jan19\ls10.html" />
     <None Include="..\toast\living\jan19\ls11.html" />
+    <None Include="..\toast\living\jan19\ls12.html" />
     <None Include="..\toast\living\jan19\ls2.html" />
     <None Include="..\toast\living\jan19\ls3.html" />
     <None Include="..\toast\living\jan19\ls4.html" />
@@ -643,6 +689,7 @@
     <None Include="..\toast\living\jan20\ls1.html" />
     <None Include="..\toast\living\jan20\ls10.html" />
     <None Include="..\toast\living\jan20\ls11.html" />
+    <None Include="..\toast\living\jan20\ls12.html" />
     <None Include="..\toast\living\jan20\ls2.html" />
     <None Include="..\toast\living\jan20\ls3.html" />
     <None Include="..\toast\living\jan20\ls4.html" />
@@ -659,6 +706,7 @@
     <None Include="..\toast\living\jan21\ls1.html" />
     <None Include="..\toast\living\jan21\ls10.html" />
     <None Include="..\toast\living\jan21\ls11.html" />
+    <None Include="..\toast\living\jan21\ls12.html" />
     <None Include="..\toast\living\jan21\ls2.html" />
     <None Include="..\toast\living\jan21\ls3.html" />
     <None Include="..\toast\living\jan21\ls4.html" />
@@ -697,6 +745,7 @@
     <None Include="..\toast\living\jul10\living.conf" />
     <None Include="..\toast\living\jul10\living.spec" />
     <None Include="..\toast\living\jul10\ls1.html" />
+    <None Include="..\toast\living\jul10\ls10.html" />
     <None Include="..\toast\living\jul10\ls2.html" />
     <None Include="..\toast\living\jul10\ls3.html" />
     <None Include="..\toast\living\jul10\ls4.html" />
@@ -711,6 +760,7 @@
     <None Include="..\toast\living\jul11\living.conf" />
     <None Include="..\toast\living\jul11\living.spec" />
     <None Include="..\toast\living\jul11\ls1.html" />
+    <None Include="..\toast\living\jul11\ls10.html" />
     <None Include="..\toast\living\jul11\ls2.html" />
     <None Include="..\toast\living\jul11\ls3.html" />
     <None Include="..\toast\living\jul11\ls4.html" />
@@ -726,6 +776,7 @@
     <None Include="..\toast\living\jul12\living.spec" />
     <None Include="..\toast\living\jul12\ls1.html" />
     <None Include="..\toast\living\jul12\ls10.html" />
+    <None Include="..\toast\living\jul12\ls11.html" />
     <None Include="..\toast\living\jul12\ls2.html" />
     <None Include="..\toast\living\jul12\ls3.html" />
     <None Include="..\toast\living\jul12\ls4.html" />
@@ -741,6 +792,7 @@
     <None Include="..\toast\living\jul13\living.spec" />
     <None Include="..\toast\living\jul13\ls1.html" />
     <None Include="..\toast\living\jul13\ls10.html" />
+    <None Include="..\toast\living\jul13\ls11.html" />
     <None Include="..\toast\living\jul13\ls2.html" />
     <None Include="..\toast\living\jul13\ls3.html" />
     <None Include="..\toast\living\jul13\ls4.html" />
@@ -757,6 +809,7 @@
     <None Include="..\toast\living\jul14\ls1.html" />
     <None Include="..\toast\living\jul14\ls10.html" />
     <None Include="..\toast\living\jul14\ls11.html" />
+    <None Include="..\toast\living\jul14\ls12.html" />
     <None Include="..\toast\living\jul14\ls2.html" />
     <None Include="..\toast\living\jul14\ls3.html" />
     <None Include="..\toast\living\jul14\ls4.html" />
@@ -773,6 +826,7 @@
     <None Include="..\toast\living\jul15\ls1.html" />
     <None Include="..\toast\living\jul15\ls10.html" />
     <None Include="..\toast\living\jul15\ls11.html" />
+    <None Include="..\toast\living\jul15\ls12.html" />
     <None Include="..\toast\living\jul15\ls2.html" />
     <None Include="..\toast\living\jul15\ls3.html" />
     <None Include="..\toast\living\jul15\ls4.html" />
@@ -789,6 +843,7 @@
     <None Include="..\toast\living\jul16\ls1.html" />
     <None Include="..\toast\living\jul16\ls10.html" />
     <None Include="..\toast\living\jul16\ls11.html" />
+    <None Include="..\toast\living\jul16\ls12.html" />
     <None Include="..\toast\living\jul16\ls2.html" />
     <None Include="..\toast\living\jul16\ls3.html" />
     <None Include="..\toast\living\jul16\ls4.html" />
@@ -805,6 +860,7 @@
     <None Include="..\toast\living\jul17\ls1.html" />
     <None Include="..\toast\living\jul17\ls10.html" />
     <None Include="..\toast\living\jul17\ls11.html" />
+    <None Include="..\toast\living\jul17\ls12.html" />
     <None Include="..\toast\living\jul17\ls2.html" />
     <None Include="..\toast\living\jul17\ls3.html" />
     <None Include="..\toast\living\jul17\ls4.html" />
@@ -821,6 +877,7 @@
     <None Include="..\toast\living\jul18\ls1.html" />
     <None Include="..\toast\living\jul18\ls10.html" />
     <None Include="..\toast\living\jul18\ls11.html" />
+    <None Include="..\toast\living\jul18\ls12.html" />
     <None Include="..\toast\living\jul18\ls2.html" />
     <None Include="..\toast\living\jul18\ls3.html" />
     <None Include="..\toast\living\jul18\ls4.html" />
@@ -837,6 +894,7 @@
     <None Include="..\toast\living\jul19\ls1.html" />
     <None Include="..\toast\living\jul19\ls10.html" />
     <None Include="..\toast\living\jul19\ls11.html" />
+    <None Include="..\toast\living\jul19\ls12.html" />
     <None Include="..\toast\living\jul19\ls2.html" />
     <None Include="..\toast\living\jul19\ls3.html" />
     <None Include="..\toast\living\jul19\ls4.html" />
@@ -853,6 +911,7 @@
     <None Include="..\toast\living\jul20\ls1.html" />
     <None Include="..\toast\living\jul20\ls10.html" />
     <None Include="..\toast\living\jul20\ls11.html" />
+    <None Include="..\toast\living\jul20\ls12.html" />
     <None Include="..\toast\living\jul20\ls2.html" />
     <None Include="..\toast\living\jul20\ls3.html" />
     <None Include="..\toast\living\jul20\ls4.html" />
@@ -1331,6 +1390,8 @@
     <None Include="..\toast\shadow\ssi\ssi.spec" />
     <None Include="..\toast\stats\detail\index.html" />
     <None Include="..\toast\stats\detail\itemref.html" />
+    <None Include="..\toast\stats\detail\keyword-1.html" />
+    <None Include="..\toast\stats\detail\keyword-2.html" />
     <None Include="..\toast\stats\detail\md-ref.html" />
     <None Include="..\toast\stats\detail\stats.conf" />
     <None Include="..\toast\stats\detail\stats.spec" />
@@ -1340,6 +1401,8 @@
     <None Include="..\toast\stats\single\stats.spec" />
     <None Include="..\toast\stats\summary\index.html" />
     <None Include="..\toast\stats\summary\itemref.html" />
+    <None Include="..\toast\stats\summary\keyword-1.html" />
+    <None Include="..\toast\stats\summary\keyword-2.html" />
     <None Include="..\toast\stats\summary\md-ref.html" />
     <None Include="..\toast\stats\summary\stats.conf" />
     <None Include="..\toast\stats\summary\stats.spec" />
@@ -1654,6 +1717,7 @@
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
     <Text Include="..\..\W3-LICENCE.txt" />
+    <Text Include="..\gen\gen.txt" />
     <Text Include="..\toast\conf\README.txt" />
     <Text Include="..\toast\tmp\README.txt" />
     <Text Include="..\toast\virtual\README.txt" />
@@ -1695,6 +1759,12 @@
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -1705,6 +1775,14 @@
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <EnableASAN>false</EnableASAN>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
@@ -1729,10 +1807,16 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -1740,6 +1824,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
@@ -1754,12 +1843,46 @@
     <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <HeapReserveSize>33554432</HeapReserveSize>
+      <StackReserveSize>67108864</StackReserveSize>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..
+$(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
@@ -1847,6 +1970,35 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..
 $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <HeapReserveSize>33554432</HeapReserveSize>
+      <StackReserveSize>67108864</StackReserveSize>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

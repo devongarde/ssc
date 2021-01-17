@@ -64,6 +64,18 @@ void stats_t::mark_file (const unsigned size)
 {   assert (p_ != nullptr);
     p_ -> mark_file (size); }
 
+void stats_t::mark_meta (const e_httpequiv he)
+{   assert (p_ != nullptr);
+    p_ -> mark_meta (he); }
+
+void stats_t::mark_meta (const e_metaname mn)
+{   assert (p_ != nullptr);
+    p_ -> mark_meta (mn); }
+
+void stats_t::mark_meta (const e_metaname mn, const ::std::string& val)
+{   assert (p_ != nullptr);
+    p_ -> mark_meta (mn, val); }
+
 ::std::string stats_t::report (const bool grand) const
 {   assert (p_ != nullptr);
     return p_ -> report (grand); }

@@ -277,6 +277,25 @@ typedef enum { c_none, c_html, c_hard, c_soft, c_copy, c_deduplicate, c_rpt } e_
 typedef enum { cc_anonymous, cc_credentials } ev_cors;
 typedef enum { co_none, co_updiagonalstrike, co_downdiagonalstrike, co_verticalstrike, co_horizontalstrike } e_crossout;
 
+typedef enum {  csp_context,
+                // CSP 1
+                csp_connect, csp_default, csp_font, csp_frame, csp_img, csp_media, csp_object, csp_script, csp_style,
+                csp_sandbox, csp_report_uri,
+                // CSP 2
+                csp_base_uri, csp_child, csp_form_action, csp_frame_ancestors, csp_plugin_types,
+                // CSP 3
+                csp_manifest, csp_prefetch, csp_script_elem, csp_script_attr, csp_style_elem, csp_style_attr,
+                csp_worker, csp_navigate_to, csp_report_to,
+                // Extensions
+                csp_block_all_mixed_content, csp_update_insecure_requests, csp_require_sri_for,
+                csp_error } e_csp_directive;
+
+typedef enum {  cspa_context,
+                cspa_forms, cspa_pointer_lock, cspa_popups, cspa_same_origin, cspa_scripts, cspa_top_navigation,
+                cspa_error } e_csp_allow;
+typedef enum {  csk_context,
+                csk_self, csk_unsafe_inline, csk_unsafe_eval, csk_strict_dynamic, csk_unsafe_hashes, csk_report_sample, csk_unsafe_allow_redirects,
+                csk_error } e_csp_keyword;
 typedef enum {  e_iso_context,
                 e_iso_AED, e_iso_AFN, e_iso_ALL, e_iso_AMD, e_iso_ANG, e_iso_AOA, e_iso_ARS, e_iso_AUD, e_iso_AWG, e_iso_AZN, e_iso_BAM,
                 e_iso_BBD, e_iso_BDT, e_iso_BGN, e_iso_BHD, e_iso_BIF, e_iso_BMD, e_iso_BND, e_iso_BOB, e_iso_BOV, e_iso_BRL, e_iso_BSD,
@@ -317,7 +336,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan07, ed_jul17, ed_may20, ed_jul20,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_math_1, ed_math_2, ed_math_3, ed_math_4,
-                ed_iso_8859_1,
+                ed_iso_8859_1, ed_csp,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_w3, ed_mql, ed_ariaAug2020, ed_mozilla,
                 ed_microdata, ed_microformats, ed_rdf, ed_apache, ed_so_11,
                 ed_imaginary } e_doc;
@@ -447,9 +466,9 @@ typedef enum { al_left, al_center, al_right, al_justify, al_char } e_halign;
 typedef enum
 {   he_context,
     he_allow, he_cache_control, he_content_disposition, he_content_encoding, he_content_language, he_content_script_type,
-    he_content_security_policy, he_content_style_type, he_content_type, he_date, he_default_style, he_expires, he_ext_cache,
-    he_imagetoolbar, he_last_modified, he_location, he_pics_label, he_pragma, he_refresh, he_set_cookie, he_vary, he_window_target,
-    he_www_authenticate, he_x_ua_compatible,
+    he_content_security_policy, he_content_security_policy_report_only, he_content_style_type, he_content_type, he_date,
+    he_default_style, he_expires, he_ext_cache, he_imagetoolbar, he_last_modified, he_location, he_pics_label, he_pragma,
+    he_refresh, he_set_cookie, he_vary, he_window_target, he_www_authenticate, he_x_ua_compatible,
 
     // HTML 2
     he_keywords, he_reply_to,
@@ -648,7 +667,7 @@ typedef enum { mn_context,
                mn_citation_doi, mn_citation_firstpage, mn_citation_fulltext_html_url, mn_citation_isbn, mn_citation_issn, mn_citation_issue,
                mn_citation_journal_abbrev, mn_citation_journal_title, mn_citation_keywords, mn_citation_language, mn_citation_lastpage,
                mn_citation_pdf_url, mn_citation_publication_date, mn_citation_publisher, mn_citation_technical_report_institution,
-               mn_citation_technical_report_number, mn_citation_title, mn_citation_volume, mn_collection, mn_contact, mn_creator,
+               mn_citation_technical_report_number, mn_citation_title, mn_citation_volume, mn_collection, mn_colour_scheme, mn_contact, mn_creator,
                mn_csrf_param, mn_csrf_token, mn_da_anonymiseip, mn_da_contactcompany, mn_da_contactemail, mn_da_contactfirstname,
                mn_da_contactlastname, mn_da_contactname, mn_da_contacttelephone, mn_da_conversioncurrency, mn_da_conversionid,
                mn_da_conversionvalue, mn_da_goalcurrency, mn_da_goalid, mn_da_goalvalue, mn_da_interactionselector, mn_da_pagerole,
@@ -689,7 +708,7 @@ typedef enum { mn_context,
                mn_shareaholic_drupal_version, mn_shareaholic_image, mn_shareaholic_keywords, mn_shareaholic_language, mn_shareaholic_outstreamads,
                mn_shareaholic_shareable_page, mn_shareaholic_site_id, mn_shareaholic_site_name, mn_shareaholic_url, mn_shareaholic_wp_version,
                mn_signet_authors, mn_signet_links, mn_skype_toolbar, mn_startindex, mn_startver, mn_subject_datetime, mn_subject_system,
-               mn_theme_color, mn_thumbnail, mn_topper, mn_topper_major, mn_topper_minor, mn_totalresults, mn_translator, mn_twitter_app_country,
+               mn_theme_colour, mn_thumbnail, mn_topper, mn_topper_major, mn_topper_minor, mn_totalresults, mn_translator, mn_twitter_app_country,
                mn_twitter_app_id_googleplay, mn_twitter_app_id_ipad, mn_twitter_app_id_iphone, mn_twitter_app_name_googleplay,
                mn_twitter_app_name_ipad, mn_twitter_app_name_iphone, mn_twitter_app_url_googleplay, mn_twitter_app_url_ipad,
                mn_twitter_app_url_iphone, mn_twitter_card, mn_twitter_creator, mn_twitter_creator_id, mn_twitter_data1, mn_twitter_data2,
@@ -718,6 +737,8 @@ typedef enum { mn_context,
                mn_mathdmv_series, mn_mathdmv_referencejournals, mn_mathdmv_contact, mn_mathdmv_abstract, mn_mathdmv_notes,
                // https://web.archive.org/web/19991111062508/http://www.htdig.org/meta.html
                mn_htdig_keywords, mn_htdig_noindex, mn_htdig_email, mn_htdig_notification_date, mn_htdig_email_subject,
+               // WhatWG Jan 2008
+               mn_dns,
                // that's it
                mn_illegal } e_metaname;
 const e_metaname metaname_first_w3 = mn_application;
@@ -1326,7 +1347,8 @@ typedef enum
     nit_bad_bind, nit_bad_share, nit_shadow, nit_out_of_memory, nit_duplicate, nit_shadow_failed, nit_create_folder, nit_internal_file_error,
     nit_shadow_ignore, nit_shadow_link, nit_shadow_copy, nit_too_big, nit_icu, nit_lang_redefined, nit_page_charset, nit_charset_mismatch,
     nit_charset_used, nit_charset_invalid, nit_no_converters, nit_xhtml_superseded, nit_not_iso_8859_1, hit_draft_html_5, nit_overriding_html,
-    nit_whatwg_class, nit_opening_file, nit_target, nit_bad_mummy, nit_no_serviceworker, elem_rel_head,
+    nit_whatwg_class, nit_opening_file, nit_target, nit_bad_mummy, nit_no_serviceworker, nit_rel_head, nit_theme_colour, nit_refresh_zero,
+    nit_bad_csp_directive, nit_bad_number_once, nit_bad_csp_source, nit_invalid_algorithm,
 
     nit_context,
 
@@ -1834,7 +1856,7 @@ typedef enum {
     t_calcmode, t_captionalign, t_capture, t_channel_selector, t_char, t_charset, t_charsets, t_charspacing, t_citype, t_class, t_clear, t_clear30, t_clip, t_closure,
         t_colour, t_colour_ci, t_colour_i,t_colourinterpolation, t_colourrendering, t_colour_v, t_command, t_compact, t_composite_operator, t_conditional,
         t_content_encoding, t_content_encodings, t_content_type, t_context_menu, t_controlslist, t_coordinatesystem, t_coords, t_cors, t_cntype, t_crossout, t_css,
-        t_csp, t_curie, t_curie_safe, t_curies, t_currency, t_cursor, t_cursor_f,
+        t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source, t_curie, t_curie_safe, t_curies, t_currency, t_cursor, t_cursor_f,
     t_d, t_dashes, t_data, t_dataformatas, t_just_date, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_decalign, t_decoding,
         t_defaultaction, t_depth, t_dingbat, t_dir, t_direction, t_display, t_dominantbaseline, t_dosh, t_dsc, t_dsctv, t_dur, t_dur_repeat, t_duration,
         t_duration_media,

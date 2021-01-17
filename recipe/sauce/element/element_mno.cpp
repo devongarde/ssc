@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 #include "webpage/page.h"
 #include "attribute/attribute_classes.h"
+#include "type/type_metaname.h"
 
 void element::examine_main ()
 {   only_one_of (elem_main);
@@ -122,7 +123,7 @@ void element::examine_media_element (e_element , const char* ref, const char* na
 
 void element::examine_meta ()
 {   bool in_head = ancestral_elements_.test (elem_head);
-    bool md = ((node_.version () == html_jul20) || context.microdata ());
+    bool md = (node_.version ().whatwg () || context.microdata ());
     bool ipk = a_.known (a_itemprop);
     bool nk = a_.known (a_name);
     bool csk = a_.known (a_charset);
@@ -156,23 +157,32 @@ void element::examine_meta ()
     else if (hek)
     {   if (! in_head)
             pick (nit_bad_meta_place, ed_50, "4.2.5 The meta element", es_error, ec_element, "HTTP-EQUIV can only be used on a <META> in a <HEAD>");
-        if (! a_.known (a_content))
+        else if (! a_.known (a_content))
             pick (nit_no_content, ed_50, "4.2.5 The meta element", es_error, ec_element, "HTTP-EQUIV requires CONTENT");
-        attr_httpequiv* he = reinterpret_cast < attr_httpequiv* > (a_.get (a_httpequiv).get ());
-        if (he != nullptr)
-        {   ::std::string ct (validate_httpequiv_content (nits (), node_.version (), he -> get (), trim_the_lot_off (a_.get_string (a_content)), page_));
-            switch (he -> get_int ())
-            {   case he_content_style_type :
-                    page_.style_css (compare_no_case (CSS_TYPE, ct));
-                    if (! page_.style_css ()) pick (nit_style_not_css, es_comment, ec_element, "the default style is NOT css");
-                    break;
-                case he_location :
-                case he_refresh :
-                    page_.verify_url (nits (), ct, ancestral_attributes_, vit_);
-                default : break; } } }
+        else
+        {   attr_httpequiv* he = reinterpret_cast < attr_httpequiv* > (a_.get (a_httpequiv).get ());
+            if (he != nullptr)
+            {   ::std::string ct (validate_httpequiv_content (nits (), node_.version (), he -> get (), trim_the_lot_off (a_.get_string (a_content)), page_));
+                switch (he -> get_int ())
+                {   case he_content_style_type :
+                        page_.style_css (compare_no_case (CSS_TYPE, ct));
+                        if (! page_.style_css ()) pick (nit_style_not_css, es_comment, ec_element, "the default style is NOT css");
+                        break;
+                    case he_location :
+                    case he_refresh :
+                        page_.verify_url (nits (), ct, ancestral_attributes_, vit_);
+                    default : break; } } } }
     else if (nk)
-    {   if (! a_.known (a_content))
-            pick (nit_no_content, ed_50, "4.2.5 The meta element", es_error, ec_element, "NAME requires CONTENT"); } }
+        if (! a_.known (a_content))
+            pick (nit_no_content, ed_50, "4.2.5 The meta element", es_error, ec_element, "NAME requires CONTENT");
+        else if (a_.good (a_name))
+        {   ::std::string con (a_.get_string (a_content));
+            type_master < t_metaname > mn;
+            nitpick nuts;
+            mn.set_value (nuts, node_.version (), a_.get_string (a_name));
+            assert (a_.good (a_name));
+            e_metaname emn = mn.get ();
+            validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_); } }
 
 void element::examine_meter ()
 {   if (node_.version ().mjr () >= 5)

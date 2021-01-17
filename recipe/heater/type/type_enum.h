@@ -205,6 +205,8 @@ template < > class type_master < t_citype > : public enum_n < t_citype, e_citype
 template < > class type_master < t_cntype > : public enum_n < t_cntype, e_cntype > { };
 template < > class type_master < t_composite_operator > : public enum_n < t_composite_operator, e_composite_operator > { };
 template < > class type_master < t_crossout > : public enum_n < t_crossout, e_crossout > { };
+template < > class type_master < t_csp_directive > : public enum_n < t_csp_directive, e_csp_directive > { };
+template < > class type_master < t_csp_keyword > : public enum_n < t_csp_keyword, e_csp_keyword > { };
 template < > class type_master < t_currency > : public enum_n < t_currency, e_currency > { };
 template < > class type_master < t_cursor > : public enum_n < t_cursor, e_cursor > { };
 template < > class type_master < t_decalign > : public enum_n < t_decalign, e_decalign > { };
