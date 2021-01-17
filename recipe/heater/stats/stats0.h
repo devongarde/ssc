@@ -25,11 +25,14 @@ template < class T > class stats0
     typedef ::std::map < T, unsigned > counter_t;
     counter_t count_;
 public:
+    typedef typename counter_t :: const_iterator cit;
     stats0 () = default;
     unsigned at (const T& e) const
     {   typename counter_t::const_iterator i = count_.find (e);
         if (i == count_.cend ()) return 0;
         return e -> second; }
+    cit cbegin () const { return count_.cbegin (); }
+    cit cend () const { return count_.cend (); }
     void mark (const T& e)
     {   typename counter_t::iterator i = count_.find (e);
         if (i == count_.end ()) count_.insert (typename counter_t::value_type (e, 1));

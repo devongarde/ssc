@@ -247,6 +247,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define LATIN_1 "ISO-8859-1"
 #define UTF_8 "UTF-8"
 
+#define DISGUSTING "nonce" // Why The F*ck the standards have to reference paedophiles, I have no clue, but I do NOT like it
+
 #define MAX_IDEAL_TITLE_LENGTH 32
 
 #endif // SCC_TEST

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>CSP 3.0 v1 test</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="script-src https://cdn.example.com/scripts/; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="script-src 'self'; report-to csp-reporting-endpoint">
+<meta http-equiv="Content-Security-Policy" content="font-src https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="frame-src https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="img-src https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="manifest-src https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="media-src https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="prefetch-src https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="object-src https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="worker-src https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="navigate-to example.com">
+<meta http-equiv="Content-Security-Policy" content="navigate-to not-example.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; report-uri https://endpoint.com; report-to groupname">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' http://example.com http://example.net; connect-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="connect-src http://example.com/; script-src http://example.com/">
+<meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-hashes' 'sha256-jzgBGA4UWFFmpOBq0JpdsySukE'">
+<meta http-equiv="Content-Security-Policy" content="script-src 'sha256-abc123' 'sha512-321cba'">
+</head>
+
+<body>
+
+<h1>CSP 3.0 v1 Test</h1>
+
+</body>
+</html>

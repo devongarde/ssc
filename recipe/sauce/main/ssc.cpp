@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/property.h"
 #include "schema/schema_hierarchy.h"
 #include "microdata/microdata_itemid.h"
+#include "type/type_csp.h"
 #include "schema/schema_structure.h"
 #include "schema/schema_property.h"
 #include "schema/schema_name.h"
@@ -49,6 +50,8 @@ void init (nitpick& nits)
     attr::init (nits);
     avm_init (nits);
     code_map_init (nits);
+    csp_directive_init (nits);
+    csp_keyword_init (nits);
     elem::init (nits);
     elements_init (nits);
     fields_init (nits);

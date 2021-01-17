@@ -240,6 +240,7 @@ struct sz_rlo { CONSTEXPR static char const* sz () { return "rlo"; } };
 struct sz_rtl { CONSTEXPR static char const* sz () { return "rtl"; } };
 struct sz_scale { CONSTEXPR static char const* sz () { return "scale"; } };
 struct sz_scroll { CONSTEXPR static char const* sz () { return "scroll"; } };
+struct sz_self { CONSTEXPR static char const* sz () { return "'self'"; } };
 struct sz_sentences { CONSTEXPR static char const* sz () { return "sentences"; } };
 struct sz_simple { CONSTEXPR static char const* sz () { return "simple"; } };
 struct sz_sizefmt { CONSTEXPR static char const* sz () { return "sizefmt"; } };

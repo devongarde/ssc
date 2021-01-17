@@ -128,6 +128,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_51 : return "HTML 5.1";
         case ed_52 : return "HTML 5.2";
         case ed_53 : return "HTML 5.3";
+        case ed_csp : return "Content Security Policy";
         case ed_math_1 : return "MathML 1.01";
         case ed_math_2 : return "MathML 2 2nd Ed.";
         case ed_math_3 : return "MathML 3 2nd Ed.";
@@ -184,6 +185,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_may20 : return "HTML 5 living standard, WhatWG, May 2020";
         case ed_jul20 : return "HTML 5 living standard, WhatWG, July 2020";
         case ed_rdf : return "RDFa Core 1.1 - Third Edition";
+        case ed_csp : return "Content Security Policy Level 3, Oct 2018, draft";
         case ed_math_1 : return "MathML 1.01";
         case ed_math_2 : return "MathML 2.0 - Second Edition";
         case ed_math_3 : return "MathML 3.0 - Second Edition";

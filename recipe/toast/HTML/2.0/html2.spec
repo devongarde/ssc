@@ -15,7 +15,7 @@ PASS ../toast/HTML/2.0/html2-bad.html
 5 element_offsite_base
 6 attribute_required
 7 unrecognised_value empty
-8 text_html_expected url_empty
+8 refresh_zero url_empty
 9 deprecated_element
 12 inserted_missing_parent
 16 inserted_missing_closure

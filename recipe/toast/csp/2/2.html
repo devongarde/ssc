@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>CSP 2.0 test</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' http://example.com http://example.net; connect-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="connect-src http://example.com/; script-src http://example.com/">
+<meta http-equiv="Content-Security-Policy" content="connect-src http://example.com/; script-src example.com">
+<meta http-equiv="Content-Security-Policy" content="frame-ancestors https://alice https://bob">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://example.com 'nonce-123456'"> <!-- not entirely random -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://example.com 'nonce-Nc3n83cnSAd3wc3Sasdfn939hc3'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://example.com 'sha256-qznLcsROx4GACP2dm0UCKCzCG+HiZ1guq6ZZDob/Tng='">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src *; object-src media1.example.com media2.example.com *.cdn.example.com; script-src trustedscripts.example.com'">
+<meta http-equiv="Content-Security-Policy" content=" default-src https: 'unsafe-inline' 'unsafe-eval'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; report-uri http://example.org/csp-report.cgi">
+<meta http-equiv="Content-Security-Policy" content="frame-ancestors https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="default-src https:; report-uri https://example.com/">
+<meta http-equiv="Content-Security-Policy" content="frame-ancestors https://example.com/, default-src https:">
+<meta http-equiv="Content-Security-Policy" content=" style-src 'none'">
+</head>
+
+<body>
+
+<h1>CSP 2.0 Test</h1>
+
+</body>
+</html>

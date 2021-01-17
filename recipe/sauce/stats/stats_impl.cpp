@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "microdata/microdata_itemprop.h"
 #include "microdata/microdata_itemtype.h"
+#include "type/type_httpequiv.h"
+#include "type/type_metaname.h"
 
 void stats::mark_file (const unsigned size)
 {   ++file_count_;
@@ -210,6 +212,42 @@ void stats::mark_file (const unsigned size)
     if (res.empty ()) return res;
     return ::std::string ("  References:\n") + res; }
 
+::std::string stats::meta_report () const
+{   ::std::string res;
+    if (context.meta ())
+    {   for (unsigned i = 0; i < he_error; ++i)
+        {   unsigned n = httpequiv_.at (static_cast < e_httpequiv > (i));
+            if (n)
+            {   ::std::string naam ("    ");
+                naam += enum_n < t_httpequiv, e_httpequiv > :: name (static_cast < e_httpequiv > (i));
+                res += saybe (n, naam); } }
+        if (! res.empty ()) res = "  pragma:\n" + res;
+        ::std::string rpt;
+        for (unsigned i = 0; i < mn_illegal; ++i)
+        {   unsigned n = metaname_.at (static_cast < e_metaname > (i));
+            if (n)
+            {   ::std::string naam ("    ");
+                naam += enum_n < t_metaname, e_metaname > :: name (static_cast < e_metaname > (i));
+                rpt += saybe (n, naam); } }
+        if (! rpt.empty ()) res += "  name:\n" + rpt;
+        for (unsigned i = 0; i < mn_illegal; ++i)
+        {   bool y = false;
+            for (   auto k = meta_value_.at (static_cast < e_metaname > (i)).cbegin ();
+                    k != meta_value_.at (static_cast < e_metaname > (i)).cend ();
+                    ++k)
+            {   if (! y)
+                {   res += "    ";
+                    res += enum_n < t_metaname, e_metaname > :: name (static_cast < e_metaname > (i));
+                    res += ":\n";
+                    y = true; }
+                res += "      ";
+                res += k -> first;
+                res += ": ";
+                res += times (k -> second);
+                res += "\n"; } }
+        if (! res.empty ()) res = "Metadata:\n" + res; }
+    return res; }
+
 ::std::string stats::report (const bool grand) const
 {   ::std::string res;
     if (context.verbose () == e_silent) return res;
@@ -219,6 +257,7 @@ void stats::mark_file (const unsigned size)
 
     res += element_report ();
     res += microdata_report ();
+    res += meta_report ();
     res += error_report ();
 
     if (file_count_ > 1)

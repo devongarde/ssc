@@ -3,8 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.80
+- added a (prototype) man page (recipe/tea/gen.txt)
+- added --stats.meta to generate stats on <META> usage in <HEAD>
+- check content-security-policy values
+- various bug fixes
+
 0.0.79
-- html.version can be used to specify date of WhatWG living HTML standard for HTML 5 verification
+- the --html.version switch accepts a WhatWG living HTML standard date for verification
 - added -z switch to specify maximum advisable <TITLE> text length (default: 32)
 - various bug fixes
 

@@ -197,7 +197,7 @@ void element::examine_link ()
             case r_search : break;
             default : headonly = false; break; }
         if (headonly && ! ancestral_elements_.test (elem_head))
-            pick (elem_rel_head, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, quote (s), " needs <LINK> to be in <HEAD>"); }
+            pick (nit_rel_head, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, quote (s), " needs <LINK> to be in <HEAD>"); }
     if (tis5)
     {   if (! icon) if (a_.known (a_sizes))
             pick (nit_daft_rel_attr, ed_50, "4.2.4 The link element", es_error, ec_attribute, "SIZES is only useful when REL includes \"icon\"");

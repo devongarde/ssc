@@ -19,7 +19,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+#include "type/type_metaname.h"
 #include "type/type_enum_vec.h"
+#include "webpage/page.h"
 
 // note HTML 5, 2.6.5, extracting character encodings from meta elements
 
@@ -28,7 +30,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MN_APPLICATION "application"
 #define MN_AUTHOR "author"
 #define MN_DESCRIPTION "description"
-#define MN_GENERATOR "generator"
 #define MN_KEYWORDS "keywords"
 
 #define MN_CLASSIFICATION "classification"
@@ -345,7 +346,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MN_STARTVER "startver"
 #define MN_SUBJECT_DATETIME "subject-datetime"
 #define MN_SUBJECT_SYSTEM "subject-system"
-#define MN_THEME_COLOR "theme-color"
+#define MN_THEME_COLOUR "theme-color"
 #define MN_THUMBNAIL "thumbnail"
 #define MN_TOPPER "topper"
 #define MN_TOPPER_MAJOR "topper-major"
@@ -456,7 +457,7 @@ struct symbol_entry < e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_APPLICATION, mn_application },
    { { HTML_2_0 }, { HTML_UNDEF }, MN_AUTHOR, mn_author },
    { { HTML_2_0 }, { HTML_UNDEF }, MN_DESCRIPTION, mn_description },
-   { { HTML_2_0 }, { HTML_UNDEF }, MN_GENERATOR, mn_generator },
+   { { HTML_2_0 }, { HTML_UNDEF }, "generator", mn_generator },
    { { HTML_2_0 }, { HTML_UNDEF }, MN_KEYWORDS, mn_keywords },
    { { HTML_2_0 }, { HTML_UNDEF }, "identifier", mn_identifier },
 
@@ -560,6 +561,7 @@ struct symbol_entry < e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_CITATION_TITLE, mn_citation_title },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_CITATION_VOLUME, mn_citation_volume },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_COLLECTION, mn_collection },
+   { { HTML_JAN21 }, { HTML_UNDEF }, "color-scheme", mn_colour_scheme },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_CONTACT, mn_contact },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_CREATED, mn_created },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_CREATOR, mn_creator },
@@ -659,6 +661,7 @@ struct symbol_entry < e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_DESIGNER, mn_designer },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_DETECTIFY_VERIFICATION, mn_detectify_verification },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_DIR_CONTENT_POINTER, mn_dir_content_pointer },
+   { { HTML_JUL07 }, { HTML_JUN08 }, "dns", mn_dns },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_ENTITY, mn_entity },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_EXPIRES, mn_expires },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_FB_ADMINS, mn_fb_admins },
@@ -756,7 +759,7 @@ struct symbol_entry < e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_PRO_AUTH_FIELD, mn_pro_auth_field },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_PRO_AUTH_FRAGMENT, mn_pro_auth_fragment },
    { { HTML_2_0 }, { HTML_UNDEF }, MN_RATING, mn_rating },
-   { { HTML_4_0 }, { HTML_UNDEF }, MN_REFERRER, mn_referrer },
+   { { HTML_JUL16 }, { HTML_UNDEF }, MN_REFERRER, mn_referrer },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_RESOLUTIONS, mn_resolutions },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_REVIEW_DATE, mn_review_date },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_REVISION, mn_revision },
@@ -789,7 +792,7 @@ struct symbol_entry < e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_STARTVER, mn_startver },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_SUBJECT_DATETIME, mn_subject_datetime },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_SUBJECT_SYSTEM, mn_subject_system },
-   { { HTML_4_0 }, { HTML_UNDEF }, MN_THEME_COLOR, mn_theme_color },
+   { { HTML_JUL16 }, { HTML_UNDEF }, MN_THEME_COLOUR, mn_theme_colour },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_THUMBNAIL, mn_thumbnail },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_TOPPER, mn_topper },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_TOPPER_MAJOR, mn_topper_major },
@@ -953,3 +956,38 @@ struct symbol_entry < e_metaname > metaname_symbol_table [] =
 
 void metaname_init (nitpick& nits)
 {   type_master < t_metaname > :: init (nits, metaname_symbol_table, sizeof (metaname_symbol_table) / sizeof (symbol_entry < e_metaname >)); }
+
+void validate_metaname_content (nitpick& nits, const html_version& v, const bool in_head, const e_metaname mn, const ::std::string& content, page& p)
+{   bool stats = in_head && context.meta ();
+    switch (mn)
+    {   case mn_keywords :
+            if (stats)
+            {   vstr_t s (split_by_charset (content, ","));
+                for (auto ss : s)
+                {   ::std::string sss (trim_the_lot_off (ss));
+                    if (! sss.empty ()) p.mark_meta (mn, sss); } }
+            break;
+        case mn_author :
+        case mn_application_name :
+        case mn_generator :
+        case mn_colour_scheme :
+            if (stats)
+                p.mark_meta (mn, content);
+            break;
+        case mn_referrer :
+            {   if (stats) p.mark_meta (mn);
+                type_master < t_referrer > ref;
+                ref.set_value (nits, v, content);
+                if (! ref.good ())
+                    nits.pick (nit_theme_colour, ed_jul20, "4.2.5.1 Standard metadata names", es_error, ec_attribute, "When using <META> NAME=\"referrer\", CONTENT should be a referrer policy"); }
+            break;
+        case mn_theme_colour :
+            {   if (stats) p.mark_meta (mn);
+                type_master < t_colour > col;
+                col.set_value (nits, v, content);
+                if (! col.good ())
+                    nits.pick (nit_theme_colour, ed_jul20, "4.2.5.1 Standard metadata names", es_error, ec_attribute, "When using <META> NAME=\"theme-color\", CONTENT should be a colour"); }
+            break;
+        default :
+            if (stats) p.mark_meta (mn);
+            break; } }

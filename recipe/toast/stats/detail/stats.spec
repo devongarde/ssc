@@ -10,9 +10,22 @@ Elements:
     h1: once
     head: once
     html: once
+    meta: thrice
+      content: thrice
+      name: thrice
     p: once
     title: once
-  10 elements used 20 times
+  Attribute counts:
+    content: used thrice
+    name: used thrice
+  11 elements used 26 times
+Metadata:
+  name:
+    description: once
+    author:
+      sid: once
+    generator:
+      notepad: once
 No errors or warnings
 
 PASS ../toast/stats/detail/itemref.html
@@ -65,6 +78,69 @@ Microdata:
     name: used once
     publisher: used once
   2 itemtypes used thrice
+No errors or warnings
+
+PASS ../toast/stats/detail/keyword-1.html
+2 naughty_lang
+
+STATS
+Elements:
+    !doctype: once
+    body: once
+    h1: once
+    head: once
+    html: once
+    meta: 4 times
+      content: 4 times
+      http-equiv: once
+      name: thrice
+    title: once
+  Attribute counts:
+    content: used 4 times
+    http-equiv: used once
+    name: used thrice
+  10 elements used 25 times
+Metadata:
+  pragma:
+    refresh: once
+    author:
+      doris: once
+    keywords:
+      a: once
+      b: once
+      c: once
+No errors or warnings
+
+PASS ../toast/stats/detail/keyword-2.html
+2 naughty_lang
+
+STATS
+Elements:
+    !doctype: once
+    body: once
+    h1: once
+    head: once
+    html: once
+    meta: 4 times
+      content: 4 times
+      http-equiv: once
+      name: thrice
+    title: once
+  Attribute counts:
+    content: used 4 times
+    http-equiv: used once
+    name: used thrice
+  10 elements used 25 times
+Metadata:
+  pragma:
+    content-security-policy: once
+    author:
+      doris: once
+    generator:
+      beer: once
+    keywords:
+      a: once
+      d: once
 No errors or warnings
 
 PASS ../toast/stats/detail/md-ref.html
@@ -125,8 +201,8 @@ itemid
 
 GRAND
 Elements:
-    !doctype: thrice
-    body: thrice
+    !doctype: 5 times
+    body: 5 times
     div: 10 times
       hidden: once
       id: 4 times
@@ -135,29 +211,32 @@ Elements:
       itemref: thrice
       itemscope: 8 times
       itemtype: 5 times
-    h1: thrice
-    head: thrice
-    html: thrice
+    h1: 5 times
+    head: 5 times
+    html: 5 times
       lang: twice
     link: 4 times
       href: 4 times
       itemprop: 4 times
-    meta: 7 times
-      content: 5 times
+    meta: 18 times
+      content: 16 times
+      http-equiv: twice
       itemprop: 7 times
       itemref: twice
       itemscope: twice
       itemtype: twice
+      name: 9 times
     p: 4 times
       id: once
     span: 4 times
       id: once
       itemprop: 4 times
-    title: thrice
+    title: 5 times
   Attribute counts:
-    content: used 5 times
+    content: used 16 times
     hidden: used once
     href: used 4 times
+    http-equiv: used twice
     id: used 6 times
     itemid: used once
     itemprop: used 18 times
@@ -165,7 +244,8 @@ Elements:
     itemscope: used 10 times
     itemtype: used 7 times
     lang: used twice
-  14 elements used 126 times
+    name: used 9 times
+  14 elements used 182 times
 Microdata:
     BlogPosting: twice
       commentCount: once
@@ -185,20 +265,37 @@ Microdata:
     publisher: used once
     url: used 4 times
   3 itemtypes used 7 times
+Metadata:
+  pragma:
+    content-security-policy: once
+    refresh: once
+  name:
+    description: once
+    author:
+      doris: twice
+      sid: once
+    generator:
+      beer: once
+      notepad: once
+    keywords:
+      a: twice
+      b: once
+      c: once
+      d: once
 Errors:
   Severity:
     Errors: 4 times
-    Warnings: twice
+    Warnings: 4 times
   Categories:
-    Attribute: once
-    Element: 5 times
+    Attribute: thrice
+    Element: 7 times
     Microdata: 10 times
-    Parser: thrice
+    Parser: 5 times
     URx: once
   References:
-    HTML 5.0: 4 times
+    HTML 5.0: 8 times
 Versions:
-  HTML5:200701/SVG-1.1/MathML-4/WhatWG: 3
+  HTML5:200701/SVG-1.1/MathML-4/WhatWG: 5
 File info:
-  2096 bytes read in 3 HTML files with an average of 698.66666666666663 bytes per file
-  smallest file: 120 bytes, largest file: 1019 bytes
+  2809 bytes read in 5 HTML files with an average of 561.79999999999995 bytes per file
+  smallest file: 259 bytes, largest file: 1019 bytes

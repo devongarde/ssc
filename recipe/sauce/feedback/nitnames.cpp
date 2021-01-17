@@ -554,7 +554,15 @@ nitname nitnames [] =
     { nit_target, "target" },
     { nit_bad_mummy, "bad_mummy" },
     { nit_no_serviceworker, "no_serviceworker" },
-    { elem_rel_head, "rel_head" },
+    { nit_rel_head, "rel_head" },
+    { nit_theme_colour, "theme_colour" },
+    { nit_refresh_zero, "refresh_zero" },
+    { nit_bad_csp_directive, "bad_csp_directive" },
+    { nit_bad_number_once, "bad_number_once" },
+    { nit_bad_csp_source, "bad_csp_source" },
+    { nit_invalid_algorithm, "invalid_algorithm" },
+
+  // nit_bad_csp_source, nit_invalid_algorithm
 
     { nit_off, "" } };
 

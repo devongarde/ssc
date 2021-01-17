@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats0.h"
 #include "stats/stats1.h"
 #include "stats/stats2.h"
+#include "stats/stats3.h"
 #include "parser/html_version.h"
 
 typedef stats0 < html_version > version_stats;
@@ -32,6 +33,9 @@ typedef stats1 < e_doc, last_doc, ed_mishmash > ref_stats;
 typedef stats2 < e_element, e_attribute, last_element_tag, last_attribute > attribute_stats;
 typedef stats1 < e_schema, sch_illegal, sch_context > schema_stats;
 typedef stats2 < e_schema, e_schema_property, sch_illegal, sp_illegal > schema_property_stats;
+typedef stats1 < e_httpequiv, he_error, he_context > httpequiv_stats;
+typedef stats1 < e_metaname, mn_illegal, mn_context > metaname_stats;
+typedef stats3 < ::std::string, e_metaname, mn_illegal, mn_context > meta_value_stats;
 
 class stats
 {   element_stats element_;
@@ -42,6 +46,9 @@ class stats
     attribute_stats attribute_;
     schema_stats schema_;
     schema_property_stats schema_property_;
+    httpequiv_stats httpequiv_;
+    metaname_stats metaname_;
+    meta_value_stats meta_value_;
     uint64_t file_count_ = 0;
     unsigned smallest_ = UINT_MAX;
     unsigned biggest_ = 0;
@@ -55,6 +62,7 @@ class stats
     ::std::string category_report () const;
     ::std::string file_report () const;
     ::std::string reference_report () const;
+    ::std::string meta_report () const;
 public:
     void mark (const e_element e)
     {   element_.mark (e); }
@@ -72,6 +80,12 @@ public:
     {   schema_.mark (s); }
     void mark (const e_schema s, const e_schema_property p)
     {   schema_property_.mark (s, p); }
+    void mark_meta (const e_httpequiv he)
+    {   httpequiv_.mark (he); }
+    void mark_meta (const e_metaname mn)
+    {   metaname_.mark (mn); }
+    void mark_meta (const e_metaname mn, const ::std::string& val)
+    {   meta_value_.mark (mn, val); }
     void mark_file (const unsigned size);
     uint64_t file_count () const
     {   return file_count_; }

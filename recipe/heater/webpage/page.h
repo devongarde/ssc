@@ -115,6 +115,15 @@ public:
     void mark (const e_schema s, const e_schema_property p)
     {   stats_.mark (s, p);
         context.mark (s, p); }
+    void mark_meta (const e_httpequiv he)
+    {   stats_.mark_meta (he);
+        context.mark_meta (he); }
+    void mark_meta (const e_metaname mn)
+    {   stats_.mark_meta (mn);
+        context.mark_meta (mn); }
+    void mark_meta (const e_metaname mn, const ::std::string& val)
+    {   stats_.mark_meta (mn, val);
+        context.mark_meta (mn, val); }
     unsigned count (const e_element e) const
     {   return stats_.count (e); }
     void lynx ();

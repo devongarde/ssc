@@ -77,9 +77,9 @@ PASS ../toast/living/jan21/example-2.html
 18 untidy_string mq_syntax
 21 untidy_string mq_syntax
 23 no_such_folder url_not_found
-32 untidy_string untidy_string sizes sizes url_not_found
-37 untidy_string mq_syntax
-39 url_not_found
+36 untidy_string untidy_string sizes sizes url_not_found
+41 untidy_string mq_syntax
+43 url_not_found
 
 PASS ../toast/living/jan21/index.html
 3 attribute_unrecognised_here unrecognised_attribute

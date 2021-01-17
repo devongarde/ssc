@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>CSP 1.0 test page</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+<meta http-equiv="Content-Security-Policy" content=" default-src 'self'; img-src *; object-src media1.example.com media2.example.com *.cdn.example.com; script-src trustedscripts.example.com">
+<meta http-equiv="Content-Security-Policy" content="default-src https: 'unsafe-inline' 'unsafe-eval'">
+<meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src https://example.com/js/">
+<meta http-equiv="Content-Security-Policy" content=" default-src 'self'; report-uri http://example.org/csp-report.cgi">
+</head>
+
+<body>
+
+<h1>CSP 1.0 Test Page</h1>
+
+</body>
+</html>
