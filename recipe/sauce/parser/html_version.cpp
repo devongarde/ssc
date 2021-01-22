@@ -177,8 +177,7 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
 bool html_version::invalid_addendum (const html_version& v) const
 {   if (microdata ())
         if (context.microdata ()) return false;
-        else if (v.whatwg ()) return false;
-        else return (v.mjr () < 5) || (w3_minor_5 (v) < 4);
+        else return v.w3 ();
     if (rdf ())
         if (context.rdf ()) return false;
         else return (v != xhtml_2);
@@ -614,19 +613,14 @@ bool does_apply (const html_version& v, const html_version& from, const html_ver
                         case 4 : return ! from.notx2 (); }
                     assert (false);
                     break;
-        default :   if (v.mjr () == 0) break;
-                    if (from.xhtml () && from.notx5 ()) return false;
-//                    if ((v.mjr () < 7) && from.notdraft ()) return false;
-                    if ((v.mjr () >= 5) && (context.html_ver ().whatwg ()) && (from.notwg ())) return false;
+        default :   if (from.xhtml () && from.notx5 ()) return false;
+                    if (context.html_ver ().whatwg () && from.w3 ()) return false;
                     switch (w3_minor_5 (v))
-                    {   case 0 : if ((v.mjr () < 7) && from.notdraft ()) return false;
-                                 return ! from.not50 ();
+                    {   case 0 : return ! from.not50 ();
                         case 1 : return ! from.not51 ();
                         case 2 : return ! from.not52 ();
                         case 3 : return ! from.not53 ();
-                        case 4 : return true; }
-                        // case 4 : return ! from.not54 (); }
-                    assert (false);
+                        default : break; }
                     break; }
     return true; }
 

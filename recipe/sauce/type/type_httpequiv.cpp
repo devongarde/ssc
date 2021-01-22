@@ -62,6 +62,8 @@ struct symbol_entry < e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_2_0 }, { HTML_5_2 }, "vary", he_vary },
     { { HTML_4_0 }, { HTML_UNDEF }, "window-target", he_window_target },
     { { HTML_5_0 }, { HTML_UNDEF }, "www-authenticate", he_www_authenticate },
+    { { HTML_JAN11 }, { HTML_AUG13 }, "x-content-security-policy", he_x_content_security_policy },
+    { { HTML_JAN11 }, { HTML_FEB13 }, "x-webkit-csp", he_webkit_csp },
     { { HTML_5_0 }, { HTML_UNDEF }, "x-ua-compatible", he_x_ua_compatible } };
 
 void httpequiv_init (nitpick& nits)
@@ -98,7 +100,9 @@ template < > ::std::string validate_he_content < t_lang > (nitpick& nits, const 
         case he_content_language : return validate_he_content < t_lang > (nits, v, content, p);
         case he_content_script_type : return validate_he_content < t_mime > (nits, v, content, p);
         case he_content_security_policy :
-        case he_content_security_policy_report_only : return validate_he_content < t_csp > (nits, v, content, p);
+        case he_content_security_policy_report_only :
+        case he_x_content_security_policy :
+        case he_webkit_csp : return validate_he_content < t_csp > (nits, v, content, p);
         case he_content_style_type : return validate_he_content < t_mime > (nits, v, content, p);
         case he_content_type : return validate_he_content < t_content_type > (nits, v, content, p);
         case he_context : break;

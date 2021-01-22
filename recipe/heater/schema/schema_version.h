@@ -38,6 +38,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define SV_DEP_3034     0x007B0000
 
+#define DEFAULT_SCHEMA_MAJOR 11
+#define DEFAULT_SCHEMA_MINOR 0
+
 typedef unsigned int schema_flag_t;
 const unsigned char schema_major_max = 11;
 class html_version;

@@ -41,8 +41,6 @@ PASS ../toast/living/jul13/example.html
 84  inserted_missing_closure
 84  missing_open
 88  attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_value unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute invalid_attribute_version wrong_version no_such_folder url_not_found
-93  ignoring_unknown
-96  ignoring_unknown
 98  inserted_missing_closure attribute_unrecognised unrecognised_attribute unrecognised_value
 98  missing_open
 100  inserted_missing_closure attribute_unrecognised unrecognised_value unrecognised_attribute
@@ -129,6 +127,21 @@ PASS ../toast/living/jul13/example-2.html
 22 no_such_folder url_not_found
 23 no_such_folder url_not_found
 24 no_such_folder url_not_found
+33 url_not_found
+34 mime
+44 invalid_attribute_version wrong_version
+48 use_quote_code
+58 invalid_attribute_version wrong_version
+62 use_quote_code
+70 inserted_missing_closure
+71 missing_open
+72 invalid_attribute_version wrong_version
+80 inserted_missing_closure
+81 missing_open
+82 invalid_attribute_version wrong_version
+107 unrecognised_value
+122 use_quote_code
+132 use_quote_code
 
 PASS ../toast/living/jul13/index.html
 3 attribute_unrecognised_here unrecognised_attribute
@@ -179,3 +192,9 @@ PASS ../toast/living/jul13/ls10.html
 
 PASS ../toast/living/jul13/ls11.html
 2 naughty_lang
+
+PASS ../toast/living/jul13/ls12.html
+12 use_quote_code
+
+PASS ../toast/living/jul13/ls14.html
+3 naughty_lang

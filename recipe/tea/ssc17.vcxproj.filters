@@ -785,6 +785,9 @@
     <ClInclude Include="type_charset.h">
       <Filter>Heater\type</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\type\type_csp.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1113,6 +1116,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\feedback\nitnames.cpp">
       <Filter>Sauce\feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_csp.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

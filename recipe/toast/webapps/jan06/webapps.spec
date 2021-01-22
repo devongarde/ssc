@@ -14,6 +14,9 @@ PASS ../toast/webapps/jan06/example-2.html
 4 url_not_found
 5 url_not_found style_not_css
 6 url_not_found
+12 url_not_found
+13 ignoring_unknown missing_close attribute_barred
+15 inserted_missing_closure
 
 PASS ../toast/webapps/jan06/index.html
 9 unrecognised_value

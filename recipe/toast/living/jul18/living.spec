@@ -21,8 +21,6 @@ PASS ../toast/living/jul18/example.html
 66  input_bad_aria
 68  inserted_missing_closure attribute_required
 70  attribute_required
-88  ignoring_unknown
-91  ignoring_unknown
 93  attribute_unrecognised unrecognised_attribute unrecognised_value
 95  unrecognised_value invalid_attribute_version wrong_version
 99  url_not_found
@@ -76,6 +74,15 @@ PASS ../toast/living/jul18/example-2.html
 4 url_not_found style_not_css
 5 url_not_found
 6 url_not_found
+18 url_not_found
+19 mime
+33 use_quote_code
+47 use_quote_code
+52 not_schema_property
+62 not_schema_property
+92 unrecognised_value
+107 use_quote_code
+117 use_quote_code
 
 PASS ../toast/living/jul18/index.html
 3 attribute_unrecognised_here unrecognised_attribute
@@ -108,3 +115,9 @@ PASS ../toast/living/jul18/ls11.html
 4 long_title
 5 element_offsite_base
 8 url_not_found
+
+PASS ../toast/living/jul18/ls13.html
+12 use_quote_code
+
+PASS ../toast/living/jul18/ls15.html
+3 naughty_lang

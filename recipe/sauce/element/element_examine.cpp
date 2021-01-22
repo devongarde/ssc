@@ -249,8 +249,8 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
         else if (hv.opera ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid non-standard Opera bespoke elements");
         else if (hv.webcomponents ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid bespoke Web Components elements");
         else if (hv.bespoke () ) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid using bespoke elements");
-        else if ((node_.version () >= html_5_0) && hv.whatwg ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is only defined by WhatWG");
-        else if ((node_.version () >= html_5_0) && hv.w3 ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is element only defined by W3");
+        if ((node_.version ().w3 ()) && hv.whatwg ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is only defined by WhatWG");
+        else if ((node_.version ().whatwg ()) && hv.w3 ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is element only defined by W3");
 
         if (hv.deprecated (node_.version ())) pick (nit_deprecated_element, es_warning, ec_element, "<", elem :: name (tag), "> is deprecated in ", node_.version ().report ());
         if (hv.experimental ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is experimental; it will probably change, it may be withdrawn");

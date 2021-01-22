@@ -66,16 +66,16 @@ struct hav_t
     HTML23_CLID_ATTRIBUTES (ELEM)
 
 #define HTML4_STANDARD_SCRIPT_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onclick },\
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_ondblclick }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onkeydown }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onkeypress }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onkeyup }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmousedown }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmousemove }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmouseout }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmouseover }, \
-    { { MAJOR_FROM, MINOR_FROM, 0, HV_NOTDRAFT }, { HTML_UNDEF }, ELEM, a_onmouseup }
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onclick },\
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_ondblclick }, \
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onkeydown }, \
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onkeypress }, \
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onkeyup }, \
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmousedown }, \
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmousemove }, \
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmouseout }, \
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmouseover }, \
+    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_onmouseup }
 
 #define HTML4_STANDARD_LANG_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
     { { MAJOR_FROM, MINOR_FROM, 0 }, { HTML_UNDEF }, ELEM, a_dir }, \
@@ -531,7 +531,7 @@ struct hav_t
     HTML4_FORM_ATTRIBUTES_V (ELEM)
 
 #define EXTRA_HTML5_ATTRIBUTES(ELEM) \
-    { { HTML_5_0, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_acceptcharset }, \
+    { { HTML_5_0, HV_W3 }, { HTML_UNDEF }, ELEM, a_acceptcharset }, \
     { { HTML_JAN18 }, { HTML_UNDEF }, ELEM, a_autocapitalise }, \
     { { HTML_JAN20 }, { HTML_UNDEF }, ELEM, a_autofocus }, \
     { { HTML_JAN07 }, { HTML_UNDEF }, ELEM, a_contenteditable }, \
@@ -539,24 +539,24 @@ struct hav_t
     { { HTML_JAN07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_draggable }, \
     { { HTML_JAN11, HV_NOT50 }, { HTML_DEC16, HV_NOT52 | HV_NOT53 }, ELEM, a_dropzone }, \
     { { HTML_JUL18, HV_NOT53 }, { HTML_UNDEF }, ELEM, a_enterkeyhint }, \
-    { { HTML_5_0, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_generator_unable }, \
+    { { HTML_5_0, HV_W3 }, { HTML_UNDEF }, ELEM, a_generator_unable }, \
     { { HTML_JAN09 }, { HTML_UNDEF }, ELEM, a_hidden }, \
     { { HTML_JUL12 }, { HTML_JUN14 }, ELEM, a_inert }, \
     { { HTML_JUL18 }, { HTML_UNDEF }, ELEM, a_inputmode }, \
     { { HTML_JUL07 }, { HTML_DEC08 }, ELEM, a_irrelevant }, \
     { { HTML_JUL16, HV_NOT51 | HV_NOT52 }, { HTML_UNDEF }, ELEM, a_is }, \
     { { HTML_JUL09 }, { HTML_DEC09 }, ELEM, a_item }, \
-    { { HTML_JAN10, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemid }, \
-    { { HTML_JUL09, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemprop }, \
-    { { HTML_JAN10, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemref }, \
-    { { HTML_JAN10, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemscope }, \
-    { { HTML_JAN10, HV_NOTW3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemtype }, \
+    { { HTML_JAN10, HV_WHATWG, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemid }, \
+    { { HTML_JUL09, HV_WHATWG, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemprop }, \
+    { { HTML_JAN10, HV_WHATWG, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemref }, \
+    { { HTML_JAN10, HV_WHATWG, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemscope }, \
+    { { HTML_JAN10, HV_WHATWG, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_itemtype }, \
     { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_numberonce }, \
-    { { HTML_JAN11 }, { HTML_UNDEF }, ELEM, a_onabort }, \
-    { { HTML_JUL14, HV_NOTW3 }, { HTML_UNDEF }, ELEM, a_onautocomplete }, \
-    { { HTML_JUL14, HV_NOTW3 }, { HTML_UNDEF }, ELEM, a_onautocompleteerror }, \
+    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onabort }, \
+    { { HTML_JUL14, HV_WHATWG }, { HTML_UNDEF }, ELEM, a_onautocomplete }, \
+    { { HTML_JUL14, HV_WHATWG }, { HTML_UNDEF }, ELEM, a_onautocompleteerror }, \
     { { HTML_JAN17 }, { HTML_UNDEF }, ELEM, a_onauxclick }, \
-    { { HTML_JUL07 }, { HTML_JUN10 }, ELEM, a_onbeforeunload }, \
+    { { HTML_JUL07 }, { HTML_JUN09 }, ELEM, a_onbeforeunload }, \
     { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onblur }, \
     { { HTML_JUL12 }, { HTML_UNDEF }, ELEM, a_oncancel }, \
     { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_oncanplay }, \
@@ -569,7 +569,7 @@ struct hav_t
     { { HTML_JUL10 }, { HTML_UNDEF }, ELEM, a_oncuechange }, \
     { { HTML_5_1 }, { HTML_5_1 }, ELEM, a_oncut }, \
     { { HTML_JUL19 }, { HTML_UNDEF }, ELEM, a_oncut }, \
-    { { HTML_5_3, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_datawild }, \
+    { { HTML_5_3, HV_W3 }, { HTML_UNDEF }, ELEM, a_datawild }, \
     { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondrag }, \
     { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondragend }, \
     { { HTML_JUL07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_ondragenter }, \
@@ -621,22 +621,21 @@ struct hav_t
     { { HTML_JUL08 }, { HTML_JUN09 }, ELEM, a_onstorage }, \
     { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onsubmit }, \
     { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onsuspend }, \
-    { { HTML_JUL09 }, { HTML_JUN13 }, ELEM, a_ontimeupdate }, \
-    { { HTML_JAN14 }, { HTML_UNDEF }, ELEM, a_ontimeupdate }, \
+    { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_ontimeupdate }, \
     { { HTML_JAN14 }, { HTML_UNDEF }, ELEM, a_ontoggle }, \
     { { HTML_JUL07 }, { HTML_JUN09 }, ELEM, a_onunload }, \
     { { HTML_JUL09 }, { HTML_JUN13 }, ELEM, a_onvolumechange }, \
     { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onwaiting }, \
     { { HTML_JUL15 }, { HTML_UNDEF }, ELEM, a_onwheel }, \
     { { HTML_JAN08 }, { HTML_DEC08 }, ELEM, a_registrationmark }, \
-    { { HTML_5_0, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_role }, \
+    { { HTML_5_0, HV_W3 }, { HTML_UNDEF }, ELEM, a_role }, \
     { { HTML_JUL16, HV_NOT51 | HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_slot }, \
     { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_spellcheck }, \
     { { HTML_JUL09, 0, HE_NOT_SVG }, { HTML_DEC09 }, ELEM, a_subject }, \
     { { HTML_JAN08 }, { HTML_DEC08 }, ELEM, a_template }, \
     { { HTML_JUL12 }, { HTML_UNDEF }, ELEM, a_translate }, \
     { { HTML_5_3 }, { HTML_5_3 }, ELEM, a_xmlns }, \
-    { { HTML_5_0, HV_NOTWG }, { HTML_UNDEF }, ELEM, a_xmlspace }
+    { { HTML_5_0, HV_W3 }, { HTML_UNDEF }, ELEM, a_xmlspace }
 
 #define HTML_FORM(ELEM, MAJOR_FROM, MINOR_FROM) \
     { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_form }, \
@@ -906,6 +905,8 @@ hav_t havt [] =
 
     HTML3_CLID_ATTRIBUTES (elem_array),
 
+    { { HTML_JUL09 }, { HTML_DEC09 }, elem_article, a_cite },
+    { { HTML_JUL09 }, { HTML_DEC09 }, elem_article, a_pubdate },
     STANDARD_HTML5_ATTRIBUTES (elem_article),
 
     STANDARD_HTML5_ATTRIBUTES (elem_aside),
@@ -979,22 +980,26 @@ hav_t havt [] =
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { XHTML_2_0 }, elem_body, a_bottommargin },
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { XHTML_2_0 }, elem_body, a_leftmargin },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_link },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onafterprint },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onbeforeprint },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onhashchange },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onafterprint },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onbeforeprint },
+    { { HTML_JAN13 }, { HTML_JUN13 }, elem_body, a_onfullscreenchange },
+    { { HTML_JAN13 }, { HTML_JUN13 }, elem_body, a_onfullscreenerror },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onhashchange },
     { { HTML_5_1 }, { HTML_UNDEF }, elem_body, a_onlanguagechange },
-    { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_body, a_onload },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onmessage },
+    { { XHTML_2_0 }, { XHTML_2_0 }, elem_body, a_onload },
+    { { MAJOR_5_0, MINOR_5_0 }, { HTML_JUN13 }, elem_body, a_onmessage },
+    { { MAJOR_5_0, MINOR_5_0 }, { HTML_JUN13 }, elem_body, a_onmessage },
     { { HTML_JUL20 }, { HTML_UNDEF }, elem_body, a_onmessageerror },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onoffline },
-    { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_body, a_onload },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_ononline },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onpagehide },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onpageshow },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onpopstate },
-    { { HTML_5_1 }, { HTML_UNDEF }, elem_body, a_onrejectionhandled },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_body, a_onstorage },
-    { { HTML_5_1 }, { HTML_UNDEF }, elem_body, a_onunhandledrejection },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onoffline },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_ononline },
+    { { HTML_JAN10 }, { HTML_UNDEF }, elem_body, a_onpagehide },
+    { { HTML_JAN10 }, { HTML_UNDEF }, elem_body, a_onpageshow },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onpopstate },
+    { { HTML_JUL09 }, { HTML_DEC11 }, elem_body, a_onredo },
+    { { HTML_JAN16 }, { HTML_UNDEF }, elem_body, a_onrejectionhandled },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onstorage },
+    { { HTML_JUL09 }, { HTML_DEC11 }, elem_body, a_onundo },
+    { { HTML_JAN16 }, { HTML_UNDEF }, elem_body, a_onunhandledrejection },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_body, a_onunload },
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { HTML_3_2 }, elem_body, a_rightmargin },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_text },
@@ -1310,6 +1315,13 @@ hav_t havt [] =
     MATH3_DEFS_ATTRIBUTES (elem_equivalent),
 
     MATH3_DEFS_ATTRIBUTES (elem_eulergamma),
+
+    { { HTML_JAN05 }, { HTML_JUN08 }, elem_event_source, a_onevent },
+    { { HTML_JAN05 }, { HTML_JUN08 }, elem_event_source, a_src },
+    STANDARD_HTML5_ATTRIBUTES (elem_event_source),
+
+    { { HTML_JUL08 }, { HTML_JUN09 }, elem_eventsource, a_src },
+    STANDARD_HTML5_ATTRIBUTES (elem_eventsource),
 
     MATH3_DEFS_ATTRIBUTES (elem_exists),
 
@@ -2465,6 +2477,8 @@ hav_t havt [] =
 
     STANDARD_HTML5_ATTRIBUTES (elem_nav),
 
+    STANDARD_HTML5_ATTRIBUTES (elem_navigation),
+
     MATH3_DEFS_ATTRIBUTES (elem_neq),
 
     { { HTML_TAGS }, { HTML_1_0 }, elem_nextid, a_n },
@@ -2744,22 +2758,23 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_scalarproduct),
 
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_script, a_async },
-    { { MAJOR_4_0, MINOR_4_0 }, { HTML_5_2 }, elem_script, a_charset },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_script, a_crossorigin },
+    { { HTML_JUL06 }, { HTML_UNDEF }, elem_script, a_async },
+    { { HTML_JUL08 }, { HTML_JUN17 }, elem_script, a_charset },
+    { { HTML_5_2, HV_W3 }, { HTML_5_2 }, elem_script, a_charset },
+    { { HTML_JAN13 }, { HTML_UNDEF }, elem_script, a_crossorigin },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_script, a_defer },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_script, a_event },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_script, a_externalresourcesrequired },
     { { MAJOR_4_0, MINOR_4_0, HV_NOTX2 }, { XHTML_2_0 }, elem_script, a_for },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_script, a_implements },
-    { { HTML_5_3 }, { HTML_UNDEF }, elem_script, a_integrity },
+    { { HTML_JAN17, HV_NOT52 }, { HTML_UNDEF }, elem_script, a_integrity },
     { { MAJOR_4_0, MINOR_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_script, a_language },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_script, a_nomodule },
-    { { HTML_5_1 }, { HTML_5_2 }, elem_script, a_numberonce },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_script, a_referrerpolicy },
+    { { HTML_JUL17, HV_NOT52 }, { HTML_UNDEF }, elem_script, a_nomodule },
+    { { HTML_JAN16 }, { HTML_JUN17 }, elem_script, a_numberonce },
+    { { HTML_JUL18 }, { HTML_UNDEF }, elem_script, a_referrerpolicy },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_script, a_src },
-    { { MAJOR_4_0, MINOR_4_0, REQUIRED }, {4, 4 }, elem_script, a_type },
-    { { MAJOR_5_0, MINOR_5_0 }, { HTML_UNDEF }, elem_script, a_type },
+    { { MAJOR_4_0, MINOR_4_0, REQUIRED }, { XHTML_2_0 }, elem_script, a_type },
+    { { HTML_JAN05 }, { HTML_UNDEF }, elem_script, a_type },
     SVG10_REPL_ATTRIBUTES (elem_script),
     SVG11_XLINK_ATTRIBUTES (elem_script),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_script),
@@ -2771,6 +2786,7 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_sech),
 
+    { { HTML_JUL09 }, { HTML_DEC09 }, elem_section, a_cite },
     STANDARD_HTML5_ATTRIBUTES (elem_section),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_select, a_align },
@@ -2875,17 +2891,15 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_strong),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_strong),
 
-    { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_style, a_dir },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_style, a_disabled },
-    { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_style, a_lang },
-    { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_style, a_media },
-    { { HTML_5_1 }, { HTML_5_2 }, elem_style, a_numberonce },
-    { { MAJOR_3_0, MINOR_3_0, REQUIRED }, { MAJOR_3_0, MINOR_3_0 }, elem_style, a_notation },
-    { { MAJOR_4_0, MINOR_4_0, 0, HE_CHROME }, { XHTML_2_0 }, elem_style, a_scoped },
-    { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_style, a_title },
-    { { MAJOR_4_0, MINOR_4_0 }, { HTML_5_3 }, elem_style, a_type },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_style, a_media },
+    { { HTML_JAN16 }, { HTML_DEC17 }, elem_style, a_numberonce },
+    { { HTML_3_0, REQUIRED }, { HTML_3_0 }, elem_style, a_notation },
+    { { HTML_4_0, 0, HE_CHROME }, { XHTML_2_0 }, elem_style, a_scoped },
+    { { HTML_JUN06 }, { HTML_DEC15 }, elem_style, a_scoped },
+    { { HTML_4_0 }, { HTML_DEC17 }, elem_style, a_type },
     HTML4_STANDARD_SCRIPT_ATTRIBUTES (elem_style, MAJOR_5_0, MINOR_5_0),
-    HTML4_STANDARD_CIS_ATTRIBUTES (elem_style, MAJOR_5_0, MINOR_5_0),
+    HTML4_STANDARD_CIST_ATTRIBUTES (elem_style, MAJOR_5_0, MINOR_5_0),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_style),
     EXTRA_HTML5_ATTRIBUTES (elem_style),
 

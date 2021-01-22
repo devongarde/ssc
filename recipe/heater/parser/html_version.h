@@ -121,18 +121,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HTML_JAN05  HTML_2005, (HTML_JAN + 15)
 #define HTML_JUL05  HTML_2005, HTML_JUL
+#define HTML_DEC05  HTML_2005, (HTML_DEC + 15)
 #define HTML_JAN06  HTML_2006, HTML_JAN
 #define HTML_JUN06  HTML_2006, (HTML_JUN + 13)
+#define HTML_JUL06  HTML_2006, HTML_JUL
 #define HTML_DEC06  HTML_2006, (HTML_DEC + 15)
 #define HTML_JAN07  HTML_2007, HTML_JAN
+#define HTML_JUN07  HTML_2007, (HTML_JUN + 15)
 #define HTML_JUL07  HTML_2007, HTML_JUL
 #define HTML_OCT07  HTML_2007, HTML_OCT
 #define HTML_JAN08  HTML_2008, HTML_JAN
 #define HTML_JUN08  HTML_2008, (HTML_JUN + 13)
 #define HTML_JUL08  HTML_2008, HTML_JUL
 #define HTML_DEC08  HTML_2008, (HTML_DEC + 15)
-#define HTML_JUN09  HTML_2009, (HTML_JUN  + 15)
 #define HTML_JAN09  HTML_2009, HTML_JAN
+#define HTML_JUN09  HTML_2009, (HTML_JUN  + 15)
 #define HTML_JUL09  HTML_2009, HTML_JUL
 #define HTML_DEC09  HTML_2009, (HTML_DEC + 15)
 #define HTML_JAN10  HTML_2010, HTML_JAN
@@ -146,7 +149,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JUL12  HTML_2012, HTML_JUL
 #define HTML_JAN13  HTML_2013, HTML_JAN
 #define HTML_JUN13  HTML_2013, (HTML_JUN  + 15)
+#define HTML_FEB13  HTML_2013, (HTML_AUG + 14)
 #define HTML_JUL13  HTML_2013, HTML_JUL
+#define HTML_AUG13  HTML_2013, (HTML_AUG + 3)
 #define HTML_DEC13  HTML_2013, (HTML_DEC + 15)
 #define HTML_JAN14  HTML_2014, HTML_JAN
 #define HTML_JUN14  HTML_2014, (HTML_JUN  + 15)
@@ -194,9 +199,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_XHTML        0x0000000000000020
 #define HV_ARIA         0x0000000000000040
 
-#define HV_NOTDRAFT     0x0000000000100000
-#define HV_WHATWG       0x0000000000200000
-#define HV_W3           0x0000000000400000
+#define HV_WHATWG       0x0000000000100000
+#define HV_W3           0x0000000000200000
 
 #define HV_DEPRECATED2  0x0000000000800000
 #define HV_DEPRECATED30 0x0000000001000000
@@ -241,9 +245,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_NOT52        0x0800000000000000
 #define HV_NOT53        0x1000000000000000
 #define HV_NOTX5        0x2000000000000000
-#define HV_NOTWG        0x4000000000000000
-
-#define HV_NOTW3        ( HV_NOT50 | HV_NOT51 | HV_NOT52 | HV_NOT53 )
 
 #define HV_NOT3         ( HV_NOT30 | HV_NOT32 )
 #define HV_NOT234       ( HV_NOT2 | HV_NOT3 | HV_NOT32 | HV_NOT4 )
@@ -432,13 +433,10 @@ public:
     bool notx2 () const { return ((flags_ & HV_NOTX2) == HV_NOTX2); }
     bool notx5 () const { return ((flags_ & HV_NOTX5) == HV_NOTX5); }
     bool notplus () const { return ((flags_ & HV_NOTPLUS) == HV_NOTPLUS); }
-    bool notdraft () const { return ((flags_ & HV_NOTDRAFT) == HV_NOTDRAFT); }
     bool not50 () const { return ((flags_ & HV_NOT50) == HV_NOT50); }
     bool not51 () const { return ((flags_ & HV_NOT51) == HV_NOT51); }
     bool not52 () const { return ((flags_ & HV_NOT52) == HV_NOT52); }
     bool not53 () const { return ((flags_ & HV_NOT53) == HV_NOT53); }
-    bool notw3 () const { return ((flags_ & HV_NOTW3) == HV_NOTW3); }
-    bool notwg () const { return ((flags_ & HV_NOTWG) == HV_NOTWG); }
     bool opera () const { return ((ext_ & HE_OPERA) == HE_OPERA); }
     bool reject () const { return ((flags_ & REJECT) == REJECT); }
     bool required () const { return ((flags_ & REQUIRED) == REQUIRED); }
@@ -491,7 +489,8 @@ const html_version html_jan08 (HTML_JAN08, HV_WHATWG, 0);
 const html_version html_jul08 (HTML_JUL08, HV_WHATWG, 0);
 const html_version html_jul09 (HTML_JUL09, HV_WHATWG, 0);
 const html_version html_jan13 (HTML_JAN13, HV_WHATWG, 0);
-const html_version html_jan17 (HTML_JAN17, HV_WHATWG, 0);
+const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MATH_2 | HE_SVG_1_0);
+const html_version html_jul18 (HTML_JUL18, HV_WHATWG, HE_MATH_3 | HE_SVG_1_1);
 const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MATH_4 | HE_SVG_1_1);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_1_1);

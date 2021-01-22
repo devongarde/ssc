@@ -25,8 +25,6 @@ PASS ../toast/living/jan16/example.html
 74  attribute_required
 78  attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
 88  unrecognised_value invalid_attribute_version wrong_version no_such_folder url_not_found
-93  ignoring_unknown
-96  ignoring_unknown
 98  attribute_unrecognised unrecognised_attribute unrecognised_value
 100  unrecognised_value invalid_attribute_version wrong_version
 102  data_type
@@ -84,6 +82,22 @@ PASS ../toast/living/jan16/example-2.html
 24 no_such_folder url_not_found
 25 no_such_folder url_not_found
 26 no_such_folder url_not_found
+35 url_not_found
+36 mime
+45 not_schema_property
+46 not_schema_property
+47 not_schema_property
+50 use_quote_code
+53 not_schema_property
+59 not_schema_property
+60 not_schema_property
+61 not_schema_property
+64 use_quote_code
+69 not_schema_property
+79 not_schema_property
+109 unrecognised_value
+124 use_quote_code
+134 use_quote_code
 
 PASS ../toast/living/jan16/index.html
 3 attribute_unrecognised_here unrecognised_attribute
@@ -133,3 +147,9 @@ PASS ../toast/living/jan16/ls11.html
 
 PASS ../toast/living/jan16/ls12.html
 2 naughty_lang
+
+PASS ../toast/living/jan16/ls13.html
+12 use_quote_code
+
+PASS ../toast/living/jan16/ls15.html
+3 naughty_lang

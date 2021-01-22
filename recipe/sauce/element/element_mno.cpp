@@ -261,13 +261,16 @@ void element::examine_nav ()
         pick (nit_no_main_kids, ed_50, "4.3.4 The nav element", es_warning, ec_element, "<NAV> can have no <MAIN> descendants"); }
 
 void element::examine_noscript ()
-{   if (node_.version ().mjr () < 5) return;
-    check_ancestors (elem_noscript, element_bit_set (elem_noscript));
-    if (ancestral_elements_.test (elem_head))
-    {   element_bitset bs (descendant_elements_);
-        bs &= ~(non_standard_bitset | elem_link | elem_style | elem_meta);
-        if (bs.any ())
-            pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "in a document's header, <NOSCRIPT> can only have <LINK>, <STYLE>, or <META> descendants"); } }
+{   if (node_.version ().xhtml ())
+        pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "<NOSCRIPT> is illegal in XHTML");
+    else
+    {   if (node_.version ().mjr () < 5) return;
+        check_ancestors (elem_noscript, element_bit_set (elem_noscript));
+        if (ancestral_elements_.test (elem_head))
+        {   element_bitset bs (descendant_elements_);
+            bs &= ~(non_standard_bitset | elem_link | elem_style | elem_meta);
+            if (bs.any ())
+                pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "in <HEAD>, <NOSCRIPT> can only have <LINK>, <STYLE>, or <META> descendants"); } } }
 
 void element::examine_object ()
 {   if (node_.version ().mjr () >= 5)

@@ -238,10 +238,9 @@ void options::process (int argc, char** argv)
         (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (0 to determine by HTML version)")
 
         (MICRODATA EXPORT, "export microformat data (only verified data if " MICRODATA MICRODATAARG " is set)")
-        (MICRODATA MINOR, ::boost::program_options::value < int > (), "set default schema.org minor version (default: 0)")
         (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands schema.org microdata)")
         (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "export root directory (requires " MICRODATA EXPORT ")")
-        (MICRODATA VERSION, ::boost::program_options::value < int > (), "set default schema.org major version (default: 11)")
+        (MICRODATA VERSION, ::boost::program_options::value < ::std::string > (), "set default schema.org version (default: 11.0)")
         (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "export virtual directory, syntax virtual=directory. Must correspond to " WEBSITE VIRTUAL)
 
         (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a catastrophe; may be repeated")
@@ -447,10 +446,27 @@ void options::contextualise ()
 
     context.md_export (var_.count (MICRODATA EXPORT));
     context.schema (var_.count (MICRODATA MICRODATAARG));
-    if (var_.count (MICRODATA MINOR)) context.schema_minor (static_cast < unsigned char > (var_ [MICRODATA MINOR].as < int > ()));
     if (var_.count (MICRODATA ROOT)) context.export_root (nix_path_to_local (var_ [MICRODATA ROOT].as < ::std::string > ()));
-    if (var_.count (MICRODATA VERSION)) context.schema_major (static_cast < unsigned char > (var_ [MICRODATA VERSION].as < int > ()));
     if (var_.count (MICRODATA VIRTUAL)) context.exports (var_ [MICRODATA VIRTUAL].as < vstr_t > ());
+
+    if (var_.count (MICRODATA VERSION))
+    {   ::std::string ver (var_ [MICRODATA VERSION].as < ::std::string > ());
+        if (ver.empty ())
+        {   context.schema_major (DEFAULT_SCHEMA_MAJOR).schema_minor (DEFAULT_SCHEMA_MINOR);
+            context.err () << "missing schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n"; }
+        else
+        {   ::std::string::size_type pos = ver.find ('.');
+            // boost lexical cast, bless its cotton socks, doesn't process unsigned char as a number
+            if (pos == ::std::string::npos)
+                context.schema_major (static_cast < unsigned char > (lexical < unsigned int > :: cast (ver))).schema_minor (0);
+            else if (pos == 0)
+            {   context.schema_major (DEFAULT_SCHEMA_MAJOR).schema_minor (DEFAULT_SCHEMA_MINOR);
+                context.err () << "invalid schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n"; }
+            else if (pos == ver.length () - 1)
+                context.schema_major (static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos)))).schema_minor (0);
+            else if (pos > 0) context
+                .schema_major (static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))))
+                .schema_minor (static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1)))); } }
 
     context.codes (var_.count (NITS CODES));
     context.nids (var_.count (NITS NIDS));
@@ -688,9 +704,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     if (var_.count (MICRODATA EXPORT)) res << MICRODATA EXPORT "\n";
     if (var_.count (MICRODATA MICRODATAARG)) res << MICRODATA MICRODATAARG "\n";
-    if (var_.count (MICRODATA MINOR)) res << MICRODATA MINOR ": " << var_ [MICRODATA MINOR].as < int > () << "\n";
     if (var_.count (MICRODATA ROOT)) res << MICRODATA ROOT ": " << var_ [MICRODATA ROOT].as < ::std::string > () << "\n";
-    if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < int > () << "\n";
     if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < int > () << "\n";
     if (var_.count (MICRODATA VIRTUAL)) { res << MICRODATA VIRTUAL ": "; pvs (res, var_ [MICRODATA VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
