@@ -26,6 +26,11 @@ PASS ../toast/living/jul09/example-2.html
 4 url_not_found style_not_css
 5 url_not_found
 6 url_not_found
+12 ignoring_unknown missing_close attribute_barred
+13 ignoring_unknown missing_close attribute_barred
+15 url_not_found
+16 mime
+41 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul09/index.html
 3 attribute_unrecognised_here unrecognised_attribute

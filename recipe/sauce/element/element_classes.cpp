@@ -128,10 +128,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X2          X2_COMMON, COMMON4
 #define XHTML2      X2_COMMON, X2_SOLO
 #define COMMON5     a_accesskey, a_contenteditable, a_contextmenu, a_draggable, a_hidden, a_inert, a_irrelevant, a_item, a_itemid, a_itemprop, \
-                    a_itemref, a_itemscope, a_itemtype, a_numberonce, a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeunload, a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, \
-                    a_onclose, a_oncontextmenu, a_oncuechange, a_ondrag, a_ondragend, a_ondragenter, a_ondragexit, a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, \
-                    a_dropzone, a_ondurationchange, a_onemptied, a_onended, a_onerror, a_onformchange, a_onforminput, a_onhashchange, a_oninput, \
-                    a_oninvalid, a_is, a_onload, a_onloadeddata, a_onloadedmetadata, a_onloadstart, a_onmessage, a_onmouseenter, a_onmouseleave, a_onmousewheel, a_onpause, a_onplay, \
+                    a_itemref, a_itemscope, a_itemtype, a_numberonce, a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeunload, \
+                    a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, a_onclose, a_oncontextmenu, a_oncuechange, a_ondrag, a_ondragend, \
+                    a_ondragenter, a_ondragexit, a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, a_dropzone, a_ondurationchange, a_onemptied, \
+                    a_onended, a_onerror, a_onformchange, a_onforminput, a_onhashchange, a_oninput, a_oninvalid, a_is, a_onload, a_onloadeddata, \
+                    a_onloadedmetadata, a_onloadstart, a_onmessage, a_onmouseenter, a_onmouseleave, a_onmousewheel, a_onpause, a_onplay, \
                     a_onplaying, a_onprogress, a_onratechange, a_onreadystatechange, a_onreset, a_onresize, a_onscroll, a_onsought, a_onseeking, \
                     a_onselect, a_onstorage, a_onsubmit, a_onunload, a_registrationmark, a_spellcheck, a_onshow, a_onstalled, a_subject, \
                     a_onsuspend, a_ontimeupdate, a_template, a_ontoggle, a_translate, a_onvolumechange, a_onwaiting, BLUR, X2
@@ -194,7 +195,7 @@ element_init_t ei [] =
     { elem_area, { a_alt, a_download, a_nohref, a_name, a_ping, a_referrerpolicy, a_type, COMMON54, a_unknown } },
     { elem_arg, { a_index, a_lang, MATH3DEFCOM, a_unknown } },
     { elem_array, { a_align, a_coldef, a_labels, a_ldelim, a_rdelim, a_unknown } },
-    { elem_article, { COMMON54, a_unknown } },
+    { elem_article, { a_pubdate, COMMON54, a_unknown } },
     { elem_aside, { COMMON54, a_unknown } },
     { elem_atop, { a_unknown } },
     { elem_au, { LANGCLASS3, a_unknown } },
@@ -213,10 +214,10 @@ element_init_t ei [] =
     { elem_blink, { a_unknown } },
     { elem_blockquote, { a_align, COMMON54, a_unknown } },
     { elem_blockcode, { XHTML2, a_unknown } },
-    { elem_body, {  a_alink, a_background, a_bgcolour, a_bottommargin, a_leftmargin, a_link,
-                    a_onafterprint, a_onbeforeprint, a_onlanguagechange, a_onmessageerror, a_onoffline, a_ononline,
-                    a_onpagehide, a_onpageshow, a_onpopstate, a_onrejectionhandled, a_onunhandledrejection,
-                    a_rightmargin, a_text, a_topmargin, a_vlink, COMMON54, a_unknown } },
+    { elem_body, {  a_alink, a_background, a_bgcolour, a_bottommargin, a_leftmargin, a_link, a_onafterprint, a_onbeforeprint,
+                    a_onfullscreenchange, a_onfullscreenerror, a_onlanguagechange, a_onmessageerror, a_onoffline, a_ononline, a_onpagehide, a_onpageshow, a_onpopstate,
+                    a_onredo, a_onrejectionhandled, a_onundo, a_onunhandledrejection, a_rightmargin, a_text, a_topmargin, a_vlink,
+                    COMMON54, a_unknown } },
     { elem_box, { a_size, LANGCLASS3, a_unknown } },
     { elem_bq, { a_nowrap, a_clear, LANGCLASS3, a_unknown } },
     { elem_br, { a_clear, COMMON54PLUS, a_unknown } },
@@ -299,6 +300,8 @@ element_init_t ei [] =
     { elem_eq, { MATH3DEFCOM, a_unknown } },
     { elem_equivalent, { MATH3DEFCOM, a_unknown } },
     { elem_eulergamma, { MATH3DEFCOM, a_unknown } },
+    { elem_event_source, { a_onevent, COMMON5, a_unknown } },
+    { elem_eventsource, { COMMON5, a_unknown } },
     { elem_exists, { MATH3DEFCOM, a_unknown } },
     { elem_exp, { MATH3DEFCOM, a_unknown } },
     { elem_exponentiale, { MATH3DEFCOM, a_unknown } },
@@ -555,6 +558,7 @@ element_init_t ei [] =
     { elem_munderover, { a_accent, a_accentunder, a_align, MATH3PRES, a_unknown } },
     { elem_naturalnumbers, { MATH3DEFCOM, a_unknown } },
     { elem_nav, { COMMON54, a_unknown } },
+    { elem_navigation, { COMMON5, a_unknown } },
     { elem_neq, { MATH3DEFCOM, a_unknown } },
     { elem_nextid, { a_n, a_unknown } },
     { elem_nl, { XHTML2, a_unknown } },

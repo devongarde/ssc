@@ -103,6 +103,7 @@
     <ClInclude Include="..\heater\type\type_class.h" />
     <ClInclude Include="..\heater\type\type_colour.h" />
     <ClInclude Include="..\heater\type\type_core.h" />
+    <ClInclude Include="..\heater\type\type_csp.h" />
     <ClInclude Include="..\heater\type\type_currency.h" />
     <ClInclude Include="..\heater\type\type_enum.h" />
     <ClInclude Include="..\heater\type\type_enum_vec.h" />
@@ -238,6 +239,7 @@
     <ClCompile Include="..\sauce\type\type_class.cpp" />
     <ClCompile Include="..\sauce\type\type_colour.cpp" />
     <ClCompile Include="..\sauce\type\type_core.cpp" />
+    <ClCompile Include="..\sauce\type\type_csp.cpp" />
     <ClCompile Include="..\sauce\type\type_currency.cpp" />
     <ClCompile Include="..\sauce\type\type_d.cpp" />
     <ClCompile Include="..\sauce\type\type_enum.cpp" />

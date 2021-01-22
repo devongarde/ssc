@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.81
+- --schema.version now accepts x.y style versions
+- --schema.minor removed
+- various bug fixes
+
 0.0.80
 - added a (prototype) man page (recipe/tea/gen.txt)
 - added --stats.meta to generate stats on <META> usage in <HEAD>

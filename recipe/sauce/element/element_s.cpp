@@ -42,7 +42,7 @@ void element::examine_script ()
                 case mime_text_xml :
                 case mime_application_octet_stream :
                 case mime_application_xml :
-                    if (node_.version () < html_jul20)
+                    if (node_.version () < html_jul18)
                         pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, quote (type_master < t_mime > :: name (mt)), " is not a scripting language");
                     break;
                 case mime_application_ecmascript :
@@ -51,6 +51,7 @@ void element::examine_script ()
                 case mime_application_x_javascript :
                 case mime_text_ecmascript :
                 case mime_text_javascript :
+                case mime_text_javascript_x :
                 case mime_text_javascript10 :
                 case mime_text_javascript11 :
                 case mime_text_javascript12 :

@@ -1,0 +1,18 @@
+-f ../toast/w3/bogus/w3.conf
+
+PASS ../toast/w3/bogus/bogus-fpi2.html
+2 xhtml_superseded unexpected_doctype_content
+9 use_double_quote_code
+
+PASS ../toast/w3/bogus/bogus-fpi3.html
+2 unexpected_doctype_content
+9 use_double_quote_code
+
+PASS ../toast/w3/bogus/bogus-fpi4.html
+2 xhtml_superseded unexpected_doctype_content
+5 use_double_quote_code
+12 use_double_quote_code
+17 use_double_quote_code
+
+PASS ../toast/w3/bogus/index.html
+2 naughty_lang

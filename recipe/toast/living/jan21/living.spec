@@ -80,6 +80,15 @@ PASS ../toast/living/jan21/example-2.html
 36 untidy_string untidy_string sizes sizes url_not_found
 41 untidy_string mq_syntax
 43 url_not_found
+46 url_not_found
+47 mime
+61 use_quote_code
+75 use_quote_code
+79 unrecognised_schema unrecognised_schema
+89 unrecognised_schema unrecognised_schema
+120 unrecognised_value
+135 use_quote_code
+145 use_quote_code
 
 PASS ../toast/living/jan21/index.html
 3 attribute_unrecognised_here unrecognised_attribute
@@ -112,3 +121,9 @@ PASS ../toast/living/jan21/ls11.html
 4 long_title
 5 element_offsite_base
 8 url_not_found
+
+PASS ../toast/living/jan21/ls13.html
+12 use_quote_code
+
+PASS ../toast/living/jan21/ls15.html
+3 naughty_lang

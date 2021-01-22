@@ -391,8 +391,6 @@ parentage parent_table [] =
     { { HTML_4_0 }, { XHTML_1_1 }, elem_div, elem_undefined, 0, EF_4_FLOW },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_div, elem_undefined, 0, EF_X2_FLOW },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_div, elem_undefined, 0, EF_5_FLOW },
-//    { { HTML_5_0 }, { HTML_UNDEF }, elem_div, elem_dd },
-//    { { HTML_5_0 }, { HTML_UNDEF }, elem_div, elem_dt },
     { { HTML_1_0 }, { HTML_1_0 }, elem_dl, elem_a },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_dl, elem_caption },
     { { HTML_TAGS }, { HTML_UNDEF }, elem_dl, elem_dd },
@@ -704,14 +702,14 @@ parentage parent_table [] =
     { { HTML_5_0 }, { HTML_UNDEF }, elem_header, elem_header, DENY },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_header, elem_main, DENY },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_header, elem_undefined, 0, EF_5_FLOW },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_hgroup, elem_h1 },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_hgroup, elem_h2 },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_hgroup, elem_h3 },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_hgroup, elem_h4 },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_hgroup, elem_h5 },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_hgroup, elem_h6 },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_hgroup, elem_script },
-    { { HTML_JUL20 }, { HTML_UNDEF }, elem_hgroup, elem_template },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_h1 },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_h2 },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_h3 },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_h4 },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_h5 },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_h6 },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_script },
+    { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_template },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_hkern, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_TAGS }, { HTML_TAGS }, elem_hp1, elem_undefined },
     { { HTML_TAGS }, { HTML_TAGS }, elem_hp2, elem_undefined },
@@ -943,7 +941,8 @@ parentage parent_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_munder, elem_undefined, 0, EF_M_PRESEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_munderover, elem_undefined, 0, EF_M_PRESEXPR },
     { { HTML_5_0 }, { HTML_UNDEF }, elem_nav, elem_main, DENY },
-    { { HTML_JAN05 }, { HTML_UNDEF }, elem_nav, elem_undefined, 0, EF_5_FLOW },
+    { { HTML_JAN06 }, { HTML_UNDEF }, elem_nav, elem_undefined, 0, EF_5_FLOW },
+    { { HTML_JAN05 }, { HTML_DEC05 }, elem_navigation, elem_undefined, 0, EF_5_FLOW },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_nl, elem_caption },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_nl, elem_title },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_nl, elem_li },
@@ -1981,6 +1980,9 @@ e_element default_parent (const html_version& v, const elem& self)
             return elem_tbody;
         case elem_row :
             return elem_array;
+        case elem_script :
+            if (v.mjr () >= 5) return elem_body;
+            return elem_head;
         case elem_tbreak :
         case elem_tref :
             return elem_tspan;

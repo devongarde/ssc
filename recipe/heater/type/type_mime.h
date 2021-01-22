@@ -66,6 +66,7 @@ template < > inline void enum_n < t_mime, e_mimetype > :: validate (nitpick& nit
                     break;
                 case mime_text_ecmascript :
                 case mime_text_javascript :
+                case mime_text_javascript_x :
                     if (v >= html_5_0) nits.pick (nit_mime, es_warning, ec_type, quote (s), " is obsoleted by the corresponding 'application/' mime type");
                     break;
                 case mime_application_smil :

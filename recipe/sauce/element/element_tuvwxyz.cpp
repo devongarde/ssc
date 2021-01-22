@@ -123,7 +123,7 @@ void element::examine_title ()
     ::std::string txt (text ());
     if (is_whitespace (txt))
         pick (nit_text_content, es_warning, ec_element, "<TITLE> text should be more than whitespace");
-    else if (txt.length () > context.title ())
+    else if (txt.length () > static_cast < unsigned int > (context.title ()))
         pick (nit_long_title, ed_tags, "TITLE section", es_warning, ec_element, "the TITLE text (", quote (txt.substr (0, context.title ())), "...) should be fairly short");
     page_.confirm_title (); }
 

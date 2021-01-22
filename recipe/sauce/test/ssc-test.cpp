@@ -3,12 +3,12 @@ ssc (static site checker)
 Copyright (c) 2020,2021 Dylan Harris
 https://dylanharris.org/
 
-This program is free software: you can redistribute it and/or modify
+this program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public Licence as published by
 the Free Software Foundation, either version 3 of the Licence,  or
 (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
+this program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public Licence for more details.
@@ -70,7 +70,7 @@ vstr_t readlines (const ::std::string& name)
     if (verbose > 1) ::std::cout << "\n>>> " << name << ":\n";
     ::std::ifstream ifs (name);
     if (ifs.bad ())
-    {   ::std::cerr << "Cannot open " << name << "\n"; return res; }
+    {   ::std::cerr << "cannot open " << name << "\n"; return res; }
     else
     {   const int maxlen = 8191;
         char sz [maxlen+1];
@@ -85,14 +85,14 @@ vstr_t readlines (const ::std::string& name)
 
 bool testfile (const ::boost::filesystem::path& s, const ::std::string& context = ::std::string ())
 {   if (! ::boost::filesystem::exists (s))
-    {   ::std::cerr << "Cannot find " << s << context << "\n"; return false; }
+    {   ::std::cerr << "cannot find " << s << context << "\n"; return false; }
     else if (! ::boost::filesystem::is_regular_file (s))
-    {   ::std::cerr << "Cannot load " << s << context << "\n"; return false; }
+    {   ::std::cerr << "cannot load " << s << context << "\n"; return false; }
     return true; }
 
 bool testxeq (const ::boost::filesystem::path& s, const ::std::string& context = ::std::string ())
 {   if (! ::boost::filesystem::exists (s))
-    {   ::std::cerr << "Cannot find " << s << context << "\n"; return false; }
+    {   ::std::cerr << "cannot find " << s << context << "\n"; return false; }
     return true; }
 
 bool load_file_list (char* name, filelist& specs)
@@ -122,7 +122,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
     if (! testfile (f)) return false;
     vstr_t spec (readlines (f.string ()));
     if (spec.empty ())
-    {   ::std::cerr << "No content found in " << f << "\n"; return false; }
+    {   ::std::cerr << "no content found in " << f << "\n"; return false; }
     cmdline.clear ();
     if (grand_stats_fn.empty ()) grand_stats_fn = f.parent_path () / "grand.stats";
     nits_init ();
@@ -175,17 +175,17 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         ::std::string::size_type spaced = s.find (' ');
         if (exports)
         {   if ((spaced == ::std::string::npos) || spaced == (s.length () - 1))
-            {   ::std::cerr << "Missing created filename among " << s << " on line "<< line << " of " << f.string () << "\n"; return false; }
+            {   ::std::cerr << "missing created filename among " << s << " on line "<< line << " of " << f.string () << "\n"; return false; }
             if (spaced == 0)
-            {   ::std::cerr << "Missing correct filename among " << s << " on line "<< line << " of " << f.string () << "\n"; return false; }
+            {   ::std::cerr << "missing correct filename among " << s << " on line "<< line << " of " << f.string () << "\n"; return false; }
             ::std::string lhs (s.substr (0, spaced));
             ::std::string rhs (s.substr (spaced+1));
             if (correct_set.find (lhs) != correct_set.cend ())
-            {   ::std::cerr << "Duplicate correct filename " << lhs << " on line "<< line << " of " << f.string () << "\n"; return false; }
+            {   ::std::cerr << "duplicate correct filename " << lhs << " on line "<< line << " of " << f.string () << "\n"; return false; }
             if (created_set.find (rhs) != created_set.cend ())
-            {   ::std::cerr << "Duplicate created filename " << rhs << " on line "<< line << " of " << f.string () << "\n"; return false; }
+            {   ::std::cerr << "duplicate created filename " << rhs << " on line "<< line << " of " << f.string () << "\n"; return false; }
             if (! ::boost::filesystem::exists (lhs))
-            {   ::std::cerr << "Missing correct file " << lhs << " on line "<< line << " of " << f.string () << "\n"; return false; }
+            {   ::std::cerr << "missing correct file " << lhs << " on line "<< line << " of " << f.string () << "\n"; return false; }
             if (! ::boost::filesystem::is_regular_file (lhs))
             {   if (verbose) ::std::cout << "correct " << lhs << " is not a normal file\n"; return false; }
             correct_set.insert (lhs);
@@ -195,19 +195,19 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
             continue; }
         if (classed)
         {   if ((spaced == ::std::string::npos) || spaced == (s.length () - 1))
-            {   ::std::cerr << "Missing class count on line "<< line << " of " << f.string () << "\n"; return false; }
+            {   ::std::cerr << "missing class count on line "<< line << " of " << f.string () << "\n"; return false; }
             if (spaced == 0)
-            {   ::std::cerr << "Missing class name on line "<< line << " of " << f.string () << "\n"; return false; }
+            {   ::std::cerr << "missing class name on line "<< line << " of " << f.string () << "\n"; return false; }
             ::std::string n (s.substr (0, spaced));
             int c = -1;
             try
             {   c = ::boost::lexical_cast < int > (s.substr (spaced + 1)); }
             catch (...) { }
             if (c < 0)
-            {   ::std::cerr << "Bad class count on line "<< line << " of " << f.string () << "\n"; return false; }
+            {   ::std::cerr << "bad class count on line "<< line << " of " << f.string () << "\n"; return false; }
             auto res = expected_classes.insert (::classic::value_type (n, c));
             if (! res.second)
-            {   ::std::cerr << "Class '" << n << "' repeated on line "<< line << " of " << f.string () << "\n"; return false; }
+            {   ::std::cerr << "class '" << n << "' repeated on line "<< line << " of " << f.string () << "\n"; return false; }
             continue; }
         if (cmdline.empty ()) { cmdline = s; continue; }
         else switch (s.at (0))
@@ -226,7 +226,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
                 {   exporterrors = shadow = classed = lynx = itemid = exports = false;
                     if (! previous.empty ()) expected.insert (knotted::value_type (previous, expect));
                     if (spaced == ::std::string::npos)
-                    {   ::std::cerr << "Missing filename " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
+                    {   ::std::cerr << "missing filename " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
                     ::std::string fn (::boost::trim_copy (s.substr (spaced)));
                     if (! testfile (fn)) return false;
                     expect.flags_ = (s.at (0) == 'F') ? NW_FAIL : 0;
@@ -236,12 +236,12 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
                 continue;
             default : break; }
         if (spaced == ::std::string::npos)
-        {   ::std::cerr << "Unexpected content " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
+        {   ::std::cerr << "unexpected content " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
         size_t lno = 0;
         try
         {   lno = ::boost::lexical_cast < size_t > (s.substr (0, spaced)); }
         catch (...)
-        {   ::std::cerr << "Invalid line number " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
+        {   ::std::cerr << "invalid line number " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
         vstr_t v;
         ::std::string sss (s.substr (spaced));
         ::boost::algorithm::split (v, sss, ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
@@ -255,7 +255,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         {   if (n.empty ()) continue;
             ::boost::trim (n);
             e_nit en = lookup_code (n);
-            if (en == nit_off) ::std::cerr << "No such feedback as '" << n << "' (line "<< line << " of " << f.string () << ")\n";
+            if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (line "<< line << " of " << f.string () << ")\n";
             else last_nits.push_back (en); } }
     if (! last_nits.empty ()) expect.nits_.insert (::nitted::value_type (last_line, last_nits));
     if (! expect.nits_.empty () && ! previous.empty ())
@@ -273,13 +273,13 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
 
 bool examine_results_header (vstr_t& results)
 {   if (results.size () < 3)
-    {   if (verbose) ::std::cout << "Too little output.\n"; return false; }
+    {   if (verbose) ::std::cout << "too little output.\n"; return false; }
     if (results.at (0) != PROG)
-    {   if (verbose) ::std::cout << "Not " PROG " (expected '" PROG "', got '" << results.at (0) << "')\n"; return false; }
+    {   if (verbose) ::std::cout << "not " PROG " (expected '" PROG "', got '" << results.at (0) << "')\n"; return false; }
     if (results.at (1) != VERSION_STRING)
-    {   if (verbose) ::std::cout << "This copy of " TESTPROG " can only test " PROG " version " VERSION_STRING ", not version " << results.at (1) << ".\n"; return false; }
+    {   if (verbose) ::std::cout << "this copy of " TESTPROG " can only test " PROG " version " VERSION_STRING ", not version " << results.at (1) << ".\n"; return false; }
     if (results.at (2) != COPYRIGHT)
-    {   if (verbose) ::std::cout << "Invalid copyright.\n"; return false; }
+    {   if (verbose) ::std::cout << "invalid copyright.\n"; return false; }
     return true; }
 
 bool examine_results_one_file (const ::std::string& fn, nitted& expect, nitted& got)
@@ -508,7 +508,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
         if (overall_stats) { overall.push_back (results.at (r)); continue; }
         if (file_stats) { file.push_back (results.at (r)); continue; }
         if (line.size () < 2)
-        {   if (verbose) ::std::cout << "Missing content in output " << results.at (0) << "\n"; res = false; }
+        {   if (verbose) ::std::cout << "missing content in output " << results.at (0) << "\n"; res = false; }
         if (results.at (r).at (0) != '*')
         {   if (shush) continue;
             if (lynx)
@@ -532,7 +532,8 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
             try
             {   ln = ::boost::lexical_cast < size_t > (line.at (0)); }
             catch (...)
-            {   if (verbose) ::std::cout << "in " << fn << ", expecting line number in " << results.at (r) << "\n"; res = false; }
+            {   if (verbose) ::std::cout << "in " << fn << ", expecting line number in " << results.at (r) << "\n";
+                res = false; }
             nits ns;
             auto ii = got.find (ln);
             if (ii != got.cend ())
@@ -543,9 +544,13 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                 try
                 {   en = static_cast < e_nit > (::boost::lexical_cast < size_t > (line.at (n))); }
                 catch (...)
-                {   if (verbose) ::std::cout << "in " << fn << ", expecting error codes in " << results.at (r) << "\n"; res = false; }
+                {   if (verbose) ::std::cout << "in " << fn << ", expecting error codes in " << results.at (r) << "\n";
+                    res = false; }
                 if (en >= nit_off)
-                {   if (verbose) ::std::cout << "in " << fn << ", unexpected error code " << static_cast < size_t > (en) << " in " << results.at (r) << "; is " TESTPROG " up to date?\n"; res =  false; }
+                {   if (verbose)
+                        ::std::cout <<  "in " << fn << ", unexpected error code " << static_cast < size_t > (en) <<
+                                        " in " << results.at (r) << "; is " TESTPROG " up to date?\n";
+                    res = false; }
                 ns.push_back (en); }
             got.insert (nitted::value_type (ln, ns)); }
         else
@@ -558,7 +563,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
             else if (oops) { oops = false; ++failed; }
             fn = ::boost::trim_copy (line.at (1));
             if (fn.empty ())
-            {   if (verbose) ::std::cout << "Missing filename in output\n"; res =  false; }
+            {   if (verbose) ::std::cout << "missing filename in output\n"; res =  false; ++failed; }
             knotted::const_iterator i = expected.find (fn);
             if (i == expected.end ())
             {   if (fn == "classes") classes = true;
@@ -569,8 +574,8 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                 else if (fn == "Statistics:") file_stats = true;
                 else if (fn == "Grand") overall_stats = true;
                 else
-                {   if (verbose) ::std::cout << "Results for unexpected file " << fn << " found\n";
-                    res = false;
+                {   if (verbose) ::std::cout << "results for unexpected file " << fn << " found\n";
+                    res = false; ++failed;
                     fn.clear (); shush = true; } }
             else
             {   previous = fn;
@@ -584,15 +589,17 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
     if (! examine_results_once (expected, expect, got, fn, passed, failed)) res = false;
     else if (oops) { ++failed; oops = false; }
     for (knotted::const_iterator i = expected.begin (); i != expected.end (); ++i)
-    {   if (verbose) ::std::cout << "Results for " << i -> first << " not found.\n";
-        res = false; }
+    {   if (verbose) ::std::cout << "results for " << i -> first << " not found.\n";
+        res = false; ++failed; }
     if (! expected_classes.empty ())
-    {   if (res) { oops = true; res = false; }
+    {   if (res) res = false;
+        oops = true;
         for (auto i : expected_classes)
             if (verbose) ::std::cout << "class " << i.first << " missing.\n";
         expected_classes.clear (); }
     if (! expected_itemids.empty ())
-    {   if (res) { oops = true; res = false; }
+    {   if (res) res = false;
+        oops = true;
         for (auto i : expected_itemids)
             if (verbose) ::std::cout << "itemid " << i << " missing.\n";
         expected_itemids.clear (); }
@@ -647,15 +654,15 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
             system (clean.string ().c_str ()); }
         if (! testfile (tmp)) return ERROR_EXIT;
         if (::boost::filesystem::file_size (tmp) > MAXOUTPUTFILESIZE)
-        {   ::std::cerr << "Too much output.\n";
+        {   ::std::cerr << "too much output.\n";
             if (rmtmp) ::boost::filesystem::remove (tmp);
             return ERROR_EXIT; } }
     if (! ::boost::filesystem::exists (tmp))
-    {   ::std::cout << "No results file (" << tmp.string () << ").\n";
+    {   ::std::cout << "no results file (" << tmp.string () << ").\n";
         return ERROR_EXIT; }
     vstr_t results (readlines (tmp.string ()));
     if (verbose >= 3)
-    {   ::std::cout << "Results (" << tmp.string () << "):\n";
+    {   ::std::cout << "results (" << tmp.string () << "):\n";
         for (auto s : results) ::std::cout << s << "\n";
         ::std::cout << "\n"; }
     if (rmtmp && pre.empty ()) ::boost::filesystem::remove (tmp);
@@ -745,6 +752,6 @@ int main (int argc, char** argv)
     if (passed + failed > 1)
         ::std::cout << passed << " passed, " << failed << " failed: ";
 
-    if (trump || (res == 0)) ::std::cout << "PASS\n";
+    if (trump || (res == 0)) ::std::cout << "pass\n";
     else ::std::cout << "FAIL\n";
     exit (0); }

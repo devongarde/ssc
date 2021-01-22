@@ -117,19 +117,17 @@ The options are as follows:
 
 --microdata.export      Export schema.org microdata encountered. This data is exported in JSON format.
 
---microdata.minor x     Test for schema.org microdoata minor version X. This is combined with --microdata.version; see that for more info.
-                        The following values are valid:
-                                version 2: 0 to 2
-                                version 3: 0 to 9
-                                version 7: 0 to 4
-                        all other valid major versions of schema.org only accept minor version 0.
-
 --microdata.root dir    when exporting microdata with --microdata.export, write files into dir. sssc will create the directory tree
                         structure as appropriate
 
---microdata.version x   When analysing schema.org microdata, presume this version of the schema.org schema. This specifies the major
-                        version number (between 2 and 11 inclusive). Certain major versions have minor versions too, which is
-                        specified by the --microdata.minor switch.
+--microdata.version x.y Test for schema.org microdata version X.Y
+                        The following values are valid:
+                                version 2: 0 to 2
+                                version 3: 0 to 9
+                                versions 4.0, 5.0, 6.0
+                                version 7: 0 to 4
+                                versions 8.0, 9.0, 10.0, 11.0
+                        If .Y is omitted, version X.0 is presumed.
 
 --microdata.virtual a=b when exporting microdata using --microdata.export, export the contents of virtual directory 'a' to 'b'. 'a'
                         must corresponding to a directory identified with --site.virtual.

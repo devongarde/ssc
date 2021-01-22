@@ -521,6 +521,7 @@ typedef typed_attribute < t_script, a_ondurationchange > attr_ondurationchange;
 typedef typed_attribute < t_script, a_onemptied > attr_onemptied;
 typedef typed_attribute < t_script, a_onend > attr_onend;
 typedef typed_attribute < t_script, a_onended > attr_onended;
+typedef typed_attribute < t_script, a_onevent > attr_onevent;
 typedef typed_attribute < t_script, a_onerror > attr_onerror;
 typedef typed_attribute < t_script, a_onfocus > attr_onfocus;
 typedef typed_attribute < t_script, a_onfocusin > attr_onfocusin;
@@ -528,6 +529,8 @@ typedef typed_attribute < t_script, a_onfocusout > attr_onfocusout;
 typedef typed_attribute < t_script, a_onformchange > attr_onformchange;
 typedef typed_attribute < t_script, a_onformdata > attr_onformdata;
 typedef typed_attribute < t_script, a_onforminput > attr_onforminput;
+typedef typed_attribute < t_script, a_onfullscreenchange > attr_onfullscreenchange;
+typedef typed_attribute < t_script, a_onfullscreenerror > attr_onfullscreenerror;
 typedef typed_attribute < t_script, a_onhashchange > attr_onhashchange;
 typedef typed_attribute < t_script, a_oninput > attr_oninput;
 typedef typed_attribute < t_script, a_oninvalid > attr_oninvalid;
@@ -562,6 +565,7 @@ typedef typed_attribute < t_script, a_onpopstate > attr_onpopstate;
 typedef typed_attribute < t_script, a_onprogress > attr_onprogress;
 typedef typed_attribute < t_script, a_onratechange > attr_onratechange;
 typedef typed_attribute < t_script, a_onreadystatechange > attr_onreadystatechange;
+typedef typed_attribute < t_script, a_onredo > attr_onredo;
 typedef typed_attribute < t_script, a_onrejectionhandled > attr_onrejectionhandled;
 typedef typed_attribute < t_script, a_onrepeat > attr_onrepeat;
 typedef typed_attribute < t_script, a_onreset > attr_onreset;
@@ -580,6 +584,7 @@ typedef typed_attribute < t_script, a_onsubmit > attr_onsubmit;
 typedef typed_attribute < t_script, a_onsuspend > attr_onsuspend;
 typedef typed_attribute < t_script, a_ontimeupdate > attr_ontimeupdate;
 typedef typed_attribute < t_script, a_ontoggle > attr_ontoggle;
+typedef typed_attribute < t_script, a_onundo > attr_onundo;
 typedef typed_attribute < t_script, a_onunhandledrejection > attr_onunhandledrejection;
 typedef typed_attribute < t_script, a_onunload > attr_onunload;
 typedef typed_attribute < t_script, a_onvolumechange > attr_onvolumechange;
@@ -635,6 +640,7 @@ typedef typed_attribute < t_urls, a_profile > attr_profile;
 typedef typed_attribute < t_generic, a_prompt > attr_prompt;
 typedef typed_attribute < t_propagate, a_propagate > attr_propagate;
 typedef typed_attribute < t_curies, a_property > attr_property;
+typedef typed_attribute < t_datetime, a_pubdate > attr_pubdate;
 typedef typed_attribute < t_existential, a_public > attr_public;
 typedef typed_attribute < t_measure, a_r > attr_r;
 typedef typed_attribute < t_idref, a_radiogroup > attr_radiogroup;
@@ -1371,6 +1377,7 @@ const e_attribute last_am = a_muted;
     attr_onemptied, \
     attr_onend, \
     attr_onended, \
+    attr_onevent, \
     attr_onerror, \
     attr_onfocus, \
     attr_onfocusin, \
@@ -1378,6 +1385,8 @@ const e_attribute last_am = a_muted;
     attr_onformchange, \
     attr_onformdata, \
     attr_onforminput, \
+    attr_onfullscreenchange, \
+    attr_onfullscreenerror, \
     attr_onhashchange, \
     attr_oninput, \
     attr_oninvalid, \
@@ -1412,6 +1421,7 @@ const e_attribute last_am = a_muted;
     attr_onprogress, \
     attr_onratechange, \
     attr_onreadystatechange, \
+    attr_onredo, \
     attr_onrejectionhandled, \
     attr_onrepeat, \
     attr_onreset, \
@@ -1430,6 +1440,7 @@ const e_attribute last_am = a_muted;
     attr_onsuspend, \
     attr_ontimeupdate, \
     attr_ontoggle, \
+    attr_onundo, \
     attr_onunhandledrejection, \
     attr_onunload, \
     attr_onvolumechange, \
@@ -1485,6 +1496,7 @@ const e_attribute last_am = a_muted;
     attr_prompt, \
     attr_propagate, \
     attr_property, \
+    attr_pubdate, \
     attr_public, \
     attr_r, \
     attr_radiogroup, \

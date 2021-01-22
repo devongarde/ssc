@@ -55,6 +55,14 @@ PASS ../toast/living/jul10/example-2.html
 24 no_such_folder url_not_found
 25 no_such_folder url_not_found
 26 no_such_folder url_not_found
+31 url_not_found
+32 mime
+46 attribute_barred invalid_attribute_version wrong_version
+49 use_quote_code
+59 attribute_barred invalid_attribute_version wrong_version
+62 use_quote_code
+69 attribute_barred invalid_attribute_version wrong_version
+76 attribute_barred invalid_attribute_version wrong_version
 
 PASS ../toast/living/jul10/index.html
 3 attribute_unrecognised_here unrecognised_attribute
@@ -88,4 +96,5 @@ PASS ../toast/living/jul10/ls9.html
 5 element_offsite_base
 8 url_not_found
 
-PASS ../toast/living/jul10/ls10.html
+PASS ../toast/living/jul10/ls11.html
+12 use_quote_code

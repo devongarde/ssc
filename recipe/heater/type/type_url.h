@@ -81,10 +81,7 @@ template < > struct type_master < t_absolute_url > : type_master < t_url >
 
 template < > struct type_master < t_schema > : type_master < t_url >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   if (v < html_5_0)
-        {   nits.pick (nit_wrong_version, es_error, ec_type, "microdata requires HTML 5");
-            type_base < url, t_url > :: status (s_invalid); return; }
-        html_version sv (context.schema_ver ());
+    {   html_version sv (context.schema_ver ());
         type_master < t_url > :: set_value (nits, sv, s);
         if (type_master < t_url > :: good ())
             if (! value_.has_domain () || ! value_.has_absolute_path () || ! value_.has_protocol ())
