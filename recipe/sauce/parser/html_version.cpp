@@ -31,19 +31,14 @@ const char* docdot = "<!DOCTYPE ...>";
 html_version::html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags, const uint64_t extensions)
         :   mjr_ (mjr), mnr_ (mnr), flags_ (flags), ext_ (extensions)
 {   if (mnr_ == 0xFF)
-        if (mjr_ == 5) switch (context.html_minor ())
-        {   case 0 : mjr_ = MAJOR_5_0; mnr_ = MINOR_5_0; break;
-            case 1 : mjr_ = MAJOR_5_1; mnr_ = MINOR_5_1; break;
-            case 2 : mjr_ = MAJOR_5_2; mnr_ = MINOR_5_2; break;
-            case 3 : mjr_ = MAJOR_5_3; mnr_ = MINOR_5_3; break;
-            default : mjr_ = HTML_LATEST_YEAR; mnr_ = HTML_LATEST_MONTH; break; }
-        else mnr_ = 0; }
+    {   init (mjr_);
+        flags_ |= flags; ext_ |= extensions; } }
 
 html_version::html_version (const boost::gregorian::date& d, const uint64_t flags, const uint64_t extensions)
         :   flags_ (flags | HV_WHATWG), ext_ (extensions)
-{   if (d.is_not_a_date ()) { mjr_ = 1; mnr_ = 0; return; }
+{   if (d.is_not_a_date ()) { reset (html_1); return; }
     int y = d.year ();
-    if ((y > 100) && (y < 2000)) { mjr_ = 1; mnr_ = 0; return; }
+    if ((y > 100) && (y < 2000)) { reset (html_1); return; }
     int m = d.month ();
     if (y > 2000) y -= 2000;
     if ((y < HTML_5_EARLIEST_YEAR) || ((y == HTML_5_EARLIEST_YEAR) && (m < HTML_5_EARLIEST_MONTH)))
@@ -61,6 +56,23 @@ html_version::html_version (const boost::gregorian::date& d, const uint64_t flag
         else if (mjr_ > HTML_2008) ext_ |= HE_SVG_1_2_TINY;
         else ext_ |= HE_SVG_1_1; }
 
+void html_version::init (const unsigned char mjr)
+{   switch (mjr)
+    {   case 0 :
+            reset (html_tags); break;
+        case 1 :
+            reset (html_1); break;
+        case 2 :
+            reset (html_2); break;
+        case 3 :
+            reset (html_3_2); break;
+        case 4 :
+            reset (html_4_1); break;
+        case 5 :
+            reset (html_current); break;
+        default :
+            assert (false); reset (html_current); break; } }
+
 void html_version::swap (html_version& v) NOEXCEPT
 {   ::std::swap (mjr_, v.mjr_);
     ::std::swap (mnr_, v.mnr_);
@@ -73,7 +85,7 @@ void html_version::swap (html_version& v) NOEXCEPT
     if (v == html_5_1) return "5.1";
     if (v == html_5_2) return "5.2";
     if (v == html_5_3) return "5.3";
-    ::std::string res ("5:");
+    ::std::string res ("5/20");
     if (v.mjr () <= 9)
     {   res += "0";
         res += static_cast <char> (v.mjr () + '0'); }
@@ -112,16 +124,15 @@ void html_version::swap (html_version& v) NOEXCEPT
                     else if (mnr_ == 1) res << "+";
                     break;
                 case 2 :
-                    res <<  "2";
+                    res << "2";
                     if (level () > 0) res << "/" << level ();
                     break;
                 case 3 :
-                    res <<  "3." << static_cast <char> (mnr_ + '0');
+                    res << "3." << static_cast <char> (mnr_ + '0');
                     break;
                 case 4 :
-                    res <<  "4";
-                    if (mnr_ == 1) res << ".01";
-                    else res << ".00";
+                    res << "4.0";
+                    if (mnr_ == 1) res << "1";
                     break;
                 default:
                     res << minor_to_date (*this);
@@ -186,14 +197,7 @@ bool html_version::invalid_addendum (const html_version& v) const
 bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
 {   nits.set_context (0, trim_the_lot_off (content));
     if (! compare_no_case (doctype, content.substr (0, doctype_len)))
-    {   if (context.presume_tags ())
-        {   nits.pick (nit_presume_html_tags, ed_tags, "", es_info, ec_parser, "no <!DOCTYPE> found, presuming HTML Tags");
-            reset (html_tags); }
-        else
-        if ((context.html_major () == 0) && (context.html_minor () == 0))
-        {   nits.pick (nit_presume_html_1, ed_1, "", es_info, ec_parser, "no <!DOCTYPE> found, presuming HTML 1.0");
-            reset (html_1); }
-        else nits.pick (nit_html_unknown_sgml, es_error, ec_parser, content.substr (0, doctype_len), " is not understood by " PROG);
+    {   nits.pick (nit_html_unknown_sgml, es_error, ec_parser, content.substr (0, doctype_len), " is not understood by " PROG);
         return true; }
     bool found_html = false;
     bool found_public = false;
@@ -375,7 +379,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
             {   nits.pick (nit_html_unknown_sgml, es_warning, ec_parser, "The HTML declaration in <!DOCTYPE ...> contains unrecognised content (", quote (wtf), "). Abandoning verification");
                 return false; }
             html_version vvv;
-            ::std::string ver ("HTML 5");
+            ::std::string ver ("HTML ");
             e_nit wit = nit_free;
             e_mathversion ev = context.math_version ();
             e_svg_version sv = context.svg_version ();
@@ -383,14 +387,13 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
             {   vvv = context.html_ver ();
                 wit = nit_overriding_html; }
             else
-            {   ver += static_cast < char > ('0' + context.html_minor ());
-                switch (context.html_minor ())
-                {   case 0 : wit = nit_html_5_0; vvv = html_5_0; break;
-                    case 1 : wit = nit_html_5_1; vvv = html_5_1; break;
-                    case 2 : wit = nit_html_5_2; vvv = html_5_2; break;
-                    case 3 : wit = nit_html_5_3; vvv = html_5_3; break;
-                    default : wit = nit_html_20_07; vvv = html_jul20; break; } }
-            assert (wit != nit_free);
+            {   vvv = html_default;
+                if (vvv == html_5_0) wit = nit_html_5_0;
+                else if (vvv == html_5_1) wit = nit_html_5_1;
+                else if (vvv == html_5_2) wit = nit_html_5_2;
+                else if (vvv == html_5_3) wit = nit_html_5_3;
+                else wit = nit_html_5_living;
+                ver += minor_to_date (vvv); }
             if (ev > math_none) vvv.math_version (ev);
             if (sv > sv_none) vvv.svg_version (sv);
             note_parsed_version (nits, wit, vvv, ver);
@@ -403,7 +406,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
             if (found_unknown) if (context.tell (e_warning))
                 nits.pick (nit_unexpected_doctype_content, es_warning, ec_parser, "Ignoring unexpected content (", quote (wtf), ") found in <!DOCTYPE>"); }
         return true; }
-    nits.pick (nit_doctype_incomprehensible, es_catastrophic, ec_parser, PROG " does not understand the <!DOCTYPE>. Is HTML missing? Abandoning verification");
+    nits.pick (nit_doctype_incomprehensible, es_catastrophic, ec_parser, PROG " does not understand the <!DOCTYPE> so is abandoning verification");
     return false; }
 
 bool html_version::deprecated (const html_version& current) const

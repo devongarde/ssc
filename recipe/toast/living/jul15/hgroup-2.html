@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> aside </title> </head>
+ <body>
+
+<dialog onclose="walletSetup.continue(this.returnValue)">
+<hgroup>
+<h1>Wallet Setup</h1>
+<h2>Configure your Wallet funding source</h2>
+</hgroup>
+<p>Your Wallet can be used to buy wands at the merchant in town, to buy potions from travelling
+salesmen you may find in the dungeons, and to pay for mercenaries.</p>
+<p>We support two payment sources:</p>
+<form method=dialog>
+<fieldset oninput="this.getElementsByTagName('input')[0].checked = true">
+<legend> <label> <input type=radio name=payment-type value=cc> Credit Card </label> </legend>
+<p><label>Name on card: <input name=cc1 autocomplete="section-cc cc-name" placeholder="Y.
+Name"></label>
+<p><label>Card number: <input name=cc2 inputmode=numeric autocomplete="section-cc cc-number"
+placeholder="6331 1019 9999 0016"></label>
+<p><label>Expiry Date: <input name=cc3 type=month autocomplete="section-cc cc-exp"
+placeholder="2020-02"></label>
+<p><label>Security Code: <input name=cc4 inputmode=numeric autocomplete="section-cc cc-csc"
+placeholder="246"></label>
+</fieldset>
+<fieldset oninput="this.getElementsByTagName('input')[0].checked = true">
+<legend> <label> <input type=radio name=payment-type value=bank> Checking Account </label>
+</legend>
+<p><label>Name on account: <input name=bank1 autocomplete="section-bank cc-name"></label>
+<p><label>Routing number: <input name=bank2 inputmode=numeric></label>
+<p><label>Account number: <input name=bank3 inputmode=numeric></label>
+</fieldset>
+<button type=submit value="back"> ← Back </button>
+<button type=submit value="next"> Next → </button>
+</form>
+</dialog>
+ </body>
+</html>

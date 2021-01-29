@@ -183,8 +183,9 @@ void element::examine_fontymacfontface ()
 void element::examine_footer ()
 {   if (node_.version ().mjr () >= 5)
     {   check_ancestors (elem_footer, empty_element_bitset | elem_address | elem_footer | elem_header | elem_dt);
-        check_descendants (elem_footer, empty_element_bitset | elem_main);
-        if (w3_minor_5 (node_.version ()) == 0)
+        if ((node_.version () > html_jan13) && (node_.version () < html_jul18))
+            check_descendants (elem_footer, empty_element_bitset | elem_main);
+        if ((node_.version ().whatwg ()) || (node_.version () == html_5_0))
             check_descendants (elem_footer, empty_element_bitset | elem_header | elem_footer); } }
 
 void element::examine_form ()
@@ -223,15 +224,28 @@ void element::examine_form ()
                             rk -> pick (nit_lonely_radio, ed_50, "4.10.5.1.13 Radio Button state", es_error, ec_element, "radio buttons require company; there must be multiple <INPUT> TYPE=radio with NAME ", quote (n)); } } } } }
 
 void element::examine_h123456 ()
-{   if (node_.version ().mjr () >= 5)
-        check_ancestors (tag (), empty_element_bitset | elem_address | elem_dt); }
+{   if (node_.version ().mjr () < 5) return;
+    check_ancestors (tag (), empty_element_bitset | elem_address | elem_dt);
+    if (node_.version () < html_jan08)
+        check_descendants (tag (), empty_element_bitset | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_php | elem_faux_ssi | elem_faux_text, false); }
 
 void element::examine_header ()
 {   if (node_.version ().mjr () >= 5)
     {   check_ancestors (elem_header, empty_element_bitset | elem_address | elem_footer | elem_header | elem_dt);
-        check_descendants (elem_header, empty_element_bitset | elem_main);
-        if (w3_minor_5 (node_.version ()) == 0)
+        if ((node_.version () > html_jan13) && (node_.version () < html_jul18))
+            check_descendants (elem_header, empty_element_bitset | elem_main);
+        if ((node_.version ().whatwg ()) || (node_.version () == html_5_0))
             check_descendants (elem_header, empty_element_bitset | elem_header | elem_footer); } }
+
+void element::examine_hgroup ()
+{   if (node_.version () < html_jul13)
+    {   if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6))
+            pick (nit_bad_descendant, ed_jan10, "4.4.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <H1> ... <H6> children"); }
+    else if (node_.version () >= html_jul18)
+    {   if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_script | elem_template))
+            pick (nit_bad_descendant, ed_jul20, "4.3.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <SCRIPT>, <TEMPLATE>, or <H1> ... <H6> children"); }
+    else if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_template))
+        pick (nit_bad_descendant, ed_jul17, "4.3.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <TEMPLATE>, or <H1> ... <H6> children"); }
 
 void element::examine_html ()
 {   if (node_.version () == html_plus)

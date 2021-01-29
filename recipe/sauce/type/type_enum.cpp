@@ -928,7 +928,10 @@ struct symbol_entry < e_svg_type_11 > svg_type_11_symbol_table [] =
 struct symbol_entry < e_svg_version > svg_version_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "1.0", sv_1_0 },
     { { XHTML_1_0 }, { HTML_UNDEF }, "1.1", sv_1_1 },
-    { { XHTML_1_1 }, { HTML_UNDEF }, "1.2", sv_1_2_tiny } };
+    { { XHTML_1_1 }, { HTML_UNDEF }, "1.2", sv_1_2_tiny },
+    { { XHTML_1_1 }, { HTML_UNDEF }, "1.2/tiny", sv_1_2_tiny },
+    { { XHTML_1_1 }, { HTML_UNDEF }, "1.2/full", sv_1_2_full },
+    { { HTML_5_3 }, { HTML_UNDEF }, "2.0", sv_2_0 } };
 
 struct symbol_entry < e_tableframe > tableframe_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "void", fr_void },

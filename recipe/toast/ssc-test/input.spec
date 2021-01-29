@@ -1,7 +1,7 @@
 ---xxx---
 
 PASS ../toast/ssc-test/good.txt
-1 html_20_07
+1 html_5_living
 6 rel_found
 10 attribute_unrecognised attributes_on_closure
 14 bespoke_element
@@ -9,7 +9,7 @@ PASS ../toast/ssc-test/good.txt
 26 url_not_found
 
 FAIL ../toast/ssc-test/un.txt
-1 html_20_07
+1 html_5_living
 6 rel_found
 10 attribute_unrecognised attributes_on_closure
 14 bespoke_element
@@ -17,7 +17,7 @@ FAIL ../toast/ssc-test/un.txt
 26 url_not_found
 
 FAIL ../toast/ssc-test/unexpected.txt
-1 html_20_07
+1 html_5_living
 6 rel_found
 10 attribute_unrecognised attributes_on_closure
 14 bespoke_element
@@ -25,7 +25,7 @@ FAIL ../toast/ssc-test/unexpected.txt
 26 url_not_found
 
 FAIL ../toast/ssc-test/unreported.txt
-1 html_20_07
+1 html_5_living
 6 rel_found
 10 attribute_unrecognised attributes_on_closure
 14 bespoke_element
@@ -33,7 +33,7 @@ FAIL ../toast/ssc-test/unreported.txt
 26 url_not_found
 
 PASS ../toast/ssc-test/lines.txt
-1 html_20_07
+1 html_5_living
 2 missing_close naughty_lang
 11 unrecognised_value
 13 mixed_mess mixed_mess

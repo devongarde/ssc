@@ -79,14 +79,6 @@ element* element::get_ancestor (const e_element e) const
         anc = anc -> parent_; }
     return nullptr; }
 
-element* element::get_ancestor_member (const uint64_t f) const
-{   element* anc = parent_;
-    while (anc != nullptr)
-    {   if ((anc -> node_.id ().categories () & f) != 0) return anc;
-        if (anc -> tag () == elem_template) break;
-        anc = anc -> parent_; }
-    return nullptr; }
-
 bool element::has_this_child (const e_element e) const
 {   if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
@@ -96,31 +88,26 @@ bool element::has_this_child (const e_element e) const
 bool element::has_this_descendant (const e_element e) const
 {   return (descendant_elements_.test (e)); }
 
-unsigned element::count_this_child (const e_element e) const
-{   unsigned n = 0;
-    if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-            if (c -> tag () == e) ++n;
-    return n; }
-
 void element::check_ancestors (const e_element self, const element_bitset& gf)
 {   element_bitset tmp (ancestral_elements_);
     tmp &= gf;
     if (tmp.any ())
         pick (nit_bad_ancestor, es_error, ec_element, "No <", elem::name (self), "> can have an ancestral ", nameset (gf)); }
 
-void element::check_descendants (const e_element self, const element_bitset& gf)
+void element::check_descendants (const e_element self, const element_bitset& gf, const bool absent)
 {   element_bitset tmp (descendant_elements_);
     tmp &= gf;
-    if (tmp.any ())
-        pick (nit_bad_descendant, es_error, ec_element, "No <", elem::name (self), "> can have a descendant ", nameset (gf)); }
+    if (absent && tmp.any ())
+        pick (nit_bad_descendant, es_error, ec_element, "No <", elem::name (self), "> can have a descendant ", nameset (gf));
+    else if (! absent && ! tmp.any ())
+        pick (nit_insufficient_content, es_error, ec_element, "<", elem::name (self), "> requires content"); }
 
-e_element element::has_immediate_descendant (const e_element e []) const
+bool element::has_invalid_child (const element_bitset& gf)
 {   if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-            for (::std::size_t i = 0; e [i] != elem_undefined; ++i)
-                if (c -> tag () == e [i]) return e [i];
-    return elem_undefined; }
+            if (! c -> node ().is_closure ())
+                if (! faux_bitset.test (c -> tag ()) && ! gf.test (c -> tag ())) return true;
+    return false; }
 
 void element::check_required_type (const e_element tag)
 {   if (tag != elem_img) return;

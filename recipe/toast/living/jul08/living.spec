@@ -1,10 +1,26 @@
 -f ../toast/living/jul08/living.conf
 
+PASS ../toast/living/jul08/address.html
+11 attempted_escape no_such_folder url_not_found
+12 attempted_escape no_such_folder url_not_found
+13 url_not_found
+
+PASS ../toast/living/jul08/address.html
+11 attempted_escape no_such_folder url_not_found
+12 attempted_escape no_such_folder url_not_found
+13 url_not_found
+
+PASS ../toast/living/jul08/aside.html
+0 charset_mismatch charset_used charset_invalid
+19 use_quote_code
+22 use_quote_code
+25 use_quote_code
+
 PASS ../toast/living/jul08/example.html
 7 unrecognised_value unrecognised_value
 8 unrecognised_value unrecognised_value
 9 unrecognised_value unrecognised_value
-17 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_value unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
+17 unrecognised_value
 19 unrecognised_value
 
 PASS ../toast/living/jul08/example-2.html
@@ -14,6 +30,14 @@ PASS ../toast/living/jul08/example-2.html
 12 ignoring_unknown missing_close attribute_barred
 13 url_not_found
 15 inserted_missing_closure
+
+PASS ../toast/living/jul08/footer.html
+9 attempted_escape
+18 attempted_escape
+
+PASS ../toast/living/jul08/header.html
+36 url_id_unfound
+38 unrecognised_value
 
 PASS ../toast/living/jul08/index.html
 3 attribute_unrecognised_here unrecognised_attribute
@@ -29,10 +53,10 @@ PASS ../toast/living/jul08/ls3.html
 9 url_not_found
 10 url_not_found
 11 url_not_found
-16 inserted_missing_closure inserted_missing_closure url_not_found inserted_missing_parent
-17 inserted_missing_closure inserted_missing_closure inserted_missing_closure url_not_found
-18 inserted_missing_parent
-19 inserted_missing_closure inserted_missing_closure inserted_missing_closure url_not_found inserted_missing_parent missing_close
+16 url_not_found inserted_missing_closure
+17 inserted_missing_closure url_not_found
+18 inserted_missing_closure
+19 inserted_missing_closure url_not_found inserted_missing_closure missing_close
 20 inserted_missing_closure
 27 url_not_found
 28 url_not_found

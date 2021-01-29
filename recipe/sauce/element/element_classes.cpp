@@ -657,6 +657,7 @@ element_init_t ei [] =
     { elem_setdiff, { MATH3DEFCOM, a_unknown } },
     { elem_shadow, { COMMON54, a_unknown } },
     { elem_share, { a_src, MATH3COMMON, a_unknown } },
+    { elem_sidebar, { COMMON5, a_unknown } },
     { elem_sin, { MATH3DEFCOM, a_unknown } },
     { elem_sinh, { MATH3DEFCOM, a_unknown } },
     { elem_slot, { a_name, COMMON54, a_unknown } },

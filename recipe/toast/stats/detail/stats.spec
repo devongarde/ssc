@@ -295,7 +295,7 @@ Errors:
   References:
     HTML 5.0: 8 times
 Versions:
-  HTML5:200701/SVG-1.1/MathML-4/WhatWG: 5
+  HTML5/20210101/SVG-2.0/MathML-3/WhatWG: 5
 File info:
   2809 bytes read in 5 HTML files with an average of 561.79999999999995 bytes per file
   smallest file: 259 bytes, largest file: 1019 bytes

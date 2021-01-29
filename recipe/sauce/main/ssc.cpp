@@ -176,9 +176,8 @@ int main (int argc, char** argv)
     {   configure (start_time);
         res = examine (nits);
         if ((res == VALID_RESULT) && context.process_webmentions ())
-        {   html_version v (5, context.html_minor ());
-            context.process_outgoing_webmention (nits, v);
-            context.process_incoming_webmention (nits, v);
+        {   context.process_outgoing_webmention (nits, html_current);
+            context.process_incoming_webmention (nits, html_current);
             dump_nits (nits, "webmention"); }
         ciao ();
         if (! context.test ())

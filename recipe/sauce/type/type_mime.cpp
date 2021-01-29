@@ -1399,7 +1399,7 @@ struct symbol_entry < e_mimetype > mimetype_symbol_table [] =
     { { XHTML_2_0 }, { HTML_UNDEF }, "application/x-java-applet", mime_application_x_java_applet, ns_default, SCRIPT },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-javascript", mime_application_x_javascript, ns_default, SCRIPT },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-pki-message", mime_application_x_pki_message },
-    { { HTML_5_0 }, { HTML_UNDEF }, "application/x-shockwave-flash", mime_application_x_shockwave_flash },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "application/x-shockwave-flash", mime_application_x_shockwave_flash },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-webfont", mime_application_x_webfont },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-www-form-urlencoded", mime_application_x_www_form_urlencoded },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-x509-ca-cert", mime_application_x_x509_ca_cert },

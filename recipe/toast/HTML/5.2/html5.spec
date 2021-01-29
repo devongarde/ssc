@@ -158,7 +158,7 @@ PASS ../toast/HTML/5.2/html5-example.html
 9 url_not_found cannot_load_css
 10 url_not_found
 80 attribute_required
-85 unrecognised_value invalid_attribute_version wrong_version
+85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required
 98 url_not_found
 104 use_quote_code
@@ -171,7 +171,7 @@ PASS ../toast/HTML/5.2/html5-example.html
 121 inserted_missing_closure missing_close
 122 inserted_missing_closure
 125 use_quote_code
-135 unrecognised_value invalid_attribute_version wrong_version
+135 unrecognised_value
 137 unrecognised_value
 147 use_quote_code double_angular_open
 151 use_double_quote_code

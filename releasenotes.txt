@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.82
+- --schema.version now accepts + for HTML Plus
+- various bug fixes
+
 0.0.81
 - --schema.version now accepts x.y style versions
 - --schema.minor removed

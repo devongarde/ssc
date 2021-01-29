@@ -109,11 +109,12 @@ void element::examine_area ()
                 default : break; } } } }
 
 void element::examine_article ()
-{   if (has_this_descendant (elem_main))
-        pick (nit_no_main_kids, ed_50, "4.3.2 The article element", es_warning, ec_element, "<ARTICLE> can have no <MAIN> descendants"); }
+{   if (node_.version ().w3 ())
+        if (has_this_descendant (elem_main))
+            pick (nit_no_main_kids, ed_50, "4.3.2 The article element", es_warning, ec_element, "<ARTICLE> can have no <MAIN> descendants"); }
 
 void element::examine_aside ()
-{   if (w3_minor_5 (node_.version ()) < 4)
+{   if (context.html_ver ().w3 () || (node_.version () < html_jul18))
         if (has_this_descendant (elem_main))
             pick (nit_no_main_kids, ed_50, "4.3.5 The aside element", es_warning, ec_element, "<ASIDE> can have no <MAIN> descendants"); }
 
