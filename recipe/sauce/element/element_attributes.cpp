@@ -203,9 +203,9 @@ void element::examine_descendant_in (const element* filter)
     {   ::std::string s (a_.get_string (a_in));
         nitpick nuts;
         if (! test_value < t_inky > (nuts, node_.version (), s))
-            if (! filter -> has_result (a_.get_string (a_in)))
+            if (! filter -> has_result (s))
             {   node_.merge (nuts);
-                pick (nit_bad_result, ed_svg_1_1, "15.7.2 Common attributes", es_error, ec_attribute, quote (a_.get_string (a_in)), " is neither a filter primitive nor a result associated with the current filter"); } }
+                pick (nit_bad_result, ed_svg_1_1, "15.7.2 Common attributes", es_error, ec_attribute, quote (s), " is neither a filter primitive nor a result associated with the current filter"); } }
     if (has_child ())
     {   element_ptr e = child ();
         do

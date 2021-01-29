@@ -1,19 +1,25 @@
 -f ../toast/living/jul07/living.conf
 
+PASS ../toast/living/jul07/address.html
+11 attempted_escape no_such_folder url_not_found
+12 attempted_escape no_such_folder url_not_found
+13 url_not_found
+
+PASS ../toast/living/jul07/address.html
+11 attempted_escape no_such_folder url_not_found
+12 attempted_escape no_such_folder url_not_found
+13 url_not_found
+
 PASS ../toast/living/jul07/example.html
 7 unrecognised_value unrecognised_value
 8 unrecognised_value unrecognised_value
 9 unrecognised_value unrecognised_value
 15 inserted_missing_closure
 18 missing_open
-22 inserted_missing_closure inserted_missing_closure
 23 nahtch
-24 missing_open
-25 missing_open
 46 attribute_required
 65 url_not_found
-67 ignoring_unknown attribute_barred unrecognised_attribute attribute_barred unrecognised_attribute attribute_barred
-68 ignoring_unknown
+67 attribute_unrecognised unrecognised_attribute url_not_found
 71 url_not_found
 
 PASS ../toast/living/jul07/example-2.html
@@ -23,6 +29,10 @@ PASS ../toast/living/jul07/example-2.html
 12 url_not_found
 13 ignoring_unknown missing_close attribute_barred
 15 inserted_missing_closure
+
+PASS ../toast/living/jul07/header.html
+35 url_id_unfound
+37 unrecognised_value
 
 PASS ../toast/living/jul07/index.html
 3 attribute_unrecognised_here unrecognised_attribute

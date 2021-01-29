@@ -456,8 +456,8 @@
     <feOffset           in="blurredAlpha"
                         dx="2" dy="1"
                         nodeid="offsetBlurredAlpha" />
-     <feDiffuseLighting  in="blurredAlpha"
-                         diffuse-constant=".5"
+     <feDiffuseLighting in="blurredAlpha"
+                        diffuse-constant=".5"
                         nodeid="bumpMapDiffuse" >
       <feDistantLight/>
     </feDiffuseLighting>
@@ -465,7 +465,7 @@
                         operator="arithmetic" k1="1"
                         nodeid="litPaint" />
       <feSpecularLighting in="blurredAlpha"
-                         specular-constant=".5"
+                        specular-constant=".5"
                         specular-exponent="10"
                         light-color="feDistantLight"
                         nodeid="bumpMapSpecular" >
@@ -476,7 +476,7 @@
                         nodeid="litPaint" />
       <feComposite      in="litPaint"
                         in2="SourceAlpha"
-                         mode="AinB"
+                        mode="AinB"
                         nodeid="litPaint" />
      <feMerge>
       <feMergeNode in="litPaint" />

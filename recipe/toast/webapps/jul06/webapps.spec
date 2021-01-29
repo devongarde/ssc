@@ -1,11 +1,13 @@
 -f ../toast/webapps/jul06/webapps.conf
 
+PASS ../toast/webapps/jul06/address.html
+11 attempted_escape no_such_folder url_not_found
+12 attempted_escape no_such_folder url_not_found
+13 url_not_found
+
 PASS ../toast/webapps/jul06/example.html
 10 inserted_missing_closure
 13 missing_open
-17 inserted_missing_closure inserted_missing_closure
-21 missing_open
-22 missing_open
 
 PASS ../toast/webapps/jul06/example-2.html
 4 url_not_found
@@ -14,6 +16,10 @@ PASS ../toast/webapps/jul06/example-2.html
 12 url_not_found
 13 ignoring_unknown missing_close attribute_barred
 15 inserted_missing_closure
+
+PASS ../toast/webapps/jul06/header.html
+35 url_id_unfound
+37 unrecognised_value
 
 PASS ../toast/webapps/jul06/index.html
 9 unrecognised_value

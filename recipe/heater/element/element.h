@@ -72,11 +72,10 @@ class element
     void congeal_dynamism ();
     bool has_this_child (const e_element e) const;
     bool has_this_descendant (const e_element e) const;
-    unsigned count_this_child (const e_element e) const;
-    e_element has_immediate_descendant (const e_element e []) const;
     void remove_category (const uint64_t c);
     void check_ancestors (const e_element self, const element_bitset& gf);
-    void check_descendants (const e_element self, const element_bitset& gf);
+    void check_descendants (const e_element self, const element_bitset& gf, const bool absent = true);
+    bool has_invalid_child (const element_bitset& gf);
     void check_mscarries_pos (const e_element self);
     bool check_math_children (const int expected, const bool or_more = false);
     void check_math_children (const int from, const int to);
@@ -148,6 +147,7 @@ class element
     void examine_form ();
     void examine_h123456 ();
     void examine_header ();
+    void examine_hgroup ();
     void examine_html ();
     void examine_iframe ();
     void examine_img ();
@@ -245,7 +245,6 @@ public:
     element* find_first (const e_element e);
     element* find_next (const e_element e, element* previous);
     element* get_ancestor (const e_element e) const;
-    element* get_ancestor_member (const uint64_t f) const;
     void add_result (const ::std::string& s)
     {   assert (! s.empty ());
         results_.insert (s); }

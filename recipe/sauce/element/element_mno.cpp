@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void element::examine_main ()
 {   only_one_of (elem_main);
-    if (node_.version ().mjr () >= 5)
+    if ((node_.version ().mjr () >= 5) && node_.version ().w3 ())
         if (w3_minor_5 (node_.version ()) < 3)
             check_ancestors (elem_main, empty_element_bitset | elem_article | elem_aside | elem_footer | elem_header | elem_nav);
         else

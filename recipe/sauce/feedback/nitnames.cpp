@@ -242,7 +242,7 @@ nitname nitnames [] =
     { nit_html_5_1, "html_5_1" },
     { nit_html_5_2, "html_5_2" },
     { nit_html_5_3, "html_5_3" },
-    { nit_html_20_07, "html_20_07" },
+    { nit_html_5_living, "html_5_living" },
 
     { nit_context, "context" },
     { nit_only_elements, "only_elements" },
@@ -561,6 +561,7 @@ nitname nitnames [] =
     { nit_bad_number_once, "bad_number_once" },
     { nit_bad_csp_source, "bad_csp_source" },
     { nit_invalid_algorithm, "invalid_algorithm" },
+    { nit_insufficient_content, "insufficient_content" },
 
   // nit_bad_csp_source, nit_invalid_algorithm
 

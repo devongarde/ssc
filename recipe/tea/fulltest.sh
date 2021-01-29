@@ -1,3 +1,9 @@
+#!/bin/sh
+#
+
+./ssc -f ../toast/csp/1/csp.conf
+./ssc -f ../toast/csp/2/csp.conf
+./ssc -f ../toast/csp/3/csp.conf
 ./ssc -f ../toast/HTML/1.0/html1.conf
 ./ssc -f ../toast/HTML/2.0/html2.conf
 ./ssc -f ../toast/HTML/3.0/html3.conf

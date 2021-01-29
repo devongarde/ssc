@@ -46,12 +46,6 @@ void element::pre_examine_element (const e_element tag)
         case elem_embed : examine_embed (); break;
         case elem_fecolourmatrix : examine_fecolourmatrix (); break;
         case elem_fn : examine_fn (); break;
-        case elem_h1:
-        case elem_h2:
-        case elem_h3:
-        case elem_h4:
-        case elem_h5:
-        case elem_h6 : examine_h123456 (); break;
         case elem_html : examine_html (); break;
         case elem_iframe : examine_iframe (); break;
         case elem_img : examine_img (); break;
@@ -127,6 +121,13 @@ void element::post_examine_element (const e_element tag)
         case elem_fontface : examine_fontymacfontface (); break;
         case elem_footer : examine_footer (); break;
         case elem_form : examine_form (); break;
+        case elem_h1:
+        case elem_h2:
+        case elem_h3:
+        case elem_h4:
+        case elem_h5:
+        case elem_h6 : examine_h123456 (); break;
+        case elem_hgroup : examine_hgroup () ; break;
         case elem_header : examine_header (); break;
         case elem_input : examine_input (); break;
         case elem_interval :if (page_.version ().math () <= math_1) break;

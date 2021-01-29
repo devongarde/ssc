@@ -148,6 +148,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_apache : return "Apache";
         case ed_jan05 : return "HTML 5 draft (Jan 2005)";
         case ed_jan07 : return "HTML 5 draft (Jan 2007)";
+        case ed_jan10 : return "HTML 5 draft (Jan 2010)";
         case ed_jul17 : return "HTML 5 (July 2017)";
         case ed_may20 : return "HTML 5 (May 2020)";
         case ed_jul20 : return "HTML 5 (July 2020)";
@@ -181,6 +182,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_53 : return "HTML 5.3 (W3), Oct 2018, draft";
         case ed_jan05 : return "WhatWG Web Applications 1.0 Working Draft 31 January 2005";
         case ed_jan07 : return "WhatWG Web Applications 1.0 Working Draft 4 January 2007";
+        case ed_jan10 : return "HTML 5 living standard, WhatWG, January 2010";
         case ed_jul17 : return "HTML 5 living standard, WhatWG, July 2017";
         case ed_may20 : return "HTML 5 living standard, WhatWG, May 2020";
         case ed_jul20 : return "HTML 5 living standard, WhatWG, July 2020";

@@ -396,7 +396,7 @@ PASS ../toast/HTML/5.4/html5-example.html
 1599 url_not_found
 1600 url_not_found
 1601 url_not_found
-1605 only_once bad_ancestor
+1605 only_once
 1624 url_not_found
 1625 url_not_found
 1626 url_not_found

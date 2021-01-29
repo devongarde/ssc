@@ -222,7 +222,10 @@ void options::process (int argc, char** argv)
         (HTML RFC1980, "Reject RFC 1980 (client side image maps) when processing HTML 2.0")
         (HTML RFC2070, "Reject RFC 2070 (internationalisation) when processing HTML 2.0")
         (HTML TITLE ",z", ::boost::program_options::value < int > () -> default_value (MAX_IDEAL_TITLE_LENGTH), "Maximum advisable length of <TITLE> text")
-        (HTML VERSION, ::boost::program_options::value < ::std::string > (), "version of HTML presumed if no DOCTYPE (default: '1.0'). For WhatWG HTML 5 living standard, give the date of publication (e.g. 2020/7/1)")
+        (HTML VERSION, ::boost::program_options::value < ::std::string > (),
+            "X.Y version of HTML 5, or version if no DOCTYPE (default: '1.0'). "
+            "For specific WhatWG living standard, give date (e.g. '2020/7/1'). "
+            "For HTML+, use '+'. For HTML tags, use 'tags'.")
 
         (LINKS EXTERNAL ",e", "check external links (requires curl, sets " LINKS CHECK ")")
         (LINKS FORWARD ",3", "report http forwarding errors, e.g. 301 and 308 (sets " LINKS EXTERNAL ")")
@@ -380,36 +383,42 @@ void options::contextualise ()
     if (var_.count (HTML VERSION))
     {   ::std::string ver (var_ [HTML VERSION].as < ::std::string > ());
         if (! ver.empty ())
-        {   context.versioned (true);
-            ::std::string::size_type pos = ver.find ('.');
-            if (pos == ::std::string::npos)
-                if (ver.find ('/') != ::std::string::npos)
+        {   ::std::string::size_type pos = ver.find ('.');
+            if (pos != ::std::string::npos)
+                if (pos == ver.length () - 1) context.html_ver (lexical < int > :: cast (ver.substr (0, pos)), 0xFF);
+                else if (pos == 0) context.html_ver (html_tags);
+                else context.html_ver (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1)));
+            else if (ver.find ('/') != ::std::string::npos)
+                if ((ver.length () != 10) || (ver.at (4) != '/') || (ver.at (7) != '/') || (ver.find_first_not_of (DENARY "/") != ::std::string::npos))
+                    context.err () << "bad date " << quote (ver) << " ignored ('YYYY/MM/DD' expected)\n";
+                else
                 {   ::boost::gregorian::date d (::boost::gregorian::from_string (ver));
-                    if (d.is_not_a_date ()) context.err () << "bad date " << quote (ver) << " ignored\n";
+                    if (d.is_not_a_date ()) context.err () << "invalid date " << quote (ver) << " ignored\n";
                     else
                     {   int y = d.year (); int m = d.month ();
                         if (y > 2000) y -= 2000;
                         else if (y > 99) y = 99;
                         if ((y < HTML_5_EARLIEST_YEAR) || ((y == HTML_5_EARLIEST_YEAR) && (m < HTML_5_EARLIEST_MONTH)))
-                            context.err () << quote (ver) << " is too early, presuming " << HTML_5_EARLIEST_YEAR << "/" << HTML_5_EARLIEST_MONTH << "/1\n";
+                        {   context.err () << quote (ver) << " is too early, presuming " << HTML_5_EARLIEST_YEAR << "/" << HTML_5_EARLIEST_MONTH << "/1\n";
+                            context.html_ver (html_jan05); }
                         else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
-                            context.err () << quote (ver) << " is too recent, presuming " << HTML_LATEST_YEAR << "/" << HTML_LATEST_MONTH << "/1\n";
-                        context.html_ver (d); } }
-                else if (ver.length () == 1) context.html_major (0).html_minor (1);
-                else context.html_major (lexical < int > :: cast (ver.substr (0, pos)));
-            else if (pos == ver.length () - 1) context.html_major (lexical < int > :: cast (ver.substr (0, pos))).html_minor (0);
-            else if (pos == 0) context.html_major (0).html_minor (1);
-            else context.html_major (lexical < int > :: cast (ver.substr (0, pos))).html_minor (lexical < int > :: cast (ver.substr (pos+1))); } }
+                        {   context.err () << quote (ver) << " is too recent, presuming " << HTML_LATEST_YEAR << "/" << HTML_LATEST_MONTH << "/1\n";
+                            context.html_ver (html_current); }
+                        else context.html_ver (d); } }
+            else if (ver == "+") context.html_ver (html_plus);
+            else if (compare_no_case (ver, "plus")) context.html_ver (html_plus);
+            else if (compare_no_case (ver, "tags")) context.html_ver (html_tags);
+            else context.err () << "bad version " << quote (ver) << " ignored\n"; } }
 
     if (var_.count (SVG VERSION))
     {   ::std::string ver (var_ [SVG VERSION].as < ::std::string > ());
         if (! ver.empty ())
         {   ::std::string::size_type pos = ver.find ('.');
             if (pos == ::std::string::npos)
-                if (ver.length () == 1) context.svg_version (0, 0);
+                if (ver.length () == 1) context.svg_version (sv_none);
                 else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
             else if (pos == ver.length () - 1) context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
-            else if (pos == 0) context.svg_version (0, 0);
+            else if (pos == 0) context.svg_version (sv_none);
             else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1))); } }
 
     if (var_.count (MATH VERSION))
@@ -456,7 +465,7 @@ void options::contextualise ()
             context.err () << "missing schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n"; }
         else
         {   ::std::string::size_type pos = ver.find ('.');
-            // boost lexical cast, bless its cotton socks, doesn't process unsigned char as a number
+            // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
             if (pos == ::std::string::npos)
                 context.schema_major (static_cast < unsigned char > (lexical < unsigned int > :: cast (ver))).schema_minor (0);
             else if (pos == 0)
@@ -560,7 +569,6 @@ void options::contextualise ()
     if (var_.count (VALIDATION DINGBATARG)) type_master < t_dingbat > :: extend (var_ [VALIDATION DINGBATARG].as < vstr_t > ());
     if (var_.count (VALIDATION HTTPEQUIV)) type_master < t_httpequiv > :: extend (var_ [VALIDATION HTTPEQUIV].as < vstr_t > ());
     if (var_.count (VALIDATION LANG)) type_master < t_lang > :: extend (var_ [VALIDATION LANG].as < vstr_t > ());
-    if (var_.count (VALIDATION MINOR)) context.html_minor (static_cast < unsigned char > (var_ [VALIDATION MINOR].as < int > ()));
     if (var_.count (VALIDATION METANAME)) type_master < t_metaname  > :: extend (var_ [VALIDATION METANAME].as < vstr_t > ());
     if (var_.count (VALIDATION MIMETYPE)) type_master < t_mime > :: extend (var_ [VALIDATION MIMETYPE].as < vstr_t > ());
     if (var_.count (VALIDATION REL)) type_master < t_rel > :: extend (var_ [VALIDATION REL].as < vstr_t > ());

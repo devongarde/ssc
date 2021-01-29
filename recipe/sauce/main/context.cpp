@@ -110,47 +110,22 @@ void context_t::process_incoming_webmention (nitpick& nits, const html_version& 
     res += fyi () + msg + "\n";
     return res; }
 
-context_t& context_t::html_minor (const int i)
-{   if ((i < 0) || (i > 255)) { html_major_ = 0; html_minor_ = 1; }
-    else
-    {   html_minor_ = static_cast < unsigned char > (i);
-        if ((sch_major_ == 0) && (html_major_ >= 5))
-        {   schema_version v (html_to_schema_version (html_ver ()));
-            sch_major_ = v.mjr ();
-            sch_minor_ = v.mnr (); } }
-    return *this; }
-
-context_t& context_t::html_major (const int i)
-{   if ((i < 0) || (i > 255)) { html_major_ = 0; html_minor_ = 1; }
-    else
-    {   html_major_ = static_cast < unsigned char > (i);
-        if ((sch_major_ == 0) && (i >= 5))
-        {   schema_version v (html_to_schema_version (html_ver ()));
-            sch_major_ = v.mjr ();
-            sch_minor_ = v.mnr (); } }
-    return *this; }
-
 context_t& context_t::svg_version (const int mjr, const int mnr)
-{   if (html_major_ > 3)
-    {  if (mjr == 2)
-        {   if (mnr == 0)
-            {   svg_version_ = sv_2_0; return *this; } }
-        else if (mjr == 1)
+{   switch (mjr)
+    {   case 2 :
+            if (mnr == 0)
+            {   version_.svg_version (sv_2_0); return *this; }
+            break;
+        case 1 :
             switch (mnr)
-            {   case 0 : svg_version_ = sv_1_0; return *this;
-                case 1 : svg_version_ = sv_1_1; return *this;
-                case 2 : svg_version_ = sv_1_2_tiny; return *this;
-                case 3 : svg_version_ = sv_1_2_full; return *this;
+            {   case 0 : version_.svg_version (sv_1_0); return *this;
+                case 1 : version_.svg_version (sv_1_1); return *this;
+                case 2 : version_.svg_version (sv_1_2_tiny); return *this;
+                case 3 : version_.svg_version (sv_1_2_full); return *this;
                 default : break; }
-        if (html_major_ > 4) { svg_version_ = sv_2_0; return *this; } }
-    else svg_version_ = sv_none;
+        default : break; }
+    version_.svg_version (sv_none);
     return *this; }
-
-html_version context_t::html_ver () const
-{   html_version res (html_major (), html_minor ());
-    res.svg_version (svg_version_);
-    res.math_version (math_version_);
-    return res; }
 
 context_t& context_t::ignore (const vstr_t& s)
 {   e_element e = elem_undefined;
@@ -158,3 +133,40 @@ context_t& context_t::ignore (const vstr_t& s)
         if (elem :: find (html_0, ss, e)) elem :: ignore (e);
         else err () << quote (ss) << " is not an element\n";
     return *this; }
+
+html_version context_t::html_ver (const int major, const int minor)
+{   versioned (true);
+    switch (major)
+    {   case 0 :
+            version_ = html_tags;
+            break;
+        case 1 :
+            if (minor == 1) version_ = html_plus; else version_ = html_1;
+            break;
+        case 2 :
+            version_ = html_2;
+            break;
+        case 3 :
+            if (minor == 0) version_ = html_3_0; else version_ = html_3_2;
+            break;
+        case 4 :
+            switch (minor)
+            {   case 0 : version_ = html_4_0; break;
+                case 2 : version_ = xhtml_1_0; break;
+                case 3 : version_ = xhtml_1_1; break;
+                case 4 : version_ = xhtml_2; break;
+                default : version_ = html_4_1; break; }
+            break;
+        case 5 :
+            switch (minor)
+            {   case 0 : version_ = html_5_0; break;
+                case 1 : version_ = html_5_1; break;
+                case 2 : version_ = html_5_2; break;
+                case 3 : version_ = html_5_3; break;
+                case 4 : version_ = html_jul20; break;
+                default : version_ = html_current; break; }
+            break;
+        default :
+            version_ = html_default;
+            break; }
+    return version_; }

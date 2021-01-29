@@ -28,7 +28,7 @@ struct symbol_entry < e_protocol > protocol_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, PR_FILE, pr_file },
     { { HTML_TAGS }, { HTML_UNDEF }, PR_FTP, pr_ftp },
     { { HTML_4_0 }, { HTML_UNDEF }, PR_FTPS, pr_ftps },
-    { { HTML_5_0 }, { HTML_UNDEF }, PR_GEO, pr_geo },
+    { { HTML_JAN05 }, { HTML_UNDEF }, PR_GEO, pr_geo },
     { { HTML_TAGS }, { HTML_UNDEF }, PR_HTTP, pr_http },
     { { HTML_3_0 }, { HTML_UNDEF }, PR_HTTPS, pr_https },
     { { HTML_3_0 }, { HTML_UNDEF }, PR_LDAP, pr_ldap },

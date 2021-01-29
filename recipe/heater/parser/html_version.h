@@ -120,6 +120,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_5_3    MAJOR_5_3, MINOR_5_3
 
 #define HTML_JAN05  HTML_2005, (HTML_JAN + 15)
+#define HTML_JUN05  HTML_2005, (HTML_JUN + 15)
 #define HTML_JUL05  HTML_2005, HTML_JUL
 #define HTML_DEC05  HTML_2005, (HTML_DEC + 15)
 #define HTML_JAN06  HTML_2006, HTML_JAN
@@ -188,6 +189,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HTML_LATEST_YEAR    HTML_2021
 #define HTML_LATEST_MONTH   1
+
+#define HTML_CURRENT HTML_LATEST_YEAR, HTML_LATEST_MONTH
 
 #define HTML_UNDEF  0, 0
 
@@ -367,20 +370,21 @@ class html_version
 {   unsigned char mjr_ = 0, mnr_ = 0;
     uint64_t flags_ = 0, ext_ = 0;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
+    void init (const unsigned char mjr);
 public:
     html_version () : mjr_ (0), mnr_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
-    explicit html_version (const unsigned char mjr) : mjr_ (mjr), mnr_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
+    explicit html_version (const unsigned char mjr) { init (mjr); }
     explicit html_version (const schema_version sv) : mjr_ (sv.mjr ()), mnr_ (sv.mnr ()), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
     html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
     html_version (const ::boost::gregorian::date& whatwg, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
-	html_version(const html_version&) = default;
+	html_version (const html_version& ) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	html_version (html_version&& ) = default;
 #endif // VS
 	~html_version() = default;
     html_version& operator = (const html_version& ) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
-	html_version& operator = (html_version&&) = default;
+	html_version& operator = (html_version&& ) = default;
 #endif // VS
     void swap (html_version& v) NOEXCEPT;
     void reset () { html_version v; swap (v); }
@@ -474,7 +478,7 @@ const html_version html_plus (1, 1);
 const html_version html_2 (2, 0);
 const html_version html_2_level_1 (2, 0, HV_LEVEL1);
 const html_version html_2_level_2 (2, 0, HV_LEVEL2);
-const html_version html_3_0 (3);
+const html_version html_3_0 (3, 0);
 const html_version html_3_2 (3, 2);
 const html_version html_4_0 (4, 0);
 const html_version html_4_1 (4, 1);
@@ -489,6 +493,8 @@ const html_version html_jan08 (HTML_JAN08, HV_WHATWG, 0);
 const html_version html_jul08 (HTML_JUL08, HV_WHATWG, 0);
 const html_version html_jul09 (HTML_JUL09, HV_WHATWG, 0);
 const html_version html_jan13 (HTML_JAN13, HV_WHATWG, 0);
+const html_version html_jul13 (HTML_JUL13, HV_WHATWG, 0);
+const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_jul18 (HTML_JUL18, HV_WHATWG, HE_MATH_3 | HE_SVG_1_1);
 const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MATH_4 | HE_SVG_1_1);
@@ -496,6 +502,8 @@ const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_1_1);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_1_1);
 const html_version html_5_3 (HTML_5_3, HV_W3, HE_MATH_3 | HE_SVG_1_1);
+const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MATH_4 | HE_SVG_2_0);
+const html_version html_default (html_5_3);
 
 bool operator == (const html_version& lhs, const html_version& rhs);
 bool operator != (const html_version& lhs, const html_version& rhs);
