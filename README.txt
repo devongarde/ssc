@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.82
+version 0.0.83
 https://ssc.lu/
 
 
@@ -20,7 +20,7 @@ WARNING: this code is:
 
 
 ssc analyses static HTML sites at source:
-- HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3/WhatWG July 2020
+- HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3/5 living standard
 - SVG 1.0/1.1
 - MathML 1/2/3
 - XHTML 1.0/1.1/2.0, -ish
@@ -88,11 +88,6 @@ more licences    licences for content copied from elsewhere
 
 
 
-NOTE: the full project includes public specifications hoovered from various websites. I include them
-as reference, to facilitate conversation, and to enable precise bug reports.
-
-
-
 written by dylan harris
 mail@ssc.lu
-November 2020
+January 2021

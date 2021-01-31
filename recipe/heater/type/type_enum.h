@@ -200,8 +200,10 @@ template < > class type_master < t_alignplus > : public enum_n < t_alignplus, e_
 template < > class type_master < t_as > : public enum_n < t_as, e_as > { };
 template < > class type_master < t_autocapitalise > : public enum_n < t_autocapitalise, e_autocapitalise > { };
 template < > class type_master < t_autocomplete > : public enum_n < t_autocomplete, e_autocomplete > { };
+template < > class type_master < t_cachekey > : public enum_n < t_cachekey, e_cachekey > { };
 template < > class type_master < t_charset > : public enum_n < t_charset, e_charset > { };
 template < > class type_master < t_citype > : public enum_n < t_citype, e_citype > { };
+template < > class type_master < t_cookieid > : public enum_n < t_cookieid, e_cookieid > { };
 template < > class type_master < t_cntype > : public enum_n < t_cntype, e_cntype > { };
 template < > class type_master < t_composite_operator > : public enum_n < t_composite_operator, e_composite_operator > { };
 template < > class type_master < t_crossout > : public enum_n < t_crossout, e_crossout > { };
@@ -230,8 +232,9 @@ template < > class type_master < t_inputtype32 > : public enum_n < t_inputtype32
 template < > class type_master < t_inputtype4 > : public enum_n < t_inputtype4, e_inputtype4 > { };
 template < > class type_master < t_inputtype5 > : public enum_n < t_inputtype5, e_inputtype5 > { };
 template < > class type_master < t_kind > : public enum_n < t_kind, e_kind > { };
-template < > class type_master < t_linebreak > : public enum_n < t_linebreak, e_linebreak > { };
 template < > class type_master < t_lang > : public enum_n < t_lang, e_lang > { };
+template < > class type_master < t_linebreak > : public enum_n < t_linebreak, e_linebreak > { };
+template < > class type_master < t_linkparam > : public enum_n < t_linkparam, e_linkparam > { };
 template < > class type_master < t_listtype > : public enum_n < t_listtype, e_listtype, sz_false > { };
 template < > class type_master < t_longdivstyle > : public enum_n < t_longdivstyle, e_longdivstyle > { };
 template < > class type_master < t_mah > : public enum_n < t_mah, e_mah > { };

@@ -40,6 +40,16 @@ template < e_type T > typename type_master < T > :: value_type examine_value (ni
     if (! t.good ()) return type_master < T > :: default_value ();
     return static_cast < typename type_master < T > :: value_type > (t.get ()); }
 
+template < e_type T, class SZ > struct type_must_be : tidy_string < T >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "value expected");
+        else if (tidy_string < T > :: good ())
+        {   if (compare_no_case (tidy_string < T > :: get_string (), SZ :: sz ())) return;
+            nits.pick (nit_isnt, es_error, ec_type, quote (SZ :: sz ()), " expected"); }
+        tidy_string < T > :: status (s_invalid); } };
+
 template < e_type T, e_type A, e_type B > struct type_either_or : tidy_string < T >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
@@ -101,3 +111,19 @@ template < e_type T, e_type P, class SZ1, class SZ2, class SZ3 > struct type_or_
             if (compare_no_case (SZ1 :: sz (), ss) || compare_no_case (SZ2 :: sz (), ss) || compare_no_case (SZ3 :: sz (), ss)) return;
             if (test_value < P > (nits, v, ss)) return; }
         tidy_string < T > :: status (s_invalid); } };
+
+template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : tidy_string < T >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "value expected");
+        else if (tidy_string < T > :: good ())
+        {   ::std::string ss (tidy_string < T > :: get_string ());
+            assert (SZ :: sz () != nullptr);
+            ::std::string::size_type pos = ss.find (SZ :: sz ());
+            if (pos != ::std::string::npos)
+            {   if (! test_value < P > (nits, v, ss.substr (pos+1))) tidy_string < T > :: status (s_invalid);
+                ss = ss.substr (0, pos); }
+            if (test_value < U > (nits, v, ss)) return; }
+        tidy_string < T > :: status (s_invalid); } };
+

@@ -131,6 +131,30 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space >
             tested_ = true; }
         return predefined_; } };
 
+template < > struct type_master < t_q > : public tidy_string < t_q >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   tidy_string < t_q > :: set_value (nits, v, ss);
+        const ::std::string& s = tidy_string < t_q > :: get_string ();
+        if (s.empty ())
+        {   nits.pick (nit_empty, es_error, ec_type, "value required");
+            tidy_string < t_q > :: status (s_invalid); }
+        else if (good ())
+        {   if ((s.length () >= 3) && (s.length () <= 7))
+                if ((s.at (0) == 'q') || (s.at (0) == 'Q'))
+                    if (s.at (1) == '=')
+                    {   if (s.at (2) == '1')
+                        {   if (s.length () == 3) return;
+                            if (s.at (3) == '.')
+                                if (s.length () > 4)
+                                    if (s.substr (4).find_first_not_of ("0") == ::std::string::npos) return; }
+                        else if (s.at (2) == '0')
+                        {   if (s.length () == 3) return;
+                            if (s.at (3) == '.')
+                                if (s.length () > 4)
+                                    if (s.substr (4).find_first_not_of (DENARY) == ::std::string::npos) return; }
+                        nits.pick (nit_bad_q, ed_rfc_7231, "5.3.1. Quality Values", es_error, ec_type, quote (s), " weight is 'q=' with a value between 0.000 and 1.0"); } }
+        tidy_string < t_q > :: status (s_invalid); } };
+
 template < > struct type_master < t_sym > : public tidy_string < t_sym >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
     {   extern void examine_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid);

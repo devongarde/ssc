@@ -147,6 +147,15 @@ struct symbol_entry < e_autocomplete > autocomplete_symbol_table [] =
     { { HTML_5_2 }, { HTML_UNDEF }, "username", aco_username },
     { { HTML_5_2 }, { HTML_UNDEF }, "work", aco_work } };
 
+struct symbol_entry < e_cachekey > cachekey_symbol_table [] =
+{   { { HTML_JAN15 }, { HTML_UNDEF }, "max-age", ck_maxage },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "max-stale", ck_maxstale },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "min-fresh", ck_minfresh },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "no-cache", ck_nocache },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "no-store", ck_nostore },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "no-transform", ck_notransform },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "only-if-cached", ck_onlyifcached } };
+
 struct symbol_entry < e_citype > citype_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "integer", ci_integer },
     { { XHTML_1_0 }, { HTML_UNDEF }, "rational", ci_rational },
@@ -179,6 +188,14 @@ struct symbol_entry < e_composite_operator > composite_operator_symbol_table [] 
     { { HTML_4_0 }, { HTML_UNDEF }, "out", co_out },
     { { HTML_4_0 }, { HTML_UNDEF }, "over", co_over },
     { { HTML_4_0 }, { HTML_UNDEF }, "xor", co_xor } };
+
+struct symbol_entry < e_cookieid > cookieid_symbol_table [] =
+{   { { HTML_JAN15 }, { HTML_UNDEF }, "expires", coo_expires },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "max-age", coo_maxage },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "domain", coo_domain },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "path", coo_path },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "secure", coo_secure },
+    { { HTML_JAN15 }, { HTML_UNDEF }, "httponly", coo_httponly } };
 
 struct symbol_entry < e_crossout > crossout_symbol_table [] =
 {   { { HTML_5_2 }, { HTML_UNDEF }, "none", co_none },
@@ -459,6 +476,16 @@ struct symbol_entry < e_linebreak > linebreak_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "nobreak", lb_nobreak },
     { { XHTML_1_0 }, { HTML_UNDEF }, "goodbreak", lb_goodbreak },
     { { XHTML_1_0 }, { HTML_UNDEF }, "badbreak", lb_badbreak } };
+
+struct symbol_entry < e_linkparam > linkparam_symbol_table [] =
+{   { { HTML_NOV17 }, { HTML_UNDEF }, "anchor", lp_anchor },
+    { { HTML_NOV17 }, { HTML_UNDEF }, "hreflang", lp_hreflang },
+    { { HTML_NOV17 }, { HTML_UNDEF }, "media", lp_media },
+    { { HTML_NOV17 }, { HTML_UNDEF }, "rel", lp_rel },
+    { { HTML_NOV17 }, { HTML_UNDEF }, "rev", lp_rev },
+    { { HTML_NOV17 }, { HTML_UNDEF }, "title", lp_title },
+    { { HTML_NOV17 }, { HTML_UNDEF }, "title*", lp_titlestar },
+    { { HTML_NOV17 }, { HTML_UNDEF }, "type", lp_type } };
 
 struct symbol_entry < e_listtype > listtype_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "1", li_1 },
@@ -1074,7 +1101,9 @@ void enum_init (nitpick& nits)
     INIT_ENUM (as);
     INIT_ENUM (autocapitalise);
     INIT_ENUM (autocomplete);
+    INIT_ENUM (cachekey);
     INIT_ENUM (citype);
+    INIT_ENUM (cookieid);
     INIT_ENUM (cntype);
     INIT_ENUM (composite_operator);
     INIT_ENUM (crossout);
@@ -1099,6 +1128,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (inputtype5);
     INIT_ENUM (kind);
     INIT_ENUM (linebreak);
+    INIT_ENUM (linkparam);
     INIT_ENUM (listtype);
     INIT_ENUM (longdivstyle);
     INIT_ENUM (mah);

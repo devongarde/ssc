@@ -63,6 +63,7 @@ ssc.exe -f ../toast/microformats/rel/rel.conf
 ssc.exe -f ../toast/other/base/base.conf
 ssc.exe -f ../toast/other/CSS/css.conf
 ssc.exe -f ../toast/other/ignore/ignore.conf
+ssc.exe -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -f ../toast/other/nits/nits.conf
 ssc.exe -f ../toast/other/parsing/parsing.conf
 ssc.exe -f ../toast/other/RDF/rdf.conf
@@ -84,6 +85,7 @@ ssc.exe -f ../toast/stats/detail/stats.conf
 ssc.exe -f ../toast/stats/single/stats.conf
 ssc.exe -f ../toast/stats/summary/stats.conf
 ssc.exe -f ../toast/type/colour/colour.conf
+ssc.exe -f ../toast/type/httpequiv/httpequiv.conf
 ssc.exe -f ../toast/type/lang/lang.conf
 ssc.exe -f ../toast/type/metaname/metaname.conf
 ssc.exe -f ../toast/type/mimetype/mimetype.conf

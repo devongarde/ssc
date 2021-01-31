@@ -66,6 +66,7 @@
 ./ssc -f ../toast/other/base/base.conf
 ./ssc -f ../toast/other/CSS/css.conf
 ./ssc -f ../toast/other/ignore/ignore.conf
+./ssc -f ../toast/other/incorrectness/incorrectness.conf
 ./ssc -f ../toast/other/nits/nits.conf
 ./ssc -f ../toast/other/parsing/parsing.conf
 ./ssc -f ../toast/other/RDF/rdf.conf
@@ -87,6 +88,7 @@
 ./ssc -f ../toast/stats/single/stats.conf
 ./ssc -f ../toast/stats/summary/stats.conf
 ./ssc -f ../toast/type/colour/colour.conf
+./ssc -f ../toast/type/httpequiv/httpequiv.conf
 ./ssc -f ../toast/type/lang/lang.conf
 ./ssc -f ../toast/type/metaname/metaname.conf
 ./ssc -f ../toast/type/mimetype/mimetype.conf

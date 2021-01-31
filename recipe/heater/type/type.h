@@ -42,6 +42,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_autocomplete.h"
 #include "type/type_class.h"
 #include "type/type_colour.h"
+#include "type/type_cookie.h"
 #include "type/type_currency.h"
 #include "type/type_httpequiv.h"
 #include "type/type_lang.h"

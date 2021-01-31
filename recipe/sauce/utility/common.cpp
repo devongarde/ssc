@@ -355,6 +355,7 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
         { "parlour", d_johnson, "1452" },
         { "penciller", d_none, nullptr },
         { "randomised", d_none, nullptr },
+        { "referrer", d_wiki, "https://en.wikipedia.org/wiki/HTTP_referer#Etymology" },
         { "speciality", d_johnson, "1895" },
         { "sought", d_none, nullptr },
         { "theatre", d_johnson, "2042" },

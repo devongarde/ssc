@@ -37,3 +37,5 @@ template < > inline void enum_n < t_lang, e_lang > :: set_value (nitpick& nits, 
     enum_base < e_lang, t_lang > :: status (s_invalid); };
 
 template < > struct type_master < t_langs > : type_at_least_one < t_langs, sz_comma, t_lang > { };
+template < > struct type_master < t_langq > : type_one_or_both < t_langq, t_lang, sz_semicolon, t_q > { };
+template < > struct type_master < t_langqs > : type_at_least_one < t_langqs, sz_comma, t_langq > { };

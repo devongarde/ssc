@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 #include "type/sz.h"
 
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2 > class three_value : public type_base < base_type, TYPE >
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE = false > class three_value : public type_base < base_type, TYPE >
 {   base_type value_ = static_cast < base_type > (0);
 public:
     typedef true_type has_int_type;
@@ -44,6 +44,7 @@ template < > class type_master < t_behaviour > : public three_value < t_behaviou
 template < > class type_master < t_button > : public three_value < t_button, e_button, sz_button, sz_submit, sz_reset > { };
 template < > class type_master < t_command > : public three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > { };
 template < > class type_master < t_controlslist > : public three_value < t_controlslist, e_controlslist, sz_nodownload, sz_nofullscreen, sz_noremoteplayback > { };
+template < > class type_master < t_corp > : public three_value < t_corp, e_corp, sz_same_origin, sz_same_site, sz_cross_origin, true > { };
 template < > class type_master < t_decoding > : public three_value < t_decoding, e_decoding, sz_auto, sz_sync, sz_async > { };
 template < > class type_master < t_dsc > : public three_value < t_dsc, e_dsc, sz_disc, sz_square, sz_circle > { };
 template < > class type_master < t_edgemode > : public three_value < t_edgemode, e_edgemode, sz_duplicate, sz_wrap, sz_none > { };
@@ -78,8 +79,8 @@ template < > class type_master < t_valign_tmb > : public three_value < t_valign_
 template < > class type_master < t_valuetype > : public three_value < t_valuetype, e_valuetype, sz_data, sz_object, sz_ref > { };
 template < > class type_master < t_vectoreffect_12 > : public three_value < t_vectoreffect_12, e_vectoreffect_12, sz_inherit, sz_none, sz_nonscalingstroke > { };
 
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2 >
-    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2 > :: get_string () const
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: get_string () const
 {   if (! type_base < base_type, TYPE > :: unknown ())
         switch (static_cast <int> (value_))
         {   case 0 : return SZ0::sz ();
@@ -88,12 +89,13 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2 >
             default : break; }
     return ::std::string (); }
 
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2 >
-    void three_value < TYPE, base_type, SZ0, SZ1, SZ2 > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   ::std::string t (trim_the_lot_off (s));
-    if (v.xhtml () && ! v.svg () && (t.find_first_of (UPPERCASE) != ::std::string::npos))
-        nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
-    ::boost::to_lower (t);
+    if (! CASE)
+    {   if (v.xhtml () && ! v.svg () && (t.find_first_of (UPPERCASE) != ::std::string::npos))
+            nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
+        ::boost::to_lower (t); }
     type_base < base_type, TYPE > :: status (s_good);
     if (t == SZ0::sz ()) value_ = static_cast <base_type> (0);
     else if (t == SZ1::sz ()) value_ = static_cast <base_type> (1);

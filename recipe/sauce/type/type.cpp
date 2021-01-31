@@ -121,6 +121,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_controlslist);
         TEST_VALUE (t_coordinatesystem);
         TEST_VALUE (t_coords);
+        TEST_VALUE (t_corp);
         TEST_VALUE (t_cors);
         TEST_VALUE (t_css);
         TEST_VALUE (t_csp);
@@ -353,7 +354,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_scope);
         TEST_VALUE (t_script);
         TEST_VALUE (t_scrolling);
-        TEST_VALUE (t_setcookie);
         TEST_VALUE (t_sex);
         TEST_VALUE (t_sgml);
         TEST_VALUE (t_shape);

@@ -47,7 +47,7 @@ template < > struct type_master < t_id > : tidy_string < t_id >
                 {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " does not start with a letter");
                     tidy_string < t_id > :: status (s_invalid); }
                 else if (v.mnr () == 0)
-                {   if (s.find_first_not_of (ALPHABET DDD) != ::std::string::npos)
+                {   if (s.find_first_not_of (ALPHADDD) != ::std::string::npos)
                     {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " may only contain letters or digits");
                         tidy_string < t_id > :: status (s_invalid); } }
                 else if (s.find_first_not_of (IDS) != ::std::string::npos)

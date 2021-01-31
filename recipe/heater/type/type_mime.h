@@ -97,3 +97,14 @@ template < > struct type_master < t_mimelist > : public string_value < t_mimelis
                 if (tm.invalid ())
                 {   nits.pick (nit_mime_list, es_error, ec_type, "a comma separated list of mime types is expected");
                     string_value < t_mimelist > :: status (s_invalid); return; } } } } };
+
+template < > struct type_master < t_mimestar > : public string_value < t_mimestar >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_value < t_mimestar > :: set_value (nits, v, s);
+        if (string_value < t_mimestar > :: good ())
+        {   if (string_value < t_mimestar > :: get_string ().find_first_of ('*') != ::std::string::npos) return;
+            if (test_value < t_mime > (nits, v, s)) return;
+            string_value < t_mimestar > :: status (s_invalid); return; } } };
+
+template < > struct type_master < t_mimeq > : type_one_or_both < t_mimeq, t_mimestar, sz_semicolon, t_q > { };
+template < > struct type_master < t_mimeqs > : type_at_least_one < t_mimeqs, sz_comma, t_mimeq > { };

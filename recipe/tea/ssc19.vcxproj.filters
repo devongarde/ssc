@@ -564,6 +564,12 @@
     <Filter Include="Toast\Living\jul08">
       <UniqueIdentifier>{77fcf6e8-b3c5-449d-93f5-8eca90ac3131}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Other\incorrectness">
+      <UniqueIdentifier>{6d8dfbd6-a318-456f-ac07-d5c06223374e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Type\HttpEquiv">
+      <UniqueIdentifier>{b2dba958-7fdd-4e3c-a9cf-2382a4bdba3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -984,6 +990,9 @@
       <Filter>Heater\stats</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\type\type_csp.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_cookie.h">
       <Filter>Heater\type</Filter>
     </ClInclude>
   </ItemGroup>
@@ -8177,6 +8186,48 @@
     </None>
     <None Include="..\toast\living\jan21\404.html">
       <Filter>Toast\Living\jan21</Filter>
+    </None>
+    <None Include="..\toast\other\incorrectness\incorrectness.conf">
+      <Filter>Toast\Other\incorrectness</Filter>
+    </None>
+    <None Include="..\toast\other\incorrectness\incorrectness.spec">
+      <Filter>Toast\Other\incorrectness</Filter>
+    </None>
+    <None Include="..\toast\other\incorrectness\index.html">
+      <Filter>Toast\Other\incorrectness</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\httpequiv.conf">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\httpequiv.spec">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\index.html">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\cache.html">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\cookie.html">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\accept.html">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\referrer.html">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\link.html">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\origin.html">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\corp.html">
+      <Filter>Toast\Type\HttpEquiv</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\rp.html">
+      <Filter>Toast\Type\HttpEquiv</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

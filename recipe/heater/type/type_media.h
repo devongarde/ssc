@@ -32,3 +32,19 @@ template < > struct type_master < t_mql > : tidy_string < t_mql >
         tidy_string < t_mql > :: status (s_invalid);
         return; } };
 
+template < > struct type_master < t_mqls > : tidy_string < t_mqls >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_mqls > :: set_value (nits, v, s);
+        if (tidy_string < t_mqls > :: empty ())
+            nits.pick (nit_mq_syntax, ed_rfc_7231, "5.3.2. Accept", es_warning, ec_mql, "are the empty media values intentional?");
+        else
+        if (tidy_string < t_mqls > :: good ())
+        {   vstr_t mql (split_by_charset (s, ";"));
+            bool whoops = false;
+            for (auto ss : mql)
+                if (! test_value < t_mql > (nits, v, ss))
+                    whoops = true;
+            if (! whoops) return; }
+        tidy_string < t_mqls > :: status (s_invalid);
+        return; } };
+

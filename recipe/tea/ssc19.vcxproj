@@ -113,6 +113,7 @@
     <ClInclude Include="..\heater\type\type_charset.h" />
     <ClInclude Include="..\heater\type\type_class.h" />
     <ClInclude Include="..\heater\type\type_colour.h" />
+    <ClInclude Include="..\heater\type\type_cookie.h" />
     <ClInclude Include="..\heater\type\type_core.h" />
     <ClInclude Include="..\heater\type\type_csp.h" />
     <ClInclude Include="..\heater\type\type_currency.h" />
@@ -2089,6 +2090,9 @@
     <None Include="..\toast\other\ignore\ignore.conf" />
     <None Include="..\toast\other\ignore\ignore.spec" />
     <None Include="..\toast\other\ignore\index.html" />
+    <None Include="..\toast\other\incorrectness\incorrectness.conf" />
+    <None Include="..\toast\other\incorrectness\incorrectness.spec" />
+    <None Include="..\toast\other\incorrectness\index.html" />
     <None Include="..\toast\other\nits\index.html" />
     <None Include="..\toast\other\nits\nits.conf" />
     <None Include="..\toast\other\nits\nits.spec" />
@@ -2281,6 +2285,17 @@
     <None Include="..\toast\type\colour\dubious.html" />
     <None Include="..\toast\type\colour\good.html" />
     <None Include="..\toast\type\colour\index.html" />
+    <None Include="..\toast\type\httpequiv\accept.html" />
+    <None Include="..\toast\type\httpequiv\cache.html" />
+    <None Include="..\toast\type\httpequiv\cookie.html" />
+    <None Include="..\toast\type\httpequiv\corp.html" />
+    <None Include="..\toast\type\httpequiv\httpequiv.conf" />
+    <None Include="..\toast\type\httpequiv\httpequiv.spec" />
+    <None Include="..\toast\type\httpequiv\index.html" />
+    <None Include="..\toast\type\httpequiv\link.html" />
+    <None Include="..\toast\type\httpequiv\origin.html" />
+    <None Include="..\toast\type\httpequiv\referrer.html" />
+    <None Include="..\toast\type\httpequiv\rp.html" />
     <None Include="..\toast\type\lang\bad.html" />
     <None Include="..\toast\type\lang\good.html" />
     <None Include="..\toast\type\lang\index.html" />

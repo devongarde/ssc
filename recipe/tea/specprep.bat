@@ -63,6 +63,7 @@ ssc.exe -T -Z -o ../out/relrel.tst -f ../toast/microformats/rel/rel.conf
 ssc.exe -T -Z -o ../out/basebase.tst -f ../toast/other/base/base.conf
 ssc.exe -T -Z -o ../out/CSScss.tst -f ../toast/other/CSS/css.conf
 ssc.exe -T -Z -o ../out/ignoreignore.tst -f ../toast/other/ignore/ignore.conf
+ssc.exe -T -Z -o ../out/incorrectnessincorrectness.tst -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -T -Z -o ../out/nitsnits.tst -f ../toast/other/nits/nits.conf
 ssc.exe -T -Z -o ../out/parsingparsing.tst -f ../toast/other/parsing/parsing.conf
 ssc.exe -T -Z -o ../out/RDFrdf.tst -f ../toast/other/RDF/rdf.conf
@@ -84,6 +85,7 @@ ssc.exe -T -Z -o ../out/detailstats.tst -f ../toast/stats/detail/stats.conf
 ssc.exe -T -Z -o ../out/singlestats.tst -f ../toast/stats/single/stats.conf
 ssc.exe -T -Z -o ../out/summarystats.tst -f ../toast/stats/summary/stats.conf
 ssc.exe -T -Z -o ../out/colourcolour.tst -f ../toast/type/colour/colour.conf
+ssc.exe -T -Z -o ../out/httpequivhttpequiv.tst -f ../toast/type/httpequiv/httpequiv.conf
 ssc.exe -T -Z -o ../out/langlang.tst -f ../toast/type/lang/lang.conf
 ssc.exe -T -Z -o ../out/metanamemetaname.tst -f ../toast/type/metaname/metaname.conf
 ssc.exe -T -Z -o ../out/mimetypemimetype.tst -f ../toast/type/mimetype/mimetype.conf

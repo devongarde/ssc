@@ -233,7 +233,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define UPPERCASE "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define LOWERCASE "abcdefghijklmnopqrstuvwxyz"
 #define ALPHABET UPPERCASE LOWERCASE
-#define IDS ALPHABET DDD "_:"
+#define ALPHADDD ALPHABET DDD
+#define IDS ALPHADDD "_:"
 #define TEL HEX "+*()-.#*_!~'[]/ "
 #define REAL DECIMAL "Ee"
 

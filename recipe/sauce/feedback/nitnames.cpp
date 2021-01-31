@@ -562,6 +562,13 @@ nitname nitnames [] =
     { nit_bad_csp_source, "bad_csp_source" },
     { nit_invalid_algorithm, "invalid_algorithm" },
     { nit_insufficient_content, "insufficient_content" },
+    { nit_bad_q, "bad_q" },
+    { nit_bad_cookie, "bad_cookie" },
+    { nit_bad_cache, "bad_cache" },
+    { nit_bad_link_pragma, "bad_link_pragma" },
+    { nit_nocando, "nocando" },
+    { nit_bad_root, "bad_root" },
+    { nit_isnt, "isnt" },
 
   // nit_bad_csp_source, nit_invalid_algorithm
 
