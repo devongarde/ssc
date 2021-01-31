@@ -25,6 +25,48 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ::std::string validate_httpequiv_content (nitpick& nits, const html_version& v, const e_httpequiv he, const ::std::string& content, page& p);
 vstr_t split_sides_at_semi (nitpick& nits, const ::std::string& s, const ::std::size_t min_args = 2, const ::std::size_t max_args = 2);
 
+template < > struct type_master < t_cache > : public tidy_string < t_cache >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   tidy_string < t_cache > :: set_value (nits, v, ss);
+        ::std::string s = tidy_string < t_cache > :: get_string ();
+        if (s.empty ())
+        {   nits.pick (nit_empty, es_error, ec_type, "value required");
+            tidy_string < t_cache > :: status (s_invalid); }
+        else if (good ())
+        {   ::std::string::size_type pos = s.find ('=');
+            ::std::string arg;
+            bool booboo = false;
+            if (pos != ::std::string::npos)
+            {   if ((pos == 0) || (pos == s.length () - 1)) booboo = true;
+                else
+                {   arg = s.substr (pos+1);
+                    s = s.substr (0, pos);
+                    if (arg.find_first_not_of (DENARY) != ::std::string::npos) booboo = true; }
+                if (booboo) nits.pick (nit_bad_cache, ed_rfc_7234, "5.2.1. Request Cache-Control Directives", es_error, ec_type, "bad syntax or bad integer"); }
+            if (! booboo)
+                if (! test_value < t_cachekey > (nits, v, s))
+                    nits.pick (nit_bad_cache, ed_rfc_7234, "5.2.1. Request Cache-Control Directives", es_error, ec_type, quote (s), " is not a valid cache keyword");
+                else switch (examine_value < t_cachekey > (nits, v, s))
+                {   case ck_maxage :
+                    case ck_minfresh :
+                        if (arg.empty ())
+                        {   nits.pick (nit_bad_cache, ed_rfc_7234, "5.2.1. Request Cache-Control Directives", es_error, ec_type, quote (s), " requires an integer argument (for example, 'max-sausages=5')");
+                            booboo = true; }
+                        break;
+                    case ck_nocache :
+                    case ck_nostore :
+                    case ck_notransform :
+                    case ck_onlyifcached :
+                        if (! arg.empty ())
+                        {   nits.pick (nit_bad_cache, ed_rfc_7234, "5.2.1. Request Cache-Control Directives", es_error, ec_type, quote (s), " takes no argument");
+                            booboo = true; }
+                        break;
+                    default : break; }
+            if (! booboo) return; }
+        tidy_string < t_cache > :: status (s_invalid); } };
+
+template < > struct type_master < t_caches > : type_at_least_one < t_caches, sz_comma, t_cache > { };
+
 template < > struct type_master < t_content_type > : tidy_string < t_content_type >
 {   ::std::string charset_;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
@@ -134,6 +176,36 @@ template < > struct type_master < t_csp > : tidy_string < t_csp >
                                             if (! test_value < t_csp_source > (nits, v, csp.at (i)))
                                                 tidy_string < t_csp > :: status (s_invalid); } } } } } } };
 
+bool linkarg_set_value (nitpick& nits, const html_version& v, const ::std::string& s);
+
+template < > struct type_master < t_linkarg > : public tidy_string < t_linkarg >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   tidy_string < t_linkarg > :: set_value (nits, v, ss);
+        ::std::string s = tidy_string < t_linkarg > :: get_string ();
+        if (s.empty ())
+        {   nits.pick (nit_empty, es_error, ec_type, "value required");
+            tidy_string < t_linkarg > :: status (s_invalid); }
+        else if (good ())
+            if (! linkarg_set_value (nits, v, s))
+                tidy_string < t_linkarg > :: status (s_invalid); } };
+
+template < > struct type_master < t_linkitself > : tidy_string < t_linkitself >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss) // sanity test only
+    {   tidy_string < t_linkitself > :: set_value (nits, v, ss);
+        ::std::string s = tidy_string < t_linkitself > :: get_string ();
+        if (s.empty ())
+            nits.pick (nit_bad_link_pragma, es_error, ec_type, "oddly, a link pragma needs a link");
+        else if (good ())
+        if (tidy_string < t_linkitself > :: good ())
+            if ((s.length () < 3) || (s.at (0) != '<') || (s.at (s.length () -1) != '>'))
+                nits.pick (nit_bad_link_pragma, es_error, ec_type, "the URL must be enclosed in angular brackets");
+            else if (test_value < t_url > (nits, v, s.substr (1, s.length ()-2))) return;
+        tidy_string < t_linkitself > :: status (s_invalid); } };
+
+template < > struct type_master < t_linkargs > : type_at_least_one < t_linkargs, sz_semicolon, t_linkarg > { };
+template < > struct type_master < t_link > : type_one_or_both < t_link, t_linkitself, sz_semicolon, t_linkargs > { };
+template < > struct type_master < t_links > : type_at_least_one < t_links, sz_comma, t_link > { };
+
 template < > struct type_master < t_location > : tidy_string < t_location >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_location > :: set_value (nits, v, s);
@@ -172,3 +244,5 @@ template < > struct type_master < t_x_ua_compatible > : tidy_string < t_x_ua_com
         if (! compare_no_case (tidy_string < t_x_ua_compatible > :: get_string (), "IE=edge"))
         {   tidy_string < t_x_ua_compatible > :: status (s_invalid);
             nits.pick (nit_x_ua_compatible, es_error, ec_type, quote (s), ": only 'IE=edge' is valid"); } } };
+
+template < > struct type_master < t_x_content_type_options > : type_must_be < t_x_content_type_options, sz_nosniff > { };

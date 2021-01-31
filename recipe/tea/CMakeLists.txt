@@ -79,29 +79,33 @@ target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}
 target_sources (ssc PRIVATE
     ${H}/attribute/attr.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h ${H}/attribute/avm.h
         ${H}/css/css.h ${H}/css/css_cache.h
-        ${H}/element/elem.h ${H}/element/element.h ${H}/element/element_attribute.h ${H}/element/element_classes.h ${H}/element/parentage.h ${H}/element/state.h
+        ${H}/element/elem.h ${H}/element/element.h ${H}/element/element_attribute.h ${H}/element/element_classes.h ${H}/element/parentage.h
+            ${H}/element/state.h
         ${H}/feedback/nit.h ${H}/feedback/nitnames.h ${H}/feedback/nitpick.h
         ${H}/icu/charset.h ${H}/icu/converter.h ${H}/icu/wrapper.h
         ${H}/main/args.h ${H}/main/context.h ${H}/main/include.h ${H}/main/options.h ${H}/main/standard.h ${H}/main/version.h
         ${H}/microdata/microdata_export.h ${H}/microdata/microdata_itemid.h ${H}/microdata/microdata_itemprop.h ${H}/microdata/microdata_itemscope.h
             ${H}/microdata/microdata_itemtype.h
-        ${H}/microformat/connection.h ${H}/microformat/family.h ${H}/microformat/field.h ${H}/microformat/microformat.h ${H}/microformat/microformat_classes.h
-            ${H}/microformat/microformat_constructor.h ${H}/microformat/microformat_export.h ${H}/microformat/microformat_export_rel.h
-            ${H}/microformat/microformat_properties.h ${H}/microformat/microformats.h ${H}/microformat/microformats_ptr.h ${H}/microformat/prop.h
-            ${H}/microformat/property.h ${H}/microformat/property_classes.h ${H}/microformat/property_value.h ${H}/microformat/sibling.h
+        ${H}/microformat/connection.h ${H}/microformat/family.h ${H}/microformat/field.h ${H}/microformat/microformat.h
+            ${H}/microformat/microformat_classes.h ${H}/microformat/microformat_constructor.h ${H}/microformat/microformat_export.h
+            ${H}/microformat/microformat_export_rel.h ${H}/microformat/microformat_properties.h ${H}/microformat/microformats.h
+            ${H}/microformat/microformats_ptr.h ${H}/microformat/prop.h ${H}/microformat/property.h ${H}/microformat/property_classes.h
+            ${H}/microformat/property_value.h ${H}/microformat/sibling.h
         ${H}/parser/html_version.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h ${H}/parser/parse_bra_ket.h ${H}/parser/parse_bras_ket.h
-            ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h ${H}/parser/text.h ${H}/parser/xhtml_xml.h
+            ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h ${H}/parser/text.h
+            ${H}/parser/xhtml_xml.h
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
         ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats_impl.h
         ${H}/symbol/symbol.h ${H}/symbol/symbol_table.h
         ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
             ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_charset.h ${H}/type/type_class.h ${H}/type/type_colour.h
-            ${H}/type/type_core.h ${H}/type/type_csp.h ${H}/type/type_currency.h ${H}/type/type_enum.h ${H}/type/type_enum_vec.h ${H}/type/type_httpequiv.h
-            ${H}/type/type_lang.h ${H}/type/type_master.h ${H}/type/type_media.h ${H}/type/type_metaname.h ${H}/type/type_mime.h ${H}/type/type_rdf.h
-            ${H}/type/type_reals.h ${H}/type/type_rel.h ${H}/type/type_relational.h ${H}/type/type_time.h ${H}/type/type_url.h ${H}/type/type_van.h
-            ${H}/type/type_basic.h ${H}/type/type_id.h ${H}/type/type_layout.h ${H}/type/type_math.h ${H}/type/type_measure.h ${H}/type/type_microdata.h
-            ${H}/type/type_microformat.h ${H}/type/type_misc.h ${H}/type/type_numeric.h ${H}/type/type_svg.h ${H}/type/type_varied.h ${H}/type/type_xmlns.h
+            ${H}/type/type_cookie.h ${H}/type/type_core.h ${H}/type/type_csp.h ${H}/type/type_currency.h ${H}/type/type_enum.h ${H}/type/type_enum_vec.h
+            ${H}/type/type_httpequiv.h  ${H}/type/type_lang.h ${H}/type/type_master.h ${H}/type/type_media.h ${H}/type/type_metaname.h ${H}/type/type_mime.h
+            ${H}/type/type_rdf.h ${H}/type/type_reals.h ${H}/type/type_rel.h ${H}/type/type_relational.h ${H}/type/type_time.h ${H}/type/type_url.h
+            ${H}/type/type_van.h  ${H}/type/type_basic.h ${H}/type/type_id.h ${H}/type/type_layout.h ${H}/type/type_math.h ${H}/type/type_measure.h
+            ${H}/type/type_microdata.h ${H}/type/type_microformat.h ${H}/type/type_misc.h ${H}/type/type_numeric.h ${H}/type/type_svg.h
+            ${H}/type/type_varied.h ${H}/type/type_xmlns.h
         ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h ${H}/url/url_schemes.h
         ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
         ${H}/webmention/hook.h ${H}/webmention/irt.h ${H}/webmention/webmention.h ${H}/webmention/webmentions.h

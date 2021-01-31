@@ -128,7 +128,7 @@ bool parse_rfc3986 (nitpick& nits, const html_version& , const e_protocol prot, 
                 {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "incomplete ipv4 address"); return false; }
                 ipv4 = host; }
             else
-            {   if (host.find_first_not_of (ALPHABET DDD) != host.npos)
+            {   if (host.find_first_not_of (ALPHADDD) != host.npos)
                 {   nits.pick (nit_invalid_domain, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "illegal character in domain"); return false; }
                 domain = host; } }
 

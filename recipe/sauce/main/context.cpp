@@ -44,7 +44,7 @@ int context_t::parameters (int argc, char** argv)
     o.contextualise ();
     if (! test () && tell (e_debug)) out () << o.report ();
     for (const ::std::string& name : site_)
-        if (name.find_first_not_of (ALPHABET DDD) != ::std::string::npos)
+        if (name.find_first_not_of (ALPHADDD) != ::std::string::npos)
         {   valid_ = false;
             context.err () << quote (name) << " is not a valid domain name (do not include protocols)\n";
             return false; }

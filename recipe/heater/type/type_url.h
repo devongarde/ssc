@@ -79,6 +79,17 @@ template < > struct type_master < t_absolute_url > : type_master < t_url >
             {   nits.pick (nit_relative_path, es_error, ec_type, quote (s), " must be an absolute url (including domain and absolute path)");
                 type_base < url, t_url > :: status (s_invalid); } } };
 
+template < > struct type_master < t_root_url > : type_master < t_url >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < t_url > :: set_value (nits, v, s);
+        if (type_master < t_url > :: good ())
+            if (value_.has_file () || value_.has_id () || value_.has_query () || value_.has_args ())
+                nits.pick (nit_bad_root, es_error, ec_type, quote (s), " must only contain protocol, address, and optionally port");
+            else if (value_.has_path () && ((value_.path () != "/") || (s.at (s.length ()-1) == '/')))
+                nits.pick (nit_bad_root, es_error, ec_type, quote (s), " must not contain a path");
+            else return;
+            type_base < url, t_url > :: status (s_invalid); } };
+
 template < > struct type_master < t_schema > : type_master < t_url >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   html_version sv (context.schema_ver ());

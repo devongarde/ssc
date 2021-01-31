@@ -139,6 +139,10 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_rfc_1980 : return "RGC 1980";
         case ed_rfc_3986 : return "RFC 3986";
         case ed_rfc_3966 : return "RFC 3966";
+        case ed_rfc_6265 : return "RFC 6265";
+        case ed_rfc_7231 : return "RFC 7231";
+        case ed_rfc_7234 : return "RFC 7234";
+        case ed_rfc_8288 : return "RFC 8288";
         case ed_svg_1_0 : return "SVG 1.0";
         case ed_svg_1_1 : return "SVG 1.1";
         case ed_svg_1_2_tiny : return "SVG 1.2 Tiny";
@@ -197,6 +201,10 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_rfc_1980 : return "RFC 1980, Client-Side Image Maps";
         case ed_rfc_3986 : return "RFC 3986, Uniform Resource Identifier (URI): Generic Syntax";
         case ed_rfc_3966 : return "RFC 3966, The tel URI for Telephone Numbers";
+        case ed_rfc_6265 : return "RFC 6265, HTTP State Management Mechanism";
+        case ed_rfc_7231 : return "RFC 7231, HTTP/1.1 Semantics and Content";
+        case ed_rfc_7234 : return "RFC 7234, Hypertext Transfer Protocol (HTTP/1.1): Caching"; // plus https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
+        case ed_rfc_8288 : return "RFC 8288, Web Linking";
         case ed_svg_1_0 : return "Scalable Vector Graphics (SVG) Specification 1.0";
         case ed_svg_1_1 : return "Scalable Vector Graphics (SVG) 1.1, Second Edition";
         case ed_svg_1_2_tiny : return "Scalable Vector Graphics (SVG) Tiny 1.2 Specification";
