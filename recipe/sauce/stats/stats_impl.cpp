@@ -153,6 +153,54 @@ void stats::mark_file (const unsigned size)
             res += "\n"; }
     return res; }
 
+::std::string stats::abbr_report () const
+{   ::std::string res;
+    for (auto i : abbr_.count_)
+        if (i.second > 0)
+        {   res += "  ";
+            res += i.first.a_;
+            res += " : ";
+            res += i.first.b_;
+            if (i.second > 1)
+            {   res += " (mentioned ";
+                res += times (i.second);
+                res += ")"; }
+            res += "\n"; }
+    if (res.empty ()) return res;
+    return ::std::string ("Abbreviations:\n") + res; }
+
+::std::string stats::dfn_report () const
+{   ::std::string res;
+    for (auto i : dfn_.count_)
+        if (i.second > 0)
+        {   res += "  ";
+            res += i.first.a_;
+            res += " : ";
+            res += i.first.b_;
+            if (i.second > 1)
+            {   res += " (defined ";
+                res += times (i.second);
+                res += ")"; }
+            res += "\n"; }
+    if (res.empty ()) return res;
+    return ::std::string ("Definitions:\n") + res; }
+
+::std::string stats::dtdd_report () const
+{   ::std::string res;
+    for (auto i : dtdd_.count_)
+        if (i.second > 0)
+        {   res += "  ";
+            res += i.first.a_;
+            res += " : ";
+            res += i.first.b_;
+            if (i.second > 1)
+            {   res += " (stated ";
+                res += times (i.second);
+                res += ")"; }
+            res += "\n"; }
+    if (res.empty ()) return res;
+    return ::std::string ("Name/Value pairs:\n") + res; }
+
 ::std::string stats::error_report () const
 {   ::std::string res;
     res += saybe (severity_.at (es_catastrophic), "    Catastrophes");
@@ -258,12 +306,14 @@ void stats::mark_file (const unsigned size)
     res += element_report ();
     res += microdata_report ();
     res += meta_report ();
-    res += error_report ();
-
-    if (file_count_ > 1)
-    {   res += category_report ();
-        res += reference_report ();
-        res += version_report ();
-        res += file_report (); }
-
+    res += abbr_report ();
+    res += dfn_report ();
+    res += dtdd_report ();
+    if (grand)
+    {   res += error_report ();
+        if (file_count_ > 1)
+        {   res += category_report ();
+            res += reference_report ();
+            res += version_report ();
+            res += file_report (); } }
     return res; }

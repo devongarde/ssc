@@ -31,6 +31,10 @@ public:
     stats_t ();
     ~stats_t ();
     void mark (const e_element e);
+    void visible (const e_element e);
+    void mark_abbr (const ::std::string& a, const ::std::string& b);
+    void mark_dfn (const ::std::string& a, const ::std::string& b);
+    void mark_dtdd (const ::std::string& a, const ::std::string& b);
     void mark (const html_version& v);
     void mark (const e_severity s);
     void mark (const e_category c);
@@ -44,4 +48,5 @@ public:
     void mark_file (const unsigned size);
     uint64_t file_count () const;
     unsigned count (const e_element e) const;
+    unsigned visible_count (const e_element e) const;
     ::std::string report (const bool grand) const; };

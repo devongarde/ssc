@@ -299,6 +299,14 @@ public:
     ::std::ostream& err () { if (fos_) return *fos_; return ::std::cerr; }
     void mark (const e_element e)
     {   data_.mark (e); }
+    void visible (const e_element e)
+    {   data_.visible (e); }
+    void mark_abbr (const ::std::string& a, const ::std::string& b)
+    {   data_.mark_abbr (a, b); }
+    void mark_dfn (const ::std::string& a, const ::std::string& b)
+    {   data_.mark_dfn (a, b); }
+    void mark_dtdd (const ::std::string& a, const ::std::string& b)
+    {   data_.mark_dtdd (a, b); }
     void mark (const e_severity s)
     {   data_.mark (s); }
     void mark (const e_category c)

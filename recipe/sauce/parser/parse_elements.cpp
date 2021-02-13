@@ -198,22 +198,24 @@ element_node* elements_node::insert_non_closure (const html_version& v, element_
 
 element_node* elements_node::insert_closed (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
 {   element_node* current = insert_non_closure (v, previous, parent, ket, id, false);
-    if ((current != nullptr) && (context.copy () > c_none))
-        switch (id.get ())
-        {   case elem_faux_asp :
-            case elem_faux_cdata :
-            case elem_faux_char :
-            case elem_faux_code :
-            case elem_faux_comment :
-            case elem_faux_php :
-            case elem_faux_ssi :
-            case elem_faux_stylesheet :
-            case elem_faux_text :
-            case elem_faux_whitespace :
-            case elem_faux_xml :
-                current -> set_raw (::std::string (ket.start_, ket.end_));
-                break;
-            default : break; }
+    if (current != nullptr)
+    {   current -> closed_ = true;
+        if (context.copy () > c_none)
+            switch (id.get ())
+            {   case elem_faux_asp :
+                case elem_faux_cdata :
+                case elem_faux_char :
+                case elem_faux_code :
+                case elem_faux_comment :
+                case elem_faux_php :
+                case elem_faux_ssi :
+                case elem_faux_stylesheet :
+                case elem_faux_text :
+                case elem_faux_whitespace :
+                case elem_faux_xml :
+                    current -> set_raw (::std::string (ket.start_, ket.end_));
+                    break;
+                default : break; } }
     return current; }
 
 element_node* elements_node::insert_open (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)

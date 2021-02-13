@@ -142,9 +142,10 @@ template < > struct type_master < t_csp > : tidy_string < t_csp >
                         {   e_csp_directive cd = examine_value < t_csp_directive > (nits, v, csp.at (0));
                             switch (cd)
                             {   case csp_plugin_types :
-                                    for (::std::size_t i = 1; i < csp.size (); ++i)
-                                        if (! test_value < t_mime > (nits, v, csp.at (i)))
-                                             tidy_string < t_csp > :: status (s_invalid);
+                                    if (! compare_no_case (csp.at (1), QNONE))
+                                        for (::std::size_t i = 1; i < csp.size (); ++i)
+                                            if (! test_value < t_mime > (nits, v, csp.at (i)))
+                                                 tidy_string < t_csp > :: status (s_invalid);
                                     break;
                                 case csp_sandbox :
                                     for (::std::size_t i = 10; i < csp.size (); ++i)
@@ -171,7 +172,7 @@ template < > struct type_master < t_csp > : tidy_string < t_csp >
                                 default :
                                     if (csp.size () < 2)
                                         nits.pick (nit_bad_csp_directive, ed_csp, "Content Security Policy Directives", es_error, ec_type, quote (csp.at (0)), " requires arguments");
-                                    else if ((csp.size () != 2) || ! compare_no_case (csp.at (1), "'none'"))
+                                    else if ((csp.size () != 2) || ! compare_no_case (csp.at (1), QNONE))
                                         for (::std::size_t i = 1; i < csp.size (); ++i)
                                             if (! test_value < t_csp_source > (nits, v, csp.at (i)))
                                                 tidy_string < t_csp > :: status (s_invalid); } } } } } } };

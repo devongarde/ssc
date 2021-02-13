@@ -68,7 +68,7 @@ void element::examine_piecewise ()
                 break; } }
 
 void element::examine_progress ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
     {   check_ancestors (elem_progress, element_bit_set (elem_progress));
         if (a_.known (a_value))
         {   bool kn = a_.known (a_max);
@@ -90,10 +90,10 @@ void element::examine_reln ()
 void element::examine_ruby ()
 {   if (node_.version ().mjr () < 5) return;
     bool had_ruby = false, had_non_ruby = false, had_rt = false, had_rp = false, rp_mode = false;
-    bool over_3 = (w3_minor_5 (node_.version ()) >= 4);
+    bool is_whatwg = node_.version ().whatwg ();
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
         if (is_standard_element (c -> tag ()) && ! c -> node_.is_closure ())
-            if (over_3)
+            if (is_whatwg)
                 switch (c -> tag ())
                 {   case elem_ruby :
                         if (had_non_ruby) pick (nit_mix_ruby_non, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "do not mix child <RUBY> elements with child phrasal elements");
@@ -112,8 +112,8 @@ void element::examine_ruby ()
                     case elem_rp :
                         if (! rp_mode && had_rt)
                             pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "<RP> must precede any <RT>");
-                        else if (had_rp)
-                            pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "<RP> should interleave with <RT>");
+//                        else if (had_rp)
+//                            pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "<RP> should interleave with <RT>");
                         had_ruby = had_non_ruby = had_rt = false;
                         had_rp = rp_mode = true;
                         break;
@@ -137,6 +137,6 @@ void element::examine_ruby ()
                             pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RT> and <RTC> elements must precede or follow an <RP>");
                         had_rp = had_rt = false;
                         break; }
-    if (! over_3)
+    if (! is_whatwg)
         if (had_rt != had_rp)
             pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RP> should immediately precede OR follow <RT> and/or <RTC>"); }

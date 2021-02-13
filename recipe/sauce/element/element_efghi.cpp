@@ -138,14 +138,14 @@ void element::examine_fieldset ()
                     break; } };
 
 void element::examine_figcaption ()
-{   if ((node_.version ().mjr () >= 5) && (w3_minor_5 (node_.version ()) == 0))
+{   if ((node_.version ().is_5 ()) && (w3_minor_5 (node_.version ()) == 0))
         if (node_.has_previous () && node_.has_next ())
             pick (nit_figcaption_middle, ed_50, "4.4.12 The figcaption element", es_error, ec_element, "<FIGCAPTION> must be the first or last child of <FIGURE>"); }
 
 void element::examine_figure ()
 {   bool had_figcaption = false, first = true, last_was_fig = false;
-    if (has_child () && (node_.version ().mjr () >= 5))
-        if ((w3_minor_5 (node_.version ()) == 0) || (w3_minor_5 (node_.version ()) == 4))
+    if (has_child () && (node_.version ().is_5 ()))
+        if (node_.version ().whatwg () || (node_.version () == html_5_0))
             for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
             {   e_element tag = c -> node_.tag ();
                 if (is_standard_element (tag) && ! c -> node_.is_closure ())
@@ -181,7 +181,7 @@ void element::examine_fontymacfontface ()
                     return; } }
 
 void element::examine_footer ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
     {   check_ancestors (elem_footer, empty_element_bitset | elem_address | elem_footer | elem_header | elem_dt);
         if ((node_.version () > html_jan13) && (node_.version () < html_jul18))
             check_descendants (elem_footer, empty_element_bitset | elem_main);
@@ -230,7 +230,7 @@ void element::examine_h123456 ()
         check_descendants (tag (), empty_element_bitset | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_php | elem_faux_ssi | elem_faux_text, false); }
 
 void element::examine_header ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
     {   check_ancestors (elem_header, empty_element_bitset | elem_address | elem_footer | elem_header | elem_dt);
         if ((node_.version () > html_jan13) && (node_.version () < html_jul18))
             check_descendants (elem_header, empty_element_bitset | elem_main);
@@ -275,11 +275,11 @@ void element::examine_img ()
             pick (nit_naughty_alt, ed_4, "13.2 Including an image", es_error, ec_element, "ALT is required on <IMG>");
         else if (a_.get_string (a_alt).empty ())
             pick (nit_naughty_alt, ed_4, "13.2 Including an image", es_info, ec_element, "ALT should not be empty"); }
-    else if ((node_.version ().mjr () >= 5) && (w3_minor_5 (node_.version ()) > 0))
+    else if ((node_.version ().is_5 ()) && (w3_minor_5 (node_.version ()) > 0))
         if (! ancestral_elements_.test (elem_figure))
             if (! a_.known (a_alt) || a_.get_string (a_alt).empty ())
                 if (! a_.known (a_title))
                     pick (nit_naughty_alt, ed_51, "4.7.5.1.2. General guidelines", es_warning, ec_element, "generally, ALT should not be empty");
-    if ((node_.version ().mjr () >= 4) && a_.known (a_alt) && a_.known (a_title))
+    if ((node_.version ().is_4_or_more ()) && a_.known (a_alt) && a_.known (a_title))
         if (compare_no_case (a_.get_string (a_alt), a_.get_string (a_title)))
             pick (nit_alt_title, ed_51, "4.7.5.1.2. General guidelines", es_warning, ec_element, "ALT and TITLE should have different values"); }

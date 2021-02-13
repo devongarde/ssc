@@ -23,14 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute_classes.h"
 #include "webpage/page.h"
 
+void element::examine_abbr ()
+{   ::std::string t (term ());
+    ::std::string ab (trim_the_lot_off (text ()));
+    if (t.empty () || ab.empty ()) return;
+    page_.mark_abbr (ab, t);
+    ustr_t::const_iterator i = page_.abbrs ().find (ab);
+    if (i == page_.abbrs ().cend ())
+        page_.abbrs ().insert (ustrv_t (ab, t));
+    else if (i -> second != t)
+        pick (nit_contradictory_expansion, es_warning, ec_element, quote (ab), " has a different expansion above (", quote (t), " versus ", quote (i -> second)); }
+
 void element::examine_address ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
     {   check_ancestors (elem_address, empty_element_bitset | elem_address);
         check_descendants (elem_address, header_bitset | sectioning_bitset | elem_address | elem_header | elem_footer); } }
 
 void element::examine_anchor ()
 {   const bool href_known = a_.known (a_href);
-    const bool five = node_.version ().mjr () >= 5;
+    const bool five = node_.version ().is_5 ();
     if (href_known) no_anchor_daddy ();
     else if (a_.known (a_rel) || a_.known (a_rev))
         pick (nit_rel_requires_href, ed_1, "Anchors", es_error, ec_element, "REL and REV both require HREF");
@@ -75,7 +86,7 @@ void element::examine_annotation (const e_element e)
         pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes no effort to analyse the content of <", elem::name (e), ">"); }
 
 void element::examine_area ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
     {   if (! any (ancestral_elements_, empty_element_bitset | elem_map | elem_template))
             pick (nit_area_map_template, ed_50, "4.7.12 The area element", es_error, ec_element, "<AREA> requires a <MAP> or a <TEMPLATE> ancestor");
         if (a_.known (a_href))
@@ -175,7 +186,7 @@ void element::examine_bind ()
         pick (nit_bad_bind, ed_math_3, "4.2.6.1 Bindings", es_error, ec_element, "<BVAR> cannot be the last child of <BIND>"); }
 
 void element::examine_button ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
     {   no_anchor_daddy ();
         if (has_child ())
         {   element_bitset bs (descendant_elements_);
@@ -191,12 +202,12 @@ void element::examine_button ()
                 pick (nit_bad_form, ed_50, "", es_error, ec_attribute, "FORM... attributes require <BUTTON> TYPE='submit'"); } }
 
 void element::examine_col ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
         if (a_.known (a_span))
             if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.4 The col element", es_error, ec_element, "SPAN cannot exceed 1000"); }
 
 void element::examine_colgroup ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
         if (a_.known (a_span))
         {   element_bitset bs (descendant_elements_);
             bs &= empty_element_bitset | elem_col | elem_template;
@@ -204,7 +215,20 @@ void element::examine_colgroup ()
             if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "SPAN cannot exceed 1000"); } }
 
 void element::examine_caption ()
-{   if (node_.version ().mjr () >= 5) check_descendants (elem_caption, element_bit_set (elem_table)); }
+{   if (node_.version ().is_5 ()) check_descendants (elem_caption, element_bit_set (elem_table)); }
+
+void element::examine_data ()
+{   if (ancestral_elements_.test (elem_svg))
+    {   if (! node_.is_closed ())
+            pick (nit_svg_data, ed_svg_1_0, "11.2.1 General information about path data", es_error, ec_element, "The SVG <DATA> element is empty, it has no </DATA>");
+        if (! a_.known (a_d))
+            pick (nit_svg_data, ed_svg_1_0, "11.2.1 General information about path data", es_error, ec_attribute, "The SVG <DATA> element requires the D attribute"); }
+    else if (! node_.version ().whatwg ())
+        pick (nit_svg_data, es_error, ec_element, "<DATA> is not part of W3's HTML 5 specifications");
+    else if (node_.version () < html_jan12)
+        pick (nit_svg_data, es_error, ec_element, "<DATA> requires a later version of WhatWG's HTML 5 living standard");
+    else if (! a_.known (a_value))
+        pick (nit_svg_data, ed_jan12, "4.6.10 The data element", es_error, ec_attribute, "The HTML 5 <DATA> element requires the VALUE attribute"); }
 
 void element::examine_datalist ()
 {   if (! has_child ()) pick (nit_bad_datalist, ed_50, "4.10.8 The datalist element", es_warning, ec_element, "is the empty <DATALIST> intentional");
@@ -227,10 +251,6 @@ void element::examine_datalist ()
             else if (! descendant_elements_.test (elem_select))
                 pick (nit_bad_datalist, ed_50, "4.10.8 The datalist element", es_warning, ec_element, "a <DATALIST> without <OPTION> children should contain a <SELECT>"); } }
 
-void element::examine_dialogue ()
-{   if (a_.known (a_tabindex))
-        pick (nit_bad_dialogue, ed_52, "4.11.4 The dialog element", es_error, ec_element, "<DAILOG> cannot have TABINDEX"); }
-
 void element::examine_details ()
 {   no_anchor_daddy ();
     bool first = true;
@@ -242,63 +262,101 @@ void element::examine_details ()
                 {   pick (nit_details_summary, ed_51, "4.11.1. The details element", es_error, ec_element, "<SUMMARY> can only be the first child of <DETAILS>");
                     break; } }
 
+void element::dddt (const char* ref1, const char* ref2, const char* el)
+{   if (node_.version ().is_5 ())
+    {   if (! ancestral_elements_.test (elem_dl))
+            if (node_.version () < html_jan10)
+            {   if (! ancestral_elements_.test (elem_dialogue))
+                    pick (nit_dl_ancestor, ed_jan07, ref1, es_error, ec_element, "<", el, "> must have a <DL> or <DIALOG> ancestor."); }
+            else if (node_.version () < html_jul10)
+            {   if (! ancestral_elements_.test (elem_figure))
+                    pick (nit_dl_ancestor, ed_jan07, ref1, es_error, ec_element, "<", el, "> must have a <DL> or <FIGURE> ancestor."); }
+            else pick (nit_dl_ancestor, ed_52, ref2, es_error, ec_element, "<", el, "> must have a <DL> ancestor.");
+        check_descendants (elem_dt, header_bitset | sectioning_bitset | elem_header | elem_footer); } }
+
 void element::examine_dd ()
-{   if (node_.version ().mjr () >= 5)
-    {   element_bitset bs (ancestral_elements_);
-        bs &= elem_dl;
-        if (! bs.any ()) pick (nit_dl_ancestor, ed_52, "4.4.11. The dd element", es_error, ec_element, "<DD> must have a <DL> ancestor."); } }
+{   dddt ("3.11.6. The dd element", "4.4.11. The dd element", "DD"); }
 
 void element::examine_dfn ()
-{   if (node_.version ().mjr () >= 5) check_ancestors (elem_dfn, element_bit_set (elem_dfn)); }
+{   ::std::string t (term ());
+    if (! t.empty ())
+        page_.mark_dfn (t, trim_the_lot_off (parent_ -> text ()));
+    if (node_.version ().is_5 ())
+    {   if (! t.empty () && (node_.version () < html_jul08))
+            if (page_.dfns ().find (t) != page_.dfns ().cend ())
+                pick (nit_repeated_definition, ed_jan07, "3.12.8. The dfn element", es_error, ec_element, quote (t), " has already been defined");
+            else page_.dfns ().insert (t);
+        check_ancestors (elem_dfn, element_bit_set (elem_dfn)); } }
+
+void element::examine_dialogue ()
+{   if (node_.version () >= html_jan10)
+        if (node_.version () < html_jul12)
+            pick (nit_bad_dialogue, es_error, ec_element, "<DAILOG> is not defined by ", node_.version ().name ());
+        else if (a_.known (a_tabindex))
+            pick (nit_bad_dialogue, ed_52, "4.11.4 The dialog element", es_error, ec_element, "<DAILOG> cannot have TABINDEX"); }
 
 void element::examine_div ()
-{   if (has_child () && (node_.version ().mjr () >= 5) && (w3_minor_5 (node_.version ()) >= 2))
-    {   bool dt = false;
+{   if (has_child () && (node_.version () >= html_jan17))
+    {   bool dt = false, dd = false;
         if (parent_ -> tag () == elem_dl)
-            for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-                if (is_standard_element (c -> tag ()) && ! c -> node_.is_closure ())
+        {   for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+                if (! c -> node_.is_closure ())
+                {   if (faux_bitset.test (c -> tag ())) continue;
+                    if (script_bitset.test (c -> tag ())) continue;
                     switch (c -> tag ())
                     {   case elem_dt :
                             dt = true;
+                            if (dd) pick (nit_dl_div, ed_50, "4.4.8. The dl element", es_error, ec_element, "when <DIV> is a child of <DL>, all <DT> children must precede all <DD> children");
                             break;
                         case elem_dd :
-                            if (! dt) pick (nit_no_dd, ed_50, "4.4.8. The dl element", es_error, ec_element, "<DD> element must be preceded by <DT>");
-                            break;
-                        case elem_script :
-                        case elem_template :
+                            dd = true;
+                            if (! dt) pick (nit_no_dd, ed_50, "4.4.8. The dl element", es_error, ec_element, "when <DIV> is a child of <DL>, there must be at least one <DT> child before any <DD> children");
                             break;
                         default :
-                            pick (nit_dt_dd, ed_52, "4.4.15. The div element", es_error, ec_element, "when a <DIV> is a child of <DL>, it can only have <DD> and <DT> children");
-                            break; } } }
+                            pick (nit_dt_dd, ed_52, "4.4.15. The div element", es_error, ec_element, "when <DIV> is a child of <DL>, it can only have <DD>, <DT>, and script children");
+                            break; } }
+            if (! dt || ! dd)
+                pick (nit_dt_dd, ed_52, "4.4.15. The div element", es_error, ec_element, "when <DIV> is a child of <DL>, it must have at least one <DT> child, then at least one <DD> child"); } } }
 
 void element::examine_dl ()
-{   bool dtdd = false, dt = false, div = false;
-    if (has_child () && (node_.version ().mjr () >= 5))
+{   bool dtdd = false, dt = false, div = false, dd = false;
+    vstr_t terms; ::std::string s;
+    if (has_child () && (node_.version ().is_5 ()))
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-            switch (c -> tag ())
-            {   case elem_div :
-                    if (w3_minor_5 (node_.version ()) < 2) break;
-                    if (dtdd) pick (nit_dl_div, ed_52, "4.4.9. The dl element", es_error, ec_element, "<DL> can have <DT>/<DD> children, or <DIV> children, but not both");
-                    else div = true;
-                    break;
-                case elem_dt :
-                    dt = true;
-                    if (w3_minor_5 (node_.version ()) < 2) break;
-                    if (div) pick (nit_dl_div, ed_52, "4.4.9. The dl element", es_error, ec_element, "<DL> can have <DT>/<DD> children, or <DIV> children, but not both");
-                    else dtdd = true;
-                    break;
-                case elem_dd :
-                    if (! dt) pick (nit_no_dd, ed_50, "4.4.8. The dl element", es_error, ec_element, "<DD> must be preceded by <DT>");
-                    if (w3_minor_5 (node_.version ()) < 2) break;
-                    if (div) pick (nit_dl_div, ed_52, "4.4.9. The dl element", es_error, ec_element, "<DL> can have <DT>/<DD> children, or <DIV> children, but not both");
-                    else dtdd = true;
-                    break;
-                default :
-                    break; } }
+            if (! c -> node_.is_closure ())
+                switch (c -> tag ())
+                {   case elem_div :
+                        if (node_.version () < html_jan17) break;
+                        if (dtdd || dt) pick (nit_dl_div, ed_52, "4.4.9. The dl element", es_error, ec_element, "<DL> can have <DT>/<DD> children, or <DIV> children, but not both");
+                        else div = true;
+                        break;
+                    case elem_dt :
+                        if (dd) { terms.clear ();  dd = false; }
+                        dt = true;
+                        s = tart (c -> text ());
+                        if (! s.empty ()) terms.push_back (s);
+                        if (node_.version () < html_jan17) break;
+                        if (div) pick (nit_dl_div, ed_52, "4.4.9. The dl element", es_error, ec_element, "<DL> can have <DT>/<DD> children, or <DIV> children, but not both");
+                        else dtdd = true;
+                        break;
+                    case elem_dd :
+                        dd = true;
+                        if (! dt) pick (nit_no_dd, ed_50, "4.4.8. The dl element", es_error, ec_element, "<DD> must be preceded by <DT>");
+                        s = tart (c -> text ());
+                        if (! s.empty ()) for (auto t : terms) page_.mark_dtdd (t, s);
+                        if (node_.version () < html_jan17) break;
+                        if (div) pick (nit_dl_div, ed_52, "4.4.9. The dl element", es_error, ec_element, "<DL> can have <DT>/<DD> children, or <DIV> children, but not both");
+                        else dtdd = true;
+                        break;
+                    case elem_faux_cdata :
+                    case elem_faux_char :
+                    case elem_faux_code :
+                    case elem_faux_text :
+                        if (node_.version () < html_jul05)
+                            pick (nit_bad_dl, ed_jan05, "2.4.2. The dl, dt, and dd elements", es_error, ec_element, "<DL> cannot have non-whitespace text content");
+                        break;
+                    default :
+                        break; } }
 
 void element::examine_dt ()
-{   if (node_.version ().mjr () >= 5)
-    {   element_bitset bs (ancestral_elements_);
-        bs &= elem_dl;
-        if (! bs.any ()) pick (nit_dl_ancestor, ed_52, "4.4.10. The dt element", es_error, ec_element, "<DT> must have a <DL> ancestor.");
-        check_descendants (elem_dt, header_bitset | sectioning_bitset | elem_header | elem_footer); } }
+{   dddt ("3.11.5. The dt element", "4.4.10. The dt element", "DT"); }

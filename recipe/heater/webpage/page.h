@@ -54,6 +54,8 @@ class page
     uid_t euid_ = 0;
     itemscope_ptr itemscope_;
     ::std::string lang_, charset_;
+    sstr_t dfns_;
+    ustr_t abbrs_;
     friend class tag;
 public:
     page () = delete;
@@ -106,6 +108,18 @@ public:
     void mark (const e_element e)
     {   stats_.mark (e);
         context.mark (e); }
+    void visible (const e_element e)
+    {   stats_.visible (e);
+        context.visible (e); }
+    void mark_abbr (const ::std::string& a, const ::std::string& b)
+    {   stats_.mark_abbr (a, b);
+        context.mark_abbr (a, b); }
+    void mark_dfn (const ::std::string& a, const ::std::string& b)
+    {   stats_.mark_dfn (a, b);
+        context.mark_dfn (a, b); }
+    void mark_dtdd (const ::std::string& a, const ::std::string& b)
+    {   stats_.mark_dtdd (a, b);
+        context.mark_dtdd (a, b); }
     void mark (const e_element f, const e_attribute m)
     {   stats_.mark (f, m);
         context.mark (f, m); }
@@ -126,6 +140,8 @@ public:
         context.mark_meta (mn, val); }
     unsigned count (const e_element e) const
     {   return stats_.count (e); }
+    unsigned visible_count (const e_element e) const
+    {   return stats_.visible_count (e); }
     void lynx ();
     void shadow (nitpick& nits, const ::boost::filesystem::path& s);
     uid_t euid ();
@@ -136,6 +152,10 @@ public:
     ::std::string get_export_root () const;
     const directory* get_directory () const { return directory_; }
     void verify_locale (const ::boost::filesystem::path& p);
+    const ustr_t& abbrs () const { return abbrs_; }
+    ustr_t& abbrs () { return abbrs_; }
+    const sstr_t& dfns () const { return dfns_; }
+    sstr_t& dfns () { return dfns_; }
     ::std::string report (); };
 
 ::std::string get_page_url (const ::std::string& url);

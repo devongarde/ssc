@@ -108,6 +108,22 @@ void faux_xmp_check (bra_element_ket& current, e_element& xmp_tag, bool& xmp_mod
         xmp_mode = true;
         x = i + 1; } }
 
+void check_character (nitpick& nits, html_version& v, const ::std::string::const_iterator i)
+{   if (v >= html_4_0)
+    {   switch (*i)
+        {   case '\'' :
+                nits.pick (nit_use_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)");
+                return;
+            case '"' :
+                nits.pick (nit_use_double_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)");
+                return;
+            case '`' :
+                if (v >= html_jul10)
+                {   nits.pick (nit_naughty_grave, ed_jul10, "1.11.2 Syntax errors", es_info, ec_parser, "a grave is better encoded (e.g. '&grave;') or quoted"); return; }
+                break; }
+        if (static_cast < unsigned int > (*i) > 127)
+            nits.pick (nit_encode, ed_jan21, "13.5 Named character references", es_comment, ec_parser, "consider using named character references for non-ASCII characters"); } }
+
 // this parser is horrid, and, worse, it works
 html_version bras_ket::parse (const ::std::string& content)
 {   html_version res;
@@ -280,11 +296,7 @@ html_version bras_ket::parse (const ::std::string& content)
                 {   case '<' :  status = s_open; soe = twas = i; break;
                     case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double > intentional?"); break;
                     case '&' :  if (! xmp_mode) { status= s_amper; twas = i; } break;
-                    case '\'' : if (! xmp_mode && ! silent_content && (res >= html_4_0))
-                        nits.pick (nit_use_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)");
-                        break;
-                    case '"' :  if (! xmp_mode && ! silent_content && (res >= html_4_0))
-                        nits.pick (nit_use_double_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)"); }
+                    default : if (! xmp_mode && ! silent_content) check_character (nits, res, i); }
                 break;
             case s_amper :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_amper ", ch);

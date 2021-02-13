@@ -32,6 +32,22 @@ void stats_t::mark (const e_element e)
 {   assert (p_ != nullptr);
     p_ -> mark (e); }
 
+void stats_t::visible (const e_element e)
+{   assert (p_ != nullptr);
+    p_ -> visible (e); }
+
+void stats_t::mark_abbr (const ::std::string& a, const ::std::string& b)
+{   assert (p_ != nullptr);
+    p_ -> mark_abbr (a, b); }
+
+void stats_t::mark_dfn (const ::std::string& a, const ::std::string& b)
+{   assert (p_ != nullptr);
+    p_ -> mark_dfn (a, b); }
+
+void stats_t::mark_dtdd (const ::std::string& a, const ::std::string& b)
+{   assert (p_ != nullptr);
+    p_ -> mark_dtdd (a, b); }
+
 void stats_t::mark (const e_severity s)
 {   assert (p_ != nullptr);
     p_ -> mark (s); }
@@ -87,3 +103,7 @@ uint64_t stats_t::file_count () const
 unsigned stats_t::count (const e_element e) const
 {   assert (p_ != nullptr);
     return p_ -> element_count (e); }
+
+unsigned stats_t::visible_count (const e_element e) const
+{   assert (p_ != nullptr);
+    return p_ -> visible_count (e); }

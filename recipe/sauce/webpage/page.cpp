@@ -83,7 +83,7 @@ void page::charset (nitpick& nits, const html_version& v, const ::std::string& c
 {   if (charset_defined ())
         if (! compare_no_case (cs, charset_))
             nits.pick (nit_charset_redefined, es_warning, ec_attribute, "charset defined as ", cs, ", but previously defined as ", charset_);
-    if ((v.mjr () >= 5))
+    if ((v.is_5 ()))
         if (! compare_no_case (cs, UTF_8))
             nits.pick (nit_not_utf_8, es_error, ec_attribute, v.report (), " requires the " UTF_8 " charset");
     charset_ = cs; }

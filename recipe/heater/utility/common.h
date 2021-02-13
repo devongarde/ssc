@@ -57,6 +57,10 @@ bool remove_head (::std::string& s, ::std::string& head, const char ch);
 bool separate_first (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);
 bool separate_last (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);
 bool separate (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);
+bool ends_with_example (const ::std::string& s);
+
+inline ::std::string tart (const ::std::string& s)
+{   return unify_whitespace (trim_the_lot_off (s)); }
 
 vstr_t split_by_charset (const ::std::string& s, const char* charset);
 vstr_t split_quoted_by_space (const ::std::string& s);

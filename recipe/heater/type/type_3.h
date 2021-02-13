@@ -60,6 +60,7 @@ template < > class type_master < t_mathform > : public three_value < t_mathform,
 template < > class type_master < t_mathframe > : public three_value < t_mathframe, e_mathframe, sz_dashed, sz_none, sz_solid > { };
 template < > class type_master < t_mathoccurence > : public three_value < t_mathoccurence, e_mathoccurence, sz_prefix, sz_infix, sz_functionmodel > { };
 template < > class type_master < t_menuitem > : public three_value < t_menuitem, e_menuitem, sz_command, sz_checkbox, sz_radio > { };
+template < > class type_master < t_menutype > : public three_value < t_menutype, e_menutype, sz_context, sz_popup, sz_toolbar > { };
 template < > class type_master < t_nsd > : public three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed > { };
 template < > class type_master < t_preload5 > : public three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none > { };
 template < > class type_master < t_restart > : public three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never > { };

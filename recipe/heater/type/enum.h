@@ -59,7 +59,7 @@ typedef enum
         a_ariainvalid, a_arialabel, a_arialabelledby, a_arialevel, a_arialive, a_ariamultiline, a_ariamultiselectable, a_ariaorientation, a_ariaowns,
         a_ariaposinset, a_ariapressed, a_ariareadonly, a_ariarelevant, a_ariarequired, a_ariaselected, a_ariasetsize, a_ariasort, a_ariavaluemax,
         a_ariavaluemin, a_ariavaluenow, a_ariavaluetext, a_as, a_ascent, a_async, a_at, a_attributename, a_attributetype, a_autocapitalise,
-        a_autocomplete, a_autocorrect, a_autofocus, a_autopictureinpicture, a_autoplay, a_axes, a_axis, a_azimuth,
+        a_autocomplete, a_autocorrect, a_autofocus, a_autopictureinpicture, a_autoplay, a_autosubmit, a_axes, a_axis, a_azimuth,
     a_background, a_balance, a_bandwidth, a_base, a_basefrequency, a_baseline, a_baselineshift, a_baseprofile, a_bbox, a_begin, a_behaviour,
         a_below, a_bevelled, a_bgcolour, a_bias, a_border, a_bottommargin, a_box, a_bubbles, a_buffered, a_by,
     a_calcmode, a_cancelable, a_capheight, a_capture, a_cd, a_cdgroup, a_cell, a_cellpadding, a_cellspacing, a_challenge, a_char, a_charalign, a_charoff,
@@ -338,7 +338,7 @@ typedef enum {  ds_inline, ds_block, ds_listitem, ds_runin, ds_compact, ds_marke
                 ds_tablefootergroup, ds_tablerow, ds_tablecolumngroup, ds_tablecolumn, ds_tablecell, ds_tablecaption, ds_none, ds_inherit } e_display;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
-                ed_jan05, ed_jan07, ed_jan10, ed_jul17, ed_may20, ed_jul20,
+                ed_jan05, ed_jan07, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_math_1, ed_math_2, ed_math_3, ed_math_4,
                 ed_iso_8859_1, ed_csp,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
@@ -393,8 +393,8 @@ typedef enum {
     elem_l, elem_label, elem_lambda, elem_lang, elem_laplacian, elem_layer, elem_lcm, elem_left, elem_legend, elem_leq, elem_lh, elem_li, elem_limit,
         elem_line, elem_lineargradient, elem_link, elem_list, elem_listener, elem_listing, elem_lit, elem_ln, elem_loc, elem_log, elem_logbase, elem_lowlimit,
         elem_lt,
-    elem_maction, elem_main, elem_maligngroup, elem_malignmark, elem_map, elem_margin, elem_mark, elem_marker, elem_marquee, elem_mask, elem_math, elem_matrix,
-        elem_matrixrow, elem_max, elem_mean, elem_median, elem_menclose, elem_menu, elem_menuitem, elem_merror, elem_meta, elem_metadata, elem_meter,
+    elem_m, elem_maction, elem_main, elem_maligngroup, elem_malignmark, elem_map, elem_margin, elem_mark, elem_marker, elem_marquee, elem_mask, elem_math, elem_matrix,
+        elem_matrixrow, elem_max, elem_mean, elem_median, elem_menclose, elem_menu, elem_menuitem, elem_menulabel, elem_merror, elem_meta, elem_metadata, elem_meter,
         elem_mfenced, elem_mfrac, elem_mglyph, elem_mh, elem_mi, elem_min, elem_minus, elem_missingglyph, elem_mlabeledtr, elem_mlongdiv, elem_mmultiscripts,
         elem_mn, elem_mo, elem_mode, elem_moment, elem_momentabout, elem_mover, elem_mpadded, elem_mpath, elem_mphantom, elem_mprescripts, elem_mroot, elem_mrow,
         elem_ms, elem_mscarries, elem_mscarry, elem_msgroup, elem_msline, elem_mspace, elem_msqrt, elem_msrow, elem_mstack, elem_mstyle, elem_msub, elem_msubsup,
@@ -634,6 +634,7 @@ typedef enum {  mef_width, mef_min_width, mef_max_width,
 typedef enum { mk_and, mk_eq, mk_ge, mk_gt, mk_ident, mk_le, mk_lt, mk_or, mk_not, mk_only } e_mediakeyword;
 typedef enum { ms_meet, me_slice } e_meetslice;
 typedef enum { mi_command, mi_checkbox, mi_radio } e_menuitem;
+typedef enum { mt_context, mt_popup, mt_toolbar } e_menutype;
 typedef enum { md_delete, md_dialogue, md_get, md_post, md_put } e_method;
 
 typedef enum { mn_context,
@@ -1356,7 +1357,8 @@ typedef enum
     nit_charset_used, nit_charset_invalid, nit_no_converters, nit_xhtml_superseded, nit_not_iso_8859_1, hit_draft_html_5, nit_overriding_html,
     nit_whatwg_class, nit_opening_file, nit_target, nit_bad_mummy, nit_no_serviceworker, nit_rel_head, nit_theme_colour, nit_refresh_zero,
     nit_bad_csp_directive, nit_bad_number_once, nit_bad_csp_source, nit_invalid_algorithm, nit_insufficient_content, nit_bad_q,
-    nit_bad_cookie, nit_bad_cache, nit_bad_link_pragma, nit_nocando, nit_bad_root, nit_isnt,
+    nit_bad_cookie, nit_bad_cache, nit_bad_link_pragma, nit_nocando, nit_bad_root, nit_isnt, nit_menu_type, nit_menu_child, nit_bad_dl,
+    nit_repeated_definition, nit_contradictory_expansion, nit_naughty_grave, nit_encode, nit_svg_data, nit_data,
 
     nit_context,
 

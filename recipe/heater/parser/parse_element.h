@@ -30,7 +30,7 @@ class element_node
     element_node* next_ = nullptr;
     element_node* previous_ = nullptr;
     int line_ = 0;
-    bool closure_ = false;
+    bool closure_ = false, closed_ = false;
     elem elem_;
     attributes_node va_;
     ::std::string text_, raw_;
@@ -64,6 +64,7 @@ public:
     int line () const { return line_; }
     bool invalid () const { return elem_.unknown (); }
     bool is_closure () const { return closure_; }
+    bool is_closed () const { return closed_; }
     bool has_child () const { return child_ != nullptr; }
     bool has_next () const { return next_ != nullptr; }
     bool has_last () const { return last_ != nullptr; }

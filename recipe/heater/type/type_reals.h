@@ -82,5 +82,5 @@ template < > struct type_master < t_svg_viewbox > : tidy_string < t_svg_viewbox 
         {   tidy_string < t_svg_viewbox > :: set_value (nits, v, s);
             if (tidy_string < t_svg_viewbox >  :: good ())
                 if (test_reals (nits, v, tidy_string < t_svg_viewbox > :: get_string (), 4)) return;
-            nits.pick (nit_bad_2pt, es_error, ec_type, "'none' or a list of numbers is expected");
+            nits.pick (nit_bad_2pt, es_error, ec_type, QNONE "' or a list of numbers is expected");
             tidy_string < t_svg_viewbox > :: status (s_invalid); } } };

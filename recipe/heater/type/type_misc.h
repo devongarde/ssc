@@ -105,7 +105,7 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space >
         if (string_vector < t_key, sz_space > :: empty ())
             nits.pick (nit_key, es_error, ec_type, "a key cannot be empty");
         else if (string_vector < t_key, sz_space > :: good ())
-            if (v.mjr () >= 5)
+            if (v.is_5 ())
             {   sstr_t check;
                 for (auto k : string_vector < t_key, sz_space > :: get ())
                     if (k.length () != 1)

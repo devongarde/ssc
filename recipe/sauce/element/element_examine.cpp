@@ -41,7 +41,7 @@ void element::pre_examine_element (const e_element tag)
         case elem_polyline :
         case elem_rect : examine_svg_shape (); break;
         case elem_col : examine_col (); break;
-        case elem_dfn : examine_dfn (); break;
+        case elem_data : examine_data (); break;
         case elem_dialogue : examine_dialogue (); break;
         case elem_embed : examine_embed (); break;
         case elem_fecolourmatrix : examine_fecolourmatrix (); break;
@@ -77,6 +77,7 @@ void element::pre_examine_element (const e_element tag)
 void element::post_examine_element (const e_element tag)
 {   switch (tag) // should integrate this into individual element verification?
     {   case elem_a : examine_anchor (); break;
+        case elem_abbr : examine_abbr (); break;
         case elem_address : examine_address (); break;
         case elem_animatemotion : examine_animatemotion (); break;
         case elem_apply : examine_equation (); break;
@@ -96,15 +97,16 @@ void element::post_examine_element (const e_element tag)
         case elem_mstyle :
         case elem_mtd :
         case elem_semantics : check_math_children (1, true); break;
+        case elem_caption : examine_caption (); break;
+        case elem_colgroup : examine_colgroup (); break;
+        case elem_condition :
         case elem_degree :
         case elem_lowlimit :
         case elem_uplimit : if (page_.version ().math () <= math_1) break;
                             check_math_children (1); break;
-        case elem_caption : examine_caption (); break;
-        case elem_colgroup : examine_colgroup (); break;
-        case elem_condition :
-        case elem_fn :          if (page_.version ().math () > math_1) check_math_children (1);
-                                break;
+        case elem_dfn : examine_dfn (); break;
+        case elem_fn : if (page_.version ().math () > math_1) check_math_children (1);
+                       break;
         case elem_datalist : examine_datalist (); break;
         case elem_dd : examine_dd (); break;
         case elem_declare : if (page_.version ().math () > math_1) check_math_children (1, 2);
@@ -135,6 +137,7 @@ void element::post_examine_element (const e_element tag)
         case elem_piece :   check_math_children (2); break;
         case elem_label : examine_label (); break;
         case elem_math : examine_math (); break;
+        case elem_menu : examine_menu (); break;
         case elem_meta : examine_meta (); break;
         case elem_mfrac :
         case elem_mover :
@@ -171,7 +174,7 @@ void element::remove_category (const uint64_t cat)
     node_.id ().refresh (EP_5_REFRESHED); }
 
 void element::congeal_dynamism ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
         if ((node_.id ().flags () & EP_5_REFRESHED) == 0)
             switch (tag ())
             {   case elem_audio :
@@ -195,8 +198,9 @@ void element::congeal_dynamism ()
                         remove_category (EF_5_PHRASE); }
                     break;
                 case elem_menu :
-                    if ((w3_minor_5 (node_.version ()) < 4) || ! has_this_child (elem_li))
-                        remove_category (EF_5_PALPABLE);
+                    if (node_.version ().mjr () > 5)
+                        if (! has_this_child (elem_li))
+                            remove_category (EF_5_PALPABLE);
                     break;
                 case elem_meta :
                     if (! a_.known (a_itemprop))
@@ -224,6 +228,7 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
     e_element tag = node_.tag ();
     if (! node_.is_closure ())
     {   page_.mark (tag);
+        if (! a_.known (a_hidden)) page_.visible (tag);
         a_.mark (page_); }
     bool postprocess = false, post_examine = false;
     if (tag == elem_faux_stylesheet)
@@ -264,9 +269,9 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
         if (parent_ == nullptr) is_permitted_parent (nits (), node_.version (), node_.id (), elem ());
         else is_permitted_parent (nits (), node_.version (), node_.id (), parent_ -> node_.id ());
 
-        if (node_.version ().mjr () >= 4) verify_microdata ();
+        if (node_.version ().is_4_or_more ()) verify_microdata ();
 
-        if (node_.version ().mjr () >= 5)
+        if (node_.version ().is_5 ())
             if (a_.known (a_xmllang))
                 if (! a_.known (a_lang))
                     pick (nit_no_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "Authors must not use LANG in the XML namespace on HTML elements in HTML documents");
@@ -467,3 +472,30 @@ bool element::family_uids (const e_element e, uid_t& from, uid_t& to) const
     {   from = uid_; to = closure_uid_; return true; }
     if (parent_ == nullptr) return false;
     return parent_ -> family_uids (e, from, to); }
+
+::std::string element::term () const
+{   switch (tag ())
+    {   case elem_abbr :
+            if (a_.known (a_title))
+                if (a_.good (a_title)) return a_.get_string (a_title);
+            break;
+        case elem_dfn :
+            if (a_.known (a_title))
+            {   if (a_.good (a_title)) return a_.get_string (a_title);
+                break; }
+            if (has_child ())
+            {   element_bitset bs (empty_element_bitset | elem_abbr | elem_faux_comment |elem_faux_ssi | elem_faux_stylesheet | elem_faux_whitespace);
+                element* abr = nullptr;
+                for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+                    if (! c -> node_.is_closure ())
+                    {   if (! bs.test (c -> tag ())) return text ();
+                        if (c -> tag () != elem_abbr) continue;
+                        if (abr != nullptr) return text ();
+                        abr = c; }
+                if (abr != nullptr)
+                    if (abr -> a_.good (a_title))
+                        return abr -> a_.get_string (a_title); }
+            return text ();
+        default :
+            return text (); }
+    return ::std::string (); }

@@ -116,13 +116,18 @@ void element::check_required_type (const e_element tag)
     pick (nit_element_no_type, es_comment, ec_element, "has no TYPE attribute"); }
 
 void element::no_anchor_daddy ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
         if (ancestral_elements_.test (elem_a))
             pick (nit_interactive, ed_50, "4.5.1 The a element", es_warning, ec_element, "<A> cannot have an interactive descendant element."); }
 
 bool element::only_one_of (const e_element e)
 {   if (page_.count (e) == 1) return true;
     pick (nit_only_once, es_error, ec_element, "there should only be one <", node_.id ().name (), "> per page");
+    return false; }
+
+bool element::only_one_visible_of (const e_element e)
+{   if (page_.visible_count (e) == 1) return true;
+    pick (nit_only_once, es_error, ec_element, "there should only be one visible (not hidden) <", node_.id ().name (), "> per page");
     return false; }
 
 bool element::check_math_children (const int expected, const bool or_more)

@@ -569,8 +569,15 @@ nitname nitnames [] =
     { nit_nocando, "nocando" },
     { nit_bad_root, "bad_root" },
     { nit_isnt, "isnt" },
-
-  // nit_bad_csp_source, nit_invalid_algorithm
+    { nit_menu_type, "menu_type" },
+    { nit_menu_child, "menu_child" },
+    { nit_bad_dl, "bad_dl" },
+    { nit_repeated_definition, "repeated_definition" },
+    { nit_contradictory_expansion, "contradictory_expansion" },
+    { nit_naughty_grave, "naughty_grave" },
+    { nit_encode, "encode" },
+    { nit_svg_data, "svg_data" },
+    { nit_data, "data" },
 
     { nit_off, "" } };
 

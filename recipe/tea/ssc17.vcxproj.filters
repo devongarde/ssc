@@ -375,6 +375,21 @@
     <Filter Include="Sauce\icu">
       <UniqueIdentifier>{5d9f1c30-46e6-4c7a-87eb-6638126c4026}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Info">
+      <UniqueIdentifier>{4e391135-fe4a-4fa8-bbb7-0b670730fd6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSP">
+      <UniqueIdentifier>{a89ac16e-ea72-4947-b254-909ed1dd01a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSP\1">
+      <UniqueIdentifier>{073901f8-9194-4904-9302-2d0d70138581}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSP\2">
+      <UniqueIdentifier>{9985e533-4ec8-4659-b9bf-f16b45458f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSP\3">
+      <UniqueIdentifier>{e1abd06a-2c3f-44e6-958f-748c632c0058}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -788,6 +803,21 @@
     <ClInclude Include="..\heater\type\type_csp.h">
       <Filter>Heater\type</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\type\type_cookie.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_metaname.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\stats\stats3.h">
+      <Filter>Heater\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\icu\converter.h">
+      <Filter>Heater\icu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\stats\stats4.h">
+      <Filter>Heater\stats</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1119,6 +1149,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\type\type_csp.cpp">
       <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\icu\converter.cpp">
+      <Filter>Sauce\icu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2215,9 +2248,6 @@
       <Filter>Toast\Conf</Filter>
     </None>
     <None Include="..\toast\conf\live.conf">
-      <Filter>Toast\Conf</Filter>
-    </None>
-    <None Include="..\toast\conf\simple.conf">
       <Filter>Toast\Conf</Filter>
     </None>
     <None Include="..\toast\HTML\Plus\index.html">
@@ -3711,6 +3741,81 @@
     <None Include="..\toast\w3\1574-charset_iso_8859_7_greek.html">
       <Filter>Toast\w3</Filter>
     </None>
+    <None Include="addtest.sh">
+      <Filter>Tea</Filter>
+    </None>
+    <None Include="fulltest.bat">
+      <Filter>Tea</Filter>
+    </None>
+    <None Include="fulltest.sh">
+      <Filter>Tea</Filter>
+    </None>
+    <None Include="specprep.bat">
+      <Filter>Tea</Filter>
+    </None>
+    <None Include="..\toast\csp\1\1.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\2.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\3.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\bad.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\csp.conf">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\csp.spec">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\1\index.html">
+      <Filter>Toast\CSP\1</Filter>
+    </None>
+    <None Include="..\toast\csp\2\1.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\2\2.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\2\3.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\2\bad.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\2\csp.conf">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\2\csp.spec">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\2\index.html">
+      <Filter>Toast\CSP\2</Filter>
+    </None>
+    <None Include="..\toast\csp\3\1.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\2.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\3.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\bad.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\csp.conf">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\csp.spec">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
+    <None Include="..\toast\csp\3\index.html">
+      <Filter>Toast\CSP\3</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -3880,20 +3985,38 @@
     <Text Include="..\toast\conf\README.txt">
       <Filter>Toast\Conf</Filter>
     </Text>
-    <Text Include="..\..\LICENCE.txt" />
-    <Text Include="..\..\LICENSE.txt" />
-    <Text Include="..\..\README.txt" />
     <Text Include="CMakeLists.txt">
       <Filter>Tea</Filter>
     </Text>
     <Text Include="README.txt">
       <Filter>Tea</Filter>
     </Text>
-    <Text Include="..\..\releasenotes.txt" />
-    <Text Include="..\..\build.txt" />
-    <Text Include="..\..\usage.txt" />
     <Text Include="..\toast\tmp\README.txt">
       <Filter>Toast\Tmp</Filter>
+    </Text>
+    <Text Include="..\..\build.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\LICENCE.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\LICENSE.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\README.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\releasenotes.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\usage.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\gen\gen.txt">
+      <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\..\W3-LICENCE.txt">
+      <Filter>Info</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

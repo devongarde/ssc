@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute_classes.h"
 
 void element::examine_section ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
     {   if (w3_minor_5 (node_.version ()) > 0)
             check_ancestors (tag (), empty_element_bitset | elem_dt); } }
 

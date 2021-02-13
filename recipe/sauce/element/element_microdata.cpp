@@ -61,6 +61,7 @@ void element::verify_microdata ()
             return a_.get_string (a_content);
         case elem_object :
             return a_.get_string (a_data);
+        case elem_t :
         case elem_time :
             return a_.get_string (a_datetime);
         default :

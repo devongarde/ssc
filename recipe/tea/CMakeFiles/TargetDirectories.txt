@@ -1,0 +1,9 @@
+/Users/dylan/Depot/applications/ssc/recipe/tea/CMakeFiles/list_install_components.dir
+/Users/dylan/Depot/applications/ssc/recipe/tea/CMakeFiles/rebuild_cache.dir
+/Users/dylan/Depot/applications/ssc/recipe/tea/CMakeFiles/edit_cache.dir
+/Users/dylan/Depot/applications/ssc/recipe/tea/CMakeFiles/install/local.dir
+/Users/dylan/Depot/applications/ssc/recipe/tea/CMakeFiles/test.dir
+/Users/dylan/Depot/applications/ssc/recipe/tea/CMakeFiles/install/strip.dir
+/Users/dylan/Depot/applications/ssc/recipe/tea/CMakeFiles/install.dir
+/Users/dylan/Depot/applications/ssc/recipe/tea/CMakeFiles/ssc.dir
+/Users/dylan/Depot/applications/ssc/recipe/tea/CMakeFiles/ssc-test.dir

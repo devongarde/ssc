@@ -17,7 +17,7 @@ PASS ../toast/w3/html5/html5-range-error.html
 
 PASS ../toast/w3/html5/html5-warning.html
 2 naughty_lang
-7 chocolate_teapot
+7 invalid_attribute_version wrong_version chocolate_teapot
 
 PASS ../toast/w3/html5/index.html
 2 naughty_lang

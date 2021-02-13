@@ -1,5 +1,16 @@
 -f ../toast/living/jul09/living.conf
 
+PASS ../toast/living/jul09/a.html
+9 url_not_found
+10 chocolate_teapot
+11 url_not_found
+15 unrecognised_value
+
+PASS ../toast/living/jul09/abbr.html
+18 id_exists
+21 newline_in_string newline_in_string contradictory_expansion
+29 newline_in_string newline_in_string contradictory_expansion
+
 PASS ../toast/living/jul09/address.html
 11 attempted_escape no_such_folder url_not_found
 12 attempted_escape no_such_folder url_not_found
@@ -10,6 +21,64 @@ PASS ../toast/living/jul09/aside.html
 19 use_quote_code
 22 use_quote_code
 25 use_quote_code
+
+PASS ../toast/living/jul09/b.html
+0 charset_mismatch charset_used charset_invalid
+12 use_quote_code
+
+PASS ../toast/living/jul09/blockquote.html
+7 missing_close
+8 missing_close use_quote_code
+12 inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/living/jul09/dd.html
+0 charset_mismatch charset_used charset_invalid
+8 unrecognised_value use_quote_code
+9 unrecognised_value
+13 unrecognised_value use_quote_code
+14 unrecognised_value
+16 unrecognised_value
+
+PASS ../toast/living/jul09/dialogue.html
+8 inserted_missing_closure
+9 inserted_missing_closure
+10 inserted_missing_closure
+11 inserted_missing_closure
+12 inserted_missing_closure
+13 use_quote_code inserted_missing_closure
+14 inserted_missing_closure
+15 use_quote_code inserted_missing_closure
+16 inserted_missing_closure
+18 inserted_missing_closure
+19 inserted_missing_closure missing_close
+20 inserted_missing_closure
+
+PASS ../toast/living/jul09/dfn.html
+9 use_quote_code
+15 use_quote_code
+
+PASS ../toast/living/jul09/div.html
+10 use_quote_code
+18 use_quote_code use_double_quote_code
+20 use_double_quote_code
+
+PASS ../toast/living/jul09/dl.html
+8 inserted_missing_closure
+9 inserted_missing_closure
+10 inserted_missing_closure
+11 inserted_missing_closure missing_close
+12 inserted_missing_closure
+54 use_quote_code
+
+PASS ../toast/living/jul09/dt.html
+8 inserted_missing_closure
+9 use_quote_code inserted_missing_closure
+10 inserted_missing_closure
+12 inserted_missing_closure
+13 inserted_missing_closure
+14 use_quote_code inserted_missing_closure
+15 inserted_missing_closure missing_close
+16 inserted_missing_closure
 
 PASS ../toast/living/jul09/example.html
 6 missing_close inserted_missing_closure missing_open
@@ -41,6 +110,20 @@ PASS ../toast/living/jul09/example-2.html
 16 mime
 41 inserted_missing_closure inserted_missing_closure
 
+PASS ../toast/living/jul09/figure.html
+21 newline_in_string newline_in_string url_not_found
+25 use_quote_code
+29 use_double_quote_code inserted_missing_closure
+30 url_not_found
+35 inserted_missing_closure
+36 url_not_found
+40 url_not_found
+45 inserted_missing_closure
+46  use_quote_code
+55 url_not_found
+57 url_not_found
+60 newline_in_string newline_in_string url_not_found
+
 PASS ../toast/living/jul09/footer.html
 9 attempted_escape
 18 attempted_escape
@@ -56,8 +139,17 @@ PASS ../toast/living/jul09/header-2.html
 17 inserted_missing_closure
 21 use_quote_code
 
+PASS ../toast/living/jul09/i.html
+0 charset_mismatch charset_used charset_invalid
+
 PASS ../toast/living/jul09/index.html
 3 attribute_unrecognised_here unrecognised_attribute
+
+PASS ../toast/living/jul09/li.html
+10 lingo
+11 use_quote_code
+26 lingo
+27 use_quote_code
 
 PASS ../toast/living/jul09/ls1.html
 8 url_not_found
@@ -90,3 +182,61 @@ PASS ../toast/living/jul09/ls6.html
 27 url_not_found
 28 url_not_found
 29 url_not_found
+
+PASS ../toast/living/jul09/mark.html
+9 use_quote_code
+16 use_quote_code
+39 use_quote_code
+41 use_quote_code
+44 use_quote_code
+
+PASS ../toast/living/jul09/ol.html
+10 inserted_missing_closure
+11 inserted_missing_closure
+12 inserted_missing_closure missing_close
+13 inserted_missing_closure
+19 inserted_missing_closure
+20 inserted_missing_closure
+21 inserted_missing_closure missing_close
+22 inserted_missing_closure
+
+PASS ../toast/living/jul09/q.html
+7 use_double_quote_code
+10 use_quote_code
+12 use_double_quote_code
+16 use_double_quote_code use_quote_code
+17 use_double_quote_code
+23 use_double_quote_code use_quote_code
+
+PASS ../toast/living/jul09/samp.html
+7 use_quote_code
+9 unrecognised_value
+13 unrecognised_value unrecognised_value
+
+PASS ../toast/living/jul09/small.html
+0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/living/jul09/tagcloud.html
+20 no_such_folder url_not_found
+21 inserted_missing_closure no_such_folder url_not_found
+22 inserted_missing_closure missing_close no_such_folder url_not_found
+23 inserted_missing_closure
+
+PASS ../toast/living/jul09/time.html
+15 use_quote_code
+
+PASS ../toast/living/jul09/ul.html
+9 inserted_missing_closure
+10 inserted_missing_closure
+11 inserted_missing_closure missing_close
+12 inserted_missing_closure
+17 inserted_missing_closure
+18 inserted_missing_closure
+19 inserted_missing_closure missing_close
+20 inserted_missing_closure
+
+PASS ../toast/living/jul09/var.html
+21 use_quote_code
+
+PASS ../toast/living/jul09/wbr.html
+7 use_double_quote_code use_double_quote_code

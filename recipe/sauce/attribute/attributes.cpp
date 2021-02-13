@@ -119,7 +119,7 @@ void attributes :: verify_attributes (nitpick& nits, const html_version& v, attr
         {   elem e (tag_);
             if (aar_.at (i) -> good () || aar_.at (i) -> empty ()) aar_.at (i) -> validate (nits, v, e, attr::name (static_cast < e_attribute > (i)));
             if (aar_.at (i) -> verify_version (nits, v, e)) state.set (aar_.at (i) -> id ());
-            else nits.pick (nit_wrong_version, es_error, ec_element, ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " is invalid with <", ::boost::to_upper_copy (elem::name (e)), "> in ", v.detailed_report ()); } }
+            else nits.pick (nit_wrong_version, es_error, ec_element, ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " is invalid with <", ::boost::to_upper_copy (elem::name (e)), "> in ", v.report ()); } }
 
 void attributes :: mark (page& p, const e_attribute a)
 {   if (has_attribute (tag_, a)) p.mark (tag_, a); }

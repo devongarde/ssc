@@ -128,7 +128,7 @@ void element::examine_title ()
     page_.confirm_title (); }
 
 void element::examine_track ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
     {   e_kind k = static_cast < e_kind > (a_.get_int (a_kind));
         if ((k == k_subtitles) && ! a_.known (a_srclang))
             pick (nit_data_type, ed_50, "4.7.9 The track element", es_error, ec_element, "<TRACK> with KIND=subtitles requires SRCLANG");

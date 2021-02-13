@@ -60,8 +60,10 @@ ssc.exe -f ../toast/microdata/schema-wxyz/wxyz.conf
 ssc.exe -f ../toast/microformats/mf1/mf1.conf
 ssc.exe -f ../toast/microformats/mf2/mf2.conf
 ssc.exe -f ../toast/microformats/rel/rel.conf
+ssc.exe -f ../toast/other/abbr/abbr.conf
 ssc.exe -f ../toast/other/base/base.conf
 ssc.exe -f ../toast/other/CSS/css.conf
+ssc.exe -f ../toast/other/dfn/dfn.conf
 ssc.exe -f ../toast/other/ignore/ignore.conf
 ssc.exe -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -f ../toast/other/nits/nits.conf

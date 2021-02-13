@@ -37,7 +37,7 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
     {   string_value < t_compact > :: set_value (nits, v, s);
         if (s.empty ())
         {   string_value < t_compact > :: status (s_good); return; }
-        if (v.mjr () == 1)
+        if (v.is_1 ())
         {   string_value < t_compact > :: status (s_invalid);
             nits.pick (nit_bad_compact, es_error, ec_type, "in ", v.report (), ", compact has no value"); }
         if (! compare_no_case (string_value < t_compact > :: get_string (), "compact"))

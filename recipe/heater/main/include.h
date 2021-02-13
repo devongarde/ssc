@@ -243,6 +243,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define NOFLAGS 0
 #define EXPORT_EXTENSION ".json"
+#define QNONE "'none'"
 
 #define US_ASCII "US-ASCII"
 #define LATIN_1 "ISO-8859-1"

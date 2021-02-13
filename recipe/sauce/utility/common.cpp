@@ -236,6 +236,20 @@ bool separate_first (const ::std::string& s, ::std::string& head, ::std::string&
 bool separate (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch)
 {   return separate_last (s, head, tail, ch); }
 
+bool ends_with_example (const ::std::string& s)
+{   if (s.empty ()) return false;
+    if (s.at (s.length () - 1) == '/')
+        return (::boost::algorithm::iends_with (s, "example/") ||
+                ::boost::algorithm::iends_with (s, "example.com/") ||
+                ::boost::algorithm::iends_with (s, "example.org/") ||
+                ::boost::algorithm::iends_with (s, "example.net/") ||
+                ::boost::algorithm::iends_with (s, "example.edu/"));
+    return (::boost::algorithm::iends_with (s, "example") ||
+            ::boost::algorithm::iends_with (s, "example.com") ||
+            ::boost::algorithm::iends_with (s, "example.org") ||
+            ::boost::algorithm::iends_with (s, "example.net") ||
+            ::boost::algorithm::iends_with (s, "example.edu")); }
+
 
 ::boost::filesystem::path get_tmp_filename ()
 {   ::boost::system::error_code ec;

@@ -63,12 +63,14 @@ class element
     template < class PROPERTY > void note_reply ();
     template < e_type T > void val_min_max ();
     void activate_microformats () { if (! mf_) mf_.reset (new microformats ()); }
+    void dddt (const char* ref1, const char* ref2, const char* el);
     void check_required_type (const e_element tag);
     void mf_put_vocab (const e_class v, const prop& p, const ::std::string& itemtype = ::std::string (EXPORT_ITEMTYPE), const ::std::string& itemprop = ::std::string (EXPORT_ITEMPROP));
     void mf_put_rel (const e_class v, const prop& p, const vstr_t& rels);
     void verify ();
     void verify_children ();
     bool only_one_of (const e_element e);
+    bool only_one_visible_of (const e_element e);
     void congeal_dynamism ();
     bool has_this_child (const e_element e) const;
     bool has_this_descendant (const e_element e) const;
@@ -109,8 +111,9 @@ class element
     void examine_style_attr ();
     void examine_xlinkhref ();
     void validate_input_id ();
-    ::std::string text () const
-    {   return node_.text (); }
+    ::std::string text () const { return node_.text (); }
+    ::std::string term () const;
+    void examine_abbr ();
     void examine_address ();
     void examine_animatemotion ();
     void examine_annotation (const e_element e);
@@ -125,6 +128,7 @@ class element
     void examine_caption ();
     void examine_col ();
     void examine_colgroup ();
+    void examine_data ();
     void examine_datalist ();
     void examine_details ();
     void examine_dd ();
@@ -159,6 +163,7 @@ class element
     void examine_main ();
     void examine_map ();
     void examine_math ();
+    void examine_menu ();
     void examine_meta ();
     void examine_meter ();
     void examine_mglyph ();

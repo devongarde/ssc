@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title>ul</title> </head>
+ <body>
+
+<menu>
+ <li>
+ <button type=menu value="File" menu="filemenu">
+ <menu id="filemenu" type="popup">
+ <menuitem onclick="fnew()" label="New...">
+ <menuitem onclick="fopen()" label="Open...">
+ <menuitem onclick="fsave()" label="Save">
+ <menuitem onclick="fsaveas()" label="Save as...">
+ </menu>
+ </li>
+ <li>
+ <button type=menu value="Edit" menu="editmenu">
+ <menu id="editmenu" type="popup">
+HTML Standard https://web.archive.org/web/20130103030411/http://www.whatwg.org/sp...
+505 of 906 30/12/2020, 08:41
+ <menuitem onclick="ecopy()" label="Copy">
+ <menuitem onclick="ecut()" label="Cut">
+ <menuitem onclick="epaste()" label="Paste">
+ </menu>
+ </li>
+ <li>
+ <button type=menu value="Help" menu="helpmenu">
+ <menu id="helpmenu" type="popup">
+ <menuitem onclick="location='help.html'" label="Help">
+ <menuitem onclick="location='about.html'" label="About">
+ </menu>
+ </li>
+</menu>
+
+ </body>
+</html>

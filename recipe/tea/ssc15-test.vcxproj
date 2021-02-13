@@ -186,6 +186,7 @@ copy $(TargetPath) $(ProjectDir)..\..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\sauce\feedback\nitnames.cpp" />
     <ClCompile Include="..\sauce\test\ssc-test.cpp" />
   </ItemGroup>
   <ItemGroup>

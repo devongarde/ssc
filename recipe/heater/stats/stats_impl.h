@@ -23,9 +23,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats1.h"
 #include "stats/stats2.h"
 #include "stats/stats3.h"
+#include "stats/stats4.h"
 #include "parser/html_version.h"
 
 typedef stats0 < html_version > version_stats;
+typedef stats4 < ::std::string > term_stats;
 typedef stats1 < e_element, last_element_tag, elem_undefined > element_stats;
 typedef stats1 < e_category, last_category, ec_undefined > category_stats;
 typedef stats1 < e_severity, last_severity, es_undefined > severity_stats;
@@ -38,7 +40,8 @@ typedef stats1 < e_metaname, mn_illegal, mn_context > metaname_stats;
 typedef stats3 < ::std::string, e_metaname, mn_illegal, mn_context > meta_value_stats;
 
 class stats
-{   element_stats element_;
+{   element_stats element_, visible_;
+    term_stats dfn_, abbr_, dtdd_;
     severity_stats severity_;
     category_stats category_;
     ref_stats ref_;
@@ -58,6 +61,9 @@ class stats
     ::std::string microdata_report () const;
     ::std::string element_report () const;
     ::std::string version_report () const;
+    ::std::string abbr_report () const;
+    ::std::string dfn_report () const;
+    ::std::string dtdd_report () const;
     ::std::string error_report () const;
     ::std::string category_report () const;
     ::std::string file_report () const;
@@ -66,6 +72,14 @@ class stats
 public:
     void mark (const e_element e)
     {   element_.mark (e); }
+    void visible (const e_element e)
+    {   visible_.mark (e); }
+    void mark_abbr (const ::std::string& a, const ::std::string& b)
+    {   abbr_.mark (tart (a), tart (b)); }
+    void mark_dfn (const ::std::string& a, const ::std::string& b)
+    {   dfn_.mark (tart (a), tart (b)); }
+    void mark_dtdd (const ::std::string& a, const ::std::string& b)
+    {   dtdd_.mark (tart (a), tart (b)); }
     void mark (const e_severity s)
     {   severity_.mark (s); }
     void mark (const e_category c)
@@ -85,11 +99,13 @@ public:
     void mark_meta (const e_metaname mn)
     {   metaname_.mark (mn); }
     void mark_meta (const e_metaname mn, const ::std::string& val)
-    {   meta_value_.mark (mn, val); }
+    {   meta_value_.mark (mn, tart (val)); }
     void mark_file (const unsigned size);
     uint64_t file_count () const
     {   return file_count_; }
     unsigned element_count (const e_element e) const
     {   return element_.at (e); }
+    unsigned visible_count (const e_element e) const
+    {   return visible_.at (e); }
     ::std::string report (const bool grand) const; };
 

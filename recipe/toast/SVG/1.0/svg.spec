@@ -11,9 +11,6 @@ PASS ../toast/SVG/1.0/svg1-example.html
 253 missing_close
 255 inserted_missing_closure
 265 id_exists
-284 attribute_required
-285 attribute_required
-286 attribute_required
 331 id_exists
 427 url_not_found
 436 url_not_found
