@@ -80,13 +80,13 @@ void html_version::swap (html_version& v) NOEXCEPT
     ::std::swap (ext_, v.ext_); }
 
 ::std::string minor_to_date (const html_version& v)
-{   assert (v.mjr () >= 5);
+{   assert (v.is_5 ());
     if (v == html_5_0) return "5.0";
     if (v == html_5_1) return "5.1";
     if (v == html_5_2) return "5.2";
     if (v == html_5_3) return "5.3";
     ::std::string res ("5/20");
-    if (v.mjr () <= 9)
+    if (v <= html_jan09)
     {   res += "0";
         res += static_cast <char> (v.mjr () + '0'); }
     else res += ::boost::lexical_cast < ::std::string > (static_cast < int > (v.mjr ()));
@@ -104,7 +104,7 @@ void html_version::swap (html_version& v) NOEXCEPT
     else res += ::boost::lexical_cast < ::std::string > (day);
     return res; }
 
-::std::string html_version::report () const
+::std::string html_version::name () const
 {   ::std::ostringstream res;
     if (known () && (mjr_ == 4) && (mnr_ > 1))
     {   res << "XHTML";
@@ -137,6 +137,11 @@ void html_version::swap (html_version& v) NOEXCEPT
                 default:
                     res << minor_to_date (*this);
                     break; } }
+    return res.str (); }
+
+::std::string html_version::report () const
+{   ::std::ostringstream res;
+    res << name ();
     if ((flags_ & HV_LEVEL_MASK) != 0) res << "." << (flags_ & HV_LEVEL_MASK);
     if ((flags_ & HV_STRICT) == HV_STRICT) res << "/strict";
     if ((flags_ & HV_FRAMESET) == HV_FRAMESET) res << "/frameset";
@@ -158,9 +163,6 @@ void html_version::swap (html_version& v) NOEXCEPT
     if (bespoke ()) res << "/obscure";
     if ((flags_ & HV_DEPRECATED_MASK) != 0) res << "/deprecated";
     return res.str (); }
-
-::std::string html_version::detailed_report () const
-{   return report (); }
 
 bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen)
 {   if (is_not (got))
@@ -538,10 +540,10 @@ void html_version::math_version (const e_mathversion v)
     return ::std::string (); }
 
 bool html_version::restricted_charset () const
-{   return (mjr () >= 5); }
+{   return (is_5 ()); }
 
 bool html_version::valid_charset (const ::std::string& charset) const
-{   if (mjr () >= 5) return compare_no_case (charset, UTF_8);
+{   if (is_5 ()) return compare_no_case (charset, UTF_8);
     if (mjr () <= 1) return compare_no_case (charset, US_ASCII);
     return true; }
 
@@ -618,7 +620,7 @@ bool does_apply (const html_version& v, const html_version& from, const html_ver
                     break;
         default :   if (from.xhtml () && from.notx5 ()) return false;
                     if (context.html_ver ().whatwg () && from.w3 ()) return false;
-                    switch (w3_minor_5 (v))
+                    switch (w3_5_minor (v))
                     {   case 0 : return ! from.not50 ();
                         case 1 : return ! from.not51 ();
                         case 2 : return ! from.not52 ();
@@ -641,6 +643,14 @@ int w3_minor_5 (const html_version& v)
     if (v.mjr () < MAJOR_5_3) return 3;
     if ((v.mjr () == MAJOR_5_3) && (v.mnr () <= MINOR_5_3)) return 3;
     return 4; }
+
+int w3_5_minor (const html_version& v)
+{   if (v.mjr () < 5) return v.mnr ();
+    if ((v.mjr () == MAJOR_5_0) && (v.mnr () == MINOR_5_0)) return 0;
+    if ((v.mjr () == MAJOR_5_1) && (v.mnr () == MINOR_5_1)) return 1;
+    if ((v.mjr () == MAJOR_5_2) && (v.mnr () == MINOR_5_2)) return 2;
+    if ((v.mjr () == MAJOR_5_3) && (v.mnr () == MINOR_5_3)) return 3;
+    return -1; }
 
 const char *default_charset (const html_version& v)
 {   switch (v.mjr ())

@@ -39,7 +39,7 @@ template < > struct type_master < t_border > : public tidy_string < t_border >
                             tidy_string < t_border > :: status (val.status ()); }
                         return;
             default :   break; }
-        if ((v.mjr () >= 5) && (arg != "1"))
+        if (v.is_5 () && (arg != "1"))
         {   tidy_string < t_border > :: status (s_invalid);
             nits.pick (nit_bad_border, es_error, ec_type, "a BORDER value must be \"1\""); } } };
 

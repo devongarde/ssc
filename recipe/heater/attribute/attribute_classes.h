@@ -103,6 +103,7 @@ typedef typed_attribute < t_html_boolean, a_autocorrect > attr_autocorrect;
 typedef typed_attribute < t_html_boolean, a_autofocus > attr_autofocus;
 typedef typed_attribute < t_html_boolean, a_autopictureinpicture > attr_autopictureinpicture;
 typedef typed_attribute < t_existential, a_autoplay > attr_autoplay;
+typedef typed_attribute < t_existential, a_autosubmit > attr_autosubmit;
 typedef typed_attribute < t_generic, a_axes > attr_axes;
 typedef typed_attribute < t_generic, a_axis > attr_axis;
 typedef typed_attribute < t_angle, a_azimuth > attr_azimuth;

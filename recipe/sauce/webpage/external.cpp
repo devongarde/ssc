@@ -66,11 +66,7 @@ void test_hypertext (nitpick& nits, const html_version& v, const url& u)
         assert (! d.empty ());
         if (::boost::algorithm::iends_with (d, "invalid"))
         {   context.code (404); return; }
-        if (::boost::algorithm::iends_with (d, "example") ||
-            ::boost::algorithm::iends_with (d, "example.com") ||
-            ::boost::algorithm::iends_with (d, "example.org") ||
-            ::boost::algorithm::iends_with (d, "example.net") ||
-            ::boost::algorithm::iends_with (d, "example.edu"))
+        if (ends_with_example (d))
         {   context.code (200); return; } }
     ::std::string cmdline ("curl -o NUL --silent --head --write-out %{http_code} ");
     if (u.is_https () && ! context.revoke ()) cmdline += "--ssl-norevoke ";

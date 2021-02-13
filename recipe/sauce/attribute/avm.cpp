@@ -665,26 +665,28 @@ struct hav_t
 hav_t havt [] =
 {   { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { XHTML_2_0 }, elem_a, a_charset },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_a, a_coords },
-    { { HTML_JAN05 }, { HTML_UNDEF }, elem_a, a_download },
+    { { HTML_JAN12 }, { HTML_UNDEF }, elem_a, a_download },
     { { HTML_PLUS }, { HTML_PLUS }, elem_a, a_effect },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_a, a_externalresourcesrequired },
     { { HTML_TAGS }, { HTML_UNDEF }, elem_a, a_href },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_a, a_hreflang },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_a, a_md },
+    { { HTML_JAN05 }, { HTML_DEC12 }, elem_a, a_media },
     { { HTML_1_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_a, a_methods },
-    { { HTML_TAGS, HV_DEPRECATED30 | HV_DEPRECATEDX1 | HV_NOTX2 }, { HTML_UNDEF }, elem_a, a_name },
+    { { HTML_TAGS, HV_DEPRECATED30 | HV_DEPRECATEDX1 }, { XHTML_1_1 }, elem_a, a_name },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_a, a_onblur },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_a, a_onfocus },
-    { { HTML_5_3 }, { HTML_UNDEF }, elem_a, a_ping },
+    { { HTML_JAN06, HV_NOT50 | HV_NOT51 | HV_NOT52 }, { HTML_UNDEF }, elem_a, a_ping },
     { { HTML_PLUS }, { HTML_PLUS }, elem_a, a_print },
-    { { HTML_5_2 }, { HTML_UNDEF }, elem_a, a_referrerpolicy },
+    { { HTML_JUL16 }, { HTML_UNDEF }, elem_a, a_referrerpolicy },
     { { HTML_1_0 }, { HTML_UNDEF }, elem_a, a_rel },
-    { { HTML_1_0, HV_NOT50 }, { HTML_5_3 }, elem_a, a_rev },
+    { { HTML_1_0, HV_NOT50 | HV_W3 }, { HTML_5_3 }, elem_a, a_rev },
     { { HTML_2_0, 0, HE_MOZILLA | HE_NETSCAPE }, { HTML_3_2 }, elem_a, a_shape },
     { { HTML_PLUS, HV_NOT2 | HV_NOT32 }, { XHTML_2_0 }, elem_a, a_shape },
     { { HTML_PLUS }, { HTML_PLUS }, elem_a, a_size },
     { { HTML_PLUS }, { HTML_PLUS }, elem_a, a_style },
-    { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_a, a_target },
+    { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_a, a_target },
+    { { HTML_JUL07 }, { HTML_UNDEF }, elem_a, a_target },
     { { HTML_1_0, HV_NOT30 }, { HTML_3_2 }, elem_a, a_title },
     { { MAJOR_X1_0, MINOR_X1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_a, a_transform },
     { { HTML_TAGS, HV_NOT10 | HV_NOT2 | HV_NOT3 }, { HTML_UNDEF }, elem_a, a_type },
@@ -944,7 +946,7 @@ hav_t havt [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_basefont, a_size },
     HTML4_STANDARD_TSL_ATTRIBUTES (elem_basefont, MAJOR_4_0, MINOR_4_0),
 
-    { { HTML_JAN05 }, { HTML_UNDEF }, elem_bdi, a_dir },
+    { { HTML_JAN11 }, { HTML_UNDEF }, elem_bdi, a_dir },
     STANDARD_HTML5_ATTRIBUTES (elem_bdi),
 
     { { HTML_2_0, HV_RFC_2070 | REQUIRED }, { HTML_2_0 }, elem_bdo, a_dir },
@@ -1034,7 +1036,7 @@ hav_t havt [] =
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_button, a_datasrc },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_button, a_disabled },
     HTML50_FORM (elem_button),
-    { { HTML_JAN05 }, { HTML_5_1 }, elem_button, a_menu },
+    { { HTML_JAN05 }, { HTML_JUN17 }, elem_button, a_menu },
     { { MAJOR_4_0, MINOR_4_0 }, { HTML_UNDEF }, elem_button, a_name },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_button, a_onblur },
     { { MAJOR_4_0, MINOR_4_0 }, { XHTML_2_0 }, elem_button, a_onfocus },
@@ -1186,7 +1188,7 @@ hav_t havt [] =
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_cursor),
 
     { { MAJOR_4_0, MINOR_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_data, a_d },
-    { { HTML_JAN05, REQUIRED }, { HTML_UNDEF }, elem_data, a_value },
+    { { HTML_JAN12 }, { HTML_UNDEF }, elem_data, a_value },
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_data),
 
     STANDARD_HTML5_ATTRIBUTES (elem_datalist),
@@ -1233,7 +1235,7 @@ hav_t havt [] =
 
     XHTML2_ATTRIBUTES (elem_di),
 
-    { { HTML_5_2 }, { HTML_UNDEF }, elem_dialogue, a_open },
+    { { HTML_JAN12 }, { HTML_UNDEF }, elem_dialogue, a_open },
     STANDARD_HTML5_ATTRIBUTES (elem_dialogue),
 
     MATH3_DEFS_ATTRIBUTES (elem_diff),
@@ -2115,6 +2117,8 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_lt),
 
+    STANDARD_HTML5_ATTRIBUTES (elem_m),
+
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_maction, a_actiontype },
     { { MAJOR_X1_0, MINOR_X1_0 }, { HTML_UNDEF }, elem_maction, a_selection },
     MATH3_PRES_ATTRIBUTES (elem_maction),
@@ -2206,24 +2210,28 @@ hav_t havt [] =
     MATH3_PRES_ATTRIBUTES (elem_menclose),
 
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_menu, a_align },
+    { { HTML_JAN05 }, { HTML_DEC08 }, elem_menu, a_autosubmit },
     { { HTML_3_2 }, { HTML_3_2 }, elem_menu, a_clear },
     { { HTML_2_0 }, { XHTML_2_0 }, elem_menu, a_compact },
     { { HTML_3_2, 0, HE_BESPOKE }, { HTML_3_2 }, elem_menu, a_label },
-    { { HTML_5_1 }, { HTML_5_1 }, elem_menu, a_label },
+    { { HTML_JAN05, HV_NOT50 | HV_NOT52 | HV_NOT53 }, { HTML_JUN17 }, elem_menu, a_label },
     { { HTML_3_2, 0, HE_BESPOKE }, { HTML_3_2 }, elem_menu, a_type },
-    { { HTML_5_1 }, { HTML_5_1 }, elem_menu, a_type },
+    { { HTML_JAN06, HV_NOT50 | HV_NOT52 | HV_NOT53 }, { HTML_JUN17 }, elem_menu, a_type },
     HTMLPLUS_ATTRIBUTES (elem_menu),
     HTML2_CLID_ATTRIBUTES (elem_menu),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_menu),
 
-    { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_checked },
-    { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_default },
-    { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_disabled },
-    { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_icon },
-    { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_label },
-    { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_radiogroup },
-    { { HTML_5_1 }, { HTML_5_1 }, elem_menuitem, a_type },
+    { { HTML_JAN13 }, { HTML_JUN17 }, elem_menuitem, a_checked },
+    { { HTML_JAN13 }, { HTML_JUN17 }, elem_menuitem, a_default },
+    { { HTML_JAN13 }, { HTML_JUN17 }, elem_menuitem, a_disabled },
+    { { HTML_JAN13 }, { HTML_JUN17 }, elem_menuitem, a_icon },
+    { { HTML_JAN13 }, { HTML_JUN17 }, elem_menuitem, a_label },
+    { { HTML_JAN13 }, { HTML_JUN17 }, elem_menuitem, a_radiogroup },
+    { { HTML_JAN13 }, { HTML_JUN17 }, elem_menuitem, a_type },
     STANDARD_HTML5_ATTRIBUTES (elem_menuitem),
+
+    { { HTML_JAN05 }, { HTML_DEC05 }, elem_menulabel, a_label },
+    STANDARD_HTML5_ATTRIBUTES (elem_menulabel),
 
     MATH3_PRES_ATTRIBUTES (elem_merror),
 
@@ -2539,9 +2547,10 @@ hav_t havt [] =
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_ol, a_clear },
     { { HTML_PLUS, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_ol, a_compact },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_ol, a_continue },
-    { { HTML_JAN05 }, { HTML_UNDEF }, elem_ol, a_reversed },
+    { { HTML_JUL08 }, { HTML_UNDEF }, elem_ol, a_reversed },
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_ol, a_seqnum },
-    { { HTML_3_2, HV_DEPRECATED4 }, { HTML_UNDEF }, elem_ol, a_type },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_ol, a_type },
+    { { HTML_JAN11 }, { HTML_UNDEF }, elem_ol, a_type },
     { { HTML_3_2, HV_DEPRECATED4 }, { HTML_UNDEF }, elem_ol, a_start },
     HTMLPLUS_ATTRIBUTES (elem_ol),
     HTML23_CLID_ATTRIBUTES (elem_ol),
@@ -2964,6 +2973,8 @@ hav_t havt [] =
     STANDARD_HTML5_ATTRIBUTES (elem_symbol),
 
     { { MAJOR_3_0, MINOR_3_0 }, { MAJOR_3_0, MINOR_3_0 }, elem_t, a_class },
+    { { HTML_JAN06 }, { HTML_JUN06 }, elem_t, a_datetime },
+    STANDARD_HTML5_ATTRIBUTES (elem_t),
 
     { { HTML_PLUS, HV_NOT2 }, { MAJOR_3_0, MINOR_3_0 }, elem_tab, a_align },
     { { HTML_PLUS }, { HTML_PLUS }, elem_tab, a_at },
@@ -3147,7 +3158,8 @@ hav_t havt [] =
 
     HTML3_CLID_ATTRIBUTES (elem_tilde),
 
-    { { HTML_JAN05 }, { HTML_UNDEF }, elem_time, a_datetime },
+    { { HTML_JAN07 }, { HTML_UNDEF }, elem_time, a_datetime },
+    { { HTML_JAN10 }, { HTML_JUN12 }, elem_time, a_pubdate },
     STANDARD_HTML5_ATTRIBUTES (elem_time),
 
     MATH3_DEFS_ATTRIBUTES (elem_times),

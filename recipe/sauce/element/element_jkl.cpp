@@ -37,7 +37,7 @@ bool element::naughty_label_descendents (const element* e, const uid_t uid, bool
     return res; }
 
 void element::examine_label ()
-{   if (node_.version ().mjr () >= 5)
+{   if (node_.version ().is_5 ())
     {   check_ancestors (elem_label, element_bit_set (elem_label));
         no_anchor_daddy ();
         uid_t uid = 0;
@@ -82,25 +82,16 @@ void element::examine_lambda ()
                     break; } }
 
 void element::examine_li ()
-{   if ((node_.version ().mjr () >= 5) && a_.known (a_value))
-        switch (w3_minor_5 (node_.version ()))
-        {   case 0 :
-                if (! ancestral_elements_.test (elem_ol))
-                    pick (nit_value_ol, ed_50, "4.4.7 The li element", es_error, ec_element, "VALUE requires an <OL> parent");
-                break;
-            case 2 :
-            case 3 :
-                if (ancestral_elements_.test (elem_ul))
-                    pick (nit_value_ol, ed_52, "4.4.7 The li element", es_error, ec_element, "VALUE is not permitted under <UL>");
-                break;
-            default :
-                if (ancestral_elements_.test (elem_ul) || ancestral_elements_.test (elem_menu))
-                    pick (nit_value_ol, ed_51, "4.4.7 The li element", es_error, ec_element, "VALUE is not permitted under <UL> or <MENU>");
-                break; } }
+{   if (a_.known (a_value))
+        if (node_.version () >= html_jan16)
+        {   if (ancestral_elements_.test (elem_ul) || ancestral_elements_.test (elem_menu))
+                    pick (nit_value_ol, ed_jul20, "4.4.7 The li element", es_error, ec_element, "<LI> VALUE is barred under <UL> or <MENU>"); }
+        else if (! ancestral_elements_.test (elem_ol) && (node_.version ().mjr () > 5))
+            pick (nit_value_ol, ed_50, "4.4.7 The li element", es_error, ec_element, "<LI> VALUE requires an <OL> parent"); }
 
 void element::examine_link ()
 {   if (node_.version ().mjr () < 4) return;
-    bool tis5 = (node_.version ().mjr () > 4);
+    bool tis5 = node_.version ().is_5 ();
     bool has_rel = a_.known (a_rel);
     bool has_itemprop = a_.known (a_itemprop);
     bool has_imagesrcset = a_.known (a_imagesrcset);
@@ -153,7 +144,7 @@ void element::examine_link ()
     for (auto s : entries)
     {   rel r (node_.nits (), node_.version (), s);
         if (r.invalid ()) continue;
-        if (r.is_microformat () && context.microformats ()) continue; // microformats are processed later
+//        if (r.is_microformat () && context.microformats ()) continue; // microformats are processed later
         if (tis5)
         {   html_version from (r.first ());
             ::std::size_t flags = static_cast < ::std::size_t > (from.flags () & 0xFFFFFFFF);

@@ -36,7 +36,6 @@ template < e_type TYPE, class SZ > struct one_value : public type_base < mono, T
 template < > class type_master < t_1 > : public one_value < t_1, sz_1 > { };
 template < > class type_master < t_html_boolean > : public one_value < t_html_boolean, sz_true > { };
 template < > class type_master < t_keygentype > : public one_value < t_keygentype, sz_rsa > { };
-template < > class type_master < t_menutype > : public one_value < t_menutype, sz_context > { };
 template < > class type_master < t_svg_content > : public one_value < t_svg_content, sz_structured_text > { };
 template < > class type_master < t_xmllink > : public one_value < t_xmllink, sz_simple > { };
 

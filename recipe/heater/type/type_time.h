@@ -73,7 +73,7 @@ template < > struct type_master < t_datetime > : public tidy_string < t_datetime
     {   tidy_string < t_datetime > :: set_value (nits, v, s);
         const ::std::string& ss (tidy_string < t_datetime > :: get_string ());
         if (! tidy_string < t_datetime > :: good ()) return;
-        if (v.mjr () >= 5)
+        if (v.is_5 ())
         { if (verify_time_5 (nits, v, ss)) return; }
         else if (verify_time_4 (nits, v, ss)) return;
         tidy_string < t_datetime > :: status (s_invalid); } };
@@ -82,7 +82,7 @@ template < > struct type_master < t_just_date > : public tidy_string < t_just_da
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_just_date > :: set_value (nits, v, s);
         if (! tidy_string < t_just_date > :: good ()) return;
-        if (v.mjr () >= 4)
+        if (v.is_4_or_more ())
         { if (verify_plain_date (nits, v, tidy_string < t_just_date > :: get_string ())) return; }
         tidy_string < t_just_date > :: status (s_invalid); } };
 
@@ -90,7 +90,7 @@ template < > struct type_master < t_just_time > : public tidy_string < t_just_ti
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_just_time > :: set_value (nits, v, s);
         if (! tidy_string < t_just_time > :: good ()) return;
-        if (v.mjr () >= 4)
+        if (v.is_4_or_more ())
         { if (verify_coarse_time (nits, v, tidy_string < t_just_time > :: get_string ())) return; }
         tidy_string < t_just_time > :: status (s_invalid); } };
 

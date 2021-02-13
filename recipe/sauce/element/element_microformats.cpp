@@ -139,7 +139,8 @@ void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
 {   if (a_.known (a_value) && a_.valid (a_value) && a_.valid (a_class))
         return a_.get_string (a_value);
     switch (tag ())
-    {   case elem_time :
+    {   case elem_t :
+        case elem_time :
         case elem_ins :
         case elem_del :
             if (a_.known (a_datetime)) return a_.get_string (a_datetime);

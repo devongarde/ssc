@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> span </title> </head>
+ <body>
+
+<pre><code class="lang-c"><span class="keyword">for</span> (<span class="ident">j</span> =
+0; <span class="ident">j</span> &lt; 256; <span class="ident">j</span>++) {
+ <span class="ident">i_t3</span> = (<span class="ident">i_t3</span> & 0x1ffff) | (<span
+class="ident">j</span> &lt;&lt; 17);
+ <span class="ident">i_t6</span> = (((((((<span class="ident">i_t3</span> >> 3) ^ <span
+class="ident">i_t3</span>) >> 1) ^ <span class="ident">i_t3</span>) >> 8) ^ <span
+class="ident">i_t3</span>) >> 5) & 0xff;
+ <span class="keyword">if</span> (<span class="ident">i_t6</span> == <span
+class="ident">i_t1</span>)
+ <span class="keyword">break</span>;
+}</code></pre>
+
+ </body>
+</html>

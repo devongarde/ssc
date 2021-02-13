@@ -217,6 +217,7 @@ struct sz_plaintext { CONSTEXPR static char const* sz () { return "plaintext"; }
 struct sz_polite { CONSTEXPR static char const* sz () { return "polite"; } };
 struct sz_poly { CONSTEXPR static char const* sz () { return "poly"; } };
 struct sz_polygon { CONSTEXPR static char const* sz () { return "polygon"; } };
+struct sz_popup { CONSTEXPR static char const* sz () { return "popup"; } };
 struct sz_post { CONSTEXPR static char const* sz () { return "post"; } };
 struct sz_postfix { CONSTEXPR static char const* sz () { return "postfix"; } };
 struct sz_prefix { CONSTEXPR static char const* sz () { return "prefix"; } };
@@ -283,6 +284,7 @@ struct sz_target { CONSTEXPR static char const* sz () { return "target"; } };
 struct sz_terminal { CONSTEXPR static char const* sz () { return "terminal"; } };
 struct sz_tight { CONSTEXPR static char const* sz () { return "tight"; } };
 struct sz_toggle { CONSTEXPR static char const* sz () { return "toggle"; } };
+struct sz_toolbar { CONSTEXPR static char const* sz () { return "toolbar"; } };
 struct sz_tooltip { CONSTEXPR static char const* sz () { return "tooltip"; } };
 struct sz_top { CONSTEXPR static char const* sz () { return "top"; } };
 struct sz_triangle { CONSTEXPR static char const* sz () { return "triangle"; } };;

@@ -35,6 +35,8 @@ extern const element_bitset listed_bitset;
 extern const element_bitset media_bitset;
 extern const element_bitset non_standard_bitset;
 extern const element_bitset sectioning_bitset;
+extern const element_bitset block_bitset;
+extern const element_bitset script_bitset;
 
 extern const attribute_bitset empty_attribute_bitset;
 

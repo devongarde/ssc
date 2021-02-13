@@ -20,7 +20,12 @@ itemid
 GRAND
 Elements:
     !doctype: 5 times
+    abbr: twice
+      title: twice
     body: 5 times
+    dd: 7 times
+    dfn: 5 times
+      title: twice
     div: 10 times
       hidden: once
       id: 4 times
@@ -29,6 +34,8 @@ Elements:
       itemref: thrice
       itemscope: 8 times
       itemtype: 5 times
+    dl: once
+    dt: 8 times
     h1: 5 times
     head: 5 times
     html: 5 times
@@ -44,9 +51,10 @@ Elements:
       itemscope: twice
       itemtype: twice
       name: 9 times
-    p: 4 times
+    p: 10 times
       id: once
-    span: 4 times
+      lang: once
+    span: 5 times
       id: once
       itemprop: 4 times
     title: 5 times
@@ -61,9 +69,10 @@ Elements:
     itemref: used 5 times
     itemscope: used 10 times
     itemtype: used 7 times
-    lang: used thrice
+    lang: used 4 times
     name: used 9 times
-  14 elements used 182 times
+    title: used 4 times
+  20 elements used 268 times
 Microdata:
     BlogPosting: twice
       commentCount: once
@@ -100,6 +109,27 @@ Metadata:
       b: once
       c: once
       d: once
+Abbreviations:
+  CFL : Chemin de Fer Luxembourg
+  DP : Demokratesch Partei
+Definitions:
+  Chemin de Fer Luxembourg : CFL operates trains.
+  FRED : File Retrieval Encoding and Decoding
+  Public Key Infrastructure : The PKI distributes trust online.
+  Tiddles : The tortoiseshell Tiddles is a rather affectionate cat.
+  Tiddles : Tiddles, no siamese, likes to miaow.
+Name/Value pairs:
+  bread and cheese : in Dutch hotel breakfast
+  bread and cheese : in Flemish hotel breakfast
+  coffee : in hotel continental breakfast
+  corn flakes : as tasty and as nutritional as cardboard
+  croissant : in hotel continental breakfast
+  egg : in English breakfast
+  egg : in Irish breakfast
+  fried bread : in English breakfast (stated twice)
+  fried bread : in Irish breakfast
+  sausage : in English breakfast
+  sausage : in Irish breakfast
 Errors:
   Severity:
     Errors: 4 times
@@ -115,5 +145,5 @@ Errors:
 Versions:
   HTML5/20210101/SVG-2.0/MathML-3/WhatWG: 5
 File info:
-  2819 bytes read in 5 HTML files with an average of 563.79999999999995 bytes per file
-  smallest file: 261 bytes, largest file: 1019 bytes
+  3783 bytes read in 5 HTML files with an average of 756.60000000000002 bytes per file
+  smallest file: 269 bytes, largest file: 1019 bytes

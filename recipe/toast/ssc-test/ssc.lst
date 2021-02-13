@@ -60,8 +60,10 @@
 ../toast/microformats/mf1/mf1.spec
 ../toast/microformats/mf2/mf2.spec
 ../toast/microformats/rel/rel.spec
+../toast/other/abbr/abbr.spec
 ../toast/other/base/base.spec
 ../toast/other/CSS/css.spec
+../toast/other/dfn/dfn.spec
 ../toast/other/ignore/ignore.spec
 ../toast/other/incorrectness/incorrectness.spec
 ../toast/other/nits/nits.spec

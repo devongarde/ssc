@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title>ul</title> </head>
+ <body>
+
+<menu type="toolbar">
+ <command type="radio" radiogroup="alignment" checked="checked"
+ label="Left" icon="icons/alL.png" onclick="setAlign('left')">
+ <command type="radio" radiogroup="alignment"
+ label="Center" icon="icons/alC.png" onclick="setAlign('center')">
+ <command type="radio" radiogroup="alignment"
+ label="Right" icon="icons/alR.png" onclick="setAlign('right')">
+ <hr>
+ <command type="command" disabled
+ label="Publish" icon="icons/pub.png" onclick="publish()">
+</menu>
+
+<menu type="toolbar">
+ <li>
+ <menu label="File">
+ <button type="button" onclick="fnew()">New...</button>
+ <button type="button" onclick="fopen()">Open...</button>
+ <button type="button" onclick="fsave()">Save</button>
+ <button type="button" onclick="fsaveas()">Save as...</button>
+ </menu>
+ </li>
+ <li>
+ <menu label="Edit">
+ <button type="button" onclick="ecopy()">Copy</button>
+ <button type="button" onclick="ecut()">Cut</button>
+ <button type="button" onclick="epaste()">Paste</button>
+ </menu>
+ </li>
+ <li>
+ <menu label="Help">
+ <li><a href="help.html">Help</a></li>
+ <li><a href="about.html">About</a></li>
+ </menu>
+ </li>
+</menu>
+
+<form action="redirect.cgi">
+ <menu type="toolbar">
+ <label for="goto">Go to...</label>
+ <menu label="Go">
+ <select id="goto"
+ onchange="if (this.options[this.selectedIndex].value)
+ window.location = this.options[this.selectedIndex].value">
+ <option value="" selected="selected"> Select site: </option>
+ <option value="http://www.apple.com/"> Apple </option>
+ <option value="http://www.mozilla.org/"> Mozilla </option>
+ <option value="http://www.opera.com/"> Opera </option>
+ </select>
+ <span><input type="submit" value="Go"></span>
+ </menu>
+ </menu>
+</form>
+
+<form name="npc">
+ <label>Character name: <input name=char type=text contextmenu=namemenu required></label>
+ <menu type=context id=namemenu>
+ <command label="Pick random name" onclick="document.forms.npc.elements.char.value =
+getRandomName()">
+ <command label="Prefill other fields based on name"
+onclick="prefillFields(document.forms.npc.elements.char.value)">
+ </menu>
+</form>
+
+ </body>
+</html>

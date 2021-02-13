@@ -63,8 +63,10 @@
 ./ssc -f ../toast/microformats/mf1/mf1.conf
 ./ssc -f ../toast/microformats/mf2/mf2.conf
 ./ssc -f ../toast/microformats/rel/rel.conf
+./ssc -f ../toast/other/abbr/abbr.conf
 ./ssc -f ../toast/other/base/base.conf
 ./ssc -f ../toast/other/CSS/css.conf
+./ssc -f ../toast/other/dfn/dfn.conf
 ./ssc -f ../toast/other/ignore/ignore.conf
 ./ssc -f ../toast/other/incorrectness/incorrectness.conf
 ./ssc -f ../toast/other/nits/nits.conf

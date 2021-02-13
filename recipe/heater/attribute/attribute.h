@@ -94,7 +94,7 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
             {   nits.pick (nit_xhtml_existential_makework, es_error, ec_type, "in ", v.report (), ", the attribute ", quote (name ()), " must be assigned ", quote (name ()));
                 typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); } }
         else if (typed_value < e_attribute, TYPE, IDENTITY > :: good ())
-            if (v.mjr () < 2)
+            if (v.is_b4_2 ())
             {   nits.pick (nit_existential_value, es_warning, ec_type, "in ", v.report (), ", ", name (), " cannot be given a value");
                 typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); }
             else

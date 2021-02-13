@@ -147,7 +147,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JUL11  HTML_2011, HTML_JUL
 #define HTML_DEC11  HTML_2011, (HTML_DEC + 15)
 #define HTML_JAN12  HTML_2012, HTML_JAN
+#define HTML_JUN12  HTML_2012, (HTML_JUN  + 15)
 #define HTML_JUL12  HTML_2012, HTML_JUL
+#define HTML_DEC12  HTML_2012, (HTML_DEC + 15)
 #define HTML_JAN13  HTML_2013, HTML_JAN
 #define HTML_JUN13  HTML_2013, (HTML_JUN  + 15)
 #define HTML_FEB13  HTML_2013, (HTML_AUG + 14)
@@ -401,6 +403,21 @@ public:
     unsigned char mjr () const { return mjr_; }
     unsigned char mnr () const { return mnr_; }
     unsigned char level () const { return (flags_ & HV_LEVEL_MASK); }
+    bool is_0 () const { return mjr_ == 0; }
+    bool is_1 () const { return mjr_ == 1; }
+    bool is_2 () const { return mjr_ == 2; }
+    bool is_3 () const { return mjr_ == 3; }
+    bool is_4 () const { return mjr_ == 4; }
+    bool is_5 () const { return mjr_ > 4; }
+    bool is_b4_1 () const { return mjr_ < 1; }
+    bool is_b4_2 () const { return mjr_ < 2; }
+    bool is_b4_3 () const { return mjr_ < 3; }
+    bool is_b4_4 () const { return mjr_ < 4; }
+    bool is_b4_5 () const { return mjr_ < 5; }
+    bool is_1_or_more () const { return mjr_ >= 1; }
+    bool is_2_or_more () const { return mjr_ >= 2; }
+    bool is_3_or_more () const { return mjr_ >= 3; }
+    bool is_4_or_more () const { return mjr_ >= 4; }
     bool bespoke () const { return ((ext_ & HE_BESPOKE) == HE_BESPOKE); }
     bool chrome () const { return ((ext_ & HE_CHROME) == HE_CHROME); }
     bool dinosaur () const { return ((flags_ & HV_DINOSAUR) == HV_DINOSAUR); }
@@ -469,8 +486,8 @@ public:
     const char *default_charset () const;
     const char *alternative_charset () const;
     ::std::string get_doctype () const;
-    ::std::string report () const;
-    ::std::string detailed_report () const; };
+    ::std::string name () const;
+    ::std::string report () const; };
 
 const html_version html_0;
 const html_version html_tags (0, 1);
@@ -488,15 +505,24 @@ const html_version xhtml_1_1 (4, 3, HV_XHTML);
 const html_version xhtml_2 (4, 4, HV_XHTML);
 
 const html_version html_jan05 (HTML_JAN05, HV_WHATWG, 0);
+const html_version html_jul05 (HTML_JUL05, HV_WHATWG, 0);
+const html_version html_jan06 (HTML_JAN06, HV_WHATWG, 0);
 const html_version html_jan07 (HTML_JAN07, HV_WHATWG, 0);
 const html_version html_jul07 (HTML_JUL07, HV_WHATWG, 0);
 const html_version html_jan08 (HTML_JAN08, HV_WHATWG, 0);
 const html_version html_jul08 (HTML_JUL08, HV_WHATWG, 0);
+const html_version html_jan09 (HTML_JAN09, HV_WHATWG, 0);
 const html_version html_jul09 (HTML_JUL09, HV_WHATWG, 0);
+const html_version html_jan10 (HTML_JAN10, HV_WHATWG, 0);
+const html_version html_jul10 (HTML_JUL10, HV_WHATWG, 0);
+const html_version html_jan12 (HTML_JAN12, HV_WHATWG, 0);
+const html_version html_jul12 (HTML_JUL12, HV_WHATWG, 0);
 const html_version html_jan13 (HTML_JAN13, HV_WHATWG, 0);
 const html_version html_jul13 (HTML_JUL13, HV_WHATWG, 0);
 const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MATH_2 | HE_SVG_1_0);
+const html_version html_jan16 (HTML_JAN16, HV_WHATWG, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MATH_2 | HE_SVG_1_0);
+const html_version html_jul17 (HTML_JUL17, HV_WHATWG, 0);
 const html_version html_jul18 (HTML_JUL18, HV_WHATWG, HE_MATH_3 | HE_SVG_1_1);
 const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MATH_4 | HE_SVG_1_1);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_1_0);
@@ -516,6 +542,7 @@ bool does_apply (const html_version& v, const html_version& from, const html_ver
 bool may_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
 int w3_minor_5 (const html_version& v);
+int w3_5_minor (const html_version& v);
 e_emi extension_conflict (const html_version& lhs, const html_version& rhs);
 const char *default_charset (const html_version& v);
 const char *alternative_charset (const html_version& v);

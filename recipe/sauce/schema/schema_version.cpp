@@ -81,7 +81,7 @@ bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, cons
     return (lhs_to.unknown () || (lhs_to >= rhs_from)); }
 
 schema_version html_to_schema_version (const html_version& v)
-{   if (v.mjr () >= 5)
+{   if (v.is_5 ())
         switch (w3_minor_5 (v))
         {   case 0 :
                 return schema_2_0;

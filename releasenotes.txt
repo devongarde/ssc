@@ -3,6 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.85
+- stats reports terms defined and name value pairs (DT/DD), if any
+- fix bug that sometimes broke stylesheets
+- various bug fixes
+
+0.0.84
+- various bug fixes
+
 0.0.83
 - partially verifies accept, accept-language, cookie, cross-origin-resource-policy,
   link, origin, referer (sic), & referrer-policy pragmas

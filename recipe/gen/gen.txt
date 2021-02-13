@@ -1,9 +1,13 @@
 NAME
 ssc - analyse static web sites at source
 
+
+
 SYNOPSIS
 ssc [...] directory
 ssc -f config
+
+
 
 DESCRIPTION
 SSC (the Static Site Checker) is an opinionated HTML nit-picker, intended for people, such as its author, who hand code websites.
@@ -61,24 +65,23 @@ The options are as follows:
 
 --html.rfc2070          Ignore the RFC 2070 (internationalisation) extension when processing HTML 2.0.
 
---html.version X        If no doctype is specified, presume this version of HTML. This switch accepts the following values:
-                            0.1         for HTML tags (1991, informal)
-                            1.0         for HTML 1.0
-                            1.1         for HTML Plus (draft)
+--html.version X        If no doctype is specified, presume version X of HTML. X can be:
+                            tags        for HTML tags (1991, informal)
+                            1.0         for HTML 1.0 (June 1993 draft)
+                            +           for HTML Plus (November 1993 draft)
                             2.0         for HTML 2.0 (RFC 1860)
-                            3.0         for HTML 3.0 (draft)
+                            3.0         for HTML 3.0 (March 1995 draft)
                             3.2         for HTML 3.2
                             4.0         for HTML 4.0
                             4.1         for HTML 4.01
                             4.2         for XHTML 1.0
                             4.3         for XHTML 1.1 Core
                             4.4         for XHTML 2.0
-                            5.0         for W3 HTML 5.0
-                            5.1         for W3 HTML 5.1
-                            5.2         for W3 HTML 5.2
-                            5.3         for W3 HTML 5.3 (draft)
+                            5.0         for W3's HTML 5.0
+                            5.1         for W3's HTML 5.1
+                            5.2         for W3's HTML 5.2
+                            5.3         for W3's HTML 5.3 (October 2018 draft)
                             2005/1/1    for WhatWG's WebApps draft published in January 2005
-                            2005/7/1    for WhatWG's WebApps draft published in July 2005
                             ...
                             2007/1/1    for WhatWG's WebApps draft published in January 2007
                             2007/7/1    for WhatWG's HTML 5 living standard published in July 2007
@@ -91,6 +94,9 @@ The options are as follows:
 
                         Certain versions of HTML offer variants, such as loose and strict definitions. ssc picks those up from the SGML headers
                         in the HTML file, if any.
+
+                        Validation of code built to old standards, including XHTML standards, is not strict. Validation of code built to
+                        contemporary standards is better. Just to remind you, there are no guarantees of accuracy or inaccuracy.
 
                         Copies of the appropriate standards can be found online at source, or can be downloaded from ssc.lu.
 
@@ -251,22 +257,136 @@ The options are as follows:
 --html.title n          the contents of a TITLE attribute on an element.
 
 
+
 CONFIGURATION FILE FORMAT
 
-If a configuration file is used, it should be in INI file format, with the following sections:
+If a configuration file is used, it should be in INI file format. All content is optional.
+
+Section and option names are derived from the long form switch name, which consists of SECTION.OPTION, laid out in the format:
+[SECTION]
+OPTION=yes
+OPTION=123456
+
+Switches that do not have a long form version cannot be used in a configuration file.
+
+The ssc source code includes a number of tests, all of which have configuration files. Browse them for a myriad of examples.
+
 
 
 ENVIRONMENT
+ssc does not currently reference environment variables.
+
+
 
 EXIT STATUS
 If no errors are found ssc exits with 0, otherwise it exits with a value > 0.
 
+
+
 EXAMPLES
+
+To verify the version of ssc:
+ssc -V
+
+To check the static web side source directory /home/site/wwwroot:
+ssc /home/site/wwwroot
+
+To check a static website in the current directory for example.com that uses server side includes,
+including verification of external links, with very verbose output:
+ssc -e -I -x html -x shtml -s example.com -v 5 -i index.shtml
+
+To check a static web side in the current directory, including microformat verification, with a virtual directory
+ssc -L vitual=/home/site/virtual -M
+
+To check a static web site using a configuration file:
+ssc -f config.file
+
+A simple configuration file might contain:
+[general]
+verbose=4
+output=simple.out
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=simple
+
+A configuration file to check a site against HTML 5.2 and SVG 1.1 might contain:
+[general]
+output=site.out
+class=yes
+[link]
+check=yes
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=site
+[html]
+version=5.2
+[svg]
+version=1.1
+
+A configuration file to check against a particular WhatWG living standard, gathering statistics:
+[general]
+output=jan21.out
+[html]
+version=2021/01/01
+[link]
+check=yes
+[microdata]
+version=11.0
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=site
+[stats]
+summary=yes
+meta=yes
+
+A configuration file to shadow copy and deduplicate a site might contain:
+[general]
+output=dedu.out
+class=yes
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=site
+[shadow]
+copy=5
+root=shadow
+file=dedu.ndx
+
+A configuration file to export microdata preparing against schema.org version 7.2 might contain:
+[general]
+output=export.out
+class=yes
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=site
+[link]
+check=yes
+[microdata]
+export=yes
+root=export
+version=7.2
+
+
 
 SEE ALSO
 tidy
 
+
+
 STANDARDS
+A full set of standards used to guide the development of ssc can be viewed at https://ssc.lu/. These are copied from
+many sources online, including https://w3.org/ and https://whatwg.org/. Check https://ssc.lu/ for details.
+
+
 
 HISTORY
 ssc is written by Dylan Harris, https://ssc.lu/.

@@ -36,6 +36,7 @@
     <ClInclude Include="..\heater\feedback\nitnames.h" />
     <ClInclude Include="..\heater\feedback\nitpick.h" />
     <ClInclude Include="..\heater\icu\charset.h" />
+    <ClInclude Include="..\heater\icu\converter.h" />
     <ClInclude Include="..\heater\icu\wrapper.h" />
     <ClInclude Include="..\heater\main\args.h" />
     <ClInclude Include="..\heater\main\context.h" />
@@ -85,6 +86,8 @@
     <ClInclude Include="..\heater\stats\stats0.h" />
     <ClInclude Include="..\heater\stats\stats1.h" />
     <ClInclude Include="..\heater\stats\stats2.h" />
+    <ClInclude Include="..\heater\stats\stats3.h" />
+    <ClInclude Include="..\heater\stats\stats4.h" />
     <ClInclude Include="..\heater\stats\stats_impl.h" />
     <ClInclude Include="..\heater\symbol\symbol.h" />
     <ClInclude Include="..\heater\symbol\symbol_table.h" />
@@ -102,6 +105,7 @@
     <ClInclude Include="..\heater\type\type_basic.h" />
     <ClInclude Include="..\heater\type\type_class.h" />
     <ClInclude Include="..\heater\type\type_colour.h" />
+    <ClInclude Include="..\heater\type\type_cookie.h" />
     <ClInclude Include="..\heater\type\type_core.h" />
     <ClInclude Include="..\heater\type\type_csp.h" />
     <ClInclude Include="..\heater\type\type_currency.h" />
@@ -115,6 +119,7 @@
     <ClInclude Include="..\heater\type\type_math.h" />
     <ClInclude Include="..\heater\type\type_measure.h" />
     <ClInclude Include="..\heater\type\type_media.h" />
+    <ClInclude Include="..\heater\type\type_metaname.h" />
     <ClInclude Include="..\heater\type\type_microdata.h" />
     <ClInclude Include="..\heater\type\type_microformat.h" />
     <ClInclude Include="..\heater\type\type_mime.h" />
@@ -185,6 +190,7 @@
     <ClCompile Include="..\sauce\feedback\nitnames.cpp" />
     <ClCompile Include="..\sauce\feedback\nitpick.cpp" />
     <ClCompile Include="..\sauce\icu\charset.cpp" />
+    <ClCompile Include="..\sauce\icu\converter.cpp" />
     <ClCompile Include="..\sauce\icu\wrapper.cpp" />
     <ClCompile Include="..\sauce\main\context.cpp" />
     <ClCompile Include="..\sauce\main\options.cpp" />
@@ -283,7 +289,27 @@
     <None Include="..\toast\conf\corona-live.conf" />
     <None Include="..\toast\conf\corrupt.conf" />
     <None Include="..\toast\conf\live.conf" />
-    <None Include="..\toast\conf\simple.conf" />
+    <None Include="..\toast\csp\1\1.html" />
+    <None Include="..\toast\csp\1\2.html" />
+    <None Include="..\toast\csp\1\3.html" />
+    <None Include="..\toast\csp\1\bad.html" />
+    <None Include="..\toast\csp\1\csp.conf" />
+    <None Include="..\toast\csp\1\csp.spec" />
+    <None Include="..\toast\csp\1\index.html" />
+    <None Include="..\toast\csp\2\1.html" />
+    <None Include="..\toast\csp\2\2.html" />
+    <None Include="..\toast\csp\2\3.html" />
+    <None Include="..\toast\csp\2\bad.html" />
+    <None Include="..\toast\csp\2\csp.conf" />
+    <None Include="..\toast\csp\2\csp.spec" />
+    <None Include="..\toast\csp\2\index.html" />
+    <None Include="..\toast\csp\3\1.html" />
+    <None Include="..\toast\csp\3\2.html" />
+    <None Include="..\toast\csp\3\3.html" />
+    <None Include="..\toast\csp\3\bad.html" />
+    <None Include="..\toast\csp\3\csp.conf" />
+    <None Include="..\toast\csp\3\csp.spec" />
+    <None Include="..\toast\csp\3\index.html" />
     <None Include="..\toast\HTML\1.0\html1-bad.html" />
     <None Include="..\toast\HTML\1.0\html1-bad2.html" />
     <None Include="..\toast\HTML\1.0\html1-good.html" />
@@ -1142,6 +1168,10 @@
     <None Include="..\toast\XHTML\2.0\x2-good.xhtml" />
     <None Include="..\toast\XHTML\2.0\xhtml2.conf" />
     <None Include="..\toast\XHTML\2.0\xhtml2.spec" />
+    <None Include="addtest.sh" />
+    <None Include="fulltest.bat" />
+    <None Include="fulltest.sh" />
+    <None Include="specprep.bat" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\HTML\2.0\x.jpg" />
@@ -1195,6 +1225,8 @@
     <Text Include="..\..\README.txt" />
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
+    <Text Include="..\..\W3-LICENCE.txt" />
+    <Text Include="..\gen\gen.txt" />
     <Text Include="..\toast\conf\README.txt" />
     <Text Include="..\toast\tmp\README.txt" />
     <Text Include="..\toast\virtual\README.txt" />

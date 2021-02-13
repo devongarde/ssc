@@ -37,6 +37,8 @@ const element_bitset listed_bitset = empty_element_bitset | elem_button | elem_f
 const element_bitset media_bitset = empty_element_bitset | elem_audio | elem_video;
 const element_bitset sectioning_bitset = empty_element_bitset | elem_article | elem_aside | elem_nav | elem_section;
 const element_bitset non_standard_bitset = faux_bitset | elem_undefined;
+const element_bitset block_bitset = empty_element_bitset | elem_blockquote | elem_section | elem_article | elem_header;
+const element_bitset script_bitset = empty_element_bitset | elem_script | elem_noscript | elem_template;
 
 
 ::std::string nameset (const element_bitset& bs)

@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.81 LANGUAGES CXX)
+project (ssc VERSION 0.0.85 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -40,7 +40,6 @@ if (UNIX)
       message ("OpenBSD 6.8")
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS)
       target_compile_definitions (ssc PRIVATE NO_PCF_STR FS_THROWS)
-      target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
     else ()
       message ("only OpenBSD 6.8 amd64 is known to build")
     endif ()
@@ -48,8 +47,6 @@ if (UNIX)
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message ("Linux: only built under Centos 8 amd64 and Ubuntu Server 20.10 amd64")
-    target_compile_options (ssc-test PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-warn-unused-result")
-    target_compile_options (ssc PRIVATE "-Wno-implicit-fallthrough;-Wno-misleading-indentation")
   endif ()
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -96,7 +93,7 @@ target_sources (ssc PRIVATE
             ${H}/parser/xhtml_xml.h
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
-        ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats_impl.h
+        ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats4.h ${H}/stats/stats_impl.h
         ${H}/symbol/symbol.h ${H}/symbol/symbol_table.h
         ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
             ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_charset.h ${H}/type/type_class.h ${H}/type/type_colour.h
@@ -146,8 +143,8 @@ target_sources (ssc PRIVATE
 target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIRS})
 target_include_directories (ssc PRIVATE ${H} ${BOOST_INCLUDE_DIRS} ${ICU_INCLUDE_DIRS})
 
-target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
-target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings")
+target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-warn-unused-result")
+target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation")
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 

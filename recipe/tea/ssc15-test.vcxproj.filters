@@ -16,6 +16,9 @@
     <ClCompile Include="..\sauce\test\ssc-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\feedback\nitnames.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\toast\ssc-test\good.txt">

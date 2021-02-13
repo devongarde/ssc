@@ -89,7 +89,9 @@ PASS ../toast/HTML/5.2/html5-bad.html
 82 inserted_missing_closure
 85 use_quote_code
 89 dl_div
+92 dt_dd
 95 dl_div dl_div dl_div dl_div
+96 dt_dd
 101 url_not_found saucy_source autoplay
 102 mime url_not_found saucy_source
 103 url_not_found
@@ -173,7 +175,7 @@ PASS ../toast/HTML/5.2/html5-example.html
 125 use_quote_code
 135 unrecognised_value
 137 unrecognised_value
-147 use_quote_code double_angular_open
+147 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
 151 use_double_quote_code
 153 use_double_quote_code
 156 schema_domain excluded_attribute excluded_attribute
@@ -295,6 +297,7 @@ PASS ../toast/HTML/5.2/html5-example.html
 905 use_quote_code
 911 use_quote_code
 921 id_exists
+939 naughty_grave
 1010 schema_domain excluded_attribute excluded_attribute
 1011 excluded_attribute
 1012 excluded_attribute
@@ -351,11 +354,7 @@ PASS ../toast/HTML/5.2/html5-example.html
 1213 unrecognised_value
 1220 chocolate_teapot
 1221 chocolate_teapot
-1227 use_double_quote_code inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close use_double_quote_code inserted_missing_closure
-1230 inserted_missing_closure
-1231 inserted_missing_closure
-1232 inserted_missing_closure
-1233 inserted_missing_closure missing_close inserted_missing_closure
+1227 use_double_quote_code use_double_quote_code
 1265 use_quote_code
 1291 use_quote_code
 1295 use_quote_code

@@ -532,7 +532,9 @@ template < > struct type_master < t_type > : varied < t_type >
                 case elem_ul :
                     validate_type < type_master < t_dsc > > (nits, v); break;
                 case elem_menu :
-                    validate_type < type_master < t_menutype > > (nits, v); break;
+                    if (v < html_jul17)
+                        validate_type < type_master < t_menutype > > (nits, v);
+                    break;
                 case elem_menuitem :
                     validate_type < type_master < t_menuitem > > (nits, v); break;
                 case elem_ol :
