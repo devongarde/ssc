@@ -37,11 +37,11 @@ void elements_node::reset (elements_node& en)
 {   elements_node tmp (en);
     swap (tmp); }
 
-::std::string elements_node::text () const
+::std::string elements_node::text ()
 {   if (size () == 0) return ::std::string ();
     return ven_.at (0).text (); }
 
-::std::string elements_node::rpt () const
+::std::string elements_node::rpt ()
 {   if (size () == 0) return ::std::string ();
     return ven_.at (0).rpt (); }
 

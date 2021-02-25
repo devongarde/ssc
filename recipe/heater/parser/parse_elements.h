@@ -66,7 +66,7 @@ public:
     {   assert (! invalid ());
         return ven_.at (0); }
     html_version version () const { return version_; }
-    ::std::string text () const;
-    ::std::string rpt () const;
+    ::std::string text ();
+    ::std::string rpt ();
     uint64_t size () const { return ven_.size (); }
     bool invalid () const { return (invalid_ && (size () > 0)); } };

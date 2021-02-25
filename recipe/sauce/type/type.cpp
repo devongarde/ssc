@@ -208,6 +208,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_idrefs);
         TEST_VALUE (t_illegal);
         TEST_VALUE (t_imcastr);
+        TEST_VALUE (t_imgsizes);
         TEST_VALUE (t_importance);
         TEST_VALUE (t_in);
         TEST_VALUE (t_inky);
@@ -238,7 +239,9 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_layout);
         TEST_VALUE (t_lcralign);
         TEST_VALUE (t_lcrnalign);
+        TEST_VALUE (t_length);
         TEST_VALUE (t_lengthadjust);
+        TEST_VALUE (t_linebreak);
         TEST_VALUE (t_linecap);
         TEST_VALUE (t_linejoin);
         TEST_VALUE (t_listtype);
@@ -462,6 +465,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_wrap);
         TEST_VALUE (t_wrap3);
         TEST_VALUE (t_writingmode);
+        TEST_VALUE (t_wxhs);
         TEST_VALUE (t_vid);
         TEST_VALUE (t_visibility);
         TEST_VALUE (t_vocab);

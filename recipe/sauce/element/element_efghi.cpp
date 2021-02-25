@@ -268,18 +268,91 @@ void element::examine_iframe ()
         pick (nit_chocolate_teapot, es_info, ec_attribute, "Not sure what use <IFRAME> is without SRC or SRCDOC"); }
 
 void element::examine_img ()
-{   check_required_type (elem_img);
-    if (a_.known (a_usemap)) no_anchor_daddy ();
-    if (node_.version ().mjr () == 4)
-    {   if (! a_.known (a_alt))
-            pick (nit_naughty_alt, ed_4, "13.2 Including an image", es_error, ec_element, "ALT is required on <IMG>");
-        else if (a_.get_string (a_alt).empty ())
-            pick (nit_naughty_alt, ed_4, "13.2 Including an image", es_info, ec_element, "ALT should not be empty"); }
-    else if ((node_.version ().is_5 ()) && (w3_minor_5 (node_.version ()) > 0))
-        if (! ancestral_elements_.test (elem_figure))
-            if (! a_.known (a_alt) || a_.get_string (a_alt).empty ())
-                if (! a_.known (a_title))
-                    pick (nit_naughty_alt, ed_51, "4.7.5.1.2. General guidelines", es_warning, ec_element, "generally, ALT should not be empty");
-    if ((node_.version ().is_4_or_more ()) && a_.known (a_alt) && a_.known (a_title))
+{   const bool alt_known = a_.known (a_alt);
+    const bool alt_empty = alt_known ? a_.get_string (a_alt).empty () : false;
+    const bool ancestor_a = ancestral_elements_.test (elem_a);
+    const bool ancestor_figure = ancestral_elements_.test (elem_figure);
+    const bool has_title = a_.good (a_title) && (! a_.get_string (a_title).empty ());
+    check_required_type (elem_img);
+    if (a_.known (a_usemap) && ! node_.version ().is_5 ()) no_anchor_daddy ();
+    if (node_.version ().is_4 ())
+    {   if (! alt_known)
+            pick (nit_attribute_required, ed_4, "13.2 Including an image", es_error, ec_attribute, "ALT is required on <IMG>");
+        else if (alt_empty)
+            pick (nit_naughty_alt, ed_4, "13.2 Including an image", es_warning, ec_attribute, "ALT should not be empty"); }
+    else if (node_.version ().is_5 ())
+    {   bool complained = false;
+        bool figured = false;
+        if ((node_.version () < html_jan08) && a_.known (a_ismap))
+            if (! ancestor_a)
+            {   complained = true;
+                pick (nit_naughty_alt, ed_jan07, "3.14.1. The img element", es_warning, ec_element, "ISMAP cannot be used on <IMG> unless it has an <A> ancestor"); }
+            else for (element* p = parent_; p != nullptr; p = p -> parent_)
+                if (p -> tag () == elem_a)
+                    if (! p -> a_.known (a_href))
+                    {   complained = true;
+                        pick (nit_naughty_alt, ed_jan21, "4.8.3 The img element", es_warning, ec_attribute, "when ISMAP is used on <IMG>, its ancestral <A> must have an HREF");
+                        break; }
+        if (node_.version () >= html_jan17)
+        {   if (a_.valid (a_srcset))
+            {   attribute_v_ptr srsptr = a_.get (a_srcset);
+                attr_srcset* const srs = static_cast <attr_srcset*> (srsptr.get ());
+                if (srs -> has_width () && ! a_.known (a_sizes))
+                {   complained = true;
+                    pick (nit_attribute_required, ed_jan21, "4.8.5 The img element", es_error, ec_attribute, "SIZES is required when a SRCSET has a width specification"); }
+                if (a_.known (a_sizes) && srs -> has_density ())
+                {   complained = true;
+                    pick (nit_bad_srcset, ed_jan21, "4.8.4.2.1 Srcset attributes", es_error, ec_attribute, "if <IMG> has SIZES, then SRCSET must contain width specifiers"); } }
+            if (ancestor_figure)
+                if (! has_title)
+                    for (element* p = parent_; p != nullptr; p = p -> parent_)
+                        if (p -> tag () == elem_figure)
+                        {   bool alone = true;
+                            for (element_ptr ac = p -> child_; alone && (ac != nullptr); ac = ac -> sibling_)
+                                if (is_standard_element (ac -> tag ()))
+                                    if (! ac -> node_.is_closure ())
+                                        switch (ac -> tag ())
+                                        {   case elem_img :
+                                                continue;
+                                            case elem_figcaption :
+                                                if ((! ac -> text ().empty ()) && (! is_whitespace (ac -> text ()))) figured = true;
+                                                break;
+                                            default :
+                                                if (((ac -> node_.id ().flags ()) & EF_5_FLOW) == EF_5_FLOW)
+                                                    figured = alone = false;
+                                                break; }
+                            break; }
+            if (alt_empty || ! alt_known)
+                if (ancestor_a)
+                {   bool alt_required = true, alone = true;
+                    for (element* p = parent_; p != nullptr; p = p -> parent_)
+                        if (p -> tag () == elem_a)
+                        {   if (! p -> text ().empty ()) alt_required = false;
+                            else for (element_ptr ac = p -> child_; ac != nullptr; ac = ac -> sibling_)
+                                if (! ac -> node_.is_closure ())
+                                    if (is_standard_element (ac -> tag ()))
+                                        if (ac.get () != this)
+                                        {   alone = false; break; }
+                            break; }
+                    if (alt_required)
+                        if (alone)
+                            if (! alt_known) pick (nit_attribute_required, ed_50, "4.7.1 The img element", es_error, ec_attribute, "ALT is required when <IMG> is a solo child of <A>");
+                            else pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_error, ec_attribute, "ALT cannot be empty when <IMG> is a solo child of <A>");
+                        else
+                            if (! alt_known) pick (nit_attribute_required, ed_50, "4.7.1 The img element", es_warning, ec_attribute, "ALT is recommended when <IMG> is a child of <A>");
+                            else pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_warning, ec_attribute, "ALT is better with content when <IMG> is a child of <A>");
+                    complained = true; } // even if not
+                else if (! complained && ! has_title && ! figured)
+                    if (! alt_known)
+                    {   complained = true; pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_error, ec_element, "here, ALT is required on <IMG>"); } }
+        if (! complained)
+            if (page_.version () < html_feb21)
+                if ((! ancestor_figure) || (node_.version () == html_5_0))
+                    if (! alt_known)
+                        pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_warning, ec_element, "with exceptions, ALT is required on <IMG>");
+                    else if (alt_empty)
+                        if (node_.version ().w3 ()) pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_info, ec_attribute, "generally, ALT should not be empty");
+                        else pick (nit_naughty_alt, ed_jan14, "4.7.1 The img element", es_info, ec_attribute, "ALT should normally have content"); }
+    if ((node_.version ().is_4_or_more ()) && alt_known && has_title)
         if (compare_no_case (a_.get_string (a_alt), a_.get_string (a_title)))
             pick (nit_alt_title, ed_51, "4.7.5.1.2. General guidelines", es_warning, ec_element, "ALT and TITLE should have different values"); }

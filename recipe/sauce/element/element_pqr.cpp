@@ -29,8 +29,7 @@ void element::examine_picture ()
         if (! c -> node_.is_closure ())
             switch (c -> tag ())
             {   case elem_source :
-                    if (was_img) order_warn = true;
-                    was_img = false;
+                    if (was_img) { order_warn = true; was_img = false; }
                     if ((prev != nullptr) && ! prev -> a_.known (a_type))
                     {   bool ok = prev -> a_.known (a_media);
                         if (ok)
@@ -38,18 +37,18 @@ void element::examine_picture ()
                             ok = ! val.empty () && ! compare_no_case ("all", val); }
                         if (! ok)
                             pick (nit_saucy_source, ed_jul20, "4.8.2 The source element", es_warning, ec_element,
-                                "All but the last <SOURCE> must have either TYPE or MEDIA which itself is neither empty nor set to 'all'."); }
+                                "All but the last <SOURCE> must have either TYPE or MEDIA, which itself is neither empty nor set to 'all'."); }
                     prev = c;
                     break;
                 case elem_img :
                     if (had_img)
-                        pick (nit_not_img, ed_52, "4.7.4. The source element", es_error, ec_element, "<PICTURE> can only have one <IMG> child.");
+                        pick (nit_not_img, ed_52, "4.7.3. The picture element", es_error, ec_element, "<PICTURE> can only have one <IMG> child.");
                     had_img = was_img = true; break;
                 default : break; }
     if (! had_img)
-        pick (nit_not_img, ed_52, "4.7.4. The source element", es_error, ec_element, "<PICTURE> must have one child <IMG>");
+        pick (nit_not_img, ed_52, "4.7.3. The picture element", es_error, ec_element, "<PICTURE> must have one child <IMG>");
     else if (! was_img || order_warn)
-        pick (nit_not_img, ed_52, "4.7.4. The source element", es_error, ec_element, "under <PICTURE>, <SOURCE> must precede <IMG>"); }
+        pick (nit_not_img, ed_52, "4.7.3. The picture element", es_error, ec_element, "under <PICTURE>, <SOURCE> must precede <IMG>"); }
 
 void element::examine_piecewise ()
 {   bool otherwise = false, noted = false;

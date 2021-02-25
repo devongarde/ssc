@@ -458,10 +458,10 @@ e_emi extension_conflict (const html_version& lhs, const html_version& rhs)
 {   if (lhs.mjr () < 4) return emi_good;
     if (! lhs.has_math () && rhs.has_math ()) return emi_math;
     if (! lhs.has_svg () && rhs.has_svg ())
-    {   if (rhs.svg_old_html () && (lhs.mjr () == 4)) return emi_good;
+    {   if (rhs.svg_old_html () && (lhs.is_4 ())) return emi_good;
         if (rhs.rdf () && lhs.has_rdf ()) return emi_good;
-        if (rhs.svg_x1 () && (lhs.mjr () == 4) && (lhs.mnr () >= 2) && (lhs.mnr () <= 3)) return emi_good;
-        if (rhs.svg_x2 () && (lhs.mjr () == 4) && (lhs.mnr () == 4)) return emi_good;
+        if (rhs.svg_x1 () && (lhs.is_4 ()) && (lhs.mnr () >= 2) && (lhs.mnr () <= 3)) return emi_good;
+        if (rhs.svg_x2 () && (lhs.is_4 ()) && (lhs.mnr () == 4)) return emi_good;
         return emi_svg; }
     else if (lhs.has_svg () && rhs.not_svg ()) return emi_not_svg;
     if (! context.rdf () && ! lhs.has_rdf () && rhs.has_rdf ()) return emi_rdf;
@@ -593,6 +593,7 @@ bool operator >= (const html_version& lhs, const html_version& rhs)
 
 bool does_apply (const html_version& v, const html_version& from, const html_version& to)
 {   if (! from.unknown () && (v < from)) return false;
+    if (context.microformats () && from.is_mf ()) return true;
     if (! to.unknown () && (v > to)) return false;
     switch (v.mjr ())
     {   case 0 :    break;
@@ -633,7 +634,7 @@ bool may_apply (const html_version& v, const html_version& from, const html_vers
 {   return (v.unknown () || does_apply (v, from, to)); }
 
 int w3_minor_5 (const html_version& v)
-{   if (v.mjr () < 5) return v.mnr ();
+{   if (! v.is_5 ()) return v.mnr ();
     if (v.mjr () < MAJOR_5_0) return 0;
     if ((v.mjr () == MAJOR_5_0) && (v.mnr () <= MINOR_5_0)) return 0;
     if (v.mjr () < MAJOR_5_1) return 1;
@@ -645,7 +646,7 @@ int w3_minor_5 (const html_version& v)
     return 4; }
 
 int w3_5_minor (const html_version& v)
-{   if (v.mjr () < 5) return v.mnr ();
+{   if (! v.is_5 ()) return v.mnr ();
     if ((v.mjr () == MAJOR_5_0) && (v.mnr () == MINOR_5_0)) return 0;
     if ((v.mjr () == MAJOR_5_1) && (v.mnr () == MINOR_5_1)) return 1;
     if ((v.mjr () == MAJOR_5_2) && (v.mnr () == MINOR_5_2)) return 2;

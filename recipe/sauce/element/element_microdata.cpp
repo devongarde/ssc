@@ -104,8 +104,8 @@ void element::examine_itemref (itemscope_ptr& itemscope)
     else if (itemscope.get () != nullptr)
         if (a_.known (a_itemscope) && a_.known (a_itemtype) && a_.known (a_itemref))
             for (auto name : a_.get_x < attr_itemref > ())
-                if (ids_.has_id (name))
-                {   element* ire = ids_.get_element (name);
+                if (get_ids ().has_id (name))
+                {   element* ire = get_ids ().get_element (name);
                     if (ire != nullptr)
                     {   icarus_ = true;
                         ire -> walk_itemprop (itemscope);

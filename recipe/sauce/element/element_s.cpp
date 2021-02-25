@@ -73,7 +73,7 @@ void element::examine_script ()
                         if ((flags & SCRIPT) == SCRIPT)
                             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be supported by all browsers on all systems");
                         else if (node_.version () < html_jul20)
-                        {   pick (nit_bad_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " will not be processed");
+                        {   pick (nit_bad_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be processed");
                             datablock = true; } }
                     break; } } }
     if (datablock)
@@ -148,8 +148,8 @@ void element::examine_share ()
     {   url u (a_.get_x < attr_href > ());
         if (! u.is_simple_id ()) return;
         ::std::string i (u.id ());
-        if (ids_.has_id (i))
-        {   element* pide = ids_.get_element (i);
+        if (get_ids ().has_id (i))
+        {   element* pide = get_ids ().get_element (i);
             if (pide != nullptr)
                 for (element* p = parent_; p != nullptr; p = p -> parent_)
                     if (p == pide)
@@ -166,7 +166,18 @@ void element::examine_source ()
     {   if (! a_.known (a_src))
             pick (nit_src_required, ed_52, "4.7.4. The source element", es_error, ec_element, "SRC attribute is required when <SOURCE> descends from a media element");
         if (a_.known (a_srcset) || a_.known (a_sizes) || a_.known (a_media))
-            pick (nit_saucy_source, ed_52, "4.7.4. The source element", es_warning, ec_element, "SRCSET, SIZES and MEDIA have no meaning when <SOURCE> descends from a media element"); } }
+            pick (nit_saucy_source, ed_52, "4.7.4. The source element", es_warning, ec_element, "SRCSET, SIZES and MEDIA have no meaning when <SOURCE> is not a child of <PICTURE>");
+        nitpick nuts;
+        type_master < t_mime > mt;
+        ::std::string s (a_.get_string (a_type));
+        mt.set_value (nuts, node_.version (), s);
+        if (mt.good ())
+        {   uint64_t f = mt.flags ();
+            if ((f & MIME_MULTIPART) == 0)
+            {   if (ancestral_elements_.test (elem_audio) && ((f & MIME_AUDIO) == 0))
+                    pick (nit_mime, es_warning, ec_attribute, "expecting an audio mimetype");
+                if (ancestral_elements_.test (elem_video) && ((f & MIME_VIDEO) == 0))
+                    pick (nit_mime, es_warning, ec_attribute, "expecting a video mimetype"); } } } }
 
 void element::examine_summary ()
 {   if ((node_.version () < html_5_1) || (node_.version () >= html_jul20)) return;

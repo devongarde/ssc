@@ -212,15 +212,16 @@ void options::process (int argc, char** argv)
         (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "output file (default to the console)")
         (GENERAL PATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "root directory for all " PROG " files")
         (GENERAL RDF, "check RDFa attributes")
-        (GENERAL SLOB, "ignore slob HTML, such as forgotten closures")
+        (GENERAL REL, "ignore recognised but non-standard <LINK> REL values")
+        (GENERAL SLOB, "ignore inefficient HTML such as missing closures")
         (GENERAL SSI ",I", "process (simple) Server Side Includes")
         (GENERAL VERBOSE ",v", ::boost::program_options::value < int > () -> default_value (static_cast <int> (default_output)), "output extra information")
 
-        (HTML TAGS, "presume HTML files with no DOCTYPE declaration are HTML Tags, not HTML 1.0")
         (HTML RFC1867, "Reject RFC 1867 (INPUT=FILE) when processing HTML 2.0")
         (HTML RFC1942, "Reject RFC 1942 (tables) when processing HTML 2.0")
         (HTML RFC1980, "Reject RFC 1980 (client side image maps) when processing HTML 2.0")
         (HTML RFC2070, "Reject RFC 2070 (internationalisation) when processing HTML 2.0")
+        (HTML TAGS, "presume HTML files with no DOCTYPE declaration are HTML Tags, not HTML 1.0")
         (HTML TITLE ",z", ::boost::program_options::value < int > () -> default_value (MAX_IDEAL_TITLE_LENGTH), "Maximum advisable length of <TITLE> text")
         (HTML VERSION, ::boost::program_options::value < ::std::string > (),
             "X.Y version of HTML 5, or version if no DOCTYPE (default: '1.0'). "
@@ -264,6 +265,8 @@ void options::process (int argc, char** argv)
 #endif // NOLYNX
         (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "where to persist deduplication data")
         (SHADOW IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore files with this extension; may be repeated")
+        (SHADOW INFO, "add a comment to generated shadow HTML files noting their time of generation")
+        (SHADOW MSG, ::boost::program_options::value < ::std::string > (), "insert this as comment to generated shadow files")
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "shadow output root directory")
         (SHADOW SSI, "do NOT resolve SSIs on shadow pages when " GENERAL SSI " is set")
         (SHADOW SPACING, "do NOT merge spacing on shadow pages")
@@ -369,6 +372,7 @@ void options::contextualise ()
     context.load_css (var_.count (GENERAL CSS_OPTION) == 0);
     context.nochange (var_.count (GENERAL NOCHANGE));
     context.rdf (var_.count (GENERAL RDF));
+    context.rel (var_.count (GENERAL REL));
     context.rpt_opens (var_.count (GENERAL RPT));
     context.ssi (var_.count (GENERAL SSI));
     context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
@@ -530,6 +534,7 @@ void options::contextualise ()
 #endif // NOLYNX
     if (var_.count (SHADOW FICHIER)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FICHIER].as < ::std::string > ()));
     if (var_.count (SHADOW IGNORED)) context.shadow_ignore (var_ [SHADOW IGNORED].as < vstr_t > ());
+    context.info (var_.count (SHADOW INFO));
     if (var_.count (SHADOW ROOT)) context.shadow (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
     context.shadow_space (var_.count (SHADOW SPACING));
     context.shadow_ssi (var_.count (SHADOW SSI));

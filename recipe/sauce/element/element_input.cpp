@@ -460,12 +460,12 @@ void element::validate_input_id ()
 {   assert (a_.has (a_list));
     if (a_.good (a_list))
     {   ::std::string id = a_.get_string (a_list);
-        if (ids_.has_id (id))
-        {   e_element e = ids_.get_tag (id);
+        if (get_ids ().has_id (id))
+        {   e_element e = get_ids ().get_tag (id);
             if (e != elem_datalist) pick (nit_bad_datalist_id, ed_50, "4.10.5.3.9 The list attribute", es_error, ec_attribute, quote (id), " is not on a <DATALIST>");
             else
             {   uid_t tuid_first = 0, tuid_last = 0;
                 if (family_uids (elem_form, tuid_first, tuid_last))
-                {   uid_t uid = ids_.get_uid (id);
+                {   uid_t uid = get_ids ().get_uid (id);
                     if ((uid < tuid_first) || (uid > tuid_last))
                         pick (nit_bad_datalist_id, ed_50, "4.10.5.3.9 The list attribute", es_error, ec_attribute, "id ", quote (id), " is on a different <FORM>"); } } } } }

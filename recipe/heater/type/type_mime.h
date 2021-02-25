@@ -21,9 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_enum.h"
 
-#define SCRIPT      0x00000001
-#define NOT_SCRIPT  0x00000002
-#define STYLE       0x00000004
+#define SCRIPT              0x00000001
+#define NOT_SCRIPT          0x00000002
+#define STYLE               0x00000004
+
+#define MIME_APPLICATION    0x00000010
+#define MIME_AUDIO          0x00000020
+#define MIME_FONT           0x00000040
+#define MIME_IMAGE          0x00000080
+#define MIME_MESSAGE        0x00000100
+#define MIME_MODEL          0x00000200
+#define MIME_MULTIPART      0x00000400
+#define MIME_TEXT           0x00000800
+#define MIME_VIDEO          0x00001000
 
 template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ())

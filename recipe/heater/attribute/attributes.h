@@ -32,14 +32,16 @@ class attributes
 public:
     attributes () = delete;
     explicit attributes (const e_element e, const aar_t& ptr) : aar_ (ptr), tag_ (e) { }
-    explicit attributes (element_node& en) : tag_ (en.tag ())
-    {   parse (en.nits (), en.version (), en.attributes ()); }
+    explicit attributes (element_node& en) : tag_ (en.tag ()) { }
+//    {   parse (en.nits (), en.version (), en.attributes ()); }
     void reset ()
     {   aar_.fill (attribute_v_ptr ());
         unrecognised_.clear (); }
     void swap (attributes& w) NOEXCEPT
     {   aar_.swap (w.aar_);
         unrecognised_.swap (w.unrecognised_); }
+    void reconstruct (element_node& en)
+    {   parse (en.nits (), en.version (), en.attributes ()); }
     e_element tag () const { return tag_; }
     bool has (const e_attribute a) const
     {   return aar_.at (a).get () != nullptr; }

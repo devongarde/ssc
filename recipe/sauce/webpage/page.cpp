@@ -101,9 +101,12 @@ bool page::parse (::std::string& content, const e_charcode )
 void page::examine (const directory& d)
 {   if ((! document_) && ! nodes_.invalid () && nodes_.version ().known ())
     {   if (context.md_export ()) md_export_.init (get_export_root ());
-        document_.reset (new element (name_, nodes_.top (), nullptr, ids_, &access_, *this));
+        document_.reset (new element (name_, nodes_.top (), nullptr, *this));
         context.mark (version ());
         assert (document_ -> tag () == elem_faux_document);
+        document_ -> reconstruct (&access_);
+        ::std::string s = document_ -> make_children (0);
+        if (context.tell (e_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
         document_ -> examine_self (d);
         document_ -> verify_document ();
         if (context.md_export ()) md_export_.write (nits_, get_export_path ());

@@ -233,6 +233,8 @@ template < > class type_master < t_inputtype4 > : public enum_n < t_inputtype4, 
 template < > class type_master < t_inputtype5 > : public enum_n < t_inputtype5, e_inputtype5 > { };
 template < > class type_master < t_kind > : public enum_n < t_kind, e_kind > { };
 template < > class type_master < t_lang > : public enum_n < t_lang, e_lang > { };
+template < > class type_master < t_length_absolute > : public enum_n < t_length, e_length_absolute > { };
+template < > class type_master < t_length_relative > : public enum_n < t_length, e_length_relative > { };
 template < > class type_master < t_linebreak > : public enum_n < t_linebreak, e_linebreak > { };
 template < > class type_master < t_linkparam > : public enum_n < t_linkparam, e_linkparam > { };
 template < > class type_master < t_listtype > : public enum_n < t_listtype, e_listtype, sz_false > { };

@@ -20,7 +20,7 @@ PASS ../toast/XHTML/1.0/x1-bad.xhtml
 12 xhtml_quote_values xhtml_attribute_lc xhtml_quote_values missing_close xhtml_enum_lc
 13 xhtml_missing_slash
 15 xhtml_hex_lc deprecated_attribute
-16 xhtml_missing_slash xhtml_existential_makework naughty_alt
+16 xhtml_missing_slash xhtml_existential_makework attribute_required
 18 inserted_missing_closure
 
 PASS ../toast/XHTML/1.0/parsing.xhtml

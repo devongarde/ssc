@@ -65,6 +65,7 @@
 ../toast/other/CSS/css.spec
 ../toast/other/dfn/dfn.spec
 ../toast/other/ignore/ignore.spec
+../toast/other/img/img.spec
 ../toast/other/incorrectness/incorrectness.spec
 ../toast/other/nits/nits.spec
 ../toast/other/parsing/parsing.spec

@@ -333,10 +333,11 @@ PASS ../toast/microdata/schema-pqrs/service.html
 
 PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 157 no_such_folder url_not_found
-159 url_not_found
-160 no_such_folder url_not_found
+159 url_not_found link_rel_off
+160 unrecognised_value unknown_rel no_such_folder url_not_found link_rel_off
 162 no_such_folder url_not_found
-164 url_not_found
+163 link_rel_off
+164 url_not_found link_rel_off
 165 no_such_folder url_not_found no_such_folder cannot_load_css
 184 unrecognised_value
 192 no_such_folder url_not_found
@@ -351,7 +352,7 @@ PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 226 no_such_folder url_not_found
 260 no_such_folder url_not_found
 261 unrecognised_value unrecognised_value no_such_folder url_not_found
-329 bang_path
+329 bad_char
 340 unrecognised_value
 346 unrecognised_value unrecognised_value unrecognised_value
 348 unrecognised_value
@@ -371,6 +372,8 @@ PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 399 unrecognised_value
 400 url_not_found unrecognised_value
 402 no_such_folder url_not_found
+405 link_rel_off
+406 link_rel_off
 
 PASS ../toast/microdata/schema-pqrs/speakablespecification.html
 2 naughty_lang

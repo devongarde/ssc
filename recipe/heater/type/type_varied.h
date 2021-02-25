@@ -415,6 +415,16 @@ template < > struct type_master < t_rowscols > : varied < t_rowscols >
                 case elem_frameset :
                     validate_type < type_master < t_measures > > (nits, v); break; } } };
 
+template < > struct type_master < t_sizes > : varied < t_sizes >
+{   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+    {   if (good () || empty ())
+            switch (e.get ())
+            {   case elem_link :
+                    validate_type < type_master < t_wxhs > > (nits, v); break;
+                case elem_img :
+                case elem_source :
+                    validate_type < type_master < t_imgsizes > > (nits, v); break; } } };
+
 template < > struct type_master < t_scope > : varied < t_scope >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())

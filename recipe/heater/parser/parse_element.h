@@ -30,13 +30,13 @@ class element_node
     element_node* next_ = nullptr;
     element_node* previous_ = nullptr;
     int line_ = 0;
-    bool closure_ = false, closed_ = false;
+    bool closure_ = false, closed_ = false, checked_sanitised_ = false;
     elem elem_;
     attributes_node va_;
-    ::std::string text_, raw_;
+    ::std::string text_, raw_, sanitised_;
     nitpick nits_;
     html_version version_;
-    ::std::string inner_text (const ::std::size_t tag) const;
+    ::std::string inner_text () const;
 public:
     element_node () = default;
     element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag);
@@ -57,9 +57,10 @@ public:
     void reset (const element_node& en);
     void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
     ::std::size_t attribute_count () const { return va_.size (); }
-    ::std::string text () const;
+    ::std::string text ();
+//    const ::std::string text () const;
     ::std::string raw () const { return raw_; }
-    ::std::string rpt (const int level = 0) const;
+    ::std::string rpt (const int level = 0);
     void set_raw (const ::std::string& raw) { raw_ = raw; }
     int line () const { return line_; }
     bool invalid () const { return elem_.unknown (); }

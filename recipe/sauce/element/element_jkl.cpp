@@ -43,11 +43,11 @@ void element::examine_label ()
         uid_t uid = 0;
         if (a_.good (a_for))
         {   ::std::string s (a_.get_string (a_for));
-            if (ids_.has_id (s)) // if not WTF
-            {   e_element e (ids_.get_tag (s));
+            if (get_ids ().has_id (s)) // if not WTF
+            {   e_element e (get_ids ().get_tag (s));
                 if (! label_bitset.test (e))
                     pick (nit_bad_for, ed_50, "4.10.4 The label element", es_error, ec_element, "FOR must reference a <BUTTON>, <FIELDSET>, <INPUT>, <OBJECT>, <OUTPUT>, <SELECT>, or a <TEXTAREA>");
-                uid = ids_.get_uid (s); } }
+                uid = get_ids ().get_uid (s); } }
         element_bitset bs (descendant_elements_);
         bs &= label_bitset;
         bool first = (uid == 0);
@@ -147,27 +147,24 @@ void element::examine_link ()
 //        if (r.is_microformat () && context.microformats ()) continue; // microformats are processed later
         if (tis5)
         {   html_version from (r.first ());
-            ::std::size_t flags = static_cast < ::std::size_t > (from.flags () & 0xFFFFFFFF);
-            flags >>= (w3_minor_5 (node_.version ()) * 4);
-            flags &= 0x0000000F;
-            if (flags == 0)
-            {   pick (nit_link_rel_off, es_comment, ec_attribute, quote (s), " is not a HTML standard <LINK> REL value");
+            if (! may_apply (node_.version (), from, r.last ()))
+            {   if (from.is_mf ()) pick (nit_link_rel_off, es_comment, ec_attribute, "<LINK> REL=", quote (s), " is not standard ", node_.version ().report ());
+                else pick (nit_link_rel_off, es_info, ec_attribute, "<LINK> REL=", quote (s), " is not standard ", node_.version ().report ());
                 continue; }
-            // apparently, sometimes in VC19, 0x6622 & 0x0001 is 0x6620. This is called a bug. Wonderful. It seems &= works, though, so...
-            ::std::size_t bug_bypasser = flags;
-            bug_bypasser &= HR_LINK;
-            if (bug_bypasser == 0)
-            {   pick (nit_link_rel_off, ed_53, "4.8.6. Link types", es_error, ec_attribute, quote (s), " cannot be used with <LINK>"); continue; }
-            else if (ancestral_elements_.test (elem_body))
-            {   bug_bypasser = flags;
-                bug_bypasser &= HR_LINKBODY;
-                if (bug_bypasser == 0)
-                {   pick (nit_link_rel_off, ed_53, "4.8.6. Link types", es_error, ec_attribute, quote (s), " can only be used with <LINK> under <HEAD>, not <BODY>"); continue; } }
+            if (! from.is_rel ())
+            {   e_severity sv = es_info;
+                if (context.rel ()) sv = es_debug; else if (from.is_mf ()) sv = es_comment;
+                pick (nit_link_rel_off, sv, ec_attribute, "<LINK> REL=", quote (s), " is not standard ", node_.version ().report ());
+                continue; }
+            if (! from.is_mf ())
+                if (! from.is_link ())
+                {   pick (nit_link_rel_off, ed_53, "4.8.6. Link types", es_error, ec_attribute, "REL=", quote (s), " cannot be used with <LINK>"); continue; }
+                else if (ancestral_elements_.test (elem_body))
+                    if (! from.is_linkbody ())
+                    {   pick (nit_link_rel_off, ed_53, "4.8.6. Link types", es_error, ec_attribute, "REL=", quote (s), " requires <LINK> to be under <HEAD>, not <BODY>"); continue; }
             if (! external)
-            {   bug_bypasser = flags;
-                bug_bypasser &= HR_EXTERNAL;
-                if (bug_bypasser != 0)
-                {   pick (nit_link_rel_off, ed_53, "4.8.6. Link types", es_error, ec_attribute, quote (s), " requires an external url"); continue; } } }
+                if (from.is_external ())
+                {   pick (nit_link_rel_off, ed_53, "4.8.6. Link types", es_error, ec_attribute, "REL=", quote (s), " requires an external url"); continue; } }
         bool headonly = true;
         switch (r.get ())
         {   case r_apple_touch_icon :
@@ -178,40 +175,49 @@ void element::examine_link ()
             case r_preload : preload = true; break;
             case r_serviceworker : serviceworker = true; break;
             case r_stylesheet : stylesheet = true; break;
+            case r_tag :
+                if (node_.version () >= html_jan12)
+                {   pick (nit_link_rel_off, es_info, ec_attribute, "<LINK> REL=", quote (s), " is not valid in ", node_.version ().report ());
+                    continue; }
+                break;
             case r_alternative :
+            case r_contact :
             case r_dnsprefetch :
+            case r_first :
+            case r_feed :
             case r_manifest :
             case r_next :
             case r_pingback :
             case r_preconnect :
             case r_prefetch :
-            case r_search : break;
+            case r_search :
+            case r_up : break;
             default : headonly = false; break; }
         if (headonly && ! ancestral_elements_.test (elem_head))
-            pick (nit_rel_head, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, quote (s), " needs <LINK> to be in <HEAD>"); }
+            pick (nit_rel_head, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, "<LINK> with REL=", quote (s), " should be under <HEAD>, not <BODY>"); }
     if (tis5)
     {   if (! icon) if (a_.known (a_sizes))
-            pick (nit_daft_rel_attr, ed_50, "4.2.4 The link element", es_error, ec_attribute, "SIZES is only useful when REL includes \"icon\"");
+            pick (nit_daft_rel_attr, ed_50, "4.2.4 The link element", es_error, ec_attribute, "SIZES requires REL=\"icon\"");
         if (! maskicon) if (a_.known (a_colour))
-            pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "COLOR (sic) is only useful when REL includes \"mask-icon\"");
+            pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "COLOR (sic) requires REL=\"mask-icon\"");
         if (! stylesheet) if (a_.known (a_disabled))
-            pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "DISABLED requires a REL \"stylesheet\"");
+            pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "DISABLED requires REL=\"stylesheet\"");
         if (preload)
         {   if (! a_.known (a_as))
-                pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "the \"preload\" REL value requires AS"); }
+                pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "REL=\"preload\" requires AS"); }
         if (! preload)
         {   if (has_imagesizes)
-                pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "IMAGESIZES is only useful when REL includes \"preload\"");
+                pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "IMAGESIZES requires REL=\"preload\"");
             if (has_imagesrcset)
-                pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "IMAGESRCSET is only useful when REL includes \"preload\"");
+                pick (nit_daft_rel_attr, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "IMAGESRCSET requires REL=\"preload\"");
             if (! modulepreload)
             {   if (a_.known (a_as))
-                    pick (nit_daft_rel_attr, ed_53, "4.2.4 The link element", es_error, ec_attribute, "AS is only useful when REL includes \"preload\" or \"modulepreload\"");
+                    pick (nit_daft_rel_attr, ed_53, "4.2.4 The link element", es_error, ec_attribute, "AS requires REL=\"preload\" or \"modulepreload\"");
                 if (! stylesheet) if (a_.known (a_integrity))
-                    pick (nit_daft_rel_attr, ed_53, "4.2.4 The link element", es_error, ec_attribute, "INTEGRITY is only useful when REL includes \"stylesheet\", \"preload\" or \"modulepreload\""); } }
+                    pick (nit_daft_rel_attr, ed_53, "4.2.4 The link element", es_error, ec_attribute, "INTEGRITY requires REL=\"stylesheet\", \"preload\" or \"modulepreload\""); } }
         if (! serviceworker)
             if (a_.known (a_scope) || a_.known (a_updateviacache) || a_.known (a_workertype))
-                pick (nit_no_serviceworker, ed_jul17, "4.2.4 The link element", es_error, ec_attribute, "the SCOPE, UPDATEVIACACHE and WORKERTYPE attributes require the \"serviceworker\" REL value"); }
+                pick (nit_no_serviceworker, ed_jul17, "4.2.4 The link element", es_error, ec_attribute, "SCOPE, UPDATEVIACACHE and WORKERTYPE each require REL=\"serviceworker\""); }
     if (stylesheet)
     {   bool is_css = false;
         if (a_.known (a_type))
@@ -221,7 +227,7 @@ void element::examine_link ()
                 if (compare_no_case (ty, CSS_TYPE)) is_css = true;
                 else bad = true; }
             if (bad)
-            {   pick (nit_style_not_css, ed_50, "4.2.4 The link element", es_warning, ec_css, "stylesheet TYPE is not text/css; ignored");
+            {   pick (nit_style_not_css, ed_50, "4.2.4 The link element", es_warning, ec_css, "REL=\"stylesheet\" requires TYPE=\"text/css\"; ignoring non-CSS stylesheet");
                 return; } }
         if (context.unknown_class () && context.load_css ())
             if (href && a_.good (a_href))

@@ -124,8 +124,116 @@ PASS ../toast/living/jan09/header.html
 PASS ../toast/living/jan09/i.html
 0 charset_mismatch charset_used charset_invalid
 
+PASS ../toast/living/jan09/img.html
+6 url_not_found naughty_alt
+8 url_not_found
+11 url_not_found
+15 url_not_found naughty_alt
+18 inserted_missing_closure
+21 newline_in_string url_not_found
+25 use_quote_code
+31 url_not_found
+32 use_quote_code
+43 newline_in_string newline_in_string url_not_found
+45 use_quote_code
+51 use_quote_code
+52 url_not_found
+61 url_not_found naughty_alt
+67 url_not_found url_not_found
+68 url_not_found url_not_found
+69 url_not_found url_not_found
+72 interactive url_not_found url_not_found naughty_alt url_not_found naughty_alt
+73 interactive url_not_found url_not_found naughty_alt url_not_found naughty_alt
+74 url_not_found naughty_alt
+76 interactive url_not_found url_not_found
+77 url_not_found
+78 interactive url_not_found
+79 url_not_found url_not_found url_not_found
+81 interactive url_not_found
+82 url_not_found naughty_alt url_not_found naughty_alt
+83 interactive url_not_found
+84 url_not_found naughty_alt url_not_found naughty_alt url_not_found naughty_alt
+92 newline_in_string no_such_folder url_not_found
+98 newline_in_string newline_in_string url_not_found
+105 url_not_found
+111 no_such_folder url_not_found no_such_folder url_not_found naughty_alt
+112 no_such_folder url_not_found no_such_folder url_not_found naughty_alt
+119 url_not_found
+127 url_not_found
+132 use_quote_code
+135 url_not_found
+140 url_not_found naughty_alt
+143 url_not_found naughty_alt
+151 newline_in_string no_such_folder url_not_found
+157 use_quote_code
+159 url_not_found
+166 no_such_folder url_not_found naughty_alt
+175 no_such_folder url_not_found naughty_alt
+189 newline_in_string newline_in_string no_such_folder url_not_found
+201 no_such_folder url_not_found
+208 url_not_found naughty_alt
+211 url_not_found naughty_alt
+216 use_quote_code
+222 url_not_found url_not_found naughty_alt
+225 url_not_found url_not_found naughty_alt
+225 url_not_found naughty_alt
+226 url_not_found naughty_alt url_not_found naughty_alt
+231 url_not_found
+233 url_not_found naughty_alt url_not_found
+245 newline_in_string newline_in_string url_not_found
+252 newline_in_string newline_in_string url_not_found
+260 newline_in_string newline_in_string no_such_folder url_not_found
+268 newline_in_string newline_in_string no_such_folder url_not_found
+277 newline_in_string newline_in_string url_not_found
+280 attribute_required url_not_found
+286 attribute_required url_not_found naughty_alt
+293 attribute_required url_not_found
+308 newline_in_string newline_in_string url_not_found
+314 attribute_required url_not_found naughty_alt
+321 wrong_parent inserted_missing_closure
+322 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
+324 attribute_required url_not_found naughty_alt
+325 wrong_parent inserted_missing_closure
+326 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+327 attribute_required url_not_found naughty_alt
+328 wrong_parent inserted_missing_closure missing_close
+329 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+
 PASS ../toast/living/jan09/index.html
 3 attribute_unrecognised_here unrecognised_attribute
+
+PASS ../toast/living/jan09/links-alternate.html
+5 url_not_found
+
+PASS ../toast/living/jan09/links-bookmark.html
+13 use_quote_code
+20 url_not_found
+
+PASS ../toast/living/jan09/links-feed.html
+7 url_not_found
+8 url_not_found
+17 url_not_found
+18 url_not_found
+19 url_not_found
+
+PASS ../toast/living/jan09/links-help.html
+10 no_such_folder url_not_found
+
+PASS ../toast/living/jan09/links-icon.html
+5 url_not_found
+6 url_not_found
+7 url_not_found
+8 url_not_found
+9 url_not_found
+10 url_not_found
+11 url_not_found
+
+PASS ../toast/living/jan09/links-up.html
+13 no_such_folder url_not_found
+14 no_such_folder url_not_found
+15 chocolate_teapot
+19 no_such_folder url_not_found
+20 chocolate_teapot
 
 PASS ../toast/living/jan09/li.html
 10 lingo
@@ -194,6 +302,23 @@ PASS ../toast/living/jan09/samp.html
 
 PASS ../toast/living/jan09/small.html
 0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/living/jan09/source.html
+6 inserted_missing_parent missing_close url_not_found
+7 url_not_found
+8 url_not_found
+9 url_not_found
+10 url_not_found
+11 url_not_found
+12 url_not_found
+13 url_not_found
+14 url_not_found
+15 url_not_found mime
+16 url_not_found mime
+17 url_not_found mime
+18 url_not_found
+19 mime url_not_found
+21 inserted_missing_closure
 
 PASS ../toast/living/jan09/tagcloud.html
 20 no_such_folder url_not_found

@@ -40,9 +40,9 @@ class replies;
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
 
 class context_t
-{   bool            checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, load_css_ = false, links_ = false,
+{   bool            checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, info_ = false, load_css_ = false, links_ = false,
                     md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nochange_ = false, notify_ = false,
-                    once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true,
+                    once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true,
                     rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_ssi_ = false, shadow_space_ = false,
                     slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = 0;
@@ -51,7 +51,7 @@ class context_t
     html_version    version_;
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
-    ::std::string   base_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, output_, path_, persisted_, root_, secret_, server_,
+    ::std::string   base_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, msg_, output_, path_, persisted_, root_, secret_, server_,
                     shadow_, shadow_persist_, stats_, stub_, test_header_, user_, webmention_, write_path_, export_root_;
     ::boost::filesystem::path config_;
     e_wm_status     wm_status_ = wm_undefined;
@@ -88,6 +88,7 @@ public:
     html_version html_ver (const int major, const int minor);
     const ::std::string incoming () const { return incoming_; }
     const ::std::string index () const { return index_; }
+    bool info () const { return info_; }
     bool invalid () const { return ! valid_; }
     ::std::string lang () const { return lang_; }
     bool links () const { return links_; }
@@ -105,6 +106,7 @@ public:
     bool mf_version2 () const { return (mf_version_ & 2) != 0; }
     bool microdata () const { return microdata_; }
     bool microformats () const { return mf_verify_ || mf_export_; }
+    ::std::string msg () const { return msg_; }
     bool nids () const { return nids_; }
     bool nits () const { return nits_; }
     bool nochange () const { return nochange_; }
@@ -116,6 +118,7 @@ public:
     const ::std::string persisted () const { return persisted_; }
     bool process_webmentions () const { return process_webmentions_; }
     bool rdf () const { return rdf_; }
+    bool rel () const { return rel_; }
     bool repeated () const { return repeated_; }
     bool reset () const { return reset_; }
     bool revoke () const { return revoke_; }
@@ -194,9 +197,10 @@ public:
     context_t& hook (const ::std::string& s) { hook_ = s; return *this; }
     context_t& html_ver (const html_version& v)
     {   versioned (true); version_ = v; return *this; }
-    context_t& incoming (const ::std::string& s) { incoming_ = s; return *this; }
     context_t& ignore (const vstr_t& s);
+    context_t& incoming (const ::std::string& s) { incoming_ = s; return *this; }
     context_t& index (const ::std::string& s) { index_ = s; return *this; }
+    context_t& info (const bool b) { info_ = b; return *this; }
     context_t& lang (const ::std::string& s) { lang_ = s; return *this; }
     context_t& links (const bool b)
     {   links_ = b;
@@ -221,6 +225,7 @@ public:
     {   microdata_ = b;
         if (b) external (b);
         return *this; }
+    context_t& msg (const ::std::string& s) { msg_ = s; return *this; }
     context_t& nids (const bool b) { nids_ = b; return *this; }
     context_t& nits (const bool b) { nits_ = b; return *this; }
     context_t& nochange (const bool b) { nochange_ = b; return *this; }
@@ -235,6 +240,7 @@ public:
     context_t& presume_tags (const bool b) { presume_tags_ = b; return *this; }
     context_t& process_webmentions (const bool b) { process_webmentions_ = b; return *this; }
     context_t& rdf (const bool b) { rdf_ = b; return *this; }
+    context_t& rel (const bool b) { rel_ = b; return *this; }
     context_t& repeated (const bool b) { repeated_ = b; return *this; }
     context_t& reset (const bool b) { reset_ = b; return *this; }
     context_t& revoke (const bool b)

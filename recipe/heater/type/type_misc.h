@@ -78,12 +78,38 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
     static vint_t default_value () { return vint_t (); }
     vint_t get () const { return value_; } };
 
+template < > struct type_master < t_imgsizes > : tidy_string < t_imgsizes >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_imgsizes > :: set_value (nits, v, s);
+        const ::std::string& ss = tidy_string < t_imgsizes > :: get_string ();
+        if (tidy_string < t_imgsizes > :: empty ())
+        {   nits.pick (nit_nuts, es_error, ec_type, "SIZES cannot be empty");
+            tidy_string < t_imgsizes > :: status (s_invalid); }
+        else if (tidy_string < t_imgsizes > :: good ())
+            if (! compare_no_case (ss, "any"))
+            {   vstr_t vs (split_by_charset (ss, ","));
+                for (auto sss : vs)
+                {   vstr_t srcsz (split_by_space (sss));
+                    ::std::string& ssz (srcsz.at (srcsz.size () - 1));
+                    assert (! ssz.empty ());
+                    if (ssz.at (ssz.length () - 1) != ')')
+                        if (    (ssz.length () < 3) ||
+                                (! compare_no_case (ssz.substr (ssz.length () - 2), "vw")) ||
+                                (ssz.substr (0, ssz.length () - 2).find_first_not_of (POSITIVE) != ::std::string::npos))
+                            {   ::std::string::size_type pos = ssz.find_last_of (POSITIVE);
+                                if (pos == ::std::string::npos)
+                                    tidy_string < t_imgsizes > :: status (s_invalid);
+                                else if (pos != ssz.length () - 1)
+                                    if (! test_value < t_length > (nits, v, ssz.substr (++pos)))
+                                    {   tidy_string < t_imgsizes > :: status (s_invalid);
+                                        break; } } } } } };
+
 template < > struct type_master < t_is > : tidy_string < t_is >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_is > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_is > :: get_string ();
         if (tidy_string < t_is > :: empty ())
-        {   nits.pick (nit_nuts, es_error, ec_type, quote (ss), " is not the name of a custom element is expected");
+        {   nits.pick (nit_nuts, es_error, ec_type, "IS expects the name of a custom element");
             tidy_string < t_is > :: status (s_invalid); }
         else if (tidy_string < t_is > :: good ())
         {   vstr_t ce (context.custom_elements ());

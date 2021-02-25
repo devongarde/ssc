@@ -44,7 +44,7 @@ bool css::parse (nitpick& nits, const html_version& v, const ::std::string& cont
 bool css::parse_file (nitpick& nits, const page& p, const url& u)
 {   nits.set_context (0, u.original ());
     if (context.rpt_opens ())
-        nits.pick (nit_opening_file, es_info, ec_css, "Loading ", ::boost::filesystem::absolute (u.original ()));
+        nits.pick (nit_opening_file, es_debug, ec_css, "Loading ", ::boost::filesystem::absolute (u.original ()));
     ::std::string content (p.load_url (nits, u));
     if (content.empty ())
     {   nits.pick (nit_cannot_load_css, es_error, ec_css, "Cannot load ", quote (u.original ()), ", or it is empty");
