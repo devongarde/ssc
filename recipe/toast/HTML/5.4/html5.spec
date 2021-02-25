@@ -90,9 +90,9 @@ PASS ../toast/HTML/5.4/html5-bad.html
 57 unrecognised_value
 58 attribute_required url_not_found naughty_alt
 59 attribute_required url_not_found naughty_alt
-60 attribute_required url_not_found
+60 attribute_required url_not_found naughty_alt
 61 attribute_required url_not_found naughty_alt
-62 attribute_required url_not_found
+62 attribute_required url_not_found naughty_alt
 63 attribute_required url_not_found naughty_alt
 65 missing_close inserted_missing_closure missing_open
 67 nuts
@@ -144,10 +144,10 @@ PASS ../toast/HTML/5.4/html5-bad-2.html
 9 correct_spelling attribute_unrecognised unrecognised_attribute
 10 sizes sizes sizes sizes sizes sizes
 11 daft_rel_attr
-12 as_not_image as_not_image daft_rel_attr
-13 bad_srcset bad_srcset sizes sizes
-14 bad_srcset bad_srcset
-15 bad_srcset bad_srcset
+12 bad_srcset as_not_image as_not_image daft_rel_attr
+13 bad_srcset sizes sizes
+14 bad_srcset
+15 bad_srcset
 17 unrecognised_value
 
 PASS ../toast/HTML/5.4/html5-example.html
@@ -340,19 +340,19 @@ PASS ../toast/HTML/5.4/html5-example.html
 1360 mime
 1367 newline_in_string newline_in_string url_not_found
 1372 url_not_found
-1376 url_not_found
-1377 url_not_found
-1378 url_not_found
-1379 url_not_found
-1380 url_not_found
-1381 url_not_found
-1382 url_not_found
-1383 url_not_found
-1384 url_not_found
+1376 url_not_found mime
+1377 url_not_found mime
+1378 url_not_found mime
+1379 url_not_found mime
+1380 url_not_found mime
+1381 url_not_found mime
+1382 url_not_found mime
+1383 url_not_found mime
+1384 url_not_found mime
 1385 url_not_found
 1386 url_not_found
 1387 url_not_found
-1388 url_not_found
+1388 url_not_found mime
 1391 url_not_found
 1392 url_not_found
 1393 url_not_found
@@ -457,6 +457,7 @@ PASS ../toast/HTML/5.4/html5-example.html
 
 PASS ../toast/HTML/5.4/html5-good.html
 2 naughty_lang
+11 unrecognised_value unknown_rel link_rel_off
 34 requires_href
 58 lonely_radio
 63 naughty_alt

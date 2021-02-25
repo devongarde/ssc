@@ -182,11 +182,11 @@ void element::examine_headers ()
     else
     {   vstr_t ids = a_.get_x < attr_headers > ();
         for (auto s : ids)
-            if (ids_.has_id (s))
-                if (ids_.get_tag (s) != elem_th)
+            if (get_ids ().has_id (s))
+                if (get_ids ().get_tag (s) != elem_th)
                     pick (nit_bad_header_id, ed_50, "4.9.11 Attributes common to td and th elements", es_error, ec_attribute, "id ", quote (s), " is not on a <TH>");
                 else
-                {   uid_t uid = ids_.get_uid (s);
+                {   uid_t uid = get_ids ().get_uid (s);
                     if ((uid < tuid_first) || (uid > tuid_last))
                         pick (nit_bad_header_id, ed_50, "4.9.11 Attributes common to td and th elements", es_error, ec_attribute, "id ", quote (s), " is on a <TH> in a different <TABLE>"); } } }
 

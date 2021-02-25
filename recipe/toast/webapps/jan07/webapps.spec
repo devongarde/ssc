@@ -59,6 +59,20 @@ PASS ../toast/webapps/jan07/i.html
 PASS ../toast/webapps/jan07/index.html
 3 attribute_unrecognised_here unrecognised_attribute
 
+PASS ../toast/webapps/jan07/links-bookmark.html
+13 use_quote_code
+20 url_not_found
+
+PASS ../toast/webapps/jan07/links-feed.html
+7 url_not_found
+8 url_not_found
+17 url_not_found
+18 url_not_found
+19 url_not_found
+
+PASS ../toast/webapps/jan07/links-help.html
+10 no_such_folder url_not_found
+
 PASS ../toast/webapps/jan07/m.html
 13 use_quote_code
 

@@ -81,6 +81,8 @@ public:
     void examine (const directory& d);
     ::std::string find_webmention () const;
     ::std::string find_mention_info (const url& u, bool text, bool anything);
+    ids_t& get_ids () { return ids_; }
+    const ids_t& get_ids () const { return ids_; }
     bool verify_url (nitpick& nits, const ::std::string& s, const attribute_bitset& state, const vit_t& itemtypes) const;
     const ::std::string name () const { return name_; }
     const ::std::string get_site_path () const;

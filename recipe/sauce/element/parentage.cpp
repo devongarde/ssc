@@ -66,6 +66,7 @@ parentage parent_table [] =
     { { HTML_4_0 }, { XHTML_1_1 }, elem_a, elem_undefined, 0, EF_4_INLINE | EF_S_G },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_a, elem_undefined, 0, EF_X2_TEXT | EF_S_G },
     { { HTML_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_a, elem_undefined, 0, EF_S_G },
+    { { HTML_JAN16 }, { HTML_UNDEF }, elem_a, elem_a, DENY },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_a, elem_undefined, DENY, EF_5_INTERACTIVE },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_a, elem_a },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_a, elem_altglyphdef },
@@ -166,7 +167,7 @@ parentage parent_table [] =
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_audio, elem_discard },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_audio, elem_handler },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_audio, elem_track },
-    { { HTML_JAN05 }, { HTML_UNDEF }, elem_audio, elem_source },
+    { { HTML_JUL07 }, { HTML_UNDEF }, elem_audio, elem_source },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_audio, elem_switch },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_audio, elem_video, DENY },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_audio, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM },
@@ -1049,10 +1050,10 @@ parentage parent_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_piece, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_piecewise, elem_otherwise },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_piecewise, elem_piece },
-    { { HTML_5_1 }, { HTML_UNDEF }, elem_picture, elem_source },
-    { { HTML_5_1 }, { HTML_UNDEF }, elem_picture, elem_img },
-    { { HTML_5_1 }, { HTML_UNDEF }, elem_picture, elem_script },
-    { { HTML_5_1 }, { HTML_UNDEF }, elem_picture, elem_template },
+    { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_picture, elem_source },
+    { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_picture, elem_img },
+    { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_picture, elem_script },
+    { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_picture, elem_template },
     { { HTML_TAGS }, { HTML_UNDEF }, elem_plaintext, elem_undefined },
     { { XHTML_2_0, 0, HE_SVG_2_0 }, { HTML_UNDEF }, elem_polyline, elem_clippath },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_polyline, elem_discard },
@@ -1338,7 +1339,7 @@ parentage parent_table [] =
     { { HTML_JAN05 }, { HTML_5_1 }, elem_template, elem_rp },
     { { HTML_JAN05 }, { HTML_5_1 }, elem_template, elem_rt },
     { { HTML_JAN05 }, { HTML_5_1 }, elem_template, elem_rtc },
-    { { HTML_JAN05 }, { HTML_5_1 }, elem_template, elem_source },
+    { { HTML_JUL07 }, { HTML_5_1 }, elem_template, elem_source },
     { { HTML_JAN05 }, { HTML_5_1 }, elem_template, elem_track },
     { { HTML_JAN05 }, { HTML_5_1 }, elem_template, elem_colgroup },
     { { HTML_JAN05 }, { HTML_5_1 }, elem_template, elem_tbody },
@@ -1486,7 +1487,7 @@ parentage parent_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_video, elem_track },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_video, elem_discard },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_video, elem_handler },
-    { { HTML_JAN05 }, { HTML_UNDEF }, elem_video, elem_source },
+    { { HTML_JUL07 }, { HTML_UNDEF }, elem_video, elem_source },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_video, elem_switch },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_video, elem_video, DENY },
     { { XHTML_1_1, 0, HE_SVG_1_2 }, { HTML_UNDEF }, elem_video, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM },
@@ -1973,7 +1974,7 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_page :
             return elem_pageset;
         case elem_param :
-            if (v.mjr () == 3) return elem_applet;
+            if (v.is_3 ()) return elem_applet;
             return elem_object;
         case elem_prototype :
             return elem_elementdef;
@@ -1987,13 +1988,15 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_th :
             return elem_tr;
         case elem_tr :
-            if (v.mjr () == 3) return elem_table;
+            if (v.is_3 ()) return elem_table;
             return elem_tbody;
         case elem_row :
             return elem_array;
         case elem_script :
             if (v.is_5 ()) return elem_body;
             return elem_head;
+        case elem_source :
+            return elem_video;
         case elem_t :
             if (v.is_5 ()) return elem_body;
             return elem_math;

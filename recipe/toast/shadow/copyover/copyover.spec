@@ -22,12 +22,12 @@ PASS ../toast/shadow/copyover/html-bad.html
 55 unrecognised_value
 56 attributes_on_closure
 57 unrecognised_value
-58 attribute_required url_not_found
-59 attribute_required url_not_found
-60 attribute_required url_not_found
-61 attribute_required url_not_found
-62 attribute_required url_not_found
-63 attribute_required url_not_found
+58 attribute_required url_not_found naughty_alt
+59 attribute_required url_not_found naughty_alt
+60 attribute_required url_not_found naughty_alt
+61 attribute_required url_not_found naughty_alt
+62 attribute_required url_not_found naughty_alt
+63 attribute_required url_not_found naughty_alt
 65 missing_close inserted_missing_closure missing_open
 77 url_not_found
 80 value_ol url_not_found
@@ -101,6 +101,7 @@ PASS ../toast/shadow/copyover/html-bad.html
 PASS ../toast/shadow/copyover/html-good.html
 2 naughty_lang
 6 url_not_found
+11 unrecognised_value unknown_rel link_rel_off
 34 requires_href
 58 lonely_radio
 63 naughty_alt

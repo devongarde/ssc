@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>link modulepreload</title>
+
+<link rel="modulepreload" href="app.mjs">
+<link rel="modulepreload" href="helpers.mjs">
+<link rel="modulepreload" href="irc.mjs">
+<link rel="modulepreload" href="fog-machine.mjs">
+<link rel="modulepreload" href="awesome-viewer.mjs">
+<link rel="modulepreload" href="awesome-viewer.js">
+</head>
+<body>
+
+<h1>link modulepreload</h1>
+
+<button onclick="import('./awesome-viewer.mjs').then(m => m.view())">
+View awesome thing
+</button>
+
+<button onclick="import('./awesome-viewer.js').then(m => m.view())">
+ View awesome thing
+</button>
+
+ </body>
+</html>

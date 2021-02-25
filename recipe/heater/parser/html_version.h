@@ -131,37 +131,39 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JUN07  HTML_2007, (HTML_JUN + 15)
 #define HTML_JUL07  HTML_2007, HTML_JUL
 #define HTML_OCT07  HTML_2007, HTML_OCT
+#define HTML_DEC07  HTML_2007, (HTML_DEC + 15)
 #define HTML_JAN08  HTML_2008, HTML_JAN
 #define HTML_JUN08  HTML_2008, (HTML_JUN + 13)
 #define HTML_JUL08  HTML_2008, HTML_JUL
 #define HTML_DEC08  HTML_2008, (HTML_DEC + 15)
 #define HTML_JAN09  HTML_2009, HTML_JAN
-#define HTML_JUN09  HTML_2009, (HTML_JUN  + 15)
+#define HTML_JUN09  HTML_2009, (HTML_JUN + 15)
 #define HTML_JUL09  HTML_2009, HTML_JUL
 #define HTML_DEC09  HTML_2009, (HTML_DEC + 15)
 #define HTML_JAN10  HTML_2010, HTML_JAN
-#define HTML_JUN10  HTML_2010, (HTML_JUN  + 15)
+#define HTML_JUN10  HTML_2010, (HTML_JUN + 15)
 #define HTML_JUL10  HTML_2010, HTML_JUL
 #define HTML_DEC10  HTML_2010, (HTML_DEC + 15)
 #define HTML_JAN11  HTML_2011, HTML_JAN
+#define HTML_JUN11  HTML_2011, (HTML_JUN + 15)
 #define HTML_JUL11  HTML_2011, HTML_JUL
 #define HTML_DEC11  HTML_2011, (HTML_DEC + 15)
 #define HTML_JAN12  HTML_2012, HTML_JAN
-#define HTML_JUN12  HTML_2012, (HTML_JUN  + 15)
+#define HTML_JUN12  HTML_2012, (HTML_JUN + 15)
 #define HTML_JUL12  HTML_2012, HTML_JUL
 #define HTML_DEC12  HTML_2012, (HTML_DEC + 15)
 #define HTML_JAN13  HTML_2013, HTML_JAN
-#define HTML_JUN13  HTML_2013, (HTML_JUN  + 15)
+#define HTML_JUN13  HTML_2013, (HTML_JUN + 15)
 #define HTML_FEB13  HTML_2013, (HTML_AUG + 14)
 #define HTML_JUL13  HTML_2013, HTML_JUL
 #define HTML_AUG13  HTML_2013, (HTML_AUG + 3)
 #define HTML_DEC13  HTML_2013, (HTML_DEC + 15)
 #define HTML_JAN14  HTML_2014, HTML_JAN
-#define HTML_JUN14  HTML_2014, (HTML_JUN  + 15)
+#define HTML_JUN14  HTML_2014, (HTML_JUN + 15)
 #define HTML_JUL14  HTML_2014, HTML_JUL
 #define HTML_DEC14  HTML_2014, (HTML_DEC + 15)
 #define HTML_JAN15  HTML_2015, HTML_JAN
-#define HTML_JUN15  HTML_2015, (HTML_JUN  + 15)
+#define HTML_JUN15  HTML_2015, (HTML_JUN + 15)
 #define HTML_JUL15  HTML_2015, HTML_JUL
 #define HTML_DEC15  HTML_2015, (HTML_DEC + 15)
 #define HTML_JAN16  HTML_2016, HTML_JAN
@@ -169,29 +171,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JUL16  HTML_2016, HTML_JUL
 #define HTML_DEC16  HTML_2016, (HTML_DEC + 15)
 #define HTML_JAN17  HTML_2017, HTML_JAN
-#define HTML_JUN17  HTML_2017, (HTML_JUN  + 15)
+#define HTML_JUN17  HTML_2017, (HTML_JUN + 15)
 #define HTML_JUL17  HTML_2017, HTML_JUL
 #define HTML_NOV17  HTML_2017, HTML_NOV
 #define HTML_DEC17  HTML_2017, (HTML_DEC + 15)
 #define HTML_JAN18  HTML_2018, HTML_JAN
-#define HTML_JUN18  HTML_2018, (HTML_JUN  + 15)
+#define HTML_JUN18  HTML_2018, (HTML_JUN + 15)
 #define HTML_JUL18  HTML_2018, HTML_JUL
 #define HTML_DEC18  HTML_2018, (HTML_DEC + 15)
 #define HTML_JAN19  HTML_2019, HTML_JAN
-#define HTML_JUN19  HTML_2019, (HTML_JUN  + 15)
+#define HTML_JUN19  HTML_2019, (HTML_JUN + 15)
 #define HTML_JUL19  HTML_2019, HTML_JUL
 #define HTML_DEC19  HTML_2019, (HTML_DEC + 15)
 #define HTML_JAN20  HTML_2020, HTML_JAN
-#define HTML_JUN20  HTML_2020, (HTML_JUN  + 15)
+#define HTML_JUN20  HTML_2020, (HTML_JUN + 15)
 #define HTML_JUL20  HTML_2020, HTML_JUL
 #define HTML_DEC20  HTML_2020, (HTML_DEC + 15)
 #define HTML_JAN21  HTML_2021, HTML_JAN
+#define HTML_EOJ21  HTML_2021, (HTML_JAN + 15)
+#define HTML_FEB21  HTML_2021, HTML_FEB
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
 #define HTML_LATEST_YEAR    HTML_2021
-#define HTML_LATEST_MONTH   1
+#define HTML_LATEST_MONTH   2
 
 #define HTML_CURRENT HTML_LATEST_YEAR, HTML_LATEST_MONTH
 
@@ -204,6 +208,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HV_XHTML        0x0000000000000020
 #define HV_ARIA         0x0000000000000040
+
+#define HR_A_AREA       0x0000000000000100
+#define HR_LINKHEAD     0x0000000000000200
+#define HR_LINKBODY     0x0000000000000400
+#define HR_LINK         ( HR_LINKHEAD | HR_LINKBODY )
+#define HR_EXTERNAL     0x0000000000000800
+#define HR_FORM         0x0000000000001000
+#define HR_ALL          0x0000000000001F00
+#define HR_MF1          0x0000000000002000
+#define HR_MF2          0x0000000000004000
+#define HR_MF           ( HR_MF1 | HR_MF2 )
+
+#define HL_CSS1         0x0000000000001000
+#define HL_CSS2         0x0000000000002000
+#define HL_CSS3         0x0000000000004000
+#define HL_CSS4         0x0000000000008000
+#define HL_CSS5         0x0000000000010000
+#define HL_CSS_45       ( HL_CSS4 | HL_CSS5 )
+#define HL_CSS_345      ( HL_CSS3 | HL_CSS_45 )
+#define HL_CSS_ALL      ( HL_CSS1 | HL_CSS2 | HL_CSS_345 )
 
 #define HV_WHATWG       0x0000000000100000
 #define HV_W3           0x0000000000200000
@@ -326,49 +350,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_OPERA        0x0000004000000000
 #define HE_SAFARI       0x0000008000000000
 
-
-#define HR_50_A_AREA    0x00000001
-#define HR_50_LINKHEAD  0x00000002
-//#define HR_50_LINKBODY  0x00000004
-#define HR_50_EXTERNAL  0x00000008
-#define HR_50           ( HR_50_A_AREA | HR_50_LINKHEAD )
-
-#define HR_51_A_AREA    0x00000010
-#define HR_51_LINKHEAD  0x00000020
-//#define HR_51_LINKBODY  0x00000040
-#define HR_51_EXTERNAL  0x00000080
-#define HR_51           ( HR_51_A_AREA | HR_51_LINKHEAD )
-
-#define HR_52_A_AREA    0x00000100
-#define HR_52_LINKHEAD  0x00000200
-#define HR_52_LINKBODY  0x00000400
-#define HR_52_EXTERNAL  0x00000800
-#define HR_52_LINK      ( HR_52_LINKHEAD | HR_52_LINKBODY )
-#define HR_52           ( HR_52_A_AREA | HR_52_LINKHEAD )
-
-#define HR_53_A_AREA    0x00001000
-#define HR_53_LINKHEAD  0x00002000
-#define HR_53_LINKBODY  0x00004000
-#define HR_53_EXTERNAL  0x00008000
-#define HR_53_LINK      ( HR_53_LINKHEAD | HR_53_LINKBODY )
-#define HR_53           ( HR_53_A_AREA | HR_53_LINKHEAD )
-
-#define HR_54_A_AREA    0x00010000
-#define HR_54_LINKHEAD  0x00020000
-#define HR_54_LINKBODY  0x00040000
-#define HR_54_EXTERNAL  0x00080000
-#define HR_54_FORM      0x00100000
-#define HR_54_LINK      ( HR_54_LINKHEAD | HR_54_LINKBODY )
-#define HR_54           ( HR_54_A_AREA | HR_54_LINKHEAD )
-
-#define HR_5            ( HR_50 | HR_51 | HR_52 | HR_53 | HR_54 )
-#define HR_A_AREA       ( HR_50_A_AREA | HR_51_A_AREA | HR_52_A_AREA | HR_53_A_AREA | HR_54_A_AREA )
-#define HR_LINKHEAD     ( HR_50_LINKHEAD | HR_51_LINKHEAD | HR_52_LINKHEAD | HR_53_LINKHEAD | HR_54_LINKHEAD )
-#define HR_LINKBODY     ( HR_52_LINKBODY | HR_53_LINKBODY | HR_54_LINKBODY )
-#define HR_LINK         ( HR_LINKHEAD | HR_LINKBODY )
-#define HR_FORM         ( HR_54_FORM )
-#define HR_EXTERNAL     ( HR_50_EXTERNAL | HR_51_EXTERNAL | HR_52_EXTERNAL | HR_53_EXTERNAL | HR_54_EXTERNAL )
-
 class html_version
 {   unsigned char mjr_ = 0, mnr_ = 0;
     uint64_t flags_ = 0, ext_ = 0;
@@ -475,6 +456,14 @@ public:
     bool svg_x1 () const { return ((ext_ & HE_SVG_X1) == HE_SVG_X1); }
     bool svg_x2 () const { return ((ext_ & HE_SVG_X2) == HE_SVG_X2); }
     bool svg_old_html () const { return ((ext_ & HE_SVG_OLD_H) == HE_SVG_OLD_H); }
+    bool is_a_area () const { return ((flags_ & HR_A_AREA) == HR_A_AREA); }
+    bool is_external () const { return ((flags_ & HR_EXTERNAL) == HR_EXTERNAL); }
+    bool is_form () const { return ((flags_ & HR_FORM) == HR_FORM); }
+    bool is_linkhead () const { return ((flags_ & HR_LINKHEAD) == HR_LINKHEAD); }
+    bool is_linkbody () const { return ((flags_ & HR_LINKBODY) == HR_LINKBODY); }
+    bool is_link () const { return ((flags_ & HR_LINK) != 0); }
+    bool is_mf () const { return ((flags_ & HR_MF) != 0); }
+    bool is_rel () const { return ((flags_ & HR_ALL) != 0); }
     bool invalid_addendum (const html_version& v) const;
     bool deprecated (const html_version& current) const;
     bool parse_doctype (nitpick& nits, const ::std::string& content);
@@ -525,6 +514,8 @@ const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_jul17 (HTML_JUL17, HV_WHATWG, 0);
 const html_version html_jul18 (HTML_JUL18, HV_WHATWG, HE_MATH_3 | HE_SVG_1_1);
 const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MATH_4 | HE_SVG_1_1);
+const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MATH_4 | HE_SVG_1_1);
+const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MATH_4 | HE_SVG_1_1);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_1_1);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_1_1);

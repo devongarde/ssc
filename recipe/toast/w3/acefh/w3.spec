@@ -21,7 +21,7 @@ PASS ../toast/w3/acefh/error_pls_warning.html
 3 inserted_missing_parent
 4 text_content
 9 not_iso_8859_1
-12 naughty_alt
+12 attribute_required
 
 PASS ../toast/w3/acefh/fpi_mismatch1.html
 2 html_contradictory

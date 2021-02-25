@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> img </title> </head>
+ <body>
+
+<p>In the common case, the data handled by the tokenisation stage
+comes from the network, but it can also come from script.</p>
+<p><img src="images/parsing-model-overview.png" alt="The network
+passes data to the Tokeniser stage, which passes data to the Tree
+Construction stage. From there, data goes to both the DOM and to
+Script Execution. Script Execution is linked to the DOM, and, using
+document.write(), passes data to the Tokeniser."></p>
+
+<!-- This is the correct way to do things. -->
+<p>
+ You are standing in an open field west of a house.
+<img src="house.jpeg" alt="The house is white, with a boarded front door.">
+ There is a small mailbox here.
+</p>
+
+<!-- This is the wrong way to do things. -->
+<p>
+ You are standing in an open field west of a house.
+ <img src="house.jpeg" alt="A white house, with a boarded front door.">
+ There is a small mailbox here.
+</p>
+
+<nav>
+ <p><a href="/help/"><img src="/icons/help.png" alt="">Help</a></p>
+ <p><a href="/configure/"><img src="/icons/configuration.png" alt="">
+ Configuration Tools</a></p>
+</nav>
+
+ <article>
+ <header>
+ <h1>Ratatouille wins <i>Best Movie of the Year</i> award</h1>
+ <p><img src="movies.png" alt="Movies"></p>
+ </header>
+ <p>Pixar has won yet another <i>Best Movie of the Year</i> award,
+ making this its 8th win in the last 12 years.</p>
+ </article>
+ <article>
+ <header>
+ <h1>Latest TWiT episode is online</h1>
+ <p><img src="podcasts.png" alt="Podcasts"></p>
+ </header>
+ <p>The latest TWiT episode has been posted, in which we hear
+ several tech news stories as well as learning much more about the
+ iPhone. This week, the panelists compare how reflective their
+iPhones' Apple logos are.</p>
+ </article>
+
+<h1><img src="XYZ.gif" alt="The XYZ company"></h1>
+
+<article>
+ <h2>News</h2>
+ <p>We have recently been looking at buying the <img src="alpha.gif"
+ alt=""> ΑΒΓ company, a small Greek company specialising in our type of product.</p>
+
+<aside><p><img src="alpha-large.gif" alt=""></p></aside>
+ <p>The ΑΒΓ company has had a good quarter, and our
+ pie chart studies of their accounts suggest a much bigger blue slice
+ than its green and orange slices, which is always a good sign.</p>
+</article>
+<p>Consider for a moment their logo:</p>
+<p><img src="/images/logo" alt="It consists of a green circle with a
+green question mark centered inside it."></p>
+<p>How unoriginal can you get? I mean, oooooh, a question mark, how
+<em>revolutionary</em>, how utterly <em>ground-breaking</em>, I'm
+sure everyone will rush to adopt those specifications now! They could
+at least have tried for some sort of, I don't know, sequence of
+rounded squares with varying shades of green and bold white outlines,
+at least that would look good on the cover of a blue book.</p>
+
+<p>The network passes data to the Tokeniser stage, which
+passes data to the Tree Construction stage. From there, data goes
+to both the DOM and to Script Execution. Script Execution is
+linked to the DOM, and, using document.write(), passes data to
+the Tokeniser.</p>
+<p><img src="images/parsing-model-overview.png" alt=""></p>
+A graph that repeats the previous paragraph in graphical form:
+<p>According to a study covering several billion pages,
+about 62% of documents on the Web in 2007 triggered the Quirks
+rendering mode of Web browsers, about 30% triggered the Almost
+Standards mode, and about 9% triggered the Standards mode.</p>
+<p><img src="rendering-mode-pie-chart.png" alt=""></p>
+
+<h1>The Lady of Shalott</h1>
+<p><img src="shalott.jpeg" alt=""></p>
+<p>On either side the river lie<br>
+Long fields of barley and of rye,<br>
+That clothe the wold and meet the sky;<br>
+And through the field the road run by<br>
+To many-tower'd Camelot;<br>
+And up and down the people go,<br>
+Gazing where the lilies blow<br>
+Round an island there below,<br>
+The island of Shalott.</p>
+
+<figure>
+<img src="1100670787_6a7c664aef.jpg">
+ <legend>Bubbles traveled everywhere with us.</legend>
+</figure>
+
+<figure>
+<img src="KDE%20Light%20desktop.png">
+ <legend>Screenshot of a KDE desktop.</legend>
+</figure>
+
+<figure>
+<img src="/commons/a/a7/Rorschach1.jpg">
+ <legend>A black outline of the first of the ten cards
+ in the Rorschach inkblot test.</legend>
+</figure>
+
+<!-- This example is wrong. Do not copy it. -->
+<figure>
+ <img src="/commons/a/a7/Rorschach1.jpg" alt="A black outline
+ of the first of the ten cards in the Rorschach inkblot test.">
+ <legend>A black outline of the first of the ten cards
+ in the Rorschach inkblot test.</legend>
+</figure>
+
+ </body>
+</html>

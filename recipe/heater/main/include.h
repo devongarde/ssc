@@ -228,6 +228,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DENARY "0123456789"
 #define DDD DENARY "-."
 #define DECIMAL DDD "+"
+#define POSITIVE DENARY "+."
 #define OCTAL "01234567"
 #define HEX DENARY "abcdefABCDEF"
 #define UPPERCASE "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

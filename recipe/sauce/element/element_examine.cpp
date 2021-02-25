@@ -48,7 +48,6 @@ void element::pre_examine_element (const e_element tag)
         case elem_fn : examine_fn (); break;
         case elem_html : examine_html (); break;
         case elem_iframe : examine_iframe (); break;
-        case elem_img : examine_img (); break;
         case elem_li : examine_li (); break;
         case elem_link : examine_link (); break;
         case elem_main : examine_main (); break;
@@ -131,6 +130,7 @@ void element::post_examine_element (const e_element tag)
         case elem_h6 : examine_h123456 (); break;
         case elem_hgroup : examine_hgroup () ; break;
         case elem_header : examine_header (); break;
+        case elem_img : examine_img (); break;
         case elem_input : examine_input (); break;
         case elem_interval :if (page_.version ().math () <= math_1) break;
                             // drop thru'
@@ -218,10 +218,8 @@ void element::congeal_dynamism ()
                     pick (nit_missing_dynamic, es_catastrophic, ec_element, "missing dynamic congeal for ", node_.id ().name ());
                     break;  } }
 
-void element::examine_self (const directory& d, const itemscope_ptr& itemscope, const element_bitset& ancestral_elements, const element_bitset& sibling_elements, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes)
+void element::examine_self (const directory& d, const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes)
 {   if (examined_) return;
-    ancestral_elements_ = ancestral_elements;
-    sibling_elements_ = sibling_elements;
     ancestral_attributes_ = ancestral_attributes;
     sibling_attributes_ = sibling_attributes;
     itemscope_ = itemscope;
@@ -299,8 +297,8 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
         if (a_.known (a_style)) examine_style_attr ();
         if (a_.known (a_xlinkhref)) examine_xlinkhref ();
 
-        if (node_.line () >= 0) ids_.data (node_.line ());
-        a_.invalid_id (nits (), node_.version (), ids_, this);
+        if (node_.line () >= 0) get_ids ().data (node_.line ());
+        a_.invalid_id (nits (), node_.version (), get_ids (), this);
         a_.invalid_access (nits (), node_.version (), access_);
 
         pre_examine_element (tag);
@@ -336,38 +334,62 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
             mf_ -> verify (nits (), node_.version ()); }
     examined_ = true; }
 
-bool element::to_sibling (element_ptr& e)
+bool element::to_sibling (element_ptr& e, const bool canreconstruct)
 {   if (! e -> has_next ()) return false;
-    element_ptr x (e -> next ());
+    element_ptr x (e -> next (canreconstruct));
     x.swap (e);
     return true; }
 
 void element::examine_children (const directory& d)
 {   if (has_child ())
-    {   element_bitset sibling_elements, ancestral_elements;
-        attribute_bitset ancestral_attributes, sibling_attributes;
+    {   attribute_bitset ancestral_attributes, sibling_attributes;
         itemscope_ptr itemscope;
         if (tag () == elem_template)
-        {   ancestral_attributes = own_attributes_;
-            ancestral_elements.set (node_.tag ()); }
+            ancestral_attributes = own_attributes_;
         else
         {   ancestral_attributes = ancestral_attributes_;
-            ancestral_elements = ancestral_elements_ | node_.tag ();
             itemscope = itemscope_; }
         element_ptr e = child ();
         do
-        {   e -> examine_self (d, itemscope, ancestral_elements, sibling_elements, ancestral_attributes, sibling_attributes);
+        {   e -> examine_self (d, itemscope, ancestral_attributes, sibling_attributes);
             if (e -> node_.is_closure ())
                 closure_uid_ = e -> uid_;
             else
-            {   sibling_elements |= e -> node_.tag ();
-                sibling_attributes |= e -> own_attributes_;
+            {   sibling_attributes |= e -> own_attributes_;
+                if (tag () != elem_template)
+                {   descendant_attributes_ |= e -> descendant_attributes_;
+                    descendant_attributes_ |= e -> own_attributes_; } } }
+        while (to_sibling (e));
+        e = child ();
+        do
+        {   e -> sibling_attributes_ = sibling_attributes; }
+        while (to_sibling (e)); } }
+
+::std::string element::make_children (const int depth, const element_bitset& ancestral_elements)
+{   ::std::string res;
+    ancestral_elements_ = ancestral_elements;
+    if (context.tell (e_structure))
+    {   res += ::std::string (depth * 2, ' ');
+        if (node_.is_closure ()) res += "/";
+        res += node_.id ().name () + "\n"; }
+    if (has_child ())
+    {   element_bitset ancestors, siblings;
+        element_ptr e = child (false);
+        if (tag () == elem_template) ancestors.set (elem_template);
+        else ancestors = ancestral_elements_ | node_.tag ();
+        do
+        {   res += e -> make_children (depth + 1, ancestors);
+            if (! e -> node_.is_closure ())
+            {   siblings |= e -> node_.tag ();
                 if (tag () != elem_template)
                 {   descendant_elements_ |= e -> descendant_elements_;
-                    descendant_elements_ |= e -> node_.tag ();
-                    descendant_attributes_ |= e -> descendant_attributes_;
-                    descendant_attributes_ |= e -> own_attributes_; } } }
-        while (to_sibling (e)); } }
+                    descendant_elements_ |= e -> node_.tag (); } } }
+        while (to_sibling (e, false));
+        e = child (false);
+        do
+        {   e -> sibling_elements_ = siblings; }
+        while (to_sibling (e, false)); }
+    return res; }
 
 void element::verify_children ()
 {   if (has_child ())
@@ -378,8 +400,8 @@ void element::verify_children ()
 
 void element::verify ()
 {   assert (access_ != nullptr);
-    if (node_.line () >= 0) ids_.data (node_.line ());
-    a_.verify (nits (), node_.version (), ids_, ancestral_attributes_, vit_);
+    if (node_.line () >= 0) get_ids ().data (node_.line ());
+    a_.verify (nits (), node_.version (), get_ids (), ancestral_attributes_, vit_);
     if (a_.has (a_headers)) examine_headers ();
     verify_children ();
     if (a_.has (a_list)) validate_input_id (); }

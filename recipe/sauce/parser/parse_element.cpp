@@ -52,8 +52,31 @@ void element_node::reset (const element_node& en)
 {   element_node tmp (en);
     swap (tmp); }
 
-::std::string element_node::text () const
-{   return (unify_whitespace (trim_the_lot_off (inner_text (elem_faux_text)))); }
+void element_node::swap (element_node& en) NOEXCEPT
+{   ::std::swap (parent_, en.parent_);
+    ::std::swap (child_, en.child_);
+    ::std::swap (last_, en.last_);
+    ::std::swap (next_, en.next_);
+    ::std::swap (previous_, en.previous_);
+    ::std::swap (line_, en.line_);
+    ::std::swap (closure_, en.closure_);
+    ::std::swap (checked_sanitised_, en.checked_sanitised_);
+    version_.swap (en.version_);
+    elem_.swap (en.elem_);
+    va_.swap (en.va_);
+    text_.swap (en.text_);
+    sanitised_.swap (en.sanitised_);
+    nits_.swap (en.nits_); }
+
+::std::string element_node::text ()
+{   if (! checked_sanitised_)
+    {   sanitised_ = unify_whitespace (trim_the_lot_off (inner_text ()));
+        checked_sanitised_ = true; }
+    return sanitised_; }
+
+//const ::std::string element_node::text () const
+//{   assert (checked_sanitised_);
+//    return sanitised_; }
 
 void element_node::parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   va_.parse (nits_, v, b, e, line_, elem_);
@@ -66,21 +89,7 @@ void element_node::parse_attributes (const html_version& v, const ::std::string:
             case elem_math : version_.math_version (va_.get_math (v)); break;
             default : break; } } }
 
-void element_node::swap (element_node& en) NOEXCEPT
-{   ::std::swap (parent_, en.parent_);
-    ::std::swap (child_, en.child_);
-    ::std::swap (last_, en.last_);
-    ::std::swap (next_, en.next_);
-    ::std::swap (previous_, en.previous_);
-    ::std::swap (line_, en.line_);
-    ::std::swap (closure_, en.closure_);
-    version_.swap (en.version_);
-    elem_.swap (en.elem_);
-    va_.swap (en.va_);
-    text_.swap (en.text_);
-    nits_.swap (en.nits_); }
-
-::std::string element_node::rpt (const int level) const
+::std::string element_node::rpt (const int level)
 {   ::std::string res (::boost::lexical_cast < ::std::string > (level) + ": ");
     switch (elem_.get ())
     {   case elem_faux_cdata :
@@ -126,11 +135,20 @@ void element_node::swap (element_node& en) NOEXCEPT
         res += kids -> rpt (level + 1);
     return res; }
 
-::std::string element_node::inner_text (const ::std::size_t tag) const
-{   if (elem_.get () == tag) return text_;
-    if (elem_.get () == elem_faux_whitespace) return " "; // yaboo xml
+::std::string element_node::inner_text () const
+{   switch (elem_.get ())
+    {   case elem_faux_cdata :
+        case elem_faux_char :
+        case elem_faux_code :
+            if (is_whitespace (text_)) return " ";
+            return text_;
+        case elem_faux_text :
+            return text_;
+        case elem_faux_whitespace :
+            return " "; // yaboo xml
+        default : break; }
     if (child_ == nullptr) return ::std::string ();
     ::std::string res;
     for (element_node* kids = child_; kids != nullptr; kids = kids -> next_)
-        res += kids -> inner_text (tag);
+        res += kids -> inner_text ();
     return res; }

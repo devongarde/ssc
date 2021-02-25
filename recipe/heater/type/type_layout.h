@@ -81,12 +81,12 @@ template < > struct type_master < t_sizex > : type_base < ::std::string, t_sizex
     static ::std::string default_value () { return ::std::string (); }
     ::std::string get () const { return get_string (); } };
 
-template < > struct type_master < t_sizes > : type_base < ::std::string, t_sizes >
+template < > struct type_master < t_wxhs > : type_base < ::std::string, t_wxhs >
 {   typedef ::std::vector < type_master < t_sizex > > vx_t;
     vx_t value_;
-    void swap (type_master < t_sizes >& t)
+    void swap (type_master < t_wxhs >& t)
     {   value_.swap (t.value_);
-        type_base < ::std::string, t_sizes >::swap (t); }
+        type_base < ::std::string, t_wxhs >::swap (t); }
     bool parse (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         if (ss.empty ())
@@ -100,12 +100,12 @@ template < > struct type_master < t_sizes > : type_base < ::std::string, t_sizes
             if (value_ [n].invalid ()) res = false; }
         return res; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   if (parse (nits, v, s)) type_base < ::std::string, t_sizes > :: status (s_good);
+    {   if (parse (nits, v, s)) type_base < ::std::string, t_wxhs > :: status (s_good);
         else
         {   nits.pick (nit_sizes, es_error, ec_type, "SIZES takes a space separated sequence of values, each of which are 'any' or two positive integers separated by an 'x'");
-            type_base < ::std::string, t_sizes > :: status (s_invalid); } }
+            type_base < ::std::string, t_wxhs > :: status (s_invalid); } }
     void reset ()
     {   value_.clear ();
-        type_base < ::std::string, t_sizes > :: reset (); }
+        type_base < ::std::string, t_wxhs > :: reset (); }
     static ::std::string default_value () { return "any"; }
     ::std::string get () const { return get_string (); } };

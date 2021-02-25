@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.85
+version 0.0.87
 https://ssc.lu/
 
 
@@ -14,7 +14,7 @@ see W3-LICENCE.txt for additional copyright & licence information
 WARNING: this code is:
 - incomplete
 - pre-alpha
-- IT WILL NOT DO WHAT YOU EXPECT :-)
+- IT PROBABLY WON'T BEHAVE AS YOU EXPECT :-)
 - do NOT feed it untrusted data
 
 
@@ -31,17 +31,18 @@ ssc analyses static HTML sites at source:
 
 with opinions on:
 - standard english where dialect is required
-- perfectly legal but rather untidy HTML
-- abhorrent HTML such as autoplay on video
+- perfectly legal but untidy / inefficient HTML
+- abhorrent abuse such as autoplay on video
 
 It does NOT:
-- do what you want or expect
 - behave securely: its parser is holier than robin's cow
 - analyse or understand scripts
 - analyse or understand styles, beyond nicking class names from CSS
 - analyse or understand XML or derivatives except as noted above
 
-It can output 'repaired' HTML (not XHTML) with Server Side Includes merged in place.
+It can output:
+- 'repaired' HTML (not XHTML)
+- Server Side Includes resolved in place.
 
 
 
@@ -90,4 +91,4 @@ more licences    licences for content copied from elsewhere
 
 written by dylan harris
 mail@ssc.lu
-January 2021
+February 2021

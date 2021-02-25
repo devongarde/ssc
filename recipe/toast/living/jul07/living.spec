@@ -68,6 +68,20 @@ PASS ../toast/living/jul07/i.html
 PASS ../toast/living/jul07/index.html
 3 attribute_unrecognised_here unrecognised_attribute
 
+PASS ../toast/living/jul07/links-bookmark.html
+13 use_quote_code
+20 url_not_found
+
+PASS ../toast/living/jul07/links-feed.html
+7 url_not_found
+8 url_not_found
+17 url_not_found
+18 url_not_found
+19 url_not_found
+
+PASS ../toast/living/jul07/links-help.html
+10 no_such_folder url_not_found
+
 PASS ../toast/living/jul07/ls1.html
 0 charset_mismatch charset_used charset_invalid
 

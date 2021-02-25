@@ -171,6 +171,8 @@ template < > struct type_master < t_lcrdss > : string_vector < t_lcrdss, sz_spac
         if (test_value < t_lcrds > (nits, v, trim_the_lot_off (ss))) return;
         string_vector < t_lcrdss, sz_space > :: status (s_invalid); } };
 
+template < > struct type_master < t_length > : type_either_or < t_length, t_length_absolute, t_length_relative > { };
+
 template < > struct type_master < t_linethickness > : tidy_string < t_linethickness >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_linethickness > :: set_value (nits, v, s);
@@ -448,11 +450,14 @@ template < > struct type_master < t_roman_dsc > : tidy_string < t_roman_dsc >
 template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
 {   url u_;
     int width_ = 0;
-    float density_ = 0.0;
+    float density_ = 1.0;
+    bool has_width_ = false, has_density_ = false;
     void swap (type_master < t_imcastr >& t)
     {   ::std::swap (u_, t.u_);
         ::std::swap (width_, t.width_);
         ::std::swap (density_, t.density_);
+        ::std::swap (has_width_, t.has_width_);
+        ::std::swap (has_density_, t.has_density_);
         tidy_string < t_imcastr > :: swap (t); }
     bool parse (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_imcastr > :: set_value (nits, v, s);
@@ -473,12 +478,12 @@ template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
             {   case 'w' :
                 case 'W' :
                     width_ = lexical < int > :: cast (args.at (1).substr (0, pos-1));
-                    if (width_ > 0) return true;
+                    if (width_ > 0) { has_width_ = true; return true; }
                     break;
                 case 'x' :
                 case 'X' :
                     density_ = lexical < float > :: cast (args.at (1).substr (0, pos-1));
-                    if (density_ > 0.0) return true;
+                    if (density_ > 0.0) { has_density_ = true; return true; }
                     break;
                 default : break; }
         nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_attribute,
@@ -487,14 +492,17 @@ template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (parse (nits, v, s)) tidy_string < t_imcastr > :: status (s_good);
         else tidy_string < t_imcastr > :: status (s_invalid); }
+    bool has_width () const { return has_width_; }
+    bool has_density () const { return has_density_; }
     void reset ()
-    {   u_.reset (); width_ = 0; density_ = 0.0;
+    {   u_.reset (); width_ = 0; density_ = 1.0;
         tidy_string < t_imcastr > :: reset (); }
     static ::std::string default_value () { return ::std::string (); } };
 
 template < > struct type_master < t_srcset > : tidy_string < t_srcset >
 {   typedef ::std::vector < type_master < t_imcastr > > vix_t;
     vix_t value_;
+    bool has_width_ = false, has_density_ = false;
     void swap (type_master < t_srcset >& t)
     {   value_.swap (t.value_);
         tidy_string < t_srcset >::swap (t); }
@@ -511,22 +519,39 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
         ::std::size_t max = xs.size ();
         for (::std::size_t n = 0; n < max; ++n)
         {   value_ [n].set_value (nits, v, xs [n]);
-            if (value_ [n].invalid ()) res = false; }
+            if (value_ [n].invalid ()) res = false;
+            else if (value_ [n].good ())
+            {   if (value_ [n].has_width ()) has_width_ = true;
+                if (value_ [n].has_density ()) has_density_ = true; } }
+        if (! res)
+        {   if (max < 2) nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "SRCSET takes a comma separated list of values, each a url followed by, optionally, a space and a width or a density");
+            return false; }
         if (max > 1)
-            for (::std::size_t x = 0; x < max - 1; ++x)
-                for (::std::size_t y = x+1; y < max; ++y)
-                {   if ((value_ [x].width_ > 0) && (value_ [x].width_ == value_ [y].width_))
-                    {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each width in a SRCSET attribute must be unique (", value_ [x].width_, " is repeated)");
-                        return false; }
-                    if ((value_ [x].density_ > 0.0) && (value_ [x].density_ == value_ [y].density_))
-                    {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each density in a SRCSET attribute must be unique");
-                        return false; } }
+        {   if (has_density_)
+                if (has_width_)
+                {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "do not mix widths and densities in a SRCSET");
+                    return false; }
+                else for (::std::size_t x = 0; x < max - 1; ++x)
+                    for (::std::size_t y = x+1; y < max; ++y)
+                        if ((value_ [x].density_ > 0.0) && (value_ [x].density_ == value_ [y].density_))
+                            if (value_ [x].density_ == 1.0)
+                            {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "in a SRCSET the default density is 1.0, which may only occur once");
+                                return false; }
+                            else
+                            {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each density in a SRCSET must be unique (", value_ [x].density_, " is repeated)");
+                                return false; }
+            if (has_width_)
+                for (::std::size_t x = 0; x < max - 1; ++x)
+                    for (::std::size_t y = x+1; y < max; ++y)
+                        if ((value_ [x].width_ > 0) && (value_ [x].width_ == value_ [y].width_))
+                        {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each width in a SRCSET must be unique (", value_ [x].width_, " is repeated)");
+                            return false; } }
         return res; }
+    bool has_width () const { return has_width_; }
+    bool has_density () const { return has_density_; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (parse (nits, v, s)) string_value < t_srcset > :: status (s_good);
-        else
-        {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "SRCSET takes a comma separated list of values, each a url then optionally a space with either a width or a density");
-            tidy_string < t_srcset > :: status (s_invalid); } }
+        else tidy_string < t_srcset > :: status (s_invalid); }
     void reset ()
     {   value_.clear ();
         tidy_string < t_srcset > :: reset (); } };

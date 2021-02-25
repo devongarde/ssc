@@ -36,7 +36,7 @@ public:
 	symbol() = default;
     symbol (const symbol& s) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
-	symbol(symbol&&) = default;
+	symbol (symbol&&) = default;
 #endif // VS
     explicit symbol (const VALUE& v, const e_namespace ns = ns_default) : value_ (v), ns_ (ns), unknown_ (false)
     {   first_ = table_.first_version (v);

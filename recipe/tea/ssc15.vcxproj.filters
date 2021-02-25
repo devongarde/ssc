@@ -803,6 +803,9 @@
     <ClInclude Include="..\heater\icu\converter.h">
       <Filter>Heater\icu</Filter>
     </ClInclude>
+    <ClInclude Include="\\corona\dylan\github\ssc\recipe\heater\stats\stats4.h">
+      <Filter>Heater\stats</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">

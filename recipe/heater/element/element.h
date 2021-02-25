@@ -38,14 +38,14 @@ typedef ::std::shared_ptr < element > element_ptr;
 class element
 {   element_node& node_;
     attributes a_;
-    bool examined_ = false, icarus_ = false;
+    bool examined_ = false, icarus_ = false, reconstructed_ = false;
     page& page_;
     element* parent_ = nullptr;
     element_ptr sibling_ = nullptr, child_ = nullptr;
     element* autofocus_ = nullptr;
     microformats_ptr mf_ = nullptr;
     ::std::string name_;
-    ids_t& ids_;
+//    ids_t& ids_;
     sstr_t* access_ = nullptr;
     element_bitset ancestral_elements_, sibling_elements_, descendant_elements_;
     attribute_bitset ancestral_attributes_, own_attributes_, sibling_attributes_, descendant_attributes_;
@@ -58,7 +58,7 @@ class element
     nitpick& nits () const { return node_.nits (); }
     found_farm find_farm (const e_property prop, element* starter = nullptr);
     void seek_webmention (::std::string& mention, e_wm_status& wms);
-    bool to_sibling (element_ptr& e);
+    bool to_sibling (element_ptr& e, const bool canreconstruct = true);
     element* next_element (element* previous);
     template < class PROPERTY > void note_reply ();
     template < e_type T > void val_min_max ();
@@ -198,10 +198,11 @@ class element
     void examine_video ();
 public:
     element () = delete;
-    element (const ::std::string& name, element_node& en, element* parent, ids_t& ids, sstr_t* access, page& p);
+    element (const ::std::string& name, element_node& en, element* parent, page& p);
     ~element () = default;
     void swap (element& e) NOEXCEPT;
 
+    void reconstruct (sstr_t* access);
     const element_node& node () const
     {   return node_; }
     const ::std::string name () const { return name_; }
@@ -210,8 +211,8 @@ public:
     bool has_next () const
     {   return node_.has_next (); }
     ::std::string content () const;
-    element_ptr child ();
-    element_ptr next ();
+    element_ptr child (const bool canreconstruct = true);
+    element_ptr next (const bool canreconstruct = true);
     e_element tag () const
     {   return node_.tag (); }
     bool invalid () const
@@ -222,9 +223,9 @@ public:
     {   if (own_attributes_.test (a_hidden)) return true;
         return ancestral_attributes_.test (a_hidden); }
     void examine_self ( const directory& d, const itemscope_ptr& itemscope = itemscope_ptr (),
-                        const element_bitset& gf = element_bitset (), const element_bitset& sf = element_bitset (),
                         const attribute_bitset& ancestral_attributes = attribute_bitset (), const attribute_bitset& sibling_attributes = attribute_bitset ());
     void examine_children (const directory& d);
+    ::std::string make_children (const int depth, const element_bitset& gf = element_bitset ());
     void verify_document ();
     ::std::string find_date_value () const;
     ::std::string find_text_value () const;
@@ -232,6 +233,8 @@ public:
     ::std::string find_html_value () const;
     ::std::string find_webmention ();
     ::std::string find_mention_info (const url& u, bool text, bool anything);
+    ids_t& get_ids ();
+    const ids_t& get_ids () const;
     element* parent () const
     {   assert (! is_top ());
         return parent_; }

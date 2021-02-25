@@ -160,6 +160,7 @@
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="\\corona\dylan\github\ssc\recipe\heater\stats\stats4.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp" />

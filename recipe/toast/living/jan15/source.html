@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> var </title> </head>
+ <body>
+
+<source src="video.mp4" type="video/mp4; codecs=&quot; avc1.42E01E, mp4a.40.2&quot;">
+<source src="video.mp4" type="video/mp4; codecs=&quot; avc1.58A01E, mp4a.40.2&quot;">
+<source src="video.mp4" type="video/mp4; codecs=&quot; avc1.4D401E, mp4a.40.2&quot;">
+<source src="video.mp4" type="video/mp4; codecs=&quot; avc1.64001E, mp4a.40.2&quot;">
+<source src="video.mp4" type="video/mp4; codecs=&quot; mp4v.20.8, mp4a.40.2&quot;">
+<source src="video.mp4" type="video/mp4; codecs=&quot; mp4v.20.240, mp4a.40.2&quot;">
+<source src="video.3gp" type="video/3gpp; codecs=&quot; mp4v.20.8, samr&quot;">
+<source src="video.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+<source src="video.ogv" type="video/ogg; codecs=&quot;theora, speex&quot;">
+<source src="audio.oga" type="audio/ogg; codecs=vorbis">
+<source src="audio.oga" type="audio/ogg; codecs=speex">
+<source src="audio.oga" type="audio/ogg; codecs=flac">
+<source src="video.ogv" type="video/ogg; codecs=&quot;dirac, vorbis&quot;">
+<source src="video.mkv" type="video/x-matroska; codecs=&quot; theora, vorbis&quot;">
+
+<script>
+ function fallback(video) {
+ // replace <video> with its contents
+ while (video.hasChildNodes()) {
+ if (video.firstChild instanceof HTMLSourceElement)
+ video.removeChild(video.firstChild);
+ else
+ video.parentNode.insertBefore(video.firstChild, video);
+ }
+ video.parentNode.removeChild(video);
+ }
+</script>
+<video controls autoplay>
+ <source src='video.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+ <source src='video.ogv' type='video/ogg; codecs="theora, vorbis"' onerror="fallback(parentNode)">
+ ...
+</video>
+
+ </body>
+</html>

@@ -112,6 +112,43 @@ PASS ../toast/living/jul08/header.html
 PASS ../toast/living/jul08/i.html
 0 charset_mismatch charset_used charset_invalid
 
+PASS ../toast/living/jul08/img.html
+12 newline_in_string no_such_folder url_not_found
+17 url_not_found
+24 url_not_found
+29 no_such_folder url_not_found no_such_folder url_not_found naughty_alt
+30 no_such_folder url_not_found no_such_folder url_not_found naughty_alt
+37 url_not_found
+45 url_not_found
+50 use_quote_code
+53 url_not_found
+58 url_not_found naughty_alt
+60 url_not_found naughty_alt
+67 newline_in_string no_such_folder url_not_found
+73 use_quote_code
+80 no_such_folder url_not_found naughty_alt
+86 url_not_found naughty_alt
+89 url_not_found naughty_alt
+94 use_quote_code
+101 attribute_required url_not_found
+106 attribute_required url_not_found
+111 attribute_required no_such_folder url_not_found
+119 newline_in_string newline_in_string no_such_folder url_not_found
+124 url_not_found naughty_alt
+126 url_not_found
+129 url_not_found
+133 url_not_found naughty_alt
+136 inserted_missing_closure
+139 newline_in_string url_not_found
+143 use_quote_code
+149 url_not_found
+150 use_quote_code
+161 newline_in_string newline_in_string url_not_found
+163 use_quote_code
+169 use_quote_code
+170 url_not_found
+179 url_not_found naughty_alt
+
 PASS ../toast/living/jul08/index.html
 3 attribute_unrecognised_here unrecognised_attribute
 
@@ -120,6 +157,39 @@ PASS ../toast/living/jul08/li.html
 11 use_quote_code
 26 lingo
 27 use_quote_code
+
+PASS ../toast/living/jul08/links-alternate.html
+5 url_not_found
+
+PASS ../toast/living/jul08/links-bookmark.html
+13 use_quote_code
+20 url_not_found
+
+PASS ../toast/living/jul08/links-feed.html
+7 url_not_found
+8 url_not_found
+17 url_not_found
+18 url_not_found
+19 url_not_found
+
+PASS ../toast/living/jul08/links-help.html
+10 no_such_folder url_not_found
+
+PASS ../toast/living/jul08/links-icon.html
+5 url_not_found
+6 url_not_found
+7 url_not_found
+8 url_not_found
+9 url_not_found
+10 url_not_found
+11 url_not_found
+
+PASS ../toast/living/jul08/links-up.html
+13 no_such_folder url_not_found
+14 no_such_folder url_not_found
+15 chocolate_teapot
+19 no_such_folder url_not_found
+20 chocolate_teapot
 
 PASS ../toast/living/jul08/ls1.html
 0 charset_mismatch charset_used charset_invalid
@@ -172,6 +242,23 @@ PASS ../toast/living/jul08/samp.html
 
 PASS ../toast/living/jul08/small.html
 0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/living/jul08/source.html
+6 inserted_missing_parent missing_close url_not_found
+7 url_not_found
+8 url_not_found
+9 url_not_found
+10 url_not_found
+11 url_not_found
+12 url_not_found
+13 url_not_found
+14 url_not_found
+15 url_not_found mime
+16 url_not_found mime
+17 url_not_found mime
+18 url_not_found
+19 mime url_not_found
+21 inserted_missing_closure
 
 PASS ../toast/living/jul08/ul.html
 9 inserted_missing_closure

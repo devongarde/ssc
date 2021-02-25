@@ -56,12 +56,10 @@ PASS ../toast/microformats/mf2/mf2-example.html
 57 mf_infer
 69 hcard_infer hcard_infer
 114 mf_infer
-115 naughty_alt
 121 naughty_alt
 126 mf_infer
 139 bad_datetime
 151 mf_infer
-152 naughty_alt
 165 mf_infer
 171 mf_infer
 

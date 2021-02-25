@@ -50,6 +50,8 @@ The options are as follows:
 
 --general.rdf           Check RDF attributes. This option currently underperforms. An extension to properly support RDF and RDFs is planned.
 
+--general.rel           Only mention <LINK> REL values, found neither in the living standard nor at microformats.org, in debug output.
+
 --general.slob          Ignore perfectly legal but thoroughly slobby HTML, such as being far too lazy to get round to bothering to close elements.
 
 -h                      print a summary of switches and exit
@@ -207,6 +209,8 @@ The options are as follows:
 --shadow.file f         Write ssc's shadow cache to this file, to accelerate future shadows of the same content
 
 --shadow.ignore ext     When shadowing, ignore files with this extension. May be repeated
+
+-- shadow.info          Add a comment at the top of each shadowed HTML file noting their generation time
 
 --shadow.ssi            Do NOT resolve SSIs when shadowing even if --general.ssi is set.
 

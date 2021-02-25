@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "symbol/symbol_table.h"
 
-void symbol_store::swap (symbol_store& ss) NOEXCEPT
+void symbol_store :: swap (symbol_store& ss) NOEXCEPT
 {   first_.swap (ss.first_);
     last_.swap (ss.last_);
     sz_.swap (ss.sz_);

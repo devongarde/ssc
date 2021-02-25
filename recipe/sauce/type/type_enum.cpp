@@ -469,6 +469,33 @@ struct symbol_entry < e_kind > kind_symbol_table [] =
     { { HTML_5_0 }, { HTML_UNDEF }, "chapters", k_chapters },
     { { HTML_5_0 }, { HTML_UNDEF }, "metadata", k_metadata } };
 
+struct symbol_entry < e_length_absolute > length_absolute_symbol_table [] =
+{   { { HTML_4_0, HL_CSS_ALL }, { HTML_UNDEF }, "cm", l_cm },
+    { { HTML_4_0, HL_CSS_ALL }, { HTML_UNDEF }, "mm", l_mm },
+    { { HTML_JUL19, HL_CSS_345 }, { HTML_UNDEF }, "q", l_q }, // with CSS 3
+    { { HTML_4_0, HL_CSS_ALL }, { HTML_UNDEF }, "in", l_in },
+    { { HTML_4_0, HL_CSS_ALL }, { HTML_UNDEF }, "pc", l_pc },
+    { { HTML_4_0, HL_CSS_ALL }, { HTML_UNDEF }, "pt", l_pt },
+    { { HTML_4_0, HL_CSS_ALL }, { HTML_UNDEF }, "px", l_px } };
+
+struct symbol_entry < e_length_relative > length_relative_symbol_table [] =
+{   { { HTML_3_2, HL_CSS_ALL }, { HTML_UNDEF }, "%", l_percent },
+    { { HTML_4_0 }, { HTML_4_01 }, "*", l_star },
+    { { HTML_4_0, HL_CSS_ALL }, { HTML_UNDEF }, "em", l_em },
+    { { HTML_4_0, HL_CSS_ALL }, { HTML_UNDEF }, "ex", l_ex },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "cap", l_cap },
+    { { HTML_JUL19, HL_CSS_345 }, { HTML_UNDEF }, "ch", l_ch },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "ic", l_ic },
+    { { HTML_JUL19, HL_CSS_345 }, { HTML_UNDEF }, "rem", l_rem },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "lh", l_lh },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "rlh", l_rlh },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "vw", l_vw },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "vh", l_vh },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "vi", l_vi },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "vb", l_vb },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "vmin", l_vmin },
+    { { HTML_JAN21, HL_CSS_45 }, { HTML_UNDEF }, "vmax", l_vmax } };
+
 struct symbol_entry < e_linebreak > linebreak_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "auto", lb_auto },
     { { XHTML_1_0 }, { HTML_UNDEF }, "newline", lb_newline },
@@ -1127,6 +1154,8 @@ void enum_init (nitpick& nits)
     INIT_ENUM (inputtype4);
     INIT_ENUM (inputtype5);
     INIT_ENUM (kind);
+    INIT_ENUM (length_absolute);
+    INIT_ENUM (length_relative);
     INIT_ENUM (linebreak);
     INIT_ENUM (linkparam);
     INIT_ENUM (listtype);

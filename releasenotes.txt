@@ -3,6 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.87
+- various bug fixes
+
+0.0.86
+- added --general.rel
+- various bug fixes
+
 0.0.85
 - stats reports terms defined and name value pairs (DT/DD), if any
 - fix bug that sometimes broke stylesheets
