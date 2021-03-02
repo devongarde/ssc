@@ -7,7 +7,7 @@ PASS ../toast/microdata/basic/examples.html
 86 attribute_required url_not_found
 92 attribute_required url_not_found
 96 schema_domain
-100 url_not_found
+100 url_not_found naughty_alt
 103 schema_domain
 104 inserted_missing_closure
 105 inserted_missing_closure inserted_missing_closure
@@ -15,7 +15,7 @@ PASS ../toast/microdata/basic/examples.html
 107 inserted_missing_closure missing_close
 108 inserted_missing_closure
 110 schema_domain
-117 url_not_found
+117 url_not_found naughty_alt
 120 schema_domain schema_domain
 121 inserted_missing_closure
 122 inserted_missing_closure inserted_missing_closure

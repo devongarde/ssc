@@ -28,7 +28,7 @@ PASS ../toast/HTML/3.2/html32.html
 87 url_not_found
 88 url_not_found
 89 url_not_found
-92 url_not_found
+92 reputation url_not_found
 
 PASS ../toast/HTML/3.2/html32-good.html
 68 attribute_required

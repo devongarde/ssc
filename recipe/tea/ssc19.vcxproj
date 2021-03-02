@@ -575,6 +575,7 @@
     <None Include="..\toast\living\jan09\hs-3.html" />
     <None Include="..\toast\living\jan09\hs-4.html" />
     <None Include="..\toast\living\jan09\i.html" />
+    <None Include="..\toast\living\jan09\iframe.html" />
     <None Include="..\toast\living\jan09\img.html" />
     <None Include="..\toast\living\jan09\index.html" />
     <None Include="..\toast\living\jan09\ins.html" />
@@ -625,6 +626,7 @@
     <None Include="..\toast\living\jan10\div.html" />
     <None Include="..\toast\living\jan10\dl.html" />
     <None Include="..\toast\living\jan10\el.html" />
+    <None Include="..\toast\living\jan10\embed.html" />
     <None Include="..\toast\living\jan10\ep.html" />
     <None Include="..\toast\living\jan10\example-2.html" />
     <None Include="..\toast\living\jan10\example.html" />
@@ -643,6 +645,7 @@
     <None Include="..\toast\living\jan10\hs-4.html" />
     <None Include="..\toast\living\jan10\hs-5.html" />
     <None Include="..\toast\living\jan10\i.html" />
+    <None Include="..\toast\living\jan10\iframe.html" />
     <None Include="..\toast\living\jan10\img.html" />
     <None Include="..\toast\living\jan10\index.html" />
     <None Include="..\toast\living\jan10\ins.html" />
@@ -706,6 +709,7 @@
     <None Include="..\toast\living\jan11\dl.html" />
     <None Include="..\toast\living\jan11\dt.html" />
     <None Include="..\toast\living\jan11\el.html" />
+    <None Include="..\toast\living\jan11\embed.html" />
     <None Include="..\toast\living\jan11\ep.html" />
     <None Include="..\toast\living\jan11\example-2.html" />
     <None Include="..\toast\living\jan11\example.html" />
@@ -725,6 +729,7 @@
     <None Include="..\toast\living\jan11\hs-5.html" />
     <None Include="..\toast\living\jan11\hs-6.html" />
     <None Include="..\toast\living\jan11\i.html" />
+    <None Include="..\toast\living\jan11\iframe.html" />
     <None Include="..\toast\living\jan11\img.html" />
     <None Include="..\toast\living\jan11\index.html" />
     <None Include="..\toast\living\jan11\ins.html" />
@@ -792,6 +797,7 @@
     <None Include="..\toast\living\jan12\dl.html" />
     <None Include="..\toast\living\jan12\dt.html" />
     <None Include="..\toast\living\jan12\el.html" />
+    <None Include="..\toast\living\jan12\embed.html" />
     <None Include="..\toast\living\jan12\ep.html" />
     <None Include="..\toast\living\jan12\et.html" />
     <None Include="..\toast\living\jan12\example-2.html" />
@@ -813,6 +819,7 @@
     <None Include="..\toast\living\jan12\hs-5.html" />
     <None Include="..\toast\living\jan12\hs-6.html" />
     <None Include="..\toast\living\jan12\i.html" />
+    <None Include="..\toast\living\jan12\iframe.html" />
     <None Include="..\toast\living\jan12\img.html" />
     <None Include="..\toast\living\jan12\index.html" />
     <None Include="..\toast\living\jan12\ins.html" />
@@ -879,6 +886,7 @@
     <None Include="..\toast\living\jan13\dl.html" />
     <None Include="..\toast\living\jan13\dt.html" />
     <None Include="..\toast\living\jan13\el.html" />
+    <None Include="..\toast\living\jan13\embed.html" />
     <None Include="..\toast\living\jan13\ep.html" />
     <None Include="..\toast\living\jan13\et.html" />
     <None Include="..\toast\living\jan13\example-2.html" />
@@ -900,6 +908,8 @@
     <None Include="..\toast\living\jan13\hs-5.html" />
     <None Include="..\toast\living\jan13\hs-6.html" />
     <None Include="..\toast\living\jan13\i.html" />
+    <None Include="..\toast\living\jan13\iframe-2.html" />
+    <None Include="..\toast\living\jan13\iframe.html" />
     <None Include="..\toast\living\jan13\img.html" />
     <None Include="..\toast\living\jan13\index.html" />
     <None Include="..\toast\living\jan13\ins.html" />
@@ -969,6 +979,7 @@
     <None Include="..\toast\living\jan14\dl.html" />
     <None Include="..\toast\living\jan14\dt.html" />
     <None Include="..\toast\living\jan14\el.html" />
+    <None Include="..\toast\living\jan14\embed.html" />
     <None Include="..\toast\living\jan14\ep.html" />
     <None Include="..\toast\living\jan14\et.html" />
     <None Include="..\toast\living\jan14\example-2.html" />
@@ -997,6 +1008,8 @@
     <None Include="..\toast\living\jan14\hs-8.html" />
     <None Include="..\toast\living\jan14\hs-9.html" />
     <None Include="..\toast\living\jan14\i.html" />
+    <None Include="..\toast\living\jan14\iframe-2.html" />
+    <None Include="..\toast\living\jan14\iframe.html" />
     <None Include="..\toast\living\jan14\img.html" />
     <None Include="..\toast\living\jan14\index.html" />
     <None Include="..\toast\living\jan14\ins.html" />
@@ -1077,6 +1090,7 @@
     <None Include="..\toast\living\jan15\dl.html" />
     <None Include="..\toast\living\jan15\dt.html" />
     <None Include="..\toast\living\jan15\el.html" />
+    <None Include="..\toast\living\jan15\embed.html" />
     <None Include="..\toast\living\jan15\ep.html" />
     <None Include="..\toast\living\jan15\et.html" />
     <None Include="..\toast\living\jan15\example-2.html" />
@@ -1107,6 +1121,8 @@
     <None Include="..\toast\living\jan15\hs-8.html" />
     <None Include="..\toast\living\jan15\hs-9.html" />
     <None Include="..\toast\living\jan15\i.html" />
+    <None Include="..\toast\living\jan15\iframe-2.html" />
+    <None Include="..\toast\living\jan15\iframe.html" />
     <None Include="..\toast\living\jan15\img.html" />
     <None Include="..\toast\living\jan15\index.html" />
     <None Include="..\toast\living\jan15\ins.html" />
@@ -1187,6 +1203,7 @@
     <None Include="..\toast\living\jan16\dl.html" />
     <None Include="..\toast\living\jan16\dt.html" />
     <None Include="..\toast\living\jan16\el.html" />
+    <None Include="..\toast\living\jan16\embed.html" />
     <None Include="..\toast\living\jan16\ep.html" />
     <None Include="..\toast\living\jan16\et.html" />
     <None Include="..\toast\living\jan16\example-2.html" />
@@ -1217,6 +1234,7 @@
     <None Include="..\toast\living\jan16\hs-8.html" />
     <None Include="..\toast\living\jan16\hs-9.html" />
     <None Include="..\toast\living\jan16\i.html" />
+    <None Include="..\toast\living\jan16\iframe.html" />
     <None Include="..\toast\living\jan16\img.html" />
     <None Include="..\toast\living\jan16\index.html" />
     <None Include="..\toast\living\jan16\ins.html" />
@@ -1298,6 +1316,7 @@
     <None Include="..\toast\living\jan17\dl.html" />
     <None Include="..\toast\living\jan17\dt.html" />
     <None Include="..\toast\living\jan17\el.html" />
+    <None Include="..\toast\living\jan17\embed.html" />
     <None Include="..\toast\living\jan17\ep.html" />
     <None Include="..\toast\living\jan17\et.html" />
     <None Include="..\toast\living\jan17\example-2.html" />
@@ -1329,6 +1348,7 @@
     <None Include="..\toast\living\jan17\hs-8.html" />
     <None Include="..\toast\living\jan17\hs-9.html" />
     <None Include="..\toast\living\jan17\i.html" />
+    <None Include="..\toast\living\jan17\iframe.html" />
     <None Include="..\toast\living\jan17\img.html" />
     <None Include="..\toast\living\jan17\index.html" />
     <None Include="..\toast\living\jan17\ins.html" />
@@ -1410,6 +1430,7 @@
     <None Include="..\toast\living\jan18\dl.html" />
     <None Include="..\toast\living\jan18\dt.html" />
     <None Include="..\toast\living\jan18\el.html" />
+    <None Include="..\toast\living\jan18\embed.html" />
     <None Include="..\toast\living\jan18\ep.html" />
     <None Include="..\toast\living\jan18\et.html" />
     <None Include="..\toast\living\jan18\example-2.html" />
@@ -1441,6 +1462,7 @@
     <None Include="..\toast\living\jan18\hs-8.html" />
     <None Include="..\toast\living\jan18\hs-9.html" />
     <None Include="..\toast\living\jan18\i.html" />
+    <None Include="..\toast\living\jan18\iframe.html" />
     <None Include="..\toast\living\jan18\img.html" />
     <None Include="..\toast\living\jan18\index.html" />
     <None Include="..\toast\living\jan18\ins.html" />
@@ -1523,6 +1545,7 @@
     <None Include="..\toast\living\jan19\dl.html" />
     <None Include="..\toast\living\jan19\dt.html" />
     <None Include="..\toast\living\jan19\el.html" />
+    <None Include="..\toast\living\jan19\embed.html" />
     <None Include="..\toast\living\jan19\ep.html" />
     <None Include="..\toast\living\jan19\et.html" />
     <None Include="..\toast\living\jan19\example-2.html" />
@@ -1555,6 +1578,7 @@
     <None Include="..\toast\living\jan19\hs-8.html" />
     <None Include="..\toast\living\jan19\hs-9.html" />
     <None Include="..\toast\living\jan19\i.html" />
+    <None Include="..\toast\living\jan19\iframe.html" />
     <None Include="..\toast\living\jan19\img.html" />
     <None Include="..\toast\living\jan19\index.html" />
     <None Include="..\toast\living\jan19\ins.html" />
@@ -1638,6 +1662,7 @@
     <None Include="..\toast\living\jan20\dl.html" />
     <None Include="..\toast\living\jan20\dt.html" />
     <None Include="..\toast\living\jan20\el.html" />
+    <None Include="..\toast\living\jan20\embed.html" />
     <None Include="..\toast\living\jan20\ep.html" />
     <None Include="..\toast\living\jan20\et.html" />
     <None Include="..\toast\living\jan20\example-2.html" />
@@ -1670,6 +1695,7 @@
     <None Include="..\toast\living\jan20\hs-8.html" />
     <None Include="..\toast\living\jan20\hs-9.html" />
     <None Include="..\toast\living\jan20\i.html" />
+    <None Include="..\toast\living\jan20\iframe.html" />
     <None Include="..\toast\living\jan20\img.html" />
     <None Include="..\toast\living\jan20\index.html" />
     <None Include="..\toast\living\jan20\ins.html" />
@@ -1757,6 +1783,7 @@
     <None Include="..\toast\living\jan21\dl.html" />
     <None Include="..\toast\living\jan21\dt.html" />
     <None Include="..\toast\living\jan21\el.html" />
+    <None Include="..\toast\living\jan21\embed.html" />
     <None Include="..\toast\living\jan21\ep.html" />
     <None Include="..\toast\living\jan21\et.html" />
     <None Include="..\toast\living\jan21\example-2.html" />
@@ -1789,6 +1816,7 @@
     <None Include="..\toast\living\jan21\hs-8.html" />
     <None Include="..\toast\living\jan21\hs-9.html" />
     <None Include="..\toast\living\jan21\i.html" />
+    <None Include="..\toast\living\jan21\iframe.html" />
     <None Include="..\toast\living\jan21\img.html" />
     <None Include="..\toast\living\jan21\index.html" />
     <None Include="..\toast\living\jan21\ins.html" />
@@ -1917,6 +1945,7 @@
     <None Include="..\toast\living\jul08\hs-3.html" />
     <None Include="..\toast\living\jul08\hs-4.html" />
     <None Include="..\toast\living\jul08\i.html" />
+    <None Include="..\toast\living\jul08\iframe.html" />
     <None Include="..\toast\living\jul08\img.html" />
     <None Include="..\toast\living\jul08\index.html" />
     <None Include="..\toast\living\jul08\ins.html" />
@@ -1977,6 +2006,7 @@
     <None Include="..\toast\living\jul09\hs-3.html" />
     <None Include="..\toast\living\jul09\hs-4.html" />
     <None Include="..\toast\living\jul09\i.html" />
+    <None Include="..\toast\living\jul09\iframe.html" />
     <None Include="..\toast\living\jul09\img.html" />
     <None Include="..\toast\living\jul09\index.html" />
     <None Include="..\toast\living\jul09\ins.html" />
@@ -2031,6 +2061,7 @@
     <None Include="..\toast\living\jul10\dl.html" />
     <None Include="..\toast\living\jul10\dt.html" />
     <None Include="..\toast\living\jul10\el.html" />
+    <None Include="..\toast\living\jul10\embed.html" />
     <None Include="..\toast\living\jul10\ep.html" />
     <None Include="..\toast\living\jul10\example-2.html" />
     <None Include="..\toast\living\jul10\example.html" />
@@ -2049,6 +2080,7 @@
     <None Include="..\toast\living\jul10\hs-4.html" />
     <None Include="..\toast\living\jul10\hs-5.html" />
     <None Include="..\toast\living\jul10\i.html" />
+    <None Include="..\toast\living\jul10\iframe.html" />
     <None Include="..\toast\living\jul10\img.html" />
     <None Include="..\toast\living\jul10\index.html" />
     <None Include="..\toast\living\jul10\ins.html" />
@@ -2114,6 +2146,7 @@
     <None Include="..\toast\living\jul11\dl.html" />
     <None Include="..\toast\living\jul11\dt.html" />
     <None Include="..\toast\living\jul11\el.html" />
+    <None Include="..\toast\living\jul11\embed.html" />
     <None Include="..\toast\living\jul11\ep.html" />
     <None Include="..\toast\living\jul11\example-2.html" />
     <None Include="..\toast\living\jul11\example.html" />
@@ -2134,6 +2167,7 @@
     <None Include="..\toast\living\jul11\hs-5.html" />
     <None Include="..\toast\living\jul11\hs-6.html" />
     <None Include="..\toast\living\jul11\i.html" />
+    <None Include="..\toast\living\jul11\iframe.html" />
     <None Include="..\toast\living\jul11\img.html" />
     <None Include="..\toast\living\jul11\index.html" />
     <None Include="..\toast\living\jul11\ins.html" />
@@ -2200,6 +2234,7 @@
     <None Include="..\toast\living\jul12\dl.html" />
     <None Include="..\toast\living\jul12\dt.html" />
     <None Include="..\toast\living\jul12\el.html" />
+    <None Include="..\toast\living\jul12\embed.html" />
     <None Include="..\toast\living\jul12\ep.html" />
     <None Include="..\toast\living\jul12\et.html" />
     <None Include="..\toast\living\jul12\example-2.html" />
@@ -2221,6 +2256,7 @@
     <None Include="..\toast\living\jul12\hs-5.html" />
     <None Include="..\toast\living\jul12\hs-6.html" />
     <None Include="..\toast\living\jul12\i.html" />
+    <None Include="..\toast\living\jul12\iframe.html" />
     <None Include="..\toast\living\jul12\img.html" />
     <None Include="..\toast\living\jul12\index.html" />
     <None Include="..\toast\living\jul12\ins.html" />
@@ -2288,6 +2324,7 @@
     <None Include="..\toast\living\jul13\dl.html" />
     <None Include="..\toast\living\jul13\dt.html" />
     <None Include="..\toast\living\jul13\el.html" />
+    <None Include="..\toast\living\jul13\embed.html" />
     <None Include="..\toast\living\jul13\ep.html" />
     <None Include="..\toast\living\jul13\et.html" />
     <None Include="..\toast\living\jul13\example-2.html" />
@@ -2316,6 +2353,8 @@
     <None Include="..\toast\living\jul13\hs-8.html" />
     <None Include="..\toast\living\jul13\hs-9.html" />
     <None Include="..\toast\living\jul13\i.html" />
+    <None Include="..\toast\living\jul13\iframe-2.html" />
+    <None Include="..\toast\living\jul13\iframe.html" />
     <None Include="..\toast\living\jul13\img.html" />
     <None Include="..\toast\living\jul13\index.html" />
     <None Include="..\toast\living\jul13\ins.html" />
@@ -2395,6 +2434,7 @@
     <None Include="..\toast\living\jul14\dl.html" />
     <None Include="..\toast\living\jul14\dt.html" />
     <None Include="..\toast\living\jul14\el.html" />
+    <None Include="..\toast\living\jul14\embed.html" />
     <None Include="..\toast\living\jul14\ep.html" />
     <None Include="..\toast\living\jul14\et.html" />
     <None Include="..\toast\living\jul14\example-2.html" />
@@ -2424,6 +2464,8 @@
     <None Include="..\toast\living\jul14\hs-8.html" />
     <None Include="..\toast\living\jul14\hs-9.html" />
     <None Include="..\toast\living\jul14\i.html" />
+    <None Include="..\toast\living\jul14\iframe-2.html" />
+    <None Include="..\toast\living\jul14\iframe.html" />
     <None Include="..\toast\living\jul14\img.html" />
     <None Include="..\toast\living\jul14\index.html" />
     <None Include="..\toast\living\jul14\ins.html" />
@@ -2504,6 +2546,7 @@
     <None Include="..\toast\living\jul15\dl.html" />
     <None Include="..\toast\living\jul15\dt.html" />
     <None Include="..\toast\living\jul15\el.html" />
+    <None Include="..\toast\living\jul15\embed.html" />
     <None Include="..\toast\living\jul15\ep.html" />
     <None Include="..\toast\living\jul15\et.html" />
     <None Include="..\toast\living\jul15\example-2.html" />
@@ -2534,6 +2577,8 @@
     <None Include="..\toast\living\jul15\hs-8.html" />
     <None Include="..\toast\living\jul15\hs-9.html" />
     <None Include="..\toast\living\jul15\i.html" />
+    <None Include="..\toast\living\jul15\iframe-2.html" />
+    <None Include="..\toast\living\jul15\iframe.html" />
     <None Include="..\toast\living\jul15\img.html" />
     <None Include="..\toast\living\jul15\index.html" />
     <None Include="..\toast\living\jul15\ins.html" />
@@ -2615,6 +2660,7 @@
     <None Include="..\toast\living\jul16\dl.html" />
     <None Include="..\toast\living\jul16\dt.html" />
     <None Include="..\toast\living\jul16\el.html" />
+    <None Include="..\toast\living\jul16\embed.html" />
     <None Include="..\toast\living\jul16\ep.html" />
     <None Include="..\toast\living\jul16\et.html" />
     <None Include="..\toast\living\jul16\example-2.html" />
@@ -2646,6 +2692,7 @@
     <None Include="..\toast\living\jul16\hs-8.html" />
     <None Include="..\toast\living\jul16\hs-9.html" />
     <None Include="..\toast\living\jul16\i.html" />
+    <None Include="..\toast\living\jul16\iframe.html" />
     <None Include="..\toast\living\jul16\img.html" />
     <None Include="..\toast\living\jul16\index.html" />
     <None Include="..\toast\living\jul16\ins.html" />
@@ -2727,6 +2774,7 @@
     <None Include="..\toast\living\jul17\dl.html" />
     <None Include="..\toast\living\jul17\dt.html" />
     <None Include="..\toast\living\jul17\el.html" />
+    <None Include="..\toast\living\jul17\embed.html" />
     <None Include="..\toast\living\jul17\ep.html" />
     <None Include="..\toast\living\jul17\et.html" />
     <None Include="..\toast\living\jul17\example-2.html" />
@@ -2758,6 +2806,7 @@
     <None Include="..\toast\living\jul17\hs-8.html" />
     <None Include="..\toast\living\jul17\hs-9.html" />
     <None Include="..\toast\living\jul17\i.html" />
+    <None Include="..\toast\living\jul17\iframe.html" />
     <None Include="..\toast\living\jul17\img.html" />
     <None Include="..\toast\living\jul17\index.html" />
     <None Include="..\toast\living\jul17\ins.html" />
@@ -2839,6 +2888,7 @@
     <None Include="..\toast\living\jul18\dl.html" />
     <None Include="..\toast\living\jul18\dt.html" />
     <None Include="..\toast\living\jul18\el.html" />
+    <None Include="..\toast\living\jul18\embed.html" />
     <None Include="..\toast\living\jul18\ep.html" />
     <None Include="..\toast\living\jul18\et.html" />
     <None Include="..\toast\living\jul18\example-2.html" />
@@ -2871,6 +2921,7 @@
     <None Include="..\toast\living\jul18\hs-8.html" />
     <None Include="..\toast\living\jul18\hs-9.html" />
     <None Include="..\toast\living\jul18\i.html" />
+    <None Include="..\toast\living\jul18\iframe.html" />
     <None Include="..\toast\living\jul18\img.html" />
     <None Include="..\toast\living\jul18\index.html" />
     <None Include="..\toast\living\jul18\ins.html" />
@@ -2954,6 +3005,7 @@
     <None Include="..\toast\living\jul19\dl.html" />
     <None Include="..\toast\living\jul19\dt.html" />
     <None Include="..\toast\living\jul19\el.html" />
+    <None Include="..\toast\living\jul19\embed.html" />
     <None Include="..\toast\living\jul19\ep.html" />
     <None Include="..\toast\living\jul19\et.html" />
     <None Include="..\toast\living\jul19\example-2.html" />
@@ -2986,6 +3038,7 @@
     <None Include="..\toast\living\jul19\hs-8.html" />
     <None Include="..\toast\living\jul19\hs-9.html" />
     <None Include="..\toast\living\jul19\i.html" />
+    <None Include="..\toast\living\jul19\iframe.html" />
     <None Include="..\toast\living\jul19\img.html" />
     <None Include="..\toast\living\jul19\index.html" />
     <None Include="..\toast\living\jul19\ins.html" />
@@ -3072,6 +3125,7 @@
     <None Include="..\toast\living\jul20\dl.html" />
     <None Include="..\toast\living\jul20\dt.html" />
     <None Include="..\toast\living\jul20\el.html" />
+    <None Include="..\toast\living\jul20\embed.html" />
     <None Include="..\toast\living\jul20\ep.html" />
     <None Include="..\toast\living\jul20\et.html" />
     <None Include="..\toast\living\jul20\example-2.html" />
@@ -3104,6 +3158,7 @@
     <None Include="..\toast\living\jul20\hs-8.html" />
     <None Include="..\toast\living\jul20\hs-9.html" />
     <None Include="..\toast\living\jul20\i.html" />
+    <None Include="..\toast\living\jul20\iframe.html" />
     <None Include="..\toast\living\jul20\img.html" />
     <None Include="..\toast\living\jul20\index.html" />
     <None Include="..\toast\living\jul20\ins.html" />

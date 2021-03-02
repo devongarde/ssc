@@ -24,6 +24,57 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url_sanitise.h"
 #include "utility/quote.h"
 #include "utility/lexical.h"
+#include "type/type_mime.h"
+
+bool is_authority_local (const ::std::string& authority)
+{   if (authority.empty ()) return true;
+    return is_one_of (authority, context.site ()); }
+
+bool is_ipv4_local (const ::std::string& ipv4)
+{   if (ipv4.empty ()) return true;
+    if (ipv4.length () > 3)
+    {   if (ipv4.substr (0, 3) == "10.") return true;
+        if (ipv4.length () >= 4)
+        {   if (ipv4.substr (0, 4) == "127.") return true;
+            if (ipv4.length () == 7) return ipv4 == "0.0.0.0";
+            else if (ipv4.length () > 7)
+            {   if (ipv4.substr (0, 4) == "192.")
+                {   if (ipv4.substr (4, 4) == "168.") return true;
+                    if (ipv4.substr (4, 3) == "18.") return true;
+                    if (ipv4.substr (4, 3) == "19.") return true;
+                    if (ipv4.substr (4, 4) == "0.0.") return true;
+                    if (ipv4.substr (4, 4) == "0.2.") return true;
+                    if (ipv4.substr (4, 6) == "192.88.99.") return true;
+                    return false; }
+                if (ipv4.substr (0, 4) == "172.")
+                {   if (ipv4.at (6) == '.')
+                        switch (ipv4.at (4))
+                        {   case '1' : return ipv4.at (5) >= '6';
+                            case '2' : return true;
+                            case '3' : return ipv4.at (5) <= '1';
+                            default : break; }
+                    return false; }
+                if (ipv4.substr (0, 7) == "100.64.") return true;
+                if (ipv4.length () > 8)
+                {   if (ipv4.substr (0, 8) == "169.254.") return true;
+                    if (ipv4.length () > 10)
+                    {   if (ipv4.substr (0, 10) == "203.0.113.") return true;
+                        if (ipv4.length () > 11)
+                            if (ipv4.substr (0, 11) == "198.51.100.") return true; } } } } }
+    return false; }
+
+bool is_ipv6_local (const ::std::string& ipv6)
+{   if (ipv6.empty ()) return true;
+    if (ipv6.length () > 3)
+        if ((ipv6.at (0) == 'f') && (ipv6.at (3) == '0'))
+            if (ipv6.substr (1, 2) == "c0") return true;
+            else if (ipv6.substr (1, 2) == "ec") return true;
+            else if (ipv6.substr (1, 2) == "d0") return true;
+            else if (ipv6.substr (1, 2) == "e8") return true;
+    return (ipv6 == "::1"); }
+
+bool is_local (const ::std::string& authority, const ::std::string& ipv4, const ::std::string& ipv6)
+{   return is_authority_local (authority) && is_ipv4_local (ipv4) && is_ipv6_local (ipv6); }
 
 bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
 {   if (lhs [es_authority] != rhs [es_authority]) return false;
@@ -35,12 +86,12 @@ bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
         else return false; }
     return (lhs [es_fragment] == rhs [es_fragment] ); }
 
-bool parse_rfc3986 (nitpick& nits, const html_version& , const e_protocol prot, const ::std::string& s, vc_t& component)
+bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot, const ::std::string& s, vc_t& component)
 {   // RFC 3986
     //       URI         = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
     assert (component.size () > last_component);
     ::std::string url (s);
-    ::std::string scheme, hier_part, authority, path, file, user, insecure_password, ipv6, ipv4, domain, host, port;
+    ::std::string scheme, hier_part, authority, path, file, user, insecure_password, ipv6, ipv4, domain, host, port, ext;
     bool absolute = false;
 
     if (url.empty ())
@@ -154,7 +205,13 @@ bool parse_rfc3986 (nitpick& nits, const html_version& , const e_protocol prot, 
                     path.clear (); }
                 else
                 {   file = path.substr (pos + 1);
-                    path = path.substr (0, pos); } } }
+                    path = path.substr (0, pos); }
+                if (! file.empty ())
+                {   ::std::string::size_type dot = file.find_last_of ('.');
+                    if (dot != ::std::string::npos)
+                        if ((dot == 0) || (dot < file.length () - 1))
+                        {   ext = ::boost::algorithm::to_lower_copy (file.substr (dot + 1));
+                            has_extension_vulnerability (nits, v, ext, is_local (authority, ipv4, ipv6)); } } } }
 
     if (absolute)
         if (path.empty ()) path = SLASH;
@@ -167,6 +224,7 @@ bool parse_rfc3986 (nitpick& nits, const html_version& , const e_protocol prot, 
     component [es_authority] = authority;
     component [es_path] = path;
     component [es_file] = file;
+    component [es_extension] = ext;
     component [es_user] = user;
     component [es_password] = insecure_password;
     component [es_port] = port;

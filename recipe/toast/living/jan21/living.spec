@@ -144,6 +144,11 @@ PASS ../toast/living/jan21/el.html
 27 missing_close
 28 inserted_missing_closure
 
+PASS ../toast/living/jan21/embed.html
+6 reputation url_not_found
+8 wild_attribute reputation wild_attribute url_not_found
+10 reputation url_not_found
+
 PASS ../toast/living/jan21/et.html
 8 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
 9 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
@@ -385,6 +390,28 @@ PASS ../toast/living/jan21/hs-13.html
 PASS ../toast/living/jan21/i.html
 0 charset_mismatch charset_used charset_invalid
 
+PASS ../toast/living/jan21/iframe.html
+0 charset_mismatch charset_used charset_invalid
+9 missing_close
+14 use_quote_code
+16 missing_close no_such_folder url_not_found
+17 inserted_missing_closure
+19 no_such_folder url_not_found
+20 inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1
+23 no_such_folder url_not_found
+24 inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1 mixed_mess missing_open
+27 no_such_folder url_not_found
+28 inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1
+31 use_quote_code
+32 url_not_found
+35 overallowed
+37 url_not_found
+39 url_not_found
+41 url_not_found
+45 attribute_required no_such_folder url_not_found naughty_alt
+46 no_such_folder url_not_found url_id_unfound
+55 inserted_missing_closure
+
 PASS ../toast/living/jan21/img.html
 6 url_not_found
 7 url_not_found
@@ -422,7 +449,6 @@ PASS ../toast/living/jan21/img.html
 103 mq_syntax untidy_string
 104 url_not_found
 108 use_quote_code
-110 mime
 111 mime
 112 no_such_folder url_not_found naughty_alt
 114 no_such_folder url_not_found

@@ -578,6 +578,11 @@ nitname nitnames [] =
     { nit_encode, "encode" },
     { nit_svg_data, "svg_data" },
     { nit_data, "data" },
+    { nit_bad_wild, "bad_wild" },
+    { nit_risky_filetype, "risky_filetype" },
+    { nit_reputation, "reputation" },
+    { nit_incompatible_mime, "incompatible_mime" },
+    { nit_os_dependent, "os_dependent" },
 
     { nit_off, "" } };
 

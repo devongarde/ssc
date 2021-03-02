@@ -34,10 +34,10 @@ bool attributes :: parse (nitpick& nits, const html_version& v, const attributes
                 aar_.at (a.id ()) = make_attribute_v_ptr (nits, v, a);
                 if (aar_.at (a.id ()).get () != nullptr)
                 {   res = true;
-                    continue; }
-                else if (elem (tag_).wild_attributes (v))
-                {   nits.pick (nit_wild_attribute, es_info, ec_attribute, "apologies, but ", PROG, " cannot validate ", ::boost::to_upper_copy (a.get_key ()));
                     continue; } }
+            else if (elem (tag_).wild_attributes (v))
+            {   nits.pick (nit_wild_attribute, es_info, ec_attribute, PROG, " cannot validate ", ::boost::to_upper_copy (a.get_key ()));
+                continue; }
             if (a.id () != a_unknown)
                 nits.pick (nit_attribute_barred, es_error, ec_attribute, ::boost::to_upper_copy (a.get_key ()), " does not belong here");
             else

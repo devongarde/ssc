@@ -86,6 +86,11 @@ PASS ../toast/living/jan10/el.html
 27 missing_close
 28 inserted_missing_closure
 
+PASS ../toast/living/jan10/embed.html
+6 reputation url_not_found
+8 wild_attribute reputation wild_attribute url_not_found
+10 reputation url_not_found
+
 PASS ../toast/living/jan10/example.html
 6 missing_close inserted_missing_closure missing_open
 9 url_not_found
@@ -185,6 +190,12 @@ PASS ../toast/living/jan10/hr.html
 
 PASS ../toast/living/jan10/i.html
 0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/living/jan10/iframe.html
+9 use_quote_code
+10 url_not_found
+13 overallowed
+15 url_not_found
 
 PASS ../toast/living/jan10/img.html
 6 url_not_found naughty_alt

@@ -293,6 +293,7 @@ void options::process (int argc, char** argv)
         (VALIDATION CLASS, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid class; may be repeated")
         (VALIDATION COLOUR, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid colour; may be repeated")
         (VALIDATION CURRENCY, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid currency; may be repeated")
+        (VALIDATION EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "add a mimetype file extension; may be repeated")
         (VALIDATION HTTPEQUIV, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid meta httpequiv; may be repeated")
         (VALIDATION LANG, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid language code (such as ma for marain); may be repeated")
         (VALIDATION METANAME, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid meta name; may be repeated")
@@ -572,6 +573,7 @@ void options::contextualise ()
     if (var_.count (VALIDATION COLOUR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOUR].as < vstr_t > ());
     if (var_.count (VALIDATION CURRENCY)) type_master < t_currency > :: extend (var_ [VALIDATION CURRENCY].as < vstr_t > ());
     if (var_.count (VALIDATION DINGBATARG)) type_master < t_dingbat > :: extend (var_ [VALIDATION DINGBATARG].as < vstr_t > ());
+    if (var_.count (VALIDATION EXTENSION)) mime_extension :: extend (var_ [VALIDATION EXTENSION].as < vstr_t > ());
     if (var_.count (VALIDATION HTTPEQUIV)) type_master < t_httpequiv > :: extend (var_ [VALIDATION HTTPEQUIV].as < vstr_t > ());
     if (var_.count (VALIDATION LANG)) type_master < t_lang > :: extend (var_ [VALIDATION LANG].as < vstr_t > ());
     if (var_.count (VALIDATION METANAME)) type_master < t_metaname  > :: extend (var_ [VALIDATION METANAME].as < vstr_t > ());

@@ -110,6 +110,9 @@ PASS ../toast/microdata/schema-hijkl/investmentordeposit.html
 11 svg_rdf svg_rdf sunk sunk svg_rdf sunk sunk
 12 svg_rdf
 
+PASS ../toast/microdata/schema-hijkl/invoice.html
+13 reputation reputation
+
 PASS ../toast/microdata/schema-hijkl/itemlist.html
 28 requires_itemscope
 57 use_quote_code

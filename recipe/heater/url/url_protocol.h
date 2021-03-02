@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "symbol/symbol.h"
 
-const ::std::size_t last_component = static_cast <::std::size_t> (es_file);
+const ::std::size_t last_component = static_cast <::std::size_t> (es_extension);
 const ::std::size_t component_count = last_component + 1;
 
 typedef vstr_t vc_t;

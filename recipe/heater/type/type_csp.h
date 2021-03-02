@@ -26,9 +26,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CSP_2 HTML_2016, (HTML_DEC + 7)
 #define CSP_3 HTML_2018, (HTML_OCT + 7)
 
-const html_version csp_c1 (CSP_1);
-const html_version csp_c2 (CSP_2);
-const html_version csp_c3 (CSP_3);
+const html_version csp_c1 (CSP_1, 0, HV_CSP_1);
+const html_version csp_c2 (CSP_2, 0, HV_CSP_2);
+const html_version csp_c3 (CSP_3, 0, HV_CSP_3);
 
 void csp_directive_init (nitpick& nits);
 void csp_keyword_init (nitpick& nits);

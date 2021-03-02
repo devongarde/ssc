@@ -142,6 +142,12 @@ PASS ../toast/living/jul09/header-2.html
 PASS ../toast/living/jul09/i.html
 0 charset_mismatch charset_used charset_invalid
 
+PASS ../toast/living/jul09/iframe.html
+9 use_quote_code
+10 url_not_found
+13 overallowed
+15 url_not_found
+
 PASS ../toast/living/jul09/img.html
 6 url_not_found naughty_alt
 8 url_not_found

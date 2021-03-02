@@ -37,6 +37,7 @@ PASS ../toast/microdata/schema-pqrs/person.html
 79 no_such_folder url_not_found
 84 no_such_folder url_not_found
 86 no_such_folder url_not_found
+117 reputation reputation
 189 forgotten_name use_double_quote_code missing_open
 208 requires_itemscope
 227 attribute_required naughty_alt
@@ -189,6 +190,7 @@ PASS ../toast/microdata/schema-pqrs/postaladdress.html
 234 svg_rdf no_tel
 
 PASS ../toast/microdata/schema-pqrs/pricespecification.html
+13 reputation reputation
 71 use_quote_code
 91 attribute_barred
 

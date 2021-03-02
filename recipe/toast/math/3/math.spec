@@ -165,7 +165,7 @@ PASS ../toast/math/3/math16-example.html
 PASS ../toast/math/3/math17-example.html
 2 naughty_lang
 96 no_such_folder url_not_found
-97 no_such_folder url_not_found
+97 mime no_such_folder url_not_found
 126 inserted_missing_parent missing_close no_such_folder url_not_found
 127 inserted_missing_closure
 130 inserted_missing_parent missing_close

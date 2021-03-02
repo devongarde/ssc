@@ -809,18 +809,18 @@ struct symbol_entry < e_rules > rules_symbol_table [] =
 
 struct symbol_entry < e_sandbox > sandbox_symbol_table [] =
 {   { { HTML_JUL20, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "allow-downloads-without-user-activation", s_adwua },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-forms", s_forms },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-modals", s_modals },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-orientation-lock", s_orientation },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-pointer-lock", s_pointer },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-popups", s_popups },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-popups-to-escape-sandbox", s_popupescape },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-presentation", s_presentation },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-same-origin", s_origin },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-scripts", s_scripts },
-    { { HTML_JUL20, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "allow-storage-access-by-user-activation", s_asabua },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-top-navigation", s_navigation },
-    { { CSP_1 }, { HTML_UNDEF }, "allow-top-navigation-by-user-activation", s_atnbua },
+    { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-forms", s_forms },
+    { { HTML_JAN16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-modals", s_modals },
+    { { HTML_JUL16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-orientation-lock", s_orientation },
+    { { HTML_JAN13, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-pointer-lock", s_pointer },
+    { { HTML_JUL12, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-popups", s_popups },
+    { { HTML_JAN16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-popups-to-escape-sandbox", s_popupescape },
+    { { HTML_JUL16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-presentation", s_presentation },
+    { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-same-origin", s_origin },
+    { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-scripts", s_scripts },
+    { { HTML_JUL20, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-storage-access-by-user-activation", s_asabua },
+    { { HTML_JAN11, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation", s_navigation },
+    { { HTML_JUL17, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation-by-user-activation", s_atnbua },
     { { HTML_JUL20 }, { HTML_UNDEF }, "allow-downloads", s_ad } };
 
 struct symbol_entry < e_shape7 > shape7_symbol_table [] =

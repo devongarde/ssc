@@ -49,11 +49,13 @@ PASS ../toast/microformats/mf1/mf1-example.html
 176 use_quote_code
 187 use_quote_code
 188 hcard_infer hcard_infer
+196 mime
 209 hcard_infer
 212 use_double_quote_code
 218 hcard_infer hcard_infer
 220 use_quote_code
-241 newline_in_string newline_in_string
+221 mime
+241 newline_in_string newline_in_string reputation reputation mime
 246 newline_in_string newline_in_string
 269 hcard_infer hcard_infer
 275 hcard_infer
