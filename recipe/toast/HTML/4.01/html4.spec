@@ -74,7 +74,7 @@ PASS ../toast/HTML/4.01/html4-deprecated.html
 82 inserted_missing_closure
 83 inserted_missing_closure missing_close
 84 inserted_missing_closure
-86 deprecated_element deprecated_attribute deprecated_attribute deprecated_attribute url_not_found
+86 reputation deprecated_element deprecated_attribute deprecated_attribute deprecated_attribute url_not_found
 90 deprecated_element deprecated_attribute deprecated_attribute deprecated_attribute url_not_found
 95 deprecated_attribute deprecated_attribute deprecated_attribute deprecated_attribute
 96 deprecated_attribute
@@ -131,6 +131,7 @@ PASS ../toast/HTML/4.01/html4-deprecated.html
 PASS ../toast/HTML/4.01/html4-example.html
 0 charset_mismatch charset_used
 15 bad_datetime
+51 reputation
 96 inserted_missing_closure inserted_missing_closure missing_close missing_close
 97 inserted_missing_closure inserted_missing_closure
 107 missing_close

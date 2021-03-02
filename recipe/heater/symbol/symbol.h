@@ -33,7 +33,7 @@ template < typename VALUE, class LC = sz_true > class symbol : public enlc < LC 
     uint64_t flags_ = NOFLAGS, flags2_ = NOFLAGS;
 public:
     typedef VALUE value_type;
-	symbol() = default;
+	symbol () = default;
     symbol (const symbol& s) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	symbol (symbol&&) = default;

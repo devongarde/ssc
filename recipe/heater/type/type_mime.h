@@ -35,6 +35,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MIME_TEXT           0x00000800
 #define MIME_VIDEO          0x00001000
 
+#define MIME_UNOFFICIAL     0x00002000
+#define MIME_WINDOWS        0x00004000
+#define MIME_MACOS          0x00008000
+#define MIME_IOS            0x00010000
+#define MIME_ANDROID        0x00020000
+
+#define MIME_VULNERABLE     0x00040000
+
 template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ())
     {   nits.pick (nit_mime, es_error, ec_type, "a mime type cannot be empty");
@@ -57,7 +65,7 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
         {   enum_base < e_mimetype, t_mime > :: status (s_good);
             return; } }
     check_spelling (nits, v, s);
-    nits.pick (nit_mime, es_error, ec_type, quote (s), " is not a standard mimetype");
+    nits.pick (nit_mime, es_error, ec_type, quote (s), " is not a mimetype known to " PROG);
     enum_base < e_mimetype, t_mime > :: status (s_invalid); }
 
 template < > inline void enum_n < t_mime, e_mimetype > :: validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
@@ -118,3 +126,13 @@ template < > struct type_master < t_mimestar > : public string_value < t_mimesta
 
 template < > struct type_master < t_mimeq > : type_one_or_both < t_mimeq, t_mimestar, sz_semicolon, t_q > { };
 template < > struct type_master < t_mimeqs > : type_at_least_one < t_mimeqs, sz_comma, t_mimeq > { };
+
+class mime_extension : public enum_n < t_mime, e_mimetype > { };
+
+e_mimetype extension_mimetype (nitpick& nits, const html_version& v, const ::std::string& ext, uint64_t& flags);
+bool is_compatible_extension (const html_version& v, const e_mimetype em, const ::std::string& ext);
+bool has_external_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em);
+bool has_extension_incompatibility (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext);
+bool has_extension_vulnerability (nitpick& nits, const html_version& v, const ::std::string& ext, const bool local);
+bool has_mimetype_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const bool local);
+bool check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext, const bool local);

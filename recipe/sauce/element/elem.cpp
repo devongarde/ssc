@@ -178,7 +178,7 @@ struct symbol_entry < e_element > elem_symbol_table [] =
     { { XHTML_1_1, 0, HE_SVG_1_2_FULL }, { HTML_UNDEF }, "elementdef", elem_elementdef },
     { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "ellipse", elem_ellipse, ns_default, EP_CLOSED | EP_UNCLOSEDSVG11, EF_S_G | EF_SVG_SHAPE | EF_SVG_GRAPH | EF_SVG2_GRAPH },
     { { HTML_1_0 }, { HTML_UNDEF }, "em", elem_em, ns_default, 0, EF_EMPH | EF_PHRASE | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "embed", elem_embed, ns_default, EP_CLOSED | EP_5_WILDATTR, EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_5_INTERACTIVE | EF_5_PALPABLE },
+    { { HTML_JAN07 }, { HTML_UNDEF }, "embed", elem_embed, ns_default, EP_CLOSED | EP_5_WILDATTR, EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_5_INTERACTIVE | EF_5_PALPABLE },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, "emptyset", elem_emptyset, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
     { { XHTML_1_0, 0, MATH_1_2_3 }, { HTML_UNDEF }, "eq", elem_eq, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, "equivalent", elem_equivalent, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },

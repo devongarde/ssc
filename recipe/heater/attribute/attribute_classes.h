@@ -696,6 +696,7 @@ typedef typed_attribute < t_real, a_scriptsizemultiplier > attr_scriptsizemultip
 typedef typed_attribute < t_unsigned, a_scrollamount > attr_scrollamount;
 typedef typed_attribute < t_unsigned, a_scrolldelay > attr_scrolldelay;
 typedef typed_attribute < t_scrolling, a_scrolling > attr_scrolling;
+typedef typed_attribute < t_html_boolean, a_seamless > attr_seamless;
 typedef typed_attribute < t_generic, a_seed > attr_seed;
 typedef typed_attribute < t_generic, a_seethru > attr_seethru;
 typedef typed_attribute < t_not_empty, a_select > attr_select;
@@ -1552,6 +1553,7 @@ const e_attribute last_am = a_muted;
     attr_scrollamount, \
     attr_scrolldelay, \
     attr_scrolling, \
+    attr_seamless, \
     attr_seed, \
     attr_seethru, \
     attr_select, \

@@ -90,6 +90,11 @@ PASS ../toast/living/jul11/el.html
 27 missing_close
 28 inserted_missing_closure
 
+PASS ../toast/living/jul11/embed.html
+6 reputation url_not_found
+8 wild_attribute reputation wild_attribute url_not_found
+10 reputation url_not_found
+
 PASS ../toast/living/jul11/example.html
 6 missing_close inserted_missing_closure missing_open
 10 url_not_found
@@ -221,6 +226,25 @@ PASS ../toast/living/jul11/hr.html
 
 PASS ../toast/living/jul11/i.html
 0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/living/jul11/iframe.html
+9 missing_close
+14 use_quote_code
+16 no_such_folder url_not_found
+20 no_such_folder url_not_found
+22 inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1
+25 no_such_folder url_not_found
+27 inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1 mixed_mess missing_open
+30 no_such_folder url_not_found
+32 inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1
+35 use_quote_code
+36 url_not_found
+39 overallowed
+41 url_not_found
+43 url_not_found
+45 url_not_found
+47 url_not_found
+52 inserted_missing_closure
 
 PASS ../toast/living/jul11/img.html
 6 url_not_found naughty_alt

@@ -225,6 +225,7 @@ void stats::mark_file (const unsigned size)
     res += saybe (category_.at (ec_microdata), "    Microdata");
     res += saybe (category_.at (ec_microformat), "    Microformat");
     res += saybe (category_.at (ec_mql), "    Media Query");
+    res += saybe (category_.at (ec_mime), "    Mimetype");
     res += saybe (category_.at (ec_namespace), "    Namespace");
     res += saybe (category_.at (ec_page), "    Page");
     res += saybe (category_.at (ec_parser), "    Parser");

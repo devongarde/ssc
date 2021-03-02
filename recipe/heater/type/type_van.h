@@ -379,7 +379,7 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_sandboxen, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_sandboxen, sz_space > :: good ())
-        {   bool allgood = true, script = false, origin = false;
+        {   bool allgood = true, script = false, origin = false, topnav = false, topnavuser = false;
             for (auto arg : string_vector < t_sandboxen, sz_space > :: get ())
             {   type_master < t_sandbox > sb;
                 sb.set_value (nits, v, arg);
@@ -387,9 +387,13 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
                 else switch (sb.get ())
                 {   case s_scripts : script = true; break;
                     case s_origin : origin = true; break;
+                    case s_navigation : topnav = true; break;
+                    case s_atnbua : topnavuser = true; break;
                     default : break; } }
             if (script && origin)
-                nits.pick (nit_overallowed, ed_50, "4.7.2 The iframe element", es_warning, ec_attribute, "allow-scripts and allow-same-origin, used together, defeat the sandbox");
+                nits.pick (nit_overallowed, ed_50, "4.7.2 The iframe element", es_warning, ec_attribute, "'allow-scripts' and 'allow-same-origin', used together, defeat the sandbox");
+            if (topnav && topnavuser)
+                nits.pick (nit_overallowed, ed_jan21, "4.8.5 The iframe element", es_warning, ec_attribute, "it is redundant to specify both 'allow-top-navigation' and 'allow-top-navigation-by-user-activation' in SANDBOX");
             if (allgood) return; }
         string_vector < t_sandboxen, sz_space > :: status (s_invalid); } };
 

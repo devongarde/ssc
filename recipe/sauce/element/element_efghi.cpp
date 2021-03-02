@@ -26,8 +26,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void element::examine_embed ()
 {   if (node_.version ().mjr () < 5) return;
     no_anchor_daddy ();
-    if (a_.known (a_itemprop) && ! a_.known (a_src))
-        pick (nit_bad_embed, ed_jul20, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>"); }
+    bool src_known = a_.known (a_src);
+    bool type_known = a_.known (a_type);
+    ::std::string ext;
+    e_mimetype mt = mime_bork;
+    if (src_known && ! a_.empty (a_src))
+    {   nitpick nuts;
+        url u (nuts, node_.version (), a_.get_string (a_src));
+        if (u.has_extension ()) ext = u.extension (); }
+    if (type_known && ! a_.empty (a_type))
+    {   ::std::string mim (a_.get_string (a_type));
+        nitpick nuts;
+        mt = examine_value < t_mime > (nuts, node_.version (), mim); }
+    if (! src_known)
+    {   if (a_.known (a_itemprop))
+            pick (nit_bad_embed, ed_jul20, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>");
+        if (! type_known)
+            pick (nit_bad_embed, ed_jan21, "4.8.6 The embed element", es_info, ec_attribute, "with neither SRC nor TYPE attributes, this <EMBED> represents nothing"); }
+    else if (a_.empty (a_src))
+        pick (nit_bad_embed, ed_jan21, "4.8.6 The embed element", es_warning, ec_attribute, "is that empty SRC intended?");
+    if (ancestral_elements_.test (elem_audio) || ancestral_elements_.test (elem_video))
+        pick (nit_bad_embed, ed_jan21, "4.8.6 The embed element", es_info, ec_attribute, "when <EMBED> is a child of <AUDIO> or <VIDEO>, it represents nothing");
+    if (ancestral_elements_.test (elem_object))
+        pick (nit_bad_embed, ed_jan21, "4.8.6 The embed element", es_comment, ec_attribute, "when <EMBED> is a child of <OBJECT>, it is inactive unless <OBJECT> displays its fallback content");
+    if (! ext.empty () && (mt != mime_bork) && (mt != mime_context)) has_extension_incompatibility (nits (), node_.version (), mt, ext); }
 
 void element::examine_equation ()
 {   if (node_.version ().math () != math_2) return;

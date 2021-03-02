@@ -3,6 +3,8 @@
 PASS ../toast/microdata/schema-defg/datacatalogue.html
 23 use_double_quote_code
 25 use_double_quote_code
+60 reputation mime
+62 reputation mime
 65 missing_close svg_rdf bad_datetime bad_datetime nahtch
 66 svg_rdf
 67 inserted_missing_closure
@@ -40,6 +42,7 @@ PASS ../toast/microdata/schema-defg/drycleaningorlaundry.html
 
 PASS ../toast/microdata/schema-defg/eooc.html
 0 charset_mismatch charset_used charset_invalid
+35 reputation reputation
 58 svg_rdf empty_link empty_link
 
 PASS ../toast/microdata/schema-defg/event.html

@@ -127,17 +127,15 @@ typedef enum
         a_required, a_requiredextensions, a_requiredfeatures, a_requiredfonts, a_requiredformats, a_resource, a_restart, a_result, a_results,
         a_resultscale, a_rev, a_reversed, a_rightmargin, a_rightoverhang, a_role, a_rotate, a_row, a_rowalign, a_rowgroup, a_rowlines, a_rows, a_rowspacing,
         a_rowspan, a_rquote, a_rspace, a_rules, a_rx, a_ry,
-    a_sandbox, a_scale, a_scheme, a_scope, a_scoped, a_script, a_scriptlevel, a_scriptminsize, a_scriptsizemultiplier, a_scrollamount,
-        a_scrolldelay, a_scrolling, a_seed, a_seethru, a_select, a_selected, a_selection, a_separator, a_separators, a_seqnum, a_several, a_shape,
+    a_sandbox, a_scale, a_scheme, a_scope, a_scoped, a_script, a_scriptlevel, a_scriptminsize, a_scriptsizemultiplier, a_scrollamount,  a_scrolldelay,
+        a_scrolling, a_seamless, a_seed, a_seethru, a_select, a_selected, a_selection, a_separator, a_separators, a_seqnum, a_several, a_shape,
         a_shaperendering, a_shift, a_show, a_side, a_size, a_sizes, a_skip, a_slope, a_slot, a_snapshottime, a_sortable, a_sorted, a_spacing, a_span,
         a_specularconstant, a_specularexponent, a_spellcheck, a_spreadmethod, a_src, a_srcdoc, a_srclang, a_srcset, a_srctype, a_stackalign,
-        a_standby, a_start,
-        a_start_offset, a_startoffset, a_std_deviation, a_stddeviation, a_stemh, a_stemv, a_step, a_stitchtiles, a_stop_colour, a_stop_opacity,
-        a_stretchy,
-        a_strikethroughposition, a_strikethroughthickness, a_string, a_stroke, a_stroke_dasharray, a_stroke_dashoffset, a_stroke_linecap,
-        a_stroke_linejoin, a_stroke_miterlimit, a_stroke_opacity, a_stroke_width, a_style, a_subject, a_subscriptshift, a_summary, a_superscriptshift,
-        a_surfacescale, a_svg, a_sym, a_svg_transform, a_symmetric, a_syncbehaviour, a_syncbehaviourdefault, a_syncmaster, a_synctolerance,
-        a_synctolerancedefault, a_system, a_systemlanguage, a_systemrequired,
+        a_standby, a_start, a_start_offset, a_startoffset, a_std_deviation, a_stddeviation, a_stemh, a_stemv, a_step, a_stitchtiles, a_stop_colour,
+        a_stop_opacity, a_stretchy, a_strikethroughposition, a_strikethroughthickness, a_string, a_stroke, a_stroke_dasharray, a_stroke_dashoffset,
+        a_stroke_linecap, a_stroke_linejoin, a_stroke_miterlimit, a_stroke_opacity, a_stroke_width, a_style, a_subject, a_subscriptshift, a_summary,
+        a_superscriptshift, a_surfacescale, a_svg, a_sym, a_svg_transform, a_symmetric, a_syncbehaviour, a_syncbehaviourdefault, a_syncmaster,
+        a_synctolerance, a_synctolerancedefault, a_system, a_systemlanguage, a_systemrequired,
     a_tabindex, a_tablevalues, a_tag, a_target, a_targetid, a_targetrole, a_targetx, a_targety, a_template, a_text, a_textanchor, a_textdecoration,
         a_textrendering, a_textlength, a_thickmathspace, a_thinmathspace, a_timelinebegin, a_title, a_to, a_top, a_topmargin, a_transform,
         a_transformbehaviour, a_translate, a_truespeed, a_type, a_typemustmatch, a_typeof,
@@ -179,8 +177,8 @@ typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_n
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_io, ec_icu, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_incorrectness, ec_init, ec_link, ec_microdata, ec_microformat, ec_mql,
-                ec_namespace, ec_parser, ec_program, ec_rdf, ec_rudeness, ec_shadow, ec_ssi, ec_page, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
+typedef enum {  ec_undefined, ec_io, ec_icu, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_incorrectness, ec_init, ec_link, ec_microdata, ec_microformat,
+                ec_mime, ec_mql, ec_namespace, ec_parser, ec_program, ec_rdf, ec_rudeness, ec_shadow, ec_ssi, ec_page, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
 const e_category last_category = ec_webmention;
 typedef enum {  cc_ansi, cc_utf8, cc_utf16be, cc_utf16le, cc_gb, cc_fkd } e_charcode;
 typedef enum {  ch_a, ch_b, ch_g, ch_r } e_channel_selector;
@@ -271,7 +269,7 @@ typedef enum {  cn_enotation, cn_integer, cn_rational, cn_real, cn_complexpolar,
 typedef enum { ci_auto, ci_srgb, ci_linearrgb, ci_inerit } e_colourinterpolation;
 typedef enum { cr_auto, cr_optimisespeed, cr_optimisequality, cr_inerit } e_colourrendering;
 typedef enum { co_command, co_checkbox, co_radio } e_command;
-typedef enum { es_original, es_query, es_fragment, es_scheme, es_authority, es_user, es_password, es_server, es_port, es_path, es_file } e_component;
+typedef enum { es_original, es_query, es_fragment, es_scheme, es_authority, es_user, es_password, es_server, es_port, es_path, es_file, es_extension } e_component;
 typedef enum { co_arithmetic, co_atop, co_in, co_out, co_over, co_xor } e_composite_operator;
 typedef enum { ce_gzip, ce_compress, ce_deflate, ce_identity } e_content_encoding;
 typedef enum { cl_nodownload, cl_nofullscreen, cl_noremoteplayback } e_controlslist;
@@ -343,7 +341,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_iso_8859_1, ed_csp,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
                 ed_w3, ed_mql, ed_ariaAug2020, ed_mozilla,
-                ed_microdata, ed_microformats, ed_rdf, ed_apache, ed_so_11,
+                ed_microdata, ed_microformats, ed_mimetype, ed_rdf, ed_apache, ed_so_11,
                 ed_imaginary } e_doc;
 const e_doc last_doc = ed_imaginary;
 typedef enum {  db_auto, db_usescript, db_nochange, db_resetsize, db_ideographic, db_hanging, db_mathematical,
@@ -763,7 +761,9 @@ typedef enum { mdd_none, mdd_schema, mdd_microformats, mdd_purl } e_microdata_do
 typedef enum { mc_application, mc_audio, mc_example, mc_font, mc_image, mc_model, mc_multipart, mc_text, mc_video } e_mime_category;
 
 typedef enum {
-    mime_context, mime_application_1d_interleaved_parityfec, mime_application_3gpdash_qoe_report_xml, mime_application_3gpp_ims_xml, mime_application_A2L, mime_application_activemessage,
+    mime_context,
+
+    mime_application_1d_interleaved_parityfec, mime_application_3gpdash_qoe_report_xml, mime_application_3gpp_ims_xml, mime_application_A2L, mime_application_activemessage,
     mime_application_activity_json, mime_application_alto_costmap_json, mime_application_alto_costmapfilter_json, mime_application_alto_directory_json, mime_application_alto_endpointprop_json,
     mime_application_alto_endpointpropparams_json, mime_application_alto_endpointcost_json, mime_application_alto_endpointcostparams_json, mime_application_alto_error_json,
     mime_application_alto_networkmapfilter_json, mime_application_alto_networkmap_json, mime_application_alto_updatestreamcontrol_json, mime_application_alto_updatestreamparams_json,
@@ -1265,9 +1265,33 @@ typedef enum {
     mime_video_vnd_nokia_interleaved_multimedia, mime_video_vnd_nokia_mp4vr, mime_video_vnd_nokia_videovoip, mime_video_vnd_objectvideo,
     mime_video_vnd_radgamettools_bink, mime_video_vnd_radgamettools_smacker, mime_video_vnd_sealed_mpeg1, mime_video_vnd_sealed_mpeg4,
     mime_video_vnd_sealed_swf, mime_video_vnd_sealedmedia_softseal_mov, mime_video_vnd_uvvu_mp4, mime_video_vnd_youtube_yt,
-    mime_video_vnd_vivo, mime_video_VP8,
+    mime_video_vnd_vivo, mime_video_VP8, mime_faux_module,
 
-    mime_faux_module } e_mimetype;
+    // https://www.lifewire.com/file-extensions-and-mime-types-3469109
+    mime_application_envoy, mime_application_fractals, mime_application_futuresplash, mime_application_hta, mime_application_internet_property_stream,
+    mime_application_oda, mime_application_olescript, mime_application_vnd_ms_outlook, mime_application_vnd_ms_pkicertstore,
+    mime_application_vnd_ms_pkiseccat, mime_application_vnd_ms_pkistl, mime_application_winhlp, mime_application_x_bcpio, mime_application_x_cdf,
+    mime_application_x_compress, mime_application_x_compressed, mime_application_x_cpio, mime_application_x_csh, mime_application_x_director,
+    mime_application_pics_rules, mime_application_x_dvi, mime_application_x_gtar, mime_application_x_gzip, mime_application_x_hdf,
+    mime_application_x_internet_signup, mime_application_x_iphone, mime_application_x_latex, mime_application_x_msaccess,
+    mime_application_x_mscardfile, mime_application_x_msclip, mime_application_x_msdownload, mime_application_x_msmediaview, mime_application_x_msmetafile,
+    mime_application_x_msmoney, mime_application_x_mspublisher, mime_application_x_msschedule, mime_application_x_msterminal, mime_application_x_mswrite,
+    mime_application_x_netcdf, mime_application_x_perfmon, mime_application_x_pkcs12, mime_application_x_pkcs7_certificates, mime_application_x_pkcs7_certreqresp,
+    mime_application_x_pkcs7_mime, mime_application_x_pkcs7_signature, mime_application_x_sh, mime_application_x_shar, mime_application_x_stuffit,
+    mime_application_x_sv4cpio, mime_application_x_sv4crc, mime_application_x_tar, mime_application_x_tcl, mime_application_x_tex, mime_application_x_texinfo,
+    mime_application_x_troff, mime_application_x_troff_man, mime_application_x_troff_me, mime_application_x_troff_ms, mime_application_x_ustar,
+    mime_application_x_wais_source, mime_application_ynd_ms_pkipko, mime_audio_mid, mime_audio_x_aiff, mime_audio_x_mpegurl, mime_audio_x_pn_realaudio,
+    mime_audio_x_wav, mime_image_cis_cod, mime_image_pipeg, mime_image_x_cmu_raster, mime_image_x_cmx, mime_image_x_icon, mime_x_world_x_vrml,
+    mime_image_x_portable_anymap, mime_image_x_portable_bitmap, mime_image_x_portable_graymap, mime_image_x_portable_pixmap, mime_image_x_rgb,
+    mime_image_x_xbitmap, mime_image_x_xpixmap, mime_image_x_xwindowdump, mime_text_h323, mime_text_iuls, mime_text_scriptlet, mime_text_webviewhtml,
+    mime_text_x_component, mime_text_x_setext, mime_text_x_vcard, mime_video_x_la_asf, mime_video_x_ms_asf, mime_video_x_msvideo, mime_video_x_sgi_movie,
+
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+    mime_application_x_abiword, mime_application_x_freearc, mime_application_vnd_amazon_ebook, mime_application_x_bzip, mime_application_x_bzip2,
+    mime_audio_midi, mime_audio_x_midi, mime_application_x_httpd_php, mime_video_mp2t, mime_audio_wav, mime_audio_webm,
+    mime_video_webm, mime_image_webp, mime_application_x_7z_compressed,
+
+    mime_bork } e_mimetype;
 
 typedef enum { mo_dilate, mo_erode } e_morphology_operator;
 typedef enum { mo_display, mo_inline } e_mode;
@@ -1360,7 +1384,8 @@ typedef enum
     nit_whatwg_class, nit_opening_file, nit_target, nit_bad_mummy, nit_no_serviceworker, nit_rel_head, nit_theme_colour, nit_refresh_zero,
     nit_bad_csp_directive, nit_bad_number_once, nit_bad_csp_source, nit_invalid_algorithm, nit_insufficient_content, nit_bad_q,
     nit_bad_cookie, nit_bad_cache, nit_bad_link_pragma, nit_nocando, nit_bad_root, nit_isnt, nit_menu_type, nit_menu_child, nit_bad_dl,
-    nit_repeated_definition, nit_contradictory_expansion, nit_naughty_grave, nit_encode, nit_svg_data, nit_data,
+    nit_repeated_definition, nit_contradictory_expansion, nit_naughty_grave, nit_encode, nit_svg_data, nit_data, nit_bad_wild,
+    nit_risky_filetype, nit_reputation, nit_incompatible_mime, nit_os_dependent,
 
     nit_context,
 

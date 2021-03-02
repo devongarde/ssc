@@ -77,6 +77,7 @@ public:
     bool has_args () const { return ! params_.empty (); }
     bool has_domain () const { return has_component (es_server); }
     bool has_file () const { return has_component (es_file); }
+    bool has_extension () const { return has_component (es_extension); }
     bool has_id () const { return has_component (es_fragment); }
     bool has_path () const { return has_component (es_path); }
     bool has_query () const { return has_component (es_query); }
@@ -103,6 +104,7 @@ public:
     ::std::string id () const { return get_component (es_fragment); }
     ::std::string fragment () const { return get_component (es_fragment); }
     ::std::string filename () const { return get_component (es_file); }
+    ::std::string extension () const { return get_component (es_extension); }
     ::std::string original () const { return protocol_.original (); }
     ::std::string get () const
     {   if (invalid ()) return ::std::string (); return protocol_.get (); }

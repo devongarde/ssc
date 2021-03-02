@@ -69,10 +69,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MAJOR_X1_0   4
 #define MAJOR_X1_1   4
 #define MAJOR_X2_0   4
-#define MAJOR_5_0    HTML_2014
-#define MAJOR_5_1    HTML_2016
-#define MAJOR_5_2    HTML_2017
-#define MAJOR_5_3    HTML_2018
 
 #define HTML_JAN     (1 << 4)
 #define HTML_FEB     (2 << 4)
@@ -98,10 +94,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MINOR_X1_0   2
 #define MINOR_X1_1   3
 #define MINOR_X2_0   4
-#define MINOR_5_0    (HTML_OCT + 14)
-#define MINOR_5_1    (HTML_OCT + 1)
-#define MINOR_5_2    (HTML_DEC + 7)
-#define MINOR_5_3    (HTML_OCT + 9)
 
 #define HTML_TAGS   MAJOR_TAGS, MINOR_TAGS
 #define HTML_1_0    MAJOR_1_0, MINOR_1_0
@@ -114,6 +106,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define XHTML_1_0   MAJOR_X1_0, MINOR_X1_0
 #define XHTML_1_1   MAJOR_X1_1, MINOR_X1_1
 #define XHTML_2_0   MAJOR_X2_0, MINOR_X2_0
+
+#define MAJOR_5_0   HTML_2014
+#define MAJOR_5_1   HTML_2016
+#define MAJOR_5_2   HTML_2017
+#define MAJOR_5_3   HTML_2018
+#define MINOR_5_0   (HTML_OCT + 14)
+#define MINOR_5_1   (HTML_OCT + 1)
+#define MINOR_5_2   (HTML_DEC + 7)
+#define MINOR_5_3   (HTML_OCT + 9)
 #define HTML_5_0    MAJOR_5_0, MINOR_5_0
 #define HTML_5_1    MAJOR_5_1, MINOR_5_1
 #define HTML_5_2    MAJOR_5_2, MINOR_5_2
@@ -228,6 +229,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HL_CSS_45       ( HL_CSS4 | HL_CSS5 )
 #define HL_CSS_345      ( HL_CSS3 | HL_CSS_45 )
 #define HL_CSS_ALL      ( HL_CSS1 | HL_CSS2 | HL_CSS_345 )
+
+#define HV_CSP_1        0x0000000000001000
+#define HV_CSP_2        0x0000000000002000
+#define HV_CSP_3        0x0000000000004000
 
 #define HV_WHATWG       0x0000000000100000
 #define HV_W3           0x0000000000200000

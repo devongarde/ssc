@@ -192,7 +192,7 @@ struct elem : symbol < e_element >
     void note_refreshed ()
     {   refresh (EP_5_REFRESHED); }
     bool wild_attributes (const html_version& v) const
-    {   return ((v >= html_5_0) && ((flags () & EP_5_WILDATTR) == EP_5_WILDATTR)); }
+    {   return (v.is_5 () && ((flags () & EP_5_WILDATTR) == EP_5_WILDATTR)); }
     bool unknown () const
     {   return (symbol < e_element > :: unknown ()) || (symbol < e_element > :: get () == elem_undefined); } };
 

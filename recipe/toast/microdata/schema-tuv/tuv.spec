@@ -29,6 +29,7 @@ PASS ../toast/microdata/schema-tuv/touristdestination.html
 
 PASS ../toast/microdata/schema-tuv/touristtrip.html
 0 charset_mismatch charset_used charset_invalid
+18 reputation reputation
 84 not_schema_property
 125 not_schema_property
 163 use_quote_code

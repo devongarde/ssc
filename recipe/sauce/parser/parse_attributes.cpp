@@ -31,9 +31,16 @@ attributes_node::attributes_node ()
 {   va_.reserve (max_attrib); }
 
 void attributes_node::report_invalid (nitpick& nits, const html_version& v, const bool known, const ::std::string::const_iterator key_start, const ::std::string::const_iterator key_end, const elem& el) const
-{   if (! el.unknown () && ! el.wild_attributes (v))
-        if (known) nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, "attribute ", quote (::std::string (key_start, key_end)), " is unrecognised here");
-        else nits.pick (nit_attribute_unrecognised, es_warning, ec_attribute, "attribute ", quote (::std::string (key_start, key_end)), " is unrecognised"); }
+{   ::std::string s (key_start, key_end);
+    if (el.wild_attributes (v))
+        if (s.find (':') != ::std::string::npos)
+            nits.pick (nit_bad_wild, ed_jan21, "4.8.6 The embed element ", es_error, ec_attribute, quote(s), ": parameters cannot be in namespaces");
+        else if (s.find_first_of (UPPERCASE) != ::std::string::npos)
+            nits.pick (nit_bad_wild, ed_jan21, "4.8.6 The embed element ", es_error, ec_attribute, quote(s), ": parameters may not contain upper case letters");
+        else nits.pick (nit_wild_attribute, ed_jan21, "4.8.6 The embed element ", es_info, ec_attribute, quote (s), " noted");
+    else if (! el.unknown ())
+        if (known) nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised here");
+        else nits.pick (nit_attribute_unrecognised, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised"); }
 
 void attributes_node::push_back_and_report (nitpick& nits, const html_version& v, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
                                             const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const elem& el)
