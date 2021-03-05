@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_enum.h"
 
-#define SCRIPT              0x00000001
+#define MIME_SCRIPT         0x00000001
 #define NOT_SCRIPT          0x00000002
-#define STYLE               0x00000004
+#define MIME_STYLE          0x00000004
 
 #define MIME_APPLICATION    0x00000010
 #define MIME_AUDIO          0x00000020
@@ -42,6 +42,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MIME_ANDROID        0x00020000
 
 #define MIME_VULNERABLE     0x00040000
+#define MIME_WITHDRAWN      0x00080000
+
+#define MIME_PAGE            0x00100000
+
+#define MIME_JSON           0x01000000
+#define MIME_ZIP            0x02000000
+#define MIME_CBOR           0x04000000
+#define MIME_XML            0x08000000
+#define MIME_COMMON_MASK    0x0F000000
 
 template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ())
@@ -126,13 +135,16 @@ template < > struct type_master < t_mimestar > : public string_value < t_mimesta
 
 template < > struct type_master < t_mimeq > : type_one_or_both < t_mimeq, t_mimestar, sz_semicolon, t_q > { };
 template < > struct type_master < t_mimeqs > : type_at_least_one < t_mimeqs, sz_comma, t_mimeq > { };
+template < > class type_master < t_format > : public enum_n < t_format, e_format > { };
 
-class mime_extension : public enum_n < t_mime, e_mimetype > { };
-
-e_mimetype extension_mimetype (nitpick& nits, const html_version& v, const ::std::string& ext, uint64_t& flags);
+e_format extension_format (nitpick& nits, const html_version& v, const ::std::string& ext, uint64_t& flags);
 bool is_compatible_extension (const html_version& v, const e_mimetype em, const ::std::string& ext);
 bool has_external_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em);
+bool has_embed_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em);
 bool has_extension_incompatibility (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext);
+void check_extension_compatibility (nitpick& nits, const html_version& v, const e_mimetype em, const vurl_t& u, const bool src);
+void check_extension_compatibility (nitpick& nits, const html_version& v, const ::std::string& s, const vurl_t& u, const bool src);
+void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const uint64_t family);
 bool has_extension_vulnerability (nitpick& nits, const html_version& v, const ::std::string& ext, const bool local);
-bool has_mimetype_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const bool local);
+bool has_mimetype_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const bool local, const bool specified);
 bool check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext, const bool local);

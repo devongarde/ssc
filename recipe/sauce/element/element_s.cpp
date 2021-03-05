@@ -70,7 +70,7 @@ void element::examine_script ()
                     break;
                 default :
                     {   uint64_t flags = type_master < t_mime > :: flags (mt);
-                        if ((flags & SCRIPT) == SCRIPT)
+                        if ((flags & MIME_SCRIPT) == MIME_SCRIPT)
                             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be supported by all browsers on all systems");
                         else if (node_.version () < html_jul20)
                         {   pick (nit_bad_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be processed");
@@ -106,7 +106,6 @@ void element::examine_select ()
     bool required = a_.known (a_required);
     if (a_.good (a_size)) size = a_.get_int (a_size);
     else if (multiple) size = 4;
-
     if (a_.known (a_role) && (w3_minor_5 (node_.version ()) >= 2))
     {   e_aria_role r = static_cast < e_aria_role > (a_.get_int (a_role));
         if (multiple || (size > 1))
@@ -116,7 +115,6 @@ void element::examine_select ()
                 pick (nit_input_bad_aria, ed_52, "4.10.7 The select element", es_error, ec_attribute, "with MULTIPLE and SIZE greater than one, ARIA cannot be 'menu'"); }
         else if (r == role_combobox)
             pick (nit_input_bad_aria, ed_52, "4.10.7 The select element", es_error, ec_attribute, "do not set ROLE to 'listbox', it is the default"); }
-
     if (required && (! multiple) && (size == 1) && (has_child ()))
     {   uint64_t placeholder = 0;
         int selectedness = 0;
@@ -157,13 +155,16 @@ void element::examine_share ()
                         break; } } } }
 
 void element::examine_source ()
-{   if (ancestral_elements_.test (elem_picture))
+{   bool has_src = a_.known (a_src);
+    bool has_type = a_.known (a_type);
+    if (has_src && has_type) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_src), true);
+    if (ancestral_elements_.test (elem_picture))
     {   if (! a_.known (a_srcset))
             pick (nit_bad_srcset, ed_52, "4.7.4. The source element", es_error, ec_element, "SRCSET is required when <SOURCE> descends from <PICTURE>");
         if (a_.known (a_src))
             pick (nit_saucy_source, ed_52, "4.7.4. The source element", es_warning, ec_element, "SRC has no meaning when <SOURCE> descends from <PICTURE>"); }
     else
-    {   if (! a_.known (a_src))
+    {   if (! has_src)
             pick (nit_src_required, ed_52, "4.7.4. The source element", es_error, ec_element, "SRC attribute is required when <SOURCE> descends from a media element");
         if (a_.known (a_srcset) || a_.known (a_sizes) || a_.known (a_media))
             pick (nit_saucy_source, ed_52, "4.7.4. The source element", es_warning, ec_element, "SRCSET, SIZES and MEDIA have no meaning when <SOURCE> is not a child of <PICTURE>");

@@ -74,6 +74,7 @@ struct symbol_store
 	symbol_store& operator = (symbol_store&& ss) = default;
 #endif
     void swap (symbol_store& ss) NOEXCEPT;
+    ::std::string report () const;
     void reset () { symbol_store ss; swap (ss); }
     void reset (const symbol_store& s) { symbol_store ss (s); swap (ss); } };
 
@@ -102,7 +103,7 @@ inline bool operator <= (const symbol_key& lhs, const symbol_key& rhs)
 template < > struct std::hash < symbol_key >
 {   ::std::size_t operator() (const symbol_key& k) const
     {   ::std::size_t h = ::std::hash < ::std::string > () (k.first); // bollocks
-        return ::std::hash <::std::size_t> () (h  ^ static_cast < ::std::size_t > (k.second)); } };
+        return ::std::hash <::std::size_t> () (h ^ static_cast < ::std::size_t > (k.second)); } };
 
 class symbol_table
 {   typedef ssc_map < symbol_key, symbol_store > symbol_t;
@@ -120,9 +121,10 @@ public:
             if (table [i].sz_ == nullptr) break;
             else
             {   ::std::string key (enlc < LC > :: to (::std::string (table [i].sz_)));
-                if (symbol_.find (symbol_key (key, table [i].ns_)) != symbol_.end ())
-                    nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "program error: symbol ", table [i].sz_, " already defined");
-                else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); } }
+                auto it = symbol_.find (symbol_key (key, table [i].ns_));
+                if (it != symbol_.end ())
+                    nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "program error: symbol ", table [i].sz_, " already defined (ignoring case)");
+                else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); }}
     bool find (const html_version& v, const ::std::string& x, ::std::size_t& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const;
     ::std::size_t find (const html_version& v, const ::std::string& x, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const;
     template < typename VALUE, class LC > bool find (const html_version& v, const ::std::string& x, VALUE& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
@@ -155,4 +157,5 @@ public:
                         return static_cast < VALUE > (i -> second.v_); }
         return static_cast < VALUE > (0); }
     ::std::string after_start (const ::std::string& s) const;
-    ::std::string name (const ::std::size_t x) const; };
+    ::std::string name (const ::std::size_t x) const;
+    ::std::string report () const; };

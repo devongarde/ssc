@@ -41,9 +41,14 @@ void element::examine_address ()
 
 void element::examine_anchor ()
 {   const bool href_known = a_.known (a_href);
+    const bool type_known = a_.known (a_type);
+    const bool rel_known = a_.known (a_rel);
+    const bool rev_known = a_.known (a_rev);
     const bool five = node_.version ().is_5 ();
-    if (href_known) no_anchor_daddy ();
-    else if (a_.known (a_rel) || a_.known (a_rev))
+    if (href_known)
+    {   no_anchor_daddy ();
+        if (type_known) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_href), false); }
+    else if (rel_known || rev_known)
         pick (nit_rel_requires_href, ed_1, "Anchors", es_error, ec_element, "REL and REV both require HREF");
     else if (five) pick (nit_chocolate_teapot, es_warning, ec_element, "An <A> with no HREF is not useful");
     else if (! a_.known (a_name))
@@ -54,7 +59,7 @@ void element::examine_anchor ()
         pick (nit_methods_undefined, ed_1, "Anchors", es_info, ec_element, PROG " cannot verify METHOD values here");
     if (five)
     {   if (! href_known)
-        {   if (a_.known (a_target) || a_.known (a_download) || a_.known (a_ping) ||  a_.known (a_referrerpolicy) ||  a_.known (a_rel) ||  a_.known (a_rev) ||  a_.known (a_hreflang) ||  a_.known (a_type))
+        {   if (a_.known (a_target) || a_.known (a_download) || a_.known (a_ping) || a_.known (a_referrerpolicy) || rel_known || rev_known || a_.known (a_hreflang) || type_known)
                 pick (nit_chocolate_teapot, ed_50, "4.5.1 The a element", es_error, ec_element, "An <A> with no HREF can have no DOWNLOAD, HREFLANG, REL, REV, REFERRERPOLICY, PING, TARGET or TYPE attributes.");
             if (a_.known (a_itemprop))
                 pick (nit_chocolate_teapot, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> with an ITEMPROP requires an HREF."); }
@@ -86,14 +91,17 @@ void element::examine_annotation (const e_element e)
         pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes no effort to analyse the content of <", elem::name (e), ">"); }
 
 void element::examine_area ()
-{   if (node_.version ().is_5 ())
+{   bool href_known = a_.known (a_href);
+    bool alt_known = a_.known (a_alt);
+    if (href_known) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE);
+    if (node_.version ().is_5 ())
     {   if (! any (ancestral_elements_, empty_element_bitset | elem_map | elem_template))
             pick (nit_area_map_template, ed_50, "4.7.12 The area element", es_error, ec_element, "<AREA> requires a <MAP> or a <TEMPLATE> ancestor");
-        if (a_.known (a_href))
-        {    if (! a_.known (a_alt))
+        if (href_known)
+        {    if (! alt_known)
                 pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_element, "The HREF requires an ALT"); }
         else
-        {   if (a_.known (a_alt))
+        {   if (alt_known)
                 pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_element, "ALT requires an HREF");
             if (a_.known (a_target) || a_.known (a_download) || a_.known (a_rel) || a_.known (a_hreflang) || a_.known (a_type))
                 pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_element, "DOWNLOAD, HREFLANG, REL, TARGET and TYPE all require an HREF"); } }
@@ -159,6 +167,7 @@ void element::examine_base ()
         else if (page_.version ()  >= html_jul07)
            pick (nit_base, ed_50, "4.2.3 The base element", es_error, ec_element, context.filename (), "<BASE> must have an HREF or a TARGET attribute");
         return; }
+    check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE);
     url u (nits (), node_.version (), a_.get_string (a_href));
     if (! u.empty ())
         if (! u.is_local ())

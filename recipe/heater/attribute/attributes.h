@@ -33,7 +33,6 @@ public:
     attributes () = delete;
     explicit attributes (const e_element e, const aar_t& ptr) : aar_ (ptr), tag_ (e) { }
     explicit attributes (element_node& en) : tag_ (en.tag ()) { }
-//    {   parse (en.nits (), en.version (), en.attributes ()); }
     void reset ()
     {   aar_.fill (attribute_v_ptr ());
         unrecognised_.clear (); }

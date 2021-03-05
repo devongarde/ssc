@@ -95,14 +95,6 @@ PASS ../toast/microdata/schema-abc/audioobject.html
 
 PASS ../toast/microdata/schema-abc/bankaccount.html
 0 charset_mismatch charset_used charset_invalid
-25 reputation
-43 reputation
-61 reputation
-84 reputation
-87 reputation
-
-PASS ../toast/microdata/schema-abc/bankorcreditunion.html
-13 reputation reputation
 
 PASS ../toast/microdata/schema-abc/blogposting.html
 0 charset_mismatch charset_used charset_invalid

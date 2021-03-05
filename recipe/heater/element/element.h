@@ -45,7 +45,6 @@ class element
     element* autofocus_ = nullptr;
     microformats_ptr mf_ = nullptr;
     ::std::string name_;
-//    ids_t& ids_;
     sstr_t* access_ = nullptr;
     element_bitset ancestral_elements_, sibling_elements_, descendant_elements_;
     attribute_bitset ancestral_attributes_, own_attributes_, sibling_attributes_, descendant_attributes_;

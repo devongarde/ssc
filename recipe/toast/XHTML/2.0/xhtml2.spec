@@ -28,7 +28,6 @@ PASS ../toast/XHTML/2.0/x2-example.xhtml
 1 xhtml_1_0
 2 html_contradictory
 7 long_title
-23 reputation
 61 unknown
 72 unrecognised_value
 88 unrecognised_value
@@ -69,10 +68,10 @@ PASS ../toast/XHTML/2.0/x2-example.xhtml
 361 url_not_found
 365 url_not_found
 380 reputation url_not_found
-405 reputation reputation
+405 reputation
 410 url_not_found
 415 url_not_found
-424 reputation reputation
+424 reputation
 442 mime mime_list url_not_found
 446 mime mime_list url_not_found
 454 url_not_found

@@ -88,7 +88,7 @@ PASS ../toast/HTML/2.0/html2-sample.html
 19 inserted_missing_closure missing_close
 20 inserted_missing_closure
 26 inserted_missing_closure missing_close
-27 mime url_not_found
+27 url_not_found
 29 inserted_missing_closure
 
 PASS ../toast/HTML/2.0/rfc1867.html
