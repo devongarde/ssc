@@ -462,6 +462,7 @@ typedef enum {
 typedef enum { fs_italic, fs_normal } e_fontstyle;
 typedef enum { fmw_bold, fmw_normal } e_math_fontweight;
 typedef enum { fn_normal, fn_italic, fn_oblique } e_fontnia;
+typedef unsigned short e_format;
 typedef enum { f4_blank, f4_parent, f4_self, fr_top } e_frame4;
 typedef enum { gu_userspaceonuse, gu_objectboundingbox } e_gradientunits;
 typedef enum { al_left, al_center, al_right, al_justify, al_char } e_halign;
@@ -770,7 +771,7 @@ typedef enum {
     mime_application_AML, mime_application_andrew_inset, mime_application_applefile, mime_application_ATF, mime_application_ATFX, mime_application_atom_xml, mime_application_atomcat_xml,
     mime_application_atomdeleted_xml, mime_application_atomicmail, mime_application_atomsvc_xml, mime_application_atsc_dwd_xml, mime_application_atsc_dynamic_event_message,
     mime_application_atsc_held_xml, mime_application_atsc_rdt_json, mime_application_atsc_rsat_xml, mime_application_ATXML, mime_application_auth_policy_xml, mime_application_bacnet_xdd_zip,
-    mime_application_batch_SMTP, mime_application_beep_xml, mime_application_calendar_json, mime_application_calendar_xml, mime_application_call_completion, mime_application_CALS_1840,
+    mime_application_batch_SMTP, mime_application_beep_xml, mime_application_calendar_json, mime_application_calendar_xml, mime_application_call_completion, mime_application_cals_1840,
     mime_application_cap_xml, mime_application_cbor, mime_application_cbor_seq, mime_application_cccex, mime_application_ccmp_xml, mime_application_ccxml_xml, mime_application_CDFX_XML,
     mime_application_cdmi_capability, mime_application_cdmi_container, mime_application_cdmi_domain, mime_application_cdmi_object, mime_application_cdmi_queue, mime_application_cdni,
     mime_application_CEA, mime_application_cea_2018_xml, mime_application_cellml_xml, mime_application_cfw, mime_application_clue_info_xml, mime_application_clue_xml, mime_application_cms,
@@ -805,7 +806,7 @@ typedef enum {
     mime_application_mpeg4_iod_xmt, mime_application_mrb_consumer_xml, mime_application_mrb_publish_xml, mime_application_msc_ivr_xml, mime_application_msc_mixer_xml,
     mime_application_msword, mime_application_mud_json, mime_application_multipart_core, mime_application_mxf, mime_application_n_quads, mime_application_n_triples, mime_application_nasdata,
     mime_application_news_checkgroups, mime_application_news_groupinfo, mime_application_news_transmission, mime_application_nlsml_xml, mime_application_node, mime_application_nss,
-    mime_application_ocsp_request, mime_application_ocsp_response, mime_application_octet_stream, mime_application_ODA, mime_application_odm_xml, mime_application_ODX,
+    mime_application_ocsp_request, mime_application_ocsp_response, mime_application_octet_stream, mime_application_odm_xml, mime_application_ODX,
     mime_application_oebps_package_xml, mime_application_ogg, mime_application_oscore, mime_application_oxps, mime_application_p2p_overlay_xml, mime_application_parityfec,
     mime_application_passport, mime_application_patch_ops_error_xml, mime_application_pdf, mime_application_PDX, mime_application_pem_certificate_chain, mime_application_pgp_encrypted,
     mime_application_pgp_keys, mime_application_pgp_signature, mime_application_pidf_diff_xml, mime_application_pidf_xml, mime_application_pkcs10, mime_application_pkcs7_mime,
@@ -824,7 +825,7 @@ typedef enum {
     mime_application_senml_etch_cbor, mime_application_senml_etch_json, mime_application_senml_exi, mime_application_senml_cbor, mime_application_senml_json, mime_application_senml_xml,
     mime_application_sensml_exi, mime_application_sensml_cbor, mime_application_sensml_json, mime_application_sensml_xml, mime_application_sep_exi, mime_application_sep_xml,
     mime_application_session_info, mime_application_set_payment, mime_application_set_payment_initiation, mime_application_set_registration, mime_application_set_registration_initiation,
-    mime_application_SGML, mime_application_sgml_open_catalog, mime_application_shf_xml, mime_application_sieve, mime_application_simple_filter_xml, mime_application_simple_message_summary,
+    mime_application_sgml, mime_application_sgml_open_catalog, mime_application_shf_xml, mime_application_sieve, mime_application_simple_filter_xml, mime_application_simple_message_summary,
     mime_application_simpleSymbolContainer, mime_application_sipc, mime_application_slate, mime_application_smil, mime_application_smil_xml, mime_application_smpte336m,
     mime_application_soap_fastinfoset, mime_application_soap_xml, mime_application_sparql_query, mime_application_sparql_results_xml, mime_application_spirits_event_xml,
     mime_application_sql, mime_application_srgs, mime_application_srgs_xml, mime_application_sru_xml, mime_application_ssml_xml, mime_application_stix_json, mime_application_swid_xml,
@@ -1290,6 +1291,9 @@ typedef enum {
     mime_application_x_abiword, mime_application_x_freearc, mime_application_vnd_amazon_ebook, mime_application_x_bzip, mime_application_x_bzip2,
     mime_audio_midi, mime_audio_x_midi, mime_application_x_httpd_php, mime_video_mp2t, mime_audio_wav, mime_audio_webm,
     mime_video_webm, mime_image_webp, mime_application_x_7z_compressed,
+
+    // microsoft (-ish)
+    mime_application_news_message_id, mime_application_x_httpd_asp,
 
     mime_bork } e_mimetype;
 
@@ -1901,7 +1905,7 @@ typedef enum {
     t_edgemode, t_edit, t_effect, t_email, t_emails, t_enablebackground, t_enctype, t_end, t_endvaluelist, t_enterkeyhint, t_existential, t_expected,
     t_featurepolicy, t_figalign, t_filename, t_fill, t_fillanim, t_fillrule, t_filter_in, t_filter_res, t_fixedcolour, t_fixedpoint, t_font, t_fontfamily,
         t_fontfamilies, t_fontnia, t_fontsize, t_fontsizeadjust, t_fontstretch, t_fontstretches, t_fontstyle, t_fontweight, t_fontvariant, t_fontvariants,
-        t_form, t_frame, t_frame4, t_framespacing, t_frequency,
+        t_form, t_format, t_frame, t_frame4, t_framespacing, t_frequency,
     t_generic, t_glyphname, t_glyphnames, t_groupalign,
     t_halign, t_height, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
     t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_imagerendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index, t_indentalign,

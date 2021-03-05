@@ -112,8 +112,9 @@ public:
     {   return table_.starts_with < VALUE> (s); }
     static ::std::string after_start (const ::std::string& s)
     {   return table_.after_start (s); }
-   bool invalid () const { return unknown_; }
+    bool invalid () const { return unknown_; }
     bool is_invalid_version (const html_version& v)
-    {   return ((v > last ()) || (v < first ())); } };
+    {   return ((v > last ()) || (v < first ())); }
+    static ::std::string table () { return table_.report (); } };
 
 template < typename VALUE, class LC > symbol_table symbol < VALUE, LC > :: table_;

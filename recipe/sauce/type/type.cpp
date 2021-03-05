@@ -190,6 +190,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_fontvariant);
         TEST_VALUE (t_fontvariants);
         TEST_VALUE (t_form);
+        TEST_VALUE (t_format);
         TEST_VALUE (t_frame);
         TEST_VALUE (t_frame4);
         TEST_VALUE (t_frequency);

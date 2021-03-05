@@ -452,7 +452,7 @@ PASS ../toast/HTML/5.0/html5-example.html
 1529 inserted_missing_closure
 1530 inserted_missing_closure missing_close
 1531 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-1533 mime url_not_found
+1533 url_not_found
 1535 inserted_missing_closure
 1539 inserted_missing_closure
 1540 inserted_missing_closure

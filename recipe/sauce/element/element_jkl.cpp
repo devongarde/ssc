@@ -96,7 +96,11 @@ void element::examine_link ()
     bool has_itemprop = a_.known (a_itemprop);
     bool has_imagesrcset = a_.known (a_imagesrcset);
     bool has_imagesizes = a_.known (a_imagesizes);
+    bool has_type = a_.known (a_type);
+    bool href = a_.known (a_href);
+    bool icon = false, preload = false, modulepreload = false, maskicon = false, serviceworker = false, stylesheet = false, external = has_imagesrcset, as_image = false;
     e_element mummy = parent_ -> tag ();
+    if (href && has_type) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_href), false);
     if (tis5)
     {   if (node_.version () <= html_jul07)
         {   if (mummy != elem_head)
@@ -124,8 +128,6 @@ void element::examine_link ()
         return; }
     vstr_t entries;
     ::boost::algorithm::split (entries, content, ::boost::algorithm::is_any_of (" "), ::boost::algorithm::token_compress_on);
-    bool icon = false, preload = false, modulepreload = false, maskicon = false, serviceworker = false, stylesheet = false, external = has_imagesrcset, as_image = false;
-    bool href = a_.known (a_href);
     if (href && ! external)
     {   vurl_t vu (a_.get_urls (a_href));
         for (auto u : vu)
@@ -144,7 +146,6 @@ void element::examine_link ()
     for (auto s : entries)
     {   rel r (node_.nits (), node_.version (), s);
         if (r.invalid ()) continue;
-//        if (r.is_microformat () && context.microformats ()) continue; // microformats are processed later
         if (tis5)
         {   html_version from (r.first ());
             if (! may_apply (node_.version (), from, r.last ()))
@@ -166,15 +167,17 @@ void element::examine_link ()
                 if (from.is_external ())
                 {   pick (nit_link_rel_off, ed_53, "4.8.6. Link types", es_error, ec_attribute, "REL=", quote (s), " requires an external url"); continue; } }
         bool headonly = true;
+// void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const uint64_t family);
+
         switch (r.get ())
         {   case r_apple_touch_icon :
-            case r_icon : icon = true; break;
+            case r_icon : icon = true; check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_IMAGE); break;
+            case r_maskicon : maskicon = true; check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_IMAGE); break;
             case r_bodyok : headonly = false; break;
-            case r_maskicon : maskicon = true; break;
             case r_modulepreload : modulepreload = true; break;
             case r_preload : preload = true; break;
             case r_serviceworker : serviceworker = true; break;
-            case r_stylesheet : stylesheet = true; break;
+            case r_stylesheet : stylesheet = true; check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_STYLE); break;
             case r_tag :
                 if (node_.version () >= html_jan12)
                 {   pick (nit_link_rel_off, es_info, ec_attribute, "<LINK> REL=", quote (s), " is not valid in ", node_.version ().report ());
@@ -182,16 +185,22 @@ void element::examine_link ()
                 break;
             case r_alternative :
             case r_contact :
-            case r_dnsprefetch :
             case r_first :
             case r_feed :
-            case r_manifest :
             case r_next :
+            case r_prev :
+            case r_search :
+            case r_up : check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE); break;
+            case r_manifest :
             case r_pingback :
             case r_preconnect :
             case r_prefetch :
-            case r_search :
-            case r_up : break;
+            case r_prerender :
+            case r_dnsprefetch : break;
+            case r_author :
+            case r_help :
+            case r_licence :
+            case r_canonical : check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE); headonly = false; break;
             default : headonly = false; break; }
         if (headonly && ! ancestral_elements_.test (elem_head))
             pick (nit_rel_head, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, "<LINK> with REL=", quote (s), " should be under <HEAD>, not <BODY>"); }

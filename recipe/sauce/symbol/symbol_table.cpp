@@ -124,3 +124,16 @@ void symbol_table :: extend (const ::std::string& key, const ::std::string& symb
                 if (compare_no_case (s.substr (0, max), i -> second.sz_))
                     return s.substr (max); }
     return s; }
+
+::std::string symbol_store :: report () const
+{   ::std::stringstream res;
+    res << v_ << ":'" << sz_ << "'," << first_.report () << "," << last_.report () << "," << ns_ << "," << flags_ << "," << flags2_;
+    return res.str (); }
+
+::std::string symbol_table :: report () const
+{   ::std::stringstream res;
+    for (symbol_t::const_iterator i = symbol_.cbegin (); i != symbol_.cend (); ++i)
+    {   res << i -> first.first;
+        if (i -> first.second != 0) res << "/" << i -> first.second;
+        res << " : " << i -> second.report () << "\n"; }
+    return res.str (); }

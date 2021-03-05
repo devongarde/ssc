@@ -28,16 +28,6 @@ void element::examine_embed ()
     no_anchor_daddy ();
     bool src_known = a_.known (a_src);
     bool type_known = a_.known (a_type);
-    ::std::string ext;
-    e_mimetype mt = mime_bork;
-    if (src_known && ! a_.empty (a_src))
-    {   nitpick nuts;
-        url u (nuts, node_.version (), a_.get_string (a_src));
-        if (u.has_extension ()) ext = u.extension (); }
-    if (type_known && ! a_.empty (a_type))
-    {   ::std::string mim (a_.get_string (a_type));
-        nitpick nuts;
-        mt = examine_value < t_mime > (nuts, node_.version (), mim); }
     if (! src_known)
     {   if (a_.known (a_itemprop))
             pick (nit_bad_embed, ed_jul20, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>");
@@ -49,11 +39,10 @@ void element::examine_embed ()
         pick (nit_bad_embed, ed_jan21, "4.8.6 The embed element", es_info, ec_attribute, "when <EMBED> is a child of <AUDIO> or <VIDEO>, it represents nothing");
     if (ancestral_elements_.test (elem_object))
         pick (nit_bad_embed, ed_jan21, "4.8.6 The embed element", es_comment, ec_attribute, "when <EMBED> is a child of <OBJECT>, it is inactive unless <OBJECT> displays its fallback content");
-    if (! ext.empty () && (mt != mime_bork) && (mt != mime_context)) has_extension_incompatibility (nits (), node_.version (), mt, ext); }
+    if (src_known && type_known) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_src), true); }
 
 void element::examine_equation ()
 {   if (node_.version ().math () != math_2) return;
-        // there's an inconsistency in MathML 3 that I've not got my head around yet, so I'm disabling this check for now.
     if (tag () == elem_reln) pick (nit_deprecated_element, ed_math_2, "4.4.2.2 Relation (reln)", es_warning, ec_element, "<RELN> is deprecated");
     uint64_t fl = 0;
     bool start = true;
@@ -283,7 +272,9 @@ void element::examine_html ()
 
 void element::examine_iframe ()
 {   if (node_.version ().mjr () < 5) return;
+    const bool has_src = a_.known (a_src);
     no_anchor_daddy ();
+    if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), MIME_PAGE);
     if (a_.known (a_itemprop) && ! a_.known (a_src))
         pick (nit_bad_iframe, ed_jul20, "4.8.5 The iframe element", es_error, ec_attribute, "SRC is required when ITEMPROP is used with <IFRAME>");
     if (! a_.known (a_srcdoc) && ! a_.known (a_src))
@@ -295,8 +286,10 @@ void element::examine_img ()
     const bool ancestor_a = ancestral_elements_.test (elem_a);
     const bool ancestor_figure = ancestral_elements_.test (elem_figure);
     const bool has_title = a_.good (a_title) && (! a_.get_string (a_title).empty ());
+    const bool has_src = a_.known (a_src);
     check_required_type (elem_img);
     if (a_.known (a_usemap) && ! node_.version ().is_5 ()) no_anchor_daddy ();
+    if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), MIME_IMAGE);
     if (node_.version ().is_4 ())
     {   if (! alt_known)
             pick (nit_attribute_required, ed_4, "13.2 Including an image", es_error, ec_attribute, "ALT is required on <IMG>");

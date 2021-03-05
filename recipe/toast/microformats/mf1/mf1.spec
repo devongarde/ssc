@@ -47,15 +47,14 @@ PASS ../toast/microformats/mf1/mf1-example.html
 149 unrecognised_value
 175 use_quote_code
 176 use_quote_code
+183 incompatible_mime
 187 use_quote_code
 188 hcard_infer hcard_infer
-196 mime
 209 hcard_infer
 212 use_double_quote_code
 218 hcard_infer hcard_infer
 220 use_quote_code
-221 mime
-241 newline_in_string newline_in_string reputation reputation mime
+241 newline_in_string newline_in_string reputation
 246 newline_in_string newline_in_string
 269 hcard_infer hcard_infer
 275 hcard_infer
