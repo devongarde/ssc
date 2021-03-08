@@ -386,6 +386,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_ssi_include);
         TEST_VALUE (t_ssi_set);
         TEST_VALUE (t_ssi_sizefmt);
+        TEST_VALUE (t_start);
         TEST_VALUE (t_step);
         TEST_VALUE (t_stitchtiles);
         TEST_VALUE (t_style);

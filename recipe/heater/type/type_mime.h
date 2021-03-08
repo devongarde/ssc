@@ -74,7 +74,7 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
         {   enum_base < e_mimetype, t_mime > :: status (s_good);
             return; } }
     check_spelling (nits, v, s);
-    nits.pick (nit_mime, es_error, ec_type, quote (s), " is not a mimetype known to " PROG);
+    nits.pick (nit_mime, es_warning, ec_type, quote (s), " is not a mimetype known to " PROG);
     enum_base < e_mimetype, t_mime > :: status (s_invalid); }
 
 template < > inline void enum_n < t_mime, e_mimetype > :: validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
@@ -144,7 +144,12 @@ bool has_embed_vulnerability (nitpick& nits, const html_version& v, const e_mime
 bool has_extension_incompatibility (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext);
 void check_extension_compatibility (nitpick& nits, const html_version& v, const e_mimetype em, const vurl_t& u, const bool src);
 void check_extension_compatibility (nitpick& nits, const html_version& v, const ::std::string& s, const vurl_t& u, const bool src);
+void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const e_mimetype mt);
 void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const uint64_t family);
-bool has_extension_vulnerability (nitpick& nits, const html_version& v, const ::std::string& ext, const bool local);
-bool has_mimetype_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const bool local, const bool specified);
-bool check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext, const bool local);
+void check_extension_vulnerability (nitpick& nits, const html_version& v, const ::std::string& ext, const bool local);
+void check_extension_vulnerability (nitpick& nits, const html_version& v, const vurl_t& vu);
+void check_mimetype_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const bool local, const bool specified, const ::std::string& ref);
+void check_mimetype_vulnerability (nitpick& nits, const html_version& v, const ::std::string& s, const bool local, const bool specified);
+void check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext, const bool local);
+void check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const vurl_t& u, const bool src);
+void check_vulnerability (nitpick& nits, const html_version& v, const ::std::string& s, const vurl_t& u, const bool src);

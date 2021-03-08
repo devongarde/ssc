@@ -148,6 +148,13 @@ PASS ../toast/living/jul09/iframe.html
 13 overallowed
 15 url_not_found
 
+PASS ../toast/living/jul09/im.html
+8 url_not_found
+11 url_not_found
+12 url_not_found
+13 url_not_found
+14 url_not_found
+
 PASS ../toast/living/jul09/img.html
 6 url_not_found naughty_alt
 8 url_not_found
@@ -310,6 +317,12 @@ PASS ../toast/living/jul09/mark.html
 39 use_quote_code
 41 use_quote_code
 44 use_quote_code
+
+PASS ../toast/living/jul09/me.html
+7 url_not_found
+
+PASS ../toast/living/jul09/object.html
+15 url_not_found
 
 PASS ../toast/living/jul09/ol.html
 10 inserted_missing_closure

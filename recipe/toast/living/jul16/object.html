@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> object </title> </head>
+ <body>
+
+<figure>
+ <object type="application/x-java-applet">
+ <param name="code" value="MyJavaClass">
+ <p>You do not have Java available, or it is disabled.</p>
+ </object>
+ <figcaption>My Java Clock</figcaption>
+</figure>
+
+<figure>
+ <object data="clock.html"></object>
+ <figcaption>My HTML Clock</figcaption>
+</figure>
+
+<p>Look at my video:
+ <object type="application/x-shockwave-flash">
+ <param name=movie value="http://video.example.com/library/watch.swf">
+ <param name=allowfullscreen value=true>
+ <param name=flashvars value="http://video.example.com/vids/315981">
+ <video controls src="http://video.example.com/vids/315981">
+ <a href="http://video.example.com/vids/315981">View video</a>.
+ </video>
+ </object>
+</p>
+
+ </body>
+</html>

@@ -211,7 +211,7 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
                     if (dot != ::std::string::npos)
                         if ((dot == 0) || (dot < file.length () - 1))
                         {   ext = ::boost::algorithm::to_lower_copy (file.substr (dot + 1));
-                            has_extension_vulnerability (nits, v, ext, is_local (authority, ipv4, ipv6)); } } } }
+                            check_extension_vulnerability (nits, v, ext, is_local (authority, ipv4, ipv6)); } } } }
 
     if (absolute)
         if (path.empty ()) path = SLASH;

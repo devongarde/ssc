@@ -217,6 +217,13 @@ PASS ../toast/living/jul10/iframe.html
 47 url_not_found
 52 inserted_missing_closure
 
+PASS ../toast/living/jul10/im.html
+8 url_not_found
+11 url_not_found
+12 url_not_found
+13 url_not_found
+14 url_not_found
+
 PASS ../toast/living/jul10/img.html
 6 url_not_found naughty_alt
 8 url_not_found
@@ -403,6 +410,9 @@ PASS ../toast/living/jul10/mark.html
 48 use_quote_code
 51 use_quote_code
 
+PASS ../toast/living/jul10/me.html
+7 url_not_found
+
 PASS ../toast/living/jul10/menu.html
 8 ignoring_unknown missing_close attribute_barred unrecognised_attribute attribute_barred attribute_barred unrecognised_attribute attribute_barred
 10 ignoring_unknown missing_close attribute_barred unrecognised_attribute attribute_barred unrecognised_attribute attribute_barred
@@ -430,6 +440,10 @@ PASS ../toast/living/jul10/menu.html
 65 ignoring_unknown missing_close attribute_barred attribute_barred
 66 inserted_missing_closure inserted_missing_closure
 
+PASS ../toast/living/jul10/object.html
+15 url_not_found
+20 reputation
+
 PASS ../toast/living/jul10/ol.html
 10 inserted_missing_closure
 11 inserted_missing_closure
@@ -439,6 +453,11 @@ PASS ../toast/living/jul10/ol.html
 20 inserted_missing_closure
 21 inserted_missing_closure missing_close
 22 inserted_missing_closure
+
+PASS ../toast/living/jul10/param.html
+9 mime
+16 newline_in_string newline_in_string url_not_found
+21 url_not_found
 
 PASS ../toast/living/jul10/q.html
 7 use_double_quote_code
@@ -510,6 +529,10 @@ PASS ../toast/living/jul10/ul.html
 
 PASS ../toast/living/jul10/var.html
 21 use_quote_code
+
+PASS ../toast/living/jul10/video.html
+30 url_not_found autoplay
+31 url_not_found
 
 PASS ../toast/living/jul10/wbr.html
 7 use_double_quote_code use_double_quote_code

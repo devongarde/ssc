@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> media elements </title> </head>
+ <body>
+
+<section id="video">
+<p><a href="playing-cats.nfv">Download video</a></p>
+</section>
+<script>
+var videoSection = document.getElementById('video');
+var videoElement = document.createElement('video');
+var support = videoElement.canPlayType('video/x-new-fictional-format;codecs="kittens,bunnies"');
+if (support != "probably" && "New Fictional Video Plugin" in navigator.plugins) {
+// not confident of browser support
+// but we have a plugin
+// so use plugin instead
+videoElement = document.createElement("embed");
+} else if (support == "") {
+// no support from browser and no plugin
+// do nothing
+videoElement = null;
+}
+if (videoElement) {
+while (videoSection.hasChildNodes())
+videoSection.removeChild(videoSection.firstChild);
+videoElement.setAttribute("src", "playing-cats.nfv");
+videoSection.appendChild(videoElement);
+}
+</script>
+
+<video src="myvideo#track=Alternative"></video>
+
+<script>
+var sfx = new Audio('sfx.wav');
+var sounds = sfx.addTextTrack('metadata');
+// add sounds we care about
+function addFX(start, end, name) {
+var cue = new VTTCue(start, end, '');
+cue.id = name;
+cue.pauseOnExit = true;
+sounds.addCue(cue);
+}
+addFX(12.783, 13.612, 'dog bark');
+addFX(13.612, 15.091, 'kitten mew'))
+function playSound(id) {
+sfx.currentTime = sounds.getCueById(id).startTime;
+sfx.play();
+}
+// play a bark as soon as we can
+sfx.oncanplaythrough = function () {
+playSound('dog bark');
+}
+// meow when the user tries to leave,
+// and have the browser ask them to stay
+window.onbeforeunload = function (e) {
+playSound('kitten mew');
+e.preventDefault();
+}</script>
+
+<video src="adverts.cgi?kind=video" controls autoplay loop muted></video>
+
+ </body>
+</html>

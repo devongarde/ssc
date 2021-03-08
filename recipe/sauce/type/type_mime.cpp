@@ -2270,6 +2270,7 @@ struct symbol_entry < e_format > format_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "asp", mime_application_x_httpd_asp },
     { { HTML_UNDEF }, { HTML_UNDEF }, "m4v", mime_video_mp4 },
     { { HTML_4_01 }, { HTML_UNDEF }, "rss", mime_application_rss_xml },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "vtt", mime_text_vtt },
 
     { { HTML_UNDEF }, { HTML_UNDEF }, nullptr, mime_context } };
 
@@ -2293,7 +2294,7 @@ bool has_external_vulnerability (nitpick& nits, const html_version& , const e_mi
     if ((f & MIME_SCRIPT) != 0)
         nits.pick (nit_reputation, es_error, ec_mime, "cross site scripting leaves the integrity, security and reputation of your site dependent on the good practice and intent of the third-party site");
     else if ((f & MIME_STYLE) != 0)
-        nits.pick (nit_reputation, es_warning, ec_mime, "referring to an external site leaves the integrity, security, presentation and reputation of your site dependent on their good practice and intent");
+        nits.pick (nit_reputation, es_warning, ec_mime, "the security, integrity, presentation and reputation of your site is dependent on the good practice and intent of the external site");
     else return false;
     return true; }
 
@@ -2328,6 +2329,13 @@ void check_extension_compatibility (nitpick& nits, const html_version& v, const 
             if ((family && flags) == 0)
                 nits.pick (nit_incompatible_mime, es_info, ec_mime, "a file with extension '.", ext, "' is unsuitable here"); } } }
 
+void check_extension_compatibility (nitpick& nits, const html_version& v, const e_mimetype mt, const ::std::string& ext)
+{   if (! ext.empty ())
+    {   e_mimetype em = static_cast < e_mimetype> (type_master < t_format > :: find (v, ext, ns_default));
+        if ((em != mime_context) && (em != mime_bork))
+            if (em != mt)
+                nits.pick (nit_incompatible_mime, es_info, ec_mime, "a file of media type ", type_master < t_mime > :: name (mt), " is expected"); } }
+
 void check_extension_compatibility (nitpick& nits, const html_version& v, const e_mimetype em, const vurl_t& u, const bool src)
 {   for (auto uu : u)
     {   if (uu.has_extension ()) has_extension_incompatibility (nits, v, em, uu.extension ());
@@ -2345,7 +2353,11 @@ void check_extension_compatibility (nitpick& nits, const html_version& v, const 
     for (auto uu : u)
         if (uu.has_extension ()) check_extension_compatibility (nits, v, family, uu.extension ()); }
 
-bool report_flag_issues (nitpick& nits, const html_version& , const e_mimetype em, const bool specified)
+void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const e_mimetype mt)
+{   for (auto uu : u)
+        if (uu.has_extension ()) check_extension_compatibility (nits, v, mt, uu.extension ()); }
+
+bool report_flag_issues (nitpick& nits, const html_version& , const e_mimetype em, const bool specified, const ::std::string& ref)
 {   bool res = false;
     uint64_t f (type_master < t_mime > :: flags (em));
     if (specified && ((f & MIME_UNOFFICIAL) == MIME_UNOFFICIAL))
@@ -2353,41 +2365,61 @@ bool report_flag_issues (nitpick& nits, const html_version& , const e_mimetype e
         res = true; }
     if ((f & MIME_WITHDRAWN) == MIME_WITHDRAWN)
     {   if ((f & MIME_VULNERABLE) == MIME_VULNERABLE)
-            nits.pick (nit_reputation, es_warning, ec_mime, "media/file type withdrawn for being an insecure and vulnerable");
-        else nits.pick (nit_reputation, es_info, ec_mime, "media/file type no longer valid");
+            nits.pick (nit_reputation, es_warning, ec_mime, "insecure, vulnerable media/file type ", quote (ref), " withdrawn");
+        else nits.pick (nit_reputation, es_info, ec_mime, "media/file type ", quote (ref), " is no longer valid");
         res = true; }
     else if ((f & MIME_VULNERABLE) == MIME_VULNERABLE)
-    {   nits.pick (nit_reputation, es_warning, ec_mime, "media/file type is insecure and vulnerable");
+    {   nits.pick (nit_reputation, es_warning, ec_mime, "media/file type ", quote (ref), " is insecure and vulnerable");
         res = true; }
     if ((f & MIME_WINDOWS) == MIME_WINDOWS)
-        nits.pick (nit_os_dependent, es_comment, ec_mime, "media/file type requires Windows");
+        nits.pick (nit_os_dependent, es_comment, ec_mime, "media/file type ", quote (ref), " requires Windows");
     else if ((f & MIME_MACOS) == MIME_MACOS)
-        nits.pick (nit_os_dependent, es_comment, ec_mime, "media/file type requires MacOS / OS X");
+        nits.pick (nit_os_dependent, es_comment, ec_mime, "media/file type ", quote (ref), " requires MacOS / OS X");
     else if ((f & MIME_IOS) == MIME_IOS)
-        nits.pick (nit_os_dependent, es_comment, ec_mime, "media/file type requires iOS");
+        nits.pick (nit_os_dependent, es_comment, ec_mime, "media/file type ", quote (ref), " requires iOS");
     else if ((f & MIME_ANDROID) == MIME_ANDROID)
-        nits.pick (nit_os_dependent, es_comment, ec_mime, "media/file type requires Android");
+        nits.pick (nit_os_dependent, es_comment, ec_mime, "media/file type ", quote (ref), " requires Android");
     else return res;
     return true; }
 
-bool has_mimetype_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const bool local, const bool specified)
-{   bool res = false;
-    if (! local) res = has_external_vulnerability (nits, v, em);
-    if (report_flag_issues (nits, v, em, specified)) res = true;
-    return res; }
+void check_mimetype_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const bool local, const bool specified, const ::std::string& ref)
+{   if (! local) has_external_vulnerability (nits, v, em);
+    report_flag_issues (nits, v, em, specified, ref); }
 
-bool has_extension_vulnerability (nitpick& nits, const html_version& v, const ::std::string& ext, const bool local)
-{   if (ext.empty ()) return false;
-    uint64_t flags = 0;
-    e_mimetype em (static_cast < e_mimetype > (extension_format (nits, v, ext, flags)));
-    if ((em == mime_context) || (em == mime_bork)) return false;
-    return has_mimetype_vulnerability (nits, v, em, local, false); }
+void check_mimetype_vulnerability (nitpick& nits, const html_version& v, const ::std::string& s, const bool local, const bool specified)
+{   if (! s.empty ())
+    {   nitpick nuts;
+        e_mimetype mt = examine_value < t_mime > (nuts, v, s);
+        if ((mt != mime_bork) && (mt != mime_context))
+            check_mimetype_vulnerability (nits, v, mt, local, specified, s); } }
 
-bool check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext, const bool local)
-{   bool res = false;
-    bool ee = ext.empty ();
+void check_extension_vulnerability (nitpick& nits, const html_version& v, const ::std::string& ext, const bool local)
+{   if (! ext.empty ())
+    {   uint64_t flags = 0;
+        e_mimetype em (static_cast < e_mimetype > (extension_format (nits, v, ext, flags)));
+        if ((em != mime_context) && (em != mime_bork))
+            check_mimetype_vulnerability (nits, v, em, local, false, ext); } }
+
+void check_extension_vulnerability (nitpick& nits, const html_version& v, const vurl_t& vu)
+{   for (auto u : vu)
+        if (u.has_extension ())
+            check_extension_vulnerability (nits, v, u.extension (), u.is_local ()); }
+
+void check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext, const bool local)
+{   bool ee = ext.empty ();
     if ((em != mime_bork) && (em != mime_context))
-    {   if (! ee) if (has_extension_incompatibility (nits, v, em, ext)) res = true;
-        if (has_mimetype_vulnerability (nits, v, em, local, true)) res = true; }
-    if (! ee && ! res) if (has_extension_vulnerability (nits, v, ext, local)) res = true;
-    return res; }
+    {   if (! ee) has_extension_incompatibility (nits, v, em, ext);
+        check_mimetype_vulnerability (nits, v, em, local, true, type_master < t_mime > :: name (em)); }
+    if (! ee) check_extension_vulnerability (nits, v, ext, local); }
+
+void check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const vurl_t& u, const bool src)
+{   for (auto uu : u)
+    {   if (uu.has_extension ())
+            check_vulnerability (nits, v, em, uu.extension (), uu.is_local ());
+        if (src && ! uu.is_local ()) has_embed_vulnerability (nits, v, em); } }
+
+void check_vulnerability (nitpick& nits, const html_version& v, const ::std::string& s, const vurl_t& u, const bool src)
+{   if (! s.empty ())
+    {   nitpick nuts;
+        e_mimetype mt = examine_value < t_mime > (nuts, v, s);
+        check_vulnerability (nits, v, mt, u, src); } }

@@ -181,6 +181,16 @@ template < > struct type_master < t_direction > : varied < t_direction >
             if (v.svg () >= sv_1_1) validate_type < type_master < t_svg_direction > > (nits, v);
             else validate_type < type_master < t_uplr > > (nits, v); } };
 
+template < > struct type_master < t_end > : varied < t_end >
+{   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+    {   if (good () || empty ())
+            switch (e.get ())
+            {   case elem_audio :
+                case elem_video :
+                    validate_type < type_master < t_just_time > > (nits, v); break;
+                default :
+                    validate_type < type_master < t_endvaluelist > > (nits, v); } } };
+
 template < > struct type_master < t_fill > : varied < t_fill >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
@@ -415,16 +425,6 @@ template < > struct type_master < t_rowscols > : varied < t_rowscols >
                 case elem_frameset :
                     validate_type < type_master < t_measures > > (nits, v); break; } } };
 
-template < > struct type_master < t_sizes > : varied < t_sizes >
-{   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
-    {   if (good () || empty ())
-            switch (e.get ())
-            {   case elem_link :
-                    validate_type < type_master < t_wxhs > > (nits, v); break;
-                case elem_img :
-                case elem_source :
-                    validate_type < type_master < t_imgsizes > > (nits, v); break; } } };
-
 template < > struct type_master < t_scope > : varied < t_scope >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
@@ -462,6 +462,26 @@ template < > struct type_master < t_size > : varied < t_size >
                     break;
                 default :
                     validate_type < type_master < t_unsigned > > (nits, v); } } };
+
+template < > struct type_master < t_sizes > : varied < t_sizes >
+{   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+    {   if (good () || empty ())
+            switch (e.get ())
+            {   case elem_link :
+                    validate_type < type_master < t_wxhs > > (nits, v); break;
+                case elem_img :
+                case elem_source :
+                    validate_type < type_master < t_imgsizes > > (nits, v); break; } } };
+
+template < > struct type_master < t_start > : varied < t_start >
+{   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+    {   if (good () || empty ())
+            switch (e.get ())
+            {   case elem_audio :
+                case elem_video :
+                    validate_type < type_master < t_just_time > > (nits, v); break;
+                default :
+                    validate_type < type_master < t_integer > > (nits, v); } } };
 
 template < > struct type_master < t_style > : varied < t_style >
 {   void validate (nitpick& nits, const html_version& v, const elem&  , const ::std::string& )

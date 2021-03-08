@@ -583,6 +583,7 @@ nitname nitnames [] =
     { nit_reputation, "reputation" },
     { nit_incompatible_mime, "incompatible_mime" },
     { nit_os_dependent, "os_dependent" },
+    { nit_bad_usemap, "bad_usemap" },
 
     { nit_off, "" } };
 

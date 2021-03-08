@@ -99,19 +99,22 @@ void element::examine_area ()
             pick (nit_area_map_template, ed_50, "4.7.12 The area element", es_error, ec_element, "<AREA> requires a <MAP> or a <TEMPLATE> ancestor");
         if (href_known)
         {    if (! alt_known)
-                pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_element, "The HREF requires an ALT"); }
+                pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_attribute, "HREF requires ALT"); }
         else
         {   if (alt_known)
-                pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_element, "ALT requires an HREF");
-            if (a_.known (a_target) || a_.known (a_download) || a_.known (a_rel) || a_.known (a_hreflang) || a_.known (a_type))
-                pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_element, "DOWNLOAD, HREFLANG, REL, TARGET and TYPE all require an HREF"); } }
+                pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_attribute, "ALT requires HREF");
+            if (a_.known (a_target) || a_.known (a_download) || a_.known (a_rel))
+                pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_attribute, "DOWNLOAD, REL, and TARGET each require HREF");
+            if (a_.known (a_hreflang) || a_.known (a_type))
+                if ((node_.version () < html_jan17) || (node_.version ().w3 ()))
+                    pick (nit_requires_href, ed_50, "4.7.12 The area element", es_warning, ec_attribute, "HREFLANG and TYPE both require HREF"); } }
     if (a_.good (a_shape))
     {   type_master < t_shape7 > s7;
         nitpick knots;
         s7.set_value (knots, node_.version (), a_.get_string (a_shape));
         if (s7.good ())
         {   if ((s7.get () != s7_default) && ! a_.known (a_coords))
-            {   pick (nit_need_coords, ed_50, "4.7.12 The area element", es_warning, ec_element, "Unless SHAPE is present and set to 'default', COORDS must be specified");
+            {   pick (nit_need_coords, ed_50, "4.7.12 The area element", es_warning, ec_attribute, "Unless SHAPE is present and set to 'default', COORDS must be specified");
                 return; }
             if (! a_.good (a_coords)) return;
             vint_t c = a_.get_x < attr_coords > ();
@@ -138,7 +141,7 @@ void element::examine_aside ()
             pick (nit_no_main_kids, ed_50, "4.3.5 The aside element", es_warning, ec_element, "<ASIDE> can have no <MAIN> descendants"); }
 
 void element::examine_audio ()
-{   examine_media_element (elem_audio, "4.7.7 The audio element", "<AUDIO>");
+{   examine_media_element (elem_audio, "4.7.7 The audio element", "<AUDIO>", MIME_AUDIO);
     if (a_.known (a_autoplay)) pick (nit_autoplay, es_warning, ec_rudeness, "AUTOPLAY on <AUDIO> is rude"); }
 
 void element::examine_base ()
