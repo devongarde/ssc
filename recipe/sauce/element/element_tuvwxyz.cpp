@@ -129,13 +129,26 @@ void element::examine_title ()
 
 void element::examine_track ()
 {   if (node_.version ().is_5 ())
-    {   e_kind k = static_cast < e_kind > (a_.get_int (a_kind));
-        if ((k == k_subtitles) && ! a_.known (a_srclang))
-            pick (nit_data_type, ed_50, "4.7.9 The track element", es_error, ec_element, "<TRACK> with KIND=subtitles requires SRCLANG");
+    {   bool has_src = a_.known (a_src);
+        const vurl_t& vu = a_.get_urls (a_src);
+        e_kind k = static_cast < e_kind > (a_.get_int (a_kind));
+        if (a_.known (a_kind))
+        {   if ((k == k_subtitles) && ! a_.known (a_srclang))
+                pick (nit_data_type, ed_50, "4.7.9 The track element", es_error, ec_element, "<TRACK> with KIND=subtitles requires SRCLANG");
+            if (has_src)
+                switch (k)
+                {   case k_chapters :
+                    case k_metadata :
+                        check_extension_compatibility (nits (), node_.version (), vu, MIME_TEXT);
+                        break;
+                    default :
+                        check_extension_compatibility (nits (), node_.version (), vu, mime_text_vtt); } }
+        else if (has_src)
+            check_extension_compatibility (nits (), node_.version (), vu, MIME_TEXT);
         if (a_.known (a_label))
             if (a_.get_string (a_label).empty ())
                 pick (nit_empty, ed_50, "4.7.9 The track element", es_error, ec_element, "If LABEL is present, it cannot be empty"); } }
 
 void element::examine_video ()
-{   examine_media_element (elem_video, "4.7.6 The video element", "<VIDEO...>");
-    if (a_.known (a_autoplay)) pick (nit_autoplay, es_warning, ec_rudeness, "AUTOPLAY on <VIDEO> is unspeakable"); }
+{   examine_media_element (elem_video, "4.7.6 The video element", "<VIDEO>", MIME_IMAGE);
+    if (a_.known (a_autoplay)) pick (nit_autoplay, es_warning, ec_rudeness, "AUTOPLAY on <VIDEO> is unspeakably rude"); }

@@ -296,7 +296,7 @@ PASS ../toast/HTML/4.01/html4-example.html
 633 url_not_found
 642 unknown_protocol unknown_protocol
 646 inserted_missing_closure
-650 url_not_found
+650 url_not_found incompatible_mime
 653 inserted_missing_closure
 655 url_not_found
 657 missing_close

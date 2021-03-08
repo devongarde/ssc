@@ -91,7 +91,7 @@ class element
     void span_check ();
     void pre_examine_element (const e_element tag);
     void post_examine_element (const e_element tag);
-    void examine_media_element (e_element elem, const char* ref, const char* name);
+    void examine_media_element (e_element elem, const char* ref, const char* name, const uint64_t family);
     void examine_accesskey ();
     void examine_autofocus ();
     bool examine_class ();

@@ -67,12 +67,13 @@ void element::examine_math ()
     if (! content)
         pick (nit_math_empty, ed_math_3, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<MATH> should contain some math."); }
 
-void element::examine_media_element (e_element , const char* ref, const char* name)
+void element::examine_media_element (e_element , const char* ref, const char* name, const uint64_t family)
 {   assert (ref != nullptr);
     if (a_.known (a_controls)) no_anchor_daddy ();
     bool had_track = false, had_other = false, noted_src = false, noted_track = false, noted_source = false,
         def_subcap = false, def_desc = false, def_chap = false;
     bool has_src = a_.known (a_src);
+    if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), family);
     sstr_t track_check; ::std::string tmp;
     for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
         if(! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
@@ -332,16 +333,41 @@ void element::examine_noscript ()
                 pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "in <HEAD>, <NOSCRIPT> can only have <LINK>, <STYLE>, or <META> descendants"); } } }
 
 void element::examine_object ()
-{   if (node_.version ().is_5 ())
-    {   if ((! a_.known (a_data) && ! a_.known (a_type)))
+{   bool has_type = a_.known (a_type);
+    bool has_data = a_.known (a_data);
+    bool has_usemap = a_.known (a_usemap);
+    bool piccy = false;
+    nitpick nuts;
+    if (has_type)
+    {   const ::std::string& ss (a_.get_string (a_type));
+        e_mimetype mt = examine_value < t_mime > (nuts, html_version (), ss);
+        if ((mt != mime_bork) && (mt != mime_context))
+            if ((type_master < t_mime > :: flags (mt) & MIME_IMAGE) == MIME_IMAGE) piccy = true;
+        if (has_data) check_vulnerability (nits (), node_.version (), mt, a_.get_urls (a_data), true);
+        else check_mimetype_vulnerability (nits (), node_.version (), mt, true, true, ss); }
+    if (has_usemap && ! piccy)
+    {   if (has_data)
+        {   const vurl_t& vu (a_.get_urls (a_data));
+            for (auto u : vu)
+                if (u.has_extension ())
+                {   const ::std::string& ext (u.extension ());
+                    if (! ext.empty ())
+                    {   uint64_t flags = 0;
+                        e_mimetype em (static_cast < e_mimetype > (extension_format (nuts, html_version (), ext, flags)));
+                        if ((em != mime_context) && (em != mime_bork))
+                            if ((flags & MIME_IMAGE) == MIME_IMAGE)
+                            {   piccy = true; break; } } } }
+        if (! piccy) pick (nit_bad_usemap, ed_jan07, "3.14.4. The object element", es_warning, ec_attribute, "USEMAP requires TYPE and/or DATA to refer to an image"); }
+    if (node_.version ().is_5 ())
+    {   if ((! has_data) && (! has_type))
             pick (nit_data_type, ed_50, "4.7.4 The object element", es_error, ec_element, "either DATA or TYPE must be present");
-        if (a_.known (a_itemprop) && ! a_.known (a_data))
+        if (a_.known (a_itemprop) && ! has_data)
             pick (nit_bad_object, ed_jul20, "4.8.7 The object element", es_error, ec_attribute, "DATA is required when <OBJECT> has ITEMPROP");
-        if (a_.known (a_usemap)) no_anchor_daddy ();
+        if (has_usemap) no_anchor_daddy ();
         if (a_.known (a_typemustmatch))
-        {    if (! a_.known (a_data) && ! a_.known (a_type))
+        {    if (! has_data && ! has_type)
                 pick (nit_typemustmatch, ed_50, "4.7.4 The object element", es_error, ec_element, "TYPEMUSTMATCH requires both DATA and TYPE"); }
-        else if (a_.known (a_data) && a_.known (a_type) && (w3_minor_5 (node_.version ()) < 4))
+        else if (has_data && has_type && (node_.version () < html_jul19))
             if (a_.get_string (a_data).find (":") != ::std::string::npos)
                 pick (nit_typemustmatch, ed_50, "4.7.4 The object element", es_info, ec_element, "consider specifying TYPEMUSTMATCH, for added security"); }
     bool had_flow = false;

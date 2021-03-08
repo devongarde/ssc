@@ -107,7 +107,7 @@ PASS ../toast/HTML/5.4/html5-bad.html
 94 missing_open
 97 saucy_source
 99 mq_syntax
-103 no_itemscope bad_object disordered_param
+103 no_itemscope reputation bad_object disordered_param
 108 attribute_required
 109 bad_datetime
 110 bad_autocomplete
@@ -452,7 +452,8 @@ PASS ../toast/HTML/5.4/html5-example.html
 1903 no_such_folder url_not_found
 1905 newline_in_string newline_in_string inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1
 1909 url_not_found
-1924 no_itemscope bad_object
+1914 reputation
+1924 no_itemscope reputation bad_object
 1927 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/HTML/5.4/html5-good.html

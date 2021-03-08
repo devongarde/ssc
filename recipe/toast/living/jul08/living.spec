@@ -224,6 +224,9 @@ PASS ../toast/living/jul08/mark.html
 41 use_quote_code
 44 use_quote_code
 
+PASS ../toast/living/jul08/object.html
+15 url_not_found
+
 PASS ../toast/living/jul08/ol.html
 10 inserted_missing_closure
 11 inserted_missing_closure

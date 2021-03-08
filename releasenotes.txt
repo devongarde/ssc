@@ -3,6 +3,9 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.90
+- various bug fixes
+
 0.0.89
 - more mime type / extension checks
 - various bug fixes

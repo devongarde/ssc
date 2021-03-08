@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> media elements </title> </head>
+ <body>
+
+<section id="video">
+<p><a href="playing-cats.nfv">Download video</a></p>
+</section>
+<script>
+var videoSection = document.getElementById('video');
+var videoElement = document.createElement('video');
+var support = videoElement.canPlayType('video/
+x-new-fictional-format;codecs="kittens,bunnies"');
+if (support != "probably" && "New Fictional Video Plugin" in navigator.plugins) {
+// not confident of browser support
+// but we have a plugin
+// so use plugin instead
+videoElement = document.createElement("embed");
+} else if (support == "") {
+// no support from browser and no plugin
+// do nothing
+videoElement = null;
+}
+if (videoElement) {
+while (videoSection.hasChildNodes())
+videoSection.removeChild(videoSection.firstChild);
+videoElement.setAttribute("src", "playing-cats.nfv");
+videoSection.appendChild(videoElement);
+}
+</script>
+
+<script>
+function loadVideo(url, container) {
+var controller = new MediaController();
+var video = document.createElement('video');
+video.src = url;
+video.autoplay = true;
+video.controls = true;
+video.controller = controller;
+container.appendChild(video);
+video.onloadedmetadata = function (event) {
+for (var i = 0; i < video.videoTracks.length; i += 1) {
+if (video.videoTracks[i].kind == 'sign') {
+var sign = document.createElement('video');
+sign.src = url + '#track=' + video.videoTracks[i].id;
+sign.autoplay = true;
+sign.controller = controller;
+container.appendChild(sign);
+return;
+}
+}
+};
+}
+</script>
+
+<article>
+<style scoped>
+div { margin: 1em auto; position: relative; width: 400px; height: 300px; }
+video { position; absolute; bottom: 0; right: 0; }
+video:first-child { width: 100%; height: 100%; }
+video:last-child { width: 30%; }
+</style>
+<div>
+<video src="movie.vid#track=Video&amp;track=English" autoplay controls
+mediagroup=movie></video>
+<video src="movie.vid#track=sign" autoplay mediagroup=movie></video>
+</div>
+</article>
+
+<script>
+var sfx = new Audio('sfx.wav');
+var sounds = a.addTextTrack('metadata');
+// add sounds we care about
+sounds.addCue(new TextTrackCue('dog bark', 12.783, 13.612, '', '', '', true));
+sounds.addCue(new TextTrackCue('kitten mew', 13.612, 15.091, '', '', '', true));
+function playSound(id) {
+sfx.currentTime = sounds.getCueById(id).startTime;
+sfx.play();
+}
+sfx.oncanplaythrough = function () {
+playSound('dog bark');
+}
+window.onbeforeunload = function () {
+playSound('kitten mew');
+return 'Are you sure you want to leave this awesome page?';
+}</script>
+
+<video src="adverts.cgi?kind=video" controls autoplay loop muted></video>
+
+ </body>
+</html>

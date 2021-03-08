@@ -369,6 +369,13 @@ PASS ../toast/living/jan16/iframe.html
 48 wrong_parent
 57 inserted_missing_closure
 
+PASS ../toast/living/jan16/im.html
+8 url_not_found
+11 url_not_found
+12 url_not_found
+13 url_not_found
+14 url_not_found
+
 PASS ../toast/living/jan16/img.html
 6 url_not_found naughty_alt
 8 url_not_found
@@ -571,6 +578,22 @@ PASS ../toast/living/jan16/main.html
 32 missing_close
 33 inserted_missing_closure
 
+PASS ../toast/living/jan16/map.html
+0 charset_mismatch charset_used charset_invalid
+2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+3 inserted_missing_parent inserted_missing_closure missing_close
+7 no_such_folder url_not_found
+12 missing_close
+13 no_such_folder url_not_found
+14 no_such_folder url_not_found
+15 no_such_folder url_not_found
+16 no_such_folder url_not_found
+17 no_such_folder url_not_found
+18 no_such_folder url_not_found
+19 no_such_folder url_not_found
+20 no_such_folder url_not_found
+21 inserted_missing_closure
+
 PASS ../toast/living/jan16/mark.html
 9 use_quote_code
 16 use_quote_code
@@ -582,6 +605,14 @@ PASS ../toast/living/jan16/mark.html
 48 use_quote_code
 51 use_quote_code
 
+PASS ../toast/living/jan16/me.html
+7 url_not_found
+57 invalid_attribute_version wrong_version
+65 url_not_found autoplay
+66 url_not_found autoplay
+89 url_not_found autoplay
+91 url_not_found
+
 PASS ../toast/living/jan16/menu.html
 8 unrecognised_value
 9 inserted_missing_closure id_exists
@@ -589,6 +620,10 @@ PASS ../toast/living/jan16/menu.html
 18 inserted_missing_closure id_exists
 25 unrecognised_value
 26 inserted_missing_closure id_exists
+
+PASS ../toast/living/jan16/object.html
+15 url_not_found
+20 reputation
 
 PASS ../toast/living/jan16/ol.html
 10 inserted_missing_closure
@@ -607,6 +642,11 @@ PASS ../toast/living/jan16/p.html
 56 inserted_missing_closure
 57 inserted_missing_closure missing_close
 58 inserted_missing_closure
+
+PASS ../toast/living/jan16/param.html
+9 mime
+16 newline_in_string newline_in_string url_not_found
+21 url_not_found
 
 PASS ../toast/living/jan16/q.html
 7 use_double_quote_code
@@ -699,6 +739,14 @@ PASS ../toast/living/jan16/tls.html
 29 use_double_quote_code
 30 use_double_quote_code
 
+PASS ../toast/living/jan16/track.html
+0 charset_mismatch charset_used charset_invalid
+6 url_not_found
+7 url_not_found
+8 url_not_found
+9 url_not_found
+10 url_not_found
+
 PASS ../toast/living/jan16/ul.html
 9 inserted_missing_closure
 10 inserted_missing_closure
@@ -728,6 +776,10 @@ PASS ../toast/living/jan16/us-5.html
 PASS ../toast/living/jan16/var.html
 21 use_quote_code
 27 use_quote_code
+
+PASS ../toast/living/jan16/video.html
+30 url_not_found autoplay
+31 url_not_found
 
 PASS ../toast/living/jan16/wbr.html
 7 use_double_quote_code use_double_quote_code

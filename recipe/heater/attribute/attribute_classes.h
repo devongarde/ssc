@@ -97,6 +97,8 @@ typedef typed_attribute < t_html_boolean, a_async > attr_async;
 typedef typed_attribute < t_integer, a_at > attr_at;
 typedef typed_attribute < t_attributename, a_attributename > attr_attributename;
 typedef typed_attribute < t_attributetype, a_attributetype > attr_attributetype;
+typedef typed_attribute < t_html_boolean, a_audio > attr_audio;
+typedef typed_attribute < t_html_boolean, a_autobuffer > attr_autobuffer;
 typedef typed_attribute < t_autocapitalise, a_autocapitalise > attr_autocapitalise;
 typedef typed_attribute < t_autocompletes, a_autocomplete > attr_autocomplete;
 typedef typed_attribute < t_html_boolean, a_autocorrect > attr_autocorrect;
@@ -236,7 +238,7 @@ typedef typed_attribute < t_angle, a_elevation > attr_elevation;
 typedef typed_attribute < t_text, a_encoding > attr_encoding;
 typedef typed_attribute < t_enctype, a_enctype > attr_enctype;
 typedef typed_attribute < t_enablebackground, a_enablebackground > attr_enablebackground;
-typedef typed_attribute < t_endvaluelist, a_end > attr_end;
+typedef typed_attribute < t_end, a_end > attr_end;
 typedef typed_attribute < t_enterkeyhint, a_enterkeyhint > attr_enterkeyhint;
 typedef typed_attribute < t_generic, a_equalcolumns > attr_equalcolumns;
 typedef typed_attribute < t_generic, a_equalrows > attr_equalrows;
@@ -408,6 +410,9 @@ typedef typed_attribute < t_mathlocation, a_location > attr_location;
 typedef typed_attribute < t_url, a_longdesc > attr_longdesc;
 typedef typed_attribute < t_longdivstyle, a_longdivstyle > attr_longdivstyle;
 typedef typed_attribute < t_loop, a_loop > attr_loop;
+typedef typed_attribute < t_unsigned, a_loopcount > attr_loopcount;
+typedef typed_attribute < t_just_time, a_loopend > attr_loopend;
+typedef typed_attribute < t_just_time, a_loopstart > attr_loopstart;
 typedef typed_attribute < t_real, a_low > attr_low;
 typedef typed_attribute < t_text, a_lquote > attr_lquote;
 typedef typed_attribute < t_lspace, a_lspace > attr_lspace;
@@ -621,6 +626,7 @@ typedef typed_attribute < t_urls, a_ping > attr_ping;
 typedef typed_attribute < t_generic, a_placeholder > attr_placeholder;
 typedef typed_attribute < t_existential, a_plain > attr_plain;
 typedef typed_attribute < t_svg_playbackorder, a_playbackorder > attr_playbackorder;
+typedef typed_attribute < t_unsigned, a_playcount > attr_playcount;
 typedef typed_attribute < t_html_boolean, a_playsinline > attr_playsinline;
 typedef typed_attribute < t_pointerevents, a_pointerevents > attr_pointerevents;
 typedef typed_attribute < t_points, a_points > attr_points;
@@ -732,7 +738,7 @@ typedef typed_attribute < t_srcset, a_srcset > attr_srcset;
 typedef typed_attribute < t_mimelist, a_srctype > attr_srctype;
 typedef typed_attribute < t_text, a_standby > attr_standby;
 typedef typed_attribute < t_lcrd, a_stackalign > attr_stackalign;
-typedef typed_attribute < t_integer, a_start > attr_start;
+typedef typed_attribute < t_start, a_start > attr_start;
 typedef typed_attribute < t_measure, a_start_offset > attr_start_offset;
 typedef typed_attribute < t_measure, a_startoffset > attr_startoffset;
 typedef typed_attribute < t_real_1_2, a_std_deviation > attr_std_deviation;
@@ -951,6 +957,8 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_at, \
     attr_attributename, \
     attr_attributetype, \
+    attr_audio, \
+    attr_autobuffer, \
     attr_autocapitalise, \
     attr_autocomplete, \
     attr_autocorrect, \
@@ -1261,6 +1269,9 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_longdesc, \
     attr_longdivstyle, \
     attr_loop, \
+    attr_loopcount, \
+    attr_loopend, \
+    attr_loopstart, \
     attr_low, \
     attr_lquote, \
     attr_lspace, \
@@ -1478,6 +1489,7 @@ const e_attribute last_am = a_muted;
     attr_placeholder, \
     attr_plain, \
     attr_playbackorder, \
+    attr_playcount, \
     attr_playsinline, \
     attr_pointerevents, \
     attr_points, \
