@@ -222,8 +222,10 @@ void element::examine_colgroup ()
 {   if (node_.version ().is_5 ())
         if (a_.known (a_span))
         {   element_bitset bs (descendant_elements_);
-            bs &= empty_element_bitset | elem_col | elem_template;
-            if (bs.any ()) pick (nit_colgroup_children, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN cannot have child elements.");
+            bs &= ~ ( non_standard_bitset | elem_col | elem_template );
+            if (bs.any ())
+                if (node_.version () < html_jul13) pick (nit_colgroup_children, ed_jan13, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> descendants.");
+                else pick (nit_colgroup_children, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> and <TEMPLATE> descendants.");
             if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "SPAN cannot exceed 1000"); } }
 
 void element::examine_caption ()

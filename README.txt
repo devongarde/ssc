@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.90
+version 0.0.91
 https://ssc.lu/
 
 
@@ -32,7 +32,7 @@ ssc analyses static HTML sites at source:
 with opinions on:
 - standard english where dialect is required
 - perfectly legal but untidy / inefficient HTML
-- abhorrent abuse such as autoplay on video
+- abhorrent rudeness such as autoplay on video
 
 It does NOT:
 - behave securely: its parser is holier than robin's cow
@@ -40,9 +40,9 @@ It does NOT:
 - analyse or understand styles, beyond nicking class names from CSS
 - analyse or understand XML or derivatives except as noted above
 
-It can output:
+It can output pages with:
 - 'repaired' HTML (not XHTML)
-- Server Side Includes resolved in place.
+- resolved Server Side Includes
 
 
 
@@ -70,7 +70,7 @@ To build & run:
 
 
 
-Notes on folder word play:
+Notes on folder names:
 - recipe: a nod to Vernor Vinge's "A Fire Upon the Deep"
 - tea: without tea, nothing works / builders' tea
 - sauce: identifies people who presume / obvious
@@ -91,4 +91,4 @@ more licences    licences for content copied from elsewhere
 
 written by dylan harris
 mail@ssc.lu
-February 2021
+March 2021

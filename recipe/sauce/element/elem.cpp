@@ -157,7 +157,7 @@ struct symbol_entry < e_element > elem_symbol_table [] =
     { { HTML_3_0, HV_NOT32 }, { HTML_UNDEF }, "del", elem_del, ns_default, EP_5_TRANSPARENT, EF_3_MISC | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { XHTML_1_0, 0, MATH_1_2_3 }, { HTML_UNDEF }, "degree", elem_degree, ns_default, 0, EF_M_CONTENT },
     { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "desc", elem_desc, ns_default, 0, EF_S_G | EF_SVG_DESC },
-    { { HTML_5_1 }, { HTML_UNDEF }, "details", elem_details, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
+    { { HTML_JAN05, HV_NOT50 }, { HTML_UNDEF }, "details", elem_details, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { XHTML_1_0, 0, MATH_1_2_3 }, { HTML_UNDEF }, "determinant", elem_determinant, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_1_0 }, { HTML_UNDEF }, "dfn", elem_dfn, ns_default, 0, EF_EMPH | EF_3_MISC | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { XHTML_2_0 }, { XHTML_2_0 }, "di", elem_di, ns_default, 0, EF_X2_STRUCT | EF_X2_LIST },
