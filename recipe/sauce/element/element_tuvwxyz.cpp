@@ -104,6 +104,10 @@ void element::examine_th ()
     if (bs.any ())
         if (is3) pick (nit_bad_descendant, ed_53, "4.9.10 The th element ", es_error, ec_element, "<TH> cannot have <MAIN>, <HEADER>, <FOOTER>, sectioning or header descendants");
         else pick (nit_bad_descendant, ed_50, "4.9.10 The th element ", es_error, ec_element, "<TH> cannot have <HEADER>, <FOOTER>, sectioning or header descendants");
+    if (a_.known (a_sorted))
+    {   bs = descendant_elements_;
+        bs &= interactive_bitset;
+        if (bs.any ()) pick (nit_bad_descendant, ed_jan14, "4.9.10 The th element ", es_error, ec_element, "<TH> with SORTED cannot have interactive element descendants"); }
     span_check (); }
 
 void element::examine_time ()

@@ -621,6 +621,7 @@
     <None Include="..\toast\living\jan10\b.html" />
     <None Include="..\toast\living\jan10\blockquote.html" />
     <None Include="..\toast\living\jan10\br.html" />
+    <None Include="..\toast\living\jan10\caption.html" />
     <None Include="..\toast\living\jan10\cite.html" />
     <None Include="..\toast\living\jan10\code.html" />
     <None Include="..\toast\living\jan10\dd.html" />
@@ -694,6 +695,9 @@
     <None Include="..\toast\living\jan10\span.html" />
     <None Include="..\toast\living\jan10\strong.html" />
     <None Include="..\toast\living\jan10\subsup.html" />
+    <None Include="..\toast\living\jan10\table.html" />
+    <None Include="..\toast\living\jan10\te.html" />
+    <None Include="..\toast\living\jan10\th.html" />
     <None Include="..\toast\living\jan10\time.html" />
     <None Include="..\toast\living\jan10\tls.html" />
     <None Include="..\toast\living\jan10\ul.html" />
@@ -708,6 +712,7 @@
     <None Include="..\toast\living\jan11\bdi.html" />
     <None Include="..\toast\living\jan11\blockquote.html" />
     <None Include="..\toast\living\jan11\br.html" />
+    <None Include="..\toast\living\jan11\caption.html" />
     <None Include="..\toast\living\jan11\cite.html" />
     <None Include="..\toast\living\jan11\code.html" />
     <None Include="..\toast\living\jan11\dd.html" />
@@ -787,6 +792,10 @@
     <None Include="..\toast\living\jan11\span.html" />
     <None Include="..\toast\living\jan11\strong.html" />
     <None Include="..\toast\living\jan11\subsup.html" />
+    <None Include="..\toast\living\jan11\table.html" />
+    <None Include="..\toast\living\jan11\te.html" />
+    <None Include="..\toast\living\jan11\th.html" />
+    <None Include="..\toast\living\jan11\thead.html" />
     <None Include="..\toast\living\jan11\time.html" />
     <None Include="..\toast\living\jan11\tls.html" />
     <None Include="..\toast\living\jan11\track.html" />
@@ -803,6 +812,7 @@
     <None Include="..\toast\living\jan12\bdi.html" />
     <None Include="..\toast\living\jan12\blockquote.html" />
     <None Include="..\toast\living\jan12\br.html" />
+    <None Include="..\toast\living\jan12\caption.html" />
     <None Include="..\toast\living\jan12\cite.html" />
     <None Include="..\toast\living\jan12\code.html" />
     <None Include="..\toast\living\jan12\data.html" />
@@ -884,6 +894,10 @@
     <None Include="..\toast\living\jan12\span.html" />
     <None Include="..\toast\living\jan12\strong.html" />
     <None Include="..\toast\living\jan12\subsup.html" />
+    <None Include="..\toast\living\jan12\table.html" />
+    <None Include="..\toast\living\jan12\te.html" />
+    <None Include="..\toast\living\jan12\th.html" />
+    <None Include="..\toast\living\jan12\thead.html" />
     <None Include="..\toast\living\jan12\time.html" />
     <None Include="..\toast\living\jan12\tls.html" />
     <None Include="..\toast\living\jan12\track.html" />
@@ -900,6 +914,7 @@
     <None Include="..\toast\living\jan13\bdi.html" />
     <None Include="..\toast\living\jan13\blockquote.html" />
     <None Include="..\toast\living\jan13\br.html" />
+    <None Include="..\toast\living\jan13\caption.html" />
     <None Include="..\toast\living\jan13\cite.html" />
     <None Include="..\toast\living\jan13\code.html" />
     <None Include="..\toast\living\jan13\data.html" />
@@ -985,6 +1000,10 @@
     <None Include="..\toast\living\jan13\span.html" />
     <None Include="..\toast\living\jan13\strong.html" />
     <None Include="..\toast\living\jan13\subsup.html" />
+    <None Include="..\toast\living\jan13\table.html" />
+    <None Include="..\toast\living\jan13\te.html" />
+    <None Include="..\toast\living\jan13\th.html" />
+    <None Include="..\toast\living\jan13\thead.html" />
     <None Include="..\toast\living\jan13\time.html" />
     <None Include="..\toast\living\jan13\tls.html" />
     <None Include="..\toast\living\jan13\track.html" />
@@ -1001,6 +1020,7 @@
     <None Include="..\toast\living\jan14\bdi.html" />
     <None Include="..\toast\living\jan14\blockquote.html" />
     <None Include="..\toast\living\jan14\br.html" />
+    <None Include="..\toast\living\jan14\caption.html" />
     <None Include="..\toast\living\jan14\cite.html" />
     <None Include="..\toast\living\jan14\code.html" />
     <None Include="..\toast\living\jan14\data.html" />
@@ -1095,6 +1115,10 @@
     <None Include="..\toast\living\jan14\span.html" />
     <None Include="..\toast\living\jan14\strong.html" />
     <None Include="..\toast\living\jan14\subsup.html" />
+    <None Include="..\toast\living\jan14\table.html" />
+    <None Include="..\toast\living\jan14\te.html" />
+    <None Include="..\toast\living\jan14\th.html" />
+    <None Include="..\toast\living\jan14\thead.html" />
     <None Include="..\toast\living\jan14\time.html" />
     <None Include="..\toast\living\jan14\tls.html" />
     <None Include="..\toast\living\jan14\track.html" />
@@ -1120,6 +1144,7 @@
     <None Include="..\toast\living\jan15\bdi.html" />
     <None Include="..\toast\living\jan15\blockquote.html" />
     <None Include="..\toast\living\jan15\br.html" />
+    <None Include="..\toast\living\jan15\caption.html" />
     <None Include="..\toast\living\jan15\cite.html" />
     <None Include="..\toast\living\jan15\code.html" />
     <None Include="..\toast\living\jan15\data.html" />
@@ -1216,6 +1241,11 @@
     <None Include="..\toast\living\jan15\span.html" />
     <None Include="..\toast\living\jan15\strong.html" />
     <None Include="..\toast\living\jan15\subsup.html" />
+    <None Include="..\toast\living\jan15\table.html" />
+    <None Include="..\toast\living\jan15\td.html" />
+    <None Include="..\toast\living\jan15\te.html" />
+    <None Include="..\toast\living\jan15\th.html" />
+    <None Include="..\toast\living\jan15\thead.html" />
     <None Include="..\toast\living\jan15\time.html" />
     <None Include="..\toast\living\jan15\tls.html" />
     <None Include="..\toast\living\jan15\track.html" />
@@ -1241,6 +1271,7 @@
     <None Include="..\toast\living\jan16\bdi.html" />
     <None Include="..\toast\living\jan16\blockquote.html" />
     <None Include="..\toast\living\jan16\br.html" />
+    <None Include="..\toast\living\jan16\caption.html" />
     <None Include="..\toast\living\jan16\cite.html" />
     <None Include="..\toast\living\jan16\code.html" />
     <None Include="..\toast\living\jan16\data.html" />
@@ -1336,6 +1367,11 @@
     <None Include="..\toast\living\jan16\span.html" />
     <None Include="..\toast\living\jan16\strong.html" />
     <None Include="..\toast\living\jan16\subsup.html" />
+    <None Include="..\toast\living\jan16\table.html" />
+    <None Include="..\toast\living\jan16\td.html" />
+    <None Include="..\toast\living\jan16\te.html" />
+    <None Include="..\toast\living\jan16\th.html" />
+    <None Include="..\toast\living\jan16\thead.html" />
     <None Include="..\toast\living\jan16\time.html" />
     <None Include="..\toast\living\jan16\tls.html" />
     <None Include="..\toast\living\jan16\track.html" />
@@ -1362,6 +1398,7 @@
     <None Include="..\toast\living\jan17\bdi.html" />
     <None Include="..\toast\living\jan17\blockquote.html" />
     <None Include="..\toast\living\jan17\br.html" />
+    <None Include="..\toast\living\jan17\caption.html" />
     <None Include="..\toast\living\jan17\cite.html" />
     <None Include="..\toast\living\jan17\code.html" />
     <None Include="..\toast\living\jan17\data.html" />
@@ -1458,6 +1495,11 @@
     <None Include="..\toast\living\jan17\span.html" />
     <None Include="..\toast\living\jan17\strong.html" />
     <None Include="..\toast\living\jan17\subsup.html" />
+    <None Include="..\toast\living\jan17\table.html" />
+    <None Include="..\toast\living\jan17\td.html" />
+    <None Include="..\toast\living\jan17\te.html" />
+    <None Include="..\toast\living\jan17\th.html" />
+    <None Include="..\toast\living\jan17\thead.html" />
     <None Include="..\toast\living\jan17\time.html" />
     <None Include="..\toast\living\jan17\tls.html" />
     <None Include="..\toast\living\jan17\track.html" />
@@ -1484,6 +1526,7 @@
     <None Include="..\toast\living\jan18\bdi.html" />
     <None Include="..\toast\living\jan18\blockquote.html" />
     <None Include="..\toast\living\jan18\br.html" />
+    <None Include="..\toast\living\jan18\caption.html" />
     <None Include="..\toast\living\jan18\cite.html" />
     <None Include="..\toast\living\jan18\code.html" />
     <None Include="..\toast\living\jan18\data.html" />
@@ -1581,6 +1624,11 @@
     <None Include="..\toast\living\jan18\span.html" />
     <None Include="..\toast\living\jan18\strong.html" />
     <None Include="..\toast\living\jan18\subsup.html" />
+    <None Include="..\toast\living\jan18\table.html" />
+    <None Include="..\toast\living\jan18\td.html" />
+    <None Include="..\toast\living\jan18\te.html" />
+    <None Include="..\toast\living\jan18\th.html" />
+    <None Include="..\toast\living\jan18\thead.html" />
     <None Include="..\toast\living\jan18\time.html" />
     <None Include="..\toast\living\jan18\tls.html" />
     <None Include="..\toast\living\jan18\track.html" />
@@ -1607,6 +1655,7 @@
     <None Include="..\toast\living\jan19\bdi.html" />
     <None Include="..\toast\living\jan19\blockquote.html" />
     <None Include="..\toast\living\jan19\br.html" />
+    <None Include="..\toast\living\jan19\caption.html" />
     <None Include="..\toast\living\jan19\cite.html" />
     <None Include="..\toast\living\jan19\code.html" />
     <None Include="..\toast\living\jan19\data.html" />
@@ -1706,6 +1755,11 @@
     <None Include="..\toast\living\jan19\span.html" />
     <None Include="..\toast\living\jan19\strong.html" />
     <None Include="..\toast\living\jan19\subsup.html" />
+    <None Include="..\toast\living\jan19\table.html" />
+    <None Include="..\toast\living\jan19\td.html" />
+    <None Include="..\toast\living\jan19\te.html" />
+    <None Include="..\toast\living\jan19\th.html" />
+    <None Include="..\toast\living\jan19\thead.html" />
     <None Include="..\toast\living\jan19\time.html" />
     <None Include="..\toast\living\jan19\tls.html" />
     <None Include="..\toast\living\jan19\track.html" />
@@ -1732,6 +1786,7 @@
     <None Include="..\toast\living\jan20\bdi.html" />
     <None Include="..\toast\living\jan20\blockquote.html" />
     <None Include="..\toast\living\jan20\br.html" />
+    <None Include="..\toast\living\jan20\caption.html" />
     <None Include="..\toast\living\jan20\cite.html" />
     <None Include="..\toast\living\jan20\code.html" />
     <None Include="..\toast\living\jan20\data.html" />
@@ -1834,6 +1889,11 @@
     <None Include="..\toast\living\jan20\span.html" />
     <None Include="..\toast\living\jan20\strong.html" />
     <None Include="..\toast\living\jan20\subsup.html" />
+    <None Include="..\toast\living\jan20\table.html" />
+    <None Include="..\toast\living\jan20\td.html" />
+    <None Include="..\toast\living\jan20\te.html" />
+    <None Include="..\toast\living\jan20\th.html" />
+    <None Include="..\toast\living\jan20\thead.html" />
     <None Include="..\toast\living\jan20\time.html" />
     <None Include="..\toast\living\jan20\tls.html" />
     <None Include="..\toast\living\jan20\track.html" />
@@ -1861,6 +1921,7 @@
     <None Include="..\toast\living\jan21\bdi.html" />
     <None Include="..\toast\living\jan21\blockquote.html" />
     <None Include="..\toast\living\jan21\br.html" />
+    <None Include="..\toast\living\jan21\caption.html" />
     <None Include="..\toast\living\jan21\cite.html" />
     <None Include="..\toast\living\jan21\code.html" />
     <None Include="..\toast\living\jan21\data.html" />
@@ -1963,6 +2024,11 @@
     <None Include="..\toast\living\jan21\span.html" />
     <None Include="..\toast\living\jan21\strong.html" />
     <None Include="..\toast\living\jan21\subsup.html" />
+    <None Include="..\toast\living\jan21\table.html" />
+    <None Include="..\toast\living\jan21\td.html" />
+    <None Include="..\toast\living\jan21\te.html" />
+    <None Include="..\toast\living\jan21\th.html" />
+    <None Include="..\toast\living\jan21\thead.html" />
     <None Include="..\toast\living\jan21\time.html" />
     <None Include="..\toast\living\jan21\tls.html" />
     <None Include="..\toast\living\jan21\track.html" />
@@ -2082,6 +2148,7 @@
     <None Include="..\toast\living\jul09\b.html" />
     <None Include="..\toast\living\jul09\blockquote.html" />
     <None Include="..\toast\living\jul09\br.html" />
+    <None Include="..\toast\living\jul09\caption.html" />
     <None Include="..\toast\living\jul09\cite.html" />
     <None Include="..\toast\living\jul09\code.html" />
     <None Include="..\toast\living\jul09\dd.html" />
@@ -2140,6 +2207,7 @@
     <None Include="..\toast\living\jul09\strong.html" />
     <None Include="..\toast\living\jul09\subsup.html" />
     <None Include="..\toast\living\jul09\tagcloud.html" />
+    <None Include="..\toast\living\jul09\th.html" />
     <None Include="..\toast\living\jul09\time.html" />
     <None Include="..\toast\living\jul09\ul.html" />
     <None Include="..\toast\living\jul09\var.html" />
@@ -2152,6 +2220,7 @@
     <None Include="..\toast\living\jul10\b.html" />
     <None Include="..\toast\living\jul10\blockquote.html" />
     <None Include="..\toast\living\jul10\br.html" />
+    <None Include="..\toast\living\jul10\caption.html" />
     <None Include="..\toast\living\jul10\cite.html" />
     <None Include="..\toast\living\jul10\code.html" />
     <None Include="..\toast\living\jul10\dd.html" />
@@ -2228,6 +2297,9 @@
     <None Include="..\toast\living\jul10\span.html" />
     <None Include="..\toast\living\jul10\strong.html" />
     <None Include="..\toast\living\jul10\subsup.html" />
+    <None Include="..\toast\living\jul10\table.html" />
+    <None Include="..\toast\living\jul10\te.html" />
+    <None Include="..\toast\living\jul10\th.html" />
     <None Include="..\toast\living\jul10\time.html" />
     <None Include="..\toast\living\jul10\tls.html" />
     <None Include="..\toast\living\jul10\ul.html" />
@@ -2243,6 +2315,7 @@
     <None Include="..\toast\living\jul11\bdi.html" />
     <None Include="..\toast\living\jul11\blockquote.html" />
     <None Include="..\toast\living\jul11\br.html" />
+    <None Include="..\toast\living\jul11\caption.html" />
     <None Include="..\toast\living\jul11\cite.html" />
     <None Include="..\toast\living\jul11\code.html" />
     <None Include="..\toast\living\jul11\dd.html" />
@@ -2322,6 +2395,10 @@
     <None Include="..\toast\living\jul11\span.html" />
     <None Include="..\toast\living\jul11\strong.html" />
     <None Include="..\toast\living\jul11\subsup.html" />
+    <None Include="..\toast\living\jul11\table.html" />
+    <None Include="..\toast\living\jul11\te.html" />
+    <None Include="..\toast\living\jul11\th.html" />
+    <None Include="..\toast\living\jul11\thead.html" />
     <None Include="..\toast\living\jul11\time.html" />
     <None Include="..\toast\living\jul11\tls.html" />
     <None Include="..\toast\living\jul11\track.html" />
@@ -2338,6 +2415,7 @@
     <None Include="..\toast\living\jul12\bdi.html" />
     <None Include="..\toast\living\jul12\blockquote.html" />
     <None Include="..\toast\living\jul12\br.html" />
+    <None Include="..\toast\living\jul12\caption.html" />
     <None Include="..\toast\living\jul12\cite.html" />
     <None Include="..\toast\living\jul12\code.html" />
     <None Include="..\toast\living\jul12\data.html" />
@@ -2420,6 +2498,10 @@
     <None Include="..\toast\living\jul12\span.html" />
     <None Include="..\toast\living\jul12\strong.html" />
     <None Include="..\toast\living\jul12\subsup.html" />
+    <None Include="..\toast\living\jul12\table.html" />
+    <None Include="..\toast\living\jul12\te.html" />
+    <None Include="..\toast\living\jul12\th.html" />
+    <None Include="..\toast\living\jul12\thead.html" />
     <None Include="..\toast\living\jul12\time.html" />
     <None Include="..\toast\living\jul12\tls.html" />
     <None Include="..\toast\living\jul12\track.html" />
@@ -2436,6 +2518,7 @@
     <None Include="..\toast\living\jul13\bdi.html" />
     <None Include="..\toast\living\jul13\blockquote.html" />
     <None Include="..\toast\living\jul13\br.html" />
+    <None Include="..\toast\living\jul13\caption.html" />
     <None Include="..\toast\living\jul13\cite.html" />
     <None Include="..\toast\living\jul13\code.html" />
     <None Include="..\toast\living\jul13\data.html" />
@@ -2529,6 +2612,10 @@
     <None Include="..\toast\living\jul13\span.html" />
     <None Include="..\toast\living\jul13\strong.html" />
     <None Include="..\toast\living\jul13\subsup.html" />
+    <None Include="..\toast\living\jul13\table.html" />
+    <None Include="..\toast\living\jul13\te.html" />
+    <None Include="..\toast\living\jul13\th.html" />
+    <None Include="..\toast\living\jul13\thead.html" />
     <None Include="..\toast\living\jul13\time.html" />
     <None Include="..\toast\living\jul13\tls.html" />
     <None Include="..\toast\living\jul13\track.html" />
@@ -2554,6 +2641,7 @@
     <None Include="..\toast\living\jul14\bdi.html" />
     <None Include="..\toast\living\jul14\blockquote.html" />
     <None Include="..\toast\living\jul14\br.html" />
+    <None Include="..\toast\living\jul14\caption.html" />
     <None Include="..\toast\living\jul14\cite.html" />
     <None Include="..\toast\living\jul14\code.html" />
     <None Include="..\toast\living\jul14\data.html" />
@@ -2649,6 +2737,10 @@
     <None Include="..\toast\living\jul14\span.html" />
     <None Include="..\toast\living\jul14\strong.html" />
     <None Include="..\toast\living\jul14\subsup.html" />
+    <None Include="..\toast\living\jul14\table.html" />
+    <None Include="..\toast\living\jul14\te.html" />
+    <None Include="..\toast\living\jul14\th.html" />
+    <None Include="..\toast\living\jul14\thead.html" />
     <None Include="..\toast\living\jul14\time.html" />
     <None Include="..\toast\living\jul14\tls.html" />
     <None Include="..\toast\living\jul14\track.html" />
@@ -2674,6 +2766,7 @@
     <None Include="..\toast\living\jul15\bdi.html" />
     <None Include="..\toast\living\jul15\blockquote.html" />
     <None Include="..\toast\living\jul15\br.html" />
+    <None Include="..\toast\living\jul15\caption.html" />
     <None Include="..\toast\living\jul15\cite.html" />
     <None Include="..\toast\living\jul15\code.html" />
     <None Include="..\toast\living\jul15\data.html" />
@@ -2770,6 +2863,11 @@
     <None Include="..\toast\living\jul15\span.html" />
     <None Include="..\toast\living\jul15\strong.html" />
     <None Include="..\toast\living\jul15\subsup.html" />
+    <None Include="..\toast\living\jul15\table.html" />
+    <None Include="..\toast\living\jul15\td.html" />
+    <None Include="..\toast\living\jul15\te.html" />
+    <None Include="..\toast\living\jul15\th.html" />
+    <None Include="..\toast\living\jul15\thead.html" />
     <None Include="..\toast\living\jul15\time.html" />
     <None Include="..\toast\living\jul15\tls.html" />
     <None Include="..\toast\living\jul15\track.html" />
@@ -2796,6 +2894,7 @@
     <None Include="..\toast\living\jul16\bdi.html" />
     <None Include="..\toast\living\jul16\blockquote.html" />
     <None Include="..\toast\living\jul16\br.html" />
+    <None Include="..\toast\living\jul16\caption.html" />
     <None Include="..\toast\living\jul16\cite.html" />
     <None Include="..\toast\living\jul16\code.html" />
     <None Include="..\toast\living\jul16\data.html" />
@@ -2892,6 +2991,11 @@
     <None Include="..\toast\living\jul16\span.html" />
     <None Include="..\toast\living\jul16\strong.html" />
     <None Include="..\toast\living\jul16\subsup.html" />
+    <None Include="..\toast\living\jul16\table.html" />
+    <None Include="..\toast\living\jul16\td.html" />
+    <None Include="..\toast\living\jul16\te.html" />
+    <None Include="..\toast\living\jul16\th.html" />
+    <None Include="..\toast\living\jul16\thead.html" />
     <None Include="..\toast\living\jul16\time.html" />
     <None Include="..\toast\living\jul16\tls.html" />
     <None Include="..\toast\living\jul16\track.html" />
@@ -2918,6 +3022,7 @@
     <None Include="..\toast\living\jul17\bdi.html" />
     <None Include="..\toast\living\jul17\blockquote.html" />
     <None Include="..\toast\living\jul17\br.html" />
+    <None Include="..\toast\living\jul17\caption.html" />
     <None Include="..\toast\living\jul17\cite.html" />
     <None Include="..\toast\living\jul17\code.html" />
     <None Include="..\toast\living\jul17\data.html" />
@@ -3014,6 +3119,11 @@
     <None Include="..\toast\living\jul17\span.html" />
     <None Include="..\toast\living\jul17\strong.html" />
     <None Include="..\toast\living\jul17\subsup.html" />
+    <None Include="..\toast\living\jul17\table.html" />
+    <None Include="..\toast\living\jul17\td.html" />
+    <None Include="..\toast\living\jul17\te.html" />
+    <None Include="..\toast\living\jul17\th.html" />
+    <None Include="..\toast\living\jul17\thead.html" />
     <None Include="..\toast\living\jul17\time.html" />
     <None Include="..\toast\living\jul17\tls.html" />
     <None Include="..\toast\living\jul17\track.html" />
@@ -3040,6 +3150,7 @@
     <None Include="..\toast\living\jul18\bdi.html" />
     <None Include="..\toast\living\jul18\blockquote.html" />
     <None Include="..\toast\living\jul18\br.html" />
+    <None Include="..\toast\living\jul18\caption.html" />
     <None Include="..\toast\living\jul18\cite.html" />
     <None Include="..\toast\living\jul18\code.html" />
     <None Include="..\toast\living\jul18\data.html" />
@@ -3139,6 +3250,11 @@
     <None Include="..\toast\living\jul18\span.html" />
     <None Include="..\toast\living\jul18\strong.html" />
     <None Include="..\toast\living\jul18\subsup.html" />
+    <None Include="..\toast\living\jul18\table.html" />
+    <None Include="..\toast\living\jul18\td.html" />
+    <None Include="..\toast\living\jul18\te.html" />
+    <None Include="..\toast\living\jul18\th.html" />
+    <None Include="..\toast\living\jul18\thead.html" />
     <None Include="..\toast\living\jul18\time.html" />
     <None Include="..\toast\living\jul18\tls.html" />
     <None Include="..\toast\living\jul18\track.html" />
@@ -3165,6 +3281,7 @@
     <None Include="..\toast\living\jul19\bdi.html" />
     <None Include="..\toast\living\jul19\blockquote.html" />
     <None Include="..\toast\living\jul19\br.html" />
+    <None Include="..\toast\living\jul19\caption.html" />
     <None Include="..\toast\living\jul19\cite.html" />
     <None Include="..\toast\living\jul19\code.html" />
     <None Include="..\toast\living\jul19\data.html" />
@@ -3267,6 +3384,11 @@
     <None Include="..\toast\living\jul19\span.html" />
     <None Include="..\toast\living\jul19\strong.html" />
     <None Include="..\toast\living\jul19\subsup.html" />
+    <None Include="..\toast\living\jul19\table.html" />
+    <None Include="..\toast\living\jul19\td.html" />
+    <None Include="..\toast\living\jul19\te.html" />
+    <None Include="..\toast\living\jul19\th.html" />
+    <None Include="..\toast\living\jul19\thead.html" />
     <None Include="..\toast\living\jul19\time.html" />
     <None Include="..\toast\living\jul19\tls.html" />
     <None Include="..\toast\living\jul19\track.html" />
@@ -3293,6 +3415,7 @@
     <None Include="..\toast\living\jul20\bdi.html" />
     <None Include="..\toast\living\jul20\blockquote.html" />
     <None Include="..\toast\living\jul20\br.html" />
+    <None Include="..\toast\living\jul20\caption.html" />
     <None Include="..\toast\living\jul20\cite.html" />
     <None Include="..\toast\living\jul20\code.html" />
     <None Include="..\toast\living\jul20\data.html" />
@@ -3395,6 +3518,11 @@
     <None Include="..\toast\living\jul20\span.html" />
     <None Include="..\toast\living\jul20\strong.html" />
     <None Include="..\toast\living\jul20\subsup.html" />
+    <None Include="..\toast\living\jul20\table.html" />
+    <None Include="..\toast\living\jul20\td.html" />
+    <None Include="..\toast\living\jul20\te.html" />
+    <None Include="..\toast\living\jul20\th.html" />
+    <None Include="..\toast\living\jul20\thead.html" />
     <None Include="..\toast\living\jul20\time.html" />
     <None Include="..\toast\living\jul20\tls.html" />
     <None Include="..\toast\living\jul20\track.html" />

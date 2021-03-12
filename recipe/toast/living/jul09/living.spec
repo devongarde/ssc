@@ -31,6 +31,10 @@ PASS ../toast/living/jul09/blockquote.html
 8 missing_close use_quote_code
 12 inserted_missing_closure inserted_missing_closure
 
+PASS ../toast/living/jul09/caption.html
+9 inserted_missing_closure missing_close
+13 inserted_missing_closure
+
 PASS ../toast/living/jul09/dd.html
 0 charset_mismatch charset_used charset_invalid
 8 unrecognised_value use_quote_code
@@ -372,6 +376,18 @@ PASS ../toast/living/jul09/tagcloud.html
 21 inserted_missing_closure no_such_folder url_not_found
 22 inserted_missing_closure missing_close no_such_folder url_not_found
 23 inserted_missing_closure
+
+PASS ../toast/living/jul09/th.html
+8 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+9 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+10 inserted_missing_closure inserted_missing_closure wrong_parent inserted_missing_closure
+11 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+12 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+13 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
+14 inserted_missing_closure inserted_missing_closure wrong_parent inserted_missing_closure
+15 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+16 inserted_missing_closure wrong_parent inserted_missing_closure missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+17 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul09/time.html
 15 use_quote_code
