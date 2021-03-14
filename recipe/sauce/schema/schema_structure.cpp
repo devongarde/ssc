@@ -696,6 +696,7 @@ microdata_structure schema_structure [] =
 
     { { 2, 0 }, { 0, 0 }, sch_episode, sp_actor },
     { { 2, 0 }, { 0, 0 }, sch_episode, sp_director },
+    { { 12, 0 }, { 0, 0 }, sch_episode, sp_duration },
     { { 2, 0 }, { 0, 0 }, sch_episode, sp_episodenumber },
     { { 2, 0 }, { 0, 0 }, sch_episode, sp_musicby },
     { { 2, 0 }, { 0, 0 }, sch_episode, sp_partofseason },
@@ -1113,6 +1114,7 @@ microdata_structure schema_structure [] =
     { { 3, 5 }, { 0, 0 }, sch_mediaobject, sp_endtime },
     { { 2, 0 }, { 3, 2 }, sch_mediaobject, sp_expires },
     { { 2, 0 }, { 0, 0 }, sch_mediaobject, sp_height },
+    { { 12, 0 }, { 0, 0 }, sch_mediaobject, sp_ineligibleregion },
     { { 2, 0 }, { 0, 0 }, sch_mediaobject, sp_playertype },
     { { 2, 0 }, { 0, 0 }, sch_mediaobject, sp_productioncompany },
     { { 2, 0 }, { 0, 0 }, sch_mediaobject, sp_regionsallowed },
@@ -2043,6 +2045,13 @@ microdata_structure schema_structure [] =
 
     { { 3, 1 }, { 0, 0 }, sch_singlefamilyresidence, sp_numberofrooms },
     { { 3, 1 }, { 0, 0 }, sch_singlefamilyresidence, sp_occupancy },
+
+    { { 12, 0 }, { 0, 0 }, sch_sizespecification, sp_hasmeasurement },
+    { { 12, 0 }, { 0, 0 }, sch_sizespecification, sp_sizegroup },
+    { { 12, 0 }, { 0, 0 }, sch_sizespecification, sp_sizesystem },
+    { { 12, 0 }, { 0, 0 }, sch_sizespecification, sp_suggestedage },
+    { { 12, 0 }, { 0, 0 }, sch_sizespecification, sp_suggestedgender },
+    { { 12, 0 }, { 0, 0 }, sch_sizespecification, sp_suggestedmeasurement },
 
     { { 2, 1 }, { 0, 0 }, sch_socialmediaposting, sp_sharedcontent },
 

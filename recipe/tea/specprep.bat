@@ -47,6 +47,7 @@ ssc.exe -T -Z -o ../out/jan21living.tst -f ../toast/living/jan21/living.conf
 ssc.exe -T -Z -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T -Z -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T -Z -o ../out/3math.tst -f ../toast/math/3/math.conf
+ssc.exe -T -Z -o ../out/12schema.tst -f ../toast/microdata/12/schema.conf
 ssc.exe -T -Z -o ../out/addendumadd.tst -f ../toast/microdata/addendum/add.conf
 ssc.exe -T -Z -o ../out/basicbasic.tst -f ../toast/microdata/basic/basic.conf
 ssc.exe -T -Z -o ../out/exportexport.tst -f ../toast/microdata/export/export.conf

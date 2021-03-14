@@ -47,6 +47,7 @@ ssc.exe -f ../toast/living/jan21/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf
+ssc.exe -f ../toast/microdata/12/schema.conf
 ssc.exe -f ../toast/microdata/addendum/add.conf
 ssc.exe -f ../toast/microdata/basic/basic.conf
 ssc.exe -f ../toast/microdata/export/export.conf
