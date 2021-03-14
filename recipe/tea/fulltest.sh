@@ -50,6 +50,7 @@
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
+./ssc -f ../toast/microdata/12/schema.conf
 ./ssc -f ../toast/microdata/addendum/add.conf
 ./ssc -f ../toast/microdata/basic/basic.conf
 ./ssc -f ../toast/microdata/export/export.conf

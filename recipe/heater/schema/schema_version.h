@@ -38,15 +38,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define SV_DEP_3034     0x007B0000
 
-#define DEFAULT_SCHEMA_MAJOR 11
+#define DEFAULT_SCHEMA_MAJOR 12
 #define DEFAULT_SCHEMA_MINOR 0
 
 typedef unsigned int schema_flag_t;
-const unsigned char schema_major_max = 11;
+const unsigned char schema_major_max = 12;
 class html_version;
 class schema_version;
 
-schema_version html_to_schema_version (const html_version& v);
 bool is_valid_schema_version (const unsigned char mjr, const unsigned char mnr);
 
 class schema_version
@@ -110,6 +109,7 @@ const schema_version schema_8 (8, 0);
 const schema_version schema_9 (9, 0);
 const schema_version schema_10 (10, 0);
 const schema_version schema_11 (11, 0);
+const schema_version schema_12 (12, 0);
 
 bool operator == (const schema_version& lhs, const schema_version& rhs);
 bool operator != (const schema_version& lhs, const schema_version& rhs);

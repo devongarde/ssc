@@ -3588,6 +3588,9 @@
     <None Include="..\toast\math\3\math7-example.html" />
     <None Include="..\toast\math\3\math8-example.html" />
     <None Include="..\toast\math\3\math9-example.html" />
+    <None Include="..\toast\microdata\12\index.html" />
+    <None Include="..\toast\microdata\12\schema.conf" />
+    <None Include="..\toast\microdata\12\schema.spec" />
     <None Include="..\toast\microdata\addendum\add.conf" />
     <None Include="..\toast\microdata\addendum\add.spec" />
     <None Include="..\toast\microdata\addendum\index.html" />

@@ -47,6 +47,7 @@
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
+../toast/microdata/12/schema.spec
 ../toast/microdata/addendum/add.spec
 ../toast/microdata/basic/basic.spec
 ../toast/microdata/export/export.spec

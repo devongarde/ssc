@@ -582,6 +582,9 @@
     <Filter Include="Toast\Other\img">
       <UniqueIdentifier>{ea384b8d-9f85-445f-8cc2-703eaf9eebcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Microdata\12">
+      <UniqueIdentifier>{9407dd34-3aca-40ff-ba51-e9fbb7186fdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -13970,6 +13973,15 @@
     </None>
     <None Include="..\toast\living\jan11\te.html">
       <Filter>Toast\Living\jan11</Filter>
+    </None>
+    <None Include="..\toast\microdata\12\index.html">
+      <Filter>Toast\Microdata\12</Filter>
+    </None>
+    <None Include="..\toast\microdata\12\schema.conf">
+      <Filter>Toast\Microdata\12</Filter>
+    </None>
+    <None Include="..\toast\microdata\12\schema.spec">
+      <Filter>Toast\Microdata\12</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

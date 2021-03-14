@@ -80,27 +80,9 @@ bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, cons
 {   if ((lhs_from > rhs_to) && ! rhs_to.unknown ()) return false;
     return (lhs_to.unknown () || (lhs_to >= rhs_from)); }
 
-schema_version html_to_schema_version (const html_version& v)
-{   if (v.is_5 ())
-        switch (w3_minor_5 (v))
-        {   case 0 :
-                return schema_2_0;
-            case 1 :
-                return schema_3_2;
-            case 2 :
-                return schema_3_3;
-            case 3 :
-                return schema_3_4;
-            case 4 :
-                return schema_9;
-            default :
-                assert (false); }
-    return schema_0; }
-
 bool is_valid_schema_version (const unsigned char mjr, const unsigned char mnr)
 {   if ((mjr == 0) && (mnr == 0)) return true;
     if ((mjr > schema_major_max) || (mjr < 2)) return false;
-    if (mnr > 9) return false;
     switch (mjr)
     {   case 2 : return mnr < 3;
         case 3 : return true;

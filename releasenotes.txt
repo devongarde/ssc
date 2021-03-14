@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.92
+- schema.org 12.0 microdata
+- various bug fixes
+
 0.0.91
 - various bug fixes
 
