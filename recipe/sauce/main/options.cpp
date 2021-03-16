@@ -621,6 +621,7 @@ void options::contextualise ()
     TEST_VAR (namedspace);
     TEST_VAR (namespace);
     TEST_VAR (mathnotation);
+    TEST_VAR (ogtype);
     TEST_VAR (paintkeyword);
     TEST_VAR (plusstyle);
     TEST_VAR (pointerevents);
@@ -793,6 +794,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (namedspace);
     RPT_VAR (namespace);
     RPT_VAR (mathnotation);
+    RPT_VAR (ogtype);
     RPT_VAR (paintkeyword);
     RPT_VAR (plusstyle);
     RPT_VAR (pointerevents);

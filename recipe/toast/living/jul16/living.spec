@@ -135,7 +135,6 @@ PASS ../toast/living/jul16/example.html
 6  inserted_missing_closure
 6  missing_open
 10  url_not_found
-21  attribute_required
 29  url_not_found
 30  inserted_missing_closure
 30  url_not_found
@@ -151,8 +150,7 @@ PASS ../toast/living/jul16/example.html
 66  missing_open
 68  inserted_missing_closure unrecognised_value
 70  input_bad_aria
-72  inserted_missing_closure attribute_required
-74  attribute_required
+72  inserted_missing_closure
 78  attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
 94  attribute_unrecognised unrecognised_attribute unrecognised_value
 96  unrecognised_value
@@ -274,6 +272,24 @@ PASS ../toast/living/jul16/footer-3.html
 29 inserted_missing_closure
 32 url_not_found
 
+PASS ../toast/living/jul16/forms.html
+119 inserted_missing_closure missing_close
+120 inserted_missing_closure
+144 inserted_missing_closure missing_close
+145 inserted_missing_closure
+169 inserted_missing_closure missing_close
+170 inserted_missing_closure
+195 inserted_missing_closure missing_close
+196 inserted_missing_closure
+249 unrecognised_value
+254 inserted_missing_closure use_quote_code
+255 inserted_missing_closure
+257 use_double_quote_code inserted_missing_closure
+259 inserted_missing_closure use_quote_code unrecognised_value
+260 inserted_missing_closure
+262 use_double_quote_code inserted_missing_closure missing_close
+267 inserted_missing_closure
+
 PASS ../toast/living/jul16/h-1.html
 6 use_quote_code
 
@@ -296,16 +312,12 @@ PASS ../toast/living/jul16/header-2.html
 21 use_quote_code
 
 PASS ../toast/living/jul16/hgroup-2.html
-14 attribute_required unrecognised_value
-18 newline_in_string newline_in_string unrecognised_value illegal_value
+18 newline_in_string newline_in_string illegal_value
 19 inserted_missing_closure
-20 unrecognised_value
 21 inserted_missing_closure
-22 unrecognised_value unrecognised_value input_bad_mix input_bad_mix
+22 input_bad_mix
 23 inserted_missing_closure missing_close
-24 unrecognised_value
 25 inserted_missing_closure
-29 unrecognised_value
 30 inserted_missing_closure
 31 inserted_missing_closure missing_close
 32 inserted_missing_closure

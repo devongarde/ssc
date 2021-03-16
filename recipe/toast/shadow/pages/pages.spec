@@ -6,7 +6,7 @@ PASS ../toast/shadow/pages/html-bad.html
 5 mime
 7 only_once
 10 default_role
-14 unrecognised_value unrecognised_value deprecated_value deprecated_value attribute_required
+14 unrecognised_value unrecognised_value deprecated_value deprecated_value
 16 missing_close
 18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent arg_count arg_count
 19 inserted_missing_closure inserted_missing_closure missing_close
@@ -74,7 +74,6 @@ PASS ../toast/shadow/pages/html-bad.html
 195 inserted_missing_closure
 196 inserted_missing_closure missing_close
 197 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-199 attribute_required
 201 newline_in_string newline_in_string illegal_value
 205 bad_meter
 206 bad_meter

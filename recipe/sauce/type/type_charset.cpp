@@ -382,6 +382,7 @@ struct symbol_entry < e_charset > charset_symbol_table [] =
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "ventura-international", cs_ventura_international },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "ventura-math", cs_ventura_math },
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, "ventura-us", cs_ventura_us },
+
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "csshiftjis", cs_windows_31j },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "ms932", cs_windows_31j },
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "ms_kanji", cs_windows_31j },

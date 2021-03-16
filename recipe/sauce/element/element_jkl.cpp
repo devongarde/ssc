@@ -167,8 +167,6 @@ void element::examine_link ()
                 if (from.is_external ())
                 {   pick (nit_link_rel_off, ed_53, "4.8.6. Link types", es_error, ec_attribute, "REL=", quote (s), " requires an external url"); continue; } }
         bool headonly = true;
-// void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const uint64_t family);
-
         switch (r.get ())
         {   case r_apple_touch_icon :
             case r_icon : icon = true; check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_IMAGE); break;
@@ -183,14 +181,16 @@ void element::examine_link ()
                 {   pick (nit_link_rel_off, es_info, ec_attribute, "<LINK> REL=", quote (s), " is not valid in ", node_.version ().report ());
                     continue; }
                 break;
-            case r_alternative :
+            case r_feed :
+                check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE | MIME_XML | MIME_APPLICATION);
+                break;
             case r_contact :
             case r_first :
-            case r_feed :
             case r_next :
             case r_prev :
             case r_search :
             case r_up : check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE); break;
+            case r_alternative :
             case r_manifest :
             case r_pingback :
             case r_preconnect :

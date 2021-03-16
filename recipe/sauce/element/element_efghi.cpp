@@ -202,7 +202,7 @@ void element::examine_footer ()
 void element::examine_form ()
 {   switch (node_.version ().mjr ())
     {   case 0 :
-        case 1 :
+        case 1 :  // shouldn't get here, of course, but ... :-)
         case 3 :
         case 4 : break;
         case 2 :
@@ -211,12 +211,12 @@ void element::examine_form ()
             break;
         default :
         {   check_ancestors (elem_form, element_bit_set (elem_form));
-            if ((w3_minor_5 (node_.version ()) > 3) && a_.good (a_acceptcharset))
+            if ((node_.version () >= html_jan19) && a_.good (a_acceptcharset))
             {   auto v = a_.get_x < attr_acceptcharset > ();
-                if (v.size () != 1) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "CHARSET, if supplied, must be the single value 'utf-8'");
+                if (v.size () != 1) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "ACCEPT-CHARSET, if present, must be set to 'utf-8' only");
                 else
                 {   auto cs = v.at (0);
-                    if (cs != cs_utf_8) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "CHARSET, if supplied, must be set to 'utf-8'"); } }
+                    if (cs != cs_utf_8) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "ACCEPT-CHARSET, if present, must be set to 'utf-8'"); } }
             if (! radio_kids_.empty ())
             {   msid_t names;
                 for (auto rk : radio_kids_)

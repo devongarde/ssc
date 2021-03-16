@@ -100,15 +100,13 @@ PASS ../toast/living/jan11/embed.html
 
 PASS ../toast/living/jan11/example.html
 6 missing_close inserted_missing_closure missing_open
-18 attribute_required
 26 inserted_missing_closure inserted_missing_closure
 27 inserted_missing_closure inserted_missing_closure
 28 inserted_missing_closure inserted_missing_closure
 39 inserted_missing_closure inserted_missing_closure missing_close missing_open
 41 inserted_missing_parent inserted_missing_closure inserted_missing_parent unrecognised_value
 42 inserted_missing_closure inserted_missing_closure inserted_missing_closure input_bad_aria
-44 inserted_missing_closure attribute_required
-46 attribute_required
+44 inserted_missing_closure
 50 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
 61 unrecognised_value no_such_folder url_not_found
 64 unrecognised_value unrecognised_value
@@ -190,6 +188,16 @@ PASS ../toast/living/jan11/footer-2.html
 9 no_such_folder url_not_found
 26 url_not_found
 27 url_not_found
+
+PASS ../toast/living/jan11/forms.html
+119 inserted_missing_closure missing_close
+120 inserted_missing_closure
+144 inserted_missing_closure missing_close
+145 inserted_missing_closure
+169 inserted_missing_closure missing_close
+170 inserted_missing_closure
+195 inserted_missing_closure missing_close
+196 inserted_missing_closure
 
 PASS ../toast/living/jan11/h-1.html
 6 use_quote_code
@@ -469,7 +477,6 @@ PASS ../toast/living/jan11/menu.html
 48 newline_in_string inserted_missing_closure newline_in_string
 55 missing_open
 56 missing_open
-59 attribute_required
 63 newline_in_string
 63 ignoring_unknown newline_in_string missing_close attribute_barred attribute_barred
 65 ignoring_unknown missing_close attribute_barred attribute_barred

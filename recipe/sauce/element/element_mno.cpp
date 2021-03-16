@@ -242,7 +242,8 @@ void element::examine_meta ()
             mn.set_value (nuts, node_.version (), a_.get_string (a_name));
             assert (a_.good (a_name));
             e_metaname emn = mn.get ();
-            validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_); } }
+            validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_);
+            validate_metaname_url (nits (), node_.version (), in_head, emn, con, *( page_.get_directory ()), page_.get_disk_path (), node_.line (), ancestral_attributes_, vit_); } }
 
 void element::examine_meter ()
 {   if (node_.version ().is_5 ())

@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type_metaname.h"
 #include "type/type_enum_vec.h"
+#include "type/type_master.h"
 #include "webpage/page.h"
 
 // note HTML 5, 2.6.5, extracting character encodings from meta elements
@@ -952,7 +953,67 @@ struct symbol_entry < e_metaname > metaname_symbol_table [] =
     { { HTML_2_0, HV_DINOSAUR }, { HTML_4_01 }, "mathmdc.referencejournals", mn_mathdmv_referencejournals },
     { { HTML_2_0, HV_DINOSAUR }, { HTML_4_01 }, "mathmdc.contac", mn_mathdmv_contact },
     { { HTML_2_0, HV_DINOSAUR }, { HTML_4_01 }, "mathmdc.abstract", mn_mathdmv_abstract },
-    { { HTML_2_0, HV_DINOSAUR }, { HTML_4_01 }, "mathmdc.notes", mn_mathdmv_notes } };
+    { { HTML_2_0, HV_DINOSAUR }, { HTML_4_01 }, "mathmdc.notes", mn_mathdmv_notes },
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:audio", mn_og_audio },      // url
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:determiner", mn_og_determiner },  // a word
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:locale:alternate", mn_og_locale_alternate },    // array of locales
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:video", mn_og_video },     // url
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:image:url", mn_og_image_url },      // url
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:image:secure_url", mn_og_image_secure_url },      // https url
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:image:type", mn_og_image_type },      // mimetype (IMAGE)
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:image:width", mn_og_image_width },      // integer
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:image:height", mn_og_image_height },      // integer
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:image:alt", mn_og_image_alt },      // text
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:video:url", mn_og_video_url },      // url
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:video:secure_url", mn_og_video_secure_url },      // https url
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:video:width", mn_og_video_width },      // integer
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:video:height", mn_og_video_height },      // integer
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:video:alt", mn_og_video_alt },      // text
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:audio:url", mn_og_audio_url },      // url
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:audio:secure_url", mn_og_audio_secure_url },      // https url
+   { { HTML_4_0 }, { HTML_UNDEF }, "og:audio:type", mn_og_audio_type },      // mimetype (IMAGE)
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:album", mn_music_album },
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:album:disc", mn_music_album_disc },
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:album:track", mn_music_album_track },
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:creator", mn_music_creator },
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:duration", mn_music_duration },
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:musician", mn_music_musician },
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:release_date", mn_music_release_date },
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:song", mn_music_song },
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:song:disc", mn_music_song_disc },
+   { { HTML_4_0 }, { HTML_UNDEF }, "music:song:track", mn_music_song_track },
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "video:actor", mn_video_actor },
+   { { HTML_4_0 }, { HTML_UNDEF }, "video:actor:role", mn_video_actor_role },
+   { { HTML_4_0 }, { HTML_UNDEF }, "video:director", mn_video_director },
+   { { HTML_4_0 }, { HTML_UNDEF }, "video:duration", mn_video_duration },
+   { { HTML_4_0 }, { HTML_UNDEF }, "video:release_date", mn_video_release_date },
+   { { HTML_4_0 }, { HTML_UNDEF }, "video:series", mn_video_series },
+   { { HTML_4_0 }, { HTML_UNDEF }, "video:tag", mn_video_tag },
+   { { HTML_4_0 }, { HTML_UNDEF }, "video:writer", mn_video_writer },
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "article:author", mn_article_author },
+   { { HTML_4_0 }, { HTML_UNDEF }, "article:expiration_time", mn_article_expiration_date },
+   { { HTML_4_0 }, { HTML_UNDEF }, "article:modified_time", mn_article_modified_time },
+   { { HTML_4_0 }, { HTML_UNDEF }, "article:published_time", mn_article_published_time },
+   { { HTML_4_0 }, { HTML_UNDEF }, "article:section", mn_article_section },
+   { { HTML_4_0 }, { HTML_UNDEF }, "article:tag", mn_article_tag },
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "book:author", mn_book_author },
+   { { HTML_4_0 }, { HTML_UNDEF }, "book:isbn", mn_book_isbn },
+   { { HTML_4_0 }, { HTML_UNDEF }, "book:release_date", mn_book_release_date },
+   { { HTML_4_0 }, { HTML_UNDEF }, "book:tag", mn_book_tag },
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "profile:first_name", mn_profile_first_name },
+   { { HTML_4_0 }, { HTML_UNDEF }, "profile:gender", mn_profile_gender },
+   { { HTML_4_0 }, { HTML_UNDEF }, "profile:last_name", mn_profile_last_name },
+   { { HTML_4_0 }, { HTML_UNDEF }, "profile:username", mn_profile_username }
+};
 
 void metaname_init (nitpick& nits)
 {   type_master < t_metaname > :: init (nits, metaname_symbol_table, sizeof (metaname_symbol_table) / sizeof (symbol_entry < e_metaname >)); }
@@ -988,6 +1049,70 @@ void validate_metaname_content (nitpick& nits, const html_version& v, const bool
                 if (! col.good ())
                     nits.pick (nit_theme_colour, ed_jul20, "4.2.5.1 Standard metadata names", es_error, ec_attribute, "When using <META> NAME=\"theme-color\", CONTENT should be a colour"); }
             break;
+        case mn_og_type :
+            test_value < t_ogtype > (nits, v, content);
+            break;
+        case mn_og_audio :
+        case mn_og_video :
+        case mn_og_image :
+        case mn_og_image_url :
+        case mn_og_image_secure_url :
+        case mn_og_video_url :
+        case mn_og_video_secure_url :
+        case mn_og_audio_url :
+        case mn_og_audio_secure_url :
+            break;
+        case mn_music_duration :
+        case mn_music_album_disc :
+        case mn_music_album_track :
+        case mn_music_song_disc :
+        case mn_music_song_track :
+        case mn_og_image_width :
+        case mn_og_image_height :
+        case mn_video_duration :
+            test_value < t_unsigned > (nits, v, content);
+            break;
+        case mn_og_locale :
+            test_value < t_lang > (nits, v, content);
+            break;
+        case mn_og_locale_alternate :
+            test_value < t_langs > (nits, v, content);
+            break;
+        case mn_og_image_type :
+            check_mimetype_family (nits, v, content, MIME_IMAGE);
+            break;
+        case mn_article_modified_time :
+        case mn_article_published_time :
+        case mn_article_expiration_date :
+        case mn_book_release_date :
+        case mn_music_release_date :
+        case mn_video_release_date :
+            test_value < t_datetime > (nits, v, content);
+            break;
+        case mn_profile_gender :
+            test_value < t_sex > (nits, v, content);
+            break;
+        case mn_book_isbn :
+            test_value < t_isbn > (nits, v, content);
+            break;
         default :
             if (stats) p.mark_meta (mn);
+            break; } }
+
+void validate_metaname_url (nitpick& nits, const html_version& v, const bool , const e_metaname mn, const ::std::string& content, const directory& d, const ::boost::filesystem::path& pagename, const int line, const attribute_bitset& flags, const vit_t& itemtypes)
+{   switch (mn)
+    {   case mn_og_audio :
+        case mn_og_video :
+        case mn_og_image :
+        case mn_og_image_url :
+        case mn_og_image_secure_url :
+        case mn_og_video_url :
+        case mn_og_video_secure_url :
+        case mn_og_audio_url :
+        case mn_og_audio_secure_url :
+            {   type_master <t_url> u;
+                u.set_value  (nits, v, content);
+                if (u.good ()) u.verify_url (nits, v, d, pagename, line, flags, itemtypes); }
+            break;
+        default :
             break; } }

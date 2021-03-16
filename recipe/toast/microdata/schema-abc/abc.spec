@@ -38,6 +38,7 @@ PASS ../toast/microdata/schema-abc/aggregaterating-2.html
 
 PASS ../toast/microdata/schema-abc/alignmentobject.html
 17 svg_rdf bad_datetime bad_datetime
+68 incompatible_mime
 69 svg_rdf bad_datetime
 
 PASS ../toast/microdata/schema-abc/amusementpark.html

@@ -120,7 +120,6 @@ PASS ../toast/microdata/schema-hijkl/jobposting.html
 15 inserted_missing_closure
 17 missing_open
 34 use_quote_code
-37 not_schema_property
 
 PASS ../toast/microdata/schema-hijkl/legislation.html
 18 svg_rdf bad_datetime bad_datetime

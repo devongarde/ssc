@@ -489,8 +489,9 @@ property_name namtab [] =
     { "expectedArrivalUntil", sp_expectedarrivaluntil },
     { "expectedPrognosis", sp_expectedprognosis },
     { "expectsAcceptanceOf", sp_expectsacceptanceof },
-    { "expeienceRequirements", sp_expeiencerequirements },
     { "experienceRequirements", sp_experiencerequirements },
+    { "expeienceRequirements", sp_experiencerequirements }, // typo in early original schema.org docs
+    { "experienceInPlaceOfEducation", sp_experienceinplaceofeducation },
     { "expires", sp_expires },
     { "exportConsiderations", sp_exportconsiderations },
     { "familyName", sp_familyname },
@@ -810,6 +811,7 @@ property_name namtab [] =
     { "model", sp_model },
     { "modelDate", sp_modeldate },
     { "modifiedTime", sp_modifiedtime },
+    { "monthsOfExperience", sp_monthsofexperience },
     { "mpn", sp_mpn },
     { "multipleValues", sp_multiplevalues },
     { "muscleAction", sp_muscleaction },
@@ -1395,7 +1397,8 @@ void schema_name_init (nitpick& nits)
             if (mpn.find (n) != mpn.cend ())
                 nits.pick (nit_symbol_aleady_defined, es_catastrophic, ec_init, "schema property name ", n, " defined more than once");
             else if (mnp.find (p -> prop_) != mnp.cend ())
-                nits.pick (nit_symbol_aleady_defined, es_catastrophic, ec_init, "schema property ", p -> prop_, " given more than one name");
+            {   nits.pick (nit_symbol_aleady_defined, es_debug, ec_init, "schema property ", p -> prop_, " given more than one name");
+                mpn.insert (mpn_t::value_type (n, p -> prop_)); }
             else
             {   mpn.insert (mpn_t::value_type (n, p -> prop_));
                 mnp.insert (mnp_t::value_type (p -> prop_, p -> name_)); } } }

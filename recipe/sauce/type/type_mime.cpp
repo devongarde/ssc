@@ -1974,35 +1974,35 @@ struct symbol_entry < e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-ustar", mime_application_x_ustar, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-wais-source", mime_application_x_wais_source, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/ynd.ms-pkipko", mime_application_ynd_ms_pkipko, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "audio/mid", mime_audio_mid, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-aiff", mime_audio_x_aiff, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-mpegurl", mime_audio_x_mpegurl, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-pn-realaudio", mime_audio_x_pn_realaudio, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-wav", mime_audio_x_wav, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/cis-cod", mime_image_cis_cod, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/pipeg", mime_image_pipeg, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-cmu-raster", mime_image_x_cmu_raster, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-cmx", mime_image_x_cmx, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-icon", mime_image_x_icon, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-portable-anymap", mime_image_x_portable_anymap, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-portable-bitmap", mime_image_x_portable_bitmap, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-portable-graymap", mime_image_x_portable_graymap, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-portable-pixmap", mime_image_x_portable_pixmap, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-rgb", mime_image_x_rgb, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-xbitmap", mime_image_x_xbitmap, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-xpixmap", mime_image_x_xpixmap, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-xwindowdump", mime_image_x_xwindowdump, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "text/h323", mime_text_h323, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "text/iuls", mime_text_iuls, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "text/scriptlet", mime_text_scriptlet, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "text/webviewhtml", mime_text_webviewhtml, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL | MIME_PAGE },
-    { { HTML_4_0 }, { HTML_UNDEF }, "text/x-component", mime_text_x_component, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "text/x-setext", mime_text_x_setext, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "text/x-vcard", mime_text_x_vcard, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "video/x-la-asf", mime_video_x_la_asf, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "video/x-ms-asf", mime_video_x_ms_asf, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "video/x-msvideo", mime_video_x_msvideo, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "video/x-sgi-movie", mime_video_x_sgi_movie, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "audio/mid", mime_audio_mid, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-aiff", mime_audio_x_aiff, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-mpegurl", mime_audio_x_mpegurl, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-pn-realaudio", mime_audio_x_pn_realaudio, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-wav", mime_audio_x_wav, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/cis-cod", mime_image_cis_cod, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/pipeg", mime_image_pipeg, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-cmu-raster", mime_image_x_cmu_raster, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-cmx", mime_image_x_cmx, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-icon", mime_image_x_icon, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-portable-anymap", mime_image_x_portable_anymap, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-portable-bitmap", mime_image_x_portable_bitmap, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-portable-graymap", mime_image_x_portable_graymap, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-portable-pixmap", mime_image_x_portable_pixmap, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-rgb", mime_image_x_rgb, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-xbitmap", mime_image_x_xbitmap, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-xpixmap", mime_image_x_xpixmap, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/x-xwindowdump", mime_image_x_xwindowdump, ns_default, MIME_IMAGE | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "text/h323", mime_text_h323, ns_default, MIME_TEXT | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "text/iuls", mime_text_iuls, ns_default, MIME_TEXT | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "text/scriptlet", mime_text_scriptlet, ns_default, MIME_TEXT | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "text/webviewhtml", mime_text_webviewhtml, ns_default, MIME_TEXT | MIME_UNOFFICIAL | MIME_PAGE },
+    { { HTML_4_0 }, { HTML_UNDEF }, "text/x-component", mime_text_x_component, ns_default, MIME_TEXT | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "text/x-setext", mime_text_x_setext, ns_default, MIME_TEXT | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "text/x-vcard", mime_text_x_vcard, ns_default, MIME_TEXT | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "video/x-la-asf", mime_video_x_la_asf, ns_default, MIME_VIDEO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "video/x-ms-asf", mime_video_x_ms_asf, ns_default, MIME_VIDEO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "video/x-msvideo", mime_video_x_msvideo, ns_default, MIME_VIDEO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "video/x-sgi-movie", mime_video_x_sgi_movie, ns_default, MIME_VIDEO | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "x-world/x-vrml", mime_x_world_x_vrml, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-abiword", mime_application_x_abiword, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
@@ -2010,13 +2010,13 @@ struct symbol_entry < e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/vnd.amazon.ebook", mime_application_vnd_amazon_ebook, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-bzip", mime_application_x_bzip, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-bzip2", mime_application_x_bzip2, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "audio/midi", mime_audio_midi, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-midi", mime_audio_x_midi, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "audio/midi", mime_audio_midi, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "audio/x-midi", mime_audio_x_midi, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-httpd-php", mime_application_x_httpd_php, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL | MIME_PAGE },
-    { { HTML_4_0 }, { HTML_UNDEF }, "audio/wav", mime_audio_wav, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "audio/webm", mime_audio_webm, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "video/webm", mime_video_webm, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
-    { { HTML_4_0 }, { HTML_UNDEF }, "image/webp", mime_image_webp, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "audio/wav", mime_audio_wav, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "audio/webm", mime_audio_webm, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "video/webm", mime_video_webm, ns_default, MIME_VIDEO | MIME_UNOFFICIAL },
+    { { HTML_4_0 }, { HTML_UNDEF }, "image/webp", mime_image_webp, ns_default, MIME_AUDIO | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-7z-compressed", mime_application_x_7z_compressed, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
     // microsoft (mostly RFCs that IANA seem to have missed)
     { { HTML_4_0 }, { HTML_UNDEF }, "application/news-message-id", mime_application_news_message_id, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
@@ -2326,7 +2326,7 @@ void check_extension_compatibility (nitpick& nits, const html_version& v, const 
     {   e_mimetype em = static_cast < e_mimetype> (type_master < t_format > :: find (v, ext, ns_default));
         if ((em != mime_context) && (em != mime_bork))
         {   uint64_t flags = type_master < t_mime > :: flags (em);
-            if ((family && flags) == 0)
+            if ((family & flags) == 0)
                 nits.pick (nit_incompatible_mime, es_info, ec_mime, "a file with extension '.", ext, "' is unsuitable here"); } } }
 
 void check_extension_compatibility (nitpick& nits, const html_version& v, const e_mimetype mt, const ::std::string& ext)
@@ -2423,3 +2423,17 @@ void check_vulnerability (nitpick& nits, const html_version& v, const ::std::str
     {   nitpick nuts;
         e_mimetype mt = examine_value < t_mime > (nuts, v, s);
         check_vulnerability (nits, v, mt, u, src); } }
+
+void check_mimetype_family (nitpick& nits, const html_version& v, const e_mimetype em, const uint64_t family, const ::std::string& ref)
+{   report_flag_issues (nits, v, em, true, ref);
+    uint64_t flags = type_master < t_mime > :: flags (em);
+    if ((family & flags) == 0)
+        nits.pick (nit_incompatible_mime, es_info, ec_mime, type_master < t_mime > :: name (em), " is unsuitable here"); }
+
+void check_mimetype_family (nitpick& nits, const html_version& v, const ::std::string& s, const uint64_t family)
+{   vstr_t ms (split_by_space (s));
+    for (auto ss : ms)
+    {   nitpick nuts;
+        e_mimetype mt = examine_value < t_mime > (nits, v, s);
+        if ((mt != mime_bork) && (mt != mime_context))
+            check_mimetype_family (nits, v, mt, family, ss); } }

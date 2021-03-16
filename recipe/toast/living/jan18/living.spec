@@ -148,7 +148,6 @@ PASS ../toast/living/jan18/example.html
 6  inserted_missing_closure
 6  missing_open
 10  url_not_found
-20  attribute_required
 28  url_not_found
 29  inserted_missing_closure
 29  url_not_found
@@ -164,8 +163,7 @@ PASS ../toast/living/jan18/example.html
 65  missing_open
 67  inserted_missing_closure unrecognised_value
 68  input_bad_aria
-70  inserted_missing_closure attribute_required
-72  attribute_required
+70  inserted_missing_closure
 82  attribute_unrecognised unrecognised_attribute unrecognised_value
 84  unrecognised_value
 88  url_not_found
@@ -275,6 +273,27 @@ PASS ../toast/living/jan18/footer-3.html
 29 inserted_missing_closure
 32 url_not_found
 
+PASS ../toast/living/jan18/forms.html
+119 inserted_missing_closure missing_close
+120 inserted_missing_closure
+144 inserted_missing_closure missing_close
+145 inserted_missing_closure
+169 inserted_missing_closure missing_close
+170 inserted_missing_closure
+195 inserted_missing_closure missing_close
+196 inserted_missing_closure
+306 unrecognised_value
+308 missing_close
+324 inserted_missing_closure
+327 inserted_missing_closure use_quote_code
+328 inserted_missing_closure
+330 use_double_quote_code inserted_missing_closure
+331 inserted_missing_closure use_quote_code
+332 inserted_missing_closure
+334 use_double_quote_code inserted_missing_closure
+337 inserted_missing_closure
+338 pattern pattern
+
 PASS ../toast/living/jan18/h-1.html
 6 use_quote_code
 
@@ -297,18 +316,14 @@ PASS ../toast/living/jan18/header-2.html
 21 use_quote_code
 
 PASS ../toast/living/jan18/hgroup-2.html
-14 attribute_required
-18 newline_in_string
-18 newline_in_string illegal_value
+18 newline_in_string newline_in_string illegal_value
 19 inserted_missing_closure
-20 invalid_attribute_version wrong_version
 21 inserted_missing_closure
 22 input_bad_mix
 23 inserted_missing_closure missing_close
-24 invalid_attribute_version wrong_version
 25 inserted_missing_closure
-30 inserted_missing_closure invalid_attribute_version wrong_version
-31 inserted_missing_closure missing_close invalid_attribute_version wrong_version
+30 inserted_missing_closure
+31 inserted_missing_closure missing_close
 32 inserted_missing_closure
 
 PASS ../toast/living/jan18/hr.html

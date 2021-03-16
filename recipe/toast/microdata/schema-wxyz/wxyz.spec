@@ -14,9 +14,6 @@ PASS ../toast/microdata/schema-wxyz/webpage-2.html
 13 unrecognised_value
 17 no_such_folder url_not_found
 
-PASS ../toast/microdata/schema-wxyz/website.html
-13 attribute_required
-
 PASS ../toast/microdata/schema-wxyz/winery.html
 0 charset_mismatch charset_used charset_invalid
 25 not_schema_property

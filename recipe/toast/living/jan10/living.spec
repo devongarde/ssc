@@ -98,7 +98,6 @@ PASS ../toast/living/jan10/embed.html
 PASS ../toast/living/jan10/example.html
 6 missing_close inserted_missing_closure missing_open
 9 url_not_found
-19 attribute_required
 28 unrecognised_value no_such_folder url_not_found
 31 unrecognised_value unrecognised_value
 32 unrecognised_value unrecognised_value
@@ -417,7 +416,6 @@ PASS ../toast/living/jan10/menu.html
 48 newline_in_string inserted_missing_closure newline_in_string
 55 missing_open
 56 missing_open
-59 attribute_required
 63 newline_in_string
 63 ignoring_unknown newline_in_string missing_close attribute_barred attribute_barred
 65 ignoring_unknown missing_close attribute_barred attribute_barred

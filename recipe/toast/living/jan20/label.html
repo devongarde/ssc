@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> label </title> </head>
+ <body>
+
+<label><input type=checkbox name=lost> Lost</label>
+
+<label><my-checkbox name=lost></my-checkbox> Lost</label>
+
+<p><label>Full name: <input name=fn> <small>Format: First Last</small></label></p>
+<p><label>Age: <input name=age type=number min=0></label></p>
+<p><label>Post code: <input name=pc> <small>Format: AB12 3CD</small></label></p>
+
+<p><label><input></label></p>
+<script>
+ const input = document.querySelector('input');
+ const labels = input.labels;
+ console.assert(labels.length === 1);
+ input.type = 'hidden';
+ console.assert(labels.length === 0); // the input is no longer the label's labeled control
+ console.assert(input.labels === null);
+ input.type = 'checkbox';
+ console.assert(labels.length === 1); // the input is once again the label's labeled control
+ console.assert(input.labels === labels); // same value as returned originally
+</script>
+
+ </body>
+</html>

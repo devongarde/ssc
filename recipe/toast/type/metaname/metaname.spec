@@ -21,5 +21,10 @@ PASS ../toast/type/metaname/dubious.html
 PASS ../toast/type/metaname/good.html
 2 naughty_lang
 
+PASS ../toast/type/metaname/og.html
+8 unrecognised_value
+11 url_not_found
+12 incompatible_mime
+
 PASS ../toast/type/metaname/old.html
 5 unrecognised_value

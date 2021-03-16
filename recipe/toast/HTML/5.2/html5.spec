@@ -60,7 +60,6 @@ PASS ../toast/HTML/5.2/html5-bad.html
 5 mime
 7 only_once
 10 default_role
-14 attribute_required
 16 attribute_unrecognised_here missing_close unrecognised_attribute
 18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent
 19 inserted_missing_closure inserted_missing_closure missing_close
@@ -101,7 +100,6 @@ PASS ../toast/HTML/5.2/html5-bad.html
 113 url_not_found out_of_order saucy_source out_of_order
 115 url_not_found source_track
 116 mime url_not_found saucy_source source_track source_track
-119 attribute_required
 120 label_parentage
 121 label_parentage
 124 unknown
@@ -128,8 +126,6 @@ PASS ../toast/HTML/5.2/html5-bad.html
 159 placeholder
 160 bad_datalist_id
 161 bad_datalist_id
-169 attribute_required
-176 attribute_required
 178 bad_option
 180 bad_option
 185 url_not_found
@@ -159,7 +155,6 @@ PASS ../toast/HTML/5.2/html5-example.html
 8 url_not_found cannot_load_css
 9 url_not_found cannot_load_css
 10 url_not_found
-80 attribute_required
 85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required
 98 url_not_found

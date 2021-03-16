@@ -100,7 +100,7 @@ typedef typed_attribute < t_attributetype, a_attributetype > attr_attributetype;
 typedef typed_attribute < t_html_boolean, a_audio > attr_audio;
 typedef typed_attribute < t_html_boolean, a_autobuffer > attr_autobuffer;
 typedef typed_attribute < t_autocapitalise, a_autocapitalise > attr_autocapitalise;
-typedef typed_attribute < t_autocompletes, a_autocomplete > attr_autocomplete;
+typedef typed_attribute < t_autocompletevaried, a_autocomplete > attr_autocomplete;
 typedef typed_attribute < t_html_boolean, a_autocorrect > attr_autocorrect;
 typedef typed_attribute < t_html_boolean, a_autofocus > attr_autofocus;
 typedef typed_attribute < t_html_boolean, a_autopictureinpicture > attr_autopictureinpicture;

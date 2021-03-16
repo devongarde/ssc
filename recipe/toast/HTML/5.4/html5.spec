@@ -73,7 +73,7 @@ PASS ../toast/HTML/5.4/html5-bad.html
 5 mime
 7 only_once
 10 default_role
-14 deprecated_value deprecated_value attribute_required form_charset
+14 deprecated_value deprecated_value form_charset
 16 correct_spelling attribute_unrecognised missing_close unrecognised_attribute
 18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent
 19 inserted_missing_closure inserted_missing_closure missing_close
@@ -108,7 +108,6 @@ PASS ../toast/HTML/5.4/html5-bad.html
 97 saucy_source
 99 mq_syntax
 103 no_itemscope reputation bad_object disordered_param
-108 attribute_required
 109 bad_datetime
 110 bad_autocomplete
 111 bad_autocomplete bad_datetime
@@ -140,9 +139,9 @@ PASS ../toast/HTML/5.4/html5-bad-2.html
 5 link_rel_off
 6 no_itemscope link_rel_off
 7 sizes sizes sizes sizes sizes daft_rel_attr
-8 daft_rel_attr
-9 correct_spelling attribute_unrecognised unrecognised_attribute
-10 sizes sizes sizes sizes sizes sizes
+8 incompatible_mime daft_rel_attr
+9 correct_spelling attribute_unrecognised unrecognised_attribute incompatible_mime
+10 sizes sizes sizes sizes sizes sizes incompatible_mime
 11 daft_rel_attr
 12 bad_srcset as_not_image as_not_image daft_rel_attr
 13 bad_srcset sizes sizes
@@ -156,7 +155,6 @@ PASS ../toast/HTML/5.4/html5-example.html
 8 url_not_found cannot_load_css
 9 url_not_found cannot_load_css
 10 url_not_found
-80 attribute_required
 85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required
 98 url_not_found
@@ -410,7 +408,6 @@ PASS ../toast/HTML/5.4/html5-example.html
 1656 inserted_missing_closure missing_close
 1657 url_not_found
 1658 inserted_missing_closure
-1689 attribute_required
 1698 inserted_missing_closure
 1700 inserted_missing_closure
 1701 input_bad_mix
