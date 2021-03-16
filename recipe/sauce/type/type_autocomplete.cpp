@@ -171,6 +171,13 @@ bool invalid_autocomplete (nitpick& nits, const html_version& , const element* e
                         break; }
                 break;
             case aco_tel :
+            case aco_tel_area_code :
+            case aco_tel_country_code :
+            case aco_tel_extension :
+            case aco_tel_local :
+            case aco_tel_local_prefix :
+            case aco_tel_local_suffix :
+            case aco_tel_national :
                 switch (i5)
                 {   case i5_text :
                     case i5_search :

@@ -994,7 +994,8 @@ microdata_structure schema_structure [] =
     { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_employmenttype },
     { { 4, 0 }, { 0, 0 }, sch_jobposting, sp_employmentunit },
     { { 3, 6 }, { 0, 0 }, sch_jobposting, sp_estimatedsalary },
-    { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_expeiencerequirements },
+    { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_experiencerequirements },
+    { { 12, 0 }, { 0, 0 }, sch_jobposting, sp_experienceinplaceofeducation },
     { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_hiringorganization },
     { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_incentivecompensation },
     { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_industry },
@@ -1402,6 +1403,8 @@ microdata_structure schema_structure [] =
     { { 3, 5 }, { 0, 0 }, sch_occupation, sp_qualifications },
     { { 3, 5 }, { 0, 0 }, sch_occupation, sp_responsibilities },
     { { 3, 5 }, { 0, 0 }, sch_occupation, sp_skills },
+
+    { { 12, 0 }, { 0, 0 }, sch_occupationalexperiencerequirements, sp_monthsofexperience },
 
     { { 2, 0 }, { 0, 0 }, sch_offer, sp_acceptedpaymentmethod },
     { { 2, 0 }, { 0, 0 }, sch_offer, sp_addon },

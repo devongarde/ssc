@@ -61,7 +61,7 @@ PASS ../toast/HTML/5.0/html5-bad.html
 5 mime
 7 only_once
 10 default_role
-14 unrecognised_value unrecognised_value deprecated_value deprecated_value attribute_required
+14 unrecognised_value unrecognised_value deprecated_value deprecated_value
 16 missing_close
 18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent arg_count arg_count
 19 inserted_missing_closure inserted_missing_closure missing_close
@@ -128,7 +128,6 @@ PASS ../toast/HTML/5.0/html5-bad.html
 195 inserted_missing_closure
 196 inserted_missing_closure missing_close
 197 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-199 attribute_required
 201 newline_in_string newline_in_string illegal_value
 205 bad_meter
 206 bad_meter
@@ -163,7 +162,6 @@ PASS ../toast/HTML/5.0/html5-example.html
 8 url_not_found cannot_load_css
 9 url_not_found cannot_load_css
 10 url_not_found
-80 attribute_required
 85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required
 98 url_not_found

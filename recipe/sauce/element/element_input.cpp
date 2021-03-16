@@ -64,8 +64,8 @@ void element::examine_input ()
     CONSTEXPR unsigned it_url = 1 << static_cast < unsigned > (i5_url);
     CONSTEXPR unsigned it_email = 1 << static_cast < unsigned > (i5_email);
     CONSTEXPR unsigned it_password = 1 << static_cast < unsigned > (i5_password);
-    CONSTEXPR unsigned it_date_time = (1 << static_cast < unsigned > (i5_date)) + (1 << static_cast < unsigned > (i5_datetime_local)) + (1 << static_cast < unsigned > (i5_month)) +
-                                      (1 << static_cast < unsigned > (i5_time)) + (1 << static_cast < unsigned > (i5_week));
+    CONSTEXPR unsigned it_date_time = (1 << static_cast < unsigned > (i5_date)) + (1 << static_cast < unsigned > (i5_datetime)) + (1 << static_cast < unsigned > (i5_datetime_local)) +
+                                      (1 << static_cast < unsigned > (i5_month)) + (1 << static_cast < unsigned > (i5_time)) + (1 << static_cast < unsigned > (i5_week));
     CONSTEXPR unsigned it_number = 1 << static_cast < unsigned > (i5_number);
     CONSTEXPR unsigned it_range = 1 << static_cast < unsigned > (i5_range);
     CONSTEXPR unsigned it_colour = 1 << static_cast < unsigned > (i5_colour);
@@ -75,7 +75,6 @@ void element::examine_input ()
     CONSTEXPR unsigned it_image = 1 << static_cast < unsigned > (i5_image);
 
     e_inputtype5 i5 = get_input_type ();
-    int mnr = w3_minor_5 (node_.version ());
     bool alt_known = a_.known (a_alt);
     bool alt_empty = trim_the_lot_off (a_.get_string (a_alt)).empty ();
     bool list_known = a_.known (a_list);
@@ -91,6 +90,9 @@ void element::examine_input ()
             break;
         case i5_date :
             val_min_max < t_just_date > ();
+            break;
+        case i5_datetime :
+            val_min_max < t_datetime > ();
             break;
         case i5_datetime_local :
             val_min_max < t_datetime_local > ();
@@ -195,7 +197,7 @@ void element::examine_input ()
     if (a_.known (a_alt) && ((t & it_image) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "ALT is ignored by type ", quote (n));
     if (a_.known (a_autocomplete))
-        if (mnr < 3)
+        if (node_.version () < html_5_3)
         {   if ((t & (it_text_search | it_url_tel | it_email | it_password | it_date_time | it_number | it_range | it_colour)) == 0)
                 pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "AUTOCOMPLETE is ignored by type ", quote (n)); }
         else if ((t & (it_hidden | it_text_search | it_url_tel | it_email | it_password | it_date_time | it_number | it_range | it_colour)) == 0)
@@ -260,14 +262,14 @@ void element::examine_input ()
                     case role_menuitem :
                     case role_menuitemcheckbox :
                     case role_menuitemradio :
-                        if (mnr == 2) pick (nit_input_bad_aria, ed_52, "4.10.5.1.21 Button state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'button'");
+                        if (node_.version () == html_5_2) pick (nit_input_bad_aria, ed_52, "4.10.5.1.21 Button state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'button'");
                         break;
                     case role_switch :
-                        if (mnr < 2) pick (nit_input_bad_aria, ed_50, "4.10.5.1.18 Button state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'button'");
+                        if (node_.version () == html_5_2) pick (nit_input_bad_aria, ed_50, "4.10.5.1.18 Button state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'button'");
                         break;
                     case role_option :
                     case role_tab :
-                        if (mnr < 4) pick (nit_input_bad_aria, ed_50, "4.10.5.1.18 Button state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'button'");
+                        if (node_.version ().w3 ()) pick (nit_input_bad_aria, ed_50, "4.10.5.1.18 Button state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'button'");
                         break;
                     default :
                         pick (nit_input_bad_aria, ed_50, "4.10.5.1.18 Button state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'button'");
@@ -279,14 +281,14 @@ void element::examine_input ()
                         pick (nit_input_bad_aria, ed_50, "4.10.5.1.12 Checkbox state", es_error, ec_attribute, "when <INPUT> TYPE is 'checkbox' do not set ROLE to 'checkbox', it is the default");
                         break;
                     case role_button :
-                        if (mnr < 3) pick (nit_input_bad_aria, ed_52, "4.10.5.1.12 Checkbox state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'checkbox'");
+                        if (node_.version () < html_5_3) pick (nit_input_bad_aria, ed_52, "4.10.5.1.12 Checkbox state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'checkbox'");
                         break;
                     case role_menuitemcheckbox :
-                        if (mnr == 2) pick (nit_input_bad_aria, ed_52, "4.10.5.1.15 Checkbox state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'checkbox'");
+                        if (node_.version () == html_5_2) pick (nit_input_bad_aria, ed_52, "4.10.5.1.15 Checkbox state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'checkbox'");
                         break;
                     case role_option :
                     case role_switch :
-                        if (mnr < 2) pick (nit_input_bad_aria, ed_52, "4.10.5.1.12 Checkbox state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'checkbox'");
+                        if (node_.version () < html_5_2) pick (nit_input_bad_aria, ed_52, "4.10.5.1.12 Checkbox state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'checkbox'");
                         break;
                     default :
                         pick (nit_input_bad_aria, ed_50, "4.10.5.1.12 Checkbox state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'checkbox'");
@@ -297,11 +299,11 @@ void element::examine_input ()
             case i5_url :
                 switch (r)
                 {   case role_textbox :
-                        if ((mnr < 2) || ! list_known) pick (nit_input_bad_aria, ed_50, "4.10.5.1.3 Telephone state", es_error, ec_attribute, "do not set ROLE to 'textbox', it is the default");
+                        if ((node_.version () < html_5_2) || ! list_known) pick (nit_input_bad_aria, ed_50, "4.10.5.1.3 Telephone state", es_error, ec_attribute, "do not set ROLE to 'textbox', it is the default");
                         else pick (nit_input_bad_aria, ed_53, "4.10.5.1.3 Telephone state", es_error, ec_attribute, "invalid <INPUT> ROLE");
                         break;
                     case role_combobox :
-                        if (mnr >= 2)
+                        if (node_.version () >= html_5_2)
                             if (list_known) pick (nit_input_bad_aria, ed_53, "4.10.5.1.3 Telephone state", es_error, ec_attribute, "do not set ROLE to 'combobox', it is the default");
                             else pick (nit_input_bad_aria, ed_53, "4.10.5.1.3 Telephone state", es_error, ec_attribute, "invalid <INPUT> ROLE'");
                         break;
@@ -319,10 +321,10 @@ void element::examine_input ()
                     break; }
                 switch (r)
                 {   case role_button :
-                        if (mnr < 4) pick (nit_input_bad_aria, ed_50, "4.10.5.1.16 Image Button", es_error, ec_attribute, "do not set <INPUT> ROLE to 'button' when TYPE is image, it is the default");
+                        if (node_.version ().w3 ()) pick (nit_input_bad_aria, ed_50, "4.10.5.1.16 Image Button", es_error, ec_attribute, "do not set <INPUT> ROLE to 'button' when TYPE is image, it is the default");
                         break;
                     case role_img :
-                        if (mnr > 3) pick (nit_input_bad_aria, ed_ariaAug2020, "conformance requirements", es_error, ec_attribute, "do not set <INPUT> ROLE to 'img' when TYPE is image, it is the default");
+                        if (node_.version ().whatwg ()) pick (nit_input_bad_aria, ed_ariaAug2020, "conformance requirements", es_error, ec_attribute, "do not set <INPUT> ROLE to 'img' when TYPE is image, it is the default");
                         break;
                     case role_link :
                     case role_radio :
@@ -330,10 +332,10 @@ void element::examine_input ()
                     case role_menuitem :
                     case role_menuitemcheckbox :
                     case role_menuitemradio :
-                        if (mnr == 2) pick (nit_input_bad_aria, ed_53, "4.10.5.1.19 Image Button", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE image");
+                        if (node_.version () == html_5_2) pick (nit_input_bad_aria, ed_53, "4.10.5.1.19 Image Button", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE image");
                         break;
                     case role_switch :
-                        if (mnr < 3) pick (nit_input_bad_aria, ed_50, "4.10.5.1.16 Image Button", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE image");
+                        if (node_.version () < html_5_3) pick (nit_input_bad_aria, ed_50, "4.10.5.1.16 Image Button", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE image");
                         break;
                     case role_checkbox :
                     case role_option :
@@ -343,7 +345,7 @@ void element::examine_input ()
                     case role_slider :
                     case role_tab :
                     case role_treeitem :
-                        if (mnr < 4) pick (nit_input_bad_aria, ed_50, "4.10.5.1.16 Image Button", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE image");
+                        if (node_.version ().w3 ()) pick (nit_input_bad_aria, ed_50, "4.10.5.1.16 Image Button", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE image");
                         break;
                     default :
                         pick (nit_input_bad_aria, ed_50, "4.10.5.1.16 Image Button", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE image");
@@ -352,7 +354,7 @@ void element::examine_input ()
             case i5_password :
                 switch (r)
                 {   case role_textbox :
-                        if (mnr < 2)
+                        if (node_.version () < html_5_2)
                         {   pick (nit_input_bad_aria, ed_50, "4.10.5.1.6 Password state", es_error, ec_attribute, "do not set ROLE to 'textbox', it is the default");
                             break; }
                         // drop thru'
@@ -384,7 +386,7 @@ void element::examine_input ()
                         pick (nit_input_bad_aria, ed_50, "4.10.5.1.13 Radio Button state", es_error, ec_attribute, "when <INPUT> TYPE is 'radio' do not set ROLE to 'radio', it is the default");
                         break;
                     case role_menuitemradio :
-                        if (mnr == 2)
+                        if (node_.version () == html_5_2)
                             pick (nit_input_bad_aria, ed_52, "4.10.5.1.13 Radio Button state", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'radio'");
                         break;
                     default :
@@ -403,7 +405,7 @@ void element::examine_input ()
                 break;
             case i5_search :
             case i5_text :
-                switch (mnr)
+                switch (w3_minor_5 (node_.version ()))
                 {   case 0 :
                     case 1 :
                         if (r == role_combobox) break;

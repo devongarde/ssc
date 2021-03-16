@@ -163,7 +163,6 @@ PASS ../toast/living/jul20/example.html
 6  inserted_missing_closure
 6  missing_open
 10  url_not_found
-20  attribute_required
 28  url_not_found
 29  inserted_missing_closure
 29  url_not_found
@@ -177,8 +176,7 @@ PASS ../toast/living/jul20/example.html
 55  inserted_missing_closure inserted_missing_closure
 65  inserted_missing_closure inserted_missing_closure unrecognised_value
 66  input_bad_aria
-68  inserted_missing_closure attribute_required
-70  attribute_required
+68  inserted_missing_closure
 93  attribute_unrecognised unrecognised_attribute unrecognised_value
 95  unrecognised_value
 99  url_not_found
@@ -301,6 +299,27 @@ PASS ../toast/living/jul20/footer-3.html
 29 inserted_missing_closure
 32 url_not_found
 
+PASS ../toast/living/jul20/forms.html
+119 inserted_missing_closure missing_close
+120 inserted_missing_closure
+144 inserted_missing_closure missing_close
+145 inserted_missing_closure
+169 inserted_missing_closure missing_close
+170 inserted_missing_closure
+195 inserted_missing_closure missing_close
+196 inserted_missing_closure
+306 unrecognised_value
+308 missing_close
+324 inserted_missing_closure
+327 inserted_missing_closure use_quote_code
+328 inserted_missing_closure
+330 use_double_quote_code inserted_missing_closure
+331 inserted_missing_closure use_quote_code
+332 inserted_missing_closure
+334 use_double_quote_code inserted_missing_closure
+337 inserted_missing_closure
+338 pattern pattern
+
 PASS ../toast/living/jul20/h-1.html
 6 use_quote_code
 
@@ -323,9 +342,7 @@ PASS ../toast/living/jul20/header-2.html
 21 use_quote_code
 
 PASS ../toast/living/jul20/hgroup-2.html
-14 attribute_required
-18 newline_in_string
-18 newline_in_string illegal_value
+18 newline_in_string newline_in_string illegal_value
 19 inserted_missing_closure
 21 inserted_missing_closure
 22 input_bad_mix
@@ -487,6 +504,9 @@ PASS ../toast/living/jul20/img.html
 
 PASS ../toast/living/jul20/index.html
 3 attribute_unrecognised_here unrecognised_attribute
+
+PASS ../toast/living/jul20/label.html
+8 ignoring_unknown attribute_barred ignoring_unknown
 
 PASS ../toast/living/jul20/li.html
 7 inserted_missing_parent missing_close

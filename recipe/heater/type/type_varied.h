@@ -148,6 +148,20 @@ template < > struct type_master < t_align > : varied < t_align >
             if ((v == html_2) && context.rfc_2070 ()) validate_type < type_master < t_align2070 > > (nits, v);
             else validate_type < type_master < t_halign > > (nits, v); } } };
 
+template < > struct type_master < t_autocompletevaried > : varied < t_autocompletevaried >
+{   bool form_ = true;
+    void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+    {   if (good () || empty ())
+            if ((e.get () == elem_form) || (v < html_jan13)) validate_type < type_master < t_onoff > > (nits, v);
+            else { form_ = false; validate_type < type_master < t_autocompletes > > (nits, v); } }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe)
+    {   if (form_) return false;
+        type_master < t_autocompletes > t;
+        ::std::string s (trim_the_lot_off (varied < t_autocompletevaried > :: get_string ()));
+        nitpick nuts;
+        t.set_value (nuts, v, s);
+        return t.invalid_id (nits, v, ids, pe); } };
+
 template < > struct type_master < t_background > : varied < t_background >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())

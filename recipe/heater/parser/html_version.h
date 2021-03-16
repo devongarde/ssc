@@ -519,6 +519,7 @@ const html_version html_jan16 (HTML_JAN16, HV_WHATWG, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MATH_2 | HE_SVG_1_0);
 const html_version html_jul17 (HTML_JUL17, HV_WHATWG, HE_MATH_2 | HE_SVG_1_1);
 const html_version html_jul18 (HTML_JUL18, HV_WHATWG, HE_MATH_3 | HE_SVG_1_1);
+const html_version html_jan19 (HTML_JAN19, HV_WHATWG, HE_MATH_3 | HE_SVG_2_0);
 const html_version html_jul19 (HTML_JUL19, HV_WHATWG, HE_MATH_3 | HE_SVG_2_0);
 const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MATH_4 | HE_SVG_2_0);
 const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MATH_4 | HE_SVG_2_0);

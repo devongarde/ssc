@@ -60,7 +60,6 @@ PASS ../toast/HTML/5.1/html5-bad.html
 5 mime
 7 only_once
 10 default_role
-14 attribute_required
 16 missing_close not_an_integer not_an_integer
 18 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent arg_count arg_count
 19 inserted_missing_closure inserted_missing_closure missing_close
@@ -104,7 +103,6 @@ PASS ../toast/HTML/5.1/html5-bad.html
 101 bad_coords url_not_found requires_href
 104 table_children
 115 table_children
-126 attribute_required
 127 interactive interactive bad_form
 140 no_progress
 141 no_progress
@@ -126,7 +124,6 @@ PASS ../toast/HTML/5.1/html5-example.html
 8 url_not_found cannot_load_css
 9 url_not_found cannot_load_css
 10 url_not_found
-80 attribute_required
 85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required
 98 url_not_found

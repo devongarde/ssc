@@ -153,3 +153,4 @@ void check_mimetype_vulnerability (nitpick& nits, const html_version& v, const :
 void check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext, const bool local);
 void check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const vurl_t& u, const bool src);
 void check_vulnerability (nitpick& nits, const html_version& v, const ::std::string& s, const vurl_t& u, const bool src);
+void check_mimetype_family (nitpick& nits, const html_version& v, const ::std::string& s, const uint64_t family);

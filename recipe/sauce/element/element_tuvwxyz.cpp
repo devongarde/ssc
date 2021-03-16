@@ -154,5 +154,5 @@ void element::examine_track ()
                 pick (nit_empty, ed_50, "4.7.9 The track element", es_error, ec_element, "If LABEL is present, it cannot be empty"); } }
 
 void element::examine_video ()
-{   examine_media_element (elem_video, "4.7.6 The video element", "<VIDEO>", MIME_IMAGE);
+{   examine_media_element (elem_video, "4.7.6 The video element", "<VIDEO>", MIME_VIDEO);
     if (a_.known (a_autoplay)) pick (nit_autoplay, es_warning, ec_rudeness, "AUTOPLAY on <VIDEO> is unspeakably rude"); }

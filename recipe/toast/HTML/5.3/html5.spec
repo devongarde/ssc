@@ -60,7 +60,6 @@ PASS ../toast/HTML/5.3/html5-bad.html
 5 mime
 7 only_once
 11 default_role
-15 attribute_required
 17 missing_close
 19 lonely_ampersand inserted_missing_parent inserted_missing_closure inserted_missing_parent
 20 inserted_missing_closure inserted_missing_closure missing_close
@@ -99,12 +98,8 @@ PASS ../toast/HTML/5.3/html5-bad.html
 104 url_not_found out_of_order saucy_source out_of_order
 106 url_not_found source_track
 107 url_not_found saucy_source source_track source_track
-110 attribute_required
 112 bad_select
-121 attribute_required
 123 bad_select bad_select
-132 attribute_required
-144 attribute_required
 149 bad_datalist
 154 bad_datalist
 
@@ -118,7 +113,6 @@ PASS ../toast/HTML/5.3/html5-example.html
 8 url_not_found cannot_load_css
 9 url_not_found cannot_load_css
 10 url_not_found
-80 attribute_required
 85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required
 98 url_not_found

@@ -133,7 +133,6 @@ PASS ../toast/living/jan13/et.html
 PASS ../toast/living/jan13/example.html
 6 missing_close inserted_missing_closure missing_open
 10 url_not_found
-20 attribute_required
 28 url_not_found
 29 inserted_missing_closure url_not_found
 30 inserted_missing_closure missing_close url_not_found
@@ -146,8 +145,7 @@ PASS ../toast/living/jan13/example.html
 66 inserted_missing_closure inserted_missing_closure missing_open
 68 inserted_missing_closure unrecognised_value
 69 input_bad_aria
-71 inserted_missing_closure attribute_required
-73 attribute_required
+71 inserted_missing_closure
 77 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
 87 unrecognised_value no_such_folder url_not_found
 89 attribute_unrecognised unrecognised_attribute unrecognised_value
@@ -213,6 +211,23 @@ PASS ../toast/living/jan13/example-2.html
 122 use_quote_code
 132 use_quote_code
 
+PASS ../toast/living/jan13/figure.html
+21 newline_in_string newline_in_string url_not_found
+25 use_quote_code
+29 use_double_quote_code inserted_missing_closure
+30 url_not_found
+35 inserted_missing_closure
+36 url_not_found
+40 url_not_found
+45 inserted_missing_closure
+46  use_quote_code
+55 url_not_found
+57 url_not_found
+60 newline_in_string newline_in_string url_not_found
+67 url_not_found
+69 url_not_found
+71 url_not_found
+
 PASS ../toast/living/jan13/footer.html
 2 naughty_lang
 9 attempted_escape
@@ -243,22 +258,23 @@ PASS ../toast/living/jan13/footer-3.html
 29 inserted_missing_closure
 32 url_not_found
 
-PASS ../toast/living/jan13/figure.html
-21 newline_in_string newline_in_string url_not_found
-25 use_quote_code
-29 use_double_quote_code inserted_missing_closure
-30 url_not_found
-35 inserted_missing_closure
-36 url_not_found
-40 url_not_found
-45 inserted_missing_closure
-46  use_quote_code
-55 url_not_found
-57 url_not_found
-60 newline_in_string newline_in_string url_not_found
-67 url_not_found
-69 url_not_found
-71 url_not_found
+PASS ../toast/living/jan13/forms.html
+119 inserted_missing_closure missing_close
+120 inserted_missing_closure
+144 inserted_missing_closure missing_close
+145 inserted_missing_closure
+169 inserted_missing_closure missing_close
+170 inserted_missing_closure
+195 inserted_missing_closure missing_close
+196 inserted_missing_closure
+249 unrecognised_value
+254 inserted_missing_closure use_quote_code
+255 inserted_missing_closure
+257 use_double_quote_code inserted_missing_closure
+259 inserted_missing_closure use_quote_code unrecognised_value
+260 inserted_missing_closure
+262 use_double_quote_code inserted_missing_closure missing_close
+267 inserted_missing_closure
 
 PASS ../toast/living/jan13/h-1.html
 6 use_quote_code

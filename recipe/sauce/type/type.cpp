@@ -297,6 +297,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_normalisations);
         TEST_VALUE (t_not_empty);
         TEST_VALUE (t_notations);
+        TEST_VALUE (t_ogtype);
         TEST_VALUE (t_onoff);
         TEST_VALUE (t_opacity);
         TEST_VALUE (t_open);
