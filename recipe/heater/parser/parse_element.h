@@ -58,7 +58,6 @@ public:
     void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
     ::std::size_t attribute_count () const { return va_.size (); }
     ::std::string text ();
-//    const ::std::string text () const;
     ::std::string raw () const { return raw_; }
     ::std::string rpt (const int level = 0);
     void set_raw (const ::std::string& raw) { raw_ = raw; }

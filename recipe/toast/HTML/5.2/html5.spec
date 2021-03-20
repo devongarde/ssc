@@ -122,7 +122,7 @@ PASS ../toast/HTML/5.2/html5-bad.html
 153 minmax
 155 minmax minmax minmax
 156 input_bad_mix input_bad_mix
-157 pattern pattern
+157 pattern
 159 placeholder
 160 bad_datalist_id
 161 bad_datalist_id

@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 #include "webpage/page.h"
 
-template < e_type T > void element::val_min_max ()
+template < e_type T > void element::val_min_max (const bool cyclic)
 {   type_master < T > t;
     typename type_master < T > :: value_type val (t.default_value ()), n (t.default_value ()), x (t.default_value ());
     bool val_known = false, min_known = false, max_known = false;
@@ -43,9 +43,14 @@ template < e_type T > void element::val_min_max ()
         else if (t.good ())
         {   max_known = true;
             x = t.get (); } }
-    if (min_known && max_known) if (n > x) pick (nit_minmax, ed_50, "4.10.5.3.7 The min & max attributes", es_error, ec_element, "MIN must be less than MAX");
-    if (val_known && max_known) if (val > x) pick (nit_minmax, ed_50, "4.10.5.3.7 The min & max attributes", es_error, ec_element, "VALUE must be less than MAX");
-    if (min_known && val_known) if (val < n) pick (nit_minmax, ed_50, "4.10.5.3.7 The min & max attributes", es_error, ec_element, "MIN must be less than VALUE"); };
+    if (cyclic)
+    {   if (min_known && max_known) if (n > x) pick (nit_minmax, ed_50, "4.10.5.3.7 The min & max attributes", es_info, ec_element, "MIN exceeds MAX?");
+        if (val_known && max_known) if (val > x) pick (nit_minmax, ed_50, "4.10.5.3.7 The min & max attributes", es_info, ec_element, "VALUE exceeds MAX?");
+        if (min_known && val_known) if (val < n) pick (nit_minmax, ed_50, "4.10.5.3.7 The min & max attributes", es_info, ec_element, "MIN exceeds VALUE?"); }
+    else
+    {   if (min_known && max_known) if (n > x) pick (nit_minmax, ed_50, "4.10.5.3.7 The min & max attributes", es_warning, ec_element, "MIN should be less than MAX");
+        if (val_known && max_known) if (val > x) pick (nit_minmax, ed_50, "4.10.5.3.7 The min & max attributes", es_warning, ec_element, "VALUE should be less than MAX");
+        if (min_known && val_known) if (val < n) pick (nit_minmax, ed_50, "4.10.5.3.7 The min & max attributes", es_warning, ec_element, "MIN should be less than VALUE"); } };
 
 e_inputtype5 element::get_input_type () const
 {   e_inputtype5 res = i5_text;
@@ -54,10 +59,8 @@ e_inputtype5 element::get_input_type () const
     return res; }
 
 void element::examine_input ()
-{    if (node_.version ().mjr () < 5) return;
-
+{   if (node_.version ().mjr () < 5) return;
     element* form_daddy = get_ancestor (elem_form);
-
     CONSTEXPR unsigned it_text_search = (1 << static_cast < unsigned > (i5_search)) + (1 << static_cast < unsigned > (i5_text));
     CONSTEXPR unsigned it_url_tel = (1 << static_cast < unsigned > (i5_tel)) + (1 << static_cast < unsigned > (i5_url));
     CONSTEXPR unsigned it_hidden = 1 << static_cast < unsigned > (i5_hidden);
@@ -73,16 +76,18 @@ void element::examine_input ()
     CONSTEXPR unsigned it_file = 1 << static_cast < unsigned > (i5_file);
     CONSTEXPR unsigned it_submit = 1 << static_cast < unsigned > (i5_submit);
     CONSTEXPR unsigned it_image = 1 << static_cast < unsigned > (i5_image);
-
     e_inputtype5 i5 = get_input_type ();
     bool alt_known = a_.known (a_alt);
     bool alt_empty = trim_the_lot_off (a_.get_string (a_alt)).empty ();
     bool list_known = a_.known (a_list);
     bool src_known = a_.known (a_src);
     bool val_known = a_.known (a_value);
-
     switch (i5)
-    {   case i5_colour :
+    {   case i5_button :
+            break;
+        case i5_checkbox :
+            break;
+        case i5_colour :
             if (val_known)
             {   ::std::string val (a_.get_string (a_value));
                 type_master < t_colour > c;
@@ -120,6 +125,8 @@ void element::examine_input ()
         case i5_hidden :
             if (compare_no_case (a_.get_string (a_name), "_charset_") && a_.known (a_value))
                 pick (nit_illegal_value, ed_50, "4.10.5.1.1 Hidden state", es_error, ec_attribute, "when <INPUT> TYPE is 'hidden' and NAME is \"_charset_\", VALUE cannot be specified");
+            if (a_.known (a_autofocus))
+                pick (nit_bad_type_attribute,  es_info, ec_attribute, "Perhaps it's me, but I do suspect AUTOFOCUS is questionable when <INPUT> TYPE set to 'hidden'");
             break;
         case i5_image :
             if (! src_known)
@@ -133,22 +140,36 @@ void element::examine_input ()
             val_min_max < t_month > ();
             break;
         case i5_number :
+            val_min_max < t_real > ();
+            break;
         case i5_range :
             val_min_max < t_real > ();
             break;
         case i5_radio :
             if (form_daddy != nullptr) form_daddy -> radio_kids_.push_back (this);
             break;
-        case i5_password :
+        case i5_reset :
+            break;
         case i5_search :
-        case i5_tel :
         case i5_text :
             if (a_.known (a_value))
                 if (a_.get_string (a_value).find_first_of ("\x0A\x0D") != ::std::string::npos)
-                    pick (nit_illegal_value, es_error, ec_attribute, "<INPUT> VALUE may not contain newline here");
+                    pick (nit_illegal_value, es_error, ec_attribute, "<INPUT> VALUE may not contain newline when TYPE is 'text' or 'search'");
+            break;
+        case i5_submit :
+            break;
+        case i5_tel :
+            if (a_.known (a_value))
+                if (a_.get_string (a_value).find_first_of ("\x0A\x0D") != ::std::string::npos)
+                    pick (nit_illegal_value, es_error, ec_attribute, "<INPUT> VALUE may not contain newline when <INPUT> TYPE is 'tel'");
+            break;
+        case i5_password :
+            if (a_.known (a_value))
+                if (a_.get_string (a_value).find_first_of ("\x0A\x0D") != ::std::string::npos)
+                    pick (nit_illegal_value, es_error, ec_attribute, "<INPUT> VALUE may not contain newline when <INPUT> TYPE is 'password'");
             break;
         case i5_time :
-            val_min_max < t_just_time > ();
+            val_min_max < t_just_time > (true);
             break;
         case i5_url :
             if (val_known)
@@ -165,10 +186,8 @@ void element::examine_input ()
             val_min_max < t_week > ();
             break;
         default : break; }
-
     bool maxlen_known = a_.known (a_maxlength);
     bool minlen_known = a_.known (a_minlength);
-
     if (maxlen_known || minlen_known)
     {   ::std::size_t x = maxlen_known ? a_.get_int (a_maxlength) : 0;
         ::std::size_t n = minlen_known ? a_.get_int (a_minlength) : 0;
@@ -176,22 +195,17 @@ void element::examine_input ()
         if (maxlen_known && minlen_known) if (n > x) pick (nit_minmax, ed_50, "4.10.5.3.1 The maxlength and minlength attributes", es_error, ec_attribute, "MINLENGTH (", n, ") should not exceed MAXLENGTH (", x, ")");
         if (maxlen_known && val_known) if (v > x) pick (nit_minmax, ed_50, "4.10.5.3.1 The maxlength and minlength attributes", es_error, ec_attribute, "VALUE length (", v, ") should not exceed MAXLENGTH (", x, ")");
         if (val_known && minlen_known) if (n > v) pick (nit_minmax, ed_50, "4.10.5.3.1 The maxlength and minlength attributes", es_error, ec_attribute, "MINLENGTH (", n, ") should not exceed VALUE length (", v, ")"); }
-
     if (a_.known (a_pattern))
-    {   if (! a_.known (a_title) || a_.get_string (a_title).empty ())
+        if (! a_.known (a_title) || a_.get_string (a_title).empty ())
             pick (nit_pattern, ed_50, "4.10.5.3.6 The pattern attribute", es_warning, ec_attribute, "use TITLE to describe the contraints of PATTERN");
-        pick (nit_pattern, ed_50, "4.10.5.3.6 The pattern attribute", es_info, ec_attribute, "apologies, but " PROG " cannot check PATTERN's value"); }
-
     if (a_.known (a_placeholder))
     {   ::std::string val (a_.get_string (a_placeholder));
         if (val.find_first_of ("\x0A\x0D") != ::std::string::npos)
             pick (nit_illegal_value, ed_50, "4.10.5.3.10 The placeholder attribute", es_error, ec_attribute, "PLACEHOLDER may not contain a newline");
         if (val.length () > MAX_IDEAL_PLACEHOLDER_LENGTH)
             pick (nit_placeholder, ed_50, "4.10.5.3.10 The placeholder attribute", es_warning, ec_attribute, "PLACEHOLDER should have a *short* value"); }
-
     unsigned t = 1 << static_cast < unsigned > (i5);
     ::std::string n (a_.get_string (a_type));
-
     if (a_.known (a_accept) && ((t & it_file) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "ACCEPT is ignored by type ", quote (n));
     if (a_.known (a_alt) && ((t & it_image) == 0))
@@ -210,13 +224,15 @@ void element::examine_input ()
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "CHECKED is ignored by type ", quote (n));
     if (a_.known (a_dirname) && ((t & it_text_search) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "DIRNAME is ignored by type ", quote (n));
-    if (   (a_.known (a_formaction) || a_.known (a_formenctype) ||
-            a_.known (a_formmethod) || a_.known (a_formnovalidate) ||
-            a_.known (a_formtarget)) && ((t & (it_submit | it_image)) == 0))
-        pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "all form... attributes are ignored by type ", quote (n));
+    if (   (a_.known (a_formaction) || a_.known (a_formenctype) ||  a_.known (a_formmethod) || a_.known (a_formnovalidate) || a_.known (a_formtarget) ||
+            a_.known (a_action) || a_.known (a_enctype) ||  a_.known (a_method) || a_.known (a_novalidate) || a_.known (a_target)) &&
+           ((t & (it_submit | it_image)) == 0))
+        pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "all FORM... attributes are ignored by type ", quote (n));
     if (a_.known (a_height) && ((t & it_image) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "HEIGHT is ignored by type ", quote (n));
-    if (a_.known (a_inputmode) && ((t & (it_text_search | it_password)) == 0))
+     if (a_.known (a_hidden) && ((t & it_hidden) == 0))
+        pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "HIDDEN is ignored by type ", quote (n));
+   if (a_.known (a_inputmode) && ((t & (it_text_search | it_password)) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "INPUTMODE is ignored by type ", quote (n));
     if (a_.known (a_list) && ((t & (it_text_search | it_url_tel | it_email | it_date_time | it_number | it_range | it_colour)) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "LIST is ignored by type ", quote (n));
@@ -246,7 +262,6 @@ void element::examine_input ()
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "STEP is ignored by type ", quote (n));
     if (a_.known (a_width) && ((t & it_image) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "WIDTH is ignored by type ", quote (n));
-
     if (a_.known (a_role))
     {   e_aria_role r = static_cast < e_aria_role > (a_.get_int (a_role));
         // I considered using bitsets here, but decided they'd be a bugger to maintain. Having said that, I'm not sure this approach is that much better.

@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_master.h"
+#include "parser/pattern.h"
 
 template < > struct type_master < t_attributename > : tidy_string < t_attributename >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -181,13 +182,21 @@ template < > struct type_master < t_q > : public tidy_string < t_q >
                         nits.pick (nit_bad_q, ed_rfc_7231, "5.3.1. Quality Values", es_error, ec_type, quote (s), " weight is 'q=' with a value between 0.000 and 1.0"); } }
         tidy_string < t_q > :: status (s_invalid); } };
 
+template < > struct type_master < t_regex > : public tidy_string < t_regex >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_regex > :: set_value (nits, v, s);
+        if (tidy_string < t_regex > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "PATTERN requires a regular expression");
+        else if (verify_pattern (nits, v, tidy_string < t_regex > :: get_string ())) return;
+        string_value < t_regex > :: status (s_invalid); } };
+
 template < > struct type_master < t_sym > : public tidy_string < t_sym >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
     {   extern void examine_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid);
         tidy_string < t_sym > :: set_value (nits, v, ss);
         const ::std::string& s = tidy_string < t_sym > :: get_string ();
         if (s.empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "sym requires a value");
+        {   nits.pick (nit_empty, es_error, ec_type, "SYM requires a value");
             tidy_string < t_sym > :: status (s_invalid); }
         else if (good ())
         {   if (s.at (0) == '&')
@@ -205,7 +214,7 @@ template < > struct type_master < t_target > : public tidy_string < t_target >
     {   tidy_string < t_target > :: set_value (nits, v, s);
         const ::std::string& val = tidy_string < t_target > :: get_string ();
         if (tidy_string < t_target > :: empty ())
-            nits.pick (nit_empty, es_error, ec_type, "target requires a value");
+            nits.pick (nit_empty, es_error, ec_type, "TARGET requires a value");
         else
         {   if (val [0] != '_') return;
             if ((v.svg () >= sv_1_1) && (val == "_replace")) return;

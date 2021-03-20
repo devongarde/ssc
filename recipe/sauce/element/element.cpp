@@ -43,7 +43,6 @@ void element::swap (element& e) NOEXCEPT
     child_.swap (e.child_);
     radio_kids_.swap (e.radio_kids_);
     itemscope_.swap (e.itemscope_);
-//   ids_.swap (e.ids_);
     results_.swap (e.results_);
     // do not swap icarus_
     ::std::swap (node_, e.node_);

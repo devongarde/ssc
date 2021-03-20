@@ -215,9 +215,6 @@ PASS ../toast/living/jan09/img.html
 PASS ../toast/living/jan09/index.html
 3 attribute_unrecognised_here unrecognised_attribute
 
-PASS ../toast/living/jan09/input.html
-11 pattern
-
 PASS ../toast/living/jan09/links-alternate.html
 5 url_not_found
 

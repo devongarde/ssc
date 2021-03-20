@@ -70,6 +70,7 @@
 ../toast/other/incorrectness/incorrectness.spec
 ../toast/other/nits/nits.spec
 ../toast/other/parsing/parsing.spec
+../toast/other/pattern/pattern.spec
 ../toast/other/RDF/rdf.spec
 ../toast/other/simple/simple.spec
 ../toast/other/ssi/ssi.spec

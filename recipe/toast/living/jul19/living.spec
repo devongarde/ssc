@@ -296,7 +296,7 @@ PASS ../toast/living/jul19/forms.html
 332 inserted_missing_closure
 334 use_double_quote_code inserted_missing_closure
 337 inserted_missing_closure
-338 pattern pattern
+338 pattern
 
 PASS ../toast/living/jul19/h-1.html
 6 use_quote_code
@@ -483,6 +483,87 @@ PASS ../toast/living/jul19/img.html
 
 PASS ../toast/living/jul19/index.html
 3 attribute_unrecognised_here unrecognised_attribute
+
+PASS ../toast/living/jul19/input.html
+9 inserted_missing_closure
+10 inserted_missing_closure
+11 inserted_missing_closure
+12 inserted_missing_closure
+13 inserted_missing_closure missing_close
+14 inserted_missing_closure
+18 inserted_missing_closure
+19 inserted_missing_closure missing_close
+20 inserted_missing_closure
+29 inserted_missing_closure
+30 inserted_missing_closure
+31 inserted_missing_closure
+32 inserted_missing_closure missing_close
+33 inserted_missing_closure
+38 inserted_missing_closure
+39 inserted_missing_closure
+40 inserted_missing_closure missing_close
+41 inserted_missing_closure
+60 inserted_missing_closure missing_close
+61 inserted_missing_closure
+69 inserted_missing_closure missing_close
+71 inserted_missing_closure
+80 id_exists
+85 inserted_missing_closure
+86 inserted_missing_closure missing_close
+88 inserted_missing_closure
+93 url_not_found
+95 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+96 inserted_missing_closure wrong_parent inserted_missing_closure
+98 wrong_parent inserted_missing_closure
+99 wrong_parent inserted_missing_closure
+100 wrong_parent inserted_missing_closure bad_form
+101 inserted_missing_closure wrong_parent inserted_missing_closure
+103 wrong_parent inserted_missing_closure
+104 wrong_parent inserted_missing_closure
+105 wrong_parent inserted_missing_closure bad_form
+106 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+107 pattern
+108 wrong_parent inserted_missing_closure
+109 wrong_parent inserted_missing_closure
+110 wrong_parent inserted_missing_closure missing_close bad_form
+111 inserted_missing_closure inserted_missing_closure
+112 bad_form
+117 url_not_found
+121 inserted_missing_closure
+124 inserted_missing_closure
+127 inserted_missing_closure missing_close
+129 inserted_missing_closure
+137 inserted_missing_closure
+138 inserted_missing_closure
+139 inserted_missing_closure missing_close
+140 inserted_missing_closure
+166 url_not_found
+177 inserted_missing_closure missing_close
+178 inserted_missing_closure
+182 url_not_found
+183 url_not_found naughty_alt
+188 placeholder
+189 placeholder
+191 placeholder
+192 placeholder
+195 inserted_missing_closure
+199 minmax minmax
+201 inserted_missing_closure
+204 inserted_missing_closure
+205 inserted_missing_closure use_quote_code
+206 inserted_missing_closure
+207 inserted_missing_closure missing_close use_quote_code
+208 inserted_missing_closure
+210 url_not_found
+211 url_not_found
+215 inserted_missing_closure missing_close
+219 id_exists
+221 inserted_missing_closure
+222 inserted_missing_closure
+223 inserted_missing_closure missing_close
+224 inserted_missing_closure
+236 minmax
+238 inserted_missing_closure
 
 PASS ../toast/living/jul19/li.html
 7 inserted_missing_parent missing_close

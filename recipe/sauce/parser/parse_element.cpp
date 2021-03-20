@@ -74,10 +74,6 @@ void element_node::swap (element_node& en) NOEXCEPT
         checked_sanitised_ = true; }
     return sanitised_; }
 
-//const ::std::string element_node::text () const
-//{   assert (checked_sanitised_);
-//    return sanitised_; }
-
 void element_node::parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   va_.parse (nits_, v, b, e, line_, elem_);
     if (v.mjr () < 4) return;

@@ -129,3 +129,7 @@ inline void prepend (::std::string& base, const ::std::string& sep, const ::std:
 
 bool check_spelling (nitpick& nits, const html_version& v, const ::std::string& s);
 bool ends_with_letters (const ::std::string& s, const ::std::string& with);
+
+inline bool is_hex (const ::std::string::const_iterator& x, const ::std::string::const_iterator& e)
+{   if (x == e) return false;
+    return ((*x >= '0') && (*x <= '9')) || ((*x >= 'A') && (*x <= 'F')) || ((*x >= 'a') && (*x <= 'f')); }

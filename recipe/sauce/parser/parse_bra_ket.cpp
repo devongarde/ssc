@@ -103,4 +103,3 @@ bool bra_element_ket::is_whitespace () const
     for (::std::string::const_iterator i = start_; i < end_; ++i)
         if (! ::std::iswspace (*i)) return false;
     return true; }
-

@@ -3,71 +3,64 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.94
+- <INPUT> PATTERN checks
+- improved diagnosis output
+
 0.0.93
 - recognise open graph meta names
 - expand mime type checking
 
 0.0.92
 - schema.org 12.0 microdata
-- various bug fixes
 
 0.0.91
-- various bug fixes
+- various refinements
 
 0.0.90
-- various bug fixes
+- various refinements
 
 0.0.89
 - more mime type / extension checks
-- various bug fixes
 
 0.0.88
 - some improvements in media type checks
-- various bug fixes
 
 0.0.87
-- various bug fixes
+- various refinements
 
 0.0.86
 - added --general.rel
-- various bug fixes
 
 0.0.85
 - stats reports terms defined and name value pairs (DT/DD), if any
-- fix bug that sometimes broke stylesheets
-- various bug fixes
+- fix broken stylesheet code
 
 0.0.84
-- various bug fixes
+- various refinements
 
 0.0.83
 - partially verifies accept, accept-language, cookie, cross-origin-resource-policy,
   link, origin, referer (sic), & referrer-policy pragmas
-- various bug fixes
-
+=
 0.0.82
 - --schema.version now accepts + for HTML Plus
-- various bug fixes
 
 0.0.81
 - --schema.version now accepts x.y style versions
 - --schema.minor removed
-- various bug fixes
 
 0.0.80
 - added a (prototype) man page (recipe/tea/gen.txt)
 - added --stats.meta to generate stats on <META> usage in <HEAD>
 - check content-security-policy values
-- various bug fixes
 
 0.0.79
 - the --html.version switch accepts a WhatWG living HTML standard date for verification
 - added -z switch to specify maximum advisable <TITLE> text length (default: 32)
-- various bug fixes
 
 0.0.78
 - integrated W3 tests into test suite
-- various bug fixes
 
 0.0.77
 - verify declared and actual charsets match
@@ -76,7 +69,6 @@ https://ssc.lu/
 
 0.0.76
 - added --shadow.ignore to specify extensions of files to ignore when shadowing
-- multiple bug fixes
 
 0.0.75
 - added --microdata.root and --microdata.virtual for microdata exports
@@ -86,7 +78,6 @@ https://ssc.lu/
 
 0.0.74
 - schema.org 11.0 microdata
-- various bug fixes
 
 0.0.73
 - can output 'repaired' HTML (does NOT work with XHTML)
@@ -104,12 +95,10 @@ https://ssc.lu/
 0.0.70
 - MathML 3
 - suppress MSVC compiler warnings in boost libraries
-- various bug fixes
 
 0.0.69
 - added version info to output file
 - MathML 3 presentation markup
-- various bug fixes
 
 0.0.68
 - completely ignore content of SCRIPT and STYLE elements
@@ -122,12 +111,10 @@ https://ssc.lu/
 0.0.66
 - many enumerated attribute types can be extended
 - added MathML 2 operator elements
-- various bug fixes
 
 0.0.65
 - VS2015 project now targets windows 7 SP1
 - added MathML 2 content elements
-- various bug fixes
 
 0.0.64
 - added VS2015 project for windows 8.1 executables

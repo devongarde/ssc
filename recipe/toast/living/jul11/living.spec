@@ -344,6 +344,60 @@ PASS ../toast/living/jul11/img.html
 PASS ../toast/living/jul11/index.html
 3 attribute_unrecognised_here unrecognised_attribute
 
+PASS ../toast/living/jul11/input.html
+9 inserted_missing_closure
+10 inserted_missing_closure
+11 inserted_missing_closure
+12 inserted_missing_closure
+13 inserted_missing_closure missing_close
+14 inserted_missing_closure
+19 inserted_missing_closure missing_close
+20 inserted_missing_closure
+29 inserted_missing_closure
+30 inserted_missing_closure
+31 inserted_missing_closure
+32 inserted_missing_closure missing_close
+33 inserted_missing_closure
+38 inserted_missing_closure
+39 inserted_missing_closure
+40 inserted_missing_closure missing_close
+41 inserted_missing_closure
+60 inserted_missing_closure missing_close
+61 inserted_missing_closure
+69 inserted_missing_closure missing_close
+71 inserted_missing_closure
+80 id_exists
+85 inserted_missing_closure
+86 inserted_missing_closure missing_close
+88 inserted_missing_closure
+93 url_not_found
+95 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+96 inserted_missing_closure wrong_parent inserted_missing_closure
+98 wrong_parent inserted_missing_closure
+99 wrong_parent inserted_missing_closure
+100 wrong_parent inserted_missing_closure bad_form
+101 inserted_missing_closure wrong_parent inserted_missing_closure
+103 wrong_parent inserted_missing_closure
+104 wrong_parent inserted_missing_closure
+105 wrong_parent inserted_missing_closure bad_form
+106 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+107 pattern
+108 wrong_parent inserted_missing_closure
+109 wrong_parent inserted_missing_closure
+110 wrong_parent inserted_missing_closure missing_close bad_form
+111 inserted_missing_closure inserted_missing_closure
+112 bad_form
+117 url_not_found
+121 inserted_missing_closure
+124 inserted_missing_closure
+127 inserted_missing_closure missing_close
+129 inserted_missing_closure
+137 inserted_missing_closure
+138 inserted_missing_closure
+139 inserted_missing_closure missing_close
+140 inserted_missing_closure
+166 url_not_found
+
 PASS ../toast/living/jul11/li.html
 7 inserted_missing_parent missing_close
 10 lingo

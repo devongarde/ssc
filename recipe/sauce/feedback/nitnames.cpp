@@ -584,6 +584,8 @@ nitname nitnames [] =
     { nit_incompatible_mime, "incompatible_mime" },
     { nit_os_dependent, "os_dependent" },
     { nit_bad_usemap, "bad_usemap" },
+    { nit_bad_type_attribute, "bad_type_attribute" },
+    { nit_bad_pattern, "bad_pattern" },
 
     { nit_off, "" } };
 
