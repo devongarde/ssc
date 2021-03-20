@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> <title> input </title> </head>
+ <body>
+
+<input type="url" name="location" list="urls">
+<datalist id="urls">
+<option label="MIME: Format of Internet Message Bodies" value="http://tools.ietf.org/html/rfc2045">
+<option label="HTML 4.01 Specification" value="http://www.w3.org/TR/html4/">
+<option label="Form Controls" value="http://www.w3.org/TR/xforms/slice8.html#ui-commonelems-hint">
+<option label="Scalable Vector Graphics (SVG) 1.1 Specification" value="http://www.w3.org/TR/SVG/">
+<option label="Feature Sets - SVG 1.1 - 20030114" value="http://www.w3.org/TR/SVG/feature.html">
+<option label="The Single UNIX Specification, Version 3" value="http://www.unix-systems.org/version3/">
+</datalist>
+
+<fieldset>
+<legend>Add Meeting</legend>
+<p><label>Meeting name: <input type=text name="meeting.label"></label>
+<p><label>Meeting time: <input type=datetime name="meeting.start"></label>
+</fieldset>
+
+<fieldset>
+<legend>Destination</legend>
+<p><label>Airport: <input type=text name=to list=airports></label></p>
+<p><label>Departure time: <input type=datetime-local name=totime step=3600></label></p>
+</fieldset>
+<datalist id=airports>
+<option value=ATL label="Atlanta">
+<option value=MEM label="Memphis">
+<option value=LHR label="London Heathrow">
+<option value=LAX label="Los Angeles">
+<option value=FRA label="Frankfurt">
+</datalist>
+
+<input type="range" min="-100" max="100" value="0" step="10" name="power" list="powers">
+<datalist id="powers">
+<option value="0">
+<option value="-30">
+<option value="30">
+<option value="+50">
+</datalist>
+
+<input name=x type=range min=100 max=700 step=9.09090909 value=509.090909>
+
+<p><input type=file name=image onchange="updateFilename(this.value)"></p>
+<p>The name of the file you picked is: <span id="filename">(none)</span></p>
+<script>
+function updateFilename(path) {
+var name = extractFilename(path);
+document.getElementById('filename').textContent = name;
+}
+</script>
+
+<p>Account: <input type="text" name="ac" autocomplete="off"></p>
+<p>PIN: <input type="text" name="pin" autocomplete="off"></p>
+
+<label>Homepage: <input name=hp type=url list=hpurls></label>
+<datalist id=hpurls>
+<option value="http://www.google.com/" label="Google">
+<option value="http://www.reddit.com/" label="Reddit">
+</datalist>
+
+<p>
+ <label>
+ Enter a breed:
+ <input type="text" name="breed" list="breeds">
+ <datalist id="breeds">
+ <option value="Abyssinian">
+ <option value="Alpaca">
+ <!-- ... -->
+ </datalist>
+ </label>
+</p>
+
+<p>
+<label>
+Enter a breed:
+<input type="text" name="breed" list="breeds">
+</label>
+<datalist id="breeds">
+<label>
+or select one from the list:
+<select name="breed">
+<option value=""> (none selected)
+<option>Abyssinian
+<option>Alpaca
+<!-- ... -->
+</select>
+</label>
+</datalist>
+</p>
+
+<form action="products.cgi" method=post enctype="multipart/form-data">
+<table>
+<tr> <th> Product ID <th> Product name <th> Price <th> Action
+<tr>
+<td> <input readonly name="1.pid" value="H412">
+<td> <input required name="1.pname" value="Floor lamp Ulke">
+<td> $<input required type=number min=0 step=0.01 name="1.pprice" value="49.99">
+<td> <button formnovalidate name="action" value="delete:1">Delete</button>
+<tr>
+<td> <input readonly name="2.pid" value="FG28">
+<td> <input required name="2.pname" value="Table lamp Ulke">
+<td> $<input required type=number min=0 step=0.01 name="2.pprice" value="24.99">
+<td> <button formnovalidate name="action" value="delete:2">Delete</button>
+<tr>
+<td> <input required name="3.pid" value="" pattern="[A-Z0-9]+">
+<td> <input required name="3.pname" value="">
+<td> $<input required type=number min=0 step=0.01 name="3.pprice" value="">
+<td> <button formnovalidate name="action" value="delete:3">Delete</button>
+</table>
+<p> <button formnovalidate name="action" value="add">Add</button> </p>
+<p> <button name="action" value="update">Save</button> </p>
+</form>
+
+<h1>Create new account</h1>
+<form action="/newaccount" method=post>
+<p>
+<label for="username">E-mail address:</label>
+<input id="username" type=email required name=un>
+<p>
+<label for="password1">Password:</label>
+<input id="password1" type=password required name=up>
+<p>
+<label for="password2">Confirm password:</label>
+<input id="password2" type=password onchange="setCustomValidity(value != password1.value ? 'Passwords do not match.' : '')">
+<p>
+<input type=submit value="Create account">
+</form>
+
+<label>Cc: <input type=email multiple name=cc></label>
+
+<label>Cc: <input type=email multiple name=cc list=contacts></label>
+...
+<datalist id="contacts">
+ <option value="hedral@example.edu">
+ <option value="pillar@example.com">
+ <option value="astrophy@cute.example.com">
+ <option value="astronomy@science.example.org">
+</datalist>
+
+<label>Attachments: <input type=file multiple name=att></label>
+
+What are you doing? <input name=status maxlength=140>
+
+<label> Part number:
+ <input pattern="[0-9][A-Z]{3}" name="part" title="A part number is a digit followed by three uppercase letters."/>
+</label>
+
+<input name=bday type=date max="1979-12-31">
+
+<input name=quantity required type=number min=1 value=1>
+
+<input name=opacity type=range min=0 max=1 step=0.00392156863>
+
+<input name=favtime type=time step=any>
+
+<fieldset>
+<legend>Mail Account</legend>
+<p><label>Name: <input type="text" name="fullname" placeholder="John Ratzenberger"></label></p>
+<p><label>Address: <input type="email" name="address" placeholder="john@example.net"></label></p>
+<p><label>Password: <input type="password" name="password"></label></p>
+<p><label>Description: <input type="text" name="desc" placeholder="My Email Account"></label></p>
+</fieldset>
+
+<form action="addcomment.cgi" method=post>
+<p><label>Comment: <input type=text name="comment" dirname="comment.dir" required></label></p>
+<p><button name="mode" type=submit value="add">Post Comment</button></p>
+</form>
+
+ </body>
+</html>

@@ -100,9 +100,7 @@ void elements_node::hook_up (element_node* current, element_node*& previous, ele
 {   assert (current != nullptr);
     assert (parent != nullptr);
     assert (! (closure && open));
-
     current -> next_ = current -> previous_ = current -> parent_ = current -> child_ = current -> last_ = nullptr;
-
     if (previous != nullptr)
     {   previous -> next_ = current;
         current -> previous_ = previous;
@@ -121,7 +119,6 @@ void elements_node::hook_up (element_node* current, element_node*& previous, ele
         current -> previous_ = previous;
         previous -> next_ = current;
         parent -> last_ = current; }
-
     if (open)
     {   parent = current;
         previous = nullptr; }

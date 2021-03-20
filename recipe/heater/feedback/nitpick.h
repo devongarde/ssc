@@ -39,7 +39,7 @@ public:
 #ifndef NO_MOVE_CONSTRUCTOR
 	nitpick(nitpick&& np) = default;
 #endif
-	explicit nitpick(const ::std::string c) : context_(c) { }
+	explicit nitpick (const ::std::string c) : context_(c) { }
     explicit nitpick (const int line, const ::std::string c) : context_ (c), line_ (line) { }
 	~nitpick() = default;
     nitpick& operator = (const nitpick& np) = default;

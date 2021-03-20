@@ -69,6 +69,7 @@ ssc.exe -T -Z -o ../out/ignoreignore.tst -f ../toast/other/ignore/ignore.conf
 ssc.exe -T -Z -o ../out/incorrectnessincorrectness.tst -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -T -Z -o ../out/nitsnits.tst -f ../toast/other/nits/nits.conf
 ssc.exe -T -Z -o ../out/parsingparsing.tst -f ../toast/other/parsing/parsing.conf
+ssc.exe -T -Z -o ../out/RDFrdf.tst -f ../toast/other/pattern/pattern.conf
 ssc.exe -T -Z -o ../out/RDFrdf.tst -f ../toast/other/RDF/rdf.conf
 ssc.exe -T -Z -o ../out/simplesimple.tst -f ../toast/other/simple/simple.conf
 ssc.exe -T -Z -o ../out/ssissi.tst -f ../toast/other/ssi/ssi.conf

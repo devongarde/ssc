@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+
+<head>
+<title>pattern</title>
+</head>
+
+<body>
+
+<h1>pattern</h1>
+
+<form>
+<input pattern="[0-9][A-Z]{3}" name="part1" title="A part number is a digit followed by three uppercase letters." />
+<input pattern="[0-9][A-Z{3}" name="part2" title="A part number is a digit followed by three uppercase letters." />
+<input pattern="[0-9][A-Z]{3" name="part3" title="A part number is a digit followed by three uppercase letters." />
+<input pattern="[0-9][A-Z]{3}" name="part4" />
+<input pattern="\x" name="part5" title="balls" />
+<input pattern="\x12" name="part51" title="balls" />
+<input pattern="\x1G" name="part52" title="balls" />
+<input pattern="\y" name="part5" title="balls" />
+<input pattern="\\" name="part5" title="balls" />
+<input pattern="{1}" name="part7" title="balls" />
+<input pattern="{8x1}" name="part8" title="spherical objects" />
+<input pattern="{8,1}" name="part9" title="bling" />
+</form>
+
+</body>
+</html>
+

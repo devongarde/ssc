@@ -294,7 +294,7 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_dull ", ch);
                 switch (ch)
                 {   case '<' :  status = s_open; soe = twas = i; break;
-                    case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double > intentional?"); break;
+                    case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double '>' intentional?"); break;
                     case '&' :  if (! xmp_mode) { status= s_amper; twas = i; } break;
                     default : if (! xmp_mode && ! silent_content) check_character (nits, res, i); }
                 break;
@@ -787,7 +787,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                     ve_.emplace_back (nits, line_, text, twas);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                     nits.reset (); }
-                                nits.set_context (line_, soe, eofe);
+                                nits.set_context (line_, soe, i+1);
                                 if ((i > eofe) && (*(i-1) == '/')) ve_.emplace_back (nits, line_, collect, eofe, i-1, closure, true);
                                 else ve_.emplace_back (nits, line_, collect, eofe, i, closure, true);
                                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_node ", quoted_limited_string (::std::string (collect, i), 30));

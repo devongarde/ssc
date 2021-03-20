@@ -331,7 +331,7 @@ PASS ../toast/living/jan21/forms.html
 332 inserted_missing_closure
 334 use_double_quote_code inserted_missing_closure
 337 inserted_missing_closure
-338 pattern pattern
+338 pattern
 
 PASS ../toast/living/jan21/h-1.html
 6 use_quote_code
@@ -573,6 +573,76 @@ PASS ../toast/living/jan21/img.html
 
 PASS ../toast/living/jan21/index.html
 3 attribute_unrecognised_here unrecognised_attribute
+
+PASS ../toast/living/jan21/input.html
+9 inserted_missing_closure
+10 inserted_missing_closure
+11 inserted_missing_closure
+12 inserted_missing_closure
+13 inserted_missing_closure missing_close
+14 inserted_missing_closure
+23 inserted_missing_closure
+24 inserted_missing_closure
+25 inserted_missing_closure
+26 inserted_missing_closure missing_close
+27 inserted_missing_closure
+34 inserted_missing_closure
+35 inserted_missing_closure
+36 inserted_missing_closure missing_close
+37 inserted_missing_closure
+44 inserted_missing_closure missing_close
+45 inserted_missing_closure
+49 inserted_missing_closure
+50 inserted_missing_closure missing_close
+51 inserted_missing_closure
+79 url_not_found
+80 url_not_found
+86 inserted_missing_closure
+88 inserted_missing_closure url_not_found
+90 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+91 inserted_missing_closure wrong_parent inserted_missing_closure
+93 wrong_parent inserted_missing_closure
+94 wrong_parent inserted_missing_closure
+95 wrong_parent inserted_missing_closure bad_form
+96 inserted_missing_closure wrong_parent inserted_missing_closure
+98 wrong_parent inserted_missing_closure
+99 wrong_parent inserted_missing_closure
+100 wrong_parent inserted_missing_closure bad_form
+101 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+102 pattern
+103 wrong_parent inserted_missing_closure
+104 wrong_parent inserted_missing_closure
+105 wrong_parent inserted_missing_closure missing_close bad_form
+106 inserted_missing_closure inserted_missing_closure
+107 bad_form
+112 url_not_found
+116 inserted_missing_closure
+119 inserted_missing_closure
+122 inserted_missing_closure missing_close
+124 inserted_missing_closure
+129 inserted_missing_closure
+130 inserted_missing_closure use_quote_code
+131 inserted_missing_closure
+132 inserted_missing_closure missing_close use_quote_code
+133 inserted_missing_closure
+141 inserted_missing_closure
+142 inserted_missing_closure
+143 inserted_missing_closure missing_close
+144 inserted_missing_closure
+157 minmax minmax
+176 inserted_missing_closure missing_close
+177 inserted_missing_closure
+185 inserted_missing_closure missing_close
+187 inserted_missing_closure
+196 id_exists
+201 inserted_missing_closure
+202 inserted_missing_closure missing_close
+204 inserted_missing_closure
+217 placeholder
+218 placeholder
+220 placeholder
+221 placeholder
+223 minmax
 
 PASS ../toast/living/jan21/label.html
 8 ignoring_unknown attribute_barred ignoring_unknown

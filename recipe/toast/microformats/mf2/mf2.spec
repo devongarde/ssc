@@ -51,21 +51,13 @@ PASS ../toast/microformats/mf2/mf2-empty.html
 
 PASS ../toast/microformats/mf2/mf2-example.html
 0 charset_mismatch charset_used charset_invalid
-25 mf_infer
 49 hcard_infer
-57 mf_infer
 69 hcard_infer hcard_infer
-114 mf_infer
 121 naughty_alt
-126 mf_infer
 139 bad_datetime
-151 mf_infer
-165 mf_infer
-171 mf_infer
 
 PASS ../toast/microformats/mf2/mf2-good.html
 2 naughty_lang
 
 PASS ../toast/microformats/mf2/mf2-infer.html
 2 naughty_lang
-12 mf_infer

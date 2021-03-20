@@ -72,6 +72,7 @@
 ./ssc -f ../toast/other/incorrectness/incorrectness.conf
 ./ssc -f ../toast/other/nits/nits.conf
 ./ssc -f ../toast/other/parsing/parsing.conf
+./ssc -f ../toast/other/pattern/pattern.conf
 ./ssc -f ../toast/other/RDF/rdf.conf
 ./ssc -f ../toast/other/simple/simple.conf
 ./ssc -f ../toast/other/ssi/ssi.conf

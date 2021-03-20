@@ -519,6 +519,13 @@ template < > struct type_master < t_measure_or_more > : varied < t_measure_or_mo
                     // drop thru
                 default : validate_type < type_master < t_measure > > (nits, v); } } };
 
+template < > struct type_master < t_num > : varied < t_num >
+{   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+    {   if (good () || empty ())
+            if (e == elem_input)
+                validate_type < type_master < t_text > > (nits, v);
+            else validate_type < type_master < t_duration_media > > (nits, v); } };
+
 template < > struct type_master < t_rotate > : varied < t_rotate >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())

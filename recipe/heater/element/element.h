@@ -60,7 +60,7 @@ class element
     bool to_sibling (element_ptr& e, const bool canreconstruct = true);
     element* next_element (element* previous);
     template < class PROPERTY > void note_reply ();
-    template < e_type T > void val_min_max ();
+    template < e_type T > void val_min_max (const bool cyclic = false);
     void activate_microformats () { if (! mf_) mf_.reset (new microformats ()); }
     void dddt (const char* ref1, const char* ref2, const char* el);
     void check_required_type (const e_element tag);

@@ -83,22 +83,34 @@ void context_t::process_outgoing_webmention (nitpick& nits, const html_version& 
 void context_t::process_incoming_webmention (nitpick& nits, const html_version& v)
 {   if (! mentions_.empty ()) hooks_.process (nits, v); }
 
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
-{   ::std::string res;
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char idealstart, const char idealend)
+{   const int maxish = 80;
+    const int halfish = maxish / 2;
+    ::std::string res;
     ::std::string::const_iterator mb, me;
-    if (e - b <= 60) { me = e; mb = b; }
+    if (e - b <= maxish) { me = e; mb = b; }
     else
-    {   if (b + 30 >= i) mb = b; else mb = i - 30;
-        if (e - 30 <= i) me = e; else me = i + 30; }
-    bool en = false;
+    {   if (b + halfish >= i) mb = b; else mb = i - halfish;
+        if (e - halfish <= i) me = e; else me = i + halfish; }
     bool nudged = false;
     bool nonblank = false;
-    for (::std::string::const_iterator j = mb; j < i; ++j)
-        if (::std::iswspace (*j) || ::std::iswcntrl (*j)) { mb = j+1; nudged = true; } else nonblank = true;
+    if (idealstart != 0)
+        for (::std::string::const_iterator j = mb; j < i; ++j)
+            if (*j == idealstart) { mb = j+1; nudged = true; break; }
+            else if (! ::std::iswspace (*j) && ! ::std::iswcntrl (*j)) nonblank = true;
+    if (! nudged)
+        for (::std::string::const_iterator j = mb; j < i; ++j)
+            if (::std::iswspace (*j) || ::std::iswcntrl (*j)) { mb = j+1; nudged = true; } else nonblank = true;
     if (! nudged && nonblank) res += "... ";
+    bool en = false;
     nonblank = false;
-    for (::std::string::const_iterator j = i; j < e; ++j)
-        if (::std::iswspace (*j) || ::std::iswcntrl (*j)) { me = j; en = true; break; } else nonblank = true;
+    if (idealend != 0)
+        for (::std::string::const_iterator j = i; j < e; ++j)
+            if (*j == idealend) { me = j; en = true; break; }
+            else if (! ::std::iswspace (*j) && ! ::std::iswcntrl (*j)) nonblank = true;
+    if (! en)
+        for (::std::string::const_iterator j = i; j < e; ++j)
+            if (::std::iswspace (*j) || ::std::iswcntrl (*j)) { me = j; en = true; break; } else nonblank = true;
     res += ::std::string (mb, me);
     if (! en && nonblank) res += " ...";
     return res; }

@@ -231,6 +231,7 @@ void stats::mark_file (const unsigned size)
     res += saybe (category_.at (ec_parser), "    Parser");
     res += saybe (category_.at (ec_program), "    Program");
     res += saybe (category_.at (ec_rdf), "    RDFa");
+    res += saybe (category_.at (ec_regex), "    Regex");
     res += saybe (category_.at (ec_rudeness), "    Rudeness");
     res += saybe (category_.at (ec_shadow), "    Shadow");
     res += saybe (category_.at (ec_ssi), "    SSI");

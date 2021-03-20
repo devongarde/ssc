@@ -417,7 +417,7 @@ struct symbol_entry < e_element > elem_symbol_table [] =
     { { HTML_1_0, HV_DEPRECATED30 }, { HTML_UNDEF }, "ol", elem_ol, ns_default, EP_ONLYELEMENTS | EP_5_DYNAMIC, EF_3_LIST | EF_LL | EF_LIST | EF_32_BLOCK | EF_4_BLOCK | EF_X2_LIST | EF_X2_STRUCT | EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_PLUS }, { HTML_PLUS }, "online", elem_online, ns_default, 0, EF_EMPH },
     { { HTML_4_0, HV_NOTX2 }, { HTML_UNDEF }, "optgroup", elem_optgroup },
-    { { HTML_PLUS, HV_NOT2L1 | HV_NOTX2 }, { HTML_UNDEF }, "option", elem_option },
+    { { HTML_PLUS, HV_NOT2L1 | HV_NOTX2 }, { HTML_UNDEF }, "option", elem_option, ns_default, EP_SIMPLE },
     { { XHTML_1_0, 0, MATH_1_2_3 }, { HTML_UNDEF }, "or", elem_or, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, "otherwise", elem_otherwise, ns_default, 0, EF_M_CONTENT | EF_M_CONTINPRES },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, "outerproduct", elem_outerproduct, ns_default, EP_CLOSED | EP_ARGS_2, EF_M_CONTENT },

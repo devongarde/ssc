@@ -163,6 +163,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_may20 : return "HTML 5 living standard (May 2020)";
         case ed_jul20 : return "HTML 5 living standard (July 2020)";
         case ed_jan21 : return "HTML 5 living standard (Jan 2021)";
+        case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
         case ed_mozilla : return "mozilla.org (May 2020)";
         case ed_microdata : return "WhatWG Microdata";
         case ed_microformats : return "microformats.org (May 2020)";
@@ -210,6 +211,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_math_3 : return "MathML 3.0 - Second Edition";
         case ed_math_4 : return "MathML 4.0, draft, January 2019";
         case ed_iso_8859_1 : return "ISO/IEC 8859-1:1998";
+        case ed_ecma : return "ECMAScript 2022 Language Specification, 22.2.1 Patterns, March 2021";
         case ed_mimetype : return "IANA Media Types, February 2019";
         case ed_rfc_1867 : return "RFC 1867, Form-based File Upload in HTML";
         case ed_rfc_1980 : return "RFC 1980, Client-Side Image Maps";

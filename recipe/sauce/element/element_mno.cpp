@@ -388,8 +388,23 @@ void element::examine_object ()
 void element::examine_option ()
 {   if (node_.version ().is_5 ())
         if (a_.known (a_label))
-        {   if (a_.known (a_value))
-                if (has_child ()) pick (nit_bad_option, ed_50, "4.10.10 The option element", es_error, ec_element, "<OPTION> with both LABEL and VALUE defined cannot have content"); }
+        {   bool more = true;
+            if (a_.known (a_value))
+                if (has_child ())
+                    for (element_ptr p = child_; more && (p != nullptr); p = p -> sibling_)
+                        if (! p -> node_.is_closure ())
+                            switch (p -> tag ())
+                            {   case elem_faux_whitespace :
+                                case elem_faux_asp :
+                                case elem_faux_php :
+                                case elem_faux_ssi :
+                                case elem_faux_stylesheet :
+                                case elem_faux_xml :
+                                    break;
+                                default :
+                                    pick (nit_bad_option, ed_50, "4.10.10 The option element", es_error, ec_element, "<OPTION> with both LABEL and VALUE defined cannot have content");
+                                    more = false;
+                                    break; } }
         else if (! ancestral_elements_.test (elem_datalist))
             if (text ().empty ())
                 pick (nit_bad_option, ed_50, "4.10.10 The option element", es_error, ec_element, "here, <OPTION> requires text content"); }

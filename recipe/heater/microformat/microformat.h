@@ -300,7 +300,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
             assert (n != nullptr);
             if (n -> unknown ())
             {   n -> set_value (nits, v, text ());
-                nits.pick (nit_mf_infer, es_info, ec_microformat, name (), " property ", n -> name (), " set to ", enquote (text ())); } }
+                nits.pick (nit_mf_infer, es_comment, ec_microformat, name (), " property ", n -> name (), " set to ", enquote (text ())); } }
     verify_mf < ENUM, VOCAB > :: hcard (nits, v, text (),
         get < fn_at1 > (), get < n_at1 > (), get < given_name_at1 > (), get < family_name_at1 > (), get < org_at1 > (), get < organisation_name_at1 > (), get < nickname_at1 > ());
     if (unknown ())
