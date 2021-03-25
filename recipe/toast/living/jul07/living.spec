@@ -91,6 +91,24 @@ PASS ../toast/living/jul07/ls2.html
 PASS ../toast/living/jul07/m.html
 13 use_quote_code
 
+PASS ../toast/living/jul07/meter.html
+0 charset_mismatch charset_used charset_invalid
+11 url_not_found
+17 inserted_missing_closure
+18 inserted_missing_closure inserted_missing_closure missing_close
+19 inserted_missing_closure
+22 inserted_missing_closure
+23 inserted_missing_closure inserted_missing_closure missing_close
+24 inserted_missing_closure
+28 inserted_missing_closure
+29 missing_open
+32 no_such_folder url_not_found
+33 no_such_folder url_not_found
+38 no_such_folder url_not_found
+39 no_such_folder url_not_found
+44 no_such_folder url_not_found
+45 no_such_folder url_not_found
+
 PASS ../toast/living/jul07/samp.html
 7 use_quote_code
 9 unrecognised_value

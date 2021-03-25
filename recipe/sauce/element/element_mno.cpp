@@ -162,7 +162,7 @@ void element::examine_menu ()
                                 if (! has_muhrme)
                                     pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'popup' has no <MENUITEM>, <HR> or <MENU> children"); }
                             if ((mt == mt_toolbar) && ! has_li)
-                                pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'toolbar' has no <LI> children"); } } }
+                                pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'toolbar' should have <LI> children"); } } }
                 switch (mt)
                 {   case mt_context :
                         if ((node_.version () < html_jul07) || ((node_.version () >= html_jan13) && (node_.version () < html_jan16)))
@@ -247,7 +247,7 @@ void element::examine_meta ()
 
 void element::examine_meter ()
 {   if (node_.version ().is_5 ())
-    {   check_ancestors (elem_progress, element_bit_set (elem_meter));
+    {   check_ancestors (elem_meter, element_bit_set (elem_meter));
         double min = 0.0, max = 1.0, low = 0.0, high = 0.0, optimum = 0.0, value = 0.0;
         bool kx = a_.known (a_max);
         bool kn = a_.known (a_min);
@@ -260,16 +260,26 @@ void element::examine_meter ()
         if (kl) low = lexical < double > :: cast (a_.get_string (a_low));
         if (kh) high = lexical < double > :: cast (a_.get_string (a_high));
         if (ko) optimum = lexical < double > :: cast (a_.get_string (a_optimum));
-        if (kv) value = lexical < double > :: cast (a_.get_string (a_value));
-
+        if (node_.version () >= html_jan10)
+        {   if (kv) value = lexical < double > :: cast (a_.get_string (a_value)); }
+        else
+        {   ::std::string s (trim_the_lot_off (node_.text ()));
+            if (s.find_first_of (DENARY) != ::std::string::npos) value = lexical < double > :: cast (s);
+            else if (kv) value = lexical < double > :: cast (a_.get_string (a_value));
+            else if (kn) value = min;
+            else if (kx) value = max; }
         if (max < min) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "MIN (", min, ") cannot exceed MAX (", max, ")");
-        if (min == max) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_warning, ec_element, "a <METER> with the same MIN and MAX seems a little pointless");
-        if (value < min) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "MIN (", min, ") cannot exceed VALUE (", value, ")");
-        if (max < value) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "VALUE (", value, ") cannot exceed MAX (", max, ")");
+        if (min == max) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_warning, ec_element, "a <METER> where MIN equals MAX seems a little pointless");
+        if (value < min)
+            if (kn) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "MIN (", min, ") cannot exceed VALUE (", value, ")");
+            else pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "VALUE (", value, ") must not be less than ", min, ", the default for MIN");
+        if (max < value)
+            if (kx) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "VALUE (", value, ") cannot exceed MAX (", max, ")");
+            else pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "VALUE (", value, ") cannot exceed ", max, ", the default for MAX");
         if (kl)
         {   if (kh)
             {   if (low < high) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "LOW (", low, ") cannot exceed HIGH (", high, ")");
-                if (low == high) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_info, ec_element, "a <METER> with the same LOW and HIGH seems a little dubious"); }
+                if (low == high) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_info, ec_element, "a <METER> where LOW equals HIGH seems a little dubious"); }
             if (low < min) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "MIN (", min, ") cannot exceed LOW (", low, ")");
             if (max < low) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "LOW (", low, ") cannot exceed MAX (", max, ")"); }
         if (kh)
@@ -387,24 +397,49 @@ void element::examine_object ()
 
 void element::examine_option ()
 {   if (node_.version ().is_5 ())
-        if (a_.known (a_label))
-        {   bool more = true;
-            if (a_.known (a_value))
-                if (has_child ())
-                    for (element_ptr p = child_; more && (p != nullptr); p = p -> sibling_)
-                        if (! p -> node_.is_closure ())
-                            switch (p -> tag ())
-                            {   case elem_faux_whitespace :
-                                case elem_faux_asp :
-                                case elem_faux_php :
-                                case elem_faux_ssi :
-                                case elem_faux_stylesheet :
-                                case elem_faux_xml :
-                                    break;
-                                default :
-                                    pick (nit_bad_option, ed_50, "4.10.10 The option element", es_error, ec_element, "<OPTION> with both LABEL and VALUE defined cannot have content");
-                                    more = false;
-                                    break; } }
-        else if (! ancestral_elements_.test (elem_datalist))
-            if (text ().empty ())
-                pick (nit_bad_option, ed_50, "4.10.10 The option element", es_error, ec_element, "here, <OPTION> requires text content"); }
+        if (has_child ())
+        {   bool no_content = false, no_whitespace = false, had_text = false, had_whitespace = false, bad_whitespace = false, proto_whitespace = false;
+            e_doc ed = ed_jan21;
+            if (node_.version () < html_jan14) ed = ed_jan13;
+            else
+            {   if (node_.version () < html_jul16)
+                {   ed = ed_jan14;
+                    if (! a_.known (a_label)) no_whitespace = true;
+                    else no_content = a_.known (a_value); }
+                else if (! a_.known (a_label))
+                    no_whitespace = ! ancestral_elements_.test (elem_datalist);
+                else no_content = a_.known (a_value); }
+            for (element_ptr p = child_; (p != nullptr); p = p -> sibling_)
+                if (! is_faux_element (p -> tag ()))
+                {   if ((p -> node_.is_closure ()) && (p -> tag () == elem_option) && (! p -> node_.presumed ()))
+                        bad_whitespace = had_whitespace;
+                    break; }
+                else switch (p -> tag ())
+                {   case elem_faux_whitespace :
+                        proto_whitespace = had_text;
+                        had_whitespace = true;
+                        break;
+                    case elem_faux_char :
+                    case elem_faux_code :
+                    case elem_faux_cdata :
+                    case elem_faux_text :
+                        had_text = true;
+                        if (! bad_whitespace) bad_whitespace = proto_whitespace;
+                        break;
+                    default :
+                        break; }
+            if (no_content)
+            {   if (had_text)
+                    pick (nit_bad_option, ed, "4.10.10 The option element", es_error, ec_element, "<OPTION> with both LABEL and VALUE cannot have content"); }
+            else if (no_whitespace)
+                if (bad_whitespace)
+                    pick (nit_bad_option, ed, "4.10.10 The option element", es_error, ec_element, "here, <OPTION> cannot contain whitespace"); } }
+
+void element::examine_output ()
+{   if (a_.good (a_for))
+    {   vstr_t ids = a_.get_x < attr_for > ();
+        for (auto s : ids)
+            if (get_ids ().has_id (s)) // if not WTF
+            {   e_element e (get_ids ().get_tag (s));
+                if (! label_bitset.test (e))
+                    pick (nit_bad_for, ed_50, "4.10.12 The output element", es_error, ec_attribute, quote (s), " is neither a <BUTTON>, <FIELDSET>, <INPUT>, <OBJECT>, <OUTPUT>, <SELECT>, nor a <TEXTAREA>"); } } }

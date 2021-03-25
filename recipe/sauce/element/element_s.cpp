@@ -116,7 +116,7 @@ void element::examine_select ()
         else if (r == role_combobox)
             pick (nit_input_bad_aria, ed_52, "4.10.7 The select element", es_error, ec_attribute, "do not set ROLE to 'listbox', it is the default"); }
     if (required && (! multiple) && (size == 1) && (has_child ()))
-    {   uint64_t placeholder = 0;
+    {   uint64_t placeholder = 0, selected = 0;
         int selectedness = 0;
         for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
             if (! p -> node_.is_closure ())
@@ -126,6 +126,11 @@ void element::examine_select ()
                             ++selectedness;
                         break;
                     case elem_option :
+                        if (p -> a_.known (a_selected))
+                            if (selected == 0)
+                            {   selected = p -> uid ();
+                                if (! a_.known (a_placeholder))
+                                    pick (nit_bad_select, ed_jan21, "4.10.7 The select element", es_warning, ec_attribute, "the SELECTED <OPTION> must have a PLACEHOLDER"); }
                         if ((! p -> a_.known (a_value)) || p -> a_.empty (a_value) || p -> a_.get_string (a_value).empty ())
                             placeholder = p -> uid ();
                         else if (p -> a_.known (a_selected))

@@ -113,7 +113,8 @@ template < e_type T, e_type P, class SZ1, class SZ2, class SZ3 > struct type_or_
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : tidy_string < T >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   bool both_ = false;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "value expected");
@@ -123,7 +124,9 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : ti
             ::std::string::size_type pos = ss.find (SZ :: sz ());
             if (pos != ::std::string::npos)
             {   if (! test_value < P > (nits, v, ss.substr (pos+1))) tidy_string < T > :: status (s_invalid);
+                else both_ = true;
                 ss = ss.substr (0, pos); }
             if (test_value < U > (nits, v, ss)) return; }
-        tidy_string < T > :: status (s_invalid); } };
+        tidy_string < T > :: status (s_invalid); }
+    ::std::size_t size () const { return both_ ? 2 : 1; } };
 

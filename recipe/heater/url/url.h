@@ -94,12 +94,12 @@ public:
     bool is_simple_id () const { return is_local () && ! has_path () && ! has_file () && has_id (); }
     bool invalid () const { return ! valid_; }
     bool tismoi (const url& u) const
-    {  return (valid_ && u.valid_ && (protocol_ == u.protocol_)); }
+    {   return (valid_ && u.valid_ && (protocol_ == u.protocol_)); }
     ::std::size_t arg_count () const { return params_.size (); }
     bool exists (const ::std::string& key) const
-    { return params_.exists (key); }
+    {   return params_.exists (key); }
     ::std::string value (const ::std::string& key) const
-    { return params_.value (key); }
+    {   return params_.value (key); }
     ::std::string domain () const { return get_component (es_server); }
     ::std::string id () const { return get_component (es_fragment); }
     ::std::string fragment () const { return get_component (es_fragment); }

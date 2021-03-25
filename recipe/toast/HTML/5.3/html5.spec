@@ -98,8 +98,9 @@ PASS ../toast/HTML/5.3/html5-bad.html
 104 url_not_found out_of_order saucy_source out_of_order
 106 url_not_found source_track
 107 url_not_found saucy_source source_track source_track
-112 bad_select
-123 bad_select bad_select
+112 bad_select bad_select
+123 bad_select bad_select bad_select
+134 bad_select
 149 bad_datalist
 154 bad_datalist
 

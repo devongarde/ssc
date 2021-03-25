@@ -101,6 +101,14 @@ PASS ../toast/living/jan21/data.html
 15 inserted_missing_closure wrong_parent inserted_missing_closure missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 16 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
+PASS ../toast/living/jan21/datalist.html
+11 inserted_missing_closure missing_close
+12 inserted_missing_closure
+19 id_exists
+24 inserted_missing_closure
+25 inserted_missing_closure missing_close
+26 inserted_missing_closure
+
 PASS ../toast/living/jan21/del.html
 9 use_quote_code
 
@@ -259,6 +267,17 @@ PASS ../toast/living/jan21/example-2.html
 135 use_quote_code
 145 use_quote_code
 
+PASS ../toast/living/jan21/fieldset.html
+12 pattern
+27 pattern
+34 pattern
+41 inserted_missing_closure
+42 inserted_missing_closure
+43 inserted_missing_closure missing_close
+47 inserted_missing_closure missing_close
+48 inserted_missing_closure
+49 inserted_missing_closure
+
 PASS ../toast/living/jan21/figcaption.html
 6 inserted_missing_parent missing_close too_many_figcaption
 16 inserted_missing_closure
@@ -311,6 +330,41 @@ PASS ../toast/living/jan21/footer-3.html
 28 inserted_missing_closure missing_close url_not_found
 29 inserted_missing_closure
 32 url_not_found
+
+PASS ../toast/living/jan21/formex.html
+15 url_not_found
+20 no_such_folder url_not_found
+31 url_not_found
+36 url_not_found
+60 url_not_found
+71 inserted_missing_closure
+72 inserted_missing_closure missing_close
+74 inserted_missing_closure
+78 inserted_missing_closure
+79 inserted_missing_closure missing_close
+81 inserted_missing_closure
+83 url_not_found
+88 inserted_missing_closure
+89 inserted_missing_closure missing_close
+90 inserted_missing_closure
+97 inserted_missing_closure
+98 inserted_missing_closure
+99 inserted_missing_closure
+100 inserted_missing_closure
+101 inserted_missing_closure
+102 inserted_missing_closure
+103 inserted_missing_closure
+105 inserted_missing_closure
+106 inserted_missing_closure
+107 inserted_missing_closure missing_close
+108 inserted_missing_closure
+117 bad_autocomplete
+121 inserted_missing_closure
+123 inserted_missing_closure
+124 inserted_missing_closure missing_close
+126 inserted_missing_closure
+155 url_not_found
+161 url_not_found
 
 PASS ../toast/living/jan21/forms.html
 119 inserted_missing_closure missing_close
@@ -833,6 +887,25 @@ PASS ../toast/living/jan21/menu.html
 8 interactive url_not_found
 9 interactive url_not_found
 
+PASS ../toast/living/jan21/meter.html
+7 url_not_found
+10 bad_meter
+11 bad_meter
+16 inserted_missing_closure
+17 inserted_missing_closure inserted_missing_closure missing_close
+18 inserted_missing_closure
+21 inserted_missing_closure
+22 inserted_missing_closure inserted_missing_closure missing_close
+23 inserted_missing_closure
+27 inserted_missing_closure
+28 missing_open
+31 no_such_folder url_not_found
+32 no_such_folder url_not_found
+37 no_such_folder url_not_found
+38 no_such_folder url_not_found
+43 no_such_folder url_not_found
+44 no_such_folder url_not_found
+
 PASS ../toast/living/jan21/ol.html
 10 inserted_missing_closure
 11 inserted_missing_closure
@@ -847,6 +920,21 @@ PASS ../toast/living/jan21/object.html
 7 url_not_found
 12 reputation
 22 url_not_found bad_usemap url_id_unfound
+
+PASS ../toast/living/jan21/optgroup.html
+6 url_not_found
+8 inserted_missing_closure
+12 inserted_missing_closure
+13 inserted_missing_closure
+14 inserted_missing_closure inserted_missing_closure
+16 inserted_missing_closure
+17 inserted_missing_closure
+18 inserted_missing_closure inserted_missing_closure missing_close
+20 inserted_missing_closure
+21 inserted_missing_closure missing_close
+22 inserted_missing_closure inserted_missing_closure
+24 inserted_missing_closure missing_close
+25 inserted_missing_closure
 
 PASS ../toast/living/jan21/p.html
 48 inserted_missing_closure
@@ -892,6 +980,20 @@ PASS ../toast/living/jan21/samp.html
 9 unrecognised_value
 13 unrecognised_value unrecognised_value
 16 unrecognised_value
+
+PASS ../toast/living/jan21/select.html
+17 bad_select
+41 inserted_missing_closure
+42 inserted_missing_closure
+43 inserted_missing_closure
+44 inserted_missing_closure
+45 inserted_missing_closure
+46 inserted_missing_closure
+47 inserted_missing_closure
+48 inserted_missing_closure
+49 use_quote_code inserted_missing_closure
+50 inserted_missing_closure missing_close
+51 inserted_missing_closure
 
 PASS ../toast/living/jan21/small.html
 0 charset_mismatch charset_used charset_invalid
@@ -1076,6 +1178,11 @@ PASS ../toast/living/jan21/te.html
 95 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 96 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 97 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/living/jan21/textarea.html
+12 use_quote_code use_double_quote_code
+21 bad_textarea
+31 newline_in_string newline_in_string
 
 PASS ../toast/living/jan21/th.html
 8 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure

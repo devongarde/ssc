@@ -67,6 +67,12 @@ ids_t& element::get_ids ()
 const ids_t& element::get_ids () const
 {   return page_.get_ids (); }
 
+ids_t& element::get_names ()
+{   return page_.get_names (); }
+
+const ids_t& element::get_names () const
+{   return page_.get_names (); }
+
 int element::line () const
 {   return node_.line (); }
 

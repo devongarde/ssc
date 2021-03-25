@@ -41,13 +41,17 @@ class ids_t
 {   fileindex_t ndx_ = nullfileindex;
     mif_t ids_;
     ::std::size_t data_ = 0;
+    bool unique_ = true;
 public:
     void swap (ids_t& x) NOEXCEPT
     {   ::std::swap (ndx_, x.ndx_);
         ::std::swap (data_, x.data_);
+        ::std::swap (unique_, x.unique_);
         ids_.swap (x.ids_); }
     fileindex_t ndx () const { return ndx_; }
-    void ndx (fileindex_t x) { ndx_ = x; }
+    void ndx (fileindex_t x, const bool b = true)
+    {   ndx_ = x; unique_ = b; }
+    bool unique () const { return unique_; }
     ::std::size_t data () const { return data_; }
     void data (::std::size_t x) { data_ = x; }
     bool empty () const

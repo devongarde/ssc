@@ -57,6 +57,7 @@ struct attribute_base
     virtual ::std::size_t type () const { return 0; }
     virtual vurl_t get_urls () const { return vurl_t (); }
     virtual int get_int () const { return 0; }
+    virtual ::std::size_t size () const { return 1; }
     virtual void shadow (::std::stringstream& , const html_version& , element* ) { }
     virtual ::std::string report () const { return ::std::string (); } };
 
@@ -105,7 +106,6 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
             else if (! compare_no_case (ss, name ()))
             {   nits.pick (nit_existential_value, es_warning, ec_type, "if ", name (), " has a value, it must be ", quote (name ()));
                 typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); } }
-
     virtual void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& s)
     {   typed_value < e_attribute, TYPE, IDENTITY > :: validate (nits, v, e, s); }
     virtual bool verify_url (nitpick& nits, const html_version& v, const directory& d, const ::boost::filesystem::path& p, const int n, const attribute_bitset& bs, const vit_t& vit)
@@ -136,11 +136,11 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     typename typed_value < e_attribute, TYPE, IDENTITY > :: value_type get () const { return typed_value < e_attribute, TYPE, IDENTITY > :: get (); }
     bool has_value (const typename typed_value < e_attribute, TYPE, IDENTITY > :: value_type t) const { return typed_value < e_attribute, TYPE, IDENTITY > :: has_value (t); }
     virtual int get_int () const { return typed_value < e_attribute, TYPE, IDENTITY > :: get_int (); }
+    virtual ::std::size_t size () const { return typed_value < e_attribute, TYPE, IDENTITY > :: size (); }
     virtual void shadow (::std::stringstream& ss, const html_version& v, element* e)
     {   if (typed_value < e_attribute, TYPE, IDENTITY > :: unknown () || typed_value < e_attribute, TYPE, IDENTITY > :: invalid ()) return;
         ss << " " << name ();
         typed_value < e_attribute, TYPE, IDENTITY > :: shadow (ss, v, e); }
-
     virtual ::std::string report () const
     {   return typed_value < e_attribute, TYPE, IDENTITY > :: report (name ()); } };
 

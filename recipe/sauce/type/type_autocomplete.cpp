@@ -87,13 +87,14 @@ bool set_autocomplete_value (vaco_t& vaco, nitpick& nits, const html_version& v,
             break; }
     return false; }
 
-bool invalid_autocomplete (nitpick& nits, const html_version& , const element* e, const vaco_t& vaco)
+bool invalid_autocomplete (nitpick& nits, const html_version& v, const element* e, const vaco_t& vaco)
 {   assert (e != nullptr);
     switch (e -> tag ())
     {   case elem_textarea :
         case elem_select :
             return true;
         case elem_input :
+            if (v < html_jan15) return true;
             break;
         default :
             assert (false);
@@ -117,8 +118,8 @@ bool invalid_autocomplete (nitpick& nits, const html_version& , const element* e
                         break; }
                 break;
             case aco_street_address :
-                    if (i5 != i5_hidden) res = false;
-                    break;
+                if (i5 != i5_hidden) res = false;
+                break;
             case aco_cc_exp :
                 switch (i5)
                 {   case i5_text :

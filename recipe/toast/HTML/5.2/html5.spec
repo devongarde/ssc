@@ -102,7 +102,7 @@ PASS ../toast/HTML/5.2/html5-bad.html
 116 mime url_not_found saucy_source source_track source_track
 120 label_parentage
 121 label_parentage
-124 unknown
+124 bad_id
 127 bad_for label_parentage label_parentage
 130 mime mime
 131 bad_datetime

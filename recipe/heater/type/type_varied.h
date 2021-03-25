@@ -344,13 +344,18 @@ template < > struct type_master < t_name > : varied < t_name >
                 case elem_map :
                     validate_type < type_master < t_id > > (nits, v);
                     e_ = e.get (); break;
-                case elem_colourprofile :
-                    return;
+                case elem_button :
                 case elem_input :
+                case elem_meter :
+                case elem_output :
+                case elem_progress :
                 case elem_select :
                 case elem_textarea :
-                    validate_type < type_master < t_not_empty > > (nits, v); break; }
-        if (good () && (v >= html_5_0) && form_bitset.test (e.get ()))
+                    validate_type < type_master < t_id > > (nits, v);
+                    e_ = e.get (); break;
+                case elem_colourprofile :
+                    return; }
+        if (good () && v.is_5 () && form_bitset.test (e.get ()))
         {   ::std::string s (varied < t_name > :: get_string ());
             if (compare_no_case ("_charset_", s))
                 nits.pick (nit_special_name, ed_50, "4.10.19.1 Naming form controls: the name attribute", es_comment, ec_type, "note that ", quote (s), " causes special behaviour");
@@ -365,8 +370,20 @@ template < > struct type_master < t_name > : varied < t_name >
                     default :
                         nits.pick (nit_special_name, ed_50, "4.10.19.1 Naming form controls: the name attribute", es_warning, ec_type, "avoid ", quote (s), ", it has special behaviour in older versions of HTML"); } } }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe)
-    {   if ((e_ != elem_a) && (e_ != elem_map)) return false;
-        return check_id_defined < type_master < t_id > > (nits, v, ids, pe); } };
+    {   ids_t& get_varied_names (element* pe);
+        switch (e_)
+        {   case elem_a :
+            case elem_map :
+                return check_id_defined < type_master < t_id > > (nits, v, ids, pe);
+            case elem_button :
+            case elem_input :
+            case elem_meter :
+            case elem_output :
+            case elem_progress :
+            case elem_select :
+            case elem_textarea :
+                return check_id_defined < type_master < t_id > > (nits, v, get_varied_names (pe), pe);
+            default : return false; } } };
 
 template < > struct type_master < t_notation > : varied < t_notation >
 {   void validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
@@ -421,6 +438,9 @@ template < > struct type_master < t_rap > : varied < t_rap >
             switch (e.get ())
             {   case elem_ul :
                     validate_type < type_master < t_wrap3 > > (nits, v);
+                    break;
+                case elem_textarea :
+                    if (v.is_5 ()) validate_type < type_master < t_wrap > > (nits, v);
                     break;
                 case elem_dir :
                 case elem_menu :

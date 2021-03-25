@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.94 LANGUAGES CXX)
+project (ssc VERSION 0.0.95 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -132,7 +132,7 @@ target_sources (ssc PRIVATE
             ${S}/type/type_core.cpp ${S}/type/type_csp.cpp ${S}/type/type_currency.cpp ${S}/type/type_d.cpp ${S}/type/type_enum.cpp ${S}/type/type_httpequiv.cpp
             ${S}/type/type_lang.cpp ${S}/type/type_media.cpp ${S}/type/type_metaname.cpp ${S}/type/type_mime.cpp ${S}/type/type_paint.cpp ${S}/type/type_reals.cpp
             ${S}/type/type_rel.cpp ${S}/type/type_sgml.cpp ${S}/type/type_svg_feature.cpp ${S}/type/type_time.cpp ${S}/type/type_transform.cpp ${S}/type/type_url.cpp
-            ${S}/type/type_xmlns.cpp
+            ${S}/type/type_varied.cpp ${S}/type/type_xmlns.cpp
         ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
         ${S}/utility/byteorder.cpp ${S}/utility/common.cpp ${S}/utility/quote.cpp
         ${S}/webmention/hook.cpp ${S}/webmention/irt.cpp ${S}/webmention/webmention.cpp ${S}/webmention/webmentions.cpp

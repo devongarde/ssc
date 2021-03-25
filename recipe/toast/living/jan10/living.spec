@@ -139,6 +139,9 @@ PASS ../toast/living/jan10/example-2.html
 49 use_quote_code
 62 use_quote_code
 
+PASS ../toast/living/jan10/fieldset.html
+12 pattern
+
 PASS ../toast/living/jan10/figure.html
 21 newline_in_string url_not_found
 25 use_quote_code
@@ -168,6 +171,12 @@ PASS ../toast/living/jan10/footer-2.html
 9 no_such_folder url_not_found
 26 url_not_found
 27 url_not_found
+
+PASS ../toast/living/jan10/formex.html
+18 url_not_found
+20 missing_close inserted_missing_closure
+40 url_not_found
+46 url_not_found
 
 PASS ../toast/living/jan10/h-1.html
 6 use_quote_code
@@ -338,6 +347,9 @@ PASS ../toast/living/jan10/input.html
 139 inserted_missing_closure missing_close
 140 inserted_missing_closure
 
+PASS ../toast/living/jan10/keygen.html
+6 url_not_found
+
 PASS ../toast/living/jan10/li.html
 7 inserted_missing_parent missing_close
 10 lingo
@@ -474,6 +486,25 @@ PASS ../toast/living/jan10/menu.html
 65 ignoring_unknown missing_close attribute_barred attribute_barred
 66 inserted_missing_closure inserted_missing_closure
 
+PASS ../toast/living/jan10/meter.html
+7 url_not_found
+10 bad_meter
+11 bad_meter
+16 inserted_missing_closure
+17 inserted_missing_closure inserted_missing_closure missing_close
+18 inserted_missing_closure
+21 inserted_missing_closure
+22 inserted_missing_closure inserted_missing_closure missing_close
+23 inserted_missing_closure
+27 inserted_missing_closure
+28 missing_open
+31 no_such_folder url_not_found
+32 no_such_folder url_not_found
+37 no_such_folder url_not_found
+38 no_such_folder url_not_found
+43 no_such_folder url_not_found
+44 no_such_folder url_not_found
+
 PASS ../toast/living/jan10/object.html
 17 url_not_found
 18 inserted_missing_closure missing_close
@@ -488,6 +519,21 @@ PASS ../toast/living/jan10/ol.html
 20 inserted_missing_closure
 21 inserted_missing_closure missing_close
 22 inserted_missing_closure
+
+PASS ../toast/living/jan10/optgroup.html
+6 url_not_found
+8 inserted_missing_closure
+12 inserted_missing_closure
+13 inserted_missing_closure
+14 inserted_missing_closure inserted_missing_closure
+16 inserted_missing_closure
+17 inserted_missing_closure
+18 inserted_missing_closure inserted_missing_closure missing_close
+20 inserted_missing_closure
+21 inserted_missing_closure missing_close
+22 inserted_missing_closure inserted_missing_closure
+24 inserted_missing_closure missing_close
+25 inserted_missing_closure
 
 PASS ../toast/living/jan10/param.html
 9 reputation

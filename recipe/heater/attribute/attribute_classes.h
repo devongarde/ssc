@@ -279,7 +279,7 @@ typedef typed_attribute < t_fontstretch, a_fontstretch > attr_fontstretch;
 typedef typed_attribute < t_fontstyle, a_fontstyle > attr_fontstyle;
 typedef typed_attribute < t_fontvariant, a_fontvariant > attr_fontvariant;
 typedef typed_attribute < t_fontweight, a_fontweight > attr_fontweight;
-typedef typed_attribute < t_idref, a_for > attr_for;
+typedef typed_attribute < t_idrefs, a_for > attr_for;
 typedef typed_attribute < t_form, a_form > attr_form;
 typedef typed_attribute < t_url, a_formaction > attr_formaction;
 typedef typed_attribute < t_text, a_format > attr_format;

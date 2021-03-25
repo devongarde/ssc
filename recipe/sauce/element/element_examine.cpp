@@ -57,7 +57,6 @@ void element::pre_examine_element (const e_element tag)
         case elem_nextid :
             pick (nit_deprecated_element, es_warning, ec_element, "Really? <NEXTID> was obsolete in HTML Tags!");
             break;
-        case elem_option : examine_option (); break;
         case elem_progress : examine_progress (); break;
         case elem_reln : examine_reln (); break;
         case elem_render :
@@ -154,6 +153,8 @@ void element::post_examine_element (const e_element tag)
         case elem_nav : examine_nav (); break;
         case elem_noscript : examine_noscript (); break;
         case elem_object : examine_object (); break;
+        case elem_option : examine_option (); break;
+        case elem_output : examine_output (); break;
         case elem_select : examine_select (); break;
         case elem_piecewise : examine_piecewise (); break;
         case elem_picture : examine_picture (); break;
