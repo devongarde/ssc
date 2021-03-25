@@ -48,6 +48,7 @@ template < typename TYPE, e_type E > struct enum_vec_base : public type_base < T
     ::std::string original () const { return original_; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     static vec_t default_value () { return vec_t (); }
+    ::std::size_t size () const { return value_.size (); }
     bool has_value (const base_type& b) const
     {   if (! type_base < TYPE, E > :: good ()) return false;
         return (value_.find (b) != vec_t::npos); }

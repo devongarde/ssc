@@ -171,6 +171,7 @@ class element
     void examine_noscript ();
     void examine_object ();
     void examine_option ();
+    void examine_output ();
     void examine_picture ();
     void examine_piecewise ();
     void examine_progress ();
@@ -234,6 +235,8 @@ public:
     ::std::string find_mention_info (const url& u, bool text, bool anything);
     ids_t& get_ids ();
     const ids_t& get_ids () const;
+    ids_t& get_names ();
+    const ids_t& get_names () const;
     element* parent () const
     {   assert (! is_top ());
         return parent_; }

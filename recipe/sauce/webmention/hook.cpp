@@ -122,7 +122,7 @@ bool hook::process (nitpick& nits, const html_version& v)
     {   ::std::string html = read_text_file (tmp.string ());
         page p (nits, source_.original (), html);
         if (p.invalid ())
-            nits.pick (nit_dubious_html, es_error, ec_webmention, source_.original ()," appears to be dubious HTML");
+            nits.pick (nit_dubious_html, es_error, ec_webmention, source_.original (), " appears to be dubious HTML");
         else
         {   directory d (source_.page (), true);
             p.examine (d);

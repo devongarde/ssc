@@ -209,8 +209,8 @@ void element::examine_button ()
                 pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "An <BUTTON> element cannot have a descendant element with a TABINDEX."); }
         e_button bu = static_cast < e_button > (a_.get_int (a_type));
         if (bu != bu_submit)
-            if (a_.known (a_formaction) || a_.known (a_formenctype) || a_.known (a_formmethod) ||
-                a_.known (a_formnovalidate) || a_.known (a_formtarget))
+            if (a_.known (a_formaction) || a_.known (a_formenctype) || a_.known (a_formmethod) || a_.known (a_formnovalidate) || a_.known (a_formtarget) ||
+                a_.known (a_action) || a_.known (a_enctype) || a_.known (a_method) || a_.known (a_novalidate) || a_.known (a_target))
                 pick (nit_bad_form, ed_50, "", es_error, ec_attribute, "FORM... attributes require <BUTTON> TYPE='submit'"); } }
 
 void element::examine_col ()

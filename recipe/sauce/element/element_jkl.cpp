@@ -42,11 +42,13 @@ void element::examine_label ()
         no_anchor_daddy ();
         uid_t uid = 0;
         if (a_.good (a_for))
-        {   ::std::string s (a_.get_string (a_for));
+        {   if (a_.size (a_for) != 1)
+                pick (nit_bad_for, ed_50, "4.10.4 The label element", es_error, ec_attribute, "FOR on <LABEL> may only have one ID");
+            ::std::string s (a_.get_string (a_for));
             if (get_ids ().has_id (s)) // if not WTF
             {   e_element e (get_ids ().get_tag (s));
                 if (! label_bitset.test (e))
-                    pick (nit_bad_for, ed_50, "4.10.4 The label element", es_error, ec_element, "FOR must reference a <BUTTON>, <FIELDSET>, <INPUT>, <OBJECT>, <OUTPUT>, <SELECT>, or a <TEXTAREA>");
+                    pick (nit_bad_for, ed_50, "4.10.4 The label element", es_error, ec_attribute, "FOR on <LABEL> must reference a <BUTTON>, <FIELDSET>, <INPUT>, <OBJECT>, <OUTPUT>, <SELECT>, or a <TEXTAREA>");
                 uid = get_ids ().get_uid (s); } }
         element_bitset bs (descendant_elements_);
         bs &= label_bitset;

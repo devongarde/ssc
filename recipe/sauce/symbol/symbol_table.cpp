@@ -112,7 +112,12 @@ bool symbol_table :: find (const html_version& v, const ::std::string& x, ::std:
     return find (v, x.substr (0, p), ns, first, last, flags); }
 
 void symbol_table :: extend (const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const e_namespace ns, const html_version& first, const html_version& last, const uint64_t flags, const uint64_t flags2)
-{   symbol_.insert (symbol_t::value_type (symbol_key (key, ns), symbol_store (first, last, symbol, value, ns, flags, flags2)));
+{
+#ifdef _DEBUG
+    if (key.find (",") != ::std::string::npos) ::std::cerr << "key '" << key << "' contains a comma\n";
+    if (symbol.find (",") != ::std::string::npos) ::std::cerr << "symbol '" << symbol << "' contains a comma\n";
+#endif // _DEBUG
+    symbol_.insert (symbol_t::value_type (symbol_key (key, ns), symbol_store (first, last, symbol, value, ns, flags, flags2)));
     reverse_.insert (reverse_t::value_type (value, symbol_store (first, last, symbol, value, ns, flags, flags2))); }
 
 ::std::string symbol_table :: after_start (const ::std::string& s) const

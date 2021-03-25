@@ -30,7 +30,7 @@ class element_node
     element_node* next_ = nullptr;
     element_node* previous_ = nullptr;
     int line_ = 0;
-    bool closure_ = false, closed_ = false, checked_sanitised_ = false;
+    bool closure_ = false, closed_ = false, checked_sanitised_ = false, presumed_ = false;
     elem elem_;
     attributes_node va_;
     ::std::string text_, raw_, sanitised_;
@@ -39,10 +39,10 @@ class element_node
     ::std::string inner_text () const;
 public:
     element_node () = default;
-    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag);
-    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el);
-    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const e_element tag, const ::std::string str = ::std::string ());
-    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const elem& el, const ::std::string str = ::std::string ());
+    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
+    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed);
+    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str = ::std::string ());
+    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str = ::std::string ());
     element_node (const element_node& en) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	element_node(element_node&& en) = default;
@@ -70,6 +70,7 @@ public:
     bool has_last () const { return last_ != nullptr; }
     bool has_previous () const { return previous_ != nullptr; }
     bool has_parent () const { return parent_ != nullptr; }
+    bool presumed () const { return presumed_; }
     const element_node& child () const
     {   assert (has_child ());
         return *child_; }

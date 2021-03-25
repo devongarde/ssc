@@ -128,6 +128,10 @@ PASS ../toast/living/jul09/figure.html
 57 url_not_found
 60 newline_in_string newline_in_string url_not_found
 
+PASS ../toast/living/jul09/formex.html
+18 url_not_found
+20 missing_close inserted_missing_closure
+
 PASS ../toast/living/jul09/footer.html
 9 attempted_escape
 18 attempted_escape
@@ -324,6 +328,24 @@ PASS ../toast/living/jul09/mark.html
 
 PASS ../toast/living/jul09/me.html
 7 url_not_found
+
+PASS ../toast/living/jul09/meter.html
+0 charset_mismatch charset_used charset_invalid
+11 url_not_found
+19 inserted_missing_closure
+20 inserted_missing_closure inserted_missing_closure missing_close
+21 inserted_missing_closure
+24 inserted_missing_closure
+25 inserted_missing_closure inserted_missing_closure missing_close
+26 inserted_missing_closure
+30 inserted_missing_closure
+31 missing_open
+34 no_such_folder url_not_found
+35 no_such_folder url_not_found
+40 no_such_folder url_not_found
+41 no_such_folder url_not_found
+46 no_such_folder url_not_found
+47 no_such_folder url_not_found
 
 PASS ../toast/living/jul09/object.html
 15 url_not_found

@@ -79,7 +79,7 @@ element_node* elements_node::find_permitted_parent (const html_version& v, const
         parent = parent -> parent_; }
     return nullptr; }
 
-void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, bra_element_ket& ket, bool closing)
+void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, bra_element_ket& ket, const bool closing)
 {   assert (parent != nullptr);
     assert (ancestor != nullptr);
     if (does_apply (v, id.first (), id.last ()))
@@ -90,13 +90,13 @@ void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v
                 nits.pick (nit_inserted_missing_closure, es_warning, ec_element, "inserted missing </", elem :: name (parent -> tag ()), ">");
                 elem def (parent -> tag ());
                 nitpick defnits (ket.line_, ket.nits_.get_context ());
-                ven_.push_back (element_node (defnits, ket.line_, true, parent, def, def.name ()));
+                ven_.push_back (element_node (defnits, ket.line_, true, parent, def, true, def.name ()));
                 element_node* current = & ven_.back ();
                 element_node* previous = nullptr;
                 hook_up (current, previous, parent, false, false); }
             parent = parent -> parent_; } }
 
-void elements_node::hook_up (element_node* current, element_node*& previous, element_node*& parent, bool closure, bool open)
+void elements_node::hook_up (element_node* current, element_node*& previous, element_node*& parent, const bool closure, const bool open)
 {   assert (current != nullptr);
     assert (parent != nullptr);
     assert (! (closure && open));
@@ -129,7 +129,7 @@ void elements_node::hook_up (element_node* current, element_node*& previous, ele
         previous = current; }
     else previous = current; }
 
-element_node* elements_node::insert_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
+element_node* elements_node::insert_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
 {   assert (parent != nullptr);
     if (ket.eofe_ != ket.end_)
         if (! is_whitespace (ket.eofe_, ket.end_))
@@ -145,49 +145,49 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
             repair_invalid_parents (ket.nits_, v, id, parent, ancestor, ket, true);
             parent = ancestor;
             previous = parent -> last_; } }
-    ven_.push_back (element_node (ket.nits_, ket.line_, true, parent, id.get (), ::std::string (ket.start_, ket.end_)));
+    ven_.push_back (element_node (ket.nits_, ket.line_, true, parent, id.get (), presumed, ::std::string (ket.start_, ket.end_)));
     element_node* current = & ven_.back ();
     hook_up (current, previous, parent, matched, false);
     return current; }
 
-element_node* elements_node::insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
+element_node* elements_node::insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
 {   assert (id != elem_faux_document);
     elem def (default_parent (v, id));
     element_node* ancestor = find_permitted_parent (v, def, parent);
     if (ancestor == nullptr)
-    {   ancestor = insert_family_tree (v, previous, parent, ket, def);
+    {   ancestor = insert_family_tree (v, previous, parent, ket, def, true);
         assert (ancestor != nullptr); }
     nitpick defnits (ket.line_, ket.nits_.get_context ());
     defnits.pick (nit_inserted_missing_parent, es_info, ec_element, "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting intermediate <", def.name (), ">");
     report_missing_closures (v, parent, ancestor);
-    repair_invalid_parents (defnits, v, def, parent, ancestor, ket);
+    repair_invalid_parents (defnits, v, def, parent, ancestor, ket, false);
     parent = ancestor;
     previous = parent -> last_;
-    ven_.push_back (element_node (defnits, ket.line_, false, ancestor, def, def.name ()));
+    ven_.push_back (element_node (defnits, ket.line_, false, ancestor, def, presumed, def.name ()));
     element_node* current = & ven_.back ();
     hook_up (current, previous, parent, false, true);
     return current; }
 
-element_node* elements_node::insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, bool open)
+element_node* elements_node::insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool open)
 {   assert (parent != nullptr);
     element_node* current = nullptr;
     element_node* ancestor = find_permitted_parent (v, id, parent);
     if (ancestor != nullptr)
-    {   repair_invalid_parents (ket.nits_, v, id, parent, ancestor, ket);
+    {   repair_invalid_parents (ket.nits_, v, id, parent, ancestor, ket, false);
         parent = ancestor;
         previous = parent -> last_; }
     else
-        insert_family_tree (v, previous, parent, ket, id);
+        insert_family_tree (v, previous, parent, ket, id, false);
     switch (id.get ())
     {   case elem_faux_whitespace :
-            ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id)); break;
+            ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, false)); break;
         case elem_faux_stylesheet :
-            ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, ket.arg ())); break;
+            ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, false, ket.arg ())); break;
         case elem_error :
             ket.nits_.pick (nit_ignoring_unknown, es_error, ec_element, "internal program error: invalid parse token status (", ::boost::lexical_cast < ::std::string > (ket.status_), ")");
             // drip (!) thru'
         default :
-            ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, ::std::string (ket.start_, ket.end_))); }
+            ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, false, ::std::string (ket.start_, ket.end_))); }
     current = & ven_.back ();
     hook_up (current, previous, parent, false, open);
     current -> parse_attributes (v, ket.eofe_, ket.end_);
@@ -223,12 +223,12 @@ element_node* elements_node::insert  (const html_version& v, element_node*& prev
     if (id.is_closed (v))
     {   if (v.xhtml ()) ket.nits_.pick (nit_xhtml_missing_slash, es_error, ec_element, "in ", v.report (), ", closed elements must use the <... /> syntax");
         return insert_closed (v, previous, parent, ket, id); }
-    if (ket.closure_) return insert_closure (v, previous, parent, ket, id);
+    if (ket.closure_) return insert_closure (v, previous, parent, ket, id, false);
     return insert_open (v, previous, parent, ket, id); }
 
 void elements_node::parse (const html_version& v, bras_ket& elements)
 {   ven_.clear ();
-    ven_.push_back (element_node (elements.form_, 1, false, nullptr, elem_faux_document, ::std::string ()));
+    ven_.push_back (element_node (elements.form_, 1, false, nullptr, elem_faux_document, false, ::std::string ()));
     element_node* document = & ven_.back ();
     document -> version_ = v;
     element_node* parent = document;
@@ -253,7 +253,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
             case bk_num :       id.reset (elem_faux_code); break;
             case bk_php :       id.reset (elem_faux_php); break;
             case bk_ssi :       id.reset (elem_faux_ssi); break;
-            case bk_stylesheet : id.reset (elem_faux_stylesheet); break;
+            case bk_stylesheet: id.reset (elem_faux_stylesheet); break;
             case bk_xml :       id.reset (elem_faux_xml); break;
             case bk_text :      if (e.is_whitespace ()) id.reset (elem_faux_whitespace);
                                 else id.reset (elem_faux_text);

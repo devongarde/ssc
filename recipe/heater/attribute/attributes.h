@@ -74,6 +74,9 @@ public:
     int get_int (const e_attribute a) const
     {   if (! has (a)) return 0;
         return aar_.at (a) -> get_int (); }
+    ::std::size_t size (const e_attribute a) const
+    {   if (! has (a)) return 0;
+        return aar_.at (a) -> size (); }
     template < class ATTRIBUTE > typename ATTRIBUTE::value_type get_x () const
     {   if (! has (ATTRIBUTE::whoami ())) return ATTRIBUTE::default_value ();
         ATTRIBUTE* ap = static_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());

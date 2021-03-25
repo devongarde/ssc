@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> form examples </title> </head>
+ <body>
+
+ <form id="a">
+ <div id="b"></div>
+ </form>
+ <script>
+ document.getElementById('b').innerHTML =
+ '<table><tr><td><form id="c"><input id="d"></table>' +
+ '<input id="e">';
+ </script>
+
+<form action="addcomment.cgi" method=post>
+ <p><label>Comment: <input type=text name="comment" dirname="comment.dir" required>
+</label></p>
+ <p><button name="mode" type=submit value="add">Post Comment</button></p>
+</form>
+
+<form action="/events/menu.cgi" method="post">
+ <p><label>Name of Event: <input required minlength=5 maxlength=50 name=event></label></p>
+ <p><label>Describe what you would like for breakfast, if anything:
+ <textarea name="breakfast" minlength="10"></textarea></label></p>
+ <p><label>Describe what you would like for lunch, if anything:
+ <textarea name="lunch" minlength="10"></textarea></label></p>
+ <p><label>Describe what you would like for dinner, if anything:
+ <textarea name="dinner" minlength="10"></textarea></label></p>
+ <p><input type=submit value="Submit Request"></p>
+</form>
+
+<form method="get" action="/search.cgi">
+ <p><label>Search terms: <input type=search name=q></label></p>
+ <p><input type=submit></p>
+</form>
+
+<form method="post" action="/post-message.cgi">
+ <p><label>Message: <input type=text name=m></label></p>
+ <p><input type=submit value="Submit message"></p>
+</form>
+
+<dialog id="ship">
+ <form method=dialog>
+ <p>A ship has arrived in the harbour.</p>
+ <button type=submit value="board">Board the ship</button>
+ <button type=submit value="call">Call to the captain</button>
+ </form>
+</dialog>
+<script>
+ var ship = document.getElementById('ship');
+ ship.showModal();
+ ship.onclose = function (event) {
+ if (ship.returnValue == 'board') {
+ // ...
+ } else {
+ // ...
+}
+ };
+</script>
+
+<form action="editor.cgi" method="post">
+ <p><label>Name: <input required name=fn></label></p>
+ <p><label>Essay: <textarea name=essay></label></p>
+ <p><input type=submit name=submit value="Submit essay"></p>
+ <p><input type=submit formnovalidate name=save value="Save essay"></p>
+ <p><input type=submit formnovalidate name=cancel value="Cancel"></p>
+</form>
+
+<input maxlength="256" name="q" value="" autofocus>
+<input type="submit" value="Search">
+
+<fieldset>
+ <legend>Ship the blue gift to...</legend>
+ <p> <label> Address: <input name=ba autocomplete="section-blue shipping street-address"> </label>
+ <p> <label> City: <input name=bc autocomplete="section-blue shipping region"> </label>
+ <p> <label> Postal Code: <input name=bp autocomplete="section-blue shipping postal-code"> </label>
+</fieldset>
+<fieldset>
+ <legend>Ship the red gift to...</legend>
+ <p> <label> Address: <input name=ra autocomplete="section-red shipping street-address"> </label>
+ <p> <label> City: <input name=rc autocomplete="section-red shipping region"> </label>
+ <p> <label> Postal Code: <input name=rp autocomplete="section-red shipping country"> </label>
+</fieldset>
+
+<p><label>Account: <input type="text" name="ac" autocomplete="off"></label></p>
+<p><label>PIN: <input type="password" name="pin" autocomplete="off"></label></p>
+
+<input name=middle-initial maxlength=1 autocomplete="additional-name">
+
+<input name=b type=month autocomplete="bday">
+
+<select name=c autocomplete="bday">
+ <option>Jan
+ <option>Feb
+...
+ <option>Jul
+ <option>Aug
+...
+</select>
+
+<input name=a type=number min=1 max=12 autocomplete="bday-month">
+
+<input name=a type=number min=0 max=11 autocomplete="bday-month">
+
+<input name=a type=number min=1 max=11 autocomplete="bday-month">
+
+<label>Feeling: <input name=f type="text" oninput="check(this)"></label>
+<script>
+ function check(input) {
+ if (input.value == "good" ||
+ input.value == "fine" ||
+ input.value == "tired") {
+ input.setCustomValidity('"' + input.value + '" is not a feeling.');
+ } else {
+ // input is fine -- reset the error message
+ input.setCustomValidity('');
+ }
+ }
+</script>
+
+<form action="/find.cgi" method=get>
+ <input type=text name=t>
+ <input type=search name=q>
+ <input type=submit>
+</form>
+
+<form action="/find.cgi" method=post enctype="multipart/form-data">
+ <input type=text name=t>
+ <input type=search name=q>
+ <input type=submit>
+</form>
+
+ </body>
+</html>

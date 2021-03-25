@@ -65,7 +65,7 @@ template < > struct type_master < t_id > : tidy_string < t_id >
         {   ::std::string s (tidy_string < t_id > :: get_string ());
             predefined_ = ids.has_id (s);
             if (! predefined_) ids.insert_id (s, pe);
-            else
+            else if (ids.unique ())
             {   nits.pick (nit_id_exists, es_error, ec_type, quote (s), " is defined elsewhere");
                 tidy_string < t_id > :: status (s_invalid); }
             tested_ = true; }

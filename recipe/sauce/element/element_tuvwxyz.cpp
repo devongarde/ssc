@@ -92,8 +92,8 @@ void element::examine_textarea ()
     int len = static_cast < int > (text ().length ());
     if ((max > 0) && (min > max)) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_error, ec_element, "<TEXTAREA> MINLENGTH is greater than MAXLENGTH");
     if (len > 0)
-    {   if (len < min) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_error, ec_element, "<TEXTAREA> content is short than MAXLENGTH");
-        if ((max > 0) && (len > max)) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_error, ec_element, "<TEXTAREA> content is longer than MAXLENGTH"); } }
+    {   if (len < min) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_warning, ec_element, "<TEXTAREA> content is short than MINLENGTH");
+        if ((max > 0) && (len > max)) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_warning, ec_element, "<TEXTAREA> content is longer than MAXLENGTH"); } }
 
 void element::examine_th ()
 {   if (node_.version ().mjr () < 5) return;

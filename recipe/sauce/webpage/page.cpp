@@ -40,13 +40,16 @@ page::page (const ::std::string& name, ::std::string& content, const fileindex_t
     :   name_ (name), schema_version_ (context.schema_ver ())
 {   assert (d != nullptr);
     ids_.ndx (x);
+    names_.ndx (x, false);
     directory_ = d;
     parse (content, encoding); }
 
 page::page (nitpick& nits, const ::std::string& name, ::std::string& content, directory* d, const e_charcode encoding)
     :   name_ (name), schema_version_ (context.schema_ver ())
 {   assert (d != nullptr);
-    ids_.ndx (get_fileindex (d -> get_disk_path (nits, name)));
+    fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
+    ids_.ndx (x);
+    names_.ndx (x, false);
     directory_ = d;
     parse (content, encoding); }
 
@@ -56,6 +59,7 @@ void page::reset (const page& p)
 
 void page::swap (page& p) NOEXCEPT
 {   ids_.swap (p.ids_);
+    names_.swap (p.names_);
     access_.swap (p.access_);
     document_.swap (p.document_);
     nodes_.swap (p.nodes_);

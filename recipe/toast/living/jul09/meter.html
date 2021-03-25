@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> meter </title> </head>
+ <body>
+
+<meter>75%</meter>
+<meter>750‰</meter>
+<meter>3/4</meter>
+<meter>6 blocks used (out of 8 total)</meter>
+<meter>max: 100; current: 75</meter>
+<meter><object data="graph75.png">0.75</object></meter>
+<meter min="0" max="100" value="75"></meter>
+<p>The grapefruit pie had a radius of <meter value=12>12cm</meter>
+and a height of <meter value=2>2cm</meter>.</p> <!-- BAD! -->
+
+<p>The grapefruit pie had a radius of 12cm and a height of
+2cm.</p>
+<dl>
+ <dt>Radius: <dd> <meter min=0 max=20 value=12>12cm</meter>
+ <dt>Height: <dd> <meter min=0 max=10 value=2>2cm</meter>
+</dl>
+
+<dl>
+ <dt>Radius: <dd> <meter min=0 max=20 value=12 title="centimeters">12cm</meter>
+ <dt>Height: <dd> <meter min=0 max=10 value=2 title="centimeters">2cm</meter>
+</dl>
+
+<h3>Suggested groups</h3>
+<menu type="toolbar">
+ <a href="?cmd=hsg" onclick="hideSuggestedGroups()">Hide suggested groups</a>
+</menu>
+<ul>
+ <li>
+ <p><a href="/group/comp.infosystems.www.authoring.stylesheets/view">comp.infosystems.www.authoring.stylesheets</a> -
+ <a href="/group/comp.infosystems.www.authoring.stylesheets/subscribe">join</a></p>
+ <p>Group description: <strong>Layout/presentation on the WWW.</strong></p>
+ <p><meter value="0.5">Moderate activity,</meter> Usenet, 618 subscribers</p>
+ </li>
+ <li>
+ <p><a href="/group/netscape.public.mozilla.xpinstall/view">netscape.public.mozilla.xpinstall</a> -
+ <a href="/group/netscape.public.mozilla.xpinstall/subscribe">join</a></p>
+ <p>Group description: <strong>Mozilla XPInstall discussion.</strong></p>
+ <p><meter value="0.25">Low activity,</meter> Usenet, 22 subscribers</p>
+ </li>
+ <li>
+ <p><a href="/group/mozilla.dev.general/view">mozilla.dev.general</a> -
+ <a href="/group/mozilla.dev.general/subscribe">join</a></p>
+ <p><meter value="0.25">Low activity,</meter> Usenet, 66 subscribers</p>
+ </li>
+</ul>
+
+<meter min=0 max=60 value=23.2 title=seconds></meter>
+
+<p>Disk usage: <meter min=0 value=170261928 max=233257824>170 261 928 bytes used
+out of 233 257 824 bytes available</meter></p>
+
+ </body>
+</html>

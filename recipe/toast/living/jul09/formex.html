@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> form examples </title> </head>
+ <body>
+
+ <form id="a">
+ <div id="b"></div>
+ </form>
+ <script>
+ document.getElementById('b').innerHTML =
+ '<table><tr><td><form id="c"><input id="d"></table>' +
+ '<input id="e">';
+ </script>
+
+<input maxlength="256" name="q" value="" autofocus>
+<input type="submit" value="Search">
+
+<form action="editor.cgi" method="post">
+ <p><label>Name: <input required name=fn></label></p>
+ <p><label>Essay: <textarea name=essay></label></p>
+ <p><input type=submit name=submit value="Submit essay"></p>
+ <p><input type=submit formnovalidate name=save value="Save essay"></p>
+ <p><input type=submit formnovalidate name=cancel value="Cancel"></p>
+</form>
+
+ </body>
+</html>

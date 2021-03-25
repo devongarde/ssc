@@ -70,6 +70,7 @@ public:
     VALUE_TYPE get () const { return default_value (); }
     int get_int () const { return 0; }
     bool has_value (const VALUE_TYPE ) const { return false; }
+    ::std::size_t size () const { return 1; }
     void shadow (::std::stringstream& , const html_version& , element* ) { }
     ::std::string report () const
     {   ::std::string s;

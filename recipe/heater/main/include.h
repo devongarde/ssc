@@ -176,11 +176,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <unicode/ucsdet.h>
 #include <unicode/ucnv.h>
 #ifdef _MSC_VER
-#pragma comment (lib,"icudt.lib")
-#pragma comment (lib,"icuin.lib")
-#pragma comment (lib,"icuio.lib")
-#pragma comment (lib,"icutu.lib")
-#pragma comment (lib,"icuuc.lib")
+#pragma comment (lib, "icudt.lib")
+#pragma comment (lib, "icuin.lib")
+#pragma comment (lib, "icuio.lib")
+#pragma comment (lib, "icutu.lib")
+#pragma comment (lib, "icuuc.lib")
 #endif // _MSC_VER
 #endif // SSC_TEST
 

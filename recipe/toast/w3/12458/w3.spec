@@ -14,7 +14,7 @@ PASS ../toast/w3/12458/2342-opensp_type_X.html
 3 missing_close
 6 use_double_quote_code
 8 missing_close
-11 unknown
+11 bad_id
 
 PASS ../toast/w3/12458/4476-svg_nodoctype.svg
 0 title_required
