@@ -24,19 +24,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 
 element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed)
-    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), elem_ (tag), presumed_ (presumed), nits_ (nits)
+    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), nits_ (nits)
 {   if (parent_ != nullptr) version_ = parent_ -> version_; else version_ = context.html_ver (); }
 
 element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed)
-    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), elem_ (el), presumed_ (presumed), nits_ (nits)
+    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), nits_ (nits)
 {   if (parent_ != nullptr) version_ = parent_ -> version_; else version_ = context.html_ver (); }
 
 element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str)
-    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), elem_ (tag), text_ (str), presumed_ (presumed), nits_ (nits)
+    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), text_ (str), nits_ (nits)
 {   if (parent_ != nullptr) version_ = parent_ -> version_; else version_ = context.html_ver (); }
 
 element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str)
-    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), elem_ (el), text_ (str), presumed_ (presumed), nits_ (nits)
+    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), text_ (str), nits_ (nits)
 {   if (parent_ != nullptr) version_ = parent_ -> version_; else version_ = context.html_ver (); }
 
 element_node::~element_node ()

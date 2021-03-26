@@ -82,11 +82,11 @@ void verify_file_charset (nitpick& nits, const html_version& v, const ::std::str
                                 validated = v.valid_charset (matched [i].name ()); }
                     if (! match_found)
                     {   if (charset.empty ())
-                            nits.pick (nit_charset_mismatch, es_warning, ec_page, "The charset of '", name, "' is neither declared nor ", dcs, " (the default for ", v.report (), ")");
+                            nits.pick (nit_charset_mismatch, es_warning, ec_page, "The charset of '", name, "' is neither declared nor ", dcs, " (the default for ", v.name (), ")");
                         else nits.pick (nit_charset_mismatch, es_warning, ec_page, "The content of '", name, "' does not match its declared charset, ", charset);
                         nits.pick (nit_charset_used, es_info, ec_page, "'", name, "' appears to use ", matched [0].name ()); }
                     if (! validated)
-                        nits.pick (nit_charset_invalid, es_error, ec_page, "The actual charset of '", name, "', ", matched [0].name (), ", is invalid in ", v.report (), "; prefer ", dcs);
+                        nits.pick (nit_charset_invalid, es_error, ec_page, "The actual charset of '", name, "', ", matched [0].name (), ", is invalid in ", v.name (), "; prefer ", dcs);
                     if (context.tell (e_debug)) nits.pick (nit_icu, es_debug, ec_icu, rpt.str ()); } } } }
     catch (...)
     {   nits.pick (nit_page_charset, es_error, ec_page, name, " is incompatible with charset ", charset); } }

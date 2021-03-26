@@ -74,6 +74,7 @@
     <ClInclude Include="..\heater\parser\parse_element.h" />
     <ClInclude Include="..\heater\parser\parse_elements.h" />
     <ClInclude Include="..\heater\parser\parse_ssi.h" />
+    <ClInclude Include="..\heater\parser\pattern.h" />
     <ClInclude Include="..\heater\parser\text.h" />
     <ClInclude Include="..\heater\parser\xhtml_xml.h" />
     <ClInclude Include="..\heater\schema\schema_hierarchy.h" />
@@ -226,6 +227,7 @@
     <ClCompile Include="..\sauce\parser\parse_element.cpp" />
     <ClCompile Include="..\sauce\parser\parse_elements.cpp" />
     <ClCompile Include="..\sauce\parser\parse_ssi.cpp" />
+    <ClCompile Include="..\sauce\parser\pattern.cpp" />
     <ClCompile Include="..\sauce\parser\text.cpp" />
     <ClCompile Include="..\sauce\parser\xhtml_xml.cpp" />
     <ClCompile Include="..\sauce\schema\schema_hierarchy.cpp" />
@@ -262,6 +264,7 @@
     <ClCompile Include="..\sauce\type\type_time.cpp" />
     <ClCompile Include="..\sauce\type\type_transform.cpp" />
     <ClCompile Include="..\sauce\type\type_url.cpp" />
+    <ClCompile Include="..\sauce\type\type_varied.cpp" />
     <ClCompile Include="..\sauce\type\type_xmlns.cpp" />
     <ClCompile Include="..\sauce\url\url.cpp" />
     <ClCompile Include="..\sauce\url\url_parameters.cpp" />

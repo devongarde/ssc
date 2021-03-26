@@ -14,6 +14,9 @@ PASS ../toast/webapps/jul05/address.html
 12 attempted_escape no_such_folder url_not_found
 13 url_not_found
 
+PASS ../toast/webapps/jul05/datagrid.html
+23 naughty_alt
+
 PASS ../toast/webapps/jul05/dl.html
 8 inserted_missing_closure
 9 inserted_missing_closure
@@ -45,9 +48,9 @@ PASS ../toast/webapps/jul05/m.html
 13 use_quote_code
 
 PASS ../toast/webapps/jul05/menu.html
-7 ignoring_unknown attribute_barred
-8 inserted_missing_closure missing_close
-10 inserted_missing_closure
+6 missing_close
+8 missing_close
+10 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/webapps/jul05/samp.html
 7 use_quote_code

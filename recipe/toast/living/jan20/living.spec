@@ -84,6 +84,13 @@ PASS ../toast/living/jan20/datalist.html
 PASS ../toast/living/jan20/del.html
 9 use_quote_code
 
+PASS ../toast/living/jan20/details.html
+0 charset_mismatch charset_used charset_invalid
+6 unrecognised_value unrecognised_value
+7 use_double_quote_code
+25 inserted_missing_closure missing_close
+26 inserted_missing_closure
+
 PASS ../toast/living/jan20/dfn.html
 9 use_quote_code
 15 use_quote_code

@@ -806,6 +806,9 @@
     <ClInclude Include="\\corona\dylan\github\ssc\recipe\heater\stats\stats4.h">
       <Filter>Heater\stats</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\parser\pattern.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1140,6 +1143,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\feedback\nitnames.cpp">
       <Filter>Sauce\feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\pattern.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_varied.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

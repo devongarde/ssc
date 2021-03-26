@@ -125,9 +125,11 @@ class element
     void examine_bind ();
     void examine_button ();
     void examine_caption ();
+    void examine_command ();
     void examine_col ();
     void examine_colgroup ();
     void examine_data ();
+    void examine_datagrid ();
     void examine_datalist ();
     void examine_details ();
     void examine_dd ();

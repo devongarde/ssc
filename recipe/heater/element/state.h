@@ -68,6 +68,11 @@ inline element_bitset& operator &= (element_bitset& bs, const e_element e)
     else bs = element_bitset ();
     return bs; }
 
+inline attribute_bitset operator | (const attribute_bitset& bs, const e_attribute e)
+{   attribute_bitset res (bs);
+    res.set (e);
+    return res; }
+
 inline attribute_bitset operator & (const attribute_bitset& bs, const e_attribute e)
 {   if (! bs.test (e)) return attribute_bitset ();
     return attribute_bitset (e); }

@@ -3,6 +3,9 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.96
+- various refinements
+
 0.0.95
 - various refinements
 

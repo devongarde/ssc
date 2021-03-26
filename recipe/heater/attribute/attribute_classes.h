@@ -173,6 +173,7 @@ typedef typed_attribute < t_nsds, a_columnlines > attr_columnlines;
 typedef typed_attribute < t_mathspace, a_columnspacing > attr_columnspacing;
 typedef typed_attribute < t_unsigned, a_columnspan > attr_columnspan;
 typedef typed_attribute < t_mathspacefit, a_columnwidth > attr_columnwidth;
+typedef typed_attribute < t_idref, a_command > attr_command;
 typedef typed_attribute < t_compact, a_compact > attr_compact;
 typedef typed_attribute < t_text, a_content > attr_content;
 typedef typed_attribute < t_truefalseempty, a_contenteditable > attr_contenteditable;
@@ -1035,6 +1036,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_columnspacing, \
     attr_columnspan, \
     attr_columnwidth, \
+    attr_command, \
     attr_compact, \
     attr_content, \
     attr_contenteditable, \

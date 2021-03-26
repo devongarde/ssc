@@ -654,6 +654,7 @@ struct hav_t
 
 hav_t havt [] =
 {   { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { XHTML_2_0 }, elem_a, a_charset },
+    { { HTML_JAN05 }, { HTML_DEC05 }, elem_a, a_command },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_a, a_coords },
     { { HTML_JAN12 }, { HTML_UNDEF }, elem_a, a_download },
     { { HTML_PLUS }, { HTML_PLUS }, elem_a, a_effect },
@@ -934,6 +935,9 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_b),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_b),
 
+    { { HTML_JUL08 }, { HTML_DEC09 }, elem_bb, a_type },
+    STANDARD_HTML5_ATTRIBUTES (elem_bb),
+
     HTML3_CLID_ATTRIBUTES (elem_banner),
 
     HTML3_CLID_ATTRIBUTES (elem_bar),
@@ -1035,6 +1039,7 @@ hav_t havt [] =
     { { HTML_JAN09 }, { HTML_JUN09 }, elem_button, a_action },
     { { HTML_JAN20, 0, HE_MOZILLA }, { HTML_UNDEF }, elem_button, a_autocomplete },
     { { HTML_JAN09 }, { HTML_DEC19 }, elem_button, a_autofocus },
+    { { HTML_JAN05 }, { HTML_DEC05 }, elem_button, a_command },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, a_datafld },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, a_dataformatas },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, a_datasrc },
@@ -1157,11 +1162,15 @@ hav_t havt [] =
 
     MATH3_STANDARD_ATTRIBUTES (elem_condition),
 
-    { { HTML_JAN05 }, { HTML_5_0 }, elem_command, a_checked },
-    { { HTML_JAN05 }, { HTML_5_0 }, elem_command, a_disabled },
-    { { HTML_JAN05 }, { HTML_5_0 }, elem_command, a_icon },
-    { { HTML_JAN05 }, { HTML_5_0 }, elem_command, a_radiogroup },
-    { { HTML_JAN05 }, { HTML_5_0 }, elem_command, a_type },
+    { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_checked },
+    { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_command },
+    { { HTML_JAN05 }, { HTML_JUN09 }, elem_command, a_default },
+    { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_disabled },
+    { { HTML_JAN05 }, { HTML_DEC08 }, elem_command, a_hidden },
+    { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_icon },
+    { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_label },
+    { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_radiogroup },
+    { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_type },
     STANDARD_HTML5_ATTRIBUTES (elem_command),
 
     { { HTML_2_0 }, { HTML_4_01 }, elem_comment, a_data },
@@ -1204,6 +1213,10 @@ hav_t havt [] =
     { { HTML_JAN12 }, { HTML_UNDEF }, elem_data, a_value },
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_data),
 
+    { { HTML_JUL05 }, { HTML_DEC09 }, elem_datagrid, a_disabled },
+    { { HTML_JUL05 }, { HTML_DEC09 }, elem_datagrid, a_multiple },
+    STANDARD_HTML5_ATTRIBUTES (elem_datagrid),
+
     STANDARD_HTML5_ATTRIBUTES (elem_datalist),
 
     { { HTML_3_0 }, { HTML_3_0 }, elem_dd, a_clear },
@@ -1237,10 +1250,13 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_desc),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_desc),
 
-    { { HTML_JAN05, HV_NOT50 }, { HTML_UNDEF }, elem_details, a_open },
+    { { HTML_JAN07, HV_NOT50 }, { HTML_UNDEF }, elem_details, a_open },
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_details),
 
     MATH3_DEFS_ATTRIBUTES (elem_determinant),
+
+    { { HTML_JAN10 }, { HTML_JUN11 }, elem_device, a_type },
+    STANDARD_HTML5_ATTRIBUTES (elem_device),
 
     HTMLPLUS_ATTRIBUTES (elem_dfn),
     HTML3_CLID_ATTRIBUTES (elem_dfn),
@@ -1248,7 +1264,7 @@ hav_t havt [] =
 
     XHTML2_ATTRIBUTES (elem_di),
 
-    { { HTML_JAN12 }, { HTML_UNDEF }, elem_dialogue, a_open },
+    { { HTML_JUL12 }, { HTML_UNDEF }, elem_dialogue, a_open },
     STANDARD_HTML5_ATTRIBUTES (elem_dialogue),
 
     MATH3_DEFS_ATTRIBUTES (elem_diff),
@@ -1914,6 +1930,7 @@ hav_t havt [] =
     { { HTML_JAN09 }, { HTML_DEC19 }, elem_input, a_autofocus },
     { { HTML_5_3 }, { HTML_5_3 }, elem_input, a_capture },
     { { HTML_PLUS }, { HTML_UNDEF }, elem_input, a_checked },
+    { { HTML_JAN05 }, { HTML_DEC05 }, elem_input, a_command },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_input, a_datafld },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_input, a_dataformatas },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_input, a_datasrc },
@@ -2589,6 +2606,7 @@ hav_t havt [] =
     { { HTML_4_0, REQUIRED }, { HTML_UNDEF }, elem_optgroup, a_label },
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_optgroup),
 
+    { { HTML_JAN05 }, { HTML_DEC05 }, elem_option, a_command },
     { { HTML_PLUS, HV_NOT2 | HV_NOT32 }, { HTML_UNDEF }, elem_option, a_disabled },
     { { HTML_3_0 }, { HTML_3_0 }, elem_option, a_error },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_option, a_label },

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> datagrid </title> </head>
+ <body>
+
+<datagrid>
+ <select>
+ <!-- the options and optgroups have had their labels and values removed
+ to make the underlying structure clearer -->
+ <optgroup>
+ <option/>
+ <option/>
+ </optgroup>
+ <optgroup>
+ <option/>
+ <optgroup id="a">
+ <option/>
+ <option/>
+ <bogus/>
+ <option id="b"/>
+ </optgroup>
+ <option/>
+ </optgroup>
+ </select>
+</datagrid>
+
+<datagrid>
+ <ol>
+ <li> row 0 </li>
+ <li> row 1
+ <ol>
+ <li> row 1,0 </li>
+ </ol>
+ </li>
+ <li> row 2 </li>
+ </ol>
+</datagrid>
+
+<datagrid>
+ <ol>
+ <li> row 0 </li>
+ <li> row 1
+ <ol>
+ <li> row 1,0 <img src="http://example.com/a" alt=""> </li>
+ </ol>
+ </li>
+ <li> row 2 </li>
+ </ol>
+</datagrid>
+
+ </body>
+</html>

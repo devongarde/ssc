@@ -586,6 +586,8 @@ nitname nitnames [] =
     { nit_bad_usemap, "bad_usemap" },
     { nit_bad_type_attribute, "bad_type_attribute" },
     { nit_bad_pattern, "bad_pattern" },
+    { nit_bad_command, "bad_command" },
+    { nit_bad_datagrid, "bad_datagrid" },
 
     { nit_off, "" } };
 

@@ -9513,9 +9513,6 @@
     <None Include="..\toast\webapps\jul05\em.html">
       <Filter>Toast\WebApps\Jul05</Filter>
     </None>
-    <None Include="..\toast\webapps\jan05\em.html">
-      <Filter>Toast\WebApps\Jan05</Filter>
-    </None>
     <None Include="..\toast\webapps\jul06\em.html">
       <Filter>Toast\WebApps\Jul06</Filter>
     </None>
@@ -15047,6 +15044,189 @@
     </None>
     <None Include="..\toast\living\jan19\formex.html">
       <Filter>Toast\Living\jan19</Filter>
+    </None>
+    <None Include="..\toast\living\jan10\details.html">
+      <Filter>Toast\Living\jan10</Filter>
+    </None>
+    <None Include="..\toast\living\jul10\details.html">
+      <Filter>Toast\Living\jul10</Filter>
+    </None>
+    <None Include="..\toast\living\jul20\details.html">
+      <Filter>Toast\Living\jul20</Filter>
+    </None>
+    <None Include="..\toast\living\jul19\details.html">
+      <Filter>Toast\Living\jul19</Filter>
+    </None>
+    <None Include="..\toast\living\jul18\details.html">
+      <Filter>Toast\Living\jul18</Filter>
+    </None>
+    <None Include="..\toast\living\jul17\details.html">
+      <Filter>Toast\Living\jul17</Filter>
+    </None>
+    <None Include="..\toast\living\jul16\details.html">
+      <Filter>Toast\Living\jul16</Filter>
+    </None>
+    <None Include="..\toast\living\jul15\details.html">
+      <Filter>Toast\Living\jul15</Filter>
+    </None>
+    <None Include="..\toast\living\jul14\details.html">
+      <Filter>Toast\Living\jul14</Filter>
+    </None>
+    <None Include="..\toast\living\jul13\details.html">
+      <Filter>Toast\Living\jul13</Filter>
+    </None>
+    <None Include="..\toast\living\jul12\details.html">
+      <Filter>Toast\Living\jul12</Filter>
+    </None>
+    <None Include="..\toast\living\jul11\details.html">
+      <Filter>Toast\Living\jul11</Filter>
+    </None>
+    <None Include="..\toast\living\jan21\details.html">
+      <Filter>Toast\Living\jan21</Filter>
+    </None>
+    <None Include="..\toast\living\jan20\details.html">
+      <Filter>Toast\Living\jan20</Filter>
+    </None>
+    <None Include="..\toast\living\jan19\details.html">
+      <Filter>Toast\Living\jan19</Filter>
+    </None>
+    <None Include="..\toast\living\jan18\details.html">
+      <Filter>Toast\Living\jan18</Filter>
+    </None>
+    <None Include="..\toast\living\jan17\details.html">
+      <Filter>Toast\Living\jan17</Filter>
+    </None>
+    <None Include="..\toast\living\jan16\details.html">
+      <Filter>Toast\Living\jan16</Filter>
+    </None>
+    <None Include="..\toast\living\jan15\details.html">
+      <Filter>Toast\Living\jan15</Filter>
+    </None>
+    <None Include="..\toast\living\jan14\details.html">
+      <Filter>Toast\Living\jan14</Filter>
+    </None>
+    <None Include="..\toast\living\jan13\details.html">
+      <Filter>Toast\Living\jan13</Filter>
+    </None>
+    <None Include="..\toast\living\jan12\details.html">
+      <Filter>Toast\Living\jan12</Filter>
+    </None>
+    <None Include="..\toast\living\jan11\details.html">
+      <Filter>Toast\Living\jan11</Filter>
+    </None>
+    <None Include="..\toast\living\jan19\commands.html">
+      <Filter>Toast\Living\jan19</Filter>
+    </None>
+    <None Include="..\toast\living\jul20\commands.html">
+      <Filter>Toast\Living\jul20</Filter>
+    </None>
+    <None Include="..\toast\living\jul19\commands.html">
+      <Filter>Toast\Living\jul19</Filter>
+    </None>
+    <None Include="..\toast\living\jan21\commands.html">
+      <Filter>Toast\Living\jan21</Filter>
+    </None>
+    <None Include="..\toast\living\jan20\commands.html">
+      <Filter>Toast\Living\jan20</Filter>
+    </None>
+    <None Include="..\toast\living\jan15\dialogue.html">
+      <Filter>Toast\Living\jan15</Filter>
+    </None>
+    <None Include="..\toast\living\jul15\dialogue.html">
+      <Filter>Toast\Living\jul15</Filter>
+    </None>
+    <None Include="..\toast\living\jul20\dialogue.html">
+      <Filter>Toast\Living\jul20</Filter>
+    </None>
+    <None Include="..\toast\living\jul19\dialogue.html">
+      <Filter>Toast\Living\jul19</Filter>
+    </None>
+    <None Include="..\toast\living\jul18\dialogue.html">
+      <Filter>Toast\Living\jul18</Filter>
+    </None>
+    <None Include="..\toast\living\jul17\dialogue.html">
+      <Filter>Toast\Living\jul17</Filter>
+    </None>
+    <None Include="..\toast\living\jul16\dialogue.html">
+      <Filter>Toast\Living\jul16</Filter>
+    </None>
+    <None Include="..\toast\living\jan21\dialogue.html">
+      <Filter>Toast\Living\jan21</Filter>
+    </None>
+    <None Include="..\toast\living\jan20\dialogue.html">
+      <Filter>Toast\Living\jan20</Filter>
+    </None>
+    <None Include="..\toast\living\jan19\dialogue.html">
+      <Filter>Toast\Living\jan19</Filter>
+    </None>
+    <None Include="..\toast\living\jan18\dialogue.html">
+      <Filter>Toast\Living\jan18</Filter>
+    </None>
+    <None Include="..\toast\living\jan17\dialogue.html">
+      <Filter>Toast\Living\jan17</Filter>
+    </None>
+    <None Include="..\toast\living\jan16\dialogue.html">
+      <Filter>Toast\Living\jan16</Filter>
+    </None>
+    <None Include="..\toast\living\jan10\command.html">
+      <Filter>Toast\Living\jan10</Filter>
+    </None>
+    <None Include="..\toast\living\jul12\command.html">
+      <Filter>Toast\Living\jul12</Filter>
+    </None>
+    <None Include="..\toast\living\jul11\command.html">
+      <Filter>Toast\Living\jul11</Filter>
+    </None>
+    <None Include="..\toast\living\jul10\command.html">
+      <Filter>Toast\Living\jul10</Filter>
+    </None>
+    <None Include="..\toast\living\jan12\command.html">
+      <Filter>Toast\Living\jan12</Filter>
+    </None>
+    <None Include="..\toast\living\jan11\command.html">
+      <Filter>Toast\Living\jan11</Filter>
+    </None>
+    <None Include="..\toast\webapps\jan07\datagrid.html">
+      <Filter>Toast\WebApps\Jan07</Filter>
+    </None>
+    <None Include="..\toast\webapps\jul06\datagrid.html">
+      <Filter>Toast\WebApps\Jul06</Filter>
+    </None>
+    <None Include="..\toast\webapps\jan06\datagrid.html">
+      <Filter>Toast\WebApps\Jan06</Filter>
+    </None>
+    <None Include="..\toast\webapps\jul05\datagrid.html">
+      <Filter>Toast\WebApps\Jul05</Filter>
+    </None>
+    <None Include="..\toast\living\jul07\datagrid.html">
+      <Filter>Toast\Living\jul07</Filter>
+    </None>
+    <None Include="..\toast\living\jul08\datagrid.html">
+      <Filter>Toast\Living\jul08</Filter>
+    </None>
+    <None Include="..\toast\living\jan08\datagrid.html">
+      <Filter>Toast\Living\jan08</Filter>
+    </None>
+    <None Include="..\toast\living\jan09\datagrid.html">
+      <Filter>Toast\Living\jan09</Filter>
+    </None>
+    <None Include="..\toast\living\jul08\bb.html">
+      <Filter>Toast\Living\jul08</Filter>
+    </None>
+    <None Include="..\toast\living\jul09\bb.html">
+      <Filter>Toast\Living\jul09</Filter>
+    </None>
+    <None Include="..\toast\living\jan09\bb.html">
+      <Filter>Toast\Living\jan09</Filter>
+    </None>
+    <None Include="..\toast\living\jan10\device.html">
+      <Filter>Toast\Living\jan10</Filter>
+    </None>
+    <None Include="..\toast\living\jul10\device.html">
+      <Filter>Toast\Living\jul10</Filter>
+    </None>
+    <None Include="..\toast\living\jan11\device.html">
+      <Filter>Toast\Living\jan11</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
