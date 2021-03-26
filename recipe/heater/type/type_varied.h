@@ -402,7 +402,7 @@ template < > struct type_master < t_occurence > : varied < t_occurence >
 template < > struct type_master < t_open > : varied < t_open >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
     {   if (good () || empty ())
-            if (! e.is_math ()) validate_type < type_master < t_html_boolean > > (nits, v); } };
+            if (! e.is_math ()) validate_type < type_master < t_existential > > (nits, v); } };
 
 template < > struct type_master < t_operator > : varied < t_operator >
 {   void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
@@ -559,16 +559,20 @@ template < > struct type_master < t_type > : varied < t_type >
             switch (e.get ())
             {   case elem_animatetransform :
                     validate_type < type_master < t_transform_anim > > (nits, v); break;
+                case elem_bb :
+                    validate_type < type_master < t_bb > > (nits, v); break;
                 case elem_button :
                     validate_type < type_master < t_button > > (nits, v); break;
                 case elem_ci :
                     validate_type < type_master < t_citype > > (nits, v); break;
                 case elem_cn :
                     validate_type < type_master < t_cntype > > (nits, v); break;
-                case elem_declare :
-                    validate_type < type_master < t_text > > (nits, v); break;
                 case elem_command :
                     validate_type < type_master < t_command > > (nits, v); break;
+                case elem_declare :
+                    validate_type < type_master < t_text > > (nits, v); break;
+                case elem_device :
+                    validate_type < type_master < t_device > > (nits, v); break;
                 case elem_fecolourmatrix :
                     validate_type < type_master < t_matrixtype > > (nits, v); break;
                 case elem_fefunca :

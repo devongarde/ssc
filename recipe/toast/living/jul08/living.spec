@@ -33,8 +33,27 @@ PASS ../toast/living/jul08/b.html
 14 use_quote_code
 21 inserted_missing_closure
 
+PASS ../toast/living/jul08/bb.html
+7 url_not_found
+8 inserted_missing_closure missing_open
+9 inserted_missing_closure inserted_missing_closure url_not_found
+10 inserted_missing_closure missing_close url_not_found
+11 inserted_missing_closure
+14 url_not_found
+15 only_elements
+16 url_not_found
+17 only_elements url_not_found
+
 PASS ../toast/living/jul08/cite.html
 34 use_quote_code
+
+PASS ../toast/living/jul08/datagrid.html
+10 attribute_required
+14 attribute_required
+16 inserted_missing_closure attribute_required
+19 ignoring_unknown
+23 missing_open
+44 naughty_alt
 
 PASS ../toast/living/jul08/dialogue.html
 8 inserted_missing_closure
@@ -233,8 +252,6 @@ PASS ../toast/living/jul08/meter.html
 24 inserted_missing_closure
 25 inserted_missing_closure inserted_missing_closure missing_close
 26 inserted_missing_closure
-30 inserted_missing_closure
-31 missing_open
 34 no_such_folder url_not_found
 35 no_such_folder url_not_found
 40 no_such_folder url_not_found

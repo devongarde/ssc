@@ -37,11 +37,9 @@ PASS ../toast/webapps/jan05/header.html
 
 PASS ../toast/webapps/jan05/menu.html
 1 draft_html_5
-4 missing_close
 6 missing_close
-7 missing_close inserted_missing_parent inserted_missing_closure inserted_missing_closure inserted_missing_closure only_once bespoke_element invalid_attribute_version wrong_version missing_open
 8 missing_close
-10 inserted_missing_closure
+10 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/webapps/jan05/p.html
 1 draft_html_5

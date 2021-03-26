@@ -34,6 +34,7 @@ template < e_type TYPE, class SZ > struct one_value : public type_base < mono, T
     mono get () const { return static_cast <mono> (0); } };
 
 template < > class type_master < t_1 > : public one_value < t_1, sz_1 > { };
+template < > class type_master < t_bb > : public one_value < t_bb, sz_makeapp > { };
 template < > class type_master < t_html_boolean > : public one_value < t_html_boolean, sz_true > { };
 template < > class type_master < t_keygentype > : public one_value < t_keygentype, sz_rsa > { };
 template < > class type_master < t_svg_content > : public one_value < t_svg_content, sz_structured_text > { };

@@ -57,6 +57,12 @@ PASS ../toast/living/jul10/caption.html
 9 inserted_missing_closure missing_close
 13 inserted_missing_closure
 
+PASS ../toast/living/jul10/command.html
+7 no_such_folder url_not_found unknown
+8 no_such_folder url_not_found unknown
+9 no_such_folder url_not_found unknown
+11 no_such_folder url_not_found
+
 PASS ../toast/living/jul10/dd.html
 0 charset_mismatch charset_used charset_invalid
 8 unrecognised_value use_quote_code
@@ -67,6 +73,16 @@ PASS ../toast/living/jul10/dd.html
 
 PASS ../toast/living/jul10/del.html
 9 use_quote_code
+
+PASS ../toast/living/jul10/details.html
+0 charset_mismatch charset_used charset_invalid
+6 unrecognised_value unrecognised_value
+7 use_double_quote_code
+25 inserted_missing_closure missing_close
+26 inserted_missing_closure
+
+PASS ../toast/living/jul10/device.html
+7 autoplay
 
 PASS ../toast/living/jul10/dfn.html
 9 use_quote_code
@@ -491,30 +507,15 @@ PASS ../toast/living/jul10/me.html
 7 url_not_found
 
 PASS ../toast/living/jul10/menu.html
-8 ignoring_unknown missing_close attribute_barred unrecognised_attribute attribute_barred attribute_barred unrecognised_attribute attribute_barred
-10 ignoring_unknown missing_close attribute_barred unrecognised_attribute attribute_barred unrecognised_attribute attribute_barred
-12 ignoring_unknown missing_close attribute_barred unrecognised_attribute attribute_barred unrecognised_attribute attribute_barred
-15 ignoring_unknown missing_close attribute_barred attribute_barred attribute_barred unrecognised_attribute attribute_barred
-16 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
-19 missing_close
-21 inserted_missing_closure
-25 inserted_missing_closure
-26 missing_open
-27 inserted_missing_parent
-29 inserted_missing_closure
-32 missing_open
+8 no_such_folder url_not_found unknown
+10 no_such_folder url_not_found unknown
+12 no_such_folder url_not_found unknown
+15 no_such_folder url_not_found
 36 url_not_found
 37 url_not_found
-40 missing_open
-42 inserted_missing_closure url_not_found
-44 inserted_missing_closure
-48 newline_in_string inserted_missing_closure newline_in_string
-55 missing_open
-56 missing_open
-63 newline_in_string
-63 ignoring_unknown newline_in_string missing_close attribute_barred attribute_barred
-65 ignoring_unknown missing_close attribute_barred attribute_barred
-66 inserted_missing_closure inserted_missing_closure
+42 url_not_found
+48 newline_in_string newline_in_string
+63 newline_in_string newline_in_string
 
 PASS ../toast/living/jul10/meter.html
 7 url_not_found
@@ -526,8 +527,6 @@ PASS ../toast/living/jul10/meter.html
 21 inserted_missing_closure
 22 inserted_missing_closure inserted_missing_closure missing_close
 23 inserted_missing_closure
-27 inserted_missing_closure
-28 missing_open
 31 no_such_folder url_not_found
 32 no_such_folder url_not_found
 37 no_such_folder url_not_found

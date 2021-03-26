@@ -321,7 +321,7 @@ void element::examine_mstyle ()
 {   if (page_.version ().math_version () < math_3) return;
     if (a_.known (a_background))
         pick (nit_attribute_unrecognised_here, ed_math_3, "3.3.4.2 Attributes", es_error, ec_attribute, "the BACKGROUND attribute is not associated with <MSTYLE> in MathML 3");
-    attribute_bitset bs = a_verythickmathspace | a_verythinmathspace | a_veryverythickmathspace | a_veryverythinmathspace |
+    attribute_bitset bs = empty_attribute_bitset | a_verythickmathspace | a_verythinmathspace | a_veryverythickmathspace | a_veryverythinmathspace |
             a_thinmathspace | a_thickmathspace | a_mediummathspace;
     bs &= own_attributes_;
     if (bs.any ())

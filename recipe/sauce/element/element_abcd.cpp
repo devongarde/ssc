@@ -204,14 +204,21 @@ void element::examine_button ()
         {   element_bitset bs (descendant_elements_);
             bs &= interactive_bitset;
             if (bs.any ())
-                pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "An <BUTTON> element cannot have interactive descendant elements.");
+                pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "An <BUTTON> element cannot have interactive descendant elements");
             if (descendant_attributes_.test (a_tabindex))
-                pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "An <BUTTON> element cannot have a descendant element with a TABINDEX."); }
+                pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "An <BUTTON> element cannot have a descendant element with a TABINDEX"); }
         e_button bu = static_cast < e_button > (a_.get_int (a_type));
         if (bu != bu_submit)
             if (a_.known (a_formaction) || a_.known (a_formenctype) || a_.known (a_formmethod) || a_.known (a_formnovalidate) || a_.known (a_formtarget) ||
                 a_.known (a_action) || a_.known (a_enctype) || a_.known (a_method) || a_.known (a_novalidate) || a_.known (a_target))
                 pick (nit_bad_form, ed_50, "", es_error, ec_attribute, "FORM... attributes require <BUTTON> TYPE='submit'"); } }
+
+void element::examine_command ()
+{   if (a_.known (a_command))
+    {   attribute_bitset bs = empty_attribute_bitset | a_type | a_label | a_title | a_hidden | a_icon | a_disabled | a_checked | a_radiogroup | a_default;
+        bs &= own_attributes_;
+        if (bs.any ())
+            pick (nit_bad_command, ed_jan12, "4.11.3 The command element", es_warning, ec_element, "A <COMMAND> element can either have the COMMAND attribute or other attributes"); } }
 
 void element::examine_col ()
 {   if (node_.version ().is_5 ())
@@ -243,6 +250,34 @@ void element::examine_data ()
         pick (nit_svg_data, es_error, ec_element, "<DATA> requires a later version of WhatWG's HTML 5 living standard");
     else if (! a_.known (a_value))
         pick (nit_svg_data, ed_jan12, "4.6.10 The data element", es_error, ec_attribute, "The HTML 5 <DATA> element requires the VALUE attribute"); }
+
+void element::examine_datagrid ()
+{   if (has_child ())
+    {   bool had_table = false, had_select = false, had_datalist = false, had_other = false;
+        int n = 0;
+        for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+            if (is_standard_element (p -> tag ()) && ! p -> node_.is_closure ())
+                switch (p -> tag ())
+                {   case elem_datalist :
+                        had_datalist = true;
+                        ++n;
+                        break;
+                    case elem_select :
+                        had_select = true;
+                        ++n;
+                        break;
+                    case elem_table :
+                        had_table = true;
+                         ++n;
+                        break;
+                   default :
+                        had_other = true;
+                        break; }
+        if (n > 1)
+            pick (nit_bad_datagrid, ed_jan07, "3.18.2. The datagrid element", es_error, ec_element, "a <DATAGRID> can have only one <DATALIST>, <SELECT> or <TABLE> child");
+        if (had_other)
+            if (had_table || had_select || had_datalist)
+                pick (nit_bad_datagrid, ed_jan07, "3.18.2. The datagrid element", es_error, ec_element, "a <DATAGRID> can have one <DATALIST>, <SELECT> or <TABLE> child, or other children, but not a mix of them"); } }
 
 void element::examine_datalist ()
 {   if (! has_child ()) pick (nit_bad_datalist, ed_50, "4.10.8 The datalist element", es_warning, ec_element, "is the empty <DATALIST> intentional");
@@ -283,8 +318,8 @@ void element::dddt (const char* ref1, const char* ref2, const char* el)
             {   if (! ancestral_elements_.test (elem_dialogue))
                     pick (nit_dl_ancestor, ed_jan07, ref1, es_error, ec_element, "<", el, "> must have a <DL> or <DIALOG> ancestor."); }
             else if (node_.version () < html_jul10)
-            {   if (! ancestral_elements_.test (elem_figure))
-                    pick (nit_dl_ancestor, ed_jan07, ref1, es_error, ec_element, "<", el, "> must have a <DL> or <FIGURE> ancestor."); }
+            {   if (! ancestral_elements_.test (elem_figure) && ! ancestral_elements_.test (elem_details))
+                    pick (nit_dl_ancestor, ed_jan10, ref1, es_error, ec_element, "<", el, "> must have a <DETAILS>, <DL> or <FIGURE> ancestor."); }
             else pick (nit_dl_ancestor, ed_52, ref2, es_error, ec_element, "<", el, "> must have a <DL> ancestor.");
         check_descendants (elem_dt, header_bitset | sectioning_bitset | elem_header | elem_footer); } }
 

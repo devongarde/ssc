@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> bb </title> </head>
+ <body>
+
+<menu>
+ <li><a href="settings.html" onclick="panels.show('settings')">Settings</a>
+ <li><bb type="makeapp">Download standalone application</bb>
+ <li><a href="help.html" onclick="panels.show('help')">Help</a>
+ <li><a href="logout.html" onclick="panels.show('logout')">Sign out</a>
+</menu>
+
+<menu>
+ <a href="settings.html" onclick="panels.show('settings')">Settings</a> |
+ <bb type="makeapp" id="makeapp"> </bb>
+ <a href="help.html" onclick="panels.show('help')">Help</a> |
+ <a href="logout.html" onclick="panels.show('logout')">Sign out</a>
+</menu>
+<script>
+ var bb = document.getElementById('makeapp');
+ if (bb.supported && bb.enabled) {
+ bb.parentNode.nextSibling.textContent = ' | ';
+ bb.textContent = 'Download standalone application';
+ } else {
+ bb.parentNode.removeChild(bb);
+ }
+</script>
+
+ </body>
+</html>

@@ -17,6 +17,9 @@ PASS ../toast/webapps/jan06/address.html
 PASS ../toast/webapps/jan06/dfn.html
 10 use_quote_code
 
+PASS ../toast/webapps/jan06/datagrid.html
+23 naughty_alt
+
 PASS ../toast/webapps/jan06/dl.html
 8 inserted_missing_closure
 9 inserted_missing_closure

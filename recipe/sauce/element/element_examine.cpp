@@ -41,6 +41,7 @@ void element::pre_examine_element (const e_element tag)
         case elem_polyline :
         case elem_rect : examine_svg_shape (); break;
         case elem_col : examine_col (); break;
+        case elem_command : examine_command (); break;
         case elem_data : examine_data (); break;
         case elem_dialogue : examine_dialogue (); break;
         case elem_embed : examine_embed (); break;
@@ -102,10 +103,11 @@ void element::post_examine_element (const e_element tag)
         case elem_lowlimit :
         case elem_uplimit : if (page_.version ().math () <= math_1) break;
                             check_math_children (1); break;
+        case elem_datagrid : examine_datagrid (); break;
+        case elem_datalist : examine_datalist (); break;
         case elem_dfn : examine_dfn (); break;
         case elem_fn : if (page_.version ().math () > math_1) check_math_children (1);
                        break;
-        case elem_datalist : examine_datalist (); break;
         case elem_dd : examine_dd (); break;
         case elem_declare : if (page_.version ().math () > math_1) check_math_children (1, 2);
                             break;

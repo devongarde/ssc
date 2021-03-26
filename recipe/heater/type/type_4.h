@@ -51,8 +51,8 @@ template < > class type_master < t_channel_selector > : public four_value < t_ch
 template < > class type_master < t_colourinterpolation > : public four_value < t_colourinterpolation, e_colourinterpolation, sz_auto, sz_srgb, sz_linearrgb, sz_inherit > { };
 template < > class type_master < t_colourrendering > : public four_value < t_colourrendering, e_colourrendering, sz_auto, sz_optimisespeed, sz_optimisequality, sz_inherit > { };
 template < > class type_master < t_content_encoding > : public four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity > { };
-template < > class type_master < t_uplr > : public four_value < t_uplr, e_uplr, sz_down, sz_left, sz_right, sz_up > { };
 template < > class type_master < t_dsctv > : public four_value < t_dsctv, e_dsctv, sz_disc, sz_square, sz_circle, sz_triangle > { };
+template < > class type_master < t_device > : public four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb > { };
 template < > class type_master < t_edit > : public four_value < t_edit, e_edit, sz_changed, sz_deleted, sz_inserted, sz_moved > { };
 template < > class type_master < t_effect > : public four_value < t_effect, e_effect, sz_embed, sz_overlay, sz_replace, sz_new > { };
 template < > class type_master < t_frame4 > : public four_value < t_frame4, e_frame4, sz__blank, sz__parent, sz__self, sz__top > { };
@@ -78,6 +78,7 @@ template < > class type_master < t_svg_fontstyle > : public four_value < t_svg_f
 template < > class type_master < t_svg_type > : public four_value < t_svg_type, e_svg_type, sz_gamma, sz_identity, sz_linear, sz_table > { };
 template < > class type_master < t_tfmu > : public four_value < t_tfmu, e_tfmu, sz_false, sz_mixed, sz_true, sz_undefined > { };
 template < > class type_master < t_unicodebidi > : public four_value < t_unicodebidi, e_unicodebidi, sz_normal, sz_embed, sz_bidioverride, sz_inherit > { };
+template < > class type_master < t_uplr > : public four_value < t_uplr, e_uplr, sz_down, sz_left, sz_right, sz_up > { };
 template < > class type_master < t_valign3 > : public four_value < t_valign3, e_valign3, sz_top, sz_middle, sz_bottom, sz_baseline > { };
 template < > class type_master < t_visibility > : public four_value < t_visibility, e_visibility, sz_visible, sz_hidden, sz_collapse, sz_inherit > { };
 

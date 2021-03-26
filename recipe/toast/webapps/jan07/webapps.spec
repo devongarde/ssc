@@ -14,6 +14,14 @@ PASS ../toast/webapps/jan07/address.html
 12 attempted_escape no_such_folder url_not_found
 13 url_not_found
 
+PASS ../toast/webapps/jan07/datagrid.html
+10 attribute_required
+14 attribute_required
+16 inserted_missing_closure attribute_required
+19 ignoring_unknown
+23 missing_open
+44 naughty_alt
+
 PASS ../toast/webapps/jan07/dialogue.html
 8 inserted_missing_closure
 9 inserted_missing_closure
@@ -85,8 +93,6 @@ PASS ../toast/webapps/jan07/meter.html
 22 inserted_missing_closure
 23 inserted_missing_closure inserted_missing_closure missing_close
 24 inserted_missing_closure
-28 inserted_missing_closure
-29 missing_open
 32 no_such_folder url_not_found
 33 no_such_folder url_not_found
 38 no_such_folder url_not_found

@@ -92,9 +92,19 @@ PASS ../toast/living/jan15/dd.html
 PASS ../toast/living/jan15/del.html
 9 use_quote_code
 
+PASS ../toast/living/jan15/details.html
+0 charset_mismatch charset_used charset_invalid
+6 unrecognised_value unrecognised_value
+7 use_double_quote_code
+25 inserted_missing_closure missing_close
+26 inserted_missing_closure
+
 PASS ../toast/living/jan15/dfn.html
 9 use_quote_code
 15 use_quote_code
+
+PASS ../toast/living/jan15/dialogue.html
+14 inserted_missing_closure
 
 PASS ../toast/living/jan15/div.html
 10 use_quote_code

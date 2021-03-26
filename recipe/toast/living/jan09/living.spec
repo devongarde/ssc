@@ -27,10 +27,29 @@ PASS ../toast/living/jan09/b.html
 0 charset_mismatch charset_used charset_invalid
 12 use_quote_code
 
+PASS ../toast/living/jan09/bb.html
+7 url_not_found
+8 inserted_missing_closure
+9 inserted_missing_closure url_not_found
+10 inserted_missing_closure missing_close url_not_found
+11 inserted_missing_closure
+14 url_not_found
+15 only_elements
+16 url_not_found
+17 only_elements url_not_found
+
 PASS ../toast/living/jan09/blockquote.html
 7 missing_close
 8 missing_close use_quote_code
 12 inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/living/jan09/datagrid.html
+10 attribute_required
+14 attribute_required
+16 inserted_missing_closure attribute_required
+19 ignoring_unknown
+23 missing_open
+44 naughty_alt
 
 PASS ../toast/living/jan09/dd.html
 0 charset_mismatch charset_used charset_invalid
@@ -302,8 +321,6 @@ PASS ../toast/living/jan09/meter.html
 24 inserted_missing_closure
 25 inserted_missing_closure inserted_missing_closure missing_close
 26 inserted_missing_closure
-30 inserted_missing_closure
-31 missing_open
 34 no_such_folder url_not_found
 35 no_such_folder url_not_found
 40 no_such_folder url_not_found
