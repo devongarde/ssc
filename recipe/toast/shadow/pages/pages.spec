@@ -83,19 +83,18 @@ PASS ../toast/shadow/pages/html-bad.html
 211 bad_meter
 213 bad_meter
 214 bad_meter bad_meter bad_meter bad_meter bad_meter
-216 mime
-217 mime url_not_found
-218 mime bad_script
-219 invalid_attribute_version wrong_version mime
-220 bad_script
-221 bad_script
-222 url_not_found bad_script bad_script
-223 url_not_found bad_script bad_script
-224 bad_script bad_script
-225 bad_script
-226 unrecognised_value bad_script bad_script
-227 attribute_unrecognised_here unrecognised_attribute bad_script
-228 attribute_unrecognised_here unrecognised_attribute bad_script
+217 url_not_found
+218 bad_script bad_script
+219 invalid_attribute_version wrong_version
+220 script
+221 script
+222 url_not_found script bad_script
+223 url_not_found script bad_script
+224 script bad_script
+225 script
+226 unrecognised_value script
+227 attribute_unrecognised_here unrecognised_attribute script
+228 attribute_unrecognised_here unrecognised_attribute script
 
 PASS ../toast/shadow/pages/html-good.html
 2 naughty_lang

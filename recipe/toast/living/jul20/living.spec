@@ -75,6 +75,12 @@ PASS ../toast/living/jul20/blockquote.html
 72 use_double_quote_code
 87 inserted_missing_closure
 
+PASS ../toast/living/jul20/canvas3.html
+2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+3 element_offsite_base
+9 inserted_missing_parent inserted_missing_closure missing_close
+160 inserted_missing_closure
+
 PASS ../toast/living/jul20/caption.html
 9 inserted_missing_closure missing_close
 13 inserted_missing_closure
@@ -748,14 +754,10 @@ PASS ../toast/living/jul20/ls6.html
 
 PASS ../toast/living/jul20/ls10.html
 5 element_offsite_base
-7 url_not_found
-8 url_not_found
-9 url_not_found
 
 PASS ../toast/living/jul20/ls11.html
 4 long_title
 5 element_offsite_base
-8 url_not_found
 
 PASS ../toast/living/jul20/ls13.html
 12 use_quote_code
@@ -860,6 +862,15 @@ PASS ../toast/living/jul20/meter.html
 43 no_such_folder url_not_found
 44 no_such_folder url_not_found
 
+PASS ../toast/living/jul20/noscript.html
+6 url_not_found
+27 url_not_found
+30 id_exists
+
+PASS ../toast/living/jul20/object.html
+7 url_not_found
+12 reputation
+
 PASS ../toast/living/jul20/ol.html
 10 inserted_missing_closure
 11 inserted_missing_closure
@@ -869,10 +880,6 @@ PASS ../toast/living/jul20/ol.html
 20 inserted_missing_closure
 21 inserted_missing_closure missing_close
 22 inserted_missing_closure
-
-PASS ../toast/living/jul20/object.html
-7 url_not_found
-12 reputation
 
 PASS ../toast/living/jul20/optgroup.html
 6 url_not_found
@@ -936,6 +943,19 @@ PASS ../toast/living/jul20/samp.html
 9 unrecognised_value
 13 unrecognised_value unrecognised_value
 16 unrecognised_value
+
+PASS ../toast/living/jul20/script.html
+0 charset_mismatch charset_used charset_invalid
+6 url_not_found
+7 mime
+37 use_double_quote_code
+46 url_not_found
+51 use_quote_code
+77 bad_script
+82 bad_script
+100 url_not_found
+101 url_not_found
+103 url_not_found script
 
 PASS ../toast/living/jul20/select.html
 17 bad_select
@@ -1133,6 +1153,19 @@ PASS ../toast/living/jul20/te.html
 95 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 96 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 97 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/living/jul20/template1.html
+5 inserted_missing_closure missing_close
+16 inserted_missing_closure
+
+PASS ../toast/living/jul20/template2.html
+2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+10 inserted_missing_parent inserted_missing_closure missing_close
+13 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+14 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
+16 missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+17 inserted_missing_closure inserted_missing_closure
+18 inserted_missing_closure
 
 PASS ../toast/living/jul20/textarea.html
 12 use_quote_code use_double_quote_code

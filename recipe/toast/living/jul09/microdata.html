@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> microdata </title> </head>
+ <body>
+
+<div item>
+ <p>My name is <span itemprop="name">Elizabeth</span>.</p>
+</div>
+<div item>
+ <p>My name is <span itemprop="name">Daniel</span>.</p>
+</div>
+
+<div item>
+ <p>My name is <span itemprop="name">Neil</span>.</p>
+ <p>My band is called <span itemprop="band">Four Parts Water</span>.</p>
+ <p>I am <span itemprop="nationality">British</span>.</p>
+</div>
+
+<div item>
+ <img itemprop="image" src="google-logo.png" alt="Google">
+</div>
+
+<div item>
+ I was born on <time itemprop="birthday" datetime="2009-05-10">May 10th 2009</time>.
+</div>
+
+<div item>
+ <p>Name: <span itemprop="name">Amanda</span></p>
+ <p>Band: <span itemprop="band" item> <span itemprop="name">Jazz Band</span> (<span itemprop="size">12</span> players)</span></p>
+</div>
+
+<div item id="amanda"></div>
+<p>Name: <span subject="amanda" itemprop="name">Amanda</span></p>
+<div subject="amanda" itemprop="band" item id="jazzband"></div>
+<p>Band: <span subject="jazzband" itemprop="name">Jazz Band</span></p>
+<p>Size: <span subject="jazzband" itemprop="size">12</span> players</p>
+
+<div item>
+ <p>Flavors in my favorite ice cream:</p>
+ <ul>
+ <li itemprop="flavor">Lemon sorbet</li>
+ <li itemprop="flavor">Apricot sorbet</li>
+ </ul>
+</div>
+
+<div item>
+ <span itemprop="favorite-color favorite-fruit">orange</span>
+</div>
+
+<section item="org.example.animal.cat">
+ <h1 itemprop="org.example.name">Hedral</h1>
+ <p itemprop="org.example.desc">Hedral is a male american domestic
+ shorthair, with a fluffy black fur with white paws and belly.</p>
+ <img itemprop="org.example.img" src="hedral.jpeg" alt="" title="Hedral, age 18 months">
+</section>
+
+<section item="org.example.animal.cat com.example.feline">
+ <h1 itemprop="org.example.name com.example.fn">Hedral</h1>
+ <p itemprop="org.example.desc">Hedral is a male american domestic
+ shorthair, with a fluffy <span
+ itemprop="com.example.color">black</span> fur with <span
+ itemprop="com.example.color">white</span> paws and belly.</p>
+ <img itemprop="org.example.img" src="hedral.jpeg" alt="" title="Hedral, age 18 months">
+</section>
+
+<section item="org.example.animal.cat com.example.feline">
+ <h1 itemprop="org.example.name com.example.fn">Hedral</h1>
+ <p itemprop="org.example.desc">Hedral is a male american domestic
+ shorthair, with a fluffy <span
+ itemprop="com.example.color">black</span> fur with <span
+ itemprop="com.example.color">white</span> paws and belly.</p>
+ <img itemprop="org.example.img" src="hedral.jpeg" alt="" title="Hedral, age 18 months">
+</section>
+
+<div item>
+ <p itemprop="a">1</p>
+ <p itemprop="a">2</p>
+ <p itemprop="b">test</p>
+</div>
+
+<div item>
+ <p itemprop="b">test</p>
+ <p itemprop="a">1</p>
+ <p itemprop="a">2</p>
+</div>
+
+<div item>
+ <p itemprop="a">1</p>
+ <p itemprop="b">test</p>
+ <p itemprop="a">2</p>
+</div>
+
+ </body>
+</html>

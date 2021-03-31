@@ -1,0 +1,13 @@
+<!--b.html -->
+<!DOCTYPE html>
+<html lang="en">
+<title>Incumbent page</title>
+<iframe src="c.html" id="c"></iframe>
+<iframe src="d.html" id="d"></iframe>
+<script>
+const c = document.querySelector("#c").contentWindow;
+const d = document.querySelector("#d").contentWindow;
+window.hello = () => {
+c.print.call(d);
+};
+</script>

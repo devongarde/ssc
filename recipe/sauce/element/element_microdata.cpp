@@ -89,7 +89,8 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
 
 void element::examine_itemprop (itemscope_ptr& itemscope)
 {   if (itemscope.get () == nullptr)
-        if (ancestral_attributes_.test (a_id)) // an ancestral id suggests an itemref
+        if (node_.version ().mjr () < 10) return;
+        else if (ancestral_attributes_.test (a_id)) // an ancestral id suggests an itemref
             pick (nit_no_itemscope, es_comment, ec_microdata, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ITEMPROP requires ITEMSCOPE on an ancestral element");
         else pick (nit_no_itemscope, es_warning, ec_microdata, "ITEMPROP requires ITEMSCOPE on an ancestral element");
     else

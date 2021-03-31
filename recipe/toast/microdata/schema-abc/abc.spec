@@ -91,7 +91,7 @@ PASS ../toast/microdata/schema-abc/audiobook.html
 19 use_quote_code use_double_quote_code
 
 PASS ../toast/microdata/schema-abc/audioobject.html
-13 bad_script
+13 script
 20 bad_datetime
 
 PASS ../toast/microdata/schema-abc/bankaccount.html

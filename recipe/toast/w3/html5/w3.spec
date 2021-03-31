@@ -2,7 +2,7 @@
 
 PASS ../toast/w3/html5/html5-error-explanation.html
 2 naughty_lang
-4 attribute_unrecognised unrecognised_attribute chocolate_teapot
+4 attribute_unrecognised_here unrecognised_attribute chocolate_teapot
 
 PASS ../toast/w3/html5/html5-ok.html
 2 naughty_lang

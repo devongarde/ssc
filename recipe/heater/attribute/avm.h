@@ -28,3 +28,4 @@ bool is_attribute_required (const html_version& v, const e_element tag, const e_
 bool is_attribute_rejected (const html_version& v, const e_element tag, const e_attribute a);
 bool is_invalid_attribute_version (const html_version& v, const e_element tag, const e_attribute a);
 bool is_deprecated_attribute_version (const html_version& v, const e_element tag, const e_attribute a);
+bool not_production_attribute (const html_version& v, const e_element tag, const e_attribute a);

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> misnested tags </title> </head>
+ <body>
+
+<p>1<b>2<i>3</b>4</i>5</p>
+
+<b>1<p>2</b>3</p>
+
+<table><b><tr><td>aaa</td></tr>bbb</table>ccc
+
+<div id=a>
+ <script>
+ var div = document.getElementById('a');
+ parent.document.body.appendChild(div);
+ </script>
+ <script>
+alert(document.URL);
+ </script>
+</div>
+<script>
+ alert(document.URL);
+</script>
+
+ </body>
+</html>

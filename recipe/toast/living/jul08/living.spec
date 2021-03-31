@@ -92,11 +92,13 @@ PASS ../toast/living/jul08/dt.html
 16 inserted_missing_closure
 
 PASS ../toast/living/jul08/example.html
+0 charset_mismatch charset_used charset_invalid
 7 unrecognised_value unrecognised_value
 8 unrecognised_value unrecognised_value
 9 unrecognised_value unrecognised_value
 17 unrecognised_value
 19 unrecognised_value
+60 url_not_found
 
 PASS ../toast/living/jul08/example-2.html
 4 url_not_found style_not_css
@@ -177,11 +179,19 @@ PASS ../toast/living/jul08/img.html
 PASS ../toast/living/jul08/index.html
 3 attribute_unrecognised_here unrecognised_attribute
 
+PASS ../toast/living/jul08/irrelevant.html
+9 attribute_required
+
 PASS ../toast/living/jul08/li.html
 10 lingo
 11 use_quote_code
 26 lingo
 27 use_quote_code
+
+PASS ../toast/living/jul08/link.html
+5 url_not_found
+6 url_not_found style_not_css
+7 url_not_found
 
 PASS ../toast/living/jul08/links-alternate.html
 5 url_not_found
@@ -303,6 +313,11 @@ PASS ../toast/living/jul08/source.html
 18 url_not_found
 19 mime url_not_found
 21 inserted_missing_closure
+
+PASS ../toast/living/jul08/title.html
+4 long_title
+10 missing_close
+13 inserted_missing_closure
 
 PASS ../toast/living/jul08/ul.html
 9 inserted_missing_closure

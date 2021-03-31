@@ -1,0 +1,9 @@
+<!DOCTYPE HTML>
+<title>Clock</title>
+<canvas></canvas> 
+<script>
+ var canvas = document.getElementsByTagName('canvas')[0];
+ var proxy = canvas.transferControlToProxy());
+ var worker = new Worker('clock.js');
+ worker.postMessage(proxy, [proxy]);
+</script>

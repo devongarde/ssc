@@ -34,16 +34,17 @@ template < > struct type_master < t_itemprop > : string_vector < t_itemprop, sz_
         {   nits.pick (nit_bad_itemprop, es_error, ec_type, "ITEMPROP requires a value");
             string_value < t_itemprop > :: status (s_invalid); }
         else if (string_vector < t_itemprop, sz_space > :: good ())
-            for (auto t : string_vector < t_itemprop, sz_space > :: get ())
-                if (t.find_first_of (":.") != ::std::string::npos)
-                {   nitpick nuts;
-                    url u (nuts, v, t);
-                    if (u.invalid ())
-                    {   nits.merge (nuts);
-                        tidy_string < t_itemprop > :: status (s_invalid); }
-                    else if (u.is_local () || ! u.has_absolute_path ())
-                    {   nits.pick (nit_bad_itemprop, es_error, ec_type, quote (t), " is neither an absolute url nor an identifier that has no colons, no full stops");
-                        tidy_string < t_itemprop > :: status (s_invalid); } } } };
+            if (v.mjr () >= 10)
+                for (auto t : string_vector < t_itemprop, sz_space > :: get ())
+                    if (t.find_first_of (":.") != ::std::string::npos)
+                    {   nitpick nuts;
+                        url u (nuts, v, t);
+                        if (u.invalid ())
+                        {   nits.merge (nuts);
+                            tidy_string < t_itemprop > :: status (s_invalid); }
+                        else if (u.is_local () || ! u.has_absolute_path ())
+                        {   nits.pick (nit_bad_itemprop, es_error, ec_type, quote (t), " is neither an absolute url nor an identifier that has no colons, no full stops");
+                            tidy_string < t_itemprop > :: status (s_invalid); } } } };
 
 template < > struct type_master < t_itemtype > : string_vector < t_itemtype, sz_space >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -52,7 +53,8 @@ template < > struct type_master < t_itemtype > : string_vector < t_itemtype, sz_
         {   nits.pick (nit_empty, es_error, ec_type, "ITEMTYPE requires a value");
             string_vector < t_itemtype, sz_space > :: status (s_invalid); }
         else if (string_vector < t_itemtype, sz_space > :: good ())
-        {   bool allgood = true;
+        {   if (v.mjr () < 10) return;
+            bool allgood = true;
             for (auto arg : string_vector < t_itemtype, sz_space > :: get ())
                 if (find_itemtype_index (nits, v, arg) == invalid_itemtype)
                     allgood = false;

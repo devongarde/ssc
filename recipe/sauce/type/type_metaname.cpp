@@ -1099,7 +1099,7 @@ void validate_metaname_content (nitpick& nits, const html_version& v, const bool
             if (stats) p.mark_meta (mn);
             break; } }
 
-void validate_metaname_url (nitpick& nits, const html_version& v, const bool , const e_metaname mn, const ::std::string& content, const directory& d, const ::boost::filesystem::path& pagename, const int line, const attribute_bitset& flags, const vit_t& itemtypes)
+void validate_metaname_url (nitpick& nits, const html_version& v, const bool , const e_metaname mn, const ::std::string& content, const element& e)
 {   switch (mn)
     {   case mn_og_audio :
         case mn_og_video :
@@ -1112,7 +1112,7 @@ void validate_metaname_url (nitpick& nits, const html_version& v, const bool , c
         case mn_og_audio_secure_url :
             {   type_master <t_url> u;
                 u.set_value  (nits, v, content);
-                if (u.good ()) u.verify_url (nits, v, d, pagename, line, flags, itemtypes); }
+                if (u.good ()) u.verify_url (nits, v, e); }
             break;
         default :
             break; } }

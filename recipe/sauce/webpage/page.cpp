@@ -175,11 +175,12 @@ const ::boost::filesystem::path page::get_export_path () const
     assert (directory_ != nullptr);
     return directory_ -> get_export_path () / name (); }
 
-bool page::verify_url (nitpick& nits, const ::std::string& s, const attribute_bitset& state, const vit_t& itemtypes) const
+bool page::verify_url (nitpick& nits, const ::std::string& s) const
 {   assert (directory_ != nullptr);
+    if (! check_links ()) return true;
     url u (nits, version (), s);
     if (u.is_local () && ! check_links_) return true;
-    return directory_ -> verify_url (nits, version (), u, state, itemtypes); }
+    return directory_ -> verify_url (nits, version (), u); }
 
 void page::lynx ()
 {   if (! context.crosslinks ()) return;

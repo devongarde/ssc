@@ -248,12 +248,14 @@ void directory::examine (nitpick& nits)
                 context.out () << ::std::flush;
                 set_flag (ndx, FX_SCANNED); } } }
 
-bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& state, const vit_t& itemtypes) const
+//bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& state, const vit_t& itemtypes) const
+bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, const url& u) const
 {   if (u.empty ()) return false; // self?
     if (u.has_protocol ())
     {   if (u.get_scheme () != pt_rfc3986) return true;
         if (u.has_domain () && ! is_one_of (u.domain (), context.site ()))
-            return verify_external (nits, v, u, state, itemtypes); }
+//            return verify_external (nits, v, u, state, itemtypes); }
+            return verify_external (nits, v, u); }
     ::boost::filesystem::path p (get_disk_path (nits, u));
     if (p.empty ())
         if (u.has_query () || u.is_simple_id ())
@@ -298,23 +300,23 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
     catch (...) { }
     return ::std::string (); }
 
-bool directory::verify_url (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& flags, const vit_t& itemtypes) const
+bool directory::verify_url (nitpick& nits, const html_version& v, const url& u) const
 {   if (! context.links ()) return true;
     if (context.checking_urls ()) return true;
     bool res = false;
     try
     {   context.checking_urls (true);
-        res = unguarded_verify_url (nits, v, u, flags, itemtypes);
+        res = unguarded_verify_url (nits, v, u);
         context.checking_urls (false); }
     catch (...)
-    {   nits.pick (nit_virtual_exception, es_catastrophic, ec_directory, "verify_url ", quote (u.original ()));
+    {   nits.pick (nit_virtual_exception, es_catastrophic, ec_directory, "verify_url (2) ", quote (u.original ()));
         context.checking_urls (false);
         throw;  }
     return res; }
 
-bool directory::verify_external (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& flags, const vit_t& itemtypes) const
+bool directory::verify_external (nitpick& nits, const html_version& v, const url& u) const
 {   if (! context.external ()) return true;
-    bool res = external_.verify (nits, v, u, flags, itemtypes);
+    bool res = external_.verify (nits, v, u);
     if (res) return true;
     if (context.code () < 300) return true;
     if (context.repeated () && context.once ()) return false;

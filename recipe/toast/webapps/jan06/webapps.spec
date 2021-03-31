@@ -14,6 +14,32 @@ PASS ../toast/webapps/jan06/address.html
 12 attempted_escape no_such_folder url_not_found
 13 url_not_found
 
+PASS ../toast/webapps/jan06/as.html
+6 url_not_found
+7 url_not_found
+12 url_not_found
+13 url_not_found
+15 url_not_found
+16 url_not_found
+21 url_not_found
+22 url_not_found
+
+PASS ../toast/webapps/jan06/blockquote.html
+9 inserted_missing_closure
+11 inserted_missing_closure
+12 use_quote_code
+13 inserted_missing_closure
+14 use_quote_code
+15 inserted_missing_closure
+17 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
+19 inserted_missing_closure
+
+PASS ../toast/webapps/jan06/calendar.html
+8 unrecognised_value
+
+PASS ../toast/webapps/jan06/card.html
+0 charset_mismatch charset_used charset_invalid
+
 PASS ../toast/webapps/jan06/dfn.html
 10 use_quote_code
 
@@ -59,6 +85,22 @@ PASS ../toast/webapps/jan06/samp.html
 
 PASS ../toast/webapps/jan06/small.html
 0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/webapps/jan06/tabbox.html
+0 charset_mismatch charset_used charset_invalid
+9 url_not_found naughty_alt
+16 use_quote_code
+19 use_quote_code
+36 missing_open missing_open
+44 no_such_folder url_not_found
+45 no_such_folder url_not_found
+46 no_such_folder url_not_found
+47 no_such_folder url_not_found
+
+PASS ../toast/webapps/jan06/title.html
+4 long_title
+10 missing_close
+13 inserted_missing_closure
 
 PASS ../toast/webapps/jan06/wa1.html
 0 charset_mismatch charset_used charset_invalid

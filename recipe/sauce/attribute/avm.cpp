@@ -504,7 +504,7 @@ struct hav_t
 
 #define HTML4_STANDARD_CIS_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
     HTML4_STANDARD_CI_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM), \
-    { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_style }
+    { { MAJOR_FROM, MINOR_FROM, HV_NOTPROD }, { HTML_UNDEF }, ELEM, a_style }
 
 #define HTML4_STANDARD_CIST_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
     HTML4_STANDARD_CIS_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM), \
@@ -561,7 +561,7 @@ struct hav_t
     { { HTML_JUL12 }, { HTML_UNDEF }, ELEM, a_oncancel }, \
     { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_oncanplay }, \
     { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_oncanplaythrough }, \
-    { { HTML_JUL07 }, { HTML_UNDEF }, ELEM, a_onchange }, \
+    { { HTML_JAN05 }, { HTML_UNDEF }, ELEM, a_onchange }, \
     { { HTML_JUL12, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_onclose }, \
     { { HTML_JUL07, HV_NOT50 | HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_oncontextmenu }, \
     { { HTML_5_1 }, { HTML_5_1 }, ELEM, a_oncopy }, \
@@ -627,6 +627,7 @@ struct hav_t
     { { HTML_JUL09 }, { HTML_JUN13 }, ELEM, a_onvolumechange }, \
     { { HTML_JUL09 }, { HTML_UNDEF }, ELEM, a_onwaiting }, \
     { { HTML_JUL15 }, { HTML_UNDEF }, ELEM, a_onwheel }, \
+    { { HTML_JAN08 }, { HTML_DEC08 }, ELEM, a_ref }, \
     { { HTML_JAN08 }, { HTML_DEC08 }, ELEM, a_registrationmark }, \
     { { HTML_JAN10 }, { HTML_UNDEF }, ELEM, a_role }, \
     { { HTML_JUL16, HV_NOT51 | HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_slot }, \
@@ -905,10 +906,12 @@ hav_t havt [] =
 
     HTML3_CLID_ATTRIBUTES (elem_array),
 
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_article, a_active },
     { { HTML_JUL09 }, { HTML_DEC09 }, elem_article, a_cite },
     { { HTML_JUL09 }, { HTML_DEC09 }, elem_article, a_pubdate },
     STANDARD_HTML5_ATTRIBUTES (elem_article),
 
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_aside, a_active },
     STANDARD_HTML5_ATTRIBUTES (elem_aside),
 
     { { HTML_JUL09 }, { HTML_JUN10 }, elem_audio, a_autobuffer },
@@ -974,6 +977,7 @@ hav_t havt [] =
 
     MATH3_STANDARD_ATTRIBUTES (elem_bind),
 
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_blockquote, a_active },
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_blockquote, a_align },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_blockquote, a_cite },
     { { HTML_3_0 }, { HTML_3_0 }, elem_blockquote, a_clear },
@@ -1027,7 +1031,7 @@ hav_t havt [] =
     { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_class },
     { { HTML_2_0, HV_RFC_1942 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_br, a_clear },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_title },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_style },
+    { { HTML_4_0, HV_NOTPROD }, { HTML_UNDEF }, elem_br, a_style },
     HTMLPLUS_ATTRIBUTES (elem_br),
     HTML3_CLID_ATTRIBUTES (elem_br),
     HTML4_STANDARD_SCRIPT_ATTRIBUTES (elem_br, HTML_2005, 0),
@@ -1067,8 +1071,11 @@ hav_t havt [] =
 
     HTMLPLUS_ATTRIBUTES (elem_byline),
 
-    { { HTML_JAN05 }, { HTML_UNDEF }, elem_canvas, a_height },
-    { { HTML_JAN05 }, { HTML_UNDEF }, elem_canvas, a_width },
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_calendar, a_active },
+    STANDARD_HTML5_ATTRIBUTES (elem_calendar),
+
+    { { HTML_JAN07 }, { HTML_UNDEF }, elem_canvas, a_height },
+    { { HTML_JAN07 }, { HTML_UNDEF }, elem_canvas, a_width },
     STANDARD_HTML5_ATTRIBUTES (elem_canvas),
 
     { { HTML_2_0, HV_DEPRECATED4 | HV_RFC_1942 }, { XHTML_2_0 }, elem_caption, a_align },
@@ -1077,7 +1084,9 @@ hav_t havt [] =
     HTML23_CLID_ATTRIBUTES (elem_caption),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_caption),
 
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_card, a_active },
     MATH3_DEFS_ATTRIBUTES (elem_card),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_card),
 
     MATH3_DEFS_ATTRIBUTES (elem_cartesianproduct),
 
@@ -1156,12 +1165,6 @@ hav_t havt [] =
     SVGx_XTRA_CORE_ATTRIBUTES (elem_colourprofile),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_colourprofile),
 
-    MATH3_DEFS_ATTRIBUTES (elem_complexes),
-
-    MATH3_DEFS_ATTRIBUTES (elem_compose),
-
-    MATH3_STANDARD_ATTRIBUTES (elem_condition),
-
     { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_checked },
     { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_command },
     { { HTML_JAN05 }, { HTML_JUN09 }, elem_command, a_default },
@@ -1172,6 +1175,14 @@ hav_t havt [] =
     { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_radiogroup },
     { { HTML_JAN05 }, { HTML_DEC12 }, elem_command, a_type },
     STANDARD_HTML5_ATTRIBUTES (elem_command),
+
+    STANDARD_HTML5_ATTRIBUTES (elem_commandset),
+
+    MATH3_DEFS_ATTRIBUTES (elem_complexes),
+
+    MATH3_DEFS_ATTRIBUTES (elem_compose),
+
+    MATH3_STANDARD_ATTRIBUTES (elem_condition),
 
     { { HTML_2_0 }, { HTML_4_01 }, elem_comment, a_data },
     HTML4_STANDARD_TSL_ATTRIBUTES (elem_comment, MAJOR_4_0, MINOR_4_0),
@@ -1218,6 +1229,8 @@ hav_t havt [] =
     STANDARD_HTML5_ATTRIBUTES (elem_datagrid),
 
     STANDARD_HTML5_ATTRIBUTES (elem_datalist),
+
+    STANDARD_HTML5_ATTRIBUTES (elem_datatemplate),
 
     { { HTML_3_0 }, { HTML_3_0 }, elem_dd, a_clear },
     HTML23_CLID_ATTRIBUTES (elem_dd),
@@ -1600,7 +1613,8 @@ hav_t havt [] =
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_font, a_horizadvx },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_font, a_horizoriginx },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_font, a_horizoriginy },
-    { { HTML_3_2, HV_DEPRECATED4}, { XHTML_2_0 }, elem_font, a_size },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_size },
+    { { HTML_JUL07, HV_NOTPROD }, { HTML_JUN08 }, elem_font, a_style },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_font, a_vertadvy },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_font, a_vertoriginx },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_font, a_vertoriginy },
@@ -1725,6 +1739,8 @@ hav_t havt [] =
     SVGx_PRES_ATTRIBUTES (elem_g),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_g),
 
+    STANDARD_HTML5_ATTRIBUTES (elem_gauge),
+
     MATH3_DEFS_ATTRIBUTES (elem_gcd),
 
     MATH3_DEFS_ATTRIBUTES (elem_geq),
@@ -1799,7 +1815,8 @@ hav_t havt [] =
     { { HTML_3_0 }, { HTML_3_0 }, elem_html, a_class },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_html, a_dir },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_html, a_lang },
-    { { HTML_JAN08, HV_DEPRECATED51x }, { HTML_DEC20 }, elem_html, a_manifest },
+    { { HTML_JAN08, HV_DEPRECATED51 }, { HTML_DEC16 }, elem_html, a_manifest },
+    { { HTML_JAN17, HV_DEPRECATED52x }, { HTML_DEC20 }, elem_html, a_manifest },
     { { HTML_3_0 }, { HTML_3_0 }, elem_html, a_role },
     { { HTML_3_0 }, { HTML_3_0 }, elem_html, a_urn },
     { { HTML_3_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_html, a_version },
@@ -2008,7 +2025,7 @@ hav_t havt [] =
     { { HTML_4_0 }, { HTML_UNDEF }, elem_isindex, a_id },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_isindex, a_lang },
     { { HTML_3_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_isindex, a_prompt },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_isindex, a_style },
+    { { HTML_4_0, HV_NOTPROD }, { HTML_UNDEF }, elem_isindex, a_style },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_isindex, a_title },
     HTML2_CLID_ATTRIBUTES (elem_isindex),
 
@@ -2234,7 +2251,7 @@ hav_t havt [] =
     { { HTML_5_2, 0, HE_MATH_3 }, { HTML_UNDEF }, elem_math, a_maxwidth },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_math, a_mode },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_math, a_overflow },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_math, a_style },
+    { { XHTML_1_0, HV_NOTPROD }, { HTML_UNDEF }, elem_math, a_style },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_math, a_type },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_math, a_width },
     MATH3_TOKEN_ATTRIBUTES (elem_math),
@@ -2266,6 +2283,8 @@ hav_t havt [] =
     HTMLPLUS_ATTRIBUTES (elem_menu),
     HTML2_CLID_ATTRIBUTES (elem_menu),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_menu),
+
+    STANDARD_HTML5_ATTRIBUTES (elem_menubar),
 
     { { HTML_JAN13 }, { HTML_JUN17 }, elem_menuitem, a_checked },
     { { HTML_JAN13 }, { HTML_JUN17 }, elem_menuitem, a_default },
@@ -2530,11 +2549,17 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_naturalnumbers),
 
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_nav, a_active },
     STANDARD_HTML5_ATTRIBUTES (elem_nav),
 
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_navigation, a_active },
     STANDARD_HTML5_ATTRIBUTES (elem_navigation),
 
     MATH3_DEFS_ATTRIBUTES (elem_neq),
+
+    { { HTML_JAN08 }, { HTML_DEC08 }, elem_nest, a_filter },
+    { { HTML_JAN08 }, { HTML_DEC08 }, elem_nest, a_mode },
+    STANDARD_HTML5_ATTRIBUTES (elem_nest),
 
     { { HTML_TAGS }, { HTML_1_0 }, elem_nextid, a_n },
     { { HTML_1_0, REQUIRED }, { HTML_3_0 }, elem_nextid, a_n },
@@ -2805,6 +2830,10 @@ hav_t havt [] =
 
     STANDARD_HTML5_ATTRIBUTES (elem_ruby),
 
+    { { HTML_JAN08 }, { HTML_DEC08 }, elem_rule, a_condition },
+    { { HTML_JAN08 }, { HTML_DEC08 }, elem_rule, a_mode },
+    STANDARD_HTML5_ATTRIBUTES (elem_rule),
+
     HTMLPLUS_ATTRIBUTES (elem_s),
     HTML3_CLID_ATTRIBUTES (elem_s),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_s),
@@ -2819,10 +2848,10 @@ hav_t havt [] =
     { { HTML_JUL08 }, { HTML_JUN17 }, elem_script, a_charset },
     { { HTML_5_2, HV_W3 }, { HTML_5_2 }, elem_script, a_charset },
     { { HTML_JAN13 }, { HTML_UNDEF }, elem_script, a_crossorigin },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_script, a_defer },
+    { { HTML_4_0 }, { XHTML_2_0 }, elem_script, a_defer },
+    { { HTML_JUL06 }, { HTML_UNDEF }, elem_script, a_defer },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_script, a_event },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_script, a_externalresourcesrequired },
-//    { { HTML_4_0, HV_NOTX2 }, { XHTML_2_0 }, elem_script, a_for },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_script, a_implements },
     { { HTML_JAN17, HV_NOT52 }, { HTML_UNDEF }, elem_script, a_integrity },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_script, a_language },
@@ -2843,6 +2872,7 @@ hav_t havt [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_sech),
 
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_section, a_active },
     { { HTML_JUL09 }, { HTML_DEC09 }, elem_section, a_cite },
     STANDARD_HTML5_ATTRIBUTES (elem_section),
 
@@ -2904,13 +2934,14 @@ hav_t havt [] =
     { { HTML_5_2 }, { HTML_UNDEF }, elem_share, a_src },
     MATH3_STANDARD_ATTRIBUTES (elem_share),
 
+    { { HTML_JAN05 }, { HTML_DEC06 }, elem_sidebar, a_active },
     STANDARD_HTML5_ATTRIBUTES (elem_sidebar),
 
     MATH3_DEFS_ATTRIBUTES (elem_sin),
 
     MATH3_DEFS_ATTRIBUTES (elem_sinh),
 
-    { { HTML_JUL20, HV_WHATWG }, { HTML_UNDEF }, elem_slot, a_name },
+    { { HTML_JUL16, HV_WHATWG }, { HTML_UNDEF }, elem_slot, a_name },
     STANDARD_HTML5_ATTRIBUTES (elem_slot),
 
     HTML3_CLID_ATTRIBUTES (elem_small),
@@ -3030,6 +3061,8 @@ hav_t havt [] =
     { { HTML_3_0 }, { HTML_3_0 }, elem_tab, a_id },
     { { HTML_3_0 }, { HTML_3_0 }, elem_tab, a_indent },
     { { HTML_3_0 }, { HTML_3_0 }, elem_tab, a_to },
+
+    STANDARD_HTML5_ATTRIBUTES (elem_tabbox),
 
     { { HTML_2_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_table, a_align },
     { { HTML_3_2, 0, HE_BESPOKE }, { XHTML_2_0 }, elem_table, a_background },
@@ -3393,6 +3426,12 @@ bool is_deprecated_attribute_version (const html_version& v, const e_element tag
         if (may_apply (v, i -> second.first_, i -> second.last_)) return i -> second.first_.deprecated (v);
     for (avm_t::const_iterator i = avm.find (avm_key (elem_undefined, a)); i != avm.cend () && (i -> second.tag_ == elem_undefined) && (i -> second.a_ == a); ++i)
         if (may_apply (v, i -> second.first_, i -> second.last_)) return i -> second.first_.deprecated (v);
+    return false; }
+
+bool not_production_attribute (const html_version& v, const e_element tag, const e_attribute a)
+{   if (v.known () && v.is_5 ())
+        for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second.tag_ == tag) && (i -> second.a_ == a); ++i)
+            if (may_apply (v, i -> second.first_, i -> second.last_)) return i -> second.first_.not_production ();
     return false; }
 
 bool is_attribute_required (const html_version& v, const e_element tag, const e_attribute a)

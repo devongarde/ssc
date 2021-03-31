@@ -36,7 +36,7 @@ struct attribute_base
     virtual bool verify_version (nitpick& , const html_version& , const e_element ) { return false; }
     virtual void set_value (nitpick& , const html_version& , const ::std::string& ) { }
     virtual void validate (nitpick& , const html_version& , const elem& , const ::std::string& ) { }
-    virtual bool verify_url (nitpick& , const html_version& , const directory& , const ::boost::filesystem::path& , const int , const attribute_bitset& , const vit_t& ) { return true; }
+    virtual bool verify_url (nitpick& , const html_version& , const element& ) { return true; }
     virtual ::std::string get_string () const { return ::std::string (); }
     virtual ::std::string original () const { return get_string (); }
     virtual e_attribute id () const { return a_unknown; }
@@ -85,6 +85,8 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
             if (excluded_) nits.pick (nit_excluded_attribute, es_warning, ec_attribute, "the attribute ", quote (name ()), " is part of extension to ", v.report (), " that is not being applied"); }
         deprecated_ = is_deprecated_attribute_version (v, tag, IDENTITY);
         if (deprecated_) nits.pick (nit_deprecated_attribute, es_warning, ec_attribute, name (), " is deprecated in ", v.report ());
+        else if (not_production_attribute (v, tag, IDENTITY))
+            nits.pick (nit_prototype, ed_jan21, "1.11.1 Presentational markup", es_comment, ec_attribute, name (), " is best not used in production in ", v.report ());
         return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   typed_value < e_attribute, TYPE, IDENTITY > :: set_value (nits, v, s);
@@ -108,8 +110,8 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
                 typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); } }
     virtual void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& s)
     {   typed_value < e_attribute, TYPE, IDENTITY > :: validate (nits, v, e, s); }
-    virtual bool verify_url (nitpick& nits, const html_version& v, const directory& d, const ::boost::filesystem::path& p, const int n, const attribute_bitset& bs, const vit_t& vit)
-    {   return typed_value < e_attribute, TYPE, IDENTITY > :: verify_url (nits, v, d, p, n, bs, vit); }
+    virtual bool verify_url (nitpick& nits, const html_version& v, const element& e)
+    {   return typed_value < e_attribute, TYPE, IDENTITY > :: verify_url (nits, v, e); }
     virtual ::std::string get_string () const { return typed_value < e_attribute, TYPE, IDENTITY > :: get_string (); }
     virtual ::std::string original () const { return typed_value < e_attribute, TYPE, IDENTITY > :: original (); }
     virtual e_attribute id () const { return IDENTITY; }

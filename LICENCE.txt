@@ -52,21 +52,18 @@ This version makes clear that the license is applicable to both software and tex
 WhatWG
 ======
 
-Some test files come from whatwg.org (some directly, in WhatWG documents, etc.), and are licensed under a Creative Commons Attribution 4.0 International License.
-See https://whatwg.org/ for details.
+Some test files come from whatwg.org (some directly, in WhatWG documents, etc.), and are licensed under a Creative Commons Attribution 4.0 International License. See https://whatwg.org/ for details.
 
 
 
 corruptpress.com
 ================
 
-Some test files are derived from pages at https://corruptpress.com/. They are licensed under a Creative Commons Attribution 4.0 International License.
-Browse https://corruptpress.com/ for details.
+Some test files are derived from pages at https://corruptpress.com/. They are licensed under a Creative Commons Attribution 4.0 International License. Browse https://corruptpress.com/ for details.
 
 
 
 dylanharris.org
 ===============
 
-Some test files are derived from pages at https://dylanharris.org/. They are licensed under a Creative Commons Attribution 4.0 International License.
-Browse https://dylanharris.org/ for details.
+Some test files are derived from pages at https://dylanharris.org/. They are licensed under a Creative Commons Attribution 4.0 International License. Browse https://dylanharris.org/ for details.

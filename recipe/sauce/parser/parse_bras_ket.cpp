@@ -119,7 +119,7 @@ void check_character (nitpick& nits, html_version& v, const ::std::string::const
                 return;
             case '`' :
                 if (v >= html_jul10)
-                {   nits.pick (nit_naughty_grave, ed_jul10, "1.11.2 Syntax errors", es_info, ec_parser, "a grave is better encoded (e.g. '&grave;') or quoted"); return; }
+                {   nits.pick (nit_naughty_grave, ed_jul10, "1.11.2 Syntax errors", es_info, ec_parser, "a grave accent is better encoded (e.g. '&grave;') or quoted"); return; }
                 break; }
         if (static_cast < unsigned int > (*i) > 127)
             nits.pick (nit_encode, ed_jan21, "13.5 Named character references", es_comment, ec_parser, "consider using named character references for non-ASCII characters"); } }
@@ -153,6 +153,8 @@ html_version bras_ket::parse (const ::std::string& content)
     bool backslashed = false;
     bool aftercab = false;
     bool silent_content = false;
+    bool comment_start = false;
+    bool doubledashed = false;
     e_element xmp_tag = elem_undefined;
     const char* cc = "character code";
     const char* ccnu = "character code, or a character code has not been used";
@@ -240,8 +242,9 @@ html_version bras_ket::parse (const ::std::string& content)
             case s_startbang :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_startbang ", ch);
                 switch (ch)
-                {   case '-' :  nodoctype (nits, res, b, e, i);
-                                status = s_comment_first_open; break;
+                {   case '-' :  // nodoctype (nits, res, b, e, i);
+                                nits.set_context (line_, near_here (b, e, i));
+                                status = s_comment_first_open; comment_start = true; break;
                     case '<' :  nodoctype (nits, res, b, e, i);
                                 mixed_mess (nits, b, e, i, elmt, sg);
                                 soe = twas = i; status = s_open; break;
@@ -669,7 +672,8 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_comment_first_open ", ch);
                 switch (ch)
                 {   case '-' :  status = s_comment_second_open; break;
-                    default :   twas = text; status = s_dull; }
+                    default :   twas = text; status = s_dull;
+                                if (comment_start) { comment_start = false; nodoctype (nits, res, b, e, i); } }
                 break;
             case s_comment_second_open :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_comment_second_open ", ch);
@@ -707,11 +711,18 @@ html_version bras_ket::parse (const ::std::string& content)
                                     nits.reset (); }
                                 else if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "not inserting comment");
                                 aftercab = true;
-                                status = s_dull; text = twas = i+1; break;
+                                if (comment_start) status = s_start; else status = s_dull;
+                                comment_start = doubledashed = false; text = twas = i+1; break;
                     case ' ' :  if (res < html_2) break;
                                 // HTML 1 permits white space here!
                                 // otherwise drop thru'
-                    default :   status = s_comment; }
+                    default :   if (! doubledashed)
+                                {   nits.set_context (line_, near_here (b, e, i));
+                                    if (res.xhtml ())
+                                        nits.pick (nit_dashdash, ed_jan10, "1.10.2 Syntax errors", es_warning, ec_parser, "'--' inside a comment drives some XML parsers space");
+                                    else if (res.mjr () >= 5)
+                                        nits.pick (nit_dashdash, ed_jan10, "1.10.2 Syntax errors", es_info, ec_parser, "'--' inside a comment drives some XML parsers spare"); }
+                                doubledashed = true; status = s_comment; }
                 break;
             case s_element :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_element ", ch);

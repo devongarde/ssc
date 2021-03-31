@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> microdata </title> </head>
+ <body>
+
+<div itemscope>
+ <p>My name is <span itemprop="name">Elizabeth</span>.</p>
+</div>
+<div itemscope>
+ <p>My name is <span itemprop="name">Daniel</span>.</p>
+</div>
+
+<div itemscope>
+ <p>My name is <span itemprop="name">Neil</span>.</p>
+ <p>My band is called <span itemprop="band">Four Parts Water</span>.</p>
+ <p>I am <span itemprop="nationality">British</span>.</p>
+</div>
+
+<div itemscope>
+ <img itemprop="image" src="google-logo.png" alt="Google">
+</div>
+
+<div itemscope>
+ I was born on <time itemprop="birthday" datetime="2009-05-10">May 10th 2009</time>.
+</div>
+
+<div itemscope>
+<p>Name: <span itemprop="name">Amanda</span></p>
+ <p>Band: <span itemprop="band" itemscope> <span itemprop="name">Jazz Band</span> (<span itemprop="size">12</span> players)</span></p>
+</div>
+
+<div itemscope id="amanda" itemref="a b"></div>
+<p id="a">Name: <span itemprop="name">Amanda</span></p>
+<div id="b" itemprop="band" itemscope itemref="c"></div>
+<div id="c">
+ <p>Band: <span itemprop="name">Jazz Band</span></p>
+ <p>Size: <span itemprop="size">12</span> players</p>
+</div>
+
+<div itemscope>
+ <p>Flavors in my favorite ice cream:</p>
+ <ul>
+ <li itemprop="flavor">Lemon sorbet</li>
+ <li itemprop="flavor">Apricot sorbet</li>
+ </ul>
+</div>
+
+<div itemscope>
+ <span itemprop="favorite-color favorite-fruit">orange</span>
+</div>
+
+<figure>
+ <dd><img src="castle.jpeg">
+ <dt><span itemscope><span itemprop="name">The Castle</span></span> (1986)
+</figure>
+<span itemscope><meta itemprop="name" content="The Castle"></span>
+<figure>
+ <dd><img src="castle.jpeg">
+ <dt>The Castle (1986)
+</figure>
+
+<section itemscope itemtype="http://example.org/animals#cat">
+ <h1 itemprop="name">Hedral</h1>
+ <p itemprop="desc">Hedral is a male american domestic
+ shorthair, with a fluffy black fur with white paws and belly.</p>
+ <img itemprop="img" src="hedral.jpeg" alt="" title="Hedral, age 18 months">
+</section>
+
+<dl itemscope
+ itemtype="http://vocab.example.net/book"
+itemid="urn:isbn:0-330-34032-8">
+ <dt>Title
+ <dd itemprop="title">The Reality Dysfunction
+ <dt>Author
+ <dd itemprop="author">Peter F. Hamilton
+ <dt>Publication date
+ <dd><time itemprop="pubdate" datetime="1996-01-26">26 January 1996</time>
+</dl>
+
+<section itemscope itemtype="http://example.org/animals#cat">
+ <h1 itemprop="name http://example.com/fn">Hedral</h1>
+ <p itemprop="desc">Hedral is a male american domestic
+ shorthair, with a fluffy <span
+ itemprop="http://example.com/color">black</span> fur with <span
+ itemprop="http://example.com/color">white</span> paws and belly.</p>
+ <img itemprop="img" src="hedral.jpeg" alt="" title="Hedral, age 18 months">
+</section>
+
+<section itemscope itemtype="http://example.org/animals#cat">
+ <h1 itemprop="name http://example.com/fn">Hedral</h1>
+ <p itemprop="desc">Hedral is a male american domestic
+ shorthair, with a fluffy <span
+ itemprop="http://example.com/color">black</span> fur with <span
+ itemprop="http://example.com/color">white</span> paws and belly.</p>
+ <img itemprop="img" src="hedral.jpeg" alt="" title="Hedral, age 18 months">
+</section>
+
+<div itemscope>
+ <p itemprop="a">1</p>
+ <p itemprop="a">2</p>
+ <p itemprop="b">test</p>
+</div>
+
+<div itemscope>
+ <p itemprop="b">test</p>
+ <p itemprop="a">1</p>
+ <p itemprop="a">2</p>
+</div>
+
+<div itemscope>
+ <p itemprop="a">1</p>
+ <p itemprop="b">test</p>
+ <p itemprop="a">2</p>
+</div>
+
+<div itemscope itemref="x">
+ <p itemprop="b">test</p>
+ <p itemprop="a">2</p>
+</div>
+<div id="x">
+ <p itemprop="a">1</p>
+</div>
+
+<dl itemscope
+ itemtype="http://purl.org/vocab/frbr/core#Work"
+ itemid="http://purl.oreilly.com/works/45U8QJGZSQKDH8N">
+ <dt>Title</dt>
+ <dd><cite itemprop="http://purl.org/dc/terms/title">Just a Geek</cite></dd>
+ <dt>By</dt>
+ <dd><span itemprop="http://purl.org/dc/terms/creator">Wil Wheaton</span></dd>
+ <dt>Format</dt>
+ <dd itemprop="http://purl.org/vocab/frbr/core#realization"
+ itemscope
+ itemtype="http://purl.org/vocab/frbr/core#Expression"
+ itemid="http://purl.oreilly.com/products/9780596007683.BOOK">
+ <link itemprop="http://purl.org/dc/terms/type" href="http://purl.oreilly.com/producttypes/BOOK">
+ Print
+ </dd>
+ <dd itemprop="http://purl.org/vocab/frbr/core#realization"
+ itemscope
+ itemtype="http://purl.org/vocab/frbr/core#Expression"
+ itemid="http://purl.oreilly.com/products/9780596802189.EBOOK">
+ <link itemprop="http://purl.org/dc/terms/type" href="http://purl.oreilly.com/producttypes/EBOOK">
+ Ebook
+ </dd>
+</dl>
+
+ </body>
+</html>

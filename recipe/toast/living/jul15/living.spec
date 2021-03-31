@@ -60,6 +60,43 @@ PASS ../toast/living/jul15/blockquote.html
 72 use_double_quote_code
 87 inserted_missing_closure
 
+PASS ../toast/living/jul15/canvas3.html
+2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+3 inserted_missing_parent inserted_missing_closure missing_close
+
+PASS ../toast/living/jul15/canvas4.html
+2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+3 element_offsite_base
+9 inserted_missing_parent inserted_missing_closure missing_close
+160 inserted_missing_closure
+
+PASS ../toast/living/jul15/canvas5.html
+0 charset_mismatch charset_used charset_invalid
+2 naughty_lang
+12 url_not_found
+15 use_quote_code
+
+PASS ../toast/living/jul15/canvas6.html
+0 charset_mismatch charset_used charset_invalid
+2 naughty_lang
+12 url_not_found
+20 use_quote_code
+
+PASS ../toast/living/jul15/canvas7.html
+0 charset_mismatch charset_used charset_invalid
+2 naughty_lang
+4 long_title
+15 url_not_found
+16 url_not_found url_not_found
+21 use_quote_code
+
+PASS ../toast/living/jul15/canvas8.html
+0 charset_mismatch charset_used charset_invalid
+2 missing_close naughty_lang
+15 url_not_found
+19 use_quote_code
+
+
 PASS ../toast/living/jul15/caption.html
 9 inserted_missing_closure missing_close
 13 inserted_missing_closure
@@ -703,14 +740,10 @@ PASS ../toast/living/jul15/ls9.html
 PASS ../toast/living/jul15/ls10.html
 2 naughty_lang
 5 element_offsite_base
-7 url_not_found
-8 url_not_found
-9 url_not_found
 
 PASS ../toast/living/jul15/ls11.html
 4 long_title
 5 element_offsite_base
-8 url_not_found
 
 PASS ../toast/living/jul15/ls12.html
 2 naughty_lang
@@ -816,6 +849,11 @@ PASS ../toast/living/jul15/meter.html
 43 no_such_folder url_not_found
 44 no_such_folder url_not_found
 
+PASS ../toast/living/jul15/noscript.html
+6 url_not_found
+27 url_not_found
+30 id_exists
+
 PASS ../toast/living/jul15/object.html
 15 url_not_found
 20 reputation
@@ -894,6 +932,12 @@ PASS ../toast/living/jul15/samp.html
 7 use_quote_code
 9 unrecognised_value
 13 unrecognised_value unrecognised_value
+
+PASS ../toast/living/jul15/script.html
+0 charset_mismatch charset_used charset_invalid
+6 url_not_found
+7 mime
+37 use_double_quote_code
 
 PASS ../toast/living/jul15/select.html
 17 bad_select
@@ -1091,6 +1135,15 @@ PASS ../toast/living/jul15/te.html
 95 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 96 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 97 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/living/jul15/template.html
+2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+10 inserted_missing_parent inserted_missing_closure missing_close
+13 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+14 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
+16 missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+17 inserted_missing_closure inserted_missing_closure
+18 inserted_missing_closure
 
 PASS ../toast/living/jul15/textarea.html
 12 use_quote_code use_double_quote_code

@@ -23,7 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "symbol/symbol.h"
 
 struct symbol_entry < e_mimetype > mimetype_symbol_table [] =
-{   { { HTML_4_0 }, { HTML_UNDEF }, "example/context-defined", mime_context, ns_default, MIME_APPLICATION },
+{   // avoid the whinge
+    { { HTML_4_0 }, { HTML_UNDEF }, "example/context-defined", mime_context, ns_default, MIME_APPLICATION },
+    // standard
     { { HTML_4_0 }, { HTML_UNDEF }, "application/1d-interleaved-parityfec", mime_application_1d_interleaved_parityfec, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/3gpdash-qoe-report+xml", mime_application_3gpdash_qoe_report_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/3gpp-ims+xml", mime_application_3gpp_ims_xml, ns_default, MIME_APPLICATION | MIME_XML },
@@ -1756,7 +1758,8 @@ struct symbol_entry < e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "text/flexfec", mime_text_flexfec, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/fwdred", mime_text_fwdred, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/grammar-ref-list", mime_text_grammar_ref_list, ns_default, MIME_TEXT },
-    { { HTML_4_0 }, { HTML_UNDEF }, "text/html", mime_text_html, ns_default, MIME_TEXT | MIME_PAGE },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTML_TYPE, mime_text_html, ns_default, MIME_TEXT | MIME_PAGE },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTML_TYPE "-sandboxed", mime_text_html_sandboxed, ns_default, MIME_TEXT | MIME_PAGE | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/javascript", mime_text_javascript, ns_default, MIME_SCRIPT | MIME_TEXT },
     { { HTML_JUL05 }, { HTML_UNDEF }, "text/javascript;e4x=1", mime_text_javascript_x, ns_default, MIME_SCRIPT | MIME_TEXT },
     { { HTML_JUL09 }, { HTML_UNDEF }, "text/javascript1.0", mime_text_javascript10, ns_default, MIME_SCRIPT | MIME_TEXT },

@@ -181,10 +181,10 @@ or other elements <span> are treated as plain text, instead of markup.
 <meter high=0 low=1 value=1></meter>
 <meter optimum=83 value=1></meter>
 <meter high=6 low=8 max=2 min=4 optimum=83 value=1></meter>
-<script></script>
-<script async=true src="script.js"></script>
-<script defer=true></script>
-<script nomodule></script>
+<script type=module></script>
+<script async=true src="script.js" type=module></script>
+<script defer=true type=module></script>
+<script nomodule type=module></script>
 <script type="application/lost+xml"></script>
 <script type="text/plain"></script>
 <script src="css-good.css" type="text/css"></script>

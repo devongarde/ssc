@@ -181,6 +181,21 @@ void element::examine_menu ()
                         assert (false);
                         break; } } }
 
+void element::examine_menubar ()
+{   bool had_li = false, had_other = false;
+    for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+        if (! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
+            if (p -> node_.tag () == elem_li)
+            {   if (had_other)
+                {   pick (nit_menubar, ed_jan05, "6.3.2. Menu bars: the menubar element", es_error, ec_element, "<MENUBAR> can have <LI> children, or other children, but not a mixture of them");
+                    break; }
+                had_li = true; }
+            else
+            {   if (had_li)
+                {   pick (nit_menubar, ed_jan05, "6.3.2. Menu bars: the menubar element", es_error, ec_element, "<MENUBAR> can have <LI> children, or other children, but not a mixture of them");
+                    break; }
+                had_other = true; } }
+
 void element::examine_meta ()
 {   bool in_head = ancestral_elements_.test (elem_head);
     bool md = (node_.version ().whatwg () || context.microdata ());
@@ -230,7 +245,7 @@ void element::examine_meta ()
                         break;
                     case he_location :
                     case he_refresh :
-                        page_.verify_url (nits (), ct, ancestral_attributes_, vit_);
+                        page_.verify_url (nits (), ct);
                     default : break; } } } }
     else if (nk)
         if (! a_.known (a_content))
@@ -243,7 +258,7 @@ void element::examine_meta ()
             assert (a_.good (a_name));
             e_metaname emn = mn.get ();
             validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_);
-            validate_metaname_url (nits (), node_.version (), in_head, emn, con, *( page_.get_directory ()), page_.get_disk_path (), node_.line (), ancestral_attributes_, vit_); } }
+            validate_metaname_url (nits (), node_.version (), in_head, emn, con, *this); } }
 
 void element::examine_meter ()
 {   if (node_.version ().is_5 ())
@@ -330,6 +345,12 @@ void element::examine_mstyle ()
 void element::examine_nav ()
 {   if (has_this_descendant (elem_main))
         pick (nit_no_main_kids, ed_50, "4.3.4 The nav element", es_warning, ec_element, "<NAV> can have no <MAIN> descendants"); }
+
+void element::examine_nest ()
+{   if (! ancestral_elements_.test (elem_rule))
+        pick (nit_nest, ed_jan08, "3.19.4. The nest element", es_error, ec_element, "<NEST> must descend from a <RULE>");
+    if (a_.known (a_registrationmark))
+        pick (nit_registration_mark, ed_jan08, "3.19.4. The nest element", es_error, ec_attribute, "REGISTRATIONMARK cannot be used on <NEST>"); }
 
 void element::examine_noscript ()
 {   if (node_.version ().xhtml ())

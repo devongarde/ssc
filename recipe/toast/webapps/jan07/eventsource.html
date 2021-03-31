@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+ <head>
+<title> event-source </title>
+</head>
+
+ <body>
+<event-source src="http://stocks.example.com/ticker.php" id="stock">
+<script type="text/javascript">
+document.getElementById('stock').addEventListener('stock change',
+ function () {
+ var data = event.data.split('\n');
+ updateStocks(data[0], data[1], data[2]);
+ }, false);
+</script>
+ </body>
+
+</html>

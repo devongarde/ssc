@@ -50,8 +50,8 @@ void element::examine_autofocus ()
     if (anc -> autofocus_ == nullptr)
         anc -> autofocus_ = this;
     else
-    {   pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a <", anc -> autofocus_ -> node_.id ().name (), "> element above has one too");
-        anc -> autofocus_ -> pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a  <", node_.id ().name (), "> element below has one too"); } }
+    {   pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a(n) <", anc -> autofocus_ -> node_.id ().name (), "> element above has one too");
+        anc -> autofocus_ -> pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a(n)  <", node_.id ().name (), "> element below has one too"); } }
 
 bool element::examine_class ()
 {   if (! context.microformats ()) return true;
@@ -170,7 +170,7 @@ void element::examine_content ()
 void element::examine_draggable ()
 {   if (node_.version ().mjr () < 5) return;
     assert (a_.has (a_draggable) && a_.known (a_draggable));
-    if (! a_.known (a_title))
+    if (! a_.known (a_title) && (node_.version () >= html_jan13))
         pick (nit_title_required, ed_51, "5.7.7. The draggable attribute", es_warning, ec_attribute, "An element with DRAGGABLE should also define TITLE"); }
 
 void element::examine_headers ()
@@ -248,8 +248,16 @@ bool element::examine_rel (const ::std::string& content)
                 res = true; } } }
     return res; }
 
+void element::examine_ref ()
+{   if (! a_.known (a_template))
+        pick (nit_bad_ref, ed_jan08, "4.12.5 Global attributes for data templates", es_error, ec_attribute, "REF requires TEMPLATE"); }
+
+void element::examine_registrationmark ()
+{   if (! ancestral_elements_.test (elem_rule))
+        pick (nit_registration_mark, ed_jan08, "4.12.5 Global attributes for data templates", es_error, ec_attribute, "an element with REGISTRATIONMARK must descend from <RULE>"); }
+
 void element::examine_style_attr ()
-{   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul08))
+{   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul07))
         pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "STYLE requires a different version of HTML"); }
 
 void element::examine_xlinkhref ()

@@ -81,7 +81,7 @@ void test_connection (nitpick& nits, const html_version& v, const url& u)
 {   if (u.is_usable ()) test_hypertext (nits, v, u);
     else nits.pick (nit_protocol, es_info, ec_link, context.filename (), " : unable to test ", u.original ()); }
 
-bool external::verify (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& , const vit_t& )
+bool external::verify (nitpick& nits, const html_version& v, const url& u)
 {   if (! context.external ()) return true;
     if (u.empty ()) { context.code (400); return false; }
     auto e = url_.find (u.absolute ());

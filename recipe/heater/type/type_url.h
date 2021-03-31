@@ -48,10 +48,10 @@ template < > struct type_master < t_url > : type_base < url, t_url >
     void reset ()
     {   value_.reset ();
         type_base < url, t_url > :: reset (); }
-    bool verify_url (nitpick& nits, const html_version& v, const directory& d, const ::boost::filesystem::path& pagename, const int line, const attribute_bitset& flags, const vit_t& itemtypes)
+    bool verify_url (nitpick& nits, const html_version& v, const element& e)
     {   if (! context.links ()) return true;
         if (! type_base < url, t_url > :: good ()) return true;
-        return value_.verify (nits, v, d, pagename, line, flags, itemtypes); }
+        return value_.verify (nits, v, e); }
     void verify_id (nitpick& nits, const html_version& v, ids_t& ids, const attribute_bitset& flags, const vit_t& itemtypes)
     {   value_.verify_id (nits, v, ids, flags, itemtypes); }
     vurl_t get_urls () const
@@ -141,11 +141,11 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
     {   value_.clear ();
         type_base < url, t_urls > :: reset (); }
     static bool is_url () { return true; }
-    bool verify_url (nitpick& nits, const html_version& v, const directory& d, const ::boost::filesystem::path& pagename, const int line, const attribute_bitset& flags, const vit_t& itemtypes)
+    bool verify_url (nitpick& nits, const html_version& v, const element& e)
     {   if (! context.links ()) return true;
         bool res = true;
         for (auto& u : value_)
-            if (! u.verify (nits, v, d, pagename, line, flags, itemtypes))
+            if (! u.verify (nits, v, e))
                 res = false;
         return res; }
     void verify_id (nitpick& nits, const html_version& v, ids_t& ids, const attribute_bitset& flags, const vit_t& itemtypes)

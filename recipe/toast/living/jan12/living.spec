@@ -538,14 +538,10 @@ PASS ../toast/living/jan12/ls5.html
 
 PASS ../toast/living/jan12/ls8.html
 5 element_offsite_base
-7 url_not_found
-8 url_not_found
-9 url_not_found
 
 PASS ../toast/living/jan12/ls9.html
 4 long_title
 5 element_offsite_base
-8 url_not_found
 
 PASS ../toast/living/jan12/ls11.html
 12 use_quote_code
@@ -629,6 +625,11 @@ PASS ../toast/living/jan12/meter.html
 43 no_such_folder url_not_found
 44 no_such_folder url_not_found
 
+PASS ../toast/living/jan12/noscript.html
+6 url_not_found
+27 url_not_found
+30 id_exists
+
 PASS ../toast/living/jan12/object.html
 15 url_not_found
 20 reputation
@@ -683,6 +684,12 @@ PASS ../toast/living/jan12/samp.html
 7 use_quote_code
 9 unrecognised_value
 13 unrecognised_value unrecognised_value
+
+PASS ../toast/living/jan12/script.html
+0 charset_mismatch charset_used charset_invalid
+6 url_not_found
+7 mime
+37 use_double_quote_code
 
 PASS ../toast/living/jan12/select.html
 17 bad_select

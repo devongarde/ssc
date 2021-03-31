@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> data- attributes </title> </head>
+ <body>
+
+<ol>
+ <li data-length="2m11s">Beyond The Sea</li>
+ ...
+</ol>
+
+<div class="spaceship" data-ship-id="92432"
+ data-weapons="laser 2" data-shields="50%"
+ data-x="30" data-y="10" data-z="90">
+ <button class="fire"
+ onclick="spaceships[this.parentNode.dataset.shipId].fire()">
+ Fire
+ </button>
+</div>
+
+ </body>
+</html>

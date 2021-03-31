@@ -623,7 +623,7 @@ template < > struct type_master < t_type > : varied < t_type >
                 case elem_style :
                     validate_type < type_master < t_mime > > (nits, v); break;
                 case elem_script :
-                    if (v >= html_5_2)
+                    if (v >= html_jan16)
                         if (compare_no_case ("module", varied < t_type > :: get_string ()))
                         {   varied < t_type > :: type_ = static_cast < ::std::size_t > (mime_faux_module);
                             break; }

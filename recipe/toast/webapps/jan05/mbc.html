@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//WHATWG//NONSGML HTML5//EN">
+<html lang="en-GB">
+ <head> <title> menus, buttons, commands </title> </head>
+ <body>
+
+<menubar>
+ <li>
+ <a href="#file">File</a>
+ <menu id="file">
+ <li><button type="button" onclick="fnew()">New...</button></li>
+ <li><button type="button" onclick="fopen()">Open...</button></li>
+ <li><button type="button" onclick="fsave()" id="save">Save</button></li>
+ <li><button type="button" onclick="fsaveas()">Save as...</button></li>
+ </menu>
+ </li>
+ <li>
+ <a href="#edit">Edit</a>
+ <menu id="edit">
+ <li><button type="button" onclick="ecopy()">Copy</button></li>
+ <li><button type="button" onclick="ecut()">Cut</button></li>
+ <li><button type="button" onclick="epaste()">Paste</button></li>
+ </menu>
+ </li>
+ <li>
+ <a href="#help">Help</a>
+ <menu id="help">
+ <li><a href="help.html">Help</a></li>
+ <li><a href="about.html">About</a></li>
+ </menu>
+ </li>
+</menubar>
+...
+<input command="save"/> <!-- This will act exactly like the
+ Save button above, including reflecting
+ its disabled state dynamically -->
+
+<menubar id="appmenu">
+ <menulabel label="File"/>
+ <menu>
+ <command label="New..." onclick="fnew()"/>
+ <command label="Open..." onclick="fopen()"/>
+ <command label="Save" onclick="fsave()" id="save"/>
+ <command label="Save as..." onclick="fsaveas()"/>
+ </menu>
+ <menulabel label="Edit"/>
+ <menu>
+ <command label="Copy" onclick="ecopy()"/>
+ <command label="Cut" onclick="ecut()"/>
+ <command label="Paste" onclick="epaste()"/>
+ </menu>
+<menulabel label="Help"/>
+ <menu>
+ <a href="help.html">Help</a>
+ <a href="about.html">About</a>
+ </menu>
+</menubar>
+
+<form action="redirect.cgi">
+ <menubar>
+ <menulabel><label for="goto">Go to...</label></menulabel>
+ <menu>
+ <select id="goto" onchange="if (this.options[this.selectedIndex].value) window.location = this.options[this.selectedIndex].value">
+ <option value="" selected="selected"> Select site: </option>
+ <option value="http://www.apple.com/"> Apple </option>
+ <option value="http://www.mozilla.org/"> Mozilla </option>
+ <option value="http://www.opera.com/"> Opera </option>
+ </select>
+ <span><input type="submit" value="Go"></span>
+ </menu>
+ </menubar>
+</form>
+
+ </body>
+</html>

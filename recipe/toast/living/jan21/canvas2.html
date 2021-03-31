@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en">
+ <head>
+ <title>Edge detection demo</title>
+ <script>
+ var image = new Image();
+ function init() {
+ image.onload = demo;
+ image.src = "image.jpeg";
+ }
+ function demo() {
+ var canvas = document.getElementsByTagName('canvas')[0];
+ var context = canvas.getContext('2d');
+ // draw the image onto the canvas
+ context.drawImage(image, 0, 0);
+ // get the image data to manipulate
+ var input = context.getImageData(0, 0, canvas.width, canvas.height);
+ // get an empty slate to put the data into
+ var output = context.crateImageData(canvas.width, canvas.height);
+ // alias some variables for convenience
+ // notice that we are using input.width and input.height here
+ // as they might not be the same as canvas.width and canvas.height
+ // (in particular, they might be different on high-res displays)
+ var w = input.width, h = input.height;
+ var inputData = input.data;
+ var outputData = output.data;
+ // edge detection
+ for (var y = 1; y < h-1; y += 1) {
+ for (var x = 1; x < w-1; x += 1) {
+ for (var c = 0; c < 3; c += 1) {
+ var i = (y*w + x)*4 + c;
+ outputData[i] = 127 + -inputData[i - w*4 - 4] - inputData[i - 
+w*4] - inputData[i - w*4 + 4] +
+ -inputData[i - 4] + 8*inputData[i] 
+- inputData[i + 4] +
+ -inputData[i + w*4 - 4] - inputData[i + 
+ w*4] - inputData[i + w*4 + 4];
+ }
+ outputData[(y*w + x)*4 + 3] = 255; // alpha
+ }
+ }
+ // put the image data back after manipulation
+ context.putImageData(output, 0, 0);
+ }
+ </script>
+ </head>
+ <body onload="init()">
+ <canvas></canvas>
+ </body>
+</html>

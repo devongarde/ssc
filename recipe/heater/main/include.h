@@ -241,6 +241,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define DEFAULT_DOMAIN "example.org"
 #define CSS_TYPE "text/css"
+#define HTML_TYPE "text/html"
 
 #define NOFLAGS 0
 #define EXPORT_EXTENSION ".json"

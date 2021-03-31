@@ -22,4 +22,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_enum.h"
 
 void validate_metaname_content (nitpick& nits, const html_version& v, const bool in_head, const e_metaname mn, const ::std::string& content, page& p);
-void validate_metaname_url (nitpick& nits, const html_version& v, const bool in_head, const e_metaname mn, const ::std::string& content, const directory& d, const ::boost::filesystem::path& pagename, const int line, const attribute_bitset& flags, const vit_t& itemtypes);
+void validate_metaname_url (nitpick& nits, const html_version& v, const bool in_head, const e_metaname mn, const ::std::string& content, const element& e);

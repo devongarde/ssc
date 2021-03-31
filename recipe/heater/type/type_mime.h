@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MIME_SCRIPT         0x00000001
 #define NOT_SCRIPT          0x00000002
 #define MIME_STYLE          0x00000004
+#define MIME_FAUX           0x00000008
 
 #define MIME_APPLICATION    0x00000010
 #define MIME_AUDIO          0x00000020
@@ -44,7 +45,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MIME_VULNERABLE     0x00040000
 #define MIME_WITHDRAWN      0x00080000
 
-#define MIME_PAGE            0x00100000
+#define MIME_PAGE           0x00100000
 
 #define MIME_JSON           0x01000000
 #define MIME_ZIP            0x02000000
@@ -57,6 +58,10 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
     {   nits.pick (nit_mime, es_error, ec_type, "a mime type cannot be empty");
         enum_base < e_mimetype, t_mime > :: status (s_invalid); return; }
     original_ = s;
+    if (v.is_5 () && compare_no_case (s, "module"))
+    {   enum_base < e_mimetype, t_mime > :: status (s_good);
+        enum_base < e_mimetype, t_mime > :: value_ = mime_faux_module;
+        return; }
     ::std::string::size_type pos = s.find ('/');
     if (pos == ::std::string::npos)
     {   nits.pick (nit_mime, es_error, ec_type, "bad mime type");
@@ -133,9 +138,10 @@ template < > struct type_master < t_mimestar > : public string_value < t_mimesta
             if (test_value < t_mime > (nits, v, s)) return;
             string_value < t_mimestar > :: status (s_invalid); return; } } };
 
+template < > class type_master < t_format > : public enum_n < t_format, e_format > { };
+template < > struct type_master < t_mimemodule > : type_or_string < t_mimemodule, t_mime, sz_module > { };
 template < > struct type_master < t_mimeq > : type_one_or_both < t_mimeq, t_mimestar, sz_semicolon, t_q > { };
 template < > struct type_master < t_mimeqs > : type_at_least_one < t_mimeqs, sz_comma, t_mimeq > { };
-template < > class type_master < t_format > : public enum_n < t_format, e_format > { };
 
 e_format extension_format (nitpick& nits, const html_version& v, const ::std::string& ext, uint64_t& flags);
 bool is_compatible_extension (const html_version& v, const e_mimetype em, const ::std::string& ext);

@@ -99,6 +99,11 @@ PASS ../toast/living/jan08/img.html
 PASS ../toast/living/jan08/index.html
 3 attribute_unrecognised_here unrecognised_attribute
 
+PASS ../toast/living/jan08/link.html
+5 url_not_found
+6 url_not_found style_not_css
+7 url_not_found
+
 PASS ../toast/living/jan08/links-alternate.html
 5 url_not_found
 
@@ -173,5 +178,13 @@ PASS ../toast/living/jan08/source.html
 19 mime url_not_found
 21 inserted_missing_closure
 
+PASS ../toast/living/jan08/title.html
+4 long_title
+10 missing_close
+13 inserted_missing_closure
+
 PASS ../toast/living/jan08/wbr.html
 7 use_double_quote_code use_double_quote_code
+
+PASS ../toast/living/jan08/wysiwyg.html
+4 text_content

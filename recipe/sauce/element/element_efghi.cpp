@@ -175,6 +175,18 @@ void element::examine_filter ()
 {   if (node_.version ().svg () >= sv_1_1)
         examine_descendant_in (this); }
 
+void element::examine_font ()
+{   if (! node_.version ().is_5 ()) return;
+    if (node_.version () >= html_jul08)
+    {   if (! ancestral_elements_.test (elem_svg))
+            pick (nit_font, ed_50, "9.1.2. The font element", es_error, ec_element, "here, <FONT> must be descended from <SVG>"); }
+    else if ((node_.version () >= html_jan05) && own_attributes_.test (a_style))
+    {   attribute_bitset as (own_attributes_);
+        as.reset (a_style);
+        if (as.any ())
+            if (! ancestral_elements_.test (elem_svg))
+                pick (nit_font, ed_50, "9.1.2. The font element", es_error, ec_element, "<FONT> must either have the STYLE attribute or be descended from <SVG>E"); } }
+
 void element::examine_fn ()
 {   e_mathversion mv = node_.version ().math_version ();
     if (mv == math_none) mv = page_.version ().math_version ();

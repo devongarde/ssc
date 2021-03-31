@@ -120,7 +120,6 @@ PASS ../toast/HTML/5.1/html5-bad-2.html
 
 PASS ../toast/HTML/5.1/html5-example.html
 2 naughty_lang
-6 element_offsite_base
 8 url_not_found cannot_load_css
 9 url_not_found cannot_load_css
 10 url_not_found

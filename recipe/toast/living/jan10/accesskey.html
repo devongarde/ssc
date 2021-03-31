@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> access key </title> </head>
+ <body>
+
+<nav>
+ <p>
+ <a title="Consortium Activities" accesskey="A" href="/Consortium/activities">Activities</a> |
+ <a title="Technical Reports and Recommendations" accesskey="T" href="/TR/">Technical Reports</a> |
+ <a title="Alphabetical Site Index" accesskey="S" href="/Consortium/siteindex">Site Index</a> |
+ <a title="About This Site" accesskey="B" href="/Consortium/">About Consortium</a> |
+ <a title="Contact Consortium" accesskey="C" href="/Consortium/contact">Contact</a>
+ </p>
+</nav>
+
+<form action="/search">
+ <label>Search: <input type="search" name="q" accesskey="s 0"></label>
+ <input type="submit">
+</form>
+
+<input type=submit accesskey="N @ 1" value="Compose">
+...
+<script>
+ function labelButton(button) {
+ if (button.accessKeyLabel)
+ button.value += ' (' + button.accessKeyLabel + ')';
+ }
+ var inputs = document.getElementsByTagName('input');
+ for (var i = 0; i < inputs.length; i += 1) {
+ if (inputs[i].type == "submit")
+ labelButton(inputs[i]);
+ }
+</script>
+
+ </body>
+</html>

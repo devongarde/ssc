@@ -85,6 +85,7 @@ class element
     void no_anchor_daddy ();
     template < typename ATTRIBUTE > element* ancestor_known (const e_attribute a) const;
     void verify_microdata ();
+    bool report_script_comment (element_ptr parent);
     void walk_itemprop (itemscope_ptr itemscope);
     vit_t supplied_itemtypes ();
     vit_t sought_itemtypes ();
@@ -98,6 +99,7 @@ class element
     void examine_clip ();
     void examine_content ();
     void examine_draggable ();
+    void examine_font ();
     void examine_href ();
     void examine_headers ();
     void examine_descendant_in (const element* filter);
@@ -106,6 +108,8 @@ class element
     void examine_itemref (itemscope_ptr& itemscope);
     void examine_itemtype (itemscope_ptr& itemscope);
     void examine_other ();
+    void examine_ref ();
+    void examine_registrationmark ();
     bool examine_rel (const ::std::string& content);
     void examine_style_attr ();
     void examine_xlinkhref ();
@@ -124,6 +128,7 @@ class element
     void examine_base ();
     void examine_bind ();
     void examine_button ();
+    void examine_card ();
     void examine_caption ();
     void examine_command ();
     void examine_col ();
@@ -165,11 +170,13 @@ class element
     void examine_map ();
     void examine_math ();
     void examine_menu ();
+    void examine_menubar ();
     void examine_meta ();
     void examine_meter ();
     void examine_mglyph ();
     void examine_mstyle ();
     void examine_nav ();
+    void examine_nest ();
     void examine_noscript ();
     void examine_object ();
     void examine_option ();
@@ -269,6 +276,7 @@ public:
     e_inputtype5 get_input_type () const;
     itemscope_ptr itemscope () const { return itemscope_; }
     vit_t own_itemtype () const;
+    attribute_bitset own_attributes () const { return own_attributes_; }
     ::std::string get_microdata_value () const;
     void shadow (::std::stringstream& ss, const html_version& v);
     const page& get_page () const { return page_; }

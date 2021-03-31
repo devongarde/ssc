@@ -74,8 +74,8 @@ template < > struct type_master < t_content_type > : tidy_string < t_content_typ
         if (tidy_string < t_content_type > :: good ())
         {   vstr_t sides (split_sides_at_semi (nits, tidy_string < t_content_type > :: get_string ()));
             if (sides.size () > 0)
-            {   if (! compare_no_case (sides.at (0), "text/html"))
-                    nits.pick (nit_text_html_expected, es_error, ec_type, "content type should be 'text/html;charset=...'");
+            {   if (! compare_no_case (sides.at (0), HTML_TYPE))
+                    nits.pick (nit_text_html_expected, es_error, ec_type, "content type should be '" HTML_TYPE ";charset=...'");
                 if (sides.size () == 1)
                     nits.pick (nit_charset_missing, es_error, ec_type, "the charset is missing");
                 else

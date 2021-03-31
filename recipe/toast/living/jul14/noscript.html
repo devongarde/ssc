@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> noscript </title> </head>
+ <body>
+
+<form action="calcSquare.php">
+ <p>
+ <label for=x>Number</label>:
+ <input id="x" name="x" type="number">
+ </p>
+ <script>
+ var x = document.getElementById('x');
+ var output = document.createElement('p');
+ output.textContent = 'Type a number; it will be squared right then!';
+ x.form.appendChild(output);
+ x.form.onsubmit = function () { return false; }
+ x.oninput = function () {
+ var v = x.valueAsNumber;
+ output.textContent = v + ' squared is ' + v * v;
+ };
+ </script>
+ <noscript>
+ <input type=submit value="Calculate Square">
+ </noscript>
+</form>
+
+<form action="calcSquare.php">
+ <p>
+ <label for=x>Number</label>:
+ <input id="x" name="x" type="number">
+ </p>
+<input id="submit" type=submit value="Calculate Square">
+ <script>
+ var x = document.getElementById('x');
+ var output = document.createElement('p');
+ output.textContent = 'Type a number; it will be squared right then!';
+ x.form.appendChild(output);
+    x.form.onsubmit = function () { return false; }
+ x.oninput = function () {
+ var v = x.valueAsNumber;
+ output.textContent = v + ' squared is ' + v * v;
+ };
+ var submit = document.getElementById('submit');
+ submit.parentNode.removeChild(submit);
+ </script>
+</form>
+
+ </body>
+</html>

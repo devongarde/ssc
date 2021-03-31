@@ -92,15 +92,18 @@ bool url::standard_extension (const e_mime_category mime) const
                 default: break; } } }
     return false; }
 
-bool url::verify (nitpick& nits, const html_version& v, const directory& d, const ::boost::filesystem::path& pagename, const int line, const attribute_bitset& state, const vit_t& itemtypes)
+bool url::verify (nitpick& nits, const html_version& v, const element& e)
 {   if (! context.links ()) return true;
     if (is_simple_id ()) return true; // verify_id will check the id is valid
-    if (! d.verify_url (nits, v, *this, state, itemtypes)) return false;
+    if (is_local () && ! e.get_page ().check_links ()) return true;
+    const directory* d = e.get_page ().get_directory ();
+    assert (d != nullptr);
+    if (! d -> verify_url (nits, v, *this)) return false;
     if (context.crosslinks () && is_local () && has_id () && (has_path () || has_file ()))
-    {   ::boost::filesystem::path target (d.get_disk_path (nits, *this));
+    {   ::boost::filesystem::path target (d -> get_disk_path (nits, *this));
         if (target.empty ()) return false;
-        if (get_fileindex (pagename) != get_fileindex (target))
-            add_sought (pagename, line, target, id (), state.test (a_hidden), itemtypes); }
+        if (get_fileindex (e.get_page ().get_disk_path ()) != get_fileindex (target))
+            add_sought (e.get_page ().get_disk_path (), e.node ().line (), target, id (), e.own_attributes ().test (a_hidden), e.own_itemtype ()); }
     return true; }
 
 ::std::string url::verify_id (nitpick& nits, const html_version& , const ids_t& ids, const attribute_bitset& state, const vit_t& itemtypes)

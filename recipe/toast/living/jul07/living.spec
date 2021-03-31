@@ -76,6 +76,11 @@ PASS ../toast/living/jul07/i.html
 PASS ../toast/living/jul07/index.html
 3 attribute_unrecognised_here unrecognised_attribute
 
+PASS ../toast/living/jul07/link.html
+5 url_not_found
+6 url_not_found style_not_css
+7 url_not_found
+
 PASS ../toast/living/jul07/links-bookmark.html
 13 use_quote_code
 20 url_not_found
@@ -123,5 +128,13 @@ PASS ../toast/living/jul07/samp.html
 PASS ../toast/living/jul07/small.html
 0 charset_mismatch charset_used charset_invalid
 
+PASS ../toast/living/jul07/title.html
+4 long_title
+10 missing_close
+13 inserted_missing_closure
+
 PASS ../toast/living/jul07/wbr.html
 7 use_double_quote_code use_double_quote_code
+
+PASS ../toast/living/jul07/wysiwyg.html
+4 text_content

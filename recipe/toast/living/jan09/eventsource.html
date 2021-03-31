@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+ <head>
+<title> event-source </title>
+</head>
+
+ <body>
+<eventsource src="http://stocks.example.com/ticker.php"
+ onmessage="var data = event.data.split('\n'); updateStocks(data[0], data[1], data[2]);">
+ </body>
+
+</html>

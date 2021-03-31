@@ -314,7 +314,7 @@ PASS ../toast/SVG/1.1/svg11.html
 1439 svg_version
 1442 chocolate_teapot
 1446 svg_version
-1449 bad_script
+1449 script
 1463 svg_version
 1484 use_quote_code
 1493 svg_version
@@ -327,7 +327,7 @@ PASS ../toast/SVG/1.1/svg11.html
 1508 svg_version
 1513 id_exists
 1527 svg_version
-1528 bad_script
+1528 script
 1551 id_exists
 1555 svg_version
 1575 svg_version

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> channel messaging </title> </head>
+ <body>
+
+<script src="contacts.js"></script> <!-- exposes a contacts object -->
+<script src="compose-mail.js"></script> <!-- exposes a composer object -->
+<script>
+var channel = new MessageChannel();
+composer.addContactsProvider(channel.port1);
+contacts.registerConsumer(channel.port2);
+</script>
+ </body>
+</html>

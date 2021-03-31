@@ -128,11 +128,15 @@ PASS ../toast/HTML/5.4/html5-bad.html
 134 url_not_found
 135 bad_script bad_script
 136 bad_script
-141 bad_script
-142 bad_script
-143 unrecognised_value invalid_attribute_version wrong_version
-145 bad_script
-146 bad_script
+137 script
+139 script bad_script
+140 script bad_script
+141 script bad_script
+142 script
+143 unrecognised_value invalid_attribute_version wrong_version script
+144 script bad_script
+145 script bad_script bad_script
+146 script
 
 PASS ../toast/HTML/5.4/html5-bad-2.html
 0 charset_mismatch charset_used charset_invalid
@@ -151,7 +155,6 @@ PASS ../toast/HTML/5.4/html5-bad-2.html
 
 PASS ../toast/HTML/5.4/html5-example.html
 2 naughty_lang
-6 element_offsite_base
 8 url_not_found cannot_load_css
 9 url_not_found cannot_load_css
 10 url_not_found

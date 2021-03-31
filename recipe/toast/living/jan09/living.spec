@@ -96,6 +96,7 @@ PASS ../toast/living/jan09/dt.html
 16 inserted_missing_closure
 
 PASS ../toast/living/jan09/example.html
+0 charset_mismatch charset_used charset_invalid
 7 unrecognised_value unrecognised_value
 8 unrecognised_value unrecognised_value
 9 unrecognised_value unrecognised_value
@@ -107,6 +108,7 @@ PASS ../toast/living/jan09/example.html
 51 url_not_found
 52 url_not_found
 54 use_quote_code
+69 url_not_found
 
 PASS ../toast/living/jan09/example-2.html
 4 url_not_found style_not_css
@@ -234,6 +236,11 @@ PASS ../toast/living/jan09/img.html
 PASS ../toast/living/jan09/index.html
 3 attribute_unrecognised_here unrecognised_attribute
 
+PASS ../toast/living/jan09/link.html
+5 url_not_found
+6 url_not_found style_not_css
+7 url_not_found
+
 PASS ../toast/living/jan09/links-alternate.html
 5 url_not_found
 
@@ -288,20 +295,6 @@ PASS ../toast/living/jan09/ls3.html
 11 ignoring_unknown ignoring_unknown
 12 ignoring_unknown
 
-PASS ../toast/living/jan09/ls4.html
-0 charset_mismatch charset_used charset_invalid
-9 url_not_found
-10 url_not_found
-11 url_not_found
-16 url_not_found inserted_missing_closure
-17 inserted_missing_closure url_not_found
-18 inserted_missing_closure
-19 inserted_missing_closure url_not_found inserted_missing_closure missing_close
-20 inserted_missing_closure
-27 url_not_found
-28 url_not_found
-29 url_not_found
-
 PASS ../toast/living/jan09/mark.html
 9 use_quote_code
 16 use_quote_code
@@ -327,6 +320,20 @@ PASS ../toast/living/jan09/meter.html
 41 no_such_folder url_not_found
 46 no_such_folder url_not_found
 47 no_such_folder url_not_found
+
+PASS ../toast/living/jan09/nav.html
+0 charset_mismatch charset_used charset_invalid
+9 url_not_found
+10 url_not_found
+11 url_not_found
+16 url_not_found inserted_missing_closure
+17 inserted_missing_closure url_not_found
+18 inserted_missing_closure
+19 inserted_missing_closure url_not_found inserted_missing_closure missing_close
+20 inserted_missing_closure
+27 url_not_found
+28 url_not_found
+29 url_not_found
 
 PASS ../toast/living/jan09/object.html
 15 url_not_found
@@ -354,6 +361,10 @@ PASS ../toast/living/jan09/samp.html
 9 unrecognised_value
 13 unrecognised_value unrecognised_value
 
+PASS ../toast/living/jan09/script.html
+6 url_not_found
+7 mime
+
 PASS ../toast/living/jan09/small.html
 0 charset_mismatch charset_used charset_invalid
 
@@ -379,6 +390,11 @@ PASS ../toast/living/jan09/tagcloud.html
 21 inserted_missing_closure no_such_folder url_not_found
 22 inserted_missing_closure missing_close no_such_folder url_not_found
 23 inserted_missing_closure
+
+PASS ../toast/living/jan09/title.html
+4 long_title
+10 missing_close
+13 inserted_missing_closure
 
 PASS ../toast/living/jan09/ul.html
 9 inserted_missing_closure
