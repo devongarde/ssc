@@ -9,10 +9,22 @@ PASS ../toast/living/jan10/a.html
 PASS ../toast/living/jan10/abbr.html
 17 id_exists
 
+PASS ../toast/living/jan10/accesskey.html
+8 no_such_folder url_not_found
+9 no_such_folder url_not_found
+10 no_such_folder url_not_found
+11 no_such_folder url_not_found
+12 no_such_folder url_not_found
+16 url_not_found
+
 PASS ../toast/living/jan10/address.html
 11 attempted_escape no_such_folder url_not_found
 12 attempted_escape no_such_folder url_not_found
 13 url_not_found
+
+PASS ../toast/living/jan10/article.html
+12 use_quote_code
+25 use_quote_code
 
 PASS ../toast/living/jan10/aside.html
 0 charset_mismatch charset_used charset_invalid
@@ -41,6 +53,10 @@ PASS ../toast/living/jan10/aside-2.html
 PASS ../toast/living/jan10/b.html
 0 charset_mismatch charset_used charset_invalid
 12 use_quote_code
+
+PASS ../toast/living/jan10/base.html
+4 long_title
+5 element_offsite_base
 
 PASS ../toast/living/jan10/blockquote.html
 7 missing_close
@@ -101,6 +117,10 @@ PASS ../toast/living/jan10/dl.html
 12 inserted_missing_closure
 54 use_quote_code
 
+PASS ../toast/living/jan10/dragondrops.html
+29 unrecognised_value
+61 only_elements
+
 PASS ../toast/living/jan10/el.html
 9 use_quote_code
 13 use_quote_code
@@ -113,6 +133,7 @@ PASS ../toast/living/jan10/embed.html
 10 reputation url_not_found
 
 PASS ../toast/living/jan10/example.html
+0 charset_mismatch charset_used charset_invalid
 6 missing_close inserted_missing_closure missing_open
 9 url_not_found
 28 unrecognised_value no_such_folder url_not_found
@@ -135,6 +156,8 @@ PASS ../toast/living/jan10/example.html
 99 inserted_missing_closure missing_close
 100 inserted_missing_closure
 104 use_quote_code
+124 url_not_found
+130 url_not_found
 
 PASS ../toast/living/jan10/example-2.html
 4 url_not_found style_not_css
@@ -201,6 +224,9 @@ PASS ../toast/living/jan10/h-1.html
 PASS ../toast/living/jan10/h-2.html
 6 use_quote_code
 
+PASS ../toast/living/jan10/head-2.html
+5 element_offsite_base
+
 PASS ../toast/living/jan10/header.html
 31 url_id_unfound
 33 unrecognised_value
@@ -211,6 +237,18 @@ PASS ../toast/living/jan10/header-2.html
 16 inserted_missing_closure missing_close url_not_found
 17 inserted_missing_closure
 21 use_quote_code
+
+PASS ../toast/living/jan10/history-1.html
+3 inserted_missing_parent missing_close inserted_missing_parent missing_close
+5 inserted_missing_parent inserted_missing_closure missing_close
+
+PASS ../toast/living/jan10/history-2.html
+3 inserted_missing_parent missing_close inserted_missing_parent missing_close
+4 inserted_missing_parent inserted_missing_closure missing_close
+
+PASS ../toast/living/jan10/history-3.html
+2 inserted_missing_parent missing_close inserted_missing_parent
+15 inserted_missing_closure missing_close
 
 PASS ../toast/living/jan10/hr.html
 12 use_quote_code
@@ -377,6 +415,29 @@ PASS ../toast/living/jan10/li.html
 27 use_quote_code
 36 inserted_missing_closure
 
+PASS ../toast/living/jan10/licence.html
+6 schema_domain
+7 attribute_required url_not_found
+8 inserted_missing_closure missing_close
+10 missing_close
+16 inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/living/jan10/link.html
+7 url_not_found
+8 url_not_found style_not_css
+9 url_not_found
+12 url_not_found
+14 url_not_found
+16 url_not_found
+17 url_not_found
+18 url_not_found
+20 no_such_folder url_not_found
+21 no_such_folder url_not_found
+22 no_such_folder url_not_found
+23 no_such_folder url_not_found
+24 no_such_folder url_not_found
+25 no_such_folder url_not_found
+
 PASS ../toast/living/jan10/links-alternate.html
 5 url_not_found
 6 url_not_found
@@ -440,32 +501,6 @@ PASS ../toast/living/jan10/ls6.html
 PASS ../toast/living/jan10/ls7.html
 0 charset_mismatch charset_used charset_invalid
 
-PASS ../toast/living/jan10/ls8.html
-4 long_title
-5 element_offsite_base
-8 url_not_found
-
-PASS ../toast/living/jan10/ls9.html
-12 use_quote_code
-
-PASS ../toast/living/jan10/ls12.html
-0 charset_mismatch charset_used charset_invalid
-9 url_not_found
-10 url_not_found
-11 url_not_found
-16 url_not_found
-17 url_not_found
-18 url_not_found
-39 url_not_found
-40 url_not_found
-41 url_not_found
-
-PASS ../toast/living/jan10/ls13.html
-0 charset_mismatch charset_used charset_invalid
-11 url_not_found
-13 only_elements
-25 only_elements
-
 PASS ../toast/living/jan10/mark.html
 9 use_quote_code
 16 use_quote_code
@@ -475,6 +510,9 @@ PASS ../toast/living/jan10/mark.html
 
 PASS ../toast/living/jan10/me.html
 7 url_not_found
+
+PASS ../toast/living/jan10/meta.html
+13 refresh_zero url_not_found
 
 PASS ../toast/living/jan10/menu.html
 8 no_such_folder url_not_found unknown
@@ -504,8 +542,63 @@ PASS ../toast/living/jan10/meter.html
 43 no_such_folder url_not_found
 44 no_such_folder url_not_found
 
-PASS ../toast/living/jan10/object.html
+PASS ../toast/living/jan10/microdata.html
+20 url_not_found
+53 attribute_required url_not_found
+54 inserted_missing_closure missing_close
+55 inserted_missing_closure
+58 attribute_required url_not_found
+59 inserted_missing_closure missing_close
+60 inserted_missing_closure
+62 schema_domain
+66 url_not_found naughty_alt
+71 schema_domain
+73 inserted_missing_closure
+74 inserted_missing_closure
+75 inserted_missing_closure
+76 inserted_missing_closure
+77 inserted_missing_closure missing_close
+78 inserted_missing_closure
+80 schema_domain
+86 url_not_found naughty_alt
+89 schema_domain
+95 url_not_found naughty_alt
+126 schema_domain
+135 schema_domain
+142 schema_domain
+
+PASS ../toast/living/jan10/mt.html
+6 missing_close inserted_missing_closure missing_open
+8 inserted_missing_closure missing_open
+10 inserted_missing_closure missing_close inserted_missing_parent inserted_missing_closure inserted_missing_parent missing_close inserted_missing_closure
+
+PASS ../toast/living/jan10/namespace.html
+10 unrecognised_value ignoring_unknown xmlns_namespace attribute_barred attribute_barred
+
+PASS ../toast/living/jan10/nav-1.html
+0 charset_mismatch charset_used charset_invalid
+9 url_not_found
+10 url_not_found
+11 url_not_found
+16 url_not_found
 17 url_not_found
+18 url_not_found
+39 url_not_found
+40 url_not_found
+41 url_not_found
+
+PASS ../toast/living/jan10/nav-2.html
+0 charset_mismatch charset_used charset_invalid
+11 url_not_found
+13 only_elements
+25 only_elements
+
+PASS ../toast/living/jan10/noscript.html
+6 url_not_found
+27 url_not_found
+30 id_exists
+
+PASS ../toast/living/jan10/object.html
 18 inserted_missing_closure missing_close
 19 inserted_missing_closure
 
@@ -550,6 +643,13 @@ PASS ../toast/living/jan10/samp.html
 9 unrecognised_value
 13 unrecognised_value unrecognised_value
 
+PASS ../toast/living/jan10/script.html
+0 charset_mismatch charset_used charset_invalid
+6 url_not_found
+7 mime
+37 use_double_quote_code
+47 url_not_found script
+
 PASS ../toast/living/jan10/small.html
 0 charset_mismatch charset_used charset_invalid
 
@@ -581,6 +681,9 @@ PASS ../toast/living/jan10/span.html
 13 unrecognised_value unrecognised_value
 14 unrecognised_value
 15 unrecognised_value
+
+PASS ../toast/living/jan10/style.html
+12 use_quote_code
 
 PASS ../toast/living/jan10/table.html
 14 wrong_parent inserted_missing_closure
@@ -700,6 +803,11 @@ PASS ../toast/living/jan10/th.html
 PASS ../toast/living/jan10/time.html
 15 use_quote_code
 
+PASS ../toast/living/jan10/title.html
+4 long_title
+10 missing_close
+13 inserted_missing_closure
+
 PASS ../toast/living/jan10/tls.html
 0 charset_mismatch charset_used charset_invalid
 6 url_not_found
@@ -719,6 +827,25 @@ PASS ../toast/living/jan10/ul.html
 
 PASS ../toast/living/jan10/var.html
 23 use_quote_code
+
+PASS ../toast/living/jan10/vcard.html
+6 schema_domain
+8 url_not_found naughty_alt
+30 use_quote_code
+42 use_quote_code schema_domain
+44 use_quote_code
+45 use_quote_code
+47 use_quote_code
+53 missing_close
+56 inserted_missing_closure
+59 schema_domain
+70 schema_domain
+
+PASS ../toast/living/jan10/vevent.html
+5 schema_domain
+22 schema_domain
+24 use_quote_code
+26 invalid_attribute_version wrong_version
 
 PASS ../toast/living/jan10/wbr.html
 7 use_double_quote_code use_double_quote_code

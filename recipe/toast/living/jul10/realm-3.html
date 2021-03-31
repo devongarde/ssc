@@ -1,0 +1,13 @@
+<!-- outer.html -->
+<!DOCTYPE html>
+<html lang="en">
+<title>Relevant Realm demo: outer page</title>
+<script>
+function doTest() {
+const promise = navigator.getBattery.call(frames[0].navigator);
+console.log(promise instanceof Promise); // logs false
+console.log(promise instanceof frames[0].Promise); // logs true
+frames[0].hello();
+}
+</script>
+<iframe src="realm-8.html" onload="doTest()"></iframe>

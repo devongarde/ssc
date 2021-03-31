@@ -237,6 +237,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_WHATWG       0x0000000000100000
 #define HV_W3           0x0000000000200000
 
+#define HV_NOTPROD      0x0000000000400000
 #define HV_DEPRECATED2  0x0000000000800000
 #define HV_DEPRECATED30 0x0000000001000000
 #define HV_DEPRECATED32 0x0000000002000000
@@ -472,6 +473,7 @@ public:
     bool is_rel () const { return ((flags_ & HR_ALL) != 0); }
     bool invalid_addendum (const html_version& v) const;
     bool deprecated (const html_version& current) const;
+    bool not_production () const { return ((flags_ & HV_NOTPROD) == HV_NOTPROD); }
     bool parse_doctype (nitpick& nits, const ::std::string& content);
     bool lazy () const;
     uint64_t flags () const { return flags_; }

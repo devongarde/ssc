@@ -1,5 +1,9 @@
 -f ../toast/other/parsing/parsing.conf
 
+PASS ../toast/other/parsing/comment.html
+16 ssi
+17 dashdash
+
 PASS ../toast/other/parsing/doctype-missing.html
 1 presume_html_1
 
@@ -18,10 +22,13 @@ PASS ../toast/other/parsing/parsing-bad.html
 9 unrecognised_value double_gin_and_tonic
 11 attribute_repeated attribute_repeated unrecognised_value unrecognised_value unrecognised_value
 13 bizarre_character_code invalid_character_code denary_too_long mixed_mess
-28 eof_in_cdata
+16 naked_grave missing_close
+26 inserted_missing_closure
+30 eof_in_cdata
 
 PASS ../toast/other/parsing/quotes.html
 2 inserted_missing_parent naughty_lang
+5 bad_script
 14 attribute_unrecognised attribute_name_unexpected_character unrecognised_attribute
 15 attribute_unrecognised attribute_name_unexpected_character unrecognised_attribute
 

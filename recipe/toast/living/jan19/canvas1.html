@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> canvas </title> </head>
+ <body>
+
+<canvas height=400 width=750>
+ <label><input type=checkbox id=showA> Show As</label>
+ <label><input type=checkbox id=showB> Show Bs</label>
+ <!-- ... -->
+</canvas>
+<script>
+ function drawCheckbox(context, element, x, y) {
+ context.save();
+ context.font = '10px sans-serif';
+ context.textAlign = 'left';
+ context.textBaseline = 'middle';
+ var metrics = context.measureText(element.labels[0].textContent);
+ context.beginPath();
+ context.strokeStyle = 'black';
+ context.rect(x-5, y-5, 10, 10);
+ context.stroke();
+ if (element.checked) {
+ context.fillStyle = 'black';
+ context.fill();
+ }
+ context.fillText(element.labels[0].textContent, x+5, y);
+ context.beginPath();
+ context.rect(x-7, y-7, 12 + metrics.width+2, 14);
+ if (context.drawFocusRing(element, x, y, true)) {
+ context.strokeStyle = 'silver';
+ context.stroke();
+ }
+ context.restore();
+ }
+ function drawBase() { /* ... */ }
+ function drawAs() { /* ... */ }
+ function drawBs() { /* ... */ }
+ function redraw() {
+ var canvas = document.getElementsByTagName('canvas')[0];
+ var context = canvas.getContext('2d');
+ context.clearRect(0, 0, canvas.width, canvas.height);
+ drawCheckbox(context, document.getElementById('showA'), 20, 40);
+ drawCheckbox(context, document.getElementById('showB'), 20, 60);
+ drawBase();
+ if (document.getElementById('showA').checked)
+ drawAs();
+ if (document.getElementById('showB').checked)
+ drawBs();
+ }
+ function processClick(event) {
+ var canvas = document.getElementsByTagName('canvas')[0];
+ var context = canvas.getContext('2d');
+ var x = event.clientX - canvas.offsetLeft;
+ var y = event.clientY - canvas.offsetTop;
+ drawCheckbox(context, document.getElementById('showA'), 20, 40);
+ if (context.isPointInPath(x, y))
+ document.getElementById('showA').checked =
+!(document.getElementById('showA').checked);
+ drawCheckbox(context, document.getElementById('showB'), 20, 60);
+ if (context.isPointInPath(x, y))
+ document.getElementById('showB').checked =
+!(document.getElementById('showB').checked);
+ redraw();
+ }
+ document.getElementsByTagName('canvas')[0].addEventListener('focus', redraw, true);
+ document.getElementsByTagName('canvas')[0].addEventListener('blur', redraw, true);
+ document.getElementsByTagName('canvas')[0].addEventListener('change', redraw, true);
+ document.getElementsByTagName('canvas')[0].addEventListener('click', processClick, false);
+ redraw();
+</script>
+
+<canvas width="800" height="450"></canvas>
+<script>
+ var context = document.getElementsByTagName('canvas')[0].getContext('2d');
+ var lastX = context.canvas.width * Math.random();
+ var lastY = context.canvas.height * Math.random();
+ var hue = 0;
+ function line() {
+ context.save();
+ context.translate(context.canvas.width/2, context.canvas.height/2);
+ context.scale(0.9, 0.9);
+ context.translate(-context.canvas.width/2, -context.canvas.height/2);
+ context.beginPath();
+ context.lineWidth = 5 + Math.random() * 10;
+ context.moveTo(lastX, lastY);
+ lastX = context.canvas.width * Math.random();
+ lastY = context.canvas.height * Math.random();
+ context.bezierCurveTo(context.canvas.width * Math.random(),
+ context.canvas.height * Math.random(),
+ context.canvas.width * Math.random(),
+ context.canvas.height * Math.random(),
+ lastX, lastY);
+ hue = hue + 10 * Math.random();
+ context.strokeStyle = 'hsl(' + hue + ', 50%, 50%)';
+ context.shadowColor = 'white';
+ context.shadowBlur = 10;
+ context.stroke();
+ context.restore();
+ }
+ setInterval(line, 50);
+ function blank() {
+ context.fillStyle = 'rgba(0,0,0,0.1)';
+ context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+ }
+ setInterval(blank, 40);
+</script>
+
+
+ </body>
+</html>

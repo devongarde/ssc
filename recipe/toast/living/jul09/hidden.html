@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> hidden </title> </head>
+ <body>
+
+<h1>The Example Game</h1>
+ <section id="login">
+ <h2>Login</h2>
+ <form>
+ ...
+ <!-- calls login() once the user's credentials have been checked -->
+ </form>
+ <script>
+ function login() {
+ // switch screens
+ document.getElementById('login').hidden = true;
+ document.getElementById('game').hidden = false;
+ }
+ </script>
+ </section>
+ <section id="game" hidden>
+ ...
+ </section>
+
+ </body>
+</html>

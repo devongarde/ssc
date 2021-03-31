@@ -47,7 +47,7 @@ public:
     void swap (type_base& t) NOEXCEPT { id_.swap (t.id_); ::std::swap (status_, t.status_); }
     void reset () { status_ = s_unset; id_.clear (); }
     void validate (nitpick& , const html_version& , const elem& , const ::std::string& ) { }
-    bool verify_url (nitpick& , const html_version& , const directory& , const ::boost::filesystem::path& , const int , const attribute_bitset& , const vit_t& ) { return true; }
+    bool verify_url (nitpick& , const html_version& , const element& ) { return true; }
     ::std::string get_string () const { return ::std::string (); }
     ::std::string original () const { return get_string (); }
     void set_value (nitpick& , const html_version& , const ::std::string& ) { status_ = s_empty; }

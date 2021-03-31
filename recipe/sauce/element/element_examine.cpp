@@ -47,6 +47,7 @@ void element::pre_examine_element (const e_element tag)
         case elem_embed : examine_embed (); break;
         case elem_fecolourmatrix : examine_fecolourmatrix (); break;
         case elem_fn : examine_fn (); break;
+        case elem_font : examine_font (); break;
         case elem_html : examine_html (); break;
         case elem_iframe : examine_iframe (); break;
         case elem_li : examine_li (); break;
@@ -55,6 +56,7 @@ void element::pre_examine_element (const e_element tag)
         case elem_map : examine_map (); break;
         case elem_meter : examine_meter (); break;
         case elem_mstyle : examine_mstyle (); break;
+        case elem_nest : examine_nest (); break;
         case elem_nextid :
             pick (nit_deprecated_element, es_warning, ec_element, "Really? <NEXTID> was obsolete in HTML Tags!");
             break;
@@ -63,7 +65,6 @@ void element::pre_examine_element (const e_element tag)
         case elem_render :
             pick (nit_render, es_warning, ec_element, "With apologies, " PROG " does not understand <RENDER>");
             break;
-        case elem_script : examine_script (); break;
         case elem_section : examine_section (); break;
         case elem_share : examine_share (); break;
         case elem_style : examine_style (); break;
@@ -96,6 +97,7 @@ void element::post_examine_element (const e_element tag)
         case elem_mstyle :
         case elem_mtd :
         case elem_semantics : check_math_children (1, true); break;
+        case elem_card : examine_card (); break;
         case elem_caption : examine_caption (); break;
         case elem_colgroup : examine_colgroup (); break;
         case elem_condition :
@@ -139,6 +141,7 @@ void element::post_examine_element (const e_element tag)
         case elem_label : examine_label (); break;
         case elem_math : examine_math (); break;
         case elem_menu : examine_menu (); break;
+        case elem_menubar : examine_menubar (); break;
         case elem_meta : examine_meta (); break;
         case elem_mfrac :
         case elem_mover :
@@ -163,6 +166,7 @@ void element::post_examine_element (const e_element tag)
         case elem_reln : examine_equation (); break;
         case elem_ruby : examine_ruby (); break;
         case elem_source : examine_source (); break;
+        case elem_script : examine_script (); break;
         case elem_switch : examine_switch (); break;
         case elem_table : examine_table (); break;
         case elem_td : examine_td (); break;
@@ -294,9 +298,11 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
 
         if (context.links ())
             if (a_.has_url ())
-                a_.verify_url (nits (), node_.version (), d, page_.get_disk_path (), node_.line (), ancestral_attributes_, vit_);
+                a_.verify_url (nits (), node_.version (), *this);
 
         if (a_.known (a_other)) examine_other ();
+        if (a_.known (a_ref)) examine_ref ();
+        if (a_.known (a_registrationmark)) examine_registrationmark ();
         if (a_.known (a_style)) examine_style_attr ();
         if (a_.known (a_xlinkhref)) examine_xlinkhref ();
 

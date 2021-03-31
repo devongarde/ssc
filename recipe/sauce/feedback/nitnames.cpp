@@ -588,6 +588,16 @@ nitname nitnames [] =
     { nit_bad_pattern, "bad_pattern" },
     { nit_bad_command, "bad_command" },
     { nit_bad_datagrid, "bad_datagrid" },
+    { nit_script, "script" },
+    { nit_menubar, "menubar" },
+    { nit_bad_card, "bad_card" },
+    { nit_nest, "nest" },
+    { nit_registration_mark, "registration_mark" },
+    { nit_bad_ref, "bad_ref" },
+    { nit_font, "font" },
+    { nit_dashdash, "dashdash" },
+    { nit_naked_grave, "naked_grave" },
+    { nit_prototype, "prototype" },
 
     { nit_off, "" } };
 

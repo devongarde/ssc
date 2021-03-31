@@ -14,6 +14,20 @@ PASS ../toast/webapps/jan07/address.html
 12 attempted_escape no_such_folder url_not_found
 13 url_not_found
 
+PASS ../toast/webapps/jan07/as.html
+6 url_not_found
+7 url_not_found
+12 url_not_found
+13 url_not_found
+15 url_not_found
+16 url_not_found
+21 url_not_found
+22 url_not_found
+
+PASS ../toast/webapps/jan07/bookmark.html
+11 use_quote_code
+18 url_not_found
+
 PASS ../toast/webapps/jan07/datagrid.html
 10 attribute_required
 14 attribute_required
@@ -49,6 +63,9 @@ PASS ../toast/webapps/jan07/dl.html
 PASS ../toast/webapps/jan07/example.html
 10 inserted_missing_closure
 13 missing_open
+41 unrecognised_value unrecognised_value
+42 unrecognised_value unrecognised_value
+43 unrecognised_value unrecognised_value
 
 PASS ../toast/webapps/jan07/example-2.html
 4 url_not_found
@@ -56,10 +73,21 @@ PASS ../toast/webapps/jan07/example-2.html
 6 url_not_found
 12 url_not_found
 13 ignoring_unknown missing_close attribute_barred
-15 inserted_missing_closure
+23 inserted_missing_closure
+
+PASS ../toast/webapps/jan07/feed.html
+6 url_not_found
+7 url_not_found
+14 url_not_found
+15 url_not_found
+16 url_not_found
 
 PASS ../toast/webapps/jan07/header.html
 35 url_id_unfound
+
+PASS ../toast/webapps/jan07/help.html
+10 missing_close missing_close missing_close no_such_folder url_not_found
+12 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/webapps/jan07/i.html
 0 charset_mismatch charset_used charset_invalid
@@ -107,6 +135,11 @@ PASS ../toast/webapps/jan07/samp.html
 
 PASS ../toast/webapps/jan07/small.html
 0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/webapps/jan07/title.html
+4 long_title
+10 missing_close
+13 inserted_missing_closure
 
 PASS ../toast/webapps/jan07/wa1.html
 0 charset_mismatch charset_used charset_invalid

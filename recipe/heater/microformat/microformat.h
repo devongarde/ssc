@@ -85,7 +85,7 @@ public:
     {   ::std::swap (declared_, mf.declared_); }
     virtual bool invalid () const { return true; }
     virtual bool has_url () const { return false; }
-    virtual bool verify_url (nitpick& , const html_version& , const directory& , const ::boost::filesystem::path& , const int , const attribute_bitset& , const vit_t& ) { return true; }
+    virtual bool verify_url (nitpick& , const html_version& , const element& ) { return true; }
     virtual void verify (nitpick& , const html_version& ) { }
     virtual bool empty () const { return true; }
     virtual bool unknown () const { return true; }
@@ -137,7 +137,7 @@ public:
     virtual bool has_prop (const e_property p) const;
     virtual bool invalid () const;
     virtual bool has_url () const;
-    virtual bool verify_url (nitpick& nits, const html_version& v, const directory& d, const ::boost::filesystem::path& pagename, const int line, const attribute_bitset& flags, const vit_t& itemtypes);
+    virtual bool verify_url (nitpick& nits, const html_version& v, const element& e);
     virtual void verify (nitpick& nits, const html_version& v);
     virtual bool empty () const;
     virtual bool unknown () const;
@@ -203,10 +203,10 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
     bool microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > ::
-        verify_url (nitpick& nits, const html_version& v, const directory& d, const ::boost::filesystem::path& pagename, const int line, const attribute_bitset& flags, const vit_t& itemtypes)
+        verify_url (nitpick& nits, const html_version& v, const element& e)
 {   bool res = true;
     for_each_attribute (p_, [&](auto& p)
-    {   res = res && p.verify_url (nits, v, d, pagename, line, flags, itemtypes); } );
+    {   res = res && p.verify_url (nits, v, e); } );
     return res; }
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
@@ -304,5 +304,4 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
     verify_mf < ENUM, VOCAB > :: hcard (nits, v, text (),
         get < fn_at1 > (), get < n_at1 > (), get < given_name_at1 > (), get < family_name_at1 > (), get < org_at1 > (), get < organisation_name_at1 > (), get < nickname_at1 > ());
     if (unknown ())
-        nits.pick (nit_mf_empty, es_warning, ec_microformat, name (), " is empty; no properties were found or deduced");
-};
+        nits.pick (nit_mf_empty, es_warning, ec_microformat, name (), " is empty; no properties were found or deduced"); };

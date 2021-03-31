@@ -1,0 +1,12 @@
+<!-- https://foo.example.com/a.html -->
+<!doctype html>
+<script>
+document.domain = 'example.com';
+</script>
+<iframe src=b.html></iframe>
+<!-- https://bar.example.com/b.html -->
+<!doctype html>
+<script>
+document.domain = 'example.com'; // This happens after the document is initialized
+new PaymentRequest(…); // Not allowed to use
+</script>

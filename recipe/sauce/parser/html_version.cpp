@@ -86,7 +86,7 @@ void html_version::swap (html_version& v) NOEXCEPT
     if (v == html_5_2) return "5.2";
     if (v == html_5_3) return "5.3";
     ::std::string res ("5/20");
-    if (v <= html_jan09)
+    if (v.mjr () < 10)
     {   res += "0";
         res += static_cast <char> (v.mjr () + '0'); }
     else res += ::boost::lexical_cast < ::std::string > (static_cast < int > (v.mjr ()));
@@ -446,7 +446,8 @@ bool html_version::deprecated (const html_version& current) const
             {   case 0 : return (flags_ & HV_DEPRECATED50) != 0;
                 case 1 : return (flags_ & HV_DEPRECATED51) != 0;
                 case 2 : return (flags_ & HV_DEPRECATED52) != 0;
-                case 3 : return (flags_ & HV_DEPRECATED53) != 0; } }
+                case 3 : return (flags_ & HV_DEPRECATED53) != 0;
+                case 4 : return (flags_ & HV_DEPRECATED54) != 0; } }
     return false; }
 
 bool html_version::lazy () const

@@ -29,10 +29,12 @@ void element::examine_section ()
             check_ancestors (tag (), empty_element_bitset | elem_dt); } }
 
 void element::examine_script ()
-{   if (node_.version ().mjr () < 5) return;
+{   if (! node_.version ().is_5 ()) return;
     check_ancestors (elem_script, element_bit_set (elem_script));
     bool datablock = false, module = false;
-    if (a_.known (a_type))
+    if (! a_.known (a_type) || a_.empty (a_type))
+        pick (nit_script, ed_50, "4.11.1 The script element", es_comment, ec_element, "this should be treated as ECMAscript / Javascript");
+    else
     {   if (a_.good (a_charset))
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "CHARSET should be omitted when using <SCRIPT> TYPE");
         if (a_.good (a_type))
@@ -43,7 +45,10 @@ void element::examine_script ()
                 case mime_application_octet_stream :
                 case mime_application_xml :
                     if (node_.version () < html_jul18)
-                        pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, quote (type_master < t_mime > :: name (mt)), " is not a scripting language");
+                        pick (nit_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " is not a scripting language");
+                    else
+                    {   pick (nit_script, ed_52, "4.12.1 The script element", es_comment, ec_element, "this will be treated as a block of datat");
+                        datablock = true; }
                     break;
                 case mime_application_ecmascript :
                 case mime_application_javascript :
@@ -63,7 +68,7 @@ void element::examine_script ()
                 case mime_text_x_ecmascript :
                 case mime_text_x_javascript :
                     if (node_.version () >= html_5_1)
-                        pick (nit_bad_script, ed_52, "4.12.1 The script element", es_info, ec_element, "omit the TYPE attribute for javascript");
+                        pick (nit_script, ed_52, "4.12.1 The script element", es_info, ec_element, "omit the TYPE attribute for javascript");
                     break;
                 case mime_faux_module :
                     module = true;
@@ -71,9 +76,9 @@ void element::examine_script ()
                 default :
                     {   uint64_t flags = type_master < t_mime > :: flags (mt);
                         if ((flags & MIME_SCRIPT) == MIME_SCRIPT)
-                            pick (nit_bad_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be supported by all browsers on all systems");
-                        else if (node_.version () < html_jul20)
-                        {   pick (nit_bad_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be processed");
+                            pick (nit_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be supported by all browsers on all systems");
+                        else
+                        {   pick (nit_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be processed");
                             datablock = true; } }
                     break; } } }
     if (datablock)
@@ -85,18 +90,35 @@ void element::examine_script ()
     {   if (a_.known (a_charset) && (node_.version () <= html_5_3))
             pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "do not use CHARSET when TYPE='module' (which must be " UTF_8 ")");
         if (a_.known (a_nomodule) && (node_.version () > html_5_3))
-            pick (nit_bad_script, ed_jul20, "4.12.1 The script element", es_error, ec_element, "NOMODULE is daft when TYPE='module'");
+            pick (nit_bad_script, ed_jul20, "4.12.1 The script element", es_error, ec_element, "NOMODULE is dubious when TYPE='module'");
         if (a_.known (a_defer))
             pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "DEFER has no effect when TYPE='module'"); }
-    if (! a_.known (a_src))
-    {   if (a_.known (a_charset) && (node_.version () <= html_5_3))
+    if (a_.known (a_src))
+    {   if (! is_whitespace (node_.text ()))
+            pick (nit_script, ed_jan10, "1.10.2 Syntax errors", es_info, ec_element, "If <SCRIPT> has a SRC attribute, its content is ignored"); }
+    else
+    {   if (a_.good (a_charset))
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "CHARSET requires SRC");
         if (a_.known (a_defer))
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "DEFER requires SRC");
         if (a_.known (a_integrity))
             pick (nit_bad_script, ed_jul20, "4.12.1 The script element", es_error, ec_element, "INTEGRITY requires SRC");
         if (a_.known (a_async))
-            pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "ASYNC requires SRC"); } }
+            pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "ASYNC requires SRC"); }
+    if (has_child ()) report_script_comment (child_); }
+
+bool element::report_script_comment (element_ptr child)
+{   for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+        if (! p -> node_.is_closure ())
+            if (p -> tag () == elem_faux_text)
+            {   if ((p -> node_.text ().find ("<!--") != ::std::string::npos) ||
+                    (p -> node_.text ().find ("<script") != ::std::string::npos) ||
+                    (p -> node_.text ().find ("</script") != ::std::string::npos))
+                {   pick (nit_bad_script, ed_jan14, "4.12.1.2 Restrictions for contents of script elements", es_warning, ec_element, "within the <SCRIPT> content, replace '<!--', '<script', and '</script', even if its quoted, with '<\\!--', '<\\script', and '<\\/script', respectively");
+                    return true; } }
+            else if (p -> has_child ())
+                if (report_script_comment (p -> child_)) return true;
+    return false; }
 
 void element::examine_select ()
 {   if (node_.version ().mjr () < 5) return;

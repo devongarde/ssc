@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> 4.8 </title> </head>
+ <body>
+
+<label>
+ <input type="checkbox" onchange="sessionStorage.insurance = checked">
+ I want insurance on this trip.
+</label>
+
+<p>
+ You have viewed this page
+ <span id="count">an untold number of</span>
+ time(s).
+ </p>
+<script>
+ var storage = globalStorage['example.com'];
+ if (!storage.pageLoadCount)
+ storage.pageLoadCount = 0;
+ storage.pageLoadCount += 1;
+ document.getElementById('count').textContent = storage.pageLoadCount;
+</script>
+
+ </body>
+</html>

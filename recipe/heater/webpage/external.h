@@ -34,5 +34,5 @@ class external
 public:
     void swap (external& e) NOEXCEPT
     {   url_.swap (e.url_); }
-    bool verify (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& flags, const vit_t& itemtypes);
+    bool verify (nitpick& nits, const html_version& v, const url& u);
     ::std::string load (const url& u); };

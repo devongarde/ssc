@@ -55,6 +55,7 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
                 if (context.md_export ())
                     export_ -> add (export_path_, make_itemtype_index (s.get ())); }
                 break;
+            // purl, whatwg, etc.. ; this needs generalising
             default :
                 break; } } }
 

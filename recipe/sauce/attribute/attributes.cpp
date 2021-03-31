@@ -100,13 +100,13 @@ bool attributes :: has_url () const  // better as attribute_bitset AND (one for 
             if (a -> is_url ()) return true;
     return false; }
 
-bool attributes :: verify_url (nitpick& nits, const html_version& v, const directory& d, const ::boost::filesystem::path& pagename, const int line, const attribute_bitset& flags, const vit_t& itemtypes)
+bool attributes :: verify_url (nitpick& nits, const html_version& v, const element& e)
 {   bool res = true;
     for (auto a : aar_)
         if (a.get () != nullptr)
             if (a -> is_url ())
                 if (! a -> unknown () && ! a -> empty ())
-                    if (! a -> verify_url (nits, v, d, pagename, line, flags, itemtypes))
+                    if (! a -> verify_url (nits, v, e))
                         res = false; // this way, all URL errors are reported, not just the first
     return res; }
 

@@ -193,7 +193,8 @@ template < > struct type_master < t_marker > : tidy_string < t_marker >
         if (tidy_string < t_marker > :: empty ())
             nits.pick (nit_marker, ed_svg_1_1, "11.6.3 Marker properties", es_error, ec_type, "none, inherit, or url(...) expected");
         else if (tidy_string < t_marker > :: good ())
-        {   ::std::string ss (tidy_string < t_marker > :: get_string ());
+        {   if ((v >= html_jan08) && (v < html_jan09)) return;
+            ::std::string ss (tidy_string < t_marker > :: get_string ());
             if (compare_no_case (ss, "none")) return;
             if (compare_no_case (ss, "inherit")) return;
             if (compare_no_case (ss.substr (0, 3), "url"))

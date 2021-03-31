@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> Serializing HTML fragments </title> </head>
+ <body>
+
+<form id="outer"><div></form><form id="inner"><input><a><table><a>
+
+<pre>
+Hello.</pre>
+
+<script>
+window.SuperP = class extends HTMLParagraphElement {};
+customElements.define("super-p", SuperP, { extends: "p" });
+</script>
+<div id="container"><p is="super-p">Superb!</p></div>
+<script>
+console.log(container.innerHTML); // <p is="super-p">
+container.innerHTML = container.innerHTML;
+console.log(container.innerHTML); // <p is="super-p">
+console.assert(container.firstChild instanceof SuperP);
+</script>
+
+<script>
+container.innerHTML = "";
+const p = document.createElement("p", { is: "super-p" });
+container.appendChild(p);
+// The is attribute is not present in the DOM:
+console.assert(!p.hasAttribute("is"));
+// But the element is still a super-p:
+console.assert(p instanceof SuperP);
+</script>
+
+<script>
+console.log(container.innerHTML); // <p is="super-p">
+container.innerHTML = container.innerHTML;
+console.log(container.innerHTML); // <p is="super-p">
+console.assert(container.firstChild instanceof SuperP);
+</script>
+ </body>
+</html>

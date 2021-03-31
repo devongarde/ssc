@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> script </title> </head>
+ <body>
+
+<script src="game-engine.js"></script>
+<script type="text/x-game-map">
+........U.........e
+o............A....e
+.....A.....AAA....e
+.A..AAA...AAAAA...e
+</script>
+
+<script>
+ function calculate(form) {
+ var price = 52000;
+ if (form.elements.brakes.checked)
+ price += 1000;
+ if (form.elements.radio.checked)
+ price += 2500;
+ if (form.elements.turbo.checked)
+ price += 5000;
+ if (form.elements.sticker.checked)
+ price += 250;
+ form.elements.result.value = price;
+ }
+</script>
+<form name="pricecalc" onsubmit="return false">
+ <fieldset>
+ <legend>Work out the price of your car</legend>
+ <p>Base cost: £52000.</p>
+ <p>Select additional options:</p>
+ <ul>
+ <li><label><input type=checkbox name=brakes> Ceramic brakes (£1000)</label></li>
+ <li><label><input type=checkbox name=radio> Satellite radio (£2500)</label></li>
+ <li><label><input type=checkbox name=turbo> Turbo charger (£5000)</label></li>
+ <li><label><input type=checkbox name=sticker> "XZ" sticker (£250)</label></li>
+ </ul>
+ <p>Total: £<output name=result></output></p>
+ </fieldset>
+ <script>
+ document.forms.pricecalc.dispatchFormChange();
+ </script>
+
+</form>
+ </body>
+</html>

@@ -145,6 +145,9 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                 {   case ' ' :  status = s_dull;
                                 push_back_and_report (nits, v, keyed, key_start, key_end, value_start, i, el);
                                 break;
+                    case 0x60 : if (! v.xhtml ())
+                                    nits.pick (nit_naked_grave, ed_jan10, "1.10.2 Syntax errors", es_error, ec_parser, "an attribute value must be quoted if it contains a naked grave accent (\"`\")");
+                                break;
                     case '"' :
                     case '\'' : nits.pick (nit_enquote_value, es_info, ec_parser, "should the value for attribute ", quote (::std::string (key_start, key_end)), " be quoted?"); }
                 break;

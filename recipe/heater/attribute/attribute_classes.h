@@ -34,6 +34,7 @@ typedef typed_attribute < t_key, a_accesskey > attr_accesskey;
 typedef typed_attribute < t_accumulate, a_accumulate > attr_accumulate;
 typedef typed_attribute < t_url, a_action > attr_action;
 typedef typed_attribute < t_actiontype, a_actiontype > attr_actiontype;
+typedef typed_attribute < t_existential, a_active > attr_active;
 typedef typed_attribute < t_bool, a_activate > attr_activate;
 typedef typed_attribute < t_actuate, a_actuate > attr_actuate;
 typedef typed_attribute < t_additive, a_additive > attr_additive;
@@ -175,6 +176,7 @@ typedef typed_attribute < t_unsigned, a_columnspan > attr_columnspan;
 typedef typed_attribute < t_mathspacefit, a_columnwidth > attr_columnwidth;
 typedef typed_attribute < t_idref, a_command > attr_command;
 typedef typed_attribute < t_compact, a_compact > attr_compact;
+typedef typed_attribute < t_text, a_condition > attr_condition;
 typedef typed_attribute < t_text, a_content > attr_content;
 typedef typed_attribute < t_truefalseempty, a_contenteditable > attr_contenteditable;
 typedef typed_attribute < t_unsigned, a_contentlength > attr_contentlength;
@@ -224,7 +226,7 @@ typedef typed_attribute < t_generic, a_divisor > attr_divisor;
 typedef typed_attribute < t_dominantbaseline, a_dominantbaseline > attr_dominantbaseline;
 typedef typed_attribute < t_filename, a_download > attr_download;
 typedef typed_attribute < t_char, a_dp > attr_dp;
-typedef typed_attribute < t_bool, a_draggable > attr_draggable;
+typedef typed_attribute < t_truefalseempty, a_draggable > attr_draggable;
 typedef typed_attribute < t_text, a_dropzone > attr_dropzone;
 typedef typed_attribute < t_dur, a_dur > attr_dur;
 typedef typed_attribute < t_real, a_duration > attr_duration;
@@ -246,7 +248,6 @@ typedef typed_attribute < t_generic, a_equalrows > attr_equalrows;
 typedef typed_attribute < t_existential, a_error > attr_error;
 typedef typed_attribute < t_text, a_event > attr_event;
 typedef typed_attribute < t_idref, a_eventtarget > attr_eventtarget;
-typedef typed_attribute < t_generic, a_evevent > attr_evevent;
 typedef typed_attribute < t_real, a_exponent > attr_exponent;
 typedef typed_attribute < t_generic, a_exportparts > attr_exportparts;
 typedef typed_attribute < t_bool, a_externalresourcesrequired > attr_externalresourcesrequired;
@@ -360,7 +361,7 @@ typedef typed_attribute < t_text, a_intrinsicsize > attr_intrinsicsize;
 typedef typed_attribute < t_html_boolean, a_irrelevant > attr_irrelevant;
 typedef typed_attribute < t_is, a_is > attr_is;
 typedef typed_attribute < t_existential, a_ismap > attr_ismap;
-typedef typed_attribute < t_existential, a_item > attr_item;
+typedef typed_attribute < t_generic, a_item > attr_item;
 typedef typed_attribute < t_itemid, a_itemid > attr_itemid;
 typedef typed_attribute < t_itemprop, a_itemprop > attr_itemprop;
 typedef typed_attribute < t_idrefs, a_itemref > attr_itemref;
@@ -486,7 +487,6 @@ typedef typed_attribute < t_existential, a_nomodule > attr_nomodule;
 typedef typed_attribute < t_existential, a_noresize > attr_noresize;
 typedef typed_attribute < t_existential, a_noshade > attr_noshade;
 typedef typed_attribute < t_notation, a_notation > attr_notation;
-//typedef typed_attribute < t_generic, a_novalidate > attr_novalidate;
 typedef typed_attribute < t_existential, a_novalidate > attr_novalidate;
 typedef typed_attribute < t_existential, a_nowrap > attr_nowrap;
 typedef typed_attribute < t_lcralign, a_numalign > attr_numalign;
@@ -655,17 +655,16 @@ typedef typed_attribute < t_measure, a_r > attr_r;
 typedef typed_attribute < t_idref, a_radiogroup > attr_radiogroup;
 typedef typed_attribute < t_real_1_2, a_radius > attr_radius;
 typedef typed_attribute < t_char, a_rdelim > attr_rdelim;
-//typedef typed_attribute < t_html_boolean, a_readonly > attr_readonly;
 typedef typed_attribute < t_existential, a_readonly > attr_readonly;
 typedef typed_attribute < t_refx, a_refx > attr_refx;
 typedef typed_attribute < t_refy, a_refy > attr_refy;
+typedef typed_attribute < t_url, a_ref > attr_ref;
 typedef typed_attribute < t_referrer, a_referrerpolicy > attr_referrerpolicy;
 typedef typed_attribute < t_text, a_registrationmark > attr_registrationmark;
 typedef typed_attribute < t_rel, a_rel > attr_rel;
 typedef typed_attribute < t_renderingintent, a_renderingintent > attr_renderingintent;
 typedef typed_attribute < t_repeatcount, a_repeatcount > attr_repeatcount;
 typedef typed_attribute < t_dur_repeat, a_repeatdur > attr_repeatdur;
-//typedef typed_attribute < t_html_boolean, a_required > attr_required;
 typedef typed_attribute < t_existential, a_required > attr_required;
 typedef typed_attribute < t_urls, a_requiredextensions > attr_requiredextensions;
 typedef typed_attribute < t_svg_features, a_requiredfeatures > attr_requiredfeatures;
@@ -898,6 +897,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_accumulate, \
     attr_action, \
     attr_actiontype, \
+    attr_active, \
     attr_activate, \
     attr_actuate, \
     attr_additive, \
@@ -1038,6 +1038,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_columnwidth, \
     attr_command, \
     attr_compact, \
+    attr_condition, \
     attr_content, \
     attr_contenteditable, \
     attr_contentlength, \
@@ -1109,7 +1110,6 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_error, \
     attr_event, \
     attr_eventtarget, \
-    attr_evevent, \
     attr_exponent, \
     attr_exportparts, \
     attr_externalresourcesrequired, \
@@ -1522,6 +1522,7 @@ const e_attribute last_am = a_muted;
     attr_radius, \
     attr_rdelim, \
     attr_readonly, \
+    attr_ref, \
     attr_refx, \
     attr_refy, \
     attr_referrerpolicy, \

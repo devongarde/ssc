@@ -174,7 +174,7 @@ void element::examine_base ()
     url u (nits (), node_.version (), a_.get_string (a_href));
     if (! u.empty ())
         if (! u.is_local ())
-        {   pick (nit_element_offsite_base, es_warning, ec_element, context.filename (), " has offsite base ", quote (u.original ()), ", " PROG " is abandoning local link checks");
+        {   pick (nit_element_offsite_base, es_warning, ec_element, "WARNING: Because of the offsite base ", quote (u.original ()), ", " PROG " is abandoning local link checks");
             page_.check_links (false);
             return; }
         else if (u.has_component (es_fragment) || u.has_component (es_query))
@@ -212,6 +212,13 @@ void element::examine_button ()
             if (a_.known (a_formaction) || a_.known (a_formenctype) || a_.known (a_formmethod) || a_.known (a_formnovalidate) || a_.known (a_formtarget) ||
                 a_.known (a_action) || a_.known (a_enctype) || a_.known (a_method) || a_.known (a_novalidate) || a_.known (a_target))
                 pick (nit_bad_form, ed_50, "", es_error, ec_attribute, "FORM... attributes require <BUTTON> TYPE='submit'"); } }
+
+void element::examine_card ()
+{   if ((node_.version () < html_jan05) || (node_.version () >= html_jan07))
+    {   if (! node_.version ().has_math ())
+            pick (nit_bad_card, es_error, ec_element, "<CARD> requires MathML");
+        if (has_child ())
+            pick (nit_bad_card, es_error, ec_element, "<CARD> has no children"); } }
 
 void element::examine_command ()
 {   if (a_.known (a_command))

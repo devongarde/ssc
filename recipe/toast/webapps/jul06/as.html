@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+ <head>
+<title> alternative stylesheets </title>
+<link rel="alternate stylesheet" title="foo" href="a">
+<link rel="alternate stylesheet" title="bar" href="b">
+<script>
+ document.selectedStylesheetSet = 'foo';
+ document.styleSheets[1].disabled = false;
+</script>
+<link rel="alternate stylesheet" title="foo" href="c">
+<link rel="alternate stylesheet" title="bar" href="d">
+
+<link rel="alternate stylesheet" title="foo" href="a">
+<link rel="alternate stylesheet" title="bar" href="b">
+<script>
+ var before = document.preferredStylesheetSet;
+ document.styleSheets[1].disabled = false;
+</script>
+<link rel="stylesheet" title="foo" href="c">
+<link rel="alternate stylesheet" title="bar" href="d">
+<script>
+ var after = document.preferredStylesheetSet;
+</script>
+</head>
+
+ <body>
+ </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> vevent </title> </head>
+
+<body itemscope itemtype="http://microformats.org/profile/hcalendar#vevent">
+ ...
+ <h1 itemprop="summary">Bluesday Tuesday: Money Road</h1>
+ ...
+ <time itemprop="dtstart" datetime="2009-05-05T19:00:00Z">May 5th @ 7pm</time>
+ (until <time itemprop="dtend" datetime="2009-05-05T21:00:00Z">9pm</time>)
+ ...
+ <a href="http://livebrum.co.uk/2009/05/05/bluesday-tuesday-money-road"
+ rel="bookmark" itemprop="url">Link to this page</a>
+ ...
+ <p>Location: <span itemprop="location">The RoadHouse</span></p>
+ ...
+ <p><input type=button value="Add to Calendar"
+ onclick="location = getCalendar(this)"></p>
+ ...
+ <meta itemprop="description" content="via livebrum.co.uk">
+
+<div itemscope itemtype="http://microformats.org/profile/hcalendar#vevent">
+ <p>I'm going to
+ <strong itemprop="summary">Bluesday Tuesday: Money Road</strong>,
+ <time itemprop="dtstart" datetime="2009-05-05T19:00:00Z">May 5th at 7pm</time>
+ to <time itemprop="dtend" content="2009-05-05T21:00:00Z">9pm</time>,
+ at <span itemprop="location">The RoadHouse</span>!</p>
+ <p><a href="http://livebrum.co.uk/2009/05/05/bluesday-tuesday-money-road"
+ itemprop="url">See this event on livebrum.co.uk</a>.</p>
+ <meta itemprop="description" content="via livebrum.co.uk">
+</div>
+
+ </body>
+</html>

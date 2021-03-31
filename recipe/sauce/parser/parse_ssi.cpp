@@ -268,7 +268,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         return parse_ssi (nits, v, d, c, read_text_file (d.get_disk_path (nits, file)));
     else if (validate_virtual (ln, nits, v, vrt, u))
     {   if (! u.invalid ())
-            if (d.verify_url (nits, v, u, 0, vit_t ()))
+            if (d.verify_url (nits, v, u))
                 return parse_ssi (nits, v, d, c, d.load_url (nits, u));
         set_ssi_context (ln, nits, es_error);
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot verify ", file); }

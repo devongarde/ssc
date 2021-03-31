@@ -85,7 +85,7 @@ public:
     const ids_t& get_ids () const { return ids_; }
     ids_t& get_names () { return names_; }
     const ids_t& get_names () const { return names_; }
-    bool verify_url (nitpick& nits, const ::std::string& s, const attribute_bitset& state, const vit_t& itemtypes) const;
+    bool verify_url (nitpick& nits, const ::std::string& s) const;
     const ::std::string name () const { return name_; }
     const ::std::string get_site_path () const;
     const ::boost::filesystem::path get_disk_path () const;

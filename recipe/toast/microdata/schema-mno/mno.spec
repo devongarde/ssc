@@ -4,7 +4,7 @@ PASS ../toast/microdata/schema-mno/map.html
 16 no_such_folder url_not_found
 
 PASS ../toast/microdata/schema-mno/mediaobject.html
-13 bad_script
+13 script
 20 bad_datetime
 
 PASS ../toast/microdata/schema-mno/medicalguideline.html

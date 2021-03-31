@@ -444,27 +444,27 @@ struct symbol_entry < e_inputtype4 > inputtype4_symbol_table [] =
 struct symbol_entry < e_inputtype5 > inputtype5_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "button", i5_button },
     { { HTML_2_0 }, { HTML_UNDEF }, "checkbox", i5_checkbox },
-    { { HTML_JAN09 }, { HTML_UNDEF }, "color", i5_colour },
-    { { HTML_JAN09 }, { HTML_UNDEF }, "date", i5_date },
-    { { HTML_JAN09, HV_NOT50 }, { HTML_UNDEF }, "datetime", i5_datetime },
-    { { HTML_JAN09, HV_NOT50 }, { HTML_UNDEF }, "datetime-local", i5_datetime_local },
-    { { HTML_JAN09 }, { HTML_UNDEF }, "email", i5_email },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "color", i5_colour },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "date", i5_date },
+    { { HTML_JAN05, HV_NOT50 }, { HTML_UNDEF }, "datetime", i5_datetime },
+    { { HTML_JAN05, HV_NOT50 }, { HTML_UNDEF }, "datetime-local", i5_datetime_local },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "email", i5_email },
     { { 2, 1 }, { HTML_UNDEF }, "file", i5_file },
     { { HTML_2_0 }, { HTML_UNDEF }, "hidden", i5_hidden },
     { { HTML_2_0 }, { HTML_UNDEF }, "image", i5_image },
-    { { HTML_JAN09, HV_NOT50 }, { HTML_UNDEF }, "month", i5_month },
-    { { HTML_JAN09 }, { HTML_UNDEF }, "number", i5_number },
+    { { HTML_JAN05, HV_NOT50 }, { HTML_UNDEF }, "month", i5_month },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "number", i5_number },
     { { HTML_2_0 }, { HTML_UNDEF }, "password", i5_password },
     { { HTML_2_0 }, { HTML_UNDEF }, "radio", i5_radio },
     { { HTML_2_0 }, { HTML_UNDEF }, "reset", i5_reset },
     { { HTML_3_0 }, { HTML_UNDEF }, "range", i5_range },
-    { { HTML_JAN09 }, { HTML_UNDEF }, "search", i5_search },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "search", i5_search },
     { { HTML_2_0 }, { HTML_UNDEF }, "submit", i5_submit },
-    { { HTML_JAN09 }, { HTML_UNDEF }, "tel", i5_tel },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "tel", i5_tel },
     { { HTML_2_0 }, { HTML_UNDEF }, "text", i5_text },
-    { { HTML_JAN09 }, { HTML_UNDEF }, "time", i5_time },
-    { { HTML_JAN09 }, { HTML_UNDEF }, "url", i5_url },
-    { { HTML_JAN09, HV_NOT50 }, { HTML_UNDEF }, "week", i5_week } };
+    { { HTML_JAN05 }, { HTML_UNDEF }, "time", i5_time },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "url", i5_url },
+    { { HTML_JAN05, HV_NOT50 }, { HTML_UNDEF }, "week", i5_week } };
 
 struct symbol_entry < e_kind > kind_symbol_table [] =
 {   { { HTML_JUL10 }, { HTML_UNDEF }, "subtitles", k_subtitles },
@@ -707,7 +707,8 @@ struct symbol_entry < e_microdata_domain > microdata_domain_symbol_table [] =
     { { HTML_4_01 }, { HTML_UNDEF }, "http://purl.org/", mdd_purl },
     { { HTML_4_01 }, { HTML_UNDEF }, "https://purl.org/", mdd_purl },
     { { HTML_4_01 }, { HTML_UNDEF }, "http://schema.org/", mdd_schema },
-    { { HTML_4_01 }, { HTML_UNDEF }, "https://schema.org/", mdd_schema } };
+    { { HTML_4_01 }, { HTML_UNDEF }, "https://schema.org/", mdd_schema },
+    { { HTML_4_01 }, { HTML_UNDEF }, "http://n.whatwg.org/", mdd_whatwg } /* no https */ };
 
 struct symbol_entry < e_namedspace > namedspace_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "negativeveryverythinmathspace", nd_negativeveryverythinmathspace },
