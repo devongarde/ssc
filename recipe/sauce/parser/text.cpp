@@ -2200,18 +2200,18 @@ void text_check (nitpick& nits, const html_version& v, const ::std::string& text
         vw_t::const_iterator i = wotsit.find (text.c_str ());
         if (i == wotsit.end ())
             nits.pick (nit_bizarre_character_code, es_error, ec_parser, "&", text, "; is neither a known text entity nor a normalised URL");
-        else if (! does_apply (v, i -> second.first_, i -> second.last_))
+        else if (! does_apply < html_version > (v, i -> second.first_, i -> second.last_))
             nits.pick (nit_code_unrecognised_here, es_warning, ec_parser, "&", text, "; is invalid in ", v.report ()); } }
 
 void examine_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid)
-{   assert (! text.empty ());
+{   DBG_ASSERT (! text.empty ());
     vw_t::const_iterator i = wotsit.find (text.c_str ());
     if (i != wotsit.end ())
         if (! may_apply (v, i -> second.first_, i -> second.last_)) invalid = true;
         else known = true; }
 
 ::std::string interpret_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid)
-{   assert (! text.empty ());
+{   DBG_ASSERT (! text.empty ());
     vw_t::const_iterator i = wotsit.find (text.c_str ());
     if (i != wotsit.end ())
         if (! may_apply (v, i -> second.first_, i -> second.last_)) invalid = true;
@@ -2238,7 +2238,7 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
     return res; }
 
 ::std::string interpret_character_number (const ::std::string& text)
-{   assert (! text.empty ());
+{   DBG_ASSERT (! text.empty ());
     unsigned int n = 0;
     for (auto ch : text)
     {   n *= 10;
@@ -2258,7 +2258,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
     return true; }
 
 ::std::string interpret_character_number (nitpick& nits, const ::std::string& text)
-{   assert (! text.empty ());
+{   DBG_ASSERT (! text.empty ());
     unsigned int n = 0;
     ::std::string res = "&#";
     res += text;
@@ -2276,7 +2276,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
     return ::std::string (1, static_cast <char> (n)); }
 
 ::std::string interpret_character_hex (const ::std::string& text)
-{   assert (! text.empty ());
+{   DBG_ASSERT (! text.empty ());
     unsigned int n = 0;
     for (auto ch : text)
     {   n <<= 4;
@@ -2288,7 +2288,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
     return ::std::string (1, static_cast <char> (n)); }
 
 ::std::string interpret_character_hex (nitpick& nits, const ::std::string& text)
-{   assert (! text.empty ());
+{   DBG_ASSERT (! text.empty ());
     ::std::string res = "&#x";
     res += text;
     res += ';';

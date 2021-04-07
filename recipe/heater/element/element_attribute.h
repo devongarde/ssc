@@ -35,10 +35,10 @@ template < class ATTRIBUTE, class TUPLE, bool B > struct get_attribute_imp
 
 template < class ATTRIBUTE, class TUPLE > struct get_attribute_imp < ATTRIBUTE, TUPLE, true >
 {   static void get (TUPLE& t, ATTRIBUTE** p)
-    {   assert (p != nullptr);
+    {   DBG_ASSERT (p != nullptr);
         *p = & ::std::get < ATTRIBUTE > (t); }
     static void get (const TUPLE& t, const ATTRIBUTE** p)
-    {   assert (p != nullptr);
+    {   DBG_ASSERT (p != nullptr);
         *p = & ::std::get < ATTRIBUTE > (t); }
     static void get_string (const TUPLE& t, ::std::string& s)
     {   s = ::std::get < ATTRIBUTE > (t).get_string (); }

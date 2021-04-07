@@ -26,7 +26,7 @@ const ::std::size_t component_count = last_component + 1;
 
 typedef vstr_t vc_t;
 
-class protocol : public symbol < e_protocol >
+class protocol : public symbol < html_version, e_protocol >
 {   bool default_ = false;
     vc_t component_;
 public:
@@ -49,12 +49,12 @@ public:
     void swap (protocol& p) NOEXCEPT
     {   ::std::swap (default_, p.default_);
         component_.swap (p.component_);
-        symbol < e_protocol > :: swap (p); }
+        symbol < html_version, e_protocol > :: swap (p); }
     bool is_valid () const;
     ::std::string get () const;
     ::std::string absolute (bool can_use_index) const;
     bool defaulted () const { return default_; }
-    e_protocol get_protocol () const { return (symbol < e_protocol > :: get ()); }
+    e_protocol get_protocol () const { return (symbol < html_version, e_protocol > :: get ()); }
     bool unknown () const { return get_protocol () == pr_other; }
     bool has_component (const e_component c) const { return ! get_component (c).empty (); }
     ::std::string original () const { return component_ [es_original]; }

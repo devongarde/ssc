@@ -89,7 +89,7 @@ bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
 bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot, const ::std::string& s, vc_t& component)
 {   // RFC 3986
     //       URI         = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
-    assert (component.size () > last_component);
+    DBG_ASSERT (component.size () > last_component);
     ::std::string url (s);
     ::std::string scheme, hier_part, authority, path, file, user, insecure_password, ipv6, ipv4, domain, host, port, ext;
     bool absolute = false;

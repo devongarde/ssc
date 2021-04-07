@@ -31,7 +31,7 @@ external directory::external_;
 
 directory::directory (nitpick& nits, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check)
     : name_ (name), offsite_ (false), mummy_ (mummy), ndx_ (ndx)
-{   assert (mummy_ != nullptr);
+{   DBG_ASSERT (mummy_ != nullptr);
     if (check) scan (nits, site); }
 
 directory::directory (const path_root_ptr& root)
@@ -85,7 +85,7 @@ void directory::swap (directory& d) NOEXCEPT
 ::boost::filesystem::path directory::get_disk_path () const
 {   if (root_.get () != nullptr)
         return root_ -> get_disk_path ();
-    assert (mummy_ != nullptr);
+    DBG_ASSERT (mummy_ != nullptr);
     return mummy_ -> get_disk_path () / name_; }
 
 void directory::internal_get_disk_path (const ::std::string& item, ::boost::filesystem::path& res) const
@@ -117,13 +117,13 @@ void directory::internal_get_disk_path (const ::std::string& item, ::boost::file
 ::boost::filesystem::path directory::get_shadow_path () const
 {   if (root_.get () != nullptr)
         return root_ -> shadow ();
-    assert (mummy_ != nullptr);
+    DBG_ASSERT (mummy_ != nullptr);
     return mummy_ -> get_shadow_path () / name_; }
 
 ::boost::filesystem::path directory::get_export_path () const
 {   if (root_.get () != nullptr)
         return root_ -> get_export ();
-    assert (mummy_ != nullptr);
+    DBG_ASSERT (mummy_ != nullptr);
     return mummy_ -> get_export_path () / name_; }
 
 void directory::internal_get_shadow_path (const ::std::string& item, ::boost::filesystem::path& res) const
@@ -170,7 +170,7 @@ void directory::internal_get_export_path (const ::std::string& item, ::boost::fi
     return get_export_path (nits, p); }
 
 bool directory::scan (nitpick& nits, const ::std::string& site)
-{   assert (! offsite_);
+{   DBG_ASSERT (! offsite_);
     for (::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (get_disk_path ()))
         if (! add_to_content (nits, x, site)) return false;
     return true; }
@@ -210,7 +210,7 @@ bool directory::add_to_content (nitpick& nits, ::boost::filesystem::directory_en
     return false; }
 
 void directory::examine (nitpick& nits)
-{   assert (! offsite_);
+{   DBG_ASSERT (! offsite_);
     if (context.shadow_any ()) shadow_folder (nits);
     for (auto i : content_)
         if (i.second != nullptr)
@@ -374,7 +374,7 @@ bool directory::integrate_virtual (const ::std::string& site, path_root_ptr& dis
     return true; }
 
 ::std::size_t integrate_virtuals (paths_root& virt, vd_t& vd)
-{   assert (virt.size () == vd.size ());
+{   DBG_ASSERT (virt.size () == vd.size ());
     for (::std::size_t n = 1; n < virt.size (); ++n)
         if (! vd.at (0) -> integrate_virtual (virt.at (n) -> get_site_path (), virt.at (n), vd.at (n)))
             return n;
@@ -386,7 +386,7 @@ bool is_webpage (const ::std::string& name, const vstr_t& extensions)
     return is_one_of (ext.substr (1), extensions); }
 
 bool directory::shadow_folder (nitpick& nits)
-{   assert (context.shadow_any ());
+{   DBG_ASSERT (context.shadow_any ());
     ::boost::filesystem::path moi (get_shadow_path ());
 #ifdef FS_THROWS
     bool res = true;
@@ -405,14 +405,14 @@ bool directory::shadow_folder (nitpick& nits)
     return true; }
 
 bool directory::shadow_file (nitpick& nits, const ::std::string& name)
-{   assert (context.shadow_files ());
+{   DBG_ASSERT (context.shadow_files ());
     ::boost::filesystem::path original (get_disk_path () / name);
     if (contains (context.shadow_ignore (), original.extension ().string ()))
     {   nits.pick (nit_shadow_failed, es_debug, ec_shadow, "not shadowing ", original);
         return true;  }
     ::boost::filesystem::path imitation (get_shadow_path () / name);
     e_copy todo = context.copy ();
-    assert (todo > c_none);
+    DBG_ASSERT (todo > c_none);
     if (todo <= c_html) return true;
     fileindex_t ndx = get_fileindex (original);
     if (ndx == nullfileindex)
@@ -460,7 +460,7 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name)
     {   switch (todo)
         {   case c_none :
             case c_html :
-            case c_rpt :        assert (false); break;
+            case c_rpt :        DBG_ASSERT (false); break;
             case c_hard :       ::boost::filesystem::create_hard_link (original, imitation);
                                 nits.pick (nit_shadow_link, es_debug, ec_shadow, "hard linked ", original, " and ", imitation);
                                 break;

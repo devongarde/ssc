@@ -35,10 +35,10 @@ template < class MEMBER, size_t CHUNK > class big_vector
     void pre_push_back ()
     {   if ((size_ % CHUNK) == 0)
         {   size_t c = chunk (size_);
-            assert (c <= data_.size ());
+            DBG_ASSERT (c <= data_.size ());
             if (c == data_.size ())
                 data_.push_back (chunk_t (new base_t));
-            assert (data_.at (c) != nullptr);
+            DBG_ASSERT (data_.at (c) != nullptr);
             data_.at (c) -> reserve (CHUNK); } }
 public:
 #ifndef NO_MOVE_CONSTRUCTOR
@@ -60,28 +60,28 @@ public:
     size_t size () const
     {   return size_; }
     MEMBER& at (const size_t index)
-    {   assert (index < size_);
+    {   DBG_ASSERT (index < size_);
         size_t c = chunk (index);
-        assert (c < data_.size ());
-        assert (data_.at (c) != nullptr);
+        DBG_ASSERT (c < data_.size ());
+        DBG_ASSERT (data_.at (c) != nullptr);
         size_t o = offset (index);
-        assert (o < data_.at (c) -> size ());
+        DBG_ASSERT (o < data_.at (c) -> size ());
         return data_.at (c) -> at (o); }
     const MEMBER& at (const size_t index) const
-    {   assert (index < size_);
+    {   DBG_ASSERT (index < size_);
         size_t c = chunk (index);
-        assert (c < data_.size ());
-        assert (data_.at (c) != nullptr);
+        DBG_ASSERT (c < data_.size ());
+        DBG_ASSERT (data_.at (c) != nullptr);
         size_t o = offset (index);
-        assert (o < data_.at (c) -> size ());
+        DBG_ASSERT (o < data_.at (c) -> size ());
         return data_.at (c) -> at (o); }
     void pop_back () { --size_; }
     void push_back (const MEMBER& m)
     {   pre_push_back ();
         chunk_t ptr = data_.at (chunk (size_));
-        assert (ptr != nullptr);
+        DBG_ASSERT (ptr != nullptr);
         size_t off (offset (size_));
-        assert (off <= ptr -> size ());
+        DBG_ASSERT (off <= ptr -> size ());
         if (off == ptr -> size ())
         {   ptr -> push_back (m);
             ++size_; }
@@ -89,9 +89,9 @@ public:
     void push_back (MEMBER&& m)
     {   pre_push_back ();
         chunk_t ptr = data_.at (chunk (size_));
-        assert (ptr != nullptr);
+        DBG_ASSERT (ptr != nullptr);
         size_t off (offset (size_));
-        assert (off <= ptr -> size ());
+        DBG_ASSERT (off <= ptr -> size ());
         if (off == ptr -> size ())
         {   ptr -> push_back (m);
             ++size_; }

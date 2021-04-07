@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "symbol/symbol_table.h"
 #include "element/element.h"
 #include "utility/byteorder.h"
 #include "microdata/microdata_export.h"
@@ -127,10 +126,10 @@ public:
     void mark (const e_element f, const e_attribute m)
     {   stats_.mark (f, m);
         context.mark (f, m); }
-    void mark (const e_schema s)
+    void mark (const e_schema_type s)
     {   stats_.mark (s);
         context.mark (s); }
-    void mark (const e_schema s, const e_schema_property p)
+    void mark (const e_schema_type s, const e_schema_property p)
     {   stats_.mark (s, p);
         context.mark (s, p); }
     void mark_meta (const e_httpequiv he)

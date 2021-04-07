@@ -68,9 +68,9 @@ void element::verify_microdata ()
             return node_.text (); } }
 
 itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
-{   assert (page_.md_export () != nullptr);
+{   DBG_ASSERT (page_.md_export () != nullptr);
     itemscope_ptr new_scope (new microdata_itemscope ());
-    assert (new_scope.get () != nullptr);
+    DBG_ASSERT (new_scope.get () != nullptr);
     if (itemscope.get () == nullptr)
         new_scope -> set_exporter (page_.md_export (), page_.md_export () -> append_path (page_.get_export_root (), null_itemprop, true));
     else
@@ -91,8 +91,8 @@ void element::examine_itemprop (itemscope_ptr& itemscope)
 {   if (itemscope.get () == nullptr)
         if (node_.version ().mjr () < 10) return;
         else if (ancestral_attributes_.test (a_id)) // an ancestral id suggests an itemref
-            pick (nit_no_itemscope, es_comment, ec_microdata, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ITEMPROP requires ITEMSCOPE on an ancestral element");
-        else pick (nit_no_itemscope, es_warning, ec_microdata, "ITEMPROP requires ITEMSCOPE on an ancestral element");
+            pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_comment, ec_microdata, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ITEMPROP requires ITEMSCOPE on the current or an ancestral element");
+        else pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_warning, ec_microdata, "ITEMPROP requires ITEMSCOPE on the current or an ancestral element");
     else
     if (! a_.known (a_itemscope) && ! a_.known (a_itemtype))
     {   ::std::string value (get_microdata_value ());
@@ -133,7 +133,7 @@ void element::walk_itemprop (itemscope_ptr itemscope)
     if (has_child ())
     {   element_ptr e = child ();
         do {
-            assert (e != nullptr);
+            DBG_ASSERT (e != nullptr);
             e -> walk_itemprop (sub);
         } while (to_sibling (e)); } }
 

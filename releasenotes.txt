@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.98
+- Living standard microdata ITEMTYPEs (etc.) now processed
+- stats now only counts errors reported, not all generated
+
 0.0.97
 - living standard jan 2005 - jan 2021, mostly
 - NOTE : MathML 4 and SVG 2 are not currently understood

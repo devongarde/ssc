@@ -167,9 +167,9 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
         case ed_mozilla : return "mozilla.org (May 2020)";
         case ed_microdata : return "WhatWG Microdata";
-        case ed_microformats : return "microformats.org (May 2020)";
+        case ed_microformats : return MICROFORMATS_ORG " (May 2020)";
         case ed_ariaAug2020 : return "Aria (August 2020)";
-        case ed_so_11 : return "schema.org 11.0";
+        case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_mql : return "Media Queries"; }
     return "Unknown reference"; }
 
@@ -232,8 +232,8 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_mql : return "Media Queries, W3C recommendation, June 2012";
         case ed_ariaAug2020 : return "WhatWG Aria requirements, draft, August 2020";
         case ed_apache : return "Apache 2.4 mod_include, 2020";
-        case ed_so_11 : return "schema.org 11.0";
+        case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_mozilla : return "moz://a, May 2020";
         case ed_microdata : return "HTML 5 living standard, WhatWG, July 2020";
-        case ed_microformats : return "Microformats (microformats.org), May 2020"; }
+        case ed_microformats : return "Microformats (" MICROFORMATS_ORG "), May 2020"; }
     return "unknown reference"; }

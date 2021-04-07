@@ -33,11 +33,11 @@ struct property_gen
     schema_version to_;
     e_schema_property prop_;
     e_type field_type_ = t_generic;
-    e_schema field_schema_ = sch_context;
+    e_schema_type field_schema_ = sty_context;
     uint32_t flags_ = 0;
 #ifdef REQUIRE_CONSTRUCTOR
     property_gen (  const schema_version& from, const schema_version& to, const e_schema_property prop, const e_type field_type = t_generic,
-                    const e_schema field_schema = sch_context, const uint32_t flags = 0)
+                    const e_schema_type field_schema = sty_context, const uint32_t flags = 0)
         : from_ (from), to_ (to), prop_ (prop), field_type_ (field_type), field_schema_ (field_schema), flags_ (flags) { }
 #endif // REQUIRE_CONSTRUCTOR
 };
@@ -2752,14 +2752,89 @@ property_gen gentab [] =
     { { 3, 4 }, { 0, 0 }, sp_yield, t_schema, sch_text },
     { { 3, 4 }, { 0, 0 }, sp_yield, t_text },
 
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_additional_name, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_adr, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_agent, t_schema, mf_vcard },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_agent, t_url },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_anniversary, t_datetime },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_attach, t_url },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_bday, t_datetime },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_categories, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_class, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_comment, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_contact, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_country_name, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_created, t_datetime },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_description, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_dtstart, t_datetime },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_dtend, t_datetime },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_duration, t_duration },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_email, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_exdate, t_datetime },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_extended_address, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_family_name, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_fn, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_gender_identity, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_geo, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_given_name, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_honourific_prefix, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_honourific_suffix, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_impp, t_url },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_kind, t_kind },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_lang, t_lang },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_last_modified, t_datetime },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_locality, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_location, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_logo, t_url },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_member, t_schema, mf_vcard },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_member, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_n, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_nickname, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_note, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_org, t_schema, mf_vcard },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_org, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_organisation_name, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_organisation_unit, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_photo, t_url },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_post_office_box, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_postal_code, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_rdate, t_datetime },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_region, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_rel, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_related, t_schema, mf_vcard },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_related, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_resources, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_rev, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_role, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_rrule, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_sequence, t_unsigned },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_sex, t_sex },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_sound, t_url },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_status, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_street_address, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_summary, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_tel, t_tel },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_title, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_transp, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_type, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_tz, t_tz },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_uid, t_text },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_url, t_url },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mp_value, t_tel },
+
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, wp_author, t_text },
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, wp_license, t_absolute_url },
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, wp_title, t_text },
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, wp_work, t_absolute_url },
+
     { { 0, 0 }, { 0, 0 }, sp_illegal } };
 
-typedef ::std::vector < e_schema > c;
+typedef ::std::vector < e_schema_type > c;
 typedef ::std::multimap < e_schema_property, property_gen* > mpp_t;
 mpp_t mpp;
 
 void schema_property_init (nitpick& )
-{   assert (mpp.empty ());
+{   DBG_ASSERT (mpp.empty ());
     for (property_gen* p = &gentab [0]; p -> prop_ != sp_illegal; ++p)
         mpp.insert (mpp_t::value_type (p -> prop_, p)); }
 
@@ -2767,39 +2842,53 @@ e_schema_property identify_schema_property (nitpick& nits, const schema_version&
 {   ::std::string n (::boost::to_lower_copy (name));
     e_schema_property p = get_schema_property (n);
     if (p == sp_illegal)
-    {  if (name.length () > 20)
-           if (type_master < t_microdata_domain > :: starts_with (n) == mdd_schema)
-           {    ::std::string::size_type st = (name.at (5) == 's') ? HTTPS_SCHEMA_ORG : HTTP_SCHEMA_ORG;
-                n = n.substr (st);
-                p = get_schema_property (n); }
+    {   ::std::string::size_type ends_at = 0;
+        if (type_master < t_microdata_root > :: starts_with (n, &ends_at) != mdr_none)
+        {   n = n.substr (ends_at);
+            p = get_schema_property (n); }
         if (p == sp_illegal)
             nits.pick (nit_not_schema_property, es_error, ec_microdata, quote (name), " is not a schema ", sv.report (), " property"); }
     return p; }
 
+vsp_t identify_schema_properties (nitpick& nits, const schema_version& , const ::std::string& name)
+{   vsp_t res;
+    ::std::string n (::boost::to_lower_copy (name));
+    res = get_schema_properties (n);
+    if (res.empty ())
+    {   ::std::string::size_type ends_at = 0;
+        e_microdata_root x = type_master < t_microdata_root > :: starts_with (n, &ends_at);
+        if (x != mdr_none)
+        {   n = n.substr (ends_at);
+            res = get_schema_properties (n, x); }
+        if (res.empty ())
+            nits.pick (nit_not_schema_property, es_error, ec_microdata, quote (name), " is not a recognised schema property"); }
+    return res; }
+
 bool check_schema_property_version (const schema_version& from, const schema_version& to, const e_schema_property prop, bool& found)
 {   for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
     {   found = true;
-        if (does_apply (from, i -> second -> from_, i -> second -> to_) &&
-            does_apply (to, i -> second -> from_, i -> second -> to_)) return true; }
+        if (does_apply < schema_version > (from, i -> second -> from_, i -> second -> to_) &&
+            does_apply < schema_version > (to, i -> second -> from_, i -> second -> to_)) return true; }
     return false; }
 
 bool test_enumerated_type (nitpick& nits, const html_version& v, const bool ex, const ::std::string& value)
 {   if (value.empty ()) return false;
-    if (ex && type_master < t_microdata_domain > :: starts_with (value) == mdd_purl) return true;
+    if (ex && type_master < t_microdata_root > :: starts_with (value) != mdr_schema) return true;
     ::std::string test_value (value);
     if (test_value.find (':') == ::std::string::npos)
-        test_value = ::std::string ("https://schema.org/") + value;
+        test_value = ::std::string ("https://" SCHEMA_ORG "/") + value;
     type_master < t_itemtype > tm;
     tm.set_value (nits, v, test_value);
     return (tm.good ()); }
 
-bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e_schema schema, const e_schema_property prop, const ::std::string& value, const bool is_link)
+bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e_schema_type schema, const e_schema_property prop, const ::std::string& value, const bool is_link)
 {   nitpick knots;
-    schema_version sv (context.schema_ver ());
     ::std::string expected, unfound;
     bool many = false, valid_type = false;
-    ssch_t ssch (generalise (context.schema_ver (), schema));
-    for (e_schema gen : ssch)
+    DBG_ASSERT (! vsv.empty ());
+    ::std::string name (quote (schema_property_name (prop)) + " (" + type_master < t_microdata_domain > :: name (root2domain (get_property_root (prop))) + ")");
+    ssch_t ssch (generalise (schema));
+    for (e_schema_type gen : ssch)
     {   if (is_schema_property (gen, prop))
             for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
                 if (i -> second -> field_type_ == t_schema)
@@ -2808,7 +2897,7 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
                         {   itemtype_index ii = find_itemtype_index (knots, v, value);
                             if (ii == make_itemtype_index (i -> second -> field_schema_)) return true;
                                 if (type_category (ii) == itemtype_schema)
-                                    if (is_specific_type_of (context.schema_ver (), i -> second -> field_schema_, static_cast < e_schema > (ii & uint32_item_mask)))
+                                    if (is_specific_type_of (context.schema_ver (), i -> second -> field_schema_, static_cast < e_schema_type > (ndx_item (ii))))
                                         return true; }
                     uint64_t flags = sch :: flags (i -> second -> field_schema_);
                     bool en = enumerated_schema_type (flags);
@@ -2830,18 +2919,19 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
                         knots.merge (nuts); }
                     else
                     {   if (! expected.empty ()) { many = true; expected += ", "; }
-                        expected += quote ("https://schema.org/" + sch :: name (i -> second -> field_schema_)); } }
-                else if (does_apply (sv, i -> second -> from_, i -> second -> to_))
-                {   nitpick nuts;
-                    if (test_value (nuts, v, i -> second -> field_type_, value))
-                    {   nits.merge (nuts);
-                        return true; }
-                    valid_type = true;
-                    knots.merge (nuts); }
+                        expected += quote (type_master < t_microdata_root > :: name (i -> second -> from_.root ()) + "/" + sch :: name (i -> second -> field_schema_)); } }
+                else if (! vsv [i -> second -> from_.root ()].invalid ())
+                    if (does_apply < schema_version > (vsv [i -> second -> from_.root ()], i -> second -> from_, i -> second -> to_))
+                    {   nitpick nuts;
+                        if (test_value (nuts, v, i -> second -> field_type_, value))
+                        {   nits.merge (nuts);
+                            return true; }
+                        valid_type = true;
+                        knots.merge (nuts); }
         if (! expected.empty ())
         {   ::std::string msg ("consider specifying ");
             nitpick nuts;
-            msg += quote (schema_property_name (prop)) + " in greater detail using ";
+            msg += name + " in greater detail using ";
             if (many) msg += "one of ";
             msg += expected;
             nuts.pick (nit_schema_property, es_comment, ec_microdata, msg);
@@ -2850,32 +2940,32 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
                 return true; }
             valid_type = true;
             knots.merge (nuts); }
-        if (unfound.empty ())
-            unfound = quote (schema_property_name (prop)) + " is not a valid property of " + quote (sch::name (schema)); }
+        if (unfound.empty () && (get_property_root (prop) == sch::category (gen)))
+            unfound = name + " is not a valid property of " + quote (sch::name (schema)); }
     if (! unfound.empty () && ! valid_type)
         knots.pick (nit_not_schema_property, es_error, ec_microdata, unfound);
     nits.merge (knots);
     return false; }
 
-bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema schema, const e_schema_property prop, const ::std::string& value, const bool is_link)
+bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema_type schema, const e_schema_property prop, const ::std::string& value, const bool is_link)
 {   if (! is_valid_schema_property_int (nits, v, schema, prop, value, is_link)) return false;
     return true; }
 
-bool is_valid_schema_property_int (nitpick& nits, const html_version& , const e_schema schema, const e_schema_property prop, const e_schema value)
+bool is_valid_schema_property_int (nitpick& nits, const html_version& , const e_schema_type schema, const e_schema_property prop, const e_schema_type value)
 {   nitpick knots;
-    ssch_t ssch (generalise (context.schema_ver (), schema));
-    for (e_schema gen : ssch)
+    ssch_t ssch (generalise (schema));
+    for (e_schema_type gen : ssch)
         if (is_schema_property (gen, prop))
             for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
                 if (i -> second -> field_type_ == t_schema)
                     if (i -> second -> field_schema_ == value)
-                        if (does_apply (context.schema_ver (), i -> second -> from_, i -> second -> to_))
+                        if (does_apply < schema_version > (context.schema_ver (), i -> second -> from_, i -> second -> to_))
                             return true;
     knots.pick (nit_not_schema_property, es_error, ec_microdata, quote (schema_property_name (prop)), " is not a property of ", quote (sch::name (schema)));
     nits.merge (knots);
     return false; }
 
-bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema schema, const e_schema_property prop, const e_schema value)
+bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema_type schema, const e_schema_property prop, const e_schema_type value)
 {   if (! is_valid_schema_property_int (nits, v, schema, prop, value)) return false;
     return true; }
 
@@ -2883,6 +2973,6 @@ vit_t sought_schema_itemtypes (const e_schema_property prop)
 {   vit_t res;
     for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
         if (i -> second -> field_type_ == t_schema)
-            if (does_apply (context.schema_ver (), i -> second -> from_, i -> second -> to_))
+            if (does_apply < schema_version > (context.schema_ver (), i -> second -> from_, i -> second -> to_))
                 res.push_back (make_itemtype_index (i -> second -> field_schema_));
     return res; }

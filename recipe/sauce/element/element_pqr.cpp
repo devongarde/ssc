@@ -63,7 +63,7 @@ void element::examine_piecewise ()
                     noted = true; }
                 break;
             default :
-                assert (false);
+                DBG_ASSERT (false);
                 break; } }
 
 void element::examine_progress ()

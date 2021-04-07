@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "webpage/page.h"
 
-struct symbol_entry < e_httpequiv > httpequiv_symbol_table [] =
+struct symbol_entry < html_version, e_httpequiv > httpequiv_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF },  "context", he_context },
 
     // sources:
@@ -80,7 +80,7 @@ struct symbol_entry < e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "x-ua-compatible", he_x_ua_compatible } };
 
 void httpequiv_init (nitpick& nits)
-{   type_master < t_httpequiv > :: init (nits, httpequiv_symbol_table, sizeof (httpequiv_symbol_table) / sizeof (symbol_entry < e_httpequiv >)); }
+{   type_master < t_httpequiv > :: init (nits, httpequiv_symbol_table, sizeof (httpequiv_symbol_table) / sizeof (symbol_entry < html_version, e_httpequiv >)); }
 
 template < e_type TYPE > ::std::string validate_he_content (nitpick& nits, const html_version& v, const ::std::string& content, page& )
 {   type_master < TYPE > t;

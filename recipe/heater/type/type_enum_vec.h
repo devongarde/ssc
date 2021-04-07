@@ -21,8 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_enum.h"
 
-template < typename TYPE, e_type E > struct enum_vec_base : public type_base < TYPE, E >
-{   typedef enum_n < E, TYPE > base_t;
+template < typename TYPE, e_type E, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default >
+    struct enum_vec_base : public type_base < TYPE, E >
+{   typedef enum_n < E, TYPE, CATEGORY, INIT > base_t;
     typedef ::std::vector < base_t > vec_t;
     typedef TYPE base_type;
     typedef vec_t value_type;
@@ -61,22 +62,26 @@ template < typename TYPE, e_type E > struct enum_vec_base : public type_base < T
         ss << '"'; }
     vec_t get () const { return value_; } };
 
-template < typename TYPE, e_type E > enum_vec_base < TYPE, E > :: enum_vec_base (const html_version& v, const ::std::string& s)
+template < typename TYPE, e_type E, typename CATEGORY, CATEGORY INIT >
+    enum_vec_base < TYPE, E, CATEGORY, INIT > :: enum_vec_base (const html_version& v, const ::std::string& s)
 {   enum_vec_base < TYPE, E > e;
     e.set_value (v, s);
     if (e.good ()) swap (e); }
 
-template < typename TYPE, e_type E > void enum_vec_base < TYPE, E > :: swap (enum_vec_base& t) NOEXCEPT
+template < typename TYPE, e_type E, typename CATEGORY, CATEGORY INIT >
+    void enum_vec_base < TYPE, E, CATEGORY, INIT > :: swap (enum_vec_base& t) NOEXCEPT
 {   ::std::swap (value_, t.value_);
     original_.swap (t.original_);
     type_base < TYPE, E >::swap (t); }
 
-template < typename TYPE, e_type E > void enum_vec_base < TYPE, E > :: set_value (nitpick& nits, const html_version& , const ::std::string& s)
+template < typename TYPE, e_type E, typename CATEGORY, CATEGORY INIT >
+    void enum_vec_base < TYPE, E, CATEGORY, INIT > :: set_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   original_ = s;
     nits.pick (nit_missing_set_value, es_error, ec_type, "Internal error: an enum vector is missing setvalue");
     type_base < TYPE, E > :: status (s_invalid); }
 
-template < e_type E, typename ENUM > struct enum_vec : public enum_vec_base < ENUM, E >
+template < e_type E, typename ENUM, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default >
+    struct enum_vec : public enum_vec_base < ENUM, E, CATEGORY, INIT >
 {   enum_vec () = default;
     enum_vec (const enum_vec& ) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
@@ -88,23 +93,23 @@ template < e_type E, typename ENUM > struct enum_vec : public enum_vec_base < EN
     enum_vec& operator = (enum_vec&& ) = default;
 #endif
     void swap (enum_vec& n)
-    {   enum_vec_base < ENUM, E > :: swap (n); }
+    {   enum_vec_base < ENUM, E, CATEGORY, INIT > :: swap (n); }
     void reset ()
     {   enum_vec tmp;
         swap (tmp); }
     void reset (const enum_vec& n)
     {   enum_vec tmp (n);
         swap (tmp); }
-    static void init (nitpick& nits, const symbol_entry < ENUM > table [], const ::std::size_t size, const bool wildcards = false)
-    {   symbol < ENUM > :: init (nits, table, size, wildcards); }
+    static void init (nitpick& nits, const symbol_entry < html_version, ENUM, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
+    {   symbol < html_version, ENUM, CATEGORY, INIT > :: init (nits, table, size, wildcards); }
     static void extend (const vstr_t& extension, const std::size_t s = 0)
     {   for (auto e : extension)
-            symbol < ENUM > :: extend (e, static_cast < ENUM > (s)); }
+            symbol < html_version, ENUM, CATEGORY, INIT > :: extend (e, static_cast < ENUM > (s)); }
     ::std::string values (const html_version& v) const
-    {   return symbol < ENUM > :: value_list (v); }
+    {   return symbol < html_version, ENUM, CATEGORY, INIT > :: value_list (v); }
     ::std::string get_string () const
     {   ::std::string res;
-        for (auto e : enum_vec_base < ENUM, E > :: value_)
+        for (auto e : enum_vec_base < ENUM, E, CATEGORY, INIT > :: value_)
         {   if (! res.empty ()) res += " ";
             if (e.good ())
             {   ::std::string s (e.get_string ());
@@ -115,11 +120,11 @@ template < e_type E, typename ENUM > struct enum_vec : public enum_vec_base < EN
     ::std::string name () const
     {   return get_string (); }
     static ::std::string name (const ENUM e)
-    {   return symbol < ENUM > :: name (e); }
+    {   return symbol < html_version, ENUM, CATEGORY, INIT > :: name (e); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   bool bitten = false;
         ss << "=\"";
-        for (auto e : enum_vec_base < ENUM, E > :: value_)
+        for (auto e : enum_vec_base < ENUM, E, CATEGORY, INIT > :: value_)
             if (! e.empty ())
             {   ::std::string s (e.get_string ());
                 if (s.empty ()) s = e.original ();
@@ -129,9 +134,10 @@ template < e_type E, typename ENUM > struct enum_vec : public enum_vec_base < EN
                     bitten = true; } }
         ss << "\""; }
     static ::std::size_t value_count ()
-    {   return symbol < ENUM > :: value_count (); } };
+    {   return symbol < html_version, ENUM, CATEGORY, INIT > :: value_count (); } };
 
-template < e_type E, typename ENUM > void enum_vec < E, ENUM > :: set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
+    void enum_vec < E, ENUM, CATEGORY, INIT > :: set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
 {   enum_vec_base < ENUM, E > :: original_ = ss;
     bool res = true;
     vstr_t strs;

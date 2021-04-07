@@ -71,11 +71,11 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
         enum_base < e_mimetype, t_mime > :: status (s_good); return; }
     pos = s.find (';');
     if (pos == ::std::string::npos)
-    {   if (symbol < e_mimetype > :: parse (nits, v, s, enum_base < e_mimetype, t_mime > :: value_))
+    {   if (symbol < html_version, e_mimetype > :: parse (nits, v, s, enum_base < e_mimetype, t_mime > :: value_))
         {   enum_base < e_mimetype, t_mime > :: status (s_good);
             return; } }
     else
-    {   if (symbol < e_mimetype > :: parse (nits, v, s.substr (0, pos), enum_base < e_mimetype, t_mime > :: value_))
+    {   if (symbol < html_version, e_mimetype > :: parse (nits, v, s.substr (0, pos), enum_base < e_mimetype, t_mime > :: value_))
         {   enum_base < e_mimetype, t_mime > :: status (s_good);
             return; } }
     check_spelling (nits, v, s);

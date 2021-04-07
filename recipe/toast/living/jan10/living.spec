@@ -416,8 +416,7 @@ PASS ../toast/living/jan10/li.html
 36 inserted_missing_closure
 
 PASS ../toast/living/jan10/licence.html
-6 schema_domain
-7 attribute_required url_not_found
+7 attribute_required relative_path url_not_found
 8 inserted_missing_closure missing_close
 10 missing_close
 16 inserted_missing_closure inserted_missing_closure
@@ -563,9 +562,9 @@ PASS ../toast/living/jan10/microdata.html
 86 url_not_found naughty_alt
 89 schema_domain
 95 url_not_found naughty_alt
-126 schema_domain
-135 schema_domain
-142 schema_domain
+126 unrecognised_schema unrecognised_schema
+135 unrecognised_schema unrecognised_schema
+142 unrecognised_schema unrecognised_schema
 
 PASS ../toast/living/jan10/mt.html
 6 missing_close inserted_missing_closure missing_open
@@ -829,21 +828,16 @@ PASS ../toast/living/jan10/var.html
 23 use_quote_code
 
 PASS ../toast/living/jan10/vcard.html
-6 schema_domain
 8 url_not_found naughty_alt
 30 use_quote_code
-42 use_quote_code schema_domain
+42 use_quote_code
 44 use_quote_code
 45 use_quote_code
 47 use_quote_code
 53 missing_close
 56 inserted_missing_closure
-59 schema_domain
-70 schema_domain
 
 PASS ../toast/living/jan10/vevent.html
-5 schema_domain
-22 schema_domain
 24 use_quote_code
 26 invalid_attribute_version wrong_version
 

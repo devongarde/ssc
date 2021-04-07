@@ -24,5 +24,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_varied.h"
 
 ids_t& get_varied_names (element* pe)
-{   assert (pe != nullptr);
+{   DBG_ASSERT (pe != nullptr);
     return pe -> get_names (); }

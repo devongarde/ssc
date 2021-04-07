@@ -40,7 +40,7 @@ public:
     unsigned member (const MEMBER m) const
     {   return member_.at (m); }
     void mark (const FAMILY f, const MEMBER m)
-    {   assert (m <= max_member);
+    {   DBG_ASSERT (m <= max_member);
         ++(family_.at (f));
         ++(member_.at (m));
         uint64_t i = index (f, m);

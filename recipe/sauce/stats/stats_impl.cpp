@@ -50,17 +50,17 @@ void stats::mark_file (const unsigned size)
 {   uint64_t total = 0;
     unsigned count = 0;
     ::std::string res;
-    for (unsigned i = 0; i < sch_illegal; ++i)
-    {   unsigned n = schema_.at (static_cast < e_schema > (i));
+    for (unsigned i = 0; i < sty_illegal; ++i)
+    {   unsigned n = schema_.at (static_cast < e_schema_type > (i));
         if (n == 0) continue;
         ++total;
         count += n;
         if (context.tell (e_error))
-        {   const ::std::string naam (itemtype_index_name (make_itemtype_index (static_cast < e_schema > (i))));
+        {   const ::std::string naam (itemtype_index_name (make_itemtype_index (static_cast < e_schema_type > (i))));
             res += "    ";
             res += naam + ": " + times (n);
             if (context.tell (e_warning) && ! context.tell (e_info))
-            {   unsigned x = schema_property_.family (static_cast < e_schema > (i));
+            {   unsigned x = schema_property_.family (static_cast < e_schema_type > (i));
                 if (x > 0)
                 {   res += ", with, on average, ";
                     res += ::boost::lexical_cast < ::std::string > (x / n);
@@ -69,7 +69,7 @@ void stats::mark_file (const unsigned size)
             res += "\n";
             if (context.tell (e_info))
                 for (unsigned m = 0; m < sp_illegal; ++m)
-                {   unsigned y = schema_property_.at (static_cast < e_schema > (i), static_cast <e_schema_property> (m));
+                {   unsigned y = schema_property_.at (static_cast < e_schema_type > (i), static_cast <e_schema_property> (m));
                     if (y > 0)
                     {   res += "      ";
                         res += itemprop_index_name (make_itemprop_index (static_cast <e_schema_property> (m))) + ": ";
@@ -209,7 +209,7 @@ void stats::mark_file (const unsigned size)
     if (context.tell (e_info)) res += saybe (severity_.at (es_info), "    Info");
     if (context.tell (e_comment)) res += saybe (severity_.at (es_comment), "    Comments");
     if (res.empty ()) return "No errors or warnings\n";
-    return ::std::string ("Errors:\n  Severity:\n") + res; }
+    return ::std::string ("Errors reported:\n  Severity:\n") + res; }
 
 ::std::string stats::category_report () const
 {   ::std::string res;

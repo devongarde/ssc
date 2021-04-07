@@ -1561,7 +1561,7 @@ bool is_permitted_parent_child (nitpick& nits, const html_version& v, const elem
     if (i != parents.cend ())
         for ( ; (i != parents.cend ()) && (i -> second.parent_ == parent); ++i)
             if (i -> second.child_ == seek)
-                if (does_apply (v, i -> second.first_, i -> second.last_))
+                if (does_apply < html_version > (v, i -> second.first_, i -> second.last_))
                     if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
                         if (! i -> second.first_.has_math () || ((i -> second.first_.ext () & self.first ().ext () & context.html_ver ().ext ()) != 0))
                         {   if (i -> second.flags_ == 0) return true;
@@ -1579,7 +1579,7 @@ bool is_permitted_parent_child (const html_version& v, const elem& self, const e
     if (i != parents.cend ())
         for ( ; (i != parents.cend ()) && (i -> second.parent_ == parent); ++i)
             if (i -> second.child_ == seek)
-                if (does_apply (v, i -> second.first_, i -> second.last_))
+                if (does_apply < html_version > (v, i -> second.first_, i -> second.last_))
                     if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
                         if (! i -> second.first_.has_math () || ((i -> second.first_.ext () & self.first ().ext () & context.html_ver ().ext ()) != 0))
                         {   if (i -> second.flags_ == 0) return true;
@@ -1602,7 +1602,7 @@ bool is_permitted_parent (nitpick& nits, const html_version& v, const elem& self
     if (is_permitted_parent_child (nits, v, self, self.get (), parent)) return true;
     if (is_permitted_parent_child (nits, v, self, elem_undefined, parent)) return true;
     for (parentage_t::const_iterator i = parents.find (parent_key (elem_undefined, self.get ())); (i != parents.cend ()) && (i -> second.child_ == self); ++i)
-        if (does_apply (v, i -> second.first_, i -> second.last_))
+        if (does_apply < html_version > (v, i -> second.first_, i -> second.last_))
             if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
             {   if ((i -> second.flags_ & DENY) == 0) return true;
                 nits.pick (nit_wrong_parent, es_error, ec_element, "<", self.name (), "> cannot have <", parent.name (), "> as a parent");
@@ -1611,15 +1611,15 @@ bool is_permitted_parent (nitpick& nits, const html_version& v, const elem& self
 
 bool is_permitted_parent (const html_version& v, const elem& self, const elem& parent)
 {   if (is_error_element (self.get ()) || is_undefined_element (self.get ()) || is_error_element (parent.get ()) || is_undefined_element (parent.get ())) return true;
-    if (! does_apply (v, self.first (), self.last ())) return true; // version error reported later
-    if (! does_apply (v, parent.first (), parent.last ())) return false;
+    if (! does_apply < html_version > (v, self.first (), self.last ())) return true; // version error reported later
+    if (! does_apply < html_version > (v, parent.first (), parent.last ())) return false;
     if ((self.flags () & EP_IGNORE) != 0) return true;
     if (parent.is_closed (v)) return false;
     if ((self.flags () & EP_TOP) != 0) return (parent == elem_faux_document);
     if (is_permitted_parent_child (v, self, self.get (), parent)) return true;
     if (is_permitted_parent_child (v, self, elem_undefined, parent)) return true;
     for (parentage_t::const_iterator i = parents.find (parent_key (elem_undefined, self.get ())); (i != parents.cend ()) && (i -> second.child_ == self); ++i)
-        if (does_apply (v, i -> second.first_, i -> second.last_))
+        if (does_apply < html_version > (v, i -> second.first_, i -> second.last_))
             if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
                 return ((i -> second.flags_ & DENY) == 0);
     return false; }

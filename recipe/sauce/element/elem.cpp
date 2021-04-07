@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "type/type.h"
 
-struct symbol_entry < e_element > elem_symbol_table [] =
+struct symbol_entry < html_version, e_element > elem_symbol_table [] =
 {   { { HTML_PLUS }, { HTML_UNDEF }, "!doctype", elem_faux_doctype, ns_default, EP_CLOSED | EP_TOP },
     { { HTML_TAGS }, { HTML_UNDEF }, "(*ERROR*)", elem_error, ns_default, EP_CLOSED | EP_IGNORE },
     { { HTML_2_0 }, { HTML_UNDEF }, "(asp)", elem_faux_asp, ns_default, EP_CLOSED | EP_IGNORE, EF_FAUX | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
@@ -596,14 +596,14 @@ e_element max_tag = last_element_tag;
 element_bitset elem::ignored_;
 
 void elem::init (nitpick& nits)
-{   symbol::init (nits, elem_symbol_table, sizeof (elem_symbol_table) / sizeof (symbol_entry < e_element >), true); }
+{   symbol < html_version, e_element > :: init (nits, elem_symbol_table, sizeof (elem_symbol_table) / sizeof (symbol_entry < html_version, e_element >), true); }
 
 bool elem::parse (nitpick& nits, const html_version& v, const ::std::string& x)
-{   assert (! x.empty ());
+{   DBG_ASSERT (! x.empty ());
     ::std::string el (x);
     ns (examine_namespace (nits, v, el));
     if (el.empty ()) return false;
-    if (symbol < e_element > :: parse (nits, v, el, ns ())) return true;
+    if (symbol < html_version, e_element > :: parse (nits, v, el, ns ())) return true;
     check_spelling (nits, v, el);
     return false; }
 

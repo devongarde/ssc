@@ -640,10 +640,8 @@ PASS ../toast/living/jul10/microdata.html
 95 url_not_found naughty_alt
 
 PASS ../toast/living/jul10/microdata-2.html
-8 schema_domain
-9 no_such_folder url_not_found
-12 schema_domain
-13 no_such_folder url_not_found
+9 relative_path no_such_folder url_not_found
+13 relative_path no_such_folder url_not_found
 
 PASS ../toast/living/jul10/mt.html
 6 missing_close inserted_missing_closure missing_open
@@ -1083,21 +1081,16 @@ PASS ../toast/living/jul10/var.html
 21 use_quote_code
 
 PASS ../toast/living/jul10/vcard.html
-6 schema_domain
 8 url_not_found naughty_alt
 30 use_quote_code
-42 use_quote_code schema_domain
+42 use_quote_code
 44 use_quote_code
 45 use_quote_code
 47 use_quote_code
 53 missing_close
 56 inserted_missing_closure
-59 schema_domain
-70 schema_domain
 
 PASS ../toast/living/jul10/vevent.html
-5 schema_domain
-22 schema_domain
 24 use_quote_code
 26 invalid_attribute_version wrong_version
 

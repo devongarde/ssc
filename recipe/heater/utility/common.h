@@ -48,6 +48,9 @@ const uint32_t uint32_category_shift =  28;
 const uint32_t uint32_item_mask =       0x0FFFFFFF;
 const uint32_t uint32_category_mask =   0xF0000000;
 
+inline uint32_t ndx_category (const uint32_t x) { return (x & uint32_category_mask) >> uint32_category_shift; }
+inline uint32_t ndx_item (const uint32_t x) { return (x & uint32_item_mask); }
+
 ::std::string trim_the_lot_off (const ::std::string& s);
 bool remove_tail (::std::string& s, ::std::string& tail, const char ch);
 bool remove_head (::std::string& s, ::std::string& head, const char ch);

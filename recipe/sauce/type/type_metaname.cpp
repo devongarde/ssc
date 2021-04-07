@@ -452,7 +452,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MN_SUMMARY "summary"
 #define MN_TWEETMEME_TITLE "tweetmeme-title"
 
-struct symbol_entry < e_metaname > metaname_symbol_table [] =
+struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
 {  { { HTML_UNDEF }, { HTML_UNDEF }, MN_CONTEXT, mn_context },
 
    { { HTML_4_0 }, { HTML_UNDEF }, MN_APPLICATION, mn_application },
@@ -1016,7 +1016,7 @@ struct symbol_entry < e_metaname > metaname_symbol_table [] =
 };
 
 void metaname_init (nitpick& nits)
-{   type_master < t_metaname > :: init (nits, metaname_symbol_table, sizeof (metaname_symbol_table) / sizeof (symbol_entry < e_metaname >)); }
+{   type_master < t_metaname > :: init (nits, metaname_symbol_table, sizeof (metaname_symbol_table) / sizeof (symbol_entry < html_version, e_metaname >)); }
 
 void validate_metaname_content (nitpick& nits, const html_version& v, const bool in_head, const e_metaname mn, const ::std::string& content, page& p)
 {   bool stats = in_head && context.meta ();

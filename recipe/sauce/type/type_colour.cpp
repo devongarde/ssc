@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type_colour.h"
 
-struct symbol_entry < e_fixedcolour > fixedcolour_symbol_table [] =
+struct symbol_entry < html_version, e_fixedcolour > fixedcolour_symbol_table [] =
 {   { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "aliceblue", fc_aliceblue },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "antiquewhite", fc_antiquewhite },
     { { HTML_3_2 }, { HTML_UNDEF }, "aqua", fc_aqua },
@@ -172,4 +172,4 @@ struct symbol_entry < e_fixedcolour > fixedcolour_symbol_table [] =
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, "yellowgreen", fc_yellowgreen } };
 
 void fixedcolour_init (nitpick& nits)
-{   type_master < t_fixedcolour > :: init (nits, fixedcolour_symbol_table, sizeof (fixedcolour_symbol_table) / sizeof (symbol_entry < e_fixedcolour >)); }
+{   type_master < t_fixedcolour > :: init (nits, fixedcolour_symbol_table, sizeof (fixedcolour_symbol_table) / sizeof (symbol_entry < html_version, e_fixedcolour >)); }

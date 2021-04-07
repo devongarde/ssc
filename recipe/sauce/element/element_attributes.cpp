@@ -90,7 +90,7 @@ bool element::examine_class ()
                 element* prop_vocab_element = nullptr;
                 if ((farm.second == c_error) || ! is_plausible_field (farm.second, p.get ()))
                 {   unfound = true; continue; }
-                assert (farm.first -> mf_);
+                DBG_ASSERT (farm.first -> mf_);
                 farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *this);
                 if (context.mf_verify ())
                 {   farm.first -> mf_ -> validate (nits (), node_.version (), node_.id ());
@@ -104,7 +104,7 @@ bool element::examine_class ()
                 res = true;
                 found_farm ancestral_farm = find_farm (p.get (), prop_vocab_element);
                 if ((ancestral_farm.second != c_error) && (is_plausible_parent (nits (), farm.second, ancestral_farm.second, p.get ())))
-                {   assert (ancestral_farm.first -> mf_);
+                {   DBG_ASSERT (ancestral_farm.first -> mf_);
                     ancestral_farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *prop_vocab_element);
                     if (context.mf_verify ())
                     {   ancestral_farm.first -> mf_ -> validate (nits (), node_.version (), node_.id ());
@@ -169,7 +169,7 @@ void element::examine_content ()
 
 void element::examine_draggable ()
 {   if (node_.version ().mjr () < 5) return;
-    assert (a_.has (a_draggable) && a_.known (a_draggable));
+    DBG_ASSERT (a_.has (a_draggable) && a_.known (a_draggable));
     if (! a_.known (a_title) && (node_.version () >= html_jan13))
         pick (nit_title_required, ed_51, "5.7.7. The draggable attribute", es_warning, ec_attribute, "An element with DRAGGABLE should also define TITLE"); }
 
@@ -198,7 +198,7 @@ void element::examine_href ()
                 pick (nit_math_href, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_error, ec_attribute, "HREF requires MathML 3"); }
 
 void element::examine_descendant_in (const element* filter)
-{   assert (filter != nullptr);
+{   DBG_ASSERT (filter != nullptr);
     if (a_.known (a_in))
     {   ::std::string s (a_.get_string (a_in));
         nitpick nuts;

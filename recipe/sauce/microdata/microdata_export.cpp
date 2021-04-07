@@ -48,7 +48,7 @@ void microdata_export::add (const ::std::string& path, const ::std::string& item
     tree_.add (path + JSON_ITEMID, itemid); }
 
 ::std::string microdata_export::append_path (const ::std::string& orig, const itemprop_index prop, const bool uid, const ::std::string& it)
-{   assert (! orig.empty ());
+{   DBG_ASSERT (! orig.empty ());
     ::std::string res (orig);
     if (prop != null_itemprop)
     {   res += ".";

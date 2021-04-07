@@ -26,11 +26,11 @@ bool microformats::allocated (const ::std::size_t v) const
 {   return ! mf_ [v].is_empty (); }
 
 void microformats::alloc (const ::std::size_t v)
-{   assert (! allocated (v));
+{   DBG_ASSERT (! allocated (v));
     mf_ [v] = microformat_pv::alloc_microformat_pv (v); }
 
 bool microformats::has (const ::std::size_t v, const e_property p) const
-{   assert (allocated (v));
+{   DBG_ASSERT (allocated (v));
     return mf_ [v].has_prop (p); }
 
 bool microformats::has (const ::std::size_t v) const
@@ -41,7 +41,7 @@ bool microformats::empty (const ::std::size_t v) const
     return mf_ [v].is_empty (); }
 
 bool microformats::has_property (const ::std::size_t v, const e_property p) const
-{   assert (allocated (v));
+{   DBG_ASSERT (allocated (v));
     return mf_ [v].has_prop (p); }
 
 e_class microformats::plausible_vocabulary (const e_property p) const
@@ -70,7 +70,7 @@ bool microformats::is_declared (const ::std::size_t v) const
     return true; }
 
 void microformats::set_mf_value (nitpick& nits, const html_version& ver, const ::std::size_t v, const e_property pp, element& e)
-{   assert (allocated (v));
+{   DBG_ASSERT (allocated (v));
     return mf_ [v].set_mf_value (nits, ver, pp, e); }
 
 ::std::string microformats::get_string (const ::std::size_t v, const e_property pp)

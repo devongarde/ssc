@@ -23,16 +23,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_type.h"
 #include "utility/quote.h"
 
-bool is_schema_domain (const ::std::string& d)
-{   return compare_no_case (d, "Schema.org"); }
-
 #define SF_ENUMERATION          0x10000000
 #define SF_EXTERNAL_ENUMERATION 0x20000000
+#define SF_NO_ITEMID            0x40000000
 #define SF_SIMPLE_MASK          0x0FFFFFFF
 #define SF_NO_SIMPLE_TYPE       0
 #define MAKE_SIMPLE_TYPE(T)     static_cast < uint64_t > (T)
 
-struct symbol_entry < e_schema > schema_symbol_table [] =
+struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schema > schema_type_symbol_table [] =
 {   { { 2, 0 }, { 0, 0 }, "APIReference", sch_apireference },
     { { 3, 5 }, { 0, 0 }, "3DModel", sch_3dmodel },
     { { 3, 6 }, { 6, 0 }, "Abdomen", sch_abdomen },
@@ -43,7 +41,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "AchieveAction", sch_achieveaction },
     { { 2, 0 }, { 0, 0 }, "Action", sch_action },
     { { 3, 5 }, { 0, 0 }, "ActionAccessSpecification", sch_actionaccessspecification },
-    { { 2, 0 }, { 0, 0 }, "ActionStatusType", sch_actionstatustype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "ActionStatusType", sch_actionstatustype, mdr_schema, SF_ENUMERATION },
     { { 11, 0 }, { 0, 0 }, "ActivationFee", sch_activationfee },
     { { 2, 0 }, { 0, 0 }, "ActivateAction", sch_activateaction },
     { { 3, 5 }, { 0, 0 }, "ActiveActionStatus", sch_activeactionstatus },
@@ -129,7 +127,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "Blog", sch_blog },
     { { 2, 0 }, { 0, 0 }, "BlogPosting", sch_blogposting },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "BloodTest", sch_bloodtest },
-    { { 2, 0 }, { 0, 0 }, "BoardingPolicyType", sch_boardingpolicytype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "BoardingPolicyType", sch_boardingpolicytype, mdr_schema, SF_ENUMERATION },
     { { 9, 0 }, { 0, 0 }, "BoatReservation", sch_boatreservation },
     { { 9, 0 }, { 0, 0 }, "BoatTerminal", sch_boatterminal },
     { { 9, 0 }, { 0, 0 }, "BoatTrip", sch_boattrip },
@@ -142,7 +140,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementHeight", sch_bodymeasurementheight },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementHips", sch_bodymeasurementhips },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementInsideLeg", sch_bodymeasurementinsideleg },
-    { { 12, 0 }, { 0, 0 }, "BodyMeasurementTypeEnumeration", sch_bodymeasurementtypeenumeration, ns_default, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "BodyMeasurementTypeEnumeration", sch_bodymeasurementtypeenumeration, mdr_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementNeck", sch_bodymeasurementneck },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementUnderbust", sch_bodymeasurementunderbust },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementWaist", sch_bodymeasurementwaist },
@@ -150,11 +148,11 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "BodyOfWater", sch_bodyofwater },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Bone", sch_bone },
     { { 2, 0 }, { 0, 0 }, "Book", sch_book },
-    { { 2, 0 }, { 0, 0 }, "BookFormatType", sch_bookformattype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "BookFormatType", sch_bookformattype, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "BookMarkAction", sch_bookmarkaction },
     { { 2, 0 }, { 0, 0 }, "BookSeries", sch_bookseries },
     { { 2, 0 }, { 0, 0 }, "BookStore", sch_bookstore },
-    { { 2, 0 }, { 0, 0 }, "Boolean", sch_boolean, ns_default, SF_ENUMERATION | MAKE_SIMPLE_TYPE (t_bool) },
+    { { 2, 0 }, { 0, 0 }, "Boolean", sch_boolean, mdr_schema, SF_ENUMERATION | MAKE_SIMPLE_TYPE (t_bool) },
     { { 2, 0 }, { 0, 0 }, "BorrowAction", sch_borrowaction },
     { { 2, 0 }, { 0, 0 }, "BowlingAlley", sch_bowlingalley },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "BrainStructure", sch_brainstructure },
@@ -170,9 +168,9 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "BrokerageAccount", sch_brokerageaccount },
     { { 2, 0 }, { 0, 0 }, "BuddhistTemple", sch_buddhisttemple },
     { { 2, 0 }, { 0, 0 }, "BusinessAudience", sch_businessaudience },
-    { { 2, 0 }, { 0, 0 }, "BusinessEntityType", sch_businessentitytype, ns_default, SF_EXTERNAL_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "BusinessEntityType", sch_businessentitytype, mdr_schema, SF_EXTERNAL_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "BusinessEvent", sch_businessevent },
-    { { 2, 0 }, { 0, 0 }, "BusinessFunction", sch_businessfunction, ns_default, SF_EXTERNAL_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "BusinessFunction", sch_businessfunction, mdr_schema, SF_EXTERNAL_ENUMERATION },
     { { 7, 4 }, { 0, 0 }, "BusinessSupport", sch_businesssupport },
     { { 3, 5 }, { 0, 0 }, "BusOrCoach", sch_busorcoach },
     { { 2, 0 }, { 0, 0 }, "BusReservation", sch_busreservation },
@@ -189,7 +187,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "Car", sch_car },
     { { 3, 6 }, { 6, 0 }, "Cardiovascular", sch_cardiovascular },
     { { 3, 6 }, { 6, 0 }, "CardiovascularExam", sch_cardiovascularexam },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "CarUsageType", sch_carusagetype, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "CarUsageType", sch_carusagetype, mdr_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "CaseSeries", sch_caseseries },
     { { 2, 0 }, { 0, 0 }, "Casino", sch_casino },
     { { 3, 5 }, { 0, 0 }, "CassetteFormat", sch_cassetteformat },
@@ -249,7 +247,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "ConsumeAction", sch_consumeaction },
     { { 2, 0 }, { 0, 0 }, "ContactPage", sch_contactpage },
     { { 2, 0 }, { 0, 0 }, "ContactPoint", sch_contactpoint },
-    { { 2, 0 }, { 0, 0 }, "ContactPointOption", sch_contactpointoption, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "ContactPointOption", sch_contactpointoption, mdr_schema, SF_ENUMERATION },
     { { 5, 0 }, { 0, 0 }, "ContagiousnessHealthAspect", sch_contagiousnesshealthaspect },
     { { 2, 0 }, { 0, 0 }, "Continent", sch_continent },
     { { 2, 0 }, { 0, 0 }, "ControlAction", sch_controlaction },
@@ -285,10 +283,10 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 0 }, { 0, 0 }, "DataFeedItem", sch_datafeeditem },
     { { 2, 0 }, { 0, 0 }, "Dataset", sch_dataset },
     { { 2, 0 }, { 0, 0 }, "DataType", sch_datatype },
-    { { 2, 0 }, { 0, 0 }, "Date", sch_date, ns_default, MAKE_SIMPLE_TYPE (t_just_date) },
+    { { 2, 0 }, { 0, 0 }, "Date", sch_date, mdr_schema, MAKE_SIMPLE_TYPE (t_just_date) },
     { { 2, 0 }, { 3, 4 }, "DatedMoneySpecification", sch_datedmoneyspecification },
-    { { 2, 0 }, { 0, 0 }, "DateTime", sch_datetime, ns_default, MAKE_SIMPLE_TYPE (t_datetime) },
-    { { 2, 0 }, { 0, 0 }, "DayOfWeek", sch_dayofweek, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "DateTime", sch_datetime, mdr_schema, MAKE_SIMPLE_TYPE (t_datetime) },
+    { { 2, 0 }, { 0, 0 }, "DayOfWeek", sch_dayofweek, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "DaySpa", sch_dayspa },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DDxElement", sch_ddxelement },
     { { 2, 0 }, { 0, 0 }, "DeactivateAction", sch_deactivateaction },
@@ -301,7 +299,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "DeleteAction", sch_deleteaction },
     { { 2, 0 }, { 0, 0 }, "DeliveryChargeSpecification", sch_deliverychargespecification },
     { { 2, 0 }, { 0, 0 }, "DeliveryEvent", sch_deliveryevent },
-    { { 2, 0 }, { 0, 0 }, "DeliveryMethod", sch_deliverymethod, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "DeliveryMethod", sch_deliverymethod, mdr_schema, SF_ENUMERATION },
     { { 8, 0 }, { 0, 0 }, "DeliveryTimeSettings", sch_deliverytimesettings },
     { { 2, 0 }, { 0, 0 }, "Demand", sch_demand },
     { { 3, 5 }, { 0, 0 }, "DemoAlbum", sch_demoalbum },
@@ -321,7 +319,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "DigitalAudioTapeFormat", sch_digitalaudiotapeformat },
     { { 3, 0 }, { 0, 0 }, "DigitalDocument", sch_digitaldocument },
     { { 3, 0 }, { 0, 0 }, "DigitalDocumentPermission", sch_digitaldocumentpermission },
-    { { 3, 0 }, { 0, 0 }, "DigitalDocumentPermissionType", sch_digitaldocumentpermissiontype, ns_default, SF_ENUMERATION },
+    { { 3, 0 }, { 0, 0 }, "DigitalDocumentPermissionType", sch_digitaldocumentpermissiontype, mdr_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "DigitalFormat", sch_digitalformat },
     { { 7, 4 }, { 0, 0 }, "DisabilitySupport", sch_disabilitysupport },
     { { 2, 0 }, { 0, 0 }, "DisagreeAction", sch_disagreeaction },
@@ -341,18 +339,18 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "DrawAction", sch_drawaction },
     { { 3, 5 }, { 0, 0 }, "Drawing", sch_drawing },
     { { 2, 0 }, { 0, 0 }, "DrinkAction", sch_drinkaction },
-    { { 2, 0 }, { 0, 0 }, "DriveWheelConfigurationValue", sch_drivewheelconfigurationvalue, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "DriveWheelConfigurationValue", sch_drivewheelconfigurationvalue, mdr_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "DrivingSchoolVehicleUsage", sch_drivingschoolvehicleusage },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Drug", sch_drug },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugClass", sch_drugclass },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugCost", sch_drugcost },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugCostCategory", sch_drugcostcategory, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugCostCategory", sch_drugcostcategory, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugLegalStatus", sch_druglegalstatus },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugPregnancyCategory", sch_drugpregnancycategory, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugPregnancyCategory", sch_drugpregnancycategory, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugPrescriptionStatus", sch_drugprescriptionstatus },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugStrength", sch_drugstrength },
     { { 2, 0 }, { 0, 0 }, "DryCleaningOrLaundry", sch_drycleaningorlaundry },
-    { { 2, 0 }, { 0, 0 }, "Duration", sch_duration,  ns_default, MAKE_SIMPLE_TYPE (t_duration) },
+    { { 2, 0 }, { 0, 0 }, "Duration", sch_duration,  mdr_schema, MAKE_SIMPLE_TYPE (t_duration) },
     { { 3, 5 }, { 0, 0 }, "DVDFormat", sch_dvdformat },
     { { 3, 6 }, { 6, 0 }, "Ear", sch_ear },
     { { 2, 0 }, { 0, 0 }, "EatAction", sch_eataction },
@@ -380,7 +378,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "EndorsementRating", sch_endorsementrating },
     { { 2, 0 }, { 0, 0 }, "Energy", sch_energy },
     { { 10, 0 }, { 0, 0 }, "EnergyConsumptionDetails", sch_energyconsumptiondetails },
-    { { 10, 0 }, { 0, 0 }, "EnergyEfficiencyEnumeration", sch_energyefficiencyenumeration, ns_default, SF_ENUMERATION },
+    { { 10, 0 }, { 0, 0 }, "EnergyEfficiencyEnumeration", sch_energyefficiencyenumeration, mdr_schema, SF_ENUMERATION },
     { { 10, 0 }, { 0, 0 }, "EnergyStarCertified", sch_energystarcertified },
     { { 2, 0 }, { 0, 0 }, "EngineSpecification", sch_enginespecification },
     { { 3, 6 }, { 6, 0 }, "EnrollingByInvitation", sch_enrollingbyinvitation },
@@ -398,10 +396,10 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyCategoryE", sch_euenergyefficiencycategorye },
     { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyCategoryF", sch_euenergyefficiencycategoryf },
     { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyCategoryG", sch_euenergyefficiencycategoryg },
-    { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyEnumeration", sch_euenergyefficiencyenumeration, ns_default, SF_ENUMERATION },
+    { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyEnumeration", sch_euenergyefficiencyenumeration, mdr_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "EPRelease", sch_eprelease },
     { { 2, 0 }, { 0, 0 }, "Event", sch_event },
-    { { 7, 0 }, { 0, 0 }, "EventAttendanceModeEnumeration", sch_eventattendancemodeenumeration, ns_default, SF_ENUMERATION },
+    { { 7, 0 }, { 0, 0 }, "EventAttendanceModeEnumeration", sch_eventattendancemodeenumeration, mdr_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "EventCancelled", sch_eventcancelled },
     { { 7, 0 }, { 0, 0 }, "EventMovedOnline", sch_eventmovedonline },
     { { 3, 5 }, { 0, 0 }, "EventPostponed", sch_eventpostponed },
@@ -409,7 +407,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "EventReservation", sch_eventreservation },
     { { 3, 5 }, { 0, 0 }, "EventScheduled", sch_eventscheduled },
     { { 3, 5 }, { 0, 0 }, "EventSeries", sch_eventseries },
-    { { 2, 0 }, { 0, 0 }, "EventStatusType", sch_eventstatustype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "EventStatusType", sch_eventstatustype, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "EventVenue", sch_eventvenue },
     { { 3, 6 }, { 6, 0 }, "EvidenceLevelA", sch_evidencelevela },
     { { 3, 6 }, { 6, 0 }, "EvidenceLevelB", sch_evidencelevelb },
@@ -441,7 +439,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Flexibility", sch_flexibility },
     { { 2, 0 }, { 0, 0 }, "Flight", sch_flight },
     { { 2, 0 }, { 0, 0 }, "FlightReservation", sch_flightreservation },
-    { { 2, 0 }, { 0, 0 }, "Float", sch_float, ns_default, MAKE_SIMPLE_TYPE (t_real) },
+    { { 2, 0 }, { 0, 0 }, "Float", sch_float, mdr_schema, MAKE_SIMPLE_TYPE (t_real) },
     { { 6, 0 }, { 0, 0 }, "FloorPlan", sch_floorplan },
     { { 2, 0 }, { 0, 0 }, "Florist", sch_florist },
     { { 3, 5 }, { 0, 0 }, "FMRadioChannel", sch_fmradiochannel },
@@ -459,14 +457,14 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 6 }, { 6, 0 }, "Fungus", sch_fungus },
     { { 2, 0 }, { 0, 0 }, "FurnitureStore", sch_furniturestore },
     { { 2, 0 }, { 0, 0 }, "Game", sch_game },
-    { { 2, 0 }, { 0, 0 }, "GamePlayMode", sch_gameplaymode, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "GamePlayMode", sch_gameplaymode, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "GameServer", sch_gameserver },
-    { { 2, 0 }, { 0, 0 }, "GameServerStatus", sch_gameserverstatus, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "GameServerStatus", sch_gameserverstatus, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "GardenStore", sch_gardenstore },
     { { 2, 0 }, { 0, 0 }, "GasStation", sch_gasstation },
     { { 3, 6 }, { 6, 0 }, "Gastroenterologic", sch_gastroenterologic },
     { { 2, 0 }, { 0, 0 }, "GatedResidenceCommunity", sch_gatedresidencecommunity },
-    { { 3, 0 }, { 0, 0 }, "GenderType", sch_gendertype, ns_default, SF_ENUMERATION },
+    { { 3, 0 }, { 0, 0 }, "GenderType", sch_gendertype, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "GeneralContractor", sch_generalcontractor },
     { { 3, 6 }, { 6, 0 }, "Genetic", sch_genetic },
     { { 3, 6 }, { 6, 0 }, "Genitourinary", sch_genitourinary },
@@ -479,7 +477,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "GiveAction", sch_giveaction },
     { { 3, 5 }, { 0, 0 }, "GlutenFreeDiet", sch_glutenfreediet },
     { { 2, 0 }, { 0, 0 }, "GolfCourse", sch_golfcourse },
-    { { 7, 4 }, { 0, 0 }, "GovernmentBenefitsType", sch_governmentbenefitstype, ns_default, SF_ENUMERATION },
+    { { 7, 4 }, { 0, 0 }, "GovernmentBenefitsType", sch_governmentbenefitstype, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "GovernmentBuilding", sch_governmentbuilding },
     { { 2, 0 }, { 0, 0 }, "GovernmentOffice", sch_governmentoffice },
     { { 2, 0 }, { 0, 0 }, "GovernmentOrganization", sch_governmentorganisation },
@@ -496,9 +494,11 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "HalalDiet", sch_halaldiet },
     { { 3, 5 }, { 0, 0 }, "Hardcover", sch_hardcover },
     { { 2, 0 }, { 0, 0 }, "HardwareStore", sch_hardwarestore },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcard", mf_vcard, mdr_microformats },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "hcard", mf_vcard, mdr_microformats },
     { { 3, 6 }, { 6, 0 }, "Head", sch_head },
     { { 2, 0 }, { 0, 0 }, "HealthAndBeautyBusiness", sch_healthandbeautybusiness },
-    { { 5, 0 }, { 0, 0 }, "HealthAspectEnumeration", sch_healthaspectenumeration, ns_default, SF_ENUMERATION },
+    { { 5, 0 }, { 0, 0 }, "HealthAspectEnumeration", sch_healthaspectenumeration, mdr_schema, SF_ENUMERATION },
     { { 7, 4 }, { 0, 0 }, "HealthCare", sch_healthcare },
     { { 2, 0 }, { 0, 0 }, "HealthClub", sch_healthclub },
     { { 3, 5 }, { 0, 0 }, "HealthInsurancePlan", sch_dystopianhealthinsuranceplan },
@@ -541,7 +541,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "ImagingTest", sch_imagingtest },
     { { 2, 0 }, { 0, 0 }, "IndividualProduct", sch_individualproduct },
     { { 3, 6 }, { 6, 0 }, "Infectious", sch_infectious },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "InfectiousAgentClass", sch_infectiousagentclass, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "InfectiousAgentClass", sch_infectiousagentclass, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "InfectiousDisease", sch_infectiousdisease },
     { { 3, 5 }, { 0, 0 }, "InForce", sch_inforce },
     { { 2, 0 }, { 0, 0 }, "InformAction", sch_informaction },
@@ -553,7 +553,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "InStoreOnly", sch_instoreonly },
     { { 2, 0 }, { 0, 0 }, "InsuranceAgency", sch_insuranceagency },
     { { 2, 0 }, { 0, 0 }, "Intangible", sch_intangible },
-    { { 2, 0 }, { 0, 0 }, "Integer", sch_integer, ns_default, MAKE_SIMPLE_TYPE (t_integer) },
+    { { 2, 0 }, { 0, 0 }, "Integer", sch_integer, mdr_schema, MAKE_SIMPLE_TYPE (t_integer) },
     { { 2, 0 }, { 0, 0 }, "InteractAction", sch_interactaction },
     { { 2, 1 }, { 0, 0 }, "InteractionCounter", sch_interactioncounter },
     { { 3, 5 }, { 0, 0 }, "InternationalTrial", sch_internationaltrial },
@@ -563,11 +563,11 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "InviteAction", sch_inviteaction },
     { { 2, 0 }, { 0, 0 }, "Invoice", sch_invoice },
     { { 11, 0 }, { 0, 0 }, "InvoicePrice", sch_invoiceprice },
-    { { 2, 0 }, { 0, 0 }, "ItemAvailability", sch_itemavailability, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "ItemAvailability", sch_itemavailability, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "ItemList", sch_itemlist },
     { { 3, 5 }, { 0, 0 }, "ItemListOrderAscending", sch_itemlistorderascending },
     { { 3, 5 }, { 0, 0 }, "ItemListOrderDescending", sch_itemlistorderdescending },
-    { { 2, 0 }, { 0, 0 }, "ItemListOrderType", sch_itemlistordertype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "ItemListOrderType", sch_itemlistordertype, mdr_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "ItemListUnordered", sch_itemlistunordered },
     { { 2, 0 }, { 0, 0 }, "ItemPage", sch_itempage },
     { { 2, 0 }, { 0, 0 }, "JewelryStore", sch_jewelrystore },
@@ -584,9 +584,9 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 9, 0 }, { 0, 0 }, "LearningResource", sch_learningresource },
     { { 2, 0 }, { 0, 0 }, "LeaveAction", sch_leaveaction },
     { { 3, 6 }, { 6, 0 }, "LeftHandDriving", sch_lefthanddriving },
-    { { 3, 5 }, { 0, 0 }, "LegalForceStatus", sch_legalforcestatus, ns_default, SF_ENUMERATION },
+    { { 3, 5 }, { 0, 0 }, "LegalForceStatus", sch_legalforcestatus, mdr_schema, SF_ENUMERATION },
     { { 2, 2 }, { 0, 0 }, "LegalService", sch_legalservice },
-    { { 3, 5 }, { 0, 0 }, "LegalValueLevel", sch_legalvaluelevel, ns_default, SF_ENUMERATION },
+    { { 3, 5 }, { 0, 0 }, "LegalValueLevel", sch_legalvaluelevel, mdr_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Legislation", sch_legislation },
     { { 3, 5 }, { 0, 0 }, "LegislationObject", sch_legislationobject },
     { { 2, 0 }, { 0, 0 }, "LegislativeBuilding", sch_legislativebuilding },
@@ -626,20 +626,20 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Male", sch_male },
     { { 3, 5 }, { 0, 0 }, "Manuscript", sch_manuscript },
     { { 2, 0 }, { 0, 0 }, "Map", sch_map },
-    { { 2, 0 }, { 0, 0 }, "MapCategoryType", sch_mapcategorytype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "MapCategoryType", sch_mapcategorytype, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "MarryAction", sch_marryaction },
     { { 2, 0 }, { 0, 0 }, "Mass", sch_mass },
     { { 11, 0 }, { 0, 0 }, "MathSolver", sch_mathsolver },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MaximumDoseSchedule", sch_maximumdoseschedule },
     { { 5, 0 }, { 0, 0 }, "MayTreatHealthAspect", sch_maytreathealthaspect },
-    { { 12, 0 }, { 0, 0 }, "MeasurementTypeEnumeration", sch_measurementtypeenumeration, ns_default, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "MeasurementTypeEnumeration", sch_measurementtypeenumeration, mdr_schema, SF_ENUMERATION },
     { { 6, 0 }, { 0, 0 }, "MediaGallery", sch_mediagallery },
-    { { 7, 0 }, { 0, 0 }, "MediaManipulationRatingEnumeration", sch_mediamanipulationratingenumeration, ns_default, SF_ENUMERATION },
+    { { 7, 0 }, { 0, 0 }, "MediaManipulationRatingEnumeration", sch_mediamanipulationratingenumeration, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "MediaObject", sch_mediaobject },
     { { 7, 0 }, { 0, 0 }, "MediaReview", sch_mediareview },
     { { 3, 5 }, { 0, 0 }, "MediaSubscription", sch_mediasubscription },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalAudience", sch_medicalaudience },
-    { { 9, 0 }, { 0, 0 }, "MedicalAudienceType", sch_medicalaudiencetype, ns_default, SF_ENUMERATION },
+    { { 9, 0 }, { 0, 0 }, "MedicalAudienceType", sch_medicalaudiencetype, mdr_schema, SF_ENUMERATION },
     { { 3, 0, SV_NOT_3134 }, { 0, 0 }, "MedicalBusiness", sch_medicalbusiness },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalCause", sch_medicalcause },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalClinic", sch_medicalclinic },
@@ -648,21 +648,21 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalConditionStage", sch_medicalconditionstage },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalContraindication", sch_medicalcontraindication },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalDevice", sch_medicaldevice },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalDevicePurpose", sch_medicaldevicepurpose, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalDevicePurpose", sch_medicaldevicepurpose, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalEntity", sch_medicalentity },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalEnumeration", sch_medicalenumeration },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalEvidenceLevel", sch_medicalevidencelevel, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalEvidenceLevel", sch_medicalevidencelevel, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalGuideline", sch_medicalguideline },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalGuidelineContraindication", sch_medicalguidelinecontraindication },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalGuidelineRecommendation", sch_medicalguidelinerecommendation },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalImagingTechnique", sch_medicalimagingtechnique, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalImagingTechnique", sch_medicalimagingtechnique, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalIndication", sch_medicalindication },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalIntangible", sch_medicalintangible },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalObservationalStudy", sch_medicalobservationalstudy },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalObservationalStudyDesign", sch_medicalobservationalstudydesign, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalObservationalStudyDesign", sch_medicalobservationalstudydesign, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalOrganization", sch_medicalorganisation },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalProcedure", sch_medicalprocedure },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalProcedureType", sch_medicalproceduretype, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalProcedureType", sch_medicalproceduretype, mdr_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "MedicalResearcher", sch_medicalresearcher },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalRiskCalculator", sch_medicalriskcalculator },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalRiskEstimator", sch_medicalriskestimator },
@@ -671,23 +671,23 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalScholarlyArticle", sch_medicalscholarlyarticle },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSign", sch_medicalsign },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSignOrSymptom", sch_medicalsignorsymptom },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSpecialty", sch_medicalspeciality, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSpecialty", sch_medicalspeciality, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalStudy", sch_medicalstudy },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalStudyStatus", sch_medicalstudystatus, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalStudyStatus", sch_medicalstudystatus, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSymptom", sch_medicalsymptom },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTest", sch_medicaltest },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTestPanel", sch_medicaltestpanel },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTherapy", sch_medicaltherapy },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTrial", sch_medicaltrial },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTrialDesign", sch_medicaltrialdesign, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTrialDesign", sch_medicaltrialdesign, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalWebPage", sch_medicalwebpage },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicineSystem", sch_medicinesystem, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicineSystem", sch_medicinesystem, mdr_schema, SF_ENUMERATION },
     { { 3, 1 }, { 0, 0 }, "MeetingRoom", sch_meetingroom },
     { { 2, 0 }, { 0, 0 }, "MensClothingStore", sch_mensclothingstore },
     { { 3, 2 }, { 0, 0 }, "Menu", sch_menu },
     { { 3, 2 }, { 0, 0 }, "MenuItem", sch_menuitem },
     { { 3, 2 }, { 0, 0 }, "MenuSection", sch_menusection },
-    { { 6, 0 }, { 0, 0 }, "MerchantReturnEnumeration", sch_merchantreturnenumeration, ns_default, SF_ENUMERATION },
+    { { 6, 0 }, { 0, 0 }, "MerchantReturnEnumeration", sch_merchantreturnenumeration, mdr_schema, SF_ENUMERATION },
     { { 6, 0 }, { 0, 0 }, "MerchantReturnFiniteReturnWindow", sch_merchantreturnfinitereturnwindow },
     { { 6, 0 }, { 0, 0 }, "MerchantReturnNotPermitted", sch_merchantreturnnotpermitted },
     { { 6, 0 }, { 0, 0 }, "MerchantReturnPolicy", sch_merchantreturnpolicy },
@@ -733,15 +733,15 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 6 }, { 6, 0 }, "MusculoskeletalExam", sch_musculoskeletalexam },
     { { 2, 0 }, { 0, 0 }, "Museum", sch_museum },
     { { 2, 0 }, { 0, 0 }, "MusicAlbum", sch_musicalbum },
-    { { 2, 0 }, { 0, 0 }, "MusicAlbumProductionType", sch_musicalbumproductiontype, ns_default, SF_ENUMERATION },
-    { { 2, 0 }, { 0, 0 }, "MusicAlbumReleaseType", sch_musicalbumreleasetype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "MusicAlbumProductionType", sch_musicalbumproductiontype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "MusicAlbumReleaseType", sch_musicalbumreleasetype, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "MusicComposition", sch_musiccomposition },
     { { 2, 0 }, { 0, 0 }, "MusicEvent", sch_musicevent },
     { { 2, 0 }, { 0, 0 }, "MusicGroup", sch_musicgroup },
     { { 2, 0 }, { 0, 0 }, "MusicPlaylist", sch_musicplaylist },
     { { 2, 0 }, { 0, 0 }, "MusicRecording", sch_musicrecording },
     { { 2, 0 }, { 0, 0 }, "MusicRelease", sch_musicrelease },
-    { { 2, 0 }, { 0, 0 }, "MusicReleaseFormatType", sch_musicreleaseformattype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "MusicReleaseFormatType", sch_musicreleaseformattype, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "MusicStore", sch_musicstore },
     { { 2, 0 }, { 0, 0 }, "MusicVenue", sch_musicvenue },
     { { 2, 0 }, { 0, 0 }, "MusicVideoObject", sch_musicvideoobject },
@@ -756,7 +756,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Newspaper", sch_newspaper },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Ngo", sch_ngo },
     { { 2, 0 }, { 0, 0 }, "Nightclub", sch_nightclub },
-    { { 8, 0 }, { 0, 0 }, "NlNonprofitType", sch_nlnonprofittype, ns_default, SF_ENUMERATION },
+    { { 8, 0 }, { 0, 0 }, "NlNonprofitType", sch_nlnonprofittype, mdr_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "NoninvasiveProcedure", sch_noninvasiveprocedure },
     { { 9, 0 }, { 0, 0 }, "Nonprofit501a", sch_nonprofit501a },
     { { 9, 0 }, { 0, 0 }, "Nonprofit501c1", sch_nonprofit501c1 },
@@ -802,7 +802,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 0 }, { 0, 0 }, "NoteDigitalDocument", sch_notedigitaldocument },
     { { 3, 5 }, { 0, 0 }, "NotInForce", sch_notinforce },
     { { 3, 6 }, { 6, 0 }, "NotYetRecruiting", sch_notyetrecruiting },
-    { { 2, 0 }, { 0, 0 }, "Number", sch_number, ns_default, MAKE_SIMPLE_TYPE (t_fixedpoint) },
+    { { 2, 0 }, { 0, 0 }, "Number", sch_number, mdr_schema, MAKE_SIMPLE_TYPE (t_fixedpoint) },
     { { 3, 5 }, { 0, 0 }, "Nursing", sch_nursing },
     { { 2, 0 }, { 0, 0 }, "NutritionInformation", sch_nutritioninformation },
     { { 3, 9 }, { 0, 0 }, "Observation", sch_observation },
@@ -817,7 +817,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 2 }, { 0, 0 }, "OfferCatalog", sch_offercatalogue },
     { { 4, 0 }, { 0, 0 }, "OfferForLease", sch_offerforlease },
     { { 4, 0 }, { 0, 0 }, "OfferForPurchase", sch_offerforpurchase },
-    { { 2, 0 }, { 0, 0 }, "OfferItemCondition", sch_offeritemcondition, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "OfferItemCondition", sch_offeritemcondition, mdr_schema, SF_ENUMERATION },
     { { 7, 2 }, { 0, 0 }, "OfferShippingDetails", sch_offershippingdetails },
     { { 2, 0 }, { 0, 0 }, "OfficeEquipmentStore", sch_officeequipmentstore },
     { { 3, 5 }, { 0, 0 }, "OfficiallegalValue", sch_officiallegalvalue },
@@ -848,7 +848,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "OrderProblem", sch_orderproblem },
     { { 3, 5 }, { 0, 0 }, "OrderProcessing", sch_orderprocessing },
     { { 3, 5 }, { 0, 0 }, "OrderReturned", sch_orderreturned },
-    { { 2, 0 }, { 0, 0 }, "OrderStatus", sch_orderstatus, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "OrderStatus", sch_orderstatus, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "Organization", sch_organisation },
     { { 2, 0 }, { 0, 0 }, "OrganizationRole", sch_organisationrole },
     { { 2, 0 }, { 0, 0 }, "OrganizeAction", sch_organiseaction },
@@ -886,10 +886,10 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Paymentcomplete", sch_paymentcomplete },
     { { 3, 5 }, { 0, 0 }, "Paymentdeclined", sch_paymentdeclined },
     { { 3, 5 }, { 0, 0 }, "Paymentdue", sch_paymentdue },
-    { { 2, 0 }, { 0, 0 }, "Paymentmethod", sch_paymentmethod, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "Paymentmethod", sch_paymentmethod, mdr_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Paymentpastdue", sch_paymentpastdue },
     { { 3, 1 }, { 0, 0 }, "Paymentservice", sch_paymentservice },
-    { { 2, 1 }, { 0, 0 }, "Paymentstatustype", sch_paymentstatustype, ns_default, SF_ENUMERATION },
+    { { 2, 1 }, { 0, 0 }, "Paymentstatustype", sch_paymentstatustype, mdr_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Pediatric", sch_paediatric },
     { { 2, 0 }, { 0, 0 }, "Peopleaudience", sch_peopleaudience },
     { { 3, 6 }, { 6, 0 }, "Percutaneousprocedure", sch_percutaneousprocedure },
@@ -907,8 +907,8 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "Photograph", sch_photograph },
     { { 2, 0 }, { 0, 0 }, "PhotographAction", sch_photographaction },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalActivity", sch_physicalactivity },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalActivityCategory", sch_physicalactivitycategory, ns_default, SF_ENUMERATION },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalExam", sch_physicalexam, ns_default, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalActivityCategory", sch_physicalactivitycategory, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalExam", sch_physicalexam, mdr_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalTherapy", sch_physicaltherapy },
     { { 2, 0 }, { 0, 0 }, "Physician", sch_physician },
     { { 3, 5 }, { 0, 0 }, "Physiotherapy", sch_physiotherapy },
@@ -1009,7 +1009,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Recommendeddoseschedule", sch_recommendeddoseschedule },
     { { 3, 6 }, { 6, 0 }, "Recruiting", sch_recruiting },
     { { 2, 0 }, { 0, 0 }, "Recyclingcenter", sch_recyclingcentre },
-    { { 3, 8 }, { 0, 0 }, "Refundtypeenumeration", sch_refundtypeenumeration, ns_default, SF_ENUMERATION },
+    { { 3, 8 }, { 0, 0 }, "Refundtypeenumeration", sch_refundtypeenumeration, mdr_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Refurbishedcondition", sch_refurbishedcondition },
     { { 2, 0 }, { 0, 0 }, "Registeraction", sch_registeraction },
     { { 3, 6 }, { 6, 0 }, "Registry", sch_registry },
@@ -1034,7 +1034,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Reservationhold", sch_reservationhold },
     { { 2, 0 }, { 0, 0 }, "Reservationpackage", sch_reservationpackage },
     { { 3, 5 }, { 0, 0 }, "Reservationpending", sch_reservationpending },
-    { { 2, 0 }, { 0, 0 }, "Reservationstatustype", sch_reservationstatustype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "Reservationstatustype", sch_reservationstatustype, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "Reserveaction", sch_reserveaction },
     { { 2, 0 }, { 0, 0 }, "Reservoir", sch_reservoir },
     { { 2, 0 }, { 0, 0 }, "Residence", sch_residence },
@@ -1042,13 +1042,13 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Respiratorytherapy", sch_respiratorytherapy },
     { { 2, 0 }, { 0, 0 }, "Restaurant", sch_restaurant },
     { { 3, 8 }, { 0, 0 }, "Restockingfees", sch_restockingfees },
-    { { 3, 0 }, { 0, 0 }, "RestrictedDiet", sch_restricteddiet, ns_default, SF_ENUMERATION },
+    { { 3, 0 }, { 0, 0 }, "RestrictedDiet", sch_restricteddiet, mdr_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "Resultsavailable", sch_resultsavailable },
     { { 3, 6 }, { 6, 0 }, "Resultsnotavailable", sch_resultsnotavailable },
     { { 2, 0 }, { 0, 0 }, "Resumeaction", sch_resumeaction },
     { { 3, 6 }, { 6, 0 }, "Retail", sch_retail },
     { { 2, 0 }, { 0, 0 }, "ReturnAction", sch_returnaction },
-    { { 3, 8 }, { 0, 0 }, "ReturnFeesEnumeration", sch_returnfeesenumeration, ns_default, SF_ENUMERATION },
+    { { 3, 8 }, { 0, 0 }, "ReturnFeesEnumeration", sch_returnfeesenumeration, mdr_schema, SF_ENUMERATION },
     { { 3, 8 }, { 0, 0 }, "ReturnShippingFees", sch_returnshippingfees },
     { { 2, 0 }, { 0, 0 }, "Review", sch_review },
     { { 2, 0 }, { 0, 0 }, "Reviewaction", sch_reviewaction },
@@ -1063,7 +1063,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "Rsvpaction", sch_rsvpaction },
     { { 3, 5 }, { 0, 0 }, "Rsvpresponsemaybe", sch_rsvpresponsemaybe },
     { { 3, 5 }, { 0, 0 }, "Rsvpresponseno", sch_rsvpresponseno },
-    { { 2, 0 }, { 0, 0 }, "Rsvpresponsetype", sch_rsvpresponsetype, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "Rsvpresponsetype", sch_rsvpresponsetype, mdr_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Rsvpresponseyes", sch_rsvpresponseyes },
     { { 2, 0 }, { 0, 0 }, "Rvpark", sch_rvpark },
     { { 12, 0 }, { 0, 0 }, "SafetyHealthAspect", sch_safetyhealthaspect },
@@ -1109,9 +1109,9 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Singleplayer", sch_singleplayer },
     { { 3, 5 }, { 0, 0 }, "Singlerelease", sch_singlerelease },
     { { 2, 0 }, { 0, 0 }, "Sitenavigationelement", sch_sitenavigationelement },
-    { { 12, 0 }, { 0, 0 }, "SizeGroupEnumeration", sch_sizegroupenumeration, ns_default, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "SizeGroupEnumeration", sch_sizegroupenumeration, mdr_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "SizeSpecification", sch_sizespecification },
-    { { 12, 0 }, { 0, 0 }, "SizeSystemEnumeration", sch_sizesystemenumeration, ns_default, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "SizeSystemEnumeration", sch_sizesystemenumeration, mdr_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "SizeSystemImperial", sch_sizesystemimperial },
     { { 12, 0 }, { 0, 0 }, "SizeSystemMetric", sch_sizesystemmetric },
     { { 3, 6 }, { 6, 0 }, "Skin", sch_skin },
@@ -1126,7 +1126,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Soundtrackalbum", sch_soundtrackalbum },
     { { 3, 5 }, { 0, 0 }, "Speakablespecification", sch_speakablespecification },
     { { 7, 0 }, { 0, 0 }, "Specialannouncement", sch_specialannouncement },
-    { { 2, 0 }, { 0, 0 }, "Specialty", sch_speciality, ns_default, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "Specialty", sch_speciality, mdr_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "Speechpathology", sch_speechpathology },
     { { 3, 5 }, { 0, 0 }, "Spokenwordalbum", sch_spokenwordalbum },
     { { 2, 0 }, { 0, 0 }, "Sportinggoodsstore", sch_sportinggoodsstore },
@@ -1143,7 +1143,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "State", sch_state },
     { { 3, 9 }, { 0, 0 }, "StatisticalPopulation", sch_statisticalpopulation },
     { { 9, 0 }, { 0, 0 }, "StatusEnumeration", sch_statusenumeration },
-    { { 2, 1 }, { 0, 0 }, "SteeringPositionValue", sch_steeringpositionvalue, ns_default, SF_ENUMERATION },
+    { { 2, 1 }, { 0, 0 }, "SteeringPositionValue", sch_steeringpositionvalue, mdr_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "Store", sch_store },
     { { 3, 8 }, { 0, 0 }, "Storecreditrefund", sch_storecreditrefund },
     { { 3, 5 }, { 0, 0 }, "Strengthtraining", sch_strengthtraining },
@@ -1176,7 +1176,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "Televisionstation", sch_televisionstation },
     { { 2, 0 }, { 0, 0 }, "Tenniscomplex", sch_tenniscomplex },
     { { 3, 6 }, { 6, 0 }, "Terminated", sch_terminated },
-    { { 2, 0 }, { 0, 0 }, "Text", sch_text, ns_default, MAKE_SIMPLE_TYPE (t_text) },
+    { { 2, 0 }, { 0, 0 }, "Text", sch_text, mdr_schema, MAKE_SIMPLE_TYPE (t_text) },
     { { 3, 0 }, { 0, 0 }, "Textdigitaldocument", sch_textdigitaldocument },
     { { 2, 0 }, { 0, 0 }, "Theaterevent", sch_theatreevent },
     { { 2, 0 }, { 0, 0 }, "Theatergroup", sch_theatregroup },
@@ -1188,7 +1188,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Thursday", sch_thursday },
     { { 2, 0 }, { 0, 0 }, "Ticket", sch_ticket },
     { { 2, 0 }, { 0, 0 }, "Tieaction", sch_tieaction },
-    { { 2, 0 }, { 0, 0 }, "Time", sch_time, ns_default, MAKE_SIMPLE_TYPE (t_just_time) },
+    { { 2, 0 }, { 0, 0 }, "Time", sch_time, mdr_schema, MAKE_SIMPLE_TYPE (t_just_time) },
     { { 2, 0 }, { 0, 0 }, "Tipaction", sch_tipaction },
     { { 2, 0 }, { 0, 0 }, "Tireshop", sch_tyreshop },
     { { 3, 5 }, { 0, 0 }, "Tollfree", sch_tollfree },
@@ -1221,7 +1221,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "TvSeries", sch_tvseries },
     { { 2, 0 }, { 0, 0 }, "TypeAndQuantityNode", sch_typeandquantitynode },
     { { 5, 0 }, { 0, 0 }, "TypesHealthAspect", sch_typeshealthaspect },
-    { { 8, 0 }, { 0, 0 }, "UkNonProfitType", sch_uknonprofittype, ns_default, SF_ENUMERATION },
+    { { 8, 0 }, { 0, 0 }, "UkNonProfitType", sch_uknonprofittype, mdr_schema, SF_ENUMERATION },
     { { 9, 0 }, { 0, 0 }, "UkTrust", sch_uktrust },
     { { 3, 6 }, { 6, 0 }, "Ultrasound", sch_ultrasound },
     { { 7, 4 }, { 0, 0 }, "UnemploymentSupport", sch_unemploymentsupport },
@@ -1230,7 +1230,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "UnofficialLegalValue", sch_unofficiallegalvalue },
     { { 2, 0 }, { 0, 0 }, "UnregisterAction", sch_unregisteraction },
     { { 2, 0 }, { 0, 0 }, "UpdateAction", sch_updateaction },
-    { { 2, 0 }, { 0, 0 }, "Url", sch_url, ns_default, MAKE_SIMPLE_TYPE (t_url) },
+    { { 2, 0 }, { 0, 0 }, "Url", sch_url, mdr_schema, MAKE_SIMPLE_TYPE (t_url) },
     { { 3, 6 }, { 6, 0 }, "Urologic", sch_urologic },
     { { 5, 0 }, { 0, 0 }, "UsageOrScheduleHealthAspect", sch_usageorschedulehealthaspect },
     { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UseAction", sch_useaction },
@@ -1239,41 +1239,45 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "Usercheckins", sch_usercheckins },
     { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "Usercomments", sch_usercomments },
     { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "Userdownloads", sch_userdownloads },
-    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "Userinteraction", sch_userinteraction },
-    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "Userlikes", sch_userlikes },
-    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "Userpagevisits", sch_userpagevisits },
-    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "Userplays", sch_userplays },
-    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "Userplusones", sch_userplusones },
-    { { 3, 5 }, { 0, 0 }, "Userreview", sch_userreview },
-    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "Usertweets", sch_usertweets },
-    { { 8, 0 }, { 0, 0 }, "Usnonprofittype", sch_usnonprofittype, ns_default, SF_ENUMERATION },
-    { { 3, 5 }, { 0, 0 }, "Vegandiet", sch_vegandiet },
-    { { 3, 5 }, { 0, 0 }, "Vegetariandiet", sch_vegetariandiet },
+    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UserInteraction", sch_userinteraction },
+    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UserLikes", sch_userlikes },
+    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UserPageVisits", sch_userpagevisits },
+    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UserPlays", sch_userplays },
+    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UserPlusOnes", sch_userplusones },
+    { { 3, 5 }, { 0, 0 }, "UserReview", sch_userreview },
+    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UserTweets", sch_usertweets },
+    { { 8, 0 }, { 0, 0 }, "USNonprofitType", sch_usnonprofittype, mdr_schema, SF_ENUMERATION },
+    { { 3, 5 }, { 0, 0 }, "VeganDiet", sch_vegandiet },
+    { { 3, 5 }, { 0, 0 }, "VegetarianDiet", sch_vegetariandiet },
     { { 2, 0 }, { 0, 0 }, "Vehicle", sch_vehicle },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Vein", sch_vein },
-    { { 3, 5 }, { 0, 0 }, "Venuemap", sch_venuemap },
+    { { 3, 5 }, { 0, 0 }, "VenueMap", sch_venuemap },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Vessel", sch_vessel },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Veterinarycare", sch_veterinarycare },
-    { { 2, 0 }, { 0, 0 }, "Videogallery", sch_videogallery },
-    { { 2, 0 }, { 0, 0 }, "Videogame", sch_videogame },
-    { { 2, 0 }, { 0, 0 }, "Videogameclip", sch_videogameclip },
-    { { 2, 0 }, { 0, 0 }, "Videogameseries", sch_videogameseries },
-    { { 2, 0 }, { 0, 0 }, "Videoobject", sch_videoobject },
-    { { 2, 0 }, { 0, 0 }, "Viewaction", sch_viewaction },
-    { { 3, 5 }, { 0, 0 }, "Vinylformat", sch_vinylformat },
-    { { 7, 0 }, { 0, 0 }, "Virtuallocation", sch_virtuallocation },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "VeterinaryCare", sch_veterinarycare },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar#vevent", mf_vevent, mdr_microformats },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar", mf_vevent, mdr_microformats },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "hcalendar#vevent", mf_vevent, mdr_microformats },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "hcalendar", mf_vevent, mdr_microformats },
+    { { 2, 0 }, { 0, 0 }, "VideoGallery", sch_videogallery },
+    { { 2, 0 }, { 0, 0 }, "VideoGame", sch_videogame },
+    { { 2, 0 }, { 0, 0 }, "VideoGameClip", sch_videogameclip },
+    { { 2, 0 }, { 0, 0 }, "VideoGameSeries", sch_videogameseries },
+    { { 2, 0 }, { 0, 0 }, "VideoObject", sch_videoobject },
+    { { 2, 0 }, { 0, 0 }, "ViewAction", sch_viewaction },
+    { { 3, 5 }, { 0, 0 }, "VinylFormat", sch_vinylformat },
+    { { 7, 0 }, { 0, 0 }, "VirtualLocation", sch_virtuallocation },
     { { 3, 6 }, { 6, 0 }, "Virus", sch_virus },
-    { { 2, 0 }, { 0, 0 }, "Visualartsevent", sch_visualartsevent },
-    { { 2, 0 }, { 0, 0 }, "Visualartwork", sch_visualartwork },
-    { { 3, 5 }, { 0, 0 }, "Vitalsign", sch_vitalsign },
+    { { 2, 0 }, { 0, 0 }, "VisualArtsEvent", sch_visualartsevent },
+    { { 2, 0 }, { 0, 0 }, "VisualArtwork", sch_visualartwork },
+    { { 3, 5 }, { 0, 0 }, "VitalSign", sch_vitalsign },
     { { 2, 0 }, { 0, 0 }, "Volcano", sch_volcano },
-    { { 2, 0 }, { 0, 0 }, "Voteaction", sch_voteaction },
-    { { 2, 0 }, { 0, 0 }, "Wantaction", sch_wantaction },
-    { { 2, 0 }, { 0, 0 }, "Warrantypromise", sch_warrantypromise },
-    { { 2, 0 }, { 0, 0 }, "Warrantyscope", sch_warrantyscope, ns_default, SF_EXTERNAL_ENUMERATION },
-    { { 2, 0 }, { 0, 0 }, "Watchaction", sch_watchaction },
+    { { 2, 0 }, { 0, 0 }, "VoteAction", sch_voteaction },
+    { { 2, 0 }, { 0, 0 }, "WantAction", sch_wantaction },
+    { { 2, 0 }, { 0, 0 }, "WarrantyPromise", sch_warrantypromise },
+    { { 2, 0 }, { 0, 0 }, "WarrantyScope", sch_warrantyscope, mdr_schema, SF_EXTERNAL_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "WatchAction", sch_watchaction },
     { { 2, 0 }, { 0, 0 }, "Waterfall", sch_waterfall },
-    { { 12, 0 }, { 0, 0 }, "WearableMeasurementTypeEnumeration", sch_wearablemeasurementtypeenumeration, ns_default, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "WearableMeasurementTypeEnumeration", sch_wearablemeasurementtypeenumeration, mdr_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "WearableMeasurementBack", sch_wearablemeasurementback },
     { { 12, 0 }, { 0, 0 }, "WearableMeasurementChestOrBust", sch_wearablemeasurementchestorbust },
     { { 12, 0 }, { 0, 0 }, "WearableMeasurementCollar", sch_wearablemeasurementcollar },
@@ -1288,7 +1292,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 12, 0 }, { 0, 0 }, "WearableMeasurementWidth", sch_wearablemeasurementwidth },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupBig", sch_wearablesizegroupbig },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupBoys", sch_wearablesizegroupboys },
-    { { 12, 0 }, { 0, 0 }, "WearableSizeGroupEnumeration", sch_wearablesizegroupenumeration, ns_default, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "WearableSizeGroupEnumeration", sch_wearablesizegroupenumeration, mdr_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupExtraShort", sch_wearablesizegroupextrashort },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupExtraTall", sch_wearablesizegroupextratall },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupGirls", sch_wearablesizegroupgirls },
@@ -1310,7 +1314,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemContinental", sch_wearablesizesystemcontinental },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemDE", sch_wearablesizesystemde },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemEN13402", sch_wearablesizesystemen13402 },
-    { { 12, 0 }, { 0, 0 }, "WearableSizeSystemEnumeration", sch_wearablesizesystemenumeration, ns_default, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "WearableSizeSystemEnumeration", sch_wearablesizesystemenumeration, mdr_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemEurope", sch_wearablesizesystemeurope },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemFR", sch_wearablesizesystemfr },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemGS1", sch_wearablesizesystemgs1 },
@@ -1333,6 +1337,7 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 2, 0 }, { 0, 0 }, "Winaction", sch_winaction },
     { { 2, 0 }, { 0, 0 }, "Winery", sch_winery },
     { { 3, 6 }, { 6, 0 }, "Withdrawn", sch_withdrawn },
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, "work", wwg_work, mdr_whatwg },
     { { 3, 9 }, { 0, 0 }, "Workbasedprogram", sch_workbasedprogramme },
     { { 3, 5 }, { 0, 0 }, "WorkersUnion", sch_workersunion },
     { { 2, 0 }, { 0, 0 }, "Wpadblock", sch_wpadblock },
@@ -1344,32 +1349,59 @@ struct symbol_entry < e_schema > schema_symbol_table [] =
     { { 3, 5 }, { 0, 0 }, "Xpathtype", sch_xpathtype },
     { { 3, 6 }, { 6, 0 }, "Xray", sch_xray },
     { { 3, 5 }, { 0, 0 }, "Zoneboardingpolicy", sch_zoneboardingpolicy },
-    { { 0, 0 }, { 0, 0 }, "", sch_illegal } };
+    { { 0, 0 }, { 0, 0 }, "", sty_illegal } };
 
-sch::sch (nitpick& nits, const html_version& v, const ::std::string& x)
-{   e_schema es = parse (nits, v, x);
-    if (es != sch_illegal) set (v, es); }
+sch::sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_microdata_root root)
+{   e_schema_type es = parse (nits, v, x, root);
+    if (es != sty_illegal) set (v, es); }
 
 void sch::init (nitpick& nits)
-{   symbol::init (nits, schema_symbol_table, sizeof (schema_symbol_table) / sizeof (symbol_entry < e_schema >), true); }
+{   symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema > ::
+        init (nits, schema_type_symbol_table, sizeof (schema_type_symbol_table) / sizeof (symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schema >), true); }
 
-e_schema sch::parse (nitpick& nits, const html_version& v, const ::std::string& x)
+e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_microdata_root root)
 {   ::std::string lc (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)));
     if (lc.empty ())
-    {   nits.pick (nit_unrecognised_schema, es_error, ec_microdata, "A schema cannot have an empty name");
-        return sch_illegal; }
+    {   nits.pick (nit_unrecognised_schema, ed_jul20, "5.2.2 Items", es_error, ec_microdata, "An ITEMTYPE cannot be empty");
+        return sty_illegal; }
     if (lc.at (0) == '/') lc = lc.substr (1);
-    symbol < e_schema > s (html_0, lc);
-    if (s.unknown ())
+    symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema > s (default_schema, lc, root);
+    for (int i = mdr_none; (s.unknown () || (s.get () == sty_context)) && (i < mdr_illegal); ++i)
+        if (i != root)
+            s.reset (symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema > (default_schema, lc, static_cast < e_microdata_root > (i)));
+    if (s.unknown () || (s.get () == sty_context))
     {   if (! check_spelling (nits, v, lc))
-            nits.pick (nit_unrecognised_schema, es_error, ec_microdata, "Unknown schema ITEMTYPE ", quote (x)); }
+            nits.pick (nit_unrecognised_schema, es_error, ec_microdata, "Unrecognised ITEMTYPE ", quote (x)); }
     else
-    {   schema_version sv (context.schema_ver ());
-        if (! sv.unknown ())
-        {   if (may_apply (sv, s.first (), s.last ()))
+    {   schema_version sv;
+        switch (s.ns ())
+        {   case mdr_schema :
+                sv = context.schema_ver ();
+                if (may_apply (sv, s.first (), s.last ())) return s.get ();
+                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid in ", sv.report ());
+                break;
+            case mdr_microformats :
+                if (context.mf_version1 ()) sv = mf_1; else sv = mf_2;
+                if (may_apply (sv, s.first (), s.last ())) return s.get ();
+                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid in ", sv.report ());
+                break;
+            case mdr_whatwg :
+                if (v >= html_jul09) return s.get ();
+                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid in ", v.report ()); // yes, html_version
+                break;
+            case mdr_none :
+            case mdr_purl :
                 return s.get ();
-            nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid in schema ", sv.report ()); } }
-    return sch_illegal; }
+            default :
+                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " requires a microdata schema");
+                break; } }
+    return sty_illegal; }
+
+e_microdata_root sch::root () const
+{ return first ().root (); }
+
+e_microdata_root sch::root (const e_schema_type st)
+{ return first_version (st).root (); }
 
 bool sch::enumerated () const
 { return enumerated_schema_type (flags ()); }
@@ -1390,7 +1422,10 @@ bool has_simple_schema_type (const uint64_t flags)
 { return (flags & SF_SIMPLE_MASK) != 0; }
 
 bool external_enumerated_schema_type (const uint64_t flags)
-{ return ( flags & SF_EXTERNAL_ENUMERATION) == SF_EXTERNAL_ENUMERATION; }
+{ return (flags & SF_EXTERNAL_ENUMERATION) == SF_EXTERNAL_ENUMERATION; }
 
 e_type get_simple_schema_type (const uint64_t flags)
-{ return static_cast < e_type> (flags & SF_SIMPLE_MASK); }
+{ return static_cast < e_type > (flags & SF_SIMPLE_MASK); }
+
+bool is_itemid_ok (const uint64_t flags)
+{ return (flags & SF_NO_ITEMID) == 0; }

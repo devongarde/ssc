@@ -656,9 +656,6 @@
     <ClInclude Include="..\heater\main\standard.h">
       <Filter>Heater\main</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\main\version.h">
-      <Filter>Heater\main</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\microdata\microdata_export.h">
       <Filter>Heater\microdata</Filter>
     </ClInclude>
@@ -1022,6 +1019,18 @@
     <ClInclude Include="..\heater\parser\pattern.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\main\version.h">
+      <Filter>Heater\main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\symbol\symbol_entry.h">
+      <Filter>Heater\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\symbol\symbol_key.h">
+      <Filter>Heater\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\symbol\symbol_store.h">
+      <Filter>Heater\symbol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1204,9 +1213,6 @@
     <ClCompile Include="..\sauce\symbol\symbol.cpp">
       <Filter>Sauce\symbol</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\symbol\symbol_table.cpp">
-      <Filter>Sauce\symbol</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\type\type.cpp">
       <Filter>Sauce\type</Filter>
     </ClCompile>
@@ -1362,6 +1368,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\type\type_varied.cpp">
       <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\main\version.cpp">
+      <Filter>Sauce\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -763,7 +763,10 @@ const e_metaname metaname_first_whatwg = mn_aglsterms_accessmode;
 const e_metaname metaname_first_dubious = mn_blogcatalog;
 const e_metaname metaname_first_rejected = mn_cache;
 
-typedef enum { mdd_none, mdd_schema, mdd_microformats, mdd_purl, mdd_whatwg } e_microdata_domain;
+typedef enum { mdd_none, mdd_schema, mdd_microformats, mdd_purl, mdd_whatwg, mdd_illegal } e_microdata_domain;
+typedef enum { mdr_none, mdr_schema, mdr_microformats, mdr_purl, mdr_whatwg, mdr_illegal } e_microdata_root;
+inline e_microdata_root domain2root (const e_microdata_domain md) { return static_cast < e_microdata_root> (md); }
+inline e_microdata_domain root2domain (const e_microdata_root md) { return static_cast < e_microdata_domain> (md); }
 typedef enum { mc_application, mc_audio, mc_example, mc_font, mc_image, mc_model, mc_multipart, mc_text, mc_video } e_mime_category;
 
 typedef enum {
@@ -1503,7 +1506,7 @@ typedef enum { rs_yes, rs_no, rs_maybe, rs_interested } e_rsvp;
 typedef enum { s_unknown, s_adwua, s_asabua, s_atnbua, s_ad, s_forms, s_modals, s_orientation, s_pointer, s_popups, s_popupescape, s_presentation, s_origin, s_scripts, s_navigation } e_sandbox;
 
 typedef enum
-{   sch_context,
+{   sty_context,
 
     sch_3dmodel,
 
@@ -1579,36 +1582,39 @@ typedef enum
 
     sch_kosherdiet,
 
-    sch_laboratoryscience, sch_lakebodyofwater, sch_landform, sch_landmarksorhistoricalbuildings, sch_language, sch_laserdiscformat, sch_learningresource, sch_leaveaction, sch_lefthanddriving, sch_legalforcestatus, sch_legalservice,
-    sch_legalvaluelevel, sch_legislation, sch_legislationobject, sch_legislativebuilding, sch_leisuretimeactivity, sch_lendaction, sch_library, sch_librarysystem, sch_lifestylemodification, sch_ligament, sch_likeaction,
-    sch_limitedavailability, sch_limitedbyguaranteecharity, sch_linkrole, sch_liquorstore, sch_listenaction, sch_listitem, sch_listprice, sch_literaryevent, sch_livealbum, sch_liveblogposting, sch_livingwithhealthaspect, sch_loanorcredit,
-    sch_localbusiness, sch_locationfeaturespecification, sch_lockerdelivery, sch_locksmith, sch_lodgingbusiness, sch_lodgingreservation, sch_longitudinal, sch_loseaction, sch_lowcaloriediet, sch_lowfatdiet, sch_lowlactosediet,
-    sch_lowsaltdiet, sch_lung, sch_lymphaticvessel,
+    sch_laboratoryscience, sch_lakebodyofwater, sch_landform, sch_landmarksorhistoricalbuildings, sch_language, sch_laserdiscformat, sch_learningresource, sch_leaveaction, sch_lefthanddriving, sch_legalforcestatus,
+    sch_legalservice, sch_legalvaluelevel, sch_legislation, sch_legislationobject, sch_legislativebuilding, sch_leisuretimeactivity, sch_lendaction, sch_library, sch_librarysystem, sch_lifestylemodification, sch_ligament,
+    sch_likeaction, sch_limitedavailability, sch_limitedbyguaranteecharity, sch_linkrole, sch_liquorstore, sch_listenaction, sch_listitem, sch_listprice, sch_literaryevent, sch_livealbum, sch_liveblogposting,
+    sch_livingwithhealthaspect, sch_loanorcredit, sch_localbusiness, sch_locationfeaturespecification, sch_lockerdelivery, sch_locksmith, sch_lodgingbusiness, sch_lodgingreservation, sch_longitudinal, sch_loseaction,
+    sch_lowcaloriediet, sch_lowfatdiet, sch_lowlactosediet, sch_lowsaltdiet, sch_lung, sch_lymphaticvessel,
 
-    sch_magic, sch_male, sch_manuscript, sch_map, sch_mapcategorytype, sch_marryaction, sch_mass, sch_mathsolver, sch_maximumdoseschedule, sch_maytreathealthaspect, sch_measurementtypeenumeration, sch_mediagallery, sch_mediamanipulationratingenumeration, sch_mediaobject,
-    sch_mediareview, sch_mediasubscription, sch_medicalaudience, sch_medicalaudiencetype, sch_medicalbusiness, sch_medicalcause, sch_medicalclinic, sch_medicalcode, sch_medicalcondition, sch_medicalconditionstage,
-    sch_medicalcontraindication, sch_medicaldevice, sch_medicaldevicepurpose, sch_medicalentity, sch_medicalenumeration, sch_medicalevidencelevel, sch_medicalguideline, sch_medicalguidelinecontraindication,
-    sch_medicalguidelinerecommendation, sch_medicalimagingtechnique, sch_medicalindication, sch_medicalintangible, sch_medicalobservationalstudy, sch_medicalobservationalstudydesign, sch_medicalorganisation, sch_medicalprocedure,
-    sch_medicalproceduretype, sch_medicalresearcher, sch_medicalriskcalculator, sch_medicalriskestimator, sch_medicalriskfactor, sch_medicalriskscore, sch_medicalscholarlyarticle, sch_medicalsign, sch_medicalsignorsymptom,
-    sch_medicalspeciality, sch_medicalstudy, sch_medicalstudystatus, sch_medicalsymptom, sch_medicaltest, sch_medicaltestpanel, sch_medicaltherapy, sch_medicaltrial, sch_medicaltrialdesign, sch_medicalwebpage, sch_medicinesystem,
-    sch_meetingroom, sch_mensclothingstore, sch_menu, sch_menuitem, sch_menusection, sch_merchantreturnenumeration, sch_merchantreturnfinitereturnwindow, sch_merchantreturnnotpermitted, sch_merchantreturnpolicy,
-    sch_merchantreturnunlimitedwindow, sch_merchantreturnunspecified, sch_message, sch_middleschool, sch_midwifery, sch_minimumadvertisedprice, sch_misconceptionshealthaspect, sch_missingcontext, sch_mixedeventattendancemode, sch_mixtapealbum,
-    sch_mobileapplication, sch_mobilephonestore, sch_monday, sch_monetaryamount, sch_monetaryamountdistribution, sch_monetarygrant, sch_moneytransfer, sch_mortgageloan, sch_mosque, sch_motel, sch_motorcycle, sch_motorcycledealer, sch_msrp,
-    sch_motorcyclerepair, sch_motorisedbicycle, sch_mountain, sch_moveaction, sch_movie, sch_movieclip, sch_movierentalstore, sch_movieseries, sch_movietheatre, sch_movingcompany, sch_mri, sch_multicellularparasite, sch_multicentretrial,
-    sch_multiplayer, sch_muscle, sch_musculoskeletal, sch_musculoskeletalexam, sch_museum, sch_musicalbum, sch_musicalbumproductiontype, sch_musicalbumreleasetype, sch_musiccomposition, sch_musicevent, sch_musicgroup, sch_musicplaylist,
-    sch_musicrecording, sch_musicrelease, sch_musicreleaseformattype, sch_musicstore, sch_musicvenue, sch_musicvideoobject,
+    sch_magic, sch_male, sch_manuscript, sch_map, sch_mapcategorytype, sch_marryaction, sch_mass, sch_mathsolver, sch_maximumdoseschedule, sch_maytreathealthaspect, sch_measurementtypeenumeration, sch_mediagallery,
+    sch_mediamanipulationratingenumeration, sch_mediaobject, sch_mediareview, sch_mediasubscription, sch_medicalaudience, sch_medicalaudiencetype, sch_medicalbusiness, sch_medicalcause, sch_medicalclinic, sch_medicalcode,
+    sch_medicalcondition, sch_medicalconditionstage, sch_medicalcontraindication, sch_medicaldevice, sch_medicaldevicepurpose, sch_medicalentity, sch_medicalenumeration, sch_medicalevidencelevel, sch_medicalguideline,
+    sch_medicalguidelinecontraindication, sch_medicalguidelinerecommendation, sch_medicalimagingtechnique, sch_medicalindication, sch_medicalintangible, sch_medicalobservationalstudy, sch_medicalobservationalstudydesign,
+    sch_medicalorganisation, sch_medicalprocedure, sch_medicalproceduretype, sch_medicalresearcher, sch_medicalriskcalculator, sch_medicalriskestimator, sch_medicalriskfactor, sch_medicalriskscore, sch_medicalscholarlyarticle,
+    sch_medicalsign, sch_medicalsignorsymptom, sch_medicalspeciality, sch_medicalstudy, sch_medicalstudystatus, sch_medicalsymptom, sch_medicaltest, sch_medicaltestpanel, sch_medicaltherapy, sch_medicaltrial,
+    sch_medicaltrialdesign, sch_medicalwebpage, sch_medicinesystem, sch_meetingroom, sch_mensclothingstore, sch_menu, sch_menuitem, sch_menusection, sch_merchantreturnenumeration, sch_merchantreturnfinitereturnwindow,
+    sch_merchantreturnnotpermitted, sch_merchantreturnpolicy, sch_merchantreturnunlimitedwindow, sch_merchantreturnunspecified, sch_message, sch_middleschool, sch_midwifery, sch_minimumadvertisedprice,
+    sch_misconceptionshealthaspect, sch_missingcontext, sch_mixedeventattendancemode, sch_mixtapealbum, sch_mobileapplication, sch_mobilephonestore, sch_monday, sch_monetaryamount, sch_monetaryamountdistribution,
+    sch_monetarygrant, sch_moneytransfer, sch_mortgageloan, sch_mosque, sch_motel, sch_motorcycle, sch_motorcycledealer, sch_msrp, sch_motorcyclerepair, sch_motorisedbicycle, sch_mountain, sch_moveaction, sch_movie,
+    sch_movieclip, sch_movierentalstore, sch_movieseries, sch_movietheatre, sch_movingcompany, sch_mri, sch_multicellularparasite, sch_multicentretrial, sch_multiplayer, sch_muscle, sch_musculoskeletal, sch_musculoskeletalexam,
+    sch_museum, sch_musicalbum, sch_musicalbumproductiontype, sch_musicalbumreleasetype, sch_musiccomposition, sch_musicevent, sch_musicgroup, sch_musicplaylist, sch_musicrecording, sch_musicrelease, sch_musicreleaseformattype,
+    sch_musicstore, sch_musicvenue, sch_musicvideoobject,
 
-    sch_nailsalon, sch_neck, sch_nerve, sch_neuro, sch_neurologic, sch_newcondition, sch_newsarticle, sch_newsmediaorganisation, sch_newspaper, sch_ngo, sch_nightclub, sch_nlnonprofittype, sch_noninvasiveprocedure, sch_nonprofit501a,
-    sch_nonprofit501c1, sch_nonprofit501c10, sch_nonprofit501c11, sch_nonprofit501c12, sch_nonprofit501c13, sch_nonprofit501c14, sch_nonprofit501c15, sch_nonprofit501c16, sch_nonprofit501c17, sch_nonprofit501c18, sch_nonprofit501c19,
-    sch_nonprofit501c2, sch_nonprofit501c20, sch_nonprofit501c21, sch_nonprofit501c22, sch_nonprofit501c23, sch_nonprofit501c24, sch_nonprofit501c25, sch_nonprofit501c26, sch_nonprofit501c27, sch_nonprofit501c28, sch_nonprofit501c3,
-    sch_nonprofit501c4, sch_nonprofit501c5, sch_nonprofit501c6, sch_nonprofit501c7, sch_nonprofit501c8, sch_nonprofit501c9, sch_nonprofit501d, sch_nonprofit501e, sch_nonprofit501f, sch_nonprofit501k, sch_nonprofit501n, sch_nonprofit501q,
-    sch_nonprofit527, sch_nonprofitanbi, sch_nonprofitsbbi, sch_nonprofittype, sch_nose, sch_notary, sch_notedigitaldocument, sch_notinforce, sch_notyetrecruiting, sch_number, sch_nursing, sch_nutritioninformation,
+    sch_nailsalon, sch_neck, sch_nerve, sch_neuro, sch_neurologic, sch_newcondition, sch_newsarticle, sch_newsmediaorganisation, sch_newspaper, sch_ngo, sch_nightclub, sch_nlnonprofittype, sch_noninvasiveprocedure,
+    sch_nonprofit501a, sch_nonprofit501c1, sch_nonprofit501c10, sch_nonprofit501c11, sch_nonprofit501c12, sch_nonprofit501c13, sch_nonprofit501c14, sch_nonprofit501c15, sch_nonprofit501c16, sch_nonprofit501c17,
+    sch_nonprofit501c18, sch_nonprofit501c19, sch_nonprofit501c2, sch_nonprofit501c20, sch_nonprofit501c21, sch_nonprofit501c22, sch_nonprofit501c23, sch_nonprofit501c24, sch_nonprofit501c25, sch_nonprofit501c26,
+    sch_nonprofit501c27, sch_nonprofit501c28, sch_nonprofit501c3, sch_nonprofit501c4, sch_nonprofit501c5, sch_nonprofit501c6, sch_nonprofit501c7, sch_nonprofit501c8, sch_nonprofit501c9, sch_nonprofit501d, sch_nonprofit501e,
+    sch_nonprofit501f, sch_nonprofit501k, sch_nonprofit501n, sch_nonprofit501q, sch_nonprofit527, sch_nonprofitanbi, sch_nonprofitsbbi, sch_nonprofittype, sch_nose, sch_notary, sch_notedigitaldocument, sch_notinforce,
+    sch_notyetrecruiting, sch_number, sch_nursing, sch_nutritioninformation,
 
-    sch_observation, sch_observational, sch_obstetric, sch_occupation, sch_occupationalactivity, sch_occupationalexperiencerequirements, sch_occupationaltherapy, sch_oceanbodyofwater, sch_offer, sch_offercatalogue, sch_offerforlease, sch_offerforpurchase,
-    sch_offeritemcondition, sch_offershippingdetails, sch_officeequipmentstore, sch_officiallegalvalue, sch_offlineeventattendancemode, sch_offlinepermanently, sch_offlinetemporarily, sch_oncologic, sch_ondemandevent, sch_onetimepayments,
-    sch_online, sch_onlineeventattendancemode, sch_onlinefull, sch_onlineonly, sch_onsitepickup, sch_openinghoursspecification, sch_opentrial, sch_opinionnewsarticle, sch_optician, sch_optometric, sch_order, sch_orderaction,
-    sch_ordercancelled, sch_orderdelivered, sch_orderintransit, sch_orderitem, sch_orderpaymentdue, sch_orderpickupavailable, sch_orderproblem, sch_orderprocessing, sch_orderreturned, sch_orderstatus, sch_organisation,
-    sch_organisationrole, sch_organiseaction, sch_originalmediacontent, sch_originalshippingfees, sch_osteopathic, sch_otc, sch_otolaryngologic, sch_outletstore, sch_outofstock, sch_overviewhealthaspect, sch_ownershipinfo,
+    sch_observation, sch_observational, sch_obstetric, sch_occupation, sch_occupationalactivity, sch_occupationalexperiencerequirements, sch_occupationaltherapy, sch_oceanbodyofwater, sch_offer, sch_offercatalogue,
+    sch_offerforlease, sch_offerforpurchase, sch_offeritemcondition, sch_offershippingdetails, sch_officeequipmentstore, sch_officiallegalvalue, sch_offlineeventattendancemode, sch_offlinepermanently, sch_offlinetemporarily,
+    sch_oncologic, sch_ondemandevent, sch_onetimepayments, sch_online, sch_onlineeventattendancemode, sch_onlinefull, sch_onlineonly, sch_onsitepickup, sch_openinghoursspecification, sch_opentrial, sch_opinionnewsarticle,
+    sch_optician, sch_optometric, sch_order, sch_orderaction, sch_ordercancelled, sch_orderdelivered, sch_orderintransit, sch_orderitem, sch_orderpaymentdue, sch_orderpickupavailable, sch_orderproblem, sch_orderprocessing,
+    sch_orderreturned, sch_orderstatus, sch_organisation, sch_organisationrole, sch_organiseaction, sch_originalmediacontent, sch_originalshippingfees, sch_osteopathic, sch_otc, sch_otolaryngologic, sch_outletstore,
+    sch_outofstock, sch_overviewhealthaspect, sch_ownershipinfo,
 
     sch_paediatric, sch_paidleave, sch_paintaction, sch_painting, sch_palliativeprocedure, sch_paperback, sch_parceldelivery, sch_parcelservice, sch_parentalsupport, sch_parentaudience, sch_park, sch_parkingfacility, sch_parkingmap,
     sch_partiallyinforce, sch_pathology, sch_pathologytest, sch_patient, sch_patientexperiencehealthaspect, sch_pawnshop, sch_payaction, sch_paymentautomaticallyapplied, sch_paymentcard, sch_paymentchargespecification,
@@ -1633,52 +1639,53 @@ typedef enum
     sch_reviewnewsarticle, sch_rheumatologic, sch_righthanddriving, sch_risksorcomplicationshealthaspect, sch_riverbodyofwater, sch_role, sch_roofingcontractor, sch_room, sch_rsvpaction, sch_rsvpresponsemaybe, sch_rsvpresponseno,
     sch_rsvpresponsetype, sch_rsvpresponseyes, sch_rvpark,
 
-    sch_safetyhealthaspect, sch_saleevent, sch_saleprice, sch_satireorparodycontent, sch_satiricalarticle, sch_saturday, sch_schedule, sch_scheduleaction, sch_scholarlyarticle, sch_school, sch_schooldistrict, sch_screeningevent, sch_screeninghealthaspect, sch_sculpture, sch_seabodyofwater,
-    sch_searchaction, sch_searchresultspage, sch_season, sch_seat, sch_seatingmap, sch_seedoctorhealthaspect, sch_seektoaction, sch_selfcarehealthaspect, sch_selfstorage, sch_sellaction, sch_sendaction, sch_series, sch_service, sch_servicechannel,
-    sch_shareaction, sch_sheetmusic, sch_shippingdeliverytime, sch_shippingratesettings, sch_shoestore, sch_shoppingcentre, sch_shortstory, sch_sideeffectshealthaspect, sch_singleblindedtrial, sch_singlecentretrial,
-    sch_singlefamilyresidence, sch_singleplayer, sch_singlerelease, sch_sitenavigationelement, sch_sizegroupenumeration, sch_sizespecification, sch_sizesystemenumeration, sch_sizesystemimperial, sch_sizesystemmetric,
-    sch_skin, sch_skiresort, sch_socialevent, sch_socialmediaposting, sch_softwareapplication, sch_softwaresourcecode, sch_soldout,
-    sch_solvemathaction, sch_someproducts, sch_soundtrackalbum, sch_speakablespecification, sch_specialannouncement, sch_speciality, sch_speechpathology, sch_spokenwordalbum, sch_sportinggoodsstore, sch_sportsactivitylocation, sch_sportsclub, sch_srp,
-    sch_sportsevent, sch_sportsorganisation, sch_sportsteam, sch_spreadsheetdigitaldocument, sch_stadiumorarena, sch_stagedcontent, sch_stageshealthaspect, sch_state, sch_statisticalpopulation, sch_statusenumeration, sch_steeringpositionvalue, sch_store,
-    sch_storecreditrefund, sch_strengthtraining, sch_structuredvalue, sch_studioalbum, sch_stupidtype, sch_subscribeaction, sch_subscription, sch_substance, sch_subwaystation, sch_suite, sch_sunday, sch_superficialanatomy, sch_surgical,
-    sch_surgicalprocedure, sch_suspendaction, sch_suspended, sch_symptomshealthaspect, sch_synagogue,
+    sch_safetyhealthaspect, sch_saleevent, sch_saleprice, sch_satireorparodycontent, sch_satiricalarticle, sch_saturday, sch_schedule, sch_scheduleaction, sch_scholarlyarticle, sch_school, sch_schooldistrict,
+    sch_screeningevent, sch_screeninghealthaspect, sch_sculpture, sch_seabodyofwater, sch_searchaction, sch_searchresultspage, sch_season, sch_seat, sch_seatingmap, sch_seedoctorhealthaspect, sch_seektoaction,
+    sch_selfcarehealthaspect, sch_selfstorage, sch_sellaction, sch_sendaction, sch_series, sch_service, sch_servicechannel, sch_shareaction, sch_sheetmusic, sch_shippingdeliverytime, sch_shippingratesettings, sch_shoestore,
+    sch_shoppingcentre, sch_shortstory, sch_sideeffectshealthaspect, sch_singleblindedtrial, sch_singlecentretrial, sch_singlefamilyresidence, sch_singleplayer, sch_singlerelease, sch_sitenavigationelement,
+    sch_sizegroupenumeration, sch_sizespecification, sch_sizesystemenumeration, sch_sizesystemimperial, sch_sizesystemmetric, sch_skin, sch_skiresort, sch_socialevent, sch_socialmediaposting, sch_softwareapplication,
+    sch_softwaresourcecode, sch_soldout, sch_solvemathaction, sch_someproducts, sch_soundtrackalbum, sch_speakablespecification, sch_specialannouncement, sch_speciality, sch_speechpathology, sch_spokenwordalbum,
+    sch_sportinggoodsstore, sch_sportsactivitylocation, sch_sportsclub, sch_srp, sch_sportsevent, sch_sportsorganisation, sch_sportsteam, sch_spreadsheetdigitaldocument, sch_stadiumorarena, sch_stagedcontent,
+    sch_stageshealthaspect, sch_state, sch_statisticalpopulation, sch_statusenumeration, sch_steeringpositionvalue, sch_store, sch_storecreditrefund, sch_strengthtraining, sch_structuredvalue, sch_studioalbum,
+    sch_stupidtype, sch_subscribeaction, sch_subscription, sch_substance, sch_subwaystation, sch_suite, sch_sunday, sch_superficialanatomy, sch_surgical, sch_surgicalprocedure, sch_suspendaction, sch_suspended,
+    sch_symptomshealthaspect, sch_synagogue,
 
-    sch_table, sch_takeaction, sch_tattooparlour, sch_taxi, sch_taxireservation, sch_taxiservice, sch_taxistand, sch_taxivehicleusage, sch_techarticle, sch_televisionchannel, sch_televisionstation, sch_tenniscomplex, sch_terminated,
-    sch_text, sch_textdigitaldocument, sch_theatreevent, sch_theatregroup, sch_therapeutic, sch_therapeuticprocedure, sch_thesis, sch_thing, sch_throat, sch_thursday, sch_ticket, sch_tieaction, sch_time, sch_tipaction, sch_tollfree, sch_touristattraction,
-    sch_touristdestination, sch_touristinformationcentre, sch_touristtrip, sch_toxicologic, sch_toystore, sch_trackaction, sch_tradeaction, sch_trainreservation, sch_trainstation, sch_traintrip, sch_transferaction, sch_transformedcontent, sch_transitmap,
-    sch_travelaction, sch_travelagency, sch_treatmentindication, sch_treatmentshealthaspect, sch_trip, sch_tripleblindedtrial, sch_true, sch_tuesday, sch_tvclip, sch_tvepisode, sch_tvseason, sch_tvseries, sch_typeandquantitynode,
-    sch_typeshealthaspect, sch_tyreshop,
+    sch_table, sch_takeaction, sch_tattooparlour, sch_taxi, sch_taxireservation, sch_taxiservice, sch_taxistand, sch_taxivehicleusage, sch_techarticle, sch_televisionchannel, sch_televisionstation, sch_tenniscomplex,
+    sch_terminated, sch_text, sch_textdigitaldocument, sch_theatreevent, sch_theatregroup, sch_therapeutic, sch_therapeuticprocedure, sch_thesis, sch_thing, sch_throat, sch_thursday, sch_ticket, sch_tieaction, sch_time,
+    sch_tipaction, sch_tollfree, sch_touristattraction, sch_touristdestination, sch_touristinformationcentre, sch_touristtrip, sch_toxicologic, sch_toystore, sch_trackaction, sch_tradeaction, sch_trainreservation,
+    sch_trainstation, sch_traintrip, sch_transferaction, sch_transformedcontent, sch_transitmap, sch_travelaction, sch_travelagency, sch_treatmentindication, sch_treatmentshealthaspect, sch_trip, sch_tripleblindedtrial,
+    sch_true, sch_tuesday, sch_tvclip, sch_tvepisode, sch_tvseason, sch_tvseries, sch_typeandquantitynode, sch_typeshealthaspect, sch_tyreshop,
 
-    sch_uknonprofittype, sch_uktrust, sch_ultrasound, sch_unemploymentsupport, sch_unincorporatedassociationcharity, sch_unitpricespecification, sch_unofficiallegalvalue, sch_unregisteraction, sch_updateaction, sch_url, sch_urologic,
-    sch_usageorschedulehealthaspect, sch_useaction, sch_usedcondition, sch_userblocks, sch_usercheckins, sch_usercomments, sch_userdownloads, sch_userinteraction, sch_userlikes, sch_userpagevisits, sch_userplays, sch_userplusones,
-    sch_userreview, sch_usertweets, sch_usnonprofittype,
+    sch_uknonprofittype, sch_uktrust, sch_ultrasound, sch_unemploymentsupport, sch_unincorporatedassociationcharity, sch_unitpricespecification, sch_unofficiallegalvalue, sch_unregisteraction, sch_updateaction, sch_url,
+    sch_urologic, sch_usageorschedulehealthaspect, sch_useaction, sch_usedcondition, sch_userblocks, sch_usercheckins, sch_usercomments, sch_userdownloads, sch_userinteraction, sch_userlikes, sch_userpagevisits, sch_userplays,
+    sch_userplusones, sch_userreview, sch_usertweets, sch_usnonprofittype,
 
-    sch_vegandiet, sch_vegetariandiet, sch_vehicle, sch_vein, sch_venuemap, sch_vessel, sch_veterinarycare, sch_videogallery, sch_videogame, sch_videogameclip, sch_videogameseries, sch_videoobject, sch_viewaction, sch_vinylformat,
-    sch_virtuallocation, sch_virus, sch_visualartsevent, sch_visualartwork, sch_vitalsign, sch_volcano, sch_voteaction,
+    mf_vcard, sch_vegandiet, sch_vegetariandiet, sch_vehicle, sch_vein, sch_venuemap, sch_vessel, sch_veterinarycare, mf_vevent, sch_videogallery, sch_videogame, sch_videogameclip, sch_videogameseries, sch_videoobject,
+    sch_viewaction, sch_vinylformat, sch_virtuallocation, sch_virus, sch_visualartsevent, sch_visualartwork, sch_vitalsign, sch_volcano, sch_voteaction,
 
-    sch_wantaction, sch_warrantypromise, sch_warrantyscope, sch_watchaction, sch_waterfall,
-    sch_wearablemeasurementtypeenumeration, sch_wearablemeasurementback, sch_wearablemeasurementchestorbust, sch_wearablemeasurementcollar, sch_wearablemeasurementcup, sch_wearablemeasurementheight, sch_wearablemeasurementhips,
-    sch_wearablemeasurementinseam, sch_wearablemeasurementlength, sch_wearablemeasurementoutsideleg, sch_wearablemeasurementsleeve, sch_wearablemeasurementwaist, sch_wearablemeasurementwidth,
-    sch_wearablesizegroupbig, sch_wearablesizegroupboys, sch_wearablesizegroupenumeration, sch_wearablesizegroupextrashort, sch_wearablesizegroupextratall, sch_wearablesizegroupgirls, sch_wearablesizegrouphusky, sch_wearablesizegroupinfants,
-    sch_wearablesizegroupjuniors, sch_wearablesizegroupmaternity, sch_wearablesizegroupmens, sch_wearablesizegroupmisses, sch_wearablesizegrouppetite, sch_wearablesizegroupplus, sch_wearablesizegroupregular, sch_wearablesizegroupshort,
-    sch_wearablesizegrouptall, sch_wearablesizegroupwomens,
-    sch_wearablesizesystemau, sch_wearablesizesystembr, sch_wearablesizesystemcn, sch_wearablesizesystemcontinental, sch_wearablesizesystemde,
-    sch_wearablesizesystemen13402, sch_wearablesizesystemenumeration, sch_wearablesizesystemeurope, sch_wearablesizesystemfr, sch_wearablesizesystemgs1, sch_wearablesizesystemit, sch_wearablesizesystemjp, sch_wearablesizesystemmx,
-    sch_wearablesizesystemuk, sch_wearablesizesystemus,
-    sch_wearaction, sch_webapi, sch_webapplication, sch_webcontent, sch_webpage, sch_webpageelement, sch_website, sch_wednesday, sch_wholesale,
-    sch_wholesalestore, sch_winaction, sch_winery, sch_withdrawn, sch_workbasedprogramme, sch_workersunion, sch_wpadblock, sch_wpfooter, sch_wpheader, sch_wpsidebar, sch_writeaction, sch_writepermission,
+    sch_wantaction, sch_warrantypromise, sch_warrantyscope, sch_watchaction, sch_waterfall, sch_wearablemeasurementtypeenumeration, sch_wearablemeasurementback, sch_wearablemeasurementchestorbust, sch_wearablemeasurementcollar,
+    sch_wearablemeasurementcup, sch_wearablemeasurementheight, sch_wearablemeasurementhips, sch_wearablemeasurementinseam, sch_wearablemeasurementlength, sch_wearablemeasurementoutsideleg, sch_wearablemeasurementsleeve,
+    sch_wearablemeasurementwaist, sch_wearablemeasurementwidth, sch_wearablesizegroupbig, sch_wearablesizegroupboys, sch_wearablesizegroupenumeration, sch_wearablesizegroupextrashort, sch_wearablesizegroupextratall,
+    sch_wearablesizegroupgirls, sch_wearablesizegrouphusky, sch_wearablesizegroupinfants, sch_wearablesizegroupjuniors, sch_wearablesizegroupmaternity, sch_wearablesizegroupmens, sch_wearablesizegroupmisses,
+    sch_wearablesizegrouppetite, sch_wearablesizegroupplus, sch_wearablesizegroupregular, sch_wearablesizegroupshort, sch_wearablesizegrouptall, sch_wearablesizegroupwomens, sch_wearablesizesystemau, sch_wearablesizesystembr,
+    sch_wearablesizesystemcn, sch_wearablesizesystemcontinental, sch_wearablesizesystemde, sch_wearablesizesystemen13402, sch_wearablesizesystemenumeration, sch_wearablesizesystemeurope, sch_wearablesizesystemfr,
+    sch_wearablesizesystemgs1, sch_wearablesizesystemit, sch_wearablesizesystemjp, sch_wearablesizesystemmx, sch_wearablesizesystemuk, sch_wearablesizesystemus, sch_wearaction, sch_webapi, sch_webapplication, sch_webcontent,
+    sch_webpage, sch_webpageelement, sch_website, sch_wednesday, sch_wholesale, sch_wholesalestore, sch_winaction, sch_winery, sch_withdrawn, sch_workbasedprogramme, sch_workersunion, sch_wpadblock, sch_wpfooter, sch_wpheader,
+    sch_wpsidebar, sch_writeaction, sch_writepermission,
 
     sch_xpathtype, sch_xray,
 
     sch_zoneboardingpolicy, sch_zoo,
 
-    sch_illegal } e_schema;
+    wwg_work,
+
+    sty_illegal } e_schema_type;
 
 typedef enum
 {   sp_context,
 
-    sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptoffer, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol, sp_accessibilityfeature,
-    sp_accessibilityhazard, sp_accessibilitysummary, sp_accesscode, sp_accessmode, sp_accessmodesufficient, sp_accommodationcategory, sp_accommodationfloorplan, sp_accountableperson, sp_accountid, sp_accountminimuminflow,
+    sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptoffer, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol,
+    sp_accessibilityfeature, sp_accessibilityhazard, sp_accessibilitysummary, sp_accesscode, sp_accessmode, sp_accessmodesufficient, sp_accommodationcategory, sp_accommodationfloorplan, sp_accountableperson, sp_accountid, sp_accountminimuminflow,
     sp_accountoverdraftlimit, sp_acquiredfrom, sp_acquirelicensepage, sp_acrisscode, sp_action, sp_actionablefeedbackpolicy, sp_actionaccessibilityrequirement, sp_actionapplication, sp_actionoption, sp_actionplatform, sp_actionstatus,
     sp_activeingredient, sp_activityduration, sp_activityfrequency, sp_actor, sp_additionalname, sp_additionalnumberofguests, sp_additionalproperty, sp_additionaltype, sp_additionalvariable, sp_addon, sp_address, sp_addresscountry,
     sp_addresslocality, sp_addressregion, sp_administrationroute, sp_advancebookingrequirement, sp_adverseoutcome, sp_affectedby, sp_affiliation, sp_aftermedia, sp_agent, sp_aggregaterating, sp_aircraft, sp_album,
@@ -1822,7 +1829,16 @@ typedef enum
 
     sp_yearbuilt, sp_yearlyrevenue, sp_yearsinoperation, sp_yield,
 
+    mp_additional_name, mp_adr, mp_agent, mp_anniversary, mp_attach, mp_bday, mp_categories, mp_class, mp_comment, mp_contact, mp_country_name, mp_created, mp_description, mp_dtend, mp_dtstart, mp_duration, mp_email,
+    mp_exdate, mp_extended_address, mp_family_name, mp_fn, mp_gender_identity, mp_geo, mp_given_name, mp_honourific_prefix, mp_honourific_suffix, mp_impp, mp_kind, mp_lang, mp_last_modified, mp_locality, mp_location,
+    mp_logo, mp_member, mp_n, mp_nickname, mp_note, mp_org, mp_organisation_name, mp_organisation_unit, mp_photo, mp_post_office_box, mp_postal_code, mp_region, mp_rdate, mp_rel, mp_related, mp_rev, mp_role, mp_rrule,
+    mp_resources, mp_sequence, mp_sex, mp_sound, mp_status, mp_street_address, mp_summary, mp_tel, mp_title, mp_transp, mp_type, mp_tz, mp_uid, mp_url, mp_value,
+
+    wp_author, wp_license, wp_title, wp_work,
+
     sp_illegal } e_schema_property;
+
+typedef ::std::vector < e_schema_property > vsp_t;
 
 #define SCHEMES pt_rfc3986, pt_rfc3986_ignore, pt_geo, pt_local, pt_news, pt_tel, pt_urn
 typedef enum { SCHEMES } e_scheme;
@@ -1900,6 +1916,7 @@ typedef enum { fv_normal, fv_smallcaps, fv_inherit } e_svg_fontvariant;
 typedef enum { fvf_normal, fvf_smallcaps } e_svg_fontvariant_ff;
 typedef enum { tsz_discrete, tsz_gamma, tsz_identity, tsz_linear, tsz_table } e_svg_type_11;
 typedef enum { sv_none, sv_1_0, sv_1_1, sv_1_2_tiny, sv_1_2_full, sv_2_0 } e_svg_version;
+typedef enum { svg_none, svg_1_0, svg_1_1, svg_1_2_tiny, svg_1_2_full, svg_2_0 } e_svg_version_grand;
 typedef enum { fsw_normal, fsw_bold, fsw_bolder, fsw_lighter, fsw_100, fsw_200, fsw_300, fsw_400, fsw_500, fsw_600, fsw_700, fsw_800, fsw_900, fsw_inherit } e_svg_fontweight;
 typedef enum { fsf_normal, fsf_bold, fsf_100, fsf_200, fsf_300, fsf_400, fsf_500, fsf_600, fsf_700, fsf_800, fsf_900 } e_svg_fontweight_ff;
 typedef enum { fr_void, fr_above, fr_below, fr_hsides, fr_lhs, fr_rhs, fr_vsides, fr_box, fr_border } e_tableframe;
@@ -1949,7 +1966,7 @@ typedef enum {
         t_mathframe, t_mathlocation, t_mathmode, t_mathnotation, t_mathnotations, t_mathoccurence, t_mathorder, t_mathoverflow, t_mathscope, t_mathsize,
         t_mathspace, t_mathspaceauto, t_mathspacefit, t_mathspaceinfinity, t_mathvariant, t_matrixtype, t_matrix_values, t_measure, t_measure_ai, t_measure_i,
         t_measure_or_more, t_measures, t_media, t_mediafeature, t_mediakeyword, t_meetslice, t_menuitem, t_menutype, t_metaname, t_method, t_methodological,
-        t_microdata_domain, t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar, t_mode, t_month, t_morphology_operator, t_mql, t_mqls,
+        t_microdata_domain, t_microdata_root, t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar, t_mode, t_month, t_morphology_operator, t_mql, t_mqls,
     t_name, t_nameref, t_namedspace, t_namespace, t_navigation, t_negative, t_normalised, t_normalisations, t_not_empty, t_notation, t_notations, t_nsd, t_nsds, t_num,
     t_occurence, t_ogtype, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow,
     t_paint, t_paintkeyword, t_panose1, t_phase, t_pics, t_plus_1_7, t_plusstyle, t_pointerevents, t_points, t_positive, t_pragma, t_prefix, t_preload, t_preload5,
@@ -1964,7 +1981,7 @@ typedef enum {
         t_svg_align, t_svg_baselineshift, t_svg_baseprofile, t_svg_content, t_svg_direction, t_svg_duration, t_svg_features, t_svg_fontstretch, t_svg_fontstretch_ff,
         t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant, t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff, t_svg_fontweights, t_svg_method,
         t_svg_mode, t_svg_overflow, t_svg_playbackorder, t_svg_snapshottime, t_svg_time, t_svg_timelinebegin, t_svg_transform, t_svg_type, t_svg_type_11,
-        t_svg_units, t_svg_values, t_svg_version, t_svg_viewbox, t_sym,
+        t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_sym,
     t_tableframe, t_table_values, t_target, t_tbalign, t_tdscope, t_tel, t_tendstotype, t_text, t_textdecoration, t_textrendering, t_tfmu, t_tfa, t_tfu, t_tokens,
         t_transform, t_transform_anim, t_transform_fn, t_truefalseempty, t_turbulence_type, t_type, t_tz,
     t_ugeo, t_unicodebidi, t_units, t_unsigned, t_un_ex, t_unsigned_dosh, t_uplr, t_urange, t_url, t_urls,

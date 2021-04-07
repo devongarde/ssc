@@ -43,10 +43,10 @@ template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& n
         nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
     ::std::string t (s);
     e_namespace n (examine_namespace (nits, v, t));
-    if (symbol < e_aria_role > :: parse (nits, v, s, n))
-    {   enum_base < e_aria_role, t_role > :: value_ = symbol < e_aria_role > :: get ();
-        const html_version f = symbol < e_aria_role > :: first ();
-        if (! may_apply (v, f, symbol < e_aria_role > :: last ()))
+    if (symbol < html_version, e_aria_role > :: parse (nits, v, s, n))
+    {   enum_base < e_aria_role, t_role > :: value_ = symbol < html_version, e_aria_role > :: get ();
+        const html_version f = symbol < html_version, e_aria_role > :: first ();
+        if (! may_apply (v, f, symbol < html_version, e_aria_role > :: last ()))
             nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ());
         else if (f.reject ())
             nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());

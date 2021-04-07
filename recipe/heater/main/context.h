@@ -47,8 +47,9 @@ class context_t
                     slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = 0;
     e_copy          copy_ = c_none;
-    unsigned char   mf_version_ = 3, sch_major_ = 0, sch_minor_ = 0;
+    unsigned char   mf_version_ = 3;
     html_version    version_;
+    schema_version  schema_ver_;
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
     ::std::string   base_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, msg_, output_, path_, persisted_, root_, secret_, server_,
@@ -129,14 +130,7 @@ public:
     bool rpt_opens () const { return rpt_opens_; }
     const ::std::string root () const { return root_; }
     bool schema () const { return schema_; }
-    unsigned char schema_major () const
-    {   if (! is_valid_schema_version (sch_major_, sch_minor_)) return 0;
-        return sch_major_; }
-    unsigned char schema_minor () const
-    {   if (! is_valid_schema_version (sch_major_, sch_minor_)) return 0;
-        return sch_minor_; }
-    schema_version schema_ver () const
-    {   return schema_version (schema_major (), schema_minor ()); }
+    schema_version schema_ver () const { return schema_ver_; }
     const ::std::string secret () const { return secret_; }
     const ::std::string server () const { return server_; }
     const ::std::string shadow () const { return shadow_; }
@@ -255,12 +249,9 @@ public:
     context_t& rpt_opens (const bool b) { rpt_opens_ = b; return *this; }
     context_t& schema (const bool b)
     {   schema_ = b;
-        if (sch_major_ == 0)
-        {   sch_major_ = schema_major_max;
-            sch_minor_ = 0; }
+        if (schema_ver_.empty ()) schema_ver_ = schema_default;
         return *this; }
-    context_t& schema_major (const unsigned char n) { sch_major_ = (n > schema_major_max) ? 0 : n; return *this; }
-    context_t& schema_minor (const unsigned char n) { sch_minor_ = (n > 9) ? 0 : n; return *this; }
+    context_t& schema_ver (const schema_version& sv) { schema_ver_.reset (sv); return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
     context_t& shadow (const ::std::string& s) { shadow_ = s; return *this; }
@@ -323,9 +314,9 @@ public:
     {   data_.mark (f, m); }
     void mark (const html_version& v)
     {   data_.mark (v); }
-    void mark (const e_schema s)
+    void mark (const e_schema_type s)
     {   data_.mark (s); }
-    void mark (const e_schema s, const e_schema_property p)
+    void mark (const e_schema_type s, const e_schema_property p)
     {   data_.mark (s, p); }
     void mark_file (const unsigned size)
     {   data_.mark_file (size); }

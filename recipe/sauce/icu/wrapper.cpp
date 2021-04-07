@@ -43,7 +43,7 @@ charset_detector_match charset_detector_matches::at (const int32_t i) const
     return charset_detector_match (match_ [i]); }
 
 bool charset_detector::set_text (const char *in, int32_t len)
-{   assert (detector_ != nullptr);
+{   DBG_ASSERT (detector_ != nullptr);
     ucsdet_setText (detector_, in, len, &err_);
     return valid (); }
 

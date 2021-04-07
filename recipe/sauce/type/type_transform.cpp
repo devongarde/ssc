@@ -42,7 +42,7 @@ bool checkargs (nitpick& nits, const html_version& v, const e_transform_fn cmd, 
                 return false; }
             return test_value < t_angle > (nits, v, args.at (0));
         default :
-            assert (false);
+            DBG_ASSERT (false);
             nits.pick (nit_svg, es_catastrophic, ec_attribute, "internal TRANSFORM error, bad command (", static_cast < int > (cmd), ")");
             return false; }
     for (auto s : args)

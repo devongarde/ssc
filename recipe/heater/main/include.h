@@ -20,6 +20,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
+#define PROG "ssc"
+#define TESTPROG "ssc-test"
+#define FULLNAME "Static Site Checker"
+#define WEBADDR "ssc.lu"
+#define VERSION_STRING "0.0.98"
+#define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
+
 #ifdef __clang__
 #pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Wall"
@@ -184,10 +191,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // _MSC_VER
 #endif // SSC_TEST
 
-#include "main/version.h"
+#if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
+#define DBG_ASSERT(x) assert (x)
+#else // DEBUG || _DEBUG
+#define DBG_ASSERT(x)
+#endif // DEBUG || _DEBUG
 
-#ifndef SCC_TEST
-
+#ifndef SSC_TEST
 #define PR_FILE "file"
 #define PR_FTP "ftp"
 #define PR_FTPS "ftps"
@@ -254,5 +264,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DISGUSTING "nonce" // Why The F*ck the standards have to reference paedophiles, I have no clue, but I do NOT like it
 
 #define MAX_IDEAL_TITLE_LENGTH 32
+
+#define MICROFORMATS_ORG "microformats.org"
+#define SCHEMA_ORG "schema.org"
+#define PURL_ORG "purl.org"
+#define N_WHATWG_ORG "n.whatwg.org"
+#define W3_ORG "www.w3.org"
+#define SVG_2000 W3_ORG "/2000/svg"
+
+#define HTTP_CSS PR_HTTP CSS
+#define HTTPS_CSS PR_HTTPS CSS
+
+#define HTTP_W3 HTTP W3_ORG
+#define HTTPS_W3 HTTPS W3_ORG
 
 #endif // SCC_TEST

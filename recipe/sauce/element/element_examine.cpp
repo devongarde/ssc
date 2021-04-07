@@ -242,7 +242,7 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
         {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
             context.css ().parse_file (node_.nits (), page_, u); } }
     else if (tag == elem_faux_text)
-    {   assert (node_.has_parent ());
+    {   DBG_ASSERT (node_.has_parent ());
         if ((node_.version () >= html_2) || ! node_.has_previous ()) if ((elem :: flags (node_.parent ().tag ()) & EP_ONLYELEMENTS) == EP_ONLYELEMENTS)
             pick (nit_only_elements, es_warning, ec_element, "<", elem :: name (node_.parent ().tag ()), "> can only contain elements, not text."); }
     else if (is_standard_element (tag) && ! node_.is_closure ())
@@ -408,7 +408,7 @@ void element::verify_children ()
         while (to_sibling (e)); } }
 
 void element::verify ()
-{   assert (access_ != nullptr);
+{   DBG_ASSERT (access_ != nullptr);
     if (node_.line () >= 0) get_ids ().data (node_.line ());
     a_.verify (nits (), node_.version (), get_ids (), ancestral_attributes_, vit_);
     if (a_.has (a_headers)) examine_headers ();
@@ -427,12 +427,12 @@ void element::verify_document ()
         case 2 :
             if (context.rfc_1867 ())
                 for (element* f = find_first (elem_form); f != nullptr; f = find_next (elem_form, f))
-                {   assert (f != nullptr);
+                {   DBG_ASSERT (f != nullptr);
                     for (element* inp = f -> find_first (elem_input); inp != nullptr; inp = find_next (elem_input, inp))
-                    {   assert (inp != nullptr);
+                    {   DBG_ASSERT (inp != nullptr);
                         if (inp -> a_.has (a_type))
                         {   attr_type* it = reinterpret_cast < attr_type* > (inp -> a_.get (a_type).get ());
-                            assert (it != nullptr);
+                            DBG_ASSERT (it != nullptr);
                             if ((it -> good ()) && (::boost::to_lower_copy (it -> get_string ()) == "file"))
                             {   if (! f -> a_.has (a_enctype))
                                 {   f -> pick (nit_file_requires_enctype, ed_rfc_1867, "2. HTML forms with file submission", es_warning, ec_element,
@@ -441,7 +441,7 @@ void element::verify_document ()
                                         "the enclosing FORM should have ENCTYPE='application/x-www-form-urlencoded' when using TYPE=file"); }
                                 else
                                 {   attr_enctype* enc = reinterpret_cast < attr_enctype* > (f -> a_.get (a_enctype).get ());
-                                    assert (enc != nullptr);
+                                    DBG_ASSERT (enc != nullptr);
                                     if (enc -> good ())
                                     {   ::std::string ee (::boost::to_lower_copy (enc -> get_string ()));
                                         if ((ee != "application/x-www-form-urlencoded") && (ee != "multipart/form-data"))
@@ -452,7 +452,7 @@ void element::verify_document ()
                                         "when <INPUT TYPE=file>, specify METHOD=post");
                                 else
                                 {   attr_method* m = reinterpret_cast < attr_method* > (f -> a_.get (a_method).get ());
-                                    assert (m != nullptr);
+                                    DBG_ASSERT (m != nullptr);
                                     if (m -> good ()) if (::boost::to_lower_copy (m -> get_string ()) != "post")
                                         f -> pick (nit_use_post, ed_rfc_1867, "2. HTML forms with file submission", es_warning, ec_element,
                                             "given the <INPUT TYPE=file>, prefer METHOD=post"); } } } } }
@@ -489,7 +489,7 @@ element* element::next_element (element* previous)
     return nullptr; }
 
 element* element::find_next (const e_element e, element* previous)
-{   assert (previous != nullptr);
+{   DBG_ASSERT (previous != nullptr);
     for (element* res (next_element (previous)); res != nullptr; res = next_element (res))
     {   if (res -> tag () == e) return res; }
     return nullptr; }

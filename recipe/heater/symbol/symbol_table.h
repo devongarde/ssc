@@ -19,103 +19,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "utility/common.h"
-#include "type/sz.h"
+#include "symbol/symbol_store.h"
+#include "symbol/symbol_key.h"
 
-template < class LC > struct enlc
-{   static ::std::string to (const ::std::string& from) { return ::boost::to_lower_copy (from); } };
+template < typename CATEGORY > struct colonisation
+{   const char* ns_sep () const { return ":"; } };
+template < > struct colonisation < e_microdata_root >
+{   const char* ns_sep () const { return ""; } };
 
-template < > struct enlc < sz_false >
-{   static ::std::string to (const ::std::string& from) { return from; } };
-
-template < typename VALUE > struct symbol_entry
-{   html_version    first_, last_;
-    const char*     sz_ = nullptr;
-    VALUE           v_ = static_cast < VALUE > (0);
-    e_namespace     ns_ = ns_default;
-    uint64_t        flags_ = 0;
-    uint64_t        flags2_ = 0;
-#ifdef REQUIRE_CONSTRUCTOR
-    symbol_entry (  const html_version& first, const html_version& last, const char* sz, const VALUE v,
-                    const e_namespace ns = ns_default, const uint64_t flags = 0, const uint64_t flags2 = 0)
-        : first_ (first), last_ (last), sz_ (sz), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
-#endif
-};
-
-struct symbol_entry_t
-{   html_version    first_, last_;
-    const char*     sz_ = nullptr;
-    ::std::size_t   v_ = 0;
-    e_namespace     ns_ = ns_default;
-    uint64_t        flags_ = 0;
-    uint64_t        flags2_ = 0; };
-
-struct symbol_store
-{   html_version    first_, last_;
-    ::std::string   sz_;
-    ::std::size_t   v_ = 0;
-    e_namespace     ns_ = ns_default;
-    uint64_t        flags_ = 0;
-    uint64_t        flags2_ = 0;
-	symbol_store() = default;
-    symbol_store (const symbol_store& ss) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-	symbol_store (symbol_store&& ss) = default;
-#endif // VS
-	~symbol_store() = default;
-    symbol_store (const html_version& first, const html_version& last, const ::std::string& str, const ::std::size_t v, const e_namespace ns = ns_default, const uint64_t flags = NOFLAGS, const uint64_t flags2 = NOFLAGS)
-        : first_ (first), last_ (last), sz_ (str), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
-    symbol_store (const html_version& first, const html_version& last, const char* sz, const ::std::size_t v, const e_namespace ns = ns_default, const uint64_t flags = NOFLAGS, const uint64_t flags2 = NOFLAGS)
-        : first_ (first), last_ (last), sz_ (sz), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
-    symbol_store (const symbol_entry_t& se)
-        : first_ (se.first_), last_ (se.last_), sz_ (se.sz_), v_ (se.v_), ns_ (se.ns_), flags_ (se.flags_), flags2_ (se.flags2_) { }
-    symbol_store& operator = (const symbol_store& ss) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-	symbol_store& operator = (symbol_store&& ss) = default;
-#endif
-    void swap (symbol_store& ss) NOEXCEPT;
-    ::std::string report () const;
-    void reset () { symbol_store ss; swap (ss); }
-    void reset (const symbol_store& s) { symbol_store ss (s); swap (ss); } };
-
-typedef ::std::pair < ::std::string, e_namespace > symbol_key;
-
-inline bool operator == (const symbol_key& lhs, const symbol_key& rhs)
-{   return (lhs.second == rhs.second) && (lhs.first == rhs.first); }
-
-inline bool operator != (const symbol_key& lhs, const symbol_key& rhs)
-{   return ! (lhs == rhs); }
-
-inline bool operator < (const symbol_key& lhs, const symbol_key& rhs)
-{   if (lhs.second < rhs.second) return true;
-    if (lhs.second > rhs.second) return false;
-    return (lhs.first < rhs.first); }
-
-inline bool operator >= (const symbol_key& lhs, const symbol_key& rhs)
-{   return ! (lhs < rhs); }
-
-inline bool operator > (const symbol_key& lhs, const symbol_key& rhs)
-{   return (lhs >= rhs) && (lhs != rhs); }
-
-inline bool operator <= (const symbol_key& lhs, const symbol_key& rhs)
-{   return ! (lhs > rhs); }
-
-template < > struct std::hash < symbol_key >
-{   ::std::size_t operator() (const symbol_key& k) const
-    {   ::std::size_t h = ::std::hash < ::std::string > () (k.first); // bollocks
-        return ::std::hash <::std::size_t> () (h ^ static_cast < ::std::size_t > (k.second)); } };
-
-class symbol_table
-{   typedef ssc_map < symbol_key, symbol_store > symbol_t;
-    typedef ssc_map < ::std::size_t, symbol_store > reverse_t;
+template < class V, typename CATEGORY, CATEGORY INIT > class symbol_table : public colonisation < CATEGORY >
+{   typedef ssc_map < symbol_key, symbol_store < V, CATEGORY, INIT > > symbol_t;
+    typedef ssc_map < ::std::size_t, symbol_store < V, CATEGORY, INIT > > reverse_t;
     symbol_t symbol_;
     reverse_t reverse_;
     bool wildcards_ = false;
 public:
-    void swap (symbol_table& s) NOEXCEPT;
-    void extend (   const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const e_namespace ns = ns_default,
-                    const html_version& first = html_0, const html_version& last = html_0, const uint64_t flags = 0, const uint64_t flags2 = 0);
-    template < typename VALUE, class LC > void init (nitpick& nits, const symbol_entry < VALUE > table [], const ::std::size_t size, const bool wildcards = false)
+    void extend (   const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT,
+                    const V& first = html_0, const V& last = html_0, const uint64_t flags = 0, const uint64_t flags2 = 0)
+    {
+    #ifdef _DEBUG
+        if (key.find (",") != ::std::string::npos) ::std::cerr << "key '" << key << "' contains a comma\n";
+        if (symbol.find (",") != ::std::string::npos) ::std::cerr << "symbol '" << symbol << "' contains a comma\n";
+    #endif // _DEBUG
+        symbol_.insert (typename symbol_t::value_type (symbol_key (key, ns), symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2)));
+        reverse_.insert (typename reverse_t::value_type (value, symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2))); }
+    template < typename VALUE, class LC > void init (nitpick& nits, const symbol_entry < V, VALUE, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
     {   wildcards_ = wildcards;
         for (::std::size_t i = 0; i < size; ++i)
             if (table [i].sz_ == nullptr) break;
@@ -124,38 +52,109 @@ public:
                 auto it = symbol_.find (symbol_key (key, table [i].ns_));
                 if (it != symbol_.end ())
                     nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "program error: symbol ", table [i].sz_, " already defined (ignoring case)");
-                else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); }}
-    bool find (const html_version& v, const ::std::string& x, ::std::size_t& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const;
-    ::std::size_t find (const html_version& v, const ::std::string& x, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const;
-    template < typename VALUE, class LC > bool find (const html_version& v, const ::std::string& x, VALUE& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
+                else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); } }
+    bool find (const V& v, const ::std::string& x, ::std::size_t& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
+    {   auto i = symbol_.find (symbol_key (x, ns));
+        if (i != symbol_.end () && may_apply (v, i -> second.first_, i -> second.last_))
+        {   res = i -> second.v_;
+            if (first != nullptr) *first = i -> second.first_;
+            if (last != nullptr) *last = i -> second.last_;
+            if (flags != nullptr) *flags = i -> second.flags_;
+            if (flags2 != nullptr) *flags2 = i -> second.flags2_;
+            return true; }
+        if (! wildcards_) return false;
+        auto p = x.find_first_of (":-");
+        if ((p == 0) || (p == x.npos) || (p == x.length () - 1)) return false;
+        return find (v, x.substr (0, p+1), res, ns, first, last, flags); }
+    ::std::size_t find (const V& v, const ::std::string& x, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
+    {   auto i = symbol_.find (symbol_key (x, ns));
+        if (i != symbol_.end () && may_apply < V > (v, i -> second.first_, i -> second.last_))
+        {   if (first != nullptr) *first = i -> second.first_;
+            if (last != nullptr) *last = i -> second.last_;
+            if (flags != nullptr) *flags = i -> second.flags_;
+            if (flags2 != nullptr) *flags2 = i -> second.flags2_;
+            return i -> second.v_; }
+        if (! wildcards_) return 0;
+        auto p = x.find ('-');
+        if ((p == 0) || (p == x.npos))
+        {   p = x.find (':');
+            if ((p == 0) || (p == x.npos)) return 0; }
+        return find (v, x.substr (0, p), ns, first, last, flags); }
+    template < typename VALUE, class LC > bool find (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
     {   ::std::size_t val = 0;
         if (! find (v, enlc < LC > :: to (x), val, ns, first, last, flags, flags2)) return false;
         res = static_cast < VALUE > (val); return true; }
     bool exists (const ::std::string& x, const e_namespace ns = ns_default) const
     {   return (symbol_.find (symbol_key (x, ns)) != symbol_.end ()); }
-    bool parse (const html_version& v, const ::std::string& x, ::std::size_t& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    bool parse (const V& v, const ::std::string& x, ::std::size_t& res, const e_namespace ns = ns_default, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
     {   return find (v, ::boost::algorithm::to_lower_copy (trim_the_lot_off (x)), res, ns, first, last, flags, flags2); }
-    template < typename VALUE, class LC > bool parse (const html_version& v, const ::std::string& x, VALUE& res, const e_namespace ns = ns_default, html_version* first = nullptr, html_version* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    template < typename VALUE, class LC > bool parse (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
     {   ::std::size_t val = 0;
         if (! parse (v, enlc < LC > :: to (x), val, ns, first, last, flags, flags2)) return false;
         res = static_cast < VALUE > (val); return true; }
-    ::std::string value_list (const html_version& v) const;
-    ::std::size_t value_count (const html_version& ) const { return symbol_.size (); }
-    bool is_invalid_version (const html_version& v, const ::std::size_t x) const;
-    html_version first_version (const ::std::size_t x) const;
-    html_version final_version (const ::std::size_t x) const;
-    e_namespace ns (const ::std::size_t x) const;
-    uint64_t flags (const ::std::size_t x) const;
-    uint64_t flags2 (const ::std::size_t x) const;
-    template < typename VALUE > VALUE starts_with (const ::std::string& s) const
+    ::std::string value_list (const V& v) const
+    {   ::std::string res;
+        for (auto e : symbol_)
+            if (does_apply < V > (v, e.second.first_, e.second.last_))
+            {   if (! res.empty ()) res += ", ";
+                res += e.first.first; }
+        return res; }
+    ::std::size_t value_count (const V& ) const { return symbol_.size (); }
+    bool is_invalid_version (const V& v, const ::std::size_t x) const
+    {   auto i = reverse_.find (x);
+        return ((i != reverse_.end ()) && ! may_apply < V > (v, i -> second.first_, i -> second.last_)); }
+    V first_version (const ::std::size_t x) const
+    {   auto i = reverse_.find (x);
+        if (i == reverse_.end ()) return html_0;
+        return (i -> second.first_); }
+    V final_version (const ::std::size_t x) const
+    {   auto i = reverse_.find (x);
+        if (i == reverse_.end ()) return html_0;
+        return (i -> second.last_); }
+    CATEGORY ns (const ::std::size_t x) const
+    {   auto i = reverse_.find (x);
+        if (i == reverse_.end ()) return INIT;
+        return (i -> second.ns_); }
+    uint64_t flags (const ::std::size_t x) const
+    {   auto i = reverse_.find (x);
+        if (i == reverse_.end ()) return NOFLAGS;
+        return (i -> second.flags_); }
+    uint64_t flags2 (const ::std::size_t x) const
+    {   auto i = reverse_.find (x);
+        if (i == reverse_.end ()) return NOFLAGS;
+        return (i -> second.flags2_); }
+    template < typename VALUE > VALUE starts_with (const ::std::string& s, ::std::string::size_type* ends_at = nullptr) const
     {   ::std::size_t len = s.length ();
         if (len > 0)
-            for (symbol_t::const_iterator i = symbol_.cbegin (); i != symbol_.cend (); ++i)
+            for (typename symbol_t :: const_iterator i = symbol_.cbegin (); i != symbol_.cend (); ++i)
             {   ::std::string::size_type max = i -> second.sz_.length ();
                 if ((max > 0) && (max <= len))
                     if (compare_no_case (s.substr (0, max), i -> second.sz_))
-                        return static_cast < VALUE > (i -> second.v_); }
+                    {   if (ends_at != nullptr) *ends_at = max;
+                        return static_cast < VALUE > (i -> second.v_); } }
         return static_cast < VALUE > (0); }
-    ::std::string after_start (const ::std::string& s) const;
-    ::std::string name (const ::std::size_t x) const;
-    ::std::string report () const; };
+    ::std::string after_start (const ::std::string& s) const
+    {   ::std::size_t len = s.length ();
+        if (len > 0)
+            for (typename symbol_t :: const_iterator i = symbol_.cbegin (); i != symbol_.cend (); ++i)
+            {   ::std::string::size_type max = i -> second.sz_.length ();
+                if ((max > 0) && (max <= len))
+                    if (compare_no_case (s.substr (0, max), i -> second.sz_))
+                        return s.substr (max); }
+        return s; }
+    ::std::string name (const ::std::size_t x) const
+    {   extern ::std::string namespace_name (const CATEGORY ns);
+        auto i = reverse_.find (x);
+        if (i == reverse_.end ()) return ::std::string ();
+        if (i -> second.ns_ == INIT) return i -> second.sz_;
+        ::std::string res (namespace_name (i -> second.ns_));
+        res += colonisation < CATEGORY > :: ns_sep ();
+        res += i -> second.sz_;
+        return res; }
+    ::std::string report () const
+    {   ::std::stringstream res;
+        for (typename symbol_t :: const_iterator i = symbol_.cbegin (); i != symbol_.cend (); ++i)
+        {   res << i -> first.first;
+            if (i -> first.second != 0) res << "/" << i -> first.second;
+            res << " : " << i -> second.report () << "\n"; }
+        return res.str (); } };

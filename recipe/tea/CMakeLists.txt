@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.97 LANGUAGES CXX)
+project (ssc VERSION 0.0.98 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -94,7 +94,7 @@ target_sources (ssc PRIVATE
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
         ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats4.h ${H}/stats/stats_impl.h
-        ${H}/symbol/symbol.h ${H}/symbol/symbol_table.h
+        ${H}/symbol/symbol.h ${H}/symbol/symbol_entry.h ${H}/symbol/symbol_key.h ${H}/symbol/symbol_store.h ${H}/symbol/symbol_table.h
         ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
             ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_charset.h ${H}/type/type_class.h ${H}/type/type_colour.h
             ${H}/type/type_cookie.h ${H}/type/type_core.h ${H}/type/type_csp.h ${H}/type/type_currency.h ${H}/type/type_enum.h ${H}/type/type_enum_vec.h
@@ -116,7 +116,7 @@ target_sources (ssc PRIVATE
             ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp ${S}/element/parentage.cpp ${S}/element/state.cpp
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitpick.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp  ${S}/icu/wrapper.cpp
-        ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp
+        ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/main/version.cpp
         ${S}/microdata/microdata_export.cpp ${S}/microdata/microdata_itemid.cpp ${S}/microdata/microdata_itemprop.cpp ${S}/microdata/microdata_itemscope.cpp
             ${S}/microdata/microdata_itemtype.cpp
         ${S}/microformat/family.cpp ${S}/microformat/field.cpp ${S}/microformat/microformat_constructor.cpp ${S}/microformat/microformat_export.cpp
@@ -127,7 +127,7 @@ target_sources (ssc PRIVATE
         ${S}/schema/schema_hierarchy.cpp ${S}/schema/schema_name.cpp ${S}/schema/schema_property.cpp ${S}/schema/schema_structure.cpp ${S}/schema/schema_type.cpp
             ${S}/schema/schema_version.cpp
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
-        ${S}/symbol/symbol.cpp ${S}/symbol/symbol_table.cpp
+        ${S}/symbol/symbol.cpp
         ${S}/type/type.cpp ${S}/type/type_aria.cpp ${S}/type/type_autocomplete.cpp ${S}/type/type_charset.cpp ${S}/type/type_class.cpp ${S}/type/type_colour.cpp
             ${S}/type/type_core.cpp ${S}/type/type_csp.cpp ${S}/type/type_currency.cpp ${S}/type/type_d.cpp ${S}/type/type_enum.cpp ${S}/type/type_httpequiv.cpp
             ${S}/type/type_lang.cpp ${S}/type/type_media.cpp ${S}/type/type_metaname.cpp ${S}/type/type_mime.cpp ${S}/type/type_paint.cpp ${S}/type/type_reals.cpp

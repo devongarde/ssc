@@ -102,12 +102,13 @@ template < > inline void enum_base < e_linebreak, t_linebreak > :: validate (nit
                 {   nits.pick (nit_dir_rtl_ltr, ed_math_3, "3.2.5.2 Attributes", es_error, ec_attribute, "the value 'indentingnewline' for LINEBREAK is not valid in MathML 3");
                     type_base < e_linebreak, t_linebreak > :: status (s_invalid); } }
 
-template < e_type E, typename ENUM, class LC = sz_true > struct enum_n : public symbol < ENUM, LC >, public enum_base < ENUM, E >
+template < e_type E, typename ENUM, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default, class LC = sz_true > struct enum_n :
+    public symbol < html_version, ENUM, CATEGORY, INIT, LC >, public enum_base < ENUM, E >
 {   typedef typename enum_base < ENUM, E > :: value_type value_type;
-    static void init (nitpick& nits, const symbol_entry < ENUM > table [], const ::std::size_t size, const bool wildcards = false)
-    {   symbol < ENUM, LC > :: init (nits, table, size, wildcards); }
+    static void init (nitpick& nits, const symbol_entry < html_version, ENUM, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
+    {   symbol < html_version, ENUM, CATEGORY, INIT, LC > :: init (nits, table, size, wildcards); }
     static void extend (const ::std::string& extension, const ::std::size_t e = 0)
-    {   symbol < ENUM, LC > :: extend (extension, e); }
+    {   symbol < html_version, ENUM, CATEGORY, INIT, LC > :: extend (extension, e); }
     static void extend (const vstr_t& extension, const ::std::size_t e = 0)
     {   for (auto ext : extension) extend (ext, e); }
     enum_n () = default;
@@ -122,7 +123,7 @@ template < e_type E, typename ENUM, class LC = sz_true > struct enum_n : public 
 #endif
 	void swap (enum_n& t) NOEXCEPT
     {   type_base < ENUM, E >::swap (t);
-        symbol < ENUM, LC > :: swap (t); }
+        symbol < html_version, ENUM, CATEGORY, INIT, LC > :: swap (t); }
     void reset ()
     {   enum_n tmp;
         swap (tmp); }
@@ -131,9 +132,9 @@ template < e_type E, typename ENUM, class LC = sz_true > struct enum_n : public 
         swap (tmp); }
     ENUM get () const { return enum_base < ENUM, E > :: value_; }
     static ::std::string values (const html_version& v)
-    {   return symbol < ENUM, LC > :: value_list (v); }
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: value_list (v); }
     ::std::string get_string () const
-    {   return symbol < ENUM, LC > :: name (enum_base < ENUM, E > :: value_); }
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name (enum_base < ENUM, E > :: value_); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   const ::std::string r = get_string ();
         if (r.empty ()) ss << '=' << original ();
@@ -145,19 +146,20 @@ template < e_type E, typename ENUM, class LC = sz_true > struct enum_n : public 
     ::std::string name () const
     {   return get_string (); }
     static ::std::string name (const ENUM e)
-    {   return symbol < ENUM, LC > :: name (e); }
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name (e); }
     ::std::string original () const
     {   return enum_base < ENUM, E > :: original (); }
     uint64_t flags ()
-    {   return symbol < ENUM, LC > :: flags (enum_base < ENUM, E > :: value_); }
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: flags (enum_base < ENUM, E > :: value_); }
     static uint64_t flags (const ENUM e)
-    {   return symbol < ENUM, LC > :: flags (e); }
-    html_version first () const { return symbol < ENUM, LC > :: first (); }
-    html_version last () const { return symbol < ENUM, LC > :: last (); }
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: flags (e); }
+    html_version first () const { return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first (); }
+    html_version last () const { return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last (); }
     static ::std::size_t value_count ()
-    {   return symbol < ENUM, LC > :: value_count (); } };
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: value_count (); } };
 
-template < e_type E, typename ENUM, class LC > void enum_n < E, ENUM, LC > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
+    void enum_n < E, ENUM, CATEGORY, INIT, LC > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s);
     enum_base < ENUM, E > :: original_ = s;
     if (v.xhtml () && ! v.svg () && (s.find_first_of (UPPERCASE) != ::std::string::npos))
@@ -166,17 +168,17 @@ template < e_type E, typename ENUM, class LC > void enum_n < E, ENUM, LC > :: se
     ::std::string t (s);
     if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "empty value");
     else
-    {   bool parsed = symbol < ENUM, LC > :: parse (knots, v, t);
+    {   bool parsed = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (knots, v, t);
         if (parsed || (v < html_4_0)) nits.merge (knots);
         else
         {   e_namespace n = examine_namespace (nits, v, t);
             if (n == ns_error) nits.pick (nit_bad_namespace, es_warning, ec_namespace, "unknown namespace");
             else if (n == ns_default) nits.merge (knots);
-            else parsed = symbol < ENUM, LC > :: parse (nits, v, t, n); }
+            else parsed = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t, n); }
         if (parsed)
-        {   enum_base < ENUM, E > :: value_ = symbol < ENUM, LC > :: get (); // ooops, two values :-(
-            const html_version f = symbol < ENUM, LC > :: first ();
-            if (! may_apply (v, f, symbol < ENUM, LC > :: last ()))
+        {   enum_base < ENUM, E > :: value_ = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: get (); // ooops, two values :-(
+            const html_version f = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first ();
+            if (! may_apply (v, f, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last ()))
                 nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ());
             else if (f.reject ())
                 nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());
@@ -237,7 +239,7 @@ template < > class type_master < t_length_absolute > : public enum_n < t_length,
 template < > class type_master < t_length_relative > : public enum_n < t_length, e_length_relative > { };
 template < > class type_master < t_linebreak > : public enum_n < t_linebreak, e_linebreak > { };
 template < > class type_master < t_linkparam > : public enum_n < t_linkparam, e_linkparam > { };
-template < > class type_master < t_listtype > : public enum_n < t_listtype, e_listtype, sz_false > { };
+template < > class type_master < t_listtype > : public enum_n < t_listtype, e_listtype, e_namespace, ns_default, sz_false > { };
 template < > class type_master < t_longdivstyle > : public enum_n < t_longdivstyle, e_longdivstyle > { };
 template < > class type_master < t_mah > : public enum_n < t_mah, e_mah > { };
 template < > class type_master < t_mathalign > : public enum_n < t_mathalign, e_mathalign > { };
@@ -252,6 +254,7 @@ template < > class type_master < t_mediakeyword > : public enum_n < t_mediakeywo
 template < > class type_master < t_metaname > : public enum_n < t_metaname, e_metaname > { };
 template < > class type_master < t_method > : public enum_n < t_method, e_method > { };
 template < > class type_master < t_microdata_domain > : public enum_n < t_microdata_domain, e_microdata_domain > { };
+template < > class type_master < t_microdata_root > : public enum_n < t_microdata_root, e_microdata_root > { };
 template < > class type_master < t_mime > : public enum_n < t_mime, e_mimetype > { };
 template < > class type_master < t_namedspace > : public enum_n < t_namedspace, e_namedspace > { };
 template < > class type_master < t_namespace > : public enum_n < t_namespace, e_namespace > { };
@@ -282,6 +285,7 @@ template < > class type_master < t_svg_mode > : public enum_n < t_svg_mode, e_sv
 template < > class type_master < t_svg_overflow > : public enum_n < t_svg_overflow, e_svg_overflow > { };
 template < > class type_master < t_svg_type_11 > : public enum_n < t_svg_type_11, e_svg_type_11 > { };
 template < > class type_master < t_svg_version > : public enum_n < t_svg_version, e_svg_version > { };
+template < > class type_master < t_svg_version_grand > : public enum_n < t_svg_version_grand, e_svg_version_grand > { };
 template < > class type_master < t_tableframe > : public enum_n < t_tableframe, e_tableframe > { };
 template < > class type_master < t_textdecoration > : public enum_n < t_textdecoration, e_textdecoration > { };
 template < > class type_master < t_transform_anim > : public enum_n < t_transform_anim, e_transform_anim > { };

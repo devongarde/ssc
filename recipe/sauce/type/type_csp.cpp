@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_httpequiv.h"
 #include "webpage/page.h"
 
-struct symbol_entry < e_csp_directive > csp_directive_symbol_table [] =
+struct symbol_entry < html_version, e_csp_directive > csp_directive_symbol_table [] =
 {   { { CSP_2 }, { HTML_UNDEF }, "base-uri", csp_base_uri },
     { { CSP_3 }, { HTML_UNDEF }, "block-all-mixed-content", csp_block_all_mixed_content },
     { { CSP_2 }, { HTML_UNDEF }, "child-src", csp_child },
@@ -53,7 +53,7 @@ struct symbol_entry < e_csp_directive > csp_directive_symbol_table [] =
     { { CSP_3 }, { HTML_UNDEF }, "update-insecure-requests", csp_update_insecure_requests },
     { { CSP_3 }, { HTML_UNDEF }, "worker-src", csp_worker } };
 
-struct symbol_entry < e_csp_keyword > csp_keyword_symbol_table [] =
+struct symbol_entry < html_version, e_csp_keyword > csp_keyword_symbol_table [] =
 {   { { CSP_1 }, { HTML_UNDEF },  "'self'", csk_self },
     { { CSP_1 }, { HTML_UNDEF },  "'unsafe-inline'", csk_unsafe_inline },
     { { CSP_1 }, { HTML_UNDEF },  "'unsafe-eval'", csk_unsafe_eval },
@@ -63,7 +63,7 @@ struct symbol_entry < e_csp_keyword > csp_keyword_symbol_table [] =
     { { CSP_3 }, { HTML_UNDEF },  "'unsafe-allow-redirects'", csk_unsafe_allow_redirects } };
 
 void csp_directive_init (nitpick& nits)
-{   type_master < t_csp_directive > :: init (nits, csp_directive_symbol_table, sizeof (csp_directive_symbol_table) / sizeof (symbol_entry < e_csp_directive >)); }
+{   type_master < t_csp_directive > :: init (nits, csp_directive_symbol_table, sizeof (csp_directive_symbol_table) / sizeof (symbol_entry < html_version, e_csp_directive >)); }
 
 void csp_keyword_init (nitpick& nits)
-{   type_master < t_csp_keyword > :: init (nits, csp_keyword_symbol_table, sizeof (csp_keyword_symbol_table) / sizeof (symbol_entry < e_csp_keyword >)); }
+{   type_master < t_csp_keyword > :: init (nits, csp_keyword_symbol_table, sizeof (csp_keyword_symbol_table) / sizeof (symbol_entry < html_version, e_csp_keyword >)); }

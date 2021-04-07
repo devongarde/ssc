@@ -63,10 +63,10 @@ public:
         microformat_.swap (m.microformat_); }
 
     template < class MICROFORMAT > const MICROFORMAT* get () const
-    {   assert (MICROFORMAT::whoami () == index_);
+    {   DBG_ASSERT (MICROFORMAT::whoami () == index_);
         return reinterpret_cast <const MICROFORMAT*> (microformat_.get ()); }
     template < class MICROFORMAT > MICROFORMAT* get ()
-    {   assert (MICROFORMAT::whoami () == index_);
+    {   DBG_ASSERT (MICROFORMAT::whoami () == index_);
         return reinterpret_cast <MICROFORMAT*> (microformat_.get ()); }
     const microformat_base* get () const
     {   return microformat_.get (); }
@@ -75,8 +75,8 @@ public:
 
     bool is_vocabulary () const { return index_ < first_rel_; }
     bool is_rel () const { return index_ >= first_rel_; }
-    e_class which_vocabulary () const { assert (is_vocabulary ()); return static_cast < e_class > (index_); }
-    e_rel which_rel () const { assert (is_rel ()); return static_cast < e_rel > (index_ /* - first_rel_ */ ); }
+    e_class which_vocabulary () const { DBG_ASSERT (is_vocabulary ()); return static_cast < e_class > (index_); }
+    e_rel which_rel () const { DBG_ASSERT (is_rel ()); return static_cast < e_rel > (index_ /* - first_rel_ */ ); }
     bool operator ! () const { return is_empty (); }
     bool is_empty () const { return ! microformat_; }
     bool is_valid () const { return (index_ != c_error) && (index_ != r_illegal); }

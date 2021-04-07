@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/pattern.h"
 
 bool test_character_class (nitpick& nits, const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
-{   assert (*i == '\\');
+{   DBG_ASSERT (*i == '\\');
     ::std::string::const_iterator x = i;
     bool res = true;
     if (++x == e)
@@ -99,7 +99,7 @@ bool test_character_class (nitpick& nits, const html_version& , const ::std::str
     return res; }
 
 bool test_bra (nitpick& nits, const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
-{   assert (*i == '(');
+{   DBG_ASSERT (*i == '(');
     ::std::string::const_iterator x = i;
     bool res = true, tmp = false;
     if (++x == e)
@@ -150,7 +150,7 @@ bool test_bra (nitpick& nits, const html_version& , const ::std::string::const_i
     return res; }
 
 bool test_squ (nitpick& nits, const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
-{   assert (*i == '[');
+{   DBG_ASSERT (*i == '[');
     ::std::string::const_iterator x = i;
     bool res = true, tmp = false;
     while (++x != e)
@@ -163,7 +163,7 @@ bool test_squ (nitpick& nits, const html_version& , const ::std::string::const_i
     return res; }
 
 bool test_brace (nitpick& nits, const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
-{   assert (*i == '{');
+{   DBG_ASSERT (*i == '{');
     ::std::string::const_iterator x = i;
     bool res = true, tmp = false, had_comma = false;
     while (++x != e)

@@ -782,11 +782,11 @@ void elements_init (nitpick& nits)
             else vebs.at (ei [i].tag_).set (ei [i].a_ [j]); } }
 
 attribute_bitset element_attributes (const e_element e)
-{   assert (e < vebs.size ());
+{   DBG_ASSERT (e < vebs.size ());
     if (e >= vebs.size ()) return attribute_bitset ();
     return vebs.at (e); }
 
 bool has_attribute (const e_element e, const e_attribute a)
-{   assert (e < vebs.size ());
+{   DBG_ASSERT (e < vebs.size ());
     if (e >= vebs.size ()) return false;
     return vebs.at (e).test (a); }

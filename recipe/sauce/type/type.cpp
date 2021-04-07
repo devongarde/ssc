@@ -283,6 +283,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_method);
         TEST_VALUE (t_methodological);
         TEST_VALUE (t_microdata_domain);
+        TEST_VALUE (t_microdata_root);
         TEST_VALUE (t_mime);
         TEST_VALUE (t_mimelist);
         TEST_VALUE (t_mode);
@@ -421,6 +422,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_units);
         TEST_VALUE (t_svg_values);
         TEST_VALUE (t_svg_version);
+        TEST_VALUE (t_svg_version_grand);
         TEST_VALUE (t_svg_viewbox);
         TEST_VALUE (t_sym);
         TEST_VALUE (t_tableframe);

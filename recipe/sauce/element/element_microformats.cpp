@@ -105,7 +105,7 @@ template < class PROPERTY > struct fmi
     return s; }
 
 void element::mf_put_vocab (const e_class v, const prop& p, const ::std::string& itemtype, const ::std::string& itemprop)
-{   assert (! p.invalid ());
+{   DBG_ASSERT (! p.invalid ());
     if (context.mf_export ())
     {   ::std::string val (mf_ -> get_string (v, p.get ()));
         if (! val.empty ())
@@ -119,12 +119,12 @@ void element::mf_put_vocab (const e_class v, const prop& p, const ::std::string&
             page_.export_item (naam, val); } } }
 
 void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
-{   assert (! p.invalid ());
+{   DBG_ASSERT (! p.invalid ());
     if (context.mf_export ())
     {   ::std::string val (mf_ -> get_string (v, p.get ()));
         if (! val.empty ())
         {   ::std::string hreflang, media, t (text ()), title, type;
-            assert (! rels.empty ());
+            DBG_ASSERT (! rels.empty ());
             if (a_.has (a_hreflang)) hreflang = a_.get_string (a_hreflang);
             if (a_.has (a_media)) media = a_.get_string (a_media);
             if (a_.has (a_title)) title = a_.get_string (a_title);

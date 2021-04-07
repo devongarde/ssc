@@ -58,6 +58,6 @@ public:
     bool invalid () const { return id_ == a_unknown; }
     bool has_key () const { return has_key_; }
     bool has_value () const { return has_value_; }
-    ::std::string get_key () const { assert (has_key_); return ::std::string (name_start_, name_end_); }
+    ::std::string get_key () const { DBG_ASSERT (has_key_); return ::std::string (name_start_, name_end_); }
     ::std::string get_string () const { if (! has_value_) return ::std::string (); return ::std::string (value_start_, value_end_); }
     ::std::string rpt () const; };

@@ -24,8 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct microdata_hierachy
 {   schema_version from_;
     schema_version to_;
-    e_schema general_;
-    e_schema specific_; };
+    e_schema_type general_;
+    e_schema_type specific_; };
 
 microdata_hierachy schema_hierarchy [] =
 {   {   { 3, 1 }, { 0, 0 }, sch_accommodation, sch_apartment },
@@ -1595,16 +1595,16 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_webpageelement, sch_wpfooter },
     {   { 2, 0 }, { 0, 0 }, sch_webpageelement, sch_wpheader },
     {   { 2, 0 }, { 0, 0 }, sch_webpageelement, sch_wpsidebar },
-    {   { 0, 0 }, { 0, 0 }, sch_illegal, sch_illegal } };
+    {   { 0, 0 }, { 0, 0 }, sty_illegal, sty_illegal } };
 
-typedef ssc_mm < e_schema, microdata_hierachy* > vmap_t;
-typedef ssc_mm < e_schema, e_schema > vss_t;
+typedef ssc_mm < e_schema_type, microdata_hierachy* > vmap_t;
+typedef ssc_mm < e_schema_type, e_schema_type > vss_t;
 vmap_t hierarchy;
 vss_t generalisations;
 
 void hierarchy_init (nitpick& nits)
-{   assert (hierarchy.empty ());
-    for (::std::size_t x = 0; schema_hierarchy [x].general_ != sch_illegal; ++x)
+{   DBG_ASSERT (hierarchy.empty ());
+    for (::std::size_t x = 0; schema_hierarchy [x].general_ != sty_illegal; ++x)
     {   hierarchy.insert (vmap_t::value_type (schema_hierarchy [x].general_, &schema_hierarchy [x]));
         if (generalisations.find (schema_hierarchy [x].specific_) != generalisations.cend ())
             for (vmap_t::const_iterator vi = hierarchy.find (schema_hierarchy [x].general_); (vi != hierarchy.cend ()) && (vi -> first == schema_hierarchy [x].general_); ++vi)
@@ -1614,22 +1614,22 @@ void hierarchy_init (nitpick& nits)
                             nits.pick (nit_schema_hierarchy, es_catastrophic, ec_microdata, "multiple generalisations for ", sch::name (schema_hierarchy [x].specific_), " (", schema_hierarchy [x].specific_, ")");
         generalisations.emplace (vss_t::value_type (schema_hierarchy [x].specific_, schema_hierarchy [x].general_)); } }
 
-void int_generalise  (const schema_version& v, const e_schema s, ssch_t& ssch)
+void int_generalise  (const e_schema_type s, ssch_t& ssch)
 {   ssch.insert (s);
     for (vss_t::const_iterator i = generalisations.find (s); (i != generalisations.cend ()) && (i -> first == s); ++i)
         if (ssch.find (i -> second) == ssch.cend ())
             for (vmap_t::const_iterator vi = hierarchy.find (i -> second); (vi != hierarchy.cend ()) && (vi -> first == i -> second); ++vi)
                 if (vi -> second != nullptr)
                     if (vi -> second -> specific_ == s)
-                        if (does_apply (v, vi -> second -> from_, vi -> second -> to_))
-                            int_generalise (v, i -> second, ssch); }
+                        if (does_apply < schema_version > (vsv [vi -> second -> from_.root ()], vi -> second -> from_, vi -> second -> to_))
+                            int_generalise (i -> second, ssch); }
 
-ssch_t generalise (const schema_version& v, const e_schema s)
+ssch_t generalise (const e_schema_type s)
 {   ssch_t res;
-    int_generalise (v, s, res);
+    int_generalise (s, res);
     return res; }
 
-bool is_specific_type_of (const schema_version& , const e_schema general, const e_schema specific)
+bool is_specific_type_of (const schema_version& , const e_schema_type general, const e_schema_type specific)
 {   for (vss_t::const_iterator x = generalisations.find (specific); x != generalisations.cend (); x = generalisations.find (x -> second))
         if (x -> second == general) return true;
     return false; }

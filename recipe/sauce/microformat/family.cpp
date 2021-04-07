@@ -146,6 +146,6 @@ bool is_plausible_parent (const family& f)
 
 bool is_plausible_parent (nitpick& nits, const e_class self, const e_class parent, const e_property p)
 {   if (context.tell (e_detail))
-        nits.pick (nit_detail, es_detail, ec_element, "is_plausible_parent", symbol < e_class > :: name (self), ", ", symbol < e_class > :: name (parent), ", ", prop :: name (p));
+        nits.pick (nit_detail, es_detail, ec_element, "is_plausible_parent", symbol < html_version, e_class > :: name (self), ", ", symbol < html_version, e_class > :: name (parent), ", ", prop :: name (p));
     if (is_plausible_parent (family (self, parent, p))) return true;
     return (parent == h1_card) && (self == h1_adr); }  // special case

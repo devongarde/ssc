@@ -26,10 +26,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct microdata_structure
 {   schema_version from_;
     schema_version to_;
-    e_schema record_ = sch_context;
+    e_schema_type record_ = sty_context;
     e_schema_property property_ = sp_context;
 #ifdef REQUIRE_CONSTRUCTOR
-    microdata_structure (const schema_version& from, const schema_version& to, const e_schema record = sch_context, const e_schema_property prop = sp_context)
+    microdata_structure (const schema_version& from, const schema_version& to, const e_schema_type record = sty_context, const e_schema_property prop = sp_context)
         : from_ (from), to_ (to), record_ (record), property_ (prop) { }
 #endif
 };
@@ -2385,16 +2385,90 @@ microdata_structure schema_structure [] =
 
     { { 2, 0 }, { 0, 0 }, sch_writeaction, sp_inlanguage },
 
-    { { 0, 0 }, { 0, 0 }, sch_illegal, sp_illegal } };
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_additional_name },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_adr },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_agent },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_anniversary },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_attach },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_bday },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_categories },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_class },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_comment },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_contact },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_country_name },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_created },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_description },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_dtstart },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_dtend },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_duration },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_email },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_exdate },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_extended_address },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_family_name },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_fn },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_gender_identity },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_geo },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_geo },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_given_name },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_honourific_prefix },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_honourific_suffix },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_impp },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_kind },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_lang },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_last_modified },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_locality },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_location },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_logo },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_member },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_n },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_nickname },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_note },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_org },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_organisation_name },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_organisation_unit },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_photo },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_post_office_box },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_postal_code },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_rdate },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_region },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_rel },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_related },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_resources },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_rev },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_role },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_rrule },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_sequence },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_sex },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_sound },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_status },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_street_address },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_summary },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_tel },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_title },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_transp },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_type },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_tz },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_uid },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_uid },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_url },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vevent, mp_url },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, mf_vcard, mp_value },
 
-typedef ::std::pair < e_schema, e_schema_property > mmd_key;
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, wwg_work, wp_author },
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, wwg_work, wp_license },
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, wwg_work, wp_title },
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, wwg_work, wp_work },
+
+    { { 0, 0 }, { 0, 0 }, sty_illegal, sp_illegal } };
+
+typedef ::std::pair < e_schema_type, e_schema_property > mmd_key;
 typedef ::std::multimap < mmd_key, microdata_structure* > mmd_t;
 mmd_t micromap;
 
 void microdata_init (nitpick& )
-{   assert (micromap.empty ());
-    for (microdata_structure* p = &schema_structure [0]; p -> record_ != sch_illegal; ++p)
-        if (micromap.find (::std::pair < e_schema, e_schema_property > (p -> record_, p -> property_)) != micromap.end ())
+{   DBG_ASSERT (micromap.empty ());
+    for (microdata_structure* p = &schema_structure [0]; p -> record_ != sty_illegal; ++p)
+        if (micromap.find (::std::pair < e_schema_type, e_schema_property > (p -> record_, p -> property_)) != micromap.end ())
             ::std::cerr << "microdata_init reports " << sch::name (p -> record_) << " (" << p -> record_ << "), " << schema_property_name (p -> property_) << " (" << p -> property_ << ") repeated\n";
         else
         {   mmd_key k (p -> record_, p -> property_);
@@ -2411,8 +2485,8 @@ void microdata_init (nitpick& )
 #endif // _DEBUG
 } }
 
-bool is_schema_property (const e_schema s, const e_schema_property p)
+bool is_schema_property (const e_schema_type s, const e_schema_property p)
 {   mmd_t::const_iterator i = micromap.find (mmd_key (s, p));
     if (i == micromap.cend ()) return false;
-    assert (i -> second != nullptr);
-    return does_apply (context.schema_ver (), i -> second -> from_, i -> second -> to_); };
+    DBG_ASSERT (i -> second != nullptr);
+    return does_apply < schema_version > (context.schema_ver (), i -> second -> from_, i -> second -> to_); };

@@ -39,7 +39,7 @@ bool check_class_spelling (nitpick& nits, const html_version& v, const ::std::st
 
 template < > inline void enum_n < t_class, e_class > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   enum_base < e_class, t_class > :: original_ = s;
-    if (symbol < e_class > :: parse (nits, v, s, enum_base < e_class, t_class > :: value_)) enum_base < e_class, t_class > :: status (s_good);
+    if (symbol < html_version, e_class > :: parse (nits, v, s, enum_base < e_class, t_class > :: value_)) enum_base < e_class, t_class > :: status (s_good);
     else enum_n < t_class, e_class > :: status (s_invalid); }
 
 template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& nits, const html_version& v, const ::std::string& ss)

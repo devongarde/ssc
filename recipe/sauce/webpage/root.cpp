@@ -36,7 +36,7 @@ bool path_root::applicable (const ::std::string& path) const
     return (local_path_to_nix (path.substr (0, site_path_.length ())) == site_path_); }
 
 ::boost::filesystem::path path_root::get_xxx_filename (const ::std::string& path, const ::boost::filesystem::path& p) const
-{   assert (applicable (path));
+{   DBG_ASSERT (applicable (path));
     ::std::string::size_type pos = site_path_.length ();
     ::boost::filesystem::path res (p);
     res /= path.substr (pos);
@@ -62,7 +62,7 @@ bool path_root::set_export (nitpick& nits, const ::boost::filesystem::path& ex)
     return true; }
 
 ::std::size_t paths_root::get_xxx (const ::std::string& f) const
-{   assert (root_.size () > 0);
+{   DBG_ASSERT (root_.size () > 0);
     for (::std::size_t i = root_.size () - 1; i > 0; --i)
         if (root_ [i] -> applicable (f)) return i;
     return 0; }

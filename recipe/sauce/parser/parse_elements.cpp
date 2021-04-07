@@ -46,7 +46,7 @@ void elements_node::reset (elements_node& en)
     return ven_.at (0).rpt (); }
 
 element_node* elements_node::find_corresponding_open (const elem& id, element_node* parent)
-{   assert (parent != nullptr);
+{   DBG_ASSERT (parent != nullptr);
     element_node* res = parent;
     while (res != nullptr)
     {   if (res -> id () == id) return res;
@@ -54,19 +54,19 @@ element_node* elements_node::find_corresponding_open (const elem& id, element_no
     return nullptr; }
 
 void elements_node::report_missing_closures (const html_version& v, element_node* parent, element_node* ancestor)
-{   assert (parent != nullptr);
-    assert (ancestor != nullptr);
+{   DBG_ASSERT (parent != nullptr);
+    DBG_ASSERT (ancestor != nullptr);
     while (parent -> has_parent ())
     {   if (parent == ancestor) return;
-        if (does_apply (v, parent -> id ().first (), parent -> id ().last ()))
-            if (does_apply (v, ancestor -> id ().first (), ancestor -> id ().last ()))
+        if (does_apply < html_version > (v, parent -> id ().first (), parent -> id ().last ()))
+            if (does_apply < html_version > (v, ancestor -> id ().first (), ancestor -> id ().last ()))
             {   bool is_lazy = parent -> id ().is_lazy (v);
                 const ::std::string n (parent -> id ().name ());
                 parent -> nits_.pick (nit_missing_close, is_lazy ? es_warning : es_error, ec_element, "<", n, "> has no matching </", n, ">"); }
         parent = parent -> parent_; } }
 
 element_node* elements_node::find_permitted_parent (const html_version& v, const elem& id, element_node* parent)
-{   assert (parent != nullptr);
+{   DBG_ASSERT (parent != nullptr);
     element_node* trans = nullptr;
     while (parent != nullptr)
     {   if (is_permitted_parent (v, id, parent -> id ()))
@@ -80,11 +80,11 @@ element_node* elements_node::find_permitted_parent (const html_version& v, const
     return nullptr; }
 
 void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, bra_element_ket& ket, const bool closing)
-{   assert (parent != nullptr);
-    assert (ancestor != nullptr);
-    if (does_apply (v, id.first (), id.last ()))
+{   DBG_ASSERT (parent != nullptr);
+    DBG_ASSERT (ancestor != nullptr);
+    if (does_apply < html_version > (v, id.first (), id.last ()))
         while ((parent != nullptr) && (parent != ancestor))
-        {   if (does_apply (v, parent -> id ().first (), parent -> id ().last ()))
+        {   if (does_apply < html_version > (v, parent -> id ().first (), parent -> id ().last ()))
             {   if (closing) is_permitted_parent (v, id, parent -> id ());
                 else is_permitted_parent (nits, v, id, parent -> id ());
                 nits.pick (nit_inserted_missing_closure, es_warning, ec_element, "inserted missing </", elem :: name (parent -> tag ()), ">");
@@ -97,25 +97,25 @@ void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v
             parent = parent -> parent_; } }
 
 void elements_node::hook_up (element_node* current, element_node*& previous, element_node*& parent, const bool closure, const bool open)
-{   assert (current != nullptr);
-    assert (parent != nullptr);
-    assert (! (closure && open));
+{   DBG_ASSERT (current != nullptr);
+    DBG_ASSERT (parent != nullptr);
+    DBG_ASSERT (! (closure && open));
     current -> next_ = current -> previous_ = current -> parent_ = current -> child_ = current -> last_ = nullptr;
     if (previous != nullptr)
     {   previous -> next_ = current;
         current -> previous_ = previous;
-        assert (parent == previous -> parent_);
+        DBG_ASSERT (parent == previous -> parent_);
         parent = current -> parent_ = previous -> parent_;
-        assert (parent -> last_ == previous);
+        DBG_ASSERT (parent -> last_ == previous);
         parent -> last_ = current; }
     else if (parent -> child_ == nullptr)
     {   parent -> child_ = parent -> last_ = current;
         current -> parent_ = parent; }
     else
-    {   assert (parent -> last_ != nullptr);
+    {   DBG_ASSERT (parent -> last_ != nullptr);
         current -> parent_ = parent;
         previous = parent -> last_;
-        assert (previous -> parent_ == parent);
+        DBG_ASSERT (previous -> parent_ == parent);
         current -> previous_ = previous;
         previous -> next_ = current;
         parent -> last_ = current; }
@@ -124,18 +124,18 @@ void elements_node::hook_up (element_node* current, element_node*& previous, ele
         previous = nullptr; }
     else if (closure)
     {   current = parent;
-        assert (current != nullptr);
+        DBG_ASSERT (current != nullptr);
         parent = current -> parent_;
         previous = current; }
     else previous = current; }
 
 element_node* elements_node::insert_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
-{   assert (parent != nullptr);
+{   DBG_ASSERT (parent != nullptr);
     if (ket.eofe_ != ket.end_)
         if (! is_whitespace (ket.eofe_, ket.end_))
             ket.nits_.pick (nit_attributes_on_closure, es_error, ec_element, "attributes not expected on a closure");
     bool matched = false;
-    if (does_apply (v, id.first (), id.last ()))
+    if (does_apply < html_version > (v, id.first (), id.last ()))
     {   element_node* ancestor = find_corresponding_open (id, parent);
         matched = (ancestor != nullptr);
         if (! matched)
@@ -151,12 +151,12 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
     return current; }
 
 element_node* elements_node::insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
-{   assert (id != elem_faux_document);
+{   DBG_ASSERT (id != elem_faux_document);
     elem def (default_parent (v, id));
     element_node* ancestor = find_permitted_parent (v, def, parent);
     if (ancestor == nullptr)
     {   ancestor = insert_family_tree (v, previous, parent, ket, def, true);
-        assert (ancestor != nullptr); }
+        DBG_ASSERT (ancestor != nullptr); }
     nitpick defnits (ket.line_, ket.nits_.get_context ());
     defnits.pick (nit_inserted_missing_parent, es_info, ec_element, "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting intermediate <", def.name (), ">");
     report_missing_closures (v, parent, ancestor);
@@ -169,7 +169,7 @@ element_node* elements_node::insert_family_tree (const html_version& v, element_
     return current; }
 
 element_node* elements_node::insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool open)
-{   assert (parent != nullptr);
+{   DBG_ASSERT (parent != nullptr);
     element_node* current = nullptr;
     element_node* ancestor = find_permitted_parent (v, id, parent);
     if (ancestor != nullptr)

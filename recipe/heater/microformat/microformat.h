@@ -260,10 +260,10 @@ template < > struct verify_mf < html_class, h1_card >
         {   if (! s.empty ())
             {   nits.pick (nit_hcard_infer, es_info, ec_microformat, "hcard property fn set to ", enquote (s));
                 fn -> set_value (nits, v, s); }
-            else nits.pick (nit_no_fn, ed_microformats, "http://microformats.org/wiki/hCard", es_error, ec_microformat, "hcard property fn is required but not supplied"); }
+            else nits.pick (nit_no_fn, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_error, ec_microformat, "hcard property fn is required but not supplied"); }
         if (fn -> good () && (org -> get_string () == fn -> get_string ()))
         {   if (n -> good ())
-                nits.pick (nit_n_fn, ed_microformats, "http://microformats.org/wiki/hCard", es_warning, ec_microformat, "when hcard org and fn are the same (e.g. ", quote (org -> get_string ()), "), n should be omitted");
+                nits.pick (nit_n_fn, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_warning, ec_microformat, "when hcard org and fn are the same (e.g. ", quote (org -> get_string ()), "), n should be omitted");
             non = true; }
         else
         {   ::std::string content (fn -> get_string ());
@@ -279,16 +279,16 @@ template < > struct verify_mf < html_class, h1_card >
                         given_name -> set_value (nits, v, components [0]); }
                     ::std::string naam = given_name -> get_string () + " " + family_name -> get_string ();
                     n -> set_value (nits, v, naam);
-                    if (context.tell (e_info)) nits.pick (nit_hcard_infer, ed_microformats, "http://microformats.org/wiki/hCard", es_info, ec_microformat, "hcard n set to ", quote (naam));
+                    if (context.tell (e_info)) nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "g/wiki/hCard", es_info, ec_microformat, "hcard n set to ", quote (naam));
                     return; }
                 if (! nickname -> good () && (components.size () == 1) && ! components [0].empty ())
                 {   nickname -> set_value (nits, v, components [0]);
-                    nits.pick (nit_hcard_infer, ed_microformats, "http://microformats.org/wiki/hCard", es_info, ec_microformat, "hcard nickname set to ", quote (components [0])); } } }
+                    nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_info, ec_microformat, "hcard nickname set to ", quote (components [0])); } } }
         if (! n -> good () && ! non)
             if (! s.empty ())
             {   nits.pick (nit_hcard_infer, es_info, ec_microformat, "hcard property n set to ", enquote (s));
                 n -> set_value (nits, v, s); }
-            else nits.pick (nit_no_n, ed_microformats, "http://microformats.org/wiki/hCard", es_error, ec_microformat, "hcard property n is required but neither supplied nor can be deduced"); } };
+            else nits.pick (nit_no_n, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_error, ec_microformat, "hcard property n is required but neither supplied nor can be deduced"); } };
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
     void microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: verify (nitpick& nits, const html_version& v)
@@ -297,7 +297,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
     if (unknown () && ! text ().empty ())
         if (has < name_at > ())
         {   name_at* n = get < name_at > ();
-            assert (n != nullptr);
+            DBG_ASSERT (n != nullptr);
             if (n -> unknown ())
             {   n -> set_value (nits, v, text ());
                 nits.pick (nit_mf_infer, es_comment, ec_microformat, name (), " property ", n -> name (), " set to ", enquote (text ())); } }

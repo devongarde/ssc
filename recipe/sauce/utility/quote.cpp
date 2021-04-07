@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 
 ::std::string enquote (const ::std::string& str, const ::std::string& quotesep)
-{   assert (quotesep.length () >= 2);
+{   DBG_ASSERT (quotesep.length () >= 2);
     ::std::string res;
     char quote = quotesep [0];
     res += quote;
@@ -37,7 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     return res; }
 
 ::std::string enquote (const vstr_t vs, const ::std::string& quotesep)
-{   assert (quotesep.length () >= 2);
+{   DBG_ASSERT (quotesep.length () >= 2);
     ::std::string res;
     char sep = quotesep [1];
     for (auto str : vs)
@@ -51,7 +51,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string unquote (::std::string::const_iterator ci, const ::std::string::const_iterator cie, const ::std::string& quotesep)
     // presumes string prepared by quote; not bulletproof
-{   assert (quotesep.length () >= 2);
+{   DBG_ASSERT (quotesep.length () >= 2);
     char quote = quotesep [0];
     ::std::string res;
     if (ci != cie)
@@ -68,7 +68,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     return res; }
 
 vstr_t unquote (const ::std::string& str, const ::std::size_t len, const ::std::string& quotesep)
-{   assert (quotesep.length () >= 2);
+{   DBG_ASSERT (quotesep.length () >= 2);
     vstr_t res;
     if (len) res.reserve (len);
     char sep = quotesep [1];

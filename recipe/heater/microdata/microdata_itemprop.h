@@ -22,14 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_itemtype.h"
 
 typedef uint32_t itemprop_index;
+typedef ::std::vector < itemprop_index > itemprop_indices;
 const itemprop_index illegal_itemprop = 0xFFFFFFFF;
 const itemprop_index null_itemprop = 0;
 
 itemprop_index make_itemprop_index (const e_schema_property p);
+itemprop_indices make_itemprop_indices (const e_schema_property p);
+itemprop_indices make_itemprop_indices (const vsp_t& vsp);
 itemprop_index make_itemprop_index (const e_property p);
+itemprop_indices make_itemprop_indices (const e_property p);
 e_itemprop_category prop_category (const itemprop_index ii);
 ::std::string bespoke_itemprop_name (const itemprop_index ii);
 itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);
+itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);
 ::std::string itemprop_index_name (const itemprop_index ndx);
 bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_index itemtype, const itemprop_index ndx, const ::std::string& value, const bool is_link);
 bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_index itemtype, const itemprop_index ndx, const itemtype_index value);

@@ -80,7 +80,7 @@ bool hook::parse (nitpick& nits, const html_version& , const ::std::string& file
     ::std::string secret = read_field < ::std::string > (json, SECRET);
     if (secret != context.secret ())
     {   nits.pick (nit_wrong_secret, es_catastrophic, ec_webmention, "wrong secret :-("); return false; }
-    assert (false);
+    DBG_ASSERT (false);
     source_.reset (nits, read_field < ::std::string > (json, SOURCE));
     target_.reset (nits, read_field < ::std::string > (json, TARGET));
     if (source_.empty () || target_.empty ())

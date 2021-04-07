@@ -38,7 +38,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 page::page (const ::std::string& name, ::std::string& content, const fileindex_t x, directory* d, const e_charcode encoding)
     :   name_ (name), schema_version_ (context.schema_ver ())
-{   assert (d != nullptr);
+{   DBG_ASSERT (d != nullptr);
     ids_.ndx (x);
     names_.ndx (x, false);
     directory_ = d;
@@ -46,7 +46,7 @@ page::page (const ::std::string& name, ::std::string& content, const fileindex_t
 
 page::page (nitpick& nits, const ::std::string& name, ::std::string& content, directory* d, const e_charcode encoding)
     :   name_ (name), schema_version_ (context.schema_ver ())
-{   assert (d != nullptr);
+{   DBG_ASSERT (d != nullptr);
     fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
     ids_.ndx (x);
     names_.ndx (x, false);
@@ -94,7 +94,7 @@ void page::charset (nitpick& nits, const html_version& v, const ::std::string& c
 
 bool page::parse (::std::string& content, const e_charcode )
 {   nits_.reset ();
-    assert (directory_ != nullptr);
+    DBG_ASSERT (directory_ != nullptr);
     ssi_.filename_ = name_;
     html_version v (html_5_3);
     content = parse_ssi (nits_, v, *directory_, ssi_, content);
@@ -107,7 +107,7 @@ void page::examine (const directory& d)
     {   if (context.md_export ()) md_export_.init (get_export_root ());
         document_.reset (new element (name_, nodes_.top (), nullptr, *this));
         context.mark (version ());
-        assert (document_ -> tag () == elem_faux_document);
+        DBG_ASSERT (document_ -> tag () == elem_faux_document);
         document_ -> reconstruct (&access_);
         ::std::string s = document_ -> make_children (0);
         if (context.tell (e_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
@@ -126,26 +126,26 @@ void page::verify_locale (const ::boost::filesystem::path& p)
 {   return get_disk_path ().stem ().string (); }
 
 void page::itemscope (const itemscope_ptr itemscope)
-{   assert (itemscope.get () != nullptr);
+{   DBG_ASSERT (itemscope.get () != nullptr);
     itemscope_ = itemscope;
     if (itemscope_ -> export_path ().empty ())
         itemscope_ -> set_exporter (md_export (), md_export_.append_path (get_export_root (), null_itemprop, true)); }
 
 ::std::string page::find_webmention () const
-{   assert (document_);
+{   DBG_ASSERT (document_);
     return document_ -> find_webmention (); }
 
 ::std::string page::find_mention_info (const url& u, bool text, bool anything)
-{   assert (document_);
+{   DBG_ASSERT (document_);
     return document_ -> find_mention_info (u, text, anything); }
 
 ::std::string page::load_url (nitpick& nits, const url& u) const
-{   assert (directory_ != nullptr);
+{   DBG_ASSERT (directory_ != nullptr);
     return directory_ -> load_url (nits, u); }
 
 ::boost::filesystem::path page::absolute_member (nitpick& nits, const ::boost::filesystem::path& file) const
 {   if (file.string ().find_first_of (":\\/") != ::std::string::npos) return file;
-    assert (directory_ != nullptr);
+    DBG_ASSERT (directory_ != nullptr);
     return directory_ -> get_disk_path (nits, local_path_to_nix (file.string ())); }
 
 ::std::string page::report ()
@@ -163,20 +163,20 @@ void page::itemscope (const itemscope_ptr itemscope)
     return res; }
 
 const ::std::string page::get_site_path () const
-{   assert (directory_ != nullptr);
+{   DBG_ASSERT (directory_ != nullptr);
     return join_site_paths (directory_ -> get_site_path (), name ()); }
 
 const ::boost::filesystem::path page::get_disk_path () const
-{   assert (directory_ != nullptr);
+{   DBG_ASSERT (directory_ != nullptr);
     return (directory_ -> get_disk_path () / name ()); }
 
 const ::boost::filesystem::path page::get_export_path () const
 {   if (! context.export_defined ()) return get_disk_path ();
-    assert (directory_ != nullptr);
+    DBG_ASSERT (directory_ != nullptr);
     return directory_ -> get_export_path () / name (); }
 
 bool page::verify_url (nitpick& nits, const ::std::string& s) const
-{   assert (directory_ != nullptr);
+{   DBG_ASSERT (directory_ != nullptr);
     if (! check_links ()) return true;
     url u (nits, version (), s);
     if (u.is_local () && ! check_links_) return true;

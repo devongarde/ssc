@@ -22,4 +22,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_type.h"
 
 void microdata_init (nitpick& nits);
-bool is_schema_property (const e_schema s, const e_schema_property p);
+bool is_schema_property (const e_schema_type s, const e_schema_property p);

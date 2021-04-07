@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type_aria.h"
 
-struct symbol_entry < e_aria_role > role_symbol_table [] =
+struct symbol_entry < html_version, e_aria_role > role_symbol_table [] =
 {   { { HTML_4_01, HV_ARIA }, { HTML_UNDEF }, "alert", role_alert },
     { { HTML_4_01, HV_ARIA }, { HTML_UNDEF }, "alertdialog", role_alertdialogue },
     { { HTML_4_01, HV_ARIA }, { HTML_UNDEF }, "application", role_application },
@@ -471,7 +471,7 @@ typedef rolemap::const_iterator rmi;
 rolemap default_roles, permitted_roles;
 
 void role_init (nitpick& nits)
-{   type_master < t_role > :: init (nits, role_symbol_table, sizeof (role_symbol_table) / sizeof (symbol_entry < e_aria_role >));
+{   type_master < t_role > :: init (nits, role_symbol_table, sizeof (role_symbol_table) / sizeof (symbol_entry < html_version, e_aria_role >));
     for (::std::size_t i = 0; default_role [i].elem_ != elem_undefined; ++i)
         default_roles.insert (rmv (role_key (default_role [i].elem_, default_role [i].role_), default_role [i]));
     for (::std::size_t i = 0; permitted_role [i].elem_ != elem_undefined; ++i)
@@ -481,7 +481,7 @@ bool is_role_lookup (const rolemap& rm, const html_version& v, const e_element e
 {   for (   rmi i = rm.find (role_key (elem, role));
             (i != rm.cend ());
             ++i)
-        if (does_apply (v, i -> second.from_, i -> second.to_)) return true;
+        if (does_apply < html_version > (v, i -> second.from_, i -> second.to_)) return true;
     return false; }
 
 bool is_x_role (const rolemap& rm, const html_version& v, const e_element elem, const e_aria_role role)

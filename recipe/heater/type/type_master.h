@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_core.h"
-#include "symbol/symbol.h"
+//#include "symbol/symbol.h"
 #include "utility/quote.h"
 #include "parser/parse_elements.h"
 #include "main/args.h"
@@ -120,7 +120,7 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : ti
             nits.pick (nit_empty, es_error, ec_type, "value expected");
         else if (tidy_string < T > :: good ())
         {   ::std::string ss (tidy_string < T > :: get_string ());
-            assert (SZ :: sz () != nullptr);
+            DBG_ASSERT (SZ :: sz () != nullptr);
             ::std::string::size_type pos = ss.find (SZ :: sz ());
             if (pos != ::std::string::npos)
             {   if (! test_value < P > (nits, v, ss.substr (pos+1))) tidy_string < T > :: status (s_invalid);

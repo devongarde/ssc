@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "main/version.h"
 #include "feedback/nitpick.h"
 #include "schema/schema_version.h"
 
@@ -38,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //      low nibble = day / 2
 
 // use these ids even though their value is obvious; there is no guarantee that
-// the values will continue to be obvious, e.g., for example, if very erly webapp
+// the values will continue to be obvious, e.g., for example, if very early webapp
 // specs should be integrated (not expected, which is why I'm not doing it, but...)
 #define HTML_2005    5
 #define HTML_2006    6
@@ -357,127 +358,129 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_OPERA        0x0000004000000000
 #define HE_SAFARI       0x0000008000000000
 
-class html_version
-{   unsigned char mjr_ = 0, mnr_ = 0;
-    uint64_t flags_ = 0, ext_ = 0;
+class html_version : public version
+{   uint64_t ext_ = NOFLAGS;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
     void init (const unsigned char mjr);
 public:
-    html_version () : mjr_ (0), mnr_ (0), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
+    html_version () = default;
     explicit html_version (const unsigned char mjr) { init (mjr); }
-    explicit html_version (const schema_version sv) : mjr_ (sv.mjr ()), mnr_ (sv.mnr ()), flags_ (NOFLAGS), ext_ (NOFLAGS) { }
-    html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
+    explicit html_version (const schema_version& sv) : version (sv.mjr (), sv.mnr ()), ext_ (NOFLAGS) { }
+    html_version (const unsigned char mjr, const unsigned char mnr, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS)
+        : version (mjr, mnr, flags), ext_ (extensions) { }
     html_version (const ::boost::gregorian::date& whatwg, const uint64_t flags = NOFLAGS, const uint64_t extensions = NOFLAGS);
 	html_version (const html_version& ) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	html_version (html_version&& ) = default;
 #endif // VS
-	~html_version() = default;
+	~html_version () = default;
     html_version& operator = (const html_version& ) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	html_version& operator = (html_version&& ) = default;
 #endif // VS
-    void swap (html_version& v) NOEXCEPT;
+    void swap (html_version& v) NOEXCEPT
+    {   version::swap (v);
+        ::std::swap (ext_, v.ext_); }
     void reset () { html_version v; swap (v); }
     void reset (const html_version& v) { html_version vv (v); swap (vv); }
-    bool unknown () const { return (mjr_ == 0) && (mnr_ == 0); }
-    bool known () const { return ! unknown (); }
-    bool is_not (const unsigned char mjr, const unsigned char mnr = 0xFF) const
+    void set_ext (const uint64_t u) { ext_ |= u; }
+    void reset_ext (const uint64_t u) { ext_ &= ~u; }
+    bool all_ext (const uint64_t u) const { return ((ext_ & u) == u); }
+    bool any_ext (const uint64_t u) const { return ((ext_ & u) != 0); }
+    bool no_ext (const uint64_t u) const { return ((ext_ & u) == 0); }
+    uint64_t ext () const { return ext_; }
+    bool is_not (const unsigned char j, const unsigned char n = 0xFF) const
     {   if (unknown ()) return false;
-        if (mjr != mjr_) return true;
-        return ((mnr != 0xFF) && (mnr != mnr_)); }
+        if (j != mjr ()) return true;
+        return ((n != 0xFF) && (n != mnr ())); }
     bool is_not (const html_version& v) const
-    {   return is_not (v.mjr_, v.mnr_); }
-    unsigned char mjr () const { return mjr_; }
-    unsigned char mnr () const { return mnr_; }
-    unsigned char level () const { return (flags_ & HV_LEVEL_MASK); }
-    bool is_0 () const { return mjr_ == 0; }
-    bool is_1 () const { return mjr_ == 1; }
-    bool is_2 () const { return mjr_ == 2; }
-    bool is_3 () const { return mjr_ == 3; }
-    bool is_4 () const { return mjr_ == 4; }
-    bool is_5 () const { return mjr_ > 4; }
-    bool is_b4_1 () const { return mjr_ < 1; }
-    bool is_b4_2 () const { return mjr_ < 2; }
-    bool is_b4_3 () const { return mjr_ < 3; }
-    bool is_b4_4 () const { return mjr_ < 4; }
-    bool is_b4_5 () const { return mjr_ < 5; }
-    bool is_1_or_more () const { return mjr_ >= 1; }
-    bool is_2_or_more () const { return mjr_ >= 2; }
-    bool is_3_or_more () const { return mjr_ >= 3; }
-    bool is_4_or_more () const { return mjr_ >= 4; }
-    bool bespoke () const { return ((ext_ & HE_BESPOKE) == HE_BESPOKE); }
-    bool chrome () const { return ((ext_ & HE_CHROME) == HE_CHROME); }
-    bool dinosaur () const { return ((flags_ & HV_DINOSAUR) == HV_DINOSAUR); }
-    bool experimental () const { return ((ext_ & HE_EXPERIMENTAL) == HE_EXPERIMENTAL); }
-    bool frameset () const { return ((flags_ & HV_FRAMESET) == HV_FRAMESET); }
-    bool ie () const { return ((ext_ & HE_IE) == HE_IE); }
-    bool has_math () const { return (ext_ & MATH_MASK) != 0; }
-    bool has_rdf () const { return (ext_ & RDF_MASK) != 0; }
-    bool has_svg () const { return (ext_ & SVG_MASK) != 0; }
-    bool has_xlink () const { return (ext_ & XLINK_MASK) != 0; }
-    int math () const { return static_cast < int > ((ext_ & MATH_MASK) >> MATH_SHIFT); }
-    int rdf () const { return static_cast < int > ((ext_ & RDF_MASK) >> RDF_SHIFT); }
-    int svg () const { return static_cast < int > ((ext_ & SVG_MASK) >> SVG_SHIFT); }
-    bool not_svg () const { return (ext_ & HE_NOT_SVG) != 0; }
+    {   return is_not (v.mjr (), v.mnr ()); }
+    bool any_level () const { return any_flags (HV_LEVEL_MASK); }
+    unsigned char level () const { return (flags () & HV_LEVEL_MASK); }
+    bool is_0 () const { return mjr () == 0; }
+    bool is_1 () const { return mjr () == 1; }
+    bool is_2 () const { return mjr () == 2; }
+    bool is_3 () const { return mjr () == 3; }
+    bool is_4 () const { return mjr () == 4; }
+    bool is_5 () const { return mjr () > 4; }
+    bool is_b4_1 () const { return mjr () < 1; }
+    bool is_b4_2 () const { return mjr () < 2; }
+    bool is_b4_3 () const { return mjr () < 3; }
+    bool is_b4_4 () const { return mjr () < 4; }
+    bool is_b4_5 () const { return mjr () < 5; }
+    bool is_1_or_more () const { return mjr () >= 1; }
+    bool is_2_or_more () const { return mjr () >= 2; }
+    bool is_3_or_more () const { return mjr () >= 3; }
+    bool is_4_or_more () const { return mjr () >= 4; }
+    bool bespoke () const { return all_ext (HE_BESPOKE); }
+    bool chrome () const { return all_ext (HE_CHROME); }
+    bool dinosaur () const { return all_flags (HV_DINOSAUR); }
+    bool experimental () const { return all_ext (HE_EXPERIMENTAL); }
+    bool frameset () const { return all_flags (HV_FRAMESET); }
+    bool ie () const { return all_ext (HE_IE); }
+    bool has_math () const { return any_ext (MATH_MASK); }
+    bool has_rdf () const { return any_ext (RDF_MASK); }
+    bool has_svg () const { return any_ext (SVG_MASK); }
+    bool has_xlink () const { return any_ext (XLINK_MASK); }
+    int math () const { return static_cast < int > ((ext () & MATH_MASK) >> MATH_SHIFT); }
+    int rdf () const { return static_cast < int > ((ext () & RDF_MASK) >> RDF_SHIFT); }
+    int svg () const { return static_cast < int > ((ext () & SVG_MASK) >> SVG_SHIFT); }
+    bool not_svg () const { return (ext () & HE_NOT_SVG) != 0; }
     e_svg_version svg_version () const;
     void svg_version (const e_svg_version v);
     e_mathversion math_version () const;
     void math_version (const e_mathversion v);
     bool is_plain_html () const;
-    int xlink () const { return static_cast < int > ((ext_ & XLINK_MASK) >> XLINK_SHIFT); }
-    void ext_set (const uint64_t u) { ext_ |= u; }
-    void ext_reset (const uint64_t u) { ext_ &= ~u; }
+    int xlink () const { return static_cast < int > ((ext () & XLINK_MASK) >> XLINK_SHIFT); }
     bool check_math_svg (nitpick& nits, const html_version& a, const ::std::string& x) const;
-    bool microdata () const { return ((ext_ & HE_MICRODATA) == HE_MICRODATA); }
-    bool mozilla () const { return ((ext_ & HE_MOZILLA) == HE_MOZILLA); }
-    bool netscape () const { return ((ext_ & HE_NETSCAPE) == HE_NETSCAPE); }
-    bool not10 () const { return ((flags_ & HV_NOT10) == HV_NOT10); }
-    bool not2 () const { return ((flags_ & HV_NOT2) == HV_NOT2); }
-    bool not2l1 () const { return ((flags_ & HV_NOT2L1) == HV_NOT2L1); }
-    bool not3 () const { return ((flags_ & HV_NOT3) != 0); }
-    bool not30 () const { return ((flags_ & HV_NOT30) == HV_NOT30); }
-    bool not32 () const { return ((flags_ & HV_NOT32) == HV_NOT32); }
-    bool not4 () const { return ((flags_ & HV_NOT4) == HV_NOT4); }
-    bool notx1 () const { return ((flags_ & HV_NOTX1) == HV_NOTX1); }
-    bool notx2 () const { return ((flags_ & HV_NOTX2) == HV_NOTX2); }
-    bool notx5 () const { return ((flags_ & HV_NOTX5) == HV_NOTX5); }
-    bool notplus () const { return ((flags_ & HV_NOTPLUS) == HV_NOTPLUS); }
-    bool not50 () const { return ((flags_ & HV_NOT50) == HV_NOT50); }
-    bool not51 () const { return ((flags_ & HV_NOT51) == HV_NOT51); }
-    bool not52 () const { return ((flags_ & HV_NOT52) == HV_NOT52); }
-    bool not53 () const { return ((flags_ & HV_NOT53) == HV_NOT53); }
-    bool opera () const { return ((ext_ & HE_OPERA) == HE_OPERA); }
-    bool reject () const { return ((flags_ & REJECT) == REJECT); }
-    bool required () const { return ((flags_ & REQUIRED) == REQUIRED); }
-    bool rfc_1867 () const { return ((flags_ & HV_RFC_1867) == HV_RFC_1867); }
-    bool rfc_1942 () const { return ((flags_ & HV_RFC_1942) == HV_RFC_1942); }
-    bool rfc_1980 () const { return ((flags_ & HV_RFC_1980) == HV_RFC_1980); }
-    bool rfc_2070 () const { return ((flags_ & HV_RFC_2070) == HV_RFC_2070); }
-    bool safari () const { return ((ext_ & HE_SAFARI) == HE_SAFARI); }
-    bool strict () const { return ((flags_ & HV_STRICT) == HV_STRICT); }
-    bool w3 () const { return ((flags_ & HV_W3) == HV_W3); }
-    bool webcomponents () const { return ((ext_ & HE_WEBCOMP) == HE_WEBCOMP); }
-    bool whatwg () const { return ((flags_ & HV_WHATWG) == HV_WHATWG); }
-    bool xhtml () const { return ((flags_ & HV_XHTML) == HV_XHTML); }
-    bool svg_x1 () const { return ((ext_ & HE_SVG_X1) == HE_SVG_X1); }
-    bool svg_x2 () const { return ((ext_ & HE_SVG_X2) == HE_SVG_X2); }
-    bool svg_old_html () const { return ((ext_ & HE_SVG_OLD_H) == HE_SVG_OLD_H); }
-    bool is_a_area () const { return ((flags_ & HR_A_AREA) == HR_A_AREA); }
-    bool is_external () const { return ((flags_ & HR_EXTERNAL) == HR_EXTERNAL); }
-    bool is_form () const { return ((flags_ & HR_FORM) == HR_FORM); }
-    bool is_linkhead () const { return ((flags_ & HR_LINKHEAD) == HR_LINKHEAD); }
-    bool is_linkbody () const { return ((flags_ & HR_LINKBODY) == HR_LINKBODY); }
-    bool is_link () const { return ((flags_ & HR_LINK) != 0); }
-    bool is_mf () const { return ((flags_ & HR_MF) != 0); }
-    bool is_rel () const { return ((flags_ & HR_ALL) != 0); }
+    bool microdata () const { return any_ext (HE_MICRODATA); }
+    bool mozilla () const { return any_ext (HE_MOZILLA); }
+    bool netscape () const { return any_ext (HE_NETSCAPE); }
+    bool not10 () const { return all_flags (HV_NOT10); }
+    bool not2 () const { return all_flags (HV_NOT2); }
+    bool not2l1 () const { return all_flags (HV_NOT2L1); }
+    bool not3 () const { return any_flags (HV_NOT3); }
+    bool not30 () const { return all_flags (HV_NOT30); }
+    bool not32 () const { return all_flags (HV_NOT32); }
+    bool not4 () const { return all_flags (HV_NOT4); }
+    bool notx1 () const { return all_flags (HV_NOTX1); }
+    bool notx2 () const { return all_flags (HV_NOTX2); }
+    bool notx5 () const { return all_flags (HV_NOTX5); }
+    bool notplus () const { return all_flags (HV_NOTPLUS); }
+    bool not50 () const { return all_flags (HV_NOT50); }
+    bool not51 () const { return all_flags (HV_NOT51); }
+    bool not52 () const { return all_flags (HV_NOT52); }
+    bool not53 () const { return all_flags (HV_NOT53); }
+    bool opera () const { return any_ext (HE_OPERA); }
+    bool reject () const { return all_flags (REJECT); }
+    bool required () const { return all_flags (REQUIRED); }
+    bool rfc_1867 () const { return all_flags (HV_RFC_1867); }
+    bool rfc_1942 () const { return all_flags (HV_RFC_1942); }
+    bool rfc_1980 () const { return all_flags (HV_RFC_1980); }
+    bool rfc_2070 () const { return all_flags (HV_RFC_2070); }
+    bool safari () const { return any_ext (HE_SAFARI); }
+    bool strict () const { return all_flags (HV_STRICT); }
+    bool transitional () const { return all_flags (HV_TRANSITIONAL); }
+    bool w3 () const { return all_flags (HV_W3); }
+    bool webcomponents () const { return any_ext (HE_WEBCOMP); }
+    bool whatwg () const { return all_flags (HV_WHATWG); }
+    bool xhtml () const { return all_flags ( HV_XHTML); }
+    bool svg_x1 () const { return any_ext (HE_SVG_X1); }
+    bool svg_x2 () const { return any_ext (HE_SVG_X2); }
+    bool svg_old_html () const { return any_ext (HE_SVG_OLD_H); }
+    bool is_a_area () const { return all_flags (HR_A_AREA); }
+    bool is_external () const { return all_flags (HR_EXTERNAL); }
+    bool is_form () const { return all_flags (HR_FORM); }
+    bool is_linkhead () const { return all_flags (HR_LINKHEAD); }
+    bool is_linkbody () const { return all_flags (HR_LINKBODY); }
+    bool is_link () const { return any_flags (HR_LINK); }
+    bool is_mf () const { return any_flags (HR_MF); }
+    bool is_rel () const { return any_flags (HR_ALL); }
     bool invalid_addendum (const html_version& v) const;
     bool deprecated (const html_version& current) const;
-    bool not_production () const { return ((flags_ & HV_NOTPROD) == HV_NOTPROD); }
+    bool not_production () const { return all_flags (HV_NOTPROD); }
     bool parse_doctype (nitpick& nits, const ::std::string& content);
     bool lazy () const;
-    uint64_t flags () const { return flags_; }
-    uint64_t ext () const { return ext_; }
     bool valid_charset (const ::std::string& charset) const;
     bool restricted_charset () const;
     const char *default_charset () const;
@@ -536,17 +539,13 @@ const html_version html_5_3 (HTML_5_3, HV_W3, HE_MATH_3 | HE_SVG_1_1);
 const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MATH_4 | HE_SVG_2_0);
 const html_version html_default (html_5_3);
 
-bool operator == (const html_version& lhs, const html_version& rhs);
-bool operator != (const html_version& lhs, const html_version& rhs);
-bool operator < (const html_version& lhs, const html_version& rhs);
-bool operator > (const html_version& lhs, const html_version& rhs);
-bool operator <= (const html_version& lhs, const html_version& rhs);
-bool operator >= (const html_version& lhs, const html_version& rhs);
-bool does_apply (const html_version& v, const html_version& from, const html_version& to);
-bool may_apply (const html_version& v, const html_version& from, const html_version& to);
+bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
 int w3_minor_5 (const html_version& v);
 int w3_5_minor (const html_version& v);
 e_emi extension_conflict (const html_version& lhs, const html_version& rhs);
 const char *default_charset (const html_version& v);
 const char *alternative_charset (const html_version& v);
+
+template < > inline bool does_apply < html_version > (const html_version& v, const html_version& from, const html_version& to)
+{   return does_html_apply (v, from, to); }
