@@ -154,12 +154,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class context;
 
-struct elem : symbol < e_element >
+struct elem : symbol < html_version, e_element >
 {   static element_bitset ignored_;
     elem () {}
-    elem (const html_version& v, const ::std::string& x) : symbol (v, x) { }
+    elem (const html_version& v, const ::std::string& x) : symbol < html_version, e_element > (v, x) { }
     elem (const elem& e) = default;
-    explicit elem (const e_element e) : symbol (e) { }
+    explicit elem (const e_element e) : symbol < html_version, e_element > (e) { }
     elem (nitpick& nits, const html_version& v, const ::std::string& x);
     bool parse (nitpick& nits, const html_version& v, const ::std::string& x);
     static void init (nitpick& nits);
@@ -171,7 +171,7 @@ struct elem : symbol < e_element >
     {   return ((categories () & (EF_MATH | EF_X_MATH)) != 0); }
     bool is_transparent (const html_version& v) const;
     void swap (elem& e)
-    {   symbol < e_element > :: swap (e); }
+    {   symbol < html_version, e_element > :: swap (e); }
     void reset ()
     {   elem e; swap (e); }
     void reset (const elem& e)
@@ -194,7 +194,7 @@ struct elem : symbol < e_element >
     bool wild_attributes (const html_version& v) const
     {   return (v.is_5 () && ((flags () & EP_5_WILDATTR) == EP_5_WILDATTR)); }
     bool unknown () const
-    {   return (symbol < e_element > :: unknown ()) || (symbol < e_element > :: get () == elem_undefined); } };
+    {   return (symbol < html_version, e_element > :: unknown ()) || (symbol < html_version, e_element > :: get () == elem_undefined); } };
 
 inline bool operator == (const elem& lhs, const elem& rhs) { return lhs.get () == rhs.get (); }
 inline bool operator != (const elem& lhs, const elem& rhs) { return lhs.get () != rhs.get (); }

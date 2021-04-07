@@ -20,12 +20,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "schema/schema_type.h"
+#include "schema/schema_name.h"
 #include "microdata/microdata_itemtype.h"
 
 void schema_property_init (nitpick& );
 e_schema_property identify_schema_property (nitpick& nits, const schema_version& v, const ::std::string& name);
+vsp_t identify_schema_properties (nitpick& nits, const schema_version& v, const ::std::string& name);
 bool check_schema_property_version (const schema_version& from, const schema_version& to, const e_schema_property prop, bool& found);
 ::std::string schema_property_name (const e_schema_property prop);
-bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema schema, const e_schema_property prop, const ::std::string& value, const bool is_link);
-bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema schema, const e_schema_property prop, const e_schema value);
+bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema_type schema, const e_schema_property prop, const ::std::string& value, const bool is_link);
+bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema_type schema, const e_schema_property prop, const e_schema_type value);
 vit_t sought_schema_itemtypes (const e_schema_property prop);

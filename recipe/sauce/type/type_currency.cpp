@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type_currency.h"
 
-struct symbol_entry < e_currency > currency_symbol_table [] =
+struct symbol_entry < html_version, e_currency > currency_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "AED", e_iso_AED },
     { { HTML_UNDEF }, { HTML_UNDEF }, "AFN", e_iso_AFN },
     { { HTML_UNDEF }, { HTML_UNDEF }, "ALL", e_iso_ALL },
@@ -203,4 +203,4 @@ struct symbol_entry < e_currency > currency_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "ZWL", e_iso_ZWL } };
 
 void currency_init (nitpick& nits)
-{   type_master < t_currency > :: init (nits, currency_symbol_table, sizeof (currency_symbol_table) / sizeof (symbol_entry < e_currency >)); }
+{   type_master < t_currency > :: init (nits, currency_symbol_table, sizeof (currency_symbol_table) / sizeof (symbol_entry < html_version, e_currency >)); }

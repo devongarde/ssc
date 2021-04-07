@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/args.h"
 #include "utility/lexical.h"
 #include "feedback/nitpick.h"
+#include "schema/schema_version.h"
 
 /*
 -N
@@ -235,16 +236,16 @@ void options::process (int argc, char** argv)
         (LINKS REVOKE ",r", "do not check whether https certificates have been revoked (sets " LINKS EXTERNAL ")")
         (LINKS XLINK ",X", "check crosslink ids")
 
-        (MF VERIFY ",M", "check microformats in class and rel attributes (see https://microformats.org/)")
+        (MF VERIFY ",M", "check microformats in class and rel attributes (see https://" MICROFORMATS_ORG "/)")
         (MF VERSION, ::boost::program_options::value < int > () -> default_value (3), "check this version of microformats (1, 2, or 3 for both)")
         (MF EXPORT, "export microformat data (requires " MF VERIFY ")")
 
         (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (0 to determine by HTML version)")
 
         (MICRODATA EXPORT, "export microformat data (only verified data if " MICRODATA MICRODATAARG " is set)")
-        (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands schema.org microdata)")
+        (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands " SCHEMA_ORG " microdata)")
         (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "export root directory (requires " MICRODATA EXPORT ")")
-        (MICRODATA VERSION, ::boost::program_options::value < ::std::string > (), "set default schema.org version (default: 11.0)")
+        (MICRODATA VERSION, ::boost::program_options::value < ::std::string > (), "set default " SCHEMA_ORG " version (default: " DEFAULT_SCHEMA_VERSION ")")
         (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "export virtual directory, syntax virtual=directory. Must correspond to " WEBSITE VIRTUAL)
 
         (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a catastrophe; may be repeated")
@@ -466,21 +467,21 @@ void options::contextualise ()
     if (var_.count (MICRODATA VERSION))
     {   ::std::string ver (var_ [MICRODATA VERSION].as < ::std::string > ());
         if (ver.empty ())
-        {   context.schema_major (DEFAULT_SCHEMA_MAJOR).schema_minor (DEFAULT_SCHEMA_MINOR);
+        {   context.schema_ver (schema_version (mdr_schema, DEFAULT_SCHEMA_MAJOR, DEFAULT_SCHEMA_MINOR));
             context.err () << "missing schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n"; }
         else
         {   ::std::string::size_type pos = ver.find ('.');
             // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
             if (pos == ::std::string::npos)
-                context.schema_major (static_cast < unsigned char > (lexical < unsigned int > :: cast (ver))).schema_minor (0);
+                context.schema_ver (schema_version (mdr_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0));
             else if (pos == 0)
-            {   context.schema_major (DEFAULT_SCHEMA_MAJOR).schema_minor (DEFAULT_SCHEMA_MINOR);
+            {   context.schema_ver (schema_version (mdr_schema, DEFAULT_SCHEMA_MAJOR, DEFAULT_SCHEMA_MINOR));
                 context.err () << "invalid schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n"; }
             else if (pos == ver.length () - 1)
-                context.schema_major (static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos)))).schema_minor (0);
-            else if (pos > 0) context
-                .schema_major (static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))))
-                .schema_minor (static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1)))); } }
+                context.schema_ver (schema_version (mdr_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0));
+            else if (pos > 0)
+                context.schema_ver (schema_version (mdr_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
+                                                                static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))))); } }
 
     context.codes (var_.count (NITS CODES));
     context.nids (var_.count (NITS NIDS));
@@ -618,6 +619,7 @@ void options::contextualise ()
     TEST_VAR (mediakeyword);
     TEST_VAR (method);
     TEST_VAR (microdata_domain);
+    TEST_VAR (microdata_root);
     TEST_VAR (namedspace);
     TEST_VAR (namespace);
     TEST_VAR (mathnotation);
@@ -644,6 +646,7 @@ void options::contextualise ()
     TEST_VAR (svg_mode);
     TEST_VAR (svg_overflow);
     TEST_VAR (svg_version);
+    TEST_VAR (svg_version_grand);
     TEST_VAR (tableframe);
     TEST_VAR (textdecoration);
     TEST_VAR (textrendering);
@@ -655,7 +658,8 @@ void options::contextualise ()
     TEST_VAR (xmlns);
 #undef TEST_VAR
 
-    if (context.write_path ().empty ()) context.write_path (context.root ()); }
+    if (context.write_path ().empty ()) context.write_path (context.root ());
+    schema_version::init (); }
 
 void pvs (::std::ostringstream& res, const vstr_t& data)
 {   for (auto i : data)
@@ -791,6 +795,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (mediakeyword);
     RPT_VAR (method);
     RPT_VAR (microdata_domain);
+    RPT_VAR (microdata_root);
     RPT_VAR (namedspace);
     RPT_VAR (namespace);
     RPT_VAR (mathnotation);
@@ -817,6 +822,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (svg_mode);
     RPT_VAR (svg_overflow);
     RPT_VAR (svg_version);
+    RPT_VAR (svg_version_grand);
     RPT_VAR (tableframe);
     RPT_VAR (textdecoration);
     RPT_VAR (textrendering);

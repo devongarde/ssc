@@ -31,7 +31,7 @@ template < > inline void enum_n < t_namespace, e_namespace > :: set_value (nitpi
         nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
     ::std::string t (::boost::to_lower_copy (trim_the_lot_off (s)));
     html_version from, to;
-    if (symbol < e_namespace > :: parse (nits, v, t, enum_base < e_namespace, t_namespace > :: value_, ns_default, &from, &to))
+    if (symbol < html_version, e_namespace > :: parse (nits, v, t, enum_base < e_namespace, t_namespace > :: value_, ns_default, &from, &to))
     {   if (may_apply (v, from, to))
         {   enum_base < e_namespace, t_namespace > :: status (s_good);
             enum_base < e_namespace, t_namespace > :: post_set_value (nits, v);
@@ -46,7 +46,7 @@ template < > inline void enum_n < t_xmlns, e_xmlns > :: set_value (nitpick& nits
 {   enum_base < e_xmlns, t_xmlns > :: original_ = s;
     ::std::string t (::boost::to_lower_copy (trim_the_lot_off (s)));
     html_version from, to;
-    if (symbol < e_xmlns > :: parse (nits, v, t, enum_base < e_xmlns, t_xmlns > :: value_, ns_default, &from, &to))
+    if (symbol < html_version, e_xmlns > :: parse (nits, v, t, enum_base < e_xmlns, t_xmlns > :: value_, ns_default, &from, &to))
     {   if (may_apply (v, from, to))
         {   enum_base < e_xmlns, t_xmlns > :: status (s_good);
             enum_base < e_xmlns, t_xmlns > :: post_set_value (nits, v);

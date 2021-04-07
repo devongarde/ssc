@@ -47,7 +47,7 @@ template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpo
         if ((s.find_first_not_of (DECIMAL) == ::std::string::npos) && (lexical < double > :: test (s)))
             type_base < double, t_fixedpoint > :: status (s_good);
         else
-        {   nits.pick (nit_sunk, ed_so_11 , "Number (https://schema.org/Number)", es_error, ec_type, quote (s), " contains unexpected characters, not just denary digit(s) and maybe a decimal point");
+        {   nits.pick (nit_sunk, ed_so_11 , "Number (https://" SCHEMA_ORG "/Number)", es_error, ec_type, quote (s), " contains unexpected characters, not just denary digit(s) and maybe a decimal point");
             type_base < double, t_fixedpoint > :: status (s_invalid); } }
     static double default_value () { return 0.0; }
     bool has_value (const double& b) const { return good () && (value_ == b); }

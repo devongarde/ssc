@@ -30,7 +30,7 @@ template < > inline void enum_n < t_lang, e_lang > :: set_value (nitpick& nits, 
     ::std::string::size_type pos = s.find ('-');
     if (pos != ::std::string::npos) lang = lang.substr (0, pos);
     if ((lang.length () >= 1) && (lang.length () <= 3))
-        if (symbol < e_lang >  :: parse (nits, v, lang, enum_base < e_lang, t_lang > :: value_))
+        if (symbol < html_version, e_lang >  :: parse (nits, v, lang, enum_base < e_lang, t_lang > :: value_))
         {   enum_base < e_lang, t_lang > :: status (s_good);
             return; }
     nits.pick (nit_lingo, es_warning, ec_type, quote (s), " is a rare or invalid language code");

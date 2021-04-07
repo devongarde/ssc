@@ -31,7 +31,7 @@ template < > struct type_master < t_itemprop > : string_vector < t_itemprop, sz_
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_itemprop, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_itemprop, sz_space > :: empty ())
-        {   nits.pick (nit_bad_itemprop, es_error, ec_type, "ITEMPROP requires a value");
+        {   nits.pick (nit_bad_itemprop, ed_jul20, "5.2.2 Items", es_error, ec_type, "ITEMPROP requires a value");
             string_value < t_itemprop > :: status (s_invalid); }
         else if (string_vector < t_itemprop, sz_space > :: good ())
             if (v.mjr () >= 10)
@@ -50,7 +50,7 @@ template < > struct type_master < t_itemtype > : string_vector < t_itemtype, sz_
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_itemtype, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_itemtype, sz_space > :: empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "ITEMTYPE requires a value");
+        {   nits.pick (nit_empty, ed_jul20, "5.2.2 Items", es_error, ec_type, "ITEMTYPE requires a value");
             string_vector < t_itemtype, sz_space > :: status (s_invalid); }
         else if (string_vector < t_itemtype, sz_space > :: good ())
         {   if (v.mjr () < 10) return;

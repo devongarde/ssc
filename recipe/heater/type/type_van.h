@@ -34,7 +34,7 @@ template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
         if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "CLEAR requires a value");
         else if (good ())
         {   vstr_t args (split_by_space (arg));
-            assert (args.size () > 0);
+            DBG_ASSERT (args.size () > 0);
             ::std::string::size_type start = 0;
             if ((arg.at (0) < '0') || (arg.at (0) > '9'))
             {   type_master < t_lraalign > lra;

@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 // RFC 3986
 
-struct symbol_entry < e_protocol > protocol_symbol_table [] =
+struct symbol_entry < html_version, e_protocol > protocol_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, PR_FILE, pr_file },
     { { HTML_TAGS }, { HTML_UNDEF }, PR_FTP, pr_ftp },
     { { HTML_4_0 }, { HTML_UNDEF }, PR_FTPS, pr_ftps },
@@ -62,11 +62,11 @@ protocol_server ps [] =
     {   pr_urn,     pt_urn   } };
 
 void protocol::init (nitpick& nits)
-{   symbol::init (nits, protocol_symbol_table, sizeof (protocol_symbol_table) / sizeof (struct symbol_entry < e_protocol >)); }
+{   symbol < html_version, e_protocol > :: init (nits, protocol_symbol_table, sizeof (protocol_symbol_table) / sizeof (struct symbol_entry < html_version, e_protocol >)); }
 
 e_scheme protocol::scheme () const
-{   e_protocol prot = symbol < e_protocol > :: get ();
-    assert (ps [prot].protocol_ == prot);
+{   e_protocol prot = symbol < html_version, e_protocol > :: get ();
+    DBG_ASSERT (ps [prot].protocol_ == prot);
     return ps [prot].scheme_; }
 
 bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_protocol current)
@@ -81,9 +81,9 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
             return false; }
         else
         {   e_protocol prot;
-            if (! symbol < e_protocol > :: parse (nits, v, lc.substr (0, colon), prot)) set (v, pr_other);
+            if (! symbol < html_version, e_protocol > :: parse (nits, v, lc.substr (0, colon), prot)) set (v, pr_other);
             else set (v, prot); }
-        if (! url_schemes < SCHEMES > :: parse (nits, v, scheme (), symbol < e_protocol > :: get (), x, component_))
+        if (! url_schemes < SCHEMES > :: parse (nits, v, scheme (), symbol < html_version, e_protocol > :: get (), x, component_))
             return false; }
     return true; }
 

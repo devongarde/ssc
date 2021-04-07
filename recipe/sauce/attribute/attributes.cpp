@@ -87,7 +87,7 @@ bool attributes :: invalid_id (nitpick& nits, const html_version& v, ids_t& ids,
 
 bool attributes :: invalid_access (nitpick& nits, const html_version& v, sstr_t* ids)
 {   bool res = false;
-    assert (ids != nullptr);
+    DBG_ASSERT (ids != nullptr);
     for (auto a : aar_)
         if (a.get () != nullptr)
             if (! a -> unknown () && ! a -> empty ())

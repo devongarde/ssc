@@ -89,8 +89,8 @@ void bras_ket::nodoctype (nitpick& nits, html_version& v, ::std::string::const_i
         nits.pick (nit_presume_html_1, ed_1, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at beginning of content; presuming HTML 1.0"); } }
 
 void bras_ket::mixed_mess (nitpick& nits, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char* item, const char* inside)
-{   assert (item != nullptr);
-    assert (inside != nullptr);
+{   DBG_ASSERT (item != nullptr);
+    DBG_ASSERT (inside != nullptr);
     nits.set_context (line_, near_here (b, e, i));
     nits.pick (nit_mixed_mess, es_warning, ec_parser, item, " starts inside ", inside); }
 
@@ -733,8 +733,8 @@ html_version bras_ket::parse (const ::std::string& content)
                                 {   if (! closure) { status = s_dull; break; }
                                     ::std::string n (elem::name (xmp_tag));
                                     if (! compare_no_case (n, ::std::string (collect, i)))
-                                    {   assert (collect - b > 2);
-                                        assert (e - 1 > i);
+                                    {   DBG_ASSERT (collect - b > 2);
+                                        DBG_ASSERT (e - 1 > i);
                                         if (xmp_tag == elem_xmp)
                                         {   nits.set_context (line_, collect-2, i+1);
                                             nits.pick (nit_closure_not_xmp, ed_1, "ELEMENT XMP", es_error, ec_element, "a closure started inside <", n, "> must be </", n, ">");
@@ -904,7 +904,7 @@ html_version bras_ket::parse (const ::std::string& content)
                 nits.pick (nit_eof_in_annotation, es_error, ec_parser, "document finishes in an annotation");
                 break;
             default :
-                assert (false);
+                DBG_ASSERT (false);
                 nits.pick (nit_eof_unexpected, es_error, ec_parser, "document finishes unexpectedly in xmp mode");
                 break; }
         ve_.emplace_back (nits, line_, x, e);

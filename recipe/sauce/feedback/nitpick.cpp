@@ -48,35 +48,36 @@ void nitpick::merge (nitpick&& np)
         nits_.emplace_back (n); }
 
 ::std::string nitpick::review () const
-{   ::std::string res;
+{   extern bool ignore_this_slob_stuff (const e_nit code);
+    ::std::string res;
     bool quote = false, dq = false, infoed = false, eol = false;
     if (! empty ())
     {   for (auto n : nits_)
-        {   switch (n.code ())
-            {   case nit_context:
-                    infoed = true;
-                    break;
-                case nit_use_double_quote_code :
-                    if (dq) continue;
-                    dq = true;
-                    break;
-                case nit_use_quote_code :
-                    if (quote) continue;
-                    quote = true;
-                    break;
-                case nit_newline_in_string :
-                    if (eol) continue;
-                    eol = true;
-                    break;
-                default : break; }
-            n.notify ();
-            if (context.test ())
-            {   extern bool ignore_this_slob_stuff (const e_nit code);
-                if ((n.code () != nit_context) && context.tell (static_cast < e_verbose > (static_cast < unsigned > (n.severity ()))) && ! ignore_this_slob_stuff (n.code ()))
+            if (context.tell (static_cast < e_verbose > (n.severity ())) && ! ignore_this_slob_stuff (n.code ()))
+            {   switch (n.code ())
+                {   case nit_context:
+                        infoed = true;
+                        break;
+                    case nit_use_double_quote_code :
+                        if (dq) continue;
+                        dq = true;
+                        break;
+                    case nit_use_quote_code :
+                        if (quote) continue;
+                        quote = true;
+                        break;
+                    case nit_newline_in_string :
+                        if (eol) continue;
+                        eol = true;
+                        break;
+                    default : break; }
+                bool not_context = (n.code () != nit_context);
+                if (not_context) n.notify ();
+                if (! context.test ()) res += n.review ();
+                else if (not_context)
                 {   res += " ";
                     if (context.spec ()) res += lookup_name (n.code ());
                     else res += ::boost::lexical_cast < ::std::string > (n.code ()); } }
-            else res += n.review (); }
         if (! res.empty ())
         {   ::std::string ln (::boost::lexical_cast < ::std::string > (line_));
             if (context.test ()) res = ln + " " + res + "\n";

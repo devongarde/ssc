@@ -21,8 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "schema/schema_type.h"
 
-typedef ::std::set < e_schema > ssch_t;
+typedef ::std::set < e_schema_type > ssch_t;
 
 void hierarchy_init (nitpick& nits);
-ssch_t generalise (const schema_version& v, const e_schema s);
-bool is_specific_type_of (const schema_version& sv, const e_schema general, const e_schema specific);
+ssch_t generalise (const e_schema_type s);
+bool is_specific_type_of (const schema_version& sv, const e_schema_type general, const e_schema_type specific);

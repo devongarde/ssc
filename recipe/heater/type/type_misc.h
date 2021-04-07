@@ -92,7 +92,7 @@ template < > struct type_master < t_imgsizes > : tidy_string < t_imgsizes >
                 for (auto sss : vs)
                 {   vstr_t srcsz (split_by_space (sss));
                     ::std::string& ssz (srcsz.at (srcsz.size () - 1));
-                    assert (! ssz.empty ());
+                    DBG_ASSERT (! ssz.empty ());
                     if (ssz.at (ssz.length () - 1) != ')')
                         if (    (ssz.length () < 3) ||
                                 (! compare_no_case (ssz.substr (ssz.length () - 2), "vw")) ||
@@ -145,7 +145,7 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space >
             else nits.pick (nit_single_character, ed_41, "17.11.2 Access keys", es_error, ec_type, quote (tidy_string < t_key > :: get_string ()), " is not a single character (which cannot be a space)");
         string_vector < t_key, sz_space > :: status (s_invalid); }
    bool invalid_access (nitpick& nits, const html_version& , sstr_t* keys)
-   {    assert (keys != nullptr);
+   {    DBG_ASSERT (keys != nullptr);
         if (! good ()) return false;
         if (! tested_)
         {   for (auto k : string_vector < t_key, sz_space > :: get ())

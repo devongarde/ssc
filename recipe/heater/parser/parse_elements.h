@@ -60,10 +60,10 @@ public:
     void harvest_nits (nitpick& nits);
     bool has_element (const e_element e) const;
     const element_node& top () const
-    {   assert (! invalid ());
+    {   DBG_ASSERT (! invalid ());
         return ven_.at (0); }
     element_node& top ()
-    {   assert (! invalid ());
+    {   DBG_ASSERT (! invalid ());
         return ven_.at (0); }
     html_version version () const { return version_; }
     ::std::string text ();

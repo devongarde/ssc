@@ -97,7 +97,7 @@ bool url::verify (nitpick& nits, const html_version& v, const element& e)
     if (is_simple_id ()) return true; // verify_id will check the id is valid
     if (is_local () && ! e.get_page ().check_links ()) return true;
     const directory* d = e.get_page ().get_directory ();
-    assert (d != nullptr);
+    DBG_ASSERT (d != nullptr);
     if (! d -> verify_url (nits, v, *this)) return false;
     if (context.crosslinks () && is_local () && has_id () && (has_path () || has_file ()))
     {   ::boost::filesystem::path target (d -> get_disk_path (nits, *this));
@@ -152,11 +152,11 @@ bool url::verify (nitpick& nits, const html_version& v, const element& e)
 void url::shadow (::std::stringstream& ss, const html_version& v, element* e)
 {   if ((context.copy () >= c_deduplicate) && is_local () && has_file ())
     {   ::std::string f (get_filepath ());
-        assert (! f.empty ());
+        DBG_ASSERT (! f.empty ());
         if (f.at (0) != '/')
-        {   assert (e != nullptr);
+        {   DBG_ASSERT (e != nullptr);
             const directory* const d = e -> get_page ().get_directory ();
-            assert (d != nullptr);
+            DBG_ASSERT (d != nullptr);
             f = join_and_sanatise_site_paths (d -> get_site_path (), f); }
         fileindex_t ndx = get_fileindex (f);
         if ((ndx != nullfileindex) && isdu (ndx))

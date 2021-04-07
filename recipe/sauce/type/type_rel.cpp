@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 // Remember RFC 2426
 
-struct symbol_entry < e_rel > rel_symbol_table [] =
+struct symbol_entry < html_version, e_rel > rel_symbol_table [] =
 {   { { HTML_4_0, HR_MF2 }, { HTML_UNDEF }, R_ABOUT, r_about },
     { { HTML_4_0, HR_MF2 }, { HTML_UNDEF }, R_ACCESSIBILITY, r_accessibility },
     { { HTML_4_0, HR_MF }, { HTML_UNDEF }, R_ACQUAINTANCE, r_acquaintance },
@@ -350,8 +350,8 @@ struct symbol_entry < e_rel > rel_symbol_table [] =
     { { HTML_1_0 }, { HTML_UNDEF }, "useindex", r_useindex } };
 
 void rel_init (nitpick& nits)
-{   type_master < t_rel > :: init (nits, rel_symbol_table, sizeof (rel_symbol_table) / sizeof (symbol_entry < e_rel >)); }
+{   type_master < t_rel > :: init (nits, rel_symbol_table, sizeof (rel_symbol_table) / sizeof (symbol_entry < html_version, e_rel >)); }
 
 void check_rel_spelling (nitpick& nits, const html_version& v, const ::std::string& original)
 {   check_spelling (nits, v, original);
-    nits.pick (nit_unknown_rel, ed_microformats, "http://microformats.org/wiki/existing-rel-values", es_warning, ec_type, quote (::boost::to_lower_copy (trim_the_lot_off (original))), " is an unknown rel / rev identifier"); }
+    nits.pick (nit_unknown_rel, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/existing-rel-values", es_warning, ec_type, quote (::boost::to_lower_copy (trim_the_lot_off (original))), " is an unknown rel / rev identifier"); }

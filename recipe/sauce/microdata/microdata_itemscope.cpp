@@ -41,23 +41,11 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
     {   type_.push_back (ii);
         type_master < t_schema > ts;
         ts.set_value (nits, v, name);
-        switch (type_master < t_microdata_domain > :: starts_with (name))
-        {   case mdd_microformats :
-            {   type_master < t_class > c;
-                c.set_value (nits, v, type_master < t_microdata_domain > :: after_start (name));
-                if (context.md_export ())
-                    for (auto cc : c.get ())
-                        export_ -> add (export_path_, make_itemtype_index (cc)); }
-                break;
-            case mdd_schema :
-            {   sch s (nits, v, type_master < t_microdata_domain > :: after_start (name));
-                p.mark (s.get ());
-                if (context.md_export ())
-                    export_ -> add (export_path_, make_itemtype_index (s.get ())); }
-                break;
-            // purl, whatwg, etc.. ; this needs generalising
-            default :
-                break; } } }
+        if (type_master < t_microdata_root > :: starts_with (name) != mdr_none)
+        {   sch s (nits, v, type_master < t_microdata_root > :: after_start (name));
+            p.mark (s.get ());
+            if (context.md_export ())
+                export_ -> add (export_path_, make_itemtype_index (s.get ())); } } }
 
 bool microdata_itemscope::note_itemid (nitpick& , const html_version& , const ::std::string& name)
 {   if (context.md_export () && ! name.empty ())
@@ -65,47 +53,45 @@ bool microdata_itemscope::note_itemid (nitpick& , const html_version& , const ::
     return true; }
 
 bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, page& p)
-{   itemprop_index prop = find_itemprop_index (nits, v, name, type_.empty ());
-    if (prop == illegal_itemprop)
-    {   switch (type_master < t_microdata_domain > :: starts_with (value))
-        {   case mdd_none :     return false;
-            case mdd_schema :   break;
-            default :           nits.pick (nit_bad_itemprop, es_error, ec_microdata, "expecting schema.org");
-                                return false; }
-        if (value.at (4) == 's') prop = find_itemprop_index (nits, v, name.substr (HTTPS_SCHEMA_ORG), type_.empty ());
-        else prop = find_itemprop_index (nits, v, name.substr (HTTP_SCHEMA_ORG), type_.empty ()); }
-    if (prop != illegal_itemprop)
-    {   nitpick knots;
+{   itemprop_indices ii = find_itemprop_indices (nits, v, name, type_.empty ());
+    e_microdata_root mr = mdr_none;
+    if (ii.empty ())
+    {   ::std::string::size_type ends_at = 0;
+        mr = type_master < t_microdata_root > :: starts_with (value, &ends_at);
+        if (mr == mdr_none) return false;
+        ii = find_itemprop_indices (nits, v, name.substr (ends_at), type_.empty ()); }
+    nitpick knots, nuts;
+    for (auto prop : ii)
         for (auto i : type_)
             if (are_categories_compatible (knots, v, prop, i))
-            {   nitpick nuts;
-                if (is_valid_property (nuts, v, i, prop, value, is_link))
+            {   if (is_valid_property (nuts, v, i, prop, value, is_link))
                 {   nits.merge (nuts);
                     itemprop_.emplace (prop, itemprop_value (value));
                     if (context.md_export ()) export_ -> add (export_path_, prop, value);
-                    p.mark (static_cast < e_schema > (i & uint32_item_mask), static_cast < e_schema_property > (prop & uint32_item_mask));
+                    p.mark (static_cast < e_schema_type > (ndx_item (i)), static_cast < e_schema_property > (ndx_item (prop)));
                     return true; }
-                knots.merge (nuts); }
-        nits.merge (knots); }
+                knots.merge (nuts); nuts.reset (); }
+    nits.merge (knots);
     return false; }
 
 bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, itemscope_ptr& value, page& p)
-{   itemprop_index prop = find_itemprop_index (nits, v, name, type_.empty ());
-    if (value.get () != nullptr) value -> set_exporter (export_, export_ -> append_path (export_path_, prop, true));
-    if (prop != illegal_itemprop)
-    {   nitpick knots;
-        for (auto parent : type_)
+{   itemprop_indices ii = find_itemprop_indices (nits, v, name, type_.empty ());
+    if (value.get () != nullptr)
+        for (auto prop : ii)
+            value -> set_exporter (export_, export_ -> append_path (export_path_, prop, true));
+    nitpick knots, nuts;
+    for (auto parent : type_)
+        for (auto prop : ii)
             if (are_categories_compatible (knots, v, parent, prop))
                 for (auto child : value -> type_)
                     if (are_compatible_types (knots, v, parent, child))
-                    {   nitpick nuts;
-                        if (is_valid_property (nuts, v, parent, prop, child))
+                    {   if (is_valid_property (nuts, v, parent, prop, child))
                         {   nits.merge (nuts);
                             itemprop_.emplace (prop, value);
-                            p.mark (static_cast < e_schema > (parent & uint32_item_mask), static_cast < e_schema_property > (prop & uint32_item_mask));
+                            p.mark (static_cast < e_schema_type > (parent & uint32_item_mask), static_cast < e_schema_property > (prop & uint32_item_mask));
                             return true; }
-                        knots.merge (nuts); }
-        nits.merge (knots); }
+                        knots.merge (nuts); nuts.reset (); }
+    nits.merge (knots);
     return false; }
 
 ::std::string microdata_itemscope::report (const ::std::size_t offset) const
@@ -115,13 +101,13 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
         if (! i -> second.valueless_by_exception ())
 #endif // BOOVAR
 #if BOOVAR == 1
-// I can't honest be arsed to work my around around ::boost::variants' restrictions, and in particular VS2015's (presuming) bizarre
-// belief that code that contains no consts suffers from too many consts
+// I can't honest be arsed to work my way around ::boost::variants' restrictions, and in particular VS2015's (presuming) bizarre
+// whinging that code containing no consts has too many consts
             ;
 #else
             switch (i -> second.index ())
             {   case ip_itemscope :
-                    assert (ssc_get < itemscope_ptr > (i -> second).get () != nullptr);
+                    DBG_ASSERT (ssc_get < itemscope_ptr > (i -> second).get () != nullptr);
                     res += indent + itemprop_index_name (i -> first) + ":\n";
                     res += ssc_get < itemscope_ptr > (i -> second) -> report (offset+1);
                     break;
@@ -140,7 +126,7 @@ vit_t microdata_itemscope::sought_itemtypes (const html_version& v, const ::std:
     itemprop_index prop = find_itemprop_index (nits, v, name, type_.empty ());
     if (prop != illegal_itemprop)
         if (prop_category (prop) == itemprop_schema)
-            for (auto i : sought_schema_itemtypes (static_cast < e_schema_property > (prop & uint32_item_mask)))
+            for (auto i : sought_schema_itemtypes (static_cast < e_schema_property > (ndx_item (prop))))
                 res.push_back (i);
     return res; }
 

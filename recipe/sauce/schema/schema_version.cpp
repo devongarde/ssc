@@ -19,72 +19,68 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+#include "main/context.h"
 #include "schema/schema_version.h"
 #include "parser/html_version.h"
 
+vsv_t vsv;
+
 schema_version::schema_version (const html_version& v)
 {   schema_version sv;
-    sv.mjr_ = v.mjr ();
-    sv.mnr_ = v.mnr ();
+    set_mjr (v.mjr (), v.mnr ());
     if (! sv.invalid ()) swap (sv); }
 
-void schema_version::swap (schema_version& v) NOEXCEPT
-{   ::std::swap (mjr_, v.mjr_);
-    ::std::swap (mnr_, v.mnr_);
-    ::std::swap (flags_, v.flags_); }
+void schema_version::init () // call post context construction
+{   vsv.resize (mdd_illegal);
+    vsv [mdr_none] = default_schema;
+    vsv [mdr_schema] = context.schema_ver ();
+    vsv [mdr_whatwg] = whatwg_schema;
+    if (context.mf_version1 ()) vsv [mdr_microformats] = mf_1;
+    else vsv [mdr_microformats] = mf_2;
+    vsv [mdr_purl] = default_schema; }
 
 ::std::string schema_version::report () const
 {   ::std::ostringstream res;
-    if (known ())
-        if (mjr_ == 7)
-            res << static_cast < int > (mjr_) << ".0" << static_cast < int > (mnr_);
-        else res << static_cast < int > (mjr_) << "." << static_cast < int > (mnr_);
+    if (known ()) switch (root ())
+    {   case mdr_schema :
+            res << "schema.org v";
+            if (mjr () == 7)
+                res << static_cast < int > (mjr ()) << ".0" << static_cast < int > (mnr ());
+            else res << static_cast < int > (mjr ()) << "." << static_cast < int > (mnr ());
+            break;
+        case mdr_microformats :
+            res << "microformats.org v";
+            res << static_cast < int > (mjr ());
+            break;
+        case mdr_whatwg :
+            res << "n.whatwg.org";
+            break;
+        default :
+            res << "unknown schema";
+            break; }
     return res.str (); }
 
-bool operator == (const schema_version& lhs, const schema_version& rhs)
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    if (lhs.mjr () != rhs.mjr ()) return false;
-    return (lhs.mnr () == rhs.mnr ()); }
-
-bool operator != (const schema_version& lhs, const schema_version& rhs)
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    return ! (lhs == rhs); }
-
-bool operator < (const schema_version& lhs, const schema_version& rhs)
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    if (lhs.mjr () > rhs.mjr ()) return false;
-    if (lhs.mjr () < rhs.mjr ()) return true;
-    return (lhs.mnr () < rhs.mnr ()); }
-
-bool operator > (const schema_version& lhs, const schema_version& rhs)
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    return ! (lhs < rhs) && ! (lhs == rhs); }
-
-bool operator <= (const schema_version& lhs, const schema_version& rhs)
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    return ! (lhs > rhs); }
-
-bool operator >= (const schema_version& lhs, const schema_version& rhs)
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    return ! (lhs < rhs); }
-
-bool does_apply (const schema_version& v, const schema_version& from, const schema_version& to)
-{   if (! from.unknown () && (v < from)) return false;
-    if (! to.unknown () && (v > to)) return false;
-    return true; }
-
-bool may_apply (const schema_version& v, const schema_version& from, const schema_version& to)
-{   return (v.unknown () || does_apply (v, from, to)); }
-
 bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, const schema_version& rhs_from, const schema_version& rhs_to)
-{   if ((lhs_from > rhs_to) && ! rhs_to.unknown ()) return false;
+{   DBG_ASSERT (lhs_from.unknown () || lhs_to.unknown () || (lhs_from.root () == lhs_to.root ()));
+    DBG_ASSERT (rhs_from.unknown () || rhs_to.unknown () || (rhs_from.root () == rhs_to.root ()));
+    if (! lhs_from.unknown ()) if (! rhs_from.unknown ()) if (lhs_from.root () != rhs_from.root ()) return false;
+    if ((lhs_from > rhs_to) && ! rhs_to.unknown ()) return false;
     return (lhs_to.unknown () || (lhs_to >= rhs_from)); }
 
-bool is_valid_schema_version (const unsigned char mjr, const unsigned char mnr)
-{   if ((mjr == 0) && (mnr == 0)) return true;
-    if ((mjr > schema_major_max) || (mjr < 2)) return false;
-    switch (mjr)
-    {   case 2 : return mnr < 3;
-        case 3 : return true;
-        case 7 : return mnr < 5;
-        default : return mnr == 0; } }
+bool is_valid_schema_version (const e_microdata_root root, const unsigned char j, const unsigned char n)
+{   switch (root)
+    {   case mdr_none : return true;
+        case mdr_schema :
+            if ((j == 0) && (n == 0)) return true;
+            if ((j > schema_major_max) || (j < 2)) return false;
+            switch (j)
+            {   case 2 : return n < 3;
+                case 3 : return true;
+                case 7 : return n < 5;
+                default : return n == 0; }
+        case mdr_whatwg :
+            return ((j == 1) && (n == 0));
+        case mdr_microformats :
+            if (n != 0) return false;
+            return ((j == 1) || (j == 2));
+        default : return false; } }

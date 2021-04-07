@@ -72,31 +72,31 @@ public:
     bool has_parent () const { return parent_ != nullptr; }
     bool presumed () const { return presumed_; }
     const element_node& child () const
-    {   assert (has_child ());
+    {   DBG_ASSERT (has_child ());
         return *child_; }
     const element_node& last () const
-    {   assert (has_last ());
+    {   DBG_ASSERT (has_last ());
         return *last_; }
     const element_node& next () const
-    {   assert (has_next ());
+    {   DBG_ASSERT (has_next ());
         return *next_; }
     const element_node& previous () const
-    {   assert (has_previous ());
+    {   DBG_ASSERT (has_previous ());
         return *previous_; }
     const element_node& parent () const
-    {   assert (has_parent ());
+    {   DBG_ASSERT (has_parent ());
         return *parent_; }
     element_node& child ()
-    {   assert (has_child ());
+    {   DBG_ASSERT (has_child ());
         return *child_; }
     element_node& next ()
-    {   assert (has_next ());
+    {   DBG_ASSERT (has_next ());
         return *next_; }
     element_node& previous ()
-    {   assert (has_previous ());
+    {   DBG_ASSERT (has_previous ());
         return *previous_; }
     element_node& parent ()
-    {   assert (has_parent ());
+    {   DBG_ASSERT (has_parent ());
         return *parent_; }
 
     nitpick& nits () { return nits_; }

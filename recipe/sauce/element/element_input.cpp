@@ -467,14 +467,14 @@ void element::examine_input ()
                         else
                             pick (nit_input_bad_aria, ed_ariaAug2020, "conformance requirements", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'search'");
                         break;
-                    default : assert (false); }
+                    default : DBG_ASSERT (false); }
                 break;
             default :
                 pick (nit_input_bad_aria, ed_50, "4.10.5 The Input element", es_error, ec_attribute, "<INPUT> can have no ROLE with the specified TYPE");
                 break; } } }
 
 void element::validate_input_id ()
-{   assert (a_.has (a_list));
+{   DBG_ASSERT (a_.has (a_list));
     if (a_.good (a_list))
     {   ::std::string id = a_.get_string (a_list);
         if (get_ids ().has_id (id))

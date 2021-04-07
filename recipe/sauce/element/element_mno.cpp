@@ -68,7 +68,7 @@ void element::examine_math ()
         pick (nit_math_empty, ed_math_3, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<MATH> should contain some math."); }
 
 void element::examine_media_element (e_element , const char* ref, const char* name, const uint64_t family)
-{   assert (ref != nullptr);
+{   DBG_ASSERT (ref != nullptr);
     if (a_.known (a_controls)) no_anchor_daddy ();
     bool had_track = false, had_other = false, noted_src = false, noted_track = false, noted_source = false,
         def_subcap = false, def_desc = false, def_chap = false;
@@ -178,7 +178,7 @@ void element::examine_menu ()
                         break;
                     default :
                         pick (nit_menu_type, ed_jan07, "3.18.4. The menu element", es_warning, ec_element, "The value of TYPE will be ignored" );
-                        assert (false);
+                        DBG_ASSERT (false);
                         break; } } }
 
 void element::examine_menubar ()
@@ -255,7 +255,7 @@ void element::examine_meta ()
             type_master < t_metaname > mn;
             nitpick nuts;
             mn.set_value (nuts, node_.version (), a_.get_string (a_name));
-            assert (a_.good (a_name));
+            DBG_ASSERT (a_.good (a_name));
             e_metaname emn = mn.get ();
             validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_);
             validate_metaname_url (nits (), node_.version (), in_head, emn, con, *this); } }

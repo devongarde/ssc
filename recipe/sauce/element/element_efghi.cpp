@@ -123,7 +123,7 @@ void element::examine_fecolourmatrix ()
             test_value < t_angle > (node_.nits (), page_.version (), a_.get_string (a_values));
             break;
         default :
-            assert (false);
+            DBG_ASSERT (false);
             break; } }
 
 void element::examine_felighting ()
@@ -239,7 +239,7 @@ void element::examine_form ()
                 for (auto rk : radio_kids_)
                 {   ::std::string n (rk -> a_.get_string (a_name));
                     auto i = names.find (n);
-                    assert (i != names.cend ());
+                    DBG_ASSERT (i != names.cend ());
                     if (i -> second == 1)
                         if (n.empty ())
                             rk -> pick (nit_lonely_radio, ed_50, "4.10.5.1.13 Radio Button state", es_error, ec_element, "radio buttons require company; there should be multiple unnamed <INPUT> TYPE=radio");

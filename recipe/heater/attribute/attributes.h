@@ -80,7 +80,7 @@ public:
     template < class ATTRIBUTE > typename ATTRIBUTE::value_type get_x () const
     {   if (! has (ATTRIBUTE::whoami ())) return ATTRIBUTE::default_value ();
         ATTRIBUTE* ap = static_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());
-        assert (ap != nullptr);
+        DBG_ASSERT (ap != nullptr);
         return ap -> get (); }
     const attribute_v_ptr get (const e_attribute a) const { return aar_.at (a); }
     attribute_v_ptr get (const e_attribute a) { return aar_.at (a); }

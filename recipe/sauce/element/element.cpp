@@ -77,7 +77,7 @@ int element::line () const
 {   return node_.line (); }
 
 element_ptr element::child (const bool canreconstruct)
- {  assert (has_child ());
+ {  DBG_ASSERT (has_child ());
     if (! child_)
         child_.reset (new element (name_, node_.child (), this, page_));
     else if (canreconstruct && ! child_ -> reconstructed_)
@@ -85,7 +85,7 @@ element_ptr element::child (const bool canreconstruct)
     return child_; }
 
 element_ptr element::next (const bool canreconstruct)
- {  assert (has_next ());
+ {  DBG_ASSERT (has_next ());
     if (! sibling_)
         sibling_.reset (new element (name_, node_.next (), parent_, page_));
     else if (canreconstruct && ! sibling_ -> reconstructed_)
@@ -163,7 +163,7 @@ bool element::check_math_children (const int expected, const bool or_more)
     return false; }
 
 void element::check_math_children (const int from, const int to)
-{   assert (to > from);
+{   DBG_ASSERT (to > from);
     int n = 0;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
@@ -180,7 +180,7 @@ void element::check_mscarries_pos (const e_element self)
         pick (nit_mscarries_last, ed_math_3, "3.6.5 Carries, Borrows, and Crossouts <mscarries>", es_error, ec_element, "<MSCARRIES> cannot be the last child of <", elem::name (self), ">"); }
 
 void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& was_closure, bool& allspace, bool& was_nl)
-{   assert (examined_);
+{   DBG_ASSERT (examined_);
     switch (tag ())
     {   case elem_faux_asp : ss << "<%" << node_.raw () << "%>"; was_nl = false; break;
         case elem_faux_cdata : ss << "<![CDATA[" << node_.raw () << "]]>"; was_nl = false; break;

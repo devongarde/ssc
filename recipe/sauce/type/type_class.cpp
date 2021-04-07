@@ -176,7 +176,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CSTR_u_search "u-search"
 
 
-struct symbol_entry < e_class > class_symbol_table [] =
+struct symbol_entry < html_version, e_class > class_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, H1_ATOM, h1_atom },
     { { HTML_UNDEF }, { HTML_UNDEF }, H1_AUDIO, h1_audio },
     { { HTML_UNDEF }, { HTML_UNDEF }, H1_CALENDAR, h1_calendar },
@@ -456,7 +456,7 @@ struct symbol_entry < e_class > class_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, CSTR_u_search, u_search } };
 
 void class_init (nitpick& nits)
-{   type_master < t_class > :: init (nits, class_symbol_table, sizeof (class_symbol_table) / sizeof (symbol_entry < e_class >)); }
+{   type_master < t_class > :: init (nits, class_symbol_table, sizeof (class_symbol_table) / sizeof (symbol_entry < html_version, e_class >)); }
 
 bool check_class_spelling (nitpick& nits, const html_version& , const ::std::string& original)
 {   // if (check_spelling (nits, v, original)) return true;

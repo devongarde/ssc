@@ -32,18 +32,35 @@ min_t unknown_props;
 mii_t unknown_ids;
 
 itemprop_index make_itemprop_index (const e_schema_property p)
-{   assert (p <= sp_illegal);
+{   DBG_ASSERT (p <= sp_illegal);
     return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_schema) << uint32_category_shift); }
 
+itemprop_indices make_itemprop_indices (const e_schema_property p)
+{   DBG_ASSERT (p <= sp_illegal);
+    itemprop_indices res;
+    res.emplace_back (make_itemprop_index (p));
+    return res; }
+
+itemprop_indices make_itemprop_indices (const vsp_t& vsp)
+{   itemprop_indices res;
+    for (auto p : vsp) res.emplace_back (make_itemprop_index (p));
+    return res; }
+
 itemprop_index make_itemprop_index (const e_property p)
-{   assert (p <= first_illegal);
+{   DBG_ASSERT (p <= first_illegal);
     return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_microformat) << uint32_category_shift); }
+
+itemprop_indices make_itemprop_indices (const e_property p)
+{   DBG_ASSERT (p <= sp_illegal);
+    itemprop_indices res;
+    res.emplace_back (make_itemprop_index (p));
+    return res; }
 
 e_itemprop_category prop_category (const itemprop_index ii)
 {   return static_cast < e_itemprop_category> (static_cast < uint32_t > (ii) >> uint32_category_shift); }
 
 ::std::string bespoke_itemprop_name (const itemprop_index ii)
-{   mii_t::const_iterator i = unknown_ids.find (ii & uint32_item_mask);
+{   mii_t::const_iterator i = unknown_ids.find (ndx_item (ii));
     if (i != unknown_ids.cend ()) return i -> second;
     return ::std::string (); }
 
@@ -64,15 +81,32 @@ itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const 
     nits.pick (nit_new_itemprop, es_comment, ec_microdata, "new untyped itemprop ", quote (name), " noted");
     return bespoke_itemprop; }
 
+itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted)
+{   nitpick knots;
+    vsp_t vsp = identify_schema_properties (knots, context.schema_ver (), name);
+    if (! vsp.empty ()) return make_itemprop_indices (vsp);
+    prop p (knots, v, name);
+    if (! p.unknown () && ! p.invalid ()) return make_itemprop_indices (p.get ());
+    if (! bespoke_permitted)
+    {   nits.merge (knots);
+        nits.pick (nit_bad_itemprop, es_error, ec_microdata, quote (name), " is not recognised");
+        return itemprop_indices (); }
+    min_t::const_iterator ini = unknown_props.find (name);
+    if (ini != unknown_props.cend ()) return make_itemprop_indices (ini -> second);
+    unknown_props.emplace (name, ++bespoke_itemprop);
+    unknown_ids.emplace (bespoke_itemprop, name);
+    nits.pick (nit_new_itemprop, es_comment, ec_microdata, "new untyped itemprop ", quote (name), " noted");
+    return make_itemprop_indices (bespoke_itemprop); }
+
 ::std::string itemprop_index_name (const itemprop_index ndx)
 {   if (ndx != illegal_itemprop)
         switch (ndx >> uint32_category_shift)
         {   case itemprop_bespoke :
                 return bespoke_itemprop_name (ndx);
             case itemprop_schema :
-                return schema_property_name (static_cast < e_schema_property > (ndx & uint32_item_mask));
+                return schema_property_name (static_cast < e_schema_property > (ndx_item (ndx)));
             case itemprop_microformat :
-                return prop::name (static_cast < e_property > (ndx & uint32_item_mask));
+                return prop::name (static_cast < e_property > (ndx_item (ndx)));
             default : break; }
     return "illegal"; }
 
@@ -81,10 +115,10 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
     {   case itemprop_bespoke :
             return true;
         case itemprop_schema :
-            return is_valid_schema_property (nits, v, static_cast < e_schema> (itemtype & uint32_item_mask), static_cast < e_schema_property > (ndx & uint32_item_mask), value, is_link);
+            return is_valid_schema_property (nits, v, static_cast < e_schema_type> (ndx_item (itemtype)), static_cast < e_schema_property > (ndx_item (ndx)), value, is_link);
         case itemprop_microformat :
             return true;
-        default : assert (false); break; }
+        default : DBG_ASSERT (false); break; }
     return false; }
 
 bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_index itemtype, const itemprop_index ndx, const itemtype_index value)
@@ -92,8 +126,8 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
     {   case itemprop_bespoke :
             return true;
         case itemprop_schema :
-            return is_valid_schema_property (nits, v, static_cast < e_schema> (itemtype & uint32_item_mask), static_cast < e_schema_property > (ndx & uint32_item_mask), static_cast < e_schema> (value & uint32_item_mask));
+            return is_valid_schema_property (nits, v, static_cast < e_schema_type> (ndx_item (itemtype)), static_cast < e_schema_property > (ndx_item (ndx)), static_cast < e_schema_type> (ndx_item (value)));
         case itemprop_microformat :
             return true;
-        default : assert (false); break; }
+        default : DBG_ASSERT (false); break; }
     return false; }

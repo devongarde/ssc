@@ -40,8 +40,8 @@ public:
     void mark (const e_category c);
     void mark (const e_doc d);
     void mark (const e_element f, const e_attribute m);
-    void mark (const e_schema s);
-    void mark (const e_schema s, const e_schema_property p);
+    void mark (const e_schema_type s);
+    void mark (const e_schema_type s, const e_schema_property p);
     void mark_meta (const e_httpequiv he);
     void mark_meta (const e_metaname mn);
     void mark_meta (const e_metaname mn, const ::std::string& val);

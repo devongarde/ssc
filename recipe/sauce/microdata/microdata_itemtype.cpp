@@ -24,28 +24,29 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/prop.h"
 #include "type/type_enum_vec.h"
 
-itemtype_index make_itemtype_index (const e_schema p)
-{   assert (p <= sch_illegal);
+itemtype_index make_itemtype_index (const e_schema_type p)
+{   DBG_ASSERT (p <= sty_illegal);
     return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_schema) << uint32_category_shift); }
 
 itemtype_index make_itemtype_index (const e_property p)
-{   assert (p <= first_illegal);
-    if (is_mf_class (p))
-        return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_microformat) << uint32_category_shift);
-    else
-    if (is_mf_rel (p))
-        return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << uint32_category_shift);
+{   DBG_ASSERT (p <= first_illegal);
+    if (is_mf_class (p)) return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_microformat) << uint32_category_shift);
+    if (is_mf_rel (p)) return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << uint32_category_shift);
     return 0; }
 
 e_itemtype_category type_category (const itemtype_index ii)
-{   return static_cast < e_itemtype_category> (static_cast < uint32_t > (ii) >> uint32_category_shift); }
+{   return static_cast < e_itemtype_category> (ndx_category (static_cast < uint32_t > (ii))); }
+
+e_schema_type type_itself (const itemtype_index ii)
+{   return static_cast < e_schema_type> (ndx_item (static_cast < uint32_t > (ii))); }
 
 itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name)
 {   nitpick nuts;
     type_master < t_schema > sc;
     sc.set_value (nits, v, name);
     if (sc.good ())
-    {   sch st (nits, v, sc.get ().filename ());
+    {   e_microdata_root root = domain2root (examine_value < t_microdata_domain > (nuts, v, sc.get ().domain ()));
+        sch st (nits, v, sc.get ().filename (), root);
         if (! st.invalid ()) return make_itemtype_index (st.get ()); }
     prop p (nuts, v, name);
     if (p.is_class () || p.is_rel ()) return make_itemtype_index (p.get ());
@@ -56,8 +57,8 @@ itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const 
         switch (ndx >> uint32_category_shift)
         {   case itemtype_microformat :
             case itemtype_rel :
-                return type_master < t_class > :: name (static_cast < e_class > (ndx & uint32_item_mask));
+                return type_master < t_class > :: name (static_cast < e_class > (ndx_item (ndx)));
             case itemtype_schema :
-                return sch :: name (static_cast < e_schema > (ndx & uint32_item_mask));
+                return sch :: name (static_cast < e_schema_type > (ndx_item (ndx)));
             default : break; }
     return "untyped"; }

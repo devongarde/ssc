@@ -14,11 +14,11 @@ PASS ../toast/other/RDF/rdf2-example.html
 
 PASS ../toast/other/RDF/rdf3-example.html
 0 charset_mismatch charset_used charset_invalid
-5 naughty_lang
+5 unrecognised_value rdf_redefine naughty_lang
 
 PASS ../toast/other/RDF/rdf4-example.html
 0 charset_mismatch charset_used charset_invalid
-5 naughty_lang
+5 unrecognised_value rdf_redefine naughty_lang
 
 PASS ../toast/other/RDF/rdf5-example.html
 0 charset_mismatch charset_used charset_invalid

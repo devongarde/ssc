@@ -112,7 +112,7 @@ int char2hex (const char ch)
         return ch - 'A' + 10;
     if (ch >= 'a' && ch <= 'F')
         return ch - 'a' + 10;
-    assert (false);
+    DBG_ASSERT (false);
     return 0; }
 
 bool is_hex (const char ch)

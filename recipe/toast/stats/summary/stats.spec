@@ -130,20 +130,19 @@ Name/Value pairs:
   fried bread : in Irish breakfast
   sausage : in English breakfast
   sausage : in Irish breakfast
-Errors:
+Errors reported:
   Severity:
     Errors: 4 times
     Warnings: thrice
   Categories:
     Attribute: twice
-    Element: 7 times
-    Microdata: 10 times
-    Parser: 5 times
+    Element: twice
+    Microdata: twice
     URx: once
   References:
-    HTML 5.0: 7 times
+    HTML 5.0: twice
 Versions:
-  HTML5/20210101/SVG-2.0/MathML-3/WhatWG: 5
+  HTML5/20210101/SVG-2.0/MathML-4/WhatWG: 5
 File info:
   3783 bytes read in 5 HTML files with an average of 756.60000000000002 bytes per file
   smallest file: 269 bytes, largest file: 1019 bytes

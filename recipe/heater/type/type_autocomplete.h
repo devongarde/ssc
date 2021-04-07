@@ -36,7 +36,7 @@ template < > struct type_master < t_autocompletes > : tidy_string < t_autocomple
             if (! set_autocomplete_value (vaco_, nits, v, ss))
                 tidy_string < t_autocompletes > :: status (s_invalid); }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
-    {   assert (e != nullptr);
+    {   DBG_ASSERT (e != nullptr);
         if (good ())
             if (! invalid_autocomplete (nits, v, e, vaco_))
                 tidy_string < t_autocompletes > :: status (s_invalid);

@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "main/version.h"
 
 #define SV_NOT_30       0x00000001
 #define SV_NOT_31       0x00000002
@@ -36,26 +37,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_DEP33        0x00200000
 #define SV_DEP34        0x00400000
 
-#define SV_DEP_3034     0x007B0000
+#define SV_DEP_3034     ( SV_DEP30 | SV_DEP31 | SV_DEP32 | SV_DEP33 | SV_DEP34 )
+#define SV_FLAG_MASK    0xFFFFFFFF
+#define SV_ROOT_SHIFT   32
 
 #define DEFAULT_SCHEMA_MAJOR 12
 #define DEFAULT_SCHEMA_MINOR 0
+#define DEFAULT_SCHEMA_VERSION "12"
 
-typedef unsigned int schema_flag_t;
-const unsigned char schema_major_max = 12;
+const unsigned char schema_major_max = DEFAULT_SCHEMA_MAJOR;
 class html_version;
-class schema_version;
 
-bool is_valid_schema_version (const unsigned char mjr, const unsigned char mnr);
+bool is_valid_schema_version (const e_microdata_root root, const unsigned char mjr, const unsigned char mnr);
 
-class schema_version
-{   unsigned char mjr_ = 0, mnr_ = 0;
-    schema_flag_t flags_ = 0;
-public:
-    schema_version () : mjr_ (0), mnr_ (0), flags_ (0) { }
-    schema_version (const unsigned char mjr, const unsigned char mnr, const schema_flag_t sf = 0)
-        :   mjr_ (mjr), mnr_ (mnr), flags_ (sf)
-    { if (invalid ()) mjr_ = mnr_ = 0; }
+struct schema_version : public version
+{   schema_version () = default;
+    schema_version (const unsigned char mjr, const unsigned char mnr, const uint64_t sf = NOFLAGS)
+        :   version (mjr, mnr, (static_cast < uint64_t > (mdr_schema) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
+    {   DBG_ASSERT (! invalid ()); }
+    schema_version (const e_microdata_root root, const unsigned char mjr, const unsigned char mnr, const uint64_t sf = NOFLAGS)
+        :   version (mjr, mnr, (static_cast < uint64_t > (root) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
+    {   DBG_ASSERT (! invalid ()); }
     schema_version (const schema_version& ) = default;
     schema_version (const html_version& v);
 #ifndef NO_MOVE_CONSTRUCTOR
@@ -66,57 +68,61 @@ public:
 #ifndef NO_MOVE_CONSTRUCTOR
 	schema_version& operator = (schema_version&&) = default;
 #endif // VS
-    void swap (schema_version& v) NOEXCEPT;
-    void reset () { schema_version v; swap (v); }
-    void reset (const schema_version& v) { schema_version vv (v); swap (vv); }
-    bool unknown () const { return (mjr_ == 0) && (mnr_ == 0); }
+    static void init ();
+    void reset ()
+    {   schema_version v; swap (v); }
+    void reset (const schema_version& v)
+    {   schema_version vv (v); swap (vv); }
+    bool unknown () const { return (mjr () == 0) && (mnr () == 0); }
     bool known () const { return ! unknown (); }
-    bool is_not (const unsigned char mjr, const unsigned char mnr = 0xFF) const
+    bool is_not (const unsigned char mj, const unsigned char mn = 0xFF) const
     {   if (unknown ()) return false;
-        if (mjr != mjr_) return true;
-        return ((mnr != 0xFF) && (mnr != mnr_)); }
+        if (mj != mjr ()) return true;
+        return ((mn != 0xFF) && (mn != mnr ())); }
     bool is_not (const schema_version& v) const
-    {   return is_not (v.mjr_, v.mnr_); }
-    unsigned char mjr () const { return mjr_; }
-    unsigned char mnr () const { return mnr_; }
-    bool invalid () const { return ! is_valid_schema_version (mjr_, mnr_); }
-    schema_flag_t flags () const { return flags_; }
+    {   return is_not (v.mjr (), v.mnr ()); }
+    bool invalid () const { return ! is_valid_schema_version (root (), mjr (), mnr ()); }
+    e_microdata_root root () const
+    {   return static_cast < e_microdata_root > (flags () >> SV_ROOT_SHIFT); }
     ::std::string report () const; };
 
-const schema_version schema_0;
-const schema_version schema_2_0 (2, 0);
-const schema_version schema_2_1 (2, 1);
-const schema_version schema_2_2 (2, 2);
-const schema_version schema_3_0 (3, 0);
-const schema_version schema_3_1 (3, 1);
-const schema_version schema_3_2 (3, 2);
-const schema_version schema_3_3 (3, 3);
-const schema_version schema_3_4 (3, 4);
-const schema_version schema_3_5 (3, 5);
-const schema_version schema_3_6 (3, 6);
-const schema_version schema_3_7 (3, 7);
-const schema_version schema_3_8 (3, 8);
-const schema_version schema_3_9 (3, 9);
-const schema_version schema_4 (4, 0);
-const schema_version schema_5 (5, 0);
-const schema_version schema_6 (6, 0);
-const schema_version schema_7_00 (7, 0);
-const schema_version schema_7_01 (7, 1);
-const schema_version schema_7_02 (7, 2);
-const schema_version schema_7_03 (7, 3);
-const schema_version schema_7_04 (7, 4);
-const schema_version schema_8 (8, 0);
-const schema_version schema_9 (9, 0);
-const schema_version schema_10 (10, 0);
-const schema_version schema_11 (11, 0);
-const schema_version schema_12 (12, 0);
+typedef ::std::vector < schema_version > vsv_t;
+extern vsv_t vsv;
 
-bool operator == (const schema_version& lhs, const schema_version& rhs);
-bool operator != (const schema_version& lhs, const schema_version& rhs);
-bool operator < (const schema_version& lhs, const schema_version& rhs);
-bool operator > (const schema_version& lhs, const schema_version& rhs);
-bool operator <= (const schema_version& lhs, const schema_version& rhs);
-bool operator >= (const schema_version& lhs, const schema_version& rhs);
-bool does_apply (const schema_version& v, const schema_version& from, const schema_version& to);
-bool may_apply (const schema_version& v, const schema_version& from, const schema_version& to);
+const schema_version default_schema (mdr_none, 0, 0);
+
+const schema_version schema_0 (mdr_schema, 0, 0);
+const schema_version schema_2_0 (mdr_schema, 2, 0);
+const schema_version schema_2_1 (mdr_schema, 2, 1);
+const schema_version schema_2_2 (mdr_schema, 2, 2);
+const schema_version schema_3_0 (mdr_schema, 3, 0);
+const schema_version schema_3_1 (mdr_schema, 3, 1);
+const schema_version schema_3_2 (mdr_schema, 3, 2);
+const schema_version schema_3_3 (mdr_schema, 3, 3);
+const schema_version schema_3_4 (mdr_schema, 3, 4);
+const schema_version schema_3_5 (mdr_schema, 3, 5);
+const schema_version schema_3_6 (mdr_schema, 3, 6);
+const schema_version schema_3_7 (mdr_schema, 3, 7);
+const schema_version schema_3_8 (mdr_schema, 3, 8);
+const schema_version schema_3_9 (mdr_schema, 3, 9);
+const schema_version schema_4 (mdr_schema, 4, 0);
+const schema_version schema_5 (mdr_schema, 5, 0);
+const schema_version schema_6 (mdr_schema, 6, 0);
+const schema_version schema_7_00 (mdr_schema, 7, 0);
+const schema_version schema_7_01 (mdr_schema, 7, 1);
+const schema_version schema_7_02 (mdr_schema, 7, 2);
+const schema_version schema_7_03 (mdr_schema, 7, 3);
+const schema_version schema_7_04 (mdr_schema, 7, 4);
+const schema_version schema_8 (mdr_schema, 8, 0);
+const schema_version schema_9 (mdr_schema, 9, 0);
+const schema_version schema_10 (mdr_schema, 10, 0);
+const schema_version schema_11 (mdr_schema, 11, 0);
+const schema_version schema_12 (mdr_schema, 12, 0);
+const schema_version schema_default (mdr_schema, DEFAULT_SCHEMA_MAJOR, DEFAULT_SCHEMA_MINOR);
+
+const schema_version whatwg_schema (mdr_whatwg, 1, 0);
+
+const schema_version mf_1 (mdr_microformats, 1, 0);
+const schema_version mf_2 (mdr_microformats, 2, 0);
+
 bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, const schema_version& rhs_from, const schema_version& rhs_to);

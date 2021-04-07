@@ -116,7 +116,7 @@ template < > struct type_master < t_csp_sauce > : tidy_string < t_csp_sauce >
             else
             if (ss.at (len - 1) == ':')
             {   e_protocol prot;
-                if (symbol < e_protocol > :: parse (nits, v, ss.substr (0, len - 1), prot)) return; }
+                if (symbol < html_version, e_protocol > :: parse (nits, v, ss.substr (0, len - 1), prot)) return; }
             else
             {   if (ss.find ('*') != ::std::string::npos) return;
                 url u (nits, v, ss, pr_https);
@@ -214,7 +214,7 @@ template < > struct type_master < t_location > : tidy_string < t_location >
         {   vstr_t sides (split_sides_at_semi (nits, tidy_string < t_location > :: get_string ()));
             if (sides.size () > 0)
             {   if (! compare_no_case (sides.at (0), "0"))
-                    nits.pick (nit_text_html_expected, ed_w3, "https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/F41", es_error, ec_type, "do not use location with any period but zero, to avoid causing some users significant problems");
+                    nits.pick (nit_text_html_expected, ed_w3, HTTPS_W3 "/TR/2016/NOTE-WCAG20-TECHS-20161007/F41", es_error, ec_type, "do not use location with any period but zero, to avoid causing some users significant problems");
                 if (sides.size () == 1)
                     nits.pick (nit_url_empty, es_error, ec_type, "the url is missing");
                 else
@@ -229,7 +229,7 @@ template < > struct type_master < t_refresh > : tidy_string < t_refresh >
         {   vstr_t sides (split_sides_at_semi (nits, tidy_string < t_refresh > :: get_string (), 1));
             if (sides.size () > 1)
             {   if (! compare_no_case (sides.at (0), "0"))
-                    nits.pick (nit_refresh_zero, ed_w3, "https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/F41", es_error, ec_type, "do not use refresh with any period but zero, to avoid causing some users significant problems");
+                    nits.pick (nit_refresh_zero, ed_w3, HTTPS_W3 "/TR/2016/NOTE-WCAG20-TECHS-20161007/F41", es_error, ec_type, "do not use refresh with any period but zero, to avoid causing some users significant problems");
                 ::std::string x (trim_the_lot_off (sides.at (1)));
                 if (x.length () < 5 || ! compare_no_case (x.substr (0, 4), "url="))
                     nits.pick (nit_url_empty, es_error, ec_type, "the url, if present, must be preceded by 'url='");

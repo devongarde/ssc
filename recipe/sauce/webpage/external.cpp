@@ -63,7 +63,7 @@ int call_curl (nitpick& , const html_version& , const ::std::string& , const int
 void test_hypertext (nitpick& nits, const html_version& v, const url& u)
 {   if (u.has_domain ())
     {   ::std::string d (u.domain ());
-        assert (! d.empty ());
+        DBG_ASSERT (! d.empty ());
         if (::boost::algorithm::iends_with (d, "invalid"))
         {   context.code (404); return; }
         if (ends_with_example (d))

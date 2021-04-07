@@ -37,8 +37,8 @@ template < > struct type_master < t_dosh > : tidy_string < t_dosh >
         if (args.size () == 1) amount = trim_the_lot_off (args [0]);
         if (args.size () == 2)
         {   const ::std::string c (args [0]);
-            if (symbol < e_currency > :: find (v, args [0], unit_)) amount = trim_the_lot_off (args [1]);
-            else if (! symbol < e_currency > :: find (v, amount, unit_)) return false; }
+            if (symbol < html_version, e_currency > :: find (v, args [0], unit_)) amount = trim_the_lot_off (args [1]);
+            else if (! symbol < html_version, e_currency > :: find (v, amount, unit_)) return false; }
         if (amount.empty ()) return false;
         bool res = false;
         value_ = lexical < double > :: cast2 (amount, res);

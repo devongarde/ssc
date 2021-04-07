@@ -228,9 +228,9 @@ void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
         {   ::std::string ver (trim_the_lot_off (a.get_string ()));
             auto val = examine_value < t_xmlns > (knots, v, ver);
             switch (val)
-            {   case x_mathml : if (! v.math ()) v.ext_set (HE_MATH_1); break;
-                case x_svg : if (! v.svg ()) v.ext_set (HE_SVG_1_0); break;
-                case x_xlink : if (! v.xlink ()) v.ext_set (HE_XLINK_1_0); break;
+            {   case x_mathml : if (! v.math ()) v.set_ext (HE_MATH_1); break;
+                case x_svg : if (! v.svg ()) v.set_ext (HE_SVG_1_0); break;
+                case x_xlink : if (! v.xlink ()) v.set_ext (HE_XLINK_1_0); break;
                 case x_xhtml_1_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, quote (ver), " is non-standard (it was withdrawn before XHTML 1.0 was published)");
                     // drop  thru'
@@ -242,23 +242,21 @@ void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
 
 e_svg_version attributes_node::get_svg (const html_version& v) const
 {   bool check_profile = false;
+    nitpick nuts;
     for (auto a : va_)
         if (a.id () == a_version)
         {   ::std::string ver (trim_the_lot_off (a.get_string ()));
-            if (ver == "1.0") return sv_1_0;
-            if (ver == "1.1") return sv_1_1;
-            if (ver == "1.2") check_profile = true;
+            e_svg_version ev = examine_value < t_svg_version > (nuts, v, ver);
+            if (ev != sv_none) return ev;
+            check_profile = (ver.length () >= 3) && (ver.substr (0, 3) == "1.2");
             break; }
     if (! check_profile)
         for (auto a : va_)
             if (a.id () == a_xmlns)
-            {   ::std::string ns (trim_the_lot_off (a.get_string ()));
-                if (compare_no_case (ns, "http://www.w3.org/graphics/svg/svg-19990706.dtd")) return sv_1_1;
-                if (compare_no_case (ns, "https://www.w3.org/graphics/svg/svg-19990706.dtd")) return sv_1_1;
-                if (compare_no_case (ns, "http://www.w3.org/tr/rec-mathml-19980407")) return sv_1_0;
-                if (compare_no_case (ns, "https://www.w3.org/tr/rec-mathml-19980407")) return sv_1_0;
-                else if (compare_no_case (ns, "http://www.w3.org/2000/svg")) check_profile = true;
-                else if (compare_no_case (ns, "https://www.w3.org/2000/svg")) check_profile = true;
+            {   ::std::string ver (trim_the_lot_off (a.get_string ()));
+                e_svg_version_grand evg = examine_value < t_svg_version_grand > (nuts, v, ver);
+                if (evg != sv_none) return static_cast < e_svg_version > (evg);
+                check_profile = (ver.length () >= 27) && (ver.substr (0, 27) == SVG_2000);
                 break; }
     if (check_profile)
         for (auto a : va_)
@@ -275,7 +273,7 @@ e_svg_version attributes_node::get_svg (const html_version& v) const
                 case 2 :
                 case 3 : return sv_1_1;
                 case 4 : return sv_1_2_tiny;
-                default : assert (false); return sv_1_0; }
+                default : DBG_ASSERT (false); return sv_1_0; }
         case 5 : if (v > html_5_3) return sv_2_0;
                  break;
         default : break; }

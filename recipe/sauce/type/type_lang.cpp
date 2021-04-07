@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type_lang.h"
 
-struct symbol_entry < e_lang > lang_symbol_table [] =
+struct symbol_entry < html_version, e_lang > lang_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF },   "globlish", la_context },
 
     // https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
@@ -723,4 +723,4 @@ struct symbol_entry < e_lang > lang_symbol_table [] =
     { { HTML_PLUS }, { HTML_UNDEF }, "i", la_i } };
 
 void lang_init (nitpick& nits)
-{   type_master < t_lang > :: init (nits, lang_symbol_table, sizeof (lang_symbol_table) / sizeof (symbol_entry < e_lang >)); }
+{   type_master < t_lang > :: init (nits, lang_symbol_table, sizeof (lang_symbol_table) / sizeof (symbol_entry < html_version, e_lang >)); }

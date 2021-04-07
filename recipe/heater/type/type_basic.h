@@ -70,7 +70,7 @@ template < > struct type_master < t_illegal > : type_base < mono, t_illegal >
     {   nits.pick (nit_evermore, es_error, ec_type, "always illegal");
         type_base < mono, t_illegal > :: status (s_invalid); }
     static mono default_value () { return static_cast <mono> (0); }
-    mono get () const { assert (false); return static_cast <mono> (0); } };
+    mono get () const { DBG_ASSERT (false); return static_cast <mono> (0); } };
 
 template < > struct type_master < t_loopie > : tidy_string < t_loopie >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

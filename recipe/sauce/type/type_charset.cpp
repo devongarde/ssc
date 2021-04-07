@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type_enum.h"
 
-struct symbol_entry < e_charset > charset_symbol_table [] =
+struct symbol_entry < html_version, e_charset > charset_symbol_table [] =
 {   { { HTML_4_0, REJECT }, { HTML_UNDEF }, "context", cs_context },
 
     // source: https://www.iana.org/assignments/character-sets/character-sets.xhtml
@@ -471,4 +471,4 @@ struct symbol_entry < e_charset > charset_symbol_table [] =
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, nullptr, cs_illegal } };
 
 void charset_init (nitpick& nits)
-{   type_master < t_charset > :: init (nits, charset_symbol_table, sizeof (charset_symbol_table) / sizeof (symbol_entry < e_charset >)); }
+{   type_master < t_charset > :: init (nits, charset_symbol_table, sizeof (charset_symbol_table) / sizeof (symbol_entry < html_version, e_charset >)); }

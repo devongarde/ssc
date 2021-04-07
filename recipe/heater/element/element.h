@@ -247,7 +247,7 @@ public:
     ids_t& get_names ();
     const ids_t& get_names () const;
     element* parent () const
-    {   assert (! is_top ());
+    {   DBG_ASSERT (! is_top ());
         return parent_; }
     bool reportable () const
     {   return ((tag () != elem_undefined) || context.tell (e_splurge) || (child_ != nullptr)); }
@@ -265,10 +265,10 @@ public:
     element* find_next (const e_element e, element* previous);
     element* get_ancestor (const e_element e) const;
     void add_result (const ::std::string& s)
-    {   assert (! s.empty ());
+    {   DBG_ASSERT (! s.empty ());
         results_.insert (s); }
     bool has_result (const ::std::string& s) const
-    {   assert (! s.empty ());
+    {   DBG_ASSERT (! s.empty ());
         return (results_.find (s) != results_.cend ()); }
     int line () const;
     uid_t uid () const { return uid_; }

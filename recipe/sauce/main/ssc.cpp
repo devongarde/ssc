@@ -140,7 +140,7 @@ int examine (nitpick& nits)
             {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " caused an exception");
                 res = ERROR_STATE; } }
         if (res == VALID_RESULT)
-        {   assert (vd.size () > 0);
+        {   DBG_ASSERT (vd.size () > 0);
             ::std::size_t n = integrate_virtuals (virt, vd);
             if (n != 0)
             {   nits.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());

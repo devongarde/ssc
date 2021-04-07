@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_mime.h"
 #include "symbol/symbol.h"
 
-struct symbol_entry < e_mimetype > mimetype_symbol_table [] =
+struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
 {   // avoid the whinge
     { { HTML_4_0 }, { HTML_UNDEF }, "example/context-defined", mime_context, ns_default, MIME_APPLICATION },
     // standard
@@ -2027,7 +2027,7 @@ struct symbol_entry < e_mimetype > mimetype_symbol_table [] =
 
     { { HTML_4_0 }, { HTML_UNDEF }, nullptr, mime_context } };
 
-struct symbol_entry < e_format > format_symbol_table [] =
+struct symbol_entry < html_version, e_format > format_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "evy", mime_application_envoy },
     { { HTML_UNDEF }, { HTML_UNDEF }, "fif", mime_application_fractals },
     { { HTML_UNDEF }, { HTML_UNDEF }, "spl", mime_application_futuresplash },
@@ -2278,8 +2278,8 @@ struct symbol_entry < e_format > format_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, nullptr, mime_context } };
 
 void mime_init (nitpick& nits)
-{   type_master < t_mime > :: init (nits, mimetype_symbol_table, sizeof (mimetype_symbol_table) / sizeof (symbol_entry < e_mimetype >));
-    type_master < t_format > :: init (nits, format_symbol_table, sizeof (format_symbol_table) / sizeof (symbol_entry < e_format >)); }
+{   type_master < t_mime > :: init (nits, mimetype_symbol_table, sizeof (mimetype_symbol_table) / sizeof (symbol_entry < html_version, e_mimetype >));
+    type_master < t_format > :: init (nits, format_symbol_table, sizeof (format_symbol_table) / sizeof (symbol_entry < html_version, e_format >)); }
 
 e_format extension_format (nitpick& , const html_version& v, const ::std::string& ext, uint64_t& flags)
 {   return type_master < t_format > :: find (v, ext, ns_default, nullptr, nullptr, &flags); }
@@ -2352,7 +2352,7 @@ void check_extension_compatibility (nitpick& nits, const html_version& v, const 
             check_extension_compatibility (nits, v, mt, u, src); } }
 
 void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const uint64_t family)
-{   assert (family != 0);
+{   DBG_ASSERT (family != 0);
     for (auto uu : u)
         if (uu.has_extension ()) check_extension_compatibility (nits, v, family, uu.extension ()); }
 

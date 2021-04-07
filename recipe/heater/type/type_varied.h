@@ -427,7 +427,7 @@ template < > struct type_master < t_overflow > : varied < t_overflow >
 
 template < > struct type_master < t_preload > : varied < t_preload >
 {   void validate (nitpick& nits, const html_version& v, const elem&  , const ::std::string& )
-    {   assert (v >= html_4_0);
+    {   DBG_ASSERT (v >= html_4_0);
         if (good () || empty ())
             if (v <= html_4_1) validate_type < type_master < t_html_boolean > > (nits, v);
             else if (good ()) validate_type < type_master < t_preload5 > > (nits, v); } };
@@ -682,7 +682,8 @@ template < > struct type_master < t_version > : varied < t_version >
                     case sv_1_1 : svgv += "1.1"; break;
                     case sv_1_2_tiny : svgv += "1.2 tiny"; break;
                     case sv_1_2_full : svgv += "1.2 full"; break;
-                    default : assert (false); svgv += "version not "; } // illegal value for t_svg_version
+                    case sv_2_0 : svgv += "2.0"; break;
+                    default : DBG_ASSERT (false); svgv += "version not "; } // illegal value for t_svg_version
                 svgv += " recognised";
                 nits.pick (nit_svg_version, es_info, ec_type, svgv); } } } };
 

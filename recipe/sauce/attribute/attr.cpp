@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "type/type.h"
 
-struct symbol_entry < e_attribute > attribute_symbol_table [] =
+struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "abbr", a_abbr },
     { { XHTML_1_1, 0, HE_RDF_1_0 | HE_SVG_1_2 | HE_SVG_X2 }, { HTML_UNDEF }, "about", a_about },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, "above", a_above },
@@ -899,7 +899,7 @@ struct symbol_entry < e_attribute > attribute_symbol_table [] =
     { { XHTML_1_0, 0, HE_SVG_1x2 }, { HTML_UNDEF }, "zoomandpan", a_zoomandpan } };
 
 void attr::init (nitpick& nits)
-{   symbol::init (nits, attribute_symbol_table, sizeof (attribute_symbol_table) / sizeof (symbol_entry < e_attribute >), true); }
+{   symbol::init (nits, attribute_symbol_table, sizeof (attribute_symbol_table) / sizeof (symbol_entry < html_version, e_attribute >), true); }
 
 e_attribute attr::parse (nitpick& nits, const html_version& v, const ::std::string& x)
 {   ::std::string lc (x);
@@ -913,13 +913,13 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const ::std::stri
         else nits.pick (nit_xmlns_namespace, es_error, ec_namespace, "namespace ", quote (lc), " has already been declared");
         return a_xmlns; }
     if (lc.empty ()) return a_unknown;
-    symbol < e_attribute > a (v, lc, n);
+    symbol < html_version, e_attribute > a (v, lc, n);
     if (a.unknown ()) check_spelling (nits, v, lc);
     else
     {   if (a.first ().is_plain_html ())
             if (((v == xhtml_1_0) || (v == xhtml_1_1)) && (x.find_first_of (UPPERCASE) != ::std::string::npos))
                 nits.pick (nit_xhtml_attribute_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "attribute names must be lower cased in ", v.report ());
-        if (! does_apply (v, a.first (), a.last ()))
+        if (! does_apply < html_version > (v, a.first (), a.last ()))
             nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, quote (x), " is not valid in ", v.report ());
         else return a.get (); }
     return a_unknown; }

@@ -33,8 +33,8 @@ typedef stats1 < e_category, last_category, ec_undefined > category_stats;
 typedef stats1 < e_severity, last_severity, es_undefined > severity_stats;
 typedef stats1 < e_doc, last_doc, ed_mishmash > ref_stats;
 typedef stats2 < e_element, e_attribute, last_element_tag, last_attribute > attribute_stats;
-typedef stats1 < e_schema, sch_illegal, sch_context > schema_stats;
-typedef stats2 < e_schema, e_schema_property, sch_illegal, sp_illegal > schema_property_stats;
+typedef stats1 < e_schema_type, sty_illegal, sty_context > schema_stats;
+typedef stats2 < e_schema_type, e_schema_property, sty_illegal, sp_illegal > schema_property_stats;
 typedef stats1 < e_httpequiv, he_error, he_context > httpequiv_stats;
 typedef stats1 < e_metaname, mn_illegal, mn_context > metaname_stats;
 typedef stats3 < ::std::string, e_metaname, mn_illegal, mn_context > meta_value_stats;
@@ -90,9 +90,9 @@ public:
     {   ref_.mark (d); }
     void mark (const e_element f, const e_attribute m)
     {   attribute_.mark (f, m); }
-    void mark (const e_schema s)
+    void mark (const e_schema_type s)
     {   schema_.mark (s); }
-    void mark (const e_schema s, const e_schema_property p)
+    void mark (const e_schema_type s, const e_schema_property p)
     {   schema_property_.mark (s, p); }
     void mark_meta (const e_httpequiv he)
     {   httpequiv_.mark (he); }
