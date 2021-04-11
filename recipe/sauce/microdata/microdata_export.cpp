@@ -70,7 +70,7 @@ bool microdata_export::write (nitpick& nits, const ::boost::filesystem::path& fi
         {   if (::boost::filesystem::exists (json))
             {   ::boost::filesystem::remove (json);
                  nits.pick (nit_export_none, es_info, ec_microformat, "No microdata; deleted existing ", json); }
-            else nits.pick (nit_export_none, es_info, ec_microformat, "Not creating " , file, ", it would be empty"); }
+            else nits.pick (nit_export_none, es_info, ec_microformat, "Not exporting " , file, ", it would be empty"); }
         catch (...) { }
         return true; }
     ::boost::filesystem::path tmp (json);

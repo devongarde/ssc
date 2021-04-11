@@ -51,6 +51,7 @@ ssc.exe -f ../toast/microdata/12/schema.conf
 ssc.exe -f ../toast/microdata/addendum/add.conf
 ssc.exe -f ../toast/microdata/basic/basic.conf
 ssc.exe -f ../toast/microdata/export/export.conf
+ssc.exe -f ../toast/microdata/microformats/mf.conf
 ssc.exe -f ../toast/microdata/schema-abc/abc.conf
 ssc.exe -f ../toast/microdata/schema-defg/defg.conf
 ssc.exe -f ../toast/microdata/schema-hijkl/hijkl.conf

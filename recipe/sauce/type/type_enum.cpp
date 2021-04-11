@@ -701,6 +701,59 @@ struct symbol_entry < html_version, e_method > method_symbol_table [] =
     { { HTML_PLUS }, { HTML_UNDEF }, "post", md_post },
     { { HTML_PLUS }, { HTML_PLUS }, "put", md_put } };
 
+struct symbol_entry < html_version, e_mf_identifier > mf_identifier_symbol_table [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, "model", mfi_model },
+    { { HTML_4_0 }, { HTML_UNDEF }, "mpn", mfi_mpn },
+    { { HTML_4_0 }, { HTML_UNDEF }, "upc", mfi_upc },
+    { { HTML_4_0 }, { HTML_UNDEF }, "isbn", mfi_isbn },
+    { { HTML_4_0 }, { HTML_UNDEF }, "issn", mfi_issn },
+    { { HTML_4_0 }, { HTML_UNDEF }, "ean", mfi_ean },
+    { { HTML_4_0 }, { HTML_UNDEF }, "jan", mfi_jan },
+    { { HTML_4_0 }, { HTML_UNDEF }, "place", mfi_sn },
+    { { HTML_4_0 }, { HTML_UNDEF }, "mvin", mfi_vin },
+    { { HTML_4_0 }, { HTML_UNDEF }, "msku", mfi_sku } };
+
+struct symbol_entry < html_version, e_mf_itemtype > mf_itemtype_symbol_table [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, "opening", mfit_opening },
+    { { HTML_4_0 }, { HTML_UNDEF }, "housing", mfit_housing },
+    { { HTML_4_0 }, { HTML_UNDEF }, "product", mfit_product },
+    { { HTML_4_0 }, { HTML_UNDEF }, "business", mfit_business },
+    { { HTML_4_0 }, { HTML_UNDEF }, "event", mfit_event },
+    { { HTML_4_0 }, { HTML_UNDEF }, "person", mfit_person },
+    { { HTML_4_0 }, { HTML_UNDEF }, "place", mfit_place },
+    { { HTML_4_0 }, { HTML_UNDEF }, "website", mfit_website },
+    { { HTML_4_0 }, { HTML_UNDEF }, "url", mfit_url } };
+
+struct symbol_entry < html_version, e_mf_listing_action > mf_listing_action_symbol_table [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, "sell", mfla_sell },
+    { { HTML_4_0 }, { HTML_UNDEF }, "rent", mfla_rent },
+    { { HTML_4_0 }, { HTML_UNDEF }, "trade", mfla_trade },
+    { { HTML_4_0 }, { HTML_UNDEF }, "meet", mfla_meet },
+    { { HTML_4_0 }, { HTML_UNDEF }, "announce", mfla_announce },
+    { { HTML_4_0 }, { HTML_UNDEF }, "offer", mfla_offer },
+    { { HTML_4_0 }, { HTML_UNDEF }, "wanted", mfla_wanted },
+    { { HTML_4_0 }, { HTML_UNDEF }, "event", mfla_event },
+    { { HTML_4_0 }, { HTML_UNDEF }, "service", mfla_service } };
+
+struct symbol_entry < html_version, e_mf_method > mf_method_symbol_table [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, "publish", mfm_publish },
+    { { HTML_4_0 }, { HTML_UNDEF }, "request", mfm_request },
+    { { HTML_4_0 }, { HTML_UNDEF }, "reply", mfm_reply },
+    { { HTML_4_0 }, { HTML_UNDEF }, "add", mfm_add },
+    { { HTML_4_0 }, { HTML_UNDEF }, "cancel", mfm_cancel },
+    { { HTML_4_0 }, { HTML_UNDEF }, "refresh", mfm_refresh },
+    { { HTML_4_0 }, { HTML_UNDEF }, "counter", mfm_counter },
+    { { HTML_4_0 }, { HTML_UNDEF }, "declinecounter", mfm_declinecounter } };
+
+struct symbol_entry < html_version, e_mf_reviewtype > mf_reviewtype_symbol_table [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, "product", mfr_product },
+    { { HTML_4_0 }, { HTML_UNDEF }, "business", mfr_business },
+    { { HTML_4_0 }, { HTML_UNDEF }, "event", mfr_event },
+    { { HTML_4_0 }, { HTML_UNDEF }, "person", mfr_person },
+    { { HTML_4_0 }, { HTML_UNDEF }, "place", mfr_place },
+    { { HTML_4_0 }, { HTML_UNDEF }, "website", mfr_website },
+    { { HTML_4_0 }, { HTML_UNDEF }, "url", mfr_url } };
+
 struct symbol_entry < html_version, e_microdata_domain > microdata_domain_symbol_table [] =
 {   { { HTML_4_01 }, { HTML_UNDEF }, MICROFORMATS_ORG, mdd_microformats },
     { { HTML_4_01 }, { HTML_UNDEF }, PURL_ORG, mdd_purl },
@@ -1208,6 +1261,11 @@ void enum_init (nitpick& nits)
     INIT_ENUM (mediafeature);
     INIT_ENUM (mediakeyword);
     INIT_ENUM (method);
+    INIT_ENUM (mf_identifier);
+    INIT_ENUM (mf_itemtype);
+    INIT_ENUM (mf_listing_action);
+    INIT_ENUM (mf_method);
+    INIT_ENUM (mf_reviewtype);
     INIT_ENUM (microdata_domain);
     INIT_ENUM (microdata_root);
     INIT_ENUM (namedspace);

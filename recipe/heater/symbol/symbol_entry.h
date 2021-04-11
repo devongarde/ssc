@@ -37,9 +37,9 @@ template < class V, typename VALUE, typename CATEGORY = e_namespace, CATEGORY IN
     uint64_t        flags2_ = 0;
 #ifdef REQUIRE_CONSTRUCTOR
     symbol_entry (  const V& first, const V& last, const char* sz, const VALUE v,
-                    const e_namespace ns = ns_default, const uint64_t flags = 0, const uint64_t flags2 = 0)
+                    const CATEGORY ns = INIT, const uint64_t flags = 0, const uint64_t flags2 = 0)
         : first_ (first), last_ (last), sz_ (sz), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
-#endif
+#endif //  REQUIRE_CONSTRUCTOR
 };
 
 template < class V, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default > struct symbol_entry_t

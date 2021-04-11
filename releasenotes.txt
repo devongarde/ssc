@@ -3,9 +3,12 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.99
+- can export living standard microdata
+
 0.0.98
-- Living standard microdata ITEMTYPEs (etc.) now processed
-- stats now only counts errors reported, not all generated
+- Living standard microdata ITEMTYPEs (etc.) now processed (except purl.org)
+- stats now counts errors reported, not all generated
 
 0.0.97
 - living standard jan 2005 - jan 2021, mostly
@@ -167,3 +170,177 @@ https://ssc.lu/
 
 0.0.56
 - completed SVG 1.1
+
+0.0.55
+- various refinements
+
+0.0.54
+- various refinements
+
+0.0.53
+- various refinements
+
+0.0.52
+- various refinements
+
+0.0.51
+- various refinements
+
+0.0.50
+- recognise all possible parents of schema type
+
+0.0.49
+- various refinements
+
+0.0.48
+- fixed many microformat issues
+- SVG 1.2 & 2.0 cursory checking
+
+0.0.47
+- CMake
+
+0.0.46
+- schema.org 10
+- enhancements to stats
+
+0.0.45
+- various refinements
+
+0.0.44
+- microdata export
+- basic RDF
+
+0.0.43
+- various refinements
+
+0.0.42
+- HTML 5.x & Living Standard July 2020
+
+0.0.41
+- various refinements
+
+0.0.40
+- various refinements
+
+0.0.39
+- various refinements
+
+0.0.38
+- various refinements
+
+0.0.37
+- various refinements
+
+0.0.36
+- various refinements
+
+0.0.35
+- various refinements
+
+0.0.34
+- various refinements
+
+0.0.33
+- various refinements
+
+0.0.32
+- various refinements
+
+0.0.31
+- various refinements
+
+0.0.30
+- better crosslink checks
+- schema.org 9.0
+
+0.0.29
+- various refinements
+
+0.0.28
+- SVG 1.0
+
+0.0.27
+- MathML 1.0
+- Aria
+
+0.0.26
+- cursory XHTML 2.0
+
+0.0.25
+- cursory XHTML 1.1
+
+0.0.24
+- cursory XHTML 1.0
+
+0.0.23
+- HTML 4.0 / 4.01
+
+0.0.22
+- HTML 3.2
+
+0.0.21
+- HTML 3.0
+
+0.0.20
+- RFC 2070
+
+0.0.19
+- RFC 1942
+
+0.0.18
+- RFC 1867
+
+0.0.17
+- HTML 2.0
+
+0.0.16
+- revised HTML+
+
+0.0.15
+- HTML+
+
+0.0.14
+- server side includes
+
+0.0.13
+- HTML 1
+
+0.0.12
+- various refinements
+
+0.0.11
+- process schema.org microdata
+
+0.0.10
+- automated tests
+
+0.0.9
+- various refinements
+
+0.0.8
+- various refinements
+
+0.0.7
+- CSS class checking
+- clang
+
+0.0.6
+- nits
+
+0.0.5
+- initial stats
+- port to macos catalina
+
+0.0.4
+- cursory HTML 5
+
+0.0.3
+- cursory HTML 2 to 5
+
+0.0.2
+- microformats
+- webmention
+
+0.0.1
+- import swlc
+

@@ -90,6 +90,9 @@
     <ClInclude Include="..\heater\stats\stats3.h" />
     <ClInclude Include="..\heater\stats\stats_impl.h" />
     <ClInclude Include="..\heater\symbol\symbol.h" />
+    <ClInclude Include="..\heater\symbol\symbol_entry.h" />
+    <ClInclude Include="..\heater\symbol\symbol_key.h" />
+    <ClInclude Include="..\heater\symbol\symbol_store.h" />
     <ClInclude Include="..\heater\symbol\symbol_table.h" />
     <ClInclude Include="..\heater\type\enum.h" />
     <ClInclude Include="..\heater\type\reldef.h" />
@@ -206,6 +209,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="..\sauce\main\version.cpp" />
     <ClCompile Include="..\sauce\microdata\microdata_export.cpp" />
     <ClCompile Include="..\sauce\microdata\microdata_itemid.cpp" />
     <ClCompile Include="..\sauce\microdata\microdata_itemprop.cpp" />
@@ -239,7 +243,6 @@
     <ClCompile Include="..\sauce\stats\stats.cpp" />
     <ClCompile Include="..\sauce\stats\stats_impl.cpp" />
     <ClCompile Include="..\sauce\symbol\symbol.cpp" />
-    <ClCompile Include="..\sauce\symbol\symbol_table.cpp" />
     <ClCompile Include="..\sauce\type\type.cpp" />
     <ClCompile Include="..\sauce\type\type_aria.cpp" />
     <ClCompile Include="..\sauce\type\type_autocomplete.cpp" />
@@ -1315,7 +1318,7 @@
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..
-$(ProjectDir)..\..\ssc15-test -x $(ProjectDir)..\..\ssc15.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -1336,7 +1339,7 @@ $(ProjectDir)..\..\ssc15-test -x $(ProjectDir)..\..\ssc15.exe -v -f $(ProjectDir
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..
-$(ProjectDir)..\..\ssc15-test -x $(ProjectDir)..\..\ssc15.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

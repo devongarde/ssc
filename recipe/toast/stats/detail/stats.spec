@@ -67,11 +67,11 @@ Elements:
     lang: used once
   13 elements used 60 times
 Microdata:
-    BlogPosting: twice
+    http://schema.org/BlogPosting: twice
       commentCount: once
       name: once
       publisher: once
-    Organization: once
+    http://schema.org/Organization: once
   Property counts:
     commentCount: used once
     name: used once
@@ -216,10 +216,10 @@ Elements:
     lang: used once
   12 elements used 46 times
 Microdata:
-    Organization: twice
+    http://schema.org/Organization: twice
       name: twice
       url: twice
-    Person: twice
+    http://schema.org/Person: twice
       description: twice
       name: twice
       url: twice
@@ -289,14 +289,14 @@ Elements:
     title: used 4 times
   20 elements used 268 times
 Microdata:
-    BlogPosting: twice
+    http://schema.org/BlogPosting: twice
       commentCount: once
       name: once
       publisher: once
-    Organization: thrice
+    http://schema.org/Organization: thrice
       name: twice
       url: twice
-    Person: twice
+    http://schema.org/Person: twice
       description: twice
       name: twice
       url: twice

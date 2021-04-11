@@ -45,8 +45,7 @@ itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const 
     type_master < t_schema > sc;
     sc.set_value (nits, v, name);
     if (sc.good ())
-    {   e_microdata_root root = domain2root (examine_value < t_microdata_domain > (nuts, v, sc.get ().domain ()));
-        sch st (nits, v, sc.get ().filename (), root);
+    {   sch st (nits, v, sc.vocab (), sc.root ());
         if (! st.invalid ()) return make_itemtype_index (st.get ()); }
     prop p (nuts, v, name);
     if (p.is_class () || p.is_rel ()) return make_itemtype_index (p.get ());
@@ -59,6 +58,6 @@ itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const 
             case itemtype_rel :
                 return type_master < t_class > :: name (static_cast < e_class > (ndx_item (ndx)));
             case itemtype_schema :
-                return sch :: name (static_cast < e_schema_type > (ndx_item (ndx)));
+                return sch :: name (static_cast < e_schema_type > (ndx_item (ndx)), true);
             default : break; }
     return "untyped"; }

@@ -66,6 +66,7 @@ template < > struct type_master < t_10 > : two_value < t_10, e_10, sz_0, sz_1, f
 template < > struct type_master < t_accumulate > : two_value < t_accumulate, e_accumulate, sz_none, sz_sum, false > { };
 template < > struct type_master < t_actuate > : two_value < t_actuate, e_actuate, sz_auto, sz_user, false > { };
 template < > struct type_master < t_additive > : two_value < t_additive, e_additive, sz_replace, sz_sum, false > { };
+template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_false, sz_true, false > { };
 template < > struct type_master < t_capture > : two_value < t_capture, ev_capture, sz_user, sz_environment, false > { };
 template < > struct type_master < t_cors > : two_value < t_cors, ev_cors, sz_anonymous, sz_use_credentials, false > { };
 template < > struct type_master < t_dataformatas > : two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false > { };
@@ -102,7 +103,7 @@ template < > struct type_master < t_svg_playbackorder > : two_value < t_svg_play
 template < > struct type_master < t_svg_timelinebegin > : two_value < t_svg_timelinebegin, e_svg_timelinebegin, sz_onload, sz_onstart, false > { };
 template < > struct type_master < t_svg_units > : two_value < t_svg_units, e_svg_units, sz_object_bbox, sz_userspace, false > { };
 template < > struct type_master < t_tbalign > : two_value < t_tbalign, e_tbalign, sz_bottom, sz_top, false > { };
-template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_false, sz_true, false > { };
+template < > struct type_master < t_transp > : two_value < t_transp, e_transp, sz_opaque, sz_transparent, false > { };
 template < > struct type_master < t_truefalseempty > : two_value < t_truefalseempty, e_bool, sz_false, sz_true, true > { };
 template < > struct type_master < t_workertype > : two_value < t_workertype, e_workertype, sz_classic, sz_module, false > { };
 template < > struct type_master < t_wrap > : two_value < t_wrap, e_wrap, sz_soft, sz_hard, false > { };

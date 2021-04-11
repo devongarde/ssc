@@ -28,14 +28,14 @@ Elements:
     lang: used once
   12 elements used 26 times
 Microdata:
-    Article: once
+    http://schema.org/Article: once
       description: once
-    Webpage: once
+    http://schema.org/Webpage: once
       name: once
   Property counts:
     description: used once
     name: used once
   2 itemtypes used twice
-Errors:
+Errors reported:
   Severity:
     Warnings: twice

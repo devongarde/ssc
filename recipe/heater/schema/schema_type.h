@@ -23,6 +23,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "schema/schema_version.h"
 
+#define SF_ENUMERATION          0x10000000
+#define SF_EXTERNAL_ENUMERATION 0x20000000
+#define SF_NO_ITEMID            0x40000000
+#define SF_DEPRECATED           0x80000000
+#define SF_SIMPLE_MASK          0x0FFFFFFF
+#define SF_NO_SIMPLE_TYPE       0
+
 typedef ::std::vector < e_schema_type > vsch_t;
 
 struct sch : symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema >

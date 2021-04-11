@@ -22,16 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "schema/schema_type.h"
 #include "utility/quote.h"
+#include "microformat/def.h"
 
 #define SF_ENUMERATION          0x10000000
 #define SF_EXTERNAL_ENUMERATION 0x20000000
 #define SF_NO_ITEMID            0x40000000
+#define SF_DEPRECATED           0x80000000
 #define SF_SIMPLE_MASK          0x0FFFFFFF
 #define SF_NO_SIMPLE_TYPE       0
 #define MAKE_SIMPLE_TYPE(T)     static_cast < uint64_t > (T)
 
 struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schema > schema_type_symbol_table [] =
-{   { { 2, 0 }, { 0, 0 }, "APIReference", sch_apireference },
+{   // schema.org
+    { { 2, 0 }, { 0, 0 }, "APIReference", sch_apireference },
     { { 3, 5 }, { 0, 0 }, "3DModel", sch_3dmodel },
     { { 3, 6 }, { 6, 0 }, "Abdomen", sch_abdomen },
     { { 2, 0 }, { 0, 0 }, "AboutPage", sch_aboutpage },
@@ -494,8 +497,6 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "HalalDiet", sch_halaldiet },
     { { 3, 5 }, { 0, 0 }, "Hardcover", sch_hardcover },
     { { 2, 0 }, { 0, 0 }, "HardwareStore", sch_hardwarestore },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcard", mf_vcard, mdr_microformats },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "hcard", mf_vcard, mdr_microformats },
     { { 3, 6 }, { 6, 0 }, "Head", sch_head },
     { { 2, 0 }, { 0, 0 }, "HealthAndBeautyBusiness", sch_healthandbeautybusiness },
     { { 5, 0 }, { 0, 0 }, "HealthAspectEnumeration", sch_healthaspectenumeration, mdr_schema, SF_ENUMERATION },
@@ -1254,10 +1255,6 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "VenueMap", sch_venuemap },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Vessel", sch_vessel },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "VeterinaryCare", sch_veterinarycare },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar#vevent", mf_vevent, mdr_microformats },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar", mf_vevent, mdr_microformats },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "hcalendar#vevent", mf_vevent, mdr_microformats },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "hcalendar", mf_vevent, mdr_microformats },
     { { 2, 0 }, { 0, 0 }, "VideoGallery", sch_videogallery },
     { { 2, 0 }, { 0, 0 }, "VideoGame", sch_videogame },
     { { 2, 0 }, { 0, 0 }, "VideoGameClip", sch_videogameclip },
@@ -1337,7 +1334,6 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "Winaction", sch_winaction },
     { { 2, 0 }, { 0, 0 }, "Winery", sch_winery },
     { { 3, 6 }, { 6, 0 }, "Withdrawn", sch_withdrawn },
-    { { mdr_whatwg, 1, 0 }, { 0, 0 }, "work", wwg_work, mdr_whatwg },
     { { 3, 9 }, { 0, 0 }, "Workbasedprogram", sch_workbasedprogramme },
     { { 3, 5 }, { 0, 0 }, "WorkersUnion", sch_workersunion },
     { { 2, 0 }, { 0, 0 }, "Wpadblock", sch_wpadblock },
@@ -1349,6 +1345,45 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Xpathtype", sch_xpathtype },
     { { 3, 6 }, { 6, 0 }, "Xray", sch_xray },
     { { 3, 5 }, { 0, 0 }, "Zoneboardingpolicy", sch_zoneboardingpolicy },
+
+    // living standard
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar#vevent", mf_vevent, mdr_microformats, SF_NO_ITEMID },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcard", mft_hcard, mdr_microformats, SF_NO_ITEMID },
+    { { mdr_whatwg, 1, 0 }, { 0, 0 }, "work", wwg_work, mdr_whatwg },
+
+    // https://web.archive.org/web/20101126105442/http://microformats.org/wiki/microdata
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_ADR, mft_adr, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_GEO, mft_geo, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_ATOM, mft_hatom, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_AUDIO, mft_haudio, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar", mft_hcalendar, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_ENTRY, mft_hentry, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_LISTING, mft_hlisting, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED }, // no XMDP, but ...
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_MEDIA, mft_hmedia, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED }, // no XMDP, but ...
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_NEWS, mft_hnews, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_PRODUCT, mft_hproduct, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_RECIPE, mft_hrecipe, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_RESUME, mft_hresume, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_REVIEW, mft_hreview, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_REVIEW_AGGREGATE, mft_haggregate, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+
+    // https://microformats.org/wiki/microdata (April 2021)
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_ADR, mft2_hadr, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_BREADCRUMB, mft2_hbreadcrumb, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_CARD, mft2_hcard, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_CITE, mft2_hcite, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_ENTRY, mft2_hentry, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_EVENT, mft2_hevent, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_FEED, mft2_hfeed, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_GEO, mft2_hgeo, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_ITEM, mft2_hitem, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_LISTING, mft2_hlisting, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_PRODUCT, mft2_hproduct, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_RECIPE, mft2_hrecipe, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_RESUME, mft2_hresume, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_REVIEW, mft2_hreview, mdr_microformats },
+    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_AGGREGATE, mft2_haggregate, mdr_microformats },
+
     { { 0, 0 }, { 0, 0 }, "", sty_illegal } };
 
 sch::sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_microdata_root root)
@@ -1381,9 +1416,8 @@ e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::str
                 nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid in ", sv.report ());
                 break;
             case mdr_microformats :
-                if (context.mf_version1 ()) sv = mf_1; else sv = mf_2;
-                if (may_apply (sv, s.first (), s.last ())) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid in ", sv.report ());
+                if (may_apply (context.mf_ver (), s.first (), s.last ())) return s.get ();
+                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid here");
                 break;
             case mdr_whatwg :
                 if (v >= html_jul09) return s.get ();

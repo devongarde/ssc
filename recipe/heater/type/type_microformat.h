@@ -98,3 +98,14 @@ template < > struct type_master < t_tel > : public tidy_string < t_tel >
             if (val.find_first_not_of (TEL) != ::std::string::npos)
             {   nits.pick (nit_phone, ed_rfc_3966, "3. URI Syntax", es_error, ec_type, quote (s), " does not appear to be a phone number");
                 tidy_string < t_tel > :: status (s_invalid); } } } };
+
+template < > struct type_master < t_tel_format > : public tidy_string < t_tel_format >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_value < t_tel_format > :: set_value (nits, v, s);
+        ::std::string val = tidy_string < t_tel_format > :: get_string ();
+        if (tidy_string < t_tel_format > :: good ())
+        {   ::std::string::size_type pos = val.find (';');
+            if (pos != ::std::string::npos) val = val.substr (0, pos);
+            if (val.find_first_not_of (TEL) != ::std::string::npos)
+            {   nits.pick (nit_phone, es_error, ec_type, quote (s), " does not appear to be a phone number");
+                tidy_string < t_tel_format > :: status (s_invalid); } } } };

@@ -91,30 +91,6 @@ template < > struct type_master < t_root_url > : type_master < t_url >
             else return;
             type_base < url, t_url > :: status (s_invalid); } };
 
-template < > struct type_master < t_schema > : type_master < t_url >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   html_version sv (context.schema_ver ());
-        type_master < t_url > :: set_value (nits, sv, s);
-        nitpick nuts;
-        if (type_master < t_url > :: good ())
-            if (! value_.has_domain () || ! value_.has_absolute_path () || ! value_.has_protocol ())
-            {   nits.pick (nit_schema_url, ed_jul20, "5.2.2 Items", es_error, ec_type, quote (s), " must be an absolute URL identifying a standard microdata type (for example, those that start with 'http://" SCHEMA_ORG "/')");
-                type_base < url, t_url > :: status (s_invalid); }
-            else
-            {   e_microdata_domain md = examine_value < t_microdata_domain > (nuts, v, value_.domain ());
-                if (md == mdd_none)
-                {   nits.pick (nit_schema_domain, es_error, ec_type, quote (s), " is a microdata domain unknown to " PROG);
-                    type_base < url, t_url > :: status (s_invalid); }
-                else if (! value_.is_http () && ! value_.is_https ())
-                {   nits.pick (nit_schema_url, es_error, ec_type, quote (s), " should be 'http' (it's an identifier, not a link)");
-                    type_base < url, t_url > :: status (s_invalid); }
-                else if (sch :: parse (nits, v, value_.get_filepath (), domain2root (md)) == sty_illegal)
-                {   nits.pick (nit_unrecognised_schema, es_warning, ec_type, quote (s), " is unrecognised by " PROG);
-                    type_base < url, t_url > :: status (s_invalid); } } }
-    static bool is_url () { return false; }
-    vurl_t get_urls () const
-    {   return vurl_t (); } };
-
 template < > struct type_master < t_urls > : type_base < url, t_urls >
 {   typedef url base_type;
     typedef vurl_t value_type;

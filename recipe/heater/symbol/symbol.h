@@ -75,7 +75,7 @@ public:
         ns_ = ns; return true; }
     static ::std::string value_list (const V& v) { return table_.value_list (v); }
     static ::std::size_t value_count (const V& v) { return table_.value_count (v); }
-    static ::std::string name (const VALUE x) { return table_.name (x); }
+    static ::std::string name (const VALUE x, const bool ns_req = false) { return table_.name (x, ns_req); }
     static bool is_invalid_version (const V& v, const VALUE x) { return table_.is_invalid_version (v, x); }
     static V first_version (const VALUE x) { return table_.first_version (x); }
     static V final_version (const VALUE x) { return table_.final_version (x); }
@@ -101,14 +101,14 @@ public:
     operator VALUE () const { return get (); }
     bool unknown () const { return unknown_; }
     bool required () const { return first_.required (); }
-    ::std::string name () const
+    ::std::string name (const bool ns_req = false) const
     {   if (unknown_) return "(unknown)";
         ::std::string res (table_.name (get ()));
         if (res.empty ())
         {   res = "(";
             res += ::boost::lexical_cast < ::std::string > (value_);
             res += ")"; }
-        if (ns_ != ns_default) res = namespace_name (ns_) + ":" + res;
+        if (ns_req || (ns_ != ns_default)) res = namespace_name (ns_) + ":" + res;
         return res; }
     static VALUE starts_with (const ::std::string& s, ::std::string::size_type* ends_at = nullptr)
     {   return table_.template starts_with < VALUE> (s, ends_at); }

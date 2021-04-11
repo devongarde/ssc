@@ -591,6 +591,9 @@
     <Filter Include="Toast\XHTML\5.0">
       <UniqueIdentifier>{2d24c5b2-2173-45d3-bf0f-f69ca992b195}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Microdata\Microformats">
+      <UniqueIdentifier>{b7a78fe8-efbb-4181-b671-92d0f56a701f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1030,6 +1033,9 @@
     </ClInclude>
     <ClInclude Include="..\heater\symbol\symbol_store.h">
       <Filter>Heater\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\microformat\def.h">
+      <Filter>Heater\microformat</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -16325,6 +16331,126 @@
     </None>
     <None Include="..\toast\living\jul10\realm-8.html">
       <Filter>Toast\Living\jul10</Filter>
+    </None>
+    <None Include="..\toast\microdata\export\work.html">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
+    <None Include="..\toast\microdata\export\vcard.html">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
+    <None Include="..\toast\microdata\export\vevent.html">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
+    <None Include="..\toast\microdata\export\work.html.model">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
+    <None Include="..\toast\microdata\export\vcard.html.model">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
+    <None Include="..\toast\microdata\export\vevent.html.model">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\index.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\mf.conf">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\mf.spec">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hcalendar.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-event.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hcard.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-card.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hatom.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\haudio.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hlisting.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hmedia.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hproduct.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hrecipe.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hresume.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hreview.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hreview-aggregate.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\adr.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\geo.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\hnews.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\export\h-card.html">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
+    <None Include="..\toast\microdata\export\h-card.html.model">
+      <Filter>Toast\Microdata\Export</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-adr.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-breadcrumb.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-cite.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-entry.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-feed.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-geo.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-product.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-item.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-listing.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-recipe.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-resume.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-review.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
+    </None>
+    <None Include="..\toast\microdata\microformats\h-review-aggregate.html">
+      <Filter>Toast\Microdata\Microformats</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>h-card</title>
+</head>
+<body>
+
+<section itemtype="http://microformats.org/profile/h-breadcrumb" itemscope>
+<a href="http://example.com/dresses" itemprop="u-url"><span itemprop="p-name">Dresses</span></a> &gt;
+<a href="http://example.com/dresses/real" itemprop="u-url"><span itemprop="p-name">Real Dresses</span></a> &gt;
+<a href="http://example.com/dresses/real/green" itemprop="u-url"><span itemprop="p-name">Real Green Dresses</span></a>
+</section>
+
+<div itemtype="http://microformats.org/profile/h-breadcrumb" itemscope>
+  <a href="http://example.com/books" itemprop="u-url"><span itemprop="p-name">Books</span></a> &gt;
+  <div itemprop="h-breadcrumb" itemtype="http://microformats.org/profile/h-breadcrumb" itemscope>
+    <a href="http://example.com/books/fiction" itemprop="u-url"><span itemprop="p-name">Fiction</span></a> &gt;
+    <div itemprop="h-breadcrumb" itemtype="http://microformats.org/profile/h-breadcrumb" itemscope>
+      <a href="http://example.com/books/fiction/horror" itemprop="u-url"><span itemprop="p-name">Horror</span></a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

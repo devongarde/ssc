@@ -255,7 +255,7 @@ e_svg_version attributes_node::get_svg (const html_version& v) const
             if (a.id () == a_xmlns)
             {   ::std::string ver (trim_the_lot_off (a.get_string ()));
                 e_svg_version_grand evg = examine_value < t_svg_version_grand > (nuts, v, ver);
-                if (evg != sv_none) return static_cast < e_svg_version > (evg);
+                if (evg != svg_none) return static_cast < e_svg_version > (evg);
                 check_profile = (ver.length () >= 27) && (ver.substr (0, 27) == SVG_2000);
                 break; }
     if (check_profile)

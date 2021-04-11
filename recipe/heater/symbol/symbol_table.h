@@ -142,11 +142,11 @@ public:
                     if (compare_no_case (s.substr (0, max), i -> second.sz_))
                         return s.substr (max); }
         return s; }
-    ::std::string name (const ::std::size_t x) const
+    ::std::string name (const ::std::size_t x, const bool ns_req = false) const
     {   extern ::std::string namespace_name (const CATEGORY ns);
         auto i = reverse_.find (x);
         if (i == reverse_.end ()) return ::std::string ();
-        if (i -> second.ns_ == INIT) return i -> second.sz_;
+        if ((! ns_req) && (i -> second.ns_ == INIT)) return i -> second.sz_;
         ::std::string res (namespace_name (i -> second.ns_));
         res += colonisation < CATEGORY > :: ns_sep ();
         res += i -> second.sz_;

@@ -35,8 +35,7 @@ void schema_version::init () // call post context construction
     vsv [mdr_none] = default_schema;
     vsv [mdr_schema] = context.schema_ver ();
     vsv [mdr_whatwg] = whatwg_schema;
-    if (context.mf_version1 ()) vsv [mdr_microformats] = mf_1;
-    else vsv [mdr_microformats] = mf_2;
+    vsv [mdr_microformats] = context.mf_ver ();
     vsv [mdr_purl] = default_schema; }
 
 ::std::string schema_version::report () const
@@ -49,8 +48,9 @@ void schema_version::init () // call post context construction
             else res << static_cast < int > (mjr ()) << "." << static_cast < int > (mnr ());
             break;
         case mdr_microformats :
-            res << "microformats.org v";
-            res << static_cast < int > (mjr ());
+            res << "microformats.org";
+            if (! any_flags (SV_WILDCARD))
+                res << " v" << static_cast < int > (mjr ());
             break;
         case mdr_whatwg :
             res << "n.whatwg.org";
@@ -82,5 +82,10 @@ bool is_valid_schema_version (const e_microdata_root root, const unsigned char j
             return ((j == 1) && (n == 0));
         case mdr_microformats :
             if (n != 0) return false;
-            return ((j == 1) || (j == 2));
+            return (j <= 2);
         default : return false; } }
+
+bool does_schema_apply (const schema_version& v, const schema_version& from, const schema_version& to)
+{   if (v.any_flags (SV_WILDCARD)) return true;
+    return does_apply < version > (v, from, to); }
+

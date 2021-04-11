@@ -51,6 +51,7 @@
 ../toast/microdata/addendum/add.spec
 ../toast/microdata/basic/basic.spec
 ../toast/microdata/export/export.spec
+../toast/microdata/microformats/mf.spec
 ../toast/microdata/schema-abc/abc.spec
 ../toast/microdata/schema-defg/defg.spec
 ../toast/microdata/schema-hijkl/hijkl.spec

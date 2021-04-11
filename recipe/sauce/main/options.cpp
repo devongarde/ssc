@@ -243,7 +243,7 @@ void options::process (int argc, char** argv)
         (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (0 to determine by HTML version)")
 
         (MICRODATA EXPORT, "export microformat data (only verified data if " MICRODATA MICRODATAARG " is set)")
-        (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands " SCHEMA_ORG " microdata)")
+        (MICRODATA MICRODATAARG ",m", "check microdata (" PROG " only understands certain microdata schemas)")
         (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "export root directory (requires " MICRODATA EXPORT ")")
         (MICRODATA VERSION, ::boost::program_options::value < ::std::string > (), "set default " SCHEMA_ORG " version (default: " DEFAULT_SCHEMA_VERSION ")")
         (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "export virtual directory, syntax virtual=directory. Must correspond to " WEBSITE VIRTUAL)
@@ -618,6 +618,11 @@ void options::contextualise ()
     TEST_VAR (mediafeature);
     TEST_VAR (mediakeyword);
     TEST_VAR (method);
+    TEST_VAR (mf_identifier);
+    TEST_VAR (mf_itemtype);
+    TEST_VAR (mf_listing_action);
+    TEST_VAR (mf_method);
+    TEST_VAR (mf_reviewtype);
     TEST_VAR (microdata_domain);
     TEST_VAR (microdata_root);
     TEST_VAR (namedspace);
@@ -794,6 +799,11 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (mediafeature);
     RPT_VAR (mediakeyword);
     RPT_VAR (method);
+    RPT_VAR (mf_identifier);
+    RPT_VAR (mf_itemtype);
+    RPT_VAR (mf_listing_action);
+    RPT_VAR (mf_method);
+    RPT_VAR (mf_reviewtype);
     RPT_VAR (microdata_domain);
     RPT_VAR (microdata_root);
     RPT_VAR (namedspace);
