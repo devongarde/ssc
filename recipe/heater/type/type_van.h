@@ -398,6 +398,37 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
             if (allgood) return; }
         string_vector < t_sandboxen, sz_space > :: status (s_invalid); } };
 
+template < > struct type_master < t_schema > : tidy_string < t_schema >
+{   e_microdata_root mdr_ = mdr_none;
+    e_schema_type st_ = sty_illegal;
+    ::std::string vocab_;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_schema > :: set_value (nits, v, s);
+        if (tidy_string < t_schema > :: good ()) try
+        {   ::std::string name (tidy_string < t_schema > :: get_string ());
+            if (name.find (':') == ::std::string::npos)
+                nits.pick (nit_schema_url, ed_jul20, "5.2.2 Items", es_error, ec_type, quote (s), " must be an absolute URL identifying a standard microdata type (for example, http://" SCHEMA_ORG "/...)");
+            else if ((name.length () < 6) || (name.substr (0, 4) != "http"))
+                nits.pick (nit_schema_domain, es_error, ec_type, quote (s), " is neither 'http://' nor 'https://', so is unknown to " PROG);
+            else
+            {   ::std::string::size_type ends_at = 0;
+                mdr_ = type_master < t_microdata_root > :: starts_with (name, &ends_at);
+                if (mdr_ == mdr_none)
+                    nits.pick (nit_schema_domain, es_error, ec_type, quote (s), " is a microdata domain unknown to " PROG);
+                else
+                {   if (ends_at > 0) vocab_ = name.substr (ends_at);
+                    if (vocab_.empty ())
+                        nits.pick (nit_unrecognised_schema, es_warning, ec_type, quote (s), " is incomplete");
+                    else
+                    {   st_ = sch :: parse (nits, v, vocab_, mdr_);
+                        if (st_ != sty_illegal) return;
+                        nits.pick (nit_unrecognised_schema, es_warning, ec_type, quote (s), " is unrecognised by " PROG); } } } }
+            catch (...) { }
+        tidy_string < t_schema > :: status (s_invalid); }
+    e_schema_type schema_type () const { return st_; }
+    e_microdata_root root () const { return mdr_; }
+    ::std::string vocab () const { return vocab_; } };
+
 template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_shape3 > :: set_value (nits, v, s);

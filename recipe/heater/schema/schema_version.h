@@ -37,6 +37,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_DEP33        0x00200000
 #define SV_DEP34        0x00400000
 
+#define SV_WILDCARD     0x80000000
+
 #define SV_DEP_3034     ( SV_DEP30 | SV_DEP31 | SV_DEP32 | SV_DEP33 | SV_DEP34 )
 #define SV_FLAG_MASK    0xFFFFFFFF
 #define SV_ROOT_SHIFT   32
@@ -124,5 +126,10 @@ const schema_version whatwg_schema (mdr_whatwg, 1, 0);
 
 const schema_version mf_1 (mdr_microformats, 1, 0);
 const schema_version mf_2 (mdr_microformats, 2, 0);
+const schema_version mf_all (mdr_microformats, 2, 0, SV_WILDCARD);
 
 bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, const schema_version& rhs_from, const schema_version& rhs_to);
+bool does_schema_apply (const schema_version& v, const schema_version& from, const schema_version& to);
+
+template < > inline bool does_apply < schema_version > (const schema_version& v, const schema_version& from, const schema_version& to)
+{   return does_schema_apply (v, from, to); }

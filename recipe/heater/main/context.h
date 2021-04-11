@@ -105,6 +105,7 @@ public:
     bool mf_verify () const { return mf_verify_; }
     bool mf_version1 () const { return (mf_version_ & 1) != 0; }
     bool mf_version2 () const { return (mf_version_ & 2) != 0; }
+    schema_version mf_ver () const;
     bool microdata () const { return microdata_; }
     bool microformats () const { return mf_verify_ || mf_export_; }
     ::std::string msg () const { return msg_; }

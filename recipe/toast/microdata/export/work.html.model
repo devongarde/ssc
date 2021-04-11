@@ -1,0 +1,13 @@
+{
+    "work": {
+        "1": {
+            "type": "http:\/\/n.whatwg.org\/work",
+            "prop": {
+                "work": "http:\/\/example.org\/mypond.jpeg",
+                "title": "My Pond",
+                "license": "https:\/\/creativecommons.org\/licenses\/by-sa\/4.0\/",
+                "license": "http:\/\/www.opensource.org\/licenses\/mit-license.php"
+            }
+        }
+    }
+}

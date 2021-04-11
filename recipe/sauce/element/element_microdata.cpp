@@ -75,10 +75,12 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
         new_scope -> set_exporter (page_.md_export (), page_.md_export () -> append_path (page_.get_export_root (), null_itemprop, true));
     else
     {   bool se = false;
+        if (! a_.known (a_itemtype)) new_scope -> parent (itemscope);
+        ::std::string value (get_microdata_value ());
         if (a_.known (a_itemprop))
             for (auto name : a_.get_x < attr_itemprop > ())
             {   se = true;
-                itemscope -> note_itemprop (node_.nits (), node_.version (), name, new_scope, page_); }
+                itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, new_scope, page_); }
         if (! se) new_scope -> set_exporter (page_.md_export (), page_.md_export () -> append_path (itemscope -> export_path (), null_itemprop, true)); }
     itemscope = new_scope;
     if (page_.itemscope ().get () == nullptr)
@@ -113,9 +115,10 @@ void element::examine_itemref (itemscope_ptr& itemscope)
                         icarus_ = false; } } }
 
 void element::examine_itemtype (itemscope_ptr& itemscope)
-{   if (a_.known (a_itemscope))
+{   bool has_itemid = a_.known (a_itemid);
+    if (a_.known (a_itemscope))
         for (auto name : a_.get_x < attr_itemtype > ())
-            itemscope -> note_itemtype (node_.nits (), node_.version (), name, page_); }
+            itemscope -> note_itemtype (node_.nits (), node_.version (), name, page_, has_itemid); }
 
 vit_t element::own_itemtype () const
 {   if (! a_.good (a_itemtype)) return vit_t ();

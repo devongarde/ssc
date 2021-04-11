@@ -123,3 +123,26 @@ template < > struct type_master < t_svg_duration > : public tidy_string < t_svg_
         if (! verify_svg_duration (nits, v, tidy_string < t_svg_duration > :: get_string ()))
             tidy_string < t_svg_duration > :: status (s_invalid); } };
 
+template < > struct type_master < t_hour > : public numeric_value < t_hour, unsigned int >
+{   typedef true_type has_int_type;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   numeric_value < t_hour, unsigned int > :: set_value (nits, v, s);
+        if (! numeric_value < t_hour, unsigned int > :: good () || (value_ > 23))
+        {   nits.pick (nit_hour, es_error, ec_type, quote (s), " does not lie between 0 and 23 (inclusive)");
+            numeric_value < t_hour, unsigned int > :: status (s_invalid); } } };
+
+template < > struct type_master < t_minute > : public numeric_value < t_minute, unsigned int >
+{   typedef true_type has_int_type;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   numeric_value < t_minute, unsigned int > :: set_value (nits, v, s);
+        if (! numeric_value < t_minute, unsigned int > :: good () || (value_ > 59))
+        {   nits.pick (nit_minute, es_error, ec_type, quote (s), " does not lie between 0 and 59 (inclusive)");
+            numeric_value < t_minute, unsigned int > :: status (s_invalid); } } };
+
+template < > struct type_master < t_second > : public numeric_value < t_second, unsigned int >
+{   typedef true_type has_int_type;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   numeric_value < t_second, unsigned int > :: set_value (nits, v, s);
+        if (! numeric_value < t_second, unsigned int > :: good () || (value_ > 61))// leap seconds
+        {   nits.pick (nit_second, es_error, ec_type, quote (s), " does not lie between 0 and 59 (inclusive)");
+            numeric_value < t_second, unsigned int > :: status (s_invalid); } } };

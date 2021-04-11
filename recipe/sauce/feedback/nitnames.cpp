@@ -598,6 +598,11 @@ nitname nitnames [] =
     { nit_dashdash, "dashdash" },
     { nit_naked_grave, "naked_grave" },
     { nit_prototype, "prototype" },
+    { nit_bad_property, "bad_property" },
+    { nit_hour, "hour" },
+    { nit_minute, "minute" },
+    { nit_second, "second" },
+    { nit_deprecated_schema, "deprecated_schema" },
 
     { nit_off, "" } };
 

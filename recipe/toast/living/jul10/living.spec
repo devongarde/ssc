@@ -1087,6 +1087,7 @@ PASS ../toast/living/jul10/vcard.html
 44 use_quote_code
 45 use_quote_code
 47 use_quote_code
+49 bad_property
 53 missing_close
 56 inserted_missing_closure
 

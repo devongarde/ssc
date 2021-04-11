@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Web 2.0 Conference</title>
+</head>
+<body>
+
+<!-- from http://microformats.org/wiki/microdata -->
+
+<div itemtype="http://microformats.org/profile/h-event" itemscope>
+ <a itemprop="u-url" href="http://conferences.oreillynet.com/pub/w/40/program.html">
+  http://conferences.oreillynet.com/pub/w/40/program.html
+ </a>
+ <span itemprop="p-summary">Web 2.0 Conference</span>:
+ <time itemprop="dt-start" datetime="2005-10-05">October 5</time>-
+ <time itemprop="dt-end" datetime="2005-10-07">7</time>,
+ at the <span itemprop="p-location">Argent Hotel, San Francisco, CA</span>
+</div>
+
+<!-- how I would have marked this example up -->
+
+<div itemtype="http://microformats.org/profile/h-event" itemscope>
+ <a itemprop="u-url" href="http://conferences.oreillynet.com/pub/w/40/program.html">
+  http://conferences.oreillynet.com/pub/w/40/program.html
+ </a>
+ <span itemprop="p-summary">Web 2.0 Conference</span>:
+ <time itemprop="dt-start" datetime="2005-10-05">October 5</time>-
+ <time itemprop="dt-end" datetime="2005-10-07">7</time>,
+ at the
+<span itemprop="p-location" itemscope itemtype="http://microformats.org/profile/h-card">
+<span itemprop="p-name">Argent Hotel</span>,
+<span itemprop="p-locality">San Francisco</span>,
+<span itemprop="p-region">CA</span>
+</span>
+</div>
+
+</body>
+</html>

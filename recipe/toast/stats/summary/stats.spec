@@ -74,14 +74,14 @@ Elements:
     title: used 4 times
   20 elements used 268 times
 Microdata:
-    BlogPosting: twice
+    http://schema.org/BlogPosting: twice
       commentCount: once
       name: once
       publisher: once
-    Organization: thrice
+    http://schema.org/Organization: thrice
       name: twice
       url: twice
-    Person: twice
+    http://schema.org/Person: twice
       description: twice
       name: twice
       url: twice

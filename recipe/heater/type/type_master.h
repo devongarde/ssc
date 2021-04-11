@@ -129,4 +129,3 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : ti
             if (test_value < U > (nits, v, ss)) return; }
         tidy_string < T > :: status (s_invalid); }
     ::std::size_t size () const { return both_ ? 2 : 1; } };
-

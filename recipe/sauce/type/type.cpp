@@ -197,6 +197,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_generic);
         TEST_VALUE (t_glyphname);
         TEST_VALUE (t_glyphnames);
+        TEST_VALUE (t_hour);
         TEST_VALUE (t_halign);
         TEST_VALUE (t_html);
         TEST_VALUE (t_html_boolean);
@@ -282,10 +283,19 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_metaname);
         TEST_VALUE (t_method);
         TEST_VALUE (t_methodological);
+        TEST_VALUE (t_mf_availability);
+        TEST_VALUE (t_mf_category);
+        TEST_VALUE (t_mf_class);
+        TEST_VALUE (t_mf_itemtype);
+        TEST_VALUE (t_mf_listing_action);
+        TEST_VALUE (t_mf_listing_actions);
+        TEST_VALUE (t_mf_method);
+        TEST_VALUE (t_mf_status);
         TEST_VALUE (t_microdata_domain);
         TEST_VALUE (t_microdata_root);
         TEST_VALUE (t_mime);
         TEST_VALUE (t_mimelist);
+        TEST_VALUE (t_minute);
         TEST_VALUE (t_mode);
         TEST_VALUE (t_month);
         TEST_VALUE (t_morphology_operator);
@@ -354,6 +364,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_rowscols);
         TEST_VALUE (t_rsvp);
         TEST_VALUE (t_rules);
+        TEST_VALUE (t_second);
         TEST_VALUE (t_sandbox);
         TEST_VALUE (t_sandboxen);
         TEST_VALUE (t_schema);
@@ -431,6 +442,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_tbalign);
         TEST_VALUE (t_tdscope);
         TEST_VALUE (t_tel);
+        TEST_VALUE (t_tel_format);
         TEST_VALUE (t_text);
         TEST_VALUE (t_textdecoration);
         TEST_VALUE (t_textrendering);
@@ -441,6 +453,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_transform);
         TEST_VALUE (t_transform_anim);
         TEST_VALUE (t_transform_fn);
+        TEST_VALUE (t_transp);
         TEST_VALUE (t_truefalseempty);
         TEST_VALUE (t_turbulence_type);
         TEST_VALUE (t_type);

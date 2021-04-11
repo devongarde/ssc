@@ -763,6 +763,15 @@ const e_metaname metaname_first_whatwg = mn_aglsterms_accessmode;
 const e_metaname metaname_first_dubious = mn_blogcatalog;
 const e_metaname metaname_first_rejected = mn_cache;
 
+typedef enum { mfa_out_of_stock, mfa_in_stock, mfa_instore_only, mfa_preorder } e_mf_availability;
+typedef enum { mfc_meeting, mfc_appointment, mfc_conference, mfc_expo } e_mf_category;
+typedef enum { mfc_public, mfc_private, mfc_confidential } e_mf_class;
+typedef enum { mfi_model, mfi_mpn, mfi_upc, mfi_isbn, mfi_issn, mfi_ean, mfi_jan, mfi_sn, mfi_vin, mfi_sku } e_mf_identifier;
+typedef enum { mfit_opening, mfit_housing, mfit_product, mfit_business, mfit_event, mfit_person, mfit_place, mfit_website, mfit_url } e_mf_itemtype;
+typedef enum { mfla_sell, mfla_rent, mfla_trade, mfla_meet, mfla_announce, mfla_offer, mfla_wanted, mfla_event, mfla_service } e_mf_listing_action;
+typedef enum { mfm_none, mfm_publish, mfm_request, mfm_reply, mfm_add, mfm_cancel, mfm_refresh, mfm_counter, mfm_declinecounter } e_mf_method;
+typedef enum { mfr_product, mfr_business, mfr_event, mfr_person, mfr_place, mfr_website, mfr_url } e_mf_reviewtype;
+typedef enum { mfs_tentative, mfs_confirmed, mfs_cancelled } e_mf_status;
 typedef enum { mdd_none, mdd_schema, mdd_microformats, mdd_purl, mdd_whatwg, mdd_illegal } e_microdata_domain;
 typedef enum { mdr_none, mdr_schema, mdr_microformats, mdr_purl, mdr_whatwg, mdr_illegal } e_microdata_root;
 inline e_microdata_root domain2root (const e_microdata_domain md) { return static_cast < e_microdata_root> (md); }
@@ -1400,7 +1409,7 @@ typedef enum
     nit_repeated_definition, nit_contradictory_expansion, nit_naughty_grave, nit_encode, nit_svg_data, nit_data, nit_bad_wild,
     nit_risky_filetype, nit_reputation, nit_incompatible_mime, nit_os_dependent, nit_bad_usemap, nit_bad_type_attribute, nit_bad_pattern,
     nit_bad_command, nit_bad_datagrid, nit_script, nit_menubar, nit_bad_card, nit_nest, nit_registration_mark, nit_bad_ref, nit_font,
-    nit_dashdash, nit_naked_grave, nit_prototype,
+    nit_dashdash, nit_naked_grave, nit_prototype, nit_bad_property, nit_hour, nit_minute, nit_second, nit_deprecated_schema,
 
     nit_context,
 
@@ -1660,7 +1669,7 @@ typedef enum
     sch_urologic, sch_usageorschedulehealthaspect, sch_useaction, sch_usedcondition, sch_userblocks, sch_usercheckins, sch_usercomments, sch_userdownloads, sch_userinteraction, sch_userlikes, sch_userpagevisits, sch_userplays,
     sch_userplusones, sch_userreview, sch_usertweets, sch_usnonprofittype,
 
-    mf_vcard, sch_vegandiet, sch_vegetariandiet, sch_vehicle, sch_vein, sch_venuemap, sch_vessel, sch_veterinarycare, mf_vevent, sch_videogallery, sch_videogame, sch_videogameclip, sch_videogameseries, sch_videoobject,
+    sch_vegandiet, sch_vegetariandiet, sch_vehicle, sch_vein, sch_venuemap, sch_vessel, sch_veterinarycare, sch_videogallery, sch_videogame, sch_videogameclip, sch_videogameseries, sch_videoobject,
     sch_viewaction, sch_vinylformat, sch_virtuallocation, sch_virus, sch_visualartsevent, sch_visualartwork, sch_vitalsign, sch_volcano, sch_voteaction,
 
     sch_wantaction, sch_warrantypromise, sch_warrantyscope, sch_watchaction, sch_waterfall, sch_wearablemeasurementtypeenumeration, sch_wearablemeasurementback, sch_wearablemeasurementchestorbust, sch_wearablemeasurementcollar,
@@ -1677,6 +1686,16 @@ typedef enum
 
     sch_zoneboardingpolicy, sch_zoo,
 
+    // living standards microformats 1 reference
+    mft_hcard, mf_vevent,
+
+    // standard microformats v1 vocabulary
+    mft_adr, mft_geo, mft_haggregate, mft_hatom, mft_haudio, /* mft_hcard, */ mft_hcalendar, mft_hentry, mft_hlisting, mft_hmedia, mft_hnews, mft_hproduct, mft_hrecipe, mft_hresume, mft_hreview,
+
+    // standard microformats v2 vocabulary
+    mft2_hadr, mft2_hbreadcrumb, mft2_hcard, mft2_hcite, mft2_hentry, mft2_hevent, mft2_hfeed, mft2_hgeo, mft2_hitem, mft2_hlisting, mft2_hproduct, mft2_hrecipe, mft2_hresume, mft2_hreview, mft2_haggregate,
+
+    // Living Standard
     wwg_work,
 
     sty_illegal } e_schema_type;
@@ -1829,10 +1848,84 @@ typedef enum
 
     sp_yearbuilt, sp_yearlyrevenue, sp_yearsinoperation, sp_yield,
 
-    mp_additional_name, mp_adr, mp_agent, mp_anniversary, mp_attach, mp_bday, mp_categories, mp_class, mp_comment, mp_contact, mp_country_name, mp_created, mp_description, mp_dtend, mp_dtstart, mp_duration, mp_email,
-    mp_exdate, mp_extended_address, mp_family_name, mp_fn, mp_gender_identity, mp_geo, mp_given_name, mp_honourific_prefix, mp_honourific_suffix, mp_impp, mp_kind, mp_lang, mp_last_modified, mp_locality, mp_location,
-    mp_logo, mp_member, mp_n, mp_nickname, mp_note, mp_org, mp_organisation_name, mp_organisation_unit, mp_photo, mp_post_office_box, mp_postal_code, mp_region, mp_rdate, mp_rel, mp_related, mp_rev, mp_role, mp_rrule,
-    mp_resources, mp_sequence, mp_sex, mp_sound, mp_status, mp_street_address, mp_summary, mp_tel, mp_title, mp_transp, mp_type, mp_tz, mp_uid, mp_url, mp_value,
+    mp_additional_name, mp_adr, mp_affliation, mp_agent, mp_album, mp_amount, mp_anniversary, mp_attach, mp_attendee, mp_author, mp_availability,
+    mp_best, mp_bday, mp_bookmark, mp_brand,
+    mp_categories, mp_category, mp_class, mp_comment, mp_contact, mp_contributor, mp_count, mp_country_name, mp_created, mp_currency,
+    mp_description, mp_dateline, mp_dtend, mp_dtexpired, mp_dtlisted, mp_dtreviewed, mp_dtstart, mp_duration,
+    mp_education, mp_email, mp_enclosure, mp_entry, mp_entry_content, mp_entry_summary, mp_entry_title, mp_exdate, mp_experience, mp_extended_address,
+    mp_family_name, mp_feed_category, mp_fn,
+    mp_gender_identity, mp_geo, mp_given_name,
+    mp_h, mp_hentry, mp_honourific_prefix, mp_honourific_suffix,
+    mp_identifier, mp_impp, mp_include, mp_info, mp_ingredient, mp_instructions, mp_item, mp_item_licence,
+    mp_key, mp_kind,
+    mp_label, mp_lang, mp_latitude, mp_last_modified, mp_licence, mp_listing, mp_listing_action, mp_lister, mp_locality, mp_location, mp_logo, mp_longitude,
+    mp_mailer, mp_member, mp_method, mp_min,
+    mp_n, mp_nickname, mp_note, mp_nutrition,
+    mp_org, mp_organiser, mp_organisation_name, mp_organisation_unit,
+    mp_partstat, mp_payment, mp_permalink, mp_photo, mp_player, mp_position, mp_post_office_box, mp_postal_code, mp_principles, mp_price, mp_publications, mp_published,
+    mp_rating, mp_rdate, mp_region, mp_rel, mp_related, mp_rev, mp_review, mp_reviewer, mp_role, mp_rrule, mp_resources,
+    mp_s, mp_sample, mp_self, mp_sequence, mp_sex, mp_skill, mp_sort_string, mp_source_org, mp_sound, mp_status, mp_street_address, mp_summary,
+    mp_tag, mp_tags, mp_term, mp_tel, mp_title, mp_transp, mp_type, mp_tz,
+    mp_uid, mp_updated, mp_url,
+    mp_value, mp_value_title, mp_version, mp_votes,
+    mp_worst,
+    mp_yield,
+
+    mp2_dt_accessed, mp2_dt_anniversary,
+    mp2_dt_bday,
+    mp2_dt_duration,
+    mp2_dt_end, mp2_dt_expired,
+    mp2_dt_listed,
+    mp2_dt_published,
+    mp2_dt_rev,
+    mp2_dt_start,
+    mp2_dt_updated,
+
+    mp2_e_content,
+    mp2_e_description,
+    mp2_e_instructions,
+
+    mp2_h_breadcrumb,
+    mp2_h_entry,
+
+    mp2_p_action, mp2_p_additional_name, mp2_p_adr, mp2_p_affiliation, mp2_p_altitude, mp2_p_attendee, mp2_p_author, mp2_p_average,
+    mp2_p_best, mp2_p_brand,
+    mp2_p_category, mp2_p_comment, mp2_p_contact, mp2_p_content, mp2_p_count, mp2_p_country_name,
+    mp2_p_description, mp2_p_duration,
+    mp2_p_education, mp2_p_entry, mp2_p_experience, mp2_p_extended_address,
+    mp2_p_family_name,
+    mp2_p_region,
+    mp2_p_gender_identity, mp2_p_geo, mp2_p_given_name,
+    mp2_p_honourific_prefix, mp2_p_honourific_suffix,
+    mp2_p_ingredient, mp2_p_item,
+    mp2_p_job_title,
+    mp2_p_label, mp2_p_latitude, mp2_p_lister, mp2_p_locality, mp2_p_location, mp2_p_longitude,
+    mp2_p_name, mp2_p_nickname, mp2_p_note, mp2_p_nutrition,
+    mp2_p_org, mp2_p_organisation_name, mp2_p_organisation_unit,
+    mp2_p_rating, mp2_p_review, mp2_p_post_office_box, mp2_p_postal_code, mp2_p_price, mp2_p_publication,
+        mp2_p_read_of, mp2_p_role, mp2_p_rsvp,
+    mp2_p_sex, mp2_p_size, mp2_p_skill, mp2_p_sort_string, mp2_p_street_address, mp2_p_summary,
+    mp2_p_tel,
+    mp2_p_tz,
+    mp2_p_votes,
+    mp2_p_worst,
+    mp2_p_yield,
+
+    mp2_u_audio,
+    mp2_u_bookmark_of,
+    mp2_u_email,
+    mp2_u_featured,
+    mp2_u_geo,
+    mp2_u_identifier, mp2_u_impp, mp2_u_in_reply_to,
+    mp2_u_like, mp2_u_like_of, mp2_u_listen_of, mp2_u_logo,
+    mp2_u_key,
+    mp2_u_photo,
+    mp2_u_read_of, mp2_u_repost, mp2_u_repost_of,
+    mp2_u_sound, mp2_u_syndication,
+    mp2_u_translation_of,
+    mp2_u_uid, mp2_u_url,
+    mp2_u_video,
+    mp2_u_watch_of,
 
     wp_author, wp_license, wp_title, wp_work,
 
@@ -1930,6 +2023,7 @@ typedef enum { tfa_auto, tfa_false, tfa_true } e_tfa;
 typedef enum { tfu_false, tfu_true, tfu_undefined } e_tfu;
 typedef enum { ta_translate, ta_scale, ta_rotate, ta_skewx, ta_skewy } e_transform_anim;
 typedef enum { tr_nowt, tr_matrix, tr_translate, tr_scale, tr_rotate, tr_skewx, tr_skewy } e_transform_fn;
+typedef enum { tp_opaque, tp_transparent } e_transp;
 typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 typedef enum {
@@ -1953,7 +2047,7 @@ typedef enum {
         t_fontfamilies, t_fontnia, t_fontsize, t_fontsizeadjust, t_fontstretch, t_fontstretches, t_fontstyle, t_fontweight, t_fontvariant, t_fontvariants,
         t_form, t_format, t_frame, t_frame4, t_framespacing, t_frequency,
     t_generic, t_glyphname, t_glyphnames, t_groupalign,
-    t_halign, t_height, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
+    t_halign, t_height, t_hour, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
     t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_imagerendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index, t_indentalign,
         t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus, t_inputtype, t_inputtype3, t_inputtype32,
         t_inputtype4, t_inputtype5, t_integer, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype,
@@ -1966,7 +2060,9 @@ typedef enum {
         t_mathframe, t_mathlocation, t_mathmode, t_mathnotation, t_mathnotations, t_mathoccurence, t_mathorder, t_mathoverflow, t_mathscope, t_mathsize,
         t_mathspace, t_mathspaceauto, t_mathspacefit, t_mathspaceinfinity, t_mathvariant, t_matrixtype, t_matrix_values, t_measure, t_measure_ai, t_measure_i,
         t_measure_or_more, t_measures, t_media, t_mediafeature, t_mediakeyword, t_meetslice, t_menuitem, t_menutype, t_metaname, t_method, t_methodological,
-        t_microdata_domain, t_microdata_root, t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar, t_mode, t_month, t_morphology_operator, t_mql, t_mqls,
+        t_mf_availability, t_mf_category, t_mf_class, t_mf_identifier, t_mf_itemtype, t_mf_listing_action, t_mf_listing_actions, t_mf_method,
+        t_mf_reviewtype, t_mf_status,
+        t_microdata_domain, t_microdata_root, t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar, t_minute, t_mode, t_month, t_morphology_operator, t_mql, t_mqls,
     t_name, t_nameref, t_namedspace, t_namespace, t_navigation, t_negative, t_normalised, t_normalisations, t_not_empty, t_notation, t_notations, t_nsd, t_nsds, t_num,
     t_occurence, t_ogtype, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow,
     t_paint, t_paintkeyword, t_panose1, t_phase, t_pics, t_plus_1_7, t_plusstyle, t_pointerevents, t_points, t_positive, t_pragma, t_prefix, t_preload, t_preload5,
@@ -1975,15 +2071,15 @@ typedef enum {
     t_rap, t_rating, t_real, t_real_1_2, t_reals, t_referrer, t_refresh, t_refx, t_refy, t_regex, t_rel, t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link,
         t_rel_obsolete, t_renderingintent, t_repeatcount, t_restart, t_result, t_reveal_trans, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim,
         t_rowscols,  t_rsvp, t_rules,
-    t_sandbox, t_sandboxen, t_schema, t_scope, t_script, t_scrolling, t_settype, t_sex, t_sgml, t_shape, t_shape3, t_shape4, t_shape7, t_shaperendering,
+    t_sandbox, t_sandboxen, t_schema, t_scope, t_script, t_scrolling, t_second, t_settype, t_sex, t_sgml, t_shape, t_shape3, t_shape4, t_shape7, t_shaperendering,
         t_shape_rcp, t_show, t_side, t_size, t_size3, t_sizes,  t_sizex, t_smei, t_spacer, t_spacing, t_spread_method, t_srcset, t_ssi, t_ssi_comparison,
         t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_f, t_start, t_stitchtiles, t_svg_feature, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_step, t_style,
         t_svg_align, t_svg_baselineshift, t_svg_baseprofile, t_svg_content, t_svg_direction, t_svg_duration, t_svg_features, t_svg_fontstretch, t_svg_fontstretch_ff,
         t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant, t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff, t_svg_fontweights, t_svg_method,
         t_svg_mode, t_svg_overflow, t_svg_playbackorder, t_svg_snapshottime, t_svg_time, t_svg_timelinebegin, t_svg_transform, t_svg_type, t_svg_type_11,
         t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_sym,
-    t_tableframe, t_table_values, t_target, t_tbalign, t_tdscope, t_tel, t_tendstotype, t_text, t_textdecoration, t_textrendering, t_tfmu, t_tfa, t_tfu, t_tokens,
-        t_transform, t_transform_anim, t_transform_fn, t_truefalseempty, t_turbulence_type, t_type, t_tz,
+    t_tableframe, t_table_values, t_target, t_tbalign, t_tdscope, t_tel, t_tel_format, t_tendstotype, t_text, t_textdecoration, t_textrendering, t_tfmu, t_tfa, t_tfu, t_tokens,
+        t_transform, t_transform_anim, t_transform_fn, t_transp, t_truefalseempty, t_turbulence_type, t_type, t_tz,
     t_ugeo, t_unicodebidi, t_units, t_unsigned, t_un_ex, t_unsigned_dosh, t_uplr, t_urange, t_url, t_urls,
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_vectoreffect, t_vectoreffect_12, t_vectoreffect_2, t_version, t_vid, t_visibility, t_vocab,
         t_vunit, t_vunits,

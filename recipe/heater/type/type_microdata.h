@@ -60,3 +60,5 @@ template < > struct type_master < t_itemtype > : string_vector < t_itemtype, sz_
                     allgood = false;
             if (allgood) return; }
         string_vector < t_itemtype, sz_space > :: status (s_invalid); } };
+
+template < > struct type_master < t_mf_listing_actions > : type_at_least_one < t_mf_listing_actions, sz_space, t_mf_listing_action > { };

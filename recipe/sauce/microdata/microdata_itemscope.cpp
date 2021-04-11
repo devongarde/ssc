@@ -32,9 +32,11 @@ typedef enum { ip_itemscope, ip_string } itemprop_member;
 void microdata_itemscope::swap (microdata_itemscope& mi)
 {   itemprop_.swap (mi.itemprop_);
     type_.swap (mi.type_);
+    parent_.swap (mi.parent_);
+    export_path_.swap (mi.export_path_);
     ::std::swap (export_, mi.export_); }
 
-void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, const ::std::string& name, page& p)
+void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, const ::std::string& name, page& p, const bool has_itemid)
 {   nitpick nuts;
     itemtype_index ii = find_itemtype_index (nuts, v, name);
     if (ii != invalid_itemtype)
@@ -44,50 +46,59 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
         if (type_master < t_microdata_root > :: starts_with (name) != mdr_none)
         {   sch s (nits, v, type_master < t_microdata_root > :: after_start (name));
             p.mark (s.get ());
+            uint64_t flags = sch :: flags (s.get ());
+            if (has_itemid && ((flags & SF_NO_ITEMID) == SF_NO_ITEMID))
+                nits.pick (nit_deprecated_schema, ed_jan21, "5.3 Sample microdata vocabularies", es_info, ec_microdata, quote (name), " cannot have ITEMID");
+            if ((flags & SF_DEPRECATED) == SF_DEPRECATED)
+                nits.pick (nit_deprecated_schema, es_info, ec_microdata, quote (name), " is deprecated");
             if (context.md_export ())
                 export_ -> add (export_path_, make_itemtype_index (s.get ())); } } }
 
 bool microdata_itemscope::note_itemid (nitpick& , const html_version& , const ::std::string& name)
 {   if (context.md_export () && ! name.empty ())
-        export_ -> add (export_path_, name);
+        exporter () -> add (export_path_, name);
     return true; }
 
-bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, page& p)
-{   itemprop_indices ii = find_itemprop_indices (nits, v, name, type_.empty ());
-    e_microdata_root mr = mdr_none;
+itemprop_indices microdata_itemscope::prepare_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value)
+{   itemprop_indices ii = find_itemprop_indices (nits, v, name, type ().empty ());
     if (ii.empty ())
-    {   ::std::string::size_type ends_at = 0;
+    {   e_microdata_root mr = mdr_none;
+        ::std::string::size_type ends_at = 0;
         mr = type_master < t_microdata_root > :: starts_with (value, &ends_at);
-        if (mr == mdr_none) return false;
-        ii = find_itemprop_indices (nits, v, name.substr (ends_at), type_.empty ()); }
+        if (mr == mdr_none) return ii;
+        ii = find_itemprop_indices (nits, v, name.substr (ends_at), type ().empty ()); }
+    return ii; }
+
+bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, page& p)
+{   itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
     nitpick knots, nuts;
     for (auto prop : ii)
-        for (auto i : type_)
+        for (auto i : type ())
             if (are_categories_compatible (knots, v, prop, i))
             {   if (is_valid_property (nuts, v, i, prop, value, is_link))
                 {   nits.merge (nuts);
                     itemprop_.emplace (prop, itemprop_value (value));
-                    if (context.md_export ()) export_ -> add (export_path_, prop, value);
+                    if (context.md_export ()) exporter () -> add (export_path_, prop, value);
                     p.mark (static_cast < e_schema_type > (ndx_item (i)), static_cast < e_schema_property > (ndx_item (prop)));
                     return true; }
                 knots.merge (nuts); nuts.reset (); }
     nits.merge (knots);
     return false; }
 
-bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, itemscope_ptr& value, page& p)
-{   itemprop_indices ii = find_itemprop_indices (nits, v, name, type_.empty ());
-    if (value.get () != nullptr)
+bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, itemscope_ptr& scope, page& p)
+{   itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
+    if (scope.get () != nullptr)
         for (auto prop : ii)
-            value -> set_exporter (export_, export_ -> append_path (export_path_, prop, true));
+            scope -> set_exporter (exporter (), exporter () -> append_path (export_path_, prop, true));
     nitpick knots, nuts;
-    for (auto parent : type_)
+    for (auto parent : type ())
         for (auto prop : ii)
             if (are_categories_compatible (knots, v, parent, prop))
-                for (auto child : value -> type_)
+                for (auto child : scope -> type ())
                     if (are_compatible_types (knots, v, parent, child))
                     {   if (is_valid_property (nuts, v, parent, prop, child))
                         {   nits.merge (nuts);
-                            itemprop_.emplace (prop, value);
+                            itemprop_.emplace (prop, scope);
                             p.mark (static_cast < e_schema_type > (parent & uint32_item_mask), static_cast < e_schema_property > (prop & uint32_item_mask));
                             return true; }
                         knots.merge (nuts); nuts.reset (); }
@@ -123,7 +134,7 @@ bool microdata_itemscope::write (nitpick& nits, const ::boost::filesystem::path&
 vit_t microdata_itemscope::sought_itemtypes (const html_version& v, const ::std::string& name) const
 {   nitpick nits;
     vit_t res;
-    itemprop_index prop = find_itemprop_index (nits, v, name, type_.empty ());
+    itemprop_index prop = find_itemprop_index (nits, v, name, type ().empty ());
     if (prop != illegal_itemprop)
         if (prop_category (prop) == itemprop_schema)
             for (auto i : sought_schema_itemtypes (static_cast < e_schema_property > (ndx_item (prop))))
@@ -132,10 +143,8 @@ vit_t microdata_itemscope::sought_itemtypes (const html_version& v, const ::std:
 
 
 bool are_categories_compatible (const e_itemprop_category ipc, const e_itemtype_category itc)
-{   switch (itc)
-    {   case itemtype_none : return (ipc == itemprop_bespoke);
-        case itemtype_schema : return (ipc == itemprop_schema);
-        default : return (ipc == itemprop_microformat); } }
+{   if (itc == itemtype_none) return (ipc == itemprop_bespoke);
+    return (ipc != itemprop_bespoke); }
 
 bool are_categories_compatible (nitpick& nits, const html_version& , const itemprop_index ipi, const itemtype_index iti)
 {   if (are_categories_compatible (prop_category (ipi), type_category (iti))) return true;

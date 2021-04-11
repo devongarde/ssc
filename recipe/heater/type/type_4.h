@@ -64,6 +64,8 @@ template < > class type_master < t_linebreakstyle > : public four_value < t_line
 template < > class type_master < t_linecap > : public four_value < t_linecap, e_linecap, sz_butt, sz_round, sz_square, sz_inherit > { };
 template < > class type_master < t_linejoin > : public four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit > { };
 template < > class type_master < t_mathclosure > : public four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen > { };
+template < > class type_master < t_mf_availability > : public four_value < t_mf_availability, e_mf_availability, sz_out_of_stock, sz_in_stock, sz_instore_only, sz_preorder > { };
+template < > class type_master < t_mf_category > : public four_value < t_mf_category, e_mf_category, sz_meeting, sz_appointment, sz_conference, sz_expo > { };
 template < > class type_master < t_phase > : public four_value < t_phase, e_phase, sz_bubble, sz_capture, sz_default, sz_target > { };
 template < > class type_master < t_rsvp > : public four_value < t_rsvp, e_rsvp, sz_yes, sz_no, sz_maybe, sz_interested > { };
 template < > class type_master < t_tdscope > : public four_value < t_tdscope, e_tdscope, sz_row, sz_col, sz_rowgroup, sz_colgroup > { };
