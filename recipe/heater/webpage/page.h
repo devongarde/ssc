@@ -52,7 +52,7 @@ class page
     nitpick nits_;
     uid_t euid_ = 0;
     itemscope_ptr itemscope_;
-    ::std::string lang_, charset_;
+    ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_;
     sstr_t dfns_;
     ustr_t abbrs_;
     friend class tag;
@@ -159,6 +159,11 @@ public:
     ustr_t& abbrs () { return abbrs_; }
     const sstr_t& dfns () const { return dfns_; }
     sstr_t& dfns () { return dfns_; }
+    void title (const ::std::string& s) { title_ = s; }
+    void corpus (const ::std::string& s) { corpus_ = s; }
+    void keywords (const ::std::string& s) { keywords_ = s; }
+    void description (const ::std::string& s) { description_ = s; }
+    void author (const ::std::string& s) { author_ = s; }
     ::std::string report (); };
 
 ::std::string get_page_url (const ::std::string& url);

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> tree construction </title> </head>
+ <body>
+
+A<script>
+    var script = document.getElementsByTagName('script')[0];
+document.body.removeChild(script);
+</script>B
+
+A<script>
+var text = document.createTextNode('B');
+document.body.appendChild(text);
+</script>C
+A<script>
+var text = document.getElementsByTagName('script')[0].firstChild;
+text.data = 'B';
+document.body.appendChild(text);
+</script>C
+
+A<table>B<tr>C</tr>D</table>
+A<table><tr> B</tr> C</table>
+
+A<table><tr> B</tr> </em>C</table>
+
+ </body>
+</html>

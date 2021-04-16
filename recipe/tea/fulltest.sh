@@ -47,6 +47,7 @@
 ./ssc -f ../toast/living/jan20/living.conf
 ./ssc -f ../toast/living/jul20/living.conf
 ./ssc -f ../toast/living/jan21/living.conf
+./ssc -f ../toast/living/apr21/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
@@ -66,9 +67,11 @@
 ./ssc -f ../toast/microformats/mf2/mf2.conf
 ./ssc -f ../toast/microformats/rel/rel.conf
 ./ssc -f ../toast/other/abbr/abbr.conf
+./ssc -f ../toast/other/aria/aria.conf
 ./ssc -f ../toast/other/base/base.conf
 ./ssc -f ../toast/other/CSS/css.conf
 ./ssc -f ../toast/other/dfn/dfn.conf
+./ssc -f ../toast/other/dump/dump.conf
 ./ssc -f ../toast/other/ignore/ignore.conf
 ./ssc -f ../toast/other/incorrectness/incorrectness.conf
 ./ssc -f ../toast/other/nits/nits.conf
@@ -93,6 +96,7 @@
 ./ssc -f ../toast/stats/single/stats.conf
 ./ssc -f ../toast/stats/summary/stats.conf
 ./ssc -f ../toast/type/colour/colour.conf
+./ssc -f ../toast/type/custom/custom.conf
 ./ssc -f ../toast/type/httpequiv/httpequiv.conf
 ./ssc -f ../toast/type/lang/lang.conf
 ./ssc -f ../toast/type/metaname/metaname.conf

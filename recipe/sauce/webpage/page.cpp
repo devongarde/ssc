@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/avm.h"
 #include "parser/text.h"
 #include "webpage/crosslink.h"
+#include "webpage/corpus.h"
 #include "icu/wrapper.h"
 #include "icu/charset.h"
 
@@ -113,6 +114,8 @@ void page::examine (const directory& d)
         if (context.tell (e_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
         document_ -> examine_self (d);
         document_ -> verify_document ();
+        if (has_corpus ())
+            extend_corpus (nits_, title_, get_site_path (), corpus_, author_, keywords_, description_);
         if (context.md_export ()) md_export_.write (nits_, get_export_path ());
         ids_.cover_arse (); } }
 

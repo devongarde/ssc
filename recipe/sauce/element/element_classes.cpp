@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+#include "main/context.h"
 #include "element/elem.h"
 #include "attribute/attr.h"
 #include "element/element_classes.h"
@@ -112,11 +113,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TSL         TIPSYLANG, KEYMOUSE
 #define HTMLPLUS    a_id, a_index, a_lang
 #define TSLPLUS     a_index, TSL
-#define ARIA        a_ariaactivedescendant, a_ariaatomic, a_ariaautocomplete, a_ariabusy, a_ariachecked, a_ariacontrols, a_ariadescribedby, \
-                    a_ariadisabled, a_ariadropeffect, a_ariaexpanded, a_ariaflowto, a_ariagrabbed, a_ariahaspopup, a_ariahidden, a_ariainvalid, \
-                    a_arialabel, a_arialabelledby, a_arialevel, a_arialive, a_ariamultiline, a_ariamultiselectable, a_ariaorientation, a_ariaowns, \
-                    a_ariaposinset, a_ariapressed, a_ariareadonly, a_ariarelevant, a_ariarequired, a_ariaselected, a_ariasetsize, a_ariasort, \
-                    a_ariavaluemax, a_ariavaluemin, a_ariavaluenow, a_ariavaluetext
+#define ARIA        a_ariaactivedescendant, a_ariaatomic, a_ariaautocomplete, a_ariabusy, a_ariachecked, a_ariacolcount, a_ariacolindex, \
+                    a_ariacurrent, a_ariacolspan, a_ariacontrols, a_ariadescribedby, a_ariadetails,  a_ariadisabled, a_ariadropeffect, \
+                    a_ariaerrormessage, a_ariaexpanded, a_ariaflowto, a_ariagrabbed, a_ariahaspopup, a_ariahidden, a_ariainvalid, \
+                    a_arialabel, a_arialabelledby, a_arialevel, a_arialive, a_ariamodal, a_ariamultiline, a_ariamultiselectable, \
+                    a_ariaorientation, a_ariaowns,  a_ariaplaceholder, a_ariaposinset, a_ariapressed, a_ariareadonly, a_ariarelevant, \
+                    a_ariarequired, a_ariaroledescription, a_ariarowcount, a_ariarowindex, a_ariarowspan, a_ariaselected, a_ariasetsize, \
+                    a_ariasort, a_ariavaluemax, a_ariavaluemin, a_ariavaluenow, a_ariavaluetext
 #define COMMON4     TSL, XHTML, ARIA
 #define X2_CORE     a_layout, a_xmlid
 #define X2_HYPER    a_cite, a_href, a_hreflang, a_hrefmedia, a_hreftype, a_nextfocus, a_prevfocus, a_target, a_itstranslate
@@ -144,9 +147,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                     a_onslotchange, a_part, a_slot, COMMON53
 #define COMMON54PLUS a_index, COMMON54
 
+const ::std::size_t max_attrib = 320;
+
 struct element_init_t
 {   e_element tag_;
-    e_attribute a_ [512]; };
+    e_attribute a_ [max_attrib]; };
 
 element_init_t ei [] =
 {   { elem_undefined, { a_unknown } },
@@ -269,6 +274,7 @@ element_init_t ei [] =
     { elem_csymbol, { a_cd, a_type, MATH3DEFCOM, a_unknown } },
     { elem_curl, { MATH3DEFCOM, a_unknown } },
     { elem_cursor, { a_externalresourcesrequired, SVGXY, SVG11XLINK, SVG20COND, COMMON54, a_unknown } },
+    { elem_custom, { a_disabled, a_form, a_name, a_readonly, COMMON54, a_unknown } },
     { elem_data, { a_d, a_value, COMMON54, a_unknown } },
     { elem_datagrid, { a_disabled, a_multiple, COMMON5, a_unknown } },
     { elem_datalist, { COMMON54, a_unknown } },
@@ -676,7 +682,7 @@ element_init_t ei [] =
     { elem_slot, { a_name, COMMON54, a_unknown } },
     { elem_small, { COMMON54, a_unknown } },
     { elem_solidcolour, { COMMON54, a_unknown } },
-    { elem_source, { a_sizes, a_srcset, a_type, COMMON54, a_unknown } },
+    { elem_source, { a_height, a_sizes, a_srcset, a_type, a_width, COMMON54, a_unknown } },
     { elem_spacer, { a_align, a_size, a_type, WIDEHIGH, a_unknown } },
     { elem_span, { a_align, RESERVED4, COMMON54, a_unknown } },
     { elem_spot, { a_id, a_unknown } },
@@ -773,13 +779,32 @@ vebs_t vebs;
 
 void elements_init (nitpick& nits)
 {   vebs.fill (attribute_bitset ());
+#ifdef DEBUG
+    int n = 0;
+    e_element e = elem_error;
+#endif // DEBUG
     for (int i = 0; ei [i].tag_ != elem_error; ++i)
     {   if (vebs.at (ei [i].tag_).any ())
             nits.pick (nit_repeated_attribute, es_warning, ec_program, elem::name (ei [i].tag_), " repeated in bitset init");
         for (int j = 0; ei [i].a_ [j] != a_unknown; ++j)
+        {   if (static_cast < ::std::size_t > (j) >= max_attrib)
+            {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_program, elem::name (ei [i].tag_), " has more attributes than allocated (programming error)");
+                break; }
+#ifdef DEBUG
+            if (j > n) { n = j; e = i; }
+#endif // DEBUG
             if (vebs.at (ei [i].tag_).test (ei [i].a_ [j]))
                 nits.pick (nit_repeated_attribute, es_warning, ec_program, "attribute ", attr::name (ei [i].a_ [j]), " repeated in ", elem::name (ei [i].tag_), " bitset init");
             else vebs.at (ei [i].tag_).set (ei [i].a_ [j]); } }
+#ifdef DEBUG
+    nits.pick (nit_note, es_comment, ec_program, "<", elem::name (e), "> has ", n, " attributes");
+#endif // DEBUG
+}
+
+void element_add_attribute (const e_element e, const e_attribute a)
+{   assert (e < elem_error);
+    assert (a < a_illegal);
+    vebs.at (e).set (a); }
 
 attribute_bitset element_attributes (const e_element e)
 {   DBG_ASSERT (e < vebs.size ());
@@ -790,3 +815,15 @@ bool has_attribute (const e_element e, const e_attribute a)
 {   DBG_ASSERT (e < vebs.size ());
     if (e >= vebs.size ()) return false;
     return vebs.at (e).test (a); }
+
+void add_element_attributes (const vstr_t& v)
+{   nitpick nuts;
+    for (auto e : v)
+    {   vstr_t args (split_by_charset (e, ","));
+        if (args.size () < 2) continue;
+        elem el (context.html_ver (), args.at (0));
+        if (el.invalid ()) context.err () << "the element '" << args.at (0) << "' is not recognised\n";
+        else
+        {   e_attribute a = attr :: parse (nuts, context.html_ver (), args.at (1));
+            if (a == a_error)  context.err () << "the attribute '" << args.at (1) << "' is not recognised\n";
+            else element_add_attribute (el.get (), a); } } }

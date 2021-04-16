@@ -36,11 +36,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 const e_verbose default_output = e_warning;
 class hook;
 class replies;
+class corpus;
+
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char idealstart = 0, const char idealend = 0);
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
 
 class context_t
-{   bool            checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, info_ = false, load_css_ = false, links_ = false,
+{   bool            cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, info_ = false, load_css_ = false, links_ = false,
                     md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nochange_ = false, notify_ = false,
                     once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true,
                     rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_ssi_ = false, shadow_space_ = false,
@@ -54,7 +56,7 @@ class context_t
     e_verbose       verbose_ = default_output;
     ::std::string   base_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, msg_, output_, path_, persisted_, root_, secret_, server_,
                     shadow_, shadow_persist_, stats_, stub_, test_header_, user_, webmention_, write_path_, export_root_;
-    ::boost::filesystem::path config_;
+    ::boost::filesystem::path config_, corpus_;
     e_wm_status     wm_status_ = wm_undefined;
     vstr_t          custom_elements_, exports_, extensions_, mentions_, shadow_ignore_, shadows_, site_, templates_, virtuals_;
     replies         replies_;
@@ -64,15 +66,19 @@ class context_t
     stats_t         data_;
     ::boost::program_options::options_description   validation_;
 public:
+    ::std::string   server_software_, server_name_, gateway_interface_, server_protocol_, server_port_, request_method_, http_accept_, path_info_, path_translated_,
+                    script_name_, query_string_, remote_host_, remote_addr_, remote_user_, auth_type_, content_type_, content_length_;
     context_t () = default;
     int parameters (int argc, char** argv);
     const ::std::string base () const { return base_; }
+    bool cgi () const { return cgi_; }
     bool checking_urls () const { return checking_urls_; }
     bool clear () const { return clear_; }
     int code () const { return code_; }
     bool codes () const { return codes_; }
     ::boost::filesystem::path config () const { return config_; }
     e_copy copy () const { return copy_; }
+    ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const { return crosslinks_; }
     const vstr_t custom_elements () const { return custom_elements_; }
     bool dodedu () const { return (copy_ >= c_deduplicate); }
@@ -165,13 +171,15 @@ public:
     bool shadow_any () const { return shadow_pages (); }
     bool versioned () const { return versioned_; }
     context_t& base (const ::std::string& s) { base_ = s; return *this; }
+    context_t& cgi (const bool b) { cgi_ = b; return *this; }
     context_t& checking_urls (const bool b) { checking_urls_ = b; return *this; }
     context_t& clear (const bool b) { clear_ = b; return *this; }
     context_t& code (const int i) { code_ = i; return *this; }
     context_t& codes (const bool b) { codes_ = b; return *this; }
-    context_t& config (const ::boost::filesystem::path& config) { config_ = config; return *this; }
+    context_t& config (const ::boost::filesystem::path& c) { config_ = c; return *this; }
     context_t& copy (const int c)
     {   if ((c > c_none) && (c <= c_rpt)) copy_ = static_cast < e_copy > (c); else copy_ = c_none; return *this; }
+    context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; return *this; }
     css_cache& css () { return css_; }
     const css_cache& css () const { return css_; }

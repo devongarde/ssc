@@ -106,7 +106,6 @@ PASS ../toast/HTML/5.4/html5-bad.html
 92 inserted_missing_closure
 94 missing_open
 97 saucy_source
-99 mq_syntax
 103 no_itemscope reputation bad_object disordered_param
 109 bad_datetime
 110 bad_autocomplete

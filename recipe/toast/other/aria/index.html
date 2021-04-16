@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+
+<head>
+<title>aria</title>
+</head>
+
+<!-- from April 21 docs -->
+
+<body>
+
+<h1>aria</h1>
+
+<button role="heading">search</button>
+
+<!-- Avoid doing this! -->
+<button role="button">...</button>
+
+<!-- Avoid doing this! -->
+<fieldset role="group">...</fieldset>
+
+<!-- Avoid doing this! -->
+<ul role="list">...</ul>
+
+<details>
+  <!-- Avoid doing this! -->
+  <summary role="button">more information</summary>
+  ...
+</details>
+
+<figure>
+<pre role="img" aria-label="ASCII Fish">
+o          .'`/
+  '    /  (
+O .-'` ` `'-._     .')
+ _/ (o)       '.  .' /
+ )       )))   ><  <
+ `\  |_\    _.'  '.  \
+  '-._ _ .-'       '.)
+  jgs `\__\
+</pre>
+<figcaption id="fish-caption">
+Joan G. Stark, "<cite>fish</cite>".
+October 1997. ASCII on electrons. 28×8.
+</figcaption>
+</figure>
+
+<div role="radiogroup">...</div>
+
+<a href="home/" aria-current="page">home</a>
+
+<!-- DO NOT DO THIS -->
+<div role="radioGroup">...</div>
+
+<div role="RADIOGROUP">...</div>
+
+<a href="home/" aria-current="Page">home</a>
+
+</body>
+</html>
+

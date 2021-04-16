@@ -123,12 +123,13 @@ void element::examine_time ()
 
 void element::examine_title ()
 {   if (! node_.version ().has_svg ()) only_one_of (elem_title);
+    ::std::string ttl (text ());
+    page_.title (ttl);
     if (! ancestral_elements_.test (elem_head)) return;
-    ::std::string txt (text ());
-    if (is_whitespace (txt))
+    if (is_whitespace (ttl))
         pick (nit_text_content, es_warning, ec_element, "<TITLE> text should be more than whitespace");
-    else if (txt.length () > static_cast < unsigned int > (context.title ()))
-        pick (nit_long_title, ed_tags, "TITLE section", es_warning, ec_element, "the TITLE text (", quote (txt.substr (0, context.title ())), "...) is too long");
+    else if (ttl.length () > static_cast < unsigned int > (context.title ()))
+        pick (nit_long_title, ed_tags, "TITLE section", es_warning, ec_element, "the TITLE text (", quote (ttl.substr (0, context.title ())), "...) is too long");
     page_.confirm_title (); }
 
 void element::examine_track ()

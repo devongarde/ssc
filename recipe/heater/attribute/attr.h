@@ -33,3 +33,9 @@ struct attr : symbol < html_version, e_attribute >
     {   return ns (symbol < html_version, e_attribute > :: flags ()); }
     attr () {}
     attr (nitpick& nits, const html_version& v, const ::std::string& x) { set (v, parse (nits, v, x)); } };
+
+inline bool is_custom_attribute (const e_attribute a) { return (a == a_custom); }
+inline bool is_error_attribute (const e_attribute a) { return (a == a_illegal); }
+inline bool is_unknown_attribute (const e_attribute a) { return (a == a_unknown); }
+
+void add_attributes (const vstr_t& v);

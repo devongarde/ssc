@@ -44,6 +44,7 @@ ssc.exe -T -Z -o ../out/jul19living.tst -f ../toast/living/jul19/living.conf
 ssc.exe -T -Z -o ../out/jan20living.tst -f ../toast/living/jan20/living.conf
 ssc.exe -T -Z -o ../out/jul20living.tst -f ../toast/living/jul20/living.conf
 ssc.exe -T -Z -o ../out/jan21living.tst -f ../toast/living/jan21/living.conf
+ssc.exe -T -Z -o ../out/apr21living.tst -f ../toast/living/apr21/living.conf
 ssc.exe -T -Z -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T -Z -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T -Z -o ../out/3math.tst -f ../toast/math/3/math.conf
@@ -63,9 +64,11 @@ ssc.exe -T -Z -o ../out/mf1mf1.tst -f ../toast/microformats/mf1/mf1.conf
 ssc.exe -T -Z -o ../out/mf2mf2.tst -f ../toast/microformats/mf2/mf2.conf
 ssc.exe -T -Z -o ../out/relrel.tst -f ../toast/microformats/rel/rel.conf
 ssc.exe -T -Z -o ../out/abbrabbr.tst -f ../toast/other/abbr/abbr.conf
+ssc.exe -T -Z -o ../out/ariaaria.tst -f ../toast/other/aria/aria.conf
 ssc.exe -T -Z -o ../out/basebase.tst -f ../toast/other/base/base.conf
 ssc.exe -T -Z -o ../out/CSScss.tst -f ../toast/other/CSS/css.conf
 ssc.exe -T -Z -o ../out/dfndfn.tst -f ../toast/other/dfn/dfn.conf
+ssc.exe -T -Z -o ../out/dumpdump.tst -f ../toast/other/dump/dump.conf
 ssc.exe -T -Z -o ../out/ignoreignore.tst -f ../toast/other/ignore/ignore.conf
 ssc.exe -T -Z -o ../out/incorrectnessincorrectness.tst -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -T -Z -o ../out/nitsnits.tst -f ../toast/other/nits/nits.conf
@@ -90,6 +93,7 @@ ssc.exe -T -Z -o ../out/detailstats.tst -f ../toast/stats/detail/stats.conf
 ssc.exe -T -Z -o ../out/singlestats.tst -f ../toast/stats/single/stats.conf
 ssc.exe -T -Z -o ../out/summarystats.tst -f ../toast/stats/summary/stats.conf
 ssc.exe -T -Z -o ../out/colourcolour.tst -f ../toast/type/colour/colour.conf
+ssc.exe -T -Z -o ../out/customcustom.tst -f ../toast/type/custom/custom.conf
 ssc.exe -T -Z -o ../out/httpequivhttpequiv.tst -f ../toast/type/httpequiv/httpequiv.conf
 ssc.exe -T -Z -o ../out/langlang.tst -f ../toast/type/lang/lang.conf
 ssc.exe -T -Z -o ../out/metanamemetaname.tst -f ../toast/type/metaname/metaname.conf

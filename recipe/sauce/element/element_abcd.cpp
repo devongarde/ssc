@@ -197,6 +197,9 @@ void element::examine_bind ()
     else if (! other)
         pick (nit_bad_bind, ed_math_3, "4.2.6.1 Bindings", es_error, ec_element, "<BVAR> cannot be the last child of <BIND>"); }
 
+void element::examine_body ()
+{   if (! context.corpus ().empty ()) page_.corpus (text ()); }
+
 void element::examine_button ()
 {   if (node_.version ().is_5 ())
     {   no_anchor_daddy ();

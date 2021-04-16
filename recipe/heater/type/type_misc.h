@@ -115,9 +115,11 @@ template < > struct type_master < t_is > : tidy_string < t_is >
         else if (tidy_string < t_is > :: good ())
         {   vstr_t ce (context.custom_elements ());
             if (ce.empty ())
-                nits.pick (nit_nuts, es_info, ec_type, "no custom elements are defined, so ", quote (ss), " cannot be verified (see the  --" GENERAL CUSTOM " switch, '" PROG " --" HELP " for gen')");
+                nits.pick ( nit_nuts, ed_apr21, "4.13.3 Core concepts", es_info, ec_type,
+                            "no customised built-in elements are defined, so ", quote (ss), " cannot be verified (see the  --" GENERAL CUSTOM " switch, '" PROG " --" HELP " for gen')");
             else if (! is_one_of (ss, ce))
-            {   nits.pick (nit_nuts, es_warning, ec_type, quote (ss), " is not specified (see the --" GENERAL CUSTOM " switch, '" PROG " --" HELP " for gen')");
+            {   nits.pick ( nit_nuts, ed_apr21, "4.13.3 Core concepts", es_warning, ec_type,
+                            quote (ss), " is not specified as a customised built-in element (see the --" GENERAL CUSTOM " switch, '" PROG " --" HELP " for gen')");
                 tidy_string < t_is > :: status (s_invalid); } } } };
 
 template < > struct type_master < t_key > : string_vector < t_key, sz_space >

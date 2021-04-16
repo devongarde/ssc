@@ -25,3 +25,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void elements_init (nitpick& nits);
 attribute_bitset element_attributes (const e_element e);
 bool has_attribute (const e_element e, const e_attribute a);
+void element_add_attribute (const e_element e, const e_attribute a);
+void add_element_attributes (const vstr_t& v);

@@ -41,8 +41,8 @@ typedef enum { ai_false, ai_grammar, ai_spelling, ai_true } e_aria_invalidity;
 typedef enum { al_assertive, al_off, al_polite } e_aria_live;
 typedef enum {  role_any, role_alert, role_alertdialogue, role_application, role_article, role_banner, role_button, role_cell, role_checkbox, role_columnheader, role_combobox,
                 role_command, role_complementary, role_contentinfo, role_definition, role_dialogue, role_directory, role_document, role_feed, role_figure, role_form,
-                role_grid, role_gridcell, role_group, role_heading, role_img, role_landmark, role_link, role_list, role_listbox, role_listitem, role_log, role_main,
-                role_marquee, role_math, role_menu, role_menubar, role_menuitem, role_menuitemcheckbox, role_menuitemradio, role_navigation, role_none, role_note,
+                role_graphics_document, role_grid, role_gridcell, role_group, role_heading, role_img, role_landmark, role_link, role_list, role_listbox, role_listitem, role_log,
+                role_main, role_marquee, role_math, role_menu, role_menubar, role_menuitem, role_menuitemcheckbox, role_menuitemradio, role_navigation, role_none, role_note,
                 role_option, role_presentation, role_progressbar, role_radio, role_radiogroup, role_range, role_region, role_roletype, role_row, role_rowgroup,
                 role_rowheader, role_scrollbar, role_search, role_searchbox, role_section, role_sectionhead, role_select, role_separator, role_slider, role_spinbutton,
                 role_status, role_structure, role_switch, role_tab, role_table, role_tablist, role_tabpanel, role_term, role_textbox, role_timer, role_toolbar,
@@ -50,16 +50,18 @@ typedef enum {  role_any, role_alert, role_alertdialogue, role_application, role
 typedef enum { as_ascending, as_descending, as_none, as_other } e_aria_sort;
 
 typedef enum
-{   a_unknown,
+{   a_unknown, a_custom,
         a_abbr, a_about, a_above, a_accent, a_accentheight, a_accentunder, a_accept, a_acceptcharset, a_accesskey, a_accumulate, a_action,
         a_actiontype, a_activate, a_active, a_actuate, a_additive, a_align, a_alignmentbaseline, a_alignmentscope, a_alink, a_allow, a_allow_zoom_pan,
         a_allowfullscreen, a_allowpaymentrequest, a_allowusermedia, a_alphabetic, a_alt, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign,
         a_alttext, a_amplitude, a_arabicform, a_archive, a_ariaactivedescendant, a_ariaatomic, a_ariaautocomplete, a_ariabusy, a_ariachecked,
-        a_ariacontrols, a_ariadescribedby, a_ariadisabled, a_ariadropeffect, a_ariaexpanded, a_ariaflowto, a_ariagrabbed, a_ariahaspopup, a_ariahidden,
-        a_ariainvalid, a_arialabel, a_arialabelledby, a_arialevel, a_arialive, a_ariamultiline, a_ariamultiselectable, a_ariaorientation, a_ariaowns,
-        a_ariaposinset, a_ariapressed, a_ariareadonly, a_ariarelevant, a_ariarequired, a_ariaselected, a_ariasetsize, a_ariasort, a_ariavaluemax,
-        a_ariavaluemin, a_ariavaluenow, a_ariavaluetext, a_as, a_ascent, a_async, a_at, a_attributename, a_attributetype, a_audio, a_autobuffer,
-        a_autocapitalise, a_autocomplete, a_autocorrect, a_autofocus, a_autopictureinpicture, a_autoplay, a_autosubmit, a_axes, a_axis, a_azimuth,
+        a_ariacolcount, a_ariacolindex, a_ariacolspan, a_ariacontrols, a_ariacurrent, a_ariadescribedby, a_ariadetails, a_ariadisabled,
+        a_ariadropeffect, a_ariaerrormessage, a_ariaexpanded, a_ariaflowto, a_ariagrabbed, a_ariahaspopup, a_ariahidden, a_ariainvalid, a_arialabel,
+        a_arialabelledby, a_arialevel, a_arialive, a_ariamodal, a_ariamultiline, a_ariamultiselectable, a_ariaorientation, a_ariaowns,
+        a_ariaplaceholder, a_ariaposinset, a_ariapressed, a_ariareadonly, a_ariarelevant, a_ariarequired, a_ariaroledescription, a_ariarowcount,
+        a_ariarowindex, a_ariarowspan, a_ariaselected, a_ariasetsize, a_ariasort, a_ariavaluemax, a_ariavaluemin, a_ariavaluenow, a_ariavaluetext,
+        a_as, a_ascent, a_async, a_at, a_attributename, a_attributetype, a_audio, a_autobuffer, a_autocapitalise, a_autocomplete, a_autocorrect,
+        a_autofocus, a_autopictureinpicture, a_autoplay, a_autosubmit, a_axes, a_axis, a_azimuth,
     a_background, a_balance, a_bandwidth, a_base, a_basefrequency, a_baseline, a_baselineshift, a_baseprofile, a_bbox, a_begin, a_behaviour,
         a_below, a_bevelled, a_bgcolour, a_bias, a_border, a_bottommargin, a_box, a_bubbles, a_buffered, a_by,
     a_calcmode, a_cancelable, a_capheight, a_capture, a_cd, a_cdgroup, a_cell, a_cellpadding, a_cellspacing, a_challenge, a_char, a_charalign, a_charoff,
@@ -173,7 +175,7 @@ typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_n
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_io, ec_icu, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_incorrectness, ec_init, ec_link, ec_microdata, ec_microformat,
+typedef enum {  ec_undefined, ec_io, ec_icu, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_incorrectness, ec_init, ec_link, ec_microdata, ec_microformat, ec_aria,
                 ec_mime, ec_mql, ec_namespace, ec_parser, ec_program, ec_rdf, ec_regex, ec_rudeness, ec_shadow, ec_ssi, ec_page, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
 const e_category last_category = ec_webmention;
 typedef enum {  cc_ansi, cc_utf8, cc_utf16be, cc_utf16le, cc_gb, cc_fkd } e_charcode;
@@ -334,10 +336,11 @@ typedef enum {  ds_inline, ds_block, ds_listitem, ds_runin, ds_compact, ds_marke
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
+                ed_apr21,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_math_1, ed_math_2, ed_math_3, ed_math_4,
                 ed_iso_8859_1, ed_csp,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
-                ed_w3, ed_mql, ed_ariaAug2020, ed_mozilla, ed_ecma,
+                ed_w3, ed_mql, ed_ariaAug2020, ed_ariaApr2021, ed_mozilla, ed_ecma,
                 ed_microdata, ed_microformats, ed_mimetype, ed_rdf, ed_apache, ed_so_11,
                 ed_imaginary } e_doc;
 const e_doc last_doc = ed_imaginary;
@@ -354,6 +357,8 @@ typedef enum {
 
     elem_faux_document, elem_faux_asp, elem_faux_cdata, elem_faux_char, elem_faux_code, elem_faux_comment, elem_faux_doctype, elem_faux_php,
         elem_faux_ssi, elem_faux_stylesheet, elem_faux_text, elem_faux_xml, elem_faux_whitespace,
+
+    elem_custom,
 
     elem_a, elem_abbr, elem_abbrev, elem_above, elem_abs, elem_abstract, elem_access, elem_acronym, elem_action, elem_added, elem_addeventlistener,
         elem_address, elem_altglyph, elem_altglyphdef, elem_altglyphitem, elem_and, elem_animate, elem_animatecolour, elem_animatemotion,
@@ -421,11 +426,6 @@ typedef enum {
 } e_element_tag;
 const e_element_tag last_element_tag = elem_error;
 typedef unsigned int e_element;
-
-inline bool is_faux_element (const e_element e) { return (e >= elem_faux_document) && (e <= elem_faux_whitespace); }
-inline bool is_error_element (const e_element e) { return (e == elem_error); }
-inline bool is_undefined_element (const e_element e) { return (e == elem_undefined); }
-inline bool is_standard_element (const e_element e) { return (e >= elem_a) && (e <= elem_xor); }
 
 typedef enum { ee_www, e_multi, ee_text } e_enctype;
 typedef enum { ekh_done, ekh_enter, ekh_go, ekh_next, ekh_previous, ekh_search, ekh_send } e_enterkeyhint;
@@ -818,7 +818,8 @@ typedef enum {
     mime_application_mbms_envelope_xml, mime_application_mbms_msk_response_xml, mime_application_mbms_msk_xml, mime_application_mbms_protection_description_xml,
     mime_application_mbms_reception_report_xml, mime_application_mbms_register_response_xml, mime_application_mbms_register_xml, mime_application_mbms_schedule_xml,
     mime_application_mbms_user_service_description_xml, mime_application_mbox, mime_application_media_control_xml, mime_application_media_policy_dataset_xml,
-    mime_application_mediaservercontrol_xml, mime_application_merge_patch_json, mime_application_metalink4_xml, mime_application_mets_xml, mime_application_MF4, mime_application_mikey,
+    mime_application_mediaservercontrol_xml, mime_application_merge_patch_json, mime_application_metalink4_xml, mime_application_mets_xml, mime_application_MF4,
+    mime_application_microdata_json, mime_application_mikey,
     mime_application_mipc, mime_application_mmt_aei_xml, mime_application_mmt_usd_xml, mime_application_mods_xml, mime_application_moss_keys, mime_application_moss_signature,
     mime_application_mosskey_data, mime_application_mosskey_request, mime_application_mp21, mime_application_mp4, mime_application_mpeg4_generic, mime_application_mpeg4_iod,
     mime_application_mpeg4_iod_xmt, mime_application_mrb_consumer_xml, mime_application_mrb_publish_xml, mime_application_msc_ivr_xml, mime_application_msc_mixer_xml,
@@ -1252,10 +1253,10 @@ typedef enum {
     mime_multipart_related, mime_multipart_report, mime_multipart_signed, mime_multipart_vnd_bint_med_plus, mime_multipart_voice_message,
     mime_multipart_x_mixed_replace, mime_text_1d_interleaved_parityfec, mime_text_cache_manifest, mime_text_calendar, mime_text_css,
     mime_text_csv, mime_text_csv_schema, mime_text_directory, mime_text_dns, mime_text_ecmascript, mime_text_encaprtp, mime_text_enriched,
-    mime_text_example, mime_text_flexfec, mime_text_fwdred, mime_text_grammar_ref_list, mime_text_html, mime_text_html_sandboxed,
-    mime_text_javascript, mime_text_javascript_x, mime_text_javascript10, mime_text_javascript11, mime_text_javascript12,
+    mime_text_event_stream, mime_text_example, mime_text_flexfec, mime_text_fwdred, mime_text_grammar_ref_list, mime_text_html,
+    mime_text_html_sandboxed, mime_text_javascript, mime_text_javascript_x, mime_text_javascript10, mime_text_javascript11, mime_text_javascript12,
     mime_text_javascript13, mime_text_javascript14, mime_text_javascript15, mime_text_jcr_cnd, mime_text_jscript, mime_text_livescript,
-    mime_text_markdown, mime_text_mizar, mime_text_n3, mime_text_parameters, mime_text_parityfec, mime_text_plain,
+    mime_text_markdown, mime_text_mizar, mime_text_n3, mime_text_parameters, mime_text_parityfec, mime_text_ping, mime_text_plain,
     mime_text_provenance_notation, mime_text_prs_fallenstein_rst,  mime_text_prs_lines_tag, mime_text_prs_prop_logic, mime_text_raptorfec,
     mime_text_RED, mime_text_rfc822_headers, mime_text_richtext, mime_text_rtf, mime_text_rtp_enc_aescm128, mime_text_rtploopback,
     mime_text_rtx, mime_text_SGML, mime_text_strings, mime_text_t140, mime_text_tab_separated_values, mime_text_tcl, // HTML 4.01 spec example
@@ -1410,6 +1411,7 @@ typedef enum
     nit_risky_filetype, nit_reputation, nit_incompatible_mime, nit_os_dependent, nit_bad_usemap, nit_bad_type_attribute, nit_bad_pattern,
     nit_bad_command, nit_bad_datagrid, nit_script, nit_menubar, nit_bad_card, nit_nest, nit_registration_mark, nit_bad_ref, nit_font,
     nit_dashdash, nit_naked_grave, nit_prototype, nit_bad_property, nit_hour, nit_minute, nit_second, nit_deprecated_schema,
+    nit_character_code, nit_note, nit_aria_position,
 
     nit_context,
 
@@ -1948,7 +1950,7 @@ typedef enum {  doc_unknown, doc_context, doc_html, doc_public, doc_system, doc_
                 doc_jan05, doc_html5,
                 doc_xhtml2,
                 doc_xhtml11,
-                doc_xhtml10_basic, doc_xhtml10_strict, doc_xhtml10_loose, doc_xhtml10_frameset,
+                doc_xhtml10_basic, doc_xhtml10_strict, doc_xhtml10_loose, doc_xhtml10_frameset, doc_xhtml10_mobile, 
                 doc_xhtml10_strict_superseded, doc_xhtml10_loose_superseded, doc_xhtml10_frameset_superseded,
                 doc_html401_strict, doc_html401_loose, doc_html401_frameset,
                 doc_html401_strict_superseded, doc_html401_loose_superseded, doc_html401_frameset_superseded,

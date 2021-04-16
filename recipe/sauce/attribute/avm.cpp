@@ -534,6 +534,18 @@ struct hav_t
     { { HTML_5_0, HV_W3 }, { HTML_UNDEF }, ELEM, a_acceptcharset }, \
     { { HTML_JAN18 }, { HTML_UNDEF }, ELEM, a_autocapitalise }, \
     { { HTML_JAN20 }, { HTML_UNDEF }, ELEM, a_autofocus }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariacolcount }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariacolindex }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariacolspan }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariacurrent }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariadetails }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariaerrormessage }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariamodal }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariaplaceholder }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariaroledescription }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariarowcount }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariarowindex }, \
+    { { HTML_APR21 }, { HTML_UNDEF }, ELEM, a_ariarowspan }, \
     { { HTML_JAN07 }, { HTML_UNDEF }, ELEM, a_contenteditable }, \
     { { HTML_JAN06, HV_NOT50 | HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_contextmenu }, \
     { { HTML_JAN07, HV_NOT50 }, { HTML_UNDEF }, ELEM, a_draggable }, \
@@ -1219,6 +1231,12 @@ hav_t havt [] =
     SVG11_XLINK_ATTRIBUTES (elem_cursor),
     SVGx_XTRA_CORE_ATTRIBUTES (elem_cursor),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_cursor),
+
+    { { HTML_JUL19 }, { HTML_UNDEF }, elem_custom, a_disabled },
+    { { HTML_JUL19 }, { HTML_UNDEF }, elem_custom, a_form },
+    { { HTML_JUL19 }, { HTML_UNDEF }, elem_custom, a_name },
+    { { HTML_JUL19 }, { HTML_UNDEF }, elem_custom, a_readonly },
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_custom),
 
     { { HTML_4_0, 0, HE_SVG_1_0 }, { HTML_UNDEF }, elem_data, a_d },
     { { HTML_JAN12 }, { HTML_UNDEF }, elem_data, a_value },
@@ -2608,7 +2626,7 @@ hav_t havt [] =
     { { HTML_4_0 }, { XHTML_2_0 }, elem_object, a_standby },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_object, a_type },
     { { HTML_JAN11 }, { HTML_JUN19 }, elem_object, a_typemustmatch },
-    { { HTML_4_0, HV_NOT5123 }, { HTML_UNDEF }, elem_object, a_usemap },
+    { { HTML_4_0, HV_NOT5123 }, { HTML_MAR21 }, elem_object, a_usemap },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_object, a_vspace },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_object, a_width },
     HTML4_FORM_ATTRIBUTES (elem_object),
@@ -2949,12 +2967,14 @@ hav_t havt [] =
 
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_solidcolour),
 
+    { { HTML_APR21 }, { HTML_UNDEF }, elem_source, a_height },
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_source, a_media },
     { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_source, a_sizes },
     { { HTML_JUL07, REQUIRED }, { HTML_JUN14 }, elem_source, a_src },
     { { HTML_JUL14 }, { HTML_UNDEF }, elem_source, a_src },
     { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_source, a_srcset },
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_source, a_type },
+    { { HTML_APR21 }, { HTML_UNDEF }, elem_source, a_width },
     STANDARD_HTML5_ATTRIBUTES (elem_source),
 
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_span, a_align },
@@ -3413,7 +3433,7 @@ void avm_init (nitpick& )
         avm.insert (avm_t::value_type (avm_key (havt [index].tag_, havt [index].a_), havt [index])); }
 
 bool is_invalid_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
-{   if (! v.known ()) return false;
+{   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;
     for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second.tag_ == tag) && (i -> second.a_ == a); ++i)
         if (may_apply (v, i -> second.first_, i -> second.last_)) return false;
     for (avm_t::const_iterator i = avm.find (avm_key (elem_undefined, a)); i != avm.cend () && (i -> second.tag_ == elem_undefined) && (i -> second.a_ == a); ++i)
@@ -3421,7 +3441,7 @@ bool is_invalid_attribute_version (const html_version& v, const e_element tag, c
     return true; }
 
 bool is_deprecated_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
-{   if (! v.known ()) return false;
+{   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;
     for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second.tag_ == tag) && (i -> second.a_ == a); ++i)
         if (may_apply (v, i -> second.first_, i -> second.last_)) return i -> second.first_.deprecated (v);
     for (avm_t::const_iterator i = avm.find (avm_key (elem_undefined, a)); i != avm.cend () && (i -> second.tag_ == elem_undefined) && (i -> second.a_ == a); ++i)
@@ -3429,19 +3449,19 @@ bool is_deprecated_attribute_version (const html_version& v, const e_element tag
     return false; }
 
 bool not_production_attribute (const html_version& v, const e_element tag, const e_attribute a)
-{   if (v.known () && v.is_5 ())
+{   if (v.known () && v.is_5 () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
         for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second.tag_ == tag) && (i -> second.a_ == a); ++i)
             if (may_apply (v, i -> second.first_, i -> second.last_)) return i -> second.first_.not_production ();
     return false; }
 
 bool is_attribute_required (const html_version& v, const e_element tag, const e_attribute a)
-{   if (v.known ())
+{   if (v.known () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
         for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second.tag_ == tag) && (i -> second.a_ == a); ++i)
             if (may_apply (v, i -> second.first_, i -> second.last_)) return i -> second.first_.required ();
     return false; }
 
 bool is_attribute_rejected (const html_version& v, const e_element tag, const e_attribute a)
-{   if (v.known ())
+{   if (v.known () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
         for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second.tag_ == tag) && (i -> second.a_ == a); ++i)
             if (may_apply (v, i -> second.first_, i -> second.last_)) return i -> second.first_.reject ();
     return false; }

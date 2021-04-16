@@ -44,7 +44,6 @@ public:
     e_element tag () const { return tag_; }
     bool has (const e_attribute a) const
     {   return aar_.at (a).get () != nullptr; }
-
     bool set_value (nitpick& nits, const html_version& v, const e_attribute a, const ::std::string& s);
     bool parse (nitpick& nits, const html_version& v, const attributes_node& an);
 

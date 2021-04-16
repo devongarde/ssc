@@ -35,12 +35,12 @@ template < class V, typename CATEGORY, CATEGORY INIT > class symbol_table : publ
     bool wildcards_ = false;
 public:
     void extend (   const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT,
-                    const V& first = html_0, const V& last = html_0, const uint64_t flags = 0, const uint64_t flags2 = 0)
+                    const V& first = html_0, const V& last = html_0, const uint64_t flags = NOFLAGS, const uint64_t flags2 = NOFLAGS)
     {
-    #ifdef _DEBUG
+    #ifdef DEBUG
         if (key.find (",") != ::std::string::npos) ::std::cerr << "key '" << key << "' contains a comma\n";
         if (symbol.find (",") != ::std::string::npos) ::std::cerr << "symbol '" << symbol << "' contains a comma\n";
-    #endif // _DEBUG
+    #endif // DEBUG
         symbol_.insert (typename symbol_t::value_type (symbol_key (key, ns), symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2)));
         reverse_.insert (typename reverse_t::value_type (value, symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2))); }
     template < typename VALUE, class LC > void init (nitpick& nits, const symbol_entry < V, VALUE, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)

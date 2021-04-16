@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/root.h"
 #include "element/state.h"
 
-class context;
 class external;
 class url;
 class directory;

@@ -21,11 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 
-class context;
-
 class options
 {   bool valid_ = false, stop_ = false;
-	::boost::program_options::variables_map var_;
+	::boost::program_options::variables_map var_, env_;
     void title (const char* addendum = nullptr) const;
     void help (const ::boost::program_options::options_description& aid) const;
 	void process (int argc, char** argv);

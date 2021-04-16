@@ -87,7 +87,7 @@ void element::examine_li ()
 {   if (a_.known (a_value))
         if (node_.version () >= html_jan16)
         {   if (ancestral_elements_.test (elem_ul) || ancestral_elements_.test (elem_menu))
-                    pick (nit_value_ol, ed_jul20, "4.4.7 The li element", es_error, ec_element, "<LI> VALUE is barred under <UL> or <MENU>"); }
+                pick (nit_value_ol, ed_jul20, "4.4.7 The li element", es_error, ec_element, "<LI> VALUE is barred under <UL> or <MENU>"); }
         else if (! ancestral_elements_.test (elem_ol) && (node_.version ().mjr () > 5))
             pick (nit_value_ol, ed_50, "4.4.7 The li element", es_error, ec_element, "<LI> VALUE requires an <OL> parent"); }
 

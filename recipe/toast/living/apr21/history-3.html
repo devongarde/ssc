@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<HTML LANG=EN>
+<TITLE>Line</TITLE>
+<SCRIPT>
+setInterval(function () { document.title = 'Line - ' + new Date(); }, 1000);
+var i = 1;
+function inc() {
+set(i+1);
+history.pushState(i, "");
+}
+function set(newI) {
+i = newI;
+document.forms.F.I.value = newI;
+}
+</SCRIPT>
+<BODY ONPOPSTATE="set(event.state)">
+<FORM NAME=F>
+State: <OUTPUT NAME=I>1</OUTPUT> <INPUT VALUE="Increment" TYPE=BUTTON ONCLICK="inc()">
+</FORM>

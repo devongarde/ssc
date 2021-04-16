@@ -85,6 +85,7 @@ void element::post_examine_element (const e_element tag)
         case elem_aside : examine_aside (); break;
         case elem_audio : examine_audio (); break;
         case elem_bind : examine_bind (); break;
+        case elem_body : examine_body (); break;
         case elem_button : examine_button (); break;
         case elem_bvar :
         case elem_maction :
@@ -282,6 +283,18 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
                     pick (nit_no_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "Authors must not use LANG in the XML namespace on HTML elements in HTML documents");
                 else if (a_.get_string (a_lang) != a_.get_string (a_xmllang))
                     pick (nit_lang_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "if both LANG and xml:lang are specified, they must have the same value");
+
+        if (node_.version () >= html_apr21)
+        {   if (a_.known (a_ariachecked)) examine_aria_checked ();
+            if (a_.known (a_ariacolspan)) examine_aria_colspan ();
+            if (a_.known (a_ariadisabled)) examine_aria_disabled ();
+            if (a_.known (a_ariahidden)) examine_aria_hidden ();
+            if (a_.known (a_ariaplaceholder)) examine_aria_placeholder ();
+            if (a_.known (a_ariareadonly)) examine_aria_readonly ();
+            if (a_.known (a_ariarequired)) examine_aria_required ();
+            if (a_.known (a_ariarowspan)) examine_aria_rowspan ();
+            if (a_.known (a_ariavaluemax)) examine_aria_valuemax ();
+            if (a_.known (a_ariavaluemin)) examine_aria_valuemin (); }
 
         if (a_.known (a_accesskey)) examine_accesskey ();
         if (a_.known (a_clip)) examine_clip ();

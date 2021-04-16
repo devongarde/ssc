@@ -150,3 +150,4 @@ void attributes :: shadow (::std::stringstream& ss, const html_version& v, eleme
                 res += a -> report (); }
     res += "\n";
     return res; }
+

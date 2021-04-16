@@ -44,6 +44,7 @@ ssc.exe -f ../toast/living/jul19/living.conf
 ssc.exe -f ../toast/living/jan20/living.conf
 ssc.exe -f ../toast/living/jul20/living.conf
 ssc.exe -f ../toast/living/jan21/living.conf
+ssc.exe -f ../toast/living/apr21/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf
@@ -63,9 +64,11 @@ ssc.exe -f ../toast/microformats/mf1/mf1.conf
 ssc.exe -f ../toast/microformats/mf2/mf2.conf
 ssc.exe -f ../toast/microformats/rel/rel.conf
 ssc.exe -f ../toast/other/abbr/abbr.conf
+ssc.exe -f ../toast/other/aria/aria.conf
 ssc.exe -f ../toast/other/base/base.conf
 ssc.exe -f ../toast/other/CSS/css.conf
 ssc.exe -f ../toast/other/dfn/dfn.conf
+ssc.exe -f ../toast/other/dump/dump.conf
 ssc.exe -f ../toast/other/ignore/ignore.conf
 ssc.exe -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -f ../toast/other/nits/nits.conf
@@ -90,6 +93,7 @@ ssc.exe -f ../toast/stats/detail/stats.conf
 ssc.exe -f ../toast/stats/single/stats.conf
 ssc.exe -f ../toast/stats/summary/stats.conf
 ssc.exe -f ../toast/type/colour/colour.conf
+ssc.exe -f ../toast/type/custom/custom.conf
 ssc.exe -f ../toast/type/httpequiv/httpequiv.conf
 ssc.exe -f ../toast/type/lang/lang.conf
 ssc.exe -f ../toast/type/metaname/metaname.conf

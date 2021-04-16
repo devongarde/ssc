@@ -26,6 +26,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/lexical.h"
 #include "feedback/nitpick.h"
 #include "schema/schema_version.h"
+#include "attribute/attributes.h"
+#include "element/elem.h"
+#include "element/element_classes.h"
 
 /*
 -N
@@ -89,6 +92,33 @@ needs rel type and probably context info
 #define DEFAULT_LINE_LENGTH 120
 #define DESCRIPTION_LENGTH 80
 
+::std::string env_mapper (::std::string env)
+{  // boost environment variable translator
+    ::std::transform (env.begin(), env.end(), env.begin(), ::toupper);
+    static sstr_t o;
+    if (o.empty ())
+    {   o.insert (ENV_CONFIG);
+        o.insert (ENV_ARGS);
+        o.insert (SERVER_SOFTWARE);
+        o.insert (SERVER_NAME);
+        o.insert (GATEWAY_INTERFACE);
+        o.insert (SERVER_PROTOCOL);
+        o.insert (SERVER_PORT);
+        o.insert (REQUEST_METHOD);
+        o.insert (HTTP_ACCEPT);
+        o.insert (PATH_INFO);
+        o.insert (PATH_TRANSLATED);
+        o.insert (SCRIPT_NAME);
+        o.insert (QUERY_STRING);
+        o.insert (REMOTE_HOST);
+        o.insert (REMOTE_ADDR);
+        o.insert (REMOTE_USER);
+        o.insert (AUTH_TYPE);
+        o.insert (CONTENT_TYPE);
+        o.insert (CONTENT_LENGTH); }
+    if (o.find (env) != o.cend ()) return env;
+    return ::std::string (); }
+
 ::std::string path_in_context (const ::std::string& file)
 {   ::boost::filesystem::path res (context.path ());
     res /= file;
@@ -126,7 +156,7 @@ void options::process (int argc, char** argv)
 {   /*  a
         b
         c persist file   C clear webmention
-        d
+        d dump corpus
         e external check
         f config         F load config file from .ssc/config
         g website root
@@ -145,7 +175,7 @@ void options::process (int argc, char** argv)
         t template       T test mode
         u
         v verbose        V version
-        w webmention
+        w webmention     W cgi
         x extensions     X check crosslinked ids
         y
         z title max      Z spec
@@ -161,14 +191,16 @@ void options::process (int argc, char** argv)
         9
 */
     ::boost::program_options::options_description
+        aid (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         basic ("Console Options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
-        primary ("Standard Options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
-        hidden,
+        cgi (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         cmd (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         config (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
-        aid (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        env (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        hidden,
         line (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
-        valid("validation options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH);
+        primary ("Standard Options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        valid ("validation options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH);
     ::boost::program_options::positional_options_description pos;
     pos.add (WEBSITE ROOT, 1);
     basic.add_options ()
@@ -176,7 +208,31 @@ void options::process (int argc, char** argv)
         (VALIDATION_, "list attribute extensions and exit")
         (VERSION ",V", "display version & copyright info, then exit")
         ;
+    cgi.add_options ()
+        (SERVER_SOFTWARE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_SOFTWARE)
+        (SERVER_NAME, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_NAME)
+        (GATEWAY_INTERFACE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " GATEWAY_INTERFACE)
+        (SERVER_PROTOCOL, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_PROTOCOL)
+        (SERVER_PORT, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_PORT)
+        (REQUEST_METHOD, ::boost::program_options::value < ::std::string > (), "CGI environment variable " REQUEST_METHOD)
+        (HTTP_ACCEPT, ::boost::program_options::value < ::std::string > (), "CGI environment variable " HTTP_ACCEPT)
+        (PATH_INFO, ::boost::program_options::value < ::std::string > (), "CGI environment variable " PATH_INFO)
+        (PATH_TRANSLATED, ::boost::program_options::value < ::std::string > (), "CGI environment variable " PATH_TRANSLATED)
+        (SCRIPT_NAME, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SCRIPT_NAME)
+        (QUERY_STRING, ::boost::program_options::value < ::std::string > (), "CGI environment variable " QUERY_STRING)
+        (REMOTE_HOST, ::boost::program_options::value < ::std::string > (), "CGI environment variable " REMOTE_HOST)
+        (REMOTE_ADDR, ::boost::program_options::value < ::std::string > (), "CGI environment variable " REMOTE_ADDR)
+        (REMOTE_USER, ::boost::program_options::value < ::std::string > (), "CGI environment variable " REMOTE_USER)
+        (AUTH_TYPE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " AUTH_TYPE)
+        (CONTENT_TYPE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " CONTENT_TYPE)
+        (CONTENT_LENGTH, ::boost::program_options::value < ::std::string > (), "CGI environment variable " CONTENT_LENGTH)
+        ;
+    env.add_options ()
+        (ENV_CONFIG, ::boost::program_options::value < ::std::string > (), "load configuration from this file")
+        (ENV_ARGS, ::boost::program_options::value < ::std::string > (), "alternative command line parameters")
+        ;
     hidden.add_options ()
+        (GENERAL CGI ",W", "process OpenBSD httpd <FORM METHOD=POST ...>")
         (GENERAL CLASS, "do not report unrecognised classes")
         (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "file for persistent data, requires -N (note " GENERAL PATH ")")
         (GENERAL RPT, "report when CSS files opened")
@@ -205,6 +261,7 @@ void options::process (int argc, char** argv)
         ;
     primary.add_options ()
         (GENERAL CSS_OPTION, "do NOT process .css files")
+        (GENERAL CORPUS ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file")
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated")
         (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore attributes and content of specified element; may be repeated")
         (GENERAL LANG, ::boost::program_options::value < ::std::string > () -> composing (), "default language (such as 'en_GB', 'lb_LU', etc.)")
@@ -251,7 +308,7 @@ void options::process (int argc, char** argv)
         (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a catastrophe; may be repeated")
         (NITS CODES, "output nit codes")
         (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a comment; may be repeated")
-        (NITS DEBUG, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a debug message; may be repeated")
+        (NITS DBG, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as a debug message; may be repeated")
         (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as an error; may be repeated")
         (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "redefine nit as info; may be repeated")
         (NITS NIDS, "output nit identifiers (used to recategorise nits)")
@@ -290,10 +347,13 @@ void options::process (int argc, char** argv)
         (VALIDATION MICRODATAARG, "validate HTML5 microdata")
         	;
     valid.add_options ()
+        (VALIDATION ATTRIB, ::boost::program_options::value < vstr_t > () -> composing (), "add a custom attribute (name namespace flags ext); may be repeated")
         (VALIDATION CHARSET, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid charset; may be repeated")
         (VALIDATION CLASS, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid class; may be repeated")
         (VALIDATION COLOUR, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid colour; may be repeated")
         (VALIDATION CURRENCY, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid currency; may be repeated")
+        (VALIDATION ELEMENT, ::boost::program_options::value < vstr_t > () -> composing (), "add a custom element (name namespace flags ext]]]); may be repeated")
+        (VALIDATION ELEMATTR, ::boost::program_options::value < vstr_t > () -> composing (), "add an attribute to an element (element attribute); may be repeated")
         (VALIDATION EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "add a mimetype file extension; may be repeated")
         (VALIDATION HTTPEQUIV, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid meta httpequiv; may be repeated")
         (VALIDATION LANG, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid language code (such as ma for marain); may be repeated")
@@ -302,12 +362,24 @@ void options::process (int argc, char** argv)
         (VALIDATION REL, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid rel; may be repeated")
         (VALIDATION SGML, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid SGML schema identification; may be repeated")
         ;
-   valid.add (context.validation ());
+    valid.add (context.validation ());
 
     cmd.add (basic).add (primary).add (valid).add (line).add (hidden);
     config.add (primary).add (valid).add (hidden);
     aid.add (basic).add (line).add (primary);
+    env.add (cgi);
     ::std::string loaded;
+
+    try
+    {   ::boost::program_options::store (::boost::program_options::parse_environment (env, ::boost::function1 < ::std::string, ::std::string> (env_mapper)), env_);
+        if (env_.count (ENV_ARGS))
+        {   vstr_t env_args (split_by_space (env_ [ENV_ARGS].as < ::std::string > ()));
+            if (! env_args.empty ())
+                ::boost::program_options::store (::boost::program_options::command_line_parser (env_args).options (cmd).positional (pos).run (), var_); } }
+    catch (...)
+    {   title ("\nEnvironment variable error. " TYPE_HELP "\n");
+        return; }
+
     try
     {   ::boost::program_options::store (::boost::program_options::command_line_parser (argc, argv).options (cmd).positional (pos).run (), var_); }
     catch (const ::boost::program_options::error& err)
@@ -319,9 +391,10 @@ void options::process (int argc, char** argv)
     catch (...)
     {   title ("\nCommand line parameter error. " TYPE_HELP "\n");
         return; }
-    if (var_.count (CONFIG) || var_.count (DEFCONF))
+    if (var_.count (CONFIG) || var_.count (DEFCONF) || env_.count (ENV_CONFIG))
     {   ::boost::filesystem::path file (CONFIGURATION);
         if (var_.count (CONFIG)) file = var_ [CONFIG].as < ::std::string > ();
+        else if ((var_.count (DEFCONF) == 0) && env_.count (ENV_CONFIG)) file = env_ [ ENV_CONFIG ].as < ::std::string > ();
         if (var_.count (GENERAL TEST) == 0)
         {   loaded = "\nLoading configuration "; loaded += file.string () + " ...\n"; }
         if (::boost::filesystem::exists (file)) context.config (canonical (file));
@@ -343,9 +416,11 @@ void options::process (int argc, char** argv)
             title (loaded.c_str ());
             return; }
         catch (...)
-        {   loaded += "Error in "; loaded += file.string () + "\n";
+        {   loaded += "Error in ";
+            loaded += file.string () + "\n";
             title (loaded.c_str ()); return; } }
     ::boost::program_options::notify (var_);
+    ::boost::program_options::notify (env_);
     if (var_.count (VERSION)) { title (); valid_ = true; return; }
     if (var_.count (HELP)) { title (); help (aid); valid_ = true; return; }
     if (var_.count (VALIDATION_)) { title (); ::std::cout << "\n" << valid; valid_ = true; return; }
@@ -363,10 +438,31 @@ void options::contextualise ()
         if (! context.test ())
             ::std::cout << "Writing to " << var_ [GENERAL OUTPUT].as < ::std::string > () << "\n"; }
 
-    if (context.test ()) context.out () << PROG "\n" VERSION_STRING "\n" COPYRIGHT"\n";
+    context.cgi (var_.count (GENERAL CGI));
+
+    if (context.cgi ())
+    {   if (env_.count (SERVER_SOFTWARE)) context.server_software_ = env_ [SERVER_SOFTWARE].as < ::std::string > ();
+        if (env_.count (SERVER_NAME)) context.server_name_ = env_ [SERVER_NAME].as < ::std::string > ();
+        if (env_.count (GATEWAY_INTERFACE)) context.gateway_interface_ = env_ [GATEWAY_INTERFACE].as < ::std::string > ();
+        if (env_.count (SERVER_PROTOCOL)) context.server_protocol_ = env_ [SERVER_PROTOCOL].as < ::std::string > ();
+        if (env_.count (SERVER_PORT)) context.server_port_ = env_ [SERVER_PORT].as < ::std::string > ();
+        if (env_.count (REQUEST_METHOD)) context.request_method_ = env_ [REQUEST_METHOD].as < ::std::string > ();
+        if (env_.count (HTTP_ACCEPT)) context.http_accept_ = env_ [HTTP_ACCEPT].as < ::std::string > ();
+        if (env_.count (PATH_INFO)) context.path_info_ = env_ [PATH_INFO].as < ::std::string > ();
+        if (env_.count (PATH_TRANSLATED)) context.path_translated_ = env_ [PATH_TRANSLATED].as < ::std::string > ();
+        if (env_.count (SCRIPT_NAME)) context.script_name_ = env_ [SCRIPT_NAME].as < ::std::string > ();
+        if (env_.count (QUERY_STRING)) context.query_string_ = env_ [QUERY_STRING].as < ::std::string > ();
+        if (env_.count (REMOTE_HOST)) context.remote_host_ = env_ [REMOTE_HOST].as < ::std::string > ();
+        if (env_.count (REMOTE_ADDR)) context.remote_addr_ = env_ [REMOTE_ADDR].as < ::std::string > ();
+        if (env_.count (REMOTE_USER)) context.remote_user_ = env_ [REMOTE_USER].as < ::std::string > ();
+        if (env_.count (AUTH_TYPE)) context.auth_type_ = env_ [AUTH_TYPE].as < ::std::string > ();
+        if (env_.count (CONTENT_TYPE)) context.content_type_ = env_ [CONTENT_TYPE].as < ::std::string > ();
+        if (env_.count (CONTENT_LENGTH)) context.content_length_ = env_ [CONTENT_LENGTH].as < ::std::string > (); }
+    else if (context.test ()) context.out () << PROG "\n" VERSION_STRING "\n" COPYRIGHT"\n";
     else context.out () << FULLNAME " version " VERSION_STRING " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n";
 
     context.path (nix_path_to_local (var_ [GENERAL PATH].as < ::std::string > ()));
+
     if (! ::boost::filesystem::exists (context.path ()))
     {   context.err () << context.path () << " does not exist, am creating it.";
         ::boost::filesystem::create_directories (context.path ()); }   // if throws, then exit
@@ -441,6 +537,7 @@ void options::contextualise ()
         context.max_file_size (max * meg); }
 
     context.unknown_class (var_.count (GENERAL CLASS));
+    if (var_.count (GENERAL CORPUS)) context.corpus (nix_path_to_local (var_ [GENERAL CORPUS].as < ::std::string > ()));
     if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
     if (var_.count (GENERAL IGNORED)) context.ignore (var_ [GENERAL IGNORED].as < vstr_t > ());
     if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());
@@ -498,8 +595,8 @@ void options::contextualise ()
             if (! nitpick::modify_severity (s, es_comment))
                 context.err () << quote (s) << ": no such nit.\n";
 
-    if (var_.count (NITS DEBUG))
-        for (auto s : var_ [NITS DEBUG].as < vstr_t > ())
+    if (var_.count (NITS DBG))
+        for (auto s : var_ [NITS DBG].as < vstr_t > ())
             if (! nitpick::modify_severity (s, es_debug))
                 context.err () << quote (s) << ": no such nit.\n";
 
@@ -568,12 +665,15 @@ void options::contextualise ()
     context.reset (var_.count (WMOUT RESET));
     if (var_.count (WMOUT SECRET)) context.secret (var_ [WMOUT SECRET].as < ::std::string > ());
 
+    if (var_.count (VALIDATION ATTRIB)) add_attributes (var_ [VALIDATION ATTRIB].as < vstr_t > ());
     if (var_.count (VALIDATION CHARSET)) type_master < t_charset > :: extend (var_ [VALIDATION CHARSET].as < vstr_t > ());
     if (var_.count (VALIDATION CLASS)) type_master < t_class > :: extend (var_ [VALIDATION CLASS].as < vstr_t > ());
     if (var_.count (VALIDATION COLOR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOR].as < vstr_t > ());
     if (var_.count (VALIDATION COLOUR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOUR].as < vstr_t > ());
     if (var_.count (VALIDATION CURRENCY)) type_master < t_currency > :: extend (var_ [VALIDATION CURRENCY].as < vstr_t > ());
     if (var_.count (VALIDATION DINGBATARG)) type_master < t_dingbat > :: extend (var_ [VALIDATION DINGBATARG].as < vstr_t > ());
+    if (var_.count (VALIDATION ELEMENT)) add_elements (var_ [VALIDATION ELEMENT].as < vstr_t > ());
+    if (var_.count (VALIDATION ELEMATTR)) add_element_attributes (var_ [VALIDATION ELEMATTR].as < vstr_t > ());
     if (var_.count (VALIDATION EXTENSION)) type_master < t_format > :: extend (var_ [VALIDATION EXTENSION].as < vstr_t > ());
     if (var_.count (VALIDATION HTTPEQUIV)) type_master < t_httpequiv > :: extend (var_ [VALIDATION HTTPEQUIV].as < vstr_t > ());
     if (var_.count (VALIDATION LANG)) type_master < t_lang > :: extend (var_ [VALIDATION LANG].as < vstr_t > ());
@@ -673,12 +773,14 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 ::std::string options::report () const
 {   ::std::ostringstream res;
     if (context.test ()) return res.str ();
-    res << "** Switches:\n";
+    res << "\n** Arguments:\n";
 
     if (var_.count (HELP)) res << HELP "\n";
     if (var_.count (VERSION)) res << VERSION "\n";
 
+    if (var_.count (GENERAL CGI)) res << GENERAL CGI "\n";
     if (var_.count (GENERAL CLASS)) res << GENERAL CLASS "\n";
+    if (var_.count (GENERAL CORPUS)) res << GENERAL CORPUS ": " << var_ [GENERAL CORPUS].as < ::std::string > () << "\n";
     if (var_.count (GENERAL CSS_OPTION)) res << GENERAL CSS_OPTION "\n";
     if (var_.count (GENERAL CUSTOM)) { res << GENERAL CUSTOM ": "; pvs (res, var_ [GENERAL CUSTOM].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL FICHIER)) res << GENERAL FICHIER ": " << var_ [GENERAL FICHIER].as < ::std::string > () << "\n";
@@ -714,7 +816,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     if (var_.count (NITS CATASTROPHE)) { res << NITS CATASTROPHE ": "; pvs (res, var_ [NITS CATASTROPHE].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS COMMENT)) { res << NITS COMMENT ": "; pvs (res, var_ [NITS COMMENT].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (NITS DEBUG)) { res << NITS DEBUG ": "; pvs (res, var_ [NITS DEBUG].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS DBG)) { res << NITS DBG ": "; pvs (res, var_ [NITS DBG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS ERR)) { res << NITS ERR ": "; pvs (res, var_ [NITS ERR].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS INFO)) { res << NITS INFO ": "; pvs (res, var_ [NITS INFO].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS NIDS)) res << NITS NIDS "\n";
@@ -730,7 +832,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (MICRODATA EXPORT)) res << MICRODATA EXPORT "\n";
     if (var_.count (MICRODATA MICRODATAARG)) res << MICRODATA MICRODATAARG "\n";
     if (var_.count (MICRODATA ROOT)) res << MICRODATA ROOT ": " << var_ [MICRODATA ROOT].as < ::std::string > () << "\n";
-    if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < int > () << "\n";
+    if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < ::std::string > () << "\n";
     if (var_.count (MICRODATA VIRTUAL)) { res << MICRODATA VIRTUAL ": "; pvs (res, var_ [MICRODATA VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT "\n";
@@ -749,12 +851,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     if (var_.count (SVG VERSION)) res << SVG VERSION "\n";
 
+    if (var_.count (VALIDATION ATTRIB)) { res << VALIDATION ATTRIB ": "; pvs (res, var_ [VALIDATION ATTRIB].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION CHARSET)) { res << VALIDATION CHARSET ": "; pvs (res, var_ [VALIDATION CHARSET].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION CLASS)) { res << VALIDATION CLASS ": "; pvs (res, var_ [VALIDATION CLASS].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION COLOR)) { res << VALIDATION COLOUR ": "; pvs (res, var_ [VALIDATION COLOR].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION COLOUR)) { res << VALIDATION COLOUR ": "; pvs (res, var_ [VALIDATION COLOUR].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION CURRENCY)) { res << VALIDATION CURRENCY ": "; pvs (res, var_ [VALIDATION CURRENCY].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION DINGBATARG)) { res << VALIDATION DINGBATARG ": "; pvs (res, var_ [VALIDATION DINGBATARG].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (VALIDATION ELEMENT)) { res << VALIDATION ELEMENT ": "; pvs (res, var_ [VALIDATION ELEMENT].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (VALIDATION ELEMATTR)) { res << VALIDATION ELEMATTR ": "; pvs (res, var_ [VALIDATION ELEMATTR].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION HTTPEQUIV)) { res << VALIDATION HTTPEQUIV ": "; pvs (res, var_ [VALIDATION HTTPEQUIV].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION LANG)) { res << VALIDATION LANG ": "; pvs (res, var_ [VALIDATION LANG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION MINOR)) res << VALIDATION MINOR ": " << var_ [VALIDATION MINOR].as < int > () << "\n";
@@ -851,18 +956,45 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (WEBSITE VIRTUAL)) { res << WEBSITE VIRTUAL ": "; pvs (res, var_ [WEBSITE VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (WMIN WRITE)) { res << WMIN WRITE ": "; var_ [WMIN WRITE].as < ::std::string > (); res << "\n"; }
-    if (var_.count (WMIN STUB)) res << WMIN STUB ": " << var_ [WMIN STUB].as< ::std::string > () << "\n";
-    if (var_.count (WMIN HOOK)) res << WMIN HOOK ": " << var_ [WMIN HOOK].as< ::std::string > () << "\n";
-    if (var_.count (WMIN MACROEND)) res << WMIN MACROEND ": " << var_ [WMIN MACROEND].as< ::std::string > () << "\n";
-    if (var_.count (WMIN MACROSTART)) res << WMIN MACROSTART ": " << var_ [WMIN MACROSTART].as< ::std::string > () << "\n";
-    if (var_.count (WMIN PATH)) res << WMIN PATH ": " << var_ [WMIN PATH].as< ::std::string > () << "\n";
+    if (var_.count (WMIN STUB)) res << WMIN STUB ": " << var_ [WMIN STUB].as < ::std::string > () << "\n";
+    if (var_.count (WMIN HOOK)) res << WMIN HOOK ": " << var_ [WMIN HOOK].as < ::std::string > () << "\n";
+    if (var_.count (WMIN MACROEND)) res << WMIN MACROEND ": " << var_ [WMIN MACROEND].as < ::std::string > () << "\n";
+    if (var_.count (WMIN MACROSTART)) res << WMIN MACROSTART ": " << var_ [WMIN MACROSTART].as < ::std::string > () << "\n";
+    if (var_.count (WMIN PATH)) res << WMIN PATH ": " << var_ [WMIN PATH].as < ::std::string > () << "\n";
     if (var_.count (WMIN MENTION)) { res << WMIN MENTION ": "; pvs (res, var_ [WMIN MENTION].as < vstr_t > ()); res << "\n"; }
     if (var_.count (WMIN TEMPLATE)) { res << WMIN TEMPLATE ": "; pvs (res, var_ [WMIN TEMPLATE].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (WMIN TEST_HEADER)) res << WMIN TEST_HEADER ": " << var_ [WMIN TEST_HEADER].as< ::std::string > () << "\n";
+    if (var_.count (WMIN TEST_HEADER)) res << WMIN TEST_HEADER ": " << var_ [WMIN TEST_HEADER].as < ::std::string > () << "\n";
 
     if (var_.count (WMOUT CLEAR)) res << WMOUT CLEAR "\n";
     if (var_.count (WMOUT NOTIFY)) res << WMOUT NOTIFY "\n";
     if (var_.count (WMOUT RESET)) res << WMOUT RESET "\n";
-    if (var_.count (WMOUT SECRET)) res << WMOUT SECRET ": " << var_ [WMOUT SECRET].as< ::std::string > () << "\n";
-    res << "\n";
+    if (var_.count (WMOUT SECRET)) res << WMOUT SECRET ": " << var_ [WMOUT SECRET].as < ::std::string > () << "\n";
+
+    ::std::ostringstream e;
+
+    if (env_.count (ENV_CONFIG)) e << ENV_CONFIG ": " << env_ [ENV_CONFIG].as < ::std::string > () << "\n";
+    if (env_.count (ENV_ARGS)) e << ENV_ARGS ": " << env_ [ENV_ARGS].as < ::std::string > () << "\n";
+
+    if (context.cgi ())
+    {   if (env_.count (SERVER_SOFTWARE) && ! context.server_software_.empty ()) e << SERVER_SOFTWARE ": " << context.server_software_ << "\n";
+        if (env_.count (SERVER_NAME) && ! context.server_name_ .empty ()) e << SERVER_NAME ": " << context.server_name_ << "\n";
+        if (env_.count (GATEWAY_INTERFACE) && ! context.gateway_interface_.empty ()) e << GATEWAY_INTERFACE ": " << context.gateway_interface_ << "\n";
+        if (env_.count (SERVER_PROTOCOL) && ! context.server_protocol_.empty ()) e << SERVER_PROTOCOL ": " << context.server_protocol_ << "\n";
+        if (env_.count (SERVER_PORT) && ! context.server_port_.empty ()) e << SERVER_PORT ": " << context.server_port_ << "\n";
+        if (env_.count (REQUEST_METHOD) && ! context.request_method_.empty ()) e << REQUEST_METHOD ": " << context.request_method_ << "\n";
+        if (env_.count (HTTP_ACCEPT) && ! context.http_accept_.empty ()) e << HTTP_ACCEPT ": " << context.http_accept_ << "\n";
+        if (env_.count (PATH_INFO) && ! context.path_info_.empty ()) e << PATH_INFO ": " << context.path_info_ << "\n";
+        if (env_.count (PATH_TRANSLATED) && ! context.path_translated_.empty ()) e << PATH_TRANSLATED ": " << context.path_translated_ << "\n";
+        if (env_.count (SCRIPT_NAME) && ! context.script_name_.empty ()) e << SCRIPT_NAME ": " << context.script_name_ << "\n";
+        if (env_.count (QUERY_STRING) && ! context.query_string_.empty ()) e << QUERY_STRING ": " << context.query_string_ << "\n";
+        if (env_.count (REMOTE_HOST) && ! context.remote_host_ .empty ()) e << REMOTE_HOST ": " << context.remote_host_ << "\n";
+        if (env_.count (REMOTE_ADDR) && ! context.remote_addr_.empty ()) e << REMOTE_ADDR ": " << context.remote_addr_ << "\n";
+        if (env_.count (REMOTE_USER) && ! context.remote_user_.empty ()) e << REMOTE_USER ": " << context.remote_user_ << "\n";
+        if (env_.count (AUTH_TYPE) && ! context.auth_type_.empty ()) e << AUTH_TYPE ": " << context.auth_type_ << "\n";;
+        if (env_.count (CONTENT_TYPE) && ! context.content_type_.empty ()) e << CONTENT_TYPE ": " << context.content_type_ << "\n";
+        if (env_.count (CONTENT_LENGTH) && ! context.content_length_.empty ()) e << CONTENT_LENGTH ": " << context.content_length_ << "\n"; }
+
+    ::std::string x (e.str ());
+    if (! x.empty ()) res << "\n** Environment:\n" << x << "\n";
+
     return res.str (); }

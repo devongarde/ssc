@@ -3,8 +3,18 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.100
+- can nitpick against WhatWG Living Standard April 2021 (except MathML 4 & SVG 2)
+- expanded character code suggestions, particularly for ligatures (Windows only)
+- improved aria attribute verification
+- the environment variable SSC_CONFIG can specify a configuration file
+- the environment variable SSC_ARGS can specify command line arguments
+- specify custom elements and custom attributes (see recipe/toast/type/custom/* for example)
+- dump site corpus with -d switch
+
 0.0.99
-- can export living standard microdata
+- now checks microformats v1/2 in microdata
+- can export living standard & microformats microdata
 
 0.0.98
 - Living standard microdata ITEMTYPEs (etc.) now processed (except purl.org)

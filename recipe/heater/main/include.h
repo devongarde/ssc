@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TESTPROG "ssc-test"
 #define FULLNAME "Static Site Checker"
 #define WEBADDR "ssc.lu"
-#define VERSION_STRING "0.0.99"
+#define VERSION_STRING "0.0.100"
 #define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
 
 #ifdef __clang__
@@ -52,6 +52,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NOEXCEPT noexcept
 #define VS 19
 #define CLEAN_SHAREDPTR_ARRAY
+#define CLEVER_CHAR
 #elif defined (VS2017)
 #define _WIN32_WINNT 0x0603 // 8.1
 #define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // thanks, boost
@@ -60,6 +61,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NOEXCEPT noexcept
 #define VS 17
 #define CLEAN_SHAREDPTR_ARRAY
+#define CLEVER_CHAR
 #elif defined (VS2015)
 #define BOOVAR 1
 #define ORDERED
@@ -192,10 +194,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // SSC_TEST
 
 #if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
+#ifndef DEBUG
+#define DEBUG
+#endif // DEBUG
 #define DBG_ASSERT(x) assert (x)
-#else // DEBUG || _DEBUG
+#else // debug
+#ifndef NDEBUG
+#define NDEBUG
+#endif // NDEBUG
 #define DBG_ASSERT(x)
-#endif // DEBUG || _DEBUG
+#endif // debug
 
 #ifndef SSC_TEST
 #define PR_FILE "file"

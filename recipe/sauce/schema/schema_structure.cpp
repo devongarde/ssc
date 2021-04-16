@@ -34,7 +34,7 @@ struct microdata_structure
     e_schema_property property_ = sp_context;
     uint32_t flags_ = 0;
 #ifdef REQUIRE_CONSTRUCTOR
-    microdata_structure (const schema_version& from, const schema_version& to, const e_schema_type record = sty_context, const e_schema_property prop = sp_context, const bool flags = 0)
+    microdata_structure (const schema_version& from, const schema_version& to, const e_schema_type record = sty_context, const e_schema_property prop = sp_context, const uint32_t flags = 0)
         : from_ (from), to_ (to), record_ (record), property_ (prop), flags_ (flags) { }
 #endif // REQUIRE_CONSTRUCTOR
 };

@@ -4,9 +4,9 @@ https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
 
-running ssc
------------
-To run ssc, install curl (if necessary), bring up the command line, change to the install directory,
+Running SSC
+===========
+To run SSC, install curl (if necessary), bring up the command line, change to the install directory,
 and then try:
 
     Windows: ssc
@@ -14,7 +14,7 @@ and then try:
 
 If it is installed correctly, it should respond with (c) info and a simple usage message.
 
-It is possible to set up configuration files, but to start with lets try a simple set of command line
+It is possible to set up configuration files, but, to start, lets try a simple set of command line
 options. It the HTML files belonging to your website is located in DIR, and the main index file is
 called index.html, then all you need type is:
 
@@ -27,14 +27,14 @@ switches
 --------
 SSC has a number of switches:
 
--h	Output simple help
--V	Output the version of SSC
--f file	Load a runtime configuration from file
--F	Load a runtime configuration from ~/.ssc/config
+-h	        Output simple help
+-V	        Output the version of SSC
+-f file	    Load a runtime configuration from file
+-F	        Load a runtime configuration from ~/.ssc/config
 
--o file Output report to file
+-o file     Output report to file
 
--v x	Report level x issues, where x is
+-v x	    Report level x issues, where x is
 	0 None
 	1 Catastrophes
 	2 Errors
@@ -44,28 +44,40 @@ SSC has a number of switches:
 	6 Debug
 	7... more and more debug
 
--I	Process (simple) Server Side Includes
--g dir  set website root directory (defaults to current directory)
--x xxx  treat files with extension xxx as HTML/XHTML (may be repeated)
--i file file is index file in directories (default index.html)
--s dom  dom is the local site’s domain name (may be repeated)
--L arg  Define virtual directory (arg is formatted ‘virtual=physical’) (may be repeated)
+-I	        Process (simple) Server Side Includes
+-g dir      set website root directory (defaults to current directory)
+-x xxx      treat files with extension xxx as HTML/XHTML (may be repeated)
+-i file     file is index file in directories (default index.html)
+-s dom      dom is the local site’s domain name (may be repeated)
+-L arg      Define virtual directory (arg is formatted ‘virtual=physical’) (may be repeated)
 
--e	Check external links (each link is checked once per run, not once per encounter)
--3	Report HTTP 301 and 308 as errors (e.g. forwarding)
--l	Check internal links
--O	Report each broken link only once, not each time it occurs
--r	Do not check whether https certificates have been revoked
--X	Check crosslinked IDs (e.g. id attribute)
+-e	        Check external links (each link is checked once per run, not once per encounter)
+-3	        Report HTTP 301 and 308 as errors (e.g. forwarding)
+-l	        Check internal links
+-O	        Report each broken link only once, not each time it occurs
+-r	        Do not check whether https certificates have been revoked
+-X	        Check crosslinked IDs (e.g. id attribute)
 
--M	Check microformats.org set using class attribute
--m	Check schema.org data set using WhatWG microdata attributes
+-M	        Check microformats.org set using class attribute
+-m	        Check schema.org data set using WhatWG microdata attributes
 
--S	Report site statistics
+-S	        Report site statistics
+
+
+Environment
+-----------
+SSC will process the following environment variables:
+SSC_CONFIG  name of configuration file if none given on the command line
+SSC_ARGS    command line switches
+
+
+Configuration Files
+===================
 
 SSC will accept configuration files, making it easy to set up checks that you wish to run from time to time.
 They’re in INI format. I’ll going to illustrate more features of the product using example configuration
 files, mostly adapted from the tests.
+
 
 
 A simple configuration file
@@ -179,7 +191,7 @@ will be treated as web pages.
 
 MathML 2
 --------
-This configuration file could be used to test MathML 2. NOTE: MathML is not fully implemented yet
+This configuration file could be used to test MathML 2. NOTE: MathML is not fully implemented yet.
 
 [general]
 verbose=4

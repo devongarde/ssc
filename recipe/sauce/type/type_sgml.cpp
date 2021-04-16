@@ -125,6 +125,7 @@ struct symbol_entry < html_version, e_sgml > doctype_symbol_table [] =
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  HTTPS_W3 "/TR/xhtml1/DTD/xhtml1-frameset.dtd", doc_xhtml10_frameset },
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  HTTP_W3 "/TR/xhtml1/DTD/frameset.dtd", doc_xhtml10_frameset_superseded },
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  HTTPS_W3 "/TR/xhtml1/DTD/frameset.dtd", doc_xhtml10_frameset_superseded },
+    { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF }, "-//WAPFORUM//DTD XHTML Mobile 1.0//EN", doc_xhtml10_mobile },
 
     { { XHTML_1_1, HV_XHTML }, { HTML_UNDEF },  "-//W3C//DTD XHTML 1.1//EN", doc_xhtml11 },
     { { XHTML_1_1, HV_XHTML }, { HTML_UNDEF },  HTTP_W3 "/TR/xhtml11/DTD/xhtml11.dtd", doc_xhtml11 },
@@ -281,7 +282,8 @@ struct symbol_entry < html_version, e_sgml > doctype_symbol_table [] =
     { { XHTML_1_1, 0, HE_RDF_1_1 }, { HTML_UNDEF }, HTTP_W3 "/MarkUp/DTD/xhtml-rdfa-2.dtd", doc_rdfa_1_1 },
     { { XHTML_1_1, 0, HE_RDF_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/MarkUp/DTD/xhtml-rdfa-2.dtd", doc_rdfa_1_1 },
 
-    { { XHTML_1_1, 0, HE_MATH_1 | HE_SVG_1_0 }, { HTML_UNDEF }, "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.0//EN", doc_compound },
+    { { XHTML_1_1, 0, HE_MATH_2 }, { HTML_UNDEF }, "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN", doc_compound },
+    { { XHTML_1_1, 0, HE_MATH_2 | HE_SVG_1_0 }, { HTML_UNDEF }, "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.0//EN", doc_compound },
     { { XHTML_1_1, 0, HE_MATH_1 | HE_SVG_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2002/04/xhtml-math-svg/xhtml-math-svg.dtd", doc_compound },
     { { XHTML_1_1, 0, HE_MATH_1 | HE_SVG_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2002/04/xhtml-math-svg/xhtml-math-svg.dtd", doc_compound },
 

@@ -39,10 +39,11 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
         {   bool fail = false;
             DBG_ASSERT (! s.empty ());
             if (s.length () == 1)
-            {   if (first)
-                {   nits.pick (nit_mq_syntax, ed_mql, "3. Syntax", es_warning, ec_mql, "unexpected ", quote (s), " at the beginning of the media query");
-                    return false; }
-                else switch (s [0])
+            {   //if (first && ((s [0] != '(') || (v < html_apr21)))
+                //{   nits.pick (nit_mq_syntax, ed_mql, "3. Syntax", es_warning, ec_mql, "unexpected ", quote (s), " at the beginning of the media query");
+                //    return false; }
+                //else switch (s [0])
+                switch (s [0])
                 {   case '(' :
                         if (! feature) feature = true;
                         break;
@@ -67,9 +68,9 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
                 if (! digit) continue;
                 digit = false; }
             if (feature)
-            {   if (first)
-                {   nits.pick (nit_mq_syntax, ed_mql, "3. Syntax", es_warning, ec_mql, "unexpected media feature ", quote (s), " at the beginning of the media query");
-                    return false; }
+            {   //if (first)
+                //{   nits.pick (nit_mq_syntax, ed_mql, "3. Syntax", es_warning, ec_mql, "unexpected media feature ", quote (s), " at the beginning of the media query");
+                //    return false; }
                 if (measure)
                 {   switch (s.at (0))
                     {   case 'c' :
