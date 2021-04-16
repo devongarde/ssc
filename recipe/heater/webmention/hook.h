@@ -21,8 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "url/url.h"
 
-class context;
-
 class hook
 {   url source_, target_;
     bool deleted_ = false, valid_ = false;

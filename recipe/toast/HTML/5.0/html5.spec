@@ -491,7 +491,6 @@ PASS ../toast/HTML/5.0/html5-media.html
 21 correct_spelling unrecognised_value
 22 unrecognised_value
 23 unrecognised_value
-24 mq_syntax
 25 unrecognised_value
 
 PASS ../toast/HTML/5.0/template-1.html

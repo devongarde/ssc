@@ -1,0 +1,12 @@
+<page>
+<url>/index.html</url>
+<content>Simple HTML Test Page</content>
+<title>Simple HTML test page</title>
+</page>
+<page>
+<url>/scripts.html</url>
+<content>Zarquin Test gnorts mr alien</content>
+<author>fred</author>
+<description>zarquin</description>
+<keywords>key,word</keywords>
+</page>

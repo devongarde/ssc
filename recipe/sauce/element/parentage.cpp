@@ -319,6 +319,7 @@ parentage parent_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_condition, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { XHTML_1_0, 0, HE_SVG_1_1 }, { HTML_UNDEF }, elem_cursor, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_3_0 }, { HTML_3_0 }, elem_credit, elem_undefined, 0, EF_3_TEXTIN },
+    { { HTML_TAGS }, { HTML_UNDEF }, elem_custom, elem_undefined },
     { { XHTML_1_0, 0, MATH_2_3 }, { HTML_UNDEF }, elem_csymbol, elem_mglyph },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_csymbol, elem_undefined, 0, EF_M_PRESINCONTENT },
     { { HTML_JAN12 }, { HTML_UNDEF }, elem_data, elem_undefined, 0, EF_5_PHRASE },
@@ -1589,7 +1590,8 @@ bool is_permitted_parent_child (const html_version& v, const elem& self, const e
     return false; }
 
 bool is_permitted_parent (nitpick& nits, const html_version& v, const elem& self, const elem& parent)
-{   if (is_error_element (self.get ()) || is_undefined_element (self.get ()) || is_error_element (parent.get ()) || is_undefined_element (parent.get ())) return true;
+{   if (    is_error_element (self.get ()) || is_undefined_element (self.get ()) || is_custom_element (self.get ()) ||
+            is_error_element (parent.get ()) || is_undefined_element (parent.get ()) || is_custom_element (parent.get ())) return true;
     if ((self.flags () & EP_IGNORE) != 0) return true;
     if (parent.is_closed (v))
     {   if (is_faux_element (self.get ())) return true;
@@ -1610,7 +1612,8 @@ bool is_permitted_parent (nitpick& nits, const html_version& v, const elem& self
     return false; }
 
 bool is_permitted_parent (const html_version& v, const elem& self, const elem& parent)
-{   if (is_error_element (self.get ()) || is_undefined_element (self.get ()) || is_error_element (parent.get ()) || is_undefined_element (parent.get ())) return true;
+{   if (    is_error_element (self.get ()) || is_undefined_element (self.get ()) || is_custom_element (self.get ()) ||
+            is_error_element (parent.get ()) || is_undefined_element (parent.get ()) || is_custom_element (parent.get ())) return true;
     if (! does_apply < html_version > (v, self.first (), self.last ())) return true; // version error reported later
     if (! does_apply < html_version > (v, parent.first (), parent.last ())) return false;
     if ((self.flags () & EP_IGNORE) != 0) return true;

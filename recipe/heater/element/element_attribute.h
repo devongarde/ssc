@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute_classes.h"
 #include "utility/tuple.h"
 
-class context;
 class directory;
 
 template < class ATTRIBUTE, class TUPLE, bool B > struct get_attribute_imp

@@ -251,11 +251,11 @@ PASS ../toast/living/jul20/example-2.html
 6 url_not_found
 10 url_not_found
 14 untidy_string untidy_string sizes sizes
-18 untidy_string mq_syntax
-21 untidy_string mq_syntax
+18 untidy_string
+21 untidy_string
 23 no_such_folder url_not_found
 36 untidy_string untidy_string url_not_found
-41 untidy_string mq_syntax
+41 untidy_string
 43 url_not_found
 46 url_not_found
 47 mime

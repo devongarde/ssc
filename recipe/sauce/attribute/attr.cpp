@@ -25,7 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 
 struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
-{   { { HTML_4_0 }, { HTML_UNDEF }, "abbr", a_abbr },
+{   { { HTML_TAGS }, { HTML_UNDEF }, "(custom)", a_custom },
+    { { HTML_4_0 }, { HTML_UNDEF }, "abbr", a_abbr },
     { { XHTML_1_1, 0, HE_RDF_1_0 | HE_SVG_1_2 | HE_SVG_X2 }, { HTML_UNDEF }, "about", a_about },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, "above", a_above },
     { { XHTML_1_0, 0, MATH_1_2 }, { HTML_UNDEF }, "accent", a_accent },
@@ -67,10 +68,16 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-autocomplete", a_ariaautocomplete },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-busy", a_ariabusy },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-checked", a_ariachecked },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-colcount", a_ariacolcount },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-colindex", a_ariacolindex },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-colspan", a_ariacolspan },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-controls", a_ariacontrols },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-current", a_ariacurrent },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-describedby", a_ariadescribedby },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-details", a_ariadetails },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-disabled", a_ariadisabled },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-dropeffect", a_ariadropeffect },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-errormessage", a_ariaerrormessage },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-expanded", a_ariaexpanded },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-flowto", a_ariaflowto },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-grabbed", a_ariagrabbed },
@@ -81,15 +88,21 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-labelledby", a_arialabelledby },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-level", a_arialevel },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-live", a_arialive },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-modal", a_ariamodal },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-multiline", a_ariamultiline },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-multiselectable", a_ariamultiselectable },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-orientation", a_ariaorientation },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-owns", a_ariaowns },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-placeholder", a_ariaplaceholder },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-posinset", a_ariaposinset },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-pressed", a_ariapressed },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-readonly", a_ariareadonly },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-relevant", a_ariarelevant },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-required", a_ariarequired },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-roledescription", a_ariaroledescription },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-rowcount", a_ariarowcount },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-rowindex", a_ariarowindex },
+    { { HTML_APR21, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-rowspan", a_ariarowspan },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-selected", a_ariaselected },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-setsize", a_ariasetsize },
     { { HTML_4_01, HV_ARIA, HE_SVG_2_0 }, { HTML_UNDEF }, "aria-valuemax", a_ariavaluemax },
@@ -923,3 +936,23 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const ::std::stri
             nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, quote (x), " is not valid in ", v.report ());
         else return a.get (); }
     return a_unknown; }
+
+void add_attributes (const vstr_t& v)
+{   nitpick nuts;
+    for (auto e : v)
+    {   vstr_t args (split_by_charset (e, ","));
+        ::std::size_t x = args.size ();
+        if (x > 4)
+        {   x = 4;
+            context.err () << "ignoring extra arguments for '" << args.at (0) << "'\n"; }
+        e_namespace ns = ns_default;
+        uint64_t flags = NOFLAGS, flags2 = NOFLAGS;
+        switch (x)
+        {   case 4 :
+                flags2 = lexical < uint64_t > :: cast (args.at (3));
+            case 3 :
+                flags = lexical < uint64_t > :: cast (args.at (2));
+            case 2 :
+                ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
+            case 1 :
+                attr::extend (::boost::to_lower_copy (args.at (0)), a_custom, ns, context.html_ver (), html_0, flags, flags2); } } }

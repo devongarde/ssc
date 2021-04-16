@@ -282,6 +282,9 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_xhtml10_frameset :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Frameset")) set_flags (HV_FRAMESET);
                     break;
+                case doc_xhtml10_mobile :
+                    if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Mobile")) set_flags (HV_BASIC);
+                    break;
                 case doc_xhtml11 :
                     note_parsed_version (nits, nit_xhtml_1_1, xhtml_1_1, "XHTML 1.1");
                     break;
@@ -370,13 +373,14 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
             {   nits.pick (nit_html_unknown_sgml, es_warning, ec_parser, "The HTML declaration in <!DOCTYPE ...> contains unrecognised content (", quote (wtf), "). Abandoning verification");
                 return false; }
             html_version vvv;
-            ::std::string ver ("HTML ");
+            ::std::string ver;
             e_nit wit = nit_free;
             e_mathversion ev = context.math_version ();
             e_svg_version sv = context.svg_version ();
             if (context.versioned ())
             {   vvv = context.html_ver ();
-                wit = nit_overriding_html; }
+                wit = nit_overriding_html;
+                ver = vvv.name (); }
             else
             {   vvv = html_default;
                 if (vvv == html_5_0) wit = nit_html_5_0;
@@ -384,6 +388,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 else if (vvv == html_5_2) wit = nit_html_5_2;
                 else if (vvv == html_5_3) wit = nit_html_5_3;
                 else wit = nit_html_5_living;
+                ver = "HTML ";
                 ver += minor_to_date (vvv); }
             if (ev > math_none) vvv.math_version (ev);
             if (sv > sv_none) vvv.svg_version (sv);

@@ -164,11 +164,13 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_may20 : return "HTML 5 living standard (May 2020)";
         case ed_jul20 : return "HTML 5 living standard (July 2020)";
         case ed_jan21 : return "HTML 5 living standard (Jan 2021)";
+        case ed_apr21 : return "HTML 5 living standard (April 2021)";
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
         case ed_mozilla : return "mozilla.org (May 2020)";
         case ed_microdata : return "WhatWG Microdata";
         case ed_microformats : return MICROFORMATS_ORG " (May 2020)";
         case ed_ariaAug2020 : return "Aria (August 2020)";
+        case ed_ariaApr2021 : return "Aria (April 2021)";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_mql : return "Media Queries"; }
     return "Unknown reference"; }
@@ -206,6 +208,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_may20 : return "HTML 5 living standard, WhatWG, May 2020";
         case ed_jul20 : return "HTML 5 living standard, WhatWG, July 2020";
         case ed_jan21 : return "HTML 5 living standard, WhatWG, January 2021";
+        case ed_apr21 : return "HTML 5 living standard, WhatWG, April 2021";
         case ed_rdf : return "RDFa Core 1.1 - Third Edition";
         case ed_csp : return "Content Security Policy Level 3, Oct 2018, draft";
         case ed_math_1 : return "MathML 1.01";
@@ -231,6 +234,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_w3 : return "The World Wide Web Consortium";
         case ed_mql : return "Media Queries, W3C recommendation, June 2012";
         case ed_ariaAug2020 : return "WhatWG Aria requirements, draft, August 2020";
+        case ed_ariaApr2021 : return "W3C ARIA in HTML draft, April 2021";
         case ed_apache : return "Apache 2.4 mod_include, 2020";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_mozilla : return "moz://a, May 2020";

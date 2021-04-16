@@ -155,6 +155,7 @@
     <ClInclude Include="..\heater\webmention\irt.h" />
     <ClInclude Include="..\heater\webmention\webmention.h" />
     <ClInclude Include="..\heater\webmention\webmentions.h" />
+    <ClInclude Include="..\heater\webpage\corpus.h" />
     <ClInclude Include="..\heater\webpage\crosslink.h" />
     <ClInclude Include="..\heater\webpage\directory.h" />
     <ClInclude Include="..\heater\webpage\external.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="..\sauce\element\elem.cpp" />
     <ClCompile Include="..\sauce\element\element.cpp" />
     <ClCompile Include="..\sauce\element\element_abcd.cpp" />
+    <ClCompile Include="..\sauce\element\element_aria.cpp" />
     <ClCompile Include="..\sauce\element\element_attributes.cpp" />
     <ClCompile Include="..\sauce\element\element_classes.cpp" />
     <ClCompile Include="..\sauce\element\element_efghi.cpp" />
@@ -281,6 +283,7 @@
     <ClCompile Include="..\sauce\webmention\irt.cpp" />
     <ClCompile Include="..\sauce\webmention\webmention.cpp" />
     <ClCompile Include="..\sauce\webmention\webmentions.cpp" />
+    <ClCompile Include="..\sauce\webpage\corpus.cpp" />
     <ClCompile Include="..\sauce\webpage\crosslink.cpp" />
     <ClCompile Include="..\sauce\webpage\directory.cpp" />
     <ClCompile Include="..\sauce\webpage\external.cpp" />

@@ -108,7 +108,7 @@ void faux_xmp_check (bra_element_ket& current, e_element& xmp_tag, bool& xmp_mod
         xmp_mode = true;
         x = i + 1; } }
 
-void check_character (nitpick& nits, html_version& v, const ::std::string::const_iterator i)
+void check_character (nitpick& nits, html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator i)
 {   if (v >= html_4_0)
     {   switch (*i)
         {   case '\'' :
@@ -120,7 +120,22 @@ void check_character (nitpick& nits, html_version& v, const ::std::string::const
             case '`' :
                 if (v >= html_jul10)
                 {   nits.pick (nit_naughty_grave, ed_jul10, "1.11.2 Syntax errors", es_info, ec_parser, "a grave accent is better encoded (e.g. '&grave;') or quoted"); return; }
-                break; }
+                break;
+            default :
+                {   ::std::string cc = get_character_code (::std::string (1, *i));
+                    if (! cc.empty ())
+                    {   nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";', to reduce dependency on installed fonts");
+                        return; } } }
+        if (i > b)
+        {   ::std::string cc = get_character_code (::std::string (i-1, i));
+            if (! cc.empty ())
+            {   nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";', to reduce dependency on installed fonts");
+                return; }
+            if (i - 1 > b)
+            {   cc = get_character_code (::std::string (i-2, i));
+                if (! cc.empty ())
+                {   nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";', to reduce dependency on installed fonts");
+                    return; } } }
         if (static_cast < unsigned int > (*i) > 127)
             nits.pick (nit_encode, ed_jan21, "13.5 Named character references", es_comment, ec_parser, "consider using named character references for non-ASCII characters"); } }
 
@@ -299,7 +314,7 @@ html_version bras_ket::parse (const ::std::string& content)
                 {   case '<' :  status = s_open; soe = twas = i; break;
                     case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double '>' intentional?"); break;
                     case '&' :  if (! xmp_mode) { status= s_amper; twas = i; } break;
-                    default : if (! xmp_mode && ! silent_content) check_character (nits, res, i); }
+                    default : if (! xmp_mode && ! silent_content) check_character (nits, res, twas, i); }
                 break;
             case s_amper :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_amper ", ch);

@@ -1,3 +1,4 @@
+../toast/living/apr21/living.spec
 ../toast/csp/1/csp.spec
 ../toast/csp/2/csp.spec
 ../toast/csp/3/csp.spec
@@ -63,9 +64,11 @@
 ../toast/microformats/mf2/mf2.spec
 ../toast/microformats/rel/rel.spec
 ../toast/other/abbr/abbr.spec
+../toast/other/aria/aria.spec
 ../toast/other/base/base.spec
 ../toast/other/CSS/css.spec
 ../toast/other/dfn/dfn.spec
+../toast/other/dump/dump.spec
 ../toast/other/ignore/ignore.spec
 ../toast/other/img/img.spec
 ../toast/other/incorrectness/incorrectness.spec
@@ -91,6 +94,7 @@
 ../toast/SVG/1.0/svg.spec
 ../toast/SVG/1.1/svg.spec
 ../toast/type/colour/colour.spec
+../toast/type/custom/custom.spec
 ../toast/type/httpequiv/httpequiv.spec
 ../toast/type/lang/lang.spec
 ../toast/type/metaname/metaname.spec

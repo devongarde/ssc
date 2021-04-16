@@ -258,7 +258,12 @@ void element::examine_meta ()
             DBG_ASSERT (a_.good (a_name));
             e_metaname emn = mn.get ();
             validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_);
-            validate_metaname_url (nits (), node_.version (), in_head, emn, con, *this); } }
+            validate_metaname_url (nits (), node_.version (), in_head, emn, con, *this);
+            switch (emn)
+            {   case mn_author : page_.author (con);
+                case mn_description : page_.description (con);
+                case mn_keywords : page_.keywords (con);
+                default : break; } } }
 
 void element::examine_meter ()
 {   if (node_.version ().is_5 ())

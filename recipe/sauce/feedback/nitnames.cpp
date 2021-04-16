@@ -603,6 +603,9 @@ nitname nitnames [] =
     { nit_minute, "minute" },
     { nit_second, "second" },
     { nit_deprecated_schema, "deprecated_schema" },
+    { nit_character_code, "character_code" },
+    { nit_note, "note" },
+    { nit_aria_position, "aria_position" },
 
     { nit_off, "" } };
 

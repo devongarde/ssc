@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-#define ELEMENT_    "element"
 #define GENERAL_    "general"
 #define HTML_       "html"
 #define LINKS_      "link"
@@ -38,7 +37,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define JOIN        "."
 
-#define ELEMENT     ELEMENT_ JOIN
 #define GENERAL     GENERAL_ JOIN
 #define HTML        HTML_ JOIN
 #define LINKS       LINKS_ JOIN
@@ -54,7 +52,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WMIN        WMIN_ JOIN
 #define WMOUT       WMOUT_ JOIN
 
+#define ATTRIB      "attribute"
 #define CATASTROPHE "catastrophe"
+#define CGI         "cgi"
 #define CHARSET     "charset"
 #define CHECK       "check"
 #define CLASS       "class"
@@ -64,13 +64,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMMENT     "comment"
 #define CONFIG      "config"
 #define COPY        "copy"
+#define CORPUS      "corpus"
 #define CSS_OPTION  "css"
 #define CURRENCY    "currency"
 #define CUSTOM      "custom"
-#define DEBUG       "debug"
+#define DBG         "debug"
 #define DEFCONF     "defconf"
 #define DINGBATARG  "dingbat"
 #define ERR         "error"
+#define ELEMENT     "element"
+#define ELEMATTR    ELEMENT "-" ATTRIB
 #define EXPORT      "export"
 #define EXTENSION   "extension"
 #define EXTERNAL    "external"
@@ -142,3 +145,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CFG         "config"
 
 #define CONFIGURATION "." PROG "/" CFG
+
+// environment
+#define ENV_CONFIG          PROG "_" CONFIG
+#define ENV_ARGS            PROG "_ARGS"
+// OpenBSD httpd CGI environment variables (and probably many other www servers)
+#define SERVER_SOFTWARE     "SERVER_SOFTWARE"
+#define SERVER_NAME         "SERVER_NAME"
+#define GATEWAY_INTERFACE   "GATEWAY_INTERFACE"
+#define SERVER_PROTOCOL     "SERVER_PROTOCOL"
+#define SERVER_PORT         "SERVER_PORT"
+#define REQUEST_METHOD      "REQUEST_METHOD"
+#define HTTP_ACCEPT         "HTTP_ACCEPT"
+#define PATH_INFO           "PATH_INFO"
+#define PATH_TRANSLATED     "PATH_TRANSLATED"
+#define SCRIPT_NAME         "SCRIPT_NAME"
+#define QUERY_STRING        "QUERY_STRING"
+#define REMOTE_HOST         "REMOTE_HOST"
+#define REMOTE_ADDR         "REMOTE_ADDR"
+#define REMOTE_USER         "REMOTE_USER"
+#define AUTH_TYPE           "AUTH_TYPE"
+#define CONTENT_TYPE        "CONTENT_TYPE"
+#define CONTENT_LENGTH      "CONTENT_LENGTH"

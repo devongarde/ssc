@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.99 LANGUAGES CXX)
+project (ssc VERSION 0.0.100 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -38,8 +38,8 @@ if (UNIX)
 
     if (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.8")
       message ("OpenBSD 6.8")
-      target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS)
-      target_compile_definitions (ssc PRIVATE NO_PCF_STR FS_THROWS)
+      target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS WEE_CHAR)
+      target_compile_definitions (ssc PRIVATE NO_PCF_STR FS_THROWS WEE_CHAR)
     else ()
       message ("only OpenBSD 6.8 amd64 is known to build")
     endif ()
@@ -52,14 +52,20 @@ if (UNIX)
   if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     if (${CMAKE_SYSTEM} MATCHES "Darwin-20")
       message ("MacOS Big Sur")
+      target_compile_definitions (ssc-test WEE_CHAR)
+      target_compile_definitions (ssc WEE_CHAR)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-19")
       message ("MacOS Catalina")
+      target_compile_definitions (ssc-test WEE_CHAR)
+      target_compile_definitions (ssc WEE_CHAR)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-18")
       message ("MacOS Mojave")
+      target_compile_definitions (ssc-test WEE_CHAR)
+      target_compile_definitions (ssc WEE_CHAR)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-17")
       message ("MacOS High Sierra")
-      target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
-      target_compile_definitions (ssc PRIVATE FUDDYDUDDY)
+      target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY WEE_CHAR)
+      target_compile_definitions (ssc PRIVATE FUDDYDUDDY WEE_CHAR)
     else ()
       message ("unknown, untested MacOS")
     endif ()
@@ -106,14 +112,14 @@ target_sources (ssc PRIVATE
         ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h ${H}/url/url_schemes.h
         ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
         ${H}/webmention/hook.h ${H}/webmention/irt.h ${H}/webmention/webmention.h ${H}/webmention/webmentions.h
-        ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h ${H}/webpage/id.h
-            ${H}/webpage/page.h ${H}/webpage/root.h
+        ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
+            ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/root.h
     ${S}/attribute/attr.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp
         ${S}/css/css.cpp ${S}/css/css_cache.cpp
-        ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_attributes.cpp ${S}/element/element_classes.cpp
-            ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp ${S}/element/element_jkl.cpp
-            ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp ${S}/element/element_pqr.cpp
-            ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp ${S}/element/parentage.cpp ${S}/element/state.cpp
+        ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
+            ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
+            ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp
+            ${S}/element/element_pqr.cpp ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp ${S}/element/parentage.cpp ${S}/element/state.cpp
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitpick.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp  ${S}/icu/wrapper.cpp
         ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/main/version.cpp
@@ -136,8 +142,8 @@ target_sources (ssc PRIVATE
         ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
         ${S}/utility/byteorder.cpp ${S}/utility/common.cpp ${S}/utility/quote.cpp
         ${S}/webmention/hook.cpp ${S}/webmention/irt.cpp ${S}/webmention/webmention.cpp ${S}/webmention/webmentions.cpp
-        ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp ${S}/webpage/headers.cpp ${S}/webpage/id.cpp
-            ${S}/webpage/page.cpp ${S}/webpage/root.cpp
+        ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp ${S}/webpage/headers.cpp
+            ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/root.cpp
 )
 
 target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIRS})

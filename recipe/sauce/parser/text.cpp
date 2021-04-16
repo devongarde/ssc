@@ -47,7 +47,7 @@ wotsit_t wotsit_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "Afr" },
     { { HTML_PLUS }, { HTML_PLUS }, "Agr" },
     { { HTML_1_0 }, { HTML_UNDEF }, "Agrave", "À" },
-    { { HTML_4_0 }, { HTML_UNDEF }, "Alpha", "" },
+    { { HTML_4_0 }, { HTML_UNDEF }, "Alpha" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "Amacr" },
     { { XHTML_1_0 }, { HTML_UNDEF }, "And" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "Aogon" },
@@ -1082,21 +1082,21 @@ wotsit_t wotsit_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "fork" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "forkv" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "fpartint" },
-    { { HTML_1_0 }, { HTML_UNDEF }, "frac12" },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "frac13" },
-    { { HTML_1_0 }, { HTML_UNDEF }, "frac14" },
+    { { HTML_1_0 }, { HTML_UNDEF }, "frac12", "½" },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "frac13", "⅓" },
+    { { HTML_1_0 }, { HTML_UNDEF }, "frac14", "¼" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "frac15" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "frac16" },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "frac18" },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "frac23" },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "frac18", "⅛" },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "frac23", "⅔" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "frac25" },
-    { { HTML_1_0 }, { HTML_UNDEF }, "frac34" },
+    { { HTML_1_0 }, { HTML_UNDEF }, "frac34", "¾" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "frac35" },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "frac38" },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "frac38", "⅜" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "frac45" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "frac56" },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "frac58" },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "frac78" },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "frac58", "⅝" },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "frac78", "⅞" },
     { { HTML_4_0 }, { HTML_UNDEF }, "frasl" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "frown" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "fscr" },
@@ -1158,7 +1158,7 @@ wotsit_t wotsit_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "gtrsim" },
     { { HTML_PLUS}, { HTML_UNDEF }, "hArr" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "hairsp" },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "half" },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "half", "½" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "hamilt" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "hardcy" },
     { { HTML_PLUS }, { HTML_UNDEF }, "harr" },
@@ -2154,14 +2154,60 @@ wotsit_t wotsit_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, nullptr, nullptr } };
 
 typedef ssc_map < ::std::string, wotsit_t > vw_t;
-vw_t wotsit;
+vw_t wotsit, inverted_wotsit;
 
 void wotsit_init (nitpick& nits)
 {   for (int index = 0; wotsit_table [index].wotsit_ != nullptr; ++index)
-        if (wotsit.find (wotsit_table [index].wotsit_) != wotsit.end ())
-        {   nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "Program error: wotsit ", wotsit_table [index].wotsit_, " already defined"); }
+    {   if (wotsit.find (wotsit_table [index].wotsit_) != wotsit.end ())
+            nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "Program error: wotsit ", wotsit_table [index].wotsit_, " already defined");
         else
-        wotsit.insert (vw_t::value_type (wotsit_table [index].wotsit_, wotsit_table [index])); }
+        wotsit.insert (vw_t::value_type (wotsit_table [index].wotsit_, wotsit_table [index]));
+        if (wotsit_table [index].char_ != nullptr)
+        {   ::std::string ch (wotsit_table [index].char_);
+            if (ch.empty ()) continue;
+#ifdef WEE_CHAR
+            if (ch.length () == 1) continue;
+#else // WEE_CHAR
+            if ((ch.length () == 1) && (ch.at (0) < 128)) continue;
+#endif // WEE_CHAR
+            if (inverted_wotsit.find (ch) == inverted_wotsit.end ())
+            {   inverted_wotsit.insert (vw_t::value_type (ch, wotsit_table [index]));
+#ifdef CLEVER_CHAR
+                switch (ch.at (0))
+                {   case '™' : inverted_wotsit.insert (vw_t::value_type (::std::string ("TM"), wotsit_table [index])); break;
+                    case '…' : inverted_wotsit.insert (vw_t::value_type (::std::string ("..."), wotsit_table [index])); break;
+                    case '©' : inverted_wotsit.insert (vw_t::value_type (::std::string ("(c)"), wotsit_table [index]));
+                               inverted_wotsit.insert (vw_t::value_type (::std::string ("(C)"), wotsit_table [index])); break;
+                    case '—' : inverted_wotsit.insert (vw_t::value_type (::std::string ("---"), wotsit_table [index])); break;
+                    case '¼' : inverted_wotsit.insert (vw_t::value_type (::std::string ("1/4"), wotsit_table [index])); break;
+                    case '½' : inverted_wotsit.insert (vw_t::value_type (::std::string ("1/2"), wotsit_table [index])); break;
+                    case '¾' : inverted_wotsit.insert (vw_t::value_type (::std::string ("3/4"), wotsit_table [index])); break;
+                    case '⅓' : inverted_wotsit.insert (vw_t::value_type (::std::string ("1/3"), wotsit_table [index])); break;
+                    case '⅔' : inverted_wotsit.insert (vw_t::value_type (::std::string ("2/3"), wotsit_table [index])); break;
+                    case '⅛' : inverted_wotsit.insert (vw_t::value_type (::std::string ("1/8"), wotsit_table [index])); break;
+                    case '⅜' : inverted_wotsit.insert (vw_t::value_type (::std::string ("3/8"), wotsit_table [index])); break;
+                    case '⅝' : inverted_wotsit.insert (vw_t::value_type (::std::string ("5/8"), wotsit_table [index])); break;
+                    case '⅞' : inverted_wotsit.insert (vw_t::value_type (::std::string ("7/8"), wotsit_table [index])); break;
+                    case 'Æ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("AE"), wotsit_table [index])); break;
+                    case 'Ǳ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("DZ"), wotsit_table [index])); break;
+                    case 'ǲ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("Dz"), wotsit_table [index])); break;
+                    case 'Ĳ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("IJ"), wotsit_table [index])); break;
+                    case 'Ǉ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("LJ"), wotsit_table [index])); break;
+                    case 'ǈ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("Lj"), wotsit_table [index])); break;
+                    case 'Ǌ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("NJ"), wotsit_table [index])); break;
+                    case 'ǋ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("Nj"), wotsit_table [index])); break;
+                    case 'Œ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("OE"), wotsit_table [index])); break;
+                    case 'æ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("ae"), wotsit_table [index])); break;
+                    case 'ǳ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("dz"), wotsit_table [index])); break;
+                    case 'ﬁ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("fi"), wotsit_table [index])); break;
+                    case 'ﬂ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("fl"), wotsit_table [index])); break;
+                    case 'ĳ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("ij"), wotsit_table [index])); break;
+                    case 'ǉ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("lj"), wotsit_table [index])); break;
+                    case 'ǌ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("nj"), wotsit_table [index])); break;
+                    case 'œ' : inverted_wotsit.insert (vw_t::value_type (::std::string ("oe"), wotsit_table [index])); break;
+                    default : break; }
+#endif // CLEVER_CHAR
+} } } }
 
 void text_check (nitpick& nits, const html_version& v, const ::std::string& text)
 {   nits.set_context (0, text);
@@ -2306,3 +2352,8 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
             break; } }
     if (is_naughty_number (nits, res, n)) return res;
     return ::std::string (1, static_cast <char> (n)); }
+
+::std::string get_character_code (const ::std::string& text)
+{   auto ci = inverted_wotsit.find (text);
+    if (ci != inverted_wotsit.end ()) return ci -> second.wotsit_;
+    return ::std::string (); }

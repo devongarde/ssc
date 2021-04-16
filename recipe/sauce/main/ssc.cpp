@@ -38,6 +38,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_property.h"
 #include "schema/schema_name.h"
 #include "webpage/root.h"
+#include "webpage/corpus.h"
 #include "parser/text.h"
 #include "type/type.h"
 #include "url/url.h"
@@ -70,9 +71,12 @@ void init (nitpick& nits)
 
 void dump_nits (nitpick& nits, const char* burble)
 {   if (! nits.empty ())
+#ifdef NDEBUG
         if (context.tell (static_cast < e_verbose > (nits.worst ())))
-        {   context.out () << "\n\n*** " << burble << "\n";
-            context.out () << nits.review (); }
+#endif // NDEBUG
+        {   ::std::string x (nits.review ());
+            if (! x.empty ())
+                context.out () << "\n\n*** " << burble << "\n" << x << "\n\n"; }
     nits.reset (); }
 
 void configure (std::time_t& start_time)
@@ -101,6 +105,7 @@ void ciao ()
 
 int examine (nitpick& nits)
 {   int res = VALID_RESULT;
+    open_corpus (nits, context.corpus ());
     paths_root virt (paths_root::virtual_roots ());
     virt.add_root (nix_path_to_local (context.root ()), "/");
     nitpick shadow, exp;
@@ -160,6 +165,7 @@ int examine (nitpick& nits)
                     catch (...)
                     {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examination of ", virt.at (n) -> get_disk_path (), " caused an exception");
                         res = ERROR_STATE; } } } } }
+    close_corpus (nits);
     dump_nits (nits, "examine");
     dump_nits (exp, "exports");
     dump_nits (shadow, "shadow");
@@ -170,8 +176,8 @@ int main (int argc, char** argv)
     std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
     nitpick nits;
     init (nits);
-    dump_nits (nits, "initialisation");
     int res = context.parameters (argc, argv);
+    dump_nits (nits, "initialisation");
     if (res == VALID_RESULT)
     {   configure (start_time);
         res = examine (nits);

@@ -23,13 +23,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool is_default_role (const html_version& v, const e_element elem, const e_aria_role role);
 bool is_permitted_role (const html_version& v, const e_element elem, const e_aria_role role);
+uint64_t get_aria_flags (const html_version& v, const e_element elem, const e_aria_role role);
 
 template < > inline void enum_n < t_role, e_aria_role > :: validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
 {   if (v >= html_5_0)
         if (is_default_role (v, e.get (), enum_base < e_aria_role, t_role > :: value_))
             nits.pick (nit_default_role, es_error, ec_type, "do not specify the default role");
         else if (! is_permitted_role (v, e.get (), enum_base < e_aria_role, t_role > :: value_))
-            nits.pick (nit_default_role, es_error, ec_type, quote (enum_base < e_aria_role, t_role > :: get_string ()), " is not permitted here"); }
+            nits.pick (nit_default_role, es_error, ec_type, quote (enum_base < e_aria_role, t_role > :: original ()), " is not permitted here"); }
 
 template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s);

@@ -21,8 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 
-class context;
-
 class reply
 {   ::std::string file_, id_, server_, target_, content_, when_;
     e_activity activity_ = act_unknown;

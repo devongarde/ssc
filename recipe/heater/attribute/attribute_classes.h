@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute.h"
 
 typedef typed_attribute < t_unknown, a_unknown > attr_unknown;
+typedef typed_attribute < t_generic, a_custom > attr_custom;
 typedef typed_attribute < t_generic, a_abbr > attr_abbr;
 typedef typed_attribute < t_curie_safe, a_about > attr_about;
 typedef typed_attribute < t_idref, a_above > attr_above;
@@ -62,10 +63,16 @@ typedef typed_attribute < t_bool, a_ariaatomic > attr_ariaatomic;
 typedef typed_attribute < t_aria_autocomplete, a_ariaautocomplete > attr_ariaautocomplete;
 typedef typed_attribute < t_bool, a_ariabusy > attr_ariabusy;
 typedef typed_attribute < t_tfmu, a_ariachecked > attr_ariachecked;
+typedef typed_attribute < t_unsigned, a_ariacolcount > attr_ariacolcount;
+typedef typed_attribute < t_unsigned, a_ariacolindex > attr_ariacolindex;
+typedef typed_attribute < t_unsigned, a_ariacolspan > attr_ariacolspan;
 typedef typed_attribute < t_idrefs, a_ariacontrols > attr_ariacontrols;
+typedef typed_attribute < t_generic, a_ariacurrent > attr_ariacurrent;
 typedef typed_attribute < t_idrefs, a_ariadescribedby > attr_ariadescribedby;
+typedef typed_attribute < t_generic, a_ariadetails > attr_ariadetails;
 typedef typed_attribute < t_bool, a_ariadisabled > attr_ariadisabled;
 typedef typed_attribute < t_roles, a_ariadropeffect > attr_ariadropeffect;
+typedef typed_attribute < t_generic, a_ariaerrormessage > attr_ariaerrormessage;
 typedef typed_attribute < t_tfu, a_ariaexpanded > attr_ariaexpanded;
 typedef typed_attribute < t_idrefs, a_ariaflowto > attr_ariaflowto;
 typedef typed_attribute < t_tfu, a_ariagrabbed > attr_ariagrabbed;
@@ -76,14 +83,20 @@ typedef typed_attribute < t_text, a_arialabel > attr_arialabel;
 typedef typed_attribute < t_idrefs, a_arialabelledby > attr_arialabelledby;
 typedef typed_attribute < t_text, a_arialevel > attr_arialevel;
 typedef typed_attribute < t_aria_live, a_arialive > attr_arialive;
+typedef typed_attribute < t_generic, a_ariamodal > attr_ariamodal;
 typedef typed_attribute < t_bool, a_ariamultiline > attr_ariamultiline;
 typedef typed_attribute < t_bool, a_ariamultiselectable > attr_ariamultiselectable;
 typedef typed_attribute < t_hv, a_ariaorientation > attr_ariaorientation;
 typedef typed_attribute < t_idrefs, a_ariaowns > attr_ariaowns;
+typedef typed_attribute < t_generic, a_ariaplaceholder > attr_ariaplaceholder;
 typedef typed_attribute < t_text, a_ariaposinset > attr_ariaposinset;
 typedef typed_attribute < t_tfmu, a_ariapressed > attr_ariapressed;
 typedef typed_attribute < t_bool, a_ariareadonly > attr_ariareadonly;
 typedef typed_attribute < t_roles, a_ariarelevant > attr_ariarelevant;
+typedef typed_attribute < t_generic, a_ariaroledescription > attr_ariaroledescription;
+typedef typed_attribute < t_unsigned, a_ariarowcount > attr_ariarowcount;
+typedef typed_attribute < t_unsigned, a_ariarowindex > attr_ariarowindex;
+typedef typed_attribute < t_unsigned, a_ariarowspan > attr_ariarowspan;
 typedef typed_attribute < t_bool, a_ariarequired > attr_ariarequired;
 typedef typed_attribute < t_tfu, a_ariaselected > attr_ariaselected;
 typedef typed_attribute < t_text, a_ariasetsize > attr_ariasetsize;
@@ -885,6 +898,7 @@ typedef typed_attribute < t_unsigned, a_zindex > attr_zindex;
 typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
 
 #define ATTRIBUTESAM \
+    attr_custom, \
     attr_abbr, \
     attr_about, \
     attr_above, \
@@ -925,10 +939,16 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_ariaautocomplete, \
     attr_ariabusy, \
     attr_ariachecked, \
+    attr_ariacolcount, \
+    attr_ariacolindex, \
+    attr_ariacolspan, \
     attr_ariacontrols, \
+    attr_ariacurrent, \
     attr_ariadescribedby, \
+    attr_ariadetails, \
     attr_ariadisabled, \
     attr_ariadropeffect, \
+    attr_ariaerrormessage, \
     attr_ariaexpanded, \
     attr_ariaflowto, \
     attr_ariagrabbed, \
@@ -939,15 +959,20 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_arialabelledby, \
     attr_arialevel, \
     attr_arialive, \
+    attr_ariamodal, \
     attr_ariamultiline, \
     attr_ariamultiselectable, \
     attr_ariaorientation, \
     attr_ariaowns, \
+    attr_ariaplaceholder, \
     attr_ariaposinset, \
     attr_ariapressed, \
     attr_ariareadonly, \
     attr_ariarelevant, \
     attr_ariarequired, \
+    attr_ariarowcount, \
+    attr_ariarowindex, \
+    attr_ariarowspan, \
     attr_ariaselected, \
     attr_ariasetsize, \
     attr_ariasort, \

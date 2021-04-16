@@ -40,6 +40,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "(undefined)", elem_undefined, ns_default, EP_CLOSED | EP_IGNORE },
     { { HTML_TAGS }, { HTML_UNDEF }, "(whitespace)", elem_faux_whitespace, ns_default, EP_CLOSED | EP_IGNORE, EF_FAUX | EF_5_FLOW | EF_5_PHRASE },
     { { XHTML_1_0 }, { HTML_UNDEF }, "(xml)", elem_faux_xml, ns_default, EP_CLOSED | EP_IGNORE | EP_TOP, EF_FAUX },
+    { { HTML_TAGS }, { HTML_UNDEF }, "(custom)", elem_custom, ns_default, EP_5_TRANSPARENT, EF_CUSTOM },
     { { HTML_TAGS }, { HTML_UNDEF }, "a", elem_a, ns_default, EP_LAZY | EP_5_TRANSPARENT, EF_TEXT | EF_PRE | EF_SPECIAL | EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_S_G | EF_SVG_CONTAIN },
     { { HTML_4_0 }, { HTML_UNDEF }, "abbr", elem_abbr, ns_default, EP_SIMPLE, EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, "abbrev", elem_abbrev, ns_default, 0, EF_EMPH | EF_3_MISC },
@@ -654,3 +655,23 @@ bool elem::is_closed (const html_version& v) const
 bool elem::is_transparent (const html_version& v) const
 {   if (v.mjr () < 5) return false;
     return ((flags () & EP_5_TRANSPARENT) == EP_5_TRANSPARENT); }
+
+void add_elements (const vstr_t& v)
+{   nitpick nuts;
+    for (auto e : v)
+    {   vstr_t args (split_by_charset (e, ","));
+        ::std::size_t x = args.size ();
+        if (x > 4)
+        {   x = 4;
+            context.err () << "ignoring extra arguments for '" << args.at (0) << "'\n"; }
+        e_namespace ns = ns_default;
+        uint64_t flags = NOFLAGS, flags2 = NOFLAGS;
+        switch (x)
+        {   case 4 :
+                flags2 = lexical < uint64_t > :: cast (args.at (3));
+            case 3 :
+                flags = lexical < uint64_t > :: cast (args.at (2));
+            case 2 :
+                ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
+            case 1 :
+                elem::extend (::boost::to_lower_copy (args.at (0)), elem_custom, ns, context.html_ver (), html_0, flags, flags2); } } }

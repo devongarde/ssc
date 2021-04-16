@@ -1,0 +1,8 @@
+<!-- a.html -->
+<!DOCTYPE html>
+<button>click me</button>
+<iframe></iframe>
+<script>
+const bound = frames[0].location.assign.bind(frames[0].location, "https://example.com/");
+document.querySelector("button").addEventListener("click", bound);
+</script>

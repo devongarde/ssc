@@ -264,11 +264,11 @@ PASS ../toast/living/jan21/example-2.html
 6 url_not_found
 10 url_not_found
 14 untidy_string untidy_string sizes sizes
-18 untidy_string mq_syntax
-21 untidy_string mq_syntax
+18 untidy_string
+21 untidy_string
 23 no_such_folder url_not_found
 36 untidy_string untidy_string url_not_found
-41 untidy_string mq_syntax
+41 untidy_string
 43 url_not_found
 46 url_not_found
 47 mime
@@ -539,10 +539,8 @@ PASS ../toast/living/jan21/img.html
 88 inserted_missing_closure
 89 untidy_string untidy_string url_not_found
 93 untidy_string untidy_string untidy_string url_not_found
-96 mq_syntax
-97 mq_syntax
 98 url_not_found
-103 mq_syntax untidy_string
+103 untidy_string
 104 url_not_found
 108 use_quote_code
 111 mime
@@ -550,24 +548,12 @@ PASS ../toast/living/jan21/img.html
 114 no_such_folder url_not_found
 115 no_such_folder url_not_found
 117 inserted_missing_closure
-119 mq_syntax
 120 url_not_found
-131 mq_syntax
 132 url_not_found
-137 mq_syntax
-142 mq_syntax
 144 url_not_found id_exists
-150 mq_syntax
-151 mq_syntax
 152 url_not_found
-156 mq_syntax
-157 mq_syntax
 159 url_not_found
-163 mq_syntax
-164 mq_syntax
 166 url_not_found
-170 mq_syntax
-171 mq_syntax
 172 url_not_found
 177 url_not_found url_not_found
 178 url_not_found url_not_found

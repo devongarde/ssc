@@ -130,6 +130,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_5_SECTION        0x2000000000000000
 #define EF_5_FORM           0x4000000000000000
 
+#define EF_CUSTOM           0x7FF0FFFFFFFFFFF4
+
 #define EF_3_NOTMATH        ( EF_3_FONT | EF_PHRASE | EF_SPECIAL | EF_3_MISC )
 #define EF_3_TEXTIN         ( EF_3_TEXT | EF_3_NOTMATH )
 #define EF_3_BLK            ( EF_3_LIST | EF_3_BQ | EF_3_BLOCK )
@@ -151,8 +153,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define EF_X2_FLOW          ( EF_X2_STRUCT | EF_HEAD | EF_X2_TEXT )
 #define EF_X2_FLOWLIST      ( EF_X2_FLOW | EF_X2_LIST )
-
-class context;
 
 struct elem : symbol < html_version, e_element >
 {   static element_bitset ignored_;
@@ -202,3 +202,11 @@ inline bool operator < (const elem& lhs, const elem& rhs) { return lhs.get () < 
 inline bool operator <= (const elem& lhs, const elem& rhs) { return lhs.get () <= rhs.get (); }
 inline bool operator > (const elem& lhs, const elem& rhs) { return lhs.get () > rhs.get (); }
 inline bool operator >= (const elem& lhs, const elem& rhs) { return lhs.get () >= rhs.get (); }
+
+inline bool is_faux_element (const e_element e) { return (e >= elem_faux_document) && (e <= elem_faux_whitespace); }
+inline bool is_custom_element (const e_element e) { return (e == elem_custom); }
+inline bool is_error_element (const e_element e) { return (e == elem_error); }
+inline bool is_undefined_element (const e_element e) { return (e == elem_undefined); }
+inline bool is_standard_element (const e_element e) { return (e >= elem_custom) && (e < elem_error); }
+
+void add_elements (const vstr_t& v);

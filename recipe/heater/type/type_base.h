@@ -24,7 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url.h"
 #include "feedback/nitpick.h"
 
-class context;
 class directory;
 class html_version;
 struct elem;

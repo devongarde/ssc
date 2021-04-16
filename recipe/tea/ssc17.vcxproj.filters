@@ -830,6 +830,9 @@
     <ClInclude Include="..\heater\symbol\symbol_store.h">
       <Filter>Heater\symbol</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\webpage\corpus.h">
+      <Filter>Heater\webpage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1170,6 +1173,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\main\version.cpp">
       <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\webpage\corpus.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\element\element_aria.cpp">
+      <Filter>Sauce\element</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

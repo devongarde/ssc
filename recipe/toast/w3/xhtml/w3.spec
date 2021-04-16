@@ -4,7 +4,9 @@ PASS ../toast/w3/xhtml/index.html
 2 naughty_lang
 
 PASS ../toast/w3/xhtml/xhtml-mathml2-fpi.html
-0 html_unknown_sgml
+2 unexpected_doctype_content
+3 no_xmllang
+6 use_quote_code
 
 PASS ../toast/w3/xhtml/xhtml-mathml2.html
 1 presume_html_1 attribute_unrecognised_here attribute_unrecognised_here attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute

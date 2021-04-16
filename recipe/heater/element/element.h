@@ -94,7 +94,18 @@ class element
     void post_examine_element (const e_element tag);
     void examine_media_element (e_element elem, const char* ref, const char* name, const uint64_t family);
     void examine_accesskey ();
+    void examine_aria_checked ();
+    void examine_aria_colspan ();
+    void examine_aria_disabled ();
+    void examine_aria_hidden ();
+    void examine_aria_placeholder ();
+    void examine_aria_readonly ();
+    void examine_aria_required ();
+    void examine_aria_rowspan ();
+    void examine_aria_valuemax ();
+    void examine_aria_valuemin ();
     void examine_autofocus ();
+    void examine_body ();
     bool examine_class ();
     void examine_clip ();
     void examine_content ();

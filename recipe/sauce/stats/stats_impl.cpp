@@ -214,6 +214,7 @@ void stats::mark_file (const unsigned size)
 ::std::string stats::category_report () const
 {   ::std::string res;
     res += saybe (category_.at (ec_html), "    HTML");
+    res += saybe (category_.at (ec_aria), "    Aria");
     res += saybe (category_.at (ec_attribute), "    Attribute");
     res += saybe (category_.at (ec_crc), "    CRC");
     res += saybe (category_.at (ec_css), "    CSS");
