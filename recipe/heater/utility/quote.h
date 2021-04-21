@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const ::std::size_t def_quote_cut = 60;
 
+::std::string slash_quote (const ::std::string& str);
+::std::string enquote (const ::std::string& str, const char space, const ::std::string& qs = ::std::string (QUOTESEP));
 ::std::string enquote (const ::std::string& str, const ::std::string& qs = ::std::string (QUOTESEP));
 ::std::string enquote (const vstr_t vs, const ::std::string& quotesep = ::std::string (QUOTESEP));
 ::std::ostringstream& enquote (::std::ostringstream& ss, const vstr_t vs, const ::std::string& quotesep = ::std::string (QUOTESEP));

@@ -24,12 +24,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 template < class ATTRIBUTE, class ... X > struct attribute_constructor : public attribute_constructor < X ... >
 {   static attribute_v_ptr make (nitpick& nits, const html_version& v, const attribute_node& node)
-    {   if (node.id () == ATTRIBUTE :: whoami ()) return attribute_v_ptr (new ATTRIBUTE (nits, v, node));
-        return attribute_constructor < X... > :: make (nits, v, node); } };
+    {   if (node.id () != ATTRIBUTE :: whoami ()) return attribute_constructor < X... > :: make (nits, v, node);
+        auto ptr = attribute_v_ptr (new ATTRIBUTE ());
+        ptr -> parse (nits, v, node);
+        return ptr; } };
 
 template < > struct attribute_constructor < attr_unknown >
 {   static attribute_v_ptr make (nitpick& nits, const html_version& v, const attribute_node& node)
-    {   return attribute_v_ptr (new attr_unknown (nits, v, node)); } };
+    {   auto ptr = attribute_v_ptr (new attr_unknown ());
+        ptr -> parse (nits, v, node);
+        return ptr; } };
 
 attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, const attribute_node& node)
 {   if (node.id () <= last_am) return attribute_constructor < ATTRIBUTESAM > :: make (nits, v, node);

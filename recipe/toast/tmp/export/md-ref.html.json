@@ -1,0 +1,38 @@
+{
+    "md-ref": {
+        "1": {
+            "type": "http:\/\/schema.org\/Organization",
+            "prop": {
+                "name": "Tiddles the wonder cat",
+                "url": "https:\/\/example.com\/tiddles.html"
+            },
+            "founder": {
+                "2": {
+                    "type": "http:\/\/schema.org\/Person",
+                    "prop": {
+                        "description": "this is mostly valid information about thingy",
+                        "name": "Tiddles",
+                        "url": "https:\/\/example.com\/tiddles.html"
+                    }
+                }
+            }
+        },
+        "3": {
+            "type": "http:\/\/schema.org\/Organization",
+            "prop": {
+                "name": "Tiddles the wonder cat TNG",
+                "url": "https:\/\/example.com\/tiddles2.html"
+            },
+            "founder": {
+                "4": {
+                    "type": "http:\/\/schema.org\/Person",
+                    "prop": {
+                        "description": "this is mostly valid information about thingy",
+                        "name": "Tiddles",
+                        "url": "https:\/\/example.com\/tiddles.html"
+                    }
+                }
+            }
+        }
+    }
+}

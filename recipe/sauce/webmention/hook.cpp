@@ -120,12 +120,13 @@ bool hook::process (nitpick& nits, const html_version& v)
         nits.pick (nit_cannot_read, es_error, ec_webmention, "Cannot read ", source_.original ());
     else
     {   ::std::string html = read_text_file (tmp.string ());
-        page p (nits, source_.original (), html);
+        ::std::time_t updated = 0;
+        page p (nits, source_.original (), updated, html);
         if (p.invalid ())
             nits.pick (nit_dubious_html, es_error, ec_webmention, source_.original (), " appears to be dubious HTML");
         else
-        {   directory d (source_.page (), true);
-            p.examine (d);
+        {   // directory d (source_.page (), true);
+            p.examine ();
             ::std::string info = p.find_mention_info (target_, false, false);
             if (info.empty ())
                 nits.pick (nit_cannot_find_mention, es_warning, ec_webmention, "cannot find mention of ", target_.absolute (), " in ", source_.original ());

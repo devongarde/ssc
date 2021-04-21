@@ -84,6 +84,7 @@
     <ClInclude Include="..\heater\parser\parse_elements.h" />
     <ClInclude Include="..\heater\parser\parse_ssi.h" />
     <ClInclude Include="..\heater\parser\pattern.h" />
+    <ClInclude Include="..\heater\parser\text-data.h" />
     <ClInclude Include="..\heater\parser\text.h" />
     <ClInclude Include="..\heater\parser\xhtml_xml.h" />
     <ClInclude Include="..\heater\schema\schema_hierarchy.h" />
@@ -247,6 +248,7 @@
     <ClCompile Include="..\sauce\parser\parse_elements.cpp" />
     <ClCompile Include="..\sauce\parser\parse_ssi.cpp" />
     <ClCompile Include="..\sauce\parser\pattern.cpp" />
+    <ClCompile Include="..\sauce\parser\text-data.cpp" />
     <ClCompile Include="..\sauce\parser\text.cpp" />
     <ClCompile Include="..\sauce\parser\xhtml_xml.cpp" />
     <ClCompile Include="..\sauce\schema\schema_hierarchy.cpp" />
@@ -4557,6 +4559,28 @@
     <None Include="..\toast\math\3\math7-example.html" />
     <None Include="..\toast\math\3\math8-example.html" />
     <None Include="..\toast\math\3\math9-example.html" />
+    <None Include="..\toast\math\4\index.html" />
+    <None Include="..\toast\math\4\math.conf" />
+    <None Include="..\toast\math\4\math.spec" />
+    <None Include="..\toast\math\4\math1-example.html" />
+    <None Include="..\toast\math\4\math10-example.html" />
+    <None Include="..\toast\math\4\math11-example.html" />
+    <None Include="..\toast\math\4\math12-example.html" />
+    <None Include="..\toast\math\4\math13-example.html" />
+    <None Include="..\toast\math\4\math14-example.html" />
+    <None Include="..\toast\math\4\math15-example.html" />
+    <None Include="..\toast\math\4\math16-example.html" />
+    <None Include="..\toast\math\4\math17-example.html" />
+    <None Include="..\toast\math\4\math18-example.html" />
+    <None Include="..\toast\math\4\math19-example.html" />
+    <None Include="..\toast\math\4\math2-example.html" />
+    <None Include="..\toast\math\4\math3-example.html" />
+    <None Include="..\toast\math\4\math4-example.html" />
+    <None Include="..\toast\math\4\math5-example.html" />
+    <None Include="..\toast\math\4\math6-example.html" />
+    <None Include="..\toast\math\4\math7-example.html" />
+    <None Include="..\toast\math\4\math8-example.html" />
+    <None Include="..\toast\math\4\math9-example.html" />
     <None Include="..\toast\microdata\12\index.html" />
     <None Include="..\toast\microdata\12\schema.conf" />
     <None Include="..\toast\microdata\12\schema.spec" />
@@ -4879,6 +4903,9 @@
     <None Include="..\toast\other\base\base.spec" />
     <None Include="..\toast\other\base\index.html" />
     <None Include="..\toast\other\base\target.html" />
+    <None Include="..\toast\other\characters\chars.conf" />
+    <None Include="..\toast\other\characters\chars.spec" />
+    <None Include="..\toast\other\characters\index.html" />
     <None Include="..\toast\other\CSS\css-bad.html" />
     <None Include="..\toast\other\CSS\css-dubious.css" />
     <None Include="..\toast\other\CSS\css-dubious.html" />
@@ -4954,6 +4981,23 @@
     <None Include="..\toast\shadow\comment\index.html.model" />
     <None Include="..\toast\shadow\comment\pre.bat" />
     <None Include="..\toast\shadow\comment\pre.sh" />
+    <None Include="..\toast\shadow\copydiff\changed.html" />
+    <None Include="..\toast\shadow\copydiff\changed.html.model" />
+    <None Include="..\toast\shadow\copydiff\changed.inc" />
+    <None Include="..\toast\shadow\copydiff\copydiff.conf" />
+    <None Include="..\toast\shadow\copydiff\copydiff.spec" />
+    <None Include="..\toast\shadow\copydiff\original.html" />
+    <None Include="..\toast\shadow\copydiff\original.html.model" />
+    <None Include="..\toast\shadow\copydiff\ssi.html" />
+    <None Include="..\toast\shadow\copydiff\ssi.html.model" />
+    <None Include="..\toast\shadow\copydiff\update.html" />
+    <None Include="..\toast\shadow\copydiff\update.inc" />
+    <None Include="..\toast\shadow\copydiff\update.html.model" />
+    <None Include="..\toast\shadow\copydiff\index.html" />
+    <None Include="..\toast\shadow\copydiff\index.html.model" />
+    <None Include="..\toast\shadow\copydiff\pre.bat" />
+    <None Include="..\toast\shadow\copydiff\pre.sh" />
+    <None Include="..\toast\shadow\copydiff\original.inc" />
     <None Include="..\toast\shadow\copyover\copyover.conf" />
     <None Include="..\toast\shadow\copyover\copyover.spec" />
     <None Include="..\toast\shadow\copyover\html-bad.html" />
@@ -4984,6 +5028,18 @@
     <None Include="..\toast\shadow\copy\ssi.html" />
     <None Include="..\toast\shadow\copy\ssi.html.model" />
     <None Include="..\toast\shadow\copy\ssi.inc" />
+    <None Include="..\toast\shadow\dedudiff\changed.inc" />
+    <None Include="..\toast\shadow\dedudiff\dedudiff.conf" />
+    <None Include="..\toast\shadow\dedudiff\dedudiff.spec" />
+    <None Include="..\toast\shadow\dedudiff\index.html" />
+    <None Include="..\toast\shadow\dedudiff\index.html.model" />
+    <None Include="..\toast\shadow\dedudiff\original.inc" />
+    <None Include="..\toast\shadow\dedudiff\pre.bat" />
+    <None Include="..\toast\shadow\dedudiff\pre.sh" />
+    <None Include="..\toast\shadow\dedudiff\ssi.html" />
+    <None Include="..\toast\shadow\dedudiff\ssi.html.model" />
+    <None Include="..\toast\shadow\dedudiff\test.css" />
+    <None Include="..\toast\shadow\dedudiff\update.inc" />
     <None Include="..\toast\shadow\deduover\deduover.conf" />
     <None Include="..\toast\shadow\deduover\deduover.spec" />
     <None Include="..\toast\shadow\deduover\index.html" />
@@ -5046,6 +5102,16 @@
     <None Include="..\toast\shadow\ssi\ssi.html.model" />
     <None Include="..\toast\shadow\ssi\ssi.inc" />
     <None Include="..\toast\shadow\ssi\ssi.spec" />
+    <None Include="..\toast\snippet\conf\snippet.conf" />
+    <None Include="..\toast\snippet\conf\snippet.spec" />
+    <None Include="..\toast\snippet\dance" />
+    <None Include="..\toast\snippet\kiwi\snippet.conf" />
+    <None Include="..\toast\snippet\kiwi\snippet.spec" />
+    <None Include="..\toast\snippet\simple\pre.bat" />
+    <None Include="..\toast\snippet\simple\pre.sh" />
+    <None Include="..\toast\snippet\simple\snippet.conf" />
+    <None Include="..\toast\snippet\simple\snippet.spec" />
+    <None Include="..\toast\snippet\test.html" />
     <None Include="..\toast\stats\detail\index.html" />
     <None Include="..\toast\stats\detail\itemref.html" />
     <None Include="..\toast\stats\detail\keyword-1.html" />
@@ -5602,12 +5668,21 @@
     <Image Include="..\toast\other\img\x.jpg" />
     <Image Include="..\toast\other\img\y.jpg" />
     <Image Include="..\toast\other\img\z.jpg" />
+    <Image Include="..\toast\shadow\copydiff\x.jpg" />
+    <Image Include="..\toast\shadow\copydiff\y.jpg" />
+    <Image Include="..\toast\shadow\copydiff\z.jpg" />
     <Image Include="..\toast\shadow\copyover\x.jpg" />
     <Image Include="..\toast\shadow\copyover\y.jpg" />
     <Image Include="..\toast\shadow\copyover\z.jpg" />
     <Image Include="..\toast\shadow\copy\x.jpg" />
     <Image Include="..\toast\shadow\copy\y.jpg" />
     <Image Include="..\toast\shadow\copy\z.jpg" />
+    <Image Include="..\toast\shadow\dedudiff\a\favicon.ico" />
+    <Image Include="..\toast\shadow\dedudiff\b\favicon.ico" />
+    <Image Include="..\toast\shadow\dedudiff\c\favicon.ico" />
+    <Image Include="..\toast\shadow\dedudiff\x.jpg" />
+    <Image Include="..\toast\shadow\dedudiff\y.jpg" />
+    <Image Include="..\toast\shadow\dedudiff\z.jpg" />
     <Image Include="..\toast\shadow\deduover\a\favicon.ico" />
     <Image Include="..\toast\shadow\deduover\b\favicon.ico" />
     <Image Include="..\toast\shadow\deduover\c\favicon.ico" />
@@ -5648,6 +5723,7 @@
     <Text Include="..\..\usage.txt" />
     <Text Include="..\gen\gen.txt" />
     <Text Include="..\toast\conf\README.txt" />
+    <Text Include="..\toast\snippet\README.txt" />
     <Text Include="..\toast\tmp\README.txt" />
     <Text Include="..\toast\virtual\README.txt" />
     <Text Include="..\toast\webmention\headers\1.txt" />
@@ -5791,6 +5867,8 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
+    <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">
     <LinkIncremental>true</LinkIncremental>

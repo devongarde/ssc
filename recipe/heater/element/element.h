@@ -185,6 +185,7 @@ class element
     void examine_meta ();
     void examine_meter ();
     void examine_mglyph ();
+    void examine_mn ();
     void examine_mstyle ();
     void examine_nav ();
     void examine_nest ();
@@ -242,9 +243,9 @@ public:
     bool hidden () const
     {   if (own_attributes_.test (a_hidden)) return true;
         return ancestral_attributes_.test (a_hidden); }
-    void examine_self ( const directory& d, const itemscope_ptr& itemscope = itemscope_ptr (),
+    void examine_self ( const itemscope_ptr& itemscope = itemscope_ptr (),
                         const attribute_bitset& ancestral_attributes = attribute_bitset (), const attribute_bitset& sibling_attributes = attribute_bitset ());
-    void examine_children (const directory& d);
+    void examine_children ();
     ::std::string make_children (const int depth, const element_bitset& gf = element_bitset ());
     void verify_document ();
     ::std::string find_date_value () const;

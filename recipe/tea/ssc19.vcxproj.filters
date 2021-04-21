@@ -606,6 +606,36 @@
     <Filter Include="Toast\Type\httpequiv">
       <UniqueIdentifier>{b2dba958-7fdd-4e3c-a9cf-2382a4bdba3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Snippet">
+      <UniqueIdentifier>{628b33cd-bf65-41e3-be50-ed58c5ca1f63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Snippet\Simple">
+      <UniqueIdentifier>{49546236-3383-4846-afe1-fff90a31d27f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Snippet\kiwi">
+      <UniqueIdentifier>{5dd8947f-15f5-460c-bdc5-4f343ae9cece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Snippet\conf">
+      <UniqueIdentifier>{23407c6e-1749-4304-8e9c-b32cb0f18bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\characters">
+      <UniqueIdentifier>{c7fa0520-98f8-4eda-b71a-a846a996d962}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\CopyDiff">
+      <UniqueIdentifier>{ab3e3899-762d-44d7-9ec1-ac5417138cd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\DeduDiff">
+      <UniqueIdentifier>{86f77dcc-cc08-48fc-9211-d5a73ad54729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\DeduDiff\a">
+      <UniqueIdentifier>{4510c7e2-b796-4463-bc9b-fdfd1fd1f5d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\DeduDiff\b">
+      <UniqueIdentifier>{7b7298df-7999-4a69-8e26-125aeae5f72d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\DeduDiff\c">
+      <UniqueIdentifier>{47f565a5-c28e-4ff3-b2f3-28b8f03ac9f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1052,6 +1082,9 @@
     <ClInclude Include="..\heater\webpage\corpus.h">
       <Filter>Heater\webpage</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\parser\text-data.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1398,6 +1431,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\corpus.cpp">
       <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\text-data.cpp">
+      <Filter>Sauce\parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -17256,6 +17292,198 @@
     <None Include="..\toast\living\apr21\imedia.html">
       <Filter>Toast\Living\apr21</Filter>
     </None>
+    <None Include="..\toast\math\4\math9-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math10-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math11-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math12-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math13-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math14-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math15-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math16-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math17-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math18-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math19-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\index.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math.conf">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math.spec">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math1-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math2-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math3-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math4-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math5-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math6-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math7-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math8-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\snippet\simple\pre.bat">
+      <Filter>Toast\Snippet\Simple</Filter>
+    </None>
+    <None Include="..\toast\snippet\simple\pre.sh">
+      <Filter>Toast\Snippet\Simple</Filter>
+    </None>
+    <None Include="..\toast\snippet\simple\snippet.spec">
+      <Filter>Toast\Snippet\Simple</Filter>
+    </None>
+    <None Include="..\toast\snippet\dance">
+      <Filter>Toast\Snippet</Filter>
+    </None>
+    <None Include="..\toast\snippet\test.html">
+      <Filter>Toast\Snippet</Filter>
+    </None>
+    <None Include="..\toast\snippet\simple\snippet.conf">
+      <Filter>Toast\Snippet\Simple</Filter>
+    </None>
+    <None Include="..\toast\snippet\kiwi\snippet.conf">
+      <Filter>Toast\Snippet\kiwi</Filter>
+    </None>
+    <None Include="..\toast\snippet\kiwi\snippet.spec">
+      <Filter>Toast\Snippet\kiwi</Filter>
+    </None>
+    <None Include="..\toast\snippet\conf\snippet.spec">
+      <Filter>Toast\Snippet\conf</Filter>
+    </None>
+    <None Include="..\toast\snippet\conf\snippet.conf">
+      <Filter>Toast\Snippet\conf</Filter>
+    </None>
+    <None Include="..\toast\other\characters\chars.conf">
+      <Filter>Toast\Other\characters</Filter>
+    </None>
+    <None Include="..\toast\other\characters\chars.spec">
+      <Filter>Toast\Other\characters</Filter>
+    </None>
+    <None Include="..\toast\other\characters\index.html">
+      <Filter>Toast\Other\characters</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\copydiff.conf">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\copydiff.spec">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\original.html">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\original.html.model">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\update.html">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\update.html.model">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\index.html">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\index.html.model">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\pre.bat">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\pre.sh">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\original.inc">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\dedudiff.conf">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\dedudiff.spec">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\index.html">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\index.html.model">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\pre.bat">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\pre.sh">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\test.css">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\changed.html.model">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\update.inc">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\ssi.html">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\ssi.html.model">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\changed.html">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\copydiff\changed.inc">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\changed.inc">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\original.inc">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\ssi.html">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\ssi.html.model">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\shadow\dedudiff\update.inc">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -17396,6 +17624,33 @@
     <Image Include="..\toast\other\img\z.jpg">
       <Filter>Toast\Other\img</Filter>
     </Image>
+    <Image Include="..\toast\shadow\copydiff\x.jpg">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\copydiff\y.jpg">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\copydiff\z.jpg">
+      <Filter>Toast\Shadow\CopyDiff</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedudiff\a\favicon.ico">
+      <Filter>Toast\Shadow\DeduDiff\a</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedudiff\b\favicon.ico">
+      <Filter>Toast\Shadow\DeduDiff\b</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedudiff\c\favicon.ico">
+      <Filter>Toast\Shadow\DeduDiff\c</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedudiff\x.jpg">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedudiff\y.jpg">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </Image>
+    <Image Include="..\toast\shadow\dedudiff\z.jpg">
+      <Filter>Toast\Shadow\DeduDiff</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\toast\virtual\README.txt">
@@ -17463,6 +17718,9 @@
     </Text>
     <Text Include="..\gen\gen.txt">
       <Filter>Info</Filter>
+    </Text>
+    <Text Include="..\toast\snippet\README.txt">
+      <Filter>Toast\Snippet</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

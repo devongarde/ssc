@@ -30,8 +30,8 @@ public:
     ::boost::filesystem::path get_disk_path () const { return disk_path_; }
     ::std::string get_site_path () const { return site_path_; }
     bool applicable (const ::std::string& path) const;
-    ::boost::filesystem::path shadow () const { return shadow_; }
-    bool shadow (nitpick& nits, const ::boost::filesystem::path& shadow);
+    ::boost::filesystem::path shadow_root () const { return shadow_; }
+    bool shadow_root (nitpick& nits, const ::boost::filesystem::path& shadow);
     ::boost::filesystem::path get_export () const { return export_; }
     bool set_export (nitpick& nits, const ::boost::filesystem::path& ex);
     ::boost::filesystem::path get_disk_filename (const ::std::string& path) const;

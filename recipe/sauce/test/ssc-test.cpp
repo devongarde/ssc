@@ -84,7 +84,8 @@ vstr_t readlines (const ::std::string& name)
     return res; }
 
 bool testfile (const ::boost::filesystem::path& s, const ::std::string& context = ::std::string ())
-{   if (! ::boost::filesystem::exists (s))
+{   if (s == "snippet") return true;
+    if (! ::boost::filesystem::exists (s))
     {   ::std::cerr << "cannot find " << s << context << "\n"; return false; }
     else if (! ::boost::filesystem::is_regular_file (s))
     {   ::std::cerr << "cannot load " << s << context << "\n"; return false; }
@@ -139,14 +140,15 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
     bool shadow = false;
     sstr_t correct_set, created_set;
     vstr_t stats;
-    size_t last_line = -1;
+    size_t last_line = static_cast < size_t > (-1);
     nits last_nits;
     for (auto ss : spec)
     {   ++line;
         ::std::string s (::boost::trim_copy (ss));
         if (s.empty ())
         {   if (! last_nits.empty ()) expect.nits_.insert (::nitted::value_type (last_line, last_nits));
-            last_line = -1; last_nits.clear ();
+            last_line = static_cast < size_t > (-1);
+            last_nits.clear ();
             if (file_stats && ! stats.empty () && ! previous.empty ())
             {   page_stats.insert (mvstr_t::value_type (previous, stats)); stats.clear (); }
             exports = itemid = file_stats = overall_stats = false; continue; }
@@ -247,7 +249,6 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         ::boost::algorithm::split (v, sss, ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
         if (v.empty ())
         {   ::std::cerr << s << " has no feedback list (line "<< line << " of " << f.string () << ")\n"; return false; }
-//        nits ns;
         if (last_line != lno)
         {   if (! last_nits.empty ()) expect.nits_.insert (::nitted::value_type (last_line, last_nits));
             last_line = lno; last_nits.clear (); }

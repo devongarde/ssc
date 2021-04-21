@@ -29,6 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attributes.h"
 #include "element/elem.h"
 #include "element/element_classes.h"
+#include "url/url_sanitise.h"
+#include "type/type_master.h"
 
 /*
 -N
@@ -133,24 +135,34 @@ void options::title (const char* addendum) const
     else ::std::cout << "\n"; }
 
 void options::help (const ::boost::program_options::options_description& aid) const
-{   ::std::cout << PROG " [switch...] file/dir.\n\n";
-    ::std::cout << PROG " is an opinionated HTML nit-picker, intended for people, like me, who hand code websites.\n";
-    ::std::cout << "It doesn't just check static websites for broken links, dubious syntax, and bad semantic data,\n";
-    ::std::cout << "it will actively complain about things that are perfectly legal but just a little bit untidy.\n";
+{   ::std::cout << PROG " [switch...] path.\n\n";
+    ::std::cout << PROG " is an opinionated HTML nit-picker. It notes broken links, dubious syntax, bad semantics,\n";
+    ::std::cout << "etc.. It highlights legal but untidy code.\n";
     ::std::cout << aid << "\n\n";
-    ::std::cout << "If a configuration file is specified, it should be in INI file format with these optional sections:\n";
-    ::std::cout << GENERAL_ ", " LINKS_ ", " MF_ ", " MICRODATA_ ", " STATS ", " VALIDATION " and " WEBSITE_ "\n";
-    ::std::cout << "Each section contains individual assignments using the identifiers (after the dot) noted above.\n";
-    ::std::cout << "Such a file might contain:\n\n";
+    ::std::cout << "Configuration file section names precede each switch dot above (e.g. " GENERAL_ ", " LINKS_ ",\n" ;
+    ::std::cout << WEBSITE_ ", etc.). Option names follow them. For example:\n\n";
     ::std::cout << "[" GENERAL_ "]\n";
     ::std::cout << VERBOSE "=2\n\n";
     ::std::cout << "[" LINKS_ "]\n";
     ::std::cout << CHECK "=1\n\n";
     ::std::cout << "[" WEBSITE_ "]\n";
-    ::std::cout << EXTENSION "=shtml\n";
     ::std::cout << EXTENSION "=html\n";
     ::std::cout << INDEX "=index.shtml\n";
     ::std::cout << SITE "=" DEFAULT_DOMAIN "\n\n"; }
+
+::std::string query_to_switches (const ::std::string& query)
+{   ::std::string res;
+    vstr_t args (split_by_charset (query, "&"));
+    for (auto arg : args)
+    {   vstr_t assignment (split_by_charset (arg, "="));
+        if (assignment.size () == 0) continue;
+        if (! res.empty ()) res += " ";
+        res += "--";
+        res += assignment.at (0);
+        if (assignment.size () > 0)
+        {   res += " ";
+            res += slash_quote (decode (substitute_char (assignment.at (1), '+', ' '))); } }
+    return res; }
 
 void options::process (int argc, char** argv)
 {   /*  a
@@ -160,7 +172,7 @@ void options::process (int argc, char** argv)
         e external check
         f config         F load config file from .ssc/config
         g website root
-        h help
+        h help           H html snippet
         i index file     I server side includes
         j
         k
@@ -209,6 +221,25 @@ void options::process (int argc, char** argv)
         (VERSION ",V", "display version & copyright info, then exit")
         ;
     cgi.add_options ()
+        (ENVIRONMENT SERVER_SOFTWARE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_SOFTWARE)
+        (ENVIRONMENT SERVER_NAME, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_NAME)
+        (ENVIRONMENT GATEWAY_INTERFACE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " GATEWAY_INTERFACE)
+        (ENVIRONMENT SERVER_PROTOCOL, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_PROTOCOL)
+        (ENVIRONMENT SERVER_PORT, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_PORT)
+        (ENVIRONMENT REQUEST_METHOD, ::boost::program_options::value < ::std::string > (), "CGI environment variable " REQUEST_METHOD)
+        (ENVIRONMENT HTTP_ACCEPT, ::boost::program_options::value < ::std::string > (), "CGI environment variable " HTTP_ACCEPT)
+        (ENVIRONMENT PATH_INFO, ::boost::program_options::value < ::std::string > (), "CGI environment variable " PATH_INFO)
+        (ENVIRONMENT PATH_TRANSLATED, ::boost::program_options::value < ::std::string > (), "CGI environment variable " PATH_TRANSLATED)
+        (ENVIRONMENT SCRIPT_NAME, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SCRIPT_NAME)
+        (ENVIRONMENT QUERY_STRING, ::boost::program_options::value < ::std::string > (), "CGI environment variable " QUERY_STRING)
+        (ENVIRONMENT REMOTE_HOST, ::boost::program_options::value < ::std::string > (), "CGI environment variable " REMOTE_HOST)
+        (ENVIRONMENT REMOTE_ADDR, ::boost::program_options::value < ::std::string > (), "CGI environment variable " REMOTE_ADDR)
+        (ENVIRONMENT REMOTE_USER, ::boost::program_options::value < ::std::string > (), "CGI environment variable " REMOTE_USER)
+        (ENVIRONMENT AUTH_TYPE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " AUTH_TYPE)
+        (ENVIRONMENT CONTENT_TYPE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " CONTENT_TYPE)
+        (ENVIRONMENT CONTENT_LENGTH, ::boost::program_options::value < ::std::string > (), "CGI environment variable " CONTENT_LENGTH)
+        ;
+    env.add_options ()
         (SERVER_SOFTWARE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_SOFTWARE)
         (SERVER_NAME, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_NAME)
         (GATEWAY_INTERFACE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " GATEWAY_INTERFACE)
@@ -226,19 +257,17 @@ void options::process (int argc, char** argv)
         (AUTH_TYPE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " AUTH_TYPE)
         (CONTENT_TYPE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " CONTENT_TYPE)
         (CONTENT_LENGTH, ::boost::program_options::value < ::std::string > (), "CGI environment variable " CONTENT_LENGTH)
-        ;
-    env.add_options ()
         (ENV_CONFIG, ::boost::program_options::value < ::std::string > (), "load configuration from this file")
         (ENV_ARGS, ::boost::program_options::value < ::std::string > (), "alternative command line parameters")
         ;
     hidden.add_options ()
-        (GENERAL CGI ",W", "process OpenBSD httpd <FORM METHOD=POST ...>")
+        (GENERAL CGI ",W", "process OpenBSD httpd <FORM METHOD=GET ...> (incompatible with " GENERAL WEBMENTION ")")
         (GENERAL CLASS, "do not report unrecognised classes")
         (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "file for persistent data, requires -N (note " GENERAL PATH ")")
         (GENERAL RPT, "report when CSS files opened")
         (GENERAL TEST ",T", "output format for automated tests")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "user name to supply when requested (for webmentions)")
-        (GENERAL WEBMENTION, "process webmentions (experimental)")
+        (GENERAL WEBMENTION, "process webmentions (experimental, incompatible with " GENERAL CGI ")")
         (NITS SPEC ",Z", "output nit codes, not numbers, in tests (scc-test rejects this format)")
         (NITS WATCH, "output debug nits, which you'll need to manage particular error messages")
         (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "use this file to test header parsing code")
@@ -258,6 +287,7 @@ void options::process (int argc, char** argv)
     line.add_options ()
         (CONFIG ",f", ::boost::program_options::value < ::std::string > (), "load configuration from this file")
         (DEFCONF ",F", "load configuration from " CONFIGURATION)
+        (HTML SNIPPET ",H", ::boost::program_options::value < ::std::string > (), "only nitpick the given snippet of HTML")
         ;
     primary.add_options ()
         (GENERAL CSS_OPTION, "do NOT process .css files")
@@ -322,7 +352,8 @@ void options::process (int argc, char** argv)
         (SHADOW COPY, ::boost::program_options::value < int > (), "copy non-HTML files: 0=no (default), 1=pages, 2=hard link all, 3=soft link all, 4=copy all, 5=copy+deduplicate, 6=only report duplicates")
 #endif // NOLYNX
         (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "where to persist deduplication data")
-        (SHADOW IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore files with this extension; may be repeated")
+        (SHADOW CHANGED, "only link/copy shadow files when the target doesn't exist, or is older than the original")
+        (SHADOW IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "ignore files with this extension; may be repeated (do not forget the dot)")
         (SHADOW INFO, "add a comment to generated shadow HTML files noting their time of generation")
         (SHADOW MSG, ::boost::program_options::value < ::std::string > (), "insert this as comment to generated shadow files")
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "shadow output root directory")
@@ -365,9 +396,8 @@ void options::process (int argc, char** argv)
     valid.add (context.validation ());
 
     cmd.add (basic).add (primary).add (valid).add (line).add (hidden);
-    config.add (primary).add (valid).add (hidden);
+    config.add (primary).add (valid).add (hidden).add (cgi);
     aid.add (basic).add (line).add (primary);
-    env.add (cgi);
     ::std::string loaded;
 
     try
@@ -376,9 +406,61 @@ void options::process (int argc, char** argv)
         {   vstr_t env_args (split_by_space (env_ [ENV_ARGS].as < ::std::string > ()));
             if (! env_args.empty ())
                 ::boost::program_options::store (::boost::program_options::command_line_parser (env_args).options (cmd).positional (pos).run (), var_); } }
-    catch (...)
-    {   title ("\nEnvironment variable error. " TYPE_HELP "\n");
+    catch (const ::boost::program_options::error& err)
+    {   loaded = "\nEnvironment error: ";
+        loaded += err.what ();
+        loaded += "\n" TYPE_HELP "\n";
+        title (loaded.c_str ());
         return; }
+    catch (...)
+    {   title ("\nEnvironment error.\n");
+        return; }
+
+    ::boost::program_options::notify (env_);
+
+    if (env_.count (ENV_CONFIG)) context.environment (env_config, env_ [ENV_CONFIG].as < ::std::string > ());
+    if (env_.count (ENV_ARGS)) context.environment (env_args, env_ [ENV_ARGS].as < ::std::string > ());
+
+    if (env_.count (QUERY_STRING))
+    {   context.environment (env_query_string, env_ [QUERY_STRING].as < ::std::string > ());
+        if (! context.environment (env_query_string).empty ()) try
+        {   context.cgi (true);
+            if (env_.count (SERVER_SOFTWARE)) context.environment (env_server_software, env_ [SERVER_SOFTWARE].as < ::std::string > ());
+            if (env_.count (SERVER_NAME)) context.environment (env_server_name, env_ [SERVER_NAME].as < ::std::string > ());
+            if (env_.count (GATEWAY_INTERFACE)) context.environment (env_gateway_interface, env_ [GATEWAY_INTERFACE].as < ::std::string > ());
+            if (env_.count (SERVER_PROTOCOL)) context.environment (env_server_protocol, env_ [SERVER_PROTOCOL].as < ::std::string > ());
+            if (env_.count (SERVER_PORT)) context.environment (env_server_port, env_ [SERVER_PORT].as < ::std::string > ());
+            if (env_.count (REQUEST_METHOD)) context.environment (env_request_method, env_ [REQUEST_METHOD].as < ::std::string > ());
+            if (env_.count (HTTP_ACCEPT)) context.environment (env_http_accept, env_ [HTTP_ACCEPT].as < ::std::string > ());
+            if (env_.count (PATH_INFO)) context.environment (env_path_info, env_ [PATH_INFO].as < ::std::string > ());
+            if (env_.count (PATH_TRANSLATED)) context.environment (env_path_translated, env_ [PATH_TRANSLATED].as < ::std::string > ());
+            if (env_.count (SCRIPT_NAME)) context.environment (env_script_name, env_ [SCRIPT_NAME].as < ::std::string > ());
+            if (env_.count (REMOTE_HOST)) context.environment (env_remote_host, env_ [REMOTE_HOST].as < ::std::string > ());
+            if (env_.count (REMOTE_ADDR)) context.environment (env_remote_addr, env_ [REMOTE_ADDR].as < ::std::string > ());
+            if (env_.count (REMOTE_USER)) context.environment (env_remote_user, env_ [REMOTE_USER].as < ::std::string > ());
+            if (env_.count (AUTH_TYPE)) context.environment (env_auth_type, env_ [AUTH_TYPE].as < ::std::string > ());
+            if (env_.count (CONTENT_TYPE)) context.environment (env_content_type, env_ [CONTENT_TYPE].as < ::std::string > ());
+            if (env_.count (CONTENT_LENGTH)) context.environment (env_content_length, env_ [CONTENT_LENGTH].as < ::std::string > ());
+            ::std::string q (query_to_switches (context.environment (env_query_string)));
+#ifdef XTRA_DEBUG
+            ::std::cout << "Environment: " << q << "\n";
+#endif // XTRA_DEBUG
+            vstr_t query (split_quoted_by_space (q));
+            ::boost::program_options::store (::boost::program_options::command_line_parser (query).options (cmd).positional (pos).run (), var_);
+            if (! var_.count (HTML SNIPPET))
+            {   title ("\nAn environment " QUERY_STRING " must include html.snippet. " TYPE_HELP "\n");
+                return; } }
+#ifdef DEBUG
+        catch (const ::boost::program_options::error& err)
+        {   loaded = "\nQuery error: ";
+            loaded += err.what ();
+            loaded += "\n" TYPE_HELP "\n";
+            title (loaded.c_str ());
+            return; }
+#endif // DEBUG
+        catch (...)
+        {   ::std::cerr << "\nEnvironment query exception.\n";
+            return; } }
 
     try
     {   ::boost::program_options::store (::boost::program_options::command_line_parser (argc, argv).options (cmd).positional (pos).run (), var_); }
@@ -420,67 +502,96 @@ void options::process (int argc, char** argv)
             loaded += file.string () + "\n";
             title (loaded.c_str ()); return; } }
     ::boost::program_options::notify (var_);
-    ::boost::program_options::notify (env_);
     if (var_.count (VERSION)) { title (); valid_ = true; return; }
     if (var_.count (HELP)) { title (); help (aid); valid_ = true; return; }
     if (var_.count (VALIDATION_)) { title (); ::std::cout << "\n" << valid; valid_ = true; return; }
-    valid_ = var_.count (WEBSITE ROOT);
-    if (! valid_) { loaded += "\n" TYPE_HELP "\n"; title (loaded.c_str ()); return; }
-    if (var_.count (GENERAL TEST) == 0) title (loaded.c_str ());
+
+    if (! context.cgi () && var_.count (ENVIRONMENT QUERY_STRING))
+    {   context.environment (env_query_string, var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
+        if (! context.environment (env_query_string).empty ()) try
+        {   context.cgi (true);
+            if (var_.count (ENVIRONMENT SERVER_SOFTWARE)) context.environment (env_server_software, var_ [ENVIRONMENT SERVER_SOFTWARE].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT SERVER_NAME)) context.environment (env_server_name, var_ [ENVIRONMENT SERVER_NAME].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT GATEWAY_INTERFACE)) context.environment (env_gateway_interface, var_ [ENVIRONMENT GATEWAY_INTERFACE].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT SERVER_PROTOCOL)) context.environment (env_server_protocol, var_ [ENVIRONMENT SERVER_PROTOCOL].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT SERVER_PORT)) context.environment (env_server_port, var_ [ENVIRONMENT SERVER_PORT].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT REQUEST_METHOD)) context.environment (env_request_method, var_ [ENVIRONMENT REQUEST_METHOD].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT HTTP_ACCEPT)) context.environment (env_http_accept, var_ [ENVIRONMENT HTTP_ACCEPT].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT PATH_INFO)) context.environment (env_path_info, var_ [ENVIRONMENT PATH_INFO].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT PATH_TRANSLATED)) context.environment (env_path_translated, var_ [ENVIRONMENT PATH_TRANSLATED].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT SCRIPT_NAME)) context.environment (env_script_name, var_ [ENVIRONMENT SCRIPT_NAME].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT REMOTE_HOST)) context.environment (env_remote_host, var_ [ENVIRONMENT REMOTE_HOST].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT REMOTE_ADDR)) context.environment (env_remote_addr, var_ [ENVIRONMENT REMOTE_ADDR].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT REMOTE_USER)) context.environment (env_remote_user, var_ [ENVIRONMENT REMOTE_USER].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT AUTH_TYPE)) context.environment (env_auth_type, var_ [ENVIRONMENT AUTH_TYPE].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT CONTENT_TYPE)) context.environment (env_content_type, var_ [ENVIRONMENT CONTENT_TYPE].as < ::std::string > ());
+            if (var_.count (ENVIRONMENT CONTENT_LENGTH)) context.environment (env_content_length, var_ [ENVIRONMENT CONTENT_LENGTH].as < ::std::string > ());
+            ::std::string q (query_to_switches (context.environment (env_query_string)));
+#ifdef XTRA_DEBUG
+            ::std::cout << "Config: " << q << "\n";
+#endif // XTRA_DEBUG
+            vstr_t query (split_quoted_by_space (q));
+            ::boost::program_options::store (::boost::program_options::command_line_parser (query).options (cmd).positional (pos).run (), var_);
+            if (! var_.count (HTML SNIPPET))
+            {   title ("\n" ENVIRONMENT QUERY_STRING " must include html.snippet. " TYPE_HELP "\n");
+                return; }
+            ::boost::program_options::notify (var_); }
+#ifdef DEBUG
+        catch (const ::boost::program_options::error& err)
+        {   loaded = "\nConfiguration " ENVIRONMENT_ " error: ";
+            loaded += err.what ();
+            loaded += "\n" TYPE_HELP "\n";
+            title (loaded.c_str ());
+            return; }
+#endif // DEBUG
+        catch (...)
+        {   ::std::cerr << "\nConfiguration " ENVIRONMENT_ " query exception.\n";
+            return; } }
+
+    if (! context.cgi ()) context.cgi (var_.count (GENERAL CGI));
+
+    if (context.cgi ()) valid_ = true;
+    else
+    {   valid_ = var_.count (WEBSITE ROOT);
+        if (! valid_) { loaded += "\n" TYPE_HELP "\n"; title (loaded.c_str ()); return; }
+        if (var_.count (GENERAL TEST) == 0) title (loaded.c_str ()); }
     stop_ = false; }
 
 void options::contextualise ()
 {   context.clear (var_.count (WMOUT CLEAR));
     context.test (var_.count (GENERAL TEST));
 
-    if (var_.count (GENERAL OUTPUT))
-    {   context.output (nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
-        if (! context.test ())
-            ::std::cout << "Writing to " << var_ [GENERAL OUTPUT].as < ::std::string > () << "\n"; }
+    if (context.test () || ! context.cgi ())
+    {   if (var_.count (GENERAL OUTPUT))
+        {   context.output (nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
+            if (! context.test ())
+                ::std::cout << "Writing to " << var_ [GENERAL OUTPUT].as < ::std::string > () << "\n"; }
 
-    context.cgi (var_.count (GENERAL CGI));
+        if (context.test ()) context.out (PROG "\n" VERSION_STRING "\n" COPYRIGHT"\n");
+        else context.out (FULLNAME " version " VERSION_STRING " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n");
 
-    if (context.cgi ())
-    {   if (env_.count (SERVER_SOFTWARE)) context.server_software_ = env_ [SERVER_SOFTWARE].as < ::std::string > ();
-        if (env_.count (SERVER_NAME)) context.server_name_ = env_ [SERVER_NAME].as < ::std::string > ();
-        if (env_.count (GATEWAY_INTERFACE)) context.gateway_interface_ = env_ [GATEWAY_INTERFACE].as < ::std::string > ();
-        if (env_.count (SERVER_PROTOCOL)) context.server_protocol_ = env_ [SERVER_PROTOCOL].as < ::std::string > ();
-        if (env_.count (SERVER_PORT)) context.server_port_ = env_ [SERVER_PORT].as < ::std::string > ();
-        if (env_.count (REQUEST_METHOD)) context.request_method_ = env_ [REQUEST_METHOD].as < ::std::string > ();
-        if (env_.count (HTTP_ACCEPT)) context.http_accept_ = env_ [HTTP_ACCEPT].as < ::std::string > ();
-        if (env_.count (PATH_INFO)) context.path_info_ = env_ [PATH_INFO].as < ::std::string > ();
-        if (env_.count (PATH_TRANSLATED)) context.path_translated_ = env_ [PATH_TRANSLATED].as < ::std::string > ();
-        if (env_.count (SCRIPT_NAME)) context.script_name_ = env_ [SCRIPT_NAME].as < ::std::string > ();
-        if (env_.count (QUERY_STRING)) context.query_string_ = env_ [QUERY_STRING].as < ::std::string > ();
-        if (env_.count (REMOTE_HOST)) context.remote_host_ = env_ [REMOTE_HOST].as < ::std::string > ();
-        if (env_.count (REMOTE_ADDR)) context.remote_addr_ = env_ [REMOTE_ADDR].as < ::std::string > ();
-        if (env_.count (REMOTE_USER)) context.remote_user_ = env_ [REMOTE_USER].as < ::std::string > ();
-        if (env_.count (AUTH_TYPE)) context.auth_type_ = env_ [AUTH_TYPE].as < ::std::string > ();
-        if (env_.count (CONTENT_TYPE)) context.content_type_ = env_ [CONTENT_TYPE].as < ::std::string > ();
-        if (env_.count (CONTENT_LENGTH)) context.content_length_ = env_ [CONTENT_LENGTH].as < ::std::string > (); }
-    else if (context.test ()) context.out () << PROG "\n" VERSION_STRING "\n" COPYRIGHT"\n";
-    else context.out () << FULLNAME " version " VERSION_STRING " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n";
+        if (! context.cgi ())
+        {   context.path (nix_path_to_local (var_ [GENERAL PATH].as < ::std::string > ()));
 
-    context.path (nix_path_to_local (var_ [GENERAL PATH].as < ::std::string > ()));
+            if (! ::boost::filesystem::exists (context.path ()))
+            {   context.err (context.path ());
+                context.err (" does not exist, am creating it.\n");
+                try
+                {   ::boost::filesystem::create_directories (context.path ()); }
+                catch (...)
+                {   context.err ("cannot create ");
+                    context.err (context.path ());
+                    context.err (".\n"); } } } }
 
-    if (! ::boost::filesystem::exists (context.path ()))
-    {   context.err () << context.path () << " does not exist, am creating it.";
-        ::boost::filesystem::create_directories (context.path ()); }   // if throws, then exit
-
-    context.load_css (var_.count (GENERAL CSS_OPTION) == 0);
-    context.nochange (var_.count (GENERAL NOCHANGE));
-    context.rdf (var_.count (GENERAL RDF));
-    context.rel (var_.count (GENERAL REL));
-    context.rpt_opens (var_.count (GENERAL RPT));
-    context.ssi (var_.count (GENERAL SSI));
-    context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
-
-    context.presume_tags (var_.count (HTML TAGS));
-    context.rfc_1867 (! var_.count (HTML RFC1867));
-    context.rfc_1942 (! var_.count (HTML RFC1942));
-    context.rfc_1980 (! var_.count (HTML RFC1980));
-    context.rfc_2070 (! var_.count (HTML RFC2070));
+    if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());
+    if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose > (var_ [GENERAL VERBOSE].as < int > ()));
     if (var_.count (HTML TITLE)) context.title (static_cast < unsigned char > (var_ [HTML TITLE].as < int > ()));
+    context.presume_tags (var_.count (HTML TAGS));
+
+    if (var_.count (HTML SNIPPET)) context.snippet (var_ [HTML SNIPPET].as < ::std::string > ());
+
+    context.mf_verify (var_.count (MF VERIFY));
+    if (var_.count (MF VERSION)) context.mf_version (static_cast < unsigned char > (var_ [MF VERSION].as < int > ()));
 
     if (var_.count (HTML VERSION))
     {   ::std::string ver (var_ [HTML VERSION].as < ::std::string > ());
@@ -492,25 +603,37 @@ void options::contextualise ()
                 else context.html_ver (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1)));
             else if (ver.find ('/') != ::std::string::npos)
                 if ((ver.length () != 10) || (ver.at (4) != '/') || (ver.at (7) != '/') || (ver.find_first_not_of (DENARY "/") != ::std::string::npos))
-                    context.err () << "bad date " << quote (ver) << " ignored ('YYYY/MM/DD' expected)\n";
+                {   context.err ("bad date ");
+                    context.err (quote (ver));
+                    context.err (" ignored ('YYYY/MM/DD' expected)\n"); }
                 else
                 {   ::boost::gregorian::date d (::boost::gregorian::from_string (ver));
-                    if (d.is_not_a_date ()) context.err () << "invalid date " << quote (ver) << " ignored\n";
+                    if (d.is_not_a_date ())
+                    {   context.err ("invalid date ");
+                        context.err (quote (ver));
+                        context.err (" ignored\n"); }
                     else
                     {   int y = d.year (); int m = d.month ();
                         if (y > 2000) y -= 2000;
                         else if (y > 99) y = 99;
                         if ((y < HTML_5_EARLIEST_YEAR) || ((y == HTML_5_EARLIEST_YEAR) && (m < HTML_5_EARLIEST_MONTH)))
-                        {   context.err () << quote (ver) << " is too early, presuming " << HTML_5_EARLIEST_YEAR << "/" << HTML_5_EARLIEST_MONTH << "/1\n";
+                        {   ::std::ostringstream ss;
+                            ss << quote (ver) << " is too early, presuming " << HTML_5_EARLIEST_YEAR << "/" << HTML_5_EARLIEST_MONTH << "/1\n";
+                            context.err (ss.str ());
                             context.html_ver (html_jan05); }
                         else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
-                        {   context.err () << quote (ver) << " is too recent, presuming " << HTML_LATEST_YEAR << "/" << HTML_LATEST_MONTH << "/1\n";
+                        {   ::std::ostringstream ss;
+                            ss << quote (ver) << " is too recent, presuming " << HTML_LATEST_YEAR << "/" << HTML_LATEST_MONTH << "/1\n";
+                            context.err (ss.str ());
                             context.html_ver (html_current); }
                         else context.html_ver (d); } }
             else if (ver == "+") context.html_ver (html_plus);
             else if (compare_no_case (ver, "plus")) context.html_ver (html_plus);
             else if (compare_no_case (ver, "tags")) context.html_ver (html_tags);
-            else context.err () << "bad version " << quote (ver) << " ignored\n"; } }
+            else
+            {   context.err ("bad version ");
+                context.err (quote (ver));
+                context.err (" ignored\n"); } } }
 
     if (var_.count (SVG VERSION))
     {   ::std::string ver (var_ [SVG VERSION].as < ::std::string > ());
@@ -527,45 +650,13 @@ void options::contextualise ()
     {   int n = var_ [MATH VERSION].as < int > ();
         if ((n > 0) && (n < 5)) context.math_version (static_cast < e_mathversion > (n)); }
 
-    const long meg = 1024*1024;
-
-    if (! var_.count (GENERAL MAXFILESIZE))
-        context.max_file_size (4 * meg);
-    else
-    {   long max = static_cast < long > (var_ [GENERAL MAXFILESIZE].as < int > ());
-        if (max < 0 || (max > (LONG_MAX / meg))) max = DEFAULT_MAX_FILE_SIZE;
-        context.max_file_size (max * meg); }
-
-    context.unknown_class (var_.count (GENERAL CLASS));
-    if (var_.count (GENERAL CORPUS)) context.corpus (nix_path_to_local (var_ [GENERAL CORPUS].as < ::std::string > ()));
-    if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
-    if (var_.count (GENERAL IGNORED)) context.ignore (var_ [GENERAL IGNORED].as < vstr_t > ());
-    if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());
-    if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
-    if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose > (var_ [GENERAL VERBOSE].as < int > ()));
-    context.process_webmentions (var_.count (GENERAL WEBMENTION));
-
-    context.links (var_.count (LINKS CHECK));
-    context.external (var_.count (LINKS EXTERNAL));
-    context.forwarded (var_.count (LINKS FORWARD));
-    context.once (var_.count (LINKS ONCE));
-    context.revoke (var_.count (LINKS REVOKE));
-    context.crosslinks (var_.count (LINKS XLINK));
-
-    context.mf_export (var_.count (MF EXPORT));
-    context.mf_verify (var_.count (MF VERIFY));
-    if (var_.count (MF VERSION)) context.mf_version (static_cast < unsigned char > (var_ [MF VERSION].as < int > ()));
-
-    context.md_export (var_.count (MICRODATA EXPORT));
-    context.schema (var_.count (MICRODATA MICRODATAARG));
-    if (var_.count (MICRODATA ROOT)) context.export_root (nix_path_to_local (var_ [MICRODATA ROOT].as < ::std::string > ()));
-    if (var_.count (MICRODATA VIRTUAL)) context.exports (var_ [MICRODATA VIRTUAL].as < vstr_t > ());
-
     if (var_.count (MICRODATA VERSION))
     {   ::std::string ver (var_ [MICRODATA VERSION].as < ::std::string > ());
         if (ver.empty ())
         {   context.schema_ver (schema_version (mdr_schema, DEFAULT_SCHEMA_MAJOR, DEFAULT_SCHEMA_MINOR));
-            context.err () << "missing schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n"; }
+            ::std::ostringstream ss;
+            ss << "missing schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n";
+            context.err (ss.str ()); }
         else
         {   ::std::string::size_type pos = ver.find ('.');
             // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
@@ -573,7 +664,9 @@ void options::contextualise ()
                 context.schema_ver (schema_version (mdr_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0));
             else if (pos == 0)
             {   context.schema_ver (schema_version (mdr_schema, DEFAULT_SCHEMA_MAJOR, DEFAULT_SCHEMA_MINOR));
-                context.err () << "invalid schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n"; }
+                ::std::ostringstream ss;
+                ss << "missing schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n";
+                context.err (ss.str ()); }
             else if (pos == ver.length () - 1)
                 context.schema_ver (schema_version (mdr_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0));
             else if (pos > 0)
@@ -588,182 +681,235 @@ void options::contextualise ()
     if (var_.count (NITS CATASTROPHE))
         for (auto s : var_ [NITS CATASTROPHE].as < vstr_t > ())
             if (! nitpick::modify_severity (s, es_catastrophic))
-                context.err () << quote (s) << ": no such nit.\n";
+            {   context.err (quote (s));
+                context.err (": no such nit.\n"); }
 
     if (var_.count (NITS COMMENT))
         for (auto s : var_ [NITS COMMENT].as < vstr_t > ())
             if (! nitpick::modify_severity (s, es_comment))
-                context.err () << quote (s) << ": no such nit.\n";
+            {   context.err (quote (s));
+                context.err (": no such nit.\n"); }
 
     if (var_.count (NITS DBG))
         for (auto s : var_ [NITS DBG].as < vstr_t > ())
             if (! nitpick::modify_severity (s, es_debug))
-                context.err () << quote (s) << ": no such nit.\n";
+            {   context.err (quote (s));
+                context.err (": no such nit.\n"); }
 
     if (var_.count (NITS ERR))
         for (auto s : var_ [NITS ERR].as < vstr_t > ())
             if (! nitpick::modify_severity (s, es_error))
-                context.err () << quote (s) << ": no such nit.\n";
+            {   context.err (quote (s));
+                context.err (": no such nit.\n"); }
 
     if (var_.count (NITS INFO))
         for (auto s : var_ [NITS INFO].as < vstr_t > ())
             if (! nitpick::modify_severity (s, es_info))
-                context.err () << quote (s) << ": no such nit.\n";
+            {   context.err (quote (s));
+                context.err (": no such nit.\n"); }
 
     if (var_.count (NITS SILENCE))
         for (auto s : var_ [NITS SILENCE].as < vstr_t > ())
             if (! nitpick::modify_severity (s, es_silence))
-                context.err () << quote (s) << ": no such nit.\n";
+            {   context.err (quote (s));
+                context.err (": no such nit.\n"); }
 
     if (var_.count (NITS WARNING))
         for (auto s : var_ [NITS WARNING].as < vstr_t > ())
             if (! nitpick::modify_severity (s, es_warning))
-                context.err () << quote (s) << ": no such nit.\n";
+            {   context.err (quote (s));
+                context.err (": no such nit.\n"); }
 
     context.microdata (var_.count (VALIDATION MICRODATAARG));
 
-    context.shadow_comment (var_.count (SHADOW COMMENT));
+    if (! context.cgi ())
+    {   context.load_css (var_.count (GENERAL CSS_OPTION) == 0);
+        context.nochange (var_.count (GENERAL NOCHANGE));
+        context.rdf (var_.count (GENERAL RDF));
+        context.rel (var_.count (GENERAL REL));
+        context.rpt_opens (var_.count (GENERAL RPT));
+        context.ssi (var_.count (GENERAL SSI));
+        context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
+
+        const long meg = 1024*1024;
+
+        if (! var_.count (GENERAL MAXFILESIZE))
+            context.max_file_size (4 * meg);
+        else
+        {   long max = static_cast < long > (var_ [GENERAL MAXFILESIZE].as < int > ());
+            if (max < 0 || (max > (LONG_MAX / meg))) max = DEFAULT_MAX_FILE_SIZE;
+            context.max_file_size (max * meg); }
+
+        context.unknown_class (var_.count (GENERAL CLASS));
+        if (var_.count (GENERAL CORPUS)) context.corpus (nix_path_to_local (var_ [GENERAL CORPUS].as < ::std::string > ()));
+        if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
+        if (var_.count (GENERAL IGNORED)) context.ignore (var_ [GENERAL IGNORED].as < vstr_t > ());
+        if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
+        context.process_webmentions (var_.count (GENERAL WEBMENTION));
+
+        context.rfc_1867 (! var_.count (HTML RFC1867));
+        context.rfc_1942 (! var_.count (HTML RFC1942));
+        context.rfc_1980 (! var_.count (HTML RFC1980));
+        context.rfc_2070 (! var_.count (HTML RFC2070));
+
+        context.links (var_.count (LINKS CHECK));
+        context.external (var_.count (LINKS EXTERNAL));
+        context.forwarded (var_.count (LINKS FORWARD));
+        context.once (var_.count (LINKS ONCE));
+        context.revoke (var_.count (LINKS REVOKE));
+        context.crosslinks (var_.count (LINKS XLINK));
+
+        context.mf_export (var_.count (MF EXPORT));
+
+        context.md_export (var_.count (MICRODATA EXPORT));
+        context.schema (var_.count (MICRODATA MICRODATAARG));
+        if (var_.count (MICRODATA ROOT)) context.export_root (nix_path_to_local (var_ [MICRODATA ROOT].as < ::std::string > ()));
+        if (var_.count (MICRODATA VIRTUAL)) context.exports (var_ [MICRODATA VIRTUAL].as < vstr_t > ());
+
+        context.shadow_comment (var_.count (SHADOW COMMENT));
+        context.shadow_changed (var_.count (SHADOW CHANGED));
 #ifdef NOLYNX
-    if (var_.count (SHADOW COPY))
-    {   int n = var_ [SHADOW COPY].as < int > ();
-        if ((n == 2) || (n == 3)) n = 4;
-        context.copy (n); }
+        if (var_.count (SHADOW COPY))
+        {   int n = var_ [SHADOW COPY].as < int > ();
+            if ((n == 2) || (n == 3)) n = 4;
+            context.copy (n); }
 #else // NOLYNX
-    if (var_.count (SHADOW COPY)) context.copy (var_ [SHADOW COPY].as < int > ());
+        if (var_.count (SHADOW COPY)) context.copy (var_ [SHADOW COPY].as < int > ());
 #endif // NOLYNX
-    if (var_.count (SHADOW FICHIER)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FICHIER].as < ::std::string > ()));
-    if (var_.count (SHADOW IGNORED)) context.shadow_ignore (var_ [SHADOW IGNORED].as < vstr_t > ());
-    context.info (var_.count (SHADOW INFO));
-    if (var_.count (SHADOW ROOT)) context.shadow (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
-    context.shadow_space (var_.count (SHADOW SPACING));
-    context.shadow_ssi (var_.count (SHADOW SSI));
-    if (var_.count (SHADOW VIRTUAL)) context.virtuals (var_ [SHADOW VIRTUAL].as < vstr_t > ());
+        if (var_.count (SHADOW FICHIER)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FICHIER].as < ::std::string > ()));
+        if (var_.count (SHADOW IGNORED)) context.shadow_ignore (var_ [SHADOW IGNORED].as < vstr_t > ());
+        context.info (var_.count (SHADOW INFO));
+        if (var_.count (SHADOW ROOT)) context.shadow_root (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
+        context.shadow_space (var_.count (SHADOW SPACING));
+        context.shadow_ssi (var_.count (SHADOW SSI));
+        if (var_.count (SHADOW VIRTUAL)) context.virtuals (var_ [SHADOW VIRTUAL].as < vstr_t > ());
 
-    if (var_.count (STATS EXPORT)) context.stats (var_ [STATS EXPORT].as < ::std::string > ());
-    context.meta (var_.count (STATS META));
-    context.stats_page (var_.count (STATS PAGE));
-    context.stats_summary (var_.count (STATS SUMMARY));
+        if (var_.count (STATS EXPORT)) context.stats (var_ [STATS EXPORT].as < ::std::string > ());
+        context.meta (var_.count (STATS META));
+        context.stats_page (var_.count (STATS PAGE));
+        context.stats_summary (var_.count (STATS SUMMARY));
 
-    if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
-    if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());
-    else { vstr_t ex; ex.push_back ("html"); context.extensions (ex); }
-    if (var_.count (WEBSITE ROOT)) context.root (nix_path_to_local (var_ [WEBSITE ROOT].as < ::std::string > ()));
-    if (var_.count (WEBSITE SITE)) context.site (var_ [WEBSITE SITE].as < vstr_t > ());
-    if (var_.count (WEBSITE VIRTUAL)) context.virtuals (var_ [WEBSITE VIRTUAL].as < vstr_t > ());
+        if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
+        if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());
+        else { vstr_t ex; ex.push_back ("html"); context.extensions (ex); }
+        if (var_.count (WEBSITE ROOT)) context.root (nix_path_to_local (var_ [WEBSITE ROOT].as < ::std::string > ()));
+        if (var_.count (WEBSITE SITE)) context.site (var_ [WEBSITE SITE].as < vstr_t > ());
+        if (var_.count (WEBSITE VIRTUAL)) context.virtuals (var_ [WEBSITE VIRTUAL].as < vstr_t > ());
 
-    if (var_.count (WMIN WRITE)) context.write_path (var_ [WMIN WRITE].as < ::std::string > ());
-    if (var_.count (WMIN STUB)) context.stub (var_ [WMIN STUB].as < ::std::string > ());
-    if (var_.count (WMIN HOOK)) context.hook (var_ [WMIN HOOK].as < ::std::string > ());
-    if (var_.count (WMIN MACROEND)) context.macro_end (var_ [WMIN MACROEND].as < ::std::string > ());
-    if (var_.count (WMIN MACROSTART)) context.macro_start (var_ [WMIN MACROSTART].as < ::std::string > ());
-    if (var_.count (WMIN PATH)) context.incoming (path_in_context (nix_path_to_local (var_ [WMIN PATH].as < ::std::string > ())));
-    if (var_.count (WMIN MENTION)) context.mentions (var_ [WMIN MENTION].as < vstr_t > ());
-    if (var_.count (WMIN TEMPLATE)) context.templates ( var_ [WMIN TEMPLATE].as < vstr_t > ());
-    if (var_.count (WMIN TEST_HEADER)) context.test_header (var_ [WMIN TEST_HEADER].as < ::std::string > ());
+        if (! context.cgi ())
+        {   if (var_.count (WMIN WRITE)) context.write_path (var_ [WMIN WRITE].as < ::std::string > ());
+            if (var_.count (WMIN STUB)) context.stub (var_ [WMIN STUB].as < ::std::string > ());
+            if (var_.count (WMIN HOOK)) context.hook (var_ [WMIN HOOK].as < ::std::string > ());
+            if (var_.count (WMIN MACROEND)) context.macro_end (var_ [WMIN MACROEND].as < ::std::string > ());
+            if (var_.count (WMIN MACROSTART)) context.macro_start (var_ [WMIN MACROSTART].as < ::std::string > ());
+            if (var_.count (WMIN PATH)) context.incoming (path_in_context (nix_path_to_local (var_ [WMIN PATH].as < ::std::string > ())));
+            if (var_.count (WMIN MENTION)) context.mentions (var_ [WMIN MENTION].as < vstr_t > ());
+            if (var_.count (WMIN TEMPLATE)) context.templates ( var_ [WMIN TEMPLATE].as < vstr_t > ());
+            if (var_.count (WMIN TEST_HEADER)) context.test_header (var_ [WMIN TEST_HEADER].as < ::std::string > ());
 
-    context.notify (var_.count (WMOUT NOTIFY));
-    context.reset (var_.count (WMOUT RESET));
-    if (var_.count (WMOUT SECRET)) context.secret (var_ [WMOUT SECRET].as < ::std::string > ());
+            context.notify (var_.count (WMOUT NOTIFY));
+            context.reset (var_.count (WMOUT RESET));
+            if (var_.count (WMOUT SECRET)) context.secret (var_ [WMOUT SECRET].as < ::std::string > ()); }
 
-    if (var_.count (VALIDATION ATTRIB)) add_attributes (var_ [VALIDATION ATTRIB].as < vstr_t > ());
-    if (var_.count (VALIDATION CHARSET)) type_master < t_charset > :: extend (var_ [VALIDATION CHARSET].as < vstr_t > ());
-    if (var_.count (VALIDATION CLASS)) type_master < t_class > :: extend (var_ [VALIDATION CLASS].as < vstr_t > ());
-    if (var_.count (VALIDATION COLOR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOR].as < vstr_t > ());
-    if (var_.count (VALIDATION COLOUR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOUR].as < vstr_t > ());
-    if (var_.count (VALIDATION CURRENCY)) type_master < t_currency > :: extend (var_ [VALIDATION CURRENCY].as < vstr_t > ());
-    if (var_.count (VALIDATION DINGBATARG)) type_master < t_dingbat > :: extend (var_ [VALIDATION DINGBATARG].as < vstr_t > ());
-    if (var_.count (VALIDATION ELEMENT)) add_elements (var_ [VALIDATION ELEMENT].as < vstr_t > ());
-    if (var_.count (VALIDATION ELEMATTR)) add_element_attributes (var_ [VALIDATION ELEMATTR].as < vstr_t > ());
-    if (var_.count (VALIDATION EXTENSION)) type_master < t_format > :: extend (var_ [VALIDATION EXTENSION].as < vstr_t > ());
-    if (var_.count (VALIDATION HTTPEQUIV)) type_master < t_httpequiv > :: extend (var_ [VALIDATION HTTPEQUIV].as < vstr_t > ());
-    if (var_.count (VALIDATION LANG)) type_master < t_lang > :: extend (var_ [VALIDATION LANG].as < vstr_t > ());
-    if (var_.count (VALIDATION METANAME)) type_master < t_metaname  > :: extend (var_ [VALIDATION METANAME].as < vstr_t > ());
-    if (var_.count (VALIDATION MIMETYPE)) type_master < t_mime > :: extend (var_ [VALIDATION MIMETYPE].as < vstr_t > ());
-    if (var_.count (VALIDATION REL)) type_master < t_rel > :: extend (var_ [VALIDATION REL].as < vstr_t > ());
-    if (var_.count (VALIDATION SGML)) type_master < t_sgml > :: extend (var_ [VALIDATION SGML].as < vstr_t > (), static_cast < ::std::size_t > (doc_context));
+        if (var_.count (VALIDATION ATTRIB)) add_attributes (var_ [VALIDATION ATTRIB].as < vstr_t > ());
+        if (var_.count (VALIDATION CHARSET)) type_master < t_charset > :: extend (var_ [VALIDATION CHARSET].as < vstr_t > ());
+        if (var_.count (VALIDATION CLASS)) type_master < t_class > :: extend (var_ [VALIDATION CLASS].as < vstr_t > ());
+        if (var_.count (VALIDATION COLOR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOR].as < vstr_t > ());
+        if (var_.count (VALIDATION COLOUR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOUR].as < vstr_t > ());
+        if (var_.count (VALIDATION CURRENCY)) type_master < t_currency > :: extend (var_ [VALIDATION CURRENCY].as < vstr_t > ());
+        if (var_.count (VALIDATION DINGBATARG)) type_master < t_dingbat > :: extend (var_ [VALIDATION DINGBATARG].as < vstr_t > ());
+        if (var_.count (VALIDATION ELEMENT)) add_elements (var_ [VALIDATION ELEMENT].as < vstr_t > ());
+        if (var_.count (VALIDATION ELEMATTR)) add_element_attributes (var_ [VALIDATION ELEMATTR].as < vstr_t > ());
+        if (var_.count (VALIDATION EXTENSION)) type_master < t_format > :: extend (var_ [VALIDATION EXTENSION].as < vstr_t > ());
+        if (var_.count (VALIDATION HTTPEQUIV)) type_master < t_httpequiv > :: extend (var_ [VALIDATION HTTPEQUIV].as < vstr_t > ());
+        if (var_.count (VALIDATION LANG)) type_master < t_lang > :: extend (var_ [VALIDATION LANG].as < vstr_t > ());
+        if (var_.count (VALIDATION METANAME)) type_master < t_metaname  > :: extend (var_ [VALIDATION METANAME].as < vstr_t > ());
+        if (var_.count (VALIDATION MIMETYPE)) type_master < t_mime > :: extend (var_ [VALIDATION MIMETYPE].as < vstr_t > ());
+        if (var_.count (VALIDATION REL)) type_master < t_rel > :: extend (var_ [VALIDATION REL].as < vstr_t > ());
+        if (var_.count (VALIDATION SGML)) type_master < t_sgml > :: extend (var_ [VALIDATION SGML].as < vstr_t > (), static_cast < ::std::size_t > (doc_context));
 
 #define TEST_VAR(XX) if (var_.count (VALIDATION #XX)) type_master < t_##XX > :: extend (var_ [VALIDATION #XX].as < vstr_t > ())
-    TEST_VAR (action);
-    TEST_VAR (align3);
-    TEST_VAR (alignplus);
-    TEST_VAR (as);
-    TEST_VAR (autocapitalise);
-    TEST_VAR (autocomplete);
-    TEST_VAR (decalign);
-    TEST_VAR (citype);
-    TEST_VAR (cntype);
-    TEST_VAR (composite_operator);
-    TEST_VAR (dingbat);
-    TEST_VAR (dir);
-    TEST_VAR (display);
-    TEST_VAR (dominantbaseline);
-    TEST_VAR (enterkeyhint);
-    TEST_VAR (figalign);
-    TEST_VAR (halign);
-    TEST_VAR (inputmode);
-    TEST_VAR (inputplus);
-    TEST_VAR (inputtype);
-    TEST_VAR (inputtype3);
-    TEST_VAR (inputtype32);
-    TEST_VAR (inputtype4);
-    TEST_VAR (inputtype5);
-    TEST_VAR (kind);
-    TEST_VAR (linebreak);
-    TEST_VAR (listtype);
-    TEST_VAR (mah);
-    TEST_VAR (mathalign);
-    TEST_VAR (mathvariant);
-    TEST_VAR (matrixtype);
-    TEST_VAR (media);
-    TEST_VAR (mediafeature);
-    TEST_VAR (mediakeyword);
-    TEST_VAR (method);
-    TEST_VAR (mf_identifier);
-    TEST_VAR (mf_itemtype);
-    TEST_VAR (mf_listing_action);
-    TEST_VAR (mf_method);
-    TEST_VAR (mf_reviewtype);
-    TEST_VAR (microdata_domain);
-    TEST_VAR (microdata_root);
-    TEST_VAR (namedspace);
-    TEST_VAR (namespace);
-    TEST_VAR (mathnotation);
-    TEST_VAR (ogtype);
-    TEST_VAR (paintkeyword);
-    TEST_VAR (plusstyle);
-    TEST_VAR (pointerevents);
-    TEST_VAR (print);
-    TEST_VAR (referrer);
-    TEST_VAR (renderingintent);
-    TEST_VAR (rules);
-    TEST_VAR (sandbox);
-    TEST_VAR (shape7);
-    TEST_VAR (shaperendering);
-    TEST_VAR (ssi);
-    TEST_VAR (ssi_comparison);
-    TEST_VAR (ssi_encoding);
-    TEST_VAR (ssi_env);
-    TEST_VAR (svg_align);
-    TEST_VAR (svg_fontstretch);
-    TEST_VAR (svg_fontstretch_ff);
-    TEST_VAR (svg_fontweight);
-    TEST_VAR (svg_fontweight_ff);
-    TEST_VAR (svg_mode);
-    TEST_VAR (svg_overflow);
-    TEST_VAR (svg_version);
-    TEST_VAR (svg_version_grand);
-    TEST_VAR (tableframe);
-    TEST_VAR (textdecoration);
-    TEST_VAR (textrendering);
-    TEST_VAR (transform_anim);
-    TEST_VAR (transform_fn);
-    TEST_VAR (turbulence_type);
-    TEST_VAR (vectoreffect_2);
-    TEST_VAR (xlinkshow);
-    TEST_VAR (xmlns);
+        TEST_VAR (action);
+        TEST_VAR (align3);
+        TEST_VAR (alignplus);
+        TEST_VAR (as);
+        TEST_VAR (autocapitalise);
+        TEST_VAR (autocomplete);
+        TEST_VAR (decalign);
+        TEST_VAR (citype);
+        TEST_VAR (cntype);
+        TEST_VAR (composite_operator);
+        TEST_VAR (dingbat);
+        TEST_VAR (dir);
+        TEST_VAR (display);
+        TEST_VAR (dominantbaseline);
+        TEST_VAR (enterkeyhint);
+        TEST_VAR (figalign);
+        TEST_VAR (halign);
+        TEST_VAR (inputmode);
+        TEST_VAR (inputplus);
+        TEST_VAR (inputtype);
+        TEST_VAR (inputtype3);
+        TEST_VAR (inputtype32);
+        TEST_VAR (inputtype4);
+        TEST_VAR (inputtype5);
+        TEST_VAR (kind);
+        TEST_VAR (linebreak);
+        TEST_VAR (listtype);
+        TEST_VAR (mah);
+        TEST_VAR (mathalign);
+        TEST_VAR (mathvariant);
+        TEST_VAR (matrixtype);
+        TEST_VAR (media);
+        TEST_VAR (mediafeature);
+        TEST_VAR (mediakeyword);
+        TEST_VAR (method);
+        TEST_VAR (mf_identifier);
+        TEST_VAR (mf_itemtype);
+        TEST_VAR (mf_listing_action);
+        TEST_VAR (mf_method);
+        TEST_VAR (mf_reviewtype);
+        TEST_VAR (microdata_domain);
+        TEST_VAR (microdata_root);
+        TEST_VAR (namedspace);
+        TEST_VAR (namespace);
+        TEST_VAR (mathnotation);
+        TEST_VAR (ogtype);
+        TEST_VAR (paintkeyword);
+        TEST_VAR (plusstyle);
+        TEST_VAR (pointerevents);
+        TEST_VAR (print);
+        TEST_VAR (referrer);
+        TEST_VAR (renderingintent);
+        TEST_VAR (rules);
+        TEST_VAR (sandbox);
+        TEST_VAR (shape7);
+        TEST_VAR (shaperendering);
+        TEST_VAR (ssi);
+        TEST_VAR (ssi_comparison);
+        TEST_VAR (ssi_encoding);
+        TEST_VAR (ssi_env);
+        TEST_VAR (svg_align);
+        TEST_VAR (svg_fontstretch);
+        TEST_VAR (svg_fontstretch_ff);
+        TEST_VAR (svg_fontweight);
+        TEST_VAR (svg_fontweight_ff);
+        TEST_VAR (svg_mode);
+        TEST_VAR (svg_overflow);
+        TEST_VAR (svg_version);
+        TEST_VAR (svg_version_grand);
+        TEST_VAR (tableframe);
+        TEST_VAR (textdecoration);
+        TEST_VAR (textrendering);
+        TEST_VAR (transform_anim);
+        TEST_VAR (transform_fn);
+        TEST_VAR (turbulence_type);
+        TEST_VAR (vectoreffect_2);
+        TEST_VAR (xlinkshow);
+        TEST_VAR (xmlns);
 #undef TEST_VAR
 
-    if (context.write_path ().empty ()) context.write_path (context.root ());
+        if (context.write_path ().empty ()) context.write_path (context.root ()); }
     schema_version::init (); }
 
 void pvs (::std::ostringstream& res, const vstr_t& data)
@@ -773,16 +919,68 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 ::std::string options::report () const
 {   ::std::ostringstream res;
     if (context.test ()) return res.str ();
+
+    ::std::ostringstream e;
+
+    if (env_.count (ENV_CONFIG)) e << ENV_CONFIG ": " << env_ [ENV_CONFIG].as < ::std::string > () << "\n";
+    if (env_.count (ENV_ARGS)) e << ENV_ARGS ": " << env_ [ENV_ARGS].as < ::std::string > () << "\n";
+
+    if (env_.count (QUERY_STRING))
+    {   if (env_.count (SERVER_SOFTWARE)) e << SERVER_SOFTWARE ": " << env_ [SERVER_SOFTWARE].as < ::std::string > () << "\n";
+        if (env_.count (SERVER_NAME)) e << SERVER_NAME ": " << env_ [SERVER_NAME].as < ::std::string > () << "\n";
+        if (env_.count (GATEWAY_INTERFACE)) e << GATEWAY_INTERFACE ": " << env_ [GATEWAY_INTERFACE].as < ::std::string > () << "\n";
+        if (env_.count (SERVER_PROTOCOL)) e << SERVER_PROTOCOL ": " << env_ [SERVER_PROTOCOL].as < ::std::string > () << "\n";
+        if (env_.count (SERVER_PORT)) e << SERVER_PORT ": " << env_ [SERVER_PORT].as < ::std::string > () << "\n";
+        if (env_.count (REQUEST_METHOD)) e << REQUEST_METHOD ": " << env_ [REQUEST_METHOD].as < ::std::string > () << "\n";
+        if (env_.count (HTTP_ACCEPT)) e << HTTP_ACCEPT ": " << env_ [HTTP_ACCEPT].as < ::std::string > () << "\n";
+        if (env_.count (PATH_INFO)) e << PATH_INFO ": " << env_ [PATH_INFO].as < ::std::string > () << "\n";
+        if (env_.count (PATH_TRANSLATED)) e << PATH_TRANSLATED ": " << env_ [PATH_TRANSLATED].as < ::std::string > () << "\n";
+        if (env_.count (SCRIPT_NAME)) e << SCRIPT_NAME ": " << env_ [SCRIPT_NAME].as < ::std::string > () << "\n";
+        if (env_.count (REMOTE_HOST)) e << REMOTE_HOST ": " << env_ [REMOTE_HOST].as < ::std::string > () << "\n";
+        if (env_.count (REMOTE_ADDR)) e << REMOTE_ADDR ": " << env_ [REMOTE_ADDR].as < ::std::string > () << "\n";
+        if (env_.count (REMOTE_USER)) e << REMOTE_USER ": " << env_ [REMOTE_USER].as < ::std::string > () << "\n";
+        if (env_.count (AUTH_TYPE)) e << AUTH_TYPE ": " << env_ [AUTH_TYPE].as < ::std::string > () << "\n";;
+        if (env_.count (CONTENT_TYPE)) e << CONTENT_TYPE ": " << env_ [CONTENT_TYPE].as < ::std::string > () << "\n";
+        if (env_.count (CONTENT_LENGTH)) e << CONTENT_LENGTH ": " << env_ [CONTENT_LENGTH].as < ::std::string > () << "\n";
+
+        ::std::string qs (env_ [QUERY_STRING].as < ::std::string > ());
+        e << QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; }
+
+    ::std::string x (e.str ());
+    if (! x.empty ()) res << "\n** Environment:\n" << x << "\n";
+
     res << "\n** Arguments:\n";
 
     if (var_.count (HELP)) res << HELP "\n";
     if (var_.count (VERSION)) res << VERSION "\n";
+
+    if (var_.count (ENVIRONMENT QUERY_STRING))
+    {   if (var_.count (ENVIRONMENT SERVER_SOFTWARE)) res << ENVIRONMENT SERVER_SOFTWARE ": " << var_ [ENVIRONMENT SERVER_SOFTWARE].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT SERVER_NAME)) res << ENVIRONMENT SERVER_NAME ": " << var_ [ENVIRONMENT SERVER_NAME].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT GATEWAY_INTERFACE)) res << ENVIRONMENT GATEWAY_INTERFACE ": " << var_ [ENVIRONMENT GATEWAY_INTERFACE].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT SERVER_PROTOCOL)) res << ENVIRONMENT SERVER_PROTOCOL ": " << var_ [ENVIRONMENT SERVER_PROTOCOL].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT SERVER_PORT)) res << ENVIRONMENT SERVER_PORT ": " << var_ [ENVIRONMENT SERVER_PORT].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT REQUEST_METHOD)) res << ENVIRONMENT REQUEST_METHOD ": " << var_ [ENVIRONMENT REQUEST_METHOD].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT HTTP_ACCEPT)) res << ENVIRONMENT HTTP_ACCEPT ": " << var_ [ENVIRONMENT HTTP_ACCEPT].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT PATH_INFO)) res << ENVIRONMENT PATH_INFO ": " << var_ [ENVIRONMENT PATH_INFO].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT PATH_TRANSLATED)) res << ENVIRONMENT PATH_TRANSLATED ": " << var_ [ENVIRONMENT PATH_TRANSLATED].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT SCRIPT_NAME)) res << ENVIRONMENT SCRIPT_NAME ": " << var_ [ENVIRONMENT SCRIPT_NAME].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT REMOTE_HOST)) res << ENVIRONMENT REMOTE_HOST ": " << var_ [ENVIRONMENT REMOTE_HOST].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT REMOTE_ADDR)) res << ENVIRONMENT REMOTE_ADDR ": " << var_ [ENVIRONMENT REMOTE_ADDR].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT REMOTE_USER)) res << ENVIRONMENT REMOTE_USER ": " << var_ [ENVIRONMENT REMOTE_USER].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT AUTH_TYPE)) res << ENVIRONMENT AUTH_TYPE ": " << var_ [ENVIRONMENT AUTH_TYPE].as < ::std::string > () << "\n";;
+        if (var_.count (ENVIRONMENT CONTENT_TYPE)) res << ENVIRONMENT CONTENT_TYPE ": " << var_ [ENVIRONMENT CONTENT_TYPE].as < ::std::string > () << "\n";
+        if (var_.count (ENVIRONMENT CONTENT_LENGTH)) res << ENVIRONMENT CONTENT_LENGTH ": " << var_ [ENVIRONMENT CONTENT_LENGTH].as < ::std::string > () << "\n";
+
+        ::std::string qs (var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
+        res << ENVIRONMENT QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; }
 
     if (var_.count (GENERAL CGI)) res << GENERAL CGI "\n";
     if (var_.count (GENERAL CLASS)) res << GENERAL CLASS "\n";
     if (var_.count (GENERAL CORPUS)) res << GENERAL CORPUS ": " << var_ [GENERAL CORPUS].as < ::std::string > () << "\n";
     if (var_.count (GENERAL CSS_OPTION)) res << GENERAL CSS_OPTION "\n";
     if (var_.count (GENERAL CUSTOM)) { res << GENERAL CUSTOM ": "; pvs (res, var_ [GENERAL CUSTOM].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (GENERAL ENVIRONMENT)) { res << GENERAL ENVIRONMENT ": "; pvs (res, var_ [GENERAL ENVIRONMENT].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL FICHIER)) res << GENERAL FICHIER ": " << var_ [GENERAL FICHIER].as < ::std::string > () << "\n";
     if (var_.count (GENERAL IGNORED)) { res << GENERAL IGNORED ": "; pvs (res, var_ [GENERAL IGNORED].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL LANG)) res << GENERAL LANG ": " << var_ [GENERAL LANG].as < ::std::string > () << "\n";
@@ -802,8 +1000,9 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (HTML RFC1942)) res << HTML RFC1942 "\n";
     if (var_.count (HTML RFC1980)) res << HTML RFC1980 "\n";
     if (var_.count (HTML RFC2070)) res << HTML RFC2070 "\n";
+    if (var_.count (HTML SNIPPET)) res << HTML SNIPPET ": " << var_ [HTML SNIPPET].as < ::std::string > () << "\n";
     if (var_.count (HTML TITLE)) res << HTML TITLE ": " << var_ [HTML TITLE].as < int > () << "\n";
-    if (var_.count (HTML VERSION)) res << HTML VERSION "\n";
+    if (var_.count (HTML VERSION)) res << HTML VERSION ": " << var_ [HTML VERSION].as < ::std::string > () << "\n";
 
     if (var_.count (LINKS EXTERNAL)) res << LINKS EXTERNAL "\n";
     if (var_.count (LINKS FORWARD)) res << LINKS FORWARD "\n";
@@ -838,6 +1037,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT "\n";
     if (var_.count (SHADOW COPY)) res << SHADOW COPY ": " << var_ [SHADOW COPY].as < int > () << "\n";
     if (var_.count (SHADOW FICHIER)) res << SHADOW FICHIER ": " << var_ [SHADOW FICHIER].as < ::std::string > () << "\n";
+    if (var_.count (SHADOW CHANGED)) res << SHADOW CHANGED "\n";
     if (var_.count (SHADOW IGNORED)) { res << SHADOW IGNORED ": "; pvs (res, var_ [SHADOW IGNORED].as < vstr_t > ()); res << "\n"; }
     if (var_.count (SHADOW ROOT)) res << SHADOW ROOT ": " << var_ [SHADOW ROOT].as < ::std::string > () << "\n";
     if (var_.count (SHADOW SPACING)) res << SHADOW SPACING "\n";
@@ -969,32 +1169,5 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (WMOUT NOTIFY)) res << WMOUT NOTIFY "\n";
     if (var_.count (WMOUT RESET)) res << WMOUT RESET "\n";
     if (var_.count (WMOUT SECRET)) res << WMOUT SECRET ": " << var_ [WMOUT SECRET].as < ::std::string > () << "\n";
-
-    ::std::ostringstream e;
-
-    if (env_.count (ENV_CONFIG)) e << ENV_CONFIG ": " << env_ [ENV_CONFIG].as < ::std::string > () << "\n";
-    if (env_.count (ENV_ARGS)) e << ENV_ARGS ": " << env_ [ENV_ARGS].as < ::std::string > () << "\n";
-
-    if (context.cgi ())
-    {   if (env_.count (SERVER_SOFTWARE) && ! context.server_software_.empty ()) e << SERVER_SOFTWARE ": " << context.server_software_ << "\n";
-        if (env_.count (SERVER_NAME) && ! context.server_name_ .empty ()) e << SERVER_NAME ": " << context.server_name_ << "\n";
-        if (env_.count (GATEWAY_INTERFACE) && ! context.gateway_interface_.empty ()) e << GATEWAY_INTERFACE ": " << context.gateway_interface_ << "\n";
-        if (env_.count (SERVER_PROTOCOL) && ! context.server_protocol_.empty ()) e << SERVER_PROTOCOL ": " << context.server_protocol_ << "\n";
-        if (env_.count (SERVER_PORT) && ! context.server_port_.empty ()) e << SERVER_PORT ": " << context.server_port_ << "\n";
-        if (env_.count (REQUEST_METHOD) && ! context.request_method_.empty ()) e << REQUEST_METHOD ": " << context.request_method_ << "\n";
-        if (env_.count (HTTP_ACCEPT) && ! context.http_accept_.empty ()) e << HTTP_ACCEPT ": " << context.http_accept_ << "\n";
-        if (env_.count (PATH_INFO) && ! context.path_info_.empty ()) e << PATH_INFO ": " << context.path_info_ << "\n";
-        if (env_.count (PATH_TRANSLATED) && ! context.path_translated_.empty ()) e << PATH_TRANSLATED ": " << context.path_translated_ << "\n";
-        if (env_.count (SCRIPT_NAME) && ! context.script_name_.empty ()) e << SCRIPT_NAME ": " << context.script_name_ << "\n";
-        if (env_.count (QUERY_STRING) && ! context.query_string_.empty ()) e << QUERY_STRING ": " << context.query_string_ << "\n";
-        if (env_.count (REMOTE_HOST) && ! context.remote_host_ .empty ()) e << REMOTE_HOST ": " << context.remote_host_ << "\n";
-        if (env_.count (REMOTE_ADDR) && ! context.remote_addr_.empty ()) e << REMOTE_ADDR ": " << context.remote_addr_ << "\n";
-        if (env_.count (REMOTE_USER) && ! context.remote_user_.empty ()) e << REMOTE_USER ": " << context.remote_user_ << "\n";
-        if (env_.count (AUTH_TYPE) && ! context.auth_type_.empty ()) e << AUTH_TYPE ": " << context.auth_type_ << "\n";;
-        if (env_.count (CONTENT_TYPE) && ! context.content_type_.empty ()) e << CONTENT_TYPE ": " << context.content_type_ << "\n";
-        if (env_.count (CONTENT_LENGTH) && ! context.content_length_.empty ()) e << CONTENT_LENGTH ": " << context.content_length_ << "\n"; }
-
-    ::std::string x (e.str ());
-    if (! x.empty ()) res << "\n** Environment:\n" << x << "\n";
 
     return res.str (); }

@@ -1,0 +1,26 @@
+{
+    "vevent": {
+        "1": {
+            "type": "http:\/\/microformats.org\/profile\/hcalendar#vevent",
+            "prop": {
+                "summary": "Bluesday Tuesday: Money Road",
+                "dtstart": "2009-05-05T19:00:00Z",
+                "dtend": "2009-05-05T21:00:00Z",
+                "url": "http:\/\/livebrum.example.com\/2009\/05\/05\/bluesday-tuesday-money-road",
+                "location": "The RoadHouse",
+                "description": "via livebrum.co.uk"
+            }
+        },
+        "2": {
+            "type": "http:\/\/microformats.org\/profile\/hcalendar#vevent",
+            "prop": {
+                "summary": "Bluesday Tuesday: Money Road",
+                "dtstart": "2009-05-05T19:00:00Z",
+                "dtend": "2009-05-05T21:00:00Z",
+                "location": "The RoadHouse",
+                "url": "http:\/\/livebrum.example.com\/2009\/05\/05\/bluesday-tuesday-money-road",
+                "description": "via livebrum.co.uk"
+            }
+        }
+    }
+}

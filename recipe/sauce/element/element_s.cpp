@@ -167,12 +167,18 @@ void element::examine_select ()
             pick (nit_bad_select, ed_50, "4.10.7 The select element", es_warning, ec_attribute, "<SELECT> has no MULTIPLE yet multiple child <OPTION>s have SELECTED specified"); } }
 
 void element::examine_share ()
-{   if (! a_.known (a_href))
-        pick (nit_requires_href, ed_math_3, "4.2.7.1 The share element", es_error, ec_attribute, "<SHARE> requires an HREF");
+{   if (! a_.known (a_href) && ! a_.known (a_src))
+        pick (nit_requires_href, ed_math_3, "4.2.7.1 The share element", es_error, ec_attribute, "<SHARE> requires a SRC or an HREF");
     else
-    {   url u (a_.get_x < attr_href > ());
-        if (! u.is_simple_id ()) return;
-        ::std::string i (u.id ());
+    {   ::std::string i;
+        if (a_.known (a_src))
+        {   url u (a_.get_x < attr_src > ());
+            if (! u.is_simple_id ()) return;
+            i = u.id (); }
+        else if (a_.known (a_href))
+        {   url u (a_.get_x < attr_href > ());
+            if (! u.is_simple_id ()) return;
+            i = u.id (); }
         if (get_ids ().has_id (i))
         {   element* pide = get_ids ().get_element (i);
             if (pide != nullptr)

@@ -70,14 +70,17 @@ SSC will process the following environment variables:
 SSC_CONFIG  name of configuration file if none given on the command line
 SSC_ARGS    command line switches
 
+SSC will recognise when it is running in a CGI environment by processing QUERY_STRING and other
+CGI environment variables. In such circumstances, QUERY_STRING must contain a parameter called
+html.snippet, with an appropriate value.
+
+
 
 Configuration Files
 ===================
 
-SSC will accept configuration files, making it easy to set up checks that you wish to run from time to time.
-They’re in INI format. I’ll going to illustrate more features of the product using example configuration
-files, mostly adapted from the tests.
-
+SSC will accept configuration files in INI file format. Here are some examples, mostly adapted from
+the tests:
 
 
 A simple configuration file
@@ -93,11 +96,11 @@ extension=html
 index=index.html
 root=~/www/htdocs
 
-The website is for example.edu, which can be found in ~/www.htdocs. Standard index files are called
-index.html, and html files always have the html extension.
+The website for example.edu can be found in ~/www.htdocs. Standard index files are called index.html, and
+html files always have the html extension.
 
-The configuration outputs errors, warnings and info messages to ssc.out. It also requires analysis of class
-identifiers, which means SSC will scan any CSS files it encounters for class names.
+The configuration outputs errors, warnings and info messages to ssc.out. It analyses class identifiers, so
+will scan CSS files for class names.
 
 
 Links and virtual directories
@@ -118,10 +121,10 @@ check=yes
 external=yes
 xlink=yes
 
-Beyond the previous example, check links, external links, and crosslinked ids.
+Beyond the previous example, SSC will also check links, including external links and crosslinked ids.
 
-The configuration file specifies a virtual directory. When a link refers to the directory /net, search for
-the corresponding files in tests/virtual (relative to the current directory, not the root).
+The configuration file specifies a virtual directory. When a link refers to the local directory /net,
+SSC will seek the corresponding file(s) in tests/virtual (relative to the current directory, not the root).
 
 
 Microformats
@@ -140,7 +143,7 @@ root=~/www/htdocs
 [microformat]
 verify=yes
 
-The only new thing here is to turn on microformats analysis (class analysis is necessary too).
+The only new thing here is to turn on microformats analysis (class analysis is required).
 
 
 Microdata
@@ -156,12 +159,12 @@ extension=html
 index=index.html
 root=~/www/htdocs
 
-There need be nothing special in the configuration file for microdata. However, if you use itemref in your
-pages, then it is possible that ssc will give false warnings in the section referenced by the itemref. This
-is because ssc does not always know that the referenced data is not intended to be used in its own right,
-unless you put it under a TEMPLATE element.
+Actually, SSC will report on any microdata it finds, no matter what. Note that, if you use itemref in your
+pages, ssc may give false warnings in the section referenced by the itemref. This is because ssc does not always
+know that the referenced data is not intended to be used in its own right, unless you put it under a TEMPLATE
+element.
 
-Note that you can export the microdata encountered in JSON file format by using the export setting.
+You can export the microdata encountered in JSON file format by using the export setting (not shown).
 
 
 Statistics
@@ -185,13 +188,13 @@ summary=yes
 Turn on summary statistics, which produces a grand total at the end of a complete run (add page=yes below
 summary for individual page stats).
 
-Also note that server side includes have been turned on using general.ssi, and files with the SHTML extension
+Note that server side includes have been turned on using general.ssi, and files with the SHTML extension
 will be treated as web pages.
 
 
 MathML 2
 --------
-This configuration file could be used to test MathML 2. NOTE: MathML is not fully implemented yet.
+This configuration file could be used to test MathML 2.
 
 [general]
 verbose=4
@@ -225,7 +228,7 @@ additional, and apparently illegal, values. (This apparent inconsistency is not 
 The way to avoid SSC complaining about these extra values is to give CI TYPE additional values in the configuration
 file, as noted.
 
-Indeed, many enumerated attribute values can be extended in this way. Use the new --validation switch to get a
+Indeed, many enumerated attribute values can be extended in this way. Use the --validation switch to get a
 complete list.
 
 
@@ -257,3 +260,7 @@ verify=yes
 
 [stats]
 summary=yes
+
+My site has been built by hand over the decades, and is full of errors. I wrote ssc because I was frustrated
+that I could find no tool to properly check it. Unfortunately, SSC is too successful: it finds hundreds of errors
+in arts & ego. I am slowly repairing the site accordingly.

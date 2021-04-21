@@ -116,7 +116,7 @@ void directory::internal_get_disk_path (const ::std::string& item, ::boost::file
 
 ::boost::filesystem::path directory::get_shadow_path () const
 {   if (root_.get () != nullptr)
-        return root_ -> shadow ();
+        return root_ -> shadow_root ();
     DBG_ASSERT (mummy_ != nullptr);
     return mummy_ -> get_shadow_path () / name_; }
 
@@ -220,6 +220,7 @@ void directory::examine (nitpick& nits)
         else
         {   ::std::ostringstream ss;
             ::boost::filesystem::path p (get_disk_path () / i.first);
+            ::std::time_t updated = ::boost::filesystem::last_write_time (p);
             fileindex_t ndx (get_fileindex (p));
             if (! get_flag (ndx, FX_SCANNED))
             {   ::std::string sp (get_site_path () + i.first);
@@ -230,10 +231,10 @@ void directory::examine (nitpick& nits)
                     {   e_charcode encoding = bom_to_encoding (get_byte_order (content));
                         if (encoding == cc_fkd) ss << "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)\n";
                         else
-                        {   page web (i.first, content, ndx, this, encoding);
+                        {   page web (i.first, updated, content, ndx, this, encoding);
                             if (web.invalid ()) ss << web.nits ().review ();
                             else
-                            {   web.examine (*this);
+                            {   web.examine ();
                                 web.verify_locale (p);
                                 web.mf_write (p);
                                 web.lynx ();
@@ -242,19 +243,23 @@ void directory::examine (nitpick& nits)
                                 ss << web.report (); } } } }
                 catch (...)
                 {   if (context.tell (e_error)) ss << "Cannot parse " << context.filename () << "\n"; }
-                if (! ss.str ().empty ()) context.out () << "\n\n*** " << local_path_to_nix (p.string ()) << "\n" << ss.str ();
-                else if (context.tell (e_comment)) context.out () << "\n\n*** " << local_path_to_nix (p.string ()) << "\n";
+                if (! ss.str ().empty ())
+                 {  context.out ("\n\n*** ");
+                    context.out (local_path_to_nix (p.string ()));
+                    context.out ("\n");
+                    context.out (ss.str ()); }
+                else if (context.tell (e_comment))
+                {   context.out ("\n\n*** ");
+                    context.out (local_path_to_nix (p.string ()));
+                    context.out ("\n"); }
                 context.css ().post_process ();
-                context.out () << ::std::flush;
                 set_flag (ndx, FX_SCANNED); } } }
 
-//bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, const url& u, const attribute_bitset& state, const vit_t& itemtypes) const
 bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, const url& u) const
 {   if (u.empty ()) return false; // self?
     if (u.has_protocol ())
     {   if (u.get_scheme () != pt_rfc3986) return true;
         if (u.has_domain () && ! is_one_of (u.domain (), context.site ()))
-//            return verify_external (nits, v, u, state, itemtypes); }
             return verify_external (nits, v, u); }
     ::boost::filesystem::path p (get_disk_path (nits, u));
     if (p.empty ())
@@ -288,15 +293,25 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
     catch (...) { }
     return 0; }
 
-::std::string directory::load_url (nitpick& nits, const url& u) const
+::std::string directory::load_url (nitpick& nits, const url& u, ::std::time_t* updated) const
 {   try
     {   if (! u.empty ())
             if (! u.has_protocol ())
-                return read_text_file (get_disk_path (nits, u));
+            {   ::boost::filesystem::path p (get_disk_path (nits, u));
+                if (updated != nullptr)
+                {   ::std::time_t when = ::boost::filesystem::last_write_time (p);
+                    if (when > *updated) *updated = when; }
+                return read_text_file (p); }
             else if (u.get_scheme () == pt_rfc3986)
                 if (u.has_domain () && is_one_of (u.domain (), context.site ()))
-                    return read_text_file (get_disk_path (nits, u));
-                else return external_.load (u); }
+                {   ::boost::filesystem::path p (get_disk_path (nits, u));
+                    if (updated != nullptr)
+                    {   ::std::time_t when = ::boost::filesystem::last_write_time (p);
+                        if (when > *updated) *updated = when; }
+                    return read_text_file (p); }
+                else
+                {   if (updated != nullptr) time (updated);
+                    return external_.load (u); } }
     catch (...) { }
     return ::std::string (); }
 
@@ -436,12 +451,13 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name)
         return false; }
 #endif // NOLYNX
     if (::boost::filesystem::exists (imitation)) try
-    {   uintmax_t origsize = get_size (ndx);
-        uintmax_t copysize = ::boost::filesystem::file_size (imitation);
-        if (origsize == copysize)
-        {   ::std::time_t origwrite = last_write (ndx);
-            ::std::time_t copywrite = ::boost::filesystem::last_write_time (imitation);
-            if (copywrite >= origwrite) return true; }
+    {   if (context.shadow_changed ())
+        {   uintmax_t origsize = get_size (ndx);
+            uintmax_t copysize = ::boost::filesystem::file_size (imitation);
+            if (origsize == copysize)
+            {   ::std::time_t origwrite = last_write (ndx);
+                ::std::time_t copywrite = ::boost::filesystem::last_write_time (imitation);
+                if (copywrite >= origwrite) return true; } }
         if (todo >= c_copy)
         {   stat = ::boost::filesystem::status (imitation);
             if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)

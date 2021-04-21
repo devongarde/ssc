@@ -20,6 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
+#define ARGLEN_MAX  4096
+
+#define ENVIRONMENT_ "environment"
 #define GENERAL_    "general"
 #define HTML_       "html"
 #define LINKS_      "link"
@@ -37,6 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define JOIN        "."
 
+#define ENVIRONMENT ENVIRONMENT_ JOIN
 #define GENERAL     GENERAL_ JOIN
 #define HTML        HTML_ JOIN
 #define LINKS       LINKS_ JOIN
@@ -56,6 +60,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CATASTROPHE "catastrophe"
 #define CGI         "cgi"
 #define CHARSET     "charset"
+#define CHANGED      "changed"
 #define CHECK       "check"
 #define CLASS       "class"
 #define CODES       "codes"
@@ -112,6 +117,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SILENCE     "silence"
 #define SITE        "domain"
 #define SLOB        "slob"
+#define SNIPPET     "snippet"
 #define SPACING     "space"
 #define SPEC        "spec"
 #define SSI         "ssi"

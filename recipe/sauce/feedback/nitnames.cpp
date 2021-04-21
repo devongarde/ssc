@@ -606,6 +606,7 @@ nitname nitnames [] =
     { nit_character_code, "character_code" },
     { nit_note, "note" },
     { nit_aria_position, "aria_position" },
+    { nit_impure_mn, "impure_mn" },
 
     { nit_off, "" } };
 

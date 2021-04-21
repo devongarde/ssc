@@ -23,8 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define PROG "ssc"
 #define TESTPROG "ssc-test"
 #define FULLNAME "Static Site Checker"
-#define WEBADDR "ssc.lu"
-#define VERSION_STRING "0.0.100"
+#define WEBADDR "https://ssc.lu/"
+#define VERSION_STRING "0.0.101"
 #define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
 
 #ifdef __clang__
@@ -41,32 +41,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // __GNUC__
 
 #ifdef _MSC_VER
+#include <codeanalysis\warnings.h>
 #define NOLYNX
 #pragma warning (push,3)
 #pragma warning ( disable : 4244 ) // boost
+#pragma warning ( disable : ALL_CODE_ANALYSIS_WARNINGS ) // boost
 #if defined (VS2019)
 #define _WIN32_WINNT 0x0A00 // 10
-#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // thanks, boost
-#define _CRT_SECURE_NO_WARNINGS // thanks, boost
+#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // boost
+#define _CRT_SECURE_NO_WARNINGS // boost
 #define CONSTEXPR constexpr
 #define NOEXCEPT noexcept
 #define VS 19
 #define CLEAN_SHAREDPTR_ARRAY
-#define CLEVER_CHAR
 #elif defined (VS2017)
 #define _WIN32_WINNT 0x0603 // 8.1
-#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // thanks, boost
-#define _CRT_SECURE_NO_WARNINGS // thanks, boost
+#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // boost
+#define _CRT_SECURE_NO_WARNINGS // boost
 #define CONSTEXPR constexpr
 #define NOEXCEPT noexcept
 #define VS 17
 #define CLEAN_SHAREDPTR_ARRAY
-#define CLEVER_CHAR
 #elif defined (VS2015)
 #define BOOVAR 1
 #define ORDERED
 #define _WIN32_WINNT 0x0601 // 7 SP1
-#define _SCL_SECURE_NO_WARNINGS // thanks, boost
+#define _SCL_SECURE_NO_WARNINGS // boost
 #define _CRT_SECURE_NO_WARNINGS
 #define CONSTEXPR
 #define NOEXCEPT
@@ -74,20 +74,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define REQUIRE_CONSTRUCTOR
 #define NO_PCF_STR
 #define VS 15
-#elif defined (VS2013)
-#define BOOVAR 1
-#define ORDERED
-#define _WIN32_WINNT 0x0501 // XP
-#define _SCL_SECURE_NO_WARNINGS // thanks, boost
-#define _CRT_SECURE_NO_WARNINGS
-#define CONSTEXPR
-#define NOEXCEPT
-#define FS_THROWS
-#define REQUIRE_CONSTRUCTOR
-#define NO_PCF_STR
-#define VS 13
-#define NO_PROCESS
-#define NO_MOVE_CONSTRUCTOR
 #else // VS...
 #error unsupported version of visual C++
 #endif // VS...
@@ -166,20 +152,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef _MSC_VER
 #pragma warning ( disable : 4701 ) // CRC
 #endif
+
 #include <boost/crc.hpp>
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif
 
 #endif // SSC_TEST
 
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/algorithm/string.hpp>
-
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
 
 #ifndef SSC_TEST
 #include <unicode/ucsdet.h>
@@ -192,6 +172,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma comment (lib, "icuuc.lib")
 #endif // _MSC_VER
 #endif // SSC_TEST
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif
 
 #if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
 #ifndef DEBUG

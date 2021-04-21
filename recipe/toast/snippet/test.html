@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+<title>test cgi</title>
+</head>
+
+<body>
+
+<h1>nitpick</h1>
+
+<form method=get action="/cgi-bin/dance" >
+
+<p class=centre>
+<label>HTML snippet:<br>
+<textarea cols=80 maxlength=16384 required rows=8 name=html.snippet>
+</textarea>
+</label>
+
+<br><br>
+
+<label>Version:
+<select name=html.version>
+<option value=0.1>HTML Tags (draft)</option>
+<option value=1.0>HTML 1.0 (draft)</option>
+<option value=1.1>HTML + (draft)</option>
+<option value=2.0>HTML 2</option>
+<option value=3.0>HTML 3.0 (draft)</option>
+<option value=3.2>HTML 3.2</option>
+<option value=4.0>HTML 4.0</option>
+<option value=4.1>HTML 4.01</option>
+<option value=5.0>HTML 5.0</option>
+<option value=5.1>HTML 5.1</option>
+<option value=5.2>HTML 5.2</option>
+<option value=5.3>HTML 5.3 (draft)</option>
+<option value="2007/07/01">Living Standard July 2007</option>
+<option value="2008/01/01">Living Standard January 2008</option>
+<option value="2008/07/01">Living Standard July 2008</option>
+<option value="2009/01/01">Living Standard January 2009</option>
+<option value="2009/07/01">Living Standard July 2009</option>
+<option value="2010/01/01">Living Standard January 2010</option>
+<option value="2010/07/01">Living Standard July 2010</option>
+<option value="2011/01/01">Living Standard January 2011</option>
+<option value="2011/07/01">Living Standard July 2011</option>
+<option value="2012/01/01">Living Standard January 2012</option>
+<option value="2012/07/01">Living Standard July 2012</option>
+<option value="2013/01/01">Living Standard January 2013</option>
+<option value="2013/07/01">Living Standard July 2013</option>
+<option value="2014/01/01">Living Standard January 2014</option>
+<option value="2014/07/01">Living Standard July 2014</option>
+<option value="2015/01/01">Living Standard January 2015</option>
+<option value="2015/07/01">Living Standard July 2015</option>
+<option value="2016/01/01">Living Standard January 2016</option>
+<option value="2016/07/01">Living Standard July 2016</option>
+<option value="2017/01/01">Living Standard January 2017</option>
+<option value="2017/07/01">Living Standard July 2017</option>
+<option value="2018/01/01">Living Standard January 2018</option>
+<option value="2018/07/01">Living Standard July 2018</option>
+<option value="2019/01/01">Living Standard January 2019</option>
+<option value="2019/07/01">Living Standard July 2019</option>
+<option value="2020/01/01">Living Standard January 2020</option>
+<option value="2020/07/01">Living Standard July 2020</option>
+<option value="2021/01/01">Living Standard January 2021</option>
+<option value="2021/04/01" selected>Living Standard April 2021</option>
+<option value="2005/07/01">WebApps January 2005</option>
+<option value="2005/01/01">WebApps July 2005</option>
+<option value="2006/07/01">WebApps January 2006</option>
+<option value="2006/01/01">WebApps July 2006</option>
+<option value="2007/07/01">WebApps January 2007</option>
+<option value=4.2>XHML 1.0</option>
+<option value=4.3>XHML 1.1</option>
+<option value=4.4>XHML 2.0</option>
+</select>
+</label>
+
+<br><br>
+
+<label>Verbosity:
+<select name=general.verbose required>
+<option value=2>Errors</option>
+<option value=3 selected>Warnings</option>
+<option value=4>Info</option>
+<option value=5>Comments</option>
+</select>
+</label>
+
+<br><br>
+
+<span class="big">
+<button type=reset>
+Reset
+</button>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<button type=submit>
+Submit
+</button>
+</span>
+</p>
+
+</form>
+
+</div>
+
+<body>
+

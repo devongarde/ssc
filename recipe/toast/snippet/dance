@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# To permit this cgi, replace # on the first line above with the
+# appropriate #!/path/to/sh shebang, and set this script executable
+# with chmod 755.
+
+# disable filename globbing
+set -f
+
+LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:/usr/libexec:/lib
+export LD_LIBRARY_PATH
+
+echo "Content-type: text/html; charset=iso-8859-1"
+echo
+
+echo "<!DOCTYPE HTML>"
+echo "<HTML><HEAD><TITLE>static site checker results</TITLE></HEAD>"
+echo "<BODY><H1>static site checker results</H1>"
+echo "<textarea cols=80 maxlength=16384 rows=32 name=output readonly>"
+ssc
+echo "</TEXTAREA></BODY></HTML>"

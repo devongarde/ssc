@@ -415,6 +415,10 @@ bool html_version::deprecated (const html_version& current) const
             if (current.all_ext (HE_M3_DEPRECAT))
                 return true;
             break;
+        case math_4 :
+            if (current.all_ext (HE_M4_DEPRECAT))
+                return true;
+            break;
         default : break; }
     switch (current.mjr ())
     {   case 1 : return (current.any_flags (HV_DEPRECATED1));

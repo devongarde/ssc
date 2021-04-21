@@ -427,9 +427,13 @@ typedef enum {
 const e_element_tag last_element_tag = elem_error;
 typedef unsigned int e_element;
 
+typedef enum { emi_good, emi_math, emi_not_svg, emi_svg, emi_rdf } e_emi;
 typedef enum { ee_www, e_multi, ee_text } e_enctype;
 typedef enum { ekh_done, ekh_enter, ekh_go, ekh_next, ekh_previous, ekh_search, ekh_send } e_enterkeyhint;
-typedef enum { emi_good, emi_math, emi_not_svg, emi_svg, emi_rdf } e_emi;
+typedef enum {  env_args, env_auth_type, env_config, env_content_length, env_content_type, env_gateway_interface, env_http_accept, env_path_info,
+                env_path_translated, env_query_string, env_remote_addr, env_remote_host, env_remote_user, env_request_method, env_script_name, env_server_name,
+                env_server_port, env_server_protocol, env_server_software } e_environment;
+const ::std::size_t env_max = static_cast < ::std::size_t > (env_server_software) + 1;
 typedef enum { fa_bleedleft, fa_left, fa_centre, fa_right, fa_bleedright, fa_justify } e_figalign;
 typedef enum { fa_freeze, fa_remove } e_fillanim;
 typedef enum { fr_nonzero, fr_evenodd, fr_inherit } e_fillrule;
@@ -1411,7 +1415,7 @@ typedef enum
     nit_risky_filetype, nit_reputation, nit_incompatible_mime, nit_os_dependent, nit_bad_usemap, nit_bad_type_attribute, nit_bad_pattern,
     nit_bad_command, nit_bad_datagrid, nit_script, nit_menubar, nit_bad_card, nit_nest, nit_registration_mark, nit_bad_ref, nit_font,
     nit_dashdash, nit_naked_grave, nit_prototype, nit_bad_property, nit_hour, nit_minute, nit_second, nit_deprecated_schema,
-    nit_character_code, nit_note, nit_aria_position,
+    nit_character_code, nit_note, nit_aria_position, nit_impure_mn,
 
     nit_context,
 

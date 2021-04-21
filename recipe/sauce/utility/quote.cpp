@@ -21,7 +21,56 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "utility/quote.h"
 
-::std::string enquote (const ::std::string& str, const ::std::string& quotesep)
+::std::string slash_quote (const ::std::string& str)
+{   ::std::string res;
+    bool bq = (str.find_first_of (" \"\t\n\\") != ::std::string::npos);
+    if (bq) res += '"';
+    for (auto ch : str)
+    {   switch (ch)
+        {   case '\\' :
+            case '"' :
+                res += '\\';
+                break;
+            case '\n' :
+            case '\t' :
+                res += ' ';
+                continue;
+            default :
+                if (::std::iswcntrl (ch)) continue;
+                if (! (::std::iswprint (ch) || ::std::iswspace (ch))) continue;
+                break; }
+        res += ch; }
+    if (bq) res += '"';
+    return res; }
+/*
+::std::string defang (const ::std::string& str)
+{   ::std::string res;
+    if (! str.empty ())
+    {   bool slash = false, dq = false;
+        ::std::string::const_iterator i = str.cbegin ();
+        if (*i == '"')
+        {   dq = true; ++i;
+            if (i == str.cend ()) return ::std::string (1, '"'); }
+        while (i != str.cend ())
+        {   switch (*i)
+            {   case '\\' :
+                    if (! slash) { slash = true; continue; }
+                    else slash = false;
+                    break;
+                case '"' :
+                    if (! slash) if (dq) return res;
+                    slash = false; break;
+                default : break; }
+            res += *i;
+            ++i; } }
+    return res; }
+
+vstr_t defang (const vstr_t& vs)
+{   vstr_t res;
+    for (auto s : vs) res.push_back (defang (s));
+    return res; }
+*/
+::std::string enquote (const ::std::string& str, const char space, const ::std::string& quotesep)
 {   DBG_ASSERT (quotesep.length () >= 2);
     ::std::string res;
     char quote = quotesep [0];
@@ -30,11 +79,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     {   if (ch == quote)
             res += quote;
         else if ((ch >= 0x7F) || (ch < 0x20))
-        {   res += 0x7F;
+        {   res += space;
             continue; }
         res += ch; }
     res += quote;
     return res; }
+
+::std::string enquote (const ::std::string& str, const ::std::string& quotesep)
+{   return enquote (str, 0x7F, quotesep); }
 
 ::std::string enquote (const vstr_t vs, const ::std::string& quotesep)
 {   DBG_ASSERT (quotesep.length () >= 2);

@@ -108,9 +108,9 @@ bool reply::find_server (nitpick& nits, const html_version& v)
     if (fetch (nits, v, url (nits, v, target_), html_temp)) html = read_text_file (html_temp.string ());
     if (::boost::filesystem::exists (html_temp)) ::boost::filesystem::remove (html_temp);
     if (html.empty ()) return false;
-    page p (nits, target_, html);
-    directory d (target_, true);
-    p.examine (d);
+    ::std::time_t updated = 0;
+    page p (nits, target_, updated, html);
+    p.examine ();
     ::std::string mention = p.find_webmention ();
     if (! set_server (mention)) return false;
     if (context.tell (e_comment))

@@ -264,7 +264,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
         insert (v, previous, parent, e, id); }
     report_missing_closures (v, parent, document);
     if (context.tell (e_splurge))
-        context.out () << document -> rpt (0); }
+        context.out (document -> rpt (0)); }
 
 bool elements_node::parse (nitpick& nits, const ::std::string& content)
 {   bras_ket elements;

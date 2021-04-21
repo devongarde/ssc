@@ -168,7 +168,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
                         else c.timefmt_ = arg; } } }
     return ::std::string (); }
 
-::std::string echo_command (::std::string& ln, nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const vstr_t& args)
+::std::string echo_command (::std::string& ln, nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const vstr_t& args, ::std::time_t& updated)
 {   ::std::string var, arg;
     e_ssi_encoding dec = ssi_encoding_none, enc = ssi_encoding_none;
     for (auto s : args)
@@ -187,7 +187,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     if (dec == ssi_encoding_url) arg = decode (arg);
     if (enc == ssi_encoding_url) arg = sanitise (arg);
     if (arg.find ("<!--#") == ::std::string::npos) return arg;
-    return parse_ssi (nits, v, d, c, arg, false); }
+    return parse_ssi (nits, v, d, c, arg, updated, false); }
 
 ::std::string flastmod_command (::std::string& ln, nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const vstr_t& args)
 {   ::std::string file, vrt, arg;
@@ -249,7 +249,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     if (size > k) return ::boost::lexical_cast < ::std::string > (size / k) + "K";
     return ::boost::lexical_cast < ::std::string > (size); }
 
-::std::string include_command (::std::string& ln, nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const vstr_t& args)
+::std::string include_command (::std::string& ln, nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const vstr_t& args, ::std::time_t& updated)
 {   ::std::string file, vrt, onerror, arg;
     url u;
     for (auto s : args)
@@ -265,11 +265,24 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     {   set_ssi_context (ln, nits, es_error);
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, "<!--#INCLUDE ... --> requires one of 'file' or 'virtual'"); }
     else if (validate_file (ln, nits, d, file))
-        return parse_ssi (nits, v, d, c, read_text_file (d.get_disk_path (nits, file)));
+    {   ::boost::filesystem::path p (d.get_disk_path (nits, file));
+        ::std::time_t when = ::boost::filesystem::last_write_time (p);
+        if (context.shadow_changed ())
+        {   nits.pick (nit_ssi, es_debug, ec_shadow, "SSI file ", p, " last updated ", when);
+//            ::std::cout << "SSI file " << p << " last updated " << when << "\n";
+            if (when > updated) updated = when; }
+        return parse_ssi (nits, v, d, c, read_text_file (p), updated); }
     else if (validate_virtual (ln, nits, v, vrt, u))
     {   if (! u.invalid ())
             if (d.verify_url (nits, v, u))
-                return parse_ssi (nits, v, d, c, d.load_url (nits, u));
+            {   ::std::time_t when = updated;
+                ::std::string content (d.load_url (nits, u, &when));
+                if (context.shadow_changed ())
+                {   nitpick knots;
+                    nits.pick (nit_ssi, es_debug, ec_shadow, "SSI virtual ", d.get_disk_path (knots, u), " last updated ", when);
+//                    ::std::cout << "SSI virtual " << d.get_disk_path (knots, u) << " last updated " << when << "\n";
+                    if (when > updated) updated = when; }
+                return parse_ssi (nits, v, d, c, content, updated); }
         set_ssi_context (ln, nits, es_error);
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot verify ", file); }
     return c.errmsg_; }
@@ -362,7 +375,7 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, const dir
     else { c.if_ = true; c.iffed_ = inif = false; }
     return ::std::string (); }
 
-::std::string process_ssi (::std::string& ln, nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const ::std::string& cmd, const ::std::string& a, bool& linechange, bool& inif)
+::std::string process_ssi (::std::string& ln, nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const ::std::string& cmd, const ::std::string& a, bool& linechange, bool& inif, ::std::time_t& updated)
 {   vstr_t args (split_quoted_by_space (a));
     if (! cmd.empty ())
     {   type_master < t_ssi > todo;
@@ -377,7 +390,7 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, const dir
         else switch (todo.get ())
         {   case ssi_comment :  return ::std::string ();
             case ssi_config :   return config_command (ln, nits, v, c, args);
-            case ssi_echo :     return echo_command (ln, nits, v, d, c, args);
+            case ssi_echo :     return echo_command (ln, nits, v, d, c, args, updated);
             case ssi_else :     return else_command (nits, c, inif);
             case ssi_elif :     return elif_command (ln, nits, v, d, c, args, inif);
             case ssi_endif :    return endif_command (nits, c, inif);
@@ -386,7 +399,7 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, const dir
                                 return ::std::string ();
             case ssi_fsize :    return fsize_command (ln, nits, v, d, c, args);
             case ssi_flastmod : return flastmod_command (ln, nits, v, d, c, args);
-            case ssi_include :  linechange = true; return include_command (ln, nits, v, d, c, args);
+            case ssi_include :  linechange = true; return include_command (ln, nits, v, d, c, args, updated);
             case ssi_if :       linechange = true; return if_command (ln, nits, v, d, c, args, inif);
             case ssi_printenv : linechange = true; return printenv_command (nits, c, args);
             case ssi_set :      return set_command (ln, nits, v, d, c, args); } }
@@ -424,7 +437,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
     nits.pick (nit_context, severity, ec_ssi, line, ": ", unify_whitespace (::std::string (b, e)));
     nits.pick (nit_ssi_syntax, severity, ec_ssi, msg); }
 
-::std::string parse_ssi (nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const ::std::string& input, bool shush)
+::std::string parse_ssi (nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush)
 {   typedef enum { es_dull, es_open, es_bang, es_om_1, es_om_2, es_note, es_ssi, es_args, es_cm_1, es_cm_2, es_space, es_am_1, es_am_2 } e_state;
     if (! context.ssi ()) return input;
     e_state status = es_dull;
@@ -465,7 +478,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                 ::std::string ln (::boost::lexical_cast < ::std::string > (line));
                 ln += ": <!--#";
                 ln += cmd + " " + a + " -->";
-                to += process_ssi (ln, nits, v, d, c, cmd, a, linechange, inif);
+                to += process_ssi (ln, nits, v, d, c, cmd, a, linechange, inif, updated);
                 revised = true; status = es_dull; }
             break;
             case es_note : if (*i == '-') status = es_cm_1; break;
@@ -493,6 +506,8 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
         nits.pick (nit_linechange, es_comment, ec_ssi, "SSI substitution may have caused some line numbers to change"); }
 
     if (! shush && revised && context.tell (e_splurge))
-        context.out () << "\nSSI parsing changed content to:\n" << to << "\n";
+    {   context.out ("\nSSI parsing changed content to:\n");
+        context.out (to);
+        context.out ("\n"); }
 
     return to; }
