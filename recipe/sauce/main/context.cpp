@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats.h"
 #include "element/elem.h"
 #include "utility/quote.h"
+#include "parser/text.h"
 
 context_t context;
 
@@ -42,19 +43,23 @@ int context_t::parameters (int argc, char** argv)
     if (o.stop ()) return STOP_OK;
     if (o.invalid ()) return ERROR_STATE;
     o.contextualise ();
-    if (! test () && tell (e_debug)) out () << o.report ();
+    if (! test () && tell (e_debug)) out (o.report ());
     for (const ::std::string& name : site_)
         if (name.find_first_not_of (ALPHADDD) != ::std::string::npos)
         {   valid_ = false;
-            context.err () << quote (name) << " is not a valid domain name (do not include protocols)\n";
+            context.err (quote (name));
+            context.err (" is not a valid domain name (do not include protocols)\n");
             return false; }
-    valid_ = ! root ().empty ();
+    valid_ = context.cgi () || (! root ().empty ());
     return valid_ ? VALID_RESULT : ERROR_STATE; }
 
 context_t& context_t::webmention (const ::std::string& w, const e_wm_status status)
 {   if (! w.empty () && status > wm_status_)
     {   webmention_ = w;
-        if (tell (e_variable)) out () << "setting context_t " WEBMENTION " to " << quote (w) << "\n";
+        if (tell (e_variable))
+        {   out ("setting context_t " WEBMENTION " to ");
+            out (quote (w));
+            out ("\n"); }
         wm_status_ = status; }
     return *this; }
 
@@ -149,7 +154,9 @@ context_t& context_t::ignore (const vstr_t& s)
 {   e_element e = elem_undefined;
     for (auto ss : s)
         if (elem :: find (html_0, ss, e)) elem :: ignore (e);
-        else err () << quote (ss) << " is not an element\n";
+        else
+        {   err (quote (ss));
+            err (" is not an element\n"); }
     return *this; }
 
 html_version context_t::html_ver (const int major, const int minor)
@@ -188,3 +195,11 @@ html_version context_t::html_ver (const int major, const int minor)
             version_ = html_default;
             break; }
     return version_; }
+
+::std::string context_t::ensane (const ::std::string& s) const
+{   if (cgi ()) return enwotsit (s);
+    return s; }
+
+context_t& context_t::environment (const e_environment e, const ::std::string& s)
+{   environment_.at (e) = s.substr (0, ARGLEN_MAX);
+    return *this; }

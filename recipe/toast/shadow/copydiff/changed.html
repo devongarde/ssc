@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html manifest="https://example.com/manifest.urk">
+<head>
+<title>shadow HTML good</title>
+<LINK REL=Alternate HREF=index.html>
+<LINK REL=Stylesheet HREF=css-good.css>
+<LINK REL=Start HREF=index.html>
+<LINK REL=Next HREF=index.html>
+<LINK REL=Prev HREF=index.html>
+<LINK REL=Contents HREF=index.html>
+<LINK REL=Index HREF=index.html>
+<LINK REL=Glossary HREF=index.html>
+<LINK REL=Copyright HREF=index.html>
+<LINK REL=Chapter HREF=index.html>
+<LINK REL=Section HREF=index.html>
+<LINK REL=Subsection HREF=index.html>
+<LINK REL=Appendix HREF=index.html>
+<LINK REL=Help HREF=index.html>
+
+<!-- media descriptors to test:
+screen, tty, tv, projection, handheld, print, brialle, aural, all -->
+
+</head>
+
+<body role="application">
+
+<h1>shadow HTML good</h1>
+
+<a href="index.html" id="tiddles" rel="next" title="index"></a>
+
+<map name="tst">
+<area shape="rect" coords="1,1,2,2" href="index.html" alt="index" contenteditable>
+<area shape="circle" coords="1,1,3" alt="index" contenteditable=true>
+<area shape="poly" coords="1,1,2,2,3,3,4,4" href="index.html" alt="index" contenteditable=false>
+</map>
+
+<img src=x.jpg alt=doris height=10 width=10 usemap=index.html>
+
+<hr>
+
+<pre>
+the cat stood on the burning deck
+her hair was all afire
+so she jumped into the water
+and before she could drown
+she was eaten by a fish
+called doris
+</pre>
+
+<form action="index.html" method=GET enctype="application/x-www-form-urlencoded"></form>
+<form action="index.html" method=POST enctype="application/x-www-form-urlencoded"></form>
+
+<form action="index.html" method=GET enctype="application/x-www-form-urlencoded">
+<input type=TEXT name=sid value="1 2" size=2 maxlength=4 spellcheck>
+<input type=PASSWORD>
+<input type=CHECKBOX checked>
+<input type=RADIO>
+<input type=SUBMIT>
+<input type=RESET>
+<input type=FILE>
+<input type=HIDDEN>
+<input type=IMAGE src=x.jpg>
+<select name=fred size=10 multiple>
+<option selected value="1">widdle</option>
+<option value="2">wobble</option>
+</select>
+<textarea name="doris" rows="2" cols="22" inputmode=tiddles spellcheck=true>Text</textarea>
+</form>
+
+<TABLE>
+<CAPTION>Doris</CAPTION>
+<TBODY>
+<TR>
+<TH>heading</TH>
+<TD>content</TD>
+</TR>
+</TBODY>
+</TABLE>
+
+<h1>HTML 4.01 Good</h1>
+
+<!-- French messages -->
+<P><SPAN id="msg1" class="info" lang="fr">Variable d&eacute;clar&eacute;e deux fois</SPAN></P>
+<P><SPAN id="msg2" class="warning" lang="fr">Variable ind&eacute;finie</SPAN></P>
+<P><SPAN id="msg3" class="error" lang="fr">Erreur de syntaxe pour variable</SPAN></P>
+
+<P dir=ltr lang=lb>LTR</P>
+<P dir=rtl lang=ar>LTR</P>
+
+<dl>
+ <dt>Radius: <dd> <meter min=0 max=20 value=12 title="centimetres">12cm</meter>
+ <dt>Height: <dd> <meter min=0 max=10 value=2 title="centimetres">2cm</meter>
+</dl>
+
+
+
+</body>
+</html>
+

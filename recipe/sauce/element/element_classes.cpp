@@ -797,7 +797,7 @@ void elements_init (nitpick& nits)
                 nits.pick (nit_repeated_attribute, es_warning, ec_program, "attribute ", attr::name (ei [i].a_ [j]), " repeated in ", elem::name (ei [i].tag_), " bitset init");
             else vebs.at (ei [i].tag_).set (ei [i].a_ [j]); } }
 #ifdef DEBUG
-    nits.pick (nit_note, es_comment, ec_program, "<", elem::name (e), "> has ", n, " attributes");
+    nits.pick (nit_note, es_splurge, ec_program, "<", elem::name (e), "> has ", n, " attributes");
 #endif // DEBUG
 }
 
@@ -822,8 +822,14 @@ void add_element_attributes (const vstr_t& v)
     {   vstr_t args (split_by_charset (e, ","));
         if (args.size () < 2) continue;
         elem el (context.html_ver (), args.at (0));
-        if (el.invalid ()) context.err () << "the element '" << args.at (0) << "' is not recognised\n";
+        if (el.invalid ())
+        {   context.err ("the element '");
+            context.err (args.at (0));
+            context.err ("' is not recognised\n"); }
         else
         {   e_attribute a = attr :: parse (nuts, context.html_ver (), args.at (1));
-            if (a == a_error)  context.err () << "the attribute '" << args.at (1) << "' is not recognised\n";
+            if (a == a_error)
+            {   context.err ("the attribute '");
+                context.err (args.at (1));
+                context.err ("' is not recognised\n"); }
             else element_add_attribute (el.get (), a); } } }

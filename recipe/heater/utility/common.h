@@ -136,3 +136,10 @@ bool ends_with_letters (const ::std::string& s, const ::std::string& with);
 inline bool is_hex (const ::std::string::const_iterator& x, const ::std::string::const_iterator& e)
 {   if (x == e) return false;
     return ((*x >= '0') && (*x <= '9')) || ((*x >= 'A') && (*x <= 'F')) || ((*x >= 'a') && (*x <= 'f')); }
+
+inline ::std::string substitute_char (::std::string& s, const char from, const char to)
+{   ::std::string res;
+    res.reserve (s.length ());
+    for (::std::string::iterator i = s.begin (); i != s.end (); ++i)
+        if (*i == from) res += to; else res += *i;
+    return res; }

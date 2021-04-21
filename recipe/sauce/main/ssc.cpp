@@ -39,6 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_name.h"
 #include "webpage/root.h"
 #include "webpage/corpus.h"
+#include "webpage/page.h"
 #include "parser/text.h"
 #include "type/type.h"
 #include "url/url.h"
@@ -76,13 +77,17 @@ void dump_nits (nitpick& nits, const char* burble)
 #endif // NDEBUG
         {   ::std::string x (nits.review ());
             if (! x.empty ())
-                context.out () << "\n\n*** " << burble << "\n" << x << "\n\n"; }
+            {   ::std::ostringstream ss;
+                ss << "\n\n*** " << burble << "\n" << x << "\n\n";
+                context.out (ss.str ()); } }
     nits.reset (); }
 
 void configure (std::time_t& start_time)
-{   if (! context.test ())
-    {   if (context.tell (e_severe)) context.out () << "\nStart: " << ::std::ctime (&start_time);
-        if (context.tell (e_info)) context.out () << "Gathering site information...\n"; } }
+{   if (! (context.test () || context.cgi ()))
+    {   if (context.tell (e_severe))
+        {   context.out ("\nStart: ");
+            context.out (::std::ctime (&start_time)); }
+        if (context.tell (e_info)) context.out ("Gathering site information...\n"); } }
 
 void ciao ()
 {   if (context.unknown_class () && context.tell (e_warning))
@@ -92,25 +97,34 @@ void ciao ()
         {   nitpick nits;
             reconcile_crosslinks (nits);
             if (! nits.empty ())
-            {   context.out () << "\n\n*** link errors\n";
-                context.out () << nits.review (); } }
+            {   context.out ("\n\n*** link errors\n");
+                context.out (nits.review ()); } }
         if (! ss.str ().empty ())
-        {   context.out () << "\n\n*** classes\n";
-            context.out () << ss.str (); }
+        {   context.out ("\n\n*** classes\n");
+            context.out (ss.str ()); }
         if (! empty_itemid ())
-        {   context.out () << "\n\n*** itemids\n";
-            context.out () << report_itemids (); } }
+        {   context.out ("\n\n*** itemids\n");
+            context.out (report_itemids ()); } }
     if (context.stats_summary ()) context.report_stats ();
-    if (context.tell (e_debug)) context.out () << fileindex_report (); }
+    if (context.tell (e_debug)) context.out (fileindex_report ()); }
 
 int examine (nitpick& nits)
 {   int res = VALID_RESULT;
+    if (context.cgi ())
+    {   page web (context.snippet (), cc_utf8);
+        if (! web.invalid ()) web.examine ();
+        ::std::string s (web.nits ().review ());
+        s += web.report ();
+        if (context.test ()) context.out ("*** snippet\n");
+        else if (s.find ('>') == ::std::string::npos) s = "All good.";
+        context.out (s);
+        return res; }
     open_corpus (nits, context.corpus ());
     paths_root virt (paths_root::virtual_roots ());
     virt.add_root (nix_path_to_local (context.root ()), "/");
     nitpick shadow, exp;
-    if (! context.shadow ().empty ())
-        if (! virt.at (0) -> shadow (shadow, context.shadow ()))
+    if (! context.shadow_root ().empty ())
+        if (! virt.at (0) -> shadow_root (shadow, context.shadow_root ()))
             res = ERROR_STATE;
     if (res != ERROR_STATE)
         if (! context.export_root ().empty ())
@@ -133,7 +147,10 @@ int examine (nitpick& nits)
         for (::std::size_t n = 0; n < vmax; ++n)
             vd.emplace_back (new directory (virt.at (n)));
         for (::std::size_t n = 0; n < vmax; ++n)
-        {   if (context.tell (e_info) && ! context.test ()) context.out () << "Scanning " << virt.at (n) -> get_disk_path () << " ...\n";
+        {   if (context.tell (e_info) && ! context.test ())
+            {   context.out ("Scanning ");
+                context.out (virt.at (n) -> get_disk_path ().string ());
+                context.out (" ...\n"); }
             try
             {   if (! vd [n] -> scan (nits, virt.at (n) -> get_site_path ()))
                 {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " failed");
@@ -153,7 +170,10 @@ int examine (nitpick& nits)
             else
             {   if (context.dodedu ()) dedu (shadow);
                 for (n = 0; n < vmax; ++n)
-                {   if (context.tell (e_info) && ! context.test ()) context.out () << "Checking " << virt.at (n) -> get_disk_path () <<  "...\n";
+                {   if (context.tell (e_info) && ! context.test ())
+                    {   context.out ("Checking ");
+                        context.out (virt.at (n) -> get_disk_path ().string ());
+                        context.out (" ...\n"); }
                     try
                     {   if (vd.at (n) -> empty ())
                             nits.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
@@ -186,10 +206,15 @@ int main (int argc, char** argv)
             context.process_incoming_webmention (nits, html_current);
             dump_nits (nits, "webmention"); }
         ciao ();
-        if (! context.test ())
+        if (! (context.test () || context.cgi ()))
         {   auto fin = std::chrono :: system_clock :: now();
             std::chrono::duration<double> elapsed_seconds = fin - start;
             std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
-            if (context.tell (e_severe)) context.out ()  << "\nFinish: " << ::std::ctime (&end_time);
-            if (context.tell (e_warning)) context.out () << "Duration: " << elapsed_seconds.count () << " seconds\n"; } }
+            if (context.tell (e_severe))
+            {   context.out ("\nFinish: ");
+                context.out (::std::ctime (&end_time)); }
+            if (context.tell (e_warning))
+            {   ::std::ostringstream ss;
+                ss << "Duration: " << elapsed_seconds.count () << " seconds\n";
+                context.out (ss.str ()); } } }
     return res; };

@@ -12,6 +12,7 @@ PASS ../toast/math/3/math2-example.html
 53 url_not_found
 55 url_not_found
 57 url_not_found
+123 impure_mn
 351 math_kids
 
 PASS ../toast/math/3/math3-example.html
@@ -104,10 +105,16 @@ PASS ../toast/math/3/math9-example.html
 
 PASS ../toast/math/3/math10-example.html
 2 naughty_lang
+29 impure_mn
+38 impure_mn
+48 impure_mn
+60 impure_mn
 119 math_kids math_kids
 123 math_kids math_kids
 130 math_kids math_kids
 136 math_kids math_kids
+191 impure_mn
+230 impure_mn
 
 PASS ../toast/math/3/math11-example.html
 2 naughty_lang
@@ -159,6 +166,7 @@ PASS ../toast/math/3/math15-example.html
 
 PASS ../toast/math/3/math16-example.html
 2 naughty_lang
+16 impure_mn
 35 unrecognised_value
 50 unrecognised_value
 

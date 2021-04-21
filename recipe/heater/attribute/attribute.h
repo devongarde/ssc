@@ -64,8 +64,7 @@ struct attribute_base
 template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public attribute_base, public typed_value < e_attribute, TYPE, IDENTITY >
 {   static ::std::string name () { return attr :: name (IDENTITY); }
     CONSTEXPR static e_attribute whoami () { return IDENTITY; }
-    typed_attribute (nitpick& nits, const html_version& v, const attribute_node& node)
-    {   parse (nits, v, node); }
+    typed_attribute () = default;
     void swap (typed_attribute& t) NOEXCEPT
     {   attribute_base :: swap (t);
         typed_value < e_attribute, TYPE, IDENTITY > :: swap (t); }

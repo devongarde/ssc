@@ -153,6 +153,7 @@ void element::post_examine_element (const e_element tag)
         case elem_mlongdiv :    check_math_children (3, true);
                                 check_mscarries_pos (tag);
                                 break;
+        case elem_mn : examine_mn (); break;
         case elem_mstack : check_mscarries_pos (tag); break;
         case elem_msubsup :
         case elem_munderover : check_math_children (3); break;
@@ -226,7 +227,7 @@ void element::congeal_dynamism ()
                     pick (nit_missing_dynamic, es_catastrophic, ec_element, "missing dynamic congeal for ", node_.id ().name ());
                     break;  } }
 
-void element::examine_self (const directory& d, const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes)
+void element::examine_self (const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes)
 {   if (examined_) return;
     ancestral_attributes_ = ancestral_attributes;
     sibling_attributes_ = sibling_attributes;
@@ -340,7 +341,7 @@ void element::examine_self (const directory& d, const itemscope_ptr& itemscope, 
                 if (mf_ -> allocated (r_in_reply_to))
                     context.note_reply (name_, a_.get_string (a_id), href, quoted_limited_string (text ())); } }
 
-    examine_children (d);
+    examine_children ();
 
     if (post_examine)
     {   post_examine_element (tag);
@@ -362,7 +363,7 @@ bool element::to_sibling (element_ptr& e, const bool canreconstruct)
     x.swap (e);
     return true; }
 
-void element::examine_children (const directory& d)
+void element::examine_children ()
 {   if (has_child ())
     {   attribute_bitset ancestral_attributes, sibling_attributes;
         itemscope_ptr itemscope;
@@ -373,7 +374,7 @@ void element::examine_children (const directory& d)
             itemscope = itemscope_; }
         element_ptr e = child ();
         do
-        {   e -> examine_self (d, itemscope, ancestral_attributes, sibling_attributes);
+        {   e -> examine_self (itemscope, ancestral_attributes, sibling_attributes);
             if (e -> node_.is_closure ())
                 closure_uid_ = e -> uid_;
             else
@@ -475,7 +476,7 @@ void element::verify_document ()
                 pick (nit_frameset_body, ed_4, "16.2 Layout of frames", es_error, ec_element, "either <FRAMESET> or <BODY>, not both");
             break;
         default :
-            if (! titled && (page_.count (elem_title) == 0))
+            if (page_.count (elem_title) == 0)
                 pick (nit_title_required, ed_2, "5.2.1. Title", es_warning, ec_element, "the document header has no <TITLE>");
             if (! page_.charset_defined ())
                 pick (nit_charset_redefined, ed_50, "4.2.5.5 Specifying the document's character encoding", es_comment, ec_element, "Consider specifying a charset in the document header");

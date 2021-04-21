@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>ssi diff test page</title>
+</head>
+<body>
+<h1>ssi diff test page</h1>
+<p>
+een,
+deux,
+drei,
+vier.
+</p>
+<p>
+ONE = een
+TWO = deux
+THREE = drei
+FIVE = tiddles
+FOUR = vier
+TIDDLES = mega plonker tells the time by looking at a warping plank plank plank plank plonk plank
+</p>
+</body>
+</html>

@@ -25,15 +25,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // all these require the original string that produced the iterators to be in memory
 
 class attribute_node
-{   ::std::string::const_iterator name_start_;
-    ::std::string::const_iterator name_end_;
-    ::std::string::const_iterator value_start_;
-    ::std::string::const_iterator value_end_;
+{   ::std::string key_, value_;
     bool has_key_ = false;
     bool has_value_ = false;
     e_attribute id_ = a_unknown;
     void parse (nitpick& nits, const html_version& v)
-    {   id_ = attr :: parse (nits, v, ::std::string (name_start_, name_end_)); }
+    {   id_ = attr :: parse (nits, v, key_); }
 public:
     attribute_node () = default;
     attribute_node (nitpick& nits, const html_version& v, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end);
@@ -58,6 +55,6 @@ public:
     bool invalid () const { return id_ == a_unknown; }
     bool has_key () const { return has_key_; }
     bool has_value () const { return has_value_; }
-    ::std::string get_key () const { DBG_ASSERT (has_key_); return ::std::string (name_start_, name_end_); }
-    ::std::string get_string () const { if (! has_value_) return ::std::string (); return ::std::string (value_start_, value_end_); }
+    ::std::string get_key () const { DBG_ASSERT (has_key_); return key_; }
+    ::std::string get_string () const { return value_; }
     ::std::string rpt () const; };

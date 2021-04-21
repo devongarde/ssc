@@ -100,7 +100,10 @@ void nitpick::pick (nit&& n)
 void nitpick::set_context (const int line, const ::std::string& c)
 {   ::std::string r (trim_the_lot_off (unify_whitespace (c)));
     if (context_.empty ())
-    {   if (context.nits ()) context.out () << "set context to " << r << "\n";
+    {   if (context.nits ())
+        {   ::std::ostringstream ss;
+            ss << "set context to " << r << "\n";
+            context.out (ss.str ()); }
         line_ = line;
         context_.assign (r); } }
 

@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats.h"
 #include "parser/html_version.h"
 #include "schema/schema_version.h"
+//#include "url/url_sanitise.h"
 
 #define VALID_RESULT 0
 #define STOP_OK 1
@@ -42,11 +43,12 @@ class corpus;
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
 
 class context_t
-{   bool            cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, info_ = false, load_css_ = false, links_ = false,
-                    md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nochange_ = false, notify_ = false,
-                    once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true,
-                    rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_ssi_ = false, shadow_space_ = false,
-                    slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false, versioned_ = false;
+{   bool            cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, info_ = false, load_css_ = false,
+                    links_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nochange_ = false,
+                    notify_ = false, once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false,
+                    rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_changed_ = false,
+                    shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false,
+                    unknown_class_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -54,21 +56,22 @@ class context_t
     schema_version  schema_ver_;
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
-    ::std::string   base_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, msg_, output_, path_, persisted_, root_, secret_, server_,
-                    shadow_, shadow_persist_, stats_, stub_, test_header_, user_, webmention_, write_path_, export_root_;
+    ::std::string   base_, export_root_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, msg_, output_, path_, persisted_, root_, secret_, server_,
+                    shadow_, shadow_persist_, snippet_, stats_, stub_, test_header_, user_, webmention_, write_path_;
     ::boost::filesystem::path config_, corpus_;
     e_wm_status     wm_status_ = wm_undefined;
-    vstr_t          custom_elements_, exports_, extensions_, mentions_, shadow_ignore_, shadows_, site_, templates_, virtuals_;
+    vstr_t          custom_elements_, environment_, exports_, extensions_, mentions_, shadow_ignore_, shadows_, site_, templates_, virtuals_;
     replies         replies_;
     hooks           hooks_;
     css_cache       css_;
     ::std::unique_ptr < ::std::ofstream > fos_;
     stats_t         data_;
     ::boost::program_options::options_description   validation_;
+    ::std::string ensane (const ::std::string& s) const;
+    ::std::ostream& out () const { if (fos_) return *fos_; return ::std::cout; }
+    ::std::ostream& err () const { if (fos_) return *fos_; return ::std::cerr; }
 public:
-    ::std::string   server_software_, server_name_, gateway_interface_, server_protocol_, server_port_, request_method_, http_accept_, path_info_, path_translated_,
-                    script_name_, query_string_, remote_host_, remote_addr_, remote_user_, auth_type_, content_type_, content_length_;
-    context_t () = default;
+    context_t () { environment_.resize (env_max); };
     int parameters (int argc, char** argv);
     const ::std::string base () const { return base_; }
     bool cgi () const { return cgi_; }
@@ -82,6 +85,7 @@ public:
     bool crosslinks () const { return crosslinks_; }
     const vstr_t custom_elements () const { return custom_elements_; }
     bool dodedu () const { return (copy_ >= c_deduplicate); }
+    const ::std::string environment (const e_environment e) const { return environment_.at (e); }
     bool export_defined () const { return ! export_root_.empty (); }
     const ::std::string export_root () const { return export_root_; }
     const vstr_t exports () const { return exports_; }
@@ -140,16 +144,18 @@ public:
     schema_version schema_ver () const { return schema_ver_; }
     const ::std::string secret () const { return secret_; }
     const ::std::string server () const { return server_; }
-    const ::std::string shadow () const { return shadow_; }
     bool shadow_comment () const { return shadow_comment_; }
+    bool shadow_changed () const { return shadow_changed_; }
     const vstr_t shadow_ignore () const { return shadow_ignore_; }
     const ::std::string shadow_persist () const { return shadow_persist_; }
+    const ::std::string shadow_root () const { return shadow_; }
     bool shadow_ssi () const { return shadow_ssi_; }
     bool shadow_space () const { return shadow_space_; }
     const vstr_t shadows () const { return shadows_; }
     const vstr_t site () const { return site_; }
     bool slob () const { return slob_; }
     bool spec () const { return spec_; }
+    ::std::string snippet () const { return snippet_; }
     bool ssi () const { return ssi_; }
     const ::std::string stats () const { return stats_; }
     bool stats_summary () const { return stats_summary_; }
@@ -184,6 +190,7 @@ public:
     css_cache& css () { return css_; }
     const css_cache& css () const { return css_; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; return *this; }
+    context_t& environment (const e_environment e, const ::std::string& s);
     context_t& export_root (const ::std::string& s) { export_root_ = s; return *this; }
     context_t& exports (const vstr_t& s) { exports_ = s; return *this; }
     context_t& extensions (const vstr_t& s) { extensions_ = s; return *this; }
@@ -263,16 +270,18 @@ public:
     context_t& schema_ver (const schema_version& sv) { schema_ver_.reset (sv); return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
-    context_t& shadow (const ::std::string& s) { shadow_ = s; return *this; }
     context_t& shadow_comment (const bool b) { shadow_comment_ = b; return *this; }
+    context_t& shadow_changed (const bool b) { shadow_changed_ = b; return *this; }
     context_t& shadow_ignore (const vstr_t& s) { shadow_ignore_ = s; return *this; }
     context_t& shadow_persist (const ::std::string& s) { shadow_persist_ = s; return *this; }
+    context_t& shadow_root (const ::std::string& s) { shadow_ = s; return *this; }
     context_t& shadow_ssi (const bool b) { shadow_ssi_ = b; return *this; }
     context_t& shadow_space (const bool b) { shadow_space_ = b; return *this; }
     context_t& shadows (const vstr_t& s) { shadows_ = s; return *this; }
     context_t& site (const vstr_t& s) { site_ = s; return *this; }
     context_t& slob (const bool b) { slob_ = b; return *this; }
     context_t& spec (const bool b) { spec_ = b; return *this; }
+    context_t& snippet (const ::std::string& s) { snippet_ = s; return *this; }
     context_t& ssi (const bool b) { ssi_ = b; return *this; }
     context_t& stats (const ::std::string& s) { stats_ = s; return *this; }
     context_t& stats_summary (const bool b) { stats_summary_ = b; return *this; }
@@ -301,8 +310,8 @@ public:
     void process_outgoing_webmention (nitpick& nits, const html_version& v);
     void process_incoming_webmention (nitpick& nits, const html_version& v);
     bool tell (const e_verbose n) const { return n <= verbose_; }
-    ::std::ostream& out () { if (fos_) return *fos_; return ::std::cout; }
-    ::std::ostream& err () { if (fos_) return *fos_; return ::std::cerr; }
+    void out (const ::std::string& s) const { out () << ensane (s); }
+    void err (const ::std::string& s) const { err () << ensane (s); }
     void mark (const e_element e)
     {   data_.mark (e); }
     void visible (const e_element e)
@@ -336,7 +345,7 @@ public:
     void mark_meta (const e_metaname mn, const ::std::string& val)
     {   data_.mark_meta (mn, val); }
    void report_stats ()
-    {   out () << data_.report (true); }
+    {   out (data_.report (true)); }
     uint64_t file_count () const
     {   return data_.file_count (); }
     ::boost::program_options::options_description& validation () { return validation_; }

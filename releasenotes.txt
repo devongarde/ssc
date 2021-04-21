@@ -3,6 +3,17 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.101
+- MathML 4, Dec 2020 draft (it's early days; MathML 4 is really MathML 3 with post-it notes)
+- can run in the OpenBSD httpd server CGI environment
+   (do NOT expose SSC to untrusted data sources, such as those on the open web, without taking
+    serious precautions: ssc is pre-alpha software, and probably has more bugs than the
+    Creator's Ultimate All-Beetle Extravaganza)
+- --shadow.changed: only update files in the shadow directory when the originals have changed
+- expanded ligature suggestions work across systems
+- recognise the non-standard character codes &bang; (!), &hash; (#), &splat; (*) and &squiggle; (~)
+- improvements to corpus data extraction
+
 0.0.100
 - can nitpick against WhatWG Living Standard April 2021 (except MathML 4 & SVG 2)
 - expanded character code suggestions, particularly for ligatures (Windows only)

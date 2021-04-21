@@ -323,7 +323,7 @@ void element::examine_mglyph ()
             pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "INDEX is required for correct usage of <MGLYPH> in MathML 2");
         if (! a_.known (a_alt))
             pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "ALT, is required for correct usage of <MGLYPH> in MathML 2"); }
-    else if (page_.version ().math_version () == math_3)
+    else if (page_.version ().math_version () >= math_3)
     {   if (! a_.known (a_src))
             pick (nit_mglyph_alt_src, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "SRC is required for correct usage of <MGLYPH> in MathML 3");
         if (! a_.known (a_alt))
@@ -336,6 +336,13 @@ void element::examine_mglyph ()
             pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "FONTFAMILY is deprecated with <MGLYPH> in MathML 3");
         if (a_.known (a_index))
             pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "INDEX is deprecated with <MGLYPH> in MathML 3"); } }
+
+void element::examine_mn ()
+{   if (page_.version ().math_version () < math_3) return;
+    ::std::string x (text ());
+    ::std::string::size_type pos = x.find_first_not_of (" .,IVXDMLivxdmlxX" HEX);
+    if (pos != ::std::string::npos)
+        pick (nit_impure_mn, ed_math_3, "3.2.4.4 Numbers that should not be written using <mn> alone", es_warning, ec_element, "Given '", x.at (pos), "', <MN> alone may be unsuitable here"); }
 
 void element::examine_mstyle ()
 {   if (page_.version ().math_version () < math_3) return;

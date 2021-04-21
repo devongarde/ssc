@@ -51,7 +51,7 @@ bool path_root::applicable (const ::std::string& path) const
 ::boost::filesystem::path path_root::get_export_filename (const ::std::string& path) const
 {   return get_xxx_filename (path, export_); }
 
-bool path_root::shadow (nitpick& nits, const ::boost::filesystem::path& shadow)
+bool path_root::shadow_root (nitpick& nits, const ::boost::filesystem::path& shadow)
 {   if (! make_shadow_directory (nits, shadow)) return false;
     shadow_ = shadow;
     return true; }
@@ -105,7 +105,7 @@ bool paths_root::add_shadow (nitpick& nits, const ::std::string& assignment)
     if (prep_xxx (nits, assignment, virt, p))
     {   for (size_t n = 1; n < root_.size (); ++n)
             if (root_.at (n) -> get_site_path () == virt)
-                return root_.at (n) -> shadow (nits, p);
+                return root_.at (n) -> shadow_root (nits, p);
         nits.pick (nit_bad_parameter, es_error, ec_init, quote (virt), " is no virtual directory"); }
     return false; }
 

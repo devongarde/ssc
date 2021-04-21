@@ -116,17 +116,26 @@ bool write_text_file (const ::std::string& name, const ::std::string& content)
     try
     {   ofstream f (p);
         if (f.bad ())
-        {   if (context.tell (e_severe)) context.err () << "Cannot open temporary file " << p << "\n";
+        {   if (context.tell (e_severe))
+            {   context.err ("Cannot open temporary file ");
+                context.err (p.string ());
+                context.err ("\n"); }
             return false; }
         try
         {   f << content; }
         catch (...)
-        {   if (context.tell (e_severe)) context.err () << "Cannot write to temporary file " << p << "\n";
+        {   if (context.tell (e_severe))
+            {   context.err ("Cannot write to temporary file ");
+                context.err (p.string ());
+                context.err ("\n"); }
             return false; }
         f.close ();
         if (::boost::filesystem::exists (n))
             if (! ::boost::filesystem::remove (n))
-            {   if (context.tell (e_severe)) context.err () << "Cannot delete existing file " << n << "\n";
+            {   if (context.tell (e_severe))
+                {   context.err ("Cannot delete existing file ");
+                    context.err (p.string ());
+                    context.err ("\n"); }
                 return false; }
         ::boost::filesystem::rename (p, n);
         return true; }
@@ -135,7 +144,10 @@ bool write_text_file (const ::std::string& name, const ::std::string& content)
     {   if (::boost::filesystem::exists (p))
             ::boost::filesystem::remove (p); }
     catch (...) { }
-    if (context.tell (e_error)) context.err () << "Cannot update " << n << "\n";
+    if (context.tell (e_error))
+    {   context.err ("Cannot update ");
+        context.err (p.string ());
+        context.err ("\n"); }
     return false; }
 
 ::std::string trim_the_lot_off (const ::std::string& s)
@@ -271,11 +283,16 @@ bool read_header (::boost::property_tree::ptree& json, const ::std::string& expe
     version = read_field < ::std::string > (json, V);
     ::std::string con = read_field < ::std::string > (json, CONTEXT);
     if ((prog != PROG) || (version.substr (0, 3) != "0.0"))
-    {   if (context.tell (e_error)) context.err () << filename << " is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it\n";
+    {   if (context.tell (e_error))
+        {   context.err (filename);
+            context.err (" is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it\n"); }
         return false; }
     if (! expected.empty ())
         if (con != expected)
-        {   if (context.tell (e_error)) context.err () << filename << " is not an " PROG " " << expected << " file\n";
+        {   if (context.tell (e_error))
+            {   ::std::ostringstream ss;
+                ss << filename << " is not an " PROG " " << expected << " file\n";
+                context.err (ss.str ()); }
             return false; }
     return true; }
 
@@ -293,7 +310,10 @@ bool replace_file (::boost::property_tree::ptree& json, ::boost::filesystem::pat
         {   ::boost::property_tree::write_json (filename.string (), json); }
         catch (...)
         {   ::boost::filesystem::remove (filename);
-            if (context.tell (e_severe)) context.err () << "Cannot write " << filename << "\n";
+            if (context.tell (e_severe))
+            {   context.err ("Cannot write ");
+                context.err (filename.string ());
+                context.err ("\n"); }
             return false; } }
     else
     {   try
@@ -301,14 +321,22 @@ bool replace_file (::boost::property_tree::ptree& json, ::boost::filesystem::pat
             ::boost::filesystem::rename (filename, old); }
         catch (...)
         {   ::boost::filesystem::remove (tmp);
-            if (context.tell (e_severe)) context.err () << "Cannot write " << tmp << "\n";
+            if (context.tell (e_severe))
+            {   context.err ("Cannot write ");
+                context.err (tmp.string ());
+                context.err ("\n"); }
             return false; }
         try
         {   ::boost::filesystem::rename (tmp, filename); }
         catch (...)
         {   ::boost::filesystem::rename (old, filename);
             ::boost::filesystem::remove (tmp);
-            if (context.tell (e_severe)) context.err () << "Cannot replace " << filename << " with " << tmp << "\n";
+            if (context.tell (e_severe))
+            {   context.err ("Cannot replace ");
+                context.err (filename.string ());
+                context.err (" with ");
+                context.err (tmp.string ());
+                context.err ("\n"); }
             return false; }
        try
         {   ::boost::filesystem::remove (old); }
@@ -344,7 +372,6 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
     {   { "centre", d_johnson, "348" },
         { "colour", d_johnson, "409" },
         { "organisation", d_none, nullptr },
-
         { "alternative", d_none, nullptr },
         { "anaesthesia", d_anaesthesia, nullptr },
         { "autocapitalise", d_none, nullptr },
@@ -362,7 +389,6 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
         { "motorised", d_none, nullptr },
         { "neighbour", d_johnson, "1356" },
         { "optimise", d_none, nullptr },
-        { "organisation", d_none, nullptr },
         { "organiser", d_none, nullptr },
         { "organise", d_none, nullptr },
         { "paediatric", d_none, nullptr },

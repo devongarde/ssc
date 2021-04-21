@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.100
+version 0.0.101
 https://ssc.lu/
 
 
@@ -19,11 +19,11 @@ WARNING: this code is:
 
 
 
-ssc analyses static HTML sites at source:
+ssc analyses static HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3
-- HTML living standard (2005-2021)
+- HTML living standard, Jan 2005 to Apr 2021
 - SVG 1.0/1.1
-- MathML 1/2/3
+- MathML 1/2/3/4(draft)
 - XHTML 1.0/1.1/2.0
 - finds broken links (requires curl)
 - server side includes, mostly
@@ -71,6 +71,15 @@ To build & run:
 
 
 
+NOTE
+SSC can be run in a CGI environment. This is intended for use with OpenBSD's native httpd web server
+(https://man.openbsd.org/httpd.8). You are reminded that SSC is pre-alpha software. Do NOT expose it
+to untrusted data sources, such as the open web, without taking serious precautions. SSC probably has
+more bugs than the Creator's Ultimate All-Beetle Extravaganza (J.B.S. Haldane, apocryphal : "[the
+Creator has] an inordinate fondness for beetles.").
+
+
+
 Notes on folder names:
 - recipe: a nod to Vernor Vinge's "A Fire Upon the Deep"
 - tea: without tea, nothing works / builders' tea
@@ -92,4 +101,4 @@ more licences    licences for content copied from elsewhere
 
 written by dylan harris
 mail@ssc.lu
-March 2021
+April 2021

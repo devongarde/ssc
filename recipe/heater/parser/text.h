@@ -37,3 +37,5 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
 ::std::string interpret_character_hex (nitpick& nits, const ::std::string& text);
 
 ::std::string get_character_code (const ::std::string& text);
+::std::string get_extra (const ::std::string& text);
+::std::string enwotsit (const ::std::string& s);

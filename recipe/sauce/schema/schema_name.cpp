@@ -1643,7 +1643,7 @@ void schema_name_init (nitpick& nits)
                     break; }
             auto i = mnp.find (p -> prop_);
             if (i != mnp.cend ())
-            {   nits.pick (nit_symbol_aleady_defined, es_debug, ec_init, "schema property ", p -> prop_, " ('", i -> second -> name_, "', '", p -> name_, "') has many names");
+            {   nits.pick (nit_symbol_aleady_defined, es_splurge, ec_init, "schema property ", p -> prop_, " ('", i -> second -> name_, "', '", p -> name_, "') has many names");
                 mpn.insert (mpn_t::value_type (n, p)); }
             else
             {   mpn.insert (mpn_t::value_type (n, p));

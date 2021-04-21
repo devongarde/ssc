@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "parser/pattern.h"
 
-bool test_character_class (nitpick& nits, const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
+bool test_character_class (nitpick& nits, const html_version& , const ::std::string::const_iterator , const ::std::string::const_iterator e, ::std::string::const_iterator& i)
 {   DBG_ASSERT (*i == '\\');
     ::std::string::const_iterator x = i;
     bool res = true;
@@ -136,7 +136,7 @@ bool test_bra (nitpick& nits, const html_version& , const ::std::string::const_i
                                     if (! tmp)
                                     {   nits.pick (nit_bad_pattern, ed_ecma, "AtomEscape", es_error, ec_regex, "in PATTERN, for '(?<Name>X)', both angular and rounded brackets must be closed");
                                         res = false; } }
-                            break;
+                        break;
                     case ':' :
                         if ((++x != e) && (++x != e) && (*x == ')')) break;
                         nits.pick (nit_bad_pattern, ed_ecma, "AtomEscape", es_error, ec_regex, "in PATTERN, for '(?:=X)', the bracket must be closed, and X must be a single character");
@@ -149,7 +149,7 @@ bool test_bra (nitpick& nits, const html_version& , const ::std::string::const_i
     i = x;
     return res; }
 
-bool test_squ (nitpick& nits, const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
+bool test_squ (nitpick& nits, const html_version& , const ::std::string::const_iterator , const ::std::string::const_iterator e, ::std::string::const_iterator& i)
 {   DBG_ASSERT (*i == '[');
     ::std::string::const_iterator x = i;
     bool res = true, tmp = false;
@@ -162,7 +162,7 @@ bool test_squ (nitpick& nits, const html_version& , const ::std::string::const_i
     i = x;
     return res; }
 
-bool test_brace (nitpick& nits, const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
+bool test_brace (nitpick& nits, const html_version& , const ::std::string::const_iterator , const ::std::string::const_iterator e, ::std::string::const_iterator& i)
 {   DBG_ASSERT (*i == '{');
     ::std::string::const_iterator x = i;
     bool res = true, tmp = false, had_comma = false;

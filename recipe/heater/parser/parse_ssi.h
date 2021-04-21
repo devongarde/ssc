@@ -32,4 +32,4 @@ struct ssi_compedium
     ssi_compedium ();
     void swap (ssi_compedium& ssi); };
 
-::std::string parse_ssi (nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const ::std::string& input, bool shush = false);
+::std::string parse_ssi (nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush = false);

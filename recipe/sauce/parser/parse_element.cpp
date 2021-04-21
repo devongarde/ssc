@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "main/context.h"
 #include "parser/parse_element.h"
+#include "parser/text.h"
 #include "utility/quote.h"
 
 element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed)
@@ -134,11 +135,16 @@ void element_node::parse_attributes (const html_version& v, const ::std::string:
     return res; }
 
 ::std::string element_node::inner_text () const
-{   switch (elem_.get ())
+{   ::std::string tmp;
+    switch (elem_.get ())
     {   case elem_faux_cdata :
-        case elem_faux_char :
         case elem_faux_code :
             if (is_whitespace (text_)) return " ";
+            return text_;
+        case elem_faux_char :
+            if (is_whitespace (text_)) return " ";
+            tmp = interpret_character_code (version_, text_);
+            if (! tmp.empty ()) return tmp;
             return text_;
         case elem_faux_text :
             return text_;

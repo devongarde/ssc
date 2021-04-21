@@ -253,6 +253,7 @@ template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudon
                     {   nits.merge (nuts); return; }
                     break;
                 case math_3 :
+                case math_4 :
                     {   ::std::string::size_type len = ss.length ();
                         if (len >= 5)
                             if ((ss.substr (len - 5) == "width") || (ss.substr (len - 5) == "depth"))

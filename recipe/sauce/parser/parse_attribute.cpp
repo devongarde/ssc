@@ -23,32 +23,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 
 attribute_node::attribute_node (nitpick& nits, const html_version& v, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end)
-        :   name_start_ (name_start), name_end_ (name_end), value_start_ (value_start), value_end_ (value_end)
 {   has_key_ = has_value_ = true;
+    key_ = ::std::string (name_start, name_end);
+    value_ = ::std::string (value_start, value_end);
     parse (nits, v); }
 
 attribute_node::attribute_node (nitpick& nits, const html_version& v, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end)
-        :   name_start_ (name_start), name_end_ (name_end), value_start_ (name_end), value_end_ (name_end)
 {   has_key_ = true;
     has_value_ = false;
+    key_ = ::std::string (name_start, name_end);
     parse (nits, v); }
 
 void attribute_node::swap (attribute_node& an)
-{   ::std::swap (name_start_, an.name_start_);
-    ::std::swap (name_end_, an.name_end_);
-    ::std::swap (value_start_, an.value_start_);
-    ::std::swap (value_end_, an.value_end_);
+{   key_.swap (an.key_);
+    value_.swap (an.value_);
     ::std::swap (id_, an.id_);
     ::std::swap (has_key_, an.has_key_);
     ::std::swap (has_value_, an.has_value_); }
 
 ::std::string attribute_node::rpt () const
 {   ::std::string res;
-    if (has_key_)
-    {   res = " ";
-        res += ::std::string (name_start_, name_end_);
-        if (id_ == a_unknown) res += "(?)";
-        if (has_value_)
-        {   res += "=";
-            res += quote (::std::string (value_start_, value_end_)); } }
+    res = " ";
+    res += key_;
+    if (id_ == a_unknown) res += "(?)";
+    if (has_value_)
+    {   res += "=";
+        res += quote (value_); }
     return res; }

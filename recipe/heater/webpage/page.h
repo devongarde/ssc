@@ -46,6 +46,7 @@ class page
     bool has_title_ = false;
     bool style_css_ = true;
     bool check_links_ = true;
+    bool snippet_ = false;
     stats_t stats_;
     schema_version schema_version_;
     ssi_compedium ssi_;
@@ -55,11 +56,13 @@ class page
     ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_;
     sstr_t dfns_;
     ustr_t abbrs_;
+    ::std::time_t updated_ = 0;
     friend class tag;
 public:
     page () = delete;
-    page (nitpick& nits, const ::std::string& name, ::std::string& content, directory* d = nullptr, const e_charcode encoding = cc_ansi);
-    page (const ::std::string& name, ::std::string& content, const fileindex_t ndx, directory* d = nullptr, const e_charcode encoding = cc_ansi);
+    page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d = nullptr, const e_charcode encoding = cc_ansi);
+    page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, directory* d = nullptr, const e_charcode encoding = cc_ansi);
+    explicit page (const ::std::string& content, const e_charcode encoding = cc_ansi);
     page (const page& ) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
     page (page&& ) = default;
@@ -75,9 +78,9 @@ public:
     const nitpick& nits () const { return nits_; }
     bool parse (::std::string& content, const e_charcode encoding = cc_ansi);
     bool invalid () const { return nodes_.invalid (); }
-    bool check_links () const { return check_links_; }
+    bool check_links () const { return check_links_ && ! snippet_; }
     void check_links (const bool b) { check_links_ = b; }
-    void examine (const directory& d);
+    void examine ();
     ::std::string find_webmention () const;
     ::std::string find_mention_info (const url& u, bool text, bool anything);
     ids_t& get_ids () { return ids_; }
@@ -90,11 +93,11 @@ public:
     const ::boost::filesystem::path get_disk_path () const;
     const ::boost::filesystem::path get_export_path () const;
     void export_rel (const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type)
-    {   mf_export_.rel (url, hreflang, media, rels, text, title, type); }
+    {   if (! snippet_) mf_export_.rel (url, hreflang, media, rels, text, title, type); }
     void export_item (const ::std::string& wo, const ::std::string& was)
-    {   mf_export_.item (wo, was); }
+    {   if (! snippet_) mf_export_.item (wo, was); }
     bool mf_write (const ::boost::filesystem::path& name)
-    {   return mf_export_.write (nits_, name); }
+    {   return snippet_ || mf_export_.write (nits_, name); }
     const html_version version () const { return nodes_.version (); }
     const schema_version schema_ver () const { return schema_version_; }
     void schema_ver (const schema_version& v) { schema_version_ = v; }
