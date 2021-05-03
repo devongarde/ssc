@@ -35,7 +35,7 @@ struct attribute_base
     virtual void parse (nitpick& , const html_version& , const attribute_node& ) { }
     virtual bool verify_version (nitpick& , const html_version& , const e_element ) { return false; }
     virtual void set_value (nitpick& , const html_version& , const ::std::string& ) { }
-    virtual void validate (nitpick& , const html_version& , const elem& , const ::std::string& ) { }
+    virtual void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
     virtual bool verify_url (nitpick& , const html_version& , const element& ) { return true; }
     virtual ::std::string get_string () const { return ::std::string (); }
     virtual ::std::string original () const { return get_string (); }
@@ -107,8 +107,8 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
             else if (! compare_no_case (ss, name ()))
             {   nits.pick (nit_existential_value, es_warning, ec_type, "if ", name (), " has a value, it must be ", quote (name ()));
                 typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); } }
-    virtual void validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& s)
-    {   typed_value < e_attribute, TYPE, IDENTITY > :: validate (nits, v, e, s); }
+    virtual void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* pe, const ::std::string& s)
+    {   typed_value < e_attribute, TYPE, IDENTITY > :: verify_attribute (nits, v, e, pe, s); }
     virtual bool verify_url (nitpick& nits, const html_version& v, const element& e)
     {   return typed_value < e_attribute, TYPE, IDENTITY > :: verify_url (nits, v, e); }
     virtual ::std::string get_string () const { return typed_value < e_attribute, TYPE, IDENTITY > :: get_string (); }

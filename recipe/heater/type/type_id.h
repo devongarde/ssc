@@ -112,28 +112,7 @@ template < > struct type_master < t_idrefs > : string_vector < t_idrefs, sz_spac
             value_.clear (); }
         return true; } };
 
-template < > struct type_master < t_navigation > : tidy_string < t_navigation >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_navigation > :: set_value (nits, v, s);
-        if (s.empty ())
-        {   nits.pick (nit_bad_id, es_error, ec_type, "an id cannot be empty");
-            tidy_string < t_navigation > :: status (s_invalid); }
-        else if (::std::find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
-        {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " contains a space");
-            tidy_string < t_navigation > :: status (s_invalid); } }
-    bool verify_id (nitpick& nits, const html_version& , ids_t& ids, const attribute_bitset& state, const vit_t& )
-    {   if (! tidy_string < t_navigation > :: good ()) return false;
-        const ::std::string s (tidy_string < t_navigation > :: get_string ());
-        if (compare_no_case (s, "auto") || compare_no_case (s, "self")) return false;
-        if (! ids.has_id (s))
-            nits.pick (nit_unknown, es_error, ec_type, quote (s), " is not an existing identifier");
-        else if (! ids.compatible_state (s, state.test (a_hidden)))
-            nits.pick (nit_id_hidden, es_error, ec_type, quote (s), " is hidden");
-        else return false;
-        tidy_string < t_navigation > :: status (s_invalid);
-        return true; } };
-
 template < > struct type_master < t_result > : tidy_string < t_result >
 {   typedef true_type has_int_type;
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
-    { return invalid_id_result (nits, v, string_value < t_result > :: value_, e); } };
+    { return invalid_id_result (nits, v, tidy_string < t_result > :: value_, e); } };

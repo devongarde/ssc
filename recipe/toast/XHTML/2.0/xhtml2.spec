@@ -1,16 +1,13 @@
 -f ../toast/XHTML/2.0/xhtml2.conf
 
 PASS ../toast/XHTML/2.0/index.xhtml
-1 xhtml_1_0
-2 html_contradictory
+1 xhtml_2_0
 
 PASS ../toast/XHTML/2.0/x2-good.xhtml
-1 xhtml_1_0
-2 html_contradictory
+1 xhtml_2_0
 
 PASS ../toast/XHTML/2.0/x2-bad.xhtml
-1 xhtml_1_0
-2 html_contradictory
+1 xhtml_2_0
 6 xhtml_element_lc
 8 xhtml_element_lc
 11 xhtml_quote_values xhtml_quote_values missing_close xhtml_enum_lc
@@ -25,8 +22,7 @@ PASS ../toast/XHTML/2.0/x2-bad.xhtml
 
 PASS ../toast/XHTML/2.0/x2-example.xhtml
 0 charset_mismatch charset_used
-1 xhtml_1_0
-2 html_contradictory
+1 xhtml_2_0
 7 long_title
 61 unknown
 72 unrecognised_value

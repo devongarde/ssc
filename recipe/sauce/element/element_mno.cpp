@@ -43,7 +43,7 @@ void element::examine_map ()
 
 void element::examine_math ()
 {   if (! has_child ()) return;
-    e_mathversion mv = node_.version ().math_version ();
+    e_math_version mv = node_.version ().math_version ();
     if (mv == math_none) mv = page_.version ().math_version ();
     switch (mv)
     {   case math_2 : break;

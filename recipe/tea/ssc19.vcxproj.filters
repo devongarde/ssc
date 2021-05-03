@@ -1085,6 +1085,12 @@
     <ClInclude Include="..\heater\parser\text-data.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\attribute\avm_data.h">
+      <Filter>Heater\attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_case.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1435,6 +1441,21 @@
     <ClCompile Include="..\sauce\parser\text-data.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_abc.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_ijkl.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_defgh.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_mnopqr.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_stuvwxyz.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\stats\single\index.html">
@@ -1479,15 +1500,6 @@
     <None Include="..\toast\stats\detail\stats.spec">
       <Filter>Toast\Stats\Detail</Filter>
     </None>
-    <None Include="..\toast\SVG\2.0\bad.html">
-      <Filter>Toast\SVG\2.0</Filter>
-    </None>
-    <None Include="..\toast\SVG\2.0\dubious.html">
-      <Filter>Toast\SVG\2.0</Filter>
-    </None>
-    <None Include="..\toast\SVG\2.0\good.html">
-      <Filter>Toast\SVG\2.0</Filter>
-    </None>
     <None Include="..\toast\SVG\2.0\index.html">
       <Filter>Toast\SVG\2.0</Filter>
     </None>
@@ -1495,12 +1507,6 @@
       <Filter>Toast\SVG\2.0</Filter>
     </None>
     <None Include="..\toast\SVG\2.0\svg.spec">
-      <Filter>Toast\SVG\2.0</Filter>
-    </None>
-    <None Include="..\toast\SVG\2.0\svg20.html">
-      <Filter>Toast\SVG\2.0</Filter>
-    </None>
-    <None Include="..\toast\SVG\2.0\svg20.xhtml">
       <Filter>Toast\SVG\2.0</Filter>
     </None>
     <None Include="..\toast\SVG\1.2\bad.html">
@@ -17483,6 +17489,24 @@
     </None>
     <None Include="..\toast\shadow\dedudiff\update.inc">
       <Filter>Toast\Shadow\DeduDiff</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\dom.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\opacity.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\svg-1.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\svg-1.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\svg-2.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\svg-3.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

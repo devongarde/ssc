@@ -56,9 +56,9 @@
 <svg width="4in" height="3in">
   <defs>
     <rect id="TemplateObject01" width="100" height="37.34"/>
-    <lineargradient id="Gradient01">
+    <linearGradient id="Gradient01">
       <stop offset="30%" style="color:#39F"/>
-    </lineargradient>
+    </linearGradient>
   </defs>
   <desc>Defining things for later use
   </desc>
@@ -221,10 +221,10 @@
   </desc>
   <g>
     <defs>
-      <lineargradient id="MyGradient">
+      <linearGradient id="MyGradient">
         <stop offset="0%" style="color:#F60"/>
         <stop offset="70%" style="color:#FF6"/>
-      </lineargradient>
+      </linearGradient>
     </defs>
     <rect style="fill: url(#MyGradient)" width="20" height="15.8"/>
   </g>
@@ -235,11 +235,11 @@
   </desc>
   <g>
     <defs>
-      <radialgradient id="MyGradient">
+      <radialGradient id="MyGradient">
          <stop offset="0%" style="color:white"/>
          <stop offset="50%" style="color:red"/>
          <stop offset="100%" style="color:black"/>
-      </radialgradient>
+      </radialGradient>
     </defs>
     <circle style="fill: url(#MyGradient)" r="42"/>
   </g>
@@ -248,9 +248,9 @@
 <svg width="4in" height="3in" >
   <defs>
     <pattern id="TrianglePattern"
-              pattern-units="userspace"
+             patternUnits="userspace"
              x="0" y="0" width="25" height="25"
-             pattern-transform="skew-x(45)"
+             patternTransform="skewX(45)"
              fit-bbox="0 0 10 10" >
       <path d="M 0 0 L 10 0 L 5 10 z" />
   </defs>
@@ -263,10 +263,10 @@
   </desc>
   <g>
     <defs>
-      <lineargradient id="MyGradient">
+      <linearGradient id="MyGradient">
         <stop offset="0%" style="color:#F60"/>
         <stop offset="70%" style="color:#FF6"/>
-      </lineargradient>
+      </linearGradient>
     </defs>
     <g style="fill: url(#MyGradient)">
       <rect width="20" height="15.8"/>
@@ -282,9 +282,9 @@
 
 <svg width="4in" height="3in">
   <path d="M 100 100">
-    <data d="L 140 100"/>
-    <data d="L 120 140"/>
-    <data d="z"/>
+
+
+
   </path>
 </svg>
 
@@ -292,8 +292,8 @@
       fit-box-to-viewport="0 0 4000 4000" >
   <defs>
     <marker id="Triangle"
-      fit-bbox="0 0 10 10" ref-x="0" ref-y="5"
-       marker-width="1.25" marker-height="1.75"
+      fit-bbox="0 0 10 10" refX="0" refY="5"
+      markerWidth="1.25" markerHeight="1.75"
       orient="auto">
       <path d="M 0 0 L 10 5 L 0 10 z" />
     </marker>
@@ -302,15 +302,15 @@
   </desc>
   <path d="M 1000 1000 L 2000 1000 L 3000 2000"
         style="fill:none; stroke:black; stroke-width:100;
-         marker-end=url(#Triangle)" />
+        marker-end=url(#Triangle)" />
 </svg>
 
 <svg width="4in" height="4in"
       fit-box-to-viewport="0 0 4000 4000" >
   <defs>
     <marker id="Triangle"
-      fit-bbox="0 0 10 10" ref-x="0" ref-y="5"
-       marker-width="1.25" marker-height="1.75"
+      fit-bbox="0 0 10 10" refX="0" refY="5"
+      markerWidth="1.25" markerHeight="1.75"
       orient="auto">
       <path d="M 0 0 L 10 5 L 0 10 z" />
     </marker>
@@ -329,7 +329,7 @@
       replace "marker" with "symbol" and remove the various
        marker-specific attributes -->
     <symbol id="Triangle"
-      fit-bbox="0 0 10 10" ref-x="0" ref-y="5">
+      fit-bbox="0 0 10 10" refX="0" refY="5">
       <path d="M 0 0 L 10 5 L 0 10 z" />
     </symbol>
   </defs>
@@ -362,7 +362,7 @@
            Transform the marker symbol to align (ref-x,ref-y) with
            the origin of the viewport. -->
       <svg width="125" height="175"
-            fit-box-to-viewport="0 0 10 10"
+           fit-box-to-viewport="0 0 10 10"
            transform="translate(0,-5)" >
 
         <!-- Expand out the contents of the <marker> element. -->
@@ -417,7 +417,7 @@
   <path id="MyPath" style="visibility: hidden"
         d="M 100 100 C 125 125 175 125 200 100" />
   <text>
-    <textpath href="#MyPath">Text on path</textpath>
+    <textPath href="#MyPath">Text on path</textPath>
   </text>
 </svg>
 
@@ -457,7 +457,7 @@
                         dx="2" dy="1"
                         nodeid="offsetBlurredAlpha" />
      <feDiffuseLighting in="blurredAlpha"
-                        diffuse-constant=".5"
+                        diffuseConstant=".5"
                         nodeid="bumpMapDiffuse" >
       <feDistantLight/>
     </feDiffuseLighting>
@@ -465,9 +465,9 @@
                         operator="arithmetic" k1="1"
                         nodeid="litPaint" />
       <feSpecularLighting in="blurredAlpha"
-                        specular-constant=".5"
-                        specular-exponent="10"
-                        light-color="feDistantLight"
+                        specularConstant=".5"
+                        specularExponent="10"
+                        lighting-color="feDistantLight"
                         nodeid="bumpMapSpecular" >
         <feDistantLight/>
     </feSpecularLighting>
@@ -571,11 +571,11 @@
     <!-- Process the MathML if the system-required attribute
          evaluates to true (i.e., the user agent supports MathML
          embedded within SVG). -->
-    <foreignobject
+    <foreignObject
         system-required="http://www.w3.org/TR/REC-MathML-19980407"
         width="100" height="50">
       <!-- MathML content goes here -->
-    </foreignobject>
+    </foreignObject>
     <!-- Else, process the following alternate SVG.
          Note that there are no testing attributes on the <g> element.
          If no testing attributes are provided, it is as if there

@@ -76,7 +76,7 @@ public:
     virtual void declare (bool b = true) { declared_ = b; }
 
     virtual bool is_relational () const { return false; }
-    virtual void validate (nitpick& , const html_version& , const elem& ) { }
+    virtual void verify_attribute (nitpick& , const html_version& , const elem& , element* ) { }
     virtual void set_mf_value (nitpick& , const html_version& , const e_property , element& ) { }
     virtual ::std::string get_string (const e_property ) { return ::std::string (); }
     virtual bool has_prop (const e_property ) const { return false; }
@@ -131,7 +131,7 @@ public:
             {   if (! res) res = p.whoami () == PROP; } );
         return res; }
     virtual bool is_relational () const;
-    virtual void validate (nitpick& nits, const html_version& v, const elem& e);
+    virtual void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* pe);
     virtual void set_mf_value (nitpick& nits, const html_version& v, const e_property pp, element& e);
     virtual ::std::string get_string (const e_property pp);
     virtual bool has_prop (const e_property p) const;
@@ -170,9 +170,9 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
     return res; }
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
-    void microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: validate (nitpick& nits, const html_version& v, const elem& e)
+    void microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* pe)
 {   for_each_attribute (p_, [&](auto& p)
-    {   p.validate (nits, v, e, p.name ()); } ); }
+    {   p.verify_attribute (nits, v, e, pe, p.name ()); } ); }
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
     void microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: set_mf_value (nitpick& nits, const html_version& v, const e_property pp, element& e)

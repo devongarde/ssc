@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.101 LANGUAGES CXX)
+project (ssc VERSION 0.0.102 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -75,6 +75,7 @@ find_package (Iconv REQUIRED)
 target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h ${S}/feedback/nitnames.cpp)
 target_sources (ssc PRIVATE
     ${H}/attribute/attr.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h ${H}/attribute/avm.h
+             ${H}/attribute/avm_data.h
         ${H}/css/css.h ${H}/css/css_cache.h
         ${H}/element/elem.h ${H}/element/element.h ${H}/element/element_attribute.h ${H}/element/element_classes.h ${H}/element/parentage.h
             ${H}/element/state.h
@@ -90,32 +91,33 @@ target_sources (ssc PRIVATE
             ${H}/microformat/property_value.h ${H}/microformat/sibling.h
         ${H}/parser/html_version.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h ${H}/parser/parse_bra_ket.h ${H}/parser/parse_bras_ket.h
             ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h ${H}/parser/pattern.h ${H}/parser/text.h
-           ${H}/parser/text-data.h  ${H}/parser/xhtml_xml.h
+           ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
         ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats4.h ${H}/stats/stats_impl.h
         ${H}/symbol/symbol.h ${H}/symbol/symbol_entry.h ${H}/symbol/symbol_key.h ${H}/symbol/symbol_store.h ${H}/symbol/symbol_table.h
         ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
-            ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_charset.h ${H}/type/type_class.h ${H}/type/type_colour.h
-            ${H}/type/type_cookie.h ${H}/type/type_core.h ${H}/type/type_csp.h ${H}/type/type_currency.h ${H}/type/type_enum.h ${H}/type/type_enum_vec.h
-            ${H}/type/type_httpequiv.h  ${H}/type/type_lang.h ${H}/type/type_master.h ${H}/type/type_media.h ${H}/type/type_metaname.h ${H}/type/type_mime.h
-            ${H}/type/type_rdf.h ${H}/type/type_reals.h ${H}/type/type_rel.h ${H}/type/type_relational.h ${H}/type/type_time.h ${H}/type/type_url.h
-            ${H}/type/type_van.h  ${H}/type/type_basic.h ${H}/type/type_id.h ${H}/type/type_layout.h ${H}/type/type_math.h ${H}/type/type_measure.h
-            ${H}/type/type_microdata.h ${H}/type/type_microformat.h ${H}/type/type_misc.h ${H}/type/type_numeric.h ${H}/type/type_svg.h
-            ${H}/type/type_varied.h ${H}/type/type_xmlns.h
+            ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_case.h ${H}/type/type_charset.h ${H}/type/type_class.h
+            ${H}/type/type_colour.h ${H}/type/type_cookie.h ${H}/type/type_core.h ${H}/type/type_csp.h ${H}/type/type_currency.h ${H}/type/type_enum.h
+            ${H}/type/type_enum_vec.h ${H}/type/type_httpequiv.h ${H}/type/type_lang.h ${H}/type/type_master.h ${H}/type/type_media.h
+            ${H}/type/type_metaname.h ${H}/type/type_mime.h ${H}/type/type_rdf.h ${H}/type/type_reals.h ${H}/type/type_rel.h ${H}/type/type_relational.h
+            ${H}/type/type_time.h ${H}/type/type_url.h ${H}/type/type_van.h ${H}/type/type_basic.h ${H}/type/type_id.h ${H}/type/type_layout.h
+            ${H}/type/type_math.h ${H}/type/type_measure.h ${H}/type/type_microdata.h ${H}/type/type_microformat.h ${H}/type/type_misc.h
+            ${H}/type/type_numeric.h ${H}/type/type_svg.h ${H}/type/type_varied.h ${H}/type/type_xmlns.h
         ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h ${H}/url/url_schemes.h
         ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
         ${H}/webmention/hook.h ${H}/webmention/irt.h ${H}/webmention/webmention.h ${H}/webmention/webmentions.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/root.h
-    ${S}/attribute/attr.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp
+    ${S}/attribute/attr.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp ${S}/attribute/avm_data_abc.cpp
+            ${S}/attribute/avm_data_defgh.cpp ${S}/attribute/avm_data_ijkl.cpp ${S}/attribute/avm_data_mnopqr.cpp ${S}/attribute/avm_data_stuvwxyz.cpp
         ${S}/css/css.cpp ${S}/css/css_cache.cpp
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp
             ${S}/element/element_pqr.cpp ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp ${S}/element/parentage.cpp ${S}/element/state.cpp
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitpick.cpp
-        ${S}/icu/charset.cpp ${S}/icu/converter.cpp  ${S}/icu/wrapper.cpp
+        ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/wrapper.cpp
         ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/main/version.cpp
         ${S}/microdata/microdata_export.cpp ${S}/microdata/microdata_itemid.cpp ${S}/microdata/microdata_itemprop.cpp ${S}/microdata/microdata_itemscope.cpp
             ${S}/microdata/microdata_itemtype.cpp

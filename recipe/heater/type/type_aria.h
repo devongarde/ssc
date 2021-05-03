@@ -20,43 +20,44 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_enum.h"
+#include "type/type_case.h"
 
 bool is_default_role (const html_version& v, const e_element elem, const e_aria_role role);
 bool is_permitted_role (const html_version& v, const e_element elem, const e_aria_role role);
-uint64_t get_aria_flags (const html_version& v, const e_element elem, const e_aria_role role);
 
-template < > inline void enum_n < t_role, e_aria_role > :: validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+template < > inline void enum_n < t_role, e_aria_role > :: verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
 {   if (v >= html_5_0)
-        if (is_default_role (v, e.get (), enum_base < e_aria_role, t_role > :: value_))
+        if (is_default_role (v, e, enum_base < e_aria_role, t_role > :: value_))
             nits.pick (nit_default_role, es_error, ec_type, "do not specify the default role");
         else if (! is_permitted_role (v, e.get (), enum_base < e_aria_role, t_role > :: value_))
             nits.pick (nit_default_role, es_error, ec_type, quote (enum_base < e_aria_role, t_role > :: original ()), " is not permitted here"); }
 
 template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s);
+{   e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& ns);
     enum_base < e_aria_role, t_role > :: original_ = s;
     if (v < html_4_0)
     {   enum_base < e_aria_role, t_role > :: value_ = default_value ();
         if (s.empty ()) enum_base < e_aria_role, t_role > :: status (s_empty);
         else enum_base < e_aria_role, t_role > :: status (s_good);
         return; }
-    if (v.xhtml () && ! v.svg () && (s.find_first_of (UPPERCASE) != ::std::string::npos))
-        nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
-    ::std::string t (s);
-    e_namespace n (examine_namespace (nits, v, t));
-    if (symbol < html_version, e_aria_role > :: parse (nits, v, s, n))
+    ::std::string pret (trim_the_lot_off (s));
+    ::std::string t (case_must_match < false >::lower (pret));
+    ::std::string ns;
+    e_namespace n (examine_namespace (nits, v, t, ns));
+    if (symbol < html_version, e_aria_role > :: parse (nits, v, t, n))
     {   enum_base < e_aria_role, t_role > :: value_ = symbol < html_version, e_aria_role > :: get ();
+        compare_validate (nits, v, get_string (), pret);
         const html_version f = symbol < html_version, e_aria_role > :: first ();
         if (! may_apply (v, f, symbol < html_version, e_aria_role > :: last ()))
-            nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ());
+            nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report ());
         else if (f.reject ())
-            nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());
+            nits.pick (nit_rejected, es_error, ec_type, quote (pret), " is valid but incompatible with ", v.report ());
         else
-        {   if (f.deprecated (v)) nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report ());
+        {   if (f.deprecated (v)) nits.pick (nit_deprecated_value, es_warning, ec_type, quote (pret), " is deprecated in ", v.report ());
             enum_base < e_aria_role, t_role > :: status (s_good);
             enum_base < e_aria_role, t_role > :: post_set_value (nits, v);
             return; } }
     else
     {   check_spelling (nits, v, t);
-        nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is invalid here"); }
+        nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid here"); }
     enum_base < e_aria_role, t_role > :: status (s_invalid); }

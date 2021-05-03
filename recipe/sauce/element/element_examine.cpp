@@ -100,6 +100,20 @@ void element::post_examine_element (const e_element tag)
         case elem_semantics : check_math_children (1, true); break;
         case elem_card : examine_card (); break;
         case elem_caption : examine_caption (); break;
+        case elem_circle :
+        case elem_ellipse :
+        case elem_foreignobject :
+        case elem_line :
+        case elem_g :
+        case elem_path :
+        case elem_polygon :
+        case elem_polyline :
+        case elem_rect :
+        case elem_symbol :
+        case elem_text :
+        case elem_textpath :
+        case elem_tspan :
+        case elem_use : check_inclusion_criteria (); break;
         case elem_colgroup : examine_colgroup (); break;
         case elem_condition :
         case elem_degree :
@@ -268,7 +282,7 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
         if (hv.deprecated (node_.version ())) pick (nit_deprecated_element, es_warning, ec_element, "<", elem :: name (tag), "> is deprecated in ", node_.version ().report ());
         if (hv.experimental ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is experimental; it will probably change, it may be withdrawn");
 
-        a_.verify_attributes (nits (), node_.version (), own_attributes_);
+        a_.verify_attributes (nits (), node_.version (), this);
         ancestral_attributes_ |= own_attributes_;
 
         if (node_.id ().is_dynamic ()) if (! node_.id ().refreshed ()) congeal_dynamism ();
@@ -314,6 +328,8 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
             if (a_.has_url ())
                 a_.verify_url (nits (), node_.version (), *this);
 
+        if (a_.known (a_keytimes)) examine_keytimes ();
+        if (a_.known (a_keysplines)) examine_keysplines ();
         if (a_.known (a_other)) examine_other ();
         if (a_.known (a_ref)) examine_ref ();
         if (a_.known (a_registrationmark)) examine_registrationmark ();
@@ -327,6 +343,7 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
         pre_examine_element (tag);
 
         if (a_.known (a_autofocus)) examine_autofocus ();
+        if (a_.known (a_defaultaction)) examine_defaultaction ();
         if (a_.known (a_draggable)) examine_draggable ();
         if (a_.known (a_class)) postprocess = examine_class ();
 

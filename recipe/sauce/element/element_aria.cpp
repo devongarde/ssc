@@ -22,8 +22,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 #include "element/element_classes.h"
 
+void element::check_inclusion_criteria ()
+{   if (node_.version ().svg_version () == sv_2_0)
+        if (a_.known (a_role))
+            if ((descendant_attributes_ & (empty_attribute_bitset | a_title | a_arialabel | a_arialabelledby)).any ())
+                if (is_default_role (node_.version (), node_.id (), static_cast < e_aria_role > (a_.get_int (a_role))))
+                    pick (nit_default_role, ed_svg_2_0, "5.12.4. Implicit and Allowed ARIA Semantics", es_warning, ec_type, "do not specify the default role here"); }
+
 void element::examine_aria_checked ()
-{   assert (a_.known (a_ariachecked));
+{   DBG_ASSERT (a_.known (a_ariachecked));
     if (! has_attribute (tag (), a_checked))
         nits ().pick (  nit_aria_position, ed_ariaApr2021, "Document conformance requirements for use of ARIA attributes with HTML attributes",
                         es_error, ec_aria, "ARIA-CHECKED is only valid where CHECKED is permitted");
@@ -34,7 +41,7 @@ void element::examine_aria_checked ()
                                 es_warning, ec_aria, "ARIA-CHECKED should never contradict CHECKED"); }
 
 void element::examine_aria_colspan ()
-{   assert (a_.known (a_ariacolspan));
+{   DBG_ASSERT (a_.known (a_ariacolspan));
     if (! has_attribute (tag (), a_colspan))
         nits ().pick (  nit_aria_position, ed_ariaApr2021, "Document conformance requirements for use of ARIA attributes with HTML attributes",
                         es_error, ec_aria, "ARIA-COLSPAN is only valid where COLSPAN is permitted");
@@ -47,7 +54,7 @@ void element::examine_aria_colspan ()
                                 es_error, ec_aria, "ARIA-COLSPAN must never contradict COLSPAN"); }
 
 void element::examine_aria_disabled ()
-{   assert (a_.known (a_ariadisabled));
+{   DBG_ASSERT (a_.known (a_ariadisabled));
     if (! has_attribute (tag (), a_disabled))
         nits ().pick (  nit_aria_position, ed_ariaApr2021, "Document conformance requirements for use of ARIA attributes with HTML attributes",
                         es_error, ec_aria, "ARIA-DISABLED is only valid where DISABLED is permitted");
@@ -57,9 +64,8 @@ void element::examine_aria_disabled ()
                 nits ().pick (  nit_aria_position, ed_ariaApr2021, "Document conformance requirements for use of ARIA attributes with HTML attributes",
                                 es_error, ec_aria, "ARIA-DISABLED must never contradict DISABLED"); }
 
-
 void element::examine_aria_hidden ()
-{   assert (a_.known (a_ariahidden));
+{   DBG_ASSERT (a_.known (a_ariahidden));
     if (a_.known (a_hidden))
         if (a_.good (a_ariahidden))
             if (a_.get_int (a_ariahidden) == 1)
@@ -69,7 +75,7 @@ void element::examine_aria_hidden ()
                                 es_warning, ec_aria, "ARIA-HIDDEN must never contradict HIDDEN"); }
 
 void element::examine_aria_placeholder ()
-{   assert (a_.known (a_ariaplaceholder));
+{   DBG_ASSERT (a_.known (a_ariaplaceholder));
     if (! has_attribute (tag (), a_checked))
         nits ().pick (  nit_aria_position, ed_ariaApr2021, "Document conformance requirements for use of ARIA attributes with HTML attributes",
                         es_error, ec_aria, "ARIA-PLACEHOLDER is only valid where PLACEHOLDER is permitted");
@@ -79,7 +85,7 @@ void element::examine_aria_placeholder ()
                             es_error, ec_aria, "ARIA-PLACEHOLDER must not be used where PLACEHOLDER is used"); }
 
 void element::examine_aria_readonly ()
-{   assert (a_.known (a_ariareadonly));
+{   DBG_ASSERT (a_.known (a_ariareadonly));
     if (a_.known (a_readonly))
         if (a_.good (a_ariareadonly))
             if (a_.get_int (a_ariareadonly) == 1)
@@ -94,7 +100,7 @@ void element::examine_aria_readonly ()
                                 es_error, ec_aria, "ARIA-READONLY must never contradict CONTENTEDITABLE"); }
 
 void element::examine_aria_required ()
-{   assert (a_.known (a_ariarequired));
+{   DBG_ASSERT (a_.known (a_ariarequired));
     if (! has_attribute (tag (), a_required))
         nits ().pick (  nit_aria_position, ed_ariaApr2021, "Document conformance requirements for use of ARIA attributes with HTML attributes",
                         es_error, ec_aria, "ARIA-REQUIRED is only valid where REQUIRED is permitted");
@@ -107,7 +113,7 @@ void element::examine_aria_required ()
                                 es_error, ec_aria, "ARIA-REQUIRED must never contradict REQUIRED"); }
 
 void element::examine_aria_rowspan ()
-{   assert (a_.known (a_ariarowspan));
+{   DBG_ASSERT (a_.known (a_ariarowspan));
     if (! has_attribute (tag (), a_rowspan))
         nits ().pick (  nit_aria_position, ed_ariaApr2021, "Document conformance requirements for use of ARIA attributes with HTML attributes",
                         es_error, ec_aria, "ARIA-ROWSPAN is only valid where ROWSPAN is permitted");
@@ -120,7 +126,7 @@ void element::examine_aria_rowspan ()
                                 es_error, ec_aria, "ARIA-ROWSPAN must never contradict ROWSPAN"); }
 
 void element::examine_aria_valuemax ()
-{   assert (a_.known (a_ariavaluemax));
+{   DBG_ASSERT (a_.known (a_ariavaluemax));
     if (has_attribute (tag (), a_max))
         if (a_.known (a_max))
             nits ().pick (  nit_aria_position, ed_ariaApr2021, "Document conformance requirements for use of ARIA attributes with HTML attributes",
@@ -129,7 +135,7 @@ void element::examine_aria_valuemax ()
                             es_error, ec_aria, "use MAX, not ARIA-VALUEMAX"); }
 
 void element::examine_aria_valuemin ()
-{   assert (a_.known (a_ariavaluemin));
+{   DBG_ASSERT (a_.known (a_ariavaluemin));
     if (has_attribute (tag (), a_min))
         if (a_.known (a_max))
             nits ().pick (  nit_aria_position, ed_ariaApr2021, "Document conformance requirements for use of ARIA attributes with HTML attributes",

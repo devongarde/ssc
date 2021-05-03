@@ -16,6 +16,9 @@ PASS ../toast/math/2/math2-example.xhtml
 PASS ../toast/math/2/math3-example.html
 2 naughty_lang
 232 math_kids
+251 fontname
+253 fontname
+255 fontname
 375 math_empty
 376 ignoring_unknown
 385 ignoring_unknown
@@ -123,7 +126,7 @@ PASS ../toast/math/2/math15-example.html
 207 id_exists
 208 id_exists
 211 annotation
-224 xmlns_namespace unrecognised_value annotation
+224 xmlns_namespace xmlns_namespace unrecognised_value annotation
 254 annotation
 270 arg_count arg_count
 272 unrecognised_value ignoring_unknown unrecognised_value ignoring_unknown

@@ -2,7 +2,7 @@
 
 PASS ../toast/type/custom/index.html
 2 naughty_lang
-12 ignoring_unknown attribute_barred ignoring_unknown
+12 ignoring_unknown ignoring_unknown
 13 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/type/custom/custom-1.html

@@ -34,7 +34,7 @@ void element::examine_picture ()
                     {   bool ok = prev -> a_.known (a_media);
                         if (ok)
                         {   ::std::string val = prev -> a_.get_string (a_media);
-                            ok = ! val.empty () && ! compare_no_case ("all", val); }
+                            ok = ! val.empty () && ! compare_complain (nits (), node_.version (), "all", val); }
                         if (! ok)
                             pick (nit_saucy_source, ed_jul20, "4.8.2 The source element", es_warning, ec_element,
                                 "All but the last <SOURCE> must have either TYPE or MEDIA, which itself is neither empty nor set to 'all'."); }

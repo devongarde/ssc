@@ -41,13 +41,10 @@ PASS ../toast/math/4/math6-example.html
 
 PASS ../toast/math/4/math7-example.html
 2 naughty_lang
-59 untidy_string not_an_integer
+59 not_an_integer
 64 not_an_integer
 65 not_an_integer
-70 untidy_string
-83 untidy_string
-114 untidy_string unrecognised_value
-151 untidy_string
+114 unrecognised_value
 238 math_kids
 246 math_kids
 
@@ -101,7 +98,7 @@ PASS ../toast/math/4/math9-example.html
 329 math_kids
 344 math_kids
 349 math_kids
-358 xmlns_namespace xmlns_namespace unrecognised_value unrecognised_value unrecognised_value
+358 xmlns_namespace custom unrecognised_value unrecognised_value
 
 PASS ../toast/math/4/math10-example.html
 2 naughty_lang

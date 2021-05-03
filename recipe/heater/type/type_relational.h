@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 
 template < > struct type_master < t_rel_a > : type_master < t_rel >
-{   void validate (nitpick& nits, const html_version& , const elem& e, const ::std::string& situation)
+{   void verify_attribute (nitpick& nits, const html_version& , const elem& e, element* , const ::std::string& situation)
     {   if ((e.get () != elem_a) && (e.get () != elem_area))
         {   if (context.mf_verify ()) nits.pick (nit_a_area, es_warning, ec_microformat, "REL should be used on <A> or <AREA> only (", situation, ")");
             type_master < t_rel > :: status (s_invalid); } } };
@@ -41,7 +41,7 @@ template < > struct type_master < t_rel_illegal > : type_master < t_rel >
         type_master < t_rel > :: status (s_invalid); } };
 
 template < > struct type_master < t_rel_link > : type_master < t_rel >
-{   void validate (nitpick& nits, const html_version& , const elem& e, const ::std::string& situation)
+{   void verify_attribute (nitpick& nits, const html_version& , const elem& e, element* , const ::std::string& situation)
     {   if ((e.get () != elem_link))
         {   if (context.mf_verify ()) nits.pick (nit_a_area, es_error, ec_microformat, "REL value should be used on <LINK> only (", situation, ")");
             type_master < t_rel > :: status (s_invalid); } } };

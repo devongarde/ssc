@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type_xmlns.h"
 
-e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s)
+e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& n)
 {   ::std::string ss (::boost::to_lower_copy (trim_the_lot_off (s)));
     if (v >= xhtml_1_0)
     {   ::std::string::size_type pos = ss.find (':');
@@ -31,17 +31,19 @@ e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::stri
             ::std::string lhs (ss.substr (0, pos));
             ns.set_value (nits, vv, lhs);
             s = ss.substr (pos+1);
+            n = lhs;
             if (! ns.good ()) return ns_error;
             if (ns.get () != ns_xmlns) return ns.get ();
             e_namespace e = type_master < t_namespace > :: find (v, s);
-            if (e != ns_default) { s = lhs; return ns_default; }
+            if (e != ns_default) return ns_xmlns;
+            n = XMLNS;
             static ::std::size_t next_free_namespace = first_runtime_namespace;
             if (next_free_namespace == 0xFF)
             {   nits.pick (nit_no_namespaces_left, es_catastrophic, ec_program, PROG " has no capacity for another XMLNS namespace");
                 return ns_default; }
             type_master < t_namespace > :: extend (s, ++next_free_namespace);
             return static_cast < e_namespace> (next_free_namespace); } }
-    s = ss;
+    s = ss; n.clear ();
     return ns_default; }
 
 e_namespace xmlns_to_namespace (nitpick& nits, const html_version& , const e_xmlns x)
@@ -59,6 +61,6 @@ e_namespace xmlns_to_namespace (nitpick& nits, const html_version& , const e_xml
         case x_xlink :  return ns_xlink;
         case x_xml :    return ns_xhtml;
         case x_xmlns :  return ns_xmlns;
-        default :       nits.pick (nit_xmlns_namespace, es_catastrophic, ec_program, "xmlns ", static_cast < int > (x), " has no corresponding namespace");
+        default :       nits.pick (nit_xmlns_namespace, es_catastrophic, ec_program, XMLNS " ", static_cast < int > (x), " has no corresponding namespace");
                         break; }
     return ns_error; }

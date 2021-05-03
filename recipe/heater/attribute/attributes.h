@@ -95,7 +95,7 @@ public:
     bool invalid_access (nitpick& nits, const html_version& v, sstr_t* ids);
     bool has_url () const;
     bool verify_url (nitpick& nits, const html_version& v, const element& e);
-    void verify_attributes (nitpick& nits, const html_version& v, attribute_bitset& state);
+    void verify_attributes (nitpick& nits, const html_version& v, element* pe);
     void mark (page& p, const e_attribute a);
     void mark (page& p);
     void shadow (::std::stringstream& ss, const html_version& v, element* e);

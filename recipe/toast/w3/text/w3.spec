@@ -20,7 +20,7 @@ PASS ../toast/w3/text/texthtml_unknownparsemode.html.utf8
 0 html_unknown_sgml
 
 PASS ../toast/w3/text/textxml_html401.xml
-2 xhtml_superseded
+2 html_superseded
 3 inserted_missing_parent
 
 PASS ../toast/w3/text/textxml_nocharset.xml

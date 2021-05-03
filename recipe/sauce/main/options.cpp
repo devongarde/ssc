@@ -312,7 +312,7 @@ void options::process (int argc, char** argv)
         (HTML TAGS, "presume HTML files with no DOCTYPE declaration are HTML Tags, not HTML 1.0")
         (HTML TITLE ",z", ::boost::program_options::value < int > () -> default_value (MAX_IDEAL_TITLE_LENGTH), "Maximum advisable length of <TITLE> text")
         (HTML VERSION, ::boost::program_options::value < ::std::string > (),
-            "X.Y version of HTML 5, or version if no DOCTYPE (default: '1.0'). "
+            "specific X.Y version of HTML 5.y (default '5.3'), or if no DOCTYPE found (default: '1.0'). "
             "For specific WhatWG living standard, give date (e.g. '2020/7/1'). "
             "For HTML+, use '+'. For HTML tags, use 'tags'.")
 
@@ -372,6 +372,7 @@ void options::process (int argc, char** argv)
         (STATS PAGE, "report individual page statistics")
         (STATS SUMMARY ",S", "report overall statistics")
 
+        (SVG MODE, "SVG 2.0 processing mode (0=dynamic, 1-animated, 2=secure_animated, 3=static, 4=secure_static)")
         (SVG VERSION, ::boost::program_options::value < ::std::string > (), "presumed version of SVG if version attribute missing (requires HTML 4 or greater)")
 
         (VALIDATION MINOR ",m", ::boost::program_options::value < int > (), "validate HTML 5 with this w3 minor version (e.g. 3 for HTML 5.3)")
@@ -583,11 +584,6 @@ void options::contextualise ()
                     context.err (context.path ());
                     context.err (".\n"); } } } }
 
-    if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());
-    if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose > (var_ [GENERAL VERBOSE].as < int > ()));
-    if (var_.count (HTML TITLE)) context.title (static_cast < unsigned char > (var_ [HTML TITLE].as < int > ()));
-    context.presume_tags (var_.count (HTML TAGS));
-
     if (var_.count (HTML SNIPPET)) context.snippet (var_ [HTML SNIPPET].as < ::std::string > ());
 
     context.mf_verify (var_.count (MF VERIFY));
@@ -635,21 +631,6 @@ void options::contextualise ()
                 context.err (quote (ver));
                 context.err (" ignored\n"); } } }
 
-    if (var_.count (SVG VERSION))
-    {   ::std::string ver (var_ [SVG VERSION].as < ::std::string > ());
-        if (! ver.empty ())
-        {   ::std::string::size_type pos = ver.find ('.');
-            if (pos == ::std::string::npos)
-                if (ver.length () == 1) context.svg_version (sv_none);
-                else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
-            else if (pos == ver.length () - 1) context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
-            else if (pos == 0) context.svg_version (sv_none);
-            else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1))); } }
-
-    if (var_.count (MATH VERSION))
-    {   int n = var_ [MATH VERSION].as < int > ();
-        if ((n > 0) && (n < 5)) context.math_version (static_cast < e_mathversion > (n)); }
-
     if (var_.count (MICRODATA VERSION))
     {   ::std::string ver (var_ [MICRODATA VERSION].as < ::std::string > ());
         if (ver.empty ())
@@ -672,53 +653,6 @@ void options::contextualise ()
             else if (pos > 0)
                 context.schema_ver (schema_version (mdr_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
                                                                 static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))))); } }
-
-    context.codes (var_.count (NITS CODES));
-    context.nids (var_.count (NITS NIDS));
-    context.spec (var_.count (NITS SPEC));
-    context.nits (var_.count (NITS WATCH));
-
-    if (var_.count (NITS CATASTROPHE))
-        for (auto s : var_ [NITS CATASTROPHE].as < vstr_t > ())
-            if (! nitpick::modify_severity (s, es_catastrophic))
-            {   context.err (quote (s));
-                context.err (": no such nit.\n"); }
-
-    if (var_.count (NITS COMMENT))
-        for (auto s : var_ [NITS COMMENT].as < vstr_t > ())
-            if (! nitpick::modify_severity (s, es_comment))
-            {   context.err (quote (s));
-                context.err (": no such nit.\n"); }
-
-    if (var_.count (NITS DBG))
-        for (auto s : var_ [NITS DBG].as < vstr_t > ())
-            if (! nitpick::modify_severity (s, es_debug))
-            {   context.err (quote (s));
-                context.err (": no such nit.\n"); }
-
-    if (var_.count (NITS ERR))
-        for (auto s : var_ [NITS ERR].as < vstr_t > ())
-            if (! nitpick::modify_severity (s, es_error))
-            {   context.err (quote (s));
-                context.err (": no such nit.\n"); }
-
-    if (var_.count (NITS INFO))
-        for (auto s : var_ [NITS INFO].as < vstr_t > ())
-            if (! nitpick::modify_severity (s, es_info))
-            {   context.err (quote (s));
-                context.err (": no such nit.\n"); }
-
-    if (var_.count (NITS SILENCE))
-        for (auto s : var_ [NITS SILENCE].as < vstr_t > ())
-            if (! nitpick::modify_severity (s, es_silence))
-            {   context.err (quote (s));
-                context.err (": no such nit.\n"); }
-
-    if (var_.count (NITS WARNING))
-        for (auto s : var_ [NITS WARNING].as < vstr_t > ())
-            if (! nitpick::modify_severity (s, es_warning))
-            {   context.err (quote (s));
-                context.err (": no such nit.\n"); }
 
     context.microdata (var_.count (VALIDATION MICRODATAARG));
 
@@ -744,13 +678,17 @@ void options::contextualise ()
         if (var_.count (GENERAL CORPUS)) context.corpus (nix_path_to_local (var_ [GENERAL CORPUS].as < ::std::string > ()));
         if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
         if (var_.count (GENERAL IGNORED)) context.ignore (var_ [GENERAL IGNORED].as < vstr_t > ());
+        if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());
         if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
+        if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose > (var_ [GENERAL VERBOSE].as < int > ()));
         context.process_webmentions (var_.count (GENERAL WEBMENTION));
 
         context.rfc_1867 (! var_.count (HTML RFC1867));
         context.rfc_1942 (! var_.count (HTML RFC1942));
         context.rfc_1980 (! var_.count (HTML RFC1980));
         context.rfc_2070 (! var_.count (HTML RFC2070));
+        context.presume_tags (var_.count (HTML TAGS));
+        if (var_.count (HTML TITLE)) context.title (static_cast < unsigned char > (var_ [HTML TITLE].as < int > ()));
 
         context.links (var_.count (LINKS CHECK));
         context.external (var_.count (LINKS EXTERNAL));
@@ -759,12 +697,63 @@ void options::contextualise ()
         context.revoke (var_.count (LINKS REVOKE));
         context.crosslinks (var_.count (LINKS XLINK));
 
+        if (var_.count (MATH VERSION))
+        {   int n = var_ [MATH VERSION].as < int > ();
+            if ((n > 0) && (n < 5)) context.math_version (static_cast < e_math_version > (n)); }
+
         context.mf_export (var_.count (MF EXPORT));
 
         context.md_export (var_.count (MICRODATA EXPORT));
         context.schema (var_.count (MICRODATA MICRODATAARG));
         if (var_.count (MICRODATA ROOT)) context.export_root (nix_path_to_local (var_ [MICRODATA ROOT].as < ::std::string > ()));
         if (var_.count (MICRODATA VIRTUAL)) context.exports (var_ [MICRODATA VIRTUAL].as < vstr_t > ());
+
+        context.codes (var_.count (NITS CODES));
+        context.nids (var_.count (NITS NIDS));
+        context.spec (var_.count (NITS SPEC));
+        context.nits (var_.count (NITS WATCH));
+
+        if (var_.count (NITS CATASTROPHE))
+            for (auto s : var_ [NITS CATASTROPHE].as < vstr_t > ())
+                if (! nitpick::modify_severity (s, es_catastrophic))
+                {   context.err (quote (s));
+                    context.err (": no such nit.\n"); }
+
+        if (var_.count (NITS COMMENT))
+            for (auto s : var_ [NITS COMMENT].as < vstr_t > ())
+                if (! nitpick::modify_severity (s, es_comment))
+                {   context.err (quote (s));
+                    context.err (": no such nit.\n"); }
+
+        if (var_.count (NITS DBG))
+            for (auto s : var_ [NITS DBG].as < vstr_t > ())
+                if (! nitpick::modify_severity (s, es_debug))
+                {   context.err (quote (s));
+                    context.err (": no such nit.\n"); }
+
+        if (var_.count (NITS ERR))
+            for (auto s : var_ [NITS ERR].as < vstr_t > ())
+                if (! nitpick::modify_severity (s, es_error))
+                {   context.err (quote (s));
+                    context.err (": no such nit.\n"); }
+
+        if (var_.count (NITS INFO))
+            for (auto s : var_ [NITS INFO].as < vstr_t > ())
+                if (! nitpick::modify_severity (s, es_info))
+                {   context.err (quote (s));
+                    context.err (": no such nit.\n"); }
+
+        if (var_.count (NITS SILENCE))
+            for (auto s : var_ [NITS SILENCE].as < vstr_t > ())
+                if (! nitpick::modify_severity (s, es_silence))
+                {   context.err (quote (s));
+                    context.err (": no such nit.\n"); }
+
+        if (var_.count (NITS WARNING))
+            for (auto s : var_ [NITS WARNING].as < vstr_t > ())
+                if (! nitpick::modify_severity (s, es_warning))
+                {   context.err (quote (s));
+                    context.err (": no such nit.\n"); }
 
         context.shadow_comment (var_.count (SHADOW COMMENT));
         context.shadow_changed (var_.count (SHADOW CHANGED));
@@ -788,6 +777,22 @@ void options::contextualise ()
         context.meta (var_.count (STATS META));
         context.stats_page (var_.count (STATS PAGE));
         context.stats_summary (var_.count (STATS SUMMARY));
+
+        context.svg_mode (static_cast < e_svg_processing_mode > (var_.count (SVG MODE)));
+        if (var_.count (SVG MODE))
+        {   int n = var_ [SVG MODE].as < int > ();
+            if ((n >= 0) && (n < 5)) context.svg_mode (static_cast < e_svg_processing_mode > (n)); }
+
+        if (var_.count (SVG VERSION))
+        {   ::std::string ver (var_ [SVG VERSION].as < ::std::string > ());
+            if (! ver.empty ())
+            {   ::std::string::size_type pos = ver.find ('.');
+                if (pos == ::std::string::npos)
+                    if (ver.length () == 1) context.svg_version (sv_none);
+                    else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
+                else if (pos == ver.length () - 1) context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
+                else if (pos == 0) context.svg_version (sv_none);
+                else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1))); } }
 
         if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
         if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());
@@ -835,16 +840,18 @@ void options::contextualise ()
         TEST_VAR (as);
         TEST_VAR (autocapitalise);
         TEST_VAR (autocomplete);
-        TEST_VAR (decalign);
+        TEST_VAR (beginfn);
         TEST_VAR (citype);
         TEST_VAR (cntype);
         TEST_VAR (composite_operator);
+        TEST_VAR (decalign);
         TEST_VAR (dingbat);
         TEST_VAR (dir);
-        TEST_VAR (display);
+        TEST_VAR (display_align);
         TEST_VAR (dominantbaseline);
         TEST_VAR (enterkeyhint);
         TEST_VAR (figalign);
+        TEST_VAR (fontname);
         TEST_VAR (halign);
         TEST_VAR (inputmode);
         TEST_VAR (inputplus);
@@ -877,19 +884,20 @@ void options::contextualise ()
         TEST_VAR (ogtype);
         TEST_VAR (paintkeyword);
         TEST_VAR (plusstyle);
-        TEST_VAR (pointerevents);
+        TEST_VAR (pointer_events);
         TEST_VAR (print);
         TEST_VAR (referrer);
         TEST_VAR (renderingintent);
         TEST_VAR (rules);
         TEST_VAR (sandbox);
         TEST_VAR (shape7);
-        TEST_VAR (shaperendering);
+        TEST_VAR (shape_rendering);
         TEST_VAR (ssi);
         TEST_VAR (ssi_comparison);
         TEST_VAR (ssi_encoding);
         TEST_VAR (ssi_env);
         TEST_VAR (svg_align);
+        TEST_VAR (svg_display);
         TEST_VAR (svg_fontstretch);
         TEST_VAR (svg_fontstretch_ff);
         TEST_VAR (svg_fontweight);
@@ -905,7 +913,6 @@ void options::contextualise ()
         TEST_VAR (transform_fn);
         TEST_VAR (turbulence_type);
         TEST_VAR (vectoreffect_2);
-        TEST_VAR (xlinkshow);
         TEST_VAR (xmlns);
 #undef TEST_VAR
 
@@ -1049,6 +1056,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (STATS PAGE)) res << STATS PAGE "\n";
     if (var_.count (STATS SUMMARY)) res << STATS SUMMARY "\n";
 
+    if (var_.count (SVG MODE)) res << SVG MODE "\n";
     if (var_.count (SVG VERSION)) res << SVG VERSION "\n";
 
     if (var_.count (VALIDATION ATTRIB)) { res << VALIDATION ATTRIB ": "; pvs (res, var_ [VALIDATION ATTRIB].as < vstr_t > ()); res << "\n"; }
@@ -1075,16 +1083,18 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (as);
     RPT_VAR (autocapitalise);
     RPT_VAR (autocomplete);
-    RPT_VAR (decalign);
+    RPT_VAR (beginfn);
     RPT_VAR (citype);
     RPT_VAR (cntype);
     RPT_VAR (composite_operator);
+    RPT_VAR (decalign);
     RPT_VAR (dingbat);
     RPT_VAR (dir);
-    RPT_VAR (display);
+    RPT_VAR (display_align);
     RPT_VAR (dominantbaseline);
     RPT_VAR (enterkeyhint);
     RPT_VAR (figalign);
+    RPT_VAR (fontname);
     RPT_VAR (halign);
     RPT_VAR (inputmode);
     RPT_VAR (inputplus);
@@ -1117,19 +1127,20 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (ogtype);
     RPT_VAR (paintkeyword);
     RPT_VAR (plusstyle);
-    RPT_VAR (pointerevents);
+    RPT_VAR (pointer_events);
     RPT_VAR (print);
     RPT_VAR (referrer);
     RPT_VAR (renderingintent);
     RPT_VAR (rules);
     RPT_VAR (sandbox);
     RPT_VAR (shape7);
-    RPT_VAR (shaperendering);
+    RPT_VAR (shape_rendering);
     RPT_VAR (ssi);
     RPT_VAR (ssi_comparison);
     RPT_VAR (ssi_encoding);
     RPT_VAR (ssi_env);
     RPT_VAR (svg_align);
+    RPT_VAR (svg_display);
     RPT_VAR (svg_fontstretch);
     RPT_VAR (svg_fontstretch_ff);
     RPT_VAR (svg_fontweight);
@@ -1145,7 +1156,6 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (transform_fn);
     RPT_VAR (turbulence_type);
     RPT_VAR (vectoreffect_2);
-    RPT_VAR (xlinkshow);
     RPT_VAR (xmlns);
 #undef RPT_VAR
 

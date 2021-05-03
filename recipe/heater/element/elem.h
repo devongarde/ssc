@@ -64,6 +64,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_DOCUMENT         0x0000000000000001
 #define EF_FAUX             0x0000000000000002
 #define EF_METADATA         0x0000000000000004
+#define EF_SVG2_ANIM        0x0000000000000008
 
 #define EF_EMPH             0x0000000000000010
 #define EF_MISC             0x0000000000000020
@@ -130,7 +131,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_5_SECTION        0x2000000000000000
 #define EF_5_FORM           0x4000000000000000
 
-#define EF_CUSTOM           0x7FF0FFFFFFFFFFF4
+#define EF_SVG2_STR         0x8000000000000000
+
+#define EF_CUSTOM           0xFFF0FFFFFFFFFFFC
 
 #define EF_3_NOTMATH        ( EF_3_FONT | EF_PHRASE | EF_SPECIAL | EF_3_MISC )
 #define EF_3_TEXTIN         ( EF_3_TEXT | EF_3_NOTMATH )
@@ -169,6 +172,8 @@ struct elem : symbol < html_version, e_element >
     bool is_closed (const html_version& v) const;
     bool is_math () const
     {   return ((categories () & (EF_MATH | EF_X_MATH)) != 0); }
+    bool is_svg () const
+    {   return ((categories () & EF_SVG_CATMASK) != 0); }
     bool is_transparent (const html_version& v) const;
     void swap (elem& e)
     {   symbol < html_version, e_element > :: swap (e); }

@@ -29,10 +29,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CONTEXT "context"
 #define V "version"
 
-bool compare_no_case (const std::string& a, const std::string& b)
-{   if (a.length () != b.length ()) return false;
-    return ::std::equal (b.begin (), b.end (), a.begin (), cnc_test); }
-
 ::std::size_t which_one_of (const ::std::string& s, const vstr_t& v)
 {   for (::std::size_t x = 0; x < v.size (); ++x)
         if (compare_no_case (s, v [x])) return x;

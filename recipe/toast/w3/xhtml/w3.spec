@@ -66,4 +66,3 @@ PASS ../toast/w3/xhtml/xhtml1-strict-missing-xmlns.html
 
 PASS ../toast/w3/xhtml/xhtml11-minimal.html
 1 xhtml_1_0
-3 html_contradictory

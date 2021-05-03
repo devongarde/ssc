@@ -77,7 +77,10 @@ bool contains (const vstr_t& con, const ::std::string& val);
 inline bool cnc_test (unsigned char a, unsigned char b)
 { return ::std::tolower (a) == ::std::tolower (b); }
 
-bool compare_no_case (const std::string& a, const std::string& b);
+inline bool compare_no_case (const std::string& a, const std::string& b)
+{   if (a.length () != b.length ()) return false;
+    return ::std::equal (b.begin (), b.end (), a.begin (), cnc_test); }
+
 bool is_one_of (const ::std::string& s, const vstr_t& v);
 ::std::size_t which_one_of (const ::std::string& s, const vstr_t& v);
 bool is_whitespace (const ::std::string::const_iterator b, const ::std::string::const_iterator e);

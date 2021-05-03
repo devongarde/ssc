@@ -99,6 +99,7 @@
 ../toast/stats/summary/stats.spec
 ../toast/SVG/1.0/svg.spec
 ../toast/SVG/1.1/svg.spec
+../toast/SVG/2.0/svg.spec
 ../toast/type/colour/colour.spec
 ../toast/type/custom/custom.spec
 ../toast/type/httpequiv/httpequiv.spec

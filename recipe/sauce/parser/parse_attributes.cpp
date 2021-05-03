@@ -39,8 +39,8 @@ void attributes_node::report_invalid (nitpick& nits, const html_version& v, cons
             nits.pick (nit_bad_wild, ed_jan21, "4.8.6 The embed element ", es_error, ec_attribute, quote(s), ": parameters may not contain upper case letters");
         else nits.pick (nit_wild_attribute, ed_jan21, "4.8.6 The embed element ", es_info, ec_attribute, quote (s), " noted");
     else if (! el.unknown ())
-        if (known) nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised here");
-        else nits.pick (nit_attribute_unrecognised, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised"); }
+        if (known) nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised here (", v.report (), ")");
+        else nits.pick (nit_attribute_unrecognised, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised (", v.report (), ")"); }
 
 void attributes_node::push_back_and_report (nitpick& nits, const html_version& v, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
                                             const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const elem& el)
@@ -229,7 +229,7 @@ void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
             auto val = examine_value < t_xmlns > (knots, v, ver);
             switch (val)
             {   case x_mathml : if (! v.math ()) v.set_ext (HE_MATH_1); break;
-                case x_svg : if (! v.svg ()) v.set_ext (HE_SVG_1_0); break;
+                case x_svg : if (! v.svg ()) v.set_ext (HE_SVG_10); break;
                 case x_xlink : if (! v.xlink ()) v.set_ext (HE_XLINK_1_0); break;
                 case x_xhtml_1_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, quote (ver), " is non-standard (it was withdrawn before XHTML 1.0 was published)");
@@ -266,22 +266,38 @@ e_svg_version attributes_node::get_svg (const html_version& v) const
                 return sv_1_2_tiny; }
     if (context.svg_version () != sv_none) return context.svg_version ();
     switch (v.mjr ())
-    {   case 4 :
+    {   case 0 :
+        case 1 :
+        case 2 :
+        case 3 : return sv_none;
+        case 4 :
             switch (v.mnr ())
             {   case 0 :
-                case 1 : return sv_1_0;
-                case 2 :
+                case 1 :
+                case 2 : return sv_1_0;
                 case 3 : return sv_1_1;
                 case 4 : return sv_1_2_tiny;
                 default : DBG_ASSERT (false); return sv_1_0; }
-        case 5 : if (v > html_5_3) return sv_2_0;
-                 break;
         default : break; }
+    if (v >= html_oct18) return sv_2_0;
     return sv_1_1; }
 
-e_mathversion attributes_node::get_math (const html_version& v) const
+e_math_version attributes_node::get_math (const html_version& v) const
 {   if (context.math_version () != math_none) return context.math_version ();
-    if (v.is_5 ())
-        if (v >= html_5_3) return math_3;
-        else return math_2;
-    return math_1; }
+    switch (v.mjr ())
+    {   case 0 :
+        case 1 :
+        case 2 :
+        case 3 : return math_none;
+        case 4 :
+            switch (v.mnr ())
+            {   case 0 :
+                case 1 : return math_1;
+                case 2 :
+                case 3 :
+                case 4 : return math_2;
+                default : DBG_ASSERT (false); return math_1; }
+        default : break; }
+    if (v >= html_apr21) return math_4;
+    if (v >= html_5_0) return math_3;
+    return math_2; }

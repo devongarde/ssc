@@ -34,8 +34,46 @@ bool parse_xml (nitpick& nits, html_version& version, const ::std::string::const
     if ((e-b > 15) && (::std::string (s, s + 11) == "-stylesheet"))
     {   style = true; s += 11; }
     else if (version.unknown ())
-    {   version = xhtml_1_0;
-        nits.pick (nit_xhtml_1_0, es_info, ec_parser, "XML found, inferring XHTML 1.0"); }
+    {   html_version s_v (get_min_version (context.svg_version ())), m_v (get_min_version (context.math_version ())), def (context.html_ver ());
+        if (def.unknown ())
+            def = html_tags;
+        if (! s_v.unknown ())
+            if (s_v > def) def = s_v;
+        if (! m_v.unknown ())
+            if (m_v > def) def = m_v;
+        if (def < xhtml_1_0)
+            def = xhtml_1_0;
+        if (! s_v.unknown ())
+            def.svg_version (s_v.svg_version ());
+        if (! m_v.unknown ())
+            def.math_version (m_v.math_version ());
+        switch (def.mjr ())
+        {   case 0 :
+            case 1 :
+            case 2 :
+            case 3 :
+                version = xhtml_1_1;
+                nits.pick (nit_program_error, es_catastrophic, ec_parser, "XML version deduction programming error; pretending XHTML 1.1");
+                break;
+            case 4 :
+                version = def;
+                switch (version.mnr ())
+                {   case 2 :
+                        nits.pick (nit_xhtml_1_0, es_info, ec_parser, "XML found, inferring XHTML 1.0"); break;
+                    case 3 :
+                        nits.pick (nit_xhtml_1_1, es_info, ec_parser, "XML found, inferring XHTML 1.1"); break;
+                    case 4 :
+                        nits.pick (nit_xhtml_2_0, es_info, ec_parser, "XML found, inferring XHTML 2.0"); break;
+                    default :
+                        version = xhtml_1_1;
+                        nits.pick (nit_program_error, es_catastrophic, ec_parser, "XML version deduction programming error; pretending XHTML 1.1");
+                        break; }
+                break;
+            default :
+                version = def;
+                version.set_flags (HV_XHTML);
+                nits.pick (nit_xhtml_5_0, es_info, ec_parser, "XML found, inferring XHTML 5");
+                break; } }
     args.parse (nits, version, s, e, line, elem (elem_undefined));
     for (auto a : args.get_attributes ())
         if (a.has_key () && a.has_value ())

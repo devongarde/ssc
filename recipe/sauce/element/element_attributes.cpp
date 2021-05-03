@@ -38,7 +38,7 @@ void element::span_check ()
 
 void element::examine_accesskey ()
 {   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul09))
-        pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "ACCESSKY requires a different version of HTML"); }
+        pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "ACCESSKEY requires a different version of HTML"); }
 
 void element::examine_autofocus ()
 {   if (node_.version ().mjr () < 5) return;
@@ -93,7 +93,7 @@ bool element::examine_class ()
                 DBG_ASSERT (farm.first -> mf_);
                 farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *this);
                 if (context.mf_verify ())
-                {   farm.first -> mf_ -> validate (nits (), node_.version (), node_.id ());
+                {   farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this);
                     if (context.tell (e_detail))
                         pick (nit_prop_set, es_comment, ec_microformat, html_class::name (farm.second),
                             " property ", p.name (), " (", p.get (), ")", " set to ", quote (farm.first -> mf_ -> get_string (farm.second, p.get ())));
@@ -107,7 +107,7 @@ bool element::examine_class ()
                 {   DBG_ASSERT (ancestral_farm.first -> mf_);
                     ancestral_farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *prop_vocab_element);
                     if (context.mf_verify ())
-                    {   ancestral_farm.first -> mf_ -> validate (nits (), node_.version (), node_.id ());
+                    {   ancestral_farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this);
                         if (context.tell (e_detail))
                             pick (nit_prop_set, es_comment, ec_microformat,
                                 "parental ", html_class::name (ancestral_farm.second), " property ", p.name (), " (", p.get (), ")",
@@ -167,6 +167,12 @@ void element::examine_content ()
         default : break; }
     pick (nit_svg_rdf, es_info, ec_attribute, "CONTENT requires <META>, RDFa, SVG 1.2, or XHTML 2.0"); }
 
+void element::examine_defaultaction ()
+{   if (node_.version () == xhtml_2) return;
+    if ((node_.version ().svg_version () == sv_1_2_tiny) || (node_.version ().svg_version () == sv_1_2_full))
+        if (ancestral_elements_.test (elem_svg) || (node_.tag () == elem_svg)) return;
+    pick (nit_svg_version, es_info, ec_attribute, "DEFAULTACTION requires an SVG 1.2 <SVG> parent, or XHTML 2.0"); }
+
 void element::examine_draggable ()
 {   if (node_.version ().mjr () < 5) return;
     DBG_ASSERT (a_.has (a_draggable) && a_.known (a_draggable));
@@ -196,6 +202,29 @@ void element::examine_href ()
         if (context.math_version () < math_3)
             if (tag () != elem_image)
                 pick (nit_math_href, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_error, ec_attribute, "HREF requires MathML 3"); }
+
+void element::examine_keysplines ()
+{   if (! a_.known (a_keytimes))
+        pick (nit_keysplines, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_warning, ec_attribute, "KEYSPLINES requires KEYTIMES");
+    else if (a_.good (a_keytimes))
+    {   auto ks = a_.get_x < attr_keysplines > ();
+        ::std::size_t n = ks.size ();
+        auto kt = a_.get_x < attr_keytimes > ();
+        ::std::size_t m = kt.size ();
+        if ((m > 0) && (n != (m - 1)))
+            pick (nit_keytimes, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "KEYSPLINES requires one less entry than KEYTIMES"); } }
+
+void element::examine_keytimes ()
+{   auto kt = a_.get_x < attr_keytimes > ();
+    ::std::size_t n = kt.size ();
+    if (! a_.known (a_values))
+    {   if (n != 2) pick (nit_keytimes, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "KEYTIMES without VALUES should have precisely two numbers");
+        return; }
+    if (! a_.good (a_values)) return;
+    auto vl = a_.get_x < attr_values > ();
+    ::std::size_t m = vl.size ();
+    if (n != m)
+        pick (nit_keytimes, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "KEYTIMES must have the same quantity of numbers as VALUES"); }
 
 void element::examine_descendant_in (const element* filter)
 {   DBG_ASSERT (filter != nullptr);
@@ -236,7 +265,7 @@ bool element::examine_rel (const ::std::string& content)
             {   if (context.mf_verify ()) pick (nit_duplicate_rel, es_warning, ec_attribute, "ignoring duplicate ", quote (r.name ())); }
             else
             {   mf_ -> declare (r.get ());
-                mf_ -> validate (nits (), node_.version (), node_.id ());
+                mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this);
                 if (context.mf_verify ())
                     if (context.tell (e_variable)) pick (nit_rel_found, es_comment, ec_attribute, "REL type ", quote (r.name ()), " (", r.get (), ") found");
                     else pick (nit_rel_found, es_comment, ec_attribute, "REL type ", quote (r.name ()), " found");

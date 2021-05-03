@@ -234,3 +234,9 @@ void element::shadow (::std::stringstream& ss, const html_version& v)
     bool allspace = false;
     bool was_nl = true;
     do_shadow (ss, v, was_closure, allspace, was_nl); }
+
+bool element::has_glyph (const ::std::string& s) const
+{   return page_.get_glyphs ().has_id (s); }
+
+void element::add_glyph (const ::std::string& s)
+{   page_.get_glyphs ().insert_id (s, this); }

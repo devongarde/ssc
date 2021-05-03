@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.102
+- improve XHTML letter case verification
+- added length units from CSS 3 & 4 (draft)
+- underlying work
+
 0.0.101
 - MathML 4, Dec 2020 draft (it's early days; MathML 4 is really MathML 3 with post-it notes)
 - can run in the OpenBSD httpd server CGI environment

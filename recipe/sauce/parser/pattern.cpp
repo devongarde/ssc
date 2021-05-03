@@ -98,7 +98,7 @@ bool test_character_class (nitpick& nits, const html_version& , const ::std::str
     i = x;
     return res; }
 
-bool test_bra (nitpick& nits, const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
+bool test_bra (nitpick& nits, const html_version& , const ::std::string::const_iterator , const ::std::string::const_iterator e, ::std::string::const_iterator& i)
 {   DBG_ASSERT (*i == '(');
     ::std::string::const_iterator x = i;
     bool res = true, tmp = false;

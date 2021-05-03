@@ -75,7 +75,6 @@ PASS ../toast/microdata/schema-tuv/unitpricespecification.html
 
 PASS ../toast/microdata/schema-tuv/videogame-1.html
 14 no_such_folder url_not_found
-22 untidy_string
 52 data_type
 53 attribute_required attribute_required
 

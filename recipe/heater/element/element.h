@@ -76,6 +76,7 @@ class element
     void remove_category (const uint64_t c);
     void check_ancestors (const e_element self, const element_bitset& gf);
     void check_descendants (const e_element self, const element_bitset& gf, const bool absent = true);
+    void check_inclusion_criteria ();
     bool has_invalid_child (const element_bitset& gf);
     void check_mscarries_pos (const e_element self);
     bool check_math_children (const int expected, const bool or_more = false);
@@ -109,6 +110,7 @@ class element
     bool examine_class ();
     void examine_clip ();
     void examine_content ();
+    void examine_defaultaction ();
     void examine_draggable ();
     void examine_font ();
     void examine_href ();
@@ -118,6 +120,8 @@ class element
     void examine_itemprop (itemscope_ptr& itemscope);
     void examine_itemref (itemscope_ptr& itemscope);
     void examine_itemtype (itemscope_ptr& itemscope);
+    void examine_keysplines ();
+    void examine_keytimes ();
     void examine_other ();
     void examine_ref ();
     void examine_registrationmark ();
@@ -288,10 +292,13 @@ public:
     e_inputtype5 get_input_type () const;
     itemscope_ptr itemscope () const { return itemscope_; }
     vit_t own_itemtype () const;
-    attribute_bitset own_attributes () const { return own_attributes_; }
+    const attribute_bitset& own_attributes () const { return own_attributes_; }
+    attribute_bitset& own_attributes () { return own_attributes_; }
     ::std::string get_microdata_value () const;
     void shadow (::std::stringstream& ss, const html_version& v);
     const page& get_page () const { return page_; }
+    bool has_glyph (const ::std::string& s) const;
+    void add_glyph (const ::std::string& s);
     ::std::string report (); };
 
 template < class PROPERTY > void element::note_reply ()

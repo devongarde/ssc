@@ -43,7 +43,7 @@ PASS ../toast/XHTML/1.0/svg1-example.xhtml
 91 id_exists
 119 url_not_found
 238 id_exists
-254 missing_close
+254 missing_close unrecognised_value
 256 inserted_missing_closure
 266 id_exists
 305 newline_in_string newline_in_string

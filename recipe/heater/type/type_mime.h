@@ -58,7 +58,7 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
     {   nits.pick (nit_mime, es_error, ec_type, "a mime type cannot be empty");
         enum_base < e_mimetype, t_mime > :: status (s_invalid); return; }
     original_ = s;
-    if (v.is_5 () && compare_no_case (s, "module"))
+    if (v.is_5 () && compare_complain (nits, v, "module", s))
     {   enum_base < e_mimetype, t_mime > :: status (s_good);
         enum_base < e_mimetype, t_mime > :: value_ = mime_faux_module;
         return; }
@@ -82,7 +82,7 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
     nits.pick (nit_mime, es_warning, ec_type, quote (s), " is not a mimetype known to " PROG);
     enum_base < e_mimetype, t_mime > :: status (s_invalid); }
 
-template < > inline void enum_n < t_mime, e_mimetype > :: validate (nitpick& nits, const html_version& v, const elem& , const ::std::string& )
+template < > inline void enum_n < t_mime, e_mimetype > :: verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
 {   ::std::string s (quote (original_));
     if (enum_base < e_mimetype, t_mime > :: good ())
     {   if (context.tell (e_info))

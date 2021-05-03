@@ -51,7 +51,7 @@ public:
         swap (tmp); }
     const van_t& get_attributes () const { return va_; }
     e_svg_version get_svg (const html_version& v) const;
-    e_mathversion get_math (const html_version& v) const;
+    e_math_version get_math (const html_version& v) const;
     void manage_xmlns (nitpick& nits, html_version& v);
     bool empty () const { return va_.size () == 0; }
     void parse (nitpick& nits, const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line, const elem& el);
