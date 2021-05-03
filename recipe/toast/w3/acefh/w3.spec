@@ -17,7 +17,7 @@ PASS ../toast/w3/acefh/colons.html
 22 unrecognised_value ignoring_unknown missing_close inserted_missing_closure
 
 PASS ../toast/w3/acefh/error_pls_warning.html
-2 xhtml_superseded
+2 html_superseded
 3 inserted_missing_parent
 4 text_content
 9 not_iso_8859_1
@@ -29,13 +29,13 @@ PASS ../toast/w3/acefh/fpi_mismatch1.html
 14 inserted_missing_closure
 
 PASS ../toast/w3/acefh/fpi_mismatch2.html
-2 xhtml_superseded
+2 html_superseded
 7 missing_close
 14 inserted_missing_closure
 
 PASS ../toast/w3/acefh/html_xmlns.html.utf8
-2 xhtml_superseded
-3 unrecognised_value invalid_attribute_version wrong_version
+2 html_superseded
+3 attribute_unrecognised_here unrecognised_attribute
 
 PASS ../toast/w3/acefh/index.html
 2 naughty_lang

@@ -62,6 +62,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_2pt);
         TEST_VALUE (t_absolute_url);
         TEST_VALUE (t_accept);
+        TEST_VALUE (t_accumulate);
         TEST_VALUE (t_action);
         TEST_VALUE (t_actuate);
         TEST_VALUE (t_additive);
@@ -75,6 +76,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_angle);
         TEST_VALUE (t_angle_ai);
         TEST_VALUE (t_angle_i);
+        TEST_VALUE (t_arabicenum);
         TEST_VALUE (t_aria_autocomplete);
         TEST_VALUE (t_aria_invalidity);
         TEST_VALUE (t_aria_live);
@@ -87,7 +89,10 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_autocomplete);
         TEST_VALUE (t_autocompletes);
         TEST_VALUE (t_background);
+        TEST_VALUE (t_bandwidth);
         TEST_VALUE (t_baselineshift);
+        TEST_VALUE (t_baselineshift1);
+        TEST_VALUE (t_baselineshift2);
         TEST_VALUE (t_beginvaluelist);
         TEST_VALUE (t_behaviour);
         TEST_VALUE (t_bool);
@@ -109,6 +114,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_colour_ci);
         TEST_VALUE (t_colour_i);
         TEST_VALUE (t_colourinterpolation);
+        TEST_VALUE (t_colour_ni);
         TEST_VALUE (t_colour_v);
         TEST_VALUE (t_command);
         TEST_VALUE (t_compact);
@@ -148,6 +154,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_dir);
         TEST_VALUE (t_direction);
         TEST_VALUE (t_display);
+        TEST_VALUE (t_display_align);
         TEST_VALUE (t_dominantbaseline);
         TEST_VALUE (t_dosh);
         TEST_VALUE (t_dsc);
@@ -158,6 +165,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_duration_media);
         TEST_VALUE (t_edgemode);
         TEST_VALUE (t_edit);
+        TEST_VALUE (t_editable);
         TEST_VALUE (t_effect);
         TEST_VALUE (t_email);
         TEST_VALUE (t_emails);
@@ -177,6 +185,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_filter_res);
         TEST_VALUE (t_fixedcolour);
         TEST_VALUE (t_fixedpoint);
+        TEST_VALUE (t_focushighlight);
         TEST_VALUE (t_font);
         TEST_VALUE (t_fontfamily);
         TEST_VALUE (t_fontfamilies);
@@ -213,6 +222,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_imgsizes);
         TEST_VALUE (t_importance);
         TEST_VALUE (t_in);
+        TEST_VALUE (t_initialvisibility);
         TEST_VALUE (t_inky);
         TEST_VALUE (t_inlist);
         TEST_VALUE (t_inputaccept);
@@ -233,6 +243,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_just_time);
         TEST_VALUE (t_key);
         TEST_VALUE (t_keygentype);
+        TEST_VALUE (t_keysplines);
+        TEST_VALUE (t_keytimes);
         TEST_VALUE (t_keytype);
         TEST_VALUE (t_kind);
         TEST_VALUE (t_lang);
@@ -304,8 +316,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_namespace);
         TEST_VALUE (t_navigation);
         TEST_VALUE (t_negative);
-        TEST_VALUE (t_normalised);
-        TEST_VALUE (t_normalisations);
         TEST_VALUE (t_not_empty);
         TEST_VALUE (t_notations);
         TEST_VALUE (t_ogtype);
@@ -317,14 +327,16 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_orientation);
         TEST_VALUE (t_origin);
         TEST_VALUE (t_overflow);
+        TEST_VALUE (t_overlay);
         TEST_VALUE (t_paint);
         TEST_VALUE (t_paintkeyword);
         TEST_VALUE (t_panose1);
         TEST_VALUE (t_phase);
+        TEST_VALUE (t_phase_x);
         TEST_VALUE (t_pics);
         TEST_VALUE (t_plus_1_7);
         TEST_VALUE (t_plusstyle);
-        TEST_VALUE (t_pointerevents);
+        TEST_VALUE (t_pointer_events);
         TEST_VALUE (t_points);
         TEST_VALUE (t_positive);
         TEST_VALUE (t_pragma);
@@ -368,6 +380,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_sandbox);
         TEST_VALUE (t_sandboxen);
         TEST_VALUE (t_schema);
+        TEST_VALUE (t_scei);
         TEST_VALUE (t_scope);
         TEST_VALUE (t_script);
         TEST_VALUE (t_scrolling);
@@ -378,7 +391,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_shape4);
         TEST_VALUE (t_shape7);
         TEST_VALUE (t_shape_rcp);
-        TEST_VALUE (t_shaperendering);
+        TEST_VALUE (t_shape_rendering);
         TEST_VALUE (t_show);
         TEST_VALUE (t_size);
         TEST_VALUE (t_size3);
@@ -408,6 +421,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_baseprofile);
         TEST_VALUE (t_svg_content);
         TEST_VALUE (t_svg_direction);
+        TEST_VALUE (t_svg_display);
         TEST_VALUE (t_svg_duration);
         TEST_VALUE (t_svg_feature);
         TEST_VALUE (t_svg_features);
@@ -423,8 +437,9 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_method);
         TEST_VALUE (t_svg_mode);
         TEST_VALUE (t_svg_overflow);
+        TEST_VALUE (t_svg_phase);
         TEST_VALUE (t_svg_playbackorder);
-        TEST_VALUE (t_svg_snapshottime);
+        TEST_VALUE (t_svg_time_none);
         TEST_VALUE (t_svg_time);
         TEST_VALUE (t_svg_timelinebegin);
         TEST_VALUE (t_svg_transform);
@@ -459,7 +474,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_type);
         TEST_VALUE (t_tz);
         TEST_VALUE (t_ugeo);
-        TEST_VALUE (t_unicodebidi);
+        TEST_VALUE (t_unicode_bidi);
         TEST_VALUE (t_units);
         TEST_VALUE (t_unsigned);
         TEST_VALUE (t_un_ex);
@@ -480,16 +495,19 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_version);
         TEST_VALUE (t_wanted);
         TEST_VALUE (t_week);
+        TEST_VALUE (t_whitespace);
         TEST_VALUE (t_wrap);
         TEST_VALUE (t_wrap3);
         TEST_VALUE (t_writingmode);
         TEST_VALUE (t_wxhs);
         TEST_VALUE (t_vid);
         TEST_VALUE (t_visibility);
+        TEST_VALUE (t_visibility10);
+        TEST_VALUE (t_visibility11);
         TEST_VALUE (t_vocab);
         TEST_VALUE (t_x_ua_compatible);
         TEST_VALUE (t_xlinkactuate);
-        TEST_VALUE (t_xlinkshow);
+        TEST_VALUE (t_xlinkshow_a);
         TEST_VALUE (t_xlinktype);
         TEST_VALUE (t_xmllink);
         TEST_VALUE (t_xmlns);

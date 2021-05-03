@@ -607,6 +607,20 @@ nitname nitnames [] =
     { nit_note, "note" },
     { nit_aria_position, "aria_position" },
     { nit_impure_mn, "impure_mn" },
+    { nit_program_error, "program_error" },
+    { nit_xhtml_5_0, "xhtml_5_0" },
+    { nit_html_superseded, "html_superseded" },
+    { nit_function, "function" },
+    { nit_zero_to_one, "zero_to_one" },
+    { nit_percent, "percent" },
+    { nit_fontname, "fontname" },
+    { nit_glyphname, "glyphname" },
+    { nit_keytimes, "keytimes" },
+    { nit_keysplines, "keysplines" },
+    { nit_not_n, "not_n" },
+    { nit_syntax, "syntax" },
+    { nit_viewbox, "viewbox" },
+    { nit_custom, "custom" },
 
     { nit_off, "" } };
 

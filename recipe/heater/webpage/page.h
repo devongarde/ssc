@@ -35,7 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class directory;
 
 class page
-{   ids_t ids_, names_;
+{   ids_t ids_, names_, glyphs_;
     sstr_t access_;
     element_ptr document_;
     elements_node nodes_;
@@ -87,6 +87,8 @@ public:
     const ids_t& get_ids () const { return ids_; }
     ids_t& get_names () { return names_; }
     const ids_t& get_names () const { return names_; }
+    ids_t& get_glyphs () { return glyphs_; }
+    const ids_t& get_glyphs () const { return glyphs_; }
     bool verify_url (nitpick& nits, const ::std::string& s) const;
     const ::std::string name () const { return name_; }
     const ::std::string get_site_path () const;

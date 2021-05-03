@@ -250,12 +250,9 @@ PASS ../toast/living/jul20/example-2.html
 5 url_not_found
 6 url_not_found
 10 url_not_found
-14 untidy_string untidy_string sizes sizes
-18 untidy_string
-21 untidy_string
+14 sizes sizes
 23 no_such_folder url_not_found
-36 untidy_string untidy_string url_not_found
-41 untidy_string
+36 url_not_found
 43 url_not_found
 46 url_not_found
 47 mime
@@ -746,9 +743,9 @@ PASS ../toast/living/jul20/ls5.html
 PASS ../toast/living/jul20/ls6.html
 3 xmlns_namespace no_xmllang
 5 use_quote_code
-8 ignoring_unknown xmlns_namespace attribute_barred attribute_barred
+8 ignoring_unknown custom attribute_barred
 9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown xmlns_namespace attribute_barred
+10 ignoring_unknown custom
 11 ignoring_unknown ignoring_unknown
 12 ignoring_unknown
 

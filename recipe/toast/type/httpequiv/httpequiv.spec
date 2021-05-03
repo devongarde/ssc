@@ -31,7 +31,6 @@ PASS ../toast/type/httpequiv/link.html
 6 empty
 8 nocando
 11 nocando
-12 untidy_string
 15 unrecognised_value unknown_rel
 16 bad_link_pragma unknown_protocol
 

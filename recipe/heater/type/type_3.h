@@ -20,10 +20,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_master.h"
-#include "type/sz.h"
+#include "type/type_case.h"
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE = false > class three_value : public type_base < base_type, TYPE >
 {   base_type value_ = static_cast < base_type > (0);
+    static ::std::string a_, b_, c_;
 public:
     typedef true_type has_int_type;
     three_value () = default;
@@ -40,6 +41,7 @@ public:
 
 template < > class type_master < t_aria_live > : public three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite > { };
 template < > class type_master < t_attributetype > : public three_value < t_attributetype, e_attributetype, sz_auto, sz_css, sz_xml > { };
+template < > class type_master < t_baselineshift2 > : public three_value < t_baselineshift2, e_baselineshift2, sz_baseline, sz_sub, sz_super > { };
 template < > class type_master < t_behaviour > : public three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide > { };
 template < > class type_master < t_button > : public three_value < t_button, e_button, sz_button, sz_submit, sz_reset > { };
 template < > class type_master < t_command > : public three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > { };
@@ -66,12 +68,12 @@ template < > class type_master < t_mf_status > : public three_value < t_mf_statu
 template < > class type_master < t_nsd > : public three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed > { };
 template < > class type_master < t_preload5 > : public three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none > { };
 template < > class type_master < t_restart > : public three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never > { };
+template < > class type_master < t_scrolling > : public three_value < t_scrolling, e_scrolling, sz_auto, sz_no, sz_yes > { };
 template < > class type_master < t_shape_rcp > : public three_value < t_shape_rcp, e_shape_rcp, sz_circle, sz_poly, sz_rect > { };
 template < > class type_master < t_spacer > : public three_value < t_spacer, e_spacer, sz_block, sz_horizontal, sz_vertical > { };
-template < > class type_master < t_scrolling > : public three_value < t_scrolling, e_scrolling, sz_auto, sz_no, sz_yes > { };
+template < > class type_master < t_spread_method > : public three_value < t_spread_method, e_spread_method, sz_reflect, sz_repeat, sz_pad > { };
 template < > class type_master < t_ssi_echo > : public three_value < t_ssi_echo, e_ssi_echo, sz_decoding, sz_encoding, sz_var > { };
 template < > class type_master < t_ssi_include > : public three_value < t_ssi_include, e_ssi_include, sz_file, sz_onerror, sz_virtual > { };
-template < > class type_master < t_spread_method > : public three_value < t_spread_method, e_spread_method, sz_reflect, sz_repeat, sz_stick > { };
 template < > class type_master < t_svg_direction > : public three_value < t_svg_direction, e_svg_direction, sz_ltr, sz_rtl, sz_inherit > { };
 template < > class type_master < t_svg_fontvariant > : public three_value < t_svg_fontvariant, e_svg_fontvariant, sz_normal, sz_smallcaps, sz_inherit > { };
 template < > class type_master < t_tendstotype > : public three_value < t_tendstotype, e_tendstotype, sz_above, sz_below, sz_twosided > { };
@@ -81,6 +83,7 @@ template < > class type_master < t_units > : public three_value < t_units, e_uni
 template < > class type_master < t_valign_tmb > : public three_value < t_valign_tmb, e_valign_tmb, sz_top, sz_middle, sz_bottom > { };
 template < > class type_master < t_valuetype > : public three_value < t_valuetype, e_valuetype, sz_data, sz_object, sz_ref > { };
 template < > class type_master < t_vectoreffect_12 > : public three_value < t_vectoreffect_12, e_vectoreffect_12, sz_inherit, sz_none, sz_nonscalingstroke > { };
+template < > class type_master < t_visibility10 > : public three_value < t_visibility10, e_visibility11, sz_visible, sz_hidden, sz_inherit > { };
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
     ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: get_string () const
@@ -94,17 +97,27 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, boo
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
     void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   ::std::string t (trim_the_lot_off (s));
-    if (! CASE)
-    {   if (v.xhtml () && ! v.svg () && (t.find_first_of (UPPERCASE) != ::std::string::npos))
-            nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
-        ::boost::to_lower (t); }
+{   ::std::string pret (trim_the_lot_off (s));
+    ::std::string t (case_must_match < CASE >::lower (pret));
     type_base < base_type, TYPE > :: status (s_good);
-    if (t == SZ0::sz ()) value_ = static_cast <base_type> (0);
-    else if (t == SZ1::sz ()) value_ = static_cast <base_type> (1);
-    else if (t == SZ2::sz ()) value_ = static_cast <base_type> (2);
+    if (a_.empty ())
+    {   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
+        b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
+        c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ())); }
+    if (t == a_) value_ = static_cast <base_type> (0);
+    else if (t == b_) value_ = static_cast <base_type> (1);
+    else if (t == c_) value_ = static_cast <base_type> (2);
     else
     {   if (! check_spelling (nits, v, t))
             if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
-            else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (t), " is invalid; it can be \"", SZ0::sz (), "\", \"", SZ1::sz (), "\", or \"", SZ2::sz (), "\"");
-        type_base < base_type, TYPE > :: status (s_invalid); } }
+            else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be \"", SZ0::sz (), "\", \"", SZ1::sz (), "\", or \"", SZ2::sz (), "\"");
+        type_base < base_type, TYPE > :: status (s_invalid);
+        return; }
+    case_must_match < CASE > :: validate (nits, v, get_string (), pret); }
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: a_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: b_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: c_;

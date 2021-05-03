@@ -74,33 +74,41 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
                 if (measure)
                 {   switch (s.at (0))
                     {   case 'c' :
-                            if (compare_no_case (s, "coarse")) continue;
+                        case 'C' :
+                            if (compare_complain (nits, v, s, "coarse")) continue;
                             break;
                         case 'f' :
-                            if (compare_no_case (s, "fine") ||
-                                compare_no_case (s, "fast")) continue;
+                        case 'F' :
+                            if (compare_complain (nits, v, s, "fine") ||
+                                compare_complain (nits, v, s, "fast")) continue;
                             break;
                         case 'h' :
-                            if (compare_no_case (s, "hover")) continue;
+                        case 'H' :
+                           if (compare_complain (nits, v, s, "hover")) continue;
                             break;
                         case 'i' :
-                            if (compare_no_case (s, "interlace")) continue;
+                        case 'I' :
+                            if (compare_complain (nits, v, s, "interlace")) continue;
                             break;
                         case 'n' :
-                            if (compare_no_case (s, "none")) continue;
+                        case 'N' :
+                            if (compare_complain (nits, v, s, "none")) continue;
                             break;
                         case 'p' :
-                            if (compare_no_case (s, "p3") ||
-                                compare_no_case (s, "progressive") ||
-                                compare_no_case (s, "paged")) continue;
+                        case 'P' :
+                            if (compare_complain (nits, v, s, "p3") ||
+                                compare_complain (nits, v, s, "progressive") ||
+                                compare_complain (nits, v, s, "paged")) continue;
                             break;
                         case 'r' :
-                            if (compare_no_case (s, "rec2020")) continue;
+                        case 'R' :
+                            if (compare_complain (nits, v, s, "rec2020")) continue;
                             break;
                         case 's' :
-                            if (compare_no_case (s, "srgb") ||
-                                compare_no_case (s, "scroll") ||
-                                compare_no_case (s, "slow")) continue;
+                        case 'S' :
+                            if (compare_complain (nits, v, s, "srgb") ||
+                                compare_complain (nits, v, s, "scroll") ||
+                                compare_complain (nits, v, s, "slow")) continue;
                             break;
                         default : break; }
                     type_master < t_measure > m;

@@ -619,7 +619,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                     nits.reset (); }
                                 nits.set_context (line_, soe, i-1);
                                 parse_xml (nits, res, collect, i, line_, s);
-                                if (s.empty ()) { /* had_xml = true; */ ve_.emplace_back (nits, line_, bk_xml, collect, i); }
+                                if (s.empty ()) ve_.emplace_back (nits, line_, bk_xml, collect, i);
                                 else ve_.emplace_back (nits, line_, bk_stylesheet, s);
                                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_xml ", quoted_limited_string (::std::string (collect, i), 30));
                                 nits.reset ();

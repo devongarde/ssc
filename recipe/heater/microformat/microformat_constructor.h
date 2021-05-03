@@ -85,7 +85,8 @@ public:
     bool holds_alternative (const e_rel v) const { return (is_rel () && holds_alternative (index (v))); }
     bool has_prop (const e_property p) const { return is_allocated () && microformat_ -> has_prop (p); }
     bool is_relational () const { return is_allocated () && microformat_ -> is_relational (); }
-    void validate (nitpick& nits, const html_version& v, const elem& e) const { if (is_allocated ()) microformat_ -> validate (nits, v, e); }
+    void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* pe) const
+    {   if (is_allocated ()) microformat_ -> verify_attribute (nits, v, e, pe); }
     bool declared () const { return is_allocated () && microformat_ -> declared (); }
     void set_mf_value (nitpick& nits, const html_version& v, const e_property pp, element& e) { if (is_allocated ()) microformat_ -> set_mf_value (nits, v, pp, e); }
     ::std::string get_string (const e_property pp) { if (! is_allocated ()) return ::std::string (); return microformat_ -> get_string (pp); }

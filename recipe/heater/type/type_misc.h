@@ -79,6 +79,19 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
     static vint_t default_value () { return vint_t (); }
     vint_t get () const { return value_; } };
 
+template < > struct type_master < t_fontfamily > : tidy_string < t_fontfamily >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_fontfamily > :: set_value (nits, v, s);
+        const ::std::string& ss = tidy_string < t_fontfamily > :: get_string ();
+        if (tidy_string < t_fontfamily > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a font name or font family is expected");
+        else if (tidy_string < t_fontfamily > :: good ())
+        {   nitpick knots;
+            if (test_value < t_fontname > (knots, v, ss)) nits.merge (knots);
+            else nits.pick (nit_fontname, es_info, ec_type, quote (ss), " is not a font " PROG " recognises; some browsers may substitute another");
+            return; }
+        tidy_string < t_fontfamily > :: status (s_invalid); } };
+
 template < > struct type_master < t_imgsizes > : tidy_string < t_imgsizes >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_imgsizes > :: set_value (nits, v, s);
@@ -87,7 +100,7 @@ template < > struct type_master < t_imgsizes > : tidy_string < t_imgsizes >
         {   nits.pick (nit_nuts, es_error, ec_type, "SIZES cannot be empty");
             tidy_string < t_imgsizes > :: status (s_invalid); }
         else if (tidy_string < t_imgsizes > :: good ())
-            if (! compare_no_case (ss, "any"))
+            if (! compare_complain (nits, v, "any", ss))
             {   vstr_t vs (split_by_charset (ss, ","));
                 for (auto sss : vs)
                 {   vstr_t srcsz (split_by_space (sss));
@@ -219,14 +232,16 @@ template < > struct type_master < t_target > : public tidy_string < t_target >
             nits.pick (nit_empty, es_error, ec_type, "TARGET requires a value");
         else
         {   if (val [0] != '_') return;
-            if ((v.svg () >= sv_1_1) && (val == "_replace")) return;
+            if ((v.svg_version () >= sv_1_1) && (val == "_replace")) return;
             if ((val == "_blank") || (val == "_self") || (val == "_parent") || (val == "_top")) return;
             nits.pick (nit_badtarget, es_error, ec_type, quote (s), " starts with '_', but is not a standard target"); }
         string_value < t_target > :: status (s_invalid); } };
 
-template < > struct type_master < t_xlinktype > : public tidy_string < t_xlinktype >
-{   void validate (nitpick& nits, const html_version& , const elem& , const ::std::string& )
-    {   if (tidy_string < t_xlinktype > :: good ())
-            if (compare_no_case (tidy_string < t_xlinktype > :: get_string (), "simple")) return;
-            else nits.pick (nit_xlinktype, es_warning, ec_type, "xlink:type must be set to 'simple'");
-        tidy_string < t_xlinktype > :: status (s_invalid); } };
+template < > struct type_master < t_xlinktype > : type_must_be < t_xlinktype, sz_simple > { };
+
+//template < > struct type_master < t_xlinktype > : public tidy_string < t_xlinktype >
+//{   void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
+//    {   if (tidy_string < t_xlinktype > :: good ())
+//            if (compare_complain (nits, v, "simple", tidy_string < t_xlinktype > :: get_string ())) return;
+//            else nits.pick (nit_xlinktype, es_warning, ec_type, "xlink:type must be set to 'simple'");
+//        tidy_string < t_xlinktype > :: status (s_invalid); } };

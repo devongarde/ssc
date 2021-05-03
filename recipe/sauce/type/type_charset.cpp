@@ -459,14 +459,14 @@ struct symbol_entry < html_version, e_charset > charset_symbol_table [] =
     { { HTML_4_0, HV_DEPRECATED5 }, { HTML_UNDEF }, "x-user-defined", cs_x_user_defined },
 
     // MathML 1
-    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "axiom", cs_axiom },
-    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "maple", cs_maple },
-    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathematica", cs_mathematica },
-    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathml-content", cs_mathml_content },
-    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathml-presentation", cs_mathml_presentation },
-    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "openmath", cs_openmath },
-    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "tex", cs_tex },
-    { { HTML_4_0, 0, HE_MATH_1 }, { HTML_UNDEF }, "text", cs_text },
+    { { HTML_MATH1, 0, HE_MATH_1 }, { HTML_UNDEF }, "axiom", cs_axiom },
+    { { HTML_MATH1, 0, HE_MATH_1 }, { HTML_UNDEF }, "maple", cs_maple },
+    { { HTML_MATH1, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathematica", cs_mathematica },
+    { { HTML_MATH1, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathml-content", cs_mathml_content },
+    { { HTML_MATH1, 0, HE_MATH_1 }, { HTML_UNDEF }, "mathml-presentation", cs_mathml_presentation },
+    { { HTML_MATH1, 0, HE_MATH_1 }, { HTML_UNDEF }, "openmath", cs_openmath },
+    { { HTML_MATH1, 0, HE_MATH_1 }, { HTML_UNDEF }, "tex", cs_tex },
+    { { HTML_MATH1, 0, HE_MATH_1 }, { HTML_UNDEF }, "text", cs_text },
 
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, nullptr, cs_illegal } };
 

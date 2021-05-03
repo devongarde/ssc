@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_master.h"
+#include "type/type_case.h"
 
 e_namespace map_xmlns_to_namespace (const e_xmlns x);
 
@@ -51,7 +52,7 @@ template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE,
     ::std::string original () const { return original_; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     void post_set_value (nitpick& nits, const html_version& v);
-    void validate (nitpick& , const html_version& , const elem& , const ::std::string& );
+    void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& );
     static value_type default_value () { return static_cast <value_type> (0); }
     value_type get () const { return value_; }
     int get_int () const { return static_cast < int > (value_); }
@@ -74,13 +75,10 @@ template < typename TYPE, e_type E > void enum_base < TYPE, E > :: set_value (ni
     nits.pick (nit_missing_set_value, es_catastrophic, ec_type, "Internal error: an enum is missing its setvalue");
     type_base < TYPE, E > :: status (s_invalid); }
 
-template < typename TYPE, e_type E > void enum_base < TYPE, E > :: validate (nitpick& , const html_version& , const elem& , const ::std::string& )
-{ }
+template < typename TYPE, e_type E > void enum_base < TYPE, E > :: verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
+template < typename TYPE, e_type E > void enum_base < TYPE, E > :: post_set_value (nitpick& , const html_version& ) { }
 
-template < typename TYPE, e_type E > void enum_base < TYPE, E > :: post_set_value (nitpick& , const html_version& )
-{ }
-
-template < > inline void enum_base < e_dir, t_dir > :: validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+template < > inline void enum_base < e_dir, t_dir > :: verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
 {   if (type_base < e_dir, t_dir > :: good ())
         if (e.is_math ())
             if (v.math_version () > math_2)
@@ -94,7 +92,7 @@ template < > inline void enum_base < e_inputtype, t_inputtype > :: post_set_valu
         {   nits.pick (nit_rfc_1867, es_error, ec_type, "INPUT=file in ", v.report (), " requires RFC 1867, which has been disabled");
             type_base < e_inputtype, t_inputtype > :: status (s_invalid); } }
 
-template < > inline void enum_base < e_linebreak, t_linebreak > :: validate (nitpick& nits, const html_version& v, const elem& e, const ::std::string& )
+template < > inline void enum_base < e_linebreak, t_linebreak > :: verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
 {   if (type_base < e_linebreak, t_linebreak > :: good ())
         if (e.is_math ())
             if (v.math_version () > math_2)
@@ -140,7 +138,7 @@ template < e_type E, typename ENUM, typename CATEGORY = e_namespace, CATEGORY IN
         if (r.empty ()) ss << '=' << original ();
         else  ss << '=' << r; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
-    void validate (nitpick& , const html_version& , const elem& , const ::std::string& ) { }
+    void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
     bool invalid () const { return enum_base < ENUM, E > :: invalid (); }
     bool unknown () const { return enum_base < ENUM, E > :: unknown (); }
     ::std::string name () const
@@ -160,23 +158,24 @@ template < e_type E, typename ENUM, typename CATEGORY = e_namespace, CATEGORY IN
 
 template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
     void enum_n < E, ENUM, CATEGORY, INIT, LC > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s);
+{   e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& ns);
     enum_base < ENUM, E > :: original_ = s;
-    if (v.xhtml () && ! v.svg () && (s.find_first_of (UPPERCASE) != ::std::string::npos))
-        nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
+    ::std::string pret (trim_the_lot_off (s));
+    ::std::string t (careless_case < LC >::lower (pret));
     nitpick knots;
-    ::std::string t (s);
     if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "empty value");
     else
     {   bool parsed = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (knots, v, t);
         if (parsed || (v < html_4_0)) nits.merge (knots);
         else
-        {   e_namespace n = examine_namespace (nits, v, t);
+        {   ::std::string ns;
+            e_namespace n = examine_namespace (nits, v, t, ns);
             if (n == ns_error) nits.pick (nit_bad_namespace, es_warning, ec_namespace, "unknown namespace");
             else if (n == ns_default) nits.merge (knots);
             else parsed = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t, n); }
         if (parsed)
         {   enum_base < ENUM, E > :: value_ = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: get (); // ooops, two values :-(
+            careless_case < LC > :: validate (nits, v, get_string (), pret);
             const html_version f = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first ();
             if (! may_apply (v, f, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last ()))
                 nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ());
@@ -202,6 +201,7 @@ template < > class type_master < t_alignplus > : public enum_n < t_alignplus, e_
 template < > class type_master < t_as > : public enum_n < t_as, e_as > { };
 template < > class type_master < t_autocapitalise > : public enum_n < t_autocapitalise, e_autocapitalise > { };
 template < > class type_master < t_autocomplete > : public enum_n < t_autocomplete, e_autocomplete > { };
+template < > class type_master < t_beginfn > : public enum_n < t_beginfn, e_beginfn > { };
 template < > class type_master < t_cachekey > : public enum_n < t_cachekey, e_cachekey > { };
 template < > class type_master < t_charset > : public enum_n < t_charset, e_charset > { };
 template < > class type_master < t_citype > : public enum_n < t_citype, e_citype > { };
@@ -216,12 +216,13 @@ template < > class type_master < t_cursor > : public enum_n < t_cursor, e_cursor
 template < > class type_master < t_decalign > : public enum_n < t_decalign, e_decalign > { };
 template < > class type_master < t_dingbat > : public enum_n < t_dingbat, e_dingbat > { };
 template < > class type_master < t_dir > : public enum_n < t_dir, e_dir > { };
-template < > class type_master < t_display > : public enum_n < t_display, e_display > { };
+template < > class type_master < t_display_align > : public enum_n < t_display_align, e_display_align > { };
 template < > class type_master < t_dominantbaseline > : public enum_n < t_dominantbaseline, e_dominantbaseline > { };
 template < > class type_master < t_enterkeyhint > : public enum_n < t_enterkeyhint, e_enterkeyhint > { };
 template < > class type_master < t_figalign > : public enum_n < t_figalign, e_figalign > { };
 template < > class type_master < t_filter_in > : public enum_n < t_filter_in, e_filter_in > { };
 template < > class type_master < t_fixedcolour > : public enum_n < t_fixedcolour, e_fixedcolour > { };
+template < > class type_master < t_fontname > : public enum_n < t_fontname, e_fontname > { };
 template < > class type_master < t_halign > : public enum_n < t_halign, e_halign > { };
 template < > class type_master < t_httpequiv > : public enum_n < t_httpequiv, e_httpequiv > { };
 template < > class type_master < t_indentalign > : public enum_n < t_indentalign, e_indentalign > { };
@@ -266,7 +267,7 @@ template < > class type_master < t_namespace > : public enum_n < t_namespace, e_
 template < > class type_master < t_ogtype > : public enum_n < t_ogtype, e_ogtype > { };
 template < > class type_master < t_paintkeyword > : public enum_n < t_paintkeyword, e_paintkeyword > { };
 template < > class type_master < t_print > : public enum_n < t_print, e_print > { };
-template < > class type_master < t_pointerevents > : public enum_n < t_pointerevents, e_pointerevents > { };
+template < > class type_master < t_pointer_events > : public enum_n < t_pointer_events, e_pointer_events > { };
 template < > class type_master < t_referrer > : public enum_n < t_referrer, e_referrer > { };
 template < > class type_master < t_renderingintent > : public enum_n < t_renderingintent, e_renderingintent > { };
 template < > class type_master < t_role > : public enum_n < t_role, e_aria_role > { };
@@ -275,12 +276,13 @@ template < > class type_master < t_sandbox > : public enum_n < t_sandbox, e_sand
 template < > class type_master < t_shape7 > : public enum_n < t_shape7, e_shape7 > { };
 template < > class type_master < t_ssi > : public enum_n < t_ssi, e_ssi > { };
 template < > class type_master < t_sgml > : public enum_n < t_sgml, e_sgml > { };
-template < > class type_master < t_shaperendering > : public enum_n < t_shaperendering, e_shaperendering > { };
+template < > class type_master < t_shape_rendering > : public enum_n < t_shape_rendering, e_shape_rendering > { };
 template < > class type_master < t_textrendering > : public enum_n < t_textrendering, e_textrendering > { };
 template < > class type_master < t_ssi_comparison > : public enum_n < t_ssi_comparison, e_ssi_comparison > { };
 template < > class type_master < t_ssi_encoding > : public enum_n < t_ssi_encoding, e_ssi_encoding > { };
 template < > class type_master < t_ssi_env > : public enum_n < t_ssi_env, e_ssi_env > { };
 template < > class type_master < t_svg_align > : public enum_n < t_svg_align, e_svg_align > { };
+template < > class type_master < t_svg_display > : public enum_n < t_svg_display, e_svg_display > { };
 template < > class type_master < t_svg_feature > : public enum_n < t_svg_feature, e_svg_feature > { };
 template < > class type_master < t_svg_fontstretch > : public enum_n < t_svg_fontstretch, e_svg_fontstretch > { };
 template < > class type_master < t_svg_fontstretch_ff > : public enum_n < t_svg_fontstretch_ff, e_svg_fontstretch_ff > { };
@@ -294,9 +296,11 @@ template < > class type_master < t_svg_version_grand > : public enum_n < t_svg_v
 template < > class type_master < t_tableframe > : public enum_n < t_tableframe, e_tableframe > { };
 template < > class type_master < t_textdecoration > : public enum_n < t_textdecoration, e_textdecoration > { };
 template < > class type_master < t_transform_anim > : public enum_n < t_transform_anim, e_transform_anim > { };
+template < > class type_master < t_transformbehaviour > : public enum_n < t_transformbehaviour, e_transformbehaviour > { };
 template < > class type_master < t_transform_fn > : public enum_n < t_transform_fn, e_transform_fn > { };
 template < > class type_master < t_turbulence_type > : public enum_n < t_turbulence_type, e_turbulence_type > { };
+template < > class type_master < t_unit > : public enum_n < t_unit, e_unit > { };
 template < > class type_master < t_vectoreffect_2 > : public enum_n < t_vectoreffect_2, e_vectoreffect_2 > { };
+template < > class type_master < t_whitespace > : public enum_n < t_whitespace, e_whitespace > { };
 template < > class type_master < t_writingmode > : public enum_n < t_writingmode, e_writingmode > { };
-template < > class type_master < t_xlinkshow > : public enum_n < t_xlinkshow, e_xlinkshow > { };
 template < > class type_master < t_xmlns > : public enum_n < t_xmlns, e_xmlns > { };

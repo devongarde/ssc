@@ -629,9 +629,9 @@ PASS ../toast/living/jul13/ls5.html
 PASS ../toast/living/jul13/ls6.html
 3 xmlns_namespace naughty_lang
 5 use_quote_code
-8 ignoring_unknown xmlns_namespace attribute_barred attribute_barred
+8 ignoring_unknown custom attribute_barred
 9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown xmlns_namespace attribute_barred
+10 ignoring_unknown custom
 11 ignoring_unknown ignoring_unknown
 12 ignoring_unknown
 19 missing_open

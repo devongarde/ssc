@@ -54,6 +54,22 @@ template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpo
     int get_int () const { return static_cast < int > (value_  + 0.5); }
     double get () const { return value_; } };
 
+template < > struct type_master < t_percent > : type_master < t_fixedpoint >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        ::std::string::size_type len (ss.length ());
+        if (len > 1)
+            if (ss.at (len - 1) == '%')
+            {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 2));
+                if (type_master < t_fixedpoint > :: good ())
+                    if ((type_master < t_fixedpoint > :: value_ >= 0.0) && (type_master < t_fixedpoint > :: value_ <= 100.0)) return; }
+        nits.pick (nit_percent, es_error, ec_type, "expecting a value between 0.0 and 100.0, followed by '%'");
+        type_base < double, t_fixedpoint > :: status (s_invalid); }
+    ::std::string get_string () const
+    {   return ::boost::lexical_cast < ::std::string > (value_) + "%"; }
+    void shadow (::std::stringstream& ss, const html_version& , element* )
+    {   ss << '=' << get_string (); } };
+
 template < > struct type_master < t_integer > : numeric_value < t_integer, int >
 {   typedef true_type has_int_type;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -98,23 +114,6 @@ template < > struct type_master < t_real > : type_base < double, t_real >
     int get_int () const { return static_cast < int > (value_ + 0.5); }
     double get () const { return value_; } };
 
-template < > struct type_master < t_normalised > : type_master < t_real >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   type_master < t_real > :: set_value (nits, v, s);
-        if (type_master < t_real > :: good ())
-        {   if ((type_master < t_real > ::value_ >= 0.0) &&
-                (type_master < t_real > ::value_ <= 1.0)) return;
-            nits.pick (nit_0_1, es_error, ec_type, "a normalised value must lie between 0 and 1 inclusive");
-            type_master < t_real > :: status (s_invalid); } } };
-
-template < > struct type_master < t_1_more > : type_master < t_real >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   type_master < t_real > :: set_value (nits, v, s);
-        if (type_master < t_real > :: good ())
-        {   if ((type_master < t_real > ::value_ >= 1.0)) return;
-            nits.pick (nit_1_more, es_error, ec_type, "a limit must equal or exceed 1.0");
-            type_master < t_real > :: status (s_invalid); } } };
-
 template < > struct type_master < t_unsigned > : public numeric_value < t_unsigned, unsigned int >
 {   typedef true_type has_int_type;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -153,4 +152,24 @@ template < > struct type_master < t_plus_1_7 > : public numeric_value < t_plus_1
             nits.pick (nit_plus_1_7, es_error, ec_type, quote (s), " does not lie between 1 and 99 (inclusive)");
             numeric_value < t_plus_1_7, unsigned int > :: status (s_invalid); } } };
 
+template < > struct type_master < t_zero_to_one > : type_master < t_real >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < t_real > :: set_value (nits, v, s);
+        if (type_master < t_real > :: good ())
+        {   if ((type_master < t_real > :: value_ >= 0.0) && (type_master < t_real > :: value_ <= 1.0)) return;
+            nits.pick (nit_zero_to_one, es_error, ec_type, quote (type_master < t_real > :: get_string ()), ": a value between 0 and 1 (inclusive) expected");
+            type_master < t_real > :: status (s_invalid); } } };
+
+template < int N > struct n_or_more : type_master < t_real >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < t_real > :: set_value (nits, v, s);
+        if (type_master < t_real > :: good ())
+        {   if ((type_master < t_real > :: value_ >= static_cast < double > (N))) return;
+            nits.pick (nit_1_more, es_error, ec_type, "a limit must equal or exceed ", N, ".0");
+            type_master < t_real > :: status (s_invalid); } } };
+
+template < > struct type_master < t_0_more > : n_or_more < 0 > { };
+template < > struct type_master < t_1_more > : n_or_more < 1 > { };
+template < > struct type_master < t_real_i > : type_or_string < t_real_i, t_real, sz_inherit > { };
 template < > struct type_master < t_reals > : type_at_least_one < t_reals, sz_commaspace, t_real > { };
+template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > { };

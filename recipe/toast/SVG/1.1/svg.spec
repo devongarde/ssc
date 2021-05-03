@@ -4,7 +4,7 @@ PASS ../toast/SVG/1.1/bad.html
 2 naughty_lang
 
 PASS ../toast/SVG/1.1/desc.html
-1 xhtml_1_0
+1 xhtml_1_1
 3 svg_version
 
 PASS ../toast/SVG/1.1/dubious.html
@@ -13,18 +13,17 @@ PASS ../toast/SVG/1.1/dubious.html
 
 PASS ../toast/SVG/1.1/example-1.xhtml
 0 title_required
-1 xhtml_1_0
-4 svg_version
+1 xhtml_1_1
+4 xmlns_namespace svg_version
 
 PASS ../toast/SVG/1.1/example-2.xhtml
 0 title_required
-1 xhtml_1_0
+1 xhtml_1_1
 4 svg_version
-6 unrecognised_value
 
 PASS ../toast/SVG/1.1/example-3.xhtml
-1 xhtml_1_0
-4 svg_version
+1 xhtml_1_1
+4 xmlns_namespace svg_version
 13 use_double_quote_code
 141 use_double_quote_code
 
@@ -32,7 +31,7 @@ PASS ../toast/SVG/1.1/example-4.html
 2 naughty_lang
 12 svg_version
 13 xmlns_namespace unrecognised_value
-26 ignoring_unknown attribute_barred attribute_barred attribute_barred
+26 ignoring_unknown xmlns_namespace xmlns_namespace xmlns_namespace attribute_barred attribute_barred attribute_barred
 33 ignoring_unknown attribute_barred unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
 34 ignoring_unknown
 35 ignoring_unknown
@@ -74,29 +73,27 @@ PASS ../toast/SVG/1.1/svg11.html
 112 svg_version
 113 use_quote_code
 125 svg_version
-126 unrecognised_value
-137 svg_version
+126 xmlns_namespace unrecognised_value
+137 xmlns_namespace svg_version
 138 use_quote_code
 146 svg_version
 147 use_quote_code
-158 svg_version
+158 xmlns_namespace svg_version
 159 use_quote_code
 173 svg_version
 174 use_quote_code
-192 svg_version
+192 xmlns_namespace svg_version
 193 use_quote_code
 195 id_exists
 201 svg_version
 202 use_quote_code
-213 svg_version
+213 xmlns_namespace svg_version
 214 use_quote_code
-215 untidy_string
-217 unrecognised_value untidy_string
+217 unrecognised_value
 219 invalid_attribute_version wrong_version
-231 untidy_string
 236 svg_version
 237 use_quote_code
-250 svg_version
+250 xmlns_namespace svg_version
 252 url_not_found
 257 svg_version
 261 svg_version
@@ -117,13 +114,13 @@ PASS ../toast/SVG/1.1/svg11.html
 394 svg_version
 428 svg_version
 433 svg_version
-436 ignoring_unknown attribute_barred attribute_barred attribute_barred
+436 ignoring_unknown xmlns_namespace xmlns_namespace xmlns_namespace attribute_barred attribute_barred attribute_barred
 437 ignoring_unknown unrecognised_attribute
 439 ignoring_unknown attribute_barred unrecognised_attribute
 440 ignoring_unknown
 441 ignoring_unknown
 446 svg_version
-450 ignoring_unknown attribute_barred attribute_barred attribute_barred
+450 ignoring_unknown xmlns_namespace xmlns_namespace xmlns_namespace attribute_barred attribute_barred attribute_barred
 451 ignoring_unknown unrecognised_attribute
 453 ignoring_unknown attribute_barred
 454 ignoring_unknown
@@ -135,7 +132,7 @@ PASS ../toast/SVG/1.1/svg11.html
 460 ignoring_unknown
 461 ignoring_unknown
 466 svg_version
-469 ignoring_unknown attribute_barred attribute_barred attribute_barred
+469 ignoring_unknown xmlns_namespace xmlns_namespace xmlns_namespace attribute_barred attribute_barred attribute_barred
 470 ignoring_unknown unrecognised_attribute
 472 ignoring_unknown attribute_barred
 473 ignoring_unknown
@@ -262,7 +259,7 @@ PASS ../toast/SVG/1.1/svg11.html
 726 use_quote_code
 738 svg_version
 747 svg_version
-772 svg_version
+772 xmlns_namespace svg_version
 785 no_xmllang
 786 attribute_barred no_xmllang
 787 attribute_barred no_xmllang
@@ -273,18 +270,17 @@ PASS ../toast/SVG/1.1/svg11.html
 798 use_quote_code
 806 svg_version
 807 use_quote_code
-823 svg_version
+823 xmlns_namespace svg_version
 826 path_spec
-834 svg_version
+834 xmlns_namespace svg_version
 837 path_spec id_exists
-845 svg_version
+845 xmlns_namespace svg_version
 847 id_exists
-858 svg_version
+858 xmlns_namespace svg_version
 860 id_exists
-876 svg_version
+876 xmlns_namespace svg_version
 878 id_exists
 888 svg_version
-890 unrecognised_value
 899 svg_version
 951 svg_version
 968 svg_version
@@ -292,7 +288,7 @@ PASS ../toast/SVG/1.1/svg11.html
 983 svg_version
 987 id_exists
 1000 svg_version
-1012 svg_version
+1012 xmlns_namespace svg_version
 1031 svg_version
 1069 svg_version
 1073 use_double_quote_code
@@ -304,6 +300,7 @@ PASS ../toast/SVG/1.1/svg11.html
 1255 id_exists
 1285 svg_version
 1292 id_exists
+1338 xmlns_namespace
 1344 url_not_found
 1347 url_not_found
 1350 url_not_found
@@ -311,34 +308,36 @@ PASS ../toast/SVG/1.1/svg11.html
 1367 use_quote_code
 1375 mixed_mess inserted_missing_closure
 1393 svg_version
-1439 svg_version
+1439 xmlns_namespace svg_version
 1442 chocolate_teapot
 1446 svg_version
 1449 script
 1463 svg_version
 1484 use_quote_code
-1493 svg_version
+1493 xmlns_namespace svg_version
 1497 xmlns_namespace missing_close
-1498 empty url_id_unfound
+1498 empty
 1500 mixed_mess
-1503 xmlns_namespace unrecognised_value
-1504 attribute_unrecognised xmlns_namespace unrecognised_attribute unrecognised_value
+1503 xmlns_namespace xmlns_namespace unrecognised_value
+1504 custom
 1506 inserted_missing_closure
-1508 svg_version
+1508 xmlns_namespace  svg_version
 1513 id_exists
 1527 svg_version
 1528 script
 1551 id_exists
 1555 svg_version
+1560 fontname
 1575 svg_version
+1580 fontname
 1593 svg_version
 1595 invalid_attribute_version wrong_version
 1607 inserted_missing_closure
 
 PASS ../toast/SVG/1.1/svg11.xhtml
-1 xhtml_1_0
+1 xhtml_1_1
 4 svg_version
 15 svg_version
 32 svg_version
-50 svg_version
+50 xmlns_namespace  svg_version
 

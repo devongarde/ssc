@@ -29,19 +29,21 @@ bool attributes :: parse (nitpick& nits, const html_version& v, const attributes
         if (a.has_key ())
         {   if (has_attribute (tag_, a.id ()))
             {   if (is_attribute_rejected (v, tag_, a.id ()))
-                {   nits.pick (nit_attribute_barred, es_error, ec_attribute, ::boost::to_upper_copy (a.get_key ()), " is not permitted here");
+                {   nits.pick (nit_attribute_barred, es_error, ec_attribute, ::boost::to_upper_copy (a.get_key ()), " is not permitted here (", v.report (), ")");
                     continue; }
                 aar_.at (a.id ()) = make_attribute_v_ptr (nits, v, a);
                 if (aar_.at (a.id ()).get () != nullptr)
                 {   res = true;
                     continue; } }
             else if (elem (tag_).wild_attributes (v))
-            {   nits.pick (nit_wild_attribute, es_info, ec_attribute, PROG, " cannot validate ", ::boost::to_upper_copy (a.get_key ()));
+            {   nits.pick (nit_wild_attribute, es_info, ec_attribute, "apologies, but ", PROG, " cannot validate ", ::boost::to_upper_copy (a.get_key ()));
                 continue; }
-            if (a.id () != a_unknown)
-                nits.pick (nit_attribute_barred, es_error, ec_attribute, ::boost::to_upper_copy (a.get_key ()), " does not belong here");
+            if (a.id () == a_custom)
+                nits.pick (nit_custom, es_comment, ec_attribute, PROG, " cannot verify that ", ::boost::to_upper_copy (a.get_key ()), " is valid here");
+            else if (a.id () != a_unknown)
+                nits.pick (nit_attribute_barred, es_error, ec_attribute, ::boost::to_upper_copy (a.get_key ()), " does not belong here (", v.report (), ")");
             else
-            {   nits.pick (nit_unrecognised_attribute, es_warning, ec_attribute, quote (a.get_key ()), " is not recognised");
+            {   nits.pick (nit_unrecognised_attribute, es_warning, ec_attribute, quote (a.get_key ()), " is not recognised (", v.report (), ")");
                 append (unrecognised_, ", ", quote (a.get_key ())); } }
     return res; }
 
@@ -110,15 +112,16 @@ bool attributes :: verify_url (nitpick& nits, const html_version& v, const eleme
                         res = false; // this way, all URL errors are reported, not just the first
     return res; }
 
-void attributes :: verify_attributes (nitpick& nits, const html_version& v, attribute_bitset& state)
-{   for (size_t i = 0; i < aar_.size (); ++i)
+void attributes :: verify_attributes (nitpick& nits, const html_version& v, element* pe)
+{   DBG_ASSERT (pe != nullptr);
+    for (size_t i = 0; i < aar_.size (); ++i)
         if ((aar_.at (i).get () == nullptr) || aar_.at (i) -> unknown ())
         {   if (is_attribute_required (v, tag_, static_cast < e_attribute > (i)))
                 nits.pick (nit_attribute_required, es_error, ec_element, "<", ::boost::to_upper_copy (elem::name (tag_)), "> requires ", ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " in ", v.report ()); }
         else
         {   elem e (tag_);
-            if (aar_.at (i) -> good () || aar_.at (i) -> empty ()) aar_.at (i) -> validate (nits, v, e, attr::name (static_cast < e_attribute > (i)));
-            if (aar_.at (i) -> verify_version (nits, v, e)) state.set (aar_.at (i) -> id ());
+            if (aar_.at (i) -> good () || aar_.at (i) -> empty ()) aar_.at (i) -> verify_attribute (nits, v, pe -> node ().id (), pe, attr::name (static_cast < e_attribute > (i)));
+            if (aar_.at (i) -> verify_version (nits, v, e)) pe -> own_attributes ().set (aar_.at (i) -> id ());
             else nits.pick (nit_wrong_version, es_error, ec_element, ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " is invalid with <", ::boost::to_upper_copy (elem::name (e)), "> in ", v.report ()); } }
 
 void attributes :: mark (page& p, const e_attribute a)

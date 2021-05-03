@@ -1,8 +1,5 @@
 -f ../toast/HTML/4.01/html4.conf
 
-PASS ../toast/HTML/4.01/math.html
-1 naughty_lang
-
 PASS ../toast/HTML/4.01/html4-bad.html
 5 mime
 12 deprecated_element unrecognised_value bad_colour deprecated_attribute
@@ -18,7 +15,7 @@ PASS ../toast/HTML/4.01/html4-bad2.html
 6 base_b4_lynx
 
 PASS ../toast/HTML/4.01/html4-deprecated.html
-1 xhtml_superseded
+1 html_superseded
 6 deprecated_attribute deprecated_attribute deprecated_attribute deprecated_attribute deprecated_attribute
 9 deprecated_element deprecated_attribute
 10 deprecated_element deprecated_attribute
@@ -343,8 +340,6 @@ PASS ../toast/HTML/4.01/html4-example.html
 884 inserted_missing_closure
 
 PASS ../toast/HTML/4.01/html4-frameset.html
-6 untidy_string
-7 untidy_string
 14 inserted_missing_closure
 16 inserted_missing_closure
 17 inserted_missing_closure missing_close

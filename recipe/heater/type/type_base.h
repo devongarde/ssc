@@ -45,13 +45,15 @@ public:
     static bool is_existential () { return false; }
     void swap (type_base& t) NOEXCEPT { id_.swap (t.id_); ::std::swap (status_, t.status_); }
     void reset () { status_ = s_unset; id_.clear (); }
-    void validate (nitpick& , const html_version& , const elem& , const ::std::string& ) { }
+    void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
     bool verify_url (nitpick& , const html_version& , const element& ) { return true; }
     ::std::string get_string () const { return ::std::string (); }
     ::std::string original () const { return get_string (); }
     void set_value (nitpick& , const html_version& , const ::std::string& ) { status_ = s_empty; }
     ::std::string get_id () const { return id_; }
     void set_id (const ::std::string& s) { id_ = s; }
+    ::std::string& id () { return id_; }
+    const ::std::string& id () const { return id_; }
     bool invalid_id (nitpick& , const html_version& , ids_t& , element* ) { return false; }
     bool invalid_access (nitpick& , const html_version& , sstr_t* ) { return false; }
     bool has_id () const { return ! id_.empty (); }

@@ -20,10 +20,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_master.h"
-#include "type/sz.h"
+#include "type/type_case.h"
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 > class four_value : public type_base < base_type, TYPE >
 {   base_type value_ = static_cast < base_type > (0);
+    static ::std::string a_, b_, c_, d_;
 public:
     typedef true_type has_int_type;
     ::std::string get_string () const;
@@ -41,10 +42,11 @@ template < > class type_master < t_actiontype2 > : public four_value < t_actiont
 template < > class type_master < t_align2070 > : public four_value < t_align2070, e_align2070, sz_centre, sz_justify, sz_left, sz_right > { };
 template < > class type_master < t_aligndec > : public four_value < t_aligndec, e_aligndec, sz_centre, sz_decimal, sz_left, sz_right > { };
 template < > class type_master < t_alignfig > : public four_value < t_alignfig, e_alignfig, sz_centre, sz_float, sz_left, sz_right > { };
-template < > class type_master < t_arabicform > : public four_value < t_arabicform, e_arabicform, sz_initial, sz_medial, sz_terminal, sz_isolated > { };
+template < > class type_master < t_arabicenum > : public four_value < t_arabicenum, e_arabicenum, sz_initial, sz_medial, sz_terminal, sz_isolated > { };
 template < > class type_master < t_aria_autocomplete > : public four_value < t_aria_autocomplete, e_aria_autocomplete, sz_both, sz_inline, sz_list, sz_none > { };
 template < > class type_master < t_aria_invalidity > : public four_value < t_aria_invalidity, e_aria_invalidity, sz_false, sz_grammar, sz_spelling, sz_true > { };
-template < > class type_master < t_baselineshift > : public four_value < t_baselineshift, e_baselineshift, sz_baseline, sz_sub, sz_super, sz_inherit > { };
+template < > class type_master < t_baselineshift1 > : public four_value < t_baselineshift1, e_baselineshift1, sz_baseline, sz_sub, sz_super, sz_inherit > { };
+template < > class type_master < t_buffered_rendering > : public four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit > { };
 template < > class type_master < t_calcmode > : public four_value < t_calcmode, e_calcmode, sz_discrete, sz_linear, sz_paced, sz_spline > { };
 template < > class type_master < t_captionalign > : public four_value < t_captionalign, e_captionalign, sz_bottom, sz_left, sz_right, sz_top > { };
 template < > class type_master < t_channel_selector > : public four_value < t_channel_selector, e_channel_selector, sz_a, sz_b, sz_g, sz_r > { };
@@ -64,25 +66,29 @@ template < > class type_master < t_linebreakstyle > : public four_value < t_line
 template < > class type_master < t_linecap > : public four_value < t_linecap, e_linecap, sz_butt, sz_round, sz_square, sz_inherit > { };
 template < > class type_master < t_linejoin > : public four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit > { };
 template < > class type_master < t_mathclosure > : public four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen > { };
+template < > class type_master < t_mathside > : public four_value < t_mathside, e_mathside, sz_left, sz_right, sz_leftoverlap, sz_rightoverlap > { };
 template < > class type_master < t_mf_availability > : public four_value < t_mf_availability, e_mf_availability, sz_out_of_stock, sz_in_stock, sz_instore_only, sz_preorder > { };
 template < > class type_master < t_mf_category > : public four_value < t_mf_category, e_mf_category, sz_meeting, sz_appointment, sz_conference, sz_expo > { };
-template < > class type_master < t_phase > : public four_value < t_phase, e_phase, sz_bubble, sz_capture, sz_default, sz_target > { };
+template < > class type_master < t_paint_order > : public four_value < t_paint_order, e_paint_order, sz_normal, sz_fill, sz_stroke, sz_markers > { };
+template < > class type_master < t_phase_x > : public four_value < t_phase_x, e_phase_x, sz_bubble, sz_capture, sz_default, sz_target > { };
 template < > class type_master < t_rsvp > : public four_value < t_rsvp, e_rsvp, sz_yes, sz_no, sz_maybe, sz_interested > { };
 template < > class type_master < t_tdscope > : public four_value < t_tdscope, e_tdscope, sz_row, sz_col, sz_rowgroup, sz_colgroup > { };
 template < > class type_master < t_shape4 > : public four_value < t_shape4, e_shape4, sz_circle, sz_default, sz_poly, sz_rect > { };
 template < > class type_master < t_size3 > : public four_value < t_size3, e_size3, sz_normal, sz_medium, sz_large, sz_huge > { };
-template < > class type_master < t_side > : public four_value < t_side, e_side, sz_left, sz_right, sz_leftoverlap, sz_rightoverlap > { };
+template < > class type_master < t_scei > : public four_value < t_scei, e_scei, sz_start, sz_centre, sz_end, sz_inherit > { };
 template < > class type_master < t_smei > : public four_value < t_smei, e_smei, sz_start, sz_middle, sz_end, sz_inherit > { };
 template < > class type_master < t_ssi_config > : public four_value < t_ssi_config, e_ssi_config, sz_echomsg, sz_errmsg, sz_sizefmt, sz_timefmt > { };
 template < > class type_master < t_ssi_set > : public four_value < t_ssi_set, e_ssi_set, sz_decoding, sz_encoding, sz_value, sz_var > { };
 template < > class type_master < t_svg_baseprofile > : public four_value < t_svg_baseprofile, e_svg_baseprofile, sz_basic, sz_full, sz_none, sz_tiny > { };
 template < > class type_master < t_svg_fontstyle > : public four_value < t_svg_fontstyle, e_svg_fontstyle, sz_normal, sz_italic, sz_oblique, sz_inherit > { };
 template < > class type_master < t_svg_type > : public four_value < t_svg_type, e_svg_type, sz_gamma, sz_identity, sz_linear, sz_table > { };
+template < > class type_master < t_syncbehaviour > : public four_value < t_syncbehaviour, e_syncbehaviour, sz_canslip, sz_locked, sz_independent, sz_default > { };
+template < > class type_master < t_syncbehaviourdefault > : public four_value < t_syncbehaviourdefault, e_syncbehaviourdefault, sz_canslip, sz_locked, sz_independent, sz_inherit > { };
 template < > class type_master < t_tfmu > : public four_value < t_tfmu, e_tfmu, sz_false, sz_mixed, sz_true, sz_undefined > { };
-template < > class type_master < t_unicodebidi > : public four_value < t_unicodebidi, e_unicodebidi, sz_normal, sz_embed, sz_bidioverride, sz_inherit > { };
+template < > class type_master < t_unicode_bidi > : public four_value < t_unicode_bidi, e_unicodebidi, sz_normal, sz_embed, sz_bidioverride, sz_inherit > { };
 template < > class type_master < t_uplr > : public four_value < t_uplr, e_uplr, sz_down, sz_left, sz_right, sz_up > { };
 template < > class type_master < t_valign3 > : public four_value < t_valign3, e_valign3, sz_top, sz_middle, sz_bottom, sz_baseline > { };
-template < > class type_master < t_visibility > : public four_value < t_visibility, e_visibility, sz_visible, sz_hidden, sz_collapse, sz_inherit > { };
+template < > class type_master < t_visibility11 > : public four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_collapse, sz_inherit > { };
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
     ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: get_string () const
@@ -97,17 +103,31 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
     void four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   ::std::string t (trim_the_lot_off (s));
-    if (v.xhtml () && ! v.svg () && (t.find_first_of (UPPERCASE) != ::std::string::npos))
-        nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
-    ::boost::to_lower (t);
+{   ::std::string pret (trim_the_lot_off (s));
+    ::std::string t (case_must_match < false >::lower (pret));
     type_base < base_type, TYPE > :: status (s_good);
-    if (t == SZ0::sz ()) value_ = static_cast <base_type> (0);
-    else if (t == SZ1::sz ()) value_ = static_cast <base_type> (1);
-    else if (t == SZ2::sz ()) value_ = static_cast <base_type> (2);
-    else if (t == SZ3::sz ()) value_ = static_cast <base_type> (3);
+    if (a_.empty ())
+    {   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
+        b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
+        c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ()));
+        d_ = ::boost::to_lower_copy (::std::string (SZ3::sz ())); }
+    if (t == a_) value_ = static_cast <base_type> (0);
+    else if (t == b_) value_ = static_cast <base_type> (1);
+    else if (t == c_) value_ = static_cast <base_type> (2);
+    else if (t == d_) value_ = static_cast <base_type> (3);
     else
     {   if (! check_spelling (nits, v, t))
             if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
-            else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (t), " is invalid; it can be \"", SZ0::sz (), "\", \"", SZ1::sz (), "\", \"", SZ2::sz (), "\", or \"", SZ3::sz (), "\"");
-        type_base < base_type, TYPE > :: status (s_invalid); } }
+            else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be \"", SZ0::sz (), "\", \"", SZ1::sz (), "\", \"", SZ2::sz (), "\", or \"", SZ3::sz (), "\"");
+        type_base < base_type, TYPE > :: status (s_invalid);
+        return; }
+    compare_validate (nits, v, get_string (), pret); }
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: a_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: b_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: c_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: d_;

@@ -720,14 +720,13 @@ PASS ../toast/living/apr21/img.html
 78 no_such_folder url_not_found
 79 no_such_folder url_not_found
 81 inserted_missing_closure use_quote_code
-84 untidy_string no_such_folder url_not_found
+84 no_such_folder url_not_found
 85 no_such_folder url_not_found
 86 no_such_folder url_not_found
 88 inserted_missing_closure
-89 untidy_string untidy_string url_not_found
-93 untidy_string untidy_string untidy_string url_not_found
+89 url_not_found
+93 url_not_found
 98 url_not_found
-103 untidy_string
 104 url_not_found
 108 use_quote_code
 111 mime
@@ -980,12 +979,9 @@ PASS ../toast/living/apr21/link.html
 5 url_not_found
 6 url_not_found
 10 url_not_found
-14 untidy_string untidy_string sizes sizes
-18 untidy_string
-21 untidy_string
+14 sizes sizes
 23 no_such_folder url_not_found
-32 untidy_string untidy_string url_not_found
-37 untidy_string
+32 url_not_found
 39 url_not_found
 
 PASS ../toast/living/apr21/links-alternate.html

@@ -40,9 +40,10 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
         if (v.is_1 ())
         {   string_value < t_compact > :: status (s_invalid);
             nits.pick (nit_bad_compact, es_error, ec_type, "in ", v.report (), ", compact has no value"); }
-        if (! compare_no_case (string_value < t_compact > :: get_string (), "compact"))
+        ::std::string ss (string_value < t_compact > :: get_string ());
+        if (! compare_complain (nits, v, "compact", ss))
         {   string_value < t_compact > :: status (s_invalid);
-            nits.pick (nit_bad_border, es_error, ec_type, "if compact is given a value, it must be \"compact\""); } }
+            nits.pick (nit_bad_border, es_error, ec_type, "if compact is given a value, it must be \"compact\", not ", quote (s)); } }
     void shadow (::std::stringstream& ss, const html_version& v, element* )
     {   if (v.xhtml ()) ss << "=\"compact\""; } };
 
@@ -77,8 +78,10 @@ template < > struct type_master < t_loopie > : tidy_string < t_loopie >
     {   tidy_string < t_loopie > :: set_value (nits, v, s);
         const ::std::string& x = tidy_string < t_loopie > :: get_string ();
         if (x.empty ()) return;
-        if ((x.find_first_not_of (DENARY) == ::std::string::npos) || compare_no_case (x, "infinite") || (x == "-1"))
-           tidy_string < t_loopie > :: status (s_good);
+        if ((x.find_first_not_of (DENARY) == ::std::string::npos) || (x == "-1"))
+            tidy_string < t_loopie > :: status (s_good);
+        if (compare_complain (nits, v, "infinite", x))
+            tidy_string < t_loopie > :: status (s_good);
         else
         {   nits.pick (nit_infinite_number, es_error, ec_type, quote (s), "should be an unsigned integer, -1, or the keyword 'infinite'");
             tidy_string < t_loopie > :: status (s_invalid); } } };
@@ -91,6 +94,6 @@ template < > struct type_master < t_not_empty > : string_value < t_not_empty >
             string_value < t_not_empty > :: status (s_invalid); } } };
 
 template < > struct type_master < t_wanted > : public tidy_string < t_wanted >
-{   void validate (nitpick& nits, const html_version& , const elem& , const ::std::string& situation)
+{   void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& situation)
     {   if (tidy_string < t_wanted > :: unknown ())
             nits.pick (nit_value_expected, es_warning, ec_type, "a value ought to be supplied (", situation, ")"); } };

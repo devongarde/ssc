@@ -30,8 +30,14 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
     e_paintkeyword k = examine_value < t_paintkeyword > (nuts, v, args.at (0));
     switch (k)
     {   case pk_none :
+        case pk_contextfill :
+        case pk_contextstroke :
         case pk_currentcolour :
             nits.merge (nuts); return true;
+        case pk_child :
+            if (args.size () == 1) return true;
+            if (args.size () > 2) nits.pick (nit_paint, ed_svg_2_0, "13.2. Specifying paint", es_error, ec_type, "child can take at most one parameter");
+            return test_value < t_unsigned > (nits, v, args.at (1));
         case pk_inherit :
             nits.merge (nuts);
             if (! recheck) return true;
@@ -47,7 +53,7 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
         if (++bra < ket)
             if (test_value < t_colour > (knits, v, args.at (0)))
             {   if (args.at (1).size () >= 9)
-                if (compare_no_case (args.at (1).substr (0, 9), "icc-color"))
+                if (compare_complain (nits, v, args.at (1).substr (0, 9), "icc-color"))
                 {   ::std::string tmp = trim_the_lot_off (d.substr (bra, ket-bra));
                     if (tmp.at (0) == '#')
                     {   ::std::string::size_type cwsp = tmp.find_first_of (", ");
@@ -59,7 +65,7 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
                             if (n.empty () || test_value < t_real > (knits, v, n))
                             {   nits.merge (knits); return true; } } } }
     if ((! recheck) && (d.size () > 2))
-        if (compare_no_case (d.substr (0, 3), "url"))
+        if (compare_complain (nits, v, d.substr (0, 3), "url"))
             if ((bra != ::std::string::npos) && (ket != ::std::string::npos))
                 if (++bra < ket)
                 {   if (! test_value < t_url > (nits, v, d.substr (bra, ket-bra))) return false;

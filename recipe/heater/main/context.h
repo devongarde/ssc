@@ -67,6 +67,7 @@ class context_t
     ::std::unique_ptr < ::std::ofstream > fos_;
     stats_t         data_;
     ::boost::program_options::options_description   validation_;
+    e_svg_processing_mode svg_mode_;
     ::std::string ensane (const ::std::string& s) const;
     ::std::ostream& out () const { if (fos_) return *fos_; return ::std::cout; }
     ::std::ostream& err () const { if (fos_) return *fos_; return ::std::cerr; }
@@ -106,7 +107,7 @@ public:
     bool load_css () const { return ! load_css_; }
     const ::std::string macro_end () const { return macro_end_; }
     const ::std::string macro_start () const { return macro_start_; }
-    e_mathversion math_version () const { return version_.math_version (); }
+    e_math_version math_version () const { return version_.math_version (); }
     unsigned long max_file_size () const { return static_cast < unsigned long > (max_file_size_); }
     bool md_export () const { return md_export_; }
     const vstr_t mentions () const { return mentions_; }
@@ -161,6 +162,7 @@ public:
     bool stats_summary () const { return stats_summary_; }
     bool stats_page () const { return stats_page_; }
     const ::std::string stub () const { return stub_; }
+    e_svg_processing_mode svg_mode () const { return svg_mode_; }
     e_svg_version svg_version () const { return version_.svg_version (); }
     const vstr_t templates () const { return templates_; }
     bool test () const { return test_; }
@@ -220,10 +222,10 @@ public:
     context_t& macro_end (const ::std::string& s) { macro_end_ = s; return *this; }
     context_t& macro_start (const ::std::string& s) { macro_start_ = s; return *this; }
     context_t& math_version (const int v)
-    {   if ((v >= 1) && (v <= 4)) version_.math_version (static_cast < e_mathversion > (v));
+    {   if ((v >= 1) && (v <= 4)) version_.math_version (static_cast < e_math_version > (v));
         else version_.math_version (math_none);
         return *this; }
-    context_t& math_version (const e_mathversion v) { version_.math_version (v); return *this; }
+    context_t& math_version (const e_math_version v) { version_.math_version (v); return *this; }
     context_t& max_file_size (const long l) { max_file_size_ = l; return *this; }
     context_t& md_export (const bool b) { md_export_ = b; return *this; }
     context_t& mentions (const vstr_t& s) { mentions_ = s; return *this; }
@@ -287,6 +289,7 @@ public:
     context_t& stats_summary (const bool b) { stats_summary_ = b; return *this; }
     context_t& stats_page (const bool b) { stats_page_ = b; return *this; }
     context_t& stub (const ::std::string& s) { stub_ = s; return *this; }
+    context_t& svg_mode (const e_svg_processing_mode m) { svg_mode_ = m; return *this; }
     context_t& svg_version (const int mjr, const int mnr);
     context_t& svg_version (const e_svg_version v) { version_.svg_version (v); return *this; }
     context_t& templates (const vstr_t& s) { templates_ = s; return *this; }

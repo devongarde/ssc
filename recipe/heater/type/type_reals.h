@@ -57,15 +57,6 @@ template < > struct type_master < t_points > : tidy_string < t_points >
         nits.pick (nit_unreal, es_error, ec_type, "a sequence of coordinates is expected");
         tidy_string < t_points > :: status (s_invalid); } };
 
-template < > struct type_master < t_real_1_2 > : tidy_string < t_real_1_2 >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_real_1_2 > :: set_value (nits, v, s);
-        if (tidy_string < t_real_1_2 >  :: good ())
-            if ((v.svg () == sv_1_1) && test_reals (nits, v, tidy_string < t_real_1_2 > :: get_string (), 1)) return;
-            else if ((v.svg () > sv_1_1) && test_reals (nits, v, tidy_string < t_real_1_2 > :: get_string (), 1, false, 2)) return;
-        nits.pick (nit_unreal, es_error, ec_type, "one or two numbers expected");
-        tidy_string < t_real_1_2 > :: status (s_invalid); } };
-
 template < > struct type_master < t_table_values > : tidy_string < t_table_values >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_table_values > :: set_value (nits, v, s);
@@ -73,14 +64,3 @@ template < > struct type_master < t_table_values > : tidy_string < t_table_value
             if (test_reals (nits, v, tidy_string < t_table_values > :: get_string (), 0)) return;
         nits.pick (nit_unreal, es_error, ec_type, "a sequence of measurements is expected");
         tidy_string < t_table_values > :: status (s_invalid); } };
-
-template < > struct type_master < t_svg_viewbox > : tidy_string < t_svg_viewbox >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   ::std::string ss (trim_the_lot_off (s));
-        if (compare_no_case (ss, "none")) type_master < t_svg_viewbox > :: status (s_good);
-        else
-        {   tidy_string < t_svg_viewbox > :: set_value (nits, v, s);
-            if (tidy_string < t_svg_viewbox >  :: good ())
-                if (test_reals (nits, v, tidy_string < t_svg_viewbox > :: get_string (), 4)) return;
-            nits.pick (nit_bad_2pt, es_error, ec_type, QNONE "' or a list of numbers is expected");
-            tidy_string < t_svg_viewbox > :: status (s_invalid); } } };

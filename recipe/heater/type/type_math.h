@@ -85,6 +85,7 @@ template < > struct type_master < t_vunit > : tidy_string < t_vunit > // verify 
         nits.pick (nit_bad_vunit, es_error, ec_type, quote (s), ": a vertical length is an integer or a real, optionally followed immediately by one of '%', 'cm', 'ex', 'in', 'mm', 'pc', 'pt', or 'px'");
         tidy_string < t_vunit > :: status (s_invalid); } };
 
+template < > struct type_master < t_mathvertauto > : type_or_string < t_mathvertauto, t_vunit, sz_auto > { };
 template < > struct type_master < t_vunits > : type_at_least_none < t_vunits, sz_space, t_vunit > { };
 
 template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_space > // verify against HTML 5.0, 2.4.4.4
@@ -95,10 +96,10 @@ template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_spac
             for (auto ss : string_vector < t_pseudo, sz_space > :: get ())
             {   ::std::string::size_type pos = ss.find_first_not_of (DECIMAL " ");
                 if (pos == ::std::string::npos) continue;
-                if (compare_no_case (ss, "depth")) continue;
-                if (compare_no_case (ss, "height")) continue;
-                if (compare_no_case (ss, "lspace")) continue;
-                if (compare_no_case (ss, "width")) continue;
+                if (compare_complain (nits, v, "depth", ss)) continue;
+                if (compare_complain (nits, v, "height", ss)) continue;
+                if (compare_complain (nits, v, "lspace", ss)) continue;
+                if (compare_complain (nits, v, "width", ss)) continue;
                 ::std::string units (ss.substr (pos));
                 switch (units.length ())
                 {   case 1 :

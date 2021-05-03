@@ -34,6 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_svg.h"
 #include "type/type_enum.h"
 #include "type/type_enum_vec.h"
+#include "type/type_case.h"
 #include "type/type_1.h"
 #include "type/type_2.h"
 #include "type/type_3.h"

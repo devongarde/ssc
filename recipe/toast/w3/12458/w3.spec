@@ -1,16 +1,16 @@
 -f ../toast/w3/12458/w3.conf
 
 PASS ../toast/w3/12458/1574-charset_iso_8859_7_greek.html
-2 xhtml_superseded
+2 html_superseded
 
 PASS ../toast/w3/12458/2329-html401-strict_iframe.html
-2 xhtml_superseded
+2 html_superseded
 
 PASS ../toast/w3/12458/2329-html401-transitional_iframe.html
-2 xhtml_superseded
+2 html_superseded
 
 PASS ../toast/w3/12458/2342-opensp_type_X.html
-2 xhtml_superseded
+2 html_superseded
 3 missing_close
 6 use_double_quote_code
 8 missing_close
