@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element_classes.h"
 
 void element::check_inclusion_criteria ()
-{   if (node_.version ().svg_version () == sv_2_0)
+{   if (node_.version ().is_svg_2 ())
         if (a_.known (a_role))
             if ((descendant_attributes_ & (empty_attribute_bitset | a_title | a_arialabel | a_arialabelledby)).any ())
                 if (is_default_role (node_.version (), node_.id (), static_cast < e_aria_role > (a_.get_int (a_role))))

@@ -75,11 +75,11 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     {   set_value (nits, v, node.get_string ()); }
     bool verify_version (nitpick& nits, const html_version& v, const e_element tag)
     {   if (typed_value < e_attribute, TYPE, IDENTITY > :: unknown ()) return true;
+        if (! v.check_math_svg (nits, attr :: first_version (IDENTITY), name ())) excluded_ = true;
         if (is_invalid_attribute_version (v, tag, IDENTITY))
         {   nits.pick (nit_invalid_attribute_version, es_error, ec_attribute, quote (name ()), " is invalid in ", v.report ());
             return false; }
-        if (! v.check_math_svg (nits, attr :: first_version (IDENTITY), name ())) excluded_ = true;
-        else
+        if (! excluded_)
         {   excluded_ = attr :: first_version (IDENTITY).invalid_addendum (v);
             if (excluded_) nits.pick (nit_excluded_attribute, es_warning, ec_attribute, "the attribute ", quote (name ()), " is part of extension to ", v.report (), " that is not being applied"); }
         deprecated_ = is_deprecated_attribute_version (v, tag, IDENTITY);

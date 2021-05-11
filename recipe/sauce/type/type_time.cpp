@@ -529,13 +529,6 @@ bool verify_svg_duration (nitpick& nits, const html_version& , const ::std::stri
     nits.pick (nit_bad_datetime, ed_svg_1_1, "19.2.8.1 Clock values", es_error, ec_type, quote (s), " is an invalid duration");
     return false; }
 
-//template < > struct type_master < t_accesskey > : type_function_n < t_accesskey, t_char, sz_accesskey, 1 > { };
-//template < > struct type_master < t_wallclock > : type_function_n < t_wallclock, t_datetime, sz_wallclock, 1 > { };
-//template < > struct type_master < t_repeatfn > : type_function_n < t_repeatfn, t_integer, sz_repeat, 1 > { };
-//template < > struct type_master < t_beginfn > : type_function_n < t_beginfn, t_integer, sz_begin, 1 > { };
-//template < > struct type_master < t_endfn > : type_function_n < t_endfn, t_integer, sz_end, 1 > { };
-//template < > struct type_master < t_eventreffn > : type_function_n < t_eventreffn, t_integer, sz_event_ref, 1 > { };
-
 bool test_animation_timing (nitpick& , const html_version& , const ::std::string& , const bool )
 {   // 19.2.8 Attributes to control the timing of the animation
 //    ::std::string ss (trim_the_lot_off (s));

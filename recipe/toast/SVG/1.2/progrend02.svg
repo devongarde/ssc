@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.2" baseProfile="tiny" viewBox="0 0 480 360">
+<desc>Forward reference of use element</desc>
+<use xlink:href="#myRect" x="200" fill="green"/>
+<circle cx="450" cy="50" r="50" fill="yellow"/>
+<g fill="red">
+<rect xml:id="myRect" width="100" height="100"/>
+</g>
+</svg>

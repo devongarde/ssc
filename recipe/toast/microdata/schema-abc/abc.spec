@@ -17,8 +17,8 @@ PASS ../toast/microdata/schema-abc/aggregaterating-1.html
 22 no_tel
 40 use_double_quote_code
 41 url_not_found
-51 svg_rdf
-52 svg_rdf
+51 invalid_attribute_version wrong_version svg_rdf
+52 invalid_attribute_version wrong_version svg_rdf
 88 url_not_found
 89 use_double_quote_code
 98 sunk sunk
@@ -37,9 +37,9 @@ PASS ../toast/microdata/schema-abc/aggregaterating-2.html
 49 use_quote_code
 
 PASS ../toast/microdata/schema-abc/alignmentobject.html
-17 svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 68 incompatible_mime
-69 svg_rdf bad_datetime
+69 invalid_attribute_version wrong_version svg_rdf bad_datetime
 
 PASS ../toast/microdata/schema-abc/amusementpark.html
 0 charset_mismatch charset_used charset_invalid
@@ -55,19 +55,19 @@ PASS ../toast/microdata/schema-abc/archivecomponent.html
 17 unrecognised_value
 19 unrecognised_value
 21 unrecognised_value
-23 unrecognised_value svg_rdf
+23 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 25 unrecognised_value
 27 unrecognised_value
 32 unrecognised_value
 37 use_quote_code
-38 unrecognised_value rdf
+38 unrecognised_value attribute_unrecognised_here unrecognised_attribute
 39 unrecognised_value not_schema_property
 41 unrecognised_value
 43 unrecognised_value
 45 unrecognised_value
 47 unrecognised_value
 49 unrecognised_value
-51 unrecognised_value svg_rdf
+51 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 53 unrecognised_value
 54 use_quote_code
 56 unrecognised_value
@@ -86,8 +86,8 @@ PASS ../toast/microdata/schema-abc/article.html
 
 PASS ../toast/microdata/schema-abc/audiobook.html
 12 not_schema_property use_quote_code
-16 ignoring_unknown attribute_barred attribute_barred ignoring_unknown
-18 ignoring_unknown attribute_barred attribute_barred ignoring_unknown
+16 unknown_element unknown_element
+18 unknown_element unknown_element
 19 use_quote_code use_double_quote_code
 
 PASS ../toast/microdata/schema-abc/audioobject.html
@@ -99,12 +99,12 @@ PASS ../toast/microdata/schema-abc/bankaccount.html
 
 PASS ../toast/microdata/schema-abc/blogposting.html
 0 charset_mismatch charset_used charset_invalid
-13 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
-22 svg_rdf bad_datetime bad_datetime
+13 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+22 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 24 attribute_required naughty_alt
-29 svg_rdf bad_datetime bad_datetime
+29 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 30 attribute_required naughty_alt
-34 svg_rdf bad_datetime bad_datetime
+34 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 35 use_quote_code
 
 PASS ../toast/microdata/schema-abc/book-1.html
@@ -137,38 +137,38 @@ PASS ../toast/microdata/schema-abc/book-2.html
 
 PASS ../toast/microdata/schema-abc/book-3.html
 8 url_id_unfound
-15 svg_rdf bad_datetime bad_datetime
+15 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 28 no_such_folder url_not_found
 
 PASS ../toast/microdata/schema-abc/broadcastevent.html
-26 svg_rdf
-34 svg_rdf
-35 svg_rdf
-53 svg_rdf
-58 svg_rdf
-70 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
-71 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+26 invalid_attribute_version wrong_version svg_rdf
+34 invalid_attribute_version wrong_version svg_rdf
+35 invalid_attribute_version wrong_version svg_rdf
+53 invalid_attribute_version wrong_version svg_rdf
+58 invalid_attribute_version wrong_version svg_rdf
+70 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+71 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 81 use_quote_code
-85 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+85 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 87 use_quote_code
 
 PASS ../toast/microdata/schema-abc/broadcastfrequencyspecification.html
 4 long_title
 
 PASS ../toast/microdata/schema-abc/broadcastservice.html
-26 svg_rdf
-34 svg_rdf
-35 svg_rdf
-53 svg_rdf
-58 svg_rdf
-85 svg_rdf timezone
-114 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
-115 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+26 invalid_attribute_version wrong_version svg_rdf
+34 invalid_attribute_version wrong_version svg_rdf
+35 invalid_attribute_version wrong_version svg_rdf
+53 invalid_attribute_version wrong_version svg_rdf
+58 invalid_attribute_version wrong_version svg_rdf
+85 invalid_attribute_version wrong_version svg_rdf timezone
+114 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+115 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-abc/brokerageaccount.html
 0 charset_mismatch charset_used charset_invalid
 14 not_schema_property unrecognised_value bad_itemprop
-15 svg_rdf svg_rdf not_schema_property unrecognised_value bad_itemprop
+15 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_schema_property unrecognised_value bad_itemprop
 
 PASS ../toast/microdata/schema-abc/car.html
 28 use_quote_code
@@ -181,18 +181,18 @@ PASS ../toast/microdata/schema-abc/categorycode.html
 0 charset_mismatch charset_used charset_invalid
 26 requires_itemscope
 30 bad_itemid
-35 no_xmllang svg_rdf
-36 no_xmllang svg_rdf
-37 no_xmllang svg_rdf
+35 invalid_attribute_version wrong_version no_xmllang svg_rdf
+36 invalid_attribute_version wrong_version no_xmllang svg_rdf
+37 invalid_attribute_version wrong_version no_xmllang svg_rdf
 
 PASS ../toast/microdata/schema-abc/categorycodeset.html
 0 charset_mismatch charset_used charset_invalid
 21 bad_itemid
 26 requires_itemscope bad_itemid
 30 bad_itemid
-35 no_xmllang svg_rdf
-36 no_xmllang svg_rdf
-37 no_xmllang svg_rdf
+35 invalid_attribute_version wrong_version no_xmllang svg_rdf
+36 invalid_attribute_version wrong_version no_xmllang svg_rdf
+37 invalid_attribute_version wrong_version no_xmllang svg_rdf
 
 PASS ../toast/microdata/schema-abc/cemetery.html
 0 charset_mismatch charset_used charset_invalid
@@ -236,15 +236,15 @@ PASS ../toast/microdata/schema-abc/comicissue.html
 
 PASS ../toast/microdata/schema-abc/corporation.html
 13 use_quote_code
-16 svg_rdf
-17 svg_rdf no_tel
+16 invalid_attribute_version wrong_version svg_rdf
+17 invalid_attribute_version wrong_version svg_rdf no_tel
 20 use_quote_code
 22 use_quote_code
-23 svg_rdf
-24 svg_rdf no_tel
+23 invalid_attribute_version wrong_version svg_rdf
+24 invalid_attribute_version wrong_version svg_rdf no_tel
 28 use_quote_code
-30 svg_rdf
-31 svg_rdf no_tel
+30 invalid_attribute_version wrong_version svg_rdf
+31 invalid_attribute_version wrong_version svg_rdf no_tel
 33 use_quote_code
 
 PASS ../toast/microdata/schema-abc/coverart.html
@@ -265,14 +265,14 @@ PASS ../toast/microdata/schema-abc/creativework-2.html
 80 unrecognised_value
 82 unrecognised_value
 95 no_such_folder url_not_found
-102 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+102 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 127 no_such_folder url_not_found
 131 no_such_folder url_not_found
 136 no_such_folder url_not_found
 138 no_such_folder url_not_found
 146 use_quote_code
 153 no_such_folder url_not_found
-155 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+155 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 190 use_quote_code
 199 use_quote_code
 211 use_quote_code
@@ -286,9 +286,9 @@ PASS ../toast/microdata/schema-abc/creativework-2.html
 
 PASS ../toast/microdata/schema-abc/creditcard.html
 0 charset_mismatch charset_used charset_invalid
-15 svg_rdf
-17 svg_rdf sunk sunk
-22 svg_rdf
+15 invalid_attribute_version wrong_version svg_rdf
+17 invalid_attribute_version wrong_version svg_rdf sunk sunk
+22 invalid_attribute_version wrong_version svg_rdf
 
 itemids
 #author

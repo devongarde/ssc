@@ -46,7 +46,8 @@ html_version::html_version (const boost::gregorian::date& d, const uint64_t flag
         if (mjr () <= HTML_2019) set_ext (HE_MATH_2);
         else set_ext (HE_MATH_4);
     if (no_ext (SVG_MASK))
-        if (*this >= html_5_3) set_ext (HE_SVG_20);
+        if (*this >= html_apr21) set_ext (HE_SVG_21);
+        else if (*this >= html_5_3) set_ext (HE_SVG_20);
         else if (mjr () > HTML_2008) set_ext (HE_SVG_12_TINY);
         else set_ext (HE_SVG_11); }
 
@@ -258,7 +259,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     if (note_parsed_version (nits, nit_math, html_apr21, "Living Standard (April 2021) with MathML 4"))
                     {   set_ext (HE_MATH_4); found_html = true; }
                     break;
-                case doc_svg1 :
+                case doc_svg10 :
                     if (note_parsed_version (nits, nit_svg, xhtml_svg_1_0, "HTML 4.00 with SVG 1.0"))
                     {   svg_version (sv_1_0); found_html = true; }
                     break;
@@ -266,13 +267,25 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     if (note_parsed_version (nits, nit_svg, xhtml_svg_1_1, "XHTML 1.1 with SVG 1.1"))
                     {   svg_version (sv_1_1); found_html = true; }
                     break;
-                case doc_svg2 :
+                case doc_svg20 :
                     if (note_parsed_version (nits, nit_svg, html_svg_2_0, "Living Standard (October 2018) with SVG 2.0"))
                     {   svg_version (sv_2_0); found_html = true; }
                     break;
-                case doc_compound :
-                    if (note_parsed_version (nits, nit_math, html_version (HTML_5_0, 0, HE_SVG_10 | HE_MATH_1), "HTML 5.0 with SVG 1.0 & MathML 1"))
-                    {   set_ext (HE_MATH_1); svg_version (sv_1_0); found_html = true; }
+                case doc_svg21 :
+                    if (note_parsed_version (nits, nit_svg, html_svg_2_1, "Living Standard (April 2021) with SVG 2 (April 2021 draft)"))
+                    {   svg_version (sv_2_1); found_html = true; }
+                    break;
+                case doc_compound_m :
+                    if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_MATH_2), "XHTML 1.1 with MathML 2"))
+                    {   set_ext (HE_MATH_2); math_version (math_2); found_html = true; }
+                    break;
+                case doc_compound_1_0 :
+                    if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_SVG_10 | HE_MATH_2), "XHTML 1.1 with SVG 1.0 & MathML 2"))
+                    {   set_ext (HE_MATH_2); set_ext (HE_SVG_10); math_version (math_2); svg_version (sv_1_0); found_html = true; }
+                    break;
+                case doc_compound_1_1 :
+                    if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_SVG_11 | HE_MATH_2), "XHTML 1.1 with SVG 1.1 & MathML 2"))
+                    {   set_ext (HE_MATH_2); set_ext (HE_SVG_11); math_version (math_2); svg_version (sv_1_1); found_html = true; }
                     break;
                 case doc_xhtml10_basic :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Basic")) set_flags (HV_BASIC);
@@ -466,27 +479,79 @@ bool html_version::lazy () const
     if (is_0 ()) return false;
     return (mnr () > 0); }
 
+bool test_not_extension (const html_version& lhs, const html_version& rhs)
+{   switch (lhs.svg_version ())
+    {   case sv_1_0 : return rhs.not_svg_10 ();
+        case sv_1_1 : return rhs.not_svg_11 ();
+        case sv_1_2_tiny :
+        case sv_1_2_full :
+                      return rhs.not_svg_12 ();
+        case sv_2_0 : return rhs.not_svg_20 ();
+        case sv_2_1 : return rhs.not_svg_21 ();
+        default : break; }
+    return false; }
+
+bool is_excluded (const html_version& lhs, const html_version& rhs, const uint64_t mask)
+{   DBG_ASSERT (mask != 0);
+    // have encountered occasional bugs with 64 bit manipulation on some platforms (a & b), but the &= operator appears reliable, so ...
+    uint64_t a = mask, b = mask;
+    a &= lhs.ext ();
+    b &= rhs.ext ();
+    if ((a == 0) || (b == 0)) return false;
+    a &= b;
+    return (a == 0); }
+
+e_emi rdf_conflict (const html_version& lhs, const html_version& rhs)
+{   DBG_ASSERT (! lhs.is_b4_4 ());
+    DBG_ASSERT (rhs.has_rdf ());
+    if (lhs != xhtml_2)
+        if (! context.rdf () && ! lhs.has_rdf ()) return emi_rdf;
+    return emi_good; }
+
+e_emi math_conflict (const html_version& lhs, const html_version& rhs)
+{   DBG_ASSERT (! lhs.is_b4_4 ());
+    DBG_ASSERT (rhs.has_math ());
+    if (! lhs.has_math ()) return emi_math;
+    if (is_excluded (lhs, rhs, MATH_MASK)) return emi_not_this_math;
+    return emi_good; }
+
+e_emi svg_conflict (const html_version& lhs, const html_version& rhs)
+{   DBG_ASSERT (! lhs.is_b4_4 ());
+    DBG_ASSERT (rhs.has_svg ());
+    if (! lhs.has_svg ()) return emi_svg;
+    if (lhs.is_4 ())
+    {   if (rhs.svg_x1 () && (lhs.mnr () >= 2) && (lhs.mnr () <= 3)) return emi_good;
+        if (rhs.svg_x2 () && (lhs == xhtml_2)) return emi_good;
+        if (rhs.svg_old_html ()) return emi_good; }
+    else if (lhs < html_jul08) return emi_good;
+    if (is_excluded (lhs, rhs, SVG_MASK)) return emi_not_this_svg;
+    if (test_not_extension (lhs, rhs)) return emi_not_this_svg;
+    return emi_good; }
+
 e_emi extension_conflict (const html_version& lhs, const html_version& rhs)
-{   if (lhs.is_b4_4 ()) return emi_good;
-    if (! lhs.has_math () && rhs.has_math ()) return emi_math;
-    if (! lhs.has_svg () && rhs.has_svg ())
-    {   if (rhs.rdf () && lhs.has_rdf ()) return emi_good;
-        if (lhs.is_4 ())
-        {   if (rhs.svg_x1 () && (lhs.mnr () >= 2) && (lhs.mnr () <= 3)) return emi_good;
-            if (rhs.svg_x2 () && (lhs.mnr () == 4)) return emi_good;
-            if (rhs.svg_old_html ()) return emi_good; }
-        else if (lhs.is_5 () && (lhs < html_jul08)) return emi_good;
-        return emi_svg; }
-    else if (lhs.has_svg () && rhs.not_svg ()) return emi_not_svg;
-    if (! context.rdf () && ! lhs.has_rdf () && rhs.has_rdf ()) return emi_rdf;
+{   if (lhs >= xhtml_1_0)
+    {   e_emi r = emi_untested, m = emi_untested, s = emi_untested;
+        if (rhs.has_math ()) { m = math_conflict (lhs, rhs); if (m == emi_good) return emi_good; }
+        if (rhs.has_svg ()) { s = svg_conflict (lhs, rhs); if (s == emi_good) return emi_good; }
+        if (rhs.has_rdf ()) { r = rdf_conflict (lhs, rhs); if (r == emi_good) return emi_good; }
+        if ((s != emi_untested) && (m != emi_untested)) return emi_math_svg;
+        if (m != emi_untested) return m;
+        if (s != emi_untested) return s;
+        if (r != emi_untested) return r; }
     return emi_good; }
 
 bool html_version::check_math_svg (nitpick& nits, const html_version& a, const ::std::string& x) const
 {   switch (extension_conflict (*this, a))
     {   case emi_math :
             nits.pick (nit_math, es_error, ec_attribute, quote (x), " requires MathML"); return false;
+        case emi_not_this_math :
+            nits.pick (nit_math, es_error, ec_attribute, quote (x), " requires another version of MathML"); return false;
+        case emi_math_svg :
+            nits.pick (nit_math_or_svg, es_error, ec_attribute, quote (x), " requires MathML or SVG"); return false;
         case emi_not_svg :
             nits.pick (nit_svg, es_error, ec_attribute, quote (x), " cannot be applied to SVG elements"); return false;
+        case emi_not_this_svg :
+            nits.pick (nit_svg, es_error, ec_attribute, quote (x), " cannot be applied to SVG elements here"); return false;
         case emi_svg :
             nits.pick (nit_svg, es_error, ec_attribute, quote (x), " requires SVG"); return false;
         case emi_rdf :
@@ -495,9 +560,10 @@ bool html_version::check_math_svg (nitpick& nits, const html_version& a, const :
     return true; }
 
 e_svg_version html_version::svg_version () const
-{   if (all_ext (HE_SVG_20)) return sv_2_0;
-    if (all_ext (HE_SVG_12_FULL)) return sv_1_2_full;
+{   if (all_ext (HE_SVG_21)) return sv_2_1;
+    if (all_ext (HE_SVG_20)) return sv_2_0;
     if (all_ext (HE_SVG_12_TINY)) return sv_1_2_tiny;
+    if (all_ext (HE_SVG_12_FULL)) return sv_1_2_full;
     if (all_ext (HE_SVG_11)) return sv_1_1;
     if (all_ext (HE_SVG_10)) return sv_1_0;
     return sv_none; }
@@ -510,6 +576,7 @@ void html_version::svg_version (const e_svg_version v)
         case sv_1_2_tiny : set_ext (HE_SVG_12_TINY); break;
         case sv_1_2_full : set_ext (HE_SVG_12_FULL); break;
         case sv_2_0 : set_ext (HE_SVG_20); break;
+        case sv_2_1 : set_ext (HE_SVG_21); break;
         default : break; } }
 
 e_math_version html_version::math_version () const
@@ -571,11 +638,16 @@ const char *html_version::default_charset () const
 const char *html_version::alternative_charset () const
 { return ::alternative_charset (*this); }
 
-bool html_version::is_plain_html () const
-{   if (is_b4_4 ()) return true;
-    if (xhtml () || has_svg () || has_math () || has_rdf ()) return false;
-    return true; }
+bool html_version::test_extension () const
+{   if (is_b4_4 ()) return false;
+    return (has_svg () || has_math () || has_rdf ()); }
 
+bool html_version::is_plain_html () const
+{   if (xhtml ()) return false;
+    return ! test_extension (); }
+
+bool html_version::requires_extension () const
+{   return test_extension (); }
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   bool res = version.parse_doctype (nits, ::std::string (b, e));
@@ -586,6 +658,8 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
 {   if (! from.unknown () && (v < from)) return false;
     if (context.microformats () && from.is_mf ()) return true;
     if (! to.unknown () && (v > to)) return false;
+    if (from.requires_extension ())
+        if (extension_conflict (v, from) != emi_good) return false;
     switch (v.mjr ())
     {   case 0 :    break;
         case 1 :    if (v.mnr () == 0) return ! from.not10 ();
@@ -620,6 +694,16 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
                         default : break; }
                     break; }
     return true; }
+
+bool overlap (const html_version& lhs_from, const html_version& lhs_to, const html_version& rhs_from, const html_version& rhs_to)
+{   if (! lhs_to.unknown ())
+    {   if (rhs_from > lhs_to) return false;
+        if (lhs_to < rhs_from) return false; }
+    if (! rhs_to.unknown ())
+    {   if (lhs_from > rhs_to) return false;
+        if (rhs_to < lhs_from) return false; }
+    if (rhs_from > lhs_from) return does_apply (rhs_from, lhs_from, lhs_to);
+    else return does_apply (lhs_from, rhs_from, rhs_to); }
 
 int w3_minor_5 (const html_version& v)
 {   if (! v.is_5 ()) return v.mnr ();
@@ -662,6 +746,7 @@ html_version get_min_version (const e_svg_version e)
         case sv_1_2_full : return xhtml_svg_1_2_tiny;
         case sv_1_2_tiny : return xhtml_svg_1_2_full;
         case sv_2_0 : return html_svg_2_0;
+        case sv_2_1 : return html_svg_2_1;
         default : return html_0; } }
 
 html_version get_min_version (const e_math_version e)

@@ -169,10 +169,9 @@ PASS ../toast/living/jul13/example.html
 88 unrecognised_value no_such_folder url_not_found
 98 attribute_unrecognised unrecognised_attribute unrecognised_value
 100 unrecognised_value
-102 unrecognised_value
-103 ignoring_unknown attribute_barred attribute_barred
-104 unrecognised_value
-106 ignoring_unknown
+103 unknown_element unrecognised_namespace
+104 duplicate_namespace
+106 unknown_element
 110 newline_in_string newline_in_string
 112 unrecognised_value
 113 use_double_quote_code use_quote_code
@@ -251,7 +250,7 @@ PASS ../toast/living/jul13/figure.html
 36 url_not_found
 40 url_not_found
 45 inserted_missing_closure
-46  use_quote_code
+46 use_quote_code
 55 url_not_found
 57 url_not_found
 60 newline_in_string newline_in_string url_not_found
@@ -627,13 +626,15 @@ PASS ../toast/living/jul13/ls5.html
 2 naughty_lang
 
 PASS ../toast/living/jul13/ls6.html
-3 xmlns_namespace naughty_lang
+3 xmlns_namespace contradictory_namespace naughty_lang
 5 use_quote_code
-8 ignoring_unknown custom attribute_barred
-9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown custom
-11 ignoring_unknown ignoring_unknown
-12 ignoring_unknown
+6 unknown_element
+8 unknown_element unrecognised_namespace
+9 unknown_element unknown_element
+10 unknown_element
+11 unknown_element unknown_element
+12 unknown_element
+13 unknown_element
 19 missing_open
 20 missing_open
 21 missing_open

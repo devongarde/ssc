@@ -1,3 +1,7 @@
+../toast/SVG/1.0/svg.spec
+../toast/SVG/1.1/svg.spec
+../toast/SVG/1.2/svg.spec
+../toast/SVG/2.0/svg.spec
 ../toast/csp/1/csp.spec
 ../toast/csp/2/csp.spec
 ../toast/csp/3/csp.spec
@@ -97,9 +101,6 @@
 ../toast/stats/detail/stats.spec
 ../toast/stats/single/stats.spec
 ../toast/stats/summary/stats.spec
-../toast/SVG/1.0/svg.spec
-../toast/SVG/1.1/svg.spec
-../toast/SVG/2.0/svg.spec
 ../toast/type/colour/colour.spec
 ../toast/type/custom/custom.spec
 ../toast/type/httpequiv/httpequiv.spec

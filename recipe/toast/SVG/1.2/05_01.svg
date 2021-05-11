@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<parent xmlns="http://example.org"
+xmlns:svg="http://www.w3.org/2000/svg">
+<!-- parent contents here -->
+<svg:svg width="4cm" height="8cm" version="1.2" baseProfile="tiny" viewBox="0 0 100 100">
+<svg:ellipse cx="50" cy="50" rx="40" ry="20" />
+</svg:svg>
+<!-- ... -->
+</parent>

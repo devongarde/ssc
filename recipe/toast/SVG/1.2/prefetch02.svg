@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-16"?>
+<svg width="400" height="300" version="1.2"
+xmlns="http://www.w3.org/2000/svg" baseProfile="tiny"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+timelineBegin="onStart"
+playbackOrder="forwardOnly">
+<desc>
+Example of using SVGT 1.2 features for smooth playback
+during progressive downloading.
+</desc>
+<defs>
+<prefetch xlink:href="#scene1"
+mediaCharacterEncoding="UTF-16"
+mediaTime="5s" mediaSize="94230" />
+<prefetch xlink:href="#scene2"
+mediaCharacterEncoding="UTF-16"
+mediaTime="10s" mediaSize="283474" />
+<prefetch xlink:href="#scene3"
+mediaCharacterEncoding="UTF-16"
+mediaTime="15s" mediaSize="627638" />
+</defs>
+<g xml:id="scene1">
+<discard begin="6s"/>
+<!-- graphics for scene 1 go here -->
+</g>
+<g xml:id="scene2">
+<discard begin="16s"/>
+<!-- graphics for scene 2 go here -->
+</g>
+<g xml:id="scene3">
+<discard begin="21s"/>
+<!-- graphics for scene 3 go here -->
+</g>
+</svg>

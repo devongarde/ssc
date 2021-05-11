@@ -130,7 +130,7 @@
       <!-- rest of SVG graphic would go here -->
 </svg>
 
-<svg width="4in" height="3in" fit-box-to-viewport="0 0 40 30">
+<svg width="4in" height="3in" >
   <desc>This SVG drawing uses the fit-box-to-viewport
     attribute to automatically create an initial user coordinate
    system which causes the graphic to scale to fit into the
@@ -251,7 +251,7 @@
              patternUnits="userspace"
              x="0" y="0" width="25" height="25"
              patternTransform="skewX(45)"
-             fit-bbox="0 0 10 10" >
+              >
       <path d="M 0 0 L 10 0 L 5 10 z" />
   </defs>
   <!-- Fill this ellipse with the above pattern -->
@@ -288,11 +288,11 @@
   </path>
 </svg>
 
-<svg width="4in" height="4in"
-      fit-box-to-viewport="0 0 4000 4000" >
+<svg width="4in" height="4in">
+
   <defs>
     <marker id="Triangle"
-      fit-bbox="0 0 10 10" refX="0" refY="5"
+     refX="0" refY="5"
       markerWidth="1.25" markerHeight="1.75"
       orient="auto">
       <path d="M 0 0 L 10 5 L 0 10 z" />
@@ -306,10 +306,10 @@
 </svg>
 
 <svg width="4in" height="4in"
-      fit-box-to-viewport="0 0 4000 4000" >
+       >
   <defs>
     <marker id="Triangle"
-      fit-bbox="0 0 10 10" refX="0" refY="5"
+     refX="0" refY="5"
       markerWidth="1.25" markerHeight="1.75"
       orient="auto">
       <path d="M 0 0 L 10 5 L 0 10 z" />
@@ -323,13 +323,13 @@
 </svg>
 
 <svg width="4in" height="4in"
-      fit-box-to-viewport="0 0 4000 4000" >
+      >
   <defs>
     <!-- Note: to illustrate the effect of "marker",
       replace "marker" with "symbol" and remove the various
        marker-specific attributes -->
     <symbol id="Triangle"
-      fit-bbox="0 0 10 10" refX="0" refY="5">
+      refX="0" refY="5">
       <path d="M 0 0 L 10 5 L 0 10 z" />
     </symbol>
   </defs>
@@ -362,8 +362,8 @@
            Transform the marker symbol to align (ref-x,ref-y) with
            the origin of the viewport. -->
       <svg width="125" height="175"
-           fit-box-to-viewport="0 0 10 10"
-           transform="translate(0,-5)" >
+
+            >
 
         <!-- Expand out the contents of the <marker> element. -->
         <path d="M 0 0 L 10 5 L 0 10 z" />
@@ -504,7 +504,7 @@
 </svg>
 
 <svg width="4in" height="3in"
-      fit-box-to-viewport="0 0 400 300"
+
      onload="StartAnimation()" >
 
   <defs>

@@ -1,8 +1,5 @@
 -f ../toast/SVG/1.1/svg.conf
 
-PASS ../toast/SVG/1.1/bad.html
-2 naughty_lang
-
 PASS ../toast/SVG/1.1/desc.html
 1 xhtml_1_1
 3 svg_version
@@ -10,6 +7,25 @@ PASS ../toast/SVG/1.1/desc.html
 PASS ../toast/SVG/1.1/dubious.html
 2 naughty_lang
 12 svg_version svg_xy
+
+PASS ../toast/SVG/1.1/defs-1.xhtml
+0 title_required
+1 xhtml_1_1
+5 svg_version
+
+PASS ../toast/SVG/1.1/defs-2.xhtml
+0 title_required
+1 xhtml_1_1
+4 svg_version
+5 use_quote_code
+
+PASS ../toast/SVG/1.1/desc.xhtml
+0 charset_mismatch charset_used
+1 xhtml_1_1
+3 svg_version
+4 xmlns_namespace unrecognised_namespace unrecognised_value
+6 unknown_element
+7 unknown_element unknown_element unknown_element
 
 PASS ../toast/SVG/1.1/example-1.xhtml
 0 title_required
@@ -30,34 +46,69 @@ PASS ../toast/SVG/1.1/example-3.xhtml
 PASS ../toast/SVG/1.1/example-4.html
 2 naughty_lang
 12 svg_version
-13 xmlns_namespace unrecognised_value
-26 ignoring_unknown xmlns_namespace xmlns_namespace xmlns_namespace attribute_barred attribute_barred attribute_barred
-33 ignoring_unknown attribute_barred unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
-34 ignoring_unknown
-35 ignoring_unknown
-36 ignoring_unknown ignoring_unknown
-37 ignoring_unknown ignoring_unknown
-38 ignoring_unknown
-39 ignoring_unknown
-40 ignoring_unknown
-41 ignoring_unknown
+13 xmlns_namespace unrecognised_namespace unrecognised_value
+15 unknown_element
+16 unknown_element unknown_element unknown_element
+17 unknown_element unknown_element unknown_element
+18 unknown_element unknown_element
+19 unknown_element unknown_element
+20 unknown_element
+26 bad_namespace unknown_element xmlns_namespace xmlns_namespace xmlns_namespace
+33 unknown_element
+34 unknown_element
+35 unknown_element
+36 unknown_element unknown_element
+37 unknown_element unknown_element
+38 unknown_element
+39 unknown_element
+40 unknown_element
+41 unknown_element
 46 svg_version
-48 unrecognised_value ignoring_unknown xmlns_namespace attribute_barred attribute_barred
-49 attribute_barred attribute_barred
-50 attribute_barred attribute_barred
-51 attribute_barred attribute_barred
-52 attribute_barred attribute_barred
+48 bad_namespace unknown_element xmlns_namespace unrecognised_namespace
+49 unknown_element
+50 unknown_element
+51 unknown_element
+52 unknown_element
+54 unknown_element
 60 svg_version
 63 use_quote_code
 70 only_once
 
+PASS ../toast/SVG/1.1/g-1.xhtml
+0 title_required
+1 xhtml_1_1
+5 svg_version
+
+PASS ../toast/SVG/1.1/g-2.xhtml
+0 charset_mismatch charset_used title_required
+1 xhtml_1_1
+5 svg_version
+
 PASS ../toast/SVG/1.1/good.html
 2 naughty_lang
 11 svg_version
-12 xmlns_namespace unrecognised_value
+12 xmlns_namespace unrecognised_namespace unrecognised_value
+14 unknown_element unknown_element unknown_element unknown_element
+
+PASS ../toast/SVG/1.1/image.svg
+1 xhtml_1_1
+5 xmlns_namespace svg_version
+9 url_not_found
 
 PASS ../toast/SVG/1.1/index.html
 2 naughty_lang
+
+PASS ../toast/SVG/1.1/svg-1.xhtml
+0 title_required
+1 xhtml_1_1
+3 unknown_element unrecognised_namespace xmlns_namespace
+5 svg_version
+9 unknown_element
+
+PASS ../toast/SVG/1.1/svg-2.xhtml
+0 title_required
+1 xhtml_1_1
+5 svg_version
 
 PASS ../toast/SVG/1.1/svg11.html
 2 naughty_lang
@@ -73,7 +124,9 @@ PASS ../toast/SVG/1.1/svg11.html
 112 svg_version
 113 use_quote_code
 125 svg_version
-126 xmlns_namespace unrecognised_value
+126 xmlns_namespace unrecognised_namespace unrecognised_value
+128 unknown_element
+129 unknown_element unknown_element unknown_element
 137 xmlns_namespace svg_version
 138 use_quote_code
 146 svg_version
@@ -114,127 +167,118 @@ PASS ../toast/SVG/1.1/svg11.html
 394 svg_version
 428 svg_version
 433 svg_version
-436 ignoring_unknown xmlns_namespace xmlns_namespace xmlns_namespace attribute_barred attribute_barred attribute_barred
-437 ignoring_unknown unrecognised_attribute
-439 ignoring_unknown attribute_barred unrecognised_attribute
-440 ignoring_unknown
-441 ignoring_unknown
+436 bad_namespace unknown_element xmlns_namespace xmlns_namespace unrecognised_namespace xmlns_namespace duplicate_namespace
+437 unknown_element
+439 unknown_element
+440 unknown_element
+441 unknown_element
 446 svg_version
-450 ignoring_unknown xmlns_namespace xmlns_namespace xmlns_namespace attribute_barred attribute_barred attribute_barred
-451 ignoring_unknown unrecognised_attribute
-453 ignoring_unknown attribute_barred
-454 ignoring_unknown
-455 ignoring_unknown ignoring_unknown
-456 ignoring_unknown ignoring_unknown
-457 ignoring_unknown ignoring_unknown
-458 ignoring_unknown
-459 ignoring_unknown
-460 ignoring_unknown
-461 ignoring_unknown
+450 bad_namespace unknown_element xmlns_namespace xmlns_namespace unrecognised_namespace xmlns_namespace duplicate_namespace
+451 unknown_element
+453 unknown_element
+454 unknown_element
+456 unknown_element unknown_element
+457 unknown_element unknown_element
+458 unknown_element
+459 unknown_element
+460 unknown_element
+461 unknown_element
 466 svg_version
-469 ignoring_unknown xmlns_namespace xmlns_namespace xmlns_namespace attribute_barred attribute_barred attribute_barred
-470 ignoring_unknown unrecognised_attribute
-472 ignoring_unknown attribute_barred
-473 ignoring_unknown
-474 ignoring_unknown ignoring_unknown
-475 ignoring_unknown
-476 ignoring_unknown
-478 ignoring_unknown
-479 ignoring_unknown ignoring_unknown
-480 ignoring_unknown
-481 ignoring_unknown ignoring_unknown
-482 ignoring_unknown ignoring_unknown
-483 ignoring_unknown ignoring_unknown
-484 ignoring_unknown ignoring_unknown
-485 ignoring_unknown ignoring_unknown
-486 ignoring_unknown
-487 ignoring_unknown
-488 ignoring_unknown
-489 ignoring_unknown
-490 ignoring_unknown ignoring_unknown
-491 ignoring_unknown
-492 ignoring_unknown
-493 ignoring_unknown ignoring_unknown
-494 ignoring_unknown ignoring_unknown
-495 ignoring_unknown ignoring_unknown
-496 ignoring_unknown ignoring_unknown
-497 ignoring_unknown
-498 ignoring_unknown
-499 ignoring_unknown
-501 ignoring_unknown
-502 ignoring_unknown ignoring_unknown
-503 ignoring_unknown
-504 ignoring_unknown
-505 ignoring_unknown ignoring_unknown
-506 ignoring_unknown ignoring_unknown
-507 ignoring_unknown ignoring_unknown
-508 ignoring_unknown
-509 ignoring_unknown
-510 ignoring_unknown
-511 ignoring_unknown ignoring_unknown
-512 ignoring_unknown ignoring_unknown
-513 ignoring_unknown
-514 ignoring_unknown
-516 ignoring_unknown
-517 ignoring_unknown ignoring_unknown
-518 ignoring_unknown
-519 ignoring_unknown
-520 ignoring_unknown ignoring_unknown
-521 ignoring_unknown ignoring_unknown
-522 ignoring_unknown ignoring_unknown
-523 ignoring_unknown
-524 ignoring_unknown ignoring_unknown
-525 ignoring_unknown ignoring_unknown
-526 ignoring_unknown
-527 ignoring_unknown ignoring_unknown
-528 ignoring_unknown
-529 ignoring_unknown
-530 ignoring_unknown ignoring_unknown
-531 ignoring_unknown ignoring_unknown
-532 ignoring_unknown ignoring_unknown
-533 ignoring_unknown
-534 ignoring_unknown ignoring_unknown
-535 ignoring_unknown
-536 ignoring_unknown
-537 ignoring_unknown
-538 ignoring_unknown ignoring_unknown
-539 ignoring_unknown
-540 ignoring_unknown
-541 ignoring_unknown ignoring_unknown
-542 ignoring_unknown ignoring_unknown
-543 ignoring_unknown ignoring_unknown
-544 ignoring_unknown
-545 ignoring_unknown ignoring_unknown
-546 ignoring_unknown
-547 ignoring_unknown
-548 ignoring_unknown
+469 bad_namespace unknown_element xmlns_namespace xmlns_namespace unrecognised_namespace xmlns_namespace duplicate_namespace
+470 unknown_element
+472 unknown_element
+473 unknown_element
+474 unknown_element unknown_element
+475 unknown_element
+476 unknown_element
+478 unknown_element
+479 unknown_element unknown_element
+480 unknown_element
+481 unknown_element unknown_element
+482 unknown_element unknown_element
+484 unknown_element unknown_element
+485 unknown_element unknown_element
+486 unknown_element
+487 unknown_element
+488 unknown_element
+489 unknown_element
+490 unknown_element unknown_element
+491 unknown_element
+492 unknown_element
+494 unknown_element unknown_element
+495 unknown_element unknown_element
+496 unknown_element unknown_element
+497 unknown_element
+498 unknown_element
+499 unknown_element
+501 unknown_element
+502 unknown_element unknown_element
+503 unknown_element
+504 unknown_element
+506 unknown_element unknown_element
+507 unknown_element unknown_element
+508 unknown_element
+509 unknown_element
+510 unknown_element
+511 unknown_element unknown_element
+512 unknown_element unknown_element
+513 unknown_element
+514 unknown_element
+516 unknown_element
+517 unknown_element unknown_element
+518 unknown_element
+519 unknown_element
+521 unknown_element unknown_element
+522 unknown_element unknown_element
+523 unknown_element
+524 unknown_element unknown_element
+525 unknown_element unknown_element
+526 unknown_element
+527 unknown_element unknown_element
+528 unknown_element
+529 unknown_element
+531 unknown_element unknown_element
+532 unknown_element unknown_element
+533 unknown_element
+534 unknown_element unknown_element
+535 unknown_element
+536 unknown_element
+537 unknown_element
+538 unknown_element unknown_element
+539 unknown_element
+540 unknown_element
+542 unknown_element unknown_element
+543 unknown_element unknown_element
+544 unknown_element
+545 unknown_element unknown_element
+546 unknown_element
+547 unknown_element
+548 unknown_element
 578 svg_version
 579 use_quote_code
-549 ignoring_unknown ignoring_unknown
-550 ignoring_unknown
-551 ignoring_unknown
-552 ignoring_unknown ignoring_unknown
-553 ignoring_unknown ignoring_unknown
-554 ignoring_unknown ignoring_unknown
-555 ignoring_unknown
-556 ignoring_unknown ignoring_unknown
-557 ignoring_unknown
-558 ignoring_unknown
-559 ignoring_unknown
-560 ignoring_unknown ignoring_unknown
-561 ignoring_unknown
-562 ignoring_unknown
-563 ignoring_unknown ignoring_unknown
-564 ignoring_unknown ignoring_unknown
-565 ignoring_unknown ignoring_unknown ignoring_unknown
-566 ignoring_unknown ignoring_unknown
-567 ignoring_unknown
-568 ignoring_unknown
-569 ignoring_unknown
-570 ignoring_unknown
-571 ignoring_unknown
-572 ignoring_unknown
-573 ignoring_unknown
+549 unknown_element unknown_element
+550 unknown_element
+551 unknown_element
+553 unknown_element unknown_element
+554 unknown_element unknown_element
+555 unknown_element
+556 unknown_element unknown_element
+557 unknown_element
+558 unknown_element
+559 unknown_element
+560 unknown_element unknown_element
+561 unknown_element
+562 unknown_element
+564 unknown_element unknown_element
+565 unknown_element unknown_element unknown_element
+566 unknown_element unknown_element
+567 unknown_element
+568 unknown_element
+569 unknown_element
+570 unknown_element
+571 unknown_element
+572 unknown_element
+573 unknown_element
 578 svg_version
 579 use_quote_code
 585 svg_version
@@ -309,19 +353,18 @@ PASS ../toast/SVG/1.1/svg11.html
 1375 mixed_mess inserted_missing_closure
 1393 svg_version
 1439 xmlns_namespace svg_version
-1442 chocolate_teapot
 1446 svg_version
 1449 script
 1463 svg_version
 1484 use_quote_code
 1493 xmlns_namespace svg_version
-1497 xmlns_namespace missing_close
+1497 xmlns_namespace contradictory_namespace missing_close
 1498 empty
 1500 mixed_mess
-1503 xmlns_namespace xmlns_namespace unrecognised_value
-1504 custom
+1503 xmlns_namespace duplicate_namespace contradictory_namespace xmlns_namespace unrecognised_namespace unrecognised_value
+1504 invalid_attribute_version wrong_version url_not_found
 1506 inserted_missing_closure
-1508 xmlns_namespace  svg_version
+1508 xmlns_namespace svg_version
 1513 id_exists
 1527 svg_version
 1528 script
@@ -339,5 +382,59 @@ PASS ../toast/SVG/1.1/svg11.xhtml
 4 svg_version
 15 svg_version
 32 svg_version
-50 xmlns_namespace  svg_version
+50 xmlns_namespace svg_version
 
+PASS ../toast/SVG/1.1/title.xhtml
+1 xhtml_1_1
+4 svg_version
+
+PASS ../toast/SVG/1.1/use-1.svg
+0 title_required
+1 xhtml_1_1
+5 xmlns_namespace svg_version
+6 use_quote_code
+
+PASS ../toast/SVG/1.1/use-2.svg
+0 title_required
+1 xhtml_1_1
+5 svg_version
+6 use_quote_code
+
+PASS ../toast/SVG/1.1/use-3.svg
+0 title_required
+1 xhtml_1_1
+5 xmlns_namespace svg_version
+6 use_quote_code
+
+PASS ../toast/SVG/1.1/use-4.svg
+0 title_required
+1 xhtml_1_1
+5 svg_version
+6 use_quote_code
+
+PASS ../toast/SVG/1.1/use-5.svg
+0 title_required
+1 xhtml_1_1
+5 xmlns_namespace svg_version
+6 use_quote_code
+
+PASS ../toast/SVG/1.1/use-6.svg
+0 title_required
+1 xhtml_1_1
+5 svg_version
+6 use_quote_code
+
+PASS ../toast/SVG/1.1/use-7.svg
+0 title_required
+1 xhtml_1_1
+5 xmlns_namespace svg_version
+6 use_quote_code
+10 unrecognised_value
+
+PASS ../toast/SVG/1.1/use-8.svg
+0 title_required
+1 xhtml_1_1
+5 svg_version
+6 use_quote_code
+15 newline_in_string newline_in_string
+20 newline_in_string newline_in_string

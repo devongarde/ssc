@@ -117,7 +117,7 @@ nitname nitnames [] =
     { nit_html_unrecognised, "html_unrecognised" },
     { nit_sq_bra_ket, "sq_bra_ket" },
     { nit_id_exists, "id_exists" },
-    { nit_ignoring_unknown, "ignoring_unknown" },
+    { nit_unknown_element, "unknown_element" },
     { nit_immeasurable, "immeasurable" },
     { nit_infinite_number, "infinite_number" },
     { nit_insufficient, "insufficient" },
@@ -621,6 +621,11 @@ nitname nitnames [] =
     { nit_syntax, "syntax" },
     { nit_viewbox, "viewbox" },
     { nit_custom, "custom" },
+    { nit_duplicate_namespace, "duplicate_namespace" },
+    { nit_contradictory_namespace, "contradictory_namespace" },
+    { nit_unrecognised_namespace, "unrecognised_namespace" },
+    { nit_out_of_range, "out_of_range" },
+    { nit_math_or_svg, "math_or_svg" },
 
     { nit_off, "" } };
 

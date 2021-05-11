@@ -24,10 +24,10 @@ PASS ../toast/HTML/2.0/html2-bad.html
 33 missing_open
 
 PASS ../toast/HTML/2.0/html2-badl1.html
-11 ignoring_unknown
-12 ignoring_unknown attribute_barred attribute_barred attribute_barred
-16 ignoring_unknown
-17 ignoring_unknown
+11 unknown_element
+12 unknown_element
+16 unknown_element
+17 unknown_element
 
 PASS ../toast/HTML/2.0/html2-example.html
 8 bad_datetime
@@ -76,7 +76,7 @@ PASS ../toast/HTML/2.0/html2-example.html
 175 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 176 inserted_missing_parent
 177 inserted_missing_closure inserted_missing_closure inserted_missing_parent
-178 inserted_missing_closure inserted_missing_closure missing_close  inserted_missing_parent missing_close
+178 inserted_missing_closure inserted_missing_closure missing_close inserted_missing_parent missing_close
 179 inserted_missing_closure inserted_missing_closure
 180 inserted_missing_parent
 182 inserted_missing_closure inserted_missing_closure

@@ -235,7 +235,7 @@ PASS ../toast/living/jul10/figure.html
 36 url_not_found
 40 url_not_found
 45 inserted_missing_closure
-46  use_quote_code
+46 use_quote_code
 55 url_not_found
 57 url_not_found
 60 newline_in_string newline_in_string url_not_found
@@ -563,13 +563,15 @@ PASS ../toast/living/jul10/ls4.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jul10/ls5.html
-3 xmlns_namespace
+3 xmlns_namespace contradictory_namespace
 5 use_quote_code
-8 ignoring_unknown custom attribute_barred
-9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown custom
-11 ignoring_unknown ignoring_unknown
-12 ignoring_unknown
+6 unknown_element
+8 unknown_element unrecognised_namespace
+9 unknown_element unknown_element
+10 unknown_element
+11 unknown_element unknown_element
+12 unknown_element
+13 unknown_element
 
 PASS ../toast/living/jul10/mark.html
 9 use_quote_code
@@ -649,7 +651,7 @@ PASS ../toast/living/jul10/mt.html
 10 inserted_missing_closure missing_close inserted_missing_parent inserted_missing_closure inserted_missing_parent missing_close inserted_missing_closure
 
 PASS ../toast/living/jul10/namespace.html
-10 unrecognised_value ignoring_unknown xmlns_namespace attribute_barred attribute_barred
+10 bad_namespace unknown_element xmlns_namespace unrecognised_namespace
 
 PASS ../toast/living/jul10/nav-1.html
 0 charset_mismatch charset_used charset_invalid
@@ -797,18 +799,18 @@ PASS ../toast/living/jul10/script.html
 
 PASS ../toast/living/jul10/shf-1.html
 6 missing_close inserted_missing_closure missing_close
-8 missing_close chocolate_teapot inserted_missing_closure missing_close chocolate_teapot
+8 missing_close chocolate_teapot inserted_missing_closure missing_close wrong_parent chocolate_teapot
 17 attribute_unrecognised_here unrecognised_attribute
 42 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul10/shf-2.html
 0 title_required
-1 presume_html_1 ignoring_unknown missing_close unrecognised_attribute ignoring_unknown
-2 ignoring_unknown unrecognised_attribute ignoring_unknown ignoring_unknown ignoring_unknown ignoring_unknown inserted_missing_closure
+1 presume_html_1 unknown_element missing_close unknown_element
+2 unknown_element unknown_element unknown_element unknown_element unknown_element inserted_missing_closure
 
 PASS ../toast/living/jul10/shf-3.html
 0 title_required
-1 presume_html_1 chocolate_teapot wrong_parent inserted_missing_closure chocolate_teapot ignoring_unknown ignoring_unknown missing_open
+1 presume_html_1 chocolate_teapot wrong_parent inserted_missing_closure chocolate_teapot unknown_element unknown_element missing_open
 
 PASS ../toast/living/jul10/small.html
 0 charset_mismatch charset_used charset_invalid

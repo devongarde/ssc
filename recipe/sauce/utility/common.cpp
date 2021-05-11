@@ -435,13 +435,15 @@ bool contains (const vstr_t& con, const ::std::string& val)
         if (s == val) return true;
     return false; }
 
-bool ends_with_letters (const ::std::string& s, const ::std::string& with)
+bool ends_with_letters (const html_version& v, const ::std::string& s, const ::std::string& with)
 {   if (s.empty ()) return false;
     if (with.empty ()) return true;
     ::std::string::size_type len = s.length ();
     ::std::string::size_type wl = with.length ();
     if (wl > len) return false;
-    if (! ::boost::ends_with (s, with)) return false;
+    if (v.xhtml ())
+    {   if (! ::boost::ends_with (s, with)) return false; }
+    else if (! ::boost::ends_with (::boost::to_lower_copy (s), ::boost::to_lower_copy (with))) return false;
     if (wl == len) return true;
     auto ch = s.at (len - wl - 1);
     return ! (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z'))); }

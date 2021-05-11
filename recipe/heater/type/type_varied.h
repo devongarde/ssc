@@ -199,6 +199,7 @@ template < > struct type_master < t_baselineshift > : varied < t_baselineshift >
                     validate_type < type_master < t_baselineshift1 > > (nits, v);
                     break;
                 case sv_2_0 :
+                case sv_2_1 :
                     validate_type < type_master < t_baselineshift2 > > (nits, v);
                     break;
                 default :
@@ -237,6 +238,7 @@ template < > struct type_master < t_direction > : varied < t_direction >
                     validate_type < type_master < t_svg_direction > > (nits, v);
                     break;
                 case sv_2_0 :
+                case sv_2_1 :
                     validate_type < type_master < t_svg_direction2 > > (nits, v);
                     break;
                 default :
@@ -727,6 +729,7 @@ template < > struct type_master < t_vectoreffect > : varied < t_vectoreffect >
                 case sv_1_2_full :
                     validate_type < type_master < t_vectoreffect_12 > > (nits, v); break;
                 case sv_2_0 :
+                case sv_2_1 :
                     validate_type < type_master < t_vectoreffect_2 > > (nits, v); break;
                 default :
                     nits.pick (nit_vector_effect, es_error, ec_attribute, "vector effect requires SVG 1.2 or SVG 2.0");
@@ -745,6 +748,7 @@ template < > struct type_master < t_version > : varied < t_version >
                     case sv_1_2_tiny : svgv += "1.2 tiny"; break;
                     case sv_1_2_full : svgv += "1.2 full"; break;
                     case sv_2_0 : svgv += "2.0"; break;
+                    case sv_2_1 : svgv += "2.1"; break;
                     default : DBG_ASSERT (false); svgv += "version not "; } // illegal value for t_svg_version
                 svgv += " recognised";
                 nits.pick (nit_svg_version, es_info, ec_type, svgv); } } } };
@@ -783,7 +787,7 @@ template < > struct type_master < t_height > : varied < t_height >
                     else validate_type < type_master < t_vunit > > (nits, v);
                     break;
                 case elem_textarea :
-                    if ((v.svg_version () == sv_1_2_tiny) || (v.svg_version () == sv_1_2_full))
+                    if (v.is_svg_12 ())
                     {   validate_type < type_master < t_measure_a > > (nits, v); break; }
                     // drop thru'
                 default :
@@ -812,6 +816,7 @@ template < > struct type_master < t_visibility > : varied < t_visibility >
                     validate_type < type_master < t_visibility10 > > (nits, v); break;
                 case sv_1_1 :
                 case sv_2_0 :
+                case sv_2_1 :
                     validate_type < type_master < t_visibility11 > > (nits, v); break;
                 default :
                     DBG_ASSERT (false); break; } } };

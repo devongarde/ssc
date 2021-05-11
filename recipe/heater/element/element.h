@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/id.h"
 #include "microformat/microformats_ptr.h"
 #include "attribute/attributes.h"
+#include "attribute/namespace.h"
 #include "parser/parse_element.h"
 #include "microformat/microformat_export.h"
 #include "microdata/microdata_itemscope.h"

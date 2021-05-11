@@ -219,7 +219,7 @@ PASS ../toast/HTML/5.0/html5-example.html
 361 no_such_folder url_not_found
 378 url_not_found
 379 url_not_found
-389 no_such_folder url_not_found  naughty_alt
+389 no_such_folder url_not_found naughty_alt
 391 no_such_folder url_not_found
 392 no_such_folder url_not_found
 393 attribute_required no_such_folder url_not_found naughty_alt
@@ -334,7 +334,7 @@ PASS ../toast/HTML/5.0/html5-example.html
 1168 no_rp no_rp inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
 1170 no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
 1172 no_rp no_rp no_rp no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
-1174 no_rp no_rp no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close  inserted_missing_closure missing_close inserted_missing_closure inserted_missing_closure
+1174 no_rp no_rp no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure missing_close inserted_missing_closure inserted_missing_closure
 1176 no_rp no_rp no_rp no_rp no_rp no_rp
 1177 inserted_missing_closure
 1178 inserted_missing_closure

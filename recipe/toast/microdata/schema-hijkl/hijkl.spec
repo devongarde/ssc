@@ -15,7 +15,7 @@ PASS ../toast/microdata/schema-hijkl/hotelroom.html
 19 attribute_required attempted_escape no_such_folder url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-hijkl/howto.html
-17 svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -28,7 +28,7 @@ PASS ../toast/microdata/schema-hijkl/howto.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtodirection.html
-17 svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -41,7 +41,7 @@ PASS ../toast/microdata/schema-hijkl/howtodirection.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtosection.html
-17 svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -54,7 +54,7 @@ PASS ../toast/microdata/schema-hijkl/howtosection.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtostep.html
-17 svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -67,7 +67,7 @@ PASS ../toast/microdata/schema-hijkl/howtostep.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtotip.html
-17 svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -97,18 +97,18 @@ PASS ../toast/microdata/schema-hijkl/interactioncounter.html
 62 no_such_folder url_not_found
 65 url_not_found
 66 url_not_found url_not_found url_not_found url_not_found url_not_found url_not_found
-109 svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
-117 svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
-125 svg_rdf
-130 svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
+109 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
+117 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
+125 invalid_attribute_version wrong_version svg_rdf
+130 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
 
 PASS ../toast/microdata/schema-hijkl/investmentfund.html
-11 svg_rdf svg_rdf not_schema_property unrecognised_value bad_itemprop svg_rdf not_schema_property unrecognised_value bad_itemprop
-12 svg_rdf
+11 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_schema_property unrecognised_value bad_itemprop invalid_attribute_version wrong_version svg_rdf not_schema_property unrecognised_value bad_itemprop
+12 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/investmentordeposit.html
-11 svg_rdf svg_rdf sunk sunk svg_rdf sunk sunk
-12 svg_rdf
+11 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk invalid_attribute_version wrong_version svg_rdf sunk sunk
+12 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/itemlist.html
 28 requires_itemscope
@@ -122,8 +122,8 @@ PASS ../toast/microdata/schema-hijkl/jobposting.html
 34 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/legislation.html
-18 svg_rdf bad_datetime bad_datetime
-19 svg_rdf
+18 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+19 invalid_attribute_version wrong_version svg_rdf
 20 inserted_missing_closure
 21 inserted_missing_parent
 33 requires_itemscope url_not_found
@@ -136,17 +136,17 @@ PASS ../toast/microdata/schema-hijkl/legislation.html
 64 use_double_quote_code
 75 url_not_found
 81 url_not_found
-88 rdf
+88 attribute_unrecognised_here unrecognised_attribute
 92 url_not_found
 98 url_not_found
 
 PASS ../toast/microdata/schema-hijkl/legislationobject.html
 11 use_double_quote_code
-12  bad_itemid
-18  bad_itemid
+12 bad_itemid
+18 bad_itemid
 22 url_not_found bad_itemid
 28 url_not_found bad_itemid
-35 rdf
+35 attribute_unrecognised_here unrecognised_attribute
 39 url_not_found bad_itemid
 45 url_not_found bad_itemid
 
@@ -162,16 +162,16 @@ PASS ../toast/microdata/schema-hijkl/library.html
 
 PASS ../toast/microdata/schema-hijkl/loanorcredit.html
 15 use_quote_code
-16 svg_rdf
-17 svg_rdf
-24 svg_rdf sunk sunk
-25 svg_rdf sunk sunk
-30 svg_rdf sunk sunk
-31 svg_rdf sunk sunk
-35 svg_rdf
-36 svg_rdf
-41 svg_rdf
-42 svg_rdf
+16 invalid_attribute_version wrong_version svg_rdf
+17 invalid_attribute_version wrong_version svg_rdf
+24 invalid_attribute_version wrong_version svg_rdf sunk sunk
+25 invalid_attribute_version wrong_version svg_rdf sunk sunk
+30 invalid_attribute_version wrong_version svg_rdf sunk sunk
+31 invalid_attribute_version wrong_version svg_rdf sunk sunk
+35 invalid_attribute_version wrong_version svg_rdf
+36 invalid_attribute_version wrong_version svg_rdf
+41 invalid_attribute_version wrong_version svg_rdf
+42 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/locationfeaturespecification.html
 4 long_title

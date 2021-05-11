@@ -156,7 +156,7 @@ void element::examine_clip ()
 
 void element::examine_content ()
 {   if (tag () == elem_meta) return;
-    if (context.rdf () || (node_.version().svg_version () == sv_1_2_tiny) || (node_.version().svg_version () == sv_1_2_full)) return;
+    if (context.rdf () || node_.version().is_svg_12 ()) return;
     switch (node_.version ().mjr ())
     {   case 0 :
         case 1 :
@@ -169,7 +169,7 @@ void element::examine_content ()
 
 void element::examine_defaultaction ()
 {   if (node_.version () == xhtml_2) return;
-    if ((node_.version ().svg_version () == sv_1_2_tiny) || (node_.version ().svg_version () == sv_1_2_full))
+    if (node_.version ().is_svg_12 ())
         if (ancestral_elements_.test (elem_svg) || (node_.tag () == elem_svg)) return;
     pick (nit_svg_version, es_info, ec_attribute, "DEFAULTACTION requires an SVG 1.2 <SVG> parent, or XHTML 2.0"); }
 

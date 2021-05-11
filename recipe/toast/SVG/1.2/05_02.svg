@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny"
+width="5cm" height="4cm" viewBox="0 0 100 100">
+<desc>Four separate rectangles</desc>
+<rect x="20" y="20" width="20" height="20"/>
+<rect x="50" y="20" width="30" height="15"/>
+<rect x="20" y="50" width="20" height="20"/>
+<rect x="50" y="50" width="20" height="40"/>
+<!-- Show outline of canvas using 'rect' element -->
+<rect x="1" y="1" width="98" height="98"
+fill="none" stroke="blue" stroke-width="2" />
+</svg>

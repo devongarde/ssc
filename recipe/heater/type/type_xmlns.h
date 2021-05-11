@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_enum.h"
 #include "type/type_case.h"
 
-e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& ns);
+// e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& ns);
 e_namespace xmlns_to_namespace (nitpick& nits, const html_version& v, const e_xmlns x);
 
 template < > inline void enum_n < t_namespace, e_namespace > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -36,6 +36,7 @@ template < > inline void enum_n < t_namespace, e_namespace > :: set_value (nitpi
         {   enum_base < e_namespace, t_namespace > :: status (s_good);
             enum_base < e_namespace, t_namespace > :: post_set_value (nits, v);
             return; }
+        v.check_math_svg (nits, from, name ());
         nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report ()); }
     else
     {   check_spelling (nits, v, t);
@@ -51,6 +52,7 @@ template < > inline void enum_n < t_xmlns, e_xmlns > :: set_value (nitpick& nits
         {   enum_base < e_xmlns, t_xmlns > :: status (s_good);
             enum_base < e_xmlns, t_xmlns > :: post_set_value (nits, v);
             return; }
+        v.check_math_svg (nits, from, name ());
         nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ()); }
     else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is invalid here");
     enum_base < e_xmlns, t_xmlns > :: status (s_invalid); }

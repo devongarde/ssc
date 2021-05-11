@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.2"
+width="100%" height="100%" viewBox="0 0 160 170">
+<title>Titles and Descriptions</title>
+<desc>An example of how the contents of the 'title' and 'desc' elements may be presented in a user agent.</desc>
+<defs>
+<polygon id="beeCell" points="-14,-24.2487 14,-24.2487 28,0 14,24.2487 -14,24.2487 -28,0" stroke="yellow"
+stroke-width="3" stroke-linejoin="round">
+<title role="tooltip">Beehive cell</title>
+<desc role="tooltip">A simple hexagon with a yellow outline and no fill.</desc>
+</polygon>
+</defs>
+<g fill="white">
+<use xlink:href="#beeCell" x="30" y="60" />
+<use xlink:href="#beeCell" x="75" y="34.0192" />
+<use xlink:href="#beeCell" x="120" y="60" />
+<use xlink:href="#beeCell" x="120" y="111.9615" />
+<use xlink:href="#beeCell" x="30" y="111.9615" />
+<use xlink:href="#beeCell" x="75" y="137.9423" />
+<a xlink:href="http://www.example.com/bees.html" xlink:title="Beekeeper's Hive: an apiary resource">
+<title role="tooltip">Link to Beekeeper's Hive: an apiary resource</title>
+<use xlink:href="#beeCell" x="75" y="85.9808" fill="#9900CC">
+<title role="tooltip">Queen's Cell</title>
+<desc role="tooltip">
+A hexagonal beehive cell.
+A purple hexagon in the middle of 6 other empty hexagons, symbolizing that it's filled with royal jelly.
+</desc>
+</use>
+</a>
+</g>
+</svg>

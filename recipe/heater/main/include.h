@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TESTPROG "ssc-test"
 #define FULLNAME "Static Site Checker"
 #define WEBADDR "https://ssc.lu/"
-#define VERSION_STRING "0.0.102"
+#define VERSION_STRING "0.0.103"
 #define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
 
 #ifdef __clang__
@@ -261,13 +261,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define MAX_IDEAL_TITLE_LENGTH 32
 
-#define MICROFORMATS_ORG "microformats.org"
-#define SCHEMA_ORG "schema.org"
-#define PURL_ORG "purl.org"
-#define N_WHATWG_ORG "n.whatwg.org"
-#define W3_ORG "www.w3.org"
-#define SVG_2000 W3_ORG "/2000/svg"
-#define XMLNS "xmlns"
+#define MICROFORMATS_ORG    "microformats.org"
+#define SCHEMA_ORG          "schema.org"
+#define PURL_ORG            "purl.org"
+#define N_WHATWG_ORG        "n.whatwg.org"
+#define W3_ORG              "www.w3.org"
+#define SVG_2000            W3_ORG "/2000/svg"
+#define XMLNS               "xmlns"
+#define XHTMLNS             "xml"
+#define XLINK               "xlink"
 
 #define HTTP_CSS PR_HTTP CSS
 #define HTTPS_CSS PR_HTTPS CSS

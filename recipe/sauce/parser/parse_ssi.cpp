@@ -269,7 +269,6 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         ::std::time_t when = ::boost::filesystem::last_write_time (p);
         if (context.shadow_changed ())
         {   nits.pick (nit_ssi, es_debug, ec_shadow, "SSI file ", p, " last updated ", when);
-//            ::std::cout << "SSI file " << p << " last updated " << when << "\n";
             if (when > updated) updated = when; }
         return parse_ssi (nits, v, d, c, read_text_file (p), updated); }
     else if (validate_virtual (ln, nits, v, vrt, u))
@@ -280,7 +279,6 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
                 if (context.shadow_changed ())
                 {   nitpick knots;
                     nits.pick (nit_ssi, es_debug, ec_shadow, "SSI virtual ", d.get_disk_path (knots, u), " last updated ", when);
-//                    ::std::cout << "SSI virtual " << d.get_disk_path (knots, u) << " last updated " << when << "\n";
                     if (when > updated) updated = when; }
                 return parse_ssi (nits, v, d, c, content, updated); }
         set_ssi_context (ln, nits, es_error);

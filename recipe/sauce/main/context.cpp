@@ -136,8 +136,10 @@ schema_version context_t::mf_ver () const
 context_t& context_t::svg_version (const int mjr, const int mnr)
 {   switch (mjr)
     {   case 2 :
-            if (mnr == 0)
-            {   version_.svg_version (sv_2_0); return *this; }
+            switch (mnr)
+            {   case 0 : version_.svg_version (sv_2_0); return *this;
+                case 1 : version_.svg_version (sv_2_1); return *this;
+                default : break; }
             break;
         case 1 :
             switch (mnr)

@@ -5,11 +5,11 @@ PASS ../toast/HTML/tags/index.html
 
 PASS ../toast/HTML/tags/tags-bad.html
 0 title_required
-1 presume_html_tags ignoring_unknown ignoring_unknown
+1 presume_html_tags unknown_element unknown_element
 2 invalid_attribute_version wrong_version base_undefined
 5 code_unrecognised_here invalid_character_code
-6 ignoring_unknown ignoring_unknown
-7 empty_character_code ignoring_unknown missing_close
+6 unknown_element unknown_element
+7 empty_character_code unknown_element missing_close
 8 mime
 9 chocolate_teapot
 13 only_elements

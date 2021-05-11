@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.102 LANGUAGES CXX)
+project (ssc VERSION 0.0.103 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -75,7 +75,7 @@ find_package (Iconv REQUIRED)
 target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h ${S}/feedback/nitnames.cpp)
 target_sources (ssc PRIVATE
     ${H}/attribute/attr.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h ${H}/attribute/avm.h
-             ${H}/attribute/avm_data.h
+             ${H}/attribute/avm_data.h ${H}/attribute/namespace.h
         ${H}/css/css.h ${H}/css/css_cache.h
         ${H}/element/elem.h ${H}/element/element.h ${H}/element/element_attribute.h ${H}/element/element_classes.h ${H}/element/parentage.h
             ${H}/element/state.h
@@ -111,6 +111,7 @@ target_sources (ssc PRIVATE
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/root.h
     ${S}/attribute/attr.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp ${S}/attribute/avm_data_abc.cpp
             ${S}/attribute/avm_data_defgh.cpp ${S}/attribute/avm_data_ijkl.cpp ${S}/attribute/avm_data_mnopqr.cpp ${S}/attribute/avm_data_stuvwxyz.cpp
+            ${S}/attribute/namespace.cpp
         ${S}/css/css.cpp ${S}/css/css_cache.cpp
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
@@ -123,18 +124,18 @@ target_sources (ssc PRIVATE
             ${S}/microdata/microdata_itemtype.cpp
         ${S}/microformat/family.cpp ${S}/microformat/field.cpp ${S}/microformat/microformat_constructor.cpp ${S}/microformat/microformat_export.cpp
             ${S}/microformat/microformats.cpp ${S}/microformat/property_value.cpp ${S}/microformat/sibling.cpp
-        ${S}/parser/html_version.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_bra_ket.cpp ${S}/parser/parse_bras_ket.cpp
-            ${S}/parser/parse_css.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp ${S}/parser/text.cpp
-            ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
+        ${S}/parser/html_version.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_bra_ket.cpp
+            ${S}/parser/parse_bras_ket.cpp ${S}/parser/parse_css.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp
+            ${S}/parser/pattern.cpp ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
         ${S}/schema/schema_hierarchy.cpp ${S}/schema/schema_name.cpp ${S}/schema/schema_property.cpp ${S}/schema/schema_structure.cpp ${S}/schema/schema_type.cpp
             ${S}/schema/schema_version.cpp
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
         ${S}/symbol/symbol.cpp
         ${S}/type/type.cpp ${S}/type/type_aria.cpp ${S}/type/type_autocomplete.cpp ${S}/type/type_charset.cpp ${S}/type/type_class.cpp ${S}/type/type_colour.cpp
             ${S}/type/type_core.cpp ${S}/type/type_csp.cpp ${S}/type/type_currency.cpp ${S}/type/type_d.cpp ${S}/type/type_enum.cpp ${S}/type/type_httpequiv.cpp
-            ${S}/type/type_lang.cpp ${S}/type/type_media.cpp ${S}/type/type_metaname.cpp ${S}/type/type_mime.cpp ${S}/type/type_paint.cpp ${S}/type/type_reals.cpp
-            ${S}/type/type_rel.cpp ${S}/type/type_sgml.cpp ${S}/type/type_svg_feature.cpp ${S}/type/type_time.cpp ${S}/type/type_transform.cpp ${S}/type/type_url.cpp
-            ${S}/type/type_varied.cpp ${S}/type/type_xmlns.cpp
+            ${S}/type/type_lang.cpp ${S}/type/type_media.cpp ${S}/type/type_metaname.cpp ${S}/type/type_mime.cpp ${S}/type/type_numeric.cpp
+            ${S}/type/type_paint.cpp ${S}/type/type_reals.cpp ${S}/type/type_rel.cpp ${S}/type/type_sgml.cpp ${S}/type/type_svg_feature.cpp ${S}/type/type_time.cpp
+            ${S}/type/type_transform.cpp ${S}/type/type_url.cpp ${S}/type/type_varied.cpp ${S}/type/type_xmlns.cpp
         ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
         ${S}/utility/byteorder.cpp ${S}/utility/common.cpp ${S}/utility/quote.cpp
         ${S}/webmention/hook.cpp ${S}/webmention/irt.cpp ${S}/webmention/webmention.cpp ${S}/webmention/webmentions.cpp

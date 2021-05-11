@@ -36,7 +36,9 @@ class element_node
     ::std::string text_, raw_, sanitised_;
     nitpick nits_;
     html_version version_;
+    ns_ptr nss_;
     ::std::string inner_text () const;
+    void init ();
 public:
     element_node () = default;
     element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);

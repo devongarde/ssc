@@ -257,7 +257,7 @@ typedef typed_attribute < t_effect, a_effect > attr_effect;
 typedef typed_attribute < t_angle, a_elevation > attr_elevation;
 typedef typed_attribute < t_text, a_encoding > attr_encoding;
 typedef typed_attribute < t_enctype, a_enctype > attr_enctype;
-typedef typed_attribute < t_enablebackground, a_enablebackground > attr_enablebackground;
+typedef typed_attribute < t_enablebackground, a_enable_background > attr_enablebackground;
 typedef typed_attribute < t_end, a_end > attr_end;
 typedef typed_attribute < t_enterkeyhint, a_enterkeyhint > attr_enterkeyhint;
 typedef typed_attribute < t_generic, a_equalcolumns > attr_equalcolumns;
@@ -282,8 +282,6 @@ typedef typed_attribute < t_fillrule, a_fill_rule > attr_fill_rule;
 typedef typed_attribute < t_marker, a_filter > attr_filter;
 typedef typed_attribute < t_filter_res, a_filterres > attr_filterres;
 typedef typed_attribute < t_coordinatesystem, a_filterunits > attr_filterunits;
-typedef typed_attribute < t_2pt, a_fitbbox > attr_fitbbox;
-typedef typed_attribute < t_2pt, a_fitboxtoviewport > attr_fitboxtoviewport;
 typedef typed_attribute < t_measure, a_flatness > attr_flatness;
 typedef typed_attribute < t_colour, a_flood_colour > attr_flood_colour;
 typedef typed_attribute < t_opacity, a_flood_opacity > attr_flood_opacity;
@@ -423,6 +421,7 @@ typedef typed_attribute < t_linebreak, a_linebreak > attr_linebreak;
 typedef typed_attribute < t_text, a_linebreakmultichar > attr_linebreakmultichar;
 typedef typed_attribute < t_linebreakstyle, a_linebreakstyle > attr_linebreakstyle;
 typedef typed_attribute < t_line_height, a_line_height > attr_line_height;
+typedef typed_attribute < t_real_ai, a_line_increment > attr_line_increment;
 typedef typed_attribute < t_measure, a_lineleading > attr_lineleading;
 typedef typed_attribute < t_linethickness, a_linethickness > attr_linethickness;
 typedef typed_attribute < t_colour, a_link > attr_link;
@@ -475,7 +474,7 @@ typedef typed_attribute < t_id, a_menu > attr_menu;
 typedef typed_attribute < t_methodological, a_method > attr_method;
 typedef typed_attribute < t_generic, a_methods > attr_methods;
 typedef typed_attribute < t_num, a_min > attr_min;
-typedef typed_attribute < t_mathspace, a_minilabelspacing > attr_minilabelspacing;
+typedef typed_attribute < t_mathspace, a_minlabelspacing > attr_minilabelspacing;
 typedef typed_attribute < t_unsigned, a_minlength > attr_minlength;
 typedef typed_attribute < t_mathspace, a_minsize > attr_minsize;
 typedef typed_attribute < t_mode, a_mode > attr_mode;
@@ -827,6 +826,7 @@ typedef typed_attribute < t_unsigned, a_top > attr_top;
 typedef typed_attribute < t_unsigned, a_topmargin > attr_topmargin;
 typedef typed_attribute < t_transform, a_transform > attr_transform;
 typedef typed_attribute < t_transformbehaviour, a_transformbehaviour > attr_transformbehaviour;
+typedef typed_attribute < t_pt, a_transform_origin > attr_transform_origin;
 typedef typed_attribute < t_yesnoempty, a_translate > attr_translate;
 typedef typed_attribute < t_existential, a_truespeed > attr_truespeed;
 typedef typed_attribute < t_type, a_type > attr_type;
@@ -1169,8 +1169,6 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_filter, \
     attr_filterres, \
     attr_filterunits, \
-    attr_fitbbox, \
-    attr_fitboxtoviewport, \
     attr_flatness, \
     attr_flood_colour, \
     attr_flood_opacity, \
@@ -1310,6 +1308,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_linebreakmultichar, \
     attr_linebreakstyle, \
     attr_line_height, \
+    attr_line_increment, \
     attr_lineleading, \
     attr_linethickness, \
     attr_link, \
@@ -1718,6 +1717,7 @@ const e_attribute last_am = a_muted;
     attr_topmargin, \
     attr_transform, \
     attr_transformbehaviour, \
+    attr_transform_origin, \
     attr_translate, \
     attr_truespeed, \
     attr_type, \

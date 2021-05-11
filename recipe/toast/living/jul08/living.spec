@@ -51,7 +51,7 @@ PASS ../toast/living/jul08/datagrid.html
 10 attribute_required
 14 attribute_required
 16 inserted_missing_closure attribute_required
-19 ignoring_unknown
+19 unknown_element
 23 missing_open
 44 naughty_alt
 
@@ -104,7 +104,7 @@ PASS ../toast/living/jul08/example-2.html
 4 url_not_found style_not_css
 5 url_not_found
 6 url_not_found
-12 ignoring_unknown missing_close attribute_barred
+12 unknown_element missing_close
 13 url_not_found
 15 inserted_missing_closure
 
@@ -117,7 +117,7 @@ PASS ../toast/living/jul08/figure.html
 36 url_not_found
 40 url_not_found
 45 inserted_missing_closure
-46  use_quote_code
+46 use_quote_code
 55 url_not_found
 57 url_not_found
 60 newline_in_string newline_in_string url_not_found

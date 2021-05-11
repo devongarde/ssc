@@ -49,7 +49,8 @@ template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& n
         compare_validate (nits, v, get_string (), pret);
         const html_version f = symbol < html_version, e_aria_role > :: first ();
         if (! may_apply (v, f, symbol < html_version, e_aria_role > :: last ()))
-            nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report ());
+        {   v.check_math_svg (nits, f, name ());
+            nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report ()); }
         else if (f.reject ())
             nits.pick (nit_rejected, es_error, ec_type, quote (pret), " is valid but incompatible with ", v.report ());
         else

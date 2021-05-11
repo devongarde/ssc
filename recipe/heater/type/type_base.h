@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class directory;
 class html_version;
-struct elem;
+class elem;
 class element;
 
 typedef bool mono;

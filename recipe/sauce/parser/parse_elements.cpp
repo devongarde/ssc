@@ -184,7 +184,7 @@ element_node* elements_node::insert_non_closure (const html_version& v, element_
         case elem_faux_stylesheet :
             ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, false, ket.arg ())); break;
         case elem_error :
-            ket.nits_.pick (nit_ignoring_unknown, es_error, ec_element, "internal program error: invalid parse token status (", ::boost::lexical_cast < ::std::string > (ket.status_), ")");
+            ket.nits_.pick (nit_internal_parsing_error, es_error, ec_element, "internal program error: invalid parse token status (", ::boost::lexical_cast < ::std::string > (ket.status_), ")");
             // drip (!) thru'
         default :
             ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, false, ::std::string (ket.start_, ket.end_))); }
@@ -245,13 +245,14 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
                                 id.reset (elem_faux_char); break;
             case bk_doctype :   id.reset (elem_faux_doctype); break;
             case bk_node :      {   ::std::string mc (::std::string (e.start_, e.eofe_));
-                                    id.reset (e.nits_, v, mc);
+                                    id.reset (e.nits_, v, parent -> nss_, mc);
                                     if (v.xhtml () && ! id.unknown ())
                                     {   const ::std::string& naam (id.name ());
-                                        if (naam != mc)
-                                            if (naam.find_first_of (UPPERCASE) != ::std::string::npos)
-                                                e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "element names must match case in ", v.report ());
-                                            else e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "standard element names must be in lower case in ", v.report ()); } }
+                                        if (v.xhtml () && (naam != mc))
+                                            if (mc.find (':') == ::std::string::npos)
+                                                if (naam.find_first_of (UPPERCASE) != ::std::string::npos)
+                                                    e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "element names must match case in ", v.report ());
+                                                else e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "standard element names must be in lower case in ", v.report ()); } }
                                 break;
             case bk_num :       id.reset (elem_faux_code); break;
             case bk_php :       id.reset (elem_faux_php); break;
@@ -263,7 +264,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
                                 break; }
         if (id.unknown ())
             if (static_cast < size_t > (id.ns ()) < first_runtime_namespace)
-                e.nits_.pick (nit_ignoring_unknown, es_warning, ec_element, "unknown element <", ::std::string (e.start_, e.eofe_), ">");
+                e.nits_.pick (nit_unknown_element, es_warning, ec_element, "unknown element <", ::std::string (e.start_, e.eofe_), "> (" PROG " cannot verify its attributes)");
         insert (v, previous, parent, e, id); }
     report_missing_closures (v, parent, document);
     if (context.tell (e_splurge))

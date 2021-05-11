@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<s:svg xmlns:s="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny">
+<s:desc>Demonstrates use of a namespace prefix for elements.
+Notice that attributes are not namespaced</s:desc>
+<s:rect width="7" height="3"/>
+</s:svg>

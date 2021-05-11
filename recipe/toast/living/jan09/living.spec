@@ -47,7 +47,7 @@ PASS ../toast/living/jan09/datagrid.html
 10 attribute_required
 14 attribute_required
 16 inserted_missing_closure attribute_required
-19 ignoring_unknown
+19 unknown_element
 23 missing_open
 44 naughty_alt
 
@@ -114,7 +114,7 @@ PASS ../toast/living/jan09/example-2.html
 4 url_not_found style_not_css
 5 url_not_found
 6 url_not_found
-12 ignoring_unknown missing_close attribute_barred
+12 unknown_element missing_close
 13 url_not_found
 15 url_not_found
 16 mime
@@ -129,7 +129,7 @@ PASS ../toast/living/jan09/figure.html
 36 url_not_found
 40 url_not_found
 45 inserted_missing_closure
-46  use_quote_code
+46 use_quote_code
 55 url_not_found
 57 url_not_found
 60 newline_in_string newline_in_string url_not_found
@@ -287,13 +287,15 @@ PASS ../toast/living/jan09/ls2.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jan09/ls3.html
-3 xmlns_namespace
+3 xmlns_namespace contradictory_namespace
 5 use_quote_code
-8 ignoring_unknown custom attribute_barred
-9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown custom
-11 ignoring_unknown ignoring_unknown
-12 ignoring_unknown
+6 unknown_element
+8 unknown_element unrecognised_namespace
+9 unknown_element unknown_element
+10 unknown_element
+11 unknown_element unknown_element
+12 unknown_element
+13 unknown_element
 
 PASS ../toast/living/jan09/mark.html
 9 use_quote_code

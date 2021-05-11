@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny"
+width="5cm" height="5cm" viewBox="0 0 5 5">
+<desc>Two groups, each of two rectangles</desc>
+<g xml:id="group1" fill="red">
+<desc>First group of two red rectangles</desc>
+<rect x="1" y="1" width="1" height="1"/>
+<rect x="3" y="1" width="1" height="1"/>
+</g>
+<g xml:id="group2" fill="blue">
+<desc>Second group of two blue rectangles</desc>
+<rect x="1" y="3" width="1" height="1"/>
+<rect x="3" y="3" width="1" height="1"/>
+</g>
+<!-- Show outline of canvas using 'rect' element -->
+<rect x=".01" y=".01" width="4.98" height="4.98"
+fill="none" stroke="blue" stroke-width=".02"/>
+</svg>

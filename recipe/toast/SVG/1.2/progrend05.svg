@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.2" baseProfile="tiny" viewBox="0 0 480 360">
+<desc>Font Resolution Example</desc>
+<text x="240" y="230" text-anchor="middle" font-size="120"
+font-family="fontC, fontB, fontA">A</text>
+<defs>
+<font xml:id="fontA" horiz-adv-x="224" >
+<font-face
+font-family="fontA"
+units-per-em="1000"
+panose-1="0 0 0 0 0 0 0 0 0 0"
+ascent="917"
+descent="-250"
+alphabetic="0"/>
+<missing-glyph horiz-adv-x="800" d="..." />
+<glyph unicode="A" glyph-name="A" d="..."/>
+</font>
+<font xml:id="fontB" horiz-adv-x="224">
+<font-face
+font-family="fontB"
+units-per-em="1000"
+panose-1="0 0 0 0 0 0 0 0 0 0"
+ascent="917"
+descent="-250"
+alphabetic="0"/>
+<missing-glyph horiz-adv-x="800" d="..."/>
+<glyph unicode="A" glyph-name="B" d="..." />
+</font>
+<font xml:id="fontC" horiz-adv-x="224" >
+<font-face
+font-family="fontC"
+units-per-em="1000"
+panose-1="0 0 0 0 0 0 0 0 0 0"
+ascent="917"
+descent="-250"
+alphabetic="0"/>
+<missing-glyph d="..."/>
+<glyph unicode="A" glyph-name="C" d="..."/>
+</font>
+</defs>
+</svg>

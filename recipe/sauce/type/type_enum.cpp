@@ -41,18 +41,18 @@ struct symbol_entry < html_version, e_align3 > align3_symbol_table [] =
 
 struct symbol_entry < html_version, e_alignmentbaseline > alignmentbaseline_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "after-edge", ab_afteredge },
-    { { HTML_SVG11, 0, HE_SVG_11_20 }, { HTML_UNDEF }, "alphabetic", ab_alphabetic },
+    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, "alphabetic", ab_alphabetic },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, "auto",  ab_auto },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "baseline", ab_baseline },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "baseline", ab_baseline },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "before-edge", ab_beforeedge },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "bottom", ab_bottom },
-    { { HTML_SVG11, 0, HE_SVG_11_20 }, { HTML_UNDEF }, "central", ab_central },
+    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, "central", ab_central },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "hanging", ab_hanging },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "ideographic", ab_ideographic },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "ideographic", ab_ideographic },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "inherit", ab_inherit },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "lower", ab_lower },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "mathematical", ab_mathematical },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "middle", ab_middle },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "mathematical", ab_mathematical },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "middle", ab_middle },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "text-after-edge", ab_textafteredge },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "text-before-edge", ab_textbeforeedge },
     { { HTML_SVG10, 0, HE_SVG_10_20 }, { HTML_UNDEF }, "text-bottom", ab_textbottom },
@@ -302,18 +302,18 @@ struct symbol_entry < html_version, e_display_align > display_align_symbol_table
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "inherit", da_inherit } };
 
 struct symbol_entry < html_version, e_dominantbaseline > dominantbaseline_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "auto",  db_auto },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "use-script", db_usescript },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "no-change", db_nochange },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "reset-size", db_resetsize },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "ideographic", db_ideographic },
-    { { HTML_SVG11, 0, HE_SVG_11_20 }, { HTML_UNDEF }, "alphabetic", db_alphabetic },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "hanging", db_hanging },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "mathematical", db_mathematical },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "central", db_central },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "middle", db_middle },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "text-after-edge", db_textafteredge },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "text-before-edge", db_textbeforeedge },
+{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "auto",  db_auto },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "use-script", db_usescript },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "no-change", db_nochange },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "reset-size", db_resetsize },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "ideographic", db_ideographic },
+    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, "alphabetic", db_alphabetic },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "hanging", db_hanging },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "mathematical", db_mathematical },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "central", db_central },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "middle", db_middle },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "text-after-edge", db_textafteredge },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "text-before-edge", db_textbeforeedge },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "inherit", db_inherit } };
 
 struct symbol_entry < html_version, e_enterkeyhint > enterkeyhint_symbol_table [] =
@@ -334,12 +334,12 @@ struct symbol_entry < html_version, e_figalign > figalign_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "justify", fa_justify } };
 
 struct symbol_entry < html_version, e_filter_in > filter_in_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "SourceGraphic", fi_sourcegraphic },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "SourceAlpha", fi_sourcealpha },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "BackgroundImage", fi_backgroundimage },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "BackgroundAlpha", fi_backgroundalpha },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "FillPaint", fi_fillpaint },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "StrokePaint", fi_strokepaint } };
+{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "SourceGraphic", fi_sourcegraphic },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "SourceAlpha", fi_sourcealpha },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "BackgroundImage", fi_backgroundimage },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "BackgroundAlpha", fi_backgroundalpha },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "FillPaint", fi_fillpaint },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "StrokePaint", fi_strokepaint } };
 
 struct symbol_entry < html_version, e_fontname > fontname_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "serif", fn_serif },
@@ -810,7 +810,7 @@ struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "dbr", ns_dbr },
     { { XHTML_1_0 }, { HTML_UNDEF }, "dc", ns_dc },
     { { XHTML_1_0 }, { HTML_UNDEF }, "dcterms", ns_dcterms },
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "ev", ns_ev },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ev", ns_xmlevents },
     { { XHTML_1_0 }, { HTML_UNDEF }, "ex", ns_ex },
     { { XHTML_1_0 }, { HTML_UNDEF }, "foaf", ns_foaf },
     { { XHTML_1_0 }, { HTML_UNDEF }, "its", ns_its },
@@ -822,7 +822,7 @@ struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "svg", ns_svg },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xhv", ns_xhv },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xlink", ns_xlink },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "xml", ns_xhtml },
+    { { XHTML_1_0 }, { HTML_UNDEF }, XHTMLNS, ns_xhtml },
     { { XHTML_1_0 }, { HTML_UNDEF }, XMLNS, ns_xmlns },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xsd", ns_xsd },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xsi", ns_xsi } };
@@ -843,9 +843,9 @@ struct symbol_entry < html_version, e_ogtype > ogtype_symbol_table [] =
 
 struct symbol_entry < html_version, e_paintkeyword > paintkeyword_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "none", pk_none },
-    { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, "child", pk_child },
-    { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, "context-fill", pk_contextfill  },
-    { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, "context-stroke", pk_contextstroke },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "child", pk_child },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "context-fill", pk_contextfill  },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "context-stroke", pk_contextstroke },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "currentColor", pk_currentcolour },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "inherit", pk_inherit },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "icc-colour", pk_icccolour },
@@ -862,7 +862,7 @@ struct symbol_entry < html_version, e_plusstyle > plusstyle_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "u", ps_u } };
 
 struct symbol_entry < html_version, e_pointer_events > pointer_events_symbol_table [] =
-{   { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, "bounding-box", pe_boundingbox },
+{   { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "bounding-box", pe_boundingbox },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "visiblePainted", pe_visiblepainted },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "visibleFill", pe_visiblefill },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "visibleStroke", pe_visiblestroke },
@@ -1079,17 +1079,17 @@ struct symbol_entry < html_version, e_svg_fontweight_ff > svg_fontweight_ff_symb
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "900", fsf_900 } };
 
 struct symbol_entry < html_version, e_svg_mode > svg_mode_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "darken", sm_darken },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "lighten", sm_lighten },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "multiply", sm_multiply },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "normal", sm_normal },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "screen", sm_screen } };
+{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "darken", sm_darken },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "lighten", sm_lighten },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "multiply", sm_multiply },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "normal", sm_normal },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "screen", sm_screen } };
 
 struct symbol_entry < html_version, e_svg_overflow > svg_overflow_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "visible", sov_visible },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "hidden", sov_hidden },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "scroll", sov_scroll },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "auto", sov_auto },
+{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "visible", sov_visible },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "hidden", sov_hidden },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "scroll", sov_scroll },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "auto", sov_auto },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "inherit", sov_inherit } };
 
 struct symbol_entry < html_version, e_svg_type_11 > svg_type_11_symbol_table [] =
@@ -1100,19 +1100,20 @@ struct symbol_entry < html_version, e_svg_type_11 > svg_type_11_symbol_table [] 
     { { HTML_SVG11 }, { HTML_UNDEF }, "table", tsz_table } };
 
 struct symbol_entry < html_version, e_svg_version > svg_version_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "1.0", sv_1_0 },
-    { { HTML_SVG11, 0, HE_SVG_1 }, { HTML_UNDEF }, "1.1", sv_1_1 },
-    { { HTML_SVG12, 0, HE_SVG_1 }, { HTML_UNDEF }, "1.2", sv_1_2_tiny },
-    { { HTML_SVG12, 0, HE_SVG_1 }, { HTML_UNDEF }, "1.2/tiny", sv_1_2_tiny },
-    { { HTML_SVG12, 0, HE_SVG_1 }, { HTML_UNDEF }, "1.2/full", sv_1_2_full },
-    { { HTML_SVG20 }, { HTML_UNDEF }, "2.0", sv_2_0 } };
+{   { { HTML_SVG10 }, { HTML_UNDEF }, "1.0", sv_1_0 },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "1.1", sv_1_1 },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "1.2", sv_1_2_tiny },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "1.2/tiny", sv_1_2_tiny },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "1.2/full", sv_1_2_full },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "2.0", sv_2_0 },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "2.1", sv_2_1 } };
 
 struct symbol_entry < html_version, e_svg_version_grand > svg_version_grand_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, HTTP_W3 "/tr/rec-mathml-19980407", svg_1_0 }, // MathML ??
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "http:s//www.w3.org/tr/rec-mathml-19980407", svg_1_0 },
     { { HTML_SVG11, 0, HE_SVG }, { HTML_UNDEF }, HTTP_W3 "/graphics/svg/svg-19990706.dtd", svg_1_1 },
     { { HTML_SVG11, 0, HE_SVG }, { HTML_UNDEF }, HTTPS_W3 "/graphics/svg/svg-19990706.dtd", svg_1_1 },
-    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTP_CSS SVG_2000, svg_2_0 }, // also tiny, of course
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTP_CSS SVG_2000, svg_2_0 },
     { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTPS_CSS SVG_2000, svg_2_0 },
     { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTP_CSS SVG_2000 "/tiny", svg_1_2_tiny },
     { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTPS_CSS SVG_2000 "/tiny", svg_1_2_tiny },
@@ -1131,12 +1132,12 @@ struct symbol_entry < html_version, e_tableframe > tableframe_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "border", fr_border } };
 
 struct symbol_entry < html_version, e_textdecoration > textdecoration_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "none", td_none },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "underline", td_underline },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "overline", td_overline },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "line-through", td_linethrough },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "blink", td_blink },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "inherit", td_inherit } };
+{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "none", td_none },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "underline", td_underline },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "overline", td_overline },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "line-through", td_linethrough },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "blink", td_blink },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "inherit", td_inherit } };
 
 struct symbol_entry < html_version, e_textrendering > textrendering_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "auto", tr_auto },
@@ -1146,27 +1147,26 @@ struct symbol_entry < html_version, e_textrendering > textrendering_symbol_table
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "inherit", tr_inherit } };
 
 struct symbol_entry < html_version, e_transform_anim > transform_anim_symbol_table [] =
-{   { { HTML_SVG10 }, { HTML_UNDEF }, "translate", ta_translate },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "scale", ta_scale },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "rotate", ta_rotate },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "skewX", ta_skewx },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "skewY", ta_skewy } };
+{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "translate", ta_translate },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "scale", ta_scale },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "rotate", ta_rotate },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "skewX", ta_skewx },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "skewY", ta_skewy } };
 
 struct symbol_entry < html_version, e_transformbehaviour > transformbehaviour_symbol_table [] =
-{   { { HTML_SVG10 }, { HTML_UNDEF }, "geometric", tb_geometric },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "pinned", tb_pinned },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "pinned90", tb_pinned90 },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "pinned180", tb_pinned180 },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "pinned170", tb_pinned270 } };
-
+{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "geometric", tb_geometric },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "pinned", tb_pinned },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "pinned90", tb_pinned90 },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "pinned180", tb_pinned180 },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "pinned170", tb_pinned270 } };
 
 struct symbol_entry < html_version, e_transform_fn > transform_fn_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "matrix", tr_matrix },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "translate", tr_translate },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "scale", tr_scale },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "rotate", tr_rotate },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "skewX", tr_skewx },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "skewY", tr_skewy } };
+{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "matrix", tr_matrix },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "translate", tr_translate },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "scale", tr_scale },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "rotate", tr_rotate },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "skewX", tr_skewx },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "skewY", tr_skewy } };
 
 struct symbol_entry < html_version, e_turbulence_type > turbulence_type_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "fractalNoise", tu_fractal_noise },
@@ -1212,13 +1212,19 @@ struct symbol_entry < html_version, e_whitespace > whitespace_symbol_table [] =
     { { HTML_JAN19 }, { HTML_UNDEF }, "pre-line", ws_pre_line } };
 
 struct symbol_entry < html_version, e_writingmode > writingmode_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "lr-tb", wm_lrtb },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "rl-tb", wm_rltb },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "tb-rl", wm_tbrl },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "lr", wm_lr },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "rl", wm_rl },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "tb", wm_tb },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 }, { HTML_UNDEF }, "inherit", wm_inherit } };
+{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "lr-tb", wm_lrtb },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "rl-tb", wm_rltb },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "tb-rl", wm_tbrl },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "lr", wm_lr },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "rl", wm_rl },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "tb", wm_tb },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "inherit", wm_inherit } };
+
+#define CC "creativecommons.org"
+#define DBPEDIA "dbpedia.org"
+#define OGC "www.ogc.orgg"
+#define XCOM XMLNS ".com"
+#define XOT XMLNS "xmlns.opentechnology.org/xslt-extensions"
 
 struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "g/ontology/bibo/", x_bibo },
@@ -1235,22 +1241,22 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2000/xhtml", x_xhtml_11 },
     { { XHTML_2_0 }, { HTML_UNDEF }, HTTP_W3 "/2004/xhtml", x_xhtml_2 },
     { { XHTML_2_0 }, { HTML_UNDEF }, HTTPS_W3 "/2004/xhtml", x_xhtml_2 },
-    { { HTML_4_0 }, { HTML_UNDEF }, "http://creativecommons.org/ns#", x_cc },
-    { { HTML_4_0 }, { HTML_UNDEF }, "https://creativecommons.org/ns#", x_cc },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.ogc.org/crs", x_crs },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "https://www.ogc.org/crs", x_crs },
-    { { HTML_4_0 }, { HTML_UNDEF }, "http://dbpedia.org/property/", x_dbp },
-    { { HTML_4_0 }, { HTML_UNDEF }, "https://dbpedia.org/property/", x_dbp },
-    { { HTML_4_0 }, { HTML_UNDEF }, "http://dbpedia.org/ontology/", x_dbp_owl },
-    { { HTML_4_0 }, { HTML_UNDEF }, "https://dbpedia.org/ontology/", x_dbp_owl },
-    { { HTML_4_0 }, { HTML_UNDEF }, "http://dbpedia.org/resource/", x_dbr },
-    { { HTML_4_0 }, { HTML_UNDEF }, "https://dbpedia.org/resource/", x_dbr },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/dc/terms/", x_dc },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "g/dc/terms/", x_dc },
-    { { HTML_4_0 }, { HTML_UNDEF }, "http://example.org/", x_ex },
-    { { HTML_4_0 }, { HTML_UNDEF }, "https://example.org/", x_ex },
-    { { HTML_4_0 }, { HTML_UNDEF }, "http://xmlns.com/foaf/0.1/", x_foaf },
-    { { HTML_4_0 }, { HTML_UNDEF }, "https://xmlns.com/foaf/0.1/", x_foaf },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS CC "/ns#", x_cc },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS CC "/ns#", x_cc },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS OGC "/crs", x_crs },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS OGC "/crs", x_crs },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DBPEDIA "/property/", x_dbp },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS DBPEDIA "g/property/", x_dbp },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DBPEDIA "/ontology/", x_dbp_owl },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS DBPEDIA "/ontology/", x_dbp_owl },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DBPEDIA "/resource/", x_dbr },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS DBPEDIA "/resource/", x_dbr },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/dc/terms/", x_dc_terms },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/dc/terms/", x_dc_terms },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DEFAULT_DOMAIN "/", x_ex },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS DEFAULT_DOMAIN "/", x_ex },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS XCOM "/foaf/0.1/", x_foaf },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS XCOM "/foaf/0.1/", x_foaf },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1998/math/mathml", x_mathml },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1998/math/mathml", x_mathml },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2002/07/owl/#", x_owl },
@@ -1261,8 +1267,8 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/ns/rdfa#", x_rdfa },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2000/01/rdf-schema#", x_rdfs },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/2000/01/rdf-schema#", x_rdfs },
-    { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_CSS SVG_2000, x_svg },
-    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_CSS SVG_2000, x_svg },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS SVG_2000, x_svg },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS SVG_2000, x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/tr/rec-mathml-19980407", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/tr/rec-mathml-19980407", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/graphics/svg/svg-19990706.dtd", x_svg },
@@ -1271,12 +1277,80 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/xhtml/vocab#", x_xhv },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/xlink", x_xlink },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/xlink", x_xlink },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/xml/1998/namespace", x_xml },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/xml/1998/namespace", x_xml },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/XML/1998/namespace", x_xml },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/XML/1998/namespace", x_xml },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2000/xmlns/", x_xmlns },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2000/xmlns/", x_xmlns },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema#", x_xsd },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XMLSchema#", x_xsd } };
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema#", x_xsd },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XMLSchema#", x_xsd },
+
+    // many examples, including the living standard
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/html", x_html },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/html", x_html },
+
+    // https://www.informit.com/articles/article.aspx?p=31837&seqNum=10
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XInclude", x_xi },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XInclude", x_xi },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/XSL/Transform/1.0", x_xslt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/XSL/Transform/1.0", x_xslt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/WD-xsl", x_xslt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/TR/WD-xsl", x_xslt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "icl.com/saxon", x_saxon },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "icl.com/saxon", x_saxon },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "xml.apache.org/xslt", x_lxslt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "xml.apache.org/xslt", x_lxslt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "common", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS XOT "common", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "functions", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS XOT "functions", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "math", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS XOT "math", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "sets", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS XOT "sets", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema-datatypes", x_dt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XMLSchema-datatypes", x_dt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/08/xquery-operators", x_xf },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/08/xquery-operators", x_xf },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/SMIL20", x_smil },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/SMIL20", x_smil },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/REC-smil", x_smil },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/TR/REC-smil", x_smil },
+
+    // https://metacpan.org/pod/XML::CommonNS
+    { { XHTML_2_0 }, { HTML_UNDEF }, HTTP_W3 "/2006/06/xhtml", x_xhtml_2 },
+    { { XHTML_2_0 }, { HTML_UNDEF }, HTTPS_W3 "/2002/06/xhtml", x_xhtml_2 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/xml-events", x_xmlevents },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/xml-events", x_xmlevents },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/dc/elements/1.1/", x_dc },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/dc/elements/1.1/", x_dc },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/vocab/relationship/", x_rel },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/vocab/relationship/", x_rel },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/rss/1.0/", x_rss },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/rss/1.0/", x_rss },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/net/rssmodules/blogcomments/", x_comments },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/net/rssmodules/blogcomments/", x_comments },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/rss/1.0/modules/syndication/", x_syn },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/rss/1.0/modules/syndication/", x_syn },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "relaxng.org/ns/structure/1.0/", x_rng },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "relaxng.org/ns/structure/1.0/", x_rng },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema", x_xsd },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XMLSchema", x_xsd },
+    { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema-instance", x_xsi },
+    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XMLSchema-instance", x_xsi },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/XSL/Transform", x_xslt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/XSL/Transform", x_xslt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/XSL/Format", x_xslfo },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/XSL/Format", x_xslfo },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/soap/encoding/", x_soapenc11 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "schemas.xmlsoap.org/soap/encoding/", x_soapenc11 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/soap/envelope/", x_soapenc11 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "schemas.xmlsoap.org/soap/envelope/", x_soapenc11 },
+    { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2003/05/soap-encoding", x_soapenc12 },
+    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2003/05/soap-encoding", x_soapenc12 },
+    { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2003/05/soap-envelope", x_soapenc12 },
+    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2003/05/soap-envelope", x_soapenc12 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/wsdl/", x_wsdl11 },
+    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2003/06/wsdl", x_wsdl12 } };
 
 #define INIT_ENUM(XX) \
     type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < html_version, e_##XX >)); \
@@ -1390,7 +1464,7 @@ e_namespace map_xmlns_to_namespace (const e_xmlns x)
         case x_dbp : return ns_dbp;
         case x_dbp_owl : return ns_dbp_owl;
         case x_dbr : return ns_dbr;
-        case x_dc : return ns_dc;
+        case x_dc_terms : return ns_dc;
         case x_ex : return ns_ex;
         case x_foaf : return ns_foaf;
         case x_mathml : return ns_math;

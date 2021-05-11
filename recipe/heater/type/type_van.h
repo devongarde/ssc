@@ -255,7 +255,7 @@ template < > struct type_master < t_preserveaspectratio > : tidy_string < t_pres
             if (a.good ())
             {   if (args.size () < 2) return;
                 size_t par = 0;
-                if ((v.svg () == sv_1_1) || (v.svg () == sv_1_2_tiny))
+                if (v.is_svg_12 ())
                     if (args.at (0) == "defer") par = 1;
                 type_master < t_svg_align > sa;
                 sa.set_value (nits, v, args.at (par));

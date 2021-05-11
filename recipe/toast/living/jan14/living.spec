@@ -218,8 +218,9 @@ PASS ../toast/living/jan14/example.html
 147 inserted_missing_closure missing_close
 148 inserted_missing_closure
 151 use_quote_code
-155 ignoring_unknown attribute_barred attribute_barred
-158 ignoring_unknown
+155 unknown_element unrecognised_namespace
+156 duplicate_namespace
+158 unknown_element
 162 newline_in_string newline_in_string
 164 unrecognised_value
 165 use_double_quote_code use_quote_code
@@ -665,13 +666,15 @@ PASS ../toast/living/jan14/ls5.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jan14/ls6.html
-3 xmlns_namespace naughty_lang
+3 xmlns_namespace contradictory_namespace naughty_lang
 5 use_quote_code
-8 ignoring_unknown custom attribute_barred
-9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown custom
-11 ignoring_unknown ignoring_unknown
-12 ignoring_unknown
+6 unknown_element
+8 unknown_element unrecognised_namespace
+9 unknown_element unknown_element
+10 unknown_element
+11 unknown_element unknown_element
+12 unknown_element
+13 unknown_element
 
 PASS ../toast/living/jan14/ls7.html
 2 naughty_lang

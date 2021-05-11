@@ -68,7 +68,11 @@ void init (nitpick& nits)
     hierarchy_init (nits);
     microdata_init (nits);
     url::init (nits);
-    wotsit_init (nits); }
+    wotsit_init (nits);
+#ifdef DEBUG
+    // avm_elem_crosscheck ();
+#endif
+}
 
 void dump_nits (nitpick& nits, const char* burble)
 {   if (! nits.empty ())

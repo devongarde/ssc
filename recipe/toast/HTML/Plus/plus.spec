@@ -10,8 +10,8 @@ PASS ../toast/HTML/Plus/plus-bad.html
 
 PASS ../toast/HTML/Plus/plus-bad2.html
 2 inserted_missing_parent missing_close inserted_missing_parent missing_close missing_close inserted_missing_parent inserted_missing_closure inserted_missing_closure missing_close missing_close missing_open
-4 ignoring_unknown
-8 ignoring_unknown
+4 unknown_element
+8 unknown_element
 
 PASS ../toast/HTML/Plus/plus-simple.html
 1 public_missing
@@ -70,7 +70,7 @@ PASS ../toast/HTML/Plus/plus-example.html
 206 missing_close
 207 inserted_missing_closure
 228 inserted_missing_closure
-231 ignoring_unknown missing_open
+231 unknown_element missing_open
 243 missing_open
 245 inserted_missing_closure
 247 bizarre_character_code invalid_character_code
