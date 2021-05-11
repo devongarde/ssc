@@ -139,8 +139,8 @@ PASS ../toast/living/jul09/example-2.html
 4 url_not_found style_not_css
 5 url_not_found
 6 url_not_found
-12 ignoring_unknown missing_close attribute_barred
-13 ignoring_unknown missing_close attribute_barred
+12 unknown_element missing_close
+13 unknown_element missing_close
 15 url_not_found
 16 mime
 41 inserted_missing_closure inserted_missing_closure
@@ -154,7 +154,7 @@ PASS ../toast/living/jul09/figure.html
 36 url_not_found
 40 url_not_found
 45 inserted_missing_closure
-46  use_quote_code
+46 use_quote_code
 55 url_not_found
 57 url_not_found
 60 newline_in_string newline_in_string url_not_found
@@ -333,13 +333,15 @@ PASS ../toast/living/jul09/ls4.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jul09/ls5.html
-3 xmlns_namespace
+3 xmlns_namespace contradictory_namespace
 5 use_quote_code
-8 ignoring_unknown custom attribute_barred
-9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown custom
-11 ignoring_unknown ignoring_unknown
-12 ignoring_unknown
+6 unknown_element
+8 unknown_element unrecognised_namespace
+9 unknown_element unknown_element
+10 unknown_element
+11 unknown_element unknown_element
+12 unknown_element
+13 unknown_element
 
 PASS ../toast/living/jul09/mark.html
 9 use_quote_code

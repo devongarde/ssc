@@ -111,8 +111,6 @@ void element::examine_ruby ()
                     case elem_rp :
                         if (! rp_mode && had_rt)
                             pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "<RP> must precede any <RT>");
-//                        else if (had_rp)
-//                            pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "<RP> should interleave with <RT>");
                         had_ruby = had_non_ruby = had_rt = false;
                         had_rp = rp_mode = true;
                         break;

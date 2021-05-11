@@ -36,7 +36,7 @@ PASS ../toast/HTML/3.2/html32-good.html
 
 PASS ../toast/HTML/3.2/html32-bad.html
 11 1_to_7
-13 unrecognised_value bad_colour not_an_integer
+13 unrecognised_value bad_colour not_an_integer unsigned
 15 correct_spelling unrecognised_value bad_colour
 16 unrecognised_value bad_colour
 17 unrecognised_value bad_colour

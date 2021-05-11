@@ -40,7 +40,7 @@ void element::examine_address ()
         check_descendants (elem_address, header_bitset | sectioning_bitset | elem_address | elem_header | elem_footer); } }
 
 void element::examine_anchor ()
-{   const bool href_known = a_.known (a_href);
+{   const bool href_known = a_.known (a_href) || a_.known (a_xlinkhref);
     const bool type_known = a_.known (a_type);
     const bool rel_known = a_.known (a_rel);
     const bool rev_known = a_.known (a_rev);

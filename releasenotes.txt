@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.103
+- various bug fixes
+- underlying work
+
 0.0.102
 - improve XHTML letter case verification
 - added length units from CSS 3 & 4 (draft)

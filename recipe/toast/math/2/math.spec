@@ -20,8 +20,8 @@ PASS ../toast/math/2/math3-example.html
 253 fontname
 255 fontname
 375 math_empty
-376 ignoring_unknown
-385 ignoring_unknown
+376 unknown_element
+385 unknown_element
 404 math_kids
 405 math_kids
 406 math_kids
@@ -126,12 +126,17 @@ PASS ../toast/math/2/math15-example.html
 207 id_exists
 208 id_exists
 211 annotation
-224 xmlns_namespace xmlns_namespace unrecognised_value annotation
+224 xmlns_namespace unrecognised_namespace xmlns_namespace unrecognised_value annotation
 254 annotation
 270 arg_count arg_count
-272 unrecognised_value ignoring_unknown unrecognised_value ignoring_unknown
-273 unrecognised_value ignoring_unknown
-275 unrecognised_value ignoring_unknown
+272 bad_namespace unknown_element bad_namespace unknown_element
+273 bad_namespace unknown_element
+275 bad_namespace unknown_element
 283 annotation
-300 unrecognised_value ignoring_unknown
-301 arg_count arg_count unrecognised_value ignoring_unknown unrecognised_value ignoring_unknown
+296 missing_close
+297 missing_close arg_count arg_count
+299 missing_close
+300 bad_namespace unknown_element
+301 missing_close arg_count arg_count inserted_missing_parent inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_parent missing_close bad_namespace bad_namespace inserted_missing_parent inserted_missing_closure inserted_missing_closure missing_open
+302 missing_open
+304 missing_open

@@ -18,7 +18,7 @@ PASS ../toast/w3/12458/2342-opensp_type_X.html
 
 PASS ../toast/w3/12458/4476-svg_nodoctype.svg
 0 title_required
-1 presume_html_1 ignoring_unknown unrecognised_attribute
+1 presume_html_1 unknown_element
 
 PASS ../toast/w3/12458/4848-html40-transitional_FPI-SI-mismatch.html
 0 charset_mismatch charset_used
@@ -28,44 +28,40 @@ PASS ../toast/w3/12458/4892-entity.html
 
 PASS ../toast/w3/12458/5031-root_dash.xml
 0 title_required
-1 xhtml_1_0
-5 use_double_quote_code ignoring_unknown attribute_barred
-6 ignoring_unknown
-7 ignoring_unknown attribute_barred
-8 ignoring_unknown ignoring_unknown
-9 ignoring_unknown
-10 ignoring_unknown
-11 ignoring_unknown attribute_barred
-12 ignoring_unknown unrecognised_attribute
-13 ignoring_unknown
-14 ignoring_unknown ignoring_unknown
-15 ignoring_unknown
-16 ignoring_unknown ignoring_unknown
-17 ignoring_unknown
-18 ignoring_unknown
-19 ignoring_unknown ignoring_unknown
-20 ignoring_unknown ignoring_unknown
-21 ignoring_unknown
-22 ignoring_unknown
-23 ignoring_unknown ignoring_unknown
-24 xhtml_missing_slash svg xhtml_missing_slash svg
-25 ignoring_unknown
-26 ignoring_unknown
-27 ignoring_unknown
-28 ignoring_unknown
-29 ignoring_unknown ignoring_unknown
-30 ignoring_unknown ignoring_unknown
-31 ignoring_unknown
-32 ignoring_unknown ignoring_unknown
-33 ignoring_unknown ignoring_unknown
-34 ignoring_unknown
-35 ignoring_unknown
-36 ignoring_unknown
-37 ignoring_unknown
+1 xhtml_1_1
+5 use_double_quote_code unknown_element
+6 unknown_element
+7 unknown_element
+8 unknown_element unknown_element
+9 unknown_element
+10 unknown_element
+11 unknown_element
+12 unknown_element
+13 unknown_element
+14 unknown_element unknown_element
+15 unknown_element
+16 unknown_element unknown_element
+17 unknown_element
+18 unknown_element
+19 unknown_element unknown_element
+20 unknown_element unknown_element
+21 unknown_element
+22 unknown_element
+23 unknown_element unknown_element
+25 unknown_element
+26 unknown_element
+27 unknown_element
+28 unknown_element
+29 unknown_element unknown_element
+30 unknown_element unknown_element
+31 unknown_element
+32 unknown_element unknown_element
+33 unknown_element unknown_element
+34 unknown_element
+35 unknown_element
+36 unknown_element
+37 unknown_element
 
 PASS ../toast/w3/12458/857-svg_nodoctype.svg
 0 title_required
-1 xhtml_1_0
-
-PASS ../toast/w3/12458/index.html
-2 naughty_lang
+1 xhtml_1_1

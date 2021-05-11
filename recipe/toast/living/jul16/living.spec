@@ -183,71 +183,72 @@ PASS ../toast/living/jul16/et.html
 26 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul16/example.html
-6  missing_close
-6  inserted_missing_closure
-6  missing_open
-10  url_not_found
-29  url_not_found
-30  inserted_missing_closure
-30  url_not_found
-31  inserted_missing_closure missing_close
-31  url_not_found
-32  inserted_missing_closure
-34  url_not_found
-45  url_not_found
-54  inserted_missing_closure inserted_missing_closure
-55  inserted_missing_closure inserted_missing_closure
-56  inserted_missing_closure inserted_missing_closure
-66  inserted_missing_closure inserted_missing_closure
-66  missing_open
-68  inserted_missing_closure unrecognised_value
-70  input_bad_aria
-72  inserted_missing_closure
-78  attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
-94  attribute_unrecognised unrecognised_attribute unrecognised_value
-96  unrecognised_value
-100  url_not_found
-105  data_type
-105  attribute_required attribute_required
-105  attribute_required
-123  url_not_found
-129  use_quote_code
-132  url_not_found
-133  url_not_found
-134  url_not_found
-136  use_quote_code
-142  url_not_found
-145  url_not_found
-146  inserted_missing_closure missing_close
-147  inserted_missing_closure
-151  use_quote_code
-156  url_not_found
-159  url_not_found
-160  inserted_missing_closure missing_close
-161  inserted_missing_closure
-164  use_quote_code
-168  ignoring_unknown attribute_barred attribute_barred
-171  ignoring_unknown
-175  newline_in_string
-175  newline_in_string
-177  unrecognised_value
-178  use_double_quote_code use_quote_code
-179  unrecognised_value
-180  inserted_missing_closure unrecognised_value
-181  unrecognised_value
-182  use_quote_code use_double_quote_code
-182  inserted_missing_closure unrecognised_value
-182  use_double_quote_code
-183  unrecognised_value
-183  use_double_quote_code
-186  newline_in_string
-186  newline_in_string
-187  newline_in_string
-187  newline_in_string
-192  only_elements
-199  unrecognised_value
-201  unrecognised_value
-208  unrecognised_value no_such_folder url_not_found
+6 missing_close
+6 inserted_missing_closure
+6 missing_open
+10 url_not_found
+29 url_not_found
+30 inserted_missing_closure
+30 url_not_found
+31 inserted_missing_closure missing_close
+31 url_not_found
+32 inserted_missing_closure
+34 url_not_found
+45 url_not_found
+54 inserted_missing_closure inserted_missing_closure
+55 inserted_missing_closure inserted_missing_closure
+56 inserted_missing_closure inserted_missing_closure
+66 inserted_missing_closure inserted_missing_closure
+66 missing_open
+68 inserted_missing_closure unrecognised_value
+70 input_bad_aria
+72 inserted_missing_closure
+78 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
+94 attribute_unrecognised unrecognised_attribute unrecognised_value
+96 unrecognised_value
+100 url_not_found
+105 data_type
+105 attribute_required attribute_required
+105 attribute_required
+123 url_not_found
+129 use_quote_code
+132 url_not_found
+133 url_not_found
+134 url_not_found
+136 use_quote_code
+142 url_not_found
+145 url_not_found
+146 inserted_missing_closure missing_close
+147 inserted_missing_closure
+151 use_quote_code
+156 url_not_found
+159 url_not_found
+160 inserted_missing_closure missing_close
+161 inserted_missing_closure
+164 use_quote_code
+168 unknown_element unrecognised_namespace
+169 duplicate_namespace
+171 unknown_element
+175 newline_in_string
+175 newline_in_string
+177 unrecognised_value
+178 use_double_quote_code use_quote_code
+179 unrecognised_value
+180 inserted_missing_closure unrecognised_value
+181 unrecognised_value
+182 use_quote_code use_double_quote_code
+182 inserted_missing_closure unrecognised_value
+182 use_double_quote_code
+183 unrecognised_value
+183 use_double_quote_code
+186 newline_in_string
+186 newline_in_string
+187 newline_in_string
+187 newline_in_string
+192 only_elements
+199 unrecognised_value
+201 unrecognised_value
+208 unrecognised_value no_such_folder url_not_found
 
 PASS ../toast/living/jul16/example-2.html
 4 url_not_found style_not_css
@@ -707,13 +708,15 @@ PASS ../toast/living/jul16/ls5.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jul16/ls6.html
-3 xmlns_namespace no_xmllang
+3 xmlns_namespace contradictory_namespace no_xmllang
 5 use_quote_code
-8 ignoring_unknown custom attribute_barred
-9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown custom
-11 ignoring_unknown ignoring_unknown
-12 ignoring_unknown
+6 unknown_element
+8 unknown_element unrecognised_namespace
+9 unknown_element unknown_element
+10 unknown_element
+11 unknown_element unknown_element
+12 unknown_element
+13 unknown_element
 
 PASS ../toast/living/jul16/ls10.html
 5 element_offsite_base

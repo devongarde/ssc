@@ -32,7 +32,7 @@ PASS ../toast/webapps/jan07/datagrid.html
 10 attribute_required
 14 attribute_required
 16 inserted_missing_closure attribute_required
-19 ignoring_unknown
+19 unknown_element
 23 missing_open
 44 naughty_alt
 
@@ -72,7 +72,7 @@ PASS ../toast/webapps/jan07/example-2.html
 5 url_not_found style_not_css
 6 url_not_found
 12 url_not_found
-13 ignoring_unknown missing_close attribute_barred
+13 unknown_element missing_close
 23 inserted_missing_closure
 
 PASS ../toast/webapps/jan07/feed.html

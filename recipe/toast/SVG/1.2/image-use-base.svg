@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.2" baseProfile="tiny" viewBox="00 100 100">
+<g xml:base="http://a.example.org/aaa/">
+<g xml:base="/bbb/ccc/">
+<g xml:base="../ddd/" xml:id="bar">
+<image xml:id="foo" xlink:href="foo.jpg" width="100" height="100"/>
+</g>
+</g>
+</g>
+<g xml:base="http://z.example.net/zzz/">
+<g xml:base="/yyy/xxx/">
+<g xml:base="../xxx/">
+<use xlink:href="#foo" />
+<use xlink:href="#bar" />
+<use xlink:href="#bar" xml:base="../ggg/" />
+</g>
+</g>
+</g>
+</svg>

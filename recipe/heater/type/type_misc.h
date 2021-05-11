@@ -238,10 +238,3 @@ template < > struct type_master < t_target > : public tidy_string < t_target >
         string_value < t_target > :: status (s_invalid); } };
 
 template < > struct type_master < t_xlinktype > : type_must_be < t_xlinktype, sz_simple > { };
-
-//template < > struct type_master < t_xlinktype > : public tidy_string < t_xlinktype >
-//{   void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
-//    {   if (tidy_string < t_xlinktype > :: good ())
-//            if (compare_complain (nits, v, "simple", tidy_string < t_xlinktype > :: get_string ())) return;
-//            else nits.pick (nit_xlinktype, es_warning, ec_type, "xlink:type must be set to 'simple'");
-//        tidy_string < t_xlinktype > :: status (s_invalid); } };

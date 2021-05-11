@@ -196,68 +196,69 @@ PASS ../toast/living/jul17/et.html
 26 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul17/example.html
-6  missing_close
-6  inserted_missing_closure
-6  missing_open
-10  url_not_found
-28  url_not_found
-29  inserted_missing_closure
-29  url_not_found
-30  inserted_missing_closure missing_close
-30  url_not_found
-31  inserted_missing_closure
-33  url_not_found
-45  url_not_found
-54  inserted_missing_closure inserted_missing_closure
-55  inserted_missing_closure inserted_missing_closure
-56  inserted_missing_closure inserted_missing_closure
-66  inserted_missing_closure inserted_missing_closure unrecognised_value
-68  input_bad_aria
-70  inserted_missing_closure
-83  attribute_unrecognised unrecognised_attribute unrecognised_value
-85  unrecognised_value
-89  url_not_found
-94  data_type
-94  attribute_required attribute_required
-94  attribute_required
-112  url_not_found
-118  use_quote_code
-121  url_not_found
-122  url_not_found
-123  url_not_found
-125  use_quote_code
-131  url_not_found
-134  url_not_found
-135  inserted_missing_closure missing_close
-136  inserted_missing_closure
-140  use_quote_code
-145  url_not_found
-148  url_not_found
-149  inserted_missing_closure missing_close
-150  inserted_missing_closure
-153  use_quote_code
-157  ignoring_unknown attribute_barred attribute_barred
-160  ignoring_unknown
-164  newline_in_string
-164  newline_in_string
-166  unrecognised_value
-166  use_double_quote_code use_quote_code
-167  unrecognised_value
-168  inserted_missing_closure unrecognised_value
-169  unrecognised_value
-170  use_quote_code use_double_quote_code
-170  inserted_missing_closure unrecognised_value
-170  use_double_quote_code
-171  unrecognised_value
-171  use_double_quote_code
-174  newline_in_string
-174  newline_in_string
-175  newline_in_string
-175  newline_in_string
-180  only_elements
-193  unrecognised_value
-195  unrecognised_value
-202  unrecognised_value no_such_folder url_not_found
+6 missing_close
+6 inserted_missing_closure
+6 missing_open
+10 url_not_found
+28 url_not_found
+29 inserted_missing_closure
+29 url_not_found
+30 inserted_missing_closure missing_close
+30 url_not_found
+31 inserted_missing_closure
+33 url_not_found
+45 url_not_found
+54 inserted_missing_closure inserted_missing_closure
+55 inserted_missing_closure inserted_missing_closure
+56 inserted_missing_closure inserted_missing_closure
+66 inserted_missing_closure inserted_missing_closure unrecognised_value
+68 input_bad_aria
+70 inserted_missing_closure
+83 attribute_unrecognised unrecognised_attribute unrecognised_value
+85 unrecognised_value
+89 url_not_found
+94 data_type
+94 attribute_required attribute_required
+94 attribute_required
+112 url_not_found
+118 use_quote_code
+121 url_not_found
+122 url_not_found
+123 url_not_found
+125 use_quote_code
+131 url_not_found
+134 url_not_found
+135 inserted_missing_closure missing_close
+136 inserted_missing_closure
+140 use_quote_code
+145 url_not_found
+148 url_not_found
+149 inserted_missing_closure missing_close
+150 inserted_missing_closure
+153 use_quote_code
+157 unknown_element unrecognised_namespace
+158 duplicate_namespace
+160 unknown_element
+164 newline_in_string
+164 newline_in_string
+166 unrecognised_value
+166 use_double_quote_code use_quote_code
+167 unrecognised_value
+168 inserted_missing_closure unrecognised_value
+169 unrecognised_value
+170 use_quote_code use_double_quote_code
+170 inserted_missing_closure unrecognised_value
+170 use_double_quote_code
+171 unrecognised_value
+171 use_double_quote_code
+174 newline_in_string
+174 newline_in_string
+175 newline_in_string
+175 newline_in_string
+180 only_elements
+193 unrecognised_value
+195 unrecognised_value
+202 unrecognised_value no_such_folder url_not_found
 
 PASS ../toast/living/jul17/example-2.html
 4 url_not_found style_not_css
@@ -719,13 +720,15 @@ PASS ../toast/living/jul17/ls5.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jul17/ls6.html
-3 xmlns_namespace no_xmllang
+3 xmlns_namespace contradictory_namespace no_xmllang
 5 use_quote_code
-8 ignoring_unknown custom attribute_barred
-9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown custom
-11 ignoring_unknown ignoring_unknown
-12 ignoring_unknown
+6 unknown_element
+8 unknown_element unrecognised_namespace
+9 unknown_element unknown_element
+10 unknown_element
+11 unknown_element unknown_element
+12 unknown_element
+13 unknown_element
 
 PASS ../toast/living/jul17/ls10.html
 5 element_offsite_base

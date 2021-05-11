@@ -37,7 +37,7 @@ template < > struct type_master < t_angle > : type_master < t_real >
             {   ::std::string sss (ss.substr (len - 3));
                 ::std::string ssss (ss.substr (len - 4));
                 if (compare_complain (nits, v, ssss, "grad")) { max = 400.0; len -= 4; units = true; }
-                else if ((v.svg_version () >= sv_2_0) && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; units = true; }
+                else if (v.is_svg_2 () && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; units = true; }
                 else if (compare_complain (nits, v, sss, "rad")) { max = static_cast < float > (3.141592653589*2); len -= 3; units = true; }
                 else if (compare_complain (nits, v, sss, "deg")) { len -= 3; units = true; } }
             if (ss.substr (0, len).find_first_not_of (DECIMAL) != ::std::string::npos)
@@ -83,21 +83,6 @@ template < > struct type_master < t_d > : tidy_string < t_d >
         tidy_string < t_d > :: status (s_invalid); } };
 
 template < > struct type_master < t_dashes > : type_or_either_string < t_dashes, t_measures, sz_none, sz_inherit > { };
-//template < > struct type_master < t_dashes > : tidy_string < t_dashes >
-//{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-//    {   tidy_string < t_dashes > :: set_value (nits, v, s);
-//        if (tidy_string < t_dashes > :: empty ())
-//            nits.pick (nit_dashed, ed_svg_1_1, "11.4 Stroke Properties", es_error, ec_type, "a sequence of numbers is expected");
-//        else if (tidy_string < t_dashes > :: good ())
-//        {   ::std::string ss (tidy_string < t_dashes > :: get_string ());
-//            if (compare_complain (nits, v, "none", ss)) return;
-//            if (compare_complain (nits, v, "inherit", ss)) return;
-//            vstr_t sss (split_by_charset (ss, ", "));
-//            bool ok = true;
-//            for (auto arg : sss)
-//                if (! test_value < t_measure > (nits, v, arg)) ok = false;
-//            if (ok) return; }
-//        tidy_string < t_dashes > :: status (s_invalid); } };
 
 template < > struct type_master < t_endvaluelist > : tidy_string < t_endvaluelist >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -124,14 +109,14 @@ template < > struct type_master < t_fillopacity > : tidy_string < t_fillopacity 
             if (compare_complain (nits, v, sz_inherit :: sz (), ss)) return;
             nitpick nuts;
             if (test_value < t_zero_to_one > (nuts, v, ss)) return;
-            if ((v.svg_version () == sv_2_0) && (test_value < t_percent > (nuts, v, ss))) return;
+            if (v.is_svg_2 () && (test_value < t_percent > (nuts, v, ss))) return;
             nits.merge (nuts); }
         tidy_string < t_fillopacity > :: status (s_invalid); } };
 
 template < > struct type_master < t_frequency > : type_master < t_real >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
-        if (! ends_with_letters (ss, "kHz") && ! ends_with_letters (ss, "Hz"))
+        if (! ends_with_letters (v, ss, "kHz") && ! ends_with_letters (v, ss, "Hz"))
             nits.pick (nit_bad_frequency, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " contains unexpected characters (units are 'kHz' or 'Hz')");
         else if (v.svg () < sv_1_1)
             nits.pick (nit_bad_frequency, es_error, ec_type, "frequencies require SVG 1.1 or better.");
@@ -160,31 +145,6 @@ template < > struct type_master < t_keyspline > : type_exactly_n < t_keyspline, 
 template < > struct type_master < t_keysplines > : type_at_least_one < t_keysplines, sz_semicolon, t_keyspline > { };
 template < > struct type_master < t_keytimes > : type_at_least_one < t_keytimes, sz_semicolon, t_zero_to_one > { };
 
-//template < > struct type_master < t_keytimes > : tidy_string < t_keytimes >
-//{   vdbl_t value_;
-//    void swap (type_master < t_keytimes >& t)
-//    {   value_.swap (t.value_);
-//        tidy_string < t_keytimes >::swap (t); }
-//    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-//    {   tidy_string < t_keytimes > :: set_value (nits, v, s);
-//        if (tidy_string < t_keytimes > :: good ())
-//        {   vstr_t ss (split_by_charset (tidy_string < t_keytimes > :: get_string (), ";"));
-//            if (ss.size () > 0)
-//            {   bool ok = true;
-//                for (auto sss : ss)
-//                    if (! test_value < t_zero_to_one > (nits, v, sss))
-//                        ok = false;
-//                if (ok) return; } }
-//        nits.pick (nit_svg_values, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "a semi-colon separated series of numbers expected");
-//        tidy_string < t_keytimes > :: status (s_invalid); }
-//    void reset ()
-//    {   value_.clear ();
-//        tidy_string < t_keytimes > :: reset (); }
-//    static ::std::string default_value () { return ""; }
-//    ::std::string get () const { return get_string (); } };
-
-// template < e_type T, e_type P, e_type Q, class SZ > struct either_type_or_string : tidy_string < T >
-// t_line_height
 template < > struct type_master < t_line_height > : either_type_or_string < t_line_height, t_measure, t_real, sz_normal > { };
 
 template < > struct type_master < t_origin > : tidy_string < t_origin >
@@ -197,80 +157,9 @@ template < > struct type_master < t_origin > : tidy_string < t_origin >
         tidy_string < t_origin > :: status (s_invalid); } };
 
 template < > struct type_master < t_marker > : id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit > { };
-
-//template < > struct type_master < t_marker > : tidy_string < t_marker >
-//{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-//    {   tidy_string < t_marker > :: set_value (nits, v, s);
-//        if (tidy_string < t_marker > :: empty ())
-//            nits.pick (nit_marker, ed_svg_1_1, "11.6.3 Marker properties", es_error, ec_type, "none, inherit, or url(...) expected");
-//        else if (tidy_string < t_marker > :: good ())
-//        {   if ((v >= html_jan08) && (v < html_jan09)) return;
-//            ::std::string ss (tidy_string < t_marker > :: get_string ());
-//            if (compare_complain (nits, v, "none", ss)) return;
-//            if (compare_complain (nits, v, "inherit", ss)) return;
-//            if (compare_complain (nits, v, "url", ss.substr (0, 3)))
-//            {   ::std::string::size_type bra = ss.find_first_of ("(");
-//                ::std::string::size_type ket = ss.find_last_of (")");
-//                if ((bra != ::std::string::npos) && (ket != ::std::string::npos))
-//                    if (++bra < ket) if (test_value < t_url > (nits, v, ss.substr (bra, ket-bra))) return; } }
-//        tidy_string < t_marker > :: status (s_invalid); } };
-
 template < > struct type_master < t_navigation > : id_or_either_string < t_navigation, t_hash_fn, sz_auto, sz_self > { };
-
-//template < > struct type_master < t_navigation > : tidy_string < t_navigation >
-//{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-//    {   tidy_string < t_navigation > :: set_value (nits, v, s);
-//        if (s.empty ())
-//        {   nits.pick (nit_bad_id, es_error, ec_type, "an id cannot be empty");
-//            tidy_string < t_navigation > :: status (s_invalid); }
-//        else if (::std::find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
-//        {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " contains a space");
-//            tidy_string < t_navigation > :: status (s_invalid); } }
-//    bool verify_id (nitpick& nits, const html_version& v, ids_t& ids, const attribute_bitset& state, const vit_t& )
-//    {   if (! tidy_string < t_navigation > :: good ()) return false;
-//        const ::std::string s (tidy_string < t_navigation > :: get_string ());
-//        if (compare_complain (nits, v, "auto", s)) return false;
-//        if (compare_complain (nits, v, "self", s)) return false;
-//        if (! ids.has_id (s))
-//            nits.pick (nit_unknown, es_error, ec_type, quote (s), " is not an existing identifier");
-//        else if (! ids.compatible_state (s, state.test (a_hidden)))
-//            nits.pick (nit_id_hidden, es_error, ec_type, quote (s), " is hidden");
-//        else return false;
-//        tidy_string < t_navigation > :: status (s_invalid);
-//        return true; } };
-
 template < > struct type_master < t_opacity > : type_or_string < t_opacity, t_zero_to_one, sz_inherit > { };
-
-//template < > struct type_master < t_opacity > : tidy_string < t_opacity >
-//{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-//    {   tidy_string < t_opacity > :: set_value (nits, v, s);
-//        const ::std::string& ss = tidy_string < t_opacity > :: get_string ();
-//        if (ss.empty ())
-//            nits.pick (nit_empty, es_error, ec_type, "a value is expected");
-//        else if (good ())
-//        {   if (compare_complain (nits, v, "inherit", ss)) return;
-//            if (test_value < t_normalised > (nits, v, ss)) return; }
-//        tidy_string < t_opacity > :: status (s_invalid); } };
-
 template < > struct type_master < t_panose1 > : type_exactly_n < t_panose1, sz_space, t_integer, 10 > { };
-
-//template < > struct type_master < t_panose1 > : tidy_string < t_panose1 >
-//{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-//    {   tidy_string < t_panose1 > :: set_value (nits, v, s);
-//        if ( tidy_string < t_panose1 > :: empty ())
-//            nits.pick (nit_panose_1, es_error, ec_type, "a panose value consists of ten integers");
-//        else if ( tidy_string < t_panose1 > :: good ())
-//        {   ::std::string ss (tidy_string < t_panose1 > :: get_string ());
-//            if (ss == "10") return;
-//            vstr_t xs (split_by_space (ss));
-//            if (xs.size () != 10)
-//                nits.pick (nit_panose_1, es_error, ec_type, "a panose value consists of ten integers");
-//            else
-//            {   bool bad = false;
-//                for (auto sss : xs)
-//                    if (! test_value < t_integer > (nits, v, sss)) bad = true;
-//                if (! bad) return; } }
-//        tidy_string < t_panose1 > :: status (s_invalid); } };
 
 template < > struct type_master < t_paint > : tidy_string < t_paint >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -282,35 +171,14 @@ template < > struct type_master < t_paint > : tidy_string < t_paint >
         tidy_string < t_paint > :: status (s_invalid); } };
 
 template < > struct type_master < t_repeatcount > : type_or_string < t_repeatcount, t_0_more, sz_indefinite > { };
-
-//template < > struct type_master < t_repeatcount > : tidy_string < t_repeatcount >
-//{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-//    {   tidy_string < t_repeatcount > :: set_value (nits, v, s);
-//        if (tidy_string < t_repeatcount > :: good ())
-//        {   ::std::string ss (tidy_string < t_repeatcount > :: get_string ());
-//            if (compare_complain (nits, v, ss, "indefinite")) return;
-//            if (test_value < t_real > (nits, v, ss)) return; }
-//        nits.pick (nit_dur, ed_svg_1_1, "19.2.8 Attributes to control the timing of the animation", es_error, ec_type, "a duration, 'media' or 'indefinite' is expected");
-//        tidy_string < t_repeatcount > :: status (s_invalid); } };
-
 template < > struct type_master < t_dur_repeat > : type_or_string < t_dur_repeat, t_svg_duration, sz_indefinite > { };
-
-//template < > struct type_master < t_dur_repeat > : tidy_string < t_dur_repeat >
-//{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-//    {   tidy_string < t_dur_repeat > :: set_value (nits, v, s);
-//        if (tidy_string < t_dur_repeat > :: good ())
-//        {   ::std::string ss (tidy_string < t_dur_repeat > :: get_string ());
-//            if (compare_complain (nits, v, "indefinite", ss)) return;
-//            if (test_value < t_svg_duration > (nits, v, ss)) return; }
-//        nits.pick (nit_dur, ed_svg_1_1, "19.2.8 Attributes to control the timing of the animation", es_error, ec_type, "a duration, 'media' or 'indefinite' is expected");
-//        tidy_string < t_dur_repeat > :: status (s_invalid); } };
 
 template < > struct type_master < t_svg_time > : type_master < t_real >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         ::std::string t (ss);
-        if (ends_with_letters (ss, "ms") && (ss.length () > 2)) t = ss.substr (0, ss.length () - 2);
-        else if (ends_with_letters (ss, "s") && (ss.length () > 1)) t = ss.substr (0, ss.length () - 1);
+        if (ends_with_letters (v, ss, "ms") && (ss.length () > 2)) t = ss.substr (0, ss.length () - 2);
+        else if (ends_with_letters (v, ss, "s") && (ss.length () > 1)) t = ss.substr (0, ss.length () - 1);
         if (t.find_first_not_of (REAL) != ::std::string::npos)
             nits.pick (nit_bad_frequency, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " must be a number, optionally followed by 'ms' or 's'");
         else
@@ -458,47 +326,27 @@ template < > struct type_master < t_glyphnames > : public string_vector < t_glyp
 template < > struct type_master < t_svg_transform > : type_or_string < t_svg_transform, t_transform, sz_none > { };
 template < > struct type_master < t_svg_values > : type_at_least_one < t_svg_values, sz_semicolon, t_real > { };
 
-//template < > struct type_master < t_svg_values > : tidy_string < t_svg_values >
-//{   vdbl_t value_;
-//    void swap (type_master < t_svg_values >& t)
-//    {   value_.swap (t.value_);
-//        tidy_string < t_svg_values >::swap (t); }
-//    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-//    {   tidy_string < t_svg_values > :: set_value (nits, v, s);
-//        if (tidy_string < t_svg_values > :: good ())
-//        {   vstr_t ss (split_by_charset (tidy_string < t_svg_values > :: get_string (), ";"));
-//            if (ss.size () > 0)
-//            {   bool ok = true;
-//                for (auto sss : ss)
-//                    if (! test_value < t_real > (nits, v, sss))
-//                        ok = false;
-//                if (ok) return; } }
-//        nits.pick (nit_svg_values, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "a semi-colon separated series of numbers expected");
-//        tidy_string < t_svg_values > :: status (s_invalid); }
-//    void reset ()
-//    {   value_.clear ();
-//        tidy_string < t_svg_values > :: reset (); }
-//    static ::std::string default_value () { return ""; }
-//    ::std::string get () const { return get_string (); } };
-
 template < > struct type_master < t_svg_viewboxrect > : type_exactly_n < t_svg_viewboxrect, sz_commaspace, t_real, 4 > { };
 
 template < > struct type_master < t_svg_viewbox > : tidy_string < t_svg_viewbox >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         tidy_string < t_svg_viewbox > :: set_value (nits, v, ss);
-        if (((v.svg_version () == sv_1_2_tiny) || (v.svg_version () == sv_1_2_full)) && compare_complain (nits, v, QNONE, ss))
+        if (v.is_svg_12 () && compare_complain (nits, v, QNONE, ss))
             type_master < t_svg_viewbox > :: status (s_good);
         else
         {   type_master < t_svg_viewboxrect > vb;
             vb.set_value (nits, v, ss);
             if (vb.good ())
-            {   double width = lexical < double > :: cast (vb.at (2));
-                double height = lexical < double > :: cast (vb.at (3));
-                if ((width >= 0.0) && (height >= 0.0)) return;
-                if (width < 0.0) nits.pick (nit_viewbox, ed_svg_1_0, "7.7 The viewBox attribute", es_error, ec_attribute, ss, "a VIEWBOX width cannot be negative");
-                if (height < 0.0) nits.pick (nit_viewbox, ed_svg_1_0, "7.7 The viewBox attribute", es_error, ec_attribute, ss, "a VIEWBOX height cannot be negative"); }
-            else nits.pick (nit_bad_2pt, es_error, ec_type, "'", QNONE "' or four numbers (x y width height) expected");
+                if (vb.size () != 4)
+                    nits.pick (nit_viewbox, ed_svg_1_0, "7.7 The viewBox attribute", es_error, ec_type, ss, "a VIEWBOX expects four numbers: x, y, width and height (or '", QNONE "')");
+                else
+                {   double width = lexical < double > :: cast (vb.at (2));
+                    double height = lexical < double > :: cast (vb.at (3));
+                    if ((width >= 0.0) && (height >= 0.0)) return;
+                    if (width < 0.0) nits.pick (nit_viewbox, ed_svg_1_0, "7.7 The viewBox attribute", es_error, ec_type, ss, "a VIEWBOX width cannot be negative");
+                    if (height < 0.0) nits.pick (nit_viewbox, ed_svg_1_0, "7.7 The viewBox attribute", es_error, ec_type, ss, "a VIEWBOX height cannot be negative"); }
+            else nits.pick (nit_viewbox, es_error, ec_type, "'", QNONE "' or four numbers (x y width height) expected");
             tidy_string < t_svg_viewbox > :: status (s_invalid); } } };
 
 template < > struct type_master < t_rotate_anim > : type_or_either_string < t_rotate_anim, t_angle, sz_auto, sz_autoreverse > { };

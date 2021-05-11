@@ -3,8 +3,8 @@
 PASS ../toast/microdata/schema-defg/datacatalogue.html
 23 use_double_quote_code
 25 use_double_quote_code
-65 missing_close svg_rdf bad_datetime bad_datetime nahtch
-66 svg_rdf
+65 missing_close invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime nahtch
+66 invalid_attribute_version wrong_version svg_rdf
 67 inserted_missing_closure
 
 PASS ../toast/microdata/schema-defg/definedterm.html
@@ -23,9 +23,9 @@ PASS ../toast/microdata/schema-defg/deliverychargespecification.html
 
 PASS ../toast/microdata/schema-defg/depositaccount.html
 0 charset_mismatch charset_used charset_invalid
-19 svg_rdf svg_rdf sunk sunk
-26 svg_rdf svg_rdf sunk sunk
-33 svg_rdf sunk sunk svg_rdf sunk sunk
+19 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk
+26 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk
+33 invalid_attribute_version wrong_version svg_rdf sunk sunk invalid_attribute_version wrong_version svg_rdf sunk sunk
 
 PASS ../toast/microdata/schema-defg/drugclass.html
 23 missing_close
@@ -40,7 +40,7 @@ PASS ../toast/microdata/schema-defg/drycleaningorlaundry.html
 
 PASS ../toast/microdata/schema-defg/eooc.html
 0 charset_mismatch charset_used charset_invalid
-58 svg_rdf empty_link empty_link
+58 invalid_attribute_version wrong_version svg_rdf empty_link empty_link
 
 PASS ../toast/microdata/schema-defg/event.html
 0 charset_mismatch charset_used charset_invalid
@@ -60,56 +60,56 @@ PASS ../toast/microdata/schema-defg/event.html
 88 url_not_found
 89 url_not_found url_not_found url_not_found url_not_found url_not_found url_not_found
 92 unrecognised_value
-93 unrecognised_value svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+93 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 96 unrecognised_value
 99 unrecognised_value
 101 unrecognised_value
 106 unrecognised_value
-108 unrecognised_value svg_rdf
+108 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 113 unrecognised_value
-114 unrecognised_value svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+114 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 117 unrecognised_value
 121 unrecognised_value
 123 unrecognised_value
 128 unrecognised_value
-130 unrecognised_value svg_rdf
+130 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 136 unrecognised_value
-137 unrecognised_value svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+137 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 140 unrecognised_value
-143 svg_rdf bad_datetime bad_datetime
+143 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 144 unrecognised_value
 146 unrecognised_value
 151 unrecognised_value
-155 unrecognised_value svg_rdf
+155 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 160 unrecognised_value
-161 unrecognised_value svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+161 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 164 unrecognised_value
 167 unrecognised_value
 169 unrecognised_value
 174 unrecognised_value
-177 unrecognised_value svg_rdf
+177 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 189 no_such_folder url_not_found
-196 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+196 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 221 no_such_folder url_not_found
 225 no_such_folder url_not_found
 230 no_such_folder url_not_found
 232 no_such_folder url_not_found
 240 use_quote_code
 247 no_such_folder url_not_found
-249 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+249 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 260 unrecognised_value
 263 requires_itemscope
-265 unrecognised_value svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+265 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 266 unrecognised_value
-271 svg_rdf bad_datetime bad_datetime
-272 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
-273 svg_rdf svg_rdf
-277 svg_rdf bad_datetime bad_datetime
-278 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
-279 svg_rdf svg_rdf
-283 svg_rdf bad_datetime bad_datetime
-284 svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
-285 svg_rdf svg_rdf
+271 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+272 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+273 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf
+277 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+278 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+279 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf
+283 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+284 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+285 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf
 297 requires_itemscope
 305 use_quote_code
 309 use_quote_code
@@ -133,15 +133,15 @@ PASS ../toast/microdata/schema-defg/examples.html
 PASS ../toast/microdata/schema-defg/exchangeratespecification.html
 0 charset_mismatch charset_used charset_invalid
 9 inserted_missing_closure only_once
-20 svg_rdf
-28 svg_rdf
+20 invalid_attribute_version wrong_version svg_rdf
+28 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-defg/exhibitionevent.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/microdata/schema-defg/financialproduct.html
 0 charset_mismatch charset_used charset_invalid
-12 svg_rdf svg_rdf sunk sunk svg_rdf sunk sunk
+12 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk invalid_attribute_version wrong_version svg_rdf sunk sunk
 
 PASS ../toast/microdata/schema-defg/foodestablishment.html
 22 no_tel

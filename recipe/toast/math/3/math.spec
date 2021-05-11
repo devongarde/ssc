@@ -12,14 +12,15 @@ PASS ../toast/math/3/math2-example.html
 53 url_not_found
 55 url_not_found
 57 url_not_found
+76 svg invalid_attribute_version wrong_version
 123 impure_mn
 351 math_kids
 
 PASS ../toast/math/3/math3-example.html
 2 naughty_lang
 119 math_empty
-120 ignoring_unknown
-123 ignoring_unknown
+120 unknown_element
+123 unknown_element
 137 math_kids
 138 math_kids
 139 math_kids
@@ -98,7 +99,7 @@ PASS ../toast/math/3/math9-example.html
 329 math_kids
 344 math_kids
 349 math_kids
-358 xmlns_namespace custom unrecognised_value unrecognised_value
+358 xmlns_namespace unrecognised_namespace attribute_unrecognised unrecognised_value unrecognised_value unrecognised_attribute
 
 PASS ../toast/math/3/math10-example.html
 2 naughty_lang

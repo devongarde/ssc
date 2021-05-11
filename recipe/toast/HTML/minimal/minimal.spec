@@ -5,21 +5,21 @@ PASS ../toast/HTML/minimal/rfc1867.html
 12 rfc_1867 invalid_attribute_version wrong_version rfc_1867
 
 PASS ../toast/HTML/minimal/rfc1942.html
-10 ignoring_unknown unrecognised_attribute
-11 ignoring_unknown ignoring_unknown
-12 ignoring_unknown ignoring_unknown
-13 ignoring_unknown
-15 ignoring_unknown missing_close unrecognised_attribute unrecognised_attribute unrecognised_attribute
-16 ignoring_unknown ignoring_unknown
-17 ignoring_unknown
-18 ignoring_unknown
+10 unknown_element
+11 unknown_element unknown_element
+12 unknown_element unknown_element
+13 unknown_element
+15 unknown_element missing_close
+16 unknown_element unknown_element
+17 unknown_element
+18 unknown_element
 20 inserted_missing_closure
 
 PASS ../toast/HTML/minimal/rfc1980.html
 10 attribute_unrecognised unrecognised_attribute
-12 ignoring_unknown missing_close attribute_barred
-13 ignoring_unknown attribute_barred unrecognised_attribute attribute_barred attribute_barred
-14 ignoring_unknown
+12 unknown_element missing_close
+13 unknown_element
+14 unknown_element
 16 inserted_missing_closure
 
 PASS ../toast/HTML/minimal/rfc2070.html

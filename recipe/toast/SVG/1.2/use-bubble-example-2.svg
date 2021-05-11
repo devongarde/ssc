@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:ev="http://www.w3.org/2001/xml-events"
+version="1.2" baseProfile="tiny">
+<defs>
+<rect id="rect" width="20" height="20" fill="red">
+<set attributeName="fill" begin="mouseover" end="mouseout" to="blue"/>
+</rect>
+<g id="use">
+<use fill="red" xlink:href="#rect"/>
+<rect pointer-events="none" width="20" height="20"
+fill="none" stroke-width="8" stroke="none">
+<set attributeName="stroke" begin="use.mouseover" end="use.mouseout" to="green"/>
+</rect>
+</g>
+</defs>
+<use x="5" y="5" id="use2" fill="red" xlink:href="#use"/>
+<rect pointer-events="none" x="5" y="5" width="20" height="20" fill="none" stroke-width="3" stroke="none">
+<set attributeName="stroke" begin="use2.mouseover" end="use2.mouseout" to="black"/>
+</rect>
+</svg>

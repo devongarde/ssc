@@ -21,6 +21,8 @@ PASS ../toast/microformats/mf2/mf2-bad.html
 52 bad_money
 57 bad_datetime
 58 bad_datetime
+63 out_of_range
+64 out_of_range
 71 bad_rating
 72 bad_rating bad_rating
 73 bad_datetime

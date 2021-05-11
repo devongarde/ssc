@@ -230,6 +230,7 @@ void element::examine_svg ()
     switch (node_.version ().svg_version ())
     {   case sv_1_1 :
         case sv_2_0 :
+        case sv_2_1 :
             if (! ancestor) if (a_.known (a_x) || a_.known (a_y))
                 pick (nit_svg_xy, ed_svg_1_1, "5.1.2 The 'svg' element", es_warning, ec_element, "X and Y are ignored on outermost <SVG> elements");
             break;
@@ -248,7 +249,7 @@ void element::examine_svg_shape ()
 void element::examine_switch ()
 {   if (! has_child ())
     {   pick (nit_switch, es_comment, ec_element, "bit of a useless <SWITCH>, that"); return; }
-    if ((node_.version ().svg_version () != sv_1_2_tiny) && (node_.version ().svg_version () != sv_1_2_full)) return;
+    if (node_.version ().is_svg_12 ()) return;
     uint64_t cat = (elem :: categories (parent_ -> tag ()) & EF_SVG_CATMASK);
     bool nofaux = false;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())

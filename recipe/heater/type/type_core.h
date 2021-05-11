@@ -131,7 +131,7 @@ template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct num
     int get_int () const { return static_cast < int > (value_); }
     bool has_value (const NUMERIC_TYPE& n) const { return type_base < NUMERIC_TYPE, TYPE > :: good () && (value_ == n); }
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
-    {   bool b;
+    {   bool b = false;
         value_ = lexical < NUMERIC_TYPE > :: cast2 (trim_the_lot_off (s), b);
         if (b) type_base < NUMERIC_TYPE, TYPE > :: status (s_good);
         else

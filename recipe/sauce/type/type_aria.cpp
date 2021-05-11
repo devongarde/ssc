@@ -571,11 +571,3 @@ bool is_default_role (const html_version& v, const e_element elem, const e_aria_
 
 bool is_permitted_role (const html_version& v, const e_element elem, const e_aria_role role)
 {   return is_x_role (permitted_roles, v, elem, role); }
-
-//uint64_t get_aria_flags (const html_version& v, const e_element elem, const e_aria_role role)
-//{   uint64_t res = 0;
-//    if (is_role_lookup (default_roles, v, elem, role, &res)) return res;
-//    if (is_role_lookup (permitted_roles, v, elem, role, &res)) return res;
-//    if (is_role_lookup (default_roles, v, elem, role_any, &res)) return res;
-//    if (is_role_lookup (permitted_roles, v, elem, role_any, &res)) return res;
-//    return 0; }

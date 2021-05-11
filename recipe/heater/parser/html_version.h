@@ -196,10 +196,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_MAR21  HTML_2021, (HTML_MAR + 15)
 #define HTML_APR21  HTML_2021, HTML_APR
 
+#define HTML_SVG20_MAJOR  HTML_2018
+#define HTML_SVG20_MINOR  HTML_OCT
+
 #define HTML_SVG10      XHTML_1_0
 #define HTML_SVG11      XHTML_1_1
 #define HTML_SVG12      XHTML_1_1
-#define HTML_SVG20      HTML_OCT18
+#define HTML_SVG20      HTML_SVG20_MAJOR, HTML_SVG20_MINOR
+#define HTML_SVG21      HTML_APR21
 
 #define HTML_MATH1      HTML_4_0
 #define HTML_MATH2      XHTML_1_0
@@ -246,9 +250,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HL_CSS_345      ( HL_CSS3 | HL_CSS_45 )
 #define HL_CSS_ALL      ( HL_CSS1 | HL_CSS2 | HL_CSS_345 )
 
-#define HV_CSP_1        0x0000000000001000
-#define HV_CSP_2        0x0000000000002000
-#define HV_CSP_3        0x0000000000004000
+#define HV_CSP_1        0x0000000000020000
+#define HV_CSP_2        0x0000000000040000
+#define HV_CSP_3        0x0000000000080000
 
 #define HV_WHATWG       0x0000000000100000
 #define HV_W3           0x0000000000200000
@@ -331,35 +335,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_SVG_12_TINY  0x0000000000000040
 #define HE_SVG_12_FULL  0x0000000000000080
 #define HE_SVG_20       0x0000000000000100
-#define HE_XLINK_1_0    0x0000000000000200
-#define HE_XLINK_1_1    0x0000000000000400
+#define HE_SVG_21       0x0000000000000200
+#define HE_XLINK_1_0    0x0000000000000400
+#define HE_XLINK_1_1    0x0000000000000800
 #define HE_RDF_1_0      0x0000000000001000
 #define HE_RDF_1_1      0x0000000000002000
 #define HE_MICRODATA    0x0000000000010000
 #define HE_SVG_X1       0x0000000000100000
 #define HE_SVG_X2       0x0000000000200000
 #define HE_SVG_OLD_H    0x0000000000400000
-#define HE_NOT_SVG      0x0000000000800000
+
 #define HE_M2_DEPRECAT  0x0000000001000000
 #define HE_M3_DEPRECAT  0x0000000002000000
 #define HE_M4_DEPRECAT  0x0000000004000000
 #define HE_M3_NONSTAND  0x0000000010000000
 
-#define MATH_MASK       ( HE_MATH_1 | HE_MATH_2 | HE_MATH_3 | HE_MATH_4 )
-#define MATH_1_2        ( HE_MATH_1 | HE_MATH_2 )
-#define MATH_1_2_3_4    ( HE_MATH_1 | HE_MATH_2 | HE_MATH_3 | HE_MATH_4 )
-#define MATH_2_3_4      ( HE_MATH_2 | HE_MATH_3 | HE_MATH_4 )
-#define MATH_3_4        ( HE_MATH_3 | HE_MATH_4 )
+#define HE_MATH_1_2     ( HE_MATH_1 | HE_MATH_2 )
+#define HE_MATH_2_3_4   ( HE_MATH_2 | HE_MATH_3 | HE_MATH_4 )
+#define HE_MATH_3_4     ( HE_MATH_3 | HE_MATH_4 )
+#define HE_MATH         ( HE_MATH_1_2 | HE_MATH_3_4 )
+#define MATH_MASK       HE_MATH
 #define HE_SVG_12       ( HE_SVG_12_TINY | HE_SVG_12_FULL )
 #define HE_SVG_10_11    ( HE_SVG_10 | HE_SVG_11 )
+#define HE_SVG_10_12    ( HE_SVG_10 | HE_SVG_12 )
 #define HE_SVG_10_20    ( HE_SVG_10 | HE_SVG_20 )
+#define HE_SVG_10_2     ( HE_SVG_10_20 | HE_SVG_21 )
 #define HE_SVG_10_11_20 ( HE_SVG_10_11 | HE_SVG_20 )
+#define HE_SVG_10_11_2  ( HE_SVG_10_11_20 | HE_SVG_21 )
 #define HE_SVG_11_12    ( HE_SVG_11 | HE_SVG_12 )
 #define HE_SVG_11_20    ( HE_SVG_11 | HE_SVG_20 )
+#define HE_SVG_11_2     ( HE_SVG_11_20 | HE_SVG_21 )
 #define HE_SVG_11_12_20 ( HE_SVG_11_20 | HE_SVG_12 )
+#define HE_SVG_11_12_2  ( HE_SVG_11_2 | HE_SVG_12 )
 #define HE_SVG_12_20    ( HE_SVG_12 | HE_SVG_20 )
+#define HE_SVG_12_2     ( HE_SVG_12_20 | HE_SVG_21 )
 #define HE_SVG_1        ( HE_SVG_10_11 | HE_SVG_12 )
-#define HE_SVG          ( HE_SVG_1 | HE_SVG_20 )
+#define HE_SVG_2        ( HE_SVG_20 | HE_SVG_21 )
+#define HE_SVG          ( HE_SVG_1 | HE_SVG_2 )
 #define SVG_MASK        HE_SVG
 #define HE_SVG_X_MASK   ( HE_SVG_X1 | HE_SVG_X2 )
 #define XLINK_MASK      ( HE_XLINK_1_0 | HE_XLINK_1_1 )
@@ -381,10 +393,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_OPERA        0x0000004000000000
 #define HE_SAFARI       0x0000008000000000
 
+#define HE_NOT_SVG_10   0x0000010000000000
+#define HE_NOT_SVG_11   0x0000020000000000
+#define HE_NOT_SVG_12   0x0000040000000000
+#define HE_NOT_SVG_20   0x0000080000000000
+#define HE_NOT_SVG_21   0x0000100000000000
+
+#define HE_NOT_SVG_10_11    ( HE_NOT_SVG_10 | HE_NOT_SVG_11 )
+#define HE_NOT_SVG_10_12    ( HE_NOT_SVG_10 | HE_NOT_SVG_12 )
+#define HE_NOT_SVG_1        ( HE_NOT_SVG_10_11 | HE_NOT_SVG_12 )
+#define HE_NOT_SVG_2        ( HE_NOT_SVG_20 | HE_NOT_SVG_21 )
+#define HE_NOT_SVG_10_11_20 ( HE_NOT_SVG_10_11 | HE_NOT_SVG_2 )
+#define HE_NOT_SVG_10_12_20 ( HE_NOT_SVG_10_12 | HE_NOT_SVG_2 )
+#define HE_NOT_SVG          ( HE_NOT_SVG_1 | HE_NOT_SVG_2 )
+
 class html_version : public version
 {   uint64_t ext_ = NOFLAGS;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
     void init (const unsigned char mjr);
+    bool test_extension () const;
 public:
     html_version () = default;
     explicit html_version (const unsigned char mjr) { init (mjr); }
@@ -448,11 +475,21 @@ public:
     int math () const { return static_cast < int > ((ext () & MATH_MASK) >> MATH_SHIFT); }
     int rdf () const { return static_cast < int > ((ext () & RDF_MASK) >> RDF_SHIFT); }
     int svg () const { return static_cast < int > ((ext () & SVG_MASK) >> SVG_SHIFT); }
-    bool not_svg () const { return (ext () & HE_NOT_SVG) != 0; }
+    bool is_svg_1 () const { return (ext () & HE_SVG_1) != 0; }
+    bool is_svg_12 () const { return (ext () & HE_SVG_12) != 0; }
+    bool is_svg_2 () const { return (ext () & HE_SVG_2) != 0; }
+    bool not_svg () const { return (ext () & HE_NOT_SVG) == HE_NOT_SVG; }
+    bool not_any_svg () const { return (ext () & HE_NOT_SVG) != 0; }
+    bool not_svg_10 () const { return (ext () & HE_NOT_SVG_10) != 0; }
+    bool not_svg_11 () const { return (ext () & HE_NOT_SVG_11) != 0; }
+    bool not_svg_12 () const { return (ext () & HE_NOT_SVG_12) != 0; }
+    bool not_svg_20 () const { return (ext () & HE_NOT_SVG_20) != 0; }
+    bool not_svg_21 () const { return (ext () & HE_NOT_SVG_21) != 0; }
     e_svg_version svg_version () const;
     void svg_version (const e_svg_version v);
     e_math_version math_version () const;
     void math_version (const e_math_version v);
+    bool requires_extension () const;
     bool is_plain_html () const;
     int xlink () const { return static_cast < int > ((ext () & XLINK_MASK) >> XLINK_SHIFT); }
     bool check_math_svg (nitpick& nits, const html_version& a, const ::std::string& x) const;
@@ -536,6 +573,7 @@ const html_version xhtml_svg_1_1 (HTML_SVG11, HV_XHTML, HE_SVG_11);
 const html_version xhtml_svg_1_2_tiny (HTML_SVG12, HV_XHTML, HE_SVG_12_TINY);
 const html_version xhtml_svg_1_2_full (HTML_SVG12, HV_XHTML, HE_SVG_12_FULL);
 const html_version html_svg_2_0 (HTML_SVG20, 0, HE_SVG_20);
+const html_version html_svg_2_1 (HTML_SVG21, 0, HE_SVG_21);
 
 const html_version html_jan05 (HTML_JAN05, HV_WHATWG, 0);
 const html_version html_jul05 (HTML_JUL05, HV_WHATWG, 0);
@@ -560,18 +598,18 @@ const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MATH_3 | HE_SVG_11);
 const html_version html_jul17 (HTML_JUL17, HV_WHATWG, HE_MATH_3 | HE_SVG_11);
 const html_version html_jan18 (HTML_JAN18, HV_WHATWG, HE_MATH_3 | HE_SVG_11);
 const html_version html_jul18 (HTML_OCT18, HV_WHATWG, HE_MATH_3 | HE_SVG_11);
-const html_version html_oct18 (HTML_JUL18, HV_WHATWG, HE_MATH_3 | HE_SVG_20);
-const html_version html_jan19 (HTML_JAN19, HV_WHATWG, HE_MATH_3 | HE_SVG_20);
-const html_version html_jul19 (HTML_JUL19, HV_WHATWG, HE_MATH_3 | HE_SVG_20);
-const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MATH_3 | HE_SVG_20);
-const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MATH_3 | HE_SVG_20);
-const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MATH_3 | HE_SVG_20);
-const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MATH_4 | HE_SVG_20);
+const html_version html_oct18 (HTML_JUL18, HV_WHATWG, HE_MATH_3 | HE_SVG_2);
+const html_version html_jan19 (HTML_JAN19, HV_WHATWG, HE_MATH_3 | HE_SVG_2);
+const html_version html_jul19 (HTML_JUL19, HV_WHATWG, HE_MATH_3 | HE_SVG_2);
+const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MATH_3 | HE_SVG_2);
+const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MATH_3 | HE_SVG_2);
+const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MATH_3 | HE_SVG_2);
+const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MATH_4 | HE_SVG_2);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_11);
 const html_version html_5_3 (HTML_5_3, HV_W3, HE_MATH_3 | HE_SVG_11);
-const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MATH_4 | HE_SVG_20);
+const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MATH_4 | HE_SVG_2);
 const html_version html_default (html_5_3);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
@@ -583,6 +621,7 @@ const char *default_charset (const html_version& v);
 const char *alternative_charset (const html_version& v);
 html_version get_min_version (const e_svg_version e);
 html_version get_min_version (const e_math_version e);
+bool overlap (const html_version& lhs_from, const html_version& lhs_to, const html_version& rhs_from, const html_version& rhs_to);
 
 template < > inline bool does_apply < html_version > (const html_version& v, const html_version& from, const html_version& to)
 {   return does_html_apply (v, from, to); }

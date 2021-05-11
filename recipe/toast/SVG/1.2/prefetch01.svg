@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" version="1.2"
+xmlns="http://www.w3.org/2000/svg" baseProfile="tiny"
+xmlns:xlink="http://www.w3.org/1999/xlink">
+<desc>
+Prefetch the large images before starting the animation
+if possible.
+</desc>
+<defs>
+<prefetch xlink:href="http://www.example.com/images/huge1.png"/>
+<prefetch xlink:href="http://www.example.com/images/huge2.png"/>
+<prefetch xlink:href="http://www.example.com/images/huge3.png"/>
+</defs>
+<image x="0" y="0" width="400" height="300"
+xlink:href="http://www.example.com/images/huge1.png"
+display="none">
+<set attributeName="display" to="inline" begin="10s"/>
+<animate attributeName="xlink:href" values="
+http://www.example.com/images/huge1.png;
+http://www.example.com/images/huge2.png;
+http://www.example.com/images/huge3.png"
+begin="15s" dur="30s"/>
+</image>
+</svg>

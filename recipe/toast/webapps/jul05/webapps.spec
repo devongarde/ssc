@@ -62,7 +62,7 @@ PASS ../toast/webapps/jul05/example-2.html
 5 url_not_found style_not_css
 6 url_not_found
 12 url_not_found
-13 ignoring_unknown missing_close attribute_barred
+13 unknown_element missing_close
 15 inserted_missing_closure
 
 PASS ../toast/webapps/jul05/header.html

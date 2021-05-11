@@ -21,6 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 
+bool within_integer_limits (nitpick& nits, const html_version& v, const int val);
+bool within_unsigned_limits (nitpick& nits, const html_version& v, const int val);
+bool within_real_limits (nitpick& nits, const html_version& , const double val);
+
 template < > struct type_master < t_base > : public numeric_value < t_base, unsigned int >
 {   typedef true_type has_int_type;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -74,24 +78,30 @@ template < > struct type_master < t_integer > : numeric_value < t_integer, int >
 {   typedef true_type has_int_type;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_integer, int > :: set_value (nits, v, s);
-        if (numeric_value < t_integer, int > :: invalid ())
-            nits.pick (nit_not_an_integer, es_error, ec_type, quote (s), " is not an integer"); } };
+        if (! numeric_value < t_integer, int > :: good ())
+            nits.pick (nit_not_an_integer, es_error, ec_type, quote (s), " is no integer");
+        else if (within_integer_limits (nits, v, numeric_value < t_integer, int > :: get ())) return;
+        numeric_value < t_integer, int > :: status (s_invalid); } };
 
-template < > struct type_master < t_negative > : numeric_value < t_negative, int >
+template < > struct type_master < t_negative > : type_master < t_integer >
 {   typedef true_type has_int_type;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   numeric_value < t_negative, int > :: set_value (nits, v, s);
-        if (! numeric_value < t_negative, int > :: good () || (value_ > 0))
-        {   nits.pick (nit_positive, es_error, ec_type, quote (s), " is neither zero nor a negative integer");
-            numeric_value < t_negative, int > :: status (s_invalid); } } };
+    {   type_master < t_integer > :: set_value (nits, v, s);
+        if (type_master < t_integer > :: good ())
+            if (value_ <= 0) return;
+            else
+            {   nits.pick (nit_positive, es_error, ec_type, quote (s), " must be zero or negative");
+                type_master < t_integer > :: status (s_invalid); } } };
 
-template < > struct type_master < t_positive > : numeric_value < t_positive, int >
+template < > struct type_master < t_positive > : type_master < t_integer >
 {   typedef true_type has_int_type;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   numeric_value < t_positive, int > :: set_value (nits, v, s);
-        if (! numeric_value < t_positive, int > :: good () || (value_ <= 0))
-        {   nits.pick (nit_positive, es_error, ec_type, quote (s), " is not an integer greater than zero");
-            numeric_value < t_positive, int > :: status (s_invalid); } } };
+    {   type_master < t_integer > :: set_value (nits, v, s);
+        if (type_master < t_integer > :: good ())
+            if (value_ > 0) return;
+            else
+            {   nits.pick (nit_positive, es_error, ec_type, quote (s), " must be greater than zero");
+                type_master < t_integer > :: status (s_invalid); } } };
 
 template < > struct type_master < t_real > : type_base < double, t_real >
 {   double value_ = 0.0;
@@ -102,13 +112,14 @@ template < > struct type_master < t_real > : type_base < double, t_real >
     ::std::string get_string () const { return ::boost::lexical_cast < ::std::string > (value_); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
-    void set_value (nitpick& nits, const html_version& , const ::std::string& s)
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   value_ = lexical < double > :: cast (trim_the_lot_off (s), 0.0);
         if ((s.find_first_not_of (REAL) == ::std::string::npos) && (lexical < double > :: test (s)))
-            type_base < double, t_real > :: status (s_good);
-        else
-        {   nits.pick (nit_sunk, ed_50, "2.4.4.3 Floating-point numbers", es_error, ec_type, quote (s), " is not a floating point number");
-            type_base < double, t_real > :: status (s_invalid); } }
+        {   if (within_real_limits (nits, v, value_))
+            {   type_base < double, t_real > :: status (s_good);
+                return; } }
+        else nits.pick (nit_sunk, ed_50, "2.4.4.3 Floating-point numbers", es_error, ec_type, quote (s), " is not a floating point number");
+        type_base < double, t_real > :: status (s_invalid); }
     static double default_value () { return 0.0; }
     bool has_value (const double& b) const { return good () && (value_ == b); }
     int get_int () const { return static_cast < int > (value_ + 0.5); }
@@ -119,45 +130,44 @@ template < > struct type_master < t_unsigned > : public numeric_value < t_unsign
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_unsigned, unsigned int > :: set_value (nits, v, s);
         if (! numeric_value < t_unsigned, unsigned int > :: good ())
-        {   nits.pick (nit_unsigned, es_error, ec_type, quote (s), " is not an unsigned integer");
-            numeric_value < t_unsigned, unsigned int > :: status (s_invalid); } } };
+            nits.pick (nit_unsigned, es_error, ec_type, quote (s), " is no unsigned integer");
+        else if (within_unsigned_limits (nits, v, numeric_value < t_unsigned, unsigned int > :: get ())) return;
+        numeric_value < t_unsigned, unsigned int > :: status (s_invalid); } };
 
-template < > struct type_master < t_un_ex > : public numeric_value < t_un_ex, unsigned int >
+template < > struct type_master < t_un_ex > : public type_master < t_unsigned >
 {   typedef true_type has_int_type;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   if (s.empty ()) numeric_value < t_un_ex, unsigned int > :: status (s_good);
+    {   if (s.empty ()) type_master < t_unsigned > :: status (s_good);
         else
-        {   numeric_value < t_un_ex, unsigned int > :: set_value (nits, v, s);
-            if (! numeric_value < t_un_ex, unsigned int > :: good ())
-            {   nits.pick (nit_unsigned, es_error, ec_type, quote (s), " is not an unsigned integer, or completely omitted");
-                numeric_value < t_un_ex, unsigned int > :: status (s_invalid); } } } };
+        {   type_master < t_unsigned > :: set_value (nits, v, s);
+            if (! type_master < t_unsigned > :: good ())
+            {   nits.pick (nit_unsigned, es_error, ec_type, quote (s), " is neither an unsigned integer nor completely omitted");
+                type_master < t_unsigned > :: status (s_invalid); } } } };
 
-template < > struct type_master < t_1_to_7 > : public numeric_value < t_1_to_7, unsigned int >
+template < > struct type_master < t_1_to_7 > : public type_master < t_unsigned >
 {   typedef true_type has_int_type;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   numeric_value < t_1_to_7, unsigned int > :: set_value (nits, v, s);
-        if (! numeric_value < t_1_to_7, unsigned int > :: good () || (value_ < 1) || (value_ > 7))
+    {   type_master < t_unsigned > :: set_value (nits, v, s);
+        if (! type_master < t_unsigned > :: good () || (value_ < 1) || (value_ > 7))
         {   nits.pick (nit_1_to_7, es_error, ec_type, quote (s), " does not lie between 1 and 7 (inclusive)");
-            numeric_value < t_1_to_7, unsigned int > :: status (s_invalid); } } };
+            type_master < t_unsigned > :: status (s_invalid); } } };
 
-template < > struct type_master < t_plus_1_7 > : public numeric_value < t_plus_1_7, unsigned int >
+template < > struct type_master < t_plus_1_7 > : public type_master < t_unsigned >
 {   typedef true_type has_int_type;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string arg (trim_the_lot_off (s));
-        numeric_value < t_plus_1_7, unsigned int > :: set_value (nits, v, arg);
-        if (numeric_value < t_plus_1_7, unsigned int > :: good ())
-        {   unsigned n = 0;
-            numeric_value < t_plus_1_7, unsigned int > :: get_number (n);
-            if ((n > 0) && (n <= 99)) return;
-            nits.pick (nit_plus_1_7, es_error, ec_type, quote (s), " does not lie between 1 and 99 (inclusive)");
-            numeric_value < t_plus_1_7, unsigned int > :: status (s_invalid); } } };
+        type_master < t_unsigned > :: set_value (nits, v, arg);
+        if (! type_master < t_unsigned > :: good () || (value_ < 1) || (value_ > 99))
+        if (type_master < t_unsigned > :: good ())
+        {   nits.pick (nit_plus_1_7, es_error, ec_type, quote (s), " does not lie between 1 and 99 (inclusive)");
+            type_master < t_unsigned > :: status (s_invalid); } } };
 
 template < > struct type_master < t_zero_to_one > : type_master < t_real >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_real > :: set_value (nits, v, s);
         if (type_master < t_real > :: good ())
         {   if ((type_master < t_real > :: value_ >= 0.0) && (type_master < t_real > :: value_ <= 1.0)) return;
-            nits.pick (nit_zero_to_one, es_error, ec_type, quote (type_master < t_real > :: get_string ()), ": a value between 0 and 1 (inclusive) expected");
+            nits.pick (nit_zero_to_one, es_error, ec_type, quote (type_master < t_real > :: get_string ()), " is not between 0.0 and 1.0 (inclusive)");
             type_master < t_real > :: status (s_invalid); } } };
 
 template < int N > struct n_or_more : type_master < t_real >
@@ -171,5 +181,6 @@ template < int N > struct n_or_more : type_master < t_real >
 template < > struct type_master < t_0_more > : n_or_more < 0 > { };
 template < > struct type_master < t_1_more > : n_or_more < 1 > { };
 template < > struct type_master < t_real_i > : type_or_string < t_real_i, t_real, sz_inherit > { };
+template < > struct type_master < t_real_ai > : type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit > { };
 template < > struct type_master < t_reals > : type_at_least_one < t_reals, sz_commaspace, t_real > { };
 template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > { };

@@ -74,7 +74,8 @@ bool parse_xml (nitpick& nits, html_version& version, const ::std::string::const
                 version.set_flags (HV_XHTML);
                 nits.pick (nit_xhtml_5_0, es_info, ec_parser, "XML found, inferring XHTML 5");
                 break; } }
-    args.parse (nits, version, s, e, line, elem (elem_undefined));
+    ns_ptr nss;
+    args.parse (nits, version, nss, s, e, line, elem (elem_undefined));
     for (auto a : args.get_attributes ())
         if (a.has_key () && a.has_value ())
         {   ::std::string value (::boost::to_lower_copy (trim_the_lot_off (a.get_string ())));

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.2" baseProfile="tiny"
+width="10cm" height="10cm" viewBox="0 0 100 30">
+<desc>
+The equivalent rendering tree of example 05_13 once the
+'use' element's shadow tree has been created.
+</desc>
+<!-- 'defs' section left out -->
+<rect x=".1" y=".1" width="99.8" height="29.8"
+fill="none" stroke="blue" stroke-width=".2" />
+<!-- begin shadow tree content that the <use> element in the original
+file would generate -->
+<g transform="translate(20,10)">
+<rect width="60" height="10"/>
+</g>
+<!-- end of shadow tree content -->
+</svg>

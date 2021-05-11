@@ -75,10 +75,10 @@ typedef enum
         a_defaultaction, a_defer, a_definitionurl, a_denomalign, a_depth, a_descent, a_dh, a_diffuseconstant, a_dingbat, a_dir, a_direction, a_dirname,
         a_disabled, a_disablepictureinpicture, a_disableremoteplayback, a_display, a_display_align, a_displaystyle, a_divisor, a_dominant_baseline,
         a_download, a_dp, a_draggable, a_dropzone, a_dur, a_duration, a_dw, a_dx, a_dy,
-    a_edge, a_edgemode, a_edit, a_editable, a_effect, a_elevation, a_enablebackground, a_encoding, a_enctype, a_end, a_enterkeyhint, a_equalcolumns,
+    a_edge, a_edgemode, a_edit, a_editable, a_effect, a_elevation, a_enable_background, a_encoding, a_enctype, a_end, a_enterkeyhint, a_equalcolumns,
         a_equalrows,a_error, a_event, a_eventtarget, a_evevent, a_exponent, a_exportparts, a_externalresourcesrequired,
     a_face, a_fecolourmatrix, a_fecomposite, a_fegaussianblur, a_femorphology, a_fence, a_fetile, a_fill, a_fill_opacity, a_fill_rule, a_filter,
-        a_filterres, a_filterunits, a_fitbbox, a_fitboxtoviewport, a_flatness, a_flood_colour, a_flood_opacity, a_focusable,
+        a_filterres, a_filterunits, a_flatness, a_flood_colour, a_flood_opacity, a_focusable,
         a_focushighlight, a_font, a_font_family, a_font_size, a_font_size_adjust, a_font_stretch, a_font_style, a_font_variant, a_font_weight,
         a_fontfamily, a_fontsize, a_fontstretch, a_fontstyle, a_fontvariant,  a_fontweight, a_for, a_form, a_formaction, a_format, a_formenctype,
         a_formmethod, a_formnovalidate, a_forms, a_formtarget, a_fr, a_frame, a_frameborder, a_framespacing, a_from, a_full, a_function, a_fx, a_fy,
@@ -93,13 +93,13 @@ typedef enum
     a_k, a_k1, a_k2, a_k3, a_k4, a_kernelmatrix, a_kernelunitlength, a_kerning, a_key, a_keyparams, a_keypoints, a_keysplines, a_keytimes,
         a_keytype, a_kind,
     a_label, a_labels, a_lang, a_language, a_largeop, a_layout, a_ldelim, a_left, a_leftmargin, a_leftoverhang, a_length, a_lengthadjust,
-        a_letter_spacing, a_lighting_colour, a_limitingconeangle, a_linebreak, a_linebreakmultichar, a_linebreakstyle, a_line_height,
+        a_letter_spacing, a_lighting_colour, a_limitingconeangle, a_linebreak, a_linebreakmultichar, a_linebreakstyle, a_line_height, a_line_increment,
         a_lineleading, a_linethickness, a_link, a_list, a_loading, a_local, a_location, a_longdesc, a_longdivstyle, a_loop, a_loopcount, a_loopend,
         a_loopstart, a_low, a_lquote, a_lspace,
     a_macros, a_manifest, a_marginheight, a_marginwidth, a_marker, a_marker_end, a_marker_mid, a_marker_start, a_markerheight, a_markerunits,
         a_markerwidth, a_mask, a_maskcontentunits, a_maskunits, a_math, a_mathbackground, a_mathematical, a_mathcolour, a_mathsize,
         a_mathvariant, a_max, a_maxlength, a_maxsize, a_maxwidth, a_md, a_media, a_mediacharacterencoding, a_mediacontentencodings, a_mediagroup,
-        a_mediasize, a_mediatime, a_mediummathspace, a_menu, a_method, a_methods, a_min, a_minilabelspacing, a_minlength, a_minsize, a_mode,
+        a_mediasize, a_mediatime, a_mediummathspace, a_menu, a_method, a_methods, a_min, a_minlabelspacing, a_minlength, a_minsize, a_mode,
         a_movablelimits, a_mozactionhint, a_mozbrowser, a_mslinethickness, a_multiple, a_muted,
     a_n, a_name, a_nargs, a_navdown, a_navdownleft, a_navdownright, a_navleft, a_navnext, a_navprev, a_navright,
         a_navup, a_navupleft, a_navupright, a_nextfocus, a_nodeid, a_noflow, a_nohref, a_nominallength, a_nomodule, a_noresize, a_noshade,
@@ -137,7 +137,7 @@ typedef enum
         a_syncbehaviourdefault, a_syncmaster, a_synctolerance, a_synctolerancedefault, a_system, a_systemlanguage, a_systemrequired,
     a_tabindex, a_tablevalues, a_tag, a_target, a_targetid, a_targetrole, a_targetx, a_targety, a_template, a_text, a_text_align, a_text_anchor,
         a_text_decoration, a_text_overflow, a_text_rendering, a_textlength, a_thickmathspace, a_thinmathspace, a_timelinebegin, a_title, a_to, a_top,
-        a_topmargin, a_transform, a_transformbehaviour, a_translate, a_truespeed, a_type, a_typemustmatch, a_typeof,
+        a_topmargin, a_transform, a_transformbehaviour, a_transform_origin, a_translate, a_truespeed, a_type, a_typemustmatch, a_typeof,
     a_u1, a_u2, a_underline_position, a_underline_thickness, a_unicode, a_unicode_bidi, a_unicode_range, a_units, a_units_per_em, a_until, a_updateviacache,
         a_urn, a_usemap,
     a_valign, a_v_alphabetic, a_value, a_values, a_valuetype, a_vector_effect, a_version, a_vert_adv_y, a_vert_origin_x, a_vert_origin_y,
@@ -430,7 +430,7 @@ typedef enum {
 const e_element_tag last_element_tag = elem_error;
 typedef unsigned int e_element;
 
-typedef enum { emi_good, emi_math, emi_not_svg, emi_svg, emi_rdf } e_emi;
+typedef enum { emi_good, emi_math, emi_not_this_math, emi_math_svg, emi_not_svg, emi_not_this_svg, emi_svg, emi_rdf, emi_untested } e_emi;
 typedef enum { ee_www, e_multi, ee_text } e_enctype;
 typedef enum { ekh_done, ekh_enter, ekh_go, ekh_next, ekh_previous, ekh_search, ekh_send } e_enterkeyhint;
 typedef enum {  env_args, env_auth_type, env_config, env_content_length, env_content_type, env_gateway_interface, env_http_accept, env_path_info,
@@ -1333,8 +1333,8 @@ typedef enum { mo_display, mo_inline } e_mode;
 typedef enum {  nd_negativeveryverythinmathspace, nd_negativeverythinmathspace, nd_negativethinmathspace, nd_negativemediummathspace,
                 nd_negativethickmathspace, nd_negativeverythickmathspace, nd_negativeveryverythickmathspace, nd_veryverythinmathspace,
                 nd_verythinmathspace, nd_thinmathspace, nd_mediummathspace, nd_thickmathspace, nd_verythickmathspace, nd_veryverythickmathspace } e_namedspace;
-typedef enum {  ns_default, ns_bibo, ns_cc, ns_crs, ns_dbp, ns_dbp_owl, ns_dbr, ns_dc, ns_dcterms, ns_ev, ns_ex, ns_foaf, ns_its, ns_math, ns_owl,
-                ns_rdf, ns_rdfa, ns_rdfs, ns_svg, ns_xhv, ns_xlink, ns_xhtml, ns_xmlns, ns_xsd, ns_xsi, ns_error } e_namespace;
+typedef enum {  ns_default, ns_bibo, ns_cc, ns_crs, ns_dbp, ns_dbp_owl, ns_dbr, ns_dc, ns_dcterms, ns_ex, ns_foaf, ns_its, ns_math, ns_owl,
+                ns_rdf, ns_rdfa, ns_rdfs, ns_svg, ns_xhv, ns_xlink, ns_xhtml, ns_xmlevents, ns_xmlns, ns_xsd, ns_xsi, ns_custom, ns_error } e_namespace;
 const ::std::size_t first_runtime_namespace = static_cast < ::std::size_t > (ns_error) + 1;
 
 typedef enum
@@ -1366,7 +1366,7 @@ typedef enum
     nit_pos_piracy, nit_url_empty_password, nit_url_insecure_password, nit_url_missing_at, nit_chocolate_teapot,
     nit_html_recognised, nit_presume_html_tags, nit_presume_html_1, nit_public_missing, nit_sq_bra_ket, nit_enquote_value, nit_double_angular_open, nit_use_quote_code, nit_use_double_quote_code,
     nit_lonely_ampersand, nit_empty_character_code, nit_bizarre_character_code, nit_empty_denary_code, nit_empty_hex_code, nit_dubious_denary, nit_invalid_denary, nit_code_unrecognised_here,
-    nit_double_slash, nit_ignoring_unknown, nit_protocol, nit_write_wrote, nit_webmention,
+    nit_double_slash, nit_unknown_element, nit_protocol, nit_write_wrote, nit_webmention,
     nit_missing_attribute_name, nit_element_no_type, nit_style_not_css, nit_gather, nit_mf_found, nit_prop_set, nit_sibling, nit_rel_found, nit_spotted_css_class,
     nit_html_tags, nit_html_plus, nit_html_1_0,
     nit_html_2_0, nit_html_2_0s, nit_html_2_0i, nit_html_2_0l1, nit_html_2_0l1s, nit_html_2_0l2,
@@ -1425,7 +1425,8 @@ typedef enum
     nit_dashdash, nit_naked_grave, nit_prototype, nit_bad_property, nit_hour, nit_minute, nit_second, nit_deprecated_schema,
     nit_character_code, nit_note, nit_aria_position, nit_impure_mn, nit_program_error, nit_xhtml_5_0, nit_html_superseded,
     nit_function, nit_zero_to_one, nit_percent, nit_fontname, nit_glyphname, nit_keytimes, nit_keysplines, nit_not_n, nit_syntax,
-    nit_viewbox, nit_custom,
+    nit_viewbox, nit_custom, nit_duplicate_namespace, nit_contradictory_namespace, nit_unrecognised_namespace, nit_out_of_range,
+    nit_math_or_svg,
 
     nit_context,
 
@@ -1963,7 +1964,7 @@ const e_severity last_severity = es_all;
 typedef enum {  doc_unknown, doc_context, doc_html, doc_public, doc_system, doc_math, doc_rdf, doc_svg, doc_xhtml,
                 doc_math1, doc_math2, doc_math3, doc_math4,
                 doc_rdfa_1_0, doc_rdfa_1_1,
-                doc_svg1, doc_svg11, doc_svg2,
+                doc_svg10, doc_svg11, doc_svg20, doc_svg21,
                 doc_jan05, doc_html5,
                 doc_xhtml2,
                 doc_xhtml11,
@@ -1976,8 +1977,8 @@ typedef enum {  doc_unknown, doc_context, doc_html, doc_public, doc_system, doc_
                 doc_html32, doc_html30,
                 doc_html20, doc_html20_strict, doc_html20_int, doc_html21, doc_html21_strict, doc_html22, doc_html1, doc_html_tags,
                 doc_htmlplus, doc_sqopen, doc_sqclose,
-                doc_compound } e_sgml;
-const e_sgml last_sgml = doc_compound;
+                doc_compound_m, doc_compound_1_0, doc_compound_1_1 } e_sgml;
+const e_sgml last_sgml = doc_compound_1_1;
 
 typedef enum { sh_circle, sh_default, sh_poly, sh_rect } e_shape4;
 typedef enum { s7_circ, s7_default, s7_poly, s7_rect } e_shape7;
@@ -2037,7 +2038,7 @@ typedef enum { fff_normal, fff_ultracondensed, fff_extracondensed, fff_condensed
 typedef enum { fv_normal, fv_smallcaps, fv_inherit } e_svg_fontvariant;
 typedef enum { fvf_normal, fvf_smallcaps } e_svg_fontvariant_ff;
 typedef enum { tsz_discrete, tsz_gamma, tsz_identity, tsz_linear, tsz_table } e_svg_type_11;
-typedef enum { sv_none, sv_1_0, sv_1_1, sv_1_2_tiny, sv_1_2_full, sv_2_0 } e_svg_version;
+typedef enum { sv_none, sv_1_0, sv_1_1, sv_1_2_tiny, sv_1_2_full, sv_2_0, sv_2_1 } e_svg_version;
 typedef enum { svg_none, svg_1_0, svg_1_1, svg_1_2_tiny, svg_1_2_full, svg_2_0 } e_svg_version_grand;
 typedef enum { fsw_normal, fsw_bold, fsw_bolder, fsw_lighter, fsw_100, fsw_200, fsw_300, fsw_400, fsw_500, fsw_600, fsw_700, fsw_800, fsw_900, fsw_inherit } e_svg_fontweight;
 typedef enum { fsf_normal, fsf_bold, fsf_100, fsf_200, fsf_300, fsf_400, fsf_500, fsf_600, fsf_700, fsf_800, fsf_900 } e_svg_fontweight_ff;
@@ -2100,9 +2101,9 @@ typedef enum {
     t_name, t_nameref, t_namedspace, t_namespace, t_navigation, t_negative, t_not_empty, t_notation, t_notations, t_nsd, t_nsds, t_num,
     t_occurence, t_ogtype, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, t_overlay,
     t_paint, t_paintkeyword, t_paint_order, t_panose1, t_percent, t_phase, t_phase_x, t_pics, t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_positive, t_pragma, t_prefix,
-        t_preload, t_preload5, t_preserveaspectratio, t_print, t_propagate, t_pseudo, t_pseudonamedspace,
+        t_preload, t_preload5, t_preserveaspectratio, t_print, t_propagate, t_pseudo, t_pseudonamedspace, t_pt,
     t_q,
-    t_rap, t_rating, t_real, t_real_1_2, t_real_i, t_reals, t_referrer, t_refresh, t_refx, t_refy, t_regex, t_rel, t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link,
+    t_rap, t_rating, t_real, t_real_1_2, t_real_ai, t_real_i, t_reals, t_referrer, t_refresh, t_refx, t_refy, t_regex, t_rel, t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link,
         t_rel_obsolete, t_renderingintent, t_repeatcount, t_restart, t_result, t_reveal_trans, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim,
         t_rowscols,  t_rsvp, t_rules,
     t_sandbox, t_sandboxen, t_scei, t_schema, t_scope, t_script, t_scrolling, t_second, t_settype, t_sex, t_sgml, t_shape, t_shape3, t_shape4, t_shape7, t_shape_rendering,
@@ -2145,8 +2146,10 @@ typedef enum { w_soft, w_hard } e_wrap;
 typedef enum { w_horiz, w_vert } e_wrap3;
 typedef enum { wm_lrtb, wm_rltb, wm_tbrl, wm_lr, wm_rl, wm_tb, wm_inherit } e_writingmode;
 typedef enum { xls_new, xls_replace } e_xlinkshow_a;
-typedef enum {  x_default, x_xhtml_1, x_xhtml_1_superseded, x_xhtml_11, x_xhtml_2, x_bibo, x_cc, x_crs, x_dbp, x_dbp_owl, x_dbr, x_dc, x_ex, x_foaf,
-                x_mathml, x_owl, x_rdf, x_rdfa, x_rdfs, x_svg, x_xhv, x_xlink, x_xml, x_xmlns, x_xsd } e_xmlns;
+typedef enum {  x_default, x_xhtml_1, x_xhtml_1_superseded, x_xhtml_11, x_xhtml_2, x_html, x_bibo, x_cc, x_comments, x_crs,
+                x_dbp, x_dbp_owl, x_dbr, x_dc, x_dc_terms, x_dt, x_ex, x_exsl, x_foaf, x_lxslt, x_mathml, x_owl, x_rdf,
+                x_rdfa, x_rdfs, x_rel, x_rng, x_rss, x_saxon, x_smil, x_soapenc11, x_soapenc12, x_svg, x_syn, x_wsdl11, x_wsdl12,
+                x_xf, x_xhv, x_xi, x_xlink, x_xml, x_xmlevents, x_xmlns, x_xsd, x_xslfo, x_xslt, x_xsi } e_xmlns;
 typedef enum { xs_default, xs_preserve } e_xmlspace;
 typedef enum { or_document, or_list } e_xorder;
 typedef enum { y_yes, y_no } e_yesno;

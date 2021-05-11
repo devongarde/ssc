@@ -30,15 +30,15 @@ inline uint64_t avm_key (const e_element tag, const e_attribute a)
 {   return (static_cast < uint64_t > (tag) << 32) + static_cast < uint64_t > (a); }
 
 void avm_init (nitpick& )
-{   for (int index = 0; havt_abc [index].tag_ != a_unknown; ++index)
+{   for (int index = 0; havt_abc [index].tag_ != elem_error; ++index)
         avm.insert (avm_t::value_type (avm_key (havt_abc [index].tag_, havt_abc [index].a_), &havt_abc [index]));
-    for (int index = 0; havt_defgh [index].tag_ != a_unknown; ++index)
+    for (int index = 0; havt_defgh [index].tag_ != elem_error; ++index)
         avm.insert (avm_t::value_type (avm_key (havt_defgh [index].tag_, havt_defgh [index].a_), &havt_defgh [index]));
-    for (int index = 0; havt_ijkl [index].tag_ != a_unknown; ++index)
+    for (int index = 0; havt_ijkl [index].tag_ != elem_error; ++index)
         avm.insert (avm_t::value_type (avm_key (havt_ijkl [index].tag_, havt_ijkl [index].a_), &havt_ijkl [index]));
-    for (int index = 0; havt_mnopqr [index].tag_ != a_unknown; ++index)
+    for (int index = 0; havt_mnopqr [index].tag_ != elem_error; ++index)
         avm.insert (avm_t::value_type (avm_key (havt_mnopqr [index].tag_, havt_mnopqr [index].a_), &havt_mnopqr [index]));
-    for (int index = 0; havt_stuvwxyz [index].tag_ != a_unknown; ++index)
+    for (int index = 0; havt_stuvwxyz [index].tag_ != elem_error; ++index)
         avm.insert (avm_t::value_type (avm_key (havt_stuvwxyz [index].tag_, havt_stuvwxyz [index].a_), &havt_stuvwxyz [index])); }
 
 bool is_invalid_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
@@ -74,3 +74,10 @@ bool is_attribute_rejected (const html_version& v, const e_element tag, const e_
         for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second -> tag_ == tag) && (i -> second -> a_ == a); ++i)
             if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.reject ();
     return false; }
+
+#ifdef DEBUG
+void avm_elem_crosscheck ()
+{   void avm_class_crosscheck (const e_element e, const e_attribute a);
+    for (auto a : avm)
+        avm_class_crosscheck (a.second -> tag_, a.second -> a_); }
+#endif // DEBUG

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.2" baseProfile="tiny" viewBox="0 0 170 200">
+<title>systemLanguage example</title>
+<switch>
+<g systemLanguage="cy">
+<text x="20" y="220" xml:lang="cy" font-size="20">Pam dydyn nhw ddim yn
+siarad Cymraeg?</text>
+</g>
+<g systemLanguage="el">
+<text x="20" y="220" xml:lang="el-GR" font-size="22">Μα γιατί δεν μπορούν
+να μιλήσουν Ελληνικά ;</text>
+</g>
+<g systemLanguage="es">
+<text x="20" y="220" xml:lang="es-ES" font-size="18">¿Por qué no pueden
+simplemente hablar en castellano?</text>
+</g>
+</switch>
+</svg>

@@ -24,21 +24,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/text.h"
 #include "utility/quote.h"
 
+void element_node::init ()
+{   if (parent_ == nullptr) version_ = context.html_ver ();
+    else version_ = parent_ -> version_; }
+
 element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed)
     : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), nits_ (nits)
-{   if (parent_ != nullptr) version_ = parent_ -> version_; else version_ = context.html_ver (); }
+{   init (); }
 
 element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed)
     : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), nits_ (nits)
-{   if (parent_ != nullptr) version_ = parent_ -> version_; else version_ = context.html_ver (); }
+{   init (); }
 
 element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str)
     : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), text_ (str), nits_ (nits)
-{   if (parent_ != nullptr) version_ = parent_ -> version_; else version_ = context.html_ver (); }
+{   init (); }
 
 element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str)
     : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), text_ (str), nits_ (nits)
-{   if (parent_ != nullptr) version_ = parent_ -> version_; else version_ = context.html_ver (); }
+{   init (); }
 
 element_node::~element_node ()
 {
@@ -63,6 +67,7 @@ void element_node::swap (element_node& en) NOEXCEPT
     ::std::swap (closure_, en.closure_);
     ::std::swap (checked_sanitised_, en.checked_sanitised_);
     ::std::swap (presumed_, en.presumed_);
+    nss_.swap (en.nss_);
     version_.swap (en.version_);
     elem_.swap (en.elem_);
     va_.swap (en.va_);
@@ -77,7 +82,8 @@ void element_node::swap (element_node& en) NOEXCEPT
     return sanitised_; }
 
 void element_node::parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
-{   va_.parse (nits_, v, b, e, line_, elem_);
+{   if (parent_ != nullptr) nss_ = initialise_namespace_stack (v, parent_ -> nss_);
+    va_.parse (nits_, v, nss_, b, e, line_, elem_);
     if (v.mjr () < 4) return;
     if (parent_ != nullptr) version_ = parent_ -> version_;
     if (! va_.empty ())

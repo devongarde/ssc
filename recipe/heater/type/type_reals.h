@@ -23,6 +23,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::size_t expected, const bool pts = false, const int max = 0);
 
+template < > struct type_master < t_pt > : tidy_string < t_pt >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_pt > :: set_value (nits, v, s);
+        if (tidy_string < t_pt >  :: good ())
+            if (test_reals (nits, v, tidy_string < t_pt > :: get_string (), 2)) return;
+        nits.pick (nit_bad_2pt, es_error, ec_type, "two coordinates, \"x y\", are expected");
+        tidy_string < t_pt > :: status (s_invalid); } };
+
 template < > struct type_master < t_2pt > : tidy_string < t_2pt >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_2pt > :: set_value (nits, v, s);

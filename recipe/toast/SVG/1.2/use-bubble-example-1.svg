@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:ev="http://www.w3.org/2001/xml-events"
+version="1.2" baseProfile="tiny">
+<defs>
+<rect id="rect" width="20" height="20" fill="red">
+<set attributeName="fill" begin="mouseover" end="mouseout" to="blue"/>
+</rect>
+</defs>
+<use fill="red" x="5" y="5" xlink:href="#rect"/>
+<text x="10" y="35">1</text>
+<use id="use2" fill="red" x="30" y="5" xlink:href="#rect"/>
+<rect pointer-events="none" x="30" y="5" width="20" height="20"
+fill="none" stroke-width="3" stroke="none">
+<set attributeName="stroke" begin="use2.mouseover" end="use2.mouseout" to="black"/>
+</rect>
+<text x="35" y="35">2</text>
+<g id="g1">
+<use fill="red" x="5" y="40" xlink:href="#rect"/>
+<rect pointer-events="none" x="5" y="40" width="20" height="20"
+fill="none" stroke-width="3" stroke="none">
+<set attributeName="stroke" begin="g1.mouseover" end="g1.mouseout" to="black"/>
+</rect>
+</g>
+<text x="10" y="70">3</text>
+<use id="use3" fill="red" x="30" y="40" xlink:href="#rect"/>
+<rect pointer-events="none" x="30" y="40" width="20" height="20"
+fill="none" stroke-width="3" stroke="none">
+<set attributeName="stroke" begin="use3.click" dur="500ms" to="black"/>
+</rect>
+<text x="35" y="70">4</text>
+</svg>

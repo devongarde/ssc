@@ -193,7 +193,7 @@ PASS ../toast/living/jan11/figure.html
 36 url_not_found
 40 url_not_found
 45 inserted_missing_closure
-46  use_quote_code
+46 use_quote_code
 55 url_not_found
 57 url_not_found
 60 newline_in_string newline_in_string url_not_found
@@ -470,13 +470,15 @@ PASS ../toast/living/jan11/ls4.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jan11/ls5.html
-3 xmlns_namespace
+3 xmlns_namespace contradictory_namespace
 5 use_quote_code
-8 ignoring_unknown custom attribute_barred
-9 ignoring_unknown ignoring_unknown
-10 ignoring_unknown custom
-11 ignoring_unknown ignoring_unknown
-12 ignoring_unknown
+6 unknown_element
+8 unknown_element unrecognised_namespace
+9 unknown_element unknown_element
+10 unknown_element
+11 unknown_element unknown_element
+12 unknown_element
+13 unknown_element
 
 PASS ../toast/living/jan11/ls8.html
 5 element_offsite_base

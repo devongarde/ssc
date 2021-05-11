@@ -5,25 +5,24 @@ PASS ../toast/w3/xhtml/index.html
 
 PASS ../toast/w3/xhtml/xhtml-mathml2-fpi.html
 2 unexpected_doctype_content
-3 no_xmllang
 6 use_quote_code
 
 PASS ../toast/w3/xhtml/xhtml-mathml2.html
 1 presume_html_1 attribute_unrecognised_here attribute_unrecognised_here attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute
-11 ignoring_unknown unrecognised_attribute
-12 ignoring_unknown
-13 ignoring_unknown
-14 ignoring_unknown
-15 ignoring_unknown
-16 ignoring_unknown ignoring_unknown
-17 ignoring_unknown ignoring_unknown
-18 ignoring_unknown ignoring_unknown
-19 ignoring_unknown
-20 ignoring_unknown
-21 ignoring_unknown ignoring_unknown
-22 ignoring_unknown
-23 ignoring_unknown
-24 ignoring_unknown
+11 unknown_element
+12 unknown_element
+13 unknown_element
+14 unknown_element
+15 unknown_element
+16 unknown_element unknown_element
+17 unknown_element unknown_element
+18 unknown_element unknown_element
+19 unknown_element
+20 unknown_element
+21 unknown_element unknown_element
+22 unknown_element
+23 unknown_element
+24 unknown_element
 
 PASS ../toast/w3/xhtml/xhtml-print_1_0.html
 1 xhtml_1_0
@@ -46,7 +45,7 @@ PASS ../toast/w3/xhtml/xhtml1-bogus-attribute.html
 13 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/w3/xhtml/xhtml1-bogus-element.html
-13 ignoring_unknown ignoring_unknown
+13 unknown_element unknown_element
 
 PASS ../toast/w3/xhtml/xhtml1-missing-doctype-and-xmlns.html
 1 presume_html_1

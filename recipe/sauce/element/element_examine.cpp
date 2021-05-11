@@ -295,7 +295,10 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
         if (node_.version ().is_5 ())
             if (a_.known (a_xmllang))
                 if (! a_.known (a_lang))
-                    pick (nit_no_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "Authors must not use LANG in the XML namespace on HTML elements in HTML documents");
+                    if (node_.id ().is_svg () && (node_.version ().svg_version () == sv_1_1))
+                        if (a_.good (a_xmllang)) pick (nit_no_xmllang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add lang=", quote (a_.get_string (a_xmllang)));
+                        else pick (nit_no_xmllang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add a lang attribute");
+                    else pick (nit_no_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "'Authors must not use LANG in the XML namespace on HTML elements in HTML documents'");
                 else if (a_.get_string (a_lang) != a_.get_string (a_xmllang))
                     pick (nit_lang_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "if both LANG and xml:lang are specified, they must have the same value");
 

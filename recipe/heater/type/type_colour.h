@@ -28,7 +28,7 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
         {   const ::std::string& val (tidy_string < t_colour > :: get_string ());
             ::std::string::size_type len = val.length ();
             if ((len == 7) && (val.at (0) == '#') && (val.substr (1).find_first_not_of (HEX) == ::std::string::npos)) return;
-            if ((len == 4) && (val.at (0) == '#') && (v.svg () >= sv_1_1) && (val.substr (1).find_first_not_of (HEX) == ::std::string::npos)) return;
+            if ((len == 4) && (val.at (0) == '#') && (v.svg () >= sv_1_0) && (val.substr (1).find_first_not_of (HEX) == ::std::string::npos)) return;
             if ((len > 4) && (val.at (len - 1) == ')') && compare_no_case (val.substr (0, 4), "rgb("))
             {   if ((v.svg () <= sv_1_0))
                     nits.pick (nit_svg_version, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (val), ": rgb (...) colour syntax requires SVG 1.1 or better.");
@@ -55,7 +55,7 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
             {   type_master < t_fixedcolour > fix;
                 fix.set_value (nits, v, val);
                 if (fix.good ()) return; } }
-        if (v.svg () >= sv_1_1)
+        if (v.svg () >= sv_1_0)
             nits.pick (nit_bad_colour, es_error, ec_type, quote (s), " is not '#' followed by 3 or 6 hexadecimal digits, nor a valid rgb, nor a standard colour name");
         else nits.pick (nit_bad_colour, es_error, ec_type, quote (s), " is neither '#' followed by 6 hexadecimal digits, nor a valid rgb, nor a standard colour name");
         tidy_string < t_colour > :: status (s_invalid); } };
