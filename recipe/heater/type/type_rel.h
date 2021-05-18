@@ -31,9 +31,8 @@ void check_rel_spelling (nitpick& nits, const html_version& v, const ::std::stri
 
 template < > inline void enum_vec < t_rel, e_rel > :: set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
 {   enum_vec < t_rel, e_rel > :: original_ = ss;
-    bool res = true; vstr_t strs;
-    ::std::string sss (trim_the_lot_off (ss));
-    ::boost::algorithm::split (strs, sss, ::boost::algorithm::is_any_of (", "), ::boost::algorithm::token_compress_on);
+    bool res = true;
+    vstr_t strs (split_by_comma_space (trim_the_lot_off (ss)));
     for (auto s : strs)
     {   base_t t;
         t.set_value (nits, v, s);

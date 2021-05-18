@@ -94,6 +94,7 @@ class element
     void span_check ();
     void pre_examine_element (const e_element tag);
     void post_examine_element (const e_element tag);
+    void examine_descendant_in (const element* filter);
     void examine_media_element (e_element elem, const char* ref, const char* name, const uint64_t family);
     void examine_accesskey ();
     void examine_aria_checked ();
@@ -116,13 +117,13 @@ class element
     void examine_font ();
     void examine_href ();
     void examine_headers ();
-    void examine_descendant_in (const element* filter);
     itemscope_ptr examine_itemscope (itemscope_ptr& itemscope);
     void examine_itemprop (itemscope_ptr& itemscope);
     void examine_itemref (itemscope_ptr& itemscope);
     void examine_itemtype (itemscope_ptr& itemscope);
     void examine_keysplines ();
     void examine_keytimes ();
+    void examine_line_increment ();
     void examine_other ();
     void examine_ref ();
     void examine_registrationmark ();
@@ -134,6 +135,7 @@ class element
     ::std::string term () const;
     void examine_abbr ();
     void examine_address ();
+    void examine_altglyphdef ();
     void examine_animatemotion ();
     void examine_annotation (const e_element e);
     void examine_area ();

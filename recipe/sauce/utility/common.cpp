@@ -164,22 +164,25 @@ vstr_t split_by_charset (const ::std::string& s, const char* charset)
     ::boost::algorithm::split (v, s, ::boost::algorithm::is_any_of (charset), ::boost::algorithm::token_compress_on);
     return v; }
 
-vstr_t split_quoted_by_space (const ::std::string& s)
-{   vstr_t v;
+vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset)
+{   ::std::string cs;
+    if (charset != nullptr) cs.assign (charset);
+    vstr_t v;
     ::std::string current;
     bool started = false;
     bool quoted = false;
     bool slashed = false;
     bool deadzone = false;
     for (::std::string::const_iterator i = s.begin (); i != s.end (); ++i)
-    {   if (::std::iswcntrl (*i)) continue;
+    {   bool whitespace = ::std::iswspace (*i);
+        if (::std::iswcntrl (*i) && ! whitespace) continue;
         if (slashed) { current += *i; slashed = false; continue; }
         if (*i == '\\') { slashed = started = true; continue; }
         else if (*i == '"')
         {   if (! started) started = true;
             if (! quoted) { quoted = true; continue; }
             if (quoted) { started = quoted = false; deadzone = true; v.push_back (current); current.clear (); continue; } }
-        else if (::std::iswspace (*i))
+        else if (whitespace || ((charset != nullptr) && (cs.find (*i) != ::std::string::npos)))
         {   deadzone = false;
             if (! started) continue;
             if (! quoted) { started = quoted = false; if (! current.empty ()) v.push_back (current); current.clear (); continue; } }

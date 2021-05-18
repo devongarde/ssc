@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg xml:id="root" version="1.2" baseProfile="tiny">
+...
+<g xml:id="g-1">
+...
+<g xml:id="g-0">
+...
+<rect xml:id="elt" .../>
+</g>
+</g>
+</svg>

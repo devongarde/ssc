@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 2.1 text shape... properties</title>
+</head>
+
+<body>
+
+<h1>SVG 2.1 text shape... properties</h1>
+
+<!-- ok, so these are testing style properties that I haven't implemented yet! However, that is coming, so... -->
+
+<svg xmlns="http://www.w3.org/2000/svg"
+ width="300" height="300" viewBox="0 0 300 300">
+ <text style="font: 20px/25px sans-serif;
+ text-align: center;
+ shape-inside: circle(120px at 150px 150px);">
+ Lorem ipsum dolor sit amet, consec-tetuer adipiscing elit...</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+ width="300" height="100" viewBox="0 0 300 100">
+ <defs>
+ <rect id="wrap" x="50" y="10" width="200" height="80"/>
+ </defs>
+ <text style="font: 20px sans-serif; shape-inside: url(#wrap);">
+ This text wraps in a rectangle.</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+ width="450" height="300" viewBox="0 0 450 300">
+ <rect id="rect1" x="25" y="25" width="225" height="175" fill="white" stroke="black"/>
+ <rect id="rect2" x="200" y="125" width="225" height="150" fill="white" stroke="black"
+ style="shape-margin:25px;"/>
+ <text style="shape-inside:url(#rect1);
+ shape-subtract:url(#rect2);
+ shape-padding:25px;
+ font-family:DejaVu Sans;
+ font-size:12px;
+ text-align:justified;
+ line-height:110%">Lorem ipsum ...</text>
+ <text style="shape-inside:url(#rect2);
+ shape-padding:25px;
+ font-family:DejaVu Sans;
+ font-size:12px;
+ text-align:justified;
+ line-height:110%">Lorem ipsum ...</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+ width="300" height="300" viewBox="0 0 300 300">
+ <circle id="circle" cx="150" cy="150" r="125" fill="none" stroke="black"/>
+ <text style="shape-inside: url(#circle);
+ shape-padding: 25px;
+ font: 18px DejaVu Sans;
+ text-align: justified;
+ line-height: 110%;">This is an
+ example of wrapped text in SVG 2! There should
+ be 25 pixel padding around the text. The text is
+ justified on both sides. It looks good!</text>
+</svg>
+
+</body>
+</html>

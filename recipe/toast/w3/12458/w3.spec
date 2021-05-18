@@ -22,6 +22,7 @@ PASS ../toast/w3/12458/4476-svg_nodoctype.svg
 
 PASS ../toast/w3/12458/4848-html40-transitional_FPI-SI-mismatch.html
 0 charset_mismatch charset_used
+2 html_contradictory
 
 PASS ../toast/w3/12458/4892-entity.html
 5 xhtml_enum_lc

@@ -1,0 +1,24 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 2.0 text overflow</title>
+</head>
+
+<body>
+
+<h1>SVG 2.0 text overflow</h1>
+
+<svg xmlns="http://www.w3.org/2000/svg" 
+ width="300" height="150" viewBox="0 0 300 150"> 
+ <style> 
+ text { font: 25px sans-serif; white-space: pre; } 
+ path { fill: none; stroke: #add8e6; } 
+ </style> 
+ <path d="m 50,0 0,150"/> 
+ <path d="m 200,0 0,150"/> 
+ <text x="50" y="35" inline-size="100" style="overflow:visible">SVG is awesome</text> 
+ <text x="50" y="85" inline-size="100" style="text-overflow:clip">SVG is awesome</text> 
+ <text x="50" y="135" inline-size="100" style="text-overflow:ellipsis">SVG is awesome</text> 
+</svg> 
+</body>
+</html>

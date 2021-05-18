@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2"
+width="100%" height="100%" viewBox="0 0 120 60">
+<title>Text Search</title>
+<desc>
+An example of text that extends beyond the viewport,
+requiring the user agent to pan the viewport when
+words are searched for.
+</desc>
+<!--
+This rectangle is the same position and dimensions as the viewBox,
+illustrating the initial area of the viewport.
+-->
+<rect x="0" y="0" width="120" height="60" fill="#6495ed" stroke="blue" />
+<!--
+The contents of this text element extend beyond the initial viewport.
+-->
+<text x="120" y="35" text-anchor="middle" fill="blue"
+font-size="10" font-family="Helvetica">
+Seek and you shall find, find and you will search.
+</text>
+</svg>

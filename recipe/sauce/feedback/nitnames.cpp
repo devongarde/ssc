@@ -626,6 +626,13 @@ nitname nitnames [] =
     { nit_unrecognised_namespace, "unrecognised_namespace" },
     { nit_out_of_range, "out_of_range" },
     { nit_math_or_svg, "math_or_svg" },
+    { nit_many_maybe, "many_maybe" },
+    { nit_not_combine, "not_combine" },
+    { nit_font_enum, "font_enum" },
+    { nit_altglyphdef, "altglyphdef" },
+    { nit_line_increment, "line_increment" },
+    { nit_is_property, "is_property" },
+    { nit_better_as_property, "better_as_property" },
 
     { nit_off, "" } };
 

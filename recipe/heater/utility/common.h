@@ -66,7 +66,11 @@ inline ::std::string tart (const ::std::string& s)
 {   return unify_whitespace (trim_the_lot_off (s)); }
 
 vstr_t split_by_charset (const ::std::string& s, const char* charset);
-vstr_t split_quoted_by_space (const ::std::string& s);
+vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset = nullptr);
+inline vstr_t split_quoted_by_space (const ::std::string& s)
+{   return split_by_whitespace_and (s); }
+inline vstr_t split_by_comma_space (const ::std::string& s)
+{   return split_by_whitespace_and (s, ","); }
 ::std::string read_text_file (const ::boost::filesystem::path& name);
 ::std::string read_text_file (const ::std::string& name);
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok = false);

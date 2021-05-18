@@ -178,6 +178,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_ariaAug2020 : return "Aria (August 2020)";
         case ed_ariaApr2021 : return "Aria (April 2021)";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
+        case ed_css_transform : return "CSS Transforms";
         case ed_mql : return "Media Queries"; }
     return "Unknown reference"; }
 
@@ -242,6 +243,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_ariaAug2020 : return "WhatWG Aria requirements, draft, August 2020";
         case ed_ariaApr2021 : return "W3C ARIA in HTML draft, April 2021";
         case ed_apache : return "Apache 2.4 mod_include, 2020";
+        case ed_css_transform : return "CSS Transforms Module Level 1, February 2019";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_mozilla : return "moz://a, May 2020";
         case ed_microdata : return "HTML 5 living standard, WhatWG, July 2020";

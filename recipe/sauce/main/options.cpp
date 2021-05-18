@@ -841,6 +841,7 @@ void options::contextualise ()
         TEST_VAR (autocapitalise);
         TEST_VAR (autocomplete);
         TEST_VAR (beginfn);
+        TEST_VAR (baselineshift);
         TEST_VAR (citype);
         TEST_VAR (cntype);
         TEST_VAR (composite_operator);
@@ -900,6 +901,7 @@ void options::contextualise ()
         TEST_VAR (svg_display);
         TEST_VAR (svg_fontstretch);
         TEST_VAR (svg_fontstretch_ff);
+        TEST_VAR (svg_fontstyle);
         TEST_VAR (svg_fontweight);
         TEST_VAR (svg_fontweight_ff);
         TEST_VAR (svg_mode);
@@ -907,11 +909,12 @@ void options::contextualise ()
         TEST_VAR (svg_version);
         TEST_VAR (svg_version_grand);
         TEST_VAR (tableframe);
-        TEST_VAR (textdecoration);
-        TEST_VAR (textrendering);
+        TEST_VAR (text_decoration);
+        TEST_VAR (text_rendering);
         TEST_VAR (transform_anim);
         TEST_VAR (transform_fn);
         TEST_VAR (turbulence_type);
+        TEST_VAR (unicode_bidi);
         TEST_VAR (vectoreffect_2);
         TEST_VAR (xmlns);
 #undef TEST_VAR
@@ -1083,6 +1086,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (as);
     RPT_VAR (autocapitalise);
     RPT_VAR (autocomplete);
+    RPT_VAR (baselineshift);
     RPT_VAR (beginfn);
     RPT_VAR (citype);
     RPT_VAR (cntype);
@@ -1143,6 +1147,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (svg_display);
     RPT_VAR (svg_fontstretch);
     RPT_VAR (svg_fontstretch_ff);
+    RPT_VAR (svg_fontstyle);
     RPT_VAR (svg_fontweight);
     RPT_VAR (svg_fontweight_ff);
     RPT_VAR (svg_mode);
@@ -1150,11 +1155,12 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (svg_version);
     RPT_VAR (svg_version_grand);
     RPT_VAR (tableframe);
-    RPT_VAR (textdecoration);
-    RPT_VAR (textrendering);
+    RPT_VAR (text_decoration);
+    RPT_VAR (text_rendering);
     RPT_VAR (transform_anim);
     RPT_VAR (transform_fn);
     RPT_VAR (turbulence_type);
+    RPT_VAR (unicode_bidi);
     RPT_VAR (vectoreffect_2);
     RPT_VAR (xmlns);
 #undef RPT_VAR

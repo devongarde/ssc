@@ -156,9 +156,54 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
     else if (res) enum_vec_base < ENUM, E > :: status (s_good);
     else enum_vec_base < ENUM, E > :: status (s_invalid); }
 
+template < e_type E, typename ENUM, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default >
+    struct enum_constrained_vec : public enum_vec < E, ENUM, CATEGORY, INIT >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss); };
+
+template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
+    void enum_constrained_vec < E, ENUM, CATEGORY, INIT > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   enum_vec < E, ENUM, CATEGORY, INIT > :: set_value (nits, v, s);
+    bool first = true, ok = true;
+    const ::std::size_t max_combinable_enum = 32;
+    ::std::bitset < max_combinable_enum > bs, gs, said;
+    if (enum_vec < E, ENUM, CATEGORY, INIT > :: good ())
+    {   for (auto val : enum_vec < E, ENUM, CATEGORY, INIT > :: value_)
+        {   if (val > max_combinable_enum)
+            {   DBG_ASSERT (false);
+                nits.pick (nit_not_combine, es_catastrophic, ec_type, val.name (), " is too big; abandoning constrained enum check");
+                ok = false; break; }
+            if (bs.test (val))
+            {   nits.pick (nit_not_combine, es_error, ec_type, val.name (), " is repeated");
+                ok = false; continue; }
+            bs.set (val);
+            uint64_t x = val.first ().ext ();
+            if ((x & HE_COMBINES) == 0)
+                if ((! first) || (enum_vec < E, ENUM, CATEGORY, INIT > :: value_.size () > 1))
+                {   nits.pick (nit_not_combine, es_error, ec_type, val.name (), " cannot be combined with any other values");
+                    ok = false; }
+            ::std::size_t g = val.first ().group ();
+            DBG_ASSERT (g <= max_combinable_enum);
+            if (g != 0)
+                if (! gs.test (g)) gs.set (g);
+                else if (! said.test (g))
+                {   ::std::string ss;
+                    for (auto v2 : enum_vec < E, ENUM, CATEGORY, INIT > :: value_)
+                        if (val.first ().group () == g)
+                        {   if (! ss.empty ()) ss += ", ";
+                            ss += quote (v2.name ()); }
+                    nits.pick (nit_not_combine, es_error, ec_type, ss, " are contradictory, so cannot be combined");
+                    said.set (g);
+                    ok = false; } }
+        if (ok) return; }
+    enum_vec_base < ENUM, E > :: status (s_invalid); }
+
 template < > class type_master < t_charsets > : public enum_vec < t_charsets, e_charset > { };
 template < > class type_master < t_class > : public enum_vec < t_class, e_class > { };
 template < > class type_master < t_content_encodings > : public enum_vec < t_content_encodings, e_content_encoding > { };
+template < > class type_master < t_font_variant_2s > : public enum_constrained_vec < t_font_variant_2s, e_font_variant_2 > { };
+template < > class type_master < t_font_variant_east_asians > : public enum_constrained_vec < t_font_variant_east_asians, e_font_variant_east_asian > { };
+template < > class type_master < t_font_variant_ligatures > : public enum_constrained_vec < t_font_variant_ligatures, e_font_variant_ligature > { };
+template < > class type_master < t_font_variant_numerics > : public enum_constrained_vec < t_font_variant_numerics, e_font_variant_numeric > { };
 template < > class type_master < t_plusstyle > : public enum_vec < t_plusstyle, e_plusstyle > { };
 template < > class type_master < t_rel > : public enum_vec < t_rel, e_rel > { };
 template < > class type_master < t_svg_features > : public enum_vec < t_svg_features, e_svg_feature > { };

@@ -196,7 +196,7 @@ bool html_version::invalid_addendum (const html_version& v) const
         else return v.w3 ();
     if (rdf ())
         if (context.rdf ()) return false;
-        else return (v != xhtml_2);
+        else return ((v != xhtml_2) && (! v.is_svg_12 ()));
     return (frameset () && ! v.frameset ()); }
 
 bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
@@ -434,16 +434,28 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
 bool html_version::deprecated (const html_version& current) const
 {   switch (context.math_version ())
     {   case math_2 :
-            if (current.all_ext (HE_M2_DEPRECAT))
-                return true;
+            if (current.all_ext (HE_M2_DEPRECAT)) return true;
             break;
         case math_3 :
-            if (current.all_ext (HE_M3_DEPRECAT))
-                return true;
+            if (current.all_ext (HE_M3_DEPRECAT)) return true;
             break;
         case math_4 :
-            if (current.all_ext (HE_M4_DEPRECAT))
-                return true;
+            if (current.all_ext (HE_M4_DEPRECAT)) return true;
+            break;
+        default : break; }
+    switch (context.svg_version ())
+    {   case sv_1_1 :
+            if (current.all_ext (HE_SVG_DEPR_11)) return true;
+            break;
+        case sv_1_2_tiny :
+        case sv_1_2_full :
+            if (current.all_ext (HE_SVG_DEPR_12)) return true;
+            break;
+        case sv_2_0 :
+            if (current.all_ext (HE_SVG_DEPR_20)) return true;
+            break;
+        case sv_2_1 :
+            if (current.all_ext (HE_SVG_DEPR_21)) return true;
             break;
         default : break; }
     switch (current.mjr ())
@@ -504,7 +516,7 @@ bool is_excluded (const html_version& lhs, const html_version& rhs, const uint64
 e_emi rdf_conflict (const html_version& lhs, const html_version& rhs)
 {   DBG_ASSERT (! lhs.is_b4_4 ());
     DBG_ASSERT (rhs.has_rdf ());
-    if (lhs != xhtml_2)
+    if ((lhs != xhtml_2) && (! lhs.is_svg_12 ()))
         if (! context.rdf () && ! lhs.has_rdf ()) return emi_rdf;
     return emi_good; }
 
@@ -675,8 +687,7 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
         case 3 :    if (v.mnr () == 2) return ! from.not32 ();
                     DBG_ASSERT (v.mnr () == 0);
                     return ! from.not30 ();
-        case 4 :    //if (extension_conflict (v, from) != emi_good) return false;
-                    switch (v.mnr ())
+        case 4 :    switch (v.mnr ())
                     {   case 0 :
                         case 1 : return ! from.not4 ();
                         case 2 :

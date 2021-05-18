@@ -45,7 +45,6 @@ template < > class type_master < t_alignfig > : public four_value < t_alignfig, 
 template < > class type_master < t_arabicenum > : public four_value < t_arabicenum, e_arabicenum, sz_initial, sz_medial, sz_terminal, sz_isolated > { };
 template < > class type_master < t_aria_autocomplete > : public four_value < t_aria_autocomplete, e_aria_autocomplete, sz_both, sz_inline, sz_list, sz_none > { };
 template < > class type_master < t_aria_invalidity > : public four_value < t_aria_invalidity, e_aria_invalidity, sz_false, sz_grammar, sz_spelling, sz_true > { };
-template < > class type_master < t_baselineshift1 > : public four_value < t_baselineshift1, e_baselineshift1, sz_baseline, sz_sub, sz_super, sz_inherit > { };
 template < > class type_master < t_buffered_rendering > : public four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit > { };
 template < > class type_master < t_calcmode > : public four_value < t_calcmode, e_calcmode, sz_discrete, sz_linear, sz_paced, sz_spline > { };
 template < > class type_master < t_captionalign > : public four_value < t_captionalign, e_captionalign, sz_bottom, sz_left, sz_right, sz_top > { };
@@ -76,16 +75,13 @@ template < > class type_master < t_tdscope > : public four_value < t_tdscope, e_
 template < > class type_master < t_shape4 > : public four_value < t_shape4, e_shape4, sz_circle, sz_default, sz_poly, sz_rect > { };
 template < > class type_master < t_size3 > : public four_value < t_size3, e_size3, sz_normal, sz_medium, sz_large, sz_huge > { };
 template < > class type_master < t_scei > : public four_value < t_scei, e_scei, sz_start, sz_centre, sz_end, sz_inherit > { };
-template < > class type_master < t_smei > : public four_value < t_smei, e_smei, sz_start, sz_middle, sz_end, sz_inherit > { };
 template < > class type_master < t_ssi_config > : public four_value < t_ssi_config, e_ssi_config, sz_echomsg, sz_errmsg, sz_sizefmt, sz_timefmt > { };
 template < > class type_master < t_ssi_set > : public four_value < t_ssi_set, e_ssi_set, sz_decoding, sz_encoding, sz_value, sz_var > { };
 template < > class type_master < t_svg_baseprofile > : public four_value < t_svg_baseprofile, e_svg_baseprofile, sz_basic, sz_full, sz_none, sz_tiny > { };
-template < > class type_master < t_svg_fontstyle > : public four_value < t_svg_fontstyle, e_svg_fontstyle, sz_normal, sz_italic, sz_oblique, sz_inherit > { };
 template < > class type_master < t_svg_type > : public four_value < t_svg_type, e_svg_type, sz_gamma, sz_identity, sz_linear, sz_table > { };
 template < > class type_master < t_syncbehaviour > : public four_value < t_syncbehaviour, e_syncbehaviour, sz_canslip, sz_locked, sz_independent, sz_default > { };
 template < > class type_master < t_syncbehaviourdefault > : public four_value < t_syncbehaviourdefault, e_syncbehaviourdefault, sz_canslip, sz_locked, sz_independent, sz_inherit > { };
 template < > class type_master < t_tfmu > : public four_value < t_tfmu, e_tfmu, sz_false, sz_mixed, sz_true, sz_undefined > { };
-template < > class type_master < t_unicode_bidi > : public four_value < t_unicode_bidi, e_unicodebidi, sz_normal, sz_embed, sz_bidioverride, sz_inherit > { };
 template < > class type_master < t_uplr > : public four_value < t_uplr, e_uplr, sz_down, sz_left, sz_right, sz_up > { };
 template < > class type_master < t_valign3 > : public four_value < t_valign3, e_valign3, sz_top, sz_middle, sz_bottom, sz_baseline > { };
 template < > class type_master < t_visibility11 > : public four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_collapse, sz_inherit > { };

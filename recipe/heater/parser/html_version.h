@@ -38,7 +38,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //     high nibble = month
 //      low nibble = day / 2
 
-// use these ids even though their value is obvious; there is no guarantee that
+// use these date ids even though their value is obvious; there is no guarantee that
 // the values will continue to be obvious, e.g., for example, if very early webapp
 // specs should be integrated (not expected, which is why I'm not doing it, but...)
 #define HTML_2005    5
@@ -199,10 +199,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SVG20_MAJOR  HTML_2018
 #define HTML_SVG20_MINOR  HTML_OCT
 
+// arbituary: the earliest X/HTML version which an extension can use
 #define HTML_SVG10      XHTML_1_0
 #define HTML_SVG11      XHTML_1_1
 #define HTML_SVG12      XHTML_1_1
-#define HTML_SVG20      HTML_SVG20_MAJOR, HTML_SVG20_MINOR
+#define HTML_SVG20      HTML_5_2
 #define HTML_SVG21      HTML_APR21
 
 #define HTML_MATH1      HTML_4_0
@@ -330,31 +331,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_MATH_2       0x0000000000000002
 #define HE_MATH_3       0x0000000000000004
 #define HE_MATH_4       0x0000000000000008
-#define HE_SVG_10       0x0000000000000010
-#define HE_SVG_11       0x0000000000000020
-#define HE_SVG_12_TINY  0x0000000000000040
-#define HE_SVG_12_FULL  0x0000000000000080
-#define HE_SVG_20       0x0000000000000100
-#define HE_SVG_21       0x0000000000000200
-#define HE_XLINK_1_0    0x0000000000000400
-#define HE_XLINK_1_1    0x0000000000000800
-#define HE_RDF_1_0      0x0000000000001000
-#define HE_RDF_1_1      0x0000000000002000
-#define HE_MICRODATA    0x0000000000010000
-#define HE_SVG_X1       0x0000000000100000
-#define HE_SVG_X2       0x0000000000200000
-#define HE_SVG_OLD_H    0x0000000000400000
-
-#define HE_M2_DEPRECAT  0x0000000001000000
-#define HE_M3_DEPRECAT  0x0000000002000000
-#define HE_M4_DEPRECAT  0x0000000004000000
-#define HE_M3_NONSTAND  0x0000000010000000
 
 #define HE_MATH_1_2     ( HE_MATH_1 | HE_MATH_2 )
 #define HE_MATH_2_3_4   ( HE_MATH_2 | HE_MATH_3 | HE_MATH_4 )
 #define HE_MATH_3_4     ( HE_MATH_3 | HE_MATH_4 )
 #define HE_MATH         ( HE_MATH_1_2 | HE_MATH_3_4 )
 #define MATH_MASK       HE_MATH
+
+#define HE_SVG_10       0x0000000000000010
+#define HE_SVG_11       0x0000000000000020
+#define HE_SVG_12_TINY  0x0000000000000040
+#define HE_SVG_12_FULL  0x0000000000000080
+#define HE_SVG_20       0x0000000000000100
+#define HE_SVG_21       0x0000000000000200
+
 #define HE_SVG_12       ( HE_SVG_12_TINY | HE_SVG_12_FULL )
 #define HE_SVG_10_11    ( HE_SVG_10 | HE_SVG_11 )
 #define HE_SVG_10_12    ( HE_SVG_10 | HE_SVG_12 )
@@ -373,16 +363,48 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_SVG_2        ( HE_SVG_20 | HE_SVG_21 )
 #define HE_SVG          ( HE_SVG_1 | HE_SVG_2 )
 #define SVG_MASK        HE_SVG
-#define HE_SVG_X_MASK   ( HE_SVG_X1 | HE_SVG_X2 )
+
+#define HE_XLINK_1_0    0x0000000000000400
+#define HE_XLINK_1_1    0x0000000000000800
+
 #define XLINK_MASK      ( HE_XLINK_1_0 | HE_XLINK_1_1 )
+
+#define HE_RDF_1_0      0x0000000000001000
+#define HE_RDF_1_1      0x0000000000002000
+
 #define RDF_MASK        ( HE_RDF_1_0 | HE_RDF_1_1 )
+
+#define HE_MICRODATA    0x0000000000010000
+#define HE_SVG_X1       0x0000000000020000
+#define HE_SVG_X2       0x0000000000040000
+
+#define HE_SVG_X_MASK   ( HE_SVG_X1 | HE_SVG_X2 )
+
+#define HE_SVG_OLD_H    0x0000000000080000
+
+#define HE_COMBINES     0x0000000000100000
+#define HE_A            0x0000000001000000
+#define HE_B            0x0000000002000000
+#define HE_C            0x0000000003000000
+#define HE_D            0x0000000004000000
+#define HE_E            0x0000000005000000
+#define HE_F            0x0000000006000000
+#define HE_G            0x0000000007000000
+
+#define HE_GROUP_MASK   0x000000000F000000
+#define HE_GROUP_SHIFT  24
+#define HE_GROUP(XXXX)  ((uint64_t) XXXX << HE_GROUP_SHIFT)
+
+#define HE_M2_DEPRECAT  0x0000000010000000
+#define HE_M3_DEPRECAT  0x0000000020000000
+#define HE_M4_DEPRECAT  0x0000000040000000
 
 #define MATH_SHIFT      0
 #define SVG_SHIFT       4
 #define XLINK_SHIFT     9
 #define RDF_SHIFT       12
 
-#define HE_EXPERIMENTAL 0x0000000010000000
+#define HE_EXPERIMENTAL 0x0000000080000000
 
 #define HE_NETSCAPE     0x0000000100000000
 #define HE_IE           0x0000000200000000
@@ -406,6 +428,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_NOT_SVG_10_11_20 ( HE_NOT_SVG_10_11 | HE_NOT_SVG_2 )
 #define HE_NOT_SVG_10_12_20 ( HE_NOT_SVG_10_12 | HE_NOT_SVG_2 )
 #define HE_NOT_SVG          ( HE_NOT_SVG_1 | HE_NOT_SVG_2 )
+
+#define HE_M3_NONSTAND  0x0004000000000000
+
+#define HE_SVG_DEPR_10  0x0008000000000000
+#define HE_SVG_DEPR_11  0x0010000000000000
+#define HE_SVG_DEPR_12  0x0020000000000000
+#define HE_SVG_DEPR_20  0x0040000000000000
+#define HE_SVG_DEPR_21  0x0080000000000000
+
+#define HE_SVG_DEPR_1   ( HE_SVG_DEPR_10 | HE_SVG_DEPR_11 | HE_SVG_DEPR_12 )
+#define HE_SVG_DEPR_2   ( HE_SVG_DEPR_20 | HE_SVG_DEPR_21 )
+#define HE_SVG_DEPR     ( HE_SVG_DEPR_1 | HE_SVG_DEPR_2 )
+
+#define HE_MINARGS_MASK 0x0F00000000000000
+#define HE_MINARGS_SHIFT 56
+#define HE_MINARGS(XXXX) ((uint64_t) XXXX << HE_MINARGS_SHIFT)
+#define HE_MAXARGS_MASK 0xF000000000000000
+#define HE_MAXARGS_SHIFT 60
+#define HE_MAXARGS(XXXX) ((uint64_t) XXXX << HE_MAXARGS_SHIFT)
 
 class html_version : public version
 {   uint64_t ext_ = NOFLAGS;
@@ -475,6 +516,9 @@ public:
     int math () const { return static_cast < int > ((ext () & MATH_MASK) >> MATH_SHIFT); }
     int rdf () const { return static_cast < int > ((ext () & RDF_MASK) >> RDF_SHIFT); }
     int svg () const { return static_cast < int > ((ext () & SVG_MASK) >> SVG_SHIFT); }
+    ::std::size_t minargs () const { return static_cast < ::std::size_t > ((ext () & HE_MINARGS_MASK) >> HE_MINARGS_SHIFT); }
+    ::std::size_t maxargs () const { return static_cast < ::std::size_t > ((ext () & HE_MAXARGS_MASK) >> HE_MAXARGS_SHIFT); }
+    ::std::size_t group () const { return static_cast < ::std::size_t > ((ext () & HE_GROUP_MASK) >> HE_GROUP_SHIFT); }
     bool is_svg_1 () const { return (ext () & HE_SVG_1) != 0; }
     bool is_svg_12 () const { return (ext () & HE_SVG_12) != 0; }
     bool is_svg_2 () const { return (ext () & HE_SVG_2) != 0; }

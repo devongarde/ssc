@@ -79,18 +79,18 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
     static vint_t default_value () { return vint_t (); }
     vint_t get () const { return value_; } };
 
-template < > struct type_master < t_fontfamily > : tidy_string < t_fontfamily >
+template < > struct type_master < t_font_family > : tidy_string < t_font_family >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_fontfamily > :: set_value (nits, v, s);
-        const ::std::string& ss = tidy_string < t_fontfamily > :: get_string ();
-        if (tidy_string < t_fontfamily > :: empty ())
+    {   tidy_string < t_font_family > :: set_value (nits, v, s);
+        const ::std::string& ss = tidy_string < t_font_family > :: get_string ();
+        if (tidy_string < t_font_family > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "a font name or font family is expected");
-        else if (tidy_string < t_fontfamily > :: good ())
+        else if (tidy_string < t_font_family > :: good ())
         {   nitpick knots;
             if (test_value < t_fontname > (knots, v, ss)) nits.merge (knots);
             else nits.pick (nit_fontname, es_info, ec_type, quote (ss), " is not a font " PROG " recognises; some browsers may substitute another");
             return; }
-        tidy_string < t_fontfamily > :: status (s_invalid); } };
+        tidy_string < t_font_family > :: status (s_invalid); } };
 
 template < > struct type_master < t_imgsizes > : tidy_string < t_imgsizes >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

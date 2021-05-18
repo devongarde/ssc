@@ -54,7 +54,8 @@ hav_t havt_ijkl [] =
     { { HTML_JUL10 }, { HTML_UNDEF }, elem_iframe, a_srcdoc },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_iframe, a_width },
     { { HTML_JUL08 }, { HTML_UNDEF }, elem_iframe, a_width },
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_iframe),
+    SVG_PRESENTATION_ATTRIBUTES_2 (elem_iframe),
+    SVG_HTML_ATTRIBUTES (elem_iframe),
 
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_above },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_background },
@@ -92,8 +93,6 @@ hav_t havt_ijkl [] =
     SVG_LANGSPACE_ATTRIBUTES_10 (elem_image),
     SVG_PRESENTATION_ATTRIBUTES (elem_image),
     SVG_XLINK_ATTRIBUTES (elem_image),
-//    SVG10_G_ATTRIBUTES (elem_image),
-//    SVG10_REPL_ATTRIBUTES (elem_image),
 
     MATH3_DEFS_ATTRIBUTES (elem_imaginary),
 
@@ -299,15 +298,18 @@ hav_t havt_ijkl [] =
     MATH3_DEFS_ATTRIBUTES (elem_limit),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_line, a_externalresourcesrequired },
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_line, a_marker },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_line, a_pathlength },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_line, a_transform },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_line, a_x1 },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_line, a_x2 },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_line, a_y1 },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_line, a_y2 },
-    SVG10_G_ATTRIBUTES (elem_line),
-    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_line),
+    SVG_BOX_ATTRIBUTES (elem_line),
     SVG_CONDITIONAL_ATTRIBUTES (elem_line),
+    SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_line, HE_SVG_2),
+    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_line),
     SVG_HTML_ATTRIBUTES (elem_line),
+    SVG_LANGSPACE_ATTRIBUTES_10 (elem_line),
     SVG_PRESENTATION_ATTRIBUTES (elem_line),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_lineargradient, a_externalresourcesrequired },

@@ -5,3 +5,4 @@ PASS ../toast/w3/mathml/index.html
 
 PASS ../toast/w3/mathml/mathml2.html
 0 title_required
+2 unexpected_doctype_content

@@ -111,7 +111,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH1, 0, HE_MATH }, { HTML_UNDEF }, "bvar", elem_bvar, ns_default, 0, EF_M_CONTENT | EF_M_DQ },
     { { HTML_PLUS }, { HTML_PLUS }, "byline", elem_byline, ns_default, 0, EF_BLOK },
     { { HTML_JAN05 }, { HTML_DEC06 }, "calendar", elem_calendar, ns_default, 0, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
-    { { HTML_JAN07 }, { HTML_UNDEF }, "canvas", elem_canvas, ns_default, EP_5_TRANSPARENT, EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_5_PALPABLE | EF_SVG2_GRAPH | EF_SVG20_STR },
+    { { HTML_JAN07 }, { HTML_UNDEF }, "canvas", elem_canvas, ns_default, EP_5_TRANSPARENT, EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_5_PALPABLE | EF_SVG2_GRAPH },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "caption", elem_caption, ns_default, 0, EF_X2_STRUCT | EF_X2_LIST },
     { { XHTML_1_0 }, { HTML_UNDEF }, "card", elem_card, ns_default, EP_CLOSED | EP_ARGS_1 | EP_5_OPEN, EF_M_CONTENT | EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
     { { HTML_MATH2, 0, HE_MATH_2_3_4 }, { HTML_UNDEF }, "cartesianproduct", elem_cartesianproduct, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
@@ -524,8 +524,8 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH1, 0, HE_MATH }, { HTML_UNDEF }, "sum", elem_sum, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { XHTML_2_0, HV_NOT50 }, { HTML_UNDEF }, "summary", elem_summary },
     { { HTML_PLUS, HV_RFC_2070 }, { HTML_UNDEF }, "sup", elem_sup, ns_default, 0, EF_TEXT | EF_MATH | EF_EMPH | EF_3_TEXT | EF_32_FONT | EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "svg", elem_svg, ns_default, 0, EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_S_G | EF_SVG10_STR | EF_SVG11_STR | EF_SVG_CONTAIN },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "switch", elem_switch, ns_default, 0, EF_S_G | EF_SVG_CONTAIN }, // should be transparent for SVG 1.2
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "svg", elem_svg, ns_default, 0, EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_S_G | EF_SVG10_STR | EF_SVG11_STR | EF_SVG20_STR | EF_SVG_CONTAIN },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "switch", elem_switch, ns_default, EP_SVG_12_TRANS, EF_S_G | EF_SVG_CONTAIN },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "symbol", elem_symbol, ns_default, 0, EF_SVG_STR | EF_SVG_CONTAIN },
     { { HTML_3_0, HV_NOT324XX }, { HTML_DEC06 }, "t", elem_t, ns_default, 0, EF_3_MATHVC | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_PLUS, HV_NOT2 | HV_NOT32 | HV_NOT4 }, { HTML_UNDEF }, "tab", elem_tab, ns_default, EP_CLOSED, EF_SPECIAL | EF_X_MATH },
@@ -539,7 +539,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_JUL13 }, { HTML_UNDEF }, "template", elem_template, ns_default, 0, EF_METADATA | EF_5_FLOW | EF_5_PHRASE | EF_5_SCRIPT },
     { { HTML_MATH1, 0, HE_MATH }, { HTML_UNDEF }, "tendsto", elem_tendsto, ns_default, EP_CLOSED | EP_ARGS_2, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_3_0, HV_NOT32, HE_SVG }, { HTML_UNDEF }, "text", elem_text, ns_default, 0, EF_S_G | EF_SVG_GRAPH | EF_SVG_TEXT | EF_SVG2_GRAPH },
-    { { HTML_PLUS, HV_NOT2L1 | HV_NOTX2 }, { HTML_UNDEF }, "textarea", elem_textarea, ns_default, 0, EF_MISC | EF_32_FORM | EF_4_FORM | EF_5_FLOW | EF_5_PHRASE | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_5_FORM },
+    { { HTML_PLUS, HV_NOT2L1 | HV_NOTX2 }, { HTML_UNDEF }, "textarea", elem_textarea, ns_default, EP_NO_WHINGE, EF_MISC | EF_32_FORM | EF_4_FORM | EF_5_FLOW | EF_5_PHRASE | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_5_FORM },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "textPath", elem_textpath, ns_default, 0, EF_SVG_TEXT | EF_SVG2_GRAPH },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { HTML_UNDEF }, "tfoot", elem_tfoot },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "th", elem_th, ns_default, EP_LAZY | EP_UNCLOSEDPLUS },
@@ -556,7 +556,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH1, 0, HE_MATH }, { HTML_UNDEF }, "transpose", elem_transpose, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "tref", elem_tref, ns_default, 0, EF_SVG_TEXT },
     { { HTML_MATH2, 0, HE_MATH_2_3_4 }, { HTML_UNDEF }, "true", elem_true, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "tspan", elem_tspan, ns_default, 0, EF_SVG_TEXT | EF_SVG2_GRAPH },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "tspan", elem_tspan, ns_default, EP_SVG_12_TRANS, EF_SVG_TEXT | EF_SVG2_GRAPH },
     { { HTML_1_0 }, { XHTML_1_1 }, "tt", elem_tt, ns_default, 0, EF_EMPH | EF_FONT | EF_3_FONT | EF_32_FONT | EF_4_FONT },
     { { HTML_1_0, HV_DEPRECATED4 | HV_NOTX2 }, { HTML_UNDEF }, "u", elem_u, ns_default, 0, EF_EMPH | EF_3_FONT | EF_32_FONT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_TAGS, HV_DEPRECATED30 }, { HTML_UNDEF }, "ul", elem_ul, ns_default, EP_ONLYELEMENTS | EP_5_DYNAMIC, EF_3_LIST | EF_LL | EF_LIST | EF_32_BLOCK | EF_4_BLOCK | EF_X2_STRUCT | EF_X2_LIST | EF_5_FLOW | EF_5_PALPABLE },
@@ -673,8 +673,9 @@ bool elem::is_closed (const html_version& v) const
     return true; }
 
 bool elem::is_transparent (const html_version& v) const
-{   if (v.mjr () < 5) return false;
-    return ((flags () & EP_5_TRANSPARENT) == EP_5_TRANSPARENT); }
+{   if (v < xhtml_1_0) return false;
+    if (v.is_5 () && ((flags () & EP_5_TRANSPARENT) == EP_5_TRANSPARENT)) return true;
+    return (v.is_svg_12 () && ((flags () & EP_SVG_12_TRANS) == EP_SVG_12_TRANS)); }
 
 void add_elements (const vstr_t& v)
 {   nitpick nuts;

@@ -229,8 +229,8 @@ The options are as follows:
 
 --stats.summary         Produce a summary of overall statistics for the website
 
---svg.version x         Presume any SVG code encountered is this version. Valid versions are 1.0 / 1.1 / 2.0. The SVG code may specify the version itself.
-                        If this switch is not used, and some SVG code does not identify its version, the version is worked out from the version of the host HTML
+--svg.version x         Presume any SVG code encountered is this version. Valid versions are 1.0 / 1.1. The SVG code may specify the version itself.
+                        If this switch is not used, and some SVG code does not identify its version, the version is derived from the version of the host HTML
                         code.
 
 -v x                    ssc becomes verbose and outputs additional information. X is a digit to indicate verbosity level. Verbosity levels are:

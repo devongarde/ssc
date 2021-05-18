@@ -121,6 +121,7 @@ template < > struct type_master < t_svg_units > : two_value < t_svg_units, e_svg
 template < > struct type_master < t_tbalign > : two_value < t_tbalign, e_tbalign, sz_bottom, sz_top, false > { };
 template < > struct type_master < t_transp > : two_value < t_transp, e_transp, sz_opaque, sz_transparent, false > { };
 template < > struct type_master < t_truefalseempty > : two_value < t_truefalseempty, e_bool, sz_false, sz_true, true > { };
+template < > struct type_master < t_viewportscreen > : two_value < t_viewportscreen, e_viewportscreen, sz_viewport, sz_screen, false > { };
 template < > struct type_master < t_workertype > : two_value < t_workertype, e_workertype, sz_classic, sz_module, false > { };
 template < > struct type_master < t_wrap > : two_value < t_wrap, e_wrap, sz_soft, sz_hard, false > { };
 template < > struct type_master < t_wrap3 > : two_value < t_wrap3, e_wrap3, sz_horiz, sz_vert, false > { };

@@ -30,7 +30,7 @@ typedef typed_attribute < t_bool, a_accent > attr_accent;
 typedef typed_attribute < t_real, a_accentheight > attr_accentheight;
 typedef typed_attribute < t_bool, a_accentunder > attr_accentunder;
 typedef typed_attribute < t_accept, a_accept > attr_accept;
-typedef typed_attribute < t_charsets, a_acceptcharset > attr_acceptcharset;
+typedef typed_attribute < t_charsets, a_accept_charset > attr_acceptcharset;
 typedef typed_attribute < t_key, a_accesskey > attr_accesskey;
 typedef typed_attribute < t_accumulate, a_accumulate > attr_accumulate;
 typedef typed_attribute < t_url, a_action > attr_action;
@@ -40,14 +40,14 @@ typedef typed_attribute < t_bool, a_activate > attr_activate;
 typedef typed_attribute < t_actuate, a_actuate > attr_actuate;
 typedef typed_attribute < t_additive, a_additive > attr_additive;
 typedef typed_attribute < t_align, a_align > attr_align;
-typedef typed_attribute < t_alignmentbaseline, a_alignmentbaseline > attr_alignmentbaseline;
+typedef typed_attribute < t_alignment_baseline, a_alignment_baseline > attr_alignment_baseline;
 typedef typed_attribute < t_bools, a_alignmentscope > attr_alignmentscope;
 typedef typed_attribute < t_colour, a_alink > attr_alink;
 typedef typed_attribute < t_featurepolicy, a_allow > attr_allow;
 typedef typed_attribute < t_html_boolean, a_allowfullscreen > attr_allowfullscreen;
 typedef typed_attribute < t_html_boolean, a_allowpaymentrequest > attr_allowpaymentrequest;
 typedef typed_attribute < t_html_boolean, a_allowusermedia > attr_allowusermedia;
-typedef typed_attribute < t_bool, a_allow_zoom_pan > attr_allowzoompan;
+typedef typed_attribute < t_bool, a_allow_zoom_and_pan > attr_allowzoompan;
 typedef typed_attribute < t_real, a_alphabetic > attr_alphabetic;
 typedef typed_attribute < t_text, a_alt > attr_alt;
 typedef typed_attribute < t_url, a_altimg > attr_altimg;
@@ -57,7 +57,7 @@ typedef typed_attribute < t_measure, a_altimg_width > attr_altimg_width;
 typedef typed_attribute < t_text, a_alttext > attr_alttext;
 typedef typed_attribute < t_real, a_amplitude > attr_amplitude;
 typedef typed_attribute < t_generic, a_animate > attr_animate;
-typedef typed_attribute < t_arabicform, a_arabicform > attr_arabicform;
+typedef typed_attribute < t_arabic_form, a_arabic_form > attr_arabic_form;
 typedef typed_attribute < t_urls, a_archive > attr_archive;
 typedef typed_attribute < t_idref, a_ariaactivedescendant > attr_ariaactivedescendant;
 typedef typed_attribute < t_bool, a_ariaatomic > attr_ariaatomic;
@@ -131,7 +131,7 @@ typedef typed_attribute < t_bandwidth, a_bandwidth > attr_bandwidth;
 typedef typed_attribute < t_base, a_base > attr_base;
 typedef typed_attribute < t_real_1_2, a_basefrequency > attr_base_frequency;
 typedef typed_attribute < t_measure, a_baseline > attr_baseline;
-typedef typed_attribute < t_svg_baselineshift, a_baselineshift > attr_baselineshift;
+typedef typed_attribute < t_svg_baselineshift, a_baseline_shift > attr_baselineshift;
 typedef typed_attribute < t_svg_baseprofile, a_baseprofile > attr_baseprofile;
 typedef typed_attribute < t_text, a_bbox > attr_bbox;
 typedef typed_attribute < t_beginvaluelist, a_begin > attr_begin;
@@ -288,14 +288,21 @@ typedef typed_attribute < t_opacity, a_flood_opacity > attr_flood_opacity;
 typedef typed_attribute < t_tfa, a_focusable > attr_focusable;
 typedef typed_attribute < t_focushighlight, a_focushighlight > attr_focushighlight;
 typedef typed_attribute < t_font, a_font > attr_font;
-typedef typed_attribute < t_fontfamilies, a_font_family > attr_font_family;
+typedef typed_attribute < t_font_families, a_font_family > attr_font_family;
+typedef typed_attribute < t_generic, a_font_feature_settings > attr_font_feature_settings;
+typedef typed_attribute < t_generic, a_font_kerning > attr_font_kerning;
 typedef typed_attribute < t_fontsize, a_font_size > attr_font_size;
 typedef typed_attribute < t_fontsizeadjust, a_font_size_adjust > attr_font_size_adjust;
 typedef typed_attribute < t_fontstretch, a_font_stretch > attr_font_stretch;
 typedef typed_attribute < t_fontstyle, a_font_style > attr_font_style;
-typedef typed_attribute < t_fontvariant, a_font_variant > attr_font_variant;
+typedef typed_attribute < t_font_variant, a_font_variant > attr_font_variant;
+typedef typed_attribute < t_font_variant_caps, a_font_variant_caps > attr_font_variant_caps;
+typedef typed_attribute < t_font_variant_east_asians, a_font_variant_east_asian > attr_font_variant_east_asian;
+typedef typed_attribute < t_font_variant_ligatures, a_font_variant_ligatures > attr_font_variant_ligatures;
+typedef typed_attribute < t_font_variant_numerics, a_font_variant_numeric > attr_font_variant_numeric;
+typedef typed_attribute < t_font_variant_position, a_font_variant_position > attr_font_variant_position;
 typedef typed_attribute < t_fontweight, a_font_weight > attr_font_weight;
-typedef typed_attribute < t_fontfamily, a_fontfamily > attr_fontfamily;
+typedef typed_attribute < t_font_family, a_fontfamily > attr_fontfamily;
 typedef typed_attribute < t_vunit, a_fontsize > attr_fontsize;
 typedef typed_attribute < t_fontstretch, a_fontstretch > attr_fontstretch;
 typedef typed_attribute < t_fontstyle, a_fontstyle > attr_fontstyle;
@@ -372,6 +379,7 @@ typedef typed_attribute < t_index, a_index > attr_index;
 typedef typed_attribute < t_html_boolean, a_inert > attr_inert;
 typedef typed_attribute < t_infixlinebreakstyle, a_infixlinebreakstyle > attr_infixlinebreakstyle;
 typedef typed_attribute < t_initialvisibility, a_initialvisibility > attr_initialvisibility;
+typedef typed_attribute < t_measure, a_inline_size > attr_inline_size;
 typedef typed_attribute < t_inlist, a_inlist > attr_inlist;
 typedef typed_attribute < t_inputmode, a_inputmode > attr_inputmode;
 typedef typed_attribute < t_text, a_integrity > attr_integrity;
@@ -380,6 +388,7 @@ typedef typed_attribute < t_text, a_intrinsicsize > attr_intrinsicsize;
 typedef typed_attribute < t_html_boolean, a_irrelevant > attr_irrelevant;
 typedef typed_attribute < t_is, a_is > attr_is;
 typedef typed_attribute < t_existential, a_ismap > attr_ismap;
+typedef typed_attribute < t_generic, a_isolation > attr_isolation;
 typedef typed_attribute < t_generic, a_item > attr_item;
 typedef typed_attribute < t_itemid, a_itemid > attr_itemid;
 typedef typed_attribute < t_itemprop, a_itemprop > attr_itemprop;
@@ -687,7 +696,7 @@ typedef typed_attribute < t_dur_repeat, a_repeatdur > attr_repeatdur;
 typedef typed_attribute < t_existential, a_required > attr_required;
 typedef typed_attribute < t_urls, a_requiredextensions > attr_requiredextensions;
 typedef typed_attribute < t_svg_features, a_requiredfeatures > attr_requiredfeatures;
-typedef typed_attribute < t_fontfamilies, a_requiredfonts > attr_requiredfonts;
+typedef typed_attribute < t_font_families, a_requiredfonts > attr_requiredfonts;
 typedef typed_attribute < t_mimelist, a_requiredformats > attr_requiredformats;
 typedef typed_attribute < t_curie_safe, a_resource > attr_resource;
 typedef typed_attribute < t_restart, a_restart > attr_restart;
@@ -734,7 +743,12 @@ typedef typed_attribute < t_text, a_separators > attr_separators;
 typedef typed_attribute < t_unsigned, a_seqnum > attr_seqnum;
 typedef typed_attribute < t_existential, a_several > attr_several;
 typedef typed_attribute < t_shape, a_shape > attr_shape;
+typedef typed_attribute < t_zero_to_one, a_shape_image_threshold > attr_shape_image_threshold;
+typedef typed_attribute < t_shape_none_uri, a_shape_inside > attr_shape_inside;
+typedef typed_attribute < t_measure, a_shape_margin > attr_shape_margin;
+typedef typed_attribute < t_measure, a_shape_padding > attr_shape_padding;
 typedef typed_attribute < t_shape_rendering, a_shape_rendering > attr_shape_rendering;
+typedef typed_attribute < t_shape_none_uri, a_shape_subtract > attr_shape_subtract;
 typedef typed_attribute < t_integer, a_shift > attr_shift;
 typedef typed_attribute < t_show, a_show > attr_show;
 typedef typed_attribute < t_side, a_side > attr_side;
@@ -762,7 +776,6 @@ typedef typed_attribute < t_mimelist, a_srctype > attr_srctype;
 typedef typed_attribute < t_text, a_standby > attr_standby;
 typedef typed_attribute < t_lcrd, a_stackalign > attr_stackalign;
 typedef typed_attribute < t_start, a_start > attr_start;
-typedef typed_attribute < t_measure, a_start_offset > attr_start_offset;
 typedef typed_attribute < t_measure, a_startoffset > attr_startoffset;
 typedef typed_attribute < t_real_1_2, a_stddeviation > attr_stddeviation;
 typedef typed_attribute < t_real, a_stemh > attr_stemh;
@@ -811,11 +824,17 @@ typedef typed_attribute < t_integer, a_targetx > attr_targetx;
 typedef typed_attribute < t_integer, a_targety > attr_targety;
 typedef typed_attribute < t_url, a_template > attr_template;
 typedef typed_attribute < t_colour, a_text > attr_text;
-typedef typed_attribute < t_scei, a_text_align > attr_textalign;
-typedef typed_attribute < t_smei, a_text_anchor > attr_textanchor;
-typedef typed_attribute < t_textdecoration, a_text_decoration > attr_textdecoration;
-typedef typed_attribute < t_textoverflow, a_text_overflow > attr_textoverflow;
-typedef typed_attribute < t_textrendering, a_text_rendering > attr_textrendering;
+typedef typed_attribute < t_scei, a_text_align > attr_text_align;
+typedef typed_attribute < t_generic, a_text_align_last > attr_text_align_last;
+typedef typed_attribute < t_smei, a_text_anchor > attr_text_anchor;
+typedef typed_attribute < t_text_decoration, a_text_decoration > attr_text_decoration;
+typedef typed_attribute < t_colour_v, a_text_decoration_colour > attr_text_decoration_colour;
+typedef typed_attribute < t_generic, a_text_decoration_line > attr_text_decoration_line;
+typedef typed_attribute < t_generic, a_text_decoration_style > attr_text_decoration_style;
+typedef typed_attribute < t_generic, a_text_indent > attr_text_indent;
+typedef typed_attribute < t_generic, a_text_orientation > attr_text_orientation;
+typedef typed_attribute < t_textoverflow, a_text_overflow > attr_text_overflow;
+typedef typed_attribute < t_text_rendering, a_text_rendering > attr_text_rendering;
 typedef typed_attribute < t_measure, a_textlength > attr_textlength;
 typedef typed_attribute < t_hunit, a_thickmathspace > attr_thickmathspace;
 typedef typed_attribute < t_hunit, a_thinmathspace > attr_thinmathspace;
@@ -826,6 +845,7 @@ typedef typed_attribute < t_unsigned, a_top > attr_top;
 typedef typed_attribute < t_unsigned, a_topmargin > attr_topmargin;
 typedef typed_attribute < t_transform, a_transform > attr_transform;
 typedef typed_attribute < t_transformbehaviour, a_transformbehaviour > attr_transformbehaviour;
+typedef typed_attribute < t_generic, a_transform_box > attr_transform_box;
 typedef typed_attribute < t_pt, a_transform_origin > attr_transform_origin;
 typedef typed_attribute < t_yesnoempty, a_translate > attr_translate;
 typedef typed_attribute < t_existential, a_truespeed > attr_truespeed;
@@ -853,6 +873,7 @@ typedef typed_attribute < t_valuetype, a_valuetype > attr_valuetype;
 typedef typed_attribute < t_vectoreffect, a_vector_effect > attr_vectoreffect;
 typedef typed_attribute < t_version, a_version > attr_version;
 typedef typed_attribute < t_real, a_vert_adv_y > attr_vertadvy;
+typedef typed_attribute < t_generic, a_vertical_align > attr_vertical_align;
 typedef typed_attribute < t_real, a_vert_origin_x > attr_vertoriginx;
 typedef typed_attribute < t_real, a_vert_origin_y > attr_vertoriginy;
 typedef typed_attribute < t_hunit, a_verythickmathspace > attr_verythickmathspace;
@@ -929,7 +950,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_actuate, \
     attr_additive, \
     attr_align, \
-    attr_alignmentbaseline, \
+    attr_alignment_baseline, \
     attr_alignmentscope, \
     attr_alink, \
     attr_allow, \
@@ -946,7 +967,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_alttext, \
     attr_amplitude, \
     attr_animate, \
-    attr_arabicform, \
+    attr_arabic_form, \
     attr_archive, \
     attr_ariaactivedescendant, \
     attr_ariaatomic, \
@@ -1176,11 +1197,18 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_focushighlight, \
     attr_font, \
     attr_font_family, \
+    attr_font_feature_settings, \
+    attr_font_kerning, \
     attr_font_size, \
     attr_font_size_adjust, \
     attr_font_stretch, \
     attr_font_style, \
     attr_font_variant, \
+    attr_font_variant_caps, \
+    attr_font_variant_east_asian, \
+    attr_font_variant_ligatures, \
+    attr_font_variant_numeric, \
+    attr_font_variant_position, \
     attr_font_weight, \
     attr_fontfamily, \
     attr_fontsize, \
@@ -1259,6 +1287,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_inert, \
     attr_infixlinebreakstyle, \
     attr_initialvisibility, \
+    attr_inline_size, \
     attr_inlist, \
     attr_inputmode, \
     attr_integrity, \
@@ -1267,6 +1296,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_irrelevant, \
     attr_is, \
     attr_ismap, \
+    attr_isolation, \
     attr_item, \
     attr_itemid, \
     attr_itemprop, \
@@ -1625,7 +1655,12 @@ const e_attribute last_am = a_muted;
     attr_seqnum, \
     attr_several, \
     attr_shape, \
+    attr_shape_image_threshold, \
+    attr_shape_inside, \
+    attr_shape_margin, \
+    attr_shape_padding, \
     attr_shape_rendering, \
+    attr_shape_subtract, \
     attr_shift, \
     attr_show, \
     attr_side, \
@@ -1653,7 +1688,6 @@ const e_attribute last_am = a_muted;
     attr_stackalign, \
     attr_standby, \
     attr_start, \
-    attr_start_offset, \
     attr_startoffset, \
     attr_stddeviation, \
     attr_stemh, \
@@ -1702,11 +1736,17 @@ const e_attribute last_am = a_muted;
     attr_targety, \
     attr_template, \
     attr_text, \
-    attr_textalign, \
-    attr_textanchor, \
-    attr_textdecoration, \
-    attr_textoverflow, \
-    attr_textrendering, \
+    attr_text_align, \
+    attr_text_align_last, \
+    attr_text_anchor, \
+    attr_text_decoration, \
+    attr_text_decoration_colour, \
+    attr_text_decoration_line, \
+    attr_text_decoration_style, \
+    attr_text_indent, \
+    attr_text_orientation, \
+    attr_text_overflow, \
+    attr_text_rendering, \
     attr_textlength, \
     attr_thickmathspace, \
     attr_thinmathspace, \
@@ -1717,6 +1757,7 @@ const e_attribute last_am = a_muted;
     attr_topmargin, \
     attr_transform, \
     attr_transformbehaviour, \
+    attr_transform_box, \
     attr_transform_origin, \
     attr_translate, \
     attr_truespeed, \
@@ -1744,6 +1785,7 @@ const e_attribute last_am = a_muted;
     attr_vectoreffect, \
     attr_version, \
     attr_vertadvy, \
+    attr_vertical_align, \
     attr_vertoriginx, \
     attr_vertoriginy, \
     attr_verythickmathspace, \

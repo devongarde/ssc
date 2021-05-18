@@ -41,7 +41,6 @@ public:
 
 template < > class type_master < t_aria_live > : public three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite > { };
 template < > class type_master < t_attributetype > : public three_value < t_attributetype, e_attributetype, sz_auto, sz_css, sz_xml > { };
-template < > class type_master < t_baselineshift2 > : public three_value < t_baselineshift2, e_baselineshift2, sz_baseline, sz_sub, sz_super > { };
 template < > class type_master < t_behaviour > : public three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide > { };
 template < > class type_master < t_button > : public three_value < t_button, e_button, sz_button, sz_submit, sz_reset > { };
 template < > class type_master < t_command > : public three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > { };
@@ -53,6 +52,7 @@ template < > class type_master < t_edgemode > : public three_value < t_edgemode,
 template < > class type_master < t_enctype > : public three_value < t_enctype, e_enctype, sz_app_urlencoded, sz_multipart_form_data, sz_text_plain > { };
 template < > class type_master < t_fillrule > : public three_value < t_fillrule, e_fillrule, sz_nonzero, sz_evenodd, sz_inherit > { };
 template < > class type_master < t_fontnia > : public three_value < t_fontnia, e_fontnia, sz_normal, sz_italic, sz_oblique > { };
+template < > class type_master < t_font_variant_position > : public three_value < t_font_variant_position, e_font_variant_position, sz_normal, sz_sub, sz_super > { };
 template < > class type_master < t_importance > : public three_value < t_importance, e_importance, sz_auto, sz_high, sz_low > { };
 template < > class type_master < t_infixlinebreakstyle > : public three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate > { };
 template < > class type_master < t_keytype > : public three_value < t_keytype, e_keytype, sz_dsa, sz_ec, sz_rsa > { };

@@ -30,7 +30,7 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
             if ((len == 7) && (val.at (0) == '#') && (val.substr (1).find_first_not_of (HEX) == ::std::string::npos)) return;
             if ((len == 4) && (val.at (0) == '#') && (v.svg () >= sv_1_0) && (val.substr (1).find_first_not_of (HEX) == ::std::string::npos)) return;
             if ((len > 4) && (val.at (len - 1) == ')') && compare_no_case (val.substr (0, 4), "rgb("))
-            {   if ((v.svg () <= sv_1_0))
+            {   if ((v.svg () < sv_1_0))
                     nits.pick (nit_svg_version, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (val), ": rgb (...) colour syntax requires SVG 1.1 or better.");
                 else
                 {   vstr_t nums (split_by_charset (val, ","));

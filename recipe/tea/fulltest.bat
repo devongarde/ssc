@@ -48,6 +48,7 @@ ssc.exe -f ../toast/living/apr21/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf
+ssc.exe -f ../toast/math/4/math.conf
 ssc.exe -f ../toast/microdata/12/schema.conf
 ssc.exe -f ../toast/microdata/addendum/add.conf
 ssc.exe -f ../toast/microdata/basic/basic.conf
@@ -97,6 +98,9 @@ ssc.exe -f ../toast/stats/single/stats.conf
 ssc.exe -f ../toast/stats/summary/stats.conf
 ssc.exe -f ../toast/SVG/1.0/svg.conf
 ssc.exe -f ../toast/SVG/1.1/svg.conf
+ssc.exe -f ../toast/SVG/1.2/svg.conf
+ssc.exe -f ../toast/SVG/2.0/svg.conf
+ssc.exe -f ../toast/SVG/2.1/svg.conf
 ssc.exe -f ../toast/type/colour/colour.conf
 ssc.exe -f ../toast/type/custom/custom.conf
 ssc.exe -f ../toast/type/httpequiv/httpequiv.conf

@@ -39,6 +39,21 @@ void element::examine_address ()
     {   check_ancestors (elem_address, empty_element_bitset | elem_address);
         check_descendants (elem_address, header_bitset | sectioning_bitset | elem_address | elem_header | elem_footer); } }
 
+void element::examine_altglyphdef ()
+{   bool ref = false, item = false, bad = false;
+    if (has_child ())
+        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+            switch (c -> tag ())
+            {   case elem_altglyphitem :
+                    if (ref) bad = true; else item = true;
+                    break;
+                case elem_glyphref :
+                    if (item) bad = true; else ref = true;
+                    break;
+                default :
+                    break; }
+    if (bad) pick (nit_altglyphdef, ed_svg_1_0, "10.14 Alternate glyphs", es_error, ec_element, "<ALTGLYPHDEF> can have only <GLYPHREF> or only <ALTGLYPHITEM> children"); }
+
 void element::examine_anchor ()
 {   const bool href_known = a_.known (a_href) || a_.known (a_xlinkhref);
     const bool type_known = a_.known (a_type);

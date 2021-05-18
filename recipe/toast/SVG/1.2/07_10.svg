@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<svg width="400px" height="150px" version="1.2" baseProfile="tiny"
+xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="20" height="20" transform="scale(2)"/>
+</svg>

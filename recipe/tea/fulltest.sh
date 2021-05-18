@@ -51,6 +51,7 @@
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
+./ssc -f ../toast/math/4/math.conf
 ./ssc -f ../toast/microdata/12/schema.conf
 ./ssc -f ../toast/microdata/addendum/add.conf
 ./ssc -f ../toast/microdata/basic/basic.conf
@@ -100,6 +101,9 @@
 ./ssc -f ../toast/stats/summary/stats.conf
 ./ssc -f ../toast/SVG/1.0/svg.conf
 ./ssc -f ../toast/SVG/1.1/svg.conf
+./ssc -f ../toast/SVG/1.2/svg.conf
+./ssc -f ../toast/SVG/2.0/svg.conf
+./ssc -f ../toast/SVG/2.1/svg.conf
 ./ssc -f ../toast/type/colour/colour.conf
 ./ssc -f ../toast/type/custom/custom.conf
 ./ssc -f ../toast/type/httpequiv/httpequiv.conf

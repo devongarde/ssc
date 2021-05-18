@@ -62,6 +62,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_ARGS_COUNT_MASK  0x0000000F00000000
 #define EP_ARGS_MORE        0x0000001000000000
 
+#define EP_SVG_12_TRANS     0x0000002000000000
+#define EP_NO_WHINGE        0x0000004000000000
+
 // categories
 
 #define EF_DOCUMENT         0x0000000000000001
@@ -133,7 +136,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_5_SECTION        0x2000000000000000
 #define EF_5_FORM           0x4000000000000000
 
-#define EF_SVG20_STR         0x8000000000000000
+#define EF_SVG20_STR        0x8000000000000000
 
 #define EF_CUSTOM           0xFFF0FFFFFFFFFFF4
 
