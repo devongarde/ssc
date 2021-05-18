@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 1.1 transform</title>
+</head>
+
+<body>
+
+<h1>SVG 1.1 transform</h1>
+
+<svg version="1.1">
+<g transform="translate(-10,-20) scale(2) rotate(45) translate(5,10)">
+ <!-- graphics elements go here -->
+</g>
+
+<g transform="translate(-10,-20)">
+ <g transform="scale(2)">
+ <g transform="rotate(45)">
+ <g transform="translate(5,10)">
+ <!-- graphics elements go here -->
+ </g>
+ </g>
+ </g>
+</g>
+
+<rect x="10" y="10" width="20" height="20" transform="scale(2)"/>
+
+<g transform="scale(2)">
+ <rect x="10" y="10" width="20" height="20"/>
+</g>
+
+</svg>
+
+</body>
+</html>

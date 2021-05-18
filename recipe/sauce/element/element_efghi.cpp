@@ -223,7 +223,7 @@ void element::examine_form ()
             break;
         default :
         {   check_ancestors (elem_form, element_bit_set (elem_form));
-            if ((node_.version () >= html_jan19) && a_.good (a_acceptcharset))
+            if ((node_.version () >= html_jan19) && a_.good (a_accept_charset))
             {   auto v = a_.get_x < attr_acceptcharset > ();
                 if (v.size () != 1) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "ACCEPT-CHARSET, if present, must be set to 'utf-8' only");
                 else

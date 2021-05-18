@@ -226,6 +226,12 @@ void element::examine_keytimes ()
     if (n != m)
         pick (nit_keytimes, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "KEYTIMES must have the same quantity of numbers as VALUES"); }
 
+void element::examine_line_increment ()
+{   if ((! node_.version ().is_svg_12 ()) || (! ancestral_elements_.test (elem_svg)))
+        pick (nit_line_increment, ed_svg_1_2_tiny, "10.11.4 The 'line-increment' property", es_error, ec_attribute, "LINE-INCREMENT requires SVG 1.2");
+    else if ((node_.tag () != elem_textarea) || (! ancestral_elements_.test (elem_textarea)))
+        pick (nit_line_increment, ed_svg_1_2_tiny, "10.11.4 The 'line-increment' property", es_error, ec_attribute, "LINE-INCREMENT requires a <TEXTAREA> ancestor"); }
+
 void element::examine_descendant_in (const element* filter)
 {   DBG_ASSERT (filter != nullptr);
     if (a_.known (a_in))
@@ -291,5 +297,6 @@ void element::examine_style_attr ()
 
 void element::examine_xlinkhref ()
 {   if (node_.id ().is_math ())
-        if (context.math_version () >= math_3)
-            pick (nit_math_href, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "prefer HREF to XLINK:HREF in MathML 3"); }
+        if (ancestral_elements_.test (elem_math))
+            if (context.math_version () >= math_3)
+                pick (nit_math_href, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "prefer HREF to XLINK:HREF in MathML 3"); }

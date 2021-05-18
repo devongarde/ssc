@@ -144,6 +144,19 @@ template < e_type T, e_type A, e_type B > struct type_either_or : tidy_string < 
             {   nits.merge (nuts); nits.merge (knots); }
         tidy_string < T > :: status (s_invalid); } } };
 
+template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : tidy_string < T > // if more alternatives are needed, generalise with template metaprogramming
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
+        {   nitpick nuts, knots, knits;
+            const ::std::string ss (tidy_string < T > :: get_string ());
+            if (test_value < A > (nuts, v, ss, tidy_string < T > :: id ())) nits.merge (nuts);
+            else if (test_value < B > (knots, v, ss, tidy_string < T > :: id ())) nits.merge (knots);
+            else if (test_value < C > (knits, v, ss, tidy_string < T > :: id ())) nits.merge (knits);
+            else
+            {   nits.merge (nuts); nits.merge (knots); nits.merge (knits); }
+        tidy_string < T > :: status (s_invalid); } } };
+
 template < e_type T, class SZ, e_type P > struct type_at_least_one : string_vector < T, SZ >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
@@ -239,6 +252,37 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : ti
             if (test_value < U > (nits, v, ss, tidy_string < T > :: id ())) return; }
         tidy_string < T > :: status (s_invalid); }
     ::std::size_t size () const { return both_ ? 2 : 1; } };
+
+template < e_type T, e_type U, class SZ, e_type P > struct type_many_then_maybe : tidy_string < T >
+{   ::std::size_t size_ = 0;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "value expected");
+        else if (tidy_string < T > :: good ())
+        {   DBG_ASSERT (SZ :: sz () != nullptr);
+            vstr_t ss (split_by_charset (tidy_string < T > :: get_string (), SZ::sz ()));
+            DBG_ASSERT (! ss.empty ());
+            size_ = ss.size ();
+            bool res = true;
+            ::std::string peed;
+            for (auto sss : ss)
+            {   nitpick nuts;
+                if (! peed.empty ())
+                {   nits.pick (nit_many_maybe, es_error, ec_type, quote (sss), " follows ", quote (peed), ", which should be the final value");
+                    res = false; break; }
+                if (test_value < U > (nuts, v, sss)) nits.merge (nuts);
+                else
+                {   nitpick knits;
+                    if (! test_value < P > (knits, v, sss))
+                    {   res = false;
+                        nits.pick (nit_many_maybe, es_error, ec_type, quote (sss), " is not expected here"); }
+                    else
+                    {   nits.merge (knits);
+                        peed = sss; } } }
+            if (res) return; }
+        tidy_string < T > :: status (s_invalid); }
+    ::std::size_t size () const { return size_; } };
 
 template < e_type T, e_type P, class SZ1, class SZ2 > struct id_or_either_string : type_or_either_string < T, P, SZ1, SZ2 >
 {   bool verify_id (nitpick& nits, const html_version& , ids_t& ids, const attribute_bitset& state, const vit_t& )

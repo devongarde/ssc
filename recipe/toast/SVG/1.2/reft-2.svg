@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<svg xml:id="root" version="1.2" baseProfile="tiny" viewBox="0 0 100 100">
+<line x1="0" x2="100" y1="0" y2="100"/>
+<g xml:id="g" transform="ref(svg, 50, 50)">
+<rect xml:id="r" x="-5" y="-5" width="10" height="10"/>
+</g>
+</svg>

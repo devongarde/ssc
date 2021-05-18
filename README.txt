@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.103
+version 0.0.104
 https://ssc.lu/
 
 
@@ -20,11 +20,11 @@ WARNING: this code is:
 
 
 ssc analyses static HTML snippets, files and sites:
-- HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3
+- HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3 (draft)
 - HTML living standard, Jan 2005 to Apr 2021
 - SVG 1.0/1.1
-- MathML 1/2/3/4(draft)
-- XHTML 1.0/1.1/2.0
+- MathML 1/2/3/4 (draft)
+- XHTML 1.0/1.1/2.0/5.x
 - finds broken links (requires curl)
 - server side includes, mostly
 - schema.org microdata 2.x/3.x/4.0/5.0/6.0/7.x/8.0/9.0/10.0/11.0/12.0
@@ -41,10 +41,12 @@ It does NOT:
 - analyse or understand styles, beyond nicking class names from CSS
 - analyse or understand XML or derivatives except as noted above
 
-It can output pages with:
+It can output:
 - 'repaired' HTML (not XHTML)
-- resolved Server Side Includes
-
+- HTML with resolved Server Side Includes
+- JASON summaries of microformat and microdata content
+- website statistical information
+- updated website with datafile deduplication
 
 
 ssc -h
@@ -101,4 +103,4 @@ more licences    licences for content copied from elsewhere
 
 written by dylan harris
 mail@ssc.lu
-April 2021
+May 2021

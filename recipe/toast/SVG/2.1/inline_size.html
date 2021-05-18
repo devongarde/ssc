@@ -1,0 +1,40 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 2.1 inline-size</title>
+</head>
+
+<body>
+
+<h1>SVG 2.1 inline-size</h1>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+ width="300" height="100" viewBox="0 0 300 100">
+ <text x="50" y="30" style="font: 20px sans-serif; inline-size: 200px">
+ This text wraps at 200 pixels.
+ </text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+ width="300" height="100" viewBox="0 0 300 100">
+ <text x="250" y="30"
+style="font: 20px PakType Naqsh; inline-size: 200px; direction: rtl;">
+اذه صنلا فتلي يف 200 لسكب.</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+ width="100" height="300" viewBox="0 0 100 300">
+ <text x="62.5" y="25" inline-size="200"
+style="font: 25px IPAMincho; inline-size: 200px; writing-mode: vertical-rl;">
+テキストは１０文字後に折り返されます。</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+ width="300" height="100" viewBox="0 0 300 100">
+ <text x="50" y="30" style="font: 20px sans-serif; inline-size: 200px; text-anchor: middle">
+ This text wraps at 200 pixels.
+ </text>
+</svg>
+
+</body>
+</html>

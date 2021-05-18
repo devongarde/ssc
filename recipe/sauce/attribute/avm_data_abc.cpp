@@ -102,17 +102,18 @@ hav_t havt_abc [] =
     HTML23_CLID_ATTRIBUTES (elem_address),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_address),
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_altglyph, a_externalresourcesrequired },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_altglyph, a_externalresourcesrequired },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_altglyph, a_format },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_altglyph, a_glyphref },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_altglyph, a_rotate },
-    SVG_XY_ATTRIBUTES (elem_altglyph),
-    SVG10_DXY_ATTRIBUTES (elem_altglyph),
-    SVG_XLINK_ATTRIBUTES (elem_altglyph),
-    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_altglyph),
     SVG_CONDITIONAL_ATTRIBUTES (elem_altglyph),
+    SVG_DXY_ATTRIBUTES (elem_altglyph),
+    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_altglyph),
     SVG_HTML_ATTRIBUTES (elem_altglyph),
+    SVG_LANGSPACE_ATTRIBUTES_10 (elem_altglyph),
     SVG_PRESENTATION_ATTRIBUTES (elem_altglyph),
+    SVG_XLINK_ATTRIBUTES (elem_altglyph),
+    SVG_XY_ATTRIBUTES (elem_altglyph),
 
     SVG_HTML_ATTRIBUTES (elem_altglyphdef),
 
@@ -159,6 +160,7 @@ hav_t havt_abc [] =
     SVG_ANVAL_ATTRIBUTES (elem_animatemotion),
     SVG_XLINK_ATTRIBUTES (elem_animatemotion),
     SVG_CONDITIONAL_ATTRIBUTES (elem_animatemotion),
+    SVG_PRESENTATION_ATTRIBUTES_2 (elem_animatemotion),
     SVG_HTML_ATTRIBUTES (elem_animatemotion),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_animatetransform, a_externalresourcesrequired },
@@ -304,7 +306,8 @@ hav_t havt_abc [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, a_syncbehaviour },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, a_syncmaster },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, a_synctolerance },
-    STANDARD_HTML5_ATTRIBUTES(elem_audio),
+    SVG_PRESENTATION_ATTRIBUTES_2 (elem_animatemotion),
+    SVG_HTML_ATTRIBUTES (elem_audio),
 
     HTML3_CLID_ATTRIBUTES (elem_au),
 
@@ -450,7 +453,8 @@ hav_t havt_abc [] =
 
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_canvas, a_height },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_canvas, a_width },
-    STANDARD_HTML5_ATTRIBUTES (elem_canvas),
+    SVG_PRESENTATION_ATTRIBUTES_2 (elem_canvas),
+    SVG_HTML_ATTRIBUTES (elem_canvas),
 
     { { HTML_2_0, HV_DEPRECATED4 | HV_RFC_1942 }, { XHTML_2_0 }, elem_caption, a_align },
     { { HTML_3_2 }, { HTML_3_2 }, elem_caption, a_valign },
@@ -476,14 +480,16 @@ hav_t havt_abc [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_ci, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_ci),
 
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_circle, a_cx },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_circle, a_cy },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_circle, a_externalresourcesrequired },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_circle, a_pathlength },
     { { HTML_SVG10, 0, HE_SVG | REQUIRED }, { HTML_UNDEF }, elem_circle, a_r },
-    SVG10_G_ATTRIBUTES(elem_circle),
-    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_circle),
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_circle, a_transform },
     SVG_CONDITIONAL_ATTRIBUTES (elem_circle),
+    SVG_CXY_ATTRIBUTES (elem_circle),
+    SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_circle, HE_SVG_2),
+    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_circle),
     SVG_HTML_ATTRIBUTES (elem_circle),
+    SVG_LANGSPACE_ATTRIBUTES_10 (elem_circle),
     SVG_PRESENTATION_ATTRIBUTES (elem_circle),
 
     HTMLPLUS_ATTRIBUTES (elem_cite),

@@ -1,0 +1,7 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"> 
+ <text transform="rotate(45)"> 
+ <textPath path="M0,20 L80,40 160,20"
+ >Text on a path</textPath> 
+ </text> 
+</svg>

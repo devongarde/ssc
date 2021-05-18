@@ -52,6 +52,8 @@ PASS ../toast/XHTML/1.0/svg1-example.xhtml
 314 id_exists
 322 newline_in_string newline_in_string
 332 invalid_attribute_version wrong_version invalid_attribute_version wrong_version id_exists
+410 invalid_attribute_version wrong_version
+420 invalid_attribute_version wrong_version
 428 invalid_attribute_version wrong_version url_not_found
 437 invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version url_not_found
 455 attribute_barred

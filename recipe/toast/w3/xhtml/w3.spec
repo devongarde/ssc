@@ -42,9 +42,11 @@ PASS ../toast/w3/xhtml/xhtml1-blank-1st-line.html
 14 use_double_quote_code
 
 PASS ../toast/w3/xhtml/xhtml1-bogus-attribute.html
+2 unexpected_doctype_content
 13 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/w3/xhtml/xhtml1-bogus-element.html
+2 unexpected_doctype_content
 13 unknown_element unknown_element
 
 PASS ../toast/w3/xhtml/xhtml1-missing-doctype-and-xmlns.html

@@ -12,7 +12,6 @@ PASS ../toast/math/3/math2-example.html
 53 url_not_found
 55 url_not_found
 57 url_not_found
-76 svg invalid_attribute_version wrong_version
 123 impure_mn
 351 math_kids
 

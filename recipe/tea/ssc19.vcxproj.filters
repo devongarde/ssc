@@ -636,6 +636,9 @@
     <Filter Include="Toast\Shadow\DeduDiff\c">
       <UniqueIdentifier>{47f565a5-c28e-4ff3-b2f3-28b8f03ac9f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\SVG\2.1">
+      <UniqueIdentifier>{f142f4e5-fc38-4d4d-8e0a-27ced03f9546}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -17699,6 +17702,774 @@
     </None>
     <None Include="..\toast\SVG\2.0\foreign.svg">
       <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\metadata.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\metadata.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\metadata-dc-title.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\metadata.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\metadata.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\styling-1.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\mystyle.css">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\styling-2.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\styling-3.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\styling-4.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\mystyle.css">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\styling-1.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\styling-2.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\styling-3.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\styling-4.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\06_01.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\styling-1.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\styling-2.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\styling-3.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\cstu-1.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\cstu-2.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\cstu-3.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\cstu-4.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\cstu-5.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\cstu-6.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\cstu-7.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\cstu-1.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\cstu-2.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\cstu-3.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\cstu-4.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\cstu-5.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\cstu-6.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\cstu-7.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_02.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_03.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_04.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_05.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_06.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_07.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\transform.html">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\transform.html">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\transform.html">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\transform.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\viewbox-1.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\viewbox-2.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\viewbox-3.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\preserveaspectratio.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\units.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\viewport.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\preserveaspectratio.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\units.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\viewbox-1.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\viewbox-2.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\viewbox-3.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\viewport.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\svg-transform-1.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\svg-transform-2.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\svg-transform-3.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_11.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_08.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_09.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_10.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\ctm-1.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\ets.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\ctm-2.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\reft-1.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\reft-2.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_12.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_13.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_14.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\bbox01.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\bbox-calc.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\iar-1.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\iar-2.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\iar-3.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\iar-4.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_19.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_20.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_21.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\07_17.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\preserveaspectratio.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\units.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\viewport.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\bbox.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\iar-1.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\iar-2.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\iar-3.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\iar-4.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\bbox.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\dom.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\foreign.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\g.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\group-1.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\iar-1.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\iar-2.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\iar-3.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\iar-4.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\image-1.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\image-2.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\index.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\metadata.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\mystery.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\opacity.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\preserveaspectratio.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\styling-1.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\styling-2.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\styling-3.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\svg.conf">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\svg.spec">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\svg-1.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\svg-1.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\svg-2.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\svg-3.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\title.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\transform.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\units.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\use.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\viewport.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\vectoreffects-1.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\vectoreffects-1.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\vectoreffects-2.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\vectoreffects-3.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\vectoreffects-2.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\vectoreffects-3.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\path-1.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\path-2.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\path-3.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\path-4.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\path-5.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\path-1.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\path-2.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\path-3.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\path-4.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\path-5.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\08_01.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\08_02.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\08_03.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\path-1.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\path-2.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\path-3.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\path-4.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\path-5.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\path-1.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\path-2.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\path-3.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\path-4.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\path-5.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\circle.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\ellipse.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\line.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\polygon.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\polyline.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\rect-1.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\rect-2.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\circle.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\ellipse.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\line.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\polygon.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\polyline.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\rect-1.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\rect-2.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\09_01.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\09_02.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\09_03.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\09_04.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\09_05.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\09_06.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\09_07.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\circle.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\ellipse.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\line.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\polygon.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\polyline.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\rect-1.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\rect-2.xhtml">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\circle.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\ellipse.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\line.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\polygon.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\polyline.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\rect-1.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\rect-2.xhtml">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\text-1.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\text-2.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\text-3.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\text-1.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\text-2.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\text-3.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\text.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\text.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\10_01.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\tspan-1.html">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\tspan-2.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\tspan-3.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\tspan-4.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\tspan-5.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\tspan-6.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\tspan-4.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\tspan-3.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\tspan-2.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\tspan-1.html">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\10_03.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\tspan-1.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\tspan-2.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\tspan-1.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\tspan-2.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\tref.xhtml">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\tref.xhtml">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\bidi-1.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\bidi-2.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\rtl-text.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\rtl-complex.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\text-anchor.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\direction-1.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\direction-2.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\direction-1.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\direction-2.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\text-anchor.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\textpath-1.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\textpath-2.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\textpath-3.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\textpath-4.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\textpath-5.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.0\textpath-6.svg">
+      <Filter>Toast\SVG\1.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\textpath-1.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\textpath-2.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\textpath-3.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\textpath-4.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\textpath-5.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.1\textpath-6.svg">
+      <Filter>Toast\SVG\1.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\textpath-2.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\textpath-3.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\textpath-4.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\textpath-5.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\textpath-6.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\textpath-7.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\textpath-1.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\textpath-2.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\textpath-3.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\textpath-4.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\textpath-5.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\textpath-6.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\textpath-7.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\textpath-1.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\text_search.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\1.2\textarea02.svg">
+      <Filter>Toast\SVG\1.2</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\inline_size.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\shape.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\shape.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\inline_size.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\text-overflow.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\white-space.html">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.0\text-decoration.svg">
+      <Filter>Toast\SVG\2.0</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\text-decoration.svg">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\text-overflow.html">
+      <Filter>Toast\SVG\2.1</Filter>
+    </None>
+    <None Include="..\toast\SVG\2.1\white-space.html">
+      <Filter>Toast\SVG\2.1</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

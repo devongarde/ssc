@@ -124,8 +124,8 @@ void element::examine_time ()
 void element::examine_title ()
 {   if (! node_.version ().has_svg ()) only_one_of (elem_title);
     ::std::string ttl (text ());
-    page_.title (ttl);
     if (! ancestral_elements_.test (elem_head)) return;
+    page_.title (ttl);
     if (is_whitespace (ttl))
         pick (nit_text_content, es_warning, ec_element, "<TITLE> text should be more than whitespace");
     else if (ttl.length () > static_cast < unsigned int > (context.title ()))

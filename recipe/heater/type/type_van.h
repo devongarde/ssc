@@ -110,7 +110,7 @@ template < > struct type_master < t_enablebackground > : tidy_string < t_enableb
                 else nits.pick (nit_background, es_error, ec_type, "'accumulate', 'new', or 'inherit' expected"); } }
         tidy_string < t_enablebackground > :: status (s_invalid); } };
 
-template < > struct type_master < t_fontfamilies > : type_at_least_one < t_fontfamilies, sz_comma, t_fontfamily > { };
+template < > struct type_master < t_font_families > : type_at_least_one < t_font_families, sz_comma, t_font_family > { };
 template < > struct type_master < t_indentalign2 > : type_or_string < t_indentalign2, t_indentalign, sz_indentalign > { };
 template < > struct type_master < t_indentshift2 > : type_or_string < t_indentshift2, t_measure, sz_indentshift > { };
 template < > struct type_master < t_lcraligns > : type_at_least_one < t_lcraligns, sz_space, t_lcralign > { };
@@ -241,34 +241,6 @@ template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept 
         tidy_string < t_inputaccept > :: status (s_invalid); } };
 
 template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_space, t_nsd > { };
-
-template < > struct type_master < t_preserveaspectratio > : tidy_string < t_preserveaspectratio >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_preserveaspectratio > :: set_value (nits, v, s);
-        const ::std::string& ss = tidy_string < t_preserveaspectratio > :: get_string ();
-        if (string_value < t_preserveaspectratio > :: invalid ()) return;
-        vstr_t args (split_by_space (ss));
-        if (args.empty ()) nits.pick (nit_bad_aspect_ratio, ed_svg_1_0, "Section 8.4", es_error, ec_type, "preserve-aspect-ratio cannot be empty");
-        else
-        {   type_master < t_svg_align > a;
-            a.set_value (nits, v, args.at (0));
-            if (a.good ())
-            {   if (args.size () < 2) return;
-                size_t par = 0;
-                if (v.is_svg_12 ())
-                    if (args.at (0) == "defer") par = 1;
-                type_master < t_svg_align > sa;
-                sa.set_value (nits, v, args.at (par));
-                if (sa.good ())
-                    if (args.size () == par) return;
-                    else
-                    {   type_master < t_meetslice > m;
-                        m.set_value (nits, v, args.at (par));
-                        if (m.good ()) ++par;
-                        if (args.size () >= par)
-                            nits.pick (nit_bad_aspect_ratio, ed_svg_1_0, "Section 8.4", es_warning, ec_type, "additional preserve-aspect-ratio values ignored");
-                        return; } } }
-        tidy_string < t_preserveaspectratio > :: status (s_invalid); } };
 
 template < > struct type_master < t_real_1_2 > : type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real > { };
 

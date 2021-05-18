@@ -154,7 +154,7 @@ template < > struct type_master < t_align > : varied < t_align >
             if ((v == html_2) && context.rfc_2070 ()) validate_type < type_master < t_align2070 > > (nits, v);
             else validate_type < type_master < t_halign > > (nits, v); } };
 
-template < > struct type_master < t_arabicform > : varied < t_arabicform >
+template < > struct type_master < t_arabic_form > : varied < t_arabic_form >
 {   void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
     {   if (good () || empty ())
             switch (v.svg_version ())
@@ -190,22 +190,6 @@ template < > struct type_master < t_background > : varied < t_background >
             if (e.is_math ()) validate_type < type_master < t_colour > > (nits, v);
             else validate_type < type_master < t_url > > (nits, v); } };
 
-template < > struct type_master < t_baselineshift > : varied < t_baselineshift >
-{   void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
-    {   if (good () || empty ())
-            switch (v.svg_version ())
-            {   case sv_1_0 :
-                case sv_1_1 :
-                    validate_type < type_master < t_baselineshift1 > > (nits, v);
-                    break;
-                case sv_2_0 :
-                case sv_2_1 :
-                    validate_type < type_master < t_baselineshift2 > > (nits, v);
-                    break;
-                default :
-                    DBG_ASSERT (false);
-                    break; } } };
-
 template < > struct type_master < t_clear > : varied < t_clear >
 {   void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good () || empty ())
@@ -224,13 +208,13 @@ template < > struct type_master < t_closure > : varied < t_closure >
 template < > struct type_master < t_colour_v > : varied < t_colour_v >
 {   void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
     {   if (good () || empty ())
-            if (v.svg () != sv_none) validate_type < type_master < t_colour_i > > (nits, v);
+            if (v.svg_version () != sv_none) validate_type < type_master < t_colour_i > > (nits, v);
             else validate_type < type_master < t_colour > > (nits, v); } };
 
 template < > struct type_master < t_direction > : varied < t_direction >
 {   void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
     {   if (good () || empty ())
-            switch (v.svg ())
+            switch (v.svg_version ())
             {   case sv_1_0 :
                 case sv_1_1 :
                 case sv_1_2_tiny :
@@ -289,6 +273,24 @@ template < > struct type_master < t_fontvariant > : varied < t_fontvariant >
             if (e.get () == elem_fontface)
                 validate_type < type_master < t_svg_fontstyle_ff > > (nits, v);
             else validate_type < type_master < t_svg_fontstyle > > (nits, v); } };
+
+template < > struct type_master < t_font_variant > : varied < t_font_variant >
+{   void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
+    {   if (good () || empty ())
+            switch (v.svg_version ())
+            {   case sv_1_0 :
+                case sv_1_1 :
+                case sv_1_2_tiny :
+                case sv_1_2_full :
+                    validate_type < type_master < t_fontvariant > > (nits, v);
+                    break;
+                case sv_2_0 :
+                case sv_2_1 :
+                    validate_type < type_master < t_font_variant_2 > > (nits, v);
+                    break;
+                default :
+                    DBG_ASSERT (false);
+                    break; } } };
 
 template < > struct type_master < t_fontweight > : varied < t_fontweight >
 {   void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
@@ -353,7 +355,7 @@ template < > struct type_master < t_in > : varied < t_in >
 {   bool concerned_ = false;
     void verify_attribute (nitpick& , const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good ())
-            if (v.svg () != sv_none)
+            if (v.svg_version () != sv_none)
                 if ((e.categories () & EF_SVG_FILTER) != 0)
                 {   nitpick nuts;
                     concerned_ = test_value < t_filter_in > (nuts, v, varied < t_in > :: get_string ()); } }
@@ -493,6 +495,17 @@ template < > struct type_master < t_preload > : varied < t_preload >
             if (v <= html_4_1) validate_type < type_master < t_html_boolean > > (nits, v);
             else if (good ()) validate_type < type_master < t_preload5 > > (nits, v); } };
 
+template < > struct type_master < t_preserveaspectratio > : varied < t_preserveaspectratio >
+{   void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
+    {   if (good () || empty ())
+            switch (v.svg_version ())
+            {   case sv_1_2_tiny :
+                case sv_1_2_full :
+                    validate_type < type_master < t_preserveaspectratio12 > > (nits, v);
+                    break;
+                default :
+                    validate_type < type_master < t_preserveaspectratio10 > > (nits, v); } } };
+
 template < > struct type_master < t_rap > : varied < t_rap >
 {   void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good () || empty ())
@@ -593,7 +606,7 @@ template < > struct type_master < t_style > : varied < t_style >
 template < > struct type_master < t_measure_or_more > : varied < t_measure_or_more >
 {   void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good () || empty ())
-            if (v.svg () != sv_none)
+            if (v.svg_version () != sv_none)
                 switch (e.get ())
                 {   case elem_altglyph :
                     case elem_text :
@@ -643,7 +656,7 @@ template < > struct type_master < t_type > : varied < t_type >
                 case elem_fefuncb :
                 case elem_fefuncg :
                 case elem_fefuncr :
-                    if (v.svg () < sv_1_1)
+                    if (v.svg_version () < sv_1_1)
                         validate_type < type_master < t_svg_type > > (nits, v);
                     else
                         validate_type < type_master < t_svg_type_11 > > (nits, v);
@@ -724,15 +737,16 @@ template < > struct type_master < t_vectoreffect > : varied < t_vectoreffect >
     {   if (empty ())
             nits.pick (nit_vector_effect, es_error, ec_attribute, "vector effect should not be empty");
         else if (good ())
-            switch (v.svg ())
+            switch (v.svg_version ())
             {   case sv_1_2_tiny :
                 case sv_1_2_full :
                     validate_type < type_master < t_vectoreffect_12 > > (nits, v); break;
                 case sv_2_0 :
+                    validate_type < type_master < t_vectoreffect_20 > > (nits, v); break;
                 case sv_2_1 :
-                    validate_type < type_master < t_vectoreffect_2 > > (nits, v); break;
+                    validate_type < type_master < t_vectoreffect_2s > > (nits, v); break;
                 default :
-                    nits.pick (nit_vector_effect, es_error, ec_attribute, "vector effect requires SVG 1.2 or SVG 2.0");
+                    nits.pick (nit_vector_effect, es_error, ec_attribute, "vector effect requires SVG 1.2 or SVG 2");
                     break; } } };
 
 template < > struct type_master < t_version > : varied < t_version >
@@ -809,7 +823,7 @@ template < > struct type_master < t_visibility > : varied < t_visibility >
     {   if (empty ())
             nits.pick (nit_vector_effect, es_error, ec_attribute, "visibility should be seen");
         else if (good ())
-            switch (v.svg ())
+            switch (v.svg_version ())
             {   case sv_1_0 :
                 case sv_1_2_tiny :
                 case sv_1_2_full :
@@ -831,6 +845,10 @@ template < > struct type_master < t_width > : varied < t_width >
                     validate_type < type_master < t_pseudonamedspace > > (nits, v); break;
                 case elem_mtable :
                     validate_type < type_master < t_mathspaceauto > > (nits, v); break;
+                case elem_textarea :
+                    if (v.is_svg_12 ())
+                    {   validate_type < type_master < t_measure_a > > (nits, v); break; }
+                    // drop thru'
                 default :
                     validate_type < type_master < t_measure > > (nits, v); } } };
 

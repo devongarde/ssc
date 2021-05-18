@@ -51,6 +51,7 @@ hav_t havt_defgh [] =
 
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_defs, a_class },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_defs, a_style },
+    SVG_PRESENTATION_ATTRIBUTES_2 (elem_defs),
     SVG_HTML_ATTRIBUTES (elem_defs),
 
     MATH3_STANDARD_ATTRIBUTES (elem_degree),
@@ -60,6 +61,7 @@ hav_t havt_defgh [] =
     HTML3_CLID_ATTRIBUTES (elem_del),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_del),
 
+    SVG_PRESENTATION_ATTRIBUTES_2 (elem_desc),
     SVG_HTML_ATTRIBUTES (elem_desc),
 
     { { HTML_JAN07, HV_NOT50 }, { HTML_UNDEF }, elem_details, a_open },
@@ -89,6 +91,7 @@ hav_t havt_defgh [] =
     COMMON_HTML4_ATTRIBUTES (elem_dir),
 
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_discard, a_begin },
+    SVG_PRESENTATION_ATTRIBUTES_2 (elem_discard),
     SVG_HTML_ATTRIBUTES (elem_discard),
     SVG_XLINK_ATTRIBUTES (elem_discard),
 
@@ -127,16 +130,17 @@ hav_t havt_defgh [] =
 
     STANDARD_HTML5_ATTRIBUTES (elem_element),
 
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_ellipse, a_cx },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_ellipse, a_cy },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_ellipse, a_externalresourcesrequired },
-    { { HTML_SVG10, 0, HE_SVG | REQUIRED }, { HTML_UNDEF }, elem_ellipse, a_rx },
-    { { HTML_SVG10, 0, HE_SVG | REQUIRED }, { HTML_UNDEF }, elem_ellipse, a_ry },
-    SVG10_G_ATTRIBUTES(elem_ellipse),
-    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_ellipse),
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_ellipse, a_pathlength },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_ellipse, a_transform },
     SVG_CONDITIONAL_ATTRIBUTES (elem_ellipse),
+    SVG_CXY_ATTRIBUTES (elem_ellipse),
+    SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_ellipse, HE_SVG_2),
+    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_ellipse),
     SVG_HTML_ATTRIBUTES (elem_ellipse),
+    SVG_LANGSPACE_ATTRIBUTES_10 (elem_ellipse),
     SVG_PRESENTATION_ATTRIBUTES (elem_ellipse),
+    SVG_RXY_ATTRIBUTES (elem_ellipse),
 
     HTMLPLUS_ATTRIBUTES (elem_em),
     HTML3_CLID_ATTRIBUTES (elem_em),
@@ -296,7 +300,7 @@ hav_t havt_defgh [] =
     SVG_PRESENTATION_ATTRIBUTES (elem_femorphology),
 
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_feoffset, a_in },
-    SVG10_DXY_ATTRIBUTES (elem_feoffset),
+    SVG_DXY_ATTRIBUTES (elem_feoffset),
     SVG10_FILTER_ATTRIBUTES (elem_feoffset),
     SVG11_FILTER_ATTRIBUTES (elem_feoffset),
     SVG_HTML_ATTRIBUTES (elem_feoffset),
@@ -462,7 +466,7 @@ hav_t havt_defgh [] =
     SVG_HTML_ATTRIBUTES (elem_foreignobject),
     SVG_PRESENTATION_ATTRIBUTES (elem_foreignobject),
 
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_form, a_acceptcharset },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_form, a_accept_charset },
     { { HTML_PLUS }, { HTML_2_0 }, elem_form, a_action },
     { { HTML_3_0, REQUIRED }, { HTML_DEC08 }, elem_form, a_action },
     { { HTML_JAN09 }, { HTML_UNDEF }, elem_form, a_action },
@@ -514,7 +518,7 @@ hav_t havt_defgh [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_geq),
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_arabicform },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_arabic_form },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_d },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_glyphname },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_horizadvx },
@@ -529,11 +533,11 @@ hav_t havt_defgh [] =
 
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyphref, a_format },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyphref, a_glyphref },
-    SVG_XY_ATTRIBUTES(elem_glyphref),
-    SVG10_DXY_ATTRIBUTES(elem_glyphref),
-    SVG_XLINK_ATTRIBUTES(elem_glyphref),
+    SVG_DXY_ATTRIBUTES(elem_glyphref),
     SVG_HTML_ATTRIBUTES (elem_glyphref),
     SVG_PRESENTATION_ATTRIBUTES (elem_glyphref),
+    SVG_XLINK_ATTRIBUTES(elem_glyphref),
+    SVG_XY_ATTRIBUTES(elem_glyphref),
 
     MATH3_DEFS_ATTRIBUTES (elem_grad),
 

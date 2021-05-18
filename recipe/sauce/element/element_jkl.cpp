@@ -205,7 +205,7 @@ void element::examine_link ()
             case r_canonical : check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE); headonly = false; break;
             default : headonly = false; break; }
         if (headonly && ! ancestral_elements_.test (elem_head))
-            pick (nit_rel_head, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, "<LINK> with REL=", quote (s), " should be under <HEAD>, not <BODY>"); }
+            pick (nit_rel_head, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, "<LINK> with REL=", quote (s), " should be under <HEAD>"); }
     if (tis5)
     {   if (! icon) if (a_.known (a_sizes))
             pick (nit_daft_rel_attr, ed_50, "4.2.4 The link element", es_error, ec_attribute, "SIZES requires REL=\"icon\"");

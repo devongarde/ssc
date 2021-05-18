@@ -79,6 +79,7 @@ void element::post_examine_element (const e_element tag)
     {   case elem_a : examine_anchor (); break;
         case elem_abbr : examine_abbr (); break;
         case elem_address : examine_address (); break;
+        case elem_altglyphdef : examine_altglyphdef (); break;
         case elem_animatemotion : examine_animatemotion (); break;
         case elem_apply : examine_equation (); break;
         case elem_article : examine_article (); break;
@@ -349,6 +350,7 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
         if (a_.known (a_defaultaction)) examine_defaultaction ();
         if (a_.known (a_draggable)) examine_draggable ();
         if (a_.known (a_class)) postprocess = examine_class ();
+        if (a_.known (a_line_increment)) examine_line_increment ();
 
         if (a_.known (a_rel)) examine_rel (a_.get_string (a_rel));
         if (a_.known (a_rev)) examine_rel (a_.get_string (a_rev));

@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="no"?> 
+<svg width="4in" height="3in" 
+ xmlns="http://www.w3.org/2000/svg"> 
+ <desc>This graphic links to an external image 
+ </desc> 
+ <image x="200" y="200" width="100px" height="100px" 
+ href="myimage.png"> 
+ <title>My image</title> 
+ </image> 
+</svg> 

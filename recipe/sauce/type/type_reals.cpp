@@ -22,12 +22,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_reals.h"
 
 bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::size_t expected, const bool pts, const int max)
-{   vstr_t args (split_by_charset (trim_the_lot_off (s), ", "));
+{   vstr_t args (split_by_comma_space (trim_the_lot_off (s)));
     if (expected == 0)
-    {   if (pts) if (args.size () % 2 != 0) return false; }
-    else if (args.size () < expected) return false;
-    else if ((max > 0) && (args.size () > static_cast < size_t > (max))) return false;
-    else if ((max == 0) && (args.size () != expected)) return false;
+    {   if (pts)
+            if (args.size () % 2 != 0)
+            {   nits.pick (nit_unreal, es_error, ec_type, "an even quantity of real numbers expected, but ", args.size (), " found");
+                return false; } }
+    else if (args.size () < expected)
+    {   nits.pick (nit_unreal, es_error, ec_type, "at least ", expected, " real numbers expected, but ", args.size (), " found");
+        return false; }
+    else if ((max > 0) && (args.size () > static_cast < size_t > (max)))
+    {   nits.pick (nit_unreal, es_error, ec_type, "at most ", max, " real numbers expected, but ", args.size (), " found");
+        return false; }
+    else if ((max == 0) && (args.size () != expected))
+    {   nits.pick (nit_unreal, es_error, ec_type, "precisely ", expected, " real numbers expected, but ", args.size (), " found");
+        return false; }
     for (auto arg : args)
     {   type_master < t_measure > m;
         m.set_value (nits, v, arg);

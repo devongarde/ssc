@@ -80,19 +80,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SVG_COND    a_requiredextensions, a_requiredfeatures, a_requiredfonts, a_requiredformats, a_systemlanguage
 #define SVG_DOC     a_onzoom
 #define SVG_GR      a_onactivate, a_onfocusin, a_onfocusout
-#define SVG_PRES    a_alignmentbaseline, a_audio_level, a_baselineshift, a_buffered_rendering, a_clip, a_clip_path, \
+#define SVG_PRES    a_alignment_baseline, a_audio_level, a_baseline_shift, a_buffered_rendering, a_clip, a_clip_path, \
                     a_clip_rule, a_colour, a_colour_interpolation, a_colour_interpolation_filters, a_colour_profile, \
                     a_colour_rendering, a_cursor, a_direction, a_display, a_display_align, a_dominant_baseline, \
                     a_enable_background, a_fill, a_fill_opacity, a_fill_rule, a_filter, a_flood_colour, a_flood_opacity, \
-                    a_focushighlight, a_focusable, a_font, a_font_family, a_font_size, a_font_size_adjust, a_font_stretch, \
-                    a_font_style, a_font_variant, a_font_weight, a_glyph_orientation_vertical, a_glyph_orientation_horizontal, \
-                    a_image_rendering, a_kerning, a_letter_spacing, a_lighting_colour, a_line_increment, a_marker, \
-                    a_marker_end, a_marker_mid, a_marker_start, a_mask, a_navdown, a_navdownleft, a_navdownright, \
-                    a_navleft, a_navnext, a_navprev, a_navright, a_navup, a_navupleft, a_navupright, a_opacity, a_overflow, \
-                    a_paint_order, a_pointer_events, a_shape_rendering, a_solid_colour, a_solid_opacity, a_stop_colour, \
-                    a_stop_opacity, a_stroke, a_stroke_dasharray, a_stroke_dashoffset, a_stroke_linecap, a_stroke_linejoin, \
-                    a_stroke_miterlimit, a_stroke_opacity, a_stroke_width, a_text_anchor, a_text_align, a_text_decoration, \
-                    a_text_overflow, a_text_rendering, a_unicode_bidi, a_vector_effect, a_visibility, a_viewport_fill, \
+                    a_focushighlight, a_focusable, a_font, a_font_family, a_font_feature_settings, a_font_kerning, \
+                    a_font_size, a_font_size_adjust, a_font_stretch, a_font_style, a_font_variant, a_font_variant_caps, \
+                    a_font_variant_east_asian, a_font_variant_ligatures, a_font_variant_numeric, a_font_variant_position, \
+                    a_font_weight, a_glyph_orientation_vertical, a_glyph_orientation_horizontal, a_image_rendering, \
+                    a_kerning, a_letter_spacing, a_lighting_colour, a_line_increment, a_marker, a_marker_end, \
+                    a_marker_mid, a_marker_start, a_mask, a_navdown, a_navdownleft, a_navdownright,  a_navleft, a_navnext, \
+                    a_navprev, a_navright, a_navup, a_navupleft, a_navupright, a_opacity, a_overflow, a_paint_order, \
+                    a_pointer_events, a_shape_rendering, a_solid_colour, a_solid_opacity, a_stop_colour, a_stop_opacity, \
+                    a_stroke, a_stroke_dasharray, a_stroke_dashoffset, a_stroke_linecap, a_stroke_linejoin, \
+                    a_stroke_miterlimit, a_stroke_opacity, a_stroke_width, a_text_anchor, a_text_align, a_text_align_last, \
+                    a_text_decoration, a_text_decoration_colour, a_text_decoration_line, a_text_decoration_style, \
+                    a_text_indent, a_text_orientation, a_text_overflow, a_text_rendering, a_transform, a_transform_box, \
+                    a_transform_origin, a_unicode_bidi, a_vector_effect, a_vertical_align, a_visibility, a_viewport_fill, \
                     a_viewport_fill_opacity, a_white_space, a_word_spacing, a_writing_mode
 #define SVG_XY      a_x, a_y
 #define SVG_BOX     SVG_XY, WIDEHIGH
@@ -108,19 +112,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SVGANAT     a_attributename, a_attributetype
 #define SVGANVAL    a_by, a_calcmode, a_values, a_keytimes, a_keysplines
 #define SVGCOMP     a_amplitude, a_exponent, a_intercept, a_offset, a_slope, a_tablevalues, a_type
-#define SVGFIT      a_preserveaspectratio
 #define SVG10FILTER a_in, a_nodeid
 #define SVGGRAD     a_gradienttransform, a_gradientunits
 #define SVGREF      a_refx, a_refy
 #define SVGREPL     a_actuate, a_xmllink, a_show
-#define SVGG        a_systemrequired, a_transform
+#define SVGG        a_systemrequired
 #define SVGXLINK    a_xlinkactuate, a_xlinkarcrole, a_xlinkhref, a_xlinkrole, a_xlinkshow, a_xlinktitle, a_xlinktype
 #define SVGPRESCOL  a_colour, a_colour_interpolation, a_colour_rendering
 #define SVGPRESFS   a_fill, a_fill_opacity, a_fill_rule, a_stroke, a_stroke_dasharray, a_stroke_dashoffset, a_stroke_linecap, a_stroke_linejoin, \
                     a_stroke_miterlimit, a_stroke_opacity, a_stroke_width
 #define SVGPRESFONT a_font_family, a_font_size, a_font_size_adjust, a_font_stretch, a_font_style, a_font_variant, a_font_weight
 #define SVGPRESGR   a_filter, a_image_rendering, a_mask, a_opacity, a_pointer_events, a_shape_rendering, a_text_rendering, a_visibility
-#define SVGPRESTCE  a_alignmentbaseline, a_baselineshift, a_dominant_baseline, a_glyph_orientation_horizontal, a_glyph_orientation_vertical, a_kerning, \
+#define SVGPRESTCE  a_alignment_baseline, a_baseline_shift, a_dominant_baseline, a_glyph_orientation_horizontal, a_glyph_orientation_vertical, a_kerning, \
                     a_letter_spacing, a_text_anchor, a_text_decoration, a_unicode_bidi, a_word_spacing
 
 #define SVG11COND   a_requiredextensions, a_requiredfeatures, a_systemlanguage
@@ -134,12 +137,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                     a_marker_start, a_navdown, a_navdownleft, a_navdownright, a_navleft, a_navnext, a_navprev, a_navright, a_navup, a_navupleft, a_navupright, \
                     a_overflow, a_paint_order, a_stop_colour, a_stop_opacity, a_vector_effect, a_writing_mode, SVGPRESCOL, SVGPRESFS, SVGPRESFONT, SVGPRESGR, SVGPRESTCE
 
-#define SVG12CNGR   a_buffered_rendering
 #define SVG12PRES   a_display_align, a_line_increment, a_solid_colour, a_solid_opacity, a_text_align, a_viewport_fill, a_viewport_fill_opacity
 
-#define SVG20       a_autofocus, a_datawild, a_role, a_tabindex
-#define SVG20COND   SVG11COND
-#define SVG20PRES   a_text_overflow, a_transform_origin, a_white_space, SVG11PRES, SVG12PRES
+#define SVG2        a_autofocus, a_datawild, a_role, a_tabindex
+#define SVG2COND    SVG11COND
 
 #define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
 #define BLUR        a_onfocus, a_onblur
@@ -167,7 +168,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X2_EMBED    a_encoding, a_srctype
 #define X2_MAP      a_usemap, a_ismap, a_shape, a_coords
 #define X2_EVENT    a_event, a_observer, a_eventtarget, a_function, a_handler, a_phase, a_propagate, a_defaultaction
-#define X2_COMMON   a_edit, a_media, SVG20, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_EVENT
+#define X2_COMMON   a_edit, a_media, SVG2, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_EVENT
 #define X2          X2_COMMON, COMMON4
 #define XHTML2      X2_COMMON, X2_SOLO
 #define COMMON5     a_accesskey, a_contenteditable, a_contextmenu, a_draggable, a_hidden, a_inert, a_irrelevant, a_item, a_itemid, a_itemprop, \
@@ -191,7 +192,7 @@ struct element_init_t
 element_init_t ei [] =
 {   { elem_undefined, { a_unknown } },
     { elem_a, { a_actuate, a_charset, a_command, a_download, a_effect, a_externalresourcesrequired, a_md, a_methods, a_name, a_ping, a_print, a_referrerpolicy,
-                a_show, a_size, a_transform, a_type, a_urn, a_xmllink, a_xmlns_xlink, SVG11GREV, SVG12CNGR, SVGXLINK, SVG20COND, SVG20PRES, LIVING_STANDARD, a_unknown } },
+                a_show, a_size, a_type, a_urn, a_xmllink, a_xmlns_xlink, SVG11GREV, SVGXLINK, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_abbr, { a_full, LIVING_STANDARD, a_unknown } },
     { elem_abbrev, { LC3PLUS, a_unknown } },
     { elem_above, { a_sym, LANGCLASS3, a_unknown } },
@@ -203,18 +204,18 @@ element_init_t ei [] =
     { elem_added, { HTMLPLUS, a_unknown } },
     { elem_addeventlistener, { XHTML2, a_unknown } },
     { elem_address, { a_align, a_clear, a_nowrap, LIVING_STANDARD, a_unknown } },
-    { elem_altglyph, { a_externalresourcesrequired, a_glyphref, a_format, a_rotate, SVG11GREV, SVGXLINK, SVGDXY, SVG20COND, SVG11PRES, SVGXY, LIVING_STANDARD, a_unknown } },
+    { elem_altglyph, { a_externalresourcesrequired, a_glyphref, a_format, a_rotate, SVG11GREV, SVGXLINK, SVGDXY, SVG2COND, SVG11PRES, SVGXY, LIVING_STANDARD, a_unknown } },
     { elem_altglyphdef, { LIVING_STANDARD, a_unknown } },
     { elem_altglyphitem, { LIVING_STANDARD, a_unknown } },
     { elem_and, { MATH3DEFCOM, a_unknown } },
-    { elem_animate, {   a_externalresourcesrequired, a_from, a_to, SVGANAT, SVG11ANTIME, SVG11ANEV, SVGANVAL, SVGANADD, SVGXLINK, SVG20COND, SVG20PRES, LIVING_STANDARD,
+    { elem_animate, {   a_externalresourcesrequired, a_from, a_to, SVGANAT, SVG11ANTIME, SVG11ANEV, SVGANVAL, SVGANADD, SVGXLINK, SVG2COND, SVG_PRES, LIVING_STANDARD,
                         a_unknown } },
-    { elem_animatecolour, { a_externalresourcesrequired, SVGANAT, SVG11ANTIME, SVG11ANEV, SVGANVAL, SVGANADD, SVGXLINK, SVG20COND, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_animatemotion, { a_externalresourcesrequired, a_fill, a_keypoints, a_origin, a_path, a_rotate, SVG11ANTIME, SVG11ANEV, SVGANVAL, SVGANADD, SVGXLINK,
-                            SVG20COND, LIVING_STANDARD, a_unknown } },
-    { elem_animatetransform, {  a_externalresourcesrequired, a_from, a_to, a_type, SVGANAT, SVG11ANTIME, SVG11ANEV, SVGANVAL, SVGANADD, SVGXLINK, SVG20COND,
-                                SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_animation, { a_initialvisibility, a_syncbehaviour, a_synctolerance, SVG12CNGR, LIVING_STANDARD, a_unknown } },
+    { elem_animatecolour, { a_externalresourcesrequired, SVGANAT, SVG11ANTIME, SVG11ANEV, SVGANVAL, SVGANADD, SVGXLINK, SVG_COND, SVG11PRES, LIVING_STANDARD, a_unknown } },
+    { elem_animatemotion, { a_externalresourcesrequired, a_keypoints, a_origin, a_path, a_rotate, SVG11ANTIME, SVG11ANEV, SVGANVAL, SVGANADD, SVGXLINK,
+                            SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_animatetransform, {  a_externalresourcesrequired, a_from, a_to, a_type, SVGANAT, SVG11ANTIME, SVG11ANEV, SVGANVAL, SVGANADD, SVGXLINK, SVG2COND,
+                                SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_animation, { a_initialvisibility, a_syncbehaviour, a_synctolerance, a_buffered_rendering, LIVING_STANDARD, a_unknown } },
     { elem_annotation, { a_cd, a_name, a_src, MATH3DEFCOM, a_unknown } },
     { elem_annotation_xml, { a_cd, a_name, a_src, MATH3DEFCOM, a_unknown } },
     { elem_applet, { a_align, a_alt, a_archive, a_code, a_codebase, a_hspace, a_name, a_object, a_vspace, WIDEHIGH, CLID, TIPSY, a_unknown } },
@@ -281,9 +282,9 @@ element_init_t ei [] =
     { elem_changed, { a_id, a_idref, a_unknown } },
     { elem_choose, { a_unknown } },
     { elem_ci, { a_type, MATH3DEFCOM, a_unknown } },
-    { elem_circle, { a_externalresourcesrequired, a_cx, a_cy, a_r, SVG11GREV, SVG12CNGR, SVG20COND, SVG20PRES, SVGG, LIVING_STANDARD, a_unknown } },
+    { elem_circle, { a_externalresourcesrequired, a_cx, a_cy, a_r, SVG11GREV, SVG2COND, SVG_PRES, SVGG, LIVING_STANDARD, a_unknown } },
     { elem_cite, { LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_clippath, { a_clippathunits, a_externalresourcesrequired, a_transform, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_clippath, { a_clippathunits, a_externalresourcesrequired, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_cmd, { HTMLPLUS, a_unknown } },
     { elem_cn, { a_base, a_type, MATH3DEFCOM, a_unknown } },
     { elem_code, { LIVING_STANDARD_PLUS, a_unknown } },
@@ -308,7 +309,7 @@ element_init_t ei [] =
     { elem_csch, { MATH3DEFCOM, a_unknown } },
     { elem_csymbol, { a_cd, a_type, MATH3DEFCOM, a_unknown } },
     { elem_curl, { MATH3DEFCOM, a_unknown } },
-    { elem_cursor, { a_externalresourcesrequired, SVGXY, SVGXLINK, SVG20COND, LIVING_STANDARD, a_unknown } },
+    { elem_cursor, { a_externalresourcesrequired, SVGXY, SVGXLINK, SVG2COND, LIVING_STANDARD, a_unknown } },
     { elem_custom, { a_disabled, a_form, a_name, a_readonly, LIVING_STANDARD, a_unknown } },
     { elem_data, { a_value, LIVING_STANDARD, a_unknown } },
     { elem_datagrid, { a_disabled, a_multiple, COMMON5, a_unknown } },
@@ -320,7 +321,7 @@ element_init_t ei [] =
     { elem_definition_src, { a_xmlns_xlink, SVGXLINK, LIVING_STANDARD, a_unknown } },
     { elem_defs, { SVG_STRUCTURAL, LIVING_STANDARD, a_unknown } },
     { elem_degree, { MATH3COMMON, a_unknown } },
-    { elem_desc, { LIVING_STANDARD, a_unknown } },
+    { elem_desc, { SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_del, { a_datetime, LIVING_STANDARD, a_unknown } },
     { elem_details, { a_open, LIVING_STANDARD, a_unknown } },
     { elem_determinant, { MATH3DEFCOM, a_unknown } },
@@ -330,7 +331,7 @@ element_init_t ei [] =
     { elem_dialogue, { a_open, LIVING_STANDARD, a_unknown } },
     { elem_diff, { MATH3DEFCOM, a_unknown } },
     { elem_dir, { a_align, a_clear, a_compact, a_dingbat, a_md, a_index, a_plain, a_wrap, COMMON4, a_unknown } },
-    { elem_discard, { a_begin, SVGXLINK, LIVING_STANDARD, a_unknown } },
+    { elem_discard, { a_begin, SVGXLINK, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_dispatchevent, { a_bubbles, a_cancelable, XHTML2, a_unknown } },
     { elem_div, { a_align, a_clear, a_nowrap, RESERVED4, LIVING_STANDARD, a_unknown } },
     { elem_divergence, { MATH3DEFCOM, a_unknown } },
@@ -342,7 +343,7 @@ element_init_t ei [] =
     { elem_dt, { a_compact, a_clear, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_element, { LIVING_STANDARD, a_unknown } },
     { elem_elementdef, { LIVING_STANDARD, a_unknown } },
-    { elem_ellipse, { a_externalresourcesrequired, a_cx, a_cy, a_rx, a_ry, SVG11GREV, SVG12CNGR, SVG20COND, SVG20PRES, SVGG, LIVING_STANDARD, a_unknown } },
+    { elem_ellipse, { a_externalresourcesrequired, a_cx, a_cy, a_rx, a_ry, SVG11GREV, SVG2COND, SVG_PRES, SVGG, LIVING_STANDARD, a_unknown } },
     { elem_em, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_embed, { a_type, a_align, a_hspace, a_name, a_vspace, WIDEHIGH, LIVING_STANDARD, a_unknown } },
     { elem_emptyset, { MATH3DEFCOM, a_unknown } },
@@ -371,39 +372,39 @@ element_init_t ei [] =
     { elem_faux_text, { a_unknown } },
     { elem_faux_xml, { a_encoding, a_version, a_unknown } },
     { elem_faux_whitespace, { a_unknown } },
-    { elem_feblend, { a_mode, a_in2, SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fecolourmatrix, { a_type, a_values, SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fecomposite, { a_in2, a_k1, a_k2, a_k3, a_k4, a_operator, SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fecomponenttransfer, { SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_feblend, { a_mode, a_in2, SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fecolourmatrix, { a_type, a_values, SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fecomposite, { a_in2, a_k1, a_k2, a_k3, a_k4, a_operator, SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fecomponenttransfer, { SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_feconvolvematrix, {  a_bias, a_divisor, a_edgemode,  a_in, a_kernelmatrix, a_kernelunitlength, a_order, a_preservealpha,
-                                a_targetx, a_targety, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fediffuselighting, { a_diffuseconstant, a_kernelunitlength, a_surfacescale, SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fedisplacementmap, { a_in2, a_scale, a_xchannelselector, a_ychannelselector, SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fedistantlight, { a_azimuth, a_elevation, LIVING_STANDARD, a_unknown } },
-    { elem_fedropshadow, { LIVING_STANDARD, a_unknown } },
-    { elem_feflood, { SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fefunca, { SVGCOMP, LIVING_STANDARD, a_unknown } },
-    { elem_fefuncb, { SVGCOMP, LIVING_STANDARD, a_unknown } },
-    { elem_fefuncg, { SVGCOMP, LIVING_STANDARD, a_unknown } },
-    { elem_fefuncr, { SVGCOMP, LIVING_STANDARD, a_unknown } },
-    { elem_fegaussianblur, { a_edgemode, a_stddeviation, SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_feimage, { a_crossorigin, a_externalresourcesrequired, a_nodeid, a_preserveaspectratio, a_transform, SVGREPL, SVGXLINK, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_femerge, { SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_femergenode, { a_in, LIVING_STANDARD, a_unknown } },
-    { elem_femorphology, { a_operator, a_radius, SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_feoffset, { SVGDXY, SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fepointlight, { a_z, SVGXY, LIVING_STANDARD, a_unknown } },
-    { elem_fespecularlighting, { a_kernelunitlength, a_specularconstant, a_specularexponent, a_surfacescale, SVG10FILTER, SVG11FILTER, SVG20PRES,
+                                a_targetx, a_targety, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fediffuselighting, { a_diffuseconstant, a_kernelunitlength, a_surfacescale, SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fedisplacementmap, { a_in2, a_scale, a_xchannelselector, a_ychannelselector, SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fedistantlight, { a_azimuth, a_elevation, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fedropshadow, { SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_feflood, { SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fefunca, { SVGCOMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fefuncb, { SVGCOMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fefuncg, { SVGCOMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fefuncr, { SVGCOMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fegaussianblur, { a_edgemode, a_stddeviation, SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_feimage, { a_crossorigin, a_externalresourcesrequired, a_nodeid, a_preserveaspectratio, SVGREPL, SVGXLINK, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_femerge, { SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_femergenode, { a_in, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_femorphology, { a_operator, a_radius, SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_feoffset, { SVGDXY, SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fepointlight, { a_z, SVGXY, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fespecularlighting, { a_kernelunitlength, a_specularconstant, a_specularexponent, a_surfacescale, SVG10FILTER, SVG11FILTER, SVG_PRES,
                                 LIVING_STANDARD, a_unknown } },
-    { elem_fespotlight, { a_pointsatx, a_pointsaty, a_pointsatz, a_limitingconeangle, a_specularexponent, a_z, SVGXY, LIVING_STANDARD, a_unknown } },
-    { elem_fetile, { SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_feturbulence, { a_basefrequency, a_numoctaves, a_seed, a_stitchtiles, a_type, SVG10FILTER, SVG11FILTER, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fespotlight, { a_pointsatx, a_pointsaty, a_pointsatz, a_limitingconeangle, a_specularexponent, a_z, SVGXY, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fetile, { SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_feturbulence, { a_basefrequency, a_numoctaves, a_seed, a_stitchtiles, a_type, SVG10FILTER, SVG11FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_fieldset, { a_disabled, a_form, a_name, LIVING_STANDARD, a_unknown } },
     { elem_fig, { a_align, a_clear, a_ismap, a_md, a_noflow, a_src, a_units, WIDEHIGH, LC3PLUS, a_unknown } },
     { elem_figure, { LIVING_STANDARD, a_unknown } },
     { elem_figcaption, { LIVING_STANDARD, a_unknown } },
     { elem_filter, { a_animate, a_dh, a_dw, a_externalresourcesrequired, a_fecolourmatrix, a_fecomposite, a_fegaussianblur, a_femorphology, a_fetile,
-                     a_filterres,a_filterunits, a_primitiveunits, SVGXLINK, SVG20PRES, SVGBOX, LIVING_STANDARD, a_unknown } },
+                     a_filterres,a_filterunits, a_primitiveunits, SVGXLINK, SVG_PRES, SVGBOX, LIVING_STANDARD, a_unknown } },
     { elem_floor, { MATH3DEFCOM, a_unknown } },
     { elem_flowdiv, { LIVING_STANDARD, a_unknown } },
     { elem_flowimage, { LIVING_STANDARD, a_unknown } },
@@ -418,7 +419,7 @@ element_init_t ei [] =
     { elem_flowtref, { LIVING_STANDARD, a_unknown } },
     { elem_fn, { a_lang, MATH2DEFCOM, a_unknown } },
     { elem_font, {  a_externalresourcesrequired, a_face, a_horizadvx, a_horizoriginx, a_horizoriginy, a_size, a_vert_adv_y, a_vert_origin_x,
-                    a_vert_origin_y, SVG20PRES, LIVING_STANDARD, a_unknown } },
+                    a_vert_origin_y, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_fontface, {  a_accentheight, a_alphabetic, a_ascent, a_bbox, a_capheight, a_descent, a_font_family, a_font_size, a_font_stretch, a_font_style,
                         a_font_variant, a_font_weight, a_hanging, a_ideographic, a_mathematical, a_overline_position, a_overline_thickness, a_panose1,
                         a_slope, a_stemh, a_stemv, a_strikethroughposition, a_strikethroughthickness, a_underline_position, a_underline_thickness,
@@ -428,18 +429,18 @@ element_init_t ei [] =
     { elem_fontfacesrc, { LIVING_STANDARD, a_unknown } },
     { elem_fontfaceuri, { SVGXLINK, LIVING_STANDARD, a_unknown } },
     { elem_forall, { MATH3DEFCOM, a_unknown } },
-    { elem_form, { a_accept, a_acceptcharset, a_action, a_autocomplete, a_enctype, a_method, a_name, a_novalidate, a_script, LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_foreignobject, { a_externalresourcesrequired, SVG20COND, SVGG, SVGBOX, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_form, { a_accept, a_accept_charset, a_action, a_autocomplete, a_enctype, a_method, a_name, a_novalidate, a_script, LIVING_STANDARD_PLUS, a_unknown } },
+    { elem_foreignobject, { a_externalresourcesrequired, SVG2COND, SVGG, SVGBOX, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_footer, { LIVING_STANDARD, a_unknown } },
     { elem_footnote, { HTMLPLUS , a_unknown } },
     { elem_frame, { a_dir, a_frameborder, a_longdesc, a_name, a_noresize, a_marginheight, a_marginwidth, a_scrolling, XHTML, X2_COMMON, TIPSYCLID, a_unknown } },
     { elem_frameset, { a_cols, a_onload, a_onunload, a_rows, XHTML, TIPSYCLID, a_unknown } },
-    { elem_g, { a_externalresourcesrequired, a_transform, SVG_STRUCTURAL, LIVING_STANDARD, a_unknown } },
+    { elem_g, { a_externalresourcesrequired, SVG_STRUCTURAL, LIVING_STANDARD, a_unknown } },
     { elem_gauge, { COMMON5, a_unknown } },
     { elem_gcd, { MATH3DEFCOM, a_unknown } },
     { elem_geq, { MATH3DEFCOM, a_unknown } },
-    { elem_glyph, { a_arabicform, a_d, a_glyphname, a_horizadvx, a_orientation, a_unicode, a_vert_adv_y, a_vert_origin_x, a_vert_origin_y, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_glyphref, { a_format, a_glyphref, SVGXY, SVGDXY, SVGXLINK, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_glyph, { a_arabic_form, a_d, a_glyphname, a_horizadvx, a_orientation, a_unicode, a_vert_adv_y, a_vert_origin_x, a_vert_origin_y, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_glyphref, { a_format, a_glyphref, SVGXY, SVGDXY, SVGXLINK, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_grad, { MATH3DEFCOM, a_unknown } },
     { elem_gt, { MATH3DEFCOM, a_unknown } },
     { elem_h, { XHTML2, a_unknown } },
@@ -472,8 +473,8 @@ element_init_t ei [] =
                         a_seamless, a_srcdoc, WIDEHIGH, LIVING_STANDARD, a_unknown } },
     { elem_ilayer, {    a_above, a_background, a_below, a_bgcolour, a_class, a_clip, a_height, a_id, a_left, a_name, a_pagex, a_pagey,
                         a_src, a_style, a_top, a_visibility, a_zindex, a_unknown } },
-    { elem_image, { a_align, a_crossorigin, a_externalresourcesrequired, a_seethru, a_xlinkhref, MATH2UNIQUE, MATH2UNIDEF, SVG11GREV, SVG12CNGR,
-                    SVGBOX, SVGG, SVGREPL, SVG20COND, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_image, { a_align, a_crossorigin, a_externalresourcesrequired, a_onzoom, a_seethru, a_xlinkhref, MATH2UNIQUE, MATH2UNIDEF, SVG11GREV,
+                    SVGBOX, SVGG, SVGREPL, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_imaginary, { MATH3DEFCOM, a_unknown } },
     { elem_imaginaryi, { MATH3DEFCOM, a_unknown } },
     { elem_img, {   a_align, a_alt, a_border, a_crossorigin, a_decoding, a_hspace, a_importance, a_intrinsicsize, a_loading, a_longdesc,
@@ -510,8 +511,8 @@ element_init_t ei [] =
     { elem_li, { a_clear, a_compact, a_dingbat, a_md, a_skip, a_type, a_value, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_limit, { MATH3DEFCOM, a_unknown } },
     { elem_line, {  a_externalresourcesrequired, a_x1, a_x2, a_y1, a_y2,
-                    SVG11GREV, SVG12CNGR, SVG20COND, SVG20PRES, SVGG, LIVING_STANDARD, a_unknown } },
-    { elem_lineargradient, { a_externalresourcesrequired, a_spreadmethod, a_x1, a_x2, a_y1, a_y2, SVGXLINK, SVG20PRES, SVGGRAD, LIVING_STANDARD, a_unknown } },
+                    SVG11GREV, SVG2COND, SVG_PRES, SVGG, LIVING_STANDARD, a_unknown } },
+    { elem_lineargradient, { a_externalresourcesrequired, a_spreadmethod, a_x1, a_x2, a_y1, a_y2, SVGXLINK, SVG_PRES, SVGGRAD, LIVING_STANDARD, a_unknown } },
     { elem_link, {  a_as, a_charset, a_colour, a_crossorigin, a_disabled, a_idref, a_imagesizes, a_imagesrcset, a_importance, a_integrity,
                     a_methods, a_ping, a_prefetch, a_referrerpolicy, a_scope, a_sizes, a_type, a_updateviacache, a_urn, a_workertype, LIVING_STANDARD, a_unknown } },
     { elem_listener, { LIVING_STANDARD, a_unknown } },
@@ -532,10 +533,10 @@ element_init_t ei [] =
     { elem_map, { a_name, LIVING_STANDARD, a_unknown } },
     { elem_margin, { HTMLPLUS, a_unknown } },
     { elem_mark, { LIVING_STANDARD, a_unknown } },
-    { elem_marker, {    a_externalresourcesrequired, a_orient, a_markerheight, a_markerunits, a_markerwidth, a_viewbox, SVG20PRES, SVGBOX, SVGFIT, SVGREF,
-                        LIVING_STANDARD, a_unknown } },
+    { elem_marker, {    a_externalresourcesrequired, a_orient, a_markerheight, a_markerunits, a_markerwidth, a_preserveaspectratio, a_viewbox, SVG_PRES, SVGBOX,
+                        SVGREF, LIVING_STANDARD, a_unknown } },
     { elem_marquee, { a_behaviour, a_bgcolour, a_direction, a_hspace, a_loop, a_scrollamount, a_scrolldelay, a_truespeed, a_vspace, WIDEHIGH, a_unknown } },
-    { elem_mask, { a_externalresourcesrequired, a_maskcontentunits, a_maskunits, SVG20COND, SVG20PRES, SVGBOX, LIVING_STANDARD, a_unknown } },
+    { elem_mask, { a_externalresourcesrequired, a_maskcontentunits, a_maskunits, SVG2COND, SVG_PRES, SVGBOX, LIVING_STANDARD, a_unknown } },
     { elem_math, {  a_accentunder, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign, a_alttext, a_background, a_baseline,
                     a_bevelled, a_box, a_cdgroup, a_charalign, a_charspacing, a_close, a_columnspan, a_crossout, a_decimalpoint,
                     a_display, a_denomalign, a_depth, a_edge, a_infixlinebreakstyle, a_leftoverhang, a_length,
@@ -558,7 +559,7 @@ element_init_t ei [] =
     { elem_menulabel, { a_label, COMMON5, a_unknown } },
     { elem_merror, { MATH3PRES, a_unknown } },
     { elem_meta, { a_charset, a_httpequiv, a_name, a_scheme, LIVING_STANDARD, a_unknown } },
-    { elem_metadata, { LIVING_STANDARD, a_unknown } },
+    { elem_metadata, { a_onzoom, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_meter, { a_form, a_high, a_low, a_max, a_min, a_optimum, a_value, LIVING_STANDARD, a_unknown } },
     { elem_mfenced, { a_close, a_open, a_separators, MATH3PRES, a_unknown } },
     { elem_mfrac, { a_bevelled, a_denomalign, a_linethickness, a_numalign, MATH3PRES, a_unknown } },
@@ -567,7 +568,7 @@ element_init_t ei [] =
     { elem_mi, { MATH3FONT, MATH3PRES, a_unknown } },
     { elem_min, { MATH3DEFCOM, a_unknown } },
     { elem_minus, { MATH3DEFCOM, a_unknown } },
-    { elem_missingglyph, { a_d, a_horizadvx, a_vert_adv_y, a_vert_origin_x, a_vert_origin_y, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_missingglyph, { a_d, a_horizadvx, a_vert_adv_y, a_vert_origin_x, a_vert_origin_y, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_mlabeledtr, { a_columnalign, a_groupalign, a_rowalign, MATH3PRES, a_unknown } },
     { elem_mlongdiv, { a_align, a_charalign, a_charspacing, a_longdivstyle, a_stackalign, MATH3PRES, a_unknown } },
     { elem_mn, { MATH3FONT, MATH3PRES, a_unknown } },
@@ -578,7 +579,7 @@ element_init_t ei [] =
     { elem_momentabout, { MATH3DEFCOM, a_unknown } },
     { elem_mover, { a_accent, a_align, MATH3PRES, a_unknown } },
     { elem_mpadded, { a_lspace, a_voffset, MATHSIZE, MATH3PRES, a_unknown } },
-    { elem_mpath, { a_externalresourcesrequired, SVGXLINK, LIVING_STANDARD, a_unknown } },
+    { elem_mpath, { a_externalresourcesrequired, SVGXLINK, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_mphantom, { MATH3PRES, a_unknown } },
     { elem_mprescripts, { a_xmlns, a_unknown } },
     { elem_mroot, { MATH3PRES, a_unknown } },
@@ -647,9 +648,9 @@ element_init_t ei [] =
     { elem_param, { a_name, a_type, a_value, a_valuetype, LIVING_STANDARD, a_unknown } },
     { elem_partialdiff, { MATH3DEFCOM, a_unknown } },
     { elem_path, {  a_d, a_externalresourcesrequired, a_flatness, a_nominallength, a_pathlength,
-                    SVG11GREV, SVG12CNGR, SVGBOX, SVGG, SVG20COND, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_pattern, {   a_externalresourcesrequired, a_patterncontentunits, a_patterntransform, a_patternunits, a_viewbox,
-                        SVGXLINK, SVG20COND, SVG20PRES, SVGFIT, SVGREF, SVGBOX, LIVING_STANDARD, a_unknown } },
+                    SVG11GREV, SVGBOX, SVGG, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_pattern, {   a_externalresourcesrequired, a_patterncontentunits, a_patterntransform, a_patternunits, a_preserveaspectratio, a_viewbox,
+                        SVGXLINK, SVG2COND, SVG_PRES, SVGREF, SVGBOX, LIVING_STANDARD, a_unknown } },
     { elem_person, { LC3PLUS, a_unknown } },
     { elem_pi, { MATH3DEFCOM, a_unknown } },
     { elem_picture, { LIVING_STANDARD, a_unknown } },
@@ -658,9 +659,9 @@ element_init_t ei [] =
     { elem_plaintext, { LANGCLASS, a_unknown } },
     { elem_plus, { MATH3DEFCOM, a_unknown } },
     { elem_polygon, {   a_externalresourcesrequired, a_points,
-                        SVG11GREV, SVG12CNGR, SVG20COND, SVG20PRES, SVGG, LIVING_STANDARD, a_unknown } },
+                        SVG11GREV, SVG2COND, SVG_PRES, SVGG, LIVING_STANDARD, a_unknown } },
     { elem_polyline, {  a_externalresourcesrequired, a_points,
-                        SVG11GREV, SVG12CNGR, SVG20COND, SVG20PRES, SVGG, LIVING_STANDARD, a_unknown } },
+                        SVG11GREV, SVG2COND, SVG_PRES, SVGG, LIVING_STANDARD, a_unknown } },
     { elem_power, { MATH3DEFCOM, a_unknown } },
     { elem_pre, { a_clear, a_cols, a_width, a_wrap, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_prefetch, { a_bandwidth, a_mediacharacterencoding, a_mediacontentencodings, a_mediasize, a_mediatime, SVGXLINK, LIVING_STANDARD, a_unknown } },
@@ -674,14 +675,14 @@ element_init_t ei [] =
     { elem_q, { a_align, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_quote, { HTMLPLUS, a_unknown } },
     { elem_quotient, { MATH3DEFCOM, a_unknown } },
-    { elem_radialgradient, { a_cx, a_cy, a_externalresourcesrequired, a_fr, a_fx, a_fy, a_r, a_spreadmethod, SVGXLINK, SVG20PRES, SVGGRAD, LIVING_STANDARD, a_unknown } },
+    { elem_radialgradient, { a_cx, a_cy, a_externalresourcesrequired, a_fr, a_fx, a_fy, a_r, a_spreadmethod, SVGXLINK, SVG_PRES, SVGGRAD, LIVING_STANDARD, a_unknown } },
     { elem_range, { a_from, a_until, a_class, a_id, a_unknown } },
     { elem_rationals, { MATH3DEFCOM, a_unknown } },
     { elem_rb, { LIVING_STANDARD, a_unknown } },
     { elem_rbc, { LIVING_STANDARD, a_unknown } },
     { elem_real, { MATH3DEFCOM, a_unknown } },
     { elem_reals, { MATH3DEFCOM, a_unknown } },
-    { elem_rect, { a_externalresourcesrequired, a_rx, a_ry, SVG11GREV, SVG12CNGR, SVG20COND, SVG20PRES, SVGBOX, SVGG, LIVING_STANDARD, a_unknown } },
+    { elem_rect, { a_externalresourcesrequired, a_rx, a_ry, SVG11GREV, SVG2COND, SVG_PRES, SVGBOX, SVGG, LIVING_STANDARD, a_unknown } },
     { elem_refcontent, { LIVING_STANDARD, a_unknown } },
     { elem_reln, { MATH2COMMON, a_unknown } },
     { elem_rem, { MATH3DEFCOM, a_unknown } },
@@ -700,7 +701,7 @@ element_init_t ei [] =
     { elem_samp, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_scalarproduct, { MATH3DEFCOM, a_unknown } },
     { elem_script, {    a_async, a_charset, a_crossorigin, a_defer, a_externalresourcesrequired, a_implements, a_integrity, a_language, a_nomodule, a_referrerpolicy,
-                        a_type, SVGXLINK, SVGREPL, LIVING_STANDARD, a_unknown } },
+                        a_type, SVGXLINK, SVGREPL, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_sdev, { MATH3DEFCOM, a_unknown } },
     { elem_sec, { MATH3DEFCOM, a_unknown } },
     { elem_sech, { MATH3DEFCOM, a_unknown } },
@@ -711,7 +712,7 @@ element_init_t ei [] =
     { elem_semantics, { a_cd, a_name, a_src, MATH3DEFCOM, a_unknown } },
     { elem_sep, { a_xmlns, a_unknown } },
     { elem_separator, { XHTML2, a_unknown } },
-    { elem_set, { a_externalresourcesrequired, a_fill, a_to, a_type, MATH2UNIQUE, SVGANAT, SVG11ANTIME, SVG11ANEV, SVGXLINK, SVG20COND, LIVING_STANDARD, a_unknown } },
+    { elem_set, { a_externalresourcesrequired, a_to, a_type, MATH2UNIQUE, SVGANAT, SVG11ANTIME, SVG11ANEV, SVGXLINK, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_setdiff, { MATH3DEFCOM, a_unknown } },
     { elem_shadow, { LIVING_STANDARD, a_unknown } },
     { elem_share, { a_src, MATH3COMMON, a_unknown } },
@@ -727,21 +728,21 @@ element_init_t ei [] =
     { elem_spot, { a_id, a_unknown } },
     { elem_sqrt, { LANGCLASS3, a_unknown } },
     { elem_standby, { MATH3DEFCOM, a_unknown } },
-    { elem_stop, { a_offset, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_stop, { a_offset, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_stoppropagation, { XHTML2, a_unknown } },
     { elem_strike, { COMMON4, a_unknown } },
     { elem_strong, { LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_style, { a_disabled, a_notation, a_scoped, a_type, LIVING_STANDARD, a_unknown } },
+    { elem_style, { a_disabled, a_notation, a_onzoom, a_scoped, a_type, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_sub, { a_align, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_subset, { MATH3DEFCOM , a_unknown } },
     { elem_sum, { MATH3DEFCOM, a_unknown } },
     { elem_summary, { LIVING_STANDARD, a_unknown } },
     { elem_sup, { a_align, LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_svg, {   a_allow_zoom_pan, a_baseprofile, a_contentscripttype, a_contentstyletype, a_externalresourcesrequired, a_onafterprint, a_onbeforeprint, a_onzoom,
-                    a_playbackorder, a_snapshottime, a_syncbehaviourdefault, a_synctolerancedefault, a_systemrequired, a_timelinebegin, a_transform, a_version,
-                    a_viewbox, a_zoomandpan, SVG_BOX, SVG_COND, SVG_GR, SVG_PRES, LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_switch, { a_externalresourcesrequired, SVG11GREV, SVG12CNGR, SVGG, SVG20COND, SVG20PRES, LIVING_STANDARD, a_unknown } },
-    { elem_symbol, { a_externalresourcesrequired, a_preserveaspectratio, a_refx, a_refy, a_viewbox, SVG_BOX, SVG_COND, SVG_GR, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_svg, {   a_allow_zoom_and_pan, a_baseprofile, a_contentscripttype, a_contentstyletype, a_externalresourcesrequired, a_onafterprint, a_onbeforeprint, a_onzoom,
+                    a_playbackorder, a_preserveaspectratio, a_snapshottime, a_syncbehaviourdefault, a_synctolerancedefault, a_systemrequired, a_timelinebegin,
+                    a_version, a_viewbox, a_zoomandpan, SVG_BOX, SVG_COND, SVG_GR, SVG_PRES, LIVING_STANDARD_PLUS, a_unknown } },
+    { elem_switch, { a_externalresourcesrequired, a_onzoom, SVG11GREV, SVGG, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_symbol, { a_externalresourcesrequired, a_onzoom, a_preserveaspectratio, a_refx, a_refy, a_viewbox, SVG_BOX, SVG_COND, SVG_GR, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_t, { a_datetime, COMMON5, a_unknown } },
     { elem_tab, { a_align, a_at, a_dp, a_indent, a_to, LANGCLASS3, a_unknown } },
     { elem_tabbox, { COMMON5, a_unknown } },
@@ -750,37 +751,39 @@ element_init_t ei [] =
     { elem_tan, { MATH3DEFCOM, a_unknown } },
     { elem_tanh, { MATH3DEFCOM, a_unknown } },
     { elem_tbody, { a_bgcolour, a_rowgroup, ALIGNCHAR, LIVING_STANDARD, a_unknown } },
-    { elem_tbreak, { LIVING_STANDARD, a_unknown } },
+    { elem_tbreak, { SVG_COND, LIVING_STANDARD, a_unknown } },
     { elem_td, { a_axes, a_axis, a_background, a_bgcolour, a_cell, a_colspan, a_dp, a_headers, a_nowrap, a_rowspan, a_scope, WIDEHIGH, ALIGNCHAR, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_template, { LIVING_STANDARD, a_unknown } },
-    { elem_text, {  a_editable, a_externalresourcesrequired, a_lengthadjust, a_line_height, a_rotate, a_textlength,
-                    SVG11GREV, SVGDXY, SVG12CNGR, SVG20COND, SVG20PRES, SVGXY, SVGG, LIVING_STANDARD, a_unknown } },
+    { elem_text, {  a_editable, a_externalresourcesrequired, a_hyphens, a_inline_size, a_lengthadjust, a_line_break, a_line_height, a_overflow_wrap, a_rotate,
+                    a_shape_image_threshold, a_shape_inside, a_shape_margin, a_shape_padding, a_shape_subtract, a_text_justify, a_textlength, a_word_break, a_word_wrap,
+                    SVG11GREV, SVGDXY, SVG2COND, SVG_PRES, SVGXY, SVGG, LIVING_STANDARD, a_unknown } },
     { elem_tendsto, { a_type, MATH3DEFCOM, a_unknown } },
     { elem_textarea, {  a_align, a_autocomplete, a_cols, a_dirname, a_disabled, a_editable, a_error, a_form, a_maxlength, a_minlength, a_name, a_placeholder, a_readonly, a_required,
-                        a_rows, a_wrap, SVG12CNGR, LIVING_STANDARD, a_unknown } },
-    { elem_textpath, { a_externalresourcesrequired, a_lengthadjust, a_method, a_spacing, a_start_offset, a_startoffset, SVG11GREV, SVGXLINK, SVG20COND, SVG20PRES, SVGREPL, LIVING_STANDARD, a_unknown } },
+                        a_rotate, a_rows, a_wrap, SVG_BOX, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_textpath, { a_externalresourcesrequired, a_lengthadjust, a_method, a_path, a_side, a_spacing, a_startoffset, a_textlength, SVG11GREV, SVGXLINK, SVG2COND, SVG_PRES, SVGREPL, LIVING_STANDARD, a_unknown } },
     { elem_tfoot, { a_bgcolour, a_rowgroup, ALIGNCHAR, RESERVED4, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_th, { a_axis, a_abbr, a_bgcolour, a_colspan, a_dp, a_headers, a_nowrap, a_rowspan, a_scope, a_sorted, WIDEHIGH, ALIGNCHAR, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_thead, { a_bgcolour, a_rowgroup, ALIGNCHAR, LIVING_STANDARD, a_unknown } },
     { elem_tilde, { LANGCLASS3, a_unknown } },
     { elem_time, { a_datetime, a_pubdate, LIVING_STANDARD, a_unknown } },
     { elem_times, { MATH3DEFCOM, a_unknown } },
-    { elem_title, { LIVING_STANDARD_PLUS, a_unknown } },
+    { elem_title, { SVG_PRES, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_tr, { a_bgcolour, a_dp, a_nowrap, a_row, ALIGNCHAR, LIVING_STANDARD, a_unknown } },
     { elem_track, { a_default, a_kind, a_label, a_srclang, LIVING_STANDARD, a_unknown } },
     { elem_traitdef, { LIVING_STANDARD, a_unknown } },
     { elem_transition, { LIVING_STANDARD, a_unknown } },
     { elem_transformer, { LIVING_STANDARD, a_unknown } },
     { elem_transpose, { MATH3DEFCOM, a_unknown } },
-    { elem_tref, { a_externalresourcesrequired, a_rotate, a_textlength, SVG11GREV, SVGXLINK, SVG20COND, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_tref, { a_externalresourcesrequired, a_rotate, a_textlength, SVG11GREV, SVGXLINK, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_true, { MATH3DEFCOM, a_unknown } },
-    { elem_tspan, { a_externalresourcesrequired, a_lengthadjust, a_rotate, a_textlength, SVG11GREV, SVGDXY, SVG20COND, SVG20PRES, SVGG, SVGXY, SVGREPL, LIVING_STANDARD, a_unknown } },
+    { elem_tspan, { a_externalresourcesrequired, a_hyphens, a_lengthadjust, a_line_break, a_overflow_wrap, a_rotate, a_text_justify, a_textlength, a_word_break, a_word_wrap,
+                    SVG11GREV, SVGDXY, SVG2COND, SVG_PRES, SVGG, SVGXY, SVGREPL, LIVING_STANDARD, a_unknown } },
     { elem_tt, { TSLPLUS, XHTML, a_unknown } },
     { elem_u, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_ul, { a_align, a_clear, a_compact, a_plain, a_type, a_wrap, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_union, { MATH3DEFCOM, a_unknown } },
     { elem_uplimit, { MATH3COMMON, a_unknown } },
-    { elem_use, { a_externalresourcesrequired, a_xlinkhref, SVG11GREV, SVG12CNGR, SVGBOX, SVGFIT, SVGG, SVGREPL, SVG20COND, SVG20PRES, LIVING_STANDARD, a_unknown } },
+    { elem_use, { a_externalresourcesrequired, a_onzoom, a_preserveaspectratio, a_xlinkhref, SVG11GREV, SVGBOX, SVGG, SVGREPL, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_var, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_variance, { MATH3DEFCOM, a_unknown } },
     { elem_veaffine, { LIVING_STANDARD, a_unknown } },
@@ -804,8 +807,8 @@ element_init_t ei [] =
     { elem_video, { a_audio, a_audio_level, a_autobuffer, a_autopictureinpicture, a_autoplay, a_buffered, a_controls, a_controlslist, a_crossorigin,
                     a_currenttime, a_disablepictureinpicture, a_disableremoteplayback, a_duration, a_end, a_initialvisibility, a_intrinsicsize, a_loop,
                     a_loopcount, a_loopend, a_loopstart, a_mediagroup, a_muted, a_overlay, a_playcount, a_playsinline, a_poster, a_preload,
-                    a_preserveaspectratio, a_start, a_syncbehaviour, a_synctolerance, a_transformbehaviour, SVG12CNGR, WIDEHIGH, LIVING_STANDARD, a_unknown } },
-    { elem_view, { a_externalresourcesrequired, a_preserveaspectratio, a_viewbox, a_viewtarget, a_zoomandpan, LIVING_STANDARD, a_unknown } },
+                    a_preserveaspectratio, a_start, a_syncbehaviour, a_synctolerance, a_transformbehaviour, a_buffered_rendering, WIDEHIGH, LIVING_STANDARD, a_unknown } },
+    { elem_view, { a_externalresourcesrequired, a_preserveaspectratio, a_viewbox, a_viewtarget, a_zoomandpan, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_vkern, { a_g1, a_g2, a_k, a_u1, a_u2, LIVING_STANDARD, a_unknown } },
     { elem_wbr, { LIVING_STANDARD, a_unknown } },
     { elem_xa, { LIVING_STANDARD, a_unknown } },

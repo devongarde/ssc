@@ -44,7 +44,7 @@ hav_t havt_mnopqr [] =
 
     STANDARD_HTML5_ATTRIBUTES (elem_mark),
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_line, a_externalresourcesrequired },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_marker, a_externalresourcesrequired },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_marker, a_markerheight },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_marker, a_markerunits },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_marker, a_markerwidth },
@@ -150,6 +150,8 @@ hav_t havt_mnopqr [] =
     HTML23_CLID_ATTRIBUTES (elem_meta),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_meta),
 
+    SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_metadata, HE_SVG_2),
+    SVG_PRESENTATION_ATTRIBUTES_2 (elem_metadata),
     SVG_HTML_ATTRIBUTES (elem_metadata),
 
     { { HTML_JUL10 }, { HTML_JUN11 }, elem_meter, a_form },
@@ -241,6 +243,7 @@ hav_t havt_mnopqr [] =
     MATH3_PRES_ATTRIBUTES (elem_mpadded),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_mpath, a_externalresourcesrequired },
+    SVG_PRESENTATION_ATTRIBUTES_2 (elem_mpath),
     SVG_XLINK_ATTRIBUTES (elem_mpath),
     SVG_HTML_ATTRIBUTES (elem_mpath),
 
@@ -515,16 +518,15 @@ hav_t havt_mnopqr [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_partialdiff),
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_path, a_d },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_path, a_d },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_path, a_externalresourcesrequired },
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_path, a_flatness },
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_path, a_marker },
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_path, a_nominallength },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_path, a_pathlength },
-    SVG10_G_ATTRIBUTES(elem_path),
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_path, a_transform },
     SVG_CONDITIONAL_ATTRIBUTES (elem_path),
+    SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_path, HE_SVG_2),
     SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_path),
     SVG_HTML_ATTRIBUTES (elem_path),
+    SVG_LANGSPACE_ATTRIBUTES_10 (elem_path),
     SVG_PRESENTATION_ATTRIBUTES (elem_path),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_pattern, a_externalresourcesrequired },
@@ -554,21 +556,25 @@ hav_t havt_mnopqr [] =
     MATH3_DEFS_ATTRIBUTES (elem_plus),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polygon, a_externalresourcesrequired },
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_polygon, a_marker },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polygon, a_pathlength },
     { { HTML_SVG10, 0, HE_SVG | REQUIRED }, { HTML_UNDEF }, elem_polygon, a_points },
-    SVG10_G_ATTRIBUTES (elem_polygon),
-    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_polygon),
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polygon, a_transform },
     SVG_CONDITIONAL_ATTRIBUTES (elem_polygon),
+    SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_polygon, HE_SVG_2),
+    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_polygon),
     SVG_HTML_ATTRIBUTES (elem_polygon),
+    SVG_LANGSPACE_ATTRIBUTES_10 (elem_polygon),
     SVG_PRESENTATION_ATTRIBUTES (elem_polygon),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polyline, a_externalresourcesrequired },
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_polyline, a_marker },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polyline, a_pathlength },
     { { HTML_SVG10, 0, HE_SVG | REQUIRED }, { HTML_UNDEF }, elem_polyline, a_points },
-    SVG10_G_ATTRIBUTES (elem_polyline),
-    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_polyline),
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polyline, a_transform },
     SVG_CONDITIONAL_ATTRIBUTES (elem_polyline),
+    SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_polyline, HE_SVG_2),
+    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_polyline),
     SVG_HTML_ATTRIBUTES (elem_polyline),
+    SVG_LANGSPACE_ATTRIBUTES_10 (elem_polyline),
     SVG_PRESENTATION_ATTRIBUTES (elem_polyline),
 
     MATH3_DEFS_ATTRIBUTES (elem_power),
@@ -613,13 +619,12 @@ hav_t havt_mnopqr [] =
     MATH3_DEFS_ATTRIBUTES (elem_quotient),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_radialgradient, a_externalresourcesrequired },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_radialgradient, a_cx },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_radialgradient, a_cy },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_radialgradient, a_fr },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_radialgradient, a_fx },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_radialgradient, a_fy },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_radialgradient, a_r },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_radialgradient, a_spreadmethod },
+    SVG_CXY_ATTRIBUTES (elem_radialgradient),
     SVG10_GRAD_ATTRIBUTES (elem_radialgradient),
     SVG_XLINK_ATTRIBUTES (elem_radialgradient),
     SVG_HTML_ATTRIBUTES (elem_radialgradient),
@@ -638,14 +643,16 @@ hav_t havt_mnopqr [] =
     MATH3_DEFS_ATTRIBUTES (elem_reals),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_rect, a_externalresourcesrequired },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_rect, a_rx },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_rect, a_ry },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_rect, a_pathlength },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_rect, a_transform },
     SVG_BOX_ATTRIBUTES (elem_rect),
-    SVG10_G_ATTRIBUTES (elem_rect),
-    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_rect),
     SVG_CONDITIONAL_ATTRIBUTES (elem_rect),
+    SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_rect, HE_SVG_2),
+    SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_rect),
     SVG_HTML_ATTRIBUTES (elem_rect),
+    SVG_LANGSPACE_ATTRIBUTES_10 (elem_rect),
     SVG_PRESENTATION_ATTRIBUTES (elem_rect),
+    SVG_RXY_ATTRIBUTES (elem_rect),
 
     MATH2_STANDARD_ATTRIBUTES (elem_reln),
 

@@ -250,9 +250,10 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
                                     {   const ::std::string& naam (id.name ());
                                         if (v.xhtml () && (naam != mc))
                                             if (mc.find (':') == ::std::string::npos)
-                                                if (naam.find_first_of (UPPERCASE) != ::std::string::npos)
-                                                    e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "element names must match case in ", v.report ());
-                                                else e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "standard element names must be in lower case in ", v.report ()); } }
+                                                if ((id.flags () & EP_NO_WHINGE) == 0)
+                                                    if (naam.find_first_of (UPPERCASE) != ::std::string::npos)
+                                                        e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "element names must match case in ", v.report ());
+                                                    else e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "standard element names must be in lower case in ", v.report ()); } }
                                 break;
             case bk_num :       id.reset (elem_faux_code); break;
             case bk_php :       id.reset (elem_faux_php); break;
