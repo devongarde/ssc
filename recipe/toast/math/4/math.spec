@@ -98,7 +98,7 @@ PASS ../toast/math/4/math9-example.html
 329 math_kids
 344 math_kids
 349 math_kids
-358 xmlns_namespace unrecognised_namespace attribute_unrecognised unrecognised_value unrecognised_value unrecognised_attribute
+358 unrecognised_namespace attribute_unrecognised unrecognised_value unrecognised_value unrecognised_attribute
 
 PASS ../toast/math/4/math10-example.html
 2 naughty_lang

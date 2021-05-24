@@ -32,11 +32,11 @@ min_t unknown_props;
 mii_t unknown_ids;
 
 itemprop_index make_itemprop_index (const e_schema_property p)
-{   DBG_ASSERT (p <= sp_illegal);
+{   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
     return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_schema) << uint32_category_shift); }
 
 itemprop_indices make_itemprop_indices (const e_schema_property p)
-{   DBG_ASSERT (p <= sp_illegal);
+{   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
     itemprop_indices res;
     res.emplace_back (make_itemprop_index (p));
     return res; }
@@ -47,11 +47,11 @@ itemprop_indices make_itemprop_indices (const vsp_t& vsp)
     return res; }
 
 itemprop_index make_itemprop_index (const e_property p)
-{   DBG_ASSERT (p <= first_illegal);
+{   PRESUME (p <= first_illegal, __FILE__, __LINE__);
     return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_microformat) << uint32_category_shift); }
 
 itemprop_indices make_itemprop_indices (const e_property p)
-{   DBG_ASSERT (p <= sp_illegal);
+{   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
     itemprop_indices res;
     res.emplace_back (make_itemprop_index (p));
     return res; }
@@ -118,7 +118,8 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
             return is_valid_schema_property (nits, v, static_cast < e_schema_type> (ndx_item (itemtype)), static_cast < e_schema_property > (ndx_item (ndx)), value, is_link);
         case itemprop_microformat :
             return true;
-        default : DBG_ASSERT (false); break; }
+        default :
+            GRACEFUL_CRASH (__FILE__, __LINE__); break; }
     return false; }
 
 bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_index itemtype, const itemprop_index ndx, const itemtype_index value)
@@ -129,5 +130,6 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
             return is_valid_schema_property (nits, v, static_cast < e_schema_type> (ndx_item (itemtype)), static_cast < e_schema_property > (ndx_item (ndx)), static_cast < e_schema_type> (ndx_item (value)));
         case itemprop_microformat :
             return true;
-        default : DBG_ASSERT (false); break; }
+        default :
+            GRACEFUL_CRASH (__FILE__, __LINE__); break; }
     return false; }

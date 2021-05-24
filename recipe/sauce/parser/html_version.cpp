@@ -39,7 +39,7 @@ html_version::html_version (const boost::gregorian::date& d, const uint64_t flag
     {   y = HTML_5_EARLIEST_YEAR; m = HTML_5_EARLIEST_MONTH; }
     else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
     {   y = HTML_LATEST_YEAR; m = HTML_LATEST_MONTH; }
-    DBG_ASSERT ((m > 0) && (m < 13));
+    PRESUME ((m > 0) && (m < 13), __FILE__, __LINE__);
     set_mjr (static_cast <unsigned char> (y), static_cast <unsigned char> (m * 16));
     if (no_ext (MATH_MASK))
         if (mjr () <= HTML_2010) set_ext (HE_MATH_1);
@@ -66,10 +66,10 @@ void html_version::init (const unsigned char mjr)
         case 5 :
             reset (html_current); break;
         default :
-            DBG_ASSERT (false); reset (html_current); break; } }
+            GRACEFUL_CRASH (__FILE__, __LINE__); reset (html_current); break; } }
 
 ::std::string minor_to_date (const html_version& v)
-{   DBG_ASSERT (v.is_5 ());
+{   PRESUME (v.is_5 (), __FILE__, __LINE__);
     if (v == html_5_0) return "5.0";
     if (v == html_5_1) return "5.1";
     if (v == html_5_2) return "5.2";
@@ -465,7 +465,7 @@ bool html_version::deprecated (const html_version& current) const
             switch (current.mnr ())
             {   case 0 : return any_flags (HV_DEPRECATED30);
                 case 2 : return any_flags (HV_DEPRECATED32); }
-            DBG_ASSERT (false); break;
+            GRACEFUL_CRASH (__FILE__, __LINE__); break;
         case 4:
             switch (current.mnr ())
             {   case 0 :
@@ -473,7 +473,7 @@ bool html_version::deprecated (const html_version& current) const
                 case 2 : return any_flags (HV_DEPRECATEDX1);
                 case 3 : return any_flags (HV_DEPRECATEDX11);
                 case 4 : return any_flags (HV_DEPRECATEDX2); }
-            DBG_ASSERT (false); break;
+            GRACEFUL_CRASH (__FILE__, __LINE__); break;
         default :
             if (current.any_flags (HV_WHATWG))
                 if (any_flags (HV_DEPRECATEDWWG))
@@ -504,7 +504,7 @@ bool test_not_extension (const html_version& lhs, const html_version& rhs)
     return false; }
 
 bool is_excluded (const html_version& lhs, const html_version& rhs, const uint64_t mask)
-{   DBG_ASSERT (mask != 0);
+{   PRESUME (mask != 0, __FILE__, __LINE__);
     // have encountered occasional bugs with 64 bit manipulation on some platforms (a & b), but the &= operator appears reliable, so ...
     uint64_t a = mask, b = mask;
     a &= lhs.ext ();
@@ -514,22 +514,22 @@ bool is_excluded (const html_version& lhs, const html_version& rhs, const uint64
     return (a == 0); }
 
 e_emi rdf_conflict (const html_version& lhs, const html_version& rhs)
-{   DBG_ASSERT (! lhs.is_b4_4 ());
-    DBG_ASSERT (rhs.has_rdf ());
+{   PRESUME (! lhs.is_b4_4 (), __FILE__, __LINE__);
+    PRESUME (rhs.has_rdf (), __FILE__, __LINE__);
     if ((lhs != xhtml_2) && (! lhs.is_svg_12 ()))
         if (! context.rdf () && ! lhs.has_rdf ()) return emi_rdf;
     return emi_good; }
 
 e_emi math_conflict (const html_version& lhs, const html_version& rhs)
-{   DBG_ASSERT (! lhs.is_b4_4 ());
-    DBG_ASSERT (rhs.has_math ());
+{   PRESUME (! lhs.is_b4_4 (), __FILE__, __LINE__);
+    PRESUME (rhs.has_math (), __FILE__, __LINE__);
     if (! lhs.has_math ()) return emi_math;
     if (is_excluded (lhs, rhs, MATH_MASK)) return emi_not_this_math;
     return emi_good; }
 
 e_emi svg_conflict (const html_version& lhs, const html_version& rhs)
-{   DBG_ASSERT (! lhs.is_b4_4 ());
-    DBG_ASSERT (rhs.has_svg ());
+{   PRESUME (! lhs.is_b4_4 (), __FILE__, __LINE__);
+    PRESUME (rhs.has_svg (), __FILE__, __LINE__);
     if (! lhs.has_svg ()) return emi_svg;
     if (lhs.is_4 ())
     {   if (rhs.svg_x1 () && (lhs.mnr () >= 2) && (lhs.mnr () <= 3)) return emi_good;
@@ -675,7 +675,7 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
     switch (v.mjr ())
     {   case 0 :    break;
         case 1 :    if (v.mnr () == 0) return ! from.not10 ();
-                    DBG_ASSERT (v.mnr () == 1);
+                    PRESUME (v.mnr () == 1, __FILE__, __LINE__);
                     return ! from.notplus ();
         case 2 :    if (from.not2 ()) return false;
                     if (from.not2l1 () && (v.level () == 1)) return false;
@@ -685,7 +685,7 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
                     if (! context.rfc_2070 () && from.rfc_2070 ()) return false;
                     break;
         case 3 :    if (v.mnr () == 2) return ! from.not32 ();
-                    DBG_ASSERT (v.mnr () == 0);
+                    PRESUME (v.mnr () == 0, __FILE__, __LINE__);
                     return ! from.not30 ();
         case 4 :    switch (v.mnr ())
                     {   case 0 :
@@ -693,7 +693,7 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
                         case 2 :
                         case 3 : return ! from.notx1 ();
                         case 4 : return ! from.notx2 (); }
-                    DBG_ASSERT (false);
+                    PRESUME (false, __FILE__, __LINE__);
                     break;
         default :   if (from.xhtml () && from.notx5 ()) return false;
                     if (context.html_ver ().whatwg () && from.w3 ()) return false;

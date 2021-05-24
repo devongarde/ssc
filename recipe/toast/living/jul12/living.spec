@@ -516,7 +516,7 @@ PASS ../toast/living/jul12/ls4.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jul12/ls6.html
-3 xmlns_namespace contradictory_namespace
+3 contradictory_namespace
 5 use_quote_code
 6 unknown_element
 8 unknown_element unrecognised_namespace
@@ -720,7 +720,7 @@ PASS ../toast/living/jul12/source.html
 17 url_not_found mime
 18 url_not_found
 19 mime url_not_found
-33 wrong_parent autoplay
+33 autoplay
 34 url_not_found
 35 url_not_found
 39 inserted_missing_closure

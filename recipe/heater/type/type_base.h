@@ -67,7 +67,7 @@ public:
     bool unknown () const { return status_ == s_unset; }
     ::std::size_t type () const { return 0; }
     vurl_t get_urls () const { return vurl_t (); }
-    static VALUE_TYPE default_value () { DBG_ASSERT (false); return VALUE_TYPE (); }
+    static VALUE_TYPE default_value () { GRACEFUL_CRASH (__FILE__, __LINE__); return VALUE_TYPE (); }
     VALUE_TYPE get () const { return default_value (); }
     int get_int () const { return 0; }
     bool has_value (const VALUE_TYPE ) const { return false; }

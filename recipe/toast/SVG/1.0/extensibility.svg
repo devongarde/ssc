@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?>
+<svg width="4in" height="3in"
+ xmlns = 'http://www.w3.org/2000/svg'>
+ <defs>
+ <myapp:piechart xmlns:myapp="http://example.org/myapp"
+ title="Sales by Region">
+ <myapp:pieslice label="Northern Region" value="1.23"/>
+ <myapp:pieslice label="Eastern Region" value="2.53"/>
+ <myapp:pieslice label="Southern Region" value="3.89"/>
+ <myapp:pieslice label="Western Region" value="2.04"/>
+ <!-- Other private data goes here -->
+ </myapp:piechart>
+ </defs>
+ <desc>This chart includes private data in another namespace
+ </desc>
+ <!-- In here would be the actual SVG graphics elements which
+ draw the pie chart -->
+</svg>

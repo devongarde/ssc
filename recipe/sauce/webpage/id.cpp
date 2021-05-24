@@ -23,32 +23,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 
 void ids_t::insert_id (const ::std::string& id, element* pe)
-{   DBG_ASSERT (pe != nullptr);
+{   VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     if (pe -> itemscope ().get () != nullptr)
         ids_.emplace (id, sid_t (pe, pe -> tag (), pe -> itemscope () -> type (), pe -> uid (), pe -> hidden ()));
     else
         ids_.emplace (id, sid_t (pe, pe -> tag (), vit_t (), pe -> uid (), pe -> hidden ())); }
 
 bool ids_t::is_hidden (const ::std::string& id) const
-{   DBG_ASSERT (has_id (id));
+{   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
     if (i == ids_.cend ()) return false;
     return i -> second.hidden_; }
 
 e_element ids_t::get_tag (const ::std::string& id) const
-{   DBG_ASSERT (has_id (id));
+{   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
     if (i == ids_.cend ()) return elem_error;
     return i -> second.elem_; }
 
 uid_t ids_t::get_uid (const ::std::string& id) const
-{   DBG_ASSERT (has_id (id));
+{   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
     if (i == ids_.cend ()) return 0;
     return i -> second.uid_; }
 
 bool ids_t::has_itemtype (const ::std::string& id, const itemtype_index s) const
-{   DBG_ASSERT (has_id (id));
+{   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
     if (i == ids_.end ()) return false;
     if (i -> second.element_ != nullptr)
@@ -59,7 +59,7 @@ bool ids_t::has_itemtype (const ::std::string& id, const itemtype_index s) const
     return false; }
 
 bool ids_t::has_itemtype (const ::std::string& id, const vit_t vit) const
-{   DBG_ASSERT (has_id (id));
+{   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
     if (i == ids_.end ()) return false;
     if (i -> second.element_ != nullptr)
@@ -72,7 +72,7 @@ bool ids_t::has_itemtype (const ::std::string& id, const vit_t vit) const
     return false; }
 
 element* ids_t::get_element (const ::std::string& id) const
-{   DBG_ASSERT (has_id (id));
+{   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
     if (i == ids_.cend ()) return nullptr;
     return i -> second.element_; }

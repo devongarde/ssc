@@ -49,40 +49,57 @@ public:
 
     ::std::string get_string (const e_attribute a) const
     {   if (! has (a)) return ::std::string ();
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
         return aar_.at (a) -> get_string (); }
+    ::std::string get_id (const e_attribute a) const
+    {   if (! has (a)) return ::std::string ();
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
+        return aar_.at (a) -> get_id (); }
     vurl_t get_urls (const e_attribute a) const
     {   if (! has (a)) return vurl_t ();
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
         return aar_.at (a) -> get_urls (); }
     bool invalid (const e_attribute a) const
     {   if (! has (a)) return true;
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
         return aar_.at (a) -> invalid (); }
     bool valid (const e_attribute a) const
     {   return ! invalid (a); }
     bool known (const e_attribute a) const
     {   if (! has (a)) return false;
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
         return ! aar_.at (a) -> unknown (); }
     bool empty (const e_attribute a) const
     {   if (! has (a)) return true;
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
         return aar_.at (a) -> empty (); }
     bool good (const e_attribute a) const
     {   if (! has (a)) return false;
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
         return aar_.at (a) -> good (); }
     ::std::size_t type (const e_attribute a) const
     {   if (! has (a) || ! good (a)) return 0;
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
         return aar_.at (a) -> type (); }
     int get_int (const e_attribute a) const
     {   if (! has (a)) return 0;
-        return aar_.at (a) -> get_int (); }
+         VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
+       return aar_.at (a) -> get_int (); }
     ::std::size_t size (const e_attribute a) const
     {   if (! has (a)) return 0;
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
         return aar_.at (a) -> size (); }
     template < class ATTRIBUTE > typename ATTRIBUTE::value_type get_x () const
     {   if (! has (ATTRIBUTE::whoami ())) return ATTRIBUTE::default_value ();
         ATTRIBUTE* ap = static_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());
-        DBG_ASSERT (ap != nullptr);
+        VERIFY_NOT_NULL (ap, __FILE__, __LINE__);
         return ap -> get (); }
-    const attribute_v_ptr get (const e_attribute a) const { return aar_.at (a); }
-    attribute_v_ptr get (const e_attribute a) { return aar_.at (a); }
+    const attribute_v_ptr get (const e_attribute a) const
+    {   VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
+        return aar_.at (a); }
+    attribute_v_ptr get (const e_attribute a)
+    {   VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
+        return aar_.at (a); }
     template < class ATTRIBUTE > bool has_value (const typename ATTRIBUTE :: base_type& v) const
     {   if (! has (ATTRIBUTE::whoami ())) return false;
         return get_x < ATTRIBUTE > () == v; }

@@ -65,6 +65,7 @@ void init (nitpick& nits)
     sch::init (nits);
     schema_name_init (nits);
     schema_property_init (nits);
+    svg_feature_init (nits);
     hierarchy_init (nits);
     microdata_init (nits);
     url::init (nits);
@@ -128,12 +129,14 @@ int examine (nitpick& nits)
     virt.add_root (nix_path_to_local (context.root ()), "/");
     nitpick shadow, exp;
     if (! context.shadow_root ().empty ())
+    {   VERIFY_NOT_NULL (virt.at (0), __FILE__, __LINE__);
         if (! virt.at (0) -> shadow_root (shadow, context.shadow_root ()))
-            res = ERROR_STATE;
+            res = ERROR_STATE; }
     if (res != ERROR_STATE)
         if (! context.export_root ().empty ())
+        {   VERIFY_NOT_NULL (virt.at (0), __FILE__, __LINE__);
             if (! virt.at (0) -> set_export (exp, context.export_root ()))
-                res = ERROR_STATE;
+                res = ERROR_STATE; }
     if (res != ERROR_STATE)
     {   for (auto v : context.virtuals ())
             virt.add_virtual (shadow, v);
@@ -153,20 +156,26 @@ int examine (nitpick& nits)
         for (::std::size_t n = 0; n < vmax; ++n)
         {   if (context.tell (e_info) && ! context.test ())
             {   context.out ("Scanning ");
+                VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
                 context.out (virt.at (n) -> get_disk_path ().string ());
                 context.out (" ...\n"); }
             try
-            {   if (! vd [n] -> scan (nits, virt.at (n) -> get_site_path ()))
+            {   VERIFY_NOT_NULL (vd [n], __FILE__, __LINE__);
+                VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+                if (! vd [n] -> scan (nits, virt.at (n) -> get_site_path ()))
                 {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " failed");
                     res = ERROR_STATE; } }
             catch (const ::std::system_error& e)
-            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " caused ", e.what ());
+            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised system error ", e.what ());
+                res = ERROR_STATE; }
+            catch (const ::std::exception& e)
+            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised the exception ", e.what ());
                 res = ERROR_STATE; }
             catch (...)
-            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " caused an exception");
+            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised an exception");
                 res = ERROR_STATE; } }
         if (res == VALID_RESULT)
-        {   DBG_ASSERT (vd.size () > 0);
+        {   PRESUME (vd.size () > 0, __FILE__, __LINE__);
             ::std::size_t n = integrate_virtuals (virt, vd);
             if (n != 0)
             {   nits.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());
@@ -176,18 +185,24 @@ int examine (nitpick& nits)
                 for (n = 0; n < vmax; ++n)
                 {   if (context.tell (e_info) && ! context.test ())
                     {   context.out ("Checking ");
+                        VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
                         context.out (virt.at (n) -> get_disk_path ().string ());
                         context.out (" ...\n"); }
                     try
-                    {   if (vd.at (n) -> empty ())
+                    {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
+                        VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+                        if (vd.at (n) -> empty ())
                             nits.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
                         else
                             vd.at (n) -> examine (nits); }
                     catch (const ::std::system_error& e)
-                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examination of ", virt.at (n) -> get_disk_path (), " caused ", e.what ());
+                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examining ", virt.at (n) -> get_disk_path (), " raise the system error ", e.what ());
+                        res = ERROR_STATE; }
+                    catch (const ::std::exception& e)
+                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examining ", virt.at (n) -> get_disk_path (), " raised the exception ", e.what ());
                         res = ERROR_STATE; }
                     catch (...)
-                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examination of ", virt.at (n) -> get_disk_path (), " caused an exception");
+                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examining ", virt.at (n) -> get_disk_path (), " raised an exception");
                         res = ERROR_STATE; } } } } }
     close_corpus (nits);
     dump_nits (nits, "examine");
@@ -196,29 +211,40 @@ int examine (nitpick& nits)
     return res; };
 
 int main (int argc, char** argv)
-{   auto start = ::std::chrono::system_clock::now ();
-    std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
-    nitpick nits;
-    init (nits);
-    int res = context.parameters (argc, argv);
-    dump_nits (nits, "initialisation");
-    if (res == VALID_RESULT)
-    {   configure (start_time);
-        res = examine (nits);
-        if ((res == VALID_RESULT) && context.process_webmentions ())
-        {   context.process_outgoing_webmention (nits, html_current);
-            context.process_incoming_webmention (nits, html_current);
-            dump_nits (nits, "webmention"); }
-        ciao ();
-        if (! (context.test () || context.cgi ()))
-        {   auto fin = std::chrono :: system_clock :: now();
-            std::chrono::duration<double> elapsed_seconds = fin - start;
-            std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
-            if (context.tell (e_severe))
-            {   context.out ("\nFinish: ");
-                context.out (::std::ctime (&end_time)); }
-            if (context.tell (e_warning))
-            {   ::std::ostringstream ss;
-                ss << "Duration: " << elapsed_seconds.count () << " seconds\n";
-                context.out (ss.str ()); } } }
+{   int res = NOTHING_TO_DO;
+    try
+    {   auto start = ::std::chrono::system_clock::now ();
+        std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
+        nitpick nits;
+        init (nits);
+        res = context.parameters (argc, argv);
+        dump_nits (nits, "initialisation");
+        if (res == VALID_RESULT)
+        {   configure (start_time);
+            res = examine (nits);
+            if ((res == VALID_RESULT) && context.process_webmentions ())
+            {   context.process_outgoing_webmention (nits, html_current);
+                context.process_incoming_webmention (nits, html_current);
+                dump_nits (nits, "webmention"); }
+            ciao ();
+            if (! (context.test () || context.cgi ()))
+            {   auto fin = std::chrono :: system_clock :: now();
+                std::chrono::duration<double> elapsed_seconds = fin - start;
+                std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
+                if (context.tell (e_severe))
+                {   context.out ("\nFinish: ");
+                    context.out (::std::ctime (&end_time)); }
+                if (context.tell (e_warning))
+                {   ::std::ostringstream ss;
+                    ss << "Duration: " << elapsed_seconds.count () << " seconds\n";
+                    context.out (ss.str ()); } } } }
+    catch (const ::std::system_error& e)
+    {   ::std::cerr << "catastrophic exit with system error " << e.what () << "\n";
+        res = ERROR_STATE; }
+    catch (const ::std::exception& e)
+    {   ::std::cerr << "catastrophic exit with the exception " << e.what () << "\n";
+        res = ERROR_STATE; }
+    catch (...)
+    {   ::std::cerr << "catastrophic exit with an unknown exception\n";
+        res = ERROR_STATE; }
     return res; };

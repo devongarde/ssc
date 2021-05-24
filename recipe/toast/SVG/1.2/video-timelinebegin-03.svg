@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<svg xml:id="A" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2"
+baseProfile="tiny"
+timelineBegin="onLoad"> <!-- process time = t0 -->
+<!-- ...[many elements]... --> <!-- additional process time = t1 = 5s -->
+<video xlink:href="myvideo.mp4" begin="0s" syncBehavior="independent"/> <!-- additional process time = t2 = 1s -->
+</svg>

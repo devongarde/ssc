@@ -73,7 +73,7 @@ void declare_crosslinks (const fileindex_t sought, ids_t& ids)
     vx_t::iterator i = xlynx.find (sought);
     if (i == xlynx.cend ())
     {   auto p = xlynx.emplace (::std::pair < fileindex_t, sought_t > (sought, sought_t (ids.ndx (), vcl_t ())));
-        DBG_ASSERT (p.second);
+        PRESUME (p.second, __FILE__, __LINE__);
         i = p.first; }
     for (auto d : ids.mif ())
         declare.emplace_back (d.first, 0, d.second.hidden_, d.second.types_);

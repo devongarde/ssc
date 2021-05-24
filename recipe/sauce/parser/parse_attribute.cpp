@@ -55,5 +55,5 @@ void attribute_node::parse (nitpick& nits, const html_version& v, ns_ptr& nss)
 {   ::std::string ns;
     id_ = attr :: parse (nits, v, nss, key_, ns);
     if (id_ == a_xmlns)
-    {   DBG_ASSERT (nss.get () != nullptr);
+    {   VERIFY_NOT_NULL (nss, __FILE__, __LINE__);
         nss -> add (nits, v, ns, value_); } }

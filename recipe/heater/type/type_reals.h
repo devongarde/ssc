@@ -47,15 +47,14 @@ template < > struct type_master < t_matrix_values > : tidy_string < t_matrix_val
         nits.pick (nit_unreal, es_error, ec_type, "a sequence of 20 coordinates is expected");
         tidy_string < t_matrix_values > :: status (s_invalid); } };
 
-template < > struct type_master < t_filter_res > : tidy_string < t_filter_res >
+template < > struct type_master < t_filterres > : tidy_string < t_filterres >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_filter_res > :: set_value (nits, v, s);
-        const ::std::string& ss = tidy_string < t_filter_res > :: get_string ();
-        if (tidy_string < t_filter_res >  :: good ())
-            if ((v.svg () == sv_1_0) && (test_reals (nits, v, ss, 2))) return;
-            else if (test_reals (nits, v, ss, 1, false, 2)) return;
+    {   tidy_string < t_filterres > :: set_value (nits, v, s);
+        const ::std::string& ss = tidy_string < t_filterres > :: get_string ();
+        if (tidy_string < t_filterres >  :: good ())
+            if (test_reals (nits, v, ss, 1, false, 2)) return;
         nits.pick (nit_unreal, es_error, ec_type, quote (ss), " is not a width height pair");
-        tidy_string < t_filter_res > :: status (s_invalid); } };
+        tidy_string < t_filterres > :: status (s_invalid); } };
 
 template < > struct type_master < t_points > : tidy_string < t_points >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -65,10 +64,10 @@ template < > struct type_master < t_points > : tidy_string < t_points >
         nits.pick (nit_unreal, es_error, ec_type, "a sequence of coordinates is expected");
         tidy_string < t_points > :: status (s_invalid); } };
 
-template < > struct type_master < t_table_values > : tidy_string < t_table_values >
+template < > struct type_master < t_tablevalues > : tidy_string < t_tablevalues >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_table_values > :: set_value (nits, v, s);
-        if (tidy_string < t_table_values >  :: good ())
-            if (test_reals (nits, v, tidy_string < t_table_values > :: get_string (), 0)) return;
+    {   tidy_string < t_tablevalues > :: set_value (nits, v, s);
+        if (tidy_string < t_tablevalues >  :: good ())
+            if (test_reals (nits, v, tidy_string < t_tablevalues > :: get_string (), 0)) return;
         nits.pick (nit_unreal, es_error, ec_type, "a sequence of measurements is expected");
-        tidy_string < t_table_values > :: status (s_invalid); } };
+        tidy_string < t_tablevalues > :: status (s_invalid); } };

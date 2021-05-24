@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny"
+xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc>An example of how to change the navigation order from script by
+changing nav-* attribute values. In this example, "myRect2" disappears between 10 and 20 sec
+and is replaced by the "myRectNew" rectangle during this period. Consequently, the navigation order
+must be changed accordingly during this period and we must re-established initial order after 20s.</desc>
+<rect xml:id="myRect1" x="10" y="20" width="100" height="50" fill="red" focusable="true"
+nav-right="url(#myRect2)">
+<set begin="focusin" end="focusout" attributeName="fill" to="purple"/>
+</rect>
+<rect xml:id="myRect2" x="120" y="20" width="100" height="50" fill="red" focusable="true"
+nav-right="url(#myRect3)" nav-left="url(#myRect1)">
+<set begin="focusin" end="focusout" attributeName="fill" to="purple"/>
+<set begin="0" end="10" attributeName="display" to="inline"/>
+<set begin="10" end="20" attributeName="display" to="none"/>
+<set begin="20" attributeName="display" to="inline"/>
+</rect>
+<rect xml:id="myRect3" x="230" y="20" width="100" height="50" fill="red" focusable="true"
+nav-left="url(#myRect2)">
+<set begin="focusin" end="focusout" attributeName="fill" to="purple"/>
+</rect>
+<rect xml:id="myRectNew" x="120" y="20" width="100" height="50" fill="blue" focusable="true"
+nav-right="url(#myRect3)"
+nav-left="url(#myRect1)" display="none" >
+<set xml:id="myRectNewFillAnim" begin="focusin" end="focusout" attributeName="fill" to="black"/>
+<set xml:id="myRectNewDisplayAnim" begin="10" end="20" attributeName="display" to="inline"/>
+</rect>
+<!-- register a listener for myRectNew.beginEvent event -->
+<ev:listener event="beginEvent" observer="myRectNew" handler="#myAnimationHandler" />
+<ev:listener event="endEvent" observer="myRectNew" handler="#myAnimationHandler" />
+<!-- handler which is called when myRect2 is replaced by myRectNew -->
+<handler xml:id="myAnimationHandler" type="application/ecmascript"><![CDATA[
+var myRect1 = document.getElementById("myRect1");
+var myRect3 = document.getElementById("myRect3");
+if (evt.type == "beginEvent" && evt.target.id == "myRectNewDisplayAnim")
+{
+myRect1.setTrait("nav-right", "url(#myRectNew)");
+myRect3.setTrait("nav-left", "url(#myRectNew)");
+}
+else if (evt.type == "endEvent" && evt.target.id == "myRectNewDisplayAnim")
+{
+myRect1.setTrait("nav-right", "url(#myRect2)");
+myRect3.setTrait("nav-left", "url(#myRect2)");
+}
+]]></handler>
+</svg>

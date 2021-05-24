@@ -52,7 +52,7 @@ template < > struct type_master < t_prefix > : string_vector < t_prefix, sz_spac
             bool ok = true;
             for (auto s : string_vector < t_prefix, sz_space > :: value_)
                 if (name.empty ())
-                {   DBG_ASSERT (! s.empty ());
+                {   PRESUME (! s.empty (), __FILE__, __LINE__);
                     size_t sz = s.length () - 1;
                     if (s.at (sz) == ':')
                     {   name = s.substr (0, sz);

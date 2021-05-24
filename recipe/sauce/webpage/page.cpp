@@ -39,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, directory* d, const e_charcode encoding)
     :   name_ (name), schema_version_ (context.schema_ver ()), updated_ (updated)
-{   DBG_ASSERT (d != nullptr);
+{   PRESUME (d != nullptr, __FILE__, __LINE__);
     ids_.ndx (x);
     names_.ndx (x, false);
     directory_ = d;
@@ -47,7 +47,7 @@ page::page (const ::std::string& name, const ::std::time_t updated, ::std::strin
 
 page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d, const e_charcode encoding)
     :   name_ (name), schema_version_ (context.schema_ver ()), updated_ (updated)
-{   DBG_ASSERT (d != nullptr);
+{   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
     ids_.ndx (x);
     names_.ndx (x, false);
@@ -86,6 +86,7 @@ void page::swap (page& p) NOEXCEPT
     names_.swap (p.names_);
     nits_.swap (p.nits_);
     nodes_.swap (p.nodes_);
+    profiles_.swap (p.profiles_);
     schema_version_.swap (p.schema_version_);
     ssi_.swap (p.ssi_);
     ::std::swap (updated_, p.updated_);
@@ -112,7 +113,7 @@ void page::charset (nitpick& nits, const html_version& v, const ::std::string& c
 bool page::parse (::std::string& content, const e_charcode )
 {   nits_.reset ();
     if (! snippet_)
-    {   DBG_ASSERT (directory_ != nullptr);
+    {   PRESUME (directory_ != nullptr, __FILE__, __LINE__);
         ssi_.filename_ = name_;
         html_version v (html_5_3);
         content = parse_ssi (nits_, v, *directory_, ssi_, content, updated_); }
@@ -125,7 +126,8 @@ void page::examine ()
     {   if ((! snippet_) && context.md_export ()) md_export_.init (get_export_root ());
         document_.reset (new element (name_, nodes_.top (), nullptr, *this));
         context.mark (version ());
-        DBG_ASSERT (document_ -> tag () == elem_faux_document);
+        VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
+        PRESUME (document_ -> tag () == elem_faux_document, __FILE__, __LINE__);
         document_ -> reconstruct (&access_);
         ::std::string s = document_ -> make_children (0);
         if (context.tell (e_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
@@ -147,30 +149,31 @@ void page::verify_locale (const ::boost::filesystem::path& p)
 {   return get_disk_path ().stem ().string (); }
 
 void page::itemscope (const itemscope_ptr itemscope)
-{   DBG_ASSERT (itemscope.get () != nullptr);
+{   PRESUME (itemscope.get () != nullptr, __FILE__, __LINE__);
     itemscope_ = itemscope;
+    VERIFY_NOT_NULL (itemscope_, __FILE__, __LINE__);
     if (itemscope_ -> export_path ().empty ())
         itemscope_ -> set_exporter (md_export (), md_export_.append_path (get_export_root (), null_itemprop, true)); }
 
 ::std::string page::find_webmention () const
-{   DBG_ASSERT (document_);
+{   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
     if (snippet_) return ::std::string ();
     return document_ -> find_webmention (); }
 
 ::std::string page::find_mention_info (const url& u, bool text, bool anything)
-{   DBG_ASSERT (document_);
+{   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
     if (snippet_) return ::std::string ();
     return document_ -> find_mention_info (u, text, anything); }
 
 ::std::string page::load_url (nitpick& nits, const url& u) const
 {   if (snippet_) return ::std::string ();
-    DBG_ASSERT (directory_ != nullptr);
+    VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return directory_ -> load_url (nits, u); }
 
 ::boost::filesystem::path page::absolute_member (nitpick& nits, const ::boost::filesystem::path& file) const
 {   if (snippet_) return ::std::string ();
     if (file.string ().find_first_of (":\\/") != ::std::string::npos) return file;
-    DBG_ASSERT (directory_ != nullptr);
+    VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return directory_ -> get_disk_path (nits, local_path_to_nix (file.string ())); }
 
 ::std::string page::report ()
@@ -189,23 +192,23 @@ void page::itemscope (const itemscope_ptr itemscope)
 
 const ::std::string page::get_site_path () const
 {   if (snippet_) return ::std::string ();
-    DBG_ASSERT (directory_ != nullptr);
+    VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return join_site_paths (directory_ -> get_site_path (), name ()); }
 
 const ::boost::filesystem::path page::get_disk_path () const
 {   if (snippet_) return ::std::string ();
-    DBG_ASSERT (directory_ != nullptr);
+    VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return (directory_ -> get_disk_path () / name ()); }
 
 const ::boost::filesystem::path page::get_export_path () const
 {   if (snippet_) return ::std::string ();
     if (! context.export_defined ()) return get_disk_path ();
-    DBG_ASSERT (directory_ != nullptr);
+    VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return directory_ -> get_export_path () / name (); }
 
 bool page::verify_url (nitpick& nits, const ::std::string& s) const
 {   if (! check_links () || snippet_) return true;
-    DBG_ASSERT (directory_ != nullptr);
+    VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     url u (nits, version (), s);
     if (u.is_local () && ! check_links_) return true;
     return directory_ -> verify_url (nits, version (), u); }
@@ -239,7 +242,7 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
         if (f.fail ())
             nits.pick (nit_cannot_create_file, es_catastrophic, ec_shadow, "cannot create ", s.string ());
         else
-        {   document_ -> shadow (ss, version ());
+        {   if (document_.get () != nullptr) document_ -> shadow (ss, version ());
             f << ss.str ();
             f.close ();
             if (changed) ::boost::filesystem::permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms); } }

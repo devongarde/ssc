@@ -61,8 +61,8 @@ void schema_version::init () // call post context construction
     return res.str (); }
 
 bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, const schema_version& rhs_from, const schema_version& rhs_to)
-{   DBG_ASSERT (lhs_from.unknown () || lhs_to.unknown () || (lhs_from.root () == lhs_to.root ()));
-    DBG_ASSERT (rhs_from.unknown () || rhs_to.unknown () || (rhs_from.root () == rhs_to.root ()));
+{   PRESUME (lhs_from.unknown () || lhs_to.unknown () || (lhs_from.root () == lhs_to.root ()), __FILE__, __LINE__);
+    PRESUME (rhs_from.unknown () || rhs_to.unknown () || (rhs_from.root () == rhs_to.root ()), __FILE__, __LINE__);
     if (! lhs_from.unknown ()) if (! rhs_from.unknown ()) if (lhs_from.root () != rhs_from.root ()) return false;
     if ((lhs_from > rhs_to) && ! rhs_to.unknown ()) return false;
     return (lhs_to.unknown () || (lhs_to >= rhs_from)); }

@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_master.h"
+void svg_feature_init (nitpick& nits);
 bool parse_d (nitpick& nits, const html_version& v, const ::std::string& d);
 bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, bool recheck = false);
 bool parse_transform (nitpick& nits, const html_version& v, const ::std::string& d);
@@ -56,9 +57,11 @@ template < > struct type_master < t_angle_a > : type_or_string < t_angle_a, t_an
 template < > struct type_master < t_angle_ai > : type_or_either_string < t_angle_ai, t_angle, sz_auto, sz_inherit > { };
 template < > struct type_master < t_beginvalues > : type_at_least_one < t_beginvalues, sz_semicolon, t_beginvalue > { };
 template < > struct type_master < t_beginvaluelist > : type_or_string < t_beginvaluelist, t_beginvalues, sz_indefinite > { };
-template < > struct type_master < t_clip > : type_or_either_string < t_clip, t_svg_shape, sz_auto, sz_inherit > { };
 template < > struct type_master < t_clip_path_rule > : type_or_either_string < t_clip_path_rule, t_urifn, sz_none, sz_inherit > { };
-template < > struct type_master < t_cursor_f > : type_either_or < t_cursor_f, t_cursor, t_urifn > { };
+template < > struct type_master < t_colour_profile_name_or_uri > : type_either_or < t_colour_profile_name_or_uri, t_urifn, t_colour_profile_name > { };
+template < > struct type_master < t_colour_profile > : type_or_any_string < t_colour_profile, t_colour_profile_name_or_uri, sz_auto, sz_inherit, sz_srgb > { };
+template < > struct type_master < t_cursor_f > : type_many_then_must < t_cursor_f, t_urifn, sz_comma, t_cursor > { };
+template < > struct type_master < t_cursor_i > : type_or_string < t_cursor_i, t_cursor_f, sz_inherit > { };
 
 template < > struct type_master < t_d > : tidy_string < t_d >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -88,19 +91,19 @@ template < > struct type_master < t_endvaluelist > : tidy_string < t_endvaluelis
             if (good) return; }
         tidy_string < t_endvaluelist > :: status (s_invalid); } };
 
-template < > struct type_master < t_fillopacity > : tidy_string < t_fillopacity >
+template < > struct type_master < t_fill_opacity > : tidy_string < t_fill_opacity >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_fillopacity > :: set_value (nits, v, s);
-        if (tidy_string < t_fillopacity> :: empty ())
+    {   tidy_string < t_fill_opacity > :: set_value (nits, v, s);
+        if (tidy_string < t_fill_opacity> :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "an opacity is expected");
-        else if (tidy_string < t_fillopacity> :: good ())
-        {   const ::std::string ss (tidy_string < t_fillopacity > :: get_string ());
+        else if (tidy_string < t_fill_opacity> :: good ())
+        {   const ::std::string ss (tidy_string < t_fill_opacity > :: get_string ());
             if (compare_complain (nits, v, sz_inherit :: sz (), ss)) return;
-            nitpick nuts;
-            if (test_value < t_zero_to_one > (nuts, v, ss)) return;
-            if (v.is_svg_2 () && (test_value < t_percent > (nuts, v, ss))) return;
-            nits.merge (nuts); }
-        tidy_string < t_fillopacity > :: status (s_invalid); } };
+            nitpick nuts, knits;
+            if (test_value < t_zero_to_one > (nuts, v, ss)) { nits.merge (nuts); return; }
+            if (v.is_svg_2 () && (test_value < t_percent > (knits, v, ss))) { nits.merge (knits); return; }
+            nits.merge (nuts); nits.merge (knits); }
+        tidy_string < t_fill_opacity > :: status (s_invalid); } };
 
 template < > struct type_master < t_font > : tidy_string < t_font >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& sss)
@@ -109,7 +112,7 @@ template < > struct type_master < t_font > : tidy_string < t_font >
             nits.pick (nit_empty, es_error, ec_type, "a font specification cannot be empty");
         else if (tidy_string < t_font> :: good ())
         {   vstr_t ss (split_by_space (tidy_string < t_font > :: get_string ()));
-            DBG_ASSERT (! ss.empty ());
+            PRESUME (! ss.empty (), __FILE__, __LINE__);
             bool res = true;
             typedef enum { fs_style, fs_variant, fs_weight, fs_stretch, fs_size, fs_family, fs_done } font_state;
             font_state state = fs_style;
@@ -235,7 +238,7 @@ template < > struct type_master < t_glyphnames > : public string_vector < t_glyp
     {   string_vector < t_glyphname, sz_comma > :: set_value (nits, v, s); }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* pe)
     {   bool check_glyph_names (nitpick& nits, const html_version& v, element* pe, const vstr_t& vs);
-        DBG_ASSERT (pe != nullptr);
+        PRESUME (pe != nullptr, __FILE__, __LINE__);
         if (! string_vector < t_glyphname, sz_comma > :: good ()) return false;
         return ! check_glyph_names (nits, v, pe, string_vector < t_glyphname, sz_comma > :: get ()); } };
 
@@ -300,6 +303,7 @@ template < > struct type_master < t_shape_fn > : type_one_of_three < t_shape_fn,
 template < > struct type_master < t_shape_uri > : type_either_or < t_shape_uri, t_shape_fn, t_urifn > { };
 template < > struct type_master < t_shape_none_uri > : type_or_string < t_shape_none_uri, t_shape_uri, sz_none > { };
 template < > struct type_master < t_svg_baselineshift > : type_either_or < t_svg_baselineshift, t_baselineshift, t_measure > { };
+template < > struct type_master < t_svg_clip > : type_or_either_string < t_svg_clip, t_svg_shape, sz_auto, sz_inherit > { };
 
 template < > struct type_master < t_svg_fontstyle_ff > : public tidy_string < t_svg_fontstyle_ff >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -377,8 +381,8 @@ template < > struct type_master < t_svg_time_default > : type_or_string < t_svg_
 template < > struct type_master < t_svg_time_inherit > : type_or_string < t_svg_time_none, t_svg_time, sz_inherit > { };
 template < > struct type_master < t_svg_time_none > : type_or_string < t_svg_time_none, t_svg_time, sz_none > { };
 template < > struct type_master < t_svg_values > : type_at_least_one < t_svg_values, sz_semicolon, t_real > { };
-template < > struct type_master < t_vectoreffect_2s > : type_at_least_one < t_vectoreffect_2s, sz_space, t_vectoreffect_2 > { };
-template < > struct type_master < t_vectoreffect_20 > : type_many_then_maybe < t_vectoreffect_20, t_vectoreffect_2, sz_space, t_viewportscreen > { };
+template < > struct type_master < t_vector_effect_2s > : type_at_least_one < t_vector_effect_2s, sz_space, t_vector_effect_2 > { };
+template < > struct type_master < t_vector_effect_20 > : type_many_then_maybe < t_vector_effect_20, t_vector_effect_2, sz_space, t_viewportscreen > { };
 template < > struct type_master < t_svg_viewboxrect > : type_exactly_n < t_svg_viewboxrect, sz_commaspace, t_real, 4 > { };
 
 template < > struct type_master < t_svg_viewbox > : tidy_string < t_svg_viewbox >
@@ -414,4 +418,5 @@ template < > struct type_master < t_transform > : tidy_string < t_transform >
 
 template < > struct type_master < t_urange > : type_at_least_one < t_urange, sz_comma, t_text > { };
 template < > struct type_master < t_urifn > : type_function < t_urifn, t_urisz, t_url > { };
+template < > struct type_master < t_urifn_ni > : id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit > { };
 template < > struct type_master < t_urisz > : type_must_be < t_urisz, sz_url > { };

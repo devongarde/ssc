@@ -169,7 +169,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
     if (enum_vec < E, ENUM, CATEGORY, INIT > :: good ())
     {   for (auto val : enum_vec < E, ENUM, CATEGORY, INIT > :: value_)
         {   if (val > max_combinable_enum)
-            {   DBG_ASSERT (false);
+            {   PRESUME (false, __FILE__, __LINE__);
                 nits.pick (nit_not_combine, es_catastrophic, ec_type, val.name (), " is too big; abandoning constrained enum check");
                 ok = false; break; }
             if (bs.test (val))
@@ -182,7 +182,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
                 {   nits.pick (nit_not_combine, es_error, ec_type, val.name (), " cannot be combined with any other values");
                     ok = false; }
             ::std::size_t g = val.first ().group ();
-            DBG_ASSERT (g <= max_combinable_enum);
+            PRESUME (g <= max_combinable_enum, __FILE__, __LINE__);
             if (g != 0)
                 if (! gs.test (g)) gs.set (g);
                 else if (! said.test (g))

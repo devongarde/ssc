@@ -29,8 +29,8 @@ template < class PROPERTY, class TUPLE, bool B > struct get_property_imp
     static bool has () { return false; } };
 
 template < class PROPERTY, class TUPLE > struct get_property_imp < PROPERTY, TUPLE, true >
-{   static void get (TUPLE& t, PROPERTY** p) { DBG_ASSERT (p != nullptr); *p = & ::std::get < PROPERTY > (t); }
-    static void get (const TUPLE& t, const PROPERTY** p) { DBG_ASSERT (p != nullptr); *p = & ::std::get < PROPERTY > (t); }
+{   static void get (TUPLE& t, PROPERTY** p) { VERIFY_NOT_NULL (p, __FILE__, __LINE__); *p = & ::std::get < PROPERTY > (t); }
+    static void get (const TUPLE& t, const PROPERTY** p) { VERIFY_NOT_NULL (p, __FILE__, __LINE__); *p = & ::std::get < PROPERTY > (t); }
     static void get (const TUPLE& t, ::std::string& s) { s = ::std::get < PROPERTY > (t).get_string (); }
     static bool has () { return true; } };
 

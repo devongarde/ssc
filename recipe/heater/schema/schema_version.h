@@ -56,10 +56,10 @@ struct schema_version : public version
 {   schema_version () = default;
     schema_version (const unsigned char mjr, const unsigned char mnr, const uint64_t sf = NOFLAGS)
         :   version (mjr, mnr, (static_cast < uint64_t > (mdr_schema) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
-    {   DBG_ASSERT (! invalid ()); }
+    {   PRESUME (! invalid (), __FILE__, __LINE__); }
     schema_version (const e_microdata_root root, const unsigned char mjr, const unsigned char mnr, const uint64_t sf = NOFLAGS)
         :   version (mjr, mnr, (static_cast < uint64_t > (root) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
-    {   DBG_ASSERT (! invalid ()); }
+    {   PRESUME (! invalid (), __FILE__, __LINE__); }
     schema_version (const schema_version& ) = default;
     schema_version (const html_version& v);
 #ifndef NO_MOVE_CONSTRUCTOR

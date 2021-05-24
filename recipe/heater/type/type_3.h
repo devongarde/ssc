@@ -50,7 +50,7 @@ template < > class type_master < t_decoding > : public three_value < t_decoding,
 template < > class type_master < t_dsc > : public three_value < t_dsc, e_dsc, sz_disc, sz_square, sz_circle > { };
 template < > class type_master < t_edgemode > : public three_value < t_edgemode, e_edgemode, sz_duplicate, sz_wrap, sz_none > { };
 template < > class type_master < t_enctype > : public three_value < t_enctype, e_enctype, sz_app_urlencoded, sz_multipart_form_data, sz_text_plain > { };
-template < > class type_master < t_fillrule > : public three_value < t_fillrule, e_fillrule, sz_nonzero, sz_evenodd, sz_inherit > { };
+template < > class type_master < t_fill_rule > : public three_value < t_fill_rule, e_fill_rule, sz_nonzero, sz_evenodd, sz_inherit > { };
 template < > class type_master < t_fontnia > : public three_value < t_fontnia, e_fontnia, sz_normal, sz_italic, sz_oblique > { };
 template < > class type_master < t_font_variant_position > : public three_value < t_font_variant_position, e_font_variant_position, sz_normal, sz_sub, sz_super > { };
 template < > class type_master < t_importance > : public three_value < t_importance, e_importance, sz_auto, sz_high, sz_low > { };
@@ -71,7 +71,7 @@ template < > class type_master < t_restart > : public three_value < t_restart, e
 template < > class type_master < t_scrolling > : public three_value < t_scrolling, e_scrolling, sz_auto, sz_no, sz_yes > { };
 template < > class type_master < t_shape_rcp > : public three_value < t_shape_rcp, e_shape_rcp, sz_circle, sz_poly, sz_rect > { };
 template < > class type_master < t_spacer > : public three_value < t_spacer, e_spacer, sz_block, sz_horizontal, sz_vertical > { };
-template < > class type_master < t_spread_method > : public three_value < t_spread_method, e_spread_method, sz_reflect, sz_repeat, sz_pad > { };
+template < > class type_master < t_spreadmethod > : public three_value < t_spreadmethod, e_spreadmethod, sz_reflect, sz_repeat, sz_pad > { };
 template < > class type_master < t_ssi_echo > : public three_value < t_ssi_echo, e_ssi_echo, sz_decoding, sz_encoding, sz_var > { };
 template < > class type_master < t_ssi_include > : public three_value < t_ssi_include, e_ssi_include, sz_file, sz_onerror, sz_virtual > { };
 template < > class type_master < t_svg_direction > : public three_value < t_svg_direction, e_svg_direction, sz_ltr, sz_rtl, sz_inherit > { };
@@ -82,7 +82,7 @@ template < > class type_master < t_tfu > : public three_value < t_tfu, e_tfu, sz
 template < > class type_master < t_units > : public three_value < t_units, e_units, sz_en, sz_pixels, sz_relative > { };
 template < > class type_master < t_valign_tmb > : public three_value < t_valign_tmb, e_valign_tmb, sz_top, sz_middle, sz_bottom > { };
 template < > class type_master < t_valuetype > : public three_value < t_valuetype, e_valuetype, sz_data, sz_object, sz_ref > { };
-template < > class type_master < t_vectoreffect_12 > : public three_value < t_vectoreffect_12, e_vectoreffect_12, sz_inherit, sz_none, sz_nonscalingstroke > { };
+template < > class type_master < t_vector_effect_12 > : public three_value < t_vector_effect_12, e_vector_effect_12, sz_inherit, sz_none, sz_nonscalingstroke > { };
 template < > class type_master < t_visibility10 > : public three_value < t_visibility10, e_visibility11, sz_visible, sz_hidden, sz_inherit > { };
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >

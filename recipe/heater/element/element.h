@@ -94,6 +94,7 @@ class element
     void span_check ();
     void pre_examine_element (const e_element tag);
     void post_examine_element (const e_element tag);
+    void late_examine_element (const e_element tag);
     void examine_descendant_in (const element* filter);
     void examine_media_element (e_element elem, const char* ref, const char* name, const uint64_t family);
     void examine_accesskey ();
@@ -111,6 +112,7 @@ class element
     void examine_body ();
     bool examine_class ();
     void examine_clip ();
+    void examine_colour_profile ();
     void examine_content ();
     void examine_defaultaction ();
     void examine_draggable ();
@@ -164,6 +166,9 @@ class element
     void examine_embed ();
     void examine_equation ();
     void examine_fecolourmatrix ();
+    void examine_fecomponenttransfer ();
+    void examine_fecomposite ();
+    void examine_feconvolvematrix ();
     void examine_felighting ();
     void examine_fieldset ();
     void examine_figcaption ();
@@ -178,6 +183,7 @@ class element
     void examine_hgroup ();
     void examine_html ();
     void examine_iframe ();
+    void examine_image ();
     void examine_img ();
     void examine_input ();
     void examine_label ();
@@ -266,7 +272,7 @@ public:
     ids_t& get_names ();
     const ids_t& get_names () const;
     element* parent () const
-    {   DBG_ASSERT (! is_top ());
+    {   PRESUME (! is_top (), __FILE__, __LINE__);
         return parent_; }
     bool reportable () const
     {   return ((tag () != elem_undefined) || context.tell (e_splurge) || (child_ != nullptr)); }
@@ -284,10 +290,10 @@ public:
     element* find_next (const e_element e, element* previous);
     element* get_ancestor (const e_element e) const;
     void add_result (const ::std::string& s)
-    {   DBG_ASSERT (! s.empty ());
+    {   PRESUME (! s.empty (), __FILE__, __LINE__);
         results_.insert (s); }
     bool has_result (const ::std::string& s) const
-    {   DBG_ASSERT (! s.empty ());
+    {   PRESUME (! s.empty (), __FILE__, __LINE__);
         return (results_.find (s) != results_.cend ()); }
     int line () const;
     uid_t uid () const { return uid_; }

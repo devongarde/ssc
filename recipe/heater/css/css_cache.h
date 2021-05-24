@@ -31,7 +31,8 @@ class css_cache
 {   csss_t csss_;
     void deactivate_all ()
     {   for (csss_it i = csss_.begin (); i != csss_.end (); ++i)
-            i -> second -> active (false); }
+        {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
+            i -> second -> active (false); } }
     void delete_snippets ();
 public:
 #ifndef NO_MOVE_CONSTRUCTOR

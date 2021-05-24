@@ -36,7 +36,7 @@ bool path_root::applicable (const ::std::string& path) const
     return (local_path_to_nix (path.substr (0, site_path_.length ())) == site_path_); }
 
 ::boost::filesystem::path path_root::get_xxx_filename (const ::std::string& path, const ::boost::filesystem::path& p) const
-{   DBG_ASSERT (applicable (path));
+{   PRESUME (applicable (path), __FILE__, __LINE__);
     ::std::string::size_type pos = site_path_.length ();
     ::boost::filesystem::path res (p);
     res /= path.substr (pos);
@@ -62,19 +62,22 @@ bool path_root::set_export (nitpick& nits, const ::boost::filesystem::path& ex)
     return true; }
 
 ::std::size_t paths_root::get_xxx (const ::std::string& f) const
-{   DBG_ASSERT (root_.size () > 0);
+{   PRESUME (root_.size () > 0, __FILE__, __LINE__);
     for (::std::size_t i = root_.size () - 1; i > 0; --i)
         if (root_ [i] -> applicable (f)) return i;
     return 0; }
 
 ::boost::filesystem::path paths_root::get_filename (const ::std::string& filename)
-{   return root_ [get_xxx (filename)] -> get_disk_filename (local_path_to_nix (filename)); }
+{   VERIFY_NOT_NULL (root_ [get_xxx (filename)], __FILE__, __LINE__);
+    return root_ [get_xxx (filename)] -> get_disk_filename (local_path_to_nix (filename)); }
 
 ::boost::filesystem::path paths_root::get_shadow (const ::std::string& filename)
-{   return root_ [get_xxx (filename)] -> get_shadow_filename (local_path_to_nix (filename)); }
+{   VERIFY_NOT_NULL (root_ [get_xxx (filename)], __FILE__, __LINE__);
+    return root_ [get_xxx (filename)] -> get_shadow_filename (local_path_to_nix (filename)); }
 
 ::boost::filesystem::path paths_root::get_export (const ::std::string& filename)
-{   return root_ [get_xxx (filename)] -> get_export_filename (local_path_to_nix (filename)); }
+{   VERIFY_NOT_NULL (root_ [get_xxx (filename)], __FILE__, __LINE__);
+    return root_ [get_xxx (filename)] -> get_export_filename (local_path_to_nix (filename)); }
 
 bool paths_root::prep_xxx (nitpick& nits, const ::std::string& assignment, ::std::string& virt, ::boost::filesystem::path& p) const
 {   ::std::size_t len = assignment.length ();
@@ -104,9 +107,10 @@ bool paths_root::add_shadow (nitpick& nits, const ::std::string& assignment)
     ::std::string virt;
     if (prep_xxx (nits, assignment, virt, p))
     {   for (size_t n = 1; n < root_.size (); ++n)
+        {   VERIFY_NOT_NULL (root_.at (n), __FILE__, __LINE__);
             if (root_.at (n) -> get_site_path () == virt)
                 return root_.at (n) -> shadow_root (nits, p);
-        nits.pick (nit_bad_parameter, es_error, ec_init, quote (virt), " is no virtual directory"); }
+        nits.pick (nit_bad_parameter, es_error, ec_init, quote (virt), " is no virtual directory"); } }
     return false; }
 
 bool paths_root::add_export (nitpick& nits, const ::std::string& assignment)
@@ -114,9 +118,10 @@ bool paths_root::add_export (nitpick& nits, const ::std::string& assignment)
     ::std::string virt;
     if (prep_xxx (nits, assignment, virt, p))
     {   for (size_t n = 1; n < root_.size (); ++n)
+        {   VERIFY_NOT_NULL (root_.at (n), __FILE__, __LINE__);
             if (root_.at (n) -> get_site_path () == virt)
                 return root_.at (n) -> set_export (nits, p);
-        nits.pick (nit_bad_parameter, es_error, ec_init, quote (virt), " is no virtual directory"); }
+        nits.pick (nit_bad_parameter, es_error, ec_init, quote (virt), " is no virtual directory"); } }
     return false; }
 
 paths_root& paths_root::virtual_roots ()

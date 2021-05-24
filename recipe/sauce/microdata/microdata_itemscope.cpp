@@ -52,11 +52,13 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
             if ((flags & SF_DEPRECATED) == SF_DEPRECATED)
                 nits.pick (nit_deprecated_schema, es_info, ec_microdata, quote (name), " is deprecated");
             if (context.md_export ())
-                export_ -> add (export_path_, make_itemtype_index (s.get ())); } } }
+            {   VERIFY_NOT_NULL (export_, __FILE__, __LINE__);
+                export_ -> add (export_path_, make_itemtype_index (s.get ())); } } } }
 
 bool microdata_itemscope::note_itemid (nitpick& , const html_version& , const ::std::string& name)
 {   if (context.md_export () && ! name.empty ())
-        exporter () -> add (export_path_, name);
+    {   VERIFY_NOT_NULL (exporter (), __FILE__, __LINE__);
+        exporter () -> add (export_path_, name); }
     return true; }
 
 itemprop_indices microdata_itemscope::prepare_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value)
@@ -78,7 +80,9 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
             {   if (is_valid_property (nuts, v, i, prop, value, is_link))
                 {   nits.merge (nuts);
                     itemprop_.emplace (prop, itemprop_value (value));
-                    if (context.md_export ()) exporter () -> add (export_path_, prop, value);
+                    if (context.md_export ())
+                    {   VERIFY_NOT_NULL (exporter (), __FILE__, __LINE__);
+                        exporter () -> add (export_path_, prop, value); }
                     p.mark (static_cast < e_schema_type > (ndx_item (i)), static_cast < e_schema_property > (ndx_item (prop)));
                     return true; }
                 knots.merge (nuts); nuts.reset (); }
@@ -88,12 +92,14 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
 bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, itemscope_ptr& scope, page& p)
 {   itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
     if (scope.get () != nullptr)
+    {   VERIFY_NOT_NULL (exporter (), __FILE__, __LINE__);
         for (auto prop : ii)
-            scope -> set_exporter (exporter (), exporter () -> append_path (export_path_, prop, true));
+            scope -> set_exporter (exporter (), exporter () -> append_path (export_path_, prop, true)); }
     nitpick knots, nuts;
     for (auto parent : type ())
         for (auto prop : ii)
             if (are_categories_compatible (knots, v, parent, prop))
+            {   VERIFY_NOT_NULL (scope, __FILE__, __LINE__);
                 for (auto child : scope -> type ())
                     if (are_compatible_types (knots, v, parent, child))
                     {   if (is_valid_property (nuts, v, parent, prop, child))
@@ -101,7 +107,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                             itemprop_.emplace (prop, scope);
                             p.mark (static_cast < e_schema_type > (parent & uint32_item_mask), static_cast < e_schema_property > (prop & uint32_item_mask));
                             return true; }
-                        knots.merge (nuts); nuts.reset (); }
+                        knots.merge (nuts); nuts.reset (); } }
     nits.merge (knots);
     return false; }
 
@@ -118,7 +124,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
 #else
             switch (i -> second.index ())
             {   case ip_itemscope :
-                    DBG_ASSERT (ssc_get < itemscope_ptr > (i -> second).get () != nullptr);
+                    PRESUME (ssc_get < itemscope_ptr > (i -> second).get () != nullptr, __FILE__, __LINE__);
                     res += indent + itemprop_index_name (i -> first) + ":\n";
                     res += ssc_get < itemscope_ptr > (i -> second) -> report (offset+1);
                     break;
@@ -129,7 +135,8 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
     return res; }
 
 bool microdata_itemscope::write (nitpick& nits, const ::boost::filesystem::path& name)
-{   return export_ -> write (nits, name); }
+{   VERIFY_NOT_NULL (export_, __FILE__, __LINE__);
+    return export_ -> write (nits, name); }
 
 vit_t microdata_itemscope::sought_itemtypes (const html_version& v, const ::std::string& name) const
 {   nitpick nits;

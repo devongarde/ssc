@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink='http://www.w3.org/1999/xlink'
+version="1.2" baseProfile="tiny" viewBox="0 0 210 80">
+<desc>An example which illustrates the use of focusHighlight attribute</desc>
+<text x="5" y="10">Do you want to validate transaction ?</text>
+<text x="5" y="25">You may read <a xlink:href="http://www.example.org/pay"
+>this</a> and <a xlink:href="http://www.example.org/infos">that</a>
+</text>
+<a xml:id="ValidateButton" transform="translate(5,40)" focusHighlight="none" xlink:href="validate.htm">
+<rect x="0" y="0" width="90" height="20" fill="#0f0" stroke="#000" stroke-width="2">
+<set attributeName="fill" begin="ValidateButton.focusin" end="ValidateButton.focusout" to="#0a0"/>
+</rect>
+<text x="45" y="13" font-size="8" font-family="Arial Black"
+fill="#000" text-anchor="middle">Validate</text>
+</a>
+<a xml:id="AbortButton" transform="translate(100,40)" focusHighlight="none" xlink:href="abort.htm">
+<rect x="0" y="0" width="90" height="20" fill="#f00" stroke="#000" stroke-width="2">
+<set attributeName="fill" begin="AbortButton.focusin" end="AbortButton.focusout" to="#a00"/>
+</rect>
+<text x="45" y="13" font-size="8" font-family="Arial Black"
+fill="#000" text-anchor="middle">Abort</text>
+</a>
+</svg>

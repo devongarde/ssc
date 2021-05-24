@@ -71,7 +71,7 @@ vstr_t defang (const vstr_t& vs)
     return res; }
 */
 ::std::string enquote (const ::std::string& str, const char space, const ::std::string& quotesep)
-{   DBG_ASSERT (quotesep.length () >= 2);
+{   PRESUME (quotesep.length () >= 2, __FILE__, __LINE__);
     ::std::string res;
     char quote = quotesep [0];
     res += quote;
@@ -89,7 +89,7 @@ vstr_t defang (const vstr_t& vs)
 {   return enquote (str, 0x7F, quotesep); }
 
 ::std::string enquote (const vstr_t vs, const ::std::string& quotesep)
-{   DBG_ASSERT (quotesep.length () >= 2);
+{   PRESUME (quotesep.length () >= 2, __FILE__, __LINE__);
     ::std::string res;
     char sep = quotesep [1];
     for (auto str : vs)
@@ -103,7 +103,7 @@ vstr_t defang (const vstr_t& vs)
 
 ::std::string unquote (::std::string::const_iterator ci, const ::std::string::const_iterator cie, const ::std::string& quotesep)
     // presumes string prepared by quote; not bulletproof
-{   DBG_ASSERT (quotesep.length () >= 2);
+{   PRESUME (quotesep.length () >= 2, __FILE__, __LINE__);
     char quote = quotesep [0];
     ::std::string res;
     if (ci != cie)
@@ -120,7 +120,7 @@ vstr_t defang (const vstr_t& vs)
     return res; }
 
 vstr_t unquote (const ::std::string& str, const ::std::size_t len, const ::std::string& quotesep)
-{   DBG_ASSERT (quotesep.length () >= 2);
+{   PRESUME (quotesep.length () >= 2, __FILE__, __LINE__);
     vstr_t res;
     if (len) res.reserve (len);
     char sep = quotesep [1];

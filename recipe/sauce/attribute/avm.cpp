@@ -43,35 +43,49 @@ void avm_init (nitpick& )
 
 bool is_invalid_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
 {   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;
-    for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second -> tag_ == tag) && (i -> second -> a_ == a); ++i)
+    for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
+            (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == tag) && (i -> second -> a_ == a);
+            ++i)
         if (may_apply (v, i -> second -> first_, i -> second -> last_)) return false;
-    for (avm_t::const_iterator i = avm.find (avm_key (elem_undefined, a)); i != avm.cend () && (i -> second -> tag_ == elem_undefined) && (i -> second -> a_ == a); ++i)
+    for (   avm_t::const_iterator i = avm.find (avm_key (elem_undefined, a));
+            (i != avm.cend ()) && (i -> second != nullptr)  && (i -> second -> tag_ == elem_undefined) && (i -> second -> a_ == a);
+            ++i)
         if (may_apply (v, i -> second -> first_, i -> second ->last_)) return false;
     return true; }
 
 bool is_deprecated_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
 {   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;
-    for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second-> tag_ == tag) && (i -> second-> a_ == a); ++i)
+    for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
+            (i != avm.cend ()) && (i -> second != nullptr) && (i -> second-> tag_ == tag) && (i -> second-> a_ == a);
+            ++i)
         if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.deprecated (v);
-    for (avm_t::const_iterator i = avm.find (avm_key (elem_undefined, a)); i != avm.cend () && (i -> second -> tag_ == elem_undefined) && (i -> second -> a_ == a); ++i)
+    for (   avm_t::const_iterator i = avm.find (avm_key (elem_undefined, a));
+            (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == elem_undefined) && (i -> second -> a_ == a);
+            ++i)
         if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.deprecated (v);
     return false; }
 
 bool not_production_attribute (const html_version& v, const e_element tag, const e_attribute a)
 {   if (v.known () && v.is_5 () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
-        for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second -> tag_ == tag) && (i -> second -> a_ == a); ++i)
+        for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
+                (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == tag) && (i -> second -> a_ == a);
+                ++i)
             if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.not_production ();
     return false; }
 
 bool is_attribute_required (const html_version& v, const e_element tag, const e_attribute a)
 {   if (v.known () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
-        for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second -> tag_ == tag) && (i -> second -> a_ == a); ++i)
+        for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
+                (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == tag) && (i -> second -> a_ == a);
+                ++i)
             if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.required ();
     return false; }
 
 bool is_attribute_rejected (const html_version& v, const e_element tag, const e_attribute a)
 {   if (v.known () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
-        for (avm_t::const_iterator i = avm.find (avm_key (tag, a)); i != avm.cend () && (i -> second -> tag_ == tag) && (i -> second -> a_ == a); ++i)
+        for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
+                (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == tag) && (i -> second -> a_ == a);
+                ++i)
             if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.reject ();
     return false; }
 

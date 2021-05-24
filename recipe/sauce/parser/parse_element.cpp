@@ -137,7 +137,8 @@ void element_node::parse_attributes (const html_version& v, const ::std::string:
             if (closure_) res += ln (line_) + "/" + elem_.name () + va_.rpt () + "\n";
             else res += ln (line_) + elem_.name () + va_.rpt () + "\n"; }
     for (element_node* kids = child_; kids != nullptr; kids = kids -> next_)
-        res += kids -> rpt (level + 1);
+    {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
+        res += kids -> rpt (level + 1); }
     return res; }
 
 ::std::string element_node::inner_text () const
@@ -160,5 +161,6 @@ void element_node::parse_attributes (const html_version& v, const ::std::string:
     if (child_ == nullptr) return ::std::string ();
     ::std::string res;
     for (element_node* kids = child_; kids != nullptr; kids = kids -> next_)
-        res += kids -> inner_text ();
+    {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
+        res += kids -> inner_text (); }
     return res; }

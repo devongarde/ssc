@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.2" baseProfile="tiny">
+<desc>Example of two animation elements pointing to the same content.</desc>
+SVG Tiny 1.2 Specification 12 Multimedia
+169<animation begin="1" dur="3" repeatCount="1.5" fill="freeze"
+x="100" y="100" width="50" height="50"
+xlink:href="bouncingBall.svg"/>
+<animation begin="2" x="300" y="100" width="50" height="50"
+xlink:href="bouncingBall.svg"/>
+</svg>

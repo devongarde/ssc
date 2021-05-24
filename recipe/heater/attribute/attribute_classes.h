@@ -37,7 +37,6 @@ typedef typed_attribute < t_url, a_action > attr_action;
 typedef typed_attribute < t_actiontype, a_actiontype > attr_actiontype;
 typedef typed_attribute < t_existential, a_active > attr_active;
 typedef typed_attribute < t_bool, a_activate > attr_activate;
-typedef typed_attribute < t_actuate, a_actuate > attr_actuate;
 typedef typed_attribute < t_additive, a_additive > attr_additive;
 typedef typed_attribute < t_align, a_align > attr_align;
 typedef typed_attribute < t_alignment_baseline, a_alignment_baseline > attr_alignment_baseline;
@@ -169,7 +168,7 @@ typedef typed_attribute < t_url, a_classid > attr_classid;
 typedef typed_attribute < t_clear, a_clear > attr_clear;
 typedef typed_attribute < t_clip, a_clip > attr_clip;
 typedef typed_attribute < t_clip_path_rule, a_clip_path > attr_clip_path;
-typedef typed_attribute < t_fillrule, a_clip_rule > attr_clip_rule;
+typedef typed_attribute < t_fill_rule, a_clip_rule > attr_clip_rule;
 typedef typed_attribute < t_coordinatesystem, a_clippathunits > attr_clippathunits;
 typedef typed_attribute < t_text, a_close > attr_close;
 typedef typed_attribute < t_closure, a_closure > attr_closure;
@@ -178,10 +177,10 @@ typedef typed_attribute < t_generic, a_codebase > attr_codebase;
 typedef typed_attribute < t_mime, a_codetype > attr_codetype;
 typedef typed_attribute < t_text, a_coldef > attr_coldef;
 typedef typed_attribute < t_colour_v, a_colour > attr_colour;
-typedef typed_attribute < t_colourinterpolation, a_colour_interpolation > attr_colour_interpolation;
-typedef typed_attribute < t_colourinterpolation, a_colour_interpolation_filters > attr_colour_interpolation_filters;
-typedef typed_attribute < t_generic, a_colour_profile > attr_colour_profile;
-typedef typed_attribute < t_colourrendering, a_colour_rendering > attr_colour_rendering;
+typedef typed_attribute < t_colour_interpolation, a_colour_interpolation > attr_colour_interpolation;
+typedef typed_attribute < t_colour_interpolation, a_colour_interpolation_filters > attr_colour_interpolation_filters;
+typedef typed_attribute < t_colour_profile, a_colour_profile > attr_colour_profile;
+typedef typed_attribute < t_colour_rendering, a_colour_rendering > attr_colour_rendering;
 typedef typed_attribute < t_rowscols, a_cols > attr_cols;
 typedef typed_attribute < t_unsigned, a_colspan > attr_colspan;
 typedef typed_attribute < t_generic, a_colspec > attr_colspec;
@@ -207,7 +206,7 @@ typedef typed_attribute < t_cors, a_crossorigin > attr_crossorigin;
 typedef typed_attribute < t_crossout, a_crossout > attr_crossout;
 typedef typed_attribute < t_csp, a_csp > attr_csp;
 typedef typed_attribute < t_real, a_currenttime > attr_currenttime;
-typedef typed_attribute < t_cursor_f, a_cursor > attr_cursor;
+typedef typed_attribute < t_cursor_i, a_cursor > attr_cursor;
 typedef typed_attribute < t_measure, a_cx > attr_cx;
 typedef typed_attribute < t_measure, a_cy > attr_cy;
 typedef typed_attribute < t_d, a_d > attr_d;
@@ -228,7 +227,7 @@ typedef typed_attribute < t_url, a_definitionurl > attr_definition;
 typedef typed_attribute < t_lcralign, a_denomalign > attr_denomalign;
 typedef typed_attribute < t_depth, a_depth > attr_depth;
 typedef typed_attribute < t_real, a_descent > attr_descent;
-typedef typed_attribute < t_real, a_diffuseconstant > attr_diffuse_constant;
+typedef typed_attribute < t_0_more, a_diffuseconstant > attr_diffuse_constant;
 typedef typed_attribute < t_dingbat, a_dingbat > attr_dingbat;
 typedef typed_attribute < t_dir, a_dir > attr_dir;
 typedef typed_attribute < t_direction, a_direction > attr_direction;
@@ -239,7 +238,7 @@ typedef typed_attribute < t_html_boolean, a_disableremoteplayback > attr_disable
 typedef typed_attribute < t_display, a_display > attr_display;
 typedef typed_attribute < t_display_align, a_display_align > attr_display_align;
 typedef typed_attribute < t_bool, a_displaystyle > attr_displaystyle;
-typedef typed_attribute < t_generic, a_divisor > attr_divisor;
+typedef typed_attribute < t_not_0, a_divisor > attr_divisor;
 typedef typed_attribute < t_dominantbaseline, a_dominant_baseline > attr_dominantbaseline;
 typedef typed_attribute < t_filename, a_download > attr_download;
 typedef typed_attribute < t_char, a_dp > attr_dp;
@@ -257,7 +256,7 @@ typedef typed_attribute < t_effect, a_effect > attr_effect;
 typedef typed_attribute < t_angle, a_elevation > attr_elevation;
 typedef typed_attribute < t_text, a_encoding > attr_encoding;
 typedef typed_attribute < t_enctype, a_enctype > attr_enctype;
-typedef typed_attribute < t_enablebackground, a_enable_background > attr_enablebackground;
+typedef typed_attribute < t_enable_background, a_enable_background > attr_enablebackground;
 typedef typed_attribute < t_end, a_end > attr_end;
 typedef typed_attribute < t_enterkeyhint, a_enterkeyhint > attr_enterkeyhint;
 typedef typed_attribute < t_generic, a_equalcolumns > attr_equalcolumns;
@@ -277,13 +276,13 @@ typedef typed_attribute < t_existential, a_femorphology > attr_femorphology;
 typedef typed_attribute < t_existential, a_fetile > attr_fetile;
 typedef typed_attribute < t_bool, a_fence > attr_fence;
 typedef typed_attribute < t_fill, a_fill > attr_fill;
-typedef typed_attribute < t_fillopacity, a_fill_opacity > attr_fill_opacity;
-typedef typed_attribute < t_fillrule, a_fill_rule > attr_fill_rule;
-typedef typed_attribute < t_marker, a_filter > attr_filter;
-typedef typed_attribute < t_filter_res, a_filterres > attr_filterres;
+typedef typed_attribute < t_fill_opacity, a_fill_opacity > attr_fill_opacity;
+typedef typed_attribute < t_fill_rule, a_fill_rule > attr_fill_rule;
+typedef typed_attribute < t_urifn_ni, a_filter > attr_filter;
+typedef typed_attribute < t_filterres, a_filterres > attr_filterres;
 typedef typed_attribute < t_coordinatesystem, a_filterunits > attr_filterunits;
 typedef typed_attribute < t_measure, a_flatness > attr_flatness;
-typedef typed_attribute < t_colour, a_flood_colour > attr_flood_colour;
+typedef typed_attribute < t_colour_cii, a_flood_colour > attr_flood_colour;
 typedef typed_attribute < t_opacity, a_flood_opacity > attr_flood_opacity;
 typedef typed_attribute < t_tfa, a_focusable > attr_focusable;
 typedef typed_attribute < t_focushighlight, a_focushighlight > attr_focushighlight;
@@ -358,7 +357,7 @@ typedef typed_attribute < t_id, a_id > attr_id;
 typedef typed_attribute < t_real, a_ideographic > attr_ideographic;
 typedef typed_attribute < t_idref, a_idref > attr_idref;
 typedef typed_attribute < t_conditional, a_if > attr_if;
-typedef typed_attribute < t_imagerendering, a_image_rendering > attr_imagerendering;
+typedef typed_attribute < t_image_rendering, a_image_rendering > attr_image_rendering;
 typedef typed_attribute < t_url, a_imagemap > attr_imagemap;
 typedef typed_attribute < t_sizes, a_imagesizes > attr_imagesizes;
 typedef typed_attribute < t_srcset, a_imagesrcset > attr_imagesrcset;
@@ -402,7 +401,7 @@ typedef typed_attribute < t_real, a_k2 > attr_k2;
 typedef typed_attribute < t_real, a_k3 > attr_k3;
 typedef typed_attribute < t_real, a_k4 > attr_k4;
 typedef typed_attribute < t_reals, a_kernelmatrix > attr_kernelmatrix;
-typedef typed_attribute < t_real_1_2, a_kernelunitlength > attr_kernelunitlength;
+typedef typed_attribute < t_positive_1_2, a_kernelunitlength > attr_kernelunitlength;
 typedef typed_attribute < t_measure_ai, a_kerning > attr_kerning;
 typedef typed_attribute < t_text, a_key > attr_key;
 typedef typed_attribute < t_generic, a_keyparams > attr_keyparams;
@@ -436,7 +435,7 @@ typedef typed_attribute < t_linethickness, a_linethickness > attr_linethickness;
 typedef typed_attribute < t_colour, a_link > attr_link;
 typedef typed_attribute < t_idref, a_list > attr_list;
 typedef typed_attribute < t_loading, a_loading > attr_loading;
-typedef typed_attribute < t_id, a_local > attr_local;
+typedef typed_attribute < t_icc, a_local > attr_local;
 typedef typed_attribute < t_mathlocation, a_location > attr_location;
 typedef typed_attribute < t_url, a_longdesc > attr_longdesc;
 typedef typed_attribute < t_longdivstyle, a_longdivstyle > attr_longdivstyle;
@@ -458,7 +457,7 @@ typedef typed_attribute < t_marker, a_marker_start > attr_marker_start;
 typedef typed_attribute < t_measure, a_markerheight > attr_markerheight;
 typedef typed_attribute < t_markerunits, a_markerunits > attr_markerunits;
 typedef typed_attribute < t_measure, a_markerwidth > attr_markerwidth;
-typedef typed_attribute < t_marker, a_mask > attr_mask;
+typedef typed_attribute < t_urifn_ni, a_mask > attr_mask;
 typedef typed_attribute < t_coordinatesystem, a_maskcontentunits > attr_maskcontentunits;
 typedef typed_attribute < t_coordinatesystem, a_maskunits > attr_maskunits;
 typedef typed_attribute < t_existential, a_math > attr_math;
@@ -507,7 +506,7 @@ typedef typed_attribute < t_navigation, a_navup > attr_navup;
 typedef typed_attribute < t_navigation, a_navupleft > attr_navupleft;
 typedef typed_attribute < t_navigation, a_navupright > attr_navupright;
 typedef typed_attribute < t_idref, a_nextfocus > attr_nextfocus;
-typedef typed_attribute < t_id, a_nodeid > attr_nodeid;
+typedef typed_attribute < t_existential, a_no_composite > attr_no_composite;
 typedef typed_attribute < t_text, a_noflow > attr_noflow;
 typedef typed_attribute < t_existential, a_nohref > attr_nohref;
 typedef typed_attribute < t_measure, a_nominallength > attr_nominallength;
@@ -750,7 +749,6 @@ typedef typed_attribute < t_measure, a_shape_padding > attr_shape_padding;
 typedef typed_attribute < t_shape_rendering, a_shape_rendering > attr_shape_rendering;
 typedef typed_attribute < t_shape_none_uri, a_shape_subtract > attr_shape_subtract;
 typedef typed_attribute < t_integer, a_shift > attr_shift;
-typedef typed_attribute < t_show, a_show > attr_show;
 typedef typed_attribute < t_side, a_side > attr_side;
 typedef typed_attribute < t_size, a_size > attr_size;
 typedef typed_attribute < t_sizes, a_sizes > attr_sizes;
@@ -767,7 +765,7 @@ typedef typed_attribute < t_positive, a_span > attr_span;
 typedef typed_attribute < t_real, a_specularconstant > attr_specularconstant;
 typedef typed_attribute < t_real, a_specularexponent > attr_specularexponent;
 typedef typed_attribute < t_truefalseempty, a_spellcheck > attr_spellcheck;
-typedef typed_attribute < t_spread_method, a_spreadmethod > attr_spreadmethod;
+typedef typed_attribute < t_spreadmethod, a_spreadmethod > attr_spreadmethod;
 typedef typed_attribute < t_url, a_src > attr_src;
 typedef typed_attribute < t_html, a_srcdoc > attr_srcdoc;
 typedef typed_attribute < t_lang, a_srclang > attr_srclang;
@@ -813,9 +811,8 @@ typedef typed_attribute < t_svg_time_default, a_synctolerance > attr_synctoleran
 typedef typed_attribute < t_svg_time_inherit, a_synctolerancedefault > attr_synctolerancedefault;
 typedef typed_attribute < t_existential, a_system > attr_system;
 typedef typed_attribute < t_langs, a_systemlanguage > attr_systemlanguage;
-typedef typed_attribute < t_xmlns, a_systemrequired > attr_systemrequired;
 typedef typed_attribute < t_integer, a_tabindex > attr_tabindex;
-typedef typed_attribute < t_table_values, a_tablevalues > attr_tablevalues;
+typedef typed_attribute < t_tablevalues, a_tablevalues > attr_tablevalues;
 typedef typed_attribute < t_not_empty, a_tag > attr_tag;
 typedef typed_attribute < t_target, a_target > attr_target;
 typedef typed_attribute < t_idref, a_targetid > attr_targetid;
@@ -870,7 +867,7 @@ typedef typed_attribute < t_real, a_v_alphabetic > attr_valphabetic;
 typedef typed_attribute < t_value, a_value > attr_value;
 typedef typed_attribute < t_values, a_values > attr_values;
 typedef typed_attribute < t_valuetype, a_valuetype > attr_valuetype;
-typedef typed_attribute < t_vectoreffect, a_vector_effect > attr_vectoreffect;
+typedef typed_attribute < t_vector_effect, a_vector_effect > attr_vector_effect;
 typedef typed_attribute < t_version, a_version > attr_version;
 typedef typed_attribute < t_real, a_vert_adv_y > attr_vertadvy;
 typedef typed_attribute < t_generic, a_vertical_align > attr_vertical_align;
@@ -898,6 +895,7 @@ typedef typed_attribute < t_conditional, a_while > attr_while;
 typedef typed_attribute < t_whitespace, a_white_space > attr_whitespace;
 typedef typed_attribute < t_width, a_width > attr_width;
 typedef typed_attribute < t_text, a_widths > attr_widths;
+typedef typed_attribute < t_generic, a_will_change > attr_will_change;
 typedef typed_attribute < t_measure_ni, a_word_spacing > attr_word_spacing;
 typedef typed_attribute < t_workertype, a_workertype > attr_workertype;
 typedef typed_attribute < t_rap, a_wrap > attr_wrap;
@@ -905,7 +903,7 @@ typedef typed_attribute < t_writingmode, a_writing_mode > attr_writingmode;
 typedef typed_attribute < t_measure, a_x1 > attr_x1;
 typedef typed_attribute < t_measure, a_x2 > attr_x2;
 typedef typed_attribute < t_measure_or_more, a_x > attr_x;
-typedef typed_attribute < t_channel_selector, a_xchannelselector > attr_xchannelselector;
+typedef typed_attribute < t_channelselector, a_xchannelselector > attr_xchannelselector;
 typedef typed_attribute < t_real, a_x_height > attr_xheight;
 typedef typed_attribute < t_url, a_xmlns_xlink > attr_xmlns_xlink;
 typedef typed_attribute < t_xlinkactuate, a_xlinkactuate > attr_xlinkactuate;
@@ -926,7 +924,7 @@ typedef typed_attribute < t_url, a_xsischemaloc > attr_xsischemaloc;
 typedef typed_attribute < t_measure, a_y1 > attr_y1;
 typedef typed_attribute < t_measure, a_y2 > attr_y2;
 typedef typed_attribute < t_measure_or_more, a_y > attr_y;
-typedef typed_attribute < t_channel_selector, a_ychannelselector > attr_ychannelselector;
+typedef typed_attribute < t_channelselector, a_ychannelselector > attr_ychannelselector;
 typedef typed_attribute < t_measure, a_z > attr_z;
 typedef typed_attribute < t_unsigned, a_zindex > attr_zindex;
 typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
@@ -947,7 +945,6 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_actiontype, \
     attr_active, \
     attr_activate, \
-    attr_actuate, \
     attr_additive, \
     attr_align, \
     attr_alignment_baseline, \
@@ -1266,7 +1263,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_ideographic, \
     attr_idref, \
     attr_if, \
-    attr_imagerendering, \
+    attr_image_rendering, \
     attr_imagemap, \
     attr_imagesizes, \
     attr_imagesrcset, \
@@ -1419,7 +1416,7 @@ const e_attribute last_am = a_muted;
     attr_navupleft, \
     attr_navupright, \
     attr_nextfocus, \
-    attr_nodeid, \
+    attr_no_composite, \
     attr_noflow, \
     attr_nohref, \
     attr_nominallength, \
@@ -1662,7 +1659,6 @@ const e_attribute last_am = a_muted;
     attr_shape_rendering, \
     attr_shape_subtract, \
     attr_shift, \
-    attr_show, \
     attr_side, \
     attr_size, \
     attr_sizes, \
@@ -1725,7 +1721,6 @@ const e_attribute last_am = a_muted;
     attr_synctolerancedefault, \
     attr_system, \
     attr_systemlanguage, \
-    attr_systemrequired, \
     attr_tabindex, \
     attr_tablevalues, \
     attr_tag, \
@@ -1782,7 +1777,7 @@ const e_attribute last_am = a_muted;
     attr_value, \
     attr_values, \
     attr_valuetype, \
-    attr_vectoreffect, \
+    attr_vector_effect, \
     attr_version, \
     attr_vertadvy, \
     attr_vertical_align, \
@@ -1810,6 +1805,7 @@ const e_attribute last_am = a_muted;
     attr_whitespace, \
     attr_width, \
     attr_widths, \
+    attr_will_change, \
     attr_word_spacing, \
     attr_workertype, \
     attr_wrap, \

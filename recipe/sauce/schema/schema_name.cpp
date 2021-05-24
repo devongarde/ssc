@@ -1632,8 +1632,8 @@ mpn_t mpn;
 mnp_t mnp;
 
 void schema_name_init (nitpick& nits)
-{   DBG_ASSERT (mpn.empty ());
-    DBG_ASSERT (mnp.empty ());
+{   PRESUME (mpn.empty (), __FILE__, __LINE__);
+    PRESUME (mnp.empty (), __FILE__, __LINE__);
     for (property_name* p = &namtab [0]; p -> prop_ != sp_illegal; ++p)
         if (p -> name_ != nullptr)
         {   ::std::string n (::boost::to_lower_copy (::std::string (p -> name_)));
@@ -1657,21 +1657,25 @@ void schema_name_init (nitpick& nits)
 e_schema_property get_schema_property (const ::std::string& s)
 {   mpn_t::const_iterator i = mpn.find (s);
     if (i == mpn.cend ()) return sp_illegal;
+    VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
     return i -> second -> prop_; }
 
 vsp_t get_schema_properties (const ::std::string& s, const e_microdata_root mdr)
 {   vsp_t res;
     for (mpn_t::const_iterator i = mpn.find (s); (i != mpn.cend ()) && compare_no_case (i -> first, s); ++i)
         if ((mdr == mdr_none) || (mdr == i -> second -> root_))
-            res.emplace_back (i -> second -> prop_);
+        {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__)
+            res.emplace_back (i -> second -> prop_); }
     return res; }
 
 e_microdata_root get_property_root (const ::std::string& s)
 {   mpn_t::const_iterator ci = mpn.find (s);
     if (ci == mpn.cend ()) return mdr_none;
+    VERIFY_NOT_NULL (ci -> second, __FILE__, __LINE__);
     return ci -> second -> root_; }
 
 e_microdata_root get_property_root (const e_schema_property sp)
 {   mnp_t::const_iterator ci = mnp.find (sp);
     if (ci == mnp.cend ()) return mdr_none;
+    VERIFY_NOT_NULL (ci -> second, __FILE__, __LINE__);
     return ci -> second -> root_; }

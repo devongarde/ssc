@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.2" baseProfile="tiny"
+viewBox="0 0 400 100" height="100%" width="100%" syncBehaviorDefault="locked">
+<title>Sync* Attributes</title>
+<desc>An example which illustrates the use of sync* attributes</desc>
+<video x="10" y="10" xml:id="myclip"
+xlink:href="rtsp://www.example.org/mysong.m4v" syncMaster="true"/>
+<animation x="10" y="50" xml:id="mylyrics" xlink:href="timed-lyrics.svg"/>
+</svg>

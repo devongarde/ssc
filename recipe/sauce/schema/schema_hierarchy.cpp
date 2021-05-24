@@ -1603,7 +1603,7 @@ vmap_t hierarchy;
 vss_t generalisations;
 
 void hierarchy_init (nitpick& nits)
-{   DBG_ASSERT (hierarchy.empty ());
+{   PRESUME (hierarchy.empty (), __FILE__, __LINE__);
     for (::std::size_t x = 0; schema_hierarchy [x].general_ != sty_illegal; ++x)
     {   hierarchy.insert (vmap_t::value_type (schema_hierarchy [x].general_, &schema_hierarchy [x]));
         if (generalisations.find (schema_hierarchy [x].specific_) != generalisations.cend ())

@@ -31,12 +31,13 @@ external directory::external_;
 
 directory::directory (nitpick& nits, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check)
     : name_ (name), offsite_ (false), mummy_ (mummy), ndx_ (ndx)
-{   DBG_ASSERT (mummy_ != nullptr);
+{   PRESUME (mummy_ != nullptr, __FILE__, __LINE__);
     if (check) scan (nits, site); }
 
 directory::directory (const path_root_ptr& root)
     : name_ (root -> get_site_path ()), offsite_ (false), mummy_ (nullptr), root_ (root)
-{   ndx_ = get_fileindex (root -> get_disk_path ()); }
+{   VERIFY_NOT_NULL (root, __FILE__, __LINE__);
+    ndx_ = get_fileindex (root -> get_disk_path ()); }
 
 directory::directory (const ::std::string& name, const bool offsite)
     : name_ (name), offsite_ (offsite), mummy_ (nullptr)
@@ -85,7 +86,7 @@ void directory::swap (directory& d) NOEXCEPT
 ::boost::filesystem::path directory::get_disk_path () const
 {   if (root_.get () != nullptr)
         return root_ -> get_disk_path ();
-    DBG_ASSERT (mummy_ != nullptr);
+    VERIFY_NOT_NULL (mummy_, __FILE__, __LINE__);
     return mummy_ -> get_disk_path () / name_; }
 
 void directory::internal_get_disk_path (const ::std::string& item, ::boost::filesystem::path& res) const
@@ -117,13 +118,13 @@ void directory::internal_get_disk_path (const ::std::string& item, ::boost::file
 ::boost::filesystem::path directory::get_shadow_path () const
 {   if (root_.get () != nullptr)
         return root_ -> shadow_root ();
-    DBG_ASSERT (mummy_ != nullptr);
+    VERIFY_NOT_NULL (mummy_, __FILE__, __LINE__);
     return mummy_ -> get_shadow_path () / name_; }
 
 ::boost::filesystem::path directory::get_export_path () const
 {   if (root_.get () != nullptr)
         return root_ -> get_export ();
-    DBG_ASSERT (mummy_ != nullptr);
+    VERIFY_NOT_NULL (mummy_, __FILE__, __LINE__);
     return mummy_ -> get_export_path () / name_; }
 
 void directory::internal_get_shadow_path (const ::std::string& item, ::boost::filesystem::path& res) const
@@ -170,7 +171,7 @@ void directory::internal_get_export_path (const ::std::string& item, ::boost::fi
     return get_export_path (nits, p); }
 
 bool directory::scan (nitpick& nits, const ::std::string& site)
-{   DBG_ASSERT (! offsite_);
+{   PRESUME (! offsite_, __FILE__, __LINE__);
     for (::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (get_disk_path ()))
         if (! add_to_content (nits, x, site)) return false;
     return true; }
@@ -210,7 +211,7 @@ bool directory::add_to_content (nitpick& nits, ::boost::filesystem::directory_en
     return false; }
 
 void directory::examine (nitpick& nits)
-{   DBG_ASSERT (! offsite_);
+{   PRESUME (! offsite_, __FILE__, __LINE__);
     if (context.shadow_any ()) shadow_folder (nits);
     for (auto i : content_)
         if (i.second != nullptr)
@@ -380,19 +381,23 @@ bool directory::integrate_virtual (const ::std::string& site, path_root_ptr& dis
     auto e = content_.find (lhs);
     if (e == content_.end ())
     {   content_.insert (value_t (lhs, p));
+        VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         p -> mummy_ = this;
         e = content_.find (lhs); }
     else if (e -> second == nullptr) return false; // ordinary file
+    VERIFY_NOT_NULL (e -> second, __FILE__, __LINE__);
     if (! rhs.empty ()) return e -> second -> integrate_virtual (rhs, disk, p);
     if (e -> second -> root_.get () == nullptr)
         e -> second -> root_ = disk;
     return true; }
 
 ::std::size_t integrate_virtuals (paths_root& virt, vd_t& vd)
-{   DBG_ASSERT (virt.size () == vd.size ());
+{   PRESUME (virt.size () == vd.size (), __FILE__, __LINE__);
     for (::std::size_t n = 1; n < virt.size (); ++n)
+    {   VERIFY_NOT_NULL (vd.at (0), __FILE__, __LINE__);
+        VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
         if (! vd.at (0) -> integrate_virtual (virt.at (n) -> get_site_path (), virt.at (n), vd.at (n)))
-            return n;
+            return n; }
     return 0; }
 
 bool is_webpage (const ::std::string& name, const vstr_t& extensions)
@@ -401,7 +406,7 @@ bool is_webpage (const ::std::string& name, const vstr_t& extensions)
     return is_one_of (ext.substr (1), extensions); }
 
 bool directory::shadow_folder (nitpick& nits)
-{   DBG_ASSERT (context.shadow_any ());
+{   PRESUME (context.shadow_any (), __FILE__, __LINE__);
     ::boost::filesystem::path moi (get_shadow_path ());
 #ifdef FS_THROWS
     bool res = true;
@@ -420,14 +425,14 @@ bool directory::shadow_folder (nitpick& nits)
     return true; }
 
 bool directory::shadow_file (nitpick& nits, const ::std::string& name)
-{   DBG_ASSERT (context.shadow_files ());
+{   PRESUME (context.shadow_files (), __FILE__, __LINE__);
     ::boost::filesystem::path original (get_disk_path () / name);
     if (contains (context.shadow_ignore (), original.extension ().string ()))
     {   nits.pick (nit_shadow_failed, es_debug, ec_shadow, "not shadowing ", original);
         return true;  }
     ::boost::filesystem::path imitation (get_shadow_path () / name);
     e_copy todo = context.copy ();
-    DBG_ASSERT (todo > c_none);
+    PRESUME (todo > c_none, __FILE__, __LINE__);
     if (todo <= c_html) return true;
     fileindex_t ndx = get_fileindex (original);
     if (ndx == nullfileindex)
@@ -476,7 +481,7 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name)
     {   switch (todo)
         {   case c_none :
             case c_html :
-            case c_rpt :        DBG_ASSERT (false); break;
+            case c_rpt :        GRACEFUL_CRASH (__FILE__, __LINE__); break;
             case c_hard :       ::boost::filesystem::create_hard_link (original, imitation);
                                 nits.pick (nit_shadow_link, es_debug, ec_shadow, "hard linked ", original, " and ", imitation);
                                 break;

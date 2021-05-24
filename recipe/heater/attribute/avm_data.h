@@ -170,11 +170,31 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
 #define SVG_ANIMATION_EVENT_ATTRIBUTES(ELEM) \
     SVG_ANIMATION_EVENT_ATTRIBUTES_EX (ELEM, HE_SVG_10_11_2)
 
+#define SVG_ANTIME_ATTRIBUTES(ELEM) \
+    { { HTML_SVG11, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_begin }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_dur }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_end }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_min }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_max }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_restart }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_repeatcount }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_repeatdur }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_fill }
+
 #define SVG_BASE_ATTRIBUTES(ELEM) \
     RDFA_ATTRIBUTES_EX (ELEM, HE_SVG_12), \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_role }, \
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, ELEM, a_xmlbase }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_xmlid }
+
+#define SVG_COMP_ATTRIBUTES(ELEM) \
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_amplitude }, \
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_exponent }, \
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_intercept }, \
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_offset }, \
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_type }, \
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_slope }, \
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_tablevalues }
 
 #define SVG_CONDITIONAL_ATTRIBUTES_EX(ELEM,VER) \
     { { HTML_SVG10, 0, VER }, { HTML_UNDEF }, ELEM, a_requiredextensions }, \
@@ -217,6 +237,10 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
 #define SVG_GRAPHICAL_EVENT_ATTRIBUTES(ELEM) \
     SVG_GRAPHICAL_EVENT_ATTRIBUTES_EX (ELEM, HE_SVG_10_11_20)
 
+#define SVG_LANGSPACE_ATTRIBUTES_10(ELEM) \
+    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_xmllang }, \
+    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_xmlspace }
+
 #define SVG_RXY_ATTRIBUTES(ELEM) \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_rx }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_ry }
@@ -234,7 +258,7 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_colour_interpolation_filters }, \
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_colour_profile }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_colour_rendering }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_cursor }, \
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_cursor }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_direction }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_display }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_display_align }, \
@@ -256,7 +280,7 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_font_size_adjust }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_font_stretch }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_font_style }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_font_variant }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_font_variant }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_variant_caps }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_variant_east_asian }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_variant_ligatures }, \
@@ -275,7 +299,7 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_marker_end }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_marker_mid }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_marker_start }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_mask }, \
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_mask }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navdown }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navdownleft }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navdownright }, \
@@ -286,7 +310,7 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navup }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navupleft }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navupright }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_opacity }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_opacity }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_overflow }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_paint_order }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_pointer_events }, \
@@ -303,9 +327,9 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_miterlimit }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_opacity }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_width }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_text_anchor }, \
     { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, ELEM, a_text_align }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_text_align_last }, \
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_text_anchor }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_text_decoration }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_text_decoration_colour }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_text_decoration_line }, \
@@ -335,7 +359,6 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_colour_interpolation }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_colour_interpolation_filters }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_colour_rendering }, \
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_cursor }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_direction }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_display }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_dominant_baseline }, \
@@ -368,6 +391,7 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_marker_end }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_marker_mid }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_marker_start }, \
+    { { HTML_SVG10, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_mask }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_opacity }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_overflow }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_paint_order }, \
@@ -412,6 +436,11 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
 #define SVG_REF_XY_ATTRIBUTES(ELEM) \
     SVG_REF_XY_ATTRIBUTES_EX (ELEM, HE_SVG_10_11_2)
 
+#define SVG_SYNC_ATTRIBUTES(ELEM) \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_syncbehaviour }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_syncmaster }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_synctolerance }
+
 #define SVG_XY_ATTRIBUTES_EX(ELEM,VER) \
     { { HTML_SVG10, 0, VER }, { HTML_UNDEF }, ELEM, a_x }, \
     { { HTML_SVG10, 0, VER }, { HTML_UNDEF }, ELEM, a_y }
@@ -427,10 +456,6 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
 #define SVG_BOX_ATTRIBUTES(ELEM) \
     SVG_BOX_ATTRIBUTES_EX (ELEM, HE_SVG)
 
-#define SVG_LANGSPACE_ATTRIBUTES_10(ELEM) \
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_xmllang }, \
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_xmlspace }
-
 #define SVG_XLINK_ATTRIBUTES_EX(ELEM,VER) \
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, ELEM, a_xlinkactuate }, \
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, ELEM, a_xlinkarcrole }, \
@@ -443,43 +468,20 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
 #define SVG_XLINK_ATTRIBUTES(ELEM) \
     SVG_XLINK_ATTRIBUTES_EX (ELEM, HE_SVG)
 
-#define SVG10_COMP_ATTRIBUTES(ELEM) \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_amplitude }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_exponent }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_intercept }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_offset }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 | REQUIRED }, { HTML_UNDEF }, ELEM, a_type }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_slope }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_SVG_11 }, { HTML_UNDEF }, ELEM, a_tablevalues }
-
-#define SVG10_FILTER_ATTRIBUTES(ELEM) \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_in }, \
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_nodeid }
-
 #define SVG10_FIT_ATTRIBUTES(ELEM) \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_preserveaspectratio }
 
 #define SVG10_G_ATTRIBUTES(ELEM) \
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_onselect }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_transform }, \
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_systemrequired }
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_transform }
 
-#define SVG10_GRAD_ATTRIBUTES(ELEM) \
+#define SVG_GRAD_ATTRIBUTES(ELEM) \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_gradienttransform }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_gradientunits }
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_gradientunits }
 
-#define SVG10_REPL_ATTRIBUTES(ELEM) \
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_actuate }, \
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_href }, \
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_show }, \
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, ELEM, a_xmllink }
-
-#define SVG10_ANADD_ATTRIBUTES(ELEM) \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_accumulate }
-
-#define SVG11_ANADD_ATTRIBUTES(ELEM) \
+#define SVG_ANIMADD_ATTRIBUTES(ELEM) \
     { { HTML_SVG11, 0, HE_SVG_11_12_2 }, { HTML_UNDEF }, ELEM, a_additive }, \
-    SVG10_ANADD_ATTRIBUTES(ELEM)
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_accumulate }
 
 #define SVG11_ANAT_ATTRIBUTES(ELEM) \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_attributename }, \
@@ -490,17 +492,6 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_onend }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_onrepeat }
 
-#define SVG11_ANTIME_ATTRIBUTES(ELEM) \
-    { { HTML_SVG11, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_begin }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_dur }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_end }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_min }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_max }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_restart }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_repeatcount }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_repeatdur }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_fill }
-
 #define SVG_ANVAL_ATTRIBUTES(ELEM) \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_by }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_calcmode }, \
@@ -508,12 +499,15 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_keysplines }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_keytimes }
 
-#define SVG11_FILTER_ATTRIBUTES(ELEM) \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_height }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_result }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_width }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_x }, \
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_y }
+#define SVG_FILTER_ATTRIBUTES_EX(ELEM,FROM) \
+    { { FROM, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_height }, \
+    { { FROM, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_result }, \
+    { { FROM, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_width }, \
+    { { FROM, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_x }, \
+    { { FROM, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_y }
+
+#define SVG_FILTER_ATTRIBUTES(ELEM) \
+    SVG_FILTER_ATTRIBUTES_EX (ELEM, HTML_SVG10)
 
 #define SVG12_CONDGRAPH_ATTRIBUTES(ELEM)
 

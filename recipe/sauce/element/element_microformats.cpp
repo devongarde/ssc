@@ -41,7 +41,8 @@ void element::seek_webmention (::std::string& mention, e_wm_status& wms)
                 else if (wms < wm_addr)
                 {   mention = ref; wms = wm_addr; } } } }
     for (element_ptr e = child_; e && (wms != wm_link); e = e -> sibling_)
-        e -> seek_webmention (mention, wms);
+    {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+        e -> seek_webmention (mention, wms); }
     if (wms != wm_link)
         if (postprocess)
             if (mf_)
@@ -64,7 +65,8 @@ void element::seek_webmention (::std::string& mention, e_wm_status& wms)
     if (has_child ())
     {   element_ptr e = child ();
         do
-        {   e -> seek_webmention (mention, wms); }
+        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+            e -> seek_webmention (mention, wms); }
         while (wms != wm_link && to_sibling (e)); }
     return mention; }
 
@@ -72,7 +74,8 @@ found_farm element::find_farm (const e_property p, element* starter)
 {   if (! is_top ())
         for (element* ancestor = (starter == nullptr) ? this : starter; (ancestor != nullptr) && ! ancestor -> is_top (); ancestor = ancestor -> parent ())
             if (ancestor -> mf_)
-            {   e_class v = ancestor -> mf_ -> plausible_vocabulary (p);
+            {   VERIFY_NOT_NULL (ancestor -> mf_, __FILE__, __LINE__);
+                e_class v = ancestor -> mf_ -> plausible_vocabulary (p);
                 if (v != c_error) return found_farm (ancestor, v);
                 if (ancestor -> is_top ()) break; }
     return found_farm (nullptr, c_error); }
@@ -105,9 +108,10 @@ template < class PROPERTY > struct fmi
     return s; }
 
 void element::mf_put_vocab (const e_class v, const prop& p, const ::std::string& itemtype, const ::std::string& itemprop)
-{   DBG_ASSERT (! p.invalid ());
+{   PRESUME (! p.invalid (), __FILE__, __LINE__);
     if (context.mf_export ())
-    {   ::std::string val (mf_ -> get_string (v, p.get ()));
+    {   VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
+        ::std::string val (mf_ -> get_string (v, p.get ()));
         if (! val.empty ())
         {   const ::std::string vs (html_class::name (v));
             if (context.tell (e_debug)) pick (nit_debug, es_debug, ec_element, "putting ", quote (vs), " in json at ", itemtype);
@@ -119,12 +123,13 @@ void element::mf_put_vocab (const e_class v, const prop& p, const ::std::string&
             page_.export_item (naam, val); } } }
 
 void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
-{   DBG_ASSERT (! p.invalid ());
+{   PRESUME (! p.invalid (), __FILE__, __LINE__);
     if (context.mf_export ())
-    {   ::std::string val (mf_ -> get_string (v, p.get ()));
+    {   VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
+        ::std::string val (mf_ -> get_string (v, p.get ()));
         if (! val.empty ())
         {   ::std::string hreflang, media, t (text ()), title, type;
-            DBG_ASSERT (! rels.empty ());
+            PRESUME (! rels.empty (), __FILE__, __LINE__);
             if (a_.has (a_hreflang)) hreflang = a_.get_string (a_hreflang);
             if (a_.has (a_media)) media = a_.get_string (a_media);
             if (a_.has (a_title)) title = a_.get_string (a_title);

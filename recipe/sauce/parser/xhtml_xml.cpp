@@ -94,7 +94,7 @@ bool parse_xml (nitpick& nits, html_version& version, const ::std::string::const
             else switch (a.id ())
             {   case a_version :  // unless this defines the version of XML itself
                     if (value != "1.0")
-                        nits.pick (nit_unknown_xhtml, es_error, ec_parser, "unexpected version of xml");
+                        nits.pick (nit_unknown_xml, es_error, ec_parser, "unexpected version of xml");
                     break;
                 case a_encoding :
                     ok = true; break;

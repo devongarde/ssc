@@ -253,14 +253,18 @@ template < class ENUM, typename ENUM :: value_type VOCAB > struct verify_mf
 
 template < > struct verify_mf < html_class, h1_card >
 {   static void hcard (nitpick& nits, const html_version& v, const ::std::string& s, fn_at1* fn, n_at1* n, given_name_at1* given_name, family_name_at1* family_name, org_at1* org, organisation_name_at1* organisation_name, nickname_at1* nickname)
-    {   if (org -> good () && ! organisation_name -> good ())
+    {   VERIFY_NOT_NULL (org, __FILE__, __LINE__);
+        VERIFY_NOT_NULL (organisation_name, __FILE__, __LINE__);
+        if (org -> good () && ! organisation_name -> good ())
             organisation_name -> set_value (nits, v, org -> get_string ());
         bool non = false;
+        VERIFY_NOT_NULL (fn, __FILE__, __LINE__);
         if (! fn -> good ())
         {   if (! s.empty ())
             {   nits.pick (nit_hcard_infer, es_info, ec_microformat, "hcard property fn set to ", enquote (s));
                 fn -> set_value (nits, v, s); }
             else nits.pick (nit_no_fn, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_error, ec_microformat, "hcard property fn is required but not supplied"); }
+        VERIFY_NOT_NULL (n, __FILE__, __LINE__);
         if (fn -> good () && (org -> get_string () == fn -> get_string ()))
         {   if (n -> good ())
                 nits.pick (nit_n_fn, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_warning, ec_microformat, "when hcard org and fn are the same (e.g. ", quote (org -> get_string ()), "), n should be omitted");
@@ -269,21 +273,24 @@ template < > struct verify_mf < html_class, h1_card >
         {   ::std::string content (fn -> get_string ());
             vstr_t components;
             ::boost::algorithm::split (components, content, ::boost::algorithm::is_any_of (" "), ::boost::algorithm::token_compress_on);
-            {   if (! n -> good () && (components.size () == 2))
-                {   ::std::string::size_type len = components [0].length ();
-                    if (components [0].at (len - 1) == ',')
-                    {   family_name -> set_value (nits, v, components [0].substr (0, len - 1));
-                        given_name -> set_value (nits, v, components [1]); }
-                    else
-                    {   family_name -> set_value (nits, v, components [1]);
-                        given_name -> set_value (nits, v, components [0]); }
-                    ::std::string naam = given_name -> get_string () + " " + family_name -> get_string ();
-                    n -> set_value (nits, v, naam);
-                    if (context.tell (e_info)) nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "g/wiki/hCard", es_info, ec_microformat, "hcard n set to ", quote (naam));
-                    return; }
-                if (! nickname -> good () && (components.size () == 1) && ! components [0].empty ())
-                {   nickname -> set_value (nits, v, components [0]);
-                    nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_info, ec_microformat, "hcard nickname set to ", quote (components [0])); } } }
+            VERIFY_NOT_NULL (family_name, __FILE__, __LINE__);
+            VERIFY_NOT_NULL (given_name, __FILE__, __LINE__);
+            if (! n -> good () && (components.size () == 2))
+            {   ::std::string::size_type len = components [0].length ();
+                if (components [0].at (len - 1) == ',')
+                {   family_name -> set_value (nits, v, components [0].substr (0, len - 1));
+                    given_name -> set_value (nits, v, components [1]); }
+                else
+                {   family_name -> set_value (nits, v, components [1]);
+                    given_name -> set_value (nits, v, components [0]); }
+                ::std::string naam = given_name -> get_string () + " " + family_name -> get_string ();
+                n -> set_value (nits, v, naam);
+                if (context.tell (e_info)) nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "g/wiki/hCard", es_info, ec_microformat, "hcard n set to ", quote (naam));
+                return; }
+            VERIFY_NOT_NULL (nickname, __FILE__, __LINE__);
+            if (! nickname -> good () && (components.size () == 1) && ! components [0].empty ())
+            {   nickname -> set_value (nits, v, components [0]);
+                nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_info, ec_microformat, "hcard nickname set to ", quote (components [0])); } }
         if (! n -> good () && ! non)
             if (! s.empty ())
             {   nits.pick (nit_hcard_infer, es_info, ec_microformat, "hcard property n set to ", enquote (s));
@@ -297,7 +304,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
     if (unknown () && ! text ().empty ())
         if (has < name_at > ())
         {   name_at* n = get < name_at > ();
-            DBG_ASSERT (n != nullptr);
+            VERIFY_NOT_NULL (n, __FILE__, __LINE__);
             if (n -> unknown ())
             {   n -> set_value (nits, v, text ());
                 nits.pick (nit_mf_infer, es_comment, ec_microformat, name (), " property ", n -> name (), " set to ", enquote (text ())); } }

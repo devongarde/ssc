@@ -30,7 +30,7 @@ public:
     unsigned at (const T& e) const
     {   typename counter_t::const_iterator i = count_.find (e);
         if (i == count_.cend ()) return 0;
-        return e -> second; }
+        return i -> second; }
     cit cbegin () const { return count_.cbegin (); }
     cit cend () const { return count_.cend (); }
     void mark (const T& e)

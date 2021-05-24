@@ -2874,8 +2874,9 @@ typedef ::std::multimap < mmd_key, microdata_structure* > mmd_t;
 mmd_t micromap;
 
 void microdata_init (nitpick& )
-{   DBG_ASSERT (micromap.empty ());
+{   PRESUME (micromap.empty (), __FILE__, __LINE__);
     for (microdata_structure* p = &schema_structure [0]; p -> record_ != sty_illegal; ++p)
+    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if (micromap.find (::std::pair < e_schema_type, e_schema_property > (p -> record_, p -> property_)) != micromap.end ())
             ::std::cerr << "microdata_init reports " << sch::name (p -> record_) << " (" << p -> record_ << "), " << schema_property_name (p -> property_) << " (" << p -> property_ << ") repeated\n";
         else
@@ -2891,10 +2892,10 @@ void microdata_init (nitpick& )
                     ::std::cerr << "microdata_init reports " << sch::name (p -> record_) << " (" << p -> record_ << "), " <<
                                                                 schema_property_name (p -> property_) << " (" << p -> property_ << ") is not found in property table\n";
 #endif // _DEBUG
-} }
+} } }
 
 bool is_schema_property (const e_schema_type s, const e_schema_property p)
 {   mmd_t::const_iterator i = micromap.find (mmd_key (s, p));
     if (i == micromap.cend ()) return false;
-    DBG_ASSERT (i -> second != nullptr);
+    VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
     return does_apply < schema_version > (context.schema_ver (), i -> second -> from_, i -> second -> to_); };

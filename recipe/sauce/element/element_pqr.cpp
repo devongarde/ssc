@@ -26,6 +26,7 @@ void element::examine_picture ()
 {   bool was_img = false, had_img = false, order_warn = false;
     element* prev = nullptr;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (! c -> node_.is_closure ())
             switch (c -> tag ())
             {   case elem_source :
@@ -44,7 +45,7 @@ void element::examine_picture ()
                     if (had_img)
                         pick (nit_not_img, ed_52, "4.7.3. The picture element", es_error, ec_element, "<PICTURE> can only have one <IMG> child.");
                     had_img = was_img = true; break;
-                default : break; }
+                default : break; } }
     if (! had_img)
         pick (nit_not_img, ed_52, "4.7.3. The picture element", es_error, ec_element, "<PICTURE> must have one child <IMG>");
     else if (! was_img || order_warn)
@@ -53,6 +54,7 @@ void element::examine_picture ()
 void element::examine_piecewise ()
 {   bool otherwise = false, noted = false;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
         switch (c -> tag ())
         {   case elem_otherwise :
@@ -63,8 +65,8 @@ void element::examine_piecewise ()
                     noted = true; }
                 break;
             default :
-                DBG_ASSERT (false);
-                break; } }
+                GRACEFUL_CRASH (__FILE__, __LINE__);
+                break; } } }
 
 void element::examine_progress ()
 {   if (node_.version ().is_5 ())
@@ -91,6 +93,7 @@ void element::examine_ruby ()
     bool had_ruby = false, had_non_ruby = false, had_rt = false, had_rp = false, rp_mode = false;
     bool is_whatwg = node_.version ().whatwg ();
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (is_standard_element (c -> tag ()) && ! c -> node_.is_closure ())
             if (is_whatwg)
                 switch (c -> tag ())
@@ -133,7 +136,7 @@ void element::examine_ruby ()
                         if (had_rt != had_rp)
                             pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RT> and <RTC> elements must precede or follow an <RP>");
                         had_rp = had_rt = false;
-                        break; }
+                        break; } }
     if (! is_whatwg)
         if (had_rt != had_rp)
             pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RP> should immediately precede OR follow <RT> and/or <RTC>"); }
