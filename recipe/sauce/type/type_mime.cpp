@@ -2355,7 +2355,7 @@ void check_extension_compatibility (nitpick& nits, const html_version& v, const 
             check_extension_compatibility (nits, v, mt, u, src); } }
 
 void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const uint64_t family)
-{   DBG_ASSERT (family != 0);
+{   PRESUME (family != 0, __FILE__, __LINE__);
     for (auto uu : u)
         if (uu.has_extension ()) check_extension_compatibility (nits, v, family, uu.extension ()); }
 

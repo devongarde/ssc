@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 2.0 feDropShadow</title>
+</head>
+
+<body>
+
+<h1>SVG 2.0 feDropShadow</h1>
+
+<svg>
+<filter>
+<feGaussianBlur in="alpha-channel-of-feDropShadow-in" stdDeviation="stdDeviation-of-feDropShadow"/>
+<feOffset dx="dx-of-feDropShadow" dy="dy-of-feDropShadow" result="offsetblur"/>
+<feFlood flood-color="flood-color-of-feDropShadow" flood-opacity="flood-opacity-of-feDropShadow"/>
+<feComposite in2="offsetblur" operator="in"/>
+<feMerge>
+<feMergeNode/>
+<feMergeNode in="in-of-feDropShadow"/>
+</feMerge>
+</filter>
+</svg>
+
+</body>
+</html>

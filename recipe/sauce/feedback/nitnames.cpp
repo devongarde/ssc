@@ -276,7 +276,7 @@ nitname nitnames [] =
     { nit_plus_1_7, "plus_1_7" },
     { nit_attribute_required, "attribute_required" },
     { nit_frameset_body, "frameset_body" },
-    { nit_unknown_xhtml, "unknown_xhtml" },
+    { nit_unknown_xml, "unknown_xml" },
     { nit_xhtml_missing_slash, "xhtml_missing_slash" },
     { nit_xhtml_element_lc, "xhtml_element_lc" },
     { nit_xhtml_quote_values, "xhtml_quote_values" },
@@ -633,6 +633,11 @@ nitname nitnames [] =
     { nit_line_increment, "line_increment" },
     { nit_is_property, "is_property" },
     { nit_better_as_property, "better_as_property" },
+    { nit_colour_profile, "colour_profile" },
+    { nit_feconvolvematrix, "feconvolvematrix" },
+    { nit_not_0, "not_0" },
+    { nit_fecomponenttransfer, "fecomponenttransfer" },
+    { nit_fecomposite, "fecomposite" },
 
     { nit_off, "" } };
 

@@ -88,7 +88,7 @@ bool set_autocomplete_value (vaco_t& vaco, nitpick& nits, const html_version& v,
     return false; }
 
 bool invalid_autocomplete (nitpick& nits, const html_version& v, const element* e, const vaco_t& vaco)
-{   DBG_ASSERT (e != nullptr);
+{   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
     switch (e -> tag ())
     {   case elem_textarea :
         case elem_select :
@@ -97,8 +97,8 @@ bool invalid_autocomplete (nitpick& nits, const html_version& v, const element* 
             if (v < html_jan15) return true;
             break;
         default :
-            DBG_ASSERT (false);
             nits.pick (nit_snafu, ed_52, "4.10.18.7.1. ... the autocomplete attribute", es_error, ec_type, "internal error: AUTOCOMPLETE is on the wrong element!");
+            GRACEFUL_CRASH (__FILE__, __LINE__);
             return false; }
     e_inputtype5 i5 = e -> get_input_type ();
     bool res = true;

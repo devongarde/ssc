@@ -36,7 +36,7 @@ class directory;
 
 class page
 {   ids_t ids_, names_, glyphs_;
-    sstr_t access_;
+    sstr_t access_, dfns_, profiles_;
     element_ptr document_;
     elements_node nodes_;
     ::std::string name_;
@@ -54,7 +54,6 @@ class page
     uid_t euid_ = 0;
     itemscope_ptr itemscope_;
     ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_;
-    sstr_t dfns_;
     ustr_t abbrs_;
     ::std::time_t updated_ = 0;
     friend class tag;
@@ -164,6 +163,8 @@ public:
     ustr_t& abbrs () { return abbrs_; }
     const sstr_t& dfns () const { return dfns_; }
     sstr_t& dfns () { return dfns_; }
+    const sstr_t& profiles () const { return profiles_; }
+    sstr_t& profiles () { return profiles_; }
     void title (const ::std::string& s) { title_ = s; }
     void corpus (const ::std::string& s) { corpus_ = s; }
     void keywords (const ::std::string& s) { keywords_ = s; }

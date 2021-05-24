@@ -24,7 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool element::naughty_label_descendents (const element* e, const uid_t uid, bool& first)
 {   bool res = false;
+    VERIFY_NOT_NULL (e, __FILE__, __LINE__);
     for (element* c = e -> child_.get (); c != nullptr; c = c -> sibling_.get ())
+    {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (is_standard_element (c -> tag ()) && ! c -> node_.is_closure ())
         {   if (c -> uid_ != uid)
                 if (label_bitset.test (c -> tag ()))
@@ -33,7 +35,7 @@ bool element::naughty_label_descendents (const element* e, const uid_t uid, bool
                     {   res = true;
                         c -> pick (nit_label_parentage, ed_50, "4.10.4 The label element", es_error, ec_attribute, "<", elem::name (c -> tag ()), "> cannot have a <LABEL> ancestor"); }
             if (c -> has_child ())
-                if (naughty_label_descendents (c, uid, first)) res = true; }
+                if (naughty_label_descendents (c, uid, first)) res = true; } }
     return res; }
 
 void element::examine_label ()
@@ -64,6 +66,7 @@ void element::examine_lambda ()
 {   if (node_.version ().math () < math_2) return;
     bool domain = false, other = false, bnoted = false, dnoted = false;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
             switch (c -> tag ())
             {   case elem_bvar :
@@ -81,7 +84,7 @@ void element::examine_lambda ()
                     break;
                 default :
                     other = true;
-                    break; } }
+                    break; } } }
 
 void element::examine_li ()
 {   if (a_.known (a_value))
@@ -101,6 +104,7 @@ void element::examine_link ()
     bool has_type = a_.known (a_type);
     bool href = a_.known (a_href);
     bool icon = false, preload = false, modulepreload = false, maskicon = false, serviceworker = false, stylesheet = false, external = has_imagesrcset, as_image = false;
+    VERIFY_NOT_NULL (parent_, __FILE__, __LINE__);
     e_element mummy = parent_ -> tag ();
     if (href && has_type) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_href), false);
     if (tis5)

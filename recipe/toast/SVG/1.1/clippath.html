@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>SVG 1.0 clipPath</title>
+</head>
+
+<body>
+
+<h1>SVG 1.0 clipPath</h1>
+
+<svg>
+
+<g clip-rule="nonzero">
+<clipPath id="MyClip">
+<path d="..." clip-rule="evenodd" />
+</clipPath>
+<rect clip-path="url(#MyClip)" ... />
+</g>
+
+<g clip-rule="nonzero">
+<clipPath id="MyClip">
+<path d="..." />
+</clipPath>
+<rect clip-path="url(#MyClip)" clip-rule="evenodd" ... />
+</g>
+
+</svg>
+
+</body>
+</html>

@@ -73,7 +73,6 @@ template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
 
 template < > struct type_master < t_10 > : two_value < t_10, e_10, sz_0, sz_1, false > { };
 template < > struct type_master < t_accumulate > : two_value < t_accumulate, e_accumulate, sz_none, sz_sum, false > { };
-template < > struct type_master < t_actuate > : two_value < t_actuate, e_actuate, sz_auto, sz_user, false > { };
 template < > struct type_master < t_additive > : two_value < t_additive, e_additive, sz_replace, sz_sum, false > { };
 template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_false, sz_true, false > { };
 template < > struct type_master < t_capture > : two_value < t_capture, ev_capture, sz_user, sz_environment, false > { };
@@ -105,7 +104,6 @@ template < > struct type_master < t_orientation > : two_value < t_orientation, e
 template < > struct type_master < t_overlay > : two_value < t_overlay, e_overlay, sz_none, sz_top, false > { };
 template < > struct type_master < t_propagate > : two_value < t_propagate, e_propagate, sz_stop, sz_continue, false > { };
 template < > struct type_master < t_settype > : two_value < t_settype, e_settype, sz_normal, sz_multiset, false > { };
-template < > struct type_master < t_show > : two_value < t_show, e_show, sz_embed, sz_replace, false > { };
 template < > struct type_master < t_spacing > : two_value < t_spacing, e_spacing, sz_auto, sz_exact, false > { };
 template < > struct type_master < t_ssi_sizefmt > : two_value < t_ssi_sizefmt, e_ssi_sizefmt, sz_abbrev, sz_bytes, false > { };
 template < > struct type_master < t_ssi_f > : two_value < t_ssi_f, e_ssi_f, sz_file, sz_virtual, false > { };

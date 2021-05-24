@@ -68,7 +68,7 @@ template < > struct type_master < t_cookie > : public tidy_string < t_cookie >
                         nits.pick (nit_bad_cookie, ed_rfc_6265, "4.1.1. Syntax", es_error, ec_type, id, " takes no argument");
                         break;
                     default :
-                        DBG_ASSERT (false); // should not get here; unexpected cookie type
+                        PRESUME (false, __FILE__, __LINE__); // should not get here; unexpected cookie type
                         nits.pick (nit_internal_parsing_error, ed_rfc_6265, "4.1.1. Syntax", es_warning, ec_type, quote (arg), " is unexpected and unverified");
                         break; } } }
         tidy_string < t_cookie > :: status (s_invalid); } };

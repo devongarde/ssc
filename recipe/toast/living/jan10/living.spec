@@ -486,7 +486,7 @@ PASS ../toast/living/jan10/ls4.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jan10/ls5.html
-3 xmlns_namespace contradictory_namespace
+3 contradictory_namespace
 5 use_quote_code
 6 unknown_element
 8 unknown_element unrecognised_namespace
@@ -574,7 +574,7 @@ PASS ../toast/living/jan10/mt.html
 10 inserted_missing_closure missing_close inserted_missing_parent inserted_missing_closure inserted_missing_parent missing_close inserted_missing_closure
 
 PASS ../toast/living/jan10/namespace.html
-10 bad_namespace unknown_element xmlns_namespace unrecognised_namespace
+10 bad_namespace unknown_element unrecognised_namespace
 
 PASS ../toast/living/jan10/nav-1.html
 0 charset_mismatch charset_used charset_invalid

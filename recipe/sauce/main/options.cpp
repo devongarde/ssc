@@ -128,7 +128,11 @@ needs rel type and probably context info
 
 void options::title (const char* addendum) const
 {   if (! context.test ())
-        ::std::cout << FULLNAME " " VERSION_STRING ", " WEBADDR "\n" COPYRIGHT "\n(" __DATE__ " " __TIME__ ")\n";
+        ::std::cout << FULLNAME " " VERSION_STRING
+#ifdef DEBUG
+        " (" __DATE__ " " __TIME__ ")"
+#endif // DEBUG
+        ", " WEBADDR "\n" COPYRIGHT "\n";
 
     if (context.tell (e_severe))
     {   if (addendum != nullptr) ::std::cout << addendum; }
@@ -854,6 +858,7 @@ void options::contextualise ()
         TEST_VAR (figalign);
         TEST_VAR (fontname);
         TEST_VAR (halign);
+        TEST_VAR (icc);
         TEST_VAR (inputmode);
         TEST_VAR (inputplus);
         TEST_VAR (inputtype);
@@ -899,6 +904,7 @@ void options::contextualise ()
         TEST_VAR (ssi_env);
         TEST_VAR (svg_align);
         TEST_VAR (svg_display);
+        TEST_VAR (svg_feature);
         TEST_VAR (svg_fontstretch);
         TEST_VAR (svg_fontstretch_ff);
         TEST_VAR (svg_fontstyle);
@@ -915,7 +921,7 @@ void options::contextualise ()
         TEST_VAR (transform_fn);
         TEST_VAR (turbulence_type);
         TEST_VAR (unicode_bidi);
-        TEST_VAR (vectoreffect_2);
+        TEST_VAR (vector_effect_2);
         TEST_VAR (xmlns);
 #undef TEST_VAR
 
@@ -1100,6 +1106,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (figalign);
     RPT_VAR (fontname);
     RPT_VAR (halign);
+    RPT_VAR (icc);
     RPT_VAR (inputmode);
     RPT_VAR (inputplus);
     RPT_VAR (inputtype);
@@ -1145,6 +1152,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (ssi_env);
     RPT_VAR (svg_align);
     RPT_VAR (svg_display);
+    RPT_VAR (svg_feature);
     RPT_VAR (svg_fontstretch);
     RPT_VAR (svg_fontstretch_ff);
     RPT_VAR (svg_fontstyle);
@@ -1161,7 +1169,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (transform_fn);
     RPT_VAR (turbulence_type);
     RPT_VAR (unicode_bidi);
-    RPT_VAR (vectoreffect_2);
+    RPT_VAR (vector_effect_2);
     RPT_VAR (xmlns);
 #undef RPT_VAR
 

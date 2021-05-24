@@ -126,7 +126,7 @@ PASS ../toast/math/2/math15-example.html
 207 id_exists
 208 id_exists
 211 annotation
-224 xmlns_namespace unrecognised_namespace xmlns_namespace unrecognised_value annotation
+224 unrecognised_namespace unrecognised_value annotation
 254 annotation
 270 arg_count arg_count
 272 bad_namespace unknown_element bad_namespace unknown_element

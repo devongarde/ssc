@@ -3,7 +3,7 @@
 PASS ../toast/w3/rddl/rddl_fpi.html
 1 xhtml_1_1
 2 unexpected_doctype_content
-3 xmlns_namespace xmlns_namespace unrecognised_namespace unrecognised_value
+3 unrecognised_namespace unrecognised_value
 9 unrecognised_value
 21 url_id_unfound
 29 unrecognised_value

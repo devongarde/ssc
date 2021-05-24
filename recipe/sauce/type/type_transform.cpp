@@ -70,13 +70,13 @@ bool checkargs (nitpick& nits, const html_version& v, const e_transform_fn cmd, 
     {   va.resize (max_transform_fn + 1);
         for (int x = 0; fnarg [x].fn_ != tr_nowt; ++x)
             va.at (fnarg [x].fn_).reset (fnarg [x].fn_, fnarg [x].args_ [0], fnarg [x].args_ [1], fnarg [x].args_ [2], fnarg [x].args_ [3], fnarg [x].args_ [4], fnarg [x].args_ [5]); }
-    DBG_ASSERT (static_cast < ::std::size_t > (cmd) < va.size ());
-    DBG_ASSERT (va.at (static_cast < ::std::size_t > (cmd)).fn_ == cmd);
+    PRESUME (static_cast < ::std::size_t > (cmd) < va.size (), __FILE__, __LINE__);
+    PRESUME (va.at (static_cast < ::std::size_t > (cmd)).fn_ == cmd, __FILE__, __LINE__);
     html_version lh (type_master < t_transform_fn > :: first_version (cmd));
     ::std::size_t low = lh.minargs ();
     ::std::size_t high = lh.maxargs ();
-    DBG_ASSERT (low <= maxfnargs);
-    DBG_ASSERT (high <= maxfnargs);
+    PRESUME (low <= maxfnargs, __FILE__, __LINE__);
+    PRESUME (high <= maxfnargs, __FILE__, __LINE__);
     if ((args.size () < low) || (args.size () > high))
     {   if (v.svg_version () < sv_2_0)
             if (low == high)
@@ -94,7 +94,7 @@ bool checkargs (nitpick& nits, const html_version& v, const e_transform_fn cmd, 
                     "a TRANSFORM ", quote (type_master < t_transform_fn > :: name (cmd)), " expects between ", low, " and ", high, " parameters"); }
     bool res = true;
     for (::std::size_t i = 0; i < ::std::min (high, args.size ()); ++i)
-    {   DBG_ASSERT (va.at (cmd).args_ [i] != t_unknown);
+    {   PRESUME (va.at (cmd).args_ [i] != t_unknown, __FILE__, __LINE__);
         if (! test_value (nits, v, va.at (cmd).args_ [i], args.at (i))) res = false; }
     return res; }
 

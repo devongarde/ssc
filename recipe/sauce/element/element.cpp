@@ -77,7 +77,7 @@ int element::line () const
 {   return node_.line (); }
 
 element_ptr element::child (const bool canreconstruct)
- {  DBG_ASSERT (has_child ());
+ {  PRESUME (has_child (), __FILE__, __LINE__);
     if (! child_)
         child_.reset (new element (name_, node_.child (), this, page_));
     else if (canreconstruct && ! child_ -> reconstructed_)
@@ -85,17 +85,20 @@ element_ptr element::child (const bool canreconstruct)
     return child_; }
 
 element_ptr element::next (const bool canreconstruct)
- {  DBG_ASSERT (has_next ());
+ {  PRESUME (has_next (), __FILE__, __LINE__);
     if (! sibling_)
         sibling_.reset (new element (name_, node_.next (), parent_, page_));
-    else if (canreconstruct && ! sibling_ -> reconstructed_)
-        sibling_ -> reconstruct (access_);
+    else
+    {   VERIFY_NOT_NULL (sibling_, __FILE__, __LINE__);
+        if (canreconstruct && ! sibling_ -> reconstructed_)
+            sibling_ -> reconstruct (access_); }
     return sibling_; }
 
 element* element::get_ancestor (const e_element e) const
 {   element* anc = parent_;
     while (anc != nullptr)
-    {   if (anc -> tag () == e) return anc;
+    {   VERIFY_NOT_NULL (anc, __FILE__, __LINE__);
+        if (anc -> tag () == e) return anc;
         if (anc -> tag () == elem_template) break;
         anc = anc -> parent_; }
     return nullptr; }
@@ -103,7 +106,8 @@ element* element::get_ancestor (const e_element e) const
 bool element::has_this_child (const e_element e) const
 {   if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-            if (c -> tag () == e) return true;
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+            if (c -> tag () == e) return true; }
     return false; }
 
 bool element::has_this_descendant (const e_element e) const
@@ -126,8 +130,9 @@ void element::check_descendants (const e_element self, const element_bitset& gf,
 bool element::has_invalid_child (const element_bitset& gf)
 {   if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (! c -> node ().is_closure ())
-                if (! faux_bitset.test (c -> tag ()) && ! gf.test (c -> tag ())) return true;
+                if (! faux_bitset.test (c -> tag ()) && ! gf.test (c -> tag ())) return true; }
     return false; }
 
 void element::check_required_type (const e_element tag)
@@ -155,7 +160,8 @@ bool element::check_math_children (const int expected, const bool or_more)
 {   int n = 0;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-            if (! c -> node_.is_closure ()) if (c -> node_.id ().is_math ()) ++n;
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+            if (! c -> node_.is_closure ()) if (c -> node_.id ().is_math ()) ++n; }
     if ((n == expected) || (or_more && (n > expected))) return true;
     if (or_more)
         pick (nit_math_kids, ed_math_2, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<", elem::name (tag ()), "> has  ", n, " math child elements; it requires ", expected, " or more");
@@ -163,11 +169,12 @@ bool element::check_math_children (const int expected, const bool or_more)
     return false; }
 
 void element::check_math_children (const int from, const int to)
-{   DBG_ASSERT (to > from);
+{   PRESUME (to > from, __FILE__, __LINE__);
     int n = 0;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-            if (! c -> node_.is_closure ()) if (c -> node_.id ().is_math ()) ++n;
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+            if (! c -> node_.is_closure ()) if (c -> node_.id ().is_math ()) ++n; }
     if ((n < from) || (n > to))
         pick (nit_math_kids, ed_math_2, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<", elem::name (tag ()), "> has  ", n, " math child elements; it requires between ", from, " and ", to); }
 
@@ -175,12 +182,13 @@ void element::check_mscarries_pos (const e_element self)
 {   bool last = false;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-            last = (c -> tag () == elem_mscarries);
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+            last = (c -> tag () == elem_mscarries); }
     if (last)
         pick (nit_mscarries_last, ed_math_3, "3.6.5 Carries, Borrows, and Crossouts <mscarries>", es_error, ec_element, "<MSCARRIES> cannot be the last child of <", elem::name (self), ">"); }
 
 void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& was_closure, bool& allspace, bool& was_nl)
-{   DBG_ASSERT (examined_);
+{   PRESUME (examined_, __FILE__, __LINE__);
     switch (tag ())
     {   case elem_faux_asp : ss << "<%" << node_.raw () << "%>"; was_nl = false; break;
         case elem_faux_cdata : ss << "<![CDATA[" << node_.raw () << "]]>"; was_nl = false; break;

@@ -38,8 +38,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     return ::std::string (); }
 
 ::std::string convert_to_utf_8 (nitpick& nits, const ::std::string& name, void_ptr& vp, uintmax_t& sz)
-{   DBG_ASSERT (sz > 0);
-    DBG_ASSERT (vp.get () != nullptr);
+{   PRESUME (sz > 0, __FILE__, __LINE__);
+    PRESUME (vp.get () != nullptr, __FILE__, __LINE__);
     ::std::string cs (identify_probable_charset (vp, sz));
     if (cs.empty ())
         nits.pick (nit_icu, es_error, ec_icu, "cannot identify charset in ", name, "; will hope for the best");

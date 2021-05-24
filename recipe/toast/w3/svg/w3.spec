@@ -10,4 +10,4 @@ PASS ../toast/w3/svg/svg11.svg
 
 PASS ../toast/w3/svg/svg_tiny_1_1.svg
 1 xhtml_1_0
-3 xmlns_namespace svg_version
+3 svg_version

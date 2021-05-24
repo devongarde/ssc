@@ -171,7 +171,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
         {   ::std::string ns;
             e_namespace n = examine_namespace (nits, v, t, ns);
             if (n == ns_error) nits.pick (nit_bad_namespace, es_warning, ec_namespace, "unknown namespace");
-            else if (n == ns_default) nits.merge (knots);
+            else if ((n == ns_default) || (n == ns_xhtml)) nits.merge (knots);
             else parsed = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t, n); }
         if (parsed)
         {   enum_base < ENUM, E > :: value_ = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: get (); // ooops, two values :-(
@@ -207,6 +207,8 @@ template < > class type_master < t_beginfn > : public enum_n < t_beginfn, e_begi
 template < > class type_master < t_cachekey > : public enum_n < t_cachekey, e_cachekey > { };
 template < > class type_master < t_charset > : public enum_n < t_charset, e_charset > { };
 template < > class type_master < t_citype > : public enum_n < t_citype, e_citype > { };
+template < > class type_master < t_colour_interpolation > : public enum_n < t_colour_interpolation, e_colour_interpolation > { };
+template < > class type_master < t_colour_rendering > : public enum_n < t_colour_rendering, e_colour_rendering > { };
 template < > class type_master < t_cookieid > : public enum_n < t_cookieid, e_cookieid > { };
 template < > class type_master < t_cntype > : public enum_n < t_cntype, e_cntype > { };
 template < > class type_master < t_composite_operator > : public enum_n < t_composite_operator, e_composite_operator > { };
@@ -233,6 +235,8 @@ template < > class type_master < t_font_variant_ligature > : public enum_n < t_f
 template < > class type_master < t_font_variant_numeric > : public enum_n < t_font_variant_numeric, e_font_variant_numeric > { };
 template < > class type_master < t_halign > : public enum_n < t_halign, e_halign > { };
 template < > class type_master < t_httpequiv > : public enum_n < t_httpequiv, e_httpequiv > { };
+template < > class type_master < t_image_rendering > : public enum_n < t_image_rendering, e_image_rendering > { };
+template < > class type_master < t_icc > : public enum_n < t_icc, e_icc > { };
 template < > class type_master < t_indentalign > : public enum_n < t_indentalign, e_indentalign > { };
 template < > class type_master < t_inky > : public enum_n < t_inky, e_inky > { };
 template < > class type_master < t_inputmode > : public enum_n < t_inputmode, e_inputmode > { };
@@ -300,7 +304,7 @@ template < > class type_master < t_svg_fontweight > : public enum_n < t_svg_font
 template < > class type_master < t_svg_fontweight_ff > : public enum_n < t_svg_fontweight_ff, e_svg_fontweight_ff > { };
 template < > class type_master < t_svg_mode > : public enum_n < t_svg_mode, e_svg_mode > { };
 template < > class type_master < t_svg_overflow > : public enum_n < t_svg_overflow, e_svg_overflow > { };
-template < > class type_master < t_svg_type_11 > : public enum_n < t_svg_type_11, e_svg_type_11 > { };
+template < > class type_master < t_svg_type > : public enum_n < t_svg_type, e_svg_type > { };
 template < > class type_master < t_svg_version > : public enum_n < t_svg_version, e_svg_version > { };
 template < > class type_master < t_svg_version_grand > : public enum_n < t_svg_version_grand, e_svg_version_grand > { };
 template < > class type_master < t_tableframe > : public enum_n < t_tableframe, e_tableframe > { };
@@ -311,7 +315,7 @@ template < > class type_master < t_transform_fn > : public enum_n < t_transform_
 template < > class type_master < t_turbulence_type > : public enum_n < t_turbulence_type, e_turbulence_type > { };
 template < > class type_master < t_unit > : public enum_n < t_unit, e_unit > { };
 template < > class type_master < t_unicode_bidi > : public enum_n < t_unicode_bidi, e_unicode_bidi > { };
-template < > class type_master < t_vectoreffect_2 > : public enum_n < t_vectoreffect_2, e_vectoreffect_2 > { };
+template < > class type_master < t_vector_effect_2 > : public enum_n < t_vector_effect_2, e_vector_effect_2 > { };
 template < > class type_master < t_whitespace > : public enum_n < t_whitespace, e_whitespace > { };
 template < > class type_master < t_writingmode > : public enum_n < t_writingmode, e_writingmode > { };
 template < > class type_master < t_xmlns > : public enum_n < t_xmlns, e_xmlns > { };

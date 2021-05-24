@@ -156,8 +156,11 @@ void element::examine_aside ()
             pick (nit_no_main_kids, ed_50, "4.3.5 The aside element", es_warning, ec_element, "<ASIDE> can have no <MAIN> descendants"); }
 
 void element::examine_audio ()
-{   examine_media_element (elem_audio, "4.7.7 The audio element", "<AUDIO>", MIME_AUDIO);
-    if (a_.known (a_autoplay)) pick (nit_autoplay, es_warning, ec_rudeness, "AUTOPLAY on <AUDIO> is rude"); }
+{   if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())
+        pick (nit_unknown_element, es_error, ec_element, "<AUDIO> requires HTML 5 or SVG 1.2");
+    else
+    {   examine_media_element (elem_audio, "4.7.7 The audio element", "<AUDIO>", MIME_AUDIO);
+        if (a_.known (a_autoplay)) pick (nit_autoplay, es_warning, ec_rudeness, "AUTOPLAY on <AUDIO> is usually rude"); } }
 
 void element::examine_base ()
 {   if (node_.version () == html_tags)
@@ -231,6 +234,9 @@ void element::examine_button ()
                 a_.known (a_action) || a_.known (a_enctype) || a_.known (a_method) || a_.known (a_novalidate) || a_.known (a_target))
                 pick (nit_bad_form, ed_50, "", es_error, ec_attribute, "FORM... attributes require <BUTTON> TYPE='submit'"); } }
 
+void element::examine_caption ()
+{   if (node_.version ().is_5 ()) check_descendants (elem_caption, element_bit_set (elem_table)); }
+
 void element::examine_card ()
 {   if ((node_.version () < html_jan05) || (node_.version () >= html_jan07))
     {   if (! node_.version ().has_math ())
@@ -260,8 +266,15 @@ void element::examine_colgroup ()
                 else pick (nit_colgroup_children, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> and <TEMPLATE> descendants.");
             if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "SPAN cannot exceed 1000"); } }
 
-void element::examine_caption ()
-{   if (node_.version ().is_5 ()) check_descendants (elem_caption, element_bit_set (elem_table)); }
+void element::examine_colour_profile ()
+{   if (node_.version ().is_svg_1 ())
+        if (a_.good (a_name))
+        {   const ::std::string& naam (a_.get_string (a_name));
+            if (compare_no_case (naam, sz_srgb :: sz ()))
+                pick (nit_colour_profile, es_warning, ec_attribute, "standard colour profiles cannot be redefined");
+            else if (page_.profiles ().find (naam) != page_.profiles ().cend ())
+                pick (nit_colour_profile, es_warning, ec_attribute, "colour profile ", quote (naam), " previously defined");
+            else page_.profiles ().insert (naam); } }
 
 void element::examine_data ()
 {   if (ancestral_elements_.test (elem_svg))
@@ -281,6 +294,7 @@ void element::examine_datagrid ()
     {   bool had_table = false, had_select = false, had_datalist = false, had_other = false;
         int n = 0;
         for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+        {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
             if (is_standard_element (p -> tag ()) && ! p -> node_.is_closure ())
                 switch (p -> tag ())
                 {   case elem_datalist :
@@ -297,7 +311,7 @@ void element::examine_datagrid ()
                         break;
                    default :
                         had_other = true;
-                        break; }
+                        break; } }
         if (n > 1)
             pick (nit_bad_datagrid, ed_jan07, "3.18.2. The datagrid element", es_error, ec_element, "a <DATAGRID> can have only one <DATALIST>, <SELECT> or <TABLE> child");
         if (had_other)
@@ -310,6 +324,7 @@ void element::examine_datalist ()
     {   bool had_option = false, had_other = false;
         for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
             if (is_standard_element (p -> tag ()) && ! p -> node_.is_closure ())
+            {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                 switch (p -> tag ())
                 {   case elem_option :
                         had_option = true;
@@ -318,7 +333,7 @@ void element::examine_datalist ()
                         break;
                     default :
                         had_other = true;
-                        break; }
+                        break; } }
         if (had_other)
             if (had_option)
             {   pick (nit_bad_datalist, ed_50, "4.10.8 The datalist element", es_error, ec_element, "a <DATALIST> can have <OPTION> children, or other children, but not both"); }
@@ -330,11 +345,12 @@ void element::examine_details ()
     bool first = true;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (is_standard_element (c -> tag ()) && (! c -> node_.is_closure ()))
                 if (first) first = false;
                 else if (c -> tag () == elem_summary)
                 {   pick (nit_details_summary, ed_51, "4.11.1. The details element", es_error, ec_element, "<SUMMARY> can only be the first child of <DETAILS>");
-                    break; } }
+                    break; } } }
 
 void element::dddt (const char* ref1, const char* ref2, const char* el)
 {   if (node_.version ().is_5 ())
@@ -374,6 +390,7 @@ void element::examine_div ()
     {   bool dt = false, dd = false;
         if (parent_ -> tag () == elem_dl)
         {   for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+            {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
                 if (! c -> node_.is_closure ())
                 {   if (faux_bitset.test (c -> tag ())) continue;
                     if (script_bitset.test (c -> tag ())) continue;
@@ -388,7 +405,7 @@ void element::examine_div ()
                             break;
                         default :
                             pick (nit_dt_dd, ed_52, "4.4.15. The div element", es_error, ec_element, "when <DIV> is a child of <DL>, it can only have <DD>, <DT>, and script children");
-                            break; } }
+                            break; } } }
             if (! dt || ! dd)
                 pick (nit_dt_dd, ed_52, "4.4.15. The div element", es_error, ec_element, "when <DIV> is a child of <DL>, it must have at least one <DT> child, then at least one <DD> child"); } } }
 
@@ -397,6 +414,7 @@ void element::examine_dl ()
     vstr_t terms; ::std::string s;
     if (has_child () && (node_.version ().is_5 ()))
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (! c -> node_.is_closure ())
                 switch (c -> tag ())
                 {   case elem_div :
@@ -430,7 +448,7 @@ void element::examine_dl ()
                             pick (nit_bad_dl, ed_jan05, "2.4.2. The dl, dt, and dd elements", es_error, ec_element, "<DL> cannot have non-whitespace text content");
                         break;
                     default :
-                        break; } }
+                        break; } } }
 
 void element::examine_dt ()
 {   dddt ("3.11.5. The dt element", "4.4.10. The dt element", "DT"); }

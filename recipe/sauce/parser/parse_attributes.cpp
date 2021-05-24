@@ -277,7 +277,7 @@ e_svg_version attributes_node::get_svg (const html_version& v) const
                 case 2 : return sv_1_0;
                 case 3 : return sv_1_1;
                 case 4 : return sv_1_2_tiny;
-                default : DBG_ASSERT (false); return sv_1_0; }
+                default : GRACEFUL_CRASH (__FILE__, __LINE__); return sv_1_0; }
         default : break; }
     if (v >= html_apr21) return sv_2_1;
     if (v >= html_oct18) return sv_2_0;
@@ -297,7 +297,7 @@ e_math_version attributes_node::get_math (const html_version& v) const
                 case 2 :
                 case 3 :
                 case 4 : return math_2;
-                default : DBG_ASSERT (false); return math_1; }
+                default : GRACEFUL_CRASH (__FILE__, __LINE__); return math_1; }
         default : break; }
     if (v >= html_apr21) return math_4;
     if (v >= html_5_0) return math_3;

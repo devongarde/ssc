@@ -74,31 +74,31 @@ public:
     bool has_parent () const { return parent_ != nullptr; }
     bool presumed () const { return presumed_; }
     const element_node& child () const
-    {   DBG_ASSERT (has_child ());
+    {   PRESUME (has_child (), __FILE__, __LINE__);
         return *child_; }
     const element_node& last () const
-    {   DBG_ASSERT (has_last ());
+    {   PRESUME (has_last (), __FILE__, __LINE__);
         return *last_; }
     const element_node& next () const
-    {   DBG_ASSERT (has_next ());
+    {   PRESUME (has_next (), __FILE__, __LINE__);
         return *next_; }
     const element_node& previous () const
-    {   DBG_ASSERT (has_previous ());
+    {   PRESUME (has_previous (), __FILE__, __LINE__);
         return *previous_; }
     const element_node& parent () const
-    {   DBG_ASSERT (has_parent ());
+    {   PRESUME (has_parent (), __FILE__, __LINE__);
         return *parent_; }
     element_node& child ()
-    {   DBG_ASSERT (has_child ());
+    {   PRESUME (has_child (), __FILE__, __LINE__);
         return *child_; }
     element_node& next ()
-    {   DBG_ASSERT (has_next ());
+    {   PRESUME (has_next (), __FILE__, __LINE__);
         return *next_; }
     element_node& previous ()
-    {   DBG_ASSERT (has_previous ());
+    {   PRESUME (has_previous (), __FILE__, __LINE__);
         return *previous_; }
     element_node& parent ()
-    {   DBG_ASSERT (has_parent ());
+    {   PRESUME (has_parent (), __FILE__, __LINE__);
         return *parent_; }
 
     nitpick& nits () { return nits_; }

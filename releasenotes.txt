@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.105
+- improved diagnostics on unexpected exit
+- underlying work
+
 0.0.104
 - underlying work
 

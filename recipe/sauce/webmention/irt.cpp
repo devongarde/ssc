@@ -50,7 +50,7 @@ void reply::swap (reply& r) NOEXCEPT
 
 bool reply::set_server (const ::std::string& link)
 {   if (link.empty ()) return false;
-    DBG_ASSERT (! target_.empty ());
+    PRESUME (! target_.empty (), __FILE__, __LINE__);
     if (link.find (COLON) != link.npos)
         server_ = link;
     else
@@ -121,7 +121,7 @@ void reply::mark ()
 {   time_t ridiculous_1;
     time (&ridiculous_1);
     struct tm *ridiculous_2 = gmtime (&ridiculous_1);
-    DBG_ASSERT (ridiculous_2 != nullptr);
+    VERIFY_NOT_NULL (ridiculous_2, __FILE__, __LINE__);
     ::boost::format ridiculous_3 ("%04d.%02d.%02d %02d:%02d:%02d");
     ridiculous_3 % (ridiculous_2 -> tm_year + 1900) % ridiculous_2 -> tm_mon % ridiculous_2 -> tm_mday % ridiculous_2 -> tm_hour % ridiculous_2 -> tm_min % ridiculous_2 -> tm_sec;
     when_ = ridiculous_3.str (); }
@@ -188,7 +188,7 @@ void reply::mark_delete ()
     return res.str (); }
 
 bool reply::enact (nitpick& nits, const html_version& v)
-{   DBG_ASSERT (activity_ != act_unknown);
+{   PRESUME (activity_ != act_unknown, __FILE__, __LINE__);
     if (activity_ == act_static) return true;
     if (! find_server (nits, v)) return false;
     return mention (nits, v, url (nits, v, file_), url (nits, v, target_), url (nits, v, server_)); }

@@ -45,13 +45,13 @@ class prop  // would be better templated
         else if (value_ >= first_rel && value <= last_rel) state_ = ps_rel;
         else state_ = ps_invalid; }
     void reset (const e_class e)
-    {   DBG_ASSERT (html_class::is_microformat_property (e));
+    {   PRESUME (html_class::is_microformat_property (e), __FILE__, __LINE__);
         assign (static_cast < e_property > (e) + first_class);
-        DBG_ASSERT (value_ <= last_class); }
+        PRESUME (value_ <= last_class, __FILE__, __LINE__); }
     void reset (const e_rel e)
-    {   DBG_ASSERT (rel::is_microformat_property (e));
+    {   PRESUME (rel::is_microformat_property (e), __FILE__, __LINE__);
         assign (static_cast < e_property > (e) + first_rel);
-        DBG_ASSERT (value_ <= last_rel); }
+        PRESUME (value_ <= last_rel, __FILE__, __LINE__); }
 public:
     typedef e_property value_type;
     prop () = default;

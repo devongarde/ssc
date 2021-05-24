@@ -48,4 +48,5 @@ bool empty_itemid ()
 {   return miid.empty (); }
 
 bool invalid_itemid (nitpick& nits, const html_version& v, const ::std::string& id, const element* const e)
-{   return ! note_itemid (nits, v, id, e -> name (), e -> line ()); }
+{   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+    return ! note_itemid (nits, v, id, e -> name (), e -> line ()); }

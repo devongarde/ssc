@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_enum.h"
 #include "type/type_case.h"
 
-// e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& ns);
 e_namespace xmlns_to_namespace (nitpick& nits, const html_version& v, const e_xmlns x);
 
 template < > inline void enum_n < t_namespace, e_namespace > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)

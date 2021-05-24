@@ -563,7 +563,7 @@ PASS ../toast/living/jul10/ls4.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jul10/ls5.html
-3 xmlns_namespace contradictory_namespace
+3 contradictory_namespace
 5 use_quote_code
 6 unknown_element
 8 unknown_element unrecognised_namespace
@@ -651,7 +651,7 @@ PASS ../toast/living/jul10/mt.html
 10 inserted_missing_closure missing_close inserted_missing_parent inserted_missing_closure inserted_missing_parent missing_close inserted_missing_closure
 
 PASS ../toast/living/jul10/namespace.html
-10 bad_namespace unknown_element xmlns_namespace unrecognised_namespace
+10 bad_namespace unknown_element unrecognised_namespace
 
 PASS ../toast/living/jul10/nav-1.html
 0 charset_mismatch charset_used charset_invalid
@@ -799,7 +799,7 @@ PASS ../toast/living/jul10/script.html
 
 PASS ../toast/living/jul10/shf-1.html
 6 missing_close inserted_missing_closure missing_close
-8 missing_close chocolate_teapot inserted_missing_closure missing_close wrong_parent chocolate_teapot
+8 missing_close chocolate_teapot inserted_missing_closure missing_close wrong_parent wrong_parent chocolate_teapot
 17 attribute_unrecognised_here unrecognised_attribute
 42 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
@@ -830,7 +830,7 @@ PASS ../toast/living/jul10/source.html
 17 url_not_found mime
 18 url_not_found
 19 mime url_not_found
-33 wrong_parent autoplay
+33 autoplay
 34 url_not_found
 35 url_not_found
 39 inserted_missing_closure

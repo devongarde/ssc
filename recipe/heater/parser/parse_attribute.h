@@ -54,6 +54,6 @@ public:
     bool invalid () const { return id_ == a_unknown; }
     bool has_key () const { return has_key_; }
     bool has_value () const { return has_value_; }
-    ::std::string get_key () const { DBG_ASSERT (has_key_); return key_; }
+    ::std::string get_key () const { PRESUME (has_key_, __FILE__, __LINE__); return key_; }
     ::std::string get_string () const { return value_; }
     ::std::string rpt () const; };

@@ -28,15 +28,62 @@ PASS ../toast/SVG/2.1/ellipse.xhtml
 0 title_required
 1 xhtml_5_0
 
+PASS ../toast/SVG/2.1/feblend.svg
+1 xhtml_5_0
+33 is_property
+
+PASS ../toast/SVG/2.1/fecolourmatrix.svg
+1 xhtml_5_0
+25 newline_in_string newline_in_string
+
+PASS ../toast/SVG/2.1/fecomponenttransfer.xhtml
+1 xhtml_5_0
+
+PASS ../toast/SVG/2.1/fecomposite.svg
+1 xhtml_5_0
+13 use_double_quote_code
+87 is_property
+124 is_property
+128 use_double_quote_code
+
+PASS ../toast/SVG/2.1/fedropshadow.html
+2 naughty_lang
+13 sunk unrecognised_value bad_result
+14 unrecognised_value immeasurable unrecognised_value immeasurable
+15 unrecognised_value bad_colour sunk
+19 unrecognised_value bad_result
+
+PASS ../toast/SVG/2.1/feimage.html
+21 url_not_found
+26 url_not_found
+30 url_not_found
+
+PASS ../toast/SVG/2.1/femorphology.svg
+1 xhtml_5_0
+7 use_quote_code
+24 is_property
+
+PASS ../toast/SVG/2.1/feturbulence.svg
+1 xhtml_5_0
+
+PASS ../toast/SVG/2.1/focus.html
+0 title_required
+2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+
 PASS ../toast/SVG/2.1/foreign.svg
 0 title_required
 1 xhtml_5_0
-6 bad_namespace unknown_element xmlns_namespace unrecognised_namespace
+6 bad_namespace unknown_element unrecognised_namespace
 7 unknown_element
 8 unknown_element
 9 unknown_element
 10 unknown_element
 12 unknown_element
+
+PASS ../toast/SVG/2.1/foreignobject.svg
+0 title_required
+1 xhtml_5_0
+6 use_quote_code
 
 PASS ../toast/SVG/2.1/g.xhtml
 0 title_required
@@ -65,7 +112,6 @@ PASS ../toast/SVG/2.1/image-1.svg
 
 PASS ../toast/SVG/2.1/image-2.svg
 1 xhtml_5_0
-4 xmlns_namespace
 25 url_not_found
 
 PASS ../toast/SVG/2.1/index.html
@@ -79,15 +125,34 @@ PASS ../toast/SVG/2.1/line.xhtml
 0 title_required
 1 xhtml_5_0
 
+PASS ../toast/SVG/2.1/lineargradient.svg
+1 xhtml_5_0
+
+PASS ../toast/SVG/2.1/marker-1.svg
+0 title_required
+1 xhtml_5_0
+
+PASS ../toast/SVG/2.1/marker-2.svg
+0 title_required
+1 xhtml_5_0
+
+PASS ../toast/SVG/2.1/marker-3.svg
+0 title_required
+1 xhtml_5_0
+
+PASS ../toast/SVG/2.1/marker-4.svg
+0 title_required
+1 xhtml_5_0
+
 PASS ../toast/SVG/2.1/metadata.svg
 1 xhtml_5_0
-4 xmlns_namespace unrecognised_namespace unrecognised_value
+4 unrecognised_namespace unrecognised_value
 6 unknown_element
 7 unknown_element unknown_element unknown_element
 8 unknown_element unknown_element unknown_element
 9 unknown_element unknown_element
 10 unknown_element unknown_element unknown_element
-16 bad_namespace unknown_element xmlns_namespace xmlns_namespace xmlns_namespace
+16 bad_namespace unknown_element
 23 unknown_element
 24 unknown_element
 25 unknown_element
@@ -137,6 +202,9 @@ PASS ../toast/SVG/2.1/path-5.xhtml
 1 xhtml_5_0
 5 path_spec path_spec
 
+PASS ../toast/SVG/2.1/pattern-2.svg
+1 xhtml_5_0
+
 PASS ../toast/SVG/2.1/polygon.xhtml
 0 title_required
 1 xhtml_5_0
@@ -152,6 +220,9 @@ PASS ../toast/SVG/2.1/preserveaspectratio.xhtml
 0 title_required
 1 xhtml_5_0
 
+PASS ../toast/SVG/2.1/radialgradient.svg
+1 xhtml_5_0
+
 PASS ../toast/SVG/2.1/rect-1.xhtml
 0 title_required
 1 xhtml_5_0
@@ -159,6 +230,11 @@ PASS ../toast/SVG/2.1/rect-1.xhtml
 PASS ../toast/SVG/2.1/rect-2.xhtml
 0 title_required
 1 xhtml_5_0
+
+PASS ../toast/SVG/2.1/script.svg
+0 title_required
+1 xhtml_5_0
+7 script
 
 PASS ../toast/SVG/2.1/shape.html
 2 naughty_lang
@@ -192,7 +268,7 @@ PASS ../toast/SVG/2.1/svg-1.html
 PASS ../toast/SVG/2.1/svg-1.xhtml
 0 title_required
 1 xhtml_5_0
-3 unknown_element unrecognised_namespace xmlns_namespace
+3 unknown_element unrecognised_namespace
 9 unknown_element
 
 PASS ../toast/SVG/2.1/svg-2.xhtml
@@ -203,7 +279,7 @@ PASS ../toast/SVG/2.1/svg-2.xhtml
 PASS ../toast/SVG/2.1/svg-3.xhtml
 0 title_required
 1 xhtml_5_0
-7 bad_namespace xmlns_namespace
+7 bad_namespace
 
 PASS ../toast/SVG/2.1/text-1.svg
 0 title_required
@@ -286,7 +362,6 @@ PASS ../toast/SVG/2.1/units.xhtml
 
 PASS ../toast/SVG/2.1/use.svg
 1 xhtml_5_0
-4 xmlns_namespace
 
 PASS ../toast/SVG/2.1/vectoreffects-1.svg
 0 title_required
@@ -314,3 +389,7 @@ PASS ../toast/SVG/2.1/viewport.xhtml
 PASS ../toast/SVG/2.1/white-space.html
 2 naughty_lang
 14 use_double_quote_code newline_in_string newline_in_string
+
+PASS ../toast/SVG/2.1/will-change.html
+2 naughty_lang
+29 newline_in_string newline_in_string

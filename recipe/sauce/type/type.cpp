@@ -78,7 +78,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_action);
         TEST_VALUE (t_actiontype);
         TEST_VALUE (t_actiontype2);
-        TEST_VALUE (t_actuate);
         TEST_VALUE (t_additive);
         TEST_VALUE (t_align);
         TEST_VALUE (t_align2070);
@@ -129,7 +128,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_calcmode);
         TEST_VALUE (t_captionalign);
         TEST_VALUE (t_capture);
-        TEST_VALUE (t_channel_selector);
+        TEST_VALUE (t_channelselector);
         TEST_VALUE (t_char);
         TEST_VALUE (t_charset);
         TEST_VALUE (t_charsets);
@@ -145,9 +144,12 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_colour_ci);
         TEST_VALUE (t_colour_cii);
         TEST_VALUE (t_colour_i);
-        TEST_VALUE (t_colourinterpolation);
+        TEST_VALUE (t_colour_interpolation);
         TEST_VALUE (t_colour_ni);
-        TEST_VALUE (t_colourrendering);
+        TEST_VALUE (t_colour_profile);
+        TEST_VALUE (t_colour_profile_name);
+        TEST_VALUE (t_colour_profile_name_or_uri);
+        TEST_VALUE (t_colour_rendering);
         TEST_VALUE (t_colour_v);
         TEST_VALUE (t_command);
         TEST_VALUE (t_compact);
@@ -213,7 +215,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_effect);
         TEST_VALUE (t_email);
         TEST_VALUE (t_emails);
-        TEST_VALUE (t_enablebackground);
+        TEST_VALUE (t_enable_background);
         TEST_VALUE (t_enctype);
         TEST_VALUE (t_end);
         TEST_VALUE (t_endvaluelist);
@@ -225,10 +227,10 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_filename);
         TEST_VALUE (t_fill);
         TEST_VALUE (t_fillanim);
-        TEST_VALUE (t_fillopacity);
-        TEST_VALUE (t_fillrule);
+        TEST_VALUE (t_fill_opacity);
+        TEST_VALUE (t_fill_rule);
         TEST_VALUE (t_filter_in);
-        TEST_VALUE (t_filter_res);
+        TEST_VALUE (t_filterres);
         TEST_VALUE (t_fixedcolour);
         TEST_VALUE (t_fixedpoint);
         TEST_VALUE (t_focushighlight);
@@ -276,13 +278,14 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_httpequiv);
         TEST_VALUE (t_hv);
         TEST_VALUE (t_hunit);
+        TEST_VALUE (t_icc);
         TEST_VALUE (t_icccolour);
         TEST_VALUE (t_id);
         TEST_VALUE (t_identifier_url);
         TEST_VALUE (t_idref);
         TEST_VALUE (t_idrefs);
         TEST_VALUE (t_illegal);
-        TEST_VALUE (t_imagerendering);
+        TEST_VALUE (t_image_rendering);
         TEST_VALUE (t_imcastr);
         TEST_VALUE (t_imgsizes);
         TEST_VALUE (t_importance);
@@ -536,7 +539,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_shape_rendering);
         TEST_VALUE (t_shape_rcp);
         TEST_VALUE (t_shape_uri);
-        TEST_VALUE (t_show);
         TEST_VALUE (t_side);
         TEST_VALUE (t_size);
         TEST_VALUE (t_size3);
@@ -545,7 +547,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_smei);
         TEST_VALUE (t_spacer);
         TEST_VALUE (t_spacing);
-        TEST_VALUE (t_spread_method);
+        TEST_VALUE (t_spreadmethod);
         TEST_VALUE (t_srcset);
         TEST_VALUE (t_ssi);
         TEST_VALUE (t_ssi_comparison);
@@ -565,6 +567,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_align);
         TEST_VALUE (t_svg_baselineshift);
         TEST_VALUE (t_svg_baseprofile);
+        TEST_VALUE (t_svg_clip);
         TEST_VALUE (t_svg_content);
         TEST_VALUE (t_svg_direction);
         TEST_VALUE (t_svg_direction2);
@@ -596,7 +599,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_timelinebegin);
         TEST_VALUE (t_svg_transform);
         TEST_VALUE (t_svg_type);
-        TEST_VALUE (t_svg_type_11);
         TEST_VALUE (t_svg_units);
         TEST_VALUE (t_svg_values);
         TEST_VALUE (t_svg_version);
@@ -607,7 +609,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_syncbehaviour);
         TEST_VALUE (t_syncbehaviourdefault);
         TEST_VALUE (t_tableframe);
-        TEST_VALUE (t_table_values);
+        TEST_VALUE (t_tablevalues);
         TEST_VALUE (t_target);
         TEST_VALUE (t_tbalign);
         TEST_VALUE (t_tdscope);
@@ -650,11 +652,11 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_value);
         TEST_VALUE (t_values);
         TEST_VALUE (t_valuetype);
-        TEST_VALUE (t_vectoreffect);
-        TEST_VALUE (t_vectoreffect_12);
-        TEST_VALUE (t_vectoreffect_2);
-        TEST_VALUE (t_vectoreffect_20);
-        TEST_VALUE (t_vectoreffect_2s);
+        TEST_VALUE (t_vector_effect);
+        TEST_VALUE (t_vector_effect_12);
+        TEST_VALUE (t_vector_effect_2);
+        TEST_VALUE (t_vector_effect_20);
+        TEST_VALUE (t_vector_effect_2s);
         TEST_VALUE (t_version);
         TEST_VALUE (t_vid);
         TEST_VALUE (t_viewportscreen);
@@ -694,7 +696,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_zero_to_one);
         TEST_VALUE (t_zero_to_ones);
         TEST_VALUE (t_zoompan);
-        default :   DBG_ASSERT (false);
-                    nits.pick (nit_type_error, es_catastrophic, ec_type, "type ", t, " missing from test_value");
+        default :   nits.pick (nit_type_error, es_catastrophic, ec_type, "type ", t, " missing from test_value");
+                    GRACEFUL_CRASH (__FILE__, __LINE__);
                     break; }
     return false; }

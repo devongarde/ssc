@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 typedef ssc_map < ::std::string, ::std::size_t > vw_t;
 vw_t wotsit, inverted_wotsit;
 ustr_t symbol_code, code_symbol, extras;
+::std::size_t wotsit_count = 0;
 
 void extra_wotsit (const char* s, const char* c)
 {   auto sc = extras.find (c);
@@ -59,10 +60,10 @@ void known_wotsit (const char* s, const char* c, const bool suggest)
             inverted_wotsit.insert (vw_t::value_type (::std::string (c), ws -> second)); } }
 
 void wotsit_init (nitpick& nits)
-{   for (int index = 0; wotsit_table [index].wotsit_ != nullptr; ++index)
-    {   if (wotsit.find (wotsit_table [index].wotsit_) != wotsit.end ())
-            nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "Program error: wotsit ", wotsit_table [index].wotsit_, " already defined");
-        else wotsit.insert (vw_t::value_type (wotsit_table [index].wotsit_, index)); }
+{   for (wotsit_count = 0; wotsit_table [wotsit_count].wotsit_ != nullptr; ++wotsit_count)
+    {   if (wotsit.find (wotsit_table [wotsit_count].wotsit_) != wotsit.end ())
+            nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "Program error: wotsit ", wotsit_table [wotsit_count].wotsit_, " already defined");
+        else wotsit.insert (vw_t::value_type (wotsit_table [wotsit_count].wotsit_, wotsit_count)); }
     for (int i = 0; known_symbols [i].symbol_ != nullptr; ++i)
         known_wotsit (known_symbols [i].symbol_, known_symbols [i].code_, known_symbols [i].suggest_);
     for (int i = 0; xtra [i].symbol_ != nullptr; ++i)
@@ -105,25 +106,29 @@ void text_check (nitpick& nits, const html_version& v, const ::std::string& text
         vw_t::const_iterator i = wotsit.find (text.c_str ());
         if (i == wotsit.end ())
             nits.pick (nit_bizarre_character_code, es_error, ec_parser, "&", text, "; is neither a known text entity nor a normalised URL");
-        else if (! does_apply < html_version > (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_))
-            nits.pick (nit_code_unrecognised_here, es_warning, ec_parser, "&", text, "; is invalid in ", v.report ()); } }
+        else
+        {   PRESUME (i -> second < wotsit_count, __FILE__, __LINE__);
+            if (! does_apply < html_version > (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_))
+                nits.pick (nit_code_unrecognised_here, es_warning, ec_parser, "&", text, "; is invalid in ", v.report ()); } } }
 
 void examine_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid)
-{   DBG_ASSERT (! text.empty ());
+{   PRESUME (! text.empty (), __FILE__, __LINE__);
     vw_t::const_iterator i = wotsit.find (text);
     if (i != wotsit.end ())
+    {   PRESUME (i -> second < wotsit_count, __FILE__, __LINE__);
         if (! may_apply (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_)) invalid = true;
-        else known = true; }
+        else known = true; } }
 
 ::std::string interpret_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid)
-{   DBG_ASSERT (! text.empty ());
+{   PRESUME (! text.empty (), __FILE__, __LINE__);
     vw_t::const_iterator i = wotsit.find (text);
     if (i != wotsit.end ())
+    {   PRESUME (i -> second < wotsit_count, __FILE__, __LINE__);
         if (! may_apply (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_)) invalid = true;
         else
         {   known = true;
             auto ci = code_symbol.find (wotsit_table [i -> second].wotsit_);
-            if (ci != code_symbol.end ()) return ci -> second; }
+            if (ci != code_symbol.end ()) return ci -> second; } }
    ::std::string res ("&");
     res += text + ';';
     return res; }
@@ -144,7 +149,7 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
     return res; }
 
 ::std::string interpret_character_number (const ::std::string& text)
-{   DBG_ASSERT (! text.empty ());
+{   PRESUME (! text.empty (), __FILE__, __LINE__);
     unsigned int n = 0;
     for (auto ch : text)
     {   n *= 10;
@@ -164,7 +169,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
     return true; }
 
 ::std::string interpret_character_number (nitpick& nits, const ::std::string& text)
-{   DBG_ASSERT (! text.empty ());
+{   PRESUME (! text.empty (), __FILE__, __LINE__);
     unsigned int n = 0;
     ::std::string res = "&#";
     res += text;
@@ -182,7 +187,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
     return ::std::string (1, static_cast <char> (n)); }
 
 ::std::string interpret_character_hex (const ::std::string& text)
-{   DBG_ASSERT (! text.empty ());
+{   PRESUME (! text.empty (), __FILE__, __LINE__);
     unsigned int n = 0;
     for (auto ch : text)
     {   n <<= 4;
@@ -194,7 +199,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
     return ::std::string (1, static_cast <char> (n)); }
 
 ::std::string interpret_character_hex (nitpick& nits, const ::std::string& text)
-{   DBG_ASSERT (! text.empty ());
+{   PRESUME (! text.empty (), __FILE__, __LINE__);
     ::std::string res = "&#x";
     res += text;
     res += ';';

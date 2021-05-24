@@ -109,6 +109,7 @@ void element::examine_script ()
 
 bool element::report_script_comment (element_ptr child)
 {   for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if (! p -> node_.is_closure ())
             if (p -> tag () == elem_faux_text)
             {   if ((p -> node_.text ().find ("<!--") != ::std::string::npos) ||
@@ -117,7 +118,7 @@ bool element::report_script_comment (element_ptr child)
                 {   pick (nit_bad_script, ed_jan14, "4.12.1.2 Restrictions for contents of script elements", es_warning, ec_element, "within the <SCRIPT> content, replace '<!--', '<script', and '</script', even if its quoted, with '<\\!--', '<\\script', and '<\\/script', respectively");
                     return true; } }
             else if (p -> has_child ())
-                if (report_script_comment (p -> child_)) return true;
+                if (report_script_comment (p -> child_)) return true; }
     return false; }
 
 void element::examine_select ()
@@ -141,6 +142,7 @@ void element::examine_select ()
     {   uint64_t placeholder = 0, selected = 0;
         int selectedness = 0;
         for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+        {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
             if (! p -> node_.is_closure ())
                 switch (p -> tag ())
                 {   case elem_optgroup :
@@ -158,7 +160,7 @@ void element::examine_select ()
                         else if (p -> a_.known (a_selected))
                             ++selectedness;
                         break;
-                    default : break; }
+                    default : break; } }
         if (placeholder == 0)
             pick (nit_bad_select, ed_50, "4.10.7 The select element", es_warning, ec_attribute, "the first child <OPTION> that is not in an <OPTGROUP> should have an empty VALUE");
         if (selectedness == 0)
@@ -183,9 +185,10 @@ void element::examine_share ()
         {   element* pide = get_ids ().get_element (i);
             if (pide != nullptr)
                 for (element* p = parent_; p != nullptr; p = p -> parent_)
+                {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                     if (p == pide)
                     {   pick (nit_bad_share, ed_math_3, "4.2.7.2 An Acyclicity Constraint", es_error, ec_attribute, quote (i), " is recursive");
-                        break; } } } }
+                        break; } } } } }
 
 void element::examine_source ()
 {   bool has_src = a_.known (a_src);
@@ -218,12 +221,13 @@ void element::examine_summary ()
     bool heading = false;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (is_standard_element (c -> tag ()) && (! c -> node_.is_closure ()))
                 if (header_bitset.test (c -> tag ()))
                     if (! heading) heading = true;
                     else
                     {   pick (nit_summary_header, ed_51, "4.11.2 The summary element", es_error, ec_element, "<SUMMARY> can only have one child header element");
-                        break; } }
+                        break; } } }
 
 void element::examine_svg ()
 {   bool ancestor = ancestral_elements_.test (elem_svg);
@@ -253,7 +257,8 @@ void element::examine_switch ()
     uint64_t cat = (elem :: categories (parent_ -> tag ()) & EF_SVG_CATMASK);
     bool nofaux = false;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-    {   e_element ct = c -> tag ();
+    {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+        e_element ct = c -> tag ();
         nofaux = nofaux || is_standard_element (ct);
         uint64_t kitten = elem :: categories (ct);
         if ((kitten & cat) == 0)

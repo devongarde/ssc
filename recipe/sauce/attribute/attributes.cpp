@@ -51,6 +51,7 @@ bool attributes :: parse (nitpick& nits, const html_version& v, const attributes
 
 bool attributes :: set_value (nitpick& nits, const html_version& v, const e_attribute a, const ::std::string& s)
 {   if (! has (a)) return false;
+    VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
     aar_.at (a) -> set_value (nits, v, s);
     return true;}
 
@@ -91,7 +92,7 @@ bool attributes :: invalid_id (nitpick& nits, const html_version& v, ids_t& ids,
 
 bool attributes :: invalid_access (nitpick& nits, const html_version& v, sstr_t* ids)
 {   bool res = false;
-    DBG_ASSERT (ids != nullptr);
+    VERIFY_NOT_NULL (ids, __FILE__, __LINE__);
     for (auto a : aar_)
         if (a.get () != nullptr)
             if (! a -> unknown () && ! a -> empty ())
@@ -115,7 +116,7 @@ bool attributes :: verify_url (nitpick& nits, const html_version& v, const eleme
     return res; }
 
 void attributes :: verify_attributes (nitpick& nits, const html_version& v, element* pe)
-{   DBG_ASSERT (pe != nullptr);
+{   VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     for (size_t i = 0; i < aar_.size (); ++i)
         if ((aar_.at (i).get () == nullptr) || aar_.at (i) -> unknown ())
         {   if (is_attribute_required (v, tag_, static_cast < e_attribute > (i)))

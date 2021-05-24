@@ -58,8 +58,8 @@ ns_ptr initialise_namespace_stack (const html_version& v, const ns_ptr& orig)
     return copy_namespace_stack (orig); }
 
 ns_id namespace_stack::add (nitpick& nits, const html_version& v, const ::std::string& xmlns, const ::std::string& schema)
-{   DBG_ASSERT (v >= xhtml_1_0);
-    DBG_ASSERT (vns_.size () > 0);
+{   PRESUME (v >= xhtml_1_0, __FILE__, __LINE__);
+    PRESUME (vns_.size () > 0, __FILE__, __LINE__);
     if (schema.empty ())
     {   nits.pick (nit_bad_namespace, es_error, ec_namespace, "a namespace URL cannot be empty");
         return unspecified_namespace; }
@@ -101,7 +101,7 @@ ns_id namespace_stack::add (nitpick& nits, const html_version& v, const ::std::s
     {   e_namespace ens (xmlns_to_namespace (nits, v, typical.get ()));
         vns_.emplace_back (lc_name, id, ens, false);
         if (vns_.back ().id_ != id)
-        {   DBG_ASSERT (false);
+        {   GRACEFUL_CRASH (__FILE__, __LINE__);
             return unspecified_namespace; }
         names_.emplace (lc_name, id);
         if (typical.good ()) ens_.emplace (ens, id);
@@ -127,12 +127,12 @@ ns_id namespace_stack::find (const e_namespace en) const
     return i -> second; }
 
 e_namespace namespace_stack::standard (const ns_id id) const
-{   DBG_ASSERT (id <= vns_.size ());
+{   PRESUME (id <= vns_.size (), __FILE__, __LINE__);
     if (id >= vns_.size ()) return ns_custom;
     return vns_.at (id).standard_; }
 
 ns_name namespace_stack::name (const ns_id id) const
-{   DBG_ASSERT (id <= vns_.size ());
+{   PRESUME (id <= vns_.size (), __FILE__, __LINE__);
     if (id >= vns_.size ()) return "";
     return vns_.at (id).name_; }
 
@@ -150,7 +150,8 @@ e_namespace examine_namespace (nitpick& nits, const html_version& v, ns_ptr& ns_
                 bool stackless = (ns_stack.get () == nullptr);
                 if (compare_complain (nits, v, n, XMLNS)) return ns_xmlns;
                 if (! stackless)
-                {   ns_id id = ns_stack -> find (n);
+                {   VERIFY_NOT_NULL (ns_stack, __FILE__, __LINE__);
+                    ns_id id = ns_stack -> find (n);
                     if (id != unspecified_namespace)
                         return ns_stack -> standard (id); }
                 nitpick nuts;

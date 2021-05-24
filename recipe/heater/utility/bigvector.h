@@ -35,10 +35,10 @@ template < class MEMBER, size_t CHUNK > class big_vector
     void pre_push_back ()
     {   if ((size_ % CHUNK) == 0)
         {   size_t c = chunk (size_);
-            DBG_ASSERT (c <= data_.size ());
+            PRESUME (c <= data_.size (), __FILE__, __LINE__);
             if (c == data_.size ())
                 data_.push_back (chunk_t (new base_t));
-            DBG_ASSERT (data_.at (c) != nullptr);
+            PRESUME (data_.at (c) != nullptr, __FILE__, __LINE__);
             data_.at (c) -> reserve (CHUNK); } }
 public:
 #ifndef NO_MOVE_CONSTRUCTOR
@@ -60,28 +60,28 @@ public:
     size_t size () const
     {   return size_; }
     MEMBER& at (const size_t index)
-    {   DBG_ASSERT (index < size_);
+    {   PRESUME (index < size_, __FILE__, __LINE__);
         size_t c = chunk (index);
-        DBG_ASSERT (c < data_.size ());
-        DBG_ASSERT (data_.at (c) != nullptr);
+        PRESUME (c < data_.size (), __FILE__, __LINE__);
+        VERIFY_NOT_NULL (data_.at (c), __FILE__, __LINE__);
         size_t o = offset (index);
-        DBG_ASSERT (o < data_.at (c) -> size ());
+        PRESUME (o < data_.at (c) -> size (), __FILE__, __LINE__);
         return data_.at (c) -> at (o); }
     const MEMBER& at (const size_t index) const
-    {   DBG_ASSERT (index < size_);
+    {   PRESUME (index < size_, __FILE__, __LINE__);
         size_t c = chunk (index);
-        DBG_ASSERT (c < data_.size ());
-        DBG_ASSERT (data_.at (c) != nullptr);
+        PRESUME (c < data_.size (), __FILE__, __LINE__);
+        VERIFY_NOT_NULL (data_.at (c), __FILE__, __LINE__);
         size_t o = offset (index);
-        DBG_ASSERT (o < data_.at (c) -> size ());
+        PRESUME (o < data_.at (c) -> size (), __FILE__, __LINE__);
         return data_.at (c) -> at (o); }
     void pop_back () { --size_; }
     void push_back (const MEMBER& m)
     {   pre_push_back ();
         chunk_t ptr = data_.at (chunk (size_));
-        DBG_ASSERT (ptr != nullptr);
+        VERIFY_NOT_NULL (ptr, __FILE__, __LINE__);
         size_t off (offset (size_));
-        DBG_ASSERT (off <= ptr -> size ());
+        PRESUME (off <= ptr -> size (), __FILE__, __LINE__);
         if (off == ptr -> size ())
         {   ptr -> push_back (m);
             ++size_; }
@@ -89,9 +89,9 @@ public:
     void push_back (MEMBER&& m)
     {   pre_push_back ();
         chunk_t ptr = data_.at (chunk (size_));
-        DBG_ASSERT (ptr != nullptr);
+        VERIFY_NOT_NULL (ptr, __FILE__, __LINE__);
         size_t off (offset (size_));
-        DBG_ASSERT (off <= ptr -> size ());
+        PRESUME (off <= ptr -> size (), __FILE__, __LINE__);
         if (off == ptr -> size ())
         {   ptr -> push_back (m);
             ++size_; }

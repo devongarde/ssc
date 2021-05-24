@@ -333,7 +333,7 @@ PASS ../toast/living/jul09/ls4.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jul09/ls5.html
-3 xmlns_namespace contradictory_namespace
+3 contradictory_namespace
 5 use_quote_code
 6 unknown_element
 8 unknown_element unrecognised_namespace

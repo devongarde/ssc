@@ -78,11 +78,11 @@ public:
     ::std::string report () const; };
 
 template < class VOCAB > VOCAB& microformats::get ()
-{   DBG_ASSERT (allocated (VOCAB::whoami ()));
+{   PRESUME (allocated (VOCAB::whoami ()), __FILE__, __LINE__);
     return * (reinterpret_cast < VOCAB* > (mf_ [VOCAB::whoami ()].get ())); }
 
 template < class VOCAB > const VOCAB& microformats::get () const
-{   DBG_ASSERT (allocated (VOCAB::whoami ()));
+{   PRESUME (allocated (VOCAB::whoami ()), __FILE__, __LINE__);
     return * (reinterpret_cast < const VOCAB* > (mf_ [VOCAB::whoami ()].get ())); }
 
 template < class VOCAB > bool microformats::has () const

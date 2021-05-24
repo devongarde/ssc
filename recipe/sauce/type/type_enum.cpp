@@ -205,12 +205,25 @@ struct symbol_entry < html_version, e_cntype > cntype_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "constant", cn_constant } };
 
 struct symbol_entry < html_version, e_composite_operator > composite_operator_symbol_table [] =
-{   { { HTML_4_0 }, { HTML_UNDEF }, "arithmetic",  co_arithmetic },
-    { { HTML_4_0 }, { HTML_UNDEF }, "atop", co_atop },
-    { { HTML_4_0 }, { HTML_UNDEF }, "in", co_in },
-    { { HTML_4_0 }, { HTML_UNDEF }, "out", co_out },
-    { { HTML_4_0 }, { HTML_UNDEF }, "over", co_over },
-    { { HTML_4_0 }, { HTML_UNDEF }, "xor", co_xor } };
+{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "arithmetic",  co_arithmetic },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "atop", co_atop },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "in", co_in },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "lighter", co_lighter },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "out", co_out },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "over", co_over },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "xor", co_xor } };
+
+struct symbol_entry < html_version, e_colour_interpolation > colour_interpolation_symbol_table [] =
+{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "auto", ci_auto },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "sRGB", ci_srgb },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "linearRGB", ci_linearrgb },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", ci_inherit } };
+
+struct symbol_entry < html_version, e_colour_rendering > colour_rendering_symbol_table [] =
+{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "auto", cr_auto },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "optimizeSpeed", cr_optimisespeed },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "optimiseQuality", cr_optimisequality },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", cr_inherit } };
 
 struct symbol_entry < html_version, e_cookieid > cookieid_symbol_table [] =
 {   { { HTML_JAN15 }, { HTML_UNDEF }, "expires", coo_expires },
@@ -228,23 +241,22 @@ struct symbol_entry < html_version, e_crossout > crossout_symbol_table [] =
     { { HTML_5_2 }, { HTML_UNDEF }, "horizontalstrike", co_horizontalstrike } };
 
 struct symbol_entry < html_version, e_cursor > cursor_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "auto",  cu_auto },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "crosshair", cu_crosshair },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "default", cu_default },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "pointer", cu_pointer },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "move", cu_move },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "e-resize", cu_eresize },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "ne-resize", cu_neresize },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "nw-resize", cu_nwresize },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "n-resize", cu_nresize },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "se-resize", cu_seresize },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "sw-resize", cu_swresize },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "s-resize", cu_sresize },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "w-resize", cu_wresize },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "text", cu_text },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "wait", cu_wait },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "help", cu_help },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "inherit", cu_inherit } };
+{   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "auto",  cu_auto },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "crosshair", cu_crosshair },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "default", cu_default },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "pointer", cu_pointer },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "move", cu_move },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "e-resize", cu_eresize },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "ne-resize", cu_neresize },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "nw-resize", cu_nwresize },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "n-resize", cu_nresize },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "se-resize", cu_seresize },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "sw-resize", cu_swresize },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "s-resize", cu_sresize },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "w-resize", cu_wresize },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "text", cu_text },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "wait", cu_wait },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "help", cu_help } };
 
 struct symbol_entry < html_version, e_decalign > decalign_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "left", dec_left },
@@ -462,6 +474,32 @@ struct symbol_entry < html_version, e_halign > halign_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "right", al_right },
     { { HTML_2_0 }, { HTML_UNDEF }, "justify", al_justify },
     { { HTML_2_0 }, { HTML_UNDEF }, "char", al_char } };
+
+struct symbol_entry < html_version, e_icc > icc_symbol_table [] =
+{   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS/GRACoL TR006 2007", icc_CGATS_GRACoL_TR006_2007 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS/SNAP TR002 2007", icc_CGATS_SNAP_TR002_2007 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS/SWOP TR003 2007", icc_CGATS_SWOP_TR003_2007 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS/SWOP TR005 2007", icc_CGATS_SWOP_TR005_2007 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS21-2-CRPC1", icc_CGATS21_2_CRPC1 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS21-2-CRPC2", icc_CGATS21_2_CRPC2 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS21-2-CRPC3", icc_CGATS21_2_CRPC3 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS21-2-CRPC4", icc_CGATS21_2_CRPC4 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS21-2-CRPC5", icc_CGATS21_2_CRPC5 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS21-2-CRPC6", icc_CGATS21_2_CRPC6 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS21-2-CRPC7", icc_CGATS21_2_CRPC7 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "FOGRA39", icc_FOGRA39 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "FOGRA40", icc_FOGRA40 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "FOGRA47", icc_FOGRA47 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "FOGRA51", icc_FOGRA51 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "FOGRA52", icc_FOGRA52 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "FOGRA54", icc_FOGRA54 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "Japan Color 2011", icc_Japan_Color_2011 } };
+
+struct symbol_entry < html_version, e_image_rendering > image_rendering_symbol_table [] =
+{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "auto", ir_auto },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "optimizeSpeed", ir_optimisespeed },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "optimizeQuality", ir_optimisequality },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", ir_inherit } };
 
 struct symbol_entry < html_version, e_indentalign > indentalign_symbol_table [] =
 {   { { HTML_5_2 }, { HTML_UNDEF }, "left", ia_left },
@@ -736,12 +774,10 @@ struct symbol_entry < html_version, e_mathvariant > mathvariant_symbol_table [] 
     { { HTML_5_2 }, { HTML_UNDEF }, "stretched", mv_stretched } };
 
 struct symbol_entry < html_version, e_matrixtype > matrixtype_symbol_table [] =
-{   { { HTML_SVG10 }, { HTML_UNDEF }, "matrix", mt_matrix },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "saturate", mt_saturate },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "hueRotate", mt_hue_rotate },
-    { { HTML_SVG11 }, { HTML_UNDEF }, "hue-rotate", mt_hue_rotate },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "luminanceToAlpha", mt_luminance_alpha },
-    { { HTML_SVG11 }, { HTML_UNDEF }, "luminance-to-alpha", mt_luminance_alpha } };
+{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "matrix", mt_matrix },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "saturate", mt_saturate },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "hueRotate", mt_huerotate },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "luminanceToAlpha", mt_luminancetoalpha } };
 
 struct symbol_entry < html_version, e_media > media_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "all", md_all },
@@ -963,7 +999,9 @@ struct symbol_entry < html_version, e_plusstyle > plusstyle_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "u", ps_u } };
 
 struct symbol_entry < html_version, e_pointer_events > pointer_events_symbol_table [] =
-{   { { HTML_SVG12, 0, HE_SVG_2 }, { HTML_UNDEF }, "bounding-box", pe_boundingbox },
+{   { { HTML_SVG21, 0, HE_SVG_21 }, { HTML_UNDEF }, "auto", pe_auto },
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "boundingBox", pe_boundingbox },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "bounding-box", pe_bounding_box },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "visiblePainted", pe_visiblepainted },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "visibleFill", pe_visiblefill },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "visibleStroke", pe_visiblestroke },
@@ -973,7 +1011,7 @@ struct symbol_entry < html_version, e_pointer_events > pointer_events_symbol_tab
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "stroke", pe_stroke },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "all", pe_all },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "none", pe_none },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "inherit", pe_inherit } };
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", pe_inherit } };
 
 // a couple of these are only defined in the HTML+ text, not the DTD
 struct symbol_entry < html_version, e_print > print_symbol_table [] =
@@ -1037,7 +1075,7 @@ struct symbol_entry < html_version, e_shape_rendering > shape_rendering_symbol_t
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "optimizeSpeed", sr_optimisespeed },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "crispEdges", sr_crispedges },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "geometricPrecision", sr_geometricprecision },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "inherit", sr_inherit } };
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", sr_inherit } };
 
  struct symbol_entry < html_version, e_smei > smei_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "start", smei_start },
@@ -1093,23 +1131,14 @@ struct symbol_entry < html_version, e_ssi_env > ssi_env_symbol_table [] =
 struct symbol_entry < html_version, e_svg_align > svg_align_symbol_table [] =
 {   { { HTML_SVG10 }, { HTML_UNDEF }, "none", sa_none },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMinYMin", sa_xmin_ymin },
-//    { { HTML_SVG10 }, { HTML_UNDEF }, "xMin_ymin", sa_xmin_ymin },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMidYMin", sa_xmid_ymin },
-//    { { HTML_SVG10 }, { HTML_UNDEF }, "xMid_ymin", sa_xmid_ymin },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMaxYMin", sa_xmax_ymin },
-//    { { HTML_SVG10 }, { HTML_UNDEF }, "xMax_ymin", sa_xmax_ymin },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMinYMid", sa_xmin_ymid },
-//    { { HTML_SVG10 }, { HTML_UNDEF }, "xMin_ymid", sa_xmin_ymid },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMidYMid", sa_xmid_ymid },
-//    { { HTML_SVG10 }, { HTML_UNDEF }, "xMid_ymid", sa_xmid_ymid },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMaxYMid", sa_xmax_ymid },
-//    { { HTML_SVG10 }, { HTML_UNDEF }, "xMax_ymid", sa_xmax_ymid },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMinYMax", sa_xmin_ymax },
-//    { { HTML_SVG10 }, { HTML_UNDEF }, "xMin_ymax", sa_xmin_ymax },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMidYMax", sa_xmid_ymax },
-//    { { HTML_SVG10 }, { HTML_UNDEF }, "xMid_ymax", sa_xmid_ymax },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "xMaxYMax", sa_xmax_ymax },
-/*    { { HTML_SVG10 }, { HTML_UNDEF }, "xMax_ymax", sa_xmax_ymax } */ };
+    { { HTML_SVG10 }, { HTML_UNDEF }, "xMaxYMax", sa_xmax_ymax } };
 
 struct symbol_entry < html_version, e_svg_display > svg_display_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "inline",  ds_inline },
@@ -1192,11 +1221,21 @@ struct symbol_entry < html_version, e_svg_fontweight_ff > svg_fontweight_ff_symb
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "900", fsf_900 } };
 
 struct symbol_entry < html_version, e_svg_mode > svg_mode_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "darken", sm_darken },
+{   { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "color", sm_colour },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "colour-burn", sm_colour_burn },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "colour-dodge", sm_colour_dodge },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "darken", sm_darken },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "difference", sm_difference },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "exclusion", sm_exclusion },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "hard-light", sm_hard_light },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "hue", sm_hue },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "lighten", sm_lighten },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "luminosity", sm_luminosity },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "multiply", sm_multiply },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "normal", sm_normal },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "screen", sm_screen } };
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "saturation", sm_saturation },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "screen", sm_screen },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "soft-light", sm_soft_light } };
 
 struct symbol_entry < html_version, e_svg_overflow > svg_overflow_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "visible", sov_visible },
@@ -1205,12 +1244,12 @@ struct symbol_entry < html_version, e_svg_overflow > svg_overflow_symbol_table [
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "auto", sov_auto },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "inherit", sov_inherit } };
 
-struct symbol_entry < html_version, e_svg_type_11 > svg_type_11_symbol_table [] =
-{   { { HTML_SVG11 }, { HTML_UNDEF }, "discrete", tsz_discrete },
-    { { HTML_SVG11 }, { HTML_UNDEF }, "gamma", tsz_gamma },
-    { { HTML_SVG11 }, { HTML_UNDEF }, "identity", tsz_identity },
-    { { HTML_SVG11 }, { HTML_UNDEF }, "linear", tsz_linear },
-    { { HTML_SVG11 }, { HTML_UNDEF }, "table", tsz_table } };
+struct symbol_entry < html_version, e_svg_type > svg_type_symbol_table [] =
+{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "discrete", tsz_discrete },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "gamma", tsz_gamma },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "identity", tsz_identity },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "linear", tsz_linear },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "table", tsz_table } };
 
 struct symbol_entry < html_version, e_svg_version > svg_version_symbol_table [] =
 {   { { HTML_SVG10 }, { HTML_UNDEF }, "1.0", sv_1_0 },
@@ -1257,7 +1296,7 @@ struct symbol_entry < html_version, e_text_rendering > text_rendering_symbol_tab
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "optimizeSpeed", tr_optimisespeed },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "optimizeLegibility", tr_optimiselegibility },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "geometricPrecision", tr_geometricprecision },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "inherit", tr_inherit } };
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", tr_inherit } };
 
 struct symbol_entry < html_version, e_transform_anim > transform_anim_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "translate", ta_translate },
@@ -1288,9 +1327,8 @@ struct symbol_entry < html_version, e_transform_fn > transform_fn_symbol_table [
     { { HTML_SVG10, 0, HE_SVG | HE_MINARGS (1) | HE_MAXARGS (1) }, { HTML_UNDEF }, "skewY", tr_skewy } };
 
 struct symbol_entry < html_version, e_turbulence_type > turbulence_type_symbol_table [] =
-{   { { HTML_SVG10 }, { HTML_UNDEF }, "fractalNoise", tu_fractal_noise },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "fractal-noise", tu_fractal_noise },
-    { { HTML_SVG10 }, { HTML_UNDEF }, "turbulence", tu_turbulence } };
+{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "fractalNoise", tu_fractal_noise },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "turbulence", tu_turbulence } };
 
 struct symbol_entry < html_version, e_unicode_bidi > unicode_bidi_symbol_table [] =
  {  { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "bidi-override", ub_bidioverride },
@@ -1323,7 +1361,7 @@ struct symbol_entry < html_version, e_unit > unit_symbol_table [] =
     { { HTML_JUN19 }, { HTML_UNDEF }, "vmax", eu_vmax },
     { { HTML_JUN19 }, { HTML_UNDEF }, "vw", eu_vw } };
 
-struct symbol_entry < html_version, e_vectoreffect_2 > vectoreffect_2_symbol_table [] =
+struct symbol_entry < html_version, e_vector_effect_2 > vector_effect_2_symbol_table [] =
 {   { { HTML_SVG20 }, { HTML_UNDEF }, "fixed-position", v2_fixedposition },
     { { HTML_SVG20 }, { HTML_UNDEF }, "none", v2_none },
     { { HTML_SVG20 }, { HTML_UNDEF }, "non-rotation", v2_nonrotation },
@@ -1497,6 +1535,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (beginfn);
     INIT_ENUM (cachekey);
     INIT_ENUM (citype);
+    INIT_ENUM (colour_rendering);
     INIT_ENUM (cookieid);
     INIT_ENUM (cntype);
     INIT_ENUM (composite_operator);
@@ -1514,6 +1553,8 @@ void enum_init (nitpick& nits)
     INIT_ENUM (font_variant_caps);
     INIT_ENUM (font_variant_ligature);
     INIT_ENUM (halign);
+    INIT_ENUM (image_rendering);
+    INIT_ENUM (icc);
     INIT_ENUM (indentalign);
     INIT_ENUM (inky);
     INIT_ENUM (inputmode);
@@ -1575,7 +1616,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (svg_fontweight_ff);
     INIT_ENUM (svg_mode);
     INIT_ENUM (svg_overflow);
-    INIT_ENUM (svg_type_11);
+    INIT_ENUM (svg_type);
     INIT_ENUM (svg_version);
     INIT_ENUM (tableframe);
     INIT_ENUM (text_decoration);
@@ -1586,7 +1627,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (turbulence_type);
     INIT_ENUM (unit);
     INIT_ENUM (unicode_bidi);
-    INIT_ENUM (vectoreffect_2);
+    INIT_ENUM (vector_effect_2);
     INIT_ENUM (whitespace);
     INIT_ENUM (writingmode);
     INIT_ENUM (xmlns); }

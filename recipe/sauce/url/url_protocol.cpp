@@ -34,6 +34,7 @@ struct symbol_entry < html_version, e_protocol > protocol_symbol_table [] =
     { { HTML_3_0 }, { HTML_UNDEF }, PR_LDAP, pr_ldap },
     { { HTML_TAGS }, { HTML_UNDEF }, PR_MAILTO, pr_mailto },
     { { HTML_TAGS }, { HTML_4_01 }, PR_NEWS, pr_news },
+    { { HTML_SVG12 }, { HTML_UNDEF }, PR_RTSP, pr_rtsp },
     { { HTML_4_0 }, { HTML_UNDEF }, PR_SFTP, pr_sftp },
     { { HTML_4_0 }, { HTML_UNDEF }, PR_SSH, pr_ssh },
     { { HTML_TAGS }, { HTML_4_01 }, PR_TELNET, pr_telnet },
@@ -55,6 +56,7 @@ protocol_server ps [] =
     {   pr_ldap,    pt_rfc3986_ignore  },
     {   pr_mailto,  pt_rfc3986_ignore },
     {   pr_news,    pt_news  },
+    {   pr_rtsp,    pt_rfc3986_ignore  },
     {   pr_sftp,    pt_rfc3986_ignore  },
     {   pr_ssh,     pt_rfc3986_ignore  },
     {   pr_tel,     pt_tel   },
@@ -66,7 +68,7 @@ void protocol::init (nitpick& nits)
 
 e_scheme protocol::scheme () const
 {   e_protocol prot = symbol < html_version, e_protocol > :: get ();
-    DBG_ASSERT (ps [prot].protocol_ == prot);
+    PRESUME (ps [prot].protocol_ == prot, __FILE__, __LINE__);
     return ps [prot].scheme_; }
 
 bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_protocol current)

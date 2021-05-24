@@ -27,6 +27,7 @@ bool css_cache::parse_file (nitpick& nits, const page& p, const url& u)
 {   csss_it cc = csss_.find (u.original ());
     if (cc == csss_.cend ())
         return csss_.insert (csss_vt (u.original (), css_ptr (new css (nits, p, u)))).second;
+    VERIFY_NOT_NULL (cc -> second, __FILE__, __LINE__);
     if (cc -> second -> invalid ()) return false;
     cc -> second -> active (true);
     return true; }
@@ -35,6 +36,7 @@ bool css_cache::parse (nitpick& nits, const html_version& v, const ::std::string
 {   csss_it cc = csss_.find (content);
     if (cc == csss_.cend ())
         return csss_.insert (csss_vt (content, css_ptr (new css (nits, v, content, encoding, true)))).second;
+    VERIFY_NOT_NULL (cc -> second, __FILE__, __LINE__);
     if (cc -> second -> invalid ()) return false;
     cc -> second -> active (true);
     return true; }
@@ -42,26 +44,30 @@ bool css_cache::parse (nitpick& nits, const html_version& v, const ::std::string
 void css_cache::delete_snippets ()
 {   csss_it i = csss_.begin ();
     while (i != csss_.end ())
-    {   if (i -> second -> snippet ())
+    {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
+        if (i -> second -> snippet ())
             i = csss_.erase (i);
         else ++i; } }
 
 bool css_cache::has_id (const ::std::string& id) const
 {   for (csss_cit i = csss_.cbegin (); i != csss_.cend (); ++i)
-        if (i -> second -> has_id (id)) return true;
+    {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
+        if (i -> second -> has_id (id)) return true; }
     return false; }
 
 bool css_cache::note_usage (const ::std::string& id)
 {   for (auto i : csss_)
+    {   VERIFY_NOT_NULL (i.second, __FILE__, __LINE__);
         if (i.second -> note_usage (id))
-            return true;
+            return true; }
     return false; }
 
 void css_cache::report_usage (::std::ostringstream& ss) const
 {   if (context.tell (e_warning))
     {   smsid_t sum;
         for (auto i : csss_)
-            i.second -> tally (sum);
+        {   VERIFY_NOT_NULL (i.second, __FILE__, __LINE__);
+            i.second -> tally (sum); }
         for (auto i : sum)
             if (context.test ())
                 if (i.second == UINT_MAX) ss << i.first << " *\n";

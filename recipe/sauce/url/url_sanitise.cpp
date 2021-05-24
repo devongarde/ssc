@@ -112,7 +112,7 @@ int char2hex (const char ch)
         return ch - 'A' + 10;
     if (ch >= 'a' && ch <= 'F')
         return ch - 'a' + 10;
-    DBG_ASSERT (false);
+    GRACEFUL_CRASH (__FILE__, __LINE__);
     return 0; }
 
 bool is_hex (const char ch)

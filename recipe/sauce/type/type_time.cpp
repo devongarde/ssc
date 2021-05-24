@@ -541,5 +541,5 @@ bool test_animation_timing (nitpick& , const html_version& , const ::std::string
 //        {   id_value = ss.substr (0, pos);
 //            ss.substr (pos); }
 //    }
-//    DBG_ASSERT (false);
+//    PRESUME (false, __FILE__, __LINE__);
     return true; }

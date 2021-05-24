@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TESTPROG "ssc-test"
 #define FULLNAME "Static Site Checker"
 #define WEBADDR "https://ssc.lu/"
-#define VERSION_STRING "0.0.104"
+#define VERSION_STRING "0.0.105"
 #define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
 
 #ifdef __clang__
@@ -137,6 +137,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ssc_mm ::std::unordered_multimap
 #endif // ORDERED
 
+#include <boost/static_assert.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/format.hpp>
@@ -148,6 +149,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/string_path.hpp>
+#include <boost/log/trivial.hpp>
 
 #ifdef _MSC_VER
 #pragma warning ( disable : 4701 ) // CRC
@@ -182,16 +184,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif
 
 #if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
-#ifndef DEBUG
-#define DEBUG
-#endif // DEBUG
-#define DBG_ASSERT(x) assert (x)
+#  ifndef DEBUG
+#  define DEBUG
+#  endif // DEBUG
 #else // debug
-#ifndef NDEBUG
-#define NDEBUG
-#endif // NDEBUG
-#define DBG_ASSERT(x)
+#  ifndef NDEBUG
+#  define NDEBUG
+#  endif // NDEBUG
 #endif // debug
+
+#ifdef DEBUG
+// prefer the macros below (PRESUME, etc.)
+#define DBG_ASSERT(x) assert (x)
+#else // DEBUG
+#define DBG_ASSERT(x)
+#endif // DEBUG
 
 #ifndef SSC_TEST
 #define PR_FILE "file"
@@ -203,6 +210,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define PR_LDAP "ldap"
 #define PR_MAILTO "mailto"
 #define PR_NEWS "news"
+#define PR_RTSP "rtsp"
 #define PR_SFTP "sftp"
 #define PR_SSH "ssh"
 #define PR_TELNET "telnet"

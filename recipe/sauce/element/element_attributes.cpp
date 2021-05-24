@@ -47,10 +47,12 @@ void element::examine_autofocus ()
     {   anc = get_ancestor (elem_dialogue);
         if (anc == nullptr) anc = get_ancestor (elem_html);
         if (anc == nullptr) return; }
+    VERIFY_NOT_NULL (anc, __FILE__, __LINE__);
     if (anc -> autofocus_ == nullptr)
         anc -> autofocus_ = this;
     else
-    {   pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a(n) <", anc -> autofocus_ -> node_.id ().name (), "> element above has one too");
+    {   VERIFY_NOT_NULL (anc -> autofocus_, __FILE__, __LINE__);
+        pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a(n) <", anc -> autofocus_ -> node_.id ().name (), "> element above has one too");
         anc -> autofocus_ -> pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a(n)  <", node_.id ().name (), "> element below has one too"); } }
 
 bool element::examine_class ()
@@ -71,6 +73,7 @@ bool element::examine_class ()
         else if (c.is_microformat_vocabulary ())
         {   ++mf_count;
             activate_microformats ();
+            VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
             if (mf_ -> is_declared (c.get ()))
             {   if (context.mf_verify ()) pick (nit_duplicate_microformat, es_warning, ec_microformat, "ignoring duplicate ", quote (c.name ())); }
             else
@@ -80,7 +83,9 @@ bool element::examine_class ()
                     else pick (nit_mf_found, es_comment, ec_microformat, "microformat vocabulary ", quote (c.name ()), " found");
                 mf_ -> declare (c.get ());
                 res = true; } }
-    if (mf_count > 0) mf_ -> text (trim_the_lot_off (text ()));
+    if (mf_count > 0)
+    {   VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
+        mf_ -> text (trim_the_lot_off (text ())); }
     bool unfound = false;
     for (auto c : vc)
         if (c.is_microformat_property ())
@@ -90,7 +95,8 @@ bool element::examine_class ()
                 element* prop_vocab_element = nullptr;
                 if ((farm.second == c_error) || ! is_plausible_field (farm.second, p.get ()))
                 {   unfound = true; continue; }
-                DBG_ASSERT (farm.first -> mf_);
+                VERIFY_NOT_NULL (farm.first, __FILE__, __LINE__);
+                VERIFY_NOT_NULL (farm.first -> mf_, __FILE__, __LINE__);
                 farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *this);
                 if (context.mf_verify ())
                 {   farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this);
@@ -104,7 +110,7 @@ bool element::examine_class ()
                 res = true;
                 found_farm ancestral_farm = find_farm (p.get (), prop_vocab_element);
                 if ((ancestral_farm.second != c_error) && (is_plausible_parent (nits (), farm.second, ancestral_farm.second, p.get ())))
-                {   DBG_ASSERT (ancestral_farm.first -> mf_);
+                {   PRESUME (ancestral_farm.first -> mf_, __FILE__, __LINE__);
                     ancestral_farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *prop_vocab_element);
                     if (context.mf_verify ())
                     {   ancestral_farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this);
@@ -128,6 +134,7 @@ bool element::examine_class ()
                     found_farm farm = find_farm (p.get ()); // should store this result beforehand rather than search for it again
                     if (context.mf_version1 ())
                     {   if ((farm.second != c_error) && is_plausible_field (farm.second, p.get ())) continue;
+                        VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
                         for (auto bro : vc)
                             if (! bro.invalid ())
                             {   if (bro.is_microformat_vocabulary ()) continue;
@@ -175,7 +182,7 @@ void element::examine_defaultaction ()
 
 void element::examine_draggable ()
 {   if (node_.version ().mjr () < 5) return;
-    DBG_ASSERT (a_.has (a_draggable) && a_.known (a_draggable));
+    PRESUME (a_.has (a_draggable) && a_.known (a_draggable), __FILE__, __LINE__);
     if (! a_.known (a_title) && (node_.version () >= html_jan13))
         pick (nit_title_required, ed_51, "5.7.7. The draggable attribute", es_warning, ec_attribute, "An element with DRAGGABLE should also define TITLE"); }
 
@@ -233,7 +240,7 @@ void element::examine_line_increment ()
         pick (nit_line_increment, ed_svg_1_2_tiny, "10.11.4 The 'line-increment' property", es_error, ec_attribute, "LINE-INCREMENT requires a <TEXTAREA> ancestor"); }
 
 void element::examine_descendant_in (const element* filter)
-{   DBG_ASSERT (filter != nullptr);
+{   VERIFY_NOT_NULL (filter, __FILE__, __LINE__);
     if (a_.known (a_in))
     {   ::std::string s (a_.get_string (a_in));
         nitpick nuts;
@@ -244,7 +251,8 @@ void element::examine_descendant_in (const element* filter)
     if (has_child ())
     {   element_ptr e = child ();
         do
-        {   e -> examine_descendant_in (filter); }
+        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+            e -> examine_descendant_in (filter); }
         while (to_sibling (e)); } }
 
 void element::examine_other ()
@@ -267,6 +275,7 @@ bool element::examine_rel (const ::std::string& content)
             pick (nit_unrecognised_rel, es_warning, ec_attribute, "unknown REL type ", quote (x), " encountered");
         else if (r.is_microformat_property ())
         {   activate_microformats ();
+            VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
             if (mf_ -> is_declared (r.get ()))
             {   if (context.mf_verify ()) pick (nit_duplicate_rel, es_warning, ec_attribute, "ignoring duplicate ", quote (r.name ())); }
             else

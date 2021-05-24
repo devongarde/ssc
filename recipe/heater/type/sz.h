@@ -179,7 +179,6 @@ struct sz_left { CONSTEXPR static char const* sz () { return "left"; } };
 struct sz_leftoverlap { CONSTEXPR static char const* sz () { return "leftoverlap"; } };
 struct sz_lexicographic { CONSTEXPR static char const* sz () { return "lexicographic"; } };
 struct sz_linear { CONSTEXPR static char const* sz () { return "linear"; } };
-struct sz_linearrgb { CONSTEXPR static char const* sz () { return "linearRGB"; } };
 struct sz_local { CONSTEXPR static char const* sz () { return "local"; } };
 struct sz_locked { CONSTEXPR static char const* sz () { return "locked"; } };
 struct sz_loose { CONSTEXPR static char const* sz () { return "loose"; } };
@@ -276,7 +275,7 @@ struct sz_same_site { CONSTEXPR static char const* sz () { return "same-site"; }
 struct sz_scale { CONSTEXPR static char const* sz () { return "scale"; } };
 struct sz_scroll { CONSTEXPR static char const* sz () { return "scroll"; } };
 struct sz_screen { CONSTEXPR static char const* sz () { return "screen"; } };
-struct sz_self { CONSTEXPR static char const* sz () { return "'self'"; } };
+struct sz_self { CONSTEXPR static char const* sz () { return "self"; } };
 struct sz_semicolon { CONSTEXPR static char const* sz () { return ";"; } };
 struct sz_sentences { CONSTEXPR static char const* sz () { return "sentences"; } };
 struct sz_simple { CONSTEXPR static char const* sz () { return "simple"; } };

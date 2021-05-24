@@ -41,11 +41,15 @@ void element::pre_examine_element (const e_element tag)
         case elem_polyline :
         case elem_rect : examine_svg_shape (); break;
         case elem_col : examine_col (); break;
+        case elem_colour_profile : examine_colour_profile (); break;
         case elem_command : examine_command (); break;
         case elem_data : examine_data (); break;
         case elem_dialogue : examine_dialogue (); break;
         case elem_embed : examine_embed (); break;
         case elem_fecolourmatrix : examine_fecolourmatrix (); break;
+        case elem_fecomponenttransfer : examine_fecomponenttransfer (); break;
+        case elem_fecomposite : examine_fecomposite (); break;
+        case elem_feconvolvematrix : examine_feconvolvematrix (); break;
         case elem_fn : examine_fn (); break;
         case elem_font : examine_font (); break;
         case elem_html : examine_html (); break;
@@ -191,6 +195,11 @@ void element::post_examine_element (const e_element tag)
         case elem_time : examine_time (); break;
         case elem_video : examine_video (); break; } }
 
+void element::late_examine_element (const e_element tag)
+{   switch (tag) // should integrate this into individual element verification
+    {   case elem_image : examine_image (); break;
+        default : break; } }
+
 void element::remove_category (const uint64_t cat)
 {   uint64_t c (node_.id ().categories ());
     c &= ~cat;
@@ -259,7 +268,7 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
         {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
             context.css ().parse_file (node_.nits (), page_, u); } }
     else if (tag == elem_faux_text)
-    {   DBG_ASSERT (node_.has_parent ());
+    {   PRESUME (node_.has_parent (), __FILE__, __LINE__);
         if ((node_.version () >= html_2) || ! node_.has_previous ()) if ((elem :: flags (node_.parent ().tag ()) & EP_ONLYELEMENTS) == EP_ONLYELEMENTS)
             pick (nit_only_elements, es_warning, ec_element, "<", elem :: name (node_.parent ().tag ()), "> can only contain elements, not text."); }
     else if (is_standard_element (tag) && ! node_.is_closure ())
@@ -358,6 +367,7 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
         if (mf_ && a_.has (a_href))
             if (a_.known (a_href))
             {   ::std::string href (a_.get_string (a_href));
+                VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
                 if  (mf_ -> allocated (r_webmention))
                     context.webmention (href, tag == elem_link ? wm_link : wm_addr);
                 if (mf_ -> allocated (r_in_reply_to))
@@ -380,7 +390,8 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
     examined_ = true; }
 
 bool element::to_sibling (element_ptr& e, const bool canreconstruct)
-{   if (! e -> has_next ()) return false;
+{   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+    if (! e -> has_next ()) return false;
     element_ptr x (e -> next (canreconstruct));
     x.swap (e);
     return true; }
@@ -396,7 +407,8 @@ void element::examine_children ()
             itemscope = itemscope_; }
         element_ptr e = child ();
         do
-        {   e -> examine_self (itemscope, ancestral_attributes, sibling_attributes);
+        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+            e -> examine_self (itemscope, ancestral_attributes, sibling_attributes);
             if (e -> node_.is_closure ())
                 closure_uid_ = e -> uid_;
             else
@@ -407,7 +419,8 @@ void element::examine_children ()
         while (to_sibling (e));
         e = child ();
         do
-        {   e -> sibling_attributes_ = sibling_attributes; }
+        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+            e -> sibling_attributes_ = sibling_attributes; }
         while (to_sibling (e)); } }
 
 ::std::string element::make_children (const int depth, const element_bitset& ancestral_elements)
@@ -423,7 +436,8 @@ void element::examine_children ()
         if (tag () == elem_template) ancestors.set (elem_template);
         else ancestors = ancestral_elements_ | node_.tag ();
         do
-        {   res += e -> make_children (depth + 1, ancestors);
+        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+            res += e -> make_children (depth + 1, ancestors);
             if (! e -> node_.is_closure ())
             {   siblings |= e -> node_.tag ();
                 if (tag () != elem_template)
@@ -432,7 +446,8 @@ void element::examine_children ()
         while (to_sibling (e, false));
         e = child (false);
         do
-        {   e -> sibling_elements_ = siblings; }
+        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+            e -> sibling_elements_ = siblings; }
         while (to_sibling (e, false)); }
     return res; }
 
@@ -440,16 +455,18 @@ void element::verify_children ()
 {   if (has_child ())
     {   element_ptr e = child ();
         do
-        {   e -> verify (); }
+        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+            e -> verify (); }
         while (to_sibling (e)); } }
 
 void element::verify ()
-{   DBG_ASSERT (access_ != nullptr);
+{   PRESUME (access_ != nullptr, __FILE__, __LINE__);
     if (node_.line () >= 0) get_ids ().data (node_.line ());
     a_.verify (nits (), node_.version (), get_ids (), ancestral_attributes_, vit_);
     if (a_.has (a_headers)) examine_headers ();
     verify_children ();
-    if (a_.has (a_list)) validate_input_id (); }
+    if (a_.has (a_list)) validate_input_id ();
+    late_examine_element (node_.tag ()); }
 
 void element::verify_document ()
 {   bool titled = (node_.version ().mjr () < 5) && (page_.count (elem_title) == 0);
@@ -463,12 +480,12 @@ void element::verify_document ()
         case 2 :
             if (context.rfc_1867 ())
                 for (element* f = find_first (elem_form); f != nullptr; f = find_next (elem_form, f))
-                {   DBG_ASSERT (f != nullptr);
+                {   VERIFY_NOT_NULL (f, __FILE__, __LINE__);
                     for (element* inp = f -> find_first (elem_input); inp != nullptr; inp = find_next (elem_input, inp))
-                    {   DBG_ASSERT (inp != nullptr);
+                    {   VERIFY_NOT_NULL (inp, __FILE__, __LINE__);
                         if (inp -> a_.has (a_type))
                         {   attr_type* it = reinterpret_cast < attr_type* > (inp -> a_.get (a_type).get ());
-                            DBG_ASSERT (it != nullptr);
+                            VERIFY_NOT_NULL (it, __FILE__, __LINE__);
                             if ((it -> good ()) && (::boost::to_lower_copy (it -> get_string ()) == "file"))
                             {   if (! f -> a_.has (a_enctype))
                                 {   f -> pick (nit_file_requires_enctype, ed_rfc_1867, "2. HTML forms with file submission", es_warning, ec_element,
@@ -477,7 +494,7 @@ void element::verify_document ()
                                         "the enclosing FORM should have ENCTYPE='application/x-www-form-urlencoded' when using TYPE=file"); }
                                 else
                                 {   attr_enctype* enc = reinterpret_cast < attr_enctype* > (f -> a_.get (a_enctype).get ());
-                                    DBG_ASSERT (enc != nullptr);
+                                    PRESUME (enc != nullptr, __FILE__, __LINE__);
                                     if (enc -> good ())
                                     {   ::std::string ee (::boost::to_lower_copy (enc -> get_string ()));
                                         if ((ee != "application/x-www-form-urlencoded") && (ee != "multipart/form-data"))
@@ -488,7 +505,7 @@ void element::verify_document ()
                                         "when <INPUT TYPE=file>, specify METHOD=post");
                                 else
                                 {   attr_method* m = reinterpret_cast < attr_method* > (f -> a_.get (a_method).get ());
-                                    DBG_ASSERT (m != nullptr);
+                                    PRESUME (m != nullptr, __FILE__, __LINE__);
                                     if (m -> good ()) if (::boost::to_lower_copy (m -> get_string ()) != "post")
                                         f -> pick (nit_use_post, ed_rfc_1867, "2. HTML forms with file submission", es_warning, ec_element,
                                             "given the <INPUT TYPE=file>, prefer METHOD=post"); } } } } }
@@ -509,7 +526,8 @@ void element::verify_document ()
 {   ::std::ostringstream res;
     res << nits ().review ();
     for (element_ptr e = child_; e; e = e -> sibling_)
-        res << e -> report ();
+    {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+        res << e -> report (); }
     return res.str (); }
 
 element* element::next_element (element* previous)
@@ -519,15 +537,17 @@ element* element::next_element (element* previous)
     if (previous -> parent () == nullptr) return nullptr;
     element* res = previous;
     do
-    {   res = res -> parent ();
+    {   VERIFY_NOT_NULL (res, __FILE__, __LINE__);
+        res = res -> parent ();
         if (res -> has_next ()) return res -> next ().get ();
     } while ((res != nullptr) && (res -> tag () != elem_faux_document));
     return nullptr; }
 
 element* element::find_next (const e_element e, element* previous)
-{   DBG_ASSERT (previous != nullptr);
+{   VERIFY_NOT_NULL (previous, __FILE__, __LINE__);
     for (element* res (next_element (previous)); res != nullptr; res = next_element (res))
-    {   if (res -> tag () == e) return res; }
+    {   VERIFY_NOT_NULL (res, __FILE__, __LINE__);
+        if (res -> tag () == e) return res; }
     return nullptr; }
 
 element* element::find_first (const e_element e)
@@ -554,11 +574,12 @@ bool element::family_uids (const e_element e, uid_t& from, uid_t& to) const
             {   element_bitset bs (empty_element_bitset | elem_abbr | elem_faux_comment |elem_faux_ssi | elem_faux_stylesheet | elem_faux_whitespace);
                 element* abr = nullptr;
                 for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+                {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
                     if (! c -> node_.is_closure ())
                     {   if (! bs.test (c -> tag ())) return text ();
                         if (c -> tag () != elem_abbr) continue;
                         if (abr != nullptr) return text ();
-                        abr = c; }
+                        abr = c; } }
                 if (abr != nullptr)
                     if (abr -> a_.good (a_title))
                         return abr -> a_.get_string (a_title); }

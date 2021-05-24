@@ -22,12 +22,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "symbol/symbol_store.h"
 #include "symbol/symbol_key.h"
 
-template < typename CATEGORY > struct colonisation
-{   const char* ns_sep () const { return ":"; } };
-template < > struct colonisation < e_microdata_root >
-{   const char* ns_sep () const { return ""; } };
+template < typename CATEGORY > struct behaviour
+{   const char* ns_sep () const { return ":"; }
+    bool can_be_default (const CATEGORY ) const { return false; } };
 
-template < class V, typename CATEGORY, CATEGORY INIT > class symbol_table : public colonisation < CATEGORY >
+template < > inline const char* behaviour < e_microdata_root > :: ns_sep () const { return ""; }
+template < > inline bool behaviour < e_namespace > :: can_be_default (const e_namespace c) const { return (c == ns_xhtml); }
+
+template < class V, typename CATEGORY, CATEGORY INIT > class symbol_table : public behaviour < CATEGORY >
 {   typedef ssc_map < symbol_key, symbol_store < V, CATEGORY, INIT > > symbol_t;
     typedef ssc_map < ::std::size_t, symbol_store < V, CATEGORY, INIT > > reverse_t;
     symbol_t symbol_;
@@ -55,6 +57,7 @@ public:
                 else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); } }
     bool find (const V& v, const ::std::string& x, ::std::size_t& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
     {   auto i = symbol_.find (symbol_key (x, ns));
+        if (behaviour < CATEGORY > :: can_be_default (ns) && (i == symbol_.end ())) i = symbol_.find (symbol_key (x, INIT));
         if (i != symbol_.end () && may_apply (v, i -> second.first_, i -> second.last_))
         {   res = i -> second.v_;
             if (first != nullptr) *first = i -> second.first_;
@@ -148,7 +151,7 @@ public:
         if (i == reverse_.end ()) return ::std::string ();
         if ((! ns_req) && (i -> second.ns_ == INIT)) return i -> second.sz_;
         ::std::string res (namespace_name (i -> second.ns_));
-        res += colonisation < CATEGORY > :: ns_sep ();
+        res += behaviour < CATEGORY > :: ns_sep ();
         res += i -> second.sz_;
         return res; }
     ::std::string report () const

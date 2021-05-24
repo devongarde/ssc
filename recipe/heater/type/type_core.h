@@ -72,10 +72,10 @@ template < e_type TYPE > struct string_vector_base : public tidy_string < TYPE >
     {   value_.clear ();
         tidy_string < TYPE > :: reset (); }
     const ::std::string& at (const ::std::size_t n) const
-    {   DBG_ASSERT (n < value_.size ());
+    {   PRESUME (n < value_.size (), __FILE__, __LINE__);
         return value_.at (n); }
     ::std::string& at (const ::std::size_t n)
-    {   DBG_ASSERT (n < value_.size ());
+    {   PRESUME (n < value_.size (), __FILE__, __LINE__);
         return value_.at (n); }
     value_type get () const
     {   return value_; } };

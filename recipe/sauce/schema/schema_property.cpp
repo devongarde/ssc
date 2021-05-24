@@ -3072,9 +3072,10 @@ typedef ::std::multimap < e_schema_property, property_gen* > mpp_t;
 mpp_t mpp;
 
 void schema_property_init (nitpick& )
-{   DBG_ASSERT (mpp.empty ());
+{   PRESUME (mpp.empty (), __FILE__, __LINE__);
     for (property_gen* p = &gentab [0]; p -> prop_ != sp_illegal; ++p)
-        mpp.insert (mpp_t::value_type (p -> prop_, p)); }
+    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+        mpp.insert (mpp_t::value_type (p -> prop_, p)); } }
 
 e_schema_property identify_schema_property (nitpick& nits, const schema_version& sv, const ::std::string& name)
 {   ::std::string n (::boost::to_lower_copy (name));
@@ -3105,6 +3106,7 @@ vsp_t identify_schema_properties (nitpick& nits, const schema_version& , const :
 bool check_schema_property_version (const schema_version& from, const schema_version& to, const e_schema_property prop, bool& found)
 {   for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
     {   found = true;
+        VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if (does_apply < schema_version > (from, i -> second -> from_, i -> second -> to_) &&
             does_apply < schema_version > (to, i -> second -> from_, i -> second -> to_)) return true; }
     return false; }
@@ -3123,12 +3125,13 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
 {   nitpick knots;
     ::std::string expected, unfound;
     bool many = false, valid_type = false;
-    DBG_ASSERT (! vsv.empty ());
+    PRESUME (! vsv.empty (), __FILE__, __LINE__);
     ::std::string name (quote (schema_property_name (prop)) + " (" + type_master < t_microdata_domain > :: name (root2domain (get_property_root (prop))) + ")");
     ssch_t ssch (generalise (schema));
     for (e_schema_type gen : ssch)
     {   if (is_schema_property (gen, prop))
             for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+            {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
                 if (i -> second -> field_type_ == t_schema)
                 {   if ((i -> second -> flags_ & SP_VALUE_TYPENAME) == SP_VALUE_TYPENAME)
                         if (test_enumerated_type (knots, v, false, value))
@@ -3165,7 +3168,7 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
                         {   nits.merge (nuts);
                             return true; }
                         valid_type = true;
-                        knots.merge (nuts); }
+                        knots.merge (nuts); } }
         if (! expected.empty ())
         {   ::std::string msg ("consider specifying ");
             nitpick nuts;
@@ -3194,10 +3197,11 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& , const e_
     for (e_schema_type gen : ssch)
         if (is_schema_property (gen, prop))
             for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+            {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
                 if (i -> second -> field_type_ == t_schema)
                     if ((i -> second -> field_schema_ == value) || (i -> second -> field_schema_ == sty_context))
                         if (does_apply < schema_version > (context.schema_ver (), i -> second -> from_, i -> second -> to_))
-                            return true;
+                            return true; }
     nits.pick (nit_bad_property, es_error, ec_microdata, quote (schema_property_name (prop)), " cannot have sub-values, or is not a property of ", quote (sch::name (schema)), ", or both");
     return false; }
 
@@ -3208,7 +3212,8 @@ bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_sch
 vit_t sought_schema_itemtypes (const e_schema_property prop)
 {   vit_t res;
     for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+    {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if (i -> second -> field_type_ == t_schema)
             if (does_apply < schema_version > (context.schema_ver (), i -> second -> from_, i -> second -> to_))
-                res.push_back (make_itemtype_index (i -> second -> field_schema_));
+                res.push_back (make_itemtype_index (i -> second -> field_schema_)); }
     return res; }

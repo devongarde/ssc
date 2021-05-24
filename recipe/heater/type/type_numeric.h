@@ -162,6 +162,14 @@ template < > struct type_master < t_plus_1_7 > : public type_master < t_unsigned
         {   nits.pick (nit_plus_1_7, es_error, ec_type, quote (s), " does not lie between 1 and 99 (inclusive)");
             type_master < t_unsigned > :: status (s_invalid); } } };
 
+template < > struct type_master < t_not_0 > : type_master < t_real >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < t_real > :: set_value (nits, v, s);
+        if (type_master < t_real > :: good ())
+        {   if (type_master < t_real > :: value_ != 0.0) return;
+            nits.pick (nit_not_0, es_error, ec_type, "cannot be zero");
+            type_master < t_real > :: status (s_invalid); } } };
+
 template < > struct type_master < t_zero_to_one > : type_master < t_real >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_real > :: set_value (nits, v, s);
@@ -175,12 +183,14 @@ template < int N > struct n_or_more : type_master < t_real >
     {   type_master < t_real > :: set_value (nits, v, s);
         if (type_master < t_real > :: good ())
         {   if ((type_master < t_real > :: value_ >= static_cast < double > (N))) return;
-            nits.pick (nit_1_more, es_error, ec_type, "a limit must equal or exceed ", N, ".0");
+            nits.pick (nit_1_more, es_error, ec_type, quote (s), " must equal or exceed ", N, ".0");
             type_master < t_real > :: status (s_invalid); } } };
 
 template < > struct type_master < t_0_more > : n_or_more < 0 > { };
 template < > struct type_master < t_1_more > : n_or_more < 1 > { };
+template < > struct type_master < t_positive_1_2 > : type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 > { };
 template < > struct type_master < t_real_i > : type_or_string < t_real_i, t_real, sz_inherit > { };
 template < > struct type_master < t_real_ai > : type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit > { };
 template < > struct type_master < t_reals > : type_at_least_one < t_reals, sz_commaspace, t_real > { };
+template < > struct type_master < t_unsigned_1_or_2 > : type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 > { };
 template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > { };

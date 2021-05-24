@@ -373,7 +373,6 @@ PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 399 unrecognised_value
 400 url_not_found unrecognised_value
 402 no_such_folder url_not_found
-404 xmlns_namespace
 405 link_rel_off
 406 link_rel_off
 

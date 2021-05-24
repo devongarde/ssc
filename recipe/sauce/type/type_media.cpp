@@ -26,18 +26,18 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
 {   ::std::string ss (trim_the_lot_off (sss));
     if (ss.empty ()) return true;
     vstr_t vm (split_by_charset (trim_the_lot_off (ss), ","));
-    DBG_ASSERT (! vm.empty ());
+    PRESUME (! vm.empty (), __FILE__, __LINE__);
     for (auto mq : vm)
     {   ::boost::algorithm::replace_all (mq, ":", " : ");
         ::boost::algorithm::replace_all (mq, "(", " ( ");
         ::boost::algorithm::replace_all (mq, ")", " ) ");
         ::boost::algorithm::replace_all (mq, "/", " / ");
         vstr_t kw (split_by_space (trim_the_lot_off (mq)));
-        DBG_ASSERT (! kw.empty ());
+        PRESUME (! kw.empty (), __FILE__, __LINE__);
         bool feature = false, measure = false, first = true, slash = false, lhs = false, digit = false;
         for (auto s : kw)
         {   bool fail = false;
-            DBG_ASSERT (! s.empty ());
+            PRESUME (! s.empty (), __FILE__, __LINE__);
             if (s.length () == 1)
             {   //if (first && ((s [0] != '(') || (v < html_apr21)))
                 //{   nits.pick (nit_mq_syntax, ed_mql, "3. Syntax", es_warning, ec_mql, "unexpected ", quote (s), " at the beginning of the media query");

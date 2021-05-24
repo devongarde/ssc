@@ -568,7 +568,7 @@ PASS ../toast/living/jan13/ls5.html
 2 naughty_lang
 
 PASS ../toast/living/jan13/ls6.html
-3 xmlns_namespace contradictory_namespace naughty_lang
+3 contradictory_namespace naughty_lang
 5 use_quote_code
 6 unknown_element
 8 unknown_element unrecognised_namespace
@@ -807,7 +807,7 @@ PASS ../toast/living/jan13/source.html
 17 url_not_found mime
 18 url_not_found
 19 mime url_not_found
-33 wrong_parent autoplay
+33 autoplay
 34 url_not_found
 35 url_not_found
 39 inserted_missing_closure

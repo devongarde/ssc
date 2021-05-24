@@ -68,9 +68,9 @@ void element::verify_microdata ()
             return node_.text (); } }
 
 itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
-{   DBG_ASSERT (page_.md_export () != nullptr);
+{   VERIFY_NOT_NULL (page_.md_export (), __FILE__, __LINE__);
     itemscope_ptr new_scope (new microdata_itemscope ());
-    DBG_ASSERT (new_scope.get () != nullptr);
+    VERIFY_NOT_NULL (new_scope.get (), __FILE__, __LINE__);
     if (itemscope.get () == nullptr)
         new_scope -> set_exporter (page_.md_export (), page_.md_export () -> append_path (page_.get_export_root (), null_itemprop, true));
     else
@@ -117,8 +117,9 @@ void element::examine_itemref (itemscope_ptr& itemscope)
 void element::examine_itemtype (itemscope_ptr& itemscope)
 {   bool has_itemid = a_.known (a_itemid);
     if (a_.known (a_itemscope))
+    {   VERIFY_NOT_NULL (itemscope, __FILE__, __LINE__);
         for (auto name : a_.get_x < attr_itemtype > ())
-            itemscope -> note_itemtype (node_.nits (), node_.version (), name, page_, has_itemid); }
+            itemscope -> note_itemtype (node_.nits (), node_.version (), name, page_, has_itemid); } }
 
 vit_t element::own_itemtype () const
 {   if (! a_.good (a_itemtype)) return vit_t ();
@@ -136,7 +137,7 @@ void element::walk_itemprop (itemscope_ptr itemscope)
     if (has_child ())
     {   element_ptr e = child ();
         do {
-            DBG_ASSERT (e != nullptr);
+            VERIFY_NOT_NULL (e, __FILE__, __LINE__);
             e -> walk_itemprop (sub);
         } while (to_sibling (e)); } }
 
@@ -145,9 +146,9 @@ vit_t element::supplied_itemtypes ()
 
 vit_t element::sought_itemtypes ()
 {   vit_t res;
+    VERIFY_NOT_NULL (itemscope_, __FILE__, __LINE__);
     if (a_.known (a_itemprop))
         for (auto name : a_.get_x < attr_itemprop > ())
             for (auto i : itemscope_ -> sought_itemtypes (node_.version (), name))
                 res.push_back (i);
     return res; }
-

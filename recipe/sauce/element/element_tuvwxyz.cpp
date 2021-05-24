@@ -34,6 +34,7 @@ void element::examine_table ()
     table_order tor = to_start;
     bool ooo = false, footed = false, doubled = false, mixed = false, body = false, tr = false;
     for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if (! p -> node_.is_closure ())
         {   switch (p -> tag ())
             {   case elem_caption :
@@ -74,7 +75,7 @@ void element::examine_table ()
             else pick (nit_table_children, ed_51, "4.9.1 The table element", es_error, ec_element, "<TABLE> children in wrong order (<CAPTION>, <COLGROUP>s, <THEAD>, <TR>s or <TBODY>s, <TFOOT>)");
         if (doubled) pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "only one <CAPTION>, <THEAD>, <TFOOT> per <TABLE>");
         if (mixed) pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "either <TBODY>s or <TR>s, not both");
-        if (ooo || doubled || mixed) break; } }
+        if (ooo || doubled || mixed) break; } } }
 
 void element::examine_td ()
 {   if (node_.version ().mjr () < 5) return;
@@ -155,5 +156,8 @@ void element::examine_track ()
                 pick (nit_empty, ed_50, "4.7.9 The track element", es_error, ec_element, "If LABEL is present, it cannot be empty"); } }
 
 void element::examine_video ()
-{   examine_media_element (elem_video, "4.7.6 The video element", "<VIDEO>", MIME_VIDEO);
-    if (a_.known (a_autoplay)) pick (nit_autoplay, es_warning, ec_rudeness, "AUTOPLAY on <VIDEO> is unspeakably rude"); }
+{   if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())
+        pick (nit_unknown_element, es_error, ec_element, "<VIDEO> requires HTML 5 or SVG 1.2");
+    else
+    {   examine_media_element (elem_video, "4.7.6 The video element", "<VIDEO>", MIME_VIDEO);
+        if (a_.known (a_autoplay)) pick (nit_autoplay, es_warning, ec_rudeness, "AUTOPLAY on <VIDEO> is unspeakably rude"); } }

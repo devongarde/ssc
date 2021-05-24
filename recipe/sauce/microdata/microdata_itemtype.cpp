@@ -25,11 +25,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_enum_vec.h"
 
 itemtype_index make_itemtype_index (const e_schema_type p)
-{   DBG_ASSERT (p <= sty_illegal);
+{   PRESUME (p <= sty_illegal, __FILE__, __LINE__);
     return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_schema) << uint32_category_shift); }
 
 itemtype_index make_itemtype_index (const e_property p)
-{   DBG_ASSERT (p <= first_illegal);
+{   PRESUME (p <= first_illegal, __FILE__, __LINE__);
     if (is_mf_class (p)) return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_microformat) << uint32_category_shift);
     if (is_mf_rel (p)) return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << uint32_category_shift);
     return 0; }

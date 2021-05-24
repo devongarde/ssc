@@ -121,25 +121,26 @@ void svg_feature_init (nitpick& nits)
 {   type_master < t_svg_feature > :: init (nits, svg_feature_symbol_table, sizeof (svg_feature_symbol_table) / sizeof (symbol_entry < html_version, e_svg_feature >)); }
 
 bool invalid_id_result (nitpick& nits, const html_version& , const ::std::string& s, element* e)
-{   DBG_ASSERT (e != nullptr);
+{   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
     element* anc = e -> get_ancestor (elem_filter);
     if (anc == nullptr)
-    {   nits.pick (nit_bad_result, ed_svg_1_1, "15.7.2 Common attributes", es_error, ec_attribute, "result requires a parent filter element");
+    {   nits.pick (nit_bad_result, ed_svg_1_0, "15.7.2 Common attributes", es_error, ec_attribute, "result requires a parent filter element");
         return true; }
+    VERIFY_NOT_NULL (anc, __FILE__, __LINE__);
     anc -> add_result (s);
     return false; }
 
 void store_glyph_name (nitpick& nits, const html_version& , element* pe, const ::std::string name)
-{   DBG_ASSERT (pe != nullptr);
+{   VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     if (pe -> has_glyph (name))
         nits.pick (nit_glyphname, es_warning, ec_type, "Glyph name ", quote (name), " repeated");
     else pe -> add_glyph (name); }
 
 bool check_glyph_names (nitpick& nits, const html_version& , element* pe, const vstr_t& vs)
 {   bool res = true;
+    VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     for (auto s : vs)
         if (! pe -> has_glyph (s))
         {   nits.pick (nit_glyphname, es_warning, ec_type, "Glyph name ", quote (s), " not recognised");
             res = false; }
     return res; }
-

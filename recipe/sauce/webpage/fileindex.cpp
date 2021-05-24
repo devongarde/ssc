@@ -84,8 +84,8 @@ mcrc_t mcrc;
 #endif // UNIX
 
 void fileindex_init ()
-{   DBG_ASSERT (disk_x.empty ());
-    DBG_ASSERT (site_x.empty ());
+{   PRESUME (disk_x.empty (), __FILE__, __LINE__);
+    PRESUME (site_x.empty (), __FILE__, __LINE__);
 #ifndef ORDERED
     disk_x.reserve (16384);
     site_x.reserve (16384);
@@ -96,12 +96,12 @@ fileindex_t insert_disk_path (const ::boost::filesystem::path& name, fileindex_f
 {   if (name.empty ()) return nullfileindex;
     mxp_t::iterator i = disk_x.find (name.string ());
     if (i != disk_x.cend ())
-    {   DBG_ASSERT (i -> second < vx.size ());
+    {   PRESUME (i -> second < vx.size (), __FILE__, __LINE__);
         if (vx [i -> second].pd_ == nullptr)
             vx [i -> second].pd_ = pd;
         return i -> second; }
     vx.emplace_back (name, flags, pd, size, last_write);
-    DBG_ASSERT (vx.size () > 0);
+    PRESUME (vx.size () > 0, __FILE__, __LINE__);
     fileindex_t xin = vx.size () - 1;
     disk_x.emplace (name.string (), xin);
     return xin; }
@@ -117,7 +117,7 @@ fileindex_t insert_borked_path (const ::boost::filesystem::path& name, const fil
     return res; }
 
 void add_site_path (const ::std::string& name, const fileindex_t s)
-{   DBG_ASSERT (s < vx.size ());
+{   PRESUME (s < vx.size (), __FILE__, __LINE__);
     auto i = site_x.emplace (name, s);
     if (! i.second) i.first -> second = s;
     if (vx [s].site_path_.empty ()) vx [s].site_path_ = name; }
@@ -141,31 +141,31 @@ fileindex_t get_fileindex (const ::std::string& name)
     return vx [ndx].site_path_; }
 
 fileindex_flags get_flags (const fileindex_t ndx)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return vx [ndx].flags_; }
 
 bool get_flag (const fileindex_t ndx, const fileindex_flags flag)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return (vx [ndx].flags_ & flag) != 0; }
 
 void set_flag (const fileindex_t ndx, const fileindex_flags flag)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     vx [ndx].flags_ |= flag; }
 
 void reset_flag (const fileindex_t ndx, const fileindex_flags flag)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     vx [ndx].flags_ &= ~flag; }
 
 uintmax_t get_size (const fileindex_t ndx)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return vx [ndx].size_; }
 
 ::std::time_t last_write (const fileindex_t ndx)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return vx [ndx].last_write_; }
 
 crc_t get_crc (nitpick& nits, const fileindex_t ndx)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     if (! get_flag (ndx, FX_CRC))
     {   crc_calc crc;
         ::boost::filesystem::ifstream f (vx [ndx].disk_path_, ::std::ios_base::in);
@@ -207,7 +207,7 @@ crc_t get_crc (nitpick& nits, const fileindex_t ndx)
     return vx [ndx].crc_; }
 
 void set_crc (const fileindex_t ndx, const crc_t& crc)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     vx [ndx].crc_ = crc;
     set_flag (ndx, FX_CRC); }
 
@@ -307,7 +307,7 @@ void load_crcs (nitpick& nits, const ::boost::filesystem::path& persist)
                         nits.pick (nit_cannot_read, es_error, ec_crc, persist.string (), " appears corrupt");
                     else
                     {   vstr_t v (split_by_charset (VERSION_STRING, "."));
-                        DBG_ASSERT (v.size () == 3);
+                        PRESUME (v.size () == 3, __FILE__, __LINE__);
                         if ((lexical < int > :: cast (v.at (0)) < lexical < int > :: cast (a.at (0))) ||
                             (lexical < int > :: cast (v.at (1)) < lexical < int > :: cast (a.at (1))) ||
                             (lexical < int > :: cast (v.at (2)) < lexical < int > :: cast (a.at (2))))
@@ -374,9 +374,9 @@ void dedu (nitpick& nits)
     write_crcs (nits, persist); }
 
 bool isdu (const fileindex_t ndx)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return vx [ndx].dedu_ != nullfileindex; }
 
 fileindex_t du (const fileindex_t ndx)
-{   DBG_ASSERT (ndx < vx.size ());
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return vx [ndx].dedu_; }

@@ -36,7 +36,7 @@ template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
         if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "CLEAR requires a value");
         else if (good ())
         {   vstr_t args (split_by_space (arg));
-            DBG_ASSERT (args.size () > 0);
+            PRESUME (args.size () > 0, __FILE__, __LINE__);
             ::std::string::size_type start = 0;
             if ((arg.at (0) < '0') || (arg.at (0) > '9'))
             {   type_master < t_lraalign > lra;
@@ -54,7 +54,7 @@ template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
 template < > struct type_master < t_colour_i > : type_or_string < t_colour_i, t_colour, sz_inherit > { };
 template < > struct type_master < t_colour_ci > : type_or_string < t_colour_ci, t_colour_i, sz_currentcolour > { };
 template < > struct type_master < t_colour_cii > : type_or_either_string < t_colour_cii, t_colour_i, sz_currentcolour, sz_inherit > { };
-template < > struct type_master < t_colour_ni > : type_or_either_string < t_colour_ni, t_colour, sz_none, sz_inherit > { };
+template < > struct type_master < t_colour_ni > : type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour > { };
 
 template < > struct type_master < t_context_menu > : tidy_string < t_context_menu >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -85,13 +85,13 @@ template < > struct type_master < t_duration_media > : tidy_string < t_duration_
         nits.pick (nit_dur, ed_svg_1_1, "19.2.8 Attributes to control the timing of the animation", es_error, ec_type, "a duration, or 'media', is expected");
         tidy_string < t_duration_media > :: status (s_invalid); } };
 
-template < > struct type_master < t_enablebackground > : tidy_string < t_enablebackground >
+template < > struct type_master < t_enable_background > : tidy_string < t_enable_background >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_enablebackground > :: set_value (nits, v, s);
-        if (tidy_string < t_enablebackground > :: empty ())
+    {   tidy_string < t_enable_background > :: set_value (nits, v, s);
+        if (tidy_string < t_enable_background > :: empty ())
             nits.pick (nit_background, es_error, ec_type, "a value is required");
-        else if (tidy_string < t_enablebackground > :: good ())
-        {   vstr_t ss (split_by_space (tidy_string < t_enablebackground > :: get_string ()));
+        else if (tidy_string < t_enable_background > :: good ())
+        {   vstr_t ss (split_by_space (tidy_string < t_enable_background > :: get_string ()));
             size_t sz = ss.size ();
             if (sz > 0)
             {   if (compare_complain (nits, v, "accumulate", ss.at (0)) ||
@@ -108,7 +108,7 @@ template < > struct type_master < t_enablebackground > : tidy_string < t_enableb
                             test_value < t_real > (nits, v, ss.at (3)) &&
                             test_value < t_real > (nits, v, ss.at (4))) return; }
                 else nits.pick (nit_background, es_error, ec_type, "'accumulate', 'new', or 'inherit' expected"); } }
-        tidy_string < t_enablebackground > :: status (s_invalid); } };
+        tidy_string < t_enable_background > :: status (s_invalid); } };
 
 template < > struct type_master < t_font_families > : type_at_least_one < t_font_families, sz_comma, t_font_family > { };
 template < > struct type_master < t_indentalign2 > : type_or_string < t_indentalign2, t_indentalign, sz_indentalign > { };

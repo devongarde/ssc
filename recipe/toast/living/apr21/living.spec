@@ -1387,7 +1387,7 @@ PASS ../toast/living/apr21/source.html
 16 url_not_found mime
 17 url_not_found mime
 18 url_not_found
-32 wrong_parent autoplay
+32 autoplay
 33 url_not_found
 34 url_not_found
 38 inserted_missing_closure
@@ -1766,7 +1766,7 @@ PASS ../toast/living/apr21/work.html
 16 inserted_missing_closure
 
 PASS ../toast/living/apr21/ws-1.html
-27 bad_namespace unknown_element xmlns_namespace unrecognised_namespace
+27 bad_namespace unknown_element unrecognised_namespace
 
 PASS ../toast/living/apr21/ws-10.html
 2 naughty_lang

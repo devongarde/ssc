@@ -42,15 +42,27 @@ public:
     bool note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, page& p);
     bool note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, itemscope_ptr& scope, page& p);
     bool note_itemid (nitpick& nits, const html_version& v, const ::std::string& name);
-    vit_t type () const { if (use_parent ()) return parent_ -> type (); return type_; }
+    vit_t type () const
+    {   if (use_parent ())
+        {   VERIFY_NOT_NULL (parent_, __FILE__, __LINE__);
+            return parent_ -> type (); }
+        return type_; }
     void parent (itemscope_ptr& parent) { parent_ = parent; }
     itemscope_ptr& parent () { return parent_; }
     vit_t sought_itemtypes (const html_version& v, const ::std::string& name) const;
     ::std::string report (const ::std::size_t offset = 0) const;
     void set_exporter (microdata_export* exporter, const ::std::string& export_path)
     {   export_ = exporter; export_path_ = export_path; }
-    ::std::string export_path () const { if (use_parent ()) return parent_ -> export_path (); return export_path_; }
-    microdata_export* exporter () const { if (use_parent ()) return parent_ -> exporter (); return export_; }
+    ::std::string export_path () const
+    {   if (use_parent ())
+        {   VERIFY_NOT_NULL (parent_, __FILE__, __LINE__);
+            return parent_ -> export_path (); }
+        return export_path_; }
+    microdata_export* exporter () const
+    {   if (use_parent ())
+        {   VERIFY_NOT_NULL (parent_, __FILE__, __LINE__);
+            return parent_ -> exporter (); }
+        return export_; }
     bool write (nitpick& nits, const ::boost::filesystem::path& name); };
 
 bool are_categories_compatible (const e_itemprop_category ipc, const e_itemtype_category itc);

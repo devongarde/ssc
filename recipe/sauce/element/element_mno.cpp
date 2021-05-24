@@ -58,17 +58,18 @@ void element::examine_math ()
             return; }
     bool other = false; bool content = false;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
         {   if (c -> node_.id ().is_math ()) content = true;
             if (c -> node_.tag () != elem_declare) other = true;
             else if (other)
             {   pick (nit_declare_first, ed_math_2, "4.4.2.8 Declare (declare)", es_error, ec_element, "All <DECLARE> elements must occur at the beginning of a <MATH> element");
-                break; } }
+                break; } } }
     if (! content)
         pick (nit_math_empty, ed_math_3, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<MATH> should contain some math."); }
 
 void element::examine_media_element (e_element , const char* ref, const char* name, const uint64_t family)
-{   DBG_ASSERT (ref != nullptr);
+{   PRESUME (ref != nullptr, __FILE__, __LINE__);
     if (a_.known (a_controls)) no_anchor_daddy ();
     bool had_track = false, had_other = false, noted_src = false, noted_track = false, noted_source = false,
         def_subcap = false, def_desc = false, def_chap = false;
@@ -76,6 +77,7 @@ void element::examine_media_element (e_element , const char* ref, const char* na
     if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), family);
     sstr_t track_check; ::std::string tmp;
     for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if(! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
             switch (p -> node_.tag ())
             {   case elem_source :
@@ -116,7 +118,7 @@ void element::examine_media_element (e_element , const char* ref, const char* na
                     break;
                 default :
                     had_other = true;
-                    break; }
+                    break; } }
     element_bitset bs (descendant_elements_);
     bs &= media_bitset;
     if (bs.any ())
@@ -130,7 +132,8 @@ void element::examine_menu ()
                 {   element_ptr e = child ();
                     element_bitset bs (faux_bitset | script_bitset | elem_li);
                     do
-                    {   if (! e -> node_.is_closure ())
+                    {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+                        if (! e -> node_.is_closure ())
                             if (! bs.test (e -> node_.id ()))
                             {   pick (nit_menu_child, ed_jul20, "3.18.4. The menu element", es_error, ec_element, "<MENU> may only have <LI> and script children");
                                 break; } }
@@ -145,7 +148,8 @@ void element::examine_menu ()
                 {   if (has_child ())
                     {   element_ptr e = child ();
                         do
-                        {   if (! e -> node_.is_closure ()) continue;
+                        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+                            if (! e -> node_.is_closure ()) continue;
                             if (faux_bitset.test (e -> node_.id ())) continue;
                             if (script_bitset.test (e -> node_.id ()) && (node_.version () >= html_jul13)) continue;
                             if (e -> node_.id () == elem_li) has_li = true;
@@ -178,12 +182,13 @@ void element::examine_menu ()
                         break;
                     default :
                         pick (nit_menu_type, ed_jan07, "3.18.4. The menu element", es_warning, ec_element, "The value of TYPE will be ignored" );
-                        DBG_ASSERT (false);
+//                        GRACEFUL_CRASH (__FILE__, __LINE__);
                         break; } } }
 
 void element::examine_menubar ()
 {   bool had_li = false, had_other = false;
     for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if (! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
             if (p -> node_.tag () == elem_li)
             {   if (had_other)
@@ -194,7 +199,7 @@ void element::examine_menubar ()
             {   if (had_li)
                 {   pick (nit_menubar, ed_jan05, "6.3.2. Menu bars: the menubar element", es_error, ec_element, "<MENUBAR> can have <LI> children, or other children, but not a mixture of them");
                     break; }
-                had_other = true; } }
+                had_other = true; } } }
 
 void element::examine_meta ()
 {   bool in_head = ancestral_elements_.test (elem_head);
@@ -255,7 +260,7 @@ void element::examine_meta ()
             type_master < t_metaname > mn;
             nitpick nuts;
             mn.set_value (nuts, node_.version (), a_.get_string (a_name));
-            DBG_ASSERT (a_.good (a_name));
+            PRESUME (a_.good (a_name), __FILE__, __LINE__);
             e_metaname emn = mn.get ();
             validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_);
             validate_metaname_url (nits (), node_.version (), in_head, emn, con, *this);
@@ -416,6 +421,7 @@ void element::examine_object ()
                 pick (nit_typemustmatch, ed_50, "4.7.4 The object element", es_info, ec_element, "consider specifying TYPEMUSTMATCH, for added security"); }
     bool had_flow = false;
     for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if (! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
             switch (p -> node_.tag ())
             {   case elem_param :
@@ -426,7 +432,7 @@ void element::examine_object ()
                     if (node_.version () == xhtml_2) break;
                     // drop thru'
                 default :
-                    if ((node_.version ().mjr () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } }
+                    if ((node_.version ().mjr () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } } }
 
 void element::examine_option ()
 {   if (node_.version ().is_5 ())
@@ -443,6 +449,7 @@ void element::examine_option ()
                     no_whitespace = ! ancestral_elements_.test (elem_datalist);
                 else no_content = a_.known (a_value); }
             for (element_ptr p = child_; (p != nullptr); p = p -> sibling_)
+            {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                 if (! is_faux_element (p -> tag ()))
                 {   if ((p -> node_.is_closure ()) && (p -> tag () == elem_option) && (! p -> node_.presumed ()))
                         bad_whitespace = had_whitespace;
@@ -460,7 +467,7 @@ void element::examine_option ()
                         if (! bad_whitespace) bad_whitespace = proto_whitespace;
                         break;
                     default :
-                        break; }
+                        break; } }
             if (no_content)
             {   if (had_text)
                     pick (nit_bad_option, ed, "4.10.10 The option element", es_error, ec_element, "<OPTION> with both LABEL and VALUE cannot have content"); }

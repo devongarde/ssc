@@ -44,17 +44,16 @@ template < e_scheme SCHEME > struct url_schemes < SCHEME >
         return equivalent (scheme, lhs, rhs); }
     static bool equivalent (const e_scheme scheme, const vc_t& lhs, const vc_t& rhs)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: equivalent (lhs, rhs);
-        DBG_ASSERT (false); return false; }
+        GRACEFUL_CRASH (__FILE__, __LINE__); return false; }
     static bool parse (nitpick& nits, const html_version& v, const e_scheme scheme, const e_protocol prot, const ::std::string& url, vc_t& component)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: parse (nits, v, prot, url, component);
-        nits.pick (nit_internal_parsing_error, es_error, ec_url, "internal error, invalid scheme");
-        DBG_ASSERT (false); return false; }
+        GRACEFUL_CRASH (__FILE__, __LINE__); return false; }
     static bool is_valid (const e_scheme scheme, const vc_t& component, bool defaulted)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: is_valid (component, defaulted);
-        DBG_ASSERT (false); return false; }
+        GRACEFUL_CRASH (__FILE__, __LINE__); return false; }
     static ::std::string get (const e_scheme scheme, const vc_t& component, bool defaulted)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: get (component, defaulted);
-        DBG_ASSERT (false); return ::std::string (); }
+        GRACEFUL_CRASH (__FILE__, __LINE__);; return ::std::string (); }
     static ::std::string absolute (const e_scheme scheme, const vc_t& component, bool can_use_index, bool defaulted)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: absolute (component, can_use_index, defaulted);
-        DBG_ASSERT (false); return ::std::string (); } };
+        GRACEFUL_CRASH (__FILE__, __LINE__); return ::std::string (); } };

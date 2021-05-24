@@ -49,6 +49,7 @@ void element::examine_equation ()
     int args = 0;
     e_element op = elem_undefined;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (c -> node_.id ().is_math ())
             if (start)
             {   fl = c -> node_.id ().flags ();
@@ -63,7 +64,7 @@ void element::examine_equation ()
                         case elem_lowlimit :
                         case elem_uplimit : continue;
                         default : break; }
-                if (! c -> node_.is_closure ()) ++args; }
+                if (! c -> node_.is_closure ()) ++args; } }
     if (start)
     {   pick (nit_operator_required, ed_math_2, "4.4.2.1 Apply (apply)", es_error, ec_element, "<", elem::name (tag ()), "> requires an operator");
         return; }
@@ -106,7 +107,7 @@ void element::examine_fecolourmatrix ()
 {   e_matrixtype mt = mt_matrix;
     if (a_.known (a_type)) mt = static_cast < e_matrixtype > (a_.get_int (a_type));
     bool vals = a_.known (a_values);
-    if (mt == mt_luminance_alpha)
+    if (mt == mt_luminancetoalpha)
     {   if (vals) pick (nit_colour_matrix, ed_svg_1_1, "15.10 Filter primitive feColorMatrix", es_warning, ec_attribute, "when TYPE is luminance-alpha, VALUES should be omitted");
         return; }
     if (! vals)
@@ -119,22 +120,51 @@ void element::examine_fecolourmatrix ()
         case mt_saturate :
             test_value < t_zero_to_one > (node_.nits (), page_.version (), a_.get_string (a_values));
             break;
-        case mt_hue_rotate :
+        case mt_huerotate :
             test_value < t_angle > (node_.nits (), page_.version (), a_.get_string (a_values));
             break;
         default :
-            DBG_ASSERT (false);
+            GRACEFUL_CRASH (__FILE__, __LINE__);
             break; } }
+
+void element::examine_fecomponenttransfer ()
+{   if (a_.good (a_type))
+        if (! compare_no_case ("table", trim_the_lot_off (a_.get_string (a_type))))
+            if (a_.known (a_tablevalues))
+                pick (nit_fecomponenttransfer, es_info, ec_attribute, "TABLESVALUES is ignored unless TYPE=table"); }
+
+void element::examine_fecomposite ()
+{   if (a_.good (a_operator))
+        if (! compare_no_case ("arithmetic", trim_the_lot_off (a_.get_string (a_operator))))
+            if (a_.known (a_k1) || a_.known (a_k2) || a_.known (a_k3) || a_.known (a_k4))
+                pick (nit_fecomposite, es_info, ec_attribute, "K1, K2, K3 and K4 are ignored unless OPERATOR=arithmetic"); }
+
+void element::examine_feconvolvematrix ()
+{   const unsigned max_safe_count = 16;
+    unsigned ordered = 9;
+    if (a_.good (a_order))
+    {   vstr_t dim (split_by_space (trim_the_lot_off (a_.get_string (a_order))));
+        PRESUME ((dim.size () == 1) || (dim.size () == 2), __FILE__, __LINE__);
+        ordered = lexical < unsigned > :: cast (dim.at (0));
+        if (dim.size () == 1) ordered *= ordered;
+        else ordered *= lexical < unsigned > :: cast (dim.at (1));
+        if (ordered > max_safe_count)
+            pick (nit_feconvolvematrix, ed_svg_1_0, "15.13 Filter primitive 'feConvolveMatrix'", es_warning, ec_attribute, "'It is recommended that only small values (e.g., 3) be used'"); }
+    if (a_.good (a_kernelmatrix))
+    {   vstr_t km (split_by_space (trim_the_lot_off (a_.get_string (a_kernelmatrix))));
+        if (km.size () != ordered)
+            pick (nit_feconvolvematrix, ed_svg_1_0, "15.13 Filter primitive 'feConvolveMatrix'", es_error, ec_attribute, "KERNELMATRIX has ", km.size (), " entries, but ", ordered, " are expected"); } }
 
 void element::examine_felighting ()
 {   int cc = 0;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             switch (c -> tag ())
             {   case elem_fedistantlight :
                 case elem_fepointlight :
                 case elem_fespotlight : ++cc; break;
-                default : break; }
+                default : break; } }
     if (cc == 0) pick (nit_lighting, ed_svg_1_1, "15.14 / 15.22 Filter primitive lighting", es_error, ec_element, "Both <FEDIFFUSELIGHTING> and <FESPECULARLIGHTING> must have a child light source element");
     else if (cc > 1) pick (nit_lighting, ed_svg_1_1, "15.14 / 15.22 Filter primitive lighting", es_error, ec_element, "Both <FEDIFFUSELIGHTING> and <FESPECULARLIGHTING> can only have ONE child light source element"); }
 
@@ -142,11 +172,12 @@ void element::examine_fieldset ()
 {   bool first = true;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (is_standard_element (c -> tag ()) && (! c -> node_.is_closure ()))
                 if (first) first = false;
                 else if (c -> tag () == elem_legend)
                 {   pick (nit_fieldset_legend, ed_50, "4.10.16 The fieldset element", es_error, ec_element, "<LEGEND> can only be the first child of <FIELDSET>");
-                    break; } };
+                    break; } } };
 
 void element::examine_figcaption ()
 {   if ((node_.version ().is_5 ()) && (w3_minor_5 (node_.version ()) == 0))
@@ -158,7 +189,8 @@ void element::examine_figure ()
     if (has_child () && (node_.version ().is_5 ()))
         if (node_.version ().whatwg () || (node_.version () == html_5_0))
             for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
-            {   e_element tag = c -> node_.tag ();
+            {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+                e_element tag = c -> node_.tag ();
                 if (is_standard_element (tag) && ! c -> node_.is_closure ())
                 {   if (tag != elem_figcaption)
                     {   if (last_was_fig)
@@ -197,11 +229,12 @@ void element::examine_fontymacfontface ()
 {   bool had = false;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (c -> tag () == elem_fontfacesrc)
                 if (! had) had = true;
                 else
                 {   pick (nit_animatemotion, ed_svg_1_1, "20.8.3 The font-face element", es_error, ec_element, "<FONTY-MacFONT-FACE> can only have ONE child <FONT-FACE-SRC>");
-                    return; } }
+                    return; } } }
 
 void element::examine_footer ()
 {   if (node_.version ().is_5 ())
@@ -232,14 +265,16 @@ void element::examine_form ()
             if (! radio_kids_.empty ())
             {   msid_t names;
                 for (auto rk : radio_kids_)
-                {   ::std::string n (rk -> a_.get_string (a_name));
+                {   VERIFY_NOT_NULL (rk, __FILE__, __LINE__);
+                    ::std::string n (rk -> a_.get_string (a_name));
                     auto i = names.find (n);
                     if (i == names.cend ()) names.emplace (msid_t::value_type (n, 1));
                     else i -> second += 1; }
                 for (auto rk : radio_kids_)
-                {   ::std::string n (rk -> a_.get_string (a_name));
+                {   VERIFY_NOT_NULL (rk, __FILE__, __LINE__);
+                    ::std::string n (rk -> a_.get_string (a_name));
                     auto i = names.find (n);
-                    DBG_ASSERT (i != names.cend ());
+                    PRESUME (i != names.cend (), __FILE__, __LINE__);
                     if (i -> second == 1)
                         if (n.empty ())
                             rk -> pick (nit_lonely_radio, ed_50, "4.10.5.1.13 Radio Button state", es_error, ec_element, "radio buttons require company; there should be multiple unnamed <INPUT> TYPE=radio");
@@ -292,6 +327,14 @@ void element::examine_iframe ()
     if (! a_.known (a_srcdoc) && ! a_.known (a_src))
         pick (nit_chocolate_teapot, es_info, ec_attribute, "Not sure what use <IFRAME> is without SRC or SRCDOC"); }
 
+void element::examine_image ()
+{   if (a_.known (a_name))
+    {   const ::std::string& naam = a_.get_id (a_name);
+        if (! naam.empty ())
+            if (! compare_no_case (naam, sz_srgb :: sz ()))
+                if (page_.profiles ().find (naam) == page_.profiles ().cend ())
+                    pick (nit_colour_profile, es_info, ec_attribute, "colour profile ", quote (naam), " might not have been declared"); } }
+
 void element::examine_img ()
 {   const bool alt_known = a_.known (a_alt);
     const bool alt_empty = alt_known ? a_.get_string (a_alt).empty () : false;
@@ -315,15 +358,17 @@ void element::examine_img ()
             {   complained = true;
                 pick (nit_naughty_alt, ed_jan07, "3.14.1. The img element", es_warning, ec_element, "ISMAP cannot be used on <IMG> unless it has an <A> ancestor"); }
             else for (element* p = parent_; p != nullptr; p = p -> parent_)
+            {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                 if (p -> tag () == elem_a)
                     if (! p -> a_.known (a_href))
                     {   complained = true;
                         pick (nit_naughty_alt, ed_jan21, "4.8.3 The img element", es_warning, ec_attribute, "when ISMAP is used on <IMG>, its ancestral <A> must have an HREF");
-                        break; }
+                        break; } }
         if (node_.version () >= html_jan17)
         {   if (a_.valid (a_srcset))
             {   attribute_v_ptr srsptr = a_.get (a_srcset);
                 attr_srcset* const srs = static_cast <attr_srcset*> (srsptr.get ());
+                VERIFY_NOT_NULL (srs, __FILE__, __LINE__);
                 if (srs -> has_width () && ! a_.known (a_sizes))
                 {   complained = true;
                     pick (nit_attribute_required, ed_jan21, "4.8.5 The img element", es_error, ec_attribute, "SIZES is required when a SRCSET has a width specification"); }
@@ -333,6 +378,7 @@ void element::examine_img ()
             if (ancestor_figure)
                 if (! has_title)
                     for (element* p = parent_; p != nullptr; p = p -> parent_)
+                    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                         if (p -> tag () == elem_figure)
                         {   bool alone = true;
                             for (element_ptr ac = p -> child_; alone && (ac != nullptr); ac = ac -> sibling_)
@@ -348,11 +394,12 @@ void element::examine_img ()
                                                 if (((ac -> node_.id ().flags ()) & EF_5_FLOW) == EF_5_FLOW)
                                                     figured = alone = false;
                                                 break; }
-                            break; }
+                            break; } }
             if (alt_empty || ! alt_known)
                 if (ancestor_a)
                 {   bool alt_required = true, alone = true;
                     for (element* p = parent_; p != nullptr; p = p -> parent_)
+                    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                         if (p -> tag () == elem_a)
                         {   if (! p -> text ().empty ()) alt_required = false;
                             else for (element_ptr ac = p -> child_; ac != nullptr; ac = ac -> sibling_)
@@ -360,7 +407,7 @@ void element::examine_img ()
                                     if (is_standard_element (ac -> tag ()))
                                         if (ac.get () != this)
                                         {   alone = false; break; }
-                            break; }
+                            break; } }
                     if (alt_required)
                         if (alone)
                             if (! alt_known) pick (nit_attribute_required, ed_50, "4.7.1 The img element", es_error, ec_attribute, "ALT is required when <IMG> is a solo child of <A>");
