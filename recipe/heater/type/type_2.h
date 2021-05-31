@@ -34,6 +34,7 @@ template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY > cl
 public:
     typedef true_type has_int_type;
     two_value () = default;
+    static e_animation_type animation_type () { return at_other; }
     ::std::string get_string () const
     {   if (! type_base < base_type, TYPE > :: unknown ())
             if (true_) return ON::sz (); else return OFF::sz ();
@@ -111,7 +112,6 @@ template < > struct type_master < t_stitchtiles > : two_value < t_stitchtiles, e
 template < > struct type_master < t_svg_direction2 > : two_value < t_svg_direction2, e_svg_direction2, sz_ltr, sz_rtl, false > { };
 template < > struct type_master < t_svg_fontvariant_ff > : two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_smallcaps, false > { };
 template < > struct type_master < t_svg_method > : two_value < t_svg_method, e_svg_method, sz_align, sz_stretch, false > { };
-template < > struct type_master < t_svg_phase > : two_value < t_svg_phase, e_svg_phase, sz_default, sz_capture, false > { };
 template < > struct type_master < t_svg_playbackorder > : two_value < t_svg_playbackorder, e_svg_playbackorder, sz_all, sz_forwardonly, false > { };
 template < > struct type_master < t_svg_side > : two_value < t_svg_side, e_svg_side, sz_left, sz_right, false > { };
 template < > struct type_master < t_svg_timelinebegin > : two_value < t_svg_timelinebegin, e_svg_timelinebegin, sz_onload, sz_onstart, false > { };

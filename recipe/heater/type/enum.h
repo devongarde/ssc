@@ -36,6 +36,7 @@ typedef enum {  ab_afteredge, ab_alphabetic, ab_auto, ab_baseline, ab_beforeedge
                 ab_textbeforeedge, ab_textbottom, ab_texttop, ab_top } e_alignment_baseline;
 typedef enum { ap_centre, ap_indent, ap_justify, ap_left, ap_right } e_alignplus;
 typedef enum { a3_top, a3_middle, a3_bottom, a3_left, a3_right } e_align3;
+typedef enum { at_none, at_angle, at_colour, at_coordinate, at_frequency, at_integer, at_percentage, at_length, at_list, at_number, at_paint, at_time, at_transform, at_url, at_other } e_animation_type;
 typedef enum { ar_initial, ar_medial, at_terminal, at_isolated } e_arabicenum;
 typedef enum { aa_both, aa_inline, aa_list, aa_none  } e_aria_autocomplete;
 typedef enum { ai_false, ai_grammar, ai_spelling, ai_true } e_aria_invalidity;
@@ -140,9 +141,10 @@ typedef enum
         a_subscriptshift, a_summary, a_superscriptshift, a_surfacescale, a_svg, a_sym, a_svg_transform, a_symmetric, a_syncbehaviour,
         a_syncbehaviourdefault, a_syncmaster, a_synctolerance, a_synctolerancedefault, a_system, a_systemlanguage,
     a_tabindex, a_tablevalues, a_tag, a_target, a_targetid, a_targetrole, a_targetx, a_targety, a_template, a_text, a_text_align, a_text_align_last,
-        a_text_anchor, a_text_decoration, a_text_decoration_colour, a_text_decoration_line, a_text_decoration_style, a_text_indent, a_text_justify,
-        a_text_orientation, a_text_overflow, a_text_rendering, a_textlength, a_thickmathspace, a_thinmathspace, a_timelinebegin, a_title, a_to, a_top,
-        a_topmargin, a_transform, a_transformbehaviour, a_transform_box, a_transform_origin, a_translate, a_truespeed, a_type, a_typemustmatch, a_typeof,
+        a_text_anchor, a_text_decoration, a_text_decoration_colour, a_text_decoration_fill, a_text_decoration_line, a_text_decoration_stroke,
+        a_text_decoration_style, a_text_indent, a_text_justify, a_text_orientation, a_text_overflow, a_text_rendering, a_textlength, a_thickmathspace,
+        a_thinmathspace, a_timelinebegin, a_title, a_to, a_top,  a_topmargin, a_transform, a_transformbehaviour, a_transform_box, a_transform_origin,
+        a_translate, a_truespeed, a_type, a_typemustmatch, a_typeof,
     a_u1, a_u2, a_underline_position, a_underline_thickness, a_unicode, a_unicode_bidi, a_unicode_range, a_units, a_units_per_em, a_until,
         a_updateviacache,  a_urn, a_usemap,
     a_valign, a_v_alphabetic, a_value, a_values, a_valuetype, a_vector_effect, a_version, a_vert_adv_y, a_vert_origin_x, a_vert_origin_y,
@@ -347,7 +349,8 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
                 ed_apr21,
-                ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_math_1, ed_math_2, ed_math_3, ed_math_4,
+                ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
+                ed_math_1, ed_math_2, ed_math_3, ed_math_4,
                 ed_iso_8859_1, ed_csp,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
                 ed_w3, ed_mql, ed_ariaAug2020, ed_ariaApr2021, ed_mozilla, ed_ecma,
@@ -1432,7 +1435,7 @@ typedef enum
     nit_details_summary, nit_summary_header, nit_bad_dialogue, nit_bad_contextmenu, nit_bad_script, nit_bad_itemid, nit_untidy_string,
     nit_no_itemscope, nit_new_itemprop, nit_type_error, nit_schema_property, nit_forgotten_name, nit_incompatible_itemtype, nit_inlist,
     nit_schema_hierarchy, nit_html, nit_angle, nit_svg_version, nit_bad_rgb, nit_bad_frequency, nit_icc_colour, nit_svg_ancestor, nit_rdf,
-    nit_bad_namespace, nit_svg_rdf, nit_clipped, nit_closed_shape, nit_mf_infer, nit_path_spec, nit_lighting, nit_animatemotion,
+    nit_bad_namespace, nit_svg_rdf, nit_clipped, nit_mf_infer, nit_path_spec, nit_lighting, nit_animatemotion,
     nit_fontface, nit_switch, nit_transform, nit_attribute_name, nit_repeated_attribute, nit_svg_xy, nit_fontstyle, nit_svg_math,
     nit_fontstretch, nit_fontvariant, nit_fontweight, nit_panose_1, nit_icarus, nit_vector_effect, nit_paint, nit_0_1, nit_1_more,
     nit_dashed, nit_marker, nit_background, nit_bad_result, nit_not_schema_property, nit_curses, nit_xlinktype, nit_xlinkactuate,
@@ -1455,6 +1458,7 @@ typedef enum
     nit_viewbox, nit_custom, nit_duplicate_namespace, nit_contradictory_namespace, nit_unrecognised_namespace, nit_out_of_range,
     nit_math_or_svg, nit_many_maybe, nit_not_combine, nit_font_enum, nit_altglyphdef, nit_line_increment, nit_is_property,
     nit_better_as_property, nit_colour_profile, nit_feconvolvematrix, nit_not_0, nit_fecomponenttransfer, nit_fecomposite,
+    nit_style_fixed, nit_anim_simple_id, nit_id_category, nit_not_animatable,
 
     nit_context,
 
@@ -2015,6 +2019,9 @@ typedef enum { sr_auto, sr_optimisespeed, sr_crispedges, sr_geometricprecision, 
 typedef enum { sh_embed, sh_replace } e_show;
 typedef enum { siz_normal, siz_medium, siz_large, siz_huge } e_size3;
 typedef enum { smei_start, smei_middle, smei_end, smei_inherit } e_smei;
+typedef enum {  // mostly from SVG 1.1 17.1.4 Processing of IRI references
+                se_any, se_glyph_alt, se_clippath, se_icc_profile, se_colour_profile, se_image_file, se_paint_server, se_filter, se_gradient, se_marker, se_mask, se_pattern,
+                se_script, se_path, se_svg, se_animation, se_error } e_sought_category;
 typedef enum { sp_block, sp_horz, sp_vert } e_spacer;
 typedef enum { spa_auto, spa_exact } e_spacing;
 typedef enum { sm_reflect, sm_repeat, sm_pad } e_spreadmethod;
@@ -2118,7 +2125,7 @@ typedef enum {
     t_halign, t_hash_ref, t_hash_fn, t_height, t_hour, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
     t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index, t_indentalign,
         t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus, t_inputtype,
-        t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype,
+        t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
     t_just_date, t_just_time,
     t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind,
     t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length, t_length_absolute,

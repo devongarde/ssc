@@ -103,35 +103,31 @@ bool url::verify (nitpick& nits, const html_version& v, const element& e)
     {   ::boost::filesystem::path target (d -> get_disk_path (nits, *this));
         if (target.empty ()) return false;
         if (get_fileindex (e.get_page ().get_disk_path ()) != get_fileindex (target))
-            add_sought (e.get_page ().get_disk_path (), e.node ().line (), target, id (), e.own_attributes ().test (a_hidden), e.own_itemtype ()); }
+            add_sought (e.get_page ().get_disk_path (), e.node ().line (), target, id (), e.own_attributes ().test (a_hidden), e.own_itemtype (), e.node ().id ()); }
     return true; }
 
-::std::string url::verify_id (nitpick& nits, const html_version& , const ids_t& ids, const attribute_bitset& state, const vit_t& itemtypes)
+void url::verify_id (element& e)
 {   if (! empty ())
         if (! fragment ().empty ())
         {   bool is_me = ! has_file () && ! has_path ();
             if (! is_me)
-            {   fileindex_t host_ndx = ids.ndx ();
+            {   fileindex_t host_ndx = e.get_ids ().ndx ();
                 ::boost::filesystem::path host_path (get_disk_path (host_ndx));
                 if (! has_path ())
                 {   is_me = (filename () == host_path.filename ().string ());
                     if (! is_me)
                     {   ::boost::filesystem::path sought (host_path.parent_path ());
                         sought /= filename ();
-                        add_sought (host_path, ids.data (), sought, fragment (), state.test (a_hidden), itemtypes); } }
+                        add_sought (host_path, e.get_ids ().data (), sought, fragment (), e.ancestral_attributes ().test (a_hidden), e.vit (), e.node ().id ()); } }
                 else
                 {   ::std::string fp (get_filepath ());
                     if (fp.at (0) == '/')
                     {   fileindex_t ndx = get_fileindex (fp);
                         is_me = (host_ndx == ndx);
                         if (! is_me)
-                            add_sought (host_path, ids.data (), get_disk_path (ndx), fragment (), state.test (a_hidden), itemtypes); } } }
+                            add_sought (host_path, e.get_ids ().data (), get_disk_path (ndx), fragment (), e.ancestral_attributes ().test (a_hidden), e.vit (), e.node ().id ()); } } }
             if (is_me)
-                if (! ids.has_id (fragment ()))
-                    nits.pick (nit_url_id_unfound, es_error, ec_url, "id(s) ", quote (fragment ()), " not found");
-                else if (! compatible_id_state (state.test (a_hidden), ids.is_hidden (fragment ())))
-                    nits.pick (nit_id_hidden, es_error, ec_url, "id(s) ", quote (fragment ()), " hidden"); }
-    return ::std::string (); }
+                ids_t::is_good_id (e, fragment (), ec_url, nit_url_id_unfound, true); } }
 
 ::std::string url::get_filepath () const
 {   ::std::string fn, pt;

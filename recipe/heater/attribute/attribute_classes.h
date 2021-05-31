@@ -391,7 +391,7 @@ typedef typed_attribute < t_generic, a_isolation > attr_isolation;
 typedef typed_attribute < t_generic, a_item > attr_item;
 typedef typed_attribute < t_itemid, a_itemid > attr_itemid;
 typedef typed_attribute < t_itemprop, a_itemprop > attr_itemprop;
-typedef typed_attribute < t_idrefs, a_itemref > attr_itemref;
+typedef typed_attribute < t_itemref, a_itemref > attr_itemref;
 typedef typed_attribute < t_existential, a_itemscope > attr_itemscope;
 typedef typed_attribute < t_itemtype, a_itemtype > attr_itemtype;
 typedef typed_attribute < t_yesno, a_itstranslate > attr_itstranslate;

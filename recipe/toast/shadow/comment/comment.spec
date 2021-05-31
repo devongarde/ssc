@@ -5,7 +5,7 @@ PASS ../toast/shadow/comment/index.html
 12 ssi
 
 shadow
-0 500
+0 shadow
 
 EXPORTS
 ../toast/shadow/comment/index.html.model ../toast/tmp/comment/index.html

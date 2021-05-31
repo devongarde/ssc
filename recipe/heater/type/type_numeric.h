@@ -27,6 +27,7 @@ bool within_real_limits (nitpick& nits, const html_version& , const double val);
 
 template < > struct type_master < t_base > : public numeric_value < t_base, unsigned int >
 {   typedef true_type has_int_type;
+    static e_animation_type animation_type () { return at_integer; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_base, unsigned int > :: set_value (nits, v, s);
         if (numeric_value < t_base, unsigned int > :: empty ())
@@ -40,6 +41,7 @@ template < > struct type_master < t_base > : public numeric_value < t_base, unsi
 template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpoint >
 {   double value_ = 0.0;
     type_master () = default;
+    static e_animation_type animation_type () { return at_number; }
     void swap (type_master < t_fixedpoint >& t) NOEXCEPT
     {   ::std::swap (value_, t.value_);
         type_base < double, t_fixedpoint >::swap (t); }
@@ -59,7 +61,8 @@ template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpo
     double get () const { return value_; } };
 
 template < > struct type_master < t_percent > : type_master < t_fixedpoint >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_percentage; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         ::std::string::size_type len (ss.length ());
         if (len > 1)
@@ -76,6 +79,7 @@ template < > struct type_master < t_percent > : type_master < t_fixedpoint >
 
 template < > struct type_master < t_integer > : numeric_value < t_integer, int >
 {   typedef true_type has_int_type;
+    static e_animation_type animation_type () { return at_integer; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_integer, int > :: set_value (nits, v, s);
         if (! numeric_value < t_integer, int > :: good ())
@@ -106,6 +110,7 @@ template < > struct type_master < t_positive > : type_master < t_integer >
 template < > struct type_master < t_real > : type_base < double, t_real >
 {   double value_ = 0.0;
     type_master () = default;
+    static e_animation_type animation_type () { return at_number; }
     void swap (type_master < t_real >& t) NOEXCEPT
     {   ::std::swap (value_, t.value_);
         type_base < double, t_real >::swap (t); }
@@ -127,6 +132,7 @@ template < > struct type_master < t_real > : type_base < double, t_real >
 
 template < > struct type_master < t_unsigned > : public numeric_value < t_unsigned, unsigned int >
 {   typedef true_type has_int_type;
+    static e_animation_type animation_type () { return at_integer; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_unsigned, unsigned int > :: set_value (nits, v, s);
         if (! numeric_value < t_unsigned, unsigned int > :: good ())

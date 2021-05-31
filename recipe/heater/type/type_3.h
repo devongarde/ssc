@@ -28,6 +28,7 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, boo
 public:
     typedef true_type has_int_type;
     three_value () = default;
+    static e_animation_type animation_type () { return at_other; }
     ::std::string get_string () const;
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
@@ -40,7 +41,7 @@ public:
     ::std::size_t type () const { return static_cast < ::std::size_t > (get ()); } };
 
 template < > class type_master < t_aria_live > : public three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite > { };
-template < > class type_master < t_attributetype > : public three_value < t_attributetype, e_attributetype, sz_auto, sz_css, sz_xml > { };
+template < > class type_master < t_attributetype > : public three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML > { };
 template < > class type_master < t_behaviour > : public three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide > { };
 template < > class type_master < t_button > : public three_value < t_button, e_button, sz_button, sz_submit, sz_reset > { };
 template < > class type_master < t_command > : public three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > { };

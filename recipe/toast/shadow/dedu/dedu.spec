@@ -13,7 +13,7 @@ PASS ../toast/shadow/dedu/c/index.html
 2 naughty_lang
 
 shadow
-0 500 502 502 502 502
+0 shadow duplicate duplicate duplicate duplicate
 
 CLASS
 doris 4

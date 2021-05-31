@@ -47,13 +47,7 @@ void types_init (nitpick& nits)
     role_init (nits);
     sgml_init (nits);
 
-    enum_init (nits);
-
-#ifdef DEBUG
-//    for (int i = 0; i < t_zzz; ++i)
-//        test_value (nits, html_apr21, static_cast < e_type > (i), ::std::string ());
-#endif
-}
+    enum_init (nits); }
 
 bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::std::string& s)
 {   // template recursion causes stack overflow on some systems :-(
@@ -313,6 +307,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_itemid);
         TEST_VALUE (t_itemprop);
         TEST_VALUE (t_itemtype);
+        TEST_VALUE (t_itemref);
         TEST_VALUE (t_just_date);
         TEST_VALUE (t_just_time);
         TEST_VALUE (t_key);

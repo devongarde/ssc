@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 1.2 animation snippets</title>
+</head>
+
+<body>
+
+<h1>SVG 1.2 animation snippets</h1>
+
+<svg version="1.2" baseProfile="tiny">
+
+<rect transform="skewX(30)" ...>
+<animateTransform attributeName="transform" attributeType="XML"
+type="rotate" from="0" to="90" dur="5s"
+additive="replace" fill="freeze"/>
+<animateTransform attributeName="transform" attributeType="XML"
+type="scale" from="1" to="2" dur="5s"
+additive="replace" fill="freeze"/>
+</rect>
+
+<rect transform="scale(2)" .../>
+
+<rect transform="skewX(30)" ...>
+<animateTransform attributeName="transform" attributeType="XML"
+type="rotate" from="0" to="90" dur="5s"
+additive="sum" fill="freeze"/>
+<animateTransform attributeName="transform" attributeType="XML"
+type="scale" from="1" to="2" dur="5s"
+additive="sum" fill="freeze"/>
+</rect>
+
+<rect transform="skewX(30) rotate(90) scale(2)" .../>
+
+<rect color="yellow" fill="currentColor">
+<animateColor attributeName="fill" from="red" to="#DDF"
+begin="1s" dur="5s" fill="freeze" additive="sum"/>
+</rect>
+
+</svg>
+
+</body>
+</html>

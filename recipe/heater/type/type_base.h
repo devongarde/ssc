@@ -43,6 +43,7 @@ public:
     static bool is_relational () { return false; }
     static bool is_url () { return false; }
     static bool is_existential () { return false; }
+    static e_animation_type animation_type () { return at_none; }
     void swap (type_base& t) NOEXCEPT { id_.swap (t.id_); ::std::swap (status_, t.status_); }
     void reset () { status_ = s_unset; id_.clear (); }
     void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
@@ -61,7 +62,8 @@ public:
     bool good () const { return status_ == s_good; }
     bool bad () const { return ! good (); }
     bool invalid () const { return status_ == s_invalid; }
-    void verify_id (nitpick& , const html_version& , ids_t& , const attribute_bitset& , const vit_t& ) { }
+//    void verify_id (nitpick& , const html_version& , ids_t& , const attribute_bitset& , const vit_t& , const e_sought_category ) { }
+    void verify_id (element& ) { }
     e_status status () const { return status_; }
     void status (const e_status s) { status_ = s; }
     bool unknown () const { return status_ == s_unset; }

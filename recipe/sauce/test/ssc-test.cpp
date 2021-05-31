@@ -367,9 +367,13 @@ bool shadowcheck (const vstr_t& line)
     expected_shadow.clear ();
     if (line.size () == expected.size ())
     {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
-            if (line.at (x) != expected.at (x))
+        {   ::std::string n (expected.at (x));
+            ::boost::trim (n);
+             e_nit en = lookup_code (n);
+            if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (in shadow)\n";
+            else if (::boost::lexical_cast < int > (line.at (x)) != static_cast < int > (en))
             {   blooper = true;
-                if (verbose) ::std::cout << "shadow " << x << " differs\n"; }
+                if (verbose) ::std::cout << "shadow " << x << " differs (expected " << expected.at (x) << ", got  " << line.at (x) << ").\n"; } }
         if (! blooper) return true; }
     else if (verbose) ::std::cout << "shadows differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
     return false; }
@@ -381,9 +385,13 @@ bool exporterrorcheck (const vstr_t& line)
     expected_export_errors.clear ();
     if (line.size () == expected.size ())
     {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
-            if (line.at (x) != expected.at (x))
+        {   ::std::string n (expected.at (x));
+            ::boost::trim (n);
+             e_nit en = lookup_code (n);
+            if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (in exports expected)\n";
+            else if (::boost::lexical_cast < int > (line.at (x)) != static_cast < int > (en))
             {   blooper = true;
-                if (verbose) ::std::cout << "export errors " << x << " differs\n"; }
+                if (verbose) ::std::cout << "export errors " << x << " differs (expected " << expected.at (x) << ", got  " << line.at (x) << ").\n"; } }
         if (! blooper) return true; }
     else if (verbose) ::std::cout << "export errors differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
     return false; }

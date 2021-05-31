@@ -26,20 +26,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void element::pre_examine_element (const e_element tag)
 {   switch (tag) // should integrate this into individual element verification
-    {   case elem_area : examine_area (); break;
+    {   case elem_animate :
+        case elem_animatecolour :
+        case elem_animatemotion :
+        case elem_animatetransform :
+        case elem_set : examine_animation_attributes (); break;
         case elem_annotation :
         case elem_annotation_xml : examine_annotation (tag); break;
+        case elem_area : examine_area (); break;
         case elem_base : examine_base (); break;
         case elem_body :
         case elem_head :
         case elem_htmlplus :
         case elem_isindex :  only_one_of (tag); break;
-        case elem_circle :
-        case elem_ellipse :
-        case elem_line :
-        case elem_polygon :
-        case elem_polyline :
-        case elem_rect : examine_svg_shape (); break;
         case elem_col : examine_col (); break;
         case elem_colour_profile : examine_colour_profile (); break;
         case elem_command : examine_command (); break;
@@ -460,9 +459,9 @@ void element::verify_children ()
         while (to_sibling (e)); } }
 
 void element::verify ()
-{   PRESUME (access_ != nullptr, __FILE__, __LINE__);
+{   VERIFY_NOT_NULL (access_, __FILE__, __LINE__);
     if (node_.line () >= 0) get_ids ().data (node_.line ());
-    a_.verify (nits (), node_.version (), get_ids (), ancestral_attributes_, vit_);
+    a_.verify_id (*this);
     if (a_.has (a_headers)) examine_headers ();
     verify_children ();
     if (a_.has (a_list)) validate_input_id ();

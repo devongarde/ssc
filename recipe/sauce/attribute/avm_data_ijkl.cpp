@@ -366,13 +366,14 @@ hav_t havt_ijkl [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_list, a_order },
     MATH3_STANDARD_ATTRIBUTES (elem_list),
 
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_defaultaction },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_event },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_handler },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_observer },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_phase },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_propagate },
     XHTML2_ATTRIBUTES (elem_listener),
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_listener),
+    SVG_HTML_ATTRIBUTES (elem_listener),
 
     HTML23_CLID_ATTRIBUTES (elem_listing),
 

@@ -23,15 +23,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url_protocol.h"
 
 template < > struct type_master < t_curie > : tidy_string < t_curie >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_url; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_curie > :: set_value (nits, v, s); } };
 
 template < > struct type_master < t_curie_safe > : tidy_string < t_curie_safe >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_url; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_curie_safe > :: set_value (nits, v, s); } };
 
 template < > struct type_master < t_curies > : string_vector < t_curies, sz_space >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_url; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_curies, sz_space > :: set_value (nits, v, s); } };
 
 template < > struct type_master < t_inlist > : tidy_string < t_inlist >

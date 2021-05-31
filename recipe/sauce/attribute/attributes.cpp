@@ -77,10 +77,10 @@ bool attributes :: valid () const // better if aar_t keeps state when attributes
                 return false;
     return true; }
 
-void attributes :: verify (nitpick& nits, const html_version& v, ids_t& ids, const attribute_bitset& flags, const vit_t& itemtypes)
+void attributes :: verify_id (element& e)
 {   for (auto a : aar_)
         if (a.get () != nullptr)
-            a -> verify_id (nits, v, ids, flags, itemtypes); }
+            a -> verify_id (e); }
 
 bool attributes :: invalid_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe)
 {   bool res = false;

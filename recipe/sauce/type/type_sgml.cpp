@@ -288,8 +288,6 @@ struct symbol_entry < html_version, e_sgml > doctype_symbol_table [] =
     { { XHTML_1_1, 0, HE_MATH_2 | HE_SVG_11 }, { HTML_UNDEF }, HTTP_W3 "/2002/04/xhtml-math-svg/xhtml-math-svg.dtd", doc_compound_1_1 },
     { { XHTML_1_1, 0, HE_MATH_2 | HE_SVG_11 }, { HTML_UNDEF }, HTTPS_W3 "/2002/04/xhtml-math-svg/xhtml-math-svg.dtd", doc_compound_1_1 },
 
-//    { { HTML_SVG21, 0, HE_SVG_21 }, { HTML_UNDEF }, "-//W3C//DTD SVG 2.1//EN", doc_svg21 }, // entirely fake
-//    { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, "-//W3C//DTD SVG 2.0//EN", doc_svg20 }, // just as fake
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "-//W3C//DTD SVG 20010904//EN", doc_svg10 },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, "-//W3C//DTD SVG 1.1//EN", doc_svg11 },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, HTTP_W3 "/Graphics/SVG/1.1/DTD/svg11.dtd", doc_svg11 },

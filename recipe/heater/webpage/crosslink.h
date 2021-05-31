@@ -26,6 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void declare_crosslinks (const fileindex_t sought, ids_t& ids);
 void declare_crosslinks (const ::boost::filesystem::path& sought, ids_t& ids);
-void add_sought (const fileindex_t seeker, const ::std::size_t line, const fileindex_t sought, const ::std::string& id, const bool hidden, const vit_t& itemtypes = vit_t ());
-void add_sought (const ::boost::filesystem::path& seeker, const ::std::size_t line, const ::boost::filesystem::path& sought, const ::std::string& id, const bool hidden, const vit_t& itemtypes = vit_t ());
+void add_sought (const fileindex_t seeker, const ::std::size_t line, const fileindex_t sought, const ::std::string& id, const bool hidden, const vit_t& itemtypes, const e_element e);
+void add_sought (const ::boost::filesystem::path& seeker, const ::std::size_t line, const ::boost::filesystem::path& sought, const ::std::string& id, const bool hidden, const vit_t& itemtypes, const e_element e);
 void reconcile_crosslinks (nitpick& nits);

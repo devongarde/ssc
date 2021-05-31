@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void throw_bad_deference (const char* const var, const char* const fn, const ::std::size_t line)
 {   DBG_ASSERT (false);
-    ::std::string msg ("Null pointer deference of ");
+    ::std::string msg ("null pointer deference of ");
     msg += var;
     msg += file_line (fn, line);
     throw ::std::runtime_error (msg); }
@@ -38,7 +38,7 @@ void throw_bad_deference (const char* const var, const char* const fn, const ::s
 void throw_bad_presumption (const char* const x, const char* const fn, const ::std::size_t line)
 {   DBG_ASSERT (false);
     ::boost::filesystem::path p (fn);
-    ::std::string msg ("Presumption " );
+    ::std::string msg ("presumption " );
     msg += x;
     msg += ::std::string (" failed");
     msg += file_line (fn, line);
@@ -46,6 +46,6 @@ void throw_bad_presumption (const char* const x, const char* const fn, const ::s
 
 void graceful_crash (const char* const fn, const ::std::size_t line)
 {   DBG_ASSERT (false);
-    ::std::string msg ("graceful crash initiated ");
+    ::std::string msg ("inconsistent internal state");
     msg += file_line (fn, line);
     throw ::std::runtime_error (msg); }

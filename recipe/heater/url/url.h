@@ -117,7 +117,8 @@ public:
     bool sanity_test () const;
     bool standard_extension (const e_mime_category mime = mc_text) const;
     bool verify (nitpick& nits, const html_version& v, const element& e);
-    ::std::string verify_id (nitpick& nits, const html_version& v, const ids_t& ssi, const attribute_bitset& flags, const vit_t& itemtypes); };
+//    void verify_id (nitpick& nits, const html_version& v, const ids_t& ssi, const attribute_bitset& flags, const vit_t& itemtypes, const e_sought_category cat); };
+    void verify_id (element& e); };
 
 typedef ::std::vector < url > vurl_t;
 vurl_t split_urls_by_space (nitpick& nits, const html_version& v, const ::std::string& s);

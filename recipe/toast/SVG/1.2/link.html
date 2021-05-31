@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 1.2 link snippets</title>
+</head>
+
+<body>
+
+<h1>SVG 1.2 link snippets</h1>
+
+<svg xmlns='http://www.w3.org/2000/svg'
+xmlns:xlink='http://www.w3.org/1999/xlink'
+version='1.2' baseProfile='tiny'>
+<title>Example of a circular reference with 'use'</title>
+<g id='a'>
+<text>ABC</text>
+<use xlink:href='#b'/>
+</g>
+<g id='b'>
+<text>DEF</text>
+<use xlink:href='#a'/>
+</g>
+</svg>
+
+<svg xmlns='http://www.w3.org/2000/svg'
+xmlns:xlink='http://www.w3.org/1999/xlink'
+version='1.2' baseProfile='tiny'>
+<title>Example of a circular reference with 'animation'</title>
+<animation xlink:href='#' width='100' height='100'/>
+</svg>
+
+</body>
+</html>

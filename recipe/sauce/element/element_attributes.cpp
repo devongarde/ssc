@@ -40,6 +40,46 @@ void element::examine_accesskey ()
 {   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul09))
         pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "ACCESSKEY requires a different version of HTML"); }
 
+void element::examine_animation_attributes ()
+{   e_svg_version sv = node_.version ().svg_version ();
+    PRESUME ((sv != sv_none), __FILE__, __LINE__);
+    bool block_add = false;
+    if (a_.good (a_xlinkhref))
+    {   auto xh (a_.get_x < attr_xlinkhref > ());
+        if (! xh.is_simple_id ())
+            pick (nit_anim_simple_id, ed_svg_1_0, "19.2.4 Attributes to identify the target element for an animation", es_error, ec_link, "here, XLINK:HREF must link to an animation under the same parent SVG"); }
+    if (a_.good (a_href))
+    {   auto hr (a_.get_x < attr_href > ());
+        if (! hr.is_simple_id ())
+            pick (nit_anim_simple_id, ed_svg_2_anim, "2.5. Attributes to identify the target element for an animation", es_error, ec_link, "here, HREF must link to an animation under the same parent SVG"); }
+    if (a_.good (a_attributename))
+    {   e_attribute a = static_cast < e_attribute > (a_.get_int (a_attributename));
+        if (sv > sv_1_1)
+        {   e_animation_type at = get_animation_type (a);
+            bool bad = false;
+            if (sv >= sv_2_0) switch (tag ())
+            {   case elem_animate :
+                case elem_set : bad = ((at == at_frequency) || (at == at_time));
+                                block_add = ((at == at_url) || (at == at_other)); break;
+                case elem_animatetransform : bad = (at != at_transform); break;
+                default : bad = true; break; }
+            else if (sv > sv_1_1) switch (tag ())
+            {   case elem_animate :
+                case elem_set : bad = (at == at_transform);
+                                block_add = ((at == at_url) || (at == at_other) || (at == at_list)); break;
+                case elem_animatecolour : bad = (at != at_colour) && (at != at_paint); break;
+                case elem_animatemotion :
+                case elem_animatetransform : bad = (at != at_transform); break;
+                default : bad = true; break; }
+            if (bad) pick ( nit_not_animatable, ed_svg_2_0, "2.18. Elements, attributes and properties that can be animated", es_warning, ec_type,
+                            quote (attr :: name (a)), " cannot normally be animated by <", node_.id ().name (), "> in ", node_.version ().report ()); }
+        if ((sv <= sv_1_1) && attr::first_version (a).svg_limited (sv))
+        {   block_add = true;
+            if ((sv == sv_1_0) && (tag () != elem_animate) && (tag () != elem_set))
+                pick (nit_not_animatable, ed_svg_1_0, "Appendix N: Property Index", es_warning, ec_type, quote (attr :: name (a)), " can only be animated by <ANIMATE> or <SET>"); }
+        if (block_add && a_.known (a_additive))
+            pick (nit_not_animatable, ed_svg_2_0, "2.18. Elements, attributes and properties that can be animated", es_warning, ec_type, quote (attr :: name (a)), " cannot be animated when ADDITIVE is specified"); } }
+
 void element::examine_autofocus ()
 {   if (node_.version ().mjr () < 5) return;
     element* anc (this);

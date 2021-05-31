@@ -24,7 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::size_t expected, const bool pts = false, const int max = 0);
 
 template < > struct type_master < t_pt > : tidy_string < t_pt >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_coordinate; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_pt > :: set_value (nits, v, s);
         if (tidy_string < t_pt >  :: good ())
             if (test_reals (nits, v, tidy_string < t_pt > :: get_string (), 2)) return;
@@ -32,7 +33,8 @@ template < > struct type_master < t_pt > : tidy_string < t_pt >
         tidy_string < t_pt > :: status (s_invalid); } };
 
 template < > struct type_master < t_2pt > : tidy_string < t_2pt >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_coordinate; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_2pt > :: set_value (nits, v, s);
         if (tidy_string < t_2pt >  :: good ())
             if (test_reals (nits, v, tidy_string < t_2pt > :: get_string (), 4)) return;
@@ -57,7 +59,8 @@ template < > struct type_master < t_filterres > : tidy_string < t_filterres >
         tidy_string < t_filterres > :: status (s_invalid); } };
 
 template < > struct type_master < t_points > : tidy_string < t_points >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_coordinate; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_points > :: set_value (nits, v, s);
         if (tidy_string < t_points >  :: good ())
             if (test_reals (nits, v, tidy_string < t_points > :: get_string (), 0, true)) return;

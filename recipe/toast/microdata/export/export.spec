@@ -42,7 +42,7 @@ EXPORTS
 ../toast/microdata/export/work.html.model ../toast/tmp/export/work.html.json
 
 exports
-0 500
+0 shadow
 
 itemid
 #mozOrg

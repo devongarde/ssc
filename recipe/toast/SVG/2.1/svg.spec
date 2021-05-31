@@ -1,5 +1,37 @@
 -f ../toast/SVG/2.1/svg.conf
 
+PASS ../toast/SVG/2.1/animation-1.xhtml
+0 title_required
+1 xhtml_5_0
+37 use_quote_code
+
+PASS ../toast/SVG/2.1/animation-2.xhtml
+1 xhtml_5_0
+6 contradictory_namespace
+7 not_animatable
+11 contradictory_namespace
+12 url_not_found
+
+PASS ../toast/SVG/2.1/animation-3.html
+2 naughty_lang
+
+PASS ../toast/SVG/2.1/animation-4.xhtml
+0 title_required
+1 xhtml_5_0
+2 xhtml_enum_lc
+
+PASS ../toast/SVG/2.1/animation-5.xhtml
+0 title_required
+1 xhtml_5_0
+
+PASS ../toast/SVG/2.1/animation-6.html
+2 naughty_lang
+
+PASS ../toast/SVG/2.1/animation-7.xhtml
+0 title_required
+1 xhtml_5_0
+5 script
+
 PASS ../toast/SVG/2.1/bbox.svg
 1 xhtml_5_0
 
@@ -128,6 +160,10 @@ PASS ../toast/SVG/2.1/line.xhtml
 PASS ../toast/SVG/2.1/lineargradient.svg
 1 xhtml_5_0
 
+PASS ../toast/SVG/2.1/link.svg
+0 title_required
+1 xhtml_5_0
+
 PASS ../toast/SVG/2.1/marker-1.svg
 0 title_required
 1 xhtml_5_0
@@ -231,7 +267,10 @@ PASS ../toast/SVG/2.1/rect-2.xhtml
 0 title_required
 1 xhtml_5_0
 
-PASS ../toast/SVG/2.1/script.svg
+PASS ../toast/SVG/2.1/script-1.html
+12 url_not_found
+
+PASS ../toast/SVG/2.1/script-2.svg
 0 title_required
 1 xhtml_5_0
 7 script
@@ -264,6 +303,8 @@ PASS ../toast/SVG/2.1/styling-3.html
 
 PASS ../toast/SVG/2.1/svg-1.html
 2 naughty_lang
+10 missing_close
+11 inserted_missing_closure
 
 PASS ../toast/SVG/2.1/svg-1.xhtml
 0 title_required

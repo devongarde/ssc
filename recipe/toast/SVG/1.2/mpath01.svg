@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+version="1.2" baseProfile="tiny" viewBox="0 0 80 60">
+<desc>Example demonstrating the use of the 'mpath' element.</desc>
+<path xml:id="mpathRef" d="M15,43 C15,43 36,20 65,33" fill="none" stroke="black" stroke-width="1"/>
+<circle r="5" fill="blue">
+<animateMotion begin="0s" dur="6s" calcMode="linear" fill="freeze">
+<mpath xlink:href="#mpathRef"/>
+</animateMotion>
+</circle>
+</svg>

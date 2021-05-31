@@ -241,8 +241,8 @@ template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept 
         tidy_string < t_inputaccept > :: status (s_invalid); } };
 
 template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_space, t_nsd > { };
-
-template < > struct type_master < t_real_1_2 > : type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real > { };
+template < > struct type_master < t_real_1_2 > : type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real >
+{   static e_animation_type animation_type () { return at_number; } };
 
 template < > struct type_master < t_roles > : string_vector < t_roles, sz_space >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

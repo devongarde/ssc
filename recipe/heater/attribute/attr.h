@@ -25,6 +25,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define AP_NAMESPACE_MASK   0x00000000000000FF
 
+#define AP_XLINKCAT_MASK    0x000000000000FF00
+#define AP_XLINK_TYPE_SHIFT 8
+
+#define AP_SET_XLINKCAT(XXX)  ((uint64_t) (XXX) << AP_XLINK_TYPE_SHIFT)
+#define AP_GET_XLINKCAT(XXX)  (((XXX) & AP_XLINKCAT_MASK) >> AP_XLINK_TYPE_SHIFT)
+
 struct attr : symbol < html_version, e_attribute >
 {   static e_attribute parse (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string& x, ::std::string& decl);
     static void init (nitpick& nits);
@@ -32,6 +38,10 @@ struct attr : symbol < html_version, e_attribute >
     {   return static_cast < e_namespace > (f & AP_NAMESPACE_MASK); }
     e_namespace ns () const
     {   return ns (symbol < html_version, e_attribute > :: flags ()); }
+    static e_sought_category link_category_sought (const uint64_t f)
+    {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (f)); }
+    e_sought_category link_category_sought () const
+    {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (flags ())); }
     attr () {}
     attr (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string& x, ::std::string& ns)
     {   set (v, parse (nits, v, nss, x, ns)); } };

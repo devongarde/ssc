@@ -23,11 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "attribute/attribute_classes.h"
 
-void element::examine_section ()
-{   if (node_.version ().is_5 ())
-    {   if (w3_minor_5 (node_.version ()) > 0)
-            check_ancestors (tag (), empty_element_bitset | elem_dt); } }
-
 void element::examine_script ()
 {   if (! node_.version ().is_5 ()) return;
     check_ancestors (elem_script, element_bit_set (elem_script));
@@ -120,6 +115,11 @@ bool element::report_script_comment (element_ptr child)
             else if (p -> has_child ())
                 if (report_script_comment (p -> child_)) return true; }
     return false; }
+
+void element::examine_section ()
+{   if (node_.version ().is_5 ())
+    {   if (w3_minor_5 (node_.version ()) > 0)
+            check_ancestors (tag (), empty_element_bitset | elem_dt); } }
 
 void element::examine_select ()
 {   if (node_.version ().mjr () < 5) return;
@@ -231,6 +231,17 @@ void element::examine_summary ()
 
 void element::examine_svg ()
 {   bool ancestor = ancestral_elements_.test (elem_svg);
+    if (a_.good (a_contentscripttype))
+    {   e_mimetype em = a_.get_x < attr_contentscripttype > ();
+        check_mimetype_family (nits (), node_.version (), em, MIME_SCRIPT, attr::name (a_contentscripttype)); }
+    if (a_.good (a_contentstyletype))
+    {   e_mimetype em = a_.get_x < attr_contentstyletype > ();
+        check_mimetype_family (nits (), node_.version (), em, MIME_STYLE, attr::name (a_contentstyletype));
+        if (context.html_ver () >= html_jan18)
+            if (em == mime_text_css)
+                pick (nit_style_fixed, es_info, ec_attribute, context.html_ver ().name (), " requires CSS, so ", attr::name (a_contentstyletype), " is redundant");
+            else
+                pick (nit_style_fixed, es_warning, ec_attribute, context.html_ver ().name (), " requires CSS, so ", quote (a_.get_string (a_contentstyletype)), " is problematic"); }
     switch (node_.version ().svg_version ())
     {   case sv_1_1 :
         case sv_2_0 :
@@ -244,11 +255,6 @@ void element::examine_svg ()
                 pick (nit_svg_ancestor, ed_svg_1_2_tiny, "5.1.1 ... the 'svg' element: overview", es_error, ec_element, "An <SVG> cannot descend from another <SVG>");
             break;
         default : break; } }
-
-void element::examine_svg_shape ()
-{   if (node_.version ().svg_version () != sv_1_0) return;
-    if (has_child ())
-        pick (nit_closed_shape, ed_svg_1_0, "12 Other Vector Graphic Shapes", es_error, ec_element, "in SVG 1.0, <", elem :: name (tag ()), "> cannot have descendants"); }
 
 void element::examine_switch ()
 {   if (! has_child ())

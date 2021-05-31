@@ -27,6 +27,7 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
     static ::std::string a_, b_, c_, d_;
 public:
     typedef true_type has_int_type;
+    static e_animation_type animation_type () { return at_other; }
     ::std::string get_string () const;
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }

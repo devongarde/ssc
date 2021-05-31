@@ -22,22 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 #include "parser/pattern.h"
 
-template < > struct type_master < t_attributename > : tidy_string < t_attributename >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_attributename > :: set_value (nits, v, s);
-        if (s.empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "ATTRIBUTENAME should have a name");
-            string_value < t_attributename > :: status (s_invalid); }
-        else
-        {   e_attribute ea = attr :: find (v, tidy_string < t_attributename > :: get_string ());
-            if (ea != a_unknown) return;
-            nits.pick (nit_empty, es_warning, ec_type, quote (tidy_string < t_attributename > :: get_string ()), " is an unrecognised ATTRIBUTENAME");
-            tidy_string < t_attributename > :: status (s_invalid); } } };
-
 template < > struct type_master < t_coords > : tidy_string < t_coords >
 {   typedef vint_t value_type;
     value_type value_;
     type_master () = default;
+    static e_animation_type animation_type () { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_coords > :: set_value (nits, v, s);
         if (tidy_string < t_coords > :: empty ())

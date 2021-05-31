@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:ev="http://www.w3.org/2001/xml-events"
+version="1.2" baseProfile="tiny"
+width="4cm" height="2cm" viewBox="0 0 400 200">
+<desc>A simple animation using the uDOM and the Timer interface of the uDOM.</desc>
+<script type="application/ecmascript"><![CDATA[
+var timeValue = 0;
+var timerIncrement = 50;
+var maxTime = 5000;
+var textElement;
+var svgRoot;
+var mytimer;
+// A listener for the timer
+function someListener(evt) {
+showAndGrowElement();
+}
+function init() {
+textElement = document.getElementById("svgtext");
+svgRoot = document.documentElement;
+launchTimer();
+}
+function launchTimer() {
+// Fire timer event as soon as possible, initialInterval = 0
+// Timer event must be sent every 50 ms, repeatInterval = 50
+someTimer = createTimer(0, 50);
+// Add a listener for the "SVGTimer" event
+someTimer.addEventListener("SVGTimer", someListener, false);
+// Start the timer, which will fire the first event immediately as initialInterval is 0
+someTimer.start();
+}
+function showAndGrowElement() {
+timeValue += timerIncrement;
+// Scale the text string gradually until it is 20 times larger
+scalefactor = (timeValue * 20) / maxTime;
+var matrix = svgRoot.createSVGMatrixComponents(scalefactor, 0, 0, scalefactor, 0, 0);
+textElement.setMatrixTrait("transform", matrix);
+// Make the string more opaque
+var opacityFactor = timeValue / maxTime;
+textElement.setFloatTrait("fill-opacity", opacityFactor);
+if (timeValue >= maxTime) {
+someTimer.stop();
+}
+}
+]]></script>
+<handler type="application/ecmascript" ev:event="load">
+init();
+</handler>
+<rect x="1" y="1" width="398" height="198" fill="none" stroke="blue" stroke-width="2"/>
+<g transform="translate(50,150)" font-size="7" stroke="none">
+<text fill="red" fill-opacity="0" xml:id="svgtext">SVG</text>
+</g>
+</svg>

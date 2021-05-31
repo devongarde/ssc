@@ -248,3 +248,6 @@ bool element::has_glyph (const ::std::string& s) const
 
 void element::add_glyph (const ::std::string& s)
 {   page_.get_glyphs ().insert_id (s, this); }
+
+e_namespace element::verify_namespace (::std::string& s, ::std::string n)
+{   return examine_namespace (nits (), node ().version (), node_.nss (), s, n); }

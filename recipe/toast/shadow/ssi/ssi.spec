@@ -7,4 +7,4 @@ PASS ../toast/shadow/ssi/ssi.html
 9 naughty_lang
 
 shadow
-0 500
+0 shadow

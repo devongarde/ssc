@@ -7,7 +7,7 @@ PASS ../toast/shadow/dedudiff/ssi.html
 9 naughty_lang
 
 shadow
-0 502 502 502 502 502
+0 duplicate duplicate duplicate duplicate duplicate
 
 CLASS
 doris 1

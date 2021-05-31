@@ -532,8 +532,7 @@ e_emi svg_conflict (const html_version& lhs, const html_version& rhs)
     PRESUME (rhs.has_svg (), __FILE__, __LINE__);
     if (! lhs.has_svg ()) return emi_svg;
     if (lhs.is_4 ())
-    {   if (rhs.svg_x1 () && (lhs.mnr () >= 2) && (lhs.mnr () <= 3)) return emi_good;
-        if (rhs.svg_x2 () && (lhs == xhtml_2)) return emi_good;
+    {   if (rhs.svg_x2 () && (lhs == xhtml_2)) return emi_good;
         if (rhs.svg_old_html ()) return emi_good; }
     else if (lhs < html_jul08) return emi_good;
     if (is_excluded (lhs, rhs, SVG_MASK)) return emi_not_this_svg;
@@ -661,6 +660,28 @@ bool html_version::is_plain_html () const
 bool html_version::requires_extension () const
 {   return test_extension (); }
 
+bool html_version::svg_anim (const e_svg_version v) const
+{   switch (v)
+    {   case sv_1_0 : return svg_anim_10 ();
+        case sv_1_1 : return svg_anim_11 ();
+        case sv_1_2_tiny :
+        case sv_1_2_full : return svg_anim_12 ();
+        case sv_2_0 : return svg_anim_20 ();
+        case sv_2_1 : return svg_anim_21 ();
+        default : break; }
+    return false; }
+
+bool html_version::svg_limited (const e_svg_version v) const
+{   switch (v)
+    {   case sv_1_0 : return svg_limited_10 ();
+        case sv_1_1 : return svg_limited_11 ();
+        case sv_1_2_tiny :
+        case sv_1_2_full : return svg_limited_12 ();
+        case sv_2_0 : return svg_limited_20 ();
+        case sv_2_1 : return svg_limited_21 ();
+        default : break; }
+    return false; }
+
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   bool res = version.parse_doctype (nits, ::std::string (b, e));
     if (! res) version.reset (html_0);
@@ -691,8 +712,8 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
                     {   case 0 :
                         case 1 : return ! from.not4 ();
                         case 2 :
-                        case 3 : return ! from.notx1 ();
-                        case 4 : return ! from.notx2 (); }
+                        case 3 : return (! from.notx1 ()) || (from.svg_version () != sv_none) || (from.math_version () != math_none);
+                        case 4 : return (! from.notx2 ()) || (from.svg_version () != sv_none) || (from.math_version () != math_none); }
                     PRESUME (false, __FILE__, __LINE__);
                     break;
         default :   if (from.xhtml () && from.notx5 ()) return false;

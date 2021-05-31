@@ -62,11 +62,13 @@ public:
     void cover_arse ();
     const mif_t& mif () const { return ids_; }
     bool compatible_state (const ::std::string& id, const bool hidden);
+    bool compatible_category (const html_version& v, element& e, const e_sought_category cat);
     bool is_hidden (const ::std::string& id) const;
     bool has_itemtype (const ::std::string& id, const itemtype_index s) const;
     bool has_itemtype (const ::std::string& id, const vit_t vit) const;
     e_element get_tag (const ::std::string& id) const;
     uid_t get_uid (const ::std::string& id) const;
-    element* get_element (const ::std::string& id) const; };
+    element* get_element (const ::std::string& id) const;
+    static bool is_good_id (element& e, const ::std::string& s, const e_category naughty_cat, const e_nit naughty_nit, const bool hidden_concern); };
 
 bool compatible_id_state (const bool source, const bool target);
