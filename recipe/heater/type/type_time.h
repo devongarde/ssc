@@ -34,28 +34,32 @@ bool verify_plain_date (nitpick& nits, const html_version& v, const ::std::strin
 bool verify_coarse_time (nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_datetime_4 > : tidy_string < t_datetime_4 >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_datetime_4 > :: set_value (nits, v, s);
         if (! tidy_string < t_datetime_4 > :: good ()) return;
         if (! verify_time_4 (nits, v, tidy_string < t_datetime_4 > :: get_string ()))
             tidy_string < t_datetime_4 > :: status (s_invalid); } };
 
 template < > struct type_master < t_datetime_5 > : public tidy_string < t_datetime_5 >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_datetime_5 > :: set_value (nits, v, s);
         if (! tidy_string < t_datetime_5 > :: good ()) return;
         if (! verify_time_5 (nits, v, tidy_string < t_datetime_5 > :: get_string ()))
             tidy_string < t_datetime_5 > :: status (s_invalid); } };
 
 template < > struct type_master < t_datetime_absolute > : public tidy_string < t_datetime_absolute >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_datetime_absolute > :: set_value (nits, v, s);
         if (! tidy_string < t_datetime_absolute > :: good ()) return;
         if (! verify_absolute (nits, v, tidy_string < t_datetime_absolute > :: get_string ()))
             tidy_string < t_datetime_absolute > :: status (s_invalid); } };
 
 template < > struct type_master < t_datetime_local > : public tidy_string < t_datetime_local >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_datetime_local > :: set_value (nits, v, s);
         if (! tidy_string < t_datetime_local > :: good ()) return;
         if (! verify_local_datetime (nits, v, tidy_string < t_datetime_local > :: get_string ()))
@@ -69,7 +73,8 @@ template < > struct type_master < t_duration > : public tidy_string < t_duration
             tidy_string < t_duration > :: status (s_invalid); } };
 
 template < > struct type_master < t_datetime > : public tidy_string < t_datetime >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_datetime > :: set_value (nits, v, s);
         const ::std::string& ss (tidy_string < t_datetime > :: get_string ());
         if (! tidy_string < t_datetime > :: good ()) return;
@@ -79,7 +84,8 @@ template < > struct type_master < t_datetime > : public tidy_string < t_datetime
         tidy_string < t_datetime > :: status (s_invalid); } };
 
 template < > struct type_master < t_just_date > : public tidy_string < t_just_date >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_just_date > :: set_value (nits, v, s);
         if (! tidy_string < t_just_date > :: good ()) return;
         if (v.is_4_or_more ())
@@ -87,7 +93,8 @@ template < > struct type_master < t_just_date > : public tidy_string < t_just_da
         tidy_string < t_just_date > :: status (s_invalid); } };
 
 template < > struct type_master < t_just_time > : public tidy_string < t_just_time >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_just_time > :: set_value (nits, v, s);
         if (! tidy_string < t_just_time > :: good ()) return;
         if (v.is_4_or_more ())
@@ -95,14 +102,16 @@ template < > struct type_master < t_just_time > : public tidy_string < t_just_ti
         tidy_string < t_just_time > :: status (s_invalid); } };
 
 template < > struct type_master < t_month > : public tidy_string < t_month >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_month > :: set_value (nits, v, s);
         if (! tidy_string < t_month > :: good ()) return;
         if (! verify_month (nits, v, tidy_string < t_month > :: get_string ()))
             tidy_string < t_month > :: status (s_invalid); } };
 
 template < > struct type_master < t_week > : public tidy_string < t_week >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_week > :: set_value (nits, v, s);
         if (! tidy_string < t_week > :: good ()) return;
         if (! verify_week (nits, v, tidy_string < t_week > :: get_string ()))
@@ -125,6 +134,7 @@ template < > struct type_master < t_svg_duration > : public tidy_string < t_svg_
 
 template < > struct type_master < t_hour > : public numeric_value < t_hour, unsigned int >
 {   typedef true_type has_int_type;
+    static e_animation_type animation_type () { return at_time; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_hour, unsigned int > :: set_value (nits, v, s);
         if (! numeric_value < t_hour, unsigned int > :: good () || (value_ > 23))
@@ -133,6 +143,7 @@ template < > struct type_master < t_hour > : public numeric_value < t_hour, unsi
 
 template < > struct type_master < t_minute > : public numeric_value < t_minute, unsigned int >
 {   typedef true_type has_int_type;
+    static e_animation_type animation_type () { return at_time; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_minute, unsigned int > :: set_value (nits, v, s);
         if (! numeric_value < t_minute, unsigned int > :: good () || (value_ > 59))
@@ -141,6 +152,7 @@ template < > struct type_master < t_minute > : public numeric_value < t_minute, 
 
 template < > struct type_master < t_second > : public numeric_value < t_second, unsigned int >
 {   typedef true_type has_int_type;
+    static e_animation_type animation_type () { return at_time; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_second, unsigned int > :: set_value (nits, v, s);
         if (! numeric_value < t_second, unsigned int > :: good () || (value_ > 61))// leap seconds

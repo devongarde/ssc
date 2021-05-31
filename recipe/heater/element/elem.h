@@ -38,12 +38,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_UNCLOSEDPLUS     0x0000000000040000
 #define EP_UNCLOSED1TP      0x0000000000070000
 #define EP_UNCLOSED2        0x0000000000080000
-#define EP_UNCLOSEDSVG11    0x0000000000100000
+
 #define EP_UNCLOSEDSVG12    0x0000000000200000
 #define EP_UNCLOSED12       0x00000000000A0000
 #define EP_UNCLOSED1P2      0x00000000000E0000
-
-#define EP_UNCLOSED_SVG_11_12 ( EP_UNCLOSEDSVG11 | EP_UNCLOSEDSVG12 )
 
 #define EP_5_DYNAMIC        0x0000000001000000
 #define EP_5_REFRESHED      0x0000000002000000
@@ -65,6 +63,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_SVG_12_TRANS     0x0000002000000000
 #define EP_NO_WHINGE        0x0000004000000000
 #define EP_HOLDS_ALL        0x0000008000000000
+
+// corresponds to e_category_sought
+#define EP_XLINK_TYPE_MASK   0x0000FF0000000000
+#define EP_XLINK_TYPE_SHIFT  40
+
+#define EP_SET_XLINKCAT(XXX)  ((uint64_t) (XXX) << EP_XLINK_TYPE_SHIFT)
+#define EP_GET_XLINKCAT(XXX)  (((XXX) & EP_XLINK_TYPE_MASK) >> EP_XLINK_TYPE_SHIFT)
 
 // categories
 
@@ -209,6 +214,13 @@ public:
     {   refresh (EP_5_REFRESHED); }
     bool wild_attributes (const html_version& v) const
     {   return (v.is_5 () && ((flags () & EP_5_WILDATTR) == EP_5_WILDATTR)); }
+    static e_sought_category link_category_sought (const e_element e)
+    {   return static_cast < e_sought_category > (EP_GET_XLINKCAT (flags (e))); }
+    e_sought_category link_category_sought () const
+    {   return static_cast < e_sought_category > (EP_GET_XLINKCAT (flags ())); }
+    static bool fits_link_category (const html_version& v, const e_element e, const e_sought_category cat);
+    bool fits_link_category (const html_version& v, const e_sought_category cat) const
+    {   return fits_link_category (v, get (), cat); }
     bool unknown () const
     {   return (symbol < html_version, e_element > :: unknown ()) || (symbol < html_version, e_element > :: get () == elem_undefined); } };
 

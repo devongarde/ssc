@@ -529,6 +529,7 @@ bool verify_svg_duration (nitpick& nits, const html_version& , const ::std::stri
     nits.pick (nit_bad_datetime, ed_svg_1_1, "19.2.8.1 Clock values", es_error, ec_type, quote (s), " is an invalid duration");
     return false; }
 
+// note to self: f***ing well sort this out. FFS.
 bool test_animation_timing (nitpick& , const html_version& , const ::std::string& , const bool )
 {   // 19.2.8 Attributes to control the timing of the animation
 //    ::std::string ss (trim_the_lot_off (s));

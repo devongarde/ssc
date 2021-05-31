@@ -90,10 +90,10 @@ hav_t havt_defgh [] =
     HTML2_CLID_ATTRIBUTES (elem_dir),
     COMMON_HTML4_ATTRIBUTES (elem_dir),
 
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_discard, a_begin },
-    SVG_PRESENTATION_ATTRIBUTES_2 (elem_discard),
+    { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, elem_discard, a_begin },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_discard, a_href },
     SVG_HTML_ATTRIBUTES (elem_discard),
-    SVG_XLINK_ATTRIBUTES (elem_discard),
+    SVG_XLINK_ATTRIBUTES_EX (elem_discard, HE_SVG_12),
 
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_dispatchevent, a_bubbles },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_dispatchevent, a_cancelable },
@@ -553,8 +553,11 @@ hav_t havt_defgh [] =
     STANDARD_H_ATTRIBUTES (elem_h6),
 
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_handler, a_evevent },
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_g, a_externalresourcesrequired },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_handler, a_type },
+    SVG_CONDITIONAL_ATTRIBUTES (elem_handler),
     SVG_HTML_ATTRIBUTES (elem_handler),
+    SVG_XLINK_ATTRIBUTES (elem_handler),
 
     HTML3_CLID_ATTRIBUTES (elem_hat),
 

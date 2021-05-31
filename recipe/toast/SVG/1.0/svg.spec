@@ -1,5 +1,24 @@
 -f ../toast/SVG/1.0/svg.conf
 
+PASS ../toast/SVG/1.0/animation-1.xhtml
+0 title_required
+1 xhtml_1_0
+38 use_quote_code
+
+PASS ../toast/SVG/1.0/animation-2.html
+2 naughty_lang
+
+PASS ../toast/SVG/1.0/animation-3.xhtml
+0 title_required
+1 xhtml_1_0
+
+PASS ../toast/SVG/1.0/animation-4.html
+2 naughty_lang
+
+PASS ../toast/SVG/1.0/animation-5.xhtml
+0 title_required
+1 xhtml_1_0
+
 PASS ../toast/SVG/1.0/circle.xhtml
 0 title_required
 1 xhtml_1_0

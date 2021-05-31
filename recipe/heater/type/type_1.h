@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/sz.h"
 
 template < e_type TYPE, class SZ > struct one_value : public type_base < mono, TYPE >
-{   ::std::string get_string () const
+{   static e_animation_type animation_type () { return at_other; }
+    ::std::string get_string () const
     {   if (! type_base < mono, TYPE > :: unknown ()) return SZ::sz (); return ::std::string (); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
@@ -38,6 +39,7 @@ template < > class type_master < t_bb > : public one_value < t_bb, sz_makeapp > 
 template < > class type_master < t_html_boolean > : public one_value < t_html_boolean, sz_true > { };
 template < > class type_master < t_keygentype > : public one_value < t_keygentype, sz_rsa > { };
 template < > class type_master < t_svg_content > : public one_value < t_svg_content, sz_structured_text > { };
+template < > class type_master < t_svg_phase > : public one_value < t_svg_phase, sz_default > { };
 template < > class type_master < t_xmllink > : public one_value < t_xmllink, sz_simple > { };
 
 template < e_type TYPE, class SZ > void one_value < TYPE, SZ > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)

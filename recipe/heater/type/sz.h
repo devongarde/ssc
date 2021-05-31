@@ -89,7 +89,7 @@ struct sz_confirmed { CONSTEXPR static char const* sz () { return "confirmed"; }
 struct sz_context { CONSTEXPR static char const* sz () { return "context"; } };
 struct sz_continue { CONSTEXPR static char const* sz () { return "continue"; } };
 struct sz_cross_origin { CONSTEXPR static char const* sz () { return "cross-origin"; } };
-struct sz_css { CONSTEXPR static char const* sz () { return "css"; } };
+struct sz_CSS { CONSTEXPR static char const* sz () { return "CSS"; } };
 struct sz_currentcolour { CONSTEXPR static char const* sz () { return "currentColor"; } };
 struct sz_dashed { CONSTEXPR static char const* sz () { return "dashed"; } };
 struct sz_data { CONSTEXPR static char const* sz () { return "data"; } };
@@ -350,6 +350,6 @@ struct sz_whennotactive { CONSTEXPR static char const* sz () { return "whenNotAc
 struct sz_whenstarted { CONSTEXPR static char const* sz () { return "whenStarted"; } };
 struct sz_words { CONSTEXPR static char const* sz () { return "words"; } };
 struct sz_wrap { CONSTEXPR static char const* sz () { return "wrap"; } };
-struct sz_xml { CONSTEXPR static char const* sz () { return "xml"; } };
+struct sz_XML { CONSTEXPR static char const* sz () { return "XML"; } };
 struct sz_yes { CONSTEXPR static char const* sz () { return "yes"; } };
 struct sz_zoom { CONSTEXPR static char const* sz () { return "zoom"; } };

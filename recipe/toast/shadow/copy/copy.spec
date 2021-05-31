@@ -122,7 +122,7 @@ PASS ../toast/shadow/copy/ssi.html
 5 naughty_lang
 
 shadow
-0 500
+0 shadow
 
 EXPORTS
 ../toast/shadow/copy/html-bad.html.model ../toast/tmp/copy/html-bad.html

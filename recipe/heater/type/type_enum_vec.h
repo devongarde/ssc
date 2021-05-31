@@ -92,6 +92,7 @@ template < e_type E, typename ENUM, typename CATEGORY = e_namespace, CATEGORY IN
 #ifndef NO_MOVE_CONSTRUCTOR
     enum_vec& operator = (enum_vec&& ) = default;
 #endif
+    static e_animation_type animation_type () { return at_other; }
     void swap (enum_vec& n)
     {   enum_vec_base < ENUM, E, CATEGORY, INIT > :: swap (n); }
     void reset ()

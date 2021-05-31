@@ -182,7 +182,6 @@ void element::examine_menu ()
                         break;
                     default :
                         pick (nit_menu_type, ed_jan07, "3.18.4. The menu element", es_warning, ec_element, "The value of TYPE will be ignored" );
-//                        GRACEFUL_CRASH (__FILE__, __LINE__);
                         break; } } }
 
 void element::examine_menubar ()

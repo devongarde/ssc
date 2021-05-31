@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 
 template < > struct type_master < t_measure > : tidy_string < t_measure > // verify against HTML 5.0, 2.4.4.4
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   static e_animation_type animation_type () { return at_length; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_measure > :: set_value (nits, v, s);
         if (tidy_string < t_measure > :: good ())
         {   ::std::string ss = tidy_string < t_measure > :: get_string ();

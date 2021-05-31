@@ -465,7 +465,6 @@ nitname nitnames [] =
     { nit_bad_namespace, "bad_namespace" },
     { nit_svg_rdf, "svg_rdf" },
     { nit_clipped, "clipped" },
-    { nit_closed_shape, "closed_shape" },
     { nit_mf_infer, "mf_infer" },
     { nit_path_spec, "path_spec" },
     { nit_lighting, "lighting" },
@@ -638,6 +637,10 @@ nitname nitnames [] =
     { nit_not_0, "not_0" },
     { nit_fecomponenttransfer, "fecomponenttransfer" },
     { nit_fecomposite, "fecomposite" },
+    { nit_style_fixed, "style_fixed" },
+    { nit_anim_simple_id, "anim_simple_id" },
+    { nit_id_category, "id_category" },
+    { nit_not_animatable, "not_animatable" },
 
     { nit_off, "" } };
 

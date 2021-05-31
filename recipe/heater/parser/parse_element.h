@@ -122,4 +122,7 @@ public:
 
     elem& id () { return elem_; }
     const elem& id () const { return elem_; }
+    ns_ptr& nss () { return nss_; }
+    const ns_ptr& nss () const { return nss_; }
+
     e_element tag () const { return elem_.get (); } };

@@ -1,5 +1,36 @@
 -f ../toast/SVG/1.1/svg.conf
 
+PASS ../toast/SVG/1.1/animation-1.xhtml
+0 title_required
+1 xhtml_1_1
+5 svg_version
+39 use_quote_code
+
+PASS ../toast/SVG/1.1/animation-2.xhtml
+1 xhtml_1_1
+3 svg_version
+7 contradictory_namespace
+13 contradictory_namespace unrecognised_namespace unrecognised_value
+14 invalid_attribute_version wrong_version url_not_found
+
+PASS ../toast/SVG/1.1/animation-3.html
+2 naughty_lang
+11 svg_version
+
+PASS ../toast/SVG/1.1/animation-4.xhtml
+0 title_required
+1 xhtml_1_1
+6 svg_version
+
+PASS ../toast/SVG/1.1/animation-5.html
+2 naughty_lang
+11 svg_version
+
+PASS ../toast/SVG/1.1/animation-6.xhtml
+0 title_required
+1 xhtml_1_1
+6 svg_version
+
 PASS ../toast/SVG/1.1/bidi-1.svg
 0 charset_mismatch charset_used
 1 xhtml_1_1
@@ -228,6 +259,10 @@ PASS ../toast/SVG/1.1/lineargradient.svg
 0 title_required
 1 xhtml_1_1
 5 svg_version
+
+PASS ../toast/SVG/1.1/link.svg
+0 title_required
+4 svg_version
 
 PASS ../toast/SVG/1.1/marker-1.svg
 0 title_required
@@ -776,7 +811,6 @@ PASS ../toast/SVG/1.1/svg11.html
 1484 use_quote_code
 1493 svg_version
 1497 contradictory_namespace missing_close
-1498 empty
 1500 mixed_mess
 1503 duplicate_namespace contradictory_namespace unrecognised_namespace unrecognised_value
 1504 invalid_attribute_version wrong_version url_not_found

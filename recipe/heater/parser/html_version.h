@@ -360,6 +360,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_SVG_12_20    ( HE_SVG_12 | HE_SVG_20 )
 #define HE_SVG_12_2     ( HE_SVG_12_20 | HE_SVG_21 )
 #define HE_SVG_1        ( HE_SVG_10_11 | HE_SVG_12 )
+#define HE_SVG_1_20     ( HE_SVG_1 | HE_SVG_20 )
 #define HE_SVG_2        ( HE_SVG_20 | HE_SVG_21 )
 #define HE_SVG          ( HE_SVG_1 | HE_SVG_2 )
 #define SVG_MASK        HE_SVG
@@ -374,15 +375,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define RDF_MASK        ( HE_RDF_1_0 | HE_RDF_1_1 )
 
-#define HE_MICRODATA    0x0000000000010000
-#define HE_SVG_X1       0x0000000000020000
-#define HE_SVG_X2       0x0000000000040000
+#define HE_MICRODATA    0x0000000000004000
+#define HE_SVG_X2       0x0000000000008000
 
-#define HE_SVG_X_MASK   ( HE_SVG_X1 | HE_SVG_X2 )
+#define HE_SVG_OLD_H    0x0000000000010000
 
-#define HE_SVG_OLD_H    0x0000000000080000
+#define HE_ANIM_10      0x0000000000040000
+#define HE_ANIM_11      0x0000000000080000
+#define HE_ANIM_12      0x0000000000100000
+#define HE_ANIM_20      0x0000000000200000
+#define HE_ANIM_21      0x0000000000400000
 
-#define HE_COMBINES     0x0000000000100000
+#define HE_ANIM_10_11   ( HE_ANIM_10 | HE_ANIM_11 )
+#define HE_ANIM_11_12   ( HE_ANIM_11 | HE_ANIM_12 )
+#define HE_ANIM_1       ( HE_ANIM_10_11 | HE_ANIM_12 )
+#define HE_ANIM_1_20    ( HE_ANIM_1 | HE_ANIM_20 )
+#define HE_ANIM_2       ( HE_ANIM_20 | HE_ANIM_21 )
+#define HE_ANIM_11_2    ( HE_ANIM_11 | HE_ANIM_2 )
+#define HE_ANIM_10_11_2 ( HE_ANIM_10 | HE_ANIM_11_2 )
+#define HE_ANIM_12_2    ( HE_ANIM_12 | HE_ANIM_2 )
+#define HE_ANIM         ( HE_ANIM_1 | HE_ANIM_2 )
+
+#define HE_COMBINES     0x0000000000800000
 #define HE_A            0x0000000001000000
 #define HE_B            0x0000000002000000
 #define HE_C            0x0000000003000000
@@ -428,6 +442,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_NOT_SVG_10_11_20 ( HE_NOT_SVG_10_11 | HE_NOT_SVG_2 )
 #define HE_NOT_SVG_10_12_20 ( HE_NOT_SVG_10_12 | HE_NOT_SVG_2 )
 #define HE_NOT_SVG          ( HE_NOT_SVG_1 | HE_NOT_SVG_2 )
+
+#define HE_LIMITED_10   0x0000200000000000
+#define HE_LIMITED_11   0x0000400000000000
+#define HE_LIMITED_12   0x0000800000000000
+#define HE_LIMITED_20   0x0001000000000000
+#define HE_LIMITED_21   0x0002000000000000
+
+#define HE_LIMITED_10_11 ( HE_LIMITED_10 | HE_LIMITED_11 )
+#define HE_LIMITED_1    ( HE_LIMITED_10_11 | HE_LIMITED_12 )
+#define HE_LIMITED_2    ( HE_LIMITED_20 | HE_LIMITED_21 )
+#define HE_LIMITED_11_2 ( HE_LIMITED_11 | HE_LIMITED_2 )
+#define HE_LIMITED_10_11_2 ( HE_LIMITED_10_11 | HE_LIMITED_2 )
+#define HE_LIMITED      ( HE_LIMITED_1 | HE_LIMITED_2 )
 
 #define HE_M3_NONSTAND  0x0004000000000000
 
@@ -569,7 +596,20 @@ public:
     bool webcomponents () const { return any_ext (HE_WEBCOMP); }
     bool whatwg () const { return all_flags (HV_WHATWG); }
     bool xhtml () const { return all_flags (HV_XHTML); }
-    bool svg_x1 () const { return any_ext (HE_SVG_X1); }
+    bool svg_anim (const e_svg_version v) const;
+    bool svg_anim () const { return any_ext (HE_ANIM); }
+    bool svg_anim_10 () const { return any_ext (HE_ANIM_10); }
+    bool svg_anim_11 () const { return any_ext (HE_ANIM_11); }
+    bool svg_anim_12 () const { return any_ext (HE_ANIM_12); }
+    bool svg_anim_20 () const { return any_ext (HE_ANIM_20); }
+    bool svg_anim_21 () const { return any_ext (HE_ANIM_21); }
+    bool svg_limited (const e_svg_version v) const;
+    bool svg_limited () const { return any_ext (HE_LIMITED); }
+    bool svg_limited_10 () const { return any_ext (HE_LIMITED_10); }
+    bool svg_limited_11 () const { return any_ext (HE_LIMITED_11); }
+    bool svg_limited_12 () const { return any_ext (HE_LIMITED_12); }
+    bool svg_limited_20 () const { return any_ext (HE_LIMITED_20); }
+    bool svg_limited_21 () const { return any_ext (HE_LIMITED_21); }
     bool svg_x2 () const { return any_ext (HE_SVG_X2); }
     bool svg_old_html () const { return any_ext (HE_SVG_OLD_H); }
     bool is_a_area () const { return all_flags (HR_A_AREA); }

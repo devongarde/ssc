@@ -80,37 +80,28 @@ template < > struct type_master < t_idref > : tidy_string < t_idref >
         else if (::std::find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
         {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " contains a space");
             tidy_string < t_idref > :: status (s_invalid); } }
-    bool verify_id (nitpick& nits, const html_version& , ids_t& ids, const attribute_bitset& state, const vit_t& )
-    {   if (! tidy_string < t_idref > :: good ()) return false;
-        const ::std::string s (tidy_string < t_idref > :: get_string ());
-        if (! ids.has_id (s))
-            nits.pick (nit_unknown, es_error, ec_type, quote (s), " is not an existing identifier");
-        else if (! ids.compatible_state (s, state.test (a_hidden)))
-            nits.pick (nit_id_hidden, es_error, ec_type, quote (s), " is hidden");
-        else return false;
-        tidy_string < t_idref > :: status (s_invalid);
-        return true; } };
+    void verify_id (element& e)
+    {   if (! tidy_string < t_idref > :: good ()) return;
+        if (! ids_t::is_good_id (e, tidy_string < t_idref > :: get_string (), ec_type, nit_unknown, true))
+            tidy_string < t_idref > :: status (s_invalid); } };
 
-template < > struct type_master < t_idrefs > : string_vector < t_idrefs, sz_space >
+template < bool HIDES > struct many_ids : string_vector < t_idrefs, sz_space >
 {   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_idrefs, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_idrefs, sz_space > :: empty ())
-        {   nits.pick (nit_bad_id, es_error, ec_type, "the ID list is empty");
+        {   nits.pick (nit_bad_id, es_error, ec_type, "the identifier list is empty");
             string_vector < t_idrefs, sz_space > :: status (s_invalid); } }
-    bool verify_id (nitpick& nits, const html_version& , ids_t& ids, const attribute_bitset& state, const vit_t& )
-    {   if (! string_vector < t_idrefs, sz_space > :: good ()) return false;
+    void verify_id (element& e)
+    {   if (! string_vector < t_idrefs, sz_space > :: good ()) return;
         bool allgood = true;
         for (auto m : string_vector < t_idrefs, sz_space > :: get ())
-        {   if (! ids.has_id (m))
-            {   allgood = false;
-                nits.pick (nit_bad_id, es_error, ec_type, quote (m), " is not a recognised ID"); }
-            else if (! ids.compatible_state (m, state.test (a_hidden)))
-            {   allgood = false;
-                nits.pick (nit_id_hidden, es_error, ec_type, quote (m), " is hidden"); } }
+            if (! ids_t::is_good_id (e, m, ec_type, nit_bad_id, HIDES)) allgood = false;
         if (! allgood)
         {   tidy_string < t_idrefs > :: status (s_invalid);
-            value_.clear (); }
-        return true; } };
+            value_.clear (); } } };
+
+template < > struct type_master < t_idrefs > : many_ids < true > { };
+template < > struct type_master < t_itemref > : many_ids < false > { };
 
 template < > struct type_master < t_result > : tidy_string < t_result >
 {   typedef true_type has_int_type;

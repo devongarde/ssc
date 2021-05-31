@@ -133,7 +133,7 @@ PASS ../toast/shadow/copydiff/ssi.html
 9 naughty_lang
 
 shadow
-0 500
+0 shadow
 
 EXPORTS
 ../toast/shadow/copydiff/original.html.model ../toast/tmp/copydiff/original.html

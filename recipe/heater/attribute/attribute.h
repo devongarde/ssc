@@ -50,7 +50,7 @@ struct attribute_base
     virtual bool bad () const { return ! good (); }
     virtual bool invalid () const { return true; }
     virtual bool is_url () const { return false; }
-    virtual void verify_id (nitpick& , const html_version& , ids_t& , const attribute_bitset& , const vit_t& ) { }
+    virtual void verify_id (element& ) { }
     virtual e_status status () const { return s_unset; }
     virtual void status (const e_status ) { }
     virtual bool unknown () const { return true; }
@@ -64,6 +64,7 @@ struct attribute_base
 template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public attribute_base, public typed_value < e_attribute, TYPE, IDENTITY >
 {   static ::std::string name () { return attr :: name (IDENTITY); }
     CONSTEXPR static e_attribute whoami () { return IDENTITY; }
+    CONSTEXPR static e_type whatami () { return TYPE; }
     typed_attribute () = default;
     void swap (typed_attribute& t) NOEXCEPT
     {   attribute_base :: swap (t);
@@ -126,8 +127,8 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     virtual bool bad () const { return ! good (); }
     virtual bool invalid () const { return typed_value < e_attribute, TYPE, IDENTITY > :: invalid (); }
     virtual bool is_url () const { return typed_value < e_attribute, TYPE, IDENTITY > :: is_url (); }
-    virtual void verify_id (nitpick& nits, const html_version& v, ids_t& i, const attribute_bitset& bs, const vit_t& vit)
-    {   typed_value < e_attribute, TYPE, IDENTITY > :: verify_id (nits, v, i, bs, vit); }
+    virtual void verify_id (element& e)
+    {   typed_value < e_attribute, TYPE, IDENTITY > :: verify_id (e); }
     virtual e_status status () const { return typed_value < e_attribute, TYPE, IDENTITY > :: status (); }
     virtual void status (const e_status s) { typed_value < e_attribute, TYPE, IDENTITY > :: status (s); }
     virtual bool unknown () const { return typed_value < e_attribute, TYPE, IDENTITY > :: unknown (); }
@@ -142,11 +143,13 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     {   if (typed_value < e_attribute, TYPE, IDENTITY > :: unknown () || typed_value < e_attribute, TYPE, IDENTITY > :: invalid ()) return;
         ss << " " << name ();
         typed_value < e_attribute, TYPE, IDENTITY > :: shadow (ss, v, e); }
+    static e_animation_type animation_type () { return typed_value < e_attribute, TYPE, IDENTITY > :: animation_type (); }
     virtual ::std::string report () const
     {   return typed_value < e_attribute, TYPE, IDENTITY > :: report (name ()); } };
 
 typedef ::std::shared_ptr < attribute_base > attribute_v_ptr;
 attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, const attribute_node& node);
+e_animation_type get_animation_type (const e_attribute ea);
 
 const size_t aar_size = last_attribute + 1;
 typedef ::std::array < attribute_v_ptr, aar_size > aar_t;

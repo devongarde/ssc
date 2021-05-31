@@ -32,25 +32,21 @@ void ids_t::insert_id (const ::std::string& id, element* pe)
 bool ids_t::is_hidden (const ::std::string& id) const
 {   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
-    if (i == ids_.cend ()) return false;
     return i -> second.hidden_; }
 
 e_element ids_t::get_tag (const ::std::string& id) const
 {   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
-    if (i == ids_.cend ()) return elem_error;
     return i -> second.elem_; }
 
 uid_t ids_t::get_uid (const ::std::string& id) const
 {   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
-    if (i == ids_.cend ()) return 0;
     return i -> second.uid_; }
 
 bool ids_t::has_itemtype (const ::std::string& id, const itemtype_index s) const
 {   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
-    if (i == ids_.end ()) return false;
     if (i -> second.element_ != nullptr)
     {   for (auto t : i -> second.element_ -> own_itemtype ())
             if (t == s) return true; }
@@ -61,7 +57,6 @@ bool ids_t::has_itemtype (const ::std::string& id, const itemtype_index s) const
 bool ids_t::has_itemtype (const ::std::string& id, const vit_t vit) const
 {   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
-    if (i == ids_.end ()) return false;
     if (i -> second.element_ != nullptr)
     {   for (auto t : i -> second.element_ -> own_itemtype ())
             for (auto it : vit)
@@ -74,7 +69,6 @@ bool ids_t::has_itemtype (const ::std::string& id, const vit_t vit) const
 element* ids_t::get_element (const ::std::string& id) const
 {   PRESUME (has_id (id), __FILE__, __LINE__);
     mif_t::const_iterator i = ids_.find (id);
-    if (i == ids_.cend ()) return nullptr;
     return i -> second.element_; }
 
 void ids_t::cover_arse ()
@@ -86,6 +80,22 @@ void ids_t::cover_arse ()
 bool ids_t::compatible_state (const ::std::string& id, const bool hidden)
 {   return compatible_id_state (is_hidden (id), hidden); }
 
+bool ids_t::compatible_category (const html_version& v, element& e, const e_sought_category cat)
+{   return e.fits_link_category (v, cat); }
+
 bool compatible_id_state (const bool source, const bool target)
 {   if (! target) return true;
     return (source); }
+
+bool ids_t::is_good_id (element& e, const ::std::string& s, const e_category naughty_cat, const e_nit naughty_nit, const bool hidden_concern)
+{   ids_t& ids (e.get_ids ());
+    if (! ids.has_id (s))
+    {   e.pick (naughty_nit, es_error, naughty_cat, "#", s, " doesn't exist"); return false; }
+    if (hidden_concern && ! compatible_id_state (e.ancestral_attributes ().test (a_hidden), ids.is_hidden (s)))
+    {   e.pick (nit_id_hidden, es_error, naughty_cat, "#", s, " is hidden"); return false; }
+    element* pe = ids.get_element (s);
+    VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
+    if (! ids.compatible_category (e.node ().version (), *pe, e.link_category_sought ()))
+    {   e.pick (nit_id_category, ed_svg_1_1, "17.1.4 Processing of IRI references", es_error, naughty_cat,
+            "#", s, ": <", pe -> node ().id ().name (), "> is not a suitable target for <", e.node ().id ().name (), ">"); return false; }
+    return true; }

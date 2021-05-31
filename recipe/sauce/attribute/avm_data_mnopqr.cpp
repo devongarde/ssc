@@ -245,9 +245,10 @@ hav_t havt_mnopqr [] =
     MATH3_PRES_ATTRIBUTES (elem_mpadded),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_mpath, a_externalresourcesrequired },
-    SVG_PRESENTATION_ATTRIBUTES_2 (elem_mpath),
-    SVG_XLINK_ATTRIBUTES (elem_mpath),
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_mpath, a_href },
+    SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_mpath, HE_SVG_2),
     SVG_HTML_ATTRIBUTES (elem_mpath),
+    SVG_XLINK_ATTRIBUTES_EX (elem_mpath, HE_SVG_1),
 
     MATH3_PRES_ATTRIBUTES (elem_mphantom),
 

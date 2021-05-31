@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 1.2 animation snippets</title>
+</head>
+
+<body>
+
+<h1>SVG 1.2 animation snippets</h1>
+
+<svg version="1.2" baseProfile="tiny">
+
+<animate dur="4s" values="10; 20" keyTimes="0; 1"
+calcMode="spline" keySplines="{as in table}"/>
+
+<rect width="20" ...>
+<animate attributeName="width" from="0" to="10" dur="10s"
+additive="sum"/>
+</rect>
+
+<rect width="20" ...>
+<animate attributeName="width" from="0" to="10" dur="10s"
+additive="sum" accumulate="sum" repeatCount="5"/>
+</rect>
+
+<rect>
+<animate attributeType="CSS" attributeName="fill-opacity"
+from="1" to="0" dur="5s" repeatCount="indefinite" />
+</rect>
+
+</svg>
+
+</body>
+</html>

@@ -144,3 +144,14 @@ bool check_glyph_names (nitpick& nits, const html_version& , element* pe, const 
         {   nits.pick (nit_glyphname, es_warning, ec_type, "Glyph name ", quote (s), " not recognised");
             res = false; }
     return res; }
+
+e_attribute identify_svg_animation_attribute (nitpick& nits, const html_version& v, element& e, const ::std::string& s, const ::std::string& attnam)
+{   ::std::string n, ss (s);
+    e_namespace ns = e.verify_namespace (ss, n);
+    e_attribute ea = attr :: find (v, ss, ns);
+    if (ea == a_unknown)
+        nits.pick (nit_attribute_unrecognised_here, es_error, ec_type, quote (s), " is unrecognised in ", attnam);
+    else if (! attr::first_version (ea).svg_anim (e.node ().version ().svg_version ()))
+        nits.pick (nit_not_animatable, es_error, ec_type, quote (s), " cannot be animated");
+    else return ea;
+    return a_unknown; }

@@ -98,6 +98,7 @@ class element
     void examine_descendant_in (const element* filter);
     void examine_media_element (e_element elem, const char* ref, const char* name, const uint64_t family);
     void examine_accesskey ();
+    void examine_animation_attributes ();
     void examine_aria_checked ();
     void examine_aria_colspan ();
     void examine_aria_disabled ();
@@ -218,7 +219,6 @@ class element
     void examine_source ();
     void examine_style ();
     void examine_svg ();
-    void examine_svg_shape ();
     void examine_switch ();
     void examine_summary ();
     void examine_tab ();
@@ -308,6 +308,13 @@ public:
     const page& get_page () const { return page_; }
     bool has_glyph (const ::std::string& s) const;
     void add_glyph (const ::std::string& s);
+    e_sought_category link_category_sought () const { return node_.id ().link_category_sought (); }
+    bool fits_link_category (const html_version& v, const e_sought_category cat) const
+    {   return node_.id ().fits_link_category (v, cat); }
+    const element_bitset& ancestral_elements () const { return ancestral_elements_; }
+    const attribute_bitset& ancestral_attributes () const { return ancestral_attributes_; }
+    const vit_t vit () const { return vit_; }
+    e_namespace verify_namespace (::std::string& s, ::std::string n);
     ::std::string report (); };
 
 template < class PROPERTY > void element::note_reply ()

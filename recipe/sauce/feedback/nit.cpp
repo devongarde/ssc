@@ -155,6 +155,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_svg_1_2_tiny : return "SVG 1.2 Tiny";
         case ed_svg_1_2_full : return "SVG 1.2 Full";
         case ed_svg_2_0 : return "SVG 2.0";
+        case ed_svg_2_anim : return "SVG 2.0 animation";
         case ed_w3 : return "World Wide Web Consortium";
         case ed_apache : return "Apache";
         case ed_jan05 : return "WebApps draft (Jan 2005)";
@@ -238,6 +239,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_svg_1_2_tiny : return "Scalable Vector Graphics (SVG) Tiny 1.2 Specification";
         case ed_svg_1_2_full : return "Scalable Vector Graphics (SVG) Full 1.2, draft, May 2004";
         case ed_svg_2_0 : return "Scalable Vector Graphics (SVG) 2 W3C Candidate Recommendation";
+        case ed_svg_2_anim : return "SVG Animations Level 2, April 2021 draft";
         case ed_w3 : return "The World Wide Web Consortium";
         case ed_mql : return "Media Queries, W3C recommendation, June 2012";
         case ed_ariaAug2020 : return "WhatWG Aria requirements, draft, August 2020";

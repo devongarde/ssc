@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>SVG 1.1 animation snippets</title>
+</head>
+
+<body>
+
+<h1>SVG 1.1 animation snippets</h1>
+
+<svg version="1.1">
+
+<rect width="20px" ...>
+<animate attributeName="width" from="0px" to="10px" dur="10s"
+additive="sum"/>
+</rect>
+
+<rect width="20px" ...>
+<animate attributeName="width" from="0px" to="10px" dur="10s"
+additive="sum" accumulate="sum" repeatCount="5"/>
+</rect>
+
+<rect>
+<animate attributeType="CSS" attributeName="opacity"
+from="1" to="0" dur="5s" repeatCount="indefinite" />
+</rect>
+
+</svg>
+
+</body>
+</html>
+

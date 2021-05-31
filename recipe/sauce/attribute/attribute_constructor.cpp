@@ -27,14 +27,22 @@ template < class ATTRIBUTE, class ... X > struct attribute_constructor : public 
     {   if (node.id () != ATTRIBUTE :: whoami ()) return attribute_constructor < X... > :: make (nits, v, node);
         auto ptr = attribute_v_ptr (new ATTRIBUTE ());
         ptr -> parse (nits, v, node);
-        return ptr; } };
+        return ptr; }
+    static e_animation_type animation_type (const e_attribute ea)
+    {   if (ea == ATTRIBUTE :: whoami ()) return ATTRIBUTE :: animation_type ();
+        return attribute_constructor < X... > :: animation_type (ea); } };
 
 template < > struct attribute_constructor < attr_unknown >
 {   static attribute_v_ptr make (nitpick& nits, const html_version& v, const attribute_node& node)
     {   auto ptr = attribute_v_ptr (new attr_unknown ());
         ptr -> parse (nits, v, node);
-        return ptr; } };
+        return ptr; }
+    static e_animation_type animation_type (const e_attribute ) { return at_none; } };
 
 attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, const attribute_node& node)
 {   if (node.id () <= last_am) return attribute_constructor < ATTRIBUTESAM > :: make (nits, v, node);
     else return attribute_constructor < ATTRIBUTESNZ > :: make (nits, v, node); }
+
+e_animation_type get_animation_type (const e_attribute ea)
+{   if (ea <= last_am) return attribute_constructor < ATTRIBUTESAM > :: animation_type (ea);
+    else return attribute_constructor < ATTRIBUTESNZ > :: animation_type (ea); }

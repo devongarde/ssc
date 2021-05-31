@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_media.h"
 #include "type/type_enum.h"
 
+// need to revisit media queries
 bool parse_media_query (nitpick& nits, const html_version& v, const ::std::string& sss)
 {   ::std::string ss (trim_the_lot_off (sss));
     if (ss.empty ()) return true;

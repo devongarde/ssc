@@ -34,13 +34,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                     a_ariarequired, a_ariaroledescription, a_ariarowcount, a_ariarowindex, a_ariarowspan, a_ariaselected, a_ariasetsize, \
                     a_ariasort, a_ariavaluemax, a_ariavaluemin, a_ariavaluenow, a_ariavaluetext
 
-#define ON          a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeunload, \
-                    a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, a_onclose, a_oncontextmenu, a_oncuechange, a_ondrag, a_ondragend, \
-                    a_ondragenter, a_ondragexit, a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, a_dropzone, a_ondurationchange, a_onemptied, \
-                    a_onended, a_onerror, a_onformchange, a_onforminput, a_onhashchange, a_oninput, a_oninvalid, a_is, a_onload, a_onloadeddata, \
+#define ON          a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeunload,  a_oncancel, a_oncanplay, a_oncanplaythrough, \
+                    a_onchange, a_onclose, a_oncontextmenu, a_oncuechange, a_ondrag, a_ondragend,  a_ondragenter, a_ondragexit, \
+                    a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, a_dropzone, a_ondurationchange, a_onemptied, a_onended, \
+                    a_onerror, a_onformchange, a_onforminput, a_onhashchange, a_oninput, a_oninvalid, a_is, a_onload, a_onloadeddata, \
                     a_onloadedmetadata, a_onloadstart, a_onmessage, a_onmouseenter, a_onmouseleave, a_onmousewheel, a_onpause, a_onplay, \
-                    a_onplaying, a_onprogress, a_onratechange, a_onreadystatechange, a_onreset, a_onresize, a_onscroll, a_onsought, a_onseeking, \
-                    a_onselect, a_onshow, a_onstalled, a_onstorage, a_onsubmit, a_onunload
+                    a_onplaying, a_onprogress, a_onratechange, a_onreadystatechange, a_onreset, a_onresize, a_onscroll, a_onsought, \
+                    a_onseeking, a_onselect, a_onshow, a_onstalled, a_onstorage, a_onsubmit, a_onunload
 
 #define MATH1UNIQUE a_other
 #define MATH1SHARED a_class, a_id, a_style
@@ -77,12 +77,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define RDFa        a_about, a_content, a_datatype, a_inlist, a_prefix, a_property, a_rel, a_resource, a_rev, a_src, a_typeof, a_vocab
 
 #define SVG_ANADD   a_additive, a_accumulate
-#define SVG_ANIM    a_onbegin, a_onend, a_onload, a_onrepeat
+#define SVG_ANAT    a_attributename, a_attributetype
+#define SVG_ANIM    a_onbegin, a_onend, a_onrepeat
 #define SVG_ANTIME  a_begin, a_dur, a_end, a_min, a_max, a_restart, a_repeatcount, a_repeatdur
+#define SVG_ANVAL   a_by, a_calcmode, a_from, a_keytimes, a_keysplines, a_to, a_values
+#define SVG_COMP    a_amplitude, a_exponent, a_intercept, a_offset, a_slope, a_tablevalues, a_type
 #define SVG_COND    a_requiredextensions, a_requiredfeatures, a_requiredfonts, a_requiredformats, a_systemlanguage
 #define SVG_DOC     a_onzoom
 #define SVG_DXDY    a_dx, a_dy
 #define SVG_GR      a_onactivate, a_onfocusin, a_onfocusout
+#define SVG_EVENT   SVG_ANIM, SVG_GR
 #define SVG_PRES    a_alignment_baseline, a_audio_level, a_baseline_shift, a_buffered_rendering, a_clip, a_clip_path, \
                     a_clip_rule, a_colour, a_colour_interpolation, a_colour_interpolation_filters, a_colour_profile, \
                     a_colour_rendering, a_cursor, a_direction, a_display, a_display_align, a_dominant_baseline, \
@@ -97,10 +101,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                     a_pointer_events, a_shape_rendering, a_solid_colour, a_solid_opacity, a_stop_colour, a_stop_opacity, \
                     a_stroke, a_stroke_dasharray, a_stroke_dashoffset, a_stroke_linecap, a_stroke_linejoin, \
                     a_stroke_miterlimit, a_stroke_opacity, a_stroke_width, a_text_anchor, a_text_align, a_text_align_last, \
-                    a_text_decoration, a_text_decoration_colour, a_text_decoration_line, a_text_decoration_style, \
-                    a_text_indent, a_text_orientation, a_text_overflow, a_text_rendering, a_transform, a_transform_box, \
-                    a_transform_origin, a_unicode_bidi, a_vector_effect, a_vertical_align, a_visibility, a_viewport_fill, \
-                    a_viewport_fill_opacity, a_white_space, a_word_spacing, a_writing_mode
+                    a_text_decoration, a_text_decoration_colour, a_text_decoration_fill, a_text_decoration_line, \
+                    a_text_decoration_stroke, a_text_decoration_style,  a_text_indent, a_text_orientation, a_text_overflow, \
+                    a_text_rendering, a_transform, a_transform_box,  a_transform_origin, a_unicode_bidi, a_vector_effect, \
+                    a_vertical_align, a_visibility, a_viewport_fill, a_viewport_fill_opacity, a_white_space, a_word_spacing, \
+                    a_writing_mode
 #define SVG_SYNC    a_syncbehaviour, a_syncmaster, a_synctolerance
 #define SVG_XLINK   a_xlinkactuate, a_xlinkarcrole, a_xlinkhref, a_xlinkrole, a_xlinkshow, a_xlinktitle, a_xlinktype
 #define SVG_XY      a_x, a_y
@@ -109,43 +114,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define SVG_STRUCTURAL SVG_BOX, SVG_COND, SVG_DOC, SVG_GR, SVG_PRES
 
-
-#define SVG10       a_xmlspace, a_xmlbase
-#define SVGXY       a_x, a_y
-#define SVGBOX      WIDEHIGH, SVGXY
-#define SVGANAT     a_attributename, a_attributetype
-#define SVGANVAL    a_by, a_calcmode, a_values, a_keytimes, a_keysplines
-#define SVGCOMP     a_amplitude, a_exponent, a_intercept, a_offset, a_slope, a_tablevalues, a_type
-#define SVGGRAD     a_gradienttransform, a_gradientunits
-#define SVGREF      a_refx, a_refy
-#define SVGPRESCOL  a_colour, a_colour_interpolation, a_colour_rendering
-#define SVGPRESFS   a_fill, a_fill_opacity, a_fill_rule, a_stroke, a_stroke_dasharray, a_stroke_dashoffset, a_stroke_linecap, a_stroke_linejoin, \
-                    a_stroke_miterlimit, a_stroke_opacity, a_stroke_width
-#define SVGPRESFONT a_font_family, a_font_size, a_font_size_adjust, a_font_stretch, a_font_style, a_font_variant, a_font_weight
-#define SVGPRESGR   a_filter, a_image_rendering, a_mask, a_opacity, a_pointer_events, a_shape_rendering, a_text_rendering, a_visibility
-#define SVGPRESTCE  a_alignment_baseline, a_baseline_shift, a_dominant_baseline, a_glyph_orientation_horizontal, a_glyph_orientation_vertical, a_kerning, \
-                    a_letter_spacing, a_text_anchor, a_text_decoration, a_unicode_bidi, a_word_spacing
-
-#define SVG11COND   a_requiredextensions, a_requiredfeatures, a_systemlanguage
-#define SVG11ANEV   a_onbegin, a_onend, a_onrepeat
-#define SVG11GREV   a_onactivate, a_onfocusin, a_onfocusout
-#define SVG11EVENT  SVG11ANEV, SVG11GREV
-#define SVG11PRES   a_clip, a_clip_path, a_clip_rule, a_colour_interpolation_filters, a_colour_profile, a_cursor, a_direction, a_display, a_enable_background, \
-                    a_flood_colour, a_flood_opacity, a_focushighlight, a_focusable, a_font, a_lighting_colour, a_marker, a_marker_end, a_marker_mid, \
-                    a_marker_start, a_navdown, a_navdownleft, a_navdownright, a_navleft, a_navnext, a_navprev, a_navright, a_navup, a_navupleft, a_navupright, \
-                    a_overflow, a_paint_order, a_stop_colour, a_stop_opacity, a_vector_effect, a_writing_mode, SVGPRESCOL, SVGPRESFS, SVGPRESFONT, SVGPRESGR, SVGPRESTCE
-
-#define SVG12PRES   a_display_align, a_line_increment, a_solid_colour, a_solid_opacity, a_text_align, a_viewport_fill, a_viewport_fill_opacity
-
-#define SVG2        a_autofocus, a_datawild, a_role, a_tabindex
-#define SVG2COND    SVG11COND
-
 #define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
 #define BLUR        a_onfocus, a_onblur
 #define DINGBAT     a_dingbat, a_md, a_seqnum, a_skip, a_align, a_clear, a_nowrap
 #define KEYMOUSE    a_onclick, a_ondblclick, a_onkeydown, a_onkeypress, a_onkeyup, a_onmousedown, a_onmousemove, a_onmouseout, a_onmouseover, a_onmouseup
 #define RESERVED4   a_datafld, a_dataformatas, a_datasrc
-#define XHTML       a_xmlns, a_xmllang, RDFa, SVG10
+#define XHTML       a_xmlbase, a_xmlns, a_xmllang, a_xmlspace, RDFa
 
 #define LANGDIR     a_dir, a_lang
 #define CLID        a_class, a_id
@@ -166,7 +140,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X2_EMBED    a_encoding, a_srctype
 #define X2_MAP      a_usemap, a_ismap, a_shape, a_coords
 #define X2_EVENT    a_event, a_observer, a_eventtarget, a_function, a_handler, a_phase, a_propagate, a_defaultaction
-#define X2_COMMON   a_edit, a_media, SVG2, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_EVENT
+#define X2_COMMON   a_autofocus, a_datawild, a_edit, a_media, a_role, a_tabindex, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_EVENT
 #define X2          X2_COMMON, COMMON4
 #define XHTML2      X2_COMMON, X2_SOLO
 #define COMMON5     a_accesskey, a_contenteditable, a_contextmenu, a_draggable, a_hidden, a_inert, a_irrelevant, a_item, a_itemid, a_itemprop, \
@@ -190,7 +164,7 @@ struct element_init_t
 element_init_t ei [] =
 {   { elem_undefined, { a_unknown } },
     { elem_a, { a_charset, a_command, a_download, a_effect, a_externalresourcesrequired, a_md, a_methods, a_name, a_ping, a_print, a_referrerpolicy,
-                a_size, a_type, a_urn, a_xmllink, a_xmlns_xlink, SVG11GREV, SVG_XLINK, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+                a_size, a_type, a_urn, a_xmllink, a_xmlns_xlink, SVG_GR, SVG_XLINK, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_abbr, { a_full, LIVING_STANDARD, a_unknown } },
     { elem_abbrev, { LC3PLUS, a_unknown } },
     { elem_above, { a_sym, LANGCLASS3, a_unknown } },
@@ -202,16 +176,16 @@ element_init_t ei [] =
     { elem_added, { HTMLPLUS, a_unknown } },
     { elem_addeventlistener, { XHTML2, a_unknown } },
     { elem_address, { a_align, a_clear, a_nowrap, LIVING_STANDARD, a_unknown } },
-    { elem_altglyph, { a_externalresourcesrequired, a_glyphref, a_format, a_rotate, SVG11GREV, SVG_XLINK, SVG_DXDY, SVG2COND, SVG11PRES, SVGXY, LIVING_STANDARD, a_unknown } },
+    { elem_altglyph, { a_externalresourcesrequired, a_glyphref, a_format, a_rotate, SVG_GR, SVG_XLINK, SVG_DXDY, SVG_COND, SVG_PRES, SVG_XY, LIVING_STANDARD, a_unknown } },
     { elem_altglyphdef, { LIVING_STANDARD, a_unknown } },
     { elem_altglyphitem, { LIVING_STANDARD, a_unknown } },
     { elem_and, { MATH3DEFCOM, a_unknown } },
-    { elem_animate, {   a_externalresourcesrequired, a_from, a_to, SVGANAT, SVG_ANTIME, SVG11ANEV, SVGANVAL, SVG_ANADD, SVG_XLINK, SVG2COND, SVG_PRES, LIVING_STANDARD,
+    { elem_animate, {   a_externalresourcesrequired, SVG_ANAT, SVG_ANTIME, SVG_ANIM, SVG_ANVAL, SVG_ANADD, SVG_XLINK, SVG_COND, SVG_PRES, LIVING_STANDARD,
                         a_unknown } },
-    { elem_animatecolour, { a_externalresourcesrequired, SVGANAT, SVG_ANTIME, SVG11ANEV, SVGANVAL, SVG_ANADD, SVG_XLINK, SVG_COND, SVG11PRES, LIVING_STANDARD, a_unknown } },
-    { elem_animatemotion, { a_externalresourcesrequired, a_keypoints, a_origin, a_path, a_rotate, SVG_ANTIME, SVG11ANEV, SVGANVAL, SVG_ANADD, SVG_XLINK,
-                            SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_animatetransform, {  a_externalresourcesrequired, a_from, a_to, a_type, SVGANAT, SVG_ANTIME, SVG11ANEV, SVGANVAL, SVG_ANADD, SVG_XLINK, SVG2COND,
+    { elem_animatecolour, { a_externalresourcesrequired, SVG_ANAT, SVG_ANTIME, SVG_ANIM, SVG_ANVAL, SVG_ANADD, SVG_XLINK, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_animatemotion, { a_externalresourcesrequired, a_fill, a_keypoints, a_origin, a_path, a_rotate, SVG_ANTIME, SVG_ANIM, SVG_ANVAL, SVG_ANADD, SVG_XLINK,
+                            SVG_COND, LIVING_STANDARD, a_unknown } },
+    { elem_animatetransform, {  a_externalresourcesrequired, a_type, SVG_ANAT, SVG_ANTIME, SVG_ANIM, SVG_ANVAL, SVG_ANADD, SVG_XLINK, SVG_COND,
                                 SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_animation, { a_initialvisibility, SVG_BOX, SVG_COND, SVG_XLINK, SVG_ANTIME, SVG_PRES, SVG_SYNC, LIVING_STANDARD, a_unknown } },
     { elem_annotation, { a_cd, a_name, a_src, MATH3DEFCOM, a_unknown } },
@@ -280,7 +254,7 @@ element_init_t ei [] =
     { elem_changed, { a_id, a_idref, a_unknown } },
     { elem_choose, { a_unknown } },
     { elem_ci, { a_type, MATH3DEFCOM, a_unknown } },
-    { elem_circle, { a_externalresourcesrequired, a_cx, a_cy, a_r, a_will_change, SVG11GREV, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_circle, { a_externalresourcesrequired, a_cx, a_cy, a_r, a_will_change, SVG_GR, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_cite, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_clippath, { a_clippathunits, a_externalresourcesrequired, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_cmd, { HTMLPLUS, a_unknown } },
@@ -329,7 +303,7 @@ element_init_t ei [] =
     { elem_dialogue, { a_open, LIVING_STANDARD, a_unknown } },
     { elem_diff, { MATH3DEFCOM, a_unknown } },
     { elem_dir, { a_align, a_clear, a_compact, a_dingbat, a_md, a_index, a_plain, a_wrap, COMMON4, a_unknown } },
-    { elem_discard, { a_begin, SVG_XLINK, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_discard, { a_begin, SVG_XLINK, LIVING_STANDARD, a_unknown } },
     { elem_dispatchevent, { a_bubbles, a_cancelable, XHTML2, a_unknown } },
     { elem_div, { a_align, a_clear, a_nowrap, RESERVED4, LIVING_STANDARD, a_unknown } },
     { elem_divergence, { MATH3DEFCOM, a_unknown } },
@@ -341,7 +315,7 @@ element_init_t ei [] =
     { elem_dt, { a_compact, a_clear, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_element, { LIVING_STANDARD, a_unknown } },
     { elem_elementdef, { LIVING_STANDARD, a_unknown } },
-    { elem_ellipse, { a_externalresourcesrequired, a_cx, a_cy, a_rx, a_ry, a_will_change, SVG11GREV, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_ellipse, { a_externalresourcesrequired, a_cx, a_cy, a_rx, a_ry, a_will_change, SVG_GR, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_em, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_embed, { a_type, a_align, a_hspace, a_name, a_vspace, WIDEHIGH, LIVING_STANDARD, a_unknown } },
     { elem_emptyset, { MATH3DEFCOM, a_unknown } },
@@ -381,20 +355,20 @@ element_init_t ei [] =
     { elem_fedistantlight, { a_azimuth, a_elevation, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_fedropshadow, { a_in, a_stddeviation, SVG_DXDY, SVG_FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_feflood, { SVG_FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fefunca, { SVGCOMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fefuncb, { SVGCOMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fefuncg, { SVGCOMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fefuncr, { SVGCOMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fefunca, { SVG_COMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fefuncb, { SVG_COMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fefuncg, { SVG_COMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fefuncr, { SVG_COMP, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_fegaussianblur, { a_edgemode, a_in, a_stddeviation, SVG_FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_feimage, { a_crossorigin, a_externalresourcesrequired, a_preserveaspectratio, SVG_XLINK, SVG_FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_femerge, { SVG_FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_femergenode, { a_in, LIVING_STANDARD, a_unknown } },
     { elem_femorphology, {  a_in, a_operator, a_radius, SVG_FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_feoffset, { a_in, SVG_DXDY, SVG_FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_fepointlight, { a_z, SVGXY, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fepointlight, { a_z, SVG_XY, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_fespecularlighting, { a_in, a_kernelunitlength, a_specularconstant, a_specularexponent, a_surfacescale, SVG_FILTER, SVG_PRES,
                                 LIVING_STANDARD, a_unknown } },
-    { elem_fespotlight, { a_pointsatx, a_pointsaty, a_pointsatz, a_limitingconeangle, a_specularexponent, a_z, SVGXY, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_fespotlight, { a_pointsatx, a_pointsaty, a_pointsatz, a_limitingconeangle, a_specularexponent, a_z, SVG_XY, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_fetile, { a_in, SVG_FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_feturbulence, { a_basefrequency, a_numoctaves, a_seed, a_stitchtiles, a_type, SVG_FILTER, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_fieldset, { a_disabled, a_form, a_name, LIVING_STANDARD, a_unknown } },
@@ -402,7 +376,7 @@ element_init_t ei [] =
     { elem_figure, { LIVING_STANDARD, a_unknown } },
     { elem_figcaption, { LIVING_STANDARD, a_unknown } },
     { elem_filter, { a_animate, a_dh, a_dw, a_externalresourcesrequired, a_fecolourmatrix, a_fecomposite, a_fegaussianblur, a_femorphology, a_fetile,
-                     a_filterres,a_filterunits, a_primitiveunits, SVG_XLINK, SVG_PRES, SVGBOX, LIVING_STANDARD, a_unknown } },
+                     a_filterres,a_filterunits, a_primitiveunits, SVG_XLINK, SVG_PRES, SVG_BOX, LIVING_STANDARD, a_unknown } },
     { elem_floor, { MATH3DEFCOM, a_unknown } },
     { elem_flowdiv, { LIVING_STANDARD, a_unknown } },
     { elem_flowimage, { LIVING_STANDARD, a_unknown } },
@@ -428,7 +402,7 @@ element_init_t ei [] =
     { elem_fontfaceuri, { SVG_XLINK, LIVING_STANDARD, a_unknown } },
     { elem_forall, { MATH3DEFCOM, a_unknown } },
     { elem_form, { a_accept, a_accept_charset, a_action, a_autocomplete, a_enctype, a_method, a_name, a_novalidate, a_script, LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_foreignobject, { a_externalresourcesrequired, SVG2COND, SVGBOX, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_foreignobject, { a_externalresourcesrequired, SVG_COND, SVG_BOX, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_footer, { LIVING_STANDARD, a_unknown } },
     { elem_footnote, { HTMLPLUS , a_unknown } },
     { elem_frame, { a_dir, a_frameborder, a_longdesc, a_name, a_noresize, a_marginheight, a_marginwidth, a_scrolling, XHTML, X2_COMMON, TIPSYCLID, a_unknown } },
@@ -438,7 +412,7 @@ element_init_t ei [] =
     { elem_gcd, { MATH3DEFCOM, a_unknown } },
     { elem_geq, { MATH3DEFCOM, a_unknown } },
     { elem_glyph, { a_arabic_form, a_d, a_glyphname, a_horizadvx, a_orientation, a_unicode, a_vert_adv_y, a_vert_origin_x, a_vert_origin_y, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_glyphref, { a_format, a_glyphref, SVGXY, SVG_DXDY, SVG_XLINK, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_glyphref, { a_format, a_glyphref, SVG_XY, SVG_DXDY, SVG_XLINK, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_grad, { MATH3DEFCOM, a_unknown } },
     { elem_gt, { MATH3DEFCOM, a_unknown } },
     { elem_h, { XHTML2, a_unknown } },
@@ -448,7 +422,7 @@ element_init_t ei [] =
     { elem_h4, { DINGBAT, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_h5, { DINGBAT, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_h6, { DINGBAT, LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_handler, { a_evevent, a_type, LIVING_STANDARD, a_unknown } },
+    { elem_handler, { a_evevent, a_externalresourcesrequired, a_type, SVG_COND, SVG_XLINK, LIVING_STANDARD, a_unknown } },
     { elem_hat, { LANGCLASS3, a_unknown } },
     { elem_head, { a_profile, LIVING_STANDARD, a_unknown } },
     { elem_header, { LIVING_STANDARD, a_unknown } },
@@ -472,7 +446,7 @@ element_init_t ei [] =
     { elem_ilayer, {    a_above, a_background, a_below, a_bgcolour, a_class, a_clip, a_height, a_id, a_left, a_name, a_pagex, a_pagey,
                         a_src, a_style, a_top, a_visibility, a_zindex, a_unknown } },
     { elem_image, { a_align, a_crossorigin, a_externalresourcesrequired, a_onzoom, a_preserveaspectratio, a_seethru, a_xlinkhref, a_will_change,
-                    MATH2UNIQUE, MATH2UNIDEF, SVG11GREV, SVGBOX, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+                    MATH2UNIQUE, MATH2UNIDEF, SVG_GR, SVG_BOX, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_imaginary, { MATH3DEFCOM, a_unknown } },
     { elem_imaginaryi, { MATH3DEFCOM, a_unknown } },
     { elem_img, {   a_align, a_alt, a_border, a_crossorigin, a_decoding, a_hspace, a_importance, a_intrinsicsize, a_loading, a_longdesc,
@@ -509,8 +483,8 @@ element_init_t ei [] =
     { elem_li, { a_clear, a_compact, a_dingbat, a_md, a_skip, a_type, a_value, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_limit, { MATH3DEFCOM, a_unknown } },
     { elem_line, {  a_externalresourcesrequired, a_x1, a_x2, a_y1, a_y2, a_will_change,
-                    SVG11GREV, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_lineargradient, { a_externalresourcesrequired, a_spreadmethod, a_x1, a_x2, a_y1, a_y2, SVG_XLINK, SVG_PRES, SVGGRAD, LIVING_STANDARD, a_unknown } },
+                    SVG_GR, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_lineargradient, { a_externalresourcesrequired, a_gradienttransform, a_gradientunits, a_spreadmethod, a_x1, a_x2, a_y1, a_y2, SVG_XLINK, SVG_PRES,LIVING_STANDARD, a_unknown } },
     { elem_link, {  a_as, a_charset, a_colour, a_crossorigin, a_disabled, a_idref, a_imagesizes, a_imagesrcset, a_importance, a_integrity,
                     a_methods, a_ping, a_prefetch, a_referrerpolicy, a_scope, a_sizes, a_type, a_updateviacache, a_urn, a_workertype, LIVING_STANDARD, a_unknown } },
     { elem_listener, { LIVING_STANDARD, a_unknown } },
@@ -531,10 +505,10 @@ element_init_t ei [] =
     { elem_map, { a_name, LIVING_STANDARD, a_unknown } },
     { elem_margin, { HTMLPLUS, a_unknown } },
     { elem_mark, { LIVING_STANDARD, a_unknown } },
-    { elem_marker, {    a_externalresourcesrequired, a_orient, a_markerheight, a_markerunits, a_markerwidth, a_preserveaspectratio, a_viewbox, SVG_PRES,
-                        SVG_DOC, SVGREF, LIVING_STANDARD, a_unknown } },
+    { elem_marker, {    a_externalresourcesrequired, a_orient, a_markerheight, a_markerunits, a_markerwidth, a_preserveaspectratio, a_refx, a_refy, a_viewbox, SVG_PRES,
+                        SVG_DOC, LIVING_STANDARD, a_unknown } },
     { elem_marquee, { a_behaviour, a_bgcolour, a_direction, a_hspace, a_loop, a_scrollamount, a_scrolldelay, a_truespeed, a_vspace, WIDEHIGH, a_unknown } },
-    { elem_mask, { a_externalresourcesrequired, a_maskcontentunits, a_maskunits, SVG2COND, SVG_PRES, SVGBOX, LIVING_STANDARD, a_unknown } },
+    { elem_mask, { a_externalresourcesrequired, a_maskcontentunits, a_maskunits, SVG_COND, SVG_PRES, SVG_BOX, LIVING_STANDARD, a_unknown } },
     { elem_math, {  a_accentunder, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign, a_alttext, a_background, a_baseline,
                     a_bevelled, a_box, a_cdgroup, a_charalign, a_charspacing, a_close, a_columnspan, a_crossout, a_decimalpoint,
                     a_display, a_denomalign, a_depth, a_edge, a_infixlinebreakstyle, a_leftoverhang, a_length,
@@ -577,7 +551,7 @@ element_init_t ei [] =
     { elem_momentabout, { MATH3DEFCOM, a_unknown } },
     { elem_mover, { a_accent, a_align, MATH3PRES, a_unknown } },
     { elem_mpadded, { a_lspace, a_voffset, MATHSIZE, MATH3PRES, a_unknown } },
-    { elem_mpath, { a_externalresourcesrequired, SVG_XLINK, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_mpath, { a_externalresourcesrequired, SVG_XLINK, LIVING_STANDARD, a_unknown } },
     { elem_mphantom, { MATH3PRES, a_unknown } },
     { elem_mprescripts, { a_xmlns, a_unknown } },
     { elem_mroot, { MATH3PRES, a_unknown } },
@@ -646,9 +620,9 @@ element_init_t ei [] =
     { elem_param, { a_name, a_type, a_value, a_valuetype, LIVING_STANDARD, a_unknown } },
     { elem_partialdiff, { MATH3DEFCOM, a_unknown } },
     { elem_path, {  a_d, a_externalresourcesrequired, a_flatness, a_nominallength, a_pathlength, a_will_change,
-                    SVG11GREV, SVGBOX, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_pattern, {   a_externalresourcesrequired, a_patterncontentunits, a_patterntransform, a_patternunits, a_preserveaspectratio, a_viewbox,
-                        SVG_XLINK, SVG2COND, SVG_PRES, SVGREF, SVGBOX, LIVING_STANDARD, a_unknown } },
+                    SVG_GR, SVG_BOX, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_pattern, {   a_externalresourcesrequired, a_patterncontentunits, a_patterntransform, a_patternunits, a_preserveaspectratio, a_refx, a_refy, a_viewbox,
+                        SVG_XLINK, SVG_COND, SVG_PRES, SVG_BOX, LIVING_STANDARD, a_unknown } },
     { elem_person, { LC3PLUS, a_unknown } },
     { elem_pi, { MATH3DEFCOM, a_unknown } },
     { elem_picture, { LIVING_STANDARD, a_unknown } },
@@ -657,9 +631,9 @@ element_init_t ei [] =
     { elem_plaintext, { LANGCLASS, a_unknown } },
     { elem_plus, { MATH3DEFCOM, a_unknown } },
     { elem_polygon, {   a_externalresourcesrequired, a_points, a_will_change,
-                        SVG11GREV, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+                        SVG_GR, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_polyline, {  a_externalresourcesrequired, a_points, a_will_change,
-                        SVG11GREV, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+                        SVG_GR, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_power, { MATH3DEFCOM, a_unknown } },
     { elem_pre, { a_clear, a_cols, a_width, a_wrap, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_prefetch, { a_bandwidth, a_mediacharacterencoding, a_mediacontentencodings, a_mediasize, a_mediatime, SVG_XLINK, LIVING_STANDARD, a_unknown } },
@@ -673,14 +647,14 @@ element_init_t ei [] =
     { elem_q, { a_align, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_quote, { HTMLPLUS, a_unknown } },
     { elem_quotient, { MATH3DEFCOM, a_unknown } },
-    { elem_radialgradient, { a_cx, a_cy, a_externalresourcesrequired, a_fr, a_fx, a_fy, a_r, a_spreadmethod, SVG_XLINK, SVG_PRES, SVGGRAD, LIVING_STANDARD, a_unknown } },
+    { elem_radialgradient, { a_cx, a_cy, a_externalresourcesrequired, a_fr, a_fx, a_fy, a_gradienttransform, a_gradientunits, a_r, a_spreadmethod, SVG_XLINK, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_range, { a_from, a_until, a_class, a_id, a_unknown } },
     { elem_rationals, { MATH3DEFCOM, a_unknown } },
     { elem_rb, { LIVING_STANDARD, a_unknown } },
     { elem_rbc, { LIVING_STANDARD, a_unknown } },
     { elem_real, { MATH3DEFCOM, a_unknown } },
     { elem_reals, { MATH3DEFCOM, a_unknown } },
-    { elem_rect, { a_externalresourcesrequired, a_rx, a_ry, a_will_change, SVG11GREV, SVG2COND, SVG_PRES, SVGBOX, LIVING_STANDARD, a_unknown } },
+    { elem_rect, { a_externalresourcesrequired, a_rx, a_ry, a_will_change, SVG_GR, SVG_COND, SVG_PRES, SVG_BOX, LIVING_STANDARD, a_unknown } },
     { elem_refcontent, { LIVING_STANDARD, a_unknown } },
     { elem_reln, { MATH2COMMON, a_unknown } },
     { elem_rem, { MATH3DEFCOM, a_unknown } },
@@ -710,7 +684,7 @@ element_init_t ei [] =
     { elem_semantics, { a_cd, a_name, a_src, MATH3DEFCOM, a_unknown } },
     { elem_sep, { a_xmlns, a_unknown } },
     { elem_separator, { XHTML2, a_unknown } },
-    { elem_set, { a_externalresourcesrequired, a_to, a_type, MATH2UNIQUE, SVGANAT, SVG_ANTIME, SVG11ANEV, SVG_XLINK, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_set, { a_externalresourcesrequired, a_to, a_type, MATH2UNIQUE, SVG_ANAT, SVG_ANTIME, SVG_ANIM, SVG_XLINK, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_setdiff, { MATH3DEFCOM, a_unknown } },
     { elem_shadow, { LIVING_STANDARD, a_unknown } },
     { elem_share, { a_src, MATH3COMMON, a_unknown } },
@@ -719,7 +693,7 @@ element_init_t ei [] =
     { elem_sinh, { MATH3DEFCOM, a_unknown } },
     { elem_slot, { a_name, LIVING_STANDARD, a_unknown } },
     { elem_small, { LIVING_STANDARD, a_unknown } },
-    { elem_solidcolour, { SVG12PRES, LIVING_STANDARD, a_unknown } },
+    { elem_solidcolour, { SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_source, { a_height, a_sizes, a_srcset, a_type, a_width, LIVING_STANDARD, a_unknown } },
     { elem_spacer, { a_align, a_size, a_type, WIDEHIGH, a_unknown } },
     { elem_span, { a_align, RESERVED4, LIVING_STANDARD, a_unknown } },
@@ -739,7 +713,7 @@ element_init_t ei [] =
     { elem_svg, {   a_allow_zoom_and_pan, a_baseprofile, a_contentscripttype, a_contentstyletype, a_externalresourcesrequired, a_onafterprint, a_onbeforeprint, a_onzoom,
                     a_playbackorder, a_preserveaspectratio, a_snapshottime, a_syncbehaviourdefault, a_synctolerancedefault, a_timelinebegin,
                     a_version, a_viewbox, a_zoomandpan, SVG_BOX, SVG_COND, SVG_GR, SVG_PRES, LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_switch, { a_externalresourcesrequired, a_onzoom, SVG11GREV, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_switch, { a_externalresourcesrequired, a_onzoom, SVG_GR, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_symbol, { a_externalresourcesrequired, a_onzoom, a_preserveaspectratio, a_refx, a_refy, a_viewbox, SVG_BOX, SVG_COND, SVG_GR, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_t, { a_datetime, COMMON5, a_unknown } },
     { elem_tab, { a_align, a_at, a_dp, a_indent, a_to, LANGCLASS3, a_unknown } },
@@ -754,11 +728,11 @@ element_init_t ei [] =
     { elem_template, { LIVING_STANDARD, a_unknown } },
     { elem_text, {  a_editable, a_externalresourcesrequired, a_hyphens, a_inline_size, a_lengthadjust, a_line_break, a_line_height, a_overflow_wrap, a_rotate,
                     a_shape_image_threshold, a_shape_inside, a_shape_margin, a_shape_padding, a_shape_subtract, a_text_justify, a_textlength, a_word_break, a_word_wrap, a_will_change,
-                    SVG11GREV, SVG_DXDY, SVG2COND, SVG_PRES, SVGXY, LIVING_STANDARD, a_unknown } },
+                    SVG_GR, SVG_DXDY, SVG_COND, SVG_PRES, SVG_XY, LIVING_STANDARD, a_unknown } },
     { elem_tendsto, { a_type, MATH3DEFCOM, a_unknown } },
     { elem_textarea, {  a_align, a_autocomplete, a_cols, a_dirname, a_disabled, a_editable, a_error, a_form, a_maxlength, a_minlength, a_name, a_placeholder, a_readonly, a_required,
                         a_rotate, a_rows, a_wrap, SVG_BOX, SVG_PRES, LIVING_STANDARD, a_unknown } },
-    { elem_textpath, { a_externalresourcesrequired, a_lengthadjust, a_method, a_path, a_side, a_spacing, a_startoffset, a_textlength, SVG11GREV, SVG_XLINK, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_textpath, { a_externalresourcesrequired, a_lengthadjust, a_method, a_path, a_side, a_spacing, a_startoffset, a_textlength, SVG_GR, SVG_XLINK, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_tfoot, { a_bgcolour, a_rowgroup, ALIGNCHAR, RESERVED4, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_th, { a_axis, a_abbr, a_bgcolour, a_colspan, a_dp, a_headers, a_nowrap, a_rowspan, a_scope, a_sorted, WIDEHIGH, ALIGNCHAR, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_thead, { a_bgcolour, a_rowgroup, ALIGNCHAR, LIVING_STANDARD, a_unknown } },
@@ -772,16 +746,16 @@ element_init_t ei [] =
     { elem_transition, { LIVING_STANDARD, a_unknown } },
     { elem_transformer, { LIVING_STANDARD, a_unknown } },
     { elem_transpose, { MATH3DEFCOM, a_unknown } },
-    { elem_tref, { a_externalresourcesrequired, a_rotate, a_textlength, SVG11GREV, SVG_XLINK, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_tref, { a_externalresourcesrequired, a_rotate, a_textlength, SVG_GR, SVG_XLINK, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_true, { MATH3DEFCOM, a_unknown } },
     { elem_tspan, { a_externalresourcesrequired, a_hyphens, a_lengthadjust, a_line_break, a_overflow_wrap, a_rotate, a_text_justify, a_textlength, a_word_break, a_word_wrap,
-                    SVG11GREV, SVG_DXDY, SVG2COND, SVG_PRES, SVGXY, LIVING_STANDARD, a_unknown } },
+                    SVG_GR, SVG_DXDY, SVG_COND, SVG_PRES, SVG_XY, LIVING_STANDARD, a_unknown } },
     { elem_tt, { TSLPLUS, XHTML, a_unknown } },
     { elem_u, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_ul, { a_align, a_clear, a_compact, a_plain, a_type, a_wrap, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_union, { MATH3DEFCOM, a_unknown } },
     { elem_uplimit, { MATH3COMMON, a_unknown } },
-    { elem_use, { a_externalresourcesrequired, a_onzoom, a_preserveaspectratio, a_xlinkhref, a_will_change, SVG11GREV, SVGBOX, SVG2COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
+    { elem_use, { a_externalresourcesrequired, a_onzoom, a_preserveaspectratio, a_xlinkhref, a_will_change, SVG_GR, SVG_BOX, SVG_COND, SVG_PRES, LIVING_STANDARD, a_unknown } },
     { elem_var, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_variance, { MATH3DEFCOM, a_unknown } },
     { elem_veaffine, { LIVING_STANDARD, a_unknown } },

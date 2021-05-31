@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats.h"
 #include "parser/html_version.h"
 #include "schema/schema_version.h"
-//#include "url/url_sanitise.h"
 
 #define VALID_RESULT 0
 #define STOP_OK 1
@@ -69,8 +68,6 @@ class context_t
     ::boost::program_options::options_description   validation_;
     e_svg_processing_mode svg_mode_;
     ::std::string ensane (const ::std::string& s) const;
-    ::std::ostream& out () const { if (fos_) return *fos_; return ::std::cout; }
-    ::std::ostream& err () const { if (fos_) return *fos_; return ::std::cerr; }
 public:
     context_t () { environment_.resize (env_max); };
     int parameters (int argc, char** argv);
@@ -315,6 +312,8 @@ public:
     bool tell (const e_verbose n) const { return n <= verbose_; }
     void out (const ::std::string& s) const { out () << ensane (s); }
     void err (const ::std::string& s) const { err () << ensane (s); }
+    ::std::ostream& out () const { if (fos_) return *fos_; return ::std::cout; }
+    ::std::ostream& err () const { if (fos_) return *fos_; return ::std::cerr; }
     void mark (const e_element e)
     {   data_.mark (e); }
     void visible (const e_element e)

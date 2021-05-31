@@ -34,6 +34,7 @@ template < > struct type_master < t_url > : type_base < url, t_url >
     url value_;
     type_master () = default;
     static bool is_url () { return true; }
+    static e_animation_type animation_type () { return at_url; }
     ::std::string get_string () const { return value_.get (); }
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
@@ -53,8 +54,8 @@ template < > struct type_master < t_url > : type_base < url, t_url >
     {   if (! context.links ()) return true;
         if (! type_base < url, t_url > :: good ()) return true;
         return value_.verify (nits, v, e); }
-    void verify_id (nitpick& nits, const html_version& v, ids_t& ids, const attribute_bitset& flags, const vit_t& itemtypes)
-    {   value_.verify_id (nits, v, ids, flags, itemtypes); }
+    void verify_id (element& e)
+    {   value_.verify_id (e); }
     vurl_t get_urls () const
     {   return vurl_t (1, value_); }
     static url default_value () { return url (); }
@@ -96,6 +97,7 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
     typedef vurl_t value_type;
     vurl_t value_;
     type_master () = default;
+    static e_animation_type animation_type () { return at_url; }
     ::std::string get_string () const
     {   ::std::string s;
         for (auto& u : value_)
@@ -128,9 +130,9 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
             if (! u.verify (nits, v, e))
                 res = false;
         return res; }
-    void verify_id (nitpick& nits, const html_version& v, ids_t& ids, const attribute_bitset& flags, const vit_t& itemtypes)
+    void verify_id (element& e)
     {   for (auto& u : value_)
-            u.verify_id (nits, v, ids, flags, itemtypes); }
+            u.verify_id (e); }
     static vurl_t default_value () { return vurl_t (); }
     vurl_t get () const { return value_; }
     bool has_value (const base_type& b) const
