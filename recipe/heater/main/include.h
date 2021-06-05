@@ -68,6 +68,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NOEXCEPT noexcept
 #define VS 17
 #define CLEAN_SHAREDPTR_ARRAY
+#define SMALLINT
 #elif defined (VS2015)
 #define BOOVAR 1
 #define ORDERED
