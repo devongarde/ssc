@@ -63,6 +63,9 @@ ns_id namespace_stack::add (nitpick& nits, const html_version& v, const ::std::s
     if (schema.empty ())
     {   nits.pick (nit_bad_namespace, es_error, ec_namespace, "a namespace URL cannot be empty");
         return unspecified_namespace; }
+    if (compare_no_case (xmlns, XMLNS))
+    {   nits.pick (nit_bad_namespace, es_error, ec_namespace, quote (xmlns), ": really? Unfortunately, that exceeds " PROG "'s daft 'apeth quota");
+        return unspecified_namespace; }
     ::std::string lc_name, lc_schema;
     if (v.xhtml ())
     {   lc_name = xmlns; lc_schema = schema; }
@@ -73,15 +76,15 @@ ns_id namespace_stack::add (nitpick& nits, const html_version& v, const ::std::s
     if (x != xs_.cend ())
         if (x -> second < vns_.size ())
             if (vns_.at (x -> second).name_.empty ())
-                nits.pick (nit_duplicate_namespace, es_warning, ec_namespace, "namespace ", quote (schema), " previously declared");
-            else nits.pick (nit_duplicate_namespace, es_warning, ec_namespace, "namespace ", quote (schema), " previously declared as ", quote (vns_.at (x -> second).name_));
+                nits.pick (nit_duplicate_namespace, es_comment, ec_namespace, "namespace ", quote (schema), " previously declared");
+            else nits.pick (nit_duplicate_namespace, es_comment, ec_namespace, "namespace ", quote (schema), " previously declared as ", quote (vns_.at (x -> second).name_));
     midni_t::const_iterator j;
     if (lc_name.empty ()) j = names_.cend ();
     else
     {   j = names_.find (lc_name);
         if (j != names_.cend ())
             if (! vns_.at (j -> second).automatic_)
-                nits.pick (nit_duplicate_namespace, es_warning, ec_namespace, "another ", quote (xmlns), " was declared above"); }
+                nits.pick (nit_duplicate_namespace, es_comment, ec_namespace, "another ", quote (xmlns), " was declared above"); }
     type_master < t_xmlns > typical;
     nitpick nuts;
     typical.set_value (nuts, v, schema);
@@ -161,7 +164,7 @@ e_namespace examine_namespace (nitpick& nits, const html_version& v, ns_ptr& ns_
     s = ss; n.clear ();
     return ns_default; }
 
-ns_id namespace_declaration (nitpick& nits, const html_version& v, ns_ptr& ns_stack, ::std::string& name, const ::std::string& schema)
+ns_id namespace_declaration (nitpick& nits, const html_version& v, ns_ptr& ns_stack, const ::std::string& name, const ::std::string& schema)
 {   if (ns_stack.get () == nullptr)
         ns_stack = new_namespace_stack (v);
     return ns_stack -> add (nits, v, name, schema); }

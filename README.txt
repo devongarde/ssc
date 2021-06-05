@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.106
+version 0.0.107
 https://ssc.lu/
 
 
@@ -22,7 +22,7 @@ WARNING: this code is:
 ssc analyses static HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
 - HTML living standard, Jan 2005 to Apr 2021
-- SVG 1.0/1.1
+- SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
 - finds broken links (requires curl)
@@ -103,4 +103,4 @@ more licences    licences for content copied from elsewhere
 
 written by dylan harris
 mail@ssc.lu
-May 2021
+June 2021

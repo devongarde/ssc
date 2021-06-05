@@ -572,6 +572,15 @@
     <ClInclude Include="..\heater\parser\text-data.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\attribute\namespace.h">
+      <Filter>Heater\attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\main\abort.h">
+      <Filter>Heater\main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_case.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -936,6 +945,15 @@
     </ClCompile>
     <ClCompile Include="..\sauce\parser\text-data.cpp">
       <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\namespace.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\main\abort.cpp">
+      <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_numeric.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

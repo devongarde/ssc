@@ -25,6 +25,7 @@
     <ClInclude Include="..\heater\attribute\attribute_classes.h" />
     <ClInclude Include="..\heater\attribute\avm.h" />
     <ClInclude Include="..\heater\attribute\avm_data.h" />
+    <ClInclude Include="..\heater\attribute\namespace.h" />
     <ClInclude Include="..\heater\css\css.h" />
     <ClInclude Include="..\heater\css\css_cache.h" />
     <ClInclude Include="..\heater\element\elem.h" />
@@ -39,6 +40,7 @@
     <ClInclude Include="..\heater\icu\charset.h" />
     <ClInclude Include="..\heater\icu\converter.h" />
     <ClInclude Include="..\heater\icu\wrapper.h" />
+    <ClInclude Include="..\heater\main\abort.h" />
     <ClInclude Include="..\heater\main\args.h" />
     <ClInclude Include="..\heater\main\context.h" />
     <ClInclude Include="..\heater\main\include.h" />
@@ -109,6 +111,7 @@
     <ClInclude Include="..\heater\type\type_autocomplete.h" />
     <ClInclude Include="..\heater\type\type_base.h" />
     <ClInclude Include="..\heater\type\type_basic.h" />
+    <ClInclude Include="..\heater\type\type_case.h" />
     <ClInclude Include="..\heater\type\type_charset.h" />
     <ClInclude Include="..\heater\type\type_class.h" />
     <ClInclude Include="..\heater\type\type_colour.h" />
@@ -180,6 +183,7 @@
     <ClCompile Include="..\sauce\attribute\avm_data_ijkl.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_mnopqr.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_stuvwxyz.cpp" />
+    <ClCompile Include="..\sauce\attribute\namespace.cpp" />
     <ClCompile Include="..\sauce\css\css.cpp" />
     <ClCompile Include="..\sauce\css\css_cache.cpp" />
     <ClCompile Include="..\sauce\element\elem.cpp" />
@@ -206,6 +210,7 @@
     <ClCompile Include="..\sauce\icu\charset.cpp" />
     <ClCompile Include="..\sauce\icu\converter.cpp" />
     <ClCompile Include="..\sauce\icu\wrapper.cpp" />
+    <ClCompile Include="..\sauce\main\abort.cpp" />
     <ClCompile Include="..\sauce\main\context.cpp" />
     <ClCompile Include="..\sauce\main\options.cpp" />
     <ClCompile Include="..\sauce\main\ssc.cpp" />
@@ -270,6 +275,7 @@
     <ClCompile Include="..\sauce\type\type_media.cpp" />
     <ClCompile Include="..\sauce\type\type_metaname.cpp" />
     <ClCompile Include="..\sauce\type\type_mime.cpp" />
+    <ClCompile Include="..\sauce\type\type_numeric.cpp" />
     <ClCompile Include="..\sauce\type\type_paint.cpp" />
     <ClCompile Include="..\sauce\type\type_reals.cpp" />
     <ClCompile Include="..\sauce\type\type_rel.cpp" />

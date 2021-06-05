@@ -527,9 +527,6 @@
     <ClInclude Include="..\heater\icu\charset.h">
       <Filter>Heater\icu</Filter>
     </ClInclude>
-    <ClInclude Include="type_charset.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\type\type_csp.h">
       <Filter>Heater\type</Filter>
     </ClInclude>
@@ -565,6 +562,21 @@
     </ClInclude>
     <ClInclude Include="..\heater\parser\text-data.h">
       <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\attribute\avm_data.h">
+      <Filter>Heater\attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\attribute\namespace.h">
+      <Filter>Heater\attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\main\abort.h">
+      <Filter>Heater\main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_charset.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_case.h">
+      <Filter>Heater\type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -916,6 +928,30 @@
     <ClCompile Include="..\sauce\parser\text-data.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_abc.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_defgh.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_ijkl.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_mnopqr.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_stuvwxyz.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\namespace.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\main\abort.cpp">
+      <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_numeric.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="addtest.sh">
@@ -957,9 +993,6 @@
       <Filter>Info</Filter>
     </Text>
     <Text Include="..\gen\gen.txt">
-      <Filter>Info</Filter>
-    </Text>
-    <Text Include="..\..\W3-LICENCE.txt">
       <Filter>Info</Filter>
     </Text>
   </ItemGroup>

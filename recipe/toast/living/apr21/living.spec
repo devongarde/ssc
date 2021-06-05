@@ -194,7 +194,7 @@ PASS ../toast/living/apr21/conformance.html
 47 inserted_missing_closure
 
 PASS ../toast/living/apr21/custom-1.html
-6 unknown_element unknown_element
+6 unknown_element attribute_unrecognised unknown_element
 8 unrecognised_value url_not_found
 9 unknown_element unknown_element
 13 nuts
@@ -930,8 +930,7 @@ PASS ../toast/living/apr21/intro-2.html
 166 inserted_missing_closure missing_close
 167 inserted_missing_closure
 170 use_quote_code
-174 unknown_element unrecognised_namespace
-175 duplicate_namespace
+174 unrecognised_namespace unknown_element
 177 unknown_element
 181 newline_in_string
 181 newline_in_string
@@ -1427,8 +1426,7 @@ PASS ../toast/living/apr21/ssah-1.html
 96 inserted_missing_closure missing_close
 97 inserted_missing_closure
 100 use_quote_code
-104 unknown_element unrecognised_namespace
-105 duplicate_namespace
+104 unrecognised_namespace unknown_element
 107 unknown_element
 111 newline_in_string newline_in_string
 113 unrecognised_value use_double_quote_code use_quote_code
@@ -1766,7 +1764,7 @@ PASS ../toast/living/apr21/work.html
 16 inserted_missing_closure
 
 PASS ../toast/living/apr21/ws-1.html
-27 bad_namespace unknown_element unrecognised_namespace
+27 unrecognised_namespace unknown_element
 
 PASS ../toast/living/apr21/ws-10.html
 2 naughty_lang

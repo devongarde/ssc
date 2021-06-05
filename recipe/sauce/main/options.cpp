@@ -789,14 +789,19 @@ void options::contextualise ()
 
         if (var_.count (SVG VERSION))
         {   ::std::string ver (var_ [SVG VERSION].as < ::std::string > ());
-            if (! ver.empty ())
-            {   ::std::string::size_type pos = ver.find ('.');
+            {   ::std::string::size_type slash = ver.find ('/');
+                ::std::string ps;
+                if (slash != ::std::string::npos)
+                {   ps = ver.substr (slash+1);
+                    ver = ver.substr (0, slash); }
+                ::std::string::size_type pos = ver.find ('.');
                 if (pos == ::std::string::npos)
                     if (ver.length () == 1) context.svg_version (sv_none);
                     else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
                 else if (pos == ver.length () - 1) context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
                 else if (pos == 0) context.svg_version (sv_none);
-                else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1))); } }
+                else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1)));
+                if ((slash != ::std::string::npos) && (context.svg_version () == sv_1_2_tiny) && compare_no_case (ps, "full")) context.svg_version (sv_1_2_full); } }
 
         if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
         if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());
@@ -893,7 +898,7 @@ void options::contextualise ()
         TEST_VAR (pointer_events);
         TEST_VAR (print);
         TEST_VAR (referrer);
-        TEST_VAR (renderingintent);
+        TEST_VAR (rendering_in_tents);
         TEST_VAR (rules);
         TEST_VAR (sandbox);
         TEST_VAR (shape7);
@@ -1141,7 +1146,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (pointer_events);
     RPT_VAR (print);
     RPT_VAR (referrer);
-    RPT_VAR (renderingintent);
+    RPT_VAR (rendering_in_tents);
     RPT_VAR (rules);
     RPT_VAR (sandbox);
     RPT_VAR (shape7);

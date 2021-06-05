@@ -35,14 +35,13 @@ template < > struct type_master < t_angle > : type_master < t_real >
             type_master < t_real > :: status (s_good);
         else
         {   float max = 360.0; ::std::string::size_type len = ss.length ();
-            bool units = false;
             if (len > 3)
             {   ::std::string sss (ss.substr (len - 3));
                 ::std::string ssss (ss.substr (len - 4));
-                if (compare_complain (nits, v, ssss, "grad")) { max = 400.0; len -= 4; units = true; }
-                else if (v.is_svg_2 () && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; units = true; }
-                else if (compare_complain (nits, v, sss, "rad")) { max = static_cast < float > (3.141592653589*2); len -= 3; units = true; }
-                else if (compare_complain (nits, v, sss, "deg")) { len -= 3; units = true; } }
+                if (compare_complain (nits, v, ssss, "grad")) { max = 400.0; len -= 4; }
+                else if (v.is_svg_2 () && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; }
+                else if (compare_complain (nits, v, sss, "rad")) { max = static_cast < float > (3.141592653589*2); len -= 3; }
+                else if (compare_complain (nits, v, sss, "deg")) len -= 3; }
             if (ss.substr (0, len).find_first_not_of (DECIMAL) != ::std::string::npos)
                 nits.pick (nit_angle, es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
             else
@@ -77,6 +76,7 @@ template < > struct type_master < t_beginvalues > : type_at_least_one < t_beginv
 {   static e_animation_type animation_type () { return at_other; } };
 template < > struct type_master < t_beginvaluelist > : type_or_string < t_beginvaluelist, t_beginvalues, sz_indefinite > { };
 template < > struct type_master < t_clip_path_rule > : type_or_either_string < t_clip_path_rule, t_urifn, sz_none, sz_inherit > { };
+template < > struct type_master < t_rendering_colour_space > : type_one_of_three < t_rendering_colour_space, t_colour_interpolation, t_colour_profile_name, t_urifn > { };
 template < > struct type_master < t_colour_profile_name_or_uri > : type_either_or < t_colour_profile_name_or_uri, t_urifn, t_colour_profile_name >
 {   static e_animation_type animation_type () { return at_colour; } };
 template < > struct type_master < t_colour_profile > : type_or_any_string < t_colour_profile, t_colour_profile_name_or_uri, sz_auto, sz_inherit, sz_srgb > { };
@@ -332,6 +332,7 @@ template < > struct type_master < t_preserveaspectratio10 > : type_one_or_both <
 {   static e_animation_type animation_type () { return at_other; } };
 template < > struct type_master < t_preserveaspectratio12 > : type_or_string < t_preserveaspectratio12, t_preserveaspectratio10, sz_defer > { };
 template < > struct type_master < t_rotate_anim > : type_or_either_string < t_rotate_anim, t_angle, sz_auto, sz_autoreverse > { };
+template < > struct type_master < t_setback_offset > : type_range < t_setback_offset, sz_commaspace, t_measure, 1, 4 > { };
 template < > struct type_master < t_shape_fn_circlesz > : type_must_be < t_shape_fn_circlesz, sz_circle >
 {   static e_animation_type animation_type () { return at_other; } };
 template < > struct type_master < t_shape_fn_circle > : type_function < t_shape_fn_circle, t_shape_fn_circlesz, t_text >
@@ -413,6 +414,7 @@ template < > struct type_master < t_svg_shapefn > : tidy_string < t_svg_shapefn 
 
 template < > struct type_master < t_svg_shape > : type_function < t_svg_shape, t_svg_shapefn, t_real >
 {   static e_animation_type animation_type () { return at_number; } };
+template < > struct type_master < t_svg_host > : either_string < t_svg_host, sz_svg, sz_host > { };
 template < > struct type_master < t_svg_svg > : type_must_be < t_svg_svg, sz_svg > { };
 template < > struct type_master < t_svg_transform > : type_or_string < t_svg_transform, t_transform, sz_none > { };
 
@@ -479,4 +481,6 @@ template < > struct type_master < t_urifn > : type_function < t_urifn, t_urisz, 
 {   static e_animation_type animation_type () { return at_url; } };
 template < > struct type_master < t_urifn_ni > : id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit > { };
 template < > struct type_master < t_urisz > : type_must_be < t_urisz, sz_url >
+{   static e_animation_type animation_type () { return at_other; } };
+template < > struct type_master < t_vertical_align > : type_either_or < t_vertical_align, t_vertical_align_enum, t_measure >
 {   static e_animation_type animation_type () { return at_other; } };

@@ -546,7 +546,7 @@ hav_t havt_abc [] =
 
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_colour_profile, a_local },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_colour_profile, a_name },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_colour_profile, a_renderingintent },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_colour_profile, a_rendering_in_tents },
     SVG_HTML_ATTRIBUTES (elem_colour_profile),
     SVG_XLINK_ATTRIBUTES (elem_colour_profile),
 

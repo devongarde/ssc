@@ -206,8 +206,7 @@ PASS ../toast/living/jan18/example.html
 153 inserted_missing_closure missing_close
 154 inserted_missing_closure
 157 use_quote_code
-161 unknown_element unrecognised_namespace
-162 duplicate_namespace
+161 unrecognised_namespace unknown_element
 164 unknown_element
 168 newline_in_string
 168 newline_in_string
@@ -718,9 +717,9 @@ PASS ../toast/living/jan18/ls6.html
 3 contradictory_namespace no_xmllang
 5 use_quote_code
 6 unknown_element
-8 unknown_element unrecognised_namespace
+8 unrecognised_namespace unknown_element attribute_unrecognised
 9 unknown_element unknown_element
-10 unknown_element
+10 unknown_element attribute_unrecognised
 11 unknown_element unknown_element
 12 unknown_element
 13 unknown_element

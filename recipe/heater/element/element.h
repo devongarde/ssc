@@ -118,6 +118,7 @@ class element
     void examine_defaultaction ();
     void examine_draggable ();
     void examine_font ();
+    void examine_fontface ();
     void examine_href ();
     void examine_headers ();
     itemscope_ptr examine_itemscope (itemscope_ptr& itemscope);

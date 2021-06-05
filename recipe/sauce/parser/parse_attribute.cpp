@@ -22,17 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/parse_attribute.h"
 #include "utility/quote.h"
 
-attribute_node::attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end)
+attribute_node::attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
+                                const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool xmlns)
 {   has_key_ = has_value_ = true;
     key_ = ::std::string (name_start, name_end);
     value_ = ::std::string (value_start, value_end);
-    parse (nits, v, nss); }
+    parse (nits, v, nss, xmlns); }
 
-attribute_node::attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end)
+attribute_node::attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const bool xmlns)
 {   has_key_ = true;
     has_value_ = false;
     key_ = ::std::string (name_start, name_end);
-    parse (nits, v, nss); }
+    parse (nits, v, nss, xmlns); }
 
 void attribute_node::swap (attribute_node& an)
 {   key_.swap (an.key_);
@@ -51,9 +52,12 @@ void attribute_node::swap (attribute_node& an)
         res += quote (value_); }
     return res; }
 
-void attribute_node::parse (nitpick& nits, const html_version& v, ns_ptr& nss)
+void attribute_node::parse (nitpick& nits, const html_version& v, ns_ptr& nss, const bool xmlns)
 {   ::std::string ns;
-    id_ = attr :: parse (nits, v, nss, key_, ns);
-    if (id_ == a_xmlns)
-    {   VERIFY_NOT_NULL (nss, __FILE__, __LINE__);
-        nss -> add (nits, v, ns, value_); } }
+    if (! xmlns) id_ = attr :: parse (nits, v, nss, key_, ns);
+    else
+    {   nitpick nuts;
+        id_ = attr :: parse (nuts, v, nss, key_, ns);
+        if (id_ == a_xmlns)
+        {   VERIFY_NOT_NULL (nss, __FILE__, __LINE__);
+            nss -> add (nits, v, ns, value_); } } }

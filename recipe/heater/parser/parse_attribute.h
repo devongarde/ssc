@@ -29,11 +29,11 @@ class attribute_node
     bool has_key_ = false;
     bool has_value_ = false;
     e_attribute id_ = a_unknown;
-    void parse (nitpick& nits, const html_version& v, ns_ptr& nss);
+    void parse (nitpick& nits, const html_version& v, ns_ptr& nss, const bool xmlns);
 public:
     attribute_node () = default;
-    attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end);
-    attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end);
+    attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool xmlns);
+    attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const bool xmlns);
     attribute_node (const attribute_node& an) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	attribute_node(attribute_node&& an) = default;

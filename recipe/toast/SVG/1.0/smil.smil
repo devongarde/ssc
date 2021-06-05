@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?>
+<smil>
+ <body>
+ <!-- With SMIL 1.0, the first child element of 'switch'
+ which the SMIL 1.0 user agent is able to process
+ and which tests true will get processed and all other
+ child elements will have no visual effect. In this case,
+ if the SMIL 1.0 user agent can process "image/svg+xml",
+ then the SVG will appear; otherwise, the alternate image
+ (the second child element) will appear. -->
+ <switch>
+ <!-- Render the SVG if possible. -->
+ <ref type="image/svg+xml" src="drawing.svg" />
+ <!-- Else, render the alternate image. -->
+ <img src="alternate_image.jpg" />
+ </switch>
+ </body>
+</smil>

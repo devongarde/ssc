@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TESTPROG "ssc-test"
 #define FULLNAME "Static Site Checker"
 #define WEBADDR "https://ssc.lu/"
-#define VERSION_STRING "0.0.106"
+#define VERSION_STRING "0.0.107"
 #define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
 
 #ifdef __clang__
@@ -42,6 +42,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef _MSC_VER
 #include <codeanalysis\warnings.h>
+#ifdef WIN32
+#define X32
+#define SMALLINT
+#else // WIN32
+#define X64
+#endif // WIN32
 #define NOLYNX
 #pragma warning (push,3)
 #pragma warning ( disable : 4244 ) // boost
@@ -74,6 +80,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define REQUIRE_CONSTRUCTOR
 #define NO_PCF_STR
 #define VS 15
+#define SMALLINT
 #else // VS...
 #error unsupported version of visual C++
 #endif // VS...

@@ -152,6 +152,11 @@ hav_t havt_mnopqr [] =
     HTML23_CLID_ATTRIBUTES (elem_meta),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_meta),
 
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_metadata, a_requiredextensions },
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_metadata, a_requiredfeatures },
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_metadata, a_requiredfonts },
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_metadata, a_requiredformats },
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_metadata, a_systemlanguage },
     SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_metadata, HE_SVG_2),
     SVG_PRESENTATION_ATTRIBUTES_2 (elem_metadata),
     SVG_HTML_ATTRIBUTES (elem_metadata),
@@ -197,7 +202,7 @@ hav_t havt_mnopqr [] =
     MATH3_DEFS_ATTRIBUTES (elem_minus),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_missingglyph, a_d },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_missingglyph, a_horizadvx },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_missingglyph, a_horiz_adv_x },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_missingglyph, a_vert_adv_y },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_missingglyph, a_vert_origin_x },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_missingglyph, a_vert_origin_y },
@@ -510,10 +515,22 @@ hav_t havt_mnopqr [] =
     HTML23_CLID_ATTRIBUTES (elem_p),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_p),
 
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_page, a_orientation },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_page, a_preserveaspectratio },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_page, a_transin },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_page, a_transout },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_page, a_viewbox },
+    SVG_HTML_ATTRIBUTES (elem_page),
+    SVG_PRESENTATION_ATTRIBUTES (elem_page),
+
+    SVG_HTML_ATTRIBUTES (elem_pageset),
+    SVG_PRESENTATION_ATTRIBUTES (elem_pageset),
+
     { { HTML_4_0 }, { XHTML_2_0 }, elem_param, a_id },
     { { HTML_3_2, REQUIRED }, { HTML_UNDEF }, elem_param, a_name },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_param, a_type },
     { { HTML_3_2 }, { XHTML_2_0 }, elem_param, a_value },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_param, a_value },
     { { HTML_JAN05, REQUIRED }, { HTML_UNDEF }, elem_param, a_value },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_param, a_valuetype },
     HTML4_ATTRIBUTES_BASE (elem_param),
@@ -613,6 +630,10 @@ hav_t havt_mnopqr [] =
     { { HTML_JUL06 }, { HTML_UNDEF }, elem_progress, a_value },
     STANDARD_HTML5_ATTRIBUTES (elem_progress),
 
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_prototype, a_type },
+    SVG_HTML_ATTRIBUTES (elem_prototype),
+    SVG_XLINK_ATTRIBUTES (elem_prototype),
+
     MATH3_DEFS_ATTRIBUTES (elem_prsubset),
 
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_q, a_align },
@@ -663,6 +684,11 @@ hav_t havt_mnopqr [] =
     SVG_LANGSPACE_ATTRIBUTES_10 (elem_rect),
     SVG_PRESENTATION_ATTRIBUTES (elem_rect),
     SVG_RXY_ATTRIBUTES (elem_rect),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_refcontent, a_select },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_refcontent, a_transform },
+    SVG_XLINK_ATTRIBUTES (elem_refcontent),
+    SVG_HTML_ATTRIBUTES (elem_refcontent),
 
     MATH2_STANDARD_ATTRIBUTES (elem_reln),
 

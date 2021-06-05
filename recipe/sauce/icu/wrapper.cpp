@@ -51,7 +51,7 @@ bool converter::convert_to (void_ptr& vp, uintmax_t& sz)
 {   char* from = reinterpret_cast <char*> (vp.get ());
     int32_t len = ucnv_toUChars (conv_, nullptr, 0, from, static_cast < int32_t > (sz), &err_);
     if (err_ <= 0)
-    {   uintmax_t buflen = len * sizeof (UChar);
+    {   ::std::size_t buflen = static_cast < ::std::size_t > (len) * sizeof (UChar);
         void_ptr res (alloc_void_ptr (buflen));
         UChar* to_uc = reinterpret_cast <UChar*> (res.get ());
         if (res.get () != nullptr)

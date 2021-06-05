@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="full">
+
+<vectorEffect>
+ <veFill/>
+ <veStroke transform="ref(host)"/>
+ <veMarker/>
+</vectorEffect>
+
+<vectorEffect>
+ <veFill transform="ref(host)"/>
+ <veStrokePath in="SourcePath"/>
+ <veFill transform="ref(host)" fill="StrokePaint"/>
+ <veMarker/>
+</vectorEffect>
+
+<vectorEffect>
+ <veStroke/>
+ <veStroke fill="red" stroke-width="50%"/>
+</vectorEffect>
+
+<defs>
+ <path id="border1" d="..."/>
+ <path id="border2" d="..."/>
+ <path id="border3" d="..."/>
+ <path id="border4" d="..."/>
+ <path id="border5" d="..."/>
+</defs>
+<vectorEffect>
+ <vePath>
+ <vePathRef xlink:href="#border1"/>
+ <vePathRef xlink:href="#border2"/>
+ <vePathRef xlink:href="#border3"/>
+ </vePath>
+ <veFill color="red"/>
+ <vePath>
+ <vePathRef xlink:href="#border4"/>
+ <vePathRef reverse="true" xlink:href="#border2"/>
+ <vePathRef xlink:href="#border5"/>
+ </vePath>
+ <veFill color="blue"/>
+</vectorEffect>
+
+<vectorEffect>
+ <veFill/>
+ <veStroke/>
+ <veMarker/>
+</vectorEffect>
+
+<vectorEffect>
+ <veFill/>
+ <veStrokePath in="SourcePath"/>
+ <veFill transform="ref(host)" fill="StrokePaint"/>
+ <veMarker/>
+</vectorEffect>
+
+ </svg>

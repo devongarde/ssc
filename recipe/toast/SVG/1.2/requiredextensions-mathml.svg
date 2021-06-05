@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny"
+width="100%" height="100%" viewBox="0 0 600 500">
+<title>Quadratic Equation</title>
+<desc>
+A sample of MathML in SVG, using the 'foreignObject' element
+to represent a quadratic equation, with a graphical SVG
+representation for fallback.
+</desc>
+<switch>
+<foreignObject x="20" y="20" width="600" height="500"
+requiredExtensions="http://www.w3.org/1998/Math/MathML">
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<mrow>
+<mi>f</mi>
+<mfenced>
+<mi>x</mi>
+</mfenced>
+</mrow>
+<mo>=</mo>
+<mrow>
+<msup>
+<mi>x</mi>
+<mn>2</mn>
+</msup>
+<mo>+</mo>
+<mrow>
+<mn>4</mn>
+<mi>x</mi>
+</mrow>
+<mo>-</mo>
+<mrow>
+<mn>3</mn>
+</mrow>
+</mrow>
+</mrow>
+</math>
+</foreignObject>
+<g fill="gray" transform="translate(300,250)">
+<rect x="-300" y="-250" width="600" height="500" fill="white" stroke="gray" />
+<g id="axes" font-family="monospace" text-anchor="middle">
+<line id="x-axis" x1="-300" y1="0" x2="300" y2="0" stroke="gray"/>
+<line id="x-axis-markers" x1="-300" y1="0" x2="300" y2="0"
+stroke="gray" stroke-width="7" stroke-dasharray="1,99"/>
+<line id="y-axis" x1="0" y1="-250" x2="0" y2="250" stroke="gray"/>
+<line id="y-axis-markers" x1="0" y1="-200" x2="0" y2="250"
+stroke="gray" stroke-width="7" stroke-dasharray="1,99"/>
+<text x="-200" y="20" font-size="10">-4</text>
+<text x="-100" y="20" font-size="10">-2</text>
+<text x="100" y="20" font-size="10">2</text>
+<text x="200" y="20" font-size="10">4</text>
+<text x="15" y="-198" font-size="10">4</text>
+<text x="15" y="-98" font-size="10">2</text>
+<text x="15" y="102" font-size="10">-2</text>
+<text x="15" y="202" font-size="10">-4</text>
+</g>
+<path id="graph" stroke-width="1" stroke="blue" fill="none"
+d="M-200,-250 Q-50,650 100,-250"/>
+<circle id="vertex" cx="-50" cy="200" r="2" fill="blue" />
+<circle id="y-intercept-1" cx="0" cy="150" r="2" fill="red" />
+<circle id="x-intercept-1" cx="-150" cy="0" r="2" fill="red" />
+<circle id="x-intercept-2" cx="50" cy="0" r="2" fill="red" />
+</g>
+</switch>
+</svg>

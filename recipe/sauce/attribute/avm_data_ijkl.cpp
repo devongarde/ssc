@@ -80,8 +80,11 @@ hav_t havt_ijkl [] =
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_image, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_image, a_href },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_image, a_preserveaspectratio },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_image, a_shadowinherit },
     { { HTML_PLUS, REQUIRED }, { HTML_PLUS }, elem_image, a_src },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_image, a_transform },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_image, a_transin },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_image, a_transout },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_image, a_will_change },
     HTMLPLUS_ATTRIBUTES (elem_image),
     MATH3_DEFS_ATTRIBUTES (elem_image),
@@ -380,6 +383,9 @@ hav_t havt_ijkl [] =
     HTMLPLUS_ATTRIBUTES (elem_lit),
 
     MATH3_DEFS_ATTRIBUTES (elem_ln),
+
+    SVG_HTML_ATTRIBUTES (elem_loc),
+    SVG_XLINK_ATTRIBUTES (elem_loc),
 
     MATH3_DEFS_ATTRIBUTES (elem_log),
 

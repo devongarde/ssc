@@ -47,14 +47,12 @@ public:
         reverse_.insert (typename reverse_t::value_type (value, symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2))); }
     template < typename VALUE, class LC > void init (nitpick& nits, const symbol_entry < V, VALUE, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
     {   wildcards_ = wildcards;
-        for (::std::size_t i = 0; i < size; ++i)
-            if (table [i].sz_ == nullptr) break;
-            else
-            {   ::std::string key (enlc < LC > :: to (::std::string (table [i].sz_)));
-                auto it = symbol_.find (symbol_key (key, table [i].ns_));
-                if (it != symbol_.end ())
-                    nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "program error: symbol ", table [i].sz_, " already defined (ignoring case)");
-                else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); } }
+        for (::std::size_t i = 0; (i < size) && (table [i].sz_ != nullptr); ++i)
+        {   ::std::string key (enlc < LC > :: to (::std::string (table [i].sz_)));
+            auto it = symbol_.find (symbol_key (key, table [i].ns_));
+            if (it != symbol_.end ())
+                nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "program error: symbol ", table [i].sz_, " already defined (ignoring case)");
+            else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); } }
     bool find (const V& v, const ::std::string& x, ::std::size_t& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
     {   auto i = symbol_.find (symbol_key (x, ns));
         if (behaviour < CATEGORY > :: can_be_default (ns) && (i == symbol_.end ())) i = symbol_.find (symbol_key (x, INIT));

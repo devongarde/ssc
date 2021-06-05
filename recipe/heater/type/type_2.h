@@ -77,12 +77,15 @@ template < > struct type_master < t_accumulate > : two_value < t_accumulate, e_a
 template < > struct type_master < t_additive > : two_value < t_additive, e_additive, sz_replace, sz_sum, false > { };
 template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_false, sz_true, false > { };
 template < > struct type_master < t_capture > : two_value < t_capture, ev_capture, sz_user, sz_environment, false > { };
+template < > struct type_master < t_compositing > : two_value < t_compositing, e_compositing, sz_normal, sz_knockout, false > { };
+template < > struct type_master < t_connect > : two_value < t_connect, e_connect, sz_line, sz_none, false > { };
 template < > struct type_master < t_coordinatesystem > : two_value < t_coordinatesystem, e_gradientunits, sz_userspaceonuse, sz_objectboundingbox, false > { };
 template < > struct type_master < t_cors > : two_value < t_cors, ev_cors, sz_anonymous, sz_use_credentials, false > { };
 template < > struct type_master < t_dataformatas > : two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false > { };
 template < > struct type_master < t_defaultaction > : two_value < t_defaultaction, e_defaultaction, sz_cancel, sz_perform, false > { };
 template < > struct type_master < t_editable > : two_value < t_editable, e_editable, sz_none, sz_simple, false > { };
 template < > struct type_master < t_fillanim > : two_value < t_fillanim, e_fillanim, sz_freeze, sz_remove, false > { };
+template < > struct type_master < t_fill_ve > : two_value < t_fill_ve, e_fill_ve, sz_strokepaint, sz_fillpaint, false > { };
 template < > struct type_master < t_focushighlight > : two_value < t_focushighlight, e_focushighlight, sz_auto, sz_none, false > { };
 template < > struct type_master < t_hv > : two_value < t_hv, e_hv, sz_horizontal, sz_vertical, false > { };
 template < > struct type_master < t_initialvisibility > : two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always, false > { };
@@ -109,6 +112,7 @@ template < > struct type_master < t_spacing > : two_value < t_spacing, e_spacing
 template < > struct type_master < t_ssi_sizefmt > : two_value < t_ssi_sizefmt, e_ssi_sizefmt, sz_abbrev, sz_bytes, false > { };
 template < > struct type_master < t_ssi_f > : two_value < t_ssi_f, e_ssi_f, sz_file, sz_virtual, false > { };
 template < > struct type_master < t_stitchtiles > : two_value < t_stitchtiles, e_stitchtiles, sz_stitch, sz_nostitch, false > { };
+template < > struct type_master < t_streamedcontents > : two_value < t_streamedcontents, e_streamedcontents, sz_keep, sz_discard, false > { };
 template < > struct type_master < t_svg_direction2 > : two_value < t_svg_direction2, e_svg_direction2, sz_ltr, sz_rtl, false > { };
 template < > struct type_master < t_svg_fontvariant_ff > : two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_smallcaps, false > { };
 template < > struct type_master < t_svg_method > : two_value < t_svg_method, e_svg_method, sz_align, sz_stretch, false > { };

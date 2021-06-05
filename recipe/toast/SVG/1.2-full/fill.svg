@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2"  baseProfile="full"
+ background-fill="red">
+ <!-- Everything here has a red background -->
+ <!-- This rectangle is not filled, so the red background
+ will show through -->
+ <rect x="20" y="20" width="100" height="100"
+ fill="none" stroke="black"/>
+ <svg x="40" y="100" width="200" height="200"
+ background-fill="green" version="1.2"  baseProfile="full">
+ <!-- Everything here has a green background -->
+ </svg>
+</svg>

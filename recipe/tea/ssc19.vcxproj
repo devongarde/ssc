@@ -5169,9 +5169,13 @@
     <None Include="..\toast\SVG\1.0\femorphology.svg" />
     <None Include="..\toast\SVG\1.0\feturbulence.svg" />
     <None Include="..\toast\SVG\1.0\filters.svg" />
+    <None Include="..\toast\SVG\1.0\font-1.svg" />
+    <None Include="..\toast\SVG\1.0\font-2.svg" />
+    <None Include="..\toast\SVG\1.0\font-3.svg" />
     <None Include="..\toast\SVG\1.0\foreignobject.svg" />
     <None Include="..\toast\SVG\1.0\g-1.xhtml" />
     <None Include="..\toast\SVG\1.0\g-2.xhtml" />
+    <None Include="..\toast\SVG\1.0\html4.html" />
     <None Include="..\toast\SVG\1.0\image.svg" />
     <None Include="..\toast\SVG\1.0\index.html" />
     <None Include="..\toast\SVG\1.0\ipp.svg" />
@@ -5194,10 +5198,12 @@
     <None Include="..\toast\SVG\1.0\polygon.xhtml" />
     <None Include="..\toast\SVG\1.0\polyline.xhtml" />
     <None Include="..\toast\SVG\1.0\preserveaspectratio.xhtml" />
+    <None Include="..\toast\SVG\1.0\privatedata.svg" />
     <None Include="..\toast\SVG\1.0\radialgradient.svg" />
     <None Include="..\toast\SVG\1.0\rect-1.xhtml" />
     <None Include="..\toast\SVG\1.0\rect-2.xhtml" />
     <None Include="..\toast\SVG\1.0\script.svg" />
+    <None Include="..\toast\SVG\1.0\smil.smil" />
     <None Include="..\toast\SVG\1.0\stop.html" />
     <None Include="..\toast\SVG\1.0\styling-1.svg" />
     <None Include="..\toast\SVG\1.0\styling-2.svg" />
@@ -5271,10 +5277,14 @@
     <None Include="..\toast\SVG\1.1\femorphology.svg" />
     <None Include="..\toast\SVG\1.1\feturbulence.svg" />
     <None Include="..\toast\SVG\1.1\filters.svg" />
+    <None Include="..\toast\SVG\1.1\font-1.svg" />
+    <None Include="..\toast\SVG\1.1\font-2.svg" />
+    <None Include="..\toast\SVG\1.1\font-3.svg" />
     <None Include="..\toast\SVG\1.1\foreignobject.svg" />
     <None Include="..\toast\SVG\1.1\g-1.xhtml" />
     <None Include="..\toast\SVG\1.1\g-2.xhtml" />
     <None Include="..\toast\SVG\1.1\good.html" />
+    <None Include="..\toast\SVG\1.1\html4.html" />
     <None Include="..\toast\SVG\1.1\image.svg" />
     <None Include="..\toast\SVG\1.1\index.html" />
     <None Include="..\toast\SVG\1.1\ipp.svg" />
@@ -5298,10 +5308,12 @@
     <None Include="..\toast\SVG\1.1\polyline.xhtml" />
     <None Include="..\toast\SVG\1.1\preserveaspectratio.xhtml" />
     <None Include="..\toast\SVG\1.1\primitivesubregion.html" />
+    <None Include="..\toast\SVG\1.1\privatedata.svg" />
     <None Include="..\toast\SVG\1.1\radialgradient.svg" />
     <None Include="..\toast\SVG\1.1\rect-1.xhtml" />
     <None Include="..\toast\SVG\1.1\rect-2.xhtml" />
     <None Include="..\toast\SVG\1.1\script.svg" />
+    <None Include="..\toast\SVG\1.1\smil.smil" />
     <None Include="..\toast\SVG\1.1\stop.html" />
     <None Include="..\toast\SVG\1.1\styling-1.svg" />
     <None Include="..\toast\SVG\1.1\styling-2.svg" />
@@ -5345,6 +5357,27 @@
     <None Include="..\toast\SVG\1.1\viewbox-2.xhtml" />
     <None Include="..\toast\SVG\1.1\viewbox-3.xhtml" />
     <None Include="..\toast\SVG\1.1\viewport.xhtml" />
+    <None Include="..\toast\SVG\1.2-full\extension-defs.svg" />
+    <None Include="..\toast\SVG\1.2-full\fill.svg" />
+    <None Include="..\toast\SVG\1.2-full\flow-text.svg" />
+    <None Include="..\toast\SVG\1.2-full\hint.svg" />
+    <None Include="..\toast\SVG\1.2-full\index.html" />
+    <None Include="..\toast\SVG\1.2-full\metadata.svg" />
+    <None Include="..\toast\SVG\1.2-full\pages-1.svg" />
+    <None Include="..\toast\SVG\1.2-full\pages-2.svg" />
+    <None Include="..\toast\SVG\1.2-full\pages-3.svg" />
+    <None Include="..\toast\SVG\1.2-full\pages-4.svg" />
+    <None Include="..\toast\SVG\1.2-full\prefetch.svg" />
+    <None Include="..\toast\SVG\1.2-full\progress.svg" />
+    <None Include="..\toast\SVG\1.2-full\progressive-rendering.svg" />
+    <None Include="..\toast\SVG\1.2-full\resolution.svg" />
+    <None Include="..\toast\SVG\1.2-full\svg.conf" />
+    <None Include="..\toast\SVG\1.2-full\svg.spec" />
+    <None Include="..\toast\SVG\1.2-full\transform.svg" />
+    <None Include="..\toast\SVG\1.2-full\transformer.svg" />
+    <None Include="..\toast\SVG\1.2-full\transition.svg" />
+    <None Include="..\toast\SVG\1.2-full\vectoreffects.svg" />
+    <None Include="..\toast\SVG\1.2-full\xa.svg" />
     <None Include="..\toast\SVG\1.2\01_01.svg" />
     <None Include="..\toast\SVG\1.2\05_03.svg" />
     <None Include="..\toast\SVG\1.2\05_04.svg" />
@@ -5398,12 +5431,17 @@
     <None Include="..\toast\SVG\1.2\18_02.svg" />
     <None Include="..\toast\SVG\1.2\19_01.svg" />
     <None Include="..\toast\SVG\1.2\19_02.svg" />
+    <None Include="..\toast\SVG\1.2\20_01.svg" />
+    <None Include="..\toast\SVG\1.2\23_01.svg" />
     <None Include="..\toast\SVG\1.2\activate.svg" />
     <None Include="..\toast\SVG\1.2\animation-1.html" />
     <None Include="..\toast\SVG\1.2\animation-2.html" />
     <None Include="..\toast\SVG\1.2\animation.svg" />
     <None Include="..\toast\SVG\1.2\animns01.svg" />
     <None Include="..\toast\SVG\1.2\dom_animate.svg" />
+    <None Include="..\toast\SVG\1.2\font01.svg" />
+    <None Include="..\toast\SVG\1.2\font02.svg" />
+    <None Include="..\toast\SVG\1.2\font03.svg" />
     <None Include="..\toast\SVG\1.2\link.html" />
     <None Include="..\toast\SVG\1.2\bbox-calc.svg" />
     <None Include="..\toast\SVG\1.2\bbox01.svg" />
@@ -5449,6 +5487,8 @@
     <None Include="..\toast\SVG\1.2\referencedrect-2.svg" />
     <None Include="..\toast\SVG\1.2\reft-1.svg" />
     <None Include="..\toast\SVG\1.2\reft-2.svg" />
+    <None Include="..\toast\SVG\1.2\requiredextensions-foreignobject.svg" />
+    <None Include="..\toast\SVG\1.2\requiredextensions-mathml.svg" />
     <None Include="..\toast\SVG\1.2\rtl-complex.svg" />
     <None Include="..\toast\SVG\1.2\rtl-text.svg" />
     <None Include="..\toast\SVG\1.2\simplehandler.svg" />
@@ -5499,6 +5539,7 @@
     <None Include="..\toast\SVG\2.0\foreignobject.svg" />
     <None Include="..\toast\SVG\2.0\g.xhtml" />
     <None Include="..\toast\SVG\2.0\group-1.html" />
+    <None Include="..\toast\SVG\2.0\xhtml.xhtml" />
     <None Include="..\toast\SVG\2.0\iar-1.svg" />
     <None Include="..\toast\SVG\2.0\iar-2.svg" />
     <None Include="..\toast\SVG\2.0\iar-3.svg" />
@@ -5527,6 +5568,7 @@
     <None Include="..\toast\SVG\2.0\polygon.xhtml" />
     <None Include="..\toast\SVG\2.0\polyline.xhtml" />
     <None Include="..\toast\SVG\2.0\preserveaspectratio.xhtml" />
+    <None Include="..\toast\SVG\2.0\privatedata.svg" />
     <None Include="..\toast\SVG\2.0\radialgradient.svg" />
     <None Include="..\toast\SVG\2.0\rect-1.xhtml" />
     <None Include="..\toast\SVG\2.0\rect-2.xhtml" />
@@ -5622,6 +5664,7 @@
     <None Include="..\toast\SVG\2.1\polygon.xhtml" />
     <None Include="..\toast\SVG\2.1\polyline.xhtml" />
     <None Include="..\toast\SVG\2.1\preserveaspectratio.xhtml" />
+    <None Include="..\toast\SVG\2.1\privatedata.svg" />
     <None Include="..\toast\SVG\2.1\radialgradient.svg" />
     <None Include="..\toast\SVG\2.1\rect-1.xhtml" />
     <None Include="..\toast\SVG\2.1\rect-2.xhtml" />
@@ -6222,6 +6265,7 @@
     <Text Include="..\..\usage.txt" />
     <Text Include="..\gen\gen.txt" />
     <Text Include="..\toast\conf\README.txt" />
+    <Text Include="..\toast\README.txt" />
     <Text Include="..\toast\snippet\README.txt" />
     <Text Include="..\toast\tmp\README.txt" />
     <Text Include="..\toast\virtual\README.txt" />
@@ -6383,7 +6427,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -6411,7 +6455,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -6442,7 +6486,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>

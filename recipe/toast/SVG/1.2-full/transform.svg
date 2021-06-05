@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="full">
+
+<svg>
+ <g id="a" transform="...">
+ <text transform="ref(host)">Text</text>
+ </g>
+</svg>
+
+<svg version="1.2" baseProfile="full">
+ <g id="a" transform="...">
+ <text transform="ref(host,20,30)">Text</text>
+ </g>
+</svg>
+
+<svg version="1.2" baseProfile="full">
+ <g id="computer" transform="...">
+ <image id="computer_screen" xlink:href="..." transform-host="true"/>
+ </g>
+</svg>

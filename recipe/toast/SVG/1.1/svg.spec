@@ -58,7 +58,7 @@ PASS ../toast/SVG/1.1/clippath.html
 PASS ../toast/SVG/1.1/cstu-1.xhtml
 0 title_required
 1 xhtml_1_1
-2 unknown_element unrecognised_namespace
+2 unrecognised_namespace unknown_element
 5 svg_version
 9 unknown_element
 
@@ -156,8 +156,8 @@ PASS ../toast/SVG/1.1/example-4.html
 18 unknown_element unknown_element
 19 unknown_element unknown_element
 20 unknown_element
-26 bad_namespace unknown_element
-33 unknown_element
+26 unknown_element
+33 unknown_element attribute_unrecognised_here attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised
 34 unknown_element
 35 unknown_element
 36 unknown_element unknown_element
@@ -167,7 +167,7 @@ PASS ../toast/SVG/1.1/example-4.html
 40 unknown_element
 41 unknown_element
 46 svg_version
-48 bad_namespace unknown_element unrecognised_namespace
+48 unrecognised_namespace unknown_element
 49 unknown_element
 50 unknown_element
 51 unknown_element
@@ -215,6 +215,25 @@ PASS ../toast/SVG/1.1/filters.svg
 5 svg_version
 10 use_double_quote_code
 
+PASS ../toast/SVG/1.1/font-1.svg
+0 title_required
+1 xhtml_1_1
+3 svg_version
+9 fontname
+22 newline_in_string newline_in_string
+
+PASS ../toast/SVG/1.1/font-2.svg
+0 charset_mismatch charset_used title_required
+1 xhtml_1_1
+3 svg_version
+9 fontname
+
+PASS ../toast/SVG/1.1/font-3.svg
+0 title_required
+1 xhtml_1_1
+3 svg_version
+18 newline_in_string newline_in_string
+
 PASS ../toast/SVG/1.1/foreignobject.svg
 0 title_required
 1 xhtml_1_1
@@ -236,6 +255,11 @@ PASS ../toast/SVG/1.1/good.html
 11 svg_version
 12 unrecognised_namespace unrecognised_value
 14 unknown_element unknown_element unknown_element unknown_element
+
+PASS ../toast/SVG/1.1/html4.html
+0 title_required
+4 url_not_found
+8 url_not_found
 
 PASS ../toast/SVG/1.1/image.svg
 1 xhtml_1_1
@@ -288,8 +312,8 @@ PASS ../toast/SVG/1.1/metadata.svg
 8 unknown_element unknown_element unknown_element
 9 unknown_element unknown_element
 10 unknown_element unknown_element unknown_element
-16 bad_namespace unknown_element
-23 unknown_element
+16 unknown_element
+23 unknown_element attribute_unrecognised_here attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised
 24 unknown_element
 25 unknown_element
 26 unknown_element unknown_element
@@ -340,6 +364,17 @@ PASS ../toast/SVG/1.1/pattern-2.svg
 
 PASS ../toast/SVG/1.1/primitivesubregion.html
 2 naughty_lang
+
+PASS ../toast/SVG/1.1/privatedata.svg
+0 title_required
+1 xhtml_1_1
+3 svg_version
+6 unrecognised_namespace unknown_element
+7 unknown_element
+8 unknown_element
+9 unknown_element
+10 unknown_element
+12 unknown_element
 
 PASS ../toast/SVG/1.1/polygon.xhtml
 0 title_required
@@ -430,7 +465,7 @@ PASS ../toast/SVG/1.1/styling-4.svg
 PASS ../toast/SVG/1.1/svg-1.xhtml
 0 title_required
 1 xhtml_1_1
-3 unknown_element unrecognised_namespace
+3 unrecognised_namespace unknown_element
 5 svg_version
 9 unknown_element
 
@@ -443,9 +478,9 @@ PASS ../toast/SVG/1.1/svg-transform-1.svg
 0 title_required
 1 xhtml_1_1
 3 svg_version
-8 bad_namespace unknown_element unrecognised_namespace duplicate_namespace
-9 unknown_element
-14 unknown_element
+8 unrecognised_namespace unknown_element
+9 unknown_element attribute_unrecognised
+14 unknown_element attribute_unrecognised
 15 unknown_element
 16 unknown_element
 
@@ -453,8 +488,8 @@ PASS ../toast/SVG/1.1/svg-transform-2.svg
 0 title_required
 1 xhtml_1_1
 3 svg_version
-8 bad_namespace unknown_element unrecognised_namespace duplicate_namespace
-9 unknown_element
+8 unrecognised_namespace unknown_element
+9 unknown_element attribute_unrecognised
 12 unknown_element
 13 unknown_element
 15 unknown_element unknown_element
@@ -468,8 +503,8 @@ PASS ../toast/SVG/1.1/svg-transform-3.svg
 0 title_required
 1 xhtml_1_1
 3 svg_version
-8 bad_namespace unknown_element unrecognised_namespace duplicate_namespace
-9 unknown_element
+8 unrecognised_namespace unknown_element
+9 unknown_element attribute_unrecognised
 11 unknown_element
 12 unknown_element
 13 unknown_element unknown_element
@@ -620,14 +655,14 @@ PASS ../toast/SVG/1.1/svg11.html
 394 svg_version
 428 svg_version
 433 svg_version
-436 bad_namespace unknown_element unrecognised_namespace duplicate_namespace
-437 unknown_element
-439 unknown_element
+436 unrecognised_namespace unknown_element
+437 unknown_element attribute_unrecognised
+439 unknown_element attribute_unrecognised
 440 unknown_element
 441 unknown_element
 446 svg_version
-450 bad_namespace unknown_element unrecognised_namespace duplicate_namespace
-451 unknown_element
+450 unrecognised_namespace unknown_element
+451 unknown_element attribute_unrecognised
 453 unknown_element
 454 unknown_element
 456 unknown_element unknown_element
@@ -637,8 +672,8 @@ PASS ../toast/SVG/1.1/svg11.html
 460 unknown_element
 461 unknown_element
 466 svg_version
-469 bad_namespace unknown_element unrecognised_namespace duplicate_namespace
-470 unknown_element
+469 unrecognised_namespace unknown_element
+470 unknown_element attribute_unrecognised
 472 unknown_element
 473 unknown_element
 474 unknown_element unknown_element
@@ -812,7 +847,7 @@ PASS ../toast/SVG/1.1/svg11.html
 1493 svg_version
 1497 contradictory_namespace missing_close
 1500 mixed_mess
-1503 duplicate_namespace contradictory_namespace unrecognised_namespace unrecognised_value
+1503 contradictory_namespace unrecognised_namespace unrecognised_value
 1504 invalid_attribute_version wrong_version url_not_found
 1506 inserted_missing_closure
 1508 svg_version

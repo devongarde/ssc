@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="tiny" viewBox="0 0 110 70" xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Font example</title>
+<defs>
+<font-face font-family="larabie-anglepoise">
+<font-face-src>
+<font-face-uri xlink:href="font01.svg#la"/>
+</font-face-src>
+</font-face>
+</defs>
+<rect x="00" y="00" width="110" height="70" stroke="#777" fill="none"/>
+<text x="10" y="50" font-family="larabie-anglepoise" font-size="70" fill="#FDD" stroke="#533"
+stroke-width="1.6">SVG</text>
+</svg>

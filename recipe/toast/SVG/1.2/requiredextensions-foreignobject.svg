@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny"
+width="4in" height="3in">
+<desc>
+This example uses the 'switch' element to provide a fallback
+graphical representation of the text, if weirdML is not supported.
+</desc>
+<!-- The 'switch' element will process the first child element
+whose testing attributes evaluate to true.-->
+<switch>
+<!-- Process the embedded weirdML if the requiredExtensions
+attribute evaluates to true (i.e., the user agent supports
+weirdML embedded within SVG). -->
+<foreignObject x="50" y="20" width="100" height="50"
+requiredExtensions="http://example.com/weirdMLplusSVG">
+<!-- weirdML content goes here -->
+<FreakyText xmlns="http://example.com/weirdML">
+<sparklies q="42"/>
+<throbber seed="1234"/>
+<swirl twist="yeah, baby"/>
+<txt>This is throbbing, swirly text with sparkly bits</txt>
+</FreakyText>
+</foreignObject>
+<!-- Else, process the following alternate SVG.
+Note that there are no testing attributes on the 'textArea'
+element. If no testing attributes are provided, it is as
+if there were testing attributes and they evaluated to true.-->
+<textArea x="50" y="20" width="100" height="50"
+font-size="10" font-family="Verdana">
+This is plain, conservative SVGT 1.2 text in a
+textArea. The text wraps within the confines
+of the element's dimensions.
+</textArea>
+</switch>
+</svg>

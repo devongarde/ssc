@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8.5in" height="11in" viewBox="0 0 612 792" version="1.2" baseProfile="full">
+ <rect x="36" y="36" width="540" height="720"
+ fill="yellow" stroke-width="15" stroke="black"/>
+ <text font-size="30" x="72" y="108">This is portrait</text>
+</svg>
+<svg width="8.5in" height="11in" viewBox="0 0 612 792" baseProfile="full">
+ <!-- fake top-level transform -->
+ <g transform="translate(0 612) rotate(-90)">
+ <rect x="36" y="36" width="540" height="720"
+ fill="yellow" stroke-width="15" stroke="black"/>
+ <text transform="translate(612 0) rotate(90)"
+ font-size="30" x="72" y="108">This is portrait</text>
+ </g>
+</svg>

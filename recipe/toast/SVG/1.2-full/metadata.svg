@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="full">
+ <metadata>
+ <rdf:RDF xmlns:cc="http://web.resource.org/cc/"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <cc:work rdf:about="">
+ <cc:license>
+ <cc:permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+ <cc:permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+ <cc:requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+ <cc:prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/>
+ </cc:license>
+ </cc:work>
+ </rdf:RDF>
+ </metadata>
+ <!-- graphics go here -->
+</svg>
+
+<svg version="1.2" baseProfile="full">
+ <metadata>
+ <rdf:RDF xmlns:cc="http://web.resource.org/cc/"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <cc:work rdf:about="">
+ <cc:license>
+ <cc:prohibits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+ <cc:prohibits rdf:resource="http://web.resource.org/cc/Distribution"/>
+ </cc:license>
+ </cc:work>
+ </rdf:RDF>
+ </metadata>
+ <!-- graphics go here -->
+</svg>
+
+<svg version="1.2" baseProfile="full">
+ <metadata>
+ <rdf:RDF xmlns:cc="http://web.resource.org/cc/"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <cc:work rdf:about="">
+ <cc:license rdf:resource="http://www.example.org/copyright"/>
+ </cc:work>
+ </rdf:RDF>
+ </metadata>
+ <!-- graphics go here -->
+</svg>
+
+</svg>

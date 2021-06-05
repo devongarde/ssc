@@ -208,7 +208,13 @@ void element::examine_filter ()
         examine_descendant_in (this); }
 
 void element::examine_font ()
-{   if (! node_.version ().is_5 ()) return;
+{   if (has_child () && (node_.version ().svg_version () > sv_none) && (node_.version ().svg_version () < sv_2_0) && ancestral_elements_.test (elem_svg))
+    {   bool faced = false;
+        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+            if (c -> tag () == elem_font_face)
+            {   faced = true; break; }
+        if (! faced) pick (nit_fontface, ed_svg_1_0, "20.3 The 'font' element", es_error, ec_element, "SVG's <FONT> requires a <FONT-FACE> child"); }
+    if (! node_.version ().is_5 ()) return;
     if (node_.version () >= html_jul08)
     {   if (! ancestral_elements_.test (elem_svg))
             pick (nit_font, ed_50, "9.1.2. The font element", es_error, ec_element, "here, <FONT> must be descended from <SVG>"); }
@@ -217,7 +223,7 @@ void element::examine_font ()
         as.reset (a_style);
         if (as.any ())
             if (! ancestral_elements_.test (elem_svg))
-                pick (nit_font, ed_50, "9.1.2. The font element", es_error, ec_element, "<FONT> must either have the STYLE attribute or be descended from <SVG>E"); } }
+                pick (nit_font, ed_50, "9.1.2. The font element", es_error, ec_element, "<FONT> must either have the STYLE attribute or be descended from <SVG>"); } }
 
 void element::examine_fn ()
 {   e_math_version mv = node_.version ().math_version ();
@@ -226,14 +232,16 @@ void element::examine_fn ()
     pick (nit_no_fn, ed_math_3, "F.2 Changes between MathML 2.0 Second Edition and MathML 3.0", es_error, ec_element, "<FN> is not part of MathML 3."); }
 
 void element::examine_fontymacfontface ()
-{   bool had = false;
+{   if (node_.version ().svg_version () != sv_1_1) return;
+    if (! descendant_elements_.test (elem_font_face_src)) return;
+    bool had = false;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
-            if (c -> tag () == elem_fontfacesrc)
+            if (c -> tag () == elem_font_face_src)
                 if (! had) had = true;
                 else
-                {   pick (nit_animatemotion, ed_svg_1_1, "20.8.3 The font-face element", es_error, ec_element, "<FONTY-MacFONT-FACE> can only have ONE child <FONT-FACE-SRC>");
+                {   pick (nit_animatemotion, ed_svg_1_1, "20.8.3 The font-face element", es_error, ec_element, "<FONT-FACE> can only have ONE child <FONT-FACE-SRC>");
                     return; } } }
 
 void element::examine_footer ()

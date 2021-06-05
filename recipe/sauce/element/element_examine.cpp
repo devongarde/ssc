@@ -50,7 +50,6 @@ void element::pre_examine_element (const e_element tag)
         case elem_fecomposite : examine_fecomposite (); break;
         case elem_feconvolvematrix : examine_feconvolvematrix (); break;
         case elem_fn : examine_fn (); break;
-        case elem_font : examine_font (); break;
         case elem_html : examine_html (); break;
         case elem_iframe : examine_iframe (); break;
         case elem_li : examine_li (); break;
@@ -127,8 +126,6 @@ void element::post_examine_element (const e_element tag)
         case elem_datagrid : examine_datagrid (); break;
         case elem_datalist : examine_datalist (); break;
         case elem_dfn : examine_dfn (); break;
-        case elem_fn : if (page_.version ().math () > math_1) check_math_children (1);
-                       break;
         case elem_dd : examine_dd (); break;
         case elem_declare : if (page_.version ().math () > math_1) check_math_children (1, 2);
                             break;
@@ -141,7 +138,10 @@ void element::post_examine_element (const e_element tag)
         case elem_fieldset : examine_fieldset (); break;
         case elem_figure : examine_figure (); break;
         case elem_filter : examine_filter (); break;
-        case elem_fontface : examine_fontymacfontface (); break;
+        case elem_fn : if (page_.version ().math () > math_1) check_math_children (1);
+                       break;
+        case elem_font : examine_font (); break;
+        case elem_font_face : examine_fontymacfontface (); break;
         case elem_footer : examine_footer (); break;
         case elem_form : examine_form (); break;
         case elem_h1:
@@ -312,16 +312,16 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
                     pick (nit_lang_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "if both LANG and xml:lang are specified, they must have the same value");
 
         if (node_.version () >= html_apr21)
-        {   if (a_.known (a_ariachecked)) examine_aria_checked ();
-            if (a_.known (a_ariacolspan)) examine_aria_colspan ();
-            if (a_.known (a_ariadisabled)) examine_aria_disabled ();
-            if (a_.known (a_ariahidden)) examine_aria_hidden ();
-            if (a_.known (a_ariaplaceholder)) examine_aria_placeholder ();
-            if (a_.known (a_ariareadonly)) examine_aria_readonly ();
-            if (a_.known (a_ariarequired)) examine_aria_required ();
-            if (a_.known (a_ariarowspan)) examine_aria_rowspan ();
-            if (a_.known (a_ariavaluemax)) examine_aria_valuemax ();
-            if (a_.known (a_ariavaluemin)) examine_aria_valuemin (); }
+        {   if (a_.known (a_aria_checked)) examine_aria_checked ();
+            if (a_.known (a_aria_colspan)) examine_aria_colspan ();
+            if (a_.known (a_aria_disabled)) examine_aria_disabled ();
+            if (a_.known (a_aria_hidden)) examine_aria_hidden ();
+            if (a_.known (a_aria_placeholder)) examine_aria_placeholder ();
+            if (a_.known (a_aria_readonly)) examine_aria_readonly ();
+            if (a_.known (a_aria_required)) examine_aria_required ();
+            if (a_.known (a_aria_rowspan)) examine_aria_rowspan ();
+            if (a_.known (a_aria_valuemax)) examine_aria_valuemax ();
+            if (a_.known (a_aria_valuemin)) examine_aria_valuemin (); }
 
         if (a_.known (a_accesskey)) examine_accesskey ();
         if (a_.known (a_clip)) examine_clip ();
