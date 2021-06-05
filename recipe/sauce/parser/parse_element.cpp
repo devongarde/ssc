@@ -26,27 +26,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void element_node::init ()
 {   if (parent_ == nullptr) version_ = context.html_ver ();
-    else version_ = parent_ -> version_; }
+    else version_ = parent_ -> version_;
+    manage_reversioner (); }
 
-element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed)
-    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), nits_ (nits)
+element_node::element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed)
+    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), nits_ (nits), nss_ (nss)
 {   init (); }
 
-element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed)
-    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), nits_ (nits)
+element_node::element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed)
+    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), nits_ (nits), nss_ (nss)
 {   init (); }
 
-element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str)
-    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), text_ (str), nits_ (nits)
+element_node::element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str)
+    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), text_ (str), nits_ (nits), nss_ (nss)
 {   init (); }
 
-element_node::element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str)
-    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), text_ (str), nits_ (nits)
+element_node::element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str)
+    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), text_ (str), nits_ (nits), nss_ (nss)
 {   init (); }
 
 element_node::~element_node ()
 {
-    // Necessary to appease the VC++ 19 optimiser, SFAICT
+    // Necessary to appease (some editions of) the VC++ 19 optimiser, SFAICT
 }
 
 void element_node::reset ()
@@ -81,16 +82,28 @@ void element_node::swap (element_node& en) NOEXCEPT
         checked_sanitised_ = true; }
     return sanitised_; }
 
-void element_node::parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
-{   if (parent_ != nullptr) nss_ = initialise_namespace_stack (v, parent_ -> nss_);
-    va_.parse (nits_, v, nss_, b, e, line_, elem_);
-    if (v.mjr () < 4) return;
-    if (parent_ != nullptr) version_ = parent_ -> version_;
+void element_node::manage_reversioner ()
+{   switch (tag ())
+    {   case elem_svg :
+            {   e_svg_version e = va_.get_svg (version_);
+                if (e != sv_none) version_.svg_version (e); }
+            break;
+        case elem_math :
+            {   e_math_version m = va_.get_math (version_);
+                if (m != math_none) version_.math_version (m); }
+        default : break; } }
+
+void element_node::parse_attributes (const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e)
+{   if (parent_ != nullptr) nss_ = initialise_namespace_stack (version_, parent_ -> nss_);
+//    va_.parse (nits_, v, nss_, b, e, line_, elem_);
+    va_.parse (nits_, version_, nss_, b, e, line_, elem_, true);
+    if (version_.mjr () < 4) return;
+//    if (parent_ != nullptr) version_ = parent_ -> version_;
     if (! va_.empty ())
     {   va_.manage_xmlns (nits (), version_);
         switch (id ())
-        {   case elem_svg : version_.svg_version (va_.get_svg (v)); break;
-            case elem_math : version_.math_version (va_.get_math (v)); break;
+        {   case elem_svg : version_.svg_version (va_.get_svg (version_)); break;
+            case elem_math : version_.math_version (va_.get_math (version_)); break;
             default : break; } } }
 
 ::std::string element_node::rpt (const int level)

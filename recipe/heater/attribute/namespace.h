@@ -52,6 +52,7 @@ struct namespace_stack
 
 typedef ::std::shared_ptr < namespace_stack > ns_ptr;
 ns_ptr initialise_namespace_stack (const html_version& v, const ns_ptr& orig);
-
+ns_ptr new_namespace_stack (const html_version& v);
+ns_ptr copy_namespace_stack (const ns_ptr& orig);
 e_namespace examine_namespace (nitpick& nits, const html_version& v, ns_ptr& ns_stack, ::std::string& s, ::std::string& n);
-ns_id namespace_declaration (nitpick& nits, const html_version& v, ns_ptr& ns_stack, ::std::string& name, const ::std::string& schema);
+ns_id namespace_declaration (nitpick& nits, const html_version& v, ns_ptr& ns_stack, const ::std::string& name, const ::std::string& schema);

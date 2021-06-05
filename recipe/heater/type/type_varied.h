@@ -259,7 +259,9 @@ template < > struct type_master < t_fill > : varied < t_fill >
 {   static e_animation_type animation_type () { return at_paint; }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good () || empty ())
-            if (((elem :: categories (e) & EF_SVG_ANIM) != 0) || (e.get () == elem_animation))
+            if ((e.get () == elem_vefill) || (e.get () == elem_vestroke))
+                validate_type < type_master < t_fill_ve > > (nits, v);
+            else if (((elem :: categories (e) & EF_SVG_ANIM) != 0) || (e.get () == elem_animation))
                 validate_type < type_master < t_fillanim > > (nits, v);
             else validate_type < type_master < t_paint > > (nits, v); } };
 
@@ -267,7 +269,7 @@ template < > struct type_master < t_fontstretch > : varied < t_fontstretch >
 {   static e_animation_type animation_type () { return at_other; }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good () || empty ())
-            if (e.get () == elem_fontface)
+            if (e.get () == elem_font_face)
                 validate_type < type_master < t_fontstretches > > (nits, v);
             else validate_type < type_master < t_svg_fontstretch > > (nits, v); } };
 
@@ -277,7 +279,7 @@ template < > struct type_master < t_fontstyle > : varied < t_fontstyle >
     {   if (good () || empty ())
             if (e.is_math ())
                 validate_type < type_master < t_mathfontstyle > > (nits, v);
-            else if (e.get () == elem_fontface)
+            else if (e.get () == elem_font_face)
                 validate_type < type_master < t_svg_fontstyle_ff > > (nits, v);
             else validate_type < type_master < t_svg_fontstyle > > (nits, v); } };
 
@@ -285,7 +287,7 @@ template < > struct type_master < t_fontvariant > : varied < t_fontvariant >
 {   static e_animation_type animation_type () { return at_other; }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good () || empty ())
-            if (e.get () == elem_fontface)
+            if (e.get () == elem_font_face)
                 validate_type < type_master < t_svg_fontstyle_ff > > (nits, v);
             else validate_type < type_master < t_svg_fontstyle > > (nits, v); } };
 
@@ -313,7 +315,7 @@ template < > struct type_master < t_fontweight > : varied < t_fontweight >
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good () || empty ())
             if (e.is_math ()) validate_type < type_master < t_mathfontweight > > (nits, v);
-            else if (e.get () == elem_fontface)
+            else if (e.get () == elem_font_face)
                 validate_type < type_master < t_svg_fontweights > > (nits, v);
             else validate_type < type_master < t_svg_fontweight > > (nits, v); } };
 
@@ -665,7 +667,16 @@ template < > struct type_master < t_type > : varied < t_type >
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good () || empty ())
             switch (e.get ())
-            {   case elem_animatetransform :
+            {   case elem_a :
+                case elem_link :
+                case elem_map :
+                case elem_object :
+                case elem_param :
+                case elem_source :
+                case elem_style :
+                case elem_transformer :
+                    validate_type < type_master < t_mime > > (nits, v); break;
+                case elem_animatetransform :
                     validate_type < type_master < t_transform_anim > > (nits, v); break;
                 case elem_bb :
                     validate_type < type_master < t_bb > > (nits, v); break;
@@ -719,14 +730,6 @@ template < > struct type_master < t_type > : varied < t_type >
                     validate_type < type_master < t_menuitem > > (nits, v); break;
                 case elem_ol :
                     validate_type < type_master < t_listtype > > (nits, v); break;
-                case elem_a :
-                case elem_link :
-                case elem_map :
-                case elem_object :
-                case elem_param :
-                case elem_source :
-                case elem_style :
-                    validate_type < type_master < t_mime > > (nits, v); break;
                 case elem_script :
                     if (v >= html_jan16)
                         if (compare_complain (nits, v, "module", varied < t_type > :: get_string ()))
@@ -738,7 +741,11 @@ template < > struct type_master < t_type > : varied < t_type >
                 case elem_spacer :
                     validate_type < type_master < t_spacer > > (nits, v); break;
                 case elem_tendsto :
-                    validate_type < type_master < t_tendstotype > > (nits, v); break; } } };
+                    validate_type < type_master < t_tendstotype > > (nits, v); break;
+                case elem_traitdef :
+                    validate_type < type_master < t_attributetype > > (nits, v); break;
+                case elem_transition :
+                    validate_type < type_master < t_transition_type > > (nits, v); break; } } };
 
 template < > struct type_master < t_valign > : varied < t_valign >
 {   void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
@@ -761,6 +768,11 @@ template < > struct type_master < t_values > : varied < t_values >
                 validate_type < type_master < t_svg_values > > (nits, v);
             else validate_type < type_master < t_matrix_values > > (nits, v); } };
 
+template < > struct type_master < t_valuetype2 > : varied < t_valuetype2 >
+{   void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
+    {   if (e.get () != elem_traitdef)
+            validate_type < type_master < t_valuetype > > (nits, v); } };
+
 template < > struct type_master < t_vector_effect > : varied < t_vector_effect >
 {   static e_animation_type animation_type () { return at_other; }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
@@ -782,21 +794,7 @@ template < > struct type_master < t_vector_effect > : varied < t_vector_effect >
 template < > struct type_master < t_version > : varied < t_version >
 {   static e_animation_type animation_type () { return at_other; }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
-    {   if (good () && (e.get () == elem_svg))
-        {   type_master < t_svg_version > sv;
-            sv.set_value (nits, v, varied < t_version > :: get_string ());
-            if (sv.good ())
-            {   ::std::string svgv ("SVG ");
-                switch (sv.get ())
-                {   case sv_1_0 : svgv += "1.0"; break;
-                    case sv_1_1 : svgv += "1.1"; break;
-                    case sv_1_2_tiny : svgv += "1.2 tiny"; break;
-                    case sv_1_2_full : svgv += "1.2 full"; break;
-                    case sv_2_0 : svgv += "2.0"; break;
-                    case sv_2_1 : svgv += "2.1"; break;
-                    default : PRESUME (false, __FILE__, __LINE__); svgv += "version not "; } // illegal value for t_svg_version
-                svgv += " recognised";
-                nits.pick (nit_svg_version, es_info, ec_type, svgv); } } } };
+    {   if (good () && (e.get () == elem_svg)) validate_type < type_master < t_svg_version > > (nits, v); } };
 
 // R.I.P. David Senior, 'vid', murdered in Prague, 1996
 template < > struct type_master < t_vid > : varied < t_vid >

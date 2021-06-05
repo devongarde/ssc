@@ -97,6 +97,10 @@ ssc.exe -T -Z -o ../out/singlestats.tst -f ../toast/stats/single/stats.conf
 ssc.exe -T -Z -o ../out/summarystats.tst -f ../toast/stats/summary/stats.conf
 ssc.exe -T -Z -o ../out/1.0svg.tst -f ../toast/SVG/1.0/svg.conf
 ssc.exe -T -Z -o ../out/1.1svg.tst -f ../toast/SVG/1.1/svg.conf
+ssc.exe -T -Z -o ../out/1.2svg.tst -f ../toast/SVG/1.2/svg.conf
+ssc.exe -T -Z -o ../out/1.2-fullsvg.tst -f ../toast/SVG/1.2-full/svg.conf
+ssc.exe -T -Z -o ../out/2.0svg.tst -f ../toast/SVG/2.0/svg.conf
+ssc.exe -T -Z -o ../out/2.1svg.tst -f ../toast/SVG/2.1/svg.conf
 ssc.exe -T -Z -o ../out/colourcolour.tst -f ../toast/type/colour/colour.conf
 ssc.exe -T -Z -o ../out/customcustom.tst -f ../toast/type/custom/custom.conf
 ssc.exe -T -Z -o ../out/httpequivhttpequiv.tst -f ../toast/type/httpequiv/httpequiv.conf

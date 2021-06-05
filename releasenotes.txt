@@ -3,6 +3,19 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.107
+- SVG 1.2/Tiny
+- partial SVG 1.2/Full (May 2004 draft):
+  - conflicts with 1.2/Tiny always resolved in favour of 1.2/Tiny
+  - extensions parsed but not processed
+  - not complete, nor will it ever be
+- SVG 2.0 (August 2018) with:
+  - December 2018 Filter Effects
+  - April 2021 Animations draft
+- SVG 2.0 (April 2021 draft) (2.1 to be?) with:
+  - October 2019 Filter Effects
+  - April 2021 Animations draft
+
 0.0.106
 - underlying work
 

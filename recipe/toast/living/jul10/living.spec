@@ -566,9 +566,9 @@ PASS ../toast/living/jul10/ls5.html
 3 contradictory_namespace
 5 use_quote_code
 6 unknown_element
-8 unknown_element unrecognised_namespace
+8 unrecognised_namespace unknown_element attribute_unrecognised
 9 unknown_element unknown_element
-10 unknown_element
+10 unknown_element attribute_unrecognised
 11 unknown_element unknown_element
 12 unknown_element
 13 unknown_element
@@ -651,7 +651,7 @@ PASS ../toast/living/jul10/mt.html
 10 inserted_missing_closure missing_close inserted_missing_parent inserted_missing_closure inserted_missing_parent missing_close inserted_missing_closure
 
 PASS ../toast/living/jul10/namespace.html
-10 bad_namespace unknown_element unrecognised_namespace
+10 unrecognised_namespace unknown_element
 
 PASS ../toast/living/jul10/nav-1.html
 0 charset_mismatch charset_used charset_invalid
@@ -727,7 +727,7 @@ PASS ../toast/living/jul10/param.html
 PASS ../toast/living/jul10/pm.html
 14 mixed_mess missing_close
 16 attribute_name_unexpected_character attribute_name_unexpected_character missing_close
-18 enquote_value enquote_value attribute_unrecognised missing_close unrecognised_attribute
+18 enquote_value enquote_value enquote_value enquote_value attribute_unrecognised missing_close unrecognised_attribute
 20 attribute_unrecognised attribute_name_unexpected_character missing_close unrecognised_attribute
 24 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
@@ -805,8 +805,8 @@ PASS ../toast/living/jul10/shf-1.html
 
 PASS ../toast/living/jul10/shf-2.html
 0 title_required
-1 presume_html_1 unknown_element missing_close unknown_element
-2 unknown_element unknown_element unknown_element unknown_element unknown_element inserted_missing_closure
+1 presume_html_1 unknown_element attribute_unrecognised_here missing_close unknown_element
+2 unknown_element attribute_unrecognised_here unknown_element unknown_element unknown_element unknown_element inserted_missing_closure
 
 PASS ../toast/living/jul10/shf-3.html
 0 title_required

@@ -169,7 +169,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
     ::std::bitset < max_combinable_enum > bs, gs, said;
     if (enum_vec < E, ENUM, CATEGORY, INIT > :: good ())
     {   for (auto val : enum_vec < E, ENUM, CATEGORY, INIT > :: value_)
-        {   if (val > max_combinable_enum)
+        {   if (val > static_cast < int > (max_combinable_enum))
             {   PRESUME (false, __FILE__, __LINE__);
                 nits.pick (nit_not_combine, es_catastrophic, ec_type, val.name (), " is too big; abandoning constrained enum check");
                 ok = false; break; }

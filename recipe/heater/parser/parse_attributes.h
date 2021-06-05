@@ -26,10 +26,11 @@ typedef ::std::vector < attribute_node > van_t;
 
 class attributes_node
 {   van_t va_;
-    void report_invalid (nitpick& nits, const html_version& v, const bool known, const ::std::string::const_iterator key_start, const ::std::string::const_iterator key_end, const elem& el) const;
+    void report_invalid (   nitpick& nits, const html_version& v, const bool known, const ::std::string::const_iterator key_start, const ::std::string::const_iterator key_end, const elem& el) const;
     void push_back_and_report ( nitpick& nits, const html_version& v, ns_ptr& nss, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
-                                const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const elem& el);
-    void push_back_and_report (nitpick& nits, const html_version& v, ns_ptr& nss, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const elem& el);
+                                const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const elem& el, const bool normal);
+    void push_back_and_report ( nitpick& nits, const html_version& v, ns_ptr& nss, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
+                                const elem& el, const bool normal);
 public:
     attributes_node ();
     attributes_node (const attributes_node& an) = default;
@@ -54,6 +55,7 @@ public:
     e_math_version get_math (const html_version& v) const;
     void manage_xmlns (nitpick& nits, html_version& v);
     bool empty () const { return va_.size () == 0; }
-    void parse (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line, const elem& el);
+    static void process_xmlns_scope_bodge (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line);
+    void parse (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line, const elem& el, const bool normal);
     ::std::size_t size () const { return va_.size (); }
     ::std::string rpt () const; };

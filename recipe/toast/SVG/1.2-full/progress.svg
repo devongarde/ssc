@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="full"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+
+ <script type="text/ecmascript"><![CDATA[
+ function showImage(imageHref) {
+ var image = document.getElementById('myImage');
+ image.setAttributeNS(xlinkNS, "href", imageHref);
+ }
+ function imageLoadStart(evt) {
+ var progressBar = document.getElementById('progressBar');
+ progressBar.setAttributeNS(svgNS, "width", 0);
+ var loadAnimation = document.getElementById('loadAnimation');
+ loadAnimation.beginElement();
+ }
+
+ function imageLoadProgress(evt) {
+ var progressBar = document.getElementById('progressBar');
+ progressBar.setAttributeNS(svgNS, "width", 100*evt.progress);
+ }
+
+ function imageLoadComplete(evt) {
+ var progressBar = document.getElementById('progressBar');
+ progressBar.setAttributeNS(svgNS, "width", 100);
+ var loadAnimation = document.getElementById('loadAnimation');
+ loadAnimation.endElement();
+
+ }
+ ]]></script>
+ <image id="myImage" xlink:href="imageA.png" width="300" height="400"
+ onpreload="imageLoadStart(evt)"
+ onloadprogress="imageLoadProgress(evt)"
+ onpostload="imageLoadComplete(evt)"/>
+ <rect onclick="showImage('imageB.png')" width="120"
+ height="30" y="400"/>
+ <animate id="loadAnimation" ... />
+ <rect id="progressBar" ... />
+</svg>

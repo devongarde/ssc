@@ -99,6 +99,7 @@ ssc.exe -f ../toast/stats/summary/stats.conf
 ssc.exe -f ../toast/SVG/1.0/svg.conf
 ssc.exe -f ../toast/SVG/1.1/svg.conf
 ssc.exe -f ../toast/SVG/1.2/svg.conf
+ssc.exe -f ../toast/SVG/1.2-full/svg.conf
 ssc.exe -f ../toast/SVG/2.0/svg.conf
 ssc.exe -f ../toast/SVG/2.1/svg.conf
 ssc.exe -f ../toast/type/colour/colour.conf

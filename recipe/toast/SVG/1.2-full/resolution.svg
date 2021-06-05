@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" version="1.2" baseProfile="full">
+ <g id="backgroundLayer">
+ ...
+ </g>
+ <switch>
+ <!-- Only show if 10 pixels (or more) make a -->
+ <!-- user unit (very zoomed in) -->
+Scalable Vector Graphics (SVG) 1.2 https://www.w3.org/TR/2004/WD-SVG12-20040510/
+88 of 120 27/09/2020, 16:13 <g id="veryDetailed" min-unit-scale="10">
+ ...
+ </g>
+ <!-- Only show for 1-10 pixels in a user unit -->
+ <!-- (somewhat zoomed in) -->
+ <g id="somewhatDetailed"
+ min-unit-scale="1" max-unit-scale="10">
+ ...
+ </g>
+ <!-- Show for 1 pixel and down (zoom out)-->
+ <g id="roughlyDetailed" max-unit-scale="1">
+ ...
+ </g>
+ </switch>
+ </svg>

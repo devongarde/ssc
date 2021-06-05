@@ -87,55 +87,55 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_id }
 
 #define HTML4_ARIA_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM, FLAG) \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaactivedescendant }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaatomic }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaautocomplete }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariabusy }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariachecked }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariacontrols }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariadescribedby }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariadisabled }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariadropeffect }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaexpanded }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaflowto }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariagrabbed }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariahaspopup }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariahidden }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariainvalid }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_arialabel }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_arialabelledby }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_arialevel }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_arialive }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariamultiline }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariamultiselectable }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaorientation }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaowns }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaposinset }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariapressed }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariareadonly }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariarelevant }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariarequired }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaselected }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariasetsize }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariasort }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariavaluemax }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariavaluemin }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariavaluenow }, \
-    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariavaluetext }
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_activedescendant }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_atomic }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_autocomplete }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_busy }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_checked }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_controls }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_describedby }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_disabled }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_dropeffect }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_expanded }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_flowto }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_grabbed }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_haspopup }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_hidden }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_invalid }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_label }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_labelledby }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_level }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_live }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_multiline }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_multiselectable }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_orientation }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_owns }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_posinset }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_pressed }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_readonly }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_relevant }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_required }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_selected }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_setsize }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_sort }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_valuemax }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_valuemin }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_valuenow }, \
+    { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_valuetext }
 
 #define ADDITIONAL_ARIA_ATTRIBUTES(ELEM) \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariacolcount }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariacolindex }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariacolspan }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariacurrent }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariadetails }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaerrormessage }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariamodal }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaplaceholder }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariaroledescription }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariarowcount }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariarowindex }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ariarowspan }
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colcount }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colindex }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colspan }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_current }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_details }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_errormessage }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_modal }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_placeholder }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_roledescription }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowcount }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowindex }, \
+    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowspan }
 
 #define RDFA_ATTRIBUTES_EX(ELEM,FLAGS) \
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_about }, \
@@ -214,6 +214,8 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_tablevalues }
 
 #define SVG_CONDITIONAL_ATTRIBUTES_EX(ELEM,VER) \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_min_unit_scale }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_max_unit_scale }, \
     { { HTML_SVG10, 0, VER }, { HTML_UNDEF }, ELEM, a_requiredextensions }, \
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, ELEM, a_requiredfeatures }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_requiredfonts }, \
@@ -265,17 +267,21 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
 #define SVG_PRESENTATION_ATTRIBUTES(ELEM) \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_alignment_baseline }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_audio_level }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_background_fill }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_baseline_shift }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_buffered_rendering }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_cache }, \
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_clip }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_clip_path }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_clip_rule }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_clip_to_self }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_colour }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_colour_interpolation }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_colour_interpolation_filters }, \
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_colour_profile }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_colour_rendering }, \
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_cursor }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_comp_op }, \
+    { { HTML_SVG10, 0, HE_SVG_10_11_FULL }, { HTML_UNDEF }, ELEM, a_cursor }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_direction }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_display }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_display_align }, \
@@ -309,6 +315,7 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_image_rendering }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_isolation }, \
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_kerning }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_knock_out }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_letter_spacing }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_lighting_colour }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_line_increment }, \
@@ -317,23 +324,28 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_marker_mid }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_marker_start }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_mask }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navdown }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navdownleft }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navdownright }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navleft }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navnext }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navprev }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navright }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navup }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navupleft }, \
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_navupright }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_down }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_downleft }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_downright }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_left }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_next }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_prev }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_right }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_up }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_upleft }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_upright }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_opacity }, \
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_overflow }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_overlay_host }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_page_orientation }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_paint_order }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_pointer_events }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_rendering_colour_space }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_shape_rendering }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_snap }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_solid_colour }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_solid_opacity }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_static }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stop_colour }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stop_opacity }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke }, \
@@ -357,8 +369,10 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_text_orientation }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_text_overflow }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_text_rendering }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_tooltip }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_transform }, /* 8.5 */ \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_transform_box }, /* 8.5 */ \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_transform_host }, \
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_unicode_bidi }, \
     { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, ELEM, a_vector_effect }, \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_vertical_align }, \
@@ -456,6 +470,82 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_white_space }, \
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, ELEM, a_writing_mode }, \
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, ELEM, a_word_spacing }
+
+#define SVG_PRESENTATION_ATTRIBUTES_12(ELEM) \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_audio_level }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_background_fill }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_buffered_rendering }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_cache }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_clip_to_self }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_colour }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_colour_rendering }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_comp_op }, \
+    { { HTML_SVG12, 0, HE_SVG_10_11_FULL }, { HTML_UNDEF }, ELEM, a_cursor }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_direction }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_display }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_display_align }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_fill }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_fill_opacity }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_fill_rule }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_focushighlight }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_focusable }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_font_family }, \
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_feature_settings }, \
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_kerning }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_font_size }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_font_style }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_font_variant }, \
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_variant_caps }, \
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_variant_east_asian }, \
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_variant_ligatures }, \
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_variant_numeric }, \
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_font_variant_position }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_font_weight }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_image_rendering }, \
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_isolation }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_knock_out }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_line_increment }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_down }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_downleft }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_downright }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_left }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_next }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_prev }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_right }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_up }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_upleft }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_nav_upright }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_opacity }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_overlay_host }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_page_orientation }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_pointer_events }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_rendering_colour_space }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_shape_rendering }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_snap }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_solid_colour }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_solid_opacity }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_static }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stop_colour }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stop_opacity }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_dasharray }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_dashoffset }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_linecap }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_linejoin }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_miterlimit }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_opacity }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_stroke_width }, \
+    { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, ELEM, a_text_align }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_text_anchor }, \
+    { { HTML_SVG12, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, ELEM, a_text_decoration }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_text_rendering }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_tooltip }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_transform_host }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_unicode_bidi }, \
+    { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, ELEM, a_vector_effect }, \
+    { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, ELEM, a_viewport_fill }, \
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_viewport_fill_opacity }, \
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_visibility }
 
 #define SVG_PRESENTATION_ATTRIBUTES_2(ELEM) \
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, ELEM, a_alignment_baseline }, \
@@ -566,6 +656,9 @@ extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuv
     SVG_BOX_ATTRIBUTES_EX (ELEM, HE_SVG)
 
 #define SVG_XLINK_ATTRIBUTES_EX(ELEM,VER) \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_onloadprogress }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_onpostload }, \
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, ELEM, a_onpreload }, \
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, ELEM, a_xlinkactuate }, \
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, ELEM, a_xlinkarcrole }, \
     { { HTML_SVG10, 0, VER }, { HTML_UNDEF }, ELEM, a_xlinkhref }, \

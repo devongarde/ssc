@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" version="1.2" baseProfile="full">
+ <g externalResourcesRequired="true">
+ <rect id="rect_1" .... />
+ ...
+ <rect id="rect_1000" ..../>
+ <image xlink:href="myImage.png" externalResourcesRequired="true" ... />
+ <rect id="rect_1001" ..../>
+ </g>
+</svg>
+
+<svg version="1.2" baseProfile="full">
+ <use xlink:href="#myRect" x="200" fill="green"/>
+ <circle cx="450" cy="50" r="50" fill="yellow" />
+ <g fill="red">
+ <rect id="myRect" width="100" height="100" />
+ </g>
+</svg>
+
+<svg version="1.2" baseProfile="full">
+ <use xlink:href="#myGroup" x="200" fill="green"
+ externalResourcesRequired="true"/>
+ <circle cx="450" cy="50" r="50" fill="yellow" />
+ <g fill="red">
+ <g id="myGroup">
+ <rect id="myRect" width="100" height="100" />
+ <use xlink:href="#myRect" x="50" fill="purple"/>
+ </g>
+ </g>
+</svg>
+
+<svg version="1.2" baseProfile="full">
+ <use xlink:href="#myRect" x="200" fill="green"/>
+ <circle cx="250" cy="50" r="50" fill="pink" />
+ <g fill="red" externalResourcesRequired="true">
+ <circle cx="450" cy="50" r="50" fill="yellow" />
+ <rect id="myRect" width="100" height="100" />
+ </g>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2"
+ baseProfile="full" id="svg-root" width="100%" height="100%" viewBox="0 0 480 360">
+ <text x="240" y="230" text-anchor="middle" font-size="120"
+ font-family="fontC, fontB, fontA">A</text>
+ <defs>
+ <font id="fontA" horiz-adv-x="224" >
+ <font-face
+ font-family="fontA"
+ units-per-em="1000"
+ panose-1="0 0 0 0 0 0 0 0 0 0"
+ ascent="917"
+ descent="-250"
+ alphabetic="0" />
+ <missing-glyph horiz-adv-x="800" d="..." />
+ <glyph unicode="A" glyph-name="A" ... />
+ </font>
+ <font id="fontB" horiz-adv-x="224">
+ <font-face
+ font-family="fontB"
+ units-per-em="1000"
+ panose-1="0 0 0 0 0 0 0 0 0 0"
+ ascent="917"
+ descent="-250"
+ alphabetic="0" />
+<missing-glyph ... />
+ <glyph unicode="A" glyph-name="B" ... />
+ </font>
+ <font id="fontC" horiz-adv-x="224" >
+ <font-face
+ font-family="fontC"
+ units-per-em="1000"
+ panose-1="0 0 0 0 0 0 0 0 0 0"
+ ascent="917"
+ descent="-250"
+ alphabetic="0" />
+ <missing-glyph ... />
+ <glyph unicode="A" glyph-name="C" ... />
+ </font>
+ </defs>
+</svg>

@@ -57,16 +57,18 @@ void element::examine_math ()
         default :
             return; }
     bool other = false; bool content = false;
-    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    for (element_ptr c = child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
-        if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
-        {   if (c -> node_.id ().is_math ()) content = true;
-            if (c -> node_.tag () != elem_declare) other = true;
-            else if (other)
-            {   pick (nit_declare_first, ed_math_2, "4.4.2.8 Declare (declare)", es_error, ec_element, "All <DECLARE> elements must occur at the beginning of a <MATH> element");
-                break; } } }
+        if (c -> node_.id ().first ().has_math () || c -> node_.id ().is_math ())
+            if (! c -> node_.is_closure ())
+            {   content = true;
+                if (c -> node_.tag () != elem_declare) other = true;
+                else if (other)
+                {   pick (nit_declare_first, ed_math_2, "4.4.2.8 Declare (declare)", es_error, ec_element, "All <DECLARE> elements must occur at the beginning of a <MATH> element");
+                    break; } } }
     if (! content)
-        pick (nit_math_empty, ed_math_3, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<MATH> should contain some math."); }
+        if (! context.html_ver ().has_math ()) pick (nit_math, es_warning, ec_element, "MathML is not configured");
+        else pick (nit_math_empty, ed_math_3, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<MATH> should contain some math."); }
 
 void element::examine_media_element (e_element , const char* ref, const char* name, const uint64_t family)
 {   PRESUME (ref != nullptr, __FILE__, __LINE__);

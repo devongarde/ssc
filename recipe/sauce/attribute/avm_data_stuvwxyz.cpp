@@ -207,7 +207,7 @@ hav_t havt_stuvwxyz [] =
     STANDARD_HTML5_ATTRIBUTES (elem_sup),
 
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_svg, a_allow_zoom_and_pan },
-    { { HTML_SVG11, 0, HE_SVG_11_12 }, { HTML_UNDEF }, elem_svg, a_baseprofile },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_svg, a_baseprofile },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_svg, a_contentscripttype },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_svg, a_contentstyletype },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_svg, a_externalresourcesrequired },
@@ -224,6 +224,8 @@ hav_t havt_stuvwxyz [] =
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_svg, a_preserveaspectratio },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, a_snapshottime },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_svg, a_style },
+    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_svg, a_style },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_svg, a_streamedcontents },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, a_syncbehaviourdefault },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, a_synctolerancedefault },
     { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, elem_svg, a_timelinebegin },
@@ -252,6 +254,7 @@ hav_t havt_stuvwxyz [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_symbol, a_class },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_symbol, a_externalresourcesrequired },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, a_preserveaspectratio },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_symbol, a_shadowinherit },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_symbol, a_style },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, a_viewbox },
     SVG_HTML_ATTRIBUTES (elem_symbol),
@@ -419,7 +422,6 @@ hav_t havt_stuvwxyz [] =
     HTML23_CLID_ATTRIBUTES (elem_textarea),
     HTML4_FORM_ATTRIBUTES (elem_textarea),
     SVG_BOX_ATTRIBUTES (elem_textarea),
-//    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_textarea),
     SVG_CONDITIONAL_ATTRIBUTES (elem_textarea),
     SVG_HTML_ATTRIBUTES (elem_textarea),
     SVG_PRESENTATION_ATTRIBUTES (elem_textarea),
@@ -490,6 +492,7 @@ hav_t havt_stuvwxyz [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_times),
 
+    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_title, a_systemlanguage },
     HTMLPLUS_ATTRIBUTES (elem_title),
     SVG_PRESENTATION_ATTRIBUTES_2 (elem_title),
     SVG_HTML_ATTRIBUTES (elem_title),
@@ -511,6 +514,25 @@ hav_t havt_stuvwxyz [] =
     { { HTML_JUL10, REQUIRED }, { HTML_UNDEF }, elem_track, a_src },
     { { HTML_JUL10 }, { HTML_UNDEF }, elem_track, a_srclang },
     STANDARD_HTML5_ATTRIBUTES(elem_track),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_traitdef, a_name },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_traitdef, a_namespace },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_traitdef, a_type },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_traitdef, a_valuetype },
+    SVG_BOX_ATTRIBUTES (elem_traitdef),
+    SVG_HTML_ATTRIBUTES (elem_traitdef),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transformer, a_type },
+    SVG_HTML_ATTRIBUTES (elem_transformer),
+    SVG_XLINK_ATTRIBUTES (elem_transformer),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transition, a_dur },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transition, a_fadecolour },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transition, a_endprogress},
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transition, a_startprogress },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transition, a_subtype },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_transition, a_type },
+    SVG_HTML_ATTRIBUTES (elem_transition),
 
     MATH3_DEFS_ATTRIBUTES (elem_transpose),
 
@@ -574,6 +596,8 @@ hav_t havt_stuvwxyz [] =
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_use, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_use, a_href },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_use, a_transform },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_use, a_transin },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_use, a_transout },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_use, a_will_change },
     SVG_BOX_ATTRIBUTES(elem_use),
     SVG_CONDITIONAL_ATTRIBUTES (elem_use),
@@ -590,11 +614,88 @@ hav_t havt_stuvwxyz [] =
 
     MATH3_DEFS_ATTRIBUTES (elem_variance),
 
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veaffine, a_in },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veaffine, a_result },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veaffine, a_transformpath },
+    SVG_HTML_ATTRIBUTES (elem_veaffine),
+
     HTML3_CLID_ATTRIBUTES (elem_vec),
 
     MATH3_STANDARD_ATTRIBUTES (elem_vector),
 
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vectoreffect, a_compositing },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vectoreffect, a_vectoreffectunits },
+    SVG_HTML_ATTRIBUTES (elem_vectoreffect),
+
     MATH3_DEFS_ATTRIBUTES (elem_vectorproduct),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veexclude, a_in },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veexclude, a_in2 },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veexclude, a_result },
+    SVG_HTML_ATTRIBUTES (elem_veexclude),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vefill, a_fill },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vefill, a_in2 },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vefill, a_transform },
+    SVG_HTML_ATTRIBUTES (elem_vefill),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vejoin, a_connect },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vejoin, a_in },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vejoin, a_in2 },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vejoin, a_result },
+    SVG_HTML_ATTRIBUTES (elem_vejoin),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veintersect, a_in },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veintersect, a_in2 },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veintersect, a_result },
+    SVG_HTML_ATTRIBUTES (elem_veintersect),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vemarker, a_in },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vemarker, a_marker_end },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vemarker, a_marker_mid },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vemarker, a_marker_start },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vemarker, a_transform },
+    SVG_HTML_ATTRIBUTES (elem_vemarker),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vepath, a_result },
+    SVG_HTML_ATTRIBUTES (elem_vepath),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vepathref, a_connect },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vepathref, a_reverse },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vepathref, a_transform },
+    SVG_HTML_ATTRIBUTES (elem_vepathref),
+    SVG_XLINK_ATTRIBUTES (elem_vepathref),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vereverse, a_in },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vereverse, a_result },
+    SVG_HTML_ATTRIBUTES (elem_vereverse),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vectoreffect, a_in },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vectoreffect, a_result },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vectoreffect, a_setback_offset },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vectoreffect, a_transform },
+    SVG_HTML_ATTRIBUTES (elem_vesetback),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestroke, a_fill },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestroke, a_in2 },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestroke, a_transform },
+    SVG_HTML_ATTRIBUTES (elem_vestroke),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestrokepath, a_in },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestrokepath, a_result },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestrokepath, a_stroke_dasharray },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestrokepath, a_stroke_dashoffset },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestrokepath, a_stroke_linecap },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestrokepath, a_stroke_linejoin },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestrokepath, a_stroke_miterlimit },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestrokepath, a_stroke_width },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vestrokepath, a_transform },
+    SVG_HTML_ATTRIBUTES (elem_vestrokepath),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veunion, a_in },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veunion, a_in2 },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_veunion, a_result },
+    SVG_HTML_ATTRIBUTES (elem_veunion),
 
     { { HTML_JAN11 }, { HTML_JUN11 }, elem_video, a_audio },
     { { HTML_JUL09 }, { HTML_JUN10 }, elem_video, a_autobuffer },
@@ -628,6 +729,8 @@ hav_t havt_stuvwxyz [] =
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_video, a_src },
     { { HTML_JUL07 }, { HTML_DEC08 }, elem_video, a_start },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_video, a_transformbehaviour },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_video, a_transin },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_video, a_transout },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_video, a_type },
     { { HTML_JAN08 }, { HTML_UNDEF }, elem_video, a_width },
     SVG_ANIMATION_TIMING_ATTRIBUTES (elem_video),
@@ -650,10 +753,12 @@ hav_t havt_stuvwxyz [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_vkern, a_g2 },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_vkern, a_k },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_vkern, a_u1 },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_vkern, a_u1 },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_vkern, a_u2 },
     SVG_HTML_ATTRIBUTES (elem_vkern),
 
     STANDARD_HTML5_ATTRIBUTES(elem_wbr),
+
+    SVG_HTML_ATTRIBUTES (elem_xa),
 
     HTML23_CLID_ATTRIBUTES (elem_xmp),
 

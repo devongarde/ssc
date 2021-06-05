@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.2" baseProfile="full">
+
+<xa>
+ <loc xlink:href="http://example.com/A.svg"
+ xlink:title="Schematic diagram"/>
+ <loc xlink:href="http://example.org/B.svg"
+ xlink:title="Parts list"/>
+ <!-- content of the link goes here -->
+ <path d="M50,50L100,20L30,100z"/>
+</xa>
+
+<xa>
+ <loc xlink:href="http://example.com/A.svg">
+ <title>Schematic diagram</title>
+ </loc>
+ <loc xlink:href="http://example.org/B.svg">
+ <title>Parts list</title>
+ </loc>
+ <!-- content of the link goes here -->
+ <path d="M50,50L100,20L30,100z"/>
+</xa>
+
+<xa>
+ <loc xlink:href="http://example.com/A.svg">
+ <switch>
+ <title systemLanguage="jp">図面</title>
+ <title systemLanguage="ru">Диаграмма</title>
+ <title systemLanguage="fr">Diagramme schématise</title>
+ <title>Schematic diagram</title>
+ </switch>
+ </loc>
+ <loc xlink:href="http://example.org/B.svg">
+ <switch>
+ <title systemLanguage="jp">部品一覧</title>
+ <title systemLanguage="ru">Список частей</title>
+ <title systemLanguage="fr">Liste des pièces</title>
+ <title>Parts list</title>
+ </switch>
+ </loc>
+ <!-- content of the link goes here -->
+ <path d="M50,50L100,20L30,100z"/>
+</xa>
+
+</svg>

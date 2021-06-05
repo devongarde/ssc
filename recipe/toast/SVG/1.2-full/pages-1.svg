@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="full"
+ streamable="true">
+ <defs>
+ <!-- definitions here are always available -->
+ </defs>
+ <g>
+ <!-- graphics here are always visible -->
+ </g>
+ <pageSet>
+ <page>
+ <!-- graphics for page 1 go here -->
+ </page>
+ <page page-orientation="90">
+ <!-- graphics for page 2 go here -->
+ </page>
+ <page>
+ <!-- graphics for page 3 go here -->
+ </page>
+ </pageSet>
+</svg>

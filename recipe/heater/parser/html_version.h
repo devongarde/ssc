@@ -347,6 +347,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HE_SVG_12       ( HE_SVG_12_TINY | HE_SVG_12_FULL )
 #define HE_SVG_10_11    ( HE_SVG_10 | HE_SVG_11 )
+#define HE_SVG_11_FULL  ( HE_SVG_11 | HE_SVG_12_FULL )
+#define HE_SVG_10_11_FULL ( HE_SVG_10_11 | HE_SVG_12_FULL )
 #define HE_SVG_10_12    ( HE_SVG_10 | HE_SVG_12 )
 #define HE_SVG_10_20    ( HE_SVG_10 | HE_SVG_20 )
 #define HE_SVG_10_2     ( HE_SVG_10_20 | HE_SVG_21 )
@@ -362,6 +364,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_SVG_1        ( HE_SVG_10_11 | HE_SVG_12 )
 #define HE_SVG_1_20     ( HE_SVG_1 | HE_SVG_20 )
 #define HE_SVG_2        ( HE_SVG_20 | HE_SVG_21 )
+#define HE_SVG_FULL_2   ( HE_SVG_12_FULL | HE_SVG_2 )
 #define HE_SVG          ( HE_SVG_1 | HE_SVG_2 )
 #define SVG_MASK        HE_SVG
 

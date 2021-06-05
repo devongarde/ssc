@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<svg width="400px" height="300px" version="1.2" baseProfile="tiny"
+xmlns = 'http://www.w3.org/2000/svg'>
+<defs>
+<font xml:id="Font1" horiz-adv-x="1000">
+<font-face font-family="Super Sans" font-weight="bold" font-style="normal"
+units-per-em="1000" cap-height="600" x-height="400"
+ascent="700" descent="300" alphabetic="0" mathematical="350" ideographic="400" hanging="500">
+</font-face>
+<missing-glyph d="M0,0h200v200h-200z"/>
+<glyph unicode="!" horiz-adv-x="300" d="--Outline of exclam. pt. glyph--"/>
+<glyph unicode="@" d="--Outline of @ glyph--"/>
+<!-- more glyphs -->
+</font>
+</defs>
+<desc>An example using an embedded font.</desc>
+<text x="100" y="100" font-family="Super Sans, Helvetica, sans-serif"
+font-weight="bold" font-style="normal">Text
+using embedded font</text>
+</svg>

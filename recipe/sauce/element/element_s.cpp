@@ -242,6 +242,27 @@ void element::examine_svg ()
                 pick (nit_style_fixed, es_info, ec_attribute, context.html_ver ().name (), " requires CSS, so ", attr::name (a_contentstyletype), " is redundant");
             else
                 pick (nit_style_fixed, es_warning, ec_attribute, context.html_ver ().name (), " requires CSS, so ", quote (a_.get_string (a_contentstyletype)), " is problematic"); }
+    if (a_.known (a_version))
+    {   e_svg_version sv = static_cast < e_svg_version > (a_.get_int (a_version));
+        e_svg_baseprofile prof = sbp_none;
+        if (a_.known (a_baseprofile)) prof = static_cast < e_svg_baseprofile > (a_.get_int (a_baseprofile));
+        ::std::string svg ("SVG ");
+        switch (sv)
+        {   case sv_1_0 : svg += "1.0"; break;
+            case sv_1_1 : svg += "1.1"; break;
+            case sv_1_2_full :
+            case sv_1_2_tiny : svg += "1.2/";
+                if (prof == sbp_full) svg += "full";
+                else svg += "tiny";
+                break;
+            case sv_2_0 : svg += "2.0"; break;
+            case sv_2_1 : svg += "2.1"; break;
+            default : svg += "version not"; break; }
+        svg += " recognised (";
+        svg += node_.version ().report ();
+        svg += ")";
+        if (sv == sv_none) pick (nit_svg_version, es_error, ec_attribute, svg);
+        else pick (nit_svg_version, es_info, ec_attribute, svg); }
     switch (node_.version ().svg_version ())
     {   case sv_1_1 :
         case sv_2_0 :

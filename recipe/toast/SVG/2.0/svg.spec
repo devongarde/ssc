@@ -104,7 +104,7 @@ PASS ../toast/SVG/2.0/focus.html
 PASS ../toast/SVG/2.0/foreign.svg
 0 title_required
 1 xhtml_5_0
-6 bad_namespace unknown_element unrecognised_namespace
+6 unrecognised_namespace unknown_element
 7 unknown_element
 8 unknown_element
 9 unknown_element
@@ -187,8 +187,8 @@ PASS ../toast/SVG/2.0/metadata.svg
 8 unknown_element unknown_element unknown_element
 9 unknown_element unknown_element
 10 unknown_element unknown_element unknown_element
-16 bad_namespace unknown_element
-23 unknown_element
+16 unknown_element
+23 unknown_element attribute_unrecognised_here attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised
 24 unknown_element
 25 unknown_element
 26 unknown_element unknown_element
@@ -204,7 +204,7 @@ PASS ../toast/SVG/2.0/mystery.xhtml
 2 missing_close
 5 unknown_element
 7 unknown_element
-8 unknown_element unrecognised_namespace
+8 unrecognised_namespace unknown_element
 11 unknown_element
 14 unknown_element
 16 unknown_element
@@ -254,6 +254,16 @@ PASS ../toast/SVG/2.0/polyline.xhtml
 PASS ../toast/SVG/2.0/preserveaspectratio.xhtml
 0 title_required
 1 xhtml_5_0
+
+PASS ../toast/SVG/2.0/privatedata.svg
+0 title_required
+1 xhtml_5_0
+6 unrecognised_namespace unknown_element
+7 unknown_element
+8 unknown_element
+9 unknown_element
+10 unknown_element
+12 unknown_element
 
 PASS ../toast/SVG/2.0/radialgradient.svg
 1 xhtml_5_0
@@ -305,7 +315,7 @@ PASS ../toast/SVG/2.0/svg-1.html
 PASS ../toast/SVG/2.0/svg-1.xhtml
 0 title_required
 1 xhtml_5_0
-3 unknown_element unrecognised_namespace
+3 unrecognised_namespace unknown_element
 9 unknown_element
 
 PASS ../toast/SVG/2.0/svg-2.xhtml
@@ -316,7 +326,6 @@ PASS ../toast/SVG/2.0/svg-2.xhtml
 PASS ../toast/SVG/2.0/svg-3.xhtml
 0 title_required
 1 xhtml_5_0
-7 bad_namespace
 
 PASS ../toast/SVG/2.0/text-1.svg
 0 title_required
@@ -441,3 +450,15 @@ PASS ../toast/SVG/2.0/white-space.html
 PASS ../toast/SVG/2.0/will-change.html
 2 naughty_lang
 29 newline_in_string newline_in_string
+
+PASS ../toast/SVG/2.0/xhtml.xhtml
+0 title_required
+1 xhtml_5_0
+2 html_contradictory xhtml_superseded html_contradictory
+3 naughty_lang
+6 contradictory_namespace
+7 unrecognised_value
+12 contradictory_namespace
+13 unrecognised_value url_not_found saucy_source
+14 url_not_found saucy_source
+15 url_not_found saucy_source

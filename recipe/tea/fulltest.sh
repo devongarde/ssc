@@ -102,6 +102,7 @@
 ./ssc -f ../toast/SVG/1.0/svg.conf
 ./ssc -f ../toast/SVG/1.1/svg.conf
 ./ssc -f ../toast/SVG/1.2/svg.conf
+./ssc -f ../toast/SVG/1.2-full/svg.conf
 ./ssc -f ../toast/SVG/2.0/svg.conf
 ./ssc -f ../toast/SVG/2.1/svg.conf
 ./ssc -f ../toast/type/colour/colour.conf

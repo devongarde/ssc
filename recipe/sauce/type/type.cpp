@@ -148,7 +148,9 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_command);
         TEST_VALUE (t_compact);
         TEST_VALUE (t_composite_operator);
+        TEST_VALUE (t_compositing);
         TEST_VALUE (t_conditional);
+        TEST_VALUE (t_connect);
         TEST_VALUE (t_content_encoding);
         TEST_VALUE (t_content_encodings);
         TEST_VALUE (t_content_type);
@@ -204,6 +206,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_duration);
         TEST_VALUE (t_duration_media);
         TEST_VALUE (t_edgemode);
+        TEST_VALUE (t_edi);
         TEST_VALUE (t_edit);
         TEST_VALUE (t_editable);
         TEST_VALUE (t_effect);
@@ -449,6 +452,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_origin);
         TEST_VALUE (t_overflow);
         TEST_VALUE (t_overlay);
+        TEST_VALUE (t_page_orientation);
         TEST_VALUE (t_paint);
         TEST_VALUE (t_paintkeyword);
         TEST_VALUE (t_paint_order);
@@ -494,7 +498,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_rel_illegal);
         TEST_VALUE (t_rel_link);
         TEST_VALUE (t_rel_obsolete);
-        TEST_VALUE (t_renderingintent);
+        TEST_VALUE (t_rendering_colour_space);
+        TEST_VALUE (t_rendering_in_tents);
         TEST_VALUE (t_repeatcount);
         TEST_VALUE (t_restart);
         TEST_VALUE (t_result);
@@ -553,6 +558,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_ssi_f);
         TEST_VALUE (t_start);
         TEST_VALUE (t_stitchtiles);
+        TEST_VALUE (t_streamedcontents);
         TEST_VALUE (t_svg_feature);
         TEST_VALUE (t_ssi_include);
         TEST_VALUE (t_ssi_set);
@@ -578,6 +584,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_fontweight);
         TEST_VALUE (t_svg_fontweight_ff);
         TEST_VALUE (t_svg_fontweights);
+        TEST_VALUE (t_svg_host);
         TEST_VALUE (t_svg_method);
         TEST_VALUE (t_svg_mode);
         TEST_VALUE (t_svg_overflow);
@@ -617,12 +624,15 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_text_rendering);
         TEST_VALUE (t_tfmu);
         TEST_VALUE (t_tfa);
+        TEST_VALUE (t_tfi);
         TEST_VALUE (t_tfu);
         TEST_VALUE (t_tokens);
         TEST_VALUE (t_transform);
         TEST_VALUE (t_transform_anim);
         TEST_VALUE (t_transformbehaviour);
         TEST_VALUE (t_transform_fn);
+        TEST_VALUE (t_transition_subtype);
+        TEST_VALUE (t_transition_type);
         TEST_VALUE (t_transp);
         TEST_VALUE (t_truefalseempty);
         TEST_VALUE (t_turbulence_type);
@@ -653,6 +663,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_vector_effect_20);
         TEST_VALUE (t_vector_effect_2s);
         TEST_VALUE (t_version);
+        TEST_VALUE (t_vertical_align);
+        TEST_VALUE (t_vertical_align_enum);
         TEST_VALUE (t_vid);
         TEST_VALUE (t_viewportscreen);
         TEST_VALUE (t_visibility);

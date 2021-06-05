@@ -39,12 +39,13 @@ class element_node
     ns_ptr nss_;
     ::std::string inner_text () const;
     void init ();
+    void manage_reversioner ();
 public:
     element_node () = default;
-    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
-    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed);
-    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str = ::std::string ());
-    element_node (nitpick& nits, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str = ::std::string ());
+    element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
+    element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed);
+    element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str = ::std::string ());
+    element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str = ::std::string ());
     element_node (const element_node& en) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	element_node(element_node&& en) = default;
@@ -105,8 +106,8 @@ public:
 
     bool has_attributes () const { return va_.size () > 0; }
     const attributes_node& attributes () const { return va_; }
-    html_version version () const { return version_; }
-    const html_version& version () { return version_; }
+    html_version& version () { return version_; }
+    const html_version& version () const { return version_; }
 
     void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, char* const msg)
     {   nits_.pick (code, doc, ref, severity, category, msg); }

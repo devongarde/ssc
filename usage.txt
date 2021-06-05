@@ -14,7 +14,7 @@ and then try:
 
 If it is installed correctly, it should respond with (c) info and a simple usage message.
 
-It is possible to set up configuration files, but, to start, lets try a simple set of command line
+It is possible to set up configuration files, but, to start, we'll try a simple set of command line
 options. It the HTML files belonging to your website is located in DIR, and the main index file is
 called index.html, then all you need type is:
 

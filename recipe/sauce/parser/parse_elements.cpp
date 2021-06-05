@@ -79,7 +79,7 @@ element_node* elements_node::find_permitted_parent (const html_version& v, const
         parent = parent -> parent_; }
     return nullptr; }
 
-void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, bra_element_ket& ket, const bool closing)
+void elements_node::repair_invalid_parents (nitpick& nits, const ns_ptr& nss, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, bra_element_ket& ket, const bool closing)
 {   VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     VERIFY_NOT_NULL (ancestor, __FILE__, __LINE__);
     if (does_apply < html_version > (v, id.first (), id.last ()))
@@ -90,7 +90,7 @@ void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v
                 nits.pick (nit_inserted_missing_closure, es_warning, ec_element, "inserted missing </", elem :: name (parent -> tag ()), ">");
                 elem def (parent -> tag ());
                 nitpick defnits (ket.line_, ket.nits_.get_context ());
-                ven_.push_back (element_node (defnits, ket.line_, true, parent, def, true, def.name ()));
+                ven_.push_back (element_node (defnits, nss, ket.line_, true, parent, def, true, def.name ()));
                 element_node* current = & ven_.back ();
                 element_node* previous = nullptr;
                 hook_up (current, previous, parent, false, false); }
@@ -129,7 +129,7 @@ void elements_node::hook_up (element_node* current, element_node*& previous, ele
         previous = current; }
     else previous = current; }
 
-element_node* elements_node::insert_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
+element_node* elements_node::insert_closure (const html_version& v, const ns_ptr& nss, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
 {   PRESUME (parent != nullptr, __FILE__, __LINE__);
     if (ket.eofe_ != ket.end_)
         if (! is_whitespace (ket.eofe_, ket.end_))
@@ -142,64 +142,64 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
             ket.nits_.pick (nit_missing_open, es_warning, ec_element, "no corresponding <", id.name (), "> found");
         else
         {   report_missing_closures (v, parent, ancestor);
-            repair_invalid_parents (ket.nits_, v, id, parent, ancestor, ket, true);
+            repair_invalid_parents (ket.nits_, nss, v, id, parent, ancestor, ket, true);
             parent = ancestor;
             VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
             previous = parent -> last_; } }
-    ven_.push_back (element_node (ket.nits_, ket.line_, true, parent, id.get (), presumed, ::std::string (ket.start_, ket.end_)));
+    ven_.push_back (element_node (ket.nits_, nss, ket.line_, true, parent, id.get (), presumed, ::std::string (ket.start_, ket.end_)));
     element_node* current = & ven_.back ();
     hook_up (current, previous, parent, matched, false);
     return current; }
 
-element_node* elements_node::insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
+element_node* elements_node::insert_family_tree (const html_version& v, const ns_ptr& nss, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
 {   PRESUME (id != elem_faux_document, __FILE__, __LINE__);
     elem def (default_parent (v, id));
     element_node* ancestor = find_permitted_parent (v, def, parent);
     if (ancestor == nullptr)
-    {   ancestor = insert_family_tree (v, previous, parent, ket, def, true);
+    {   ancestor = insert_family_tree (v, nss, previous, parent, ket, def, true);
         PRESUME (ancestor != nullptr, __FILE__, __LINE__); }
     nitpick defnits (ket.line_, ket.nits_.get_context ());
     VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     defnits.pick (nit_inserted_missing_parent, es_info, ec_element, "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting intermediate <", def.name (), ">");
     report_missing_closures (v, parent, ancestor);
-    repair_invalid_parents (defnits, v, def, parent, ancestor, ket, false);
+    repair_invalid_parents (defnits, nss, v, def, parent, ancestor, ket, false);
     parent = ancestor;
     VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     previous = parent -> last_;
-    ven_.push_back (element_node (defnits, ket.line_, false, ancestor, def, presumed, def.name ()));
+    ven_.push_back (element_node (defnits, nss, ket.line_, false, ancestor, def, presumed, def.name ()));
     element_node* current = & ven_.back ();
     hook_up (current, previous, parent, false, true);
     return current; }
 
-element_node* elements_node::insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool open)
+element_node* elements_node::insert_non_closure (const html_version& v, const ns_ptr& nss, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool open)
 {   PRESUME (parent != nullptr, __FILE__, __LINE__);
     element_node* current = nullptr;
     element_node* ancestor = find_permitted_parent (v, id, parent);
     if (ancestor != nullptr)
-    {   repair_invalid_parents (ket.nits_, v, id, parent, ancestor, ket, false);
+    {   repair_invalid_parents (ket.nits_, nss, v, id, parent, ancestor, ket, false);
         parent = ancestor;
         VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
         previous = parent -> last_; }
     else
-        insert_family_tree (v, previous, parent, ket, id, false);
+        insert_family_tree (v, nss, previous, parent, ket, id, false);
     switch (id.get ())
     {   case elem_faux_whitespace :
-            ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, false)); break;
+            ven_.push_back (element_node (ket.nits_, nss, ket.line_, false, parent, id, false)); break;
         case elem_faux_stylesheet :
-            ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, false, ket.arg ())); break;
+            ven_.push_back (element_node (ket.nits_, nss, ket.line_, false, parent, id, false, ket.arg ())); break;
         case elem_error :
             ket.nits_.pick (nit_internal_parsing_error, es_error, ec_element, "internal program error: invalid parse token status (", ::boost::lexical_cast < ::std::string > (ket.status_), ")");
             // drip (!) thru'
         default :
-            ven_.push_back (element_node (ket.nits_, ket.line_, false, parent, id, false, ::std::string (ket.start_, ket.end_))); }
+            ven_.push_back (element_node (ket.nits_, nss, ket.line_, false, parent, id, false, ::std::string (ket.start_, ket.end_))); }
     current = & ven_.back ();
     hook_up (current, previous, parent, false, open);
     VERIFY_NOT_NULL (current, __FILE__, __LINE__);
     current -> parse_attributes (v, ket.eofe_, ket.end_);
     return current; }
 
-element_node* elements_node::insert_closed (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
-{   element_node* current = insert_non_closure (v, previous, parent, ket, id, false);
+element_node* elements_node::insert_closed (const html_version& v, const ns_ptr& nss, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
+{   element_node* current = insert_non_closure (v, nss, previous, parent, ket, id, false);
     if (current != nullptr)
     {   current -> closed_ = true;
         if (context.copy () > c_none)
@@ -220,20 +220,20 @@ element_node* elements_node::insert_closed (const html_version& v, element_node*
                 default : break; } }
     return current; }
 
-element_node* elements_node::insert_open (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
-{   return insert_non_closure (v, previous, parent, ket, id, true); }
+element_node* elements_node::insert_open (const html_version& v, const ns_ptr& nss, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
+{   return insert_non_closure (v, nss, previous, parent, ket, id, true); }
 
-element_node* elements_node::insert  (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
-{   if (ket.closed_ || id.is_unclosed (v)) return insert_closed (v, previous, parent, ket, id);
+element_node* elements_node::insert  (const html_version& v, const ns_ptr& nss, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
+{   if (ket.closed_ || id.is_unclosed (v)) return insert_closed (v, nss, previous, parent, ket, id);
     if (id.is_closed (v))
     {   if (v.xhtml ()) ket.nits_.pick (nit_xhtml_missing_slash, es_error, ec_element, "in ", v.report (), ", closed elements must use the <... /> syntax");
-        return insert_closed (v, previous, parent, ket, id); }
-    if (ket.closure_) return insert_closure (v, previous, parent, ket, id, false);
-    return insert_open (v, previous, parent, ket, id); }
+        return insert_closed (v, nss, previous, parent, ket, id); }
+    if (ket.closure_) return insert_closure (v, nss, previous, parent, ket, id, false);
+    return insert_open (v,  nss, previous, parent, ket, id); }
 
 void elements_node::parse (const html_version& v, bras_ket& elements)
 {   ven_.clear ();
-    ven_.push_back (element_node (elements.form_, 1, false, nullptr, elem_faux_document, false, ::std::string ()));
+    ven_.push_back (element_node (elements.form_, new_namespace_stack (v), 1, false, nullptr, elem_faux_document, false, ::std::string ()));
     element_node* document = & ven_.back ();
     VERIFY_NOT_NULL (document, __FILE__, __LINE__);
     document -> version_ = v;
@@ -241,21 +241,24 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
     element_node* previous = nullptr;
     for (auto e : elements.ve_)
     {   elem id;
+        ns_ptr nss (parent -> nss_);
         VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
+        html_version ver (parent -> version_);
         switch (e.status_)
         {   case bk_asp :       id.reset (elem_faux_asp); break;
             case bk_cdata :     id.reset (elem_faux_cdata); break;
             case bk_comment :   id.reset (elem_faux_comment); break;
-            case bk_code :      if (v.xhtml ())
+            case bk_code :      if (ver.xhtml ())
                                     if ((parent -> tag () == elem_script) || (parent -> tag () == elem_style))
                                         e.nits_.pick (nit_xhtml_cdata, ed_x1, "4.8. Script and Style elements", es_warning, ec_element, "consider wrapping SCRIPT or STYLE content in <![CDATA[ ... ]]>");
                                 id.reset (elem_faux_char); break;
             case bk_doctype :   id.reset (elem_faux_doctype); break;
             case bk_node :      {   ::std::string mc (::std::string (e.start_, e.eofe_));
-                                    id.reset (e.nits_, v, parent -> nss_, mc);
-                                    if (v.xhtml () && ! id.unknown ())
+                                    attributes_node::process_xmlns_scope_bodge (e.nits_, ver, nss, e.start_, e.end_, e.line_);
+                                    id.reset (e.nits_, ver, nss, mc);
+                                    if (ver.xhtml () && ! id.unknown ())
                                     {   const ::std::string& naam (id.name ());
-                                        if (v.xhtml () && (naam != mc))
+                                        if (parent -> version_.xhtml () && (naam != mc))
                                             if (mc.find (':') == ::std::string::npos)
                                                 if ((id.flags () & EP_NO_WHINGE) == 0)
                                                     if (naam.find_first_of (UPPERCASE) != ::std::string::npos)
@@ -273,7 +276,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
         if (id.unknown ())
             if (static_cast < size_t > (id.ns ()) < first_runtime_namespace)
                 e.nits_.pick (nit_unknown_element, es_warning, ec_element, "unknown element <", ::std::string (e.start_, e.eofe_), "> (" PROG " cannot verify its attributes)");
-        insert (v, previous, parent, e, id); }
+        insert (ver, nss, previous, parent, e, id); }
     report_missing_closures (v, parent, document);
     if (context.tell (e_splurge))
     {   VERIFY_NOT_NULL (document, __FILE__, __LINE__);

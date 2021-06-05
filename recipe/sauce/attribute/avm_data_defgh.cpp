@@ -45,9 +45,8 @@ hav_t havt_defgh [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_declare, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_declare),
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_definition_src, a_xlinkhref },
     SVG_XLINK_ATTRIBUTES (elem_definition_src),
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_definition_src),
+    SVG_HTML_ATTRIBUTES (elem_definition_src),
 
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_defs, a_class },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_defs, a_style },
@@ -71,6 +70,10 @@ hav_t havt_defgh [] =
 
     { { HTML_JAN10 }, { HTML_JUN11 }, elem_device, a_type },
     STANDARD_HTML5_ATTRIBUTES (elem_device),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_devicecolour, a_name },
+    SVG_HTML_ATTRIBUTES (elem_devicecolour),
+    SVG_XLINK_ATTRIBUTES (elem_devicecolour),
 
     HTMLPLUS_ATTRIBUTES (elem_dfn),
     HTML3_CLID_ATTRIBUTES (elem_dfn),
@@ -130,6 +133,10 @@ hav_t havt_defgh [] =
 
     STANDARD_HTML5_ATTRIBUTES (elem_element),
 
+    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_elementdef, a_name },
+    SVG_HTML_ATTRIBUTES (elem_elementdef),
+    SVG_PRESENTATION_ATTRIBUTES (elem_elementdef),
+
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_ellipse, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_ellipse, a_pathlength },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_ellipse, a_transform },
@@ -177,6 +184,11 @@ hav_t havt_defgh [] =
     MATH3_DEFS_ATTRIBUTES (elem_exp),
 
     MATH3_DEFS_ATTRIBUTES (elem_exponentiale),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, a_namespace },
+    SVG_HTML_ATTRIBUTES (elem_extensiondefs),
+    SVG_PRESENTATION_ATTRIBUTES (elem_extensiondefs),
+    SVG_XLINK_ATTRIBUTES (elem_extensiondefs),
 
     MATH3_DEFS_ATTRIBUTES (elem_factorial),
 
@@ -287,6 +299,7 @@ hav_t havt_defgh [] =
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_feimage, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_feimage, a_href },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_feimage, a_preserveaspectratio },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_feimage, a_shadowinherit },
     SVG_FILTER_ATTRIBUTES_EX (elem_feimage, HTML_SVG11),
     SVG_XLINK_ATTRIBUTES (elem_feimage),
     SVG_HTML_ATTRIBUTES (elem_feimage),
@@ -386,6 +399,39 @@ hav_t havt_defgh [] =
     SVG_PRESENTATION_ATTRIBUTES (elem_filter),
     SVG_XLINK_ATTRIBUTES (elem_filter),
 
+    SVG_HTML_ATTRIBUTES (elem_flowdiv),
+    SVG_PRESENTATION_ATTRIBUTES_12 (elem_flowdiv),
+
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_flowimage, a_height },
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_flowimage, a_width },
+    SVG_PRESENTATION_ATTRIBUTES_12 (elem_flowline),
+
+    SVG_HTML_ATTRIBUTES (elem_flowline),
+    SVG_PRESENTATION_ATTRIBUTES_12 (elem_flowline),
+
+    SVG_HTML_ATTRIBUTES (elem_flowpara),
+    SVG_PRESENTATION_ATTRIBUTES_12 (elem_flowpara),
+
+    SVG_HTML_ATTRIBUTES (elem_flowref),
+    SVG_PRESENTATION_ATTRIBUTES_12 (elem_flowref),
+    SVG_XLINK_ATTRIBUTES (elem_flowref),
+
+    SVG_HTML_ATTRIBUTES (elem_flowregion),
+
+    SVG_HTML_ATTRIBUTES (elem_flowregionbreak),
+
+    SVG_HTML_ATTRIBUTES (elem_flowregionexclude),
+
+    SVG_HTML_ATTRIBUTES (elem_flowroot),
+    SVG_PRESENTATION_ATTRIBUTES_12 (elem_flowroot),
+
+    SVG_HTML_ATTRIBUTES (elem_flowspan),
+    SVG_PRESENTATION_ATTRIBUTES_12 (elem_flowspan),
+
+    SVG_HTML_ATTRIBUTES (elem_flowtref),
+    SVG_PRESENTATION_ATTRIBUTES_12 (elem_flowtref),
+    SVG_XLINK_ATTRIBUTES (elem_flowtref),
+
     MATH3_DEFS_ATTRIBUTES (elem_floor),
 
     HTML23_CLID_ATTRIBUTES (elem_fn),
@@ -394,62 +440,63 @@ hav_t havt_defgh [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_colour },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_externalresourcesrequired },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_face },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_horizadvx },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_horizoriginx },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font, a_horizoriginy },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_horiz_adv_x },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_horiz_origin_x },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font, a_horiz_origin_y },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_size },
     { { HTML_JUL07, HV_NOTPROD }, { HTML_JUN08 }, elem_font, a_style },
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_font, a_vert_adv_y },
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_font, a_vert_origin_x },
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_font, a_vert_origin_y },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font, a_vert_adv_y },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font, a_vert_origin_x },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font, a_vert_origin_y },
     SVG_HTML_ATTRIBUTES (elem_font),
     SVG_PRESENTATION_ATTRIBUTES (elem_font),
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_accentheight },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_alphabetic },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_ascent },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_bbox },
-    { { HTML_SVG11, 0, HE_SVG_11_12 }, { HTML_UNDEF }, elem_fontface, a_capheight },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_descent },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_fontface, a_font_family },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_fontface, a_font_size },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_fontface, a_font_stretch },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_fontface, a_font_style, },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_fontface, a_font_variant },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_fontface, a_font_weight },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_hanging },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_ideographic },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_mathematical },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_overline_position },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_overline_thickness },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_panose1 },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_fontface, a_slope },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_fontface, a_stemh },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_fontface, a_stemv },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_strikethroughposition },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_strikethroughthickness },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_underline_position },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_underline_thickness },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_unicode_range },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_units_per_em },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_fontface, a_v_alphabetic },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_fontface, a_v_hanging },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_fontface, a_v_ideographic },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_fontface, a_v_mathematical },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_widths },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_fontface, a_x_height },
-    SVG_HTML_ATTRIBUTES (elem_fontface),
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_accent_height },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_alphabetic },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_ascent },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_bbox },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_cap_height },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_descent },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_font_family },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_font_size },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_font_stretch },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_font_style, },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_font_variant },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_font_weight },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_hanging },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_ideographic },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_mathematical },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_overline_position },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_overline_thickness },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_panose_1 },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_slope },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_stemh },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_stemv },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_strikethrough_position },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_strikethrough_thickness },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_underline_position },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_underline_thickness },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_unicode_range },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_units_per_em },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font_face, a_v_alphabetic },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font_face, a_v_hanging },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font_face, a_v_ideographic },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font_face, a_v_mathematical },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_widths },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, a_x_height },
+    SVG_HTML_ATTRIBUTES (elem_font_face),
 
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_fontfaceformat, a_string },
-    SVG_HTML_ATTRIBUTES (elem_fontfaceformat),
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font_face_format, a_string },
+    SVG_HTML_ATTRIBUTES (elem_font_face_format),
 
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_fontfacename, a_name },
-    SVG_HTML_ATTRIBUTES (elem_fontfacename),
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font_face_name, a_name },
+    SVG_HTML_ATTRIBUTES (elem_font_face_name),
 
-    SVG_HTML_ATTRIBUTES (elem_fontfacesrc),
+    SVG_HTML_ATTRIBUTES (elem_font_face_src),
 
-    SVG_XLINK_ATTRIBUTES (elem_fontfaceuri),
-    SVG_HTML_ATTRIBUTES (elem_fontfaceuri),
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_font_face_name, a_externalresourcesrequired },
+    SVG_XLINK_ATTRIBUTES (elem_font_face_uri),
+    SVG_HTML_ATTRIBUTES (elem_font_face_uri),
 
     STANDARD_HTML5_ATTRIBUTES (elem_footer),
 
@@ -458,6 +505,7 @@ hav_t havt_defgh [] =
     MATH3_DEFS_ATTRIBUTES (elem_forall),
 
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_foreignobject, a_externalresourcesrequired },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_foreignobject, a_transform },
     SVG_BOX_ATTRIBUTES (elem_foreignobject),
     SVG_CONDITIONAL_ATTRIBUTES (elem_foreignobject),
     SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_foreignobject, HE_SVG_2),
@@ -522,7 +570,7 @@ hav_t havt_defgh [] =
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_arabic_form },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_d },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_glyphname },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_horizadvx },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_horiz_adv_x },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_lang },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, a_orientation },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_unicode },
@@ -571,11 +619,13 @@ hav_t havt_defgh [] =
 
     STANDARD_HTML5_ATTRIBUTES (elem_hgroup),
 
+    SVG_HTML_ATTRIBUTES (elem_hint),
+
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_hkern, a_g1 },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_hkern, a_g2 },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_hkern, a_k },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_hkern, a_u1 },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_hkern, a_u1 },
+    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_hkern, a_u2 },
     SVG_HTML_ATTRIBUTES (elem_hkern),
 
     { { HTML_2_0, HV_DEPRECATED4 | HV_RFC_2070 | HV_NOT30 }, { XHTML_2_0 }, elem_hr, a_align },

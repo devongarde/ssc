@@ -70,9 +70,9 @@ template < > class type_master < t_paint_order > : public four_value < t_paint_o
 template < > class type_master < t_phase_x > : public four_value < t_phase_x, e_phase_x, sz_bubble, sz_capture, sz_default, sz_target > { };
 template < > class type_master < t_rsvp > : public four_value < t_rsvp, e_rsvp, sz_yes, sz_no, sz_maybe, sz_interested > { };
 template < > class type_master < t_tdscope > : public four_value < t_tdscope, e_tdscope, sz_row, sz_col, sz_rowgroup, sz_colgroup > { };
+template < > class type_master < t_shadowinherit > : public four_value < t_shadowinherit, e_shadowinherit, sz_ondefine, sz_onuse, sz_none, sz_inherit > { };
 template < > class type_master < t_shape4 > : public four_value < t_shape4, e_shape4, sz_circle, sz_default, sz_poly, sz_rect > { };
 template < > class type_master < t_size3 > : public four_value < t_size3, e_size3, sz_normal, sz_medium, sz_large, sz_huge > { };
-template < > class type_master < t_scei > : public four_value < t_scei, e_scei, sz_start, sz_centre, sz_end, sz_inherit > { };
 template < > class type_master < t_ssi_config > : public four_value < t_ssi_config, e_ssi_config, sz_echomsg, sz_errmsg, sz_sizefmt, sz_timefmt > { };
 template < > class type_master < t_ssi_set > : public four_value < t_ssi_set, e_ssi_set, sz_decoding, sz_encoding, sz_value, sz_var > { };
 template < > class type_master < t_svg_baseprofile > : public four_value < t_svg_baseprofile, e_svg_baseprofile, sz_basic, sz_full, sz_none, sz_tiny > { };

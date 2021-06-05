@@ -23,6 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/namespace.h"
 #include "feedback/nitpick.h"
 
+#define AF_NOT_NAMESPACED   0x0000000000000001
+#define AF_PROPERTY         0x0000000000000002
+#define AF_SVG2_PROPERTY    0x0000000000000004
 #define AP_NAMESPACE_MASK   0x00000000000000FF
 
 #define AP_XLINKCAT_MASK    0x000000000000FF00
@@ -31,20 +34,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define AP_SET_XLINKCAT(XXX)  ((uint64_t) (XXX) << AP_XLINK_TYPE_SHIFT)
 #define AP_GET_XLINKCAT(XXX)  (((XXX) & AP_XLINKCAT_MASK) >> AP_XLINK_TYPE_SHIFT)
 
+#define AF_REVERSIONER      0x0000001000000000
+
 struct attr : symbol < html_version, e_attribute >
 {   static e_attribute parse (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string& x, ::std::string& decl);
     static void init (nitpick& nits);
-    static e_namespace ns (const uint64_t f)
-    {   return static_cast < e_namespace > (f & AP_NAMESPACE_MASK); }
-    e_namespace ns () const
-    {   return ns (symbol < html_version, e_attribute > :: flags ()); }
+//    static e_namespace ns (const uint64_t f)
+//    {   return static_cast < e_namespace > (f & AP_NAMESPACE_MASK); }
+//    e_namespace ns () const
+//    {   return ns (symbol < html_version, e_attribute > :: flags () & AP_NAMESPACE_MASK); }
+    static bool is_versioner (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_REVERSIONER) == AF_REVERSIONER; }
     static e_sought_category link_category_sought (const uint64_t f)
     {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (f)); }
     e_sought_category link_category_sought () const
     {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (flags ())); }
     attr () {}
     attr (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string& x, ::std::string& ns)
-    {   set (v, parse (nits, v, nss, x, ns)); } };
+    {   set (v, parse (nits, v, nss, x, ns)); }
+    bool is_versioner () const { return (symbol < html_version, e_attribute > :: flags () & AF_REVERSIONER) == AF_REVERSIONER; } };
 
 inline bool is_custom_attribute (const e_attribute a) { return (a == a_custom); }
 inline bool is_error_attribute (const e_attribute a) { return (a == a_illegal); }

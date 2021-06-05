@@ -9,7 +9,7 @@ PASS ../toast/w3/xhtml/xhtml-mathml2-fpi.html
 
 PASS ../toast/w3/xhtml/xhtml-mathml2.html
 1 presume_html_1 attribute_unrecognised_here attribute_unrecognised_here attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute
-11 unknown_element
+11 unknown_element attribute_unrecognised_here
 12 unknown_element
 13 unknown_element
 14 unknown_element

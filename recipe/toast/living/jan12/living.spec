@@ -163,8 +163,7 @@ PASS ../toast/living/jan12/example.html
 85 unrecognised_value no_such_folder url_not_found
 87 attribute_unrecognised unrecognised_attribute unrecognised_value
 89 unrecognised_value
-92 unknown_element unrecognised_namespace
-93 duplicate_namespace
+92 unrecognised_namespace unknown_element
 95 unknown_element
 99 newline_in_string newline_in_string
 101 unrecognised_value
@@ -530,9 +529,9 @@ PASS ../toast/living/jan12/ls5.html
 3 contradictory_namespace
 5 use_quote_code
 6 unknown_element
-8 unknown_element unrecognised_namespace
+8 unrecognised_namespace unknown_element attribute_unrecognised
 9 unknown_element unknown_element
-10 unknown_element
+10 unknown_element attribute_unrecognised
 11 unknown_element unknown_element
 12 unknown_element
 13 unknown_element

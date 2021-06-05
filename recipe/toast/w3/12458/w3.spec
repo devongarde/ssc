@@ -18,7 +18,7 @@ PASS ../toast/w3/12458/2342-opensp_type_X.html
 
 PASS ../toast/w3/12458/4476-svg_nodoctype.svg
 0 title_required
-1 presume_html_1 unknown_element
+1 presume_html_1 unknown_element attribute_unrecognised_here
 
 PASS ../toast/w3/12458/4848-html40-transitional_FPI-SI-mismatch.html
 0 charset_mismatch charset_used
@@ -37,7 +37,7 @@ PASS ../toast/w3/12458/5031-root_dash.xml
 9 unknown_element
 10 unknown_element
 11 unknown_element
-12 unknown_element
+12 unknown_element attribute_unrecognised
 13 unknown_element
 14 unknown_element unknown_element
 15 unknown_element

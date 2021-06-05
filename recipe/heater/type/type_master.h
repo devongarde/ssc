@@ -134,7 +134,19 @@ template < e_type T, class SZ > struct type_must_be : tidy_string < T >
         else if (tidy_string < T > :: good ())
         {   ::std::string ss (tidy_string < T > :: get_string ());
             if (compare_complain (nits, v, SZ :: sz (), ss)) return;
-            nits.pick (nit_isnt, es_error, ec_type, quote (SZ :: sz ()), " expected"); }
+            nits.pick (nit_isnt, es_error, ec_type, quote (SZ :: sz ()), " expected, not ", quote (ss)); }
+        tidy_string < T > :: status (s_invalid); } };
+
+template < e_type T, class SZ1, class SZ2 > struct either_string : tidy_string < T >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "value expected");
+        else if (tidy_string < T > :: good ())
+        {   ::std::string ss (tidy_string < T > :: get_string ());
+            if (compare_complain (nits, v, SZ1 :: sz (), ss)) return;
+            if (compare_complain (nits, v, SZ2 :: sz (), ss)) return;
+            nits.pick (nit_isnt, es_error, ec_type, quote (SZ1 :: sz ()), " or ", quote (SZ2 :: sz ()), "expected, not ", quote (ss)); }
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type A, e_type B > struct type_either_or : tidy_string < T >
