@@ -94,7 +94,7 @@ void configure (std::time_t& start_time)
             context.out (::std::ctime (&start_time)); }
         if (context.tell (e_info)) context.out ("Gathering site information...\n"); } }
 
-void ciao ()
+int ciao ()
 {   if (context.unknown_class () && context.tell (e_warning))
     {   ::std::ostringstream ss;
         context.css ().report_usage (ss);
@@ -111,7 +111,9 @@ void ciao ()
         {   context.out ("\n\n*** itemids\n");
             context.out (report_itemids ()); } }
     if (context.stats_summary ()) context.report_stats ();
-    if (context.tell (e_debug)) context.out (fileindex_report ()); }
+    if (context.tell (e_debug)) context.out (fileindex_report ());
+    if (context.severity_exceeded ()) return ERROR_STATE;
+    return VALID_RESULT; }
 
 int examine (nitpick& nits)
 {   int res = VALID_RESULT;
@@ -226,7 +228,8 @@ int main (int argc, char** argv)
             {   context.process_outgoing_webmention (nits, html_current);
                 context.process_incoming_webmention (nits, html_current);
                 dump_nits (nits, "webmention"); }
-            ciao ();
+            int cr = ciao ();
+            if (cr > res) res = cr;
             if (! (context.test () || context.cgi ()))
             {   auto fin = std::chrono :: system_clock :: now();
                 std::chrono::duration<double> elapsed_seconds = fin - start;

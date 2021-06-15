@@ -48,5 +48,6 @@ public:
     void mark_file (const unsigned size);
     uint64_t file_count () const;
     unsigned count (const e_element e) const;
+    unsigned count (const e_severity s) const;
     unsigned visible_count (const e_element e) const;
     ::std::string report (const bool grand) const; };

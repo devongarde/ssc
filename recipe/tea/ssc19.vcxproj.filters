@@ -642,6 +642,18 @@
     <Filter Include="Toast\SVG\1.2-full">
       <UniqueIdentifier>{f802ce02-2b44-4094-a225-b0a21f1c8433}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Conf\xhtml">
+      <UniqueIdentifier>{dfae0333-d38c-4d2f-b373-d3e56abb7f63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\html">
+      <UniqueIdentifier>{af4a0683-44d9-4bb0-af5e-16755be1edd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\live">
+      <UniqueIdentifier>{86f8fc86-1a22-4ab9-9f81-c87ce57c8495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\corrupt">
+      <UniqueIdentifier>{5674f0a9-1e23-45a9-b410-74ad8230e35a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1453,19 +1465,19 @@
     <ClCompile Include="..\sauce\parser\text-data.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_abc.cpp">
+    <ClCompile Include="..\sauce\attribute\avm_data_a.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_ijkl.cpp">
+    <ClCompile Include="..\sauce\attribute\avm_data_i.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_defgh.cpp">
+    <ClCompile Include="..\sauce\attribute\avm_data_d.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_mnopqr.cpp">
+    <ClCompile Include="..\sauce\attribute\avm_data_m.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_stuvwxyz.cpp">
+    <ClCompile Include="..\sauce\attribute\avm_data_s.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\namespace.cpp">
@@ -1476,6 +1488,60 @@
     </ClCompile>
     <ClCompile Include="..\sauce\main\abort.cpp">
       <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_b.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_c.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_e.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_f.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_g.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_h.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_k.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_l.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_n.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_o.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_p.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_q.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_r.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_t.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_u.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_v.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_w.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_x.cpp">
+      <Filter>Sauce\attribute</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2528,18 +2594,6 @@
     </None>
     <None Include="..\toast\link\css-good.css">
       <Filter>Toast\Link</Filter>
-    </None>
-    <None Include="..\toast\conf\betsy-live.conf">
-      <Filter>Toast\Conf</Filter>
-    </None>
-    <None Include="..\toast\conf\corona-live.conf">
-      <Filter>Toast\Conf</Filter>
-    </None>
-    <None Include="..\toast\conf\corrupt.conf">
-      <Filter>Toast\Conf</Filter>
-    </None>
-    <None Include="..\toast\conf\live.conf">
-      <Filter>Toast\Conf</Filter>
     </None>
     <None Include="..\toast\HTML\Plus\index.html">
       <Filter>Toast\HTML\Plus</Filter>
@@ -18789,9 +18843,6 @@
     <None Include="..\toast\SVG\1.1\fei.html">
       <Filter>Toast\SVG\1.1</Filter>
     </None>
-    <None Include="..\toast\conf\corona-corrupt.conf">
-      <Filter>Toast\Conf</Filter>
-    </None>
     <None Include="..\toast\SVG\1.2\activate.svg">
       <Filter>Toast\SVG\1.2</Filter>
     </None>
@@ -19116,6 +19167,42 @@
     <None Include="..\toast\SVG\1.2-full\progress.svg">
       <Filter>Toast\SVG\1.2-full</Filter>
     </None>
+    <None Include="..\toast\conf\xhtml\conf.conf">
+      <Filter>Toast\Conf\xhtml</Filter>
+    </None>
+    <None Include="..\toast\conf\xhtml\conf.spec">
+      <Filter>Toast\Conf\xhtml</Filter>
+    </None>
+    <None Include="..\toast\conf\xhtml\index.xhtml">
+      <Filter>Toast\Conf\xhtml</Filter>
+    </None>
+    <None Include="..\toast\conf\html\conf.conf">
+      <Filter>Toast\Conf\html</Filter>
+    </None>
+    <None Include="..\toast\conf\html\conf.spec">
+      <Filter>Toast\Conf\html</Filter>
+    </None>
+    <None Include="..\toast\conf\html\index.html">
+      <Filter>Toast\Conf\html</Filter>
+    </None>
+    <None Include="..\toast\conf\corrupt\corona-corrupt.conf">
+      <Filter>Toast\Conf\corrupt</Filter>
+    </None>
+    <None Include="..\toast\conf\corrupt\corrupt.conf">
+      <Filter>Toast\Conf\corrupt</Filter>
+    </None>
+    <None Include="..\toast\conf\live\betsy-live.conf">
+      <Filter>Toast\Conf\live</Filter>
+    </None>
+    <None Include="..\toast\conf\live\corona-live.conf">
+      <Filter>Toast\Conf\live</Filter>
+    </None>
+    <None Include="..\toast\conf\live\live.conf">
+      <Filter>Toast\Conf\live</Filter>
+    </None>
+    <None Include="..\toast\conf\upload.sh">
+      <Filter>Toast\Conf</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -19317,9 +19404,6 @@
     </Text>
     <Text Include="..\toast\webmention\README.txt">
       <Filter>Toast\Webmention</Filter>
-    </Text>
-    <Text Include="..\toast\conf\README.txt">
-      <Filter>Toast\Conf</Filter>
     </Text>
     <Text Include="CMakeLists.txt">
       <Filter>Tea</Filter>

@@ -522,8 +522,10 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_scrolling);
         TEST_VALUE (t_second);
         TEST_VALUE (t_settype);
+        TEST_VALUE (t_severity);
         TEST_VALUE (t_sex);
         TEST_VALUE (t_sgml);
+        TEST_VALUE (t_shadow);
         TEST_VALUE (t_shape);
         TEST_VALUE (t_shape3);
         TEST_VALUE (t_shape4);

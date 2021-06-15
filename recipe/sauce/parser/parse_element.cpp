@@ -95,10 +95,8 @@ void element_node::manage_reversioner ()
 
 void element_node::parse_attributes (const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   if (parent_ != nullptr) nss_ = initialise_namespace_stack (version_, parent_ -> nss_);
-//    va_.parse (nits_, v, nss_, b, e, line_, elem_);
     va_.parse (nits_, version_, nss_, b, e, line_, elem_, true);
     if (version_.mjr () < 4) return;
-//    if (parent_ != nullptr) version_ = parent_ -> version_;
     if (! va_.empty ())
     {   va_.manage_xmlns (nits (), version_);
         switch (id ())

@@ -146,7 +146,8 @@ void element::examine_area ()
                 default : break; } } } }
 
 void element::examine_article ()
-{   if (node_.version ().w3 ())
+{   if (! context.corpus ().empty ()) if (context.article ()) page_.corpus (text ());
+    if (node_.version ().w3 ())
         if (has_this_descendant (elem_main))
             pick (nit_no_main_kids, ed_50, "4.3.2 The article element", es_warning, ec_element, "<ARTICLE> can have no <MAIN> descendants"); }
 
@@ -216,7 +217,7 @@ void element::examine_bind ()
         pick (nit_bad_bind, ed_math_3, "4.2.6.1 Bindings", es_error, ec_element, "<BVAR> cannot be the last child of <BIND>"); }
 
 void element::examine_body ()
-{   if (! context.corpus ().empty ()) page_.corpus (text ()); }
+{   if (! context.corpus ().empty ()) if (context.body () || ! page_.corpus ()) page_.corpus (text ()); }
 
 void element::examine_button ()
 {   if (node_.version ().is_5 ())

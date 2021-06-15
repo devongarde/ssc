@@ -27,8 +27,6 @@ struct hav_t
     e_element tag_;
     e_attribute a_; };
 
-extern hav_t havt_abc [], havt_defgh [], havt_ijkl [], havt_mnopqr [], havt_stuvwxyz [];
-
 #define HTMLPLUS_ATTRIBUTES(ELEM) \
     { { HTML_PLUS }, { HTML_PLUS }, ELEM, a_id }, \
     { { HTML_PLUS }, { HTML_PLUS }, ELEM, a_index }, \

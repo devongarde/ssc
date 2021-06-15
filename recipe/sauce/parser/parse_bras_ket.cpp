@@ -285,11 +285,11 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_grammar ", ch);
                 switch (ch)
                 {   case '>' :  if (twas > text)
-                                {   nits.set_context (line_, text, twas);
+                                {   nits.set_context (line_, near_here (b, e, text, twas));
                                     ve_.emplace_back (nits, line_, text, twas);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                     nits.reset (); }
-                                nits.set_context (line_, soe, i+1);
+                                nits.set_context (line_, near_here (b, e, soe, i+1));
                                 if (parse_doctype (nits, res, collect, i))
                                 {   had_doctype = true;
                                     ve_.emplace_back (nits, line_, bk_doctype, collect, i);
@@ -337,7 +337,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                 {   status = s_symbol; collect = i; }
                                 else
                                 {   if (! xmp_mode && ! silent_content && (res >= html_4_0))
-                                    {   nits.set_context (line_, bol, i+1);
+                                    {   nits.set_context (line_, near_here (b, e, bol, i+1));
                                         nits.pick (nit_lonely_ampersand, ed_4, "24 Character entity references in HTML 4.0", es_warning, ec_parser, "consider using character codes for ampersands (e.g. '&amp;')"); }
                                     status = s_dull; } }
                 break;
@@ -374,7 +374,7 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_symbol ", ch);
                 switch (ch)
                 {   case ';' :  if (twas > text)
-                                {   nits.set_context (line_, text, twas);
+                                {   nits.set_context (line_, near_here (b, e, text, twas));
                                     ve_.emplace_back (nits, line_, text, twas);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                     nits.reset (); }
@@ -406,7 +406,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                         nits.pick (nit_invalid_character_code, ed_tags, "", es_error, ec_parser, "numeric characters codes are not part of HTML tags"); } }
                                 else
                                 {   if (twas > text)
-                                    {   nits.set_context (line_, text, twas);
+                                    {   nits.set_context (line_, near_here (b, e, text, twas));
                                         ve_.emplace_back (nits, line_, text, twas);
                                         if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                         nits.reset (); }
@@ -436,7 +436,7 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_num ", ch);
                 switch (ch)
                 {   case ';' :  if (twas > text)
-                                {   nits.set_context (line_, text, twas);
+                                {   nits.set_context (line_, near_here (b, e, text, twas));
                                     ve_.emplace_back (nits, line_, text, twas);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                     nits.reset (); }
@@ -600,10 +600,10 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_php_closing ", ch);
                 switch (ch)
                 {   case '>' :  if (twas > text)
-                                {   nits.set_context (line_, text, twas);
+                                {   nits.set_context (line_, near_here (b, e, text, twas));
                                     ve_.emplace_back (nits, line_, text, twas);
                                     nits.reset (); }
-                                nits.set_context (line_, soe, i-1);
+                                nits.set_context (line_, near_here (b, e, soe, i-1));
                                 ve_.emplace_back (nits, line_, bk_php, collect, i-1);
                                 aftercab = true;
                                 nits.reset ();
@@ -614,10 +614,10 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_xml_closing ", ch);
                 switch (ch)
                 {   case '>' :  if (twas > text)
-                                {   nits.set_context (line_, text, twas);
+                                {   nits.set_context (line_, near_here (b, e, text, twas));
                                     ve_.emplace_back (nits, line_, text, twas);
                                     nits.reset (); }
-                                nits.set_context (line_, soe, i-1);
+                                nits.set_context (line_, near_here (b, e, soe, i-1));
                                 parse_xml (nits, res, collect, i, line_, s);
                                 if (s.empty ()) ve_.emplace_back (nits, line_, bk_xml, collect, i);
                                 else ve_.emplace_back (nits, line_, bk_stylesheet, s);
@@ -640,10 +640,10 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_asp_closing ", ch);
                 switch (ch)
                 {   case '>' :  if (twas > text)
-                                {   nits.set_context (line_, text, twas);
+                                {   nits.set_context (line_, near_here (b, e, text, twas));
                                     ve_.emplace_back (nits, line_, text, twas);
                                     nits.reset (); }
-                                nits.set_context (line_, soe, i);
+                                nits.set_context (line_, near_here (b, e, soe, i));
                                 ve_.emplace_back (nits, line_, bk_asp, collect, i-1);
                                 nits.reset ();
                                 aftercab = true;
@@ -684,7 +684,7 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (ch != '>') status = s_cdata;
                 else
                 {   status = s_dull;
-                    nits.set_context (line_, soe, i);
+                    nits.set_context (line_, near_here (b, e, soe, i));
                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_cdata ", quoted_limited_string (::std::string (text, twas), 30));
                     ve_.emplace_back (nits, line_, bk_cdata, text+9, i-2);
                     aftercab = true; text = twas = i+1;
@@ -722,12 +722,12 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_comment_second_close ", ch);
                 switch (ch)
                 {   case '>' :  if (twas > text)
-                                {   nits.set_context (line_, text, twas);
+                                {   nits.set_context (line_, near_here (b, e, text, twas));
                                     ve_.emplace_back (nits, line_, text, twas);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                     nits.reset (); }
                                 if (context.shadow_comment ())
-                                {   nits.set_context (line_, soe, i);
+                                {   nits.set_context (line_, near_here (b, e, soe, i));
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace comment ", quoted_limited_string (::std::string (text, twas), 30));
                                     ve_.emplace_back (nits, line_, bk_comment, text+6, i-2);
                                     nits.reset (); }
@@ -758,27 +758,27 @@ html_version bras_ket::parse (const ::std::string& content)
                                     {   PRESUME (collect - b > 2, __FILE__, __LINE__);
                                         PRESUME (e - 1 > i, __FILE__, __LINE__);
                                         if (xmp_tag == elem_xmp)
-                                        {   nits.set_context (line_, collect-2, i+1);
+                                        {   nits.set_context (line_, near_here (b, e, collect-2, i+1));
                                             nits.pick (nit_closure_not_xmp, ed_1, "ELEMENT XMP", es_error, ec_element, "a closure started inside <", n, "> must be </", n, ">");
                                             ve_.emplace_back (nits, line_, collect, i, i, true, false);
                                             nits.reset (); }
                                         break; }
-                                    nits.set_context (line_, x, collect-2);
+                                    nits.set_context (line_, near_here (b, e, x, collect-2));
                                     xmp_mode = false;
                                     ve_.emplace_back (nits, line_, x, collect-2);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (x, collect - 2), 30));
                                     nits.reset ();
-                                    nits.set_context (line_, soe, i+1);
+                                    nits.set_context (line_, near_here (b, e, soe, i+1));
                                     ve_.emplace_back (nits, line_, collect, i, i, closure, false);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_ncode ", quoted_limited_string (::std::string (collect, i), 30));
                                     nits.reset (); }
                                 else
                                 {   if (twas > text)
-                                    {   nits.set_context (line_, text, twas);
+                                    {   nits.set_context (line_, near_here (b, e, text, twas));
                                         ve_.emplace_back (nits, line_, text, twas);
                                         if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                         nits.reset (); }
-                                    nits.set_context (line_, soe, i+1);
+                                    nits.set_context (line_, near_here (b, e, soe, i+1));
                                     ve_.emplace_back (nits, line_, collect, i, i, closure, false);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_node ", quoted_limited_string (::std::string (collect, i), 30));
                                     nits.reset ();
@@ -816,11 +816,11 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_purgatory ", ch);
                 switch (ch)
                 {   case '>' :  if (twas > text)
-                                {   nits.set_context (line_, text, twas);
+                                {   nits.set_context (line_, near_here (b, e, text, twas));
                                     ve_.emplace_back (nits, line_, text, twas);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                     nits.reset (); }
-                                nits.set_context (line_, soe, i+1);
+                                nits.set_context (line_, near_here (b, e, soe, i+1));
                                 if ((i > eofe) && (*(i-1) == '/')) ve_.emplace_back (nits, line_, collect, eofe, i-1, closure, true);
                                 else ve_.emplace_back (nits, line_, collect, eofe, i, closure, true);
                                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_node ", quoted_limited_string (::std::string (collect, i), 30));
@@ -837,11 +837,11 @@ html_version bras_ket::parse (const ::std::string& content)
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_inside ", ch);
                 switch (ch)
                 {   case '>' :  if (twas > text)
-                                {   nits.set_context (line_, text, twas);
+                                {   nits.set_context (line_, near_here (b, e, text, twas));
                                     ve_.emplace_back (nits, line_, text, twas);
                                     if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                     nits.reset (); }
-                                nits.set_context (line_, soe, i+1);
+                                nits.set_context (line_, near_here (b, e, soe, i+1));
                                 ve_.emplace_back (nits, line_, collect, eofe, i, closure, false);
                                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_ncode ", quoted_limited_string (::std::string (collect, i), 30));
                                 nits.reset ();

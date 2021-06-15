@@ -29,17 +29,39 @@ avm_t avm;
 inline uint64_t avm_key (const e_element tag, const e_attribute a)
 {   return (static_cast < uint64_t > (tag) << 32) + static_cast < uint64_t > (a); }
 
+#define AVM_INIT(X) \
+    for (int index = 0; havt_##X [index].tag_ != elem_error; ++index) \
+        avm.insert (avm_t::value_type (avm_key (havt_##X [index].tag_, havt_##X [index].a_), &havt_##X [index]))
+
 void avm_init (nitpick& )
-{   for (int index = 0; havt_abc [index].tag_ != elem_error; ++index)
-        avm.insert (avm_t::value_type (avm_key (havt_abc [index].tag_, havt_abc [index].a_), &havt_abc [index]));
-    for (int index = 0; havt_defgh [index].tag_ != elem_error; ++index)
-        avm.insert (avm_t::value_type (avm_key (havt_defgh [index].tag_, havt_defgh [index].a_), &havt_defgh [index]));
-    for (int index = 0; havt_ijkl [index].tag_ != elem_error; ++index)
-        avm.insert (avm_t::value_type (avm_key (havt_ijkl [index].tag_, havt_ijkl [index].a_), &havt_ijkl [index]));
-    for (int index = 0; havt_mnopqr [index].tag_ != elem_error; ++index)
-        avm.insert (avm_t::value_type (avm_key (havt_mnopqr [index].tag_, havt_mnopqr [index].a_), &havt_mnopqr [index]));
-    for (int index = 0; havt_stuvwxyz [index].tag_ != elem_error; ++index)
-        avm.insert (avm_t::value_type (avm_key (havt_stuvwxyz [index].tag_, havt_stuvwxyz [index].a_), &havt_stuvwxyz [index])); }
+{   // these havt_? declarations written as one seriously bollox gcc. vc++ and clang are fine.
+    extern hav_t    havt_a [], havt_b [], havt_c [], havt_d [], havt_e [], havt_f [], havt_g [], havt_h [], havt_i [],
+                    havt_k [], havt_l [], havt_m [], havt_n [], havt_o [], havt_p [], havt_q [], havt_r [], havt_s [],
+                    havt_t [], havt_u [], havt_v [], havt_w [], havt_x [];
+
+    AVM_INIT(a);
+    AVM_INIT(b);
+    AVM_INIT(c);
+    AVM_INIT(d);
+    AVM_INIT(e);
+    AVM_INIT(f);
+    AVM_INIT(g);
+    AVM_INIT(h);
+    AVM_INIT(i);
+    AVM_INIT(k);
+    AVM_INIT(l);
+    AVM_INIT(m);
+    AVM_INIT(n);
+    AVM_INIT(o);
+    AVM_INIT(p);
+    AVM_INIT(q);
+    AVM_INIT(r);
+    AVM_INIT(s);
+    AVM_INIT(t);
+    AVM_INIT(u);
+    AVM_INIT(v);
+    AVM_INIT(w);
+    AVM_INIT(x); }
 
 bool is_invalid_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
 {   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;

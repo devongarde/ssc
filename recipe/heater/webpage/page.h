@@ -166,6 +166,7 @@ public:
     const sstr_t& profiles () const { return profiles_; }
     sstr_t& profiles () { return profiles_; }
     void title (const ::std::string& s) { title_ = s; }
+    bool corpus () const { return ! corpus_.empty (); }
     void corpus (const ::std::string& s) { corpus_ = s; }
     void keywords (const ::std::string& s) { keywords_ = s; }
     void description (const ::std::string& s) { description_ = s; }

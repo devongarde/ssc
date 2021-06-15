@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.108
+- default version of HTML 5 switched to W3's HTML 5.2.
+- added example website update script
+- specify which page content goes in the corpus
+
 0.0.107
 - SVG 1.2/Tiny
 - partial SVG 1.2/Full (May 2004 draft):

@@ -21,6 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 
+#define DEFAULT_LINE_LENGTH 120
+#define DESCRIPTION_LENGTH 80
+
 class options
 {   bool valid_ = false, stop_ = false;
 	::boost::program_options::variables_map var_, env_;

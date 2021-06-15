@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define ARGLEN_MAX  4096
 
+#define CORPUS_     "corpus"
 #define ENVIRONMENT_ "environment"
 #define GENERAL_    "general"
 #define HTML_       "html"
@@ -40,6 +41,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define JOIN        "."
 
+#define CORPUS      CORPUS_ JOIN
 #define ENVIRONMENT ENVIRONMENT_ JOIN
 #define GENERAL     GENERAL_ JOIN
 #define HTML        HTML_ JOIN
@@ -56,11 +58,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WMIN        WMIN_ JOIN
 #define WMOUT       WMOUT_ JOIN
 
+#define ALL         "all"
+#define ARTICLE     "article"
 #define ATTRIB      "attribute"
+#define BODY        "body"
 #define CATASTROPHE "catastrophe"
 #define CGI         "cgi"
 #define CHARSET     "charset"
-#define CHANGED      "changed"
+#define CHANGED     "changed"
 #define CHECK       "check"
 #define CLASS       "class"
 #define CODES       "codes"
@@ -69,12 +74,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMMENT     "comment"
 #define CONFIG      "config"
 #define COPY        "copy"
-#define CORPUS      "corpus"
 #define CSS_OPTION  "css"
 #define CURRENCY    "currency"
 #define CUSTOM      "custom"
 #define DBG         "debug"
 #define DEFCONF     "defconf"
+#define DETAIL      "detail"
 #define DINGBATARG  "dingbat"
 #define ERR         "error"
 #define ELEMENT     "element"
@@ -91,6 +96,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define INDEX       "index"
 #define INFO        "info"
 #define LANG        "lang"
+#define MAIN        "main"
 #define MAXFILESIZE "maxfilesize"
 #define META        "meta"
 #define METANAME    "metaname"
@@ -121,6 +127,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SNIPPET     "snippet"
 #define SPACING     "space"
 #define SPEC        "spec"
+#define SPLURGE      "splurge"
 #define SSI         "ssi"
 #define SUMMARY     "summary"
 #define TAGS        "tags"
