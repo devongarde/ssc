@@ -1,6 +1,8 @@
 #!/bin/sh
 #
 
+./ssc -f ../toast/conf/html/conf.conf
+./ssc -f ../toast/conf/xhtml/conf.conf
 ./ssc -f ../toast/csp/1/csp.conf
 ./ssc -f ../toast/csp/2/csp.conf
 ./ssc -f ../toast/csp/3/csp.conf

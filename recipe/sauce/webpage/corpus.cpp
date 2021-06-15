@@ -57,7 +57,7 @@ void close_corpus (nitpick& nits)
     corpus_file.clear (); }
 
 void extend_corpus (nitpick& nits, const ::std::string& title, const ::std::string& site_path, const ::std::string& text,
-    const ::std::string& author,  const ::std::string& keywords, const ::std::string& description)
+    const ::std::string& author, const ::std::string& keywords, const ::std::string& description)
 {   if (! has_corpus ()) return;
     if (dump.bad ()) return;
     if (text.empty ()) return;

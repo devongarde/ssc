@@ -30,6 +30,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 context_t context;
 
+context_t::context_t ()
+    :   validation_ ("Additional attribute values (check " PROG "'s source code for context)", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH)
+{   environment_.resize (env_max); };
+
 context_t& context_t::output (const ::std::string& s)
 {   output_ = s;
     fos_.reset (new ::std::ofstream (s));
@@ -94,37 +98,23 @@ schema_version context_t::mf_ver () const
         case 2 : return mf_2;
         default : return mf_all; } }
 
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char idealstart, const char idealend)
-{   const int maxish = 80;
-    const int halfish = maxish / 2;
-    ::std::string res;
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to, const char idealstart, const char idealend)
+{   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
+    int maxish = DEFAULT_LINE_LENGTH - 16;
+    if ((to - from) > INT8_MAX) return ::std::string (from, to);
+    int len = static_cast < int > (to - from);
+    if (len >= maxish) return ::std::string (from, to);
+    int halfish = (maxish - len) / 2;
+    ::std::string pre, post;
     ::std::string::const_iterator mb, me;
-    if (e - b <= maxish) { me = e; mb = b; }
+    if ((e - b) <= maxish) { me = e; mb = b; }
     else
-    {   if (b + halfish >= i) mb = b; else mb = i - halfish;
-        if (e - halfish <= i) me = e; else me = i + halfish; }
-    bool nudged = false;
-    bool nonblank = false;
-    if (idealstart != 0)
-        for (::std::string::const_iterator j = mb; j < i; ++j)
-            if (*j == idealstart) { mb = j+1; nudged = true; break; }
-            else if (! ::std::iswspace (*j) && ! ::std::iswcntrl (*j)) nonblank = true;
-    if (! nudged)
-        for (::std::string::const_iterator j = mb; j < i; ++j)
-            if (::std::iswspace (*j) || ::std::iswcntrl (*j)) { mb = j+1; nudged = true; } else nonblank = true;
-    if (! nudged && nonblank) res += "... ";
-    bool en = false;
-    nonblank = false;
-    if (idealend != 0)
-        for (::std::string::const_iterator j = i; j < e; ++j)
-            if (*j == idealend) { me = j; en = true; break; }
-            else if (! ::std::iswspace (*j) && ! ::std::iswcntrl (*j)) nonblank = true;
-    if (! en)
-        for (::std::string::const_iterator j = i; j < e; ++j)
-            if (::std::iswspace (*j) || ::std::iswcntrl (*j)) { me = j; en = true; break; } else nonblank = true;
-    res += ::std::string (mb, me);
-    if (! en && nonblank) res += " ...";
-    return res; }
+    {   if ((b + halfish) >= from) mb = b; else { mb = from - halfish; pre = "..."; }
+        if ((e - halfish) <= to) me = e; else { me = to + halfish; post = "..."; } }
+    return pre + ::std::string (mb, from) + " *** " + ::std::string (from, to) + " *** " + ::std::string (to, me) + post; }
+
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char idealstart, const char idealend)
+{   return near_here (b, e, i, i, idealstart, idealend); }
 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level)
 {   if (msg.empty () || ! context.tell (level)) return ::std::string ();
@@ -132,6 +122,14 @@ schema_version context_t::mf_ver () const
     if (! res.empty ()) res += "\n";
     res += fyi () + msg + "\n";
     return res; }
+
+context_t& context_t::shadow_ignore (const vstr_t& s)
+{   shadow_ignore_.clear ();
+    for (auto ss : s)
+        if (! ss.empty ())
+            if (ss.at (0) == '.') shadow_ignore_.emplace_back (ss);
+            else shadow_ignore_.emplace_back (::std::string (1, '.') + ss);
+    return *this; }
 
 context_t& context_t::svg_version (const int mjr, const int mnr)
 {   switch (mjr)
@@ -205,3 +203,8 @@ html_version context_t::html_ver (const int major, const int minor)
 context_t& context_t::environment (const e_environment e, const ::std::string& s)
 {   environment_.at (e) = s.substr (0, ARGLEN_MAX);
     return *this; }
+
+bool context_t::severity_exceeded () const
+{   for (int x = 1; x <= static_cast < int > (report_error_); ++x)
+        if (data_.count (static_cast < e_severity> (x))) return true;
+    return false; }

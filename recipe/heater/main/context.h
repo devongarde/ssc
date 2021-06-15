@@ -39,15 +39,16 @@ class replies;
 class corpus;
 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char idealstart = 0, const char idealend = 0);
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to, const char idealstart = 0, const char idealend = 0);
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
 
 class context_t
-{   bool            cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false, info_ = false, load_css_ = false,
-                    links_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nochange_ = false,
-                    notify_ = false, once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false,
-                    rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_changed_ = false,
-                    shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false,
-                    unknown_class_ = false, valid_ = false, versioned_ = false;
+{   bool            article_ = false, body_ = false, cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false,
+                    info_ = false, load_css_ = false, links_ = false, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false,
+                    nids_ = false, nits_ = false, nochange_ = false, notify_ = false, once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, rel_ = false,
+                    repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false,
+                    shadow_comment_ = false, shadow_changed_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false,
+                    stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -55,6 +56,7 @@ class context_t
     schema_version  schema_ver_;
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
+    e_severity      report_error_ = es_error;
     ::std::string   base_, export_root_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, msg_, output_, path_, persisted_, root_, secret_, server_,
                     shadow_, shadow_persist_, snippet_, stats_, stub_, test_header_, user_, webmention_, write_path_;
     ::boost::filesystem::path config_, corpus_;
@@ -65,13 +67,15 @@ class context_t
     css_cache       css_;
     ::std::unique_ptr < ::std::ofstream > fos_;
     stats_t         data_;
-    ::boost::program_options::options_description   validation_;
+    ::boost::program_options::options_description validation_;
     e_svg_processing_mode svg_mode_;
     ::std::string ensane (const ::std::string& s) const;
 public:
-    context_t () { environment_.resize (env_max); };
+    context_t ();
     int parameters (int argc, char** argv);
+    bool article () const { return article_; }
     const ::std::string base () const { return base_; }
+    bool body () const { return body_; }
     bool cgi () const { return cgi_; }
     bool checking_urls () const { return checking_urls_; }
     bool clear () const { return clear_; }
@@ -104,6 +108,7 @@ public:
     bool load_css () const { return ! load_css_; }
     const ::std::string macro_end () const { return macro_end_; }
     const ::std::string macro_start () const { return macro_start_; }
+    bool main () const { return main_; }
     e_math_version math_version () const { return version_.math_version (); }
     unsigned long max_file_size () const { return static_cast < unsigned long > (max_file_size_); }
     bool md_export () const { return md_export_; }
@@ -130,6 +135,7 @@ public:
     bool rdf () const { return rdf_; }
     bool rel () const { return rel_; }
     bool repeated () const { return repeated_; }
+    e_severity report_error () const { return report_error_; }
     bool reset () const { return reset_; }
     bool revoke () const { return revoke_; }
     bool rfc_1867 () const { return rfc_1867_; }
@@ -175,7 +181,9 @@ public:
     bool shadow_files () const { return ((copy_ > c_html) && (copy_ <= c_deduplicate)); }
     bool shadow_any () const { return shadow_pages (); }
     bool versioned () const { return versioned_; }
+    context_t& article (const bool b) { article_ = b; return *this; }
     context_t& base (const ::std::string& s) { base_ = s; return *this; }
+    context_t& body (const bool b) { body_ = b; return *this; }
     context_t& cgi (const bool b) { cgi_ = b; return *this; }
     context_t& checking_urls (const bool b) { checking_urls_ = b; return *this; }
     context_t& clear (const bool b) { clear_ = b; return *this; }
@@ -218,6 +226,7 @@ public:
     context_t& load_css (const bool b) { load_css_ = ! b; return *this; }
     context_t& macro_end (const ::std::string& s) { macro_end_ = s; return *this; }
     context_t& macro_start (const ::std::string& s) { macro_start_ = s; return *this; }
+    context_t& main (const bool b) { main_ = b; return *this; }
     context_t& math_version (const int v)
     {   if ((v >= 1) && (v <= 4)) version_.math_version (static_cast < e_math_version > (v));
         else version_.math_version (math_none);
@@ -251,6 +260,7 @@ public:
     context_t& rdf (const bool b) { rdf_ = b; return *this; }
     context_t& rel (const bool b) { rel_ = b; return *this; }
     context_t& repeated (const bool b) { repeated_ = b; return *this; }
+    context_t& report_error (const e_severity sev) { report_error_ = sev; return *this; }
     context_t& reset (const bool b) { reset_ = b; return *this; }
     context_t& revoke (const bool b)
     {   revoke_ = b;
@@ -271,7 +281,7 @@ public:
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
     context_t& shadow_comment (const bool b) { shadow_comment_ = b; return *this; }
     context_t& shadow_changed (const bool b) { shadow_changed_ = b; return *this; }
-    context_t& shadow_ignore (const vstr_t& s) { shadow_ignore_ = s; return *this; }
+    context_t& shadow_ignore (const vstr_t& s);
     context_t& shadow_persist (const ::std::string& s) { shadow_persist_ = s; return *this; }
     context_t& shadow_root (const ::std::string& s) { shadow_ = s; return *this; }
     context_t& shadow_ssi (const bool b) { shadow_ssi_ = b; return *this; }
@@ -350,6 +360,7 @@ public:
     {   out (data_.report (true)); }
     uint64_t file_count () const
     {   return data_.file_count (); }
+    bool severity_exceeded () const;
     ::boost::program_options::options_description& validation () { return validation_; }
     const ::boost::program_options::options_description& validation () const { return validation_; }
     ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const; };

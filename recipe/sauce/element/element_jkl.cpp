@@ -155,13 +155,13 @@ void element::examine_link ()
         if (tis5)
         {   html_version from (r.first ());
             if (! may_apply (node_.version (), from, r.last ()))
-            {   if (from.is_mf ()) pick (nit_link_rel_off, es_comment, ec_attribute, "<LINK> REL=", quote (s), " is not standard ", node_.version ().report ());
-                else pick (nit_link_rel_off, es_info, ec_attribute, "<LINK> REL=", quote (s), " is not standard ", node_.version ().report ());
+            {   if (from.is_mf ()) pick (nit_link_rel_off, es_comment, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report ());
+                else pick (nit_link_rel_off, es_info, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report ());
                 continue; }
             if (! from.is_rel ())
             {   e_severity sv = es_info;
                 if (context.rel ()) sv = es_debug; else if (from.is_mf ()) sv = es_comment;
-                pick (nit_link_rel_off, sv, ec_attribute, "<LINK> REL=", quote (s), " is not standard ", node_.version ().report ());
+                pick (nit_link_rel_off, sv, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report ());
                 continue; }
             if (! from.is_mf ())
                 if (! from.is_link ())

@@ -104,6 +104,10 @@ unsigned stats_t::count (const e_element e) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> element_count (e); }
 
+unsigned stats_t::count (const e_severity s) const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> severity_count (s); }
+
 unsigned stats_t::visible_count (const e_element e) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> visible_count (e); }

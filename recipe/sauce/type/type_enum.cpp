@@ -1107,6 +1107,29 @@ struct symbol_entry < html_version, e_scei > scei_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "start", scei_start },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", scei_inherit } };
 
+struct symbol_entry < html_version, e_severity > severity_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, CATASTROPHE, es_catastrophic },
+    { { HTML_TAGS }, { HTML_UNDEF }, ERR, es_error },
+    { { HTML_TAGS }, { HTML_UNDEF }, WARNING, es_warning },
+    { { HTML_TAGS }, { HTML_UNDEF }, INFO, es_info },
+    { { HTML_TAGS }, { HTML_UNDEF }, COMMENT, es_comment },
+    { { HTML_TAGS }, { HTML_UNDEF }, DBG, es_debug },
+    { { HTML_TAGS }, { HTML_UNDEF }, DETAIL, es_detail },
+    { { HTML_TAGS }, { HTML_UNDEF }, SPLURGE, es_splurge },
+    { { HTML_TAGS }, { HTML_UNDEF }, ALL, es_all } };
+
+// typedef enum { sh_no, sh_pages, sh_hard, sh_soft, sh_copy, sh_dedu, sh_report } e_shadow;
+struct symbol_entry < html_version, e_shadow > shadow_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "no", sh_no },
+    { { HTML_TAGS }, { HTML_UNDEF }, "pages", sh_pages },
+#ifndef NOLYNX
+    { { HTML_TAGS }, { HTML_UNDEF }, "hard", sh_hard },
+    { { HTML_TAGS }, { HTML_UNDEF }, "soft", sh_soft },
+#endif // NOLYNX
+    { { HTML_TAGS }, { HTML_UNDEF }, "all", sh_copy },
+    { { HTML_TAGS }, { HTML_UNDEF }, "dedu", sh_dedu },
+    { { HTML_TAGS }, { HTML_UNDEF }, "report", sh_report } };
+
 struct symbol_entry < html_version, e_shape7 > shape7_symbol_table [] =
 {   { { HTML_JAN05 }, { HTML_UNDEF }, "circle", s7_circ },
     { { HTML_JAN05 }, { HTML_UNDEF }, "circ", s7_circ },
@@ -1578,7 +1601,7 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
 
 #define INIT_ENUM(XX) \
     type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < html_version, e_##XX >)); \
-    context.validation ().add_options () (VALIDATION #XX, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid '" #XX "'; may be repeated")
+    context.validation ().add_options () (VALIDATION #XX, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid '" #XX "'.")
 
 void enum_init (nitpick& nits)
 {   INIT_ENUM (action);
@@ -1659,6 +1682,8 @@ void enum_init (nitpick& nits)
     INIT_ENUM (rules);
     INIT_ENUM (sandbox);
     INIT_ENUM (scei);
+    INIT_ENUM (severity);
+    INIT_ENUM (shadow);
     INIT_ENUM (shape7);
     INIT_ENUM (shape_rendering);
     INIT_ENUM (smei);

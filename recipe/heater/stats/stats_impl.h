@@ -105,6 +105,8 @@ public:
     {   return file_count_; }
     unsigned element_count (const e_element e) const
     {   return element_.at (e); }
+    unsigned severity_count (const e_severity s) const
+    {   return severity_.at (s); }
     unsigned visible_count (const e_element e) const
     {   return visible_.at (e); }
     ::std::string report (const bool grand) const; };

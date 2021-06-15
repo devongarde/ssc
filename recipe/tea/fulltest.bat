@@ -1,3 +1,5 @@
+ssc.exe -f ../toast/conf/html/conf.conf
+ssc.exe -f ../toast/conf/xhtml/conf.conf
 ssc.exe -f ../toast/csp/1/csp.conf
 ssc.exe -f ../toast/csp/2/csp.conf
 ssc.exe -f ../toast/csp/3/csp.conf

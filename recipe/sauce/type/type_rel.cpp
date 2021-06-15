@@ -277,7 +277,7 @@ struct symbol_entry < html_version, e_rel > rel_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, R_SHORTLINK, r_shortlink },
     { { HTML_4_0, HR_MF }, { HTML_UNDEF }, R_SIBLING, r_sibling },
     { { HTML_4_0, HR_ALL | HR_MF }, { HTML_DEC11 }, R_SIDEBAR, r_sidebar },
-    { { HTML_4_0 }, { HTML_UNDEF }, R_SITEMAP, r_sitemap },
+    { { HTML_4_0, HR_MF }, { HTML_UNDEF }, R_SITEMAP, r_sitemap },
     { { HTML_4_0, HR_MF }, { HTML_UNDEF }, R_SOURCE, r_source },
     { { HTML_4_0 }, { HTML_UNDEF }, R_SPONSOR, r_sponsor },
     { { HTML_4_0 }, { HTML_UNDEF }, R_SPOUSE, r_spouse },

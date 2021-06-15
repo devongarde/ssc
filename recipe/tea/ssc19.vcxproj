@@ -5,14 +5,6 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="KwikDbg|Win32">
-      <Configuration>KwikDbg</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="KwikDbg|x64">
-      <Configuration>KwikDbg</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -186,11 +178,29 @@
     <ClCompile Include="..\sauce\attribute\attributes.cpp" />
     <ClCompile Include="..\sauce\attribute\attribute_constructor.cpp" />
     <ClCompile Include="..\sauce\attribute\avm.cpp" />
-    <ClCompile Include="..\sauce\attribute\avm_data_abc.cpp" />
-    <ClCompile Include="..\sauce\attribute\avm_data_ijkl.cpp" />
-    <ClCompile Include="..\sauce\attribute\avm_data_defgh.cpp" />
-    <ClCompile Include="..\sauce\attribute\avm_data_mnopqr.cpp" />
-    <ClCompile Include="..\sauce\attribute\avm_data_stuvwxyz.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_a.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_b.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_c.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_e.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_f.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_g.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_h.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_i.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_d.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_k.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_l.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_m.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_n.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_o.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_p.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_q.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_r.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_s.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_t.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_u.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_v.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_w.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_x.cpp" />
     <ClCompile Include="..\sauce\attribute\namespace.cpp" />
     <ClCompile Include="..\sauce\css\css.cpp" />
     <ClCompile Include="..\sauce\css\css_cache.cpp" />
@@ -224,16 +234,12 @@
     <ClCompile Include="..\sauce\main\ssc.cpp" />
     <ClCompile Include="..\sauce\main\standard.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">main\standard.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main\standard.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="..\sauce\main\version.cpp" />
@@ -321,11 +327,18 @@
     <ClCompile Include="..\sauce\webpage\root.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\toast\conf\betsy-live.conf" />
-    <None Include="..\toast\conf\corona-corrupt.conf" />
-    <None Include="..\toast\conf\corona-live.conf" />
-    <None Include="..\toast\conf\corrupt.conf" />
-    <None Include="..\toast\conf\live.conf" />
+    <None Include="..\toast\conf\corrupt\corona-corrupt.conf" />
+    <None Include="..\toast\conf\corrupt\corrupt.conf" />
+    <None Include="..\toast\conf\html\conf.conf" />
+    <None Include="..\toast\conf\html\conf.spec" />
+    <None Include="..\toast\conf\html\index.html" />
+    <None Include="..\toast\conf\live\betsy-live.conf" />
+    <None Include="..\toast\conf\live\corona-live.conf" />
+    <None Include="..\toast\conf\live\live.conf" />
+    <None Include="..\toast\conf\upload.sh" />
+    <None Include="..\toast\conf\xhtml\conf.conf" />
+    <None Include="..\toast\conf\xhtml\conf.spec" />
+    <None Include="..\toast\conf\xhtml\index.xhtml" />
     <None Include="..\toast\csp\1\1.html" />
     <None Include="..\toast\csp\1\2.html" />
     <None Include="..\toast\csp\1\3.html" />
@@ -6264,7 +6277,6 @@
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
     <Text Include="..\gen\gen.txt" />
-    <Text Include="..\toast\conf\README.txt" />
     <Text Include="..\toast\README.txt" />
     <Text Include="..\toast\snippet\README.txt" />
     <Text Include="..\toast\tmp\README.txt" />
@@ -6297,19 +6309,15 @@
     <None Include="..\toast\living\jul09\clock.manifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\living\jan10\clock.manifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
@@ -6327,12 +6335,6 @@
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -6343,14 +6345,6 @@
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
-    <EnableASAN>false</EnableASAN>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
@@ -6375,16 +6369,10 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -6392,11 +6380,6 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
@@ -6412,11 +6395,6 @@
     <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
     <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -6449,35 +6427,6 @@
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|Win32'">
-    <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateMapFile>true</GenerateMapFile>
-      <HeapReserveSize>33554432</HeapReserveSize>
-      <StackReserveSize>67108864</StackReserveSize>
-    </Link>
-    <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..
-$(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -6540,35 +6489,6 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='KwikDbg|x64'">
-    <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <ControlFlowGuard>false</ControlFlowGuard>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateMapFile>true</GenerateMapFile>
-      <HeapReserveSize>33554432</HeapReserveSize>
-      <StackReserveSize>67108864</StackReserveSize>
-    </Link>
-    <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
@@ -6596,8 +6516,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <StackReserveSize>67108864</StackReserveSize>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..
-$(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

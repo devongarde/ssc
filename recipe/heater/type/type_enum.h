@@ -289,6 +289,8 @@ template < > class type_master < t_role > : public enum_n < t_role, e_aria_role 
 template < > class type_master < t_rules > : public enum_n < t_rules, e_rules > { };
 template < > class type_master < t_sandbox > : public enum_n < t_sandbox, e_sandbox > { };
 template < > class type_master < t_scei > : public enum_n < t_scei, e_scei > { };
+template < > class type_master < t_severity > : public enum_n < t_severity, e_severity > { };
+template < > class type_master < t_shadow > : public enum_n < t_shadow, e_shadow > { };
 template < > class type_master < t_shape7 > : public enum_n < t_shape7, e_shape7 > { };
 template < > class type_master < t_ssi > : public enum_n < t_ssi, e_ssi > { };
 template < > class type_master < t_sgml > : public enum_n < t_sgml, e_sgml > { };

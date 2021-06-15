@@ -2022,6 +2022,7 @@ typedef enum {  doc_unknown, doc_context, doc_html, doc_public, doc_system, doc_
                 doc_compound_m, doc_compound_1_0, doc_compound_1_1 } e_sgml;
 const e_sgml last_sgml = doc_compound_1_1;
 
+typedef enum { sh_error, sh_no, sh_pages, sh_hard, sh_soft, sh_copy, sh_dedu, sh_report } e_shadow;
 typedef enum { sh_ondefine, sh_onuse, sh_none, sh_inherit } e_shadowinherit;
 typedef enum { sh_circle, sh_default, sh_poly, sh_rect } e_shape4;
 typedef enum { s7_circ, s7_default, s7_poly, s7_rect } e_shape7;
@@ -2162,19 +2163,19 @@ typedef enum {
     t_rap, t_rating, t_real, t_real_1_2, t_real_ai, t_real_i, t_reals, t_referrer, t_refresh, t_refx, t_refy, t_regex, t_rel, t_rel_a, t_rel_avoid, t_rel_css,
         t_rel_illegal, t_rel_link, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents, t_repeatcount, t_restart, t_result, t_reveal_trans, t_role,
         t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim, t_rowscols,  t_rsvp, t_rules,
-    t_sandbox, t_sandboxen, t_scei, t_schema, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_sex, t_sgml, t_shape, t_shape3, t_shape4,
-        t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon, t_shape_fn_circlesz, t_shape_fn_ellipsesz,
-        t_shape_fn_polygonsz, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_side, t_size, t_size3, t_sizes, t_sizex, t_smei, t_spacer,
-        t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_f, t_start, t_stitchtiles,
-        t_streamedcontents, t_svg_feature, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_step, t_style, t_svg_align,  t_svg_baselineshift, t_svg_baseprofile,
-        t_svg_clip, t_svg_content, t_svg_direction, t_svg_direction2, t_svg_display, t_svg_duration, t_svg_features, t_svg_fontstretch, t_svg_fontstretch_ff,
-        t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant, t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff, t_svg_fontweights, t_svg_host,
-        t_svg_method, t_svg_mode, t_svg_overflow, t_svg_phase, t_svg_playbackorder, t_svg_shape, t_svg_shapefn, t_svg_side, t_svg_svg, t_svg_time,
-        t_svg_time_default, t_svg_time_inherit, t_svg_time_none, t_svg_timelinebegin, t_svg_transform, t_svg_type, t_svg_units, t_svg_values, t_svg_version,
-        t_svg_version_grand, t_svg_viewbox, t_svg_viewboxrect, t_sym, t_syncbehaviour, t_syncbehaviourdefault,
+    t_sandbox, t_sandboxen, t_scei, t_schema, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml, t_shadow,
+        t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon, t_shape_fn_circlesz,
+        t_shape_fn_ellipsesz, t_shape_fn_polygonsz, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_side, t_size, t_size3, t_sizes, t_sizex,
+        t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_f, t_start,
+        t_stitchtiles, t_streamedcontents, t_svg_feature, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_step, t_style, t_svg_align,  t_svg_baselineshift,
+        t_svg_baseprofile, t_svg_clip, t_svg_content, t_svg_direction, t_svg_direction2, t_svg_display, t_svg_duration, t_svg_features, t_svg_fontstretch,
+        t_svg_fontstretch_ff, t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant, t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff,
+        t_svg_fontweights, t_svg_host, t_svg_method, t_svg_mode, t_svg_overflow, t_svg_phase, t_svg_playbackorder, t_svg_shape, t_svg_shapefn, t_svg_side,
+        t_svg_svg, t_svg_time, t_svg_time_default, t_svg_time_inherit, t_svg_time_none, t_svg_timelinebegin, t_svg_transform, t_svg_type, t_svg_units,
+        t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_svg_viewboxrect, t_sym, t_syncbehaviour, t_syncbehaviourdefault,
     t_tableframe, t_tablevalues, t_target, t_tbalign, t_tdscope, t_tel, t_tel_format, t_tendstotype, t_text, t_text_decoration, t_textoverflow, t_text_rendering,
-        t_tfmu, t_tfa, t_tfi, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, t_transition_type, t_transp,
-        t_truefalseempty, t_turbulence_type, t_type, t_tz,
+        t_tfmu, t_tfa, t_tfi, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, t_transition_type,
+        t_transp, t_truefalseempty, t_turbulence_type, t_type, t_tz,
     t_ugeo, t_unicode_bidi, t_unit, t_units, t_unsigned, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, t_urange, t_urifn, t_urifn_ni, t_urisz, t_url,
         t_urls,
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2, t_vector_effect_20,

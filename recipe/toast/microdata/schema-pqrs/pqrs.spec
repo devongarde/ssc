@@ -338,7 +338,7 @@ PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 160 unrecognised_value unknown_rel no_such_folder url_not_found link_rel_off
 162 no_such_folder url_not_found
 163 link_rel_off
-164 url_not_found link_rel_off
+164 url_not_found
 165 no_such_folder url_not_found no_such_folder cannot_load_css
 184 unrecognised_value
 192 no_such_folder url_not_found

@@ -25,7 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_metaname.h"
 
 void element::examine_main ()
-{   if (! a_.known (a_hidden)) only_one_visible_of (elem_main);
+{   if (! context.corpus ().empty ()) if (context.main ()) page_.corpus (text ());
+    if (! a_.known (a_hidden)) only_one_visible_of (elem_main);
     if ((node_.version ().is_5 ()))
         if (node_.version ().w3 ())
             check_ancestors (elem_main, empty_element_bitset | elem_article | elem_aside | elem_footer | elem_header | elem_nav);
