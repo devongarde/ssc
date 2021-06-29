@@ -88,11 +88,13 @@ ssc.exe -f ../toast/shadow/copyover/copyover.conf
 ssc.exe -f ../toast/shadow/dedu/dedu.conf
 ssc.exe -f ../toast/shadow/dedudiff/dedudiff.conf
 ssc.exe -f ../toast/shadow/deduover/deduover.conf
+ssc.exe -f ../toast/shadow/delete/delete.conf
 ssc.exe -f ../toast/shadow/hard/hard.conf
 ssc.exe -f ../toast/shadow/pages/pages.conf
 ssc.exe -f ../toast/shadow/soft/soft.conf
 ssc.exe -f ../toast/shadow/softover/softover.conf
 ssc.exe -f ../toast/shadow/ssi/ssi.conf
+ssc.exe -f ../toast/shadow/update/update.conf
 ssc.exe -f ../toast/snippet/conf/snippet.conf
 ssc.exe -f ../toast/snippet/kiwi/snippet.conf
 ssc.exe -f ../toast/stats/detail/stats.conf

@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "utility/common.h"
+#include "utility/filesystem.h"
 #include "main/context.h"
 #include "main/args.h"
 
@@ -126,20 +127,17 @@ bool write_text_file (const ::std::string& name, const ::std::string& content)
                 context.err ("\n"); }
             return false; }
         f.close ();
-        if (::boost::filesystem::exists (n))
-            if (! ::boost::filesystem::remove (n))
+        if (file_exists (n))
+            if (! delete_file (n))
             {   if (context.tell (e_severe))
                 {   context.err ("Cannot delete existing file ");
                     context.err (p.string ());
                     context.err ("\n"); }
                 return false; }
-        ::boost::filesystem::rename (p, n);
+        rename_file (p, n);
         return true; }
     catch (...) { }
-    try
-    {   if (::boost::filesystem::exists (p))
-            ::boost::filesystem::remove (p); }
-    catch (...) { }
+    if (file_exists (p)) delete_file (p);
     if (context.tell (e_error))
     {   context.err ("Cannot update ");
         context.err (p.string ());
@@ -263,19 +261,10 @@ bool ends_with_example (const ::std::string& s)
 
 
 ::boost::filesystem::path get_tmp_filename ()
-{   ::boost::system::error_code ec;
-#ifdef FS_THROWS
-	::boost::filesystem::path model;
-    try
-	{	model = ::boost::filesystem::temp_directory_path(ec); }
-	catch (...)
-	{ return ::boost::filesystem::path(); }
-#else
-    ::boost::filesystem::path model (::boost::filesystem::temp_directory_path (ec));
-    if (ec.failed ()) return ::boost::filesystem::path ();
-#endif
+{   ::boost::filesystem::path model (temp_dir ());
+    if (model.string ().empty ()) return ::boost::filesystem::path ();
     model /= TEMP_FILE_MASK;
-    return ::boost::filesystem::unique_path (model); }
+    return absolute_name (model); }
 
 bool read_header (::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename)
 {   ::std::string prog = read_field < ::std::string > (json, APP);
@@ -304,11 +293,11 @@ bool replace_file (::boost::property_tree::ptree& json, ::boost::filesystem::pat
 {   ::boost::filesystem::path tmp (filename), old (filename);
     tmp += ".tmp";
     old += ".old";
-    if (! ::boost::filesystem::exists (filename))
+    if (! file_exists (filename))
     {   try
         {   ::boost::property_tree::write_json (filename.string (), json); }
         catch (...)
-        {   ::boost::filesystem::remove (filename);
+        {   delete_file (filename);
             if (context.tell (e_severe))
             {   context.err ("Cannot write ");
                 context.err (filename.string ());
@@ -317,19 +306,17 @@ bool replace_file (::boost::property_tree::ptree& json, ::boost::filesystem::pat
     else
     {   try
         {   ::boost::property_tree::write_json (tmp.string (), json);
-            ::boost::filesystem::rename (filename, old); }
+            rename_file (filename, old); }
         catch (...)
-        {   ::boost::filesystem::remove (tmp);
+        {   delete_file (tmp);
             if (context.tell (e_severe))
             {   context.err ("Cannot write ");
                 context.err (tmp.string ());
                 context.err ("\n"); }
             return false; }
-        try
-        {   ::boost::filesystem::rename (tmp, filename); }
-        catch (...)
-        {   ::boost::filesystem::rename (old, filename);
-            ::boost::filesystem::remove (tmp);
+        if (! rename_file (tmp, filename))
+        {   rename_file (old, filename);
+            delete_file (tmp);
             if (context.tell (e_severe))
             {   context.err ("Cannot replace ");
                 context.err (filename.string ());
@@ -337,9 +324,7 @@ bool replace_file (::boost::property_tree::ptree& json, ::boost::filesystem::pat
                 context.err (tmp.string ());
                 context.err ("\n"); }
             return false; }
-       try
-        {   ::boost::filesystem::remove (old); }
-        catch (...) { } }
+       delete_file (old); }
     return true; }
 
 ::std::string fyi ()

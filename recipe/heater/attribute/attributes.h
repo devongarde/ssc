@@ -111,7 +111,7 @@ public:
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe);
     bool invalid_access (nitpick& nits, const html_version& v, sstr_t* ids);
     bool has_url () const;
-    bool verify_url (nitpick& nits, const html_version& v, const element& e);
+    bool verify_url (nitpick& nits, const html_version& v, element& e);
     void verify_attributes (nitpick& nits, const html_version& v, element* pe);
     void mark (page& p, const e_attribute a);
     void mark (page& p);

@@ -13,5 +13,5 @@ ATTRIB -R ..\toast\shadow\copydiff\changed.html
 ATTRIB -R ..\toast\shadow\copydiff\changed.inc
 COPY /Y /B ..\toast\shadow\copydiff\update.html ..\toast\shadow\copydiff\changed.html
 COPY /Y /B ..\toast\shadow\copydiff\update.inc ..\toast\shadow\copydiff\changed.inc
-powershell (ls ..\toast\shadow\copydiff\changed.html).LastWriteTime = Get-Date
-powershell (ls ..\toast\shadow\copydiff\changed.inc).LastWriteTime = Get-Date
+COPY /B ..\toast\shadow\copydiff\changed.html+,,..\toast\shadow\copydiff\changed.html
+COPY /B ..\toast\shadow\copydiff\changed.inc+,,..\toast\shadow\copydiff\changed.inc

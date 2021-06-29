@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "css/css.h"
 #include "utility/quote.h"
+#include "utility/filesystem.h"
 #include "utility/byteorder.h"
 #include "main/context.h"
 #include "microformat/prop.h"
@@ -44,7 +45,7 @@ bool css::parse (nitpick& nits, const html_version& v, const ::std::string& cont
 bool css::parse_file (nitpick& nits, const page& p, const url& u)
 {   nits.set_context (0, u.original ());
     if (context.rpt_opens ())
-        nits.pick (nit_opening_file, es_debug, ec_css, "Loading ", ::boost::filesystem::absolute (u.original ()));
+        nits.pick (nit_opening_file, es_debug, ec_css, "Loading ", absolute_name (u.original ()));
     ::std::string content (p.load_url (nits, u));
     if (content.empty ())
     {   nits.pick (nit_cannot_load_css, es_error, ec_css, "Cannot load ", quote (u.original ()), ", or it is empty");

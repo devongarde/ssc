@@ -49,7 +49,9 @@ class directory
     void internal_get_export_path (const ::std::string& item, ::boost::filesystem::path& res) const;
     ::std::string internal_get_site_path (nitpick& nits, const ::std::string& item) const;
     bool shadow_folder (nitpick& nits);
-    bool shadow_file (nitpick& nits, const ::std::string& name);
+    bool shadow_file (nitpick& nits, const ::std::string& name, sstr_t& shadowed);
+    bool avoid_update (const ::boost::filesystem::path& original, const ::boost::filesystem::path& shadow, const bool page);
+    bool avoid_update (const ::std::string& name, const bool page);
 protected:
     directory (nitpick& nits, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check = true);
 public:

@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "utility/common.h"
+#include "utility/filesystem.h"
 #include "main/context.h"
 #include "webpage/external.h"
 #include "webpage/page.h"
@@ -41,7 +42,7 @@ directory::directory (const path_root_ptr& root)
 
 directory::directory (const ::std::string& name, const bool offsite)
     : name_ (name), offsite_ (offsite), mummy_ (nullptr)
-{   if (! offsite) ndx_ = insert_directory_path (get_disk_path (), 0, this); }
+{   if (! offsite) ndx_ = insert_directory_path (get_disk_path ()); }
 
 void directory::swap (directory& d) NOEXCEPT
 {   name_.swap (d.name_);
@@ -179,25 +180,15 @@ bool directory::scan (nitpick& nits, const ::std::string& site)
 bool directory::add_to_content (nitpick& nits, ::boost::filesystem::directory_entry& i, const ::std::string& site)
 {   ::boost::filesystem::path q (i.path ());
     fileindex_t ndx = nullfileindex;
-    if (::boost::filesystem::is_directory (q)) ndx = insert_directory_path (q, 0, this);
-    else
-    {   ::std::time_t last_write = 0;
-        uintmax_t size = 0;
-#ifdef FS_THROWS
-        try
-	    {	size = ::boost::filesystem::file_size (q);
-            last_write = ::boost::filesystem::last_write_time (q);
-            ndx = insert_disk_path (q, 0, this, size, last_write); }
-	    catch (...)
-#else // FS_THROWS
-        ::boost::system::error_code ec;
-        size = ::boost::filesystem::file_size (q, ec);
-        if (! ec.failed ()) last_write = ::boost::filesystem::last_write_time (q, ec);
-        if (! ec.failed ()) ndx = insert_disk_path (q, 0, this, size, last_write);
-        else
-#endif // FS_THROWS
-        {   ndx = insert_borked_path (q, 0, this);
-            nits.pick (nit_cannot_read, es_warning, ec_directory, "ignoring ", quote (q.string ())); } }
+    if (is_folder (q)) ndx = insert_directory_path (q);
+//    else
+//    {   ::std::time_t last_write = get_last_write_time (q);
+//        uintmax_t size = get_file_size (q);
+//        if (last_write != 0) ndx = insert_disk_path (q, 0, size, last_write);
+//        else
+//        {   ndx = insert_borked_path (q, 0);
+//            nits.pick (nit_cannot_read, es_warning, ec_directory, "ignoring ", quote (q.string ())); } }
+    else ndx = insert_disk_path (q, 0);
     ::std::string p;
     if (site.empty ()) p = get_site_path ();
     else p = site;
@@ -213,48 +204,72 @@ bool directory::add_to_content (nitpick& nits, ::boost::filesystem::directory_en
 void directory::examine (nitpick& nits)
 {   PRESUME (! offsite_, __FILE__, __LINE__);
     if (context.shadow_any ()) shadow_folder (nits);
+    sstr_t shadowed;
     for (auto i : content_)
         if (i.second != nullptr)
             i.second -> examine (nits);
         else if (! is_webpage (i.first, context.extensions ()))
-        {   if (context.shadow_files ()) shadow_file (nits, i.first); }
+        {   if (context.shadow_files ()) shadow_file (nits, i.first, shadowed); }
         else
-        {   ::std::ostringstream ss;
+        {   shadowed.emplace ((get_shadow_path () / i.first).string ());
+            ::std::ostringstream ss;
             ::boost::filesystem::path p (get_disk_path () / i.first);
-            ::std::time_t updated = ::boost::filesystem::last_write_time (p);
             fileindex_t ndx (get_fileindex (p));
+            ::std::time_t updated = last_write (ndx);
             if (! get_flag (ndx, FX_SCANNED))
             {   ::std::string sp (get_site_path () + i.first);
                 context.filename (sp);
-                try
-                {   ::std::string content (read_text_file (p));
-                    if (! content.empty ())
-                    {   e_charcode encoding = bom_to_encoding (get_byte_order (content));
-                        if (encoding == cc_fkd) ss << "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)\n";
-                        else
-                        {   page web (i.first, updated, content, ndx, this, encoding);
-                            if (web.invalid ()) ss << web.nits ().review ();
+                if (avoid_update (sp, true))
+                    nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (p.string ()), " is up-to-date");
+                else
+                {   try
+                    {   ::std::string content (read_text_file (p));
+                        if (! content.empty ())
+                        {   e_charcode encoding = bom_to_encoding (get_byte_order (content));
+                            if (encoding == cc_fkd) ss << "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)\n";
                             else
-                            {   web.examine ();
-                                web.verify_locale (p);
-                                web.mf_write (p);
-                                web.lynx ();
-                                if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
-                                ss << web.nits ().review ();
-                                ss << web.report (); } } } }
-                catch (...)
-                {   if (context.tell (e_error)) ss << "Cannot parse " << context.filename () << "\n"; }
-                if (! ss.str ().empty ())
-                 {  context.out ("\n\n*** ");
-                    context.out (local_path_to_nix (p.string ()));
-                    context.out ("\n");
-                    context.out (ss.str ()); }
-                else if (context.tell (e_comment))
-                {   context.out ("\n\n*** ");
-                    context.out (local_path_to_nix (p.string ()));
-                    context.out ("\n"); }
-                context.css ().post_process ();
-                set_flag (ndx, FX_SCANNED); } } }
+                            {   page web (i.first, updated, content, ndx, this, encoding);
+                                if (web.invalid ()) ss << web.nits ().review ();
+                                else
+                                {   web.examine ();
+                                    web.verify_locale (p);
+                                    web.mf_write (p);
+                                    web.lynx ();
+                                    if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
+                                    ss << web.nits ().review ();
+                                    ss << web.report (); } } } }
+                    catch (const ::std::system_error& e)
+                    {   if (context.tell (e_error)) ss << "System error " << e.what () << " when parsing " << context.filename () << "\n"; }
+                    catch (const ::std::exception& e)
+                    {   if (context.tell (e_error)) ss << "Exception " << e.what () << " when parsing " << context.filename () << "\n"; }
+                    catch (...)
+                    {   if (context.tell (e_error)) ss << "Exception when parsing " << context.filename () << "\n"; }
+                    if (! ss.str ().empty ())
+                    {   context.out ("\n\n*** ");
+                        context.out (local_path_to_nix (p.string ()));
+                        context.out ("\n");
+                        context.out (ss.str ()); }
+                    else if (context.tell (e_comment))
+                    {   context.out ("\n\n*** ");
+                        context.out (local_path_to_nix (p.string ()));
+                        context.out ("\n"); }
+                    context.css ().post_process (); }
+                set_flag (ndx, FX_SCANNED); } }
+    if (context.shadow_files ())
+    {   sstr_t delete_me;
+#ifdef NO_DIROPTS
+        ::boost::filesystem::directory_iterator i (get_shadow_path ());
+#else // NO_DIROPTS
+        ::boost::filesystem::directory_iterator i (get_shadow_path (), ::boost::filesystem::directory_options::skip_permission_denied);
+#endif // NO_DIROPTS
+        for (   i = ::boost::filesystem::begin (i);
+                i != ::boost::filesystem::end (i);
+                ++i)
+            if (shadowed.find (i -> path ().string ()) == shadowed.cend ())
+                delete_me.emplace (i -> path ().string ());
+        for (auto z : delete_me)
+            {   if (context.tell (e_comment)) context.out () << " .  removing " << z << "\n";
+                delete_file (z); } } }
 
 bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, const url& u) const
 {   if (u.empty ()) return false; // self?
@@ -270,12 +285,12 @@ bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, cons
     if (get_flag (ndx, (FX_SCANNED | FX_EXISTS))) return true;
     if (! get_flag (ndx, FX_TESTED))
     {   set_flag (ndx, FX_TESTED);
-        if (::boost::filesystem::exists (p))
-        {   bool vrai = ::boost::filesystem::is_regular_file (p);
+        if (file_exists (p))
+        {   bool vrai = is_file (p);
             if (! vrai)
-                if (::boost::filesystem::is_directory (p))
+                if (is_folder (p))
                 {   p /= context.index ();
-                    vrai = ::boost::filesystem::is_regular_file (p); }
+                    vrai = is_file (p); }
             if (vrai)
             {   set_flag (ndx, FX_EXISTS);
                 return true; } } }
@@ -284,13 +299,13 @@ bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, cons
 
 uint64_t directory::url_size (nitpick& nits, const url& u) const
 {   if (! u.empty () && ! u.has_protocol ()) try
-    {   return ::boost::filesystem::file_size (get_disk_path (nits, u)); }
+    {   return get_file_size (get_disk_path (nits, u)); }
     catch (...) { }
     return 0; }
 
 ::std::time_t directory::url_last_write_time (nitpick& nits, const url& u) const
 {   if (! u.empty () && ! u.has_protocol ()) try
-    {   return ::boost::filesystem::last_write_time (get_disk_path (nits, u)); }
+    {   return get_last_write_time (get_disk_path (nits, u)); }
     catch (...) { }
     return 0; }
 
@@ -300,14 +315,14 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
             if (! u.has_protocol ())
             {   ::boost::filesystem::path p (get_disk_path (nits, u));
                 if (updated != nullptr)
-                {   ::std::time_t when = ::boost::filesystem::last_write_time (p);
+                {   ::std::time_t when = get_last_write_time (p);
                     if (when > *updated) *updated = when; }
                 return read_text_file (p); }
             else if (u.get_scheme () == pt_rfc3986)
                 if (u.has_domain () && is_one_of (u.domain (), context.site ()))
                 {   ::boost::filesystem::path p (get_disk_path (nits, u));
                     if (updated != nullptr)
-                    {   ::std::time_t when = ::boost::filesystem::last_write_time (p);
+                    {   ::std::time_t when = get_last_write_time (p);
                         if (when > *updated) *updated = when; }
                     return read_text_file (p); }
                 else
@@ -408,29 +423,18 @@ bool is_webpage (const ::std::string& name, const vstr_t& extensions)
 bool directory::shadow_folder (nitpick& nits)
 {   PRESUME (context.shadow_any (), __FILE__, __LINE__);
     ::boost::filesystem::path moi (get_shadow_path ());
-#ifdef FS_THROWS
-    bool res = true;
-    if (! ::boost::filesystem::exists (moi)) try
-    {   res = ::boost::filesystem::create_directories (moi); }
-    catch (...)
-    {   res = false; }
-    if (! res)
-#else // FS_THROWS
-    ::boost::system::error_code ec;
-    if (! ::boost::filesystem::exists (moi) &&
-        ! ::boost::filesystem::create_directories (moi, ec))
-#endif // FS_THROWS
-    {   nits.pick (nit_create_folder, es_catastrophic, ec_shadow, "cannot create ", moi.string ());
-        return false; }
+    if (! file_exists (moi))
+        if (! make_directories (moi))
+        {   nits.pick (nit_create_folder, es_catastrophic, ec_shadow, "cannot create ", moi.string ());
+            return false; }
     return true; }
 
-bool directory::shadow_file (nitpick& nits, const ::std::string& name)
+bool directory::shadow_file (nitpick& nits, const ::std::string& name, sstr_t& shadowed)
 {   PRESUME (context.shadow_files (), __FILE__, __LINE__);
     ::boost::filesystem::path original (get_disk_path () / name);
     if (contains (context.shadow_ignore (), original.extension ().string ()))
     {   nits.pick (nit_shadow_failed, es_debug, ec_shadow, "not shadowing ", original);
         return true;  }
-    ::boost::filesystem::path imitation (get_shadow_path () / name);
     e_copy todo = context.copy ();
     PRESUME (todo > c_none, __FILE__, __LINE__);
     if (todo <= c_html) return true;
@@ -441,72 +445,80 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name)
     if (get_flag (ndx, FX_BORKED))
     {   nits.pick (nit_shadow_failed, es_warning, ec_shadow, "cannot shadow borked file ", original.string ());
         return true; }
+    ::boost::filesystem::path imitation (get_shadow_path () / name);
+    shadowed.emplace (imitation.string ());
+    if (avoid_update (original, imitation, false))
+    {   nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (original.string ()), " is up-to-date");
+        return true; }
     bool changed = false;
     ::boost::filesystem::file_status stat;
 #ifndef NOLYNX
-    if (::boost::filesystem::is_symlink (imitation)) try
-    {   ::boost::filesystem::path target = ::boost::filesystem::read_symlink (imitation);
+    if (is_file_linked (imitation))
+    {   ::boost::filesystem::path target = resolve_link (imitation);
         if (target == original) return true;
-        ::boost::filesystem::remove (imitation); }
-    catch (::boost::filesystem::filesystem_error& ex)
-    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, ex.what (), " when unlinking ", imitation.string ());
-        return false; }
-    catch (...)
-    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "exception when unlinking ", imitation.string ());
-        return false; }
+        if (! delete_file (imitation))
+        {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "cannot unlink ", imitation.string ());
+            return false; } }
 #endif // NOLYNX
-    if (::boost::filesystem::exists (imitation)) try
+    if (file_exists (imitation))
     {   if (context.shadow_changed ())
         {   uintmax_t origsize = get_size (ndx);
-            uintmax_t copysize = ::boost::filesystem::file_size (imitation);
+            uintmax_t copysize = get_file_size (imitation);
             if (origsize == copysize)
             {   ::std::time_t origwrite = last_write (ndx);
-                ::std::time_t copywrite = ::boost::filesystem::last_write_time (imitation);
-                if (copywrite >= origwrite) return true; } }
+                ::std::time_t copywrite = get_last_write_time (imitation);
+                if ((copywrite >= origwrite) && context.update ()) return true; } }
         if (todo >= c_copy)
-        {   stat = ::boost::filesystem::status (imitation);
+        {   stat = file_data (imitation);
             if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)
-            {   ::boost::filesystem::permissions (imitation, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
+            {   file_permissions (imitation, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
                 changed = true; } }
-        else if (! ::boost::filesystem::remove (imitation))
+        else if (! delete_file (imitation))
         {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "cannot remove previous ", imitation.string ());
             return true; } }
-    catch (::boost::filesystem::filesystem_error& ex)
-    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, ex.what (), " when removing old ", imitation.string ());
-        return false; }
-    catch (...)
-    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "exception when removing old ", imitation.string ());
-        return false; }
-    try
-    {   switch (todo)
-        {   case c_none :
-            case c_html :
-            case c_rpt :        GRACEFUL_CRASH (__FILE__, __LINE__); break;
-            case c_hard :       ::boost::filesystem::create_hard_link (original, imitation);
+    switch (todo)
+    {   case c_none :
+        case c_html :
+        case c_rpt :        GRACEFUL_CRASH (__FILE__, __LINE__); break;
+        case c_hard :       if (make_hard_link (original, imitation))
                                 nits.pick (nit_shadow_link, es_debug, ec_shadow, "hard linked ", original, " and ", imitation);
-                                break;
-            case c_soft :       ::boost::filesystem::create_symlink (original, imitation);
+                            else nits.pick (nit_shadow_link, es_catastrophic, ec_shadow, "cannot make hard link between ", original, " and ", imitation);
+                            break;
+        case c_soft :       if (make_link (original, imitation))
                                 nits.pick (nit_shadow_link, es_debug, ec_shadow, "soft linked ", original, " and ", imitation);
-                                break;
-            case c_copy :       ::boost::filesystem::copy_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists);
+                            else nits.pick (nit_shadow_link, es_catastrophic, ec_shadow, "cannot make soft link between ", original, " and ", imitation);
+                            break;
+        case c_copy :       if (duplicate_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists))
                                 nits.pick (nit_shadow_copy, es_debug, ec_shadow, "copied ", original, " to ", imitation);
-                                break;
-            case c_deduplicate :if (isdu (ndx)) break;
-                                ::boost::filesystem::copy_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists);
+                            else nits.pick (nit_shadow_copy, es_catastrophic, ec_shadow, "cannot copy ", original, " to ", imitation);
+                            break;
+        case c_deduplicate :if (isdu (ndx)) break;
+                            if (duplicate_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists))
                                 nits.pick (nit_shadow_copy, es_debug, ec_shadow, "copied ", original, " to ", imitation);
-                                break; } }
-    catch (::boost::filesystem::filesystem_error& ex)
-    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, ex.what (), " when shadowing ", original.string (), " to ", imitation.string ());
-        return false; }
-    catch (...)
-    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "exception when shadowing ", original.string (), " to ", imitation.string ());
-        return false; }
-    if (changed) try
-    {   ::boost::filesystem::permissions (imitation, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms); }
-    catch (::boost::filesystem::filesystem_error& ex)
-    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, ex.what (), " when uprighting ", imitation.string ());
-        return false; }
-    catch (...)
-    {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "exception when uprighting ", imitation.string ());
-        return false; }
+                            else nits.pick (nit_shadow_copy, es_catastrophic, ec_shadow, "cannot copy ", original, " to ", imitation);
+                            break; }
+    if (changed)
+        if (! file_permissions (imitation, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms))
+        {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "cannot upright ", imitation.string ());
+            return false; }
 return true; }
+
+bool directory::avoid_update (const ::boost::filesystem::path& original, const ::boost::filesystem::path& shadow, const bool page)
+{   if (! context.update ()) return false;
+    ::std::time_t ot = 0, st = 0;
+    if (! file_exists (original) || ! file_exists (shadow)) return false;
+    fileindex_t ndx (get_fileindex (original));
+    ot = last_write (ndx);
+    if (ot == 0) return false;
+    st = get_last_write_time (shadow);
+    if (ot > st) return false;
+    if (! page) return true;
+    return ! needs_update (ndx, ot); }
+
+bool directory::avoid_update (const ::std::string& name, const bool page)
+{   if (! context.update ()) return false;
+    ::boost::filesystem::path original (get_disk_path ());
+    ::boost::filesystem::path imitation (get_shadow_path ());
+    original /= name;
+    imitation /= name;
+    return avoid_update (original, imitation, page); }

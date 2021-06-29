@@ -1,0 +1,30 @@
+Static Site Checker
+0.0.109
+../toast/type/url
+0
+-
+8
+/index.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/url/index.html
+0,0,257,0,0,0
+/x.jpg
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/url/x.jpg
+0,0,256,0,0,0
+/url.spec
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/url/url.spec
+0,0,256,0,0,0
+/dubious.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/url/dubious.html
+0,0,257,0,0,1 0
+/bad.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/url/bad.html
+0,0,257,0,0,1 0
+/good.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/url/good.html
+0,0,257,0,0,2 0 1
+/url.conf
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/url/url.conf
+0,0,256,0,0,0
+/url.ndx
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/url/url.ndx
+0,0,256,0,0,0

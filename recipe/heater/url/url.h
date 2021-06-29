@@ -116,8 +116,7 @@ public:
     ::std::string get_filepath () const;
     bool sanity_test () const;
     bool standard_extension (const e_mime_category mime = mc_text) const;
-    bool verify (nitpick& nits, const html_version& v, const element& e);
-//    void verify_id (nitpick& nits, const html_version& v, const ids_t& ssi, const attribute_bitset& flags, const vit_t& itemtypes, const e_sought_category cat); };
+    bool verify (nitpick& nits, const html_version& v, element& e);
     void verify_id (element& e); };
 
 typedef ::std::vector < url > vurl_t;

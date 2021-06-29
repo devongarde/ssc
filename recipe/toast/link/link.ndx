@@ -1,0 +1,34 @@
+Static Site Checker
+0.0.109
+../toast/link
+1
+/net=../toast/virtual
+-
+9
+/index.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/link/index.html
+0,0,256,0,0,4 0 2 5 7
+/link.spec
+/Users/dylan/Depot/applications/ssc/recipe/toast/link/link.spec
+0,0,256,0,0,0
+/subdir/target.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/link/subdir/target.html
+0,0,257,0,0,3 0 2 7
+/link.conf
+/Users/dylan/Depot/applications/ssc/recipe/toast/link/link.conf
+0,0,256,0,0,0
+/css-good.css
+/Users/dylan/Depot/applications/ssc/recipe/toast/link/css-good.css
+0,0,256,0,0,0
+/target.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/link/target.html
+0,0,257,0,0,0
+/net/README.txt
+/Users/dylan/Depot/applications/ssc/recipe/toast/virtual/README.txt
+0,0,256,0,0,0
+/net/target.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/virtual/target.html
+0,0,257,0,0,0
+/link.ndx
+/Users/dylan/Depot/applications/ssc/recipe/toast/link/link.ndx
+0,0,256,0,0,0

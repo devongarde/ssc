@@ -50,7 +50,7 @@ template < > struct type_master < t_url > : type_base < url, t_url >
     void reset ()
     {   value_.reset ();
         type_base < url, t_url > :: reset (); }
-    bool verify_url (nitpick& nits, const html_version& v, const element& e)
+    bool verify_url (nitpick& nits, const html_version& v, element& e)
     {   if (! context.links ()) return true;
         if (! type_base < url, t_url > :: good ()) return true;
         return value_.verify (nits, v, e); }
@@ -123,7 +123,7 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
     {   value_.clear ();
         type_base < url, t_urls > :: reset (); }
     static bool is_url () { return true; }
-    bool verify_url (nitpick& nits, const html_version& v, const element& e)
+    bool verify_url (nitpick& nits, const html_version& v, element& e)
     {   if (! context.links ()) return true;
         bool res = true;
         for (auto& u : value_)

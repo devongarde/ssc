@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "webmention/webmentions.h"
 #include "main/context.h"
+#include "utility/filesystem.h"
 
 // file should be:
 // current state of webmentions
@@ -73,7 +74,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 bool webmentions::read (nitpick& nits, const ::boost::filesystem::path& filename)
 {   if (filename.string ().empty ()) return false; // no webmention
     control_filename_ = filename;
-    if (! ::boost::filesystem::exists (filename)) return true; // new webmention!
+    if (! file_exists (filename)) return true; // new webmention!
     invalid_ = true;
     ::boost::property_tree::ptree json;
     try

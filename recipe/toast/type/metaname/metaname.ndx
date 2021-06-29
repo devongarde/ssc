@@ -1,0 +1,36 @@
+Static Site Checker
+0.0.109
+../toast/type/metaname
+0
+-
+10
+/index.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/index.html
+0,0,257,0,0,0
+/x.jpg
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/x.jpg
+0,0,256,0,0,0
+/metaname.spec
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/metaname.spec
+0,0,256,0,0,0
+/dubious.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/dubious.html
+0,0,257,0,0,1 1
+/bad.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/bad.html
+0,0,257,0,0,1 1
+/old.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/old.html
+0,0,257,0,0,0
+/good.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/good.html
+0,0,257,0,0,1 1
+/metaname.conf
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/metaname.conf
+0,0,256,0,0,0
+/og.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/og.html
+0,0,257,0,0,1 1
+/metaname.ndx
+/Users/dylan/Depot/applications/ssc/recipe/toast/type/metaname/metaname.ndx
+0,0,256,0,0,0

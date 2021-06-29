@@ -98,7 +98,7 @@ schema_version context_t::mf_ver () const
         case 2 : return mf_2;
         default : return mf_all; } }
 
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to, const char idealstart, const char idealend)
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
     int maxish = DEFAULT_LINE_LENGTH - 16;
     if ((to - from) > INT8_MAX) return ::std::string (from, to);
@@ -113,8 +113,8 @@ schema_version context_t::mf_ver () const
         if ((e - halfish) <= to) me = e; else { me = to + halfish; post = "..."; } }
     return pre + ::std::string (mb, from) + " *** " + ::std::string (from, to) + " *** " + ::std::string (to, me) + post; }
 
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char idealstart, const char idealend)
-{   return near_here (b, e, i, i, idealstart, idealend); }
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
+{   return near_here (b, e, i, i); }
 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level)
 {   if (msg.empty () || ! context.tell (level)) return ::std::string ();

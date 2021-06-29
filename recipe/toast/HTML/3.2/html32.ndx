@@ -1,0 +1,33 @@
+Static Site Checker
+0.0.109
+../toast/HTML/3.2
+0
+-
+9
+/html32-bad.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/HTML/3.2/html32-bad.html
+0,0,257,0,0,2 1 2
+/index.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/HTML/3.2/index.html
+0,0,257,0,0,0
+/x.jpg
+/Users/dylan/Depot/applications/ssc/recipe/toast/HTML/3.2/x.jpg
+0,0,256,0,0,0
+/html32-sgml.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/HTML/3.2/html32-sgml.html
+0,0,257,0,0,0
+/html32.conf
+/Users/dylan/Depot/applications/ssc/recipe/toast/HTML/3.2/html32.conf
+0,0,256,0,0,0
+/html32-good.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/HTML/3.2/html32-good.html
+0,0,257,0,0,2 1 2
+/html32.spec
+/Users/dylan/Depot/applications/ssc/recipe/toast/HTML/3.2/html32.spec
+0,0,256,0,0,0
+/html32.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/HTML/3.2/html32.html
+0,0,257,0,0,2 1 2
+/html32.ndx
+/Users/dylan/Depot/applications/ssc/recipe/toast/HTML/3.2/html32.ndx
+0,0,256,0,0,0

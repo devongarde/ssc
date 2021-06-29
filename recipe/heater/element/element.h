@@ -307,6 +307,7 @@ public:
     ::std::string get_microdata_value () const;
     void shadow (::std::stringstream& ss, const html_version& v);
     const page& get_page () const { return page_; }
+    page& get_page () { return page_; }
     bool has_glyph (const ::std::string& s) const;
     void add_glyph (const ::std::string& s);
     e_sought_category link_category_sought () const { return node_.id ().link_category_sought (); }

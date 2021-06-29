@@ -20,16 +20,10 @@ PASS ../toast/link/index.html
 84 attempted_escape
 85 no_such_folder url_not_found
 
-PASS ../toast/link/target.html
-2 naughty_lang
-
 PASS ../toast/link/subdir/target.html
 2 naughty_lang
 20 attempted_escape
 23 url_not_found
-
-PASS ../toast/virtual/target.html
-2 naughty_lang
 
 LYNX
 0 310 58 58 310 58 310 58 58 310 58 310 58 310 58 310 58 58 310 58 310 58 58 310 58

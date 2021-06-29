@@ -91,11 +91,13 @@
 ./ssc -f ../toast/shadow/dedu/dedu.conf
 ./ssc -f ../toast/shadow/dedudiff/dedudiff.conf
 ./ssc -f ../toast/shadow/deduover/deduover.conf
+./ssc -f ../toast/shadow/delete/delete.conf
 ./ssc -f ../toast/shadow/hard/hard.conf
 ./ssc -f ../toast/shadow/pages/pages.conf
 ./ssc -f ../toast/shadow/soft/soft.conf
 ./ssc -f ../toast/shadow/softover/softover.conf
 ./ssc -f ../toast/shadow/ssi/ssi.conf
+./ssc -f ../toast/shadow/update/update.conf
 ./ssc -f ../toast/snippet/conf/snippet.conf
 ./ssc -f ../toast/snippet/kiwi/snippet.conf
 ./ssc -f ../toast/stats/detail/stats.conf

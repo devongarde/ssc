@@ -1,0 +1,27 @@
+Static Site Checker
+0.0.109
+../toast/w3/charset
+0
+-
+7
+/index.html
+/Users/dylan/Depot/applications/ssc/recipe/toast/w3/charset/index.html
+0,0,257,0,0,0
+/w3.spec
+/Users/dylan/Depot/applications/ssc/recipe/toast/w3/charset/w3.spec
+0,0,256,0,0,0
+/charset_mismatch-http_xmldec.xhtml.utf8
+/Users/dylan/Depot/applications/ssc/recipe/toast/w3/charset/charset_mismatch-http_xmldec.xhtml.utf8
+0,0,257,0,0,0
+/charset-xmldecl.xhtml
+/Users/dylan/Depot/applications/ssc/recipe/toast/w3/charset/charset-xmldecl.xhtml
+0,0,256,0,0,0
+/w3.conf
+/Users/dylan/Depot/applications/ssc/recipe/toast/w3/charset/w3.conf
+0,0,256,0,0,0
+/charset_mismatch-http_meta.html.utf8
+/Users/dylan/Depot/applications/ssc/recipe/toast/w3/charset/charset_mismatch-http_meta.html.utf8
+0,0,257,0,0,0
+/w3.ndx
+/Users/dylan/Depot/applications/ssc/recipe/toast/w3/charset/w3.ndx
+0,0,256,0,0,0

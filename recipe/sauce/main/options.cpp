@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "type/type.h"
 #include "main/args.h"
+#include "utility/filesystem.h"
 #include "utility/lexical.h"
 #include "feedback/nitpick.h"
 #include "schema/schema_version.h"
@@ -196,7 +197,7 @@ void options::process (int argc, char** argv)
         r no revoke chks R reset webmention
         s domain name    S stats
         t template       T test mode
-        u
+        u update
         v verbose        V version
         w webmention     W cgi
         x extensions     X check crosslinked ids
@@ -275,7 +276,7 @@ void options::process (int argc, char** argv)
         ;
     hidden.add_options ()
         (GENERAL CGI ",W", "Process OpenBSD httpd <FORM METHOD=GET ...> (incompatible with " GENERAL WEBMENTION ").")
-        (GENERAL CLASS, "Do not report unrecognised classes.")
+        (GENERAL CLASS, "Do NOT report unrecognised classes.")
         (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "File for persistent data, requires -N (note " GENERAL PATH ").")
         (GENERAL RPT, "Report when CSS files opened.")
         (GENERAL TEST ",T", "Output format for automated tests.")
@@ -367,7 +368,7 @@ void options::process (int argc, char** argv)
                                                                     "'hard' (links), 'soft' (links), "
 #endif // NOLYNX
                                                                     "'pages', 'all', 'dedu' (deduplicate), 'report'.")
-        (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "Where to persist deduplication data.")
+        (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "Where to persist deduplication and update data.")
         (SHADOW CHANGED,    "Only "
 #ifndef NOLYNX
                             "link/"
@@ -379,6 +380,7 @@ void options::process (int argc, char** argv)
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "Shadow output root directory.")
         (SHADOW SSI, "Do NOT resolve SSIs on shadow pages when " GENERAL SSI " is set.")
         (SHADOW SPACING, "Do NOT merge spacing (including line breaks) on shadow pages. Without this option, nit line-numbers may not match shadow pages.")
+        (SHADOW UPDATE, "Only examine changed pages, or pages with changed dependencies (requires " SHADOW FICHIER ")")
         (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Shadow virtual directory, syntax virtual=shadow; must correspond to " WEBSITE VIRTUAL "; may be repeated.")
 
         (WEBSITE ROOT ",g", ::boost::program_options::value < ::std::string > (), "Website root directory (default: current directory).")
@@ -500,7 +502,7 @@ void options::process (int argc, char** argv)
         else if ((var_.count (DEFCONF) == 0) && env_.count (ENV_CONFIG)) file = env_ [ ENV_CONFIG ].as < ::std::string > ();
         if (var_.count (GENERAL TEST) == 0)
         {   loaded = "\nLoading configuration "; loaded += file.string () + " ...\n"; }
-        if (::boost::filesystem::exists (file)) context.config (canonical (file));
+        if (file_exists (file)) context.config (canonical (file));
         else
         {   loaded += "Cannot find "; loaded += file.string () + "\n";
             title (loaded.c_str ()); return; }
@@ -594,12 +596,10 @@ void options::contextualise ()
         if (! context.cgi ())
         {   context.path (nix_path_to_local (var_ [GENERAL PATH].as < ::std::string > ()));
 
-            if (! ::boost::filesystem::exists (context.path ()))
+            if (! file_exists (context.path ()))
             {   context.err (context.path ());
                 context.err (" does not exist, am creating it.\n");
-                try
-                {   ::boost::filesystem::create_directories (context.path ()); }
-                catch (...)
+                if (! make_directories (context.path ()))
                 {   context.err ("cannot create ");
                     context.err (context.path ());
                     context.err (".\n"); } } } }
@@ -834,6 +834,7 @@ void options::contextualise ()
         if (var_.count (SHADOW ROOT)) context.shadow_root (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
         context.shadow_space (var_.count (SHADOW SPACING));
         context.shadow_ssi (var_.count (SHADOW SSI));
+        context.update (var_.count (SHADOW UPDATE));
         if (var_.count (SHADOW VIRTUAL)) context.virtuals (var_ [SHADOW VIRTUAL].as < vstr_t > ());
 
         if (var_.count (STATS EXPORT)) context.stats (var_ [STATS EXPORT].as < ::std::string > ());
@@ -1128,6 +1129,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (SHADOW ROOT)) res << SHADOW ROOT ": " << var_ [SHADOW ROOT].as < ::std::string > () << "\n";
     if (var_.count (SHADOW SPACING)) res << SHADOW SPACING "\n";
     if (var_.count (SHADOW SSI)) res << SHADOW SSI "\n";
+    if (var_.count (SHADOW UPDATE)) res << SHADOW UPDATE "\n";
     if (var_.count (SHADOW VIRTUAL)) { res << SHADOW VIRTUAL ": "; pvs (res, var_ [SHADOW VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (STATS EXPORT)) res << STATS EXPORT ": " << var_ [STATS EXPORT].as < ::std::string > () << "\n";

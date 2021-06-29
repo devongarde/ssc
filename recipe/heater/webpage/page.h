@@ -36,6 +36,7 @@ class directory;
 
 class page
 {   ids_t ids_, names_, glyphs_;
+//    sstr_t access_, dfns_, profiles_, sources_;
     sstr_t access_, dfns_, profiles_;
     element_ptr document_;
     elements_node nodes_;
@@ -171,6 +172,10 @@ public:
     void keywords (const ::std::string& s) { keywords_ = s; }
     void description (const ::std::string& s) { description_ = s; }
     void author (const ::std::string& s) { author_ = s; }
+    void note_lynx (const fileindex_t dependency)
+    {   set_lynx (ids_.ndx (), dependency); }
+    void add_depend (const fileindex_t dependency)
+    {   add_dependency (ids_.ndx (), dependency); }
     ::std::string report (); };
 
 ::std::string get_page_url (const ::std::string& url);

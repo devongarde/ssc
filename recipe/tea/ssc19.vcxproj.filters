@@ -654,6 +654,12 @@
     <Filter Include="Toast\Conf\corrupt">
       <UniqueIdentifier>{5674f0a9-1e23-45a9-b410-74ad8230e35a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Shadow\Delete">
+      <UniqueIdentifier>{b19e8c6e-2206-404e-b0e2-a11526394566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Shadow\Update">
+      <UniqueIdentifier>{6df892c4-a3f8-4783-a28f-0a74582ab74f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1115,6 +1121,9 @@
     <ClInclude Include="..\heater\utility\lexical.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\utility\filesystem.h">
+      <Filter>Heater\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1542,6 +1551,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_x.cpp">
       <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\utility\filesystem.cpp">
+      <Filter>Sauce\utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -19203,6 +19215,93 @@
     <None Include="..\toast\conf\upload.sh">
       <Filter>Toast\Conf</Filter>
     </None>
+    <None Include="..\toast\shadow\delete\delete.conf">
+      <Filter>Toast\Shadow\Delete</Filter>
+    </None>
+    <None Include="..\toast\shadow\delete\delete.spec">
+      <Filter>Toast\Shadow\Delete</Filter>
+    </None>
+    <None Include="..\toast\shadow\delete\index.html">
+      <Filter>Toast\Shadow\Delete</Filter>
+    </None>
+    <None Include="..\toast\shadow\delete\index.html.model">
+      <Filter>Toast\Shadow\Delete</Filter>
+    </None>
+    <None Include="..\toast\shadow\delete\pre.bat">
+      <Filter>Toast\Shadow\Delete</Filter>
+    </None>
+    <None Include="..\toast\shadow\delete\pre.sh">
+      <Filter>Toast\Shadow\Delete</Filter>
+    </None>
+    <None Include="..\toast\shadow\delete\post.bat">
+      <Filter>Toast\Shadow\Delete</Filter>
+    </None>
+    <None Include="..\toast\shadow\delete\post.sh">
+      <Filter>Toast\Shadow\Delete</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\index.html">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\index.html.model">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\pre.bat">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\pre.sh">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\test.css">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\update.conf">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\update.spec">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\new.html">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\new.inc">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\old.html">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\old.inc">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\changed.html">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\unchanged.html">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\link-changed.html">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\link-unchanged.html">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\changed.html.model">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\link-changed.html.model">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\link-unchanged.html.model">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\new.html.model">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\old.html.model">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\unchanged.html.model">
+      <Filter>Toast\Shadow\Update</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -19440,6 +19539,9 @@
     </Text>
     <Text Include="..\toast\README.txt">
       <Filter>Toast</Filter>
+    </Text>
+    <Text Include="..\toast\shadow\update\README.txt">
+      <Filter>Toast\Shadow\Update</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

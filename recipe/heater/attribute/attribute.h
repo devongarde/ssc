@@ -36,7 +36,7 @@ struct attribute_base
     virtual bool verify_version (nitpick& , const html_version& , const e_element ) { return false; }
     virtual void set_value (nitpick& , const html_version& , const ::std::string& ) { }
     virtual void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
-    virtual bool verify_url (nitpick& , const html_version& , const element& ) { return true; }
+    virtual bool verify_url (nitpick& , const html_version& , element& ) { return true; }
     virtual ::std::string get_string () const { return ::std::string (); }
     virtual ::std::string original () const { return get_string (); }
     virtual e_attribute id () const { return a_unknown; }
@@ -110,7 +110,7 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
                 typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); } }
     virtual void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* pe, const ::std::string& s)
     {   typed_value < e_attribute, TYPE, IDENTITY > :: verify_attribute (nits, v, e, pe, s); }
-    virtual bool verify_url (nitpick& nits, const html_version& v, const element& e)
+    virtual bool verify_url (nitpick& nits, const html_version& v, element& e)
     {   return typed_value < e_attribute, TYPE, IDENTITY > :: verify_url (nits, v, e); }
     virtual ::std::string get_string () const { return typed_value < e_attribute, TYPE, IDENTITY > :: get_string (); }
     virtual ::std::string original () const { return typed_value < e_attribute, TYPE, IDENTITY > :: original (); }
