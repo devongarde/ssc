@@ -19,7 +19,7 @@ are treated as plain text, instead of markup.
 An unknown named character reference like &this
 gives an ambiguous ampersand error.
 </textarea>
-<textarea name=_charset_>
+<textarea name="_charset_">
 This text cannot contain a string like </textarea because
 it looks like an end tag for the element.
 </textarea>
@@ -39,7 +39,7 @@ or other elements <span> are treated as plain text, instead of markup.
 <input disabled>...</div>
 <input disabled>...</div>
 <label>Carpet: <input name=c></label>
-<input name=_charset_ type=hidden value=binary>
+<input name="_charset_" type=hidden value=binary>
 </span></form>
 <div lang=en>...</div>
 <section id=example>...</section>
@@ -102,7 +102,7 @@ or other elements <span> are treated as plain text, instead of markup.
 <track default=true kind=subtitles label=English src="brave.en.vtt" srclang=en>
 <track default=true kind=chapters label="English for the Hard of Hearing" src="brave.en.hoh.vtt" srclang=en>
 <track default=true kind=descriptions label=Deutsch lang=de src="brave.de.vtt" srclang=de>
-<track default=true kind=subtitles label=Français lang=fr src="brave.fr.vtt" srclang=fr>
+<track default=true kind=subtitles label="Français" lang=fr src="brave.fr.vtt" srclang=fr>
 <track default=true kind=chapters label=Letzebuergesch src="brave.en.hoh.vtt" srclang=lb>
 <track default=true kind=descriptions label=Nederlands lang=de src="brave.de.vtt" srclang=nl>
 </video>

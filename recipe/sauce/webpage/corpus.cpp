@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+#include "utility/filesystem.h"
 #include "webpage/corpus.h"
 
 ::boost::filesystem::path corpus_file;
@@ -29,21 +30,16 @@ bool has_corpus ()
 
 void open_corpus (nitpick& nits, const ::boost::filesystem::path& fn)
 {   if (fn.empty ()) return;
-    try
-    {   if (::boost::filesystem::exists (fn))
-            ::boost::filesystem::remove (fn); }
-    catch (...)
-    {   nits.pick (nit_cannot_delete, es_catastrophic, ec_microformat, "Cannot remove existing ", corpus_file);
-        return; }
+    if (file_exists (fn))
+        if (! delete_file (fn))
+        {   nits.pick (nit_cannot_delete, es_catastrophic, ec_microformat, "Cannot remove existing ", corpus_file);
+            return; }
     corpus_file = fn;
     try
     {   dump.open (corpus_file);
         if (! dump.bad ()) return; }
     catch (...) { }
-    try
-    {   if (::boost::filesystem::exists (corpus_file))
-            ::boost::filesystem::remove (corpus_file); }
-    catch (...) { }
+    if (file_exists (fn)) delete_file (fn);
     nits.pick (nit_cannot_create_file, es_catastrophic, ec_microformat, "Cannot create ", corpus_file);
     corpus_file.clear (); }
 

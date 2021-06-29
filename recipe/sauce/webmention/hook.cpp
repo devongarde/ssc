@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "webmention/hook.h"
 #include "utility/common.h"
+#include "utility/filesystem.h"
 #include "main/context.h"
 #include "webpage/external.h"
 #include "webpage/directory.h"
@@ -73,7 +74,7 @@ hook::hook (nitpick& nits, const html_version& v, const ::std::string& source, c
 {   check (); }
 
 bool hook::parse (nitpick& nits, const html_version& , const ::std::string& filename)
-{   if (! ::boost::filesystem::exists (filename)) return false;
+{   if (! file_exists (filename)) return false;
     ::boost::property_tree::ptree json;
     ::boost::property_tree::read_json (filename, json);
     if (json.empty ()) return false;
@@ -100,8 +101,8 @@ bool hook::update_mention (nitpick& nits, const ::std::string& s)
         folder += target_.id (); }
     folder /= source_.domain ();
     folder /= slash_dot (source_.path ());
-    if (! ::boost::filesystem::exists (folder))
-        ::boost::filesystem::create_directories (folder);
+    if (! file_exists (folder))
+        make_directories (folder);
     ::boost::filesystem::path filename (folder);
     filename /= source_.page ();
     filename += EXT;
@@ -131,7 +132,7 @@ bool hook::process (nitpick& nits, const html_version& v)
             if (info.empty ())
                 nits.pick (nit_cannot_find_mention, es_warning, ec_webmention, "cannot find mention of ", target_.absolute (), " in ", source_.original ());
             else update_mention (nits, info); } }
-    ::boost::filesystem::remove (tmp);
+    delete_file (tmp);
     return true;
 
     // grab offsite source

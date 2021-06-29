@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.108 LANGUAGES CXX)
+project (ssc VERSION 0.0.109 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -27,6 +27,7 @@ add_executable (ssc)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   message ("Only Visual Studios 2015/7/9 are known to build")
+  target_compile_definitions (ssc PRIVATE WINDOWS)
 endif ()
 
 if (UNIX)
@@ -39,29 +40,35 @@ if (UNIX)
     if (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.8")
       message ("OpenBSD 6.8")
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS)
-      target_compile_definitions (ssc PRIVATE NO_PCF_STR FS_THROWS)
+      target_compile_definitions (ssc PRIVATE OPENBSD O68 NO_PCF_STR FS_THROWS)
     else ()
       message ("only OpenBSD 6.8 amd64 is known to build")
+      target_compile_definitions (ssc PRIVATE OPENBSD)
     endif ()
   endif ()
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message ("Linux: only built under Centos 8 amd64 and Ubuntu Server 20.10 amd64")
+    target_compile_definitions (ssc PRIVATE LINUX)
   endif ()
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     if (${CMAKE_SYSTEM} MATCHES "Darwin-20")
       message ("MacOS Big Sur")
+      target_compile_definitions (ssc PRIVATE BIG_SUR MACOS)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-19")
       message ("MacOS Catalina")
+      target_compile_definitions (ssc PRIVATE CATALINA MACOS)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-18")
       message ("MacOS Mojave")
+      target_compile_definitions (ssc PRIVATE MOJAVE MACOS)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-17")
       message ("MacOS High Sierra")
       target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
-      target_compile_definitions (ssc PRIVATE FUDDYDUDDY)
+      target_compile_definitions (ssc PRIVATE HIGH_SIERRA FUDDYDUDDY MACOS)
     else ()
       message ("unknown, untested MacOS")
+      target_compile_definitions (ssc PRIVATE MACOS)
     endif ()
   endif ()
 
@@ -105,7 +112,8 @@ target_sources (ssc PRIVATE
             ${H}/type/type_math.h ${H}/type/type_measure.h ${H}/type/type_microdata.h ${H}/type/type_microformat.h ${H}/type/type_misc.h
             ${H}/type/type_numeric.h ${H}/type/type_svg.h ${H}/type/type_varied.h ${H}/type/type_xmlns.h
         ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h ${H}/url/url_schemes.h
-        ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
+        ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/quote.h
+            ${H}/utility/tuple.h
         ${H}/webmention/hook.h ${H}/webmention/irt.h ${H}/webmention/webmention.h ${H}/webmention/webmentions.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/root.h
@@ -140,7 +148,7 @@ target_sources (ssc PRIVATE
             ${S}/type/type_paint.cpp ${S}/type/type_reals.cpp ${S}/type/type_rel.cpp ${S}/type/type_sgml.cpp ${S}/type/type_svg_feature.cpp
             ${S}/type/type_time.cpp ${S}/type/type_transform.cpp ${S}/type/type_url.cpp ${S}/type/type_varied.cpp ${S}/type/type_xmlns.cpp
         ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
-        ${S}/utility/byteorder.cpp ${S}/utility/common.cpp ${S}/utility/quote.cpp
+        ${S}/utility/byteorder.cpp ${S}/utility/common.cpp ${S}/utility/filesystem.cpp ${S}/utility/quote.cpp
         ${S}/webmention/hook.cpp ${S}/webmention/irt.cpp ${S}/webmention/webmention.cpp ${S}/webmention/webmentions.cpp
         ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/root.cpp

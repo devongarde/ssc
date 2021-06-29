@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "webpage/root.h"
 #include "utility/common.h"
+#include "utility/filesystem.h"
 #include "webpage/fileindex.h"
 #include "utility/quote.h"
 
@@ -29,7 +30,7 @@ bool make_shadow_directory (nitpick& nits, const ::boost::filesystem::path& p);
 
 path_root::path_root (const ::boost::filesystem::path& disk, const ::std::string& site)
     : disk_path_ (disk), site_path_ (local_path_to_nix (site))
-{   add_site_path (site, insert_directory_path (disk, 0, nullptr)); }
+{   add_site_path (site, insert_directory_path (disk)); }
 
 bool path_root::applicable (const ::std::string& path) const
 {   if (path.length () < site_path_.length ()) return false;
@@ -93,9 +94,9 @@ bool paths_root::add_virtual (nitpick& nits, const ::std::string& assignment)
 {   ::boost::filesystem::path p;
     ::std::string virt;
     if (prep_xxx (nits, assignment, virt, p))
-        if (! ::boost::filesystem::exists (p))
+        if (! file_exists (p))
             nits.pick (nit_bad_path, es_error, ec_init, quote (p.string ()), " does not exist or cannot be accessed");
-        else if (! ::boost::filesystem::is_directory (p))
+        else if (! is_folder (p))
             nits.pick (nit_bad_path, es_error, ec_init, quote (p.string ()), " exists but is not a directory");
         else
         {   add_root (p, virt);
@@ -129,11 +130,11 @@ paths_root& paths_root::virtual_roots ()
     return virtuals; }
 
 bool make_xxx_directory (nitpick& nits, const ::boost::filesystem::path& p)
-{   if (::boost::filesystem::exists (p))
-    {   if (! ::boost::filesystem::is_directory (p))
+{   if (file_exists (p))
+    {   if (! is_folder (p))
         {   nits.pick (nit_shadow, es_error, ec_init, quote (p.string ()), " exists but is not a directory");
             return false; } }
-    else if (::boost::filesystem::create_directories (p))
+    else if (make_directories (p))
         nits.pick (nit_shadow, es_info, ec_init, "created ", quote (p.string ()));
     else
     {   nits.pick (nit_shadow, es_error, ec_init, "cannot create ", quote (p.string ())); return false; }

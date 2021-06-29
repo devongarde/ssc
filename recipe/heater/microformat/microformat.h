@@ -85,7 +85,7 @@ public:
     {   ::std::swap (declared_, mf.declared_); }
     virtual bool invalid () const { return true; }
     virtual bool has_url () const { return false; }
-    virtual bool verify_url (nitpick& , const html_version& , const element& ) { return true; }
+    virtual bool verify_url (nitpick& , const html_version& , element& ) { return true; }
     virtual void verify (nitpick& , const html_version& ) { }
     virtual bool empty () const { return true; }
     virtual bool unknown () const { return true; }
@@ -137,7 +137,7 @@ public:
     virtual bool has_prop (const e_property p) const;
     virtual bool invalid () const;
     virtual bool has_url () const;
-    virtual bool verify_url (nitpick& nits, const html_version& v, const element& e);
+    virtual bool verify_url (nitpick& nits, const html_version& v, element& e);
     virtual void verify (nitpick& nits, const html_version& v);
     virtual bool empty () const;
     virtual bool unknown () const;
@@ -203,7 +203,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
     bool microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > ::
-        verify_url (nitpick& nits, const html_version& v, const element& e)
+        verify_url (nitpick& nits, const html_version& v, element& e)
 {   bool res = true;
     for_each_attribute (p_, [&](auto& p)
     {   res = res && p.verify_url (nits, v, e); } );

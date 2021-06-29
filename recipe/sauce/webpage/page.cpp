@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "utility/common.h"
+#include "utility/filesystem.h"
 #include "webpage/directory.h"
 #include "element/element.h"
 #include "webpage/page.h"
@@ -116,7 +117,7 @@ bool page::parse (::std::string& content, const e_charcode )
     {   PRESUME (directory_ != nullptr, __FILE__, __LINE__);
         ssi_.filename_ = name_;
         html_version v (html_5_3);
-        content = parse_ssi (nits_, v, *directory_, ssi_, content, updated_); }
+        content = parse_ssi (nits_, v, *this, ssi_, content, updated_); }
     bool res = nodes_.parse (nits_, content);
     context.mark_file (static_cast < unsigned > (content.size ()));
     return res; }
@@ -227,16 +228,16 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
     ::std::stringstream ss;
     bool changed = false;
     try
-    {   if (::boost::filesystem::exists (s))
+    {   if (file_exists (s))
         {   if (context.shadow_changed ())
-            {   if (updated_ == 0) updated_ = ::boost::filesystem::last_write_time (get_disk_path ());
-                ::std::time_t target = ::boost::filesystem::last_write_time (s);
+            {   if (updated_ == 0) updated_ = get_last_write_time (get_disk_path ());
+                ::std::time_t target = get_last_write_time (s);
                 nits.pick (nit_debug, es_debug, ec_shadow, get_disk_path (), " last updated ", updated_, ", ", s, " last updated ", target);
 //                ::std::cout << get_disk_path () << " last updated " << updated_ << ", " << s << " last updated " << target << "\n";
                 if (target >= updated_) return; }
-            ::boost::filesystem::file_status stat = ::boost::filesystem::status (s);
+            ::boost::filesystem::file_status stat = file_data (s);
             if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)
-            {   ::boost::filesystem::permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
+            {   file_permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
                 changed = true; } }
         ::boost::filesystem::ofstream f (s, ::std::ios_base::trunc | ::std::ios_base::out);
         if (f.fail ())
@@ -245,7 +246,7 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
         {   if (document_.get () != nullptr) document_ -> shadow (ss, version ());
             f << ss.str ();
             f.close ();
-            if (changed) ::boost::filesystem::permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms); } }
+            if (changed) file_permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms); } }
     catch (...)
     {   nits.pick (nit_shadow_failed, es_catastrophic, ec_shadow, "error writing ", s.string ());
         throw; } }

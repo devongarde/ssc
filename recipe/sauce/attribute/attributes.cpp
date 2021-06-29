@@ -105,7 +105,7 @@ bool attributes :: has_url () const  // better as attribute_bitset AND (one for 
             if (a -> is_url ()) return true;
     return false; }
 
-bool attributes :: verify_url (nitpick& nits, const html_version& v, const element& e)
+bool attributes :: verify_url (nitpick& nits, const html_version& v, element& e)
 {   bool res = true;
     for (auto a : aar_)
         if (a.get () != nullptr)

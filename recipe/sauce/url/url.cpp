@@ -92,18 +92,21 @@ bool url::standard_extension (const e_mime_category mime) const
                 default: break; } } }
     return false; }
 
-bool url::verify (nitpick& nits, const html_version& v, const element& e)
+bool url::verify (nitpick& nits, const html_version& v, element& e)
 {   if (! context.links ()) return true;
     if (is_simple_id ()) return true; // verify_id will check the id is valid
     if (is_local () && ! e.get_page ().check_links ()) return true;
     const directory* d = e.get_page ().get_directory ();
-    VERIFY_NOT_NULL (d, __FILE__, __LINE__);;
+    VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     if (! d -> verify_url (nits, v, *this)) return false;
-    if (context.crosslinks () && is_local () && has_id () && (has_path () || has_file ()))
-    {   ::boost::filesystem::path target (d -> get_disk_path (nits, *this));
-        if (target.empty ()) return false;
-        if (get_fileindex (e.get_page ().get_disk_path ()) != get_fileindex (target))
-            add_sought (e.get_page ().get_disk_path (), e.node ().line (), target, id (), e.own_attributes ().test (a_hidden), e.own_itemtype (), e.node ().id ()); }
+    if (is_local ())
+    {   nitpick nuts;
+        ::boost::filesystem::path target (d -> get_disk_path (nuts, *this));
+        e.get_page ().note_lynx (get_fileindex (target));
+        if (context.crosslinks () && has_id () && (has_path () || has_file ()))
+        {   if (target.empty ()) return false;
+            if (get_fileindex (e.get_page ().get_disk_path ()) != get_fileindex (target))
+                add_sought (e.get_page ().get_disk_path (), e.node ().line (), target, id (), e.own_attributes ().test (a_hidden), e.own_itemtype (), e.node ().id ()); } }
     return true; }
 
 void url::verify_id (element& e)

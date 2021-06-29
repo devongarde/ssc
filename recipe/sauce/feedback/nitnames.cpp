@@ -641,6 +641,12 @@ nitname nitnames [] =
     { nit_anim_simple_id, "anim_simple_id" },
     { nit_id_category, "id_category" },
     { nit_not_animatable, "not_animatable" },
+    { nit_shadow_delete, "shadow_delete" },
+    { nit_root_change, "root_change" },
+    { nit_virtual_change, "virtual_change" },
+    { nit_shadow_unnecessary, "shadow_unnecessary" },
+    { nit_deleted_bad_file, "deleted_bad_file" },
+    { nit_abandon, "abandon" },
 
     { nit_off, "" } };
 

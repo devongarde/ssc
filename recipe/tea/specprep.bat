@@ -87,11 +87,13 @@ ssc.exe -T -Z -o ../out/copyovercopyover.tst -f ../toast/shadow/copyover/copyove
 ssc.exe -T -Z -o ../out/dedudedu.tst -f ../toast/shadow/dedu/dedu.conf
 ssc.exe -T -Z -o ../out/dedudiffdedudiff.tst -f ../toast/shadow/dedudiff/dedudiff.conf
 ssc.exe -T -Z -o ../out/deduoverdeduover.tst -f ../toast/shadow/deduover/deduover.conf
+ssc.exe -T -Z -o ../out/deletedelete.tst -f ../toast/shadow/delete/delete.conf
 ssc.exe -T -Z -o ../out/hardhard.tst -f ../toast/shadow/hard/hard.conf
 ssc.exe -T -Z -o ../out/pagespages.tst -f ../toast/shadow/pages/pages.conf
 ssc.exe -T -Z -o ../out/softsoft.tst -f ../toast/shadow/soft/soft.conf
 ssc.exe -T -Z -o ../out/softoversoftover.tst -f ../toast/shadow/softover/softover.conf
 ssc.exe -T -Z -o ../out/ssishssi.tst -f ../toast/shadow/ssi/ssi.conf
+ssc.exe -T -Z -o ../out/updateupdate.tst -f ../toast/shadow/update/update.conf
 ssc.exe -T -Z -o ../out/snippetconf.tst -f ../toast/snippet/conf/snippet.conf
 ssc.exe -T -Z -o ../out/snippetkiwi.tst -f ../toast/snippet/kiwi/snippet.conf
 ssc.exe -T -Z -o ../out/detailstats.tst -f ../toast/stats/detail/stats.conf

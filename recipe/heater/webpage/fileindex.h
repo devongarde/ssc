@@ -25,8 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // issues: not just / versus \  but also root version X: and \\xyzzy\ and how
 // WSL and other utilities mount windows volumes in 'nix
 
-typedef size_t fileindex_t;
+typedef ::std::size_t fileindex_t;
 typedef unsigned int fileindex_flags;
+typedef ::std::set < fileindex_t > sndx_t;
 class directory;
 
 typedef ::boost::crc_32_type crc_calc;
@@ -40,13 +41,24 @@ const fileindex_t nullfileindex = SIZE_MAX;
 #define FX_CRC      0x00000008
 #define FX_DIR      0x00000010
 #define FX_BORKED   0x00000020
+#define FX_STALE    0x00000040
+#define FX_DELETED  0x00000080
+#define FX_LINKED   0x00000100
 
+#ifdef UNIX
+inline ::std::string local_path_to_nix (const ::std::string& s) { return s; }
+inline ::std::string nix_path_to_local (const ::std::string& s) { return s; }
+#else // presuming if not unix then windows
 ::std::string local_path_to_nix (const ::std::string& win);
 ::std::string nix_path_to_local (const ::std::string& nix);
+#endif // UNIX
 
-fileindex_t insert_disk_path (const ::boost::filesystem::path& name, const fileindex_flags flags, directory* pd, const uintmax_t size, const ::std::time_t& last_write);
-fileindex_t insert_directory_path (const ::boost::filesystem::path& name, const fileindex_flags flags, directory* pd);
-fileindex_t insert_borked_path (const ::boost::filesystem::path& name, const fileindex_flags flags, directory* pd);
+void fileindex_init ();
+::boost::filesystem::path persist_path ();
+bool fileindex_load (nitpick& nits);
+void fileindex_save_and_close (nitpick& nits);
+fileindex_t insert_disk_path (const ::boost::filesystem::path& name, const fileindex_flags flags = 0);
+fileindex_t insert_directory_path (const ::boost::filesystem::path& name);
 void add_site_path (const ::std::string& name, const fileindex_t s);
 fileindex_t get_fileindex (const ::boost::filesystem::path& name);
 fileindex_t get_fileindex (const ::std::string& name);
@@ -66,3 +78,11 @@ void set_crc (const fileindex_t ndx, const crc_t& crc);
 void dedu (nitpick& nits);
 bool isdu (const fileindex_t ndx);
 fileindex_t du (const fileindex_t ndx);
+void add_dependency (const fileindex_t ndx, const fileindex_t dependency);
+void clear_dependencies (const fileindex_t ndx);
+sndx_t get_dependencies (const fileindex_t ndx);
+void set_lynx (const fileindex_t ndx, const fileindex_t dependency);
+void clear_lynx (const fileindex_t ndx);
+sndx_t get_lynx (const fileindex_t ndx);
+bool needs_update (const fileindex_t ndx, const ::std::time_t& st);
+void reset_fileindices ();

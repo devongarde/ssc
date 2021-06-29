@@ -38,8 +38,8 @@ class hook;
 class replies;
 class corpus;
 
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char idealstart = 0, const char idealend = 0);
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to, const char idealstart = 0, const char idealend = 0);
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to);
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
 
 class context_t
@@ -48,7 +48,7 @@ class context_t
                     nids_ = false, nits_ = false, nochange_ = false, notify_ = false, once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, rel_ = false,
                     repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false,
                     shadow_comment_ = false, shadow_changed_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false,
-                    stats_summary_ = false, test_ = false, unknown_class_ = false, valid_ = false, versioned_ = false;
+                    stats_summary_ = false, test_ = false, unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -180,6 +180,7 @@ public:
     bool shadow_pages () const { return ((copy_ > c_none) && (copy_ <= c_deduplicate)); }
     bool shadow_files () const { return ((copy_ > c_html) && (copy_ <= c_deduplicate)); }
     bool shadow_any () const { return shadow_pages (); }
+    bool update () const { return update_; }
     bool versioned () const { return versioned_; }
     context_t& article (const bool b) { article_ = b; return *this; }
     context_t& base (const ::std::string& s) { base_ = s; return *this; }
@@ -306,6 +307,7 @@ public:
     { if (n <= 0) title_ = 0; else title_ = n; return *this; }
     context_t& unknown_class (const bool b) { unknown_class_ = ! b; return *this; }
     context_t& user (const ::std::string& s) { user_ = s; return *this; }
+    context_t& update (const bool b) { update_ = b; return *this; }
     context_t& verbose (const e_verbose i) { verbose_ = i; return *this; }
     context_t& versioned (const bool b) { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; return *this; }

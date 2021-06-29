@@ -155,6 +155,7 @@
     <ClInclude Include="..\heater\utility\bigvector.h" />
     <ClInclude Include="..\heater\utility\byteorder.h" />
     <ClInclude Include="..\heater\utility\common.h" />
+    <ClInclude Include="..\heater\utility\filesystem.h" />
     <ClInclude Include="..\heater\utility\lexical.h" />
     <ClInclude Include="..\heater\utility\quote.h" />
     <ClInclude Include="..\heater\utility\tuple.h" />
@@ -311,6 +312,7 @@
     <ClCompile Include="..\sauce\url\url_scheme.cpp" />
     <ClCompile Include="..\sauce\utility\byteorder.cpp" />
     <ClCompile Include="..\sauce\utility\common.cpp" />
+    <ClCompile Include="..\sauce\utility\filesystem.cpp" />
     <ClCompile Include="..\sauce\utility\quote.cpp" />
     <ClCompile Include="..\sauce\webmention\hook.cpp" />
     <ClCompile Include="..\sauce\webmention\irt.cpp" />
@@ -5085,6 +5087,14 @@
     <None Include="..\toast\shadow\dedu\pre.bat" />
     <None Include="..\toast\shadow\dedu\pre.sh" />
     <None Include="..\toast\shadow\dedu\test.css" />
+    <None Include="..\toast\shadow\delete\delete.conf" />
+    <None Include="..\toast\shadow\delete\delete.spec" />
+    <None Include="..\toast\shadow\delete\index.html" />
+    <None Include="..\toast\shadow\delete\index.html.model" />
+    <None Include="..\toast\shadow\delete\post.bat" />
+    <None Include="..\toast\shadow\delete\post.sh" />
+    <None Include="..\toast\shadow\delete\pre.bat" />
+    <None Include="..\toast\shadow\delete\pre.sh" />
     <None Include="..\toast\shadow\hard\hard.conf" />
     <None Include="..\toast\shadow\hard\hard.spec" />
     <None Include="..\toast\shadow\hard\index.html" />
@@ -5127,6 +5137,27 @@
     <None Include="..\toast\shadow\ssi\ssi.html.model" />
     <None Include="..\toast\shadow\ssi\ssi.inc" />
     <None Include="..\toast\shadow\ssi\ssi.spec" />
+    <None Include="..\toast\shadow\update\changed.html" />
+    <None Include="..\toast\shadow\update\changed.html.model" />
+    <None Include="..\toast\shadow\update\index.html" />
+    <None Include="..\toast\shadow\update\index.html.model" />
+    <None Include="..\toast\shadow\update\link-changed.html" />
+    <None Include="..\toast\shadow\update\link-changed.html.model" />
+    <None Include="..\toast\shadow\update\link-unchanged.html" />
+    <None Include="..\toast\shadow\update\link-unchanged.html.model" />
+    <None Include="..\toast\shadow\update\new.html" />
+    <None Include="..\toast\shadow\update\new.html.model" />
+    <None Include="..\toast\shadow\update\new.inc" />
+    <None Include="..\toast\shadow\update\old.html" />
+    <None Include="..\toast\shadow\update\old.html.model" />
+    <None Include="..\toast\shadow\update\old.inc" />
+    <None Include="..\toast\shadow\update\pre.bat" />
+    <None Include="..\toast\shadow\update\pre.sh" />
+    <None Include="..\toast\shadow\update\test.css" />
+    <None Include="..\toast\shadow\update\unchanged.html" />
+    <None Include="..\toast\shadow\update\unchanged.html.model" />
+    <None Include="..\toast\shadow\update\update.conf" />
+    <None Include="..\toast\shadow\update\update.spec" />
     <None Include="..\toast\snippet\conf\snippet.conf" />
     <None Include="..\toast\snippet\conf\snippet.spec" />
     <None Include="..\toast\snippet\dance" />
@@ -6278,6 +6309,7 @@
     <Text Include="..\..\usage.txt" />
     <Text Include="..\gen\gen.txt" />
     <Text Include="..\toast\README.txt" />
+    <Text Include="..\toast\shadow\update\README.txt" />
     <Text Include="..\toast\snippet\README.txt" />
     <Text Include="..\toast\tmp\README.txt" />
     <Text Include="..\toast\virtual\README.txt" />
@@ -6486,7 +6518,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <StackReserveSize>67108864</StackReserveSize>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

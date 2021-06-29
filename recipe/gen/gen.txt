@@ -52,7 +52,7 @@ These options are available on the command line and in configuration files:
 
 --corpus.output file    Dump XML corpus of site into file. This is intended for use by a local search engine. If none of --corpus.article,
                         --corpus.body, or --corpus.main are specified, the content of <BODY> is used. If more than one are specified,
-                        then the text collected depends on a page's content.
+                        then the text collected depends on a page's content. This is incompatible with --shadow.update.
 
 --general.css           Do NOT process .css files.
 
@@ -251,6 +251,9 @@ These options are available on the command line and in configuration files:
 --shadow.ssi            Do NOT resolve SSIs when shadowing even if --general.ssi is set.
 
 --shadow.space          Leave excess/repeated spaces and blank lines in the shadowed files untidily untouched.
+
+--shadow.update         Only examine files that have changed since the last time ssc ran. This is incompatible with --corpus.file. This requires --shadow.file.
+-u                      Note that nits in files that have not changed will not be reported.
 
 --shadow.virtual v=d    When shadowing virtual directories, output the shadow of virtual directory 'v' to directory 'd'. 'v' must corresponding to a directory
                         set up using --site.virtual.

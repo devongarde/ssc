@@ -1,0 +1,9 @@
+<!DOCTYPE HTML>
+<html lang=en>
+<head>
+<title>link unchanged target</title>
+</head>
+<body>
+<h1 id=test>link unchanged target</h1>
+</body>
+</html>

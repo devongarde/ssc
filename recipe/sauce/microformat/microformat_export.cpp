@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "main/context.h"
+#include "utility/filesystem.h"
 #include "microformat/microformat_export.h"
 
 microformat_export::microformat_export ()
@@ -43,9 +44,9 @@ bool microformat_export::write (nitpick& nits, const ::boost::filesystem::path& 
     json += EXPORT_EXTENSION;
     if (empty ())
     {   try
-        {   if (::boost::filesystem::exists (json))
-            {   ::boost::filesystem::remove (json);
-                 nits.pick (nit_export_none, es_info, ec_microformat, "No microformats; deleted existing ", json); }
+        {   if (file_exists (json))
+            {   if (delete_file (json)) nits.pick (nit_export_none, es_info, ec_microformat, "No microformats; deleted existing ", json);
+                else nits.pick (nit_export_none, es_catastrophic, ec_microformat, "No microformats, but cannot deleted existing, probably incorrect, ", json); }
             else nits.pick (nit_export_none, es_comment, ec_microformat, "No microformats found in " , file); }
         catch (...) { }
         return true; }
@@ -66,17 +67,15 @@ bool microformat_export::write (nitpick& nits, const ::boost::filesystem::path& 
             happy = false; }
         f.close ();
         if (happy)
-        {   if (::boost::filesystem::exists (json))
-                if (! ::boost::filesystem::remove (json))
+        {   if (file_exists (json))
+                if (! delete_file (json))
                 {   nits.pick (nit_cannot_delete, es_catastrophic, ec_microformat, "Cannot delete existing file ", json);
                     return false; }
-            ::boost::filesystem::rename (tmp, json);
+            rename_file (tmp, json);
             nits.pick (nit_write_wrote, es_info, ec_microformat, "Written microformats ", json);
             return true; } }
     catch (...) { }
-    try
-    {   if (::boost::filesystem::exists (tmp))
-            ::boost::filesystem::remove (tmp); }
-    catch (...) { }
-    nits.pick (nit_cannot_update, es_catastrophic, ec_microformat, "Cannot update ", json);
+    if (file_exists (tmp))
+        if (! delete_file (tmp))
+            nits.pick (nit_cannot_update, es_catastrophic, ec_microformat, "Cannot update ", json);
     return false; }

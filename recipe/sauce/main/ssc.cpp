@@ -39,6 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_name.h"
 #include "webpage/root.h"
 #include "webpage/corpus.h"
+#include "webpage/fileindex.h"
 #include "webpage/page.h"
 #include "parser/text.h"
 #include "type/type.h"
@@ -57,6 +58,7 @@ void init (nitpick& nits)
     elem::init (nits);
     elements_init (nits);
     fields_init (nits);
+    fileindex_init ();
     family_init (nits);
     sibling_init (nits);
     types_init (nits);
@@ -207,7 +209,8 @@ int examine (nitpick& nits)
                     {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examining ", virt.at (n) -> get_disk_path (), " raised an exception");
                         res = ERROR_STATE; } } } } }
     close_corpus (nits);
-    dump_nits (nits, "examine");
+    fileindex_save_and_close (nits);
+    dump_nits (nits, "update");
     dump_nits (exp, "exports");
     dump_nits (shadow, "shadow");
     return res; };
@@ -217,10 +220,17 @@ int main (int argc, char** argv)
     try
     {   auto start = ::std::chrono::system_clock::now ();
         std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
+        {   vstr_t v (split_by_charset (VERSION_STRING, "."));
+            PRESUME (v.size () == 3, __FILE__, __LINE__);
+            PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
+            PRESUME (lexical < int > :: cast (v.at (1)) == VERSION_MINOR, __FILE__, __LINE__);
+            PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__); }
         nitpick nits;
         init (nits);
-        res = context.parameters (argc, argv);
         dump_nits (nits, "initialisation");
+        res = context.parameters (argc, argv);
+        if (! fileindex_load (nits)) res = ERROR_STATE;
+        dump_nits (nits, "configuration");
         if (res == VALID_RESULT)
         {   configure (start_time);
             res = examine (nits);

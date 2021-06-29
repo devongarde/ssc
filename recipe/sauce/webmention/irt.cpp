@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webmention/irt.h"
 #include "main/context.h"
 #include "utility/common.h"
+#include "utility/filesystem.h"
 #include "webpage/external.h"
 #include "webpage/page.h"
 #include "webpage/directory.h"
@@ -100,13 +101,13 @@ bool reply::find_server (nitpick& nits, const html_version& v)
         ::std::string link (h.link (WEBMENTION));
         if (set_server (link))
         {   nits.pick (nit_webmention, es_comment, ec_webmention, "found " WEBMENTION " server ", server_, " in headers for ", target_);
-            if (vrai) if (::boost::filesystem::exists (http_temp)) ::boost::filesystem::remove (http_temp);
+            if (vrai) if (file_exists (http_temp)) delete_file (http_temp);
             return true; } }
-    if (vrai) if (::boost::filesystem::exists (http_temp)) ::boost::filesystem::remove (http_temp);
+    if (vrai) if (file_exists (http_temp)) delete_file (http_temp);
     ::boost::filesystem::path html_temp (get_tmp_filename ());
     ::std::string html;
     if (fetch (nits, v, url (nits, v, target_), html_temp)) html = read_text_file (html_temp.string ());
-    if (::boost::filesystem::exists (html_temp)) ::boost::filesystem::remove (html_temp);
+    if (file_exists (html_temp)) delete_file (html_temp);
     if (html.empty ()) return false;
     ::std::time_t updated = 0;
     page p (nits, target_, updated, html);
@@ -198,7 +199,7 @@ void replies::append (const ::std::string& file, const ::std::string& id, const 
 {   reply_.push_back (reply (file, id, target, content)); }
 
 bool replies::read (const ::std::string filename)
-{   if (! ::boost::filesystem::exists (filename)) return true; // no data is mega insert
+{   if (! file_exists (filename)) return true; // no data is mega insert
     ::boost::property_tree::ptree json;
     ::boost::property_tree::read_json (filename, json);
     if (json.empty ()) return false;

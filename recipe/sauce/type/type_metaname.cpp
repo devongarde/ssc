@@ -1099,7 +1099,7 @@ void validate_metaname_content (nitpick& nits, const html_version& v, const bool
             if (stats) p.mark_meta (mn);
             break; } }
 
-void validate_metaname_url (nitpick& nits, const html_version& v, const bool , const e_metaname mn, const ::std::string& content, const element& e)
+void validate_metaname_url (nitpick& nits, const html_version& v, const bool , const e_metaname mn, const ::std::string& content, element& e)
 {   switch (mn)
     {   case mn_og_audio :
         case mn_og_video :

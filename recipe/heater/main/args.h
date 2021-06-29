@@ -133,6 +133,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TAGS        "tags"
 #define TEST        "test"
 #define TITLE       "title"
+#define UPDATE      "update"
 #define USER        "user"
 #define VERBOSE     "verbose"
 #define VERIFY      "verify"

@@ -24,7 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TESTPROG "ssc-test"
 #define FULLNAME "Static Site Checker"
 #define WEBADDR "https://ssc.lu/"
-#define VERSION_STRING "0.0.108"
+#define VERSION_MAJOR 0
+#define VERSION_MINOR 0
+#define VERSION_RELEASE 109
+#define VERSION_STRING "0.0.109"
 #define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
 
 #ifdef __clang__
@@ -117,8 +120,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <array>
 #endif // SSC_TEST
 
-#ifndef SSC_TEST
+#include <boost/version.hpp>
+#include <boost/static_assert.hpp>
 
+#define BOOST_MAJOR ( BOOST_VERSION / 100000 )
+#define BOOST_MINOR ( BOOST_VERSION / 100 % 1000 )
+#define BOOST_RELEASE ( BOOST_VERSION % 100 )
+
+BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
+
+#if BOOST_MINOR < 73
+#define FS_THROWS
+#endif // 1.73
+
+#if BOOST_MINOR < 72
+#define NO_DIROPTS
+#endif // 1.72
+
+#ifndef SSC_TEST
 #if BOOVAR == 1
 #include <boost/variant.hpp>
 #define ssc_variant ::boost::variant
@@ -145,7 +164,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ssc_mm ::std::unordered_multimap
 #endif // ORDERED
 
-#include <boost/static_assert.hpp>
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/format.hpp>

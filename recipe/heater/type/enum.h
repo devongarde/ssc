@@ -1467,7 +1467,8 @@ typedef enum
     nit_viewbox, nit_custom, nit_duplicate_namespace, nit_contradictory_namespace, nit_unrecognised_namespace, nit_out_of_range,
     nit_math_or_svg, nit_many_maybe, nit_not_combine, nit_font_enum, nit_altglyphdef, nit_line_increment, nit_is_property,
     nit_better_as_property, nit_colour_profile, nit_feconvolvematrix, nit_not_0, nit_fecomponenttransfer, nit_fecomposite,
-    nit_style_fixed, nit_anim_simple_id, nit_id_category, nit_not_animatable,
+    nit_style_fixed, nit_anim_simple_id, nit_id_category, nit_not_animatable, nit_shadow_delete, nit_root_change, nit_virtual_change,
+    nit_shadow_unnecessary, nit_deleted_bad_file, nit_abandon,
 
     nit_context,
 

@@ -21,15 +21,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 #include "feedback/nitpick.h"
+#include "webpage/fileindex.h"
 
-class directory;
+class page;
 
 struct ssi_compedium
 {   ::std::string echomsg_, errmsg_, timefmt_, filename_;
+    sndx_t dx_;
     bool sizefmt_abbrev_ = true;
     bool if_ = true, iffed_ = false;
     ustr_t var_;
     ssi_compedium ();
     void swap (ssi_compedium& ssi); };
 
-::std::string parse_ssi (nitpick& nits, const html_version& v, const directory& d, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush = false);
+::std::string parse_ssi (nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush = false);
