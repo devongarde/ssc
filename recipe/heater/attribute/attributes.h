@@ -28,20 +28,19 @@ class element;
 class attributes
 {   aar_t aar_;
     ::std::string unrecognised_;
-    const e_element tag_ = elem_undefined;
+    element& box_;
+    void rebox () NOEXCEPT
+    {   for (auto a : aar_) if (a.get () != nullptr) a -> box (&box_); }
 public:
     attributes () = delete;
-    explicit attributes (const e_element e, const aar_t& ptr) : aar_ (ptr), tag_ (e) { }
-    explicit attributes (element_node& en) : tag_ (en.tag ()) { }
+    explicit attributes (element& box) : box_ (box) { }
     void reset ()
     {   aar_.fill (attribute_v_ptr ());
         unrecognised_.clear (); }
-    void swap (attributes& w) NOEXCEPT
-    {   aar_.swap (w.aar_);
-        unrecognised_.swap (w.unrecognised_); }
+    void swap (attributes& w) NOEXCEPT;
     void reconstruct (element_node& en)
     {   parse (en.nits (), en.version (), en.attributes ()); }
-    e_element tag () const { return tag_; }
+    e_element tag () const;
     bool has (const e_attribute a) const
     {   return aar_.at (a).get () != nullptr; }
     bool set_value (nitpick& nits, const html_version& v, const e_attribute a, const ::std::string& s);
@@ -116,4 +115,6 @@ public:
     void mark (page& p, const e_attribute a);
     void mark (page& p);
     void shadow (::std::stringstream& ss, const html_version& v, element* e);
+    element& box () NOEXCEPT { return box_; }
+    const element& box () const NOEXCEPT { return box_; }
     ::std::string report () const; };

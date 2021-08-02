@@ -147,7 +147,7 @@ bool check_glyph_names (nitpick& nits, const html_version& , element* pe, const 
 
 e_attribute identify_svg_animation_attribute (nitpick& nits, const html_version& v, element& e, const ::std::string& s, const ::std::string& attnam)
 {   ::std::string n, ss (s);
-    e_namespace ns = e.verify_namespace (ss, n);
+    ident_t ns = e.verify_namespace (ss, n);
     e_attribute ea = attr :: find (v, ss, ns);
     if (ea == a_unknown)
         nits.pick (nit_attribute_unrecognised_here, es_error, ec_type, quote (s), " is unrecognised in ", attnam);

@@ -515,7 +515,7 @@ nitname nitnames [] =
     { nit_eof_in_annotation, "eof_in_annotation" },
     { nit_prefix_odd, "prefix_odd" },
     { nit_prefix_format, "prefix_format" },
-    { nit_rdf_redefine, "rdf_redefine" },
+    { nit_rdfa_redefine, "rdfa_redefine" },
     { nit_rdf_confusion, "rdf_confusion" },
     { nit_rdf_protocol, "rdf_protocol" },
     { nit_math_href, "math_href" },
@@ -647,6 +647,12 @@ nitname nitnames [] =
     { nit_shadow_unnecessary, "shadow_unnecessary" },
     { nit_deleted_bad_file, "deleted_bad_file" },
     { nit_abandon, "abandon" },
+    { nit_prefix_again, "prefix_again" },
+    { nit_prefix_unknown, "prefix_unknown" },
+    { nit_missing_id, "missing_id" },
+    { nit_namespace_confusion, "namespace_confusion" },
+    { nit_namespace_redefine, "namespace_redefine" },
+    { nit_no_lang, "no_lang" },
 
     { nit_off, "" } };
 

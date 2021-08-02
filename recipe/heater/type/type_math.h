@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 
 template < > struct type_master < t_hunit > : tidy_string < t_hunit > // verify against HTML 5.0, 2.4.4.4
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_hunit > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_hunit > :: set_value (nits, v, s);
         if (! tidy_string < t_hunit > :: empty ())
             if (tidy_string < t_hunit > :: good ())
@@ -53,7 +54,8 @@ template < > struct type_master < t_hunit > : tidy_string < t_hunit > // verify 
         tidy_string < t_hunit > :: status (s_invalid); } };
 
 template < > struct type_master < t_vunit > : tidy_string < t_vunit > // verify against HTML 5.0, 2.4.4.4
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_vunit > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_vunit > :: set_value (nits, v, s);
         if (! tidy_string < t_vunit > :: empty ())
             if (tidy_string < t_vunit > :: good ())
@@ -85,11 +87,16 @@ template < > struct type_master < t_vunit > : tidy_string < t_vunit > // verify 
         nits.pick (nit_bad_vunit, es_error, ec_type, quote (s), ": a vertical length is an integer or a real, optionally followed immediately by one of '%', 'cm', 'ex', 'in', 'mm', 'pc', 'pt', or 'px'");
         tidy_string < t_vunit > :: status (s_invalid); } };
 
-template < > struct type_master < t_mathvertauto > : type_or_string < t_mathvertauto, t_vunit, sz_auto > { };
-template < > struct type_master < t_vunits > : type_at_least_none < t_vunits, sz_space, t_vunit > { };
+template < > struct type_master < t_mathvertauto > : type_or_string < t_mathvertauto, t_vunit, sz_auto >
+{ using type_or_string < t_mathvertauto, t_vunit, sz_auto > :: type_or_string; };
+
+template < > struct type_master < t_vunits > : type_at_least_none < t_vunits, sz_space, t_vunit >
+{ using type_at_least_none < t_vunits, sz_space, t_vunit > :: type_at_least_none; };
+
 
 template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_space > // verify against HTML 5.0, 2.4.4.4
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector < t_pseudo, sz_space > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_pseudo, sz_space > :: set_value (nits, v, s);
         bool good = true;
         if (string_vector < t_pseudo, sz_space > :: good ())

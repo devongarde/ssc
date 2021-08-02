@@ -68,19 +68,10 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
     else type_base < e_class, t_class > :: status (s_invalid); }
 
 struct html_class : enum_n < t_class, e_class >
-{   typedef enum_n < t_class, e_class > :: value_type value_type;
-    html_class () = default;
-    html_class (const html_class& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-    html_class (html_class&& ) = default;
-#endif
+{   using enum_n < t_class, e_class > :: enum_n;
+    typedef enum_n < t_class, e_class > :: value_type value_type;
     explicit html_class (nitpick& nits, const html_version& v, const ::std::string& s)
     {   enum_n < t_class, e_class > :: set_value (nits, v, s); }
-    ~html_class () = default;
-    html_class& operator = (const html_class& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-    html_class& operator = (html_class&& ) = default;
-#endif
     static bool is_microformat_property (const e_class value)
     {   return value >= first_mf1_property && value <= last_mf2_property; }
     static bool is_microformat_vocabulary (const e_class value)

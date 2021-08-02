@@ -133,10 +133,5 @@ PASS ../toast/math/2/math15-example.html
 273 bad_namespace unknown_element
 275 bad_namespace unknown_element
 283 annotation
-296 missing_close
-297 missing_close arg_count arg_count
-299 missing_close
 300 bad_namespace unknown_element
-301 missing_close arg_count arg_count inserted_missing_parent inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_parent missing_close bad_namespace bad_namespace inserted_missing_parent inserted_missing_closure inserted_missing_closure missing_open
-302 missing_open
-304 missing_open
+301 arg_count arg_count bad_namespace unknown_element bad_namespace unknown_element

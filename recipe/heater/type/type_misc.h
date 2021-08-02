@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < > struct type_master < t_coords > : tidy_string < t_coords >
 {   typedef vint_t value_type;
     value_type value_;
-    type_master () = default;
+    using tidy_string < t_coords > :: tidy_string;
     static e_animation_type animation_type () { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_coords > :: set_value (nits, v, s);
@@ -69,7 +69,8 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
     vint_t get () const { return value_; } };
 
 template < > struct type_master < t_font_family > : tidy_string < t_font_family >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_font_family > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_font_family > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_font_family > :: get_string ();
         if (tidy_string < t_font_family > :: empty ())
@@ -82,7 +83,8 @@ template < > struct type_master < t_font_family > : tidy_string < t_font_family 
         tidy_string < t_font_family > :: status (s_invalid); } };
 
 template < > struct type_master < t_imgsizes > : tidy_string < t_imgsizes >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_imgsizes > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_imgsizes > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_imgsizes > :: get_string ();
         if (tidy_string < t_imgsizes > :: empty ())
@@ -108,7 +110,8 @@ template < > struct type_master < t_imgsizes > : tidy_string < t_imgsizes >
                                         break; } } } } } };
 
 template < > struct type_master < t_is > : tidy_string < t_is >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_is > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_is > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_is > :: get_string ();
         if (tidy_string < t_is > :: empty ())
@@ -126,7 +129,7 @@ template < > struct type_master < t_is > : tidy_string < t_is >
 
 template < > struct type_master < t_key > : string_vector < t_key, sz_space >
 {   bool tested_ = false, predefined_ = false;
-    type_master () = default;
+    using string_vector < t_key, sz_space > :: string_vector;
     void swap (type_master < t_key >& t) NOEXCEPT
     {   ::std::swap (tested_, t.tested_);
         ::std::swap (predefined_, t.predefined_);
@@ -163,7 +166,8 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space >
         return predefined_; } };
 
 template < > struct type_master < t_q > : public tidy_string < t_q >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   using tidy_string < t_q > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
     {   tidy_string < t_q > :: set_value (nits, v, ss);
         const ::std::string& s = tidy_string < t_q > :: get_string ();
         if (s.empty ())
@@ -187,7 +191,8 @@ template < > struct type_master < t_q > : public tidy_string < t_q >
         tidy_string < t_q > :: status (s_invalid); } };
 
 template < > struct type_master < t_regex > : public tidy_string < t_regex >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_regex > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_regex > :: set_value (nits, v, s);
         if (tidy_string < t_regex > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "PATTERN requires a regular expression");
@@ -195,7 +200,8 @@ template < > struct type_master < t_regex > : public tidy_string < t_regex >
         string_value < t_regex > :: status (s_invalid); } };
 
 template < > struct type_master < t_sym > : public tidy_string < t_sym >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   using tidy_string < t_sym > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
     {   extern void examine_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid);
         tidy_string < t_sym > :: set_value (nits, v, ss);
         const ::std::string& s = tidy_string < t_sym > :: get_string ();
@@ -214,7 +220,8 @@ template < > struct type_master < t_sym > : public tidy_string < t_sym >
             tidy_string < t_sym > :: status (s_invalid); } } };
 
 template < > struct type_master < t_target > : public tidy_string < t_target >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_target > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_target > :: set_value (nits, v, s);
         const ::std::string& val = tidy_string < t_target > :: get_string ();
         if (tidy_string < t_target > :: empty ())
@@ -226,4 +233,6 @@ template < > struct type_master < t_target > : public tidy_string < t_target >
             nits.pick (nit_badtarget, es_error, ec_type, quote (s), " starts with '_', but is not a standard target"); }
         string_value < t_target > :: status (s_invalid); } };
 
-template < > struct type_master < t_xlinktype > : type_must_be < t_xlinktype, sz_simple > { };
+template < > struct type_master < t_xlinktype > : type_must_be < t_xlinktype, sz_simple >
+{ using type_must_be < t_xlinktype, sz_simple > :: type_must_be; };
+

@@ -197,7 +197,7 @@ void options::process (int argc, char** argv)
         r no revoke chks R reset webmention
         s domain name    S stats
         t template       T test mode
-        u update
+        u update         U unique
         v verbose        V version
         w webmention     W cgi
         x extensions     X check crosslinked ids
@@ -309,7 +309,7 @@ void options::process (int argc, char** argv)
         (GENERAL NOCHANGE ",n", "Report what " PROG "will do, but do not do it.")
         (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "Output file (default to the console).")
         (GENERAL PATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "Root directory for all " PROG " files.")
-        (GENERAL RDF, "Check RDFa attributes.")
+        (GENERAL RDFA, "Check RDFa attributes.")
         (GENERAL REL, "Ignore recognised but non-standard <LINK> REL values.")
         (GENERAL SLOB, "Do not nitpick untidy HTML such as missing closures.")
         (GENERAL SSI ",I", "Process (simple) Server Side Includes.")
@@ -360,6 +360,7 @@ void options::process (int argc, char** argv)
         (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as info; may be repeated.")
         (NITS NIDS, "Output nit identifiers (used to recategorise nits)")
         (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "Silence nit; may be repeated.")
+        (NITS UNIQUE ",U", "Do not report repeated nits, even if they may give a little more information")
         (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a warning; may be repeated.")
 
         (SHADOW COMMENT, "Do NOT remove comments from shadow pages.")
@@ -394,7 +395,6 @@ void options::process (int argc, char** argv)
         (STATS PAGE, "Report individual page statistics.")
         (STATS SUMMARY ",S", "Report overall statistics.")
 
-//        (SVG MODE, "SVG 2.0 processing mode (0=dynamic, 1=animated, 2=secure_animated, 3=static, 4=secure_static)")
         (SVG VERSION, ::boost::program_options::value < ::std::string > (), "Presumed this version of SVG if version attribute missing (requires HTML 4 or greater).")
 
         (VALIDATION MINOR ",m", ::boost::program_options::value < int > (), "Validate HTML 5 with this w3 minor version (e.g. 3 for HTML 5.3).")
@@ -706,7 +706,7 @@ void options::contextualise ()
     if (! context.cgi ())
     {   context.load_css (var_.count (GENERAL CSS_OPTION) == 0);
         context.nochange (var_.count (GENERAL NOCHANGE));
-        context.rdf (var_.count (GENERAL RDF));
+        context.rdfa (var_.count (GENERAL RDFA));
         context.rel (var_.count (GENERAL REL));
         context.rpt_opens (var_.count (GENERAL RPT));
         context.ssi (var_.count (GENERAL SSI));
@@ -764,6 +764,7 @@ void options::contextualise ()
 
         context.codes (var_.count (NITS CODES));
         context.nids (var_.count (NITS NIDS));
+        context.nits_nits_nits (! var_.count (NITS UNIQUE));
         context.spec (var_.count (NITS SPEC));
         context.nits (var_.count (NITS WATCH));
 
@@ -842,11 +843,6 @@ void options::contextualise ()
         context.stats_page (var_.count (STATS PAGE));
         context.stats_summary (var_.count (STATS SUMMARY));
 
-//        context.svg_mode (static_cast < e_svg_processing_mode > (var_.count (SVG MODE)));
-//        if (var_.count (SVG MODE))
-//        {   int n = var_ [SVG MODE].as < int > ();
-//            if ((n >= 0) && (n < 5)) context.svg_mode (static_cast < e_svg_processing_mode > (n)); }
-
         if (var_.count (SVG VERSION))
         {   ::std::string ver (var_ [SVG VERSION].as < ::std::string > ());
             {   ::std::string::size_type slash = ver.find ('/');
@@ -903,6 +899,9 @@ void options::contextualise ()
         if (var_.count (VALIDATION SGML)) type_master < t_sgml > :: extend (var_ [VALIDATION SGML].as < vstr_t > (), static_cast < ::std::size_t > (doc_context));
 
 #define TEST_VAR(XX) if (var_.count (VALIDATION #XX)) type_master < t_##XX > :: extend (var_ [VALIDATION #XX].as < vstr_t > ())
+        TEST_VAR (accrual_method);
+        TEST_VAR (accrual_periodicity);
+        TEST_VAR (accrual_policy);
         TEST_VAR (action);
         TEST_VAR (align3);
         TEST_VAR (alignplus);
@@ -914,6 +913,7 @@ void options::contextualise ()
         TEST_VAR (citype);
         TEST_VAR (cntype);
         TEST_VAR (composite_operator);
+        TEST_VAR (dcmitype);
         TEST_VAR (decalign);
         TEST_VAR (dingbat);
         TEST_VAR (dir);
@@ -950,13 +950,13 @@ void options::contextualise ()
         TEST_VAR (microdata_domain);
         TEST_VAR (microdata_root);
         TEST_VAR (namedspace);
-        TEST_VAR (namespace);
         TEST_VAR (mathnotation);
         TEST_VAR (ogtype);
         TEST_VAR (paintkeyword);
         TEST_VAR (plusstyle);
         TEST_VAR (pointer_events);
         TEST_VAR (print);
+        TEST_VAR (rdfa_context);
         TEST_VAR (referrer);
         TEST_VAR (rendering_in_tents);
         TEST_VAR (rules);
@@ -1073,7 +1073,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (GENERAL MAXFILESIZE)) res << GENERAL MAXFILESIZE ": " << var_ [GENERAL MAXFILESIZE].as < int > () << "\n";
     if (var_.count (GENERAL NOCHANGE)) res << GENERAL NOCHANGE "\n";
     if (var_.count (GENERAL PATH)) res << GENERAL PATH ": " << var_ [GENERAL PATH].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL RDF)) res << GENERAL RDF "\n";
+    if (var_.count (GENERAL RDFA)) res << GENERAL RDFA "\n";
     if (var_.count (GENERAL RPT)) res << GENERAL RPT "\n";
     if (var_.count (GENERAL SSI)) res << GENERAL SSI "\n";
     if (var_.count (GENERAL TEST)) res << GENERAL TEST "\n";
@@ -1105,6 +1105,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (NITS ERR)) { res << NITS ERR ": "; pvs (res, var_ [NITS ERR].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS INFO)) { res << NITS INFO ": "; pvs (res, var_ [NITS INFO].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS NIDS)) res << NITS NIDS "\n";
+    if (var_.count (NITS UNIQUE)) res << NITS UNIQUE "\n";
     if (var_.count (NITS SILENCE)) { res << NITS SILENCE ": "; pvs (res, var_ [NITS SILENCE].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS SPEC)) res << NITS SPEC "\n";
     if (var_.count (NITS WARNING)) { res << NITS WARNING ": "; pvs (res, var_ [NITS WARNING].as < vstr_t > ()); res << "\n"; }
@@ -1137,7 +1138,6 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (STATS PAGE)) res << STATS PAGE "\n";
     if (var_.count (STATS SUMMARY)) res << STATS SUMMARY "\n";
 
-//    if (var_.count (SVG MODE)) res << SVG MODE "\n";
     if (var_.count (SVG VERSION)) res << SVG VERSION "\n";
 
     if (var_.count (VALIDATION ATTRIB)) { res << VALIDATION ATTRIB ": "; pvs (res, var_ [VALIDATION ATTRIB].as < vstr_t > ()); res << "\n"; }
@@ -1158,6 +1158,9 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (VALIDATION SGML)) { res << VALIDATION SGML ": "; pvs (res, var_ [VALIDATION SGML].as < vstr_t > ()); res << "\n"; }
 
 #define RPT_VAR(XX) if (var_.count (VALIDATION #XX)) { res << VALIDATION #XX ": "; pvs (res, var_ [VALIDATION #XX].as < vstr_t > ()); res << "\n"; }
+    RPT_VAR (accrual_method);
+    RPT_VAR (accrual_periodicity);
+    RPT_VAR (accrual_policy);
     RPT_VAR (action);
     RPT_VAR (align3);
     RPT_VAR (alignplus);
@@ -1169,6 +1172,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (citype);
     RPT_VAR (cntype);
     RPT_VAR (composite_operator);
+    RPT_VAR (dcmitype);
     RPT_VAR (decalign);
     RPT_VAR (dingbat);
     RPT_VAR (dir);
@@ -1212,6 +1216,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (plusstyle);
     RPT_VAR (pointer_events);
     RPT_VAR (print);
+    RPT_VAR (rdfa_context);
     RPT_VAR (referrer);
     RPT_VAR (rendering_in_tents);
     RPT_VAR (rules);

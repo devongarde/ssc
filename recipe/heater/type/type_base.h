@@ -34,17 +34,22 @@ typedef bool mono;
 template < typename VALUE_TYPE, e_type E > class type_base
 {   ::std::string id_;
     e_status status_ = s_unset;
+    element* box_ = nullptr;
 public:
     typedef VALUE_TYPE value_type;
     typedef VALUE_TYPE base_type;
     typedef false_type has_int_type;
     type_base () = default;
+    explicit type_base (element* box) : box_ (box) { }
     static e_type get_type () { return E; }
     static bool is_relational () { return false; }
     static bool is_url () { return false; }
     static bool is_existential () { return false; }
     static e_animation_type animation_type () { return at_none; }
-    void swap (type_base& t) NOEXCEPT { id_.swap (t.id_); ::std::swap (status_, t.status_); }
+    void swap (type_base& t) NOEXCEPT
+    {   id_.swap (t.id_);
+        ::std::swap (box_, t.box_);
+        ::std::swap (status_, t.status_); }
     void reset () { status_ = s_unset; id_.clear (); }
     void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
     bool verify_url (nitpick& , const html_version& , element& ) { return true; }
@@ -74,6 +79,9 @@ public:
     bool has_value (const VALUE_TYPE ) const { return false; }
     ::std::size_t size () const { return 1; }
     void shadow (::std::stringstream& , const html_version& , element* ) { }
+    element* box () NOEXCEPT { return box_; }
+    element* box () const NOEXCEPT { return box_; }
+    void box (element* b) NOEXCEPT { box_ = b; }
     ::std::string report () const
     {   ::std::string s;
         if (status_ == s_invalid) s = "x";

@@ -709,13 +709,11 @@ PASS ../toast/living/jul16/ls5.html
 PASS ../toast/living/jul16/ls6.html
 3 contradictory_namespace no_xmllang
 5 use_quote_code
-6 unknown_element
-8 unrecognised_namespace unknown_element attribute_unrecognised
+8 unrecognised_namespace unknown_element
 9 unknown_element unknown_element
-10 unknown_element attribute_unrecognised
+10 unknown_element
 11 unknown_element unknown_element
 12 unknown_element
-13 unknown_element
 
 PASS ../toast/living/jul16/ls10.html
 5 element_offsite_base

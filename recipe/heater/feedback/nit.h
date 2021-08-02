@@ -30,6 +30,7 @@ class nit
     e_doc doc_ = ed_mishmash;
     ::std::string ref_; // location in doc; presumes hard coded string
     ::std::string msg_;
+    friend bool operator < (const nit& lhs, const nit& rhs);
 public:
     nit ();
     nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg);
@@ -52,6 +53,13 @@ public:
     e_severity severity () const { return severity_; }
     ::std::string msg () const { return msg_; }
     bool empty () const { return code_ == nit_free; } };
+
+inline bool operator < (const nit& lhs, const nit& rhs)
+{   if (lhs.severity_ < rhs.severity_) return true;
+    if (lhs.severity_ > rhs.severity_) return false;
+    if (lhs.code_ < rhs.code_) return true;
+    if (lhs.code_ > rhs.code_) return false;
+    return (lhs.msg_.compare (rhs.msg_) < 0); }
 
 ::std::string doc_title (const e_doc doc);
 ::std::string doc_ref (const e_doc doc);

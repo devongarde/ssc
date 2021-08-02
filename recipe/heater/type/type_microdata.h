@@ -24,11 +24,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 template < > struct type_master < t_itemid > : tidy_string < t_itemid >
 {   typedef true_type has_int_type;
+    using tidy_string < t_itemid > :: tidy_string;
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
     { return invalid_itemid (nits, v, string_value < t_itemid > :: value_, e); } };
 
 template < > struct type_master < t_itemprop > : string_vector < t_itemprop, sz_space >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector < t_itemprop, sz_space > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_itemprop, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_itemprop, sz_space > :: empty ())
         {   nits.pick (nit_bad_itemprop, ed_jul20, "5.2.2 Items", es_error, ec_type, "ITEMPROP requires a value");
@@ -47,7 +49,8 @@ template < > struct type_master < t_itemprop > : string_vector < t_itemprop, sz_
                             tidy_string < t_itemprop > :: status (s_invalid); } } } };
 
 template < > struct type_master < t_itemtype > : string_vector < t_itemtype, sz_space >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector < t_itemtype, sz_space > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_itemtype, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_itemtype, sz_space > :: empty ())
         {   nits.pick (nit_empty, ed_jul20, "5.2.2 Items", es_error, ec_type, "ITEMTYPE requires a value");
@@ -61,4 +64,6 @@ template < > struct type_master < t_itemtype > : string_vector < t_itemtype, sz_
             if (allgood) return; }
         string_vector < t_itemtype, sz_space > :: status (s_invalid); } };
 
-template < > struct type_master < t_mf_listing_actions > : type_at_least_one < t_mf_listing_actions, sz_space, t_mf_listing_action > { };
+template < > struct type_master < t_mf_listing_actions > : type_at_least_one < t_mf_listing_actions, sz_space, t_mf_listing_action >
+{ using type_at_least_one < t_mf_listing_actions, sz_space, t_mf_listing_action > :: type_at_least_one; };
+

@@ -48,9 +48,6 @@ PASS ../toast/SVG/2.1/direction-1.html
 
 PASS ../toast/SVG/2.1/direction-2.svg
 1 xhtml_5_0
-4 no_xmllang
-5 no_xmllang
-6 no_xmllang
 9 use_quote_code
 
 PASS ../toast/SVG/2.1/dom.xhtml
@@ -105,12 +102,7 @@ PASS ../toast/SVG/2.1/focus.html
 PASS ../toast/SVG/2.1/foreign.svg
 0 title_required
 1 xhtml_5_0
-6 unrecognised_namespace unknown_element
-7 unknown_element
-8 unknown_element
-9 unknown_element
-10 unknown_element
-12 unknown_element
+6 unrecognised_namespace
 
 PASS ../toast/SVG/2.1/foreignobject.svg
 0 title_required
@@ -181,23 +173,10 @@ PASS ../toast/SVG/2.1/marker-4.svg
 1 xhtml_5_0
 
 PASS ../toast/SVG/2.1/metadata.svg
+0 title_required
 1 xhtml_5_0
 4 unrecognised_namespace unrecognised_value
-6 unknown_element
-7 unknown_element unknown_element unknown_element
-8 unknown_element unknown_element unknown_element
-9 unknown_element unknown_element
-10 unknown_element unknown_element unknown_element
-16 unknown_element
-23 unknown_element attribute_unrecognised_here attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised
-24 unknown_element
-25 unknown_element
-26 unknown_element unknown_element
-27 unknown_element unknown_element
-28 unknown_element
-29 unknown_element
-30 unknown_element
-31 unknown_element
+23 attribute_unrecognised_here unrecognised_attribute
 
 PASS ../toast/SVG/2.1/mystery.xhtml
 0 title_required
@@ -259,12 +238,7 @@ PASS ../toast/SVG/2.1/preserveaspectratio.xhtml
 PASS ../toast/SVG/2.1/privatedata.svg
 0 title_required
 1 xhtml_5_0
-6 unrecognised_namespace unknown_element
-7 unknown_element
-8 unknown_element
-9 unknown_element
-10 unknown_element
-12 unknown_element
+6 unrecognised_namespace
 
 PASS ../toast/SVG/2.1/radialgradient.svg
 1 xhtml_5_0

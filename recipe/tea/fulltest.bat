@@ -71,6 +71,7 @@ ssc.exe -f ../toast/other/aria/aria.conf
 ssc.exe -f ../toast/other/base/base.conf
 ssc.exe -f ../toast/other/characters/chars.conf
 ssc.exe -f ../toast/other/CSS/css.conf
+ssc.exe -f ../toast/other/dc/dc.conf
 ssc.exe -f ../toast/other/dfn/dfn.conf
 ssc.exe -f ../toast/other/dump/dump.conf
 ssc.exe -f ../toast/other/ignore/ignore.conf
@@ -78,9 +79,11 @@ ssc.exe -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -f ../toast/other/nits/nits.conf
 ssc.exe -f ../toast/other/parsing/parsing.conf
 ssc.exe -f ../toast/other/pattern/pattern.conf
-ssc.exe -f ../toast/other/RDF/rdf.conf
 ssc.exe -f ../toast/other/simple/simple.conf
 ssc.exe -f ../toast/other/ssi/ssi.conf
+ssc.exe -f ../toast//RDF/1.0/rdf.conf
+ssc.exe -f ../toast//RDF/1.1/rdf.conf
+ssc.exe -f ../toast//RDF/RDFa/rdfa.conf
 ssc.exe -f ../toast/shadow/comment/comment.conf
 ssc.exe -f ../toast/shadow/copy/copy.conf
 ssc.exe -f ../toast/shadow/copydiff/copydiff.conf

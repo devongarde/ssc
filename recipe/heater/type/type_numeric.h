@@ -27,6 +27,7 @@ bool within_real_limits (nitpick& nits, const html_version& , const double val);
 
 template < > struct type_master < t_base > : public numeric_value < t_base, unsigned int >
 {   typedef true_type has_int_type;
+    using numeric_value < t_base, unsigned int > :: numeric_value;
     static e_animation_type animation_type () { return at_integer; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_base, unsigned int > :: set_value (nits, v, s);
@@ -40,7 +41,7 @@ template < > struct type_master < t_base > : public numeric_value < t_base, unsi
 
 template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpoint >
 {   double value_ = 0.0;
-    type_master () = default;
+    using type_base < double, t_fixedpoint > :: type_base;
     static e_animation_type animation_type () { return at_number; }
     void swap (type_master < t_fixedpoint >& t) NOEXCEPT
     {   ::std::swap (value_, t.value_);
@@ -61,7 +62,8 @@ template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpo
     double get () const { return value_; } };
 
 template < > struct type_master < t_percent > : type_master < t_fixedpoint >
-{   static e_animation_type animation_type () { return at_percentage; }
+{   using type_master < t_fixedpoint > :: type_master;
+    static e_animation_type animation_type () { return at_percentage; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         ::std::string::size_type len (ss.length ());
@@ -79,6 +81,7 @@ template < > struct type_master < t_percent > : type_master < t_fixedpoint >
 
 template < > struct type_master < t_integer > : numeric_value < t_integer, int >
 {   typedef true_type has_int_type;
+    using numeric_value < t_integer, int > :: numeric_value;
     static e_animation_type animation_type () { return at_integer; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_integer, int > :: set_value (nits, v, s);
@@ -89,6 +92,7 @@ template < > struct type_master < t_integer > : numeric_value < t_integer, int >
 
 template < > struct type_master < t_negative > : type_master < t_integer >
 {   typedef true_type has_int_type;
+    using type_master < t_integer > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_integer > :: set_value (nits, v, s);
         if (type_master < t_integer > :: good ())
@@ -99,6 +103,7 @@ template < > struct type_master < t_negative > : type_master < t_integer >
 
 template < > struct type_master < t_positive > : type_master < t_integer >
 {   typedef true_type has_int_type;
+    using type_master < t_integer > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_integer > :: set_value (nits, v, s);
         if (type_master < t_integer > :: good ())
@@ -109,7 +114,7 @@ template < > struct type_master < t_positive > : type_master < t_integer >
 
 template < > struct type_master < t_real > : type_base < double, t_real >
 {   double value_ = 0.0;
-    type_master () = default;
+    using type_base < double, t_real > :: type_base;
     static e_animation_type animation_type () { return at_number; }
     void swap (type_master < t_real >& t) NOEXCEPT
     {   ::std::swap (value_, t.value_);
@@ -132,6 +137,7 @@ template < > struct type_master < t_real > : type_base < double, t_real >
 
 template < > struct type_master < t_unsigned > : public numeric_value < t_unsigned, unsigned int >
 {   typedef true_type has_int_type;
+    using numeric_value < t_unsigned, unsigned int > :: numeric_value;
     static e_animation_type animation_type () { return at_integer; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_unsigned, unsigned int > :: set_value (nits, v, s);
@@ -142,6 +148,7 @@ template < > struct type_master < t_unsigned > : public numeric_value < t_unsign
 
 template < > struct type_master < t_un_ex > : public type_master < t_unsigned >
 {   typedef true_type has_int_type;
+    using type_master < t_unsigned > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (s.empty ()) type_master < t_unsigned > :: status (s_good);
         else
@@ -152,6 +159,7 @@ template < > struct type_master < t_un_ex > : public type_master < t_unsigned >
 
 template < > struct type_master < t_1_to_7 > : public type_master < t_unsigned >
 {   typedef true_type has_int_type;
+    using type_master < t_unsigned > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_unsigned > :: set_value (nits, v, s);
         if (! type_master < t_unsigned > :: good () || (value_ < 1) || (value_ > 7))
@@ -160,6 +168,7 @@ template < > struct type_master < t_1_to_7 > : public type_master < t_unsigned >
 
 template < > struct type_master < t_plus_1_7 > : public type_master < t_unsigned >
 {   typedef true_type has_int_type;
+    using type_master < t_unsigned > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string arg (trim_the_lot_off (s));
         type_master < t_unsigned > :: set_value (nits, v, arg);
@@ -169,7 +178,8 @@ template < > struct type_master < t_plus_1_7 > : public type_master < t_unsigned
             type_master < t_unsigned > :: status (s_invalid); } } };
 
 template < > struct type_master < t_not_0 > : type_master < t_real >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using type_master < t_real > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_real > :: set_value (nits, v, s);
         if (type_master < t_real > :: good ())
         {   if (type_master < t_real > :: value_ != 0.0) return;
@@ -177,7 +187,8 @@ template < > struct type_master < t_not_0 > : type_master < t_real >
             type_master < t_real > :: status (s_invalid); } } };
 
 template < > struct type_master < t_zero_to_one > : type_master < t_real >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using type_master < t_real > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_real > :: set_value (nits, v, s);
         if (type_master < t_real > :: good ())
         {   if ((type_master < t_real > :: value_ >= 0.0) && (type_master < t_real > :: value_ <= 1.0)) return;
@@ -185,18 +196,35 @@ template < > struct type_master < t_zero_to_one > : type_master < t_real >
             type_master < t_real > :: status (s_invalid); } } };
 
 template < int N > struct n_or_more : type_master < t_real >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using type_master < t_real > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_real > :: set_value (nits, v, s);
         if (type_master < t_real > :: good ())
         {   if ((type_master < t_real > :: value_ >= static_cast < double > (N))) return;
             nits.pick (nit_1_more, es_error, ec_type, quote (s), " must equal or exceed ", N, ".0");
             type_master < t_real > :: status (s_invalid); } } };
 
-template < > struct type_master < t_0_more > : n_or_more < 0 > { };
-template < > struct type_master < t_1_more > : n_or_more < 1 > { };
-template < > struct type_master < t_positive_1_2 > : type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 > { };
-template < > struct type_master < t_real_i > : type_or_string < t_real_i, t_real, sz_inherit > { };
-template < > struct type_master < t_real_ai > : type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit > { };
-template < > struct type_master < t_reals > : type_at_least_one < t_reals, sz_commaspace, t_real > { };
-template < > struct type_master < t_unsigned_1_or_2 > : type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 > { };
-template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > { };
+template < > struct type_master < t_0_more > : n_or_more < 0 >
+{ using n_or_more < 0 > :: n_or_more; };
+
+template < > struct type_master < t_1_more > : n_or_more < 1 >
+{ using n_or_more < 1 > :: n_or_more; };
+
+template < > struct type_master < t_positive_1_2 > : type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 >
+{ using type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 > :: type_range; };
+
+template < > struct type_master < t_real_i > : type_or_string < t_real_i, t_real, sz_inherit >
+{ using type_or_string < t_real_i, t_real, sz_inherit > :: type_or_string; };
+
+template < > struct type_master < t_real_ai > : type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit >
+{ using type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit > :: type_or_either_string; };
+
+template < > struct type_master < t_reals > : type_at_least_one < t_reals, sz_commaspace, t_real >
+{ using type_at_least_one < t_reals, sz_commaspace, t_real > :: type_at_least_one; };
+
+template < > struct type_master < t_unsigned_1_or_2 > : type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 >
+{ using type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 > :: type_range; };
+
+template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one >
+{ using type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > :: type_at_least_one; };
+

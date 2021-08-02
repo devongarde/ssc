@@ -3,6 +3,8 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.110
+
 0.0.109
 - added --shadow.update (examine site changes only)
 

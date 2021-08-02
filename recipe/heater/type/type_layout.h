@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 
 template < > struct type_master < t_border > : public tidy_string < t_border >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_border > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_value < t_border > :: set_value (nits, v, s);
         ::std::string arg = string_value < t_border > :: get_string ();
         switch (v.mjr ())
@@ -46,7 +47,7 @@ template < > struct type_master < t_border > : public tidy_string < t_border >
 template < > struct type_master < t_sizex > : type_base < ::std::string, t_sizex >
 {   bool any_ = false;
     int x_ = 0, y_ = 0;
-    type_master () = default;
+    using type_base < ::std::string, t_sizex > :: type_base;
     void swap (type_master < t_sizex >& t)
     {   ::std::swap (any_, t.any_);
         ::std::swap (x_, t.x_);
@@ -84,6 +85,7 @@ template < > struct type_master < t_sizex > : type_base < ::std::string, t_sizex
 template < > struct type_master < t_wxhs > : type_base < ::std::string, t_wxhs >
 {   typedef ::std::vector < type_master < t_sizex > > vx_t;
     vx_t value_;
+    using type_base < ::std::string, t_wxhs > :: type_base;
     void swap (type_master < t_wxhs >& t)
     {   value_.swap (t.value_);
         type_base < ::std::string, t_wxhs >::swap (t); }

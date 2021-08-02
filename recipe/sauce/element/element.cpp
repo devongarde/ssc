@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 
 element::element (const ::std::string& name, element_node& en, element* parent, page& p)
-    :   node_ (en), a_ (en), examined_ (false), page_ (p), parent_ (parent), name_ (name), uid_ (page_.euid ()) { }
+    :   node_ (en), a_ (*this), examined_ (false), page_ (p), parent_ (parent), name_ (name), uid_ (page_.euid ()) { }
 
 void element::reconstruct (sstr_t* access)
 {   if (reconstructed_) return;
@@ -44,8 +44,8 @@ void element::swap (element& e) NOEXCEPT
     radio_kids_.swap (e.radio_kids_);
     itemscope_.swap (e.itemscope_);
     results_.swap (e.results_);
+    node_.swap (e.node_);
     // do not swap icarus_
-    ::std::swap (node_, e.node_);
     ::std::swap (examined_, e.examined_);
     ::std::swap (page_, e.page_);
     ::std::swap (parent_, e.parent_);
@@ -253,5 +253,5 @@ bool element::has_glyph (const ::std::string& s) const
 void element::add_glyph (const ::std::string& s)
 {   page_.get_glyphs ().insert_id (s, this); }
 
-e_namespace element::verify_namespace (::std::string& s, ::std::string n)
-{   return examine_namespace (nits (), node ().version (), node_.nss (), s, n); }
+ns_id element::verify_namespace (::std::string& s, ::std::string n)
+{   return examine_namespace (nits (), node ().version (), node_.namespaces (), s, n); }

@@ -199,7 +199,7 @@ void element::late_examine_element (const e_element tag)
     {   case elem_image : examine_image (); break;
         default : break; } }
 
-void element::remove_category (const uint64_t cat)
+void element::remove_category (const flags_t cat)
 {   uint64_t c (node_.id ().categories ());
     c &= ~cat;
     node_.id ().congeal (c);
@@ -301,14 +301,28 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
 
         if (node_.version ().is_4_or_more ()) verify_microdata ();
 
+        if (context.has_rdfa ())
+        {   if (a_.known (a_vocab)) examine_vocab ();
+            if (a_.known (a_about)) examine_about ();
+            if (a_.known (a_content)) examine_content ();
+            if (a_.known (a_datatype)) examine_datatype ();
+            if (a_.known (a_inlist)) examine_inlist ();
+            if (a_.known (a_instanceof)) examine_instanceof ();
+            if (a_.known (a_prefix)) examine_prefix ();
+            if (a_.known (a_property)) examine_property ();
+            if (a_.known (a_resource)) examine_resource ();
+            if (a_.known (a_typeof)) examine_typeof (); }
+
+
         if (node_.version ().is_5 ())
             if (a_.known (a_xmllang))
                 if (! a_.known (a_lang))
-                    if (node_.id ().is_svg () && (node_.version ().svg_version () == sv_1_1))
-                        if (a_.good (a_xmllang)) pick (nit_no_xmllang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add lang=", quote (a_.get_string (a_xmllang)));
-                        else pick (nit_no_xmllang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add a lang attribute");
-                    else pick (nit_no_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "'Authors must not use LANG in the XML namespace on HTML elements in HTML documents'");
-                else if (a_.get_string (a_lang) != a_.get_string (a_xmllang))
+                {   if (! node_.version ().xhtml ())
+                        if (node_.id ().is_svg () && (node_.version ().svg_version () == sv_1_1))
+                            if (a_.good (a_xmllang)) pick (nit_no_lang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add lang=", quote (a_.get_string (a_xmllang)));
+                            else pick (nit_no_lang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add a lang attribute");
+                        else pick (nit_no_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "'Authors must not use LANG in the XML namespace on HTML elements in HTML documents'"); }
+                else if (a_.known (a_lang) && (a_.get_string (a_lang) != a_.get_string (a_xmllang)))
                     pick (nit_lang_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "if both LANG and xml:lang are specified, they must have the same value");
 
         if (node_.version () >= html_apr21)

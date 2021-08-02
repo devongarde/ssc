@@ -69,7 +69,7 @@ void element::examine_script ()
                     module = true;
                     break;
                 default :
-                    {   uint64_t flags = type_master < t_mime > :: flags (mt);
+                    {   flags_t flags = type_master < t_mime > :: flags (mt);
                         if ((flags & MIME_SCRIPT) == MIME_SCRIPT)
                             pick (nit_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be supported by all browsers on all systems");
                         else
@@ -209,7 +209,7 @@ void element::examine_source ()
         ::std::string s (a_.get_string (a_type));
         mt.set_value (nuts, node_.version (), s);
         if (mt.good ())
-        {   uint64_t f = mt.flags ();
+        {   flags_t f = mt.flags ();
             if ((f & MIME_MULTIPART) == 0)
             {   if (ancestral_elements_.test (elem_audio) && ((f & MIME_AUDIO) == 0))
                     pick (nit_mime, es_warning, ec_attribute, "expecting an audio mimetype");
@@ -281,13 +281,13 @@ void element::examine_switch ()
 {   if (! has_child ())
     {   pick (nit_switch, es_comment, ec_element, "bit of a useless <SWITCH>, that"); return; }
     if (node_.version ().is_svg_12 ()) return;
-    uint64_t cat = (elem :: categories (parent_ -> tag ()) & EF_SVG_CATMASK);
+    flags_t cat = (elem :: categories (parent_ -> tag ()) & EF_SVG_CATMASK);
     bool nofaux = false;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         e_element ct = c -> tag ();
         nofaux = nofaux || is_standard_element (ct);
-        uint64_t kitten = elem :: categories (ct);
+        flags_t kitten = elem :: categories (ct);
         if ((kitten & cat) == 0)
         {   pick (nit_switch, es_comment, ec_element, "the <SWITCH> beneath <", elem::name (parent_ -> tag ()), "> has an outside context problem with <", elem::name (ct), ">"); return; } }
     if (! nofaux) pick (nit_switch, es_comment, ec_element, "bit of a useless <SWITCH>, that"); }

@@ -23,14 +23,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_autocomplete.h"
 #include "microdata/microdata_itemtype.h"
 
-template < > struct type_master < t_1_more_i > : type_or_string < t_1_more_i, t_1_more, sz_inherit > { };
-template < > struct type_master < t_animate > : type_or_either_string < t_animate, t_url, sz_none, sz_inherit > { };
-template < > struct type_master < t_bandwidth > : type_or_string < t_bandwidth, t_real, sz_auto > { };
-template < > struct type_master < t_bools > : type_at_least_one < t_bools, sz_space, t_bool > { };
-template < > struct type_master < t_charspacing > : type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight > { };
+template < > struct type_master < t_1_more_i > : type_or_string < t_1_more_i, t_1_more, sz_inherit >
+{ using type_or_string < t_1_more_i, t_1_more, sz_inherit > :: type_or_string; };
+
+template < > struct type_master < t_animate > : type_or_either_string < t_animate, t_url, sz_none, sz_inherit >
+{ using type_or_either_string < t_animate, t_url, sz_none, sz_inherit > :: type_or_either_string; };
+
+template < > struct type_master < t_bandwidth > : type_or_string < t_bandwidth, t_real, sz_auto >
+{ using type_or_string < t_bandwidth, t_real, sz_auto > :: type_or_string; };
+
+template < > struct type_master < t_bools > : type_at_least_one < t_bools, sz_space, t_bool >
+{ using type_at_least_one < t_bools, sz_space, t_bool > :: type_at_least_one; };
+
+template < > struct type_master < t_charspacing > : type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight >
+{ using type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight > :: type_or_any_string; };
+
 
 template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_clear30 > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_clear30 > :: set_value (nits, v, s);
         ::std::string arg (tidy_string < t_clear30 > :: get_string ());
         if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "CLEAR requires a value");
@@ -51,13 +62,22 @@ template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
             if (m.good ()) return; }
         tidy_string < t_clear30 > :: status (s_invalid); } };
 
-template < > struct type_master < t_colour_i > : type_or_string < t_colour_i, t_colour, sz_inherit > { };
-template < > struct type_master < t_colour_ci > : type_or_string < t_colour_ci, t_colour_i, sz_currentcolour > { };
-template < > struct type_master < t_colour_cii > : type_or_either_string < t_colour_cii, t_colour_i, sz_currentcolour, sz_inherit > { };
-template < > struct type_master < t_colour_ni > : type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour > { };
+template < > struct type_master < t_colour_i > : type_or_string < t_colour_i, t_colour, sz_inherit >
+{ using type_or_string < t_colour_i, t_colour, sz_inherit > :: type_or_string; };
+
+template < > struct type_master < t_colour_ci > : type_or_string < t_colour_ci, t_colour_i, sz_currentcolour >
+{ using type_or_string < t_colour_ci, t_colour_i, sz_currentcolour > :: type_or_string; };
+
+template < > struct type_master < t_colour_cii > : type_or_either_string < t_colour_cii, t_colour_i, sz_currentcolour, sz_inherit >
+{ using type_or_either_string < t_colour_cii, t_colour_i, sz_currentcolour, sz_inherit > :: type_or_either_string; };
+
+template < > struct type_master < t_colour_ni > : type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour >
+{ using type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour > :: type_or_any_string; };
+
 
 template < > struct type_master < t_context_menu > : tidy_string < t_context_menu >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_context_menu > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_context_menu > :: set_value (nits, v, s);
         if (tidy_string < t_context_menu > :: empty ())
         {   nits.pick (nit_bad_contextmenu, ed_51, "4.11.5. Context menus", es_error, ec_attribute, "CONTEXTMENU cannot be empty");
@@ -76,7 +96,8 @@ template < > struct type_master < t_context_menu > : tidy_string < t_context_men
         return true; } };
 
 template < > struct type_master < t_duration_media > : tidy_string < t_duration_media >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_duration_media > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_duration_media > :: set_value (nits, v, s);
         if (tidy_string < t_duration_media > :: good ())
         {   ::std::string ss (tidy_string < t_duration_media > :: get_string ());
@@ -86,7 +107,8 @@ template < > struct type_master < t_duration_media > : tidy_string < t_duration_
         tidy_string < t_duration_media > :: status (s_invalid); } };
 
 template < > struct type_master < t_enable_background > : tidy_string < t_enable_background >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_enable_background > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_enable_background > :: set_value (nits, v, s);
         if (tidy_string < t_enable_background > :: empty ())
             nits.pick (nit_background, es_error, ec_type, "a value is required");
@@ -110,24 +132,38 @@ template < > struct type_master < t_enable_background > : tidy_string < t_enable
                 else nits.pick (nit_background, es_error, ec_type, "'accumulate', 'new', or 'inherit' expected"); } }
         tidy_string < t_enable_background > :: status (s_invalid); } };
 
-template < > struct type_master < t_font_families > : type_at_least_one < t_font_families, sz_comma, t_font_family > { };
-template < > struct type_master < t_indentalign2 > : type_or_string < t_indentalign2, t_indentalign, sz_indentalign > { };
-template < > struct type_master < t_indentshift2 > : type_or_string < t_indentshift2, t_measure, sz_indentshift > { };
-template < > struct type_master < t_lcraligns > : type_at_least_one < t_lcraligns, sz_space, t_lcralign > { };
-template < > struct type_master < t_lcrds > : type_at_least_one < t_lcrds, sz_space, t_lcrd > { };
+template < > struct type_master < t_font_families > : type_at_least_one < t_font_families, sz_comma, t_font_family >
+{ using type_at_least_one < t_font_families, sz_comma, t_font_family > :: type_at_least_one; };
+
+template < > struct type_master < t_indentalign2 > : type_or_string < t_indentalign2, t_indentalign, sz_indentalign >
+{ using type_or_string < t_indentalign2, t_indentalign, sz_indentalign > :: type_or_string; };
+
+template < > struct type_master < t_indentshift2 > : type_or_string < t_indentshift2, t_measure, sz_indentshift >
+{ using type_or_string < t_indentshift2, t_measure, sz_indentshift > :: type_or_string; };
+
+template < > struct type_master < t_lcraligns > : type_at_least_one < t_lcraligns, sz_space, t_lcralign >
+{ using type_at_least_one < t_lcraligns, sz_space, t_lcralign > :: type_at_least_one; };
+
+template < > struct type_master < t_lcrds > : type_at_least_one < t_lcrds, sz_space, t_lcrd >
+{ using type_at_least_one < t_lcrds, sz_space, t_lcrd > :: type_at_least_one; };
+
 
 template < > struct type_master < t_lcrdss > : string_vector < t_lcrdss, sz_space >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector < t_lcrdss, sz_space > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         ::boost::replace_all (ss, "{", " ");
         ::boost::replace_all (ss, "}", " ");
         if (test_value < t_lcrds > (nits, v, trim_the_lot_off (ss))) return;
         string_vector < t_lcrdss, sz_space > :: status (s_invalid); } };
 
-template < > struct type_master < t_length > : type_either_or < t_length, t_length_absolute, t_length_relative > { };
+template < > struct type_master < t_length > : type_either_or < t_length, t_length_absolute, t_length_relative >
+{ using type_either_or < t_length, t_length_absolute, t_length_relative > :: type_either_or; };
+
 
 template < > struct type_master < t_linethickness > : tidy_string < t_linethickness >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_linethickness > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_linethickness > :: set_value (nits, v, s);
         if (v.math () >= math_2)
         {   if (tidy_string < t_linethickness > :: empty ())
@@ -149,7 +185,8 @@ template < > struct type_master < t_linethickness > : tidy_string < t_linethickn
         tidy_string < t_linethickness > :: status (s_invalid); } };
 
 template < > struct type_master < t_mathalign_n > : string_vector < t_mathalign_n, sz_space >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector < t_mathalign_n, sz_space > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_mathalign_n, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_mathalign_n, sz_space > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "TYPE requires a value");
@@ -162,11 +199,16 @@ template < > struct type_master < t_mathalign_n > : string_vector < t_mathalign_
                     else nits.pick (nit_too_many, ed_math_2, "3.5.1 Table or Matrix (mtable)", es_error, ec_type, "expecting one position and, optionally one number"); }
         string_vector < t_mathalign_n, sz_space > :: status (s_invalid); } };
 
-template < > struct type_master < t_mathaligns > : type_at_least_one < t_mathaligns, sz_space, t_mathalign > { };
-template < > struct type_master < t_mathnotations > : type_at_least_one < t_mathnotations, sz_space, t_mathnotation > { };
+template < > struct type_master < t_mathaligns > : type_at_least_one < t_mathaligns, sz_space, t_mathalign >
+{ using type_at_least_one < t_mathaligns, sz_space, t_mathalign > :: type_at_least_one; };
+
+template < > struct type_master < t_mathnotations > : type_at_least_one < t_mathnotations, sz_space, t_mathnotation >
+{ using type_at_least_one < t_mathnotations, sz_space, t_mathnotation > :: type_at_least_one; };
+
 
 template < > struct type_master < t_mathsize > : tidy_string < t_mathsize >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_mathsize > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_mathsize > :: set_value (nits, v, s);
         if (tidy_string < t_mathsize > :: empty ())
             nits.pick (nit_empty, ed_math_2, "3.2.2 Mathematics style attributes common to token elements", es_error, ec_type, "small, normal, big, or a measurement expected");
@@ -178,13 +220,22 @@ template < > struct type_master < t_mathsize > : tidy_string < t_mathsize >
             if (test_value < t_vunit > (nits, v, ss)) return; }
         tidy_string < t_mathsize > :: status (s_invalid); } };
 
-template < > struct type_master < t_mathspace > : type_either_or < t_mathspace, t_namedspace, t_hunit > { };
-template < > struct type_master < t_mathspaceauto > : type_or_string < t_mathspaceauto, t_mathspace, sz_auto > { };
-template < > struct type_master < t_mathspacefit > : type_or_either_string < t_mathspacefit, t_mathspace, sz_auto, sz_fit > { };
-template < > struct type_master < t_mathspaceinfinity > : type_or_string < t_mathspaceinfinity, t_mathspace, sz_infinity > { };
+template < > struct type_master < t_mathspace > : type_either_or < t_mathspace, t_namedspace, t_hunit >
+{ using type_either_or < t_mathspace, t_namedspace, t_hunit > :: type_either_or; };
+
+template < > struct type_master < t_mathspaceauto > : type_or_string < t_mathspaceauto, t_mathspace, sz_auto >
+{ using type_or_string < t_mathspaceauto, t_mathspace, sz_auto > :: type_or_string; };
+
+template < > struct type_master < t_mathspacefit > : type_or_either_string < t_mathspacefit, t_mathspace, sz_auto, sz_fit >
+{ using type_or_either_string < t_mathspacefit, t_mathspace, sz_auto, sz_fit > :: type_or_either_string; };
+
+template < > struct type_master < t_mathspaceinfinity > : type_or_string < t_mathspaceinfinity, t_mathspace, sz_infinity >
+{ using type_or_string < t_mathspaceinfinity, t_mathspace, sz_infinity > :: type_or_string; };
+
 
 template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudonamedspace >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_pseudonamedspace > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_pseudonamedspace > :: set_value (nits, v, s);
         if (tidy_string < t_pseudonamedspace > :: empty ())
             nits.pick (nit_empty, ed_math_2, ".3.6.2 Attributes", es_error, ec_type, "value missing");
@@ -211,7 +262,8 @@ template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudon
         tidy_string < t_pseudonamedspace > :: status (s_invalid); } };
 
 template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_inputaccept > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_inputaccept > :: set_value (nits, v, s);
         if (tidy_string < t_inputaccept > :: empty ())
             nits.pick (nit_unacceptable, es_error, ec_type, "ACCEPT cannot be empty");
@@ -240,12 +292,16 @@ template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept 
                 if (ok) return; } }
         tidy_string < t_inputaccept > :: status (s_invalid); } };
 
-template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_space, t_nsd > { };
+template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_space, t_nsd >
+{ using type_at_least_one < t_nsds, sz_space, t_nsd > :: type_at_least_one; };
+
 template < > struct type_master < t_real_1_2 > : type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real >
-{   static e_animation_type animation_type () { return at_number; } };
+{   using type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real > :: type_one_or_both;
+    static e_animation_type animation_type () { return at_number; } };
 
 template < > struct type_master < t_roles > : string_vector < t_roles, sz_space >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector < t_roles, sz_space > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_roles, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_roles, sz_space > :: empty ())
         {   nits.pick (nit_empty, es_error, ec_type, "TYPE requires a value");
@@ -260,7 +316,8 @@ template < > struct type_master < t_roles > : string_vector < t_roles, sz_space 
         string_vector < t_roles, sz_space > :: status (s_invalid); } };
 
 template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, sz_space >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector < t_sandboxen, sz_space > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_sandboxen, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_sandboxen, sz_space > :: good ())
         {   bool allgood = true, script = false, origin = false, topnav = false, topnavuser = false;
@@ -285,6 +342,7 @@ template < > struct type_master < t_schema > : tidy_string < t_schema >
 {   e_microdata_root mdr_ = mdr_none;
     e_schema_type st_ = sty_illegal;
     ::std::string vocab_;
+    using tidy_string < t_schema > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_schema > :: set_value (nits, v, s);
         if (tidy_string < t_schema > :: good ()) try
@@ -313,7 +371,8 @@ template < > struct type_master < t_schema > : tidy_string < t_schema >
     ::std::string vocab () const { return vocab_; } };
 
 template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_shape3 > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_shape3 > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_shape3 > :: get_string ();
         if (s.empty ())
@@ -326,7 +385,8 @@ template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >
             tidy_string < t_shape3 > :: status (s_invalid); } } };
 
 template < > struct type_master < t_roman_dsc > : tidy_string < t_roman_dsc >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
+{   using tidy_string < t_roman_dsc > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_roman_dsc > :: set_value (nits, v, s);
         const ::std::string& arg = tidy_string < t_roman_dsc > :: get_string ();
         if (s.empty ())
@@ -348,6 +408,7 @@ template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
     int width_ = 0;
     float density_ = 1.0;
     bool has_width_ = false, has_density_ = false;
+    using tidy_string < t_imcastr > :: tidy_string;
     void swap (type_master < t_imcastr >& t)
     {   ::std::swap (u_, t.u_);
         ::std::swap (width_, t.width_);
@@ -399,6 +460,7 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
 {   typedef ::std::vector < type_master < t_imcastr > > vix_t;
     vix_t value_;
     bool has_width_ = false, has_density_ = false;
+    using tidy_string < t_srcset > :: tidy_string;
     void swap (type_master < t_srcset >& t)
     {   value_.swap (t.value_);
         tidy_string < t_srcset >::swap (t); }

@@ -21,6 +21,66 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type.h"
 
+struct symbol_entry < html_version, e_accrual_method > accrual_method_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "accmeth:deposit", am_deposit },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "accmeth:donation", am_donation },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "accmeth:purchase", am_purchase },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "accmeth:loan", am_loan },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "accmeth:license", am_licence },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "accmeth:itemcreation", am_item_creation },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accmeth/deposit", am_deposit },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accmeth/donation", am_donation },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accmeth/purchase", am_purchase },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accmeth/loan", am_loan },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accmeth/license", am_licence },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accmeth/itemcreation", am_item_creation } };
+
+struct symbol_entry < html_version, e_accrual_periodicity > accrual_periodicity_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "freq:triennial", ap_triennial },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:biennial", ap_biennial },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:annual", ap_annual },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:semiannual", ap_semiannual },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:threeTimesAYear", ap_thriceyearly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:quarterly", ap_quarterly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:bimonthly", ap_bimonthly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:monthly", ap_monthly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:semimonthly", ap_semimonthly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:biweekly", ap_biweekly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:threeTimesAMonth", ap_thricemonthly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:weekly", ap_weekly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:semiweekly", ap_semiweekly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:threeTimesAWeek", ap_thriceweekly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:daily", ap_daily },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:continuous", ap_continuous },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "freq:irregular", ap_irregular },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/triennial", ap_triennial },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/biennial", ap_biennial },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/annual", ap_annual },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/semiannual", ap_semiannual },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/threeTimesAYear", ap_thriceyearly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/quarterly", ap_quarterly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/bimonthly", ap_bimonthly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/monthly", ap_monthly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/semimonthly", ap_semimonthly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/biweekly", ap_biweekly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/threeTimesAMonth", ap_thricemonthly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/weekly", ap_weekly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/semiweekly", ap_semiweekly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/threeTimesAWeek", ap_thriceweekly },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/daily", ap_daily },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/continuous", ap_continuous },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/freq/irregular", ap_irregular } };
+
+struct symbol_entry < html_version, e_accrual_policy > accrual_policy_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "accpol:closed", ap_closed },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "accpol:passive", ap_active },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "accpol:active", ap_passive },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "accpol:partial", ap_partial },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accpol/closed", ap_closed },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accpol/passive", ap_active },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accpol/active", ap_passive },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/cld/accpol/partial ", ap_partial } };
+
 struct symbol_entry < html_version, e_action > action_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "sell", av_sell },
     { { HTML_UNDEF }, { HTML_UNDEF }, "rent", av_rent },
@@ -284,6 +344,32 @@ struct symbol_entry < html_version, e_cursor > cursor_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_FULL }, { HTML_UNDEF }, "wait", cu_wait },
     { { HTML_SVG10, 0, HE_SVG_10_11_FULL }, { HTML_UNDEF }, "help", cu_help },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "progress", cu_progress } };
+
+struct symbol_entry < html_version, e_dcmitype > dcmitype_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "Collection", dt_collection },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "Dataset", dt_dataset },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "Event", dt_event },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "Image", dt_image },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "InteractiveResource", dt_interactiveresource },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "MovingImage", dt_movingimage },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "PhysicalObject", dt_physicalobject },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "Service", dt_service },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "Software", dt_software },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "Sound", dt_sound },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "StillImage", dt_stillimage },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "Text", dt_text },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/Collection", dt_collection },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/Dataset", dt_dataset },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/Event", dt_event },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/Image", dt_image },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/InteractiveResource", dt_interactiveresource },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/MovingImage", dt_movingimage },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/PhysicalObject", dt_physicalobject },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/Service", dt_service },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/Software", dt_software },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/Sound", dt_sound },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/StillImage", dt_stillimage },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://purl.org/dc/dcmitype/Text", dt_text } };
 
 struct symbol_entry < html_version, e_decalign > decalign_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "left", dec_left },
@@ -966,7 +1052,6 @@ struct symbol_entry < html_version, e_namedspace > namedspace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "thickmathspace", nd_thickmathspace },
     { { XHTML_1_0 }, { HTML_UNDEF }, "verythickmathspace", nd_verythickmathspace },
     { { XHTML_1_0 }, { HTML_UNDEF }, "veryverythickmathspace", nd_veryverythickmathspace } };
-
 struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "bibo", ns_bibo },
     { { XHTML_1_0 }, { HTML_UNDEF }, "cc", ns_cc },
@@ -976,22 +1061,29 @@ struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "dbr", ns_dbr },
     { { XHTML_1_0 }, { HTML_UNDEF }, "dc", ns_dc },
     { { XHTML_1_0 }, { HTML_UNDEF }, "dcterms", ns_dcterms },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "err", ns_err },
     { { XHTML_1_0 }, { HTML_UNDEF }, "ev", ns_xmlevents },
     { { XHTML_1_0 }, { HTML_UNDEF }, "ex", ns_ex },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "fn", ns_fn },
     { { XHTML_1_0 }, { HTML_UNDEF }, "foaf", ns_foaf },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "html", ns_html },
     { { XHTML_1_0 }, { HTML_UNDEF }, "its", ns_its },
     { { XHTML_1_0 }, { HTML_UNDEF }, "math", ns_math },
     { { XHTML_1_0 }, { HTML_UNDEF }, "owl", ns_owl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "owlxml", ns_owlxml },
     { { XHTML_1_0 }, { HTML_UNDEF }, "rdf", ns_rdf },
     { { XHTML_1_0 }, { HTML_UNDEF }, "rdfa", ns_rdfa },
     { { XHTML_1_0 }, { HTML_UNDEF }, "rdfs", ns_rdfs },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "smil", ns_smil },
     { { XHTML_1_0 }, { HTML_UNDEF }, "svg", ns_svg },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xhv", ns_xhv },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "xi", ns_xi },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xlink", ns_xlink },
     { { XHTML_1_0 }, { HTML_UNDEF }, XHTMLNS, ns_xhtml },
     { { XHTML_1_0 }, { HTML_UNDEF }, XMLNS, ns_xmlns },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "xsd", ns_xsd },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "xsi", ns_xsi } };
+    { { XHTML_1_0 }, { HTML_UNDEF }, "xs", ns_xs },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "xsi", ns_xsi },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "xsl", ns_xslt } };
 
 struct symbol_entry < html_version, e_ogtype > ogtype_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "music.song", og_musicsong },
@@ -1050,6 +1142,58 @@ struct symbol_entry < html_version, e_pointer_events > pointer_events_symbol_tab
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "all", pe_all },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "none", pe_none },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", pe_inherit } };
+
+struct symbol_entry < html_version, e_rdfa_context > rdfa_context_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "as", pre_as },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "cc", pre_cc },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "csvw", pre_csvw },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ctag", pre_ctag },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "dc", pre_dc },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "dc11", pre_dc11 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "dcat", pre_dcat },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "dcterms", pre_dcterms },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "dqv", pre_dqv },
+    { { HTML_JAN07 }, { HTML_UNDEF }, "describedby", pre_describedby },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "duv", pre_duv },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "earl", pre_earl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "foaf", pre_foaf },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "gr", pre_gr },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "grddl", pre_grddl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ical", pre_ical },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "jsonld", pre_jsonld },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ldp", pre_ldp },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "licence", pre_licence },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ma", pre_ma },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "oa", pre_oa },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "odrl", pre_odrl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "og", pre_og },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "org", pre_org },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "owl", pre_owl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "prov", pre_prov },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "qb", pre_qb },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rdf", pre_rdf },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rdfa", pre_rdfa },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rdfs", pre_rdfs },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rev", pre_rev },
+    { { HTML_JAN07  }, { HTML_UNDEF }, "rif", pre_rif },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "role", pre_role },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rr", pre_rr },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "schema", pre_schema },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "sd", pre_sd },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "sioc", pre_sioc },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "skos", pre_skos },
+    { { HTML_JUL08 }, { HTML_UNDEF }, "skosxl", pre_skosxl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ssn", pre_ssn },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "sosa", pre_sosa },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "time", pre_time },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "v", pre_v },
+    { { HTML_JAN06 }, { HTML_UNDEF }, "vcard", pre_vcard },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "void", pre_void },
+    { { HTML_JUL07 }, { HTML_UNDEF }, "wdr", pre_wdr },
+    { { HTML_JUL07 }, { HTML_UNDEF }, "wdrs", pre_wdrs },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "xhv", pre_xhv },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "xml", pre_xml },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "xsd", pre_xsd }, };
 
 // a couple of these are only defined in the HTML+ text, not the DTD
 struct symbol_entry < html_version, e_print > print_symbol_table [] =
@@ -1467,137 +1611,73 @@ struct symbol_entry < html_version, e_writingmode > writingmode_symbol_table [] 
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "vertical-rl", wm_vrl },
     { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "inherit", wm_inherit } };
 
-#define CC "creativecommons.org"
-#define DBPEDIA "dbpedia.org"
-#define OGC "www.ogc.orgg"
-#define XCOM XMLNS ".com"
-#define XOT XMLNS "xmlns.opentechnology.org/xslt-extensions"
-
 struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "g/ontology/bibo/", x_bibo },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/ontology/bibo/", x_bibo },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/xhtml", x_xhtml_1 },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/xhtml", x_xhtml_1 },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/xhtml1/strict", x_xhtml_1_superseded },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/TR/xhtml1/strict", x_xhtml_1_superseded },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/xhtml1/transitional", x_xhtml_1_superseded },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/TR/xhtml1/transitional", x_xhtml_1_superseded },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/xhtml1/frameset", x_xhtml_1_superseded },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/TR/xhtml1/frameset", x_xhtml_1_superseded },
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2000/xhtml", x_xhtml_11 },
-    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2000/xhtml", x_xhtml_11 },
     { { XHTML_2_0 }, { HTML_UNDEF }, HTTP_W3 "/2004/xhtml", x_xhtml_2 },
-    { { XHTML_2_0 }, { HTML_UNDEF }, HTTPS_W3 "/2004/xhtml", x_xhtml_2 },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS CC "/ns#", x_cc },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS CC "/ns#", x_cc },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS OGC "/crs", x_crs },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS OGC "/crs", x_crs },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DBPEDIA "/property/", x_dbp },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS DBPEDIA "g/property/", x_dbp },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DBPEDIA "/ontology/", x_dbp_owl },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS DBPEDIA "/ontology/", x_dbp_owl },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DBPEDIA "/resource/", x_dbr },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS DBPEDIA "/resource/", x_dbr },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/dc/terms/", x_dc_terms },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/dc/terms/", x_dc_terms },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DEFAULT_DOMAIN "/", x_ex },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS DEFAULT_DOMAIN "/", x_ex },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS XCOM "/foaf/0.1/", x_foaf },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_CSS XCOM "/foaf/0.1/", x_foaf },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1998/math/mathml", x_mathml },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1998/math/mathml", x_mathml },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2002/07/owl/#", x_owl },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/2002/07/owl/#", x_owl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "www.rddl.org/", x_rddl },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/02/22-rdf-syntax-ns#", x_rdf },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/02/22-rdf-syntax-ns#", x_rdf },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/ns/rdfa#", x_rdfa },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/ns/rdfa#", x_rdfa },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2000/01/rdf-schema#", x_rdfs },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/2000/01/rdf-schema#", x_rdfs },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS SVG_2000, x_svg },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS SVG_2000, x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/tr/rec-mathml-19980407", x_svg },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/tr/rec-mathml-19980407", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/graphics/svg/svg-19990706.dtd", x_svg },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/graphics/svg/svg-19990706.dtd", x_svg },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/xhtml/vocab#", x_xhv },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/xhtml/vocab#", x_xhv },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/xlink", x_xlink },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/xlink", x_xlink },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/XML/1998/namespace", x_xml },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/XML/1998/namespace", x_xml },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2000/xmlns/", x_xmlns },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2000/xmlns/", x_xmlns },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema#", x_xsd },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XMLSchema#", x_xsd },
 
     // many examples, including the living standard
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/html", x_html },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/html", x_html },
 
     // https://www.informit.com/articles/article.aspx?p=31837&seqNum=10
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XInclude", x_xi },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XInclude", x_xi },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/XSL/Transform/1.0", x_xslt },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/XSL/Transform/1.0", x_xslt },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/WD-xsl", x_xslt },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/TR/WD-xsl", x_xslt },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "icl.com/saxon", x_saxon },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "icl.com/saxon", x_saxon },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "xml.apache.org/xslt", x_lxslt },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "xml.apache.org/xslt", x_lxslt },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "common", x_exsl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS XOT "common", x_exsl },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "functions", x_exsl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS XOT "functions", x_exsl },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "math", x_exsl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS XOT "math", x_exsl },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "sets", x_exsl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS XOT "sets", x_exsl },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema-datatypes", x_dt },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XMLSchema-datatypes", x_dt },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/08/xquery-operators", x_xf },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/08/xquery-operators", x_xf },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/SMIL20", x_smil },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/SMIL20", x_smil },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/REC-smil", x_smil },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/TR/REC-smil", x_smil },
 
     // https://metacpan.org/pod/XML::CommonNS
     { { XHTML_2_0 }, { HTML_UNDEF }, HTTP_W3 "/2006/06/xhtml", x_xhtml_2 },
-    { { XHTML_2_0 }, { HTML_UNDEF }, HTTPS_W3 "/2002/06/xhtml", x_xhtml_2 },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/xml-events", x_xmlevents },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/xml-events", x_xmlevents },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/dc/elements/1.1/", x_dc },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/dc/elements/1.1/", x_dc },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/vocab/relationship/", x_rel },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/vocab/relationship/", x_rel },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/rss/1.0/", x_rss },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/rss/1.0/", x_rss },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/net/rssmodules/blogcomments/", x_comments },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/net/rssmodules/blogcomments/", x_comments },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/rss/1.0/modules/syndication/", x_syn },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS PURL_ORG "/rss/1.0/modules/syndication/", x_syn },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "relaxng.org/ns/structure/1.0/", x_rng },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "relaxng.org/ns/structure/1.0/", x_rng },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema", x_xsd },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XMLSchema", x_xsd },
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema-instance", x_xsi },
-    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2001/XMLSchema-instance", x_xsi },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/XSL/Transform", x_xslt },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/XSL/Transform", x_xslt },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/XSL/Format", x_xslfo },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/XSL/Format", x_xslfo },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/soap/encoding/", x_soapenc11 },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "schemas.xmlsoap.org/soap/encoding/", x_soapenc11 },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/soap/envelope/", x_soapenc11 },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_CSS "schemas.xmlsoap.org/soap/envelope/", x_soapenc11 },
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2003/05/soap-encoding", x_soapenc12 },
-    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2003/05/soap-encoding", x_soapenc12 },
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2003/05/soap-envelope", x_soapenc12 },
-    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2003/05/soap-envelope", x_soapenc12 },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/wsdl/", x_wsdl11 },
-    { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2003/06/wsdl", x_wsdl12 } };
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/wsdl/", x_wsdl11 } };
 
 #define INIT_ENUM(XX) \
     type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < html_version, e_##XX >)); \
@@ -1677,6 +1757,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (plusstyle);
     INIT_ENUM (pointer_events);
     INIT_ENUM (print);
+    INIT_ENUM (rdfa_context);
     INIT_ENUM (referrer);
     INIT_ENUM (rendering_in_tents);
     INIT_ENUM (rules);
@@ -1728,15 +1809,17 @@ e_namespace map_xmlns_to_namespace (const e_xmlns x)
         case x_dc_terms : return ns_dc;
         case x_ex : return ns_ex;
         case x_foaf : return ns_foaf;
+        case x_html : return ns_html;
         case x_mathml : return ns_math;
         case x_owl : return ns_owl;
+        case x_rddl : return ns_rddl;
         case x_rdf : return ns_rdf;
         case x_rdfa : return ns_rdfa;
         case x_rdfs : return ns_rdfs;
         case x_svg : return ns_svg;
         case x_xhv : return ns_xhv;
         case x_xlink : return ns_xlink;
-        case x_xsd : return ns_xsd;
+        case x_xsd : return ns_xs;
         default : break; }
     return ns_default; }
 

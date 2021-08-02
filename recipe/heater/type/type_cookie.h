@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 
 template < > struct type_master < t_cookie > : public tidy_string < t_cookie >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_cookie > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_cookie > :: set_value (nits, v, trim_the_lot_off (s));
         const ::std::string& ss = tidy_string < t_cookie > :: get_string ();
         if (s.empty ())
@@ -73,4 +74,6 @@ template < > struct type_master < t_cookie > : public tidy_string < t_cookie >
                         break; } } }
         tidy_string < t_cookie > :: status (s_invalid); } };
 
-template < > struct type_master < t_cookies > : type_at_least_one < t_cookies, sz_semicolon, t_cookie > { };
+template < > struct type_master < t_cookies > : type_at_least_one < t_cookies, sz_semicolon, t_cookie >
+{ using type_at_least_one < t_cookies, sz_semicolon, t_cookie > :: type_at_least_one; };
+

@@ -79,6 +79,7 @@ struct sz_col { CONSTEXPR static char const* sz () { return "col"; } };
 struct sz_colgroup { CONSTEXPR static char const* sz () { return "colgroup"; } };
 struct sz_collapse { CONSTEXPR static char const* sz () { return "collapse"; } };
 struct sz_colondot { CONSTEXPR static char const* sz () { return ":."; } };
+struct sz_colonspace { CONSTEXPR static char const* sz () { return ": "; } };
 struct sz_comma { CONSTEXPR static char const* sz () { return ","; } };
 struct sz_commaspace { CONSTEXPR static char const* sz () { return ", "; } };
 struct sz_command { CONSTEXPR static char const* sz () { return "command"; } };

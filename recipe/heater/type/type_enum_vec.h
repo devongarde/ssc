@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_enum.h"
 
-template < typename TYPE, e_type E, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default >
+template < typename TYPE, e_type E, typename CATEGORY = ident_t, CATEGORY INIT = 0 >
     struct enum_vec_base : public type_base < TYPE, E >
 {   typedef enum_n < E, TYPE, CATEGORY, INIT > base_t;
     typedef ::std::vector < base_t > vec_t;
@@ -35,6 +35,7 @@ template < typename TYPE, e_type E, typename CATEGORY = e_namespace, CATEGORY IN
     enum_vec_base (enum_vec_base&&) = default;
 #endif
     explicit enum_vec_base (const html_version& v, const ::std::string& s);
+    explicit enum_vec_base (element* box) : type_base < TYPE, E > (box) { }
     enum_vec_base& operator = (const enum_vec_base&) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
     enum_vec_base& operator = (enum_vec_base&&) = default;
@@ -80,18 +81,9 @@ template < typename TYPE, e_type E, typename CATEGORY, CATEGORY INIT >
     nits.pick (nit_missing_set_value, es_error, ec_type, "Internal error: an enum vector is missing setvalue");
     type_base < TYPE, E > :: status (s_invalid); }
 
-template < e_type E, typename ENUM, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default >
+template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT = 0 >
     struct enum_vec : public enum_vec_base < ENUM, E, CATEGORY, INIT >
-{   enum_vec () = default;
-    enum_vec (const enum_vec& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-    enum_vec (enum_vec&& ) = default;
-#endif
-    ~enum_vec () = default;
-    enum_vec& operator = (const enum_vec& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-    enum_vec& operator = (enum_vec&& ) = default;
-#endif
+{   using enum_vec_base < ENUM, E, CATEGORY, INIT > :: enum_vec_base;
     static e_animation_type animation_type () { return at_other; }
     void swap (enum_vec& n)
     {   enum_vec_base < ENUM, E, CATEGORY, INIT > :: swap (n); }
@@ -157,9 +149,10 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
     else if (res) enum_vec_base < ENUM, E > :: status (s_good);
     else enum_vec_base < ENUM, E > :: status (s_invalid); }
 
-template < e_type E, typename ENUM, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default >
+template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT = 0 >
     struct enum_constrained_vec : public enum_vec < E, ENUM, CATEGORY, INIT >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss); };
+{   using enum_vec < E, ENUM, CATEGORY, INIT > :: enum_vec;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss); };
 
 template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
     void enum_constrained_vec < E, ENUM, CATEGORY, INIT > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -177,7 +170,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
             {   nits.pick (nit_not_combine, es_error, ec_type, val.name (), " is repeated");
                 ok = false; continue; }
             bs.set (val);
-            uint64_t x = val.first ().ext ();
+            flags_t x = val.first ().ext ();
             if ((x & HE_COMBINES) == 0)
                 if ((! first) || (enum_vec < E, ENUM, CATEGORY, INIT > :: value_.size () > 1))
                 {   nits.pick (nit_not_combine, es_error, ec_type, val.name (), " cannot be combined with any other values");
@@ -198,13 +191,33 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
         if (ok) return; }
     enum_vec_base < ENUM, E > :: status (s_invalid); }
 
-template < > class type_master < t_charsets > : public enum_vec < t_charsets, e_charset > { };
-template < > class type_master < t_class > : public enum_vec < t_class, e_class > { };
-template < > class type_master < t_content_encodings > : public enum_vec < t_content_encodings, e_content_encoding > { };
-template < > class type_master < t_font_variant_2s > : public enum_constrained_vec < t_font_variant_2s, e_font_variant_2 > { };
-template < > class type_master < t_font_variant_east_asians > : public enum_constrained_vec < t_font_variant_east_asians, e_font_variant_east_asian > { };
-template < > class type_master < t_font_variant_ligatures > : public enum_constrained_vec < t_font_variant_ligatures, e_font_variant_ligature > { };
-template < > class type_master < t_font_variant_numerics > : public enum_constrained_vec < t_font_variant_numerics, e_font_variant_numeric > { };
-template < > class type_master < t_plusstyle > : public enum_vec < t_plusstyle, e_plusstyle > { };
-template < > class type_master < t_rel > : public enum_vec < t_rel, e_rel > { };
-template < > class type_master < t_svg_features > : public enum_vec < t_svg_features, e_svg_feature > { };
+template < > struct type_master < t_charsets > : enum_vec < t_charsets, e_charset >
+{ using enum_vec < t_charsets, e_charset > :: enum_vec; };
+
+template < > struct type_master < t_class > : enum_vec < t_class, e_class >
+{ using enum_vec < t_class, e_class > :: enum_vec; };
+
+template < > struct type_master < t_content_encodings > : enum_vec < t_content_encodings, e_content_encoding >
+{ using enum_vec < t_content_encodings, e_content_encoding > :: enum_vec; };
+
+template < > struct type_master < t_font_variant_2s > : enum_constrained_vec < t_font_variant_2s, e_font_variant_2 >
+{ using enum_constrained_vec < t_font_variant_2s, e_font_variant_2 > :: enum_constrained_vec; };
+
+template < > struct type_master < t_font_variant_east_asians > : enum_constrained_vec < t_font_variant_east_asians, e_font_variant_east_asian >
+{ using enum_constrained_vec < t_font_variant_east_asians, e_font_variant_east_asian > :: enum_constrained_vec; };
+
+template < > struct type_master < t_font_variant_ligatures > : enum_constrained_vec < t_font_variant_ligatures, e_font_variant_ligature >
+{ using enum_constrained_vec < t_font_variant_ligatures, e_font_variant_ligature > :: enum_constrained_vec; };
+
+template < > struct type_master < t_font_variant_numerics > : enum_constrained_vec < t_font_variant_numerics, e_font_variant_numeric >
+{ using enum_constrained_vec < t_font_variant_numerics, e_font_variant_numeric > :: enum_constrained_vec; };
+
+template < > struct type_master < t_plusstyle > : enum_vec < t_plusstyle, e_plusstyle >
+{ using enum_vec < t_plusstyle, e_plusstyle > :: enum_vec; };
+
+template < > struct type_master < t_rel > : enum_vec < t_rel, e_rel >
+{ using enum_vec < t_rel, e_rel > :: enum_vec; };
+
+template < > struct type_master < t_svg_features > : enum_vec < t_svg_features, e_svg_feature >
+{ using enum_vec < t_svg_features, e_svg_feature > :: enum_vec; };
+

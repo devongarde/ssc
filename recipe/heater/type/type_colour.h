@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_enum.h"
 
 template < > struct type_master < t_colour > : tidy_string < t_colour >
-{   static e_animation_type animation_type () { return at_colour; }
+{   using tidy_string < t_colour > :: tidy_string;
+    static e_animation_type animation_type () { return at_colour; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_colour > :: set_value (nits, v, s);
         if (tidy_string < t_colour > :: good ())

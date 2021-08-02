@@ -27,7 +27,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class element;
 
-template < e_type TYPE > class type_master : public string_value < TYPE > { };
+template < e_type TYPE > struct type_master : public string_value < TYPE >
+{   using string_value < TYPE > :: string_value; };
 
 template < e_type T > bool test_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   type_master < T > t;
@@ -52,7 +53,8 @@ template < e_type T > e_animation_type grab_animation_type ()
     return t.animation_type (); }
 
 template < e_type T, e_type P, class SZ > struct string_then_type : tidy_string < T >
-{   static e_animation_type animation_type () { return grab_animation_type < P > (); }
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -64,7 +66,8 @@ template < e_type T, e_type P, class SZ > struct string_then_type : tidy_string 
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type F, e_type P > struct type_function : tidy_string < T >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "function expected");
@@ -95,7 +98,8 @@ template < e_type T, e_type F, e_type P > struct type_function : tidy_string < T
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type P, class NAME, int N > struct type_function_n : tidy_string < T >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "function expected");
@@ -127,7 +131,8 @@ template < e_type T, e_type P, class NAME, int N > struct type_function_n : tidy
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, class SZ > struct type_must_be : tidy_string < T >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "value expected");
@@ -138,7 +143,8 @@ template < e_type T, class SZ > struct type_must_be : tidy_string < T >
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, class SZ1, class SZ2 > struct either_string : tidy_string < T >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "value expected");
@@ -150,7 +156,8 @@ template < e_type T, class SZ1, class SZ2 > struct either_string : tidy_string <
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type A, e_type B > struct type_either_or : tidy_string < T >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
         {   nitpick nuts, knots;
@@ -162,7 +169,8 @@ template < e_type T, e_type A, e_type B > struct type_either_or : tidy_string < 
         tidy_string < T > :: status (s_invalid); } } };
 
 template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : tidy_string < T > // if more alternatives are needed, generalise with template metaprogramming
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
         {   nitpick nuts, knots, knits;
@@ -175,7 +183,8 @@ template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : t
         tidy_string < T > :: status (s_invalid); } } };
 
 template < e_type T, class SZ, e_type P > struct type_at_least_one : string_vector < T, SZ >
-{   static e_animation_type animation_type () { return grab_animation_type < P > (); }
+{   using string_vector < T, SZ > :: string_vector;
+    static e_animation_type animation_type () { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
         if (string_vector < T, SZ > :: empty ())
@@ -188,7 +197,8 @@ template < e_type T, class SZ, e_type P > struct type_at_least_one : string_vect
         string_vector < T, SZ > :: status (s_invalid); } };
 
 template < e_type T, class SZ, e_type P > struct type_at_least_none : string_vector < T, SZ >
-{   static e_animation_type animation_type () { return grab_animation_type < P > (); }
+{   using string_vector < T, SZ > :: string_vector;
+    static e_animation_type animation_type () { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
         if (string_vector < T, SZ > :: empty ()) return;
@@ -200,7 +210,8 @@ template < e_type T, class SZ, e_type P > struct type_at_least_none : string_vec
         string_vector < T, SZ > :: status (s_invalid); } };
 
 template < e_type T, class SZ, e_type P, int N > struct type_exactly_n : string_vector < T, SZ >
-{   static e_animation_type animation_type () { return grab_animation_type < P > (); }
+{   using string_vector < T, SZ > :: string_vector;
+    static e_animation_type animation_type () { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
         if (string_vector < T, SZ > :: empty ()) return;
@@ -215,6 +226,7 @@ template < e_type T, class SZ, e_type P, int N > struct type_exactly_n : string_
 
 template < e_type T, class SZ, e_type P, int FROM, int TO > struct type_range : string_vector < T, SZ >
 {   BOOST_STATIC_ASSERT (FROM < TO);
+    using string_vector < T, SZ > :: string_vector;
     static e_animation_type animation_type () { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
@@ -230,7 +242,8 @@ template < e_type T, class SZ, e_type P, int FROM, int TO > struct type_range : 
         string_vector < T, SZ > :: status (s_invalid); } };
 
 template < e_type T, e_type P, class SZ > struct type_or_string : tidy_string < T >
-{   static e_animation_type animation_type () { return grab_animation_type < P > (); }
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -240,7 +253,8 @@ template < e_type T, e_type P, class SZ > struct type_or_string : tidy_string < 
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type P, e_type Q, class SZ > struct either_type_or_string : tidy_string < T >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
         {   const ::std::string ss (tidy_string < T > :: get_string ());
@@ -252,7 +266,8 @@ template < e_type T, e_type P, e_type Q, class SZ > struct either_type_or_string
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type P, class SZ1, class SZ2 > struct type_or_either_string : tidy_string < T >
-{   static e_animation_type animation_type () { return grab_animation_type < P > (); }
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -263,7 +278,8 @@ template < e_type T, e_type P, class SZ1, class SZ2 > struct type_or_either_stri
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type P, class SZ1, class SZ2, class SZ3 > struct type_or_any_string : tidy_string < T >
-{   static e_animation_type animation_type () { return grab_animation_type < P > (); }
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -276,6 +292,7 @@ template < e_type T, e_type P, class SZ1, class SZ2, class SZ3 > struct type_or_
 
 template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : tidy_string < T >
 {   bool both_ = false;
+    using tidy_string < T > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
@@ -294,6 +311,7 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : ti
 
 template < e_type T, e_type A, class SZ, e_type B > struct type_opt_then_must : tidy_string < T >
 {   bool both_ = false;
+    using tidy_string < T > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
@@ -331,6 +349,7 @@ template < e_type T, e_type A, class SZ, e_type B > struct type_many_then_must :
 
 template < e_type T, e_type U, class SZ, e_type P > struct type_many_then_maybe : tidy_string < T >
 {   ::std::size_t size_ = 0;
+    using tidy_string < T > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
@@ -361,7 +380,8 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_many_then_maybe 
     ::std::size_t size () const { return size_; } };
 
 template < e_type T, e_type P, class SZ1, class SZ2 > struct id_or_either_string : type_or_either_string < T, P, SZ1, SZ2 >
-{   static e_animation_type animation_type () { return grab_animation_type < P > (); }
+{   using type_or_either_string < T, P, SZ1, SZ2 > :: type_or_either_string;
+    static e_animation_type animation_type () { return grab_animation_type < P > (); }
     void verify_id (element& e)
     {   if (! type_or_either_string < T, P, SZ1, SZ2 > :: good ()) return;
         if (! type_or_either_string < T, P, SZ1, SZ2 > :: has_id ()) return;

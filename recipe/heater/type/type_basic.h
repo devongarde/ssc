@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 
 template < > struct type_master < t_char > : string_value < t_char >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_value < t_char > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string val (trim_the_lot_off (s));
         if (val.length () == 1)
             string_value < t_char > :: set_value (nits, v, val);
@@ -33,7 +34,8 @@ template < > struct type_master < t_char > : string_value < t_char >
             string_value < t_char > :: status (s_invalid); } } };
 
 template < > struct type_master < t_compact > : tidy_string < t_compact >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_compact > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_value < t_compact > :: set_value (nits, v, s);
         if (s.empty ())
         {   string_value < t_compact > :: status (s_good); return; }
@@ -48,13 +50,15 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
     {   if (v.xhtml ()) ss << "=\"compact\""; } };
 
 template < > struct type_master < t_existential > : type_base < mono, t_existential >
-{   static bool is_existential () { return true; }
+{   using type_base < mono, t_existential > :: type_base;
+    static bool is_existential () { return true; }
     void shadow (::std::stringstream& , const html_version& , element* ) { }
     void set_value (nitpick& , const html_version& , const ::std::string& )
     {   type_base < mono, t_existential > :: status (s_good); } };
 
 template < > struct type_master < t_html > : tidy_string < t_html >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_html > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_html > :: set_value (nits, v, s);
         if (tidy_string < t_html > :: empty ())
         {   nits.pick (nit_empty, es_error, ec_type, "a SRCDOC value cannot be empty");
@@ -67,14 +71,16 @@ template < > struct type_master < t_html > : tidy_string < t_html >
             nodes.harvest_nits (nits); } } };
 
 template < > struct type_master < t_illegal > : type_base < mono, t_illegal >
-{   void set_value (nitpick& nits, const html_version& , const ::std::string& )
+{   using type_base < mono, t_illegal > :: type_base;
+    void set_value (nitpick& nits, const html_version& , const ::std::string& )
     {   nits.pick (nit_evermore, es_error, ec_type, "always illegal");
         type_base < mono, t_illegal > :: status (s_invalid); }
     static mono default_value () { return static_cast <mono> (0); }
     mono get () const { GRACEFUL_CRASH (__FILE__, __LINE__); return static_cast <mono> (0); } };
 
 template < > struct type_master < t_loopie > : tidy_string < t_loopie >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_loopie > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_loopie > :: set_value (nits, v, s);
         const ::std::string& x = tidy_string < t_loopie > :: get_string ();
         if (x.empty ()) return;
@@ -87,13 +93,15 @@ template < > struct type_master < t_loopie > : tidy_string < t_loopie >
             tidy_string < t_loopie > :: status (s_invalid); } } };
 
 template < > struct type_master < t_not_empty > : string_value < t_not_empty >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_value < t_not_empty > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_value < t_not_empty > :: set_value (nits, v, s);
         if (s.empty ())
         {   nits.pick (nit_empty, es_error, ec_type, "value should not be empty");
             string_value < t_not_empty > :: status (s_invalid); } } };
 
 template < > struct type_master < t_wanted > : public tidy_string < t_wanted >
-{   void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& situation)
+{   using tidy_string < t_wanted > :: tidy_string;
+    void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& situation)
     {   if (tidy_string < t_wanted > :: unknown ())
             nits.pick (nit_value_expected, es_warning, ec_type, "a value ought to be supplied (", situation, ")"); } };

@@ -21,11 +21,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "parser/xhtml_xml.h"
 #include "parser/parse_attributes.h"
+#include "parser/parse_elements.h"
 #include "utility/quote.h"
 #include "main/context.h"
 
 bool parse_xml (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line, ::std::string& stylesheet)
-{   attributes_node args;
+{   // temporary approach until xml etc. is rewritten
+    elements_node fake_a_roony;
+    attributes_node args (fake_a_roony.faux_node ());
     bool ok = false;
     bool style = false;
     if (e-b < 5) return false; // the <?xml should already have been parsed, but ...
@@ -74,8 +77,7 @@ bool parse_xml (nitpick& nits, html_version& version, const ::std::string::const
                 version.set_flags (HV_XHTML);
                 nits.pick (nit_xhtml_5_0, es_info, ec_parser, "XML found, inferring XHTML 5");
                 break; } }
-    ns_ptr nss;
-    args.parse (nits, version, nss, s, e, line, elem (elem_undefined), true);
+    args.parse (nits, version, s, e, line, elem (elem_undefined), true);
     for (auto a : args.get_attributes ())
         if (a.has_key () && a.has_value ())
         {   ::std::string value (::boost::to_lower_copy (trim_the_lot_off (a.get_string ())));

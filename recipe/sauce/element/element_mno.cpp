@@ -403,7 +403,7 @@ void element::examine_object ()
                 if (u.has_extension ())
                 {   const ::std::string& ext (u.extension ());
                     if (! ext.empty ())
-                    {   uint64_t flags = 0;
+                    {   flags_t flags = 0;
                         e_mimetype em (static_cast < e_mimetype > (extension_format (nuts, html_version (), ext, flags)));
                         if ((em != mime_context) && (em != mime_bork))
                             if ((flags & MIME_IMAGE) == MIME_IMAGE)

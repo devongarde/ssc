@@ -23,22 +23,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "element/element_classes.h"
 
+void attributes :: swap (attributes& w) NOEXCEPT
+{   aar_.swap (w.aar_);
+    unrecognised_.swap (w.unrecognised_);
+    box_.swap (w.box_);
+    rebox (); }
+
+e_element attributes :: tag () const
+{   return box_.tag (); }
+
 bool attributes :: parse (nitpick& nits, const html_version& v, const attributes_node& an)
 {   bool res = false;
     for (auto a : an.get_attributes ())
         if (a.has_key ())
-        {   if (has_attribute (tag_, a.id ()))
-            {   if (is_attribute_rejected (v, tag_, a.id ()))
+        {   if (has_attribute (tag (), a.id ()))
+            {   if (is_attribute_rejected (v, tag (), a.id ()))
                 {   nits.pick (nit_attribute_barred, es_error, ec_attribute, ::boost::to_upper_copy (a.get_key ()), " is not permitted here (", v.report (), ")");
                     continue; }
-                aar_.at (a.id ()) = make_attribute_v_ptr (nits, v, a);
+                aar_.at (a.id ()) = make_attribute_v_ptr (nits, v, &box_, a);
                 if (aar_.at (a.id ()).get () != nullptr)
                 {   res = true;
                     continue; } }
-            else if (elem (tag_).wild_attributes (v))
+            else if (elem (tag ()).wild_attributes (v))
             {   nits.pick (nit_wild_attribute, es_info, ec_attribute, "apologies, but ", PROG, " cannot validate ", ::boost::to_upper_copy (a.get_key ()));
                 continue; }
-            if (tag_ == elem_undefined)
+            if (tag () == elem_undefined)
                 nits.pick (nit_custom, es_comment, ec_attribute, PROG, " cannot check attributes of custom elements");
             else if (a.id () == a_custom)
                 nits.pick (nit_custom, es_comment, ec_attribute, PROG, " cannot verify that ", ::boost::to_upper_copy (a.get_key ()), " is valid here");
@@ -119,21 +128,21 @@ void attributes :: verify_attributes (nitpick& nits, const html_version& v, elem
 {   VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     for (size_t i = 0; i < aar_.size (); ++i)
         if ((aar_.at (i).get () == nullptr) || aar_.at (i) -> unknown ())
-        {   if (is_attribute_required (v, tag_, static_cast < e_attribute > (i)))
-                nits.pick (nit_attribute_required, es_error, ec_element, "<", ::boost::to_upper_copy (elem::name (tag_)), "> requires ", ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " in ", v.report ()); }
+        {   if (is_attribute_required (v, tag (), static_cast < e_attribute > (i)))
+                nits.pick (nit_attribute_required, es_error, ec_element, "<", ::boost::to_upper_copy (elem::name (box_.tag ())), "> requires ", ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " in ", v.report ()); }
         else
-        {   elem e (tag_);
+        {   elem e (tag ());
             if (aar_.at (i) -> good () || aar_.at (i) -> empty ()) aar_.at (i) -> verify_attribute (nits, v, pe -> node ().id (), pe, attr::name (static_cast < e_attribute > (i)));
             if (aar_.at (i) -> verify_version (nits, v, e)) pe -> own_attributes ().set (aar_.at (i) -> id ());
             else nits.pick (nit_wrong_version, es_error, ec_element, ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " is invalid with <", ::boost::to_upper_copy (elem::name (e)), "> in ", v.report ()); } }
 
 void attributes :: mark (page& p, const e_attribute a)
-{   if (has_attribute (tag_, a)) p.mark (tag_, a); }
+{   if (has_attribute (box_.tag (), a)) p.mark (box_.tag (), a); }
 
 void attributes :: mark (page& p)
 {   for (auto a : aar_)
         if ((a.get () != nullptr) && ! a -> unknown ())
-            p.mark (tag_, a -> id ()); }
+            p.mark (box_.tag (), a -> id ()); }
 
 void attributes :: shadow (::std::stringstream& ss, const html_version& v, element* e)
 {   for (auto a : aar_)
@@ -142,11 +151,11 @@ void attributes :: shadow (::std::stringstream& ss, const html_version& v, eleme
 
 ::std::string attributes :: report () const
 {   if (! context.tell (e_debug)) return ::std::string ();
-    if (tag_ == elem_undefined)
+    if (box_.tag () == elem_undefined)
         if (! context.tell (e_splurge))
             return ::std::string ();
     ::std::string res;
-    res += elem::name (tag_);
+    res += elem::name (box_.tag ());
     bool first = true;
     for (auto a : aar_)
         if (a.get () != nullptr)

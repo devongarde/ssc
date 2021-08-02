@@ -37,6 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_structure.h"
 #include "schema/schema_property.h"
 #include "schema/schema_name.h"
+#include "symbol/nstr.h"
 #include "webpage/root.h"
 #include "webpage/corpus.h"
 #include "webpage/fileindex.h"
@@ -67,6 +68,7 @@ void init (nitpick& nits)
     sch::init (nits);
     schema_name_init (nits);
     schema_property_init (nits);
+    init_nstrs (nits);
     svg_feature_init (nits);
     hierarchy_init (nits);
     microdata_init (nits);

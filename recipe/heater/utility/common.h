@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct true_type { };
 struct false_type { };
 
+typedef ::std::size_t ident_t;
 typedef uint32_t uid_t;
 const uid_t uid_max = UINT32_MAX;
 
@@ -71,6 +72,12 @@ inline vstr_t split_quoted_by_space (const ::std::string& s)
 {   return split_by_whitespace_and (s); }
 inline vstr_t split_by_comma_space (const ::std::string& s)
 {   return split_by_whitespace_and (s, ","); }
+inline vstr_t split_by_space (const ::std::string& s)
+{   return split_by_charset (s, " "); }
+inline vstr_t split_by_newline (const ::std::string& s)
+{   return split_by_charset (s, "\n"); }
+vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
+
 ::std::string read_text_file (const ::boost::filesystem::path& name);
 ::std::string read_text_file (const ::std::string& name);
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok = false);
@@ -89,12 +96,6 @@ bool is_one_of (const ::std::string& s, const vstr_t& v);
 ::std::size_t which_one_of (const ::std::string& s, const vstr_t& v);
 bool is_whitespace (const ::std::string::const_iterator b, const ::std::string::const_iterator e);
 inline bool is_whitespace (const ::std::string& s) { return is_whitespace (s.cbegin (), s.cend ()); }
-
-inline vstr_t split_by_space (const ::std::string& s)
-{   return split_by_charset (s, " "); }
-
-inline vstr_t split_by_newline (const ::std::string& s)
-{   return split_by_charset (s, "\n"); }
 
 template < class T > T read_field (::boost::property_tree::ptree& tree, const char* field)
 {   return tree.get (field, T ()); }
@@ -150,3 +151,8 @@ inline ::std::string substitute_char (::std::string& s, const char from, const c
     for (::std::string::iterator i = s.begin (); i != s.end (); ++i)
         if (*i == from) res += to; else res += *i;
     return res; }
+
+::std::string split_at_first_of (::std::string& sauce, const ::std::string& chars);
+
+inline ::std::string decolonise (::std::string& sauce)
+{   return split_at_first_of (sauce, ":"); }

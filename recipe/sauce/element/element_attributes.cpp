@@ -203,7 +203,7 @@ void element::examine_clip ()
 
 void element::examine_content ()
 {   if (tag () == elem_meta) return;
-    if (context.rdf () || node_.version().is_svg_12 ()) return;
+    if (context.rdfa () || node_.version().is_svg_12 ()) return;
     switch (node_.version ().mjr ())
     {   case 0 :
         case 1 :

@@ -2284,19 +2284,19 @@ void mime_init (nitpick& nits)
 {   type_master < t_mime > :: init (nits, mimetype_symbol_table, sizeof (mimetype_symbol_table) / sizeof (symbol_entry < html_version, e_mimetype >));
     type_master < t_format > :: init (nits, format_symbol_table, sizeof (format_symbol_table) / sizeof (symbol_entry < html_version, e_format >)); }
 
-e_format extension_format (nitpick& , const html_version& v, const ::std::string& ext, uint64_t& flags)
+e_format extension_format (nitpick& , const html_version& v, const ::std::string& ext, flags_t& flags)
 {   return type_master < t_format > :: find (v, ext, ns_default, nullptr, nullptr, &flags); }
 
 bool is_compatible_extension (const html_version& v, const e_mimetype em, const ::std::string& ext)
 {   if (v.mjr () < 4) return true;
     nitpick nits;
-    uint64_t flags = 0;
+    flags_t flags = 0;
     e_format mimex = extension_format (nits, v, ext, flags);
     if (mimex == mime_bork) return true;
     return (em == static_cast < e_mimetype> (mimex)); }
 
 bool has_external_vulnerability (nitpick& nits, const html_version& , const e_mimetype em)
-{   uint64_t f (type_master < t_mime > :: flags (em));
+{   flags_t f (type_master < t_mime > :: flags (em));
     if ((f & MIME_SCRIPT) != 0)
         nits.pick (nit_reputation, es_error, ec_mime, "cross site scripting leaves the integrity, security and reputation of your site dependent on the good practice and intent of the third-party site");
     else if ((f & MIME_STYLE) != 0)
@@ -2306,7 +2306,7 @@ bool has_external_vulnerability (nitpick& nits, const html_version& , const e_mi
 
 bool has_embed_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em)
 {   if (v.mjr () < 4) return false;
-    uint64_t f (type_master < t_mime > :: flags (em));
+    flags_t f (type_master < t_mime > :: flags (em));
     if ((f & MIME_APPLICATION) != 0)
         nits.pick (nit_reputation, es_warning, ec_mime, "referring to an external site leaves the reputation of your site dependent on their good practice and intent");
     else if ((f & (MIME_AUDIO | MIME_FONT | MIME_IMAGE | MIME_VIDEO)) != 0)
@@ -2318,7 +2318,7 @@ bool has_embed_vulnerability (nitpick& nits, const html_version& v, const e_mime
 
 bool has_extension_incompatibility (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext)
 {   if (ext.empty () || (em == mime_bork) || (em == mime_context)) return false;
-    uint64_t flags = 0;
+    flags_t flags = 0;
     e_mimetype mt (static_cast < e_mimetype > (extension_format (nits, v, ext, flags)));
     if ((mt == mime_context) || (mt == mime_bork)) return false;
     if (mt == em) return false;
@@ -2327,11 +2327,11 @@ bool has_extension_incompatibility (nitpick& nits, const html_version& v, const 
     nits.pick (nit_incompatible_mime, es_info, ec_mime, "the file extension ", quote (ext), " is not normally associated with ", quote (type_master < t_mime > :: name (em)));
     return true; }
 
-void check_extension_compatibility (nitpick& nits, const html_version& v, const uint64_t family, const ::std::string& ext)
+void check_extension_compatibility (nitpick& nits, const html_version& v, const flags_t family, const ::std::string& ext)
 {   if ((! ext.empty ()) && (family != 0))
     {   e_mimetype em = static_cast < e_mimetype> (type_master < t_format > :: find (v, ext, ns_default));
         if ((em != mime_context) && (em != mime_bork))
-        {   uint64_t flags = type_master < t_mime > :: flags (em);
+        {   flags_t flags = type_master < t_mime > :: flags (em);
             if ((family & flags) == 0)
                 nits.pick (nit_incompatible_mime, es_info, ec_mime, "a file with extension '.", ext, "' is unsuitable here"); } } }
 
@@ -2354,7 +2354,7 @@ void check_extension_compatibility (nitpick& nits, const html_version& v, const 
         if ((mt != mime_bork) && (mt != mime_context))
             check_extension_compatibility (nits, v, mt, u, src); } }
 
-void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const uint64_t family)
+void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const flags_t family)
 {   PRESUME (family != 0, __FILE__, __LINE__);
     for (auto uu : u)
         if (uu.has_extension ()) check_extension_compatibility (nits, v, family, uu.extension ()); }
@@ -2365,7 +2365,7 @@ void check_extension_compatibility (nitpick& nits, const html_version& v, const 
 
 bool report_flag_issues (nitpick& nits, const html_version& , const e_mimetype em, const bool specified, const ::std::string& ref)
 {   bool res = false;
-    uint64_t f (type_master < t_mime > :: flags (em));
+    flags_t f (type_master < t_mime > :: flags (em));
     if (specified && ((f & MIME_UNOFFICIAL) == MIME_UNOFFICIAL))
     {   nits.pick (nit_mime, ed_mimetype, "https://www.iana.org/assignments/media-types/media-types.xhtml", es_info, ec_mime, quote (type_master < t_mime > :: name (em)), " is a non-standard media type");
         res = true; }
@@ -2401,7 +2401,7 @@ void check_mimetype_vulnerability (nitpick& nits, const html_version& v, const :
 
 void check_extension_vulnerability (nitpick& nits, const html_version& v, const ::std::string& ext, const bool local)
 {   if (! ext.empty ())
-    {   uint64_t flags = 0;
+    {   flags_t flags = 0;
         e_mimetype em (static_cast < e_mimetype > (extension_format (nits, v, ext, flags)));
         if ((em != mime_context) && (em != mime_bork))
             check_mimetype_vulnerability (nits, v, em, local, false, ext); } }
@@ -2430,13 +2430,13 @@ void check_vulnerability (nitpick& nits, const html_version& v, const ::std::str
         e_mimetype mt = examine_value < t_mime > (nuts, v, s);
         check_vulnerability (nits, v, mt, u, src); } }
 
-void check_mimetype_family (nitpick& nits, const html_version& v, const e_mimetype em, const uint64_t family, const ::std::string& ref)
+void check_mimetype_family (nitpick& nits, const html_version& v, const e_mimetype em, const flags_t family, const ::std::string& ref)
 {   report_flag_issues (nits, v, em, true, ref);
-    uint64_t flags = type_master < t_mime > :: flags (em);
+    flags_t flags = type_master < t_mime > :: flags (em);
     if ((family & flags) == 0)
         nits.pick (nit_incompatible_mime, es_info, ec_mime, type_master < t_mime > :: name (em), " is unsuitable here"); }
 
-void check_mimetype_family (nitpick& nits, const html_version& v, const ::std::string& s, const uint64_t family)
+void check_mimetype_family (nitpick& nits, const html_version& v, const ::std::string& s, const flags_t family)
 {   vstr_t ms (split_by_space (s));
     for (auto ss : ms)
     {   nitpick nuts;

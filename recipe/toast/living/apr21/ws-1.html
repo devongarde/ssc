@@ -15,7 +15,8 @@ time(s).
 </p>
 <script>
 if (!localStorage.pageLoadCount)
-localStorage.pageLoadCount = 0;localStorage.pageLoadCount = parseInt(localStorage.pageLoadCount) + 1;
+localStorage.pageLoadCount = 0;
+localStorage.pageLoadCount = parseInt(localStorage.pageLoadCount) + 1;
 document.getElementById('count').textContent = localStorage.pageLoadCount;
 </script>
 
@@ -27,6 +28,7 @@ document.getElementById('count').textContent = localStorage.pageLoadCount;
 </metadata>
 </svg>
 </p>
+
 <input disabled>
 
 <input value=yes>
@@ -34,5 +36,6 @@ document.getElementById('count').textContent = localStorage.pageLoadCount;
 <input type='checkbox'>
 
 <input name="be evil">
+
  </body>
 </html>

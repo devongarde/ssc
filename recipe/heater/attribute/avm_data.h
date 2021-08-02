@@ -135,7 +135,235 @@ struct hav_t
     { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowindex }, \
     { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowspan }
 
+#define CC_ATTRIBUTES(ELEM) \
+    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_attribution_name }, \
+    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_attribution_url }, \
+    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_more_permissions }, \
+    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_licence }, \
+    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_permits }, \
+    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_prohibits }, \
+    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_requires }
+
+#define DC_ATTRIBUTES(ELEM) \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_contributor }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_coverage }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_creator }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_date }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_description }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_format }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_identifier }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_language }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_publisher }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_relation }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_rights }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_source }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_subject }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_title }, \
+    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_type }
+
+#define DCTERMS_ATTRIBUTES(ELEM) \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_abstract }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_accessrights }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_accrualmethod }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_accrualperiodicity }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_accrualpolicy }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_alternative }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_audience }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_available }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_bibliographiccitation }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_conformsto }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_contributor }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_coverage }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_created }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_creator }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_date }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_dateaccepted }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_datecopyrighted }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_datesubmitted }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_description }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_educationlevel }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_extent }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_format }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_hasformat }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_haspart }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_hasversion }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_identifier }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_instructionalmethod }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isformatof }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_ispartof }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isreferencedby }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isreplacedby }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isrequiredby }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_issued }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isversionof }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_language }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_licence }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_mediator }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_medium }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_modified }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_provenance }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_publisher }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_references }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_relation }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_replaces }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_requires }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_rights }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_rightsholder }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_source }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_spatial }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_subject }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_tableofcontents }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_temporal }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_title }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_type }, \
+    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_valid }
+
+#define MATH1_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
+    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_class }, \
+    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_id }, \
+    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_other }, \
+    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_style }
+
+#define MATH1_STANDARD_ATTRIBUTES(ELEM) \
+    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, 0)
+
+#define MATH1_FONT_ATTRIBUTES(ELEM) \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_colour }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontfamily }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontsize }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontstyle }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontweight }
+
+#define MATH_OPINFO_ATTRIBUTES(ELEM) \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_accent }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_form }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fence }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_largeop }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_lspace }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_maxsize }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_minsize }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_movablelimits }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rspace }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_separator }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_stretchy }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_symmetric }
+
+#define MATH_SIZEINFO_ATTRIBUTES(ELEM) \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_depth }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_height }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_width }
+
+#define MATH1_TABLE_ATTRIBUTES(ELEM) \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_align }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_alignmentscope }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnalign }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnlines }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnspacing }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_equalcolumns }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_equalrows }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_frame }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_framespacing }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_groupalign }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowalign }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowlines }, \
+    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowspacing }
+
+#define MATH2_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
+    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_2 ) ), \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xlinkhref }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xlinktype }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xmlns }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xref }
+
+#define MATH2_STANDARD_ATTRIBUTES(ELEM) \
+    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, 0)
+
+#define MATH2_DEFS_ATTRIBUTES_EX(ELEM, FLAGS) \
+    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1_2 ) }, { HTML_UNDEF }, ELEM, a_definitionurl }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_encoding }, \
+    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
+
+#define MATH2_DEFS_ATTRIBUTES(ELEM) \
+    MATH2_DEFS_ATTRIBUTES_EX (ELEM, 0)
+
+#define MATH2_FONT_ATTRIBUTES_EX(ELEM, FLAGS) \
+    MATH1_FONT_ATTRIBUTES (ELEM), \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathsize }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathvariant }
+
+#define MATH2_FONT_ATTRIBUTES(ELEM) \
+    MATH2_FONT_ATTRIBUTES_EX (ELEM,0) \
+
+#define MATH2_TABLE_ATTRIBUTES_EX(ELEM, FLAGS) \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_columnwidth }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_minlabelspacing }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_side }, \
+    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_width }, \
+    MATH1_TABLE_ATTRIBUTES (ELEM)
+
+#define MATH2_TABLE_ATTRIBUTES(ELEM) \
+    MATH2_TABLE_ATTRIBUTES_EX (ELEM, 0)
+
+#define MATH3_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
+    { { HTML_MATH3, 0, ( FLAGS | HE_MATH_3_4 ) }, { HTML_UNDEF }, ELEM, a_href }, \
+    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_3_4 ) )
+
+#define MATH3_STANDARD_ATTRIBUTES(ELEM) \
+    MATH3_STANDARD_ATTRIBUTES_EX (ELEM, 0)
+
+#define MATH3_DEFS_ATTRIBUTES_EX(ELEM, FLAGS) \
+    MATH2_DEFS_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_3_4 ) ), \
+    MATH3_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
+
+#define MATH3_DEFS_ATTRIBUTES(ELEM) \
+    MATH3_DEFS_ATTRIBUTES_EX (ELEM, 0)
+
+#define MATH3_FONT_ATTRIBUTES(ELEM) \
+    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_dir }, \
+    MATH2_FONT_ATTRIBUTES_EX (ELEM, HE_MATH_3_4)
+
+#define MATH3_TABLE_ATTRIBUTES(ELEM) \
+    MATH2_TABLE_ATTRIBUTES_EX (ELEM, HE_MATH_3_4)
+
+#define MATH3_PRES_ATTRIBUTES_EX(ELEM, FLAGS) \
+    { { HTML_MATH3, 0, ( FLAGS | HE_MATH_3_4 ) }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
+    { { HTML_MATH3, 0, ( FLAGS | HE_MATH_3_4 ) }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
+    MATH3_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
+
+#define MATH3_PRES_ATTRIBUTES(ELEM) \
+    MATH3_PRES_ATTRIBUTES_EX (ELEM, 0)
+
+#define MATH3_TOKEN_ATTRIBUTES(ELEM) \
+    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_dir }, \
+    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathsize }, \
+    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathvariant }
+
+#define MATH3_LINEINDENT_ATTRIBUTES(ELEM) \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalign }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalignfirst }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalignlast }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentshift }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentshiftfirst }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentshiftlast }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indenttarget }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreak }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreakmultichar }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreakstyle }, \
+    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_lineleading }
+
+#define RDF_ATTRIBUTES(ELEM) \
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_about }, \
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_datatype }, \
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_id }, \
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_nodeid }, \
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_parsetype }, \
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_resource }
+
 #define RDFA_ATTRIBUTES_EX(ELEM,FLAGS) \
+    RDF_ATTRIBUTES (ELEM), \
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_about }, \
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_content }, \
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_datatype }, \
@@ -146,18 +374,20 @@ struct hav_t
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_typeof }
 
 #define RDFA_STANDARD_ATTRIBUTES(ELEM) \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_about }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_content }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_datatype }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_inlist }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_prefix }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_property }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_rel }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_resource }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_rev }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_src }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_typeof }, \
-    { { HTML_RDF10, 0, HE_RDF_1_0 | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_vocab }
+    RDF_ATTRIBUTES (ELEM), \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_about }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_content }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_datatype }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_inlist }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_instanceof }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_prefix }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_property }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_rel }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_resource }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_rev }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_src }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_typeof }, \
+    { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_vocab }
 
 #define SVG_ANIMATION_EVENT_ATTRIBUTES_EX(ELEM,VER) \
     { { HTML_SVG10, 0, VER }, { HTML_UNDEF }, ELEM, a_onbegin }, \
@@ -197,7 +427,7 @@ struct hav_t
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, ELEM, a_fill }
 
 #define SVG_BASE_ATTRIBUTES(ELEM) \
-    RDFA_ATTRIBUTES_EX (ELEM, HE_SVG_12), \
+    RDFA_ATTRIBUTES_EX (ELEM, HE_RDFA | HE_SVG_12), \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_role }, \
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, ELEM, a_xmlbase }, \
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, ELEM, a_xmlid }
@@ -689,145 +919,11 @@ struct hav_t
 #define SVG_FILTER_ATTRIBUTES(ELEM) \
     SVG_FILTER_ATTRIBUTES_EX (ELEM, HTML_SVG10)
 
-#define SVG12_CONDGRAPH_ATTRIBUTES(ELEM)
-
-#define MATH1_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_class }, \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_id }, \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_other }, \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_style }
-
-#define MATH1_STANDARD_ATTRIBUTES(ELEM) \
-    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, 0)
-
-#define MATH1_FONT_ATTRIBUTES(ELEM) \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_colour }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontfamily }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontsize }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontstyle }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontweight }
-
-#define MATH_OPINFO_ATTRIBUTES(ELEM) \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_accent }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_form }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fence }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_largeop }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_lspace }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_maxsize }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_minsize }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_movablelimits }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rspace }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_separator }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_stretchy }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_symmetric }
-
-#define MATH_SIZEINFO_ATTRIBUTES(ELEM) \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_depth }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_height }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_width }
-
-#define MATH1_TABLE_ATTRIBUTES(ELEM) \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_align }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_alignmentscope }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnalign }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnlines }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnspacing }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_equalcolumns }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_equalrows }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_frame }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_framespacing }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_groupalign }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowalign }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowlines }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowspacing }
-
-#define MATH2_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
-    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_2 ) ), \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xlinkhref }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xlinktype }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xmlns }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xref }
-
-#define MATH2_STANDARD_ATTRIBUTES(ELEM) \
-    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, 0)
-
-#define MATH2_DEFS_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1_2 ) }, { HTML_UNDEF }, ELEM, a_definitionurl }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_encoding }, \
-    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
-
-#define MATH2_DEFS_ATTRIBUTES(ELEM) \
-    MATH2_DEFS_ATTRIBUTES_EX (ELEM, 0)
-
-#define MATH2_FONT_ATTRIBUTES_EX(ELEM, FLAGS) \
-    MATH1_FONT_ATTRIBUTES (ELEM), \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathsize }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathvariant }
-
-#define MATH2_FONT_ATTRIBUTES(ELEM) \
-    MATH2_FONT_ATTRIBUTES_EX (ELEM,0) \
-
-#define MATH2_TABLE_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_columnwidth }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_minlabelspacing }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_side }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_width }, \
-    MATH1_TABLE_ATTRIBUTES (ELEM)
-
-#define MATH2_TABLE_ATTRIBUTES(ELEM) \
-    MATH2_TABLE_ATTRIBUTES_EX (ELEM, 0)
-
-#define MATH3_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH3, 0, ( FLAGS | HE_MATH_3_4 ) }, { HTML_UNDEF }, ELEM, a_href }, \
-    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_3_4 ) )
-
-#define MATH3_STANDARD_ATTRIBUTES(ELEM) \
-    MATH3_STANDARD_ATTRIBUTES_EX (ELEM, 0)
-
-#define MATH3_DEFS_ATTRIBUTES_EX(ELEM, FLAGS) \
-    MATH2_DEFS_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_3_4 ) ), \
-    MATH3_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
-
-#define MATH3_DEFS_ATTRIBUTES(ELEM) \
-    MATH3_DEFS_ATTRIBUTES_EX (ELEM, 0)
-
-#define MATH3_FONT_ATTRIBUTES(ELEM) \
-    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_dir }, \
-    MATH2_FONT_ATTRIBUTES_EX (ELEM, HE_MATH_3_4)
-
-#define MATH3_TABLE_ATTRIBUTES(ELEM) \
-    MATH2_TABLE_ATTRIBUTES_EX (ELEM, HE_MATH_3_4)
-
-#define MATH3_PRES_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH3, 0, ( FLAGS | HE_MATH_3_4 ) }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
-    { { HTML_MATH3, 0, ( FLAGS | HE_MATH_3_4 ) }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
-    MATH3_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
-
-#define MATH3_PRES_ATTRIBUTES(ELEM) \
-    MATH3_PRES_ATTRIBUTES_EX (ELEM, 0)
-
-#define MATH3_TOKEN_ATTRIBUTES(ELEM) \
-    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_dir }, \
-    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathsize }, \
-    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathvariant }
-
-#define MATH3_LINEINDENT_ATTRIBUTES(ELEM) \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalign }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalignfirst }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalignlast }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentshift }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentshiftfirst }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentshiftlast }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indenttarget }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreak }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreakmultichar }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreakstyle }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_lineleading }
-
 #define XHTML1_STANDARD_ATTRIBUTES(ELEM) \
+    CC_ATTRIBUTES (ELEM), \
+    DC_ATTRIBUTES (ELEM), \
+    DCTERMS_ATTRIBUTES (ELEM), \
+    RDF_ATTRIBUTES (ELEM), \
     RDFA_STANDARD_ATTRIBUTES (ELEM), \
     { { XHTML_1_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_xmlns }, \
     { { HTML_JAN07, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_xmlns }, \
@@ -875,7 +971,7 @@ struct hav_t
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_title }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_usemap }, \
     { { XHTML_2_0, 0, HE_NOT_SVG_20 }, { XHTML_2_0 }, ELEM, a_xmlbase }, \
-    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_xmlid }
+    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_xmlid }
 
 #define XHTML2_STANDARD_ATTRIBUTES(ELEM) \
     XHTML2_COMMON_ATTRIBUTES(ELEM), \
@@ -1017,7 +1113,7 @@ struct hav_t
     { { HTML_JUL09, 0, HE_NOT_SVG }, { HTML_DEC09 }, ELEM, a_subject }, \
     { { HTML_JAN08, 0, HE_NOT_SVG }, { HTML_DEC08 }, ELEM, a_template }, \
     { { HTML_JUL12, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_translate }, \
-    { { HTML_5_3, 0, HE_NOT_SVG }, { HTML_5_3 }, ELEM, a_xmlns }, \
+    { { HTML_5_3, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_xmlns }, \
     { { HTML_SVG11, 0, HE_NOT_SVG_10 }, { HTML_UNDEF }, ELEM, a_xmlspace }
 
 #define STANDARD_HTML5_ATTRIBUTES(ELEM) \

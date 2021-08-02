@@ -25,38 +25,45 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 
 void element_node::init ()
-{   if (parent_ == nullptr) version_ = context.html_ver ();
+{   VERIFY_NOT_NULL (box_, __FILE__, __LINE__);
+    PRESUME (va_.box () == nullptr, __FILE__, __LINE__);
+    if (parent_ == nullptr) version_ = context.html_ver ();
     else version_ = parent_ -> version_;
     manage_reversioner (); }
 
-element_node::element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed)
-    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), nits_ (nits), nss_ (nss)
+element_node::element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed)
+    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), box_ (box), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), nits_ (nits)
 {   init (); }
 
-element_node::element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed)
-    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), nits_ (nits), nss_ (nss)
+element_node::element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed)
+    : parent_ (parent), child_ (child), last_ (child), next_ (next), previous_ (previous), box_ (box), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), nits_ (nits)
 {   init (); }
 
-element_node::element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str)
-    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), text_ (str), nits_ (nits), nss_ (nss)
+element_node::element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str)
+    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), box_ (box), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (tag), text_ (str), nits_ (nits)
 {   init (); }
 
-element_node::element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str)
-    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), text_ (str), nits_ (nits), nss_ (nss)
+element_node::element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str)
+    : parent_ (parent), child_ (nullptr), last_ (nullptr), next_ (nullptr), previous_ (nullptr), box_ (box), line_ (line), closure_ (closure), presumed_ (presumed), elem_ (el), text_ (str), nits_ (nits)
 {   init (); }
+
+element_node::element_node (elements_node* box)
+    : box_ (box)
+{   VERIFY_NOT_NULL (box_, __FILE__, __LINE__); }
 
 element_node::~element_node ()
 {
-    // Necessary to appease (some editions of) the VC++ 19 optimiser, SFAICT
+    // When omitted, some versions of VC++ 19 seem to have a spot of bother
 }
 
 void element_node::reset ()
-{   element_node en;
+{   element_node en (box_);
     swap (en); }
 
 void element_node::reset (const element_node& en)
 {   element_node tmp (en);
-    swap (tmp); }
+    swap (tmp);
+    va_.box (this); }
 
 void element_node::swap (element_node& en) NOEXCEPT
 {   ::std::swap (parent_, en.parent_);
@@ -68,7 +75,9 @@ void element_node::swap (element_node& en) NOEXCEPT
     ::std::swap (closure_, en.closure_);
     ::std::swap (checked_sanitised_, en.checked_sanitised_);
     ::std::swap (presumed_, en.presumed_);
-    nss_.swap (en.nss_);
+    ::std::swap (box_, en.box_);
+    prefixes_.swap (en.prefixes_);
+    namespaces_.swap (en.namespaces_);
     version_.swap (en.version_);
     elem_.swap (en.elem_);
     va_.swap (en.va_);
@@ -94,8 +103,10 @@ void element_node::manage_reversioner ()
         default : break; } }
 
 void element_node::parse_attributes (const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e)
-{   if (parent_ != nullptr) nss_ = initialise_namespace_stack (version_, parent_ -> nss_);
-    va_.parse (nits_, version_, nss_, b, e, line_, elem_, true);
+{   PRESUME (va_.box () == nullptr, __FILE__, __LINE__);
+    va_.box (this);
+//    if (parent_ != nullptr) nss_ = initialise_namespace_stack (version_, parent_ -> nss_);
+    va_.parse (nits_, version_, b, e, line_, elem_, true);
     if (version_.mjr () < 4) return;
     if (! va_.empty ())
     {   va_.manage_xmlns (nits (), version_);
@@ -147,6 +158,8 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
         default :
             if (closure_) res += ln (line_) + "/" + elem_.name () + va_.rpt () + "\n";
             else res += ln (line_) + elem_.name () + va_.rpt () + "\n"; }
+    if (namespaces_.get () != nullptr) res += namespaces_ -> rpt (level);
+    if (prefixes_.get () != nullptr) res += prefixes_ -> rpt (level);
     for (element_node* kids = child_; kids != nullptr; kids = kids -> next_)
     {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
         res += kids -> rpt (level + 1); }
@@ -175,3 +188,15 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
     {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
         res += kids -> inner_text (); }
     return res; }
+
+//::std::string element_node::rpt () const
+//{   ::std::ostringstream ss;
+//    ss << elem_.name () << " " << version_.report () << ":\n";
+//    ss << "    " << line_ << " " << closure_ << " " << closed_ << " " << checked_sanitised_ << " " << presumed_ << " ";
+//    if (box_ == nullptr) ss << "-"; else ss << "boxed"; ss << "\n";
+//    ss << "    " << quote (text_) << " " << quote (raw_) << " " << quote (sanitised_) << "\n";
+//    if (prefixes_.get () != nullptr) ss << prefixes_ -> rpt ();
+//    ss << va_.rpt ();
+//    for (element_node* child = child_; child != nullptr; child = child -> next_)
+//        ss << child -> rpt ();
+//    return ss.str (); }

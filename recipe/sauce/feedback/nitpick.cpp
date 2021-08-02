@@ -47,37 +47,49 @@ void nitpick::merge (nitpick&& np)
    for (auto n : np.nits_)
         nits_.emplace_back (n); }
 
-::std::string nitpick::review () const
+template < class T > ::std::string nitpick::inner_review (const T& t, bool& quote, bool& dq, bool& infoed, bool& eol) const
 {   extern bool ignore_this_slob_stuff (const e_nit code);
     ::std::string res;
+    for (auto n : t)
+        if (context.tell (static_cast < e_verbose > (n.severity ())) && ! ignore_this_slob_stuff (n.code ()))
+        {   switch (n.code ())
+            {   case nit_context:
+                    infoed = true;
+                    break;
+                case nit_use_double_quote_code :
+                    if (dq) continue;
+                    dq = true;
+                    break;
+                case nit_use_quote_code :
+                    if (quote) continue;
+                    quote = true;
+                    break;
+                case nit_newline_in_string :
+                    if (eol) continue;
+                    eol = true;
+                    break;
+                default : break; }
+            bool not_context = (n.code () != nit_context);
+            if (not_context) n.notify ();
+            if (! context.test ()) res += n.review ();
+            else if (not_context)
+            {   res += " ";
+                if (context.spec ()) res += lookup_name (n.code ());
+                else res += ::boost::lexical_cast < ::std::string > (n.code ()); } }
+    return res; }
+
+::std::string nitpick::review () const
+{   ::std::string res;
     bool quote = false, dq = false, infoed = false, eol = false;
     if (! empty ())
-    {   for (auto n : nits_)
-            if (context.tell (static_cast < e_verbose > (n.severity ())) && ! ignore_this_slob_stuff (n.code ()))
-            {   switch (n.code ())
-                {   case nit_context:
-                        infoed = true;
-                        break;
-                    case nit_use_double_quote_code :
-                        if (dq) continue;
-                        dq = true;
-                        break;
-                    case nit_use_quote_code :
-                        if (quote) continue;
-                        quote = true;
-                        break;
-                    case nit_newline_in_string :
-                        if (eol) continue;
-                        eol = true;
-                        break;
-                    default : break; }
-                bool not_context = (n.code () != nit_context);
-                if (not_context) n.notify ();
-                if (! context.test ()) res += n.review ();
-                else if (not_context)
-                {   res += " ";
-                    if (context.spec ()) res += lookup_name (n.code ());
-                    else res += ::boost::lexical_cast < ::std::string > (n.code ()); } }
+    {   if (context.nits_nits_nits ())
+            res = inner_review (nits_, quote, dq, infoed, eol);
+        else
+        {   ::std::set < nit > sn;
+            for (auto n : nits_)
+                if (sn.find (n) == sn.end ())
+                    sn.insert (n);
+            res = inner_review (sn, quote, dq, infoed, eol); }
         if (! res.empty ())
         {   ::std::string ln (::boost::lexical_cast < ::std::string > (line_));
             if (context.test ()) res = ln + " " + res + "\n";

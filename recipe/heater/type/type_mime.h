@@ -118,7 +118,8 @@ template < > inline void enum_n < t_mime, e_mimetype > :: verify_attribute (nitp
                 default: break; } } }
 
 template < > struct type_master < t_mimelist > : public string_value < t_mimelist >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_value < t_mimelist > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if ((v == html_2) && ! context.rfc_1867 ())
             nits.pick (nit_rfc_1867, es_error, ec_type, "ACCEPT in ", v.report (), " requires RFC 1867, which has been disabled");
         else if (! s.empty ())
@@ -131,19 +132,28 @@ template < > struct type_master < t_mimelist > : public string_value < t_mimelis
                     string_value < t_mimelist > :: status (s_invalid); return; } } } } };
 
 template < > struct type_master < t_mimestar > : public string_value < t_mimestar >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_value < t_mimestar > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_value < t_mimestar > :: set_value (nits, v, s);
         if (string_value < t_mimestar > :: good ())
         {   if (string_value < t_mimestar > :: get_string ().find_first_of ('*') != ::std::string::npos) return;
             if (test_value < t_mime > (nits, v, s)) return;
             string_value < t_mimestar > :: status (s_invalid); return; } } };
 
-template < > class type_master < t_format > : public enum_n < t_format, e_format > { };
-template < > struct type_master < t_mimemodule > : type_or_string < t_mimemodule, t_mime, sz_module > { };
-template < > struct type_master < t_mimeq > : type_one_or_both < t_mimeq, t_mimestar, sz_semicolon, t_q > { };
-template < > struct type_master < t_mimeqs > : type_at_least_one < t_mimeqs, sz_comma, t_mimeq > { };
+template < > struct type_master < t_format > : enum_n < t_format, e_format >
+{ using enum_n < t_format, e_format > :: enum_n; };
 
-e_format extension_format (nitpick& nits, const html_version& v, const ::std::string& ext, uint64_t& flags);
+template < > struct type_master < t_mimemodule > : type_or_string < t_mimemodule, t_mime, sz_module >
+{ using type_or_string < t_mimemodule, t_mime, sz_module > :: type_or_string; };
+
+template < > struct type_master < t_mimeq > : type_one_or_both < t_mimeq, t_mimestar, sz_semicolon, t_q >
+{ using type_one_or_both < t_mimeq, t_mimestar, sz_semicolon, t_q > :: type_one_or_both; };
+
+template < > struct type_master < t_mimeqs > : type_at_least_one < t_mimeqs, sz_comma, t_mimeq >
+{ using type_at_least_one < t_mimeqs, sz_comma, t_mimeq > :: type_at_least_one; };
+
+
+e_format extension_format (nitpick& nits, const html_version& v, const ::std::string& ext, flags_t& flags);
 bool is_compatible_extension (const html_version& v, const e_mimetype em, const ::std::string& ext);
 bool has_external_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em);
 bool has_embed_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em);
@@ -151,7 +161,7 @@ bool has_extension_incompatibility (nitpick& nits, const html_version& v, const 
 void check_extension_compatibility (nitpick& nits, const html_version& v, const e_mimetype em, const vurl_t& u, const bool src);
 void check_extension_compatibility (nitpick& nits, const html_version& v, const ::std::string& s, const vurl_t& u, const bool src);
 void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const e_mimetype mt);
-void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const uint64_t family);
+void check_extension_compatibility (nitpick& nits, const html_version& v, const vurl_t& u, const flags_t family);
 void check_extension_vulnerability (nitpick& nits, const html_version& v, const ::std::string& ext, const bool local);
 void check_extension_vulnerability (nitpick& nits, const html_version& v, const vurl_t& vu);
 void check_mimetype_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const bool local, const bool specified, const ::std::string& ref);
@@ -159,5 +169,5 @@ void check_mimetype_vulnerability (nitpick& nits, const html_version& v, const :
 void check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const ::std::string& ext, const bool local);
 void check_vulnerability (nitpick& nits, const html_version& v, const e_mimetype em, const vurl_t& u, const bool src);
 void check_vulnerability (nitpick& nits, const html_version& v, const ::std::string& s, const vurl_t& u, const bool src);
-void check_mimetype_family (nitpick& nits, const html_version& v, const e_mimetype em, const uint64_t family, const ::std::string& ref);
-void check_mimetype_family (nitpick& nits, const html_version& v, const ::std::string& s, const uint64_t family);
+void check_mimetype_family (nitpick& nits, const html_version& v, const e_mimetype em, const flags_t family, const ::std::string& ref);
+void check_mimetype_family (nitpick& nits, const html_version& v, const ::std::string& s, const flags_t family);

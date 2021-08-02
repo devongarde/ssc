@@ -45,10 +45,10 @@ class corpus;
 class context_t
 {   bool            article_ = false, body_ = false, cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false,
                     info_ = false, load_css_ = false, links_ = false, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false,
-                    nids_ = false, nits_ = false, nochange_ = false, notify_ = false, once_ = false, presume_tags_ = false, process_webmentions_ = false, rdf_ = false, rel_ = false,
-                    repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = false,
-                    shadow_comment_ = false, shadow_changed_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false,
-                    stats_summary_ = false, test_ = false, unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
+                    nids_ = false, nits_ = false, nits_nits_nits_ = false, nochange_ = false, notify_ = false, once_ = false, presume_tags_ = false, process_webmentions_ = false,
+                    rdfa_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true,
+                    rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_changed_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false,
+                    ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -96,6 +96,7 @@ public:
     const ::std::string filename () const { return filename_; }
     bool forwarded () const { return forwarded_; }
     bool has_math () const { return version_.has_math (); }
+    bool has_rdfa () const { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
     bool has_svg () const { return version_.has_svg (); }
     html_version html_ver () const { return version_; }
     html_version html_ver (const int major, const int minor);
@@ -124,6 +125,7 @@ public:
     ::std::string msg () const { return msg_; }
     bool nids () const { return nids_; }
     bool nits () const { return nits_; }
+    bool nits_nits_nits () const { return nits_nits_nits_; }
     bool nochange () const { return nochange_; }
     bool notify () const { return notify_; }
     bool once () const { return once_; }
@@ -132,7 +134,8 @@ public:
     ::std::string path () const { return path_; }
     const ::std::string persisted () const { return persisted_; }
     bool process_webmentions () const { return process_webmentions_; }
-    bool rdf () const { return rdf_; }
+    bool rdfa () const { return rdfa_; }
+    e_rdf_version rdf_version () const { return version_.rdf_version (); }
     bool rel () const { return rel_; }
     bool repeated () const { return repeated_; }
     e_severity report_error () const { return report_error_; }
@@ -247,6 +250,7 @@ public:
     context_t& msg (const ::std::string& s) { msg_ = s; return *this; }
     context_t& nids (const bool b) { nids_ = b; return *this; }
     context_t& nits (const bool b) { nits_ = b; return *this; }
+    context_t& nits_nits_nits (const bool b) { nits_nits_nits_ = b; return *this; }
     context_t& nochange (const bool b) { nochange_ = b; return *this; }
     context_t& notify (const bool b) { notify_ = b; return *this; }
     context_t& once (const bool b)
@@ -258,7 +262,8 @@ public:
     context_t& persisted (const ::std::string& s) { persisted_ = s; return *this; }
     context_t& presume_tags (const bool b) { presume_tags_ = b; return *this; }
     context_t& process_webmentions (const bool b) { process_webmentions_ = b; return *this; }
-    context_t& rdf (const bool b) { rdf_ = b; return *this; }
+    context_t& rdfa (const bool b) { rdfa_ = b; return *this; }
+    context_t& rdf_version (const e_rdf_version v) { version_.rdf_version (v); return *this; }
     context_t& rel (const bool b) { rel_ = b; return *this; }
     context_t& repeated (const bool b) { repeated_ = b; return *this; }
     context_t& report_error (const e_severity sev) { report_error_ = sev; return *this; }

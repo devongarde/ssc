@@ -33,6 +33,4 @@ PASS ../toast/XHTML/1.0/mathml-1.xhtml
 
 PASS ../toast/XHTML/1.0/math-example.xhtml
 1 xhtml_1_0
-2 contradictory_namespace
 7 reputation
-12 unknown_element unknown_element

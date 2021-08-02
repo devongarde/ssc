@@ -24,7 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 bool parse_media_query (nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_mql > : tidy_string < t_mql >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_mql > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_mql > :: set_value (nits, v, s);
         if (tidy_string < t_mql > :: empty ())
             nits.pick (nit_mq_syntax, ed_mql, "3. Syntax", es_warning, ec_mql, "is the empty media value intentional?");
@@ -33,7 +34,8 @@ template < > struct type_master < t_mql > : tidy_string < t_mql >
         return; } };
 
 template < > struct type_master < t_mqls > : tidy_string < t_mqls >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_mqls > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_mqls > :: set_value (nits, v, s);
         if (tidy_string < t_mqls > :: empty ())
             nits.pick (nit_mq_syntax, ed_rfc_7231, "5.3.2. Accept", es_warning, ec_mql, "are the empty media values intentional?");

@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WEBADDR "https://ssc.lu/"
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 109
-#define VERSION_STRING "0.0.109"
+#define VERSION_RELEASE 110
+#define VERSION_STRING "0.0.110"
 #define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
 
 #ifdef __clang__
@@ -80,7 +80,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define _CRT_SECURE_NO_WARNINGS
 #define CONSTEXPR
 #define NOEXCEPT
-#define FS_THROWS
 #define REQUIRE_CONSTRUCTOR
 #define NO_PCF_STR
 #define VS 15
@@ -299,16 +298,27 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define SCHEMA_ORG          "schema.org"
 #define PURL_ORG            "purl.org"
 #define N_WHATWG_ORG        "n.whatwg.org"
+#define RDFS_ORG            "rdfs.org"
 #define W3_ORG              "www.w3.org"
 #define SVG_2000            W3_ORG "/2000/svg"
 #define XMLNS               "xmlns"
 #define XHTMLNS             "xml"
 #define XLINK               "xlink"
 
+#define CC "creativecommons.org"
+#define DBPEDIA "dbpedia.org"
+#define OGC "www.ogc.org"
+#define XCOM XMLNS ".com"
+#define XOT XMLNS "xmlns.opentechnology.org/xslt-extensions"
+
 #define HTTP_CSS PR_HTTP CSS
 #define HTTPS_CSS PR_HTTPS CSS
 
 #define HTTP_W3 HTTP W3_ORG
 #define HTTPS_W3 HTTPS W3_ORG
+
+typedef uint64_t flags_t; // at least 64 bits
+
+#include "main/abort.h"
 
 #endif // SCC_TEST

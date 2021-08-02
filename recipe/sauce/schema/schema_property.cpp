@@ -3140,7 +3140,7 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
                                 if (type_category (ii) == itemtype_schema)
                                     if (is_specific_type_of (context.schema_ver (), i -> second -> field_schema_, static_cast < e_schema_type > (ndx_item (ii))))
                                         return true; }
-                    uint64_t flags = sch :: flags (i -> second -> field_schema_);
+                    flags_t flags = sch :: flags (i -> second -> field_schema_);
                     bool en = enumerated_schema_type (flags);
                     bool ex = external_enumerated_schema_type (flags);
                     if (ex || en) if (test_enumerated_type (knots, v, ex, value)) return true;

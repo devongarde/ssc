@@ -33,6 +33,7 @@ class nitpick
     {   mns_t::const_iterator i = mns_.find (code);
         if (i != mns_.cend ()) return i -> second;
         return s; }
+    template < class T > ::std::string inner_review (const T& t, bool& quote, bool& dq, bool& infoed, bool& eol) const;
 public:
     nitpick () = default;
     nitpick (const nitpick& np) = default;

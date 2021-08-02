@@ -24,7 +24,7 @@ bool invalid_id_result (nitpick& nits, const html_version& v, const ::std::strin
 
 template < > struct type_master < t_id > : tidy_string < t_id >
 {   bool tested_ = false, predefined_ = false;
-    type_master () = default;
+    using tidy_string < t_id > :: tidy_string;
     void swap (type_master < t_id >& t) NOEXCEPT
     {   ::std::swap (tested_, t.tested_);
         ::std::swap (predefined_, t.predefined_);
@@ -72,7 +72,8 @@ template < > struct type_master < t_id > : tidy_string < t_id >
         return predefined_; } };
 
 template < > struct type_master < t_idref > : tidy_string < t_idref >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_idref > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_idref > :: set_value (nits, v, s);
         if (s.empty ())
         {   nits.pick (nit_bad_id, es_error, ec_type, "an id cannot be empty");
@@ -86,7 +87,8 @@ template < > struct type_master < t_idref > : tidy_string < t_idref >
             tidy_string < t_idref > :: status (s_invalid); } };
 
 template < bool HIDES > struct many_ids : string_vector < t_idrefs, sz_space >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector < t_idrefs, sz_space > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_idrefs, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_idrefs, sz_space > :: empty ())
         {   nits.pick (nit_bad_id, es_error, ec_type, "the identifier list is empty");
@@ -100,10 +102,15 @@ template < bool HIDES > struct many_ids : string_vector < t_idrefs, sz_space >
         {   tidy_string < t_idrefs > :: status (s_invalid);
             value_.clear (); } } };
 
-template < > struct type_master < t_idrefs > : many_ids < true > { };
-template < > struct type_master < t_itemref > : many_ids < false > { };
+template < > struct type_master < t_idrefs > : many_ids < true >
+{ using many_ids < true > :: many_ids; };
+
+template < > struct type_master < t_itemref > : many_ids < false >
+{ using many_ids < false > :: many_ids; };
+
 
 template < > struct type_master < t_result > : tidy_string < t_result >
 {   typedef true_type has_int_type;
+    using tidy_string < t_result > :: tidy_string;
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
     { return invalid_id_result (nits, v, tidy_string < t_result > :: value_, e); } };

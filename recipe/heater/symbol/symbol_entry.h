@@ -28,24 +28,24 @@ template < class LC > struct enlc
 template < > struct enlc < sz_false >
 {   static ::std::string to (const ::std::string& from) { return from; } };
 
-template < class V, typename VALUE, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default > struct symbol_entry
+template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT = 0 > struct symbol_entry
 {   V               first_, last_;
     const char*     sz_ = nullptr;
     VALUE           v_ = static_cast < VALUE > (0);
     CATEGORY        ns_ = INIT;
-    uint64_t        flags_ = 0;
-    uint64_t        flags2_ = 0;
+    flags_t         flags_ = 0;
+    flags_t         flags2_ = 0;
 #ifdef REQUIRE_CONSTRUCTOR
     symbol_entry (  const V& first, const V& last, const char* sz, const VALUE v,
-                    const CATEGORY ns = INIT, const uint64_t flags = 0, const uint64_t flags2 = 0)
+                    const CATEGORY ns = INIT, const flags_t flags = 0, const flags_t flags2 = 0)
         : first_ (first), last_ (last), sz_ (sz), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
 #endif //  REQUIRE_CONSTRUCTOR
 };
 
-template < class V, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default > struct symbol_entry_t
+template < class V, typename CATEGORY = ident_t, CATEGORY INIT = 0 > struct symbol_entry_t
 {   V               first_, last_;
     const char*     sz_ = nullptr;
     ::std::size_t   v_ = 0;
     CATEGORY        ns_ = INIT;
-    uint64_t        flags_ = 0;
-    uint64_t        flags2_ = 0; };
+    flags_t         flags_ = 0;
+    flags_t         flags2_ = 0; };

@@ -24,7 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::size_t expected, const bool pts = false, const int max = 0);
 
 template < > struct type_master < t_pt > : tidy_string < t_pt >
-{   static e_animation_type animation_type () { return at_coordinate; }
+{   using tidy_string < t_pt > :: tidy_string;
+    static e_animation_type animation_type () { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_pt > :: set_value (nits, v, s);
         if (tidy_string < t_pt >  :: good ())
@@ -33,7 +34,8 @@ template < > struct type_master < t_pt > : tidy_string < t_pt >
         tidy_string < t_pt > :: status (s_invalid); } };
 
 template < > struct type_master < t_2pt > : tidy_string < t_2pt >
-{   static e_animation_type animation_type () { return at_coordinate; }
+{   using tidy_string < t_2pt > :: tidy_string;
+    static e_animation_type animation_type () { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_2pt > :: set_value (nits, v, s);
         if (tidy_string < t_2pt >  :: good ())
@@ -42,7 +44,8 @@ template < > struct type_master < t_2pt > : tidy_string < t_2pt >
         tidy_string < t_2pt > :: status (s_invalid); } };
 
 template < > struct type_master < t_matrix_values > : tidy_string < t_matrix_values >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_matrix_values > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_matrix_values > :: set_value (nits, v, s);
         if (tidy_string < t_matrix_values >  :: good ())
             if (test_reals (nits, v, tidy_string < t_matrix_values > :: get_string (), 20)) return;
@@ -50,7 +53,8 @@ template < > struct type_master < t_matrix_values > : tidy_string < t_matrix_val
         tidy_string < t_matrix_values > :: status (s_invalid); } };
 
 template < > struct type_master < t_filterres > : tidy_string < t_filterres >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_filterres > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_filterres > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_filterres > :: get_string ();
         if (tidy_string < t_filterres >  :: good ())
@@ -59,7 +63,8 @@ template < > struct type_master < t_filterres > : tidy_string < t_filterres >
         tidy_string < t_filterres > :: status (s_invalid); } };
 
 template < > struct type_master < t_points > : tidy_string < t_points >
-{   static e_animation_type animation_type () { return at_coordinate; }
+{   using tidy_string < t_points > :: tidy_string;
+    static e_animation_type animation_type () { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_points > :: set_value (nits, v, s);
         if (tidy_string < t_points >  :: good ())
@@ -68,7 +73,8 @@ template < > struct type_master < t_points > : tidy_string < t_points >
         tidy_string < t_points > :: status (s_invalid); } };
 
 template < > struct type_master < t_tablevalues > : tidy_string < t_tablevalues >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_tablevalues > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_tablevalues > :: set_value (nits, v, s);
         if (tidy_string < t_tablevalues >  :: good ())
             if (test_reals (nits, v, tidy_string < t_tablevalues > :: get_string (), 0)) return;

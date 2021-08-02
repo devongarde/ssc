@@ -46,7 +46,7 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
         if (type_master < t_microdata_root > :: starts_with (name) != mdr_none)
         {   sch s (nits, v, type_master < t_microdata_root > :: after_start (name));
             p.mark (s.get ());
-            uint64_t flags = sch :: flags (s.get ());
+            flags_t flags = sch :: flags (s.get ());
             if (has_itemid && ((flags & SF_NO_ITEMID) == SF_NO_ITEMID))
                 nits.pick (nit_deprecated_schema, ed_jan21, "5.3 Sample microdata vocabularies", es_info, ec_microdata, quote (name), " cannot have ITEMID");
             if ((flags & SF_DEPRECATED) == SF_DEPRECATED)
