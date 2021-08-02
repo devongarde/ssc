@@ -140,7 +140,8 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_math_3 : return "MathML 3 2nd Ed.";
         case ed_math_4 : return "MathML 4";
         case ed_mimetype : return "IANA media types";
-        case ed_rdf : return "RDFa";
+        case ed_rdfa : return "RDFa";
+        case ed_rdfa_c : return "RDFa Context";
         case ed_iso_8859_1 : return "ISO 8859-1";
         case ed_rfc_1867 : return "RFC 1867";
         case ed_rfc_1980 : return "RGC 1980";
@@ -217,7 +218,8 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_jul20 : return "HTML 5 living standard, WhatWG, July 2020";
         case ed_jan21 : return "HTML 5 living standard, WhatWG, January 2021";
         case ed_apr21 : return "HTML 5 living standard, WhatWG, April 2021";
-        case ed_rdf : return "RDFa Core 1.1 - Third Edition";
+        case ed_rdfa : return "RDFa Core 1.1 - Third Edition";
+        case ed_rdfa_c : return "RDFa Core Initial Context, May 2020";
         case ed_csp : return "Content Security Policy Level 3, Oct 2018, draft";
         case ed_math_1 : return "MathML 1.01";
         case ed_math_2 : return "MathML 2.0 - Second Edition";

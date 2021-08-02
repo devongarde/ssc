@@ -36,6 +36,12 @@ template < > inline void enum_n < t_lang, e_lang > :: set_value (nitpick& nits, 
     nits.pick (nit_lingo, es_warning, ec_type, quote (s), " is a rare or invalid language code");
     enum_base < e_lang, t_lang > :: status (s_invalid); };
 
-template < > struct type_master < t_langs > : type_at_least_one < t_langs, sz_comma, t_lang > { };
-template < > struct type_master < t_langq > : type_one_or_both < t_langq, t_lang, sz_semicolon, t_q > { };
-template < > struct type_master < t_langqs > : type_at_least_one < t_langqs, sz_comma, t_langq > { };
+template < > struct type_master < t_langs > : type_at_least_one < t_langs, sz_comma, t_lang >
+{ using type_at_least_one < t_langs, sz_comma, t_lang > :: type_at_least_one; };
+
+template < > struct type_master < t_langq > : type_one_or_both < t_langq, t_lang, sz_semicolon, t_q >
+{ using type_one_or_both < t_langq, t_lang, sz_semicolon, t_q > :: type_one_or_both; };
+
+template < > struct type_master < t_langqs > : type_at_least_one < t_langqs, sz_comma, t_langq >
+{ using type_at_least_one < t_langqs, sz_comma, t_langq > :: type_at_least_one; };
+

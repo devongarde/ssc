@@ -25,7 +25,7 @@ template < > struct type_master < t_dosh > : tidy_string < t_dosh >
 {   typedef double value_type, base_type;
     double value_ = 0.0;
     e_currency unit_ = e_iso_context;
-    type_master () = default;
+    using tidy_string < t_dosh > :: tidy_string;
     void swap (type_master < t_dosh >& t) NOEXCEPT
     {   ::std::swap (value_, t.value_);
         ::std::swap (unit_, t.unit_);

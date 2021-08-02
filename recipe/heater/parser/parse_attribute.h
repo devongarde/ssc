@@ -21,31 +21,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "attribute/attr.h"
 #include "feedback/nitpick.h"
+#include "parser/parse_abb.h"
+
+class attributes_node;
 
 // all these require the original string that produced the iterators to be in memory
-
+// presumes copy constructor etc. only used by container class (attributes_node)
 class attribute_node
 {   ::std::string key_, value_;
     bool has_key_ = false;
     bool has_value_ = false;
     e_attribute id_ = a_unknown;
-    void parse (nitpick& nits, const html_version& v, ns_ptr& nss, const bool xmlns);
+    attributes_node* box_ = nullptr;
+    void parse (nitpick& nits, const html_version& v, const bool normal);
 public:
-    attribute_node () = default;
-    attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool xmlns);
-    attribute_node (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const bool xmlns);
+    attribute_node () = delete;
+    attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
+                    const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool xmlns);
+    attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const bool xmlns);
     attribute_node (const attribute_node& an) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
-	attribute_node(attribute_node&& an) = default;
+	attribute_node (attribute_node&& an) = default;
 #endif
+    explicit attribute_node (attributes_node* box);
 	~attribute_node () = default;
-    attribute_node& operator = (const attribute_node& an) = default;
+    attribute_node& operator = (const attribute_node& an) { reset (an); return *this; }
 #ifndef NO_MOVE_CONSTRUCTOR
-	attribute_node& operator = (attribute_node&& an) = default;
+	attribute_node& operator = (attribute_node&& an) { reset (an); return *this; }
 #endif
 	void swap (attribute_node& an);
     void reset ()
-    {   attribute_node an;
+    {   attribute_node an (box_);
         swap (an); }
     void reset (const attribute_node& an)
     {   attribute_node tmp (an);
@@ -56,4 +62,10 @@ public:
     bool has_value () const { return has_value_; }
     ::std::string get_key () const { PRESUME (has_key_, __FILE__, __LINE__); return key_; }
     ::std::string get_string () const { return value_; }
+    const attributes_node* box () const { return box_; }
+    attributes_node* box () { return box_; }
+    prefixes_ptr prefixes () const;
+    void prepare_prefixes ();
+    namespaces_ptr namespaces () const;
+    void prepare_namespaces ();
     ::std::string rpt () const; };

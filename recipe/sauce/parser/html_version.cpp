@@ -28,7 +28,7 @@ const char* doctype = "DOCTYPE";
 const ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
-html_version::html_version (const boost::gregorian::date& d, const uint64_t flags, const uint64_t extensions)
+html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions)
         :   version (0, 0, flags | HV_WHATWG), ext_ (extensions)
 {   if (d.is_not_a_date ()) { reset (html_1); return; }
     int y = d.year ();
@@ -138,8 +138,8 @@ void html_version::init (const unsigned char mjr)
     if (transitional ()) res << "/transitional";
     if (has_svg ()) res << "/SVG-" << type_master < t_svg_version > :: name (svg_version ());
     if (has_math ()) res << "/MathML-" << math_version ();
-    if (has_xlink ()) res << "/xLink"; // << xlink ();
-    if (has_rdf ()) res << "/rdf"; // << rdf ();
+    if (has_xlink ()) res << "/xLink";
+    if (has_rdfa ()) res << "/rdfa";
     if (chrome ()) res << "/Chrome";
     if (ie ()) res << "/IE";
     if (mozilla ()) res << "/Mozilla";
@@ -194,8 +194,8 @@ bool html_version::invalid_addendum (const html_version& v) const
 {   if (microdata ())
         if (context.microdata ()) return false;
         else return v.w3 ();
-    if (rdf ())
-        if (context.rdf ()) return false;
+    if (rdfa ())
+        if (context.has_rdfa ()) return false;
         else return ((v != xhtml_2) && (! v.is_svg_12 ()));
     return (frameset () && ! v.frameset ()); }
 
@@ -443,6 +443,7 @@ bool html_version::deprecated (const html_version& current) const
             if (current.all_ext (HE_M4_DEPRECAT)) return true;
             break;
         default : break; }
+    if (current.rdf_version () == rdf_deprecated) return true;
     switch (context.svg_version ())
     {   case sv_1_1 :
             if (current.all_ext (HE_SVG_DEPR_11)) return true;
@@ -459,7 +460,7 @@ bool html_version::deprecated (const html_version& current) const
             break;
         default : break; }
     switch (current.mjr ())
-    {   case 1 : return (current.any_flags (HV_DEPRECATED1));
+    {   case 1 : return (current.any_flags (HV_DEPRECATEDX10));
         case 2 : return (current.any_flags (HV_DEPRECATED2));
         case 3 :
             switch (current.mnr ())
@@ -482,8 +483,7 @@ bool html_version::deprecated (const html_version& current) const
             {   case 0 : return any_flags (HV_DEPRECATED50);
                 case 1 : return any_flags (HV_DEPRECATED51);
                 case 2 : return any_flags (HV_DEPRECATED52);
-                case 3 : return any_flags (HV_DEPRECATED53);
-                case 4 : return any_flags (HV_DEPRECATED54); } }
+                case 3 : return any_flags (HV_DEPRECATED53); } }
     return false; }
 
 bool html_version::lazy () const
@@ -503,21 +503,21 @@ bool test_not_extension (const html_version& lhs, const html_version& rhs)
         default : break; }
     return false; }
 
-bool is_excluded (const html_version& lhs, const html_version& rhs, const uint64_t mask)
+bool is_excluded (const html_version& lhs, const html_version& rhs, const flags_t mask)
 {   PRESUME (mask != 0, __FILE__, __LINE__);
     // have encountered occasional bugs with 64 bit manipulation on some platforms (a & b), but the &= operator appears reliable, so ...
-    uint64_t a = mask, b = mask;
+    flags_t a = mask, b = mask;
     a &= lhs.ext ();
     b &= rhs.ext ();
     if ((a == 0) || (b == 0)) return false;
     a &= b;
     return (a == 0); }
 
-e_emi rdf_conflict (const html_version& lhs, const html_version& rhs)
+e_emi rdfa_conflict (const html_version& lhs, const html_version& rhs)
 {   PRESUME (! lhs.is_b4_4 (), __FILE__, __LINE__);
-    PRESUME (rhs.has_rdf (), __FILE__, __LINE__);
+    PRESUME (rhs.has_rdfa (), __FILE__, __LINE__);
     if ((lhs != xhtml_2) && (! lhs.is_svg_12 ()))
-        if (! context.rdf () && ! lhs.has_rdf ()) return emi_rdf;
+        if (! context.has_rdfa () && ! lhs.has_rdfa ()) return emi_rdfa;
     return emi_good; }
 
 e_emi math_conflict (const html_version& lhs, const html_version& rhs)
@@ -544,7 +544,7 @@ e_emi extension_conflict (const html_version& lhs, const html_version& rhs)
     {   e_emi r = emi_untested, m = emi_untested, s = emi_untested;
         if (rhs.has_math ()) { m = math_conflict (lhs, rhs); if (m == emi_good) return emi_good; }
         if (rhs.has_svg ()) { s = svg_conflict (lhs, rhs); if (s == emi_good) return emi_good; }
-        if (rhs.has_rdf ()) { r = rdf_conflict (lhs, rhs); if (r == emi_good) return emi_good; }
+        if (rhs.has_rdfa ()) { r = rdfa_conflict (lhs, rhs); if (r == emi_good) return emi_good; }
         if ((s != emi_untested) && (m != emi_untested)) return emi_math_svg;
         if (m != emi_untested) return m;
         if (s != emi_untested) return s;
@@ -565,10 +565,25 @@ bool html_version::check_math_svg (nitpick& nits, const html_version& a, const :
             nits.pick (nit_svg, es_error, ec_attribute, quote (x), " cannot be applied to SVG elements here"); return false;
         case emi_svg :
             nits.pick (nit_svg, es_error, ec_attribute, quote (x), " requires SVG"); return false;
-        case emi_rdf :
+        case emi_rdfa :
             nits.pick (nit_rdf, es_error, ec_attribute, quote (x), " requires RDFa"); return false;
         default : break; }
     return true; }
+
+e_rdf_version html_version::rdf_version () const
+{   if (all_ext (HE_RDFA)) return rdf_a;
+    if (all_ext (HE_RDF)) return rdf_1_0;
+    if (all_ext (HE_RDF_DEP)) return rdf_deprecated;
+    return rdf_none; }
+
+void html_version::rdf_version (const e_rdf_version v)
+{   reset_ext (RDF_MASK);
+    switch (v)
+    {   case rdf_a : set_ext (HE_RDFA); break;
+        case rdf_1_1 :
+        case rdf_1_0 : set_ext (HE_RDF); break;
+        case rdf_deprecated : set_ext (HE_RDF_DEP); break;
+        default : break; } }
 
 e_svg_version html_version::svg_version () const
 {   if (all_ext (HE_SVG_21)) return sv_2_1;
@@ -651,7 +666,7 @@ const char *html_version::alternative_charset () const
 
 bool html_version::test_extension () const
 {   if (is_b4_4 ()) return false;
-    return (has_svg () || has_math () || has_rdf ()); }
+    return (has_svg () || has_math () || has_rdfa ()); }
 
 bool html_version::is_plain_html () const
 {   if (xhtml ()) return false;

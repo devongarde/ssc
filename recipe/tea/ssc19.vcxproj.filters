@@ -300,9 +300,6 @@
     <Filter Include="Toast\Other\parsing">
       <UniqueIdentifier>{c3fde119-c8eb-41dc-99e0-8ec588b2daf3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Other\RDF">
-      <UniqueIdentifier>{a3a7e739-2fb4-4bdc-bd9c-8ed27487db9a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Other\simple">
       <UniqueIdentifier>{ff67ec95-c7f2-4bc6-bf84-a3421870a274}</UniqueIdentifier>
     </Filter>
@@ -659,6 +656,21 @@
     </Filter>
     <Filter Include="Toast\Shadow\Update">
       <UniqueIdentifier>{6df892c4-a3f8-4783-a28f-0a74582ab74f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDF">
+      <UniqueIdentifier>{87445915-8850-4897-abc6-c159f4662721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDF\1.0">
+      <UniqueIdentifier>{729d2b4b-69ed-461d-b34b-5f81068e4eba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDF\1.1">
+      <UniqueIdentifier>{05207a22-8d8e-4c4c-9f2f-35e282aef0a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDF\RDFa">
+      <UniqueIdentifier>{78e0a519-a372-4e3f-87f7-e682cca30518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\dc">
+      <UniqueIdentifier>{51ae92c6-69c1-4177-ad89-095be94979ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1124,6 +1136,12 @@
     <ClInclude Include="..\heater\utility\filesystem.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\symbol\nstr.h">
+      <Filter>Heater\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\parse_abb.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1554,6 +1572,27 @@
     </ClCompile>
     <ClCompile Include="..\sauce\utility\filesystem.cpp">
       <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\symbol\nstr.cpp">
+      <Filter>Sauce\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\element\element_rdfa.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_cc.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_dc.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_dct.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_rdf.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_rdf.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3302,30 +3341,6 @@
     </None>
     <None Include="..\toast\other\CSS\css-good.html">
       <Filter>Toast\Other\CSS</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\index.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf.conf">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf.spec">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf1-example.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf2-example.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf3-example.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf4-example.html">
-      <Filter>Toast\Other\RDF</Filter>
-    </None>
-    <None Include="..\toast\other\RDF\rdf5-example.html">
-      <Filter>Toast\Other\RDF</Filter>
     </None>
     <None Include="..\toast\other\simple\css-good.css">
       <Filter>Toast\Other\simple</Filter>
@@ -19301,6 +19316,195 @@
     </None>
     <None Include="..\toast\shadow\update\unchanged.html.model">
       <Filter>Toast\Shadow\Update</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-7.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-8.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-9.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-10.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-11.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-12.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-13.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-14.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-15.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-16.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-17.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-18.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-19.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-20.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-21.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\index.html">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\rdf.conf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\rdf.spec">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-1.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-2.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-3.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-4.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-5.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.0\example-6.rdf">
+      <Filter>Toast\RDF\1.0</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-6.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-7.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-8.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-9.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-10.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-11.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-12.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-13.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-14.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-15.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-16.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-17.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-18.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-19.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-20.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\index.html">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\rdf.conf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\rdf.spec">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-1.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-2.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-3.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-4.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\1.1\example-5.rdf">
+      <Filter>Toast\RDF\1.1</Filter>
+    </None>
+    <None Include="..\toast\RDF\RDFa\rdf2-example.html">
+      <Filter>Toast\RDF\RDFa</Filter>
+    </None>
+    <None Include="..\toast\RDF\RDFa\rdf3-example.html">
+      <Filter>Toast\RDF\RDFa</Filter>
+    </None>
+    <None Include="..\toast\RDF\RDFa\rdf4-example.html">
+      <Filter>Toast\RDF\RDFa</Filter>
+    </None>
+    <None Include="..\toast\RDF\RDFa\rdf5-example.html">
+      <Filter>Toast\RDF\RDFa</Filter>
+    </None>
+    <None Include="..\toast\RDF\RDFa\rdfa.conf">
+      <Filter>Toast\RDF\RDFa</Filter>
+    </None>
+    <None Include="..\toast\RDF\RDFa\rdfa.spec">
+      <Filter>Toast\RDF\RDFa</Filter>
+    </None>
+    <None Include="..\toast\RDF\RDFa\index.html">
+      <Filter>Toast\RDF\RDFa</Filter>
+    </None>
+    <None Include="..\toast\RDF\RDFa\rdf1-example.html">
+      <Filter>Toast\RDF\RDFa</Filter>
+    </None>
+    <None Include="..\toast\other\dc\dc.conf">
+      <Filter>Toast\Other\dc</Filter>
+    </None>
+    <None Include="..\toast\other\dc\dc.spec">
+      <Filter>Toast\Other\dc</Filter>
+    </None>
+    <None Include="..\toast\other\dc\index.html">
+      <Filter>Toast\Other\dc</Filter>
+    </None>
+    <None Include="..\toast\other\dc\mixed-1.xhtml">
+      <Filter>Toast\Other\dc</Filter>
+    </None>
+    <None Include="..\toast\other\dc\mixed-2.xhtml">
+      <Filter>Toast\Other\dc</Filter>
+    </None>
+    <None Include="..\toast\other\dc\qualified.xhtml">
+      <Filter>Toast\Other\dc</Filter>
+    </None>
+    <None Include="..\toast\other\dc\simple.xhtml">
+      <Filter>Toast\Other\dc</Filter>
+    </None>
+    <None Include="..\toast\RDF\RDFa\rdfa-bad.html">
+      <Filter>Toast\RDF\RDFa</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

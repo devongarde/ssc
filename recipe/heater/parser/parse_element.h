@@ -21,14 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "element/elem.h"
 #include "parser/parse_attributes.h"
+#include "parser/parse_abb.h"
+
+class elements_node;
 
 class element_node
 {   friend class elements_node;
+    typedef enum { enab_namespace, enab_prefix, enab_error } e_abb;
     element_node* parent_ = nullptr;
     element_node* child_ = nullptr;
     element_node* last_ = nullptr;
     element_node* next_ = nullptr;
     element_node* previous_ = nullptr;
+    elements_node* box_ = nullptr;
     int line_ = 0;
     bool closure_ = false, closed_ = false, checked_sanitised_ = false, presumed_ = false;
     elem elem_;
@@ -36,33 +41,40 @@ class element_node
     ::std::string text_, raw_, sanitised_;
     nitpick nits_;
     html_version version_;
-    ns_ptr nss_;
+    namespaces_ptr namespaces_;
+    prefixes_ptr prefixes_;
     ::std::string inner_text () const;
     void init ();
     void manage_reversioner ();
+    namespaces_ptr find_namespace_parent () const
+    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+            if (mummy -> namespaces_.get () != nullptr)
+                return mummy -> namespaces_;
+        return namespaces_ptr (); }
+    prefixes_ptr find_prefix_parent () const
+    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+            if (mummy -> prefixes_.get () != nullptr)
+                return mummy -> prefixes_;
+        return prefixes_ptr (); }
 public:
-    element_node () = default;
-    element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
-    element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed);
-    element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str = ::std::string ());
-    element_node (nitpick& nits, const ns_ptr& nss, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str = ::std::string ());
+    element_node () = delete;
+    element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
+    element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed);
+    element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str = ::std::string ());
+    element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str = ::std::string ());
     element_node (const element_node& en) = default;
+    explicit element_node (elements_node* box);
 #ifndef NO_MOVE_CONSTRUCTOR
-	element_node(element_node&& en) = default;
+	element_node (element_node&& en) = default;
 #endif
 	~element_node ();
-    element_node& operator = (const element_node& en) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-	element_node& operator = (element_node&& en) = default;
-#endif
-	void swap(element_node& en) NOEXCEPT;
+	void swap (element_node& en) NOEXCEPT;
     void reset ();
     void reset (const element_node& en);
     void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
     ::std::size_t attribute_count () const { return va_.size (); }
     ::std::string text ();
     ::std::string raw () const { return raw_; }
-    ::std::string rpt (const int level = 0);
     void set_raw (const ::std::string& raw) { raw_ = raw; }
     int line () const { return line_; }
     bool invalid () const { return elem_.unknown (); }
@@ -106,6 +118,7 @@ public:
 
     bool has_attributes () const { return va_.size () > 0; }
     const attributes_node& attributes () const { return va_; }
+    attributes_node& attributes () { return va_; }
     html_version& version () { return version_; }
     const html_version& version () const { return version_; }
 
@@ -123,7 +136,27 @@ public:
 
     elem& id () { return elem_; }
     const elem& id () const { return elem_; }
-    ns_ptr& nss () { return nss_; }
-    const ns_ptr& nss () const { return nss_; }
 
-    e_element tag () const { return elem_.get (); } };
+    const elements_node* box () const { return box_; }
+
+    void prepare_namespaces ()
+    {   if (namespaces_.get () == nullptr)
+        {   namespaces_.reset (new namespaces_t);
+            VERIFY_NOT_NULL (namespaces_.get (), __FILE__, __LINE__);
+            namespaces_ -> up (find_namespace_parent ().get ()); } }
+    namespaces_ptr namespaces () const
+    {   if (namespaces_.get () != nullptr) return namespaces_;
+        return find_namespace_parent (); }
+
+    void prepare_prefixes ()
+    {   if (prefixes_.get () == nullptr)
+        {   prefixes_.reset (new prefixes_t);
+            VERIFY_NOT_NULL (prefixes_.get (), __FILE__, __LINE__);
+            prefixes_ -> up (find_prefix_parent ().get ()); } }
+    prefixes_ptr prefixes () const
+    {   if (prefixes_.get () != nullptr) return prefixes_;
+        return find_prefix_parent (); }
+
+    e_element tag () const { return elem_.get (); }
+
+    ::std::string rpt (const int level = 0); };

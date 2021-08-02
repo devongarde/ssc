@@ -74,6 +74,7 @@
 ./ssc -f ../toast/other/base/base.conf
 ./ssc -f ../toast/other/characters/chars.conf
 ./ssc -f ../toast/other/CSS/css.conf
+./ssc -f ../toast/other/dc/dc.conf
 ./ssc -f ../toast/other/dfn/dfn.conf
 ./ssc -f ../toast/other/dump/dump.conf
 ./ssc -f ../toast/other/ignore/ignore.conf
@@ -81,9 +82,11 @@
 ./ssc -f ../toast/other/nits/nits.conf
 ./ssc -f ../toast/other/parsing/parsing.conf
 ./ssc -f ../toast/other/pattern/pattern.conf
-./ssc -f ../toast/other/RDF/rdf.conf
 ./ssc -f ../toast/other/simple/simple.conf
 ./ssc -f ../toast/other/ssi/ssi.conf
+./ssc -f ../toast/RDF/1.0/rdf.conf
+./ssc -f ../toast/RDF/1.1/rdf.conf
+./ssc -f ../toast/RDF/RDFa/rdfa.conf
 ./ssc -f ../toast/shadow/comment/comment.conf
 ./ssc -f ../toast/shadow/copy/copy.conf
 ./ssc -f ../toast/shadow/copydiff/copydiff.conf

@@ -60,7 +60,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_xmlns.h"
 
 template < class CATEGORY, e_type TYPE, CATEGORY IDENTITY > struct typed_value : public type_master < TYPE >
-{   CONSTEXPR static CATEGORY whoami () { return IDENTITY; }
+{   using type_master < TYPE > :: type_master;
+    CONSTEXPR static CATEGORY whoami () { return IDENTITY; }
     ::std::string report (const ::std::string& name) const; };
 
 template < class CATEGORY, e_type TYPE, CATEGORY IDENTITY > ::std::string typed_value < CATEGORY, TYPE, IDENTITY > :: report (const ::std::string& name) const

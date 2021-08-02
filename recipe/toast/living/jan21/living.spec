@@ -10,8 +10,6 @@ PASS ../toast/living/jan21/404.html
 119 unrecognised_value unrecognised_value unrecognised_value
 122 unrecognised_value unrecognised_value
 123 unrecognised_value
-127 link_rel_off
-128 link_rel_off
 
 PASS ../toast/living/jan21/a.html
 9 url_not_found
@@ -782,13 +780,11 @@ PASS ../toast/living/jan21/ls5.html
 PASS ../toast/living/jan21/ls6.html
 3 contradictory_namespace no_xmllang
 5 use_quote_code
-6 unknown_element
-8 unrecognised_namespace unknown_element attribute_unrecognised
+8 unrecognised_namespace unknown_element
 9 unknown_element unknown_element
-10 unknown_element attribute_unrecognised
+10 unknown_element
 11 unknown_element unknown_element
 12 unknown_element
-13 unknown_element
 
 PASS ../toast/living/jan21/ls10.html
 5 element_offsite_base

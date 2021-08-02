@@ -289,13 +289,11 @@ PASS ../toast/living/jan09/ls2.html
 PASS ../toast/living/jan09/ls3.html
 3 contradictory_namespace
 5 use_quote_code
-6 unknown_element
-8 unrecognised_namespace unknown_element attribute_unrecognised
+8 unrecognised_namespace unknown_element
 9 unknown_element unknown_element
-10 unknown_element attribute_unrecognised
+10 unknown_element
 11 unknown_element unknown_element
 12 unknown_element
-13 unknown_element
 
 PASS ../toast/living/jan09/mark.html
 9 use_quote_code

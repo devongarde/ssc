@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SF_DEPRECATED           0x80000000
 #define SF_SIMPLE_MASK          0x0FFFFFFF
 #define SF_NO_SIMPLE_TYPE       0
-#define MAKE_SIMPLE_TYPE(T)     static_cast < uint64_t > (T)
+#define MAKE_SIMPLE_TYPE(T)     static_cast < flags_t > (T)
 
 struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schema > schema_type_symbol_table [] =
 {   // schema.org
@@ -1449,17 +1449,17 @@ bool sch::external_enumerated () const
 e_type sch::get_simple_type () const
 { return get_simple_schema_type (flags ()); }
 
-bool enumerated_schema_type (const uint64_t flags)
+bool enumerated_schema_type (const flags_t flags)
 { return (flags & SF_ENUMERATION) == SF_ENUMERATION; }
 
-bool has_simple_schema_type (const uint64_t flags)
+bool has_simple_schema_type (const flags_t flags)
 { return (flags & SF_SIMPLE_MASK) != 0; }
 
-bool external_enumerated_schema_type (const uint64_t flags)
+bool external_enumerated_schema_type (const flags_t flags)
 { return (flags & SF_EXTERNAL_ENUMERATION) == SF_EXTERNAL_ENUMERATION; }
 
-e_type get_simple_schema_type (const uint64_t flags)
+e_type get_simple_schema_type (const flags_t flags)
 { return static_cast < e_type > (flags & SF_SIMPLE_MASK); }
 
-bool is_itemid_ok (const uint64_t flags)
+bool is_itemid_ok (const flags_t flags)
 { return (flags & SF_NO_ITEMID) == 0; }

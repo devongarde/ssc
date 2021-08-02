@@ -152,7 +152,7 @@ void element::examine_link ()
     for (auto s : entries)
     {   rel r (node_.nits (), node_.version (), s);
         if (r.invalid ()) continue;
-        if (tis5)
+        if (tis5 && (r.get () != r_curie))
         {   html_version from (r.first ());
             if (! may_apply (node_.version (), from, r.last ()))
             {   if (from.is_mf ()) pick (nit_link_rel_off, es_comment, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report ());

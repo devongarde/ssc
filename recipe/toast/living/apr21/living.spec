@@ -10,8 +10,6 @@ PASS ../toast/living/apr21/404.html
 119 unrecognised_value unrecognised_value unrecognised_value
 122 unrecognised_value unrecognised_value
 123 unrecognised_value
-127 link_rel_off
-128 link_rel_off
 
 PASS ../toast/living/apr21/a.html
 9 url_not_found
@@ -1764,7 +1762,7 @@ PASS ../toast/living/apr21/work.html
 16 inserted_missing_closure
 
 PASS ../toast/living/apr21/ws-1.html
-27 unrecognised_namespace unknown_element
+27 unrecognised_namespace
 
 PASS ../toast/living/apr21/ws-10.html
 2 naughty_lang

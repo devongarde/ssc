@@ -27,7 +27,7 @@ template < typename CATEGORY > struct behaviour
     bool can_be_default (const CATEGORY ) const { return false; } };
 
 template < > inline const char* behaviour < e_microdata_root > :: ns_sep () const { return ""; }
-template < > inline bool behaviour < e_namespace > :: can_be_default (const e_namespace c) const { return (c == ns_xhtml); }
+template < > inline bool behaviour < ident_t > :: can_be_default (const ident_t c) const { return (c == ns_xhtml); }
 
 template < class V, typename CATEGORY, CATEGORY INIT > class symbol_table : public behaviour < CATEGORY >
 {   typedef ssc_map < symbol_key, symbol_store < V, CATEGORY, INIT > > symbol_t;
@@ -37,7 +37,7 @@ template < class V, typename CATEGORY, CATEGORY INIT > class symbol_table : publ
     bool wildcards_ = false;
 public:
     void extend (   const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT,
-                    const V& first = html_0, const V& last = html_0, const uint64_t flags = NOFLAGS, const uint64_t flags2 = NOFLAGS)
+                    const V& first = html_0, const V& last = html_0, const flags_t flags = NOFLAGS, const flags_t flags2 = NOFLAGS)
     {
     #ifdef DEBUG
         if (key.find (",") != ::std::string::npos) ::std::cerr << "key '" << key << "' contains a comma\n";
@@ -53,7 +53,7 @@ public:
             if (it != symbol_.end ())
                 nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "program error: symbol ", table [i].sz_, " already defined (ignoring case)");
             else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); } }
-    bool find (const V& v, const ::std::string& x, ::std::size_t& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
+    bool find (const V& v, const ::std::string& x, ::std::size_t& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr) const
     {   auto i = symbol_.find (symbol_key (x, ns));
         if (behaviour < CATEGORY > :: can_be_default (ns) && (i == symbol_.end ())) i = symbol_.find (symbol_key (x, INIT));
         if (i != symbol_.end () && may_apply (v, i -> second.first_, i -> second.last_))
@@ -67,7 +67,7 @@ public:
         auto p = x.find_first_of (":-");
         if ((p == 0) || (p == x.npos) || (p == x.length () - 1)) return false;
         return find (v, x.substr (0, p+1), res, ns, first, last, flags); }
-    ::std::size_t find (const V& v, const ::std::string& x, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
+    ::std::size_t find (const V& v, const ::std::string& x, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr) const
     {   auto i = symbol_.find (symbol_key (x, ns));
         if (i != symbol_.end () && may_apply < V > (v, i -> second.first_, i -> second.last_))
         {   if (first != nullptr) *first = i -> second.first_;
@@ -81,15 +81,15 @@ public:
         {   p = x.find (':');
             if ((p == 0) || (p == x.npos)) return 0; }
         return find (v, x.substr (0, p), ns, first, last, flags); }
-    template < typename VALUE, class LC > bool find (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr) const
+    template < typename VALUE, class LC > bool find (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr) const
     {   ::std::size_t val = 0;
         if (! find (v, enlc < LC > :: to (x), val, ns, first, last, flags, flags2)) return false;
         res = static_cast < VALUE > (val); return true; }
-    bool exists (const ::std::string& x, const e_namespace ns = ns_default) const
+    bool exists (const ::std::string& x, const CATEGORY ns = INIT) const
     {   return (symbol_.find (symbol_key (x, ns)) != symbol_.end ()); }
-    bool parse (const V& v, const ::std::string& x, ::std::size_t& res, const e_namespace ns = ns_default, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    bool parse (const V& v, const ::std::string& x, ::std::size_t& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
     {   return find (v, ::boost::algorithm::to_lower_copy (trim_the_lot_off (x)), res, ns, first, last, flags, flags2); }
-    template < typename VALUE, class LC > bool parse (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    template < typename VALUE, class LC > bool parse (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
     {   ::std::size_t val = 0;
         if (! parse (v, enlc < LC > :: to (x), val, ns, first, last, flags, flags2)) return false;
         res = static_cast < VALUE > (val); return true; }
@@ -116,11 +116,11 @@ public:
     {   auto i = reverse_.find (x);
         if (i == reverse_.end ()) return INIT;
         return (i -> second.ns_); }
-    uint64_t flags (const ::std::size_t x) const
+    flags_t flags (const ::std::size_t x) const
     {   auto i = reverse_.find (x);
         if (i == reverse_.end ()) return NOFLAGS;
         return (i -> second.flags_); }
-    uint64_t flags2 (const ::std::size_t x) const
+    flags_t flags2 (const ::std::size_t x) const
     {   auto i = reverse_.find (x);
         if (i == reverse_.end ()) return NOFLAGS;
         return (i -> second.flags2_); }

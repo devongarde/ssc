@@ -22,8 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "type/enum.h"
 
-::std::string namespace_name (const e_namespace ns)
-{   return type_master < t_namespace > :: name (ns); }
+::std::string namespace_name (const ident_t ns)
+{   PRESUME (ns <= ns_error, __FILE__, __LINE__);
+    return type_master < t_namespace > :: name (static_cast < e_namespace > (ns)); }
 
 ::std::string namespace_name (const e_microdata_root ns)
 {   return type_master < t_microdata_root > :: name (ns); }

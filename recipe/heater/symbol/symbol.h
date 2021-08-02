@@ -21,17 +21,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "symbol/symbol_table.h"
 
-::std::string namespace_name (const e_namespace ns);
+::std::string namespace_name (const ident_t ns);
 ::std::string namespace_name (const e_microdata_root ns);
 
 // VALUE is presumed to be an enum or an int
-template < class V, typename VALUE, typename CATEGORY = e_namespace, CATEGORY INIT = ns_default, class LC = sz_true > class symbol : public enlc < LC >
+template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT = 0, class LC = sz_true > class symbol : public enlc < LC >
 {   static symbol_table < V, CATEGORY, INIT > table_;
     V first_, last_;
     VALUE value_ = static_cast < VALUE > (0);
     CATEGORY ns_ = INIT;
     bool unknown_ = true;
-    uint64_t flags_ = NOFLAGS, flags2_ = NOFLAGS;
+    flags_t flags_ = NOFLAGS, flags2_ = NOFLAGS;
 public:
     typedef VALUE value_type;
 	symbol () = default;
@@ -62,12 +62,12 @@ public:
     void reset (const VALUE& v) { symbol tmp (v); swap (tmp); }
     static void init (nitpick& nits, const symbol_entry < V, VALUE, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
     {   table_.template init < VALUE, LC > (nits, table, size, wildcards); }
-    static bool find (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    static bool find (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
     {   return table_.template find < VALUE, LC > (v, x, res, ns, first, last, flags, flags2); }
-    static VALUE find (const V& v, const ::std::string& x, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    static VALUE find (const V& v, const ::std::string& x, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
     {   return static_cast < VALUE > (table_.find (v, enlc < LC > :: to (x), ns, first, last, flags, flags2)); }
     static bool exists (const ::std::string& x) { return table_.exists (x); }
-    static bool parse (nitpick& , const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, uint64_t* flags = nullptr, uint64_t* flags2 = nullptr)
+    static bool parse (nitpick& , const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
     {   return table_.template parse < VALUE, LC > (v, x, res, ns, first, last, flags, flags2); }
     bool parse (nitpick& , const V& v, const ::std::string& x, const CATEGORY ns = INIT)
     {   unknown_ = ! table_.template parse < VALUE, LC > (v, x, value_, ns, &first_, &last_, &flags_, &flags2_);
@@ -80,23 +80,23 @@ public:
     static V first_version (const VALUE x) { return table_.first_version (x); }
     static V final_version (const VALUE x) { return table_.final_version (x); }
     static CATEGORY category (const VALUE x) { return table_.ns (x); }
-    static uint64_t flags (const VALUE x) { return table_.flags (x); }
-    static uint64_t categories (const VALUE x) { return table_.flags2 (x); }
+    static flags_t flags (const VALUE x) { return table_.flags (x); }
+    static flags_t categories (const VALUE x) { return table_.flags2 (x); }
     static void extend (const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT,
-                        const V& first = html_0, const V& last = html_0, const uint64_t flags = 0, const uint64_t flags2 = 0)
+                        const V& first = html_0, const V& last = html_0, const flags_t flags = 0, const flags_t flags2 = 0)
     {   table_.extend (key, symbol, value, ns, first, last, flags, flags2); }
-    static void extend (const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT, const V& first = html_0, const V& last = html_0, const uint64_t flags = 0, const uint64_t flags2 = 0)
+    static void extend (const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT, const V& first = html_0, const V& last = html_0, const flags_t flags = 0, const flags_t flags2 = 0)
     {   extend (enlc < LC > :: to (symbol), symbol, value, ns, first, last, flags, flags2); }
     VALUE get () const { if (unknown_) return static_cast <VALUE> (0); return value_; }
     V first () const { return first_; }
     V last () const { return last_; }
     CATEGORY ns () const { return ns_; }
-    void ns (const e_namespace n) { ns_ = n; }
-    uint64_t flags () const { return flags_; }
-    uint64_t categories () const { return flags2_; }
-    void refresh (const uint64_t f) { flags_ |= f; }
-    void congeal (const uint64_t c) { flags2_ = c; }
-    void set (const V& ver, const VALUE& v, const CATEGORY ns = INIT, const uint64_t flags = 0, const uint64_t flags2 = 0)
+    void ns (const CATEGORY n) { ns_ = n; }
+    flags_t flags () const { return flags_; }
+    flags_t categories () const { return flags2_; }
+    void refresh (const flags_t f) { flags_ |= f; }
+    void congeal (const flags_t c) { flags2_ = c; }
+    void set (const V& ver, const VALUE& v, const CATEGORY ns = INIT, const flags_t flags = 0, const flags_t flags2 = 0)
     {   value_ = v; ns_ = ns; first_ = last_ = ver; flags_ = flags; flags2_ = flags2; unknown_ = false; }
     operator VALUE () const { return get (); }
     bool unknown () const { return unknown_; }

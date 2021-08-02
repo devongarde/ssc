@@ -42,9 +42,7 @@ template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& n
         return; }
     ::std::string pret (trim_the_lot_off (s));
     ::std::string t (case_must_match < false >::lower (pret));
-    ::std::string ns;
-    e_namespace n (examine_namespace (nits, v, t, ns));
-    if (symbol < html_version, e_aria_role > :: parse (nits, v, t, n))
+    if (symbol < html_version, e_aria_role > :: parse (nits, v, t, ns_default))
     {   enum_base < e_aria_role, t_role > :: value_ = symbol < html_version, e_aria_role > :: get ();
         compare_validate (nits, v, get_string (), pret);
         const html_version f = symbol < html_version, e_aria_role > :: first ();

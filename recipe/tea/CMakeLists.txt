@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.109 LANGUAGES CXX)
+project (ssc VERSION 0.0.110 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -39,8 +39,8 @@ if (UNIX)
 
     if (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.8")
       message ("OpenBSD 6.8")
-      target_compile_definitions (ssc-test PRIVATE NO_PCF_STR FS_THROWS)
-      target_compile_definitions (ssc PRIVATE OPENBSD O68 NO_PCF_STR FS_THROWS)
+      target_compile_definitions (ssc-test PRIVATE NO_PCF_STR)
+      target_compile_definitions (ssc PRIVATE OPENBSD O68 NO_PCF_STR)
     else ()
       message ("only OpenBSD 6.8 amd64 is known to build")
       target_compile_definitions (ssc PRIVATE OPENBSD)
@@ -96,13 +96,13 @@ target_sources (ssc PRIVATE
             ${H}/microformat/microformat_export_rel.h ${H}/microformat/microformat_properties.h ${H}/microformat/microformats.h
             ${H}/microformat/microformats_ptr.h ${H}/microformat/prop.h ${H}/microformat/property.h ${H}/microformat/property_classes.h
             ${H}/microformat/property_value.h ${H}/microformat/sibling.h
-        ${H}/parser/html_version.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h ${H}/parser/parse_bra_ket.h ${H}/parser/parse_bras_ket.h
-            ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h ${H}/parser/pattern.h ${H}/parser/text.h
-            ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
+        ${H}/parser/html_version.h ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h ${H}/parser/parse_bra_ket.h
+            ${H}/parser/parse_bras_ket.h ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h
+            ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
         ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats4.h ${H}/stats/stats_impl.h
-        ${H}/symbol/symbol.h ${H}/symbol/symbol_entry.h ${H}/symbol/symbol_key.h ${H}/symbol/symbol_store.h ${H}/symbol/symbol_table.h
+        ${H}/symbol/nstr.h ${H}/symbol/symbol.h ${H}/symbol/symbol_entry.h ${H}/symbol/symbol_key.h ${H}/symbol/symbol_store.h ${H}/symbol/symbol_table.h
         ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
             ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_case.h ${H}/type/type_charset.h ${H}/type/type_class.h
             ${H}/type/type_colour.h ${H}/type/type_cookie.h ${H}/type/type_core.h ${H}/type/type_csp.h ${H}/type/type_currency.h ${H}/type/type_enum.h
@@ -122,12 +122,14 @@ target_sources (ssc PRIVATE
              ${S}/attribute/avm_data_g.cpp ${S}/attribute/avm_data_h.cpp ${S}/attribute/avm_data_i.cpp ${S}/attribute/avm_data_k.cpp ${S}/attribute/avm_data_l.cpp
              ${S}/attribute/avm_data_m.cpp ${S}/attribute/avm_data_n.cpp ${S}/attribute/avm_data_o.cpp ${S}/attribute/avm_data_p.cpp ${S}/attribute/avm_data_q.cpp
              ${S}/attribute/avm_data_r.cpp ${S}/attribute/avm_data_s.cpp ${S}/attribute/avm_data_t.cpp ${S}/attribute/avm_data_u.cpp ${S}/attribute/avm_data_v.cpp
-             ${S}/attribute/avm_data_w.cpp ${S}/attribute/avm_data_x.cpp ${S}/attribute/namespace.cpp
+             ${S}/attribute/avm_data_w.cpp ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_cc.cpp ${S}/attribute/avm_data_dc.cpp
+             ${S}/attribute/avm_data_dct.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
         ${S}/css/css.cpp ${S}/css/css_cache.cpp
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp
-            ${S}/element/element_pqr.cpp ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp ${S}/element/parentage.cpp ${S}/element/state.cpp
+            ${S}/element/element_pqr.cpp ${S}/element/element_rdfa.cpp ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp ${S}/element/parentage.cpp
+            ${S}/element/state.cpp
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitpick.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/wrapper.cpp
         ${S}/main/abort.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/main/version.cpp
@@ -141,12 +143,13 @@ target_sources (ssc PRIVATE
         ${S}/schema/schema_hierarchy.cpp ${S}/schema/schema_name.cpp ${S}/schema/schema_property.cpp ${S}/schema/schema_structure.cpp
             ${S}/schema/schema_type.cpp ${S}/schema/schema_version.cpp
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
-        ${S}/symbol/symbol.cpp
+        ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp
         ${S}/type/type.cpp ${S}/type/type_aria.cpp ${S}/type/type_autocomplete.cpp ${S}/type/type_charset.cpp ${S}/type/type_class.cpp ${S}/type/type_colour.cpp
             ${S}/type/type_core.cpp ${S}/type/type_csp.cpp ${S}/type/type_currency.cpp ${S}/type/type_d.cpp ${S}/type/type_enum.cpp ${S}/type/type_httpequiv.cpp
             ${S}/type/type_lang.cpp ${S}/type/type_media.cpp ${S}/type/type_metaname.cpp ${S}/type/type_mime.cpp ${S}/type/type_numeric.cpp
-            ${S}/type/type_paint.cpp ${S}/type/type_reals.cpp ${S}/type/type_rel.cpp ${S}/type/type_sgml.cpp ${S}/type/type_svg_feature.cpp
-            ${S}/type/type_time.cpp ${S}/type/type_transform.cpp ${S}/type/type_url.cpp ${S}/type/type_varied.cpp ${S}/type/type_xmlns.cpp
+            ${S}/type/type_paint.cpp ${S}/type/type_rdf.cpp ${S}/type/type_reals.cpp ${S}/type/type_rel.cpp ${S}/type/type_sgml.cpp
+            ${S}/type/type_svg_feature.cpp ${S}/type/type_time.cpp ${S}/type/type_transform.cpp ${S}/type/type_url.cpp ${S}/type/type_varied.cpp
+            ${S}/type/type_xmlns.cpp
         ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
         ${S}/utility/byteorder.cpp ${S}/utility/common.cpp ${S}/utility/filesystem.cpp ${S}/utility/quote.cpp
         ${S}/webmention/hook.cpp ${S}/webmention/irt.cpp ${S}/webmention/webmention.cpp ${S}/webmention/webmentions.cpp
@@ -163,18 +166,18 @@ if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
   message ("debug")
   target_compile_definitions (ssc-test PRIVATE _DEBUG)
   target_compile_definitions (ssc PRIVATE _DEBUG)
-  target_compile_options (ssc-test PRIVATE "-g;-O0;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-result")
-  target_compile_options (ssc PRIVATE "-g;-O0;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation")
+  target_compile_options (ssc-test PRIVATE "-g;-O0;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-result;-Wno-deprecated-declarations")
+  target_compile_options (ssc PRIVATE "-g;-O0;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-deprecated-declarations")
 else ()
   message ("release")
   target_compile_definitions (ssc-test PRIVATE NDEBUG)
   target_compile_definitions (ssc PRIVATE NDEBUG)
   if (${CMAKE_BUILD_TYPE} MATCHES "MinSizeRel")
-    target_compile_options (ssc-test PRIVATE "-Os;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-result;-Wno-unused-parameter")
-    target_compile_options (ssc PRIVATE "-Os;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-parameter")
+    target_compile_options (ssc-test PRIVATE "-Os;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-result;-Wno-unused-parameter;-Wno-deprecated-declarations")
+    target_compile_options (ssc PRIVATE "-Os;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-parameter;-Wno-deprecated-declarations")
   else ()
-    target_compile_options (ssc-test PRIVATE "-O3;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-result;-Wno-unused-parameter")
-    target_compile_options (ssc PRIVATE "-O3;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-parameter")
+    target_compile_options (ssc-test PRIVATE "-O3;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-result;-Wno-unused-parameter;-Wno-deprecated-declarations")
+    target_compile_options (ssc PRIVATE "-O3;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-parameter;-Wno-deprecated-declarations")
   endif ()
 endif ()
 

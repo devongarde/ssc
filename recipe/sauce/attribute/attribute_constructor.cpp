@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute_classes.h"
 
 template < class ATTRIBUTE, class ... X > struct attribute_constructor : public attribute_constructor < X ... >
-{   static attribute_v_ptr make (nitpick& nits, const html_version& v, const attribute_node& node)
-    {   if (node.id () != ATTRIBUTE :: whoami ()) return attribute_constructor < X... > :: make (nits, v, node);
-        auto ptr = attribute_v_ptr (new ATTRIBUTE ());
+{   static attribute_v_ptr make (nitpick& nits, const html_version& v, element* box, const attribute_node& node)
+    {   if (node.id () != ATTRIBUTE :: whoami ()) return attribute_constructor < X... > :: make (nits, v, box, node);
+        auto ptr = attribute_v_ptr (new ATTRIBUTE (box));
         ptr -> parse (nits, v, node);
         return ptr; }
     static e_animation_type animation_type (const e_attribute ea)
@@ -33,16 +33,18 @@ template < class ATTRIBUTE, class ... X > struct attribute_constructor : public 
         return attribute_constructor < X... > :: animation_type (ea); } };
 
 template < > struct attribute_constructor < attr_unknown >
-{   static attribute_v_ptr make (nitpick& nits, const html_version& v, const attribute_node& node)
-    {   auto ptr = attribute_v_ptr (new attr_unknown ());
+{   static attribute_v_ptr make (nitpick& nits, const html_version& v, element* box, const attribute_node& node)
+    {   auto ptr = attribute_v_ptr (new attr_unknown (box));
         ptr -> parse (nits, v, node);
         return ptr; }
     static e_animation_type animation_type (const e_attribute ) { return at_none; } };
 
-attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, const attribute_node& node)
-{   if (node.id () <= last_am) return attribute_constructor < ATTRIBUTESAM > :: make (nits, v, node);
-    else return attribute_constructor < ATTRIBUTESNZ > :: make (nits, v, node); }
+attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, element* box, const attribute_node& node)
+{   if (node.id () <= last_1) return attribute_constructor < ATTRIBUTES_1 > :: make (nits, v, box, node);
+    else if (node.id () <= last_2) return attribute_constructor < ATTRIBUTES_2 > :: make (nits, v, box, node);
+    else return attribute_constructor < ATTRIBUTES_3 > :: make (nits, v, box, node); }
 
 e_animation_type get_animation_type (const e_attribute ea)
-{   if (ea <= last_am) return attribute_constructor < ATTRIBUTESAM > :: animation_type (ea);
-    else return attribute_constructor < ATTRIBUTESNZ > :: animation_type (ea); }
+{   if (ea <= last_1) return attribute_constructor < ATTRIBUTES_1 > :: animation_type (ea);
+    else if (ea <= last_2) return attribute_constructor < ATTRIBUTES_2 > :: animation_type (ea);
+    else return attribute_constructor < ATTRIBUTES_3 > :: animation_type (ea); }

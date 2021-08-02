@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 
 template < > struct type_master < t_email > : tidy_string < t_email >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_email > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_email > :: set_value (nits, v, s);
         if (string_value < t_email > :: empty ())
             nits.pick (nit_bad_email, es_error, ec_type, "an email address is expected");
@@ -33,10 +34,13 @@ template < > struct type_master < t_email > : tidy_string < t_email >
                 else nits.pick (nit_bad_email, es_error, ec_type, quote (tidy_string < t_email > :: get_string ()), "is not an email address"); }
     string_value < t_email > :: status (s_invalid); } };
 
-template < > struct type_master < t_emails > : type_at_least_none < t_emails, sz_comma, t_email > { };
+template < > struct type_master < t_emails > : type_at_least_none < t_emails, sz_comma, t_email >
+{ using type_at_least_none < t_emails, sz_comma, t_email > :: type_at_least_none; };
+
 
 template < > struct type_master < t_rating > : numeric_value < t_rating, int >
 {   typedef true_type has_int_type;
+    using numeric_value < t_rating, int > :: numeric_value;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_rating, int > :: set_value (nits, v, s);
         if (numeric_value < t_rating, int > :: good ())
@@ -47,7 +51,7 @@ template < > struct type_master < t_rating > : numeric_value < t_rating, int >
 template < > struct type_master < t_sex > : tidy_string < t_sex >
 {   char sex_ = 0;
     ::std::string gender_;
-    type_master () = default;
+    using tidy_string < t_sex > :: tidy_string;
     void swap (type_master < t_sex >& t) NOEXCEPT
     {   ::std::swap (sex_, t.sex_);
         gender_.swap (t.gender_);
@@ -86,7 +90,8 @@ template < > struct type_master < t_sex > : tidy_string < t_sex >
     ::std::string gender () const { return gender_; } };
 
 template < > struct type_master < t_tel > : public tidy_string < t_tel >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_tel > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_value < t_tel > :: set_value (nits, v, s);
         ::std::string val = tidy_string < t_tel > :: get_string ();
         if (tidy_string < t_tel > :: good ())
@@ -100,7 +105,8 @@ template < > struct type_master < t_tel > : public tidy_string < t_tel >
                 tidy_string < t_tel > :: status (s_invalid); } } } };
 
 template < > struct type_master < t_tel_format > : public tidy_string < t_tel_format >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_tel_format > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_value < t_tel_format > :: set_value (nits, v, s);
         ::std::string val = tidy_string < t_tel_format > :: get_string ();
         if (tidy_string < t_tel_format > :: good ())

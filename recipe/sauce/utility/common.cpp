@@ -162,6 +162,11 @@ vstr_t split_by_charset (const ::std::string& s, const char* charset)
     ::boost::algorithm::split (v, s, ::boost::algorithm::is_any_of (charset), ::boost::algorithm::token_compress_on);
     return v; }
 
+vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter)
+{   vstr_t v;
+    ::boost::algorithm::find_all (v, s, splitter);
+    return v; }
+
 vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset)
 {   ::std::string cs;
     if (charset != nullptr) cs.assign (charset);
@@ -435,3 +440,18 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
     if (wl == len) return true;
     auto ch = s.at (len - wl - 1);
     return ! (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z'))); }
+
+::std::string split_at_first_of (::std::string& sauce, const ::std::string& chars)
+{   sauce = trim_the_lot_off (unify_whitespace (sauce));
+    ::std::string::size_type pos = sauce.find_first_of (chars);
+    ::std::string res;
+    if (pos != ::std::string::npos)
+        if (pos == 0)
+            sauce = sauce.substr (1);
+        else if (pos == (sauce.length () - 1))
+        {   res = trim_the_lot_off (sauce.substr (0, pos));
+            sauce.clear (); }
+        else
+        {   res = trim_the_lot_off (sauce.substr (0, pos));
+            sauce = trim_the_lot_off (sauce.substr (pos+1)); }
+    return res; }

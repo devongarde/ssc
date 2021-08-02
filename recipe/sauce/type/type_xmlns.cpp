@@ -65,6 +65,7 @@ e_namespace xmlns_to_namespace (nitpick& nits, const html_version& , const e_xml
         case x_ex :     return ns_ex;
         case x_foaf :   return ns_foaf;
         case x_owl :    return ns_owl;
+        case x_rddl :   return ns_rddl;
         case x_rdf :    return ns_rdf;
         case x_rdfa :   return ns_rdfa;
         case x_rdfs :   return ns_rdfs;
@@ -74,11 +75,9 @@ e_namespace xmlns_to_namespace (nitpick& nits, const html_version& , const e_xml
         case x_xml :    return ns_xhtml;
         case x_xmlevents : return ns_xmlevents;
         case x_xmlns :  return ns_xmlns;
-        case x_xsd :    return ns_xsd;
+        case x_xsd :    return ns_xs;
         case x_xsi :    return ns_xsi;
-        case x_html :
-            nits.pick (nit_xmlns_namespace, es_comment, ec_program, "the 'html' namespace is a bodge, not a standard namespace name");
-            break;
+        case x_html :   return ns_html;
         default :
             nits.pick (nit_xmlns_namespace, es_catastrophic, ec_program, XMLNS " ", static_cast < int > (x), " has no corresponding namespace");
             break; }

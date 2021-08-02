@@ -58,14 +58,18 @@ struct attribute_base
     virtual vurl_t get_urls () const { return vurl_t (); }
     virtual int get_int () const { return 0; }
     virtual ::std::size_t size () const { return 1; }
+    element* box () NOEXCEPT { return nullptr; }
+    element* box () const NOEXCEPT { return nullptr; }
+    void box (const element* ) NOEXCEPT { }
     virtual void shadow (::std::stringstream& , const html_version& , element* ) { }
     virtual ::std::string report () const { return ::std::string (); } };
 
 template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public attribute_base, public typed_value < e_attribute, TYPE, IDENTITY >
-{   static ::std::string name () { return attr :: name (IDENTITY); }
+{   typed_attribute () = default;
+    explicit typed_attribute (element* box) : typed_value < e_attribute, TYPE, IDENTITY > (box) { }
+    static ::std::string name () { return attr :: name (IDENTITY); }
     CONSTEXPR static e_attribute whoami () { return IDENTITY; }
     CONSTEXPR static e_type whatami () { return TYPE; }
-    typed_attribute () = default;
     void swap (typed_attribute& t) NOEXCEPT
     {   attribute_base :: swap (t);
         typed_value < e_attribute, TYPE, IDENTITY > :: swap (t); }
@@ -139,6 +143,9 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     bool has_value (const typename typed_value < e_attribute, TYPE, IDENTITY > :: value_type t) const { return typed_value < e_attribute, TYPE, IDENTITY > :: has_value (t); }
     virtual int get_int () const { return typed_value < e_attribute, TYPE, IDENTITY > :: get_int (); }
     virtual ::std::size_t size () const { return typed_value < e_attribute, TYPE, IDENTITY > :: size (); }
+    virtual element* box () NOEXCEPT { return typed_value < e_attribute, TYPE, IDENTITY > :: box (); }
+    virtual element* box () const NOEXCEPT { return typed_value < e_attribute, TYPE, IDENTITY > :: box (); }
+    virtual void box (element* b) NOEXCEPT { typed_value < e_attribute, TYPE, IDENTITY > :: box (b); }
     virtual void shadow (::std::stringstream& ss, const html_version& v, element* e)
     {   if (typed_value < e_attribute, TYPE, IDENTITY > :: unknown () || typed_value < e_attribute, TYPE, IDENTITY > :: invalid ()) return;
         ss << " " << name ();
@@ -148,7 +155,7 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     {   return typed_value < e_attribute, TYPE, IDENTITY > :: report (name ()); } };
 
 typedef ::std::shared_ptr < attribute_base > attribute_v_ptr;
-attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, const attribute_node& node);
+attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, element* box, const attribute_node& node);
 e_animation_type get_animation_type (const e_attribute ea);
 
 const size_t aar_size = last_attribute + 1;

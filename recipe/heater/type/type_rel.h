@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_enum_vec.h"
+#include "type/type_rdf.h"
 
 const e_rel first_mf1_rel = r_entry_category;
 const e_rel last_mf1_rel = r_tag;
@@ -34,10 +35,20 @@ template < > inline void enum_vec < t_rel, e_rel > :: set_value (nitpick& nits, 
     bool res = true;
     vstr_t strs (split_by_comma_space (trim_the_lot_off (ss)));
     for (auto s : strs)
-    {   base_t t;
-        t.set_value (nits, v, s);
+    {   bool bad = false;
+        base_t t;
+        if (context.rdfa () && (s.find (':') != ::std::string::npos))
+        {   type_master < t_curie > c;
+            c.set_value (nits, v, s);
+            t.status (c.status ());
+            if (c.invalid ()) bad = true;
+            t.original_ = s;
+            t.set (r_curie); }
+        else
+        {   t.set_value (nits, v, s);
+            bad = t.invalid (); }
         value_.push_back (t);
-        if (t.invalid ())
+        if (bad)
         {   res = false;
             check_rel_spelling (nits, v, s); } }
     if (strs.size () == 0) enum_vec < t_rel, e_rel > :: status (s_empty);
@@ -49,12 +60,15 @@ template < > inline bool type_base < e_rel, t_rel > :: is_relational ()
 
 struct rel : enum_n < t_rel, e_rel >
 {   rel () = default;
-    rel (const rel& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-    rel (rel&& ) = default;
-#endif
     explicit rel (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   enum_n < t_rel, e_rel > :: set_value (nits, v, s); }
+    {   if (context.rdfa () && (s.find (':') != ::std::string::npos))
+        {   type_master < t_curie > c;
+            c.set_value (nits, v, s);
+            enum_n < t_rel, e_rel > :: status (c.status ());
+            enum_n < t_rel, e_rel > :: original_ = s;
+            enum_n < t_rel, e_rel > :: set (r_curie); }
+        else enum_n < t_rel, e_rel > :: set_value (nits, v, s); }
+    explicit rel (element* box) : enum_n < t_rel, e_rel > (box) { }
     ~rel () = default;
     rel& operator = (const rel& ) = default;
 #ifndef NO_MOVE_CONSTRUCTOR

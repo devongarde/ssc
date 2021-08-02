@@ -74,7 +74,7 @@ class element
     void congeal_dynamism ();
     bool has_this_child (const e_element e) const;
     bool has_this_descendant (const e_element e) const;
-    void remove_category (const uint64_t c);
+    void remove_category (const flags_t c);
     void check_ancestors (const e_element self, const element_bitset& gf);
     void check_descendants (const e_element self, const element_bitset& gf, const bool absent = true);
     void check_inclusion_criteria ();
@@ -95,6 +95,16 @@ class element
     void pre_examine_element (const e_element tag);
     void post_examine_element (const e_element tag);
     void late_examine_element (const e_element tag);
+    void examine_about ();
+    void examine_datatype ();
+    void examine_inlist ();
+    void examine_instanceof ();
+    void examine_prefix ();
+    void examine_property ();
+    bool examine_rev (const ::std::string& s);
+    void examine_resource ();
+    void examine_typeof ();
+    void examine_vocab ();
     void examine_descendant_in (const element* filter);
     void examine_media_element (e_element elem, const char* ref, const char* name, const uint64_t family);
     void examine_accesskey ();
@@ -316,7 +326,7 @@ public:
     const element_bitset& ancestral_elements () const { return ancestral_elements_; }
     const attribute_bitset& ancestral_attributes () const { return ancestral_attributes_; }
     const vit_t vit () const { return vit_; }
-    e_namespace verify_namespace (::std::string& s, ::std::string n);
+    ns_id verify_namespace (::std::string& s, ::std::string n);
     ::std::string report (); };
 
 template < class PROPERTY > void element::note_reply ()

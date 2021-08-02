@@ -28,6 +28,7 @@ bool invalid_autocomplete (nitpick& nits, const html_version& v, const element* 
 
 template < > struct type_master < t_autocompletes > : tidy_string < t_autocompletes >
 {   vaco_t vaco_;
+    using tidy_string < t_autocompletes > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_autocompletes > :: set_value (nits, v, s);
         const ::std::string& ss (tidy_string < t_autocompletes > :: get_string ());

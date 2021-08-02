@@ -71,6 +71,7 @@
 ../toast/other/base/base.spec
 ../toast/other/characters/chars.spec
 ../toast/other/CSS/css.spec
+../toast/other/dc/dc.spec
 ../toast/other/dfn/dfn.spec
 ../toast/other/dump/dump.spec
 ../toast/other/ignore/ignore.spec
@@ -79,7 +80,6 @@
 ../toast/other/nits/nits.spec
 ../toast/other/parsing/parsing.spec
 ../toast/other/pattern/pattern.spec
-../toast/other/RDF/rdf.spec
 ../toast/other/simple/simple.spec
 ../toast/other/ssi/ssi.spec
 ../toast/shadow/update/update.spec

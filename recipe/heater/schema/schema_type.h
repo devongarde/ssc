@@ -47,8 +47,8 @@ struct sch : symbol < schema_version, e_schema_type, e_microdata_root, mdr_schem
     static e_microdata_root root (const e_schema_type st);
     e_type get_simple_type () const; };
 
-bool enumerated_schema_type (const uint64_t flags);
-bool has_simple_schema_type (const uint64_t flags);
-bool external_enumerated_schema_type (const uint64_t flags);
-e_type get_simple_schema_type (const uint64_t flags);
-bool is_itemid_ok (const uint64_t flags);
+bool enumerated_schema_type (const flags_t flags);
+bool has_simple_schema_type (const flags_t flags);
+bool external_enumerated_schema_type (const flags_t flags);
+e_type get_simple_schema_type (const flags_t flags);
+bool is_itemid_ok (const flags_t flags);

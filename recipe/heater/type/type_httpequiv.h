@@ -26,7 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 vstr_t split_sides_at_semi (nitpick& nits, const ::std::string& s, const ::std::size_t min_args = 2, const ::std::size_t max_args = 2);
 
 template < > struct type_master < t_cache > : public tidy_string < t_cache >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   using tidy_string < t_cache > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
     {   tidy_string < t_cache > :: set_value (nits, v, ss);
         ::std::string s = tidy_string < t_cache > :: get_string ();
         if (s.empty ())
@@ -65,10 +66,13 @@ template < > struct type_master < t_cache > : public tidy_string < t_cache >
             if (! booboo) return; }
         tidy_string < t_cache > :: status (s_invalid); } };
 
-template < > struct type_master < t_caches > : type_at_least_one < t_caches, sz_comma, t_cache > { };
+template < > struct type_master < t_caches > : type_at_least_one < t_caches, sz_comma, t_cache >
+{ using type_at_least_one < t_caches, sz_comma, t_cache > :: type_at_least_one; };
+
 
 template < > struct type_master < t_content_type > : tidy_string < t_content_type >
 {   ::std::string charset_;
+    using tidy_string < t_content_type > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_content_type > :: set_value (nits, v, s);
         if (tidy_string < t_content_type > :: good ())
@@ -91,7 +95,8 @@ template < > struct type_master < t_content_type > : tidy_string < t_content_typ
     ::std::string get_charset () const { return charset_; } };
 
 template < > struct type_master < t_csp_sauce > : tidy_string < t_csp_sauce >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
+{   using tidy_string < t_csp_sauce > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_csp_sauce > :: set_value (nits, v, s);
         if (! tidy_string < t_csp_sauce > :: good ()) return;
         ::std::string ss (tidy_string < t_csp_sauce > :: get_string ());
@@ -123,11 +128,16 @@ template < > struct type_master < t_csp_sauce > : tidy_string < t_csp_sauce >
                 if (! u.invalid ()) return; }
         tidy_string < t_csp_sauce > :: status (s_invalid); } };
 
-template < > struct type_master < t_csp_ancestor > : type_or_string < t_csp_ancestor, t_csp_sauce, sz_self > { };
-template < > struct type_master < t_csp_source > : type_either_or < t_csp_source, t_csp_keyword, t_csp_sauce > { };
+template < > struct type_master < t_csp_ancestor > : type_or_string < t_csp_ancestor, t_csp_sauce, sz_self >
+{ using type_or_string < t_csp_ancestor, t_csp_sauce, sz_self > :: type_or_string; };
+
+template < > struct type_master < t_csp_source > : type_either_or < t_csp_source, t_csp_keyword, t_csp_sauce >
+{ using type_either_or < t_csp_source, t_csp_keyword, t_csp_sauce > :: type_either_or; };
+
 
 template < > struct type_master < t_csp > : tidy_string < t_csp >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using tidy_string < t_csp > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_csp > :: set_value (nits, v, s);
         if (tidy_string < t_csp > :: good ())
         {   vstr_t sides (split_sides_at_semi (nits, tidy_string < t_csp > :: get_string (), 1, 0));
@@ -180,7 +190,8 @@ template < > struct type_master < t_csp > : tidy_string < t_csp >
 bool linkarg_set_value (nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_linkarg > : public tidy_string < t_linkarg >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   using tidy_string < t_linkarg > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
     {   tidy_string < t_linkarg > :: set_value (nits, v, ss);
         ::std::string s = tidy_string < t_linkarg > :: get_string ();
         if (s.empty ())
@@ -191,7 +202,8 @@ template < > struct type_master < t_linkarg > : public tidy_string < t_linkarg >
                 tidy_string < t_linkarg > :: status (s_invalid); } };
 
 template < > struct type_master < t_linkitself > : tidy_string < t_linkitself >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& ss) // sanity test only
+{   using tidy_string < t_linkitself > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss) // sanity test only
     {   tidy_string < t_linkitself > :: set_value (nits, v, ss);
         ::std::string s = tidy_string < t_linkitself > :: get_string ();
         if (s.empty ())
@@ -203,12 +215,19 @@ template < > struct type_master < t_linkitself > : tidy_string < t_linkitself >
             else if (test_value < t_url > (nits, v, s.substr (1, s.length ()-2))) return;
         tidy_string < t_linkitself > :: status (s_invalid); } };
 
-template < > struct type_master < t_linkargs > : type_at_least_one < t_linkargs, sz_semicolon, t_linkarg > { };
-template < > struct type_master < t_link > : type_one_or_both < t_link, t_linkitself, sz_semicolon, t_linkargs > { };
-template < > struct type_master < t_links > : type_at_least_one < t_links, sz_comma, t_link > { };
+template < > struct type_master < t_linkargs > : type_at_least_one < t_linkargs, sz_semicolon, t_linkarg >
+{ using type_at_least_one < t_linkargs, sz_semicolon, t_linkarg > :: type_at_least_one; };
+
+template < > struct type_master < t_link > : type_one_or_both < t_link, t_linkitself, sz_semicolon, t_linkargs >
+{ using type_one_or_both < t_link, t_linkitself, sz_semicolon, t_linkargs > :: type_one_or_both; };
+
+template < > struct type_master < t_links > : type_at_least_one < t_links, sz_comma, t_link >
+{ using type_at_least_one < t_links, sz_comma, t_link > :: type_at_least_one; };
+
 
 template < > struct type_master < t_location > : tidy_string < t_location >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
+{   using tidy_string < t_location > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_location > :: set_value (nits, v, s);
         if (tidy_string < t_location > :: good ())
         {   vstr_t sides (split_sides_at_semi (nits, tidy_string < t_location > :: get_string ()));
@@ -223,7 +242,8 @@ template < > struct type_master < t_location > : tidy_string < t_location >
             tidy_string < t_location > :: status (s_invalid); } } };
 
 template < > struct type_master < t_refresh > : tidy_string < t_refresh >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
+{   using tidy_string < t_refresh > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_refresh > :: set_value (nits, v, s);
         if (tidy_string < t_refresh > :: good ())
         {   vstr_t sides (split_sides_at_semi (nits, tidy_string < t_refresh > :: get_string (), 1));
@@ -240,10 +260,13 @@ template < > struct type_master < t_refresh > : tidy_string < t_refresh >
             tidy_string < t_refresh > :: status (s_invalid); } } };
 
 template < > struct type_master < t_x_ua_compatible > : tidy_string < t_x_ua_compatible >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
+{   using tidy_string < t_x_ua_compatible > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_x_ua_compatible > :: set_value (nits, v, s);
         if (! compare_no_case (tidy_string < t_x_ua_compatible > :: get_string (), "IE=edge"))
         {   tidy_string < t_x_ua_compatible > :: status (s_invalid);
             nits.pick (nit_x_ua_compatible, es_error, ec_type, quote (s), ": only 'IE=edge' is valid"); } } };
 
-template < > struct type_master < t_x_content_type_options > : type_must_be < t_x_content_type_options, sz_nosniff > { };
+template < > struct type_master < t_x_content_type_options > : type_must_be < t_x_content_type_options, sz_nosniff >
+{ using type_must_be < t_x_content_type_options, sz_nosniff > :: type_must_be; };
+

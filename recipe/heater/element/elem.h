@@ -68,7 +68,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_XLINK_TYPE_MASK   0x0000FF0000000000
 #define EP_XLINK_TYPE_SHIFT  40
 
-#define EP_SET_XLINKCAT(XXX)  ((uint64_t) (XXX) << EP_XLINK_TYPE_SHIFT)
+#define EP_SET_XLINKCAT(XXX)  ((flags_t) (XXX) << EP_XLINK_TYPE_SHIFT)
 #define EP_GET_XLINKCAT(XXX)  (((XXX) & EP_XLINK_TYPE_MASK) >> EP_XLINK_TYPE_SHIFT)
 
 // categories
@@ -76,7 +76,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_DOCUMENT         0x0000000000000001
 #define EF_FAUX             0x0000000000000002
 #define EF_METADATA         0x0000000000000004
-#define EF_SVG10_STR        0x0000000000000008
+#define EF_RDF              0x0000000000000008
 
 #define EF_EMPH             0x0000000000000010
 #define EF_MISC             0x0000000000000020
@@ -117,7 +117,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_SVG_ANIM         0x0000004000000000
 #define EF_SVG_DESC         0x0000008000000000
 #define EF_SVG_SHAPE        0x0000010000000000
-#define EF_SVG11_STR        0x0000020000000000
+#define EF_SVG_STR          0x0000020000000000
 #define EF_SVG_PSGRAD       0x0000040000000000
 #define EF_SVG_GRAPH        0x0000080000000000
 #define EF_SVG_FILTER       0x0000100000000000
@@ -142,8 +142,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_5_SECTION        0x2000000000000000
 #define EF_5_FORM           0x4000000000000000
 
-#define EF_SVG20_STR        0x8000000000000000
-
 #define EF_CUSTOM           0xFFF0FFFFFFFFFFF4
 
 #define EF_3_NOTMATH        ( EF_3_FONT | EF_PHRASE | EF_SPECIAL | EF_3_MISC )
@@ -165,7 +163,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_M_PRESEXPR       ( EF_M_PRESINCONTENT | EF_M_CONTINPRES | EF_M_PRES )
 #define EF_M_MATH           ( EF_M_PRESINCONTENT | EF_M_CONTINPRES )
 
-#define EF_SVG_STR          ( EF_SVG10_STR | EF_SVG11_STR | EF_SVG20_STR )
 #define EF_SVG_CATMASK      ( EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD | EF_SVG_GRAPH | EF_SVG_FILTER | EF_SVG_CONTAIN | EF_SVG_TEXT )
 
 #define EF_X2_FLOW          ( EF_X2_STRUCT | EF_HEAD | EF_X2_TEXT )
@@ -173,14 +170,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class elem : public symbol < html_version, e_element >
 {   static element_bitset ignored_;
-    bool under_parse (nitpick& nits, const html_version& v, const ::std::string& el, const e_namespace n);
-    bool parse (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string& x);
+    bool under_parse (nitpick& nits, const html_version& v, const ::std::string& el, const ident_t n);
+    bool parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x);
 public:
     elem () {}
     elem (const html_version& v, const ::std::string& x) : symbol < html_version, e_element > (v, x) { }
     elem (const elem& e) = default;
     explicit elem (const e_element e) : symbol < html_version, e_element > (e) { }
-    elem (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string& x);
+    elem (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x);
     static void init (nitpick& nits);
     static void ignore (const e_element e) { ignored_.set (e); }
     static bool ignored (const e_element e) { return ignored_.test (e); }
@@ -199,8 +196,8 @@ public:
     {   elem tmp (e); swap (tmp); }
     void reset (const html_version& v, const ::std::string& s)
     {   elem tmp (v, s); swap (tmp); }
-    void reset (nitpick& nits, const html_version& v, ns_ptr& nss, const ::std::string& x)
-    {   elem tmp (nits, v, nss, x);
+    void reset (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x)
+    {   elem tmp (nits, v, namespaces, x);
         swap (tmp); }
     void reset (const e_element e)
     {   elem tmp (e);

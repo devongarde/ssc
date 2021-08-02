@@ -26,17 +26,16 @@ template < class V, typename CATEGORY, CATEGORY INIT > struct symbol_store
     ::std::string   sz_;
     ::std::size_t   v_ = 0;
     CATEGORY        ns_ = INIT;
-    uint64_t        flags_ = 0;
-    uint64_t        flags2_ = 0;
+    flags_t        flags_ = 0, flags2_ = 0;
 	symbol_store () = default;
     symbol_store (const symbol_store& ss) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	symbol_store (symbol_store&& ss) = default;
 #endif // VS
 	~symbol_store () = default;
-    symbol_store (const V& first, const V& last, const ::std::string& str, const ::std::size_t v, const CATEGORY ns = INIT, const uint64_t flags = NOFLAGS, const uint64_t flags2 = NOFLAGS)
+    symbol_store (const V& first, const V& last, const ::std::string& str, const ::std::size_t v, const CATEGORY ns = INIT, const flags_t flags = NOFLAGS, const flags_t flags2 = NOFLAGS)
         : first_ (first), last_ (last), sz_ (str), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
-    symbol_store (const V& first, const V& last, const char* sz, const ::std::size_t v, const CATEGORY ns = INIT, const uint64_t flags = NOFLAGS, const uint64_t flags2 = NOFLAGS)
+    symbol_store (const V& first, const V& last, const char* sz, const ::std::size_t v, const CATEGORY ns = INIT, const flags_t flags = NOFLAGS, const flags_t flags2 = NOFLAGS)
         : first_ (first), last_ (last), sz_ (sz), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
     symbol_store (const symbol_entry_t < V >& se)
         : first_ (se.first_), last_ (se.last_), sz_ (se.sz_), v_ (se.v_), ns_ (se.ns_), flags_ (se.flags_), flags2_ (se.flags2_) { }

@@ -29,8 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 template < e_type TYPE > struct string_value : public type_base < ::std::string, TYPE >
 {   ::std::string value_;
+    using type_base < ::std::string, TYPE > :: type_base;
     static ::std::string default_value () { return ::std::string (); }
-    string_value () = default;
     void swap (string_value& t) NOEXCEPT
     {   value_.swap (t.value_);
         type_base < ::std::string, TYPE >::swap (t); }
@@ -54,13 +54,15 @@ template < e_type TYPE > struct string_value : public type_base < ::std::string,
         type_base < ::std::string, TYPE > :: reset (); } };
 
 template < e_type TYPE > struct tidy_string : public string_value < TYPE >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_value < TYPE > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (s.empty ()) string_value < TYPE > :: status (s_empty);
         else string_value < TYPE > :: set_value (nits, v, make_tidy (nits, v, s)); } };
 
 template < e_type TYPE > struct string_vector_base : public tidy_string < TYPE >
 {   typedef vstr_t value_type;
     value_type value_;
+    using tidy_string < TYPE > :: tidy_string;
     void swap (string_vector_base& t) NOEXCEPT
     {   value_.swap (t.value_);
         tidy_string < TYPE >::swap (t); }
@@ -81,7 +83,8 @@ template < e_type TYPE > struct string_vector_base : public tidy_string < TYPE >
     {   return value_; } };
 
 template < e_type TYPE, class SZ > struct string_vector : public string_vector_base < TYPE >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector_base < TYPE > :: string_vector_base;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector_base < TYPE > :: set_value (nits, v, s);
         if (string_vector_base < TYPE > :: good ())
         {   vstr_t tmp = split_by_charset (string_vector_base < TYPE > :: get_string (), SZ :: sz ());
@@ -99,7 +102,8 @@ template < e_type TYPE, class SZ > struct string_vector : public string_vector_b
         ss << '"'; } };
 
 template < e_type TYPE > struct string_vector < TYPE, sz_space > : public string_vector_base < TYPE >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using string_vector_base < TYPE > :: string_vector_base;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector_base < TYPE > :: set_value (nits, v, s);
         if (string_vector_base < TYPE > :: good ())
             string_vector_base < TYPE > :: value_ = split_by_space (string_vector_base < TYPE > :: get_string ()); }
@@ -111,10 +115,29 @@ template < e_type TYPE > struct string_vector < TYPE, sz_space > : public string
             ss << s; }
         ss << '"'; } };
 
+template < e_type TYPE, class SZ > struct strings_vector : public string_vector_base < TYPE >
+{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector_base < TYPE > :: set_value (nits, v, s);
+        if (string_vector_base < TYPE > :: good ())
+        {   vstr_t tmp = split_by_string (string_vector_base < TYPE > :: get_string (), SZ :: sz ());
+#ifndef FUDDYDUDDY
+            string_vector_base < TYPE > :: value_.reserve (tmp.size ());
+#endif // FUDDYDUDDY
+            for (auto ss : tmp)
+                string_vector_base < TYPE > :: value_.emplace_back (make_tidy (nits, v, ss)); } }
+    void shadow (::std::stringstream& ss, const html_version& , element* )
+    {   ss << "=\""; bool first = true;
+        for (auto s : string_vector_base < TYPE > :: value_)
+        {   if (! first) ss << SZ :: sz () [0];
+            first = false;
+            ss << s; }
+        ss << '"'; } };
+
 template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct numeric_value : public type_base < NUMERIC_TYPE, TYPE >
 {   NUMERIC_TYPE value_ = def;
+    using type_base < NUMERIC_TYPE, TYPE > :: type_base;
+    explicit numeric_value (element* box) : type_base < NUMERIC_TYPE, TYPE > (box) { }
     static NUMERIC_TYPE default_value () { return def; }
-    numeric_value () = default;
     void swap (numeric_value& t) NOEXCEPT
     {   ::std::swap (value_, t.value_);
         type_base < NUMERIC_TYPE, TYPE >::swap (t); }

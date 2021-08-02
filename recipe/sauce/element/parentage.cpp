@@ -26,8 +26,8 @@ struct parentage
 {   html_version first_, last_;
     e_element parent_;
     e_element child_;
-    uint64_t flags_, categories_;
-    parentage (const html_version& first, const html_version& last, const e_element parent, const e_element child, const uint64_t flags = 0, const uint64_t categories = 0)
+    flags_t flags_, categories_;
+    parentage (const html_version& first, const html_version& last, const e_element parent, const e_element child, const flags_t flags = 0, const flags_t categories = 0)
         : first_ (first), last_ (last), parent_ (parent), child_ (child), flags_ (flags), categories_ (categories) { } };
 
 inline bool operator == (const parentage& lhs, const parentage& rhs)
@@ -51,8 +51,8 @@ inline bool operator > (const parentage& lhs, const parentage& rhs)
 inline bool operator >= (const parentage& lhs, const parentage& rhs)
 {   return ! (lhs < rhs); }
 
-inline uint64_t parent_key (const e_element parent, const e_element child)
-{   return (static_cast <uint64_t> (parent) << 32) + static_cast <uint64_t> (child); }
+inline flags_t parent_key (const e_element parent, const e_element child)
+{   return (static_cast <flags_t> (parent) << 32) + static_cast <flags_t> (child); }
 
 parentage parent_table [] =
 {   { { HTML_PLUS }, { HTML_PLUS }, elem_a, elem_em },
@@ -77,6 +77,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_font },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_font_face },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_a, elem_foreignobject },
+    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_a, elem_iframe },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_image },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_marker },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_mask },
@@ -86,8 +87,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_switch },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_text },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_view },
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_a, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_a, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM | EF_SVG_SHAPE | EF_SVG11_STR | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD },
     { { HTML_SVG12, 0, HE_SVG_12 }, { XHTML_2_0 }, elem_a, elem_undefined, EP_5_TRANSPARENT },
     { { HTML_4_0 }, { XHTML_1_1 }, elem_abbr, elem_undefined, 0, EF_4_INLINE },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_abbr, elem_undefined, 0, EF_X2_TEXT },
@@ -280,8 +280,8 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_circle, elem_script },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_circle, elem_style },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_circle, elem_switch },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_circle, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_circle, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_circle, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_circle, elem_undefined, 0, EF_SVG_PSGRAD },
     { { HTML_PLUS }, { HTML_PLUS }, elem_cite, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_2_0 }, { HTML_2_0 }, elem_cite, elem_undefined, 0, EF_TEXT | EF_PHRASE | EF_FONT },
     { { HTML_3_0 }, { HTML_3_0 }, elem_cite, elem_undefined, 0, EF_3_TEXTIN },
@@ -352,8 +352,7 @@ parentage parent_table [] =
     { { HTML_SVG11, 0, HE_SVG_11_12_2 }, { HTML_UNDEF }, elem_defs, elem_foreignobject },
     { { HTML_SVG10, 0, HE_SVG_10_12 }, { HTML_UNDEF }, elem_defs, elem_g },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_defs, elem_handler },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_defs, elem_iframe, DENY },
-    { { HTML_SVG21, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_defs, elem_iframe, DENY },
+    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_defs, elem_iframe },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_defs, elem_listener },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_defs, elem_marker },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_defs, elem_mask },
@@ -362,14 +361,12 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_defs, elem_solidcolour },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_defs, elem_style },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_defs, elem_switch },
+    { { HTML_SVG20, 0, HE_SVG }, { HTML_UNDEF }, elem_defs, elem_svg },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_defs, elem_text },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_defs, elem_textarea },
     { { HTML_SVG12, 0, HE_SVG_12_20 }, { HTML_SVG20 }, elem_defs, elem_video },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_defs, elem_view },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_defs, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD },
-    { { HTML_SVG10, 0, HE_SVG_10_12 }, { HTML_UNDEF }, elem_defs, elem_undefined, 0, EF_SVG10_STR },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_defs, elem_undefined, 0, EF_SVG11_STR },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_defs, elem_undefined, 0, EF_SVG20_STR },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_defs, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_degree, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_3_0 }, { HTML_3_0 }, elem_del, elem_undefined, 0, EF_3_TEXTIN },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_del, elem_undefined, 0, EF_4_FLOW },
@@ -379,6 +376,21 @@ parentage parent_table [] =
     { { HTML_JUL10 }, { HTML_UNDEF }, elem_details, elem_summary },
     { { HTML_JUL07 }, { HTML_DEC09 }, elem_details, elem_legend },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_details, elem_undefined, 0, EF_4_FLOW },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_contributor, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_coverage, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_creator, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_date, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_description, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_format, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_identifier, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_language, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_publisher, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_relation, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_rights, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_source, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_subject, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_title, elem_undefined },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_type, elem_undefined },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_dfn, elem_dfn, DENY },
     { { HTML_1_0 }, { HTML_1_0 }, elem_dfn, elem_undefined, DENY },
     { { HTML_PLUS }, { HTML_PLUS }, elem_dfn, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
@@ -443,8 +455,8 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_ellipse, elem_script },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_ellipse, elem_style },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_ellipse, elem_switch },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_ellipse, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_ellipse, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_ellipse, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_ellipse, elem_undefined, 0, EF_SVG_PSGRAD },
     { { HTML_PLUS }, { HTML_PLUS }, elem_em, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_2_0 }, { HTML_2_0 }, elem_em, elem_undefined, 0, EF_TEXT | EF_PHRASE | EF_FONT },
     { { HTML_3_0 }, { HTML_3_0 }, elem_em, elem_undefined, 0, EF_3_TEXTIN },
@@ -456,9 +468,10 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, elem_elementdef },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, elem_defs },
     { { HTML_1_0, HV_NOTPLUS }, { HTML_UNDEF }, elem_faux_document, elem_html },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_faux_document, elem_svg },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_faux_document, elem_math },
-    { { HTML_UNDEF }, { HTML_UNDEF }, elem_faux_document, elem_faux_xml },
+    { { HTML_RDF10 }, { HTML_UNDEF }, elem_faux_document, elem_rdf_rdf },
+    { { HTML_SVG10 }, { HTML_UNDEF }, elem_faux_document, elem_svg },
+    { { HTML_MATH1 }, { HTML_UNDEF }, elem_faux_document, elem_math },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_faux_document, elem_faux_xml },
     { { HTML_PLUS }, { HTML_PLUS }, elem_faux_document, elem_htmlplus },
     { { HTML_TAGS }, { HTML_TAGS }, elem_faux_document, elem_undefined },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_feblend, elem_animate },
@@ -633,8 +646,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_font_face, elem_definition_src },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face, elem_font_face_src },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_font_face, elem_switch },
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_font_face, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_font_face, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG11_STR },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font_face, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_font_face, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font_face_src, elem_font_face_name },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font_face_src, elem_font_face_uri },
@@ -685,8 +697,7 @@ parentage parent_table [] =
     { { HTML_SVG11, 0, HE_SVG_11_12_2 }, { HTML_UNDEF }, elem_g, elem_foreignobject },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_g, elem_g },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_g, elem_handler },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_g, elem_iframe, DENY },
-    { { HTML_SVG21, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_g, elem_iframe, DENY },
+    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_g, elem_iframe },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_g, elem_listener },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_g, elem_marker },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_g, elem_mask },
@@ -695,14 +706,12 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_g, elem_solidcolour },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_g, elem_style },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_g, elem_switch },
+    { { HTML_SVG20, 0, HE_SVG }, { HTML_UNDEF }, elem_g, elem_svg },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_g, elem_text },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_g, elem_textarea },
     { { HTML_SVG12, 0, HE_SVG_12_20 }, { HTML_SVG20 }, elem_g, elem_video },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_g, elem_view },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_g, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD },
-    { { HTML_SVG10, 0, HE_SVG_10_12 }, { HTML_UNDEF }, elem_g, elem_undefined, 0, EF_SVG10_STR },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_g, elem_undefined, 0, EF_SVG11_STR },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_g, elem_undefined, 0, EF_SVG20_STR },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_g, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, elem_a },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, elem_altglyph },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, elem_clippath },
@@ -721,8 +730,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, elem_switch },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, elem_text },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, elem_view },
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_glyph, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_glyph, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG11_STR },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_glyph, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_glyphref, elem_glyphref },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyphref, elem_altglyphitem },
@@ -861,8 +869,8 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_line, elem_script },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_line, elem_style },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_line, elem_switch },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_line, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_line, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_line, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_line, elem_undefined, 0, EF_SVG_PSGRAD },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_lineargradient, elem_animate },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_lineargradient, elem_animatetransform },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_lineargradient, elem_discard },
@@ -903,7 +911,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_marker, elem_font },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_marker, elem_font_face },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_marker, elem_foreignobject },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_marker, elem_iframe },
+    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_marker, elem_iframe },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_marker, elem_image },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_marker, elem_marker },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_marker, elem_mask },
@@ -915,8 +923,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_marker, elem_text },
     { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, elem_marker, elem_video },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_marker, elem_view },
-    { { HTML_SVG10, 0, HE_SVG_10_2 }, { HTML_UNDEF }, elem_marker, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_marker, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG11_STR | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_marker, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_mask, elem_a },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_mask, elem_altglyphdef },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_mask, elem_clippath },
@@ -936,8 +943,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_mask, elem_symbol },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_mask, elem_text },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_mask, elem_view },
-    { { HTML_SVG10, 0, HE_SVG_10_2 }, { HTML_UNDEF }, elem_mask, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_mask, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG11_STR | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_mask, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD },
     { { HTML_3_0 }, { HTML_3_0 }, elem_math, elem_atop },
     { { HTML_3_0 }, { HTML_3_0 }, elem_math, elem_choose },
     { { HTML_3_0 }, { HTML_3_0 }, elem_math, elem_left },
@@ -1001,8 +1007,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_missingglyph, elem_switch },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_missingglyph, elem_text },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_missingglyph, elem_view },
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_missingglyph, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_missingglyph, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG11_STR },
+    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_missingglyph, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_missingglyph, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mlabeledtr, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, elem_mlabeledtr, elem_mtd },
@@ -1123,7 +1128,6 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_pattern, elem_font },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_pattern, elem_font_face },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_pattern, elem_foreignobject },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_pattern, elem_iframe },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_pattern, elem_image },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_pattern, elem_marker },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_pattern, elem_mask },
@@ -1134,8 +1138,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_pattern, elem_text },
     { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, elem_pattern, elem_video },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_pattern, elem_view },
-    { { HTML_SVG10, 0, HE_SVG_10_2 }, { HTML_UNDEF }, elem_pattern, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_pattern, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG11_STR | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_pattern, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_path, elem_clippath },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_path, elem_discard },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_path, elem_handler },
@@ -1144,8 +1147,8 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_path, elem_script },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_path, elem_style },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_path, elem_switch },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_path, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_path, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_path, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_path, elem_undefined, 0, EF_SVG_PSGRAD },
     { { HTML_PLUS }, { HTML_PLUS }, elem_person, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_3_0 }, { HTML_3_0 }, elem_person, elem_undefined, 0, EF_3_TEXTIN },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_piece, elem_undefined, 0, EF_M_CONTENTEXPR },
@@ -1164,8 +1167,8 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polyline, elem_script },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polyline, elem_style },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_polyline, elem_switch },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polyline, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polyline, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_polyline, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polyline, elem_undefined, 0, EF_SVG_PSGRAD },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polygon, elem_clippath },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_polygon, elem_discard },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_polygon, elem_handler },
@@ -1174,8 +1177,8 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polygon, elem_script },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polygon, elem_style },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_polygon, elem_switch },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polygon, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polygon, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_polygon, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polygon, elem_undefined, 0, EF_SVG_PSGRAD },
     { { HTML_1_0 }, { HTML_2_0 }, elem_pre, elem_a },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_pre, elem_applet, DENY },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_pre, elem_basefont, DENY },
@@ -1227,6 +1230,30 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_radialgradient, elem_switch },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_radialgradient, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_radialgradient, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_1, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_2, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_3, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_4, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_5, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_6, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_7, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_8, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_9, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_about, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_abouteach, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_abouteachprefix, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_alt, elem_undefined, 0, EF_RDF },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_bag, elem_undefined, 0, EF_RDF },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_bagid, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_datatype, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_description, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_id, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_li, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_nodeid, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_parsetype, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_rdf, elem_undefined, 0, EF_RDF },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_resource, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_seq, elem_undefined, 0, EF_RDF },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_rect, elem_clippath },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_rect, elem_discard },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_rect, elem_handler },
@@ -1235,8 +1262,8 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_rect, elem_script },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_rect, elem_style },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_rect, elem_switch },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_rect, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_rect, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_rect, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_rect, elem_undefined, 0, EF_SVG_PSGRAD },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_refcontent, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_reln, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_PLUS }, { HTML_PLUS }, elem_removed, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
@@ -1352,8 +1379,7 @@ parentage parent_table [] =
     { { HTML_SVG11, 0, HE_SVG_11_12_2 }, { HTML_UNDEF }, elem_svg, elem_foreignobject },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_svg, elem_g },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, elem_handler },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_svg, elem_iframe, DENY },
-    { { HTML_SVG21, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_svg, elem_iframe, DENY },
+    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_svg, elem_iframe },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_svg, elem_link },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, elem_listener },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_svg, elem_marker },
@@ -1364,14 +1390,12 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, elem_solidcolour },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_svg, elem_style },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_svg, elem_switch },
+    { { HTML_SVG20, 0, HE_SVG }, { HTML_UNDEF }, elem_svg, elem_svg },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_svg, elem_text },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, elem_textarea },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_svg, elem_view },
     { { HTML_SVG12, 0, HE_SVG_12_20 }, { HTML_UNDEF }, elem_svg, elem_video },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_svg, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD },
-    { { HTML_SVG10, 0, HE_SVG_10_12 }, { HTML_UNDEF }, elem_svg, elem_undefined, 0, EF_SVG10_STR },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_svg, elem_undefined, 0, EF_SVG11_STR },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_svg, elem_undefined, 0, EF_SVG20_STR },
+    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_svg, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_switch, elem_a },
     { { HTML_SVG12, 0, HE_SVG_12_20 }, { HTML_UNDEF }, elem_switch, elem_audio },
     { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, elem_switch, elem_canvas },
@@ -1400,20 +1424,17 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_symbol, elem_font_face },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_symbol, elem_foreignobject },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_g },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_symbol, elem_iframe, DENY },
-    { { HTML_SVG21, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_symbol, elem_iframe, DENY },
+    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_symbol, elem_iframe },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_marker },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_mask },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_script },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_style },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_switch },
+    { { HTML_SVG20, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_svg },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_text },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_view },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_symbol, elem_video },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD },
-    { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_symbol, elem_undefined, 0, EF_SVG10_STR },
-    { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_symbol, elem_undefined, 0, EF_SVG11_STR },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_symbol, elem_undefined, 0, EF_SVG20_STR },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_symbol, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
     { { HTML_3_0 }, { HTML_3_0 }, elem_t, elem_undefined, 0, EF_3_MATHIN },
     { { HTML_JUL06 }, { HTML_DEC06 }, elem_t, elem_undefined, 0, EF_5_PHRASE },
     { { HTML_JAN05 }, { HTML_DEC06 }, elem_tabbox, elem_a },
@@ -1478,8 +1499,8 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_text, elem_text, DENY },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_text, elem_tspan },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_text, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_TEXT },
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_text, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_text, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_TEXT | EF_SVG_PSGRAD },
+    { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, elem_text, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_text, elem_undefined, 0, EF_SVG_TEXT | EF_SVG_PSGRAD },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_textarea, elem_discard },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_textarea, elem_handler },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_textarea, elem_tspan },
@@ -1498,8 +1519,8 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_textpath, elem_style },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_textpath, elem_tref },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_textpath, elem_tspan },
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_textpath, elem_undefined, 0, EF_SVG_DESC },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_textpath, elem_undefined, 0, EF_SVG_DESC | EF_SVG_PSGRAD },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_textpath, elem_undefined, 0, EF_SVG_DESC },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_textpath, elem_undefined, 0, EF_SVG_PSGRAD },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_tfoot, elem_tr },
     { { HTML_JUL13 }, { HTML_UNDEF }, elem_tfoot, elem_undefined, 0, EF_5_SCRIPT },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_th, elem_footer, DENY },
@@ -1967,6 +1988,78 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_radialgradient :
         case elem_symbol :
             return elem_defs;
+        case elem_dc_contributor :
+        case elem_dc_coverage :
+        case elem_dc_creator :
+        case elem_dc_date :
+        case elem_dc_description :
+        case elem_dc_format :
+        case elem_dc_identifier :
+        case elem_dc_language :
+        case elem_dc_publisher :
+        case elem_dc_relation :
+        case elem_dc_rights :
+        case elem_dc_source :
+        case elem_dc_subject :
+        case elem_dc_title :
+        case elem_dc_type :
+        case elem_dct_abstract :
+        case elem_dct_accessrights :
+        case elem_dct_accrualmethod :
+        case elem_dct_accrualperiodicity :
+        case elem_dct_accrualpolicy :
+        case elem_dct_alternative :
+        case elem_dct_audience :
+        case elem_dct_available :
+        case elem_dct_bibliographiccitation :
+        case elem_dct_conformsto :
+        case elem_dct_contributor :
+        case elem_dct_coverage :
+        case elem_dct_created :
+        case elem_dct_creator :
+        case elem_dct_date :
+        case elem_dct_dateaccepted :
+        case elem_dct_datecopyrighted :
+        case elem_dct_datesubmitted :
+        case elem_dct_description :
+        case elem_dct_educationlevel :
+        case elem_dct_extent :
+        case elem_dct_format :
+        case elem_dct_hasformat :
+        case elem_dct_haspart :
+        case elem_dct_hasversion :
+        case elem_dct_identifier :
+        case elem_dct_instructionalmethod :
+        case elem_dct_isformatof :
+        case elem_dct_ispartof :
+        case elem_dct_isreferencedby :
+        case elem_dct_isreplacedby :
+        case elem_dct_isrequiredby :
+        case elem_dct_issued :
+        case elem_dct_isversionof :
+        case elem_dct_language :
+        case elem_dct_licence :
+        case elem_dct_mediator :
+        case elem_dct_medium :
+        case elem_dct_modified :
+        case elem_dct_provenance :
+        case elem_dct_publisher :
+        case elem_dct_references :
+        case elem_dct_relation :
+        case elem_dct_replaces :
+        case elem_dct_requires :
+        case elem_dct_rights :
+        case elem_dct_rightsholder :
+        case elem_dct_source :
+        case elem_dct_spatial :
+        case elem_dct_subject :
+        case elem_dct_tableofcontents :
+        case elem_dct_temporal :
+        case elem_dct_title :
+        case elem_dct_type :
+        case elem_dct_valid :
+            if (v.svg ()) return elem_metadata;
+            break;
         case elem_definition_src :
             return elem_font_face;
         case elem_elementdef :
@@ -2108,6 +2201,18 @@ e_element default_parent (const html_version& v, const elem& self)
         case elem_rt :
         case elem_rtc :
             return elem_ruby;
+        case elem_rdf_about :
+        case elem_rdf_abouteach :
+        case elem_rdf_abouteachprefix :
+        case elem_rdf_bagid :
+        case elem_rdf_datatype :
+        case elem_rdf_description :
+        case elem_rdf_id :
+        case elem_rdf_li :
+        case elem_rdf_nodeid :
+        case elem_rdf_parsetype :
+        case elem_rdf_resource :
+            return elem_rdf_rdf;
         case elem_td :
         case elem_th :
             return elem_tr;

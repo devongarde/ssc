@@ -32,7 +32,7 @@ class url;
 template < > struct type_master < t_url > : type_base < url, t_url >
 {   typedef url base_type, value_type;
     url value_;
-    type_master () = default;
+    using type_base < url, t_url > :: type_base;
     static bool is_url () { return true; }
     static e_animation_type animation_type () { return at_url; }
     ::std::string get_string () const { return value_.get (); }
@@ -66,7 +66,8 @@ template < > struct type_master < t_url > : type_base < url, t_url >
     ::std::string original () const { return get_string (); } };
 
 template < > struct type_master < t_local_url > : type_master < t_url >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using type_master < t_url > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_url > :: set_value (nits, v, s);
         if (type_master < t_url > :: good ())
             if (value_.has_domain () || value_.has_absolute_path ())
@@ -74,7 +75,8 @@ template < > struct type_master < t_local_url > : type_master < t_url >
                 type_base < url, t_url > :: status (s_invalid); } } };
 
 template < > struct type_master < t_absolute_url > : type_master < t_url >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using type_master < t_url > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_url > :: set_value (nits, v, s);
         if (type_master < t_url > :: good ())
             if (! value_.has_domain () || ! value_.has_absolute_path () || ! value_.has_protocol ())
@@ -82,7 +84,8 @@ template < > struct type_master < t_absolute_url > : type_master < t_url >
                 type_base < url, t_url > :: status (s_invalid); } } };
 
 template < > struct type_master < t_root_url > : type_master < t_url >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using type_master < t_url > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_url > :: set_value (nits, v, s);
         if (type_master < t_url > :: good ())
             if (value_.has_file () || value_.has_id () || value_.has_query () || value_.has_args ())
@@ -96,7 +99,7 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
 {   typedef url base_type;
     typedef vurl_t value_type;
     vurl_t value_;
-    type_master () = default;
+    using type_base < url, t_urls > :: type_base;
     static e_animation_type animation_type () { return at_url; }
     ::std::string get_string () const
     {   ::std::string s;
@@ -143,7 +146,8 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
     {   return value_; } };
 
 template < > struct type_master < t_xmlurl > : type_master < t_url >
-{   void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   using type_master < t_url > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_url > :: set_value (nits, v, s);
         if (type_master < t_url > :: good () && ! v.xhtml ())
         {   nits.pick (nit_requires_xhtml, es_error, ec_type, quote (s), " is only valid in XHTML");

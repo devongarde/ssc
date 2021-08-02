@@ -28,7 +28,8 @@ bool test_animation_timing (nitpick& nits, const html_version& v, const ::std::s
 e_attribute identify_svg_animation_attribute (nitpick& nits, const html_version& v, element& e, const ::std::string& s, const ::std::string& attnam);
 
 template < > struct type_master < t_angle > : type_master < t_real >
-{   static e_animation_type animation_type () { return at_angle; }
+{   using type_master < t_real > :: type_master;
+    static e_animation_type animation_type () { return at_angle; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         if (compare_complain (nits, v, "auto", ss))
@@ -54,6 +55,7 @@ template < > struct type_master < t_angle > : type_master < t_real >
 
 template < > struct type_master < t_attributename > : tidy_string < t_attributename >
 {   e_attribute value_ = a_unknown;
+    using tidy_string < t_attributename > :: tidy_string;
     e_attribute get () const { return value_; }
     int get_int () const { return static_cast < int > (value_); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -68,24 +70,48 @@ template < > struct type_master < t_attributename > : tidy_string < t_attributen
             if (value_ == a_unknown)
                 tidy_string < t_attributename > :: status (s_invalid); } } };
 
-template < > struct type_master < t_audio_level > : type_or_string < t_audio_level, t_real, sz_inherit > { };
-template < > struct type_master < t_angle_i > : type_or_string < t_angle_i, t_angle, sz_inherit > { };
-template < > struct type_master < t_angle_a > : type_or_string < t_angle_a, t_angle, sz_auto > { };
-template < > struct type_master < t_angle_ai > : type_or_either_string < t_angle_ai, t_angle, sz_auto, sz_inherit > { };
+template < > struct type_master < t_audio_level > : type_or_string < t_audio_level, t_real, sz_inherit >
+{ using type_or_string < t_audio_level, t_real, sz_inherit > :: type_or_string; };
+
+template < > struct type_master < t_angle_i > : type_or_string < t_angle_i, t_angle, sz_inherit >
+{ using type_or_string < t_angle_i, t_angle, sz_inherit > :: type_or_string; };
+
+template < > struct type_master < t_angle_a > : type_or_string < t_angle_a, t_angle, sz_auto >
+{ using type_or_string < t_angle_a, t_angle, sz_auto > :: type_or_string; };
+
+template < > struct type_master < t_angle_ai > : type_or_either_string < t_angle_ai, t_angle, sz_auto, sz_inherit >
+{ using type_or_either_string < t_angle_ai, t_angle, sz_auto, sz_inherit > :: type_or_either_string; };
+
 template < > struct type_master < t_beginvalues > : type_at_least_one < t_beginvalues, sz_semicolon, t_beginvalue >
-{   static e_animation_type animation_type () { return at_other; } };
-template < > struct type_master < t_beginvaluelist > : type_or_string < t_beginvaluelist, t_beginvalues, sz_indefinite > { };
-template < > struct type_master < t_clip_path_rule > : type_or_either_string < t_clip_path_rule, t_urifn, sz_none, sz_inherit > { };
-template < > struct type_master < t_rendering_colour_space > : type_one_of_three < t_rendering_colour_space, t_colour_interpolation, t_colour_profile_name, t_urifn > { };
+{   using type_at_least_one < t_beginvalues, sz_semicolon, t_beginvalue > :: type_at_least_one;
+    static e_animation_type animation_type () { return at_other; } };
+
+template < > struct type_master < t_beginvaluelist > : type_or_string < t_beginvaluelist, t_beginvalues, sz_indefinite >
+{ using type_or_string < t_beginvaluelist, t_beginvalues, sz_indefinite > :: type_or_string; };
+
+template < > struct type_master < t_clip_path_rule > : type_or_either_string < t_clip_path_rule, t_urifn, sz_none, sz_inherit >
+{ using type_or_either_string < t_clip_path_rule, t_urifn, sz_none, sz_inherit > :: type_or_either_string; };
+
+template < > struct type_master < t_rendering_colour_space > : type_one_of_three < t_rendering_colour_space, t_colour_interpolation, t_colour_profile_name, t_urifn >
+{ using type_one_of_three < t_rendering_colour_space, t_colour_interpolation, t_colour_profile_name, t_urifn > :: type_one_of_three; };
+
 template < > struct type_master < t_colour_profile_name_or_uri > : type_either_or < t_colour_profile_name_or_uri, t_urifn, t_colour_profile_name >
-{   static e_animation_type animation_type () { return at_colour; } };
-template < > struct type_master < t_colour_profile > : type_or_any_string < t_colour_profile, t_colour_profile_name_or_uri, sz_auto, sz_inherit, sz_srgb > { };
+{   using type_either_or < t_colour_profile_name_or_uri, t_urifn, t_colour_profile_name > :: type_either_or;
+    static e_animation_type animation_type () { return at_colour; } };
+
+template < > struct type_master < t_colour_profile > : type_or_any_string < t_colour_profile, t_colour_profile_name_or_uri, sz_auto, sz_inherit, sz_srgb >
+{ using type_or_any_string < t_colour_profile, t_colour_profile_name_or_uri, sz_auto, sz_inherit, sz_srgb > :: type_or_any_string; };
+
 template < > struct type_master < t_cursor_f > : type_many_then_must < t_cursor_f, t_urifn, sz_comma, t_cursor >
-{   static e_animation_type animation_type () { return at_other; } };
-template < > struct type_master < t_cursor_i > : type_or_string < t_cursor_i, t_cursor_f, sz_inherit > { };
+{   using type_many_then_must < t_cursor_f, t_urifn, sz_comma, t_cursor > :: type_many_then_must;
+    static e_animation_type animation_type () { return at_other; } };
+
+template < > struct type_master < t_cursor_i > : type_or_string < t_cursor_i, t_cursor_f, sz_inherit >
+{ using type_or_string < t_cursor_i, t_cursor_f, sz_inherit > :: type_or_string; };
 
 template < > struct type_master < t_d > : tidy_string < t_d >
-{   static e_animation_type animation_type () { return at_list; }
+{   using tidy_string < t_d > :: tidy_string;
+    static e_animation_type animation_type () { return at_list; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_d > :: set_value (nits, v, s);
         if (tidy_string < t_d > :: empty ())
@@ -94,12 +120,18 @@ template < > struct type_master < t_d > : tidy_string < t_d >
             if (parse_d (nits, v, tidy_string < t_d > :: get_string ())) return;
         tidy_string < t_d > :: status (s_invalid); } };
 
-template < > struct type_master < t_dashes > : type_or_either_string < t_dashes, t_measures, sz_none, sz_inherit > { };
-template < > struct type_master < t_dur > : type_or_either_string < t_dur, t_svg_time, sz_media, sz_indefinite > { };
-template < > struct type_master < t_dur_repeat > : type_or_string < t_dur_repeat, t_svg_duration, sz_indefinite > { };
+template < > struct type_master < t_dashes > : type_or_either_string < t_dashes, t_measures, sz_none, sz_inherit >
+{ using type_or_either_string < t_dashes, t_measures, sz_none, sz_inherit > :: type_or_either_string; };
+
+template < > struct type_master < t_dur > : type_or_either_string < t_dur, t_svg_time, sz_media, sz_indefinite >
+{ using type_or_either_string < t_dur, t_svg_time, sz_media, sz_indefinite > :: type_or_either_string; };
+
+template < > struct type_master < t_dur_repeat > : type_or_string < t_dur_repeat, t_svg_duration, sz_indefinite >
+{ using type_or_string < t_dur_repeat, t_svg_duration, sz_indefinite > :: type_or_string; };
 
 template < > struct type_master < t_endvaluelist > : tidy_string < t_endvaluelist >
-{   static e_animation_type animation_type () { return at_list; }
+{   using tidy_string < t_endvaluelist > :: tidy_string;
+    static e_animation_type animation_type () { return at_list; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_endvaluelist > :: set_value (nits, v, s);
         bool good = true;
@@ -115,7 +147,8 @@ template < > struct type_master < t_endvaluelist > : tidy_string < t_endvaluelis
         tidy_string < t_endvaluelist > :: status (s_invalid); } };
 
 template < > struct type_master < t_fill_opacity > : tidy_string < t_fill_opacity >
-{   static e_animation_type animation_type () { return at_paint; }
+{   using tidy_string < t_fill_opacity > :: tidy_string;
+    static e_animation_type animation_type () { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_fill_opacity > :: set_value (nits, v, s);
         if (tidy_string < t_fill_opacity> :: empty ())
@@ -130,7 +163,8 @@ template < > struct type_master < t_fill_opacity > : tidy_string < t_fill_opacit
         tidy_string < t_fill_opacity > :: status (s_invalid); } };
 
 template < > struct type_master < t_font > : tidy_string < t_font >
-{   static e_animation_type animation_type () { return at_other; }
+{   using tidy_string < t_font > :: tidy_string;
+    static e_animation_type animation_type () { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& sss)
     {   tidy_string < t_font > :: set_value (nits, v, sss);
         if (tidy_string < t_font> :: empty ())
@@ -186,11 +220,15 @@ template < > struct type_master < t_font > : tidy_string < t_font >
             if (res) return; }
         tidy_string < t_font > :: status (s_invalid); } };
 
-template < > struct type_master < t_fontsize > : type_or_string < t_fontsize, t_measure, sz_inherit > { };
-template < > struct type_master < t_fontsizeadjust > : type_or_either_string < t_fontsizeadjust, t_real, sz_none, sz_inherit > { };
+template < > struct type_master < t_fontsize > : type_or_string < t_fontsize, t_measure, sz_inherit >
+{ using type_or_string < t_fontsize, t_measure, sz_inherit > :: type_or_string; };
+
+template < > struct type_master < t_fontsizeadjust > : type_or_either_string < t_fontsizeadjust, t_real, sz_none, sz_inherit >
+{ using type_or_either_string < t_fontsizeadjust, t_real, sz_none, sz_inherit > :: type_or_either_string; };
 
 template < > struct type_master < t_fontstretches > : public tidy_string < t_fontstretches >
-{   static e_animation_type animation_type () { return at_other; }
+{   using tidy_string < t_fontstretches > :: tidy_string;
+    static e_animation_type animation_type () { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (! v.svg ()) nits.pick (nit_svg_math, es_error, ec_type, "font stretch requires SVG");
         else
@@ -214,7 +252,8 @@ template < > struct type_master < t_fontstretches > : public tidy_string < t_fon
         tidy_string < t_fontstretches > :: status (s_invalid); } };
 
 template < > struct type_master < t_fontvariants > : public tidy_string < t_fontvariants >
-{   static e_animation_type animation_type () { return at_other; }
+{   using tidy_string < t_fontvariants > :: tidy_string;
+    static e_animation_type animation_type () { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (! v.svg ()) nits.pick (nit_svg_math, es_error, ec_type, "font variant requires SVG");
         else
@@ -239,7 +278,8 @@ template < > struct type_master < t_fontvariants > : public tidy_string < t_font
         tidy_string < t_fontvariants > :: status (s_invalid); } };
 
 template < > struct type_master < t_frequency > : type_master < t_real >
-{   static e_animation_type animation_type () { return at_frequency; }
+{   using type_master < t_real > :: type_master;
+    static e_animation_type animation_type () { return at_frequency; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         if (! ends_with_letters (v, ss, "kHz") && ! ends_with_letters (v, ss, "Hz"))
@@ -252,7 +292,8 @@ template < > struct type_master < t_frequency > : type_master < t_real >
         type_master < t_real > :: status (s_invalid); } };
 
 template < > struct type_master < t_glyphname > : public tidy_string < t_glyphname >
-{   static e_animation_type animation_type () { return at_other; }
+{   using tidy_string < t_glyphname > :: tidy_string;
+    static e_animation_type animation_type () { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_glyphname > :: set_value (nits, v, s);
         if (tidy_string < t_glyphname > :: empty ())
@@ -263,7 +304,8 @@ template < > struct type_master < t_glyphname > : public tidy_string < t_glyphna
         store_glyph_name (nits, v, pe, s); } };
 
 template < > struct type_master < t_glyphnames > : public string_vector < t_glyphname, sz_comma >
-{   static e_animation_type animation_type () { return at_other; }
+{   using string_vector < t_glyphname, sz_comma > :: string_vector;
+    static e_animation_type animation_type () { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_glyphname, sz_comma > :: set_value (nits, v, s); }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* pe)
@@ -273,12 +315,16 @@ template < > struct type_master < t_glyphnames > : public string_vector < t_glyp
         return ! check_glyph_names (nits, v, pe, string_vector < t_glyphname, sz_comma > :: get ()); } };
 
 template < > struct type_master < t_hash_ref > : string_then_type < t_hash_ref, t_idref, sz_hash >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using string_then_type < t_hash_ref, t_idref, sz_hash > :: string_then_type;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_hash_fn > : type_function < t_hash_fn, t_urisz, t_hash_ref >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_function < t_hash_fn, t_urisz, t_hash_ref > :: type_function;
+    static e_animation_type animation_type () { return at_other; } };
 
 template < > struct type_master < t_icccolour > : tidy_string < t_icccolour >
-{   static e_animation_type animation_type () { return at_colour; }
+{   using tidy_string < t_icccolour > :: tidy_string;
+    static e_animation_type animation_type () { return at_colour; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_icccolour > :: set_value (nits, v, s);
         if (tidy_string < t_icccolour > :: empty ())
@@ -294,14 +340,22 @@ template < > struct type_master < t_icccolour > : tidy_string < t_icccolour >
             else return;
             tidy_string < t_icccolour > :: status (s_invalid); } } };
 
-template < > struct type_master < t_keyspline > : type_exactly_n < t_keyspline, sz_commaspace, t_real, 4 > { };
-template < > struct type_master < t_keysplines > : type_at_least_one < t_keysplines, sz_semicolon, t_keyspline > { };
+template < > struct type_master < t_keyspline > : type_exactly_n < t_keyspline, sz_commaspace, t_real, 4 >
+{ using type_exactly_n < t_keyspline, sz_commaspace, t_real, 4 > :: type_exactly_n; };
+
+template < > struct type_master < t_keysplines > : type_at_least_one < t_keysplines, sz_semicolon, t_keyspline >
+{ using type_at_least_one < t_keysplines, sz_semicolon, t_keyspline > :: type_at_least_one; };
+
 template < > struct type_master < t_keytimes > : type_at_least_one < t_keytimes, sz_semicolon, t_zero_to_one >
-{   static e_animation_type animation_type () { return at_time; } };
-template < > struct type_master < t_line_height > : either_type_or_string < t_line_height, t_measure, t_real, sz_normal > { };
+{   using type_at_least_one < t_keytimes, sz_semicolon, t_zero_to_one > :: type_at_least_one;
+    static e_animation_type animation_type () { return at_time; } };
+
+template < > struct type_master < t_line_height > : either_type_or_string < t_line_height, t_measure, t_real, sz_normal >
+{ using either_type_or_string < t_line_height, t_measure, t_real, sz_normal > :: either_type_or_string; };
 
 template < > struct type_master < t_origin > : tidy_string < t_origin >
-{   static e_animation_type animation_type () { return at_coordinate; }
+{   using tidy_string < t_origin > :: tidy_string;
+    static e_animation_type animation_type () { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_origin > :: set_value (nits, v, s);
         if (tidy_string < t_origin > :: good ())
@@ -311,14 +365,22 @@ template < > struct type_master < t_origin > : tidy_string < t_origin >
         tidy_string < t_origin > :: status (s_invalid); } };
 
 template < > struct type_master < t_marker > : id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit > :: id_or_either_string;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_navigation > : id_or_either_string < t_navigation, t_hash_fn, sz_auto, sz_self >
-{   static e_animation_type animation_type () { return at_other; } };
-template < > struct type_master < t_opacity > : type_or_string < t_opacity, t_zero_to_one, sz_inherit > { };
-template < > struct type_master < t_panose1 > : type_exactly_n < t_panose1, sz_space, t_integer, 10 > { };
+{   using id_or_either_string < t_navigation, t_hash_fn, sz_auto, sz_self > :: id_or_either_string;
+    static e_animation_type animation_type () { return at_other; } };
+
+template < > struct type_master < t_opacity > : type_or_string < t_opacity, t_zero_to_one, sz_inherit >
+{ using type_or_string < t_opacity, t_zero_to_one, sz_inherit > :: type_or_string; };
+
+template < > struct type_master < t_panose1 > : type_exactly_n < t_panose1, sz_space, t_integer, 10 >
+{ using type_exactly_n < t_panose1, sz_space, t_integer, 10 > :: type_exactly_n; };
 
 template < > struct type_master < t_paint > : tidy_string < t_paint >
-{   static e_animation_type animation_type () { return at_paint; }
+{   using tidy_string < t_paint > :: tidy_string;
+    static e_animation_type animation_type () { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_paint > :: set_value (nits, v, s);
         if (tidy_string < t_paint > :: empty ())
@@ -327,35 +389,68 @@ template < > struct type_master < t_paint > : tidy_string < t_paint >
             if (parse_paint (nits, v, tidy_string < t_paint > :: get_string ())) return;
         tidy_string < t_paint > :: status (s_invalid); } };
 
-template < > struct type_master < t_repeatcount > : type_or_string < t_repeatcount, t_0_more, sz_indefinite > { };
+template < > struct type_master < t_repeatcount > : type_or_string < t_repeatcount, t_0_more, sz_indefinite >
+{ using type_or_string < t_repeatcount, t_0_more, sz_indefinite > :: type_or_string; };
+
 template < > struct type_master < t_preserveaspectratio10 > : type_one_or_both < t_preserveaspectratio10, t_svg_align, sz_space, t_meetslice >
-{   static e_animation_type animation_type () { return at_other; } };
-template < > struct type_master < t_preserveaspectratio12 > : type_or_string < t_preserveaspectratio12, t_preserveaspectratio10, sz_defer > { };
-template < > struct type_master < t_rotate_anim > : type_or_either_string < t_rotate_anim, t_angle, sz_auto, sz_autoreverse > { };
-template < > struct type_master < t_setback_offset > : type_range < t_setback_offset, sz_commaspace, t_measure, 1, 4 > { };
+{   using type_one_or_both < t_preserveaspectratio10, t_svg_align, sz_space, t_meetslice > :: type_one_or_both;
+    static e_animation_type animation_type () { return at_other; } };
+
+template < > struct type_master < t_preserveaspectratio12 > : type_or_string < t_preserveaspectratio12, t_preserveaspectratio10, sz_defer >
+{ using type_or_string < t_preserveaspectratio12, t_preserveaspectratio10, sz_defer > :: type_or_string; };
+
+template < > struct type_master < t_rotate_anim > : type_or_either_string < t_rotate_anim, t_angle, sz_auto, sz_autoreverse >
+{ using type_or_either_string < t_rotate_anim, t_angle, sz_auto, sz_autoreverse > :: type_or_either_string; };
+
+template < > struct type_master < t_setback_offset > : type_range < t_setback_offset, sz_commaspace, t_measure, 1, 4 >
+{ using type_range < t_setback_offset, sz_commaspace, t_measure, 1, 4 > :: type_range; };
+
 template < > struct type_master < t_shape_fn_circlesz > : type_must_be < t_shape_fn_circlesz, sz_circle >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_must_be < t_shape_fn_circlesz, sz_circle > :: type_must_be;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_shape_fn_circle > : type_function < t_shape_fn_circle, t_shape_fn_circlesz, t_text >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_function < t_shape_fn_circle, t_shape_fn_circlesz, t_text > :: type_function;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_shape_fn_ellipsesz > : type_must_be < t_shape_fn_ellipsesz, sz_ellipse >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_must_be < t_shape_fn_ellipsesz, sz_ellipse > :: type_must_be;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_shape_fn_ellipse > : type_function < t_shape_fn_ellipse, t_shape_fn_ellipsesz, t_text >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_function < t_shape_fn_ellipse, t_shape_fn_ellipsesz, t_text > :: type_function;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_shape_fn_polygonsz > : type_must_be < t_shape_fn_circle, sz_polygon >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_must_be < t_shape_fn_circle, sz_polygon > :: type_must_be;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_shape_fn_polygon > : type_function < t_shape_fn_polygon, t_shape_fn_polygonsz, t_text >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_function < t_shape_fn_polygon, t_shape_fn_polygonsz, t_text > :: type_function;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_shape_fn > : type_one_of_three < t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_one_of_three < t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon > :: type_one_of_three;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_shape_uri > : type_either_or < t_shape_uri, t_shape_fn, t_urifn >
-{   static e_animation_type animation_type () { return at_other; } };
-template < > struct type_master < t_shape_none_uri > : type_or_string < t_shape_none_uri, t_shape_uri, sz_none > { };
+{   using type_either_or < t_shape_uri, t_shape_fn, t_urifn > :: type_either_or;
+    static e_animation_type animation_type () { return at_other; } };
+
+template < > struct type_master < t_shape_none_uri > : type_or_string < t_shape_none_uri, t_shape_uri, sz_none >
+{ using type_or_string < t_shape_none_uri, t_shape_uri, sz_none > :: type_or_string; };
+
 template < > struct type_master < t_svg_baselineshift > : type_either_or < t_svg_baselineshift, t_baselineshift, t_measure >
-{   static e_animation_type animation_type () { return at_length; } };
-template < > struct type_master < t_svg_clip > : type_or_either_string < t_svg_clip, t_svg_shape, sz_auto, sz_inherit > { };
+{   using type_either_or < t_svg_baselineshift, t_baselineshift, t_measure > :: type_either_or;
+    static e_animation_type animation_type () { return at_length; } };
+
+template < > struct type_master < t_svg_clip > : type_or_either_string < t_svg_clip, t_svg_shape, sz_auto, sz_inherit >
+{ using type_or_either_string < t_svg_clip, t_svg_shape, sz_auto, sz_inherit > :: type_or_either_string; };
+
 
 template < > struct type_master < t_svg_fontstyle_ff > : public tidy_string < t_svg_fontstyle_ff >
-{   static e_animation_type animation_type () { return at_other; }
+{   using tidy_string < t_svg_fontstyle_ff > :: tidy_string;
+    static e_animation_type animation_type () { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (! v.svg ()) nits.pick (nit_svg_math, es_error, ec_type, "font style requires SVG or MathML");
         else
@@ -381,7 +476,8 @@ template < > struct type_master < t_svg_fontstyle_ff > : public tidy_string < t_
         tidy_string < t_svg_fontstyle_ff > :: status (s_invalid); } };
 
 template < > struct type_master < t_svg_fontweights > : public tidy_string < t_svg_fontweights >
-{   static e_animation_type animation_type () { return at_other; }
+{   using tidy_string < t_svg_fontweights > :: tidy_string;
+    static e_animation_type animation_type () { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (! v.svg ()) nits.pick (nit_svg_math, es_error, ec_type, "font weight requires SVG or MathML");
         else
@@ -405,7 +501,8 @@ template < > struct type_master < t_svg_fontweights > : public tidy_string < t_s
         tidy_string < t_svg_fontweights > :: status (s_invalid); } };
 
 template < > struct type_master < t_svg_shapefn > : tidy_string < t_svg_shapefn >
-{   static e_animation_type animation_type () { return at_other; }
+{   using tidy_string < t_svg_shapefn > :: tidy_string;
+    static e_animation_type animation_type () { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_svg_shapefn > :: set_value (nits, v, s);
         if (compare_complain (nits, v, "rect", tidy_string < t_svg_shapefn > :: get_string ())) return;
@@ -413,13 +510,22 @@ template < > struct type_master < t_svg_shapefn > : tidy_string < t_svg_shapefn 
         tidy_string < t_svg_shapefn > :: status (s_invalid); } };
 
 template < > struct type_master < t_svg_shape > : type_function < t_svg_shape, t_svg_shapefn, t_real >
-{   static e_animation_type animation_type () { return at_number; } };
-template < > struct type_master < t_svg_host > : either_string < t_svg_host, sz_svg, sz_host > { };
-template < > struct type_master < t_svg_svg > : type_must_be < t_svg_svg, sz_svg > { };
-template < > struct type_master < t_svg_transform > : type_or_string < t_svg_transform, t_transform, sz_none > { };
+{   using type_function < t_svg_shape, t_svg_shapefn, t_real > :: type_function;
+    static e_animation_type animation_type () { return at_number; } };
+
+template < > struct type_master < t_svg_host > : either_string < t_svg_host, sz_svg, sz_host >
+{ using either_string < t_svg_host, sz_svg, sz_host > :: either_string; };
+
+template < > struct type_master < t_svg_svg > : type_must_be < t_svg_svg, sz_svg >
+{ using type_must_be < t_svg_svg, sz_svg > :: type_must_be; };
+
+template < > struct type_master < t_svg_transform > : type_or_string < t_svg_transform, t_transform, sz_none >
+{ using type_or_string < t_svg_transform, t_transform, sz_none > :: type_or_string; };
+
 
 template < > struct type_master < t_svg_time > : type_master < t_real >
-{   static e_animation_type animation_type () { return at_time; }
+{   using type_master < t_real > :: type_master;
+    static e_animation_type animation_type () { return at_time; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         ::std::string t (ss);
@@ -432,18 +538,32 @@ template < > struct type_master < t_svg_time > : type_master < t_real >
             if (good ()) return; }
         type_master < t_real > :: status (s_invalid); } };
 
-template < > struct type_master < t_svg_time_default > : type_or_string < t_svg_time_none, t_svg_time, sz_default > { };
-template < > struct type_master < t_svg_time_inherit > : type_or_string < t_svg_time_none, t_svg_time, sz_inherit > { };
-template < > struct type_master < t_svg_time_none > : type_or_string < t_svg_time_none, t_svg_time, sz_none > { };
-template < > struct type_master < t_svg_values > : type_at_least_one < t_svg_values, sz_semicolon, t_real > { };
-template < > struct type_master < t_vector_effect_2s > : type_at_least_one < t_vector_effect_2s, sz_space, t_vector_effect_2 > { };
+template < > struct type_master < t_svg_time_default > : type_or_string < t_svg_time_none, t_svg_time, sz_default >
+{ using type_or_string < t_svg_time_none, t_svg_time, sz_default > :: type_or_string; };
+
+template < > struct type_master < t_svg_time_inherit > : type_or_string < t_svg_time_none, t_svg_time, sz_inherit >
+{ using type_or_string < t_svg_time_none, t_svg_time, sz_inherit > :: type_or_string; };
+
+template < > struct type_master < t_svg_time_none > : type_or_string < t_svg_time_none, t_svg_time, sz_none >
+{ using type_or_string < t_svg_time_none, t_svg_time, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_svg_values > : type_at_least_one < t_svg_values, sz_semicolon, t_real >
+{ using type_at_least_one < t_svg_values, sz_semicolon, t_real > :: type_at_least_one; };
+
+template < > struct type_master < t_vector_effect_2s > : type_at_least_one < t_vector_effect_2s, sz_space, t_vector_effect_2 >
+{ using type_at_least_one < t_vector_effect_2s, sz_space, t_vector_effect_2 > :: type_at_least_one; };
+
 template < > struct type_master < t_vector_effect_20 > : type_many_then_maybe < t_vector_effect_20, t_vector_effect_2, sz_space, t_viewportscreen >
-{   static e_animation_type animation_type () { return at_list; } };
+{   using type_many_then_maybe < t_vector_effect_20, t_vector_effect_2, sz_space, t_viewportscreen > :: type_many_then_maybe;
+    static e_animation_type animation_type () { return at_list; } };
+
 template < > struct type_master < t_svg_viewboxrect > : type_exactly_n < t_svg_viewboxrect, sz_commaspace, t_real, 4 >
-{   static e_animation_type animation_type () { return at_coordinate; } };
+{   using type_exactly_n < t_svg_viewboxrect, sz_commaspace, t_real, 4 > :: type_exactly_n;
+    static e_animation_type animation_type () { return at_coordinate; } };
 
 template < > struct type_master < t_svg_viewbox > : tidy_string < t_svg_viewbox >
-{   static e_animation_type animation_type () { return at_coordinate; }
+{   using tidy_string < t_svg_viewbox > :: tidy_string;
+    static e_animation_type animation_type () { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         tidy_string < t_svg_viewbox > :: set_value (nits, v, ss);
@@ -466,7 +586,8 @@ template < > struct type_master < t_svg_viewbox > : tidy_string < t_svg_viewbox 
             tidy_string < t_svg_viewbox > :: status (s_invalid); } } };
 
 template < > struct type_master < t_transform > : tidy_string < t_transform >
-{   static e_animation_type animation_type () { return at_transform; }
+{   using tidy_string < t_transform > :: tidy_string;
+    static e_animation_type animation_type () { return at_transform; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_transform > :: set_value (nits, v, s);
         if (tidy_string < t_transform > :: empty ())
@@ -476,11 +597,20 @@ template < > struct type_master < t_transform > : tidy_string < t_transform >
         tidy_string < t_transform > :: status (s_invalid); } };
 
 template < > struct type_master < t_urange > : type_at_least_one < t_urange, sz_comma, t_text >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_at_least_one < t_urange, sz_comma, t_text > :: type_at_least_one;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_urifn > : type_function < t_urifn, t_urisz, t_url >
-{   static e_animation_type animation_type () { return at_url; } };
-template < > struct type_master < t_urifn_ni > : id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit > { };
+{   using type_function < t_urifn, t_urisz, t_url > :: type_function;
+    static e_animation_type animation_type () { return at_url; } };
+
+template < > struct type_master < t_urifn_ni > : id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit >
+{ using id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit > :: id_or_either_string; };
+
 template < > struct type_master < t_urisz > : type_must_be < t_urisz, sz_url >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_must_be < t_urisz, sz_url > :: type_must_be;
+    static e_animation_type animation_type () { return at_other; } };
+
 template < > struct type_master < t_vertical_align > : type_either_or < t_vertical_align, t_vertical_align_enum, t_measure >
-{   static e_animation_type animation_type () { return at_other; } };
+{   using type_either_or < t_vertical_align, t_vertical_align_enum, t_measure > :: type_either_or;
+    static e_animation_type animation_type () { return at_other; } };

@@ -44,7 +44,7 @@ void element::examine_embed ()
 void element::examine_equation ()
 {   if (node_.version ().math () != math_2) return;
     if (tag () == elem_reln) pick (nit_deprecated_element, ed_math_2, "4.4.2.2 Relation (reln)", es_warning, ec_element, "<RELN> is deprecated");
-    uint64_t fl = 0;
+    flags_t fl = 0;
     bool start = true;
     int args = 0;
     e_element op = elem_undefined;

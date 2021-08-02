@@ -23,6 +23,7 @@ PASS ../toast/XHTML/2.0/x2-bad.xhtml
 PASS ../toast/XHTML/2.0/x2-example.xhtml
 0 charset_mismatch charset_used
 1 xhtml_2_0
+4 bad_namespace attribute_unrecognised unrecognised_attribute
 7 long_title
 61 unknown
 72 unrecognised_value
@@ -57,6 +58,8 @@ PASS ../toast/XHTML/2.0/x2-example.xhtml
 329 url_not_found
 330 url_not_found
 331 no_such_folder url_not_found
+335 bad_namespace attribute_unrecognised unrecognised_attribute
+338 bad_namespace attribute_unrecognised unrecognised_attribute
 347 url_not_found
 350 url_not_found
 353 url_not_found

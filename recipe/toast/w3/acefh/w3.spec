@@ -12,9 +12,9 @@ PASS ../toast/w3/acefh/colons.html
 0 charset_mismatch charset_used
 2 xhtml_superseded
 19 unrecognised_value
-20 bad_namespace bad_namespace
-21 bad_namespace
-22 bad_namespace
+20 bad_namespace unknown_element bad_namespace unknown_element
+21 bad_namespace unknown_element missing_open
+22 bad_namespace unknown_element missing_close inserted_missing_closure
 
 PASS ../toast/w3/acefh/error_pls_warning.html
 2 html_superseded

@@ -126,8 +126,8 @@ struct elem_role {
     html_version from_, to_;
     e_element elem_;
     e_aria_role role_;
-    uint64_t flags_ = 0;
-    elem_role (const html_version& from, const html_version& to, const e_element elem, const e_aria_role role, const uint64_t flags = 0)
+    flags_t flags_ = 0;
+    elem_role (const html_version& from, const html_version& to, const e_element elem, const e_aria_role role, const flags_t flags = 0)
         : from_ (from), to_ (to), elem_ (elem), role_ (role), flags_ (flags) { } };
 
 struct role_key {
@@ -554,7 +554,7 @@ void role_init (nitpick& nits)
     for (::std::size_t i = 0; permitted_role [i].elem_ != elem_undefined; ++i)
         permitted_roles.insert (rmv (role_key (permitted_role [i].elem_, permitted_role [i].role_), permitted_role [i])); }
 
-bool is_role_lookup (const rolemap& rm, const html_version& v, const e_element elem, const e_aria_role role, uint64_t* flags = nullptr)
+bool is_role_lookup (const rolemap& rm, const html_version& v, const e_element elem, const e_aria_role role, flags_t* flags = nullptr)
 {   for (   rmi i = rm.find (role_key (elem, role));
             (i != rm.cend ());
             ++i)
