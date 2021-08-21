@@ -327,6 +327,9 @@ template < > struct type_master < t_halign > : enum_n < t_halign, e_halign >
 template < > struct type_master < t_httpequiv > : enum_n < t_httpequiv, e_httpequiv >
 { using enum_n < t_httpequiv, e_httpequiv > :: enum_n; };
 
+template < > struct type_master < t_icalfreq > : enum_n < t_icalfreq, e_icalfreq >
+{ using enum_n < t_icalfreq, e_icalfreq > :: enum_n; };
+
 template < > struct type_master < t_image_rendering > : enum_n < t_image_rendering, e_image_rendering >
 { using enum_n < t_image_rendering, e_image_rendering > :: enum_n; };
 
@@ -435,14 +438,17 @@ template < > struct type_master < t_mf_method > : enum_n < t_mf_method, e_mf_met
 template < > struct type_master < t_mf_reviewtype > : enum_n < t_mf_reviewtype, e_mf_reviewtype >
 { using enum_n < t_mf_reviewtype, e_mf_reviewtype > :: enum_n; };
 
-template < > struct type_master < t_microdata_domain > : enum_n < t_microdata_domain, e_microdata_domain >
-{ using enum_n < t_microdata_domain, e_microdata_domain > :: enum_n; };
+//template < > struct type_master < t_microdata_domain > : enum_n < t_microdata_domain, e_microdata_domain >
+//{ using enum_n < t_microdata_domain, e_microdata_domain > :: enum_n; };
 
-template < > struct type_master < t_microdata_root > : enum_n < t_microdata_root, e_microdata_root >
-{ using enum_n < t_microdata_root, e_microdata_root > :: enum_n; };
+//template < > struct type_master < t_microdata_root > : enum_n < t_microdata_root, e_schema >
+//{ using enum_n < t_microdata_root, e_schema > :: enum_n; };
 
 template < > struct type_master < t_mime > : enum_n < t_mime, e_mimetype >
 { using enum_n < t_mime, e_mimetype > :: enum_n; };
+
+template < > struct type_master < t_myersbriggs > : enum_n < t_myersbriggs, e_myersbriggs >
+{ using enum_n < t_myersbriggs, e_myersbriggs > :: enum_n; };
 
 template < > struct type_master < t_namedspace > : enum_n < t_namedspace, e_namedspace >
 { using enum_n < t_namedspace, e_namedspace > :: enum_n; };
@@ -458,9 +464,6 @@ template < > struct type_master < t_page_orientation > : enum_n < t_page_orienta
 
 template < > struct type_master < t_paintkeyword > : enum_n < t_paintkeyword, e_paintkeyword >
 { using enum_n < t_paintkeyword, e_paintkeyword > :: enum_n; };
-
-template < > struct type_master < t_rdfa_context > : enum_n < t_rdfa_context, e_rdfa_context >
-{ using enum_n < t_rdfa_context, e_rdfa_context > :: enum_n; };
 
 template < > struct type_master < t_print > : enum_n < t_print, e_print >
 { using enum_n < t_print, e_print > :: enum_n; };
@@ -485,6 +488,9 @@ template < > struct type_master < t_sandbox > : enum_n < t_sandbox, e_sandbox >
 
 template < > struct type_master < t_scei > : enum_n < t_scei, e_scei >
 { using enum_n < t_scei, e_scei > :: enum_n; };
+
+//template < > struct type_master < t_schema > : enum_n < t_schema, e_schema >
+//{ using enum_n < t_schema, e_schema > :: enum_n; };
 
 template < > struct type_master < t_severity > : enum_n < t_severity, e_severity >
 { using enum_n < t_severity, e_severity > :: enum_n; };

@@ -124,7 +124,6 @@ PASS ../toast/microdata/schema-abc/book-2.html
 88 bad_itemid
 91 bad_itemid
 122 url_id_unfound
-138 bad_datetime bad_datetime bad_datetime bad_datetime
 140 url_id_unfound
 141 url_id_unfound
 142 url_id_unfound

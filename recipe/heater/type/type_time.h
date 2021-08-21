@@ -26,10 +26,14 @@ bool verify_time_5 (nitpick& nits, const html_version& v, const ::std::string& s
 bool verify_absolute (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_duration (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_svg_duration (nitpick& nits, const html_version& v, const ::std::string& s);
+bool verify_day (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_month (nitpick& nits, const html_version& v, const ::std::string& s);
+bool verify_monthday (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_local_datetime (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_timezone (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_week (nitpick& nits, const html_version& v, const ::std::string& s);
+bool verify_year (nitpick& nits, const html_version& v, const ::std::string& s);
+bool verify_yearmonth (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_plain_date (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_coarse_time (nitpick& nits, const html_version& v, const ::std::string& s);
 
@@ -109,6 +113,15 @@ template < > struct type_master < t_just_time > : public tidy_string < t_just_ti
         { if (verify_coarse_time (nits, v, tidy_string < t_just_time > :: get_string ())) return; }
         tidy_string < t_just_time > :: status (s_invalid); } };
 
+template < > struct type_master < t_day > : public tidy_string < t_day >
+{   using tidy_string < t_day > :: tidy_string;
+    static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_day > :: set_value (nits, v, s);
+        if (! tidy_string < t_day > :: good ()) return;
+        if (! verify_day (nits, v, tidy_string < t_day > :: get_string ()))
+            tidy_string < t_day > :: status (s_invalid); } };
+
 template < > struct type_master < t_month > : public tidy_string < t_month >
 {   using tidy_string < t_month > :: tidy_string;
     static e_animation_type animation_type () { return at_time; }
@@ -126,6 +139,15 @@ template < > struct type_master < t_week > : public tidy_string < t_week >
         if (! tidy_string < t_week > :: good ()) return;
         if (! verify_week (nits, v, tidy_string < t_week > :: get_string ()))
             tidy_string < t_week > :: status (s_invalid); } };
+
+template < > struct type_master < t_year > : public tidy_string < t_year >
+{   using tidy_string < t_year > :: tidy_string;
+    static e_animation_type animation_type () { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_year > :: set_value (nits, v, s);
+        if (! tidy_string < t_year > :: good ()) return;
+        if (! verify_year (nits, v, tidy_string < t_year > :: get_string ()))
+            tidy_string < t_year > :: status (s_invalid); } };
 
 template < > struct type_master < t_tz > : public tidy_string < t_tz >
 {   using tidy_string < t_tz > :: tidy_string;

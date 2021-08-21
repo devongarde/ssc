@@ -105,7 +105,6 @@ void element_node::manage_reversioner ()
 void element_node::parse_attributes (const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   PRESUME (va_.box () == nullptr, __FILE__, __LINE__);
     va_.box (this);
-//    if (parent_ != nullptr) nss_ = initialise_namespace_stack (version_, parent_ -> nss_);
     va_.parse (nits_, version_, b, e, line_, elem_, true);
     if (version_.mjr () < 4) return;
     if (! va_.empty ())
@@ -188,15 +187,3 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
     {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
         res += kids -> inner_text (); }
     return res; }
-
-//::std::string element_node::rpt () const
-//{   ::std::ostringstream ss;
-//    ss << elem_.name () << " " << version_.report () << ":\n";
-//    ss << "    " << line_ << " " << closure_ << " " << closed_ << " " << checked_sanitised_ << " " << presumed_ << " ";
-//    if (box_ == nullptr) ss << "-"; else ss << "boxed"; ss << "\n";
-//    ss << "    " << quote (text_) << " " << quote (raw_) << " " << quote (sanitised_) << "\n";
-//    if (prefixes_.get () != nullptr) ss << prefixes_ -> rpt ();
-//    ss << va_.rpt ();
-//    for (element_node* child = child_; child != nullptr; child = child -> next_)
-//        ss << child -> rpt ();
-//    return ss.str (); }

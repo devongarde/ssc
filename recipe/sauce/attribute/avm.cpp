@@ -38,7 +38,7 @@ void avm_init (nitpick& )
     extern hav_t    havt_a [], havt_b [], havt_c [], havt_d [], havt_e [], havt_f [], havt_g [], havt_h [], havt_i [],
                     havt_k [], havt_l [], havt_m [], havt_n [], havt_o [], havt_p [], havt_q [], havt_r [], havt_s [],
                     havt_t [], havt_u [], havt_v [], havt_w [], havt_x [],
-                    havt_cc [], havt_dc [], havt_dct [], havt_rdf [];
+                    havt_cc [], havt_dc [], havt_dct_a [], havt_dct_b [], havt_rdf [];
 
     AVM_INIT(a);
     AVM_INIT(b);
@@ -46,7 +46,8 @@ void avm_init (nitpick& )
     AVM_INIT(cc);
     AVM_INIT(d);
     AVM_INIT(dc);
-    AVM_INIT(dct);
+    AVM_INIT(dct_a);
+    AVM_INIT(dct_b);
     AVM_INIT(e);
     AVM_INIT(f);
     AVM_INIT(g);

@@ -32,19 +32,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 typedef ::std::vector < e_schema_type > vsch_t;
 
-struct sch : symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema >
-{   static e_schema_type parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_microdata_root root = mdr_schema);
+struct sch : symbol < schema_version, e_schema_type, e_schema, s_schema >
+{   static e_schema_type parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root = s_schema);
     static void init (nitpick& nits);
     bool unknown () const
-    {   return (symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema > :: unknown ()) ||
-        (symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema > :: get () == sty_illegal); }
+    {   return (symbol < schema_version, e_schema_type, e_schema, s_schema > :: unknown ()) ||
+        (symbol < schema_version, e_schema_type, e_schema, s_schema > :: get () == sty_illegal); }
     sch () {}
-    sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_microdata_root root = mdr_schema);
+    sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root = s_schema);
     bool enumerated () const;
     bool has_simple_type () const;
     bool external_enumerated () const;
-    e_microdata_root root () const;
-    static e_microdata_root root (const e_schema_type st);
+    e_schema root () const;
+    static e_schema root (const e_schema_type st);
     e_type get_simple_type () const; };
 
 bool enumerated_schema_type (const flags_t flags);

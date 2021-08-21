@@ -562,9 +562,8 @@ PASS ../toast/living/jan10/microdata.html
 86 url_not_found naughty_alt
 89 schema_domain
 95 url_not_found naughty_alt
-126 unrecognised_schema unrecognised_schema
-135 unrecognised_schema unrecognised_schema
-142 unrecognised_schema unrecognised_schema
+135 unrecognised_schema unrecognised_schema not_schema_property bad_itemprop
+142 unrecognised_schema unrecognised_schema not_schema_property bad_itemprop
 
 PASS ../toast/living/jan10/mt.html
 6 missing_close inserted_missing_closure missing_open

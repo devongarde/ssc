@@ -326,10 +326,10 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
                 sb.set_value (nits, v, arg);
                 if (! sb.good ()) allgood = false;
                 else switch (sb.get ())
-                {   case s_scripts : script = true; break;
-                    case s_origin : origin = true; break;
-                    case s_navigation : topnav = true; break;
-                    case s_atnbua : topnavuser = true; break;
+                {   case sand_scripts : script = true; break;
+                    case sand_origin : origin = true; break;
+                    case sand_navigation : topnav = true; break;
+                    case sand_atnbua : topnavuser = true; break;
                     default : break; } }
             if (script && origin)
                 nits.pick (nit_overallowed, ed_50, "4.7.2 The iframe element", es_warning, ec_attribute, "'allow-scripts' and 'allow-same-origin', used together, defeat the sandbox");
@@ -338,24 +338,24 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
             if (allgood) return; }
         string_vector < t_sandboxen, sz_space > :: status (s_invalid); } };
 
-template < > struct type_master < t_schema > : tidy_string < t_schema >
-{   e_microdata_root mdr_ = mdr_none;
+template < > struct type_master < t_schema_type > : tidy_string < t_schema_type >
+{   e_schema mdr_ = s_none;
     e_schema_type st_ = sty_illegal;
     ::std::string vocab_;
-    using tidy_string < t_schema > :: tidy_string;
+    using tidy_string < t_schema_type > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_schema > :: set_value (nits, v, s);
-        if (tidy_string < t_schema > :: good ()) try
-        {   ::std::string name (tidy_string < t_schema > :: get_string ());
+    {   tidy_string < t_schema_type > :: set_value (nits, v, s);
+        if (tidy_string < t_schema_type > :: good ()) try
+        {   ::std::string name (tidy_string < t_schema_type > :: get_string ());
             if (name.find (':') == ::std::string::npos)
-                nits.pick (nit_schema_url, ed_jul20, "5.2.2 Items", es_error, ec_type, quote (s), " must be an absolute URL identifying a standard microdata type (for example, http://" SCHEMA_ORG "/...)");
+                nits.pick (nit_schema_url, ed_jul20, "5.2.2 Items", es_error, ec_type, quote (s), " must be an absolute URL identifying a standard type (for example, 'http://" SCHEMA_ORG "/TypeName')");
             else if ((name.length () < 6) || (name.substr (0, 4) != "http"))
                 nits.pick (nit_schema_domain, es_error, ec_type, quote (s), " is neither 'http://' nor 'https://', so is unknown to " PROG);
             else
             {   ::std::string::size_type ends_at = 0;
-                mdr_ = type_master < t_microdata_root > :: starts_with (name, &ends_at);
-                if (mdr_ == mdr_none)
-                    nits.pick (nit_schema_domain, es_error, ec_type, quote (s), " is a microdata domain unknown to " PROG);
+                mdr_ = schema_names.starts_with (SCHEMA_CURIE, ! v.xhtml (), name, &ends_at);
+                if (mdr_ == s_error)
+                    nits.pick (nit_schema_domain, es_error, ec_type, quote (s), " is a domain unknown to " PROG);
                 else
                 {   if (ends_at > 0) vocab_ = name.substr (ends_at);
                     if (vocab_.empty ())
@@ -365,9 +365,9 @@ template < > struct type_master < t_schema > : tidy_string < t_schema >
                         if (st_ != sty_illegal) return;
                         nits.pick (nit_unrecognised_schema, es_warning, ec_type, quote (s), " is unrecognised by " PROG); } } } }
             catch (...) { }
-        tidy_string < t_schema > :: status (s_invalid); }
+        tidy_string < t_schema_type > :: status (s_invalid); }
     e_schema_type schema_type () const { return st_; }
-    e_microdata_root root () const { return mdr_; }
+    e_schema root () const { return mdr_; }
     ::std::string vocab () const { return vocab_; } };
 
 template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >

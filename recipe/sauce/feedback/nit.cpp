@@ -173,6 +173,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_jul20 : return "HTML 5 living standard (July 2020)";
         case ed_jan21 : return "HTML 5 living standard (Jan 2021)";
         case ed_apr21 : return "HTML 5 living standard (April 2021)";
+        case ed_jul21 : return "HTML 5 living standard (July 2021)";
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
         case ed_mozilla : return "mozilla.org (May 2020)";
         case ed_microdata : return "WhatWG Microdata";
@@ -218,6 +219,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_jul20 : return "HTML 5 living standard, WhatWG, July 2020";
         case ed_jan21 : return "HTML 5 living standard, WhatWG, January 2021";
         case ed_apr21 : return "HTML 5 living standard, WhatWG, April 2021";
+        case ed_jul21 : return "HTML 5 living standard, WhatWG, July 2021";
         case ed_rdfa : return "RDFa Core 1.1 - Third Edition";
         case ed_rdfa_c : return "RDFa Core Initial Context, May 2020";
         case ed_csp : return "Content Security Policy Level 3, Oct 2018, draft";

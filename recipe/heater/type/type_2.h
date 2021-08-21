@@ -118,6 +118,9 @@ template < > struct type_master < t_fill_ve > : two_value < t_fill_ve, e_fill_ve
 template < > struct type_master < t_focushighlight > : two_value < t_focushighlight, e_focushighlight, sz_auto, sz_none, false >
 { using two_value < t_focushighlight, e_focushighlight, sz_auto, sz_none, false > :: two_value; };
 
+template < > struct type_master < t_gender > : two_value < t_gender, e_gender, sz_female, sz_male, false >
+{ using two_value < t_gender, e_gender, sz_female, sz_male, false > :: two_value; };
+
 template < > struct type_master < t_hv > : two_value < t_hv, e_hv, sz_horizontal, sz_vertical, false >
 { using two_value < t_hv, e_hv, sz_horizontal, sz_vertical, false > :: two_value; };
 
@@ -189,6 +192,9 @@ template < > struct type_master < t_ssi_sizefmt > : two_value < t_ssi_sizefmt, e
 
 template < > struct type_master < t_ssi_f > : two_value < t_ssi_f, e_ssi_f, sz_file, sz_virtual, false >
 { using two_value < t_ssi_f, e_ssi_f, sz_file, sz_virtual, false > :: two_value; };
+
+template < > struct type_master < t_startend > : two_value < t_startend, e_startend, sz_start, sz_end, false >
+{ using two_value < t_startend, e_startend, sz_start, sz_end, false > :: two_value; };
 
 template < > struct type_master < t_stitchtiles > : two_value < t_stitchtiles, e_stitchtiles, sz_stitch, sz_nostitch, false >
 { using two_value < t_stitchtiles, e_stitchtiles, sz_stitch, sz_nostitch, false > :: two_value; };

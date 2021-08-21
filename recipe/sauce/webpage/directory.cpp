@@ -181,13 +181,6 @@ bool directory::add_to_content (nitpick& nits, ::boost::filesystem::directory_en
 {   ::boost::filesystem::path q (i.path ());
     fileindex_t ndx = nullfileindex;
     if (is_folder (q)) ndx = insert_directory_path (q);
-//    else
-//    {   ::std::time_t last_write = get_last_write_time (q);
-//        uintmax_t size = get_file_size (q);
-//        if (last_write != 0) ndx = insert_disk_path (q, 0, size, last_write);
-//        else
-//        {   ndx = insert_borked_path (q, 0);
-//            nits.pick (nit_cannot_read, es_warning, ec_directory, "ignoring ", quote (q.string ())); } }
     else ndx = insert_disk_path (q, 0);
     ::std::string p;
     if (site.empty ()) p = get_site_path ();

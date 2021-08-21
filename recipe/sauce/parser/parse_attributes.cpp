@@ -120,7 +120,14 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                                         ((ch >= '0') && (ch <= '9')) ||
                                         (ch == '-') ||
                                         (ch == ':')) break;
-                                if (normal) nits.pick (nit_attribute_name_unexpected_character, es_warning, ec_parser, ::std::string ("unexpected character "), quote (ch), " in attribute name");
+                                if (normal) switch (ch)
+                                {   case '<' :
+                                    case '>' :
+                                        nits.pick (nit_missing_double_quote, es_warning, ec_parser, "unexpected character ", quote (ch), " in attribute name (has a \" been omitted?)");
+                                        break;
+                                    default :
+                                        nits.pick (nit_attribute_name_unexpected_character, es_warning, ec_parser, "unexpected character ", quote (ch), " in attribute name");
+                                        break; }
                                 status = s_dull; break; }
                 break;
             case s_keyend :

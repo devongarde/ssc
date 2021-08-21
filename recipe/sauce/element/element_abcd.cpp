@@ -93,17 +93,17 @@ void element::examine_animatemotion ()
                 {   pick (nit_animatemotion, ed_svg_1_1, "19.2.14 The animateMotion element", es_error, ec_element, "<ANIMATEMOTION> can only have ONE child <MPATH>");
                     return; } }
 
-void element::examine_annotation (const e_element e)
+void element::examine_annotation ()
 {   switch (node_.version ().math ())
     {   case math_2 :
             if (a_.known (a_definitionurl) || a_.known (a_cd) || a_.known (a_name) || a_.known (a_src))
-                pick (nit_annotation, es_info, ec_element, "CD, DEFINITIONURL, NAME, SRC are invalid with <", elem::name (e), "> in MathML 2.0");
+                pick (nit_annotation, es_info, ec_element, "CD, DEFINITIONURL, NAME, SRC are invalid with <", elem::name (tag ()), "> in MathML 2.0");
             break;
         case math_3 :
             break;
         default : return; }
     if (has_child ())
-        pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes no effort to analyse the content of <", elem::name (e), ">"); }
+        pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes no effort to analyse the content of <", elem::name (tag ()), ">"); }
 
 void element::examine_area ()
 {   bool href_known = a_.known (a_href);
@@ -167,7 +167,7 @@ void element::examine_base ()
 {   if (node_.version () == html_tags)
     {   pick (nit_base_undefined, ed_tags, "Page 1, Base Address", es_error, ec_element, "<BASE> is reserved but undefined in HTML Tags");
         return; }
-    if (! only_one_of (elem_base)) return;
+    if (! only_one_of ()) return;
     if (sibling_attributes_.test (a_href) != 0)
         switch (node_.version ().mjr ())
         {   case 0 :
@@ -191,14 +191,15 @@ void element::examine_base ()
         return; }
     check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE);
     url u (nits (), node_.version (), a_.get_string (a_href));
-    if (! u.empty ())
-        if (! u.is_local ())
-        {   pick (nit_element_offsite_base, es_warning, ec_element, "WARNING: Because of the offsite base ", quote (u.original ()), ", " PROG " is abandoning local link checks");
-            page_.check_links (false);
-            return; }
-        else if (u.has_component (es_fragment) || u.has_component (es_query))
-        {  pick (nit_element_bizarre_base, es_error, ec_element, context.filename (), " ignoring bizarre base ", quote (u.original ())); }
-        else context.base (u.original ()); }
+    if (u.empty ())
+        pick (nit_empty, es_error, ec_element, "ignoring empty <BASE>");
+    else if (u.has_component (es_fragment) || u.has_component (es_query))
+    {   pick (nit_element_bizarre_base, es_error, ec_element, context.filename (), " ignoring bizarre <BASE> ", quote (u.original ())); }
+    else
+    {   if (! u.is_local ())
+        {   pick (nit_element_offsite_base, es_warning, ec_element, "WARNING: Because of the offsite <BASE> ", quote (u.original ()), ", " PROG " is abandoning local link checks");
+            page_.check_links (false); }
+        page_.base (u); } }
 
 void element::examine_bind ()
 {   if (! check_math_children (3, true)) return;

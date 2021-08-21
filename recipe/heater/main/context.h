@@ -43,13 +43,14 @@ class corpus;
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
 
 class context_t
-{   bool            article_ = false, body_ = false, cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, forwarded_ = false,
-                    info_ = false, load_css_ = false, links_ = false, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false, microdata_ = false,
-                    nids_ = false, nits_ = false, nits_nits_nits_ = false, nochange_ = false, notify_ = false, once_ = false, presume_tags_ = false, process_webmentions_ = false,
-                    rdfa_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true,
-                    rpt_opens_ = false, schema_ = false, shadow_comment_ = false, shadow_changed_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false,
-                    ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
-    int             code_ = 0, title_ = 0;
+{   bool            article_ = false, body_ = false, cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, fe_ = false,
+                    forwarded_ = false, info_ = false, load_css_ = false, links_ = false, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false,
+                    microdata_ = false, nids_ = false, nits_ = false, nits_nits_nits_ = false, nochange_ = false, notify_ = false, once_ = false, presume_tags_ = false,
+                    process_webmentions_ = false, rdfa_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true,
+                    rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, sarcasm_ = false, schema_ = false, shadow_comment_ = false, shadow_changed_ = false, shadow_enable_ = false,
+                    shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false,
+                    unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
+    int             code_ = 0, dc_ = 1, foaf_ = 99, title_ = 0, xsd_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
     html_version    version_;
@@ -57,7 +58,7 @@ class context_t
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
     e_severity      report_error_ = es_error;
-    ::std::string   base_, export_root_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, msg_, output_, path_, persisted_, root_, secret_, server_,
+    ::std::string   export_root_, filename_, hook_, incoming_, index_, lang_, macro_end_, macro_start_, msg_, output_, path_, persisted_, root_, secret_, server_,
                     shadow_, shadow_persist_, snippet_, stats_, stub_, test_header_, user_, webmention_, write_path_;
     ::boost::filesystem::path config_, corpus_;
     e_wm_status     wm_status_ = wm_undefined;
@@ -74,7 +75,6 @@ public:
     context_t ();
     int parameters (int argc, char** argv);
     bool article () const { return article_; }
-    const ::std::string base () const { return base_; }
     bool body () const { return body_; }
     bool cgi () const { return cgi_; }
     bool checking_urls () const { return checking_urls_; }
@@ -86,6 +86,7 @@ public:
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const { return crosslinks_; }
     const vstr_t custom_elements () const { return custom_elements_; }
+    int dc () const { return dc_; }
     bool dodedu () const { return (copy_ >= c_deduplicate); }
     const ::std::string environment (const e_environment e) const { return environment_.at (e); }
     bool export_defined () const { return ! export_root_.empty (); }
@@ -93,7 +94,9 @@ public:
     const vstr_t exports () const { return exports_; }
     const vstr_t extensions () const { return extensions_; }
     bool external () const { return external_; }
+    bool fe () const { return fe_; }
     const ::std::string filename () const { return filename_; }
+    int foaf () const { return foaf_; }
     bool forwarded () const { return forwarded_; }
     bool has_math () const { return version_.has_math (); }
     bool has_rdfa () const { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
@@ -134,7 +137,7 @@ public:
     ::std::string path () const { return path_; }
     const ::std::string persisted () const { return persisted_; }
     bool process_webmentions () const { return process_webmentions_; }
-    bool rdfa () const { return rdfa_; }
+    bool rdfa () const;
     e_rdf_version rdf_version () const { return version_.rdf_version (); }
     bool rel () const { return rel_; }
     bool repeated () const { return repeated_; }
@@ -147,13 +150,18 @@ public:
     bool rfc_2070 () const { return rfc_2070_; }
     bool rpt_opens () const { return rpt_opens_; }
     const ::std::string root () const { return root_; }
+    bool sarcasm () const { return sarcasm_; }
     bool schema () const { return schema_; }
     schema_version schema_ver () const { return schema_ver_; }
     const ::std::string secret () const { return secret_; }
     const ::std::string server () const { return server_; }
+    bool shadow_any () const { return shadow_pages (); }
     bool shadow_comment () const { return shadow_comment_; }
     bool shadow_changed () const { return shadow_changed_; }
+    bool shadow_enable () const { return shadow_enable_; }
+    bool shadow_files () const { return ((copy_ > c_html) && (copy_ <= c_deduplicate)); }
     const vstr_t shadow_ignore () const { return shadow_ignore_; }
+    bool shadow_pages () const { return ((copy_ > c_none) && (copy_ <= c_deduplicate)); }
     const ::std::string shadow_persist () const { return shadow_persist_; }
     const ::std::string shadow_root () const { return shadow_; }
     bool shadow_ssi () const { return shadow_ssi_; }
@@ -180,13 +188,10 @@ public:
     const vstr_t virtuals () const { return virtuals_; }
     const ::std::string webmention () const { return webmention_; }
     const ::std::string write_path () const { return write_path_; }
-    bool shadow_pages () const { return ((copy_ > c_none) && (copy_ <= c_deduplicate)); }
-    bool shadow_files () const { return ((copy_ > c_html) && (copy_ <= c_deduplicate)); }
-    bool shadow_any () const { return shadow_pages (); }
     bool update () const { return update_; }
     bool versioned () const { return versioned_; }
+    int xsd () const { return xsd_; }
     context_t& article (const bool b) { article_ = b; return *this; }
-    context_t& base (const ::std::string& s) { base_ = s; return *this; }
     context_t& body (const bool b) { body_ = b; return *this; }
     context_t& cgi (const bool b) { cgi_ = b; return *this; }
     context_t& checking_urls (const bool b) { checking_urls_ = b; return *this; }
@@ -201,6 +206,7 @@ public:
     css_cache& css () { return css_; }
     const css_cache& css () const { return css_; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; return *this; }
+    context_t& dc (const int d) { if ((d == 0) || (d == 1)) dc_ = d; return *this; }
     context_t& environment (const e_environment e, const ::std::string& s);
     context_t& export_root (const ::std::string& s) { export_root_ = s; return *this; }
     context_t& exports (const vstr_t& s) { exports_ = s; return *this; }
@@ -210,7 +216,9 @@ public:
         if (b) links (b);
         else { forwarded (false); once (false); revoke (false); microdata (false); }
         return *this; }
+    context_t& fe (const bool b) { fe_ = b; return *this; }
     context_t& filename (const ::std::string& s) { filename_ = s; return *this; }
+    context_t& foaf (const int f) { if ((f > 0) && (f <= 99)) foaf_ = f; return *this; }
     context_t& forwarded (const bool b)
     {   forwarded_ = b;
         if (b) external (b);
@@ -278,6 +286,7 @@ public:
     context_t& rfc_2070 (const bool b) { rfc_2070_ = b; return *this; }
     context_t& root (const ::std::string& s) { root_ = s; return *this; }
     context_t& rpt_opens (const bool b) { rpt_opens_ = b; return *this; }
+    context_t& sarcasm (const bool b) { sarcasm_ = b; return *this; }
     context_t& schema (const bool b)
     {   schema_ = b;
         if (schema_ver_.empty ()) schema_ver_ = schema_default;
@@ -285,14 +294,15 @@ public:
     context_t& schema_ver (const schema_version& sv) { schema_ver_.reset (sv); return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
-    context_t& shadow_comment (const bool b) { shadow_comment_ = b; return *this; }
-    context_t& shadow_changed (const bool b) { shadow_changed_ = b; return *this; }
+    context_t& shadow_enable (const bool b) { shadow_enable_ = b; return *this; }
+    context_t& shadow_comment (const bool b) { shadow_comment_ = b; if (b) shadow_enable (true); return *this; }
+    context_t& shadow_changed (const bool b) { shadow_changed_ = b; if (b) shadow_enable (true); return *this; }
     context_t& shadow_ignore (const vstr_t& s);
-    context_t& shadow_persist (const ::std::string& s) { shadow_persist_ = s; return *this; }
-    context_t& shadow_root (const ::std::string& s) { shadow_ = s; return *this; }
-    context_t& shadow_ssi (const bool b) { shadow_ssi_ = b; return *this; }
-    context_t& shadow_space (const bool b) { shadow_space_ = b; return *this; }
-    context_t& shadows (const vstr_t& s) { shadows_ = s; return *this; }
+    context_t& shadow_persist (const ::std::string& s) { shadow_persist_ = s; shadow_enable (true); return *this; }
+    context_t& shadow_root (const ::std::string& s) { shadow_ = s; shadow_enable (true); return *this; }
+    context_t& shadow_ssi (const bool b) { shadow_ssi_ = b; if (b) shadow_enable (true); return *this; }
+    context_t& shadow_space (const bool b) { shadow_space_ = b; if (b) shadow_enable (true); return *this; }
+    context_t& shadows (const vstr_t& s) { shadows_ = s; shadow_enable (true); return *this; }
     context_t& site (const vstr_t& s) { site_ = s; return *this; }
     context_t& slob (const bool b) { slob_ = b; return *this; }
     context_t& spec (const bool b) { spec_ = b; return *this; }
@@ -318,6 +328,7 @@ public:
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; return *this; }
     context_t& webmention (const ::std::string& w, const e_wm_status status);
     context_t& write_path (const ::std::string& s) { write_path_ = s; return *this; }
+    context_t& xsd (const int x) { if ((x == 0) || (x == 1)) xsd_ = x; return *this; }
     void reset_webmention ()
     {   webmention_.clear ();
         wm_status_ = wm_undefined; }

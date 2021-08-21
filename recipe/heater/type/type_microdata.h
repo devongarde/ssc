@@ -67,3 +67,17 @@ template < > struct type_master < t_itemtype > : string_vector < t_itemtype, sz_
 template < > struct type_master < t_mf_listing_actions > : type_at_least_one < t_mf_listing_actions, sz_space, t_mf_listing_action >
 { using type_at_least_one < t_mf_listing_actions, sz_space, t_mf_listing_action > :: type_at_least_one; };
 
+template < > struct type_master < t_sha256 > : tidy_string < t_sha256 >
+{    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_sha256 > :: set_value (nits, v, s);
+        if (tidy_string < t_sha256 > :: empty ())
+        {   nits.pick (nit_bad_sha, es_error, ec_type, "A sha256 hash cannot be empty");
+            tidy_string < t_sha256 > :: status (s_invalid); }
+        else if (tidy_string < t_sha256 > :: good ())
+        {   ::std::string ss (tidy_string < t_sha256 > :: get_string ());
+            if (ss.find_first_not_of (HEX) != ::std::string::npos)
+                nits.pick (nit_bad_sha, es_error, ec_type, quote (s), " is not hexadecimal");
+            else if (ss.length () != 56)
+                nits.pick (nit_bad_sha, es_error, ec_type, quote (s), " is not precisely 56 characters long");
+            else return;
+            tidy_string < t_sha256 > :: status (s_invalid); } } };

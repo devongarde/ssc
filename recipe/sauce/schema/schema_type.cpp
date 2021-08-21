@@ -32,8 +32,216 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SF_NO_SIMPLE_TYPE       0
 #define MAKE_SIMPLE_TYPE(T)     static_cast < flags_t > (T)
 
-struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schema > schema_type_symbol_table [] =
-{   // schema.org
+struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema_type_symbol_table [] =
+{   // common tag
+    { { s_ctag, 1, 0 }, { 0, 0 }, "AuthorTag", ctag_author, s_ctag },
+    { { s_ctag, 1, 0 }, { 0, 0 }, "AutoTag", ctag_auto, s_ctag },
+    { { s_ctag, 1, 0 }, { 0, 0 }, "ReaderTag", ctag_reader, s_ctag },
+    { { s_ctag, 1, 0 }, { 0, 0 }, "Tag", ctag_tag, s_ctag },
+
+    // DCAM
+    { { s_dcam, 1, 0 }, { 0, 0 }, "VocabularyEncodingScheme", dcam_vocabularyencodingscheme, s_dcam },
+
+    // DCMI
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "Collection", dcmi_collection, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "Dataset", dcmi_dataset, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "Event", dcmi_event, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "Image", dcmi_image, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "InteractiveResource", dcmi_interactiveresource, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "MovingImage", dcmi_movingimage, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "PhysicalObject", dcmi_physicalobject, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "Service", dcmi_service, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "Software", dcmi_software, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "Sound", dcmi_sound, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "StillImage", dcmi_stillimage, s_dcmi },
+    { { s_dcmi, 1, 0 }, { 0, 0 }, "Text", dcmi_text, s_dcmi },
+
+    // dublin core terms
+    { { s_dct, 1, 0 }, { 0, 0 }, "Agent", dct_agent, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "AgentClass", dct_agentclass, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "BibliographicResource", dct_bibliographicresource, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "FileFormat", dct_fileformat, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "Frequency", dct_frequency, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "Jurisdiction", dct_jurisdiction, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "LicenseDocument", dct_licencedocument, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "LinguisticSystem", dct_linguisticsystem, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "Location", dct_location, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "LocationPeriodOrJurisdiction", dct_locationperiodorjurisdiction, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "MediaType", dct_mediatype, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "MediaTypeOrExtent", dct_mediatypeorextent, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "MethodOfAccrual", dct_methodofaccrual, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "MethodOfInstruction", dct_methodofinstruction, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "PeriodOfTime", dct_periodoftime, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "PhysicalMedium", dct_physicalmedium, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "PhysicalResource", dct_physicalresource, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "Policy", dct_policy, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "ProvenanceStatement", dct_provenancestatement, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "RightsStatement", dct_rightsstatement, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "SizeOrDuration", dct_sizeorduration, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "Standard", dct_standard, s_dct },
+
+    // foaf
+    { { s_foaf, 0, 1 }, { 0, 0 }, "Agent", foaf_agent, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "Document", foaf_document, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "Group", foaf_group, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "Image", foaf_image, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "LabelProperty", foaf_labelproperty, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "OnlineAccount", foaf_onlineaccount, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "OnlineChatAccount", foaf_onlinechataccount, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "OnlineEcommerceAccount", foaf_onlineecommerceaccount, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "OnlineGamingAccount", foaf_onlinegamingaccount, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "Organization", foaf_organisation, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "Person", foaf_person, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "PersonalProfileDocument", foaf_personalprofiledocument, s_foaf },
+    { { s_foaf, 0, 1 }, { 0, 0 }, "Project", foaf_project, s_foaf },
+
+    // good relations
+    { { s_gr, 1, 0, SV_DEPRECATED }, { 0, 0 }, "ActualProductOrServiceInstance", gr_actualproductorserviceinstance, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Brand", gr_brand, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "BusinessEntity", gr_businessentity, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "BusinessEntityType", gr_businessentitytype, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "BusinessFunction", gr_businessfunction, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DayOfWeek", gr_dayofweek, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DeliveryChargeSpecification", gr_deliverychargespecification, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DeliveryMethod", gr_deliverymethod, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DeliveryModeParcelService", gr_deliverymodeparcelservice, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Individual", gr_individual, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "License", gr_licence, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Location", gr_location, s_gr },
+    { { s_gr, 1, 0, SV_DEPRECATED }, { 0, 0 }, "LocationOfSalesOrServiceProvisioning", gr_locationofsalesorserviceprovisioning, s_gr },
+    { { s_gr, 1, 0, SV_DEPRECATED }, { 0, 0 }, "N-Ary-Relations", gr_n_ary_relations, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Offering", gr_offering, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "OpeningHoursSpecification", gr_openinghoursspecification, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PaymentChargeSpecification", gr_paymentchargespecification, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PaymentMethod", gr_paymentmethod, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PaymentMethodCreditCard", gr_paymentmethodcreditcard, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PriceSpecification", gr_pricespecification, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "ProductOrService", gr_productorservice, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "ProductOrServiceModel", gr_productorservicemodel, s_gr },
+    { { s_gr, 1, 0, SV_DEPRECATED }, { 0, 0 }, "ProductOrServicesSomeInstancesPlaceholder", gr_productorservicessomeinstancesplaceholder, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "QualitativeValue", gr_qualitativevalue, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "QuantitativeValue", gr_quantitativevalue, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "QuantitativeValueFloat", gr_quantitativevaluefloat, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "QuantitativeValueInteger", gr_quantitativevalueinteger, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "SomeItems", gr_someitems, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "TypeAndQuantityNode", gr_typeandquantitynode, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "UnitPriceSpecification", gr_unitpricespecification, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "WarrantyPromise", gr_warrantypromise, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "WarrantyScope", gr_warrantyscope, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "AmericanExpress", gr_americanexpress, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Business", gr_business, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "ByBankTransferInAdvance", gr_bybanktransferinadvance, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "ByInvoice", gr_byinvoice, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Cash", gr_cash, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "CheckInAdvance", gr_checkinadvance, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "COD", gr_cod, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "ConstructionInstallation", gr_constructioninstallation, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DeliveryModeDirectDownload", gr_deliverymodedirectdownload, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DeliveryModeFreight", gr_deliverymodefreight, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DeliveryModeMail", gr_deliverymodemail, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DeliveryModeOwnFleet", gr_deliverymodeownfleet, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DeliveryModePickUp", gr_deliverymodepickup, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DHL", gr_dhl, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DinersClub", gr_dinersclub, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "DirectDebit", gr_directdebit, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Discover", gr_discover, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Dispose", gr_dispose, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Enduser", gr_enduser, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "FederalExpress", gr_federalexpress, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Friday", gr_friday, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "GoogleCheckout", gr_googlecheckout, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "JCB", gr_jcb, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Labor-BringIn", gr_labour_bringin, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "LeaseOut", gr_leaseout, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Maintain", gr_maintain, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "MasterCard", gr_mastercard, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Monday", gr_monday, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PartsAndLabor-BringIn", gr_partsandlabour_bringin, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PartsAndLabor-PickUp", gr_partsandlabour_pickup, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PayPal", gr_paypal, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PaySwarm", gr_payswarm, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "ProvideService", gr_provideservice, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PublicHolidays", gr_publicholidays, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "PublicInstitution", gr_publicinstitution, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Repair", gr_repair, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Reseller", gr_reseller, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Saturday", gr_saturday, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Sell", gr_sell, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Sunday", gr_sunday, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Thursday", gr_thursday, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Tuesday", gr_tuesday, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "UPS", gr_ups, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "VISA", gr_visa, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Wednesday", gr_wednesday, s_gr },
+    { { s_gr, 1, 0 }, { 0, 0 }, "Buy", gr_buy, s_gr },
+
+    // ical
+    { { s_ical, 1, 0 }, { 0, 0 }, "Vevent", ical_vevent, s_ical },
+    { { s_ical, 1, 0 }, { 0, 0 }, "Vtimezone", ical_vtimezone, s_ical },
+
+    // https://web.archive.org/web/20101126105442/http://microformats.org/wiki/microdata
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_ADR, mft_adr, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_GEO, mft_geo, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_ATOM, mft_hatom, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_AUDIO, mft_haudio, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar", mft_hcalendar, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_ENTRY, mft_hentry, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_LISTING, mft_hlisting, s_microformats, SF_NO_ITEMID | SF_DEPRECATED }, // no XMDP, but ...
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_MEDIA, mft_hmedia, s_microformats, SF_NO_ITEMID | SF_DEPRECATED }, // no XMDP, but ...
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_NEWS, mft_hnews, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_PRODUCT, mft_hproduct, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_RECIPE, mft_hrecipe, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_RESUME, mft_hresume, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_REVIEW, mft_hreview, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_REVIEW_AGGREGATE, mft_haggregate, s_microformats, SF_NO_ITEMID | SF_DEPRECATED },
+
+    // https://microformats.org/wiki/microdata (April 2021)
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_ADR, mft2_hadr, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_BREADCRUMB, mft2_hbreadcrumb, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_CARD, mft2_hcard, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_CITE, mft2_hcite, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_ENTRY, mft2_hentry, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_EVENT, mft2_hevent, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_FEED, mft2_hfeed, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_GEO, mft2_hgeo, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_ITEM, mft2_hitem, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_LISTING, mft2_hlisting, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_PRODUCT, mft2_hproduct, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_RECIPE, mft2_hrecipe, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_RESUME, mft2_hresume, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_REVIEW, mft2_hreview, s_microformats },
+    { { s_microformats, 2, 0 }, { 0, 0 }, "profile/" H_AGGREGATE, mft2_haggregate, s_microformats },
+
+    // poetry
+    { { s_poetry, 1, 0 }, { 0, 0 }, "Dialect", poetry_dialect, s_poetry },
+    { { s_poetry, 1, 0 }, { 0, 0 }, "Form", poetry_form, s_poetry },
+    { { s_poetry, 1, 0 }, { 0, 0 }, "Poem", poetry_poem, s_poetry },
+    { { s_poetry, 1, 0 }, { 0, 0 }, "Period", poetry_period, s_poetry },
+    { { s_poetry, 1, 0 }, { 0, 0 }, "Stanza", poetry_stanza, s_poetry },
+
+    // RDF
+    { { s_rdf, 1, 0 }, { 0, 0 }, "Alt", rdf_alt, s_rdf },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "Bag", rdf_bag, s_rdf },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "Compoundliteral", rdf_compoundliteral, s_rdf, MAKE_SIMPLE_TYPE (t_text) },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "HTML", rdf_html, s_rdf, s_rdf, MAKE_SIMPLE_TYPE (t_xmlliteral) },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "JSON", rdf_json, s_rdf, MAKE_SIMPLE_TYPE (t_xmlliteral) },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "langString", rdf_langstring, s_rdf, MAKE_SIMPLE_TYPE (t_lang) },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "List", rdf_list, s_rdf },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "Plainliteral", rdf_plainliteral, s_rdf, MAKE_SIMPLE_TYPE (t_text) },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "Property", rdf_property, s_rdf },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "Seq", rdf_seq, s_rdf },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "Statement", rdf_statement, s_rdf },
+    { { s_rdf, 1, 0 }, { 0, 0 }, "XMLLiteral", rdf_xmlliteral, s_rdf, MAKE_SIMPLE_TYPE (t_xmlliteral) },
+
+    // RDFs
+    { { s_rdfs, 1, 0 }, { 0, 0 }, "Class", rdfs_class, s_rdfs },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, "Container", rdfs_container, s_rdfs },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, "ContainerMembershipProperty", rdfs_containermembershipproperty, s_rdfs },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, "Datatype", rdfs_datatype, s_rdfs },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, "Literal", rdfs_literal, s_rdfs },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, "Resource", rdfs_resource, s_rdfs },
+
+    // schema.org
     { { 2, 0 }, { 0, 0 }, "APIReference", sch_apireference },
     { { 3, 5 }, { 0, 0 }, "3DModel", sch_3dmodel },
     { { 3, 6 }, { 6, 0 }, "Abdomen", sch_abdomen },
@@ -44,7 +252,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "AchieveAction", sch_achieveaction },
     { { 2, 0 }, { 0, 0 }, "Action", sch_action },
     { { 3, 5 }, { 0, 0 }, "ActionAccessSpecification", sch_actionaccessspecification },
-    { { 2, 0 }, { 0, 0 }, "ActionStatusType", sch_actionstatustype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "ActionStatusType", sch_actionstatustype, s_schema, SF_ENUMERATION },
     { { 11, 0 }, { 0, 0 }, "ActivationFee", sch_activationfee },
     { { 2, 0 }, { 0, 0 }, "ActivateAction", sch_activateaction },
     { { 3, 5 }, { 0, 0 }, "ActiveActionStatus", sch_activeactionstatus },
@@ -97,6 +305,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Audiobook", sch_audiobook },
     { { 3, 5 }, { 0, 0 }, "AudiobookFormat", sch_audiobookformat },
     { { 2, 0 }, { 0, 0 }, "AudioObject", sch_audioobject },
+    { { 13, 0 }, { 0, 0 }, "AudioObjectSnapshot", sch_audioobjectsnapshot },
     { { 7, 0 }, { 0, 0 }, "AuthenticContent", sch_authenticcontent },
     { { 3, 5 }, { 0, 0 }, "AuthoritativeLegalValue", sch_authoritativelegalvalue },
     { { 2, 0 }, { 0, 0 }, "AuthorizeAction", sch_authoriseaction },
@@ -127,10 +336,11 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "BefriendAction", sch_befriendaction },
     { { 5, 0 }, { 0, 0 }, "BenefitsHealthAspect", sch_benefitshealthaspect },
     { { 2, 0 }, { 0, 0 }, "BikeStore", sch_bikestore },
+    { { 13, 0 }, { 0, 0 }, "BioChemEntity", sch_biochementity },
     { { 2, 0 }, { 0, 0 }, "Blog", sch_blog },
     { { 2, 0 }, { 0, 0 }, "BlogPosting", sch_blogposting },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "BloodTest", sch_bloodtest },
-    { { 2, 0 }, { 0, 0 }, "BoardingPolicyType", sch_boardingpolicytype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "BoardingPolicyType", sch_boardingpolicytype, s_schema, SF_ENUMERATION },
     { { 9, 0 }, { 0, 0 }, "BoatReservation", sch_boatreservation },
     { { 9, 0 }, { 0, 0 }, "BoatTerminal", sch_boatterminal },
     { { 9, 0 }, { 0, 0 }, "BoatTrip", sch_boattrip },
@@ -143,7 +353,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementHeight", sch_bodymeasurementheight },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementHips", sch_bodymeasurementhips },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementInsideLeg", sch_bodymeasurementinsideleg },
-    { { 12, 0 }, { 0, 0 }, "BodyMeasurementTypeEnumeration", sch_bodymeasurementtypeenumeration, mdr_schema, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "BodyMeasurementTypeEnumeration", sch_bodymeasurementtypeenumeration, s_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementNeck", sch_bodymeasurementneck },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementUnderbust", sch_bodymeasurementunderbust },
     { { 12, 0 }, { 0, 0 }, "BodyMeasurementWaist", sch_bodymeasurementwaist },
@@ -151,11 +361,11 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "BodyOfWater", sch_bodyofwater },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Bone", sch_bone },
     { { 2, 0 }, { 0, 0 }, "Book", sch_book },
-    { { 2, 0 }, { 0, 0 }, "BookFormatType", sch_bookformattype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "BookFormatType", sch_bookformattype, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "BookMarkAction", sch_bookmarkaction },
     { { 2, 0 }, { 0, 0 }, "BookSeries", sch_bookseries },
     { { 2, 0 }, { 0, 0 }, "BookStore", sch_bookstore },
-    { { 2, 0 }, { 0, 0 }, "Boolean", sch_boolean, mdr_schema, SF_ENUMERATION | MAKE_SIMPLE_TYPE (t_bool) },
+    { { 2, 0 }, { 0, 0 }, "Boolean", sch_boolean, s_schema, SF_ENUMERATION | MAKE_SIMPLE_TYPE (t_bool) },
     { { 2, 0 }, { 0, 0 }, "BorrowAction", sch_borrowaction },
     { { 2, 0 }, { 0, 0 }, "BowlingAlley", sch_bowlingalley },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "BrainStructure", sch_brainstructure },
@@ -171,9 +381,9 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "BrokerageAccount", sch_brokerageaccount },
     { { 2, 0 }, { 0, 0 }, "BuddhistTemple", sch_buddhisttemple },
     { { 2, 0 }, { 0, 0 }, "BusinessAudience", sch_businessaudience },
-    { { 2, 0 }, { 0, 0 }, "BusinessEntityType", sch_businessentitytype, mdr_schema, SF_EXTERNAL_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "BusinessEntityType", sch_businessentitytype, s_schema, SF_EXTERNAL_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "BusinessEvent", sch_businessevent },
-    { { 2, 0 }, { 0, 0 }, "BusinessFunction", sch_businessfunction, mdr_schema, SF_EXTERNAL_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "BusinessFunction", sch_businessfunction, s_schema, SF_EXTERNAL_ENUMERATION },
     { { 7, 4 }, { 0, 0 }, "BusinessSupport", sch_businesssupport },
     { { 3, 5 }, { 0, 0 }, "BusOrCoach", sch_busorcoach },
     { { 2, 0 }, { 0, 0 }, "BusReservation", sch_busreservation },
@@ -190,7 +400,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "Car", sch_car },
     { { 3, 6 }, { 6, 0 }, "Cardiovascular", sch_cardiovascular },
     { { 3, 6 }, { 6, 0 }, "CardiovascularExam", sch_cardiovascularexam },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "CarUsageType", sch_carusagetype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "CarUsageType", sch_carusagetype, s_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "CaseSeries", sch_caseseries },
     { { 2, 0 }, { 0, 0 }, "Casino", sch_casino },
     { { 3, 5 }, { 0, 0 }, "CassetteFormat", sch_cassetteformat },
@@ -207,6 +417,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "CheckInAction", sch_checkinaction },
     { { 2, 0 }, { 0, 0 }, "CheckOutAction", sch_checkoutaction },
     { { 2, 0 }, { 0, 0 }, "CheckOutPage", sch_checkoutpage },
+    { { 13, 0 }, { 0, 0 }, "ChemicalSubstance", sch_chemicalsubstance },
     { { 2, 0 }, { 0, 0 }, "ChildCare", sch_childcare },
     { { 2, 0 }, { 0, 0 }, "ChildrensEvent", sch_childrensevent },
     { { 3, 6 }, { 6, 0 }, "Chiropractic", sch_harmful },
@@ -250,7 +461,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "ConsumeAction", sch_consumeaction },
     { { 2, 0 }, { 0, 0 }, "ContactPage", sch_contactpage },
     { { 2, 0 }, { 0, 0 }, "ContactPoint", sch_contactpoint },
-    { { 2, 0 }, { 0, 0 }, "ContactPointOption", sch_contactpointoption, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "ContactPointOption", sch_contactpointoption, s_schema, SF_ENUMERATION },
     { { 5, 0 }, { 0, 0 }, "ContagiousnessHealthAspect", sch_contagiousnesshealthaspect },
     { { 2, 0 }, { 0, 0 }, "Continent", sch_continent },
     { { 2, 0 }, { 0, 0 }, "ControlAction", sch_controlaction },
@@ -286,10 +497,10 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 0 }, { 0, 0 }, "DataFeedItem", sch_datafeeditem },
     { { 2, 0 }, { 0, 0 }, "Dataset", sch_dataset },
     { { 2, 0 }, { 0, 0 }, "DataType", sch_datatype },
-    { { 2, 0 }, { 0, 0 }, "Date", sch_date, mdr_schema, MAKE_SIMPLE_TYPE (t_just_date) },
+    { { 2, 0 }, { 0, 0 }, "Date", sch_date, s_schema, MAKE_SIMPLE_TYPE (t_just_date) },
     { { 2, 0 }, { 3, 4 }, "DatedMoneySpecification", sch_datedmoneyspecification },
-    { { 2, 0 }, { 0, 0 }, "DateTime", sch_datetime, mdr_schema, MAKE_SIMPLE_TYPE (t_datetime) },
-    { { 2, 0 }, { 0, 0 }, "DayOfWeek", sch_dayofweek, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "DateTime", sch_datetime, s_schema, MAKE_SIMPLE_TYPE (t_datetime) },
+    { { 2, 0 }, { 0, 0 }, "DayOfWeek", sch_dayofweek, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "DaySpa", sch_dayspa },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DDxElement", sch_ddxelement },
     { { 2, 0 }, { 0, 0 }, "DeactivateAction", sch_deactivateaction },
@@ -302,7 +513,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "DeleteAction", sch_deleteaction },
     { { 2, 0 }, { 0, 0 }, "DeliveryChargeSpecification", sch_deliverychargespecification },
     { { 2, 0 }, { 0, 0 }, "DeliveryEvent", sch_deliveryevent },
-    { { 2, 0 }, { 0, 0 }, "DeliveryMethod", sch_deliverymethod, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "DeliveryMethod", sch_deliverymethod, s_schema, SF_ENUMERATION },
     { { 8, 0 }, { 0, 0 }, "DeliveryTimeSettings", sch_deliverytimesettings },
     { { 2, 0 }, { 0, 0 }, "Demand", sch_demand },
     { { 3, 5 }, { 0, 0 }, "DemoAlbum", sch_demoalbum },
@@ -322,7 +533,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "DigitalAudioTapeFormat", sch_digitalaudiotapeformat },
     { { 3, 0 }, { 0, 0 }, "DigitalDocument", sch_digitaldocument },
     { { 3, 0 }, { 0, 0 }, "DigitalDocumentPermission", sch_digitaldocumentpermission },
-    { { 3, 0 }, { 0, 0 }, "DigitalDocumentPermissionType", sch_digitaldocumentpermissiontype, mdr_schema, SF_ENUMERATION },
+    { { 3, 0 }, { 0, 0 }, "DigitalDocumentPermissionType", sch_digitaldocumentpermissiontype, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "DigitalFormat", sch_digitalformat },
     { { 7, 4 }, { 0, 0 }, "DisabilitySupport", sch_disabilitysupport },
     { { 2, 0 }, { 0, 0 }, "DisagreeAction", sch_disagreeaction },
@@ -342,18 +553,18 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "DrawAction", sch_drawaction },
     { { 3, 5 }, { 0, 0 }, "Drawing", sch_drawing },
     { { 2, 0 }, { 0, 0 }, "DrinkAction", sch_drinkaction },
-    { { 2, 0 }, { 0, 0 }, "DriveWheelConfigurationValue", sch_drivewheelconfigurationvalue, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "DriveWheelConfigurationValue", sch_drivewheelconfigurationvalue, s_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "DrivingSchoolVehicleUsage", sch_drivingschoolvehicleusage },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Drug", sch_drug },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugClass", sch_drugclass },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugCost", sch_drugcost },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugCostCategory", sch_drugcostcategory, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugCostCategory", sch_drugcostcategory, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugLegalStatus", sch_druglegalstatus },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugPregnancyCategory", sch_drugpregnancycategory, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugPregnancyCategory", sch_drugpregnancycategory, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugPrescriptionStatus", sch_drugprescriptionstatus },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "DrugStrength", sch_drugstrength },
     { { 2, 0 }, { 0, 0 }, "DryCleaningOrLaundry", sch_drycleaningorlaundry },
-    { { 2, 0 }, { 0, 0 }, "Duration", sch_duration,  mdr_schema, MAKE_SIMPLE_TYPE (t_duration) },
+    { { 2, 0 }, { 0, 0 }, "Duration", sch_duration, s_schema, MAKE_SIMPLE_TYPE (t_duration) },
     { { 3, 5 }, { 0, 0 }, "DVDFormat", sch_dvdformat },
     { { 3, 6 }, { 6, 0 }, "Ear", sch_ear },
     { { 2, 0 }, { 0, 0 }, "EatAction", sch_eataction },
@@ -381,7 +592,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "EndorsementRating", sch_endorsementrating },
     { { 2, 0 }, { 0, 0 }, "Energy", sch_energy },
     { { 10, 0 }, { 0, 0 }, "EnergyConsumptionDetails", sch_energyconsumptiondetails },
-    { { 10, 0 }, { 0, 0 }, "EnergyEfficiencyEnumeration", sch_energyefficiencyenumeration, mdr_schema, SF_ENUMERATION },
+    { { 10, 0 }, { 0, 0 }, "EnergyEfficiencyEnumeration", sch_energyefficiencyenumeration, s_schema, SF_ENUMERATION },
     { { 10, 0 }, { 0, 0 }, "EnergyStarCertified", sch_energystarcertified },
     { { 2, 0 }, { 0, 0 }, "EngineSpecification", sch_enginespecification },
     { { 3, 6 }, { 6, 0 }, "EnrollingByInvitation", sch_enrollingbyinvitation },
@@ -399,10 +610,10 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyCategoryE", sch_euenergyefficiencycategorye },
     { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyCategoryF", sch_euenergyefficiencycategoryf },
     { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyCategoryG", sch_euenergyefficiencycategoryg },
-    { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyEnumeration", sch_euenergyefficiencyenumeration, mdr_schema, SF_ENUMERATION },
+    { { 10, 0 }, { 0, 0 }, "EUEnergyEfficiencyEnumeration", sch_euenergyefficiencyenumeration, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "EPRelease", sch_eprelease },
     { { 2, 0 }, { 0, 0 }, "Event", sch_event },
-    { { 7, 0 }, { 0, 0 }, "EventAttendanceModeEnumeration", sch_eventattendancemodeenumeration, mdr_schema, SF_ENUMERATION },
+    { { 7, 0 }, { 0, 0 }, "EventAttendanceModeEnumeration", sch_eventattendancemodeenumeration, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "EventCancelled", sch_eventcancelled },
     { { 7, 0 }, { 0, 0 }, "EventMovedOnline", sch_eventmovedonline },
     { { 3, 5 }, { 0, 0 }, "EventPostponed", sch_eventpostponed },
@@ -410,7 +621,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "EventReservation", sch_eventreservation },
     { { 3, 5 }, { 0, 0 }, "EventScheduled", sch_eventscheduled },
     { { 3, 5 }, { 0, 0 }, "EventSeries", sch_eventseries },
-    { { 2, 0 }, { 0, 0 }, "EventStatusType", sch_eventstatustype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "EventStatusType", sch_eventstatustype, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "EventVenue", sch_eventvenue },
     { { 3, 6 }, { 6, 0 }, "EvidenceLevelA", sch_evidencelevela },
     { { 3, 6 }, { 6, 0 }, "EvidenceLevelB", sch_evidencelevelb },
@@ -442,7 +653,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Flexibility", sch_flexibility },
     { { 2, 0 }, { 0, 0 }, "Flight", sch_flight },
     { { 2, 0 }, { 0, 0 }, "FlightReservation", sch_flightreservation },
-    { { 2, 0 }, { 0, 0 }, "Float", sch_float, mdr_schema, MAKE_SIMPLE_TYPE (t_real) },
+    { { 2, 0 }, { 0, 0 }, "Float", sch_float, s_schema, MAKE_SIMPLE_TYPE (t_real) },
     { { 6, 0 }, { 0, 0 }, "FloorPlan", sch_floorplan },
     { { 2, 0 }, { 0, 0 }, "Florist", sch_florist },
     { { 3, 5 }, { 0, 0 }, "FMRadioChannel", sch_fmradiochannel },
@@ -452,6 +663,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "FoodEvent", sch_foodevent },
     { { 3, 1 }, { 0, 0 }, "FoodService", sch_foodservice },
     { { 3, 6 }, { 6, 0 }, "FourWheelDriveConfiguration", sch_fourwheeldriveconfiguration },
+    { { 13, 0 }, { 0, 0 }, "FreeReturn", sch_freereturn },
     { { 3, 5 }, { 0, 0 }, "Friday", sch_friday },
     { { 3, 6 }, { 6, 0 }, "FrontWheelDriveConfiguration", sch_frontwheeldriveconfiguration },
     { { 3, 8 }, { 0, 0 }, "FullRefund", sch_fullrefund },
@@ -460,15 +672,16 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 6 }, { 6, 0 }, "Fungus", sch_fungus },
     { { 2, 0 }, { 0, 0 }, "FurnitureStore", sch_furniturestore },
     { { 2, 0 }, { 0, 0 }, "Game", sch_game },
-    { { 2, 0 }, { 0, 0 }, "GamePlayMode", sch_gameplaymode, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "GamePlayMode", sch_gameplaymode, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "GameServer", sch_gameserver },
-    { { 2, 0 }, { 0, 0 }, "GameServerStatus", sch_gameserverstatus, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "GameServerStatus", sch_gameserverstatus, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "GardenStore", sch_gardenstore },
     { { 2, 0 }, { 0, 0 }, "GasStation", sch_gasstation },
     { { 3, 6 }, { 6, 0 }, "Gastroenterologic", sch_gastroenterologic },
     { { 2, 0 }, { 0, 0 }, "GatedResidenceCommunity", sch_gatedresidencecommunity },
-    { { 3, 0 }, { 0, 0 }, "GenderType", sch_gendertype, mdr_schema, SF_ENUMERATION },
+    { { 3, 0 }, { 0, 0 }, "GenderType", sch_gendertype, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "GeneralContractor", sch_generalcontractor },
+    { { 13, 0 }, { 0, 0 }, "Gene", sch_gene },
     { { 3, 6 }, { 6, 0 }, "Genetic", sch_genetic },
     { { 3, 6 }, { 6, 0 }, "Genitourinary", sch_genitourinary },
     { { 2, 2 }, { 0, 0 }, "GeoCircle", sch_geocircle },
@@ -480,7 +693,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "GiveAction", sch_giveaction },
     { { 3, 5 }, { 0, 0 }, "GlutenFreeDiet", sch_glutenfreediet },
     { { 2, 0 }, { 0, 0 }, "GolfCourse", sch_golfcourse },
-    { { 7, 4 }, { 0, 0 }, "GovernmentBenefitsType", sch_governmentbenefitstype, mdr_schema, SF_ENUMERATION },
+    { { 7, 4 }, { 0, 0 }, "GovernmentBenefitsType", sch_governmentbenefitstype, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "GovernmentBuilding", sch_governmentbuilding },
     { { 2, 0 }, { 0, 0 }, "GovernmentOffice", sch_governmentoffice },
     { { 2, 0 }, { 0, 0 }, "GovernmentOrganization", sch_governmentorganisation },
@@ -499,7 +712,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "HardwareStore", sch_hardwarestore },
     { { 3, 6 }, { 6, 0 }, "Head", sch_head },
     { { 2, 0 }, { 0, 0 }, "HealthAndBeautyBusiness", sch_healthandbeautybusiness },
-    { { 5, 0 }, { 0, 0 }, "HealthAspectEnumeration", sch_healthaspectenumeration, mdr_schema, SF_ENUMERATION },
+    { { 5, 0 }, { 0, 0 }, "HealthAspectEnumeration", sch_healthaspectenumeration, s_schema, SF_ENUMERATION },
     { { 7, 4 }, { 0, 0 }, "HealthCare", sch_healthcare },
     { { 2, 0 }, { 0, 0 }, "HealthClub", sch_healthclub },
     { { 3, 5 }, { 0, 0 }, "HealthInsurancePlan", sch_dystopianhealthinsuranceplan },
@@ -539,10 +752,11 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "IgnoreAction", sch_ignoreaction },
     { { 2, 0 }, { 0, 0 }, "ImageGallery", sch_imagegallery },
     { { 2, 0 }, { 0, 0 }, "ImageObject", sch_imageobject },
+    { { 13, 0 }, { 0, 0 }, "ImageObjectSnapshot", sch_imageobjectsnapshot },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "ImagingTest", sch_imagingtest },
     { { 2, 0 }, { 0, 0 }, "IndividualProduct", sch_individualproduct },
     { { 3, 6 }, { 6, 0 }, "Infectious", sch_infectious },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "InfectiousAgentClass", sch_infectiousagentclass, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "InfectiousAgentClass", sch_infectiousagentclass, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "InfectiousDisease", sch_infectiousdisease },
     { { 3, 5 }, { 0, 0 }, "InForce", sch_inforce },
     { { 2, 0 }, { 0, 0 }, "InformAction", sch_informaction },
@@ -554,7 +768,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "InStoreOnly", sch_instoreonly },
     { { 2, 0 }, { 0, 0 }, "InsuranceAgency", sch_insuranceagency },
     { { 2, 0 }, { 0, 0 }, "Intangible", sch_intangible },
-    { { 2, 0 }, { 0, 0 }, "Integer", sch_integer, mdr_schema, MAKE_SIMPLE_TYPE (t_integer) },
+    { { 2, 0 }, { 0, 0 }, "Integer", sch_integer, s_schema, MAKE_SIMPLE_TYPE (t_integer) },
     { { 2, 0 }, { 0, 0 }, "InteractAction", sch_interactaction },
     { { 2, 1 }, { 0, 0 }, "InteractionCounter", sch_interactioncounter },
     { { 3, 5 }, { 0, 0 }, "InternationalTrial", sch_internationaltrial },
@@ -564,11 +778,11 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "InviteAction", sch_inviteaction },
     { { 2, 0 }, { 0, 0 }, "Invoice", sch_invoice },
     { { 11, 0 }, { 0, 0 }, "InvoicePrice", sch_invoiceprice },
-    { { 2, 0 }, { 0, 0 }, "ItemAvailability", sch_itemavailability, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "ItemAvailability", sch_itemavailability, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "ItemList", sch_itemlist },
     { { 3, 5 }, { 0, 0 }, "ItemListOrderAscending", sch_itemlistorderascending },
     { { 3, 5 }, { 0, 0 }, "ItemListOrderDescending", sch_itemlistorderdescending },
-    { { 2, 0 }, { 0, 0 }, "ItemListOrderType", sch_itemlistordertype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "ItemListOrderType", sch_itemlistordertype, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "ItemListUnordered", sch_itemlistunordered },
     { { 2, 0 }, { 0, 0 }, "ItemPage", sch_itempage },
     { { 2, 0 }, { 0, 0 }, "JewelryStore", sch_jewelrystore },
@@ -585,9 +799,9 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 9, 0 }, { 0, 0 }, "LearningResource", sch_learningresource },
     { { 2, 0 }, { 0, 0 }, "LeaveAction", sch_leaveaction },
     { { 3, 6 }, { 6, 0 }, "LeftHandDriving", sch_lefthanddriving },
-    { { 3, 5 }, { 0, 0 }, "LegalForceStatus", sch_legalforcestatus, mdr_schema, SF_ENUMERATION },
+    { { 3, 5 }, { 0, 0 }, "LegalForceStatus", sch_legalforcestatus, s_schema, SF_ENUMERATION },
     { { 2, 2 }, { 0, 0 }, "LegalService", sch_legalservice },
-    { { 3, 5 }, { 0, 0 }, "LegalValueLevel", sch_legalvaluelevel, mdr_schema, SF_ENUMERATION },
+    { { 3, 5 }, { 0, 0 }, "LegalValueLevel", sch_legalvaluelevel, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Legislation", sch_legislation },
     { { 3, 5 }, { 0, 0 }, "LegislationObject", sch_legislationobject },
     { { 2, 0 }, { 0, 0 }, "LegislativeBuilding", sch_legislativebuilding },
@@ -627,20 +841,21 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Male", sch_male },
     { { 3, 5 }, { 0, 0 }, "Manuscript", sch_manuscript },
     { { 2, 0 }, { 0, 0 }, "Map", sch_map },
-    { { 2, 0 }, { 0, 0 }, "MapCategoryType", sch_mapcategorytype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "MapCategoryType", sch_mapcategorytype, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "MarryAction", sch_marryaction },
     { { 2, 0 }, { 0, 0 }, "Mass", sch_mass },
     { { 11, 0 }, { 0, 0 }, "MathSolver", sch_mathsolver },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MaximumDoseSchedule", sch_maximumdoseschedule },
     { { 5, 0 }, { 0, 0 }, "MayTreatHealthAspect", sch_maytreathealthaspect },
-    { { 12, 0 }, { 0, 0 }, "MeasurementTypeEnumeration", sch_measurementtypeenumeration, mdr_schema, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "MeasurementTypeEnumeration", sch_measurementtypeenumeration, s_schema, SF_ENUMERATION },
     { { 6, 0 }, { 0, 0 }, "MediaGallery", sch_mediagallery },
-    { { 7, 0 }, { 0, 0 }, "MediaManipulationRatingEnumeration", sch_mediamanipulationratingenumeration, mdr_schema, SF_ENUMERATION },
+    { { 7, 0 }, { 0, 0 }, "MediaManipulationRatingEnumeration", sch_mediamanipulationratingenumeration, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "MediaObject", sch_mediaobject },
     { { 7, 0 }, { 0, 0 }, "MediaReview", sch_mediareview },
+    { { 13, 0 }, { 0, 0 }, "MediaReviewItem", sch_mediareviewitem },
     { { 3, 5 }, { 0, 0 }, "MediaSubscription", sch_mediasubscription },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalAudience", sch_medicalaudience },
-    { { 9, 0 }, { 0, 0 }, "MedicalAudienceType", sch_medicalaudiencetype, mdr_schema, SF_ENUMERATION },
+    { { 9, 0 }, { 0, 0 }, "MedicalAudienceType", sch_medicalaudiencetype, s_schema, SF_ENUMERATION },
     { { 3, 0, SV_NOT_3134 }, { 0, 0 }, "MedicalBusiness", sch_medicalbusiness },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalCause", sch_medicalcause },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalClinic", sch_medicalclinic },
@@ -649,21 +864,21 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalConditionStage", sch_medicalconditionstage },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalContraindication", sch_medicalcontraindication },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalDevice", sch_medicaldevice },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalDevicePurpose", sch_medicaldevicepurpose, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalDevicePurpose", sch_medicaldevicepurpose, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalEntity", sch_medicalentity },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalEnumeration", sch_medicalenumeration },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalEvidenceLevel", sch_medicalevidencelevel, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalEvidenceLevel", sch_medicalevidencelevel, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalGuideline", sch_medicalguideline },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalGuidelineContraindication", sch_medicalguidelinecontraindication },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalGuidelineRecommendation", sch_medicalguidelinerecommendation },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalImagingTechnique", sch_medicalimagingtechnique, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalImagingTechnique", sch_medicalimagingtechnique, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalIndication", sch_medicalindication },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalIntangible", sch_medicalintangible },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalObservationalStudy", sch_medicalobservationalstudy },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalObservationalStudyDesign", sch_medicalobservationalstudydesign, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalObservationalStudyDesign", sch_medicalobservationalstudydesign, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalOrganization", sch_medicalorganisation },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalProcedure", sch_medicalprocedure },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalProcedureType", sch_medicalproceduretype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalProcedureType", sch_medicalproceduretype, s_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "MedicalResearcher", sch_medicalresearcher },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalRiskCalculator", sch_medicalriskcalculator },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalRiskEstimator", sch_medicalriskestimator },
@@ -672,26 +887,27 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalScholarlyArticle", sch_medicalscholarlyarticle },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSign", sch_medicalsign },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSignOrSymptom", sch_medicalsignorsymptom },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSpecialty", sch_medicalspeciality, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSpecialty", sch_medicalspeciality, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalStudy", sch_medicalstudy },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalStudyStatus", sch_medicalstudystatus, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalStudyStatus", sch_medicalstudystatus, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalSymptom", sch_medicalsymptom },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTest", sch_medicaltest },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTestPanel", sch_medicaltestpanel },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTherapy", sch_medicaltherapy },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTrial", sch_medicaltrial },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTrialDesign", sch_medicaltrialdesign, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalTrialDesign", sch_medicaltrialdesign, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicalWebPage", sch_medicalwebpage },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicineSystem", sch_medicinesystem, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "MedicineSystem", sch_medicinesystem, s_schema, SF_ENUMERATION },
     { { 3, 1 }, { 0, 0 }, "MeetingRoom", sch_meetingroom },
     { { 2, 0 }, { 0, 0 }, "MensClothingStore", sch_mensclothingstore },
     { { 3, 2 }, { 0, 0 }, "Menu", sch_menu },
     { { 3, 2 }, { 0, 0 }, "MenuItem", sch_menuitem },
     { { 3, 2 }, { 0, 0 }, "MenuSection", sch_menusection },
-    { { 6, 0 }, { 0, 0 }, "MerchantReturnEnumeration", sch_merchantreturnenumeration, mdr_schema, SF_ENUMERATION },
+    { { 6, 0 }, { 0, 0 }, "MerchantReturnEnumeration", sch_merchantreturnenumeration, s_schema, SF_ENUMERATION },
     { { 6, 0 }, { 0, 0 }, "MerchantReturnFiniteReturnWindow", sch_merchantreturnfinitereturnwindow },
     { { 6, 0 }, { 0, 0 }, "MerchantReturnNotPermitted", sch_merchantreturnnotpermitted },
     { { 6, 0 }, { 0, 0 }, "MerchantReturnPolicy", sch_merchantreturnpolicy },
+    { { 13, 0 }, { 0, 0 }, "MerchantReturnPolicySeasonalOverride", sch_merchantreturnpolicyseasonaloverride },
     { { 6, 0 }, { 0, 0 }, "MerchantReturnUnlimitedWindow", sch_merchantreturnunlimitedwindow },
     { { 6, 0 }, { 0, 0 }, "MerchantReturnUnspecified", sch_merchantreturnunspecified },
     { { 3, 0 }, { 0, 0 }, "Message", sch_message },
@@ -704,6 +920,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "MixtapeAlbum", sch_mixtapealbum },
     { { 2, 0 }, { 0, 0 }, "MobileApplication", sch_mobileapplication },
     { { 2, 0 }, { 0, 0 }, "MobilePhoneStore", sch_mobilephonestore },
+    { { 13, 0 }, { 0, 0 }, "MolecularEntity", sch_molecularentity },
     { { 3, 5 }, { 0, 0 }, "Monday", sch_monday },
     { { 3, 0 }, { 0, 0 }, "MonetaryAmount", sch_monetaryamount },
     { { 3, 5 }, { 0, 0 }, "MonetaryAmountDistribution", sch_monetaryamountdistribution },
@@ -734,15 +951,15 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 6 }, { 6, 0 }, "MusculoskeletalExam", sch_musculoskeletalexam },
     { { 2, 0 }, { 0, 0 }, "Museum", sch_museum },
     { { 2, 0 }, { 0, 0 }, "MusicAlbum", sch_musicalbum },
-    { { 2, 0 }, { 0, 0 }, "MusicAlbumProductionType", sch_musicalbumproductiontype, mdr_schema, SF_ENUMERATION },
-    { { 2, 0 }, { 0, 0 }, "MusicAlbumReleaseType", sch_musicalbumreleasetype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "MusicAlbumProductionType", sch_musicalbumproductiontype, s_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "MusicAlbumReleaseType", sch_musicalbumreleasetype, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "MusicComposition", sch_musiccomposition },
     { { 2, 0 }, { 0, 0 }, "MusicEvent", sch_musicevent },
     { { 2, 0 }, { 0, 0 }, "MusicGroup", sch_musicgroup },
     { { 2, 0 }, { 0, 0 }, "MusicPlaylist", sch_musicplaylist },
     { { 2, 0 }, { 0, 0 }, "MusicRecording", sch_musicrecording },
     { { 2, 0 }, { 0, 0 }, "MusicRelease", sch_musicrelease },
-    { { 2, 0 }, { 0, 0 }, "MusicReleaseFormatType", sch_musicreleaseformattype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "MusicReleaseFormatType", sch_musicreleaseformattype, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "MusicStore", sch_musicstore },
     { { 2, 0 }, { 0, 0 }, "MusicVenue", sch_musicvenue },
     { { 2, 0 }, { 0, 0 }, "MusicVideoObject", sch_musicvideoobject },
@@ -757,7 +974,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Newspaper", sch_newspaper },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Ngo", sch_ngo },
     { { 2, 0 }, { 0, 0 }, "Nightclub", sch_nightclub },
-    { { 8, 0 }, { 0, 0 }, "NlNonprofitType", sch_nlnonprofittype, mdr_schema, SF_ENUMERATION },
+    { { 8, 0 }, { 0, 0 }, "NlNonprofitType", sch_nlnonprofittype, s_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "NoninvasiveProcedure", sch_noninvasiveprocedure },
     { { 9, 0 }, { 0, 0 }, "Nonprofit501a", sch_nonprofit501a },
     { { 9, 0 }, { 0, 0 }, "Nonprofit501c1", sch_nonprofit501c1 },
@@ -803,7 +1020,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 0 }, { 0, 0 }, "NoteDigitalDocument", sch_notedigitaldocument },
     { { 3, 5 }, { 0, 0 }, "NotInForce", sch_notinforce },
     { { 3, 6 }, { 6, 0 }, "NotYetRecruiting", sch_notyetrecruiting },
-    { { 2, 0 }, { 0, 0 }, "Number", sch_number, mdr_schema, MAKE_SIMPLE_TYPE (t_fixedpoint) },
+    { { 2, 0 }, { 0, 0 }, "Number", sch_number, s_schema, MAKE_SIMPLE_TYPE (t_fixedpoint) },
     { { 3, 5 }, { 0, 0 }, "Nursing", sch_nursing },
     { { 2, 0 }, { 0, 0 }, "NutritionInformation", sch_nutritioninformation },
     { { 3, 9 }, { 0, 0 }, "Observation", sch_observation },
@@ -818,7 +1035,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 2 }, { 0, 0 }, "OfferCatalog", sch_offercatalogue },
     { { 4, 0 }, { 0, 0 }, "OfferForLease", sch_offerforlease },
     { { 4, 0 }, { 0, 0 }, "OfferForPurchase", sch_offerforpurchase },
-    { { 2, 0 }, { 0, 0 }, "OfferItemCondition", sch_offeritemcondition, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "OfferItemCondition", sch_offeritemcondition, s_schema, SF_ENUMERATION },
     { { 7, 2 }, { 0, 0 }, "OfferShippingDetails", sch_offershippingdetails },
     { { 2, 0 }, { 0, 0 }, "OfficeEquipmentStore", sch_officeequipmentstore },
     { { 3, 5 }, { 0, 0 }, "OfficiallegalValue", sch_officiallegalvalue },
@@ -849,7 +1066,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "OrderProblem", sch_orderproblem },
     { { 3, 5 }, { 0, 0 }, "OrderProcessing", sch_orderprocessing },
     { { 3, 5 }, { 0, 0 }, "OrderReturned", sch_orderreturned },
-    { { 2, 0 }, { 0, 0 }, "OrderStatus", sch_orderstatus, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "OrderStatus", sch_orderstatus, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "Organization", sch_organisation },
     { { 2, 0 }, { 0, 0 }, "OrganizationRole", sch_organisationrole },
     { { 2, 0 }, { 0, 0 }, "OrganizeAction", sch_organiseaction },
@@ -887,10 +1104,10 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Paymentcomplete", sch_paymentcomplete },
     { { 3, 5 }, { 0, 0 }, "Paymentdeclined", sch_paymentdeclined },
     { { 3, 5 }, { 0, 0 }, "Paymentdue", sch_paymentdue },
-    { { 2, 0 }, { 0, 0 }, "Paymentmethod", sch_paymentmethod, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "Paymentmethod", sch_paymentmethod, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Paymentpastdue", sch_paymentpastdue },
     { { 3, 1 }, { 0, 0 }, "Paymentservice", sch_paymentservice },
-    { { 2, 1 }, { 0, 0 }, "Paymentstatustype", sch_paymentstatustype, mdr_schema, SF_ENUMERATION },
+    { { 2, 1 }, { 0, 0 }, "Paymentstatustype", sch_paymentstatustype, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Pediatric", sch_paediatric },
     { { 2, 0 }, { 0, 0 }, "Peopleaudience", sch_peopleaudience },
     { { 3, 6 }, { 6, 0 }, "Percutaneousprocedure", sch_percutaneousprocedure },
@@ -908,8 +1125,8 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "Photograph", sch_photograph },
     { { 2, 0 }, { 0, 0 }, "PhotographAction", sch_photographaction },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalActivity", sch_physicalactivity },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalActivityCategory", sch_physicalactivitycategory, mdr_schema, SF_ENUMERATION },
-    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalExam", sch_physicalexam, mdr_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalActivityCategory", sch_physicalactivitycategory, s_schema, SF_ENUMERATION },
+    { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalExam", sch_physicalexam, s_schema, SF_ENUMERATION },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PhysicalTherapy", sch_physicaltherapy },
     { { 2, 0 }, { 0, 0 }, "Physician", sch_physician },
     { { 3, 5 }, { 0, 0 }, "Physiotherapy", sch_physiotherapy },
@@ -967,6 +1184,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Property", sch_property },
     { { 2, 0 }, { 0, 0 }, "PropertyValue", sch_propertyvalue },
     { { 2, 0 }, { 0, 0 }, "PropertyValueSpecification", sch_propertyvaluespecification },
+    { { 13, 0 }, { 0, 0 }, "Protein", sch_protein },
     { { 3, 6 }, { 6, 0 }, "Protozoa", sch_protozoa },
     { { 3, 5 }, { 0, 0 }, "Psychiatric", sch_psychiatric },
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "PsychologicalTreatment", sch_psychologicaltreatment },
@@ -1010,7 +1228,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0, SV_NOT_3034 }, { 0, 0 }, "Recommendeddoseschedule", sch_recommendeddoseschedule },
     { { 3, 6 }, { 6, 0 }, "Recruiting", sch_recruiting },
     { { 2, 0 }, { 0, 0 }, "Recyclingcenter", sch_recyclingcentre },
-    { { 3, 8 }, { 0, 0 }, "Refundtypeenumeration", sch_refundtypeenumeration, mdr_schema, SF_ENUMERATION },
+    { { 3, 8 }, { 0, 0 }, "Refundtypeenumeration", sch_refundtypeenumeration, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Refurbishedcondition", sch_refurbishedcondition },
     { { 2, 0 }, { 0, 0 }, "Registeraction", sch_registeraction },
     { { 3, 6 }, { 6, 0 }, "Registry", sch_registry },
@@ -1035,7 +1253,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Reservationhold", sch_reservationhold },
     { { 2, 0 }, { 0, 0 }, "Reservationpackage", sch_reservationpackage },
     { { 3, 5 }, { 0, 0 }, "Reservationpending", sch_reservationpending },
-    { { 2, 0 }, { 0, 0 }, "Reservationstatustype", sch_reservationstatustype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "Reservationstatustype", sch_reservationstatustype, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "Reserveaction", sch_reserveaction },
     { { 2, 0 }, { 0, 0 }, "Reservoir", sch_reservoir },
     { { 2, 0 }, { 0, 0 }, "Residence", sch_residence },
@@ -1043,13 +1261,22 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Respiratorytherapy", sch_respiratorytherapy },
     { { 2, 0 }, { 0, 0 }, "Restaurant", sch_restaurant },
     { { 3, 8 }, { 0, 0 }, "Restockingfees", sch_restockingfees },
-    { { 3, 0 }, { 0, 0 }, "RestrictedDiet", sch_restricteddiet, mdr_schema, SF_ENUMERATION },
+    { { 3, 0 }, { 0, 0 }, "RestrictedDiet", sch_restricteddiet, s_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "Resultsavailable", sch_resultsavailable },
     { { 3, 6 }, { 6, 0 }, "Resultsnotavailable", sch_resultsnotavailable },
     { { 2, 0 }, { 0, 0 }, "Resumeaction", sch_resumeaction },
     { { 3, 6 }, { 6, 0 }, "Retail", sch_retail },
     { { 2, 0 }, { 0, 0 }, "ReturnAction", sch_returnaction },
-    { { 3, 8 }, { 0, 0 }, "ReturnFeesEnumeration", sch_returnfeesenumeration, mdr_schema, SF_ENUMERATION },
+    { { 13, 0 }, { 0, 0 }, "ReturnAtKiosk", sch_returnatkiosk },
+    { { 13, 0 }, { 0, 0 }, "ReturnByMail", sch_returnbymail },
+    { { 3, 8 }, { 0, 0 }, "ReturnFeesEnumeration", sch_returnfeesenumeration, s_schema, SF_ENUMERATION },
+    { { 13, 0 }, { 0, 0 }, "ReturnFeesCustomerResponsibility", sch_returnfeescustomerresponsibility },
+    { { 13, 0 }, { 0, 0 }, "ReturnInStore", sch_returninstore },
+    { { 13, 0 }, { 0, 0 }, "ReturnLabelCustomerResponsibility", sch_returnlabelcustomerresponsibility },
+    { { 13, 0 }, { 0, 0 }, "ReturnLabelDownloadAndPrint", sch_returnlabeldownloadandprint },
+    { { 13, 0 }, { 0, 0 }, "ReturnLabelInBox", sch_returnlabeldownloadandprint },
+    { { 13, 0 }, { 0, 0 }, "ReturnLabelSourceEnumeration", sch_returnlabelsourceenumeration, s_schema, SF_ENUMERATION },
+    { { 13, 0 }, { 0, 0 }, "ReturnMethodEnumeration", sch_returnmethodenumeration, s_schema, SF_ENUMERATION },
     { { 3, 8 }, { 0, 0 }, "ReturnShippingFees", sch_returnshippingfees },
     { { 2, 0 }, { 0, 0 }, "Review", sch_review },
     { { 2, 0 }, { 0, 0 }, "Reviewaction", sch_reviewaction },
@@ -1064,7 +1291,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "Rsvpaction", sch_rsvpaction },
     { { 3, 5 }, { 0, 0 }, "Rsvpresponsemaybe", sch_rsvpresponsemaybe },
     { { 3, 5 }, { 0, 0 }, "Rsvpresponseno", sch_rsvpresponseno },
-    { { 2, 0 }, { 0, 0 }, "Rsvpresponsetype", sch_rsvpresponsetype, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "Rsvpresponsetype", sch_rsvpresponsetype, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "Rsvpresponseyes", sch_rsvpresponseyes },
     { { 2, 0 }, { 0, 0 }, "Rvpark", sch_rvpark },
     { { 12, 0 }, { 0, 0 }, "SafetyHealthAspect", sch_safetyhealthaspect },
@@ -1110,9 +1337,9 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Singleplayer", sch_singleplayer },
     { { 3, 5 }, { 0, 0 }, "Singlerelease", sch_singlerelease },
     { { 2, 0 }, { 0, 0 }, "Sitenavigationelement", sch_sitenavigationelement },
-    { { 12, 0 }, { 0, 0 }, "SizeGroupEnumeration", sch_sizegroupenumeration, mdr_schema, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "SizeGroupEnumeration", sch_sizegroupenumeration, s_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "SizeSpecification", sch_sizespecification },
-    { { 12, 0 }, { 0, 0 }, "SizeSystemEnumeration", sch_sizesystemenumeration, mdr_schema, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "SizeSystemEnumeration", sch_sizesystemenumeration, s_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "SizeSystemImperial", sch_sizesystemimperial },
     { { 12, 0 }, { 0, 0 }, "SizeSystemMetric", sch_sizesystemmetric },
     { { 3, 6 }, { 6, 0 }, "Skin", sch_skin },
@@ -1127,7 +1354,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Soundtrackalbum", sch_soundtrackalbum },
     { { 3, 5 }, { 0, 0 }, "Speakablespecification", sch_speakablespecification },
     { { 7, 0 }, { 0, 0 }, "Specialannouncement", sch_specialannouncement },
-    { { 2, 0 }, { 0, 0 }, "Specialty", sch_speciality, mdr_schema, SF_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "Specialty", sch_speciality, s_schema, SF_ENUMERATION },
     { { 3, 6 }, { 6, 0 }, "Speechpathology", sch_speechpathology },
     { { 3, 5 }, { 0, 0 }, "Spokenwordalbum", sch_spokenwordalbum },
     { { 2, 0 }, { 0, 0 }, "Sportinggoodsstore", sch_sportinggoodsstore },
@@ -1142,9 +1369,10 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 12, 0 }, { 0, 0 }, "StagedContent", sch_stagedcontent },
     { { 5, 0 }, { 0, 0 }, "StagesHealthAspect", sch_stageshealthaspect },
     { { 2, 0 }, { 0, 0 }, "State", sch_state },
+    { { 13, 0 }, { 0, 0 }, "Statement", sch_statement },
     { { 3, 9 }, { 0, 0 }, "StatisticalPopulation", sch_statisticalpopulation },
     { { 9, 0 }, { 0, 0 }, "StatusEnumeration", sch_statusenumeration },
-    { { 2, 1 }, { 0, 0 }, "SteeringPositionValue", sch_steeringpositionvalue, mdr_schema, SF_ENUMERATION },
+    { { 2, 1 }, { 0, 0 }, "SteeringPositionValue", sch_steeringpositionvalue, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "Store", sch_store },
     { { 3, 8 }, { 0, 0 }, "Storecreditrefund", sch_storecreditrefund },
     { { 3, 5 }, { 0, 0 }, "Strengthtraining", sch_strengthtraining },
@@ -1172,12 +1400,13 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "Taxiservice", sch_taxiservice },
     { { 2, 0 }, { 0, 0 }, "Taxistand", sch_taxistand },
     { { 3, 6 }, { 6, 0 }, "Taxivehicleusage", sch_taxivehicleusage },
+    { { 13, 0 }, { 0, 0 }, "Taxon", sch_taxon },
     { { 2, 0 }, { 0, 0 }, "Techarticle", sch_techarticle },
     { { 2, 0 }, { 0, 0 }, "Televisionchannel", sch_televisionchannel },
     { { 2, 0 }, { 0, 0 }, "Televisionstation", sch_televisionstation },
     { { 2, 0 }, { 0, 0 }, "Tenniscomplex", sch_tenniscomplex },
     { { 3, 6 }, { 6, 0 }, "Terminated", sch_terminated },
-    { { 2, 0 }, { 0, 0 }, "Text", sch_text, mdr_schema, MAKE_SIMPLE_TYPE (t_text) },
+    { { 2, 0 }, { 0, 0 }, "Text", sch_text, s_schema, MAKE_SIMPLE_TYPE (t_text) },
     { { 3, 0 }, { 0, 0 }, "Textdigitaldocument", sch_textdigitaldocument },
     { { 2, 0 }, { 0, 0 }, "Theaterevent", sch_theatreevent },
     { { 2, 0 }, { 0, 0 }, "Theatergroup", sch_theatregroup },
@@ -1189,7 +1418,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Thursday", sch_thursday },
     { { 2, 0 }, { 0, 0 }, "Ticket", sch_ticket },
     { { 2, 0 }, { 0, 0 }, "Tieaction", sch_tieaction },
-    { { 2, 0 }, { 0, 0 }, "Time", sch_time, mdr_schema, MAKE_SIMPLE_TYPE (t_just_time) },
+    { { 2, 0 }, { 0, 0 }, "Time", sch_time, s_schema, MAKE_SIMPLE_TYPE (t_just_time) },
     { { 2, 0 }, { 0, 0 }, "Tipaction", sch_tipaction },
     { { 2, 0 }, { 0, 0 }, "Tireshop", sch_tyreshop },
     { { 3, 5 }, { 0, 0 }, "Tollfree", sch_tollfree },
@@ -1222,7 +1451,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "TvSeries", sch_tvseries },
     { { 2, 0 }, { 0, 0 }, "TypeAndQuantityNode", sch_typeandquantitynode },
     { { 5, 0 }, { 0, 0 }, "TypesHealthAspect", sch_typeshealthaspect },
-    { { 8, 0 }, { 0, 0 }, "UkNonProfitType", sch_uknonprofittype, mdr_schema, SF_ENUMERATION },
+    { { 8, 0 }, { 0, 0 }, "UkNonProfitType", sch_uknonprofittype, s_schema, SF_ENUMERATION },
     { { 9, 0 }, { 0, 0 }, "UkTrust", sch_uktrust },
     { { 3, 6 }, { 6, 0 }, "Ultrasound", sch_ultrasound },
     { { 7, 4 }, { 0, 0 }, "UnemploymentSupport", sch_unemploymentsupport },
@@ -1231,7 +1460,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "UnofficialLegalValue", sch_unofficiallegalvalue },
     { { 2, 0 }, { 0, 0 }, "UnregisterAction", sch_unregisteraction },
     { { 2, 0 }, { 0, 0 }, "UpdateAction", sch_updateaction },
-    { { 2, 0 }, { 0, 0 }, "Url", sch_url, mdr_schema, MAKE_SIMPLE_TYPE (t_url) },
+    { { 2, 0 }, { 0, 0 }, "Url", sch_url, s_schema, MAKE_SIMPLE_TYPE (t_url) },
     { { 3, 6 }, { 6, 0 }, "Urologic", sch_urologic },
     { { 5, 0 }, { 0, 0 }, "UsageOrScheduleHealthAspect", sch_usageorschedulehealthaspect },
     { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UseAction", sch_useaction },
@@ -1247,7 +1476,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UserPlusOnes", sch_userplusones },
     { { 3, 5 }, { 0, 0 }, "UserReview", sch_userreview },
     { { 2, 0, SV_DEP_3034 }, { 3, 4 }, "UserTweets", sch_usertweets },
-    { { 8, 0 }, { 0, 0 }, "USNonprofitType", sch_usnonprofittype, mdr_schema, SF_ENUMERATION },
+    { { 8, 0 }, { 0, 0 }, "USNonprofitType", sch_usnonprofittype, s_schema, SF_ENUMERATION },
     { { 3, 5 }, { 0, 0 }, "VeganDiet", sch_vegandiet },
     { { 3, 5 }, { 0, 0 }, "VegetarianDiet", sch_vegetariandiet },
     { { 2, 0 }, { 0, 0 }, "Vehicle", sch_vehicle },
@@ -1260,6 +1489,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "VideoGameClip", sch_videogameclip },
     { { 2, 0 }, { 0, 0 }, "VideoGameSeries", sch_videogameseries },
     { { 2, 0 }, { 0, 0 }, "VideoObject", sch_videoobject },
+    { { 13, 0 }, { 0, 0 }, "VideoObjectSnapshot", sch_videoobjectsnapshot },
     { { 2, 0 }, { 0, 0 }, "ViewAction", sch_viewaction },
     { { 3, 5 }, { 0, 0 }, "VinylFormat", sch_vinylformat },
     { { 7, 0 }, { 0, 0 }, "VirtualLocation", sch_virtuallocation },
@@ -1271,10 +1501,10 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 2, 0 }, { 0, 0 }, "VoteAction", sch_voteaction },
     { { 2, 0 }, { 0, 0 }, "WantAction", sch_wantaction },
     { { 2, 0 }, { 0, 0 }, "WarrantyPromise", sch_warrantypromise },
-    { { 2, 0 }, { 0, 0 }, "WarrantyScope", sch_warrantyscope, mdr_schema, SF_EXTERNAL_ENUMERATION },
+    { { 2, 0 }, { 0, 0 }, "WarrantyScope", sch_warrantyscope, s_schema, SF_EXTERNAL_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "WatchAction", sch_watchaction },
     { { 2, 0 }, { 0, 0 }, "Waterfall", sch_waterfall },
-    { { 12, 0 }, { 0, 0 }, "WearableMeasurementTypeEnumeration", sch_wearablemeasurementtypeenumeration, mdr_schema, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "WearableMeasurementTypeEnumeration", sch_wearablemeasurementtypeenumeration, s_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "WearableMeasurementBack", sch_wearablemeasurementback },
     { { 12, 0 }, { 0, 0 }, "WearableMeasurementChestOrBust", sch_wearablemeasurementchestorbust },
     { { 12, 0 }, { 0, 0 }, "WearableMeasurementCollar", sch_wearablemeasurementcollar },
@@ -1289,7 +1519,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 12, 0 }, { 0, 0 }, "WearableMeasurementWidth", sch_wearablemeasurementwidth },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupBig", sch_wearablesizegroupbig },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupBoys", sch_wearablesizegroupboys },
-    { { 12, 0 }, { 0, 0 }, "WearableSizeGroupEnumeration", sch_wearablesizegroupenumeration, mdr_schema, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "WearableSizeGroupEnumeration", sch_wearablesizegroupenumeration, s_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupExtraShort", sch_wearablesizegroupextrashort },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupExtraTall", sch_wearablesizegroupextratall },
     { { 12, 0 }, { 0, 0 }, "WearableSizeGroupGirls", sch_wearablesizegroupgirls },
@@ -1311,7 +1541,7 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemContinental", sch_wearablesizesystemcontinental },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemDE", sch_wearablesizesystemde },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemEN13402", sch_wearablesizesystemen13402 },
-    { { 12, 0 }, { 0, 0 }, "WearableSizeSystemEnumeration", sch_wearablesizesystemenumeration, mdr_schema, SF_ENUMERATION },
+    { { 12, 0 }, { 0, 0 }, "WearableSizeSystemEnumeration", sch_wearablesizesystemenumeration, s_schema, SF_ENUMERATION },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemEurope", sch_wearablesizesystemeurope },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemFR", sch_wearablesizesystemfr },
     { { 12, 0 }, { 0, 0 }, "WearableSizeSystemGS1", sch_wearablesizesystemgs1 },
@@ -1347,94 +1577,158 @@ struct symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schem
     { { 3, 5 }, { 0, 0 }, "Zoneboardingpolicy", sch_zoneboardingpolicy },
 
     // living standard
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar#vevent", mf_vevent, mdr_microformats, SF_NO_ITEMID },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcard", mft_hcard, mdr_microformats, SF_NO_ITEMID },
-    { { mdr_whatwg, 1, 0 }, { 0, 0 }, "work", wwg_work, mdr_whatwg },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar#vevent", mf_vevent, s_microformats, SF_NO_ITEMID },
+    { { s_microformats, 1, 0 }, { 0, 0 }, "profile/hcard", mft_hcard, s_microformats, SF_NO_ITEMID },
+    { { s_whatwg, 1, 0 }, { 0, 0 }, "work", wwg_work, s_whatwg },
 
-    // https://web.archive.org/web/20101126105442/http://microformats.org/wiki/microdata
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_ADR, mft_adr, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_GEO, mft_geo, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_ATOM, mft_hatom, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_AUDIO, mft_haudio, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar", mft_hcalendar, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_ENTRY, mft_hentry, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_LISTING, mft_hlisting, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED }, // no XMDP, but ...
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_MEDIA, mft_hmedia, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED }, // no XMDP, but ...
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_NEWS, mft_hnews, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_PRODUCT, mft_hproduct, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_RECIPE, mft_hrecipe, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_RESUME, mft_hresume, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_REVIEW, mft_hreview, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-    { { mdr_microformats, 1, 0 }, { 0, 0 }, "profile/" H1_REVIEW_AGGREGATE, mft_haggregate, mdr_microformats, SF_NO_ITEMID | SF_DEPRECATED },
-
-    // https://microformats.org/wiki/microdata (April 2021)
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_ADR, mft2_hadr, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_BREADCRUMB, mft2_hbreadcrumb, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_CARD, mft2_hcard, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_CITE, mft2_hcite, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_ENTRY, mft2_hentry, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_EVENT, mft2_hevent, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_FEED, mft2_hfeed, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_GEO, mft2_hgeo, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_ITEM, mft2_hitem, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_LISTING, mft2_hlisting, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_PRODUCT, mft2_hproduct, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_RECIPE, mft2_hrecipe, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_RESUME, mft2_hresume, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_REVIEW, mft2_hreview, mdr_microformats },
-    { { mdr_microformats, 2, 0 }, { 0, 0 }, "profile/" H_AGGREGATE, mft2_haggregate, mdr_microformats },
+    // XML schema types
+    { { s_xsd, 1, 1 }, { 0, 0 }, "anyAtomicType", xsd_anyatomictype, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "anySimpleType", xsd_anysimpletype, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "anyType", xsd_anytype, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "anyURI", xsd_anyuri, s_xsd, MAKE_SIMPLE_TYPE (t_url) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "base64Binary", xsd_base64binary, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "boolean", xsd_boolean, s_xsd, MAKE_SIMPLE_TYPE (t_xsdbool) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "byte", xsd_byte, s_xsd, MAKE_SIMPLE_TYPE (t_integer) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "date", xsd_date, s_xsd, MAKE_SIMPLE_TYPE (t_just_date) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "dateTime", xsd_datetime, s_xsd, MAKE_SIMPLE_TYPE (t_datetime) },
+    { { s_xsd, 1, 1 }, { 0, 0 }, "dateTimeDuration", xsd_datetimeduration, s_xsd, MAKE_SIMPLE_TYPE (t_duration) },
+    { { s_xsd, 1, 1 }, { 0, 0 }, "dateTimeStamp", xsd_datetimestamp, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "decimal", xsd_decimal, s_xsd, MAKE_SIMPLE_TYPE (t_real) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "double", xsd_double, s_xsd, MAKE_SIMPLE_TYPE (t_real) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "duration", xsd_duration, s_xsd, MAKE_SIMPLE_TYPE (t_duration) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "ENTITIES", xsd_entities, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "ENTITY", xsd_entity, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "float", xsd_float, s_xsd, MAKE_SIMPLE_TYPE (t_real) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "gDay", xsd_gday, s_xsd, MAKE_SIMPLE_TYPE (t_day) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "gMonth", xsd_gmonth, s_xsd, MAKE_SIMPLE_TYPE (t_month) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "gMonthDay", xsd_gmonthday, s_xsd, MAKE_SIMPLE_TYPE (t_monthday) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "gYear", xsd_gyear, s_xsd, MAKE_SIMPLE_TYPE (t_year) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "gYearMonth", xsd_gyearmonth, s_xsd, MAKE_SIMPLE_TYPE (t_yearmonth) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "hexBinary", xsd_hexbinary, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "ID", xsd_id, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "IDREF", xsd_idref, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "IDREFS", xsd_idrefs, s_xsd, MAKE_SIMPLE_TYPE (t_idrefs) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "int", xsd_int, s_xsd, MAKE_SIMPLE_TYPE (t_integer) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "integer", xsd_integer, s_xsd, MAKE_SIMPLE_TYPE (t_integer) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "language", xsd_language, s_xsd, MAKE_SIMPLE_TYPE (t_lang) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "long", xsd_long, s_xsd, MAKE_SIMPLE_TYPE (t_integer) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "Name", xsd_name, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "NCName", xsd_ncname, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "negativeInteger", xsd_negativeinteger, s_xsd, MAKE_SIMPLE_TYPE (t_negative) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "NMTOKEN", xsd_nmtoken, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "NMTOKENS", xsd_nmtokens, s_xsd },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "nonNegativeInteger", xsd_nonnegativeinteger, s_xsd, MAKE_SIMPLE_TYPE (t_not_neg) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "nonPositiveInteger", xsd_nonpositiveinteger, s_xsd, MAKE_SIMPLE_TYPE (t_not_pos) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "normalizedString", xsd_normalisedstring, s_xsd, MAKE_SIMPLE_TYPE (t_text) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "NOTATION", xsd_notation, s_xsd, MAKE_SIMPLE_TYPE (t_namespace) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "positiveInteger", xsd_positiveinteger, s_xsd, MAKE_SIMPLE_TYPE (t_positive) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "QName", xsd_qname, s_xsd, MAKE_SIMPLE_TYPE (t_namespace) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "short", xsd_short, s_xsd, MAKE_SIMPLE_TYPE (t_short) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "string", xsd_string, s_xsd, MAKE_SIMPLE_TYPE (t_text) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "time", xsd_time, s_xsd, MAKE_SIMPLE_TYPE (t_just_time) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "token", xsd_token, s_xsd, MAKE_SIMPLE_TYPE (t_text) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "unsignedByte", xsd_unsignedbyte, s_xsd, MAKE_SIMPLE_TYPE (t_unsigned_byte) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "unsignedInt", xsd_unsignedint, s_xsd, MAKE_SIMPLE_TYPE (t_unsigned) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "unsignedLong", xsd_unsignedlong, s_xsd, MAKE_SIMPLE_TYPE (t_unsigned) },
+    { { s_xsd, 1, 0 }, { 0, 0 }, "unsignedShort", xsd_unsignedshort, s_xsd, MAKE_SIMPLE_TYPE (t_unsigned_short) },
+    { { s_xsd, 1, 1 }, { 0, 0 }, "yearMonthDuration", xsd_yearmonthduration, s_xsd },
 
     { { 0, 0 }, { 0, 0 }, "", sty_illegal } };
 
-sch::sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_microdata_root root)
+sch::sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root)
 {   e_schema_type es = parse (nits, v, x, root);
     if (es != sty_illegal) set (v, es); }
 
 void sch::init (nitpick& nits)
-{   symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema > ::
-        init (nits, schema_type_symbol_table, sizeof (schema_type_symbol_table) / sizeof (symbol_entry < schema_version, e_schema_type, e_microdata_root, mdr_schema >), true); }
+{   symbol < schema_version, e_schema_type, e_schema, s_schema > ::
+        init (nits, schema_type_symbol_table, sizeof (schema_type_symbol_table) / sizeof (symbol_entry < schema_version, e_schema_type, e_schema, s_schema >), true); }
 
-e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_microdata_root root)
-{   ::std::string lc (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)));
+e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root)
+{   ::std::string lc (trim_the_lot_off (x));
     if (lc.empty ())
-    {   nits.pick (nit_unrecognised_schema, ed_jul20, "5.2.2 Items", es_error, ec_microdata, "An ITEMTYPE cannot be empty");
+    {   nits.pick (nit_empty, ed_jul20, "5.2.2 Items", es_error, ec_microdata, "An ITEMTYPE cannot be empty");
         return sty_illegal; }
     if (lc.at (0) == '/') lc = lc.substr (1);
-    symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema > s (default_schema, lc, root);
-    for (int i = mdr_none; (s.unknown () || (s.get () == sty_context)) && (i < mdr_illegal); ++i)
+    if (! v.xhtml ()) lc = ::boost::algorithm::to_lower_copy (lc);
+    symbol < schema_version, e_schema_type, e_schema, s_schema > s (default_schema, lc, root);
+    for (int i = s_none; (s.unknown () || (s.get () == sty_context)) && (i < s_error); ++i)
         if (i != root)
-            s.reset (symbol < schema_version, e_schema_type, e_microdata_root, mdr_schema > (default_schema, lc, static_cast < e_microdata_root > (i)));
+            s.reset (symbol < schema_version, e_schema_type, e_schema, s_schema > (default_schema, lc, static_cast < e_schema > (i)));
     if (s.unknown () || (s.get () == sty_context))
     {   if (! check_spelling (nits, v, lc))
-            nits.pick (nit_unrecognised_schema, es_error, ec_microdata, "Unrecognised ITEMTYPE ", quote (x)); }
+            nits.pick (nit_unrecognised_schema, es_error, ec_microdata, "Unrecognised type ", quote (x)); }
     else
-    {   schema_version sv;
+    {   if (s.first ().deprecated ())
+            nits.pick (nit_deprecated_schema, es_warning, ec_schema, quote (x), " is deprecated");
+        schema_version sv;
         switch (s.ns ())
-        {   case mdr_schema :
+        {   case s_article :
+            case s_book :
+            case s_cc :
+            case s_ctag :
+            case s_dcam :
+            case s_dcmi :
+            case s_dct :
+            case s_gr :
+            case s_ical :
+            case s_icaltzd :
+            case s_music :
+            case s_none :
+            case s_og :
+            case s_poetry :
+            case s_profile :
+            case s_rdf :
+            case s_rdfs :
+            case s_video :
+            case s_wdrs :
+            case s_website :
+                return s.get ();
+            case s_dc :
+                if (context.dc () == 0) sv = dc_1_0; else sv = dc_1_1;
+                if (may_apply (sv, s.first (), s.last ())) return s.get ();
+                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
+                break;
+            case s_foaf :
+                {   int n = context.foaf ();
+                    if ((n > 0) && (n < 99)) sv = schema_version (s_foaf, 0, static_cast < char > (n));
+                    else sv = schema_version (s_foaf, 0, 99); }
+                if (may_apply (sv, s.first (), s.last ())) return s.get ();
+                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
+                break;
+            case s_microformats :
+                if (may_apply (context.mf_ver (), s.first (), s.last ())) return s.get ();
+                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid here");
+                break;
+            case s_rdfa :
+                {   int n = context.rdfa ();
+                    if ((n >= 0) && (n < 4)) sv = schema_version (s_rdfa, 1, static_cast < char > (n));
+                    else sv = schema_version (s_rdfa, 1, 3); }
+                if (may_apply (sv, s.first (), s.last ())) return s.get ();
+                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
+                break;
+            case s_schema :
                 sv = context.schema_ver ();
                 if (may_apply (sv, s.first (), s.last ())) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid in ", sv.report ());
+                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
                 break;
-            case mdr_microformats :
-                if (may_apply (context.mf_ver (), s.first (), s.last ())) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid here");
-                break;
-            case mdr_whatwg :
+            case s_whatwg :
                 if (v >= html_jul09) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " is invalid in ", v.report ()); // yes, html_version
+                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", v.report ()); // yes, html_version
                 break;
-            case mdr_none :
-            case mdr_purl :
-                return s.get ();
+            case s_xsd :
+                if (context.xsd () == 0) sv = xsd_1_0; else sv = xsd_1_1;
+                if (may_apply (sv, s.first (), s.last ())) return s.get ();
+                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
+                break;
             default :
-                nits.pick (nit_unrecognised_schema, es_error, ec_microdata, quote (x), " requires a microdata schema");
+                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " requires a schema");
                 break; } }
     return sty_illegal; }
 
-e_microdata_root sch::root () const
+e_schema sch::root () const
 { return first ().root (); }
 
-e_microdata_root sch::root (const e_schema_type st)
+e_schema sch::root (const e_schema_type st)
 { return first_version (st).root (); }
 
 bool sch::enumerated () const

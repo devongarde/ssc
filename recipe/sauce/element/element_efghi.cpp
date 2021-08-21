@@ -103,6 +103,11 @@ void element::examine_equation ()
     if (! singular) msg += "s";
     pick (nit_arg_count, ed_math_2, "4.4.2.1 Apply (apply)", es_info, ec_element, msg); }
 
+void element::examine_fe ()
+{   if (! context.fe ())
+    {   pick (nit_fe, es_info, ec_element, "the real irony is someone's forgotten &lt; and &gt;");
+        context.fe (true); } }
+
 void element::examine_fecolourmatrix ()
 {   e_matrixtype mt = mt_matrix;
     if (a_.known (a_type)) mt = static_cast < e_matrixtype > (a_.get_int (a_type));
@@ -313,17 +318,25 @@ void element::examine_hgroup ()
     else if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_template))
         pick (nit_bad_descendant, ed_jul17, "4.3.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <TEMPLATE>, or <H1> ... <H6> children"); }
 
+#define RDFA_VERSION "XHTML+RDFa 1.0"
 void element::examine_html ()
 {   if (node_.version () == html_plus)
         pick (nit_use_htmlplus, es_error, ec_element, "HTML+ uses the <HTMLPLUS> element, not <HTML>");
     else
-    {   only_one_of (elem_html);
-        if (node_.version () >= html_jan13)
-           if (! a_.known (a_lang) && ! a_.known (a_xmllang))
-                pick (nit_naughty_lang, ed_50, "4.1.1 The html element", es_warning, ec_attribute, "use LANG to specify a default language");
-        if (node_.version () >= html_jan17)
-            if (a_.known (a_manifest))
-                pick (nit_avoid_manifest, ed_52, "4.1.1 The html element", es_warning, ec_attribute, "MANIFEST is deprecated & should be avoided because application caches are doomed"); } }
+    {   only_one_of ();
+        if (node_.version ().xhtml () && (node_.version () < xhtml_2))
+        {   if (context.rdfa ())
+                if (! a_.known (a_version))
+                    pick (nit_rdfa_version, ed_rdfa, "RDFa in XHTML: Syntax and Processing", es_warning, ec_attribute, "when using RDFa, <HTML> should have a version attribute set to \"" RDFA_VERSION "\"");
+                else if (a_.get_string (a_version) != RDFA_VERSION)
+                    pick (nit_rdfa_version, ed_rdfa, "RDFa in XHTML: Syntax and Processing", es_warning, ec_attribute, "here, VERSION should be \"" RDFA_VERSION "\""); }
+        else
+        {   if (node_.version () >= html_jan13)
+                if (! a_.known (a_lang) && ! a_.known (a_xmllang))
+                    pick (nit_naughty_lang, ed_50, "4.1.1 The html element", es_warning, ec_attribute, "use LANG to specify a default language");
+            if (node_.version () >= html_jan17)
+                if (a_.known (a_manifest))
+                    pick (nit_avoid_manifest, ed_52, "4.1.1 The html element", es_warning, ec_attribute, "MANIFEST is deprecated & should be avoided because application caches are doomed"); } } }
 
 void element::examine_iframe ()
 {   if (node_.version ().mjr () < 5) return;
@@ -350,7 +363,7 @@ void element::examine_img ()
     const bool ancestor_figure = ancestral_elements_.test (elem_figure);
     const bool has_title = a_.good (a_title) && (! a_.get_string (a_title).empty ());
     const bool has_src = a_.known (a_src);
-    check_required_type (elem_img);
+    check_required_type ();
     if (a_.known (a_usemap) && ! node_.version ().is_5 ()) no_anchor_daddy ();
     if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), MIME_IMAGE);
     if (node_.version ().is_4 ())

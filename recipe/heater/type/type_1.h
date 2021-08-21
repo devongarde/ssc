@@ -41,6 +41,9 @@ template < > struct type_master < t_1 > : one_value < t_1, sz_1 >
 template < > struct type_master < t_bb > : one_value < t_bb, sz_makeapp >
 { using one_value < t_bb, sz_makeapp > :: one_value; };
 
+template < > struct type_master < t_cc_prohibits > : one_value < t_cc_prohibits, sz_cc_commercialuse >
+{ using one_value < t_cc_prohibits, sz_cc_commercialuse > :: one_value; };
+
 template < > struct type_master < t_html_boolean > : one_value < t_html_boolean, sz_true >
 { using one_value < t_html_boolean, sz_true > :: one_value; };
 
@@ -55,7 +58,6 @@ template < > struct type_master < t_svg_phase > : one_value < t_svg_phase, sz_de
 
 template < > struct type_master < t_xmllink > : one_value < t_xmllink, sz_simple >
 { using one_value < t_xmllink, sz_simple > :: one_value; };
-
 
 template < e_type TYPE, class SZ > void one_value < TYPE, SZ > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   ::std::string t (trim_the_lot_off (s));

@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "utility/common.h"
 #include "type/enum.h"
 #include "feedback/nitpick.h"
 #include "parser/html_version.h"
@@ -28,23 +29,18 @@ template < typename ENUM, ::std::size_t N > struct n_string_entry
 {   html_version from_, to_;
     ENUM id_;
     flags_t flags_;
-    const char* sz_ [N];
-#ifdef REQUIRE_CONSTRUCTOR
-    n_string_entry (const html_version& from, const html_version& to, const ENUM id, const flags_t f, const char* const sz [])
-        : from_ (from), to_ (to), id_ (id), flags_ (f), sz_ (sz) { }
-#endif //  REQUIRE_CONSTRUCTOR
-};
+    const char* sz_ [N]; };
 
 template < typename ENUM, ENUM ERROR_VALUE, ::std::size_t N, ::std::size_t INDICES > class n_string_table
 {   BOOST_STATIC_ASSERT (INDICES <= N);
-    typedef ssc_mm < ::std::string, ENUM > mnse_t;
+    typedef ssc_mm < ::std::string, ::std::size_t > mnse_t;
     typedef ssc_map < ENUM, ::std::size_t > meid_t;
     typedef n_string_entry < ENUM, N > data_t;
     const data_t* data_ = nullptr;
     mnse_t mixed_ [INDICES], lower_ [INDICES];
     meid_t ids_;
     ::std::size_t max_ = 0;
-    const data_t* datum (const ENUM id) const  // with apologies to English language purists
+    const data_t* piece (const ENUM id) const
     {   PRESUME (id < ERROR_VALUE, __FILE__, __LINE__);
         PRESUME (id != 0, __FILE__, __LINE__);
         typename meid_t::const_iterator i = ids_.find (id);
@@ -56,69 +52,136 @@ public:
     {   VERIFY_NOT_NULL (data, __FILE__, __LINE__);
         data_ = data;
         for (max_ = 0; data_ [max_].id_ != ERROR_VALUE; ++max_)
-        {   ids_.insert (typename meid_t::value_type (data_ [max_].id_, max_));
+            if (ids_.find (data_ [max_].id_) == ids_.cend ())
+                ids_.insert (typename meid_t::value_type (data_ [max_].id_, max_));
+        for (::std::size_t n = 1; n < ERROR_VALUE; ++n)
+        {   typename meid_t::const_iterator i = ids_.find (static_cast < ENUM > (n));
+            if (i == ids_.cend ()) nits.pick (nit_missing_id, es_catastrophic, ec_init, "NSTR initialisation ", n, " missing"); }
+        for (max_ = 0; data_ [max_].id_ != ERROR_VALUE; ++max_)
             for (::std::size_t n = 0; n < INDICES; ++n)
                 if (data_ [max_].sz_ [n] != nullptr)
                 {   //  ::std::string rpt (data_ [max_].sz_ [n]); // thanx, vc++ debugger, for refusing to report anything but data_ [1].
-                    mixed_ [n].insert (typename mnse_t::value_type (::std::string (data_ [max_].sz_ [n]), static_cast < ENUM > (max_)));
-                    lower_ [n].insert (typename mnse_t::value_type (::boost::to_lower_copy (::std::string (data_ [max_].sz_ [n])), static_cast < ENUM > (max_))); } }
-        for (::std::size_t n = 1; n < ERROR_VALUE; ++n)
-        {   typename meid_t::const_iterator i = ids_.find (static_cast < ENUM > (n));
-            if (i == ids_.cend ()) nits.pick (nit_missing_id, es_catastrophic, ec_init, "NSTR initialisation ", n, " missing"); } }
+                    typename meid_t::const_iterator i = ids_.find (data_ [max_].id_);
+                    if (i != ids_.cend ())
+                    {   mixed_ [n].insert (typename mnse_t::value_type (::std::string (data_ [max_].sz_ [n]), i -> second));
+                        lower_ [n].insert (typename mnse_t::value_type (::boost::to_lower_copy (::std::string (data_ [max_].sz_ [n])), i -> second)); } } }
     ENUM err () const { return ERROR_VALUE; }
     const char* get (const ENUM id, const ::std::size_t n) const
     {   PRESUME (n < N, __FILE__, __LINE__);
-        const data_t *pd = datum (id);
+        const data_t *pd = piece (id);
         return pd -> sz_ [n]; }
     html_version from (const ENUM id) const
-    {   const data_t *pd = datum (id);
+    {   const data_t *pd = piece (id);
         return pd -> from_; }
     html_version to (const ENUM id) const
-    {   const data_t *pd = datum (id);
+    {   const data_t *pd = piece (id);
         return pd -> to_; }
     flags_t flags (const ENUM id) const
-    {   const data_t *pd = datum (id);
+    {   const data_t *pd = piece (id);
         return pd -> flags_; }
     ENUM find_mixed (const html_version& v, const ::std::size_t n, const ::std::string& s) const
     {   PRESUME (n < INDICES, __FILE__, __LINE__);
+        ENUM id = ERROR_VALUE;
         for (typename mnse_t::const_iterator pos = mixed_ [n].find (s.c_str ()); pos != mixed_ [n].cend (); ++pos)
-        {   const data_t& pd = data_ [pos -> second];
-            if (may_apply (v, pd.from_, pd.to_)) return pd.id_; }
+        {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
+            const data_t& d = data_ [pos -> second];
+            if (id == ERROR_VALUE) id = d.id_;
+            else if (id != d.id_) break;
+            if (may_apply (v, d.from_, d.to_)) return d.id_; }
         return ERROR_VALUE; }
     ENUM find_lower (const html_version& v, const ::std::size_t n, const ::std::string& s) const
     {   PRESUME (n < INDICES, __FILE__, __LINE__);
-        for (typename mnse_t::const_iterator pos = lower_ [n].find (s.c_str ()); pos != lower_ [n].cend (); ++pos)
-        {   const data_t& pd = data_ [pos -> second];
-            if (may_apply (v, pd.from_, pd.to_)) return pd.id_; }
+        ::std::string ss (::boost::to_lower_copy (s));
+        ENUM id = ERROR_VALUE;
+        for (typename mnse_t::const_iterator pos = lower_ [n].find (ss.c_str ()); pos != lower_ [n].cend (); ++pos)
+        {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
+            const data_t& d = data_ [pos -> second];
+            if (id == ERROR_VALUE) id = d.id_;
+            else if (id != d.id_) break;
+            if (may_apply (v, d.from_, d.to_)) return d.id_; }
         return ERROR_VALUE; }
     ENUM find (const html_version& v, const ::std::size_t n, const ::std::string& s, const bool lower) const
     {   if (lower) return find_lower (v, n, s);
-        return find_mixed (v, n, s); } };
+        return find_mixed (v, n, s); }
+    ENUM starts_with_lower (const ::std::size_t n, const ::std::string& s, ::std::string::size_type* ends_at = nullptr) const
+    {   ::std::string ss (::boost::to_lower_copy (s));
+        ::std::size_t len = ss.length ();
+        if (len > 0)
+            for (typename mnse_t::const_iterator i = lower_ [n].cbegin (); i != lower_ [n].cend (); ++i)
+            {   ::std::string::size_type max = i -> first.length ();
+                if ((max > 0) && (max <= len))
+                    if (ss.substr (0, max) == i -> first)
+                    {   PRESUME (i -> second < max_, __FILE__, __LINE__);
+                        if (ends_at != nullptr) *ends_at = max;
+                        return data_ [i -> second].id_; } }
+        return ERROR_VALUE; }
+    ENUM starts_with_mixed (const ::std::size_t n, const ::std::string& s, ::std::string::size_type* ends_at = nullptr) const
+    {   ::std::size_t len = s.length ();
+        if (len > 0)
+            for (typename mnse_t::const_iterator i = mixed_ [n].cbegin (); i != mixed_ [n].cend (); ++i)
+            {   ::std::string::size_type max = i -> first.length ();
+                if ((max > 0) && (max <= len))
+                    if (s.substr (0, max) == i -> first)
+                    {   PRESUME (i -> second < max_, __FILE__, __LINE__);
+                        if (ends_at != nullptr) *ends_at = max;
+                        return data_ [i -> second].id_; } }
+        return ERROR_VALUE; }
+    ENUM starts_with (const ::std::size_t n, const bool lower, const ::std::string& s, ::std::string::size_type* ends_at = nullptr) const
+    {   if (lower) return starts_with_lower (n, s, ends_at);
+        else return starts_with_mixed (n, s, ends_at); }
+    ::std::string after_start_lower (const ::std::size_t n, const ::std::string& s) const
+    {   ::std::size_t len = s.length ();
+        if (len > 0)
+            for (typename mnse_t::const_iterator i = lower_ [n].cbegin (); i != lower_ [n].cend (); ++i)
+            {   ::std::string::size_type max = i -> first.length ();
+                if ((max > 0) && (max <= len))
+                    if (s.substr (0, max) == i -> first)
+                        return s.substr (max); }
+        return s; }
+    ::std::string after_start_mixed (const ::std::size_t n, const ::std::string& s) const
+    {   ::std::size_t len = s.length ();
+        if (len > 0)
+            for (typename mnse_t::const_iterator i = mixed_ [n].cbegin (); i != mixed_ [n].cend (); ++i)
+            {   ::std::string::size_type max = i -> first.length ();
+                if ((max > 0) && (max <= len))
+                    if (s.substr (0, max) == i -> first)
+                        return s.substr (max); }
+        return s; }
+    ::std::string after_start (const ::std::size_t n, const ::std::string& s, const bool lower) const
+    {   if (lower) return after_start_lower (n, s);
+        else return after_start_mixed (n, s); }
+};
 
 #define ABB_SHORTFORM 0
-#define ABB_LONGFORM 1
-
-#define PROTOCOL_NAME ABB_SHORTFORM
-#define PROTOCOL_DESCRIPTION 1
-
-#define PREFIX_NAME ABB_SHORTFORM
-#define PREFIX_CURIE ABB_LONGFORM
-#define PREFIX_DESCRIPTION 2
+#define ABB_LONGFORM ( ABB_SHORTFORM + 1 )
 
 #define NAMESPACE_NAME ABB_SHORTFORM
 #define NAMESPACE_SCHEMA ABB_LONGFORM
-#define NAMESPACE_DESCRIPTION 2
+#define NAMESPACE_DESCRIPTION ( NAMESPACE_SCHEMA + 1 )
+#define NAMESPACE_COUNT ( NAMESPACE_DESCRIPTION + 1 )
 
 #define NS_DEFAULT          0x0000000000000001
 #define NS_DEPRECATED       0x0000000000000002
 #define NS_UNDECLARABLE     0x0000000000000004
 #define NS_PREDECLARED      0x0000000000000008
 
-typedef n_string_table < e_namespace, ns_error, 3, 2 > namespace_names_t;
-typedef n_string_table < e_protocol, pr_error, 2, 1 > protocol_names_t;
-typedef n_string_table < e_rdfa_context, pre_error, 3, 2 > prefix_names_t;
+#define PROTOCOL_NAME ABB_SHORTFORM
+#define PROTOCOL_DESCRIPTION ( PROTOCOL_NAME + 1 )
+#define PROTOCOL_COUNT ( PROTOCOL_DESCRIPTION + 1 )
+
+#define SCHEMA_NAME ABB_SHORTFORM
+#define SCHEMA_CURIE ABB_LONGFORM
+#define SCHEMA_DESCRIPTION ( SCHEMA_CURIE + 1 )
+#define SCHEMA_COUNT ( SCHEMA_DESCRIPTION + 1 )
+
+#define SCHEMA_PREFIX_CONTEXT   0x0000000000000001
+#define SCHEMA_BESPOKE          0x0000000000000002
+
+typedef n_string_table < e_namespace, ns_error, NAMESPACE_COUNT, 2 > namespace_names_t;
+typedef n_string_table < e_protocol, pr_error, PROTOCOL_COUNT, 1 > protocol_names_t;
+typedef n_string_table < e_schema, s_error, SCHEMA_COUNT, 2 > schema_names_t;
 extern namespace_names_t namespace_names;
 extern protocol_names_t protocol_names;
-extern prefix_names_t prefix_names;
+extern schema_names_t schema_names;
 
 void init_nstrs (nitpick& nits);

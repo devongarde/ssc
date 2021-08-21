@@ -250,3 +250,20 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
     catch (...)
     {   nits.pick (nit_shadow_failed, es_catastrophic, ec_shadow, "error writing ", s.string ());
         throw; } }
+
+const url& page::base () const
+{ return base_; }
+
+void page::base (const url& s)
+{ base_ = s; }
+
+::std::string page::get_absolute_url (const ::std::string& s) const
+{   // if called before BASE is processed, result will be a lie
+    PRESUME ((s.find (':') == ::std::string::npos), __FILE__, __LINE__);
+    ::std::string arg;
+    if (! base_.empty ()) arg = base_.absolute ();
+    else arg = context.make_absolute_url (get_directory () -> get_site_path ());
+    if ((s.length () > 0) && (s.at (0) != '/'))
+        if (arg.length () == 0) arg = "/";
+        else if (arg.at (arg.length () - 1) != '/') arg += '/';
+    arg += s; return arg; }

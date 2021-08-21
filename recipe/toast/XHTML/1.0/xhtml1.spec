@@ -23,14 +23,15 @@ PASS ../toast/XHTML/1.0/x1-bad.xhtml
 16 xhtml_missing_slash xhtml_existential_makework attribute_required
 18 inserted_missing_closure
 
-PASS ../toast/XHTML/1.0/parsing.xhtml
-1 xhtml_1_0
-22 attribute_required
-26 attribute_required
-
 PASS ../toast/XHTML/1.0/mathml-1.xhtml
 1 xhtml_1_0
 
 PASS ../toast/XHTML/1.0/math-example.xhtml
 1 xhtml_1_0
 7 reputation
+12 unknown_element unknown_element
+
+PASS ../toast/XHTML/1.0/parsing.xhtml
+1 xhtml_1_0
+22 attribute_required
+26 attribute_required

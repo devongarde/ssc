@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "symbol/symbol_table.h"
 
 ::std::string namespace_name (const ident_t ns);
-::std::string namespace_name (const e_microdata_root ns);
+::std::string namespace_name (const e_schema ns);
 
 // VALUE is presumed to be an enum or an int
 template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT = 0, class LC = sz_true > class symbol : public enlc < LC >

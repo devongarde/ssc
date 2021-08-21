@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.110 LANGUAGES CXX)
+project (ssc VERSION 0.0.111 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -99,6 +99,7 @@ target_sources (ssc PRIVATE
         ${H}/parser/html_version.h ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h ${H}/parser/parse_bra_ket.h
             ${H}/parser/parse_bras_ket.h ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h
             ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
+        ${H}/rdf/rdf.h ${H}/rdf/rdfa_prop.h ${H}/rdf/rdfa_type.h
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
         ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats4.h ${H}/stats/stats_impl.h
@@ -123,7 +124,7 @@ target_sources (ssc PRIVATE
              ${S}/attribute/avm_data_m.cpp ${S}/attribute/avm_data_n.cpp ${S}/attribute/avm_data_o.cpp ${S}/attribute/avm_data_p.cpp ${S}/attribute/avm_data_q.cpp
              ${S}/attribute/avm_data_r.cpp ${S}/attribute/avm_data_s.cpp ${S}/attribute/avm_data_t.cpp ${S}/attribute/avm_data_u.cpp ${S}/attribute/avm_data_v.cpp
              ${S}/attribute/avm_data_w.cpp ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_cc.cpp ${S}/attribute/avm_data_dc.cpp
-             ${S}/attribute/avm_data_dct.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
+             ${S}/attribute/avm_data_dct_a.cpp ${S}/attribute/avm_data_dct_b.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
         ${S}/css/css.cpp ${S}/css/css_cache.cpp
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
@@ -140,6 +141,7 @@ target_sources (ssc PRIVATE
         ${S}/parser/html_version.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_bra_ket.cpp
             ${S}/parser/parse_bras_ket.cpp ${S}/parser/parse_css.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp
             ${S}/parser/pattern.cpp ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
+        ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
         ${S}/schema/schema_hierarchy.cpp ${S}/schema/schema_name.cpp ${S}/schema/schema_property.cpp ${S}/schema/schema_structure.cpp
             ${S}/schema/schema_type.cpp ${S}/schema/schema_version.cpp
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp

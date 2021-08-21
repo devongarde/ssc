@@ -377,6 +377,7 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
         { "licence", d_none, nullptr },
         { "motorised", d_none, nullptr },
         { "neighbour", d_johnson, "1356" },
+        { "normalise", d_none, nullptr },
         { "optimise", d_none, nullptr },
         { "organiser", d_none, nullptr },
         { "organise", d_none, nullptr },

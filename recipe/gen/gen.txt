@@ -224,6 +224,8 @@ These options are available on the command line and in configuration files:
 
 --nits.warning n        Redefine nit n as a warning; may be repeated (the value of n can be determined using --nits.nids).
 
+--shadow.changed        When shadowing a site that has been previously shadowed, only copy/link files that have changed.
+
 --shadow.comment        Do not delete comments when writing shadow pages.
 
 --shadow.copy X         Create a shadow directory structure from source HTML files, with errors removed and some things tidied up. X can be:
@@ -236,6 +238,9 @@ These options are available on the command line and in configuration files:
                                 report only report duplicates (no shadowing).
                         ssc cannot convert between versions of HTML, or between HTML and XHTML.
                         The soft and hard options are only available on systems that support file links.
+
+--shadow.enable         Enable shadowing (set by other shadow options). If shadowing is enabled, but shadow.root is not set, SSC will litter the site
+                        itself with .ndx files.
 
 --shadow.file f         Write ssc's shadow cache to file f, to accelerate future shadows of the same content.
 
@@ -253,7 +258,7 @@ These options are available on the command line and in configuration files:
 --shadow.space          Leave excess/repeated spaces and blank lines in the shadowed files untidily untouched.
 
 --shadow.update         Only examine files that have changed since the last time ssc ran. This is incompatible with --corpus.file. This requires --shadow.file.
--u                      Note that nits in files that have not changed will not be reported.
+-u                      Nits of files that have not changed will not be reported.
 
 --shadow.virtual v=d    When shadowing virtual directories, output the shadow of virtual directory 'v' to directory 'd'. 'v' must corresponding to a directory
                         set up using --site.virtual.

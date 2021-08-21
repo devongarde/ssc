@@ -1,3 +1,9 @@
+../toast/RDFa/1.1.3/rdfa.spec
+../toast/RDFa/cc/rdfa.spec
+../toast/RDFa/dc/rdfa.spec
+../toast/RDFa/foaf/rdfa.spec
+../toast/RDFa/gr/rdfa.spec
+../toast/RDFa/schema/rdfa.spec
 ../toast/conf/html/conf.spec
 ../toast/conf/xhtml/conf.spec
 ../toast/csp/1/csp.spec
@@ -47,6 +53,7 @@
 ../toast/living/jul20/living.spec
 ../toast/living/jan21/living.spec
 ../toast/living/apr21/living.spec
+../toast/living/jul21/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -82,6 +89,8 @@
 ../toast/other/pattern/pattern.spec
 ../toast/other/simple/simple.spec
 ../toast/other/ssi/ssi.spec
+../toast/RDF/1.0/rdf.spec
+../toast/RDF/1.1/rdf.spec
 ../toast/shadow/update/update.spec
 ../toast/shadow/comment/comment.spec
 ../toast/shadow/copy/copy.spec

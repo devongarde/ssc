@@ -25,8 +25,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,110,0
- PRODUCTVERSION 0,0,110,0
+ FILEVERSION 0,0,111,0
+ PRODUCTVERSION 0,0,111,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -43,12 +43,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", " dylan harris"
             VALUE "FileDescription", "static site checker"
-            VALUE "FileVersion", "0.0.110.0"
+            VALUE "FileVersion", "0.0.111.0"
             VALUE "InternalName", "ssc.exe"
             VALUE "LegalCopyright", "Copyright (C) 2020,2021 dylan harris"
             VALUE "OriginalFilename", "ssc.exe"
             VALUE "ProductName", "static site checker"
-            VALUE "ProductVersion", "0.0.110.0"
+            VALUE "ProductVersion", "0.0.111.0"
         END
     END
     BLOCK "VarFileInfo"

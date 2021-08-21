@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/parse_element.h"
 #include "microformat/microformat_export.h"
 #include "microdata/microdata_itemscope.h"
+#include "rdf/rdf.h"
 
 #define MAX_IDEAL_PLACEHOLDER_LENGTH 24
 
@@ -35,6 +36,9 @@ class element;
 typedef ::std::vector < element* > velptr_t;
 typedef ::std::pair < element*, e_class > found_farm;
 typedef ::std::shared_ptr < element > element_ptr;
+
+#define EF_NULL_DATATYPE    0x00000001
+#define EF_XL_DATATYPE      0x00000002
 
 class element
 {   element_node& node_;
@@ -64,13 +68,13 @@ class element
     template < e_type T > void val_min_max (const bool cyclic = false);
     void activate_microformats () { if (! mf_) mf_.reset (new microformats ()); }
     void dddt (const char* ref1, const char* ref2, const char* el);
-    void check_required_type (const e_element tag);
+    void check_required_type ();
     void mf_put_vocab (const e_class v, const prop& p, const ::std::string& itemtype = ::std::string (EXPORT_ITEMTYPE), const ::std::string& itemprop = ::std::string (EXPORT_ITEMPROP));
     void mf_put_rel (const e_class v, const prop& p, const vstr_t& rels);
     void verify ();
     void verify_children ();
-    bool only_one_of (const e_element e);
-    bool only_one_visible_of (const e_element e);
+    bool only_one_of ();
+    bool only_one_visible_of ();
     void congeal_dynamism ();
     bool has_this_child (const e_element e) const;
     bool has_this_descendant (const e_element e) const;
@@ -79,29 +83,33 @@ class element
     void check_descendants (const e_element self, const element_bitset& gf, const bool absent = true);
     void check_inclusion_criteria ();
     bool has_invalid_child (const element_bitset& gf);
-    void check_mscarries_pos (const e_element self);
+    void check_mscarries_pos ();
     bool check_math_children (const int expected, const bool or_more = false);
     void check_math_children (const int from, const int to);
     void do_shadow (::std::stringstream& ss, const html_version& v, bool& was_closure, bool& allspace, bool& was_nl);
     bool naughty_label_descendents (const element* e, const uid_t uid, bool& first);
     void no_anchor_daddy ();
     template < typename ATTRIBUTE > element* ancestor_known (const e_attribute a) const;
+    void verify_rdfa ();
+    ::std::string get_microdata_value () const;
     void verify_microdata ();
+    ::std::string get_rdfa_value () const;
     bool report_script_comment (element_ptr parent);
     void walk_itemprop (itemscope_ptr itemscope);
     vit_t supplied_itemtypes ();
     vit_t sought_itemtypes ();
     void span_check ();
-    void pre_examine_element (const e_element tag);
-    void post_examine_element (const e_element tag);
-    void late_examine_element (const e_element tag);
+    void pre_examine_element ();
+    void post_examine_element ();
+    void late_examine_element ();
     void examine_about ();
-    void examine_datatype ();
+    void examine_datatype (flags_t& flags);
     void examine_inlist ();
     void examine_instanceof ();
     void examine_prefix ();
     void examine_property ();
-    bool examine_rev (const ::std::string& s);
+    void examine_rdfa_rel (const ::std::string& s);
+    void examine_rdfa_rev (const ::std::string& s);
     void examine_resource ();
     void examine_typeof ();
     void examine_vocab ();
@@ -151,7 +159,7 @@ class element
     void examine_address ();
     void examine_altglyphdef ();
     void examine_animatemotion ();
-    void examine_annotation (const e_element e);
+    void examine_annotation ();
     void examine_area ();
     void examine_article ();
     void examine_aside ();
@@ -177,6 +185,7 @@ class element
     void examine_dt ();
     void examine_embed ();
     void examine_equation ();
+    void examine_fe ();
     void examine_fecolourmatrix ();
     void examine_fecomponenttransfer ();
     void examine_fecomposite ();
@@ -223,6 +232,7 @@ class element
     void examine_progress ();
     void examine_reln ();
     void examine_ruby ();
+    void examine_sarcasm ();
     void examine_script ();
     void examine_section ();
     void examine_select ();
@@ -268,8 +278,9 @@ public:
     {   if (own_attributes_.test (a_hidden)) return true;
         return ancestral_attributes_.test (a_hidden); }
     void examine_self ( const itemscope_ptr& itemscope = itemscope_ptr (),
-                        const attribute_bitset& ancestral_attributes = attribute_bitset (), const attribute_bitset& sibling_attributes = attribute_bitset ());
-    void examine_children ();
+                        const attribute_bitset& ancestral_attributes = attribute_bitset (), const attribute_bitset& sibling_attributes = attribute_bitset (),
+                        const flags_t parental_flags = 0);
+    void examine_children (const flags_t flags);
     ::std::string make_children (const int depth, const element_bitset& gf = element_bitset ());
     void verify_document ();
     ::std::string find_date_value () const;
@@ -314,7 +325,6 @@ public:
     vit_t own_itemtype () const;
     const attribute_bitset& own_attributes () const { return own_attributes_; }
     attribute_bitset& own_attributes () { return own_attributes_; }
-    ::std::string get_microdata_value () const;
     void shadow (::std::stringstream& ss, const html_version& v);
     const page& get_page () const { return page_; }
     page& get_page () { return page_; }

@@ -309,7 +309,7 @@ void options::process (int argc, char** argv)
         (GENERAL NOCHANGE ",n", "Report what " PROG "will do, but do not do it.")
         (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "Output file (default to the console).")
         (GENERAL PATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "Root directory for all " PROG " files.")
-        (GENERAL RDFA, "Check RDFa attributes.")
+        (GENERAL RDFA_, "Check RDFa attributes.")
         (GENERAL REL, "Ignore recognised but non-standard <LINK> REL values.")
         (GENERAL SLOB, "Do not nitpick untidy HTML such as missing closures.")
         (GENERAL SSI ",I", "Process (simple) Server Side Includes.")
@@ -349,7 +349,7 @@ void options::process (int argc, char** argv)
         (MICRODATA EXPORT, "Export microformat data (only verified data if " MICRODATA MICRODATAARG " is set).")
         (MICRODATA MICRODATAARG ",m", "Check microdata (" PROG " only understands certain microdata schemas).")
         (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "Export root directory (requires " MICRODATA EXPORT ").")
-        (MICRODATA VERSION, ::boost::program_options::value < ::std::string > (), "Set default " SCHEMA_ORG " version (default: " DEFAULT_SCHEMA_VERSION ").")
+        (MICRODATA VERSION, ::boost::program_options::value < ::std::string > (), "Set default " SCHEMA_ORG " version (default: " DEFAULT_SCHEMA_ORG_VERSION ").")
         (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory, syntax virtual=directory. Must correspond to " WEBSITE VIRTUAL ".")
 
         (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a catastrophe; may be repeated.")
@@ -363,6 +363,16 @@ void options::process (int argc, char** argv)
         (NITS UNIQUE ",U", "Do not report repeated nits, even if they may give a little more information")
         (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a warning; may be repeated.")
 
+        (RDFA DC, ::boost::program_options::value < int > () -> default_value (1), "preferred minor version of dublin core (default: 1, as in 1.1).")
+        (RDFA FOAF, ::boost::program_options::value < int > () -> default_value (99), "preferred minor version of foaf (default: 99, as in 0.99).")
+        (RDFA VERSION, ::boost::program_options::value < ::std::string > () -> default_value ("1.1.3"), "preferred version of RDFa (default 1.1.3).")
+        (RDFA XSD, ::boost::program_options::value < int > () -> default_value (1), "preferred minor version of XML Schema Types (default: 1, as in 1.1).")
+
+        (SHADOW CHANGED,    "Only "
+#ifndef NOLYNX
+                            "link/"
+#endif // NOLYNX
+                            "copy shadow files when the target doesn't exist, or is older than the original.")
         (SHADOW COMMENT, "Do NOT remove comments from shadow pages.")
         (SHADOW COPY, ::boost::program_options::value < ::std::string > (),  "Copy site: 'no' (default), "
 #ifndef NOLYNX
@@ -370,11 +380,7 @@ void options::process (int argc, char** argv)
 #endif // NOLYNX
                                                                     "'pages', 'all', 'dedu' (deduplicate), 'report'.")
         (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "Where to persist deduplication and update data.")
-        (SHADOW CHANGED,    "Only "
-#ifndef NOLYNX
-                            "link/"
-#endif // NOLYNX
-                            "copy shadow files when the target doesn't exist, or is older than the original.")
+        (SHADOW ENABLE, "Enable shadowing (set by all other SHADOW options)")
         (SHADOW IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore files with this extension; may be repeated.")
         (SHADOW INFO, "Insert the generation time in a comment at the top of shadowed pages (after " SHADOW MSG ").")
         (SHADOW MSG, ::boost::program_options::value < ::std::string > (), "Insert this text in a comment at the top of shadowed pages.")
@@ -681,24 +687,24 @@ void options::contextualise ()
     if (var_.count (MICRODATA VERSION))
     {   ::std::string ver (var_ [MICRODATA VERSION].as < ::std::string > ());
         if (ver.empty ())
-        {   context.schema_ver (schema_version (mdr_schema, DEFAULT_SCHEMA_MAJOR, DEFAULT_SCHEMA_MINOR));
+        {   context.schema_ver (schema_version (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR));
             ::std::ostringstream ss;
-            ss << "missing schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n";
+            ss << "missing schema version; presuming " << DEFAULT_SCHEMA_ORG_MAJOR << "." << DEFAULT_SCHEMA_ORG_MINOR << "\n";
             context.err (ss.str ()); }
         else
         {   ::std::string::size_type pos = ver.find ('.');
             // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
             if (pos == ::std::string::npos)
-                context.schema_ver (schema_version (mdr_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0));
+                context.schema_ver (schema_version (s_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0));
             else if (pos == 0)
-            {   context.schema_ver (schema_version (mdr_schema, DEFAULT_SCHEMA_MAJOR, DEFAULT_SCHEMA_MINOR));
+            {   context.schema_ver (schema_version (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR));
                 ::std::ostringstream ss;
-                ss << "missing schema version; presuming " << DEFAULT_SCHEMA_MAJOR << "." << DEFAULT_SCHEMA_MINOR << "\n";
+                ss << "missing schema version; presuming " << DEFAULT_SCHEMA_ORG_MAJOR << "." << DEFAULT_SCHEMA_ORG_MINOR << "\n";
                 context.err (ss.str ()); }
             else if (pos == ver.length () - 1)
-                context.schema_ver (schema_version (mdr_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0));
+                context.schema_ver (schema_version (s_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0));
             else if (pos > 0)
-                context.schema_ver (schema_version (mdr_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
+                context.schema_ver (schema_version (s_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
                                                                 static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))))); } }
 
     context.microdata (var_.count (VALIDATION MICRODATAARG));
@@ -706,7 +712,7 @@ void options::contextualise ()
     if (! context.cgi ())
     {   context.load_css (var_.count (GENERAL CSS_OPTION) == 0);
         context.nochange (var_.count (GENERAL NOCHANGE));
-        context.rdfa (var_.count (GENERAL RDFA));
+        context.rdfa (var_.count (GENERAL RDFA_));
         context.rel (var_.count (GENERAL REL));
         context.rpt_opens (var_.count (GENERAL RPT));
         context.ssi (var_.count (GENERAL SSI));
@@ -810,6 +816,23 @@ void options::contextualise ()
                 {   context.err (quote (s));
                     context.err (": no such nit.\n"); }
 
+        if (var_.count (RDFA DC))
+        {   int n = var_ [RDFA DC].as < int > ();
+            if ((n > 0) && (n <= 1)) context.dc (n); }
+
+        if (var_.count (RDFA FOAF))
+        {   int n = var_ [RDFA FOAF].as < int > ();
+            if ((n > 0) && (n <= 99)) context.foaf (n); }
+
+//        if (var_.count (RDFA VERSION))
+//        {   ::std::string rv = var_ [RDFA VERSION].as < ::std::string > ();
+//            if (rv != "1.0") && (rv != "1.1") && (rv != "1.1.1") && (rv != "1.1.2") && (rv != "1.1.3")
+//            context.rdfa_version (n); }
+
+        if (var_.count (RDFA XSD))
+        {   int n = var_ [RDFA XSD].as < int > ();
+            if ((n > 0) && (n <= 1)) context.xsd (n); }
+
         context.shadow_comment (var_.count (SHADOW COMMENT));
         context.shadow_changed (var_.count (SHADOW CHANGED));
 
@@ -828,6 +851,7 @@ void options::contextualise ()
                 context.copy (static_cast < int > (sh) - 1);
             else context.err ("invalid " SHADOW COPY " option\n"); }
 
+        context.shadow_enable (var_.count (SHADOW ENABLE));
         if (var_.count (SHADOW FICHIER)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FICHIER].as < ::std::string > ()));
         if (var_.count (SHADOW IGNORED)) context.shadow_ignore (var_ [SHADOW IGNORED].as < vstr_t > ());
         context.info (var_.count (SHADOW INFO));
@@ -947,8 +971,6 @@ void options::contextualise ()
         TEST_VAR (mf_listing_action);
         TEST_VAR (mf_method);
         TEST_VAR (mf_reviewtype);
-        TEST_VAR (microdata_domain);
-        TEST_VAR (microdata_root);
         TEST_VAR (namedspace);
         TEST_VAR (mathnotation);
         TEST_VAR (ogtype);
@@ -956,7 +978,6 @@ void options::contextualise ()
         TEST_VAR (plusstyle);
         TEST_VAR (pointer_events);
         TEST_VAR (print);
-        TEST_VAR (rdfa_context);
         TEST_VAR (referrer);
         TEST_VAR (rendering_in_tents);
         TEST_VAR (rules);
@@ -1073,7 +1094,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (GENERAL MAXFILESIZE)) res << GENERAL MAXFILESIZE ": " << var_ [GENERAL MAXFILESIZE].as < int > () << "\n";
     if (var_.count (GENERAL NOCHANGE)) res << GENERAL NOCHANGE "\n";
     if (var_.count (GENERAL PATH)) res << GENERAL PATH ": " << var_ [GENERAL PATH].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL RDFA)) res << GENERAL RDFA "\n";
+    if (var_.count (GENERAL RDFA_)) res << GENERAL RDFA_ "\n";
     if (var_.count (GENERAL RPT)) res << GENERAL RPT "\n";
     if (var_.count (GENERAL SSI)) res << GENERAL SSI "\n";
     if (var_.count (GENERAL TEST)) res << GENERAL TEST "\n";
@@ -1121,9 +1142,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < ::std::string > () << "\n";
     if (var_.count (MICRODATA VIRTUAL)) { res << MICRODATA VIRTUAL ": "; pvs (res, var_ [MICRODATA VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
+    if (var_.count (RDFA DC)) res << RDFA DC ": " << var_ [RDFA DC].as < int > () <<  "\n";
+    if (var_.count (RDFA FOAF)) res << RDFA FOAF ": " << var_ [RDFA FOAF].as < int > () <<  "\n";
+    if (var_.count (RDFA VERSION)) res << RDFA VERSION ": " << var_ [RDFA VERSION].as < ::std::string > () <<  "\n";
+    if (var_.count (RDFA XSD)) res << RDFA XSD ": " << var_ [RDFA XSD].as < int > () <<  "\n";
+
     if (var_.count (SHADOW CHANGED)) res << SHADOW CHANGED "\n";
     if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT "\n";
     if (var_.count (SHADOW COPY)) res << SHADOW COPY ": " << var_ [SHADOW COPY].as < ::std::string > () << "\n";
+    if (var_.count (SHADOW ENABLE)) res << SHADOW ENABLE "\n";
     if (var_.count (SHADOW FICHIER)) res << SHADOW FICHIER ": " << var_ [SHADOW FICHIER].as < ::std::string > () << "\n";
     if (var_.count (SHADOW IGNORED)) { res << SHADOW IGNORED ": "; pvs (res, var_ [SHADOW IGNORED].as < vstr_t > ()); res << "\n"; }
     if (var_.count (SHADOW MSG)) res << SHADOW MSG ": " << var_ [SHADOW MSG].as < ::std::string > () << "\n";
@@ -1206,8 +1233,6 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (mf_listing_action);
     RPT_VAR (mf_method);
     RPT_VAR (mf_reviewtype);
-    RPT_VAR (microdata_domain);
-    RPT_VAR (microdata_root);
     RPT_VAR (namedspace);
     RPT_VAR (namespace);
     RPT_VAR (mathnotation);
@@ -1216,11 +1241,11 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (plusstyle);
     RPT_VAR (pointer_events);
     RPT_VAR (print);
-    RPT_VAR (rdfa_context);
     RPT_VAR (referrer);
     RPT_VAR (rendering_in_tents);
     RPT_VAR (rules);
     RPT_VAR (sandbox);
+    RPT_VAR (schema);
     RPT_VAR (shape7);
     RPT_VAR (shape_rendering);
     RPT_VAR (ssi);

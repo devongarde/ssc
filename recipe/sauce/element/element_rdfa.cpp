@@ -23,42 +23,159 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 #include "attribute/attribute_classes.h"
 
-void element::examine_about ()
-{
-}
+void element::verify_rdfa ()
+{ /* bool has_itemid = a_.known (a_itemid);
+    bool has_itemref = a_.known (a_itemref);
+    bool has_itemtype = a_.known (a_itemtype);
+    bool has_itemscope = a_.known (a_itemscope);
+    if (has_itemtype)
+        if (! has_itemscope)
+            node_.pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_error, ec_attribute, "missing ITEMSCOPE; ITEMTYPE ignored");
+    if (has_itemid)
+        if (! has_itemscope || ! has_itemtype)
+            node_.pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_error, ec_attribute, "ITEMID requires both ITEMSCOPE and ITEMTYPE");
+    if (has_itemref)
+        if (! has_itemscope)
+            node_.pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_error, ec_attribute, "missing ITEMSCOPE; ITEMREF ignored"); */ }
 
-void element::examine_datatype ()
-{
-}
+::std::string element::get_rdfa_value () const
+{   if (a_.known (a_content))
+        return a_.get_string (a_content);
+    switch (tag ())
+    {   case elem_a :
+        case elem_area :
+        case elem_link :
+            return a_.get_string (a_href);
+        case elem_audio :
+        case elem_embed :
+        case elem_iframe :
+        case elem_img :
+        case elem_source :
+        case elem_track :
+        case elem_video :
+            return a_.get_string (a_src);
+        case elem_data :
+        case elem_meter :
+            return a_.get_string (a_value);
+//        case elem_meta :
+//            return a_.get_string (a_content);
+        case elem_object :
+            return a_.get_string (a_data);
+        case elem_t :
+        case elem_time :
+            return a_.get_string (a_datetime);
+        default :
+            return node_.text (); } }
+
+void element::examine_about ()
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
+    if (a_.good (a_about))
+    {   node_.prepare_rdfa ();
+        VERIFY_NOT_NULL (node_.rdfa (), __FILE__, __LINE__);
+        ::std::string s (a_.get_string (a_about));
+        if (s.find (':') == ::std::string::npos) s = page_.get_absolute_url (s); } }
+
+void element::examine_datatype (flags_t& flags)
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
+    bool nowt = a_.empty (a_datatype);
+    if (nowt || a_.good (a_datatype))
+    {   node_.prepare_rdfa ();
+        rdf_ptr ptr = node_.rdfa ();
+        VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
+        if (nowt) flags |= EF_NULL_DATATYPE;
+        else
+        {   ::std::string dt (tart (a_.get_string (a_datatype)));
+            e_schema_type t = ptr -> note_type (node_.nits (), node_.version (), dt, page_);
+            switch (t)
+            {   case rdf_xmlliteral :
+                    flags |= EF_XL_DATATYPE;
+                    break;
+                case sty_illegal :
+                    pick (nit_unknown_datatype, ed_rdfa, "6.3.1.3. XML Literals", es_error, ec_rdfa, "Unknown RDFa DATATYPE ", quote (dt));
+                    break;
+                default :
+                    ptr -> verify_value (node_.nits (), node_.version (), t, get_rdfa_value ());
+                    break; } } } }
 
 void element::examine_inlist ()
-{
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
 }
 
 void element::examine_instanceof ()
-{
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
 }
 
 void element::examine_prefix ()
-{
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
 }
 
 void element::examine_property ()
-{
-}
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
+    if (a_.good (a_property))
+    {   node_.prepare_rdfa ();
+        rdf_ptr ptr = node_.rdfa ();
+        VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
+        ::std::string value (get_rdfa_value ());
+        bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
+        ptr -> note_prop (node_.nits (), node_.version (), a_.get_string (a_property), value, is_link, page_); } }
 
-bool element::examine_rev (const ::std::string& )
-{   return true; }
+// I need to distinguish rev and rel
+void element::examine_rdfa_rel (const ::std::string& prop)
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
+    if (a_.good (a_rel))
+    {   node_.prepare_rdfa ();
+        rdf_ptr ptr = node_.rdfa ();
+        VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
+        ::std::string value (get_rdfa_value ());
+        bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
+        vstr_t rels (split_by_space (prop));
+        nitpick knots;
+        for (auto r : rels)
+            ptr -> note_prop (knots, node_.version (), r, value, is_link, page_);
+        if (! context.microformats ()) nits ().merge (knots); } }
+
+void element::examine_rdfa_rev (const ::std::string& prop)
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
+    if (a_.good (a_rel))
+    {   node_.prepare_rdfa ();
+        rdf_ptr ptr = node_.rdfa ();
+        VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
+        ::std::string value (get_rdfa_value ());
+        bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
+        vstr_t revs (split_by_space (prop));
+        nitpick knots;
+        for (auto r : revs)
+            ptr -> note_prop (node_.nits (), node_.version (), r, value, is_link, page_);
+        if (! context.microformats ()) nits ().merge (knots); } }
 
 void element::examine_resource ()
-{
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
 }
 
 void element::examine_typeof ()
-{
-}
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
+    if (a_.good (a_typeof))
+    {   node_.prepare_rdfa ();
+        rdf_ptr ptr = node_.rdfa ();
+        VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
+        ptr -> note_type (node_.nits (), node_.version (), a_.get_string (a_typeof), page_); } }
 
 void element::examine_vocab ()
-{
-}
+{   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
+    PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
+    if (a_.good (a_vocab))
+    {   node_.prepare_rdfa ();
+        rdf_ptr ptr = node_.rdfa ();
+        VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
+        ptr -> note_vocab (node_.nits (), node_.version (), a_.get_string (a_vocab), page_); } }
 

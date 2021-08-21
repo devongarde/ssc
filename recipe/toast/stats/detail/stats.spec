@@ -66,7 +66,7 @@ Elements:
   itemtype: used thrice
   lang: used once
  13 elements used 60 times
-Microdata:
+Ontology:
   http://schema.org/BlogPosting: twice
    commentCount: once
    name: once
@@ -215,7 +215,7 @@ Elements:
   itemtype: used 4 times
   lang: used once
  12 elements used 46 times
-Microdata:
+Ontology:
   http://schema.org/Organization: twice
    name: twice
    url: twice
@@ -288,7 +288,7 @@ Elements:
   name: used 9 times
   title: used 4 times
  20 elements used 268 times
-Microdata:
+Ontology:
   http://schema.org/BlogPosting: twice
    commentCount: once
    name: once
@@ -352,7 +352,7 @@ Errors reported:
  Categories:
   Attribute: thrice
   Element: twice
-  Microdata: twice
+  Schema: twice
   URx: once
  References:
   HTML 5.0: thrice

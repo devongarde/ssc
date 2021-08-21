@@ -970,8 +970,9 @@ struct hav_t
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_target }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_title }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_usemap }, \
-    { { XHTML_2_0, 0, HE_NOT_SVG_20 }, { XHTML_2_0 }, ELEM, a_xmlbase }, \
+    { { XHTML_1_0, 0, HE_NOT_SVG_20 }, { HTML_UNDEF }, ELEM, a_xmlbase }, \
     { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_xmlid }
+// note: xml:base was backported to XML 1.0 & 1.1, apparently. ( https://www.w3.org/TR/xmlbase/ )
 
 #define XHTML2_STANDARD_ATTRIBUTES(ELEM) \
     XHTML2_COMMON_ATTRIBUTES(ELEM), \

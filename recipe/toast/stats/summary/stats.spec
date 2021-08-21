@@ -73,7 +73,7 @@ Elements:
   name: used 9 times
   title: used 4 times
  20 elements used 268 times
-Microdata:
+Ontology:
   http://schema.org/BlogPosting: twice
    commentCount: once
    name: once
@@ -137,7 +137,7 @@ Errors reported:
  Categories:
   Attribute: twice
   Element: twice
-  Microdata: twice
+  Schema: twice
   URx: once
  References:
   HTML 5.0: twice

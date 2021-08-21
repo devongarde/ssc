@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>RDFa example 7</title>
+</head>
+
+<body>
+
+<h1>RDFa example 7</h1>
+
+<div about="http://dbpedia.org/resource/Albert_Einstein">
+ <span property="foaf:name">Albert Einstein</span>
+ <span property="dbp:dateOfBirth" datatype="xsd:date">1879-03-14</span>
+ <div rel="dbp:birthPlace" resource="http://dbpedia.org/resource/German_Empire">
+ <span property="dbp:conventionalLongName">the German Empire</span>
+ </div>
+</div>
+
+<div about="http://dbpedia.org/resource/Albert_Einstein">
+ <div rel="dbp-owl:residence" resource="http://dbpedia.org/resource/German_Empire"></div>
+ <div rel="dbp-owl:residence" resource="http://dbpedia.org/resource/Switzerland"></div>
+</div>
+
+<div about="http://dbpedia.org/resource/Albert_Einstein" rel="dbp-owl:residence">
+ <span about="http://dbpedia.org/resource/German_Empire"></span>
+ <span about="http://dbpedia.org/resource/Switzerland"></span>
+</div>
+
+<div about="http://dbpedia.org/resource/Albert_Einstein">
+ <div rel="foaf:depiction">
+ <img src="http://en.wikipedia.org/wiki/Image:Albert_Einstein_Head.jpg" />
+ </div>
+</div>
+
+<div about="http://dbpedia.org/resource/Albert_Einstein">
+ <div rel="dbp-owl:residence">
+ <span about="http://dbpedia.org/resource/German_Empire"></span>
+ <span about="http://dbpedia.org/resource/Switzerland"></span>
+ </div>
+</div>
+
+<div about="http://dbpedia.org/resource/Albert_Einstein">
+ <span property="foaf:name">Albert Einstein</span>
+ <span property="dbp:dateOfBirth" datatype="xsd:date">1879-03-14</span>
+ <div property="dbp:birthPlace" resource="http://dbpedia.org/resource/German_Empire">
+ <span property="dbp:conventionalLongName">the German Empire</span>
+ </div>
+</div>
+</body>
+</html>

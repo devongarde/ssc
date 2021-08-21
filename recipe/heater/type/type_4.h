@@ -70,6 +70,9 @@ template < > struct type_master < t_calcmode > : four_value < t_calcmode, e_calc
 template < > struct type_master < t_captionalign > : four_value < t_captionalign, e_captionalign, sz_bottom, sz_left, sz_right, sz_top >
 { using four_value < t_captionalign, e_captionalign, sz_bottom, sz_left, sz_right, sz_top > :: four_value; };
 
+template < > struct type_master < t_cc_requires > : four_value < t_cc_requires, e_cc_requires, sz_cc_attribution, sz_cc_notice, sz_cc_sharealike, sz_cc_sourcecode >
+{ using four_value < t_cc_requires, e_cc_requires, sz_cc_attribution, sz_cc_notice, sz_cc_sharealike, sz_cc_sourcecode > :: four_value; };
+
 template < > struct type_master < t_channelselector > : four_value < t_channelselector, e_channelselector, sz_a, sz_b, sz_g, sz_r >
 { using four_value < t_channelselector, e_channelselector, sz_a, sz_b, sz_g, sz_r > :: four_value; };
 
@@ -168,6 +171,9 @@ template < > struct type_master < t_valign3 > : four_value < t_valign3, e_valign
 
 template < > struct type_master < t_visibility11 > : four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_collapse, sz_inherit >
 { using four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_collapse, sz_inherit > :: four_value; };
+
+template < > struct type_master < t_xsdbool > : four_value < t_xsdbool, e_xsdbool, sz_0, sz_1, sz_false, sz_true >
+{ using four_value < t_xsdbool, e_xsdbool, sz_0, sz_1, sz_false, sz_true > :: four_value; };
 
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >

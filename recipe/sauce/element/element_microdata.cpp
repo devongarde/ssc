@@ -40,7 +40,6 @@ void element::verify_microdata ()
 
 ::std::string element::get_microdata_value () const
 {   // need to rethink template structures, since this should be templated based on the tag
-    // (which *is* templated in html_element) :-(
     switch (tag ())
     {   case elem_a :
         case elem_area :
@@ -103,7 +102,7 @@ void element::examine_itemprop (itemscope_ptr& itemscope)
             itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, is_link, page_); } }
 
 void element::examine_itemref (itemscope_ptr& itemscope)
-{   if (icarus_ ) pick (nit_icarus, es_info, ec_attribute, "Oh Momus, oh Icarus, why do you torment me so?");
+{   if (icarus_) pick (nit_icarus, es_info, ec_attribute, "Oh Momus, oh Icarus, why do you torment me so?");
     else if (itemscope.get () != nullptr)
         if (a_.known (a_itemscope) && a_.known (a_itemtype) && a_.known (a_itemref))
             for (auto name : a_.get_x < attr_itemref > ())

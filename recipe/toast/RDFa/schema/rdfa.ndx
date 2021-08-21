@@ -1,0 +1,21 @@
+Static Site Checker
+0.0.111
+..\toast\RDF\schema
+0
+-
+5
+/index.html
+D:/Depot\applications\ssc\recipe\toast\RDF\schema\index.html
+152,1628999124,1,0,0,0
+/person.html
+D:/Depot\applications\ssc\recipe\toast\RDF\schema\person.html
+1540,1629077935,1,0,0,0
+/rdfa.conf
+D:/Depot\applications\ssc\recipe\toast\RDF\schema\rdfa.conf
+222,1629083378,0,0,0,0
+/rdfa.spec
+D:/Depot\applications\ssc\recipe\toast\RDF\schema\rdfa.spec
+123,1629082156,0,0,0,0
+/rdfa.ndx
+D:/Depot\applications\ssc\recipe\toast\RDF\schema\rdfa.ndx
+455,1629083415,0,0,0,0

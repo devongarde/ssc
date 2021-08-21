@@ -64,6 +64,11 @@ template < > struct type_master < t_prefix > : string_vector < t_prefix, sz_spac
         for (auto p : vpre)
             string_vector < t_prefix, sz_space > :: value_.push_back (p.short_ + ": " + p.long_); } };
 
+template < > struct type_master < t_rdfa_typeof > : tidy_string < t_rdfa_typeof >
+{   using tidy_string < t_rdfa_typeof > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_rdfa_typeof > :: set_value (nits, v, s); } };
+
 template < > struct type_master < t_vocab > : tidy_string < t_vocab >
 {   using tidy_string < t_vocab > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

@@ -44,7 +44,7 @@ typedef enum
     s_ssi_double_quote, // "    (in ssi)
     s_pxq, // php, xml, or something else
     s_php, // in insecure mode
-    s_xml,
+    s_x,
     s_q, // neither php nor xml
     s_asp, // in insecure mode
     s_ssi, // in slow mode
@@ -536,7 +536,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                 nits.pick (nit_embedded_lingo, es_info, ec_parser, PROG " is a *STATIC* site checker, it does not understand PHP");
                                 php_warn = true; }
                             status = s_php; }
-                        else if (compare_no_case (wot, "xml")) status = s_xml;
+                        else if (compare_no_case (wot, "xml")) status = s_x;
                         else { status = s_q; twas = text; } } }
                 else if (((ch < 'A') || (ch > 'Z')) && ((ch < 'a') || (ch > 'z')))
                 {   status = s_q; twas = text; }
@@ -548,8 +548,8 @@ html_version bras_ket::parse (const ::std::string& content)
                     case '"' :  status = s_php_double_quote; break;
                     case '\'' : status = s_php_quote; break; }
                 break;
-            case s_xml :
-                if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_xml ", ch);
+            case s_x :
+                if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_x ", ch);
                 switch (ch)
                 {   case '?' :  status = s_xml_closing; break;
                     case '"' :  status = s_xml_double_quote; break;
@@ -626,7 +626,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                 if (had_doctype) status = s_dull; else status = s_start;
                                 aftercab = true;
                                 text = twas = i+1; break;
-                    default  :  status = s_xml; break; }
+                    default  :  status = s_x; break; }
                 break;
             case s_q_closing :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_q_closing ", ch);
@@ -881,11 +881,11 @@ html_version bras_ket::parse (const ::std::string& content)
                 break;
             case s_xml_quote :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_xml_quote ", ch);
-                status = ket_quote (nits, ch, status, s_xml, '\'', newline, backslashed);
+                status = ket_quote (nits, ch, status, s_x, '\'', newline, backslashed);
                 break;
             case s_xml_double_quote :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_xml_double_quote ", ch);
-                status = ket_quote (nits, ch, status, s_xml, '"', newline, backslashed);
+                status = ket_quote (nits, ch, status, s_x, '"', newline, backslashed);
                 break;
             case s_q_quote :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_q_quote ", ch);
@@ -994,7 +994,7 @@ html_version bras_ket::parse (const ::std::string& content)
             case s_bangsquare :
             case s_startopen :
             case s_grammar :
-            case s_xml :
+            case s_x :
             case s_xml_closing :
                 nits.set_context (line_, near_here (collect, e, e));
                 nits.pick (nit_eof_unexpected, es_warning, ec_parser, "document finishes unexpectedly");

@@ -72,14 +72,14 @@ public:
         PRESUME (id != DEFAULT, __FILE__, __LINE__);
         if (id >= offset_) return vabb_.at (id - offset_).short_;
         if (up_ != nullptr) return up_ -> shortform (predefined, id);
-        if (id < pre_error) return predefined.get (static_cast < ENUM > (id), ABB_SHORTFORM);
+        if (id < s_error) return predefined.get (static_cast < ENUM > (id), ABB_SHORTFORM);
         return ::std::string (); }
     ::std::string longform (const STANDARD& predefined, const ident_t id) const
     {   PRESUME (id < offset_ + vabb_.size (), __FILE__, __LINE__);
         PRESUME (id != DEFAULT, __FILE__, __LINE__);
         if (id >= offset_) return vabb_.at (id - offset_).long_;
         if (up_ != nullptr) return up_ -> longform (predefined, id);
-        if (id < pre_error) return predefined.get (static_cast < ENUM > (id), ABB_LONGFORM);
+        if (id < s_error) return predefined.get (static_cast < ENUM > (id), ABB_LONGFORM);
         return ::std::string (); }
     ident_t declare (const html_version& v, const STANDARD& predefined, const ::std::string& shortform, const ::std::string& longform)
     {   PRESUME (offset_ > 0, __FILE__, __LINE__);
@@ -116,6 +116,6 @@ public:
         return res; } };
 
 typedef abbs_t < e_namespace, namespace_names_t, ns_default, ns_error > namespaces_t;
-typedef abbs_t < e_rdfa_context, prefix_names_t, pre_custom, pre_error > prefixes_t;
+typedef abbs_t < e_schema, schema_names_t, s_none, s_error > prefixes_t;
 typedef ::std::shared_ptr < namespaces_t > namespaces_ptr;
 typedef ::std::shared_ptr < prefixes_t > prefixes_ptr;

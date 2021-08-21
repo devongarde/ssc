@@ -21,32 +21,18 @@ PASS ../toast/SVG/1.2-full/hint.svg
 1 xhtml_1_1
 2 svg_version
 
+PASS ../toast/SVG/1.2-full/index.html
+2 rdfa_version
+
 PASS ../toast/SVG/1.2-full/metadata.svg
 0 title_required
 1 xhtml_1_1
 2 svg_version
-5 unrecognised_namespace unrecognised_value
-6 bad_namespace unknown_element
-7 bad_namespace unknown_element
-8 bad_namespace unknown_element
-9 bad_namespace unknown_element
-10 bad_namespace unknown_element
-11 bad_namespace unknown_element
-12 bad_namespace unknown_element
-13 bad_namespace unknown_element
+5 contradictory_namespace unrecognised_namespace unrecognised_value
 19 svg_version
-22 unrecognised_namespace unrecognised_value
-23 bad_namespace unknown_element
-24 bad_namespace unknown_element
-25 bad_namespace unknown_element
-26 bad_namespace unknown_element
-27 bad_namespace unknown_element
-28 bad_namespace unknown_element
+22 contradictory_namespace unrecognised_namespace unrecognised_value
 34 svg_version
-37 unrecognised_namespace unrecognised_value
-38 bad_namespace unknown_element
-39 bad_namespace unknown_element
-40 bad_namespace unknown_element
+37 contradictory_namespace unrecognised_namespace unrecognised_value
 46 missing_open
 
 PASS ../toast/SVG/1.2-full/pages-1.svg
@@ -125,10 +111,12 @@ PASS ../toast/SVG/1.2-full/transformer.svg
 1 xhtml_1_1
 3 svg_version
 4 unrecognised_value
-8 unrecognised_namespace
-10 attribute_unrecognised
+8 unrecognised_namespace unknown_element
+10 unknown_element attribute_unrecognised
 13 unrecognised_value immeasurable unrecognised_value immeasurable unrecognised_value immeasurable unrecognised_value immeasurable svg_version svg_ancestor
 17 transform
+20 unknown_element
+22 unknown_element
 25 mime url_id_unfound
 28 bad_namespace unknown_element
 29 bad_namespace unknown_element

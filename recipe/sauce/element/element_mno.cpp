@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void element::examine_main ()
 {   if (! context.corpus ().empty ()) if (context.main ()) page_.corpus (text ());
-    if (! a_.known (a_hidden)) only_one_visible_of (elem_main);
+    if (! a_.known (a_hidden)) only_one_visible_of ();
     if ((node_.version ().is_5 ()))
         if (node_.version ().w3 ())
             check_ancestors (elem_main, empty_element_bitset | elem_article | elem_aside | elem_footer | elem_header | elem_nav);
@@ -210,7 +210,9 @@ void element::examine_meta ()
     bool nk = a_.known (a_name);
     bool csk = a_.known (a_charset);
     bool hek = a_.known (a_httpequiv);
+    bool med = a_.known (a_media);
     bool prp = a_.known (a_property);
+    bool bad_med = med;
     if (node_.version ().mjr () < 5)
     {   if (ipk)
             if (nk || csk || hek)
@@ -267,10 +269,13 @@ void element::examine_meta ()
             validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_);
             validate_metaname_url (nits (), node_.version (), in_head, emn, con, *this);
             switch (emn)
-            {   case mn_author : page_.author (con);
-                case mn_description : page_.description (con);
-                case mn_keywords : page_.keywords (con);
-                default : break; } } }
+            {   case mn_author : page_.author (con); break;
+                case mn_description : page_.description (con); break;
+                case mn_keywords : page_.keywords (con); break;
+                case mn_theme_colour : bad_med = false; break;
+                default : break; } }
+    if (bad_med && a_.good (a_media))
+        pick (nit_bad_media, ed_jul21, "4.2.5 The meta element", es_warning, ec_element, "MEDIA requires NAME=\"theme-color\""); }
 
 void element::examine_meter ()
 {   if (node_.version ().is_5 ())

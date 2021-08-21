@@ -27,7 +27,7 @@ Elements:
   itemtype: used twice
   lang: used once
  12 elements used 26 times
-Microdata:
+Ontology:
   http://schema.org/Article: once
    description: once
   http://schema.org/Webpage: once

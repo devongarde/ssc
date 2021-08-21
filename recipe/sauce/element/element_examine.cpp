@@ -24,27 +24,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/parentage.h"
 #include "attribute/attribute_classes.h"
 
-void element::pre_examine_element (const e_element tag)
-{   switch (tag) // should integrate this into individual element verification
+void element::pre_examine_element ()
+{   switch (tag ())
     {   case elem_animate :
         case elem_animatecolour :
         case elem_animatemotion :
         case elem_animatetransform :
         case elem_set : examine_animation_attributes (); break;
         case elem_annotation :
-        case elem_annotation_xml : examine_annotation (tag); break;
+        case elem_annotation_xml : examine_annotation (); break;
         case elem_area : examine_area (); break;
         case elem_base : examine_base (); break;
         case elem_body :
         case elem_head :
         case elem_htmlplus :
-        case elem_isindex :  only_one_of (tag); break;
+        case elem_isindex :  only_one_of (); break;
         case elem_col : examine_col (); break;
         case elem_colour_profile : examine_colour_profile (); break;
         case elem_command : examine_command (); break;
         case elem_data : examine_data (); break;
         case elem_dialogue : examine_dialogue (); break;
         case elem_embed : examine_embed (); break;
+        case elem_fe : examine_fe (); break;
         case elem_fecolourmatrix : examine_fecolourmatrix (); break;
         case elem_fecomponenttransfer : examine_fecomponenttransfer (); break;
         case elem_fecomposite : examine_fecomposite (); break;
@@ -67,6 +68,7 @@ void element::pre_examine_element (const e_element tag)
         case elem_render :
             pick (nit_render, es_warning, ec_element, "With apologies, " PROG " does not understand <RENDER>");
             break;
+        case elem_sarcasm : examine_sarcasm (); break;
         case elem_section : examine_section (); break;
         case elem_share : examine_share (); break;
         case elem_style : examine_style (); break;
@@ -76,8 +78,8 @@ void element::pre_examine_element (const e_element tag)
         case elem_title : examine_title (); break;
         case elem_track : examine_track (); break; } }
 
-void element::post_examine_element (const e_element tag)
-{   switch (tag) // should integrate this into individual element verification?
+void element::post_examine_element ()
+{   switch (tag ()) // should integrate this into individual element verification?
     {   case elem_a : examine_anchor (); break;
         case elem_abbr : examine_abbr (); break;
         case elem_address : examine_address (); break;
@@ -169,10 +171,10 @@ void element::post_examine_element (const e_element tag)
         case elem_msup :
         case elem_munder : check_math_children (2); break;
         case elem_mlongdiv :    check_math_children (3, true);
-                                check_mscarries_pos (tag);
+                                check_mscarries_pos ();
                                 break;
         case elem_mn : examine_mn (); break;
-        case elem_mstack : check_mscarries_pos (tag); break;
+        case elem_mstack : check_mscarries_pos (); break;
         case elem_msubsup :
         case elem_munderover : check_math_children (3); break;
         case elem_nav : examine_nav (); break;
@@ -194,8 +196,8 @@ void element::post_examine_element (const e_element tag)
         case elem_time : examine_time (); break;
         case elem_video : examine_video (); break; } }
 
-void element::late_examine_element (const e_element tag)
-{   switch (tag) // should integrate this into individual element verification
+void element::late_examine_element ()
+{   switch (tag ())
     {   case elem_image : examine_image (); break;
         default : break; } }
 
@@ -250,8 +252,9 @@ void element::congeal_dynamism ()
                     pick (nit_missing_dynamic, es_catastrophic, ec_element, "missing dynamic congeal for ", node_.id ().name ());
                     break;  } }
 
-void element::examine_self (const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes)
+void element::examine_self (const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes, const flags_t parental_flags)
 {   if (examined_) return;
+    flags_t flags (parental_flags);
     ancestral_attributes_ = ancestral_attributes;
     sibling_attributes_ = sibling_attributes;
     itemscope_ = itemscope;
@@ -301,18 +304,24 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
 
         if (node_.version ().is_4_or_more ()) verify_microdata ();
 
-        if (context.has_rdfa ())
-        {   if (a_.known (a_vocab)) examine_vocab ();
-            if (a_.known (a_about)) examine_about ();
-            if (a_.known (a_content)) examine_content ();
-            if (a_.known (a_datatype)) examine_datatype ();
-            if (a_.known (a_inlist)) examine_inlist ();
-            if (a_.known (a_instanceof)) examine_instanceof ();
-            if (a_.known (a_prefix)) examine_prefix ();
-            if (a_.known (a_property)) examine_property ();
-            if (a_.known (a_resource)) examine_resource ();
-            if (a_.known (a_typeof)) examine_typeof (); }
-
+        if (context.has_rdfa () && (node_.version () >= xhtml_1_0))
+            if (    a_.known (a_vocab) || a_.known (a_about) || a_.known (a_content) || a_.known (a_datatype) || a_.known (a_inlist) ||
+                    a_.known (a_instanceof) || a_.known (a_prefix) || a_.known (a_property) || a_.known (a_resource) || a_.known (a_typeof))
+                if ((flags & EF_NULL_DATATYPE) == EF_NULL_DATATYPE)
+                    pick (nit_null_datatype, ed_rdfa, "6.3.1.3. XML Literals", es_comment, ec_rdfa, "RDFa attributes ignored when parent element has DATATYPE=\"\"");
+                else
+                {   if (a_.known (a_vocab)) examine_vocab ();
+                    if (a_.known (a_about)) examine_about ();
+                    if (a_.known (a_typeof)) examine_typeof ();
+//                  if (a_.known (a_content)) examine_content ();
+                    if (a_.known (a_datatype)) examine_datatype (flags);
+                    if (a_.known (a_inlist)) examine_inlist ();
+                    if (a_.known (a_instanceof)) examine_instanceof ();
+                    if (a_.known (a_prefix)) examine_prefix ();
+                    if (a_.known (a_property)) examine_property ();
+                    if (a_.known (a_resource)) examine_resource ();
+                    if (a_.known (a_rel)) examine_rdfa_rel (a_.get_string (a_rel));
+                    if (a_.known (a_rev)) examine_rdfa_rev (a_.get_string (a_rev)); }
 
         if (node_.version ().is_5 ())
             if (a_.known (a_xmllang))
@@ -366,7 +375,7 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
         a_.invalid_id (nits (), node_.version (), get_ids (), this);
         a_.invalid_access (nits (), node_.version (), access_);
 
-        pre_examine_element (tag);
+        pre_examine_element ();
 
         if (a_.known (a_autofocus)) examine_autofocus ();
         if (a_.known (a_defaultaction)) examine_defaultaction ();
@@ -374,8 +383,9 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
         if (a_.known (a_class)) postprocess = examine_class ();
         if (a_.known (a_line_increment)) examine_line_increment ();
 
-        if (a_.known (a_rel)) examine_rel (a_.get_string (a_rel));
-        if (a_.known (a_rev)) examine_rel (a_.get_string (a_rev));
+        if (context.microformats ())
+        {   if (a_.known (a_rel)) examine_rel (a_.get_string (a_rel));
+            if (a_.known (a_rev)) examine_rel (a_.get_string (a_rev)); }
 
         if (mf_ && a_.has (a_href))
             if (a_.known (a_href))
@@ -386,10 +396,10 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
                 if (mf_ -> allocated (r_in_reply_to))
                     context.note_reply (name_, a_.get_string (a_id), href, quoted_limited_string (text ())); } }
 
-    examine_children ();
+    examine_children (flags);
 
     if (post_examine)
-    {   post_examine_element (tag);
+    {   post_examine_element ();
         if (a_.known (a_itemref)) examine_itemref (itemscope_); }
     if (postprocess)
         if (mf_)
@@ -409,7 +419,7 @@ bool element::to_sibling (element_ptr& e, const bool canreconstruct)
     x.swap (e);
     return true; }
 
-void element::examine_children ()
+void element::examine_children (const flags_t flags)
 {   if (has_child ())
     {   attribute_bitset ancestral_attributes, sibling_attributes;
         itemscope_ptr itemscope;
@@ -421,7 +431,7 @@ void element::examine_children ()
         element_ptr e = child ();
         do
         {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-            e -> examine_self (itemscope, ancestral_attributes, sibling_attributes);
+            e -> examine_self (itemscope, ancestral_attributes, sibling_attributes, flags);
             if (e -> node_.is_closure ())
                 closure_uid_ = e -> uid_;
             else
@@ -479,7 +489,7 @@ void element::verify ()
     if (a_.has (a_headers)) examine_headers ();
     verify_children ();
     if (a_.has (a_list)) validate_input_id ();
-    late_examine_element (node_.tag ()); }
+    late_examine_element (); }
 
 void element::verify_document ()
 {   bool titled = (node_.version ().mjr () < 5) && (page_.count (elem_title) == 0);

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>XML Schema</title>
+</head>
+
+<body>
+
+<h1>XML schema</h1>
+
+<div about="http://dbpedia.org/resource/Albert_Einstein">
+ <span property="foaf:name">Albert Einstein</span>
+ <span property="dbp:dateOfBirth" datatype="xsd:date">1879-03-14</span>
+</div>
+
+<div about="http://dbpedia.org/resource/Albert_Einstein">
+ <span property="foaf:name">Albert Einstein</span>
+ <span property="dbp:dateOfBirth" datatype="xsd:date">14-03-1879</span>
+</div>
+
+<div about="http://dbpedia.org/resource/Albert_Einstein">
+ <span property="foaf:name">Albert Einstein</span>
+ <span property="dbp:dateOfBirth" datatype="xsd:date">sausages</span>
+</div>
+
+  <div rel="http://purl.org/goodrelations/v1#hasPriceSpecification">
+    <div typeof="gr:UnitPriceSpecification">Price:
+      <span property="gr:hasCurrency" content="EUR">Euro: </span>
+      <span property="gr:hasCurrencyValue" datatype="xsd:float">99.99</span>
+      <div property="gr:validThrough" datatype="xsd:dateTime"
+           content="2012-11-30T23:59:59Z"></div>
+    </div>
+  </div>
+
+  <div rel="http://purl.org/goodrelations/v1#hasPriceSpecification">
+    <div typeof="gr:UnitPriceSpecification">Price:
+      <span property="gr:hasCurrency" content="EUR">Euro: </span>
+      <span property="gr:hasCurrencyValue" datatype="xsd:float">gratis</span>
+      <div property="gr:validThrough" datatype="xsd:dateTime"
+           content="yesterday"></div>
+    </div>
+  </div>
+
+</body>
+</html>

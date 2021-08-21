@@ -33,10 +33,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_itemscope.h"
 
 class directory;
+class url;
 
 class page
 {   ids_t ids_, names_, glyphs_;
-//    sstr_t access_, dfns_, profiles_, sources_;
     sstr_t access_, dfns_, profiles_;
     element_ptr document_;
     elements_node nodes_;
@@ -55,6 +55,7 @@ class page
     uid_t euid_ = 0;
     itemscope_ptr itemscope_;
     ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_;
+    url base_;
     ustr_t abbrs_;
     ::std::time_t updated_ = 0;
     friend class tag;
@@ -166,6 +167,10 @@ public:
     sstr_t& dfns () { return dfns_; }
     const sstr_t& profiles () const { return profiles_; }
     sstr_t& profiles () { return profiles_; }
+    const url& base () const;
+    void base (const url& u);
+    ::std::string get_absolute_url (const ::std::string& s) const;
+    ::std::string get_absolute_url () const { return get_absolute_url (name_); }
     void title (const ::std::string& s) { title_ = s; }
     bool corpus () const { return ! corpus_.empty (); }
     void corpus (const ::std::string& s) { corpus_ = s; }

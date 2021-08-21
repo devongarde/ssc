@@ -42,14 +42,7 @@ public:
     attributes_node (element_node* box, const attributes_node& an)
         :   box_ (box)
     {   va_ = an.va_; }
-#ifndef NO_MOVE_CONSTRUCTOR
-//	attributes_node(attributes_node&& an) = default;
-#endif
 	~attributes_node() = default;
-//    attributes_node& operator = (const attributes_node& an) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-//	attributes_node& operator = (attributes_node&& an) = default;
-#endif
 	void swap (attributes_node& an)
     {   va_.swap (an.va_);
         ::std::swap (box_, an.box_); }

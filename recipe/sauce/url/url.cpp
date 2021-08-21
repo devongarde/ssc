@@ -165,3 +165,7 @@ void url::shadow (::std::stringstream& ss, const html_version& v, element* e)
             if (nits.worst () > es_error) // e.g. no error
             {   u2.shadow (ss, v, e); return; } } }
     ss << original (); }
+
+void wombats (nitpick& nits, const html_version& , const ::std::string& u)
+{   if (u.find ("//wwww") != ::std::string::npos)
+        nits.pick (nit_wwww, es_info, ec_namespace, "four 'w's? the world wide web for wombats?!"); }

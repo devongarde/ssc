@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WEBADDR "https://ssc.lu/"
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 110
-#define VERSION_STRING "0.0.110"
+#define VERSION_RELEASE 111
+#define VERSION_STRING "0.0.111"
 #define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
 
 #ifdef __clang__
@@ -71,18 +71,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NOEXCEPT noexcept
 #define VS 17
 #define CLEAN_SHAREDPTR_ARRAY
-#define SMALLINT
-#elif defined (VS2015)
-#define BOOVAR 1
-#define ORDERED
-#define _WIN32_WINNT 0x0601 // 7 SP1
-#define _SCL_SECURE_NO_WARNINGS // boost
-#define _CRT_SECURE_NO_WARNINGS
-#define CONSTEXPR
-#define NOEXCEPT
-#define REQUIRE_CONSTRUCTOR
-#define NO_PCF_STR
-#define VS 15
 #define SMALLINT
 #else // VS...
 #error unsupported version of visual C++
@@ -274,6 +262,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define LOWERCASE "abcdefghijklmnopqrstuvwxyz"
 #define ALPHABET UPPERCASE LOWERCASE
 #define ALPHADDD ALPHABET DDD
+#define B64BIN ALPHADDD "+/= "
 #define IDS ALPHADDD "_:"
 #define TEL HEX "+*()-.#*_!~'[]/ "
 #define REAL DECIMAL "Ee"
@@ -311,11 +300,11 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define XCOM XMLNS ".com"
 #define XOT XMLNS "xmlns.opentechnology.org/xslt-extensions"
 
-#define HTTP_CSS PR_HTTP CSS
-#define HTTPS_CSS PR_HTTPS CSS
-
 #define HTTP_W3 HTTP W3_ORG
 #define HTTPS_W3 HTTPS W3_ORG
+
+#define HTTP_MF HTTP MICROFORMATS_ORG
+#define HTTPS_MF HTTPS MICROFORMATS_ORG
 
 typedef uint64_t flags_t; // at least 64 bits
 
