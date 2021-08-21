@@ -147,6 +147,7 @@ hav_t havt_m [] =
     { { HTML_4_0 }, { XHTML_2_0 }, elem_meta, a_dir },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_meta, a_httpequiv },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_meta, a_lang },
+    { { HTML_JUL21 }, { HTML_UNDEF }, elem_meta, a_media },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_meta, a_name },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_meta, a_scheme },
     HTML23_CLID_ATTRIBUTES (elem_meta),

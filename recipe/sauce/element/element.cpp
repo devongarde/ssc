@@ -135,24 +135,24 @@ bool element::has_invalid_child (const element_bitset& gf)
                 if (! faux_bitset.test (c -> tag ()) && ! gf.test (c -> tag ())) return true; }
     return false; }
 
-void element::check_required_type (const e_element tag)
-{   if (tag != elem_img) return;
+void element::check_required_type ()
+{   if (tag () != elem_img) return;
     if (a_.known (a_type)) return;
     if (node_.version () < html_3_0) return;
-    pick (nit_element_no_type, es_comment, ec_element, "has no TYPE attribute"); }
+    pick (nit_element_no_type, es_comment, ec_element, elem::name (tag ()), " has no TYPE attribute here"); }
 
 void element::no_anchor_daddy ()
 {   if (node_.version ().is_5 ())
         if (ancestral_elements_.test (elem_a))
             pick (nit_interactive, ed_50, "4.5.1 The a element", es_warning, ec_element, "<A> cannot have an interactive descendant element."); }
 
-bool element::only_one_of (const e_element e)
-{   if (page_.count (e) == 1) return true;
+bool element::only_one_of ()
+{   if (page_.count (tag ()) == 1) return true;
     pick (nit_only_once, es_error, ec_element, "there should only be one <", node_.id ().name (), "> per page");
     return false; }
 
-bool element::only_one_visible_of (const e_element e)
-{   if (page_.visible_count (e) == 1) return true;
+bool element::only_one_visible_of ()
+{   if (page_.visible_count (tag ()) == 1) return true;
     pick (nit_only_once, es_error, ec_element, "there should only be one visible (not hidden) <", node_.id ().name (), "> per page");
     return false; }
 
@@ -178,14 +178,14 @@ void element::check_math_children (const int from, const int to)
     if ((n < from) || (n > to))
         pick (nit_math_kids, ed_math_2, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<", elem::name (tag ()), "> has  ", n, " math child elements; it requires between ", from, " and ", to); }
 
-void element::check_mscarries_pos (const e_element self)
+void element::check_mscarries_pos ()
 {   bool last = false;
     if (has_child ())
         for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             last = (c -> tag () == elem_mscarries); }
     if (last)
-        pick (nit_mscarries_last, ed_math_3, "3.6.5 Carries, Borrows, and Crossouts <mscarries>", es_error, ec_element, "<MSCARRIES> cannot be the last child of <", elem::name (self), ">"); }
+        pick (nit_mscarries_last, ed_math_3, "3.6.5 Carries, Borrows, and Crossouts <mscarries>", es_error, ec_element, "<MSCARRIES> cannot be the last child of <", elem::name (tag ()), ">"); }
 
 void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& was_closure, bool& allspace, bool& was_nl)
 {   PRESUME (examined_, __FILE__, __LINE__);

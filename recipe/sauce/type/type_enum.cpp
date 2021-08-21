@@ -590,6 +590,15 @@ struct symbol_entry < html_version, e_halign > halign_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "justify", al_justify },
     { { HTML_2_0 }, { HTML_UNDEF }, "char", al_char } };
 
+struct symbol_entry < html_version, e_icalfreq > icalfreq_symbol_table [] =
+{   { { HTML_RDF10 }, { HTML_UNDEF }, "secondly", if_sec },
+    { { HTML_RDF10 }, { HTML_UNDEF }, "minutely", ical_min }, // not that it means minutely!!
+    { { HTML_RDF10 }, { HTML_UNDEF }, "hourly", ical_hour },
+    { { HTML_RDF10 }, { HTML_UNDEF }, "daily", ical_day },
+    { { HTML_RDF10 }, { HTML_UNDEF }, "weekly", ical_week },
+    { { HTML_RDF10 }, { HTML_UNDEF }, "monthly", ical_month },
+    { { HTML_RDF10 }, { HTML_UNDEF }, "yearly", ical_year } };
+
 struct symbol_entry < html_version, e_icc > icc_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS/GRACoL TR006 2007", icc_CGATS_GRACoL_TR006_2007 },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "CGATS/SNAP TR002 2007", icc_CGATS_SNAP_TR002_2007 },
@@ -908,47 +917,54 @@ struct symbol_entry < html_version, e_media > media_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "tv", md_tv } };
 
 struct symbol_entry < html_version, e_mediafeature > mediafeature_symbol_table [] =
-{   { { HTML_JAN05 }, { HTML_UNDEF }, "width", mef_width },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-width", mef_min_width },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-width", mef_max_width },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "height", mef_height },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-height", mef_min_height },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-height", mef_max_height },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "device-width", mef_device_width },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-device-width", mef_min_device_width },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-device-width", mef_max_device_width },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "device-height", mef_device_height },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-device-height", mef_min_device_height },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-device-height", mef_max_device_height },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "orientation", mef_orientation },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "aspect-ration", mef_aspect_ration },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-aspect-ration", mef_min_aspect_ration },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-aspect-ration", mef_max_aspect_ration },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "device-aspect-ratio", mef_device_aspect_ratio },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-device-aspect-ratio", mef_min_device_aspect_ratio },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-device-aspect-ratio", mef_max_device_aspect_ratio },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "color", mef_colour },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-color", mef_min_colour },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-color", mef_max_colour },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "color-index", mef_colour_index },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-color-index", mef_min_colour_index },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-color-index", mef_max_colour_index },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "monochrome", mef_monochrome },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-monochrome", mef_min_monochrome },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-monochrome", mef_max_monochrome },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "resolution", mef_resolution },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "min-resolution", mef_min_resolution },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "max-resolution", mef_max_resolution },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "grid", mef_grid },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "hover", mef_hover },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "pointer", mef_pointer },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "any-hover", mef_any_hover },
+{   { { HTML_JAN05 }, { HTML_UNDEF }, "any-hover", mef_any_hover },
     { { HTML_JAN05 }, { HTML_UNDEF }, "any-pointer", mef_any_pointer },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "aspect-ratio", mef_aspect_ratio },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "color", mef_colour },
     { { HTML_JAN05 }, { HTML_UNDEF }, "color-gamut", mef_colour_gamut },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "color-index", mef_colour_index },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "device-aspect-ratio", mef_device_aspect_ratio },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "device-height", mef_device_height },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "device-width", mef_device_width },
+    { { HTML_JUL21 }, { HTML_UNDEF }, "display-mode", mef_display_mode },
+    { { HTML_JUL21 }, { HTML_UNDEF }, "forced-colors", mef_forced_colours },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "grid", mef_grid },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "height", mef_height },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "hover", mef_hover },
+    { { HTML_JUL21 }, { HTML_UNDEF }, "inverted-colors", mef_inverted_colours },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-aspect-ratio", mef_max_aspect_ratio },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-color", mef_max_colour },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-color-index", mef_max_colour_index },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-device-aspect-ratio", mef_max_device_aspect_ratio },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-device-height", mef_max_device_height },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-device-width", mef_max_device_width },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-height", mef_max_height },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-monochrome", mef_max_monochrome },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-resolution", mef_max_resolution },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "max-width", mef_max_width },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-aspect-ratio", mef_min_aspect_ratio },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-color", mef_min_colour },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-color-index", mef_min_colour_index },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-device-aspect-ratio", mef_min_device_aspect_ratio },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-device-height", mef_min_device_height },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-device-width", mef_min_device_width },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-height", mef_min_height },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-monochrome", mef_min_monochrome },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-resolution", mef_min_resolution },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "min-width", mef_min_width },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "monochrome", mef_monochrome },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "orientation", mef_orientation },
     { { HTML_JAN05 }, { HTML_UNDEF }, "overflow-block", mef_overflow_block },
     { { HTML_JAN05 }, { HTML_UNDEF }, "overflow-inline", mef_overflow_inline },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "pointer", mef_pointer },
+    { { HTML_JUL21 }, { HTML_UNDEF }, "prefers-color-scheme", mef_prefers_colour_scheme },
+    { { HTML_JUL21 }, { HTML_UNDEF }, "prefers-contrast", mef_prefers_contrast },
+    { { HTML_JUL21 }, { HTML_UNDEF }, "prefers-reduced-motio", mef_prefers_reduced_motion },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "resolution", mef_resolution },
     { { HTML_JAN05 }, { HTML_UNDEF }, "scan", mef_scan },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "update", mef_update } };
+    { { HTML_JAN05 }, { HTML_UNDEF }, "scripting", mef_scripting },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "update", mef_update },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "width", mef_width } };
 
 struct symbol_entry < html_version, e_mediakeyword > mediakeyword_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "and", mk_and },
@@ -1022,20 +1038,22 @@ struct symbol_entry < html_version, e_mf_reviewtype > mf_reviewtype_symbol_table
     { { HTML_4_0 }, { HTML_UNDEF }, "website", mfr_website },
     { { HTML_4_0 }, { HTML_UNDEF }, "url", mfr_url } };
 
-struct symbol_entry < html_version, e_microdata_domain > microdata_domain_symbol_table [] =
-{   { { HTML_4_01 }, { HTML_UNDEF }, MICROFORMATS_ORG, mdd_microformats },
-    { { HTML_4_01 }, { HTML_UNDEF }, PURL_ORG, mdd_purl },
-    { { HTML_4_01 }, { HTML_UNDEF }, SCHEMA_ORG, mdd_schema },
-    { { HTML_JAN05 }, { HTML_UNDEF }, N_WHATWG_ORG, mdd_whatwg } };
-
-struct symbol_entry < html_version, e_microdata_root > microdata_root_symbol_table [] =
-{   { { HTML_4_01 }, { HTML_UNDEF }, "http://" MICROFORMATS_ORG "/", mdr_microformats },
-    { { HTML_4_01 }, { HTML_UNDEF }, "https://" MICROFORMATS_ORG "/", mdr_microformats },
-    { { HTML_4_01 }, { HTML_UNDEF }, "http://" PURL_ORG "/", mdr_purl },
-    { { HTML_4_01 }, { HTML_UNDEF }, "https://" PURL_ORG "/", mdr_purl },
-    { { HTML_4_01 }, { HTML_UNDEF }, "http://" SCHEMA_ORG "/", mdr_schema },
-    { { HTML_4_01 }, { HTML_UNDEF }, "https://" SCHEMA_ORG "/", mdr_schema },
-    { { HTML_JAN09 }, { HTML_UNDEF }, "http://" N_WHATWG_ORG "/", mdr_whatwg } /* no https */ };
+struct symbol_entry < html_version, e_myersbriggs > myersbriggs_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "INFP", mb_INFP },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ESFP", mb_ESFP },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "INTJ", mb_INTJ },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ESFJ", mb_ESFJ },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "INTP", mb_INTP },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ENFP", mb_ENFP },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ISTJ", mb_ISTJ },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ESTP", mb_ESTP },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "INFJ", mb_INFJ },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ENFJ", mb_ENFJ },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ISTP", mb_ISTP },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ENTJ", mb_ENTJ },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ISFP", mb_ISFP },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ENTP", mb_ENTP },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "ISFJ", mb_ISFJ } };
 
 struct symbol_entry < html_version, e_namedspace > namedspace_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "negativeveryverythinmathspace", nd_negativeveryverythinmathspace },
@@ -1052,6 +1070,7 @@ struct symbol_entry < html_version, e_namedspace > namedspace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "thickmathspace", nd_thickmathspace },
     { { XHTML_1_0 }, { HTML_UNDEF }, "verythickmathspace", nd_verythickmathspace },
     { { XHTML_1_0 }, { HTML_UNDEF }, "veryverythickmathspace", nd_veryverythickmathspace } };
+
 struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "bibo", ns_bibo },
     { { XHTML_1_0 }, { HTML_UNDEF }, "cc", ns_cc },
@@ -1143,58 +1162,6 @@ struct symbol_entry < html_version, e_pointer_events > pointer_events_symbol_tab
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "none", pe_none },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", pe_inherit } };
 
-struct symbol_entry < html_version, e_rdfa_context > rdfa_context_symbol_table [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, "as", pre_as },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "cc", pre_cc },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "csvw", pre_csvw },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "ctag", pre_ctag },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "dc", pre_dc },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "dc11", pre_dc11 },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "dcat", pre_dcat },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "dcterms", pre_dcterms },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "dqv", pre_dqv },
-    { { HTML_JAN07 }, { HTML_UNDEF }, "describedby", pre_describedby },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "duv", pre_duv },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "earl", pre_earl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "foaf", pre_foaf },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "gr", pre_gr },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "grddl", pre_grddl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "ical", pre_ical },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "jsonld", pre_jsonld },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "ldp", pre_ldp },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "licence", pre_licence },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "ma", pre_ma },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "oa", pre_oa },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "odrl", pre_odrl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "og", pre_og },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "org", pre_org },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "owl", pre_owl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "prov", pre_prov },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "qb", pre_qb },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "rdf", pre_rdf },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "rdfa", pre_rdfa },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "rdfs", pre_rdfs },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "rev", pre_rev },
-    { { HTML_JAN07  }, { HTML_UNDEF }, "rif", pre_rif },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "role", pre_role },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "rr", pre_rr },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "schema", pre_schema },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "sd", pre_sd },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "sioc", pre_sioc },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "skos", pre_skos },
-    { { HTML_JUL08 }, { HTML_UNDEF }, "skosxl", pre_skosxl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "ssn", pre_ssn },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "sosa", pre_sosa },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "time", pre_time },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "v", pre_v },
-    { { HTML_JAN06 }, { HTML_UNDEF }, "vcard", pre_vcard },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "void", pre_void },
-    { { HTML_JUL07 }, { HTML_UNDEF }, "wdr", pre_wdr },
-    { { HTML_JUL07 }, { HTML_UNDEF }, "wdrs", pre_wdrs },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "xhv", pre_xhv },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "xml", pre_xml },
-    { { XHTML_1_0 }, { HTML_UNDEF }, "xsd", pre_xsd }, };
-
 // a couple of these are only defined in the HTML+ text, not the DTD
 struct symbol_entry < html_version, e_print > print_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "footnote", pt_footnote },
@@ -1228,20 +1195,20 @@ struct symbol_entry < html_version, e_rules > rules_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "all", ru_all } };
 
 struct symbol_entry < html_version, e_sandbox > sandbox_symbol_table [] =
-{   { { HTML_JUL20, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "allow-downloads-without-user-activation", s_adwua },
-    { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-forms", s_forms },
-    { { HTML_JAN16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-modals", s_modals },
-    { { HTML_JUL16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-orientation-lock", s_orientation },
-    { { HTML_JAN13, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-pointer-lock", s_pointer },
-    { { HTML_JUL12, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-popups", s_popups },
-    { { HTML_JAN16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-popups-to-escape-sandbox", s_popupescape },
-    { { HTML_JUL16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-presentation", s_presentation },
-    { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-same-origin", s_origin },
-    { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-scripts", s_scripts },
-    { { HTML_JUL20, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-storage-access-by-user-activation", s_asabua },
-    { { HTML_JAN11, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation", s_navigation },
-    { { HTML_JUL17, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation-by-user-activation", s_atnbua },
-    { { HTML_JUL20 }, { HTML_UNDEF }, "allow-downloads", s_ad } };
+{   { { HTML_JUL20, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "allow-downloads-without-user-activation", sand_adwua },
+    { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-forms", sand_forms },
+    { { HTML_JAN16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-modals", sand_modals },
+    { { HTML_JUL16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-orientation-lock", sand_orientation },
+    { { HTML_JAN13, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-pointer-lock", sand_pointer },
+    { { HTML_JUL12, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-popups", sand_popups },
+    { { HTML_JAN16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-popups-to-escape-sandbox", sand_popupescape },
+    { { HTML_JUL16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-presentation", sand_presentation },
+    { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-same-origin", sand_origin },
+    { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-scripts", sand_scripts },
+    { { HTML_JUL20, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-storage-access-by-user-activation", sand_asabua },
+    { { HTML_JAN11, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation", sand_navigation },
+    { { HTML_JUL17, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation-by-user-activation", sand_atnbua },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "allow-downloads", sand_ad } };
 
 struct symbol_entry < html_version, e_scei > scei_symbol_table [] =
 {   { { HTML_SVG12, 0, HE_SVG_12_FULL  }, { HTML_UNDEF }, "after", scei_after },
@@ -1262,7 +1229,6 @@ struct symbol_entry < html_version, e_severity > severity_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, SPLURGE, es_splurge },
     { { HTML_TAGS }, { HTML_UNDEF }, ALL, es_all } };
 
-// typedef enum { sh_no, sh_pages, sh_hard, sh_soft, sh_copy, sh_dedu, sh_report } e_shadow;
 struct symbol_entry < html_version, e_shadow > shadow_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "no", sh_no },
     { { HTML_TAGS }, { HTML_UNDEF }, "pages", sh_pages },
@@ -1478,12 +1444,12 @@ struct symbol_entry < html_version, e_svg_version_grand > svg_version_grand_symb
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "http:s//www.w3.org/tr/rec-mathml-19980407", svg_1_0 },
     { { HTML_SVG11, 0, HE_SVG }, { HTML_UNDEF }, HTTP_W3 "/graphics/svg/svg-19990706.dtd", svg_1_1 },
     { { HTML_SVG11, 0, HE_SVG }, { HTML_UNDEF }, HTTPS_W3 "/graphics/svg/svg-19990706.dtd", svg_1_1 },
-    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTP_CSS SVG_2000, svg_2_0 },
-    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTPS_CSS SVG_2000, svg_2_0 },
-    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTP_CSS SVG_2000 "/tiny", svg_1_2_tiny },
-    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTPS_CSS SVG_2000 "/tiny", svg_1_2_tiny },
-    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTP_CSS SVG_2000 "/full", svg_1_2_full },
-    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTPS_CSS SVG_2000 "/full", svg_1_2_full } };
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTP SVG_2000, svg_2_0 },
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTPS SVG_2000, svg_2_0 },
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTP SVG_2000 "/tiny", svg_1_2_tiny },
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTPS SVG_2000 "/tiny", svg_1_2_tiny },
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTP SVG_2000 "/full", svg_1_2_full },
+    { { HTML_SVG12, 0, HE_SVG }, { HTML_UNDEF }, HTTPS SVG_2000 "/full", svg_1_2_full } };
 
 struct symbol_entry < html_version, e_tableframe > tableframe_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "void", fr_void },
@@ -1612,28 +1578,28 @@ struct symbol_entry < html_version, e_writingmode > writingmode_symbol_table [] 
     { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "inherit", wm_inherit } };
 
 struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
-{   { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "g/ontology/bibo/", x_bibo },
+{   { { HTML_4_0 }, { HTML_UNDEF }, HTTP PURL_ORG "g/ontology/bibo/", x_bibo },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/xhtml", x_xhtml_1 },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/xhtml1/strict", x_xhtml_1_superseded },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/xhtml1/transitional", x_xhtml_1_superseded },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/xhtml1/frameset", x_xhtml_1_superseded },
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2000/xhtml", x_xhtml_11 },
     { { XHTML_2_0 }, { HTML_UNDEF }, HTTP_W3 "/2004/xhtml", x_xhtml_2 },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS CC "/ns#", x_cc },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS OGC "/crs", x_crs },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DBPEDIA "/property/", x_dbp },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DBPEDIA "/ontology/", x_dbp_owl },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DBPEDIA "/resource/", x_dbr },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/dc/terms/", x_dc_terms },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS DEFAULT_DOMAIN "/", x_ex },
-    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_CSS XCOM "/foaf/0.1/", x_foaf },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP CC "/ns#", x_cc },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP OGC "/crs", x_crs },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP DBPEDIA "/property/", x_dbp },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP DBPEDIA "/ontology/", x_dbp_owl },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP DBPEDIA "/resource/", x_dbr },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/dc/terms/", x_dc_terms },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP DEFAULT_DOMAIN "/", x_ex },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP XCOM "/foaf/0.1/", x_foaf },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1998/math/mathml", x_mathml },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2002/07/owl/#", x_owl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "www.rddl.org/", x_rddl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "www.rddl.org/", x_rddl },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/02/22-rdf-syntax-ns#", x_rdf },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/ns/rdfa#", x_rdfa },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2000/01/rdf-schema#", x_rdfs },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS SVG_2000, x_svg },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP SVG_2000, x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/tr/rec-mathml-19980407", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/graphics/svg/svg-19990706.dtd", x_svg },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/xhtml/vocab#", x_xhv },
@@ -1649,12 +1615,12 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XInclude", x_xi },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/XSL/Transform/1.0", x_xslt },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/TR/WD-xsl", x_xslt },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "icl.com/saxon", x_saxon },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "xml.apache.org/xslt", x_lxslt },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "common", x_exsl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "functions", x_exsl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "math", x_exsl },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS XOT "sets", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "icl.com/saxon", x_saxon },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "xml.apache.org/xslt", x_lxslt },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP XOT "common", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP XOT "functions", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP XOT "math", x_exsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP XOT "sets", x_exsl },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema-datatypes", x_dt },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/08/xquery-operators", x_xf },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/SMIL20", x_smil },
@@ -1663,21 +1629,21 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     // https://metacpan.org/pod/XML::CommonNS
     { { XHTML_2_0 }, { HTML_UNDEF }, HTTP_W3 "/2006/06/xhtml", x_xhtml_2 },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/xml-events", x_xmlevents },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/dc/elements/1.1/", x_dc },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/vocab/relationship/", x_rel },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/rss/1.0/", x_rss },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/net/rssmodules/blogcomments/", x_comments },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS PURL_ORG "/rss/1.0/modules/syndication/", x_syn },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "relaxng.org/ns/structure/1.0/", x_rng },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/dc/elements/1.1/", x_dc },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/vocab/relationship/", x_rel },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/rss/1.0/", x_rss },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/net/rssmodules/blogcomments/", x_comments },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/rss/1.0/modules/syndication/", x_syn },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "relaxng.org/ns/structure/1.0/", x_rng },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema", x_xsd },
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema-instance", x_xsi },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/XSL/Transform", x_xslt },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/XSL/Format", x_xslfo },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/soap/encoding/", x_soapenc11 },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/soap/envelope/", x_soapenc11 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "schemas.xmlsoap.org/soap/encoding/", x_soapenc11 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "schemas.xmlsoap.org/soap/envelope/", x_soapenc11 },
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2003/05/soap-encoding", x_soapenc12 },
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2003/05/soap-envelope", x_soapenc12 },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_CSS "schemas.xmlsoap.org/wsdl/", x_wsdl11 } };
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "schemas.xmlsoap.org/wsdl/", x_wsdl11 } };
 
 #define INIT_ENUM(XX) \
     type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < html_version, e_##XX >)); \
@@ -1714,6 +1680,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (font_variant_ligature);
     INIT_ENUM (halign);
     INIT_ENUM (image_rendering);
+    INIT_ENUM (icalfreq);
     INIT_ENUM (icc);
     INIT_ENUM (indentalign);
     INIT_ENUM (inky);
@@ -1747,8 +1714,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (mf_listing_action);
     INIT_ENUM (mf_method);
     INIT_ENUM (mf_reviewtype);
-    INIT_ENUM (microdata_domain);
-    INIT_ENUM (microdata_root);
+    INIT_ENUM (myersbriggs);
     INIT_ENUM (namedspace);
     INIT_ENUM (namespace);
     INIT_ENUM (ogtype);
@@ -1757,7 +1723,6 @@ void enum_init (nitpick& nits)
     INIT_ENUM (plusstyle);
     INIT_ENUM (pointer_events);
     INIT_ENUM (print);
-    INIT_ENUM (rdfa_context);
     INIT_ENUM (referrer);
     INIT_ENUM (rendering_in_tents);
     INIT_ENUM (rules);

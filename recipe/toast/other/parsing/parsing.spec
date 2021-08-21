@@ -26,6 +26,11 @@ PASS ../toast/other/parsing/parsing-bad.html
 26 inserted_missing_closure
 30 eof_in_cdata
 
+PASS ../toast/other/parsing/person.html
+12 sarcasm
+13 fe
+19 newline_in_string newline_in_string missing_double_quote missing_double_quote attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_repeated unrecognised_attribute unrecognised_attribute attribute_barred attribute_barred unrecognised_attribute invalid_attribute_version wrong_version missing_open missing_open
+
 PASS ../toast/other/parsing/quotes.html
 2 inserted_missing_parent naughty_lang
 5 bad_script
@@ -36,7 +41,7 @@ PASS ../toast/other/parsing/scripts.html
 2 naughty_lang
 7 embedded_lingo
 8 embedded_lingo
-9 attribute_name_unexpected_character
+9 missing_double_quote
 
 PASS ../toast/other/parsing/stringerror.html
 2 missing_close naughty_lang
@@ -51,3 +56,4 @@ PASS ../toast/other/parsing/ssi.html
 
 PASS ../toast/other/parsing/xhtml-xml.html
 1 xhtml_1_0
+4 rdfa_version

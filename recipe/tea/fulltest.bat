@@ -47,6 +47,7 @@ ssc.exe -f ../toast/living/jan20/living.conf
 ssc.exe -f ../toast/living/jul20/living.conf
 ssc.exe -f ../toast/living/jan21/living.conf
 ssc.exe -f ../toast/living/apr21/living.conf
+ssc.exe -f ../toast/living/jul21/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf
@@ -83,7 +84,11 @@ ssc.exe -f ../toast/other/simple/simple.conf
 ssc.exe -f ../toast/other/ssi/ssi.conf
 ssc.exe -f ../toast//RDF/1.0/rdf.conf
 ssc.exe -f ../toast//RDF/1.1/rdf.conf
-ssc.exe -f ../toast//RDF/RDFa/rdfa.conf
+ssc.exe -f ../toast//RDFa/1.1.3/rdfa.conf
+ssc.exe -f ../toast//RDFa/cc/rdfa.conf
+ssc.exe -f ../toast//RDFa/dc/rdfa.conf
+ssc.exe -f ../toast//RDFa/foaf/rdfa.conf
+ssc.exe -f ../toast//RDFa/schema/rdfa.conf
 ssc.exe -f ../toast/shadow/comment/comment.conf
 ssc.exe -f ../toast/shadow/copy/copy.conf
 ssc.exe -f ../toast/shadow/copydiff/copydiff.conf

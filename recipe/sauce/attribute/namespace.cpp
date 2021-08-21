@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/namespace.h"
 
 ns_id examine_namespace (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, ::std::string& s, ::std::string& n)
-{   ::std::string ss = ::boost::to_lower_copy (trim_the_lot_off (s));
+{   ::std::string ss = trim_the_lot_off (s);
     if ((! ss.empty ()) && (v >= xhtml_1_0))
     {   if ((ss.at (0) == ':') || (ss.at (ss.length () - 1) == ':'))
         {   nits.pick (nit_bad_namespace, es_error, ec_namespace, quote (s), " is malformed");
@@ -53,7 +53,7 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
     ::std::string xmlns (tart (ns));
     ::std::string schema (tart (value));
     if (schema.empty ())
-    {   if (vrai) nits.pick (nit_bad_namespace, es_error, ec_namespace, "a namespace schema cannot be empty");
+    {   if (vrai) nits.pick (nit_bad_namespace, es_error, ec_namespace, "a namespace cannot be empty");
         return s_invalid; }
     if (compare_no_case (xmlns, XMLNS))
     {   if (vrai) nits.pick (nit_bad_namespace, es_error, ec_namespace, quote (xmlns), ": really? Unfortunately, that exceeds " PROG "'s daft 'apeth quota (don't define a namespace called XMLNS)");
@@ -71,8 +71,7 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
         standard_name = namespace_names.find (v, NAMESPACE_NAME, lc_name, ! v.xhtml ());
         if ((id == 0) && (standard_name != ns_error) && (standard_name != ns_default))
         {   flags_t flags = namespace_names.flags (standard_name);
-            if ((flags & NS_PREDECLARED) == 0) standard_name = ns_default;
-            else id = standard_name; }
+            if ((flags & NS_PREDECLARED) == NS_PREDECLARED) id = standard_name; }
         if (vrai)
         {   e_protocol prot = protocol_names.find (v, 0, xmlns, true);
             if ((prot != pr_error) && (prot != pr_other))
@@ -101,18 +100,20 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
                 if ((standard_schema != ns_default) && (standard_schema != ns_error))
                     nits.pick (nit_contradictory_namespace, es_warning, ec_namespace, quote (schema), " is commonly associated with ", quote (namespace_names.get (standard_schema, NAMESPACE_NAME)), ", not ", quote (xmlns)); }
             if (standard_schema == ns_error)
-                if (standard_name == ns_default)
+            {   if (standard_name == ns_default)
                     nits.pick (nit_unrecognised_namespace, es_catastrophic, ec_namespace, PROG " does not know about the default namespace ", quote (schema), ", so cannot properly verify its content");
-                else nits.pick (nit_unrecognised_namespace, es_warning, ec_namespace, PROG " does not know about ", quote (schema), ", so will be unable to verify ", quote (xmlns)); }
+                else nits.pick (nit_unrecognised_namespace, es_warning, ec_namespace, PROG " does not know about ", quote (schema), ", so will be unable to verify ", quote (xmlns));
+                wombats (nits, v, schema); } }
     switch (standard_name)
     {   case ns_default :
-            if (standard_schema == ns_error) return s_invalid;
+            if (standard_schema == ns_error)
+                if (lc_name.empty () || (lc_name == "_")) return s_invalid;
             break;
         case ns_xhtml :
             if (standard_schema != ns_xhtml)
             {   nits.pick (nit_namespace_redefine, es_error, ec_rdfa, quote (xmlns), " cannot be redefined to ", quote (schema));
                 return s_invalid; }
-            nits.pick (nit_namespace_redefine, es_info, ec_rdfa, "it is not necessary to redefine ", quote (xmlns), " given it is defined by default");
+            nits.pick (nit_namespace_redefine, es_info, ec_rdfa, "it is not necessary to redefine ", quote (xmlns), ", it is defined by default");
             break;
         default :
             break; }

@@ -123,7 +123,7 @@ void element::examine_time ()
             pick (nit_use_datetime, es_warning, ec_element, "<TIME>'s descendant text is not particularly timely; perhaps use a DATETIME attribute"); } }
 
 void element::examine_title ()
-{   if (! node_.version ().has_svg ()) only_one_of (elem_title);
+{   if (! node_.version ().has_svg ()) only_one_of ();
     ::std::string ttl (text ());
     if (! ancestral_elements_.test (elem_head)) return;
     page_.title (ttl);

@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 #include "parser/parse_attributes.h"
 #include "parser/parse_abb.h"
+#include "rdf/rdf.h"
 
 class elements_node;
 
@@ -42,20 +43,39 @@ class element_node
     nitpick nits_;
     html_version version_;
     namespaces_ptr namespaces_;
-    prefixes_ptr prefixes_;
+    prefixes_ptr prefixes_, rdf_schemas_;
+    rdf_ptr rdf_, rdfa_;
     ::std::string inner_text () const;
     void init ();
     void manage_reversioner ();
+
+    // yeah, yeah, yeah, I know
     namespaces_ptr find_namespace_parent () const
     {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
             if (mummy -> namespaces_.get () != nullptr)
                 return mummy -> namespaces_;
         return namespaces_ptr (); }
-    prefixes_ptr find_prefix_parent () const
+    prefixes_ptr find_prefixes_parent () const
     {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
             if (mummy -> prefixes_.get () != nullptr)
                 return mummy -> prefixes_;
         return prefixes_ptr (); }
+    prefixes_ptr find_rdf_schemas_parent () const
+    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+            if (mummy -> rdf_schemas_.get () != nullptr)
+                return mummy -> rdf_schemas_;
+        return prefixes_ptr (); }
+    rdf_ptr find_rdf_parent () const
+    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+            if (mummy -> rdf_.get () != nullptr)
+                return mummy -> rdf_;
+        return rdf_ptr (); }
+    rdf_ptr find_rdfa_parent () const
+    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+            if (mummy -> rdfa_.get () != nullptr)
+                return mummy -> rdfa_;
+        return rdf_ptr (); }
+
 public:
     element_node () = delete;
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
@@ -139,6 +159,7 @@ public:
 
     const elements_node* box () const { return box_; }
 
+    // yeah, yeah, yeah, I know
     void prepare_namespaces ()
     {   if (namespaces_.get () == nullptr)
         {   namespaces_.reset (new namespaces_t);
@@ -152,10 +173,40 @@ public:
     {   if (prefixes_.get () == nullptr)
         {   prefixes_.reset (new prefixes_t);
             VERIFY_NOT_NULL (prefixes_.get (), __FILE__, __LINE__);
-            prefixes_ -> up (find_prefix_parent ().get ()); } }
+            prefixes_ -> up (find_prefixes_parent ().get ()); } }
     prefixes_ptr prefixes () const
     {   if (prefixes_.get () != nullptr) return prefixes_;
-        return find_prefix_parent (); }
+        return find_prefixes_parent (); }
+
+    void prepare_rdf_schemas ()
+    {   if (rdf_schemas_.get () == nullptr)
+        {   rdf_schemas_.reset (new prefixes_t);
+            VERIFY_NOT_NULL (rdf_schemas_.get (), __FILE__, __LINE__);
+            rdf_schemas_ -> up (find_rdf_schemas_parent ().get ()); } }
+    prefixes_ptr rdf_schemas () const
+    {   if (rdf_schemas_.get () != nullptr) return rdf_schemas_;
+        return find_rdf_schemas_parent (); }
+
+    // yeah, yeah, yeah, I still know
+    void prepare_rdf ()
+    {   if (rdf_.get () == nullptr)
+        {   rdf_.reset (new rdf_t);
+            VERIFY_NOT_NULL (rdf_.get (), __FILE__, __LINE__);
+            rdf_ -> up (find_rdf_parent ().get ());
+            rdf_ -> prefixes (rdf_schemas ().get ()); } }
+    rdf_ptr rdf () const
+    {   if (rdf_.get () != nullptr) return rdf_;
+        return find_rdf_parent (); }
+
+    void prepare_rdfa ()
+    {   if (rdfa_.get () == nullptr)
+        {   rdfa_.reset (new rdf_t);
+            VERIFY_NOT_NULL (rdfa_.get (), __FILE__, __LINE__);
+            rdfa_ -> up (find_rdfa_parent ().get ());
+            rdfa_ -> prefixes (prefixes ().get ()); } }
+    rdf_ptr rdfa () const
+    {   if (rdfa_.get () != nullptr) return rdfa_;
+        return find_rdfa_parent (); }
 
     e_element tag () const { return elem_.get (); }
 

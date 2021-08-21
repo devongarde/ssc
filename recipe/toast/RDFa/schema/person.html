@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>schema person</title>
+</head>
+
+<body>
+
+<h1>schema person</h1>
+
+    <div vocab="https://schema.org/" typeof="Person">
+      <span property="name">Jane Doe</span>
+      <img src="janedoe.jpg" property="image" alt="Photo of Jane Doe"/>
+
+      <span property="jobTitle">Professor</span>
+      <div property="address" typeof="PostalAddress">
+        <span property="streetAddress">
+          20341 Whitworth Institute
+          405 N. Whitworth
+        </span>
+        <span property="addressLocality">Seattle</span>,
+        <span property="addressRegion">WA</span>
+        <span property="postalCode">98052</span>
+      </div>
+      <span property="telephone">(425) 123-4567</span>
+      <a href="mailto:jane-doe@example.edu" property="email">
+        jane-doe@example.edu</a>
+
+      Jane's home page:
+      <a href="http://www.example.com" property="url">example.com</a>
+
+      Graduate students:
+      <a href="http://www.example.edu/students/alicejones.html" property="colleague">
+        Alice Jones</a>
+      <a href="http://www.example.edu/students/bobsmith.html" property="colleague">
+        Bob Smith</a>
+    </div>
+
+<p vocab="https://schema.org/">
+      <span property="name">Bert Scroggins</span> was sponsored by
+      <span property="sponsor" typeof="Organization">
+        <a property="url" href="http://www.example.com/">Example</a></span> in the
+        <span property="circularArgument">Tour de France</span>.
+</p>
+
+</body>
+</html>

@@ -23,6 +23,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "attribute/attribute_classes.h"
 
+void element::examine_sarcasm ()
+{   if (! context.sarcasm ())
+    {   pick (nit_sarcasm, es_info, ec_element, "contact your favourite " PROG " vendor now for bulk discount on &lt; and &gt;");
+        context.sarcasm (true); } }
+
 void element::examine_script ()
 {   if (! node_.version ().is_5 ()) return;
     check_ancestors (elem_script, element_bit_set (elem_script));

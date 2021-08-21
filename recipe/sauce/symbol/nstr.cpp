@@ -26,26 +26,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // https://www.informit.com/articles/article.aspx?p=31837&seqNum=10
 
 n_string_entry < e_namespace, 3 > namespace_name_entries [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, ns_bibo, 0, { "bibo", HTTP_CSS PURL_ORG "g/ontology/bibo/", "bibliographic ontology" } }, // https://github.com/structureddynamics/Bibliographic-Ontology-BIBO/blob/master/bibo.owl
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_cc, 0, { "cc", HTTP_CSS CC "/ns#", "creative commons" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_crs, 0, { "crs", HTTP_CSS OGC "/crs", "common reporting standard" } }, // https://www.oecd.org/tax/exchange-of-tax-information/common-reporting-standard-xml-schema-user-guide-for-tax-administrations-june-2019.pdf
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dbp, 0, { "dbp", HTTP_CSS DBPEDIA "/property/", "dbpedia" } },  // https://www.dbpedia.org/
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dbp_owl, 0, { "dbp-owl", HTTP_CSS DBPEDIA "/ontology/", "dbpedia ontology" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dbr, 0, { "dbr", HTTP_CSS DBPEDIA "/resource/", "dbpedia resources" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dc, 0, { "dc", HTTP_CSS PURL_ORG "/dc/elements/1.1/", "dublin core" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dcterms, 0, { "dcterms", HTTP_CSS PURL_ORG "/dc/terms/", "dublin core terms" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dt, 0, { "dt", HTTP_W3 "http://www.w3.org/2001/XMLSchema-datatypes", "XML Schema Part 2 : datatypes" } },
+{   { { XHTML_1_0 }, { HTML_UNDEF }, ns_bibo, 0, { "bibo", HTTP PURL_ORG "g/ontology/bibo/", "bibliographic ontology" } }, // https://github.com/structureddynamics/Bibliographic-Ontology-BIBO/blob/master/bibo.owl
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_cc, 0, { "cc", HTTP CC "/ns#", "creative commons" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_crs, 0, { "crs", HTTP OGC "/crs", "common reporting standard" } }, // https://www.oecd.org/tax/exchange-of-tax-information/common-reporting-standard-xml-schema-user-guide-for-tax-administrations-june-2019.pdf
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dbp, 0, { "dbp", HTTP DBPEDIA "/property/", "dbpedia" } },  // https://www.dbpedia.org/
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dbp_owl, 0, { "dbp-owl", HTTP DBPEDIA "/ontology/", "dbpedia ontology" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dbr, 0, { "dbr", HTTP DBPEDIA "/resource/", "dbpedia resources" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dc, 0, { "dc", HTTP PURL_ORG "/dc/elements/1.1/", "dublin core" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dcterms, 0, { "dcterms", HTTP PURL_ORG "/dc/terms/", "dublin core terms" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_dt, 0, { "dt", HTTP_W3 "/2001/XMLSchema-datatypes", "XML Schema Part 2 : datatypes" } },
     { { HTML_JUL15 }, { HTML_UNDEF }, ns_ebuttm, 0, { "ebuttm", "urn:ebu:tt:metadata", "european broadcasting union TECH 3380 (subtitles)" } },  // http://xmlns.com/foaf/spec/
     { { HTML_JUL15 }, { HTML_UNDEF }, ns_ebutts, 0, { "ebutts", "urn:ebu:tt:style", "european broadcasting union TECH 3380 (subtitles)" } },  // http://xmlns.com/foaf/spec/
     { { HTML_JAN05 }, { HTML_UNDEF }, ns_err, 0, { "err", HTTP_W3 "/2005/xqt-errirs", "xqt errors" } },  // http://xmlns.com/foaf/spec/
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_ex, 0, { "ex", HTTP_CSS DEFAULT_DOMAIN "/", "example" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_ex, 0, { "ex", HTTP DEFAULT_DOMAIN "/", "example" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/common", "Extensions to XSLT 1.0" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/functions", "Extensions to XSLT 1.0 (functions)" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/math", "Extensions to XSLT 1.0 (math)" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/sets", "Extensions to XSLT 1.0 (sets)" } },
     { { HTML_JAN05 }, { HTML_UNDEF }, ns_fn, 0, { "fn", HTTP_W3 "/2005/xpath-functions", "XPath functions" } },  // http://xmlns.com/foaf/spec/
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_fo, 0, { "fo", HTTP_W3 "/1999/XSL/Format", "XSL Formatting Objects" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_foaf, 0, { "foaf", HTTP_CSS XCOM "/foaf/0.1/", "friend of a friend" } },  // http://xmlns.com/foaf/spec/
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_foaf, 0, { "foaf", HTTP XCOM "/foaf/0.1/", "friend of a friend" } },  // http://xmlns.com/foaf/spec/
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_html, NS_DEFAULT, { "html", HTTP_W3 "/1999/html", "hypertext markup language"  } },  // http://xmlns.com/foaf/spec/
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_ims, 0, { "ims", "http://www.imsglobal.org/xsd/imsmd_v1p2", "IMS Global Learning Consortium"  } },  // http://xmlns.com/foaf/spec/
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_ims, 0, { "ims", "http://www.imsglobal.org/xsd/imsmd_v1p2p2", "IMS Global Learning Consortium"  } },  // http://xmlns.com/foaf/spec/
@@ -68,8 +68,8 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { HTML_MATH1 }, { HTML_UNDEF }, ns_math, 0, { "math", HTTP_W3 "/1998/Math/MathML", "mathML" } },
     { { HTML_MATH1 }, { HTML_UNDEF }, ns_math, 0, { "m", HTTP_W3 "/1998/Math/MathML", "mathML" } },
     { { HTML_MATH1 }, { HTML_UNDEF }, ns_math, 0, { "mml", HTTP_W3 "/1998/Math/MathML", "mathML" } },
-    { { HTML_OWL10 }, { HTML_UNDEF }, ns_odd, 0, { "odd", "http://odrl.net/1.0/ODRL-EX", "Open Digital Rights Language" } },
-    { { HTML_OWL10 }, { HTML_UNDEF }, ns_oex, 0, { "oex", "http://odrl.net/1.0/ODRL-DD", "Open Digital Rights Language" } },
+    { { HTML_OWL10 }, { HTML_UNDEF }, ns_odd, 0, { "odd", "http://odrl.net/1.0/ODRL-DD", "Open Digital Rights Language" } },
+    { { HTML_OWL10 }, { HTML_UNDEF }, ns_oex, 0, { "oex", "http://odrl.net/1.0/ODRL-EX", "Open Digital Rights Language" } },
     { { HTML_OWL10 }, { HTML_UNDEF }, ns_owl, 0, { "owl", HTTP_W3 "/2002/07/owl#", "Web Ontology Language 1.0" } }, // http://xmlns.com/foaf/spec/ too
     { { HTML_OWL11 }, { HTML_UNDEF }, ns_owl, 0, { "owl11", HTTP_W3 "/2006/12/owl11#", "Web Ontology Language 1.1" } }, // http://xmlns.com/foaf/spec/ too
     { { HTML_OWL11 }, { HTML_UNDEF }, ns_owlxml, 0, { "owl11xml", HTTP_W3 "/2006/12/owl11-xml#", "Web Ontology Language 1.1 XML" } }, // http://xmlns.com/foaf/spec/ too
@@ -80,7 +80,7 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_saxon, 0, { "saxon", "http://icl.com/saxon", "Saxon XSLT Extensions" } }, // http://saxon.sourceforge.net/saxon6.5/extensions.html
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_smil, 0, { "smil", HTTP_W3 "/2001/SMIL20", "Synchronized Multimedia Integration Language" } },
     { { HTML_JAN13 }, { HTML_UNDEF }, ns_smpte, 0, { "smpte", "http://www.smpte-ra.org/schemas/2052-1/2013/smpte-tt", "Society of Motion Pictures and Television Engineers" } },
-    { { HTML_SVG10 }, { HTML_UNDEF }, ns_svg, 0, { "svg", HTTP_CSS SVG_2000, "scalable vector graphics" } },
+    { { HTML_SVG10 }, { HTML_UNDEF }, ns_svg, 0, { "svg", HTTP SVG_2000, "scalable vector graphics" } },
     { { HTML_TTML }, { HTML_UNDEF }, ns_tt, 0, { "tt", HTTP_W3 "/ns/ttml", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
     { { HTML_TTML }, { HTML_UNDEF }, ns_ttf, 0, { "ttf", HTTP_W3 "/ns/ttml#parameter", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
     { { HTML_TTML }, { HTML_UNDEF }, ns_ttp, 0, { "ttp", HTTP_W3 "/ns/ttml#styling", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
@@ -106,59 +106,6 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_xslt, 0, { "transform", HTTP_W3 "/1999/XSL/Transform", "XML Stylesheet Language Transformations" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_xtm, 0, { "xtm", "http://www.topicmaps.org/xtm/1.0/", "XML Topic Maps" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_error, 0, { nullptr, nullptr, nullptr } } };
-
-n_string_entry < e_rdfa_context, 3 > prefix_name_entries [] =
-{   { { HTML_RDF10 }, { HTML_UNDEF }, pre_as, 0, { "as", HTTP_W3 "/ns/activitystreams#", "Activity Vocabulary" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_cc, 0, { "cc", "http://creativecommons.org/ns#", "cc" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_csvw, 0, { "csvw", HTTP_W3 "/ns/csvw#", "csvw" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_ctag, 0, { "ctag", "http://commontag.org/ns#", "ctag" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_dc, 0, { "dc", HTTP PURL_ORG "/dc/terms/", "dc" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_dc11, 0, { "dc11", HTTP PURL_ORG "/dc/elements/1.1/", "dc11" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_dcat, 0, { "dcat", HTTP_W3 "/ns/dcat#", "dcat" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_dcterms, 0, { "dcterms", HTTP PURL_ORG "/dc/terms/", "dcterms" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_dqv, 0, { "dqv", HTTP_W3 "/ns/dqv#", "dqv" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_describedby, 0, { "describedby", HTTP_W3 "/2007/05/powder-s#describedby", "describedby" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_duv, 0, { "duv", HTTP_W3 "/ns/duv#", "duv" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_earl, 0, { "earl", HTTP_W3 "/ns/earl#", "earl" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_foaf, 0, { "foaf", "http://xmlns.com/foaf/0.1/", "foaf" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_gr, 0, { "gr", "gr", HTTP PURL_ORG "/goodrelations/v1#" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_grddl, 0, { "grddl", HTTP_W3 "/2003/g/data-view#", "grddl" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_ical, 0, { "ical", HTTP_W3 "/2002/12/cal/icaltzd#", "ical" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_jsonld, 0, { "jsonld", HTTP_W3 "/ns/json-ld#", "jsonld" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_ldp, 0, { "ldp", HTTP_W3 "/ns/ldp#", "ldp" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_licence, 0, { "license", HTTP_W3 "/1999/xhtml/vocab#license", "licence" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_ma, 0, { "ma", HTTP_W3 "/ns/ma-ont#", "ma" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_oa, 0, { "oa", HTTP_W3 "/ns/oa#", "oa" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_odrl, 0, { "odrl", HTTP_W3 "/ns/odrl2/", "odrl" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_og, 0, { "og", "http://ogp.me/ns#", "og" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_org, 0, { "org", "org", "Organisations" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_owl, 0, { "owl", HTTP_W3 "/2002/07/ow", "OWL" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_prov, 0, { "prov", HTTP_W3 "/ns/prov#", "Provenance Vocabulary" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_qb, 0, { "qb", HTTP PURL_ORG "/linked-data/cube#", "Data Cubes" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_rdf, 0, { "rdf", HTTP_W3 "/1999/02/22-rdf-syntax-ns#", "RDF" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_rdfa, 0, { "rdfa", HTTP_W3 "/ns/rdfa#", "RDFa vocabulary" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_rdfs, 0, { "rdfs", HTTP_W3 "/2000/01/rdf-schema#", "RDF Schema" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_rev, 0, { "rev", HTTP PURL_ORG "/stuff/rev#", "rev" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_rif, 0, { "rif", HTTP_W3 "/2007/rif#", "rif" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_role, 0, { "role", HTTP_W3 "/1999/xhtml/vocab#role", "role" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_rr, 0, { "rr", HTTP_W3 "/ns/r2rml#", "rr" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_schema, 0, { "schema", HTTP_CSS SCHEMA_ORG "/", "schema.org vocabulary" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_sd, 0, { "sd", HTTP_W3 "/ns/parql-service-description#", "sd" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_sioc, 0, { "sioc", "http://rdfs.org/sioc/ns#", "sioc" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_skos, 0, { "skos", HTTP_W3 "/2004/02/skos/core#", "skos" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_skosxl, 0, { "skosxl", HTTP_W3 "/2008/05/skos-xl#", "skosxl" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_ssn, 0, { "ssn", HTTP_W3 "/ns/ssn/", "ssn" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_sosa, 0, { "sosa", HTTP_W3 "/ns/sosa/", "sosa" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_time, 0, { "time", HTTP_W3 "/2006/time#", "time" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_v, 0, { "v", "http://rdf.data-vocabulary.org/#", "v" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_vcard, 0, { "vcard", HTTP_W3 "/2006/vcard/ns#", "vcard" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_void, 0, { "void", HTTP_CSS RDFS_ORG "/ns/void#", "void" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_wdr, 0, { "wdr", HTTP_W3 "/2007/05/powder#", "Protocol for Web Description Resources" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_wdrs, 0, { "wdrs", HTTP_W3 "/2007/05/powder-s#", "Protocol for Web Description Resources" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_xhv, 0, { "xhv", HTTP_W3 "/1999/xhtml/vocab#", "RDFa Core 1.1" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_xml, 0, { "xml", HTTP_W3 "/XML/1998/namespace", "Namespaces in XML 1.0" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_xsd, 0, { "xsd", HTTP_W3 "/2001/XMLSchema#", "XML Schema Part 2" } },
-    { { HTML_RDF10 }, { HTML_UNDEF }, pre_error, 0, { nullptr, nullptr, nullptr } } };
 
 n_string_entry < e_protocol, 2 > protocol_name_entries [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, pr_aaa, 0, { "aaa", "diameter" } },
@@ -396,11 +343,154 @@ n_string_entry < e_protocol, 2 > protocol_name_entries [] =
     { { HTML_TAGS }, { HTML_UNDEF }, pr_zoomus, 0, { "zoomus", "zoom conferencing software" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_error, 0, { nullptr, nullptr } } };
 
+n_string_entry < e_schema, 3 > schema_name_entries [] =
+{   { { HTML_RDF10 }, { HTML_UNDEF }, s_article, 0, { "article", "http://ogp.me/ns/article#", "Open Graph Article" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_article, 0, { "article", "https://ogp.me/ns/article#", "Open Graph Article" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_as, SCHEMA_PREFIX_CONTEXT, { "as", HTTP_W3 "/ns/activitystreams#", "Activity Vocabulary" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_as, 0, { "as", HTTPS_W3 "/ns/activitystreams#", "Activity Vocabulary" } },
+    { { HTML_RDF11 }, { HTML_UNDEF }, s_bibo, SCHEMA_PREFIX_CONTEXT, { "bibo", HTTP PURL_ORG  "/ontology/bibo/", "bibo" } },
+    { { HTML_RDF11 }, { HTML_UNDEF }, s_bibo, 0, { "bibo", HTTPS PURL_ORG  "/ontology/bibo/", "bibo" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_book, 0, { "book", "http://ogp.me/ns/book#", "Open Graph Book" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_book, 0, { "book", "https://ogp.me/ns/book#", "Open Graph Book" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_cc, SCHEMA_PREFIX_CONTEXT, { "cc", "http://creativecommons.org/ns#", "creative commons" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_cc, 0, { "cc", "https://creativecommons.org/ns#", "creative commons" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_csvw, SCHEMA_PREFIX_CONTEXT, { "csvw", HTTP_W3 "/ns/csvw#", "csvw" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_csvw, 0, { "csvw", HTTPS_W3 "/ns/csvw#", "csvw" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ctag, SCHEMA_PREFIX_CONTEXT, { "ctag", "http://commontag.org/ns#", "ctag" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ctag, 0, { "ctag", "https://commontag.org/ns#", "ctag" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_dbp, SCHEMA_PREFIX_CONTEXT, { "dbp", HTTP DBPEDIA "/property/", "dbpedia" } },  // https://www.dbpedia.org/
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_dbp, 0, { "dbp", HTTPS DBPEDIA "/property/", "dbpedia" } },  // https://www.dbpedia.org/
+    { { HTML_RDF11 }, { HTML_UNDEF }, s_dbp_owl, SCHEMA_PREFIX_CONTEXT, { "dbp-owl", HTTP DBPEDIA "/ontology/", "dbpedia" } },  // https://www.dbpedia.org/
+    { { HTML_RDF11 }, { HTML_UNDEF }, s_dbp_owl, 0, { "dbp-owl", HTTPS DBPEDIA "/ontology/", "dbpedia" } },  // https://www.dbpedia.org/
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_dbr, SCHEMA_PREFIX_CONTEXT, { "dbr", HTTP DBPEDIA "/resource/", "dbpedia resources" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_dbr, 0, { "dbr", HTTPS DBPEDIA "/resource/", "dbpedia resources" } },
+//    { { HTML_RDF10 }, { HTML_DEC10 }, s_dc, SCHEMA_PREFIX_CONTEXT, { "dc", HTTP PURL_ORG "/dc/", "dublin core elements" } },
+//    { { HTML_RDF10 }, { HTML_DEC10 }, s_dc, 0, { "dc", HTTPS PURL_ORG "/dc/", "dublin core elements" } },
+//    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dc, SCHEMA_PREFIX_CONTEXT, { "dc", HTTP PURL_ORG "/dc/terms/", "dublin core terms" } },
+//    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dc, 0, { "dc", HTTPS PURL_ORG "/dc/terms/", "dublin core terms" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dc, SCHEMA_PREFIX_CONTEXT, { "dc11", HTTP PURL_ORG "/dc/elements/1.1/", "dublin core elements 1.1" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dc, 0, { "dc11", HTTPS PURL_ORG "/dc/elements/1.1/", "dublin core elements 1.1" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dcam, 0, { "dcam", HTTP PURL_ORG "/dc/dcam/", "dublin core vocabulary description" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dcam, 0, { "dcam", HTTPS PURL_ORG "/dc/dcam/", "dublin core vocabulary description" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dcat, SCHEMA_PREFIX_CONTEXT, { "dcat", HTTP_W3 "/ns/dcat#", "dcat" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dcat, 0, { "dcat", HTTPS_W3 "/ns/dcat#", "dcat" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dcmi, 0, { "dcmi", HTTP PURL_ORG "/dc/dcmitype/", "dcmi type vocabulary" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dcmi, 0, { "dcmi", HTTPS PURL_ORG "/dc/dcmitype/", "dcmi type vocabulary" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_dct, SCHEMA_PREFIX_CONTEXT, { "dcterms", HTTP PURL_ORG "/dc/terms/", "dublin core terms" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_dct, 0, { "dcterms", HTTPS PURL_ORG "/dc/terms/", "dublin core terms" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_dct, SCHEMA_PREFIX_CONTEXT, { "dc", HTTP PURL_ORG "/dc/terms/", "dublin core terms" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_dct, 0, { "dc", HTTPS PURL_ORG "/dc/terms/", "dublin core terms" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dqv, SCHEMA_PREFIX_CONTEXT, { "dqv", HTTP_W3 "/ns/dqv#", "dqv" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_dqv, 0, { "dqv", HTTPS_W3 "/ns/dqv#", "dqv" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_describedby, SCHEMA_PREFIX_CONTEXT, { "describedby", HTTP_W3 "/2007/05/powder-s#describedby", "describedby" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_describedby, 0, { "describedby", HTTPS_W3 "/2007/05/powder-s#describedby", "describedby" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_duv, SCHEMA_PREFIX_CONTEXT, { "duv", HTTP_W3 "/ns/duv#", "duv" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_duv, 0, { "duv", HTTPS_W3 "/ns/duv#", "duv" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_earl, SCHEMA_PREFIX_CONTEXT, { "earl", HTTP_W3 "/ns/earl#", "earl" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_earl, 0, { "earl", HTTPS_W3 "/ns/earl#", "earl" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_foaf, SCHEMA_PREFIX_CONTEXT, { "foaf", "http://xmlns.com/foaf/0.1/", "friend of a friend" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_foaf, 0, { "foaf", "https://xmlns.com/foaf/0.1/", "friend of a friend" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, s_frbr_core, 0, { "frbr_core", HTTP PURL_ORG "/vocab/frbr/core#", "frbr_core" } },  // https://vocab.org/
+    { { XHTML_1_0 }, { HTML_UNDEF }, s_frbr_core, 0, { "frbr_core", HTTPS PURL_ORG "/vocab/frbr/core#", "frbr_core" } },  // https://vocab.org/
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_gr, SCHEMA_PREFIX_CONTEXT, { "gr", HTTP PURL_ORG "/goodrelations/v1#", "gr" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_gr, 0, { "gr", HTTPS PURL_ORG "/goodrelations/v1#", "gr" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_grddl, SCHEMA_PREFIX_CONTEXT, { "grddl", HTTP_W3 "/2003/g/data-view#", "grddl" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_grddl, 0, { "grddl", HTTPS_W3 "/2003/g/data-view#", "grddl" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ical, SCHEMA_PREFIX_CONTEXT, { "ical", HTTP_W3 "/2002/12/cal/ical#", "ical" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ical, 0, { "ical", HTTPS_W3 "/2002/12/cal/ical#", "ical" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_icaltzd, 0, { "icaltzd", HTTP_W3 "/2002/12/cal/icaltzd#", "icaltzd" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_icaltzd, 0, { "icaltzd", HTTPS_W3 "/2002/12/cal/icaltzd#", "icaltzd" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_jsonld, SCHEMA_PREFIX_CONTEXT, { "jsonld", HTTP_W3 "/ns/json-ld#", "jsonld" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_jsonld, 0, { "jsonld", HTTPS_W3 "/ns/json-ld#", "jsonld" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ldp, SCHEMA_PREFIX_CONTEXT, { "ldp", HTTP_W3 "/ns/ldp#", "ldp" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ldp, 0, { "ldp", HTTPS_W3 "/ns/ldp#", "ldp" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_licence, SCHEMA_PREFIX_CONTEXT, { "license", HTTP_W3 "/1999/xhtml/vocab#license", "licence" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_licence, 0, { "license", HTTPS_W3 "/1999/xhtml/vocab#license", "licence" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ma, SCHEMA_PREFIX_CONTEXT, { "ma", HTTP_W3 "/ns/ma-ont#", "ma" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ma, 0, { "ma", HTTPS_W3 "/ns/ma-ont#", "ma" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, s_microformats, 0, { "mf", HTTP_MF "/", "microformats" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, s_microformats, 0, { "mf", HTTPS_MF "/", "microformats" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_music, 0, { "music", "http://ogp.me/ns/music#", "Open Graph Music" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_music, 0, { "music", "https://ogp.me/ns/music#", "Open Graph Music" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_oa, SCHEMA_PREFIX_CONTEXT, { "oa", HTTP_W3 "/ns/oa#", "oa" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_oa, 0, { "oa", HTTPS_W3 "/ns/oa#", "oa" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_odrl, SCHEMA_PREFIX_CONTEXT, { "odrl", HTTP_W3 "/ns/odrl2/", "odrl" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_odrl, 0, { "odrl", HTTPS_W3 "/ns/odrl2/", "odrl" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_og, SCHEMA_PREFIX_CONTEXT, { "og", "http://ogp.me/ns#", "og" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_og, 0, { "og", "https://ogp.me/ns#", "og" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_org, SCHEMA_PREFIX_CONTEXT, { "org", HTTP_W3 "/ns/org#", "Organisations" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_org, 0, { "org", HTTPS_W3 "/ns/org#", "Organisations" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_owl, SCHEMA_PREFIX_CONTEXT, { "owl", HTTP_W3 "/2002/07/owl#", "OWL" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_owl, 0, { "owl", HTTPS_W3 "/2002/07/owl#", "OWL" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_profile, 0, { "profile", "http://ogp.me/ns/profile#", "Open Graph Profile" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_profile, 0, { "profile", "https://ogp.me/ns/profile#", "Open Graph Profile" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_prov, SCHEMA_PREFIX_CONTEXT, { "prov", HTTP_W3 "/ns/prov#", "Provenance Vocabulary" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_prov, 0, { "prov", HTTPS_W3 "/ns/prov#", "Provenance Vocabulary" } },
+    { { HTML_JAN17 }, { HTML_UNDEF }, s_poetry, SCHEMA_BESPOKE, { "poetry", "http://dylanharris.org/poetry/", "Poetry" } },
+    { { HTML_JAN17 }, { HTML_UNDEF }, s_poetry, SCHEMA_BESPOKE, { "poetry", "https://dylanharris.org/poetry/", "Poetry" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_qb, SCHEMA_PREFIX_CONTEXT, { "qb", HTTP PURL_ORG "/linked-data/cube#", "Data Cubes" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_qb, 0, { "qb", HTTPS PURL_ORG "/linked-data/cube#", "Data Cubes" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_rdf, SCHEMA_PREFIX_CONTEXT, { "rdf", HTTP_W3 "/1999/02/22-rdf-syntax-ns#", "RDF" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_rdf, 0, { "rdf", HTTPS_W3 "/1999/02/22-rdf-syntax-ns#", "RDF" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_rdfa, SCHEMA_PREFIX_CONTEXT, { "rdfa", HTTP_W3 "/ns/rdfa#", "RDFa vocabulary" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_rdfa, 0, { "rdfa", HTTPS_W3 "/ns/rdfa#", "RDFa vocabulary" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_rdfs, SCHEMA_PREFIX_CONTEXT, { "rdfs", HTTP_W3 "/2000/01/rdf-schema#", "RDF Schema" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_rdfs, 0, { "rdfs", HTTPS_W3 "/2000/01/rdf-schema#", "RDF Schema" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_rev, SCHEMA_PREFIX_CONTEXT, { "rev", HTTP PURL_ORG "/stuff/rev#", "rev" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_rev, 0, { "rev", HTTPS PURL_ORG "/stuff/rev#", "rev" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_rif, SCHEMA_PREFIX_CONTEXT, { "rif", HTTP_W3 "/2007/rif#", "rif" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_rif, 0, { "rif", HTTPS_W3 "/2007/rif#", "rif" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_role, SCHEMA_PREFIX_CONTEXT, { "role", HTTP_W3 "/1999/xhtml/vocab#role", "role" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_role, 0, { "role", HTTPS_W3 "/1999/xhtml/vocab#role", "role" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_rr, SCHEMA_PREFIX_CONTEXT, { "rr", HTTP_W3 "/ns/r2rml#", "rr" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_rr, 0, { "rr", HTTPS_W3 "/ns/r2rml#", "rr" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_schema, SCHEMA_PREFIX_CONTEXT, { "schema", HTTP SCHEMA_ORG "/", "schema.org vocabulary" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_schema, 0, { "schema", HTTPS SCHEMA_ORG "/", "schema.org vocabulary" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_sd, SCHEMA_PREFIX_CONTEXT, { "sd", HTTP_W3 "/ns/parql-service-description#", "sd" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_sd, 0, { "sd", HTTPS_W3 "/ns/parql-service-description#", "sd" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_sioc, SCHEMA_PREFIX_CONTEXT, { "sioc", "http://rdfs.org/sioc/ns#", "sioc" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_sioc, 0, { "sioc", "https://rdfs.org/sioc/ns#", "sioc" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_skos, SCHEMA_PREFIX_CONTEXT, { "skos", HTTP_W3 "/2004/02/skos/core#", "skos" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_skos, 0, { "skos", HTTPS_W3 "/2004/02/skos/core#", "skos" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_skosxl, SCHEMA_PREFIX_CONTEXT, { "skosxl", HTTP_W3 "/2008/05/skos-xl#", "skosxl" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_skosxl, 0, { "skosxl", HTTPS_W3 "/2008/05/skos-xl#", "skosxl" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ssn, SCHEMA_PREFIX_CONTEXT, { "ssn", HTTP_W3 "/ns/ssn/", "ssn" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_ssn, 0, { "ssn", HTTPS_W3 "/ns/ssn/", "ssn" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_sosa, SCHEMA_PREFIX_CONTEXT, { "sosa", HTTP_W3 "/ns/sosa/", "sosa" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_sosa, 0, { "sosa", HTTPS_W3 "/ns/sosa/", "sosa" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_taxo, SCHEMA_PREFIX_CONTEXT, { "taxo", HTTP PURL_ORG "/rss/1.0/modules/taxonomy/", "taxonomy" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_taxo, 0, { "taxo", HTTPS PURL_ORG "/rss/1.0/modules/taxonomy/", "taxonomy" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_time, SCHEMA_PREFIX_CONTEXT, { "time", HTTP_W3 "/2006/time#", "time" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_time, 0, { "time", HTTPS_W3 "/2006/time#", "time" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_v, SCHEMA_PREFIX_CONTEXT, { "v", "http://rdf.data-vocabulary.org/#", "v" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_v, 0, { "v", "https://rdf.data-vocabulary.org/#", "v" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_vcard, SCHEMA_PREFIX_CONTEXT, { "vcard", HTTP_W3 "/2006/vcard/ns#", "vcard" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_vcard, 0, { "vcard", HTTPS_W3 "/2006/vcard/ns#", "vcard" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_video, 0, { "video", "http://ogp.me/ns/video#", "Open Graph Video" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_video, 0, { "video", "https://ogp.me/ns/video#", "Open Graph Video" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_void, SCHEMA_PREFIX_CONTEXT, { "void", HTTP RDFS_ORG "/ns/void#", "void" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_void, 0, { "void", HTTPS RDFS_ORG "/ns/void#", "void" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_wdr, SCHEMA_PREFIX_CONTEXT, { "wdr", HTTP_W3 "/2007/05/powder#", "Protocol for Web Description Resources" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_wdr, 0, { "wdr", HTTPS_W3 "/2007/05/powder#", "Protocol for Web Description Resources" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_wdrs, SCHEMA_PREFIX_CONTEXT, { "wdrs", HTTP_W3 "/2007/05/powder-s#", "Protocol for Web Description Resources" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_wdrs, 0, { "wdrs", HTTPS_W3 "/2007/05/powder-s#", "Protocol for Web Description Resources" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_website, 0, { "website", "http://ogp.me/ns/website#", "Open Graph Website" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_website, 0, { "website", "https://ogp.me/ns/website#", "Open Graph Website" } },
+    { { HTML_JAN09 }, { HTML_UNDEF }, s_whatwg, 0, { "wwg", HTTP N_WHATWG_ORG "/", "HTTP Living Standard" } },
+    { { HTML_JAN09 }, { HTML_UNDEF }, s_whatwg, 0, { "wwg", HTTPS N_WHATWG_ORG "/", "HTTP Living Standard" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_xhv, SCHEMA_PREFIX_CONTEXT, { "xhv", HTTP_W3 "/1999/xhtml/vocab#", "RDFa Core 1.1" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_xhv, 0, { "xhv", HTTPS_W3 "/1999/xhtml/vocab#", "RDFa Core 1.1" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_xml, SCHEMA_PREFIX_CONTEXT, { "xml", HTTP_W3 "/XML/1998/namespace", "Namespaces in XML 1.0" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_xml, 0, { "xml", HTTPS_W3 "/XML/1998/namespace", "Namespaces in XML 1.0" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_xsd, SCHEMA_PREFIX_CONTEXT, { "xsd", HTTP_W3 "/2001/XMLSchema#", "XML Schema Part 2" } },
+    { { HTML_RDF10 }, { HTML_UNDEF }, s_xsd, 0, { "xsd", HTTPS_W3 "/2001/XMLSchema#", "XML Schema Part 2" } },
+    { { HTML_RDF10_CON }, { HTML_UNDEF }, s_error, SCHEMA_PREFIX_CONTEXT, { nullptr, nullptr, nullptr } } };
+
 namespace_names_t namespace_names;
 protocol_names_t protocol_names;
-prefix_names_t prefix_names;
+schema_names_t schema_names;
 
 void init_nstrs (nitpick& nits)
 {   namespace_names.init (nits, &namespace_name_entries [0]);
     protocol_names.init (nits, &protocol_name_entries [0]);
-    prefix_names.init (nits, &prefix_name_entries [0]); }
+    schema_names.init (nits, &schema_name_entries [0]); }

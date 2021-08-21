@@ -195,6 +195,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_FEB21  HTML_2021, HTML_FEB
 #define HTML_MAR21  HTML_2021, (HTML_MAR + 15)
 #define HTML_APR21  HTML_2021, HTML_APR
+#define HTML_JUN21  HTML_2021, (HTML_JUN + 15)
+#define HTML_JUL21  HTML_2021, HTML_JUL
 
 #define HTML_CC         HTML_2008, HTML_MAR
 
@@ -211,7 +213,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_OWL20      HTML_JAN13
 
 #define HTML_RDF10      XHTML_1_0
-#define HTML_RDF11      HTML_JAN14
+#define HTML_RDF10_CON  HTML_JAN11
+#define HTML_RDF11      HTML_JUL12
+#define HTML_RDF11      HTML_JUL12
+#define HTML_RDF11_2    HTML_JUL13
+#define HTML_RDF11_3    HTML_JAN15
+
+#define HTML_RDFA10     HTML_2008, HTML_OCT
+#define HTML_RDFA11     HTML_2012, HTML_JUN
+#define HTML_RDFA112    HTML_2013, HTML_AUG
+#define HTML_RDFA113    HTML_2015, HTML_MAR
+#define HTML_RDFA       HTML_RDFA10
 
 #define HTML_RIF        HTML_JAN07
 
@@ -233,9 +245,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SVG21      HTML_APR21
 
 #define HTML_LATEST_YEAR        HTML_2021
-#define HTML_LATEST_MONTH       4
+#define HTML_LATEST_MONTH       7
 
-#define HTML_CURRENT            HTML_APR21
+#define HTML_CURRENT            HTML_JUL21
 
 #define HTML_UNDEF  0, 0
 
@@ -723,6 +735,7 @@ const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MATH_3 | HE_SVG_20);
 const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MATH_3 | HE_SVG_20);
 const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MATH_3 | HE_SVG_21);
 const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
+const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_11);

@@ -191,8 +191,6 @@ typedef enum {
 } e_autocomplete;
 
 typedef enum { bsb_baseline, bsb_bottom, bsb_centre, bsb_top, bsb_sub, bsb_super, bsb_inherit } e_baselineshift;
-// typedef enum { bsb_baseline, bsb_sub, bsb_super, bsb_inherit } e_baselineshift1;
-// typedef enum { bs2_baseline, bs2_sub, bs2_super } e_baselineshift2;
 typedef enum { as_audio, as_document, as_embed, as_fetch, as_font, as_image, as_object, as_script, as_style, as_track, as_video, as_worker } e_as;
 typedef enum { ebf_offset_value, ebf_syncbase_value, ebf_event_value, ebf_repeat_value, ebf_accesskey_value, ebf_wallclock_sync_value } e_beginfn;
 typedef enum { be_alternative, be_scroll, be_slide } e_behaviour;
@@ -205,11 +203,14 @@ typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_n
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_io, ec_icu, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_incorrectness, ec_init, ec_link, ec_microdata, ec_microformat, ec_aria,
-                ec_mime, ec_mql, ec_namespace, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_shadow, ec_ssi, ec_page, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
+typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io, ec_link, ec_microdata, ec_microformat,
+                ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema, ec_shadow, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility,
+                ec_webmention } e_category;
 const e_category last_category = ec_webmention;
-typedef enum {  cc_ansi, cc_utf8, cc_utf16be, cc_utf16le, cc_gb, cc_fkd } e_charcode;
-typedef enum {  ch_a, ch_b, ch_g, ch_r } e_channelselector;
+typedef enum { ccp_derivativeworks, ccp_distribution, ccp_reproduction } e_cc_permits;
+typedef enum { ccr_attribution, ccr_notice, ccr_sharealike, ccr_sourcecode } e_cc_requires;
+typedef enum { cc_ansi, cc_utf8, cc_utf16be, cc_utf16le, cc_gb, cc_fkd } e_charcode;
+typedef enum { ch_a, ch_b, ch_g, ch_r } e_channelselector;
 
 typedef enum {  cs_context,
                 cs_adobe_standard_encoding, cs_adobe_symbol_encoding, cs_amiga_1251, cs_ansi_x3_110_1983, cs_ascii, cs_asmo_449, cs_axiom, cs_bocu_1, cs_brf, cs_bs_4730, cs_bs_viewdata,
@@ -371,7 +372,7 @@ typedef enum { da_auto, da_before, da_centre, da_after, da_inherit } e_display_a
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
-                ed_apr21,
+                ed_apr21, ed_jul21,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
                 ed_math_1, ed_math_2, ed_math_3, ed_math_4,
                 ed_iso_8859_1, ed_csp,
@@ -425,7 +426,7 @@ typedef enum {
         elem_dispatchevent, elem_div, elem_divergence, elem_divide, elem_dl, elem_domain, elem_domainofapplication, elem_dot, elem_dt,
     elem_element, elem_elementdef, elem_ellipse, elem_em, elem_embed, elem_emptyset, elem_eq, elem_equivalent, elem_eulergamma, elem_event_source,
         elem_eventsource, elem_exists, elem_exp, elem_exponentiale, elem_extensiondefs,
-    elem_factorial, elem_factorof, elem_false, elem_feblend, elem_fecolourmatrix, elem_fecomponenttransfer, elem_fecomposite,
+    elem_factorial, elem_factorof, elem_false, elem_fe, elem_feblend, elem_fecolourmatrix, elem_fecomponenttransfer, elem_fecomposite,
         elem_feconvolvematrix, elem_fediffuselighting, elem_fedisplacementmap, elem_fedistantlight, elem_fedropshadow, elem_feflood, elem_fefunca,
         elem_fefuncb, elem_fefuncg, elem_fefuncr, elem_fegaussianblur, elem_feimage, elem_femerge, elem_femergenode, elem_femorphology, elem_feoffset,
         elem_fepointlight, elem_fespecularlighting, elem_fespotlight, elem_fetile, elem_feturbulence, elem_fieldset, elem_fig, elem_figcaption,
@@ -460,10 +461,10 @@ typedef enum {
         elem_rdf_description, elem_rdf_id, elem_rdf_li, elem_rdf_nodeid, elem_rdf_parsetype, elem_rdf_rdf, elem_rdf_resource, elem_rdf_seq, elem_real,
         elem_reals, elem_rect, elem_refcontent, elem_reln, elem_rem, elem_removed, elem_removeeventlistener, elem_render, elem_right, elem_root, elem_row,
         elem_rp, elem_rt, elem_rtc, elem_ruby, elem_rule,
-    elem_s, elem_samp, elem_scalarproduct, elem_script, elem_sdev, elem_sec, elem_sech, elem_section, elem_select, elem_selector, elem_semantics, elem_sep,
-        elem_separator, elem_set, elem_setdiff, elem_shadow, elem_share, elem_sidebar, elem_sin, elem_sinh, elem_slot, elem_small, elem_solidcolour, elem_source,
-        elem_spacer, elem_span, elem_spot, elem_sqrt, elem_standby, elem_stop, elem_stoppropagation, elem_strike, elem_strong, elem_style, elem_sub, elem_subset,
-        elem_sum, elem_summary, elem_sup, elem_svg, elem_switch, elem_symbol,
+    elem_s, elem_samp, elem_sarcasm, elem_scalarproduct, elem_script, elem_sdev, elem_sec, elem_sech, elem_section, elem_select, elem_selector, elem_semantics,
+        elem_sep, elem_separator, elem_set, elem_setdiff, elem_shadow, elem_share, elem_sidebar, elem_sin, elem_sinh, elem_slot, elem_small, elem_solidcolour,
+        elem_source, elem_spacer, elem_span, elem_spot, elem_sqrt, elem_standby, elem_stop, elem_stoppropagation, elem_strike, elem_strong, elem_style, elem_sub,
+        elem_subset, elem_sum, elem_summary, elem_sup, elem_svg, elem_switch, elem_symbol,
     elem_t, elem_tab, elem_tabbox, elem_table, elem_tan, elem_tanh, elem_tbody, elem_tbreak, elem_td, elem_template, elem_tendsto, elem_text, elem_textarea,
         elem_textpath, elem_tfoot, elem_th, elem_thead, elem_tilde, elem_time, elem_times, elem_title, elem_tr, elem_track, elem_traitdef, elem_transition,
         elem_transformer, elem_transpose, elem_tref, elem_true, elem_tspan, elem_tt,
@@ -535,6 +536,7 @@ typedef enum {  fvn_normal, fvn_lining_numbers, fvn_old_style_numbers, fvn_propo
 typedef enum { fvp_normal, fvp_sub, fvp_super } e_font_variant_position;
 typedef unsigned short e_format;
 typedef enum { f4_blank, f4_parent, f4_self, fr_top } e_frame4;
+typedef enum { g_female, g_male } e_gender;
 typedef enum { gu_userspaceonuse, gu_objectboundingbox } e_gradientunits;
 typedef enum { al_left, al_center, al_right, al_justify, al_char } e_halign;
 
@@ -555,6 +557,7 @@ typedef enum
     he_error } e_httpequiv;
 
 typedef enum { ehv_horizontal, ehv_vertical } e_hv;
+typedef enum { if_sec, ical_min, ical_hour, ical_day, ical_week, ical_month, ical_year } e_icalfreq;
 typedef enum {  icc_CGATS21_2_CRPC1, icc_CGATS21_2_CRPC2, icc_CGATS21_2_CRPC3, icc_CGATS21_2_CRPC4, icc_CGATS21_2_CRPC5, icc_CGATS21_2_CRPC6, icc_CGATS21_2_CRPC7,
                 icc_CGATS_GRACoL_TR006_2007, icc_CGATS_SNAP_TR002_2007, icc_CGATS_SWOP_TR003_2007, icc_CGATS_SWOP_TR005_2007, icc_FOGRA39, icc_FOGRA40, icc_FOGRA47,
                 icc_FOGRA51, icc_FOGRA52, icc_FOGRA54, icc_Japan_Color_2011 } e_icc;
@@ -702,14 +705,16 @@ typedef enum {  mef_width, mef_min_width, mef_max_width,
                 mef_device_width, mef_min_device_width, mef_max_device_width,
                 mef_device_height, mef_min_device_height, mef_max_device_height,
                 mef_orientation,
-                mef_aspect_ration, mef_min_aspect_ration, mef_max_aspect_ration,
+                mef_aspect_ratio, mef_min_aspect_ratio, mef_max_aspect_ratio,
                 mef_device_aspect_ratio, mef_min_device_aspect_ratio, mef_max_device_aspect_ratio,
                 mef_colour, mef_min_colour, mef_max_colour,
                 mef_colour_index, mef_min_colour_index, mef_max_colour_index,
                 mef_monochrome, mef_min_monochrome, mef_max_monochrome,
                 mef_resolution, mef_min_resolution, mef_max_resolution,
                 mef_scan, mef_grid, mef_update, mef_overflow_block, mef_overflow_inline,
-                mef_colour_gamut, mef_pointer, mef_hover, mef_any_pointer, mef_any_hover } e_mediafeature;
+                mef_colour_gamut, mef_pointer, mef_hover, mef_any_pointer, mef_any_hover,
+                mef_display_mode, mef_forced_colours, mef_inverted_colours, mef_prefers_colour_scheme,
+                mef_prefers_contrast, mef_prefers_reduced_motion, mef_scripting } e_mediafeature;
 typedef enum { mk_and, mk_eq, mk_ge, mk_gt, mk_ident, mk_le, mk_lt, mk_or, mk_not, mk_only } e_mediakeyword;
 typedef enum { ms_meet, me_slice } e_meetslice;
 typedef enum { mi_command, mi_checkbox, mi_radio } e_menuitem;
@@ -853,10 +858,6 @@ typedef enum { mfla_sell, mfla_rent, mfla_trade, mfla_meet, mfla_announce, mfla_
 typedef enum { mfm_none, mfm_publish, mfm_request, mfm_reply, mfm_add, mfm_cancel, mfm_refresh, mfm_counter, mfm_declinecounter } e_mf_method;
 typedef enum { mfr_product, mfr_business, mfr_event, mfr_person, mfr_place, mfr_website, mfr_url } e_mf_reviewtype;
 typedef enum { mfs_tentative, mfs_confirmed, mfs_cancelled } e_mf_status;
-typedef enum { mdd_none, mdd_schema, mdd_microformats, mdd_purl, mdd_whatwg, mdd_illegal } e_microdata_domain;
-typedef enum { mdr_none, mdr_schema, mdr_microformats, mdr_purl, mdr_whatwg, mdr_illegal } e_microdata_root;
-inline e_microdata_root domain2root (const e_microdata_domain md) { return static_cast < e_microdata_root> (md); }
-inline e_microdata_domain root2domain (const e_microdata_root md) { return static_cast < e_microdata_domain> (md); }
 typedef enum { mc_application, mc_audio, mc_example, mc_font, mc_image, mc_model, mc_multipart, mc_text, mc_video } e_mime_category;
 
 typedef enum {
@@ -1400,6 +1401,10 @@ typedef enum {
 typedef enum { mo_dilate, mo_erode } e_morphology_operator;
 typedef enum { mo_display, mo_inline } e_mode;
 
+// for foaf
+// Note: Myers Briggs Type Indicator and MBTI are registered trademarks of Consulting Psychologists Press Inc. Oxford Psychologists Press Ltd has exclusive rights to the trademark in the UK.
+typedef enum { mb_ESTJ, mb_INFP, mb_ESFP, mb_INTJ, mb_ESFJ, mb_INTP, mb_ENFP, mb_ISTJ, mb_ESTP, mb_INFJ, mb_ENFJ, mb_ISTP, mb_ENTJ, mb_ISFP, mb_ENTP, mb_ISFJ } e_myersbriggs;
+
 typedef enum
 {   nd_negativeveryverythinmathspace, nd_negativeverythinmathspace, nd_negativethinmathspace, nd_negativemediummathspace,
     nd_negativethickmathspace, nd_negativeverythickmathspace, nd_negativeveryverythickmathspace, nd_veryverythinmathspace,
@@ -1487,7 +1492,7 @@ typedef enum
     nit_dashed, nit_marker, nit_background, nit_bad_result, nit_not_schema_property, nit_curses, nit_xlinktype, nit_xlinkactuate,
     nit_dur, nit_svg_values, nit_rotate, nit_origin, nit_colour_matrix, nit_math_kids, nit_bad_hunit, nit_bad_vunit, nit_too_many,
     nit_use_apply, nit_base, nit_declare_first, nit_arg_count, nit_operator_required, nit_bad_bvar, nit_bad_doa, nit_bad_piece,
-    nit_annotation, nit_eof_in_annotation, nit_prefix_odd, nit_prefix_format, nit_rdfa_redefine, nit_rdf_confusion, nit_rdf_protocol,
+    nit_annotation, nit_eof_in_annotation, nit_prefix_odd, nit_prefix_format, nit_rdfa_redefine, nit_rdfa_confusion, nit_rdf_protocol,
     nit_math_href, nit_math_empty, nit_mglyph_alt_src, nit_dir_rtl_ltr, nit_bad_linebreak, nit_non_standard_value, nit_mscarries_last,
     nit_bad_bind, nit_bad_share, nit_shadow, nit_out_of_memory, nit_duplicate, nit_shadow_failed, nit_create_folder, nit_internal_file_error,
     nit_shadow_ignore, nit_shadow_link, nit_shadow_copy, nit_too_big, nit_icu, nit_lang_redefined, nit_page_charset, nit_charset_mismatch,
@@ -1506,7 +1511,9 @@ typedef enum
     nit_better_as_property, nit_colour_profile, nit_feconvolvematrix, nit_not_0, nit_fecomponenttransfer, nit_fecomposite,
     nit_style_fixed, nit_anim_simple_id, nit_id_category, nit_not_animatable, nit_shadow_delete, nit_root_change, nit_virtual_change,
     nit_shadow_unnecessary, nit_deleted_bad_file, nit_abandon, nit_prefix_again, nit_prefix_unknown, nit_missing_id, nit_namespace_confusion,
-    nit_namespace_redefine, nit_no_lang,
+    nit_namespace_redefine, nit_no_lang, nit_null_datatype, nit_unknown_datatype, nit_rdfa_version, nit_bad_sha, nit_new_property,
+    nit_wwww, nit_bad_vocab, nit_vocab_defined, nit_sarcasm, nit_fe, nit_missing_double_quote, nit_bad_media, nit_mb, nit_byte,
+    nit_b64,
 
     nit_context,
 
@@ -1527,30 +1534,6 @@ typedef enum { po_normal, po_fill, po_stroke, po_markers } e_paint_order;
 typedef enum { ph_bubble, ph_capture, ph_default, ph_target } e_phase_x;
 typedef enum { ps_b, ps_i, ps_p, ps_s, ps_sub, ps_sup, ps_tt, ps_u } e_plusstyle;
 typedef enum { pe_auto, pe_boundingbox, pe_bounding_box, pe_visiblepainted, pe_visiblefill, pe_visiblestroke, pe_visible, pe_painted, pe_fill, pe_stroke, pe_all, pe_none, pe_inherit } e_pointer_events;
-
-typedef enum {
-    pre_custom,
-    pre_as,
-    pre_cc, pre_csvw, pre_ctag,
-    pre_dc, pre_dc11, pre_dcat, pre_dcterms, pre_dqv, pre_describedby, pre_duv,
-    pre_earl,
-    pre_foaf,
-    pre_gr, pre_grddl,
-    pre_ical,
-    pre_jsonld,
-    pre_ldp, pre_licence,
-    pre_ma,
-    pre_oa, pre_odrl, pre_og, pre_org, pre_owl,
-    pre_prov,
-    pre_qb,
-    pre_rdf, pre_rdfa, pre_rdfs, pre_rev, pre_rif, pre_role, pre_rr,
-    pre_schema, pre_sd, pre_sioc, pre_skos, pre_skosxl, pre_ssn, pre_sosa,
-    pre_time,
-    pre_v, pre_vcard, pre_void,
-    pre_wdr, pre_wdrs,
-    pre_xhv, pre_xml, pre_xsd,
-    pre_error } e_rdfa_context;
-
 typedef enum { pr_auto, pr_metadata, pr_none } e_preload;
 typedef enum { pt_footnote, pt_reference, pt_section, pt_sidebar, pt_silent } e_print;
 typedef enum { pr_stop, pr_continue } e_propagate;
@@ -1675,12 +1658,91 @@ typedef enum { ri_auto, ri_perceptual, ri_relativecolourimetric, ri_saturation, 
 typedef enum { re_always, re_whennotactive, re_never } e_restart;
 typedef enum { ru_none, ru_groups, ru_rows, ru_cols, ru_all } e_rules;
 typedef enum { rs_yes, rs_no, rs_maybe, rs_interested } e_rsvp;
-typedef enum { s_unknown, s_adwua, s_asabua, s_atnbua, s_ad, s_forms, s_modals, s_orientation, s_pointer, s_popups, s_popupescape, s_presentation, s_origin, s_scripts, s_navigation } e_sandbox;
+typedef enum {  sand_unknown, sand_adwua, sand_asabua, sand_atnbua, sand_ad, sand_forms, sand_modals, sand_orientation, sand_pointer,
+                sand_popups, sand_popupescape, sand_presentation, sand_origin, sand_scripts, sand_navigation } e_sandbox;
 typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_inherit } e_scei;
+
+// mostly RDFa common context
+// (good grief : https://lov.linkeddata.es/dataset/lov/vocabs )
+typedef enum {
+    s_none,
+    s_article, s_as,
+    s_bibo, s_book,
+    s_cc, s_csvw, s_ctag,
+    s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_dqv, s_describedby, s_duv,
+    s_earl,
+    s_foaf, s_frbr_core,
+    s_gr, s_grddl,
+    s_ical, s_icaltzd,
+    s_jsonld,
+    s_ldp, s_licence,
+    s_ma, s_microformats, s_music,
+    s_oa, s_odrl, s_og, s_org, s_owl,
+    s_poetry, s_profile, s_prov,
+    s_qb,
+    s_rdf, s_rdfa, s_rdfs, s_rev, s_rif, s_role, s_rr,
+    s_schema, s_sd, s_sioc, s_skos, s_skosxl, s_ssn, s_sosa,
+    s_taxo, s_time,
+    s_v, s_vcard, s_video, s_void,
+    s_wdr, s_wdrs, s_website, s_whatwg,
+    s_xhv, s_xml, s_xsd,
+    s_error
+} e_schema;
+const ::std::size_t schema_size = s_error;
+typedef ::std::size_t schema_id;
 
 typedef enum
 {   sty_context,
 
+    // common tag
+    ctag_author, ctag_auto, ctag_reader, ctag_tag,
+
+    // dublin core vocabulary description
+    dcam_vocabularyencodingscheme,
+
+    // dcmi type vocabulary
+    dcmi_collection, dcmi_dataset, dcmi_event, dcmi_image, dcmi_interactiveresource, dcmi_movingimage, dcmi_physicalobject, dcmi_service, dcmi_software, dcmi_sound, dcmi_stillimage, dcmi_text,
+
+    // dublin core terms
+    dct_agent, dct_agentclass, dct_bibliographicresource, dct_fileformat, dct_frequency, dct_jurisdiction, dct_licencedocument, dct_linguisticsystem, dct_location, dct_locationperiodorjurisdiction, dct_mediatype,
+    dct_mediatypeorextent, dct_methodofaccrual, dct_methodofinstruction, dct_periodoftime, dct_physicalmedium, dct_physicalresource, dct_policy, dct_provenancestatement, dct_rightsstatement, dct_sizeorduration, dct_standard,
+
+    // foaf
+    foaf_agent, foaf_document, foaf_group, foaf_image, foaf_labelproperty, foaf_onlineaccount, foaf_onlinechataccount, foaf_onlineecommerceaccount, foaf_onlinegamingaccount, foaf_organisation,
+    foaf_person, foaf_personalprofiledocument, foaf_project,
+
+    // good relations
+    gr_brand, gr_businessentity, gr_businessentitytype, gr_businessfunction, gr_dayofweek, gr_deliverychargespecification, gr_deliverymethod, gr_deliverymodeparcelservice, gr_individual, gr_licence, gr_location,
+    gr_offering, gr_openinghoursspecification, gr_paymentchargespecification, gr_paymentmethod, gr_paymentmethodcreditcard, gr_pricespecification, gr_productorservice, gr_productorservicemodel, gr_qualitativevalue,
+    gr_quantitativevalue, gr_quantitativevaluefloat, gr_quantitativevalueinteger, gr_someitems, gr_typeandquantitynode, gr_unitpricespecification, gr_warrantypromise, gr_warrantyscope, gr_actualproductorserviceinstance,
+    gr_locationofsalesorserviceprovisioning, gr_n_ary_relations, gr_productorservicessomeinstancesplaceholder,
+    gr_americanexpress, gr_business, gr_bybanktransferinadvance, gr_byinvoice, gr_cash, gr_checkinadvance, gr_cod, gr_constructioninstallation, gr_deliverymodedirectdownload, gr_deliverymodefreight, gr_deliverymodemail,
+    gr_deliverymodeownfleet, gr_deliverymodepickup, gr_dhl, gr_dinersclub, gr_directdebit, gr_discover, gr_dispose, gr_enduser, gr_federalexpress, gr_friday, gr_googlecheckout, gr_jcb, gr_labour_bringin, gr_leaseout,
+    gr_maintain, gr_mastercard, gr_monday, gr_partsandlabour_bringin, gr_partsandlabour_pickup, gr_paypal, gr_payswarm, gr_provideservice, gr_publicholidays, gr_publicinstitution, gr_repair, gr_reseller, gr_saturday,
+    gr_sell, gr_sunday, gr_thursday, gr_tuesday, gr_ups, gr_visa, gr_wednesday, gr_buy,
+
+    // iCal
+    ical_vevent, ical_vtimezone,
+
+    // living standards microformats 1 reference
+    mft_hcard, mf_vevent,
+
+    // standard microformats v1 vocabulary
+    mft_adr, mft_geo, mft_haggregate, mft_hatom, mft_haudio, /* mft_hcard, */ mft_hcalendar, mft_hentry, mft_hlisting, mft_hmedia, mft_hnews, mft_hproduct, mft_hrecipe, mft_hresume, mft_hreview,
+
+    // standard microformats v2 vocabulary
+    mft2_hadr, mft2_hbreadcrumb, mft2_hcard, mft2_hcite, mft2_hentry, mft2_hevent, mft2_hfeed, mft2_hgeo, mft2_hitem, mft2_hlisting, mft2_hproduct, mft2_hrecipe, mft2_hresume, mft2_hreview, mft2_haggregate,
+
+    // poetry
+    poetry_dialect, poetry_form, poetry_poem, poetry_period, poetry_stanza,
+
+    // RDF
+    rdf_alt, rdf_bag, rdf_compoundliteral, rdf_html, rdf_json, rdf_langstring, rdf_list, rdf_plainliteral, rdf_property, rdf_seq, rdf_statement, rdf_xmlliteral,
+
+    // RDFs
+    rdfs_class, rdfs_container, rdfs_containermembershipproperty, rdfs_datatype, rdfs_literal, rdfs_resource,
+
+    //schema.org
     sch_3dmodel,
 
     sch_abdomen, sch_aboutpage, sch_acceptaction, sch_accommodation, sch_accountingservice, sch_achieveaction, sch_action, sch_actionaccessspecification, sch_actionstatustype, sch_activationfee,
@@ -1689,11 +1751,11 @@ typedef enum
     sch_amradiochannel, sch_amusementpark, sch_anaerobicactivity, sch_anaesthesia, sch_analysisnewsarticle, sch_anatomicalstructure, sch_anatomicalsystem, sch_animalshelter, sch_answer, sch_apartment,
     sch_apartmentcomplex, sch_apireference, sch_appearance, sch_appendaction, sch_applyaction, sch_approvedindication, sch_aquarium, sch_archivecomponent, sch_archiveorganisation, sch_arriveaction,
     sch_artery, sch_artgallery, sch_article, sch_askaction, sch_askpublicnewsarticle, sch_assessaction, sch_assignaction, sch_atlas, sch_attorney, sch_audience, sch_audiobook, sch_audiobookformat,
-    sch_audioobject, sch_authenticcontent, sch_authoriseaction, sch_authoritativelegalvalue, sch_autobodyshop, sch_autodealer, sch_automatedteller, sch_automotivebusiness, sch_autopartsstore,
+    sch_audioobject, sch_audioobjectsnapshot, sch_authenticcontent, sch_authoriseaction, sch_authoritativelegalvalue, sch_autobodyshop, sch_autodealer, sch_automatedteller, sch_automotivebusiness, sch_autopartsstore,
     sch_autorental, sch_autorepair, sch_autowash,
 
     sch_backgroundnewsarticle, sch_backorder, sch_bacteria, sch_bakery, sch_balance, sch_bankaccount, sch_bankorcreditunion, sch_barcode, sch_barorpub, sch_basicincome, sch_beach, sch_beautysalon,
-    sch_bedandbreakfast, sch_beddetails, sch_bedtype,  sch_befriendaction, sch_benefitshealthaspect, sch_bikestore, sch_blog, sch_blogposting, sch_bloodtest, sch_boardingpolicytype, sch_boatreservation,
+    sch_bedandbreakfast, sch_beddetails, sch_bedtype, sch_befriendaction, sch_benefitshealthaspect, sch_bikestore, sch_biochementity, sch_blog, sch_blogposting, sch_bloodtest, sch_boardingpolicytype, sch_boatreservation,
     sch_boatterminal, sch_boattrip, sch_bodymeasurementarm, sch_bodymeasurementbust, sch_bodymeasurementchest, sch_bodymeasurementfoot, sch_bodymeasurementhand, sch_bodymeasurementhead,
     sch_bodymeasurementheight, sch_bodymeasurementhips, sch_bodymeasurementinsideleg, sch_bodymeasurementneck, sch_bodymeasurementtypeenumeration, sch_bodymeasurementunderbust, sch_bodymeasurementwaist,
     sch_bodymeasurementweight, sch_bodyofwater, sch_bone, sch_book, sch_bookformattype, sch_bookmarkaction, sch_bookseries, sch_bookstore, sch_boolean, sch_borrowaction, sch_bowlingalley,
@@ -1703,7 +1765,7 @@ typedef enum
 
     sch_cableorsatelliteservice, sch_cafeorcoffeeshop, sch_campground, sch_campingpitch, sch_canal, sch_cancelaction, sch_car, sch_cardiovascular, sch_cardiovascularexam, sch_carusagetype, sch_caseseries,
     sch_casino, sch_cassetteformat, sch_categorycode, sch_categorycodeset, sch_catholicchurch, sch_causeshealthaspect, sch_cdcpmdrecord, sch_cdformat, sch_cemetery, sch_chapter,
-    sch_charitableincorporatedorganization, sch_checkaction, sch_checkinaction, sch_checkoutaction, sch_checkoutpage, sch_childcare, sch_childrensevent, sch_chooseaction, sch_church, sch_city, sch_cityhall,
+    sch_charitableincorporatedorganization, sch_checkaction, sch_checkinaction, sch_checkoutaction, sch_checkoutpage, sch_chemicalsubstance, sch_childcare, sch_childrensevent, sch_chooseaction, sch_church, sch_city, sch_cityhall,
     sch_civicstructure, sch_claim, sch_claimreview, sch_class, sch_cleaningfee, sch_clinician, sch_clip, sch_clothingstore, sch_code, sch_cohortstudy, sch_collection, sch_collectionpage,
     sch_collegeoruniversity, sch_comedyclub, sch_comedyevent, sch_comiccoverart, sch_comicissue, sch_comicseries, sch_comicstory, sch_comment, sch_commentaction, sch_commentpermission,
     sch_communicateaction, sch_communityhealth, sch_compilationalbum, sch_completed, sch_completedactionstatus, sch_completedatafeed, sch_compoundpricespecification, sch_computerlanguage, sch_computerstore,
@@ -1733,11 +1795,11 @@ typedef enum
 
     sch_failedactionstatus, sch_false, sch_faqpage, sch_fastfoodrestaurant, sch_fdacategorya, sch_fdacategoryb, sch_fdacategoryc, sch_fdacategoryd, sch_fdacategoryx, sch_fdanotevaluated, sch_female,
     sch_festival, sch_filmaction, sch_financialproduct, sch_financialservice, sch_findaction, sch_firestation, sch_flexibility, sch_flight, sch_flightreservation, sch_float, sch_floorplan, sch_florist,
-    sch_fmradiochannel, sch_followaction, sch_foodestablishment, sch_foodestablishmentreservation, sch_foodevent, sch_foodservice, sch_fourwheeldriveconfiguration, sch_friday,
+    sch_fmradiochannel, sch_followaction, sch_foodestablishment, sch_foodestablishmentreservation, sch_foodevent, sch_foodservice, sch_fourwheeldriveconfiguration, sch_freereturn, sch_friday,
     sch_frontwheeldriveconfiguration, sch_fullrefund, sch_fundingagency, sch_fundingscheme, sch_fungus, sch_furniturestore,
 
     sch_game, sch_gameplaymode, sch_gameserver, sch_gameserverstatus, sch_gardenstore, sch_gasstation, sch_gastroenterologic, sch_gatedresidencecommunity, sch_gendertype, sch_generalcontractor,
-    sch_genetic, sch_genitourinary, sch_geocircle, sch_geocoordinates, sch_geoshape, sch_geospatialgeometry, sch_geriatric, sch_gettingaccesshealthaspect, sch_giveaction, sch_glutenfreediet,
+    sch_gene, sch_genetic, sch_genitourinary, sch_geocircle, sch_geocoordinates, sch_geoshape, sch_geospatialgeometry, sch_geriatric, sch_gettingaccesshealthaspect, sch_giveaction, sch_glutenfreediet,
     sch_golfcourse, sch_governmentbenefitstype, sch_governmentbuilding, sch_governmentoffice, sch_governmentorganisation, sch_governmentpermit, sch_governmentservice, sch_grant, sch_graphicnovel,
     sch_grocerystore, sch_groupboardingpolicy, sch_guide, sch_gynaecologic,
 
@@ -1746,7 +1808,7 @@ typedef enum
     sch_hostel, sch_hotel, sch_hotelroom, sch_house, sch_housepainter, sch_howitworkshealthaspect, sch_howorwherehealthaspect, sch_howto, sch_howtodirection, sch_howtoitem, sch_howtosection, sch_howtostep,
     sch_howtosupply, sch_howtotip, sch_howtotool, sch_hvacbusiness, sch_hypertoc, sch_hypertocentry,
 
-    sch_icecreamshop, sch_ignoreaction, sch_imagegallery, sch_imageobject, sch_imagingtest, sch_individualproduct, sch_infectious, sch_infectiousagentclass, sch_infectiousdisease, sch_inforce,
+    sch_icecreamshop, sch_ignoreaction, sch_imagegallery, sch_imageobject, sch_imageobjectsnapshot, sch_imagingtest, sch_individualproduct, sch_infectious, sch_infectiousagentclass, sch_infectiousdisease, sch_inforce,
     sch_informaction, sch_ingredientshealthaspect, sch_insertaction, sch_installaction, sch_installment, sch_instock, sch_instoreonly, sch_insuranceagency, sch_intangible, sch_integer, sch_interactaction,
     sch_interactioncounter, sch_internationaltrial, sch_internetcafe, sch_investmentfund, sch_investmentordeposit, sch_inviteaction, sch_invoice, sch_invoiceprice, sch_itemavailability, sch_itemlist,
     sch_itemlistorderascending, sch_itemlistorderdescending, sch_itemlistordertype, sch_itemlistunordered, sch_itempage,
@@ -1762,14 +1824,14 @@ typedef enum
     sch_lowcaloriediet, sch_lowfatdiet, sch_lowlactosediet, sch_lowsaltdiet, sch_lung, sch_lymphaticvessel,
 
     sch_magic, sch_male, sch_manuscript, sch_map, sch_mapcategorytype, sch_marryaction, sch_mass, sch_mathsolver, sch_maximumdoseschedule, sch_maytreathealthaspect, sch_measurementtypeenumeration, sch_mediagallery,
-    sch_mediamanipulationratingenumeration, sch_mediaobject, sch_mediareview, sch_mediasubscription, sch_medicalaudience, sch_medicalaudiencetype, sch_medicalbusiness, sch_medicalcause, sch_medicalclinic, sch_medicalcode,
+    sch_mediamanipulationratingenumeration, sch_mediaobject, sch_mediareview, sch_mediareviewitem, sch_mediasubscription, sch_medicalaudience, sch_medicalaudiencetype, sch_medicalbusiness, sch_medicalcause, sch_medicalclinic, sch_medicalcode,
     sch_medicalcondition, sch_medicalconditionstage, sch_medicalcontraindication, sch_medicaldevice, sch_medicaldevicepurpose, sch_medicalentity, sch_medicalenumeration, sch_medicalevidencelevel, sch_medicalguideline,
     sch_medicalguidelinecontraindication, sch_medicalguidelinerecommendation, sch_medicalimagingtechnique, sch_medicalindication, sch_medicalintangible, sch_medicalobservationalstudy, sch_medicalobservationalstudydesign,
     sch_medicalorganisation, sch_medicalprocedure, sch_medicalproceduretype, sch_medicalresearcher, sch_medicalriskcalculator, sch_medicalriskestimator, sch_medicalriskfactor, sch_medicalriskscore, sch_medicalscholarlyarticle,
     sch_medicalsign, sch_medicalsignorsymptom, sch_medicalspeciality, sch_medicalstudy, sch_medicalstudystatus, sch_medicalsymptom, sch_medicaltest, sch_medicaltestpanel, sch_medicaltherapy, sch_medicaltrial,
     sch_medicaltrialdesign, sch_medicalwebpage, sch_medicinesystem, sch_meetingroom, sch_mensclothingstore, sch_menu, sch_menuitem, sch_menusection, sch_merchantreturnenumeration, sch_merchantreturnfinitereturnwindow,
-    sch_merchantreturnnotpermitted, sch_merchantreturnpolicy, sch_merchantreturnunlimitedwindow, sch_merchantreturnunspecified, sch_message, sch_middleschool, sch_midwifery, sch_minimumadvertisedprice,
-    sch_misconceptionshealthaspect, sch_missingcontext, sch_mixedeventattendancemode, sch_mixtapealbum, sch_mobileapplication, sch_mobilephonestore, sch_monday, sch_monetaryamount, sch_monetaryamountdistribution,
+    sch_merchantreturnnotpermitted, sch_merchantreturnpolicy, sch_merchantreturnpolicyseasonaloverride, sch_merchantreturnunlimitedwindow, sch_merchantreturnunspecified, sch_message, sch_middleschool, sch_midwifery, sch_minimumadvertisedprice,
+    sch_misconceptionshealthaspect, sch_missingcontext, sch_mixedeventattendancemode, sch_mixtapealbum, sch_molecularentity, sch_mobileapplication, sch_mobilephonestore, sch_monday, sch_monetaryamount, sch_monetaryamountdistribution,
     sch_monetarygrant, sch_moneytransfer, sch_mortgageloan, sch_mosque, sch_motel, sch_motorcycle, sch_motorcycledealer, sch_msrp, sch_motorcyclerepair, sch_motorisedbicycle, sch_mountain, sch_moveaction, sch_movie,
     sch_movieclip, sch_movierentalstore, sch_movieseries, sch_movietheatre, sch_movingcompany, sch_mri, sch_multicellularparasite, sch_multicentretrial, sch_multiplayer, sch_muscle, sch_musculoskeletal, sch_musculoskeletalexam,
     sch_museum, sch_musicalbum, sch_musicalbumproductiontype, sch_musicalbumreleasetype, sch_musiccomposition, sch_musicevent, sch_musicgroup, sch_musicplaylist, sch_musicrecording, sch_musicrelease, sch_musicreleaseformattype,
@@ -1798,7 +1860,7 @@ typedef enum
     sch_potentialactionstatus, sch_pregnancyhealthaspect, sch_preorder, sch_preorderaction, sch_prependaction, sch_presale, sch_preschool, sch_prescriptiononly, sch_presentationdigitaldocument, sch_preventionhealthaspect, sch_preventionindication,
     sch_pricecomponenttypeenumeration, sch_pricespecification, sch_pricetypeenumeration, sch_primarycare, sch_prion, sch_product, sch_productcollection, sch_productgroup, sch_productmodel, sch_productreturnenumeration, sch_productreturnfinitereturnwindow, sch_productreturnnotpermitted,
     sch_productreturnpolicy, sch_productreturnunlimitedwindow, sch_productreturnunspecified, sch_professionalservice, sch_profilepage, sch_prognosishealthaspect, sch_programmemembership, sch_project, sch_pronounceabletext, sch_property,
-    sch_propertyvalue, sch_propertyvaluespecification, sch_protozoa, sch_psychiatric, sch_psychologicaltreatment, sch_publicationevent, sch_publicationissue, sch_publicationvolume, sch_publichealth, sch_publicholidays,
+    sch_propertyvalue, sch_propertyvaluespecification, sch_protein, sch_protozoa, sch_psychiatric, sch_psychologicaltreatment, sch_publicationevent, sch_publicationissue, sch_publicationvolume, sch_publichealth, sch_publicholidays,
     sch_publicswimmingpool, sch_publictoilet, sch_pulmonary,
 
     sch_qapage, sch_qualitativevalue, sch_quantitativevalue, sch_quantitativevaluedistribution, sch_quantity, sch_question, sch_quiz, sch_quotation, sch_quoteaction,
@@ -1808,7 +1870,8 @@ typedef enum
     sch_refundtypeenumeration, sch_refurbishedcondition, sch_registeraction, sch_registry, sch_reimbursementcap, sch_rejectaction, sch_relatedtopicshealthaspect, sch_remixalbum, sch_renal, sch_rentaction, sch_rentalcarreservation,
     sch_rentalvehicleusage, sch_repaymentspecification, sch_replaceaction, sch_replyaction, sch_report, sch_reportagenewsarticle, sch_reporteddoseschedule, sch_researchproject, sch_reservation, sch_reservationcancelled,
     sch_reservationconfirmed, sch_reservationhold, sch_reservationpackage, sch_reservationpending, sch_reservationstatustype, sch_reserveaction, sch_reservoir, sch_residence, sch_resort, sch_respiratorytherapy, sch_restaurant,
-    sch_restockingfees, sch_restricteddiet, sch_resultsavailable, sch_resultsnotavailable, sch_resumeaction, sch_retail, sch_returnaction, sch_returnfeesenumeration, sch_returnshippingfees, sch_review, sch_reviewaction,
+    sch_restockingfees, sch_restricteddiet, sch_resultsavailable, sch_resultsnotavailable, sch_resumeaction, sch_retail, sch_returnaction, sch_returnatkiosk, sch_returnbymail, sch_returnfeescustomerresponsibility, sch_returnfeesenumeration,
+    sch_returninstore, sch_returnlabelcustomerresponsibility, sch_returnlabeldownloadandprint, sch_returnlabelinbox, sch_returnlabelsourceenumeration, sch_returnmethodenumeration, sch_returnshippingfees, sch_review, sch_reviewaction,
     sch_reviewnewsarticle, sch_rheumatologic, sch_righthanddriving, sch_risksorcomplicationshealthaspect, sch_riverbodyofwater, sch_role, sch_roofingcontractor, sch_room, sch_rsvpaction, sch_rsvpresponsemaybe, sch_rsvpresponseno,
     sch_rsvpresponsetype, sch_rsvpresponseyes, sch_rvpark,
 
@@ -1819,11 +1882,11 @@ typedef enum
     sch_sizegroupenumeration, sch_sizespecification, sch_sizesystemenumeration, sch_sizesystemimperial, sch_sizesystemmetric, sch_skin, sch_skiresort, sch_socialevent, sch_socialmediaposting, sch_softwareapplication,
     sch_softwaresourcecode, sch_soldout, sch_solvemathaction, sch_someproducts, sch_soundtrackalbum, sch_speakablespecification, sch_specialannouncement, sch_speciality, sch_speechpathology, sch_spokenwordalbum,
     sch_sportinggoodsstore, sch_sportsactivitylocation, sch_sportsclub, sch_srp, sch_sportsevent, sch_sportsorganisation, sch_sportsteam, sch_spreadsheetdigitaldocument, sch_stadiumorarena, sch_stagedcontent,
-    sch_stageshealthaspect, sch_state, sch_statisticalpopulation, sch_statusenumeration, sch_steeringpositionvalue, sch_store, sch_storecreditrefund, sch_strengthtraining, sch_structuredvalue, sch_studioalbum,
+    sch_stageshealthaspect, sch_state, sch_statement, sch_statisticalpopulation, sch_statusenumeration, sch_steeringpositionvalue, sch_store, sch_storecreditrefund, sch_strengthtraining, sch_structuredvalue, sch_studioalbum,
     sch_stupidtype, sch_subscribeaction, sch_subscription, sch_substance, sch_subwaystation, sch_suite, sch_sunday, sch_superficialanatomy, sch_surgical, sch_surgicalprocedure, sch_suspendaction, sch_suspended,
     sch_symptomshealthaspect, sch_synagogue,
 
-    sch_table, sch_takeaction, sch_tattooparlour, sch_taxi, sch_taxireservation, sch_taxiservice, sch_taxistand, sch_taxivehicleusage, sch_techarticle, sch_televisionchannel, sch_televisionstation, sch_tenniscomplex,
+    sch_table, sch_takeaction, sch_tattooparlour, sch_taxi, sch_taxireservation, sch_taxiservice, sch_taxistand, sch_taxivehicleusage, sch_taxon, sch_techarticle, sch_televisionchannel, sch_televisionstation, sch_tenniscomplex,
     sch_terminated, sch_text, sch_textdigitaldocument, sch_theatreevent, sch_theatregroup, sch_therapeutic, sch_therapeuticprocedure, sch_thesis, sch_thing, sch_throat, sch_thursday, sch_ticket, sch_tieaction, sch_time,
     sch_tipaction, sch_tollfree, sch_touristattraction, sch_touristdestination, sch_touristinformationcentre, sch_touristtrip, sch_toxicologic, sch_toystore, sch_trackaction, sch_tradeaction, sch_trainreservation,
     sch_trainstation, sch_traintrip, sch_transferaction, sch_transformedcontent, sch_transitmap, sch_travelaction, sch_travelagency, sch_treatmentindication, sch_treatmentshealthaspect, sch_trip, sch_tripleblindedtrial,
@@ -1834,7 +1897,7 @@ typedef enum
     sch_userplusones, sch_userreview, sch_usertweets, sch_usnonprofittype,
 
     sch_vegandiet, sch_vegetariandiet, sch_vehicle, sch_vein, sch_venuemap, sch_vessel, sch_veterinarycare, sch_videogallery, sch_videogame, sch_videogameclip, sch_videogameseries, sch_videoobject,
-    sch_viewaction, sch_vinylformat, sch_virtuallocation, sch_virus, sch_visualartsevent, sch_visualartwork, sch_vitalsign, sch_volcano, sch_voteaction,
+    sch_videoobjectsnapshot, sch_viewaction, sch_vinylformat, sch_virtuallocation, sch_virus, sch_visualartsevent, sch_visualartwork, sch_vitalsign, sch_volcano, sch_voteaction,
 
     sch_wantaction, sch_warrantypromise, sch_warrantyscope, sch_watchaction, sch_waterfall, sch_wearablemeasurementtypeenumeration, sch_wearablemeasurementback, sch_wearablemeasurementchestorbust, sch_wearablemeasurementcollar,
     sch_wearablemeasurementcup, sch_wearablemeasurementheight, sch_wearablemeasurementhips, sch_wearablemeasurementinseam, sch_wearablemeasurementlength, sch_wearablemeasurementoutsideleg, sch_wearablemeasurementsleeve,
@@ -1850,168 +1913,123 @@ typedef enum
 
     sch_zoneboardingpolicy, sch_zoo,
 
-    // living standards microformats 1 reference
-    mft_hcard, mf_vevent,
-
-    // standard microformats v1 vocabulary
-    mft_adr, mft_geo, mft_haggregate, mft_hatom, mft_haudio, /* mft_hcard, */ mft_hcalendar, mft_hentry, mft_hlisting, mft_hmedia, mft_hnews, mft_hproduct, mft_hrecipe, mft_hresume, mft_hreview,
-
-    // standard microformats v2 vocabulary
-    mft2_hadr, mft2_hbreadcrumb, mft2_hcard, mft2_hcite, mft2_hentry, mft2_hevent, mft2_hfeed, mft2_hgeo, mft2_hitem, mft2_hlisting, mft2_hproduct, mft2_hrecipe, mft2_hresume, mft2_hreview, mft2_haggregate,
-
     // Living Standard
     wwg_work,
+
+    // XML Schema types
+    xsd_anyatomictype, xsd_anysimpletype, xsd_anytype, xsd_anyuri,
+    xsd_base64binary, xsd_boolean, xsd_byte,
+    xsd_date, xsd_datetime, xsd_datetimeduration, xsd_datetimestamp, xsd_decimal, xsd_double, xsd_duration,
+    xsd_entities, xsd_entity,
+    xsd_float,
+    xsd_gday, xsd_gmonth, xsd_gmonthday, xsd_gyear, xsd_gyearmonth,
+    xsd_hexbinary,
+    xsd_id, xsd_idref, xsd_idrefs, xsd_int, xsd_integer,
+    xsd_language, xsd_long,
+    xsd_name, xsd_ncname, xsd_negativeinteger, xsd_nmtoken, xsd_nmtokens, xsd_nonnegativeinteger, xsd_nonpositiveinteger, xsd_normalisedstring, xsd_notation,
+    xsd_positiveinteger,
+    xsd_qname,
+    xsd_short, xsd_string,
+    xsd_time, xsd_token,
+    xsd_unsignedbyte, xsd_unsignedint, xsd_unsignedlong, xsd_unsignedshort,
+    xsd_yearmonthduration,
 
     sty_illegal } e_schema_type;
 
 typedef enum
 {   sp_context,
 
-    sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptoffer, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol,
-    sp_accessibilityfeature, sp_accessibilityhazard, sp_accessibilitysummary, sp_accesscode, sp_accessmode, sp_accessmodesufficient, sp_accommodationcategory, sp_accommodationfloorplan, sp_accountableperson, sp_accountid, sp_accountminimuminflow,
-    sp_accountoverdraftlimit, sp_acquiredfrom, sp_acquirelicensepage, sp_acrisscode, sp_action, sp_actionablefeedbackpolicy, sp_actionaccessibilityrequirement, sp_actionapplication, sp_actionoption, sp_actionplatform, sp_actionstatus,
-    sp_activeingredient, sp_activityduration, sp_activityfrequency, sp_actor, sp_additionalname, sp_additionalnumberofguests, sp_additionalproperty, sp_additionaltype, sp_additionalvariable, sp_addon, sp_address, sp_addresscountry,
-    sp_addresslocality, sp_addressregion, sp_administrationroute, sp_advancebookingrequirement, sp_adverseoutcome, sp_affectedby, sp_affiliation, sp_aftermedia, sp_agent, sp_aggregaterating, sp_aircraft, sp_album,
-    sp_albumproductiontype, sp_albumrelease, sp_albumreleasetype, sp_alcoholwarning, sp_algorithm, sp_alignmenttype, sp_alternatename, sp_alternativeheadline, sp_alumni, sp_alumniof, sp_amenityfeature, sp_amount, sp_amountofthisgood,
-    sp_announcementlocation, sp_annualpercentagerate, sp_answercount, sp_antagonist, sp_appearance, sp_applicablelocation, sp_applicantcontact, sp_applicantlocationrequirements, sp_applicationcategory, sp_applicationdeadline,
-    sp_applicationstartdate, sp_applicationsubcategory, sp_applicationsuite, sp_appliestodeliverymethod, sp_appliestopaymentmethod, sp_archiveheld, sp_areaserved, sp_arrivalairport, sp_arrivalboatterminal, sp_arrivalbusstop,
-    sp_arrivalgate, sp_arrivalplatform, sp_arrivalstation, sp_arrivalterminal, sp_arrivaltime, sp_artedition, sp_arterialbranch, sp_artform, sp_articlebody, sp_articlesection, sp_artist, sp_artmedium, sp_artworksurface, sp_aspect,
-    sp_assemblyversion, sp_assess, sp_assesses, sp_associatedanatomy, sp_associatedarticle, sp_associatedmedia, sp_associatedpathophysiology, sp_athlete, sp_attendee, sp_audience, sp_audiencetype, sp_audio, sp_authenticator, sp_author,
-    sp_availabedeliverymethod, sp_availability, sp_availabilityends, sp_availabilitystarts, sp_availableatorfrom, sp_availablechannel, sp_availabledeliverymethod, sp_availablefrom, sp_availablein, sp_availablelanguage,
-    sp_availablelocation, sp_availableondevice, sp_availableservice, sp_availablestrength, sp_availabletest, sp_availablethrough, sp_award, sp_awayteam,
+    // creative commons
+    cc_attributionname, cc_attributionurl, cc_deprecatedon, cc_jurisdiction, cc_legalcode, cc_licence, cc_morepermissions, cc_permits, cc_prohibits, cc_requires,
 
-    sp_bankaccounttype, sp_background, sp_backstory, sp_basesalary, sp_bccrecipient, sp_bed, sp_beforemedia, sp_beneficiarybank, sp_benefitssummaryurl, sp_bestrating, sp_billingaddress, sp_billingduration, sp_billingincrement, sp_billingperiod, sp_billingstart,
-    sp_biomechanicalclass, sp_birthdate, sp_birthplace, sp_bitrate, sp_blogpost, sp_bloodsupply, sp_boardinggroup, sp_boardingpolicy, sp_bodylocation, sp_bodytype, sp_bookedition, sp_bookformat, sp_bookingtime, sp_box, sp_branch,
-    sp_branchcode, sp_brand, sp_breadcrumb, sp_breastfeedingwarning, sp_broadcastaffiliateof, sp_broadcastchannelid, sp_broadcastdisplayname, sp_broadcaster, sp_broadcastfrequency, sp_broadcastfrequencyvalue, sp_broadcastofevent,
-    sp_broadcastservicetier, sp_broadcastsignalmodulation, sp_broadcastsubchannel, sp_broadcasttimezone, sp_broker, sp_browserrequirements, sp_businessdays, sp_businessfunction, sp_busname, sp_busnumber, sp_buyer, sp_byartist, sp_byday,
-    sp_bymonth, sp_bymonthday, sp_bymonthweek,
+    // common tag
+    ctag_label, ctag_means, ctag_tagged, ctag_taggingdate,
 
-    sp_callsign, sp_calories, sp_candidate, sp_caption, sp_carbohydratecontent, sp_cargovolume, sp_carrierrequirements, sp_cashback, sp_cataloguenumber, sp_category, sp_cause, sp_causeof, sp_ccrecipient, sp_character,
-    sp_characterattribute, sp_charactername, sp_cheatcode, sp_checkintime, sp_checkouttime, sp_childmaxage, sp_childminage, sp_children, sp_cholesterolcontent, sp_circle, sp_citation, sp_claimreviewed, sp_clinicalpharamcology,
-    sp_clipnumber, sp_closes, sp_coach, sp_code, sp_coderepository, sp_codesampletype, sp_codevalue, sp_codingsystem, sp_colleague, sp_collectionsize, sp_colour, sp_colourist, sp_comment, sp_commentcount, sp_commenttext, sp_commenttime,
-    sp_competencyrequired, sp_competitor, sp_composer, sp_comprisedof, sp_conditionsofaccess, sp_confirmationnumber, sp_connectedto, sp_constrainingproperty, sp_contactlesspayment, sp_contactoption, sp_contactpoint, sp_contacttype,
-    sp_containedin, sp_containedinplace, sp_containsplace, sp_containsseason, sp_contentlocation, sp_contentrating, sp_contentreferencetime, sp_contentsize, sp_contenttype, sp_contenturl, sp_contraindication, sp_contributor, sp_cookingmethod, sp_cooktime,
-    sp_copyrightholder, sp_copyrightnotice, sp_copyrightyear, sp_correction, sp_correctionspolicy, sp_cost, sp_costcategory, sp_costcurrency, sp_costorigin, sp_costperunit, sp_countriesnotsupported, sp_countriessupported , sp_countryoforigin, sp_coursecode,
-    sp_coursemode, sp_coursepresequisites, sp_courseworkload, sp_coverageendtime, sp_coveragestarttime, sp_creativeworkstatus, sp_creator, sp_credentialcategory, sp_creditedto, sp_credittext, sp_cssselector, sp_currenciesaccepted, sp_currency,
-    sp_currentexchangerate, sp_customer, sp_cutofftime, sp_cvdcollectiondate, sp_cvdfacilitycounty, sp_cvdfacilityid, sp_cvdnumbeds, sp_cvdnumbedsocc, sp_cvdnumc19died, sp_cvdnumc19hopats, sp_cvdnumc19hosppats, sp_cvdnumc19mechventpats,
-    sp_cvdnumc19ofmechventpats, sp_cvdnumc19overflowpats, sp_cvdnumicubeds, sp_cvdnumicubedsocc, sp_cvdnumtotbeds, sp_cvdnumvent,
+    // dublin core elements
+    dc_contributor, dc_coverage, dc_creator, dc_date, dc_description, dc_format, dc_identifier, dc_language, dc_publisher, dc_relation, dc_rights, dc_source, dc_subject, dc_title, dc_type,
 
-    sp_cvdnumventuse, sp_datafeedelement, sp_dataset, sp_datasettimeinterval, sp_datecreated, sp_datedeleted, sp_dateissued, sp_dateline, sp_datemodified, sp_dateposted, sp_datepublished, sp_dateread, sp_datereceived, sp_datesent,
-    sp_datevehiclefirstregistered, sp_dayofweek, sp_deathdate, sp_deathplace, sp_defaultvalue, sp_deliveryaddress, sp_deliveryleadtime, sp_deliverymethod, sp_deliverystatus, sp_deliverytime, sp_department, sp_departureairport,
-    sp_departureboatterminal, sp_departurebusstop, sp_departuregate, sp_departureplatform, sp_departurestation, sp_departureterminal, sp_departuretime, sp_dependencies, sp_depth, sp_description, sp_diagnosis, sp_diagram, sp_diet,
-    sp_dietfeatures, sp_differentialdiagnosis, sp_director, sp_disambiguatingdescription, sp_discount, sp_discountcode, sp_discountcurrency, sp_discusses, sp_discussionurl, sp_diseasepreventioninfo, sp_diseasespreadstatistics,
-    sp_dissolutiondate, sp_distance, sp_distinguishingsign, sp_distribution, sp_diversitypolicy, sp_diversitystaffingreport, sp_documentation, sp_doesnotship, sp_domainincludes, sp_domiciledmortgage, sp_doortime, sp_dosageform,
-    sp_doseschedule, sp_doseunit, sp_dosevalue, sp_downloadurl, sp_downpayment, sp_downvotecount, sp_drainsto, sp_drivewheelconfiguration, sp_dropofflocation, sp_dropofftime, sp_drug, sp_drugclass, sp_drugunit, sp_duns,
-    sp_duplicatetherapy, sp_duration, sp_durationofwarranty, sp_duringmedia,
+    // dublin core vocabulary description
+    dcam_domainincludes, dcam_memberof, dcam_rangeincludes,
 
-    sp_earlyprepaymentpenalty, sp_editeidr, sp_editor, sp_educationalalignment, sp_educationalcredentialawarded, sp_educationalframework, sp_educationallevel, sp_educationalprogrammode, sp_educationalrole, sp_educationaluse,
-    sp_educationcredentialawarded, sp_educationrequirements, sp_eduquestiontype, sp_elevation, sp_eligibilecustomertype, sp_eligibilitytoworkrequirement, sp_eligiblecustomertype, sp_eligibleduration, sp_eligiblequantity, sp_eligibleregion,
-    sp_eligibletransactionvolume, sp_email, sp_embedurl, sp_emmissionsco2, sp_employee, sp_employeroverview, sp_employmenttype, sp_employmentunit, sp_encodescreativework, sp_encoding, sp_encodingformat, sp_encodingtype, sp_enddate,
-    sp_endoffset, sp_endorsee, sp_endorsers, sp_endtime, sp_energyefficiencyscalemax, sp_energyefficiencyscalemin,
-    sp_enginedisplacement, sp_enginepower, sp_enginetype, sp_entertainmentbusiness, sp_epidemiology, sp_episode, sp_episodenumber, sp_equal, sp_error, sp_estimatedcost,
-    sp_estimatedflightduration, sp_estimatedsalary, sp_estimatesriskof, sp_ethicspolicy, sp_event, sp_eventattendancemode, sp_eventschedule, sp_eventstatus, sp_evidencelevel, sp_evidenceorigin, sp_exampleofwork, sp_exceptdate,
-    sp_exchangeratespread, sp_executablelibraryname, sp_exercisecourse, sp_exerciseplan, sp_exerciserelateddiet, sp_exercisetype, sp_exifdata, sp_expectedarrivalfrom, sp_expectedarrivaluntil, sp_expectedprognosis, sp_expectsacceptanceof,
-    sp_experiencerequirements, sp_experienceinplaceofeducation, sp_expires, sp_exportconsiderations,
+    // dublin core terms
+    dct_abstract, dct_accessrights, dct_accrualmethod, dct_accrualperiodicity, dct_accrualpolicy, dct_alternative, dct_audience, dct_available,
+    dct_bibliographiccitation,
+    dct_conformsto, dct_contributor, dct_coverage, dct_created, dct_creator,
+    dct_date, dct_dateaccepted, dct_datecopyrighted, dct_datesubmitted, dct_description,
+    dct_educationlevel, dct_extent,
+    dct_format,
+    dct_hasformat, dct_haspart, dct_hasversion,
+    dct_identifier, dct_instructionalmethod, dct_isformatof, dct_ispartof, dct_isreferencedby, dct_isreplacedby, dct_isrequiredby, dct_issued, dct_isversionof,
+    dct_language, dct_licence,
+    dct_mediator, dct_medium, dct_modified,
+    dct_provenance, dct_publisher,
+    dct_references, dct_relation, dct_replaces, dct_requires, dct_rights, dct_rightsholder,
+    dct_source, dct_spatial, dct_subject,
+    dct_tableofcontents, dct_temporal, dct_title, dct_type,
+    dct_valid,
 
-    sp_familyname, sp_fatcontent, sp_faxnumber, sp_featurelist, sp_feesandcommissionsspecification, sp_fibrecontent, sp_fileformat, sp_filesize, sp_financialaideligible, sp_firstappearance, sp_firstperformance, sp_flightdistance,
-    sp_flightnumber, sp_floorlevel, sp_floorlimit, sp_floorsize, sp_followee, sp_follows, sp_followup, sp_foodestablishment, sp_foodevent, sp_foodwarning, sp_founder, sp_foundingdate, sp_foundinglocation, sp_freeshippingthreshold,
-    sp_frequency, sp_fromlocation, sp_fuelcapacity, sp_fuelconsumption, sp_fuelefficiency, sp_fueltype, sp_funcionalclass, sp_function, sp_fundeditem, sp_funder,
+    // foaf
+    foaf_account, foaf_accountname, foaf_accountservicehomepage, foaf_age, foaf_aimchatid,
+    foaf_basednear, foaf_birthday,
+    foaf_currentproject,
+    foaf_depiction, foaf_depicts, foaf_dnachecksum,
+    foaf_familyname, foaf_firstname, foaf_focus, foaf_fundedby,
+    foaf_geekcode, foaf_gender, foaf_givenname,
+    foaf_holdsaccount, foaf_homepage,
+    foaf_icqchatid, foaf_img, foaf_interest, foaf_isprimarytopicof,
+    foaf_jabberid,
+    foaf_knows,
+    foaf_lastname, foaf_logo,
+    foaf_made, foaf_maker, foaf_mbox, foaf_mboxsha1sum, foaf_member, foaf_membershipclass, foaf_msnchatid, foaf_myersbriggs,
+    foaf_name, foaf_nick,
+    foaf_openid,
+    foaf_page, foaf_pastproject, foaf_phone, foaf_plan, foaf_primarytopic, foaf_publications,
+    foaf_schoolhomepage, foaf_sha1, foaf_skypeid, foaf_status, foaf_surname,
+    foaf_theme, foaf_thumbnail, foaf_tipjar, foaf_title, foaf_topic, foaf_topic_interest,
+    foaf_weblog, foaf_workinfohomepage, foaf_workplacehomepage,
+    foaf_yahoochatid,
 
-    sp_game, sp_gameitem, sp_gamelocation, sp_gameplatform, sp_gameserver, sp_gametip, sp_gender, sp_genre, sp_geo, sp_geocontains, sp_geocoveredby, sp_geocovers, sp_geocrosses, sp_geodisjoint, sp_geoequals, sp_geographicarea,
-    sp_geointersects, sp_geomidpoint, sp_geooverlaps, sp_georadius, sp_geotouches, sp_geowithin, sp_gettingtestedinfo, sp_givenname, sp_globallocationnumber, sp_governmentbenefitsinfo, sp_graceperiod, sp_grantee, sp_greater,
-    sp_greaterorequal, sp_gtin, sp_gtin12, sp_gtin13, sp_gtin14, sp_gtin8, sp_guideline, sp_guidelinedate, sp_guidelinesubject,
+    // good relations
+    gr_acceptedpaymentmethods, gr_addon, gr_advancebookingrequirement, gr_amountofgoods, gr_appliestodeliverymethod, gr_appliestopaymentmethod, gr_availabilityends, gr_availabilitystarts, gr_availableatorfrom,
+        gr_availabledeliverymethods,
+    gr_billingincrement,
+    gr_category, gr_closes, gr_colour, gr_condition,
+    gr_datatypeproductorserviceproperty, gr_deliveryleadtime, gr_depth, gr_description, gr_displayposition, gr_durationofwarrantyinmonths,
+    gr_eligiblecustomertypes, gr_eligibleduration, gr_eligibleregions, gr_eligibletransactionvolume, gr_equal,
+    gr_greater, gr_greaterorequal,
+    gr_hasbrand, gr_hasbusinessfunction, gr_hascurrency, gr_hascurrencyvalue, gr_hasduns, gr_hasean_ucc_13, gr_haseligiblequantity, gr_hasgtin_14, gr_hasgtin_8, gr_hasgloballocationnumber, gr_hasisicv4,
+        gr_hasinventorylevel, gr_hasmakeandmodel, gr_hasmanufacturer, gr_hasmaxcurrencyvalue, gr_hasmaxvalue, gr_hasmaxvaluefloat, gr_hasmaxvalueinteger, gr_hasmincurrencyvalue, gr_hasminvalue,
+        gr_hasminvaluefloat, gr_hasminvalueinteger, gr_hasmpn, gr_hasnaics, gr_hasnext, gr_hasopeninghoursdayofweek, gr_hasopeninghoursspecification, gr_haspos, gr_hasprevious, gr_haspricespecification, gr_hasstockkeepingunit,
+        gr_hasunitofmeasurement, gr_hasvalue, gr_hasvaluefloat, gr_hasvalueinteger, gr_haswarrantypromise, gr_haswarrantyscope, gr_height,
+    gr_includes, gr_includesobject, gr_isaccessoryorsparepartfor, gr_isconsumablefor, gr_islistprice, gr_issimilarto, gr_isvariantof,
+    gr_legalname, gr_lesser, gr_lesserorequal,
+    gr_name, gr_nonequal,
+    gr_offers, gr_opens, gr_owns,
+    gr_predecessorof, gr_pricetype,
+    gr_qualitativeproductorserviceproperty, gr_quantitativeproductorserviceproperty,
+    gr_relatedwebservice,
+    gr_seeks, gr_serialnumber, gr_successorof,
+    gr_taxid, gr_typeofgoods,
+    gr_validfrom, gr_validto, gr_valueaddedtaxincluded, gr_valuereference, gr_vatid,
+    gr_weight, gr_width,
 
-    sp_handlingtime, sp_hasbroadcastchannel, sp_hascategorycode, sp_hascourse, sp_hascourseinstance, sp_hascredential, sp_hasdefinedterm, sp_hasdeliverymethod, sp_hasdigitaldocumentpermission, sp_hasdrivethroughservice,
-    sp_hasenergyconsumptiondetails, sp_hasenergyefficiencycategory, sp_hashealthaspect, sp_hasmap, sp_hasmeasurement, sp_hasmenu,
-    sp_hasmenuitem, sp_hasmenusection, sp_hasmerchantreturnpolicy, sp_hasoccupation, sp_hasoffercatalogue, sp_haspart, sp_haspos, sp_hasproductreturnpolicy, sp_hasvariant, sp_headline, sp_healthcarereportingdata, sp_healthcondition,
-    sp_healthplancoinsuranceoption, sp_healthplancoinsurancerate, sp_healthplancopay, sp_healthplancopayoption, sp_healthplancostsharing, sp_healthplandrugoption, sp_healthplandrugtier, sp_healthplanid, sp_healthplanmarketingurl,
-    sp_healthplannetworkid, sp_healthplannetworktier, sp_healthplanpharmacycategory, sp_height, sp_highprice, sp_hiringorganization, sp_holdingarchive, sp_homelocation, sp_hometeam, sp_honourificprefix, sp_honourificsuffix,
-    sp_hospitalaffiliation, sp_hostingorganisation, sp_hoursavailable, sp_howperformed, sp_httpmethod,
+    // iCal
+    ical_action, ical_attendee,
+    ical_byday, ical_bymonth,
+    ical_caladdress, ical_calscale, ical_categories, ical_class, ical_cn, ical_comment, ical_component, ical_cutype,
+    ical_date, ical_datetime, ical_daylight, ical_description, ical_dtend, ical_dstamp, ical_dtstart, ical_duration,
+    ical_freq,
+    ical_interval,
+    ical_language, ical_location,
+    ical_organiser,
+    ical_partstat, ical_prodid,
+    ical_related, ical_role, ical_rrule, ical_rsvp,
+    ical_sequence, ical_standard, ical_summary,
+    ical_transp, ical_trigger, ical_tzid, ical_tzname, ical_tzoffsetfrom, ical_tzoffsetto,
+    ical_uid,
+    ical_valarm, ical_version,
 
-    sp_iatacode, sp_identifier, sp_identifyingexam, sp_identifyingtest, sp_illustrator, sp_image, sp_imagingtechnique, sp_inalbum, sp_inbroadcastlineup, sp_incentivecompensation, sp_includedcomposition, sp_includeddatacatalog,
-    sp_includedinhealthinsuranceplan, sp_includedriskfactor, sp_includesattraction, sp_includeshealthplanformulary, sp_includeshealthplannetwork, sp_includesobject, sp_incodeset, sp_increasesriskof, sp_indefinedtermset, sp_indication,
-    sp_industry, sp_ineligibleregion, sp_infectiousagent, sp_infectiousagentclass, sp_inker, sp_inlanguage, sp_inplaylist, sp_inproductgroupwithid, sp_insertion, sp_installurl, sp_instorereturnsoffered, sp_instructor, sp_instrument,
-    sp_insupportof, sp_intensity, sp_interactingdrug, sp_interactionservice, sp_interactionstatistic, sp_interactiontype, sp_interactivitytype, sp_interestrate, sp_inventorylevel, sp_inverseof, sp_isacceptingnewpatients,
-    sp_isaccessibleforfree, sp_isaccessoryorsparepartfor, sp_isavailablegenerally, sp_isbasedon, sp_isbasedonurl, sp_isbn, sp_isconsumablefor, sp_isfamilyfriendly, sp_isgift, sp_isicv4, sp_islivebroadcast, sp_ispartof,
-    sp_isplanforapartment, sp_isproprietary, sp_isrccode, sp_isrelatedto, sp_isresizable, sp_issimilarto, sp_issn, sp_issuedby, sp_issuedthrough, sp_issuenumber, sp_isunlabelledfallback, sp_isvariantof, sp_iswccode, sp_item,
-    sp_itemcondition, sp_itemlistelement, sp_itemlistorder, sp_itemlocation, sp_itemoffered, sp_itemreviewed, sp_itemshipped, sp_itinerary,
-
-    sp_jobbenefits, sp_jobimmediatestart, sp_joblocation, sp_joblocationtype, sp_jobstartdate, sp_jobtitle, sp_jurisdiction,
-
-    sp_keywords, sp_knownvehicledamages, sp_knows, sp_knowsabout, sp_knowslanguage,
-
-    sp_labeldetails, sp_landlord, sp_lastreviewed, sp_latitude, sp_layoutimage, sp_learningresourcetype, sp_leaselength, sp_legalname, sp_legalstatus, sp_legislationapplies, sp_legislationchanges, sp_legislationconsolidates, sp_legislationdate,
-    sp_legislationdateversion, sp_legislationidentifier, sp_legislationjurisdiction, sp_legislationlegalforce, sp_legislationlegalvalue, sp_legislationpassedby, sp_legislationresponsible, sp_legislationtransposes, sp_legislationtype,
-    sp_leicode, sp_lender, sp_lesser, sp_lesserorequal, sp_letterer, sp_license, sp_line, sp_linkrelationship, sp_liveblogupdate, sp_loanmortgagamandateamount, sp_loanpaymentamount, sp_loanpaymentfrequency, sp_loanrepaymentform,
-    sp_loanterm, sp_loantype, sp_location, sp_locationcreated, sp_lodgingunitdescription, sp_lodgingunittype, sp_logo, sp_longitude, sp_loser, sp_lowprice, sp_lyricist, sp_lyrics,
-
-    sp_maincontentofpage, sp_mainentity, sp_mainentityofpage, sp_maintainer, sp_makesoffer, sp_manufacturer, sp_maptype, sp_marginoferror, sp_masthead, sp_material, sp_materialextent, sp_mathexpression, sp_maximumattendeecapacity, sp_maximumenrollment,
-    sp_maximumintake, sp_maximumphysicalattendeecapacity, sp_maximumvirtualattendeecapacity, sp_maxprice, sp_maxvalue, sp_mealservice, sp_measuredproperty, sp_measuredvalue, sp_measurementtechnique, sp_mechanismofaction,
-    sp_mediaauthenticitycategory, sp_median, sp_medicalaudience, sp_medicalspeciality, sp_medicinesystem, sp_meetsemissionstandard, sp_member, sp_memberof, sp_membershipnumber, sp_membershippointsearned, sp_memoryrequirements,
-    sp_mentions, sp_menu, sp_menuaddon, sp_merchantreturndays, sp_merchantreturnlink, sp_messageattachment, sp_mileagefromodometer, sp_minimummonthlyrepaymentamount, sp_minimumpaymentdue, sp_minprice, sp_minvalue,
-    sp_missioncoverageprioritiespolicy, sp_model, sp_modeldate, sp_modifiedtime, sp_monthsofexperience, sp_mpn, sp_multiplevalues, sp_muscleaction, sp_musicalkey, sp_musicarrangement, sp_musicby, sp_musiccompositionform, sp_musicreleaseformat,
-
-    sp_naics, sp_name, sp_nationality, sp_naturalprogression, sp_nerve, sp_nervemotor, sp_networth, sp_newupdatesandguidelines, sp_nextitem, sp_nobylinespolicy, sp_nonequal, sp_nonprofitstatus, sp_nonpropriatryname,
-    sp_nonproprietaryname, sp_normalrange, sp_nsn, sp_numadults, sp_numberedposition, sp_numberofaccommodationunits, sp_numberofairbags, sp_numberofavailableaccommodationunits, sp_numberofaxles, sp_numberofbathroomstotal,
-    sp_numberofbedrooms, sp_numberofbeds, sp_numberofcredits, sp_numberofdoors, sp_numberofemployees, sp_numberofepisodes, sp_numberofforwardgears, sp_numberoffullbathrooms, sp_numberofitems, sp_numberofloanpayments, sp_numberofpages,
-    sp_numberofpartialbathrooms, sp_numberofplayers, sp_numberofpreviousowners, sp_numberofrooms, sp_numberofseasons, sp_numchildren, sp_numconstraints, sp_numtracks, sp_nutrition,
-
-    sp_object, sp_observationdate, sp_observednode, sp_ocaocode, sp_occupancy, sp_occupationalcategory, sp_occupationalcredentialawarded, sp_occupationlocation, sp_offercount, sp_offeredby, sp_offers, sp_offersprescriptionbymail,
-    sp_openinghours, sp_openinghoursspecification, sp_opens, sp_operatingsystem, sp_opponent, sp_orderdate, sp_orderdelivery, sp_ordereditem, sp_orderitemnumber, sp_orderitemstatus, sp_ordernumber, sp_orderquantity, sp_orderstatus,
-    sp_organiser, sp_origin, sp_originaddress, sp_originatesfrom, sp_outcome, sp_overdosage, sp_overview, sp_ownedfrom, sp_ownedthrough, sp_ownershipfundinginfo, sp_owns,
-
-    sp_pageend, sp_pagestart, sp_pagination, sp_parent, sp_parentitem, sp_parentorganisation, sp_parentservice, sp_participant, sp_partofepisode, sp_partofinvoice, sp_partoforder, sp_partofseason, sp_partofseries, sp_partofsystem,
-    sp_partoftrip, sp_partysize, sp_passengerprioritystatus, sp_passengersequencenumber, sp_pathophysiology, sp_pattern, sp_payload, sp_paymentaccepted, sp_paymentdue, sp_paymentduedate, sp_paymentmethod, sp_paymentmethodid,
-    sp_paymentstatus, sp_paymenturl, sp_penciler, sp_percentile10, sp_percentile25, sp_percentile75, sp_percentile90, sp_performer, sp_performerin, sp_performtime, sp_permissions, sp_permissiontype, sp_permitaudience, sp_permittedusage,
-    sp_petsallowed, sp_phase, sp_phonetictext, sp_photo, sp_physicalrequirement, sp_physiologicalbenefits, sp_pickuplocation, sp_pickuptime, sp_playersonline, sp_playertype, sp_playmode, sp_polygon, sp_population, sp_populationtype,
-    sp_position, sp_possiblecomplication, sp_possibletreatment, sp_postalcode, sp_postalcodebegin, sp_postalcodeend, sp_postalcodeprefix, sp_postalcoderange, sp_postofficeboxnumber, sp_postop, sp_potentialaction, sp_predecessorof,
-    sp_pregnancycategory, sp_pregnancywarning, sp_preop, sp_preparation, sp_preptime, sp_prescribinginfo, sp_prescriptionstatus, sp_previousitem, sp_previousstartdate, sp_price, sp_pricecomponent, sp_pricecomponenttype, sp_pricecurrency, sp_pricerange,
-    sp_pricespecification, sp_pricetype, sp_pricevaliduntil, sp_primaryimageofpage, sp_primaryprevention, sp_printcolumn, sp_printedition, sp_printpage, sp_printsection, sp_procedure, sp_proceduretype, sp_processingtime,
-    sp_processorrequirements, sp_producer, sp_productgroupid, sp_productid, sp_productioncompany, sp_productiondate, sp_productsupported, sp_proficiencylevel, sp_programmemembershipused, sp_programmename, sp_programminglanguage,
-    sp_programmingmodel, sp_programprequisites, sp_programtype, sp_propertyid, sp_propriatryname, sp_proprietaryname, sp_proteincontent, sp_provider, sp_providermobility, sp_providesbroadcastservice, sp_providesservice, sp_publicaccess,
-    sp_publication, sp_publicationtype, sp_publictransportclosuresinfo, sp_publishedby, sp_publishedon, sp_publisher, sp_publisherimprint, sp_publishingprinciples, sp_purchasedate, sp_purpose,
-
-    sp_qualifications, sp_quarantineguidelines, sp_query, sp_quest, sp_question,
-
-    sp_rangeincludes, sp_ratingcount, sp_ratingexplanation, sp_ratingvalue, sp_readby, sp_readonlyvalue, sp_realestateagent, sp_recipe, sp_recipecategory, sp_recipecuisine, sp_recipeingredient, sp_recipeinstructions, sp_recipeyield,
-    sp_recipient, sp_recognisedby, sp_recognisingauthority, sp_recommendationstrength, sp_recommendedintake, sp_recordedas, sp_recordedat, sp_recordedin, sp_recordingof, sp_recordlabel, sp_recourseloan, sp_referencequantity,
-    sp_referencesorder, sp_refundtype, sp_regiondrained, sp_regionsallowed, sp_relatedanatomy, sp_relatedcondition, sp_relateddrug, sp_relatedlink, sp_relatedstructure, sp_relatedtherapy, sp_relatedto, sp_releasedate, sp_releasedevent,
-    sp_releasenotes, sp_releaseof, sp_relevantoccupation, sp_relevantspeciality, sp_remainingattendeecapacity, sp_renegotiableloan, sp_repeatcount, sp_repeatfrequency, sp_repetitions, sp_replacee, sp_replacer, sp_replytourl,
-    sp_reportnumber, sp_representativeofpage, sp_requiredcollateral, sp_requiredgender, sp_requiredmaxage, sp_requiredminage, sp_requiredquantity, sp_requiressubscription, sp_reservationfor, sp_reservationid, sp_reservationstatus,
-    sp_reservedticket, sp_responsibilities, sp_restperiods, sp_result, sp_resultcomment, sp_resultreview, sp_returnfees, sp_returnpolicycategory, sp_review, sp_reviewaspect, sp_reviewbody, sp_reviewcount, sp_reviewedby, sp_reviewrating,
-    sp_riskfactor, sp_risks, sp_rolename, sp_roofload, sp_rsvpresponse, sp_runsto, sp_runtimeplatform, sp_rxcui,
-
-    sp_safetyconsideration, sp_salarycurrency, sp_salaryuponcompletion, sp_sameas, sp_saturatedfatcontent, sp_scheduledpaymentdate, sp_scheduledtime, sp_scheduletimezone, sp_schemaversion, sp_schoolclosuresinfo, sp_screencount,
-    sp_screenshot, sp_sddatepublished, sp_sdlicense, sp_sdpublisher, sp_seasonnumber, sp_seatingcapacity, sp_seatingtype, sp_seatnumber, sp_seatrow, sp_seatsection, sp_secondaryprevention, sp_securityclearancerequirement,
-    sp_securityscreening, sp_seeks, sp_seller, sp_sender, sp_sensoryclearancerequirement, sp_sensoryunit, sp_serialnumber, sp_seriousadverseoutcome, sp_serverstatus, sp_servescuisine, sp_servicearea, sp_servicelocation,
-    sp_serviceoperator, sp_serviceoutput, sp_servicephone, sp_servicepostaladdress, sp_servicesmsnumber, sp_servicetype, sp_serviceurl, sp_servingsize, sp_sharedcontent, sp_shippingdestination, sp_shippinglabel, sp_shippingrate,
-    sp_shippingsettingslink, sp_sibling, sp_signdetected, sp_significance, sp_significantlink, sp_signorsymptom, sp_size, sp_sizegroup, sp_sizesystem, sp_skills, sp_sku, sp_slogan, sp_smokingallowed, sp_sodiumcontent, sp_softwareaddon, sp_softwarehelp,
-    sp_softwarerequirements, sp_softwareversion, sp_source, sp_sourcedfrom, sp_sourceorganisation, sp_spatial, sp_spatialcoverage, sp_speakable, sp_specialcommitments, sp_speciality, sp_specialopeninghoursspecification,
-    sp_speechtotextmarkup, sp_speed, sp_spokenbycharacter, sp_sponsor, sp_sport, sp_sportsactivitylocation, sp_sportsevent, sp_sportsteam, sp_spouse, sp_stage, sp_stageasnumber, sp_starrating, sp_startdate, sp_startoffset,
-    sp_starttime, sp_status, sp_steeringposition, sp_step, sp_steps, sp_stepvalue, sp_storagerequirements, sp_streetaddress, sp_strengthunit, sp_strengthvalue, sp_structuralclass, sp_study, sp_studydesign, sp_studylocation, sp_studysubject,
-    sp_stupidproperty, sp_subevent, sp_subjectof, sp_suborganisation, sp_subreservation, sp_substagesuffix, sp_substructure, sp_subtitlelanguage, sp_subtrip, sp_subtype, sp_successorof, sp_sugarcontent, sp_suggestedage, sp_suggestedanswer,
-    sp_suggestedgender, sp_suggestedmaxage, sp_suggestedmeasurement, sp_suggestedminage, sp_suitablefordiet, sp_superevent, sp_supersededby, sp_supply, sp_supplyto, sp_supportingdata, sp_suspersededby,
-
-    sp_target, sp_targetcollection, sp_targetdescription, sp_targetname, sp_targetplatform, sp_targetpopulation, sp_targeturl, sp_taxid, sp_teaches, sp_telephone, sp_temporal, sp_temporalcoverage, sp_termcode, sp_termduration,
-    sp_termsofservice, sp_termsperyear, sp_text, sp_textvalue, sp_thumbnail, sp_thumbnailurl, sp_tickersymbol, sp_ticketedseat, sp_ticketnumber, sp_tickettoken, sp_timeofday, sp_timerequired, sp_timetocomplete, sp_tissuesample,
-    sp_title, sp_titleeidr, sp_toccontinuation, sp_tocentry, sp_tolocation, sp_tongueweight, sp_tool, sp_torecipient, sp_torque, sp_totaljobopenings, sp_totalpaymentdue, sp_totalprice, sp_totaltime, sp_tourbookingpage, sp_touristtype, sp_track, sp_trackingnumber,
-    sp_trackingurl, sp_trailer, sp_trailerweight, sp_trainingsalary, sp_trainname, sp_trainnumber, sp_transcript, sp_transfatcontent, sp_transittime, sp_transittimelabel, sp_translationofwork, sp_translator, sp_transmissionmethod,
-    sp_travelbans, sp_trialdesign, sp_tributary, sp_typeofbed, sp_typeofgood, sp_typicalagerange, sp_typicalcreditsperterm, sp_typicaltest,
-
-    sp_undername, sp_unitcode, sp_unittext, sp_unnamedsourcespolicy, sp_unsaturatedfatcontent, sp_uploaddate, sp_upvotecount, sp_url, sp_urltemplate, sp_usageinfo, sp_usedtodiagnose, sp_userinteractioncount, sp_usesdevice,
-    sp_useshealthplanidstandard, sp_utterances,
-
-    sp_validfor, sp_validfrom, sp_validin, sp_validthrough, sp_validuntil, sp_value, sp_valueaddedtaxincluded, sp_valuemaxlength, sp_valueminlength, sp_valuename, sp_valuepattern, sp_valuereference, sp_valuerequired,
-    sp_variablemeasured, sp_variablesmeasured, sp_variantcover, sp_variesby, sp_vatid, sp_vehicleconfiguration, sp_vehicleengine, sp_vehicleidentificationnumber, sp_vehicleinteriorcolour, sp_vehicleinteriortype, sp_vehiclemodeldate,
-    sp_vehicleseatingcapacity, sp_vehiclespecialusage, sp_vehicletransmission, sp_verificationfactcheckingpolicy, sp_version, sp_video, sp_videoformat, sp_videoframesize, sp_videoquality, sp_volumenumber,
-
-    sp_warning, sp_warranty, sp_warrantyscope, sp_webcheckintime, sp_webfeed, sp_weight, sp_weighttotal, sp_wheelbase, sp_width, sp_winner, sp_wordcount, sp_workexample, sp_workfeatured, sp_workhours, sp_workload, sp_worklocation,
-    sp_workperformed, sp_workpresented, sp_worksfor, sp_worktranslation, sp_worstrating,
-
-    sp_xpath,
-
-    sp_yearbuilt, sp_yearlyrevenue, sp_yearsinoperation, sp_yield,
-
+    // microformats.org
     mp_additional_name, mp_adr, mp_affliation, mp_agent, mp_album, mp_amount, mp_anniversary, mp_attach, mp_attendee, mp_author, mp_availability,
     mp_best, mp_bday, mp_bookmark, mp_brand,
     mp_categories, mp_category, mp_class, mp_comment, mp_contact, mp_contributor, mp_count, mp_country_name, mp_created, mp_currency,
@@ -2091,6 +2109,185 @@ typedef enum
     mp2_u_video,
     mp2_u_watch_of,
 
+    // open graph
+    og_article_author, og_article_expiration_date, og_article_modified_time, og_article_published_time, og_article_section, og_article_tag,
+    og_audio, og_audio_secure_url, og_audio_type, og_audio_url,
+    og_book_author, og_book_isbn, og_book_release_date, og_book_tag,
+    od_description, og_determiner,
+    og_image, og_image_alt, og_image_height, og_image_secure_url, og_image_type, og_image_url, og_image_width,
+    og_locale, og_locale_alternative,
+    og_music_album, og_music_album_disc, og_music_album_track, og_music_creator, og_music_duration, og_music_musician, og_music_release_date, og_music_song, og_music_song_disc, og_music_song_track,
+    og_profile_first_name, og_profile_gender, og_profile_last_name, og_profile_username,
+    og_site_name,
+    og_title, og_type,
+    og_url,
+    og_video, og_video_actor, og_video_actor_role, og_video_alt, og_video_director, og_video_duration, og_video_height, og_video_release_date, og_video_secure_url, og_video_series, og_video_tag, og_video_type, og_video_url, og_video_width, og_video_writer,
+
+    // poetry
+    poetry_age, poetry_containedinpoem, poetry_containspoem, poetry_hasform, poetry_hasstanza, poetry_indialect, poetry_ischorus, poetry_islaidout, poetry_keepsstrictform, poetry_lines, poetry_medium, poetry_metre, poetry_poet, poetry_region, poetry_rhymingscheme, poetry_subform,
+
+    // RDF
+    rdf_direction, rdf_first, rdf_language, rdf_object, rdf_predicate, rdf_rest, rdf_subject, rdf_type, rdf_value,
+
+    // RDFs
+    rdfs_comment, rdfs_domain, rdfs_isdefinedby, rdfs_label, rdfs_member, rdfs_range, rdfs_seealso, rdfs_subclassof, rdfs_subpropertyof,
+
+    // schema.org
+    sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptoffer, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol,
+    sp_accessibilityfeature, sp_accessibilityhazard, sp_accessibilitysummary, sp_accesscode, sp_accessmode, sp_accessmodesufficient, sp_accommodationcategory, sp_accommodationfloorplan, sp_accountableperson,
+    sp_accountid, sp_accountminimuminflow, sp_accountoverdraftlimit, sp_acquiredfrom, sp_acquirelicensepage, sp_acrisscode, sp_action, sp_actionablefeedbackpolicy, sp_actionaccessibilityrequirement, sp_actionapplication,
+    sp_actionoption, sp_actionplatform, sp_actionstatus, sp_activeingredient, sp_activityduration, sp_activityfrequency, sp_actor, sp_additionalname, sp_additionalnumberofguests, sp_additionalproperty, sp_additionaltype,
+    sp_additionalvariable, sp_addon, sp_address, sp_addresscountry, sp_addresslocality, sp_addressregion, sp_administrationroute, sp_advancebookingrequirement, sp_adverseoutcome, sp_affectedby, sp_affiliation, sp_aftermedia,
+    sp_agent, sp_aggregaterating, sp_aircraft, sp_album, sp_albumproductiontype, sp_albumrelease, sp_albumreleasetype, sp_alcoholwarning, sp_algorithm, sp_alignmenttype, sp_alternativename, sp_alternativeheadline,
+    sp_alternativeof, sp_alumni, sp_alumniof, sp_amenityfeature, sp_amount, sp_amountofthisgood, sp_announcementlocation, sp_annualpercentagerate, sp_answercount, sp_antagonist, sp_appearance, sp_applicablelocation,
+    sp_applicantcontact, sp_applicantlocationrequirements, sp_applicationcategory, sp_applicationdeadline, sp_applicationstartdate, sp_applicationsubcategory, sp_applicationsuite, sp_appliestodeliverymethod,
+    sp_appliestopaymentmethod, sp_archivedat, sp_archiveheld, sp_areaserved, sp_arrivalairport, sp_arrivalboatterminal, sp_arrivalbusstop, sp_arrivalgate, sp_arrivalplatform, sp_arrivalstation, sp_arrivalterminal,
+    sp_arrivaltime, sp_artedition, sp_arterialbranch, sp_artform, sp_articlebody, sp_articlesection, sp_artist, sp_artmedium, sp_artworksurface, sp_aspect, sp_assemblyversion, sp_assess, sp_assesses, sp_associatedanatomy,
+    sp_associatedarticle, sp_associatedclaimreview, sp_associateddisease, sp_associatedmedia, sp_associatedmediareview, sp_associatedpathophysiology, sp_associatedreview, sp_athlete, sp_attendee, sp_audience, sp_audiencetype,
+    sp_audio, sp_authenticator, sp_author, sp_availabedeliverymethod, sp_availability, sp_availabilityends, sp_availabilitystarts, sp_availableatorfrom, sp_availablechannel, sp_availabledeliverymethod, sp_availablefrom,
+    sp_availablein, sp_availablelanguage, sp_availablelocation, sp_availableondevice, sp_availableservice, sp_availablestrength, sp_availabletest, sp_availablethrough, sp_award, sp_awayteam,
+
+    sp_bankaccounttype, sp_background, sp_backstory, sp_basesalary, sp_bccrecipient, sp_bed, sp_beforemedia, sp_beneficiarybank, sp_benefitssummaryurl, sp_bestrating, sp_billingaddress, sp_billingduration, sp_billingincrement, sp_billingperiod, sp_billingstart,
+    sp_biocheminteraction, sp_biochemsimilarity, sp_biologicalrole, sp_biomechanicalclass, sp_birthdate, sp_birthplace, sp_bitrate, sp_blogpost, sp_bloodsupply, sp_boardinggroup, sp_boardingpolicy, sp_bodylocation, sp_bodytype, sp_bookedition, sp_bookformat, sp_bookingtime, sp_box, sp_branch,
+    sp_branchcode, sp_brand, sp_breadcrumb, sp_breastfeedingwarning, sp_broadcastaffiliateof, sp_broadcastchannelid, sp_broadcastdisplayname, sp_broadcaster, sp_broadcastfrequency, sp_broadcastfrequencyvalue, sp_broadcastofevent,
+    sp_broadcastservicetier, sp_broadcastsignalmodulation, sp_broadcastsubchannel, sp_broadcasttimezone, sp_broker, sp_browserrequirements, sp_businessdays, sp_businessfunction, sp_busname, sp_busnumber, sp_buyer, sp_byartist, sp_byday,
+    sp_bymonth, sp_bymonthday, sp_bymonthweek,
+
+    sp_callsign, sp_calories, sp_candidate, sp_caption, sp_carbohydratecontent, sp_cargovolume, sp_carrierrequirements, sp_cashback, sp_cataloguenumber, sp_category, sp_cause, sp_causeof, sp_ccrecipient, sp_character,
+    sp_characterattribute, sp_charactername, sp_cheatcode, sp_checkintime, sp_checkouttime, sp_chemicalcomposition, sp_chemicalrole, sp_childmaxage, sp_childminage, sp_children, sp_childtaxon, sp_cholesterolcontent, sp_circle, sp_citation,
+    sp_claiminterpreter, sp_claimreviewed, sp_clinicalpharamcology,
+    sp_clipnumber, sp_closes, sp_coach, sp_code, sp_coderepository, sp_codesampletype, sp_codevalue, sp_codingsystem, sp_colleague, sp_collectionsize, sp_colour, sp_colourist, sp_comment, sp_commentcount, sp_commenttext, sp_commenttime,
+    sp_competencyrequired, sp_competitor, sp_composer, sp_comprisedof, sp_conditionsofaccess, sp_confirmationnumber, sp_connectedto, sp_constrainingproperty, sp_contactlesspayment, sp_contactoption, sp_contactpoint, sp_contacttype,
+    sp_containedin, sp_containedinplace, sp_containsplace, sp_containsseason, sp_contentlocation, sp_contentrating, sp_contentreferencetime, sp_contentsize, sp_contenttype, sp_contenturl, sp_contraindication, sp_contributor, sp_cookingmethod, sp_cooktime,
+    sp_copyrightholder, sp_copyrightnotice, sp_copyrightyear, sp_correction, sp_correctionspolicy, sp_cost, sp_costcategory, sp_costcurrency, sp_costorigin, sp_costperunit, sp_countriesnotsupported, sp_countriessupported,
+    sp_countryofassembly, sp_countryoflastprocessing, sp_countryoforigin, sp_coursecode,
+    sp_coursemode, sp_coursepresequisites, sp_courseworkload, sp_coverageendtime, sp_coveragestarttime, sp_creativeworkstatus, sp_creator, sp_credentialcategory, sp_creditedto, sp_credittext, sp_cssselector, sp_currenciesaccepted, sp_currency,
+    sp_currentexchangerate, sp_customer, sp_cutofftime, sp_cvdcollectiondate, sp_cvdfacilitycounty, sp_cvdfacilityid, sp_cvdnumbeds, sp_cvdnumbedsocc, sp_cvdnumc19died, sp_cvdnumc19hopats, sp_cvdnumc19hosppats, sp_cvdnumc19mechventpats,
+    sp_cvdnumc19ofmechventpats, sp_cvdnumc19overflowpats, sp_cvdnumicubeds, sp_cvdnumicubedsocc, sp_cvdnumtotbeds, sp_cvdnumvent,
+    sp_customerremorsereturnfees, sp_customerremorsereturnlabelsource, sp_customerremorsereturnshippingfeesamount,
+
+    sp_cvdnumventuse, sp_datafeedelement, sp_dataset, sp_datasettimeinterval, sp_datecreated, sp_datedeleted, sp_dateissued, sp_dateline, sp_datemodified, sp_dateposted, sp_datepublished, sp_dateread, sp_datereceived, sp_datesent,
+    sp_datevehiclefirstregistered, sp_dayofweek, sp_deathdate, sp_deathplace, sp_defaultvalue, sp_deliveryaddress, sp_deliveryleadtime, sp_deliverymethod, sp_deliverystatus, sp_deliverytime, sp_department, sp_departureairport,
+    sp_departureboatterminal, sp_departurebusstop, sp_departuregate, sp_departureplatform, sp_departurestation, sp_departureterminal, sp_departuretime, sp_dependencies, sp_depth, sp_description, sp_diagnosis, sp_diagram, sp_diet,
+    sp_dietfeatures, sp_differentialdiagnosis, sp_directapply, sp_director, sp_disambiguatingdescription, sp_discount, sp_discountcode, sp_discountcurrency, sp_discusses, sp_discussionurl, sp_diseasepreventioninfo, sp_diseasespreadstatistics,
+    sp_dissolutiondate, sp_distance, sp_distinguishingsign, sp_distribution, sp_diversitypolicy, sp_diversitystaffingreport, sp_documentation, sp_doesnotship, sp_domainincludes, sp_domiciledmortgage, sp_doortime, sp_dosageform,
+    sp_doseschedule, sp_doseunit, sp_dosevalue, sp_downloadurl, sp_downpayment, sp_downvotecount, sp_drainsto, sp_drivewheelconfiguration, sp_dropofflocation, sp_dropofftime, sp_drug, sp_drugclass, sp_drugunit, sp_duns,
+    sp_duplicatetherapy, sp_duration, sp_durationofwarranty, sp_duringmedia,
+
+    sp_earlyprepaymentpenalty, sp_editeidr, sp_editor, sp_educationalalignment, sp_educationalcredentialawarded, sp_educationalframework, sp_educationallevel, sp_educationalprogrammode, sp_educationalrole, sp_educationaluse,
+    sp_educationcredentialawarded, sp_educationrequirements, sp_eduquestiontype, sp_elevation, sp_eligibilecustomertype, sp_eligibilitytoworkrequirement, sp_eligiblecustomertype, sp_eligibleduration, sp_eligiblequantity, sp_eligibleregion,
+    sp_eligibletransactionvolume, sp_email, sp_embeddedtextcaption, sp_embedurl, sp_emmissionsco2, sp_employee, sp_employeroverview, sp_employmenttype, sp_employmentunit, sp_encodescreativework, sp_encodesbiochementity, sp_encoding, sp_encodingformat, sp_encodingtype, sp_enddate,
+    sp_endoffset, sp_endorsee, sp_endorsers, sp_endtime, sp_energyefficiencyscalemax, sp_energyefficiencyscalemin,
+    sp_enginedisplacement, sp_enginepower, sp_enginetype, sp_entertainmentbusiness, sp_epidemiology, sp_episode, sp_episodenumber, sp_equal, sp_error, sp_estimatedcost,
+    sp_estimatedflightduration, sp_estimatedsalary, sp_estimatesriskof, sp_ethicspolicy, sp_event, sp_eventattendancemode, sp_eventschedule, sp_eventstatus, sp_evidencelevel, sp_evidenceorigin, sp_exampleofwork, sp_exceptdate,
+    sp_exchangeratespread, sp_executablelibraryname, sp_exercisecourse, sp_exerciseplan, sp_exerciserelateddiet, sp_exercisetype, sp_exifdata, sp_expectedarrivalfrom, sp_expectedarrivaluntil, sp_expectedprognosis, sp_expectsacceptanceof,
+    sp_experiencerequirements, sp_experienceinplaceofeducation, sp_expires, sp_exportconsiderations, sp_expressedin,
+
+    sp_familyname, sp_fatcontent, sp_faxnumber, sp_featurelist, sp_feesandcommissionsspecification, sp_fibrecontent, sp_fileformat, sp_filesize, sp_financialaideligible, sp_firstappearance, sp_firstperformance, sp_flightdistance,
+    sp_flightnumber, sp_floorlevel, sp_floorlimit, sp_floorsize, sp_followee, sp_follows, sp_followup, sp_foodestablishment, sp_foodevent, sp_foodwarning, sp_founder, sp_foundingdate, sp_foundinglocation, sp_freeshippingthreshold,
+    sp_frequency, sp_fromlocation, sp_fuelcapacity, sp_fuelconsumption, sp_fuelefficiency, sp_fueltype, sp_funcionalclass, sp_function, sp_fundeditem, sp_funder,
+
+    sp_game, sp_gameitem, sp_gamelocation, sp_gameplatform, sp_gameserver, sp_gametip, sp_gender, sp_genre, sp_geo, sp_geocontains, sp_geocoveredby, sp_geocovers, sp_geocrosses, sp_geodisjoint, sp_geoequals, sp_geographicarea,
+    sp_geointersects, sp_geomidpoint, sp_geooverlaps, sp_georadius, sp_geotouches, sp_geowithin, sp_gettingtestedinfo, sp_givenname, sp_globallocationnumber, sp_governmentbenefitsinfo, sp_graceperiod, sp_grantee, sp_greater,
+    sp_greaterorequal, sp_gtin, sp_gtin12, sp_gtin13, sp_gtin14, sp_gtin8, sp_guideline, sp_guidelinedate, sp_guidelinesubject,
+
+    sp_handlingtime, sp_hasbiochementitypart, sp_hasbiopolymersequence, sp_hasbroadcastchannel, sp_hascategorycode, sp_hascourse, sp_hascourseinstance, sp_hascredential, sp_hasdefinedterm, sp_hasdeliverymethod, sp_hasdigitaldocumentpermission, sp_hasdrivethroughservice,
+    sp_hasenergyconsumptiondetails, sp_hasenergyefficiencycategory, sp_hashealthaspect, sp_hasmap, sp_hasmeasurement, sp_hasmenu,
+    sp_hasmenuitem, sp_hasmenusection, sp_hasmerchantreturnpolicy, sp_hasmolecularfunction, sp_hasoccupation, sp_hasoffercatalogue, sp_haspart, sp_haspos, sp_hasproductreturnpolicy, sp_hasrepresentation, sp_hasvariant, sp_headline, sp_healthcarereportingdata, sp_healthcondition,
+    sp_healthplancoinsuranceoption, sp_healthplancoinsurancerate, sp_healthplancopay, sp_healthplancopayoption, sp_healthplancostsharing, sp_healthplandrugoption, sp_healthplandrugtier, sp_healthplanid, sp_healthplanmarketingurl,
+    sp_healthplannetworkid, sp_healthplannetworktier, sp_healthplanpharmacycategory, sp_height, sp_highprice, sp_hiringorganization, sp_holdingarchive, sp_homelocation, sp_hometeam, sp_honourificprefix, sp_honourificsuffix,
+    sp_hospitalaffiliation, sp_hostingorganisation, sp_hoursavailable, sp_howperformed, sp_httpmethod,
+
+    sp_iatacode, sp_identifier, sp_identifyingexam, sp_identifyingtest, sp_illustrator, sp_image, sp_imagingtechnique, sp_inalbum, sp_inbroadcastlineup, sp_incentivecompensation, sp_inchi, sp_inchikey, sp_includedcomposition, sp_includeddatacatalog,
+    sp_includedinhealthinsuranceplan, sp_includedriskfactor, sp_includesattraction, sp_includeshealthplanformulary, sp_includeshealthplannetwork, sp_includesobject, sp_incodeset, sp_increasesriskof, sp_indefinedtermset, sp_indication,
+    sp_industry, sp_ineligibleregion, sp_infectiousagent, sp_infectiousagentclass, sp_inker, sp_inlanguage, sp_inplaylist, sp_inproductgroupwithid, sp_insertion, sp_installurl, sp_instorereturnsoffered, sp_instructor, sp_instrument,
+    sp_insupportof, sp_intensity, sp_interactingdrug, sp_interactionservice, sp_interactionstatistic, sp_interactiontype, sp_interactivitytype, sp_interestrate, sp_interpretedasclaim, sp_inventorylevel, sp_inverseof, sp_isacceptingnewpatients,
+    sp_isaccessibleforfree, sp_isaccessoryorsparepartfor, sp_isavailablegenerally, sp_isbasedon, sp_isbasedonurl, sp_isbn, sp_isconsumablefor, sp_isencodedbybiochementity, sp_isfamilyfriendly, sp_isgift, sp_isicv4,
+    sp_isinvolvedinbiologicalprocess, sp_islocatedinsubcellularlocation, sp_islivebroadcast, sp_ispartof, sp_ispartofbiochementity,
+    sp_isplanforapartment, sp_isproprietary, sp_isrccode, sp_isrelatedto, sp_isresizable, sp_issimilarto, sp_issn, sp_issuedby, sp_issuedthrough, sp_issuenumber, sp_isunlabelledfallback, sp_isvariantof, sp_iswccode, sp_item,
+    sp_itemcondition, sp_itemdefectreturnfees, sp_itemdefectreturnlabelsource, sp_itemdefectreturnshippingfeesamount, sp_itemlistelement, sp_itemlistorder, sp_itemlocation, sp_itemoffered, sp_itemreviewed, sp_itemshipped, sp_itinerary, sp_iupacname,
+
+    sp_jobbenefits, sp_jobimmediatestart, sp_joblocation, sp_joblocationtype, sp_jobstartdate, sp_jobtitle, sp_jurisdiction,
+
+    sp_keywords, sp_knownvehicledamages, sp_knows, sp_knowsabout, sp_knowslanguage,
+
+    sp_labeldetails, sp_landlord, sp_lastreviewed, sp_latitude, sp_layoutimage, sp_learningresourcetype, sp_leaselength, sp_legalname, sp_legalstatus, sp_legislationapplies, sp_legislationchanges, sp_legislationconsolidates, sp_legislationdate,
+    sp_legislationdateversion, sp_legislationidentifier, sp_legislationjurisdiction, sp_legislationlegalforce, sp_legislationlegalvalue, sp_legislationpassedby, sp_legislationresponsible, sp_legislationtransposes, sp_legislationtype,
+    sp_leicode, sp_lender, sp_lesser, sp_lesserorequal, sp_letterer, sp_license, sp_line, sp_linkrelationship, sp_liveblogupdate, sp_loanmortgagamandateamount, sp_loanpaymentamount, sp_loanpaymentfrequency, sp_loanrepaymentform,
+    sp_loanterm, sp_loantype, sp_location, sp_locationcreated, sp_lodgingunitdescription, sp_lodgingunittype, sp_logo, sp_longitude, sp_loser, sp_lowprice, sp_lyricist, sp_lyrics,
+
+    sp_maincontentofpage, sp_mainentity, sp_mainentityofpage, sp_maintainer, sp_makesoffer, sp_manufacturer, sp_maptype, sp_marginoferror, sp_masthead, sp_material, sp_materialextent, sp_mathexpression, sp_maximumattendeecapacity, sp_maximumenrollment,
+    sp_maximumintake, sp_maximumphysicalattendeecapacity, sp_maximumvirtualattendeecapacity, sp_maxprice, sp_maxvalue, sp_mealservice, sp_measuredproperty, sp_measuredvalue, sp_measurementtechnique, sp_mechanismofaction,
+    sp_mediaauthenticitycategory, sp_mediaitemappearance, sp_median, sp_medicalaudience, sp_medicalspeciality, sp_medicinesystem, sp_meetsemissionstandard, sp_member, sp_memberof, sp_membershipnumber, sp_membershippointsearned, sp_memoryrequirements,
+    sp_mentions, sp_menu, sp_menuaddon, sp_merchantreturndays, sp_merchantreturnlink, sp_messageattachment, sp_mileagefromodometer, sp_minimummonthlyrepaymentamount, sp_minimumpaymentdue, sp_minprice, sp_minvalue,
+    sp_missioncoverageprioritiespolicy, sp_model, sp_modeldate, sp_modifiedtime, sp_molecularformula, sp_molecularweight, sp_monoistopicmolecularweight, sp_monthsofexperience, sp_mpn, sp_multiplevalues, sp_muscleaction, sp_musicalkey, sp_musicarrangement, sp_musicby, sp_musiccompositionform, sp_musicreleaseformat,
+
+    sp_naics, sp_name, sp_nationality, sp_naturalprogression, sp_negativevotes, sp_nerve, sp_nervemotor, sp_networth, sp_newupdatesandguidelines, sp_nextitem, sp_nobylinespolicy, sp_nonequal, sp_nonprofitstatus, sp_nonpropriatryname,
+    sp_nonproprietaryname, sp_normalrange, sp_nsn, sp_numadults, sp_numberedposition, sp_numberofaccommodationunits, sp_numberofairbags, sp_numberofavailableaccommodationunits, sp_numberofaxles, sp_numberofbathroomstotal,
+    sp_numberofbedrooms, sp_numberofbeds, sp_numberofcredits, sp_numberofdoors, sp_numberofemployees, sp_numberofepisodes, sp_numberofforwardgears, sp_numberoffullbathrooms, sp_numberofitems, sp_numberofloanpayments, sp_numberofpages,
+    sp_numberofpartialbathrooms, sp_numberofplayers, sp_numberofpreviousowners, sp_numberofrooms, sp_numberofseasons, sp_numchildren, sp_numconstraints, sp_numtracks, sp_nutrition,
+
+    sp_object, sp_observationdate, sp_observednode, sp_ocaocode, sp_occupancy, sp_occupationalcategory, sp_occupationalcredentialawarded, sp_occupationlocation, sp_offercount, sp_offeredby, sp_offers, sp_offersprescriptionbymail,
+    sp_openinghours, sp_openinghoursspecification, sp_opens, sp_operatingsystem, sp_opponent, sp_orderdate, sp_orderdelivery, sp_ordereditem, sp_orderitemnumber, sp_orderitemstatus, sp_ordernumber, sp_orderquantity, sp_orderstatus,
+    sp_organiser, sp_origin, sp_originaddress, sp_originalmediacontentdescription, sp_originalmedialink, sp_originatesfrom, sp_outcome, sp_overdosage, sp_overview, sp_ownedfrom, sp_ownedthrough, sp_ownershipfundinginfo, sp_owns,
+
+    sp_pageend, sp_pagestart, sp_pagination, sp_parent, sp_parentitem, sp_parentorganisation, sp_parentservice, sp_parenttaxon, sp_participant, sp_partofepisode, sp_partofinvoice, sp_partoforder, sp_partofseason, sp_partofseries, sp_partofsystem,
+    sp_partoftrip, sp_partysize, sp_passengerprioritystatus, sp_passengersequencenumber, sp_pathophysiology, sp_pattern, sp_payload, sp_paymentaccepted, sp_paymentdue, sp_paymentduedate, sp_paymentmethod, sp_paymentmethodid,
+    sp_paymentstatus, sp_paymenturl, sp_penciler, sp_percentile10, sp_percentile25, sp_percentile75, sp_percentile90, sp_performer, sp_performerin, sp_performtime, sp_permissions, sp_permissiontype, sp_permitaudience, sp_permittedusage,
+    sp_petsallowed, sp_phase, sp_phonetictext, sp_photo, sp_physicalrequirement, sp_physiologicalbenefits, sp_pickuplocation, sp_pickuptime, sp_playersonline, sp_playertype, sp_playmode, sp_polygon, sp_population, sp_populationtype,
+    sp_potentialuse, sp_position, sp_positivevotes, sp_possiblecomplication, sp_possibletreatment, sp_postalcode, sp_postalcodebegin, sp_postalcodeend, sp_postalcodeprefix, sp_postalcoderange, sp_postofficeboxnumber, sp_postop, sp_potentialaction, sp_predecessorof,
+    sp_pregnancycategory, sp_pregnancywarning, sp_preop, sp_preparation, sp_preptime, sp_prescribinginfo, sp_prescriptionstatus, sp_previousitem, sp_previousstartdate, sp_price, sp_pricecomponent, sp_pricecomponenttype, sp_pricecurrency, sp_pricerange,
+    sp_pricespecification, sp_pricetype, sp_pricevaliduntil, sp_primaryimageofpage, sp_primaryprevention, sp_printcolumn, sp_printedition, sp_printpage, sp_printsection, sp_procedure, sp_proceduretype, sp_processingtime,
+    sp_processorrequirements, sp_producer, sp_productgroupid, sp_productid, sp_productioncompany, sp_productiondate, sp_productsupported, sp_proficiencylevel, sp_programmemembershipused, sp_programmename, sp_programminglanguage,
+    sp_programmingmodel, sp_programprequisites, sp_programtype, sp_propertyid, sp_propriatryname, sp_proprietaryname, sp_proteincontent, sp_provider, sp_providermobility, sp_providesbroadcastservice, sp_providesservice, sp_publicaccess,
+    sp_publication, sp_publicationtype, sp_publictransportclosuresinfo, sp_publishedby, sp_publishedon, sp_publisher, sp_publisherimprint, sp_publishingprinciples, sp_purchasedate, sp_purpose,
+
+    sp_qualifications, sp_quarantineguidelines, sp_query, sp_quest, sp_question,
+
+    sp_rangeincludes, sp_ratingcount, sp_ratingexplanation, sp_ratingvalue, sp_readby, sp_readonlyvalue, sp_realestateagent, sp_recipe, sp_recipecategory, sp_recipecuisine, sp_recipeingredient, sp_recipeinstructions, sp_recipeyield,
+    sp_recipient, sp_recognisedby, sp_recognisingauthority, sp_recommendationstrength, sp_recommendedintake, sp_recordedas, sp_recordedat, sp_recordedin, sp_recordingof, sp_recordlabel, sp_recourseloan, sp_referencequantity,
+    sp_referencesorder, sp_refundtype, sp_regiondrained, sp_regionsallowed, sp_relatedanatomy, sp_relatedcondition, sp_relateddrug, sp_relatedlink, sp_relatedstructure, sp_relatedtherapy, sp_relatedto, sp_releasedate, sp_releasedevent,
+    sp_releasenotes, sp_releaseof, sp_relevantoccupation, sp_relevantspeciality, sp_remainingattendeecapacity, sp_renegotiableloan, sp_repeatcount, sp_repeatfrequency, sp_repetitions, sp_replacee, sp_replacer, sp_replytourl,
+    sp_reportnumber, sp_representativeofpage, sp_requiredcollateral, sp_requiredgender, sp_requiredmaxage, sp_requiredminage, sp_requiredquantity, sp_requiressubscription, sp_reservationfor, sp_reservationid, sp_reservationstatus,
+    sp_reservedticket, sp_responsibilities, sp_restockingfee, sp_restperiods, sp_result, sp_resultcomment, sp_resultreview, sp_returnfees, sp_returnlabelsource, sp_returnmethod, sp_returnpolicycategory, sp_returnpolicycountry,
+    sp_returnpolicyseasonaloverride, sp_returnshippingfeesamount, sp_review, sp_reviewaspect, sp_reviewbody, sp_reviewcount, sp_reviewedby, sp_reviewrating,
+    sp_riskfactor, sp_risks, sp_rolename, sp_roofload, sp_rsvpresponse, sp_runsto, sp_runtimeplatform, sp_rxcui,
+
+    sp_safetyconsideration, sp_salarycurrency, sp_salaryuponcompletion, sp_sameas, sp_saturatedfatcontent, sp_scheduledpaymentdate, sp_scheduledtime, sp_scheduletimezone, sp_schemaversion, sp_schoolclosuresinfo, sp_screencount,
+    sp_screenshot, sp_sddatepublished, sp_sdlicence, sp_sdpublisher, sp_seasonnumber, sp_seatingcapacity, sp_seatingtype, sp_seatnumber, sp_seatrow, sp_seatsection, sp_secondaryprevention, sp_securityclearancerequirement,
+    sp_securityscreening, sp_seeks, sp_seller, sp_sender, sp_sensoryclearancerequirement, sp_sensoryunit, sp_serialnumber, sp_seriousadverseoutcome, sp_serverstatus, sp_servescuisine, sp_servicearea, sp_servicelocation,
+    sp_serviceoperator, sp_serviceoutput, sp_servicephone, sp_servicepostaladdress, sp_servicesmsnumber, sp_servicetype, sp_serviceurl, sp_servingsize, sp_sha256, sp_sharedcontent, sp_shippingdestination, sp_shippinglabel, sp_shippingrate,
+    sp_shippingsettingslink, sp_sibling, sp_signdetected, sp_significance, sp_significantlink, sp_signorsymptom, sp_size, sp_sizegroup, sp_sizesystem, sp_skills, sp_sku, sp_slogan, sp_smiles, sp_smokingallowed, sp_sodiumcontent, sp_softwareaddon, sp_softwarehelp,
+    sp_softwarerequirements, sp_softwareversion, sp_source, sp_sourcedfrom, sp_sourceorganisation, sp_spatial, sp_spatialcoverage, sp_speakable, sp_specialcommitments, sp_speciality, sp_specialopeninghoursspecification,
+    sp_speechtotextmarkup, sp_speed, sp_spokenbycharacter, sp_sponsor, sp_sport, sp_sportsactivitylocation, sp_sportsevent, sp_sportsteam, sp_spouse, sp_stage, sp_stageasnumber, sp_starrating, sp_startdate, sp_startoffset,
+    sp_starttime, sp_status, sp_steeringposition, sp_step, sp_steps, sp_stepvalue, sp_storagerequirements, sp_streetaddress, sp_strengthunit, sp_strengthvalue, sp_structuralclass, sp_study, sp_studydesign, sp_studylocation, sp_studysubject,
+    sp_stupidproperty, sp_subevent, sp_subjectof, sp_suborganisation, sp_subreservation, sp_substagesuffix, sp_substructure, sp_subtitlelanguage, sp_subtrip, sp_subtype, sp_successorof, sp_sugarcontent, sp_suggestedage, sp_suggestedanswer,
+    sp_suggestedgender, sp_suggestedmaxage, sp_suggestedmeasurement, sp_suggestedminage, sp_suitablefordiet, sp_superevent, sp_supersededby, sp_supply, sp_supplyto, sp_supportingdata, sp_suspersededby,
+
+    sp_target, sp_targetcollection, sp_targetdescription, sp_targetname, sp_targetplatform, sp_targetpopulation, sp_targeturl, sp_taxid, sp_taxonomicrange, sp_taxonrank, sp_teaches, sp_telephone, sp_temporal, sp_temporalcoverage, sp_termcode, sp_termduration,
+    sp_termsofservice, sp_termsperyear, sp_text, sp_textvalue, sp_thumbnail, sp_thumbnailurl, sp_tickersymbol, sp_ticketedseat, sp_ticketnumber, sp_tickettoken, sp_timeofday, sp_timerequired, sp_timetocomplete, sp_tissuesample,
+    sp_title, sp_titleeidr, sp_toccontinuation, sp_tocentry, sp_tolocation, sp_tongueweight, sp_tool, sp_torecipient, sp_torque, sp_totaljobopenings, sp_totalpaymentdue, sp_totalprice, sp_totaltime, sp_tourbookingpage, sp_touristtype, sp_track, sp_trackingnumber,
+    sp_trackingurl, sp_trailer, sp_trailerweight, sp_trainingsalary, sp_trainname, sp_trainnumber, sp_transcript, sp_transfatcontent, sp_transittime, sp_transittimelabel, sp_translationofwork, sp_translator, sp_transmissionmethod,
+    sp_travelbans, sp_trialdesign, sp_tributary, sp_typeofbed, sp_typeofgood, sp_typicalagerange, sp_typicalcreditsperterm, sp_typicaltest,
+
+    sp_undername, sp_unitcode, sp_unittext, sp_unnamedsourcespolicy, sp_unsaturatedfatcontent, sp_uploaddate, sp_upvotecount, sp_url, sp_urltemplate, sp_usageinfo, sp_usedtodiagnose, sp_userinteractioncount, sp_usesdevice,
+    sp_useshealthplanidstandard, sp_utterances,
+
+    sp_validfor, sp_validfrom, sp_validin, sp_validthrough, sp_validuntil, sp_value, sp_valueaddedtaxincluded, sp_valuemaxlength, sp_valueminlength, sp_valuename, sp_valuepattern, sp_valuereference, sp_valuerequired,
+    sp_variablemeasured, sp_variablesmeasured, sp_variantcover, sp_variesby, sp_vatid, sp_vehicleconfiguration, sp_vehicleengine, sp_vehicleidentificationnumber, sp_vehicleinteriorcolour, sp_vehicleinteriortype, sp_vehiclemodeldate,
+    sp_vehicleseatingcapacity, sp_vehiclespecialusage, sp_vehicletransmission, sp_verificationfactcheckingpolicy, sp_version, sp_video, sp_videoformat, sp_videoframesize, sp_videoquality, sp_volumenumber,
+
+    sp_warning, sp_warranty, sp_warrantyscope, sp_webcheckintime, sp_webfeed, sp_weight, sp_weighttotal, sp_wheelbase, sp_width, sp_winner, sp_wordcount, sp_workexample, sp_workfeatured, sp_workhours, sp_workload, sp_worklocation,
+    sp_workperformed, sp_workpresented, sp_worksfor, sp_worktranslation, sp_worstrating,
+
+    sp_xpath,
+
+    sp_yearbuilt, sp_yearlyrevenue, sp_yearsinoperation, sp_yield,
+
+    // WDRS
+    wdrs_describedby,
+
+    // whatwg
     wp_author, wp_license, wp_title, wp_work,
 
     sp_illegal } e_schema_property;
@@ -2147,6 +2344,7 @@ typedef enum { ssi_encoding_base64, ssi_encoding_none, ssi_encoding_entity, ssi_
 typedef enum { ssi_DATE_GMT, ssi_DATE_LOCAL, ssi_DOCUMENT_ARGS, ssi_DOCUMENT_NAME, ssi_DOCUMENT_PATH_INFO, ssi_DOCUMENT_URI, ssi_LAST_MODIFIED, ssi_QUERY_STRING_UNESCAPED, ssi_USER_NAME } e_ssi_env;
 typedef enum { ssi_f_file, ssi_f_virtual } e_ssi_f;
 typedef enum { ssi_include_file, ssi_include_onerror, ssi_include_virtual } e_ssi_include;
+typedef enum { se_start, se_end } e_startend;
 typedef enum { stt_stitch, stt_nostitch } e_stitchtiles;
 typedef enum { sc_keep, sc_discard } e_streamedcontents;
 typedef enum { sov_visible, sov_hidden, sov_scroll, sov_auto, sov_inherit } e_svg_overflow;
@@ -2222,8 +2420,8 @@ typedef enum {
         t_aligndec, t_alignfig, t_alignment_baseline, t_alignplus, t_angle, t_angle_a, t_angle_ai, t_angle_i, t_animate, t_arabicenum,
         t_arabic_form, t_aria_autocomplete, t_aria_invalidity, t_aria_live, t_aria_pressed, t_aria_sort, t_as, t_attributename, t_attributetype,
         t_audio_level, t_autocapitalise, t_autocomplete, t_autocompletes, t_autocompletevaried,
-    t_background, t_bandwidth, t_base, t_baselineshift, t_bb, t_beginarg, t_beginfn, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour,
-        t_border, t_bool, t_bools, t_buffered_rendering, t_button,
+    t_b64, t_background, t_bandwidth, t_base, t_baselineshift, t_bb, t_beginarg, t_beginfn, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour,
+        t_border, t_bool, t_bools, t_buffered_rendering, t_button, t_byte,
     t_cache, t_cachekey, t_caches, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_channelselector, t_char,
         t_charset, t_charsets, t_charspacing, t_citype, t_class, t_clear, t_clear30, t_clip, t_clip_path_rule, t_closure, t_colour, t_colour_ci,
         t_colour_cii, t_colour_i, t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri,
@@ -2231,7 +2429,7 @@ typedef enum {
         t_content_encoding, t_content_encodings, t_content_type, t_context_menu, t_controlslist, t_cookie, t_cookieid, t_cookies, t_coordinatesystem,
         t_coords, t_corp, t_cors, t_cntype, t_crossout, t_css, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source,
         t_curie, t_curie_safe, t_curies, t_currency, t_cursor, t_cursor_f, t_cursor_i,
-    t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_dcmitype, t_decalign,
+    t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_dcmitype, t_decalign,
         t_decoding, t_defaultaction, t_depth, t_device, t_dingbat, t_dir, t_direction, t_display, t_display_align, t_dominantbaseline, t_dosh, t_dsc,
         t_dsctv, t_dur, t_dur_repeat, t_duration, t_duration_media,
     t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_enable_background, t_enctype, t_end, t_endvaluelist, t_enterkeyhint,
@@ -2241,57 +2439,59 @@ typedef enum {
         t_fontsizeadjust, t_fontstretch, t_fontstretches, t_fontstyle, t_fontweight, t_fontvariant, t_fontvariants, t_font_variant, t_font_variant_2,
         t_font_variant_2s, t_font_variant_caps, t_font_variant_east_asians, t_font_variant_east_asian, t_font_variant_ligature, t_font_variant_ligatures,
         t_font_variant_numeric,  t_font_variant_numerics, t_font_variant_position, t_form, t_format, t_frame, t_frame4, t_framespacing, t_frequency,
-    t_generic, t_glyphname, t_glyphnames, t_groupalign,
-    t_halign, t_hash_ref, t_hash_fn, t_height, t_hour, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
-    t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index,
+    t_gender, t_generic, t_glyphname, t_glyphnames, t_groupalign,
+    t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hour, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
+    t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index,
         t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus,
         t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
     t_just_date, t_just_time,
     t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind,
     t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length, t_length_absolute,
         t_length_relative, t_lengthadjust, t_linebreak, t_linebreakstyle, t_linecap, t_line_height, t_linejoin, t_linethickness, t_link, t_linkarg, t_linkargs,
-        t_linkitself, t_linkparam, t_links, t_listtype, t_loading, t_local_url, t_location, t_longdivstyle, t_loop, t_loopie, t_lraalign, t_lralign, t_lspace,
+        t_linkitself, t_linkparam, t_links, t_listtype, t_literal, t_loading, t_local_url, t_location, t_longdivstyle, t_loop, t_loopie, t_lraalign, t_lralign,
+        t_lspace,
     t_mah, t_marked_up, t_marker, t_markerunits, t_mathalign, t_mathalign_n, t_mathaligns, t_mathclosure, t_mathdisplay, t_mathfontstyle, t_mathfontweight,
         t_mathform, t_mathframe, t_mathlocation, t_mathmode, t_mathnotation, t_mathnotations, t_mathoccurence, t_mathorder, t_mathoverflow, t_mathscope,
         t_mathside, t_mathsize, t_mathspace, t_mathspaceauto, t_mathspacefit, t_mathspaceinfinity, t_mathvariant, t_mathvertauto, t_matrixtype, t_matrix_values,
-        t_measure, t_measure_a, t_measure_ai, t_measure_i, t_measure_ni, t_measure_or_more, t_measures, t_media, t_mediafeature, t_mediakeyword, t_meetslice,
+        t_mb, t_measure, t_measure_a, t_measure_ai, t_measure_i, t_measure_ni, t_measure_or_more, t_measures, t_media, t_mediafeature, t_mediakeyword, t_meetslice,
         t_menuitem, t_menutype, t_metaname, t_method, t_methodological, t_mf_availability, t_mf_category, t_mf_class, t_mf_identifier, t_mf_itemtype,
-        t_mf_listing_action, t_mf_listing_actions, t_mf_method, t_mf_reviewtype, t_mf_status, t_microdata_domain, t_microdata_root, t_mime, t_mimelist,
-        t_mimemodule, t_mimeq, t_mimeqs, t_mimestar, t_minute, t_mode, t_month, t_morphology_operator, t_mql, t_mqls,
-    t_name, t_nameref, t_namespace, t_namedspace, t_navigation, t_negative, t_not_0, t_not_empty, t_notation, t_notations, t_nsd, t_nsds, t_num,
+        t_mf_listing_action, t_mf_listing_actions, t_mf_method, t_mf_reviewtype, t_mf_status, t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar,
+        t_minute, t_mode, t_month, t_monthday, t_morphology_operator, t_mql, t_mqls, t_myersbriggs,
+    t_name, t_nameref, t_namespace, t_namedspace, t_navigation, t_negative, t_not_0, t_not_empty, t_not_neg, t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_num,
     t_occurence, t_ogtype, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, t_overlay,
     t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_panose1, t_percent, t_phase, t_phase_x, t_pics, t_plus_1_7, t_plusstyle, t_pointer_events,
         t_points, t_positive, t_positive_1_2, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio, t_preserveaspectratio10,
         t_preserveaspectratio12, t_print, t_propagate, t_pseudo, t_pseudonamedspace, t_pt,
     t_q,
-    t_rap, t_rating, t_rdf_parsetype, t_rdfa_context, t_real, t_real_1_2, t_real_ai, t_real_i, t_reals, t_referrer, t_refresh, t_refx, t_refy, t_regex,
-        t_rel, t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents, t_repeatcount,
-        t_restart, t_result, t_reveal_trans, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim, t_rowscols,  t_rsvp, t_rules,
-    t_sandbox, t_sandboxen, t_scei, t_schema, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml, t_shadow,
-        t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon, t_shape_fn_circlesz,
-        t_shape_fn_ellipsesz, t_shape_fn_polygonsz, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_side, t_size, t_size3, t_sizes, t_sizex,
-        t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_f, t_start,
-        t_stitchtiles, t_streamedcontents, t_svg_feature, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_step, t_style, t_svg_align,  t_svg_baselineshift,
-        t_svg_baseprofile, t_svg_clip, t_svg_content, t_svg_direction, t_svg_direction2, t_svg_display, t_svg_duration, t_svg_features, t_svg_fontstretch,
-        t_svg_fontstretch_ff, t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant, t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff,
-        t_svg_fontweights, t_svg_host, t_svg_method, t_svg_mode, t_svg_overflow, t_svg_phase, t_svg_playbackorder, t_svg_shape, t_svg_shapefn, t_svg_side,
-        t_svg_svg, t_svg_time, t_svg_time_default, t_svg_time_inherit, t_svg_time_none, t_svg_timelinebegin, t_svg_transform, t_svg_type, t_svg_units,
-        t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_svg_viewboxrect, t_sym, t_syncbehaviour, t_syncbehaviourdefault,
+    t_rap, t_rating, t_rdf_parsetype, t_rdfa_typeof, t_real, t_real_1_2, t_real_ai, t_real_i, t_reals, t_referrer, t_refresh, t_refx, t_refy, t_regex, t_rel,
+        t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents, t_repeatcount, t_restart,
+        t_result, t_reveal_trans, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim, t_rowscols,  t_rsvp, t_rules,
+    t_sandbox, t_sandboxen, t_scei, t_schema, t_schema_type, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml,
+        t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon,
+        t_shape_fn_circlesz, t_shape_fn_ellipsesz, t_shape_fn_polygonsz, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3,
+        t_sizes, t_sizex, t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env,
+        t_ssi_f, t_start, t_startend, t_stitchtiles, t_streamedcontents, t_svg_feature, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_step, t_style, t_svg_align,
+        t_svg_baselineshift, t_svg_baseprofile, t_svg_clip, t_svg_content, t_svg_direction, t_svg_direction2, t_svg_display, t_svg_duration, t_svg_features,
+        t_svg_fontstretch, t_svg_fontstretch_ff, t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant, t_svg_fontvariant_ff, t_svg_fontweight,
+        t_svg_fontweight_ff, t_svg_fontweights, t_svg_host, t_svg_method, t_svg_mode, t_svg_overflow, t_svg_phase, t_svg_playbackorder, t_svg_shape,
+        t_svg_shapefn, t_svg_side, t_svg_svg, t_svg_time, t_svg_time_default, t_svg_time_inherit, t_svg_time_none, t_svg_timelinebegin, t_svg_transform,
+        t_svg_type, t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_svg_viewboxrect, t_sym, t_syncbehaviour,
+        t_syncbehaviourdefault,
     t_tableframe, t_tablevalues, t_target, t_tbalign, t_tdscope, t_tel, t_tel_format, t_tendstotype, t_text, t_text_decoration, t_textoverflow, t_text_rendering,
         t_tfmu, t_tfa, t_tfi, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, t_transition_type,
-        t_transp, t_truefalseempty, t_turbulence_type, t_type, t_tz,
-    t_ugeo, t_unicode_bidi, t_unit, t_units, t_unsigned, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, t_urange, t_urifn, t_urifn_ni, t_urisz, t_url,
-        t_urls,
+        t_transp, t_truefalseempty, t_turbulence_type, t_type, t_typeof, t_tz,
+    t_ugeo, t_unicode_bidi, t_unit, t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, t_urange, t_urifn,
+        t_urifn_ni, t_urisz, t_url, t_urls,
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2, t_vector_effect_20,
         t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vid, t_viewportscreen, t_visibility, t_visibility10, t_visibility11, t_vocab,
         t_vunit, t_vunits,
     t_wanted, t_wallclock, t_week, t_whitespace, t_width, t_workertype, t_wrap, t_wrap3, t_writingmode, t_wxhs,
     t_x_content_type_options, t_x_ua_compatible, t_xlinkactuate, t_xlinkactuate_onrequest, t_xlinkactuate_onload, t_xlinkshow, t_xlinkshow_a, t_xlinkshow_e,
-        t_xlinkshow_o, t_xlinktype, t_xmllink, t_xmlns, t_xmlspace, t_xmlurl, t_xorder,
-    t_yesno, t_yesnoempty,
+        t_xlinkshow_o, t_xlinktype, t_xmllink, t_xmlliteral, t_xmlns, t_xmlspace, t_xmlurl, t_xorder, t_xsdbool,
+    t_year, t_yearmonth, t_yesno, t_yesnoempty,
     t_zero_to_one, t_zero_to_ones, t_zoompan,
 
-    t_zzz } e_type;
+    t_error } e_type;
 
 typedef enum { ub_bidioverride, ub_embed, ub_inherit, ub_isolate, ub_normal, ub_plaintext } e_unicode_bidi;
 typedef enum { eu_cap, eu_ch, eu_cm, eu_em, eu_ex, eu_ic, eu_in, eu_lh, eu_mm, eu_pc, eu_pt, eu_px, eu_q, eu_rem, eu_rlh, eu_vb, eu_vh, eu_vi, eu_vmin, eu_vmax, eu_vw } e_unit;
@@ -2320,5 +2520,6 @@ typedef enum {  x_default, x_xhtml_1, x_xhtml_1_superseded, x_xhtml_11, x_xhtml_
                 x_xf, x_xhv, x_xi, x_xlink, x_xml, x_xmlevents, x_xmlns, x_xsd, x_xslfo, x_xslt, x_xsi } e_xmlns;
 typedef enum { xs_default, xs_preserve } e_xmlspace;
 typedef enum { or_document, or_list } e_xorder;
+typedef enum { xb_0, xb_1, db_false, xd_true } e_xsdbool;
 typedef enum { y_yes, y_no } e_yesno;
 typedef enum { z_disable, z_magnify } e_zoompan;

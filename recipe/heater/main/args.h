@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MF_         "microformat"
 #define MICRODATA_  "microdata"
 #define NITS_       "nits"
+#define RDFA_       "rdfa"
 #define SHADOW_     "shadow"
 #define STATS_      "stats"
 #define SVG_        "svg"
@@ -50,6 +51,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MATH        MATH_ JOIN
 #define MICRODATA   MICRODATA_ JOIN
 #define NITS        NITS_ JOIN
+#define RDFA        RDFA_ JOIN
 #define SHADOW      SHADOW_ JOIN
 #define STATS       STATS_ JOIN
 #define SVG         SVG_ JOIN
@@ -78,16 +80,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CURRENCY    "currency"
 #define CUSTOM      "custom"
 #define DBG         "debug"
+#define DC          "dc"
 #define DEFCONF     "defconf"
 #define DETAIL      "detail"
 #define DINGBATARG  "dingbat"
 #define ERR         "error"
 #define ELEMENT     "element"
 #define ELEMATTR    ELEMENT "-" ATTRIB
+#define ENABLE      "enable"
 #define EXPORT      "export"
 #define EXTENSION   "extension"
 #define EXTERNAL    "external"
 #define FICHIER     "file"
+#define FOAF        "foaf"
 #define FORWARD     "301"
 #define HELP        "help"
 #define HTTPEQUIV   "httpequiv"
@@ -110,7 +115,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define OUTPUT      "output"
 #define PATH        "datapath"
 #define PAGE        "page"
-#define RDFA        "rdfa"
 #define REL         "rel"
 #define REVOKE      "no-revoke"
 #define RFC1867     "rfc1867"
@@ -142,6 +146,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VIRTUAL     "virtual"
 #define WARNING     "warning"
 #define WATCH       "watch"
+#define XSD         "xsd"
 
 #define CLEAR       "clear"
 #define MACROSTART  "macrostart"

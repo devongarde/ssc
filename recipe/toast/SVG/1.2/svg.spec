@@ -164,17 +164,17 @@ PASS ../toast/SVG/1.2/07_19.svg
 0 title_required
 1 xhtml_1_1
 3 svg_version
-8 unrecognised_namespace unrecognised_value
+8 contradictory_namespace unrecognised_namespace wwww unrecognised_value
 9 empty_link
-14 unknown_element bad_namespace attribute_unrecognised
+14 unknown_element
 
 PASS ../toast/SVG/1.2/07_20.svg
 0 title_required
 1 xhtml_1_1
 3 svg_version
-8 unrecognised_namespace unrecognised_value
+8 contradictory_namespace unrecognised_namespace wwww unrecognised_value
 9 empty_link
-12 unknown_element bad_namespace attribute_unrecognised
+12 unknown_element
 13 unknown_element
 14 unknown_element unknown_element
 15 unknown_element unknown_element
@@ -186,9 +186,9 @@ PASS ../toast/SVG/1.2/07_21.svg
 0 title_required
 1 xhtml_1_1
 3 svg_version
-8 unrecognised_namespace unrecognised_value
+8 contradictory_namespace unrecognised_namespace wwww unrecognised_value
 9 empty_link
-11 unknown_element bad_namespace attribute_unrecognised
+11 unknown_element
 12 unknown_element
 13 unknown_element unknown_element
 14 unknown_element

@@ -92,7 +92,6 @@ PASS ../toast/microdata/schema-tuv/videogame-3.html
 45 use_double_quote_code use_quote_code
 
 PASS ../toast/microdata/schema-tuv/videogame-4.html
-15 bad_datetime bad_datetime
 41 mixed_mess
 58 use_double_quote_code
 59 use_double_quote_code

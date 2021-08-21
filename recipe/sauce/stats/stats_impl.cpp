@@ -46,7 +46,7 @@ void stats::mark_file (const unsigned size)
 {   if (n == 0) return ::std::string ();
     return msg + ": " + times (n) + "\n"; }
 
-::std::string stats::microdata_report () const
+::std::string stats::ontology_report () const
 {   uint64_t total = 0;
     unsigned count = 0;
     ::std::string res;
@@ -92,7 +92,7 @@ void stats::mark_file (const unsigned size)
         if (total != 1) res += "s";
         res += " used ";
         res += times (count) + "\n";
-        res = ::std::string ("Microdata:\n") + res; }
+        res = ::std::string ("Ontology:\n") + res; }
     return res; }
 
 ::std::string stats::element_report () const
@@ -221,12 +221,14 @@ void stats::mark_file (const unsigned size)
     res += saybe (category_.at (ec_directory), "    Directory");
     res += saybe (category_.at (ec_element), "    Element");
     res += saybe (category_.at (ec_incorrectness), "    Incorrectness");
+    res += saybe (category_.at (ec_icu), "    ICU");
     res += saybe (category_.at (ec_init), "    Init");
+    res += saybe (category_.at (ec_io), "    I/O");
     res += saybe (category_.at (ec_link), "    Link");
     res += saybe (category_.at (ec_microdata), "    Microdata");
     res += saybe (category_.at (ec_microformat), "    Microformat");
-    res += saybe (category_.at (ec_mql), "    Media Query");
     res += saybe (category_.at (ec_mime), "    Mimetype");
+    res += saybe (category_.at (ec_mql), "    Media Query");
     res += saybe (category_.at (ec_namespace), "    Namespace");
     res += saybe (category_.at (ec_page), "    Page");
     res += saybe (category_.at (ec_parser), "    Parser");
@@ -234,6 +236,7 @@ void stats::mark_file (const unsigned size)
     res += saybe (category_.at (ec_rdfa), "    RDFa");
     res += saybe (category_.at (ec_regex), "    Regex");
     res += saybe (category_.at (ec_rudeness), "    Rudeness");
+    res += saybe (category_.at (ec_schema), "    Schema");
     res += saybe (category_.at (ec_shadow), "    Shadow");
     res += saybe (category_.at (ec_ssi), "    SSI");
     res += saybe (category_.at (ec_tidyness), "    Tidyness");
@@ -307,7 +310,7 @@ void stats::mark_file (const unsigned size)
     else res += "\n*** Statistics:\n";
 
     res += element_report ();
-    res += microdata_report ();
+    res += ontology_report ();
     res += meta_report ();
     res += abbr_report ();
     res += dfn_report ();

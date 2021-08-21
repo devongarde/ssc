@@ -69,6 +69,7 @@
     <ClInclude Include="..\heater\microformat\property_value.h" />
     <ClInclude Include="..\heater\microformat\sibling.h" />
     <ClInclude Include="..\heater\parser\html_version.h" />
+    <ClInclude Include="..\heater\parser\parse_abb.h" />
     <ClInclude Include="..\heater\parser\parse_attribute.h" />
     <ClInclude Include="..\heater\parser\parse_attributes.h" />
     <ClInclude Include="..\heater\parser\parse_bras_ket.h" />
@@ -76,11 +77,13 @@
     <ClInclude Include="..\heater\parser\parse_css.h" />
     <ClInclude Include="..\heater\parser\parse_element.h" />
     <ClInclude Include="..\heater\parser\parse_elements.h" />
+    <ClInclude Include="..\heater\parser\parse_prefix.h" />
     <ClInclude Include="..\heater\parser\parse_ssi.h" />
     <ClInclude Include="..\heater\parser\pattern.h" />
     <ClInclude Include="..\heater\parser\text-data.h" />
     <ClInclude Include="..\heater\parser\text.h" />
     <ClInclude Include="..\heater\parser\xhtml_xml.h" />
+    <ClInclude Include="..\heater\rdf\rdf.h" />
     <ClInclude Include="..\heater\schema\schema_hierarchy.h" />
     <ClInclude Include="..\heater\schema\schema_name.h" />
     <ClInclude Include="..\heater\schema\schema_property.h" />
@@ -94,6 +97,7 @@
     <ClInclude Include="..\heater\stats\stats3.h" />
     <ClInclude Include="..\heater\stats\stats4.h" />
     <ClInclude Include="..\heater\stats\stats_impl.h" />
+    <ClInclude Include="..\heater\symbol\nstr.h" />
     <ClInclude Include="..\heater\symbol\symbol.h" />
     <ClInclude Include="..\heater\symbol\symbol_entry.h" />
     <ClInclude Include="..\heater\symbol\symbol_key.h" />
@@ -181,7 +185,11 @@
     <ClCompile Include="..\sauce\attribute\avm_data_a.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_b.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_c.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_cc.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_d.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_dc.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_dct_a.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_dct_b.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_e.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_f.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_g.cpp" />
@@ -195,6 +203,7 @@
     <ClCompile Include="..\sauce\attribute\avm_data_p.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_q.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_r.cpp" />
+    <ClCompile Include="..\sauce\attribute\avm_data_rdf.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_s.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_t.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_u.cpp" />
@@ -218,6 +227,7 @@
     <ClCompile Include="..\sauce\element\element_microformats.cpp" />
     <ClCompile Include="..\sauce\element\element_mno.cpp" />
     <ClCompile Include="..\sauce\element\element_pqr.cpp" />
+    <ClCompile Include="..\sauce\element\element_rdfa.cpp" />
     <ClCompile Include="..\sauce\element\element_s.cpp" />
     <ClCompile Include="..\sauce\element\element_tuvwxyz.cpp" />
     <ClCompile Include="..\sauce\element\parentage.cpp" />
@@ -268,6 +278,7 @@
     <ClCompile Include="..\sauce\parser\text-data.cpp" />
     <ClCompile Include="..\sauce\parser\text.cpp" />
     <ClCompile Include="..\sauce\parser\xhtml_xml.cpp" />
+    <ClCompile Include="..\sauce\rdf\rdf.cpp" />
     <ClCompile Include="..\sauce\schema\schema_hierarchy.cpp" />
     <ClCompile Include="..\sauce\schema\schema_name.cpp" />
     <ClCompile Include="..\sauce\schema\schema_property.cpp" />
@@ -276,6 +287,7 @@
     <ClCompile Include="..\sauce\schema\schema_version.cpp" />
     <ClCompile Include="..\sauce\stats\stats.cpp" />
     <ClCompile Include="..\sauce\stats\stats_impl.cpp" />
+    <ClCompile Include="..\sauce\symbol\nstr.cpp" />
     <ClCompile Include="..\sauce\symbol\symbol.cpp" />
     <ClCompile Include="..\sauce\type\type.cpp" />
     <ClCompile Include="..\sauce\type\type_aria.cpp" />
@@ -295,6 +307,7 @@
     <ClCompile Include="..\sauce\type\type_mime.cpp" />
     <ClCompile Include="..\sauce\type\type_numeric.cpp" />
     <ClCompile Include="..\sauce\type\type_paint.cpp" />
+    <ClCompile Include="..\sauce\type\type_rdf.cpp" />
     <ClCompile Include="..\sauce\type\type_reals.cpp" />
     <ClCompile Include="..\sauce\type\type_rel.cpp" />
     <ClCompile Include="..\sauce\type\type_sgml.cpp" />

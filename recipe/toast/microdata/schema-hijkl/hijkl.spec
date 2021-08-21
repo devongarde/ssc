@@ -122,7 +122,7 @@ PASS ../toast/microdata/schema-hijkl/jobposting.html
 34 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/legislation.html
-18 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+18 invalid_attribute_version wrong_version svg_rdf
 19 invalid_attribute_version wrong_version svg_rdf
 20 inserted_missing_closure
 21 inserted_missing_parent

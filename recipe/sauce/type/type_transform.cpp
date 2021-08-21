@@ -49,7 +49,6 @@ struct fnarg_t {
 
 fnarg_t fnarg [] =
 {   {   tr_matrix, t_real, t_real, t_real, t_real, t_real, t_real },
-//    {   tr_ref, t_svg_svg, t_real, t_real },
     {   tr_ref, t_svg_host, t_real, t_real },
     {   tr_translate, t_measure, t_measure },
     {   tr_translatex, t_measure },
@@ -137,8 +136,6 @@ bool parse_transform (nitpick& nits, const html_version& v, const ::std::string&
                         name.clear ();
                         state = es_out;
                         break;
-//                    case es_dull :
-//                        break;
                     case es_ket :
                         state = es_out;
                         break;

@@ -26,6 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void schema_name_init (nitpick& nits);
 ::std::string schema_property_name (const e_schema_property p);
 e_schema_property get_schema_property (const ::std::string& n);
-vsp_t get_schema_properties (const ::std::string& n, const e_microdata_root mdr = mdr_none);
-e_microdata_root get_property_root (const ::std::string& s);
-e_microdata_root get_property_root (const e_schema_property sp);
+vsp_t get_schema_properties (const ::std::string& n, const e_schema s = s_none);
+e_schema get_property_root (const ::std::string& s);
+e_schema get_property_root (const e_schema_property sp);

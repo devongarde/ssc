@@ -80,13 +80,9 @@ struct index_t
         swap (i); }
     bool needs_update (const ::std::time_t& st) const
     {   for (auto x : dx_)
-            if (last_write (x) > st)
-            {   // context.out () << "dx " << x << ": " << last_write (x) << " > " << st << "\n";
-                return true; }
+            if (last_write (x) > st) return true;
         for (auto x : lx_)
-            if (last_write (x) > st)
-            {   // context.out () << "lx " << x << ": " << last_write (x) << " > " << st << "\n";
-                return true; }
+            if (last_write (x) > st) return true;
         return false; } };
 
 typedef ::std::vector < index_t > vx_t;
@@ -493,7 +489,7 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
 #ifndef ORDERED
                     site_x.reserve (count);
                     disk_x.reserve (count);
-#endif // ORDERED 
+#endif // ORDERED
                                             }
                 status = fl_site; break;
             case fl_site :
@@ -548,7 +544,8 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
     return true; }
 
 bool fileindex_load (nitpick& nits)
-{   bool ok = false;
+{   if (! context.shadow_enable ()) return true;
+    bool ok = false;
     if (fileindex_load_internal (nits, ok))
     {   if (context.tell (e_splurge)) context.out () << fileindex_report ();
         return true; }
@@ -560,7 +557,8 @@ bool fileindex_load (nitpick& nits)
     return false; }
 
 void fileindex_save_and_close (nitpick& nits)
-{   site_x.clear ();
+{   if (! context.shadow_enable ()) return;
+    site_x.clear ();
     disk_x.clear ();
     mcrc.clear ();
     if (context.tell (e_all)) context.out () << fileindex_report ();

@@ -126,8 +126,7 @@ bool hook::process (nitpick& nits, const html_version& v)
         if (p.invalid ())
             nits.pick (nit_dubious_html, es_error, ec_webmention, source_.original (), " appears to be dubious HTML");
         else
-        {   // directory d (source_.page (), true);
-            p.examine ();
+        {   p.examine ();
             ::std::string info = p.find_mention_info (target_, false, false);
             if (info.empty ())
                 nits.pick (nit_cannot_find_mention, es_warning, ec_webmention, "cannot find mention of ", target_.absolute (), " in ", source_.original ());

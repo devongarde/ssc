@@ -124,7 +124,8 @@ schema_version context_t::mf_ver () const
     return res; }
 
 context_t& context_t::shadow_ignore (const vstr_t& s)
-{   shadow_ignore_.clear ();
+{   shadow_enable (true);
+    shadow_ignore_.clear ();
     for (auto ss : s)
         if (! ss.empty ())
             if (ss.at (0) == '.') shadow_ignore_.emplace_back (ss);
@@ -208,3 +209,8 @@ bool context_t::severity_exceeded () const
 {   for (int x = 1; x <= static_cast < int > (report_error_); ++x)
         if (data_.count (static_cast < e_severity> (x))) return true;
     return false; }
+
+bool context_t::rdfa () const
+{   if (rdfa_) return true;
+    if (version_.is_svg_12 ()) return true;
+    return (version_ == xhtml_2); }

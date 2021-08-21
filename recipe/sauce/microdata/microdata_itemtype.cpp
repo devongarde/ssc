@@ -42,7 +42,7 @@ e_schema_type type_itself (const itemtype_index ii)
 
 itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name)
 {   nitpick nuts;
-    type_master < t_schema > sc;
+    type_master < t_schema_type > sc;
     sc.set_value (nits, v, name);
     if (sc.good ())
     {   sch st (nits, v, sc.vocab (), sc.root ());

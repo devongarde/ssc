@@ -1088,8 +1088,9 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_
             if ((a.flags () & AF_SVG2_PROPERTY) == AF_SVG2_PROPERTY)
                 nits.pick (nit_better_as_property, ed_svg_2_0, "6.6. Presentation attributes", es_comment, ec_attribute, "\"use styling properties, either through inline 'style' properties or style sheets, rather than presentation attributes\""); }
         if (a.first ().is_plain_html ())
-            if (((v == xhtml_1_0) || (v == xhtml_1_1)) && (key.find_first_of (UPPERCASE) != ::std::string::npos))
-                nits.pick (nit_xhtml_attribute_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "attribute names must be lower cased in ", v.report ());
+            if (key.find (':') == ::std::string::npos)
+                if (((v == xhtml_1_0) || (v == xhtml_1_1)) && (key.find_first_of (UPPERCASE) != ::std::string::npos))
+                    nits.pick (nit_xhtml_attribute_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "attribute names must be lower cased in ", v.report ());
         if (! does_apply < html_version > (v, a.first (), a.last ()))
             nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, quote (key), " is not valid in ", v.report ());
         else return a.get (); }

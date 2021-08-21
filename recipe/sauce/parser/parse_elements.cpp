@@ -242,6 +242,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
     element_node* document = & ven_.back ();
     VERIFY_NOT_NULL (document, __FILE__, __LINE__);
     document -> version_ = v;
+    if (context.rdfa ()) document -> prepare_prefixes ();
     element_node* parent = document;
     element_node* previous = nullptr;
     for (auto e : elements.ve_)
@@ -278,9 +279,12 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
                                 else id.reset (elem_faux_text);
                                 break; }
         if (id.unknown ())
+        {   ::std::string s (e.start_, e.eofe_);
             if (static_cast < size_t > (id.ns ()) < first_runtime_namespace)
-                e.nits_.pick (nit_unknown_element, es_warning, ec_element, PROG " does not know the element <", ::std::string (e.start_, e.eofe_), ">, so cannot verify it");
-            else e.nits_.pick (nit_unknown_element, es_comment, ec_element, PROG " does not know <", ::std::string (e.start_, e.eofe_), ">, so cannot verify it");
+                e.nits_.pick (nit_unknown_element, es_warning, ec_element, PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
+            else e.nits_.pick (nit_unknown_element, es_comment, ec_element, PROG " does not know <", ::std::string (s), ">, so cannot verify it");
+            if (v.xhtml () && (s == "base"))
+                e.nits_.pick (nit_unknown_element, es_comment, ec_element, "in XHTML, use <xml:base>, not <base>"); }
 
         insert (ver, previous, parent, e, id); }
     report_missing_closures (v, parent, document);

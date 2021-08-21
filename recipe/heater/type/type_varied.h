@@ -799,6 +799,13 @@ template < > struct type_master < t_type > : varied < t_type >
                 case elem_transition :
                     validate_type < type_master < t_transition_type > > (nits, v); break; } } };
 
+template < > struct type_master < t_typeof > : varied < t_typeof >
+{   using varied < t_typeof > :: varied;
+    void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
+    {   if (good () || empty ())
+            if (v.svg ()) validate_type < type_master < t_curies > > (nits, v);
+            else validate_type < type_master < t_rdfa_typeof > > (nits, v); } };
+
 template < > struct type_master < t_valign > : varied < t_valign >
 {   using varied < t_valign > :: varied;
     void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )

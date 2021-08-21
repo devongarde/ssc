@@ -55,6 +55,9 @@ template < > struct type_master < t_button > : three_value < t_button, e_button,
 template < > struct type_master < t_command > : three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio >
 { using three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > :: three_value; };
 
+template < > struct type_master < t_cc_permits > : three_value < t_cc_permits, e_cc_permits, sz_cc_derivativeworks, sz_cc_distribution, sz_cc_reproduction >
+{ using three_value < t_cc_permits, e_cc_permits, sz_cc_derivativeworks, sz_cc_distribution, sz_cc_reproduction > :: three_value; };
+
 template < > struct type_master < t_controlslist > : three_value < t_controlslist, e_controlslist, sz_nodownload, sz_nofullscreen, sz_noremoteplayback >
 { using three_value < t_controlslist, e_controlslist, sz_nodownload, sz_nofullscreen, sz_noremoteplayback > :: three_value; };
 

@@ -28,7 +28,124 @@ struct microdata_hierachy
     e_schema_type specific_; };
 
 microdata_hierachy schema_hierarchy [] =
-{   {   { 3, 1 }, { 0, 0 }, sch_accommodation, sch_apartment },
+{   // common tag
+    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_author },
+    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_auto },
+    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_reader },
+
+    // foaf
+    { { s_foaf, 0, 99 }, { 0, 0 }, foaf_agent, foaf_group },
+    { { s_foaf, 0, 99 }, { 0, 0 }, foaf_agent, foaf_person },
+    { { s_foaf, 0, 99 }, { 0, 0 }, foaf_agent, foaf_organisation },
+
+    { { s_foaf, 0, 99 }, { 0, 0 }, foaf_document, foaf_image },
+    { { s_foaf, 0, 99 }, { 0, 0 }, foaf_document, foaf_personalprofiledocument },
+
+//    { { s_foaf, 0, 1 }, { 0, 0 }, owl_thing, foaf_onlineaccount },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_onlineaccount, foaf_onlinechataccount,  },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_onlineaccount, foaf_onlineecommerceaccount },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_onlineaccount, foaf_onlinegamingaccount },
+
+    // good relations
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessentitytype, gr_business },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessentitytype, gr_enduser },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessentitytype, gr_publicinstitution },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessentitytype, gr_reseller },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessfunction, gr_constructioninstallation },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessfunction, gr_dispose },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessfunction, gr_leaseout },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessfunction, gr_maintain },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessfunction, gr_provideservice },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessfunction, gr_repair },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessfunction, gr_sell },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessfunction, gr_buy },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_businessfunction, gr_licence },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_dayofweek, gr_monday },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_dayofweek, gr_tuesday },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_dayofweek, gr_wednesday },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_dayofweek, gr_thursday },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_dayofweek, gr_friday },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_dayofweek, gr_saturday },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_dayofweek, gr_sunday },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_dayofweek, gr_publicholidays },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_deliverymethod, gr_deliverymodeparcelservice },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_deliverymethod, gr_deliverymodedirectdownload },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_deliverymethod, gr_deliverymodefreight },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_deliverymethod, gr_deliverymodemail },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_deliverymethod, gr_deliverymodeownfleet },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_deliverymethod, gr_deliverymodepickup },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_deliverymodeparcelservice, gr_dhl },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_deliverymodeparcelservice, gr_federalexpress },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_deliverymodeparcelservice, gr_ups },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_bybanktransferinadvance },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_byinvoice },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_cash },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_checkinadvance },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_cod },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_directdebit },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_googlecheckout },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_paypal },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_payswarm },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethod, gr_paymentmethodcreditcard },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethodcreditcard, gr_americanexpress },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethodcreditcard, gr_dinersclub },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethodcreditcard, gr_discover },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethodcreditcard, gr_jcb },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethodcreditcard, gr_mastercard },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_paymentmethodcreditcard, gr_visa },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_pricespecification, gr_deliverychargespecification },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_pricespecification, gr_paymentchargespecification },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_pricespecification, gr_unitpricespecification },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_productorservice, gr_individual },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_productorservice, gr_productorservicemodel },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_productorservice, gr_someitems },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_productorservice, gr_productorservicemodel },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_quantitativevalue, gr_quantitativevaluefloat },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_quantitativevalue, gr_quantitativevalueinteger },
+
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_warrantyscope, gr_labour_bringin },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_warrantyscope, gr_partsandlabour_bringin },
+    { { s_gr, 1, 0 }, { 0, 0 }, gr_warrantyscope, gr_partsandlabour_pickup },
+
+    // poetry
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_stanza },
+
+    // RDF
+    { { s_rdf, 1, 0 }, { 0, 0 }, rdf_property, rdfs_containermembershipproperty },
+
+    // RDFs
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_class, rdfs_datatype },
+
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_container, rdf_alt },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_container, rdf_bag },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_container, rdf_seq },
+
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_datatype, rdf_html },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_datatype, rdf_langstring },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_datatype, rdf_plainliteral },
+
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_literal, rdf_compoundliteral },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_literal, rdf_json },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_literal, rdf_xmlliteral },
+
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_class },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_container },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_list },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_literal },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_property },
+    { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_statement },
+
+    // schema.org
+    {   { 3, 1 }, { 0, 0 }, sch_accommodation, sch_apartment },
     {   { 3, 1 }, { 0, 0 }, sch_accommodation, sch_campingpitch },
     {   { 3, 1 }, { 0, 0 }, sch_accommodation, sch_house },
     {   { 3, 1 }, { 0, 0 }, sch_accommodation, sch_room },
@@ -93,6 +210,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 3, 5 }, { 0, 0 }, sch_audience, sch_medicalaudience },
     {   { 2, 0 }, { 0, 0 }, sch_audience, sch_peopleaudience },
     {   { 3, 5 }, { 0, 0 }, sch_audioobject, sch_audiobook },
+    {   { 13, 0 }, { 0, 0 }, sch_audioobject, sch_audioobjectsnapshot },
     {   { 2, 0 }, { 0, 0 }, sch_automotivebusiness, sch_autobodyshop },
     {   { 2, 0 }, { 0, 0 }, sch_automotivebusiness, sch_autodealer },
     {   { 2, 0 }, { 0, 0 }, sch_automotivebusiness, sch_autopartsstore },
@@ -103,6 +221,10 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_automotivebusiness, sch_motorcycledealer },
     {   { 2, 0 }, { 0, 0 }, sch_automotivebusiness, sch_motorcyclerepair },
     {   { 3, 0 }, { 0, 0 }, sch_bankaccount, sch_depositaccount },
+    {   { 13, 0 }, { 0, 0 }, sch_biochementity, sch_chemicalsubstance },
+    {   { 13, 0 }, { 0, 0 }, sch_biochementity, sch_gene },
+    {   { 13, 0 }, { 0, 0 }, sch_biochementity, sch_molecularentity },
+    {   { 13, 0 }, { 0, 0 }, sch_biochementity, sch_protein },
     {   { 2, 1 }, { 0, 0 }, sch_blogposting, sch_liveblogposting },
     {   { 3, 5 }, { 0, 0 }, sch_boardingpolicytype, sch_groupboardingpolicy },
     {   { 3, 5 }, { 0, 0 }, sch_boardingpolicytype, sch_zoneboardingpolicy },
@@ -246,6 +368,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_episode },
     {   { 2, 0 }, { 2, 1 }, sch_creativework, sch_exerciseplan },
     {   { 3, 5 }, { 0, 0 }, sch_creativework, sch_exerciseplan },
+    {   { 13, 0 }, { 0, 0 }, sch_creativework, poetry_form },
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_game },
     {   { 6, 0 }, { 0, 0 }, sch_creativework, sch_guide },
     {   { 3, 3 }, { 0, 0 }, sch_creativework, sch_howto },
@@ -261,6 +384,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_map },
     {   { 11, 0 }, { 0, 0 }, sch_creativework, sch_mathsolver },
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_mediaobject },
+    {   { 13, 0 }, { 0, 0 }, sch_creativework, sch_mediareviewitem },
     {   { 3, 2 }, { 0, 0 }, sch_creativework, sch_menu },
     {   { 3, 2 }, { 0, 0 }, sch_creativework, sch_menusection },
     {   { 3, 0 }, { 0, 0 }, sch_creativework, sch_message },
@@ -271,6 +395,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_painting },
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_photograph },
     {   { 3, 5 }, { 0, 0 }, sch_creativework, sch_play },
+    {   { 13, 0 }, { 0, 0 }, sch_creativework, poetry_poem },
     {   { 3, 5 }, { 0, 0 }, sch_creativework, sch_poster },
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_publicationissue },
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_publicationvolume },
@@ -286,6 +411,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_softwareapplication },
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_softwaresourcecode },
     {   { 7, 0 }, { 0, 0 }, sch_creativework, sch_specialannouncement },
+    {   { 13, 0 }, { 0, 0 }, sch_creativework, sch_statement },
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_tvseries },
     {   { 3, 5 }, { 0, 0 }, sch_creativework, sch_thesis },
     {   { 2, 0 }, { 0, 0 }, sch_creativework, sch_visualartwork },
@@ -584,6 +710,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 3, 1 }, { 0, 0 }, sch_house, sch_singlefamilyresidence },
     {   { 2, 0 }, { 0, 0 }, sch_localbusiness, sch_postoffice },
     {   { 2, 2 }, { 0, 0 }, sch_imageobject, sch_barcode },
+    {   { 13, 0 }, { 0, 0 }, sch_imageobject, sch_imageobjectsnapshot },
     {   { 3, 6 }, { 5, 0 }, sch_infectiousagentclass, sch_bacteria },
     {   { 3, 6 }, { 5, 0 }, sch_infectiousagentclass, sch_fungus },
     {   { 3, 6 }, { 5, 0 }, sch_infectiousagentclass, sch_multicellularparasite },
@@ -636,6 +763,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 3, 5 }, { 0, 0 }, sch_intangible, sch_mediasubscription },
     {   { 3, 2 }, { 0, 0 }, sch_intangible, sch_menuitem },
     {   { 6, 0 }, { 0, 0 }, sch_intangible, sch_merchantreturnpolicy },
+    {   { 13, 0 }, { 0, 0 }, sch_intangible, sch_merchantreturnpolicyseasonaloverride },
     {   { 3, 9 }, { 0, 0 }, sch_intangible, sch_observation },
     {   { 3, 5 }, { 0, 0 }, sch_intangible, sch_occupation },
     {   { 2, 0 }, { 0, 0 }, sch_intangible, sch_offer },
@@ -643,6 +771,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_intangible, sch_order },
     {   { 2, 0 }, { 0, 0 }, sch_intangible, sch_orderitem },
     {   { 2, 0 }, { 0, 0 }, sch_intangible, sch_parceldelivery },
+    {   { 13, 0 }, { 0, 0 }, sch_intangible, poetry_period },
     {   { 2, 0 }, { 0, 0 }, sch_intangible, sch_permit },
     {   { 3, 8 }, { 5, 0 }, sch_intangible, sch_productreturnpolicy },
     {   { 2, 0 }, { 0, 0 }, sch_intangible, sch_programmemembership },
@@ -698,6 +827,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_landform, sch_continent },
     {   { 2, 0 }, { 0, 0 }, sch_landform, sch_mountain },
     {   { 2, 0 }, { 0, 0 }, sch_landform, sch_volcano },
+    {   { 13, 0 }, { 0, 0 }, sch_language, poetry_dialect },
     {   { 9, 0 }, { 0, 0 }, sch_learningresource, sch_course },
     {   { 9, 0 }, { 0, 0 }, sch_learningresource, sch_quiz },
     {   { 3, 5 }, { 0, 0 }, sch_legalforcestatus, sch_inforce },
@@ -1236,6 +1366,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_product, sch_productmodel },
     {   { 2, 0 }, { 0, 0 }, sch_product, sch_someproducts },
     {   { 2, 0 }, { 0, 0 }, sch_product, sch_vehicle },
+    {   { 2, 0 }, { 0, 0 }, sch_product, gr_productorservicemodel },
     {   { 3, 8 }, { 0, 0 }, sch_productreturnenumeration, sch_productreturnfinitereturnwindow },
     {   { 3, 8 }, { 0, 0 }, sch_productreturnenumeration, sch_productreturnnotpermitted },
     {   { 3, 8 }, { 0, 0 }, sch_productreturnenumeration, sch_productreturnunlimitedwindow },
@@ -1312,9 +1443,17 @@ microdata_hierachy schema_hierarchy [] =
     {   { 3, 5 }, { 0, 0 }, sch_restricteddiet, sch_lowsaltdiet },
     {   { 3, 5 }, { 0, 0 }, sch_restricteddiet, sch_vegandiet },
     {   { 3, 5 }, { 0, 0 }, sch_restricteddiet, sch_vegetariandiet },
+    {   { 13, 0 }, { 0, 0 }, sch_returnfeesenumeration, sch_freereturn },
     {   { 3, 8 }, { 0, 0 }, sch_returnfeesenumeration, sch_originalshippingfees },
     {   { 3, 8 }, { 0, 0 }, sch_returnfeesenumeration, sch_restockingfees },
+    {   { 13, 0 }, { 0, 0 }, sch_returnfeesenumeration, sch_returnfeescustomerresponsibility },
     {   { 3, 8 }, { 0, 0 }, sch_returnfeesenumeration, sch_returnshippingfees },
+    {   { 13, 0 }, { 0, 0 }, sch_returnlabelsourceenumeration, sch_returnlabelcustomerresponsibility },
+    {   { 13, 0 }, { 0, 0 }, sch_returnlabelsourceenumeration, sch_returnlabeldownloadandprint },
+    {   { 13, 0 }, { 0, 0 }, sch_returnlabelsourceenumeration, sch_returnlabelinbox },
+    {   { 13, 0 }, { 0, 0 }, sch_returnmethodenumeration, sch_returnatkiosk },
+    {   { 13, 0 }, { 0, 0 }, sch_returnmethodenumeration, sch_returnbymail },
+    {   { 13, 0 }, { 0, 0 }, sch_returnmethodenumeration, sch_returninstore },
     {   { 3, 2 }, { 0, 0 }, sch_review, sch_claimreview },
     {   { 3, 5 }, { 0, 0 }, sch_review, sch_criticreview },
     {   { 3, 5 }, { 0, 0 }, sch_review, sch_employerreview },
@@ -1438,6 +1577,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 3, 5 }, { 0, 0 }, sch_therapeuticprocedure, sch_medicaltherapy },
     {   { 3, 5 }, { 0, 0 }, sch_therapeuticprocedure, sch_psychologicaltreatment },
     {   { 2, 0 }, { 0, 0 }, sch_thing, sch_action },
+    {   { 13, 0 }, { 0, 0 }, sch_thing, sch_biochementity },
     {   { 2, 0 }, { 2, 0 }, sch_thing, sch_broadcastservice },
     {   { 2, 0 }, { 0, 0 }, sch_thing, sch_creativework },
     {   { 2, 0 }, { 0, 0 }, sch_thing, sch_event },
@@ -1449,6 +1589,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_thing, sch_person },
     {   { 2, 0 }, { 0, 0 }, sch_thing, sch_place },
     {   { 2, 0 }, { 0, 0 }, sch_thing, sch_product },
+    {   { 13, 0 }, { 0, 0 }, sch_thing, sch_taxon },
     {   { 2, 0 }, { 0, 0 }, sch_tradeaction, sch_buyaction },
     {   { 2, 0 }, { 0, 0 }, sch_tradeaction, sch_donateaction },
     {   { 2, 0 }, { 0, 0 }, sch_tradeaction, sch_orderaction },
@@ -1532,6 +1673,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_vessel, sch_artery },
     {   { 2, 0 }, { 0, 0 }, sch_vessel, sch_lymphaticvessel },
     {   { 2, 0 }, { 0, 0 }, sch_vessel, sch_vein },
+    {   { 13, 0 }, { 0, 0 }, sch_videoobject, sch_videoobjectsnapshot },
     {   { 3, 5 }, { 0, 0 }, sch_visualartwork, sch_coverart },
     {   { 12, 0 }, { 0, 0 }, sch_wearablemeasurementtypeenumeration, sch_wearablemeasurementback },
     {   { 12, 0 }, { 0, 0 }, sch_wearablemeasurementtypeenumeration, sch_wearablemeasurementchestorbust },
@@ -1595,6 +1737,105 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_webpageelement, sch_wpfooter },
     {   { 2, 0 }, { 0, 0 }, sch_webpageelement, sch_wpheader },
     {   { 2, 0 }, { 0, 0 }, sch_webpageelement, sch_wpsidebar },
+
+/*
+    xsd_anyatomictype, xsd_anysimpletype, xsd_anytype, xsd_anyuri,
+    xsd_base64binary, xsd_boolean, xsd_byte,
+    xsd_date, xsd_datetime, xsd_datetimestamp, xsd_decimal, xsd_double, xsd_duration,
+    xsd_entities, xsd_entity,
+    xsd_float,
+    xsd_gday, xsd_gmonth, xsd_gmonthday, xsd_gyear, xsd_gyearmonth,
+    xsd_hexbinary,
+    xsd_id, xsd_idref, xsd_idrefs, xsd_integer,
+    xsd_language, xsd_long,
+    xsd_name, xsd_ncname, xsd_negativeinteger, xsd_nmtoken, xsd_nmtokens, xsd_nonnegativeinteger, xsd_nonpositiveinteger, xsd_normalisedstring, xsd_notation,
+    xsd_positiveinteger,
+    xsd_qname,
+    xsd_short, xsd_string,
+    xsd_time, xsd_token,
+    xsd_unsignedbyte, xsd_unsignedint, xsd_unsignedlong, xsd_unsignedshort,
+*/
+
+    // XML schema types
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_anytype, xsd_anysimpletype },
+
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_anyuri },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_date },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_base64binary },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_boolean },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_datetime },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_decimal },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_double },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_duration },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_float },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_hexbinary },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_notation },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_qname },
+    {   { s_xsd, 1, 1 }, { s_xsd, 1, 0 }, xsd_anyatomictype, xsd_string },
+
+    {   { s_xsd, 1, 1 }, { 0, 0 }, xsd_anysimpletype, xsd_anyatomictype },
+    {   { s_xsd, 1, 1 }, { 0, 0 }, xsd_anysimpletype, xsd_entities },
+    {   { s_xsd, 1, 1 }, { 0, 0 }, xsd_anysimpletype, xsd_idrefs },
+    {   { s_xsd, 1, 1 }, { 0, 0 }, xsd_anysimpletype, xsd_nmtokens },
+
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_anyuri },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_date },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_base64binary },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_boolean },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_datetime },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_decimal },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_double },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_duration },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_float },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_hexbinary },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_notation },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_qname },
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_anysimpletype, xsd_string },
+
+    {   { s_xsd, 1, 1 }, { 0, 0 }, xsd_datetime, xsd_datetimestamp },
+
+    {   { s_xsd, 1, 1 }, { 0, 0 }, xsd_duration, xsd_datetimeduration },
+    {   { s_xsd, 1, 1 }, { 0, 0 }, xsd_duration, xsd_yearmonthduration },
+
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_entity, xsd_entities },
+
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_idref, xsd_idrefs },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_long, xsd_short },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_integer, xsd_long },
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_integer, xsd_nonnegativeinteger },
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_integer, xsd_nonpositiveinteger },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_long, xsd_int },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_name, xsd_ncname },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_ncname, xsd_entity },
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_ncname, xsd_id },
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_ncname, xsd_idref },
+
+    {   { s_xsd, 1, 0 }, { s_xsd, 1, 0 }, xsd_nmtoken, xsd_nmtokens },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_nonnegativeinteger, xsd_positiveinteger },
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_nonnegativeinteger, xsd_unsignedlong },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_nonpositiveinteger, xsd_negativeinteger },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_token, xsd_language },
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_token, xsd_name },
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_token, xsd_nmtoken },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_normalisedstring, xsd_token },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_long, xsd_byte },
+
+    {   { s_xsd, 1, 1 }, { 0, 0 }, xsd_string, xsd_normalisedstring },
+
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_unsignedint, xsd_unsignedshort },
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_unsignedlong, xsd_unsignedint },
+    {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_unsignedshort, xsd_unsignedbyte },
+
     {   { 0, 0 }, { 0, 0 }, sty_illegal, sty_illegal } };
 
 typedef ssc_mm < e_schema_type, microdata_hierachy* > vmap_t;
@@ -1611,7 +1852,7 @@ void hierarchy_init (nitpick& nits)
                 if (vi -> second != nullptr)
                     if ((vi -> second -> specific_ == schema_hierarchy [x].specific_) && (vi -> second -> general_ != schema_hierarchy [x].general_))
                         if (overlap (schema_hierarchy [x].from_, schema_hierarchy [x].to_, vi -> second -> from_, vi -> second -> to_))
-                            nits.pick (nit_schema_hierarchy, es_catastrophic, ec_microdata, "multiple generalisations for ", sch::name (schema_hierarchy [x].specific_), " (", schema_hierarchy [x].specific_, ")");
+                            nits.pick (nit_schema_hierarchy, es_catastrophic, ec_schema, "multiple generalisations for ", sch::name (schema_hierarchy [x].specific_), " (", schema_hierarchy [x].specific_, ")");
         generalisations.emplace (vss_t::value_type (schema_hierarchy [x].specific_, schema_hierarchy [x].general_)); } }
 
 void int_generalise  (const e_schema_type s, ssch_t& ssch)

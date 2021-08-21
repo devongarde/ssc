@@ -228,3 +228,31 @@ template < > struct type_master < t_unsigned_1_or_2 > : type_range < t_unsigned_
 template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one >
 { using type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > :: type_at_least_one; };
 
+template < e_type T, long FROM, long TO > struct type_integer_between : numeric_value < T, long >
+{   BOOST_STATIC_ASSERT (FROM < TO);
+    using numeric_value < T, long > :: numeric_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   numeric_value < T, long > :: set_value (nits, v, s);
+        if (numeric_value < T, long > :: good ())
+        {   const long n = numeric_value < T, long > :: get ();
+            if ((n >= FROM) && (n <= TO)) return;
+            nits.pick (nit_not_n, es_error, ec_type, quote (s), ": ", FROM, " <= value <= ", TO, " expected"); }
+        numeric_value < T, long > :: status (s_invalid); } };
+
+template < > struct type_master < t_byte > : type_integer_between < t_byte, -128, 127 >
+{ using type_integer_between < t_byte, -128, 127 > :: type_integer_between; };
+
+template < > struct type_master < t_not_neg > : type_integer_between < t_not_neg, 0, INT_MAX >
+{ using  type_integer_between < t_not_neg, 0, INT_MAX > :: type_integer_between; };
+
+template < > struct type_master < t_not_pos > : type_integer_between < t_not_pos, INT_MIN, 0 >
+{ using  type_integer_between < t_not_pos, INT_MIN, 0 > :: type_integer_between; };
+
+template < > struct type_master < t_short > : type_integer_between < t_short, -32768, 32767 >
+{ using type_integer_between < t_short, -32768, 32767 > :: type_integer_between; };
+
+template < > struct type_master < t_unsigned_byte > : type_integer_between < t_unsigned_byte, 0, 255 >
+{ using type_integer_between < t_unsigned_byte, 0, 255 > :: type_integer_between; };
+
+template < > struct type_master < t_unsigned_short > : type_integer_between < t_unsigned_short, 0, 65535 >
+{ using type_integer_between < t_unsigned_short, 0, 65535 > :: type_integer_between; };

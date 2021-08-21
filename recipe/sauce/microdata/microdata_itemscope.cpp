@@ -41,10 +41,13 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
     itemtype_index ii = find_itemtype_index (nuts, v, name);
     if (ii != invalid_itemtype)
     {   type_.push_back (ii);
-        type_master < t_schema > ts;
+        type_master < t_schema_type > ts;
         ts.set_value (nits, v, name);
-        if (type_master < t_microdata_root > :: starts_with (name) != mdr_none)
-        {   sch s (nits, v, type_master < t_microdata_root > :: after_start (name));
+        ::std::string::size_type ends_at = 0;
+        if (schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), name, &ends_at) == s_error)
+            wombats (nits, v, name);
+        else
+        {   sch s (nits, v, schema_names.after_start (SCHEMA_CURIE, name.substr (ends_at), v.xhtml ()));
             p.mark (s.get ());
             flags_t flags = sch :: flags (s.get ());
             if (has_itemid && ((flags & SF_NO_ITEMID) == SF_NO_ITEMID))
@@ -64,10 +67,10 @@ bool microdata_itemscope::note_itemid (nitpick& , const html_version& , const ::
 itemprop_indices microdata_itemscope::prepare_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value)
 {   itemprop_indices ii = find_itemprop_indices (nits, v, name, type ().empty ());
     if (ii.empty ())
-    {   e_microdata_root mr = mdr_none;
+    {   e_schema mr = s_none;
         ::std::string::size_type ends_at = 0;
-        mr = type_master < t_microdata_root > :: starts_with (value, &ends_at);
-        if (mr == mdr_none) return ii;
+        mr = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), value, &ends_at);
+        if (mr == s_error) return ii;
         ii = find_itemprop_indices (nits, v, name.substr (ends_at), type ().empty ()); }
     return ii; }
 
@@ -87,14 +90,16 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                     return true; }
                 knots.merge (nuts); nuts.reset (); }
     nits.merge (knots);
+    wombats (nits, v, name);
     return false; }
 
 bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, itemscope_ptr& scope, page& p)
 {   itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
     if (scope.get () != nullptr)
-    {   VERIFY_NOT_NULL (exporter (), __FILE__, __LINE__);
+    {   microdata_export* ex = exporter ();
+        VERIFY_NOT_NULL (ex, __FILE__, __LINE__);
         for (auto prop : ii)
-            scope -> set_exporter (exporter (), exporter () -> append_path (export_path_, prop, true)); }
+            scope -> set_exporter (ex, ex -> append_path (export_path_, prop, true)); }
     nitpick knots, nuts;
     for (auto parent : type ())
         for (auto prop : ii)
@@ -109,6 +114,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                             return true; }
                         knots.merge (nuts); nuts.reset (); } }
     nits.merge (knots);
+    wombats (nits, v, name);
     return false; }
 
 ::std::string microdata_itemscope::report (const ::std::size_t offset) const
@@ -119,7 +125,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
 #endif // BOOVAR
 #if BOOVAR == 1
 // I can't honest be arsed to work my way around ::boost::variants' restrictions, and in particular VS2015's (presuming) bizarre
-// whinging that code containing no consts has too many consts
+// whinging that code containing no consts has too many consts : so no reports for aging compilers.
             ;
 #else
             switch (i -> second.index ())
@@ -144,7 +150,7 @@ vit_t microdata_itemscope::sought_itemtypes (const html_version& v, const ::std:
     itemprop_index prop = find_itemprop_index (nits, v, name, type ().empty ());
     if (prop != illegal_itemprop)
         if (prop_category (prop) == itemprop_schema)
-            for (auto i : sought_schema_itemtypes (static_cast < e_schema_property > (ndx_item (prop))))
+            for (auto i : sought_schema_types (static_cast < e_schema_property > (ndx_item (prop))))
                 res.push_back (i);
     return res; }
 

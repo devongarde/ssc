@@ -33,7 +33,7 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
     {   if (vrai) nits.pick (nit_prefix_odd, ed_rdfa, "5. Attributes and Syntax", es_error, ec_rdfa, " a list of space separated PREFIX: CURIE definitions is expected; note the colon space separator");
         return s_invalid; }
     ::std::string name, old_curie, old_name;
-    ident_t id = pre_error, curie = pre_error;
+    ident_t id = s_error, curie = s_error;
     bool ok = true;
     for (auto s : vstr)
     {   PRESUME (! s.empty (), __FILE__, __LINE__);
@@ -69,41 +69,41 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
                     if (vrai) nits.pick (nit_namespace_confusion, es_warning, ec_namespace, "it is very confusing to use 'https' as a prefix");
                     break;
                 default :
-                    if (vrai) nits.pick (nit_rdf_confusion, es_info, ec_rdfa,   "it is confusing that ", quote (name), ", the name of a standard internet protocol (",
+                    if (vrai) nits.pick (nit_rdfa_confusion, es_info, ec_rdfa,   "it is confusing that ", quote (name), ", the name of a standard internet protocol (",
                                                                                 protocol_names.get (prot, PROTOCOL_DESCRIPTION), " protocol), is used as PREFIX");
                     break; }
             if (up != nullptr)
-            {   id = up -> find_shortform (v, prefix_names, name);
-                if ((id != pre_error) && (id != pre_custom)) old_curie = up -> longform (prefix_names, id); }
+            {   id = up -> find_shortform (v, schema_names, name);
+                if ((id != s_error) && (id != s_none)) old_curie = up -> longform (schema_names, id); }
             else
-            {   id = prefix_names.find (v, PREFIX_NAME, name, ! v.xhtml ());
-                if ((id != pre_error) && (id != pre_custom)) old_curie = prefix_names.get (static_cast < e_rdfa_context > (id), PREFIX_CURIE); }
-           if (id == pre_error) id = pre_custom; }
+            {   id = schema_names.find (v, SCHEMA_NAME, name, ! v.xhtml ());
+                if ((id != s_error) && (id != s_none)) old_curie = schema_names.get (static_cast < e_schema > (id), SCHEMA_CURIE); }
+           if (id == s_error) id = s_none; }
         else
         {   ::std::string l (::boost::to_lower_copy (s)), oc;
             if (up != nullptr)
-            {   curie = up -> find_longform (v, prefix_names, l);
-                if ((curie != pre_error) && (curie != pre_custom)) old_name = up -> shortform (prefix_names, curie); }
+            {   curie = up -> find_longform (v, schema_names, l);
+                if ((curie != s_error) && (curie != s_none)) old_name = up -> shortform (schema_names, curie); }
             else
-            {   curie = prefix_names.find (v, PREFIX_CURIE, l, true);
-                if (curie != pre_error) old_name = prefix_names.get (static_cast < e_rdfa_context > (curie), PREFIX_NAME); }
-            if (curie == pre_error) curie = pre_custom;
+            {   curie = schema_names.find (v, SCHEMA_CURIE, l, true);
+                if (curie != s_error) old_name = schema_names.get (static_cast < e_schema > (curie), SCHEMA_NAME); }
+            if (curie == s_error) curie = s_none;
             if (vrai)
                 if (id == curie)
-                {   if ((id != pre_error) && (id != pre_custom))
-                        if (id < pre_error)
+                {   if ((id != s_error) && (id != s_none))
+                        if (id < s_error)
                             nits.pick (nit_rdfa_redefine, es_info, ec_rdfa, "it is not necessary to redefine ", quote (name), " given it is defined by default");
                         else nits.pick (nit_rdfa_redefine, es_info, ec_rdfa, quote (name), " has already been defined"); }
                 else
-                {   if ((id < pre_error) && (id != pre_custom))
-                        if (vrai) nits.pick (nit_rdf_confusion, es_warning, ec_rdfa, "it is confusing to redefine the standard prefix ", quote (name));
-                    else if (id != pre_custom)
+                {   if ((id < s_error) && (id != s_none))
+                        if (vrai) nits.pick (nit_rdfa_confusion, es_warning, ec_rdfa, "it is confusing to redefine the standard prefix ", quote (name));
+                    else if (id != s_none)
                         if (vrai) nits.pick (nit_rdfa_redefine, es_warning, ec_rdfa, quote (name), " was previously defined as ", quote (old_curie));
-                    if ((curie < pre_error) && (curie != pre_custom))
-                        nits.pick (nit_rdf_confusion, ed_rdfa_c, "", es_info, ec_rdfa, quote (l), " is predefined by standard as ", quote (prefix_names.get (static_cast < e_rdfa_context > (curie), PREFIX_CURIE)));
-                    else if (curie != pre_custom)
+                    if ((curie < s_error) && (curie != s_none))
+                        nits.pick (nit_rdfa_confusion, ed_rdfa_c, "", es_info, ec_rdfa, quote (l), " is predefined by standard as ", quote (schema_names.get (static_cast < e_schema > (curie), SCHEMA_NAME)));
+                    else if (curie != s_none)
                         nits.pick (nit_rdfa_redefine, es_warning, ec_rdfa, quote (l), " is already defined with ", quote (old_name)); }
-            if ((id == pre_custom) || (id != curie))
+            if ((id == s_none) || (id != curie))
                 vpre.emplace_back (id, name, l);
             name.clear (); } }
     if (ok) return s_good;

@@ -36,6 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_DEP32        0x00100000
 #define SV_DEP33        0x00200000
 #define SV_DEP34        0x00400000
+#define SV_DEPRECATED   0x00800000
 
 #define SV_WILDCARD     0x80000000
 
@@ -43,21 +44,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_FLAG_MASK    0xFFFFFFFF
 #define SV_ROOT_SHIFT   32
 
-#define DEFAULT_SCHEMA_MAJOR 12
-#define DEFAULT_SCHEMA_MINOR 0
-#define DEFAULT_SCHEMA_VERSION "12"
+#define DEFAULT_SCHEMA_ORG_MAJOR 13
+#define DEFAULT_SCHEMA_ORG_MINOR 0
+#define DEFAULT_SCHEMA_ORG_VERSION "13"
 
-const unsigned char schema_major_max = DEFAULT_SCHEMA_MAJOR;
+const unsigned char schema_major_max = DEFAULT_SCHEMA_ORG_MAJOR;
 class html_version;
 
-bool is_valid_schema_version (const e_microdata_root root, const unsigned char mjr, const unsigned char mnr);
+bool is_valid_schema_version (const e_schema root, const unsigned char mjr, const unsigned char mnr);
 
 struct schema_version : public version
 {   schema_version () = default;
     schema_version (const unsigned char mjr, const unsigned char mnr, const flags_t sf = NOFLAGS)
-        :   version (mjr, mnr, (static_cast < flags_t > (mdr_schema) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
+        :   version (mjr, mnr, (static_cast < flags_t > (s_schema) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
     {   PRESUME (! invalid (), __FILE__, __LINE__); }
-    schema_version (const e_microdata_root root, const unsigned char mjr, const unsigned char mnr, const flags_t sf = NOFLAGS)
+    schema_version (const e_schema root, const unsigned char mjr, const unsigned char mnr, const flags_t sf = NOFLAGS)
         :   version (mjr, mnr, (static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
     {   PRESUME (! invalid (), __FILE__, __LINE__); }
     schema_version (const schema_version& ) = default;
@@ -77,6 +78,7 @@ struct schema_version : public version
     {   schema_version vv (v); swap (vv); }
     bool unknown () const { return (mjr () == 0) && (mnr () == 0); }
     bool known () const { return ! unknown (); }
+    bool deprecated () const { return ((flags () & SV_DEPRECATED) == SV_DEPRECATED); }
     bool is_not (const unsigned char mj, const unsigned char mn = 0xFF) const
     {   if (unknown ()) return false;
         if (mj != mjr ()) return true;
@@ -84,49 +86,95 @@ struct schema_version : public version
     bool is_not (const schema_version& v) const
     {   return is_not (v.mjr (), v.mnr ()); }
     bool invalid () const { return ! is_valid_schema_version (root (), mjr (), mnr ()); }
-    e_microdata_root root () const
-    {   return static_cast < e_microdata_root > (flags () >> SV_ROOT_SHIFT); }
+    e_schema root () const
+    {   return static_cast < e_schema > (flags () >> SV_ROOT_SHIFT); }
     ::std::string report () const; };
 
 typedef ::std::vector < schema_version > vsv_t;
 extern vsv_t vsv;
 
-const schema_version default_schema (mdr_none, 0, 0);
+const schema_version default_schema (s_none, 0, 0);
 
-const schema_version schema_0 (mdr_schema, 0, 0);
-const schema_version schema_2_0 (mdr_schema, 2, 0);
-const schema_version schema_2_1 (mdr_schema, 2, 1);
-const schema_version schema_2_2 (mdr_schema, 2, 2);
-const schema_version schema_3_0 (mdr_schema, 3, 0);
-const schema_version schema_3_1 (mdr_schema, 3, 1);
-const schema_version schema_3_2 (mdr_schema, 3, 2);
-const schema_version schema_3_3 (mdr_schema, 3, 3);
-const schema_version schema_3_4 (mdr_schema, 3, 4);
-const schema_version schema_3_5 (mdr_schema, 3, 5);
-const schema_version schema_3_6 (mdr_schema, 3, 6);
-const schema_version schema_3_7 (mdr_schema, 3, 7);
-const schema_version schema_3_8 (mdr_schema, 3, 8);
-const schema_version schema_3_9 (mdr_schema, 3, 9);
-const schema_version schema_4 (mdr_schema, 4, 0);
-const schema_version schema_5 (mdr_schema, 5, 0);
-const schema_version schema_6 (mdr_schema, 6, 0);
-const schema_version schema_7_00 (mdr_schema, 7, 0);
-const schema_version schema_7_01 (mdr_schema, 7, 1);
-const schema_version schema_7_02 (mdr_schema, 7, 2);
-const schema_version schema_7_03 (mdr_schema, 7, 3);
-const schema_version schema_7_04 (mdr_schema, 7, 4);
-const schema_version schema_8 (mdr_schema, 8, 0);
-const schema_version schema_9 (mdr_schema, 9, 0);
-const schema_version schema_10 (mdr_schema, 10, 0);
-const schema_version schema_11 (mdr_schema, 11, 0);
-const schema_version schema_12 (mdr_schema, 12, 0);
-const schema_version schema_default (mdr_schema, DEFAULT_SCHEMA_MAJOR, DEFAULT_SCHEMA_MINOR);
+const schema_version article_schema (s_article, 1, 0);
 
-const schema_version whatwg_schema (mdr_whatwg, 1, 0);
+const schema_version book_schema (s_book, 1, 0);
 
-const schema_version mf_1 (mdr_microformats, 1, 0);
-const schema_version mf_2 (mdr_microformats, 2, 0);
-const schema_version mf_all (mdr_microformats, 2, 0, SV_WILDCARD);
+const schema_version creative_commons (s_cc, 1, 0);
+
+const schema_version common_tag (s_ctag, 1, 0);
+
+const schema_version dc_1_0 (s_dc, 1, 0);
+const schema_version dc_1_1 (s_dc, 1, 1);
+const schema_version dcam (s_dcmi, 1, 0);
+const schema_version dcmi (s_dcmi, 1, 0);
+const schema_version dublin_core_terms (s_dct, 1, 0);
+
+const schema_version foaf_schema (s_foaf, 0, 99);
+
+const schema_version ical_schema (s_ical, 1, 0);
+const schema_version icaltzd_schema (s_icaltzd, 1, 0);
+
+const schema_version mf_1 (s_microformats, 1, 0);
+const schema_version mf_2 (s_microformats, 2, 0);
+const schema_version mf_all (s_microformats, 2, 0, SV_WILDCARD);
+
+const schema_version music_schema (s_music, 1, 0);
+
+const schema_version open_graph (s_og, 1, 0);
+
+const schema_version poetry_schema (s_poetry, 1, 0);
+
+const schema_version profile_schema (s_profile, 1, 0);
+
+const schema_version rdf_schema (s_rdf, 1, 0);
+
+const schema_version rdfa_1_0 (s_rdfa, 1, 0);
+const schema_version rdfa_1_1_1 (s_rdfa, 1, 1);
+const schema_version rdfa_1_1_2 (s_rdfa, 1, 2);
+const schema_version rdfa_1_1_3 (s_rdfa, 1, 3);
+
+const schema_version rdfs_schema (s_rdfs, 1, 0);
+
+const schema_version schema_0 (s_schema, 0, 0);
+const schema_version schema_2_0 (s_schema, 2, 0);
+const schema_version schema_2_1 (s_schema, 2, 1);
+const schema_version schema_2_2 (s_schema, 2, 2);
+const schema_version schema_3_0 (s_schema, 3, 0);
+const schema_version schema_3_1 (s_schema, 3, 1);
+const schema_version schema_3_2 (s_schema, 3, 2);
+const schema_version schema_3_3 (s_schema, 3, 3);
+const schema_version schema_3_4 (s_schema, 3, 4);
+const schema_version schema_3_5 (s_schema, 3, 5);
+const schema_version schema_3_6 (s_schema, 3, 6);
+const schema_version schema_3_7 (s_schema, 3, 7);
+const schema_version schema_3_8 (s_schema, 3, 8);
+const schema_version schema_3_9 (s_schema, 3, 9);
+const schema_version schema_4 (s_schema, 4, 0);
+const schema_version schema_5 (s_schema, 5, 0);
+const schema_version schema_6 (s_schema, 6, 0);
+const schema_version schema_7_00 (s_schema, 7, 0);
+const schema_version schema_7_01 (s_schema, 7, 1);
+const schema_version schema_7_02 (s_schema, 7, 2);
+const schema_version schema_7_03 (s_schema, 7, 3);
+const schema_version schema_7_04 (s_schema, 7, 4);
+const schema_version schema_8 (s_schema, 8, 0);
+const schema_version schema_9 (s_schema, 9, 0);
+const schema_version schema_10 (s_schema, 10, 0);
+const schema_version schema_11 (s_schema, 11, 0);
+const schema_version schema_12 (s_schema, 12, 0);
+const schema_version schema_13 (s_schema, 13, 0);
+const schema_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
+
+const schema_version video_schema (s_video, 1, 0);
+
+const schema_version wdrs_schema (s_wdrs, 1, 0);
+
+const schema_version website_schema (s_website, 1, 0);
+
+const schema_version whatwg_schema (s_whatwg, 1, 0);
+
+const schema_version xsd_1_0 (s_xsd, 1, 0);
+const schema_version xsd_1_1 (s_xsd, 1, 1);
 
 bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, const schema_version& rhs_from, const schema_version& rhs_to);
 bool does_schema_apply (const schema_version& v, const schema_version& from, const schema_version& to);

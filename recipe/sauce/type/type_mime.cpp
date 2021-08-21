@@ -2241,7 +2241,6 @@ struct symbol_entry < html_version, e_format > format_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "jar", mime_application_java_archive },
     { { HTML_UNDEF }, { HTML_UNDEF }, "json", mime_application_json, ns_default, MIME_JSON },
     { { HTML_UNDEF }, { HTML_UNDEF }, "jsonld", mime_application_ld_json, ns_default, MIME_JSON },
-//    { { HTML_UNDEF }, { HTML_UNDEF }, "mid", mime_audio_midi },
     { { HTML_UNDEF }, { HTML_UNDEF }, "midi", mime_audio_midi },
     { { HTML_UNDEF }, { HTML_UNDEF }, "mjs", mime_text_javascript },
     { { HTML_UNDEF }, { HTML_UNDEF }, "mpkg", mime_application_vnd_apple_installer_xml },

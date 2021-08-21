@@ -22,6 +22,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 #include "parser/pattern.h"
 
+template < > struct type_master < t_b64 > : public tidy_string < t_b64 >
+{   using tidy_string < t_b64 > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_b64 > :: set_value (nits, v, s);
+        if (tidy_string < t_b64 > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a hexadecimal value expected");
+        else if (tidy_string < t_b64 > :: get_string ().find_first_not_of (HEX) == ::std::string::npos) return;
+        else nits.pick (nit_b64, es_error, ec_type, "invalid character in base 64 binary string");
+        string_value < t_b64 > :: status (s_invalid); } };
+
 template < > struct type_master < t_coords > : tidy_string < t_coords >
 {   typedef vint_t value_type;
     value_type value_;
@@ -81,6 +91,16 @@ template < > struct type_master < t_font_family > : tidy_string < t_font_family 
             else nits.pick (nit_fontname, es_info, ec_type, quote (ss), " is not a font " PROG " recognises; some browsers may substitute another");
             return; }
         tidy_string < t_font_family > :: status (s_invalid); } };
+
+template < > struct type_master < t_hex > : public tidy_string < t_hex >
+{   using tidy_string < t_hex > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_hex > :: set_value (nits, v, s);
+        if (tidy_string < t_hex > :: empty ())
+            nits.pick (nit_empty_hex_code, es_error, ec_type, "a hexadecimal value expected");
+        else if (tidy_string < t_hex > :: get_string ().find_first_not_of (HEX) == ::std::string::npos) return;
+        else nits.pick (nit_invalid_character_hex, es_error, ec_type, "invalid hexadecimal value");
+        string_value < t_hex > :: status (s_invalid); } };
 
 template < > struct type_master < t_imgsizes > : tidy_string < t_imgsizes >
 {   using tidy_string < t_imgsizes > :: tidy_string;
@@ -164,6 +184,40 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space >
                     break; } }
             tested_ = true; }
         return predefined_; } };
+
+template < > struct type_master < t_mb > : public tidy_string < t_mb >
+{   using tidy_string < t_mb > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   tidy_string < t_mb > :: set_value (nits, v, ss);
+        const ::std::string& s = tidy_string < t_mb > :: get_string ();
+        if (good ())
+        {   ::std::string::size_type unit = s.find_first_not_of (DENARY);
+            if (unit == ::std::string::npos) return;
+            bool bad = true;
+            ::std::string::size_type len = s.length ();
+            if (unit == 0) nits.pick (nit_mb, es_error, ec_type, "there must be a number before the units");
+            else
+            {   if (unit < len - 1) switch (s.at (unit))
+                {   case 'k' :
+                    case 'K' :
+                    case 'M' :
+                    case 'G' :
+                    case 'T' :
+                    case 'P' :
+                    case 'E' :
+                    case 'Z' :
+                    case 'Y' :
+                        bad = false; break;
+                    default :
+                        break; }
+                if (! bad)
+                {   ::std::string::size_type bat = unit + 1;
+                    if (s.at (unit + 1) == 'i') ++bat;
+                    if (bat >= len) bad = true;
+                    else if (s.at (bat) != 'B') bad = true;
+                    if (! bad) return; }
+                nits.pick (nit_mb, es_error, ec_type, quote (s.substr (unit), " is neither KB, MB, nor GiB, TiB, nor another standard byte unit")); }
+            tidy_string < t_mb > :: status (s_invalid); } } };
 
 template < > struct type_master < t_q > : public tidy_string < t_q >
 {   using tidy_string < t_q > :: tidy_string;

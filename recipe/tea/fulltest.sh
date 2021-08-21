@@ -50,6 +50,7 @@
 ./ssc -f ../toast/living/jul20/living.conf
 ./ssc -f ../toast/living/jan21/living.conf
 ./ssc -f ../toast/living/apr21/living.conf
+./ssc -f ../toast/living/jul21/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
@@ -86,7 +87,11 @@
 ./ssc -f ../toast/other/ssi/ssi.conf
 ./ssc -f ../toast/RDF/1.0/rdf.conf
 ./ssc -f ../toast/RDF/1.1/rdf.conf
-./ssc -f ../toast/RDF/RDFa/rdfa.conf
+./ssc -f ../toast/RDFa/1.1.3/rdfa.conf
+./ssc -f ../toast/RDFa/cc/rdfa.conf
+./ssc -f ../toast/RDFa/dc/rdfa.conf
+./ssc -f ../toast/RDFa/foaf/rdfa.conf
+./ssc -f ../toast/RDFa/schema/rdfa.conf
 ./ssc -f ../toast/shadow/comment/comment.conf
 ./ssc -f ../toast/shadow/copy/copy.conf
 ./ssc -f ../toast/shadow/copydiff/copydiff.conf

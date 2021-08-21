@@ -120,6 +120,12 @@
     <Filter Include="Info">
       <UniqueIdentifier>{4e391135-fe4a-4fa8-bbb7-0b670730fd6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Heater\rdf">
+      <UniqueIdentifier>{7b78cc92-34ec-4dad-9d1e-e845eb671c13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\rdf">
+      <UniqueIdentifier>{cdb9263d-b9d9-4b8c-84fa-9ea131600388}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -581,6 +587,18 @@
     <ClInclude Include="..\heater\utility\filesystem.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\parser\parse_prefix.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\rdf\rdf.h">
+      <Filter>Heater\rdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\parse_abb.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\symbol\nstr.h">
+      <Filter>Heater\symbol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1011,6 +1029,33 @@
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_x.cpp">
       <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_cc.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_dc.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_dct_a.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_dct_b.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_rdf.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\element\element_rdfa.cpp">
+      <Filter>Sauce\element</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\rdf\rdf.cpp">
+      <Filter>Sauce\rdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\symbol\nstr.cpp">
+      <Filter>Sauce\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_rdf.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

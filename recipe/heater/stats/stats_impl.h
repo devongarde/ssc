@@ -58,7 +58,7 @@ class stats
     double file_size_ = 0.0;
     ::std::string times (const uint64_t n) const;
     ::std::string saybe (const unsigned n, const ::std::string& msg) const;
-    ::std::string microdata_report () const;
+    ::std::string ontology_report () const;
     ::std::string element_report () const;
     ::std::string version_report () const;
     ::std::string abbr_report () const;

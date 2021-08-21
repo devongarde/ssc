@@ -132,6 +132,18 @@ bool verify_month (const ::std::string::const_iterator e, ::std::string::const_i
     if (! grab_month (e, i, month)) return false;
     c = i; return true; }
 
+bool verify_monthday (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& month, int& day)
+{   ::std::string::const_iterator i = c;
+    if (! grab_month (e, i, month)) return false;
+    if (! grab_char (e, i, '-')) return false;
+    if (! grab_day (e, i, 0, month, day)) return false;
+    c = i; return true; }
+
+bool verify_day (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& day)
+{   ::std::string::const_iterator i = c;
+    if (! grab_day (e, i, 0, 0, day)) return false;
+    c = i; return true; }
+
 bool verify_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month, int& day)
 {   ::std::string::const_iterator i = c;
     if (! grab_year (e, i, year)) return false;
@@ -139,6 +151,18 @@ bool verify_year (const ::std::string::const_iterator e, ::std::string::const_it
     if (! grab_month (e, i, month)) return false;
     if (! grab_char (e, i, '-')) return false;
     if (! grab_day (e, i, year, month, day)) return false;
+    c = i; return true; }
+
+bool verify_yearmonth (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month)
+{   ::std::string::const_iterator i = c;
+    if (! grab_year (e, i, year)) return false;
+    if (! grab_char (e, i, '-')) return false;
+    if (! grab_month (e, i, month)) return false;
+    c = i; return true; }
+
+bool verify_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year)
+{   ::std::string::const_iterator i = c;
+    if (! grab_year (e, i, year)) return false;
     c = i; return true; }
 
 bool verify_yearless_date  (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& month, int& day)
@@ -454,6 +478,30 @@ bool verify_month (const ::std::string& str)
     int y = 0, m = 0;
     return verify_month (e, i, y, m); }
 
+bool verify_monthday (const ::std::string& str)
+{   ::std::string::const_iterator i = str.cbegin ();
+    ::std::string::const_iterator e = str.cend ();
+    int m = 0, d = 0;
+    return verify_monthday (e, i, m, d); }
+
+bool verify_day (const ::std::string& str)
+{   ::std::string::const_iterator i = str.cbegin ();
+    ::std::string::const_iterator e = str.cend ();
+    int d = 0;
+    return verify_day (e, i, d); }
+
+bool verify_year (const ::std::string& str)
+{   ::std::string::const_iterator i = str.cbegin ();
+    ::std::string::const_iterator e = str.cend ();
+    int y = 0;
+    return verify_year (e, i, y); }
+
+bool verify_yearmonth (const ::std::string& str)
+{   ::std::string::const_iterator i = str.cbegin ();
+    ::std::string::const_iterator e = str.cend ();
+    int y = 0, m = 0;
+    return verify_yearmonth (e, i, y, m); }
+
 bool verify_timezone (const ::std::string& str)
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
@@ -466,11 +514,11 @@ bool verify_week (const ::std::string& str)
     int y = 0, m = 0;
     return verify_week_year (e, i, y, m); }
 
-bool verify_year (const ::std::string& str)
-{   ::std::string::const_iterator i = str.cbegin ();
-    ::std::string::const_iterator e = str.cend ();
-    int y = 0, m = 0, d = 0;
-    return verify_year (e, i, y, m, d); }
+//bool verify_year (const ::std::string& str)
+//{   ::std::string::const_iterator i = str.cbegin ();
+ //   ::std::string::const_iterator e = str.cend ();
+//    int y = 0, m = 0, d = 0;
+//    return verify_year (e, i, y, m, d); }
 
 bool verify_time_4 (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (verify_absolute (s)) return true;
@@ -494,9 +542,29 @@ bool verify_duration (nitpick& nits, const html_version& , const ::std::string& 
     nits.pick (nit_bad_datetime, ed_50, "2.4.5.9 Durations", es_error, ec_type, quote (s), " is an invalid duration");
     return false; }
 
+bool verify_day (nitpick& nits, const html_version& , const ::std::string& s)
+{   if (verify_day (s)) return true;
+    nits.pick (nit_bad_datetime, ed_50, "2.4.5 Dates and times", es_error, ec_type, quote (s), " is an invalid day");
+    return false; }
+
 bool verify_month (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (verify_month (s)) return true;
     nits.pick (nit_bad_datetime, ed_50, "2.4.5 Dates and times", es_error, ec_type, quote (s), " is an invalid month");
+    return false; }
+
+bool verify_monthday (nitpick& nits, const html_version& , const ::std::string& s)
+{   if (verify_month (s)) return true;
+    nits.pick (nit_bad_datetime, ed_50, "2.4.5 Dates and times", es_error, ec_type, quote (s), " is an invalid month");
+    return false; }
+
+bool verify_year (nitpick& nits, const html_version& , const ::std::string& s)
+{   if (verify_year (s)) return true;
+    nits.pick (nit_bad_datetime, ed_50, "2.4.5 Dates and times", es_error, ec_type, quote (s), " is an invalid year");
+    return false; }
+
+bool verify_yearmonth (nitpick& nits, const html_version& , const ::std::string& s)
+{   if (verify_year (s)) return true;
+    nits.pick (nit_bad_datetime, ed_50, "2.4.5 Dates and times", es_error, ec_type, quote (s), " is an invalid year");
     return false; }
 
 bool verify_local_datetime (nitpick& nits, const html_version& , const ::std::string& s)

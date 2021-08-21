@@ -301,7 +301,7 @@ void element::examine_other ()
             pick (nit_deprecated_attribute, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "except in MathML 1, OTHER is deprecated"); }
 
 bool element::examine_rel (const ::std::string& content)
-{   if (! context.microformats ()) return true;
+{   PRESUME (context.microformats (), __FILE__, __LINE__);
     if (content.empty ()) return false;
     vstr_t entries, ve;
     bool res = false;
