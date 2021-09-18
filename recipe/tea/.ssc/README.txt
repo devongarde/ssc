@@ -1,1 +1,1 @@
-Certain experimental code uses this directory for persistence.
+Directory used for templates and persistence.

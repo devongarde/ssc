@@ -455,6 +455,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_namedspace);
         TEST_VALUE (t_navigation);
         TEST_VALUE (t_negative);
+        TEST_VALUE (t_nit_macro);
+        TEST_VALUE (t_nit_section);
         TEST_VALUE (t_not_0);
         TEST_VALUE (t_not_empty);
         TEST_VALUE (t_not_neg);
@@ -503,6 +505,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_pseudonamedspace);
         TEST_VALUE (t_pt);
         TEST_VALUE (t_q);
+        TEST_VALUE (t_quote_style);
         TEST_VALUE (t_rap);
         TEST_VALUE (t_rating);
         TEST_VALUE (t_rdf_parsetype);

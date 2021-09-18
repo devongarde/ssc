@@ -182,7 +182,7 @@ void page::itemscope (const itemscope_ptr itemscope)
     if (document_.get () != nullptr)
         res << document_ -> report ();
     if (context.stats_page ()) res << stats_.report (false);
-    return res.str () ; }
+    return res.str (); }
 
 ::std::string get_page_url (const ::std::string& url)
 {   ::std::string res (sanitise (url));

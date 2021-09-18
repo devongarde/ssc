@@ -60,11 +60,13 @@ public:
         for (max_ = 0; data_ [max_].id_ != ERROR_VALUE; ++max_)
             for (::std::size_t n = 0; n < INDICES; ++n)
                 if (data_ [max_].sz_ [n] != nullptr)
-                {   //  ::std::string rpt (data_ [max_].sz_ [n]); // thanx, vc++ debugger, for refusing to report anything but data_ [1].
+                {   ::std::string rpt (data_ [max_].sz_ [n]); // thanx, vc++ debugger, for refusing to report anything but data_ [1].
                     typename meid_t::const_iterator i = ids_.find (data_ [max_].id_);
                     if (i != ids_.cend ())
-                    {   mixed_ [n].insert (typename mnse_t::value_type (::std::string (data_ [max_].sz_ [n]), i -> second));
-                        lower_ [n].insert (typename mnse_t::value_type (::boost::to_lower_copy (::std::string (data_ [max_].sz_ [n])), i -> second)); } } }
+                    {   ::std::string mix (data_ [max_].sz_ [n]);
+                        ::std::string low (::boost::to_lower_copy(::std::string (data_ [max_].sz_ [n])));
+                        mixed_ [n].insert (typename mnse_t::value_type (mix, i -> second));
+                        lower_ [n].insert (typename mnse_t::value_type (low, i -> second)); } } }
     ENUM err () const { return ERROR_VALUE; }
     const char* get (const ENUM id, const ::std::size_t n) const
     {   PRESUME (n < N, __FILE__, __LINE__);

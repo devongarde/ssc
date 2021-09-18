@@ -804,7 +804,7 @@ PASS ../toast/SVG/1.1/svg11.html
 1484 use_quote_code
 1493 svg_version
 1497 namespace_confusion contradictory_namespace missing_close
-1500 mixed_mess
+1502 mixed_mess
 1503 namespace_confusion contradictory_namespace namespace_confusion contradictory_namespace unrecognised_namespace unrecognised_value
 1504 url_not_found
 1506 inserted_missing_closure

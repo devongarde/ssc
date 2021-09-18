@@ -18,6 +18,8 @@ Licence along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+// this is godawful mess; were it more than it is, ....
+
 // parameters: either names of test specification files, or -f file, where file contains a list of filenames
 // -h and -V do the usual
 
@@ -57,7 +59,7 @@ typedef ::std::map < ::std::string, vstr_t > mvstr_t;
 #define NW_IGNORE   2
 
 unsigned verbose = 0;
-bool numbers = false, easy_in = false;
+bool numbers = false, easy_in = false, only_check_exports = false;
 ::std::string expected_lynx, expected_shadow, expected_export_errors, examinations;
 classic expected_classes;
 sstr_t expected_itemids;
@@ -84,7 +86,7 @@ vstr_t readlines (const ::std::string& name)
     return res; }
 
 bool testfile (const ::boost::filesystem::path& s, const ::std::string& context = ::std::string ())
-{   if (s == "snippet") return true;
+{   if (only_check_exports || (s == SNIPPET)) return true;
     if (! ::boost::filesystem::exists (s))
     {   ::std::cerr << "cannot find " << s << context << "\n"; return false; }
     else if (! ::boost::filesystem::is_regular_file (s))
@@ -137,6 +139,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
     bool examine = false;
     bool exporterrors = false;
     bool file_stats = false;
+    bool only = false;
     bool overall_stats = false;
     bool shadow = false;
     sstr_t correct_set, created_set;
@@ -146,13 +149,24 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
     for (auto ss : spec)
     {   ++line;
         ::std::string s (::boost::trim_copy (ss));
-        if (s.empty ())
+        bool done = s.empty ();
+        if (file_stats || overall_stats)
+        {   done = (s == END_OF_STATS); }
+        if (done)
         {   if (! last_nits.empty ()) expect.nits_.insert (::nitted::value_type (last_line, last_nits));
             last_line = static_cast < size_t > (-1);
             last_nits.clear ();
             if (file_stats && ! stats.empty () && ! previous.empty ())
-            {   page_stats.insert (mvstr_t::value_type (previous, stats)); stats.clear (); }
-            exports = itemid = file_stats = overall_stats = false; continue; }
+            {   page_stats.insert (mvstr_t::value_type (previous, stats));
+                stats.clear (); }
+            exports = itemid = file_stats = overall_stats = false;
+            continue; }
+        if (overall_stats)
+        {   grand_stats.push_back (s);
+            continue; }
+        if (file_stats)
+        {   stats.push_back (s);
+            continue; }
         if ((! itemid) && (s.at (0) == '#')) continue;
         if (lynx)
         {   lynx = false;
@@ -169,18 +183,12 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         if (itemid)
         {   expected_itemids.insert (s);
             continue; }
-        if (overall_stats)
-        {   grand_stats.push_back (s);
-            continue; }
         if (examine)
         {   examine = false;
             examinations = s;
             continue; }
-        if (file_stats)
-        {   stats.push_back (s);
-            continue; }
         ::std::string::size_type spaced = s.find (' ');
-        if (exports)
+        if (exports || only)
         {   if ((spaced == ::std::string::npos) || spaced == (s.length () - 1))
             {   ::std::cerr << "missing created filename among " << s << " on line "<< line << " of " << f.string () << "\n"; return false; }
             if (spaced == 0)
@@ -218,20 +226,21 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
             continue; }
         if (cmdline.empty ()) { cmdline = s; continue; }
         else switch (s.at (0))
-        {   case 'C' :  classed = true; examine = exporterrors = shadow = lynx = itemid = exports = file_stats = overall_stats = false; continue;
-            case 'E' :  exports = true; examine = exporterrors = shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
-            case 'e' :  exporterrors = true; examine = exports = shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
-            case 'G' :  overall_stats = true; examine = exporterrors = shadow = classed = lynx = exports = itemid = file_stats = false; continue;
-            case 'i' :  itemid = true; examine = exporterrors = shadow = classed = lynx = exports = file_stats = overall_stats = false; continue;
-            case 'L' :  lynx = true; examine = exporterrors = shadow = classed = itemid = exports = file_stats = overall_stats = false; continue;
-            case 'S' :  file_stats = true; stats.clear (); examine = exporterrors = shadow = classed = lynx = exports = itemid = overall_stats = false; continue;
-            case 's' :  shadow = true; examine = exporterrors = lynx = classed = itemid = exports = file_stats = overall_stats = false; continue;
-            case 'u' :  examine = true; exporterrors = exports = shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
+        {   case 'C' :  classed = true; examine = exporterrors = shadow = lynx = itemid = exports = file_stats = only = overall_stats = false; continue;
+            case 'E' :  exports = true; examine = exporterrors = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; continue;
+            case 'e' :  exporterrors = true; examine = exports = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; continue;
+            case 'G' :  overall_stats = true; examine = exporterrors = shadow = classed = lynx = exports = itemid = file_stats = only = false; continue;
+            case 'i' :  itemid = true; examine = exporterrors = shadow = classed = lynx = exports = file_stats = only = overall_stats = false; continue;
+            case 'L' :  lynx = true; examine = exporterrors = shadow = classed = itemid = exports = file_stats = only = overall_stats = false; continue;
+            case 'S' :  file_stats = true; stats.clear (); examine = exporterrors = shadow = classed = lynx = exports = itemid = only = overall_stats = false; continue;
+            case 's' :  shadow = true; examine = exporterrors = lynx = classed = itemid = exports = file_stats = only = overall_stats = false; continue;
+            case 'u' :  examine = true; exporterrors = exports = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; continue;
+            case 'O' :  only_check_exports = only = true; examine = exporterrors = exports = shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
             case 'I' :
             case 'F' :
             case 'P' :
             case '*' :
-                {   examine = exporterrors = shadow = classed = lynx = itemid = exports = false;
+                {   examine = exporterrors = exports = shadow = classed = lynx = itemid = only = file_stats = overall_stats = false;
                     if (! previous.empty ()) expected.insert (knotted::value_type (previous, expect));
                     if (spaced == ::std::string::npos)
                     {   ::std::cerr << "missing filename " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
@@ -285,7 +294,7 @@ bool examine_results_header (vstr_t& results)
     {   if (verbose) ::std::cout << "not " PROG " (expected '" PROG "', got '" << results.at (0) << "')\n"; return false; }
     if (results.at (1) != VERSION_STRING)
     {   if (verbose) ::std::cout << "this copy of " TESTPROG " can only test " PROG " version " VERSION_STRING ", not version " << results.at (1) << ".\n"; return false; }
-    if (results.at (2) != COPYRIGHT)
+    if ((results.at (2) != COPYRIGHT) && (results.at (2) != COPYRIGHT_HTML_FULL))
     {   if (verbose) ::std::cout << "invalid copyright.\n"; return false; }
     return true; }
 
@@ -490,13 +499,25 @@ bool compare_stats (const vstr_t& expected, const vstr_t& got, const ::std::stri
     vstr_t::const_iterator test = got.cbegin ();
     int n = 1;
     while ((master != expected.cend ()) && (test != got.cend ()))
-    {   if (::boost::trim_copy (*master) != ::boost::trim_copy (*test))
+    {   ::std::string trim_master = ::boost::trim_copy (*master);
+        if (trim_master.empty ()) { ++master; continue; }
+        ::std::string trim_test = ::boost::trim_copy (*test);
+        if (trim_test.empty ()) { ++test; continue; }
+        if (trim_master != trim_test)
         {   if (verbose) ::std::cout << name << " stats differ on line " << n << " (expected '" << *master << "', got '" << *test <<"')\n"; return false; }
         ++master; ++test; ++n; }
+    while (master != expected.cend ())
+    {   ::std::string trim_master = ::boost::trim_copy (*master);
+        if (! trim_master.empty ()) break;
+        ++master; }
+    while (test != got.cend ())
+    {   ::std::string trim_test = ::boost::trim_copy (*test);
+        if (! trim_test.empty ()) break;
+        ++test; }
     if (master != expected.cend ())
-    {   if (verbose) ::std::cout << name << " too short (expected lines " << expected.size () << ", got lines " << got.size () <<")\n"; return false; }
+    {   if (verbose) ::std::cout << name << " stats too short (expected lines " << expected.size () << ", got lines " << got.size () <<")\n"; return false; }
     if (test != got.cend ())
-    {   if (verbose) ::std::cout << name << " too long (expected lines " << expected.size () << ", got lines " << got.size () <<")\n"; return false; }
+    {   if (verbose) ::std::cout << name << " stats too long (expected lines " << expected.size () << ", got lines " << got.size () <<")\n"; return false; }
    return true; }
 
 bool check_file_stats (const ::boost::filesystem::path& fn, const vstr_t& file)
@@ -510,139 +531,145 @@ bool check_overall_stats (const vstr_t& overall)
 {   return compare_stats (grand_stats, overall, "grand"); }
 
 bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsigned& failed)
-{   if (! examine_results_header (results)) return false;
-    nitted got;
-    nitwit expect;
-    ::std::string fn, previous;
-    bool res = true;
-    bool shush = false;
-    bool shadow = false;
-    bool examine = false;
-    bool exporterrors = false;
-    bool classes = false;
-    bool lynx = false;
-    bool oops = false;
-    bool itemid = false;
-    bool file_stats = false;
-    bool overall_stats = false;
-    vstr_t overall, file;
-    for (size_t r = 3; r < results.size (); ++r)
-    {   vstr_t line;
-        if (results.at (r).empty ())
-        {   if (! file.empty ())
-            {   if (! previous.empty ()) if (! check_file_stats (previous, file)) { ++failed; res = false; }
-                file.clear (); }
-            file_stats = overall_stats = false; continue; }
-        ::boost::algorithm::split (line, results.at (r), ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
-        if (line.empty ())
-        {   if (! file.empty ())
-            {   if (! previous.empty ()) if (! check_file_stats (previous, file)) { ++failed; res = false; }
-                file.clear (); }
-            file_stats = overall_stats = false; continue; }
-        if (overall_stats) { overall.push_back (results.at (r)); continue; }
-        if (file_stats) { file.push_back (results.at (r)); continue; }
-        if (line.size () < 2)
-        {   if (verbose) ::std::cout << "missing content in output " << results.at (0) << "\n"; res = false; }
-        if (results.at (r).at (0) != '*')
-        {   if (shush) continue;
-            if (lynx)
-            {   if (! crosslinks (line)) { oops = true; res = false; }
-                lynx = false; shush = true; continue; }
-            if (shadow)
-            {   if (! shadowcheck (line)) { oops = true; res = false; }
-                shadow = false; shush = true; continue; }
-            if (exporterrors)
-            {   if (! exporterrorcheck (line)) { oops = true; res = false; }
-                exporterrors = false; shush = true; continue; }
-            if (classes)
-            {   if (! classcheck (line)) { oops = true; res = false; }
-                continue; }
-            if (examine)
-            {   if (! examinecheck (line)) { oops = true; res = false; }
-                continue; }
-            if (itemid)
-            {   if (! itemidcheck (line)) { oops = true; res = false; }
-                continue; }
-            if (fn.empty ())
-            {   if (verbose) ::std::cout << "expecting filename near beginning of output file\n"; res = false; }
-            size_t ln;
-            try
-            {   ln = ::boost::lexical_cast < size_t > (line.at (0)); }
-            catch (...)
-            {   if (verbose) ::std::cout << "in " << fn << ", expecting line number in " << results.at (r) << "\n";
-                res = false; }
-            nits ns;
-            auto ii = got.find (ln);
-            if (ii != got.cend ())
-            {   ns = ii -> second;
-                got.erase (ii); }
-            for (size_t n = 1; n < line.size (); ++n)
-            {   e_nit en = nit_off;
+{   bool res = true;
+    if (! only_check_exports)
+    {   if (! examine_results_header (results)) return false;
+        nitted got;
+        nitwit expect;
+        ::std::string fn, previous;
+        bool shush = false;
+        bool shadow = false;
+        bool examine = false;
+        bool exporterrors = false;
+        bool classes = false;
+        bool lynx = false;
+        bool oops = false;
+        bool itemid = false;
+        bool file_stats = false;
+        bool overall_stats = false;
+        vstr_t overall, file;
+        for (size_t r = 3; r < results.size (); ++r)
+        {   vstr_t line;
+            bool done = results.at (r).empty ();
+            if (file_stats || overall_stats)
+            {   done = (results.at (r) == END_OF_STATS); }
+            if (done)
+            {   if (! file.empty ())
+                {   if (! previous.empty ()) if (! check_file_stats (previous, file)) { ++failed; res = false; }
+                    file.clear (); }
+                file_stats = overall_stats = false; continue; }
+            if (overall_stats) { overall.push_back (results.at (r)); continue; }
+            if (file_stats) { file.push_back (results.at (r)); continue; }
+            ::boost::algorithm::split (line, results.at (r), ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
+            if (line.empty ())
+            {   if (! file.empty ())
+                {   if (! previous.empty ()) if (! check_file_stats (previous, file)) { ++failed; res = false; }
+                    file.clear (); }
+                file_stats = overall_stats = false; continue; }
+            if (line.size () < 2)
+            {   if (verbose) ::std::cout << "missing content in output " << results.at (0) << "\n"; res = false; }
+            if (results.at (r).at (0) != '*')
+            {   if (shush) continue;
+                if (lynx)
+                {   if (! crosslinks (line)) { oops = true; res = false; }
+                    lynx = false; shush = true; continue; }
+                if (shadow)
+                {   if (! shadowcheck (line)) { oops = true; res = false; }
+                    shadow = false; shush = true; continue; }
+                if (exporterrors)
+                {   if (! exporterrorcheck (line)) { oops = true; res = false; }
+                    exporterrors = false; shush = true; continue; }
+                if (classes)
+                {   if (! classcheck (line)) { oops = true; res = false; }
+                    continue; }
+                if (examine)
+                {   if (! examinecheck (line)) { oops = true; res = false; }
+                    continue; }
+                if (itemid)
+                {   if (! itemidcheck (line)) { oops = true; res = false; }
+                    continue; }
+                if (fn.empty ())
+                {   if (verbose) ::std::cout << "expecting filename near beginning of output file\n"; res = false; }
+                size_t ln;
                 try
-                {   en = static_cast < e_nit > (::boost::lexical_cast < size_t > (line.at (n))); }
+                {   ln = ::boost::lexical_cast < size_t > (line.at (0)); }
                 catch (...)
-                {   if (verbose) ::std::cout << "in " << fn << ", expecting error codes in " << results.at (r) << "\n";
+                {   if (verbose) ::std::cout << "in " << fn << ", expecting line number in " << results.at (r) << "\n";
                     res = false; }
-                if (en >= nit_off)
-                {   if (verbose)
-                        ::std::cout <<  "in " << fn << ", unexpected error code " << static_cast < size_t > (en) <<
-                                        " in " << results.at (r) << "; is " TESTPROG " up to date?\n";
-                    res = false; }
-                ns.push_back (en); }
-            got.insert (nitted::value_type (ln, ns)); }
-        else
-        {   if (! file.empty ())
-            {   if (! fn.empty ()) if (! check_file_stats (fn, file)) { ++failed; res = false; }
-                file.clear (); }
-            classes = lynx = itemid = file_stats = overall_stats = false;
-            if (shush) shush = false;
-            else if (! examine_results_once (expected, expect, got, fn, passed, failed)) res = false;
-            else if (oops) { oops = false; ++failed; }
-            fn = ::boost::trim_copy (line.at (1));
-            if (fn.empty ())
-            {   if (verbose) ::std::cout << "missing filename in output\n"; res =  false; ++failed; }
-            knotted::const_iterator i = expected.find (fn);
-            if (i == expected.end ())
-            {   if (fn == "classes") classes = true;
-                else if (fn == "link") lynx = true;
-                else if (fn == "itemids") itemid = true;
-                else if (fn == "update") examine = true;
-                else if (fn == "shadow") shadow = true;
-                else if (fn == "exports") exporterrors = true;
-                else if (fn == "Statistics:") file_stats = true;
-                else if (fn == "Grand") overall_stats = true;
-                else
-                {   if (verbose) ::std::cout << "results for unexpected file " << fn << " found\n";
-                    res = false; ++failed;
-                    fn.clear (); shush = true; } }
+                nits ns;
+                auto ii = got.find (ln);
+                if (ii != got.cend ())
+                {   ns = ii -> second;
+                    got.erase (ii); }
+                for (size_t n = 1; n < line.size (); ++n)
+                {   e_nit en = nit_off;
+                    try
+                    {   en = static_cast < e_nit > (::boost::lexical_cast < size_t > (line.at (n))); }
+                    catch (...)
+                    {   if (verbose) ::std::cout << "in " << fn << ", expecting error codes in " << results.at (r) << "\n";
+                        res = false; }
+                    if (en >= nit_off)
+                    {   if (verbose)
+                            ::std::cout <<  "in " << fn << ", unexpected error code " << static_cast < size_t > (en) <<
+                                            " in " << results.at (r) << "; is " TESTPROG " up to date?\n";
+                        res = false; }
+                    ns.push_back (en); }
+                got.insert (nitted::value_type (ln, ns)); }
             else
-            {   previous = fn;
-                expect = i -> second;
-                if ((expect.flags_ & NW_IGNORE) != 0) shush = true; } } }
-    if (! file.empty ()) if (! previous.empty ()) if (! check_file_stats (previous, file)) { ++failed; res = false; }
-    if (! overall.empty () || ! grand_stats.empty ())
-    {   if (! check_overall_stats (overall)) { ++failed; res = false; }
-        overall.clear (); grand_stats.clear (); }
-    page_stats.clear ();
-    if (! examine_results_once (expected, expect, got, fn, passed, failed)) res = false;
-    else if (oops) { ++failed; oops = false; }
-    for (knotted::const_iterator i = expected.begin (); i != expected.end (); ++i)
-    {   if (verbose) ::std::cout << "results for " << i -> first << " not found.\n";
-        res = false; ++failed; }
-    if (! expected_classes.empty ())
-    {   if (res) res = false;
-        oops = true;
-        for (auto i : expected_classes)
-            if (verbose) ::std::cout << "class " << i.first << " missing.\n";
-        expected_classes.clear (); }
-    if (! expected_itemids.empty ())
-    {   if (res) res = false;
-        oops = true;
-        for (auto i : expected_itemids)
-            if (verbose) ::std::cout << "itemid " << i << " missing.\n";
-        expected_itemids.clear (); }
-    if (oops) ++failed;
-    failed += check_exports ();
+            {   if (! file.empty ())
+                {   if (! fn.empty ()) if (! check_file_stats (fn, file)) { ++failed; res = false; }
+                    file.clear (); }
+                classes = lynx = itemid = file_stats = overall_stats = false;
+                if (shush) shush = false;
+                else if (! examine_results_once (expected, expect, got, fn, passed, failed)) res = false;
+                else if (oops) { oops = false; ++failed; }
+                fn = ::boost::trim_copy (line.at (1));
+                if (fn.empty ())
+                {   if (verbose) ::std::cout << "missing filename in output\n"; res =  false; ++failed; }
+                knotted::const_iterator i = expected.find (fn);
+                if (i == expected.end ())
+                {   if (fn == "classes") classes = true;
+                    else if (fn == "link") lynx = true;
+                    else if (fn == "itemids") itemid = true;
+                    else if (fn == "update") examine = true;
+                    else if (fn == "shadow") shadow = true;
+                    else if (fn == "exports") exporterrors = true;
+                    else if (fn == "Statistics") file_stats = true;
+                    else if (fn == "Grand") overall_stats = true;
+                    else
+                    {   if (verbose) ::std::cout << "results for unexpected file " << fn << " found\n";
+                        res = false; ++failed;
+                        fn.clear (); shush = true; } }
+                else
+                {   previous = fn;
+                    expect = i -> second;
+                    if ((expect.flags_ & NW_IGNORE) != 0) shush = true; } } }
+        if (! file.empty ()) if (! previous.empty ()) if (! check_file_stats (previous, file)) { ++failed; res = false; }
+        if (! overall.empty () || ! grand_stats.empty ())
+        {   if (! check_overall_stats (overall)) { ++failed; res = false; }
+            overall.clear (); grand_stats.clear (); }
+        page_stats.clear ();
+        if (! examine_results_once (expected, expect, got, fn, passed, failed)) res = false;
+        else if (oops) { ++failed; oops = false; }
+        for (knotted::const_iterator i = expected.begin (); i != expected.end (); ++i)
+        {   if (verbose) ::std::cout << "results for " << i -> first << " not found.\n";
+            res = false; ++failed; }
+        if (! expected_classes.empty ())
+        {   res = false;
+            oops = true;
+            for (auto i : expected_classes)
+                if (verbose) ::std::cout << "class " << i.first << " missing.\n";
+            expected_classes.clear (); }
+        if (! expected_itemids.empty ())
+        {   res = false;
+            oops = true;
+            for (auto i : expected_itemids)
+                if (verbose) ::std::cout << "itemid " << i << " missing.\n";
+            expected_itemids.clear (); }
+        if (oops) ++failed; }
+    int x = check_exports ();
+    if (x != 0)
+    {   res = false; failed += x; }
     return res; }
 
 int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::path& xeq, bool rmtmp, const ::std::string& tmppath, const ::std::string& pre, unsigned& passed, unsigned& failed)
@@ -665,11 +692,14 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
         ::boost::filesystem::path prepare = canonical (absolute (f));
         prepare.remove_filename ();
         ::boost::filesystem::path clean = prepare;
+        ::std::string switched = xeq.string () + ::std::string (" -F -T ");
+        if (! only_check_exports)
+        {   switched += "-o "; switched += tmp.string () + " "; }
+        cmdline = switched + cmdline;
 #if defined (UNIX)
-        ::boost::filesystem::file_status stat;
         prepare /= "pre.sh";
-        cmdline = ::std::string (" ./") + xeq.string () + ::std::string (" -F -T -o ") + tmp.string () + " " + cmdline;
         clean /= "post.sh";
+        ::boost::filesystem::file_status stat;
         if (::boost::filesystem::exists (prepare))
         {   stat = ::boost::filesystem::status (prepare);
             if ((stat.permissions () & ::boost::filesystem::perms::owner_exe) == 0)
@@ -680,7 +710,6 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
                 ::boost::filesystem::permissions (clean, ::boost::filesystem::perms::owner_exe | ::boost::filesystem::perms::add_perms); }
 #else // UNIX
         prepare /= "pre.bat";
-        cmdline = xeq.string () + ::std::string (" -F -T -o ") + tmp.string () + " " + cmdline;
         clean /= "post.bat";
 #endif // UNIX
         if (::boost::filesystem::exists (prepare))
@@ -697,20 +726,23 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
             if (post_res > 0)
             {   ::std::cerr << "test clean up script '" << clean.string () << "' exited with code " << post_res << "\n";
                 if (post_res >= 3) return ERROR_EXIT; } }
-        if (! testfile (tmp)) return ERROR_EXIT;
-        if (::boost::filesystem::file_size (tmp) > MAXOUTPUTFILESIZE)
-        {   ::std::cerr << "too much output.\n";
-            if (rmtmp) ::boost::filesystem::remove (tmp);
-            return ERROR_EXIT; } }
-    if (! ::boost::filesystem::exists (tmp))
-    {   ::std::cout << "no results file (" << tmp.string () << ").\n";
-        return ERROR_EXIT; }
-    vstr_t results (readlines (tmp.string ()));
-    if (verbose >= 3)
-    {   ::std::cout << "results (" << tmp.string () << "):\n";
-        for (auto s : results) ::std::cout << s << "\n";
-        ::std::cout << "\n"; }
-    if (rmtmp && pre.empty ()) ::boost::filesystem::remove (tmp);
+        if (! only_check_exports)
+        {   if (! testfile (tmp)) return ERROR_EXIT;
+            if (::boost::filesystem::file_size (tmp) > MAXOUTPUTFILESIZE)
+            {   ::std::cerr << "too much output.\n";
+                if (rmtmp) ::boost::filesystem::remove (tmp);
+                return ERROR_EXIT; } } }
+    vstr_t results;
+    if (! only_check_exports)
+    {   if (! ::boost::filesystem::exists (tmp))
+        {   ::std::cout << "no results file (" << tmp.string () << ").\n";
+            return ERROR_EXIT; }
+        results = readlines (tmp.string ());
+        if (verbose >= 3)
+        {   ::std::cout << "results (" << tmp.string () << "):\n";
+            for (auto s : results) ::std::cout << s << "\n";
+            ::std::cout << "\n"; }
+        if (rmtmp && pre.empty ()) ::boost::filesystem::remove (tmp); }
     if (! examine_results (expected, results, passed, failed)) return ERROR_EXIT;
     return 0; }
 
@@ -724,20 +756,18 @@ void print_help ()
     ::std::cout << TESTPROG << " [switch...] FILE...\nSwitches:\n";
     ::std::cout << "-d    do not delete intermediate output files\n";
     ::std::cout << "-e    suggest test configuration for erroneous lines\n";
-    ::std::cout << "-f X  load test specification filenames from file X (one per line; # for comments, blank lines ignored)\n";
+    ::std::cout << "-f X  load test specification filenames from file X (browse ssc/toast/... for examples)\n";
     ::std::cout << "-h    print this text and exit\n";
     ::std::cout << "-i X  import " PROG " test results from this file\n";
     ::std::cout << "-n    only report error numbers, not error codes\n";
+    ::std::cout << "-N f  nit template file for " PROG "\n";
     ::std::cout << "-t D  temporary file directory (default " <<::boost::filesystem::temp_directory_path ().string () << ")\n";
     ::std::cout << "-T    Trump switch. FAIL is PASS. bad is good. war is peace. freedom is slavery. ignorance is strength.\n";
     ::std::cout << "-v    verbose output (repeat for greater verbosity)\n";
     ::std::cout << "-V    print version information and exit\n";
     ::std::cout << "-x X  path of executable to test (default " PROG ")\n";
     ::std::cout << "FILE  name of file containing test specification; may be repeated (# for comments, blank lines ignored)\n\n";
-    ::std::cout << "Test specifications contain the following lines:\n";
-    ::std::cout << "1) First line, a list of switches to pass to " PROG " to test it\n";
-    ::std::cout << "n) Remaining lines, each a line number, then a space, then a space separated list of feedback ids expected for that line\n\n";
-    ::std::cout << "Result codes: 0, PASS; 3, FAIL (errors were missing and/or other errors occurred)\n"; }
+    ::std::cout << "Result codes (of tests): 0 PASS, 3 FAIL\n"; }
 
 int main (int argc, char** argv)
 {   bool file = false;

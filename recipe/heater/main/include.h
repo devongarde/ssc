@@ -21,14 +21,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 
 #define PROG "ssc"
-#define TESTPROG "ssc-test"
+#define TESTPROG PROG "-test"
 #define FULLNAME "Static Site Checker"
 #define WEBADDR "https://ssc.lu/"
+
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 111
-#define VERSION_STRING "0.0.111"
-#define COPYRIGHT "(c) 2020,2021 Dylan Harris, https://dylanharris.org/"
+#define VERSION_RELEASE 112
+#define VERSION_STRING "0.0.112"
+
+#define NBSP "&nbsp;"
+#define COPYRIGHT_SYMBOL "(c)"
+#define COPYRIGHT_FORENAME "Dylan"
+#define COPYRIGHT_SURNAME "Harris"
+#define COPYRIGHT_YEAR "2020,2021"
+#define COPYRIGHT_TEXT COPYRIGHT_SYMBOL " " COPYRIGHT_YEAR " " COPYRIGHT_FORENAME " " COPYRIGHT_SURNAME
+#define COPYRIGHT_HTML "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME
+#define COPYRIGHT_WEBADDR "https://dylanharris.org/"
+#define COPYRIGHT COPYRIGHT_TEXT " (" COPYRIGHT_WEBADDR ")"
+#define COPYRIGHT_HTML_FULL COPYRIGHT_SYMBOL NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME " (" COPYRIGHT_WEBADDR ")"
 
 #ifdef __clang__
 #pragma clang diagnostic push
@@ -63,6 +74,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NOEXCEPT noexcept
 #define VS 19
 #define CLEAN_SHAREDPTR_ARRAY
+#define ORDERED // VS2019 unordered_map seems to have some unexpected features when id = 124.
 #elif defined (VS2017)
 #define _WIN32_WINNT 0x0603 // 8.1
 #define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // boost
@@ -72,6 +84,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VS 17
 #define CLEAN_SHAREDPTR_ARRAY
 #define SMALLINT
+#define ORDERED
 #else // VS...
 #error unsupported version of visual C++
 #endif // VS...
@@ -213,6 +226,13 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define DBG_ASSERT(x)
 #endif // DEBUG
 
+#define END_OF_STATS "==="
+#define START_OF_SECTION "***"
+#define START_OF_SUBSECTION "**"
+#define BEFORE_MOTE "**"
+#define AFTER_MOTE "**"
+#define SNIPPET "snippet"
+
 #ifndef SSC_TEST
 #define PR_FILE "file"
 #define PR_FTP "ftp"
@@ -266,6 +286,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define IDS ALPHADDD "_:"
 #define TEL HEX "+*()-.#*_!~'[]/ "
 #define REAL DECIMAL "Ee"
+#define LINE_SEPARATORS "\n\r\f\v"
 
 #define DEFAULT_DOMAIN "example.org"
 #define CSS_TYPE "text/css"
@@ -305,6 +326,17 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
 #define HTTP_MF HTTP MICROFORMATS_ORG
 #define HTTPS_MF HTTPS MICROFORMATS_ORG
+
+#ifdef DEBUG
+#define SIMPLE_TITLE \
+            FULLNAME " " VERSION_STRING \
+            "D (" __DATE__ " " __TIME__ ")" \
+            ", " WEBADDR "\n" COPYRIGHT "\n\n"
+#else // DEBUG
+#define SIMPLE_TITLE \
+            FULLNAME " " VERSION_STRING \
+            ", " WEBADDR "\n" COPYRIGHT "\n\n"
+#endif // DEBUG
 
 typedef uint64_t flags_t; // at least 64 bits
 

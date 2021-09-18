@@ -392,7 +392,7 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
             {   ::std::string href (a_.get_string (a_href));
                 VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
                 if  (mf_ -> allocated (r_webmention))
-                    context.webmention (href, tag == elem_link ? wm_link : wm_addr);
+                    context.webmention (nits (), href, tag == elem_link ? wm_link : wm_addr);
                 if (mf_ -> allocated (r_in_reply_to))
                     context.note_reply (name_, a_.get_string (a_id), href, quoted_limited_string (text ())); } }
 

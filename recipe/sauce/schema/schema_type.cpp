@@ -241,6 +241,12 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_rdfs, 1, 0 }, { 0, 0 }, "Literal", rdfs_literal, s_rdfs },
     { { s_rdfs, 1, 0 }, { 0, 0 }, "Resource", rdfs_resource, s_rdfs },
 
+    // RDF reviews
+// rev_comment, rev_feedback, rev_review,
+    { { s_rev, 1, 0 }, { 0, 0 }, "Comment", rev_comment, s_rev },
+    { { s_rev, 1, 0 }, { 0, 0 }, "Feedback", rev_feedback, s_rev },
+    { { s_rev, 1, 0 }, { 0, 0 }, "Review", rev_review, s_rev },
+
     // schema.org
     { { 2, 0 }, { 0, 0 }, "APIReference", sch_apireference },
     { { 3, 5 }, { 0, 0 }, "3DModel", sch_3dmodel },
@@ -1576,6 +1582,49 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { 3, 6 }, { 6, 0 }, "Xray", sch_xray },
     { { 3, 5 }, { 0, 0 }, "Zoneboardingpolicy", sch_zoneboardingpolicy },
 
+    // sioc
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Community", sioc_community, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Container", sioc_container, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Forum", sioc_forum, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Item", sioc_item, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Post", sioc_post, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Role", sioc_role, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Site", sioc_site, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Space", sioc_space, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Thread", sioc_thread, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "User", sioc_user, s_sioc },
+    { { s_sioc, 1, 0 }, { 0, 0 }, "Usergroup", sioc_usergroup, s_sioc },
+
+    // vcard
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Address", vcard_address, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "BBS", vcard_bbs, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Car", vcard_car, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Dom", vcard_dom, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Email", vcard_email, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Fax", vcard_fax, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Home", vcard_home, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Internet", vcard_internet, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Intl", vcard_intl, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "ISDN", vcard_isdn, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Label", vcard_label, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Location", vcard_location, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Cell", vcard_mobile, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Modem", vcard_modem, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Msg", vcard_msg, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Name", vcard_name, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Organisation", vcard_organisation, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Pager", vcard_pager, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Parcel", vcard_parcel, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "PCS", vcard_pcs, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Postal", vcard_postal, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Pref", vcard_pref, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Tel", vcard_tel, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "VCard", vcard_vcard, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Video", vcard_video, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Voice", vcard_voice, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "Work", vcard_work, s_vcard },
+    { { s_vcard, 1, 0 }, { 0, 0 }, "X400", vcard_x400, s_vcard },
+
     // living standard
     { { s_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar#vevent", mf_vevent, s_microformats, SF_NO_ITEMID },
     { { s_microformats, 1, 0 }, { 0, 0 }, "profile/hcard", mft_hcard, s_microformats, SF_NO_ITEMID },
@@ -1665,6 +1714,7 @@ e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::str
         {   case s_article :
             case s_book :
             case s_cc :
+            case s_content :
             case s_ctag :
             case s_dcam :
             case s_dcmi :
@@ -1679,6 +1729,11 @@ e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::str
             case s_profile :
             case s_rdf :
             case s_rdfs :
+            case s_rev :
+            case s_sioc :
+            case s_sioc_s :
+            case s_sioc_t :
+            case s_vcard :
             case s_video :
             case s_wdrs :
             case s_website :

@@ -456,3 +456,44 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
         {   res = trim_the_lot_off (sauce.substr (0, pos));
             sauce = trim_the_lot_off (sauce.substr (pos+1)); }
     return res; }
+
+::std::string test_template_path (::boost::filesystem::path p)
+{   if (! ::boost::filesystem::exists (p))
+        p.replace_extension ("nit");
+    if (! ::boost::filesystem::exists (p))
+        p.replace_extension ("tpl");
+    if (! ::boost::filesystem::is_regular_file (p))
+        return "";
+    return read_text_file (p.string ()); }
+
+::std::string template_path (const ::std::string& fn)
+{   PRESUME (! fn.empty (), __FILE__, __LINE__);
+    ::boost::filesystem::path p (fn);
+    bool abs (p.is_absolute ());
+    if (! abs) p = ::boost::filesystem::absolute (p);
+    ::std::string res (test_template_path (p));
+    if (abs || ! res.empty ()) return res;
+    if (! context.not_root ())
+    {   p = ::boost::filesystem::absolute (fn, ::boost::filesystem::path (context.root ()));
+        res = test_template_path (p);
+        if (! res.empty ()) return res; }
+    p = ::boost::filesystem::absolute (fn, ::boost::filesystem::path (context.path ()));
+    return test_template_path (p); }
+
+::std::string template_path (const ::std::string& def, const ::std::string& arg)
+{   if (arg.empty ()) return template_path (def);
+    return template_path (arg); }
+
+::std::string once_twice_thrice (const ::std::size_t x)
+{   switch (x)
+    {   case 0 :
+            return "unused";
+        case 1 :
+            return "once";
+        case 2 :
+            return "twice";
+        case 3 :
+            return "thrice";
+        default :
+            if (x >= UINT_MAX) return "many";
+            return ::boost::lexical_cast < ::std::string > (x); } }

@@ -47,6 +47,9 @@
     <None Include="..\toast\ssc-test\ssc.lst">
       <Filter>toasty-toast</Filter>
     </None>
+    <None Include="..\toast\ssc-test\test.nit">
+      <Filter>toasty-toast</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ssc19-test.rc">

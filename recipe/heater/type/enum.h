@@ -369,6 +369,7 @@ typedef enum {  db_context,
                 db_printer, db_tn3270, db_trash } e_dingbat;
 typedef enum { di_auto, di_lro, di_rlo, di_ltr, di_rtl, di_forward, di_reverse } e_dir;
 typedef enum { da_auto, da_before, da_centre, da_after, da_inherit } e_display_align;
+typedef enum { do_booboo, do_cgi, do_examine, do_simple } e_do;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
@@ -1411,10 +1412,22 @@ typedef enum
     nd_verythinmathspace, nd_thinmathspace, nd_mediummathspace, nd_thickmathspace, nd_verythickmathspace, nd_veryverythickmathspace } e_namedspace;
 
 typedef enum
-{   ns_default, ns_bibo, ns_cc, ns_crs, ns_dbp, ns_dbp_owl, ns_dbr, ns_dc, ns_dcterms, ns_dt, ns_ebuttm, ns_ebutts, ns_err, ns_ex, ns_exsl,
-    ns_fn, ns_fo, ns_foaf, ns_html, ns_ims, ns_its, ns_ittm, ns_ittp, ns_itts, ns_ittx, ns_ittxi, ns_ittxt, ns_math, ns_odd, ns_oex, ns_owl,
-    ns_owlxml, ns_rdf, ns_rdfa, ns_rdfs, ns_rddl, ns_saxon, ns_smil, ns_smpte, ns_svg, ns_tt, ns_ttf, ns_ttp, ns_tts, ns_xalan, ns_xf,
-    ns_xhv, ns_xi, ns_xlink, ns_xhtml, ns_xmlevents, ns_xmlns, ns_xs, ns_xsi, ns_xslt, ns_xtm, ns_error } e_namespace;
+{   ns_default,
+    ns_bibo,
+    ns_cc, ns_crs,
+    ns_dbp, ns_dbp_owl, ns_dbr, ns_dc, ns_dcterms, ns_dt,
+    ns_ebuttm, ns_ebutts, ns_err, ns_ex, ns_exsl,
+    ns_fn, ns_fo, ns_foaf,
+    ns_html,
+    ns_ims, ns_its, ns_ittm, ns_ittp, ns_itts, ns_ittx, ns_ittxi, ns_ittxt,
+    ns_math,
+    ns_odd, ns_oex, ns_owl, ns_owlxml,
+    ns_rdf, ns_rdfa, ns_rdfs, ns_rddl,
+    ns_saxon, ns_smil, ns_smpte, ns_svg,
+    ns_tt, ns_ttf, ns_ttp, ns_tts,
+    ns_vcard,
+    ns_xalan, ns_xf, ns_xhv, ns_xi, ns_xlink, ns_xhtml, ns_xmlevents, ns_xmlns, ns_xs, ns_xsi, ns_xslt, ns_xtm,
+    ns_error } e_namespace;
 
 const ::std::size_t first_runtime_namespace = static_cast < ::std::size_t > (ns_error) + 1;
 
@@ -1428,7 +1441,7 @@ typedef enum
     nit_math, nit_svg, nit_no_compound, nit_doctype_incomprehensible, nit_element_offsite_base, nit_missing_set_value, nit_no_curl, nit_cannot_create_file,
     nit_cannot_write, nit_cannot_delete, nit_cannot_update, nit_cannot_read, nit_wrong_secret,
 
-    // error
+    // everything else
     nit_html_unrecognised, nit_newline_in_string, nit_invalid_character_code, nit_unrecognised_character_code, nit_invalid_character_denary, nit_denary_too_long,
     nit_invalid_character_hex, nit_hex_too_long, nit_hex_code_version, nit_cannot_load_css, nit_element_bizarre_base, nit_itemprop_name_charset_equiv, nit_not_an_integer,
     nit_unrecognised_value, nit_correctly_spelt, nit_confusion, nit_abbreviated_correctly, nit_nuts, nit_bad_colour, nit_single_character, nit_value_expected, nit_is_existential,
@@ -1513,12 +1526,62 @@ typedef enum
     nit_shadow_unnecessary, nit_deleted_bad_file, nit_abandon, nit_prefix_again, nit_prefix_unknown, nit_missing_id, nit_namespace_confusion,
     nit_namespace_redefine, nit_no_lang, nit_null_datatype, nit_unknown_datatype, nit_rdfa_version, nit_bad_sha, nit_new_property,
     nit_wwww, nit_bad_vocab, nit_vocab_defined, nit_sarcasm, nit_fe, nit_missing_double_quote, nit_bad_media, nit_mb, nit_byte,
-    nit_b64,
+    nit_b64, nit_help, nit_configuration, nit_title, nit_webaddr, nit_copyright, nit_version, nit_info, nit_build, nit_config_version,
+    nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file,
 
     nit_context,
 
-    // eof
+    // eon
     nit_off } e_nit;
+
+typedef enum
+{   nm_none,
+    nm_class_name, nm_class_count, nm_class_int, nm_config,
+        nm_context_article, nm_context_body, nm_context_css, nm_context_cgi, nm_context_clear, nm_context_code, nm_context_config, nm_context_copy,
+        nm_context_corpus, nm_context_crosslinks, nm_context_custom_elements, nm_context_dc, nm_context_export_root, nm_context_exports,
+        nm_context_extensions, nm_context_fe, nm_context_filename, nm_context_foaf, nm_context_forward, nm_context_hook, nm_context_ignore,
+        nm_context_info, nm_context_index,
+        nm_context_lang, nm_context_links, nm_context_math, nm_context_main, nm_context_max_file_size, nm_context_md_export, nm_context_meta,
+        nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_once, nm_context_output,
+        nm_context_persisted, nm_context_process_webmentions, nm_context_rdfa, nm_context_rdf_version,
+        nm_context_rel, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_sarcasm,
+        nm_context_schema, nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
+        nm_context_shadow_ignore, nm_context_shadow_persist,nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
+        nm_context_shadows, nm_context_site, nm_context_slob, nm_context_spec, nm_context_ssi, nm_context_stats_export, nm_context_stats_page,
+        nm_context_stats_summary, nm_context_svg_version, nm_context_tags, nm_context_templates, nm_context_test, nm_context_title, nm_context_user,
+        nm_context_version, nm_context_virtuals, nm_context_write_path,
+        nm_context_xsd,
+        nm_copy_addr, nm_copy_html, nm_copy_text,
+    nm_general_output, nm_general_path, nm_grand_title,
+    nm_html_snippet,
+    nm_id_name, nm_id_page, nm_id_line,
+    nm_level_name, nm_level_symbol,
+    nm_nit_after, nm_nit_before, nm_nit_code, nm_nit_doc, nm_nit_explanation, nm_nit_id, nm_nit_line, nm_nit_mote, nm_nit_ns, nm_nit_ref,
+        mn_nits_format,
+    nm_page_error, nm_page_name, nm_page_path, nm_prog_abbrev, nm_prog_build, nm_prog_fullname, nm_prog_version, nm_prog_webaddr,
+    nm_query,
+    nm_run_args, nm_run_catastrophe, nm_run_environment,
+    nm_stat_count, nm_stat_detail, nm_stat_int, nm_stat_name, nm_stat_subname, nm_stat_subcount, nm_stat_subdetail, nm_stat_subint, nm_stats_subtitle, nm_stats_title, nm_stats_total,
+    nm_time_duration, nm_time_finish, nm_time_start,
+    nm_max } e_nit_macro;
+
+typedef enum
+{   ns_none,
+    ns_class, ns_class_foot, ns_class_head,
+    ns_config, ns_config_foot, ns_config_head,
+    ns_doc_foot, ns_doc_head,
+    ns_export, ns_export_foot, ns_export_head,
+    ns_grand_foot, ns_grand_head,
+    ns_id_foot, ns_id_head, ns_itemid,
+    ns_init, ns_init_foot, ns_init_head,
+    ns_link, ns_link_foot, ns_link_head,
+    ns_nit, ns_nits_foot, ns_nits_head, ns_nits_page,
+    ns_page_foot, ns_page_head,
+    ns_shadow, ns_shadow_foot, ns_shadow_head,
+    ns_stats_foot, ns_stats_head, ns_stat, ns_stats_subfoot, ns_stats_subhead, ns_substat,
+    ns_update, ns_update_foot, ns_update_head,
+    ns_webmention, ns_webmention_foot, ns_webmention_head,
+    ns_max } e_nit_section;
 
 typedef enum { no_dsssl, no_w3c } e_notations;
 typedef enum { nsd_none, nsd_space, nsd_dashed } e_nsd;
@@ -1573,6 +1636,7 @@ typedef enum {
     pr_z39_50, pr_z39_50r, pr_z39_50s, pr_zoommtg, pr_zoomus,
     pr_error } e_protocol;
 
+typedef enum { qs_none, qs_c, qs_csv, qs_double, qs_html, qs_single } e_quote_style;
 typedef enum { rp_collection, rp_literal, rp_resource } e_rdf_parsetype;
 typedef enum { rdf_none, rdf_a, rdf_deprecated, rdf_1_0, rdf_1_1 } e_rdf_version;
 typedef enum { rf_no, rf_downgrade, rf_same, rf_origin, rf_strict, rf_strictcross, rf_cross, rf_unsafe } e_referrer;
@@ -1652,6 +1716,9 @@ typedef enum {
     // curie
     r_curie,
 
+    // additional xhv
+    r_role,
+
     r_illegal } e_rel;
 
 typedef enum { ri_auto, ri_perceptual, ri_relativecolourimetric, ri_saturation, ri_absolutecolourimetric } e_rendering_in_tents;
@@ -1668,7 +1735,7 @@ typedef enum {
     s_none,
     s_article, s_as,
     s_bibo, s_book,
-    s_cc, s_csvw, s_ctag,
+    s_cc, s_content, s_csvw, s_ctag,
     s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_dqv, s_describedby, s_duv,
     s_earl,
     s_foaf, s_frbr_core,
@@ -1681,7 +1748,7 @@ typedef enum {
     s_poetry, s_profile, s_prov,
     s_qb,
     s_rdf, s_rdfa, s_rdfs, s_rev, s_rif, s_role, s_rr,
-    s_schema, s_sd, s_sioc, s_skos, s_skosxl, s_ssn, s_sosa,
+    s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_ssn, s_sosa,
     s_taxo, s_time,
     s_v, s_vcard, s_video, s_void,
     s_wdr, s_wdrs, s_website, s_whatwg,
@@ -1741,6 +1808,9 @@ typedef enum
 
     // RDFs
     rdfs_class, rdfs_container, rdfs_containermembershipproperty, rdfs_datatype, rdfs_literal, rdfs_resource,
+
+    // Review Vocabulary
+    rev_comment, rev_feedback, rev_review,
 
     //schema.org
     sch_3dmodel,
@@ -1913,6 +1983,28 @@ typedef enum
 
     sch_zoneboardingpolicy, sch_zoo,
 
+    // frost (sioc)
+    sioc_community, sioc_container, sioc_forum, sioc_item, sioc_post, sioc_role, sioc_site, sioc_space, sioc_thread, sioc_user, sioc_usergroup,
+
+    // vcard
+    vcard_address,
+    vcard_bbs,
+    vcard_car,
+    vcard_dom,
+    vcard_email,
+    vcard_fax,
+    vcard_home,
+    vcard_internet, vcard_intl, vcard_isdn,
+    vcard_label, vcard_location,
+    vcard_mobile, vcard_modem, vcard_msg,
+    vcard_name,
+    vcard_organisation,
+    vcard_pager, vcard_parcel, vcard_pcs, vcard_postal, vcard_pref,
+    vcard_tel,
+    vcard_vcard, vcard_video, vcard_voice,
+    vcard_work,
+    vcard_x400,
+
     // Living Standard
     wwg_work,
 
@@ -1941,6 +2033,9 @@ typedef enum
 
     // creative commons
     cc_attributionname, cc_attributionurl, cc_deprecatedon, cc_jurisdiction, cc_legalcode, cc_licence, cc_morepermissions, cc_permits, cc_prohibits, cc_requires,
+
+    // content
+    content_encoded, content_encoding, content_format, content_item, content_items, content_value,
 
     // common tag
     ctag_label, ctag_means, ctag_tagged, ctag_taggingdate,
@@ -2127,10 +2222,13 @@ typedef enum
     poetry_age, poetry_containedinpoem, poetry_containspoem, poetry_hasform, poetry_hasstanza, poetry_indialect, poetry_ischorus, poetry_islaidout, poetry_keepsstrictform, poetry_lines, poetry_medium, poetry_metre, poetry_poet, poetry_region, poetry_rhymingscheme, poetry_subform,
 
     // RDF
-    rdf_direction, rdf_first, rdf_language, rdf_object, rdf_predicate, rdf_rest, rdf_subject, rdf_type, rdf_value,
+    rdf_description, rdf_direction, rdf_first, rdf_language, rdf_object, rdf_predicate, rdf_resource, rdf_rest, rdf_subject, rdf_type, rdf_value,
 
     // RDFs
     rdfs_comment, rdfs_domain, rdfs_isdefinedby, rdfs_label, rdfs_member, rdfs_range, rdfs_seealso, rdfs_subclassof, rdfs_subpropertyof,
+
+    // Review Vocabulary
+    rev_commenter, rev_hascomment, rev_hasfeedback, rev_hasreview, rev_maxrating, rev_minrating, rev_positivevotes, rev_rating, rev_reviewer, rev_text, rev_totalvotes, rev_type,
 
     // schema.org
     sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptoffer, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol,
@@ -2283,6 +2381,58 @@ typedef enum
     sp_xpath,
 
     sp_yearbuilt, sp_yearlyrevenue, sp_yearsinoperation, sp_yield,
+
+    // sioc
+    sioc_about, sioc_account_of, sioc_administrator_of, sioc_attachment, sioc_avatar,
+
+    sioc_container_of, sioc_content, sioc_creator_of,
+
+    sioc_email, sioc_email_sha1,
+
+    sioc_feed, sioc_function_of,
+
+    sioc_has_administrator, sioc_has_container, sioc_has_creator, sioc_has_function, sioc_has_host, sioc_has_member, sioc_has_moderator, sioc_has_modifier, sioc_has_owner, sioc_has_parent, sioc_has_reply, sioc_has_scope,
+    sioc_has_space, sioc_has_subscriber, sioc_has_usergroup, sioc_host_of,
+
+    sioc_id, sioc_ip_address,
+
+    sioc_link, sioc_links_to,
+
+    sioc_member_of, sioc_moderator_of, sioc_modifier_of,
+
+    sioc_name, sioc_next_by_date, sioc_next_version, sioc_note, sioc_num_replies, sioc_num_views,
+
+    sioc_owner_of,
+
+    sioc_parent_of, sioc_previous_by_date, sioc_previous_version,
+
+    sioc_related_to, sioc_reply_of,
+
+    sioc_scope_of, sioc_sibling, sioc_space_of, sioc_subscriber_of,
+
+    sioc_topic,
+
+    sioc_usergroup_of,
+
+    // vcard
+    vcard_additional_name, vcard_adr, vcard_agent,
+    vcard_bday,
+    vcard_category, vcard_class, vcard_country_name,
+    vcard_extended_address,
+    vcard_family_name, vcard_fn,
+    vcard_geo, vcard_given_name,
+    vcard_hasemail, vcard_hasfax, vcard_haslabel, vcard_homeadr, vcard_hometel, vcard_honourific_prefix, vcard_honourific_suffix,
+    vcard_key,
+    vcard_latitude, vcard_locality, vcard_logo, vcard_longitude,
+    vcard_mailer, vcard_mobileemail, vcard_mobiletel,
+    vcard_n, vcard_nickname, vcard_note,
+    vcard_org, vcard_organisational_name, vcard_organisational_unit,
+    vcard_personalemail, vcard_phone, vcard_photo, vcard_post_office_box, vcard_postal_code, vcard_prodid,
+    vcard_region, vcard_rev, vcard_role,
+    vcard_sort_string, vcard_sound, vcard_street_address,
+    vcard_title, vcard_tz,
+    vcard_uid, vcard_unlabeledadr, vcard_unlabeledemail, vcard_unlabeledtel, vcard_url,
+    vcard_workadr, vcard_workemail, vcard_worktel,
 
     // WDRS
     wdrs_describedby,
@@ -2443,7 +2593,7 @@ typedef enum {
     t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hour, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
     t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index,
         t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus,
-        t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
+        t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
     t_just_date, t_just_time,
     t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind,
     t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length, t_length_absolute,
@@ -2457,17 +2607,18 @@ typedef enum {
         t_menuitem, t_menutype, t_metaname, t_method, t_methodological, t_mf_availability, t_mf_category, t_mf_class, t_mf_identifier, t_mf_itemtype,
         t_mf_listing_action, t_mf_listing_actions, t_mf_method, t_mf_reviewtype, t_mf_status, t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar,
         t_minute, t_mode, t_month, t_monthday, t_morphology_operator, t_mql, t_mqls, t_myersbriggs,
-    t_name, t_nameref, t_namespace, t_namedspace, t_navigation, t_negative, t_not_0, t_not_empty, t_not_neg, t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_num,
+    t_name, t_nameref, t_namespace, t_namedspace, t_navigation, t_negative, t_nit_macro, t_nit_section, t_not_0, t_not_empty, t_not_neg, t_not_pos,
+        t_notation, t_notations, t_nsd, t_nsds, t_num,
     t_occurence, t_ogtype, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, t_overlay,
     t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_panose1, t_percent, t_phase, t_phase_x, t_pics, t_plus_1_7, t_plusstyle, t_pointer_events,
         t_points, t_positive, t_positive_1_2, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio, t_preserveaspectratio10,
         t_preserveaspectratio12, t_print, t_propagate, t_pseudo, t_pseudonamedspace, t_pt,
-    t_q,
+    t_q, t_quote_style,
     t_rap, t_rating, t_rdf_parsetype, t_rdfa_typeof, t_real, t_real_1_2, t_real_ai, t_real_i, t_reals, t_referrer, t_refresh, t_refx, t_refy, t_regex, t_rel,
         t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents, t_repeatcount, t_restart,
         t_result, t_reveal_trans, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim, t_rowscols,  t_rsvp, t_rules,
     t_sandbox, t_sandboxen, t_scei, t_schema, t_schema_type, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml,
-        t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon,
+        t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon,
         t_shape_fn_circlesz, t_shape_fn_ellipsesz, t_shape_fn_polygonsz, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3,
         t_sizes, t_sizex, t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env,
         t_ssi_f, t_start, t_startend, t_stitchtiles, t_streamedcontents, t_svg_feature, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_step, t_style, t_svg_align,

@@ -40,11 +40,13 @@ microdata_hierachy schema_hierarchy [] =
 
     { { s_foaf, 0, 99 }, { 0, 0 }, foaf_document, foaf_image },
     { { s_foaf, 0, 99 }, { 0, 0 }, foaf_document, foaf_personalprofiledocument },
+    { { s_foaf, 0, 99 }, { 0, 0 }, foaf_document, sioc_item },
 
 //    { { s_foaf, 0, 1 }, { 0, 0 }, owl_thing, foaf_onlineaccount },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_onlineaccount, foaf_onlinechataccount,  },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_onlineaccount, foaf_onlineecommerceaccount },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_onlineaccount, foaf_onlinegamingaccount },
+    { { s_foaf, 0, 99 }, { 0, 0 }, foaf_onlineaccount, sioc_user },
 
     // good relations
     { { s_gr, 1, 0 }, { 0, 0 }, gr_businessentitytype, gr_business },
@@ -1738,23 +1740,49 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_webpageelement, sch_wpheader },
     {   { 2, 0 }, { 0, 0 }, sch_webpageelement, sch_wpsidebar },
 
-/*
-    xsd_anyatomictype, xsd_anysimpletype, xsd_anytype, xsd_anyuri,
-    xsd_base64binary, xsd_boolean, xsd_byte,
-    xsd_date, xsd_datetime, xsd_datetimestamp, xsd_decimal, xsd_double, xsd_duration,
-    xsd_entities, xsd_entity,
-    xsd_float,
-    xsd_gday, xsd_gmonth, xsd_gmonthday, xsd_gyear, xsd_gyearmonth,
-    xsd_hexbinary,
-    xsd_id, xsd_idref, xsd_idrefs, xsd_integer,
-    xsd_language, xsd_long,
-    xsd_name, xsd_ncname, xsd_negativeinteger, xsd_nmtoken, xsd_nmtokens, xsd_nonnegativeinteger, xsd_nonpositiveinteger, xsd_normalisedstring, xsd_notation,
-    xsd_positiveinteger,
-    xsd_qname,
-    xsd_short, xsd_string,
-    xsd_time, xsd_token,
-    xsd_unsignedbyte, xsd_unsignedint, xsd_unsignedlong, xsd_unsignedshort,
-*/
+    // sioc
+    {   { s_sioc, 1, 0 }, { 0, 0 }, sioc_container, sioc_forum },
+    {   { s_sioc, 1, 0 }, { 0, 0 }, sioc_container, sioc_thread },
+
+    {   { s_sioc, 1, 0 }, { 0, 0 }, sioc_item, sioc_post },
+
+    {   { s_sioc, 1, 0 }, { 0, 0 }, sioc_space, sioc_site },
+
+    // vcard
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_dom },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_home },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_intl },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_parcel },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_postal },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_pref },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_work },
+
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_dom },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_home },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_intl },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_parcel },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_postal },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_pref },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_work },
+
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_internet },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_x400 },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_pref },
+
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_bbs },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_car },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_fax },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_home },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_isdn },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_mobile },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_modem },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_msg },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_pager },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_pcs },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_pref },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_video },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_voice },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_work },
 
     // XML schema types
     {   { s_xsd, 1, 0 }, { 0, 0 }, xsd_anytype, xsd_anysimpletype },

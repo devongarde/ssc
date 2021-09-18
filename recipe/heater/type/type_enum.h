@@ -438,12 +438,6 @@ template < > struct type_master < t_mf_method > : enum_n < t_mf_method, e_mf_met
 template < > struct type_master < t_mf_reviewtype > : enum_n < t_mf_reviewtype, e_mf_reviewtype >
 { using enum_n < t_mf_reviewtype, e_mf_reviewtype > :: enum_n; };
 
-//template < > struct type_master < t_microdata_domain > : enum_n < t_microdata_domain, e_microdata_domain >
-//{ using enum_n < t_microdata_domain, e_microdata_domain > :: enum_n; };
-
-//template < > struct type_master < t_microdata_root > : enum_n < t_microdata_root, e_schema >
-//{ using enum_n < t_microdata_root, e_schema > :: enum_n; };
-
 template < > struct type_master < t_mime > : enum_n < t_mime, e_mimetype >
 { using enum_n < t_mime, e_mimetype > :: enum_n; };
 
@@ -455,6 +449,12 @@ template < > struct type_master < t_namedspace > : enum_n < t_namedspace, e_name
 
 template < > struct type_master < t_namespace > : enum_n < t_namespace, e_namespace >
 { using enum_n < t_namespace, e_namespace > :: enum_n; };
+
+template < > struct type_master < t_nit_macro > : enum_n < t_nit_macro, e_nit_macro >
+{ using enum_n < t_nit_macro, e_nit_macro > :: enum_n; };
+
+template < > struct type_master < t_nit_section > : enum_n < t_nit_section, e_nit_section >
+{ using enum_n < t_nit_section, e_nit_section > :: enum_n; };
 
 template < > struct type_master < t_ogtype > : enum_n < t_ogtype, e_ogtype >
 { using enum_n < t_ogtype, e_ogtype > :: enum_n; };
@@ -470,6 +470,9 @@ template < > struct type_master < t_print > : enum_n < t_print, e_print >
 
 template < > struct type_master < t_pointer_events > : enum_n < t_pointer_events, e_pointer_events >
 { using enum_n < t_pointer_events, e_pointer_events > :: enum_n; };
+
+template < > struct type_master < t_quote_style > : enum_n < t_quote_style, e_quote_style >
+{ using enum_n < t_quote_style, e_quote_style > :: enum_n; };
 
 template < > struct type_master < t_referrer > : enum_n < t_referrer, e_referrer >
 { using enum_n < t_referrer, e_referrer > :: enum_n; };

@@ -702,6 +702,36 @@
     <Filter Include="Toast\RDFa\xsd">
       <UniqueIdentifier>{5ae8281e-0db5-49a0-bc98-61ecfeeda3b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\RDFa\sioc">
+      <UniqueIdentifier>{5b4e5aae-1bff-4805-9617-d1acd741851e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\vcard">
+      <UniqueIdentifier>{4895ad03-5333-435f-b810-9fc846f722ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tea\templates">
+      <UniqueIdentifier>{15bc2191-bcf8-4d36-bfc6-4feeb51fd3c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output">
+      <UniqueIdentifier>{130f6b98-3fd8-4a89-bd86-78b1561b8d68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\html">
+      <UniqueIdentifier>{cac21145-539f-4746-a35d-5c0be5c265fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\out">
+      <UniqueIdentifier>{539c2ec0-56aa-4e39-a07a-981dc70e79dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\text">
+      <UniqueIdentifier>{9c486b47-290d-4f91-83c5-c5bf2b31b7e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\xhtml">
+      <UniqueIdentifier>{0f5e720c-2fd2-4dc6-a4f6-5b1bd9599701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\test">
+      <UniqueIdentifier>{df5b0bd3-1bfe-4b60-bcd1-ef0817790e44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\default">
+      <UniqueIdentifier>{5ac0968c-6a86-4247-a93c-860268ddd27d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1181,6 +1211,9 @@
     <ClInclude Include="..\heater\rdf\rdfa_prop.h">
       <Filter>Heater\rdf</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\feedback\nitout.h">
+      <Filter>Heater\feedback</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1644,6 +1677,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\rdf\rdfa_prop.cpp">
       <Filter>Sauce\rdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\feedback\nitout.cpp">
+      <Filter>Sauce\feedback</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -6341,9 +6377,6 @@
     </None>
     <None Include="..\toast\living\jan12\aside-2.html">
       <Filter>Toast\Living\jan12</Filter>
-    </None>
-    <None Include="addtest.sh">
-      <Filter>Tea</Filter>
     </None>
     <None Include="..\toast\living\jul09\hgroup.html">
       <Filter>Toast\Living\jul09</Filter>
@@ -20427,6 +20460,135 @@
     <None Include="..\toast\RDFa\xsd\xsd.html">
       <Filter>Toast\RDFa\xsd</Filter>
     </None>
+    <None Include="..\toast\RDFa\sioc\index.html">
+      <Filter>Toast\RDFa\sioc</Filter>
+    </None>
+    <None Include="..\toast\RDFa\sioc\rdfa.conf">
+      <Filter>Toast\RDFa\sioc</Filter>
+    </None>
+    <None Include="..\toast\RDFa\sioc\rdfa.spec">
+      <Filter>Toast\RDFa\sioc</Filter>
+    </None>
+    <None Include="..\toast\RDFa\sioc\sioc.html">
+      <Filter>Toast\RDFa\sioc</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard\index.html">
+      <Filter>Toast\RDFa\vcard</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard\rdfa.conf">
+      <Filter>Toast\RDFa\vcard</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard\rdfa.spec">
+      <Filter>Toast\RDFa\vcard</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard\vcard.html">
+      <Filter>Toast\RDFa\vcard</Filter>
+    </None>
+    <None Include=".ssc\delete.tpl">
+      <Filter>Tea\templates</Filter>
+    </None>
+    <None Include=".ssc\new.tpl">
+      <Filter>Tea\templates</Filter>
+    </None>
+    <None Include=".ssc\static.tpl">
+      <Filter>Tea\templates</Filter>
+    </None>
+    <None Include=".ssc\change.tpl">
+      <Filter>Tea\templates</Filter>
+    </None>
+    <None Include="..\toast\output\html\index.html">
+      <Filter>Toast\Output\html</Filter>
+    </None>
+    <None Include="..\toast\output\html\output.conf">
+      <Filter>Toast\Output\html</Filter>
+    </None>
+    <None Include="..\toast\output\html\output.spec">
+      <Filter>Toast\Output\html</Filter>
+    </None>
+    <None Include="..\toast\output\html\ssc.css">
+      <Filter>Toast\Output\html</Filter>
+    </None>
+    <None Include="..\toast\output\out\index.html">
+      <Filter>Toast\Output\out</Filter>
+    </None>
+    <None Include="..\toast\output\out\output.conf">
+      <Filter>Toast\Output\out</Filter>
+    </None>
+    <None Include="..\toast\output\out\output.spec">
+      <Filter>Toast\Output\out</Filter>
+    </None>
+    <None Include="..\toast\output\text\index.html">
+      <Filter>Toast\Output\text</Filter>
+    </None>
+    <None Include="..\toast\output\text\output.conf">
+      <Filter>Toast\Output\text</Filter>
+    </None>
+    <None Include="..\toast\output\text\output.spec">
+      <Filter>Toast\Output\text</Filter>
+    </None>
+    <None Include="..\toast\output\xhtml\index.html">
+      <Filter>Toast\Output\xhtml</Filter>
+    </None>
+    <None Include="..\toast\output\xhtml\output.conf">
+      <Filter>Toast\Output\xhtml</Filter>
+    </None>
+    <None Include="..\toast\output\xhtml\output.spec">
+      <Filter>Toast\Output\xhtml</Filter>
+    </None>
+    <None Include="..\toast\output\test\index.html">
+      <Filter>Toast\Output\test</Filter>
+    </None>
+    <None Include="..\toast\output\test\output.conf">
+      <Filter>Toast\Output\test</Filter>
+    </None>
+    <None Include="..\toast\output\test\output.spec">
+      <Filter>Toast\Output\test</Filter>
+    </None>
+    <None Include="..\toast\output\html\html.nit">
+      <Filter>Toast\Output\html</Filter>
+    </None>
+    <None Include="..\toast\output\out\out.nit">
+      <Filter>Toast\Output\out</Filter>
+    </None>
+    <None Include="..\toast\output\test\test.nit">
+      <Filter>Toast\Output\test</Filter>
+    </None>
+    <None Include="..\toast\output\text\text.nit">
+      <Filter>Toast\Output\text</Filter>
+    </None>
+    <None Include="..\toast\output\xhtml\xhtml.nit">
+      <Filter>Toast\Output\xhtml</Filter>
+    </None>
+    <None Include="..\toast\output\default\index.html">
+      <Filter>Toast\Output\default</Filter>
+    </None>
+    <None Include="..\toast\output\default\output.conf">
+      <Filter>Toast\Output\default</Filter>
+    </None>
+    <None Include="..\toast\output\default\output.spec">
+      <Filter>Toast\Output\default</Filter>
+    </None>
+    <None Include="..\toast\output\html\index.html.model">
+      <Filter>Toast\Output\html</Filter>
+    </None>
+    <None Include="..\toast\output\xhtml\index.xhtml.model">
+      <Filter>Toast\Output\xhtml</Filter>
+    </None>
+    <None Include="..\toast\output\out\output.out.model">
+      <Filter>Toast\Output\out</Filter>
+    </None>
+    <None Include="..\toast\output\test\output.tst.model">
+      <Filter>Toast\Output\test</Filter>
+    </None>
+    <None Include="..\toast\output\text\output.txt.model">
+      <Filter>Toast\Output\text</Filter>
+    </None>
+    <None Include="..\toast\output\default\default.out.model">
+      <Filter>Toast\Output\default</Filter>
+    </None>
+    <None Include="..\toast\output\xhtml\ssc.css">
+      <Filter>Toast\Output\xhtml</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -20667,6 +20829,9 @@
     </Text>
     <Text Include="..\toast\shadow\update\README.txt">
       <Filter>Toast\Shadow\Update</Filter>
+    </Text>
+    <Text Include=".ssc\README.txt">
+      <Filter>Tea\templates</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

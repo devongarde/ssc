@@ -41,7 +41,13 @@ bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, 
 ::std::string report_itemids ()
 {   ::std::string res;
     for (auto i : miid)
-        res += i.first + " (" + i.second.path_ + ":" + ::boost::lexical_cast < ::std::string > (i.second.line_) + ")\n";
+    {   mmac_t mac;
+        mac.emplace (nm_id_name, i.first);
+        mac.emplace (nm_id_page, i.second.path_);
+        mac.emplace (nm_id_line, ::boost::lexical_cast < ::std::string > (i.second.line_));
+        res += apply_macros (ns_itemid, mac); }
+    if (! res.empty ())
+        res = apply_macros (ns_id_head) + res + apply_macros (ns_id_foot);
     return res; }
 
 bool empty_itemid ()

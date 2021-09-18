@@ -1,3 +1,5 @@
+Built with Visual Studio under Windows & CMake under a unix flavour
+
 To build a release version with cmake:
 cmake .
 make
@@ -12,3 +14,6 @@ make install
 
 Because ssc is very alpha, the make install does not install in a standard location,
 but in the ssc parent directory.
+
+To change the default nit templates, namely the output format (see nitout.cpp),
+you'll need a copy of vi (in all unix flavours & Windows 10 in the standard Linux guest).

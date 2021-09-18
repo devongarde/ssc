@@ -180,7 +180,7 @@ void reply::mark_delete ()
 
 ::std::string reply::report (const char* verb) const
 {   ::std::ostringstream res;
-    if (context.tell (e_all)) res << "*** " << verb << '\n' <<  file_ << '\n' << id_ << '\n' << server_ << '\n' << target_ << '\n' << content_ << '\n' << ::std::endl;
+    if (context.tell (e_all)) res << START_OF_SECTION " " << verb << '\n' <<  file_ << '\n' << id_ << '\n' << server_ << '\n' << target_ << '\n' << content_ << '\n' << ::std::endl;
     return res.str (); }
 
 ::std::string reply::report (const ::std::size_t n) const

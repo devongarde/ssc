@@ -156,3 +156,8 @@ inline ::std::string substitute_char (::std::string& s, const char from, const c
 
 inline ::std::string decolonise (::std::string& sauce)
 {   return split_at_first_of (sauce, ":"); }
+
+::std::string template_path (const ::std::string& fn);
+::std::string template_path (const ::std::string& def, const ::std::string& arg);
+
+::std::string once_twice_thrice (const ::std::size_t x);

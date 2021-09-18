@@ -1,0 +1,15 @@
+Static Site Checker version 0.0.112
+(c) 2020,2021 Dylan Harris
+
+*** configuration
+Loading configuration ../toast/output/text/output.conf...
+Writing to ../out/output.txt
+
+
+*** ../toast/output/text/index.html
+
+2  ** <html> ** 
+ -->  use LANG to specify a default language [naughty_lang]
+
+---
+Duration: come on, be honest, you hardly noticed

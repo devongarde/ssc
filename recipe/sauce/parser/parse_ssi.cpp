@@ -47,9 +47,10 @@ void ssi_compedium::swap (ssi_compedium& ssi)
     ::std::swap (if_, ssi.if_);
     ::std::swap (iffed_, ssi.iffed_); }
 
-void set_ssi_context (::std::string& ln, nitpick& nits, e_severity severity)
+void set_ssi_context (::std::string& ln, nitpick& nits, e_severity )
 {   if (ln.empty ()) return;
-    nits.pick (nit_context, severity, ec_ssi, ln);
+    nits.set_context (0, ln);
+//    nits.pick (nit_context, severity, ec_ssi, ln);
     ln.clear (); }
 
 ::std::string womble_time (::std::string& ln, nitpick& nits, ssi_compedium& c, struct tm* lwt)
@@ -308,7 +309,6 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
                 case ssi_set_value : value = arg; break;
                 case ssi_set_decoding : encoding (ln, nits, v, dec, arg); break;
                 case ssi_set_encoding : encoding (ln, nits, v, enc, arg); break; } }
-
     if (var.empty ())
     {   set_ssi_context (ln, nits, es_error);
         nits.pick (nit_invalid_set, es_error, ec_ssi, "it is difficult to set the value of a variable without naming it"); }
@@ -320,7 +320,6 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
             c.var_.insert (ustr_t::value_type (var, value));
         else
             i -> second = value; }
-
     return ::std::string (); }
 
 bool if_args (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const vstr_t& args)
@@ -436,20 +435,20 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
         warned = true; }
     if (static_cast <::std::size_t> (i - b) > max_separation) b = i - max_separation;
     if (static_cast <::std::size_t> (e - i) > max_separation) e = i + max_separation;
-    nits.pick (nit_context, severity, ec_ssi, line, ": ", unify_whitespace (::std::string (b, e)));
+    nits.set_context (line, unify_whitespace (::std::string (b, e)));
+//    nits.pick (nit_context, severity, ec_ssi, line, ": ", unify_whitespace (::std::string (b, e)));
     nits.pick (nit_ssi_syntax, severity, ec_ssi, msg); }
 
 ::std::string parse_ssi (nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush)
 {   VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
-    typedef enum { es_dull, es_open, es_bang, es_om_1, es_om_2, es_note, es_ssi, es_args, es_cm_1, es_cm_2, es_space, es_am_1, es_am_2 } e_state;
     if (! context.ssi ()) return input;
+    typedef enum { es_dull, es_open, es_bang, es_om_1, es_om_2, es_note, es_ssi, es_args, es_cm_1, es_cm_2, es_space, es_am_1, es_am_2 } e_state;
     e_state status = es_dull;
     bool revised = false, linechange = false, inif = false, warned = false;
     ::std::string from (input), to, cmd;
     ::std::string::const_iterator start = from.cbegin (), var = from.cbegin (), args = from.cbegin (), b = from.cbegin (), e = from.cend ();
     int line = 1, nlc = 0;
     c.if_ = true;
-
     for (::std::string::const_iterator i = b; i != e; ++i)
     {   if ((*i == '\f') || (*i == '\r') || (*i == '\n'))
         {   if (++nlc < 3) to += *i;
@@ -458,13 +457,31 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
         if (*i == '\t') { to += *i; continue; }
         if (! ::std::iswspace (*i) && ! ::std::iswcntrl (*i)) nlc = 0;
         switch (status)
-        {   case es_dull : if (*i == '<') { status = es_open; start = i; } else if (c.if_) to += *i; break;
-            case es_open : if (*i == '!') status = es_bang; else { if (c.if_) { to += "<"; to += *i; } status = es_dull; } break;
-            case es_bang : if (*i == '-') status = es_om_1; else { if (c.if_) { to += "<!"; to += *i; } status = es_dull; } break;
-            case es_om_1 : if (*i == '-') status = es_om_2; else { if (c.if_) { to += "<!-"; to += *i; } status = es_dull; } break;
-            case es_om_2 : if (*i == '#') { status = es_ssi; var = i; } else status = es_note; break;
+        {   case es_dull :
+                if (*i == '<') { status = es_open; start = i; }
+                else if (c.if_) to += *i;
+                break;
+            case es_open :
+                if (*i == '!') status = es_bang;
+                else { if (c.if_) { to += "<"; to += *i; } status = es_dull; }
+                break;
+            case es_bang :
+                if (*i == '-') status = es_om_1;
+                else { if (c.if_) { to += "<!"; to += *i; } status = es_dull; }
+                break;
+            case es_om_1 :
+                if (*i == '-') status = es_om_2;
+                else { if (c.if_) { to += "<!-"; to += *i; } status = es_dull; }
+                break;
+            case es_om_2 :
+                if (*i == '#') { status = es_ssi; var = i; }
+                else status = es_note;
+                break;
             case es_ssi :
-                if (::std::iswcntrl (*i) || ::std::iswspace (*i)) { cmd = trim_the_lot_off (::std::string (var+1, i)); status = es_space; args = i; }
+                if (::std::iswcntrl (*i) || ::std::iswspace (*i))
+                {   cmd = trim_the_lot_off (::std::string (var+1, i));
+                    status = es_space;
+                    args = i; }
                 test_for_oops (nits, line, b, i, e, warned);
                 break;
             case es_args :
@@ -474,8 +491,14 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                     case '-' :
                     case '>' : test_for_oops (nits, line, b, i, e, warned); }
                 break;
-            case es_space : if (*i == '-') status = es_am_1; else status = es_args; break;
-            case es_am_1 : if (*i == '-') status = es_am_2; else status = es_args; break;
+            case es_space :
+                if (*i == '-') status = es_am_1;
+                else status = es_args;
+                break;
+            case es_am_1 :
+                if (*i == '-') status = es_am_2;
+                else status = es_args;
+                break;
             case es_am_2 : if (*i == '>')
             {   ::std::string a (unify_whitespace (trim_the_lot_off (::std::string (args, i-3))));
                 ::std::string ln (::boost::lexical_cast < ::std::string > (line));
@@ -484,33 +507,40 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                 to += process_ssi (ln, nits, v, p, c, cmd, a, linechange, inif, updated);
                 revised = true; status = es_dull; }
             break;
-            case es_note : if (*i == '-') status = es_cm_1; break;
-            case es_cm_1 : if (*i == '-') status = es_cm_2; else status = es_note; break;
-            case es_cm_2 : if (*i == '>') status = es_dull; warned = false; break; } }
-
+            case es_note :
+                if (*i == '-') status = es_cm_1;
+                break;
+            case es_cm_1 :
+                if (*i == '-') status = es_cm_2;
+                else status = es_note;
+                break;
+            case es_cm_2 :
+                if (*i == '>') status = es_dull;
+                warned = false;
+                break; } }
     switch (status)
     {   case es_ssi :
         case es_args :
         case es_space :
         case es_am_1 :
         case es_am_2 :
-        {   nits.pick (nit_context, es_error, ec_ssi, line, ": ", hereabouts (start, e));
+        {   nits.set_context (0, hereabouts (start, e));
+//            nits.pick (nit_context, es_error, ec_ssi, line, ": ", hereabouts (start, e));
             nits.pick (nit_ssi_syntax, es_error, ec_ssi, "end of file inside SSI element"); }
             break;
         case es_note :
         case es_cm_1 :
         case es_cm_2 :
-        {   nits.pick (nit_context, es_error, ec_ssi, line, ": ", hereabouts (start, e));
+        {   nits.set_context (0, hereabouts (start, e));
+//            nits.pick (nit_context, es_error, ec_ssi, line, ": ", hereabouts (start, e));
             nits.pick (nit_ssi_syntax, es_error, ec_ssi, "end of file inside comment"); }
         default : break; }
-
     if (linechange)
-    {   nits.pick (nit_context, es_comment, ec_ssi, line, ": ", c.filename_);
+    {   nits.set_context (0, c.filename_);
+//            nits.pick (nit_context, es_comment, ec_ssi, line, ": ", c.filename_);
         nits.pick (nit_linechange, es_comment, ec_ssi, "SSI substitution may have caused some line numbers to change"); }
-
     if (! shush && revised && context.tell (e_splurge))
     {   context.out ("\nSSI parsing changed content to:\n");
         context.out (to);
         context.out ("\n"); }
-
     return to; }

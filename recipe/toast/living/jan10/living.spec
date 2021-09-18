@@ -671,12 +671,12 @@ PASS ../toast/living/jan10/source.html
 PASS ../toast/living/jan10/span.html
 6 unrecognised_value unrecognised_value unrecognised_value
 7 unrecognised_value unrecognised_value
-8 unrecognised_value unrecognised_value lonely_ampersand
-9 unrecognised_value
+8 unrecognised_value unrecognised_value
+9 lonely_ampersand unrecognised_value
 10 unrecognised_value unrecognised_value
 11 unrecognised_value unrecognised_value
-12 unrecognised_value lonely_ampersand
-13 unrecognised_value unrecognised_value
+12 unrecognised_value
+13 lonely_ampersand unrecognised_value unrecognised_value
 14 unrecognised_value
 15 unrecognised_value
 
@@ -833,7 +833,7 @@ PASS ../toast/living/jan10/vcard.html
 44 use_quote_code
 45 use_quote_code
 47 use_quote_code
-49 bad_property
+49 bad_property bad_property
 53 missing_close
 56 inserted_missing_closure
 

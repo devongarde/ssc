@@ -36,6 +36,7 @@ void schema_version::init () // call after context construction
     vsv [s_article] = article_schema;
     vsv [s_book] = book_schema;
     vsv [s_cc] = creative_commons;
+    vsv [s_content] = content_schema;
     vsv [s_ctag] = common_tag;
     vsv [s_dc] = dc_1_1;
     vsv [s_dcam] = dcam;
@@ -52,7 +53,12 @@ void schema_version::init () // call after context construction
     vsv [s_rdf] = rdf_schema;
     vsv [s_rdfa] = rdfa_1_1_3;
     vsv [s_rdfs] = rdfs_schema;
+    vsv [s_rev] = review_schema;
     vsv [s_schema] = context.schema_ver ();
+    vsv [s_sioc] = sioc_schema;
+    vsv [s_sioc_s] = sioc_services;
+    vsv [s_sioc_t] = sioc_types;
+    vsv [s_vcard] = vcard_schema;
     vsv [s_video] = video_schema;
     vsv [s_wdrs] = wdrs_schema;
     vsv [s_website] = website_schema;
@@ -73,6 +79,9 @@ void schema_version::init () // call after context construction
                 break;
             case s_cc :
                 res << "creative commons";
+                break;
+            case s_content :
+                res << "content";
                 break;
             case s_ctag :
                 res << "common tag";
@@ -128,11 +137,26 @@ void schema_version::init () // call after context construction
             case s_rdfs :
                 res << "RDFs";
                 break;
+            case s_rev:
+                res << "RDF review";
+                break;
             case s_schema :
                 res << "schema.org v";
                 if (mjr () == 7)
                     res << static_cast < int > (mjr ()) << ".0" << static_cast < int > (mnr ());
                 else res << static_cast < int > (mjr ()) << "." << static_cast < int > (mnr ());
+                break;
+            case s_sioc :
+                res << "semantically-interlinked online communities";
+                break;
+            case s_sioc_s :
+                res << "semantically-interlinked online communities services";
+                break;
+            case s_sioc_t :
+                res << "semantically-interlinked online communities types";
+                break;
+            case s_vcard :
+                res << "vcard";
                 break;
             case s_video :
                 res << "open graph video";
@@ -166,6 +190,7 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
     {   case s_article :
         case s_book :
         case s_cc :
+        case s_content :
         case s_ctag :
         case s_gr :
         case s_ical :
@@ -175,7 +200,12 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
         case s_poetry :
         case s_profile :
         case s_rdf :
-        case s_rdfs :
+        case s_rdfs:
+        case s_rev:
+        case s_sioc:
+        case s_sioc_s:
+        case s_sioc_t:
+        case s_vcard :
         case s_video :
         case s_wdrs :
         case s_website :

@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/css_cache.h"
 #include "url/url.h"
 #include "webpage/page.h"
+#include "feedback/nitout.h"
 
 bool css_cache::parse_file (nitpick& nits, const page& p, const url& u)
 {   csss_it cc = csss_.find (u.original ());
@@ -65,34 +66,16 @@ bool css_cache::note_usage (const ::std::string& id)
 void css_cache::report_usage (::std::ostringstream& ss) const
 {   if (context.tell (e_warning))
     {   smsid_t sum;
+        ::std::string cls;
         for (auto i : csss_)
         {   VERIFY_NOT_NULL (i.second, __FILE__, __LINE__);
             i.second -> tally (sum); }
         for (auto i : sum)
-            if (context.test ())
-                if (i.second == UINT_MAX) ss << i.first << " *\n";
-                else ss << i.first << " " << i.second << "\n";
-            else if (i.second == 0)
-                ss << "class " << quote (i.first) << " is unused\n";
-            else if (context.tell (e_info))
-                switch (i.second)
-                {   case 1 :
-                        if (context.tell (e_info))
-                            ss << "class " << quote (i.first) << " is used once\n";
-                        break;
-                    case 2 :
-                        if (context.tell (e_info))
-                            ss << "class " << quote (i.first) << " is used twice\n";
-                        break;
-                    case 3 :
-                        if (context.tell (e_info))
-                            ss << "class " << quote (i.first) << " is used thrice\n";
-                        break;
-                    case UINT_MAX :
-                        if (context.tell (e_info))
-                            ss << "class " << quote (i.first) << " is heavily used\n";
-                        break;
-                    default :
-                        if (context.tell (e_info))
-                            ss << "class " << quote (i.first) << " is used " << i.second << " times\n";
-                        break; } } }
+        {   mmac_t mac;
+            ::std::string lex (::boost::lexical_cast < ::std::string > (i.second));
+            mac.emplace (nm_class_name, i.first);
+            mac.emplace (nm_class_int, lex);
+            mac.emplace (nm_class_count, once_twice_thrice (i.second));
+            cls += apply_macros (ns_class, mac); }
+        if (! cls.empty ())
+            ss << apply_macros (ns_class_head) << cls << apply_macros (ns_class_foot); } }

@@ -123,7 +123,10 @@ void element::examine_property ()
         VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
         ::std::string value (get_rdfa_value ());
         bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
-        ptr -> note_prop (node_.nits (), node_.version (), a_.get_string (a_property), value, is_link, page_); } }
+        vstr_t props (split_by_space (a_.get_string (a_property)));
+        nitpick knots;
+        for (auto p : props)
+            ptr -> note_prop (node_.nits (), node_.version (), p, value, is_link, page_); } }
 
 // I need to distinguish rev and rel
 void element::examine_rdfa_rel (const ::std::string& prop)
@@ -168,7 +171,11 @@ void element::examine_typeof ()
     {   node_.prepare_rdfa ();
         rdf_ptr ptr = node_.rdfa ();
         VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
-        ptr -> note_type (node_.nits (), node_.version (), a_.get_string (a_typeof), page_); } }
+        ::std::string value (a_.get_string (a_typeof));
+        vstr_t vals (split_by_space (value));
+        nitpick knots;
+        for (auto r : vals)
+            ptr -> note_type (node_.nits (), node_.version (), r, page_); } }
 
 void element::examine_vocab ()
 {   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
