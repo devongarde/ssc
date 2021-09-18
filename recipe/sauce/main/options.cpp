@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element_classes.h"
 #include "url/url_sanitise.h"
 #include "type/type_master.h"
+#include "parser/html_version.h"
 
 /*
 -N
@@ -125,33 +126,57 @@ needs rel type and probably context info
     res /= file;
     return res.string (); }
 
-void options::title (const char* addendum) const
-{   if (! context.test ())
-        ::std::cout << FULLNAME " " VERSION_STRING
+/*
+void options::title (nitpick& nits, const char* addendum) const
+{   switch (context.nit_format ())
+    {   case nf_test :
+            break;
+        case nf_text :
+            ::std::cout <<
+                FULLNAME " " VERSION_STRING
 #ifdef DEBUG
-        "D (" __DATE__ " " __TIME__ ")"
+                "D (" __DATE__ " " __TIME__ ")"
 #endif // DEBUG
-        ", " WEBADDR "\n" COPYRIGHT "\n";
-
-    if (context.tell (e_severe))
-    {   if (addendum != nullptr) ::std::cout << addendum; }
-    else ::std::cout << "\n"; }
-
+                ", " WEBADDR "\n" COPYRIGHT "\n";
+            if (context.tell (e_severe))
+            {   if (addendum != nullptr) ::std::cout << "\n" << addendum << "\n"; }
+            else ::std::cout << "\n";
+            break;
+        default :
+            nits.pick (nit_title, es_info, ec_init, FULLNAME);
+            nits.pick (nit_version, es_info, ec_init, VERSION_STRING);
+            nits.pick (nit_build, es_info, ec_init,
+#ifdef _DEBUG
+                                                    "D "
+#endif //  _DEBUG
+                                                    __DATE__ " " __TIME__);
+            nits.pick (nit_webaddr, es_info, ec_init, WEBADDR);
+            nits.pick (nit_copyright, es_info, ec_init, COPYRIGHT);
+            if (addendum != nullptr)
+                nits.pick (nit_info, es_info, ec_init, addendum);
+            break; } }
+*/
 void options::help (const ::boost::program_options::options_description& aid) const
-{   ::std::cout << PROG " [switch...] path.\n\n";
-    ::std::cout << PROG " is an opinionated HTML nit-picker. It notes broken links, dubious syntax, bad semantics,\n";
-    ::std::cout << "etc.. It highlights legal but untidy code.\n";
-    ::std::cout << aid << "\n\n";
-    ::std::cout << "Configuration file section names precede each switch dot above (e.g. " GENERAL_ ", " LINKS_ ",\n" ;
-    ::std::cout << WEBSITE_ ", etc.). Option names follow them. For example:\n\n";
-    ::std::cout << "[" GENERAL_ "]\n";
-    ::std::cout << VERBOSE "=2\n\n";
-    ::std::cout << "[" LINKS_ "]\n";
-    ::std::cout << CHECK "=1\n\n";
-    ::std::cout << "[" WEBSITE_ "]\n";
-    ::std::cout << EXTENSION "=html\n";
-    ::std::cout << INDEX "=index.shtml\n";
-    ::std::cout << SITE "=" DEFAULT_DOMAIN "\n\n"; }
+{   ::std::string res;
+    res =   PROG " [switch...] path.\n\n"
+            PROG " is an opinionated HTML nit-picker. It notes broken links, dubious syntax, bad semantics,\n"
+            "etc.. It highlights legal but untidy code.\n";
+    ::std::ostringstream waste_of_space;
+    waste_of_space << aid;
+    res +=  waste_of_space.str ();
+    res +=  "\n\n"
+            "Configuration file section names precede each switch dot above (e.g. " GENERAL_ ", " LINKS_ ",\n"
+            WEBSITE_ ", etc.). Option names follow them. For example:\n\n"
+            "[" GENERAL_ "]\n"
+            VERBOSE "=2\n\n"
+            "[" LINKS_ "]\n"
+            CHECK "=1\n\n"
+            "[" WEBSITE_ "]\n"
+            EXTENSION "=html\n"
+            INDEX "=index.shtml\n"
+            SITE "=" DEFAULT_DOMAIN "\n\n";
+    context.todo (do_simple);
+    context.domsg (res); }
 
 ::std::string query_to_switches (const ::std::string& query)
 {   ::std::string res;
@@ -167,16 +192,19 @@ void options::help (const ::boost::program_options::options_description& aid) co
             res += slash_quote (decode (substitute_char (assignment.at (1), '+', ' '))); } }
     return res; }
 
-e_severity decode_severity (const ::std::string& s)
-{   nitpick nits;
-    e_severity sev = examine_value < t_severity > (nits, html_tags, s);
+e_severity decode_severity (nitpick& nits, const ::std::string& s)
+{   nitpick nuts;
+    e_severity sev = examine_value < t_severity > (nuts, html_tags, s);
     if (sev == es_undefined)
         if ((s.length () == 1) && (s [0] >= '0') && (s [0] <= '9'))
             sev = static_cast < e_severity > (s [0] - '0');
-    if (sev == es_undefined) context.err ("invalid severity\n");
+    if (sev == es_undefined)
+//        if (context.nit_format () == nf_text)
+//            context.err ("invalid severity\n");
+        nits.pick (nit_configuration, es_error, ec_init, "invalid severity");
     return sev; }
 
-void options::process (int argc, char** argv)
+void options::process (nitpick& nits, int argc, char** argv)
 {   /*  a
         b
         c persist file   C clear webmention
@@ -192,7 +220,7 @@ void options::process (int argc, char** argv)
         m microdata      M microformat
         n what if        N notify webmention
         o output         O rpt ext once
-        p prog dir
+        p prog dir       P nit output format
         q
         r no revoke chks R reset webmention
         s domain name    S stats
@@ -278,17 +306,18 @@ void options::process (int argc, char** argv)
         (GENERAL CGI ",W", "Process OpenBSD httpd <FORM METHOD=GET ...> (incompatible with " GENERAL WEBMENTION ").")
         (GENERAL CLASS, "Do NOT report unrecognised classes.")
         (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "File for persistent data, requires -N (note " GENERAL PATH ").")
+        (GENERAL MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "Start of template macro (by default, the '{{' in '{{macro}}').")
+        (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
         (GENERAL RPT, "Report when CSS files opened.")
         (GENERAL TEST ",T", "Output format for automated tests.")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "User name to supply when requested (for webmentions).")
         (GENERAL WEBMENTION, "Process webmentions (experimental, incompatible with " GENERAL CGI ").")
+        (NITS OVERRIDE ",P", ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides " NITS FORMAT ".")
         (NITS SPEC ",Z", "Output nit codes, not numbers, in tests (scc-test rejects this format).")
         (NITS WATCH, "Output debug nits, which you'll need to manage particular error messages.")
         (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "Use this file to test header parsing code.")
         (WMIN HOOK, ::boost::program_options::value < ::std::string > (), "Process incoming " WEBMENTION ", in JSON format, in specified file.")
         (WMIN STUB, ::boost::program_options::value < ::std::string > () -> default_value ("_" PROG), "Mask for file containing " WEBMENTION " HTML snippet.")
-        (WMIN MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "Start of " WEBMENTION " template macro.")
-        (WMIN MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of " WEBMENTION " template macro.")
         (WMIN WRITE , ::boost::program_options::value < ::std::string > (), "When writing " WEBMENTION " includes, write them to this path (default: site.root).")
         (WMIN MENTION, ::boost::program_options::value < vstr_t > () -> composing (), "A " WEBMENTION ", string must be source=url,target=url; may be repeated.")
         (WMIN PATH, ::boost::program_options::value < ::std::string > () -> default_value (MENTION), "Path for incoming web mention data files (note " GENERAL PATH ").") // not yet noted below
@@ -357,10 +386,13 @@ void options::process (int argc, char** argv)
         (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a comment; may be repeated.")
         (NITS DBG, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a debug message; may be repeated.")
         (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "redefiRedefinene nit as an error; may be repeated.")
+        (NITS FORMAT, ::boost::program_options::value < ::std::string > (), "Output nits in this format (\"html\" or \"text\", default text).")
         (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as info; may be repeated.")
         (NITS NIDS, "Output nit identifiers (used to recategorise nits)")
+        (NITS ROOT, "Do not search for configuration files in " WEBSITE ROOT " unless explicitly specified.")
+        (NITS QUOTE, ::boost::program_options::value < ::std::string > (), "Output nits in this format (\"html\" or \"text\", default text).")
         (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "Silence nit; may be repeated.")
-        (NITS UNIQUE ",U", "Do not report repeated nits, even if they may give a little more information")
+        (NITS UNIQUE ",U", "Do not report repeated nits, even if they give more information")
         (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a warning; may be repeated.")
 
         (RDFA DC, ::boost::program_options::value < int > () -> default_value (1), "preferred minor version of dublin core (default: 1, as in 1.1).")
@@ -432,17 +464,20 @@ void options::process (int argc, char** argv)
     try
     {   ::boost::program_options::store (::boost::program_options::parse_environment (env, ::boost::function1 < ::std::string, ::std::string> (env_mapper)), env_);
         if (env_.count (ENV_ARGS))
-        {   vstr_t env_args (split_by_space (env_ [ENV_ARGS].as < ::std::string > ()));
+        {   ::std::string e (env_ [ENV_ARGS].as < ::std::string > ());
+            vstr_t env_args (split_by_space (e));
             if (! env_args.empty ())
-                ::boost::program_options::store (::boost::program_options::command_line_parser (env_args).options (cmd).positional (pos).run (), var_); } }
+            {   context.macros ().emplace (nm_run_environment, e);
+                ::boost::program_options::store (::boost::program_options::command_line_parser (env_args).options (cmd).positional (pos).run (), var_); } } }
     catch (const ::boost::program_options::error& err)
-    {   loaded = "\nEnvironment error: ";
-        loaded += err.what ();
-        loaded += "\n" TYPE_HELP "\n";
-        title (loaded.c_str ());
+    {   // title (nits);
+        nits.pick (nit_configuration, es_error, ec_init, "Environment error: ", err.what ());
+        nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
         return; }
     catch (...)
-    {   title ("\nEnvironment error.\n");
+    {   // title (nits);
+        nits.pick (nit_configuration, es_error, ec_init, "Environment error");
+        nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
         return; }
 
     ::boost::program_options::notify (env_);
@@ -451,9 +486,11 @@ void options::process (int argc, char** argv)
     if (env_.count (ENV_ARGS)) context.environment (env_args, env_ [ENV_ARGS].as < ::std::string > ());
 
     if (env_.count (QUERY_STRING))
-    {   context.environment (env_query_string, env_ [QUERY_STRING].as < ::std::string > ());
+    {   ::std::string qu (env_ [QUERY_STRING].as < ::std::string > ());
+        context.environment (env_query_string, qu);
         if (! context.environment (env_query_string).empty ()) try
         {   context.cgi (true);
+            context.macros ().emplace (nm_query, qu);
             if (env_.count (SERVER_SOFTWARE)) context.environment (env_server_software, env_ [SERVER_SOFTWARE].as < ::std::string > ());
             if (env_.count (SERVER_NAME)) context.environment (env_server_name, env_ [SERVER_NAME].as < ::std::string > ());
             if (env_.count (GATEWAY_INTERFACE)) context.environment (env_gateway_interface, env_ [GATEWAY_INTERFACE].as < ::std::string > ());
@@ -477,41 +514,46 @@ void options::process (int argc, char** argv)
             vstr_t query (split_quoted_by_space (q));
             ::boost::program_options::store (::boost::program_options::command_line_parser (query).options (cmd).positional (pos).run (), var_);
             if (! var_.count (HTML SNIPPET))
-            {   title ("\nAn environment " QUERY_STRING " must include html.snippet. " TYPE_HELP "\n");
+            {   nits.pick (nit_configuration, es_error, ec_init, "An environment " QUERY_STRING " must include html.snippet.");
+                nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
                 return; } }
 #ifdef DEBUG
         catch (const ::boost::program_options::error& err)
-        {   loaded = "\nQuery error: ";
-            loaded += err.what ();
-            loaded += "\n" TYPE_HELP "\n";
-            title (loaded.c_str ());
+        {   nits.pick (nit_configuration, es_error, ec_init, "Query error: ", err.what ());
+            nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
             return; }
 #endif // DEBUG
         catch (...)
-        {   ::std::cerr << "\nEnvironment query exception.\n";
+        {   // ::std::cerr << "\nEnvironment query exception.\n";
+            nits.pick (nit_configuration, es_error, ec_init, "Environment query exception.");
+            nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
             return; } }
 
     try
     {   ::boost::program_options::store (::boost::program_options::command_line_parser (argc, argv).options (cmd).positional (pos).run (), var_); }
     catch (const ::boost::program_options::error& err)
-    {   loaded = "\n";
-        loaded += err.what ();
-        loaded += "\n" TYPE_HELP "\n";
-        title (loaded.c_str ());
+    {   // title (nits);
+        nits.pick (nit_configuration, es_error, ec_init, err.what ());
+        nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
         return; }
     catch (...)
-    {   title ("\nCommand line parameter error. " TYPE_HELP "\n");
+    {   // title (nits);
+        nits.pick (nit_configuration, es_error, ec_init, "Command line parameter error.");
+        nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
         return; }
     if (var_.count (CONFIG) || var_.count (DEFCONF) || env_.count (ENV_CONFIG))
     {   ::boost::filesystem::path file (CONFIGURATION);
         if (var_.count (CONFIG)) file = var_ [CONFIG].as < ::std::string > ();
-        else if ((var_.count (DEFCONF) == 0) && env_.count (ENV_CONFIG)) file = env_ [ ENV_CONFIG ].as < ::std::string > ();
-        if (var_.count (GENERAL TEST) == 0)
-        {   loaded = "\nLoading configuration "; loaded += file.string () + " ...\n"; }
-        if (file_exists (file)) context.config (canonical (file));
+        else if ((var_.count (DEFCONF) == 0) && env_.count (ENV_CONFIG)) file = env_ [ENV_CONFIG].as < ::std::string > ();
+        context.macros ().emplace (nm_config, file.string ());
+        if (file_exists (file))
+        {   // title (nits);
+            nits.pick (nit_configuration, es_error, ec_init, ::std::string ("Loading configuration ") + file.string () + "...");
+            context.config (canonical (file)); }
         else
-        {   loaded += "Cannot find "; loaded += file.string () + "\n";
-            title (loaded.c_str ()); return; }
+        {   // title (nits);
+            nits.pick (nit_configuration, es_error, ec_init, ::std::string ("Cannot find ") + file.string ());
+            return; }
         try
 #ifdef  NO_PCF_STR
         {   ::std::ifstream fis (file.string ().c_str ());
@@ -520,20 +562,27 @@ void options::process (int argc, char** argv)
         {   ::boost::program_options::store (::boost::program_options::parse_config_file (file.string ().c_str (), config, true), var_); }
 #endif
         catch (const ::boost::program_options::error& err)
-        {   loaded += err.what ();
-            loaded += " in ";
-            loaded += file.string ();
-            loaded += "\n";
-            title (loaded.c_str ());
+        {   // title (nits);
+            nits.pick (nit_configuration, es_error, ec_init, err.what (), " in ", file.string ());
             return; }
         catch (...)
-        {   loaded += "Error in ";
-            loaded += file.string () + "\n";
-            title (loaded.c_str ()); return; } }
+        {   // title (nits);
+            nits.pick (nit_configuration, es_error, ec_init, "Exception when processing ", file.string ());
+            return; } }
     ::boost::program_options::notify (var_);
-    if (var_.count (VERSION)) { title (); valid_ = true; return; }
-    if (var_.count (HELP)) { title (); help (aid); valid_ = true; return; }
-    if (var_.count (VALIDATION_)) { title (); ::std::cout << "\n" << valid; valid_ = true; return; }
+    if (var_.count (VERSION))
+    {   context.todo (do_simple);
+        return; }
+    if (var_.count (HELP))
+    {   help (aid);
+        return; }
+    if (var_.count (VALIDATION_))
+    {   // title (nits);
+        ::std::ostringstream waste_of_space;
+        waste_of_space << valid;
+        context.domsg (waste_of_space.str ());
+        context.todo (do_simple);
+        return; }
 
     if (! context.cgi () && var_.count (ENVIRONMENT QUERY_STRING))
     {   context.environment (env_query_string, var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
@@ -562,53 +611,69 @@ void options::process (int argc, char** argv)
             vstr_t query (split_quoted_by_space (q));
             ::boost::program_options::store (::boost::program_options::command_line_parser (query).options (cmd).positional (pos).run (), var_);
             if (! var_.count (HTML SNIPPET))
-            {   title ("\n" ENVIRONMENT QUERY_STRING " must include html.snippet. " TYPE_HELP "\n");
+            {   // title (nits);
+                nits.pick (nit_configuration, es_error, ec_init, ENVIRONMENT QUERY_STRING " must include html.snippet.");
+                nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
                 return; }
             ::boost::program_options::notify (var_); }
-#ifdef DEBUG
+//#ifdef DEBUG
         catch (const ::boost::program_options::error& err)
-        {   loaded = "\nConfiguration " ENVIRONMENT_ " error: ";
-            loaded += err.what ();
-            loaded += "\n" TYPE_HELP "\n";
-            title (loaded.c_str ());
+        {   // title (nits);
+            nits.pick (nit_configuration, es_error, ec_init, "Configuration " ENVIRONMENT_ " error: ", err.what ());
+            nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
             return; }
-#endif // DEBUG
+//#endif // DEBUG
         catch (...)
-        {   ::std::cerr << "\nConfiguration " ENVIRONMENT_ " query exception.\n";
+        {   // title (nits);
+            nits.pick (nit_configuration, es_error, ec_init, "Configuration " ENVIRONMENT_ " query exception.");
+            nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
             return; } }
 
     if (! context.cgi ()) context.cgi (var_.count (GENERAL CGI));
 
-    if (context.cgi ()) valid_ = true;
-    else
-    {   valid_ = var_.count (WEBSITE ROOT);
-        if (! valid_) { loaded += "\n" TYPE_HELP "\n"; title (loaded.c_str ()); return; }
-        if (var_.count (GENERAL TEST) == 0) title (loaded.c_str ()); }
-    stop_ = false; }
+    if (context.cgi ()) context.todo (do_cgi);
+    else if (! var_.count (WEBSITE ROOT))
+    {   // title (nits);
+        nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
+        return; }
+    /* if (context.nit_format () != nf_test)
+        title (nits); */
+    else context.todo (do_examine); }
 
-void options::contextualise ()
+void options::contextualise (nitpick& nits)
 {   context.clear (var_.count (WMOUT CLEAR));
     context.test (var_.count (GENERAL TEST));
 
+    if (! context.cgi ())
+    {   if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
+        if (var_.count (NITS OVERRIDE)) context.nit_override (var_ [NITS OVERRIDE].as < ::std::string > ()); }
+
     if (context.test () || ! context.cgi ())
     {   if (var_.count (GENERAL OUTPUT))
-        {   context.output (nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
+        {   context.output (nits, nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
             if (! context.test ())
-                ::std::cout << "Writing to " << var_ [GENERAL OUTPUT].as < ::std::string > () << "\n"; }
-
-        if (context.test ()) context.out (PROG "\n" VERSION_STRING "\n" COPYRIGHT"\n");
-        else context.out (FULLNAME " version " VERSION_STRING " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n");
-
+                nits.pick (nit_configuration, es_info, ec_init, ::std::string ("Writing to ") + var_ [GENERAL OUTPUT].as < ::std::string > ()); }
+//        switch (context.nit_format ())
+//        {   case nf_test :
+//                context.out (PROG "\n" VERSION_STRING "\n" COPYRIGHT"\n");
+//                break;
+//            case nf_text :
+//                context.out (FULLNAME " version " VERSION_STRING " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n");
+//                break;
+//            default :
+//                break; }
         if (! context.cgi ())
         {   context.path (nix_path_to_local (var_ [GENERAL PATH].as < ::std::string > ()));
-
             if (! file_exists (context.path ()))
-            {   context.err (context.path ());
-                context.err (" does not exist, am creating it.\n");
+            {   nits.pick (nit_create_folder, es_info, ec_init, context.path (), " does not exist, am creating it.");
+//                if (context.tell (e_info))
+//                {   context.err (context.path ());
+//                    context.err (" does not exist, am creating it.\n"); }
                 if (! make_directories (context.path ()))
-                {   context.err ("cannot create ");
-                    context.err (context.path ());
-                    context.err (".\n"); } } } }
+                    nits.pick (nit_cannot_create_file, es_catastrophic, ec_init, "cannot create ", context.path ()); } } }
+//                {   context.err ("cannot create ");
+//                    context.err (context.path ());
+//                    context.err (".\n"); } } } }
 
     if (var_.count (HTML SNIPPET)) context.snippet (var_ [HTML SNIPPET].as < ::std::string > ());
 
@@ -635,62 +700,63 @@ void options::contextualise ()
                     {   case 1 :
                             if (mnr == 0) { mjr = 4; mnr = 2; }
                             else if (mnr == 1) { mjr = 4; mnr = 3; }
-                            else { mjr = 4; mnr = 3; context.err ("unknown version of XHTML; presuming XHTML 1.1\n"); }
+                            else
+                            {   mjr = 4; mnr = 3;
+                                nits.pick ( nit_config_version, es_warning, ec_init,
+                                            "unknown version of XHTML; presuming XHTML 1.1"); }
                             break;
                         case 2 :
-                            if (mnr > 0) context.err ("unknown version of XHTML; presuming XHTML 2.0\n");
+                            if (mnr > 0)
+                                nits.pick ( nit_config_version, es_warning, ec_init,
+                                            "unknown version of XHTML; presuming XHTML 2.0");
                             mjr = 4; mnr = 4;
                             break;
                         case 5 :
                             if (mnr > 3)
-                            {   context.err ("unknown version of XHTML, presuming XHTML 5.2\n"); mnr = 2; }
+                            {   mnr = 2;
+                                nits.pick ( nit_config_version, es_warning, ec_init,
+                                            "unknown version of XHTML, presuming XHTML 5.2"); }
                             break;
                         default :
                             mjr = 5; mnr = 2;
-                            context.err ("unknown version of XHTML; presuming XHTML 5.2\n");
+                                nits.pick ( nit_config_version, es_warning, ec_init,
+                                            "unknown version of XHTML; presuming XHTML 5.2");
                             break;  }
                 context.html_ver (mjr, mnr); }
             else if (ver.find ('/') != ::std::string::npos)
                 if ((ver.length () != 10) || (ver.at (4) != '/') || (ver.at (7) != '/') || (ver.find_first_not_of (DENARY "/") != ::std::string::npos))
-                {   context.err ("bad date ");
-                    context.err (quote (ver));
-                    context.err (" ignored ('YYYY/MM/DD' expected)\n"); }
+                    nits.pick (nit_config_date, es_warning, ec_init, "bad date ", quote (ver), " ignored ('YYYY/MM/DD' expected)");
                 else
                 {   ::boost::gregorian::date d (::boost::gregorian::from_string (ver));
                     if (d.is_not_a_date ())
-                    {   context.err ("invalid date ");
-                        context.err (quote (ver));
-                        context.err (" ignored\n"); }
+                        nits.pick (nit_config_date, es_warning, ec_init, "invalid date ", quote (ver), " ignored");
                     else
                     {   int y = d.year (); int m = d.month ();
                         if (y > 2000) y -= 2000;
                         else if (y > 99) y = 99;
                         if ((y < HTML_5_EARLIEST_YEAR) || ((y == HTML_5_EARLIEST_YEAR) && (m < HTML_5_EARLIEST_MONTH)))
-                        {   ::std::ostringstream ss;
-                            ss << quote (ver) << " is too early, presuming " << HTML_5_EARLIEST_YEAR << "/" << HTML_5_EARLIEST_MONTH << "/1\n";
-                            context.err (ss.str ());
+                        {   nits.pick (nit_config_date, es_warning, ec_init, quote (ver) + " is too early, presuming ", HTML_5_EARLIEST_YEAR, "/", HTML_5_EARLIEST_MONTH, "/1");
                             context.html_ver (html_jan05); }
                         else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
-                        {   ::std::ostringstream ss;
-                            ss << quote (ver) << " is too recent, presuming " << HTML_LATEST_YEAR << "/" << HTML_LATEST_MONTH << "/1\n";
-                            context.err (ss.str ());
+                        {   nits.pick (nit_config_date, es_warning, ec_init, quote (ver), " is too recent, presuming ", HTML_LATEST_YEAR, "/", HTML_LATEST_MONTH, "/1");
                             context.html_ver (html_current); }
                         else context.html_ver (d); } }
             else if (ver == "+") context.html_ver (html_plus);
             else if (compare_no_case (ver, "plus")) context.html_ver (html_plus);
             else if (compare_no_case (ver, "tags")) context.html_ver (html_tags);
-            else
-            {   context.err ("bad version ");
-                context.err (quote (ver));
-                context.err (" ignored\n"); } } }
+            else nits.pick (nit_config_version, es_warning, ec_init, "bad version ", quote (ver)," ignored\n"); } }
+
+    if (! context.cgi ())
+        if (var_.count (WEBSITE ROOT)) context.root (nix_path_to_local (var_ [WEBSITE ROOT].as < ::std::string > ()));
+
+//    if (! context.cgi () && ! context.test () && var_.count (NITS FORMAT))
+    load_template (nits, context.html_ver ());
 
     if (var_.count (MICRODATA VERSION))
     {   ::std::string ver (var_ [MICRODATA VERSION].as < ::std::string > ());
         if (ver.empty ())
         {   context.schema_ver (schema_version (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR));
-            ::std::ostringstream ss;
-            ss << "missing schema version; presuming " << DEFAULT_SCHEMA_ORG_MAJOR << "." << DEFAULT_SCHEMA_ORG_MINOR << "\n";
-            context.err (ss.str ()); }
+            nits.pick (nit_config_version, es_warning, ec_init, "missing schema.org version; presuming ", DEFAULT_SCHEMA_ORG_MAJOR, ".", DEFAULT_SCHEMA_ORG_MINOR); }
         else
         {   ::std::string::size_type pos = ver.find ('.');
             // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
@@ -698,9 +764,7 @@ void options::contextualise ()
                 context.schema_ver (schema_version (s_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0));
             else if (pos == 0)
             {   context.schema_ver (schema_version (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR));
-                ::std::ostringstream ss;
-                ss << "missing schema version; presuming " << DEFAULT_SCHEMA_ORG_MAJOR << "." << DEFAULT_SCHEMA_ORG_MINOR << "\n";
-                context.err (ss.str ()); }
+                nits.pick (nit_config_version, es_warning, ec_init, "missing schema.org version; presuming ", DEFAULT_SCHEMA_ORG_MAJOR, ".", DEFAULT_SCHEMA_ORG_MINOR); }
             else if (pos == ver.length () - 1)
                 context.schema_ver (schema_version (s_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0));
             else if (pos > 0)
@@ -730,12 +794,14 @@ void options::contextualise ()
         context.unknown_class (var_.count (GENERAL CLASS));
         if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
         if (var_.count (GENERAL ERR))
-        {   e_severity sev = decode_severity (var_ [GENERAL ERR].as < ::std::string > ());
+        {   e_severity sev = decode_severity (nits, var_ [GENERAL ERR].as < ::std::string > ());
             if (sev != es_undefined) context.report_error (sev); }
-        if (var_.count (GENERAL IGNORED)) context.ignore (var_ [GENERAL IGNORED].as < vstr_t > ());
+        if (var_.count (GENERAL IGNORED)) context.ignore (nits, var_ [GENERAL IGNORED].as < vstr_t > ());
         if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());
+        if (var_.count (GENERAL MACROEND)) context.macro_end (var_ [GENERAL MACROEND].as < ::std::string > ());
+        if (var_.count (GENERAL MACROSTART)) context.macro_start (var_ [GENERAL MACROSTART].as < ::std::string > ());
         if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
-        if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose> (decode_severity (var_ [GENERAL VERBOSE].as < ::std::string > ())));
+        if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose> (decode_severity (nits, var_ [GENERAL VERBOSE].as < ::std::string > ())));
         context.process_webmentions (var_.count (GENERAL WEBMENTION));
 
         if (var_.count (CORPUS OUTPUT)) context.corpus (nix_path_to_local (var_ [CORPUS OUTPUT].as < ::std::string > ()));
@@ -770,51 +836,49 @@ void options::contextualise ()
 
         context.codes (var_.count (NITS CODES));
         context.nids (var_.count (NITS NIDS));
+        if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
+        if (var_.count (NITS QUOTE))
+        {   e_quote_style qs = examine_value < t_quote_style > (nits, html_default, var_ [NITS QUOTE].as < ::std::string > ());
+            context.quote_style (qs); }
         context.nits_nits_nits (! var_.count (NITS UNIQUE));
+        context.not_root (var_.count (NITS ROOT));
         context.spec (var_.count (NITS SPEC));
         context.nits (var_.count (NITS WATCH));
 
         if (var_.count (NITS CATASTROPHE))
             for (auto s : var_ [NITS CATASTROPHE].as < vstr_t > ())
                 if (! nitpick::modify_severity (s, es_catastrophic))
-                {   context.err (quote (s));
-                    context.err (": no such nit.\n"); }
+                    nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
         if (var_.count (NITS COMMENT))
             for (auto s : var_ [NITS COMMENT].as < vstr_t > ())
                 if (! nitpick::modify_severity (s, es_comment))
-                {   context.err (quote (s));
-                    context.err (": no such nit.\n"); }
+                    nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
         if (var_.count (NITS DBG))
             for (auto s : var_ [NITS DBG].as < vstr_t > ())
                 if (! nitpick::modify_severity (s, es_debug))
-                {   context.err (quote (s));
-                    context.err (": no such nit.\n"); }
+                    nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
         if (var_.count (NITS ERR))
             for (auto s : var_ [NITS ERR].as < vstr_t > ())
                 if (! nitpick::modify_severity (s, es_error))
-                {   context.err (quote (s));
-                    context.err (": no such nit.\n"); }
+                    nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
         if (var_.count (NITS INFO))
             for (auto s : var_ [NITS INFO].as < vstr_t > ())
                 if (! nitpick::modify_severity (s, es_info))
-                {   context.err (quote (s));
-                    context.err (": no such nit.\n"); }
+                    nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
         if (var_.count (NITS SILENCE))
             for (auto s : var_ [NITS SILENCE].as < vstr_t > ())
                 if (! nitpick::modify_severity (s, es_silence))
-                {   context.err (quote (s));
-                    context.err (": no such nit.\n"); }
+                    nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
         if (var_.count (NITS WARNING))
             for (auto s : var_ [NITS WARNING].as < vstr_t > ())
                 if (! nitpick::modify_severity (s, es_warning))
-                {   context.err (quote (s));
-                    context.err (": no such nit.\n"); }
+                    nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
         if (var_.count (RDFA DC))
         {   int n = var_ [RDFA DC].as < int > ();
@@ -837,9 +901,9 @@ void options::contextualise ()
         context.shadow_changed (var_.count (SHADOW CHANGED));
 
         if (var_.count (SHADOW COPY))
-        {   nitpick nits;
+        {   nitpick nuts;
             ::std::string s (var_ [SHADOW COPY].as < ::std::string  > ());
-            e_shadow sh = examine_value < t_shadow > (nits, html_tags, s);
+            e_shadow sh = examine_value < t_shadow > (nuts, html_tags, s);
             if (sh == sh_error)
                 if ((s.length () == 1) && (s [0] >= '0') && (s [0] <= '7'))
                 {   sh = static_cast < e_shadow > (s [0] - '0' + 1);
@@ -847,9 +911,8 @@ void options::contextualise ()
                     if ((sh == sh_hard) || (sh == sh_soft)) sh = sh_copy;
 #endif // NOLYNX
                                                                            }
-            if (sh != sh_error)
-                context.copy (static_cast < int > (sh) - 1);
-            else context.err ("invalid " SHADOW COPY " option\n"); }
+            if (sh != sh_error) context.copy (static_cast < int > (sh) - 1);
+            else nits.pick (nit_config_shadow, es_error, ec_init, "invalid " SHADOW COPY " option"); }
 
         context.shadow_enable (var_.count (SHADOW ENABLE));
         if (var_.count (SHADOW FICHIER)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FICHIER].as < ::std::string > ()));
@@ -861,7 +924,6 @@ void options::contextualise ()
         context.shadow_ssi (var_.count (SHADOW SSI));
         context.update (var_.count (SHADOW UPDATE));
         if (var_.count (SHADOW VIRTUAL)) context.virtuals (var_ [SHADOW VIRTUAL].as < vstr_t > ());
-
         if (var_.count (STATS EXPORT)) context.stats (var_ [STATS EXPORT].as < ::std::string > ());
         context.meta (var_.count (STATS META));
         context.stats_page (var_.count (STATS PAGE));
@@ -886,7 +948,6 @@ void options::contextualise ()
         if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
         if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());
         else { vstr_t ex; ex.push_back ("html"); context.extensions (ex); }
-        if (var_.count (WEBSITE ROOT)) context.root (nix_path_to_local (var_ [WEBSITE ROOT].as < ::std::string > ()));
         if (var_.count (WEBSITE SITE)) context.site (var_ [WEBSITE SITE].as < vstr_t > ());
         if (var_.count (WEBSITE VIRTUAL)) context.virtuals (var_ [WEBSITE VIRTUAL].as < vstr_t > ());
 
@@ -894,8 +955,6 @@ void options::contextualise ()
         {   if (var_.count (WMIN WRITE)) context.write_path (var_ [WMIN WRITE].as < ::std::string > ());
             if (var_.count (WMIN STUB)) context.stub (var_ [WMIN STUB].as < ::std::string > ());
             if (var_.count (WMIN HOOK)) context.hook (var_ [WMIN HOOK].as < ::std::string > ());
-            if (var_.count (WMIN MACROEND)) context.macro_end (var_ [WMIN MACROEND].as < ::std::string > ());
-            if (var_.count (WMIN MACROSTART)) context.macro_start (var_ [WMIN MACROSTART].as < ::std::string > ());
             if (var_.count (WMIN PATH)) context.incoming (path_in_context (nix_path_to_local (var_ [WMIN PATH].as < ::std::string > ())));
             if (var_.count (WMIN MENTION)) context.mentions (var_ [WMIN MENTION].as < vstr_t > ());
             if (var_.count (WMIN TEMPLATE)) context.templates ( var_ [WMIN TEMPLATE].as < vstr_t > ());
@@ -917,9 +976,9 @@ void options::contextualise ()
         if (var_.count (VALIDATION EXTENSION)) type_master < t_format > :: extend (var_ [VALIDATION EXTENSION].as < vstr_t > ());
         if (var_.count (VALIDATION HTTPEQUIV)) type_master < t_httpequiv > :: extend (var_ [VALIDATION HTTPEQUIV].as < vstr_t > ());
         if (var_.count (VALIDATION LANG)) type_master < t_lang > :: extend (var_ [VALIDATION LANG].as < vstr_t > ());
+        if (var_.count (VALIDATION REL)) type_master < t_rel > :: extend (var_ [VALIDATION REL].as < vstr_t > ());
         if (var_.count (VALIDATION METANAME)) type_master < t_metaname  > :: extend (var_ [VALIDATION METANAME].as < vstr_t > ());
         if (var_.count (VALIDATION MIMETYPE)) type_master < t_mime > :: extend (var_ [VALIDATION MIMETYPE].as < vstr_t > ());
-        if (var_.count (VALIDATION REL)) type_master < t_rel > :: extend (var_ [VALIDATION REL].as < vstr_t > ());
         if (var_.count (VALIDATION SGML)) type_master < t_sgml > :: extend (var_ [VALIDATION SGML].as < vstr_t > (), static_cast < ::std::size_t > (doc_context));
 
 #define TEST_VAR(XX) if (var_.count (VALIDATION #XX)) type_master < t_##XX > :: extend (var_ [VALIDATION #XX].as < vstr_t > ())
@@ -1049,9 +1108,9 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
         e << QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; }
 
     ::std::string x (e.str ());
-    if (! x.empty ()) res << "\n** Environment:\n" << x << "\n";
+    if (! x.empty ()) res << "\n" START_OF_SUBSECTION " Environment:\n" << x << "\n";
 
-    res << "\n** Arguments:\n";
+    res << "\n" START_OF_SUBSECTION " Arguments:\n";
 
     if (var_.count (HELP)) res << HELP "\n";
     if (var_.count (VERSION)) res << VERSION "\n";
@@ -1124,11 +1183,13 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (NITS COMMENT)) { res << NITS COMMENT ": "; pvs (res, var_ [NITS COMMENT].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS DBG)) { res << NITS DBG ": "; pvs (res, var_ [NITS DBG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS ERR)) { res << NITS ERR ": "; pvs (res, var_ [NITS ERR].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS FORMAT)) res << NITS FORMAT ": " << var_ [NITS FORMAT].as < ::std::string > () << "\n";
     if (var_.count (NITS INFO)) { res << NITS INFO ": "; pvs (res, var_ [NITS INFO].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS NIDS)) res << NITS NIDS "\n";
-    if (var_.count (NITS UNIQUE)) res << NITS UNIQUE "\n";
+    if (var_.count (NITS OVERRIDE)) res << NITS OVERRIDE ": " << var_ [NITS OVERRIDE].as < ::std::string > () << "\n";
     if (var_.count (NITS SILENCE)) { res << NITS SILENCE ": "; pvs (res, var_ [NITS SILENCE].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS SPEC)) res << NITS SPEC "\n";
+    if (var_.count (NITS UNIQUE)) res << NITS UNIQUE "\n";
     if (var_.count (NITS WARNING)) { res << NITS WARNING ": "; pvs (res, var_ [NITS WARNING].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS WATCH)) res << NITS WATCH "\n";
 
@@ -1284,8 +1345,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (WMIN WRITE)) { res << WMIN WRITE ": "; var_ [WMIN WRITE].as < ::std::string > (); res << "\n"; }
     if (var_.count (WMIN STUB)) res << WMIN STUB ": " << var_ [WMIN STUB].as < ::std::string > () << "\n";
     if (var_.count (WMIN HOOK)) res << WMIN HOOK ": " << var_ [WMIN HOOK].as < ::std::string > () << "\n";
-    if (var_.count (WMIN MACROEND)) res << WMIN MACROEND ": " << var_ [WMIN MACROEND].as < ::std::string > () << "\n";
-    if (var_.count (WMIN MACROSTART)) res << WMIN MACROSTART ": " << var_ [WMIN MACROSTART].as < ::std::string > () << "\n";
+    if (var_.count (GENERAL MACROEND)) res << GENERAL MACROEND ": " << var_ [GENERAL MACROEND].as < ::std::string > () << "\n";
+    if (var_.count (GENERAL MACROSTART)) res << GENERAL MACROSTART ": " << var_ [GENERAL MACROSTART].as < ::std::string > () << "\n";
     if (var_.count (WMIN PATH)) res << WMIN PATH ": " << var_ [WMIN PATH].as < ::std::string > () << "\n";
     if (var_.count (WMIN MENTION)) { res << WMIN MENTION ": "; pvs (res, var_ [WMIN MENTION].as < vstr_t > ()); res << "\n"; }
     if (var_.count (WMIN TEMPLATE)) { res << WMIN TEMPLATE ": "; pvs (res, var_ [WMIN TEMPLATE].as < vstr_t > ()); res << "\n"; }

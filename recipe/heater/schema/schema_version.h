@@ -99,6 +99,8 @@ const schema_version article_schema (s_article, 1, 0);
 
 const schema_version book_schema (s_book, 1, 0);
 
+const schema_version content_schema (s_content, 1, 0);
+
 const schema_version creative_commons (s_cc, 1, 0);
 
 const schema_version common_tag (s_ctag, 1, 0);
@@ -135,6 +137,8 @@ const schema_version rdfa_1_1_3 (s_rdfa, 1, 3);
 
 const schema_version rdfs_schema (s_rdfs, 1, 0);
 
+const schema_version review_schema (s_rev, 1, 0);
+
 const schema_version schema_0 (s_schema, 0, 0);
 const schema_version schema_2_0 (s_schema, 2, 0);
 const schema_version schema_2_1 (s_schema, 2, 1);
@@ -164,6 +168,12 @@ const schema_version schema_11 (s_schema, 11, 0);
 const schema_version schema_12 (s_schema, 12, 0);
 const schema_version schema_13 (s_schema, 13, 0);
 const schema_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
+
+const schema_version sioc_schema (s_sioc, 1, 0);
+const schema_version sioc_services (s_sioc_s, 1, 0);
+const schema_version sioc_types (s_sioc_t, 1, 0);
+
+const schema_version vcard_schema (s_vcard, 1, 0);
 
 const schema_version video_schema (s_video, 1, 0);
 

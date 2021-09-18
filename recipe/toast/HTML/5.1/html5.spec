@@ -138,7 +138,7 @@ PASS ../toast/HTML/5.1/html5-example.html
 125 use_quote_code
 135 unrecognised_value
 137 unrecognised_value
-147 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
+149 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
 151 use_double_quote_code
 153 use_double_quote_code
 156 schema_domain excluded_attribute excluded_attribute
@@ -312,8 +312,8 @@ PASS ../toast/HTML/5.1/html5-example.html
 1207 inserted_missing_closure
 1209 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 1210 unrecognised_value unrecognised_value lonely_ampersand unrecognised_value
-1211 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value lonely_ampersand
-1212 unrecognised_value unrecognised_value unrecognised_value
+1211 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+1212 lonely_ampersand unrecognised_value unrecognised_value unrecognised_value
 1213 unrecognised_value
 1220 chocolate_teapot
 1221 chocolate_teapot

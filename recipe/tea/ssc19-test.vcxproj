@@ -202,6 +202,7 @@ $(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\to
   <ItemGroup>
     <None Include="..\toast\ssc-test\input.spec" />
     <None Include="..\toast\ssc-test\ssc.lst" />
+    <None Include="..\toast\ssc-test\test.nit" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource1.h" />

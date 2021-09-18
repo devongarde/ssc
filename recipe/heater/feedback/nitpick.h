@@ -27,21 +27,23 @@ class nitpick
     typedef ssc_map < e_nit, e_severity > mns_t;
     vn_t nits_;
     static mns_t mns_;
-    ::std::string context_;
+    ::std::string before_, mote_, after_;
     int line_ = 0;
     static e_severity user_severity (const e_nit code, const e_severity s)
     {   mns_t::const_iterator i = mns_.find (code);
         if (i != mns_.cend ()) return i -> second;
         return s; }
-    template < class T > ::std::string inner_review (const T& t, bool& quote, bool& dq, bool& infoed, bool& eol) const;
+    template < class T > ::std::string inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns) const;
 public:
     nitpick () = default;
     nitpick (const nitpick& np) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	nitpick(nitpick&& np) = default;
 #endif
-	explicit nitpick (const ::std::string c) : context_(c) { }
-    explicit nitpick (const int line, const ::std::string c) : context_ (c), line_ (line) { }
+	explicit nitpick (const ::std::string& c) : mote_ (c) { }
+    explicit nitpick (const int line, const ::std::string& c) : mote_ (c), line_ (line) { }
+    explicit nitpick (const int line, const ::std::string& b, const ::std::string& m, const ::std::string& a)
+        :   before_ (b), mote_ (m), after_ (a), line_ (line) { }
 	~nitpick() = default;
     nitpick& operator = (const nitpick& np) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
@@ -70,8 +72,12 @@ public:
     void pick (nit&& n);
     void set_context (const int line, const ::std::string& c);
     void set_context (const int line, const ::std::string::const_iterator b, ::std::string::const_iterator e);
-    ::std::string get_context () const { return context_; }
+    void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
+    void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to);
+    void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
+    ::std::string get_context () const { return mote_; }
     int get_line () const { return line_; }
-    ::std::string review () const;
+    ::std::string review (const mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
+    ::std::string review (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
     e_severity worst () const;
     bool empty () const { return nits_.empty (); } };

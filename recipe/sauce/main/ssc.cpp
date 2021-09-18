@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "main/context.h"
+#include "feedback/nitout.h"
 #include "webpage/directory.h"
 #include "attribute/attr.h"
 #include "attribute/avm.h"
@@ -49,7 +50,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 
 void init (nitpick& nits)
-{   nits_init ();
+{   init_nit_macros ();
+    nits_init ();
     nits.set_context (0, PROG " initialisation");
     attr::init (nits);
     avm_init (nits);
@@ -79,24 +81,12 @@ void init (nitpick& nits)
 #endif
 }
 
-void dump_nits (nitpick& nits, const char* burble)
-{   if (! nits.empty ())
-#ifdef NDEBUG
-        if (context.tell (static_cast < e_verbose > (nits.worst ())))
-#endif // NDEBUG
-        {   ::std::string x (nits.review ());
-            if (! x.empty ())
-            {   ::std::ostringstream ss;
-                ss << "\n\n*** " << burble << "\n" << x << "\n\n";
-                context.out (ss.str ()); } }
-    nits.reset (); }
-
-void configure (std::time_t& start_time)
-{   if (! (context.test () || context.cgi ()))
-    {   if (context.tell (e_severe))
-        {   context.out ("\nStart: ");
-            context.out (::std::ctime (&start_time)); }
-        if (context.tell (e_info)) context.out ("Gathering site information...\n"); } }
+//void configure (std::time_t& start_time)
+//{   if (! (context.test () || context.cgi ()))
+//    {   if (context.tell (e_severe))
+//        {   context.out ("\nStart: ");
+//            context.out (::std::ctime (&start_time)); }
+//        if (context.tell (e_info)) context.out ("Gathering site information...\n"); } }
 
 int ciao ()
 {   if (context.unknown_class () && context.tell (e_warning))
@@ -105,17 +95,17 @@ int ciao ()
         if (context.crosslinks ())
         {   nitpick nits;
             reconcile_crosslinks (nits);
-            if (! nits.empty ())
-            {   context.out ("\n\n*** link errors\n");
-                context.out (nits.review ()); } }
-        if (! ss.str ().empty ())
-        {   context.out ("\n\n*** classes\n");
-            context.out (ss.str ()); }
-        if (! empty_itemid ())
-        {   context.out ("\n\n*** itemids\n");
-            context.out (report_itemids ()); } }
-    if (context.stats_summary ()) context.report_stats ();
+            if (! nits.empty ()) dump_nits (nits, ns_link, ns_link_head, ns_link_foot);
+            context.out () << ::std::endl;
+}
+//        if (context.nit_format () == nf_text)
+        {   if (! ss.str ().empty ())
+                context.out (ss.str ());
+            if (! empty_itemid ())
+                context.out (report_itemids ()); } }
+    if (context.stats_summary ()) context.report_stats (true);
     if (context.tell (e_debug)) context.out (fileindex_report ());
+//    context.out (nit_footers ());
     if (context.severity_exceeded ()) return ERROR_STATE;
     return VALID_RESULT; }
 
@@ -126,8 +116,8 @@ int examine (nitpick& nits)
         if (! web.invalid ()) web.examine ();
         ::std::string s (web.nits ().review ());
         s += web.report ();
-        if (context.test ()) context.out ("*** snippet\n");
-        else if (s.find ('>') == ::std::string::npos) s = "All good.";
+        if (context.test ()) context.out (START_OF_SECTION " " SNIPPET "\n");
+//        else if ((s.find ('>') == ::std::string::npos) && (context.nit_format () == nf_text)) s = "All good.";
         context.out (s);
         return res; }
     open_corpus (nits, context.corpus ());
@@ -160,11 +150,11 @@ int examine (nitpick& nits)
         for (::std::size_t n = 0; n < vmax; ++n)
             vd.emplace_back (new directory (virt.at (n)));
         for (::std::size_t n = 0; n < vmax; ++n)
-        {   if (context.tell (e_info) && ! context.test ())
-            {   context.out ("Scanning ");
-                VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                context.out (virt.at (n) -> get_disk_path ().string ());
-                context.out (" ...\n"); }
+        {   // if (context.tell (e_info) && (context.nit_format () == nf_text))
+            //{   context.out ("Scanning ");
+            //    VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+            //    context.out (virt.at (n) -> get_disk_path ().string ());
+            //    context.out (" ...\n"); }
             try
             {   VERIFY_NOT_NULL (vd [n], __FILE__, __LINE__);
                 VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
@@ -189,11 +179,11 @@ int examine (nitpick& nits)
             else
             {   if (context.dodedu ()) dedu (shadow);
                 for (n = 0; n < vmax; ++n)
-                {   if (context.tell (e_info) && ! context.test ())
-                    {   context.out ("Checking ");
-                        VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                        context.out (virt.at (n) -> get_disk_path ().string ());
-                        context.out (" ...\n"); }
+                {   // if (context.tell (e_info) && (context.nit_format () == nf_text))
+                    //{   context.out ("Checking ");
+                    //    VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+                    //    context.out (virt.at (n) -> get_disk_path ().string ());
+                    //    context.out (" ...\n"); }
                     try
                     {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
                         VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
@@ -212,54 +202,80 @@ int examine (nitpick& nits)
                         res = ERROR_STATE; } } } } }
     close_corpus (nits);
     fileindex_save_and_close (nits);
-    dump_nits (nits, "update");
-    dump_nits (exp, "exports");
-    dump_nits (shadow, "shadow");
+    dump_nits (nits, ns_update, ns_update_head, ns_update_foot);
+    dump_nits (exp, ns_export, ns_export_head, ns_export_foot);
+    dump_nits (shadow, ns_shadow, ns_shadow_head, ns_shadow_foot);
     return res; };
 
 int main (int argc, char** argv)
 {   int res = NOTHING_TO_DO;
+    bool enfooten = false;
+    ::std::string msg;
     try
     {   auto start = ::std::chrono::system_clock::now ();
         std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
-        {   vstr_t v (split_by_charset (VERSION_STRING, "."));
-            PRESUME (v.size () == 3, __FILE__, __LINE__);
-            PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
-            PRESUME (lexical < int > :: cast (v.at (1)) == VERSION_MINOR, __FILE__, __LINE__);
-            PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__); }
-        nitpick nits;
+        ::std::string t (::std::ctime (&start_time));
+        t = t.substr (0, t.length () - 1);
+        context.macros ().emplace (nm_time_start, t);
+        vstr_t v (split_by_charset (VERSION_STRING, "."));
+        PRESUME (v.size () == 3, __FILE__, __LINE__);
+        PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
+        PRESUME (lexical < int > :: cast (v.at (1)) == VERSION_MINOR, __FILE__, __LINE__);
+        PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__);
+        nitpick nits, nuts;
         init (nits);
-        dump_nits (nits, "initialisation");
-        res = context.parameters (argc, argv);
-        if (! fileindex_load (nits)) res = ERROR_STATE;
-        dump_nits (nits, "configuration");
-        if (res == VALID_RESULT)
-        {   configure (start_time);
+        PRESUME (argc > 0, __FILE__, __LINE__);
+        ::std::string args (argv [0]);
+        for (int i = 1; i < argc; ++i)
+        {   args += " ";
+            args += argv [i]; }
+        context.macros ().emplace (nm_run_args, args);
+        res = context.parameters (nuts, argc, argv);
+//        context.out (nit_headers ());
+        if (context.todo () == do_simple)
+        {   ::std::cout << SIMPLE_TITLE << context.domsg ();
+            return VALID_RESULT; }
+        if (! is_template_loaded ()) load_template (nits, html_default);
+        context.out () << apply_macros (ns_doc_head);
+        enfooten = true;
+        dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
+        if (context.todo () == do_booboo) res = ERROR_STATE;
+        else
+        {   if (! fileindex_load (nuts)) res = ERROR_STATE;
+            dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
+            // configure (start_time);
             res = examine (nits);
             if ((res == VALID_RESULT) && context.process_webmentions ())
             {   context.process_outgoing_webmention (nits, html_current);
                 context.process_incoming_webmention (nits, html_current);
-                dump_nits (nits, "webmention"); }
+                dump_nits (nits, ns_webmention, ns_webmention_head, ns_webmention_foot); }
             int cr = ciao ();
-            if (cr > res) res = cr;
-            if (! (context.test () || context.cgi ()))
-            {   auto fin = std::chrono :: system_clock :: now();
-                std::chrono::duration<double> elapsed_seconds = fin - start;
-                std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
-                if (context.tell (e_severe))
-                {   context.out ("\nFinish: ");
-                    context.out (::std::ctime (&end_time)); }
-                if (context.tell (e_warning))
-                {   ::std::ostringstream ss;
-                    ss << "Duration: " << elapsed_seconds.count () << " seconds\n";
-                    context.out (ss.str ()); } } } }
+            if (cr > res) res = cr; }
+        auto fin = std::chrono :: system_clock :: now ();
+        std::chrono::duration <double> elapsed_seconds = fin - start;
+        std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
+        t = ::std::ctime (&end_time);
+        t = t.substr (0, t.length () - 1);
+        context.macros ().emplace (nm_time_finish, t);
+        context.macros ().emplace (nm_time_duration, ::boost::lexical_cast < ::std::string > (floor ((elapsed_seconds.count () * 1000.0) + 0.5) / 1000.0)); }
     catch (const ::std::system_error& e)
-    {   ::std::cerr << "catastrophic exit with system error " << e.what () << "\n";
+    {   msg = "catastrophic exit with system error ";
+        msg += e.what ();
         res = ERROR_STATE; }
     catch (const ::std::exception& e)
-    {   ::std::cerr << "catastrophic exit with the exception " << e.what () << "\n";
+    {   msg = "catastrophic exit with the exception ";
+        msg += e.what ();
         res = ERROR_STATE; }
     catch (...)
-    {   ::std::cerr << "catastrophic exit with an unknown exception\n";
+    {   msg = "catastrophic exit with an unknown exception";
+        res = ERROR_STATE; }
+    if (! enfooten)
+    {   if (! msg.empty ()) ::std::cerr << msg << "\n"; }
+    else try
+    {   if (! msg.empty ()) context.macros ().emplace (nm_run_catastrophe, msg);
+        context.out () << apply_macros (ns_doc_foot); }
+    catch (...)
+    {   if (msg.empty ()) msg = "catastrophic exception writing footers\n";
+        ::std::cerr << msg << "\n";
         res = ERROR_STATE; }
     return res; };

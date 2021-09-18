@@ -215,37 +215,45 @@ void directory::examine (nitpick& nits)
                 if (avoid_update (sp, true))
                     nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (p.string ()), " is up-to-date");
                 else
-                {   try
+                {   mmac_t mac;
+                    mac.emplace (nm_page_name, i.first);
+                    mac.emplace (nm_page_path, local_path_to_nix (p.string ()));
+                    try
                     {   ::std::string content (read_text_file (p));
                         if (! content.empty ())
                         {   e_charcode encoding = bom_to_encoding (get_byte_order (content));
-                            if (encoding == cc_fkd) ss << "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)\n";
+                            if (encoding == cc_fkd) mac.emplace (nm_page_error, "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)");
                             else
                             {   page web (i.first, updated, content, ndx, this, encoding);
-                                if (web.invalid ()) ss << web.nits ().review ();
+                                if (web.invalid ()) ss << web.nits ().review (mac);
                                 else
                                 {   web.examine ();
                                     web.verify_locale (p);
                                     web.mf_write (p);
                                     web.lynx ();
                                     if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
-                                    ss << web.nits ().review ();
+                                    ss << web.nits ().review (mac);
                                     ss << web.report (); } } } }
                     catch (const ::std::system_error& e)
-                    {   if (context.tell (e_error)) ss << "System error " << e.what () << " when parsing " << context.filename () << "\n"; }
+                    {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + context.filename ()); }
                     catch (const ::std::exception& e)
-                    {   if (context.tell (e_error)) ss << "Exception " << e.what () << " when parsing " << context.filename () << "\n"; }
+                    {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + context.filename ()); }
                     catch (...)
-                    {   if (context.tell (e_error)) ss << "Exception when parsing " << context.filename () << "\n"; }
+                    {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + context.filename ()); }
                     if (! ss.str ().empty ())
-                    {   context.out ("\n\n*** ");
-                        context.out (local_path_to_nix (p.string ()));
-                        context.out ("\n");
-                        context.out (ss.str ()); }
+                    {   context.out (apply_macros (ns_page_head, mac));
+                        context.out (ss.str ());
+                        context.out (apply_macros (ns_page_foot, mac)); }
+//                        context.out ("\n\n*** ");
+//                        context.out (local_path_to_nix (p.string ()));
+//                        context.out ("\n");
+//                        context.out (ss.str ()); }
                     else if (context.tell (e_comment))
-                    {   context.out ("\n\n*** ");
-                        context.out (local_path_to_nix (p.string ()));
-                        context.out ("\n"); }
+                    {   context.out (apply_macros (ns_page_head, mac));
+                        context.out (apply_macros (ns_page_foot, mac)); }
+//                    {   context.out ("\n\n*** ");
+//                        context.out (local_path_to_nix (p.string ()));
+//                        context.out ("\n"); }
                     context.css ().post_process (); }
                 set_flag (ndx, FX_SCANNED); } }
     if (context.shadow_files ())
@@ -261,8 +269,8 @@ void directory::examine (nitpick& nits)
             if (shadowed.find (i -> path ().string ()) == shadowed.cend ())
                 delete_me.emplace (i -> path ().string ());
         for (auto z : delete_me)
-            {   if (context.tell (e_comment)) context.out () << " .  removing " << z << "\n";
-                delete_file (z); } } }
+        {   nits.pick (nit_shadow_delete, es_comment, ec_shadow, "removing ", z);
+            delete_file (z); } } }
 
 bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, const url& u) const
 {   if (u.empty ()) return false; // self?

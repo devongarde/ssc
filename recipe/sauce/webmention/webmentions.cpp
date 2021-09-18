@@ -172,13 +172,6 @@ void webmentions::make_generated_filename (const url& target)
     generated_filename_ = base_path;
     generated_filename_ /= stub; }
 
-::std::string template_path (const ::std::string& def, const ::std::string& arg)
-{   ::boost::filesystem::path p (arg);
-    if (arg.empty ())
-    {   p = context.path ();
-        p /= def; }
-    return read_text_file (p.string ()); }
-
 bool webmentions::load_templates (vstr_t& templates)
 {   templates = context.templates ();
     if (templates.size () <= 4) templates.resize (4);

@@ -35,8 +35,7 @@ PASS ../toast/w3/imnop/outline.html
 
 PASS ../toast/w3/imnop/plane20-char.xml
 0 title_required
-1 presume_html_1
-3 html_unknown_sgml
+3 presume_html_1 html_unknown_sgml
 5 unknown_element
 6 code_unrecognised_here invalid_character_code
 8 hex_code_version unknown_element

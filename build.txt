@@ -28,8 +28,8 @@ work, although the x86 executable cannot analyse larger websites. Visual Studios
 for Windows 8.1 & 10.
 
 
-Unix Flavours
---------------
+Unii & mock Unii
+----------------
 You will need CMake 3.11 or better on your system.
 
 From the home ssc directory, compile thus:
@@ -43,13 +43,13 @@ make install
 If everything works correctly, then everything will be built, a series of tests run, with a final result at the very end
 saying no failures. Having said that, given SSC is pre-alpha, don't be too surprised to see some warnings or some final test
 errors. Note in particular that complaints about being unable to find or copy files during testing are not of concern, these
-come from scripts that set up or tear down individual tests, and they complain if they can't find files they're supposed to
-delete rather than saying thank you for the reduced work.
+come from scripts that set up or tear down individual tests, and the standard commands used sometimes complain if they can't
+find files they're supposed to delete, rather than saying thank you for the reduced work.
 
 The following have successfully built:
 Linux: Centos 8 amd64, Ubuntu Server 20.10 amd64
 OpenBSD 6.8: amd64
-MacOS: Big Sur, Catalina, Mojave, & High Sierra x64
+MacOS: Big Sur, Catalina & Mojave x64
 
 
 OpenBSD 6.8 amd64

@@ -211,7 +211,7 @@ void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& w
         case elem_faux_text : ss << node_.raw (); was_nl = false; break;
         case elem_faux_whitespace :
             if (context.shadow_space () || allspace) { ss << node_.raw (); was_nl = false; }
-            else if (! was_nl && (was_closure || (node_.raw ().find_first_of ("\n\r\f") != ::std::string::npos)))
+            else if (! was_nl && (was_closure || (node_.raw ().find_first_of (LINE_SEPARATORS) != ::std::string::npos)))
             {   ss << "\n"; was_nl = true; }
             else { was_nl = false; ss << " "; }
             was_closure = false; break;

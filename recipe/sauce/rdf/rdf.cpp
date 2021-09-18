@@ -122,7 +122,7 @@ bool rdf_t::note_prop (nitpick& nits, const html_version& v, const ::std::string
    wombats (nits, v, xpan);
    return false; }
 
-bool rdf_t::note_prop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, rdf_t* scope, page& p)
+bool rdf_t::note_prop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& , rdf_t* scope, page& p)
 {   ::std::string xpan (expand_prefix (v, name));
     prop_indices ii = prepare_prop_indices (nits, v, xpan);
     nitpick knots, nuts;

@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/include.h"
 #include "type/enum.h"
 #include "feedback/nitnames.h"
+#include "feedback/nitout.h"
 
 class nit
 {   e_nit code_ = nit_free;
@@ -31,6 +32,7 @@ class nit
     ::std::string ref_; // location in doc; presumes hard coded string
     ::std::string msg_;
     friend bool operator < (const nit& lhs, const nit& rhs);
+    ::std::string level_symbol () const;
 public:
     nit ();
     nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg);
@@ -47,7 +49,7 @@ public:
     void swap (nit& n) NOEXCEPT;
     void reset ();
     void reset (const nit& n);
-    ::std::string review () const;
+    ::std::string review (const e_nit_section& entry, const mmac_t& mac, const mmac_t& outer) const;
     void notify () const;
     e_nit code () const { return code_; }
     e_severity severity () const { return severity_; }

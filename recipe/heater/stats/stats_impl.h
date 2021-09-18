@@ -56,8 +56,6 @@ class stats
     unsigned smallest_ = UINT_MAX;
     unsigned biggest_ = 0;
     double file_size_ = 0.0;
-    ::std::string times (const uint64_t n) const;
-    ::std::string saybe (const unsigned n, const ::std::string& msg) const;
     ::std::string ontology_report () const;
     ::std::string element_report () const;
     ::std::string version_report () const;

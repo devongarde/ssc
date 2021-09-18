@@ -63,6 +63,8 @@ SSC has a number of switches:
 
 -S	        Report site statistics
 
+A longer list of switches is given by the -h switch.
+
 
 Environment
 -----------

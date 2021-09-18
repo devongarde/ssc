@@ -668,6 +668,19 @@ nitname nitnames [] =
     { nit_mb, "mb" },
     { nit_byte, "byte" },
     { nit_b64, "b64" },
+    { nit_help, "help" },
+    { nit_configuration, "configuration" },
+    { nit_version, "version" },
+    { nit_title, "title" },
+    { nit_webaddr, "webaddr" },
+    { nit_copyright, "copyright" },
+    { nit_info, "info" },
+    { nit_build, "build" },
+    { nit_config_version, "config_version" },
+    { nit_config_date, "config_date" },
+    { nit_config_nit, "config_nit" },
+    { nit_config_shadow, "config_shadow" },
+    { nit_template_file, "template_file" },
 
     { nit_off, "" } };
 

@@ -21,13 +21,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "feedback/nitpick.h"
 #include "main/context.h"
+#include "main/options.h"
+#include "feedback/nitout.h"
 
 nitpick::mns_t nitpick::mns_;
 
 void nitpick::swap (nitpick& np) NOEXCEPT
 {   ::std::swap (line_, np.line_);
     nits_.swap (np.nits_);
-    context_.swap (np.context_); }
+    after_.swap (np.after_);
+    before_.swap (np.before_);
+    mote_.swap (np.mote_); }
 
 void nitpick::reset ()
 {   nitpick np;
@@ -38,18 +42,21 @@ void nitpick::reset (const nitpick& np)
     swap (tmp); }
 
 void nitpick::merge (const nitpick& np)
-{   if (context_.empty ()) context_ = np.context_;
+{   if (mote_.empty ())
+    {   before_ = np.before_; after_ = np.after_; mote_ = np.mote_; }
     for (auto n : np.nits_)
         nits_.emplace_back (n); }
 
 void nitpick::merge (nitpick&& np)
-{   if (context_.empty ()) context_.assign (np.context_);
-   for (auto n : np.nits_)
+{   if (mote_.empty ())
+    {   before_ = np.before_; after_ = np.after_; mote_ = np.mote_; }
+    for (auto n : np.nits_)
         nits_.emplace_back (n); }
 
-template < class T > ::std::string nitpick::inner_review (const T& t, bool& quote, bool& dq, bool& infoed, bool& eol) const
+template < class T > ::std::string nitpick::inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns) const
 {   extern bool ignore_this_slob_stuff (const e_nit code);
-    ::std::string res;
+    hasns = false;
+    ::std::string res, ns;
     for (auto n : t)
         if (context.tell (static_cast < e_verbose > (n.severity ())) && ! ignore_this_slob_stuff (n.code ()))
         {   switch (n.code ())
@@ -69,34 +76,40 @@ template < class T > ::std::string nitpick::inner_review (const T& t, bool& quot
                     eol = true;
                     break;
                 default : break; }
-            bool not_context = (n.code () != nit_context);
-            if (not_context) n.notify ();
-            if (! context.test ()) res += n.review ();
-            else if (not_context)
-            {   res += " ";
-                if (context.spec ()) res += lookup_name (n.code ());
-                else res += ::boost::lexical_cast < ::std::string > (n.code ()); } }
+            if (n.code () != nit_context)
+            {   n.notify ();
+                if (hasns) ns += " "; else hasns = true;
+                ns += ::boost::lexical_cast < ::std::string > (n.code ());
+                res += n.review (entry, mac, outer); } }
+    if (hasns) outer.emplace (nm_nit_ns, ns);
     return res; }
 
-::std::string nitpick::review () const
-{   ::std::string res;
-    bool quote = false, dq = false, infoed = false, eol = false;
+::std::string nitpick::review (const mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head) const
+{   bool quote = false, dq = false, infoed = false, eol = false, hasns = false;
+    ::std::string res;
     if (! empty ())
-    {   if (context.nits_nits_nits ())
-            res = inner_review (nits_, quote, dq, infoed, eol);
+    {   mmac_t inner;
+        inner.emplace (nm_nit_line, ::boost::lexical_cast < ::std::string > (line_));
+        inner.emplace (nm_nit_before, before_);
+        inner.emplace (nm_nit_mote, mote_);
+        inner.emplace (nm_nit_after, after_);
+        ::std::string nitbit;
+        if (context.nits_nits_nits ())
+            nitbit = inner_review (entry, nits_, mac, inner, quote, dq, infoed, eol, hasns);
         else
         {   ::std::set < nit > sn;
             for (auto n : nits_)
                 if (sn.find (n) == sn.end ())
                     sn.insert (n);
-            res = inner_review (sn, quote, dq, infoed, eol); }
-        if (! res.empty ())
-        {   ::std::string ln (::boost::lexical_cast < ::std::string > (line_));
-            if (context.test ()) res = ln + " " + res + "\n";
-            else if (! infoed)
-            {   if (! context_.empty ()) prepend (res, "\n", context_);
-                if (line_ > 0) prepend (res, ": ", ::std::string ("\n") + ln); } } }
+            nitbit = inner_review (entry, sn, mac, inner, quote, dq, infoed, eol, hasns); }
+        if (hasns || ! nitbit.empty ())
+            if ((page_head != ns_none) && (line_ == 0) && ! context.test ())
+                res = apply_macros (page_head, mac, inner) + nitbit + apply_macros (foot, mac, inner);
+            else res = apply_macros (head, mac, inner) + nitbit + apply_macros (foot, mac, inner); }
     return res; }
+
+::std::string nitpick::review (const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head) const
+{   return review (context.macros (), entry, head, foot, page_head); }
 
 nitpick nitpick::nick ()
 {   nitpick tmp;
@@ -108,19 +121,6 @@ void nitpick::pick (const nit& n)
 
 void nitpick::pick (nit&& n)
 {   nits_.emplace_back (n); }
-
-void nitpick::set_context (const int line, const ::std::string& c)
-{   ::std::string r (trim_the_lot_off (unify_whitespace (c)));
-    if (context_.empty ())
-    {   if (context.nits ())
-        {   ::std::ostringstream ss;
-            ss << "set context to " << r << "\n";
-            context.out (ss.str ()); }
-        line_ = line;
-        context_.assign (r); } }
-
-void nitpick::set_context (const int line, const ::std::string::const_iterator b, ::std::string::const_iterator e)
-{   set_context (line, ::std::string (b, e)); }
 
 bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
 {   e_nit code = lookup_code (name);
@@ -134,3 +134,71 @@ e_severity nitpick::worst () const
         if (n.severity () < res)
             res = n.severity ();
     return res; }
+
+void nitpick::set_context (const int line, const ::std::string& c)
+{   ::std::string r (trim_the_lot_off (unify_whitespace (c)));
+    if (mote_.empty ())
+    {   if (context.nits ())
+        {   ::std::ostringstream ss;
+            ss << "set context to " << r << " (line " << line << ")\n";
+            context.out (ss.str ()); }
+        line_ = line;
+        before_.clear (); after_.clear ();
+        mote_.assign (r); }
+    else if (line_ == 0) line_ = line; }
+
+void nitpick::set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
+{   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
+    int maxish = DEFAULT_LINE_LENGTH - 16;
+    int len = static_cast < int > (to - from);
+    int maxlen = static_cast < int > (e - from);
+    before_.clear (); after_.clear ();
+    if (maxlen == 0)
+        mote_.clear ();
+    else
+    {   if (len >= maxish) mote_ = ::std::string (from, from+maxish) + "...";
+//      if (len >= maxish) mote_ = ::std::string (from, to);
+        else
+        {   int halfish = (maxish - len) / 2;
+            if (len == 0)
+            {   int last = halfish, x = 0;
+                bool hell = true;
+                const ::std::string ls (LINE_SEPARATORS);
+                while ((::std::iswspace (*(from + x)) || ::std::iswcntrl (*(from + x)) || (ls.find (*(from + x)) != ::std::string::npos)) && (x < maxlen)) ++x;
+                if (x >= maxlen-1) x = 0;
+                if (x + last > maxlen)
+                {   last = maxlen;
+                    hell = false; }
+                for (int i = x + 1; i < last; ++i)
+                    if (ls.find (*(from + i)) != ::std::string::npos)
+                    {   last = i - 1;
+                        hell = false;
+                        break; }
+                mote_ = ::std::string (from + x, from + last);
+                if (hell) mote_ += "..."; }
+            else
+            {   mote_ = ::std::string (from, to);
+                ::std::string::const_iterator mb, me;
+                if ((e - b) <= maxish) { me = e; mb = b; }
+                else
+                {   if ((b + halfish) >= from) mb = b;
+                    else { mb = from - halfish; before_ = "..."; }
+                    if ((e - halfish) <= to) me = e;
+                    else { me = to + halfish; after_ = "..."; } }
+                before_ += ::std::string (mb, from);
+                after_ = ::std::string (to, me) + after_;
+                ::std::string::size_type pos = before_.find_last_of (LINE_SEPARATORS);
+                if (pos != ::std::string::npos) before_ = before_.substr (pos+1);
+                pos = after_.find_first_of (LINE_SEPARATORS);
+                if (pos != ::std::string::npos) after_ = after_.substr (0, pos); } } }
+//    context.err () << line << " " << quote (::std::string (b, e)) << " " << quote (::std::string (from, to)) << ":\n" << quote (before_) << "," << quote (mote_) << "," << quote (after_) << "\n";
+    line_ = line; }
+
+void nitpick::set_context (const int line, const ::std::string::const_iterator b, ::std::string::const_iterator e)
+{   set_context (line, ::std::string (b, e)); }
+
+void nitpick::set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
+{   return set_context (line, b, e, i, i); }
+
+void nitpick::set_context (const int , ::std::string::const_iterator , ::std::string::const_iterator , ::std::string::const_iterator , const ::std::string& , const e_verbose )
+{   GRACEFUL_CRASH (__FILE__, __LINE__); }

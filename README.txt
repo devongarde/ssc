@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.111
+version 0.0.112
 https://ssc.lu/
 
 
@@ -21,13 +21,13 @@ WARNING: this code is:
 
 ssc analyses static HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- HTML living standard, Jan 2005 to Apr 2021
+- HTML living standard, Jan 2005 to Jul 2021
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
 - finds broken links (requires curl)
 - server side includes, mostly
-- schema.org microdata 2.x/3.x/4.0/5.0/6.0/7.x/8.0/9.0/10.0/11.0/12.0
+- schema.org microdata 2.0 to 13.0
 - microformats v1 & v2
 
 with opinions on:
@@ -44,7 +44,7 @@ It does NOT:
 It can output:
 - 'repaired' HTML (not XHTML)
 - HTML with resolved Server Side Includes
-- JASON summaries of microformat and microdata content
+- JSON summaries of microformat and microdata content
 - website statistical information
 - updated website with datafile deduplication
 
@@ -68,8 +68,8 @@ To build & run:
 5. Set the environment variable BOOST to point to the BOOST home directory
 6. -EITHER- build with CMake 3.11 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
 7. -OR- build with recipe\tea\ssc201?.sln in Visual Studios 2017/2019 under Windows
-8. If need be download, build and install curl (perhaps from curl.haxx.se)
-9. Gleefully run ssc
+8. If need be, download, build and install curl (perhaps from curl.haxx.se)
+9. Gleefully run ssc. It will misbehave if you are insufficiently gleeful.
 
 
 
@@ -103,4 +103,4 @@ more licences    licences for content copied from elsewhere
 
 written by dylan harris
 mail@ssc.lu
-August 2021
+September 2021

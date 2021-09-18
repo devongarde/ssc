@@ -152,7 +152,7 @@ PASS ../toast/living/jul11/example.html
 139 inserted_missing_closure missing_close
 140 inserted_missing_closure
 144 use_quote_code
-152 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
+154 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
 156 use_double_quote_code
 158 use_double_quote_code
 
@@ -660,12 +660,12 @@ PASS ../toast/living/jul11/source.html
 PASS ../toast/living/jul11/span.html
 6 unrecognised_value unrecognised_value unrecognised_value
 7 unrecognised_value unrecognised_value
-8 unrecognised_value unrecognised_value lonely_ampersand
-9 unrecognised_value
+8 unrecognised_value unrecognised_value
+9 lonely_ampersand unrecognised_value
 10 unrecognised_value unrecognised_value
 11 unrecognised_value unrecognised_value
-12 unrecognised_value lonely_ampersand
-13 unrecognised_value unrecognised_value
+12 unrecognised_value
+13 lonely_ampersand unrecognised_value unrecognised_value
 14 unrecognised_value
 15 unrecognised_value
 

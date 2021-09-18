@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nit.h"
 #include "feedback/nitnames.h"
 #include "main/context.h"
+#include "type/type.h"
+#include "feedback/nitout.h"
 
 nit::nit () : code_ (nit_free), severity_ (es_undefined), category_ (ec_undefined), doc_ (ed_mishmash), ref_ (nullptr)
 {   if (context.nits ()) context.out ("adding empty nit\n"); }
@@ -86,33 +88,52 @@ bool ignore_this_slob_stuff (const e_nit code)
         case nit_inserted_missing_parent : return true;
         default : return false; } }
 
-::std::string nit::review () const
-{   ::std::ostringstream res;
-    ::std::string info;
-    if (! empty ())
-        if (severity_ != es_silence)
-            if (! ignore_this_slob_stuff (code ()))
-            {   if (context.tell (static_cast < e_verbose > (static_cast < unsigned > (severity_))))
-                {   if (code () != nit_context)
-                        if (context.codes ()) res << nitcode (code_, severity_) << "  ";
-                        else switch (severity_)
-                        {   case es_catastrophic : res << " >>> "; break;
-                            case es_error : res << " ==> "; break;
-                            case es_warning : res << " --> "; break;
-                            case es_info : res << " ..> "; break;
-                            case es_comment : res << " . > "; break;
-                            default : res << "     "; break; }
-                    res << msg_;
-                    if (doc_ != ed_mishmash)
-                        if (ref_.empty ()) res << " [" << doc_ref (doc_) << "]";
-                        else res << " [" << doc_title (doc_) << ", "<< ref_ << "]";
-                    if (context.nids ())
-                    {   const ::std::string& s = lookup_name (code_);
-                        res << " (" << nitcode (code_, severity_);
-                        if (! s.empty ()) res << ", " << s;
-                        res << ")"; }
-                    res << "\n"; } }
-    return res.str (); }
+::std::string nit_ref (const ::std::string& doc, const ::std::string& ref)
+{   ::std::string res;
+    res = "[";
+    res += doc;
+    if (! ref.empty ())
+    {   res += ",";
+        res += quote (ref); }
+    res += "]";
+    return res; }
+/*
+::std::string nit_nids (const e_nit code, const e_severity severity)
+{   ::std::string res;
+    const ::std::string& s = lookup_name (code);
+    res += " (";
+    res += nitcode (code, severity);
+    if (! s.empty ())
+    {   res += ", ";
+        res += s; }
+    res += ")";
+    return res; }
+*/
+::std::string nit::level_symbol () const
+{   switch (severity_)
+    {   case es_catastrophic : return " >>> ";
+        case es_error : return " ==> ";
+        case es_warning : return " --> ";
+        case es_info : return " ..> ";
+        case es_comment : return " . > ";
+        default : return "     "; } }
+
+::std::string nit::review (const e_nit_section& entry, const mmac_t& mac, const mmac_t& outer) const
+{   mmac_t values;
+//    if (! empty ())
+//        if (severity_ != es_silence)
+//            if (! ignore_this_slob_stuff (code ()))
+//            {   if (context.tell (static_cast < e_verbose > (static_cast < unsigned > (severity_))))
+//                {   if (code () != nit_context)
+    values.emplace (nm_nit_code, nitcode (code_, severity_));
+    values.emplace (nm_nit_explanation, msg_);
+    values.emplace (nm_level_name, type_master < t_severity > :: name (severity_));
+    values.emplace (nm_level_symbol, level_symbol ());
+    values.emplace (nm_nit_id, lookup_name (code_));
+    values.emplace (nm_nit_ref, doc_ref (doc_));
+    values.emplace (nm_nit_doc, doc_title (doc_));
+    return apply_macros (entry, mac, outer, values); }
+//    return ::std::string (); }
 
 ::std::string doc_title (const e_doc doc)
 {   switch (doc)

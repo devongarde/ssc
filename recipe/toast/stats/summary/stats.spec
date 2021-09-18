@@ -19,130 +19,140 @@ itemid
 
 GRAND
 Elements:
-  !doctype: 5 times
-  abbr: twice
-   title: twice
-  body: 5 times
-  dd: 7 times
-  dfn: 5 times
-   title: twice
-  div: 10 times
-   hidden: once
-   id: 4 times
-   itemid: once
-   itemprop: thrice
-   itemref: thrice
-   itemscope: 8 times
-   itemtype: 5 times
-  dl: once
-  dt: 8 times
-  h1: 5 times
-  head: 5 times
-  html: 5 times
-   lang: thrice
-  link: 4 times
-   href: 4 times
-   itemprop: 4 times
-  meta: 18 times
-   content: 16 times
-   http-equiv: twice
-   itemprop: 7 times
-   itemref: twice
-   itemscope: twice
-   itemtype: twice
-   name: 9 times
-  p: 10 times
-   id: once
-   lang: once
-  span: 5 times
-   id: once
-   itemprop: 4 times
-  title: 5 times
- Attribute counts:
-  content: used 16 times
-  hidden: used once
-  href: used 4 times
-  http-equiv: used twice
-  id: used 6 times
-  itemid: used once
-  itemprop: used 18 times
-  itemref: used 5 times
-  itemscope: used 10 times
-  itemtype: used 7 times
-  lang: used 4 times
-  name: used 9 times
-  title: used 4 times
- 20 elements used 268 times
+    !doctype: 5 times
+    abbr: twice
+      title: twice
+    body: 5 times
+    dd: 7 times
+    dfn: 5 times
+      title: twice
+    div: 10 times
+      hidden: once
+      id: 4 times
+      itemid: once
+      itemprop: thrice
+      itemref: thrice
+      itemscope: 8 times
+      itemtype: 5 times
+    dl: once
+    dt: 8 times
+    h1: 5 times
+    head: 5 times
+    html: 5 times
+      lang: thrice
+    link: 4 times
+      href: 4 times
+      itemprop: 4 times
+    meta: 18 times
+      content: 16 times
+      http-equiv: twice
+      itemprop: 7 times
+      itemref: twice
+      itemscope: twice
+      itemtype: twice
+      name: 9 times
+    p: 10 times
+      id: once
+      lang: once
+    span: 5 times
+      id: once
+      itemprop: 4 times
+    title: 5 times
+  Attribute counts:
+    content: 16 times
+    hidden: once
+    href: 4 times
+    http-equiv: twice
+    id: 6 times
+    itemid: once
+    itemprop: 18 times
+    itemref: 5 times
+    itemscope: 10 times
+    itemtype: 7 times
+    lang: 4 times
+    name: 9 times
+    title: 4 times
+  20 elements used 268 times
 Ontology:
-  http://schema.org/BlogPosting: twice
-   commentCount: once
-   name: once
-   publisher: once
-  http://schema.org/Organization: thrice
-   name: twice
-   url: twice
-  http://schema.org/Person: twice
-   description: twice
-   name: twice
-   url: twice
- Property counts:
-  commentCount: used once
-  description: used twice
-  name: used 5 times
-  publisher: used once
-  url: used 4 times
- 3 itemtypes used 7 times
-Metadata:
- pragma:
-  content-security-policy: once
-  refresh: once
- name:
-  description: once
-  author:
-   doris: twice
-   sid: once
-  generator:
-   beer: once
-   notepad: once
-  keywords:
-   a: twice
-   b: once
-   c: once
-   d: once
+    http://schema.org/BlogPosting: twice
+      commentCount: once
+      name: once
+      publisher: once
+    http://schema.org/Organization: thrice
+      name: twice
+      url: twice
+    http://schema.org/Person: twice
+      description: twice
+      name: twice
+      url: twice
+  Property counts:
+    commentCount: once
+    description: twice
+    name: 5 times
+    publisher: once
+    url: 4 times
+  3 itemtypes used 7 times
+Headers:
+  pragma:
+    content-security-policy: once
+    refresh: once
+  metadata:
+    description: once
+  name:
+    author:
+      doris: twice
+      sid: once
+    generator:
+      beer: once
+      notepad: once
+    keywords:
+      a: twice
+      b: once
+      c: once
+      d: once
+
 Abbreviations:
- CFL : Chemin de Fer Luxembourg
- DP : Demokratesch Partei
+    CFL: once Chemin de Fer Luxembourg
+    DP: once Demokratesch Partei
+
 Definitions:
- Chemin de Fer Luxembourg : CFL operates trains.
- FRED : File Retrieval Encoding and Decoding
- Public Key Infrastructure : The PKI distributes trust online.
- Tiddles : The tortoiseshell Tiddles is a rather affectionate cat.
- Tiddles : Tiddles, no siamese, likes to miaow.
+    Chemin de Fer Luxembourg: once CFL operates trains.
+    FRED: once File Retrieval Encoding and Decoding
+    Public Key Infrastructure: once The PKI distributes trust online.
+    Tiddles: once The tortoiseshell Tiddles is a rather affectionate cat.
+    Tiddles: once Tiddles, no siamese, likes to miaow.
+
 Name/Value pairs:
- bread and cheese : in Dutch hotel breakfast
- bread and cheese : in Flemish hotel breakfast
- coffee : in hotel continental breakfast
- corn flakes : as tasty and as nutritional as cardboard
- croissant : in hotel continental breakfast
- egg : in English breakfast
- egg : in Irish breakfast
- fried bread : in English breakfast (stated twice)
- fried bread : in Irish breakfast
- sausage : in English breakfast
- sausage : in Irish breakfast
-Errors reported:
- Severity:
-  Errors: 4 times
-  Warnings: thrice
- Categories:
-  Attribute: twice
-  Element: twice
-  Schema: twice
-  URx: once
- References:
-  HTML 5.0: twice
+    bread and cheese: once in Dutch hotel breakfast
+    bread and cheese: once in Flemish hotel breakfast
+    coffee: once in hotel continental breakfast
+    corn flakes: once as tasty and as nutritional as cardboard
+    croissant: once in hotel continental breakfast
+    egg: once in English breakfast
+    egg: once in Irish breakfast
+    fried bread: twice in English breakfast
+    fried bread: once in Irish breakfast
+    sausage: once in English breakfast
+    sausage: once in Irish breakfast
+
+Nits Reported:
+    Errors: 5 times
+    Warnings: thrice
+
+Nit Categories:
+    Attribute: twice
+    Element: twice
+    Init: once
+    Schema: twice
+    URx: once
+
+References:
+    HTML 5.0: twice
+
 Versions:
- HTML5/20210101/SVG-2.0/MathML-4/WhatWG: 5
+    HTML5/20210101/SVG-2.0/MathML-4/WhatWG: 5 times
+
 File info:
- 3783 bytes read in 5 HTML files with an average of 756.60000000000002 bytes per file
- smallest file: 269 bytes, largest file: 1019 bytes
+     3783 bytes read in 5 HTML files, with an average of roughly 757 bytes per file
+     smallest file: 269 bytes, largest file: 1019 bytes
+===

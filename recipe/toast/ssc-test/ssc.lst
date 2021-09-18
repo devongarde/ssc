@@ -1,9 +1,3 @@
-../toast/RDFa/1.1.3/rdfa.spec
-../toast/RDFa/cc/rdfa.spec
-../toast/RDFa/dc/rdfa.spec
-../toast/RDFa/foaf/rdfa.spec
-../toast/RDFa/gr/rdfa.spec
-../toast/RDFa/schema/rdfa.spec
 ../toast/conf/html/conf.spec
 ../toast/conf/xhtml/conf.spec
 ../toast/csp/1/csp.spec
@@ -91,7 +85,15 @@
 ../toast/other/ssi/ssi.spec
 ../toast/RDF/1.0/rdf.spec
 ../toast/RDF/1.1/rdf.spec
-../toast/shadow/update/update.spec
+../toast/RDFa/1.1.3/rdfa.spec
+../toast/RDFa/cc/rdfa.spec
+../toast/RDFa/dc/rdfa.spec
+../toast/RDFa/foaf/rdfa.spec
+../toast/RDFa/gr/rdfa.spec
+../toast/RDFa/schema/rdfa.spec
+../toast/RDFa/sioc/rdfa.spec
+../toast/RDFa/vcard/rdfa.spec
+../toast/RDFa/xsd/rdfa.spec
 ../toast/shadow/comment/comment.spec
 ../toast/shadow/copy/copy.spec
 ../toast/shadow/copydiff/copydiff.spec
@@ -105,6 +107,7 @@
 ../toast/shadow/soft/soft.spec
 ../toast/shadow/softover/softover.spec
 ../toast/shadow/ssi/ssi.spec
+../toast/shadow/update/update.spec
 ../toast/snippet/conf/snippet.spec
 ../toast/snippet/kiwi/snippet.spec
 ../toast/stats/detail/stats.spec
@@ -152,3 +155,8 @@
 ../toast/XHTML/1.1/xhtml11.spec
 ../toast/XHTML/2.0/xhtml2.spec
 ../toast/XHTML/5.0/xhtml5.spec
+../toast/output/html/output.spec
+../toast/output/out/output.spec
+../toast/output/test/output.spec
+../toast/output/text/output.spec
+../toast/output/xhtml/output.spec

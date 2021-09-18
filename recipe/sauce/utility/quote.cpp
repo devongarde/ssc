@@ -140,7 +140,7 @@ vstr_t unquote (const ::std::string& str, const ::std::size_t len, const ::std::
 
 ::std::string limited_string_with_quote (bool quoted, const ::std::string& s, const ::std::size_t max, const ::std::string& qs = ::std::string (QUOTESEP))
 {   ::std::string res (s.substr (0, max));
-    ::std::string::size_type pos = res.find_first_of ("\n\r\v\f");
+    ::std::string::size_type pos = res.find_first_of (LINE_SEPARATORS);
     if (pos != ::std::string::npos) res = res.substr (0, pos);
     if (quoted) res = enquote (res, qs);
     else if (s.length () > max) res += " ...";

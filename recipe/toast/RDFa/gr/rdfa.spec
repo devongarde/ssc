@@ -6,7 +6,7 @@ PASS ../toast/RDFa/gr/example-1.html
 77 requires_itemscope
 112 requires_itemscope bad_itemid
 132 requires_itemscope bad_itemid
-143 unrecognised_schema unrecognised_schema unrecognised_schema
+143 schema_domain
 158 invalid_attribute_version wrong_version
 163 missing_close
 164 use_quote_code

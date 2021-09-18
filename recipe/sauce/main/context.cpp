@@ -34,36 +34,34 @@ context_t::context_t ()
     :   validation_ ("Additional attribute values (check " PROG "'s source code for context)", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH)
 {   environment_.resize (env_max); };
 
-context_t& context_t::output (const ::std::string& s)
+context_t& context_t::output (nitpick& nits, const ::std::string& s)
 {   output_ = s;
+    mmac_.emplace (nm_general_output, s);
     fos_.reset (new ::std::ofstream (s));
     if (fos_ -> fail ())
-    {   ::std::cerr << "cannot open " << s << " for output.\n";
+    {   nits.pick (nit_cannot_open, es_catastrophic, ec_init, "cannot open ", s, " for output.");
         fos_.reset (); }
+    mac (nm_context_output, s);
     return *this; }
 
-int context_t::parameters (int argc, char** argv)
-{   options o (argc, argv);
-    if (o.stop ()) return STOP_OK;
-    if (o.invalid ()) return ERROR_STATE;
-    o.contextualise ();
+int context_t::parameters (nitpick& nits, int argc, char** argv)
+{   options o (nits, argc, argv);
+    if (context.todo () == do_booboo) return ERROR_STATE;
+    if ((context.todo () != do_examine) && (context.todo () != do_cgi)) return STOP_OK;
+    o.contextualise (nits);
     if (! test () && tell (e_debug)) out (o.report ());
     for (const ::std::string& name : site_)
         if (name.find_first_not_of (ALPHADDD) != ::std::string::npos)
         {   valid_ = false;
-            context.err (quote (name));
-            context.err (" is not a valid domain name (do not include protocols)\n");
+            nits.pick (nit_invalid_domain, es_error, ec_init, quote (name), " is not a valid domain name (do not include protocols)");
             return false; }
     valid_ = context.cgi () || (! root ().empty ());
     return valid_ ? VALID_RESULT : ERROR_STATE; }
 
-context_t& context_t::webmention (const ::std::string& w, const e_wm_status status)
+context_t& context_t::webmention (nitpick& nits, const ::std::string& w, const e_wm_status status)
 {   if (! w.empty () && status > wm_status_)
     {   webmention_ = w;
-        if (tell (e_variable))
-        {   out ("setting context_t " WEBMENTION " to ");
-            out (quote (w));
-            out ("\n"); }
+        if (tell (e_variable)) nits.pick (nit_webmention, es_info, ec_init, "setting context_t " WEBMENTION " to ", quote (w));
         wm_status_ = status; }
     return *this; }
 
@@ -111,7 +109,7 @@ schema_version context_t::mf_ver () const
     else
     {   if ((b + halfish) >= from) mb = b; else { mb = from - halfish; pre = "..."; }
         if ((e - halfish) <= to) me = e; else { me = to + halfish; post = "..."; } }
-    return pre + ::std::string (mb, from) + " *** " + ::std::string (from, to) + " *** " + ::std::string (to, me) + post; }
+    return pre + ::std::string (mb, from) + " " BEFORE_MOTE " " + ::std::string (from, to) + " " AFTER_MOTE " " + ::std::string (to, me) + post; }
 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
 {   return near_here (b, e, i, i); }
@@ -130,6 +128,7 @@ context_t& context_t::shadow_ignore (const vstr_t& s)
         if (! ss.empty ())
             if (ss.at (0) == '.') shadow_ignore_.emplace_back (ss);
             else shadow_ignore_.emplace_back (::std::string (1, '.') + ss);
+    mac (nm_context_shadow_ignore, shadow_ignore_);
     return *this; }
 
 context_t& context_t::svg_version (const int mjr, const int mnr)
@@ -151,13 +150,12 @@ context_t& context_t::svg_version (const int mjr, const int mnr)
     version_.svg_version (sv_none);
     return *this; }
 
-context_t& context_t::ignore (const vstr_t& s)
+context_t& context_t::ignore (nitpick& nits, const vstr_t& s)
 {   e_element e = elem_undefined;
     for (auto ss : s)
         if (elem :: find (html_0, ss, e)) elem :: ignore (e);
-        else
-        {   err (quote (ss));
-            err (" is not an element\n"); }
+        else nits.pick (nit_unknown_element, es_error, ec_init, quote (ss), " is not an element");
+    mac (nm_context_ignore, s);
     return *this; }
 
 html_version context_t::html_ver (const int major, const int minor)
