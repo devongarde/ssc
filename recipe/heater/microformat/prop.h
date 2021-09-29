@@ -34,7 +34,7 @@ inline bool is_mf2 (const e_property p) { return ((p >= h_adr) && (p <= h_aggreg
 inline bool is_mf_class (const e_property p) { return (p >= first_class) && (p <= last_class); }
 inline bool is_mf_rel (const e_property p) { return (p >= first_rel) && (p <= last_rel); }
 
-class prop  // would be better templated
+class prop  // would probably be better templated
 {   e_property value_ = 0;
     typedef enum { ps_unknown, ps_class, ps_rel, ps_invalid } state_t;
     state_t state_ = ps_unknown;

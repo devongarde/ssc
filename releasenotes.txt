@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.113
+- RDFa with schema.org, but otherwise not core initial context
+- restore progress report via -D switch
+- underlying work
+
 0.0.112
 - specify output format with --nit.format
 - fixes to stats

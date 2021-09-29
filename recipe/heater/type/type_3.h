@@ -52,17 +52,20 @@ template < > struct type_master < t_behaviour > : three_value < t_behaviour, e_b
 template < > struct type_master < t_button > : three_value < t_button, e_button, sz_button, sz_submit, sz_reset >
 { using three_value < t_button, e_button, sz_button, sz_submit, sz_reset > :: three_value; };
 
-template < > struct type_master < t_command > : three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio >
-{ using three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > :: three_value; };
-
 template < > struct type_master < t_cc_permits > : three_value < t_cc_permits, e_cc_permits, sz_cc_derivativeworks, sz_cc_distribution, sz_cc_reproduction >
 { using three_value < t_cc_permits, e_cc_permits, sz_cc_derivativeworks, sz_cc_distribution, sz_cc_reproduction > :: three_value; };
+
+template < > struct type_master < t_command > : three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio >
+{ using three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > :: three_value; };
 
 template < > struct type_master < t_controlslist > : three_value < t_controlslist, e_controlslist, sz_nodownload, sz_nofullscreen, sz_noremoteplayback >
 { using three_value < t_controlslist, e_controlslist, sz_nodownload, sz_nofullscreen, sz_noremoteplayback > :: three_value; };
 
 template < > struct type_master < t_corp > : three_value < t_corp, e_corp, sz_same_origin, sz_same_site, sz_cross_origin, true >
 { using three_value < t_corp, e_corp, sz_same_origin, sz_same_site, sz_cross_origin, true > :: three_value; };
+
+template < > struct type_master < t_csvw_direction > : three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto >
+{ using three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto > :: three_value; };
 
 template < > struct type_master < t_decoding > : three_value < t_decoding, e_decoding, sz_auto, sz_sync, sz_async >
 { using three_value < t_decoding, e_decoding, sz_auto, sz_sync, sz_async > :: three_value; };

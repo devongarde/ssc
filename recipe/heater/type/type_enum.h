@@ -162,8 +162,7 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
 
 template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
     void enum_n < E, ENUM, CATEGORY, INIT, LC > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   //e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& ns);
-    enum_base < ENUM, E > :: original_ = s;
+{   enum_base < ENUM, E > :: original_ = s;
     ::std::string pret (trim_the_lot_off (s));
     ::std::string t (careless_case < LC >::lower (pret));
     nitpick knots;
@@ -215,6 +214,9 @@ template < > struct type_master < t_alignplus > : enum_n < t_alignplus, e_alignp
 
 template < > struct type_master < t_as > : enum_n < t_as, e_as >
 { using enum_n < t_as, e_as > :: enum_n; };
+
+template < > struct type_master < t_as_units > : enum_n < t_as_units, e_as_units >
+{ using enum_n < t_as_units, e_as_units > :: enum_n; };
 
 template < > struct type_master < t_autocapitalise > : enum_n < t_autocapitalise, e_autocapitalise >
 { using enum_n < t_autocapitalise, e_autocapitalise > :: enum_n; };
@@ -491,9 +493,6 @@ template < > struct type_master < t_sandbox > : enum_n < t_sandbox, e_sandbox >
 
 template < > struct type_master < t_scei > : enum_n < t_scei, e_scei >
 { using enum_n < t_scei, e_scei > :: enum_n; };
-
-//template < > struct type_master < t_schema > : enum_n < t_schema, e_schema >
-//{ using enum_n < t_schema, e_schema > :: enum_n; };
 
 template < > struct type_master < t_severity > : enum_n < t_severity, e_severity >
 { using enum_n < t_severity, e_severity > :: enum_n; };

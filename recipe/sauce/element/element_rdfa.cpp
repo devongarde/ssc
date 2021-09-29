@@ -24,19 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute_classes.h"
 
 void element::verify_rdfa ()
-{ /* bool has_itemid = a_.known (a_itemid);
-    bool has_itemref = a_.known (a_itemref);
-    bool has_itemtype = a_.known (a_itemtype);
-    bool has_itemscope = a_.known (a_itemscope);
-    if (has_itemtype)
-        if (! has_itemscope)
-            node_.pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_error, ec_attribute, "missing ITEMSCOPE; ITEMTYPE ignored");
-    if (has_itemid)
-        if (! has_itemscope || ! has_itemtype)
-            node_.pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_error, ec_attribute, "ITEMID requires both ITEMSCOPE and ITEMTYPE");
-    if (has_itemref)
-        if (! has_itemscope)
-            node_.pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_error, ec_attribute, "missing ITEMSCOPE; ITEMREF ignored"); */ }
+{
+    // FFS, work this
+}
 
 ::std::string element::get_rdfa_value () const
 {   if (a_.known (a_content))
@@ -57,8 +47,6 @@ void element::verify_rdfa ()
         case elem_data :
         case elem_meter :
             return a_.get_string (a_value);
-//        case elem_meta :
-//            return a_.get_string (a_content);
         case elem_object :
             return a_.get_string (a_data);
         case elem_t :

@@ -81,13 +81,6 @@ void init (nitpick& nits)
 #endif
 }
 
-//void configure (std::time_t& start_time)
-//{   if (! (context.test () || context.cgi ()))
-//    {   if (context.tell (e_severe))
-//        {   context.out ("\nStart: ");
-//            context.out (::std::ctime (&start_time)); }
-//        if (context.tell (e_info)) context.out ("Gathering site information...\n"); } }
-
 int ciao ()
 {   if (context.unknown_class () && context.tell (e_warning))
     {   ::std::ostringstream ss;
@@ -96,16 +89,13 @@ int ciao ()
         {   nitpick nits;
             reconcile_crosslinks (nits);
             if (! nits.empty ()) dump_nits (nits, ns_link, ns_link_head, ns_link_foot);
-            context.out () << ::std::endl;
-}
-//        if (context.nit_format () == nf_text)
+            context.out () << ::std::endl; }
         {   if (! ss.str ().empty ())
                 context.out (ss.str ());
             if (! empty_itemid ())
                 context.out (report_itemids ()); } }
     if (context.stats_summary ()) context.report_stats (true);
     if (context.tell (e_debug)) context.out (fileindex_report ());
-//    context.out (nit_footers ());
     if (context.severity_exceeded ()) return ERROR_STATE;
     return VALID_RESULT; }
 
@@ -117,7 +107,6 @@ int examine (nitpick& nits)
         ::std::string s (web.nits ().review ());
         s += web.report ();
         if (context.test ()) context.out (START_OF_SECTION " " SNIPPET "\n");
-//        else if ((s.find ('>') == ::std::string::npos) && (context.nit_format () == nf_text)) s = "All good.";
         context.out (s);
         return res; }
     open_corpus (nits, context.corpus ());
@@ -150,11 +139,9 @@ int examine (nitpick& nits)
         for (::std::size_t n = 0; n < vmax; ++n)
             vd.emplace_back (new directory (virt.at (n)));
         for (::std::size_t n = 0; n < vmax; ++n)
-        {   // if (context.tell (e_info) && (context.nit_format () == nf_text))
-            //{   context.out ("Scanning ");
-            //    VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-            //    context.out (virt.at (n) -> get_disk_path ().string ());
-            //    context.out (" ...\n"); }
+        {   if (context.progress ())
+            {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+                ::std::cout << "Scanning " << virt.at (n) -> get_disk_path ().string () << " ."; }
             try
             {   VERIFY_NOT_NULL (vd [n], __FILE__, __LINE__);
                 VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
@@ -169,7 +156,8 @@ int examine (nitpick& nits)
                 res = ERROR_STATE; }
             catch (...)
             {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised an exception");
-                res = ERROR_STATE; } }
+                res = ERROR_STATE; }
+            if (context.progress ()) ::std::cout << ::std::endl; }
         if (res == VALID_RESULT)
         {   PRESUME (vd.size () > 0, __FILE__, __LINE__);
             ::std::size_t n = integrate_virtuals (virt, vd);
@@ -179,11 +167,9 @@ int examine (nitpick& nits)
             else
             {   if (context.dodedu ()) dedu (shadow);
                 for (n = 0; n < vmax; ++n)
-                {   // if (context.tell (e_info) && (context.nit_format () == nf_text))
-                    //{   context.out ("Checking ");
-                    //    VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                    //    context.out (virt.at (n) -> get_disk_path ().string ());
-                    //    context.out (" ...\n"); }
+                {   if (context.progress ())
+                    {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+                        ::std::cout << "Checking " << virt.at (n) -> get_disk_path ().string () << ::std::endl; }
                     try
                     {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
                         VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
@@ -231,7 +217,6 @@ int main (int argc, char** argv)
             args += argv [i]; }
         context.macros ().emplace (nm_run_args, args);
         res = context.parameters (nuts, argc, argv);
-//        context.out (nit_headers ());
         if (context.todo () == do_simple)
         {   ::std::cout << SIMPLE_TITLE << context.domsg ();
             return VALID_RESULT; }
@@ -243,7 +228,6 @@ int main (int argc, char** argv)
         else
         {   if (! fileindex_load (nuts)) res = ERROR_STATE;
             dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
-            // configure (start_time);
             res = examine (nits);
             if ((res == VALID_RESULT) && context.process_webmentions ())
             {   context.process_outgoing_webmention (nits, html_current);

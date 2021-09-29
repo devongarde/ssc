@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.112 LANGUAGES CXX)
+project (ssc VERSION 0.0.113 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -53,6 +53,8 @@ if (UNIX)
   endif ()
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(Boost_USE_STATIC_LIBS ON)
+    link_directories ($BOOST_LIBRARYDIR)
     if (${CMAKE_SYSTEM} MATCHES "Darwin-20")
       message ("MacOS Big Sur")
       target_compile_definitions (ssc PRIVATE BIG_SUR MACOS)

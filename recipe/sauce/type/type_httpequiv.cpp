@@ -180,7 +180,7 @@ bool linkarg_set_value (nitpick& nits, const html_version& v, const ::std::strin
         if (! test_value < t_linkparam > (nits, v, param))
         {   nits.pick (nit_nocando, ed_rfc_8288, "3. Link Serialisation in HTTP Headers", es_info, ec_type, quote (param), " is not recognised, so is not verified");
             return true; }
-        switch (examine_value < t_linkparam > (nits, v, param)) // lp_media, lp_title, lp_titlestar, lp_type
+        switch (examine_value < t_linkparam > (nits, v, param))
         {   case lp_rev :
                 nits.pick (nit_bad_link_pragma, ed_rfc_8288, "3. Link Serialisation in HTTP Headers", es_warning, ec_type, "rev is deprecated");
                 // drop thru'

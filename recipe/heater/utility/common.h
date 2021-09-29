@@ -25,7 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct true_type { };
 struct false_type { };
 
-typedef ::std::size_t ident_t;
+typedef uint64_t ident_t;
+// typedef ::std::size_t ident_t;
 typedef uint32_t uid_t;
 const uid_t uid_max = UINT32_MAX;
 

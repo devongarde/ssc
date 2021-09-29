@@ -233,7 +233,6 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
             {   if (updated_ == 0) updated_ = get_last_write_time (get_disk_path ());
                 ::std::time_t target = get_last_write_time (s);
                 nits.pick (nit_debug, es_debug, ec_shadow, get_disk_path (), " last updated ", updated_, ", ", s, " last updated ", target);
-//                ::std::cout << get_disk_path () << " last updated " << updated_ << ", " << s << " last updated " << target << "\n";
                 if (target >= updated_) return; }
             ::boost::filesystem::file_status stat = file_data (s);
             if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)

@@ -75,6 +75,5 @@ void css::tally (smsid_t& ids) const
             if (sum == ids.end ())
                 ids.insert (local);
             else if (sum -> second < UINT_MAX)
-                if (UINT_MAX - sum -> second <= local.second)
-                    sum -> second = UINT_MAX;
+                if (UINT_MAX - sum -> second <= local.second) sum -> second = UINT_MAX;
                 else sum -> second += local.second; } }

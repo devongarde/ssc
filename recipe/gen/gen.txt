@@ -79,6 +79,9 @@ These options are available on the command line and in configuration files:
 --general.nochange      Report what ssc would do, but don't do it.
 -n
 
+--general.progress      Dump progress information to standard output. This can intefere with formatted output.
+-D
+
 --general.rdf           Check RDF attributes. This option currently underperforms. An extension to properly support RDF and RDFa is en route.
 
 --general.rel           Only mention <LINK> REL values, found neither in the living standard nor at microformats.org, in debug output.

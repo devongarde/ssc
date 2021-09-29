@@ -489,8 +489,7 @@ html_version bras_ket::parse (const ::std::string& content)
                     case '?' :  doubleopen = false; status = s_pxq; collect = i; break;
                     case '%' :  if (! asp_warn)
                                 {   nits.set_context (line_, b, e, i);
-                                    nits.pick (nit_embedded_lingo, es_info, ec_parser, PROG " is a *STATIC* site checker, it does not understand ASP");
-                                    asp_warn = true; }
+                                    nits.pick (nit_embedded_lingo, es_info, ec_parser, PROG " is a *STATIC* site checker, it does not understand ASP"); }
                                 doubleopen = false; asp_warn = true; status = s_asp; collect = i; break;
                     case '&' :  mixed_mess (nits, b, e, i, cc, elmt);
                                 status= s_amper; twas = i; break;

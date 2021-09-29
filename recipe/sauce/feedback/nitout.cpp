@@ -28,10 +28,6 @@ vstr_t sections;
 
 #define MACID ALPHADDD "-_"
 
-// #defines below prepared using vi, thus requires a unix or Windows 10 or later.
-// :1,$s/^.*$/    "\0\\n\n" \\/
-// (and then a little tidying up)
-
 #define TEST_NIT \
     "[class]\n" \
     "{{class-name}} {{class-int}}\n" \
@@ -418,7 +414,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[stat-sub]\n" \
-    "<SPAN class=\"nit-subname\">{{stat-subname}}</SPAN> <SPAN class=\"nit-subcount\">{{stat-subcount}} <SPAN class=\"nit-detail\">{{stat-subdetail}}</SPAN></SPAN><BR>\n" \
+    "<SPAN class=\"nit-subname\">{{stat-subname}}</SPAN> <SPAN class=\"nit-subcount\">{{stat-subcount}} <SPAN class=\"nit-subdetail\">{{stat-subdetail}}</SPAN></SPAN><BR>\n" \
     "\n" \
     "[stats-subhead]\n" \
     "<H4 class=\"nit-subsection\">{{stats-subtitle}}</H4>\n" \
@@ -628,23 +624,23 @@ bool load_template (nitpick& nits, const html_version& v)
     return res; }
 
 ::std::string apply_macros (const e_nit_section& sct)
-{   PRESUME (sct < sections.size (), __FILE__, __LINE__);
+{   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
     return apply_macros_int (sections.at (sct), context.macros ()); }
 
 ::std::string apply_macros (const e_nit_section& sct, const mmac_t& values)
-{   PRESUME (sct < sections.size (), __FILE__, __LINE__);
+{   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
     return apply_macros_int (apply_macros (sct), values); }
 
 ::std::string apply_macros (const e_nit_section& sct, const mmac_t& values1, const mmac_t& values2)
-{   PRESUME (sct < sections.size (), __FILE__, __LINE__);
+{   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
     return apply_macros_int (apply_macros (sct, values1), values2); }
 
 ::std::string apply_macros (const e_nit_section& sct, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3)
-{   PRESUME (sct < sections.size (), __FILE__, __LINE__);
+{   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
     return apply_macros_int (apply_macros (sct, values1, values2), values3); }
 
 ::std::string apply_macros (const e_nit_section& sct, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3, const mmac_t& values4)
-{   PRESUME (sct < sections.size (), __FILE__, __LINE__);
+{   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
     return apply_macros_int (apply_macros (sct, values1, values2, values3), values4); }
 
 void dump_nits (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)

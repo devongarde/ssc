@@ -36,6 +36,7 @@
     <ClInclude Include="..\heater\element\state.h" />
     <ClInclude Include="..\heater\feedback\nit.h" />
     <ClInclude Include="..\heater\feedback\nitnames.h" />
+    <ClInclude Include="..\heater\feedback\nitout.h" />
     <ClInclude Include="..\heater\feedback\nitpick.h" />
     <ClInclude Include="..\heater\icu\charset.h" />
     <ClInclude Include="..\heater\icu\converter.h" />
@@ -84,6 +85,8 @@
     <ClInclude Include="..\heater\parser\text.h" />
     <ClInclude Include="..\heater\parser\xhtml_xml.h" />
     <ClInclude Include="..\heater\rdf\rdf.h" />
+    <ClInclude Include="..\heater\rdf\rdfa_prop.h" />
+    <ClInclude Include="..\heater\rdf\rdfa_type.h" />
     <ClInclude Include="..\heater\schema\schema_hierarchy.h" />
     <ClInclude Include="..\heater\schema\schema_name.h" />
     <ClInclude Include="..\heater\schema\schema_property.h" />
@@ -234,6 +237,7 @@
     <ClCompile Include="..\sauce\element\state.cpp" />
     <ClCompile Include="..\sauce\feedback\nit.cpp" />
     <ClCompile Include="..\sauce\feedback\nitnames.cpp" />
+    <ClCompile Include="..\sauce\feedback\nitout.cpp" />
     <ClCompile Include="..\sauce\feedback\nitpick.cpp" />
     <ClCompile Include="..\sauce\icu\charset.cpp" />
     <ClCompile Include="..\sauce\icu\converter.cpp" />
@@ -279,6 +283,8 @@
     <ClCompile Include="..\sauce\parser\text.cpp" />
     <ClCompile Include="..\sauce\parser\xhtml_xml.cpp" />
     <ClCompile Include="..\sauce\rdf\rdf.cpp" />
+    <ClCompile Include="..\sauce\rdf\rdfa_prop.cpp" />
+    <ClCompile Include="..\sauce\rdf\rdfa_type.cpp" />
     <ClCompile Include="..\sauce\schema\schema_hierarchy.cpp" />
     <ClCompile Include="..\sauce\schema\schema_name.cpp" />
     <ClCompile Include="..\sauce\schema\schema_property.cpp" />

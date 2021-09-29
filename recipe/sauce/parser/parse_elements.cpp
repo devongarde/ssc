@@ -115,6 +115,7 @@ void elements_node::hook_up (element_node* current, element_node*& previous, ele
     {   PRESUME (parent -> last_ != nullptr, __FILE__, __LINE__);
         current -> parent_ = parent;
         previous = parent -> last_;
+        VERIFY_NOT_NULL (previous, __FILE__, __LINE__);
         PRESUME (previous -> parent_ == parent, __FILE__, __LINE__);
         current -> previous_ = previous;
         previous -> next_ = current;

@@ -28,13 +28,103 @@ struct microdata_hierachy
     e_schema_type specific_; };
 
 microdata_hierachy schema_hierarchy [] =
-{   // common tag
+{   { { s_faux, 1, 0 }, { 0, 0 }, anything, owl_thing },
+    { { s_faux, 1, 0 }, { 0, 0 }, anything, sch_thing },
+    { { s_faux, 1, 0 }, { 0, 0 }, anything, xsd_anytype },
+
+    // activity streams etc.
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_accept },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_add },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_announce },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_create },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_delete },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_dislike },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_flag },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_follow },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_ignore },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_intransitiveactivity },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_join },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_leave },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_like },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_listen },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_move },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_offer },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_reject },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_read },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_remove },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_tentativeaccept },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_undo },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_update },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_activity, asc_view },
+
+    { { s_as, 1, 0 }, { 0, 0 }, asc_collection, asc_orderedcollection },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_collection, asc_collectionpage },
+
+    { { s_as, 1, 0 }, { 0, 0 }, asc_collectionpage, asc_orderedcollectionpage },
+
+    { { s_as, 1, 0 }, { 0, 0 }, asc_document, asc_audio },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_document, asc_image },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_document, asc_page },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_document, asc_video },
+
+    { { s_as, 1, 0 }, { 0, 0 }, asc_ignore, asc_block },
+
+    { { s_as, 1, 0 }, { 0, 0 }, asc_intransitiveactivity, asc_arrive },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_intransitiveactivity, asc_question },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_intransitiveactivity, asc_travel },
+
+    { { s_as, 1, 0 }, { 0, 0 }, asc_link, asc_mention },
+
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_activity },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_application },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_article },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_collection },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_document },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_event },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_group },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_note },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_organisation },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_person },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_place },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_profile },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_relationship },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_service },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_object, asc_tombstone },
+
+    { { s_as, 1, 0 }, { 0, 0 }, asc_offer, asc_invite },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, asc_orderedcollection, oa_choice },
+    { { s_as, 1, 0 }, { 0, 0 }, asc_orderedcollection, asc_orderedcollectionpage },
+
+    { { s_as, 1, 0 }, { 0, 0 }, asc_reject, asc_tentativereject },
+
+    // common tag
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_author },
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_auto },
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_reader },
 
+    // data catalogue
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dca_catalogue },
+
+    { { s_dcat, 1, 0 }, { s_dcat, 1, 0 }, dcmi_dataset, dca_dataset },
+
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dca_dataservice },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dca_dataset },
+
+    // attached to dublin core
+    { { s_dcat, 2, 0 }, { 0, 0 }, dcmi_service, dca_dataservice },
+
+    // data quality
+    { { s_dqv, 1, 0 }, { 0, 0 }, dqv_qualityannotation, dqv_qualitycertificate },
+    { { s_dqv, 1, 0 }, { 0, 0 }, dqv_qualityannotation, dqv_userqualityfeedback },
+
+    // duv
+    { { s_duv, 1, 0 }, { 0, 0 }, duv_userfeedback, duv_ratingfeedback },
+    { { s_dqv, 1, 0 }, { 0, 0 }, duv_userfeedback, dqv_userqualityfeedback },
+
     // foaf
     { { s_foaf, 0, 99 }, { 0, 0 }, foaf_agent, foaf_group },
+    { { s_odrl, 1, 0 }, { 0, 0 }, foaf_agent, odrl_party },
     { { s_foaf, 0, 99 }, { 0, 0 }, foaf_agent, foaf_person },
     { { s_foaf, 0, 99 }, { 0, 0 }, foaf_agent, foaf_organisation },
 
@@ -42,11 +132,14 @@ microdata_hierachy schema_hierarchy [] =
     { { s_foaf, 0, 99 }, { 0, 0 }, foaf_document, foaf_personalprofiledocument },
     { { s_foaf, 0, 99 }, { 0, 0 }, foaf_document, sioc_item },
 
-//    { { s_foaf, 0, 1 }, { 0, 0 }, owl_thing, foaf_onlineaccount },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_onlineaccount, foaf_onlinechataccount,  },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_onlineaccount, foaf_onlineecommerceaccount },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_onlineaccount, foaf_onlinegamingaccount },
     { { s_foaf, 0, 99 }, { 0, 0 }, foaf_onlineaccount, sioc_user },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, foaf_organisation, odrl_party },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, foaf_person, odrl_party },
 
     // good relations
     { { s_gr, 1, 0 }, { 0, 0 }, gr_businessentitytype, gr_business },
@@ -118,19 +211,156 @@ microdata_hierachy schema_hierarchy [] =
     { { s_gr, 1, 0 }, { 0, 0 }, gr_warrantyscope, gr_partsandlabour_bringin },
     { { s_gr, 1, 0 }, { 0, 0 }, gr_warrantyscope, gr_partsandlabour_pickup },
 
+    // ldp
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_container, ldp_basiccontainer },
+
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_container, ldp_directcontainer },
+
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_container, ldp_indirectcontainer },
+
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_rdfsource, ldp_container },
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_rdfsource, ldp_container },
+
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_resource, ldp_rdfsource },
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_resource, ldp_nonrdfsource },
+
+    // media resources
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_agent, ma_organisation },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_agent, ma_person },
+
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediafragment, ma_track },
+
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_image },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_mediafragment },
+
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_track, ma_audiotrack },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_track, ma_datatrack },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_track, ma_videotrack },
+
+    // web annotation
+    { { s_dqv, 1, 0 }, { 0, 0 }, oa_annotation, dqv_qualityannotation },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_direction, oa_autodirection },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_direction, oa_ltrdirection },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_direction, oa_rtldirection },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_assessing },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_bookmarking },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_classifying },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_commenting },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_describing },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_editing },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_highlighting },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_identifying },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_linking },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_moderating },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_questioning },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_replying },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_motivation, oa_tagging },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_resourceselection, oa_specificresource },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_selector, oa_cssselector },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_selector, oa_datapositionselector },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_selector, oa_fragmentselector },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_selector, oa_rangeselector },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_selector, oa_svgselector },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_selector, oa_textpositionselector },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_selector, oa_textquoteselector },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_selector, oa_xpathselector },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_state, oa_httprequeststate },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_state, oa_timestate },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_style, oa_cssstyle },
+
+    // odrl
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_asset, odrl_assetcollection },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_party, odrl_partycollection },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrl_agreement },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrl_assertion },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrl_offer },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrl_privacy },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrl_request },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrl_set },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrl_duty },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrl_permission },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrl_prohibition },
+
+    // owl
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_class, owl_restriction },
+
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_objectproperty, owl_asymmetricproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_objectproperty, owl_inversefunctionalproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_objectproperty, owl_irreflexiveproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_objectproperty, owl_reflexiveproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_objectproperty, owl_symmetricproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_objectproperty, owl_transitiveproperty },
+
+    { { s_foaf, 0, 1 }, { 0, 0 }, owl_thing, foaf_onlineaccount },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_namedindividual },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_nothing },
+
     // poetry
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_stanza },
 
+    // prov
+//    { { s_dcat, 2, 0 }, { 0, 0 }, prov_entityinfluence, dcat_relationship },
+
+    // data cube
+    { { s_qb, 1, 0 }, { 0, 0 }, anything, qb_componentset },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_attachable, qb_dataset },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_attachable, qb_observation },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_attachable, qb_slice },
+
+    // unnecessary since its inherited from qb_componentproperty, but ...
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_codedproperty, qb_dimensionproperty },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_codelist, qb_hierarchicalcodelist },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentproperty, qb_attributeproperty },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentproperty, qb_codedproperty },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentproperty, qb_dimensionproperty },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentproperty, qb_measureproperty },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentset, qb_componentproperty },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentset, qb_componentspecification },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentset, qb_datastructuredefinition },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentset, qb_slicekey },
+
+    { { s_dqv, 1, 0 }, { 0, 0 }, qb_dataset, dqv_qualitymeasurementdataset },
+
+    { { s_dqv, 1, 0 }, { 0, 0 }, qb_observation, dqv_qualitymeasurement },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_observationgroup, qb_slice },
+
     // RDF
+    { { s_qb, 1, 0 }, { 0, 0 }, rdf_property, qb_componentproperty },
     { { s_rdf, 1, 0 }, { 0, 0 }, rdf_property, rdfs_containermembershipproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdf_property, owl_annotationproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdf_property, owl_datatypeproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdf_property, owl_deprecatedproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdf_property, owl_functionalproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdf_property, owl_objectproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdf_property, owl_ontologyproperty },
+
+    // RDFg
+    { { s_rdfg, 1, 0 }, { 0, 0 }, rdfg_graph, dqv_qualitymetadata },
 
     // RDFs
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_class, owl_class },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_class, rdfs_datatype },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_class, owl_deprecatedclass },
 
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_container, rdf_alt },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_container, rdf_bag },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_container, rdf_seq },
 
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_datatype, owl_datarange },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_datatype, rdf_html },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_datatype, rdf_langstring },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_datatype, rdf_plainliteral },
@@ -139,10 +369,18 @@ microdata_hierachy schema_hierarchy [] =
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_literal, rdf_json },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_literal, rdf_xmlliteral },
 
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_alldisjointclasses },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_alldisjointproperties },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_annotation },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_axiom },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_class },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_container },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_list },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_literal },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_negativepropertyassertion },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_ontology },
+    { { s_oa, 1, 0 }, { 0, 0 }, rdfs_resource, oa_prefercontaineddescriptions },
+    { { s_oa, 1, 0 }, { 0, 0 }, rdfs_resource, oa_prefercontainediris },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_property },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_statement },
 
@@ -155,6 +393,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 0, 0 }, sch_achieveaction, sch_loseaction },
     {   { 2, 0 }, { 0, 0 }, sch_achieveaction, sch_tieaction },
     {   { 2, 0 }, { 0, 0 }, sch_achieveaction, sch_winaction },
+    {   { s_odrl, 1, 0 }, { 0, 0 }, sch_action, odrl_action },
     {   { 2, 0 }, { 0, 0 }, sch_action, sch_achieveaction },
     {   { 2, 0 }, { 0, 0 }, sch_action, sch_assessaction },
     {   { 2, 0 }, { 0, 0 }, sch_action, sch_consumeaction },
@@ -1262,6 +1501,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 2, 1 }, sch_organisation, sch_ngo },
     {   { 3, 1 }, { 0, 0 }, sch_organisation, sch_ngo },
     {   { 3, 5 }, { 0, 0 }, sch_organisation, sch_newsmediaorganisation },
+    {   { s_odrl, 1, 0 }, { 0, 0 }, sch_organisation, odrl_party },
     {   { 2, 0 }, { 0, 0 }, sch_organisation, sch_performinggroup },
     {   { 3, 5 }, { 0, 0 }, sch_organisation, sch_project },
     {   { 2, 0 }, { 0, 0 }, sch_organisation, sch_sportsorganisation },
@@ -1290,6 +1530,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { 2, 0 }, { 2, 1 }, sch_permit, sch_governmentpermit },
     {   { 3, 1 }, { 0, 0 }, sch_permit, sch_governmentpermit },
     {   { 3, 5 }, { 0, 0 }, sch_person, sch_patient },
+    {   { s_odrl, 1, 0 }, { 0, 0 }, sch_person, odrl_party },
     {   { 2, 0 }, { 0, 0 }, sch_physicalactivity, sch_exerciseplan },
     {   { 3, 5 }, { 0, 0 }, sch_physicalactivitycategory, sch_aerobicactivity },
     {   { 3, 5 }, { 0, 0 }, sch_physicalactivitycategory, sch_anaerobicactivity },
@@ -1748,6 +1989,14 @@ microdata_hierachy schema_hierarchy [] =
 
     {   { s_sioc, 1, 0 }, { 0, 0 }, sioc_space, sioc_site },
 
+    // skos
+    {   { s_dcat, 2, 0 }, { 0, 0 }, skos_collection, skos_orderedcollection },
+
+    {   { s_dqv, 1, 0 }, { 0, 0 }, skos_concept, dqv_category },
+    {   { s_dqv, 1, 0 }, { 0, 0 }, skos_concept, dqv_dimension },
+    {   { s_oa, 1, 0 }, { 0, 0 }, skos_concept, oa_motivation },
+    {   { s_skos, 1, 0 }, { 0, 0 }, skos_concept, dca_role },
+
     // vcard
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_dom },
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_home },
@@ -1757,6 +2006,14 @@ microdata_hierachy schema_hierarchy [] =
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_pref },
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_work },
 
+//    {   { s_odrl, 1, 0 }, { 0, 0 }, vcard_agent, odrl_party },
+
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_internet },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_x400 },
+    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_pref },
+
+//    {   { s_odrl, 1, 0 }, { 0, 0 }, vcard_individual, odrl_party },
+
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_dom },
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_home },
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_intl },
@@ -1765,9 +2022,7 @@ microdata_hierachy schema_hierarchy [] =
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_pref },
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_work },
 
-    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_internet },
-    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_x400 },
-    {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_pref },
+//    {   { s_odrl, 1, 0 }, { 0, 0 }, vcard_organisation, odrl_party },
 
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_bbs },
     {   { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_car },

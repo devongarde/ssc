@@ -212,3 +212,9 @@ bool context_t::rdfa () const
 {   if (rdfa_) return true;
     if (version_.is_svg_12 ()) return true;
     return (version_ == xhtml_2); }
+
+void context_t::dot ()
+{   if (progress ())
+        if (dot_ == INT_MAX) dot_ = 0;
+        else if ((++dot_ % 100) == 0)
+        {   ::std::cout << "."; ::std::cout.flush (); } }

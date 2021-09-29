@@ -667,7 +667,7 @@ wotsit_t wotsit_table [] =
     { { HTML_PLUS }, { HTML_UNDEF }, "alpha" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "amacr" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "amalg" },
-    { { HTML_TAGS }, { HTML_UNDEF }, "amp" },
+    { { HTML_TAGS }, { HTML_UNDEF }, "amp", WOTSIT_XML },
     { { HTML_PLUS }, { HTML_UNDEF }, "and" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "andand" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "andd" },
@@ -698,7 +698,7 @@ wotsit_t wotsit_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "apacir" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "ape" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "apid" },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "apos" },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "apos", WOTSIT_XML },
     { { HTML_JAN05 }, { HTML_UNDEF }, "approx" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "approxeq" },
     { { HTML_1_0 }, { HTML_UNDEF }, "aring" },
@@ -1127,7 +1127,7 @@ wotsit_t wotsit_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "gsim" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "gsime" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "gsiml" },
-    { { HTML_TAGS }, { HTML_UNDEF }, "gt" },
+    { { HTML_TAGS }, { HTML_UNDEF }, "gt", WOTSIT_XML },
     { { HTML_JAN05 }, { HTML_UNDEF }, "gtcc" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "gtcir" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "gtdot" },
@@ -1376,7 +1376,7 @@ wotsit_t wotsit_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "lsquo" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "lsquor" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "lstrok" },
-    { { HTML_TAGS }, { HTML_UNDEF }, "lt" },
+    { { HTML_TAGS }, { HTML_UNDEF }, "lt", WOTSIT_XML },
     { { HTML_JAN05 }, { HTML_UNDEF }, "ltcc" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "ltcir" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "ltdot" },
@@ -1684,7 +1684,7 @@ wotsit_t wotsit_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "quatint" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "quest" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "questeq" },
-    { { HTML_1_0 }, { HTML_UNDEF }, "quot" },
+    { { HTML_1_0 }, { HTML_UNDEF }, "quot", WOTSIT_XML },
     { { HTML_JAN05 }, { HTML_UNDEF }, "rAarr" },
     { { HTML_PLUS }, { HTML_UNDEF }, "rArr" },
     { { HTML_JAN05 }, { HTML_UNDEF }, "rAtail" },
@@ -2140,7 +2140,7 @@ wotsit_t wotsit_table [] =
 
     { { HTML_UNDEF }, { HTML_UNDEF }, nullptr } };
 
-// WARNING: some symbols may display incorrectly in some editors on some systems: edit them at your peril.
+// WARNING: some symbols may display incorrectly in some editors on some systems: edit at your peril.
 extra_t known_symbols [] =
 {   { u8"Á", "Aacute" },
     { u8"á", "aacute" },
@@ -4317,4 +4317,4 @@ extra_t xtra [] =
     { u8"ǌ", "nj" },
     { u8"œ", "oe" },
     { u8"ﬂ", "fll" },
-    { nullptr, nullptr } };
+    { nullptr, nullptr, NOFLAGS } };

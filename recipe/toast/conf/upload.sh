@@ -15,7 +15,7 @@ upload_using_rsync () {
     FLAGS=-rumpt4
   fi
 
-  rsync $FLAGS --inplace --delete --chmod=Fu+w --exclude='\.*' -e ssh $1 $2
+  rsync $FLAGS --inplace --delete-after --chmod=Fu+w --exclude='\.*' -e ssh $1 $2
 }
 
 

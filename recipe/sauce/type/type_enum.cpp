@@ -139,6 +139,14 @@ struct symbol_entry < html_version, e_as > as_symbol_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "video", as_video },
     { { HTML_JAN05 }, { HTML_UNDEF }, "worker", as_worker } };
 
+struct symbol_entry < html_version, e_as_units > as_units_symbol_table [] =
+{   { { HTML_JAN05 }, { HTML_UNDEF }, "cm", asu_cm },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "feet", asu_feet },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "asu_inches", asu_inches },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "km", asu_km },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "m", asu_m },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "miles", asu_miles } };
+
 struct symbol_entry < html_version, e_autocapitalise > autocapitalise_symbol_table [] =
 {   { { HTML_5_3 }, { HTML_UNDEF }, "characters", ac4_characters },
     { { HTML_JUL20 }, { HTML_UNDEF }, "default", ec4_default },
@@ -1144,6 +1152,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-mf-verify", nm_context_mf_verify },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-mf-version", nm_context_mf_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-microdata", nm_context_microdata },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-msg", nm_context_msg },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-once", nm_context_once },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-output", nm_context_output },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-persisted", nm_context_persisted },
@@ -1345,7 +1354,6 @@ struct symbol_entry < html_version, e_print > print_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "sidebar", pt_sidebar },
     { { HTML_UNDEF }, { HTML_UNDEF }, "silent", pt_silent } };
 
-// typedef enum { qs_none, qs_c, qs_html, qs_json, qs_text } e_quote_style;
 struct symbol_entry < html_version, e_quote_style > quote_style_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "none", qs_none },
     { { HTML_UNDEF }, { HTML_UNDEF }, "c", qs_c },
@@ -1839,6 +1847,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (alignment_baseline);
     INIT_ENUM (alignplus);
     INIT_ENUM (as);
+    INIT_ENUM (as_units);
     INIT_ENUM (autocapitalise);
     INIT_ENUM (autocomplete);
     INIT_ENUM (beginfn);
@@ -1974,5 +1983,3 @@ e_namespace map_xmlns_to_namespace (const e_xmlns x)
         case x_xsd : return ns_xs;
         default : break; }
     return ns_default; }
-
-   // ns_bibo

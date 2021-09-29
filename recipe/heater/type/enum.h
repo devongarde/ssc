@@ -42,6 +42,7 @@ typedef enum { ap_centre, ap_indent, ap_justify, ap_left, ap_right } e_alignplus
 typedef enum { a3_top, a3_middle, a3_bottom, a3_left, a3_right } e_align3;
 typedef enum { at_none, at_angle, at_colour, at_coordinate, at_frequency, at_integer, at_percentage, at_length, at_list, at_number, at_paint, at_time, at_transform, at_url, at_other } e_animation_type;
 typedef enum { ar_initial, ar_medial, at_terminal, at_isolated } e_arabicenum;
+typedef enum { asu_cm, asu_feet, asu_inches, asu_km, asu_m, asu_miles } e_as_units;
 typedef enum { aa_both, aa_inline, aa_list, aa_none  } e_aria_autocomplete;
 typedef enum { ai_false, ai_grammar, ai_spelling, ai_true } e_aria_invalidity;
 typedef enum { al_assertive, al_off, al_polite } e_aria_live;
@@ -332,6 +333,8 @@ typedef enum {  cspa_context,
 typedef enum {  csk_context,
                 csk_self, csk_unsafe_inline, csk_unsafe_eval, csk_strict_dynamic, csk_unsafe_hashes, csk_report_sample, csk_unsafe_allow_redirects,
                 csk_error } e_csp_keyword;
+typedef enum { cd_ltr, cd_rtl, cd_auto } e_csvw_direction;
+
 typedef enum {  e_iso_context,
                 e_iso_AED, e_iso_AFN, e_iso_ALL, e_iso_AMD, e_iso_ANG, e_iso_AOA, e_iso_ARS, e_iso_AUD, e_iso_AWG, e_iso_AZN, e_iso_BAM,
                 e_iso_BBD, e_iso_BDT, e_iso_BGN, e_iso_BHD, e_iso_BIF, e_iso_BMD, e_iso_BND, e_iso_BOB, e_iso_BOV, e_iso_BRL, e_iso_BSD,
@@ -1404,6 +1407,7 @@ typedef enum { mo_display, mo_inline } e_mode;
 
 // for foaf
 // Note: Myers Briggs Type Indicator and MBTI are registered trademarks of Consulting Psychologists Press Inc. Oxford Psychologists Press Ltd has exclusive rights to the trademark in the UK.
+// Note: pseudoscience
 typedef enum { mb_ESTJ, mb_INFP, mb_ESFP, mb_INTJ, mb_ESFJ, mb_INTP, mb_ENFP, mb_ISTJ, mb_ESTP, mb_INFJ, mb_ENFJ, mb_ISTP, mb_ENTJ, mb_ISFP, mb_ENTP, mb_ISFJ } e_myersbriggs;
 
 typedef enum
@@ -1509,7 +1513,7 @@ typedef enum
     nit_math_href, nit_math_empty, nit_mglyph_alt_src, nit_dir_rtl_ltr, nit_bad_linebreak, nit_non_standard_value, nit_mscarries_last,
     nit_bad_bind, nit_bad_share, nit_shadow, nit_out_of_memory, nit_duplicate, nit_shadow_failed, nit_create_folder, nit_internal_file_error,
     nit_shadow_ignore, nit_shadow_link, nit_shadow_copy, nit_too_big, nit_icu, nit_lang_redefined, nit_page_charset, nit_charset_mismatch,
-    nit_charset_used, nit_charset_invalid, nit_no_converters, nit_xhtml_superseded, nit_not_iso_8859_1, hit_draft_html_5, nit_overriding_html,
+    nit_charset_used, nit_charset_invalid, nit_no_converters, nit_xhtml_superseded, nit_not_iso_8859_1, nit_draft_html_5, nit_overriding_html,
     nit_whatwg_class, nit_opening_file, nit_target, nit_bad_mummy, nit_no_serviceworker, nit_rel_head, nit_theme_colour, nit_refresh_zero,
     nit_bad_csp_directive, nit_bad_number_once, nit_bad_csp_source, nit_invalid_algorithm, nit_insufficient_content, nit_bad_q,
     nit_bad_cookie, nit_bad_cache, nit_bad_link_pragma, nit_nocando, nit_bad_root, nit_isnt, nit_menu_type, nit_menu_child, nit_bad_dl,
@@ -1527,7 +1531,7 @@ typedef enum
     nit_namespace_redefine, nit_no_lang, nit_null_datatype, nit_unknown_datatype, nit_rdfa_version, nit_bad_sha, nit_new_property,
     nit_wwww, nit_bad_vocab, nit_vocab_defined, nit_sarcasm, nit_fe, nit_missing_double_quote, nit_bad_media, nit_mb, nit_byte,
     nit_b64, nit_help, nit_configuration, nit_title, nit_webaddr, nit_copyright, nit_version, nit_info, nit_build, nit_config_version,
-    nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file,
+    nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file, nit_code_dtd,
 
     nit_context,
 
@@ -1540,17 +1544,15 @@ typedef enum
         nm_context_article, nm_context_body, nm_context_css, nm_context_cgi, nm_context_clear, nm_context_code, nm_context_config, nm_context_copy,
         nm_context_corpus, nm_context_crosslinks, nm_context_custom_elements, nm_context_dc, nm_context_export_root, nm_context_exports,
         nm_context_extensions, nm_context_fe, nm_context_filename, nm_context_foaf, nm_context_forward, nm_context_hook, nm_context_ignore,
-        nm_context_info, nm_context_index,
-        nm_context_lang, nm_context_links, nm_context_math, nm_context_main, nm_context_max_file_size, nm_context_md_export, nm_context_meta,
-        nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_once, nm_context_output,
-        nm_context_persisted, nm_context_process_webmentions, nm_context_rdfa, nm_context_rdf_version,
-        nm_context_rel, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_sarcasm,
-        nm_context_schema, nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
+        nm_context_info, nm_context_index, nm_context_lang, nm_context_links, nm_context_math, nm_context_main, nm_context_max_file_size,
+        nm_context_md_export, nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata,
+        nm_context_msg, nm_context_once, nm_context_output, nm_context_persisted, nm_context_process_webmentions, nm_context_rdfa,
+        nm_context_rdf_version, nm_context_rel, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070,
+        nm_context_sarcasm, nm_context_schema, nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
         nm_context_shadow_ignore, nm_context_shadow_persist,nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
         nm_context_shadows, nm_context_site, nm_context_slob, nm_context_spec, nm_context_ssi, nm_context_stats_export, nm_context_stats_page,
         nm_context_stats_summary, nm_context_svg_version, nm_context_tags, nm_context_templates, nm_context_test, nm_context_title, nm_context_user,
-        nm_context_version, nm_context_virtuals, nm_context_write_path,
-        nm_context_xsd,
+        nm_context_version, nm_context_virtuals, nm_context_write_path, nm_context_xsd,
         nm_copy_addr, nm_copy_html, nm_copy_text,
     nm_general_output, nm_general_path, nm_grand_title,
     nm_html_snippet,
@@ -1607,7 +1609,7 @@ typedef enum {
     pr_aaa, pr_aaas, pr_about, pr_acap, pr_acct, pr_acr, pr_adiumxtra, pr_admin, pr_afp, pr_afs, pr_aim, pr_apt, pr_app, pr_attachment, pr_aw, pr_amss,
     pr_barian, pr_beshare, pr_bitcoin, pr_blob, pr_bolo,
     pr_callto, pr_cap, pr_chrome, pr_chrome_extension, pr_cid, pr_clsid, pr_coap, pr_coaps, pr_com_eventbrite_attendee, pr_content, pr_crid, pr_cvs,
-    pr_dab, pr_data, pr_dav, pr_dict, pr_dina_playsingle, pr_dina_playcontainer, pr_dns, pr_dntp, pr_doi, pr_drm, pr_dtn, pr_dvb,
+    pr_dab, pr_data, pr_dav, pr_dict, pr_did, pr_dina_playsingle, pr_dina_playcontainer, pr_dns, pr_dntp, pr_doi, pr_drm, pr_dtn, pr_dvb,
     pr_ed2k, pr_example,
     pr_facetime, pr_fax, pr_feed, pr_file, pr_filesystem, pr_finger, pr_fish, pr_fm, pr_ftp, pr_ftps,
     pr_gemini, pr_geo, pr_gg, pr_git, pr_gizmoproject, pr_go, pr_gopher, pr_gtalk,
@@ -1736,19 +1738,19 @@ typedef enum {
     s_article, s_as,
     s_bibo, s_book,
     s_cc, s_content, s_csvw, s_ctag,
-    s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_dqv, s_describedby, s_duv,
+    s_daq, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_dqv, s_describedby, s_duv,
     s_earl,
-    s_foaf, s_frbr_core,
+    s_faux, s_foaf, s_frbr_core,
     s_gr, s_grddl,
     s_ical, s_icaltzd,
     s_jsonld,
-    s_ldp, s_licence,
+    s_ldp, s_licence, s_locn,
     s_ma, s_microformats, s_music,
     s_oa, s_odrl, s_og, s_org, s_owl,
     s_poetry, s_profile, s_prov,
     s_qb,
-    s_rdf, s_rdfa, s_rdfs, s_rev, s_rif, s_role, s_rr,
-    s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_ssn, s_sosa,
+    s_rdf, s_rdfa, s_rdfg, s_rdfs, s_rev, s_rif, s_role, s_rr,
+    s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_sosa, s_ssn,
     s_taxo, s_time,
     s_v, s_vcard, s_video, s_void,
     s_wdr, s_wdrs, s_website, s_whatwg,
@@ -1761,11 +1763,53 @@ typedef ::std::size_t schema_id;
 typedef enum
 {   sty_context,
 
+    anything,
+
+    // activity streams etc.
+    asc_accept, asc_activity, asc_add, asc_announce, asc_application, asc_arrive, asc_article, asc_audio,
+    asc_block,
+    asc_collection, asc_collectionpage, asc_create,
+    asc_delete, asc_dislike, asc_document,
+    asc_event,
+    asc_flag, asc_follow,
+    asc_group,
+    asc_ignore, asc_image, asc_intransitiveactivity, asc_invite, asc_iscontact, asc_isfollowedby, asc_isfollowing, asc_ismember,
+    asc_join,
+    asc_leave, asc_like, asc_link, asc_listen,
+    asc_mention, asc_move,
+    asc_note,
+    asc_object, asc_offer, asc_orderedcollection, asc_orderedcollectionpage, asc_organisation,
+    asc_page, asc_person, asc_place, asc_profile,
+    asc_question,
+    asc_read, asc_reject, asc_relationship, asc_remove,
+    asc_service,
+    asc_tentativeaccept, asc_tentativereject, asc_tombstone, asc_travel,
+    asc_undo, asc_update,
+    asc_video, asc_view,
+
     // common tag
     ctag_author, ctag_auto, ctag_reader, ctag_tag,
 
+    // contrary sausages vote wibble
+    csv_cell, csv_column,
+    csv_datatype, csv_dialect, csv_direction,
+    csv_foreignkey,
+    csv_numericformat,
+    csv_row,
+    csv_schema,
+    csv_table, csv_tablegroup, csv_tablereference, csv_transformation,
+    csv_uritemplate,
+
+    // data quality
+    daq_metric, daq_category, daq_dimension, daq_qualitygraph, daq_observation,
+
     // dublin core vocabulary description
     dcam_vocabularyencodingscheme,
+
+    // data catalogue
+    dca_catalogue, dca_cataloguerecord,
+    dca_dataservice, dca_dataset, dca_distribution,
+    dca_relationship, dca_resource, dca_role,
 
     // dcmi type vocabulary
     dcmi_collection, dcmi_dataset, dcmi_event, dcmi_image, dcmi_interactiveresource, dcmi_movingimage, dcmi_physicalobject, dcmi_service, dcmi_software, dcmi_sound, dcmi_stillimage, dcmi_text,
@@ -1773,6 +1817,16 @@ typedef enum
     // dublin core terms
     dct_agent, dct_agentclass, dct_bibliographicresource, dct_fileformat, dct_frequency, dct_jurisdiction, dct_licencedocument, dct_linguisticsystem, dct_location, dct_locationperiodorjurisdiction, dct_mediatype,
     dct_mediatypeorextent, dct_methodofaccrual, dct_methodofinstruction, dct_periodoftime, dct_physicalmedium, dct_physicalresource, dct_policy, dct_provenancestatement, dct_rightsstatement, dct_sizeorduration, dct_standard,
+
+    // data quality
+    dqv_category,
+    dqv_dimension,
+    dqv_metric,
+    dqv_qualityannotation, dqv_qualitycertificate, dqv_qualitymetadata, dqv_qualitymeasurement, dqv_qualitymeasurementdataset, dqv_qualitypolicy,
+    dqv_userqualityfeedback,
+
+    // duv
+    duv_ratingfeedback, duv_usage, duv_usagetool, duv_userfeedback,
 
     // foaf
     foaf_agent, foaf_document, foaf_group, foaf_image, foaf_labelproperty, foaf_onlineaccount, foaf_onlinechataccount, foaf_onlineecommerceaccount, foaf_onlinegamingaccount, foaf_organisation,
@@ -1788,23 +1842,128 @@ typedef enum
     gr_maintain, gr_mastercard, gr_monday, gr_partsandlabour_bringin, gr_partsandlabour_pickup, gr_paypal, gr_payswarm, gr_provideservice, gr_publicholidays, gr_publicinstitution, gr_repair, gr_reseller, gr_saturday,
     gr_sell, gr_sunday, gr_thursday, gr_tuesday, gr_ups, gr_visa, gr_wednesday, gr_buy,
 
+    // grddl
+    grddl_transformation, grddl_transformationproperty,
+
     // iCal
     ical_vevent, ical_vtimezone,
+
+    // jsonld
+    json_context, json_prefixdefinition, json_termdefinition,
+
+    // ldp
+    ldp_ascending,
+    ldp_basiccontainer,
+    ldp_container,
+    ldp_descending,
+    ldp_directcontainer,
+    ldp_indirectcontainer,
+    ldp_membersubject,
+    ldp_nonrdfsource,
+    ldp_page, ldp_pagesortcriterion, ldp_prefercontainment, ldp_preferemptycontainer, ldp_prefermembership, ldp_preferminimalcontainer,
+    ldp_rdfsource, ldp_resource,
+
+    // locn
+    loc_address, loc_geometry,
+
+    // media
+    ma_agent, ma_audiotrack,
+    ma_collection,
+    ma_datatrack,
+    ma_image,
+    ma_location,
+    ma_mediafragment, ma_mediaresource,
+    ma_organisation,
+    ma_person,
+    ma_rating,
+    ma_targetaudience, ma_track,
+    ma_videotrack,
 
     // living standards microformats 1 reference
     mft_hcard, mf_vevent,
 
     // standard microformats v1 vocabulary
-    mft_adr, mft_geo, mft_haggregate, mft_hatom, mft_haudio, /* mft_hcard, */ mft_hcalendar, mft_hentry, mft_hlisting, mft_hmedia, mft_hnews, mft_hproduct, mft_hrecipe, mft_hresume, mft_hreview,
+    mft_adr,
+    mft_geo,
+    mft_haggregate, mft_hatom, mft_haudio, mft_hcalendar, /* mft_hcard, */ mft_hentry, mft_hlisting, mft_hmedia, mft_hnews, mft_hproduct, mft_hrecipe, mft_hresume, mft_hreview,
 
     // standard microformats v2 vocabulary
     mft2_hadr, mft2_hbreadcrumb, mft2_hcard, mft2_hcite, mft2_hentry, mft2_hevent, mft2_hfeed, mft2_hgeo, mft2_hitem, mft2_hlisting, mft2_hproduct, mft2_hrecipe, mft2_hresume, mft2_hreview, mft2_haggregate,
 
+    // web annotation
+    oa_annotation, oa_assessing, oa_autodirection,
+    oa_bookmarking,
+    oa_choice, oa_classifying, oa_commenting, oa_cssselector, oa_cssstyle,
+    oa_datapositionselector, oa_describing, oa_direction,
+    oa_editing,
+    oa_fragmentselector,
+    oa_highlighting,
+    oa_httprequeststate,
+    oa_identifying,
+    oa_linking, oa_ltrdirection,
+    oa_moderating, oa_motivation,
+    oa_prefercontaineddescriptions, oa_prefercontainediris,
+    oa_questioning,
+    oa_rangeselector, oa_replying, oa_resourceselection, oa_rtldirection,
+    oa_selector, oa_specificresource, oa_state, oa_style, oa_svgselector,
+    oa_tagging, oa_textpositionselector, oa_textquoteselector, oa_textualbody, oa_timestate,
+    oa_xpathselector,
+
+    // open digital rights
+    odrl_action, odrl_agreement, odrl_assertion, odrl_asset, odrl_assetcollection,
+    odrl_duty,
+    odrl_offer,
+    odrl_party, odrl_partycollection, odrl_permission, odrl_policy, odrl_privacy, odrl_prohibition,
+    odrl_request, odrl_rule,
+    odrl_set,
+    odrl_ticket,
+
+
+    odrl_accepttracking, odrl_adhocshare, odrl_aggregate, odrl_annotate, odrl_anonymize, odrl_append, odrl_appendto, odrl_archive, odrl_attachpolicy, odrl_attachsource, odrl_attribute, odrl_attribution,
+    odrl_commercialize, odrl_commericaluse, odrl_compensate, odrl_concurrentuse, odrl_copy,
+    odrl_delete, odrl_derivativeworks, odrl_derive, odrl_digitize, odrl_display, odrl_distribute, odrl_distribution,
+    odrl_ensureexclusivity, odrl_execute, odrl_export, odrl_extract, odrl_extractchar, odrl_extractpage, odrl_extractword,
+    odrl_give, odrl_grantuse,
+    odrl_include, odrl_index, odrl_inform, odrl_install,
+    odrl_lease, odrl_lend, odrl_license,
+    odrl_modify, odrl_move,
+    odrl_nextpolicy, odrl_notice,
+    odrl_obtainconsent,
+    odrl_pay, odrl_play, odrl_present, odrl_preview, odrl_print,
+    odrl_read, odrl_reproduce, odrl_reproduction, odrl_reviewpolicy,
+    odrl_secondaryuse, odrl_sell, odrl_share, odrl_sharealike, odrl_sharing, odrl_sourcecode, odrl_stream, odrl_synchronize,odrl_texttospeech, odrl_transfer, odrl_transform, odrl_translate,
+    odrl_uninstall, odrl_use,
+    odrl_watermark, odrl_write, odrl_writeto,
+
+    // owl
+    owl_alldifferent, owl_alldisjointclasses, owl_alldisjointproperties, owl_annotation, owl_annotationproperty, owl_asymmetricproperty, owl_axiom,
+    owl_class,
+    owl_datarange, owl_datatypeproperty, owl_deprecatedclass, owl_deprecatedproperty,
+    owl_functionalproperty,
+    owl_inversefunctionalproperty, owl_irreflexiveproperty,
+    owl_namedindividual, owl_negativepropertyassertion, owl_nothing,
+    owl_objectproperty, owl_ontology, owl_ontologyproperty,
+    owl_reflexiveproperty, owl_restriction,
+    owl_symmetricproperty,
+    owl_thing, owl_transitiveproperty,
+
     // poetry
     poetry_dialect, poetry_form, poetry_poem, poetry_period, poetry_stanza,
 
+    // data cube
+    qb_attachable, qb_attributeproperty,
+    qb_codedproperty, qb_codelist, qb_componentproperty, qb_componentset, qb_componentspecification,
+    qb_datastructuredefinition, qb_dimensionproperty, qb_dataset,
+    qb_hierarchicalcodelist,
+    qb_measureproperty,
+    qb_observation, qb_observationgroup,
+    qb_slice, qb_slicekey,
+
     // RDF
     rdf_alt, rdf_bag, rdf_compoundliteral, rdf_html, rdf_json, rdf_langstring, rdf_list, rdf_plainliteral, rdf_property, rdf_seq, rdf_statement, rdf_xmlliteral,
+
+    // RDFg
+    rdfg_graph,
 
     // RDFs
     rdfs_class, rdfs_container, rdfs_containermembershipproperty, rdfs_datatype, rdfs_literal, rdfs_resource,
@@ -1986,6 +2145,12 @@ typedef enum
     // frost (sioc)
     sioc_community, sioc_container, sioc_forum, sioc_item, sioc_post, sioc_role, sioc_site, sioc_space, sioc_thread, sioc_user, sioc_usergroup,
 
+    // skos
+    skos_collection, skos_concept, skos_conceptscheme, skos_orderedcollection,
+
+    // skosxl
+    skosxl_label,
+
     // vcard
     vcard_address,
     vcard_bbs,
@@ -2031,6 +2196,29 @@ typedef enum
 typedef enum
 {   sp_context,
 
+    // activity streams etc.
+    asp_accuracy, asp_actor, asp_altitude, asp_anyof, asp_attachment, asp_attachments, asp_attributedto, asp_audience, asp_author,
+    asp_bcc, asp_bto,
+    asp_cc, asp_closed, asp_content, asp_contentmap, asp_context, asp_current,
+    asp_deleted, asp_describes, asp_downstreamduplicates, asp_duration,
+    asp_endtime,
+    asp_first, asp_formertype,
+    asp_generator,
+    asp_height, asp_href, asp_hreflang,
+    asp_icon, asp_id, asp_image, asp_inreplyto, asp_instrument, asp_items,
+    asp_last, asp_latitude, asp_location, asp_longitude,
+    asp_mediatype,
+    asp_name, asp_namemap,
+    asp_next,
+    asp_object, asp_oneof, asp_ordereditems, asp_origin,
+    asp_partof, asp_prev, asp_preview, asp_provider, asp_published,
+    asp_radius, asp_rating, asp_rel, asp_relationship, asp_replies, asp_result,
+    asp_startindex, asp_starttime, asp_subject, asp_summary, asp_summarymap,
+    asp_tag, asp_tags, asp_target, asp_to, asp_totalitems, asp_type,
+    asp_units, asp_updated, asp_upstreamduplicates, asp_url,
+    asp_verb,
+    asp_width,
+
     // creative commons
     cc_attributionname, cc_attributionurl, cc_deprecatedon, cc_jurisdiction, cc_legalcode, cc_licence, cc_morepermissions, cc_permits, cc_prohibits, cc_requires,
 
@@ -2040,11 +2228,59 @@ typedef enum
     // common tag
     ctag_label, ctag_means, ctag_tagged, ctag_taggingdate,
 
+    // contrary sausages vote wibble
+    csvw_abouturl,
+    csvw_base,
+    csvw_column, csvw_columnreference, csvw_commentprefix,
+    csvw_datatype, csvw_decimalchar, csvw_default, csvw_describes, csvw_delimiter, csvw_dialect, csvw_doublequote,
+    csvw_encoding,
+    csvw_foreignkey, csvw_format,
+    csvw_groupchar,
+    csvw_header, csvw_headerrowcount,
+    csvw_lang, csvw_length, csvw_lineterminators,
+    csvw_maxexclusive, csvw_maxinclusive, csvw_maxlength, csvw_minexclusive, csvw_mininclusive, csvw_minlength,
+    csvw_name, csvw_note, csvw_null,
+    csvw_ordered,
+    csvw_pattern, csvw_primarykey, csvw_propertyurl,
+    csvw_quotechar,
+    csvw_reference, csvw_referencedrow, csvw_required, csvw_resource, csvw_row, csvw_rowtitle, csvw_rownum,
+    csvw_scriptformat, csvw_schemareference, csvw_separator, csvw_skipblankrows, csvw_skipcolumns, csvw_skipinitialspace, csvw_skiprows, csvw_source, csvw_suppressoutput,
+    csvw_table, csvw_tabledirection, csvw_tableschema, csvw_targetformat, csvw_transformations, csvw_textdirection, csvw_title, csvw_trim,
+    csvw_url,
+    csvw_valueurl, csvw_virtual,
+
+    // data quality
+    daq_computedon,
+    daq_expecteddatatype,
+    daq_hasdimension, daq_hasmetric, daq_hasobservation,
+    daq_isestimate,
+    daqp_metric,
+    daq_requires,
+    daq_value,
+
     // dublin core elements
     dc_contributor, dc_coverage, dc_creator, dc_date, dc_description, dc_format, dc_identifier, dc_language, dc_publisher, dc_relation, dc_rights, dc_source, dc_subject, dc_title, dc_type,
 
     // dublin core vocabulary description
     dcam_domainincludes, dcam_memberof, dcam_rangeincludes,
+
+    // data catalogue
+    dcat_accessurl, dcat_accessservice,
+    dcat_beginning, dcat_bbox, dcat_bytesize,
+    dcat_catalogue, dcat_centroid, dcat_compressformat, dcat_contactpoint,
+    dcat_dataset, dcat_distribution, dcat_downloadurl,
+    dcat_end, dcat_enddate, dcat_endpointurl, dcat_endpointdescription,
+    dcat_format, dcat_frequency,
+    dcat_geometry,
+    dcat_hadrole, dcat_haspart, dcat_homepage,
+    dcat_keyword,
+    dcat_landingpage, dcat_listingdate,
+    dcat_mediatype,
+    dcat_packageformat, dcat_primarytopic,
+    dcat_qualifiedrelation,
+    dcat_record, dcat_relation,
+    dcat_servesdataset, dcat_service, dcat_spatialresolutioninmeters, dcat_startdate,
+    dcat_temporalresolution, dcat_theme, dcat_themetaxonomy,
 
     // dublin core terms
     dct_abstract, dct_accessrights, dct_accrualmethod, dct_accrualperiodicity, dct_accrualpolicy, dct_alternative, dct_audience, dct_available,
@@ -2062,6 +2298,16 @@ typedef enum
     dct_source, dct_spatial, dct_subject,
     dct_tableofcontents, dct_temporal, dct_title, dct_type,
     dct_valid,
+
+    // dqv
+    dqv_computedon,
+    dqv_expecteddatatype,
+    dqv_hasqualityannotation, dqv_hasqualitymeasurement, dqv_hasqualitymetadata,
+    dqv_incategory, dqv_indimension, dqv_ismeasurementof,
+    dqv_value,
+
+    // duv
+    duv_refersto, duv_hasdistributor, duv_hasfeedback, duv_hasrating, duv_hasusage, duv_hasusagetool,
 
     // foaf
     foaf_account, foaf_accountname, foaf_accountservicehomepage, foaf_age, foaf_aimchatid,
@@ -2108,6 +2354,9 @@ typedef enum
     gr_validfrom, gr_validto, gr_valueaddedtaxincluded, gr_valuereference, gr_vatid,
     gr_weight, gr_width,
 
+    // grddl
+    grddlp_namespacetransformation, grddlp_profiletransformation, grddlp_result, grddlp_transformation, grddlp_transformationproperty,
+
     // iCal
     ical_action, ical_attendee,
     ical_byday, ical_bymonth,
@@ -2123,6 +2372,55 @@ typedef enum
     ical_transp, ical_trigger, ical_tzid, ical_tzname, ical_tzoffsetfrom, ical_tzoffsetto,
     ical_uid,
     ical_valarm, ical_version,
+
+    // jsonld
+    jsonld_base,
+    jsonld_container, jsonld_context,
+    jsonld_definition, jsonld_direction,
+    jsonld_id, jsonld_import,
+    jsonld_language,
+    jsonld_nest,
+    jsonld_prefix, jsonld_propagate, jsonld_protected,
+    jsonld_reverse,
+    jsonld_term, jsonld_type,
+    jsonld_version, jsonld_vocab,
+
+    // ldp
+    ldp_constrainedby, ldp_contains,
+    ldp_hasmemberrelation,
+    ldp_inbox, ldp_insertedcontentrelation, ldp_ismemberrelationof,
+    ldp_member, ldp_membershipresource,
+    ldp_pagesequence, ldp_pagesortcollation, ldp_pagesortcriteria, ldp_pagesortorder, ldp_pagesortpredicate,
+
+    // locn
+    locn_address, locn_addressarea, locn_addressid, locn_adminunitlevel1, locn_adminunitlevel2,
+    locn_fulladdress,
+    locn_geographicname, locn_geometry,
+    locn_location, locn_locatordesignator, locn_locatorname,
+    locn_pobox, locn_postcode, locn_postname,
+    locn_thoroughfare,
+
+    // media resources
+    ma_alternativetitle, ma_averagebitrate,
+    ma_collectionname, ma_copyright, ma_createdin, ma_creationdate,
+    ma_date, ma_depictsfictionallocation, ma_description, ma_duration,
+    ma_editdate,
+    ma_features, ma_fragmentname, ma_frameheight, ma_framerate, ma_framesizeunit, ma_framewidth,
+    ma_hasaccessconditions, ma_hasaudiodescription, ma_hascaptioning, ma_haschapter, ma_hasclassification, ma_hasclassificationsystem, ma_hascompression,
+        ma_hascontributedto, ma_hascontributor, ma_hascopyrightover, ma_hascreated, ma_hascreator, ma_hasformat, ma_hasfragment, ma_hasgenre, ma_haskeyword,
+        ma_haslanguage, ma_haslocationcoordinatesystem, ma_hasmember, ma_hasnamedfragment, ma_haspermissions, ma_haspolicy, ma_haspublished, ma_haspublisher,
+        ma_hasrating, ma_hasratingsystem, ma_hasrelatedimage, ma_hasrelatedlocation, ma_hasrelatedresource, ma_hassigning, ma_hassource, ma_hassubtitling,
+        ma_hastargetaudience, ma_hastrack,
+    ma_iscaptioningof, ma_ischapterof, ma_iscopyrightedby, ma_iscreationlocationof, ma_isfictionallocationdepictedin, ma_isfragmentof, ma_isimagerelatedto,
+        ma_islocationrelatedto, ma_ismemberof, ma_isnamedfragmentof, ma_isprovidedby, ma_isratingof, ma_isrelatedto, ma_issigningof, ma_issourceof,
+        ma_istargetaudienceof, ma_istrackof,
+    ma_locationaltitude, ma_locationlatitude, ma_locationlongitude, ma_locationname, ma_locator,
+    ma_mainoriginaltitle,
+    ma_numberoftracks,
+    ma_playsin, ma_provides,
+    ma_ratingscalemax, ma_ratingscalemin, ma_ratingvalue, ma_recorddate, ma_releasedate,
+    ma_samplingrate,
+    ma_title, ma_trackname,
 
     // microformats.org
     mp_additional_name, mp_adr, mp_affliation, mp_agent, mp_album, mp_amount, mp_anniversary, mp_attach, mp_attendee, mp_author, mp_availability,
@@ -2204,6 +2502,19 @@ typedef enum
     mp2_u_video,
     mp2_u_watch_of,
 
+    // web annotation
+    oa_annotationservice,
+    oa_bodyvalue,
+    oa_cachedsource, oa_canonical,
+    oa_end, oa_exact,
+    oa_hasbody, oa_hasendselector, oa_haspurpose, oa_hasscope, oa_hasselector, oa_hassource, oa_hasstartselector, oa_hasstate, oa_hastarget,
+    oa_motivatedby,
+    oa_prefix, oa_processinglanguage,
+    oa_refinedby, oa_renderedvia,
+    oa_sourcedate, oa_sourcedateend, oa_sourcedatestart, oa_start, oa_styleclass, oa_styledby, oa_suffix,
+    oa_textdirection,
+    oa_via,
+
     // open graph
     og_article_author, og_article_expiration_date, og_article_modified_time, og_article_published_time, og_article_section, og_article_tag,
     og_audio, og_audio_secure_url, og_audio_type, og_audio_url,
@@ -2218,11 +2529,56 @@ typedef enum
     og_url,
     og_video, og_video_actor, og_video_actor_role, og_video_alt, og_video_director, og_video_duration, og_video_height, og_video_release_date, og_video_secure_url, og_video_series, og_video_tag, og_video_type, og_video_url, og_video_width, og_video_writer,
 
+    // odrl
+    odrlp_action, odrlp_assignee, odrlp_assigneeof, odrlp_assigner, odrlp_assignerof, odrlp_attributedparty, odrlp_attributingparty,
+    odrlp_compensatedparty, odrlp_compensatingparty, odrlp_conflict, odrlp_consentedparty, odrlp_consentingparty, odrlp_consequence, odrlp_constraint, odrlp_contractedparty, odrlp_contractingparty,
+    odrlp_duty,
+    odrlp_failure, odrlp_function,
+    odrlp_haspolicy,
+    odrlp_implies, odrlp_includedin, odrlp_informedparty, odrlp_informingparty, odrlp_inheritfrom,
+    odrlp_partof, odrlp_permission, odrlp_profile, odrlp_prohibition,
+    odrlp_obligation, odrlp_output,
+    odrlp_refinement, odrlp_relation, odrlp_remedy,
+    odrlp_source,
+    odrlp_target, odrlp_trackedparty, odrlp_trackingparty,
+    odrlp_uid,
+
+    // owl
+    owl_allvaluesfrom, owl_annotatedproperty, owl_annotatedsource, owl_annotatedtarget, owl_assertionproperty,
+    owl_backwardcompatiblewith, owl_bottomdataproperty, owl_bottomobjectproperty,
+    owl_cardinality, owl_complementof,
+    owl_datatypecomplementof, owl_deprecated, owl_differentfrom, owl_disjointunionof, owl_disjointwith, owl_distinctmembers,
+    owl_equivalentclass, owl_equivalentproperty,
+    owl_haskey, owl_hasself, owl_hasvalue,
+    owl_imports, owl_incompatiblewith, owl_intersectionof, owl_inverseof,
+    owl_maxcardinality, owl_maxqualifiedcardinality, owl_members, owl_mincardinality, owl_minqualifiedcardinality,
+    owl_onclass, owl_ondatarange, owl_ondatatype, owl_oneof, owl_onproperties, owl_onproperty,
+    owl_priorversion, owl_propertychainaxiom, owl_propertydisjointwith,
+    owl_qualifiedcardinality,
+    owl_sameas, owl_somevaluesfrom, owl_sourceindividual,
+    owl_targetindividual, owl_targetvalue, owl_topdataproperty, owl_topobjectproperty,
+    owl_unionof,
+    owl_versioninfo, owl_versioniri,
+    owl_withrestrictions,
+
     // poetry
     poetry_age, poetry_containedinpoem, poetry_containspoem, poetry_hasform, poetry_hasstanza, poetry_indialect, poetry_ischorus, poetry_islaidout, poetry_keepsstrictform, poetry_lines, poetry_medium, poetry_metre, poetry_poet, poetry_region, poetry_rhymingscheme, poetry_subform,
 
+    // data cube
+    qbp_attribute,
+    qbp_codelist, qbp_component, qbp_componentattachment, qbp_componentproperty, qbp_componentrequired, qbp_concept,
+    qbp_dataset, qbp_dimension,
+    qbp_hierarchyroot,
+    qbp_measure, qbp_measuredimension, qbp_measuretype,
+    qbp_observation, qbp_observationgroup, qbp_order,
+    qbp_parentchildproperty,
+    qbp_slice, qbp_slicekey, qbp_slicestructure, qbp_structure,
+
     // RDF
     rdf_description, rdf_direction, rdf_first, rdf_language, rdf_object, rdf_predicate, rdf_resource, rdf_rest, rdf_subject, rdf_type, rdf_value,
+
+    // RDFg
+    rdfg_equivalentgraph, rdfg_subgraphof,
 
     // RDFs
     rdfs_comment, rdfs_domain, rdfs_isdefinedby, rdfs_label, rdfs_member, rdfs_range, rdfs_seealso, rdfs_subclassof, rdfs_subpropertyof,
@@ -2384,35 +2740,39 @@ typedef enum
 
     // sioc
     sioc_about, sioc_account_of, sioc_administrator_of, sioc_attachment, sioc_avatar,
-
     sioc_container_of, sioc_content, sioc_creator_of,
-
     sioc_email, sioc_email_sha1,
-
     sioc_feed, sioc_function_of,
-
     sioc_has_administrator, sioc_has_container, sioc_has_creator, sioc_has_function, sioc_has_host, sioc_has_member, sioc_has_moderator, sioc_has_modifier, sioc_has_owner, sioc_has_parent, sioc_has_reply, sioc_has_scope,
-    sioc_has_space, sioc_has_subscriber, sioc_has_usergroup, sioc_host_of,
-
+        sioc_has_space, sioc_has_subscriber, sioc_has_usergroup, sioc_host_of,
     sioc_id, sioc_ip_address,
-
     sioc_link, sioc_links_to,
-
     sioc_member_of, sioc_moderator_of, sioc_modifier_of,
-
     sioc_name, sioc_next_by_date, sioc_next_version, sioc_note, sioc_num_replies, sioc_num_views,
-
     sioc_owner_of,
-
     sioc_parent_of, sioc_previous_by_date, sioc_previous_version,
-
     sioc_related_to, sioc_reply_of,
-
     sioc_scope_of, sioc_sibling, sioc_space_of, sioc_subscriber_of,
-
     sioc_topic,
-
     sioc_usergroup_of,
+
+    // skos
+    skos_altlabel,
+    skos_broadmatch, skos_broader, skos_broadertransitive,
+    skos_changenote, skos_closematch,
+    skos_definition,
+    skos_editorialnote, skos_exactmatch, skos_example,
+    skos_hastopconcept, skos_hiddenlabel, skos_historynote,
+    skos_inscheme,
+    skos_mappingrelation, skos_member, skos_memberlist,
+    skos_narrowmatch, skos_narrower, skos_narrowertransitive, skos_notation, skos_note,
+    skos_preflabel,
+    skos_related, skos_relatedmatch,
+    skos_scopenote, skos_semanticrelation,
+    skos_topconceptof,
+
+    // skosxl
+    skosxl_altlabel, skosxl_hiddenlabel, skosxl_labelrelation, skosxl_literalform, skosxl_preflabel,
 
     // vcard
     vcard_additional_name, vcard_adr, vcard_agent,
@@ -2568,8 +2928,8 @@ typedef enum {
     t_abbreviated, t_about, t_absolute_url, t_accept, t_accesskey, t_accrual_method, t_accrual_periodicity, t_accrual_policy, t_accumulate,
         t_accumulate0, t_accumulate1, t_accumulate2, t_action, t_actiontype, t_actiontype2, t_additive, t_align,  t_align2070, t_align3,
         t_aligndec, t_alignfig, t_alignment_baseline, t_alignplus, t_angle, t_angle_a, t_angle_ai, t_angle_i, t_animate, t_arabicenum,
-        t_arabic_form, t_aria_autocomplete, t_aria_invalidity, t_aria_live, t_aria_pressed, t_aria_sort, t_as, t_attributename, t_attributetype,
-        t_audio_level, t_autocapitalise, t_autocomplete, t_autocompletes, t_autocompletevaried,
+        t_arabic_form, t_aria_autocomplete, t_aria_invalidity, t_aria_live, t_aria_pressed, t_aria_sort, t_as, t_as_units, t_attributename,
+        t_attributetype, t_audio_level, t_autocapitalise, t_autocomplete, t_autocompletes, t_autocompletevaried,
     t_b64, t_background, t_bandwidth, t_base, t_baselineshift, t_bb, t_beginarg, t_beginfn, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour,
         t_border, t_bool, t_bools, t_buffered_rendering, t_button, t_byte,
     t_cache, t_cachekey, t_caches, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_channelselector, t_char,
@@ -2578,7 +2938,7 @@ typedef enum {
         t_colour_rendering, t_colour_v, t_command, t_compact, t_comp_op, t_composite_operator, t_compositing, t_conditional, t_connect,
         t_content_encoding, t_content_encodings, t_content_type, t_context_menu, t_controlslist, t_cookie, t_cookieid, t_cookies, t_coordinatesystem,
         t_coords, t_corp, t_cors, t_cntype, t_crossout, t_css, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source,
-        t_curie, t_curie_safe, t_curies, t_currency, t_cursor, t_cursor_f, t_cursor_i,
+        t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, t_cursor, t_cursor_f, t_cursor_i,
     t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_dcmitype, t_decalign,
         t_decoding, t_defaultaction, t_depth, t_device, t_dingbat, t_dir, t_direction, t_display, t_display_align, t_dominantbaseline, t_dosh, t_dsc,
         t_dsctv, t_dur, t_dur_repeat, t_duration, t_duration_media,

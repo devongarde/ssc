@@ -97,13 +97,24 @@ const schema_version default_schema (s_none, 0, 0);
 
 const schema_version article_schema (s_article, 1, 0);
 
+const schema_version as_schema (s_as, 1, 0);
+
 const schema_version book_schema (s_book, 1, 0);
 
 const schema_version content_schema (s_content, 1, 0);
 
+const schema_version common_tag (s_ctag, 1, 0);
+
 const schema_version creative_commons (s_cc, 1, 0);
 
-const schema_version common_tag (s_ctag, 1, 0);
+const schema_version csvw_1_0 (s_csvw, 1, 0);
+
+const schema_version daq_schema (s_daq, 1, 0);
+
+const schema_version data_catalogue_1 (s_dcat, 1, 0);
+const schema_version data_catalogue_2 (s_dcat, 2, 0);
+
+const schema_version data_quality (s_dqv, 1, 0);
 
 const schema_version dc_1_0 (s_dc, 1, 0);
 const schema_version dc_1_1 (s_dc, 1, 1);
@@ -111,10 +122,27 @@ const schema_version dcam (s_dcmi, 1, 0);
 const schema_version dcmi (s_dcmi, 1, 0);
 const schema_version dublin_core_terms (s_dct, 1, 0);
 
+const schema_version duv_schema (s_duv, 1, 0);
+
+const schema_version faux_schema (s_faux, 1, 0);
+
 const schema_version foaf_schema (s_foaf, 0, 99);
 
+const schema_version good_relations (s_gr, 1, 0);
+
+const schema_version grddl_schema (s_grddl, 1, 0);
+
 const schema_version ical_schema (s_ical, 1, 0);
+
 const schema_version icaltzd_schema (s_icaltzd, 1, 0);
+
+const schema_version jsonld_schema (s_jsonld, 1, 0);
+
+const schema_version linked_data_platform (s_ldp, 1, 0);
+
+const schema_version locn_schema (s_locn, 1, 0);
+
+const schema_version media_resources (s_ma, 1, 0);
 
 const schema_version mf_1 (s_microformats, 1, 0);
 const schema_version mf_2 (s_microformats, 2, 0);
@@ -122,11 +150,20 @@ const schema_version mf_all (s_microformats, 2, 0, SV_WILDCARD);
 
 const schema_version music_schema (s_music, 1, 0);
 
+const schema_version web_annotation (s_oa, 1, 0);
+
 const schema_version open_graph (s_og, 1, 0);
+
+const schema_version odrl_schema (s_odrl, 1, 0);
+
+const schema_version owl_1 (s_owl, 1, 0);
+const schema_version owl_2 (s_owl, 2, 0);
 
 const schema_version poetry_schema (s_poetry, 1, 0);
 
 const schema_version profile_schema (s_profile, 1, 0);
+
+const schema_version data_cube (s_qb, 1, 0);
 
 const schema_version rdf_schema (s_rdf, 1, 0);
 
@@ -134,6 +171,8 @@ const schema_version rdfa_1_0 (s_rdfa, 1, 0);
 const schema_version rdfa_1_1_1 (s_rdfa, 1, 1);
 const schema_version rdfa_1_1_2 (s_rdfa, 1, 2);
 const schema_version rdfa_1_1_3 (s_rdfa, 1, 3);
+
+const schema_version rdfg_schema (s_rdfg, 1, 0);
 
 const schema_version rdfs_schema (s_rdfs, 1, 0);
 
@@ -172,6 +211,9 @@ const schema_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT
 const schema_version sioc_schema (s_sioc, 1, 0);
 const schema_version sioc_services (s_sioc_s, 1, 0);
 const schema_version sioc_types (s_sioc_t, 1, 0);
+
+const schema_version skos_schema (s_skos, 1, 0);
+const schema_version skosxl_schema (s_skosxl, 1, 0);
 
 const schema_version vcard_schema (s_vcard, 1, 0);
 
