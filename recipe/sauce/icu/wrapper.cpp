@@ -31,10 +31,10 @@ charset_detector_match charset_detector_matches::at (const int32_t i) const
 {   if ((i < 0) || (i >= count_))
 #ifdef __GNUC__
         // GCC won't let me pass a constant C string to a function that requires a constant C string.
-        // GCC insist this is required by the standard, but mysteriously neither clang nor msvc do the same.
-        // If GCC can't be bothered to behave, then neither shall I. Code on well-behaved compiler correctly
-        // raise an exception.
-    {   ::std::cerr << "GCC C++ compiler problem revealed by charset_detector_matches overflow. Aborting.\n";
+        // GCC insist this is because the standard, but mysteriously neither clang nor msvc do the same.
+        // I don't know whether GCC is right, but I do know it's annoying. If GCC can't be bothered to behave,
+        // then neither shall I. Code on well-behaved compilers is well-behaved.
+    {   ::std::cerr << "GCC C++ compiler annoyance revealed by charset_detector_matches overflow. Aborting.\n";
         ::std::exit (3); }
 #else //  __GNUC__
         // meanwhile, pragmatic compilers work

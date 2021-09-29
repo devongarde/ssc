@@ -618,11 +618,14 @@ void fileindex_save_and_close (nitpick& nits)
                     break; } } } }
 
 void dedu (nitpick& nits)
-{   for (fileindex_t i = 0; i < vx.size (); ++i)
+{   if (context.progress ())
+    {   ::std::cout << "Deduplicating ."; context.dedot (); }
+    for (fileindex_t i = 0; i < vx.size (); ++i)
     {   index_t& x = vx.at (i);
         if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)
             if (! is_webpage (x.site_path_, context.extensions ()))
-            {   crc_t crc = get_crc (nits, i);
+            {   context.dot ();
+                crc_t crc = get_crc (nits, i);
                 if (crc == crc_initrem) continue;
                 mcrc_t::const_iterator ci = mcrc.find (crc);
                 if (ci != mcrc.cend ())
@@ -633,7 +636,8 @@ void dedu (nitpick& nits)
                             else x.dedu_ = y.dedu_;
                             nits.pick (nit_duplicate, es_info, ec_crc, x.disk_path_, " duplicates ", vx.at (x.dedu_).disk_path_);
                             continue; } }
-                mcrc.emplace (crc, i); } } }
+                mcrc.emplace (crc, i); } }
+    if (context.progress ())  ::std::cout << ::std::endl; }
 
 bool isdu (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);

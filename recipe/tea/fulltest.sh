@@ -91,6 +91,8 @@
 ./ssc -f ../toast/RDFa/cc/rdfa.conf
 ./ssc -f ../toast/RDFa/dc/rdfa.conf
 ./ssc -f ../toast/RDFa/foaf/rdfa.conf
+./ssc -f ../toast/RDFa/gr/rdfa.conf
+./ssc -f ../toast/RDFa/grddl/rdfa.conf
 ./ssc -f ../toast/RDFa/schema/rdfa.conf
 ./ssc -f ../toast/shadow/comment/comment.conf
 ./ssc -f ../toast/shadow/copy/copy.conf
@@ -152,3 +154,8 @@
 ./ssc -f ../toast/XHTML/1.0/xhtml1.conf
 ./ssc -f ../toast/XHTML/1.1/xhtml11.conf
 ./ssc -f ../toast/XHTML/2.0/xhtml2.conf
+./ssc -f ../toast/output/html/output.conf
+./ssc -f ../toast/output/out/output.conf
+./ssc -f ../toast/output/test/output.conf
+./ssc -f ../toast/output/text/output.conf
+./ssc -f ../toast/output/xhtml/output.conf

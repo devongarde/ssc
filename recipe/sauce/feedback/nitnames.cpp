@@ -546,7 +546,7 @@ nitname nitnames [] =
     { nit_no_converters, "no_converters" },
     { nit_xhtml_superseded, "xhtml_superseded" },
     { nit_not_iso_8859_1, "not_iso_8859_1" },
-    { hit_draft_html_5, "draft_html_5" },
+    { nit_draft_html_5, "draft_html_5" },
     { nit_overriding_html, "overriding_html" },
     { nit_whatwg_class, "whatwg_class" },
     { nit_opening_file, "opening_file" },
@@ -681,6 +681,7 @@ nitname nitnames [] =
     { nit_config_nit, "config_nit" },
     { nit_config_shadow, "config_shadow" },
     { nit_template_file, "template_file" },
+    { nit_code_dtd, "code_dtd" },
 
     { nit_off, "" } };
 
@@ -693,11 +694,19 @@ timmap quick_tim;
 void nits_init ()
 {   if (! quick_nit.empty ()) return;
     ::std::size_t i;
+    ::std::vector < bool > bitten;
+    bitten.resize (nit_off);
     for (i = 0; nitnames [i].nit_ != nit_off; ++i)
     {   quick_nit.insert (::nitmap::value_type (nitnames [i].sz_, nitnames [i].nit_));
-        quick_tim.insert (::timmap::value_type (nitnames [i].nit_, nitnames [i].sz_)); }
+        quick_tim.insert (::timmap::value_type (nitnames [i].nit_, nitnames [i].sz_));
+        bitten.at (nitnames [i].nit_) = true; }
     if (i < static_cast <::std::size_t> (nit_off))
-        ::std::cerr << "WARNING: Only " << i << " of " << static_cast < ::std::size_t > (nit_off) << " feedback identifiers defined\n"; }
+    {   ::std::cerr << "WARNING: Only " << i << " of " << static_cast < ::std::size_t > (nit_off) << " feedback identifiers defined\nUndefined:";
+        for (int x = 0; x < nit_off; ++x)
+            if (! bitten.at (x))
+                ::std::cerr << " " << x;
+        ::std::cerr << "\n"; } }
+
 
 e_nit lookup_code (const ::std::string& name)
 {   nitmap::const_iterator i = quick_nit.find (name);

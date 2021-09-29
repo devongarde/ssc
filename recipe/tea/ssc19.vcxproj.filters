@@ -732,6 +732,9 @@
     <Filter Include="Toast\Output\default">
       <UniqueIdentifier>{5ac0968c-6a86-4247-a93c-860268ddd27d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\RDFa\grddl">
+      <UniqueIdentifier>{c2fa1795-9ce9-4292-8359-24ab1f2e8567}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -20588,6 +20591,18 @@
     </None>
     <None Include="..\toast\output\xhtml\ssc.css">
       <Filter>Toast\Output\xhtml</Filter>
+    </None>
+    <None Include="..\toast\RDFa\grddl\example-1.html">
+      <Filter>Toast\RDFa\grddl</Filter>
+    </None>
+    <None Include="..\toast\RDFa\grddl\index.html">
+      <Filter>Toast\RDFa\grddl</Filter>
+    </None>
+    <None Include="..\toast\RDFa\grddl\rdfa.conf">
+      <Filter>Toast\RDFa\grddl</Filter>
+    </None>
+    <None Include="..\toast\RDFa\grddl\rdfa.spec">
+      <Filter>Toast\RDFa\grddl</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

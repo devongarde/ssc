@@ -35,11 +35,313 @@ struct microdata_structure
     uint32_t flags_ = 0; };
 
 microdata_structure schema_structure [] =
-{   // common tag
+{   // implied by many specifications but rarely actually stated
+    { { s_grddl, 1, 0 }, { 0, 0 }, anything, grddlp_namespacetransformation },
+    { { s_grddl, 1, 0 }, { 0, 0 }, anything, grddlp_profiletransformation },
+    { { s_grddl, 1, 0 }, { 0, 0 }, anything, grddlp_result }, // presuming grddl's reference to InformationResource is anything
+    { { s_grddl, 1, 0 }, { 0, 0 }, anything, grddlp_transformation },
+
+    { { s_jsonld, 1, 0 }, { 0, 0 }, anything, jsonld_context },
+
+    { { s_ldp, 1, 0 }, { 0, 0 }, anything, ldp_pagesequence },
+    { { s_ldp, 1, 0 }, { 0, 0 }, anything, ldp_inbox },
+
+    // activity pub etc.
+    { { s_as, 1, 0, }, { 0, 0 }, asc_activity, asp_actor },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_activity, asp_instrument },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_activity, asp_object },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_activity, asp_origin },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_activity, asp_result },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_activity, asp_target },
+
+    { { s_as, 1, 0, }, { 0, 0 }, asc_collection, asp_current },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_collection, asp_first },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_collection, asp_items },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_collection, asp_last },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_collection, asp_totalitems },
+
+    { { s_as, 1, 0, }, { 0, 0 }, asc_collectionpage, asp_next },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_collectionpage, asp_partof },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_collectionpage, asp_prev },
+
+    { { s_as, 1, 0, }, { 0, 0 }, asc_link, asp_height },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_link, asp_href },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_link, asp_hreflang },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_link, asp_id },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_link, asp_mediatype },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_link, asp_name },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_link, asp_preview },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_link, asp_rel },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_link, asp_width },
+
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_attachment },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_attributedto },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_audience },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_bcc },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_bto },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_cc },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_content },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_contentmap },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_context },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_duration },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_endtime },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_generator },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_icon },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_id },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_image },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_inreplyto },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_location },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_mediatype },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_name },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_namemap },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_preview },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_published },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_replies },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_starttime },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_summary },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_summarymap },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_tag },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_to },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_updated },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_object, asp_url },
+
+    { { s_as, 1, 0, }, { 0, 0 }, asc_orderedcollectionpage, asp_startindex },
+
+    { { s_as, 1, 0, }, { 0, 0 }, asc_place, asp_accuracy },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_place, asp_altitude },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_place, asp_latitude },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_place, asp_longitude },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_place, asp_radius },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_place, asp_units },
+
+    { { s_as, 1, 0, }, { 0, 0 }, asc_profile, asp_describes },
+
+    { { s_as, 1, 0, }, { 0, 0 }, asc_relationship, asp_object },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_relationship, asp_relationship },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_relationship, asp_subject },
+
+    { { s_as, 1, 0, }, { 0, 0 }, asc_tombstone, asp_formertype },
+    { { s_as, 1, 0, }, { 0, 0 }, asc_tombstone, asp_deleted },
+
+    // common tag
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_label },
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_means },
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_tagged },
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_taggingdate },
+
+    // contrary sausages
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_abouturl },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_datatype },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_default },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_lang },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_name },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_null },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_ordered },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_propertyurl },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_required },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_separator },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_suppressoutput },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_transformations },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_textdirection },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_title },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_valueurl },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_virtual },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_datatype, csvw_base },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_datatype, csvw_format },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_datatype, csvw_length },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_datatype, csvw_maxexclusive },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_datatype, csvw_maxinclusive },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_datatype, csvw_maxlength },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_datatype, csvw_minexclusive },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_datatype, csvw_mininclusive },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_datatype, csvw_minlength },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_commentprefix },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_delimiter },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_doublequote },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_encoding },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_header },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_headerrowcount },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_lineterminators },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_quotechar },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_skipblankrows },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_skipcolumns },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_skipinitialspace },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_skiprows },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_dialect, csvw_trim },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_foreignkey, csvw_columnreference },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_foreignkey, csvw_reference },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_numericformat, csvw_decimalchar },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_numericformat, csvw_groupchar },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_numericformat, csvw_pattern },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_row, csvw_describes },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_row, csvw_primarykey },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_row, csvw_referencedrow },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_row, csvw_title },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_abouturl },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_column },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_datatype },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_default },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_foreignkey },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_lang },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_null },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_ordered },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_primarykey },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_propertyurl },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_required },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_rowtitle },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_separator },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_transformations },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_textdirection },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_schema, csvw_valueurl },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_abouturl },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_datatype },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_default },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_dialect },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_foreignkey },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_lang },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_null },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_ordered },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_propertyurl },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_required },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_row },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_separator },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_suppressoutput },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_tabledirection },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_tableschema },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_transformations },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_textdirection },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_url },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_table, csvw_valueurl },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_abouturl },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_datatype },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_default },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_dialect },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_lang },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_null },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_ordered },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_propertyurl },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_required },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_separator },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_table },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_tabledirection },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_tableschema },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_transformations },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_textdirection },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablegroup, csvw_valueurl },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablereference, csvw_columnreference },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablereference, csvw_resource },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_tablereference, csvw_schemareference },
+
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_scriptformat },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_source },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_targetformat },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_title },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_url },
+
+    // data quality
+    { { s_daq, 1, 0 }, { 0, 0 }, daq_category, daq_hasdimension },
+
+    { { s_daq, 1, 0 }, { 0, 0 }, daq_dimension, daq_hasmetric },
+
+    { { s_daq, 1, 0 }, { 0, 0 }, daq_metric, daq_expecteddatatype },
+    { { s_daq, 1, 0 }, { 0, 0 }, daq_metric, daq_hasobservation },
+    { { s_daq, 1, 0 }, { 0, 0 }, daq_metric, daq_requires },
+
+    { { s_daq, 1, 0 }, { 0, 0 }, daq_observation, daq_computedon },
+    { { s_daq, 1, 0 }, { 0, 0 }, daq_observation, daq_isestimate },
+    { { s_daq, 1, 0 }, { 0, 0 }, daq_observation, daqp_metric },
+    { { s_daq, 1, 0 }, { 0, 0 }, daq_observation, daq_value },
+
+    // data catalogue
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_catalogue, dcat_dataset },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_catalogue, dcat_catalogue },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_catalogue, dcat_record },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_catalogue, foaf_homepage },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_catalogue, dcat_service },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_catalogue, dcat_themetaxonomy },
+
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, dct_conformsto },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, dct_description },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, dct_issued },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, dct_modified },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, foaf_primarytopic },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, dct_title },
+
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_dataservice, dcat_endpointurl },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_dataservice, dcat_endpointdescription },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_dataservice, dcat_servesdataset },
+
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dct_accrualperiodicity },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dcat_distribution },
+    { { s_duv, 1, 0 }, { 0, 0 }, dca_dataset, duv_hasdistributor },
+    { { s_duv, 1, 0 }, { 0, 0 }, dca_dataset, duv_hasfeedback },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dct_spatial },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dcat_spatialresolutioninmeters },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dct_temporal },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dcat_temporalresolution },
+    { { s_dcat, 1, 0 }, { s_dcat, 1, 0 }, dca_dataset, dcat_theme },
+//    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, prov_wasgeneratedby },
+
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_accessrights },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dcat_accessservice },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dcat_accessurl },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dcat_bytesize },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_distribution, dcat_compressformat },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_distribution, dct_conformsto },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_description },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dcat_downloadurl },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_format },
+    { { s_duv, 1, 0 }, { 0, 0 }, dca_distribution, duv_hasdistributor },
+    { { s_duv, 1, 0 }, { 0, 0 }, dca_distribution, duv_hasfeedback },
+//    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, odrl_haspolicy },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_issued },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_licence },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dcat_mediatype },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_modified },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_distribution, dcat_packageformat },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_rights },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_distribution, dcat_spatialresolutioninmeters },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_distribution, dcat_temporalresolution },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_title },
+
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_relationship, dct_relation },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_relationship, dcat_hadrole },
+
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_accessrights },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_conformsto },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_contactpoint },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_creator },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_description },
+//    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, odrl_haspolicy },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_identifier },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_isreferencedby },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_keyword },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_landingpage },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_language },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_licence },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_modified },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_publisher },
+//    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, prov_qualifiedattribution },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_qualifiedrelation },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_issued },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_relation },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_rights },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_theme },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_title },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_type },
+
+// oa_processinglanguage
+// commented out because dublin core doesn't define classes
+//    { { s_oa, 1, 0 }, { 0, 0 }, dc_language, oa_processinglanguage },
 
     // dublin core terms
     { { s_dct, 1, 0 }, { 0, 0 }, dct_agent, dct_abstract },
@@ -498,7 +800,9 @@ microdata_structure schema_structure [] =
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_alternative },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_audience },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_available },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dct_location, dcat_bbox },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_bibliographiccitation },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dct_location, dcat_centroid },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_conformsto },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_contributor },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_coverage },
@@ -512,6 +816,8 @@ microdata_structure schema_structure [] =
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_educationlevel },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_extent },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_format },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dct_location, locn_geometry },
+    { { s_locn, 1, 0 }, { 0, 0 }, dct_location, locn_geographicname },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_hasformat },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_haspart },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_hasversion },
@@ -537,6 +843,7 @@ microdata_structure schema_structure [] =
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_requires },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_rights },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_rightsholder },
+    { { s_locn, 1, 0 }, { 0, 0 }, dct_location, rdfs_seealso },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_source },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_spatial },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_location, dct_subject },
@@ -846,9 +1153,12 @@ microdata_structure schema_structure [] =
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_datesubmitted },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_description },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_educationlevel },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dct_periodoftime, dcat_enddate },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_extent },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_format },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_hasformat },
+//    { { s_dcat, 2, 0 }, { 0, 0 }, dct_periodoftime, time_hasbeginning },
+//    { { s_dcat, 2, 0 }, { 0, 0 }, dct_periodoftime, time_hasend },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_haspart },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_hasversion },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_identifier },
@@ -875,6 +1185,7 @@ microdata_structure schema_structure [] =
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_rightsholder },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_source },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_spatial },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dct_periodoftime, dcat_startdate },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_subject },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_tableofcontents },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_periodoftime, dct_temporal },
@@ -1274,6 +1585,14 @@ microdata_structure schema_structure [] =
     { { s_dct, 1, 0 }, { 0, 0 }, dct_standard, dct_type },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_standard, dct_valid },
 
+    // data quality
+    { { s_dqv, 1, 0 }, { 0, 0 }, dqv_dimension, dqv_incategory },
+
+    { { s_dqv, 1, 0 }, { 0, 0 }, dqv_metric, dqv_expecteddatatype },
+
+    { { s_dqv, 1, 0 }, { 0, 0 }, dqv_qualitymeasurement, dqv_computedon },
+    { { s_dqv, 1, 0 }, { 0, 0 }, dqv_qualitymeasurement, dqv_value },
+
     // foaf
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_account },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_age },
@@ -1670,6 +1989,9 @@ microdata_structure schema_structure [] =
     { { s_gr, 1, 0 }, { 0, 0 }, gr_warrantyscope, gr_description },
     { { s_gr, 1, 0 }, { 0, 0 }, gr_warrantyscope, gr_name },
 
+    // grddl
+    { { s_grddl, 1, 0 }, { 0, 0 }, grddl_transformation, grddlp_transformationproperty },
+
     // ical
     { { s_ical, 1, 0 }, { 0, 0 }, ical_vevent, ical_action },
     { { s_ical, 1, 0 }, { 0, 0 }, ical_vevent, ical_attendee },
@@ -1719,6 +2041,114 @@ microdata_structure schema_structure [] =
     { { s_ical, 1, 0 }, { 0, 0 }, ical_vtimezone, ical_tzname },
     { { s_ical, 1, 0 }, { 0, 0 }, ical_vtimezone, ical_tzoffsetfrom },
     { { s_ical, 1, 0 }, { 0, 0 }, ical_vtimezone, ical_tzoffsetto },
+
+    // jsonld
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_context, jsonld_base },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_context, jsonld_definition },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_context, jsonld_direction },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_context, jsonld_import },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_context, jsonld_language },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_context, jsonld_version },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_context, jsonld_vocab },
+
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_prefixdefinition, jsonld_id },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_prefixdefinition, jsonld_term },
+
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_container },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_direction },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_id },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_language },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_nest },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_prefix },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_propagate },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_protected },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_reverse },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, json_termdefinition, jsonld_term },
+
+    // ldp
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_container, ldp_hasmemberrelation },
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_container, ldp_ismemberrelationof },
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_container, ldp_membershipresource },
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_container, ldp_insertedcontentrelation },
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_container, ldp_contains },
+
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_resource, ldp_member },
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_resource, ldp_constrainedby },
+
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_page, ldp_member },
+
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_pagesortcriterion, ldp_pagesortpredicate },
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_pagesortcriterion, ldp_pagesortorder },
+    { { s_ldp, 1, 0 }, { 0, 0 }, ldp_pagesortcriterion, ldp_pagesortcollation },
+
+    // locn
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_addressarea },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_addressid },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_adminunitlevel1 },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_adminunitlevel2 },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_fulladdress },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_locatordesignator },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_locatorname },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_pobox },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_postname },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_thoroughfare },
+    { { s_locn, 1, 0 }, { 0, 0 }, loc_address, locn_postcode },
+
+    // media resource
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_collection, ma_collectionname },
+
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_location, ma_haslocationcoordinatesystem },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_location, ma_locationaltitude },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_location, ma_locationlatitude },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_location, ma_locationlongitude },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_location, ma_locationname },
+
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_alternativetitle },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_averagebitrate },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_createdin },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_copyright },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_creationdate },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_depictsfictionallocation },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_description },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_duration },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_editdate },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_features },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_frameheight },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_framerate },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_framesizeunit },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hasaccessconditions },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hasaudiodescription },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_haschapter },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hasclassification },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hascompression },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hascontributor },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hascreator },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hasformat },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hasfragment },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hasgenre },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_haskeyword },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_haslanguage },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_haspolicy },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hasrating },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hasrelatedlocation },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hasrelatedresource },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_hastargetaudience },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_iscopyrightedby },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_ismemberof },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_locator },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_numberoftracks },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_mediaresource, ma_samplingrate },
+
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_rating, ma_hasratingsystem },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_rating, ma_isprovidedby },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_rating, ma_ratingscalemax },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_rating, ma_ratingscalemin },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_rating, ma_ratingvalue },
+
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_targetaudience, ma_hasclassification },
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_targetaudience, ma_hasclassificationsystem },
+
+    { { s_ma, 1, 0 }, { 0, 0 }, ma_track, ma_trackname },
 
     // microformats v1
     { { s_microformats, 1, 0 }, { 0, 0 }, mft_adr, mp_country_name },
@@ -2192,26 +2622,201 @@ microdata_structure schema_structure [] =
     { { s_microformats, 2, 0 }, { 0, 0 }, mft2_haggregate, mp2_p_votes },
     { { s_microformats, 2, 0 }, { 0, 0 }, mft2_haggregate, mp2_p_worst },
 
+    // web annotation
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_annotation, oa_bodyvalue },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_annotation, oa_hasbody },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_annotation, oa_hastarget },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_annotation, oa_motivatedby },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_annotation, oa_styledby },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_rangeselector, oa_hasendselector },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_rangeselector, oa_hasstartselector },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_resourceselection, oa_hasselector },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_resourceselection, oa_hassource },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_resourceselection, oa_hasstate },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_selector, oa_refinedby },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_specificresource, oa_hasscope },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_specificresource, oa_renderedvia },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_specificresource, oa_styleclass },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_state, oa_refinedby },
+
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_timestate, oa_cachedsource },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_timestate, oa_sourcedate },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_timestate, oa_sourcedateend },
+    { { s_oa, 1, 0 }, { 0, 0 }, oa_timestate, oa_sourcedatestart },
+
+    // odrl
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_action, odrlp_implies },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_action, odrlp_includedin },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_action, odrlp_refinement },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_asset, odrlp_haspolicy },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_asset, odrlp_partof },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_asset, odrlp_uid },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_assetcollection, odrlp_refinement },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_assetcollection, odrlp_source },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_party, odrlp_assigneeof },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_party, odrlp_assignerof },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_party, odrlp_partof },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_party, odrlp_uid },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_partycollection, odrlp_refinement },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_partycollection, odrlp_source },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_permission, odrlp_duty },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_action },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_assignee },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_assigner },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_conflict },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_constraint },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_function },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_inheritfrom },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_obligation },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_permission },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_profile },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_prohibition },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_relation },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_target },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_policy, odrlp_uid },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_prohibition, odrlp_remedy },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_action },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_assignee },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_assigner },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_constraint },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_failure },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_function },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_output },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_relation },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_target },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_uid },
+
+    // owl
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_alldifferent, owl_distinctmembers },
+
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_class, owl_complementof },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_class, owl_disjointunionof },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_class, owl_disjointwith },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_class, owl_haskey },
+
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_negativepropertyassertion, owl_sourceindividual },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_negativepropertyassertion, owl_targetindividual },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_negativepropertyassertion, owl_targetvalue },
+
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_objectproperty, owl_inverseof },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_objectproperty, owl_propertychainaxiom },
+
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_ontology, owl_backwardcompatiblewith },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_ontology, owl_imports },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_ontology, owl_incompatiblewith },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_ontology, owl_priorversion },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_ontology, owl_versioniri },
+
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_allvaluesfrom },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_cardinality },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_maxcardinality },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_maxqualifiedcardinality },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_mincardinality },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_minqualifiedcardinality },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_onclass },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_ondatarange },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_onproperties },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_onproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_qualifiedcardinality },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_restriction, owl_somevaluesfrom },
+
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_bottomdataproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_bottomobjectproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_differentfrom },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_sameas },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_topdataproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_topobjectproperty },
+
+    // data cube
+    { { s_qb, 1, 0 }, { 0, 0 }, anything, qbp_observationgroup },
+    { { s_qb, 1, 0 }, { 0, 0 }, anything, qbp_measuretype },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentproperty, qbp_concept },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentset, qbp_attribute },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentset, qbp_componentproperty },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentset, qbp_dimension },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentset, qbp_measure },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentset, qbp_measuredimension },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentspecification, qbp_order },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentspecification, qbp_componentattachment },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_componentspecification, qbp_componentrequired },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_codedproperty, qbp_codelist },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_datastructuredefinition, qbp_component },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_datastructuredefinition, qbp_slicekey },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_dataset, qbp_slice },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_dataset, qbp_structure },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_hierarchicalcodelist, qbp_hierarchyroot },
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_hierarchicalcodelist, qbp_parentchildproperty },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_observation, qbp_dataset },
+    { { s_dqv, 1, 0 }, { 0, 0 }, qb_observation, dqv_ismeasurementof },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_observationgroup, qbp_observation },
+
+    { { s_qb, 1, 0 }, { 0, 0 }, qb_slice, qbp_slicestructure },
+
     // RDF / RDFs
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_class, owl_equivalentclass },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_class, owl_oneof },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_class, rdfs_subclassof },
     { { s_rdf, 1, 0 }, { 0, 0 }, rdfs_class, rdf_type },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_class, owl_unionof },
+
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_datatype, owl_datatypecomplementof },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_datatype, owl_ondatatype },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_datatype, owl_withrestrictions },
 
     { { s_rdf, 1, 0 }, { 0, 0 }, rdf_list, rdf_rest },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdf_list, owl_intersectionof },
 
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdf_property, rdfs_domain },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdf_property, owl_assertionproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdf_property, owl_equivalentproperty },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdf_property, rdfs_range },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdf_property, rdfs_subpropertyof },
 
+    { { s_locn, 1, 0 }, { 0, 0 }, rdfs_resource, locn_address },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_annotatedproperty },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_annotatedsource },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_annotatedtarget },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_comment },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_deprecated },
     { { s_rdf, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_first },
+    { { s_locn, 1, 0 }, { 0, 0 }, rdfs_resource, locn_geometry },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_hasself },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_hasvalue },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_isdefinedby },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_label },
+    { { s_locn, 1, 0 }, { 0, 0 }, rdfs_resource, locn_location },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_member },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_members },
+    { { s_skos, 1, 0 }, { 0, 0 }, rdfs_resource, skos_notation },
     { { s_rdf, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_object },
     { { s_rdf, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_predicate },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_propertydisjointwith },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_seealso },
     { { s_rdf, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_subject },
     { { s_rdf, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_value },
+    { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_versioninfo },
 
     // RDF Reviews
     { { s_rev, 1, 0 }, { 0, 0 }, rev_comment, rev_commenter },
@@ -4798,6 +5403,49 @@ microdata_structure schema_structure [] =
     { { s_sioc, 1, 0 }, { 0, 0 }, sioc_usergroup, sioc_has_member },
     { { s_sioc, 1, 0 }, { 0, 0 }, sioc_usergroup, sioc_usergroup_of },
 
+    // skos
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_altlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skosxl_altlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_broadmatch },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_broader },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_broadertransitive },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_closematch },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_exactmatch },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_hiddenlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skosxl_hiddenlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_inscheme },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_narrowmatch },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_narrower },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_narrowertransitive },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_preflabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skosxl_preflabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_related },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_relatedmatch },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_semanticrelation },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_concept, skos_topconceptof },
+
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_conceptscheme, skos_altlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_conceptscheme, skosxl_altlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_conceptscheme, skos_hiddenlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_conceptscheme, skosxl_hiddenlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_conceptscheme, skos_hastopconcept },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_conceptscheme, skos_preflabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_conceptscheme, skosxl_preflabel },
+
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_collection, skos_altlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_collection, skosxl_altlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_collection, skos_hiddenlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_collection, skosxl_hiddenlabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_collection, skos_member },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_collection, skos_preflabel },
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_collection, skosxl_preflabel },
+
+    { { s_skos, 1, 0 }, { 0, 0 }, skos_orderedcollection, skos_memberlist },
+
+    // xkosxl
+    { { s_skosxl, 1, 0 }, { 0, 0 }, skosxl_label, skosxl_labelrelation },
+    { { s_skosxl, 1, 0 }, { 0, 0 }, skosxl_label, skosxl_literalform },
+
     // vcard
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_country_name },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_extended_address },
@@ -4858,6 +5506,9 @@ microdata_structure schema_structure [] =
     { { s_whatwg, 1, 0 }, { 0, 0 }, wwg_work, wp_license },
     { { s_whatwg, 1, 0 }, { 0, 0 }, wwg_work, wp_title },
     { { s_whatwg, 1, 0 }, { 0, 0 }, wwg_work, wp_work },
+
+    // xpath (required, vaguely, by grddl)
+//    { { s_xpath, 1, 0 }, { 0, 0 }, xpath_rootnode, grddlp_transformation },
 
     { { 0, 0 }, { 0, 0 }, sty_illegal, sp_illegal } };
 

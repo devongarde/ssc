@@ -289,13 +289,13 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
 
 bool examine_results_header (vstr_t& results)
 {   if (results.size () < 3)
-    {   if (verbose) ::std::cout << "too little output.\n"; return false; }
+    {   if (verbose) ::std::cout << "too little output\n"; return false; }
     if (results.at (0) != PROG)
     {   if (verbose) ::std::cout << "not " PROG " (expected '" PROG "', got '" << results.at (0) << "')\n"; return false; }
     if (results.at (1) != VERSION_STRING)
-    {   if (verbose) ::std::cout << "this copy of " TESTPROG " can only test " PROG " version " VERSION_STRING ", not version " << results.at (1) << ".\n"; return false; }
-    if ((results.at (2) != COPYRIGHT) && (results.at (2) != COPYRIGHT_HTML_FULL))
-    {   if (verbose) ::std::cout << "invalid copyright.\n"; return false; }
+    {   if (verbose) ::std::cout << "this copy of " TESTPROG " can only test " PROG " version " VERSION_STRING ", not version " << results.at (1) << "\n"; return false; }
+    if ((results.at (2) != COPYRIGHT) && (results.at (2) != COPYRIGHT_HTML_FULL) && (results.at (2) != COPYRIGHT_TEXT ", " COPYRIGHT_WEBADDR))
+    {   if (verbose) ::std::cout << "invalid copyright\n"; return false; }
     return true; }
 
 bool examine_results_one_file (const ::std::string& fn, nitted& expect, nitted& got)
@@ -372,7 +372,7 @@ bool crosslinks (const vstr_t& line)
             {   blooper = true;
                 if (verbose) ::std::cout << "crosslink " << x << " differs\n"; }
         if (! blooper) return true; }
-    else if (verbose) ::std::cout << "crosslink counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
+    else if (verbose) ::std::cout << "crosslink counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
     return false; }
 
 bool shadowcheck (const vstr_t& line)
@@ -388,9 +388,9 @@ bool shadowcheck (const vstr_t& line)
             if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (in shadow)\n";
             else if (::boost::lexical_cast < int > (line.at (x)) != static_cast < int > (en))
             {   blooper = true;
-                if (verbose) ::std::cout << "shadow " << x << " differs (expected " << static_cast < int > (en) << ", got  " << line.at (x) << ").\n"; } }
+                if (verbose) ::std::cout << "shadow " << x << " differs (expected " << static_cast < int > (en) << ", got  " << line.at (x) << ")\n"; } }
         if (! blooper) return true; }
-    else if (verbose) ::std::cout << "shadows differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
+    else if (verbose) ::std::cout << "shadows differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
     return false; }
 
 bool exporterrorcheck (const vstr_t& line)
@@ -406,15 +406,15 @@ bool exporterrorcheck (const vstr_t& line)
             if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (in exports expected)\n";
             else if (::boost::lexical_cast < int > (line.at (x)) != static_cast < int > (en))
             {   blooper = true;
-                if (verbose) ::std::cout << "export errors " << x << " differs (expected " << expected.at (x) << ", got  " << line.at (x) << ").\n"; } }
+                if (verbose) ::std::cout << "export errors " << x << " differs (expected " << expected.at (x) << ", got  " << line.at (x) << ")\n"; } }
         if (! blooper) return true; }
-    else if (verbose) ::std::cout << "export errors differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
+    else if (verbose) ::std::cout << "export errors differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
     return false; }
 
 bool classcheck (vstr_t& line)
 {   classic::iterator i = expected_classes.find (line.at (0));
     if (i == expected_classes.end ())
-    {   if (verbose) ::std::cout << "unexpected class " << line.at (0) << " encountered.\n"; return false; }
+    {   if (verbose) ::std::cout << "unexpected class " << line.at (0) << " encountered\n"; return false; }
     int e = i -> second;
     int c = -1;
     try
@@ -422,9 +422,9 @@ bool classcheck (vstr_t& line)
     catch (...) { }
     expected_classes.erase (i);
     if (c < 0)
-    {   if (verbose) ::std::cout << "program error: bad count '" << line.at (1) << "' for class " << line.at (0) << " encountered.\n"; return false; }
+    {   if (verbose) ::std::cout << "program error: bad count '" << line.at (1) << "' for class " << line.at (0) << " encountered\n"; return false; }
     if (c != e)
-    {   if (verbose) ::std::cout << "class " << line.at (0) << ": expected " << e << ", got " << c << ".\n"; return false; }
+    {   if (verbose) ::std::cout << "class " << line.at (0) << ": expected " << e << ", got " << c << "\n"; return false; }
     return true; }
 
 bool examinecheck (vstr_t& line)
@@ -440,15 +440,15 @@ bool examinecheck (vstr_t& line)
             if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (in shadow)\n";
             else if (::boost::lexical_cast < int > (line.at (x)) != static_cast < int > (en))
             {   blooper = true;
-                if (verbose) ::std::cout << "update " << x << " differs (expected " << static_cast < int > (en) << ", got " << line.at (x) << ").\n"; } }
+                if (verbose) ::std::cout << "update " << x << " differs (expected " << static_cast < int > (en) << ", got " << line.at (x) << ")\n"; } }
         if (! blooper) return true; }
-    else if (verbose) ::std::cout << "update counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ").\n";
+    else if (verbose) ::std::cout << "update counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
     return false; }
 
 bool itemidcheck (vstr_t& line)
 {   sstr_t::iterator i = expected_itemids.find (line.at (0));
     if (i == expected_itemids.end ())
-    {   if (verbose) ::std::cout << "unexpected itemid " << line.at (0) << " encountered.\n"; return false; }
+    {   if (verbose) ::std::cout << "unexpected itemid " << line.at (0) << " encountered\n"; return false; }
     expected_itemids.erase (i);
     return true; }
 
@@ -652,19 +652,19 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
         if (! examine_results_once (expected, expect, got, fn, passed, failed)) res = false;
         else if (oops) { ++failed; oops = false; }
         for (knotted::const_iterator i = expected.begin (); i != expected.end (); ++i)
-        {   if (verbose) ::std::cout << "results for " << i -> first << " not found.\n";
+        {   if (verbose) ::std::cout << "results for " << i -> first << " not found\n";
             res = false; ++failed; }
         if (! expected_classes.empty ())
         {   res = false;
             oops = true;
             for (auto i : expected_classes)
-                if (verbose) ::std::cout << "class " << i.first << " missing.\n";
+                if (verbose) ::std::cout << "class " << i.first << " missing\n";
             expected_classes.clear (); }
         if (! expected_itemids.empty ())
         {   res = false;
             oops = true;
             for (auto i : expected_itemids)
-                if (verbose) ::std::cout << "itemid " << i << " missing.\n";
+                if (verbose) ::std::cout << "itemid " << i << " missing\n";
             expected_itemids.clear (); }
         if (oops) ++failed; }
     int x = check_exports ();
@@ -729,13 +729,13 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
         if (! only_check_exports)
         {   if (! testfile (tmp)) return ERROR_EXIT;
             if (::boost::filesystem::file_size (tmp) > MAXOUTPUTFILESIZE)
-            {   ::std::cerr << "too much output.\n";
+            {   ::std::cerr << "too much output\n";
                 if (rmtmp) ::boost::filesystem::remove (tmp);
                 return ERROR_EXIT; } } }
     vstr_t results;
     if (! only_check_exports)
     {   if (! ::boost::filesystem::exists (tmp))
-        {   ::std::cout << "no results file (" << tmp.string () << ").\n";
+        {   ::std::cout << "no results file (" << tmp.string () << ")\n";
             return ERROR_EXIT; }
         results = readlines (tmp.string ());
         if (verbose >= 3)
@@ -748,7 +748,7 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
 
 void print_version ()
 {   ::std::cout << TESTPROG " version " VERSION_STRING " (" __DATE__ " " __TIME__ ")\n" COPYRIGHT "\n";
-    ::std::cout << "To test " PROG " version " VERSION_STRING " only.\n\n";
+    ::std::cout << "To test " PROG " version " VERSION_STRING " only\n\n";
     ::std::cout << TESTPROG " -h for help\n"; }
 
 void print_help ()
@@ -762,7 +762,7 @@ void print_help ()
     ::std::cout << "-n    only report error numbers, not error codes\n";
     ::std::cout << "-N f  nit template file for " PROG "\n";
     ::std::cout << "-t D  temporary file directory (default " <<::boost::filesystem::temp_directory_path ().string () << ")\n";
-    ::std::cout << "-T    Trump switch. FAIL is PASS. bad is good. war is peace. freedom is slavery. ignorance is strength.\n";
+    ::std::cout << "-T    Trump switch. FAIL is PASS. bad is good. war is peace. freedom is slavery. ignorance is strength\n";
     ::std::cout << "-v    verbose output (repeat for greater verbosity)\n";
     ::std::cout << "-V    print version information and exit\n";
     ::std::cout << "-x X  path of executable to test (default " PROG ")\n";
@@ -801,7 +801,7 @@ int main (int argc, char** argv)
                     case 'v' : ++verbose; continue;
                     case 'x' : xn = true; continue;
                     case 'f' : file = true; continue; }
-            ::std::cerr << "unknown switch " << argv [a] << "\n" << argv [0] << " -h for help.\n\n";
+            ::std::cerr << "unknown switch " << argv [a] << "\n" << argv [0] << " -h for help\n\n";
             return ERROR_EXIT; }
         if (file)
         {   if (! testfile (argv [a]) || ! load_file_list (argv [a], specs)) return ERROR_EXIT; file = false; }
@@ -812,7 +812,7 @@ int main (int argc, char** argv)
         else if (tmpdir)
         {   tmppath = argv [a];
             if (! ::boost::filesystem::is_directory (tmppath))
-            {   ::std::cerr << tmppath << " doesn't exist or is not a directory.\n";
+            {   ::std::cerr << tmppath << " doesn't exist or is not a directory\n";
                 return ERROR_EXIT; }
             tmpdir = false; }
         else specs.push_back (argv [a]); }

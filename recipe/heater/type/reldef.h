@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_EXTERNAL "external"
 #define R_HELP "help"
 #define R_ICON "icon"
-#define R_LICENCE "license" // misspelling required
+#define R_LICENCE "license"
 #define R_NEXT "next"
 #define R_NOFOLLOW "nofollow"
 #define R_NOREFERRER "noreferrer"

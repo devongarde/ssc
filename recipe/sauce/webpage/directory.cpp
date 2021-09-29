@@ -191,7 +191,8 @@ bool directory::add_to_content (nitpick& nits, ::boost::filesystem::directory_en
     if (is_regular_file (q))
         return content_.insert (value_t (f, nullptr)).second;
     if (is_directory (q))
-        return content_.insert (value_t (f, self_ptr (new directory (nits, f, ndx, this, p)))).second;
+    {   context.dot ();
+        return content_.insert (value_t (f, self_ptr (new directory (nits, f, ndx, this, p)))).second; }
     return false; }
 
 void directory::examine (nitpick& nits)
@@ -218,6 +219,7 @@ void directory::examine (nitpick& nits)
                 {   mmac_t mac;
                     mac.emplace (nm_page_name, i.first);
                     mac.emplace (nm_page_path, local_path_to_nix (p.string ()));
+                    if (context.progress ()) ::std::cout << p.string () << "\n";
                     try
                     {   ::std::string content (read_text_file (p));
                         if (! content.empty ())
@@ -244,16 +246,9 @@ void directory::examine (nitpick& nits)
                     {   context.out (apply_macros (ns_page_head, mac));
                         context.out (ss.str ());
                         context.out (apply_macros (ns_page_foot, mac)); }
-//                        context.out ("\n\n*** ");
-//                        context.out (local_path_to_nix (p.string ()));
-//                        context.out ("\n");
-//                        context.out (ss.str ()); }
                     else if (context.tell (e_comment))
                     {   context.out (apply_macros (ns_page_head, mac));
                         context.out (apply_macros (ns_page_foot, mac)); }
-//                    {   context.out ("\n\n*** ");
-//                        context.out (local_path_to_nix (p.string ()));
-//                        context.out ("\n"); }
                     context.css ().post_process (); }
                 set_flag (ndx, FX_SCANNED); } }
     if (context.shadow_files ())

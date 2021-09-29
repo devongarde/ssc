@@ -43,7 +43,7 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
     set_mjr (static_cast <unsigned char> (y), static_cast <unsigned char> (m * 16));
     if (no_ext (MATH_MASK))
         if (mjr () <= HTML_2010) set_ext (HE_MATH_1);
-        if (mjr () <= HTML_2019) set_ext (HE_MATH_2);
+        else if (mjr () <= HTML_2019) set_ext (HE_MATH_2);
         else set_ext (HE_MATH_4);
     if (no_ext (SVG_MASK))
         if (*this >= html_apr21) set_ext (HE_SVG_21);
@@ -289,37 +289,44 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_xhtml10_basic :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Basic")) set_flags (HV_BASIC);
+                    if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml10_strict_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that strict XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
                     // drop thru'
                 case doc_xhtml10_strict :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Strict")) set_flags (HV_STRICT);
+                    if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml10_loose_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that transitional XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
                     // drop thru'
                 case doc_xhtml10_loose :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Transitional")) set_flags (HV_TRANSITIONAL);
+                    if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml10_frameset_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that XHTML 1.0 frameset declaration was withdrawn before XHTML 1.0 was published");
                     // drop thru'
                 case doc_xhtml10_frameset :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Frameset")) set_flags (HV_FRAMESET);
+                    if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml10_mobile :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Mobile")) set_flags (HV_BASIC);
+                    if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml11 :
                     note_parsed_version (nits, nit_xhtml_1_1, xhtml_1_1, "XHTML 1.1");
+                    if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml2 :
                     note_parsed_version (nits, nit_xhtml_2_0, xhtml_2, "XHTML 2.0");
+                    if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_jan05 :
-                    nits.pick (hit_draft_html_5, ed_jan05, "", es_warning, ec_parser, PROG " cannot properly process pre-draft HTML 5");
-                    note_parsed_version (nits, hit_draft_html_5, html_jan05, "Web Apps Jan 2005");
+                    nits.pick (nit_draft_html_5, ed_jan05, "", es_warning, ec_parser, PROG " cannot properly process pre-draft HTML 5");
+                    note_parsed_version (nits, nit_draft_html_5, html_jan05, "Web Apps Jan 2005");
                     break;
                 case doc_html5 :
                     note_parsed_version (nits, nit_html_5_0, html_5_0, "HTML 5");

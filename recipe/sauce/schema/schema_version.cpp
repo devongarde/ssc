@@ -33,31 +33,53 @@ schema_version::schema_version (const html_version& v)
 
 void schema_version::init () // call after context construction
 {   vsv.resize (schema_size);
+// kitchen_sink
+    vsv [s_none] = default_schema;
     vsv [s_article] = article_schema;
+    vsv [s_as] = as_schema;
     vsv [s_book] = book_schema;
     vsv [s_cc] = creative_commons;
     vsv [s_content] = content_schema;
+    vsv [s_csvw] = csvw_1_0;
     vsv [s_ctag] = common_tag;
+    vsv [s_daq] = daq_schema;
     vsv [s_dc] = dc_1_1;
     vsv [s_dcam] = dcam;
+    vsv [s_dcat] = data_catalogue_2;
     vsv [s_dcmi] = dcmi;
     vsv [s_dct] = dublin_core_terms;
+    vsv [s_dqv] = data_quality;
+    vsv [s_duv] = duv_schema;
+    vsv [s_faux] = faux_schema;
     vsv [s_foaf] = foaf_schema;
+    vsv [s_gr] = good_relations;
+    vsv [s_grddl] = grddl_schema;
     vsv [s_ical] = ical_schema;
     vsv [s_icaltzd] = icaltzd_schema;
+    vsv [s_jsonld] = jsonld_schema;
+    vsv [s_ldp] = linked_data_platform;
+    vsv [s_locn] = locn_schema;
+    vsv [s_ma] = media_resources;
     vsv [s_microformats] = context.mf_ver ();
     vsv [s_music] = music_schema;
+    vsv [s_oa] = web_annotation;
     vsv [s_og] = open_graph;
+    vsv [s_odrl] = odrl_schema;
+    vsv [s_owl] = owl_2;
     vsv [s_poetry] = poetry_schema;
     vsv [s_profile] = profile_schema;
+    vsv [s_qb] = data_cube;
     vsv [s_rdf] = rdf_schema;
     vsv [s_rdfa] = rdfa_1_1_3;
+    vsv [s_rdfg] = rdfg_schema;
     vsv [s_rdfs] = rdfs_schema;
     vsv [s_rev] = review_schema;
     vsv [s_schema] = context.schema_ver ();
     vsv [s_sioc] = sioc_schema;
     vsv [s_sioc_s] = sioc_services;
     vsv [s_sioc_t] = sioc_types;
+    vsv [s_skos] = skos_schema;
+    vsv [s_skosxl] = skosxl_schema;
     vsv [s_vcard] = vcard_schema;
     vsv [s_video] = video_schema;
     vsv [s_wdrs] = wdrs_schema;
@@ -74,6 +96,9 @@ void schema_version::init () // call after context construction
         {   case s_article :
                 res << "open graph article";
                 break;
+            case s_as :
+                res << "activity streams";
+                break;
             case s_book :
                 res << "open graph book";
                 break;
@@ -83,8 +108,14 @@ void schema_version::init () // call after context construction
             case s_content :
                 res << "content";
                 break;
-            case s_ctag :
+            case s_csvw :
+                res << "CSVW";
+                break;
+           case s_ctag :
                 res << "common tag";
+                break;
+            case s_daq :
+                res << "dataset quality vocabulary";
                 break;
             case s_dc :
                 res << "dublin core";
@@ -92,11 +123,23 @@ void schema_version::init () // call after context construction
             case s_dcam :
                 res << "DCAM";
                 break;
+            case s_dcat :
+                res << "data catalogue";
+                break;
             case s_dcmi :
                 res << "DCMI";
                 break;
             case s_dct :
                 res << "dublin core terms";
+                break;
+            case s_dqv :
+                res << "data quality";
+                break;
+            case s_duv :
+                res << "duv";
+                break;
+            case s_faux :
+                res << "faux schema";
                 break;
             case s_foaf :
                 res << "foaf v" << static_cast < int > (mjr ()) << "." << static_cast < int > (mnr ());
@@ -104,11 +147,23 @@ void schema_version::init () // call after context construction
             case s_gr:
                 res << "good relations";
                 break;
+            case s_grddl:
+                res << "gleaning resource descriptions from dialects of languages";
+                break;
             case s_ical:
                 res << "ical";
                 break;
             case s_icaltzd:
                 res << "icaltzd";
+                break;
+            case s_jsonld :
+                res << "jsonld";
+                break;
+            case s_ldp :
+                res << "linked data platform";
+                break;
+            case s_ma :
+                res << "media resources";
                 break;
             case s_microformats :
                 res << "microformats.org";
@@ -117,14 +172,26 @@ void schema_version::init () // call after context construction
                 break;
             case s_none :
                 break;
+            case s_oa :
+                res << "web annotation";
+                break;
             case s_og :
                 res << "open graph";
+                break;
+            case s_odrl :
+                res << "open digital rights";
+                break;
+            case s_owl :
+                res << "owl";
                 break;
             case s_poetry :
                 res << "poetry";
                 break;
             case s_profile :
                 res << "open graph profile";
+                break;
+            case s_qb :
+                res << "data cube";
                 break;
             case s_rdf :
                 res << "RDF";
@@ -133,6 +200,9 @@ void schema_version::init () // call after context construction
                 res << "RDFa v1.";
                 if (mnr () == 0) res << "0";
                 else res << "1." << static_cast < int > (mnr ());
+                break;
+            case s_rdfg :
+                res << "RDF graph";
                 break;
             case s_rdfs :
                 res << "RDFs";
@@ -154,6 +224,12 @@ void schema_version::init () // call after context construction
                 break;
             case s_sioc_t :
                 res << "semantically-interlinked online communities types";
+                break;
+            case s_skos :
+                res << "simple knowledge organisation system";
+                break;
+            case s_skosxl :
+                res << "simple knowledge organisation system extension";
                 break;
             case s_vcard :
                 res << "vcard";
@@ -191,26 +267,48 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
         case s_book :
         case s_cc :
         case s_content :
+        case s_csvw :
         case s_ctag :
+        case s_daq :
+        case s_dqv :
+        case s_duv :
+        case s_faux :
         case s_gr :
+        case s_grddl :
         case s_ical :
         case s_icaltzd :
+        case s_jsonld :
+        case s_ldp :
+        case s_locn :
+        case s_ma :
         case s_music :
+        case s_oa :
         case s_og :
+        case s_odrl :
         case s_poetry :
         case s_profile :
+        case s_qb :
         case s_rdf :
+        case s_rdfg:
         case s_rdfs:
         case s_rev:
         case s_sioc:
         case s_sioc_s:
         case s_sioc_t:
+        case s_skos:
+        case s_skosxl:
         case s_vcard :
         case s_video :
         case s_wdrs :
         case s_website :
         case s_whatwg :
             return ((j == 1) && (n == 0));
+        case s_as :
+        case s_dcat :
+        case s_microformats :
+        case s_owl :
+            if (n != 0) return false;
+            return (j <= 2);
         case s_dc :
         case s_dcam :
         case s_dcmi  :
@@ -219,9 +317,6 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
             return ((j == 1) && (n < 2));
         case s_foaf :
             return ((j == 0) && (n < 100));
-        case s_microformats :
-            if (n != 0) return false;
-            return (j <= 2);
         case s_none :
             return true;
         case s_rdfa :

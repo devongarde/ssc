@@ -157,7 +157,6 @@ void nitpick::set_context (const int line, ::std::string::const_iterator b, ::st
         mote_.clear ();
     else
     {   if (len >= maxish) mote_ = ::std::string (from, from+maxish) + "...";
-//      if (len >= maxish) mote_ = ::std::string (from, to);
         else
         {   int halfish = (maxish - len) / 2;
             if (len == 0)
@@ -191,7 +190,6 @@ void nitpick::set_context (const int line, ::std::string::const_iterator b, ::st
                 if (pos != ::std::string::npos) before_ = before_.substr (pos+1);
                 pos = after_.find_first_of (LINE_SEPARATORS);
                 if (pos != ::std::string::npos) after_ = after_.substr (0, pos); } } }
-//    context.err () << line << " " << quote (::std::string (b, e)) << " " << quote (::std::string (from, to)) << ":\n" << quote (before_) << "," << quote (mote_) << "," << quote (after_) << "\n";
     line_ = line; }
 
 void nitpick::set_context (const int line, const ::std::string::const_iterator b, ::std::string::const_iterator e)

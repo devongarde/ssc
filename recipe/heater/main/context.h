@@ -48,7 +48,7 @@ class context_t
 {   bool            article_ = false, body_ = false, cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, fe_ = false,
                     forwarded_ = false, info_ = false, load_css_ = false, links_ = false, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false,
                     microdata_ = false, nids_ = false, nits_ = false, nits_nits_nits_ = false, nochange_ = false, notify_ = false, not_root_ = false, once_ = false, presume_tags_ = false,
-                    process_webmentions_ = false, rdfa_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true,
+                    process_webmentions_ = false, progress_ = false, rdfa_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true,
                     rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, sarcasm_ = false, schema_ = false, shadow_comment_ = false, shadow_changed_ = false, shadow_enable_ = false,
                     shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false,
                     unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
@@ -76,6 +76,7 @@ class context_t
     mmac_t          mmac_;
     e_quote_style   quote_style_ = qs_none;
     e_do            do_ = do_booboo;
+    unsigned        dot_ = 0;
     ::std::string ensane (const ::std::string& s) const;
     template < typename T > void mac (const e_nit_macro ns, const T n)
     {   mmac_.emplace (ns, ::boost::lexical_cast < ::std::string > (n)); }
@@ -124,6 +125,7 @@ public:
     bool has_rdfa () const { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
     bool has_svg () const { return version_.has_svg (); }
     html_version html_ver () const { return version_; }
+    html_version& html_ver () { return version_; }
     html_version html_ver (const int major, const int minor);
     const ::std::string incoming () const { return incoming_; }
     const ::std::string index () const { return index_; }
@@ -165,6 +167,7 @@ public:
     ::std::string path () const { return path_; }
     const ::std::string persisted () const { return persisted_; }
     bool process_webmentions () const { return process_webmentions_; }
+    bool progress () const { return progress_; }
     e_quote_style quote_style () const { return quote_style_; }
     bool rdfa () const;
     e_rdf_version rdf_version () const { return version_.rdf_version (); }
@@ -315,6 +318,7 @@ public:
     context_t& persisted (const ::std::string& s) { persisted_ = s; mac (nm_context_persisted, s); return *this; }
     context_t& presume_tags (const bool b) { presume_tags_ = b; mac (nm_context_tags, b); return *this; }
     context_t& process_webmentions (const bool b) { process_webmentions_ = b; mac (nm_context_process_webmentions, b); return *this; }
+    context_t& progress (const bool b) { progress_ = b; return *this; }
     context_t& quote_style (const e_quote_style qs) { quote_style_ = qs; return *this; }
     context_t& rdfa (const bool b) { rdfa_ = b; mac (nm_context_rdfa, b); return *this; }
     context_t& rdf_version (const e_rdf_version v) { version_.rdf_version (v); mac < int > (nm_context_rdf_version, v); return *this; }
@@ -386,11 +390,12 @@ public:
     void process_outgoing_webmention (nitpick& nits, const html_version& v);
     void process_incoming_webmention (nitpick& nits, const html_version& v);
     bool tell (const e_verbose n) const { return n <= verbose_; }
-//    void out (const ::std::string& s) const { out () << ensane (s); }
     void out (const ::std::string& s) const { out () << s; }
     void err (const ::std::string& s) const { err () << ensane (s); }
     ::std::ostream& out () const { if (fos_) return *fos_; return ::std::cout; }
     ::std::ostream& err () const { if (fos_) return *fos_; return ::std::cerr; }
+    void dot ();
+    void dedot () { dot_ = 0; }
     void mark (const e_element e)
     {   data_.mark (e); }
     void visible (const e_element e)

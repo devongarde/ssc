@@ -87,6 +87,8 @@ ssc.exe -T -Z -o ../out/RDFa113.tst -f ../toast/RDFa/1.1.3/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFacc.tst -f ../toast/RDFa/cc/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFadc.tst -f ../toast/RDFa/dc/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFafoaf.tst -f ../toast/RDFa/foaf/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFagr.tst -f ../toast/RDFa/gr/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFagrddl.tst -f ../toast/RDFa/grddl/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFaschema.tst -f ../toast/RDFa/schema/rdfa.conf
 ssc.exe -T -Z -o ../out/commentcomment.tst -f ../toast/shadow/comment/comment.conf
 ssc.exe -T -Z -o ../out/copycopy.tst -f ../toast/shadow/copy/copy.conf
@@ -148,4 +150,8 @@ ssc.exe -T -Z -o ../out/jan07webapps.tst -f ../toast/webapps/jan07/webapps.conf
 ssc.exe -T -Z -o ../out/1.0xhtml1.tst -f ../toast/XHTML/1.0/xhtml1.conf
 ssc.exe -T -Z -o ../out/1.1xhtml11.tst -f ../toast/XHTML/1.1/xhtml11.conf
 ssc.exe -T -Z -o ../out/2.0xhtml2.tst -f ../toast/XHTML/2.0/xhtml2.conf
-
+ssc.exe -T -Z -o ../out/outputhtml.tst -f ../toast/output/html/output.conf
+ssc.exe -T -Z -o ../out/outputout.tst -f ../toast/output/out/output.conf
+ssc.exe -T -Z -o ../out/outputtest.tst -f ../toast/output/test/output.conf
+ssc.exe -T -Z -o ../out/outputtext.tst -f ../toast/output/text/output.conf
+ssc.exe -T -Z -o ../out/outputxhtml.tst -f ../toast/output/xhtml/output.conf

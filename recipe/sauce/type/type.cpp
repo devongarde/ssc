@@ -97,6 +97,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_aria_pressed);
         TEST_VALUE (t_aria_sort);
         TEST_VALUE (t_as);
+        TEST_VALUE (t_as_units);
         TEST_VALUE (t_attributename);
         TEST_VALUE (t_attributetype);
         TEST_VALUE (t_audio_level);
@@ -175,8 +176,9 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_cors);
         TEST_VALUE (t_cntype);
         TEST_VALUE (t_crossout);
-        TEST_VALUE (t_css);
         TEST_VALUE (t_csp);
+        TEST_VALUE (t_css);
+        TEST_VALUE (t_csvw_direction);
         TEST_VALUE (t_csp_ancestor);
         TEST_VALUE (t_csp_directive);
         TEST_VALUE (t_csp_keyword);

@@ -97,18 +97,7 @@ bool ignore_this_slob_stuff (const e_nit code)
         res += quote (ref); }
     res += "]";
     return res; }
-/*
-::std::string nit_nids (const e_nit code, const e_severity severity)
-{   ::std::string res;
-    const ::std::string& s = lookup_name (code);
-    res += " (";
-    res += nitcode (code, severity);
-    if (! s.empty ())
-    {   res += ", ";
-        res += s; }
-    res += ")";
-    return res; }
-*/
+
 ::std::string nit::level_symbol () const
 {   switch (severity_)
     {   case es_catastrophic : return " >>> ";
@@ -120,11 +109,6 @@ bool ignore_this_slob_stuff (const e_nit code)
 
 ::std::string nit::review (const e_nit_section& entry, const mmac_t& mac, const mmac_t& outer) const
 {   mmac_t values;
-//    if (! empty ())
-//        if (severity_ != es_silence)
-//            if (! ignore_this_slob_stuff (code ()))
-//            {   if (context.tell (static_cast < e_verbose > (static_cast < unsigned > (severity_))))
-//                {   if (code () != nit_context)
     values.emplace (nm_nit_code, nitcode (code_, severity_));
     values.emplace (nm_nit_explanation, msg_);
     values.emplace (nm_level_name, type_master < t_severity > :: name (severity_));
@@ -133,7 +117,6 @@ bool ignore_this_slob_stuff (const e_nit code)
     values.emplace (nm_nit_ref, doc_ref (doc_));
     values.emplace (nm_nit_doc, doc_title (doc_));
     return apply_macros (entry, mac, outer, values); }
-//    return ::std::string (); }
 
 ::std::string doc_title (const e_doc doc)
 {   switch (doc)

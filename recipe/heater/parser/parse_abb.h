@@ -70,14 +70,14 @@ public:
     ::std::string shortform (const STANDARD& predefined, const ident_t id) const
     {   PRESUME (id < offset_ + vabb_.size (), __FILE__, __LINE__);
         PRESUME (id != DEFAULT, __FILE__, __LINE__);
-        if (id >= offset_) return vabb_.at (id - offset_).short_;
+        if (id >= offset_) return vabb_.at (static_cast < unsigned int > (id - offset_)).short_;
         if (up_ != nullptr) return up_ -> shortform (predefined, id);
         if (id < s_error) return predefined.get (static_cast < ENUM > (id), ABB_SHORTFORM);
         return ::std::string (); }
     ::std::string longform (const STANDARD& predefined, const ident_t id) const
     {   PRESUME (id < offset_ + vabb_.size (), __FILE__, __LINE__);
         PRESUME (id != DEFAULT, __FILE__, __LINE__);
-        if (id >= offset_) return vabb_.at (id - offset_).long_;
+        if (id >= offset_) return vabb_.at (static_cast < unsigned int > (id - offset_)).long_;
         if (up_ != nullptr) return up_ -> longform (predefined, id);
         if (id < s_error) return predefined.get (static_cast < ENUM > (id), ABB_LONGFORM);
         return ::std::string (); }

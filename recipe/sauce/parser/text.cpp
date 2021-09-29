@@ -109,7 +109,10 @@ void text_check (nitpick& nits, const html_version& v, const ::std::string& text
         else
         {   PRESUME (i -> second < wotsit_count, __FILE__, __LINE__);
             if (! does_apply < html_version > (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_))
-                nits.pick (nit_code_unrecognised_here, es_warning, ec_parser, "&", text, "; is invalid in ", v.report ()); } } }
+                nits.pick (nit_code_unrecognised_here, es_warning, ec_parser, "&", text, "; is invalid in ", v.report ());
+            else if (v.is_5 () && v.xhtml () && ! v.xhtml_dtd ())
+                if ((wotsit_table [i -> second].flags_ & WOTSIT_XML) != WOTSIT_XML)
+                    nits.pick (nit_code_dtd, ed_jul21, "14.1 Writing documents in the XML syntax", es_error, ec_parser, "to be valid, &", text, "; requires an appropriate DTD in <!DOCTYPE ...> in ", v.report ()); } } }
 
 void examine_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid)
 {   PRESUME (! text.empty (), __FILE__, __LINE__);

@@ -50,7 +50,6 @@ void ssi_compedium::swap (ssi_compedium& ssi)
 void set_ssi_context (::std::string& ln, nitpick& nits, e_severity )
 {   if (ln.empty ()) return;
     nits.set_context (0, ln);
-//    nits.pick (nit_context, severity, ec_ssi, ln);
     ln.clear (); }
 
 ::std::string womble_time (::std::string& ln, nitpick& nits, ssi_compedium& c, struct tm* lwt)
@@ -436,7 +435,6 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
     if (static_cast <::std::size_t> (i - b) > max_separation) b = i - max_separation;
     if (static_cast <::std::size_t> (e - i) > max_separation) e = i + max_separation;
     nits.set_context (line, unify_whitespace (::std::string (b, e)));
-//    nits.pick (nit_context, severity, ec_ssi, line, ": ", unify_whitespace (::std::string (b, e)));
     nits.pick (nit_ssi_syntax, severity, ec_ssi, msg); }
 
 ::std::string parse_ssi (nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush)
@@ -525,19 +523,16 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
         case es_am_1 :
         case es_am_2 :
         {   nits.set_context (0, hereabouts (start, e));
-//            nits.pick (nit_context, es_error, ec_ssi, line, ": ", hereabouts (start, e));
             nits.pick (nit_ssi_syntax, es_error, ec_ssi, "end of file inside SSI element"); }
             break;
         case es_note :
         case es_cm_1 :
         case es_cm_2 :
         {   nits.set_context (0, hereabouts (start, e));
-//            nits.pick (nit_context, es_error, ec_ssi, line, ": ", hereabouts (start, e));
             nits.pick (nit_ssi_syntax, es_error, ec_ssi, "end of file inside comment"); }
         default : break; }
     if (linechange)
     {   nits.set_context (0, c.filename_);
-//            nits.pick (nit_context, es_comment, ec_ssi, line, ": ", c.filename_);
         nits.pick (nit_linechange, es_comment, ec_ssi, "SSI substitution may have caused some line numbers to change"); }
     if (! shush && revised && context.tell (e_splurge))
     {   context.out ("\nSSI parsing changed content to:\n");

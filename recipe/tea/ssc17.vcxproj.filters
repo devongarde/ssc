@@ -599,6 +599,15 @@
     <ClInclude Include="..\heater\symbol\nstr.h">
       <Filter>Heater\symbol</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\feedback\nitout.h">
+      <Filter>Heater\feedback</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\rdf\rdfa_prop.h">
+      <Filter>Heater\rdf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\rdf\rdfa_type.h">
+      <Filter>Heater\rdf</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1056,6 +1065,15 @@
     </ClCompile>
     <ClCompile Include="..\sauce\type\type_rdf.cpp">
       <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\feedback\nitout.cpp">
+      <Filter>Sauce\feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\rdf\rdfa_prop.cpp">
+      <Filter>Sauce\rdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\rdf\rdfa_type.cpp">
+      <Filter>Sauce\rdf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

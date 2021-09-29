@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.112
+version 0.0.113
 https://ssc.lu/
 
 
@@ -21,19 +21,19 @@ WARNING: this code is:
 
 ssc analyses static HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- HTML living standard, Jan 2005 to Jul 2021
+- HTML living standard, Jan 2005 to Oct 2021
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
 - finds broken links (requires curl)
-- server side includes, mostly
-- schema.org microdata 2.0 to 13.0
-- microformats v1 & v2
+- processes server side includes, mostly
+- analyses schema.org microdata 2.0 to 13.0
+- analyses microformats v1 & v2
 
 with opinions on:
 - standard english where dialect is required
 - perfectly legal but sloppy HTML
-- abhorrent rudeness such as autoplay on video
+- abhorrent rudeness such as autoplay on videos
 
 It does NOT:
 - behave securely: its parser is holier than robin's cow
@@ -69,7 +69,7 @@ To build & run:
 6. -EITHER- build with CMake 3.11 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
 7. -OR- build with recipe\tea\ssc201?.sln in Visual Studios 2017/2019 under Windows
 8. If need be, download, build and install curl (perhaps from curl.haxx.se)
-9. Gleefully run ssc. It will misbehave if you are insufficiently gleeful.
+9. Gleefully run ssc. It will break if you are insufficiently gleeful.
 
 
 
@@ -84,20 +84,21 @@ Creator has] an inordinate fondness for beetles.").
 
 Notes on folder names:
 - recipe: a nod to Vernor Vinge's "A Fire Upon the Deep"
-- tea: without tea, nothing works / builders' tea
-- sauce: identifies people who presume / obvious
-- toast: toasts code / i like burnt toast
+- tea: without tea, nothing works; then there's builders' tea
+- sauce: identifies those who presume; and anyway, it's obvious
+- toast: toasts code; i like burnt toast
 - heater: i'm not stopping now
 
 
 
 SEE ALSO
 build.txt        notes on building ssc
+gen.txt          a model man page
 usage.txt        how to use ssc
-releasenotes.txt release notes for the current version of ssc
+releasenotes.txt a slight history of releases
 LICENCE.txt      ssc licence information
 LICENSE.txt      formal GPL 3 licence
-more licences    licences for content copied from elsewhere
+more licences    licences for borrowed external content
 
 
 

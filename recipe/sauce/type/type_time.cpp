@@ -514,12 +514,6 @@ bool verify_week (const ::std::string& str)
     int y = 0, m = 0;
     return verify_week_year (e, i, y, m); }
 
-//bool verify_year (const ::std::string& str)
-//{   ::std::string::const_iterator i = str.cbegin ();
- //   ::std::string::const_iterator e = str.cend ();
-//    int y = 0, m = 0, d = 0;
-//    return verify_year (e, i, y, m, d); }
-
 bool verify_time_4 (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (verify_absolute (s)) return true;
     if (v.mjr () < 4)

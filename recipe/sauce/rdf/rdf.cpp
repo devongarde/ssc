@@ -31,7 +31,8 @@ typedef enum { pm_scope, pm_string } prop_member;
 
 bool is_valid_property (nitpick& nits, const html_version& v, const e_schema_type t, const e_schema_property p, const ::std::string& value, const bool is_link)
 {   switch (sch::root (t))
-    {   case s_cc :
+    {   case s_as :
+        case s_cc :
         case s_ctag :
         case s_dc :
         case s_dcam :
@@ -51,7 +52,8 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_schema_typ
 
 bool is_valid_property (nitpick& nits, const html_version& v, const e_schema_type t, const e_schema_property p, const e_schema_type value)
 {   switch (sch::root (t))
-    {   case s_cc :
+    {   case s_as :
+        case s_cc :
         case s_ctag :
         case s_dc :
         case s_dcam :

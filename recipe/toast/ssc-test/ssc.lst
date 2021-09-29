@@ -90,6 +90,7 @@
 ../toast/RDFa/dc/rdfa.spec
 ../toast/RDFa/foaf/rdfa.spec
 ../toast/RDFa/gr/rdfa.spec
+../toast/RDFa/grddl/rdfa.spec
 ../toast/RDFa/schema/rdfa.spec
 ../toast/RDFa/sioc/rdfa.spec
 ../toast/RDFa/vcard/rdfa.spec

@@ -117,6 +117,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define OVERRIDE    "override"
 #define PATH        "datapath"
 #define PAGE        "page"
+#define PROGRESS    "progress"
 #define QUOTE       "quote"
 #define REL         "rel"
 #define REVOKE      "no-revoke"

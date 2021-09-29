@@ -197,6 +197,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_APR21  HTML_2021, HTML_APR
 #define HTML_JUN21  HTML_2021, (HTML_JUN + 15)
 #define HTML_JUL21  HTML_2021, HTML_JUL
+#define HTML_OCT21  HTML_2021, HTML_OCT
 
 #define HTML_CC         HTML_2008, HTML_MAR
 
@@ -238,16 +239,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_5_EARLIEST_MONTH   1
 
 // arbituary: the earliest X/HTML version which an extension can use
-#define HTML_SVG10      XHTML_1_0
-#define HTML_SVG11      XHTML_1_1
-#define HTML_SVG12      XHTML_1_1
-#define HTML_SVG20      HTML_OCT18
-#define HTML_SVG21      HTML_APR21
+#define HTML_SVG10          XHTML_1_0
+#define HTML_SVG11          XHTML_1_1
+#define HTML_SVG12          XHTML_1_1
+#define HTML_SVG20          HTML_OCT18
+#define HTML_SVG21          HTML_APR21
 
-#define HTML_LATEST_YEAR        HTML_2021
-#define HTML_LATEST_MONTH       7
+#define HTML_LATEST_YEAR    HTML_2021
+#define HTML_LATEST_MONTH   10
 
-#define HTML_CURRENT            HTML_JUL21
+#define HTML_CURRENT        HTML_OCT21
 
 #define HTML_UNDEF  0, 0
 
@@ -348,6 +349,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_NOT52        0x0800000000000000
 #define HV_NOT53        0x1000000000000000
 #define HV_NOTX5        0x2000000000000000
+
+#define HV_XHTML_DTD    0x4000000000000000
 
 #define HV_NOT3         ( HV_NOT30 | HV_NOT32 )
 #define HV_NOT234       ( HV_NOT2 | HV_NOT3 | HV_NOT32 | HV_NOT4 )
@@ -642,6 +645,7 @@ public:
     bool webcomponents () const { return any_ext (HE_WEBCOMP); }
     bool whatwg () const { return all_flags (HV_WHATWG); }
     bool xhtml () const { return all_flags (HV_XHTML); }
+    bool xhtml_dtd () const { return all_flags (HV_XHTML_DTD); }
     bool svg_anim (const e_svg_version v) const;
     bool svg_anim () const { return any_ext (HE_ANIM); }
     bool svg_anim_10 () const { return any_ext (HE_ANIM_10); }
@@ -736,6 +740,7 @@ const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MATH_3 | HE_SVG_20);
 const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MATH_3 | HE_SVG_21);
 const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
+const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_11);
