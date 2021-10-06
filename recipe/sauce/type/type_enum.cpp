@@ -591,6 +591,32 @@ struct symbol_entry < html_version, e_font_variant_numeric > font_variant_numeri
     { { HTML_SVG20, 0, HE_COMBINES }, { HTML_UNDEF }, "ordinal", fvn_ordinal },
     { { HTML_SVG20, 0, HE_COMBINES }, { HTML_UNDEF }, "slashed-zero", fvn_slashed_zero } };
 
+struct symbol_entry < html_version, e_formaturi > formaturi_symbol_table [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/JSON-LD", furi_json_ld },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/N3", furi_n3 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/N-Triples", furi_n_triples },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/N-Quads", furi_n_quads },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/LD_Patch", furi_ldpatch },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/microdata", furi_microdata },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/OWL_XML", furi_owlxmlserialization },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/OWL_Functional", furi_owlfunctionalsyntax },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/OWL_Manchester", furi_owlmanchestersyntax },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/POWDER", furi_powder },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/POWDER-S", furi_powder_s },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/PROV-N", furi_prov_n },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/PROV-XML", furi_prov_xml },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/RDFa", furi_rdfa },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/RDF_JSON", furi_rdf_json },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/RDF_XML", furi_rdf_xml },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/RIF_XML", furi_rifxmlsyntax },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/SPARQL_Results_XML", furi_sparqlresultsinxml },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/SPARQL_Results_JSON", furi_sparqlresultsinjson },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/SPARQL_Results_CSV", furi_sparqlresultsincsv },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/SPARQL_Results_TSV", furi_sparqlresultsintsv },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/Turtle", furi_turtle },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "http://www.w3.org/ns/formats/TriG", furi_trig } };
+
+
 struct symbol_entry < html_version, e_halign > halign_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "left", al_left },
     { { HTML_2_0 }, { HTML_UNDEF }, "center", al_center },

@@ -166,6 +166,24 @@ template < > struct type_master < t_1_to_7 > : public type_master < t_unsigned >
         {   nits.pick (nit_1_to_7, es_error, ec_type, quote (s), " does not lie between 1 and 7 (inclusive)");
             type_master < t_unsigned > :: status (s_invalid); } } };
 
+template < > struct type_master < t_1_to_20 > : public type_master < t_unsigned >
+{   typedef true_type has_int_type;
+    using type_master < t_unsigned > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < t_unsigned > :: set_value (nits, v, s);
+        if (! type_master < t_unsigned > :: good () || (value_ < 1) || (value_ > 20))
+        {   nits.pick (nit_1_to_7, es_error, ec_type, quote (s), " does not lie between 1 and 20 (inclusive)");
+            type_master < t_unsigned > :: status (s_invalid); } } };
+
+template < > struct type_master < t_1_to_99 > : public type_master < t_unsigned >
+{   typedef true_type has_int_type;
+    using type_master < t_unsigned > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < t_unsigned > :: set_value (nits, v, s);
+        if (! type_master < t_unsigned > :: good () || (value_ < 1) || (value_ > 99))
+        {   nits.pick (nit_1_to_7, es_error, ec_type, quote (s), " does not lie between 1 and 99 (inclusive)");
+            type_master < t_unsigned > :: status (s_invalid); } } };
+
 template < > struct type_master < t_plus_1_7 > : public type_master < t_unsigned >
 {   typedef true_type has_int_type;
     using type_master < t_unsigned > :: type_master;

@@ -323,6 +323,9 @@ template < > struct type_master < t_font_variant_ligature > : enum_n < t_font_va
 template < > struct type_master < t_font_variant_numeric > : enum_n < t_font_variant_numeric, e_font_variant_numeric >
 { using enum_n < t_font_variant_numeric, e_font_variant_numeric > :: enum_n; };
 
+template < > struct type_master < t_formaturi > : enum_n < t_formaturi, e_formaturi >
+{ using enum_n < t_formaturi, e_formaturi > :: enum_n; };
+
 template < > struct type_master < t_halign > : enum_n < t_halign, e_halign >
 { using enum_n < t_halign, e_halign > :: enum_n; };
 

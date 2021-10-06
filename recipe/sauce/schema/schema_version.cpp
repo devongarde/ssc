@@ -48,8 +48,10 @@ void schema_version::init () // call after context construction
     vsv [s_dcat] = data_catalogue_2;
     vsv [s_dcmi] = dcmi;
     vsv [s_dct] = dublin_core_terms;
+    vsv [s_doap] = doap_schema;
     vsv [s_dqv] = data_quality;
     vsv [s_duv] = duv_schema;
+    vsv [s_earl] = earl_schema;
     vsv [s_faux] = faux_schema;
     vsv [s_foaf] = foaf_schema;
     vsv [s_gr] = good_relations;
@@ -65,26 +67,38 @@ void schema_version::init () // call after context construction
     vsv [s_oa] = web_annotation;
     vsv [s_og] = open_graph;
     vsv [s_odrl] = odrl_schema;
+    vsv [s_org] = org_schema;
     vsv [s_owl] = owl_2;
     vsv [s_poetry] = poetry_schema;
     vsv [s_profile] = profile_schema;
+    vsv [s_prov] = provincial;
+    vsv [s_ptr] = ptr_schema;
     vsv [s_qb] = data_cube;
     vsv [s_rdf] = rdf_schema;
     vsv [s_rdfa] = rdfa_1_1_3;
     vsv [s_rdfg] = rdfg_schema;
     vsv [s_rdfs] = rdfs_schema;
     vsv [s_rev] = review_schema;
+    vsv [s_rif] = rif_schema;
+    vsv [s_rr] = rr_schema;
     vsv [s_schema] = context.schema_ver ();
+    vsv [s_sd] = sd_schema;
     vsv [s_sioc] = sioc_schema;
     vsv [s_sioc_s] = sioc_services;
     vsv [s_sioc_t] = sioc_types;
     vsv [s_skos] = skos_schema;
     vsv [s_skosxl] = skosxl_schema;
+    vsv [s_sosa] = sosa_schema;
+    vsv [s_ssn] = ssn_schema;
+    vsv [s_time] = time_schema;
     vsv [s_vcard] = vcard_schema;
     vsv [s_video] = video_schema;
+    vsv [s_void] = void_schema;
+    vsv [s_wdr] = wdr_schema;
     vsv [s_wdrs] = wdrs_schema;
     vsv [s_website] = website_schema;
     vsv [s_whatwg] = whatwg_schema;
+    vsv [s_xhv] = xhv_schema;
     vsv [s_xsd] = xsd_1_1; }
 
 ::std::string schema_version::report () const
@@ -132,11 +146,17 @@ void schema_version::init () // call after context construction
             case s_dct :
                 res << "dublin core terms";
                 break;
+            case s_doap :
+                res << "description of a project";
+                break;
             case s_dqv :
                 res << "data quality";
                 break;
             case s_duv :
                 res << "duv";
+                break;
+            case s_earl :
+                res << "evaluation and report language";
                 break;
             case s_faux :
                 res << "faux schema";
@@ -181,6 +201,9 @@ void schema_version::init () // call after context construction
             case s_odrl :
                 res << "open digital rights";
                 break;
+            case s_org :
+                res << "organisation";
+                break;
             case s_owl :
                 res << "owl";
                 break;
@@ -189,6 +212,12 @@ void schema_version::init () // call after context construction
                 break;
             case s_profile :
                 res << "open graph profile";
+                break;
+            case s_prov :
+                res << "provenance";
+                break;
+            case s_ptr :
+                res << "ptr content";
                 break;
             case s_qb :
                 res << "data cube";
@@ -210,11 +239,20 @@ void schema_version::init () // call after context construction
             case s_rev:
                 res << "RDF review";
                 break;
+            case s_rif:
+                res << "rule interchange format";
+                break;
+            case s_rr:
+                res << "rr";
+                break;
             case s_schema :
                 res << "schema.org v";
                 if (mjr () == 7)
                     res << static_cast < int > (mjr ()) << ".0" << static_cast < int > (mnr ());
                 else res << static_cast < int > (mjr ()) << "." << static_cast < int > (mnr ());
+                break;
+            case s_sd :
+                res << "sparql service description";
                 break;
             case s_sioc :
                 res << "semantically-interlinked online communities";
@@ -231,11 +269,26 @@ void schema_version::init () // call after context construction
             case s_skosxl :
                 res << "simple knowledge organisation system extension";
                 break;
+            case s_ssn :
+                res << "semantic sensor network";
+                break;
+            case s_sosa :
+                res << "sensor, observations, sample, actuator";
+                break;
+            case s_time :
+                res << "time";
+                break;
             case s_vcard :
                 res << "vcard";
                 break;
             case s_video :
                 res << "open graph video";
+                break;
+            case s_void :
+                res << "VoID";
+                break;
+             case s_wdr :
+                res << "WDR (powder)";
                 break;
              case s_wdrs :
                 res << "WDRS";
@@ -245,6 +298,9 @@ void schema_version::init () // call after context construction
                 break;
             case s_whatwg :
                 res << "WhatWG";
+                break;
+            case s_xhv :
+                res << "XHTML vocabulary";
                 break;
             case s_xsd :
                 res << "XML Schema Type";
@@ -270,8 +326,10 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
         case s_csvw :
         case s_ctag :
         case s_daq :
+        case s_doap :
         case s_dqv :
         case s_duv :
+        case s_earl :
         case s_faux :
         case s_gr :
         case s_grddl :
@@ -285,23 +343,35 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
         case s_oa :
         case s_og :
         case s_odrl :
+        case s_org :
         case s_poetry :
         case s_profile :
+        case s_prov :
+        case s_ptr :
         case s_qb :
         case s_rdf :
         case s_rdfg:
         case s_rdfs:
         case s_rev:
+        case s_rif:
+        case s_rr:
+        case s_sd:
         case s_sioc:
         case s_sioc_s:
         case s_sioc_t:
         case s_skos:
         case s_skosxl:
+        case s_sosa :
+        case s_ssn :
+        case s_time :
         case s_vcard :
         case s_video :
+        case s_void :
+        case s_wdr :
         case s_wdrs :
         case s_website :
         case s_whatwg :
+        case s_xhv :
             return ((j == 1) && (n == 0));
         case s_as :
         case s_dcat :

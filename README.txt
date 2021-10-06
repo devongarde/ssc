@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.113
+version 0.0.114
 https://ssc.lu/
 
 
@@ -104,4 +104,4 @@ more licences    licences for borrowed external content
 
 written by dylan harris
 mail@ssc.lu
-September 2021
+October 2021
