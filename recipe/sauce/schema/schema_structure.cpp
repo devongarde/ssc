@@ -46,6 +46,8 @@ microdata_structure schema_structure [] =
     { { s_ldp, 1, 0 }, { 0, 0 }, anything, ldp_pagesequence },
     { { s_ldp, 1, 0 }, { 0, 0 }, anything, ldp_inbox },
 
+    { { s_time, 1, 0 }, { 0, 0 }, anything, tp_hastime },
+
     // activity pub etc.
     { { s_as, 1, 0, }, { 0, 0 }, asc_activity, asp_actor },
     { { s_as, 1, 0, }, { 0, 0 }, asc_activity, asp_instrument },
@@ -1585,6 +1587,51 @@ microdata_structure schema_structure [] =
     { { s_dct, 1, 0 }, { 0, 0 }, dct_standard, dct_type },
     { { s_dct, 1, 0 }, { 0, 0 }, dct_standard, dct_valid },
 
+    // doap
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_archrepository, doap_module },
+
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_bkrepository, doap_module },
+
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_cvsrepository, doap_module },
+
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_audience },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_blog },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_bugdatabase },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_developer },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_developerforum },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_documenter },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_downloadpage },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_downloadmirror },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_hasrepository },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_helper },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_homepage },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_implements },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_language },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_mailinglist },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_maintainer },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_oldhomepage },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_os },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_platform },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_programminglanguage },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_release },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_screenshots },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_serviceendpoint },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_supportforum },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_tester },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_translator },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_vendor },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_project, doap_wiki },
+
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_repository, doap_anonroot },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_repository, doap_browse },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_repository, doap_location },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_repository, doap_repositoryof },
+
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_version, doap_filerelease },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_version, doap_os },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_version, doap_platform },
+    { { s_doap, 1, 0 }, { 0, 0 }, doap_version, doap_revision },
+
     // data quality
     { { s_dqv, 1, 0 }, { 0, 0 }, dqv_dimension, dqv_incategory },
 
@@ -1593,44 +1640,65 @@ microdata_structure schema_structure [] =
     { { s_dqv, 1, 0 }, { 0, 0 }, dqv_qualitymeasurement, dqv_computedon },
     { { s_dqv, 1, 0 }, { 0, 0 }, dqv_qualitymeasurement, dqv_value },
 
+    // earl
+    { { s_earl, 1, 0 }, { 0, 0 }, earl_assertion, earl_assertedby },
+    { { s_earl, 1, 0 }, { 0, 0 }, earl_assertion, earl_mode },
+    { { s_earl, 1, 0 }, { 0, 0 }, earl_assertion, earl_result },
+    { { s_earl, 1, 0 }, { 0, 0 }, earl_assertion, earl_subject },
+    { { s_earl, 1, 0 }, { 0, 0 }, earl_assertion, earl_test },
+
+    { { s_earl, 1, 0 }, { 0, 0 }, earl_assertor, earl_mainassertor },
+
+    { { s_earl, 1, 0 }, { 0, 0 }, earl_testresult, earl_info },
+    { { s_earl, 1, 0 }, { 0, 0 }, earl_testresult, earl_outcome },
+    { { s_earl, 1, 0 }, { 0, 0 }, earl_testresult, earl_pointer },
+
     // foaf
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_account },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_age },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_aimchatid },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_birthday },
+    { { s_org, 1, 0 }, { 0, 0 }, foaf_agent, orgp_hasmembership },
+    { { s_org, 1, 0 }, { 0, 0 }, foaf_agent, orgp_headof },
+    { { s_org, 1, 0 }, { 0, 0 }, foaf_agent, orgp_holds },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_holdsaccount },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_icqchatid },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_interest },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_jabberid },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_made },
+    { { s_org, 1, 0 }, { 0, 0 }, foaf_agent, orgp_memberof },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_mbox },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_mboxsha1sum },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_msnchatid },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_openid },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_tipjar },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_topic_interest },
+    { { s_org, 1, 0 }, { 0, 0 }, foaf_agent, orgp_reportsto },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_skypeid },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_status },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_tipjar },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_topic_interest },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_weblog },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_agent, foaf_yahoochatid },
 
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_document, foaf_topic },
+    { { s_void, 1, 0 }, { 0, 0 }, foaf_document, void_indataset },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_document, foaf_primarytopic },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_document, foaf_sha1 },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_document, foaf_topic },
 
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_group, foaf_member },
 
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_image, foaf_depicts },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_image, foaf_thumbnail },
 
+    { { s_org, 1, 0 }, { 0, 0 }, foaf_person, orgp_basedat },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_currentproject },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_familyname },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_firstname },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_geekcode },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_holdsaccount }, // sioc
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_img },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_knows },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_lastname },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_holdsaccount }, // sioc
+    { { s_org, 1, 0 }, { 0, 0 }, foaf_person, orgp_location },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_myersbriggs },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_pastproject },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_person, foaf_publications },
@@ -2661,6 +2729,24 @@ microdata_structure schema_structure [] =
     { { s_odrl, 1, 0 }, { 0, 0 }, odrl_assetcollection, odrlp_refinement },
     { { s_odrl, 1, 0 }, { 0, 0 }, odrl_assetcollection, odrlp_source },
 
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_and },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_andsequence},
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_consequence },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_datatype },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_leftoperand },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_operator },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_or },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_rightoperand },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_rightoperandreference },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_status },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_unit },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_constraint, odrlp_xone },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_duty, odrlp_consequence },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_logicalconstraint, odrlp_operand },
+    { { s_odrl, 1, 0 }, { 0, 0 }, odrl_logicalconstraint, odrlp_uid },
+
     { { s_odrl, 1, 0 }, { 0, 0 }, odrl_party, odrlp_assigneeof },
     { { s_odrl, 1, 0 }, { 0, 0 }, odrl_party, odrlp_assignerof },
     { { s_odrl, 1, 0 }, { 0, 0 }, odrl_party, odrlp_partof },
@@ -2698,6 +2784,46 @@ microdata_structure schema_structure [] =
     { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_relation },
     { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_target },
     { { s_odrl, 1, 0 }, { 0, 0 }, odrl_rule, odrlp_uid },
+
+    // org
+    { { s_org, 1, 0 }, { 0, 0 }, org_changeevent, orgp_originalorganisation },
+    { { s_org, 1, 0 }, { 0, 0 }, org_changeevent, orgp_resultingorganisation },
+
+    { { s_org, 1, 0 }, { 0, 0 }, org_formalorganisation, orgp_hasunit },
+
+    { { s_org, 1, 0 }, { 0, 0 }, org_membership, orgp_member },
+    { { s_org, 1, 0 }, { 0, 0 }, org_membership, orgp_memberduring },
+    { { s_org, 1, 0 }, { 0, 0 }, org_membership, orgp_organisation },
+    { { s_org, 1, 0 }, { 0, 0 }, org_membership, orgp_role },
+
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_classification },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_changedby },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_hasmember },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_haspost },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_hasprimarysite },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_hasregisteredsite },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_hassite },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_hassuborganisation },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_identifier },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_linkedto },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_purpose },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_resultedfrom },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_suborganisationof },
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisation, orgp_transitivesuborganisationof },
+
+    { { s_org, 1, 0 }, { 0, 0 }, org_organisationalunit, orgp_unitof },
+
+    { { s_org, 1, 0 }, { 0, 0 }, org_post, orgp_heldby },
+    { { s_org, 1, 0 }, { 0, 0 }, org_post, orgp_postin },
+    { { s_org, 1, 0 }, { 0, 0 }, org_post, orgp_reportsto },
+    { { s_org, 1, 0 }, { 0, 0 }, org_post, orgp_role },
+
+    { { s_org, 1, 0 }, { 0, 0 }, org_role, orgp_roleproperty },
+    { { s_org, 1, 0 }, { 0, 0 }, org_role, orgp_headof },
+    { { s_org, 1, 0 }, { 0, 0 }, org_role, orgp_remuneration },
+
+    { { s_org, 1, 0 }, { 0, 0 }, org_site, orgp_siteaddress },
+    { { s_org, 1, 0 }, { 0, 0 }, org_site, orgp_siteof },
 
     // owl
     { { s_owl, 1, 0 }, { 0, 0 }, owl_alldifferent, owl_distinctmembers },
@@ -2739,6 +2865,148 @@ microdata_structure schema_structure [] =
     { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_sameas },
     { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_topdataproperty },
     { { s_owl, 1, 0 }, { 0, 0 }, owl_thing, owl_topobjectproperty },
+
+    // provincial
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_atlocation },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_endedattime },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_generated },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_invalidated },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_qualifiedassociation },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_qualifiedcommunication },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_qualifiedend },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_qualifiedinfluence },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_qualifiedstart },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_qualifiedusage },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_startedattime },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_used },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_wasassociatedwith },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_wasendedby },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_wasinfluencedby },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_wasinformedby },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_wasstartedby },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activityinfluence, pp_activity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activityinfluence, pp_hadactivity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activityinfluence, pp_hadrole },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_activityinfluence, pp_influencer },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_agent, pp_actedonbehalfof },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_agent, pp_atlocation },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_agent, pp_qualifieddelegation },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_agent, pp_qualifiedinfluence },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_agent, pp_wasinfluencedby },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_agentinfluence, pp_agent },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_agentinfluence, pp_hadactivity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_agentinfluence, pp_hadrole },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_agentinfluence, pp_influencer },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_association, pp_agent },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_association, pp_hadplan },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_association, pp_hadrole },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_attribution, pp_agent },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_collection, pp_hadmember },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_communication, pp_activity },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_delegation, pp_agent },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_delegation, pp_hadactivity },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_derivation, pp_entity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_derivation, pp_hadactivity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_derivation, pp_hadgeneration },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_derivation, pp_hadusage },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_emptycollection, pp_hadmember },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_end, pp_attime },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_end, pp_entity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_end, pp_hadactivity },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_alternativeto },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_atlocation },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_generatedattime },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_hadprimarysource },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_invalidatedattime },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_qualifiedattribution },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_qualifiedderivation },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_qualifiedgeneration },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_qualifiedinfluence },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_qualifiedinvalidation },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_qualifiedprimarysource },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_qualifiedquotation },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_qualifiedrevision },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_specialisationof },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_value },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_wasattributedto },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_wasderivedfrom },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_wasgeneratedby },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_wasinfluencedby },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_wasinvalidatedby },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_wasquotedfrom },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entity, pp_wasrevisionof },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_entityinfluence, pp_entity },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_generation, pp_activity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_generation, pp_attime },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_influence, pp_hadactivity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_influence, pp_hadrole },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_influence, pp_influencer },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_instantaneousevent, pp_atlocation },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_instantaneousevent, pp_attime },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_instantaneousevent, pp_hadrole },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_invalidation, pp_activity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_invalidation, pp_attime },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_organisation, pp_actedonbehalfof },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_organisation, pp_qualifieddelegation },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_person, pp_actedonbehalfof },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_person, pp_qualifieddelegation },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_primarysource, pp_hadgeneration },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_primarysource, pp_hadusage },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_quotation, pp_hadgeneration },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_quotation, pp_hadusage },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_revision, pp_hadgeneration },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_revision, pp_hadusage },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_softwareagent, pp_actedonbehalfof },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_softwareagent, pp_qualifieddelegation },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_start, pp_attime },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_start, pp_entity },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_start, pp_hadactivity },
+
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_usage, pp_attime },
+    { { s_prov, 1, 0 }, { 0, 0 }, prov_usage, pp_entity },
+
+    // ptr
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_content, ptr_characterencoding },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasbase64, ptr_bytes },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentastext, ptr_chars },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_declaredencoding },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_dtdecl },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_leadingmisc },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_rest },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_standalone },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_version },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_doctypedecl, ptr_doctypename },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_doctypedecl, ptr_internalsubset },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_doctypedecl, ptr_publicid },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_doctypedecl, ptr_systemid },
 
     // data cube
     { { s_qb, 1, 0 }, { 0, 0 }, anything, qbp_observationgroup },
@@ -2802,11 +3070,14 @@ microdata_structure schema_structure [] =
     { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_deprecated },
     { { s_rdf, 1, 0 }, { 0, 0 }, rdfs_resource, rdf_first },
     { { s_locn, 1, 0 }, { 0, 0 }, rdfs_resource, locn_geometry },
+    { { s_wdrs, 1, 0 }, { 0, 0 }, rdfs_resource, wdrs_hasiri },
     { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_hasself },
     { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_hasvalue },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_isdefinedby },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_label },
     { { s_locn, 1, 0 }, { 0, 0 }, rdfs_resource, locn_location },
+    { { s_wdrs, 1, 0 }, { 0, 0 }, rdfs_resource, wdrs_matchesregex },
+    { { s_wdrs, 1, 0 }, { 0, 0 }, rdfs_resource, wdrs_notmatchesregex },
     { { s_rdfs, 1, 0 }, { 0, 0 }, rdfs_resource, rdfs_member },
     { { s_owl, 1, 0 }, { 0, 0 }, rdfs_resource, owl_members },
     { { s_skos, 1, 0 }, { 0, 0 }, rdfs_resource, skos_notation },
@@ -2857,6 +3128,34 @@ microdata_structure schema_structure [] =
     { { s_rev, 1, 0 }, { 0, 0 }, rev_review, rev_text },
     { { s_rev, 1, 0 }, { 0, 0 }, rev_review, rev_totalvotes },
     { { s_rev, 1, 0 }, { 0, 0 }, rev_review, rev_type },
+
+    // rdb to rdf
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_basetableorview, rrp_tablename },
+
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_join, rrp_child },
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_join, rrp_parent },
+
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_objectmap, rrp_datatype },
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_objectmap, rrp_language },
+
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_predicateobjectmap, rrp_objectmap },
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_predicateobjectmap, rrp_predicatemap },
+
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_r2rmlview, rrp_sqlquery },
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_r2rmlview, rrp_sqlversion },
+
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_refobjectmap, rrp_joincondition },
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_refobjectmap, rrp_parenttriplesmap },
+
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_subjectmap, rrp_class },
+
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_termmap, rrp_column },
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_termmap, rrp_inverseexpression },
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_termmap, rrp_template },
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_termmap, rrp_termtype },
+
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_triplesmap, rrp_logicaltable },
+    { { s_rr, 1, 0 }, { 0, 0 }, rr_triplesmap, rrp_subjectmap },
 
     // schema.org
     { { 6, 0 }, { 0, 0 }, sch_3dmodel, sp_isresizable },
@@ -5334,6 +5633,29 @@ microdata_structure schema_structure [] =
 
     { { 2, 0 }, { 0, 0 }, sch_writeaction, sp_inlanguage },
 
+    // sd
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_dataset, sdp_defaultgraph },
+
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_graphcollection, sdp_namedgraph },
+
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_namedgraph, sdp_entailmentregime },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_namedgraph, sdp_graph },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_namedgraph, sdp_name },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_namedgraph, sdp_supportedentailmentprofile },
+
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_availablegraphs },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_defaultdataset },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_defaultentailmentregime },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_defaultsupportedentailmentprofile },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_extensionaggregate },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_extensionfunction },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_feature },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_inputformat },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_languageextension },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_propertyfeature },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_resultformat },
+    { { s_sd, 1, 0 }, { 0, 0 }, sd_service, sdp_supportedlanguage },
+
     // sioc
     { { s_sioc, 1, 0 }, { 0, 0 }, sioc_community, dct_haspart },
     { { s_sioc, 1, 0 }, { 0, 0 }, sioc_community, dct_ispartof },
@@ -5442,9 +5764,148 @@ microdata_structure schema_structure [] =
 
     { { s_skos, 1, 0 }, { 0, 0 }, skos_orderedcollection, skos_memberlist },
 
-    // xkosxl
+    // skosxl
     { { s_skosxl, 1, 0 }, { 0, 0 }, skosxl_label, skosxl_labelrelation },
     { { s_skosxl, 1, 0 }, { 0, 0 }, skosxl_label, skosxl_literalform },
+
+    // sosa
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_actuatableproperty, sosa_isacteduponby },
+
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_actuation, sosa_hasfeatureofinterest },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_actuation, sosa_hasresult },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_actuation, sosa_hassimpleresult },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_actuation, sosa_madebyactuator },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_actuation, sosa_usedprocedure },
+
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_actuator, sosa_actsonproperty },
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_actuator, ssn_forproperty },
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_actuator, ssn_isimplementedby },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_actuator, sosa_ishostedby },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_actuator, sosa_madeactuation },
+
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_featureofinterest, ssn_hasproperty },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_featureofinterest, sosa_hassample },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_featureofinterest, sosa_isfeatureofinterest },
+
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_observableproperty, sosa_isobservedby },
+
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_observation, sosa_hasfeatureofinterest },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_observation, sosa_isobservedby },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_observation, sosa_madebysensor },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_observation, sosa_observedproperty },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_observation, sosa_hasresult },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_observation, sosa_hassimpleresult },
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_observation, ssn_wasoriginatedby },
+
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_platform, sosa_hosts },
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_platform, ssn_indeployment },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_platform, sosa_ishostedby },
+
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_procedure, ssn_hasinput },
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_procedure, ssn_hasoutput },
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_procedure, ssn_implements },
+
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_result, sosa_isresultof },
+
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sample, sosa_isfeatureofinterest },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sample, sosa_isresultof },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sample, sosa_issampleof },
+
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sampler, sosa_ishostedby },
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_sampler, ssn_isimplementedby },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sampler, sosa_madesampling },
+
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sampling, sosa_hasfeatureofinterest },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sampling, sosa_isobservedby },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sampling, sosa_madebysampler },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sampling, sosa_hasresult },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sampling, sosa_hassimpleresult },
+
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_sensor, ssn_detects },
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_sensor, ssn_forproperty },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sensor, sosa_ishostedby },
+    { { s_ssn, 1, 0 }, { 0, 0 }, sosa_sensor, ssn_isimplementedby },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sensor, sosa_madeobservation },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sensor, sosa_observes },
+
+    // ssn
+    { { s_ssn, 1, 0 }, { 0, 0 }, ssn_deployment, ssn_deployedplatform },
+    { { s_ssn, 1, 0 }, { 0, 0 }, ssn_deployment, ssn_deployedsystem },
+    { { s_ssn, 1, 0 }, { 0, 0 }, ssn_deployment, ssn_forproperty },
+
+    { { s_ssn, 1, 0 }, { 0, 0 }, ssn_property, ssn_ispropertyof },
+
+    { { s_ssn, 1, 0 }, { 0, 0 }, ssn_stimulus, ssn_isproxyfor },
+
+    { { s_ssn, 1, 0 }, { 0, 0 }, ssn_system, ssn_hasdeployment },
+    { { s_ssn, 1, 0 }, { 0, 0 }, ssn_system, ssn_hassubsystem },
+
+    // time
+    { { s_time, 1, 0 }, { 0, 0 }, time_datetimeinterval, tp_hasdatetimedescription },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_duration, tp_numericduration },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_day },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_dayofweek },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_dayofyear },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_hour },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_minute },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_month },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_monthofyear },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_second },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_timezone },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_week },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldatetimedescription, tp_year },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldurationdescription, tp_days },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldurationdescription, tp_hastrs },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldurationdescription, tp_hours },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldurationdescription, tp_minutes },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldurationdescription, tp_months },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldurationdescription, tp_seconds },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldurationdescription, tp_weeks },
+    { { s_time, 1, 0 }, { 0, 0 }, time_generaldurationdescription, tp_years },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_instant, tp_indatetime },
+    { { s_time, 1, 0 }, { 0, 0 }, time_instant, tp_intemporalposition },
+    { { s_time, 1, 0 }, { 0, 0 }, time_instant, tp_intimeposition },
+    { { s_time, 1, 0 }, { 0, 0 }, time_instant, tp_inxsddate },
+    { { s_time, 1, 0 }, { 0, 0 }, time_instant, tp_inxsddatetime },
+    { { s_time, 1, 0 }, { 0, 0 }, time_instant, tp_inxsddatetimestamp },
+    { { s_time, 1, 0 }, { 0, 0 }, time_instant, tp_inxsdgyear },
+    { { s_time, 1, 0 }, { 0, 0 }, time_instant, tp_inxsdgyearmonth },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_interval, tp_inside },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_position, tp_nominalposition },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalafter },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalbefore },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalcontains },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervaldisjoint },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalduring },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalequals },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalfinishedby },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalfinishes },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalin },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalmeets },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalmetby },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervaloverlappedby },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervaloverlaps },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalstartedby },
+    { { s_time, 1, 0 }, { 0, 0 }, time_properinterval, tp_intervalstarts },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_temporalposition, tp_hastrs },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_temporalentity, tp_after },
+    { { s_time, 1, 0 }, { 0, 0 }, time_temporalentity, tp_before },
+    { { s_time, 1, 0 }, { 0, 0 }, time_temporalentity, tp_hasbeginning },
+    { { s_time, 1, 0 }, { 0, 0 }, time_temporalentity, tp_hasduration },
+    { { s_time, 1, 0 }, { 0, 0 }, time_temporalentity, tp_hasend },
+    { { s_time, 1, 0 }, { 0, 0 }, time_temporalentity, tp_hastemporalduration },
+    { { s_time, 1, 0 }, { 0, 0 }, time_temporalentity, tp_hasxsduration },
+
+    { { s_time, 1, 0 }, { 0, 0 }, time_timeposition, tp_numericposition },
 
     // vcard
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_country_name },
@@ -5500,6 +5961,61 @@ microdata_structure schema_structure [] =
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_vcard, vcard_workadr },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_vcard, vcard_workemail },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_vcard, vcard_worktel },
+
+    // void
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_class },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_classes },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_classpartition },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_datadump },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_distinctobjects },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_distinctsubjects },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_documents },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_entities },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_exampleresource },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_feature },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_opensearchdescription },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_properties },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_property },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_propertypartition },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_rootresource },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_sparqlendpoint },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_subset },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_triples },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_urilookupendpoint },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_uriregexpattern },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_urispace },
+    { { s_void, 1, 0 }, { 0, 0 }, void_dataset, void_vocabulary },
+
+    { { s_void, 1, 0 }, { 0, 0 }, void_linkset, void_linkpredicate },
+    { { s_void, 1, 0 }, { 0, 0 }, void_linkset, void_objectstarget },
+    { { s_void, 1, 0 }, { 0, 0 }, void_linkset, void_subjectstarget },
+    { { s_void, 1, 0 }, { 0, 0 }, void_linkset, void_subset },
+
+    // wdr
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_attributiontype, wdr_abouthosts },
+
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excludeexactpaths },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excludehosts },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excludeiripattern },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excludepathcontains },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excludepathendswith },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excludepathstartswith },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excludequerycontains },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excludeports },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excluderesources },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_excludeschemes },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includeexactpaths },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includehosts },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includeiripattern },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includepathcontains },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includepathendswith },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includepathstartswith },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includequerycontains },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includeports },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includeresources },
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_irisettype, wdr_includeschemes },
+
+    { { s_wdr, 1, 0 }, { 0, 0 }, wdr_querycontainstype, wdr_delimiter },
 
     // living standard
     { { s_whatwg, 1, 0 }, { 0, 0 }, wwg_work, wp_author },

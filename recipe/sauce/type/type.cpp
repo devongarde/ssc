@@ -58,6 +58,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_1);
         TEST_VALUE (t_10);
         TEST_VALUE (t_1_to_7);
+        TEST_VALUE (t_1_to_20);
+        TEST_VALUE (t_1_to_99);
         TEST_VALUE (t_1_more);
         TEST_VALUE (t_1_more_i);
         TEST_VALUE (t_2pt);
@@ -275,6 +277,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_font_variant_position);
         TEST_VALUE (t_form);
         TEST_VALUE (t_format);
+        TEST_VALUE (t_formaturi);
         TEST_VALUE (t_frame);
         TEST_VALUE (t_frame4);
         TEST_VALUE (t_framespacing);

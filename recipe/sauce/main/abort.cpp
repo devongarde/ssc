@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+#include "main/context.h"
 
 ::std::string file_line (const char* const fn, const ::std::size_t line)
 {   ::std::string msg (" in ");
@@ -33,6 +34,7 @@ void throw_bad_deference (const char* const var, const char* const fn, const ::s
     ::std::string msg ("null pointer deference of ");
     msg += var;
     msg += file_line (fn, line);
+    ::std::cerr << "\n" << msg << "\n";
     throw ::std::runtime_error (msg); }
 
 void throw_bad_presumption (const char* const x, const char* const fn, const ::std::size_t line)
@@ -42,10 +44,12 @@ void throw_bad_presumption (const char* const x, const char* const fn, const ::s
     msg += x;
     msg += ::std::string (" failed");
     msg += file_line (fn, line);
+    ::std::cerr << "\n" << msg << "\n";
     throw ::std::runtime_error (msg); }
 
 void graceful_crash (const char* const fn, const ::std::size_t line)
 {   DBG_ASSERT (false);
     ::std::string msg ("inconsistent internal state");
     msg += file_line (fn, line);
+    ::std::cerr << "\n" << msg << "\n";
     throw ::std::runtime_error (msg); }

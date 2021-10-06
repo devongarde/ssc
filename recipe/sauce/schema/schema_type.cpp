@@ -176,6 +176,21 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_dct, 1, 0 }, { 0, 0 }, "SizeOrDuration", dct_sizeorduration, s_dct },
     { { s_dct, 1, 0 }, { 0, 0 }, "Standard", dct_standard, s_dct },
 
+    // doap
+    { { s_doap, 1, 0 }, { 0, 0 }, "ArchRepository", doap_archrepository, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "BazaarBranch", doap_bazaarbranch, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "BKRepository", doap_bkrepository, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "CVSRepository", doap_cvsrepository, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "DarcsRepository", doap_darcsrepository, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "GitBranch", doap_gitbranch, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "GitRepository", doap_gitrepository, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "HgRepository", doap_hgrepository, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "Project", doap_project, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "Repository", doap_repository, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "Specification", doap_specification, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "SVNRepository", doap_svnrepository, s_doap },
+    { { s_doap, 1, 0 }, { 0, 0 }, "Version", doap_version, s_doap },
+
     // data quality
     { { s_dqv, 1, 0 }, { 0, 0 }, "Category", dqv_category, s_dqv },
     { { s_dqv, 1, 0 }, { 0, 0 }, "Dimension", dqv_dimension, s_dqv },
@@ -193,6 +208,33 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_duv, 1, 0 }, { 0, 0 }, "Usage", duv_usage, s_duv },
     { { s_duv, 1, 0 }, { 0, 0 }, "UsageTool", duv_usagetool, s_duv },
     { { s_duv, 1, 0 }, { 0, 0 }, "UserFeedback", duv_userfeedback, s_duv },
+
+    // earl
+    { { s_earl, 1, 0 }, { 0, 0 }, "Assertion", earl_assertion, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "Assertor", earl_assertor, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "automatic", earl_automatic, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "CannotTell", earl_cannottell, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "cantTell", earl_canttell, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "Fail", earl_fail, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "failed", earl_failed, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "inapplicable", earl_inapplicable, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "manual", earl_manual, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "NotApplicable", earl_notapplicable, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "NotTested", earl_nottested, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "OutcomeValue", earl_outcomevalue, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "Pass", earl_pass, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "passed", earl_passed, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "semiAuto", earl_semiauto, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "Software", earl_software, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "TestCase", earl_testcase, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "TestCriterion", earl_testcriterion, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "TestMode", earl_testmode, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "TestRequirement", earl_testrequirement, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "TestResult", earl_testresult, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "TestSubject", earl_testsubject, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "undisclosed", earl_undisclosed, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "unknownMode", earl_unknownmode, s_earl },
+    { { s_earl, 1, 0 }, { 0, 0 }, "untested", earl_untested, s_earl },
 
     // foaf
     { { s_foaf, 0, 1 }, { 0, 0 }, "Agent", foaf_agent, s_foaf },
@@ -415,53 +457,29 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_oa, 1, 0 }, { 0, 0 }, "PreferContainedIRIs", oa_prefercontainediris, s_oa },
 
     // odrl
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Action", odrl_action, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Agreement", odrl_agreement, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Assertion", odrl_assertion, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Asset", odrl_asset, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "AssetCollection", odrl_assetcollection, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Duty", odrl_duty, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Offer", odrl_offer, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Party", odrl_party, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "PartyCollection", odrl_partycollection, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Permission", odrl_permission, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Policy", odrl_policy, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Privacy", odrl_privacy, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Prohibition", odrl_prohibition, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Rule", odrl_rule, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Request", odrl_request, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Set", odrl_set, s_odrl },
-     { { s_odrl, 1, 0 }, { 0, 0 }, "Ticket", odrl_ticket, s_odrl },
-
-
-
-    // owl
-    { { s_owl, 1, 0 }, { 0, 0 }, "AllDifferent", owl_alldifferent, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "AllDisjointClasses", owl_alldisjointclasses, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "AllDisjointProperties", owl_alldisjointproperties, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "Annotation", owl_annotation, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "AnnotationProperty", owl_annotationproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "AsymmetricProperty", owl_asymmetricproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "Axiom", owl_axiom, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "Class", owl_class, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "DataRange", owl_datarange, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "DatatypeProperty", owl_datatypeproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "DeprecatedClass", owl_deprecatedclass, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "DeprecatedProperty", owl_deprecatedproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "FunctionalProperty", owl_functionalproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "InverseFunctionalProperty", owl_inversefunctionalproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "IrreflexiveProperty", owl_irreflexiveproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "NamedIndividual", owl_namedindividual, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "NegativePropertyAssertion", owl_negativepropertyassertion, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "Nothing", owl_nothing, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "ObjectProperty", owl_objectproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "Ontology", owl_ontology, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "OntologyProperty", owl_ontologyproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "ReflexiveProperty", owl_reflexiveproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "Restriction", owl_restriction, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "SymmetricProperty", owl_symmetricproperty, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "Thing", owl_thing, s_owl },
-    { { s_owl, 1, 0 }, { 0, 0 }, "TransitiveProperty", owl_transitiveproperty, s_owl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Action", odrl_action, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Agreement", odrl_agreement, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Assertion", odrl_assertion, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Asset", odrl_asset, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "AssetCollection", odrl_assetcollection, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "ConflictTerm", odrl_conflictterm, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Constraint", odrl_constraint, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Duty", odrl_duty, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "LeftOperand", odrl_leftoperand, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "LogicalConstraint", odrl_logicalconstraint, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Offer", odrl_offer, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Operator", odrl_operator, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Party", odrl_party, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "PartyCollection", odrl_partycollection, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Permission", odrl_permission, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Policy", odrl_policy, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Privacy", odrl_privacy, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Prohibition", odrl_prohibition, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Request", odrl_request, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "RightOperand", odrl_rightoperand, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Rule", odrl_rule, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Set", odrl_set, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "Ticket", odrl_ticket, s_odrl },
 
     { { s_odrl, 1, 0 }, { 0, 0 }, "acceptTracking", odrl_accepttracking, s_odrl },
     { { s_odrl, 1, 0 }, { 0, 0 }, "adHocShare", odrl_adhocshare, s_odrl },
@@ -535,12 +553,143 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_odrl, 1, 0 }, { 0, 0 }, "write", odrl_write, s_odrl },
     { { s_odrl, 1, 0 }, { 0, 0 }, "writeTo", odrl_writeto, s_odrl },
 
+    { { s_odrl, 1, 0 }, { 0, 0 }, "eq", odrl_eq, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "gt", odrl_gt, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "gteq", odrl_gteq, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "hasPart", odrl_haspart, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "isA", odrl_isa, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "isAllOf", odrl_isallof, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "isAnyOf", odrl_isanyof, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "isNoneOf", odrl_isnoneof, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "isPartOf", odrl_ispartof, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "lt", odrl_lt, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "lteq", odrl_lteq, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "neq", odrl_neq, s_odrl },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, "absolutePosition", odrl_absoluteposition, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "absoluteSize", odrl_absolutesize, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "absoluteSpatialPosition", odrl_absolutespatialposition, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "absoluteTemporalPosition", odrl_absolutetemporalposition, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "count", odrl_count, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "dateTime", odrl_datetime, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "delayPeriod", odrl_delayperiod, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "deliveryChannel", odrl_deliverychannel, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "device", odrl_device, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "elapsedTime", odrl_elapsedtime, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "event", odrl_event, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "fileFormat", odrl_fileformat, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "industry", odrl_industry, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "language", odrl_language, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "media", odrl_media, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "meteredTime", odrl_meteredtime, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "payAmount", odrl_payamount, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "percentage", odrl_percentage, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "product", odrl_product, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "purpose", odrl_purpose, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "recipient", odrl_recipient, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "relativePosition", odrl_relativeposition, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "relativeSize", odrl_relativesize, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "relativeSpatialPosition", odrl_relativespatialposition, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "relativeTemporalPosition", odrl_relativetemporalposition, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "resolution", odrl_resolution, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "spatial", odrl_spatial, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "spatialCoordinates", odrl_spatialcoordinates, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "system", odrl_system, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "systemDevice", odrl_systemdevice, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "timeInterval", odrl_timeinterval, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "unitOfCount", odrl_unitofcount, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "version", odrl_version, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "virtualLocation", odrl_virtuallocation, s_odrl },
+
+    { { s_odrl, 1, 0 }, { 0, 0 }, "invalid", odrl_invalid, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "perm", odrl_perm, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, "prohibit", odrl_prohibit, s_odrl },
+
+    // org
+    { { s_org, 1, 0 }, { 0, 0 }, "ChangEevent", org_changeevent, s_org },
+    { { s_org, 1, 0 }, { 0, 0 }, "FormalOrganisation", org_formalorganisation, s_org },
+    { { s_org, 1, 0 }, { 0, 0 }, "Head", org_head, s_org },
+    { { s_org, 1, 0 }, { 0, 0 }, "Membership", org_membership, s_org },
+    { { s_org, 1, 0 }, { 0, 0 }, "Organization", org_organisation, s_org },
+    { { s_org, 1, 0 }, { 0, 0 }, "OrganizationalCollaboration", org_organisationalcollaboration, s_org },
+    { { s_org, 1, 0 }, { 0, 0 }, "OrganizationalUnit", org_organisationalunit, s_org },
+    { { s_org, 1, 0 }, { 0, 0 }, "Post", org_post, s_org },
+    { { s_org, 1, 0 }, { 0, 0 }, "Role", org_role, s_org },
+    { { s_org, 1, 0 }, { 0, 0 }, "Site", org_site, s_org },
+
+    // owl
+    { { s_owl, 1, 0 }, { 0, 0 }, "AllDifferent", owl_alldifferent, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "AllDisjointClasses", owl_alldisjointclasses, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "AllDisjointProperties", owl_alldisjointproperties, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "Annotation", owl_annotation, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "AnnotationProperty", owl_annotationproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "AsymmetricProperty", owl_asymmetricproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "Axiom", owl_axiom, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "Class", owl_class, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "DataRange", owl_datarange, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "DatatypeProperty", owl_datatypeproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "DeprecatedClass", owl_deprecatedclass, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "DeprecatedProperty", owl_deprecatedproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "FunctionalProperty", owl_functionalproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "InverseFunctionalProperty", owl_inversefunctionalproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "IrreflexiveProperty", owl_irreflexiveproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "NamedIndividual", owl_namedindividual, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "NegativePropertyAssertion", owl_negativepropertyassertion, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "Nothing", owl_nothing, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "ObjectProperty", owl_objectproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "Ontology", owl_ontology, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "OntologyProperty", owl_ontologyproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "ReflexiveProperty", owl_reflexiveproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "Restriction", owl_restriction, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "SymmetricProperty", owl_symmetricproperty, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "Thing", owl_thing, s_owl },
+    { { s_owl, 1, 0 }, { 0, 0 }, "TransitiveProperty", owl_transitiveproperty, s_owl },
+
     // poetry
     { { s_poetry, 1, 0 }, { 0, 0 }, "Dialect", poetry_dialect, s_poetry },
     { { s_poetry, 1, 0 }, { 0, 0 }, "Form", poetry_form, s_poetry },
     { { s_poetry, 1, 0 }, { 0, 0 }, "Poem", poetry_poem, s_poetry },
     { { s_poetry, 1, 0 }, { 0, 0 }, "Period", poetry_period, s_poetry },
     { { s_poetry, 1, 0 }, { 0, 0 }, "Stanza", poetry_stanza, s_poetry },
+
+    // provincial
+    { { s_prov, 1, 0 }, { 0, 0 }, "Activity", prov_activity, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "ActivityInfluence", prov_activityinfluence, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Agent", prov_agent, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "AgentInfluence", prov_agentinfluence, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Association", prov_association, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Attribution", prov_attribution, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Bundle", prov_bundle, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Collection", prov_collection, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Communication", prov_communication, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Delegation", prov_delegation, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Derivation", prov_derivation, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "EmptyCollection", prov_emptycollection, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "End", prov_end, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Entity", prov_entity, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "EntityInfluence", prov_entityinfluence, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Generation", prov_generation, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Influence", prov_influence, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "InstantaneousEvent", prov_instantaneousevent, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Invalidation", prov_invalidation, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Location", prov_location, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Organization", prov_organisation, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Person", prov_person, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Plan", prov_plan, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "PrimarySource", prov_primarysource, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Quotation", prov_quotation, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Revision", prov_revision, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Role", prov_role, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "SoftwareAgent", prov_softwareagent, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Start", prov_start, s_prov },
+    { { s_prov, 1, 0 }, { 0, 0 }, "Usage", prov_usage, s_prov },
+
+    // ptr content
+    { { s_ptr, 1, 0 }, { 0, 0 }, "Content", ptr_content, s_ptr },
+    { { s_ptr, 1, 0 }, { 0, 0 }, "ContentAsBase64", ptr_contentasbase64, s_ptr },
+    { { s_ptr, 1, 0 }, { 0, 0 }, "ContentAsText", ptr_contentastext, s_ptr },
+    { { s_ptr, 1, 0 }, { 0, 0 }, "ContentAsXML", ptr_contentasxml, s_ptr },
+    { { s_ptr, 1, 0 }, { 0, 0 }, "DoctypeDecl", ptr_doctypedecl, s_ptr },
 
     // data cube
     { { s_qb, 1, 0 }, { 0, 0 }, "Attachable", qb_attachable, s_qb },
@@ -589,6 +738,33 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_rev, 1, 0 }, { 0, 0 }, "Comment", rev_comment, s_rev },
     { { s_rev, 1, 0 }, { 0, 0 }, "Feedback", rev_feedback, s_rev },
     { { s_rev, 1, 0 }, { 0, 0 }, "Review", rev_review, s_rev },
+
+    // rif
+    // this is certainly incomplete; the documented XML schema has an include containing the actual definitions,
+    // and that is a 404 (http://www.w3.org/2010/rif-schema/bld/LC/BLDRule.xsd). The full and detailed documents on RIF
+    // itself are as clear as mud, at least in terms of RDFa. There do not appear to be any class and property lists,
+    // nor do there seem to be any RDF/a example documents. No doubt I am missing something.
+    { { s_rif, 1, 0 }, { 0, 0 }, "local", rev_review, s_rif, MAKE_SIMPLE_TYPE (t_text) },
+    { { s_rif, 1, 0 }, { 0, 0 }, "iri", rev_review, s_rif, MAKE_SIMPLE_TYPE (t_url) },
+
+    // rr
+    { { s_rr, 1, 0 }, { 0, 0 }, "BaseTableOrView", rr_basetableorview, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "BlankNode", rr_blanknode, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "defaultGraph", rr_defaultgraph, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "GraphMap", rr_graphmap, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "IRI", rr_iri, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "Join", rr_join, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "Literal", rr_literal, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "LogicalTable", rr_logicaltable, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "ObjectMap", rr_objectmap, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "PredicateMap", rr_predicatemap, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "PredicateObjectMap", rr_predicateobjectmap, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "RefObjectMap", rr_refobjectmap, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "R2RMLView", rr_r2rmlview, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "SQL2008", rr_sql2008, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "SubjectMap", rr_subjectmap, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "TriplesMap", rr_triplesmap, s_rr },
+    { { s_rr, 1, 0 }, { 0, 0 }, "TermMap", rr_termmap, s_rr },
 
     // schema.org
     { { 2, 0 }, { 0, 0 }, "APIReference", sch_apireference },
@@ -1925,6 +2101,27 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { 3, 6 }, { 6, 0 }, "Xray", sch_xray },
     { { 3, 5 }, { 0, 0 }, "Zoneboardingpolicy", sch_zoneboardingpolicy },
 
+    // sd
+    { { s_sd, 1, 0 }, { 0, 0 }, "Aggregate", sd_aggregate, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "BasicFederatedQuery", sd_basicfederatedquery, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "Dataset", sd_dataset, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "DereferencesURIs", sd_dereferencesuris, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "EmptyGraphs", sd_emptygraphs, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "EntailmentProfile", sd_entailmentprofile, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "EntailmentRegime", sd_entailmentregime, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "Feature", sd_feature, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "Function", sd_function, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "Graph", sd_graph, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "GraphCollection", sd_graphcollection, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "Language", sd_language, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "NamedGraph", sd_namedgraph, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "RequiresDataset", sd_requiresdataset, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "Service", sd_service, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "SPARQL10Query", sd_sparql10query, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "SPARQL11Query", sd_sparql11query, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "SPARQL11Update", sd_sparql11update, s_sd },
+    { { s_sd, 1, 0 }, { 0, 0 }, "UnionDefaultGraph", sd_uniondefaultgraph, s_sd },
+
     // sioc
     { { s_sioc, 1, 0 }, { 0, 0 }, "Community", sioc_community, s_sioc },
     { { s_sioc, 1, 0 }, { 0, 0 }, "Container", sioc_container, s_sioc },
@@ -1946,6 +2143,77 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
 
     // skosxl
     { { s_skosxl, 1, 0 }, { 0, 0 }, "Label", skosxl_label, s_skosxl },
+
+    // sosa
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Actuation", sosa_actuation, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "ActuatableProperty", sosa_actuatableproperty, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Actuator", sosa_actuator, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "FeatureOfInterest", sosa_featureofinterest, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "ObservableProperty", sosa_observableproperty, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Observation", sosa_observation, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Platform", sosa_platform, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Procedure", sosa_procedure, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Result", sosa_result, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Sample", sosa_sample, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Sampler", sosa_sampler, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Sampling", sosa_sampling, s_sosa },
+    { { s_sosa, 1, 0 }, { 0, 0 }, "Sensor", sosa_sensor, s_sosa },
+
+    // ssn
+    { { s_ssn, 1, 0 }, { 0, 0 }, "Deployment", ssn_deployment, s_ssn },
+    { { s_ssn, 1, 0 }, { 0, 0 }, "Input", ssn_input, s_ssn },
+    { { s_ssn, 1, 0 }, { 0, 0 }, "Output", ssn_output, s_ssn },
+    { { s_ssn, 1, 0 }, { 0, 0 }, "Property", ssn_property, s_ssn },
+    { { s_ssn, 1, 0 }, { 0, 0 }, "Stimulus", ssn_stimulus, s_ssn },
+    { { s_ssn, 1, 0 }, { 0, 0 }, "System", ssn_system, s_ssn },
+
+    // time
+    { { s_time, 1, 0 }, { 0, 0 }, "April", time_april, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "August", time_august, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "DateTimeDescription", time_datetimedescription, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "DateTimeInterval", time_datetimeinterval, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "DayOfWeek", time_dayofweek, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "December", time_december, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Duration", time_duration, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "DurationDescription", time_durationdescription, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "February", time_february, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Friday", time_friday, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "GeneralDateTimeDescription", time_datetimeinterval, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "GeneralDurationDescription", time_generaldurationdescription, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Instant", time_instant, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Interval", time_interval, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "January", time_january, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "July", time_july, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "June", time_june, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "March", time_march, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "May", time_may, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Monday", time_monday, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "MonthOfYear", time_monthofyear, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "November", time_november, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "October", time_october, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Position", time_position, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "ProperInterval", time_properinterval, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "September", time_september, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "TemporalDuration", time_temporalduration, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "TemporalEntity", time_temporalentity, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "TemporalPosition", time_temporalposition, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "TemporalUnit", time_temporalunit, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Thursday", time_thursday, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "TimePosition", time_timeposition, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Timezone", time_timezone, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "TRS", time_trs, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Tuesday", time_tuesday, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Saturday", time_saturday, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Sunday", time_sunday, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "unitday", time_unitday, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "unithour", time_unithour, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "unitminute", time_unitminute, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "unitmonth", time_unitmonth, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "unitsecond", time_unitsecond, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "unitweek", time_unitweek, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "unityear", time_unityear, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Wednesday", time_wednesday, s_time },
+    { { s_time, 1, 0 }, { 0, 0 }, "Year", time_year, s_time },
 
     // vcard
     { { s_vcard, 1, 0 }, { 0, 0 }, "Address", vcard_address, s_vcard },
@@ -1976,6 +2244,21 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_vcard, 1, 0 }, { 0, 0 }, "Voice", vcard_voice, s_vcard },
     { { s_vcard, 1, 0 }, { 0, 0 }, "Work", vcard_work, s_vcard },
     { { s_vcard, 1, 0 }, { 0, 0 }, "X400", vcard_x400, s_vcard },
+
+    // void
+    { { s_void, 1, 0 }, { 0, 0 }, "Dataset", void_dataset, s_void },
+    { { s_void, 1, 0 }, { 0, 0 }, "DatasetDescription", void_datasetdescription, s_void },
+    { { s_void, 1, 0 }, { 0, 0 }, "Linkset", void_linkset, s_void },
+    { { s_void, 1, 0 }, { 0, 0 }, "TechnicalFeature", void_technicalfeature, s_void },
+
+    // WDR
+    { { s_wdr, 1, 0 }, { 0, 0 }, "AttributionType", wdr_attributiontype, s_wdr },
+    { { s_wdr, 1, 0 }, { 0, 0 }, "IRISetType", wdr_irisettype, s_wdr },
+    { { s_wdr, 1, 0 }, { 0, 0 }, "QueryContainsType", wdr_querycontainstype, s_wdr },
+
+    // wdrs
+    { { s_wdrs, 1, 0 }, { 0, 0 }, "Document", wdrs_document, s_wdrs },
+    { { s_wdrs, 1, 0 }, { 0, 0 }, "Processor", wdrs_processor, s_wdrs },
 
     // living standard
     { { s_microformats, 1, 0 }, { 0, 0 }, "profile/hcalendar#vevent", mf_vevent, s_microformats, SF_NO_ITEMID },
@@ -2073,8 +2356,10 @@ e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::str
             case s_dcat :
             case s_dcmi :
             case s_dct :
+            case s_doap :
             case s_dqv :
             case s_duv :
+            case s_earl :
             case s_gr :
             case s_grddl :
             case s_ical :
@@ -2087,21 +2372,33 @@ e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::str
             case s_oa :
             case s_og :
             case s_odrl :
+            case s_org :
             case s_owl :
             case s_poetry :
             case s_profile :
+            case s_prov :
+            case s_ptr :
             case s_qb :
             case s_rdf :
             case s_rdfg :
             case s_rdfs :
             case s_rev :
+            case s_rif :
+            case s_rr :
             case s_sioc :
             case s_sioc_s :
             case s_sioc_t :
+            case s_skos:
+            case s_skosxl:
+            case s_sosa :
+            case s_ssn :
+            case s_time :
             case s_vcard :
             case s_video :
+            case s_wdr :
             case s_wdrs :
             case s_website :
+            case s_xhv :
                 return s.get ();
             case s_dc :
                 if (context.dc () == 0) sv = dc_1_0; else sv = dc_1_1;

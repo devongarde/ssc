@@ -11,15 +11,18 @@ ssc
 
 
 DESCRIPTION
-ssc (the Static Site Checker) is an opinionated HTML nit-picker, intended for people, such as its author, who hand code websites.
-It doesn't just check static websites for broken links, dubious syntax, and bad semantic data, it will actively complain about
-things that are perfectly legal but just a little bit untidy.
+ssc (the Static Site Checker) is an opinionated HTML nit-picker, intended for
+people, such as its author, who hand code websites. It doesn't just check
+static websites for broken links, dubious syntax, and bad semantic data, it
+will actively complain about things that are perfectly legal but just a little
+bit untidy.
 
-Except when serving CGI queries, it recursively scans the directory looking for HTML source files to analyse. It produces a list
-of errors, warnings, comments, and other hints of imperfection. Once complete, it summarises internal site inconsistencies, and
-can produce some simple statistics.
+Except when serving CGI queries, it recursively scans the directory looking
+for HTML source files to analyse. It produces a list of errors, warnings,
+comments, and other hints of imperfection. Once complete, it summarises
+internal site inconsistencies, and can produce some simple statistics.
 
-ssc ignores HTML scripts.
+ssc ignores scripts.
 
 
 
@@ -27,16 +30,19 @@ COMMAND LINE ONLY SWITCHES
 
 These options are only available on the command line:
 
--f file                 Load configuration from file, which should be in .INI file format. See CONFIGURATION FILE FORMAT below.
+-f file                 Load configuration from file, which should be in .INI
+                        file format. See CONFIGURATION FILE FORMAT below.
 
--F                      Load the configuration file .ssc/config in the current directory.
+-F                      Load the configuration file .ssc/config in the current
+                        directory.
 
 -h                      Show a summary of switches and exit.
 
 -V                      Show version details and exit.
 
---validation            Show attribute extensions and exits. Attribute extensions are additional values that can be associated with attributes
-                        on many X/HTML elements.
+--validation            Show attribute extensions and exits. Attribute
+                        extensions are additional values that can be
+                        associated with attributes on many X/HTML elements.
 
 
 
@@ -44,73 +50,110 @@ COMMAND LINE AND CONFIGURATION FILES SWITCHES
 
 These options are available on the command line and in configuration files:
 
---corpus.article        Prefer the content of <ARTICLE> when gathering corpus text.
+--corpus.article        Prefer the content of <ARTICLE> when gathering corpus
+                        text.
 
---corpus.body           Prefer the content of <BODY> when gathering corpus text. This is the default.
+--corpus.body           Prefer the content of <BODY> when gathering corpus
+                        text. This is the default.
 
---corpus.main           Prefer the content of <MAIN> when gathering corpus text.
+--corpus.main           Prefer the content of <MAIN> when gathering corpus
+                        text.
 
---corpus.output file    Dump XML corpus of site into file. This is intended for use by a local search engine. If none of --corpus.article,
-                        --corpus.body, or --corpus.main are specified, the content of <BODY> is used. If more than one are specified,
-                        then the text collected depends on a page's content. This is incompatible with --shadow.update.
+--corpus.output file    Dump XML corpus of site into file. This is intended
+                        for use by a local search engine. If none of
+                        --corpus.article, --corpus.body, or --corpus.main are
+                        specified, the content of <BODY> is used. If more than
+                        one are specified, then the text collected depends on
+                        a page's content. This is incompatible with
+                        --shadow.update.
 
 --general.css           Do NOT process .css files.
 
---general.custom EL     Define a custom element <EL> for verifying the IS attribute. May be repeated.
+--general.custom EL     Define a custom element <EL> for verifying the IS
+                        attribute. May be repeated.
 
---general.datapath dir  Look for any configuration, caches, and other useful files, in this directory.
--p dir
+--general.datapath dir  Look for any configuration, caches, and other useful
+-p dir                  files, in this directory.
 
---general.error x       If nits of the specified category or worse are generated, then exit with an error code. Values are: 'catastrophe',
--E                      'error' (the default), 'warning', 'info', or 'comment'.
+--general.error x       If nits of the specified category or worse are
+-E                      generated, then exit with an error code. Values are:
+                        'catastrophe', 'error' (the default), 'warning',
+                        'info', or 'comment'.
 
---general.ignored EL    ignore attributes and content of the element <EL>. May be repeated.
+--general.ignored EL    ignore attributes and content of the element <EL>. May
+                        be repeated.
 
---general.lang LA       If an X/HTML file does not have a language / dialect specified (e.g. "en" for generic English, "en_IE" for Irish English,
-                        "lb_LU" for Luxembourgish, etc.), default to 'LA'. If not given, the default is your system default, or, if none, then
-                        "en_US" (standard American English).
+--general.lang LA       If an X/HTML file does not have a language / dialect
+                        specified (e.g. "en" for generic English, "en_IE" for
+                        Irish English, "lb_LU" for Luxembourgish, etc.),
+                        default to 'LA'. If not given, the default is your
+                        system default, or, if none, then "en_US" (standard
+                        American English).
 
---general.maxfilesize n Do not process HTML source files that exceed n bytes in size (default: 4M). Specify 0 for unlimited, although be warned that
-                        ssc is stunningly stupid in such circumstances and may even attempt to load files that exceed available memory.
+--general.maxfilesize n Do not process HTML source files that exceed n bytes
+                        in size (default: 4M). Specify 0 for unlimited,
+                        although be warned that ssc is stunningly stupid in
+                        such circumstances and may even attempt to load files
+                        that exceed available memory.
 
---general.output        Output to the specified file. If this switch is not used, standard output is used.
--o file
+--general.output        Output to the specified file. If this switch is not
+-o file                 used, standard output is used.
 
 --general.nochange      Report what ssc would do, but don't do it.
 -n
 
---general.progress      Dump progress information to standard output. This can intefere with formatted output.
--D
+--general.progress      Dump progress information to standard output. This can
+-D                      intefere with formatted output.
 
---general.rdf           Check RDF attributes. This option currently underperforms. An extension to properly support RDF and RDFa is en route.
+--general.rdf           Check RDF attributes. This option currently
+                        underperforms. An extension to properly support RDF
+                        and RDFa is en route.
 
---general.rel           Only mention <LINK> REL values, found neither in the living standard nor at microformats.org, in debug output.
+--general.rel           Only mention <LINK> REL values, found neither in the
+                        living standard nor at microformats.org, in debug
+                        output.
 
---general.slob          Ignore perfectly legal but inefficient, indeed thoroughly slobby, HTML, such as being far too lazy to get round to
-                        bothering to close elements.
+--general.slob          Ignore perfectly legal but inefficient, indeed
+                        thoroughly slobby, HTML, such as being far too lazy to
+                        get round to bothering to close elements.
 
---general.ssi           Process Server Side Includes. Although ssc can process many server side includes, it cannot process those containing
--I                      formulae. Note that processing SSIs may cause incorrect line numbers to be mentioned when an issue is described.
+--general.ssi           Process Server Side Includes. Although ssc can process
+-I                      many server side includes, it cannot process those
+                        containing formulae. Note that processing SSIs may
+                        cause incorrect line numbers to be mentioned when an
+                        issue is described.
 
---general.verbose x     Output nits to the specified verbosity: 'catastrophe', 'error', 'warning', 'info', 'comment' (the default), or '0' for
--v                      silence. Additional values are available when debugging. Each level includes its preceding level, so, for example,
-                        'warning' will also output 'catastrophe' and 'error' nits.
+--general.verbose x     Output nits to the specified verbosity: 'catastrophe',
+-v                      'error', 'warning', 'info', 'comment' (the default),
+                        or '0' for silence. Additional values are available
+                        when debugging. Each level includes its preceding
+                        level, so, for example, 'warning' will also output
+                        'catastrophe' and 'error' nits.
 
---html.rfc1867          Ignore the RFC 1867 (INPUT=FILE) extension when processing HTML 2.0
+--html.rfc1867          Ignore the RFC 1867 (INPUT=FILE) extension when
+                        processing HTML 2.0
 
---html.rfc1942          Ignore the RFC 1942 (tables) extension when processing HTML 2.0.
+--html.rfc1942          Ignore the RFC 1942 (tables) extension when processing
+                        HTML 2.0.
 
---html.rfc19802         Ignore the RFC 1980 (client side image maps) extension when processing HTML 2.0.
+--html.rfc19802         Ignore the RFC 1980 (client side image maps) extension
+                        when processing HTML 2.0.
 
---html.rfc2070          Ignore the RFC 2070 (internationalisation) extension when processing HTML 2.0.
+--html.rfc2070          Ignore the RFC 2070 (internationalisation) extension
+                        when processing HTML 2.0.
 
---html.tags             When an HTML file is loaded that contains no DOCTYPE, ssc normally presumes it's an HTML 1 file. This switch tells it to
-                        presume the file follows an earlier HTML Tags specification (the one at CERN). This is overridden by --html.version.
+--html.tags             When an HTML file is loaded that contains no DOCTYPE,
+                        ssc normally presumes it's an HTML 1 file. This switch
+                        tells it to presume the file follows an earlier HTML
+                        Tags specification (the one at CERN). This is
+                        overridden by --html.version.
 
---html.title n          If <TITLE> text is longer than n characters, say so.  This applies to child text of a header <TITLE> element, not the value of
--z n                    TITLE attributes.
+--html.title n          If <TITLE> text is longer than n characters, say so.
+-z n                    This applies to child text of a header <TITLE>
+                        element, not the value of TITLE attributes.
 
---html.version X        If no doctype (or xml header) is specified, presume version X of HTML. X can be:
+--html.version X        If no doctype (or xml header) is specified, presume
+                        version X of HTML. X can be:
                             tags        HTML tags (1991, informal),
                             1.0         HTML 1.0 (June 1993 draft),
                             +           HTML Plus (November 1993 draft),
@@ -129,61 +172,83 @@ These options are available on the command line and in configuration files:
                             2005/1/1    WhatWG WebApps draft (January 2005),
                             ...
                             2007/1/1    WhatWG WebApps draft (January 2007),
-                            2007/7/1    WhatWG HTML 5 living standard (July 2007),
+                            2007/7/1    WhatWG HTML 5 (July 2007),
                             ...
-                            2021/4/1    WhatWG HTML 5 living standard (April 2021),
+                            2021/10/1   WhatWG HTML 5 (October 2021),
 
                             XHTML 1.0   XHTML 1.0,
                             XHTML 1.1   XHTML 1.1 core,
                             XHTML 2.0   (December 2010 draft),
-                            XHTML 5.x   XHTML corresponding to equivalent W3 HTML.
+                            XHTML 5.x   XHTML corresponding to equivalent W3
+                                        HTML.
 
-                        Although you can specify exact dates for versions of the What WG HTML 5 living standard, currently only broad versions
-                        published in January and July are supported (and April 2021). It is expected that, as the standard develops, more
-                        precision will be applied to changes in ssc analysis.
+                        Although you can specify exact dates for versions of
+                        the WhatWG HTML 5 living standard, currently only
+                        broad versions published in January and July are
+                        supported (and April & October 2021). It is expected
+                        that, as the standard develops, more precision will be
+                        applied to changes in ssc analysis.
 
-                        Certain versions of HTML offer variants, such as loose and strict definitions. ssc picks those up from the SGML headers
-                        in the HTML file, if any, and carelessly ignores them.
+                        Certain versions of HTML offer variants, such as loose
+                        and strict definitions. ssc picks those up from the
+                        <!DOCTYPE ...> in the HTML file, if any, and
+                        carelessly ignores them.
 
                         Validation of XHTML is not strict.
 
-                        Just to remind you, there are no guarantees of accuracy (or inaccuracy).
+                        Just to remind you, there are no guarantees of
+                        accuracy (or inaccuracy).
 
-                        Copies of the appropriate standards can be found online at source, or can be downloaded from ssc.lu.
+                        Copies of the appropriate standards can be found
+                        online at source.
 
---link.301              Normally, when ssc checks external links (--link.external) it does not report http forwarding errors
--3                      301 and 308. Use this switch to have it do so.
+--link.301              Normally, when ssc checks external links
+-3                      (--link.external), it does not report http forwarding
+                        errors 301 and 308. Use this switch to have it do so.
 
---link.external         Check external links, e.g. those not on the site being checked. This requires a copy of curl on the path.
--e                      Note that, no matter what the switch, ssc will NOT check certain special site names, such as example.com.
+--link.external         Check external links, e.g. those not on the site being
+-e                      checked. This requires a copy of curl on the path.
+                        Note that, no matter what the switch, ssc will NOT
+                        check certain special site names, such as example.com.
 
---link.internal         Check internal links, e.g. those within the website being checked.
--l
+--link.internal         Check internal links, e.g. those within the website
+-l                      being checked.
 
---link.once             Only report each broken external link once. If, for example, the site has a number of references to a page that does not
--O                      exist, ssc will only report the first instance of the broken link. Note that, even if it reports every occurrence of the
-                        link, it will only check it the first time it encounters it (requires --link.external).
+--link.once             Only report each broken external link once. If, for
+-O                      example, the site has a number of references to a page
+                        that does not exist, ssc will only report the first
+                        instance of the broken link. Note that, even if it
+                        reports every occurrence of the link, it will only
+                        check it the first time it encounters it (requires
+                        --link.external).
 
---link.revoke           Do not check whether https links' certificates have been revoked (requires --link.external).
--r
+--link.revoke           Do not check whether https links' certificates have
+-r                      been revoked (requires --link.external).
 
---link.xlink            Check crosslink IDs on the site being analysed. For example, if a link goes to /index.html#id, then, when this switch is set,
--X                      ssc will verify that the id exists and that it is not hidden.
+--link.xlink            Check crosslink IDs on the site being analysed. For
+-X                      example, if a link goes to /index.html#id, then, when
+                        this switch is set, ssc will verify that the id exists
+                        and that it is not hidden.
 
---math.version          Presume this version of MathML (1, 2 or 3). The following versions are supported:
-                                0   work it out from the (HTML) version of the file being analysed,
+--math.version          Presume this version of MathML (1, 2 or 3). The
+                        following versions are supported:
+                                0   work it out from the (HTML) version of the
+                                    file being analysed,
                                 1   MathML 1,
                                 2   MathML 2,
                                 3   MathML 3,
                                 4   MathML 4 (December 2020 draft).
 
---microdata.microdata   Check microdata found in WhatWG microdata attributes (itemprop, itemtype, etc.). Note that ssc only knows about schema.org and
--m                      n.whatwg.org microdata.
+--microdata.microdata   Check microdata found in WhatWG microdata attributes
+-m                      (itemprop, itemtype, etc.). Note that ssc only knows
+                        about schema.org and n.whatwg.org microdata.
 
---microdata.export      Export schema.org microdata encountered. This data is exported in JSON format.
+--microdata.export      Export schema.org microdata encountered. This data is
+                        exported in JSON format.
 
---microdata.root DIR    When exporting microdata with --microdata.export, write files into the directory DIR. ssc will create the
-                        directory tree structure as appropriate.
+--microdata.root DIR    When exporting microdata with --microdata.export,
+                        write files into the directory DIR. ssc will create
+                        the directory tree structure as appropriate.
 
 --microdata.version x.y Test for schema.org microdata version X.Y
                         The following values are valid:
@@ -194,172 +259,240 @@ These options are available on the command line and in configuration files:
                                 versions 8.0, 9.0, 10.0, 11.0, 12.0, 13.0.
                         If .Y is omitted, .0 is presumed.
 
---microdata.virtual v=d When exporting microdata using --microdata.export, export the contents of virtual directory 'v' to 'd'. 'v'
-                        must corresponding to a directory identified with --site.virtual. For example:
+--microdata.virtual v=d When exporting microdata using --microdata.export,
+                        export the contents of virtual directory 'v' to 'd'.
+                        'v' must match a directory identified with
+                        --site.virtual. For example:
                             --microdata.virtual virtual=X:\virtual.
 
---microformat.verify    Verify Microformats data in class and rel attributes (see https://microformats.org/).
--M
+--microformat.verify    Verify Microformats data in class and rel attributes
+-M                      (see https://microformats.org/).
 
---microformat.export    Export microformat data encountered in JSON format. This option will write files in the same directory as the source,
-                        with the extension .json.
+--microformat.export    Export microformat data encountered in JSON format.
+                        This option will write files in the same directory as
+                        the source, with the extension .json.
 
---microformat.version x Presume microformats version x. The following values are current accepted:
+--microformat.version x Presume microformats version x. The following values
+                        are current accepted:
                                 1   microformats version 1 only,
                                 2   microformats version 2 only,
                                 3   both microformats versions 1 and 2.
 
---nits.catastrophe n    redefine nit n as a catastrophe; may be repeated (the value of n can be determined using --nits.nids below).
+--nits.catastrophe n    redefine nit n as a catastrophe; may be repeated (the
+                        value of n can be determined using --nits.nids below).
 
 --nits.codes            Output nit codes.
 
---nits.comment n        Redefine nit n as a comment; may be repeated (the value of n can be determined using --nits.nids).
+--nits.comment n        Redefine nit n as a comment; may be repeated (the
+                        value of n can be determined using --nits.nids).
 
---nits.debug   n        Redefine nit n as a debug message; may be repeated (the value of n can be determined using --nits.nids).
+--nits.debug   n        Redefine nit n as a debug message; may be repeated
+                        (the value of n can be determined using --nits.nids).
 
---nits.error n          Redefine nit n as an error; may be repeated (the value of n can be determined using --nits.nids).
+--nits.error n          Redefine nit n as an error; may be repeated (the
+                        value of n can be determined using --nits.nids).
 
---nits.format F         Specify the output format; F is a template file (see OUTPUT TEMPLATE below).
+--nits.format F         Specify the output format; F is a template file (see
+                        OUTPUT TEMPLATE below).
 
---nits.info n           Redefine nit n as information; may be repeated (the value of n can be determined using --nits.nids).
+--nits.info n           Redefine nit n as information; may be repeated (the
+                        value of n can be determined using --nits.nids).
 
 --nits.nids             Output nit ids, which can be used to redefine nits.
 
---nits.quote X          Specify quote style when using nit.format. X can be one of 'text' or 'html'.
+--nits.quote X          Specify quote style when using nit.format. X can be
+                        one of 'text' or 'html'.
 
---nits.silence n        Silence nit n; may be repeated (the value of n can be determined using --nits.nids).
+--nits.silence n        Silence nit n; may be repeated (the value of n can be
+                        determined using --nits.nids).
 
---nits.warning n        Redefine nit n as a warning; may be repeated (the value of n can be determined using --nits.nids).
+--nits.warning n        Redefine nit n as a warning; may be repeated (the
+                        value of n can be determined using --nits.nids).
 
---shadow.changed        When shadowing a site that has been previously shadowed, only copy/link files that have changed.
+--shadow.changed        When shadowing a site that has been previously
+                        shadowed, only copy/link files that have changed.
 
 --shadow.comment        Do not delete comments when writing shadow pages.
 
---shadow.copy X         Create a shadow directory structure from source HTML files, with errors removed and some things tidied up. X can be:
+--shadow.copy X         Create a shadow directory structure from source HTML
+                        files, with errors removed and some things tidied up.
+                        X can be:
                                 no     copy nothing (default);
-                                pages  write 'fixed' source files, ignore non source files;
-                                hard   set up hard links to non-source files (requires source and shadow directories to be on the same disk);
+                                pages  write 'fixed' source files, ignore non
+                                       source files;
+                                hard   set up hard links to non-source files
+                                       (requires source and shadow directories
+                                       to be on the same disk);
                                 soft   set up soft links to non-source files;
                                 all    copy non HTML files too;
-                                dedu   copy non HTML files too, but deduplicate them, changing links in HTML source if necessary;
+                                dedu   copy non HTML files too, but
+                                       deduplicate them, changing links in
+                                       HTML source if necessary;
                                 report only report duplicates (no shadowing).
-                        ssc cannot convert between versions of HTML, or between HTML and XHTML.
-                        The soft and hard options are only available on systems that support file links.
+                        ssc cannot convert between versions of HTML, nor
+                        between HTML and XHTML. The soft and hard link options
+                        are only available on systems that support them.
 
---shadow.enable         Enable shadowing (set by other shadow options). If shadowing is enabled, but shadow.root is not set, SSC will litter the
-                        site source directories with .ndx files.
+--shadow.enable         Enable shadowing (set by other shadow options). If
+                        shadowing is enabled, but shadow.root is not set, SSC
+                        will litter the site source directories with .ndx
+                        files.
 
---shadow.file f         Write ssc's shadow cache to file f, to accelerate future shadowing of the same content.
+--shadow.file f         Write ssc's shadow cache to file f, to accelerate
+                        future shadowing of the same content.
 
---shadow.ignore ext     When shadowing, ignore files with this extension (may be repeated).
+--shadow.ignore ext     When shadowing, ignore files with this extension (may
+                        be repeated).
 
---shadow.info           Add a comment at or near the top of each shadowed HTML file noting its generation time.
+--shadow.info           Add a comment at or near the top of each shadowed HTML
+                        file noting its generation time.
 
---shadow.msg text       Insert a comment containing the text at the top of every generated page. Note that, if any SSI included file is updated,
-                        the comment will appear whether or not the original page is updated.
+--shadow.msg text       Insert a comment containing the text at the top of
+                        every generated page. Note that, if any SSI included
+                        file is updated, the comment will appear whether or
+                        not the original page is updated.
 
 --shadow.root dir       Where to write the shadowed site.
 
---shadow.ssi            Do NOT resolve SSIs when shadowing, even if --general.ssi is set.
+--shadow.ssi            Do NOT resolve SSIs when shadowing, even if
+                        --general.ssi is set.
 
---shadow.space          Leave excess/repeated spaces and blank lines in the shadowed files untidily untouched.
+--shadow.space          Leave excess/repeated spaces and blank lines in the
+                        shadowed files untidily untouched.
 
---shadow.update         Only examine files that have changed since the last time ssc ran. This is incompatible with --corpus.file. This requires --shadow.file.
--u                      Nits of files that have not changed will not be reported.
+--shadow.update         Only examine files that have changed since the last
+-u                      time ssc ran. This is incompatible with --corpus.file.
+                        This requires --shadow.file. Nits of files that have
+                        not changed will not be reported.
 
---shadow.virtual v=d    When shadowing virtual directories, output the shadow of virtual directory 'v' to directory 'd'. 'v' must corresponding to a directory
-                        set up using --site.virtual.
+--shadow.virtual v=d    When shadowing virtual directories, output the shadow
+                        of virtual directory 'v' to directory 'd'. 'v' must
+                        match a directory set up using --site.virtual.
 
---site.domain domain    The domain name of the site is 'domain'. This can be repeated. This is used to identify any URL that is apparently external but
--S domain               is actually internal to the site.
+--site.domain domain    The domain name of the site is 'domain'. This can be
+-S domain               repeated. This is used to identify any URL that is
+                        apparently external but is actually internal to the
+                        site.
 
---site.extension ext    Treat files with this extension as X/HTML source files. This may be repeated. Files with extension .html are always checked.
--x ext
+--site.extension ext    Treat files with this extension as X/HTML source
+-x ext                  files. This may be repeated. Files with extension
+                        .html are always checked.
 
---site.index file       This is the name of the index file in a directory. This can be repeated. This is used for checking internal links.
--i file
+--site.index file       This is the name of the index file in a directory.
+-i file                 This can be repeated. This is used for checking
+                        internal links.
 
---site.root dir         This is the root of the website to analyse. ssc will recursively scan the directory analysing any HTML
--g dir                  files it finds. The default is the current directory.
+--site.root dir         This is the root of the website to analyse. ssc will
+-g dir                  recursively scan the directory analysing any HTML
+                        files it finds. The default is the current directory.
 
---site.virtual v=d      The HTML virtual directory 'v' is located in actual directory 'd' on the local filesystem. For example:
--L v=d                      --site.virtual virtual=D:\actual
+--site.virtual v=d      The HTML virtual directory 'v' is located in actual
+-L v=d                  directory 'd' on the local filesystem. For example:
+                            --site.virtual virtual=D:\actual
 
---stats.meta            Produce statistics on <META> usage in <HEAD>. Note that pragmas reported (http-equiv) are those found in the HTML source, not those
-                        returned by the HTTP protocol. Remember that many web servers (not all) will remove some pragmas when serving pages.
+--stats.meta            Produce statistics on <META> usage in <HEAD>. Note
+                        that pragmas reported (http-equiv) are those found in
+                        the HTML source, not those returned by the HTTP
+                        protocol. Remember that many web servers (not all)
+                        will remove some pragmas when serving pages.
 
 --stats.page            Produce statistics for each source file encountered.
 
---stats.summary         Produce a summary of overall statistics for the website.
+--stats.summary         Produce a summary of overall statistics for the
+                        website.
 
---svg.version x         Presume any SVG code encountered is this version, unless the SVG code itself specifies a version. Versions recognised:
+--svg.version x         Presume any SVG code encountered is this version,
+                        unless the SVG code itself specifies a version.
+                        Versions recognised:
                             1.0,
                             1.1,
                             1.2 (really 1.2/tiny),
                             1.2/tiny,
-                            1.2/full (May 2004 draft, incomplete, any conflict with tiny always resolved in favour of tiny),
+                            1.2/full (May 2004 draft, incomplete, any conflict
+                                      with tiny always resolved in favour of
+                                      tiny),
                             2.0,
                             2.1 (april 2021 draft).
-                        If this switch is not used, and some SVG code does not identify its version, the version is derived from the version of the host
-                        X/HTML code.
+                        If this switch is not used, and some SVG code does not
+                        identify its version, the version is derived from the
+                        version of the host X/HTML code.
 
---validation.minor x    When validating W3 HTML 5 source code, using this minor version of W3 HTML 5. Valid values are 0, 1, 2, and 3.
--m x                    WhatWG versions are determined by date, corresponding roughly to the date of the (online) publication of the
-                        specific version. See the --html.version switch.
+--validation.minor x    When validating W3 HTML 5 source code, using this
+-m x                    minor version of W3 HTML 5. Valid values are 0, 1, 2,
+                        and 3. WhatWG versions are determined by date,
+                        corresponding roughly to the date of the (online)
+                        publication of the specific version. See the
+                        --html.version switch.
 
 --validation.microdata  Validate (schema.org) microdata.
 
---validation.*          Add a permitted value to a particular HTML enumeration. Can be repeated. Extendable enumerations include charset,
-                        class (valid values may also be picked up from CSS files), colour, currency, http-equiv, lang, metaname, mimetype,
-                        rel, SGML, and many others. A full set of possible enumerations can be listed using the --validation switch.
+--validation.*          Add a permitted value to a particular HTML
+                        enumeration. Can be repeated. Extendable enumerations
+                        include charset, class (valid values may also be
+                        picked up from CSS files), colour, currency,
+                        http-equiv, lang, metaname, mimetype, rel, SGML, and
+                        many others. A full set of possible enumerations can
+                        be listed using the --validation switch.
 
 
 
 CONFIGURATION FILE FORMAT
 
-If a configuration file is used, it should be in INI file format. All content is optional.
+If a configuration file is used, it should be in INI file format. All content
+is optional.
 
-Section and option names are derived from the long form switch name, which consists of SECTION.OPTION, laid out in the format:
+Section and option names are derived from the long form switch name, which
+consists of SECTION.OPTION, laid out in the format:
 [SECTION]
 OPTION=yes
 OPTION=123456
 
-Switches that do not have a long form version cannot be used in a configuration file.
+Switches that do not have a long form version cannot be used in a
+configuration file.
 
-Each ssc tests (in the toast folder) has a configuration file; browse them for examples.
+Each ssc tests (in the toast folder) has a configuration file; browse them for
+examples.
 
 
 
 ENVIRONMENT
 
 QUERY_STRING            Run under OpenBSD's httpd server. See notes below.
-SSC_CONFIG              If no configuration file is given on the command line, use this one
+SSC_CONFIG              If no configuration file is given on the command line,
+                        use this one
 SSC_ARGS                Preliminary command line parameters
 
-If, when SSC is run, the environment variable QUERY_STRING is set to an OpenBSD httpd server CGI value that includes the parameter
-html.snippet, then SSC will nitpick that snippet only. Some other parameters are processed, including general.verbose and html.version.
+If, when SSC is run, the environment variable QUERY_STRING is set to an
+OpenBSD httpd server CGI value that includes the parameter html.snippet, then
+SSC will nitpick that snippet only. Some other parameters are processed,
+including general.verbose and html.version.
 
 
 
 EXIT STATUS
-If no significant nits are found, ssc exits with 0, otherwise it exits with a value > 0.
+If no significant nits are found, ssc exits with 0, otherwise it exits with a
+value > 0.
 
 
 
 OUTPUT TEMPLATE
 
-Warning: output templates is work in progress, and may be subject to significant breaking change in future versions of ssc.
+Warning: output templates is work in progress, and may be subject to
+significant breaking change in future versions of ssc.
 
-The --nit.format switch allows control of output format. It takes a file name. The format of that text file is a sequence of fixed section names,
-enclosed in square brackets on their own lines, each optionally followed by text. In that text, certain specific identifiers, enclosed in brace
-pairs, are substituted. For example:
+The --nit.format switch allows control of output format. It takes a file name.
+The format of that text file is a sequence of fixed section names, enclosed in
+square brackets on their own lines, each optionally followed by text. In that
+text, certain specific identifiers, enclosed in brace pairs, are substituted.
+For example:
 
 [dog-section]
 My pet dog {{dog-name}} is a {{bad-dog}}.
 
 For examples, browse toast/output/*.nit
 
-If no file is specified, or if the file cannot be loaded, a default template is used.
+If no file is specified, or if the file cannot be loaded, a default template is
+used.
 
 Note also the --nit.quote switch.
 
@@ -373,11 +506,13 @@ ssc -V
 To check the static web side source directory /home/site/wwwroot:
 ssc /home/site/wwwroot
 
-To check a static website for example.com,  in the current directory, that uses server side includes,
-including verification of external links, with very verbose output:
+To check a static website for example.com,  in the current directory, that
+uses server side includes, including verification of external links, with very
+verbose output:
 ssc -e -I -x html -x shtml -s example.com -v 5 -i index.shtml
 
-To check a static web side in the current directory, with a virtual directory, verifying microformats:
+To check a static web side in the current directory, with a virtual directory,
+verifying microformats:
 ssc -L vitual=/home/site/virtual -M
 
 To check a static web site using a configuration file:
@@ -393,7 +528,8 @@ extension=html
 index=index.html
 root=simple
 
-A configuration file to check a site against HTML 5.2 and SVG 1.1 might contain:
+A configuration file to check a site against HTML 5.2 and SVG 1.1 might
+contain:
 [general]
 output=site.out
 class=yes
@@ -409,7 +545,8 @@ version=5.2
 [svg]
 version=1.1
 
-A configuration file to check against a particular WhatWG living standard, gathering statistics:
+A configuration file to check against a particular WhatWG living standard,
+gathering statistics:
 [general]
 output=jan21.out
 [html]
@@ -441,7 +578,8 @@ copy=5
 root=shadow
 file=dedu.ndx
 
-A configuration file to export microdata preparing against schema.org version 7.2 might contain:
+A configuration file to export microdata preparing against schema.org version
+7.2 might contain:
 [general]
 output=export.out
 class=yes
@@ -471,10 +609,12 @@ Then I run a script like this:
 
 ssc -f site.conf
 upload.sh site /var/www/site-upload server user 0
-ssh user@server "cd /var/www ; mv site x ; mv site-upload site ; mv x site-upload ; ln -sf site htdocs"
+ssh user@server "cd /var/www ; mv site x ; mv site-upload site ;
+mv x site-upload ; ln -sf site htdocs"
 
-upload.sh is a macos bash script that can be found among the source code. Note that I have
-rather naughtily replaced OpenBSD's httpd document directory /var/www/htdocs with a link.
+upload.sh is a macos bash script that can be found among the source code. Note
+that I have rather naughtily replaced OpenBSD's httpd document directory
+/var/www/htdocs with a link.
 
 Here is site.conf:
 
@@ -520,11 +660,6 @@ SEE ALSO
 tidy
 linkchecker
 
-
-
-STANDARDS
-A full set of standards used to guide the development of ssc can be viewed at https://ssc.lu/. These are copied from
-many sources online, including https://w3.org/ and https://whatwg.org/. Check https://ssc.lu/ for details.
 
 
 

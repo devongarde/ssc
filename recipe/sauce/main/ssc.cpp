@@ -82,7 +82,8 @@ void init (nitpick& nits)
 }
 
 int ciao ()
-{   if (context.unknown_class () && context.tell (e_warning))
+{   if (context.progress ()) ::std::cout << "\nFinishing\n";
+    if (context.unknown_class () && context.tell (e_warning))
     {   ::std::ostringstream ss;
         context.css ().report_usage (ss);
         if (context.crosslinks ())

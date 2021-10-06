@@ -122,7 +122,11 @@ const schema_version dcam (s_dcmi, 1, 0);
 const schema_version dcmi (s_dcmi, 1, 0);
 const schema_version dublin_core_terms (s_dct, 1, 0);
 
+const schema_version doap_schema (s_doap, 1, 0);
+
 const schema_version duv_schema (s_duv, 1, 0);
+
+const schema_version earl_schema (s_earl, 1, 0);
 
 const schema_version faux_schema (s_faux, 1, 0);
 
@@ -156,12 +160,18 @@ const schema_version open_graph (s_og, 1, 0);
 
 const schema_version odrl_schema (s_odrl, 1, 0);
 
+const schema_version org_schema (s_org, 1, 0);
+
 const schema_version owl_1 (s_owl, 1, 0);
 const schema_version owl_2 (s_owl, 2, 0);
 
 const schema_version poetry_schema (s_poetry, 1, 0);
 
 const schema_version profile_schema (s_profile, 1, 0);
+
+const schema_version provincial (s_prov, 1, 0);
+
+const schema_version ptr_schema (s_ptr, 1, 0);
 
 const schema_version data_cube (s_qb, 1, 0);
 
@@ -177,6 +187,10 @@ const schema_version rdfg_schema (s_rdfg, 1, 0);
 const schema_version rdfs_schema (s_rdfs, 1, 0);
 
 const schema_version review_schema (s_rev, 1, 0);
+
+const schema_version rif_schema (s_rif, 1, 0);
+
+const schema_version rr_schema (s_rr, 1, 0);
 
 const schema_version schema_0 (s_schema, 0, 0);
 const schema_version schema_2_0 (s_schema, 2, 0);
@@ -208,6 +222,8 @@ const schema_version schema_12 (s_schema, 12, 0);
 const schema_version schema_13 (s_schema, 13, 0);
 const schema_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
 
+const schema_version sd_schema (s_sd, 1, 0);
+
 const schema_version sioc_schema (s_sioc, 1, 0);
 const schema_version sioc_services (s_sioc_s, 1, 0);
 const schema_version sioc_types (s_sioc_t, 1, 0);
@@ -215,15 +231,27 @@ const schema_version sioc_types (s_sioc_t, 1, 0);
 const schema_version skos_schema (s_skos, 1, 0);
 const schema_version skosxl_schema (s_skosxl, 1, 0);
 
+const schema_version ssn_schema (s_ssn, 1, 0);
+
+const schema_version sosa_schema (s_ssn, 1, 0);
+
+const schema_version time_schema (s_time, 1, 0);
+
 const schema_version vcard_schema (s_vcard, 1, 0);
 
 const schema_version video_schema (s_video, 1, 0);
+
+const schema_version void_schema (s_void, 1, 0);
+
+const schema_version wdr_schema (s_wdr, 1, 0);
 
 const schema_version wdrs_schema (s_wdrs, 1, 0);
 
 const schema_version website_schema (s_website, 1, 0);
 
 const schema_version whatwg_schema (s_whatwg, 1, 0);
+
+const schema_version xhv_schema (s_xhv, 1, 0);
 
 const schema_version xsd_1_0 (s_xsd, 1, 0);
 const schema_version xsd_1_1 (s_xsd, 1, 1);
