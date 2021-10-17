@@ -41,22 +41,28 @@ template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& n
         else enum_base < e_aria_role, t_role > :: status (s_good);
         return; }
     ::std::string pret (trim_the_lot_off (s));
-    ::std::string t (case_must_match < false >::lower (pret));
-    if (symbol < html_version, e_aria_role > :: parse (nits, v, t, ns_default))
-    {   enum_base < e_aria_role, t_role > :: value_ = symbol < html_version, e_aria_role > :: get ();
-        compare_validate (nits, v, get_string (), pret);
-        const html_version f = symbol < html_version, e_aria_role > :: first ();
-        if (! may_apply (v, f, symbol < html_version, e_aria_role > :: last ()))
-        {   v.check_math_svg (nits, f, name ());
-            nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report ()); }
-        else if (f.reject ())
-            nits.pick (nit_rejected, es_error, ec_type, quote (pret), " is valid but incompatible with ", v.report ());
-        else
-        {   if (f.deprecated (v)) nits.pick (nit_deprecated_value, es_warning, ec_type, quote (pret), " is deprecated in ", v.report ());
-            enum_base < e_aria_role, t_role > :: status (s_good);
-            enum_base < e_aria_role, t_role > :: post_set_value (nits, v);
-            return; } }
+    if (v <= xhtml_2)
+    {   if (test_value < t_urls > (nits, v, pret))
+        {   if (s.empty ()) enum_base < e_aria_role,t_role > :: status (s_empty);
+            else enum_base < e_aria_role,t_role > :: status (s_good);
+            return; } } // https://www.w3.org/TR/xhtml-role/
     else
-    {   check_spelling (nits, v, t);
-        nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid here"); }
+    {   ::std::string t (case_must_match < false >::lower (pret));
+        if (symbol < html_version, e_aria_role > :: parse (nits, v, t, ns_default))
+        {   enum_base < e_aria_role, t_role > :: value_ = symbol < html_version, e_aria_role > :: get ();
+            compare_validate (nits, v, get_string (), pret);
+            const html_version f = symbol < html_version, e_aria_role > :: first ();
+            if (! may_apply (v, f, symbol < html_version, e_aria_role > :: last ()))
+            {   v.check_math_svg (nits, f, name ());
+                nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report ()); }
+            else if (f.reject ())
+                nits.pick (nit_rejected, es_error, ec_type, quote (pret), " is valid but incompatible with ", v.report ());
+            else
+            {   if (f.deprecated (v)) nits.pick (nit_deprecated_value, es_warning, ec_type, quote (pret), " is deprecated in ", v.report ());
+                enum_base < e_aria_role, t_role > :: status (s_good);
+                enum_base < e_aria_role, t_role > :: post_set_value (nits, v);
+                return; } }
+        else
+        {   check_spelling (nits, v, t);
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid here"); } }
     enum_base < e_aria_role, t_role > :: status (s_invalid); }

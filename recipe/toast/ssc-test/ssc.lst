@@ -48,6 +48,7 @@
 ../toast/living/jan21/living.spec
 ../toast/living/apr21/living.spec
 ../toast/living/jul21/living.spec
+../toast/living/oct21/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -91,6 +92,10 @@
 ../toast/RDFa/foaf/rdfa.spec
 ../toast/RDFa/gr/rdfa.spec
 ../toast/RDFa/grddl/rdfa.spec
+../toast/RDFa/imported/rdfa.spec
+../toast/RDFa/lrdw/rdfa.spec
+../toast/RDFa/role/rdfa.spec
+../toast/RDFa/rs/rdfa.spec
 ../toast/RDFa/schema/rdfa.spec
 ../toast/RDFa/sioc/rdfa.spec
 ../toast/RDFa/vcard/rdfa.spec

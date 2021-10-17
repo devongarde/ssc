@@ -1,0 +1,9 @@
+<!-- b.html -->
+<!DOCTYPE html>
+<iframe src="scripting-7.html"></iframe>
+<script>
+const iframe = document.querySelector("iframe");
+iframe.onload = function onLoad() {
+iframe.contentWindow.document.querySelector("button").click();
+};
+</script>

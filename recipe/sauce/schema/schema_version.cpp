@@ -37,6 +37,7 @@ void schema_version::init () // call after context construction
     vsv [s_none] = default_schema;
     vsv [s_article] = article_schema;
     vsv [s_as] = as_schema;
+    vsv [s_bibo] = bibo_schema;
     vsv [s_book] = book_schema;
     vsv [s_cc] = creative_commons;
     vsv [s_content] = content_schema;
@@ -52,6 +53,7 @@ void schema_version::init () // call after context construction
     vsv [s_dqv] = data_quality;
     vsv [s_duv] = duv_schema;
     vsv [s_earl] = earl_schema;
+    vsv [s_event] = event_schema;
     vsv [s_faux] = faux_schema;
     vsv [s_foaf] = foaf_schema;
     vsv [s_gr] = good_relations;
@@ -91,6 +93,7 @@ void schema_version::init () // call after context construction
     vsv [s_sosa] = sosa_schema;
     vsv [s_ssn] = ssn_schema;
     vsv [s_time] = time_schema;
+    vsv [s_v] = data_vocabulary;
     vsv [s_vcard] = vcard_schema;
     vsv [s_video] = video_schema;
     vsv [s_void] = void_schema;
@@ -111,7 +114,10 @@ void schema_version::init () // call after context construction
                 res << "open graph article";
                 break;
             case s_as :
-                res << "activity streams";
+                res << "activity streams v2.0";
+                break;
+            case s_bibo :
+                res << "bibliographic ontology";
                 break;
             case s_book :
                 res << "open graph book";
@@ -157,6 +163,9 @@ void schema_version::init () // call after context construction
                 break;
             case s_earl :
                 res << "evaluation and report language";
+                break;
+            case s_event :
+                res << "event";
                 break;
             case s_faux :
                 res << "faux schema";
@@ -278,8 +287,11 @@ void schema_version::init () // call after context construction
             case s_time :
                 res << "time";
                 break;
+            case s_v :
+                res << "data vocabulary";
+                break;
             case s_vcard :
-                res << "vcard";
+                res << "vcard v" << static_cast < int > (mjr ()) << ".0";
                 break;
             case s_video :
                 res << "open graph video";
@@ -330,6 +342,7 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
         case s_dqv :
         case s_duv :
         case s_earl :
+        case s_event :
         case s_faux :
         case s_gr :
         case s_grddl :
@@ -364,6 +377,7 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
         case s_sosa :
         case s_ssn :
         case s_time :
+        case s_v :
         case s_vcard :
         case s_video :
         case s_void :
@@ -374,6 +388,9 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
         case s_xhv :
             return ((j == 1) && (n == 0));
         case s_as :
+            return ((j == 2) && (n == 0));
+        case s_bibo :
+            return ((j == 1) && (n == 3));
         case s_dcat :
         case s_microformats :
         case s_owl :

@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/corpus.h"
 #include "icu/wrapper.h"
 #include "icu/charset.h"
+#include "parser/jsonic.h"
 
 #define DOCTYPE "<!DOCTYPE"
 #define DOCTYPE_LC "<!doctype"
@@ -138,6 +139,7 @@ void page::examine ()
         {   if (has_corpus ())
                 extend_corpus (nits_, title_, get_site_path (), corpus_, author_, keywords_, description_);
             if (context.md_export ()) md_export_.write (nits_, get_export_path ()); }
+        if (! jsonld_.empty ()) parse_json_ld (nits_, version (), jsonld_);
         ids_.cover_arse (); } }
 
 void page::verify_locale (const ::boost::filesystem::path& p)
@@ -266,3 +268,6 @@ void page::base (const url& s)
         if (arg.length () == 0) arg = "/";
         else if (arg.at (arg.length () - 1) != '/') arg += '/';
     arg += s; return arg; }
+
+void page::append_jsonld (const ::std::string& j)
+{   jsonld_ += j + "\n"; }

@@ -239,6 +239,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     res += saybe (table, category_.at (ec_icu), "ICU");
     res += saybe (table, category_.at (ec_init), "Init");
     res += saybe (table, category_.at (ec_io), "I/O");
+    res += saybe (table, category_.at (ec_json), "JSON");
     res += saybe (table, category_.at (ec_link), "Link");
     res += saybe (table, category_.at (ec_microdata), "Microdata");
     res += saybe (table, category_.at (ec_microformat), "Microformat");

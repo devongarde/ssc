@@ -204,6 +204,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_DC         XHTML_1_0
 #define HTML_DCTERMS    XHTML_1_0
 
+#define HTML_JSONLD_1_0 HTML_JAN14
+#define HTML_JSONLD_1_1 HTML_JUL20
+
 #define HTML_MATH1      HTML_4_0
 #define HTML_MATH2      XHTML_1_0
 #define HTML_MATH3      HTML_5_0
@@ -516,18 +519,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_MAXARGS_SHIFT 60
 #define HE_MAXARGS(XXXX) ((flags_t) XXXX << HE_MAXARGS_SHIFT)
 
+#define H2_JSONLD_1_0   0x0000000000000001
+#define H2_JSONLD_1_1   0x0000000000000002
+
+#define JSONLD_MASK     ( H2_JSONLD_1_0 | H2_JSONLD_1_1 )
+#define JSONLD_SHIFT    0
+
 class html_version : public version
-{   flags_t ext_ = NOFLAGS;
+{   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
     void init (const unsigned char mjr);
     bool test_extension () const;
 public:
     html_version () = default;
     explicit html_version (const unsigned char mjr) { init (mjr); }
-    explicit html_version (const schema_version& sv) : version (sv.mjr (), sv.mnr ()), ext_ (NOFLAGS) { }
-    html_version (const unsigned char mjr, const unsigned char mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS)
-        : version (mjr, mnr, flags), ext_ (extensions) { }
-    html_version (const ::boost::gregorian::date& whatwg, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS);
+    explicit html_version (const schema_version& sv) : version (sv.mjr (), sv.mnr ()), ext_ (NOFLAGS), ext2_ (NOFLAGS) { }
+    html_version (const unsigned char mjr, const unsigned char mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS)
+        : version (mjr, mnr, flags), ext_ (extensions), ext2_ (e2) { }
+    html_version (const ::boost::gregorian::date& whatwg, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS);
 	html_version (const html_version& ) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
 	html_version (html_version&& ) = default;
@@ -539,7 +548,8 @@ public:
 #endif // VS
     void swap (html_version& v) NOEXCEPT
     {   version::swap (v);
-        ::std::swap (ext_, v.ext_); }
+        ::std::swap (ext_, v.ext_);
+        ::std::swap (ext2_, v.ext2_); }
     void reset () { html_version v; swap (v); }
     void reset (const html_version& v) { html_version vv (v); swap (vv); }
     void set_ext (const flags_t u) { ext_ |= u; }
@@ -548,6 +558,12 @@ public:
     bool any_ext (const flags_t u) const { return ((ext_ & u) != 0); }
     bool no_ext (const flags_t u) const { return ((ext_ & u) == 0); }
     flags_t ext () const { return ext_; }
+    void set_ext2 (const flags_t u) { ext2_ |= u; }
+    void reset_ext2 (const flags_t u) { ext2_ &= ~u; }
+    bool all_ext2 (const flags_t u) const { return ((ext2_ & u) == u); }
+    bool any_ext2 (const flags_t u) const { return ((ext2_ & u) != 0); }
+    bool no_ext2 (const flags_t u) const { return ((ext2_ & u) == 0); }
+    flags_t ext2 () const { return ext2_; }
     bool is_not (const unsigned char j, const unsigned char n = 0xFF) const
     {   if (unknown ()) return false;
         if (j != mjr ()) return true;
@@ -577,16 +593,20 @@ public:
     bool experimental () const { return all_ext (HE_EXPERIMENTAL); }
     bool frameset () const { return all_flags (HV_FRAMESET); }
     bool ie () const { return all_ext (HE_IE); }
+    bool has_jsonld () const { return any_ext2 (JSONLD_MASK); }
     bool has_math () const { return any_ext (MATH_MASK); }
     bool has_rdfa () const { return any_ext (HE_RDFA); }
     bool has_svg () const { return any_ext (SVG_MASK); }
     bool has_xlink () const { return any_ext (XLINK_MASK); }
+    int jsonld () const { return static_cast < int > ((ext2 () & JSONLD_MASK) >> JSONLD_SHIFT); }
     int math () const { return static_cast < int > ((ext () & MATH_MASK) >> MATH_SHIFT); }
     int rdfa () const { return has_rdfa (); }
     int svg () const { return static_cast < int > ((ext () & SVG_MASK) >> SVG_SHIFT); }
     ::std::size_t minargs () const { return static_cast < ::std::size_t > ((ext () & HE_MINARGS_MASK) >> HE_MINARGS_SHIFT); }
     ::std::size_t maxargs () const { return static_cast < ::std::size_t > ((ext () & HE_MAXARGS_MASK) >> HE_MAXARGS_SHIFT); }
     ::std::size_t group () const { return static_cast < ::std::size_t > ((ext () & HE_GROUP_MASK) >> HE_GROUP_SHIFT); }
+    bool is_jsonld_10 () const { return (ext2 () & H2_JSONLD_1_0) == H2_JSONLD_1_0; }
+    bool is_jsonld_11 () const { return (ext2 () & H2_JSONLD_1_1) == H2_JSONLD_1_1; }
     bool is_rdf () const { return (ext () & HE_RDF) != 0; }
     bool is_rdf_dep () const { return (ext () & HE_RDF_DEP) != 0; }
     bool is_svg_1 () const { return (ext () & HE_SVG_1) != 0; }
@@ -603,6 +623,8 @@ public:
     bool not_svg_12 () const { return (ext () & HE_NOT_SVG_12) != 0; }
     bool not_svg_20 () const { return (ext () & HE_NOT_SVG_20) != 0; }
     bool not_svg_21 () const { return (ext () & HE_NOT_SVG_21) != 0; }
+    e_jsonld_version jsonld_version () const;
+    void jsonld_version (const e_jsonld_version v);
     e_math_version math_version () const;
     void math_version (const e_math_version v);
     e_rdf_version rdf_version () const;
@@ -698,6 +720,8 @@ const html_version xhtml_1_0 (XHTML_1_0, HV_XHTML);
 const html_version xhtml_1_1 (XHTML_1_1, HV_XHTML);
 const html_version xhtml_2 (XHTML_2_0, HV_XHTML);
 
+const html_version html_jsonld_1_0 (HTML_JSONLD_1_0, 0, 0, H2_JSONLD_1_0);
+const html_version html_jsonld_1_1 (HTML_JSONLD_1_1, 0, 0, H2_JSONLD_1_1);
 const html_version html_math_1 (HTML_MATH1, 0, HE_MATH_1);
 const html_version xhtml_math_2 (HTML_MATH2, HV_XHTML, HE_MATH_2);
 const html_version html_math_3 (HTML_MATH3, 0, HE_MATH_1);
@@ -757,6 +781,7 @@ const char *default_charset (const html_version& v);
 const char *alternative_charset (const html_version& v);
 html_version get_min_version (const e_svg_version e);
 html_version get_min_version (const e_math_version e);
+html_version get_min_version (const e_jsonld_version e);
 bool overlap (const html_version& lhs_from, const html_version& lhs_to, const html_version& rhs_from, const html_version& rhs_to);
 
 template < > inline bool does_apply < html_version > (const html_version& v, const html_version& from, const html_version& to)

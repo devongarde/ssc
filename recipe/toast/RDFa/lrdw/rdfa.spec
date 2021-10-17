@@ -1,0 +1,96 @@
+-f ../toast/RDFa/lrdw/rdfa.conf
+
+PASS ../toast/RDFa/lrdw/lrdw.html
+7 reputation
+8 reputation
+9 reputation
+12 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
+102 schema_domain
+156 not_schema_property bad_property schema_domain not_schema_property bad_property
+248 schema_domain
+255 schema_domain
+318 schema_domain
+320 not_schema_property bad_property
+454 empty_link
+587 not_schema_property bad_property
+826 not_schema_property bad_property
+840 not_schema_property bad_property not_schema_property bad_property
+858 contradictory_expansion
+899 schema_domain
+942 not_schema_property bad_property
+1003 not_schema_property bad_property
+1118 not_schema_property bad_property
+1201 schema_domain
+1202 schema_domain
+1206 schema_domain
+1382 not_schema_property bad_property
+1386 not_schema_property bad_property
+1436 not_schema_property bad_property
+1451 not_schema_property bad_property
+1553 not_schema_property bad_property
+1601 not_schema_property bad_property
+1848 invalid_ipv4
+1851 invalid_ipv4
+1924 no_such_folder url_not_found
+2017 not_schema_property bad_property not_schema_property bad_property
+2044 schema_domain
+2070 schema_domain
+2090 schema_domain
+2119 schema_domain
+2135 schema_domain
+2152 schema_domain
+2164 schema_domain
+2200 contradictory_expansion
+2314 no_such_folder url_not_found
+3572 invalid_ipv4
+3611 schema_domain
+3779 no_such_folder url_not_found
+3803 no_such_folder url_not_found
+3868 schema_domain
+3887 schema_domain
+3912 schema_domain
+3953 schema_domain
+3975 schema_domain
+3984 schema_domain
+4032 schema_domain
+4632 no_such_folder url_not_found
+4680 schema_domain not_schema_property bad_property
+4682 schema_domain not_schema_property bad_property
+4684 schema_domain not_schema_property bad_property
+4686 schema_domain not_schema_property bad_property
+4688 schema_domain not_schema_property bad_property
+4686 schema_domain not_schema_property bad_property
+4695 schema_domain not_schema_property bad_property
+4697 schema_domain not_schema_property bad_property
+4717 schema_domain not_schema_property bad_property
+4719 schema_domain not_schema_property bad_property
+4721 schema_domain not_schema_property bad_property
+4723 schema_domain not_schema_property bad_property
+4725 schema_domain not_schema_property bad_property
+4727 schema_domain not_schema_property bad_property
+4729 schema_domain not_schema_property bad_property
+4731 schema_domain not_schema_property bad_property
+5110 schema_domain
+5132 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
+5138 invalid_attribute_version wrong_version
+5160 schema_domain
+5182 not_schema_property bad_property
+5254 schema_domain
+5297 schema_domain
+5313 schema_domain
+5329 schema_domain
+5363 contradictory_expansion
+5373 not_schema_property bad_property
+5380 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine svg_version
+5396 immeasurable
+5397 immeasurable
+5870 invalid_ipv4
+5985 not_schema_property bad_property
+6068 invalid_ipv4
+6085 schema_domain
+6087 schema_domain
+6089 schema_domain
+6091 schema_domain
+6093 schema_domain
+6096 schema_domain
+6236 schema_domain

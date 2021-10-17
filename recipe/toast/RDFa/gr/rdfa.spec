@@ -14,9 +14,7 @@ PASS ../toast/RDFa/gr/example-1.html
 168 no_itemscope
 169 no_itemscope
 173 unrecognised_value unknown_rel
-206 unrecognised_schema unrecognised_schema unrecognised_schema
-207 not_schema_property bad_property
-208 not_schema_property bad_property
+206 data_vocabulary data_vocabulary
 221 use_quote_code
 240 requires_itemscope bad_itemid
 276 requires_itemscope bad_itemid

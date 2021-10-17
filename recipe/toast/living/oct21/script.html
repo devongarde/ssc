@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> script </title> </head>
+ <body>
+
+<script referrerpolicy="origin">
+fetch('/api/data'); // not fetched with <script>'s referrer policy
+import('./utils.mjs'); // is fetched with <script>'s referrer policy ("origin" in this case)
+</script>
+
+<script src="game-engine.js"></script>
+<script type="text/x-game-map">
+........U.........e
+o............A....e
+.....A.....AAA....e
+.A..AAA...AAAAA...e
+</script>
+
+<script>
+function calculate(form) {
+var price = 52000;
+if (form.elements.brakes.checked)
+price += 1000;
+if (form.elements.radio.checked)
+price += 2500;
+if (form.elements.turbo.checked)
+price += 5000;
+if (form.elements.sticker.checked)
+price += 250;
+form.elements.result.value = price;
+}
+</script>
+<form name="pricecalc" onsubmit="return false" onchange="calculate(this)">
+<fieldset>
+<legend>Work out the price of your car</legend>
+<p>Base cost: £52000.</p>
+<p>Select additional options:</p>
+<ul>
+<li><label><input type=checkbox name=brakes> Ceramic brakes (£1000)</label></li>
+<li><label><input type=checkbox name=radio> Satellite radio (£2500)</label></li>
+<li><label><input type=checkbox name=turbo> Turbo charger (£5000)</label></li>
+<li><label><input type=checkbox name=sticker> "XZ" sticker (£250)</label></li>
+</ul>
+<p>Total: £<output name=result></output></p>
+</fieldset>
+<script>
+calculate(document.forms.pricecalc);
+</script>
+</form>
+
+<script type="module" src="app.mjs"></script>
+<script type="module" src="app.mjs"></script>
+<script nomodule defer src="classic-app-bundle.js"></script>
+
+<script type="module">
+import { walkAllTextNodeDescendants } from "./dom-utils.mjs";
+const substitutions = new Map([
+["witnesses", "these dudes I know"]
+["allegedly", "kinda probably"]
+["new study", "Tumblr post"]
+["rebuild", "avenge"]
+["space", "spaaace"]
+["Google glass", "Virtual Boy"]
+["smartphone", "Pokédex"]
+["electric", "atomic"]
+["Senator", "Elf-Lord"]
+["car", "cat"]
+["election", "eating contest"]
+["Congressional leaders", "river spirits"]
+["homeland security", "Homestar Runner"]
+["could not be reached for comment", "is guilty and everyone knows it"]
+]);
+function substitute(textNode) {
+for (const [before, after] of substitutions.entries()) {
+textNode.data = textNode.data.replace(new RegExp(`\\b${before}\\b`, "ig"), after);
+}
+}
+walkAllTextNodeDescendants(document.body, substitute);
+</script>
+
+<script>
+var example = 'Consider this string: <!-- <script>';
+console.log(example);
+</script>
+
+<script>
+var example = 'Consider this string: <!-- <script>';
+console.log(example);
+</script>
+<!-- despite appearances, this is actually part of the script still! -->
+<script>
+... // this is the same script block still...
+</script>
+
+<script>
+// Note: `\s` is an escape sequence for `s`.
+var example = 'Consider this string: <\!-- <\script>';
+console.log(example);
+</script>
+<!-- this is just a comment between script blocks -->
+<script>
+... // this is a new script block
+</script><script>if (x<!--y) { ... }
+if ( player<script ) { ... }if (x < !--y) { ... }
+if (!--y > x) { ... }
+if (!(--y) > x) { ... }
+if (player < script) { ... }
+if (script > player) { ... }</script>
+<script src="cool-effects.js">
+// create new instances using:
+// var e = new Effect();
+// start the effect using .play, stop using .stop:
+// e.play();
+// e.stop();
+</script>
+
+ </body>
+</html>

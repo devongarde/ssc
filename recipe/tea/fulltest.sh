@@ -51,6 +51,7 @@
 ./ssc -f ../toast/living/jan21/living.conf
 ./ssc -f ../toast/living/apr21/living.conf
 ./ssc -f ../toast/living/jul21/living.conf
+./ssc -f ../toast/living/oct21/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
@@ -93,7 +94,14 @@
 ./ssc -f ../toast/RDFa/foaf/rdfa.conf
 ./ssc -f ../toast/RDFa/gr/rdfa.conf
 ./ssc -f ../toast/RDFa/grddl/rdfa.conf
+./ssc -f ../toast/RDFa/imported/rdfa.conf
+./ssc -f ../toast/RDFa/lrdw/rdfa.conf
+./ssc -f ../toast/RDFa/role/rdfa.conf
+./ssc -f ../toast/RDFa/rs/rdfa.conf
 ./ssc -f ../toast/RDFa/schema/rdfa.conf
+./ssc -f ../toast/RDFa/sioc/rdfa.conf
+./ssc -f ../toast/RDFa/vcard/rdfa.conf
+./ssc -f ../toast/RDFa/xsd/rdfa.conf
 ./ssc -f ../toast/shadow/comment/comment.conf
 ./ssc -f ../toast/shadow/copy/copy.conf
 ./ssc -f ../toast/shadow/copydiff/copydiff.conf

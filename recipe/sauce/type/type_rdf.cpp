@@ -92,15 +92,15 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
                 if (id == curie)
                 {   if ((id != s_error) && (id != s_none))
                         if (id < s_error)
-                            nits.pick (nit_rdfa_redefine, es_info, ec_rdfa, "it is not necessary to redefine ", quote (name), " given it is defined by default");
+                            nits.pick (nit_rdfa_redefine, ed_rdfa_c, "(entire document)", es_info, ec_rdfa, "it is not necessary to redefine ", quote (name), " given it is defined by default");
                         else nits.pick (nit_rdfa_redefine, es_info, ec_rdfa, quote (name), " has already been defined"); }
                 else
                 {   if ((id < s_error) && (id != s_none))
-                        if (vrai) nits.pick (nit_rdfa_confusion, es_warning, ec_rdfa, "it is confusing to redefine the standard prefix ", quote (name));
+                        if (vrai) nits.pick (nit_rdfa_confusion, ed_rdfa_c, "(entire document)", es_warning, ec_rdfa, "it is confusing to redefine the standard prefix ", quote (name));
                     else if (id != s_none)
                         if (vrai) nits.pick (nit_rdfa_redefine, es_warning, ec_rdfa, quote (name), " was previously defined as ", quote (old_curie));
                     if ((curie < s_error) && (curie != s_none))
-                        nits.pick (nit_rdfa_confusion, ed_rdfa_c, "", es_info, ec_rdfa, quote (l), " is predefined by standard as ", quote (schema_names.get (static_cast < e_schema > (curie), SCHEMA_NAME)));
+                        nits.pick (nit_rdfa_confusion, ed_rdfa_c, "(entire document)", es_info, ec_rdfa, quote (l), " is predefined by standard as ", quote (schema_names.get (static_cast < e_schema > (curie), SCHEMA_NAME)));
                     else if (curie != s_none)
                         nits.pick (nit_rdfa_redefine, es_warning, ec_rdfa, quote (l), " is already defined with ", quote (old_name)); }
             if ((id == s_none) || (id != curie))

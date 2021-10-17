@@ -839,7 +839,6 @@ PASS ../toast/living/jan10/vcard.html
 
 PASS ../toast/living/jan10/vevent.html
 24 use_quote_code
-26 invalid_attribute_version wrong_version
 
 PASS ../toast/living/jan10/wbr.html
 7 use_double_quote_code use_double_quote_code

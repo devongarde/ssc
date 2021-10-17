@@ -155,7 +155,7 @@ PASS ../toast/living/jan11/example.html
 143 inserted_missing_closure missing_close
 144 inserted_missing_closure
 148 use_quote_code
-158 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
+158 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
 160 use_double_quote_code
 162 use_double_quote_code
 

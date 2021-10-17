@@ -779,6 +779,31 @@ struct symbol_entry < html_version, e_inputtype5 > inputtype5_symbol_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "url", i5_url },
     { { HTML_JAN05, HV_NOT50 }, { HTML_UNDEF }, "week", i5_week } };
 
+struct symbol_entry < html_version, e_jtoken > jtoken_symbol_table [] =
+{   { { HTML_JAN14 }, { HTML_UNDEF }, "@base", jt_base },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@container", jt_container },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@context", jt_context },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@direction", jt_direction },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@graph", jt_graph },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@id", jt_id },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@import", jt_import },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@included", jt_included },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@index", jt_index },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@json", jt_json },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@language", jt_language },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@list", jt_list },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@nest", jt_nest },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@none", jt_none },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@prefix", jt_prefix },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@propagate", jt_propagate },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@protected", jt_protected },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@reverse", jt_reverse },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@set", jt_set },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@type", jt_type },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@value", jt_value },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "@version", jt_version },
+    { { HTML_JAN14 }, { HTML_UNDEF }, "@vocab", jt_vocab } };
+
 struct symbol_entry < html_version, e_kind > kind_symbol_table [] =
 {   { { HTML_JUL10 }, { HTML_UNDEF }, "subtitles", k_subtitles },
     { { HTML_JUL10 }, { HTML_UNDEF }, "captions", k_captions },
@@ -1167,6 +1192,9 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-ignore", nm_context_ignore },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-info", nm_context_info },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-index", nm_context_index },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld", nm_context_jsonld },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld-extension", nm_context_jsonld_extension },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld-version", nm_context_jsonld_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-lang", nm_context_lang },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-links", nm_context_links },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-main", nm_context_main },
@@ -1910,6 +1938,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (inputtype32);
     INIT_ENUM (inputtype4);
     INIT_ENUM (inputtype5);
+    INIT_ENUM (jtoken);
     INIT_ENUM (kind);
     INIT_ENUM (length_absolute);
     INIT_ENUM (length_relative);

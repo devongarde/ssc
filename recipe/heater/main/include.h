@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 114
-#define VERSION_STRING "0.0.114"
+#define VERSION_RELEASE 115
+#define VERSION_STRING "0.0.115"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -119,6 +119,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifndef SSC_TEST
 #include <string>
+#include <string_view>
 #include <sstream>
 #include <algorithm>
 #include <tuple>

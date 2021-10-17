@@ -233,7 +233,7 @@ PASS ../toast/living/jan14/example.html
 179 only_elements
 183 unrecognised_value
 185 unrecognised_value
-198 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
+198 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
 200 use_double_quote_code
 202 use_double_quote_code
 

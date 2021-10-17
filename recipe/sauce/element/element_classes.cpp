@@ -149,7 +149,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DINGBAT     a_dingbat, a_md, a_seqnum, a_skip, a_align, a_clear, a_nowrap
 #define KEYMOUSE    a_onclick, a_ondblclick, a_onkeydown, a_onkeypress, a_onkeyup, a_onmousedown, a_onmousemove, a_onmouseout, a_onmouseover, a_onmouseup
 #define RESERVED4   a_datafld, a_dataformatas, a_datasrc
-#define XHTML       a_xmlbase, a_xmlns, a_xmllang, a_xmlspace, RDFa
+#define XHTML       a_role, a_xmlbase, a_xmlns, a_xmllang, a_xmlspace, RDFa
 
 #define LANGDIR     a_dir, a_lang
 #define CLID        a_class, a_id
@@ -170,7 +170,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X2_EMBED    a_encoding, a_srctype
 #define X2_MAP      a_usemap, a_ismap, a_shape, a_coords
 #define X2_EVENT    a_event, a_observer, a_eventtarget, a_function, a_handler, a_phase, a_propagate, a_defaultaction
-#define X2_COMMON   a_autofocus, a_datawild, a_edit, a_media, a_role, a_tabindex, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_EVENT
+#define X2_COMMON   a_autofocus, a_datawild, a_edit, a_media, a_tabindex, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_EVENT
 #define X2          X2_COMMON, COMMON4
 #define XHTML2      X2_COMMON, X2_SOLO
 #define COMMON5     a_accesskey, a_contenteditable, a_contextmenu, a_draggable, a_hidden, a_inert, a_irrelevant, a_item, a_itemid, a_itemprop, \

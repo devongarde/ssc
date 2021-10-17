@@ -31,7 +31,7 @@ void element::examine_sarcasm ()
 void element::examine_script ()
 {   if (! node_.version ().is_5 ()) return;
     check_ancestors (elem_script, element_bit_set (elem_script));
-    bool datablock = false, module = false;
+    bool datablock = false, module = false, jsld = false;
     if (! a_.known (a_type) || a_.empty (a_type))
         pick (nit_script, ed_50, "4.11.1 The script element", es_comment, ec_element, "this should be treated as ECMAscript / Javascript");
     else
@@ -73,6 +73,9 @@ void element::examine_script ()
                 case mime_faux_module :
                     module = true;
                     break;
+                case mime_application_ld_json :
+                    jsld = context.jsonld ();
+                    break;
                 default :
                     {   flags_t flags = type_master < t_mime > :: flags (mt);
                         if ((flags & MIME_SCRIPT) == MIME_SCRIPT)
@@ -105,6 +108,7 @@ void element::examine_script ()
             pick (nit_bad_script, ed_jul20, "4.12.1 The script element", es_error, ec_element, "INTEGRITY requires SRC");
         if (a_.known (a_async))
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "ASYNC requires SRC"); }
+    if (jsld) page_.append_jsonld (content ());
     if (has_child ()) report_script_comment (child_); }
 
 bool element::report_script_comment (element_ptr child)

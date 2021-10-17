@@ -152,7 +152,7 @@ PASS ../toast/living/jul11/example.html
 139 inserted_missing_closure missing_close
 140 inserted_missing_closure
 144 use_quote_code
-154 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
+154 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
 156 use_double_quote_code
 158 use_double_quote_code
 

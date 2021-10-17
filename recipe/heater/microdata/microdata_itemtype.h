@@ -30,5 +30,5 @@ itemtype_index make_itemtype_index (const e_schema_type p);
 itemtype_index make_itemtype_index (const e_property p);
 e_itemtype_category type_category (const itemtype_index ii);
 e_schema_type type_itself (const itemtype_index ii);
-itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name);
+itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name, const bool propped = true);
 ::std::string itemtype_index_name (const itemtype_index ndx);

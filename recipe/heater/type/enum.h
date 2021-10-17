@@ -204,9 +204,9 @@ typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_n
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io, ec_link, ec_microdata, ec_microformat,
-                ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema, ec_shadow, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility,
-                ec_webmention } e_category;
+typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io, ec_json, ec_link, ec_microdata,
+                ec_microformat, ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema, ec_shadow, ec_ssi, ec_tidyness, ec_type,
+                ec_url, ec_utility, ec_webmention } e_category;
 const e_category last_category = ec_webmention;
 typedef enum { ccp_derivativeworks, ccp_distribution, ccp_reproduction } e_cc_permits;
 typedef enum { ccr_attribution, ccr_notice, ccr_sharealike, ccr_sourcecode } e_cc_requires;
@@ -595,10 +595,28 @@ typedef enum {  i5_button, i5_checkbox, i5_colour, i5_date, i5_datetime, i5_date
                 i5_password, i5_radio, i5_reset, i5_range, i5_search, i5_submit, i5_tel, i5_text, i5_time, i5_url, i5_week } e_inputtype5;
 typedef enum { itemprop_bespoke, itemprop_schema, itemprop_microformat } e_itemprop_category;
 typedef enum { itemtype_none, itemtype_schema, itemtype_microformat, itemtype_rel } e_itemtype_category;
+typedef enum { jsonld_none, jsonld_1_0, jsonld_1_1 } e_jsonld_version;
+
+typedef enum
+{   jt_base,
+    jt_container, jt_context,
+    jt_direction,
+    jt_graph,
+    jt_id, jt_import, jt_included, jt_index,
+    jt_json,
+    jt_language, jt_list,
+    jt_nest, jt_none,
+    jt_prefix, jt_propagate, jt_protected,
+    jt_reverse,
+    jt_set,
+    jt_type,
+    jt_value, jt_version, jt_vocab } e_jtoken;
+
 typedef enum { ky_dsa, ky_ec, ky_rsa } e_keytype;
 typedef enum { k_subtitles, k_captions, k_descriptions, k_chapters, k_metadata } e_kind;
 
-typedef enum { la_context,
+typedef enum
+{   la_context,
 
     // iso-639-1
     la_ab, la_aa, la_af, la_ak, la_sq, la_am, la_ar, la_an, la_hy, la_as, la_av,
@@ -1543,7 +1561,8 @@ typedef enum
     nit_namespace_redefine, nit_no_lang, nit_null_datatype, nit_unknown_datatype, nit_rdfa_version, nit_bad_sha, nit_new_property,
     nit_wwww, nit_bad_vocab, nit_vocab_defined, nit_sarcasm, nit_fe, nit_missing_double_quote, nit_bad_media, nit_mb, nit_byte,
     nit_b64, nit_help, nit_configuration, nit_title, nit_webaddr, nit_copyright, nit_version, nit_info, nit_build, nit_config_version,
-    nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file, nit_code_dtd,
+    nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file, nit_code_dtd, nit_data_vocabulary, nit_json_error,
+    nit_json_internal_error, nit_json_id, nit_vocab,
 
     nit_context,
 
@@ -1556,7 +1575,8 @@ typedef enum
         nm_context_article, nm_context_body, nm_context_css, nm_context_cgi, nm_context_clear, nm_context_code, nm_context_config, nm_context_copy,
         nm_context_corpus, nm_context_crosslinks, nm_context_custom_elements, nm_context_dc, nm_context_export_root, nm_context_exports,
         nm_context_extensions, nm_context_fe, nm_context_filename, nm_context_foaf, nm_context_forward, nm_context_hook, nm_context_ignore,
-        nm_context_info, nm_context_index, nm_context_lang, nm_context_links, nm_context_math, nm_context_main, nm_context_max_file_size,
+        nm_context_info, nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version, nm_context_lang,
+        nm_context_links, nm_context_math, nm_context_main, nm_context_max_file_size,
         nm_context_md_export, nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata,
         nm_context_msg, nm_context_once, nm_context_output, nm_context_persisted, nm_context_process_webmentions, nm_context_rdfa,
         nm_context_rdf_version, nm_context_rel, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070,
@@ -1599,6 +1619,7 @@ typedef enum
 
 typedef enum { no_dsssl, no_w3c } e_notations;
 typedef enum { nsd_none, nsd_space, nsd_dashed } e_nsd;
+typedef enum { nuf_refurbished, nuf_new, nuf_used } e_nuf;
 typedef enum { og_musicsong, og_musicalbum, og_musicplaylist, og_musicradiostation, og_videomovie, og_videoepisode, og_videotvshow, og_videoother,
                og_article, og_book, og_profile, og_website } e_ogtype;
 typedef enum { oo_off, oo_on } e_onoff;
@@ -1751,7 +1772,7 @@ typedef enum {
     s_bibo, s_book,
     s_cc, s_content, s_csvw, s_ctag,
     s_daq, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_doap, s_dqv, s_describedby, s_duv,
-    s_earl,
+    s_earl, s_event,
     s_faux, s_foaf, s_frbr_core,
     s_gr, s_grddl,
     s_ical, s_icaltzd,
@@ -1798,6 +1819,26 @@ typedef enum
     asc_tentativeaccept, asc_tentativereject, asc_tombstone, asc_travel,
     asc_undo, asc_update,
     asc_video, asc_view,
+
+    // bibo
+    bibo_academicarticle, bibo_article, bibo_audiodocument, bibo_audiovisualdocument,
+    bibo_bdarcus, bibo_bill, bibo_book, bibo_booksection, bibo_brief,
+    bibo_chapter, bibo_code, bibo_collecteddocument, bibo_collection, bibo_conference, bibo_courtreporter,
+    bibo_degrees_ma, bibo_degrees_ms, bibo_degrees_phd, bibo_document, bibo_documentpart, bibo_documentstatus, bibo_editedbook,
+    bibo_email, bibo_event, bibo_excerpt,
+    bibo_fgiasson, bibo_film,
+    bibo_hearing,
+    bibo_image, bibo_interview, bibo_issue,
+    bibo_journal,
+    bibo_legalcasedocument, bibo_legaldecision, bibo_legaldocument, bibo_legislation, bibo_letter,
+    bibo_magazine, bibo_manual, bibo_manuscript, bibo_map, bibo_multivolumebook,
+    bibo_newspaper, bibo_note,
+    bibo_patent, bibo_performance, bibo_periodical, bibo_personalcommunication, bibo_personalcommunicationdocument, bibo_proceedings,
+    bibo_quote,
+    bibo_referencesource, bibo_report,
+    bibo_series, bibo_slide, bibo_slideshow, bibo_standard, bibo_status_accepted, bibo_status_draft, bibo_status_forthcoming, bibo_status_nonpeerreviewed, bibo_status_peerreviewed, bibo_status_published, bibo_status_rejected, bibo_status_unpublished, bibo_statute,
+    bibo_thesis, bibo_thesisdegree,
+    bibo_webpage, bibo_website, bibo_workshop,
 
     // common tag
     ctag_author, ctag_auto, ctag_reader, ctag_tag,
@@ -1865,7 +1906,10 @@ typedef enum
     earl_testcase, earl_testcriterion, earl_testmode, earl_testrequirement, earl_testresult, earl_testsubject,
     earl_undisclosed, earl_unknownmode, earl_untested,
 
-   // foaf
+    // event
+    event_event, event_factor, event_product,
+
+    // foaf
     foaf_agent, foaf_document, foaf_group, foaf_image, foaf_labelproperty, foaf_onlineaccount, foaf_onlinechataccount, foaf_onlineecommerceaccount, foaf_onlinegamingaccount, foaf_organisation,
     foaf_person, foaf_personalprofiledocument, foaf_project,
 
@@ -2314,6 +2358,13 @@ typedef enum
     time_wednesday,
     time_year,
 
+    // data vocabulary
+    v_breadcrumb,
+    v_event,
+    v_offer, v_offeraggregate, v_organisation,
+    v_person, v_product,
+    v_review, v_reviewaggregate,
+
     // vcard
     vcard_address,
     vcard_bbs,
@@ -2390,6 +2441,24 @@ typedef enum
     asp_units, asp_updated, asp_upstreamduplicates, asp_url,
     asp_verb,
     asp_width,
+
+    // bibo
+    bibo_abstract, bibo_affirmedby, bibo_annotates, bibo_argued, bibo_asin, bibo_authorlist,
+    bibo_chapternumber, bibo_citedby, bibo_cites, bibo_coden, bibo_content, bibo_contributorlist, bibo_court,
+    bibo_degree, bibo_direcor, bibo_distributor, bibo_doi,
+    bibo_eanucc13, bibo_edition, bibo_editor, bibo_editorlist, bibo_eissn,
+    bibo_gtin14,
+    bibo_handle,
+    bibo_identifier, bibo_interviewee, bibo_interviewer, bibo_isbn, bibo_isbn10, bibo_isbn13, bibo_issn, bibo_issuenumber, bibo_issuer,
+    bibo_lccn, bibo_locator,
+    bibo_number, bibo_numpages, bibo_numvolumes,
+    bibo_oclcnum, bibo_organiser, bibo_owner,
+    bibo_pageend, bibo_pages, bibo_pagestart, bibo_performer, bibo_pmid, bibo_prefixname, bibo_presentedat, bibo_presents, bibo_producer,
+    bibo_recipient, bibo_reproducedin, bibo_reversedby, bibo_reviewof,
+    bibo_section, bibo_shortdescription, bibo_shorttitle, bibo_sici, bibo_status, bibo_subsequentlegaldecision, bibo_suffixname,
+    bibo_transcriptof, bibo_translationof, bibo_translator,
+    bibo_upc, bibo_uri,
+    bibo_volume,
 
     // creative commons
     cc_attributionname, cc_attributionurl, cc_deprecatedon, cc_jurisdiction, cc_legalcode, cc_licence, cc_morepermissions, cc_permits, cc_prohibits, cc_requires,
@@ -2510,6 +2579,16 @@ typedef enum
     earl_result,
     earl_subject,
     earl_test,
+
+    // event
+    ep_agent, ep_agentin,
+    ep_factor, ep_factorof,
+    ep_hasagent, ep_hasfactor, ep_hasliteralfactor, ep_hasproduct, ep_hassubevent,
+    ep_isagentin, ep_isfactorof,
+    ep_literalfactor,
+    ep_place, ep_producedin, ep_product,
+    ep_subevent,
+    ep_time,
 
     // foaf
     foaf_account, foaf_accountname, foaf_accountservicehomepage, foaf_age, foaf_aimchatid,
@@ -3078,6 +3157,27 @@ typedef enum
     tp_week, tp_weeks,
     tp_year, tp_years,
 
+    // data vocabulary
+    v_acquaintance, v_address, v_adr, v_affiliation, v_availability,
+    v_best, v_brand,
+    v_category, v_child, v_condition, v_contact, v_count, v_countryname, v_currency,
+    v_description, v_dtreviewed, v_duration,
+    v_enddate, v_eventtype,
+    v_fn, v_friend,
+    v_geo,
+    v_highprice,
+    v_identifier, v_image, v_item, v_itemoffered, v_itemreviewed,
+    v_latitude, v_locality, v_location, v_longitude, v_lowprice,
+    v_name, v_nickname,
+    v_offercount, v_offerdetails,  v_offerurl, v_org,
+    v_photo, v_postcode, v_price, v_pricevaliduntil,
+    v_rating, v_region, v_reviewed, v_reviewer, v_role,
+    v_seller, v_startdate, v_streetaddress, v_summary,
+    v_title,
+    v_url,
+    v_votes,
+    v_worst,
+
     // vcard
     vcard_additional_name, vcard_adr, vcard_agent,
     vcard_bday,
@@ -3311,7 +3411,7 @@ typedef enum {
     t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index,
         t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus,
         t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
-    t_just_date, t_just_time,
+    t_jsonld_version, t_jtoken, t_just_date, t_just_time,
     t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind,
     t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length, t_length_absolute,
         t_length_relative, t_lengthadjust, t_linebreak, t_linebreakstyle, t_linecap, t_line_height, t_linejoin, t_linethickness, t_link, t_linkarg, t_linkargs,
@@ -3325,7 +3425,7 @@ typedef enum {
         t_mf_listing_action, t_mf_listing_actions, t_mf_method, t_mf_reviewtype, t_mf_status, t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar,
         t_minute, t_mode, t_month, t_monthday, t_morphology_operator, t_mql, t_mqls, t_myersbriggs,
     t_name, t_nameref, t_namespace, t_namedspace, t_navigation, t_negative, t_nit_macro, t_nit_section, t_not_0, t_not_empty, t_not_neg, t_not_pos,
-        t_notation, t_notations, t_nsd, t_nsds, t_num,
+        t_notation, t_notations, t_nsd, t_nsds, t_nuf, t_num,
     t_occurence, t_ogtype, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, t_overlay,
     t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_panose1, t_percent, t_phase, t_phase_x, t_pics, t_plus_1_7, t_plusstyle, t_pointer_events,
         t_points, t_positive, t_positive_1_2, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio, t_preserveaspectratio10,
