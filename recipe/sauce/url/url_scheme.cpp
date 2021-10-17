@@ -168,7 +168,7 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
             {   nits.pick (nit_empty_host, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "host cannot be empty"); return false; }
             else if ((host [0] >= '0') && (host [0] <= '9'))
             {   if (host.find_first_not_of (DENARY ".") != host.npos)
-                {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "illegal character in ipv4 address"); return false; }
+                {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_warning, ec_url, "illegal character in ipv4 address"); return false; }
                 vstr_t octal;
                 octal.resize (4);
                 for (int i = 0; i < 4; ++i)

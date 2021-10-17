@@ -608,6 +608,9 @@
     <ClInclude Include="..\heater\rdf\rdfa_type.h">
       <Filter>Heater\rdf</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\parser\jsonic.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1074,6 +1077,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\rdf\rdfa_type.cpp">
       <Filter>Sauce\rdf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\jsonic.cpp">
+      <Filter>Sauce\parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

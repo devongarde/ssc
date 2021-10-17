@@ -368,6 +368,9 @@ template < > struct type_master < t_inputtype4 > : enum_n < t_inputtype4, e_inpu
 template < > struct type_master < t_inputtype5 > : enum_n < t_inputtype5, e_inputtype5 >
 { using enum_n < t_inputtype5, e_inputtype5 > :: enum_n; };
 
+template < > struct type_master < t_jtoken > : enum_n < t_jtoken, e_jtoken >
+{ using enum_n < t_jtoken, e_jtoken > :: enum_n; };
+
 template < > struct type_master < t_kind > : enum_n < t_kind, e_kind >
 { using enum_n < t_kind, e_kind > :: enum_n; };
 

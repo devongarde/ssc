@@ -113,7 +113,7 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
             if (standard_schema != ns_xhtml)
             {   nits.pick (nit_namespace_redefine, es_error, ec_rdfa, quote (xmlns), " cannot be redefined to ", quote (schema));
                 return s_invalid; }
-            nits.pick (nit_namespace_redefine, es_info, ec_rdfa, "it is not necessary to redefine ", quote (xmlns), ", it is defined by default");
+            nits.pick (nit_namespace_redefine, ed_rdfa_c, "(entire document)", es_info, ec_rdfa, "it is not necessary to redefine ", quote (xmlns), ", it is defined by default");
             break;
         default :
             break; }

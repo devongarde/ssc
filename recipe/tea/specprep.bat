@@ -48,6 +48,7 @@ ssc.exe -T -Z -o ../out/jul20living.tst -f ../toast/living/jul20/living.conf
 ssc.exe -T -Z -o ../out/jan21living.tst -f ../toast/living/jan21/living.conf
 ssc.exe -T -Z -o ../out/apr21living.tst -f ../toast/living/apr21/living.conf
 ssc.exe -T -Z -o ../out/jul21living.tst -f ../toast/living/jul21/living.conf
+ssc.exe -T -Z -o ../out/oct21living.tst -f ../toast/living/oct21/living.conf
 ssc.exe -T -Z -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T -Z -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T -Z -o ../out/3math.tst -f ../toast/math/3/math.conf
@@ -89,7 +90,14 @@ ssc.exe -T -Z -o ../out/RDFadc.tst -f ../toast/RDFa/dc/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFafoaf.tst -f ../toast/RDFa/foaf/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFagr.tst -f ../toast/RDFa/gr/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFagrddl.tst -f ../toast/RDFa/grddl/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFaimported.tst -f ../toast/RDFa/imported/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFalrdw.tst -f ../toast/RDFa/lrdw/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFarole.tst -f ../toast/RDFa/role/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFars.tst -f ../toast/RDFa/rs/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFaschema.tst -f ../toast/RDFa/schema/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFasioc.tst -f ../toast/RDFa/sioc/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFavcard.tst -f ../toast/RDFa/vcard/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFaxsd.tst -f ../toast/RDFa/xsd/rdfa.conf
 ssc.exe -T -Z -o ../out/commentcomment.tst -f ../toast/shadow/comment/comment.conf
 ssc.exe -T -Z -o ../out/copycopy.tst -f ../toast/shadow/copy/copy.conf
 ssc.exe -T -Z -o ../out/copydiffcopydiff.tst -f ../toast/shadow/copydiff/copydiff.conf

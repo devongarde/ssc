@@ -320,7 +320,7 @@ vstr_t sections;
     "[doc-foot]\n" \
     "</MAIN>\n" \
     "<FOOTER>\n" \
-    "<A href=\"{{prog-webaddr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}}<BR>\n" \
+    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}}<BR>\n" \
     "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-html}}</A>\n" \
     "</FOOTER>\n" \
     "</BODY>\n" \

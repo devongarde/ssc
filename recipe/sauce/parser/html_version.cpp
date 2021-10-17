@@ -28,8 +28,8 @@ const char* doctype = "DOCTYPE";
 const ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
-html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions)
-        :   version (0, 0, flags | HV_WHATWG), ext_ (extensions)
+html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions, const flags_t e2)
+        :   version (0, 0, flags | HV_WHATWG), ext_ (extensions), ext2_ (e2)
 {   if (d.is_not_a_date ()) { reset (html_1); return; }
     int y = d.year ();
     if ((y > 100) && (y < 2000)) { reset (html_1); return; }
@@ -43,13 +43,17 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
     set_mjr (static_cast <unsigned char> (y), static_cast <unsigned char> (m * 16));
     if (no_ext (MATH_MASK))
         if (mjr () <= HTML_2010) set_ext (HE_MATH_1);
-        else if (mjr () <= HTML_2019) set_ext (HE_MATH_2);
+        else if (mjr () <= HTML_2014) set_ext (HE_MATH_2);
+        else if (mjr () <= HTML_2019) set_ext (HE_MATH_3);
         else set_ext (HE_MATH_4);
     if (no_ext (SVG_MASK))
         if (*this >= html_apr21) set_ext (HE_SVG_21);
         else if (*this >= html_5_3) set_ext (HE_SVG_20);
         else if (mjr () > HTML_2008) set_ext (HE_SVG_12_TINY);
-        else set_ext (HE_SVG_11); }
+        else set_ext (HE_SVG_11);
+    if (no_ext2 (JSONLD_MASK))
+        if (*this >= html_jul20) set_ext2 (H2_JSONLD_1_1);
+        else if (mjr () >= HTML_2014) set_ext2 (H2_JSONLD_1_0); }
 
 void html_version::init (const unsigned char mjr)
 {   switch (mjr)
@@ -138,6 +142,7 @@ void html_version::init (const unsigned char mjr)
     if (transitional ()) res << "/transitional";
     if (has_svg ()) res << "/SVG-" << type_master < t_svg_version > :: name (svg_version ());
     if (has_math ()) res << "/MathML-" << math_version ();
+//    if (has_jsonld ()) res << "/jsonld-"  << enum_n < t_jsonld_version, e_jsonld_version > :: name (jsonld_version ());
     if (has_xlink ()) res << "/xLink";
     if (has_rdfa ()) res << "/rdfa";
     if (chrome ()) res << "/Chrome";
@@ -619,6 +624,11 @@ e_math_version html_version::math_version () const
     if (all_ext (HE_MATH_1)) return math_1;
     return math_none; }
 
+e_jsonld_version html_version::jsonld_version () const
+{   if (all_ext2 (H2_JSONLD_1_1)) return jsonld_1_1;
+    if (all_ext2 (H2_JSONLD_1_0)) return jsonld_1_0;
+    return jsonld_none; }
+
 void html_version::math_version (const e_math_version v)
 {   reset_ext (MATH_MASK);
     switch (v)
@@ -626,6 +636,13 @@ void html_version::math_version (const e_math_version v)
         case math_2 : set_ext (HE_MATH_2); break;
         case math_3 : set_ext (HE_MATH_3); break;
         case math_4 : set_ext (HE_MATH_4); break;
+        default : break; } }
+
+void html_version::jsonld_version (const e_jsonld_version v)
+{   reset_ext2 (JSONLD_MASK);
+    switch (v)
+    {   case jsonld_1_0 : set_ext2 (H2_JSONLD_1_0); break;
+        case jsonld_1_1 : set_ext2 (H2_JSONLD_1_1); break;
         default : break; } }
 
 ::std::string html_version::get_doctype () const
@@ -809,4 +826,10 @@ html_version get_min_version (const e_math_version e)
         case math_2 : return xhtml_math_2;
         case math_3 : return html_math_3;
         case math_4 : return html_math_4;
+        default : return html_0; } }
+
+html_version get_min_version (const e_jsonld_version e)
+{   switch (e)
+    {   case jsonld_1_0 : return html_jsonld_1_0;
+        case jsonld_1_1 : return html_jsonld_1_1;
         default : return html_0; } }

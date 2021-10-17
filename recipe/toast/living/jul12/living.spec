@@ -190,7 +190,7 @@ PASS ../toast/living/jul12/example.html
 170 inserted_missing_closure missing_close
 171 inserted_missing_closure
 175 use_quote_code
-185 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
+185 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
 187 use_double_quote_code
 189 use_double_quote_code
 

@@ -280,6 +280,9 @@ void options::process (nitpick& nits, int argc, char** argv)
         (GENERAL TEST ",T", "Output format for automated tests.")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("scroggins"), "User name to supply when requested (for webmentions).")
         (GENERAL WEBMENTION, "Process webmentions (experimental, incompatible with " GENERAL CGI ").")
+        (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
+        (JSONLD VERIFY, "Verify JSON-LD.")
+        (JSONLD VERSION, ::boost::program_options::value < ::std::string > (), "Presume this version of JSON-LD (1.0 or 1.1, default 1.0).")
         (NITS OVERRIDE ",P", ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides " NITS FORMAT ".")
         (NITS SPEC ",Z", "Output nit codes, not numbers, in tests (scc-test rejects this format).")
         (NITS WATCH, "Output debug nits, which you'll need to manage particular error messages.")
@@ -759,6 +762,18 @@ void options::contextualise (nitpick& nits)
         context.presume_tags (var_.count (HTML TAGS));
         if (var_.count (HTML TITLE)) context.title (static_cast < unsigned char > (var_ [HTML TITLE].as < int > ()));
 
+        context.jsonld (! var_.count (JSONLD VERIFY));
+        if (var_.count (JSONLD EXTENSION)) context.jsonld_extension (var_ [JSONLD EXTENSION].as < vstr_t > ());
+
+        if (var_.count (JSONLD VERSION))
+        {   ::std::string ver (var_ [JSONLD VERSION].as < ::std::string > ());
+            if (ver.empty ())
+                nits.pick (nit_config_version, es_warning, ec_init, "missing json-ld version");
+            else
+            {   if (ver == "1.0") context.jsonld_version (jsonld_1_0);
+                else if (ver == "1.1") context.jsonld_version (jsonld_1_1);
+                else nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid json-ld version"); } }
+
         context.links (var_.count (LINKS CHECK));
         context.external (var_.count (LINKS EXTERNAL));
         context.forwarded (var_.count (LINKS FORWARD));
@@ -1016,6 +1031,7 @@ void options::contextualise (nitpick& nits)
 #undef TEST_VAR
 
         if (context.write_path ().empty ()) context.write_path (context.root ()); }
+    context.consolidate_jsonld ();
     schema_version::init (); }
 
 void pvs (::std::ostringstream& res, const vstr_t& data)
@@ -1115,6 +1131,10 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (HTML SNIPPET)) res << HTML SNIPPET ": " << var_ [HTML SNIPPET].as < ::std::string > () << "\n";
     if (var_.count (HTML TITLE)) res << HTML TITLE ": " << var_ [HTML TITLE].as < int > () << "\n";
     if (var_.count (HTML VERSION)) res << HTML VERSION ": " << var_ [HTML VERSION].as < ::std::string > () << "\n";
+
+    if (var_.count (JSONLD EXTENSION)) { res << JSONLD EXTENSION ": "; pvs (res, var_ [JSONLD EXTENSION].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (JSONLD VERIFY)) res << JSONLD VERIFY "\n";
+    if (var_.count (JSONLD VERSION)) res << JSONLD VERSION ": " << var_ [JSONLD VERSION].as < ::std::string > () << "\n";
 
     if (var_.count (LINKS EXTERNAL)) res << LINKS EXTERNAL "\n";
     if (var_.count (LINKS FORWARD)) res << LINKS FORWARD "\n";

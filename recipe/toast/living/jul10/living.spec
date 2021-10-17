@@ -1093,7 +1093,6 @@ PASS ../toast/living/jul10/vcard.html
 
 PASS ../toast/living/jul10/vevent.html
 24 use_quote_code
-26 invalid_attribute_version wrong_version
 
 PASS ../toast/living/jul10/video.html
 30 url_not_found autoplay

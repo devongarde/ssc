@@ -97,7 +97,9 @@ const schema_version default_schema (s_none, 0, 0);
 
 const schema_version article_schema (s_article, 1, 0);
 
-const schema_version as_schema (s_as, 1, 0);
+const schema_version as_schema (s_as, 2, 0);
+
+const schema_version bibo_schema (s_bibo, 1, 3);
 
 const schema_version book_schema (s_book, 1, 0);
 
@@ -127,6 +129,8 @@ const schema_version doap_schema (s_doap, 1, 0);
 const schema_version duv_schema (s_duv, 1, 0);
 
 const schema_version earl_schema (s_earl, 1, 0);
+
+const schema_version event_schema (s_event, 1, 0);
 
 const schema_version faux_schema (s_faux, 1, 0);
 
@@ -236,6 +240,8 @@ const schema_version ssn_schema (s_ssn, 1, 0);
 const schema_version sosa_schema (s_ssn, 1, 0);
 
 const schema_version time_schema (s_time, 1, 0);
+
+const schema_version data_vocabulary (s_v, 1, 0);
 
 const schema_version vcard_schema (s_vcard, 1, 0);
 

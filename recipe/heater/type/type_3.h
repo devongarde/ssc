@@ -130,6 +130,9 @@ template < > struct type_master < t_mf_status > : three_value < t_mf_status, e_m
 template < > struct type_master < t_nsd > : three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed >
 { using three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed > :: three_value; };
 
+template < > struct type_master < t_nuf > : three_value < t_nuf, e_nuf, sz_refurbished, sz_new, sz_used >
+{ using three_value < t_nuf, e_nuf, sz_refurbished, sz_new, sz_used > :: three_value; };
+
 template < > struct type_master < t_preload5 > : three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none >
 { using three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none > :: three_value; };
 

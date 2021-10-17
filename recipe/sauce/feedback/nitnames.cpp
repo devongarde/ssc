@@ -682,6 +682,11 @@ nitname nitnames [] =
     { nit_config_shadow, "config_shadow" },
     { nit_template_file, "template_file" },
     { nit_code_dtd, "code_dtd" },
+    { nit_data_vocabulary, "data_vocabulary" },
+    { nit_json_error, "json_error" },
+    { nit_json_internal_error, "json_internal_error" },
+    { nit_json_id, "json_id" },
+    { nit_vocab, "vocab" },
 
     { nit_off, "" } };
 

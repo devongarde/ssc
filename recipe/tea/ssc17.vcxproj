@@ -78,6 +78,7 @@
     <ClInclude Include="..\heater\microformat\property_value.h" />
     <ClInclude Include="..\heater\microformat\sibling.h" />
     <ClInclude Include="..\heater\parser\html_version.h" />
+    <ClInclude Include="..\heater\parser\jsonic.h" />
     <ClInclude Include="..\heater\parser\parse_abb.h" />
     <ClInclude Include="..\heater\parser\parse_attribute.h" />
     <ClInclude Include="..\heater\parser\parse_attributes.h" />
@@ -282,6 +283,7 @@
     <ClCompile Include="..\sauce\microformat\property_value.cpp" />
     <ClCompile Include="..\sauce\microformat\sibling.cpp" />
     <ClCompile Include="..\sauce\parser\html_version.cpp" />
+    <ClCompile Include="..\sauce\parser\jsonic.cpp" />
     <ClCompile Include="..\sauce\parser\parse_attribute.cpp" />
     <ClCompile Include="..\sauce\parser\parse_attributes.cpp" />
     <ClCompile Include="..\sauce\parser\parse_bras_ket.cpp" />

@@ -207,6 +207,7 @@ hav_t havt_t [] =
     { { HTML_5_2, HV_W3 }, { HTML_UNDEF }, elem_tfoot, a_rowgroup },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_tfoot, a_valign },
     HTML2_CLID_ATTRIBUTES (elem_tfoot),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_tfoot),
 
     { { HTML_4_0 }, { XHTML_2_0 }, elem_th, a_abbr },
     { { HTML_JAN13 }, { HTML_UNDEF }, elem_th, a_abbr },

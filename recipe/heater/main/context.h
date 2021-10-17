@@ -46,12 +46,12 @@ class corpus;
 
 class context_t
 {   bool            article_ = false, body_ = false, cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = false, external_ = false, fe_ = false,
-                    forwarded_ = false, info_ = false, load_css_ = false, links_ = false, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = false,
-                    microdata_ = false, nids_ = false, nits_ = false, nits_nits_nits_ = false, nochange_ = false, notify_ = false, not_root_ = false, once_ = false, presume_tags_ = false,
-                    process_webmentions_ = false, progress_ = false, rdfa_ = false, rel_ = false, repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true,
-                    rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, sarcasm_ = false, schema_ = false, shadow_comment_ = false, shadow_changed_ = false, shadow_enable_ = false,
-                    shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false, stats_page_ = false, stats_summary_ = false, test_ = false,
-                    unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
+                    forwarded_ = false, info_ = false, jsonld_ = false, load_css_ = false, links_ = false, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false,
+                    mf_verify_ = false, microdata_ = false, nids_ = false, nits_ = false, nits_nits_nits_ = false, nochange_ = false, notify_ = false, not_root_ = false,
+                    once_ = false, presume_tags_ = false, process_webmentions_ = false, progress_ = false, rdfa_ = false, rel_ = false, repeated_ = false, reset_ = false,
+                    revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, sarcasm_ = false, schema_ = false,
+                    shadow_comment_ = false, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false,
+                    stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, dc_ = 1, foaf_ = 99, title_ = 0, xsd_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -65,7 +65,7 @@ class context_t
     ::std::string   macro_end_ = "}}", macro_start_ = "{{";
     ::boost::filesystem::path config_, corpus_;
     e_wm_status     wm_status_ = wm_undefined;
-    vstr_t          custom_elements_, environment_, exports_, extensions_, mentions_, shadow_ignore_, shadows_, site_, templates_, virtuals_;
+    vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, mentions_, shadow_ignore_, shadows_, site_, templates_, virtuals_;
     replies         replies_;
     hooks           hooks_;
     css_cache       css_;
@@ -131,6 +131,9 @@ public:
     const ::std::string index () const { return index_; }
     bool info () const { return info_; }
     bool invalid () const { return ! valid_; }
+    bool jsonld () const { return ! jsonld_; }
+    const vstr_t jsonld_extension () const { return jsonld_ext_; }
+    e_jsonld_version jsonld_version () const { return version_.jsonld_version (); }
     ::std::string lang () const { return lang_; }
     bool links () const { return links_; }
     bool load_css () const { return ! load_css_; }
@@ -268,6 +271,12 @@ public:
     context_t& incoming (const ::std::string& s) { incoming_ = s; return *this; }
     context_t& index (const ::std::string& s) { index_ = s; mac (nm_context_index, s); return *this; }
     context_t& info (const bool b) { info_ = b; mac (nm_context_info, b); return *this; }
+    context_t& jsonld (const bool b) { jsonld_ = b; mac (nm_context_jsonld, b); return *this; }
+    context_t& jsonld_extension (const vstr_t& s) { jsonld_ext_ = s; mac (nm_context_jsonld_extension, s); return *this; }
+    context_t& jsonld_version (const e_jsonld_version v)
+    {   version_.jsonld_version (v);
+        mac < int > (nm_context_jsonld_version, v);
+        return *this; }
     context_t& lang (const ::std::string& s) { lang_ = s; mac (nm_context_lang, s); return *this; }
     context_t& links (const bool b)
     {   links_ = b;
@@ -357,7 +366,12 @@ public:
     context_t& site (const vstr_t& s) { site_ = s; mac (nm_context_site, s); return *this; }
     context_t& slob (const bool b) { slob_ = b; mac (nm_context_slob, b); return *this; }
     context_t& spec (const bool b) { spec_ = b; mac (nm_context_spec, b); return *this; }
-    context_t& snippet (const ::std::string& s) { snippet_ = s; mmac_.emplace (nm_html_snippet, s); quote_style (qs_html); return *this; }
+    context_t& snippet (const ::std::string& s)
+    {   snippet_ = s;
+        mmac_.emplace (nm_context_root, "snippet");
+        mmac_.emplace (nm_html_snippet, s);
+        quote_style (qs_html);
+        return *this; }
     context_t& ssi (const bool b) { ssi_ = b; mac (nm_context_ssi, b); return *this; }
     context_t& stats (const ::std::string& s) { stats_ = s; mac (nm_context_stats_export, s); return *this; }
     context_t& stats_page (const bool b) { stats_page_ = b; mac (nm_context_stats_page, b); return *this; }
@@ -435,6 +449,8 @@ public:
     bool severity_exceeded () const;
     ::boost::program_options::options_description& validation () { return validation_; }
     const ::boost::program_options::options_description& validation () const { return validation_; }
+    void consolidate_jsonld ()
+    {   for (auto j : jsonld_ext_) extensions_.push_back (j); }
     ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const; };
 
 extern context_t context;

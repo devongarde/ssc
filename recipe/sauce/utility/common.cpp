@@ -407,6 +407,8 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
             nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, i -> second.spell_, " is spelt correctly"); }
         else nits.pick (nit_correct_spelling, es_info, ec_incorrectness, i -> second.spell_, " is spelt correctly");
         return true; }
+    ::std::string sss (ss);
+    if (sss.length () > 60) sss = "text";
     for (::std::size_t x = 0; word [x].spell_ != nullptr; ++x)
         if (ss.find (word [x].spell_) != ::std::string::npos)
         {   if (word [x].dict_ != d_none)
@@ -414,8 +416,8 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
                 if (word [x].ref_ != nullptr)
                 {   ref += ", page ";
                     ref += word [x].ref_; }
-                nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, ss, " contains '", word [x].spell_, "', which is spelt correctly"); }
-            else nits.pick (nit_correct_spelling, es_info, ec_incorrectness, ss, " contains '", word [x].spell_, "', which is spelt correctly");
+                nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains '", word [x].spell_, "', which is spelt correctly"); }
+            else nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains '", word [x].spell_, "', which is spelt correctly");
             return true; }
     return false; }
 

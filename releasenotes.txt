@@ -3,6 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.115
+- set unii installation directory to ~/bin
+- added experimental solution for Visual Studio 2022 preview
+- XHTML role attribute (https://www.w3.org/TR/xhtml-role/)
+- now requires boost 1.75 or better
+- unii builds now require CMake 3.12 or better
+- underlying work
+
 0.0.114
 - underlying work
 
@@ -427,4 +435,3 @@ https://ssc.lu/
 
 0.0.1
 - import swlc
-

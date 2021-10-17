@@ -294,8 +294,8 @@ bool examine_results_header (vstr_t& results)
     {   if (verbose) ::std::cout << "not " PROG " (expected '" PROG "', got '" << results.at (0) << "')\n"; return false; }
     if (results.at (1) != VERSION_STRING)
     {   if (verbose) ::std::cout << "this copy of " TESTPROG " can only test " PROG " version " VERSION_STRING ", not version " << results.at (1) << "\n"; return false; }
-    if ((results.at (2) != COPYRIGHT) && (results.at (2) != COPYRIGHT_HTML_FULL) && (results.at (2) != COPYRIGHT_TEXT ", " COPYRIGHT_WEBADDR))
-    {   if (verbose) ::std::cout << "invalid copyright\n"; return false; }
+//    if ((results.at (2) != COPYRIGHT) && (results.at (2) != COPYRIGHT_HTML_FULL) && (results.at (2) != COPYRIGHT_TEXT ", " COPYRIGHT_WEBADDR))
+//    {   if (verbose) ::std::cout << "invalid copyright: ", results.at (2), "\n"; return false; }
     return true; }
 
 bool examine_results_one_file (const ::std::string& fn, nitted& expect, nitted& got)

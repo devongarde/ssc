@@ -127,6 +127,9 @@ template < > struct type_master < t_hv > : two_value < t_hv, e_hv, sz_horizontal
 template < > struct type_master < t_initialvisibility > : two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always, false >
 { using two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always, false > :: two_value; };
 
+template < > struct type_master < t_jsonld_version > : two_value < t_jsonld_version, e_jsonld_version, sz_1_0, sz_1_1, false >
+{ using two_value < t_jsonld_version, e_jsonld_version, sz_1_0, sz_1_1, false > :: two_value; };
+
 template < > struct type_master < t_layout > : two_value < t_layout, e_layout, sz_irrelevant, sz_relevant, false >
 { using two_value < t_layout, e_layout, sz_irrelevant, sz_relevant, false > :: two_value; };
 
@@ -261,4 +264,3 @@ template < > struct type_master < t_yesnoempty > : two_value < t_yesnoempty, e_y
 
 template < > struct type_master < t_zoompan > : two_value < t_zoompan, e_zoompan, sz_disable, sz_magnify, false >
 { using two_value < t_zoompan, e_zoompan, sz_disable, sz_magnify, false > :: two_value; };
-

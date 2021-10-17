@@ -493,7 +493,6 @@ PASS ../toast/living/jul09/vcard.html
 
 PASS ../toast/living/jul09/vevent.html
 26 use_quote_code
-28 invalid_attribute_version wrong_version
 
 PASS ../toast/living/jul09/wbr.html
 7 use_double_quote_code use_double_quote_code

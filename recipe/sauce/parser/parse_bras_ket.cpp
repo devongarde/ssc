@@ -191,12 +191,23 @@ html_version bras_ket::parse (const ::std::string& content)
     {   if (ve_.size () >= ket_reserve - 16)
         {   ket_reserve += ket_alloc;
             ve_.reserve (ket_reserve); }
-        if (backslashed) { backslashed = false; continue; }
-        bool newline = false;
         auto ch = *i;
+        if (backslashed)
+        {   switch (ch)
+            {   case '\n' :
+                case '\f' :
+                case '\r' :
+                    ++line_; ll = 0;
+                    bol = e;
+                    break;
+                default :
+                    break; }
+            backslashed = false;
+            continue; }
+        bool newline = false;
         switch (ch)
         {   case '\\' :
-                backslashed = true;
+                if (silent_content) backslashed = true;
                 continue;
             case '\'' :
                 if (i + 1 < e)

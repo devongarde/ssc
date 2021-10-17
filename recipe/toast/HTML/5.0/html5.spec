@@ -175,7 +175,7 @@ PASS ../toast/HTML/5.0/html5-example.html
 125 use_quote_code
 135 unrecognised_value
 137 unrecognised_value
-149 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
+149 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
 151 use_double_quote_code
 153 use_double_quote_code
 156 schema_domain excluded_attribute excluded_attribute

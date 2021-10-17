@@ -1,12 +1,12 @@
-cmake_minimum_required (VERSION 3.11)
-project (ssc VERSION 0.0.114 LANGUAGES CXX)
+cmake_minimum_required (VERSION 3.12)
+cmake_policy (SET CMP0074 NEW)
+project (ssc VERSION 0.0.115 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
 
 # presumes stuff about ssc directory structure ... :-(
 set (R ${CMAKE_CURRENT_SOURCE_DIR}/..)
-set (D ${R}/..)
 set (H ${R}/heater)
 set (S ${R}/sauce)
 set (T ${R}/toast)
@@ -28,6 +28,7 @@ add_executable (ssc)
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
   message ("Only Visual Studios 2015/7/9 are known to build")
   target_compile_definitions (ssc PRIVATE WINDOWS)
+  set (D ${R}/..)
 endif ()
 
 if (UNIX)
@@ -53,8 +54,7 @@ if (UNIX)
   endif ()
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    set(Boost_USE_STATIC_LIBS ON)
-    link_directories ($BOOST_LIBRARYDIR)
+    link_directories (${BOOST_LIBRARYDIR} ${ICU_PATH}/lib)
     if (${CMAKE_SYSTEM} MATCHES "Darwin-20")
       message ("MacOS Big Sur")
       target_compile_definitions (ssc PRIVATE BIG_SUR MACOS)
@@ -74,9 +74,10 @@ if (UNIX)
     endif ()
   endif ()
 
+  set (D "~/bin")
 endif ()
 
-find_package (Boost 1.67 REQUIRED COMPONENTS system date_time filesystem locale program_options)
+find_package (Boost 1.75 REQUIRED COMPONENTS system date_time filesystem locale program_options)
 find_package (ICU 60.0 REQUIRED COMPONENTS dt in io tu uc)
 find_package (Iconv REQUIRED)
 
@@ -98,9 +99,9 @@ target_sources (ssc PRIVATE
             ${H}/microformat/microformat_export_rel.h ${H}/microformat/microformat_properties.h ${H}/microformat/microformats.h
             ${H}/microformat/microformats_ptr.h ${H}/microformat/prop.h ${H}/microformat/property.h ${H}/microformat/property_classes.h
             ${H}/microformat/property_value.h ${H}/microformat/sibling.h
-        ${H}/parser/html_version.h ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h ${H}/parser/parse_bra_ket.h
-            ${H}/parser/parse_bras_ket.h ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h
-            ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
+        ${H}/parser/html_version.h ${H}/parser/jsonic.h ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h
+            ${H}/parser/parse_bra_ket.h ${H}/parser/parse_bras_ket.h ${H}/parser/parse_css.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h
+            ${H}/parser/parse_ssi.h ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
         ${H}/rdf/rdf.h ${H}/rdf/rdfa_prop.h ${H}/rdf/rdfa_type.h
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
@@ -140,7 +141,7 @@ target_sources (ssc PRIVATE
             ${S}/microdata/microdata_itemtype.cpp
         ${S}/microformat/family.cpp ${S}/microformat/field.cpp ${S}/microformat/microformat_constructor.cpp ${S}/microformat/microformat_export.cpp
             ${S}/microformat/microformats.cpp ${S}/microformat/property_value.cpp ${S}/microformat/sibling.cpp
-        ${S}/parser/html_version.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_bra_ket.cpp
+        ${S}/parser/html_version.cpp ${S}/parser/jsonic.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_bra_ket.cpp
             ${S}/parser/parse_bras_ket.cpp ${S}/parser/parse_css.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp
             ${S}/parser/pattern.cpp ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp

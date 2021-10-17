@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ENVIRONMENT_ "environment"
 #define GENERAL_    "general"
 #define HTML_       "html"
+#define JSONLD_     "jsonld"
 #define LINKS_      "link"
 #define MATH_       "math"
 #define MF_         "microformat"
@@ -46,6 +47,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ENVIRONMENT ENVIRONMENT_ JOIN
 #define GENERAL     GENERAL_ JOIN
 #define HTML        HTML_ JOIN
+#define JSONLD      JSONLD_ JOIN
 #define LINKS       LINKS_ JOIN
 #define MF          MF_ JOIN
 #define MATH        MATH_ JOIN

@@ -54,7 +54,7 @@ class page
     nitpick nits_;
     uid_t euid_ = 0;
     itemscope_ptr itemscope_;
-    ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_;
+    ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_, jsonld_;
     url base_;
     ustr_t abbrs_;
     ::std::time_t updated_ = 0;
@@ -181,6 +181,7 @@ public:
     {   set_lynx (ids_.ndx (), dependency); }
     void add_depend (const fileindex_t dependency)
     {   add_dependency (ids_.ndx (), dependency); }
+    void append_jsonld (const ::std::string& j);
     ::std::string report (); };
 
 ::std::string get_page_url (const ::std::string& url);
