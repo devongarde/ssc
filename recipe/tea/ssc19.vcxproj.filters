@@ -756,6 +756,9 @@
     <Filter Include="Toast\JSON-LD\1.0">
       <UniqueIdentifier>{eccc28a6-a958-4ec1-843f-a86df05de34b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\JSON-LD\as">
+      <UniqueIdentifier>{85c8436f-9b49-4ad8-a16b-dfb09ead0098}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -21471,6 +21474,39 @@
     <None Include="..\toast\json-ld\1.0\basic-16.jld">
       <Filter>Toast\JSON-LD\1.0</Filter>
     </None>
+    <None Include="..\toast\json-ld\as\index.html">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\jsonld.conf">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\jsonld.spec">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-1.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-2.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-3.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-4.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-5.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-6.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-7.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-8.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -21714,6 +21750,9 @@
     </Text>
     <Text Include=".ssc\README.txt">
       <Filter>Tea\templates</Filter>
+    </Text>
+    <Text Include="..\toast\json-ld\README.txt">
+      <Filter>Toast\JSON-LD</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

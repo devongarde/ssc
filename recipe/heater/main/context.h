@@ -52,7 +52,7 @@ class context_t
                     revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, sarcasm_ = false, schema_ = false,
                     shadow_comment_ = false, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false,
                     stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
-    int             code_ = 0, dc_ = 1, foaf_ = 99, title_ = 0, xsd_ = 0;
+    int             code_ = 0, dc_ = 1, foaf_ = 99, title_ = MAX_IDEAL_TITLE_LENGTH, xsd_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
     html_version    version_;

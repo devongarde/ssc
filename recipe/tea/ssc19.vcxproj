@@ -590,6 +590,17 @@
     <None Include="..\toast\json-ld\1.0\index.html" />
     <None Include="..\toast\json-ld\1.0\jsonld.conf" />
     <None Include="..\toast\json-ld\1.0\jsonld.spec" />
+    <None Include="..\toast\json-ld\as\ex-1.jld" />
+    <None Include="..\toast\json-ld\as\ex-2.jld" />
+    <None Include="..\toast\json-ld\as\ex-3.jld" />
+    <None Include="..\toast\json-ld\as\ex-4.jld" />
+    <None Include="..\toast\json-ld\as\ex-5.jld" />
+    <None Include="..\toast\json-ld\as\ex-6.jld" />
+    <None Include="..\toast\json-ld\as\ex-7.jld" />
+    <None Include="..\toast\json-ld\as\ex-8.jld" />
+    <None Include="..\toast\json-ld\as\index.html" />
+    <None Include="..\toast\json-ld\as\jsonld.conf" />
+    <None Include="..\toast\json-ld\as\jsonld.spec" />
     <None Include="..\toast\link\css-good.css" />
     <None Include="..\toast\link\index.html" />
     <None Include="..\toast\link\link.conf" />
@@ -7011,6 +7022,7 @@
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
     <Text Include="..\gen\gen.txt" />
+    <Text Include="..\toast\json-ld\README.txt" />
     <Text Include="..\toast\README.txt" />
     <Text Include="..\toast\shadow\update\README.txt" />
     <Text Include="..\toast\snippet\README.txt" />

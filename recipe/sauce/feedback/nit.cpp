@@ -186,7 +186,10 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_ariaApr2021 : return "Aria (April 2021)";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_css_transform : return "CSS Transforms";
-        case ed_mql : return "Media Queries"; }
+        case ed_mql : return "Media Queries";
+        case ed_json : return "JSON";
+        case ed_jsonld_1_0 : return "JSON-LD 1.0";
+        case ed_jsonld_1_1 : return "JSON-LD 1.1"; }
     return "Unknown reference"; }
 
 ::std::string doc_ref (const e_doc doc)
@@ -257,5 +260,8 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_mozilla : return "moz://a, May 2020";
         case ed_microdata : return "HTML 5 living standard, WhatWG, July 2020";
-        case ed_microformats : return "Microformats (" MICROFORMATS_ORG "), May 2020"; }
+        case ed_microformats : return "Microformats (" MICROFORMATS_ORG "), May 2020";
+        case ed_json : return "JSON, RFC 4627";
+        case ed_jsonld_1_0 : return "JSON-LD 1.0, January 2014";
+        case ed_jsonld_1_1 : return "JSON-LD 1.1, July 2020"; }
     return "unknown reference"; }

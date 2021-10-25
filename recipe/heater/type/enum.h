@@ -383,6 +383,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
                 ed_w3, ed_mql, ed_ariaAug2020, ed_ariaApr2021, ed_mozilla, ed_ecma,
                 ed_microdata, ed_microformats, ed_mimetype, ed_rdfa, ed_rdfa_c, ed_apache, ed_so_11, ed_css_transform,
+                ed_json, ed_jsonld_1_0, ed_jsonld_1_1,
                 ed_imaginary } e_doc;
 const e_doc last_doc = ed_imaginary;
 typedef enum {  db_auto, db_usescript, db_nochange, db_resetsize, db_ideographic, db_alphabetic, db_hanging, db_mathematical,
@@ -610,7 +611,8 @@ typedef enum
     jt_reverse,
     jt_set,
     jt_type,
-    jt_value, jt_version, jt_vocab } e_jtoken;
+    jt_value, jt_version, jt_vocab,
+    jt_error } e_jtoken;
 
 typedef enum { ky_dsa, ky_ec, ky_rsa } e_keytype;
 typedef enum { k_subtitles, k_captions, k_descriptions, k_chapters, k_metadata } e_kind;
@@ -1562,7 +1564,8 @@ typedef enum
     nit_wwww, nit_bad_vocab, nit_vocab_defined, nit_sarcasm, nit_fe, nit_missing_double_quote, nit_bad_media, nit_mb, nit_byte,
     nit_b64, nit_help, nit_configuration, nit_title, nit_webaddr, nit_copyright, nit_version, nit_info, nit_build, nit_config_version,
     nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file, nit_code_dtd, nit_data_vocabulary, nit_json_error,
-    nit_json_internal_error, nit_json_id, nit_vocab,
+    nit_json_internal_error, nit_json_id, nit_vocab, nit_jsonld_context, nit_json_name, nit_json_invalid_node, nit_json_value_object,
+    nit_json_out_of_place,
 
     nit_context,
 

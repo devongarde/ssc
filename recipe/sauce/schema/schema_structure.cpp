@@ -3580,6 +3580,7 @@ microdata_structure schema_structure [] =
     { { 11, 0 }, { 0, 0 }, sch_creativework, sp_copyrightnotice },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_copyrightyear },
     { { 3, 5 }, { 0, 0 }, sch_creativework, sp_correction },
+    { { 13, 0 }, { 0, 0 }, sch_creativework, sp_countryoforigin },
     { { 3, 8 }, { 0, 0 }, sch_creativework, sp_creativeworkstatus },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_creator },
     { { 11, 0 }, { 0, 0 }, sch_creativework, sp_credittext },
@@ -4547,7 +4548,7 @@ microdata_structure schema_structure [] =
     { { 2, 0 }, { 0, 0 }, sch_moveaction, sp_tolocation },
 
     { { 2, 0 }, { 0, 0 }, sch_movie, sp_actor },
-    { { 2, 2 }, { 0, 0 }, sch_movie, sp_countryoforigin },
+    { { 2, 2 }, { 12, 0 }, sch_movie, sp_countryoforigin },
     { { 2, 0 }, { 0, 0 }, sch_movie, sp_director },
     { { 2, 0 }, { 0, 0 }, sch_movie, sp_duration },
     { { 2, 0 }, { 0, 0 }, sch_movie, sp_musicby },
@@ -5529,15 +5530,15 @@ microdata_structure schema_structure [] =
     { { 3, 4 }, { 0, 0 }, sch_trip, sp_provider },
     { { 3, 5 }, { 0, 0 }, sch_trip, sp_subtrip },
 
-    { { 2, 2 }, { 0, 0 }, sch_tvepisode, sp_countryoforigin },
+    { { 2, 2 }, { 12, 0 }, sch_tvepisode, sp_countryoforigin },
     { { 2, 0 }, { 0, 0 }, sch_tvepisode, sp_subtitlelanguage },
     { { 8, 0 }, { 0, 0 }, sch_tvepisode, sp_titleeidr },
 
-    { { 2, 2 }, { 0, 0 }, sch_tvseason, sp_countryoforigin },
+    { { 2, 2 }, { 12, 0 }, sch_tvseason, sp_countryoforigin },
 
     { { 2, 0 }, { 0, 0 }, sch_tvseries, sp_actor },
     { { 2, 0 }, { 0, 0 }, sch_tvseries, sp_containsseason },
-    { { 2, 2 }, { 0, 0 }, sch_tvseries, sp_countryoforigin },
+    { { 2, 2 }, { 12, 0 }, sch_tvseries, sp_countryoforigin },
     { { 2, 0 }, { 0, 0 }, sch_tvseries, sp_director },
     { { 2, 0 }, { 0, 0 }, sch_tvseries, sp_episode },
     { { 2, 0 }, { 0, 0 }, sch_tvseries, sp_musicby },

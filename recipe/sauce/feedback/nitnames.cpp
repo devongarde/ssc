@@ -687,6 +687,11 @@ nitname nitnames [] =
     { nit_json_internal_error, "json_internal_error" },
     { nit_json_id, "json_id" },
     { nit_vocab, "vocab" },
+    { nit_jsonld_context, "jsonld_context" },
+    { nit_json_name, "json_name" },
+    { nit_json_invalid_node, "json_invalid_node" },
+    { nit_json_value_object, "json_value_object" },
+    { nit_json_out_of_place, "json_out_of_place" },
 
     { nit_off, "" } };
 

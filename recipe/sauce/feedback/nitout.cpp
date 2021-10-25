@@ -309,19 +309,33 @@ vstr_t sections;
     "<HTML lang=en>\n" \
     "<HEAD>\n" \
     "<TITLE>{{prog-abbrev}} report for {{context-root}}</TITLE>\n" \
-    "<LINK rel=\"stylesheet\" href=\"/ssc.css\" type=\"text/css\">\n" \
+    "<STYLE TYPE=\"text/css\">\n" \
+    "H1 { color:#66BB66; font-size: 140% }\n" \
+    "H2 { color:#66BB66; font-size: 120% }\n" \
+    "H3 { color:#99BB99; font-size: 100% }\n" \
+    "A { color:#9999BB }\n" \
+    "FOOTER,HEADER,LI,MAIN,P,PRE { color:#999999 }\n" \
+    ".smaller { font-size: 80% }\n" \
+    ".nit-before,.nit-after { color: #BBBBBB }\n" \
+    ".nit-mote { color: #BB3333 }\n" \
+    ".nit-line { color: #666666 }\n" \
+    "</STYLE>\n" \
     "</HEAD>\n" \
     "<BODY>\n" \
     "<HEADER>\n" \
     "<H1 class=\"nit-title\">{{prog-abbrev}} report for {{context-root}}</H1>\n" \
     "</HEADER>\n" \
     "<MAIN>\n" \
+    "<BR><BR>\n" \
     "\n" \
     "[doc-foot]\n" \
+    "<BR><BR>\n" \
+    "<A href=\"/index.html\">previous page</A>\n" \
     "</MAIN>\n" \
-    "<FOOTER>\n" \
+    "<HR>\n" \
+    "<FOOTER class=\"smaller\">\n" \
     "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}}<BR>\n" \
-    "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-html}}</A>\n" \
+    "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A>\n" \
     "</FOOTER>\n" \
     "</BODY>\n" \
     "</HTML>\n" \
@@ -377,7 +391,7 @@ vstr_t sections;
     "<SPAN class=\"nit-level\">{{level-symbol}}</SPAN> <SPAN class=\"nit-explanation\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
     "\n" \
     "[nits-head]\n" \
-    "<H3><SPAN class=\"nit-line\">{{nit-line}}</SPAN> {{nit-before:<SPAN class=\"nit-before\">:</SPAN> }}<SPAN class=\"nit-mote\">{{nit-mote}}</SPAN>{{nit-after: <SPAN class=\"nit-after\">:</SPAN}}</H3>\n" \
+    "<H3><SPAN class=\"nit-line\">{{nit-line}}</SPAN> {{nit-before:<SPAN class=\"nit-before\">:</SPAN> }}<SPAN class=\"nit-mote\">{{nit-mote}}</SPAN>{{nit-after: <SPAN class=\"nit-after\">:</SPAN>}}</H3>\n" \
     "<P>\n" \
     "\n" \
     "[nits-page]\n" \
