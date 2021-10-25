@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.116
+- change default HTML to living standard Oct 2021
+- OpenBSD 6.9 / 7.0
+- underlying work / various refinements
+
 0.0.115
 - set unii installation directory to ~/bin
 - added experimental solution for Visual Studio 2022 preview

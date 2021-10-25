@@ -2419,7 +2419,7 @@ void sch::init (nitpick& nits)
 e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root)
 {   ::std::string lc (trim_the_lot_off (x));
     if (lc.empty ())
-    {   nits.pick (nit_empty, ed_jul20, "5.2.2 Items", es_error, ec_microdata, "An ITEMTYPE cannot be empty");
+    {   nits.pick (nit_empty, ed_jul20, "5.2.2 Items", es_error, ec_microdata, "A schema type cannot be empty");
         return sty_illegal; }
     if (lc.at (0) == '/') lc = lc.substr (1);
     if (! v.xhtml ()) lc = ::boost::algorithm::to_lower_copy (lc);

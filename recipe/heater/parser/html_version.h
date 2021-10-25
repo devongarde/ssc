@@ -770,7 +770,7 @@ const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_11);
 const html_version html_5_3 (HTML_5_3, HV_W3, HE_MATH_3 | HE_SVG_11);
 const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
-const html_version html_default (html_5_2);
+const html_version html_default (html_oct21);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
