@@ -3342,7 +3342,14 @@ mnp_t mnp;
 void schema_name_init (nitpick& nits)
 {   PRESUME (mpn.empty (), __FILE__, __LINE__);
     PRESUME (mnp.empty (), __FILE__, __LINE__);
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26481)
+#endif // _MSC_VER
     for (property_name* p = &namtab [0]; p -> prop_ != sp_illegal; ++p)
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
         if (p -> name_ != nullptr)
         {   ::std::string n (::boost::to_lower_copy (::std::string (p -> name_)));
             for (mpn_t::const_iterator ci = mpn.find (n); (ci != mpn.cend ()) && compare_no_case (ci -> first, n); ++ci)

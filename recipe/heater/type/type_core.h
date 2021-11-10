@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < e_type TYPE > struct string_value : public type_base < ::std::string, TYPE >
 {   ::std::string value_;
     using type_base < ::std::string, TYPE > :: type_base;
-    static ::std::string default_value () { return ::std::string (); }
-    void swap (string_value& t) NOEXCEPT
+    static ::std::string default_value () noexcept { return ::std::string (); }
+    void swap (string_value& t) noexcept
     {   value_.swap (t.value_);
         type_base < ::std::string, TYPE >::swap (t); }
     ::std::string get_string () const
@@ -49,7 +49,7 @@ template < e_type TYPE > struct string_value : public type_base < ::std::string,
         else if (value_.find_first_of ('\"') == ::std::string::npos) ss << '=' << '"' << value_ << '"';
         else if (value_.find_first_of ("'") == ::std::string::npos) ss << "='" << value_ << "'";
         else ss << '=' << enquote (value_); }
-    void reset ()
+    void reset () noexcept
     {   value_.clear ();
         type_base < ::std::string, TYPE > :: reset (); } };
 
@@ -63,14 +63,14 @@ template < e_type TYPE > struct string_vector_base : public tidy_string < TYPE >
 {   typedef vstr_t value_type;
     value_type value_;
     using tidy_string < TYPE > :: tidy_string;
-    void swap (string_vector_base& t) NOEXCEPT
+    void swap (string_vector_base& t) noexcept
     {   value_.swap (t.value_);
         tidy_string < TYPE >::swap (t); }
     ::std::string get_string () const
     {   return tidy_string < TYPE > :: get_string (); }
-    ::std::size_t size () const { return value_.size (); }
-    static value_type default_value () { return value_type (); }
-    void reset ()
+    ::std::size_t size () const noexcept { return value_.size (); }
+    static value_type default_value () noexcept { return value_type (); }
+    void reset () noexcept
     {   value_.clear ();
         tidy_string < TYPE > :: reset (); }
     const ::std::string& at (const ::std::size_t n) const
@@ -96,7 +96,14 @@ template < e_type TYPE, class SZ > struct string_vector : public string_vector_b
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << "=\""; bool first = true;
         for (auto s : string_vector_base < TYPE > :: value_)
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26481) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initiliser
+#endif // _MSC_VER
         {   if (! first) ss << SZ :: sz () [0];
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
             first = false;
             ss << s; }
         ss << '"'; } };
@@ -136,22 +143,22 @@ template < e_type TYPE, class SZ > struct strings_vector : public string_vector_
 template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct numeric_value : public type_base < NUMERIC_TYPE, TYPE >
 {   NUMERIC_TYPE value_ = def;
     using type_base < NUMERIC_TYPE, TYPE > :: type_base;
-    explicit numeric_value (element* box) : type_base < NUMERIC_TYPE, TYPE > (box) { }
+    explicit numeric_value (element* box) noexcept : type_base < NUMERIC_TYPE, TYPE > (box) { }
     static NUMERIC_TYPE default_value () { return def; }
-    void swap (numeric_value& t) NOEXCEPT
+    void swap (numeric_value& t) noexcept
     {   ::std::swap (value_, t.value_);
         type_base < NUMERIC_TYPE, TYPE >::swap (t); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << value_; }
     void get_number (NUMERIC_TYPE& i) const
     {   i = value_; }
-    NUMERIC_TYPE get () const { return value_; }
+    NUMERIC_TYPE get () const noexcept { return value_; }
     void set_number (const NUMERIC_TYPE& i)
     {   value_ =  i;
         type_base < NUMERIC_TYPE, TYPE > :: status (s_good); }
     ::std::string get_string () const
     {   return ::boost::lexical_cast < ::std::string > (value_); }
-    int get_int () const { return static_cast < int > (value_); }
+    int get_int () const noexcept { return ::gsl::narrow_cast < int > (value_); }
     bool has_value (const NUMERIC_TYPE& n) const { return type_base < NUMERIC_TYPE, TYPE > :: good () && (value_ == n); }
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
     {   bool b = false;

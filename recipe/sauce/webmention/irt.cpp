@@ -40,7 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CONTENT "content"
 #define WHEN "when"
 
-void reply::swap (reply& r) NOEXCEPT
+void reply::swap (reply& r) noexcept
 {   file_.swap (r.file_);
     id_.swap (r.id_);
     server_.swap (r.server_);
@@ -55,31 +55,31 @@ bool reply::set_server (const ::std::string& link)
     if (link.find (COLON) != link.npos)
         server_ = link;
     else
-    {   ::std::size_t  eod = target_.npos,
-                css = target_.find (CSS);
+    {   ::std::size_t eod = target_.npos;
+        const ::std::size_t css = target_.find (CSS);
         if (css != target_.npos)
         {   eod = target_.find (SLASH, css+3);
             if (eod == target_.npos) eod = target_.length (); }
-        if (link [0] == SLASH)
+        if (::gsl::at (link, 0) == SLASH)
         {   if (eod != target_.npos)
                 server_ = target_.substr (0, eod);
             else
             {   vstr_t site (context.site ());
                 if (site.size () == 0) return false;
                 server_ = HTTP;
-                server_ += site [0]; }
+                server_ += ::gsl::at (site, 0); }
             server_ += link; }
         else
-        {   ::std::size_t last = target_.length () - 1;
-            bool slashed = target_ [last] == SLASH;
+        {   const ::std::size_t last = target_.length () - 1;
+            const bool slashed = ::gsl::at (target_, last) == SLASH;
             if (eod != target_.npos)
                 server_ = target_;
             else
             {   vstr_t site (context.site ());
                 if (site.size () == 0) return false;
                 server_ = HTTP;
-                server_ += site [0];
-                if (target_ [0] != SLASH)
+                server_ += ::gsl::at (site, 0);
+                if (::gsl::at (target_, 0) != SLASH)
                     server_ += SLASH;
                 server_ += target_; }
             if (! slashed) server_ += SLASH;
@@ -109,8 +109,7 @@ bool reply::find_server (nitpick& nits, const html_version& v)
     if (fetch (nits, v, url (nits, v, target_), html_temp)) html = read_text_file (html_temp.string ());
     if (file_exists (html_temp)) delete_file (html_temp);
     if (html.empty ()) return false;
-    ::std::time_t updated = 0;
-    page p (nits, target_, updated, html);
+    page p (nits, target_, 0, html);
     p.examine ();
     ::std::string mention = p.find_webmention ();
     if (! set_server (mention)) return false;
@@ -121,7 +120,7 @@ bool reply::find_server (nitpick& nits, const html_version& v)
 void reply::mark ()
 {   time_t ridiculous_1;
     time (&ridiculous_1);
-    struct tm *ridiculous_2 = gmtime (&ridiculous_1);
+    const struct tm *ridiculous_2 = gmtime (&ridiculous_1);
     VERIFY_NOT_NULL (ridiculous_2, __FILE__, __LINE__);
     ::boost::format ridiculous_3 ("%04d.%02d.%02d %02d:%02d:%02d");
     ridiculous_3 % (ridiculous_2 -> tm_year + 1900) % ridiculous_2 -> tm_mon % ridiculous_2 -> tm_mday % ridiculous_2 -> tm_hour % ridiculous_2 -> tm_min % ridiculous_2 -> tm_sec;
@@ -135,18 +134,18 @@ void reply::mark ()
         else if (! whitespace) { res += ' '; whitespace = true; } }
     return res; }
 
-bool reply::operator == (const reply& rhs) const
+bool reply::operator == (const reply& rhs) const noexcept
 {   return  (file_ == rhs.file_) &&
             (id_ == rhs.id_) &&
             (target_ == rhs.target_) &&
             (content_ == rhs.content_); }
 
-bool reply::close_but_no_banana (const reply& rhs) const
+bool reply::close_but_no_banana (const reply& rhs) const noexcept
 {   return  (file_ == rhs.file_) &&
             (id_ == rhs.id_) &&
             (target_ == rhs.target_); }
 
-void reply::read (::boost::property_tree::ptree& tree, const ::std::string& container)
+void reply::read (const ::boost::property_tree::ptree& tree, const ::std::string& container)
 {   file_ = read_field < ::std::string > (tree, container, PAGE);
     id_ = read_field < ::std::string > (tree, container, ID);
     server_ = read_field < ::std::string > (tree, container, SERVER);
@@ -194,7 +193,6 @@ bool reply::enact (nitpick& nits, const html_version& v)
     if (! find_server (nits, v)) return false;
     return mention (nits, v, url (nits, v, file_), url (nits, v, target_), url (nits, v, server_)); }
 
-
 void replies::append (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content)
 {   reply_.push_back (reply (file, id, target, content)); }
 
@@ -224,63 +222,63 @@ bool replies::write ()
     for (::std::size_t n = 0; n < reply_.size (); ++n)
     {   ::std::string count = REPLY SEP;
         count += ::boost::lexical_cast < ::std::string > (n);
-        reply_ [n].write (json, count); }
+        reply_ .at (n).write (json, count); }
     return replace_file (json, filename); }
 
 ::std::size_t replies::find (const reply& r)
 {   for (::std::size_t z = 0; z < reply_.size (); ++z)
-        if (reply_ [z] == r) return z;
+        if (reply_.at (z) == r) return z;
     return no_reply; }
 
 ::std::size_t replies::probably_match (const reply& r)
 {   for (::std::size_t z = 0; z < reply_.size (); ++z)
-        if (reply_ [z].close_but_no_banana (r)) return z;
+        if (reply_.at (z).close_but_no_banana (r)) return z;
     return no_reply; }
 
 bool replies::update_records (nitpick& nits) // not efficient for any real quantities
 {   bool res = false;
     ::std::size_t mmax = reply_.size ();
-    ::std::size_t imax = context.get_replies ().reply_.size ();
+    const ::std::size_t imax = context.get_replies ().reply_.size ();
     nits.pick (nit_debug, es_debug, ec_webmention, mmax, " previous replies found in ", context.persisted (), ", ", imax, " found in pages");
     context.get_replies ().report (WEBMENTION);
     if (context.tell (e_detail)) report ("persisted");
     for (::std::size_t z = 0; z < mmax; ++z)
-        reply_ [z].mark_unknown ();
+        reply_.at (z).mark_unknown ();
     for (::std::size_t z = 0; z < imax; ++z)
-    {   ::std::size_t here = find (context.get_replies ().reply_ [z]);
+    {   ::std::size_t here = find (::gsl::at (context.get_replies ().reply_, z));
         if (here != no_reply)
-        {   if (reply_ [here].is_unknown ())
-                reply_ [here].mark_unchanged (); }
+        {   if (reply_.at (here).is_unknown ())
+                reply_.at (here).mark_unchanged (); }
         else
-        {   here = probably_match (context.get_replies ().reply_ [z]);
+        {   here = probably_match (::gsl::at (context.get_replies ().reply_, z));
             if (here != no_reply)
-                reply_ [here].mark_update ();
+                reply_.at (here).mark_update ();
             else
-            {   reply_.push_back (context.get_replies ().reply_ [z]);
+            {   reply_.push_back (::gsl::at (context.get_replies ().reply_, z));
                 reply_.back ().mark_insert (); }
             res = true; } }
     mmax = reply_.size ();
     for (::std::size_t z = 0; z < mmax; ++z)
-    {   if (reply_ [z].is_unknown ())
+    {   if (reply_.at (z).is_unknown ())
         {   res = true;
-            reply_ [z].mark_delete (); } }
+            reply_.at (z).mark_delete (); } }
     if (context.tell (e_detail)) report ("post update");
     return res; }
 
  bool replies::enact (nitpick& nits, const html_version& v) // not efficient for any real quantities
 {   bool res = false;
     if (context.tell (e_detail)) report ("enact");
-    ::std::size_t mmax = reply_.size ();
+    const ::std::size_t mmax = reply_.size ();
     for (::std::size_t z = 0; z < mmax; ++z)
-        if (! reply_ [z].enact (nits, v))
-        {  if (reply_ [z].is_deleted ())
-                reply_ [z].mark_unchanged (); }
+        if (! reply_.at (z).enact (nits, v))
+        {  if (reply_.at (z).is_deleted ())
+                reply_.at (z).mark_unchanged (); }
         else res = true;
     if (res)
     {   vreply_t reply;
         for (::std::size_t x = 0; x < mmax; ++x)
-            if (! reply_ [x].is_deleted ())
-                reply.push_back (reply_ [x]);
+            if (! reply_.at (x).is_deleted ())
+                reply.push_back (reply_.at (x));
         reply.shrink_to_fit ();
         reply_.swap (reply); }
     return res; }
@@ -300,5 +298,5 @@ bool replies::process (nitpick& nits, const html_version& v)
     if (context.tell (e_info))
     {   if (comment != nullptr) res << comment << "\n";    // tell?
         for (::std::size_t s = 0; s < reply_.size (); ++s)
-           res << reply_ [s].report (s); }
+           res << reply_.at (s).report (s); }
     return res.str (); }

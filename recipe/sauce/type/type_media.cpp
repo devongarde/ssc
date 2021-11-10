@@ -40,7 +40,7 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
         {   bool fail = false;
             PRESUME (! s.empty (), __FILE__, __LINE__);
             if (s.length () == 1)
-            {   switch (s [0])
+            {   switch (s.at (0))
                 {   case '(' :
                         if (! feature) feature = true;
                         break;
@@ -56,7 +56,7 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
                         else fail = true;
                         break;
                     default :
-                        digit = (s [0] >= '0') && (s [0] <= '9');
+                        digit = (s.at (0) >= '0') && (s.at (0) <= '9');
                         fail = ! digit;
                         break; }
                 if (fail)

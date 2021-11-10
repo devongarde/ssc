@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 nitpick::mns_t nitpick::mns_;
 
-void nitpick::swap (nitpick& np) NOEXCEPT
+void nitpick::swap (nitpick& np) noexcept
 {   ::std::swap (line_, np.line_);
     nits_.swap (np.nits_);
     after_.swap (np.after_);
@@ -123,7 +123,7 @@ void nitpick::pick (nit&& n)
 {   nits_.emplace_back (n); }
 
 bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
-{   e_nit code = lookup_code (name);
+{   const e_nit code = lookup_code (name);
     if (code == nit_off) return false;
     modify_severity (code, s);
     return true; }
@@ -149,16 +149,16 @@ void nitpick::set_context (const int line, const ::std::string& c)
 
 void nitpick::set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
-    int maxish = DEFAULT_LINE_LENGTH - 16;
-    int len = static_cast < int > (to - from);
-    int maxlen = static_cast < int > (e - from);
+    constexpr int maxish = DEFAULT_LINE_LENGTH - 16;
+    const int len = ::gsl::narrow_cast < int > (to - from);
+    const int maxlen = ::gsl::narrow_cast < int > (e - from);
     before_.clear (); after_.clear ();
     if (maxlen == 0)
         mote_.clear ();
     else
     {   if (len >= maxish) mote_ = ::std::string (from, from+maxish) + "...";
         else
-        {   int halfish = (maxish - len) / 2;
+        {   const int halfish = (maxish - len) / 2;
             if (len == 0)
             {   int last = halfish, x = 0;
                 bool hell = true;

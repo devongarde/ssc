@@ -491,7 +491,7 @@ typedef enum { ekh_done, ekh_enter, ekh_go, ekh_next, ekh_previous, ekh_search, 
 typedef enum {  env_args, env_auth_type, env_config, env_content_length, env_content_type, env_gateway_interface, env_http_accept, env_path_info,
                 env_path_translated, env_query_string, env_remote_addr, env_remote_host, env_remote_user, env_request_method, env_script_name, env_server_name,
                 env_server_port, env_server_protocol, env_server_software } e_environment;
-const ::std::size_t env_max = static_cast < ::std::size_t > (env_server_software) + 1;
+constexpr ::std::size_t env_max = static_cast < ::std::size_t > (env_server_software) + 1;
 typedef enum { fa_bleedleft, fa_left, fa_centre, fa_right, fa_bleedright, fa_justify } e_figalign;
 typedef enum { fa_freeze, fa_remove } e_fillanim;
 typedef enum { fr_nonzero, fr_evenodd, fr_inherit } e_fill_rule;
@@ -1432,6 +1432,9 @@ typedef enum {
     // microsoft (-ish)
     mime_application_news_message_id, mime_application_x_httpd_asp,
 
+    // other
+    mime_application_7z,
+
     mime_bork } e_mimetype;
 
 typedef enum { mo_dilate, mo_erode } e_morphology_operator;
@@ -1465,7 +1468,7 @@ typedef enum
     ns_xalan, ns_xf, ns_xhv, ns_xi, ns_xlink, ns_xhtml, ns_xmlevents, ns_xmlns, ns_xs, ns_xsi, ns_xslt, ns_xtm,
     ns_error } e_namespace;
 
-const ::std::size_t first_runtime_namespace = static_cast < ::std::size_t > (ns_error) + 1;
+constexpr ::std::size_t first_runtime_namespace = static_cast < ::std::size_t > (ns_error) + 1;
 
 typedef enum
 {   nit_free,
@@ -1574,7 +1577,7 @@ typedef enum
 
 typedef enum
 {   nm_none,
-    nm_class_name, nm_class_count, nm_class_int, nm_config,
+    nm_class_name, nm_class_count, nm_class_int, nm_compile_time, nm_config,
         nm_context_article, nm_context_body, nm_context_css, nm_context_cgi, nm_context_clear, nm_context_code, nm_context_config, nm_context_copy,
         nm_context_corpus, nm_context_crosslinks, nm_context_custom_elements, nm_context_dc, nm_context_export_root, nm_context_exports,
         nm_context_extensions, nm_context_fe, nm_context_filename, nm_context_foaf, nm_context_forward, nm_context_hook, nm_context_ignore,
@@ -1593,7 +1596,7 @@ typedef enum
     nm_html_snippet,
     nm_id_name, nm_id_page, nm_id_line,
     nm_level_name, nm_level_symbol,
-    nm_nit_after, nm_nit_before, nm_nit_code, nm_nit_doc, nm_nit_explanation, nm_nit_id, nm_nit_line, nm_nit_mote, nm_nit_ns, nm_nit_ref,
+    nm_nit_after, nm_nit_before, nm_nit_code, nm_nit_doc, nm_nit_doc_long, nm_nit_explanation, nm_nit_id, nm_nit_line, nm_nit_mote, nm_nit_ns, nm_nit_ref,
         mn_nits_format,
     nm_page_error, nm_page_name, nm_page_path, nm_prog_abbrev, nm_prog_build, nm_prog_fullname, nm_prog_version, nm_prog_webaddr,
     nm_query,
@@ -1793,7 +1796,7 @@ typedef enum {
     s_xhv, s_xml, s_xsd,
     s_error
 } e_schema;
-const ::std::size_t schema_size = s_error;
+constexpr ::std::size_t schema_size = s_error;
 typedef ::std::size_t schema_id;
 
 typedef enum
@@ -3310,14 +3313,14 @@ typedef enum { ssi_comparison_and, ssi_comparison_eq, ssi_comparison_ge, ssi_com
 typedef enum { ssi_config_echomsg, ssi_config_errmsg, ssi_config_sizefmt, ssi_config_timefmt } e_ssi_config;
 typedef enum { ssi_echo_decoding, ssi_echo_encoding, ssi_echo_var } e_ssi_echo;
 typedef enum { ssi_encoding_base64, ssi_encoding_none, ssi_encoding_entity, ssi_encoding_url, ssi_encoding_urlencoded } e_ssi_encoding;
-typedef enum { ssi_DATE_GMT, ssi_DATE_LOCAL, ssi_DOCUMENT_ARGS, ssi_DOCUMENT_NAME, ssi_DOCUMENT_PATH_INFO, ssi_DOCUMENT_URI, ssi_LAST_MODIFIED, ssi_QUERY_STRING_UNESCAPED, ssi_USER_NAME } e_ssi_env;
+typedef enum { ssi_DATE_GMT, ssi_DATE_LOCAL, ssi_DOCUMENT_ARGS, ssi_DOCUMENT_NAME, ssi_DOCUMENT_PATH_INFO, ssi_DOCUMENT_URI, ssi_LAST_MODIFIED, ssi_QUERY_STRING_UNESCAPED, ssi_USER_NAME, ssi_error } e_ssi_env;
 typedef enum { ssi_f_file, ssi_f_virtual } e_ssi_f;
 typedef enum { ssi_include_file, ssi_include_onerror, ssi_include_virtual } e_ssi_include;
 typedef enum { se_start, se_end } e_startend;
 typedef enum { stt_stitch, stt_nostitch } e_stitchtiles;
 typedef enum { sc_keep, sc_discard } e_streamedcontents;
 typedef enum { sov_visible, sov_hidden, sov_scroll, sov_auto, sov_inherit } e_svg_overflow;
-typedef enum { spm_dynamic, spm_animated, spm_secure_animated, spm_static, spm_secure_static } e_svg_processing_mode;
+typedef enum { spm_none, spm_dynamic, spm_animated, spm_secure_animated, spm_static, spm_secure_static } e_svg_processing_mode;
 typedef enum { ssi_set_decoding, ssi_set_encoding, ssi_set_value, ssi_set_var } e_ssi_set;
 typedef enum { ssi_size_abbrev, ssi_size_bytes } e_ssi_sizefmt;
 typedef enum { s_unset, s_invalid, s_empty, s_good } e_status;
@@ -3376,7 +3379,7 @@ typedef enum { tfu_false, tfu_true, tfu_undefined } e_tfu;
 typedef enum { ta_translate, ta_scale, ta_rotate, ta_skewx, ta_skewy } e_transform_anim;
 typedef enum { tb_geometric, tb_pinned, tb_pinned90, tb_pinned180, tb_pinned270 } e_transformbehaviour;
 typedef enum { tr_nowt, tr_matrix, tr_ref, tr_translate, tr_translatex, tr_translatey, tr_scale, tr_scalex, tr_scaley, tr_rotate, tr_skew, tr_skewx, tr_skewy } e_transform_fn;
-const ::std::size_t max_transform_fn = static_cast < ::std::size_t > (tr_skewy);
+constexpr ::std::size_t max_transform_fn = static_cast < ::std::size_t > (tr_skewy);
 typedef enum { tp_opaque, tp_transparent } e_transp;
 typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 

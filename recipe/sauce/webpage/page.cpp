@@ -65,7 +65,7 @@ void page::reset (const page& p)
 {   page tmp (p);
     swap (tmp); }
 
-void page::swap (page& p) NOEXCEPT
+void page::swap (page& p)
 {   abbrs_.swap (p.abbrs_);
     access_.swap (p.access_);
     author_.swap (p.author_);
@@ -119,8 +119,8 @@ bool page::parse (::std::string& content, const e_charcode )
         ssi_.filename_ = name_;
         html_version v (html_5_3);
         content = parse_ssi (nits_, v, *this, ssi_, content, updated_); }
-    bool res = nodes_.parse (nits_, content);
-    context.mark_file (static_cast < unsigned > (content.size ()));
+    const bool res = nodes_.parse (nits_, content);
+    context.mark_file (::gsl::narrow_cast < unsigned > (content.size ()));
     return res; }
 
 void page::examine ()
@@ -188,7 +188,7 @@ void page::itemscope (const itemscope_ptr itemscope)
 
 ::std::string get_page_url (const ::std::string& url)
 {   ::std::string res (sanitise (url));
-    ::std::size_t pc = res.find_first_of ("?#=");
+    const ::std::size_t pc = res.find_first_of ("?#=");
     if (pc != ::std::string::npos)
         res = res.substr (0, pc);
     return res; }
@@ -221,7 +221,7 @@ void page::lynx ()
     if (! context.crosslinks ()) return;
     declare_crosslinks (get_disk_path (), ids_); }
 
-uid_t page::euid ()
+uid_t page::euid () noexcept
 {   if (euid_ < uid_max) ++euid_;
     return euid_; }
 
@@ -233,10 +233,10 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
     {   if (file_exists (s))
         {   if (context.shadow_changed ())
             {   if (updated_ == 0) updated_ = get_last_write_time (get_disk_path ());
-                ::std::time_t target = get_last_write_time (s);
+                const ::std::time_t target = get_last_write_time (s);
                 nits.pick (nit_debug, es_debug, ec_shadow, get_disk_path (), " last updated ", updated_, ", ", s, " last updated ", target);
                 if (target >= updated_) return; }
-            ::boost::filesystem::file_status stat = file_data (s);
+            const ::boost::filesystem::file_status stat = file_data (s);
             if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)
             {   file_permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
                 changed = true; } }
@@ -252,7 +252,7 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
     {   nits.pick (nit_shadow_failed, es_catastrophic, ec_shadow, "error writing ", s.string ());
         throw; } }
 
-const url& page::base () const
+const url& page::base () const noexcept
 { return base_; }
 
 void page::base (const url& s)

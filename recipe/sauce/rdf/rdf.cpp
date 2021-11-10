@@ -77,7 +77,7 @@ template < typename ENUM > ENUM rdf_t::fit_vocab (const html_version& , const ::
 template < > e_schema_type rdf_t::fit_vocab < e_schema_type > (const html_version& v, const ::std::string& name) const
 {   for (auto voc : vocab_)
     {   nitpick nuts;
-        e_schema_type t = sch :: parse (nuts, v, name, voc);
+        const e_schema_type t = sch :: parse (nuts, v, name, voc);
         if (t != sty_illegal) return t; }
     if (up_ != nullptr) return up_ -> fit_vocab < e_schema_type > (v, name);
     return sty_illegal; }
@@ -156,25 +156,25 @@ e_schema_type rdf_t::note_type (nitpick& nits, const html_version& v, const ::st
             type_master < t_schema_type > ts;
             ts.set_value (nits, v, xpan);
             ::std::string::size_type ends_at = 0;
-            e_schema ns = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), xpan, &ends_at);
+            const e_schema ns = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), xpan, &ends_at);
             if (ns == s_error)
                 wombats (nits, v, xpan);
             else
-            {   sch sc (nits, v, schema_names.after_start (SCHEMA_CURIE, xpan.substr (ends_at), v.xhtml ()), ns);
+            {   const sch sc (nits, v, schema_names.after_start (SCHEMA_CURIE, xpan.substr (ends_at), v.xhtml ()), ns);
                 t = sc.get (); } } // }
     if (t != sty_illegal)
     {   p.mark (t);
-        flags_t flags = sch :: flags (t);
+        const flags_t flags = sch :: flags (t);
         if ((flags & SF_DEPRECATED) == SF_DEPRECATED)
             nits.pick (nit_deprecated_schema, es_info, ec_microdata, quote (name), " is deprecated");
-        itemtype_index ii = make_type_index (t);
+        const itemtype_index ii = make_type_index (t);
         type_.push_back (ii);
         return t; }
     return sty_context; }
 
 e_schema rdf_t::note_vocab (nitpick& nits, const html_version& v, const ::std::string& name, page& )
 {   ::std::string xpan = expand_prefix (v, name);
-    e_schema s = schema_names.find_lower (v, SCHEMA_CURIE, xpan);
+    const e_schema s = schema_names.find_lower (v, SCHEMA_CURIE, xpan);
     if (s == s_none)
         nits.pick (nit_bad_vocab, es_error, ec_rdfa, PROG " does not know about ", quote (name), " so will be unable to verify its content");
     else if (is_vocab_defined (s))
@@ -199,6 +199,8 @@ e_schema rdf_t::note_vocab (nitpick& nits, const html_version& v, const ::std::s
                     break;
                 case pm_string :
                     res += indent + prop_index_name (i -> first) + " = " + quote (ssc_get < ::std::string > (i -> second)) + "\n";
+                    break;
+                default :
                     break; }
 #endif // BOOVAR
     return res; }
@@ -217,13 +219,13 @@ vty_t rdf_t::sought_types (const html_version& v, const ::std::string& name) con
     ::std::string ss (s);
     ::std::string prefix (decolonise (ss));
     if (prefix.empty ()) return s;
-    ident_t p = prefixes_ -> find_shortform (v, schema_names, prefix);
+    const ident_t p = prefixes_ -> find_shortform (v, schema_names, prefix);
     if ((p == s_error) || (p == s_none)) return s;
     return prefixes_ -> longform (schema_names, p) + ss; }
 
 bool rdf_t::verify_value (nitpick& nits, const html_version& v, const e_schema_type ty, const ::std::string& value)
-{   flags_t f (sch::flags (ty));
+{   const flags_t f (sch::flags (ty));
     if (has_simple_schema_type (f))
-    {   e_type t = get_simple_schema_type (f);
+    {   const e_type t = get_simple_schema_type (f);
         return test_value (nits, v, t, value); }
     return false; }

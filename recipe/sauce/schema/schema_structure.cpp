@@ -6187,7 +6187,14 @@ mmd_t micromap;
 
 void microdata_init (nitpick& )
 {   PRESUME (micromap.empty (), __FILE__, __LINE__);
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26481)
+#endif // _MSC_VER
     for (microdata_structure* p = &schema_structure [0]; p -> record_ != sty_illegal; ++p)
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if (micromap.find (::std::pair < e_schema_type, e_schema_property > (p -> record_, p -> property_)) != micromap.end ())
             ::std::cerr << "microdata_init reports " << sch::name (p -> record_) << " (" << p -> record_ << "), " << schema_property_name (p -> property_) << " (" << p -> property_ << ") repeated\n";

@@ -49,21 +49,17 @@ public:
         : start_ (s), eofe_ (e), end_ (e), line_ (line), status_ (bk_text), closure_ (false), closed_ (true), tested_ (false), nits_ (nits.nick ())
     { }
     bra_element_ket (const bra_element_ket& bek) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	bra_element_ket(bra_element_ket&& bek) = default;
-#endif
 	~bra_element_ket () = default;
     bra_element_ket& operator = (const bra_element_ket& bek) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	bra_element_ket& operator = (bra_element_ket&& bek) = default;
-#endif
     e_element suspender ();
     bool is_xmp ();
     bool is_plaintext ();
-    bool is_whitespace () const;
+    bool is_whitespace () const noexcept;
     bool is_silent_content ();
-    bool is_closed () const { return closed_; }
-    bool is_closure () const { return closure_; }
+    bool is_closed () const noexcept { return closed_; }
+    bool is_closure () const noexcept { return closure_; }
     ::std::string arg () const { return arg_; }
     ::std::string text () const;
     ::std::string rpt () const; };

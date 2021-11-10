@@ -96,7 +96,16 @@ needs rel type and probably context info
 
 ::std::string env_mapper (::std::string env)
 {  // boost environment variable translator
-    ::std::transform (env.begin(), env.end(), env.begin(), ::toupper);
+
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 4244)
+#endif // _MSC_VER
+    ::std::transform (env.begin (), env.end (), env.begin (), ::toupper);
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+
     static sstr_t o;
     if (o.empty ())
     {   o.insert (ENV_CONFIG);
@@ -166,13 +175,13 @@ e_severity decode_severity (nitpick& nits, const ::std::string& s)
 {   nitpick nuts;
     e_severity sev = examine_value < t_severity > (nuts, html_tags, s);
     if (sev == es_undefined)
-        if ((s.length () == 1) && (s [0] >= '0') && (s [0] <= '9'))
-            sev = static_cast < e_severity > (s [0] - '0');
+        if ((s.length () == 1) && (s.at (0) >= '0') && (s.at (0) <= '9'))
+            sev = static_cast < e_severity > (s.at (0) - '0');
     if (sev == es_undefined)
         nits.pick (nit_configuration, es_error, ec_init, "invalid severity");
     return sev; }
 
-void options::process (nitpick& nits, int argc, char** argv)
+void options::process (nitpick& nits, int argc, char* const * argv)
 {   /*  a
         b
         c persist file   C clear webmention
@@ -618,6 +627,7 @@ void options::contextualise (nitpick& nits)
                 if (! make_directories (context.path ()))
                     nits.pick (nit_cannot_create_file, es_catastrophic, ec_init, "cannot create ", context.path ()); } } }
 
+    if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose> (decode_severity (nits, var_ [GENERAL VERBOSE].as < ::std::string > ())));
     if (var_.count (HTML SNIPPET)) context.snippet (var_ [HTML SNIPPET].as < ::std::string > ());
 
     context.mf_verify (var_.count (MF VERIFY));
@@ -630,7 +640,7 @@ void options::contextualise (nitpick& nits)
             if (ver.length () >= 4)
                 if (compare_no_case (ver.substr (0, 4), "html")) ver = trim_the_lot_off (ver.substr (4));
                 else if (compare_no_case (ver.substr (0, 5), "xhtml")) { ver = trim_the_lot_off (ver.substr (5)); xhtml = true; }
-            ::std::string::size_type pos = ver.find ('.');
+            const ::std::string::size_type pos = ver.find ('.');
             if (pos != ::std::string::npos)
             {   int mjr = 1, mnr = 0xFF;
                 if (pos == ver.length () - 1) mjr = lexical < int > :: cast (ver.substr (0, pos));
@@ -671,11 +681,12 @@ void options::contextualise (nitpick& nits)
                 if ((ver.length () != 10) || (ver.at (4) != '/') || (ver.at (7) != '/') || (ver.find_first_not_of (DENARY "/") != ::std::string::npos))
                     nits.pick (nit_config_date, es_warning, ec_init, "bad date ", quote (ver), " ignored ('YYYY/MM/DD' expected)");
                 else
-                {   ::boost::gregorian::date d (::boost::gregorian::from_string (ver));
+                {   const ::boost::gregorian::date d (::boost::gregorian::from_string (ver));
                     if (d.is_not_a_date ())
                         nits.pick (nit_config_date, es_warning, ec_init, "invalid date ", quote (ver), " ignored");
                     else
-                    {   int y = d.year (); int m = d.month ();
+                    {   int y = d.year ();
+                        const int m = d.month ();
                         if (y > 2000) y -= 2000;
                         else if (y > 99) y = 99;
                         if ((y < HTML_5_EARLIEST_YEAR) || ((y == HTML_5_EARLIEST_YEAR) && (m < HTML_5_EARLIEST_MONTH)))
@@ -703,18 +714,18 @@ void options::contextualise (nitpick& nits)
         {   context.schema_ver (schema_version (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR));
             nits.pick (nit_config_version, es_warning, ec_init, "missing schema.org version; presuming ", DEFAULT_SCHEMA_ORG_MAJOR, ".", DEFAULT_SCHEMA_ORG_MINOR); }
         else
-        {   ::std::string::size_type pos = ver.find ('.');
+        {   const ::std::string::size_type pos = ver.find ('.');
             // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
             if (pos == ::std::string::npos)
-                context.schema_ver (schema_version (s_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0));
+                context.schema_ver (schema_version (s_schema, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0));
             else if (pos == 0)
             {   context.schema_ver (schema_version (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR));
                 nits.pick (nit_config_version, es_warning, ec_init, "missing schema.org version; presuming ", DEFAULT_SCHEMA_ORG_MAJOR, ".", DEFAULT_SCHEMA_ORG_MINOR); }
             else if (pos == ver.length () - 1)
-                context.schema_ver (schema_version (s_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0));
+                context.schema_ver (schema_version (s_schema, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0));
             else if (pos > 0)
-                context.schema_ver (schema_version (s_schema, static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
-                                                                static_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))))); } }
+                context.schema_ver (schema_version (s_schema, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
+                                                              ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))))); } }
 
     context.microdata (var_.count (VALIDATION MICRODATAARG));
 
@@ -728,7 +739,7 @@ void options::contextualise (nitpick& nits)
         context.ssi (var_.count (GENERAL SSI));
         context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
 
-        const long meg = 1024*1024;
+        constexpr long meg = 1024*1024;
 
         if (! var_.count (GENERAL MAXFILESIZE))
             context.max_file_size (4 * meg);
@@ -747,7 +758,6 @@ void options::contextualise (nitpick& nits)
         if (var_.count (GENERAL MACROEND)) context.macro_end (var_ [GENERAL MACROEND].as < ::std::string > ());
         if (var_.count (GENERAL MACROSTART)) context.macro_start (var_ [GENERAL MACROSTART].as < ::std::string > ());
         if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
-        if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose> (decode_severity (nits, var_ [GENERAL VERBOSE].as < ::std::string > ())));
         context.process_webmentions (var_.count (GENERAL WEBMENTION));
 
         if (var_.count (CORPUS OUTPUT)) context.corpus (nix_path_to_local (var_ [CORPUS OUTPUT].as < ::std::string > ()));
@@ -864,8 +874,8 @@ void options::contextualise (nitpick& nits)
             ::std::string s (var_ [SHADOW COPY].as < ::std::string  > ());
             e_shadow sh = examine_value < t_shadow > (nuts, html_tags, s);
             if (sh == sh_error)
-                if ((s.length () == 1) && (s [0] >= '0') && (s [0] <= '7'))
-                {   sh = static_cast < e_shadow > (s [0] - '0' + 1);
+                if ((s.length () == 1) && (::gsl::at (s, 0) >= '0') && (::gsl::at (s, 0) <= '7'))
+                {   sh = static_cast < e_shadow > (::gsl::at (s, 0) - '0' + 1);
 #ifdef NOLYNX
                     if ((sh == sh_hard) || (sh == sh_soft)) sh = sh_copy;
 #endif // NOLYNX
@@ -890,12 +900,12 @@ void options::contextualise (nitpick& nits)
 
         if (var_.count (SVG VERSION))
         {   ::std::string ver (var_ [SVG VERSION].as < ::std::string > ());
-            {   ::std::string::size_type slash = ver.find ('/');
+            {   const ::std::string::size_type slash = ver.find ('/');
                 ::std::string ps;
                 if (slash != ::std::string::npos)
                 {   ps = ver.substr (slash+1);
                     ver = ver.substr (0, slash); }
-                ::std::string::size_type pos = ver.find ('.');
+                const ::std::string::size_type pos = ver.find ('.');
                 if (pos == ::std::string::npos)
                     if (ver.length () == 1) context.svg_version (sv_none);
                     else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);

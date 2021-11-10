@@ -33,6 +33,6 @@ type_index find_type_index (nitpick& nits, const html_version& v, const ::std::s
     type_master < t_schema_type > sc;
     sc.set_value (nits, v, name);
     if (sc.good ())
-    {   sch st (nits, v, sc.vocab (), sc.root ());
+    {   const sch st (nits, v, sc.vocab (), sc.root ());
         if (! st.invalid ()) return make_type_index (st.get ()); }
     return invalid_type; }

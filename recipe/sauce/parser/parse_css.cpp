@@ -52,9 +52,12 @@ void parse_css (nitpick& nits, const html_version& , smsid_t& ids, const ::std::
             case '\f' :
                 newline = true;
                 ++line;
-                // drop thru'
+                [[fallthrough]];
             case '\t' :
-                ch = ' '; }
+                ch = ' ';
+                break;
+            default :
+                break; }
         if (::std::iswcntrl (ch)) continue;
         switch (status)
         {   case st_class :
@@ -65,13 +68,14 @@ void parse_css (nitpick& nits, const html_version& , smsid_t& ids, const ::std::
                         if (context.tell (e_debug)) nits.pick (nit_found_css_class, es_debug, ec_css, "Found CSS class ", x);
                         ++count; }
                     status = st_dull; }
-                // drop thru'
+                [[fallthrough]];
             case st_dull :
                 switch (ch)
                 {   case '.' :  status = st_class_start; break;
                     case '\'' : status = st_single_quote; break;
                     case '"' : status = st_double_quote; break;
-                    case '/' : status = st_comment_maybe; break; }
+                    case '/' : status = st_comment_maybe; break;
+                    default : break; }
                 break;
             case st_class_start :
                 if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')) || (ch != '-') || (ch != '_'))  // CSS 2.1, pg 48

@@ -23,27 +23,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 typedef ::std::pair < ::std::string, ::std::size_t > symbol_key;
 
-inline bool operator == (const symbol_key& lhs, const symbol_key& rhs)
+inline bool operator == (const symbol_key& lhs, const symbol_key& rhs) noexcept
 {   return (lhs.second == rhs.second) && (lhs.first == rhs.first); }
 
-inline bool operator != (const symbol_key& lhs, const symbol_key& rhs)
+inline bool operator != (const symbol_key& lhs, const symbol_key& rhs) noexcept
 {   return ! (lhs == rhs); }
 
-inline bool operator < (const symbol_key& lhs, const symbol_key& rhs)
+inline bool operator < (const symbol_key& lhs, const symbol_key& rhs) noexcept
 {   if (lhs.second < rhs.second) return true;
     if (lhs.second > rhs.second) return false;
     return (lhs.first < rhs.first); }
 
-inline bool operator >= (const symbol_key& lhs, const symbol_key& rhs)
+inline bool operator >= (const symbol_key& lhs, const symbol_key& rhs) noexcept
 {   return ! (lhs < rhs); }
 
-inline bool operator > (const symbol_key& lhs, const symbol_key& rhs)
+inline bool operator > (const symbol_key& lhs, const symbol_key& rhs) noexcept
 {   return (lhs >= rhs) && (lhs != rhs); }
 
-inline bool operator <= (const symbol_key& lhs, const symbol_key& rhs)
+inline bool operator <= (const symbol_key& lhs, const symbol_key& rhs) noexcept
 {   return ! (lhs > rhs); }
 
 template < > struct std::hash < symbol_key >
-{   ::std::size_t operator() (const symbol_key& k) const
-    {   ::std::size_t h = ::std::hash < ::std::string > () (k.first); // bollocks
+{   ::std::size_t operator() (const symbol_key& k) const noexcept
+    {   const ::std::size_t h = ::std::hash < ::std::string > () (k.first); // bollocks
         return ::std::hash <::std::size_t> () (h ^ static_cast < ::std::size_t > (k.second)); } };

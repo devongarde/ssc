@@ -39,11 +39,14 @@ public:
     attributes_node () = default;
     explicit attributes_node (element_node* box);
     attributes_node (const attributes_node& an) = default;
+    attributes_node (attributes_node&& an) = default;
     attributes_node (element_node* box, const attributes_node& an)
         :   box_ (box)
     {   va_ = an.va_; }
-	~attributes_node() = default;
-	void swap (attributes_node& an)
+	~attributes_node () = default;
+    attributes_node& operator = (const attributes_node& ) = default;
+    attributes_node& operator = (attributes_node&& ) = default;
+	void swap (attributes_node& an) noexcept
     {   va_.swap (an.va_);
         ::std::swap (box_, an.box_); }
     void reset ()
@@ -52,19 +55,19 @@ public:
     void reset (const attributes_node& an)
     {   attributes_node tmp (box_, an);
         swap (tmp); }
-    const van_t& get_attributes () const { return va_; }
+    const van_t& get_attributes () const noexcept { return va_; }
     e_svg_version get_svg (const html_version& v) const;
     e_math_version get_math (const html_version& v) const;
     void manage_xmlns (nitpick& nits, html_version& v);
-    bool empty () const { return va_.size () == 0; }
+    bool empty () const noexcept { return va_.size () == 0; }
     static void process_attributes (nitpick& nits, const html_version& v, element_node* box, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line);
     void parse (nitpick& nits, const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line, const elem& el, const bool normal);
-    const element_node* box () const { return box_; }
-    element_node* box () { return box_; }
-    void box (element_node* b) { box_ = b; }
+    const element_node* box () const noexcept { return box_; }
+    element_node* box () noexcept { return box_; }
+    void box (element_node* b) noexcept { box_ = b; }
     prefixes_ptr prefixes () const;
     void prepare_prefixes ();
     namespaces_ptr namespaces () const;
     void prepare_namespaces ();
-    ::std::size_t size () const { return va_.size (); }
+    ::std::size_t size () const noexcept { return va_.size (); }
     ::std::string rpt () const; };

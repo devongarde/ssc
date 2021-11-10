@@ -25,7 +25,7 @@ template < class FAMILY, class MEMBER, FAMILY max_family, MEMBER max_member > cl
     typedef ::std::vector < unsigned > partial_t;
     counter_t count_;
     partial_t family_, member_;
-    uint64_t index (const FAMILY f, const MEMBER m) const
+    uint64_t index (const FAMILY f, const MEMBER m) const noexcept
     {   return (static_cast < uint64_t > (f) << 32) + static_cast < uint64_t > (m); }
 public:
     stats2 ()

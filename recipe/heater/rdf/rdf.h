@@ -39,7 +39,7 @@ class rdf_t
     prefixes_t* prefixes_ = nullptr;
     vsh_t vocab_;
     prop_indices prepare_prop_indices (nitpick& nits, const html_version& v, const ::std::string& name);
-    bool use_parent () const { return (up_ != nullptr); }
+    bool use_parent () const noexcept { return (up_ != nullptr); }
     template < typename ENUM > ENUM fit_vocab (const html_version& v, const ::std::string& name) const;
     bool is_vocab_defined (const e_schema s)
     {   if (vocab_.find (s) != vocab_.cend ()) return true;
@@ -61,8 +61,8 @@ public:
     {   PRESUME (type_.empty (), __FILE__, __LINE__);
         PRESUME (prop_.empty (), __FILE__, __LINE__);
         up_ = u; }
-    rdf_t* up () { return up_; }
-    const rdf_t* up () const { return up_; }
+    rdf_t* up () noexcept { return up_; }
+    const rdf_t* up () const noexcept { return up_; }
 
     vty_t type () const
     {   if (use_parent ())

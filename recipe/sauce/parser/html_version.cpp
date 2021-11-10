@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 
 const char* doctype = "DOCTYPE";
-const ::std::size_t doctype_len = 7;
+constexpr ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
 html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions, const flags_t e2)
@@ -40,7 +40,7 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
     else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
     {   y = HTML_LATEST_YEAR; m = HTML_LATEST_MONTH; }
     PRESUME ((m > 0) && (m < 13), __FILE__, __LINE__);
-    set_mjr (static_cast <unsigned char> (y), static_cast <unsigned char> (m * 16));
+    set_mjr (::gsl::narrow_cast <unsigned char> (y), ::gsl::narrow_cast <unsigned char> (m * 16));
     if (no_ext (MATH_MASK))
         if (mjr () <= HTML_2010) set_ext (HE_MATH_1);
         else if (mjr () <= HTML_2014) set_ext (HE_MATH_2);
@@ -81,19 +81,19 @@ void html_version::init (const unsigned char mjr)
     ::std::string res ("5/20");
     if (v.mjr () < 10)
     {   res += "0";
-        res += static_cast <char> (v.mjr () + '0'); }
+        res += ::gsl::narrow_cast <char> (v.mjr () + '0'); }
     else res += ::boost::lexical_cast < ::std::string > (static_cast < int > (v.mjr ()));
-    int mon = v.mnr () / 16;
+    const int mon = v.mnr () / 16;
     if (mon <= 9)
     {   res += "0";
-        res += static_cast <char> (mon + '0'); }
+        res += ::gsl::narrow_cast <char> (mon + '0'); }
     else res += ::boost::lexical_cast < ::std::string > (mon);
     int day = v.mnr () % 16;
     day *= 2;
     day += 1;
     if (day <= 9)
     {   res += "0";
-        res += static_cast <char> (day + '0'); }
+        res += ::gsl::narrow_cast <char> (day + '0'); }
     else res += ::boost::lexical_cast < ::std::string > (day);
     return res; }
 
@@ -122,7 +122,7 @@ void html_version::init (const unsigned char mjr)
                     if (level () > 0) res << "/" << level ();
                     break;
                 case 3 :
-                    res << "3." << static_cast <char> (mnr () + '0');
+                    res << "3." << ::gsl::narrow_cast <char> (mnr () + '0');
                     break;
                 case 4 :
                     res << "4.0";
@@ -195,7 +195,7 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
         reset (got); }
     return true; }
 
-bool html_version::invalid_addendum (const html_version& v) const
+bool html_version::invalid_addendum (const html_version& v) const noexcept
 {   if (microdata ())
         if (context.microdata ()) return false;
         else return v.w3 ();
@@ -298,21 +298,21 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_xhtml10_strict_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that strict XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
-                    // drop thru'
+                    [[fallthrough]];
                 case doc_xhtml10_strict :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Strict")) set_flags (HV_STRICT);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml10_loose_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that transitional XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
-                    // drop thru'
+                    [[fallthrough]];
                 case doc_xhtml10_loose :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Transitional")) set_flags (HV_TRANSITIONAL);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml10_frameset_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that XHTML 1.0 frameset declaration was withdrawn before XHTML 1.0 was published");
-                    // drop thru'
+                    [[fallthrough]];
                 case doc_xhtml10_frameset :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Frameset")) set_flags (HV_FRAMESET);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
@@ -351,19 +351,19 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_html401_strict_superseded :
                     nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that strict HTML .dtd was withdrawn");
-                    // drop thru'
+                    [[fallthrough]];
                 case doc_html401_strict :
                     if (note_parsed_version (nits, nit_html_4_01s, html_4_1, "HTML 4.01 Strict")) set_flags (HV_STRICT);
                     break;
                 case doc_html401_loose_superseded :
                     nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that transitional HTML .dtd was withdrawn");
-                    // drop thru'
+                    [[fallthrough]];
                 case doc_html401_loose :
                     if (note_parsed_version (nits, nit_html_4_01, html_4_1, "HTML 4.01 Transitional")) set_flags (HV_TRANSITIONAL);
                     break;
                 case doc_html401_frameset_superseded :
                     nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that HTML frameset .dtd was withdrawn");
-                    // drop thru'
+                    [[fallthrough]];
                 case doc_html401_frameset :
                     if (note_parsed_version (nits, nit_html_4_01f, html_4_1, "HTML 4.01 Frameset")) set_flags (HV_FRAMESET);
                     break;
@@ -396,6 +396,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_html1 :
                     note_parsed_version (nits, nit_html_tags, html_tags, "HTML 1.0");
+                    break;
                 case doc_sqclose :
                     break;
                 case doc_sqopen :
@@ -413,8 +414,8 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
             html_version vvv;
             ::std::string ver;
             e_nit wit = nit_free;
-            e_math_version ev = context.math_version ();
-            e_svg_version sv = context.svg_version ();
+            const e_math_version ev = context.math_version ();
+            const e_svg_version sv = context.svg_version ();
             if (context.versioned ())
             {   vvv = context.html_ver ();
                 wit = nit_overriding_html;
@@ -477,7 +478,8 @@ bool html_version::deprecated (const html_version& current) const
         case 3 :
             switch (current.mnr ())
             {   case 0 : return any_flags (HV_DEPRECATED30);
-                case 2 : return any_flags (HV_DEPRECATED32); }
+                case 2 : return any_flags (HV_DEPRECATED32);
+                default : break; }
             GRACEFUL_CRASH (__FILE__, __LINE__); break;
         case 4:
             switch (current.mnr ())
@@ -485,7 +487,8 @@ bool html_version::deprecated (const html_version& current) const
                 case 1 : return any_flags (HV_DEPRECATED4);
                 case 2 : return any_flags (HV_DEPRECATEDX1);
                 case 3 : return any_flags (HV_DEPRECATEDX11);
-                case 4 : return any_flags (HV_DEPRECATEDX2); }
+                case 4 : return any_flags (HV_DEPRECATEDX2);
+                default : break; }
             GRACEFUL_CRASH (__FILE__, __LINE__); break;
         default :
             if (current.any_flags (HV_WHATWG))
@@ -495,15 +498,16 @@ bool html_version::deprecated (const html_version& current) const
             {   case 0 : return any_flags (HV_DEPRECATED50);
                 case 1 : return any_flags (HV_DEPRECATED51);
                 case 2 : return any_flags (HV_DEPRECATED52);
-                case 3 : return any_flags (HV_DEPRECATED53); } }
+                case 3 : return any_flags (HV_DEPRECATED53);
+                default : break; } }
     return false; }
 
-bool html_version::lazy () const
+bool html_version::lazy () const noexcept
 {   if (is_2_or_more ()) return true;
     if (is_0 ()) return false;
     return (mnr () > 0); }
 
-bool test_not_extension (const html_version& lhs, const html_version& rhs)
+bool test_not_extension (const html_version& lhs, const html_version& rhs) noexcept
 {   switch (lhs.svg_version ())
     {   case sv_1_0 : return rhs.not_svg_10 ();
         case sv_1_1 : return rhs.not_svg_11 ();
@@ -582,13 +586,13 @@ bool html_version::check_math_svg (nitpick& nits, const html_version& a, const :
         default : break; }
     return true; }
 
-e_rdf_version html_version::rdf_version () const
+e_rdf_version html_version::rdf_version () const noexcept
 {   if (all_ext (HE_RDFA)) return rdf_a;
     if (all_ext (HE_RDF)) return rdf_1_0;
     if (all_ext (HE_RDF_DEP)) return rdf_deprecated;
     return rdf_none; }
 
-void html_version::rdf_version (const e_rdf_version v)
+void html_version::rdf_version (const e_rdf_version v) noexcept
 {   reset_ext (RDF_MASK);
     switch (v)
     {   case rdf_a : set_ext (HE_RDFA); break;
@@ -597,7 +601,7 @@ void html_version::rdf_version (const e_rdf_version v)
         case rdf_deprecated : set_ext (HE_RDF_DEP); break;
         default : break; } }
 
-e_svg_version html_version::svg_version () const
+e_svg_version html_version::svg_version () const noexcept
 {   if (all_ext (HE_SVG_21)) return sv_2_1;
     if (all_ext (HE_SVG_20)) return sv_2_0;
     if (all_ext (HE_SVG_12_TINY)) return sv_1_2_tiny;
@@ -606,7 +610,7 @@ e_svg_version html_version::svg_version () const
     if (all_ext (HE_SVG_10)) return sv_1_0;
     return sv_none; }
 
-void html_version::svg_version (const e_svg_version v)
+void html_version::svg_version (const e_svg_version v) noexcept
 {   reset_ext (SVG_MASK);
     switch (v)
     {   case sv_1_0 : set_ext (HE_SVG_10); break;
@@ -617,19 +621,19 @@ void html_version::svg_version (const e_svg_version v)
         case sv_2_1 : set_ext (HE_SVG_21); break;
         default : break; } }
 
-e_math_version html_version::math_version () const
+e_math_version html_version::math_version () const noexcept
 {   if (all_ext (HE_MATH_4)) return math_4;
     if (all_ext (HE_MATH_3)) return math_3;
     if (all_ext (HE_MATH_2)) return math_2;
     if (all_ext (HE_MATH_1)) return math_1;
     return math_none; }
 
-e_jsonld_version html_version::jsonld_version () const
+e_jsonld_version html_version::jsonld_version () const noexcept
 {   if (all_ext2 (H2_JSONLD_1_1)) return jsonld_1_1;
     if (all_ext2 (H2_JSONLD_1_0)) return jsonld_1_0;
     return jsonld_none; }
 
-void html_version::math_version (const e_math_version v)
+void html_version::math_version (const e_math_version v) noexcept
 {   reset_ext (MATH_MASK);
     switch (v)
     {   case math_1 : set_ext (HE_MATH_1); break;
@@ -638,7 +642,7 @@ void html_version::math_version (const e_math_version v)
         case math_4 : set_ext (HE_MATH_4); break;
         default : break; } }
 
-void html_version::jsonld_version (const e_jsonld_version v)
+void html_version::jsonld_version (const e_jsonld_version v) noexcept
 {   reset_ext2 (JSONLD_MASK);
     switch (v)
     {   case jsonld_1_0 : set_ext2 (H2_JSONLD_1_0); break;
@@ -651,7 +655,8 @@ void html_version::jsonld_version (const e_jsonld_version v)
         case 1 :
             switch (mnr ())
             {   case 0 : return "HTML PUBLIC \"-//IETF//DTD HTML//EN\"";
-                case 1 : return "htmlplus PUBLIC \"-//Internet/RFC xxxx//EN\""; }
+                case 1 : return "htmlplus PUBLIC \"-//Internet/RFC xxxx//EN\"";
+                default : break; }
             break;
         case 2 :
             switch (level ())
@@ -661,7 +666,8 @@ void html_version::jsonld_version (const e_jsonld_version v)
         case 3 :
             switch (mnr ())
             {   case 0 : return "HTML PUBLIC \"-//IETF//DTD HTML 3.0//EN\"";
-                case 2 : return "HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\""; }
+                case 2 : return "HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\"";
+                default : break; }
             break;
         case 4 :
             switch (mnr ())
@@ -669,12 +675,13 @@ void html_version::jsonld_version (const e_jsonld_version v)
                 case 1 : return "HTML PUBLIC \"-//IETF//DTD HTML 4.01 Transitional//EN\" \"" HTTP_W3 "/TR/html40/loose.dtd\"";
                 case 2 : return "html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"" HTTP_W3 "/TR/xhtml1/DTD/xhtml1-transitional.dtd\"";
                 case 3 : return "html PUBLIC \"-//W3C//DTD XHTML Basic 1.1//EN\" \"" HTTP_W3 "/TR/xhtml-basic/xhtml-basic11.dtd\"";
-                case 4 : return "html PUBLIC \"-//W3C//DTD XHTML 2.0//EN\" \"" HTTP_W3 "/MarkUp/DTD/xhtml2.dtd\""; }
+                case 4 : return "html PUBLIC \"-//W3C//DTD XHTML 2.0//EN\" \"" HTTP_W3 "/MarkUp/DTD/xhtml2.dtd\"";
+                default : break; }
             break;
         default : return "HTML"; }
     return ::std::string (); }
 
-bool html_version::restricted_charset () const
+bool html_version::restricted_charset () const noexcept
 {   return (is_5 ()); }
 
 bool html_version::valid_charset (const ::std::string& charset) const
@@ -682,24 +689,24 @@ bool html_version::valid_charset (const ::std::string& charset) const
     if (is_b4_1 ()) return compare_no_case (charset, US_ASCII);
     return true; }
 
-const char *html_version::default_charset () const
+const char *html_version::default_charset () const noexcept
 { return ::default_charset (*this); }
 
-const char *html_version::alternative_charset () const
+const char *html_version::alternative_charset () const  noexcept
 { return ::alternative_charset (*this); }
 
-bool html_version::test_extension () const
+bool html_version::test_extension () const noexcept
 {   if (is_b4_4 ()) return false;
     return (has_svg () || has_math () || has_rdfa ()); }
 
-bool html_version::is_plain_html () const
+bool html_version::is_plain_html () const noexcept
 {   if (xhtml ()) return false;
     return ! test_extension (); }
 
-bool html_version::requires_extension () const
+bool html_version::requires_extension () const noexcept
 {   return test_extension (); }
 
-bool html_version::svg_anim (const e_svg_version v) const
+bool html_version::svg_anim (const e_svg_version v) const noexcept
 {   switch (v)
     {   case sv_1_0 : return svg_anim_10 ();
         case sv_1_1 : return svg_anim_11 ();
@@ -710,7 +717,7 @@ bool html_version::svg_anim (const e_svg_version v) const
         default : break; }
     return false; }
 
-bool html_version::svg_limited (const e_svg_version v) const
+bool html_version::svg_limited (const e_svg_version v) const noexcept
 {   switch (v)
     {   case sv_1_0 : return svg_limited_10 ();
         case sv_1_1 : return svg_limited_11 ();
@@ -752,8 +759,9 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
                         case 1 : return ! from.not4 ();
                         case 2 :
                         case 3 : return (! from.notx1 ()) || (from.svg_version () != sv_none) || (from.math_version () != math_none);
-                        case 4 : return (! from.notx2 ()) || (from.svg_version () != sv_none) || (from.math_version () != math_none); }
-                    PRESUME (false, __FILE__, __LINE__);
+                        case 4 : return (! from.notx2 ()) || (from.svg_version () != sv_none) || (from.math_version () != math_none);
+                        default : break; }
+                    GRACEFUL_CRASH (__FILE__, __LINE__);
                     break;
         default :   if (from.xhtml () && from.notx5 ()) return false;
                     if (context.html_ver ().whatwg () && from.w3 ()) return false;
@@ -776,7 +784,7 @@ bool overlap (const html_version& lhs_from, const html_version& lhs_to, const ht
     if (rhs_from > lhs_from) return does_apply (rhs_from, lhs_from, lhs_to);
     else return does_apply (lhs_from, rhs_from, rhs_to); }
 
-int w3_minor_5 (const html_version& v)
+int w3_minor_5 (const html_version& v) noexcept
 {   if (! v.is_5 ()) return v.mnr ();
     if (v.mjr () < MAJOR_5_0) return 0;
     if ((v.mjr () == MAJOR_5_0) && (v.mnr () <= MINOR_5_0)) return 0;
@@ -788,7 +796,7 @@ int w3_minor_5 (const html_version& v)
     if ((v.mjr () == MAJOR_5_3) && (v.mnr () <= MINOR_5_3)) return 3;
     return 4; }
 
-int w3_5_minor (const html_version& v)
+int w3_5_minor (const html_version& v) noexcept
 {   if (! v.is_5 ()) return v.mnr ();
     if ((v.mjr () == MAJOR_5_0) && (v.mnr () == MINOR_5_0)) return 0;
     if ((v.mjr () == MAJOR_5_1) && (v.mnr () == MINOR_5_1)) return 1;
@@ -796,7 +804,7 @@ int w3_5_minor (const html_version& v)
     if ((v.mjr () == MAJOR_5_3) && (v.mnr () == MINOR_5_3)) return 3;
     return -1; }
 
-const char *default_charset (const html_version& v)
+const char *default_charset (const html_version& v) noexcept
 {   switch (v.mjr ())
     {   case 0 :
         case 1 : return US_ASCII;
@@ -806,11 +814,11 @@ const char *default_charset (const html_version& v)
         case 5 : return LATIN_1;
         default : return UTF_8; } }
 
-const char *alternative_charset (const html_version& v)
+const char *alternative_charset (const html_version& v) noexcept
 {   if (v.is_b4_2 () || v.is_4_or_more ()) return "";
     return US_ASCII; }
 
-html_version get_min_version (const e_svg_version e)
+html_version get_min_version (const e_svg_version e) noexcept
 {   switch (e)
     {   case sv_1_0 : return xhtml_svg_1_0;
         case sv_1_1 : return xhtml_svg_1_1;
@@ -820,7 +828,7 @@ html_version get_min_version (const e_svg_version e)
         case sv_2_1 : return html_svg_2_1;
         default : return html_0; } }
 
-html_version get_min_version (const e_math_version e)
+html_version get_min_version (const e_math_version e) noexcept
 {   switch (e)
     {   case math_1 : return html_math_1;
         case math_2 : return xhtml_math_2;
@@ -828,7 +836,7 @@ html_version get_min_version (const e_math_version e)
         case math_4 : return html_math_4;
         default : return html_0; } }
 
-html_version get_min_version (const e_jsonld_version e)
+html_version get_min_version (const e_jsonld_version e) noexcept
 {   switch (e)
     {   case jsonld_1_0 : return html_jsonld_1_0;
         case jsonld_1_1 : return html_jsonld_1_1;

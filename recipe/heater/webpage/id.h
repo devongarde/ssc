@@ -43,26 +43,26 @@ class ids_t
     ::std::size_t data_ = 0;
     bool unique_ = true;
 public:
-    void swap (ids_t& x) NOEXCEPT
+    void swap (ids_t& x) noexcept
     {   ::std::swap (ndx_, x.ndx_);
         ::std::swap (data_, x.data_);
         ::std::swap (unique_, x.unique_);
         ids_.swap (x.ids_); }
-    fileindex_t ndx () const { return ndx_; }
-    void ndx (fileindex_t x, const bool b = true)
+    fileindex_t ndx () const noexcept { return ndx_; }
+    void ndx (fileindex_t x, const bool b = true) noexcept
     {   ndx_ = x; unique_ = b; }
-    bool unique () const { return unique_; }
-    ::std::size_t data () const { return data_; }
-    void data (::std::size_t x) { data_ = x; }
-    bool empty () const
+    bool unique () const noexcept { return unique_; }
+    ::std::size_t data () const noexcept { return data_; }
+    void data (::std::size_t x) noexcept { data_ = x; }
+    bool empty () const noexcept
     {   return ids_.empty (); }
     bool has_id (const ::std::string& id) const
     {   return (ids_.find (id) != ids_.cend ()); }
     void insert_id (const ::std::string& id, element* pe);
     void cover_arse ();
-    const mif_t& mif () const { return ids_; }
+    const mif_t& mif () const noexcept { return ids_; }
     bool compatible_state (const ::std::string& id, const bool hidden);
-    bool compatible_category (const html_version& v, element& e, const e_sought_category cat);
+    bool compatible_category (const html_version& v, const element& e, const e_sought_category cat);
     bool is_hidden (const ::std::string& id) const;
     bool has_itemtype (const ::std::string& id, const itemtype_index s) const;
     bool has_itemtype (const ::std::string& id, const vit_t vit) const;
@@ -71,4 +71,4 @@ public:
     element* get_element (const ::std::string& id) const;
     static bool is_good_id (element& e, const ::std::string& s, const e_category naughty_cat, const e_nit naughty_nit, const bool hidden_concern); };
 
-bool compatible_id_state (const bool source, const bool target);
+bool compatible_id_state (const bool source, const bool target) noexcept;

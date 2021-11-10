@@ -29,24 +29,24 @@ class element;
 
 class microformats
 {   microformat_vpv mf_;
-    static ::std::size_t index (const e_class v) { return microformat_pv::index (v); }
-    static ::std::size_t index (const e_rel r) { return microformat_pv::index (r); }
-    bool allocated (const ::std::size_t ndx) const;
+    constexpr static ::std::size_t index (const e_class v) noexcept { return microformat_pv::index (v); }
+    constexpr static ::std::size_t index (const e_rel r) noexcept { return microformat_pv::index (r); }
+    bool allocated (const ::std::size_t ndx) const noexcept;
     void alloc (const ::std::size_t ndx);
     bool has (const ::std::size_t ndx, const e_property p) const;
-    bool has (const ::std::size_t ndx) const;
+    bool has (const ::std::size_t ndx) const noexcept;
     void declare (const ::std::size_t v);
     bool has_property (const ::std::size_t ndx, const e_property p) const;
     bool is_declared (const ::std::size_t ndx) const;
     void set_mf_value (nitpick& nits, const html_version& v, const ::std::size_t ndx, const e_property pp, element& e);
     ::std::string get_string (const ::std::size_t ndx, const e_property pp);
-    bool empty (const ::std::size_t ndx) const;
+    bool empty (const ::std::size_t ndx) const noexcept;
 public:
     microformats () { mf_.resize (vocab_size + rel_size); } // needs fixing for valid microformat rels
-    void swap (microformats& m) NOEXCEPT
+    void swap (microformats& m) noexcept
     {   mf_.swap (m.mf_); }
-    bool allocated (const e_class v) const { return allocated (index (v)); }
-    bool allocated (const e_rel v) const { return allocated (index (v)); }
+    bool allocated (const e_class v) const noexcept { return allocated (index (v)); }
+    bool allocated (const e_rel v) const noexcept { return allocated (index (v)); }
     void alloc (const e_class v) { alloc (index (v)); }
     void alloc (const e_rel v) { alloc (index (v)); }
     template < class VOCAB > VOCAB& get ();
@@ -55,8 +55,8 @@ public:
     void verify (nitpick& nits, const html_version& v);
     bool has (const e_class v, const e_property p) const { return has (index (v), p); }
     bool has (const e_rel v, const e_property p) const { return has (index (v), p); }
-    bool has (const e_class v) const { return has (index (v)); }
-    bool has (const e_rel v) const { return has (index (v)); }
+    bool has (const e_class v) const noexcept { return has (index (v)); }
+    bool has (const e_rel v) const noexcept { return has (index (v)); }
     void reset ();
     void declare (const e_class v) { declare (index (v)); }
     void declare (const e_rel v) { declare (index (v)); }
@@ -73,17 +73,24 @@ public:
     ::std::string get_string (const e_rel v, const e_property pp) { return get_string (index (v), pp); }
     void text (const ::std::string& s);
     bool empty () const;
-    bool empty (const e_class v) const { return empty (index (v)); }
-    bool empty (const e_rel v) const { return empty (index (v)); }
+    bool empty (const e_class v) const noexcept { return empty (index (v)); }
+    bool empty (const e_rel v) const noexcept { return empty (index (v)); }
     ::std::string report () const; };
 
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26490)  // absolutely correct here. Code needs to be fixed.
+#endif // _MSC_VER
 template < class VOCAB > VOCAB& microformats::get ()
 {   PRESUME (allocated (VOCAB::whoami ()), __FILE__, __LINE__);
-    return * (reinterpret_cast < VOCAB* > (mf_ [VOCAB::whoami ()].get ())); }
+    return * (reinterpret_cast < VOCAB* > (::gsl::at (mf_, VOCAB::whoami ()).get ())); }
 
 template < class VOCAB > const VOCAB& microformats::get () const
 {   PRESUME (allocated (VOCAB::whoami ()), __FILE__, __LINE__);
-    return * (reinterpret_cast < const VOCAB* > (mf_ [VOCAB::whoami ()].get ())); }
+    return * (reinterpret_cast < const VOCAB* > (::gsl::at (mf_, VOCAB::whoami ()).get ())); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
 template < class VOCAB > bool microformats::has () const
 {   if (! allocated (VOCAB::whoami ())) return true;

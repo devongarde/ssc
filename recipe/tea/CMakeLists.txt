@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.12)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.0.116 LANGUAGES CXX)
+project (ssc VERSION 0.0.117 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -179,8 +179,8 @@ target_sources (ssc PRIVATE
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/root.cpp
 )
 
-target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIRS})
-target_include_directories (ssc PRIVATE ${H} ${BOOST_INCLUDE_DIRS} ${ICU_INCLUDE_DIRS})
+target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIRS} $ENV{GSL_ROOT}/include)
+target_include_directories (ssc PRIVATE ${H} ${BOOST_INCLUDE_DIRS} ${ICU_INCLUDE_DIRS} $ENV{GSL_ROOT}/include)
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 

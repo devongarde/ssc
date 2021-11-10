@@ -30,25 +30,25 @@ itemtype_index make_itemtype_index (const e_schema_type p)
 
 itemtype_index make_itemtype_index (const e_property p)
 {   PRESUME (p <= first_illegal, __FILE__, __LINE__);
-    if (is_mf_class (p)) return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_microformat) << uint32_category_shift);
-    if (is_mf_rel (p)) return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << uint32_category_shift);
+    if (is_mf_class (p)) return ::gsl::narrow_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_microformat) << uint32_category_shift);
+    if (is_mf_rel (p)) return ::gsl::narrow_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << uint32_category_shift);
     return 0; }
 
-e_itemtype_category type_category (const itemtype_index ii)
-{   return static_cast < e_itemtype_category> (ndx_category (static_cast < uint32_t > (ii))); }
+//e_itemtype_category type_category (const itemtype_index ii)
+//{   return static_cast < e_itemtype_category> (ndx_category (static_cast < uint32_t > (ii))); }
 
-e_schema_type type_itself (const itemtype_index ii)
-{   return static_cast < e_schema_type> (ndx_item (static_cast < uint32_t > (ii))); }
+//e_schema_type type_itself (const itemtype_index ii)
+//{   return static_cast < e_schema_type> (ndx_item (static_cast < uint32_t > (ii))); }
 
 itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name, const bool propped)
 {   nitpick nuts;
     type_master < t_schema_type > sc;
     sc.set_value (nits, v, name);
     if (sc.good ())
-    {   sch st (nits, v, sc.vocab (), sc.root ());
+    {   const sch st (nits, v, sc.vocab (), sc.root ());
         if (! st.invalid ()) return make_itemtype_index (st.get ()); }
     if (propped)
-    {   prop p (nuts, v, name);
+    {   const prop p (nuts, v, name);
         if (p.is_class () || p.is_rel ()) return make_itemtype_index (p.get ()); }
     return invalid_itemtype; }
 

@@ -23,13 +23,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "element/element_classes.h"
 
-void attributes :: swap (attributes& w) NOEXCEPT
+void attributes :: swap (attributes& w) noexcept
 {   aar_.swap (w.aar_);
     unrecognised_.swap (w.unrecognised_);
     box_.swap (w.box_);
     rebox (); }
 
-e_element attributes :: tag () const
+e_element attributes :: tag () const noexcept
 {   return box_.tag (); }
 
 bool attributes :: parse (nitpick& nits, const html_version& v, const attributes_node& an)
@@ -64,7 +64,7 @@ bool attributes :: set_value (nitpick& nits, const html_version& v, const e_attr
     aar_.at (a) -> set_value (nits, v, s);
     return true;}
 
-bool attributes :: empty () const // better if aar_t is more sophisticated, and knows its current state (e.g. count of members with values)
+bool attributes :: empty () const noexcept // better if aar_t is more sophisticated, and knows its current state (e.g. count of members with values)
 {   for (auto a : aar_)
         if (a.get () != nullptr)
             return false;
@@ -131,7 +131,7 @@ void attributes :: verify_attributes (nitpick& nits, const html_version& v, elem
         {   if (is_attribute_required (v, tag (), static_cast < e_attribute > (i)))
                 nits.pick (nit_attribute_required, es_error, ec_element, "<", ::boost::to_upper_copy (elem::name (box_.tag ())), "> requires ", ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " in ", v.report ()); }
         else
-        {   elem e (tag ());
+        {   const elem e (tag ());
             if (aar_.at (i) -> good () || aar_.at (i) -> empty ()) aar_.at (i) -> verify_attribute (nits, v, pe -> node ().id (), pe, attr::name (static_cast < e_attribute > (i)));
             if (aar_.at (i) -> verify_version (nits, v, e)) pe -> own_attributes ().set (aar_.at (i) -> id ());
             else nits.pick (nit_wrong_version, es_error, ec_element, ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " is invalid with <", ::boost::to_upper_copy (elem::name (e)), "> in ", v.report ()); } }

@@ -22,38 +22,34 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/microformat_classes.h"
 
 class microformat_pv
-{   bool holds_alternative (const ::std::size_t v) const
+{   bool holds_alternative (const ::std::size_t v) const noexcept
     {   return (v == index_) && ! is_empty (); }
 public:
     ::std::size_t           index_ = 0;
     microformat_base_ptr    microformat_ = nullptr;
-    microformat_pv () NOEXCEPT
+    microformat_pv () noexcept
         :   index_ (c_error)
     { }
-    explicit microformat_pv (const ::std::size_t v) NOEXCEPT
+    explicit microformat_pv (const ::std::size_t v) noexcept
         :   index_ (v)
     { }
-    explicit microformat_pv (const e_class v) NOEXCEPT
+    explicit microformat_pv (const e_class v) noexcept
         :   index_ (index (v))
     { }
-    explicit microformat_pv (const e_rel v) NOEXCEPT
+    explicit microformat_pv (const e_rel v) noexcept
         :   index_ (index (v))
     { }
 
     microformat_pv (const microformat_pv& mf) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     microformat_pv (microformat_pv&& mf) = default;
-#endif
     microformat_pv& operator = (const microformat_pv& mf) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     microformat_pv& operator = (microformat_pv&& mf) = default;
-#endif
     ~microformat_pv () = default;
 
     static const ::std::size_t first_rel_ = static_cast < ::std::size_t > (r_entry_category);
-    static ::std::size_t index (const e_class v)
+    constexpr static ::std::size_t index (const e_class v) noexcept
     {   return static_cast < ::std::size_t > (v); }
-    static ::std::size_t index (const e_rel r)
+    constexpr static ::std::size_t index (const e_rel r) noexcept
     {    return static_cast < ::std::size_t > (r) /* + first_rel_ */ ; }
 
     static microformat_pv alloc_microformat_pv (const ::std::size_t v);
@@ -64,7 +60,7 @@ public:
 
     void reset ()
     {   if (is_allocated ()) microformat_ -> reset (); }
-    void swap (microformat_pv& m) NOEXCEPT
+    void swap (microformat_pv& m) noexcept
     {   ::std::swap (index_, m.index_);
         microformat_.swap (m.microformat_); }
 
@@ -74,30 +70,30 @@ public:
     template < class MICROFORMAT > MICROFORMAT* get ()
     {   PRESUME (MICROFORMAT::whoami () == index_, __FILE__, __LINE__);
         return reinterpret_cast <MICROFORMAT*> (microformat_.get ()); }
-    const microformat_base* get () const
+    const microformat_base* get () const noexcept
     {   return microformat_.get (); }
-    microformat_base* get ()
+    microformat_base* get () noexcept
     {   return microformat_.get (); }
 
-    bool is_vocabulary () const
+    bool is_vocabulary () const noexcept
     {   return index_ < first_rel_; }
-    bool is_rel () const
+    bool is_rel () const noexcept
     {   return index_ >= first_rel_; }
     e_class which_vocabulary () const
     {   PRESUME (is_vocabulary (), __FILE__, __LINE__); return static_cast < e_class > (index_); }
     e_rel which_rel () const
     {   PRESUME (is_rel (), __FILE__, __LINE__); return static_cast < e_rel > (index_ /* - first_rel_ */ ); }
-    bool operator ! () const
+    bool operator ! () const  noexcept
     {   return is_empty (); }
-    bool is_empty () const
+    bool is_empty () const noexcept
     {   return ! microformat_; }
-    bool is_valid () const
+    bool is_valid () const noexcept
     {   return (index_ != c_error) && (index_ != r_illegal); }
-    bool is_allocated () const
+    bool is_allocated () const noexcept
     {   return is_valid () && ! is_empty (); }
-    bool holds_alternative (const e_class v) const
+    bool holds_alternative (const e_class v) const noexcept
     {   return (is_vocabulary () && holds_alternative (index (v))); }
-    bool holds_alternative (const e_rel v) const
+    bool holds_alternative (const e_rel v) const noexcept
     {   return (is_rel () && holds_alternative (index (v))); }
     bool has_prop (const e_property p) const
     {   return is_allocated () && microformat_ -> has_prop (p); }

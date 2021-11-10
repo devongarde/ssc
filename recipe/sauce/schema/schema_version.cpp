@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 vsv_t vsv;
 
-schema_version::schema_version (const html_version& v)
+schema_version::schema_version (const html_version& v) noexcept
 {   schema_version sv;
     set_mjr (v.mjr (), v.mnr ());
     if (! sv.invalid ()) swap (sv); }
@@ -34,80 +34,80 @@ schema_version::schema_version (const html_version& v)
 void schema_version::init () // call after context construction
 {   vsv.resize (schema_size);
 // kitchen_sink
-    vsv [s_none] = default_schema;
-    vsv [s_article] = article_schema;
-    vsv [s_as] = as_schema;
-    vsv [s_bibo] = bibo_schema;
-    vsv [s_book] = book_schema;
-    vsv [s_cc] = creative_commons;
-    vsv [s_content] = content_schema;
-    vsv [s_csvw] = csvw_1_0;
-    vsv [s_ctag] = common_tag;
-    vsv [s_daq] = daq_schema;
-    vsv [s_dc] = dc_1_1;
-    vsv [s_dcam] = dcam;
-    vsv [s_dcat] = data_catalogue_2;
-    vsv [s_dcmi] = dcmi;
-    vsv [s_dct] = dublin_core_terms;
-    vsv [s_doap] = doap_schema;
-    vsv [s_dqv] = data_quality;
-    vsv [s_duv] = duv_schema;
-    vsv [s_earl] = earl_schema;
-    vsv [s_event] = event_schema;
-    vsv [s_faux] = faux_schema;
-    vsv [s_foaf] = foaf_schema;
-    vsv [s_gr] = good_relations;
-    vsv [s_grddl] = grddl_schema;
-    vsv [s_ical] = ical_schema;
-    vsv [s_icaltzd] = icaltzd_schema;
-    vsv [s_jsonld] = jsonld_schema;
-    vsv [s_ldp] = linked_data_platform;
-    vsv [s_locn] = locn_schema;
-    vsv [s_ma] = media_resources;
-    vsv [s_microformats] = context.mf_ver ();
-    vsv [s_music] = music_schema;
-    vsv [s_oa] = web_annotation;
-    vsv [s_og] = open_graph;
-    vsv [s_odrl] = odrl_schema;
-    vsv [s_org] = org_schema;
-    vsv [s_owl] = owl_2;
-    vsv [s_poetry] = poetry_schema;
-    vsv [s_profile] = profile_schema;
-    vsv [s_prov] = provincial;
-    vsv [s_ptr] = ptr_schema;
-    vsv [s_qb] = data_cube;
-    vsv [s_rdf] = rdf_schema;
-    vsv [s_rdfa] = rdfa_1_1_3;
-    vsv [s_rdfg] = rdfg_schema;
-    vsv [s_rdfs] = rdfs_schema;
-    vsv [s_rev] = review_schema;
-    vsv [s_rif] = rif_schema;
-    vsv [s_rr] = rr_schema;
-    vsv [s_schema] = context.schema_ver ();
-    vsv [s_sd] = sd_schema;
-    vsv [s_sioc] = sioc_schema;
-    vsv [s_sioc_s] = sioc_services;
-    vsv [s_sioc_t] = sioc_types;
-    vsv [s_skos] = skos_schema;
-    vsv [s_skosxl] = skosxl_schema;
-    vsv [s_sosa] = sosa_schema;
-    vsv [s_ssn] = ssn_schema;
-    vsv [s_time] = time_schema;
-    vsv [s_v] = data_vocabulary;
-    vsv [s_vcard] = vcard_schema;
-    vsv [s_video] = video_schema;
-    vsv [s_void] = void_schema;
-    vsv [s_wdr] = wdr_schema;
-    vsv [s_wdrs] = wdrs_schema;
-    vsv [s_website] = website_schema;
-    vsv [s_whatwg] = whatwg_schema;
-    vsv [s_xhv] = xhv_schema;
-    vsv [s_xsd] = xsd_1_1; }
+    ::gsl::at (vsv, s_none) = default_schema;
+    ::gsl::at (vsv, s_article) = article_schema;
+    ::gsl::at (vsv, s_as) = as_schema;
+    ::gsl::at (vsv, s_bibo) = bibo_schema;
+    ::gsl::at (vsv, s_book) = book_schema;
+    ::gsl::at (vsv, s_cc) = creative_commons;
+    ::gsl::at (vsv, s_content) = content_schema;
+    ::gsl::at (vsv, s_csvw) = csvw_1_0;
+    ::gsl::at (vsv, s_ctag) = common_tag;
+    ::gsl::at (vsv, s_daq) = daq_schema;
+    ::gsl::at (vsv, s_dc) = dc_1_1;
+    ::gsl::at (vsv, s_dcam) = dcam;
+    ::gsl::at (vsv, s_dcat) = data_catalogue_2;
+    ::gsl::at (vsv, s_dcmi) = dcmi;
+    ::gsl::at (vsv, s_dct) = dublin_core_terms;
+    ::gsl::at (vsv, s_doap) = doap_schema;
+    ::gsl::at (vsv, s_dqv) = data_quality;
+    ::gsl::at (vsv, s_duv) = duv_schema;
+    ::gsl::at (vsv, s_earl) = earl_schema;
+    ::gsl::at (vsv, s_event) = event_schema;
+    ::gsl::at (vsv, s_faux) = faux_schema;
+    ::gsl::at (vsv, s_foaf) = foaf_schema;
+    ::gsl::at (vsv, s_gr) = good_relations;
+    ::gsl::at (vsv, s_grddl) = grddl_schema;
+    ::gsl::at (vsv, s_ical) = ical_schema;
+    ::gsl::at (vsv, s_icaltzd) = icaltzd_schema;
+    ::gsl::at (vsv, s_jsonld) = jsonld_schema;
+    ::gsl::at (vsv, s_ldp) = linked_data_platform;
+    ::gsl::at (vsv, s_locn) = locn_schema;
+    ::gsl::at (vsv, s_ma) = media_resources;
+    ::gsl::at (vsv, s_microformats) = context.mf_ver ();
+    ::gsl::at (vsv, s_music) = music_schema;
+    ::gsl::at (vsv, s_oa) = web_annotation;
+    ::gsl::at (vsv, s_og) = open_graph;
+    ::gsl::at (vsv, s_odrl) = odrl_schema;
+    ::gsl::at (vsv, s_org) = org_schema;
+    ::gsl::at (vsv, s_owl) = owl_2;
+    ::gsl::at (vsv, s_poetry) = poetry_schema;
+    ::gsl::at (vsv, s_profile) = profile_schema;
+    ::gsl::at (vsv, s_prov) = provincial;
+    ::gsl::at (vsv, s_ptr) = ptr_schema;
+    ::gsl::at (vsv, s_qb) = data_cube;
+    ::gsl::at (vsv, s_rdf) = rdf_schema;
+    ::gsl::at (vsv, s_rdfa) = rdfa_1_1_3;
+    ::gsl::at (vsv, s_rdfg) = rdfg_schema;
+    ::gsl::at (vsv, s_rdfs) = rdfs_schema;
+    ::gsl::at (vsv, s_rev) = review_schema;
+    ::gsl::at (vsv, s_rif) = rif_schema;
+    ::gsl::at (vsv, s_rr) = rr_schema;
+    ::gsl::at (vsv, s_schema) = context.schema_ver ();
+    ::gsl::at (vsv, s_sd) = sd_schema;
+    ::gsl::at (vsv, s_sioc) = sioc_schema;
+    ::gsl::at (vsv, s_sioc_s) = sioc_services;
+    ::gsl::at (vsv, s_sioc_t) = sioc_types;
+    ::gsl::at (vsv, s_skos) = skos_schema;
+    ::gsl::at (vsv, s_skosxl) = skosxl_schema;
+    ::gsl::at (vsv, s_sosa) = sosa_schema;
+    ::gsl::at (vsv, s_ssn) = ssn_schema;
+    ::gsl::at (vsv, s_time) = time_schema;
+    ::gsl::at (vsv, s_v) = data_vocabulary;
+    ::gsl::at (vsv, s_vcard) = vcard_schema;
+    ::gsl::at (vsv, s_video) = video_schema;
+    ::gsl::at (vsv, s_void) = void_schema;
+    ::gsl::at (vsv, s_wdr) = wdr_schema;
+    ::gsl::at (vsv, s_wdrs) = wdrs_schema;
+    ::gsl::at (vsv, s_website) = website_schema;
+    ::gsl::at (vsv, s_whatwg) = whatwg_schema;
+    ::gsl::at (vsv, s_xhv) = xhv_schema;
+    ::gsl::at (vsv, s_xsd) = xsd_1_1; }
 
 ::std::string schema_version::report () const
 {   ::std::ostringstream res;
     if (known ())
-    {   e_schema r = root ();
+    {   const e_schema r = root ();
         PRESUME (r < s_error, __FILE__, __LINE__);
         switch (r)
         {   case s_article :
@@ -329,7 +329,7 @@ bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, cons
     if ((lhs_from > rhs_to) && ! rhs_to.unknown ()) return false;
     return (lhs_to.unknown () || (lhs_to >= rhs_from)); }
 
-bool is_valid_schema_version (const e_schema root, const unsigned char j, const unsigned char n)
+bool is_valid_schema_version (const e_schema root, const unsigned char j, const unsigned char n) noexcept
 {   switch (root)
     {   case s_article :
         case s_book :
@@ -420,6 +420,6 @@ bool is_valid_schema_version (const e_schema root, const unsigned char j, const 
         default :
             return false; } }
 
-bool does_schema_apply (const schema_version& v, const schema_version& from, const schema_version& to)
+bool does_schema_apply (const schema_version& v, const schema_version& from, const schema_version& to) MSVC_NOEXCEPT
 {   if (v.any_flags (SV_WILDCARD)) return true;
     return does_apply < version > (v, from, to); }

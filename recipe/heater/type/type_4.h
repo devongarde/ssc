@@ -28,16 +28,16 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
 public:
     typedef true_type has_int_type;
     using type_base < base_type, TYPE > :: type_base;
-    static e_animation_type animation_type () { return at_other; }
+    static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const;
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
-    void swap (four_value& t) NOEXCEPT { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }
+    void swap (four_value& t) noexcept { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }
     static base_type default_value () { return static_cast <base_type> (0); }
-    base_type get () const { return value_; }
+    base_type get () const noexcept { return value_; }
     int get_int () const { return static_cast < int > (value_); }
-    ::std::size_t type () const { return static_cast < ::std::size_t > (get ()); }
+    ::std::size_t type () const noexcept { return static_cast < ::std::size_t > (get ()); }
     bool has_value (const base_type& b) const { return type_base < base_type, TYPE > :: good () && (value_ == b); } };
 
 template < > struct type_master < t_actiontype2 > : four_value < t_actiontype2, e_actiontype, sz_toggle, sz_statusline, sz_tooltip, sz_highlight >

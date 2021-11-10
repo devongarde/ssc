@@ -22,8 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/microformats.h"
 #include "microformat/microformat_constructor.h"
 
-bool microformats::allocated (const ::std::size_t v) const
-{   return ! mf_ [v].is_empty (); }
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26446 26481) // linter, read the sodding code. Things ARE checked.
+#endif // _MSC_VER
+bool microformats::allocated (const ::std::size_t v) const noexcept
+{   if (v >= mf_.size ()) return false;
+    return ! mf_ [v].is_empty (); }
 
 void microformats::alloc (const ::std::size_t v)
 {   PRESUME (! allocated (v), __FILE__, __LINE__);
@@ -33,12 +38,11 @@ bool microformats::has (const ::std::size_t v, const e_property p) const
 {   PRESUME (allocated (v), __FILE__, __LINE__);
     return mf_ [v].has_prop (p); }
 
-bool microformats::has (const ::std::size_t v) const
+bool microformats::has (const ::std::size_t v) const noexcept
 {   return allocated (v); }
 
-bool microformats::empty (const ::std::size_t v) const
-{   if (! allocated (v)) return true;
-    return mf_ [v].is_empty (); }
+bool microformats::empty (const ::std::size_t v) const noexcept
+{   return (! allocated (v)); }
 
 bool microformats::has_property (const ::std::size_t v, const e_property p) const
 {   PRESUME (allocated (v), __FILE__, __LINE__);
@@ -91,10 +95,10 @@ bool microformats::empty () const
     return res; }
 
 void microformats::declare (const ::std::size_t v)
-{   if (! mf_ [v].is_allocated ())
-        mf_ [v] = microformat_pv::alloc_microformat_pv (v);
-    if (mf_ [v].is_allocated ())
-        mf_ [v].get () -> declare (); }
+{   if (! mf_.at (v).is_allocated ())
+        mf_.at (v) = microformat_pv::alloc_microformat_pv (v);
+    if (mf_.at (v).is_allocated ())
+        mf_.at (v).get () -> declare (); }
 
 void microformats::reset ()
 {   for (auto mf : mf_)
@@ -110,4 +114,6 @@ void microformats::text (const ::std::string& s)
         if (mf.is_allocated ())
             mf.get () -> text (s); }
 
-
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER

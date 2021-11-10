@@ -24,10 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute_classes.h"
 
 void element::verify_microdata ()
-{   bool has_itemid = a_.known (a_itemid);
-    bool has_itemref = a_.known (a_itemref);
-    bool has_itemtype = a_.known (a_itemtype);
-    bool has_itemscope = a_.known (a_itemscope);
+{   const bool has_itemid = a_.known (a_itemid);
+    const bool has_itemref = a_.known (a_itemref);
+    const bool has_itemtype = a_.known (a_itemtype);
+    const bool has_itemscope = a_.known (a_itemscope);
     if (has_itemtype)
         if (! has_itemscope)
             node_.pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_error, ec_attribute, "missing ITEMSCOPE; ITEMTYPE ignored");
@@ -84,11 +84,11 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
     itemscope = new_scope;
     if (page_.itemscope ().get () == nullptr)
         page_.itemscope (itemscope);
-    if (a_.known (a_itemid) && a_.known (a_itemid))
+    if (a_.known (a_itemid))
         itemscope -> note_itemid (node_.nits (), node_.version (), a_.get_string (a_itemid));
     return itemscope; }
 
-void element::examine_itemprop (itemscope_ptr& itemscope)
+void element::examine_itemprop (const itemscope_ptr& itemscope)
 {   if (itemscope.get () == nullptr)
         if (node_.version ().mjr () < 10) return;
         else if (ancestral_attributes_.test (a_id)) // an ancestral id suggests an itemref
@@ -97,11 +97,11 @@ void element::examine_itemprop (itemscope_ptr& itemscope)
     else
     if (! a_.known (a_itemscope) && ! a_.known (a_itemtype))
     {   ::std::string value (get_microdata_value ());
-        bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
+        const bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
         for (auto name : a_.get_x < attr_itemprop > ())
             itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, is_link, page_); } }
 
-void element::examine_itemref (itemscope_ptr& itemscope)
+void element::examine_itemref (const itemscope_ptr& itemscope)
 {   if (icarus_) pick (nit_icarus, es_info, ec_attribute, "Oh Momus, oh Icarus, why do you torment me so?");
     else if (itemscope.get () != nullptr)
         if (a_.known (a_itemscope) && a_.known (a_itemtype) && a_.known (a_itemref))
@@ -113,8 +113,8 @@ void element::examine_itemref (itemscope_ptr& itemscope)
                         ire -> walk_itemprop (itemscope);
                         icarus_ = false; } } }
 
-void element::examine_itemtype (itemscope_ptr& itemscope)
-{   bool has_itemid = a_.known (a_itemid);
+void element::examine_itemtype (const itemscope_ptr& itemscope)
+{   const bool has_itemid = a_.known (a_itemid);
     if (a_.known (a_itemscope))
     {   VERIFY_NOT_NULL (itemscope, __FILE__, __LINE__);
         for (auto name : a_.get_x < attr_itemtype > ())

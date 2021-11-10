@@ -28,25 +28,29 @@ class hook
     void check ();
     bool update_mention (nitpick& nits, const ::std::string& s);
 public:
-    hook () : deleted_ (false), valid_ (false) { }
-    hook (const hook& h) : source_ (h.source_), target_ (h.target_), deleted_ (h.deleted_), valid_ (h.valid_) { }
+    hook () = default;
+    hook (const hook& h) = default;
+    hook (hook&& h) = default;
+    ~hook () = default;
+    hook& operator = (const hook& ) = default;
+    hook& operator = (hook&& ) = default;
     hook (nitpick& nits, const html_version& v, const ::std::string& filename);
     hook (nitpick& nits, const html_version& v, const ::std::string& source, const ::std::string& target);
-    void swap (hook& h) NOEXCEPT
+    void swap (hook& h) noexcept
     {   source_.swap (h.source_);
         target_.swap (h.target_);
         ::std::swap (deleted_, h.deleted_);
         ::std::swap (valid_, h.valid_); }
     url source () const { return source_; }
     url target () const { return target_; }
-    bool deleted () const { return deleted_; }
-    bool invalid () const { return ! valid_; }
+    bool deleted () const noexcept { return deleted_; }
+    bool invalid () const noexcept { return ! valid_; }
     bool process (nitpick& nits, const html_version& v); };
 
 class hooks
 {   ::std::vector < hook > hooks_;
 public:
-    hooks () {}
-    void swap (hooks& h) NOEXCEPT { hooks_.swap (h.hooks_); }
-    bool empty () const { return hooks_.empty (); }
+//    hooks () {}
+    void swap (hooks& h) noexcept { hooks_.swap (h.hooks_); }
+    bool empty () const noexcept { return hooks_.empty (); }
     bool process (nitpick& nits, const html_version& v); };

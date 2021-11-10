@@ -120,7 +120,7 @@ struct symbol_entry < html_version, e_svg_feature > svg_feature_symbol_table [] 
 void svg_feature_init (nitpick& nits)
 {   type_master < t_svg_feature > :: init (nits, svg_feature_symbol_table, sizeof (svg_feature_symbol_table) / sizeof (symbol_entry < html_version, e_svg_feature >)); }
 
-bool invalid_id_result (nitpick& nits, const html_version& , const ::std::string& s, element* e)
+bool invalid_id_result (nitpick& nits, const html_version& , const ::std::string& s, const element* const e)
 {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
     element* anc = e -> get_ancestor (elem_filter);
     if (anc == nullptr)
@@ -136,7 +136,7 @@ void store_glyph_name (nitpick& nits, const html_version& , element* pe, const :
         nits.pick (nit_glyphname, es_warning, ec_type, "Glyph name ", quote (name), " repeated");
     else pe -> add_glyph (name); }
 
-bool check_glyph_names (nitpick& nits, const html_version& , element* pe, const vstr_t& vs)
+bool check_glyph_names (nitpick& nits, const html_version& , const element* const pe, const vstr_t& vs)
 {   bool res = true;
     VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     for (auto s : vs)
@@ -147,8 +147,8 @@ bool check_glyph_names (nitpick& nits, const html_version& , element* pe, const 
 
 e_attribute identify_svg_animation_attribute (nitpick& nits, const html_version& v, element& e, const ::std::string& s, const ::std::string& attnam)
 {   ::std::string n, ss (s);
-    ident_t ns = e.verify_namespace (ss, n);
-    e_attribute ea = attr :: find (v, ss, ns);
+    const ident_t ns = e.verify_namespace (ss, n);
+    const e_attribute ea = attr :: find (v, ss, ns);
     if (ea == a_unknown)
         nits.pick (nit_attribute_unrecognised_here, es_error, ec_type, quote (s), " is unrecognised in ", attnam);
     else if (! attr::first_version (ea).svg_anim (e.node ().version ().svg_version ()))

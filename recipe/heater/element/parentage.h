@@ -25,4 +25,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void parentage_init (nitpick& );
 bool is_permitted_parent (nitpick& nits, const html_version& v, const elem& self, const elem& parent);
 bool is_permitted_parent (const html_version& v, const elem& self, const elem& parent);
-e_element default_parent (const html_version& v, const elem& self);
+e_element default_parent (const html_version& v, const elem& self) noexcept;

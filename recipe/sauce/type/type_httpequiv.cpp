@@ -169,7 +169,7 @@ vstr_t split_sides_at_semi (nitpick& nits, const ::std::string& s, const ::std::
     return res; }
 
 bool linkarg_set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   ::std::string::size_type pos = s.find ('=');
+{   const ::std::string::size_type pos = s.find ('=');
     if ((pos == ::std::string::npos) || (pos == s.length () - 1))
         nits.pick (nit_bad_link_pragma, ed_rfc_8288, "3. Link Serialisation in HTTP Headers", es_error, ec_type, "missing argument");
     else if (pos == 0)
@@ -183,7 +183,7 @@ bool linkarg_set_value (nitpick& nits, const html_version& v, const ::std::strin
         switch (examine_value < t_linkparam > (nits, v, param))
         {   case lp_rev :
                 nits.pick (nit_bad_link_pragma, ed_rfc_8288, "3. Link Serialisation in HTTP Headers", es_warning, ec_type, "rev is deprecated");
-                // drop thru'
+                [[fallthrough]];
             case lp_rel :
                 if (arg.find_first_not_of (ALPHADDD) != ::std::string::npos)
                 {   nits.pick (nit_nocando, ed_rfc_8288, "3. Link Serialisation in HTTP Headers", es_info, ec_type, "apologies, but ", PROG, " cannot verify this rel/rev");

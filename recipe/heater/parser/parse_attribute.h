@@ -35,35 +35,34 @@ class attribute_node
     attributes_node* box_ = nullptr;
     void parse (nitpick& nits, const html_version& v, const bool normal);
 public:
-    attribute_node () = delete;
+    attribute_node () = default;
     attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
                     const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool xmlns);
     attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const bool xmlns);
     attribute_node (const attribute_node& an) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	attribute_node (attribute_node&& an) = default;
-#endif
     explicit attribute_node (attributes_node* box);
 	~attribute_node () = default;
     attribute_node& operator = (const attribute_node& an) { reset (an); return *this; }
-#ifndef NO_MOVE_CONSTRUCTOR
 	attribute_node& operator = (attribute_node&& an) { reset (an); return *this; }
-#endif
-	void swap (attribute_node& an);
+	void swap (attribute_node& an) noexcept;
     void reset ()
     {   attribute_node an (box_);
         swap (an); }
     void reset (const attribute_node& an)
     {   attribute_node tmp (an);
         swap (tmp); }
-    e_attribute id () const { return id_; }
-    bool invalid () const { return id_ == a_unknown; }
-    bool has_key () const { return has_key_; }
-    bool has_value () const { return has_value_; }
+    void reset (attribute_node&& an) noexcept
+    {   // attribute_node tmp (an);
+        swap (an); }
+    e_attribute id () const noexcept { return id_; }
+    bool invalid () const noexcept { return id_ == a_unknown; }
+    bool has_key () const noexcept { return has_key_; }
+    bool has_value () const noexcept { return has_value_; }
     ::std::string get_key () const { PRESUME (has_key_, __FILE__, __LINE__); return key_; }
     ::std::string get_string () const { return value_; }
-    const attributes_node* box () const { return box_; }
-    attributes_node* box () { return box_; }
+    const attributes_node* box () const noexcept { return box_; }
+    attributes_node* box () noexcept { return box_; }
     prefixes_ptr prefixes () const;
     void prepare_prefixes ();
     namespaces_ptr namespaces () const;

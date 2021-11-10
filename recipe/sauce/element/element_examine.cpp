@@ -76,7 +76,8 @@ void element::pre_examine_element ()
         case elem_tab : examine_tab (); break;
         case elem_textarea : examine_textarea (); break;
         case elem_title : examine_title (); break;
-        case elem_track : examine_track (); break; } }
+        case elem_track : examine_track (); break;
+        default : break; } }
 
 void element::post_examine_element ()
 {   switch (tag ()) // should integrate this into individual element verification?
@@ -157,7 +158,7 @@ void element::post_examine_element ()
         case elem_img : examine_img (); break;
         case elem_input : examine_input (); break;
         case elem_interval :if (page_.version ().math () <= math_1) break;
-                            // drop thru'
+                            [[fallthrough]];
         case elem_piece :   check_math_children (2); break;
         case elem_label : examine_label (); break;
         case elem_math : examine_math (); break;
@@ -194,14 +195,15 @@ void element::post_examine_element ()
         case elem_td : examine_td (); break;
         case elem_th : examine_th (); break;
         case elem_time : examine_time (); break;
-        case elem_video : examine_video (); break; } }
+        case elem_video : examine_video (); break;
+        default : break; } }
 
 void element::late_examine_element ()
 {   switch (tag ())
     {   case elem_image : examine_image (); break;
         default : break; } }
 
-void element::remove_category (const flags_t cat)
+void element::remove_category (const flags_t cat) noexcept
 {   uint64_t c (node_.id ().categories ());
     c &= ~cat;
     node_.id ().congeal (c);
@@ -258,7 +260,7 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
     ancestral_attributes_ = ancestral_attributes;
     sibling_attributes_ = sibling_attributes;
     itemscope_ = itemscope;
-    e_element tag = node_.tag ();
+    const e_element tag = node_.tag ();
     if (! node_.is_closure ())
     {   page_.mark (tag);
         if (! a_.known (a_hidden)) page_.visible (tag);
@@ -278,7 +280,7 @@ void element::examine_self (const itemscope_ptr& itemscope, const attribute_bits
             pick (nit_invalid_element_version, es_error, ec_element, "<", elem :: name (tag), "> is invalid in ", node_.version ().report ());
         post_examine = true;
         node_.version ().check_math_svg (node_.nits (), node_.id ().first () , node_.id ().name ());
-        html_version hv = elem :: first_version (tag);
+        const html_version hv = elem :: first_version (tag);
         if (hv.invalid_addendum (node_.version ())) pick (nit_invalid_addendum, es_error, ec_element, "<", elem :: name (tag), "> is part of an extension that is being ignored");
         else if (hv.netscape ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid (ancient) Netscape bespoke elements");
         else if (hv.mozilla ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid non-standard Firefox / Mozilla elements");
@@ -450,7 +452,7 @@ void element::examine_children (const flags_t flags)
 {   ::std::string res;
     ancestral_elements_ = ancestral_elements;
     if (context.tell (e_structure))
-    {   res += ::std::string (depth * 2, ' ');
+    {   res += ::std::string (static_cast < size_t > (depth) * 2, ' ');
         if (node_.is_closure ()) res += "/";
         res += node_.id ().name () + "\n"; }
     if (has_child ())
@@ -492,7 +494,7 @@ void element::verify ()
     late_examine_element (); }
 
 void element::verify_document ()
-{   bool titled = (node_.version ().mjr () < 5) && (page_.count (elem_title) == 0);
+{   const bool titled = (node_.version ().mjr () < 5) && (page_.count (elem_title) == 0);
     if (titled)
         pick (nit_title_required, ed_2, "5.2.1. Title", es_error, ec_element, "every document header must have <TITLE>");
     switch (node_.version ().mjr ())
@@ -507,7 +509,8 @@ void element::verify_document ()
                     for (element* inp = f -> find_first (elem_input); inp != nullptr; inp = find_next (elem_input, inp))
                     {   VERIFY_NOT_NULL (inp, __FILE__, __LINE__);
                         if (inp -> a_.has (a_type))
-                        {   attr_type* it = reinterpret_cast < attr_type* > (inp -> a_.get (a_type).get ());
+                        {   attribute_v_ptr vit = inp -> a_.get (a_type);
+                            const auto* it = vit.get ();
                             VERIFY_NOT_NULL (it, __FILE__, __LINE__);
                             if ((it -> good ()) && (::boost::to_lower_copy (it -> get_string ()) == "file"))
                             {   if (! f -> a_.has (a_enctype))
@@ -516,7 +519,8 @@ void element::verify_document ()
                                     inp -> pick (nit_file_requires_enctype, ed_rfc_1867, "2. HTML forms with file submission", es_warning, ec_element,
                                         "the enclosing FORM should have ENCTYPE='application/x-www-form-urlencoded' when using TYPE=file"); }
                                 else
-                                {   attr_enctype* enc = reinterpret_cast < attr_enctype* > (f -> a_.get (a_enctype).get ());
+                                {   attribute_v_ptr venc = f -> a_.get (a_enctype);
+                                    const auto* enc = venc.get ();
                                     PRESUME (enc != nullptr, __FILE__, __LINE__);
                                     if (enc -> good ())
                                     {   ::std::string ee (::boost::to_lower_copy (enc -> get_string ()));
@@ -527,7 +531,8 @@ void element::verify_document ()
                                     f -> pick (nit_use_post, ed_rfc_1867, "2. HTML forms with file submission", es_warning, ec_element,
                                         "when <INPUT TYPE=file>, specify METHOD=post");
                                 else
-                                {   attr_method* m = reinterpret_cast < attr_method* > (f -> a_.get (a_method).get ());
+                                {   attribute_v_ptr vm = f -> a_.get (a_method);
+                                    const auto* m = vm.get ();
                                     PRESUME (m != nullptr, __FILE__, __LINE__);
                                     if (m -> good ()) if (::boost::to_lower_copy (m -> get_string ()) != "post")
                                         f -> pick (nit_use_post, ed_rfc_1867, "2. HTML forms with file submission", es_warning, ec_element,
@@ -562,8 +567,18 @@ element* element::next_element (element* previous)
     do
     {   VERIFY_NOT_NULL (res, __FILE__, __LINE__);
         res = res -> parent ();
+        if (res == nullptr) break;
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning ( disable : 26815 )
+    // the pointee is valid until the page is unloaded, which only occurs after the
+    // examination is complete. Furthermore, this code does not own the pointee.
+#endif // _MSC_VER
         if (res -> has_next ()) return res -> next ().get ();
-    } while ((res != nullptr) && (res -> tag () != elem_faux_document));
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+    } while (res -> tag () != elem_faux_document);
     return nullptr; }
 
 element* element::find_next (const e_element e, element* previous)
@@ -594,7 +609,7 @@ bool element::family_uids (const e_element e, uid_t& from, uid_t& to) const
             {   if (a_.good (a_title)) return a_.get_string (a_title);
                 break; }
             if (has_child ())
-            {   element_bitset bs (empty_element_bitset | elem_abbr | elem_faux_comment |elem_faux_ssi | elem_faux_stylesheet | elem_faux_whitespace);
+            {   const element_bitset bs (empty_element_bitset | elem_abbr | elem_faux_comment |elem_faux_ssi | elem_faux_stylesheet | elem_faux_whitespace);
                 element* abr = nullptr;
                 for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
                 {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);

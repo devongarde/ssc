@@ -736,7 +736,7 @@ bool elem::parse (nitpick& nits, const html_version& v, const namespaces_ptr& na
     check_spelling (nits, v, el);
     return false; }
 
-bool elem::is_unclosed (const html_version& v) const
+bool elem::is_unclosed (const html_version& v) const noexcept
 {   if (v.unknown ()) return false;
     if (((flags () & EP_UNCLOSEDSVG12) == EP_UNCLOSEDSVG12) && v.is_svg_12 ()) return true;
     if ((flags () & (EP_IGNORE | EP_CLOSED)) != 0) return false;
@@ -748,17 +748,18 @@ bool elem::is_unclosed (const html_version& v) const
         default : break; }
     return false; }
 
-bool elem::is_lazy (const html_version& v) const
+bool elem::is_lazy (const html_version& v) const noexcept
 {   if ((categories () & EF_DOCUMENT) == EF_DOCUMENT) return false;
     if ((flags () & EP_IGNORE) != 0) return true;
     switch (v.mjr ())
     {   case 0 : return false;
         case 1 : if (v.mnr () == 1)
                     return ((flags () & (EP_LAZY)) | (categories () & (EF_EMPH))) != 0;
-                 return false; }
+                 return false;
+        default : break; }
     return false; }
 
-bool elem::is_closed (const html_version& v) const
+bool elem::is_closed (const html_version& v) const noexcept
 {   if ((flags () & EP_CLOSED) == 0) return false;
     switch (v.mjr ())
     {   case 0 :
@@ -776,7 +777,7 @@ bool elem::is_closed (const html_version& v) const
         default : return ((flags () & EP_5_OPEN) == 0); }
     return true; }
 
-bool elem::is_transparent (const html_version& v) const
+bool elem::is_transparent (const html_version& v) const noexcept
 {   if (v < xhtml_1_0) return false;
     if (v.is_5 () && ((flags () & EP_5_TRANSPARENT) == EP_5_TRANSPARENT)) return true;
     return (v.is_svg_12 () && ((flags () & EP_SVG_12_TRANS) == EP_SVG_12_TRANS)); }
@@ -796,12 +797,17 @@ void add_elements (const vstr_t& v)
         switch (x)
         {   case 4 :
                 flags2 = lexical < flags_t > :: cast (args.at (3));
+                [[fallthrough]];
             case 3 :
                 flags = lexical < flags_t > :: cast (args.at (2));
+                [[fallthrough]];
             case 2 :
                 ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
+                [[fallthrough]];
             case 1 :
-                elem::extend (::boost::to_lower_copy (args.at (0)), elem_custom, ns, context.html_ver (), html_0, flags, flags2); } } }
+                elem::extend (::boost::to_lower_copy (args.at (0)), elem_custom, ns, context.html_ver (), html_0, flags, flags2);
+                [[fallthrough]];
+            default : break; } } }
 
 bool elem::fits_link_category (const html_version& v, const e_element e, const e_sought_category cat)
 {   switch (cat)

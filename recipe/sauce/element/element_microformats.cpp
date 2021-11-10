@@ -156,7 +156,8 @@ void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
         case elem_data :
         case elem_input :
             if (a_.known (a_value)) return a_.get_string (a_value);
-            break; }
+            break;
+        default : break; }
     return text (); }
 
 ::std::string element::find_text_value () const
@@ -174,7 +175,8 @@ void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
         case elem_img :
         case elem_area :
             if (a_.known (a_alt)) return a_.get_string (a_alt);
-            break; }
+            break;
+        default : break; }
     return text (); }
 
 ::std::string element::find_url_value () const
@@ -196,7 +198,8 @@ void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
             break;
         case elem_object :
             if (a_.known (a_data)) return a_.get_string (a_data);
-            break; }
+            break;
+        default : break; }
     if (a_.known (a_value) && a_.valid (a_class))
         return a_.get_string (a_value);
     switch (tag ())
@@ -206,7 +209,8 @@ void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
         case elem_data :
         case elem_input :
             if (a_.known (a_value)) return a_.get_string (a_value);
-            break; }
+            break;
+        default : break; }
     return text (); }
 
 ::std::string element::find_html_value () const

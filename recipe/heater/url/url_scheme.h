@@ -38,15 +38,47 @@ template < e_scheme SCHEME > inline bool url_scheme < SCHEME > :: equivalent (co
 template < e_scheme SCHEME > inline bool url_scheme < SCHEME > :: parse (nitpick& nits, const html_version& v, const e_protocol prot, const ::std::string& s, vc_t& component)
 {   return parse_rfc3986 (nits, v, prot, s, component); }
 template < e_scheme SCHEME > inline bool url_scheme < SCHEME > :: is_valid (const vc_t& component, bool defaulted)
-{   return (defaulted || ! component [es_original].empty ()); }
+{   return (defaulted || ! component.at (es_original).empty ()); }
 template < e_scheme SCHEME > inline ::std::string url_scheme < SCHEME > :: get (const vc_t& component, bool )
 {   return component.at (es_original); }
 template < e_scheme SCHEME > inline ::std::string url_scheme < SCHEME > :: absolute (const vc_t& component, bool , bool )
 {   return component.at (es_original); }
 
 template < > inline bool url_scheme < pt_rfc3986 > :: is_valid (const vc_t& component, bool defaulted)
-{   return (defaulted && ! component [es_original].empty ()) || ! component [es_server].empty (); }
+{   return (defaulted && ! component.at (es_original).empty ()) || ! component.at (es_server).empty (); }
 template < > inline ::std::string url_scheme < pt_rfc3986 > :: get (const vc_t& component, bool defaulted)
 {   return get_rfc3986 (component, defaulted); }
 template < > inline ::std::string url_scheme < pt_rfc3986 > :: absolute (const vc_t& component, bool can_use_index, bool defaulted)
 {   return absolute_rfc3986 (component, can_use_index, defaulted); }
+
+/*
+bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs);
+bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot, const ::std::string& s, vc_t& component);
+::std::string get_rfc3986 (const vc_t& component, bool defaulted);
+::std::string absolute_rfc3986 (const vc_t& component, bool can_use_index, bool defaulted);
+
+template < e_scheme SCHEME > struct url_scheme
+{   static bool equivalent (const vc_t& lhs, const vc_t& rhs);
+    static bool parse (nitpick& nits, const html_version& v, const e_protocol prot, const ::std::string& url, vc_t& component);
+    static bool is_valid (const vc_t& component, bool defaulted) noexcept;
+    static ::std::string get (const vc_t& component, bool defaulted);
+    static ::std::string absolute (const vc_t& component, bool can_use_index, bool defaulted); };
+
+template < e_scheme SCHEME > inline bool url_scheme < SCHEME > :: equivalent (const vc_t& lhs, const vc_t& rhs)
+{   return equivalent_rfc3986 (lhs, rhs); }
+template < e_scheme SCHEME > inline bool url_scheme < SCHEME > :: parse (nitpick& nits, const html_version& v, const e_protocol prot, const ::std::string& s, vc_t& component)
+{   return parse_rfc3986 (nits, v, prot, s, component); }
+template < e_scheme SCHEME > inline bool url_scheme < SCHEME > :: is_valid (const vc_t& component, bool defaulted) noexcept
+{   return (defaulted || ! component.at (es_original).empty ()); }
+template < e_scheme SCHEME > inline ::std::string url_scheme < SCHEME > :: get (const vc_t& component, bool )
+{   return component.at (es_original); }
+template < e_scheme SCHEME > inline ::std::string url_scheme < SCHEME > :: absolute (const vc_t& component, bool , bool )
+{   return component.at (es_original); }
+
+template < > inline bool url_scheme < pt_rfc3986 > :: is_valid (const vc_t& component, bool defaulted) noexcept
+{   return (defaulted && ! ::gsl::at (component, es_original).empty ()) || ! component.at (es_server).empty (); }
+template < > inline ::std::string url_scheme < pt_rfc3986 > :: get (const vc_t& component, bool defaulted)
+{   return get_rfc3986 (component, defaulted); }
+template < > inline ::std::string url_scheme < pt_rfc3986 > :: absolute (const vc_t& component, bool can_use_index, bool defaulted)
+{   return absolute_rfc3986 (component, can_use_index, defaulted); }
+*/

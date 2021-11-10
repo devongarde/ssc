@@ -45,9 +45,9 @@ public:
         up_ = up;
         if (up_ != nullptr) offset_ = up_ -> maximum ();
         else offset_ = ERR + 1; }
-    abbs_t* up () { return up_; }
-    const abbs_t* up () const { return up_; }
-    ident_t maximum () const
+    abbs_t* up () noexcept { return up_; }
+    const abbs_t* up () const noexcept { return up_; }
+    ident_t maximum () const noexcept
     {   return vabb_.size () + offset_; }
     ident_t find_shortform (const html_version& v, const STANDARD& predefined, const ::std::string& shortform, const bool standard = true) const
     {   PRESUME (! shortform.empty (), __FILE__, __LINE__);
@@ -55,7 +55,7 @@ public:
         if (i != shorts_.cend ()) return i -> second;
         if (up_ != nullptr) return up_ -> find_shortform (v, predefined, shortform, standard);
         if (standard)
-        {   ident_t res = predefined.find (v, ABB_SHORTFORM, shortform, lower_);
+        {   const ident_t res = predefined.find (v, ABB_SHORTFORM, shortform, lower_);
             if (res != ERR) return res; }
         return DEFAULT; }
     ident_t find_longform (const html_version& v, const STANDARD& predefined, const ::std::string& longform, const bool standard = true) const
@@ -64,22 +64,22 @@ public:
         if (i != longs_.cend ()) return i -> second;
         if (up_ != nullptr) return up_ -> find_longform (v, predefined, longform, standard);
         if (standard)
-        {   ident_t res = predefined.find (v, ABB_LONGFORM, longform, lower_);
+        {   const ident_t res = predefined.find (v, ABB_LONGFORM, longform, lower_);
             if (res != ERR) return res; }
         return DEFAULT; }
     ::std::string shortform (const STANDARD& predefined, const ident_t id) const
     {   PRESUME (id < offset_ + vabb_.size (), __FILE__, __LINE__);
         PRESUME (id != DEFAULT, __FILE__, __LINE__);
-        if (id >= offset_) return vabb_.at (static_cast < unsigned int > (id - offset_)).short_;
+        if (id >= offset_) return vabb_.at (::gsl::narrow_cast < unsigned int > (id - offset_)).short_;
         if (up_ != nullptr) return up_ -> shortform (predefined, id);
         if (id < s_error) return predefined.get (static_cast < ENUM > (id), ABB_SHORTFORM);
         return ::std::string (); }
     ::std::string longform (const STANDARD& predefined, const ident_t id) const
     {   PRESUME (id < offset_ + vabb_.size (), __FILE__, __LINE__);
         PRESUME (id != DEFAULT, __FILE__, __LINE__);
-        if (id >= offset_) return vabb_.at (static_cast < unsigned int > (id - offset_)).long_;
+        if (id >= offset_) return vabb_.at (::gsl::narrow_cast < unsigned int > (id - offset_)).long_;
         if (up_ != nullptr) return up_ -> longform (predefined, id);
-        if (id < s_error) return predefined.get (static_cast < ENUM > (id), ABB_LONGFORM);
+        if (id < s_error) return predefined.get (::gsl::narrow_cast < ENUM > (id), ABB_LONGFORM);
         return ::std::string (); }
     ident_t declare (const html_version& v, const STANDARD& predefined, const ::std::string& shortform, const ::std::string& longform)
     {   PRESUME (offset_ > 0, __FILE__, __LINE__);

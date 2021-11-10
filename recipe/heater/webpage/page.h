@@ -65,31 +65,27 @@ public:
     page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, directory* d = nullptr, const e_charcode encoding = cc_ansi);
     explicit page (const ::std::string& content, const e_charcode encoding = cc_ansi);
     page (const page& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-    page (page&& ) = default;
-#endif
+    page (page&& ) noexcept = default;
     page& operator = (const page& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-    page& operator = (page&& ) = default;
-#endif
+    page& operator = (page&& ) noexcept = default;
     ~page () = default;
-    void swap (page& p) NOEXCEPT;
+    void swap (page& p);
     void reset (const page& p);
-    nitpick& nits () { return nits_; }
-    const nitpick& nits () const { return nits_; }
+    nitpick& nits () noexcept { return nits_; }
+    const nitpick& nits () const noexcept { return nits_; }
     bool parse (::std::string& content, const e_charcode encoding = cc_ansi);
-    bool invalid () const { return nodes_.invalid (); }
-    bool check_links () const { return check_links_ && ! snippet_; }
-    void check_links (const bool b) { check_links_ = b; }
+    bool invalid () const noexcept { return nodes_.invalid (); }
+    bool check_links () const noexcept { return check_links_ && ! snippet_; }
+    void check_links (const bool b) noexcept { check_links_ = b; }
     void examine ();
     ::std::string find_webmention () const;
     ::std::string find_mention_info (const url& u, bool text, bool anything);
-    ids_t& get_ids () { return ids_; }
-    const ids_t& get_ids () const { return ids_; }
-    ids_t& get_names () { return names_; }
-    const ids_t& get_names () const { return names_; }
-    ids_t& get_glyphs () { return glyphs_; }
-    const ids_t& get_glyphs () const { return glyphs_; }
+    ids_t& get_ids () noexcept { return ids_; }
+    const ids_t& get_ids () const noexcept { return ids_; }
+    ids_t& get_names () noexcept { return names_; }
+    const ids_t& get_names () const noexcept { return names_; }
+    ids_t& get_glyphs () noexcept { return glyphs_; }
+    const ids_t& get_glyphs () const noexcept { return glyphs_; }
     bool verify_url (nitpick& nits, const ::std::string& s) const;
     const ::std::string name () const { return name_; }
     const ::std::string get_site_path () const;
@@ -101,18 +97,18 @@ public:
     {   if (! snippet_) mf_export_.item (wo, was); }
     bool mf_write (const ::boost::filesystem::path& name)
     {   return snippet_ || mf_export_.write (nits_, name); }
-    const html_version version () const { return nodes_.version (); }
-    const schema_version schema_ver () const { return schema_version_; }
-    void schema_ver (const schema_version& v) { schema_version_ = v; }
+    const html_version version () const noexcept { return nodes_.version (); }
+    const schema_version schema_ver () const noexcept { return schema_version_; }
+    void schema_ver (const schema_version& v) noexcept { schema_version_ = v; }
     ::boost::filesystem::path absolute_member (nitpick& nits, const ::boost::filesystem::path& file) const;
     ::std::string load_url (nitpick& nits, const url& u) const;
-    void confirm_title () { has_title_ = true; }
-    void style_css (const bool b) { style_css_ = b; }
-    bool style_css () const { return style_css_; }
-    bool charset_defined () const { return ! charset_.empty (); }
-    const ::std::string& lang () const { return lang_; }
+    void confirm_title () noexcept { has_title_ = true; }
+    void style_css (const bool b) noexcept { style_css_ = b; }
+    bool style_css () const noexcept { return style_css_; }
+    bool charset_defined () const noexcept { return ! charset_.empty (); }
+    const ::std::string& lang () const noexcept { return lang_; }
     void lang (nitpick& nits, const html_version& v, const ::std::string& l);
-    const ::std::string& charset () const { return charset_; }
+    const ::std::string& charset () const noexcept { return charset_; }
     void charset (nitpick& nits, const html_version& v, const ::std::string& cs);
     void mark (const e_element e)
     {   stats_.mark (e);
@@ -153,26 +149,26 @@ public:
     {   return stats_.visible_count (e); }
     void lynx ();
     void shadow (nitpick& nits, const ::boost::filesystem::path& s);
-    uid_t euid ();
+    uid_t euid () noexcept;
     void itemscope (const itemscope_ptr itemscope);
-    const itemscope_ptr itemscope () const { return itemscope_; }
-    itemscope_ptr itemscope () { return itemscope_; }
-    microdata_export* md_export () { return &md_export_; }
+    const itemscope_ptr itemscope () const noexcept { return itemscope_; }
+    itemscope_ptr itemscope () noexcept { return itemscope_; }
+    microdata_export* md_export () noexcept { return &md_export_; }
     ::std::string get_export_root () const;
-    const directory* get_directory () const { return directory_; }
+    const directory* get_directory () const noexcept { return directory_; }
     void verify_locale (const ::boost::filesystem::path& p);
-    const ustr_t& abbrs () const { return abbrs_; }
-    ustr_t& abbrs () { return abbrs_; }
-    const sstr_t& dfns () const { return dfns_; }
-    sstr_t& dfns () { return dfns_; }
-    const sstr_t& profiles () const { return profiles_; }
-    sstr_t& profiles () { return profiles_; }
-    const url& base () const;
+    const ustr_t& abbrs () const noexcept { return abbrs_; }
+    ustr_t& abbrs () noexcept { return abbrs_; }
+    const sstr_t& dfns () const noexcept { return dfns_; }
+    sstr_t& dfns () noexcept { return dfns_; }
+    const sstr_t& profiles () const noexcept { return profiles_; }
+    sstr_t& profiles () noexcept { return profiles_; }
+    const url& base () const noexcept;
     void base (const url& u);
     ::std::string get_absolute_url (const ::std::string& s) const;
     ::std::string get_absolute_url () const { return get_absolute_url (name_); }
     void title (const ::std::string& s) { title_ = s; }
-    bool corpus () const { return ! corpus_.empty (); }
+    bool corpus () const noexcept { return ! corpus_.empty (); }
     void corpus (const ::std::string& s) { corpus_ = s; }
     void keywords (const ::std::string& s) { keywords_ = s; }
     void description (const ::std::string& s) { description_ = s; }

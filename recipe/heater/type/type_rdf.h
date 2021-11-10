@@ -27,19 +27,19 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
 
 template < > struct type_master < t_curie > : tidy_string < t_curie >
 {   using tidy_string < t_curie > :: tidy_string;
-    static e_animation_type animation_type () { return at_url; }
+    static e_animation_type animation_type () noexcept { return at_url; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_curie > :: set_value (nits, v, s); } };
 
 template < > struct type_master < t_curie_safe > : tidy_string < t_curie_safe >
 {   using tidy_string < t_curie_safe > :: tidy_string;
-    static e_animation_type animation_type () { return at_url; }
+    static e_animation_type animation_type () noexcept { return at_url; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_curie_safe > :: set_value (nits, v, s); } };
 
 template < > struct type_master < t_curies > : string_vector < t_curies, sz_space >
 {   using string_vector < t_curies, sz_space > :: string_vector;
-    static e_animation_type animation_type () { return at_url; }
+    static e_animation_type animation_type () noexcept { return at_url; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_curies, sz_space > :: set_value (nits, v, s); } };
 

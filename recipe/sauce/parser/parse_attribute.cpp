@@ -47,7 +47,7 @@ attribute_node::attribute_node (attributes_node* box)
     :   box_ (box)
 {   VERIFY_NOT_NULL (box_, __FILE__, __LINE__); }
 
-void attribute_node::swap (attribute_node& an)
+void attribute_node::swap (attribute_node& an) noexcept
 {   key_.swap (an.key_);
     value_.swap (an.value_);
     ::std::swap (box_, an.box_);

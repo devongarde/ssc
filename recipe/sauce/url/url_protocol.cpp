@@ -265,7 +265,7 @@ struct protocol_server
     e_scheme scheme_; };
 
 protocol_server ps [] =
-{   {   pr_other,   pt_rfc3986_ignore },
+{   { pr_other, pt_rfc3986_ignore },
     { pr_aaa, pt_rfc3986_ignore },
     { pr_aaas, pt_rfc3986_ignore },
     { pr_about, pt_rfc3986_ignore },
@@ -501,6 +501,10 @@ protocol_server ps [] =
     { pr_zoommtg, pt_rfc3986_ignore },
     { pr_zoomus, pt_rfc3986_ignore } };
 
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26446 26482) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initiliser
+#endif // _MSC_VER
 void protocol::init (nitpick& nits)
 {   symbol < html_version, e_protocol > :: init (nits, protocol_symbol_table, sizeof (protocol_symbol_table) / sizeof (struct symbol_entry < html_version, e_protocol >));
 #ifdef DEBUG
@@ -510,15 +514,19 @@ void protocol::init (nitpick& nits)
 }
 
 e_scheme protocol::scheme () const
-{   e_protocol prot = symbol < html_version, e_protocol > :: get ();
-    PRESUME (ps [prot].protocol_ == prot, __FILE__, __LINE__);
+{   const e_protocol prot = symbol < html_version, e_protocol > :: get ();
+    reinit ();
     return ps [prot].scheme_; }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
 bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_protocol current)
-{   ::std::string lc (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)));
+{   reinit ();
+    ::std::string lc (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)));
     if (lc.empty ()) set (v, current);
     else
-    {   ::std::string::size_type colon = lc.find (COLON);
+    {   const ::std::string::size_type colon = lc.find (COLON);
         default_ = (colon == ::std::string::npos);
         if (default_) set (v, current);
         else if (colon == 0 || colon == lc.length () - 1)
@@ -533,14 +541,18 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
     return true; }
 
 bool protocol::is_valid () const
-{   return url_schemes < SCHEMES > :: is_valid (scheme (), component_, default_); }
+{   reinit ();
+    return url_schemes < SCHEMES > :: is_valid (scheme (), component_, default_); }
 
 ::std::string protocol::get () const
-{   return url_schemes < SCHEMES > :: get (scheme (), component_, default_); }
+{   reinit ();
+    return url_schemes < SCHEMES > :: get (scheme (), component_, default_); }
 
 ::std::string protocol::absolute (bool can_use_index) const
-{   return url_schemes < SCHEMES > :: absolute (scheme (), component_, can_use_index, default_); }
+{   reinit ();
+    return url_schemes < SCHEMES > :: absolute (scheme (), component_, can_use_index, default_); }
 
 bool protocol::operator == (const protocol& rhs) const
 {   if (scheme () != rhs.scheme ()) return false;
+    reinit ();
     return url_schemes < SCHEMES > :: similar (scheme (), component_, rhs.component_); }

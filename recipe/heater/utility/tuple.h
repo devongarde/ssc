@@ -20,8 +20,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-// from https://codereview.stackexchange.com/questions/51407/stdtuple-foreach-implementation/67394#67394, Louis Dionne
+// derived from https://codereview.stackexchange.com/questions/51407/stdtuple-foreach-implementation/67394#67394, Louis Dionne
 
+#ifdef _MSC_VER
+#pragma warning ( push, 3)
+#pragma warning ( disable : 26457 )
+#pragma warning ( disable : 26483 )
+#endif // _MSC_VER
 
 #if defined (VS) && (VS <= 13)
 // adapted from more recent VS libraries
@@ -42,8 +47,12 @@ template < typename TUPLE, typename F, ::std::size_t... INDICES >
 
 template < typename TUPLE, typename F >
 void for_each_attribute (TUPLE&& tuple, F&& f)
-{   const ::std::size_t N = ::std::tuple_size <::std::remove_reference_t < TUPLE > >::value;
+{   constexpr ::std::size_t N = ::std::tuple_size <::std::remove_reference_t < TUPLE > >::value;
     for_each_impl (::std::forward < TUPLE > (tuple), ::std::forward < F > (f), ::std::make_index_sequence < N > {}); }
+
+#ifdef _MSC_VER
+#pragma warning ( pop )
+#endif // _MSC_VER
 
 // based on https://stackoverflow.com/questions/25958259/how-do-i-find-out-if-a-tuple-contains-a-type
 

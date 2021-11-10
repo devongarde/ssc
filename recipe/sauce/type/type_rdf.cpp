@@ -37,7 +37,7 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
     bool ok = true;
     for (auto s : vstr)
     {   PRESUME (! s.empty (), __FILE__, __LINE__);
-        size_t sz = s.length () - 1;
+        const size_t sz = s.length () - 1;
         if ((sz == 0) && (s.at (0) == ':'))
         {   if (vrai) nits.pick (nit_prefix_format, ed_rdfa, "5. Attributes and Syntax", es_error, ec_rdfa, "ignoring an isolated colon in ", quote (sss));
             ok = false;
@@ -57,7 +57,7 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
                 (name.find_first_not_of (ALPHADDD "./-_") != ::std::string::npos))
             {   if (vrai) nits.pick (nit_prefix_format, ed_rdfa, "5. Attributes and Syntax", es_error, ec_rdfa, quote (name), " must start with a letter, and can contain letters, digits, '.', '/', '-', '_'");
                 ok = false; }
-            e_protocol prot = protocol_names.find (v, PROTOCOL_NAME, name, true);
+            const e_protocol prot = protocol_names.find (v, PROTOCOL_NAME, name, true);
             switch (prot)
             {   case pr_error :
                 case pr_other :
@@ -111,7 +111,7 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
 
 e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::string ss, const element* box, vabb_t& vpre, const bool vrai)
 {   const prefixes_t* prs = nullptr;
-    if (box != nullptr)
-        if (box != nullptr)
-            prs = box -> node ().prefixes ().get ();
+    if (box == nullptr) return parse_prefixes (nits, v, ss, prs, vpre, vrai);
+    prefixes_ptr pp = box -> node ().prefixes ();
+    prs = pp.get ();
     return parse_prefixes (nits, v, ss, prs, vpre, vrai); }

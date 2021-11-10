@@ -20,12 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_master.h"
-bool invalid_id_result (nitpick& nits, const html_version& v, const ::std::string& s, element* e);
+bool invalid_id_result (nitpick& nits, const html_version& v, const ::std::string& s, const element* const e);
 
 template < > struct type_master < t_id > : tidy_string < t_id >
 {   bool tested_ = false, predefined_ = false;
     using tidy_string < t_id > :: tidy_string;
-    void swap (type_master < t_id >& t) NOEXCEPT
+    void swap (type_master < t_id >& t) noexcept
     {   ::std::swap (tested_, t.tested_);
         ::std::swap (predefined_, t.predefined_);
         tidy_string < t_id >::swap (t); }
@@ -57,7 +57,9 @@ template < > struct type_master < t_id > : tidy_string < t_id >
             case 5 :
                 if (find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
                 {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " may not contain a space");
-                    tidy_string < t_id > :: status (s_invalid); } }
+                    tidy_string < t_id > :: status (s_invalid); }
+                break;
+            default : break; }
         tested_ = predefined_ = false; }
    bool invalid_id (nitpick& nits, const html_version& , ids_t& ids, element* pe)
    {    if (bad ()) return false;
@@ -107,7 +109,6 @@ template < > struct type_master < t_idrefs > : many_ids < true >
 
 template < > struct type_master < t_itemref > : many_ids < false >
 { using many_ids < false > :: many_ids; };
-
 
 template < > struct type_master < t_result > : tidy_string < t_result >
 {   typedef true_type has_int_type;

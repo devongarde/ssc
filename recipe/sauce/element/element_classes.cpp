@@ -185,7 +185,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X5          LIVING_STANDARD
 #define LIVING_STANDARD_PLUS a_index, LIVING_STANDARD
 
-const ::std::size_t max_attrib = last_attribute + 1;
+constexpr ::std::size_t max_attrib = last_attribute + 1;
 
 struct element_init_t
 {   e_element tag_;
@@ -925,7 +925,7 @@ element_init_t ei [] =
     { elem_xor, { MATH3DEFCOM, a_unknown } },
     { elem_error, { a_unknown } } };
 
-const size_t vebs_size = last_element_tag + 1;
+constexpr size_t vebs_size = last_element_tag + 1;
 typedef ::std::array < attribute_bitset, vebs_size > vebs_t;
 vebs_t vebs;
 
@@ -935,19 +935,19 @@ void elements_init (nitpick& nits)
     int n = 0;
     e_element e = elem_error;
 #endif // DEBUG
-    for (int i = 0; ei [i].tag_ != elem_error; ++i)
-    {   if (vebs.at (ei [i].tag_).any ())
-            nits.pick (nit_repeated_attribute, es_warning, ec_program, elem::name (ei [i].tag_), " repeated in bitset init");
-        for (int j = 0; ei [i].a_ [j] != a_unknown; ++j)
+    for (int i = 0; ::gsl::at (ei, i).tag_ != elem_error; ++i)
+    {   if (vebs.at (::gsl::at (ei, i).tag_).any ())
+            nits.pick (nit_repeated_attribute, es_warning, ec_program, elem::name (::gsl::at (ei, i).tag_), " repeated in bitset init");
+        for (int j = 0; ::gsl::at (::gsl::at (ei, i).a_, j) != a_unknown; ++j)
         {   if (static_cast < ::std::size_t > (j) >= max_attrib)
-            {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_program, elem::name (ei [i].tag_), " has more attributes than allocated");
+            {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_program, elem::name (::gsl::at (ei, i).tag_), " has more attributes than allocated");
                 break; }
 #ifdef DEBUG
             if (j > n) { n = j; e = i; }
 #endif // DEBUG
-            if (vebs.at (ei [i].tag_).test (ei [i].a_ [j]))
-                nits.pick (nit_repeated_attribute, es_warning, ec_program, "attribute ", attr::name (ei [i].a_ [j]), " repeated in ", elem::name (ei [i].tag_), " bitset init");
-            else vebs.at (ei [i].tag_).set (ei [i].a_ [j]); } }
+            if (vebs.at (::gsl::at (ei, i).tag_).test (::gsl::at (::gsl::at (ei, i).a_, j)))
+                nits.pick (nit_repeated_attribute, es_warning, ec_program, "attribute ", attr::name (::gsl::at (::gsl::at (ei, i).a_, j)), " repeated in ", elem::name (::gsl::at (ei, i).tag_), " bitset init");
+            else vebs.at (::gsl::at (ei, i).tag_).set (::gsl::at (::gsl::at (ei, i).a_, j)); } }
 #ifdef DEBUG
     nits.pick (nit_note, es_splurge, ec_program, "<", elem::name (e), "> has ", n, " attributes");
 #endif // DEBUG
@@ -973,7 +973,7 @@ void add_element_attributes (const vstr_t& v)
     for (auto e : v)
     {   vstr_t args (split_by_charset (e, ","));
         if (args.size () < 2) continue;
-        elem el (context.html_ver (), args.at (0));
+        const elem el (context.html_ver (), args.at (0));
         if (el.invalid ())
         {   context.err ("the element '");
             context.err (args.at (0));
@@ -983,7 +983,7 @@ void add_element_attributes (const vstr_t& v)
         else
         {   ::std::string ns;
             namespaces_ptr ptr;
-            e_attribute a = attr :: parse (nuts, context.html_ver (), ptr, args.at (1), ns);
+            const e_attribute a = attr :: parse (nuts, context.html_ver (), ptr, args.at (1), ns);
             if (a == a_error)
             {   context.err ("the attribute '");
                 context.err (args.at (1));

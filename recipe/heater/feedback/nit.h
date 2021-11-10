@@ -38,30 +38,33 @@ public:
     nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg);
     nit (const e_nit code, const e_severity severity, const e_category category, const ::std::string& msg);
     nit (const nit& n) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	nit (nit&& n) = default;
-#endif
 	~nit() = default;
     nit& operator = (const nit& n) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	nit& operator = (nit&& n) = default;
-#endif
-    void swap (nit& n) NOEXCEPT;
+    void swap (nit& n) noexcept;
     void reset ();
     void reset (const nit& n);
     ::std::string review (const e_nit_section& entry, const mmac_t& mac, const mmac_t& outer) const;
     void notify () const;
-    e_nit code () const { return code_; }
-    e_severity severity () const { return severity_; }
+    e_nit code () const noexcept { return code_; }
+    e_severity severity () const noexcept { return severity_; }
     ::std::string msg () const { return msg_; }
-    bool empty () const { return code_ == nit_free; } };
+    bool empty () const noexcept { return code_ == nit_free; } };
 
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning ( disable : 26440 )
+#endif // _MSC_VER
 inline bool operator < (const nit& lhs, const nit& rhs)
 {   if (lhs.severity_ < rhs.severity_) return true;
     if (lhs.severity_ > rhs.severity_) return false;
     if (lhs.code_ < rhs.code_) return true;
     if (lhs.code_ > rhs.code_) return false;
     return (lhs.msg_.compare (rhs.msg_) < 0); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
 ::std::string doc_title (const e_doc doc);
 ::std::string doc_ref (const e_doc doc);

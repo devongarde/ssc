@@ -38,7 +38,7 @@ void microdata_itemscope::swap (microdata_itemscope& mi)
 
 void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, const ::std::string& name, page& p, const bool has_itemid)
 {   nitpick nuts;
-    itemtype_index ii = find_itemtype_index (nuts, v, name);
+    const itemtype_index ii = find_itemtype_index (nuts, v, name);
     if (ii != invalid_itemtype)
     {   type_.push_back (ii);
         type_master < t_schema_type > ts;
@@ -47,9 +47,9 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
         if (schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), name, &ends_at) == s_error)
             wombats (nits, v, name);
         else
-        {   sch s (nits, v, schema_names.after_start (SCHEMA_CURIE, name.substr (ends_at), v.xhtml ()));
+        {   const sch s (nits, v, schema_names.after_start (SCHEMA_CURIE, name.substr (ends_at), v.xhtml ()));
             p.mark (s.get ());
-            flags_t flags = sch :: flags (s.get ());
+            const flags_t flags = sch :: flags (s.get ());
             if (has_itemid && ((flags & SF_NO_ITEMID) == SF_NO_ITEMID))
                 nits.pick (nit_deprecated_schema, ed_jan21, "5.3 Sample microdata vocabularies", es_info, ec_microdata, quote (name), " cannot have ITEMID");
             if ((flags & SF_DEPRECATED) == SF_DEPRECATED)
@@ -97,8 +97,9 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
 {   itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
     if (scope.get () != nullptr)
     {   microdata_export* ex = exporter ();
-        VERIFY_NOT_NULL (ex, __FILE__, __LINE__);
-        for (auto prop : ii)
+        if (ex == nullptr)
+            nits.pick (nit_export_none, es_catastrophic, ec_microdata, "exporter failure");
+        else for (auto prop : ii)
             scope -> set_exporter (ex, ex -> append_path (export_path_, prop, true)); }
     nitpick knots, nuts;
     for (auto parent : type ())
@@ -136,6 +137,8 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                     break;
                 case ip_string :
                     res += indent + itemprop_index_name (i -> first) + " = " + quote (ssc_get < ::std::string > (i -> second)) + "\n";
+                    break;
+                default :
                     break; }
 #endif // BOOVAR
     return res; }

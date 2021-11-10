@@ -28,13 +28,11 @@ struct wotsit_t
     const char* wotsit_;
     flags_t flags_ = NOFLAGS;
     wotsit_t () = default;
-    wotsit_t (html_version first, html_version last, const char* wotsit, const flags_t f = NOFLAGS)
+    wotsit_t (html_version first, html_version last, const char* wotsit, const flags_t f = NOFLAGS) noexcept
         :   first_ (first), last_ (last), wotsit_ (wotsit), flags_ (f) { }
     wotsit_t (const wotsit_t& w) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     wotsit_t (wotsit_t&& w) = default;
     wotsit_t& operator = (wotsit_t&& w) = default;
-#endif // NO_MOVE_CONSTRUCTOR
     ~wotsit_t () = default;
     wotsit_t& operator = (const wotsit_t& w) = default; };
 
@@ -42,7 +40,9 @@ struct extra_t
 {   const char* symbol_ = nullptr;
     const char* code_ = nullptr;
     const bool suggest_ = true;
-    extra_t (const char* symbol, const char* code, const bool suggest = true) : symbol_ (symbol), code_ (code), suggest_ (suggest) { } };
+    extra_t (const char* symbol, const char* code, const bool suggest = true) noexcept
+        :   symbol_ (symbol), code_ (code), suggest_ (suggest)
+        { } };
 
 extern wotsit_t wotsit_table [];
 extern extra_t xtra [], known_symbols [];

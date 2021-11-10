@@ -19,16 +19,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "utility/common.h"
 #include "feedback/nitpick.h"
 #include "parser/html_version.h"
 
 typedef uint32_t itemtype_index;
-const itemtype_index invalid_itemtype = 0;
+constexpr itemtype_index invalid_itemtype = 0;
 typedef ::std::vector < itemtype_index > vit_t;
 
 itemtype_index make_itemtype_index (const e_schema_type p);
 itemtype_index make_itemtype_index (const e_property p);
-e_itemtype_category type_category (const itemtype_index ii);
-e_schema_type type_itself (const itemtype_index ii);
+
+//e_itemtype_category type_category (const itemtype_index ii);
+// e_schema_type type_itself (const itemtype_index ii);
+
+constexpr inline e_itemtype_category type_category (const itemtype_index ii) noexcept
+{   return static_cast < e_itemtype_category> (ndx_category (::gsl::narrow_cast < uint32_t > (ii))); }
+constexpr inline e_schema_type type_itself (const itemtype_index ii) noexcept
+{   return static_cast < e_schema_type> (ndx_item (::gsl::narrow_cast < uint32_t > (ii))); }
+
 itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name, const bool propped = true);
 ::std::string itemtype_index_name (const itemtype_index ndx);

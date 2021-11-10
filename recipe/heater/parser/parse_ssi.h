@@ -32,6 +32,6 @@ struct ssi_compedium
     bool if_ = true, iffed_ = false;
     ustr_t var_;
     ssi_compedium ();
-    void swap (ssi_compedium& ssi); };
+    void swap (ssi_compedium& ssi) noexcept; };
 
 ::std::string parse_ssi (nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush = false);

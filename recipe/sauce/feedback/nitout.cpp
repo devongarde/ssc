@@ -308,40 +308,47 @@ vstr_t sections;
     "<!DOCTYPE HTML>\n" \
     "<HTML lang=en>\n" \
     "<HEAD>\n" \
-    "<TITLE>{{prog-abbrev}} report for {{context-root}}</TITLE>\n" \
+    "<TITLE>{{prog-abbrev}} report{{context-root: for :}}</TITLE>\n" \
     "<STYLE TYPE=\"text/css\">\n" \
-    "H1 { color:#66BB66; font-size: 140% }\n" \
+    "A { color:#9999BB }\n" \
+    "H1,H2,H3,H4,H5,H6 { margin-bottom: 0; padding-bottom: 0; }\n" \
+    "H1 { color:#66BB66; font-size: 140%; }\n" \
     "H2 { color:#66BB66; font-size: 120% }\n" \
     "H3 { color:#99BB99; font-size: 100% }\n" \
-    "A { color:#9999BB }\n" \
+    "P { margin-top: 0; padding-top: 0; }\n" \
     "FOOTER,HEADER,LI,MAIN,P,PRE { color:#999999 }\n" \
     ".smaller { font-size: 80% }\n" \
-    ".nit-before,.nit-after { color: #BBBBBB }\n" \
-    ".nit-mote { color: #BB3333 }\n" \
+    ".nit-before,.nit-after { color: #CCCCCC }\n" \
+    ".nit-catastrophe { color: #FF0000 }\n" \
+    ".nit-doc { font-style: italic; }\n" \
+    ".nit-error { color: #FF6666 }\n" \
+    ".nit-explanation { color: #9999CC }\n" \
+    ".nit-info { color: #666666 }\n" \
     ".nit-line { color: #666666 }\n" \
+    ".nit-mote { color: #CC3333 }\n" \
+    ".nit-ref { font-style: italic; }\n" \
+    ".nit-warning { color: #CC6666 }\n" \
     "</STYLE>\n" \
     "</HEAD>\n" \
     "<BODY>\n" \
     "<HEADER>\n" \
-    "<H1 class=\"nit-title\">{{prog-abbrev}} report for {{context-root}}</H1>\n" \
+    "<H1 class=\"nit-title\">{{prog-abbrev}} report{{context-root: for :}}</H1>\n" \
     "</HEADER>\n" \
     "<MAIN>\n" \
-    "<BR><BR>\n" \
     "\n" \
     "[doc-foot]\n" \
-    "<BR><BR>\n" \
     "<A href=\"/index.html\">previous page</A>\n" \
     "</MAIN>\n" \
     "<HR>\n" \
     "<FOOTER class=\"smaller\">\n" \
-    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}}<BR>\n" \
+    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} ({{compile-time}})<BR>\n" \
     "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A>\n" \
     "</FOOTER>\n" \
     "</BODY>\n" \
     "</HTML>\n" \
     "\n" \
     "[export]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN><BR>\n" \
     "\n" \
     "[export-head]\n" \
     "<H2 class=\"nit-section\">exports</H2>\n" \
@@ -388,10 +395,10 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[nit]\n" \
-    "<SPAN class=\"nit-level\">{{level-symbol}}</SPAN> <SPAN class=\"nit-explanation\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-{{level-name}}\">{{level-name}}</SPAN>: <SPAN class=\"nit-explanation\">{{nit-explanation}}</SPAN>{{nit-ref:<BR><SPAN class=\"nit-ref\">:</SPAN>}}{{nit-long: <SPAN class=\"nit-doc\">(:)</SPAN>}}<BR>\n" \
     "\n" \
     "[nits-head]\n" \
-    "<H3><SPAN class=\"nit-line\">{{nit-line}}</SPAN> {{nit-before:<SPAN class=\"nit-before\">:</SPAN> }}<SPAN class=\"nit-mote\">{{nit-mote}}</SPAN>{{nit-after: <SPAN class=\"nit-after\">:</SPAN>}}</H3>\n" \
+    "<H3>{{nit-before:<SPAN class=\"nit-before\">:</SPAN> }}<SPAN class=\"nit-mote\">{{nit-mote}}</SPAN>{{nit-after: <SPAN class=\"nit-after\">:</SPAN>}}</H3>\n" \
     "<P>\n" \
     "\n" \
     "[nits-page]\n" \
@@ -514,7 +521,7 @@ vstr_t sections;
         case qs_single : return endouble (s, '\'');
         default : return s; } }
 
-bool is_template_loaded ()
+bool is_template_loaded () noexcept
 { return ! sections.empty (); }
 
 void init_nit_macros ()
@@ -540,7 +547,7 @@ bool load_template_int (nitpick& nits, const html_version& v, const ::std::strin
                 {   sq_begin = i+1;
                     if (ns != ns_none)
                     {   PRESUME (sect_begin != config.cend (), __FILE__, __LINE__);
-                        sections [ns] = ::std::string (sect_begin, i-1);
+                        sections.at (ns) = ::std::string (sect_begin, i-1);
                         ns = ns_none;
                         sect_begin = config.cend (); }
                     continue; }
@@ -614,16 +621,16 @@ bool load_template (nitpick& nits, const html_version& v)
         ::std::string macro = tpl.substr (pos+len, epos-pos-len);
         if (! macro.empty ())
         {   ::std::string b,a;
-            ::std::string::size_type bp = macro.find_first_not_of (MACID);
+            const ::std::string::size_type bp = macro.find_first_not_of (MACID);
             if (bp != ::std::string::npos)
-            {   char ch = macro [bp];
+            {   const char ch = macro.at (bp);
                 b = macro.substr (bp+1);
                 macro = macro.substr (0, bp);
-                ::std::string::size_type ap = b.find (ch);
+                const ::std::string::size_type ap = b.find (ch);
                 if (ap != ::std::string::npos)
                 {   a = b.substr (ap+1);
                     b = b.substr (0, ap); } }
-            e_nit_macro m = examine_value < t_nit_macro > (nuts, html_default, macro);
+            const e_nit_macro m = examine_value < t_nit_macro > (nuts, html_default, macro);
             if (m != nm_none)
             {   mmac_t::const_iterator ci = values.find (m);
                 if (ci != values.cend ())

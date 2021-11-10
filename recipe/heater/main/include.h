@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 116
-#define VERSION_STRING "0.0.116"
+#define VERSION_RELEASE 117
+#define VERSION_STRING "0.0.117"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -46,12 +46,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COPYRIGHT_HTML_FULL "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
 
 #define SIMPLE_TITLE_D \
-            FULLNAME " " VERSION_STRING \
-            "D (" __DATE__ " " __TIME__ ")" \
-            ", " WEBADDR "\n" COPYRIGHT "\n\n"
+            FULLNAME " " VERSION_STRING "d\n" \
+            "(" __DATE__ " " __TIME__ ")\n" \
+            WEBADDR "\n" \
+            COPYRIGHT "\n\n"
 #define SIMPLE_TITLE_N \
-            FULLNAME " " VERSION_STRING \
-            ", " WEBADDR "\n" COPYRIGHT "\n\n"
+            FULLNAME " " VERSION_STRING "\n" \
+            "(" __DATE__ " " __TIME__ ")\n" \
+            WEBADDR "\n" \
+            COPYRIGHT "\n\n"
 
 #ifdef DEBUG
 #define SIMPLE_TITLE SIMPLE_TITLE_D
@@ -63,16 +66,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Wall"
 #pragma GCC diagnostic ignored "-Wextra"
-#define CONSTEXPR constexpr
-#define NOEXCEPT noexcept
 #endif // __clang__
 
-#ifdef __GNUC__
-#define CONSTEXPR constexpr
-#define NOEXCEPT noexcept
-#endif // __GNUC__
-
 #ifdef _MSC_VER
+#define NO_BOOST_PROCESS            // it crashed the MSVC 2019 linter, on my system at least
+#define MSVC_NOEXCEPT noexcept
 #include <codeanalysis\warnings.h>
 #ifdef WIN32
 #define X32
@@ -81,29 +79,44 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X64
 #endif // WIN32
 #define NOLYNX
-#pragma warning (push,3)
-#pragma warning ( disable : 4244 ) // boost
-#pragma warning ( disable : ALL_CODE_ANALYSIS_WARNINGS ) // boost
+// 26434
+#pragma warning (disable : 6330 26409 26410 26415 26418 26434 26439 26455 26456 26461 26485)
+    // The MSVC linter is generally useful, but it has some serious problems.
+    // General problem 1: the msvc linter provides no clean mechanism to suppress a spurious warning in place, except through the #...
+    //      mechanism. Those #... have to be wrapped in #ifdefs to avoid confusing other compilers. In the worst case, this requires 7 #...
+    //      statements to suppress on spurious warning. That is ridiculously clunky, and I'm most definitely NOT going there for specific
+    //      warnings which are many times spurious, even if those warnings are useful elsewhere. I think this is a design error with
+    //      VC++'s linter, or quite possibly a documentation issue given I couldn't find a reference to easily suppressing spurious
+    //      warnings. Warnings in this category: 26409, 264621, 26485
+    // General program 2: the msvc linter just doesn't suss template metaprogramming. It often suggests changes to function signatures that
+    //      ignore the detail of other template variants, which, if followed, results in code that cannot compile. If it suggests a template
+    //      signature change, it should do so in the metaprogramming context, e.g. ensure it applies to ALL such functions, not just one
+    //      or two of them.
+    // ... 'X::Y' hides a non-virtual ... 'XX::Y'
+    // ...: default constructor may not throw, mark it noexcept .... except if I mark it noexcept, it no fits the default constructor signature...
+    // 6330: plus using wchar calls with chars ... actually, those chars are (or should be) utf-8.
+    // 26439: comes up on standard class functions; following the suggestion means they no longer fit the signature, so breaks stuff
+    // 26410/5/8: correct, in that particular place. So what? Smart pointers are indeed pointers.
+#pragma warning (push, 3)
+#pragma warning (disable : ALL_CODE_ANALYSIS_WARNINGS) // boost
 #if defined (VS2019)
 #define _WIN32_WINNT 0x0A00 // 10
 #define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // boost
 #define _CRT_SECURE_NO_WARNINGS // boost
-#define CONSTEXPR constexpr
-#define NOEXCEPT noexcept
 #define VS 19
 #define CLEAN_SHAREDPTR_ARRAY
 #elif defined (VS2017)
 #define _WIN32_WINNT 0x0603 // 8.1
 #define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // boost
 #define _CRT_SECURE_NO_WARNINGS // boost
-#define CONSTEXPR constexpr
-#define NOEXCEPT noexcept
 #define VS 17
 #define CLEAN_SHAREDPTR_ARRAY
 #define SMALLINT
 #else // VS...
 #error ssc only builds with VS 2017 / 2019.
 #endif // VS...
+#else // _MSC_VER
+#define MSVC_NOEXCEPT
 #endif // _MSC_VER
 
 #ifdef FUDDYDUDDY
@@ -185,9 +198,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/format.hpp>
 #include <boost/locale.hpp>
-#ifndef NO_PROCESS
-#include <boost/process.hpp>
-#endif // NO_PROCESS
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -205,6 +215,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/algorithm/string.hpp>
+#include <gsl/gsl>
 
 #ifndef SSC_TEST
 #include <unicode/ucsdet.h>

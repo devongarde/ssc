@@ -142,7 +142,8 @@ bool test_bra (nitpick& nits, const html_version& , const ::std::string::const_i
                         nits.pick (nit_bad_pattern, ed_ecma, "AtomEscape", es_error, ec_regex, "in PATTERN, for '(?:=X)', the bracket must be closed, and X must be a single character");
                         res = false;
                         break;
-                }
+                    default :
+                        break; }
             break;
         default :
             break; }

@@ -29,10 +29,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void element::span_check ()
 {   if (a_.known (a_colspan))
-    {   auto x = a_.get_int (a_colspan);
+    {   const auto x = a_.get_int (a_colspan);
         if ((x < 1) || (x > 1000))
             pick (nit_1000, ed_50, "4.9.11 Attributes common to td and th element", es_error, ec_attribute, "ROWSPAN must be greater than zero and less than 1001");
-        auto y = a_.get_int (a_rowspan);
+        const auto y = a_.get_int (a_rowspan);
         if ((y < 0) || (y > 65534))
             pick (nit_1000, ed_50, "4.9.11 Attributes common to td and th element", es_error, ec_attribute, "ROWSPAN must be a positive integer less than 65535"); } }
 
@@ -41,7 +41,7 @@ void element::examine_accesskey ()
         pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "ACCESSKEY requires a different version of HTML"); }
 
 void element::examine_animation_attributes ()
-{   e_svg_version sv = node_.version ().svg_version ();
+{   const e_svg_version sv = node_.version ().svg_version ();
     PRESUME ((sv != sv_none), __FILE__, __LINE__);
     bool block_add = false;
     if (a_.good (a_xlinkhref))
@@ -53,9 +53,9 @@ void element::examine_animation_attributes ()
         if (! hr.is_simple_id ())
             pick (nit_anim_simple_id, ed_svg_2_anim, "2.5. Attributes to identify the target element for an animation", es_error, ec_link, "here, HREF must link to an animation under the same parent SVG"); }
     if (a_.good (a_attributename))
-    {   e_attribute a = static_cast < e_attribute > (a_.get_int (a_attributename));
+    {   const e_attribute a = static_cast < e_attribute > (a_.get_int (a_attributename));
         if (sv > sv_1_1)
-        {   e_animation_type at = get_animation_type (a);
+        {   const e_animation_type at = get_animation_type (a);
             bool bad = false;
             if (sv >= sv_2_0) switch (tag ())
             {   case elem_animate :
@@ -129,7 +129,7 @@ bool element::examine_class ()
     bool unfound = false;
     for (auto c : vc)
         if (c.is_microformat_property ())
-        {   prop p (c);
+        {   const prop p (c);
             if (! p.invalid ())
             {   found_farm farm = find_farm (p.get ());
                 element* prop_vocab_element = nullptr;
@@ -168,10 +168,10 @@ bool element::examine_class ()
     if (unfound && (mf_count > 1))
         for (auto c : vc)
             if (c.is_microformat_property ())
-            {   prop p (c);
+            {   const prop p (c);
                 if (! p.invalid ())
                 {   bool fraternal = false; // sibternal?!
-                    found_farm farm = find_farm (p.get ()); // should store this result beforehand rather than search for it again
+                    const found_farm farm = find_farm (p.get ()); // should store this result beforehand rather than search for it again
                     if (context.mf_version1 ())
                     {   if ((farm.second != c_error) && is_plausible_field (farm.second, p.get ())) continue;
                         VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
@@ -179,7 +179,7 @@ bool element::examine_class ()
                             if (! bro.invalid ())
                             {   if (bro.is_microformat_vocabulary ()) continue;
                                 if (bro.get () == c.get ()) continue;
-                                prop sis (bro); // my family's weird!
+                                const prop sis (bro); // my family's weird!
                                 if (! is_plausible_sibling (p.get (), sis.get ())) continue;
                                 mf_ -> set_mf_value (nits (), node_.version (), c.get (), p.get (), *this);
                                 if (context.mf_verify ())
@@ -239,7 +239,7 @@ void element::examine_headers ()
                 if (get_ids ().get_tag (s) != elem_th)
                     pick (nit_bad_header_id, ed_50, "4.9.11 Attributes common to td and th elements", es_error, ec_attribute, "id ", quote (s), " is not on a <TH>");
                 else
-                {   uid_t uid = get_ids ().get_uid (s);
+                {   const uid_t uid = get_ids ().get_uid (s);
                     if ((uid < tuid_first) || (uid > tuid_last))
                         pick (nit_bad_header_id, ed_50, "4.9.11 Attributes common to td and th elements", es_error, ec_attribute, "id ", quote (s), " is on a <TH> in a different <TABLE>"); } } }
 
@@ -255,21 +255,21 @@ void element::examine_keysplines ()
         pick (nit_keysplines, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_warning, ec_attribute, "KEYSPLINES requires KEYTIMES");
     else if (a_.good (a_keytimes))
     {   auto ks = a_.get_x < attr_keysplines > ();
-        ::std::size_t n = ks.size ();
+        const ::std::size_t n = ks.size ();
         auto kt = a_.get_x < attr_keytimes > ();
-        ::std::size_t m = kt.size ();
+        const ::std::size_t m = kt.size ();
         if ((m > 0) && (n != (m - 1)))
             pick (nit_keytimes, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "KEYSPLINES requires one less entry than KEYTIMES"); } }
 
 void element::examine_keytimes ()
 {   auto kt = a_.get_x < attr_keytimes > ();
-    ::std::size_t n = kt.size ();
+    const ::std::size_t n = kt.size ();
     if (! a_.known (a_values))
     {   if (n != 2) pick (nit_keytimes, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "KEYTIMES without VALUES should have precisely two numbers");
         return; }
     if (! a_.good (a_values)) return;
     auto vl = a_.get_x < attr_values > ();
-    ::std::size_t m = vl.size ();
+    const ::std::size_t m = vl.size ();
     if (n != m)
         pick (nit_keytimes, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "KEYTIMES must have the same quantity of numbers as VALUES"); }
 
@@ -324,7 +324,7 @@ bool element::examine_rel (const ::std::string& content)
                 if (context.mf_verify ())
                     if (context.tell (e_variable)) pick (nit_rel_found, es_comment, ec_attribute, "REL type ", quote (r.name ()), " (", r.get (), ") found");
                     else pick (nit_rel_found, es_comment, ec_attribute, "REL type ", quote (r.name ()), " found");
-                prop p (r);
+                const prop p (r);
                 if (! p.invalid ())
                 {   mf_ -> set_mf_value (nits (), node_.version (), r.get (), p.get (), *this);
                     if (ve.empty ()) { vr = r; vp = p; }

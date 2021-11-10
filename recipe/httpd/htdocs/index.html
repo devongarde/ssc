@@ -8,14 +8,8 @@ H1 { color:#66BB66; font-size: 140% }
 H2 { color:#66BB66; font-size: 120% }
 H3 { color:#99BB99; font-size: 100% }
 A { color:#9999BB }
-LI { color:#999999 }
-P { color:#999999 }
-PRE { color:#999999 }
+FOOTER,HEADER,LI,MAIN,PRE { color:#999999 }
 .smaller { font-size: 80% }
-.nit-before, .nit-after { color: #BBBBBB }
-.nit-mote { color: #BB3333 }
-.nit-line { color: #666666 }
-.h1class, .doris, .info, .warning, .error { min-width: 250px; margin: 0 auto; position: relative; }
 </STYLE>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="author" content="Dylan Harris">
@@ -31,7 +25,6 @@ PRE { color:#999999 }
 <link rel="canonical" href="https://dylanharris.org/index.html">
 <link rel="home" href="/index.html">
 <link rel="icon" href="/favicon.ico">
-<link rel="index" href="/index.html">
 <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 </head>
 
@@ -43,7 +36,7 @@ PRE { color:#999999 }
 
 <main>
 
-<section class="section-about">
+<section>
 <h2>content</h2>
 
 <P>
@@ -63,7 +56,7 @@ PRE { color:#999999 }
 
 <HR>
 
-<section id="intro" class="section-intro">
+<section id="intro">
 <h2>introduction</h2>
 
 <P>
@@ -86,14 +79,14 @@ October 2021
 
 <HR>
 
-<section id="trial" class="section-trial">
+<section id="trial">
 <h2>try</h2>
 
 <form method=get action="/cgi-bin/dance" >
 
-<p class=centre>
-<label>paste an HTML snippet into the box and select submit<br>
-<textarea cols=80 maxlength=16384 required rows=8 name=html.snippet>
+<p>
+<label>
+<textarea cols=80 maxlength=65535 required rows=8 name=html.snippet placeholder="X/HTML goes here">
 </textarea>
 </label>
 
@@ -103,6 +96,7 @@ October 2021
 
 <label>Version:
 <select name=html.version>
+<option></option>
 <option value=0.1>HTML Tags (draft)</option>
 <option value=1.0>HTML 1.0 (draft)</option>
 <option value=1.1>HTML + (draft)</option>
@@ -161,6 +155,7 @@ October 2021
 
 <label>Verbosity:
 <select name=general.verbose required>
+<option></option>
 <option value=2>Errors</option>
 <option value=3 selected>Warnings</option>
 <option value=4>Info</option>
@@ -170,7 +165,6 @@ October 2021
 
 <br><br>
 
-<span class="big">
 <button type=reset>
 Reset
 </button>
@@ -180,67 +174,86 @@ Reset
 <button type=submit>
 Submit
 </button>
-</span>
-</p>
-
-<P>
-NOTE: SSC is a <em>site</em> checker, not a page checker, but, here, you can only input a page, at most.
-It is not the best possible illustration of the program&rsquo;s abilities, but it is better than nothing.
-Testing a web site would require proof of control of that site, and I&rsquo;m not going there for a simple demo.
 </p>
 
 </form>
 
+<h3>notes</h3>
+
+<P>
+SSC is a <em>site</em> checker, not a page checker, yet here you can only input a page, at most.
+It is not the best possible illustration of the program&rsquo;s abilities, but it is better than nothing.
+Testing a web site would require proof of control of that site, and I&rsquo;m not going there for a simple demo.
+</p>
+
+<P>
+SSC is pre&ndash;alpha software. It has more errors than Fido has fleas. This page is a demo of its potential, that&rsquo;s all. Do not presume reported issues are correct. Do not presume unreported issues aren&rsquo;t issues. If you&rsquo;re unsure, check against the appropriate standard. There is no guarantee of anything, let alone accuracy.
+</P>
+
+<P>
+There is a fairly tight limit on the size of a snippet.
+</p>
+
 </section>
 
 <HR>
 
-<section id="download" class="section-download">
+<section id="download">
 <h2>download</h2>
 
-<h3>github</h3>
+<p>
+linux (amd64) :
+<a href="bin/ssc-v116-centos8-amd64.tgz" type="application/gzip">centos 8</a>&nbsp;/
+<a href="bin/ssc-v116-ubuntu-amd64.tgz" type="application/gzip">ubuntu 20.04</a><br>
+macos (intel) :
+<a href="bin/ssc-v116-highsierra-amd64.tgz" type="application/gzip">high sierra</a>&nbsp;/
+<a href="bin/ssc-v116-mojave.tgz" type="application/gzip">mojave</a>&nbsp;/
+<a href="bin/ssc-v116-catalina.tgz" type="application/gzip">catalina</a>&nbsp;/
+<a href="bin/ssc-v116-bigsur-intel.tgz" type="application/gzip">big sur</a><br>
+openbsd (amd64) :
+<a href="bin/ssc-v116-obsd68-amd64.tgz" type="application/gzip">6.8</a>&nbsp;/
+<a href="bin/ssc-v116-obsd69-amd64.tgz" type="application/gzip">6.9</a>&nbsp;/
+<a href="bin/ssc-v116-obsd70-amd64.tgz" type="application/gzip">7.0</a><br>
+windows (x64) :
+<a href="bin/ssc-v116-win-x64.7z" type="application/zipd">10</a><br>
+source (any) :
+<a href="src/ssc-v116-sauce.tgz" type="application/gzip">gzip</a>
+</p>
+
+<h3>notes</h3>
 
 <p>
 These downloads are NOT signed (I&rsquo;ve not got my act together).
-Source is available <A href="#sauce">below</A> and on <a href="https://github.com/devongarde/ssc">Github</A>.
+If that concerns you, grab the source and compile SSC yourself.
+Source is also available here, <a href="#sauce">below</a>, &amp; on <a href="https://github.com/devongarde/ssc">Github</A>.
 </p>
 
-<h3>binaries (0.0.114)</h3>
-
 <p>
-linux :
-<a href="ssc-v114-centos8-amd64.tgz" type="application/gzip">centos 8 amd64</a>&nbsp;/
-<a href="ssc-v114-ubuntu-amd64.tgz" type="application/gzip">ubuntu 20.04 amd64</a><br>
-macos (intel) :
-<a href="ssc-v114-bigsur-intel.tgz" type="application/gzip">big sur</a>&nbsp;/
-<a href="ssc-v114-highsierra-amd64.tgz" type="application/gzip">high sierra</a>
-<br>
-openbsd 6.8 :
-<a href="ssc-v114-obsd68-amd64.tgz" type="application/gzip">amd64</a><br>
-windows 10 :
-<a href="ssc-v114-win-x86.7z" type="application/zipd">x86</a>&nbsp;/
-<a href="ssc-v114-win-x64.7z" type="application/zipd">x64</a>
+It may be necessary to install <a href="https://boost.org">boost</a>,
+<a href="https://icu.unicode.org/">icu4c</a> &amp;
+<a href="https://www.gnu.org/software/libiconv/">libiconv</a>
+for the binaries to work.
+It is normally sufficient to install them using your operating system&rsquo;s
+standard package manager.
 </p>
 
-<h3>additional documentation</h3>
-
 <p>
-The specifications used to build ssc were acquired from various public websites.
+The specifications used to make SSC were acquired from various public websites.
 To avoid confusion when discussing details, here is
-<a href="ssc-v107-spex.tgz" type="application/gzip">a recent collection of these documents</a>.
+<a href="ssc-v107-spex.tgz" type="application/gzip">a humungous collection of the documents</a>.
 </p>
 
 </section>
 
 <HR>
 
-<section id="about" class="section-about">
+<section id="about">
 <h2>README</h2>
 
 <pre>
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.115
+version 0.0.116
 https://ssc.lu/
 
 
@@ -256,7 +269,7 @@ WARNING: this code is:
 - do NOT feed it untrusted data
 
 
-ssc analyses static HTML snippets, files and sites:
+SSC analyses static HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
 - HTML living standard, Jan 2005 to Oct 2021
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
@@ -297,7 +310,7 @@ analyse website based in directory
 
 
 To build & run:
-1. Set the environment variable SSCPATH to point to the ssc root directory (the one containing recipe)
+1. Set the environment variable SSCPATH to point to the SSC root directory (the one containing recipe)
 2. If need be download, build and install ICU 63_1 or better (perhaps from icu-project.org)
 3. Set the environment variable ICUPATH to point to the ICU home directory
 4. If need be download, build and install boost 1.67 or better (perhaps from boost.org)
@@ -305,7 +318,7 @@ To build & run:
 6. -EITHER- build with CMake 3.11 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
 7. -OR- build with recipe\tea\ssc201?.sln in Visual Studios 2017/2019 under Windows
 8. If need be, download, build and install curl (perhaps from curl.haxx.se)
-9. Gleefully run ssc. It will break if you are insufficiently gleeful.
+9. Gleefully run SSC. It will misbehave if you are insufficiently gleeful.
 
 
 NOTE
@@ -324,7 +337,7 @@ October 2021
 
 <HR>
 
-<section id="usage" class="section-usage">
+<section id="usage">
 <h2>usage</h2>
 
 <pre>
@@ -339,7 +352,7 @@ ssc
 
 
 DESCRIPTION
-ssc (the Static Site Checker) is an opinionated HTML nit-picker, intended for
+SSC (the Static Site Checker) is an opinionated HTML nit-picker, intended for
 people, such as its author, who hand code websites. It doesn't just check
 static websites for broken links, dubious syntax, and bad semantic data, it
 will actively complain about things that are perfectly legal but just a little
@@ -350,7 +363,7 @@ for HTML source files to analyse. It produces a list of errors, warnings,
 comments, and other hints of imperfection. Once complete, it summarises
 internal site inconsistencies, and can produce some simple statistics.
 
-ssc ignores scripts.
+SSC ignores scripts.
 
 
 COMMAND LINE ONLY SWITCHES
@@ -376,26 +389,26 @@ COMMAND LINE AND CONFIGURATION FILES SWITCHES
 
 These options are available on the command line and in configuration files:
 
---corpus.article        Prefer the content of <ARTICLE> when gathering corpus
+--corpus.article        Prefer the content of &lt;ARTICLE&gt; when gathering corpus
                         text.
 
---corpus.body           Prefer the content of <BODY> when gathering corpus
+--corpus.body           Prefer the content of &lt;BODY&gt; when gathering corpus
                         text. This is the default.
 
---corpus.main           Prefer the content of <MAIN> when gathering corpus
+--corpus.main           Prefer the content of &lt;MAIN&gt; when gathering corpus
                         text.
 
 --corpus.output file    Dump XML corpus of site into file. This is intended
                         for use by a local search engine. If none of
                         --corpus.article, --corpus.body, or --corpus.main are
-                        specified, the content of <BODY> is used. If more than
+                        specified, the content of &lt;BODY&gt; is used. If more than
                         one are specified, then the text collected depends on
                         a page's content. This is incompatible with
                         --shadow.update.
 
 --general.css           Do NOT process .css files.
 
---general.custom EL     Define a custom element <EL> for verifying the IS
+--general.custom EL     Define a custom element &lt;EL&gt; for verifying the IS
                         attribute. May be repeated.
 
 --general.datapath dir  Look for any configuration, caches, and other useful
@@ -406,7 +419,7 @@ These options are available on the command line and in configuration files:
                         'catastrophe', 'error' (the default), 'warning',
                         'info', or 'comment'.
 
---general.ignored EL    ignore attributes and content of the element <EL>. May
+--general.ignored EL    ignore attributes and content of the element &lt;EL&gt;. May
                         be repeated.
 
 --general.lang LA       If an X/HTML file does not have a language / dialect
@@ -418,14 +431,14 @@ These options are available on the command line and in configuration files:
 
 --general.maxfilesize n Do not process HTML source files that exceed n bytes
                         in size (default: 4M). Specify 0 for unlimited,
-                        although be warned that ssc is stunningly stupid in
+                        although be warned that SSC is stunningly stupid in
                         such circumstances and may even attempt to load files
                         that exceed available memory.
 
 --general.output        Output to the specified file. If this switch is not
 -o file                 used, standard output is used.
 
---general.nochange      Report what ssc would do, but don't do it.
+--general.nochange      Report what SSC would do, but don't do it.
 -n
 
 --general.progress      Dump progress information to standard output. This can
@@ -435,7 +448,7 @@ These options are available on the command line and in configuration files:
                         underperforms. An extension to properly support RDF
                         and RDFa is en route.
 
---general.rel           Only mention <LINK> REL values, found neither in the
+--general.rel           Only mention &lt;LINK&gt; REL values, found neither in the
                         living standard nor at microformats.org, in debug
                         output.
 
@@ -443,7 +456,7 @@ These options are available on the command line and in configuration files:
                         thoroughly slobby, HTML, such as being far too lazy to
                         get round to bothering to close elements.
 
---general.ssi           Process Server Side Includes. Although ssc can process
+--general.ssi           Process Server Side Includes. Although SSC can process
 -I                      many server side includes, it cannot process those
                         containing formulae. Note that processing SSIs may
                         cause incorrect line numbers to be mentioned when an
@@ -469,7 +482,7 @@ These options are available on the command line and in configuration files:
                         when processing HTML 2.0.
 
 --html.tags             When an HTML file is loaded that contains no DOCTYPE,
-                        ssc normally presumes it's an HTML 1 file. This switch
+                        SSC normally presumes it's an HTML 1 file. This switch
                         tells it to presume the file follows an earlier HTML
                         Tags specification (the one at CERN). This is
                         overridden by --html.version.
@@ -513,10 +526,10 @@ These options are available on the command line and in configuration files:
                         broad versions published in January and July are
                         supported (and April & October 2021). It is expected
                         that, as the standard develops, more precision will be
-                        applied to changes in ssc analysis.
+                        applied to changes in SSC analysis.
 
                         Certain versions of HTML offer variants, such as loose
-                        and strict definitions. ssc picks those up from the
+                        and strict definitions. SSC picks those up from the
                         &lt;!DOCTYPE &hellip;&gt; in the HTML file, if any, and
                         carelessly ignores them.
 
@@ -528,13 +541,13 @@ These options are available on the command line and in configuration files:
                         Copies of the appropriate standards can be found
                         online at source.
 
---link.301              Normally, when ssc checks external links
+--link.301              Normally, when SSC checks external links
 -3                      (--link.external), it does not report http forwarding
                         errors 301 and 308. Use this switch to have it do so.
 
 --link.external         Check external links, e.g. those not on the site being
 -e                      checked. This requires a copy of curl on the path.
-                        Note that, no matter what the switch, ssc will NOT
+                        Note that, no matter what the switch, SSC will NOT
                         check certain special site names, such as example.com.
 
 --link.internal         Check internal links, e.g. those within the website
@@ -542,7 +555,7 @@ These options are available on the command line and in configuration files:
 
 --link.once             Only report each broken external link once. If, for
 -O                      example, the site has a number of references to a page
-                        that does not exist, ssc will only report the first
+                        that does not exist, SSC will only report the first
                         instance of the broken link. Note that, even if it
                         reports every occurrence of the link, it will only
                         check it the first time it encounters it (requires
@@ -553,7 +566,7 @@ These options are available on the command line and in configuration files:
 
 --link.xlink            Check crosslink IDs on the site being analysed. For
 -X                      example, if a link goes to /index.html#id, then, when
-                        this switch is set, ssc will verify that the id exists
+                        this switch is set, SSC will verify that the id exists
                         and that it is not hidden.
 
 --math.version          Presume this version of MathML (1, 2 or 3). The
@@ -566,14 +579,14 @@ These options are available on the command line and in configuration files:
                                 4   MathML 4 (December 2020 draft).
 
 --microdata.microdata   Check microdata found in WhatWG microdata attributes
--m                      (itemprop, itemtype, etc.). Note that ssc only knows
+-m                      (itemprop, itemtype, etc.). Note that SSC only knows
                         about schema.org and n.whatwg.org microdata.
 
 --microdata.export      Export schema.org microdata encountered. This data is
                         exported in JSON format.
 
 --microdata.root DIR    When exporting microdata with --microdata.export,
-                        write files into the directory DIR. ssc will create
+                        write files into the directory DIR. SSC will create
                         the directory tree structure as appropriate.
 
 --microdata.version x.y Test for schema.org microdata version X.Y
@@ -655,7 +668,7 @@ These options are available on the command line and in configuration files:
                                        deduplicate them, changing links in
                                        HTML source if necessary;
                                 report only report duplicates (no shadowing).
-                        ssc cannot convert between versions of HTML, nor
+                        SSC cannot convert between versions of HTML, nor
                         between HTML and XHTML. The soft and hard link options
                         are only available on systems that support them.
 
@@ -664,7 +677,7 @@ These options are available on the command line and in configuration files:
                         will litter the site source directories with .ndx
                         files.
 
---shadow.file f         Write ssc's shadow cache to file f, to accelerate
+--shadow.file f         Write SSC's shadow cache to file f, to accelerate
                         future shadowing of the same content.
 
 --shadow.ignore ext     When shadowing, ignore files with this extension (may
@@ -687,7 +700,7 @@ These options are available on the command line and in configuration files:
                         shadowed files untidily untouched.
 
 --shadow.update         Only examine files that have changed since the last
--u                      time ssc ran. This is incompatible with --corpus.file.
+-u                      time SSC ran. This is incompatible with --corpus.file.
                         This requires --shadow.file. Nits of files that have
                         not changed will not be reported.
 
@@ -708,7 +721,7 @@ These options are available on the command line and in configuration files:
 -i file                 This can be repeated. This is used for checking
                         internal links.
 
---site.root dir         This is the root of the website to analyse. ssc will
+--site.root dir         This is the root of the website to analyse. SSC will
 -g dir                  recursively scan the directory analysing any HTML
                         files it finds. The default is the current directory.
 
@@ -775,7 +788,7 @@ OPTION=123456
 Switches that do not have a long form version cannot be used in a
 configuration file.
 
-Each ssc tests (in the toast folder) has a configuration file; browse them for
+Each test (in the recipe/toast folder) has a configuration file; browse them for
 examples.
 
 
@@ -793,14 +806,14 @@ including general.verbose and html.version.
 
 
 EXIT STATUS
-If no significant nits are found, ssc exits with 0, otherwise it exits with a
+If no significant nits are found, SSC exits with 0, otherwise it exits with a
 value &gt; 0.
 
 
 OUTPUT TEMPLATE
 
 Warning: output templates is work in progress, and may be subject to
-significant breaking change in future versions of ssc.
+significant breaking change in future versions of SSC.
 
 The --nit.format switch allows control of output format. It takes a file name.
 The format of that text file is a sequence of fixed section names, enclosed in
@@ -811,7 +824,7 @@ For example:
 [dog-section]
 My pet dog {{dog-name}} is a {{bad-dog}}.
 
-For examples, browse toast/output/*.nit
+For examples, browse recipe/toast/output/*.nit
 
 If no file is specified, or if the file cannot be loaded, a default template is
 used.
@@ -821,7 +834,7 @@ Note also the --nit.quote switch.
 
 EXAMPLES
 
-To verify the version of ssc:
+To verify the version of SSC:
 ssc -V
 
 To check the static web side source directory /home/site/wwwroot:
@@ -922,8 +935,8 @@ PREPARING and UPDATING a SITE
 These files are based on the steps I take to update an OpenBSD website.
 
 Presumine a directory containing the following:
-site.conf    ssc configuration file for a website
-site         shadow output produced by ssc
+site.conf    SSC configuration file for a website
+site         shadow output produced by SSC
 
 Then I run a script like this:
 
@@ -980,14 +993,14 @@ linkchecker
 
 
 HISTORY
-ssc is written by Dylan Harris, https://ssc.lu/.
+SSC is written by Dylan Harris, https://ssc.lu/.
 </pre>
 
 </section>
 
 <HR>
 
-<section id="issues" class="section-issues">
+<section id="issues">
 <h2>known issues</h2>
 
 <p>
@@ -995,33 +1008,36 @@ SSC is pre&ndash;alpha software. It doesn&rsquo;t do what it&rsquo;s supposed to
 </p>
 
 <ul><li>
-SSC is built based on my understanding of various standards. My understanding is certainly wrong. I will have misread some of the text, and misunderstood what I read correctly;
+SSC is built based on my understanding of various standards. My understanding is certainly wrong. I will have misread some text, and misunderstood what I read correctly;
 </li><li>
 I had to make a number of compromises when building the code. Quite a lot of the checks are incomplete or even entirely missing;
 </li><li>
 I put my emphasis on standards that are actively followed, and put little effort, beyond the basics, into those that were never properly implemented;
 </li><li>
-I built an evolving product, reflecting evolving standards: biological evolution made the dodo, linguistic evolution made &lsquo;hippopotamus&rsquo;, I made SSC;
+I built an evolving product, reflecting evolving standards: biological evolution made the dodo, linguistic evolution made &lsquo;hippopotamus&rsquo;<SUP>*</SUP>, I made SSC;
 </li><li>
 The code was built to get something working. In many places, it is horrible. A great deal of refactoring could take place, had I the time.
 </li><li>
 No attempt was made to write secure code. It should only be run on trusted data. In particular, a great weakness of much software is the parser, and the parsers in SSC were handmade using hopeless optimism and bizarre ideas.
 </li><li>
-No attempt was made to write multi&ndash;threading code;
+No attempt was made to write multi&ndash;threading code (I consider SSC disk bound, and never mind that disks have evolved to SSDs since I started the project);
 </li><li>
 The tests are incomplete. Emphasis is placed on HTML 5, but even those tests suffer from missing content.
-</ul></li>
+</li></ul>
 
 <p>
 Note that <a href="https://github.com/devongarde/">github</a>
 hosts a list of
 <a href="https://github.com/devongarde/ssc/issues">known issues</a>.
 </p>
+
+<P><SUP>*</SUP> How can such a dangerous animal have such a cuddly name? It&rsquo;s like calling the Hound of Hell &lsquo;<a href="https://harrypotter.fandom.com/wiki/Fluffy">Fluffy</A>&rsquo;.
+</P>
 </section>
 
 <HR>
 
-<section id="build" class="section-building">
+<section id="build">
 <h2>build</h2>
 
 <h3>introduction</h3>
@@ -1039,18 +1055,19 @@ It can also be built under Windows using
 <h3>operating systems</h3>
 
 <p>
-I&rsquo;ve successfully built ssc under:
+I&rsquo;ve successfully built SSC under:
 </p>
 
 <ul>
-<li>Windows 8.1 &amp; 10.0 (x86 &amp; x64), using Visual Studios 2017, 2019 &amp; 2022 preview;
+<li>Windows 8.1 &amp; 10.0 (x64), using Visual Studios 2017, 2019 &amp; 2022 preview;
 </li><li>
-macOS High Sierra, Mojave, Catalina &amp; Big Sur (intel), using xCode (clang) from the command line;
+macOS High Sierra, Mojave, Catalina &amp; Big Sur (intel), using CMake with xCode (clang) from the command line;
 </li><li>
-Linux centos 8 amd64, plus ubuntus 20.04 &amp; 20.10 server, using gcc;
+Linux centos 8 amd64, plus ubuntus 20.04 &amp; 20.10 server, using CMake with gcc;
 </li><li>
-openBSD amd64 6.8, 6.9 &amp; 7.0, using clang.
+openBSD amd64 6.8, 6.9 &amp; 7.0, using CMake with clang.
 </li></ul>
+
 <p>
 I see no reason why it wouldn&rsquo;t build under similar environments, but I make no promises.
 </p>
@@ -1058,14 +1075,14 @@ I see no reason why it wouldn&rsquo;t build under similar environments, but I ma
 <h3>libraries</h3>
 
 <p>
-Before you can build SSC, you may need to install and build <a href="https://boost.org">boost</a> version 1.75 or better (I use 1.77),
+Before you can build SSC, you may need to install and build <a href="https://boost.org">boost</a> version 1.75 or better (some environments require 1.67 or better),
 and <a href="https://icu-project.org/">ICU</a> 60.0 or better (I use 69.1).
 </p>
 
 <p>
 You may need to set some environment variables:
 <br>
-<kbd>SSCPATH</kbd> to point to the ssc directory;
+<kbd>SSCPATH</kbd> to point to the SSC directory;
 <br>
 <kbd>BOOST_ROOT</kbd> to point to the boost root directory.
 <br>
@@ -1081,7 +1098,8 @@ Many contemporary unii have standard packages that can install Boost and ICU. Th
 <p>
 To build from <a href="https://visualstudio.microsoft.com/">Visual Studio</a>, navigate to recipe\tea, open the appropriate .sln, and build.
 I&rsquo;ve built for Windows 8.1 / 10 using Visual Studios 2017 / 2019 / 2022 preview respectively.
-I&rsquo;ve built successfully for x86 and x64; I am unable to test an ARM build.
+I&rsquo;ve built successfully for x86 and x64, although I&rsquo;ve now dropped x86.
+I am unable to test an ARM build.
 </p>
 
 <h3>openbsd / macos / centos</h3>
@@ -1089,11 +1107,11 @@ I&rsquo;ve built successfully for x86 and x64; I am unable to test an ARM build.
 <p>
 You will need <a href="https://cmake.org/">CMake</a> 3.11 or better.
 You may need to configure the environment variables noted above.
-For macOS, I used the standard xcode command line tools. In OpenBSD, I used the default version of clang; I usually had to build boost and ICU myself. Under Centos, I used gcc 8.3.1. Gcc is not the fastest for compilation.
+For macOS, I used the standard xCode command line tools. In OpenBSD, I used the default version of clang. Under Centos, I used gcc 8.3.1. Gcc is not the fastest for compilation.
 </p>
 
 <p>
-From the home ssc directory:
+From the SSC home directory:
 </p>
 
 <pre>
@@ -1114,8 +1132,28 @@ If everything works correctly, then everything will be built, a series of tests 
 
 <HR>
 
-<section id="sauce" class="section-release">
+<section id="sauce">
 <h2>source</h2>
+
+<h3>0.0.116</h3>
+
+<ul>
+<li>
+change default HTML to living standard Oct 2021
+</li>
+<li>
+<a href="https://openbsd.org/">OpenBSD</a> 6.9 / 7.0
+</li>
+<li>
+underlying work / various refinements
+</li>
+<li>
+<A href="src/ssc-v116-sauce.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2021-10-24">21 10 24</time>
+</li>
+</ul>
 
 <h3>0.0.115</h3>
 
@@ -1139,7 +1177,7 @@ unii builds now require CMake 3.12 or better
 underlying work
 </li>
 <li>
-<A href="ssc-v115-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v115-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-10-17">21 10 17</time>
@@ -1153,7 +1191,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-10-1
 underlying work
 </li>
 <li>
-<A href="ssc-v114-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v114-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-10-06">21 10 6</time>
@@ -1173,7 +1211,7 @@ restore progress report via -D switch
 underlying work
 </li>
 <li>
-<A href="ssc-v113-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v113-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-09-30">21 9 30</time>
@@ -1190,7 +1228,7 @@ control output format
 underlying work
 </li>
 <li>
-<A href="ssc-v112-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v112-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-09-21">21 9 21</time>
@@ -1213,7 +1251,7 @@ added --shadow.enable
 drop Visual Studio 2015
 </li>
 <li>
-<A href="ssc-v111-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v111-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-08-21">21 8 21</time>
@@ -1227,7 +1265,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-08-2
 underlying work
 </li>
 <li>
-<A href="ssc-v110-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v110-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-08-02">21 8 2</time>
@@ -1238,10 +1276,10 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-08-0
 
 <ul>
 <li>
-update flag, so ssc only looks at files that have changed recently
+update flag, so SSC only looks at files that have changed recently
 </li>
 <li>
-<A href="ssc-v109-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v109-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-06-29">21 6 29</time>
@@ -1261,7 +1299,7 @@ added example website update script
 specify which page content goes in the corpus
 </li>
 <li>
-<A href="ssc-v108-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v108-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-06-15">21 6 15</time>
@@ -1311,7 +1349,7 @@ April 2021 Animations draft
 </ul>
 </li>
 <li>
-<A href="ssc-v107-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v107-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-06-05">21 6 05</time>
@@ -1325,7 +1363,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-06-0
 underlying work
 </li>
 <li>
-<A href="ssc-v106-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v106-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-31">21 6 31</time>
@@ -1342,7 +1380,7 @@ improved diagnostics on abort
 underlying work
 </li>
 <li>
-<A href="ssc-v105-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v105-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-24">21 6 24</time>
@@ -1356,7 +1394,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-05-2
 underlying work
 </li>
 <li>
-<A href="ssc-v104-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v104-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-18">21 6 18</time>
@@ -1370,7 +1408,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-05-1
 underlying work
 </li>
 <li>
-<A href="ssc-v103-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v103-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-18">21 5 11</time>
@@ -1384,7 +1422,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-05-1
 underlying work
 </li>
 <li>
-<A href="ssc-v102-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v102-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-03">21 5 3</time>
@@ -1399,7 +1437,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-05-0
 </li><li>
 can run in the <A href="https://www.openbsd.org/">OpenBSD</a> 6.8 <A href="https://man.openbsd.org/httpd">httpd</a> server CGI environment
 (do NOT expose SSC to untrusted data sources, such as those on the open web, without taking
-serious precautions: ssc is pre&ndash;alpha software, and probably has more bugs than the
+serious precautions: SSC is pre&ndash;alpha software, and probably has more bugs than the
 Creator&rsquo;s Ultimate All&ndash;Beetle Extravaganza)
 </li><li>
 --shadow.changed: only update files in the shadow directory when the originals have changed
@@ -1412,7 +1450,7 @@ improvements to corpus data extraction
 </li>
 </ul>
 <li>
-<A href="ssc-v101-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v101-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-04-21">21 4 21</time>
@@ -1444,7 +1482,7 @@ specify custom elements and custom attributes (see recipe/toast/type/custom/* fo
 dump site corpus with -d switch
 </li>
 <li>
-<A href="ssc-v100-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v100-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-04-16">21 4 16</time>
@@ -1461,7 +1499,7 @@ checks microformats in microdata
 export living standard &amp; microformats microdata
 </li>
 <li>
-<A href="ssc-v99-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v99-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-04-11">21 4 11</time>
@@ -1478,7 +1516,7 @@ living standard microdata ITEMTYPEs processed
 stats now only counts reported errors
 </li>
 <li>
-<A href="ssc-v98-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v98-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-04-07">21 4 7</time>
@@ -1501,7 +1539,7 @@ various microdata, including vcard, vevent, purl.org and n.whatwg.org, are not c
 no spellchecker
 </li>
 <li>
-<A href="ssc-v97-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v97-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-31">21 3 31</time>
@@ -1515,7 +1553,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-3
 underlying work
 </li>
 <li>
-<A href="ssc-v96-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v96-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-26">21 3 26</time>
@@ -1529,7 +1567,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-2
 underlying work
 </li>
 <li>
-<A href="ssc-v95-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v95-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-25">21 3 25</time>
@@ -1546,7 +1584,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-2
 improved diagnosis output
 </li>
 <li>
-<A href="ssc-v94-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v94-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-20">21 3 20</time>
@@ -1560,7 +1598,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-2
 processes schema.org 12.0 microdata
 </li>
 <li>
-<A href="ssc-v93-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v93-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-12">21 3 12</time>
@@ -1577,7 +1615,7 @@ recognise open graph meta names
 expand mime type checking
 </li>
 <li>
-<A href="ssc-v92-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v92-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-16">21 3 16</time>
@@ -1591,7 +1629,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-1
 underlying work
 </li>
 <li>
-<A href="ssc-v91-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v91-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-12">21 3 12</time>
@@ -1605,7 +1643,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-1
 underlying work
 </li>
 <li>
-<A href="ssc-v91-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v91-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-12">21 3 12</time>
@@ -1622,7 +1660,7 @@ more media type / file extension checks
 underlying work
 </li>
 <li>
-<A href="ssc-v89-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v89-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-05">21 3 5</time>
@@ -1639,7 +1677,7 @@ added media type checks
 underlying work
 </li>
 <li>
-<A href="ssc-v88-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v88-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-02">21 3 2</time>
@@ -1653,7 +1691,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-0
 underlying work
 </li>
 <li>
-<A href="ssc-v87-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v87-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-25">21 2 25</time>
@@ -1667,7 +1705,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-2
 underlying work
 </li>
 <li>
-<A href="ssc-v86-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v86-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-15">21 2 15</time>
@@ -1681,7 +1719,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-1
 additional stats options, reporting &lt;DT&gt;&lt;DD&gt;, &lt;ABBR&gt;>, &amp; &lt;DFN&gt; content
 </li>
 <li>
-<A href="ssc-v85-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v85-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-12">21 2 12</time>
@@ -1695,7 +1733,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-1
 underlying work
 </li>
 <li>
-<A href="ssc-v84-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v84-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-01">21 2 01</time>
@@ -1709,7 +1747,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-0
 verifies various new living standard referenced http-equiv pragmas
 </li>
 <li>
-<A href="ssc-v83-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v83-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-01">21 2 01</time>
@@ -1723,7 +1761,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-0
 --schema.version now accepts + for HTML+
 </li>
 <li>
-<A href="ssc-v82-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v82-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-29">21 1 29</time>
@@ -1740,7 +1778,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-2
 --schema.minor removed
 </li>
 <li>
-<A href="ssc-v81-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v81-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-24">21 1 24</time>
@@ -1760,7 +1798,7 @@ adds --stats.meta to generate stats on &lt;META&gt; usage in &lt;HEAD&gt;
 checks content-security-policy values
 </li>
 <li>
-<A href="ssc-v80-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v80-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-18">21 1 18</time>
@@ -1774,7 +1812,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-1
 A new -z switch to specify the maximum preferred length of title text;
 </li>
 <li>
-<A href="ssc-v79-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v79-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-15">21 1 15</time>
@@ -1788,7 +1826,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-1
 underlying work
 </li>
 <li>
-<A href="ssc-v78-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v78-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-03">21 1 3</time>
@@ -1802,7 +1840,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-0
 checks that the HTML page and the charset declared on it (if any) have something in common
 </li>
 <li>
-<A href="ssc-v77-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v77-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-20">20 12 20</time>
@@ -1816,7 +1854,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-12-2
 added --shadow.ignore to ignore files with specified extension
 </li>
 <li>
-<A href="ssc-v76-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v76-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-13">20 12 13</time>
@@ -1830,7 +1868,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-12-1
 added --microdata.root and --microdata.virtual for microdata exports
 </li>
 <li>
-<A href="ssc-v75-ubuntu-amd64.tgz" type="application/gzip">Ubuntu Server 20.10 amd64</a> build
+<A href="src/ssc-v75-ubuntu-amd64.tgz" type="application/gzip">Ubuntu Server 20.10 amd64</a> build
 </li>
 <li>
 default dedu cache now based on config file name
@@ -1838,7 +1876,7 @@ default dedu cache now based on config file name
 <li>
 underlying work
 </li><li>
-<A href="ssc-v75-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v75-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-10">20 12 10</time>
@@ -1855,7 +1893,7 @@ can process <a href="https://schema.org">schema.org</a> 11.0 microdata;
 includes some microdata refinements.
 </li>
 <li>
-<A href="ssc-v74-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v74-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-06">20 12 6</time>
@@ -1872,7 +1910,7 @@ Export &lsquo;repaired&rsquo; HTML files, including processing of Server Side In
 Deduplicate non&ndash;HTML files. When used with export, it copies one version of the file and modifies links appropriately.
 </li>
 <li>
-<A href="ssc-v73-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v73-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-05">20 12 5</time>
@@ -1883,7 +1921,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-12-0
 
 <ul>
 <li>
-<A href="ssc-v71-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v71-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-11-25">20 11 25</time>
@@ -1894,7 +1932,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-11-2
 
 <ul>
 <li>
-<A href="ssc-v70-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v70-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-11-22">20 11 22</time>
@@ -1905,7 +1943,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-11-2
 
 <ul>
 <li>
-<A href="ssc-v60-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v60-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-10-29">20 10 29</time>
@@ -1916,7 +1954,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-10-2
 
 <ul>
 <li>
-<A href="ssc-v55-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v55-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-10-20">20 10 20</time>
@@ -1927,7 +1965,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-10-2
 
 <ul>
 <li>
-<A href="ssc-v2-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v2-sauce.zip" type="application/zip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-04-20">20 4 20</time>
@@ -1938,7 +1976,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-04-2
 
 <HR>
 
-<section id="boot" class="section-boot">
+<section id="boot">
 <h2>boot notes</h2>
 
 <p>
@@ -1966,14 +2004,18 @@ heater: i&rsquo;m not stopping now
 
 <HR>
 
-<section id="copy" class="section-boot">
+<section id="copy">
 <h2>copyright &amp; licence</h2>
+
+<P>
+Any dispute shall be resolved in accordance with <A href="https://uk.practicallaw.thomsonreuters.com/w-018-2382">the law of the Grand Duchy of Luxembourg</A>.
+</P>
 
 <pre>
 
 <a href="https://ssc.lu/">SSC</a>
 
-ssc, static site checker, <a href="https://ssc.lu/">https://ssc.lu/</a>
+SSC, static site checker, <a href="https://ssc.lu/">https://ssc.lu/</a>
 copyright (c) 2020,2021 <a href="https://harris.eu.com/">dylan harris</a>
 
 This program is free software: you can redistribute it and/or modify
@@ -2044,14 +2086,15 @@ Some test files are derived from pages at <a href="https://dylanharris.org">http
 
 <footer class="smaller">
 <P>
-<A href="https://harris.eu.com/">Dylan Harris</a> is registered as a sole trader in <SPAN itemprop="countryOfOrigin">Luxembourg</SPAN>
+<A href="https://harris.eu.com/">Dylan Harris</a> is registered as a sole trader in Luxembourg
 <BR>
 BP&nbsp;10133642/0 &nbsp;
 RCS&nbsp;A43134 &nbsp;
 VAT&nbsp;soon
 <BR><BR>
-<SPAN itemprop="copyrightNotice">&copy; <SPAN itemprop="copyrightYear">2020/2021</SPAN> <A href="https://dylanharris.org/">dylan harris</A></SPAN><BR>
-themed with <a href="https://dylanharris.org/past/xenakis/1996/index.htm">retro 96</A>
+&copy; 2020/2021 <A href="https://dylanharris.org/">dylan harris</A><BR>
+themed with <a href="https://dylanharris.org/past/xenakis/1996/index.htm">retro 96</A><BR>
+<A href="dylan@harris.eu.com">email</A> and <A href="https://dylanharris.org/and/and/contact.shtml">contact</A>
 </P>
 </footer>
 

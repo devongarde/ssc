@@ -40,7 +40,14 @@ charset_detector_match charset_detector_matches::at (const int32_t i) const
         // meanwhile, pragmatic compilers work
         throw ::std::exception ("charset_detector_match at () out of bounds error");
 #endif // __GNUC__
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26481) // try reading the preceding code, linter
+#endif // _MSC_VER
     return charset_detector_match (match_ [i]); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
 bool charset_detector::set_text (const char *in, int32_t len)
 {   PRESUME (detector_ != nullptr, __FILE__, __LINE__);
@@ -48,14 +55,14 @@ bool charset_detector::set_text (const char *in, int32_t len)
     return valid (); }
 
 bool converter::convert_to (void_ptr& vp, uintmax_t& sz)
-{   char* from = reinterpret_cast <char*> (vp.get ());
-    int32_t len = ucnv_toUChars (conv_, nullptr, 0, from, static_cast < int32_t > (sz), &err_);
+{   const char* const from = static_cast <char*> (vp.get ());
+    const int32_t len = ucnv_toUChars (conv_, nullptr, 0, from, static_cast < int32_t > (sz), &err_);
     if (err_ <= 0)
     {   ::std::size_t buflen = static_cast < ::std::size_t > (len) * sizeof (UChar);
         void_ptr res (alloc_void_ptr (buflen));
-        UChar* to_uc = reinterpret_cast <UChar*> (res.get ());
+        UChar* to_uc = static_cast <UChar*> (res.get ());
         if (res.get () != nullptr)
-        {   int32_t l2 = ucnv_toUChars (conv_, to_uc, len, from, static_cast < int32_t > (sz), &err_);
+        {   const int32_t l2 = ucnv_toUChars (conv_, to_uc, len, from, static_cast < int32_t > (sz), &err_);
             if ((l2 <= len) && (err_ <= 0))
             {   vp = res; sz = buflen; return true; } } }
     return false; }

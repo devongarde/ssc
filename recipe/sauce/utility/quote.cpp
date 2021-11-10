@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string slash_quote (const ::std::string& str)
 {   ::std::string res;
-    bool bq = (str.find_first_of (" \"\t\n\\") != ::std::string::npos);
+    const bool bq = (str.find_first_of (" \"\t\n\\") != ::std::string::npos);
     if (bq) res += '"';
     for (auto ch : str)
     {   switch (ch)
@@ -73,7 +73,7 @@ vstr_t defang (const vstr_t& vs)
 ::std::string enquote (const ::std::string& str, const char space, const ::std::string& quotesep)
 {   PRESUME (quotesep.length () >= 2, __FILE__, __LINE__);
     ::std::string res;
-    char quote = quotesep [0];
+    const char quote = quotesep.at (0);
     res += quote;
     for (auto ch : str)
     {   if (ch == quote)
@@ -91,7 +91,7 @@ vstr_t defang (const vstr_t& vs)
 ::std::string enquote (const vstr_t vs, const ::std::string& quotesep)
 {   PRESUME (quotesep.length () >= 2, __FILE__, __LINE__);
     ::std::string res;
-    char sep = quotesep [1];
+    const char sep = quotesep.at (1);
     for (auto str : vs)
     {   if (! res.empty ()) res += sep;
         res += quote (str, quotesep); }
@@ -104,7 +104,7 @@ vstr_t defang (const vstr_t& vs)
 ::std::string unquote (::std::string::const_iterator ci, const ::std::string::const_iterator cie, const ::std::string& quotesep)
     // presumes string prepared by quote; not bulletproof
 {   PRESUME (quotesep.length () >= 2, __FILE__, __LINE__);
-    char quote = quotesep [0];
+    const char quote = quotesep.at (0);
     ::std::string res;
     if (ci != cie)
     {   if (*ci != quote)
@@ -123,7 +123,7 @@ vstr_t unquote (const ::std::string& str, const ::std::size_t len, const ::std::
 {   PRESUME (quotesep.length () >= 2, __FILE__, __LINE__);
     vstr_t res;
     if (len) res.reserve (len);
-    char sep = quotesep [1];
+    const char sep = quotesep.at (1);
     ::std::string::const_iterator ci = str.cbegin ();
     const ::std::string::const_iterator cie = str.cend ();
     while (ci != cie)
@@ -140,7 +140,7 @@ vstr_t unquote (const ::std::string& str, const ::std::size_t len, const ::std::
 
 ::std::string limited_string_with_quote (bool quoted, const ::std::string& s, const ::std::size_t max, const ::std::string& qs = ::std::string (QUOTESEP))
 {   ::std::string res (s.substr (0, max));
-    ::std::string::size_type pos = res.find_first_of (LINE_SEPARATORS);
+    const ::std::string::size_type pos = res.find_first_of (LINE_SEPARATORS);
     if (pos != ::std::string::npos) res = res.substr (0, pos);
     if (quoted) res = enquote (res, qs);
     else if (s.length () > max) res += " ...";

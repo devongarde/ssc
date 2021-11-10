@@ -27,9 +27,9 @@ class microdata_export
     bool initiated_ = false;
     uid_t uid_ = 0;
 public:
-    void swap (microdata_export& m) NOEXCEPT;
+    void swap (microdata_export& m);
     void init (const ::std::string& name);
-    bool empty () const { return (! initiated_); }
+    bool empty () const noexcept { return (! initiated_); }
     bool write (nitpick& nits, const ::boost::filesystem::path& name);
     void add (const ::std::string& path, const itemprop_index itemprop, const ::std::string& value);
     void add (const ::std::string& path, const itemtype_index itemtype);

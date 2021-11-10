@@ -30,14 +30,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "type/type.h"
 
-const ::std::size_t max_separation = 30;
+constexpr ::std::size_t max_separation = 30;
 
 ssi_compedium::ssi_compedium ()
     :   echomsg_ ("[Value Undefined]"), errmsg_ ("[Oops, something broke.]"), timefmt_ ("%Y %b %d %R"),
         sizefmt_abbrev_ (true)
     { }
 
-void ssi_compedium::swap (ssi_compedium& ssi)
+void ssi_compedium::swap (ssi_compedium& ssi) noexcept
 {   var_.swap (ssi.var_);
     ::std::swap (echomsg_, ssi.echomsg_);
     ::std::swap (errmsg_, ssi.errmsg_);
@@ -52,8 +52,8 @@ void set_ssi_context (::std::string& ln, nitpick& nits, e_severity )
     nits.set_context (0, ln);
     ln.clear (); }
 
-::std::string womble_time (::std::string& ln, nitpick& nits, ssi_compedium& c, struct tm* lwt)
-{   const ::std::size_t len = 256;
+::std::string womble_time (::std::string& ln, nitpick& nits, const ssi_compedium& c, const struct tm* const lwt)
+{   constexpr ::std::size_t len = 256;
     char t [len];
     if (strftime (t, len - 1, c.timefmt_.c_str (), lwt) == 0)
     {   set_ssi_context (ln, nits, es_error);
@@ -84,20 +84,20 @@ template < class ENUM, e_type TYPE > bool attribute_assign (::std::string& ln, n
         return true; }
     return false; }
 
-bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_encoding& e, ::std::string& arg)
+bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_encoding& e, const ::std::string& arg)
 {   if (value < e_ssi_encoding, t_ssi_encoding > (ln, nits, v, e, uq (arg), true))
     {   if ((e == ssi_encoding_none) || (e == ssi_encoding_url)) return true;
         set_ssi_context (ln, nits, es_error);
         nits.pick (nit_unsupported_code, es_error, ec_ssi, "apologies, but " PROG " only supports the " QNONE " and 'url' encodings"); }
     return false; }
 
-::std::string get_variable_value (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& var, bool required = false, bool noenv = false)
+::std::string get_variable_value (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const ::std::string& var, bool required = false, bool noenv = false)
 {   ::std::string arg (uq (var));
-    ustr_t::iterator i = c.var_.find (arg);
-    if (i != c.var_.end ()) arg = i -> second;
+    ustr_t::const_iterator i = c.var_.find (arg);
+    if (i != c.var_.cend ()) arg = i -> second;
     else
-    {   e_ssi_env env;
-        time_t t;
+    {   e_ssi_env env = ssi_error;
+        time_t t = 0;
         if (value < e_ssi_env, t_ssi_env > (ln, nits, v, env, arg, required))
             if (noenv)
             {   set_ssi_context (ln, nits, es_error);
@@ -120,11 +120,12 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                     t = get_last_write_time (x);
                     arg = womble_time (ln, nits, c, gmtime (&t));
                     break; }
+                case ssi_error : GRACEFUL_CRASH (__FILE__, __LINE__); break;
                 default : break; } }
     nits.pick (nit_debug, es_debug, ec_ssi, "get_variable_value: ", quote (var), " == ", quote (arg));
     return arg; }
 
-bool validate_file (::std::string& ln, nitpick& nits, page& p, const ::std::string& f)
+bool validate_file (::std::string& ln, nitpick& nits, const page& p, const ::std::string& f)
 {   ::std::string file (uq (f));
     ::boost::filesystem::path af (p.get_directory () -> get_disk_path (nits, file));
     if (! file.empty ())
@@ -191,7 +192,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     if (arg.find ("<!--#") == ::std::string::npos) return arg;
     return parse_ssi (nits, v, p, c, arg, updated, false); }
 
-::std::string flastmod_command (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const vstr_t& args)
+::std::string flastmod_command (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const vstr_t& args)
 {   ::std::string file, vrt, arg;
     ::std::time_t lwt = 0;
     url u;
@@ -218,7 +219,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
 
     return womble_time (ln, nits, c, localtime (&lwt)); }
 
-::std::string fsize_command (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const vstr_t& args)
+::std::string fsize_command (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const vstr_t& args)
 {   ::std::string file, vrt, arg;
     uint64_t size = 0;
     url u;
@@ -241,10 +242,10 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     if (! c.sizefmt_abbrev_)
         return ::boost :: lexical_cast < ::std::string > (size);
 
-    const uint64_t k = 1024;
-    const uint64_t m = k * 1024;
-    const uint64_t g = m * 1024;
-    const uint64_t t = g * 1024;
+    constexpr uint64_t k = 1024;
+    constexpr uint64_t m = k * 1024;
+    constexpr uint64_t g = m * 1024;
+    constexpr uint64_t t = g * 1024;
     if (size > t) return ::boost::lexical_cast < ::std::string > (size / t) + "T";
     if (size > g) return ::boost::lexical_cast < ::std::string > (size / g) + "G";
     if (size > m) return ::boost::lexical_cast < ::std::string > (size / m) + "M";
@@ -268,7 +269,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, "<!--#INCLUDE ... --> requires one of 'file' or 'virtual'"); }
     else if (validate_file (ln, nits, p, file))
     {   ::boost::filesystem::path pt (p.get_directory () -> get_disk_path (nits, file));
-        fileindex_t ndx = get_fileindex (pt);
+        const fileindex_t ndx = get_fileindex (pt);
         p.add_depend (ndx);
         ::std::time_t when = last_write (ndx);
         if (context.shadow_changed ())
@@ -289,7 +290,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot verify ", file); }
     return c.errmsg_; }
 
-::std::string printenv_command (nitpick& , ssi_compedium& c, const vstr_t& )
+::std::string printenv_command (nitpick& , const ssi_compedium& c, const vstr_t& )
 {   ::std::string res;
     bool started = false;
     for (ustr_t::const_iterator i = c.var_.cbegin (); i != c.var_.cend (); ++i)
@@ -321,7 +322,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
             i -> second = value; }
     return ::std::string (); }
 
-bool if_args (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const vstr_t& args)
+bool if_args (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const vstr_t& args)
 {   ::std::string res;
     if (args.empty ())
     {   set_ssi_context (ln, nits, es_error);
@@ -348,7 +349,7 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, page& p, 
                 case ssi_comparison_or :  return ! (z.at (0).empty () && z.at (2).empty ()); } }
     return false; }
 
-::std::string if_command (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const vstr_t& args, bool& inif)
+::std::string if_command (::std::string& ln, nitpick& nits, const html_version& v, const page& p, ssi_compedium& c, const vstr_t& args, bool& inif)
 {   if (inif)
         nits.pick (nit_ssi_if, es_error, ec_ssi, "Apologies, but " PROG, " does not support nested SSI conditionals.");
     else
@@ -356,14 +357,14 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, page& p, 
         inif = true; }
     return ::std::string (); }
 
-::std::string elif_command (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const vstr_t& args, bool& inif)
+::std::string elif_command (::std::string& ln, nitpick& nits, const html_version& v, const page& p, ssi_compedium& c, const vstr_t& args, const bool inif)
 {   if (! inif)
         nits.pick (nit_no_if, es_error, ec_ssi, "<!--#ELIF--> requires a preceding <!--#IF-->");
     else if (! c.iffed_)
         c.if_ = c.iffed_ = if_args (ln, nits, v, p, c, args);
     return ::std::string (); }
 
-::std::string else_command (nitpick& nits, ssi_compedium& c, bool& inif)
+::std::string else_command (nitpick& nits, ssi_compedium& c, const bool inif)
 {   if (! inif)
         nits.pick (nit_no_if, es_error, ec_ssi, "<!--#ELSE--> requires a preceding <!--#IF-->");
     else c.if_ = ! c.iffed_;
@@ -406,7 +407,7 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, page& p, 
     return ::std::string (); }
 
 ::std::string hereabouts (const ::std::string::const_iterator b, ::std::string::const_iterator e)
-{   if (static_cast <::std::size_t> (e - b) > max_separation)
+{   if (::gsl::narrow_cast <::std::size_t> (e - b) > max_separation)
         return unify_whitespace (::std::string (b, b + max_separation - 1));
     return unify_whitespace (::std::string (b, e)); }
 
@@ -432,8 +433,8 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
         msg += "' intended here?";
         severity = es_comment;
         warned = true; }
-    if (static_cast <::std::size_t> (i - b) > max_separation) b = i - max_separation;
-    if (static_cast <::std::size_t> (e - i) > max_separation) e = i + max_separation;
+    if (::gsl::narrow_cast <::std::size_t> (i - b) > max_separation) b = i - max_separation;
+    if (::gsl::narrow_cast <::std::size_t> (e - i) > max_separation) e = i + max_separation;
     nits.set_context (line, unify_whitespace (::std::string (b, e)));
     nits.pick (nit_ssi_syntax, severity, ec_ssi, msg); }
 
@@ -487,7 +488,8 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                 {   case ' ' :  status = es_space; break;
                     case '<' :
                     case '-' :
-                    case '>' : test_for_oops (nits, line, b, i, e, warned); }
+                    case '>' : test_for_oops (nits, line, b, i, e, warned); break;
+                    default : break; }
                 break;
             case es_space :
                 if (*i == '-') status = es_am_1;
@@ -530,6 +532,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
         case es_cm_2 :
         {   nits.set_context (0, hereabouts (start, e));
             nits.pick (nit_ssi_syntax, es_error, ec_ssi, "end of file inside comment"); }
+            break;
         default : break; }
     if (linechange)
     {   nits.set_context (0, c.filename_);

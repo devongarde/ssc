@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void parameters::parse (const html_version& , const ::std::string& url_args)
 {   vstr_t args = split_by_charset (sanitise (url_args), "&");
     for (auto s : args)
-    {   ::std::size_t pos = s.find (EQUAL);
+    {   const ::std::size_t pos = s.find (EQUAL);
         if (pos == s.npos)
             key_value_.insert (ustrv_t (s, ::std::string ()));
         else

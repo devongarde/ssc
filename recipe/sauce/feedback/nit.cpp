@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "feedback/nitout.h"
 
-nit::nit () : code_ (nit_free), severity_ (es_undefined), category_ (ec_undefined), doc_ (ed_mishmash), ref_ (nullptr)
+nit::nit () : code_ (nit_free), severity_ (es_undefined), category_ (ec_undefined), doc_ (ed_mishmash)
 {   if (context.nits ()) context.out ("adding empty nit\n"); }
 
 nit::nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg)
@@ -42,7 +42,7 @@ nit::nit (const e_nit code, const e_severity severity, const e_category category
         ss << "adding nit " << severity << ", " << msg << "\n";
         context.out (ss.str ()); } }
 
-void nit::swap (nit& n) NOEXCEPT
+void nit::swap (nit& n) noexcept
 {   ::std::swap (code_, n.code_);
     ::std::swap (severity_, n.severity_);
     ::std::swap (category_, n.category_);
@@ -80,7 +80,7 @@ void nit::notify () const
     res << ::std::setw (4) << (m + static_cast < unsigned > (code));
     return res.str (); }
 
-bool ignore_this_slob_stuff (const e_nit code)
+bool ignore_this_slob_stuff (const e_nit code) noexcept
 {   if (! context.slob ()) return false;
     switch (code)
     {   case nit_missing_close :
@@ -114,8 +114,14 @@ bool ignore_this_slob_stuff (const e_nit code)
     values.emplace (nm_level_name, type_master < t_severity > :: name (severity_));
     values.emplace (nm_level_symbol, level_symbol ());
     values.emplace (nm_nit_id, lookup_name (code_));
-    values.emplace (nm_nit_ref, doc_ref (doc_));
-    values.emplace (nm_nit_doc, doc_title (doc_));
+    if (! ref_.empty ())
+    {   values.emplace (nm_nit_ref, ref_);
+        values.emplace (nm_nit_doc, doc_title (doc_));
+        values.emplace (nm_nit_doc_long, doc_ref (doc_)); }
+    else
+    {   values.emplace (nm_nit_ref, "");
+        values.emplace (nm_nit_doc, "");
+        values.emplace (nm_nit_doc_long, ""); }
     return apply_macros (entry, mac, outer, values); }
 
 ::std::string doc_title (const e_doc doc)
@@ -208,13 +214,13 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_x1 : return "XHTML 1.0, Aug 2002";
         case ed_x11 : return "XHTML 1.1, Nov 2010";
         case ed_x2 : return "XHTML 2.0, Dec 2010";
-        case ed_50 : return "HTML 5.0 (W3), Oct 2014";
-        case ed_51 : return "HTML 5.1 (W3), Nov 2016";
-        case ed_52 : return "HTML 5.2 (W3), Dec 2017";
-        case ed_53 : return "HTML 5.3 (W3), Oct 2018, draft";
-        case ed_jan05 : return "WhatWG Web Applications 1.0 Working Draft, 31 January 2005";
-        case ed_jan06 : return "WhatWG Web Applications 1.0 Working Draft, 1 January 2006";
-        case ed_jan07 : return "WhatWG Web Applications 1.0 Working Draft, 4 January 2007";
+        case ed_50 : return "HTML 5.0, W3, Oct 2014";
+        case ed_51 : return "HTML 5.1, W3, Nov 2016";
+        case ed_52 : return "HTML 5.2, W3, Dec 2017";
+        case ed_53 : return "HTML 5.3, W3, Oct 2018, draft";
+        case ed_jan05 : return "WhatWG Web Applications 1.0 Draft, 31 January 2005";
+        case ed_jan06 : return "WhatWG Web Applications 1.0 Draft, 1 January 2006";
+        case ed_jan07 : return "WhatWG Web Applications 1.0 Draft, 4 January 2007";
         case ed_jan08 : return "HTML 5 living standard, WhatWG, January 2008";
         case ed_jan10 : return "HTML 5 living standard, WhatWG, January 2010";
         case ed_jul10 : return "HTML 5 living standard, WhatWG, July 2010";
@@ -227,12 +233,12 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_jan21 : return "HTML 5 living standard, WhatWG, January 2021";
         case ed_apr21 : return "HTML 5 living standard, WhatWG, April 2021";
         case ed_jul21 : return "HTML 5 living standard, WhatWG, July 2021";
-        case ed_rdfa : return "RDFa Core 1.1 - Third Edition";
+        case ed_rdfa : return "RDFa Core 1.1 Third Edition";
         case ed_rdfa_c : return "RDFa Core Initial Context, May 2020";
-        case ed_csp : return "Content Security Policy Level 3, Oct 2018, draft";
+        case ed_csp : return "Content Security Policy Level 3 Draft, Oct 2018";
         case ed_math_1 : return "MathML 1.01";
-        case ed_math_2 : return "MathML 2.0 - Second Edition";
-        case ed_math_3 : return "MathML 3.0 - Second Edition";
+        case ed_math_2 : return "MathML 2.0 Second Edition";
+        case ed_math_3 : return "MathML 3.0 Second Edition";
         case ed_math_4 : return "MathML 4.0, draft, January 2019";
         case ed_iso_8859_1 : return "ISO/IEC 8859-1:1998";
         case ed_ecma : return "ECMAScript 2022 Language Specification, 22.2.1 Patterns, March 2021";
@@ -254,14 +260,14 @@ bool ignore_this_slob_stuff (const e_nit code)
         case ed_w3 : return "The World Wide Web Consortium";
         case ed_mql : return "Media Queries, W3C recommendation, June 2012";
         case ed_ariaAug2020 : return "WhatWG Aria requirements, draft, August 2020";
-        case ed_ariaApr2021 : return "W3C ARIA in HTML draft, April 2021";
+        case ed_ariaApr2021 : return "W3C ARIA in HTML, draft, April 2021";
         case ed_apache : return "Apache 2.4 mod_include, 2020";
         case ed_css_transform : return "CSS Transforms Module Level 1, February 2019";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_mozilla : return "moz://a, May 2020";
         case ed_microdata : return "HTML 5 living standard, WhatWG, July 2020";
         case ed_microformats : return "Microformats (" MICROFORMATS_ORG "), May 2020";
-        case ed_json : return "JSON, RFC 4627";
+        case ed_json : return "RFC 4627, JSON";
         case ed_jsonld_1_0 : return "JSON-LD 1.0, January 2014";
         case ed_jsonld_1_1 : return "JSON-LD 1.1, July 2020"; }
     return "unknown reference"; }

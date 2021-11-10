@@ -127,13 +127,13 @@ struct elem_role {
     e_element elem_;
     e_aria_role role_;
     flags_t flags_ = 0;
-    elem_role (const html_version& from, const html_version& to, const e_element elem, const e_aria_role role, const flags_t flags = 0)
+    elem_role (const html_version& from, const html_version& to, const e_element elem, const e_aria_role role, const flags_t flags = 0) noexcept
         : from_ (from), to_ (to), elem_ (elem), role_ (role), flags_ (flags) { } };
 
 struct role_key {
     e_element elem_;
     e_aria_role role_;
-    role_key (const e_element elem, const e_aria_role role)
+    role_key (const e_element elem, const e_aria_role role) noexcept
         : elem_ (elem), role_ (role) { } };
 
 elem_role default_role [] =
@@ -522,24 +522,24 @@ elem_role permitted_role [] =
     { { HTML_JUL06 }, { HTML_UNDEF }, elem_wbr, role_any },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, role_any } };
 
-bool operator == (const role_key& lhs, const role_key& rhs)
+bool operator == (const role_key& lhs, const role_key& rhs) noexcept
 {   return (lhs.elem_ == rhs.elem_) && (lhs.role_ == rhs.role_); }
 
-bool operator != (const role_key& lhs, const role_key& rhs)
+bool operator != (const role_key& lhs, const role_key& rhs) noexcept
 {   return ! (lhs == rhs); }
 
-bool operator < (const role_key& lhs, const role_key& rhs)
+bool operator < (const role_key& lhs, const role_key& rhs) noexcept
 {   if (lhs.elem_ < rhs.elem_) return true;
     if (lhs.elem_ > rhs.elem_) return false;
     return (lhs.role_ < rhs.role_); }
 
-bool operator >= (const role_key& lhs, const role_key& rhs)
+bool operator >= (const role_key& lhs, const role_key& rhs) noexcept
 {   return ! (lhs < rhs); }
 
-bool operator <= (const role_key& lhs, const role_key& rhs)
+bool operator <= (const role_key& lhs, const role_key& rhs) noexcept
 {   return (lhs < rhs) || (lhs == rhs); }
 
-bool operator > (const role_key& lhs, const role_key& rhs)
+bool operator > (const role_key& lhs, const role_key& rhs) noexcept
 {   return ! (lhs <= rhs); }
 
 typedef ::std::multimap < role_key, elem_role > rolemap;
@@ -549,10 +549,10 @@ rolemap default_roles, permitted_roles;
 
 void role_init (nitpick& nits)
 {   type_master < t_role > :: init (nits, role_symbol_table, sizeof (role_symbol_table) / sizeof (symbol_entry < html_version, e_aria_role >));
-    for (::std::size_t i = 0; default_role [i].elem_ != elem_undefined; ++i)
-        default_roles.insert (rmv (role_key (default_role [i].elem_, default_role [i].role_), default_role [i]));
-    for (::std::size_t i = 0; permitted_role [i].elem_ != elem_undefined; ++i)
-        permitted_roles.insert (rmv (role_key (permitted_role [i].elem_, permitted_role [i].role_), permitted_role [i])); }
+    for (::std::size_t i = 0; ::gsl::at (default_role, i).elem_ != elem_undefined; ++i)
+        default_roles.insert (rmv (role_key (::gsl::at (default_role, i).elem_, ::gsl::at (default_role, i).role_), ::gsl::at (default_role, i)));
+    for (::std::size_t i = 0; ::gsl::at (permitted_role, i).elem_ != elem_undefined; ++i)
+        permitted_roles.insert (rmv (role_key (::gsl::at (permitted_role, i).elem_, ::gsl::at (permitted_role, i).role_), ::gsl::at (permitted_role, i))); }
 
 bool is_role_lookup (const rolemap& rm, const html_version& v, const e_element elem, const e_aria_role role, flags_t* flags = nullptr)
 {   for (   rmi i = rm.find (role_key (elem, role));

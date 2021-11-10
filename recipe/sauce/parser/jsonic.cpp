@@ -24,7 +24,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef NO_JSONIC
 void parse_json_ld (nitpick& , const html_version& , const ::std::string& ) { }
 #else // NO_JSONIC
+
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning ( disable : ALL_CODE_ANALYSIS_WARNINGS ) // boost
+#endif // _MSC_VER
 #include <boost/json/src.hpp>
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+
 #include "main/context.h"
 #include "type/type_enum.h"
 #include "type/type_rdf.h"
@@ -43,7 +52,7 @@ class jsonic
 public:
     jsonic () = default;
     jsonic (const jsonic& j) = delete;
-    void reset ()
+    void reset () noexcept
     {   value_.emplace_null (); }
     void parse (nitpick& nits, const ::std::string& s)
     {   try {
@@ -52,13 +61,13 @@ public:
             if (ec)
             {   nits.pick (nit_json_error, es_error, ec_json, "JSON error: ", ec.message ());
                 value_.emplace_null (); } }
-        catch (::std::exception& x)
+        catch (const ::std::exception& x)
         {   nits.pick (nit_json_error, es_error, ec_json, "JSON exception: ", x.what ());
             value_.emplace_null (); }
         catch (...)
         {   nits.pick (nit_json_error, es_error, ec_json, "unknown JSON exception");
             value_.emplace_null (); } }
-    const ::boost::json::value& val () const { return value_; } };
+    const ::boost::json::value& val () const noexcept { return value_; } };
 
 typedef ssc_map < ::std::string, const ::boost::json::value* > msv_t;
 typedef ::std::vector < const ::boost::json::value* > vv_t;
@@ -68,6 +77,7 @@ struct json_scope
 {   json_scope* parent_ = nullptr;
     vk_t keyword_;
     msv_t prop_;
+    url base_;
     //prefixes_ptr prefixes_;
     //jcontext context_;
 //    itemtype_index ii_ = 0;
@@ -278,11 +288,21 @@ void note_token (nitpick& nits, const html_version& v, json_scope& scope, const 
             vv_t& vv = scope.keyword_.at (jt.get ());
             vv.push_back (&val); } }
 
+::std::string expand_term (nitpick& nits, json_scope& scope, const ::std::string& key)
+{   // prop_
+    msv_t::const_iterator i = scope.prop_.find (key);
+    if (i != scope.prop_.cend ())
+        if (i -> second != nullptr)
+            if (i -> second -> kind () == ::boost::json::kind::string)
+                return i -> second -> as_string ().c_str ();
+//    if (! scope.base_.empty ()) return scope.base_ + key;
+    return key; }
+
 void note_term (nitpick& nits, json_scope& scope, const char *s, const ::boost::json::value* val)
 {   ::std::string key (trim_the_lot_off (s));
     if (key.empty ()) nits.pick (nit_empty, ed_jsonld_1_0, "8.1 terms", es_error, ec_json, "a term must not be empty");
     else
-    {   // expand term if expansion exists
+    {   key = expand_term (nits, scope, key);
         msv_t::iterator i = scope.prop_.find (key);
         if (i == scope.prop_.end ()) scope.prop_.insert (msv_t::value_type (key, val));
         else nits.pick (nit_json_name, ed_json, "2.2 Objects", es_error, ec_json, "additional term ", quote (key), " ignored"); } }
@@ -291,7 +311,8 @@ void examine_json_ld (nitpick& nits, const html_version& v, json_scope& scope, c
 {   for (auto e : o)
     {   if (e.key ().empty ()) continue;
         const char* k = e.key_c_str ();
-        if (k [0] != '@') note_term (nits, scope, k, &e.value ());
+        VERIFY_NOT_NULL (k, __FILE__, __LINE__);
+        if (*k != '@') note_term (nits, scope, k, &e.value ());
         else note_token (nits, v, scope, k, e.value (), tk); } }
 
 void process_group_token (nitpick& nits, const html_version& v, json_scope& scope, const vv_t& vv)
@@ -330,7 +351,7 @@ void process_node (nitpick& nits, const html_version& v, json_scope& scope)
 
 void process_json_ld (nitpick& nits, const html_version& v, json_scope& scope)
 {   for (int i = 0; i < jt_error; ++i)
-        if (! scope.keyword_ [i].empty ())
+        if (! scope.keyword_.at (i).empty ())
             if ((i == jt_value) || (i == jt_set) || (i == jt_list))
             {   nits.pick (nit_json_invalid_node, ed_jsonld_1_0, "8.2 Node Objects", es_error, ec_json,
                            "A JSON-LD node cannot contain @value, @list or @set");
@@ -340,7 +361,7 @@ void process_json_ld (nitpick& nits, const html_version& v, json_scope& scope)
 void outer_process_json_ld (nitpick& nits, const html_version& v, json_scope& scope)
 {   bool limited = true;
     for (int i = 0; i < jt_error; ++i)
-        if (! scope.keyword_ [i].empty ())
+        if (! scope.keyword_.at (i).empty ())
             if ((i != jt_graph) && (i != jt_context))
             {   limited = false; break; }
     if (limited)

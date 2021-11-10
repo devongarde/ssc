@@ -51,10 +51,10 @@ public:
     bool add_virtual (nitpick& nits, const ::std::string& assignment);
     bool add_shadow (nitpick& nits, const ::std::string& assignment);
     bool add_export (nitpick& nits, const ::std::string& assignment);
-    static paths_root& virtual_roots ();
+    static paths_root& virtual_roots () noexcept;
     const path_root_ptr& at (const ::std::size_t x) const { return root_.at (x); }
     path_root_ptr& at (const ::std::size_t x) { return root_.at (x); }
-    ::std::size_t size () const { return root_.size (); }
+    ::std::size_t size () const noexcept { return root_.size (); }
     ::boost::filesystem::path get_filename (const ::std::string& filename);
     ::boost::filesystem::path get_export (const ::std::string& filename);
     ::boost::filesystem::path get_shadow (const ::std::string& filename); };

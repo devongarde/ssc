@@ -37,7 +37,9 @@ bool parse_xml (nitpick& nits, html_version& version, const ::std::string::const
     if ((e-b > 15) && (::std::string (s, s + 11) == "-stylesheet"))
     {   style = true; s += 11; }
     else if (version.unknown ())
-    {   html_version s_v (get_min_version (context.svg_version ())), m_v (get_min_version (context.math_version ())), def (context.html_ver ());
+    {   const html_version s_v (get_min_version (context.svg_version ()));
+        const html_version m_v (get_min_version (context.math_version ()));
+        html_version def (context.html_ver ());
         if (def.unknown ())
             def = html_tags;
         if (! s_v.unknown ())

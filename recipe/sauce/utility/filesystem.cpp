@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/filesystem.h"
 
 ::std::time_t get_last_write_time (const ::boost::filesystem::path& name)
+#ifndef FS_THROWS
+    noexcept
+#endif // FS_THROWS
 {   ::std::time_t res = 0;
 #ifdef FS_THROWS
     {   try
@@ -36,6 +39,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     return res; }
 
 uintmax_t get_file_size (const ::boost::filesystem::path& name)
+#ifndef FS_THROWS
+    noexcept
+#endif // FS_THROWS
 {   uintmax_t res = 0;
 #ifdef FS_THROWS
     {   try
@@ -106,6 +112,9 @@ bool file_exists (const ::boost::filesystem::path& name)
     return res; }
 
 bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesystem::perms p)
+#ifndef FS_THROWS
+    noexcept
+#endif // FS_THROWS
 {
 #ifdef FS_THROWS
     {   try
@@ -148,6 +157,9 @@ bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesyste
     return res; }
 
 bool make_directories (const ::boost::filesystem::path& name)
+#ifndef FS_THROWS
+    noexcept
+#endif // FS_THROWS
 {
 #ifdef FS_THROWS
     {   try
@@ -162,6 +174,9 @@ bool make_directories (const ::boost::filesystem::path& name)
     return true; }
 
 bool make_directory (const ::boost::filesystem::path& name)
+#ifndef FS_THROWS
+    noexcept
+#endif // FS_THROWS
 {
 #ifdef FS_THROWS
     {   try
@@ -176,6 +191,9 @@ bool make_directory (const ::boost::filesystem::path& name)
     return true; }
 
 bool delete_file (const ::boost::filesystem::path& name)
+#ifndef FS_THROWS
+    noexcept
+#endif // FS_THROWS
 {   bool res = false;
 #ifdef FS_THROWS
     {   try
@@ -190,6 +208,9 @@ bool delete_file (const ::boost::filesystem::path& name)
     return res; }
 
 bool rename_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to)
+#ifndef FS_THROWS
+    noexcept
+#endif // FS_THROWS
 {
 #ifdef FS_THROWS
     {   try
@@ -204,6 +225,9 @@ bool rename_file (const ::boost::filesystem::path& from, const ::boost::filesyst
     return true; }
 
 bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const ::boost::filesystem::copy_option opt)
+#ifndef FS_THROWS
+    noexcept
+#endif // FS_THROWS
 {
 #ifdef FS_THROWS
     {   try

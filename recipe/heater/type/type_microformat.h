@@ -52,25 +52,25 @@ template < > struct type_master < t_sex > : tidy_string < t_sex >
 {   char sex_ = 0;
     ::std::string gender_;
     using tidy_string < t_sex > :: tidy_string;
-    void swap (type_master < t_sex >& t) NOEXCEPT
+    void swap (type_master < t_sex >& t) noexcept
     {   ::std::swap (sex_, t.sex_);
         gender_.swap (t.gender_);
         tidy_string < t_sex >::swap (t); }
     bool parse (const html_version& , const ::std::string& s)
-    {   ::std::size_t pos = s.find (';');
+    {   const ::std::size_t pos = s.find (';');
         switch (pos)
         {   case 0 :
                 sex_ = 0;
                 gender_ = s.substr (1);
                 return true;
             case 1 :
-                sex_ = s [0];
+                sex_ = ::gsl::at (s, 0);
                 gender_ = s.substr (2);
                 break;
 #if ! defined (_MSC_VER) || (VS > 13)
             case ::std::string::npos :
                 if (s.length () != 1) return false;
-                sex_ = s [0];
+                sex_ = ::gsl::at (s, 0);
                 break;
             default:
 #else
@@ -86,7 +86,7 @@ template < > struct type_master < t_sex > : tidy_string < t_sex >
         if (! parse (v, tidy_string < t_sex > :: get_string ()))
         {   nits.pick (nit_sex, es_error, ec_type, quote (s), " should be one of 'F', 'M', 'N', 'O', 'U', or otherwise conform to RFC 6350");
             tidy_string < t_sex > :: status (s_invalid); } }
-    char sex () const { return sex_; }
+    char sex () const noexcept { return sex_; }
     ::std::string gender () const { return gender_; } };
 
 template < > struct type_master < t_tel > : public tidy_string < t_tel >
@@ -98,7 +98,7 @@ template < > struct type_master < t_tel > : public tidy_string < t_tel >
         {   if (val.substr (0, 4) != "tel:")
                 nits.pick (nit_no_tel, ed_rfc_3966, "3. URI Syntax", es_warning, ec_type, quote (s), " should start with 'tel:'");
             else val = val.substr (4);
-            ::std::string::size_type pos = val.find (';');
+            const ::std::string::size_type pos = val.find (';');
             if (pos != ::std::string::npos) val = val.substr (0, pos);
             if (val.find_first_not_of (TEL) != ::std::string::npos)
             {   nits.pick (nit_phone, ed_rfc_3966, "3. URI Syntax", es_error, ec_type, quote (s), " does not appear to be a phone number");
@@ -110,7 +110,7 @@ template < > struct type_master < t_tel_format > : public tidy_string < t_tel_fo
     {   string_value < t_tel_format > :: set_value (nits, v, s);
         ::std::string val = tidy_string < t_tel_format > :: get_string ();
         if (tidy_string < t_tel_format > :: good ())
-        {   ::std::string::size_type pos = val.find (';');
+        {   const ::std::string::size_type pos = val.find (';');
             if (pos != ::std::string::npos) val = val.substr (0, pos);
             if (val.find_first_not_of (TEL) != ::std::string::npos)
             {   nits.pick (nit_phone, es_error, ec_type, quote (s), " does not appear to be a phone number");

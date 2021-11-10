@@ -25,20 +25,22 @@ typedef ::std::bitset < static_cast < ::std::size_t > (last_element_tag) > eleme
 typedef ::std::bitset < static_cast < ::std::size_t > (last_attribute) > attribute_bitset;
 
 extern const element_bitset empty_element_bitset;
-extern const element_bitset autocapitalise_bitset;
-extern const element_bitset faux_bitset;
-extern const element_bitset form_bitset;
-extern const element_bitset header_bitset;
-extern const element_bitset interactive_bitset;
-extern const element_bitset label_bitset;
-extern const element_bitset listed_bitset;
-extern const element_bitset media_bitset;
-extern const element_bitset non_standard_bitset;
-extern const element_bitset sectioning_bitset;
-extern const element_bitset block_bitset;
-extern const element_bitset script_bitset;
+extern element_bitset autocapitalise_bitset;
+extern element_bitset faux_bitset;
+extern element_bitset form_bitset;
+extern element_bitset header_bitset;
+extern element_bitset interactive_bitset;
+extern element_bitset label_bitset;
+extern element_bitset listed_bitset;
+extern element_bitset media_bitset;
+extern element_bitset non_standard_bitset;
+extern element_bitset sectioning_bitset;
+extern element_bitset block_bitset;
+extern element_bitset script_bitset;
 
 extern const attribute_bitset empty_attribute_bitset;
+
+void state_init ();
 
 inline element_bitset element_bit_set (const e_element e)
 {   element_bitset bs;
@@ -86,20 +88,20 @@ inline attribute_bitset& operator &= (attribute_bitset& bs, const e_attribute e)
     else bs = attribute_bitset ();
     return bs; }
 
-inline bool any (const element_bitset& lhs, const element_bitset& rhs)
-{   element_bitset tst (lhs & rhs);
+inline bool any (const element_bitset& lhs, const element_bitset& rhs) noexcept
+{   const element_bitset tst (lhs & rhs);
     return tst.any (); }
 
-inline bool all (const element_bitset& lhs, const element_bitset& rhs)
-{   element_bitset tst (lhs & rhs);
+inline bool all (const element_bitset& lhs, const element_bitset& rhs) noexcept
+{   const element_bitset tst (lhs & rhs);
     return tst == rhs; }
 
-inline bool any (const attribute_bitset& lhs, const attribute_bitset& rhs)
-{   attribute_bitset tst (lhs & rhs);
+inline bool any (const attribute_bitset& lhs, const attribute_bitset& rhs) noexcept
+{   const attribute_bitset tst (lhs & rhs);
     return tst.any (); }
 
-inline bool all (const attribute_bitset& lhs, const attribute_bitset& rhs)
-{   attribute_bitset tst (lhs & rhs);
+inline bool all (const attribute_bitset& lhs, const attribute_bitset& rhs) noexcept
+{   const attribute_bitset tst (lhs & rhs);
     return tst == rhs; }
 
 ::std::string nameset (const element_bitset& bs);

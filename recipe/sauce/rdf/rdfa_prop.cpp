@@ -54,7 +54,7 @@ prop_indices make_prop_indices (const vsp_t& vsp)
 
 prop_index find_prop_index (nitpick& nits, const html_version& , const ::std::string& name, bool bespoke_permitted)
 {   nitpick knots;
-    e_schema_property mp = identify_schema_property (knots, context.schema_ver (), name);
+    const e_schema_property mp = identify_schema_property (knots, context.schema_ver (), name);
     if (mp != sp_illegal) return make_prop_index (mp);
     if (! bespoke_permitted)
     {   nits.merge (knots);

@@ -34,7 +34,7 @@ template < > struct type_master < t_cache > : public tidy_string < t_cache >
         {   nits.pick (nit_empty, es_error, ec_type, "value required");
             tidy_string < t_cache > :: status (s_invalid); }
         else if (good ())
-        {   ::std::string::size_type pos = s.find ('=');
+        {   const ::std::string::size_type pos = s.find ('=');
             ::std::string arg;
             bool booboo = false;
             if (pos != ::std::string::npos)
@@ -84,7 +84,7 @@ template < > struct type_master < t_content_type > : tidy_string < t_content_typ
                     nits.pick (nit_charset_missing, es_error, ec_type, "the charset is missing");
                 else
                 {   ::std::string ss (trim_the_lot_off (sides.at (1)));
-                    ::std::string::size_type pos = ss.find ('=');
+                    const ::std::string::size_type pos = ss.find ('=');
                     if ((pos != ::std::string::npos) && compare_no_case (ss.substr (0, pos), "charset"))
                     {   type_master < t_charset > cs;
                         ::std::string sss (ss.substr (pos+1));
@@ -100,12 +100,12 @@ template < > struct type_master < t_csp_sauce > : tidy_string < t_csp_sauce >
     {   tidy_string < t_csp_sauce > :: set_value (nits, v, s);
         if (! tidy_string < t_csp_sauce > :: good ()) return;
         ::std::string ss (tidy_string < t_csp_sauce > :: get_string ());
-        ::std::string::size_type len = ss.length ();
+        const ::std::string::size_type len = ss.length ();
         if (! ss.empty ())
             if ((len > 1) && (ss.at (0) == '\'') && (ss.at (len - 1) == '\''))
             {   if (v >= csp_c2)
                 {   ss = ss.substr (1, len - 2);
-                    ::std::string::size_type pos = ss.find ('-');
+                    const ::std::string::size_type pos = ss.find ('-');
                     if (pos != ::std::string::npos)
                     {   if ((pos == 5) && compare_no_case (DISGUSTING, ss.substr (0, 5)))
                         {   if (ss.substr (6).find_first_not_of (ALPHABET DENARY "+/-_*") == ::std::string::npos) return;
@@ -149,7 +149,7 @@ template < > struct type_master < t_csp > : tidy_string < t_csp >
                         if (! test_value < t_csp_directive > (nits, v, csp.at (0)))
                             tidy_string < t_csp > :: status (s_invalid);
                         else
-                        {   e_csp_directive cd = examine_value < t_csp_directive > (nits, v, csp.at (0));
+                        {   const e_csp_directive cd = examine_value < t_csp_directive > (nits, v, csp.at (0));
                             switch (cd)
                             {   case csp_plugin_types :
                                     if (! compare_no_case (csp.at (1), QNONE))

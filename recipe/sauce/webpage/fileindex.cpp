@@ -51,11 +51,14 @@ struct index_t
     uintmax_t size_ = 0;
     crc_t crc_ = crc_initrem;
     fileindex_t dedu_ = nullfileindex;
-    ::std::time_t last_write_;
+    ::std::time_t last_write_ = 0;
     sndx_t dx_, lx_;
     index_t () = default;
     index_t (const index_t& i) = default;
-    index_t (index_t&& i) = default;
+    index_t (index_t&& i) noexcept = default;
+    ~index_t () = default;
+    index_t& operator = (const index_t& ) = default;
+    index_t& operator = (index_t&& ) = default;
     explicit index_t (const ::boost::filesystem::path& p)
         :   disk_path_ (p), flags_ (0), size_ (0), last_write_ (0) { }
     index_t (const ::boost::filesystem::path& p, const fileindex_flags flags, const uintmax_t size, const ::std::time_t& last_write)
@@ -118,7 +121,7 @@ void fileindex_init ()
 #endif // ORDERED
 }
 
-void reset_fileindices ()
+void reset_fileindices () noexcept
 {   vx.clear ();
     site_x.clear ();
     disk_x.clear ();
@@ -126,19 +129,19 @@ void reset_fileindices ()
 
 void unindex (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    if (! vx [ndx].site_path_.empty ()) site_x.erase (vx [ndx].site_path_);
-    if (! vx [ndx].disk_path_.empty ()) disk_x.erase (vx [ndx].disk_path_.string ());
-    if (vx [ndx].crc_ != crc_initrem) mcrc.erase (vx [ndx].crc_); }
+    if (! ::gsl::at (vx, ndx).site_path_.empty ()) site_x.erase (::gsl::at (vx, ndx).site_path_);
+    if (! ::gsl::at (vx, ndx).disk_path_.empty ()) disk_x.erase (::gsl::at (vx, ndx).disk_path_.string ());
+    if (::gsl::at (vx, ndx).crc_ != crc_initrem) mcrc.erase (::gsl::at (vx, ndx).crc_); }
 
 void reindex (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     unindex (ndx);
-    if (! vx [ndx].site_path_.empty ()) site_x.emplace (mxp_t::value_type (vx [ndx].site_path_, ndx));
-    if (! vx [ndx].disk_path_.empty ()) disk_x.emplace (mxp_t::value_type (vx [ndx].disk_path_.string (), ndx));
+    if (! ::gsl::at (vx, ndx).site_path_.empty ()) site_x.emplace (mxp_t::value_type (::gsl::at (vx, ndx).site_path_, ndx));
+    if (! ::gsl::at (vx, ndx).disk_path_.empty ()) disk_x.emplace (mxp_t::value_type (::gsl::at (vx, ndx).disk_path_.string (), ndx));
     if (get_flag (ndx, FX_CRC))
         if (! get_flag (ndx, (FX_DELETED | FX_BORKED | FX_DIR)))
-            if (vx [ndx].crc_ != crc_initrem)
-            {   mcrc.emplace (mcrc_t::value_type (vx [ndx].crc_, ndx)); return; }
+            if (::gsl::at (vx, ndx).crc_ != crc_initrem)
+            {   mcrc.emplace (mcrc_t::value_type (::gsl::at (vx, ndx).crc_, ndx)); return; }
     reset_flag (ndx, FX_CRC); }
 
 void note_deleted (const fileindex_t ndx)
@@ -150,7 +153,7 @@ void note_deleted (const fileindex_t ndx)
 
 void update_fileindex (const fileindex_t ndx, const fileindex_flags ff)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    index_t& x = vx [ndx];
+    index_t& x = ::gsl::at (vx, ndx);
     const ::boost::filesystem::path& name (x.disk_path_);
     fileindex_flags f (ff);
     uintmax_t s = 0;
@@ -167,7 +170,7 @@ void update_fileindex (const fileindex_t ndx, const fileindex_flags ff)
     {   s = get_file_size (name);
         lw = get_last_write_time (name); }
     x.flags_ = f;
-    if ((x.size_ != s) || (vx [ndx].last_write_ != lw))
+    if ((x.size_ != s) || (::gsl::at (vx, ndx).last_write_ != lw))
     {   if (x.crc_ != crc_initrem)
         {   mcrc.erase (x.crc_); x.crc_ = crc_initrem; }
         x.flags_ &= ~FX_CRC; }
@@ -194,9 +197,9 @@ fileindex_t insert_directory_path (const ::boost::filesystem::path& name)
 
 void add_site_path (const ::std::string& name, const fileindex_t s)
 {   PRESUME (s < vx.size (), __FILE__, __LINE__);
-    if (! compare_no_case (name, vx [s].site_path_))
-    {   site_x.erase (vx [s].site_path_);
-        vx [s].site_path_ = name; }
+    if (! compare_no_case (name, ::gsl::at (vx, s).site_path_))
+    {   site_x.erase (::gsl::at (vx, s).site_path_);
+        ::gsl::at (vx, s).site_path_ = name; }
     auto i = site_x.emplace (name, s);
     if (! i.second) i.first -> second = s; }
 
@@ -212,64 +215,71 @@ fileindex_t get_fileindex (const ::std::string& name)
 
 ::boost::filesystem::path get_disk_path (const fileindex_t ndx)
 {   if (ndx >= vx.size ()) return ::boost::filesystem::path ();
-    return vx [ndx].disk_path_; }
+    return ::gsl::at (vx, ndx).disk_path_; }
 
 ::std::string get_site_path (const fileindex_t ndx)
 {   if (ndx >= vx.size ()) return ::std::string ();
-    return vx [ndx].site_path_; }
+    return ::gsl::at (vx, ndx).site_path_; }
 
 fileindex_flags get_flags (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    return vx [ndx].flags_; }
+    return ::gsl::at (vx, ndx).flags_; }
 
 bool get_flag (const fileindex_t ndx, const fileindex_flags flag)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    return (vx [ndx].flags_ & flag) != 0; }
+    return (::gsl::at (vx, ndx).flags_ & flag) != 0; }
 
 void set_flag (const fileindex_t ndx, const fileindex_flags flag)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    vx [ndx].flags_ |= flag; }
+    ::gsl::at (vx, ndx).flags_ |= flag; }
 
 void reset_flag (const fileindex_t ndx, const fileindex_flags flag)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    vx [ndx].flags_ &= ~flag; }
+    ::gsl::at (vx, ndx).flags_ &= ~flag; }
 
 uintmax_t get_size (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    return vx [ndx].size_; }
+    return ::gsl::at (vx, ndx).size_; }
 
 ::std::time_t last_write (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    return vx [ndx].last_write_; }
+    return ::gsl::at (vx, ndx).last_write_; }
 
 crc_t get_crc (nitpick& nits, const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     if (! get_flag (ndx, FX_CRC))
     {   crc_calc crc;
-        ::boost::filesystem::ifstream f (vx [ndx].disk_path_, ::std::ios_base::in);
+        ::boost::filesystem::ifstream f (::gsl::at (vx, ndx).disk_path_, ::std::ios_base::in);
         if (f.bad ())
-        {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot read ", vx [ndx].disk_path_);
+        {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot read ", ::gsl::at (vx, ndx).disk_path_);
             set_crc (ndx, 0);
             return crc_initrem; }
         unsigned long max = context.max_file_size ();
         if (max == 0) max = DMFS_BYTES;
 #ifdef CLEAN_SHAREDPTR_ARRAY
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26414) // isn't that precisely what the code does?
+#endif // _MSC_VER
         ::std::shared_ptr < char [] > buf (new char [max]);
         if (buf.get () == nullptr)
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 #else // CLEAN_SHAREDPTR_ARRAY
 	    char* buf = (char *) malloc (max);
         if (buf == nullptr)
 #endif // CLEAN_SHAREDPTR_ARRAY
         {   f.close ();
-            nits.pick (nit_out_of_memory, es_error, ec_crc, "out of memory reading ", vx [ndx].disk_path_);
+            nits.pick (nit_out_of_memory, es_error, ec_crc, "out of memory reading ", ::gsl::at (vx, ndx).disk_path_);
             set_crc (ndx, 0);
             return crc_initrem; }
 #ifdef CLEAN_SHAREDPTR_ARRAY
         while (! f.eof ())
         {   f.read (buf.get (), max);
-            ::std::streamsize s = f.gcount ();
+            const ::std::streamsize s = f.gcount ();
             if (s == 0) break;
-            crc.process_bytes (buf.get (), static_cast < ::std::size_t > (s)); }
+            crc.process_bytes (buf.get (), ::gsl::narrow_cast < ::std::size_t > (s)); }
 #else // CLEAN_SHAREDPTR_ARRAY
         try
         {   while (! f.eof ())
@@ -282,11 +292,11 @@ crc_t get_crc (nitpick& nits, const fileindex_t ndx)
         free (buf); buf = nullptr;
 #endif // CLEAN_SHAREDPTR_ARRAY
         set_crc (ndx, crc.checksum ()); }
-    return vx [ndx].crc_; }
+    return ::gsl::at (vx, ndx).crc_; }
 
 void set_crc (const fileindex_t ndx, const crc_t& crc)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    vx [ndx].crc_ = crc;
+    ::gsl::at (vx, ndx).crc_ = crc;
     set_flag (ndx, FX_CRC); }
 
 ::std::string fileindex_report ()
@@ -297,35 +307,35 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
     {   res += "  ";
         res += ::boost::lexical_cast < ::std::string > (i);
         res += ": ";
-        res += vx [i].disk_path_.string ();
+        res += ::gsl::at (vx, i).disk_path_.string ();
         res += " (";
         ::std::string flg;
-        if ((vx [i].flags_ & FX_SCANNED) == FX_SCANNED) flg += "S";
-        if ((vx [i].flags_ & FX_EXISTS) == FX_EXISTS) flg += "E";
-        if ((vx [i].flags_ & FX_TESTED) == FX_TESTED) flg += "T";
-        if ((vx [i].flags_ & FX_CRC) == FX_CRC) flg += "C";
-        if ((vx [i].flags_ & FX_DIR) == FX_DIR) flg += "D";
-        if ((vx [i].flags_ & FX_BORKED) == FX_BORKED) flg += "B";
-        if ((vx [i].flags_ & FX_STALE) == FX_STALE) flg += "s";
-        if ((vx [i].flags_ & FX_DELETED) == FX_DELETED) flg += "d";
-        if ((vx [i].flags_ & FX_LINKED) == FX_LINKED) flg += "L";
+        if ((::gsl::at (vx, i).flags_ & FX_SCANNED) == FX_SCANNED) flg += "S";
+        if ((::gsl::at (vx, i).flags_ & FX_EXISTS) == FX_EXISTS) flg += "E";
+        if ((::gsl::at (vx, i).flags_ & FX_TESTED) == FX_TESTED) flg += "T";
+        if ((::gsl::at (vx, i).flags_ & FX_CRC) == FX_CRC) flg += "C";
+        if ((::gsl::at (vx, i).flags_ & FX_DIR) == FX_DIR) flg += "D";
+        if ((::gsl::at (vx, i).flags_ & FX_BORKED) == FX_BORKED) flg += "B";
+        if ((::gsl::at (vx, i).flags_ & FX_STALE) == FX_STALE) flg += "s";
+        if ((::gsl::at (vx, i).flags_ & FX_DELETED) == FX_DELETED) flg += "d";
+        if ((::gsl::at (vx, i).flags_ & FX_LINKED) == FX_LINKED) flg += "L";
         if (flg.empty ()) res += "-"; else res += flg;
         res += ",";
-        res += ::boost::lexical_cast < ::std::string > (vx [i].size_);
+        res += ::boost::lexical_cast < ::std::string > (::gsl::at (vx, i).size_);
         res += ",";
-        res += ::boost::lexical_cast < ::std::string > (vx [i].crc_);
+        res += ::boost::lexical_cast < ::std::string > (::gsl::at (vx, i).crc_);
         res += ",";
-        res += ::boost::lexical_cast < ::std::string > (vx [i].dx_.size ());
-        for (auto dx : vx [i].dx_)
+        res += ::boost::lexical_cast < ::std::string > (::gsl::at (vx, i).dx_.size ());
+        for (auto dx : ::gsl::at (vx, i).dx_)
         {   res += " ";
             res += ::boost::lexical_cast < ::std::string > (dx); }
         res += ",";
-        res += ::boost::lexical_cast < ::std::string > (vx [i].lx_.size ());
-        for (auto lx : vx [i].lx_)
+        res += ::boost::lexical_cast < ::std::string > (::gsl::at (vx, i).lx_.size ());
+        for (auto lx : ::gsl::at (vx, i).lx_)
         {   res += " ";
             res += ::boost::lexical_cast < ::std::string > (lx); }
         res += ",";
-        res += vx [i].site_path_;
+        res += ::gsl::at (vx, i).site_path_;
         res += ")\n"; }
     res += "\nSite:\n";
     for (auto i : site_x)
@@ -357,7 +367,7 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
     ::std::string l (lhs);
     ::std::string r (rhs);
     if (r.at (0) != '/') r = ::std::string ("/") + r;
-    ::std::string::size_type len = l.size ();
+    const ::std::string::size_type len = l.size ();
     if (l.at (len - 1) == '/')
     {   if (len == 1) return r;
         l = l.substr (0, len - 1); }
@@ -370,7 +380,7 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
     // I don't understand why some systems' find_last_of returns 0 when failing to find "/.." ; I would expect npos.
 {   ::std::string::size_type smax = pos;
     if (smax == ::std::string::npos) smax = s.length ();
-    ::std::string::size_type ssmax = ss.length ();
+    const ::std::string::size_type ssmax = ss.length ();
     if (smax >= ssmax)
     {   smax -= ssmax;
         ++smax;
@@ -409,8 +419,8 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
         return false; }
     reset_fileindices ();
     enum { fl_prog, fl_version, fl_root, fl_virtual_count, fl_virtual, fl_count, fl_site, fl_disk, fl_data } status = fl_prog;
-    const int max = 4096;
-    char buf [max];
+    constexpr int max = 4096;
+    char buf [max] = { 0 };
     fileindex_t count = 0;
     ::std::size_t virtual_count = 0, got = 0;
     ::std::string site;
@@ -439,9 +449,9 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                     else
                     {   vstr_t v (split_by_charset (VERSION_STRING, "."));
                         PRESUME (v.size () == 3, __FILE__, __LINE__);
-                        int mjr = lexical < int > :: cast (a.at (0));
-                        int mnr = lexical < int > :: cast (a.at (1));
-                        int rel = lexical < int > :: cast (a.at (2));
+                        const int mjr = lexical < int > :: cast (a.at (0));
+                        const int mnr = lexical < int > :: cast (a.at (1));
+                        const int rel = lexical < int > :: cast (a.at (2));
                         if ((VERSION_MAJOR < mjr) || (VERSION_MINOR < mnr) || (VERSION_RELEASE < rel))
                         {   nits.pick (nit_wrong_version, es_error, ec_crc, p.string (), " was written by a more recent version of " PROG);
                             ok = true; return false; }
@@ -536,11 +546,11 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
         reset_fileindices (); return false; }
     count = vx.size ();
     for (fileindex_t ndx = 0; ndx < count; ++ndx)
-    {   if (! vx [ndx].site_path_.empty ()) site_x.emplace (mxp_t::value_type (vx [ndx].site_path_, ndx));
-        if (! vx [ndx].disk_path_.empty ()) disk_x.emplace (mxp_t::value_type (vx [ndx].disk_path_.string (), ndx));
-        if ((vx [ndx].flags_ & FX_CRC) == FX_CRC)
-            if (vx [ndx].crc_ != crc_initrem)
-                mcrc.emplace (mcrc_t::value_type (vx [ndx].crc_, ndx)); }
+    {   if (! ::gsl::at (vx, ndx).site_path_.empty ()) site_x.emplace (mxp_t::value_type (::gsl::at (vx, ndx).site_path_, ndx));
+        if (! ::gsl::at (vx, ndx).disk_path_.empty ()) disk_x.emplace (mxp_t::value_type (::gsl::at (vx, ndx).disk_path_.string (), ndx));
+        if ((::gsl::at (vx, ndx).flags_ & FX_CRC) == FX_CRC)
+            if (::gsl::at (vx, ndx).crc_ != crc_initrem)
+                mcrc.emplace (mcrc_t::value_type (::gsl::at (vx, ndx).crc_, ndx)); }
     return true; }
 
 bool fileindex_load (nitpick& nits)
@@ -568,7 +578,7 @@ void fileindex_save_and_close (nitpick& nits)
     else
     {   mndx_t mndx; ::std::size_t x = 0;
         for (::std::size_t n = 0; n < vx.size (); ++n)
-            if ((vx [n].flags_ & (FX_DELETED | FX_STALE | FX_DIR)) == 0)
+            if ((::gsl::at (vx, n).flags_ & (FX_DELETED | FX_STALE | FX_DIR)) == 0)
                 mndx.emplace (mndx_t::value_type (n, x++));
         ::std::string ln (FULLNAME "\n" VERSION_STRING "\n");
         ln += context.root ();
@@ -583,8 +593,8 @@ void fileindex_save_and_close (nitpick& nits)
         if (f.fail ())
             nits.pick (nit_cannot_write, es_error, ec_crc, "cannot write to ", name.string ());
         else for (::std::size_t n = 0; n < vx.size (); ++n)
-            if ((vx [n].flags_ & (FX_DELETED | FX_STALE | FX_DIR)) == 0)
-            {   index_t& v = vx [n];
+            if ((::gsl::at (vx, n).flags_ & (FX_DELETED | FX_STALE | FX_DIR)) == 0)
+            {   index_t& v = ::gsl::at (vx, n);
                 ln = ::boost::lexical_cast < ::std::string > (v.site_path_);
                 ln += "\n";
                 ln += ::boost::lexical_cast < ::std::string > (v.disk_path_.string ());
@@ -630,7 +640,7 @@ void dedu (nitpick& nits)
                 mcrc_t::const_iterator ci = mcrc.find (crc);
                 if (ci != mcrc.cend ())
                     if (ci -> second != i)
-                    {   index_t& y = vx.at (ci -> second);
+                    {   const index_t& y = vx.at (ci -> second);
                         if (x.size_ == y.size_)
                         {   if (y.dedu_ == nullfileindex) x.dedu_ = ci -> second;
                             else x.dedu_ = y.dedu_;
@@ -641,36 +651,36 @@ void dedu (nitpick& nits)
 
 bool isdu (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    return vx [ndx].dedu_ != nullfileindex; }
+    return ::gsl::at (vx, ndx).dedu_ != nullfileindex; }
 
 fileindex_t du (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    return vx [ndx].dedu_; }
+    return ::gsl::at (vx, ndx).dedu_; }
 
 void add_dependency (const fileindex_t ndx, const fileindex_t dependency)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    vx [ndx].dx_.emplace (dependency); }
+    ::gsl::at (vx, ndx).dx_.emplace (dependency); }
 
 void clear_dependencies (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    vx [ndx].dx_.clear (); }
+    ::gsl::at (vx, ndx).dx_.clear (); }
 
 sndx_t get_dependencies (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    return vx [ndx].dx_; }
+    return ::gsl::at (vx, ndx).dx_; }
 
 void set_lynx (const fileindex_t ndx, const fileindex_t l)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    vx [ndx].lx_.emplace (l); }
+    ::gsl::at (vx, ndx).lx_.emplace (l); }
 
 void clear_lynx (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    vx [ndx].lx_.clear (); }
+    ::gsl::at (vx, ndx).lx_.clear (); }
 
 sndx_t get_lynx (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    return vx [ndx].lx_; }
+    return ::gsl::at (vx, ndx).lx_; }
 
 bool needs_update (const fileindex_t ndx, const ::std::time_t& st)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    return vx [ndx].needs_update (st); }
+    return ::gsl::at (vx, ndx).needs_update (st); }

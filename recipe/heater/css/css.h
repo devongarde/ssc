@@ -32,27 +32,27 @@ class css
     smsid_t ids_;
     void check_for_standard_classes (nitpick& nits, const html_version& v);
 public:
-    css () { }
+    css () = default;
+    css (const css& c) = default;
+    css (css&& c) = default;
+    ~css () = default;
+    css& operator = (const css& ) = default;
+    css& operator = (css&& ) = default;
     explicit css (nitpick& nits, const page& p, const url& u)
     {   parse_file (nits, p, u); }
     css (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding, bool snippet = false)
         :   snippet_ (snippet)
     {   parse (nits, v, content, encoding); }
-	css(const css& c) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-	css (css&& c) = default;
-#endif // VS
-	~css () { }
-    void swap (css& c) NOEXCEPT
+    void swap (css& c) noexcept
     {   ::std::swap (active_, c.active_);
         ::std::swap (snippet_, c.snippet_);
         ids_.swap (c.ids_); }
-    void reset () { ids_.clear (); }
-    bool invalid () const { return false; }
-    bool active () const { return active_; }
-    void active (const bool b) { active_ = b; }
-    bool snippet () const { return snippet_; }
-    void snippet (const bool b) { snippet_ = b; }
+    void reset () noexcept { ids_.clear (); }
+    bool invalid () const noexcept { return false; }
+    bool active () const noexcept { return active_; }
+    void active (const bool b) noexcept { active_ = b; }
+    bool snippet () const noexcept { return snippet_; }
+    void snippet (const bool b)  noexcept{ snippet_ = b; }
     bool has_id (const ::std::string& id) const { return active_ && ids_.find (id) != ids_.end (); }
     bool note_usage (const ::std::string& id);
     void tally (smsid_t& ids) const;

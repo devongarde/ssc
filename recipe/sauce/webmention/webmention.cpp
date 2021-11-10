@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CONTENT "content"
 #define WHEN "when"
 
-void webmention::read (nitpick& nits, ::boost::property_tree::ptree& tree, const ::std::string& container)
+void webmention::read (nitpick& nits, const ::boost::property_tree::ptree& tree, const ::std::string& container)
 {   source_.reset (nits, read_field < ::std::string > (tree, container, SOURCE));
     target_.reset (nits, read_field < ::std::string > (tree, container, TARGET));
     html_ = read_field < ::std::string > (tree, container, CONTENT);
@@ -74,20 +74,21 @@ int webmention::compare_updated (const webmention& w)
 {   static const char* const keywords [] = { SOURCE, TARGET, CONTENT, WHEN };
     ::std::string res;
     if (activity_ != act_unknown)
-    {   res = templates [activity_];
+    {   res = templates.at (activity_);
         for (::std::size_t i = 0; i < 4; ++i)
         {   ::std::string macro = context.macro_start ();
-            macro += keywords [i];
+            macro += ::gsl::at (keywords, i);
             macro += context.macro_end ();
             for (;;)
-            {   ::std::size_t loc = res.find (macro);
+            {   const ::std::size_t loc = res.find (macro);
                 if (loc == res.npos) break;
                 ::std::string x = res.substr (0, loc);
                 switch (i)
                 {   case 0 : x += source_.absolute (); break;
                     case 1 : x += target_.absolute (); break;
                     case 2 : x += html_; break;
-                    case 3 : x += when_; break; }
+                    case 3 : x += when_; break;
+                    default : break; }
                 x += res.substr (loc + macro.length ());
                 res = x; } } }
     return res; }

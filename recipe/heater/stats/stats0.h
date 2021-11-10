@@ -31,8 +31,8 @@ public:
     {   typename counter_t::const_iterator i = count_.find (e);
         if (i == count_.cend ()) return 0;
         return i -> second; }
-    cit cbegin () const { return count_.cbegin (); }
-    cit cend () const { return count_.cend (); }
+    cit cbegin () const noexcept { return count_.cbegin (); }
+    cit cend () const noexcept { return count_.cend (); }
     void mark (const T& e)
     {   typename counter_t::iterator i = count_.find (e);
         if (i == count_.end ()) count_.insert (typename counter_t::value_type (e, 1));

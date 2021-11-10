@@ -35,35 +35,32 @@ class url
     html_version v_;
     static vstr_t standard_image_extensions_, standard_text_extensions_;
     void parse (nitpick& nits, const html_version& v, const ::std::string& url, const e_protocol current);
-    void clear ()
+    void clear () noexcept
     {   url e;
         swap (e); }
     void set (nitpick& nits, const html_version& v, const ::std::string& u, const e_protocol current)
     {   parse (nits, v, u, current); }
 public:
-    url () : valid_ (true), current_ (pr_http) { }
+    url () noexcept : valid_ (true), current_ (pr_http) { }
     url (nitpick& nits, const html_version& v, const ::std::string& u, const e_protocol current = pr_http)
         :   valid_ (true), current_ (current), v_ (v)
     {   set (nits, v, u, current); }
-	url(const url&) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
+	url (const url&) = default;
 	url (url&&) = default;
-#endif // VS
+    ~url () = default;
 	url& operator = (const url&) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	url& operator = (url&&) = default;
-#endif // VS
 	bool operator == (const url& rhs) const;
     void reset (const url& u)
     {   url f (u);
         swap (f); }
     void reset (nitpick& nits, const ::std::string& u) // note current protocol & html version carries over as default
-    {   e_protocol current = current_;
+    {   const e_protocol current = current_;
         clear ();
         set (nits, v_, u, current); }
-    void reset ()
+    void reset () noexcept
     {   clear (); }
-    void swap (url& u) NOEXCEPT;
+    void swap (url& u) noexcept;
     static void init (nitpick& nits);
     void shadow (::std::stringstream& ss, const html_version& v, element* e);
     bool empty () const { return ! has_component (es_original); }
@@ -71,10 +68,10 @@ public:
     bool has_component (const e_component c) const { return ! get_component (c).empty (); }
     ::std::string get_component (const e_component c) const { return protocol_.get_component (c); }
     void reset_component (const e_component c) { return protocol_.reset_component (c); }
-    bool is_protocol (const e_protocol p) const { return (get_protocol () == p); }
-    e_protocol get_protocol () const { return protocol_.get_protocol (); }
+    bool is_protocol (const e_protocol p) const noexcept { return (get_protocol () == p); }
+    e_protocol get_protocol () const noexcept { return protocol_.get_protocol (); }
     e_scheme get_scheme () const { return protocol_.scheme (); }
-    bool has_args () const { return ! params_.empty (); }
+    bool has_args () const noexcept { return ! params_.empty (); }
     bool has_domain () const { return has_component (es_server); }
     bool has_file () const { return has_component (es_file); }
     bool has_extension () const { return has_component (es_extension); }
@@ -86,16 +83,16 @@ public:
         if (! has_path ()) return false;
         auto ch = get_component (es_path).at (0);
         return (ch == '/'); }
-    bool has_protocol () const { return ! protocol_.defaulted (); }
-    bool is_http () const { return is_protocol (pr_http); }
-    bool is_https () const { return is_protocol (pr_https); }
+    bool has_protocol () const noexcept { return ! protocol_.defaulted (); }
+    bool is_http () const noexcept { return is_protocol (pr_http); }
+    bool is_https () const noexcept { return is_protocol (pr_https); }
     bool is_local () const { return protocol_.defaulted () && ! empty (); }
-    bool is_usable () const { return is_protocol (pr_http) || is_protocol (pr_https); }
+    bool is_usable () const noexcept { return is_protocol (pr_http) || is_protocol (pr_https); }
     bool is_simple_id () const { return is_local () && ! has_path () && ! has_file () && has_id (); }
-    bool invalid () const { return ! valid_; }
+    bool invalid () const noexcept { return ! valid_; }
     bool tismoi (const url& u) const
     {   return (valid_ && u.valid_ && (protocol_ == u.protocol_)); }
-    ::std::size_t arg_count () const { return params_.size (); }
+    ::std::size_t arg_count () const noexcept { return params_.size (); }
     bool exists (const ::std::string& key) const
     {   return params_.exists (key); }
     ::std::string value (const ::std::string& key) const

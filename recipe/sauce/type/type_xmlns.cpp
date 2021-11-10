@@ -24,17 +24,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& n)
 {   ::std::string ss (::boost::to_lower_copy (trim_the_lot_off (s)));
     if (v >= xhtml_1_0)
-    {   ::std::string::size_type pos = ss.find (':');
+    {   const ::std::string::size_type pos = ss.find (':');
         if ((pos != ::std::string::npos) && (pos > 0) && (pos < (ss.length () - 1)))
         {   type_master < t_namespace > ns;
-            html_version vv (v);
+            const html_version vv (v);
             ::std::string lhs (ss.substr (0, pos));
             ns.set_value (nits, vv, lhs);
             s = ss.substr (pos+1);
             n = lhs;
             if (! ns.good ()) return ns_error;
             if (ns.get () != ns_xmlns) return ns.get ();
-            e_namespace e = type_master < t_namespace > :: find (v, s);
+            const e_namespace e = type_master < t_namespace > :: find (v, s);
             if (e != ns_default) return ns_xmlns;
             n = XMLNS;
             static ::std::size_t next_free_namespace = first_runtime_namespace;

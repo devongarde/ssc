@@ -2524,6 +2524,10 @@ typedef ssc_mm < e_schema_type, e_schema_type > vss_t;
 vmap_t hierarchy;
 vss_t generalisations;
 
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26446 26482) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initiliser
+#endif // _MSC_VER
 void hierarchy_init (nitpick& nits)
 {   PRESUME (hierarchy.empty (), __FILE__, __LINE__);
     for (::std::size_t x = 0; schema_hierarchy [x].general_ != sty_illegal; ++x)
@@ -2535,6 +2539,9 @@ void hierarchy_init (nitpick& nits)
                         if (overlap (schema_hierarchy [x].from_, schema_hierarchy [x].to_, vi -> second -> from_, vi -> second -> to_))
                             nits.pick (nit_schema_hierarchy, es_catastrophic, ec_schema, "multiple generalisations for ", sch::name (schema_hierarchy [x].specific_), " (", schema_hierarchy [x].specific_, ")");
         generalisations.emplace (vss_t::value_type (schema_hierarchy [x].specific_, schema_hierarchy [x].general_)); } }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
 void int_generalise  (const e_schema_type s, ssch_t& ssch)
 {   ssch.insert (s);
@@ -2543,7 +2550,7 @@ void int_generalise  (const e_schema_type s, ssch_t& ssch)
             for (vmap_t::const_iterator vi = hierarchy.find (i -> second); (vi != hierarchy.cend ()) && (vi -> first == i -> second); ++vi)
                 if (vi -> second != nullptr)
                     if (vi -> second -> specific_ == s)
-                        if (does_apply < schema_version > (vsv [vi -> second -> from_.root ()], vi -> second -> from_, vi -> second -> to_))
+                        if (does_apply < schema_version > (vsv.at (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
                             int_generalise (i -> second, ssch); }
 
 ssch_t generalise (const e_schema_type s)

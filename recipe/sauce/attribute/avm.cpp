@@ -26,16 +26,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 typedef ::std::multimap < uint64_t, hav_t* > avm_t;
 avm_t avm;
 
-inline uint64_t avm_key (const e_element tag, const e_attribute a)
+inline uint64_t avm_key (const e_element tag, const e_attribute a) noexcept
 {   return (static_cast < uint64_t > (tag) << 32) + static_cast < uint64_t > (a); }
+
+#ifdef _MSC_VER
+#pragma warning ( push, 3)
+// the MSC linter gets a bit silly here. it wants me to use a function to avoid the plain old C array access, and I see its point.
+// the only problem is the function it insists I use doesn't actually bother to compile here. Not useful.
+#pragma warning ( disable : 26446 26482 )
+#endif // _MSC_VER
 
 #define AVM_INIT(X) \
     for (int index = 0; havt_##X [index].tag_ != elem_error; ++index) \
         avm.insert (avm_t::value_type (avm_key (havt_##X [index].tag_, havt_##X [index].a_), &havt_##X [index]))
 
 void avm_init (nitpick& )
-{   // these havt_? declarations written as one seriously bollox gcc. vc++ and clang are fine.
-    extern hav_t    havt_a [], havt_b [], havt_c [], havt_d [], havt_e [], havt_f [], havt_g [], havt_h [], havt_i [],
+{   extern hav_t    havt_a [], havt_b [], havt_c [], havt_d [], havt_e [], havt_f [], havt_g [], havt_h [], havt_i [],
                     havt_k [], havt_l [], havt_m [], havt_n [], havt_o [], havt_p [], havt_q [], havt_r [], havt_s [],
                     havt_t [], havt_u [], havt_v [], havt_w [], havt_x [],
                     havt_cc [], havt_dc [], havt_dct_a [], havt_dct_b [], havt_rdf [];
@@ -68,6 +74,10 @@ void avm_init (nitpick& )
     AVM_INIT(v);
     AVM_INIT(w);
     AVM_INIT(x); }
+
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif
 
 bool is_invalid_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
 {   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;

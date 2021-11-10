@@ -51,9 +51,9 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
 
 template < > struct type_master < t_existential > : type_base < mono, t_existential >
 {   using type_base < mono, t_existential > :: type_base;
-    static bool is_existential () { return true; }
-    void shadow (::std::stringstream& , const html_version& , element* ) { }
-    void set_value (nitpick& , const html_version& , const ::std::string& )
+    static bool is_existential () noexcept { return true; }
+    void shadow (::std::stringstream& , const html_version& , element* ) noexcept { }
+    void set_value (nitpick& , const html_version& , const ::std::string& ) noexcept
     {   type_base < mono, t_existential > :: status (s_good); } };
 
 template < > struct type_master < t_html > : tidy_string < t_html >
@@ -75,8 +75,8 @@ template < > struct type_master < t_illegal > : type_base < mono, t_illegal >
     void set_value (nitpick& nits, const html_version& , const ::std::string& )
     {   nits.pick (nit_evermore, es_error, ec_type, "always illegal");
         type_base < mono, t_illegal > :: status (s_invalid); }
-    static mono default_value () { return static_cast <mono> (0); }
-    mono get () const { GRACEFUL_CRASH (__FILE__, __LINE__); return static_cast <mono> (0); } };
+    static mono default_value () noexcept { return ::gsl::narrow_cast <mono> (0); }
+    mono get () const { GRACEFUL_CRASH (__FILE__, __LINE__); return ::gsl::narrow_cast <mono> (0); } };
 
 template < > struct type_master < t_loopie > : tidy_string < t_loopie >
 {   using tidy_string < t_loopie > :: tidy_string;

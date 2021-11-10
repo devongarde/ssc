@@ -76,7 +76,7 @@ void element::examine_media_element (e_element , const char* ref, const char* na
     if (a_.known (a_controls)) no_anchor_daddy ();
     bool had_track = false, had_other = false, noted_src = false, noted_track = false, noted_source = false,
         def_subcap = false, def_desc = false, def_chap = false;
-    bool has_src = a_.known (a_src);
+    const bool has_src = a_.known (a_src);
     if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), family);
     sstr_t track_check; ::std::string tmp;
     for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
@@ -133,7 +133,7 @@ void element::examine_menu ()
             if (node_.version () >= html_jul17)
             {   if (has_child ())
                 {   element_ptr e = child ();
-                    element_bitset bs (faux_bitset | script_bitset | elem_li);
+                    const element_bitset bs (faux_bitset | script_bitset | elem_li);
                     do
                     {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
                         if (! e -> node_.is_closure ())
@@ -145,8 +145,8 @@ void element::examine_menu ()
             {   bool has_li = false;
                 bool has_other = false;
                 bool has_muhrme = false;
-                element_bitset muhrme = empty_element_bitset | elem_menuitem | elem_hr | elem_menu;
-                e_menutype mt = static_cast < e_menutype > (a_.get_int (a_type));
+                const element_bitset muhrme = empty_element_bitset | elem_menuitem | elem_hr | elem_menu;
+                const e_menutype mt = static_cast < e_menutype > (a_.get_int (a_type));
                 if (node_.version () >= html_jan06)
                 {   if (has_child ())
                     {   element_ptr e = child ();
@@ -204,14 +204,14 @@ void element::examine_menubar ()
                 had_other = true; } } }
 
 void element::examine_meta ()
-{   bool in_head = ancestral_elements_.test (elem_head);
-    bool md = (node_.version ().whatwg () || context.microdata ());
-    bool ipk = a_.known (a_itemprop);
-    bool nk = a_.known (a_name);
-    bool csk = a_.known (a_charset);
-    bool hek = a_.known (a_httpequiv);
-    bool med = a_.known (a_media);
-    bool prp = a_.known (a_property);
+{   const bool in_head = ancestral_elements_.test (elem_head);
+    const bool md = (node_.version ().whatwg () || context.microdata ());
+    const bool ipk = a_.known (a_itemprop);
+    const bool nk = a_.known (a_name);
+    const bool csk = a_.known (a_charset);
+    const bool hek = a_.known (a_httpequiv);
+    const bool med = a_.known (a_media);
+    const bool prp = a_.known (a_property);
     bool bad_med = med;
     if (node_.version ().mjr () < 5)
     {   if (ipk)
@@ -244,7 +244,15 @@ void element::examine_meta ()
         else if (! a_.known (a_content))
             pick (nit_no_content, ed_50, "4.2.5 The meta element", es_error, ec_element, "HTTP-EQUIV requires CONTENT");
         else
-        {   attr_httpequiv* he = reinterpret_cast < attr_httpequiv* > (a_.get (a_httpequiv).get ());
+        {   attribute_v_ptr vhe = a_.get (a_httpequiv);
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26490) // correct, actually.
+#endif // _MSC_VER
+            const attr_httpequiv* const he = reinterpret_cast < attr_httpequiv* > (vhe.get ());
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
             if (he != nullptr)
             {   ::std::string ct (validate_httpequiv_content (nits (), node_.version (), he -> get (), trim_the_lot_off (a_.get_string (a_content)), page_));
                 switch (he -> get_int ())
@@ -255,6 +263,7 @@ void element::examine_meta ()
                     case he_location :
                     case he_refresh :
                         page_.verify_url (nits (), ct);
+                        break;
                     default : break; } } } }
     else if (nk)
         if (! a_.known (a_content))
@@ -265,7 +274,7 @@ void element::examine_meta ()
             nitpick nuts;
             mn.set_value (nuts, node_.version (), a_.get_string (a_name));
             PRESUME (a_.good (a_name), __FILE__, __LINE__);
-            e_metaname emn = mn.get ();
+            const e_metaname emn = mn.get ();
             validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_);
             validate_metaname_url (nits (), node_.version (), in_head, emn, con, *this);
             switch (emn)
@@ -281,12 +290,12 @@ void element::examine_meter ()
 {   if (node_.version ().is_5 ())
     {   check_ancestors (elem_meter, element_bit_set (elem_meter));
         double min = 0.0, max = 1.0, low = 0.0, high = 0.0, optimum = 0.0, value = 0.0;
-        bool kx = a_.known (a_max);
-        bool kn = a_.known (a_min);
-        bool kl = a_.known (a_low);
-        bool kh = a_.known (a_high);
-        bool ko = a_.known (a_optimum);
-        bool kv = a_.known (a_value);
+        const bool kx = a_.known (a_max);
+        const bool kn = a_.known (a_min);
+        const bool kl = a_.known (a_low);
+        const bool kh = a_.known (a_high);
+        const bool ko = a_.known (a_optimum);
+        const bool kv = a_.known (a_value);
         if (kn) min = lexical < double > :: cast (a_.get_string (a_min));
         if (kx) max = lexical < double > :: cast (a_.get_string (a_max));
         if (kl) low = lexical < double > :: cast (a_.get_string (a_low));
@@ -352,7 +361,7 @@ void element::examine_mglyph ()
 void element::examine_mn ()
 {   if (page_.version ().math_version () < math_3) return;
     ::std::string x (text ());
-    ::std::string::size_type pos = x.find_first_not_of (" .,IVXDMLivxdmlxX" HEX);
+    const ::std::string::size_type pos = x.find_first_not_of (" .,IVXDMLivxdmlxX" HEX);
     if (pos != ::std::string::npos)
         pick (nit_impure_mn, ed_math_3, "3.2.4.4 Numbers that should not be written using <mn> alone", es_warning, ec_element, "Given '", x.at (pos), "', <MN> alone may be unsuitable here"); }
 
@@ -389,14 +398,14 @@ void element::examine_noscript ()
                 pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "in <HEAD>, <NOSCRIPT> can only have <LINK>, <STYLE>, or <META> descendants"); } } }
 
 void element::examine_object ()
-{   bool has_type = a_.known (a_type);
-    bool has_data = a_.known (a_data);
-    bool has_usemap = a_.known (a_usemap);
+{   const bool has_type = a_.known (a_type);
+    const bool has_data = a_.known (a_data);
+    const bool has_usemap = a_.known (a_usemap);
     bool piccy = false;
     nitpick nuts;
     if (has_type)
     {   const ::std::string& ss (a_.get_string (a_type));
-        e_mimetype mt = examine_value < t_mime > (nuts, html_version (), ss);
+        const e_mimetype mt = examine_value < t_mime > (nuts, html_version (), ss);
         if ((mt != mime_bork) && (mt != mime_context))
             if ((type_master < t_mime > :: flags (mt) & MIME_IMAGE) == MIME_IMAGE) piccy = true;
         if (has_data) check_vulnerability (nits (), node_.version (), mt, a_.get_urls (a_data), true);
@@ -409,7 +418,7 @@ void element::examine_object ()
                 {   const ::std::string& ext (u.extension ());
                     if (! ext.empty ())
                     {   flags_t flags = 0;
-                        e_mimetype em (static_cast < e_mimetype > (extension_format (nuts, html_version (), ext, flags)));
+                        const e_mimetype em (static_cast < e_mimetype > (extension_format (nuts, html_version (), ext, flags)));
                         if ((em != mime_context) && (em != mime_bork))
                             if ((flags & MIME_IMAGE) == MIME_IMAGE)
                             {   piccy = true; break; } } } }
@@ -438,6 +447,7 @@ void element::examine_object ()
                 case elem_caption :
                     if (node_.version () == xhtml_2) break;
                     // drop thru'
+                    [[fallthrough]];
                 default :
                     if ((node_.version ().mjr () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } } }
 
@@ -487,6 +497,6 @@ void element::examine_output ()
     {   vstr_t ids = a_.get_x < attr_for > ();
         for (auto s : ids)
             if (get_ids ().has_id (s)) // if not WTF
-            {   e_element e (get_ids ().get_tag (s));
+            {   const e_element e (get_ids ().get_tag (s));
                 if (! label_bitset.test (e))
                     pick (nit_bad_for, ed_50, "4.10.12 The output element", es_error, ec_attribute, quote (s), " is neither a <BUTTON>, <FIELDSET>, <INPUT>, <OBJECT>, <OUTPUT>, <SELECT>, nor a <TEXTAREA>"); } } }

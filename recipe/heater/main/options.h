@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class options
 {   ::boost::program_options::variables_map var_, env_;
     void help (const ::boost::program_options::options_description& aid) const;
-	void process (nitpick& nits, int argc, char** argv);
+	void process (nitpick& nits, int argc, char* const * argv);
 public:
 	options (nitpick& nits, int argc, char** argv)
     { process (nits, argc, argv); }

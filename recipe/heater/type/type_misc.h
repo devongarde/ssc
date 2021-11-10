@@ -36,7 +36,7 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
 {   typedef vint_t value_type;
     value_type value_;
     using tidy_string < t_coords > :: tidy_string;
-    static e_animation_type animation_type () { return at_coordinate; }
+    static e_animation_type animation_type () noexcept { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_coords > :: set_value (nits, v, s);
         if (tidy_string < t_coords > :: empty ())
@@ -44,7 +44,7 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
             string_value < t_coords > :: status (s_invalid); }
         else
         {   vstr_t coords (split_by_charset (tidy_string < t_coords > :: get_string (), ","));
-            ::std::size_t csz = coords.size ();
+            const ::std::size_t csz = coords.size ();
             if (csz < 3)
                 nits.pick (nit_bad_coords, es_error, ec_attribute, "COORDS is too short");
             else if ((csz > 4) && (csz % 2 != 0))
@@ -72,10 +72,11 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
                             if ((value_.at (0) >= value_.at (2)) || (value_.at (1) >= value_.at (3)))
                             {   nits.pick (nit_bad_coords, es_error, ec_attribute, "the x and y values of a rectangle's first coordinate must be less than those of the second");
                                 whoops = true; }
-                            break; }
+                            break;
+                        default : break; }
                 if (! whoops) return; }
                 tidy_string < t_coords > :: status (s_invalid); } }
-    static vint_t default_value () { return vint_t (); }
+    static vint_t default_value () noexcept { return vint_t (); }
     vint_t get () const { return value_; } };
 
 template < > struct type_master < t_font_family > : tidy_string < t_font_family >
@@ -150,7 +151,7 @@ template < > struct type_master < t_is > : tidy_string < t_is >
 template < > struct type_master < t_key > : string_vector < t_key, sz_space >
 {   bool tested_ = false, predefined_ = false;
     using string_vector < t_key, sz_space > :: string_vector;
-    void swap (type_master < t_key >& t) NOEXCEPT
+    void swap (type_master < t_key >& t) noexcept
     {   ::std::swap (tested_, t.tested_);
         ::std::swap (predefined_, t.predefined_);
         string_vector < t_key, sz_space > :: swap (t); }
@@ -191,10 +192,10 @@ template < > struct type_master < t_mb > : public tidy_string < t_mb >
     {   tidy_string < t_mb > :: set_value (nits, v, ss);
         const ::std::string& s = tidy_string < t_mb > :: get_string ();
         if (good ())
-        {   ::std::string::size_type unit = s.find_first_not_of (DENARY);
+        {   const ::std::string::size_type unit = s.find_first_not_of (DENARY);
             if (unit == ::std::string::npos) return;
             bool bad = true;
-            ::std::string::size_type len = s.length ();
+            const ::std::string::size_type len = s.length ();
             if (unit == 0) nits.pick (nit_mb, es_error, ec_type, "there must be a number before the units");
             else
             {   if (unit < len - 1) switch (s.at (unit))
@@ -281,7 +282,7 @@ template < > struct type_master < t_target > : public tidy_string < t_target >
         if (tidy_string < t_target > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "TARGET requires a value");
         else
-        {   if (val [0] != '_') return;
+        {   if (::gsl::at (val, 0) != '_') return;
             if ((v.svg_version () >= sv_1_1) && (val == "_replace")) return;
             if ((val == "_blank") || (val == "_self") || (val == "_parent") || (val == "_top")) return;
             nits.pick (nit_badtarget, es_error, ec_type, quote (s), " starts with '_', but is not a standard target"); }

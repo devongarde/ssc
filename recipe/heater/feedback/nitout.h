@@ -27,7 +27,7 @@ class nitpick;
 class html_version;
 
 void init_nit_macros ();
-bool is_template_loaded ();
+bool is_template_loaded () noexcept;
 bool load_template (nitpick& nits, const html_version& v);
 void dump_nits (nitpick& nits, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot);
 ::std::string nit_content (const ::std::string& s);

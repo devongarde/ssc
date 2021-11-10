@@ -55,40 +55,40 @@ decode_map_t decode_map;
 encode_map_t encode_map;
 
 void code_map_init (nitpick& nits)
-{   CONSTEXPR ::std::size_t max = sizeof (encoded) / sizeof (escape_t);
+{   constexpr ::std::size_t max = sizeof (encoded) / sizeof (escape_t);
     for (::std::size_t i = 0; i < max; i++)
-    {   if (decode_map.find (encoded [i].encoding_) != decode_map.cend ())
-            nits.pick (nit_symbol_aleady_defined, es_error, ec_program,  "Program error: decoder ", encoded [i].encoding_, " already defined");
-        else decode_map.insert (decode_map_t::value_type (encoded [i].encoding_, encoded [i].ch_));
-        if (encode_map.find (encoded [i].ch_) != encode_map.cend ())
-            nits.pick (nit_symbol_aleady_defined, es_error, ec_program,  "Program error: encoder ", encoded [i].ch_, " already defined");
-        else encode_map.insert (encode_map_t::value_type (encoded [i].ch_, encoded [i].encoding_)); } }
+    {   if (decode_map.find (::gsl::at (encoded, i).encoding_) != decode_map.cend ())
+            nits.pick (nit_symbol_aleady_defined, es_error, ec_program,  "Program error: decoder ", ::gsl::at (encoded, i).encoding_, " already defined");
+        else decode_map.insert (decode_map_t::value_type (::gsl::at (encoded, i).encoding_, ::gsl::at (encoded, i).ch_));
+        if (encode_map.find (::gsl::at (encoded, i).ch_) != encode_map.cend ())
+            nits.pick (nit_symbol_aleady_defined, es_error, ec_program,  "Program error: encoder ", ::gsl::at (encoded, i).ch_, " already defined");
+        else encode_map.insert (encode_map_t::value_type (::gsl::at (encoded, i).ch_, ::gsl::at (encoded, i).encoding_)); } }
 
 ::std::string unescape (const ::std::string& s)
-{   ::std::size_t len = s.length ();
+{   const ::std::size_t len = s.length ();
     if (len < 3) return s;
     ::std::string res;
     for (::std::size_t x = 0; x < len; ++x)
-        if ((x > len - 3) || (s [x] != PERCENT)) res += s [x];
+        if ((x > len - 3) || (s.at (x) != PERCENT)) res += s.at (x);
         else
         {   ::std::string sub (s.substr (x, 3));
             auto i = decode_map.find (sub);
             if (i != decode_map.end ())
             {   res += i -> second;
                 x += 2; }
-            else res += s [x]; }
+            else res += s.at (x); }
     return res; }
 
 ::std::string enescape (const ::std::string& s)
-{   ::std::size_t len = s.length ();
+{   const ::std::size_t len = s.length ();
     if (len == 0) return s;
     ::std::string res;
-    ::std::size_t pos = s.find (COLON);
+    const ::std::size_t pos = s.find (COLON);
     if (pos == s.npos) return s;
     res = s.substr (0, pos + 2);
     for (::std::size_t x = pos + 2; x < len ; ++x)
-    {   auto i = encode_map.find (s [x]);
-        if (i != encode_map.end ()) res += s [x];
+    {   auto i = encode_map.find (s.at (x));
+        if (i != encode_map.end ()) res += s.at (x);
         else res += i -> second;  }
     return res; }
 
@@ -98,7 +98,7 @@ void code_map_init (nitpick& nits)
     while (true)
     {   ds = res.find ("//", ds);
         if (ds == ::std::string::npos) break;
-        if (ds == 0 || res [ds-1] != COLON) res.replace (ds, 2, "/");
+        if (ds == 0 || res.at (ds-1) != COLON) res.replace (ds, 2, "/");
         ++ds; }
     return res; }
 
@@ -115,7 +115,7 @@ int char2hex (const char ch)
     GRACEFUL_CRASH (__FILE__, __LINE__);
     return 0; }
 
-bool is_hex (const char ch)
+bool is_hex (const char ch) noexcept
 {   if (ch >= '0' && ch <= '9')
         return true;
     if (ch >= 'A' && ch <= 'F')
@@ -147,7 +147,7 @@ bool is_hex (const char ch)
                 else
                 {   val *= 16;
                     val += char2hex (ch);
-                    res += static_cast < char > (val); }
+                    res += ::gsl::narrow_cast < char > (val); }
                 val = 0;
                 first = true;
                 percent = false; }
@@ -158,5 +158,5 @@ bool is_hex (const char ch)
 
 ::std::string tolower (const ::std::string& s)
 {   ::std::string res;
-    for (auto ch : s) res += static_cast < char > (tolower (ch));
+    for (auto ch : s) res += ::gsl::narrow_cast < char > (tolower (ch));
     return res; }

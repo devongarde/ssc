@@ -26,13 +26,13 @@ template < class PROPERTY, class TUPLE, bool B > struct get_property_imp
 {   static void get (TUPLE& , PROPERTY** ) { }
     static void get (const TUPLE& , PROPERTY** ) { }
     static void get (const TUPLE& , ::std::string& ) { }
-    static bool has () { return false; } };
+    static bool has () noexcept { return false; } };
 
 template < class PROPERTY, class TUPLE > struct get_property_imp < PROPERTY, TUPLE, true >
 {   static void get (TUPLE& t, PROPERTY** p) { VERIFY_NOT_NULL (p, __FILE__, __LINE__); *p = & ::std::get < PROPERTY > (t); }
     static void get (const TUPLE& t, const PROPERTY** p) { VERIFY_NOT_NULL (p, __FILE__, __LINE__); *p = & ::std::get < PROPERTY > (t); }
     static void get (const TUPLE& t, ::std::string& s) { s = ::std::get < PROPERTY > (t).get_string (); }
-    static bool has () { return true; } };
+    static bool has () noexcept { return true; } };
 
 template < class PROPERTY, class... PROPERTIES > void get_property (::std::tuple < PROPERTIES...> & t, PROPERTY** p)
 {   get_property_imp < PROPERTY, ::std::tuple < PROPERTIES... >, has_type < PROPERTY, PROPERTIES... >::value > :: get (t, p); }

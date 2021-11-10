@@ -27,7 +27,7 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
 {   vstr_t args (split_by_charset (d, " ("));
     if (args.empty ()) return false;
     nitpick nuts, knits;
-    e_paintkeyword k = examine_value < t_paintkeyword > (nuts, v, args.at (0));
+    const e_paintkeyword k = examine_value < t_paintkeyword > (nuts, v, args.at (0));
     switch (k)
     {   case pk_none :
         case pk_contextfill :
@@ -48,7 +48,7 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
     if (test_value < t_colour > (knits, v, d))
     {   nits.merge (knits); return true; }
     ::std::string::size_type bra = d.find_first_of ("(");
-    ::std::string::size_type ket = d.find_last_of (")");
+    const ::std::string::size_type ket = d.find_last_of (")");
     if ((bra != ::std::string::npos) && (ket != ::std::string::npos))
         if (++bra < ket)
             if (test_value < t_colour > (knits, v, args.at (0)))
@@ -56,7 +56,7 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
                 if (compare_complain (nits, v, args.at (1).substr (0, 9), "icc-color"))
                 {   ::std::string tmp = trim_the_lot_off (d.substr (bra, ket-bra));
                     if (tmp.at (0) == '#')
-                    {   ::std::string::size_type cwsp = tmp.find_first_of (", ");
+                    {   const ::std::string::size_type cwsp = tmp.find_first_of (", ");
                         ::std::string n;
                         if (cwsp != ::std::string::npos)
                         {   n = trim_the_lot_off (tmp.substr (cwsp));

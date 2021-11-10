@@ -27,7 +27,7 @@ template < class MICROFORMAT, class... X > struct microformat_constructor : publ
         else microformat_constructor < X... > :: alloc_microformat_pv (mf); } };
 
 template < > struct microformat_constructor < mf_error >
-{   static void alloc_microformat_pv (microformat_pv& ) { } };
+{   static void alloc_microformat_pv (microformat_pv& ) noexcept { } };
 
 microformat_pv microformat_pv::alloc_microformat_pv (const ::std::size_t v)
 {   microformat_pv res;

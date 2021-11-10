@@ -23,15 +23,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 typedef uint32_t itemprop_index;
 typedef ::std::vector < itemprop_index > itemprop_indices;
-const itemprop_index illegal_itemprop = 0xFFFFFFFF;
-const itemprop_index null_itemprop = 0;
+constexpr itemprop_index illegal_itemprop = 0xFFFFFFFF;
+constexpr itemprop_index null_itemprop = 0;
 
 itemprop_index make_itemprop_index (const e_schema_property p);
 itemprop_indices make_itemprop_indices (const e_schema_property p);
 itemprop_indices make_itemprop_indices (const vsp_t& vsp);
 itemprop_index make_itemprop_index (const e_property p);
 itemprop_indices make_itemprop_indices (const e_property p);
-e_itemprop_category prop_category (const itemprop_index ii);
+
+// e_itemprop_category prop_category (const itemprop_index ii);
+constexpr inline e_itemprop_category prop_category (const itemprop_index ii) noexcept
+{   return static_cast < e_itemprop_category> (::gsl::narrow_cast < uint32_t > (ii) >> uint32_category_shift); }
+
 ::std::string bespoke_itemprop_name (const itemprop_index ii);
 itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);
 itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);

@@ -25,21 +25,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const element_bitset empty_element_bitset;
 const attribute_bitset empty_attribute_bitset;
-const element_bitset autocapitalise_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_output | elem_select | elem_textarea;
-const element_bitset faux_bitset = empty_element_bitset | elem_faux_document | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_comment |
-        elem_faux_doctype | elem_faux_php | elem_faux_ssi | elem_faux_stylesheet | elem_faux_text | elem_faux_xml | elem_faux_whitespace;
-const element_bitset form_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea | elem_img;
-const element_bitset header_bitset = empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_hgroup;
-const element_bitset interactive_bitset = empty_element_bitset | elem_a | elem_audio | elem_button | elem_details | elem_embed | elem_iframe |
-        elem_img | elem_input | elem_label | elem_object | elem_select | elem_textarea | elem_video;
-const element_bitset label_bitset = empty_element_bitset | elem_button | elem_input | elem_meter | elem_output | elem_progress | elem_select | elem_textarea;
-const element_bitset listed_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea;
-const element_bitset media_bitset = empty_element_bitset | elem_audio | elem_video;
-const element_bitset sectioning_bitset = empty_element_bitset | elem_article | elem_aside | elem_nav | elem_section;
-const element_bitset non_standard_bitset = faux_bitset | elem_undefined;
-const element_bitset block_bitset = empty_element_bitset | elem_blockquote | elem_section | elem_article | elem_header;
-const element_bitset script_bitset = empty_element_bitset | elem_script | elem_noscript | elem_template;
+element_bitset autocapitalise_bitset = empty_element_bitset;
+element_bitset faux_bitset = empty_element_bitset;
+element_bitset form_bitset = empty_element_bitset;
+element_bitset header_bitset = empty_element_bitset;
+element_bitset interactive_bitset = empty_element_bitset;
+element_bitset label_bitset = empty_element_bitset;
+element_bitset listed_bitset = empty_element_bitset;
+element_bitset media_bitset = empty_element_bitset;
+element_bitset sectioning_bitset = empty_element_bitset;
+element_bitset non_standard_bitset = empty_element_bitset;
+element_bitset block_bitset = empty_element_bitset;
+element_bitset script_bitset = empty_element_bitset;
 
+void state_init ()
+{   faux_bitset = empty_element_bitset | elem_faux_document | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_comment |
+            elem_faux_doctype | elem_faux_php | elem_faux_ssi | elem_faux_stylesheet | elem_faux_text | elem_faux_xml | elem_faux_whitespace;
+    form_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea | elem_img;
+    header_bitset = empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_hgroup;
+    interactive_bitset = empty_element_bitset | elem_a | elem_audio | elem_button | elem_details | elem_embed | elem_iframe |
+            elem_img | elem_input | elem_label | elem_object | elem_select | elem_textarea | elem_video;
+    label_bitset = empty_element_bitset | elem_button | elem_input | elem_meter | elem_output | elem_progress | elem_select | elem_textarea;
+    listed_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea;
+    media_bitset = empty_element_bitset | elem_audio | elem_video;
+    sectioning_bitset = empty_element_bitset | elem_article | elem_aside | elem_nav | elem_section;
+    non_standard_bitset = faux_bitset | elem_undefined;
+    block_bitset = empty_element_bitset | elem_blockquote | elem_section | elem_article | elem_header;
+    script_bitset = empty_element_bitset | elem_script | elem_noscript | elem_template; }
 
 ::std::string nameset (const element_bitset& bs)
 {   ::std::string res;
@@ -47,7 +59,7 @@ const element_bitset script_bitset = empty_element_bitset | elem_script | elem_n
         if (bs.test (i))
         {   if (! res.empty ()) res += ", ";
             res += "<";
-            res += elem::name (static_cast < e_element > (i));
+            res += elem::name (::gsl::narrow_cast < e_element > (i));
             res += ">";}
     return res; }
 

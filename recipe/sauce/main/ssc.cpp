@@ -53,6 +53,7 @@ void init (nitpick& nits)
 {   init_nit_macros ();
     nits_init ();
     nits.set_context (0, PROG " initialisation");
+    state_init ();
     attr::init (nits);
     avm_init (nits);
     code_map_init (nits);
@@ -144,9 +145,9 @@ int examine (nitpick& nits)
             {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
                 ::std::cout << "Scanning " << virt.at (n) -> get_disk_path ().string () << " ."; }
             try
-            {   VERIFY_NOT_NULL (vd [n], __FILE__, __LINE__);
+            {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
                 VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                if (! vd [n] -> scan (nits, virt.at (n) -> get_site_path ()))
+                if (! vd.at (n) -> scan (nits, virt.at (n) -> get_site_path ()))
                 {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " failed");
                     res = ERROR_STATE; } }
             catch (const ::std::system_error& e)
@@ -199,11 +200,12 @@ int main (int argc, char** argv)
     bool enfooten = false;
     ::std::string msg;
     try
-    {   auto start = ::std::chrono::system_clock::now ();
-        std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
+    {   const auto start = ::std::chrono::system_clock::now ();
+        const std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
         ::std::string t (::std::ctime (&start_time));
         t = t.substr (0, t.length () - 1);
         context.macros ().emplace (nm_time_start, t);
+        context.macros ().emplace (nm_compile_time, __DATE__ " " __TIME__);
         vstr_t v (split_by_charset (VERSION_STRING, "."));
         PRESUME (v.size () == 3, __FILE__, __LINE__);
         PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
@@ -212,10 +214,18 @@ int main (int argc, char** argv)
         nitpick nits, nuts;
         init (nits);
         PRESUME (argc > 0, __FILE__, __LINE__);
+        VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26481) // erm, linter, you do know about the C++ main function's signature, don't you?
+#endif // _MSC_VER
         ::std::string args (argv [0]);
         for (int i = 1; i < argc; ++i)
         {   args += " ";
             args += argv [i]; }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
         context.macros ().emplace (nm_run_args, args);
         res = context.parameters (nuts, argc, argv);
         if (context.todo () == do_simple)
@@ -234,11 +244,11 @@ int main (int argc, char** argv)
             {   context.process_outgoing_webmention (nits, html_current);
                 context.process_incoming_webmention (nits, html_current);
                 dump_nits (nits, ns_webmention, ns_webmention_head, ns_webmention_foot); }
-            int cr = ciao ();
+            const int cr = ciao ();
             if (cr > res) res = cr; }
-        auto fin = std::chrono :: system_clock :: now ();
-        std::chrono::duration <double> elapsed_seconds = fin - start;
-        std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
+        const auto fin = std::chrono :: system_clock :: now ();
+        const std::chrono::duration <double> elapsed_seconds = fin - start;
+        const std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
         t = ::std::ctime (&end_time);
         t = t.substr (0, t.length () - 1);
         context.macros ().emplace (nm_time_finish, t);

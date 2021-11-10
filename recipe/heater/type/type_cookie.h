@@ -31,7 +31,7 @@ template < > struct type_master < t_cookie > : public tidy_string < t_cookie >
         {   nits.pick (nit_empty, es_error, ec_type, "value required");
             tidy_string < t_cookie > :: status (s_invalid); }
         else if (good ())
-        {   ::std::string::size_type pos = ss.find ('=');
+        {   const ::std::string::size_type pos = ss.find ('=');
             nitpick nuts;
             if (pos == ::std::string::npos)
                 switch (examine_value < t_cookieid > (nuts, v, ss))

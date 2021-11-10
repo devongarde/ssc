@@ -33,8 +33,8 @@ template < > struct type_master < t_url > : type_base < url, t_url >
 {   typedef url base_type, value_type;
     url value_;
     using type_base < url, t_url > :: type_base;
-    static bool is_url () { return true; }
-    static e_animation_type animation_type () { return at_url; }
+    static bool is_url () noexcept { return true; }
+    static e_animation_type animation_type () noexcept { return at_url; }
     ::std::string get_string () const { return value_.get (); }
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
@@ -44,10 +44,10 @@ template < > struct type_master < t_url > : type_base < url, t_url >
         else
         {   value_.reset (nits, ss);
             type_base < url, t_url > :: status (s_good); } }
-    void swap (type_master < t_url >& t) NOEXCEPT
+    void swap (type_master < t_url >& t) noexcept
     {   value_.swap (t.value_);
         type_base < url, t_url >::swap (t); }
-    void reset ()
+    void reset () noexcept
     {   value_.reset ();
         type_base < url, t_url > :: reset (); }
     bool verify_url (nitpick& nits, const html_version& v, element& e)
@@ -58,7 +58,7 @@ template < > struct type_master < t_url > : type_base < url, t_url >
     {   value_.verify_id (e); }
     vurl_t get_urls () const
     {   return vurl_t (1, value_); }
-    static url default_value () { return url (); }
+    static url default_value () noexcept { return url (); }
     bool has_value (const url& b) const { return good () && (value_ == b); }
     url get () const { return value_; }
     void shadow (::std::stringstream& ss, const html_version& v, element* e)
@@ -100,7 +100,7 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
     typedef vurl_t value_type;
     vurl_t value_;
     using type_base < url, t_urls > :: type_base;
-    static e_animation_type animation_type () { return at_url; }
+    static e_animation_type animation_type () noexcept { return at_url; }
     ::std::string get_string () const
     {   ::std::string s;
         for (auto& u : value_)
@@ -119,13 +119,13 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
             {   type_base < url, t_urls > :: status (s_invalid);
                 return; }
         type_base < url, t_urls > :: status (s_good); }
-    void swap (type_master < t_urls >& t) NOEXCEPT
+    void swap (type_master < t_urls >& t) noexcept
     {   value_.swap (t.value_);
         type_base < url, t_urls > :: swap (t); }
-    void reset ()
+    void reset () noexcept
     {   value_.clear ();
         type_base < url, t_urls > :: reset (); }
-    static bool is_url () { return true; }
+    static bool is_url () noexcept { return true; }
     bool verify_url (nitpick& nits, const html_version& v, element& e)
     {   if (! context.links ()) return true;
         bool res = true;
@@ -136,7 +136,7 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
     void verify_id (element& e)
     {   for (auto& u : value_)
             u.verify_id (e); }
-    static vurl_t default_value () { return vurl_t (); }
+    static vurl_t default_value () noexcept { return vurl_t (); }
     vurl_t get () const { return value_; }
     bool has_value (const base_type& b) const
     {   for (auto u : value_)

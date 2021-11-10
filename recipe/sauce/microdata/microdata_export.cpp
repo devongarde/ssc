@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define JSON_ITEMPROP   ".prop"
 #define JSON_ITEMTYPE   ".type"
 
-void microdata_export::swap (microdata_export& m) NOEXCEPT
+void microdata_export::swap (microdata_export& m)
 {   tree_.swap (m.tree_);
     ::std::swap (uid_, m.uid_);
     ::std::swap (initiated_, m.initiated_); }

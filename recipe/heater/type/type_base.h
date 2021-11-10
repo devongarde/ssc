@@ -40,48 +40,48 @@ public:
     typedef VALUE_TYPE base_type;
     typedef false_type has_int_type;
     type_base () = default;
-    explicit type_base (element* box) : box_ (box) { }
-    static e_type get_type () { return E; }
-    static bool is_relational () { return false; }
-    static bool is_url () { return false; }
-    static bool is_existential () { return false; }
-    static e_animation_type animation_type () { return at_none; }
-    void swap (type_base& t) NOEXCEPT
+    explicit type_base (element* box) noexcept : box_ (box) { }
+    static e_type get_type () noexcept { return E; }
+    static bool is_relational () noexcept { return false; }
+    static bool is_url () noexcept { return false; }
+    static bool is_existential () noexcept { return false; }
+    static e_animation_type animation_type () noexcept { return at_none; }
+    void swap (type_base& t) noexcept
     {   id_.swap (t.id_);
         ::std::swap (box_, t.box_);
         ::std::swap (status_, t.status_); }
-    void reset () { status_ = s_unset; id_.clear (); }
-    void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
-    bool verify_url (nitpick& , const html_version& , element& ) { return true; }
-    ::std::string get_string () const { return ::std::string (); }
-    ::std::string original () const { return get_string (); }
+    void reset () noexcept { status_ = s_unset; id_.clear (); }
+    void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) noexcept { }
+    bool verify_url (nitpick& , const html_version& , element& ) noexcept { return true; }
+    ::std::string get_string () const noexcept { return ::std::string (); }
+    ::std::string original () const noexcept { return get_string (); }
     void set_value (nitpick& , const html_version& , const ::std::string& ) { status_ = s_empty; }
     ::std::string get_id () const { return id_; }
     void set_id (const ::std::string& s) { id_ = s; }
-    ::std::string& id () { return id_; }
+    ::std::string& id () noexcept { return id_; }
     const ::std::string& id () const { return id_; }
-    bool invalid_id (nitpick& , const html_version& , ids_t& , element* ) { return false; }
-    bool invalid_access (nitpick& , const html_version& , sstr_t* ) { return false; }
-    bool has_id () const { return ! id_.empty (); }
-    bool empty () const { return status_ == s_empty; }
-    bool good () const { return status_ == s_good; }
-    bool bad () const { return ! good (); }
-    bool invalid () const { return status_ == s_invalid; }
-    void verify_id (element& ) { }
-    e_status status () const { return status_; }
-    void status (const e_status s) { status_ = s; }
-    bool unknown () const { return status_ == s_unset; }
-    ::std::size_t type () const { return 0; }
-    vurl_t get_urls () const { return vurl_t (); }
+    bool invalid_id (nitpick& , const html_version& , ids_t& , element* ) noexcept { return false; }
+    bool invalid_access (nitpick& , const html_version& , sstr_t* ) noexcept { return false; }
+    bool has_id () const noexcept { return ! id_.empty (); }
+    bool empty () const noexcept { return status_ == s_empty; }
+    bool good () const noexcept { return status_ == s_good; }
+    bool bad () const noexcept { return ! good (); }
+    bool invalid () const noexcept { return status_ == s_invalid; }
+    void verify_id (element& ) noexcept { }
+    e_status status () const noexcept { return status_; }
+    void status (const e_status s) noexcept { status_ = s; }
+    bool unknown () const noexcept { return status_ == s_unset; }
+    ::std::size_t type () const noexcept { return 0; }
+    vurl_t get_urls () const noexcept { return vurl_t (); }
     static VALUE_TYPE default_value () { GRACEFUL_CRASH (__FILE__, __LINE__); return VALUE_TYPE (); }
     VALUE_TYPE get () const { return default_value (); }
-    int get_int () const { return 0; }
+    int get_int () const noexcept { return 0; }
     bool has_value (const VALUE_TYPE ) const { return false; }
-    ::std::size_t size () const { return 1; }
-    void shadow (::std::stringstream& , const html_version& , element* ) { }
-    element* box () NOEXCEPT { return box_; }
-    element* box () const NOEXCEPT { return box_; }
-    void box (element* b) NOEXCEPT { box_ = b; }
+    ::std::size_t size () const noexcept { return 1; }
+    void shadow (::std::stringstream& , const html_version& , element* ) noexcept { }
+    element* box () noexcept { return box_; }
+    element* box () const noexcept { return box_; }
+    void box (element* b) noexcept { box_ = b; }
     ::std::string report () const
     {   ::std::string s;
         if (status_ == s_invalid) s = "x";

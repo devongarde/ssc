@@ -1019,7 +1019,7 @@ void metaname_init (nitpick& nits)
 {   type_master < t_metaname > :: init (nits, metaname_symbol_table, sizeof (metaname_symbol_table) / sizeof (symbol_entry < html_version, e_metaname >)); }
 
 void validate_metaname_content (nitpick& nits, const html_version& v, const bool in_head, const e_metaname mn, const ::std::string& content, page& p)
-{   bool stats = in_head && context.meta ();
+{   const bool stats = in_head && context.meta ();
     switch (mn)
     {   case mn_keywords :
             if (stats)

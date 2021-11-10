@@ -48,10 +48,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DEFAULT_SCHEMA_ORG_MINOR 0
 #define DEFAULT_SCHEMA_ORG_VERSION "13"
 
-const unsigned char schema_major_max = DEFAULT_SCHEMA_ORG_MAJOR;
+constexpr unsigned char schema_major_max = DEFAULT_SCHEMA_ORG_MAJOR;
 class html_version;
 
-bool is_valid_schema_version (const e_schema root, const unsigned char mjr, const unsigned char mnr);
+bool is_valid_schema_version (const e_schema root, const unsigned char mjr, const unsigned char mnr) noexcept;
 
 struct schema_version : public version
 {   schema_version () = default;
@@ -62,31 +62,25 @@ struct schema_version : public version
         :   version (mjr, mnr, (static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
     {   PRESUME (! invalid (), __FILE__, __LINE__); }
     schema_version (const schema_version& ) = default;
-    schema_version (const html_version& v);
-#ifndef NO_MOVE_CONSTRUCTOR
+    schema_version (const html_version& v) noexcept;
 	schema_version (schema_version&& ) = default;
-#endif // VS
 	~schema_version () = default;
     schema_version& operator = (const schema_version& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	schema_version& operator = (schema_version&&) = default;
-#endif // VS
     static void init ();
-    void reset ()
+    void reset () noexcept
     {   schema_version v; swap (v); }
-    void reset (const schema_version& v)
+    void reset (const schema_version& v) noexcept
     {   schema_version vv (v); swap (vv); }
-    bool unknown () const { return (mjr () == 0) && (mnr () == 0); }
-    bool known () const { return ! unknown (); }
-    bool deprecated () const { return ((flags () & SV_DEPRECATED) == SV_DEPRECATED); }
-    bool is_not (const unsigned char mj, const unsigned char mn = 0xFF) const
+    bool deprecated () const noexcept { return ((flags () & SV_DEPRECATED) == SV_DEPRECATED); }
+    bool is_not (const unsigned char mj, const unsigned char mn = 0xFF) const noexcept
     {   if (unknown ()) return false;
         if (mj != mjr ()) return true;
         return ((mn != 0xFF) && (mn != mnr ())); }
-    bool is_not (const schema_version& v) const
+    bool is_not (const schema_version& v) const noexcept
     {   return is_not (v.mjr (), v.mnr ()); }
-    bool invalid () const { return ! is_valid_schema_version (root (), mjr (), mnr ()); }
-    e_schema root () const
+    bool invalid () const noexcept { return ! is_valid_schema_version (root (), mjr (), mnr ()); }
+    e_schema root () const noexcept
     {   return static_cast < e_schema > (flags () >> SV_ROOT_SHIFT); }
     ::std::string report () const; };
 
@@ -263,7 +257,7 @@ const schema_version xsd_1_0 (s_xsd, 1, 0);
 const schema_version xsd_1_1 (s_xsd, 1, 1);
 
 bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, const schema_version& rhs_from, const schema_version& rhs_to);
-bool does_schema_apply (const schema_version& v, const schema_version& from, const schema_version& to);
+bool does_schema_apply (const schema_version& v, const schema_version& from, const schema_version& to) MSVC_NOEXCEPT;
 
-template < > inline bool does_apply < schema_version > (const schema_version& v, const schema_version& from, const schema_version& to)
+template < > inline bool does_apply < schema_version > (const schema_version& v, const schema_version& from, const schema_version& to) MSVC_NOEXCEPT
 {   return does_schema_apply (v, from, to); }

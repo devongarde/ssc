@@ -68,7 +68,8 @@ void element::examine_table ()
                     if ((w3_minor_5 (node_.version ()) == 0) && (tor < to_tr)) tor = to_foot_start;
                     else tor = to_foot_end;
                     footed = true;
-                    break; }
+                    break;
+                default : break; }
         if (ooo)
             if (w3_minor_5 (node_.version ()) == 0)
                 pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "<TABLE> children in wrong order (<CAPTION>, <COLGROUP>s, <THEAD>, <TFOOT>, <TR>s or <TBODY>s, <TFOOT>, with only one <TFOOT>)");
@@ -90,7 +91,7 @@ void element::examine_textarea ()
     int max = 0, min = 1;
     if (a_.good (a_maxlength)) max = a_.get_int (a_maxlength);
     if (a_.good (a_minlength)) min = a_.get_int (a_minlength);
-    int len = static_cast < int > (text ().length ());
+    int len = ::gsl::narrow_cast < int > (text ().length ());
     if ((max > 0) && (min > max)) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_error, ec_element, "<TEXTAREA> MINLENGTH is greater than MAXLENGTH");
     if (len > 0)
     {   if (len < min) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_warning, ec_element, "<TEXTAREA> content is short than MINLENGTH");
@@ -98,7 +99,7 @@ void element::examine_textarea ()
 
 void element::examine_th ()
 {   if (node_.version ().mjr () < 5) return;
-    bool is3 = (w3_minor_5 (node_.version ()) == 3);
+    const bool is3 = (w3_minor_5 (node_.version ()) == 3);
     element_bitset bs (descendant_elements_);
     if (is3) bs &= sectioning_bitset | header_bitset | elem_header | elem_footer | elem_main;
     else bs &= sectioning_bitset | header_bitset | elem_header | elem_footer;
@@ -129,15 +130,15 @@ void element::examine_title ()
     page_.title (ttl);
     if (is_whitespace (ttl))
         pick (nit_text_content, es_warning, ec_element, "<TITLE> text should be more than whitespace");
-    else if (ttl.length () > static_cast < unsigned int > (context.title ()))
+    else if (ttl.length () > ::gsl::narrow_cast < unsigned int > (context.title ()))
         pick (nit_long_title, ed_tags, "TITLE section", es_warning, ec_element, "the TITLE text (", quote (ttl.substr (0, context.title ())), "...) is too long");
     page_.confirm_title (); }
 
 void element::examine_track ()
 {   if (node_.version ().is_5 ())
-    {   bool has_src = a_.known (a_src);
+    {   const bool has_src = a_.known (a_src);
         const vurl_t& vu = a_.get_urls (a_src);
-        e_kind k = static_cast < e_kind > (a_.get_int (a_kind));
+        const e_kind k = static_cast < e_kind > (a_.get_int (a_kind));
         if (a_.known (a_kind))
         {   if ((k == k_subtitles) && ! a_.known (a_srclang))
                 pick (nit_data_type, ed_50, "4.7.9 The track element", es_error, ec_element, "<TRACK> with KIND=subtitles requires SRCLANG");

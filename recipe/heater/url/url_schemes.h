@@ -40,7 +40,7 @@ template < e_scheme SCHEME, e_scheme... S > struct url_schemes : url_schemes < S
 
 template < e_scheme SCHEME > struct url_schemes < SCHEME >
 {   static bool similar (const e_scheme scheme, const vc_t& lhs, const vc_t& rhs)
-    {   if (lhs [es_scheme] != rhs [es_scheme]) return false;
+    {   if (lhs.at (es_scheme) != rhs.at (es_scheme)) return false;
         return equivalent (scheme, lhs, rhs); }
     static bool equivalent (const e_scheme scheme, const vc_t& lhs, const vc_t& rhs)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: equivalent (lhs, rhs);

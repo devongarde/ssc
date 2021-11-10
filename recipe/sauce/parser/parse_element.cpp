@@ -51,10 +51,10 @@ element_node::element_node (elements_node* box)
     : box_ (box)
 {   VERIFY_NOT_NULL (box_, __FILE__, __LINE__); }
 
-element_node::~element_node ()
-{
-    // When omitted, some versions of VC++ 19 seem to have a spot of bother
-}
+//element_node::~element_node ()
+//{
+//    // When omitted, some versions of VC++ 19 seem to have a spot of bother
+//}
 
 void element_node::reset ()
 {   element_node en (box_);
@@ -65,7 +65,7 @@ void element_node::reset (const element_node& en)
     swap (tmp);
     va_.box (this); }
 
-void element_node::swap (element_node& en) NOEXCEPT
+void element_node::swap (element_node& en) noexcept
 {   ::std::swap (parent_, en.parent_);
     ::std::swap (child_, en.child_);
     ::std::swap (last_, en.last_);
@@ -94,12 +94,13 @@ void element_node::swap (element_node& en) NOEXCEPT
 void element_node::manage_reversioner ()
 {   switch (tag ())
     {   case elem_svg :
-            {   e_svg_version e = va_.get_svg (version_);
+            {   const e_svg_version e = va_.get_svg (version_);
                 if (e != sv_none) version_.svg_version (e); }
             break;
         case elem_math :
-            {   e_math_version m = va_.get_math (version_);
+            {   const e_math_version m = va_.get_math (version_);
                 if (m != math_none) version_.math_version (m); }
+            break;
         default : break; } }
 
 void element_node::parse_attributes (const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e)

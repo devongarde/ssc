@@ -48,7 +48,7 @@ void element::examine_label ()
                 pick (nit_bad_for, ed_50, "4.10.4 The label element", es_error, ec_attribute, "FOR on <LABEL> may only have one ID");
             ::std::string s (a_.get_string (a_for));
             if (get_ids ().has_id (s)) // if not WTF
-            {   e_element e (get_ids ().get_tag (s));
+            {   const e_element e (get_ids ().get_tag (s));
                 if (! label_bitset.test (e))
                     pick (nit_bad_for, ed_50, "4.10.4 The label element", es_error, ec_attribute, "FOR on <LABEL> must reference a <BUTTON>, <FIELDSET>, <INPUT>, <OBJECT>, <OUTPUT>, <SELECT>, or a <TEXTAREA>");
                 uid = get_ids ().get_uid (s); } }
@@ -96,17 +96,17 @@ void element::examine_li ()
 
 void element::examine_link ()
 {   if (node_.version ().mjr () < 4) return;
-    bool tis5 = node_.version ().is_5 ();
-    bool has_rel = a_.known (a_rel);
-    bool has_property = a_.known (a_property) && context.rdfa ();
-    bool has_itemprop = a_.known (a_itemprop);
-    bool has_imagesrcset = a_.known (a_imagesrcset);
-    bool has_imagesizes = a_.known (a_imagesizes);
-    bool has_type = a_.known (a_type);
-    bool href = a_.known (a_href);
+    const bool tis5 = node_.version ().is_5 ();
+    const bool has_rel = a_.known (a_rel);
+    const bool has_property = a_.known (a_property) && context.rdfa ();
+    const bool has_itemprop = a_.known (a_itemprop);
+    const bool has_imagesrcset = a_.known (a_imagesrcset);
+    const bool has_imagesizes = a_.known (a_imagesizes);
+    const bool has_type = a_.known (a_type);
+    const bool href = a_.known (a_href);
     bool icon = false, preload = false, modulepreload = false, maskicon = false, serviceworker = false, stylesheet = false, external = has_imagesrcset, as_image = false;
     VERIFY_NOT_NULL (parent_, __FILE__, __LINE__);
-    e_element mummy = parent_ -> tag ();
+    const e_element mummy = parent_ -> tag ();
     if (href && has_type) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_href), false);
     if (tis5)
     {   if (node_.version () <= html_jul07)
@@ -156,7 +156,7 @@ void element::examine_link ()
         {   rel r (node_.nits (), node_.version (), s);
             if (r.invalid ()) continue;
             if (tis5 && (r.get () != r_curie))
-            {   html_version from (r.first ());
+            {   const html_version from (r.first ());
                 if (! may_apply (node_.version (), from, r.last ()))
                 {   if (from.is_mf ()) pick (nit_link_rel_off, es_comment, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report ());
                     else pick (nit_link_rel_off, es_info, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report ());

@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 template < e_type TYPE, class SZ > struct one_value : public type_base < mono, TYPE >
 {   using type_base < mono, TYPE > :: type_base;
-    static e_animation_type animation_type () { return at_other; }
+    static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const
     {   if (! type_base < mono, TYPE > :: unknown ()) return SZ::sz (); return ::std::string (); }
     void shadow (::std::stringstream& ss, const html_version& , element* )

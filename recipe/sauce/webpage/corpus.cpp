@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ::boost::filesystem::path corpus_file;
 ::boost::filesystem::ofstream dump;
 
-bool has_corpus ()
+bool has_corpus () noexcept
 {   return ! corpus_file.empty (); }
 
 void open_corpus (nitpick& nits, const ::boost::filesystem::path& fn)

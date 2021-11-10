@@ -26,7 +26,7 @@ const e_rel first_mf1_rel = r_entry_category;
 const e_rel last_mf1_rel = r_tag;
 const e_rel first_mf2_rel = r_acquaintance;
 const e_rel last_mf2_rel = r_accessibility;
-const ::std::size_t rel_size = static_cast < ::std::size_t > (r_illegal + 1);
+constexpr ::std::size_t rel_size = static_cast < ::std::size_t > (r_illegal + 1);
 
 void check_rel_spelling (nitpick& nits, const html_version& v, const ::std::string& original);
 
@@ -55,7 +55,7 @@ template < > inline void enum_vec < t_rel, e_rel > :: set_value (nitpick& nits, 
     else if (res) enum_vec < t_rel, e_rel > :: status (s_good);
     else enum_vec < t_rel, e_rel > :: status (s_invalid); }
 
-template < > inline bool type_base < e_rel, t_rel > :: is_relational ()
+template < > inline bool type_base < e_rel, t_rel > :: is_relational () noexcept
 { return true; }
 
 struct rel : enum_n < t_rel, e_rel >
@@ -68,25 +68,25 @@ struct rel : enum_n < t_rel, e_rel >
             enum_n < t_rel, e_rel > :: original_ = s;
             enum_n < t_rel, e_rel > :: set (r_curie); }
         else enum_n < t_rel, e_rel > :: set_value (nits, v, s); }
-    explicit rel (element* box) : enum_n < t_rel, e_rel > (box) { }
+    explicit rel (element* box) noexcept : enum_n < t_rel, e_rel > (box) { }
+    rel (const rel& r) = default;
+    rel (rel&& r) = default;
     ~rel () = default;
     rel& operator = (const rel& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     rel& operator = (rel&& ) = default;
-#endif
-    static bool is_microformat (const e_rel value)
+    constexpr static bool is_microformat (const e_rel value) noexcept
     {   return value >= first_mf1_rel && value <= last_mf2_rel; }
-    static bool is_microformat_vocabulary (const e_rel )
+    constexpr static bool is_microformat_vocabulary (const e_rel ) noexcept
     {   return false; }
-    static bool is_microformat_property (const e_rel value)
+    constexpr static bool is_microformat_property (const e_rel value) noexcept
     {   return is_microformat (value); }
-    static bool is_microformat_v1 (const e_rel value)
+    constexpr static bool is_microformat_v1 (const e_rel value) noexcept
     {   return (value >= first_mf1_rel && value <= last_mf1_rel); }
-    static bool is_microformat_v2 (const e_rel value)
+    constexpr static bool is_microformat_v2 (const e_rel value) noexcept
     {   return (value >= first_mf2_rel && value <= last_mf2_rel); }
-    CONSTEXPR static bool is_rel () { return true; }
-    bool is_microformat () const { return good () && is_microformat (enum_base < e_rel, t_rel > :: value_); }
-    bool is_microformat_property () const { return is_microformat_property (enum_base < e_rel, t_rel > :: value_); }
-    bool is_microformat_vocabulary () const { return is_microformat_vocabulary (enum_base < e_rel, t_rel > :: value_); }
-    bool is_microformat_v1 () const { return good () && is_microformat_v1 (enum_base < e_rel, t_rel > :: value_ ); }
-    bool is_microformat_v2 () const { return good () && is_microformat_v2 (enum_base < e_rel, t_rel > :: value_); } };
+    constexpr static bool is_rel () { return true; }
+    bool is_microformat () const noexcept { return good () && is_microformat (enum_base < e_rel, t_rel > :: value_); }
+    bool is_microformat_property () const noexcept { return is_microformat_property (enum_base < e_rel, t_rel > :: value_); }
+    bool is_microformat_vocabulary () const noexcept { return is_microformat_vocabulary (enum_base < e_rel, t_rel > :: value_); }
+    bool is_microformat_v1 () const noexcept { return good () && is_microformat_v1 (enum_base < e_rel, t_rel > :: value_ ); }
+    bool is_microformat_v2 () const noexcept { return good () && is_microformat_v2 (enum_base < e_rel, t_rel > :: value_); } };

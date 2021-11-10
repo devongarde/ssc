@@ -1168,6 +1168,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "class-count", nm_class_count },
     { { HTML_TAGS }, { HTML_UNDEF }, "class-int", nm_class_int },
     { { HTML_TAGS }, { HTML_UNDEF }, "class-name", nm_class_name },
+    { { HTML_TAGS }, { HTML_UNDEF }, "compile-time", nm_compile_time },
     { { HTML_TAGS }, { HTML_UNDEF }, "config", nm_config },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-article", nm_context_article },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-body", nm_context_body },
@@ -1263,6 +1264,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "nit-before", nm_nit_before },
     { { HTML_TAGS }, { HTML_UNDEF }, "nit-code", nm_nit_code },
     { { HTML_TAGS }, { HTML_UNDEF }, "nit-doc", nm_nit_doc },
+    { { HTML_TAGS }, { HTML_UNDEF }, "nit-long", nm_nit_doc_long },
     { { HTML_TAGS }, { HTML_UNDEF }, "nit-explanation", nm_nit_explanation },
     { { HTML_TAGS }, { HTML_UNDEF }, "nit-id", nm_nit_id },
     { { HTML_TAGS }, { HTML_UNDEF }, "nit-line", nm_nit_line },
@@ -2014,7 +2016,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (writingmode);
     INIT_ENUM (xmlns); }
 
-e_namespace map_xmlns_to_namespace (const e_xmlns x)
+e_namespace map_xmlns_to_namespace (const e_xmlns x) noexcept
 {   switch (x)
     {   case x_bibo : return ns_bibo;
         case x_cc : return ns_cc;

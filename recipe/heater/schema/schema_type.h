@@ -35,20 +35,35 @@ typedef ::std::vector < e_schema_type > vsch_t;
 struct sch : symbol < schema_version, e_schema_type, e_schema, s_schema >
 {   static e_schema_type parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root = s_schema);
     static void init (nitpick& nits);
-    bool unknown () const
+    bool unknown () const noexcept
     {   return (symbol < schema_version, e_schema_type, e_schema, s_schema > :: unknown ()) ||
         (symbol < schema_version, e_schema_type, e_schema, s_schema > :: get () == sty_illegal); }
     sch () {}
     sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root = s_schema);
-    bool enumerated () const;
-    bool has_simple_type () const;
-    bool external_enumerated () const;
-    e_schema root () const;
+    bool enumerated () const noexcept;
+    bool has_simple_type () const noexcept;
+    bool external_enumerated () const noexcept;
+    e_schema root () const noexcept;
     static e_schema root (const e_schema_type st);
-    e_type get_simple_type () const; };
+    e_type get_simple_type () const noexcept; };
 
-bool enumerated_schema_type (const flags_t flags);
-bool has_simple_schema_type (const flags_t flags);
-bool external_enumerated_schema_type (const flags_t flags);
-e_type get_simple_schema_type (const flags_t flags);
-bool is_itemid_ok (const flags_t flags);
+//bool enumerated_schema_type (const flags_t flags) noexcept;
+//bool has_simple_schema_type (const flags_t flags) noexcept;
+//bool external_enumerated_schema_type (const flags_t flags) noexcept;
+//e_type get_simple_schema_type (const flags_t flags) noexcept;
+//bool is_itemid_ok (const flags_t flags) noexcept;
+
+constexpr inline bool enumerated_schema_type (const flags_t flags) noexcept
+{ return (flags & SF_ENUMERATION) == SF_ENUMERATION; }
+
+constexpr inline bool has_simple_schema_type (const flags_t flags) noexcept
+{ return (flags & SF_SIMPLE_MASK) != 0; }
+
+constexpr inline bool external_enumerated_schema_type (const flags_t flags) noexcept
+{ return (flags & SF_EXTERNAL_ENUMERATION) == SF_EXTERNAL_ENUMERATION; }
+
+constexpr inline e_type get_simple_schema_type (const flags_t flags) noexcept
+{ return static_cast < e_type > (flags & SF_SIMPLE_MASK); }
+
+constexpr inline bool is_itemid_ok (const flags_t flags) noexcept
+{ return (flags & SF_NO_ITEMID) == 0; }

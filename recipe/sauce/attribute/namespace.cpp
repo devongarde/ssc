@@ -35,12 +35,13 @@ ns_id examine_namespace (nitpick& nits, const html_version& v, const namespaces_
         if (! n.empty ())
         {   s = ss;
             if (compare_complain (nits, v, n, XMLNS)) return ns_xmlns;
-            e_namespace standard_name = namespace_names.find (v, NAMESPACE_NAME, n, ! v.xhtml ());
+            const e_namespace standard_name = namespace_names.find (v, NAMESPACE_NAME, n, ! v.xhtml ());
             if ((standard_name != ns_error) && (standard_name != ns_default))
                 if ((namespace_names.flags (standard_name) & NS_PREDECLARED) == NS_PREDECLARED)
                     return standard_name;
-            if (namespaces.get () != nullptr)
-            {   ident_t id = namespaces -> find_shortform (v, namespace_names, n, false);
+            if (namespaces)
+//            if (namespaces.get () != nullptr)
+            {   const ident_t id = namespaces -> find_shortform (v, namespace_names, n, false);
                 if ((id != ns_error) && (id != ns_default)) return static_cast < ns_id > (id); }
             nits.pick (nit_bad_namespace, es_error, ec_namespace, quote (n), " has not been declared (using XMLNS)");
             return ns_error; } }
@@ -70,15 +71,15 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
     {   id = namespaces -> find_shortform (v, namespace_names, lc_name, false);
         standard_name = namespace_names.find (v, NAMESPACE_NAME, lc_name, ! v.xhtml ());
         if ((id == 0) && (standard_name != ns_error) && (standard_name != ns_default))
-        {   flags_t flags = namespace_names.flags (standard_name);
+        {   const flags_t flags = namespace_names.flags (standard_name);
             if ((flags & NS_PREDECLARED) == NS_PREDECLARED) id = standard_name; }
         if (vrai)
-        {   e_protocol prot = protocol_names.find (v, 0, xmlns, true);
+        {   const e_protocol prot = protocol_names.find (v, 0, xmlns, true);
             if ((prot != pr_error) && (prot != pr_other))
                 nits.pick (nit_namespace_confusion, es_info, ec_namespace,  "it is potentially confusing that ", quote (xmlns), ", the name of a standard internet protocol (",
                                                                             protocol_names.get (prot, PROTOCOL_DESCRIPTION), " protocol), is used as an XMLNS namespace"); } }
-    ident_t lf = namespaces -> find_longform (v, namespace_names, lc_schema, false);
-    e_namespace standard_schema = namespace_names.find (v, NAMESPACE_SCHEMA, lc_schema, ! v.xhtml ());
+    const ident_t lf = namespaces -> find_longform (v, namespace_names, lc_schema, false);
+    const e_namespace standard_schema = namespace_names.find (v, NAMESPACE_SCHEMA, lc_schema, ! v.xhtml ());
     if (vrai)
     {   if ((id != 0) || (lf != 0))
             if (lf == id) nits.pick (nit_duplicate_namespace, es_comment, ec_namespace, quote (xmlns), " has already been specified");
@@ -87,9 +88,9 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
                 if (lf != 0)
                 {   ::std::string osf = namespaces -> shortform (namespace_names, lf);
                     if (! osf.empty ())
-                    {   ident_t osf_id = namespaces -> find_shortform (v, namespace_names, osf, false);
+                    {   const ident_t osf_id = namespaces -> find_shortform (v, namespace_names, osf, false);
                         if ((osf_id != ns_default) && (osf_id != ns_error))
-                        {   flags_t flags = namespace_names.flags (static_cast < e_namespace > (osf_id));
+                        {   const flags_t flags = namespace_names.flags (static_cast < e_namespace > (osf_id));
                             if ((flags & NS_PREDECLARED) == 0)
                                 nits.pick (nit_namespace_confusion, es_warning, ec_namespace, quote (schema), " was previously specified with ", quote (osf));
                             else nits.pick (nit_namespace_confusion, es_info, ec_namespace, quote (schema), " is specified with ", quote (osf), " by default"); } } } }
@@ -117,6 +118,6 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
             break;
         default :
             break; }
-    ident_t ns_id = namespaces -> declare (v, namespace_names, lc_name, lc_schema);
+    const ident_t ns_id = namespaces -> declare (v, namespace_names, lc_name, lc_schema);
     if (ns_id == ns_error) return s_invalid;
     return s_good; }
