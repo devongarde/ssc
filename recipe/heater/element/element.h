@@ -58,8 +58,8 @@ class element
     itemscope_ptr itemscope_;
     vit_t vit_;
     sstr_t results_;
-    nitpick& nits () { return node_.nits (); }
-    nitpick& nits () const { return node_.nits (); }
+    nitpick& nits () noexcept { return node_.nits (); }
+    nitpick& nits () const noexcept { return node_.nits (); }
     found_farm find_farm (const e_property prop, element* starter = nullptr);
     void seek_webmention (::std::string& mention, e_wm_status& wms);
     bool to_sibling (element_ptr& e, const bool canreconstruct = true);
@@ -78,7 +78,7 @@ class element
     void congeal_dynamism ();
     bool has_this_child (const e_element e) const;
     bool has_this_descendant (const e_element e) const;
-    void remove_category (const flags_t c);
+    void remove_category (const flags_t c) noexcept;
     void check_ancestors (const e_element self, const element_bitset& gf);
     void check_descendants (const e_element self, const element_bitset& gf, const bool absent = true);
     void check_inclusion_criteria ();
@@ -139,9 +139,9 @@ class element
     void examine_href ();
     void examine_headers ();
     itemscope_ptr examine_itemscope (itemscope_ptr& itemscope);
-    void examine_itemprop (itemscope_ptr& itemscope);
-    void examine_itemref (itemscope_ptr& itemscope);
-    void examine_itemtype (itemscope_ptr& itemscope);
+    void examine_itemprop (const itemscope_ptr& itemscope);
+    void examine_itemref (const itemscope_ptr& itemscope);
+    void examine_itemtype (const itemscope_ptr& itemscope);
     void examine_keysplines ();
     void examine_keytimes ();
     void examine_line_increment ();
@@ -251,27 +251,31 @@ class element
     void examine_track ();
     void examine_video ();
 public:
-    element () = delete;
+//    element () = default;
+//    element (const element& ) = default;
+//    element (element&& ) = default;
     element (const ::std::string& name, element_node& en, element* parent, page& p);
-    ~element () = default;
-    void swap (element& e) NOEXCEPT;
+//    ~element () = default;
+//    element& operator = (const element& ) = default;
+//    element& operator = (element&& ) = default;
+    void swap (element& e) noexcept;
 
     void reconstruct (sstr_t* access);
-    const element_node& node () const
+    const element_node& node () const noexcept
     {   return node_; }
     const ::std::string name () const { return name_; }
-    bool has_child () const
+    bool has_child () const noexcept
     {   return node_.has_child (); }
-    bool has_next () const
+    bool has_next () const noexcept
     {   return node_.has_next (); }
     ::std::string content () const;
     element_ptr child (const bool canreconstruct = true);
     element_ptr next (const bool canreconstruct = true);
-    e_element tag () const
+    e_element tag () const noexcept
     {   return node_.tag (); }
-    bool invalid () const
+    bool invalid () const noexcept
     {   return node_.invalid (); }
-    bool is_top () const
+    bool is_top () const noexcept
     {   return parent_ == nullptr; }
     bool hidden () const
     {   if (own_attributes_.test (a_hidden)) return true;
@@ -288,17 +292,17 @@ public:
     ::std::string find_html_value () const;
     ::std::string find_webmention ();
     ::std::string find_mention_info (const url& u, bool text, bool anything);
-    ids_t& get_ids ();
-    const ids_t& get_ids () const;
-    ids_t& get_names ();
-    const ids_t& get_names () const;
+    ids_t& get_ids () noexcept;
+    const ids_t& get_ids () const noexcept;
+    ids_t& get_names () noexcept;
+    const ids_t& get_names () const noexcept;
     element* parent () const
     {   PRESUME (! is_top (), __FILE__, __LINE__);
         return parent_; }
-    bool reportable () const
+    bool reportable () const noexcept
     {   return ((tag () != elem_undefined) || context.tell (e_splurge) || (child_ != nullptr)); }
 #if VS >= 17
-    void pick (const e_nit code, const e_doc doc, char* const ref, const e_severity severity, const e_category category, char* const msg)
+    void pick (const e_nit code, const e_doc doc, const char* const ref, const e_severity severity, const e_category category, char* const msg)
     {   node_.pick (code, doc, ref, severity, category, msg); }
     void pick (const e_nit code, const e_severity severity, const e_category category, const char* msg)
     {   node_.pick (code, severity, category, msg); }
@@ -316,24 +320,24 @@ public:
     bool has_result (const ::std::string& s) const
     {   PRESUME (! s.empty (), __FILE__, __LINE__);
         return (results_.find (s) != results_.cend ()); }
-    int line () const;
-    uid_t uid () const { return uid_; }
+    int line () const noexcept;
+    uid_t uid () const noexcept { return uid_; }
     bool family_uids (const e_element e, uid_t& from, uid_t& to) const;
     e_inputtype5 get_input_type () const;
-    itemscope_ptr itemscope () const { return itemscope_; }
+    itemscope_ptr itemscope () const noexcept { return itemscope_; }
     vit_t own_itemtype () const;
-    const attribute_bitset& own_attributes () const { return own_attributes_; }
-    attribute_bitset& own_attributes () { return own_attributes_; }
+    const attribute_bitset& own_attributes () const noexcept { return own_attributes_; }
+    attribute_bitset& own_attributes () noexcept { return own_attributes_; }
     void shadow (::std::stringstream& ss, const html_version& v);
-    const page& get_page () const { return page_; }
-    page& get_page () { return page_; }
+    const page& get_page () const noexcept { return page_; }
+    page& get_page () noexcept { return page_; }
     bool has_glyph (const ::std::string& s) const;
     void add_glyph (const ::std::string& s);
-    e_sought_category link_category_sought () const { return node_.id ().link_category_sought (); }
+    e_sought_category link_category_sought () const noexcept { return node_.id ().link_category_sought (); }
     bool fits_link_category (const html_version& v, const e_sought_category cat) const
     {   return node_.id ().fits_link_category (v, cat); }
-    const element_bitset& ancestral_elements () const { return ancestral_elements_; }
-    const attribute_bitset& ancestral_attributes () const { return ancestral_attributes_; }
+    const element_bitset& ancestral_elements () const noexcept { return ancestral_elements_; }
+    const attribute_bitset& ancestral_attributes () const noexcept { return ancestral_attributes_; }
     const vit_t vit () const { return vit_; }
     ns_id verify_namespace (::std::string& s, ::std::string n);
     ::std::string report (); };

@@ -24,32 +24,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 
 // categories
-const int c_generic = 0;
-const int c_html3 = 0x00000001;
-const int c_microformat = 0x00000002;
-const int c_html4 = 0x00000004;
-const int c_xfn = 0x00000008;
-const int c_its = 0x00000010;
-const int c_grddl = 0x00000020;
-const int c_vcs = 0x00000040;
-const int c_atom = 0x00000080;  // RFC 4287
-const int c_amp_html = 0x00000100;
-const int c_safari = 0x00000200;
-const int c_indieauth = 0x00000400;
-const int c_dcterms = 0x00000800;
-const int c_lightbox = 0x00001000;
-const int c_openid = 0x00002000;
-const int c_hcal = 0x00004000;
-const int c_cc = 0x00008000;
-const int c_mf1 = 0x00010000;
-const int c_rejected = 0x10000000;
-const int c_dropped = 0x20000000;
-const int c_draft = 0x40000000;
+constexpr int c_generic = 0;
+constexpr int c_html3 = 0x00000001;
+constexpr int c_microformat = 0x00000002;
+constexpr int c_html4 = 0x00000004;
+constexpr int c_xfn = 0x00000008;
+constexpr int c_its = 0x00000010;
+constexpr int c_grddl = 0x00000020;
+constexpr int c_vcs = 0x00000040;
+constexpr int c_atom = 0x00000080;  // RFC 4287
+constexpr int c_amp_html = 0x00000100;
+constexpr int c_safari = 0x00000200;
+constexpr int c_indieauth = 0x00000400;
+constexpr int c_dcterms = 0x00000800;
+constexpr int c_lightbox = 0x00001000;
+constexpr int c_openid = 0x00002000;
+constexpr int c_hcal = 0x00004000;
+constexpr int c_cc = 0x00008000;
+constexpr int c_mf1 = 0x00010000;
+constexpr int c_rejected = 0x10000000;
+constexpr int c_dropped = 0x20000000;
+constexpr int c_draft = 0x40000000;
 
 // effects on link, a, area
 typedef enum
 {   ela_no, ela_ok, ela_external, ela_hyperlink, ela_popup, c_annotation, ela_external_contextual }
 e_linkaarea;
+
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26440 26433) // For VS2019, at least, the linter and compiler disagree over signatures of noexcept on virtual
+#endif // _MSC_VER
 
 class microformat_base
 {   ::std::string text_;
@@ -58,15 +63,11 @@ protected:
 public:
     microformat_base () : declared_ (false) {}
     microformat_base (const microformat_base&) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     microformat_base (microformat_base&&) = default;
-#endif
     microformat_base& operator = (const microformat_base&) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     microformat_base& operator = (microformat_base&&) = default;
-#endif
     virtual ~microformat_base () = default;
-    explicit microformat_base (bool b) : declared_ (b) {}
+    explicit microformat_base (bool b) noexcept : declared_ (b) {}
 
     virtual bool has () const { return false; }
     virtual void get (void** ) { }
@@ -81,7 +82,7 @@ public:
     virtual ::std::string get_string (const e_property ) { return ::std::string (); }
     virtual bool has_prop (const e_property ) const { return false; }
     virtual void reset () { declared_ = false; }
-    void swap (microformat_base& mf) NOEXCEPT
+    void swap (microformat_base& mf) noexcept
     {   ::std::swap (declared_, mf.declared_); }
     virtual bool invalid () const { return true; }
     virtual bool has_url () const { return false; }
@@ -101,19 +102,15 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
 public:
     microformat () = default;
     microformat (const microformat&) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     microformat (microformat&&) = default;
-#endif
     microformat& operator = (const microformat&) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     microformat& operator = (microformat&&) = default;
-#endif
     virtual ~microformat () = default;
     explicit microformat (bool b) : microformat_base (b) {}
     virtual void reset ();
-    void swap (microformat& mf) NOEXCEPT;
-    CONSTEXPR static typename ENUM :: value_type whoami () { return VOCAB; }
-    CONSTEXPR static typename ENUM :: value_type html_class () { return VOCAB; }
+    void swap (microformat& mf);
+    constexpr static typename ENUM :: value_type whoami () { return VOCAB; }
+    constexpr static typename ENUM :: value_type html_class () { return VOCAB; }
     template < class PROPERTY > bool has () const
     {   return has_property < PROPERTY, PROPERTIES... > (); }
     template < class PROPERTY > void get (PROPERTY** p)
@@ -143,7 +140,6 @@ public:
     virtual bool unknown () const;
     virtual ::std::string report () const; };
 
-
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
     bool microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: has_prop (const e_property p) const  // I can do better here
 {   bool res = false;
@@ -158,7 +154,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
     swap (mf); }
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
-    void microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: swap (microformat& mf) NOEXCEPT
+    void microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: swap (microformat& mf)
 {   ::std::swap (p_, mf.p_);
     microformat_base::swap (mf); }
 
@@ -229,7 +225,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
     ::std::string microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: report () const
 {   if (! context.tell (e_comment)) return ::std::string ();
     ::std::string res (fyi ());
-    bool xtra = context.tell (e_detail);
+    const bool xtra = context.tell (e_detail);
     res += name ();
     if (xtra)
     {   res += " (";
@@ -248,11 +244,11 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
     return res; }
 
 template < class ENUM, typename ENUM :: value_type VOCAB > struct verify_mf
-{   static void hcard (nitpick& , const html_version& , const ::std::string& , fn_at1*, n_at1*, given_name_at1*, family_name_at1*, org_at1*, organisation_name_at1*, nickname_at1*)
+{   static void hcard (nitpick& , const html_version& , const ::std::string& , fn_at1*, n_at1*, given_name_at1*, family_name_at1*, org_at1*, organisation_name_at1*, nickname_at1*) noexcept
     {  } };
 
 template < > struct verify_mf < html_class, h1_card >
-{   static void hcard (nitpick& nits, const html_version& v, const ::std::string& s, fn_at1* fn, n_at1* n, given_name_at1* given_name, family_name_at1* family_name, org_at1* org, organisation_name_at1* organisation_name, nickname_at1* nickname)
+{   static void hcard (nitpick& nits, const html_version& v, const ::std::string& s, fn_at1* fn, n_at1* n, given_name_at1* given_name, family_name_at1* family_name, const org_at1* const org, organisation_name_at1* organisation_name, nickname_at1* nickname)
     {   VERIFY_NOT_NULL (org, __FILE__, __LINE__);
         VERIFY_NOT_NULL (organisation_name, __FILE__, __LINE__);
         if (org -> good () && ! organisation_name -> good ())
@@ -276,21 +272,21 @@ template < > struct verify_mf < html_class, h1_card >
             VERIFY_NOT_NULL (family_name, __FILE__, __LINE__);
             VERIFY_NOT_NULL (given_name, __FILE__, __LINE__);
             if (! n -> good () && (components.size () == 2))
-            {   ::std::string::size_type len = components [0].length ();
-                if (components [0].at (len - 1) == ',')
-                {   family_name -> set_value (nits, v, components [0].substr (0, len - 1));
-                    given_name -> set_value (nits, v, components [1]); }
+            {   const ::std::string::size_type len = ::gsl::at (components, 0).length ();
+                if (::gsl::at (components, 0).at (len - 1) == ',')
+                {   family_name -> set_value (nits, v, ::gsl::at (components, 0).substr (0, len - 1));
+                    given_name -> set_value (nits, v, ::gsl::at (components, 1)); }
                 else
-                {   family_name -> set_value (nits, v, components [1]);
-                    given_name -> set_value (nits, v, components [0]); }
+                {   family_name -> set_value (nits, v, ::gsl::at (components, 1));
+                    given_name -> set_value (nits, v, ::gsl::at (components, 0)); }
                 ::std::string naam = given_name -> get_string () + " " + family_name -> get_string ();
                 n -> set_value (nits, v, naam);
                 if (context.tell (e_info)) nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "g/wiki/hCard", es_info, ec_microformat, "hcard n set to ", quote (naam));
                 return; }
             VERIFY_NOT_NULL (nickname, __FILE__, __LINE__);
-            if (! nickname -> good () && (components.size () == 1) && ! components [0].empty ())
-            {   nickname -> set_value (nits, v, components [0]);
-                nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_info, ec_microformat, "hcard nickname set to ", quote (components [0])); } }
+            if (! nickname -> good () && (components.size () == 1) && ! ::gsl::at (components, 0).empty ())
+            {   nickname -> set_value (nits, v, ::gsl::at (components, 0));
+                nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_info, ec_microformat, "hcard nickname set to ", quote (::gsl::at (components, 0))); } }
         if (! n -> good () && ! non)
             if (! s.empty ())
             {   nits.pick (nit_hcard_infer, es_info, ec_microformat, "hcard property n set to ", enquote (s));
@@ -312,3 +308,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
         get < fn_at1 > (), get < n_at1 > (), get < given_name_at1 > (), get < family_name_at1 > (), get < org_at1 > (), get < organisation_name_at1 > (), get < nickname_at1 > ());
     if (unknown ())
         nits.pick (nit_mf_empty, es_warning, ec_microformat, name (), " is empty; no properties were found or deduced"); };
+
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER

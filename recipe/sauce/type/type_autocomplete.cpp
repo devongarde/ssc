@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool set_autocomplete_value (vaco_t& vaco, nitpick& nits, const html_version& v, const ::std::string& s)
 {   vstr_t args (split_by_space (s));
-    ::std::size_t len = args.size ();
+    const ::std::size_t len = args.size ();
     if (len == 0)
     {   nits.pick (nit_empty, ed_52, "4.10.18.7.1. ... the autocomplete attribute", es_error, ec_type, "AUTOCOMPLETE cannot be empty");
         return false; }
@@ -100,7 +100,7 @@ bool invalid_autocomplete (nitpick& nits, const html_version& v, const element* 
             nits.pick (nit_snafu, ed_52, "4.10.18.7.1. ... the autocomplete attribute", es_error, ec_type, "internal error: AUTOCOMPLETE is on the wrong element!");
             GRACEFUL_CRASH (__FILE__, __LINE__);
             return false; }
-    e_inputtype5 i5 = e -> get_input_type ();
+    const e_inputtype5 i5 = e -> get_input_type ();
     bool res = true;
     for (auto aco : vaco)
     {   switch (aco)

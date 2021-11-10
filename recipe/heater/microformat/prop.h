@@ -21,25 +21,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type.h"
 
-const e_property first_class = static_cast < e_property > (c_context);
-const e_property first_rel = first_class + static_cast < e_property > (class_size);
-const e_property last_class = first_rel - 1;
-const e_property first_illegal = first_rel + static_cast < e_property > (rel_size);
-const e_property last_rel = first_illegal - 1;
+constexpr e_property first_class = static_cast < e_property > (c_context);
+constexpr e_property first_rel = first_class + ::gsl::narrow_cast < e_property > (class_size);
+constexpr e_property last_class = first_rel - 1;
+constexpr e_property first_illegal = first_rel + ::gsl::narrow_cast < e_property > (rel_size);
+constexpr e_property last_rel = first_illegal - 1;
 
-inline bool is_vocabulary (const e_property p) { return ((p >= h1_aggregate) && (p <= h_aggregate)); }
-inline bool is_property (const e_property p) { return ((p >= mf1_additional_name) && (p <= u_search)); }
-inline bool is_mf1 (const e_property p) { return ((p >= h1_aggregate) && (p <= h1_xoxo)) || ((p >= h1_aggregate) && (p <= mf1_website)) ; }
-inline bool is_mf2 (const e_property p) { return ((p >= h_adr) && (p <= h_aggregate)) || ((p >= dt_accessed) && (p <= u_search)) ; }
-inline bool is_mf_class (const e_property p) { return (p >= first_class) && (p <= last_class); }
-inline bool is_mf_rel (const e_property p) { return (p >= first_rel) && (p <= last_rel); }
+constexpr inline bool is_vocabulary (const e_property p) noexcept { return ((p >= h1_aggregate) && (p <= h_aggregate)); }
+constexpr inline bool is_property (const e_property p) noexcept { return ((p >= mf1_additional_name) && (p <= u_search)); }
+constexpr inline bool is_mf1 (const e_property p) noexcept { return ((p >= h1_aggregate) && (p <= h1_xoxo)) || ((p >= h1_aggregate) && (p <= mf1_website)) ; }
+constexpr inline bool is_mf2 (const e_property p) noexcept { return ((p >= h_adr) && (p <= h_aggregate)) || ((p >= dt_accessed) && (p <= u_search)) ; }
+constexpr inline bool is_mf_class (const e_property p) noexcept { return (p >= first_class) && (p <= last_class); }
+constexpr inline bool is_mf_rel (const e_property p) noexcept { return (p >= first_rel) && (p <= last_rel); }
 
 class prop  // would probably be better templated
 {   e_property value_ = 0;
     typedef enum { ps_unknown, ps_class, ps_rel, ps_invalid } state_t;
     state_t state_ = ps_unknown;
 
-    void assign (const e_property value)
+    void assign (const e_property value) noexcept
     {   value_ = value;
         if (value_ >= first_class && value <= last_class) state_ = ps_class;
         else if (value_ >= first_rel && value <= last_rel) state_ = ps_rel;
@@ -56,36 +56,32 @@ public:
     typedef e_property value_type;
     prop () = default;
     prop (const prop& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     prop (prop&& ) = default;
-#endif
     ~prop () = default;
     prop& operator = (const prop& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     prop& operator = (prop&& ) = default;
-#endif
     explicit prop (const html_class& c) { reset (c); }
     explicit prop (const rel& r) { reset (r); }
     explicit prop (const e_class c) { reset (c); }
     explicit prop (const e_rel r) { reset (r); }
-    explicit prop (const e_property p) { reset (p); }
+    explicit prop (const e_property p) noexcept { reset (p); }
     explicit prop (nitpick& nits, const html_version& v, const ::std::string& s) { set_value (nits, v, s); }
-    void swap (prop& p) NOEXCEPT
+    void swap (prop& p) noexcept
     {   ::std::swap (value_, p.value_);
         ::std::swap (state_, p.state_); }
-    void reset () { prop p; swap (p); }
-    void reset (const e_property p)
+    void reset () noexcept { prop p; swap (p); }
+    void reset (const e_property p) noexcept
     { prop pp; pp.assign (p); swap (pp); }
     void reset (const html_class& c) { reset (c.get ()); }
     void reset (const rel& r) { reset (r.get ()); }
-    bool unknown () const { return state_ == ps_unknown; }
-    bool invalid () const { return state_ == ps_invalid; }
-    bool is_class () const { return state_ == ps_class; }
-    bool is_rel () const { return state_ == ps_rel; }
-    e_class get_class () const
+    bool unknown () const noexcept { return state_ == ps_unknown; }
+    bool invalid () const noexcept { return state_ == ps_invalid; }
+    bool is_class () const noexcept { return state_ == ps_class; }
+    bool is_rel () const noexcept { return state_ == ps_rel; }
+    e_class get_class () const noexcept
     {   if (is_class ()) return static_cast < e_class > (value_ - first_class);
         return c_error; }
-    e_rel get_rel () const
+    e_rel get_rel () const noexcept
     {   if (is_rel ()) return static_cast < e_rel > (value_ - first_rel);
         return r_illegal; }
     ::std::string get_string () const
@@ -95,8 +91,8 @@ public:
             default: return ::std::string (); } }
     ::std::string name () const { return get_string (); }
     static ::std::string name (const e_property p)
-    {   prop pp (p); return pp.get_string (); }
-    e_property get () const { return value_; }
+    {   const prop pp (p); return pp.get_string (); }
+    e_property get () const noexcept { return value_; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   html_class c (nits, v, s);
         if (c.is_microformat_property ()) reset (c);
@@ -105,11 +101,11 @@ public:
             if (r.is_microformat_property ()) reset (r);
             else reset (); } } };
 
-inline e_class get_property_class (const e_property p)
-{   prop pp (p); return pp.get_class (); }
-inline e_rel get_property_rel (const e_property p)
-{   prop pp (p); return pp.get_rel (); }
+inline e_class get_property_class (const e_property p) noexcept
+{   const prop pp (p); return pp.get_class (); }
+inline e_rel get_property_rel (const e_property p) noexcept
+{   const prop pp (p); return pp.get_rel (); }
 inline e_property get_class_property (const e_class c)
-{   prop pp (c); return pp.get (); }
+{   const prop pp (c); return pp.get (); }
 inline e_property get_rel_property (const e_rel r)
-{   prop pp (r); return pp.get (); }
+{   const prop pp (r); return pp.get (); }

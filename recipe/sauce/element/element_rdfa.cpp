@@ -67,7 +67,7 @@ void element::examine_about ()
 void element::examine_datatype (flags_t& flags)
 {   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
     PRESUME (node_.version () >= xhtml_1_0, __FILE__, __LINE__);
-    bool nowt = a_.empty (a_datatype);
+    const bool nowt = a_.empty (a_datatype);
     if (nowt || a_.good (a_datatype))
     {   node_.prepare_rdfa ();
         rdf_ptr ptr = node_.rdfa ();
@@ -75,7 +75,7 @@ void element::examine_datatype (flags_t& flags)
         if (nowt) flags |= EF_NULL_DATATYPE;
         else
         {   ::std::string dt (tart (a_.get_string (a_datatype)));
-            e_schema_type t = ptr -> note_type (node_.nits (), node_.version (), dt, page_);
+            const e_schema_type t = ptr -> note_type (node_.nits (), node_.version (), dt, page_);
             switch (t)
             {   case rdf_xmlliteral :
                     flags |= EF_XL_DATATYPE;
@@ -110,7 +110,7 @@ void element::examine_property ()
         rdf_ptr ptr = node_.rdfa ();
         VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
         ::std::string value (get_rdfa_value ());
-        bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
+        const bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
         vstr_t props (split_by_space (a_.get_string (a_property)));
         nitpick knots;
         for (auto p : props)
@@ -125,7 +125,7 @@ void element::examine_rdfa_rel (const ::std::string& prop)
         rdf_ptr ptr = node_.rdfa ();
         VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
         ::std::string value (get_rdfa_value ());
-        bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
+        const bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
         vstr_t rels (split_by_space (prop));
         nitpick knots;
         for (auto r : rels)
@@ -140,7 +140,7 @@ void element::examine_rdfa_rev (const ::std::string& prop)
         rdf_ptr ptr = node_.rdfa ();
         VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
         ::std::string value (get_rdfa_value ());
-        bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
+        const bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
         vstr_t revs (split_by_space (prop));
         nitpick knots;
         for (auto r : revs)

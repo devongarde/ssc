@@ -36,16 +36,16 @@ bool url::operator == (const url& rhs) const
 
 void url::init (nitpick& )
 {   standard_text_extensions_.resize (3);
-    standard_text_extensions_ [0] = "html";
-    standard_text_extensions_ [1] = "shtml";
-    standard_text_extensions_ [2] = "htm";
+    ::gsl::at (standard_text_extensions_, 0) = "html";
+    ::gsl::at (standard_text_extensions_, 1) = "shtml";
+    ::gsl::at (standard_text_extensions_, 2) = "htm";
     standard_image_extensions_.resize (4);
-    standard_image_extensions_ [0] = "jpg";
-    standard_image_extensions_ [1] = "jpeg";
-    standard_image_extensions_ [2] = "gif";
-    standard_image_extensions_ [3] = "png"; }
+    ::gsl::at (standard_image_extensions_, 0) = "jpg";
+    ::gsl::at (standard_image_extensions_, 1) = "jpeg";
+    ::gsl::at (standard_image_extensions_, 2) = "gif";
+    ::gsl::at (standard_image_extensions_, 3) = "png"; }
 
-void url::swap (url& u) NOEXCEPT
+void url::swap (url& u) noexcept
 {   ::std::swap (valid_, u.valid_);
     ::std::swap (current_, u.current_);
     v_.swap (u.v_);
@@ -81,7 +81,7 @@ bool url::sanity_test () const
 bool url::standard_extension (const e_mime_category mime) const
 {   ::std::string ext (filename ());
     if (! ext.empty ())
-    {   ::std::string::size_type pos = ext.find ('.');
+    {   const ::std::string::size_type pos = ext.find ('.');
         if ((pos != ::std::string::npos) && (pos < ext.length ()))
         {   ext = ext.substr (0, pos + 1);
             switch (mime)
@@ -114,7 +114,7 @@ void url::verify_id (element& e)
         if (! fragment ().empty ())
         {   bool is_me = ! has_file () && ! has_path ();
             if (! is_me)
-            {   fileindex_t host_ndx = e.get_ids ().ndx ();
+            {   const fileindex_t host_ndx = e.get_ids ().ndx ();
                 ::boost::filesystem::path host_path (get_disk_path (host_ndx));
                 if (! has_path ())
                 {   is_me = (filename () == host_path.filename ().string ());
@@ -125,7 +125,7 @@ void url::verify_id (element& e)
                 else
                 {   ::std::string fp (get_filepath ());
                     if (fp.at (0) == '/')
-                    {   fileindex_t ndx = get_fileindex (fp);
+                    {   const fileindex_t ndx = get_fileindex (fp);
                         is_me = (host_ndx == ndx);
                         if (! is_me)
                             add_sought (host_path, e.get_ids ().data (), get_disk_path (ndx), fragment (), e.ancestral_attributes ().test (a_hidden), e.vit (), e.node ().id ()); } } }
@@ -157,7 +157,7 @@ void url::shadow (::std::stringstream& ss, const html_version& v, element* e)
             const directory* const d = e -> get_page ().get_directory ();
             VERIFY_NOT_NULL (d, __FILE__, __LINE__);
             f = join_and_sanatise_site_paths (d -> get_site_path (), f); }
-        fileindex_t ndx = get_fileindex (f);
+        const fileindex_t ndx = get_fileindex (f);
         if ((ndx != nullfileindex) && isdu (ndx))
         {   url u2 (*this);
             nitpick nits;

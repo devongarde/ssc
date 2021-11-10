@@ -37,24 +37,20 @@ class nitpick
 public:
     nitpick () = default;
     nitpick (const nitpick& np) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	nitpick(nitpick&& np) = default;
-#endif
 	explicit nitpick (const ::std::string& c) : mote_ (c) { }
     explicit nitpick (const int line, const ::std::string& c) : mote_ (c), line_ (line) { }
     explicit nitpick (const int line, const ::std::string& b, const ::std::string& m, const ::std::string& a)
         :   before_ (b), mote_ (m), after_ (a), line_ (line) { }
 	~nitpick() = default;
     nitpick& operator = (const nitpick& np) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	nitpick& operator = (nitpick&& np) = default;
-#endif
     nitpick& operator += (const nitpick& np) { merge (np); return *this; }
     nitpick& operator += (nitpick&& np) { merge (np); return *this; }
     static void modify_severity (const e_nit code, const e_severity s)
     {   mns_.emplace (mns_t::value_type (code, s)); }
     static bool modify_severity (const ::std::string& name, const e_severity s);
-    void swap (nitpick& np) NOEXCEPT;
+    void swap (nitpick& np) noexcept;
     void reset ();
     void reset (const nitpick& np);
     void merge (const nitpick& np);
@@ -76,8 +72,8 @@ public:
     void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to);
     void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
     ::std::string get_context () const { return mote_; }
-    int get_line () const { return line_; }
+    int get_line () const  noexcept{ return line_; }
     ::std::string review (const mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
     ::std::string review (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
     e_severity worst () const;
-    bool empty () const { return nits_.empty (); } };
+    bool empty () const noexcept { return nits_.empty (); } };

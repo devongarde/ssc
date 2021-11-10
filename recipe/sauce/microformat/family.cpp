@@ -25,36 +25,36 @@ struct family
 {   e_class self_;
     e_class parent_;
     e_property prop_;
-    family (const e_class self, const e_class parent, const e_property prop)
+    family (const e_class self, const e_class parent, const e_property prop) noexcept
         : self_ (self), parent_ (parent), prop_ (prop) { } };
 
-inline bool operator == (const family& lhs, const family& rhs)
+bool operator == (const family& lhs, const family& rhs) noexcept
 {   return  (lhs.self_ == rhs.self_) &&
             (lhs.parent_ == rhs.parent_) &&
             (lhs.prop_ == rhs.prop_); };
 
-inline bool operator != (const family& lhs, const family& rhs)
+inline bool operator != (const family& lhs, const family& rhs) noexcept
 {   return ! (lhs == rhs); }
 
-inline bool operator < (const family& lhs, const family& rhs)
+bool operator < (const family& lhs, const family& rhs) noexcept
 {   if (lhs.self_ < rhs.self_) return true;
     if (lhs.self_ > rhs.self_) return false;
     if (lhs.parent_ < rhs.parent_) return true;
     if (lhs.parent_ > rhs.parent_) return false;
     return lhs.prop_ < rhs.prop_; }
 
-inline bool operator <= (const family& lhs, const family& rhs)
+inline bool operator <= (const family& lhs, const family& rhs) noexcept
 {   if (lhs < rhs) return true;
     return (lhs == rhs); }
 
-inline bool operator > (const family& lhs, const family& rhs)
+inline bool operator > (const family& lhs, const family& rhs) noexcept
 {   return ! (lhs <= rhs); }
 
-inline bool operator >= (const family& lhs, const family& rhs)
+inline bool operator >= (const family& lhs, const family& rhs) noexcept
 {   return ! (lhs < rhs); }
 
 template <> struct std::hash <family>
-{   ::std::size_t operator() (const family& f) const
+{   ::std::size_t operator() (const family& f) const noexcept
     {   return ::std::hash <int> () (
                 (static_cast <int> (f.prop_) << 16) +
                 (static_cast <int> (f.parent_) << 8) +
@@ -139,7 +139,14 @@ family_t tree;
 
 void family_init (nitpick& )
 {   for (::std::size_t i = 0; i < sizeof (families) / sizeof (family); ++i)
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26446 26482)
+#endif // _MSC_VER
         tree.insert (families [i]); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
 bool is_plausible_parent (const family& f)
 {   return tree.find (f) != tree.end (); }

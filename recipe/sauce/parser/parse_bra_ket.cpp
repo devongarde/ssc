@@ -98,7 +98,7 @@ bool bra_element_ket::is_silent_content ()
 {   test_specific ();
     return (suspender_ == elem_script) || (suspender_ == elem_style); }
 
-bool bra_element_ket::is_whitespace () const
+bool bra_element_ket::is_whitespace () const noexcept
 {   if (status_ != bk_text) return false;
     for (::std::string::const_iterator i = start_; i < end_; ++i)
         if (! ::std::iswspace (*i)) return false;

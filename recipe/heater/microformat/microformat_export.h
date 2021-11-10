@@ -37,12 +37,12 @@ class microformat_export
     bool initiated_ = false;
 public:
     microformat_export ();
-    void swap (microformat_export& m) NOEXCEPT
+    void swap (microformat_export& m)
     {   tree_.swap (m.tree_);
         rel_.swap (m.rel_);
         url_.swap (m.url_);
         ::std::swap (initiated_, m.initiated_); }
-    bool empty () const { return (! initiated_); }
+    bool empty () const noexcept { return (! initiated_); }
     bool write (nitpick& nits, const ::boost::filesystem::path& name);
     void rel (const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type);
     void item (const ::std::string& wo, const ::std::string& was); };

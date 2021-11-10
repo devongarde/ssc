@@ -40,21 +40,17 @@ struct url_export
         : hreflang_ (hreflang), media_ (media), text_ (text), title_ (title), type_ (type), rels_ (rels) {}
     url_export (const ::std::string& str) { reset (str); }
     url_export (const url_export& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     url_export (url_export&& ) = default;
-#endif
     ~url_export () = default;
     url_export& operator = (const url_export& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     url_export& operator = (url_export&& ) = default;
-#endif
     bool operator == (const url_export& u) const { return rels_ == u.rels_; }
     bool operator != (const url_export& u) const { return rels_ != u.rels_; }
     bool operator < (const url_export& u) const { return rels_ < u.rels_; }
     bool operator > (const url_export& u) const { return rels_ > u.rels_; }
     bool operator <= (const url_export& u) const { return rels_ <= u.rels_; }
     bool operator >= (const url_export& u) const { return rels_ >= u.rels_; }
-    void swap (url_export& u) NOEXCEPT
+    void swap (url_export& u) noexcept
     {   hreflang_.swap (u.hreflang_);
         media_.swap (u.media_);
         text_.swap (u.text_);
@@ -89,7 +85,7 @@ template < class T > class t_export
 public:
     t_export () = delete;
     explicit t_export (const char* ex) : export_ (ex) { }
-    void swap (t_export < T >& e) NOEXCEPT
+    void swap (t_export < T >& e) noexcept
     {   target_.swap (e.target_);
         ::std::swap (export_, e.export_); }
     void insert (const ::std::string& key, const T& data)

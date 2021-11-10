@@ -27,31 +27,31 @@ struct parentage
     e_element parent_;
     e_element child_;
     flags_t flags_, categories_;
-    parentage (const html_version& first, const html_version& last, const e_element parent, const e_element child, const flags_t flags = 0, const flags_t categories = 0)
+    parentage (const html_version& first, const html_version& last, const e_element parent, const e_element child, const flags_t flags = 0, const flags_t categories = 0) noexcept
         : first_ (first), last_ (last), parent_ (parent), child_ (child), flags_ (flags), categories_ (categories) { } };
 
-inline bool operator == (const parentage& lhs, const parentage& rhs)
+inline bool operator == (const parentage& lhs, const parentage& rhs) noexcept
 {   return (lhs.child_ == rhs.child_) && (lhs.parent_ == rhs.parent_) && (lhs.first_ == rhs.first_) && (lhs.last_ == rhs.last_); }
 
-inline bool operator != (const parentage& lhs, const parentage& rhs)
+inline bool operator != (const parentage& lhs, const parentage& rhs) noexcept
 {   return ! (lhs == rhs); }
 
-inline bool operator < (const parentage& lhs, const parentage& rhs)
+inline bool operator < (const parentage& lhs, const parentage& rhs) noexcept
 {   if (lhs.parent_ < rhs.parent_) return true;
     if (lhs.parent_ > rhs.parent_) return false;
     return (lhs.child_ < rhs.child_); }
 
-inline bool operator <= (const parentage& lhs, const parentage& rhs)
+inline bool operator <= (const parentage& lhs, const parentage& rhs) noexcept
 {   if (lhs < rhs) return true;
     return (lhs == rhs); }
 
-inline bool operator > (const parentage& lhs, const parentage& rhs)
+inline bool operator > (const parentage& lhs, const parentage& rhs) noexcept
 {   return ! (lhs <= rhs); }
 
-inline bool operator >= (const parentage& lhs, const parentage& rhs)
+inline bool operator >= (const parentage& lhs, const parentage& rhs) noexcept
 {   return ! (lhs < rhs); }
 
-inline flags_t parent_key (const e_element parent, const e_element child)
+inline flags_t parent_key (const e_element parent, const e_element child) noexcept
 {   return (static_cast <flags_t> (parent) << 32) + static_cast <flags_t> (child); }
 
 parentage parent_table [] =
@@ -1656,10 +1656,21 @@ parentage parent_table [] =
 typedef ::std::multimap < uint64_t, parentage > parentage_t;
 parentage_t parents;
 
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26446 26482)
+// Doing as suggested breaks the compilation, and ::std::array, bless its little cotton socks,
+// can't be length initialised by the initialiser.
+#endif // _MSC_VER
+
 void parentage_init (nitpick& nits)
 {   for (::std::size_t i = 0; (parent_table [i].parent_ != elem_undefined) || (parent_table [i].child_ != elem_undefined); ++i)
     {   if (context.tell (e_splurge)) nits.pick (nit_splurge, es_splurge, ec_element, "parentage: inserting ", parent_table [i].parent_, ", ", parent_table [i].child_);
         parents.emplace (parent_key (parent_table [i].parent_, parent_table [i].child_), parent_table [i]); } }
+
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
 bool is_permitted_parent_child (nitpick& nits, const html_version& v, const elem& self, const e_element seek, const elem& parent)
 {   parentage_t::const_iterator i = parents.find (parent_key (parent.get (), seek));
@@ -1731,7 +1742,7 @@ bool is_permitted_parent (const html_version& v, const elem& self, const elem& p
                 return ((i -> second.flags_ & DENY) == 0);
     return false; }
 
-e_element default_parent (const html_version& v, const elem& self)
+e_element default_parent (const html_version& v, const elem& self) noexcept
 {   if (v.mjr () == 0) return elem_faux_document;
     switch (self.get ())
     {   case elem_html :

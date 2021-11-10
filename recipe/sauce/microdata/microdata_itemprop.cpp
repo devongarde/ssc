@@ -48,7 +48,7 @@ itemprop_indices make_itemprop_indices (const vsp_t& vsp)
 
 itemprop_index make_itemprop_index (const e_property p)
 {   PRESUME (p <= first_illegal, __FILE__, __LINE__);
-    return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_microformat) << uint32_category_shift); }
+    return ::gsl::narrow_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_microformat) << uint32_category_shift); }
 
 itemprop_indices make_itemprop_indices (const e_property p)
 {   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
@@ -56,8 +56,8 @@ itemprop_indices make_itemprop_indices (const e_property p)
     res.emplace_back (make_itemprop_index (p));
     return res; }
 
-e_itemprop_category prop_category (const itemprop_index ii)
-{   return static_cast < e_itemprop_category> (static_cast < uint32_t > (ii) >> uint32_category_shift); }
+//constexpr e_itemprop_category prop_category (const itemprop_index ii)
+//{   return static_cast < e_itemprop_category> (static_cast < uint32_t > (ii) >> uint32_category_shift); }
 
 ::std::string bespoke_itemprop_name (const itemprop_index ii)
 {   mii_t::const_iterator i = unknown_ids.find (ndx_item (ii));
@@ -66,9 +66,9 @@ e_itemprop_category prop_category (const itemprop_index ii)
 
 itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted)
 {   nitpick knots;
-    e_schema_property mp = identify_schema_property (knots, context.schema_ver (), name);
+    const e_schema_property mp = identify_schema_property (knots, context.schema_ver (), name);
     if (mp != sp_illegal) return make_itemprop_index (mp);
-    prop p (knots, v, name);
+    const prop p (knots, v, name);
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_index (p.get ());
     if (! bespoke_permitted)
     {   nits.merge (knots);
@@ -85,7 +85,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
 {   nitpick knots;
     vsp_t vsp = identify_schema_properties (knots, context.schema_ver (), name);
     if (! vsp.empty ()) return make_itemprop_indices (vsp);
-    prop p (knots, v, name);
+    const prop p (knots, v, name);
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_indices (p.get ());
     if (! bespoke_permitted)
     {   nits.merge (knots);
@@ -106,7 +106,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
             case itemprop_schema :
                 return schema_property_name (static_cast < e_schema_property > (ndx_item (ndx)));
             case itemprop_microformat :
-                return prop::name (static_cast < e_property > (ndx_item (ndx)));
+                return prop::name (::gsl::narrow_cast < e_property > (ndx_item (ndx)));
             default : break; }
     return "illegal"; }
 

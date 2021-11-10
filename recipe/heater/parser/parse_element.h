@@ -50,62 +50,62 @@ class element_node
     void manage_reversioner ();
 
     // yeah, yeah, yeah, I know
-    namespaces_ptr find_namespace_parent () const
+    namespaces_ptr find_namespace_parent () const noexcept
     {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
             if (mummy -> namespaces_.get () != nullptr)
                 return mummy -> namespaces_;
         return namespaces_ptr (); }
-    prefixes_ptr find_prefixes_parent () const
+    prefixes_ptr find_prefixes_parent () const noexcept
     {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
             if (mummy -> prefixes_.get () != nullptr)
                 return mummy -> prefixes_;
         return prefixes_ptr (); }
-    prefixes_ptr find_rdf_schemas_parent () const
+    prefixes_ptr find_rdf_schemas_parent () const noexcept
     {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
             if (mummy -> rdf_schemas_.get () != nullptr)
                 return mummy -> rdf_schemas_;
         return prefixes_ptr (); }
-    rdf_ptr find_rdf_parent () const
+    rdf_ptr find_rdf_parent () const noexcept
     {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
             if (mummy -> rdf_.get () != nullptr)
                 return mummy -> rdf_;
         return rdf_ptr (); }
-    rdf_ptr find_rdfa_parent () const
+    rdf_ptr find_rdfa_parent () const noexcept
     {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
             if (mummy -> rdfa_.get () != nullptr)
                 return mummy -> rdfa_;
         return rdf_ptr (); }
 
 public:
-    element_node () = delete;
+    element_node () = default;
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed);
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str = ::std::string ());
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str = ::std::string ());
     element_node (const element_node& en) = default;
     explicit element_node (elements_node* box);
-#ifndef NO_MOVE_CONSTRUCTOR
-	element_node (element_node&& en) = default;
-#endif
-	~element_node ();
-	void swap (element_node& en) NOEXCEPT;
+	element_node (element_node&& en) noexcept = default;
+	~element_node () = default;
+    element_node& operator = (const element_node& ) = default;
+    element_node& operator = (element_node&& ) = default;
+	void swap (element_node& en) noexcept;
     void reset ();
     void reset (const element_node& en);
     void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
-    ::std::size_t attribute_count () const { return va_.size (); }
+    ::std::size_t attribute_count () const noexcept { return va_.size (); }
     ::std::string text ();
     ::std::string raw () const { return raw_; }
     void set_raw (const ::std::string& raw) { raw_ = raw; }
-    int line () const { return line_; }
-    bool invalid () const { return elem_.unknown (); }
-    bool is_closure () const { return closure_; }
-    bool is_closed () const { return closed_; }
-    bool has_child () const { return child_ != nullptr; }
-    bool has_next () const { return next_ != nullptr; }
-    bool has_last () const { return last_ != nullptr; }
-    bool has_previous () const { return previous_ != nullptr; }
-    bool has_parent () const { return parent_ != nullptr; }
-    bool presumed () const { return presumed_; }
+    int line () const noexcept { return line_; }
+    bool invalid () const noexcept { return elem_.unknown (); }
+    bool is_closure () const noexcept { return closure_; }
+    bool is_closed () const noexcept { return closed_; }
+    bool has_child () const noexcept { return child_ != nullptr; }
+    bool has_next () const noexcept { return next_ != nullptr; }
+    bool has_last () const noexcept { return last_ != nullptr; }
+    bool has_previous () const noexcept { return previous_ != nullptr; }
+    bool has_parent () const noexcept { return parent_ != nullptr; }
+    bool presumed () const noexcept { return presumed_; }
     const element_node& child () const
     {   PRESUME (has_child (), __FILE__, __LINE__);
         return *child_; }
@@ -134,13 +134,13 @@ public:
     {   PRESUME (has_parent (), __FILE__, __LINE__);
         return *parent_; }
 
-    nitpick& nits () { return nits_; }
+    nitpick& nits () noexcept { return nits_; }
 
-    bool has_attributes () const { return va_.size () > 0; }
-    const attributes_node& attributes () const { return va_; }
-    attributes_node& attributes () { return va_; }
-    html_version& version () { return version_; }
-    const html_version& version () const { return version_; }
+    bool has_attributes () const noexcept { return va_.size () > 0; }
+    const attributes_node& attributes () const noexcept { return va_; }
+    attributes_node& attributes () noexcept { return va_; }
+    html_version& version () noexcept { return version_; }
+    const html_version& version () const noexcept { return version_; }
 
     void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, char* const msg)
     {   nits_.pick (code, doc, ref, severity, category, msg); }
@@ -152,20 +152,30 @@ public:
     {   nits_.pick (code, severity, category, msg...); }
 
     void merge (const nitpick& np) { nits_.merge (np); }
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning ( disable : 26460 )
+#endif // _MSC_VER
     void merge (nitpick&& np) { nits_.merge (np); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+    elem& id () noexcept { return elem_; }
+    const elem& id () const noexcept { return elem_; }
 
-    elem& id () { return elem_; }
-    const elem& id () const { return elem_; }
+    const elements_node* box () const noexcept { return box_; }
 
-    const elements_node* box () const { return box_; }
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26409) // erm, look at the code, mr. linter. It's resetting a SHARED ptr. The suggestion of using unique_ptr would break the code, badly.
+#endif // _MSC_VER
 
-    // yeah, yeah, yeah, I know
     void prepare_namespaces ()
     {   if (namespaces_.get () == nullptr)
         {   namespaces_.reset (new namespaces_t);
             VERIFY_NOT_NULL (namespaces_.get (), __FILE__, __LINE__);
             namespaces_ -> up (find_namespace_parent ().get ()); } }
-    namespaces_ptr namespaces () const
+    namespaces_ptr namespaces () const noexcept
     {   if (namespaces_.get () != nullptr) return namespaces_;
         return find_namespace_parent (); }
 
@@ -174,7 +184,7 @@ public:
         {   prefixes_.reset (new prefixes_t);
             VERIFY_NOT_NULL (prefixes_.get (), __FILE__, __LINE__);
             prefixes_ -> up (find_prefixes_parent ().get ()); } }
-    prefixes_ptr prefixes () const
+    prefixes_ptr prefixes () const noexcept
     {   if (prefixes_.get () != nullptr) return prefixes_;
         return find_prefixes_parent (); }
 
@@ -183,7 +193,7 @@ public:
         {   rdf_schemas_.reset (new prefixes_t);
             VERIFY_NOT_NULL (rdf_schemas_.get (), __FILE__, __LINE__);
             rdf_schemas_ -> up (find_rdf_schemas_parent ().get ()); } }
-    prefixes_ptr rdf_schemas () const
+    prefixes_ptr rdf_schemas () const noexcept
     {   if (rdf_schemas_.get () != nullptr) return rdf_schemas_;
         return find_rdf_schemas_parent (); }
 
@@ -194,7 +204,7 @@ public:
             VERIFY_NOT_NULL (rdf_.get (), __FILE__, __LINE__);
             rdf_ -> up (find_rdf_parent ().get ());
             rdf_ -> prefixes (rdf_schemas ().get ()); } }
-    rdf_ptr rdf () const
+    rdf_ptr rdf () const noexcept
     {   if (rdf_.get () != nullptr) return rdf_;
         return find_rdf_parent (); }
 
@@ -204,10 +214,14 @@ public:
             VERIFY_NOT_NULL (rdfa_.get (), __FILE__, __LINE__);
             rdfa_ -> up (find_rdfa_parent ().get ());
             rdfa_ -> prefixes (prefixes ().get ()); } }
-    rdf_ptr rdfa () const
+    rdf_ptr rdfa () const noexcept
     {   if (rdfa_.get () != nullptr) return rdfa_;
         return find_rdfa_parent (); }
 
-    e_element tag () const { return elem_.get (); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+
+    e_element tag () const noexcept { return elem_.get (); }
 
     ::std::string rpt (const int level = 0); };

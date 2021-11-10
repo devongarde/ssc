@@ -28,7 +28,7 @@ struct false_type { };
 typedef uint64_t ident_t;
 // typedef ::std::size_t ident_t;
 typedef uint32_t uid_t;
-const uid_t uid_max = UINT32_MAX;
+constexpr uid_t uid_max = UINT32_MAX;
 
 typedef ::std::vector < int > vint_t;
 typedef ::std::vector < double > vdbl_t;
@@ -42,16 +42,23 @@ typedef ustr_t::value_type ustrv_t;
 typedef ::std::basic_string < char32_t > string32;
 typedef ::std::basic_stringstream < char32_t > stringstream32;
 
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26408)
+#endif // _MSC_VER
 typedef ::std::shared_ptr < void > void_ptr;
-struct really_free { void operator () (void *p) { free (p); } };
+struct really_free { void operator () (void *p) noexcept { free (p); } };
 inline void_ptr alloc_void_ptr (const ::std::size_t sz) { return void_ptr (malloc (sz), really_free ()); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
-const uint32_t uint32_category_shift =  28;
-const uint32_t uint32_item_mask =       0x0FFFFFFF;
-const uint32_t uint32_category_mask =   0xF0000000;
+constexpr uint32_t uint32_category_shift =  28;
+constexpr uint32_t uint32_item_mask =       0x0FFFFFFF;
+constexpr uint32_t uint32_category_mask =   0xF0000000;
 
-inline uint32_t ndx_category (const uint32_t x) { return (x & uint32_category_mask) >> uint32_category_shift; }
-inline uint32_t ndx_item (const uint32_t x) { return (x & uint32_item_mask); }
+constexpr inline uint32_t ndx_category (const uint32_t x) noexcept { return (x & uint32_category_mask) >> uint32_category_shift; }
+constexpr inline uint32_t ndx_item (const uint32_t x) noexcept { return (x & uint32_item_mask); }
 
 ::std::string trim_the_lot_off (const ::std::string& s);
 bool remove_tail (::std::string& s, ::std::string& tail, const char ch);
@@ -86,7 +93,7 @@ bool write_text_file (const ::std::string& name, const ::std::string& content);
 ::boost::filesystem::path get_tmp_filename ();
 bool contains (const vstr_t& con, const ::std::string& val);
 
-inline bool cnc_test (unsigned char a, unsigned char b)
+inline bool cnc_test (unsigned char a, unsigned char b) noexcept
 { return ::std::tolower (a) == ::std::tolower (b); }
 
 inline bool compare_no_case (const std::string& a, const std::string& b)
@@ -95,13 +102,13 @@ inline bool compare_no_case (const std::string& a, const std::string& b)
 
 bool is_one_of (const ::std::string& s, const vstr_t& v);
 ::std::size_t which_one_of (const ::std::string& s, const vstr_t& v);
-bool is_whitespace (const ::std::string::const_iterator b, const ::std::string::const_iterator e);
-inline bool is_whitespace (const ::std::string& s) { return is_whitespace (s.cbegin (), s.cend ()); }
+bool is_whitespace (const ::std::string::const_iterator b, const ::std::string::const_iterator e) noexcept;
+inline bool is_whitespace (const ::std::string& s) noexcept { return is_whitespace (s.cbegin (), s.cend ()); }
 
-template < class T > T read_field (::boost::property_tree::ptree& tree, const char* field)
+template < class T > T read_field (const ::boost::property_tree::ptree& tree, const char* field)
 {   return tree.get (field, T ()); }
 
-template < class T > T read_field (::boost::property_tree::ptree& tree, const ::std::string& container, const char* field)
+template < class T > T read_field (const ::boost::property_tree::ptree& tree, const ::std::string& container, const char* field)
 {   ::std::string name (container);
     name += SEP;
     name += field;
@@ -116,9 +123,9 @@ template < class T > void write_field (::boost::property_tree::ptree& tree, cons
     name += field;
     tree.put (name, value); }
 
-bool read_header (::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename);
+bool read_header (const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename);
 void write_header (::boost::property_tree::ptree& json, const char* context);
-bool replace_file (::boost::property_tree::ptree& json, ::boost::filesystem::path& filename);
+bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::filesystem::path& filename);
 
 inline ::std::string slash_dot (const ::std::string& slash)
 {   ::std::string dot (slash);
@@ -142,7 +149,7 @@ inline void prepend (::std::string& base, const ::std::string& sep, const ::std:
 bool check_spelling (nitpick& nits, const html_version& v, const ::std::string& s);
 bool ends_with_letters (const html_version& v,const ::std::string& s, const ::std::string& with);
 
-inline bool is_hex (const ::std::string::const_iterator& x, const ::std::string::const_iterator& e)
+inline bool is_hex (const ::std::string::const_iterator& x, const ::std::string::const_iterator& e) noexcept
 {   if (x == e) return false;
     return ((*x >= '0') && (*x <= '9')) || ((*x >= 'A') && (*x <= 'F')) || ((*x >= 'a') && (*x <= 'f')); }
 

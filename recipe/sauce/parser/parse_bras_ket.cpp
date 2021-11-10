@@ -108,7 +108,7 @@ void faux_xmp_check (bra_element_ket& current, e_element& xmp_tag, bool& xmp_mod
         xmp_mode = true;
         x = i + 1; } }
 
-void check_character (nitpick& nits, html_version& v, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
+void check_character (nitpick& nits, const html_version& v, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
 {   if (v >= html_4_0)
     {   switch (*i)
         {   case '\'' :
@@ -158,7 +158,7 @@ html_version bras_ket::parse (const ::std::string& content)
     ::std::string::const_iterator soe = b;
     ::std::string::const_iterator i = b;
     ::std::string::const_iterator bol = e;
-    const ::std::size_t ket_alloc = 8192;
+    constexpr ::std::size_t ket_alloc = 8192;
     ::std::size_t ket_reserve = ket_alloc;
     ::std::size_t ll = 0;
     bool ll_warned = false;
@@ -222,13 +222,16 @@ html_version bras_ket::parse (const ::std::string& content)
             case '\n' :
             case '\f' :
                 newline = true;
-                // drop thru'
+                [[fallthrough]];
             case '\r' :
                 ++line_; ll = 0;
                 bol = e;
-                // drop thru'
+                [[fallthrough]];
             case '\t' :
-                ch = ' '; }
+                ch = ' ';
+                break;
+            default :
+                break; }
         ++ll;
         if ((ll > 254) && (res.mjr () < 4) && (! ll_warned))
         {   nits.pick (nit_mosaic_crash, es_warning, ec_parser, "long lines crash older versions of MOSAIC");
@@ -362,7 +365,7 @@ html_version bras_ket::parse (const ::std::string& content)
                     case 'X' :  if (res.xhtml ())
                                 {   nits.pick (nit_xhtml_hex_lc, ed_x1, "4.12. Entity references as hex value", es_warning, ec_parser, "in ", res.report (), ", hex character codes must start with lower-case 'x'");
                                     status = s_dull; break; }
-                                // drop thru'
+                                [[fallthrough]];
                     case 'x' :  if (res < html_4_0)
                                 {   nits.pick (nit_hex_code_version, ed_4, "5.3.1 Numeric character references", es_warning, ec_parser, "hex character codes require HTML 4.0 or later");
                                     status = s_dull; }
@@ -556,35 +559,40 @@ html_version bras_ket::parse (const ::std::string& content)
                 switch (ch)
                 {   case '?' :  status = s_php_closing; break;
                     case '"' :  status = s_php_double_quote; break;
-                    case '\'' : status = s_php_quote; break; }
+                    case '\'' : status = s_php_quote; break;
+                    default : break; }
                 break;
             case s_x :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_x ", ch);
                 switch (ch)
                 {   case '?' :  status = s_xml_closing; break;
                     case '"' :  status = s_xml_double_quote; break;
-                    case '\'' : status = s_xml_quote; break; }
+                    case '\'' : status = s_xml_quote; break;
+                    default : break; }
                 break;
             case s_q :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_q ", ch);
                 switch (ch)
                 {   case '?' :  status = s_q_closing; break;
                     case '"' :  status = s_q_double_quote; break;
-                    case '\'' : status = s_q_quote; break; }
+                    case '\'' : status = s_q_quote; break;
+                    default : break; }
                 break;
             case s_asp :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_asp ", ch);
                 switch (ch)
                 {   case '%' :  status = s_asp_closing; break;
                     case '"' :  status = s_asp_double_quote; break;
-                    case '\'' : status = s_asp_quote; break; }
+                    case '\'' : status = s_asp_quote; break;
+                    default : break; }
                 break;
             case s_ssi :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_ssi ", ch);
                 switch (ch)
                 {   case '-' :  status = s_ssi_first_close; break;
                     case '"' :  status = s_ssi_double_quote; break;
-                    case '\'' : status = s_ssi_quote; break; }
+                    case '\'' : status = s_ssi_quote; break;
+                    default : break; }
                 break;
             case s_ssi_first_close :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_ssi_first_close ", ch);
@@ -748,6 +756,7 @@ html_version bras_ket::parse (const ::std::string& content)
                     case ' ' :  if (res < html_2) break;
                                 // HTML 1 permits white space here!
                                 // otherwise drop thru'
+                                [[fallthrough]];
                     default :   if (! doubledashed)
                                 {   nits.set_context (line_, b, e, i);
                                     if (res.xhtml ())
@@ -863,7 +872,8 @@ html_version bras_ket::parse (const ::std::string& content)
                     case '&' :  mixed_mess (nits, b, e, i, cc, elmt); status= s_amper; twas = i; break;
                     case '/' :  status = s_purgatory; break;
                     case '\'' : status = s_element_quote; break;
-                    case '"' :  status = s_element_double_quote; break; }
+                    case '"' :  status = s_element_double_quote; break;
+                    default : break; }
                 break;
             case s_asp_quote :
                 if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_asp_quote ", ch);

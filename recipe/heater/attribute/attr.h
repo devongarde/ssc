@@ -37,19 +37,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define AF_REVERSIONER      0x0000001000000000
 
 struct attr : symbol < html_version, e_attribute >
-{   attr () {}
+{   // attr () noexcept {}
     attr (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, ::std::string& ns)
     {   set (v, parse (nits, v, namespaces, x, ns)); }
     static e_attribute parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& key, ::std::string& decl);
     static void init (nitpick& nits);
     static bool is_versioner (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_REVERSIONER) == AF_REVERSIONER; }
-    static e_sought_category link_category_sought (const flags_t f)
+    constexpr static e_sought_category link_category_sought (const flags_t f) noexcept
     {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (f)); }
-    e_sought_category link_category_sought () const
+    e_sought_category link_category_sought () const noexcept
     {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (flags ())); }
-    bool is_versioner () const { return (symbol < html_version, e_attribute > :: flags () & AF_REVERSIONER) == AF_REVERSIONER; } };
+    bool is_versioner () const noexcept { return (symbol < html_version, e_attribute > :: flags () & AF_REVERSIONER) == AF_REVERSIONER; } };
 
-inline bool is_custom_attribute (const e_attribute a) { return (a == a_custom); }
-inline bool is_error_attribute (const e_attribute a) { return (a == a_illegal); }
-inline bool is_unknown_attribute (const e_attribute a) { return (a == a_unknown); }
+constexpr inline bool is_custom_attribute (const e_attribute a) noexcept { return (a == a_custom); }
+constexpr inline bool is_error_attribute (const e_attribute a) noexcept { return (a == a_illegal); }
+constexpr inline bool is_unknown_attribute (const e_attribute a) noexcept { return (a == a_unknown); }
 void add_attributes (const vstr_t& v);

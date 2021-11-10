@@ -48,7 +48,7 @@ template < > struct type_master < t_sizex > : type_base < ::std::string, t_sizex
 {   bool any_ = false;
     int x_ = 0, y_ = 0;
     using type_base < ::std::string, t_sizex > :: type_base;
-    void swap (type_master < t_sizex >& t)
+    void swap (type_master < t_sizex >& t) noexcept
     {   ::std::swap (any_, t.any_);
         ::std::swap (x_, t.x_);
         ::std::swap (y_, t.y_);
@@ -56,7 +56,7 @@ template < > struct type_master < t_sizex > : type_base < ::std::string, t_sizex
     bool parse (nitpick& nits, const html_version& , const ::std::string& s)
     {   any_ = (s == "any");
         if (any_) return true;
-        ::std::size_t sep = s.find_first_of ("Xx");
+        const ::std::size_t sep = s.find_first_of ("Xx");
         if (sep == s.npos) return false;
         if ((sep < 1) || (sep >= (s.length () - 1))) return false;
         if ((s.at (0) == '0') || (s.at (sep + 1) == '0'))
@@ -78,15 +78,15 @@ template < > struct type_master < t_sizex > : type_base < ::std::string, t_sizex
         else
         {   nits.pick (nit_sizes, es_error, ec_type, quote (s), " is neither 'any' nor a pair of positive integers separated by 'x'");
             type_base < ::std::string, t_sizex > :: status (s_invalid); } }
-    void reset () { any_ = false; x_ = y_ = 0; type_base < ::std::string, t_sizex > :: reset (); }
-    static ::std::string default_value () { return ::std::string (); }
+    void reset () noexcept { any_ = false; x_ = y_ = 0; type_base < ::std::string, t_sizex > :: reset (); }
+    static ::std::string default_value () noexcept { return ::std::string (); }
     ::std::string get () const { return get_string (); } };
 
 template < > struct type_master < t_wxhs > : type_base < ::std::string, t_wxhs >
 {   typedef ::std::vector < type_master < t_sizex > > vx_t;
     vx_t value_;
     using type_base < ::std::string, t_wxhs > :: type_base;
-    void swap (type_master < t_wxhs >& t)
+    void swap (type_master < t_wxhs >& t) noexcept
     {   value_.swap (t.value_);
         type_base < ::std::string, t_wxhs >::swap (t); }
     bool parse (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -98,16 +98,16 @@ template < > struct type_master < t_wxhs > : type_base < ::std::string, t_wxhs >
         value_.resize (xs.size ());
         bool res = true;
         for (::std::size_t n = 0; n < xs.size (); ++n)
-        {   value_ [n].set_value (nits, v, xs [n]);
-            if (value_ [n].invalid ()) res = false; }
+        {   ::gsl::at (value_, n).set_value (nits, v, ::gsl::at (xs, n));
+            if (::gsl::at (value_, n).invalid ()) res = false; }
         return res; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (parse (nits, v, s)) type_base < ::std::string, t_wxhs > :: status (s_good);
         else
         {   nits.pick (nit_sizes, es_error, ec_type, "SIZES takes a space separated sequence of values, each of which are 'any' or two positive integers separated by an 'x'");
             type_base < ::std::string, t_wxhs > :: status (s_invalid); } }
-    void reset ()
+    void reset () noexcept
     {   value_.clear ();
         type_base < ::std::string, t_wxhs > :: reset (); }
     static ::std::string default_value () { return "any"; }
-    ::std::string get () const { return get_string (); } };
+    ::std::string get () const noexcept { return get_string (); } };

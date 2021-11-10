@@ -25,7 +25,7 @@ typedef struct {
     e_nit nit_;
     const char* sz_; } nitname;
 
-nitname nitnames [] =
+const nitname nitnames [] =
 {   { nit_308, "308" },
     { nit_400, "400" },
     { nit_401, "401" },
@@ -706,10 +706,10 @@ void nits_init ()
     ::std::size_t i;
     ::std::vector < bool > bitten;
     bitten.resize (nit_off);
-    for (i = 0; nitnames [i].nit_ != nit_off; ++i)
-    {   quick_nit.insert (::nitmap::value_type (nitnames [i].sz_, nitnames [i].nit_));
-        quick_tim.insert (::timmap::value_type (nitnames [i].nit_, nitnames [i].sz_));
-        bitten.at (nitnames [i].nit_) = true; }
+    for (i = 0; gsl::at (nitnames, i).nit_ != nit_off; ++i)
+    {   quick_nit.insert (::nitmap::value_type (gsl::at (nitnames, i).sz_, gsl::at (nitnames, i).nit_));
+        quick_tim.insert (::timmap::value_type (gsl::at (nitnames, i).nit_, gsl::at (nitnames, i).sz_));
+        bitten.at (gsl::at (nitnames, i).nit_) = true; }
     if (i < static_cast <::std::size_t> (nit_off))
     {   ::std::cerr << "WARNING: Only " << i << " of " << static_cast < ::std::size_t > (nit_off) << " feedback identifiers defined\nUndefined:";
         for (int x = 0; x < nit_off; ++x)

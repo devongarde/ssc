@@ -28,28 +28,26 @@ template < class MEMBER, size_t CHUNK > class big_vector
     typedef ::std::vector < chunk_t > data_t;
     data_t data_;
     size_t size_ = 0;
-    size_t chunk (const size_t index) const
+    size_t chunk (const size_t index) const noexcept
     {   return index / CHUNK; }
-    size_t offset (const size_t index) const
+    size_t offset (const size_t index) const noexcept
     {   return index % CHUNK; }
     void pre_push_back ()
     {   if ((size_ % CHUNK) == 0)
-        {   size_t c = chunk (size_);
+        {   const size_t c = chunk (size_);
             PRESUME (c <= data_.size (), __FILE__, __LINE__);
             if (c == data_.size ())
                 data_.push_back (chunk_t (new base_t));
             PRESUME (data_.at (c) != nullptr, __FILE__, __LINE__);
             data_.at (c) -> reserve (CHUNK); } }
 public:
-#ifndef NO_MOVE_CONSTRUCTOR
 	big_vector() = default;
     big_vector (const big_vector& bv) = default;
     big_vector (big_vector&& bv) = default;
     big_vector& operator = (const big_vector& bv) = default;
     big_vector& operator = (big_vector&& bv) = default;
     ~big_vector () = default;
-#endif
-    void swap (big_vector& bv) NOEXCEPT
+    void swap (big_vector& bv) noexcept
     {   data_.swap (bv.data_);
         ::std::swap (size_, bv.size_); }
     void reset ()
@@ -57,22 +55,22 @@ public:
     void reset (const big_vector& bv)
     {   data_ = bv.data_;
         size_ = bv.size_; }
-    size_t size () const
+    size_t size () const noexcept
     {   return size_; }
     MEMBER& at (const size_t index)
     {   PRESUME (index < size_, __FILE__, __LINE__);
-        size_t c = chunk (index);
+        const size_t c = chunk (index);
         PRESUME (c < data_.size (), __FILE__, __LINE__);
         VERIFY_NOT_NULL (data_.at (c), __FILE__, __LINE__);
-        size_t o = offset (index);
+        const size_t o = offset (index);
         PRESUME (o < data_.at (c) -> size (), __FILE__, __LINE__);
         return data_.at (c) -> at (o); }
     const MEMBER& at (const size_t index) const
     {   PRESUME (index < size_, __FILE__, __LINE__);
-        size_t c = chunk (index);
+        const size_t c = chunk (index);
         PRESUME (c < data_.size (), __FILE__, __LINE__);
         VERIFY_NOT_NULL (data_.at (c), __FILE__, __LINE__);
-        size_t o = offset (index);
+        const size_t o = offset (index);
         PRESUME (o < data_.at (c) -> size (), __FILE__, __LINE__);
         return data_.at (c) -> at (o); }
     void pop_back () { --size_; }
@@ -90,7 +88,7 @@ public:
     {   pre_push_back ();
         chunk_t ptr = data_.at (chunk (size_));
         VERIFY_NOT_NULL (ptr, __FILE__, __LINE__);
-        size_t off (offset (size_));
+        const size_t off (offset (size_));
         PRESUME (off <= ptr -> size (), __FILE__, __LINE__);
         if (off == ptr -> size ())
         {   ptr -> push_back (m);
@@ -105,6 +103,6 @@ public:
     const MEMBER& back () const
     {   return at (size_ - 1); }
     bool empty () const { return size_ == 0; }
-    void clear ()
+    void clear () noexcept
     {   size_ = 0;
         data_.clear (); } };

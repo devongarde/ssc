@@ -45,7 +45,7 @@ directory::directory (const ::std::string& name, const bool offsite)
     : name_ (name), offsite_ (offsite), mummy_ (nullptr)
 {   if (! offsite) ndx_ = insert_directory_path (get_disk_path ()); }
 
-void directory::swap (directory& d) NOEXCEPT
+void directory::swap (directory& d) noexcept
 {   name_.swap (d.name_);
     content_.swap (d.content_);
     ::std::swap (offsite_, d.offsite_);
@@ -69,7 +69,7 @@ void directory::swap (directory& d) NOEXCEPT
     {   if (mummy_ != nullptr) return mummy_ -> internal_get_site_path (nits, item);
         return internal_get_site_path (nits, item.substr (1)); }
     ::std::string lhs, rhs;
-    bool sep = separate_first (item, lhs, rhs, '/');
+    const bool sep = separate_first (item, lhs, rhs, '/');
     if (lhs == ".") return internal_get_site_path (nits, rhs);
     if (lhs == "..")
     {   if (mummy_ != nullptr) return mummy_ -> internal_get_site_path (nits, rhs);
@@ -100,7 +100,7 @@ void directory::internal_get_disk_path (const ::std::string& item, ::boost::file
     ::std::string lhs, rhs;
     if (root_.get () == nullptr) res /= name_;
     else res = root_ -> get_disk_path ();
-    bool sep = separate_first (item, lhs, rhs, '/');
+    const bool sep = separate_first (item, lhs, rhs, '/');
     auto i = content_.find (lhs);
     if (i == content_.end ()) res /= nix_path_to_local (item);
     else if (i -> second != nullptr) i -> second -> internal_get_disk_path (rhs, res);
@@ -138,7 +138,7 @@ void directory::internal_get_shadow_path (const ::std::string& item, ::boost::fi
     ::std::string lhs, rhs;
     if (root_.get () == nullptr) res /= name_;
     else res = root_ -> get_disk_path ();
-    bool sep = separate_first (item, lhs, rhs, '/');
+    const bool sep = separate_first (item, lhs, rhs, '/');
     auto i = content_.find (lhs);
     if (i == content_.end ()) res /= nix_path_to_local (item);
     else if (i -> second != nullptr) i -> second -> internal_get_shadow_path (rhs, res);
@@ -155,7 +155,7 @@ void directory::internal_get_export_path (const ::std::string& item, ::boost::fi
     ::std::string lhs, rhs;
     if (root_.get () == nullptr) res /= name_;
     else res = root_ -> get_disk_path ();
-    bool sep = separate_first (item, lhs, rhs, '/');
+    const bool sep = separate_first (item, lhs, rhs, '/');
     auto i = content_.find (lhs);
     if (i == content_.end ()) res /= nix_path_to_local (item);
     else if (i -> second != nullptr) i -> second -> internal_get_export_path (rhs, res);
@@ -174,11 +174,11 @@ void directory::internal_get_export_path (const ::std::string& item, ::boost::fi
 
 bool directory::scan (nitpick& nits, const ::std::string& site)
 {   PRESUME (! offsite_, __FILE__, __LINE__);
-    for (::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (get_disk_path ()))
+    for (const ::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (get_disk_path ()))
         if (! add_to_content (nits, x, site)) return false;
     return true; }
 
-bool directory::add_to_content (nitpick& nits, ::boost::filesystem::directory_entry& i, const ::std::string& site)
+bool directory::add_to_content (nitpick& nits, const ::boost::filesystem::directory_entry& i, const ::std::string& site)
 {   ::boost::filesystem::path q (i.path ());
     fileindex_t ndx = nullfileindex;
     if (is_folder (q)) ndx = insert_directory_path (q);
@@ -208,9 +208,9 @@ void directory::examine (nitpick& nits)
         else
         {   shadowed.emplace ((get_shadow_path () / i.first).string ());
             ::std::ostringstream ss;
-            ::boost::filesystem::path p (get_disk_path () / i.first);
-            fileindex_t ndx (get_fileindex (p));
-            ::std::time_t updated = last_write (ndx);
+            const ::boost::filesystem::path p (get_disk_path () / i.first);
+            const fileindex_t ndx (get_fileindex (p));
+            const ::std::time_t updated = last_write (ndx);
             if (! get_flag (ndx, FX_SCANNED))
             {   ::std::string sp (get_site_path () + i.first);
                 context.filename (sp);
@@ -229,7 +229,7 @@ void directory::examine (nitpick& nits)
                                 parse_json_ld (nuts, context.html_ver (), content);
                                 ss << nuts.review (mac); }
                             else
-                            {   e_charcode encoding = bom_to_encoding (get_byte_order (content));
+                            {   const e_charcode encoding = bom_to_encoding (get_byte_order (content));
                                 if (encoding == cc_fkd) mac.emplace (nm_page_error, "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)");
                                 else
                                 {   page web (i.first, updated, content, ndx, this, encoding);
@@ -283,7 +283,7 @@ bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, cons
     if (p.empty ())
         if (u.has_query () || u.is_simple_id ())
             return true;
-    fileindex_t ndx (get_fileindex (p));
+    const fileindex_t ndx (get_fileindex (p));
     if (get_flag (ndx, (FX_SCANNED | FX_EXISTS))) return true;
     if (! get_flag (ndx, FX_TESTED))
     {   set_flag (ndx, FX_TESTED);
@@ -349,7 +349,7 @@ bool directory::verify_url (nitpick& nits, const html_version& v, const url& u) 
 
 bool directory::verify_external (nitpick& nits, const html_version& v, const url& u) const
 {   if (! context.external ()) return true;
-    bool res = external_.verify (nits, v, u);
+    const bool res = external_.verify (nits, v, u);
     if (res) return true;
     if (context.code () < 300) return true;
     if (context.repeated () && context.once ()) return false;
@@ -437,10 +437,10 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name, sstr_t& s
     if (contains (context.shadow_ignore (), original.extension ().string ()))
     {   nits.pick (nit_shadow_failed, es_debug, ec_shadow, "not shadowing ", original);
         return true;  }
-    e_copy todo = context.copy ();
+    const e_copy todo = context.copy ();
     PRESUME (todo > c_none, __FILE__, __LINE__);
     if (todo <= c_html) return true;
-    fileindex_t ndx = get_fileindex (original);
+    const fileindex_t ndx = get_fileindex (original);
     if (ndx == nullfileindex)
     {   nits.pick (nit_internal_file_error, es_catastrophic, ec_shadow, "internal data error: lost information about ", original.string ());
         return false; }
@@ -464,11 +464,11 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name, sstr_t& s
 #endif // NOLYNX
     if (file_exists (imitation))
     {   if (context.shadow_changed ())
-        {   uintmax_t origsize = get_size (ndx);
-            uintmax_t copysize = get_file_size (imitation);
+        {   const uintmax_t origsize = get_size (ndx);
+            const uintmax_t copysize = get_file_size (imitation);
             if (origsize == copysize)
-            {   ::std::time_t origwrite = last_write (ndx);
-                ::std::time_t copywrite = get_last_write_time (imitation);
+            {   const ::std::time_t origwrite = last_write (ndx);
+                const ::std::time_t copywrite = get_last_write_time (imitation);
                 if ((copywrite >= origwrite) && context.update ()) return true; } }
         if (todo >= c_copy)
         {   stat = file_data (imitation);
@@ -509,7 +509,7 @@ bool directory::avoid_update (const ::boost::filesystem::path& original, const :
 {   if (! context.update ()) return false;
     ::std::time_t ot = 0, st = 0;
     if (! file_exists (original) || ! file_exists (shadow)) return false;
-    fileindex_t ndx (get_fileindex (original));
+    const fileindex_t ndx (get_fileindex (original));
     ot = last_write (ndx);
     if (ot == 0) return false;
     st = get_last_write_time (shadow);

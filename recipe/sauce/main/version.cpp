@@ -33,29 +33,29 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     if (flags_ != 0) res << "f" << ::std::hex << flags_;
     return res.str (); }
 
-bool operator == (const version& lhs, const version& rhs)
+bool operator == (const version& lhs, const version& rhs) noexcept
 {   if (lhs.unknown () || rhs.unknown ()) return false;
     if (lhs.mjr () != rhs.mjr ()) return false;
     return (lhs.mnr () == rhs.mnr ()); }
 
-bool operator != (const version& lhs, const version& rhs)
+bool operator != (const version& lhs, const version& rhs) noexcept
 {   if (lhs.unknown () || rhs.unknown ()) return false;
     return ! (lhs == rhs); }
 
-bool operator < (const version& lhs, const version& rhs)
+bool operator < (const version& lhs, const version& rhs) noexcept
 {   if (lhs.unknown () || rhs.unknown ()) return false;
     if (lhs.mjr () > rhs.mjr ()) return false;
     if (lhs.mjr () < rhs.mjr ()) return true;
     return (lhs.mnr () < rhs.mnr ()); }
 
-bool operator > (const version& lhs, const version& rhs)
+bool operator > (const version& lhs, const version& rhs) noexcept
 {   if (lhs.unknown () || rhs.unknown ()) return false;
     return ! (lhs < rhs) && ! (lhs == rhs); }
 
-bool operator <= (const version& lhs, const version& rhs)
+bool operator <= (const version& lhs, const version& rhs) noexcept
 {   if (lhs.unknown () || rhs.unknown ()) return false;
     return ! (lhs > rhs); }
 
-bool operator >= (const version& lhs, const version& rhs)
+bool operator >= (const version& lhs, const version& rhs) noexcept
 {   if (lhs.unknown () || rhs.unknown ()) return false;
     return ! (lhs < rhs); }

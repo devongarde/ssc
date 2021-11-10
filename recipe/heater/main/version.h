@@ -25,50 +25,53 @@ class version
     flags_t flags_ = NOFLAGS;
 public:
     version () = default;
-    version (const unsigned char mjr, const unsigned char mnr, const flags_t flags = NOFLAGS)
+    version (const unsigned char mjr, const unsigned char mnr, const flags_t flags = NOFLAGS) noexcept
         :   mjr_ (mjr), mnr_ (mnr), flags_ (flags) { }
 	version (const version& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	version (version&& ) = default;
-#endif // VS
 	~version () = default;
     version& operator = (const version& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	version& operator = (version&& ) = default;
-#endif // VS
-    void swap (version& v) NOEXCEPT
+    void swap (version& v) noexcept
     {   ::std::swap (mjr_, v.mjr_);
         ::std::swap (mnr_, v.mnr_);
         ::std::swap (flags_, v.flags_); }
-    void reset () { version v; swap (v); }
-    void reset (const version& v) { version vv (v); swap (vv); }
-    void set_mjr (const unsigned char mjr, const unsigned char mnr = 0) NOEXCEPT
+    void reset () noexcept { version v; swap (v); }
+    void reset (const version& v) noexcept { version vv (v); swap (vv); }
+    void set_mjr (const unsigned char mjr, const unsigned char mnr = 0) noexcept
     {   mjr_ = mjr; mnr_ = mnr; }
-    bool unknown () const { return (mjr_ == 0) && (mnr_ == 0); }
-    bool known () const { return ! unknown (); }
-    unsigned char mjr () const { return mjr_; }
-    unsigned char mnr () const { return mnr_; }
-    void set_flags (const flags_t u) { flags_ |= u; }
-    void reset_flags (const flags_t u) { flags_ &= ~u; }
-    bool all_flags (const flags_t u) const { return ((flags_ & u) == u); }
-    bool any_flags (const flags_t u) const { return ((flags_ & u) != 0); }
-    bool no_flags (const flags_t u) const { return ((flags_ & u) == 0); }
-    flags_t flags () const { return flags_; }
-    bool empty () const { return (mjr_ == 0) && (mnr_ == 0); }
+    bool unknown () const noexcept { return (mjr_ == 0) && (mnr_ == 0); }
+    bool known () const noexcept { return ! unknown (); }
+    unsigned char mjr () const noexcept { return mjr_; }
+    unsigned char mnr () const noexcept { return mnr_; }
+    void set_flags (const flags_t u) noexcept { flags_ |= u; }
+    void reset_flags (const flags_t u) noexcept { flags_ &= ~u; }
+    bool all_flags (const flags_t u) const noexcept { return ((flags_ & u) == u); }
+    bool any_flags (const flags_t u) const noexcept { return ((flags_ & u) != 0); }
+    bool no_flags (const flags_t u) const noexcept { return ((flags_ & u) == 0); }
+    flags_t flags () const noexcept { return flags_; }
+    bool empty () const noexcept { return (mjr_ == 0) && (mnr_ == 0); }
     ::std::string name () const;
     ::std::string report () const; };
 
-bool operator == (const version& lhs, const version& rhs);
-bool operator != (const version& lhs, const version& rhs);
-bool operator < (const version& lhs, const version& rhs);
-bool operator > (const version& lhs, const version& rhs);
-bool operator <= (const version& lhs, const version& rhs);
-bool operator >= (const version& lhs, const version& rhs);
+bool operator == (const version& lhs, const version& rhs) noexcept;
+bool operator != (const version& lhs, const version& rhs) noexcept;
+bool operator < (const version& lhs, const version& rhs) noexcept;
+bool operator > (const version& lhs, const version& rhs) noexcept;
+bool operator <= (const version& lhs, const version& rhs) noexcept;
+bool operator >= (const version& lhs, const version& rhs) noexcept;
 
-template < class V > inline bool does_apply  (const V& v, const V& from, const V& to)
+template < class V > inline bool does_apply (const V& v, const V& from, const V& to) MSVC_NOEXCEPT
 {   if (! from.unknown () && (v < from)) return false;
     if (! to.unknown () && (v > to)) return false;
     return true; }
 
+#ifdef _MSC_VER
+#pragma warning (disable : 26440)
+#pragma warning (push, 3)
+#endif // _MSC_VER
 template < class V > inline bool may_apply (const V& v, const V& from, const V& to)
 {   return (v.unknown () || does_apply < V > (v, from, to)); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER

@@ -22,20 +22,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_time.h"
 #include "type/sz.h"
 
-bool grab_whitespace (const ::std::string::const_iterator e, ::std::string::const_iterator& i)
+bool grab_whitespace (const ::std::string::const_iterator e, ::std::string::const_iterator& i) noexcept
 {   if ((i == e) || (! ::std::iswspace (*i))) return false;
     ++i; return true; }
 
-bool grab_char (const ::std::string::const_iterator e, ::std::string::const_iterator& i, const char ch)
+bool grab_char (const ::std::string::const_iterator e, ::std::string::const_iterator& i, const char ch) noexcept
 {   if ((i == e) || (*i != ch)) return false;
     ++i; return true; }
 
-bool grab_char (const ::std::string::const_iterator e, ::std::string::const_iterator& i, const ::std::string& s)
+bool grab_char (const ::std::string::const_iterator e, ::std::string::const_iterator& i, const ::std::string& s) noexcept
 {   if (i == e) return false;
     if (s.find_first_of (*i) == ::std::string::npos) return false;
     ++i; return true; }
 
-template < typename INT > bool grab_digits (const ::std::string::const_iterator e, ::std::string::const_iterator& c, const INT len, const INT max, bool zero, INT& val)
+template < typename INT > bool grab_digits (const ::std::string::const_iterator e, ::std::string::const_iterator& c, const INT len, const INT max, bool zero, INT& val) noexcept
 {   if (c == e) return false;
     ::std::string::const_iterator i = c;
     INT v = 0, count = 0;
@@ -46,13 +46,13 @@ template < typename INT > bool grab_digits (const ::std::string::const_iterator 
     if (! zero && (v == 0)) return false;
     val = v; c = i; return true; }
 
-bool grab_year (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& year)
+bool grab_year (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& year) noexcept
 {   return grab_digits < int > (e, i, 4, 0, true, year); }
 
-bool grab_month (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& month)
+bool grab_month (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& month) noexcept
 {   return grab_digits < int > (e, i, 2, 12, false, month); }
 
-bool grab_week (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int year, int& week)
+bool grab_week (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int year, int& week) noexcept
 {   if (! grab_digits < int > (e, i, 2, 53, false, week)) return false;
     if (week < 53) return true;
     const int y53 [] = {// https://en.wikipedia.org/wiki/Common_year_starting_on_Thursday,
@@ -66,11 +66,18 @@ bool grab_week (const ::std::string::const_iterator e, ::std::string::const_iter
         1903, 1908, 1914, 1920, 1925, 1931, 1936, 1942, 1948, 1953, 1959, 1964, 1970, 1976, 1981, 1987, 1992, 1998,
         2004, 2009, 2015, 2020, 2026, 2032, 2037, 2043, 2048, 2054, 2060, 2065, 2071, 2076, 2082, 2088, 2093, 2099,
         0 };
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26446 26482) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initiliser
+#endif // _MSC_VER
     for (::std::size_t x = 0; y53 [x] != 0; ++x)
         if (year == y53 [x]) return true;
     return false; }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
-bool grab_day (const ::std::string::const_iterator e, ::std::string::const_iterator& c, const int year, const int month, int& day)
+bool grab_day (const ::std::string::const_iterator e, ::std::string::const_iterator& c, const int year, const int month, int& day) noexcept
 {   int d;
     ::std::string::const_iterator i = c;
     if (! grab_digits < int > (e, i, 2, 31, false, d)) return false;
@@ -97,22 +104,22 @@ bool grab_day (const ::std::string::const_iterator e, ::std::string::const_itera
     c = i;
     return true; }
 
-bool grab_hour (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& hour)
+bool grab_hour (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& hour) noexcept
 {   return grab_digits < int > (e, i, 2, 23, true, hour); }
 
-bool grab_minute (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& minute)
+bool grab_minute (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& minute) noexcept
 {   return grab_digits < int > (e, i, 2, 59, true, minute); }
 
-bool grab_second (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& second)
+bool grab_second (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& second) noexcept
 {   return grab_digits < int > (e, i, 2, 59, true, second); }
 
-bool grab_leap_second (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& second)
+bool grab_leap_second (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& second) noexcept
 {   return grab_digits < int > (e, i, 2, 60, true, second); }
 
-bool grab_microsecond (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& ms)
+bool grab_microsecond (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& ms) noexcept
 {   return grab_digits < int > (e, i, 3, 0, true, ms); }
 
-bool grab_chars (const ::std::string::const_iterator e, ::std::string::const_iterator& c, const ::std::string& what, const int max)
+bool grab_chars (const ::std::string::const_iterator e, const ::std::string::const_iterator& c, const ::std::string& what, const int max) noexcept
 {   int count = 0;
     ::std::string::const_iterator i = c;
     while ((i != e) && (what.find (*i) != ::std::string::npos))
@@ -120,31 +127,31 @@ bool grab_chars (const ::std::string::const_iterator e, ::std::string::const_ite
         ++i; }
     i = c; return true; }
 
-bool verify_simply_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year)
+bool verify_simply_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year) noexcept
 {   ::std::string::const_iterator i = c;
     if (! grab_year (e, i, year)) return false;
     c = i; return true; }
 
-bool verify_month (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month)
+bool verify_month (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month) noexcept
 {   ::std::string::const_iterator i = c;
     if (! grab_year (e, i, year)) return false;
     if (! grab_char (e, i, '-')) return false;
     if (! grab_month (e, i, month)) return false;
     c = i; return true; }
 
-bool verify_monthday (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& month, int& day)
+bool verify_monthday (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& month, int& day) noexcept
 {   ::std::string::const_iterator i = c;
     if (! grab_month (e, i, month)) return false;
     if (! grab_char (e, i, '-')) return false;
     if (! grab_day (e, i, 0, month, day)) return false;
     c = i; return true; }
 
-bool verify_day (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& day)
+bool verify_day (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& day) noexcept
 {   ::std::string::const_iterator i = c;
     if (! grab_day (e, i, 0, 0, day)) return false;
     c = i; return true; }
 
-bool verify_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month, int& day)
+bool verify_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month, int& day) noexcept
 {   ::std::string::const_iterator i = c;
     if (! grab_year (e, i, year)) return false;
     if (! grab_char (e, i, '-')) return false;
@@ -153,14 +160,14 @@ bool verify_year (const ::std::string::const_iterator e, ::std::string::const_it
     if (! grab_day (e, i, year, month, day)) return false;
     c = i; return true; }
 
-bool verify_yearmonth (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month)
+bool verify_yearmonth (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month) noexcept
 {   ::std::string::const_iterator i = c;
     if (! grab_year (e, i, year)) return false;
     if (! grab_char (e, i, '-')) return false;
     if (! grab_month (e, i, month)) return false;
     c = i; return true; }
 
-bool verify_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year)
+bool verify_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year) noexcept
 {   ::std::string::const_iterator i = c;
     if (! grab_year (e, i, year)) return false;
     c = i; return true; }
@@ -173,7 +180,7 @@ bool verify_yearless_date  (const ::std::string::const_iterator e, ::std::string
     if (! grab_day (e, i, 0, month, day)) return false;
     c = i; return true; }
 
-bool verify_week_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& week)
+bool verify_week_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& week) noexcept
 {   ::std::string::const_iterator i = c;
     if (! grab_year (e, i, year)) return false;
     if (! grab_char (e, i, '-')) return false;
@@ -181,7 +188,7 @@ bool verify_week_year (const ::std::string::const_iterator e, ::std::string::con
     if (! grab_week (e, i, year, week)) return false;
     c = i; return true; }
 
-bool verify_coarse_time (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour, int& minute, int& second)
+bool verify_coarse_time (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour, int& minute, int& second) noexcept
 {   ::std::string::const_iterator i = c;
     int h = 0, m = 0, s = 0;
     if (! grab_hour (e, i, h)) return false;
@@ -193,7 +200,7 @@ bool verify_coarse_time (const ::std::string::const_iterator e, ::std::string::c
     c = i;
     return true; }
 
-bool verify_time (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour, int& minute, int& second, int& micro)
+bool verify_time (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour, int& minute, int& second, int& micro) noexcept
 {   ::std::string::const_iterator i = c;
     int h = 0, m = 0, s = 0, ms = 0;
     if (! verify_coarse_time (e, i, h, m, s)) return false;
@@ -217,7 +224,7 @@ bool verify_floating_datetime (const ::std::string::const_iterator e, ::std::str
     if (! verify_time (e, i, hour, minute, second, micro)) return false;
     c = i; return true; }
 
-bool verify_timezone (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour_offset, int& minute_offset)
+bool verify_timezone (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour_offset, int& minute_offset) noexcept
 {   if (c == e) return false;
     ::std::string::const_iterator i = c;
     if (grab_char (e, i, 'Z'))
@@ -238,7 +245,7 @@ bool verify_timezone (const ::std::string::const_iterator e, ::std::string::cons
     c = i;
     return true; }
 
-bool verify_coarse_time_tz (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour, int& minute, int& second, int& hour_offset, int& minute_offset)
+bool verify_coarse_time_tz (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour, int& minute, int& second, int& hour_offset, int& minute_offset) noexcept
 {   ::std::string::const_iterator i = c;
     if (! verify_coarse_time (e, i, hour, minute, second)) return false;
     if (! verify_timezone (e, i, hour_offset, minute_offset)) hour_offset = minute_offset = 0;
@@ -252,7 +259,7 @@ bool verify_global_datetime (const ::std::string::const_iterator e, ::std::strin
     if (! verify_timezone (e, i, hour_offset, minute_offset)) return false;
     c = i; return true; }
 
-bool verify_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& day, int& hour, int& minute, int& second, int& micro)
+bool verify_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& day, int& hour, int& minute, int& second, int& micro) noexcept
 {   if (c == e) return false;
     ::std::string::const_iterator i = c;
     if (! grab_char (e, i, 'P')) return false;
@@ -340,7 +347,7 @@ bool verify_duration (const ::std::string::const_iterator e, ::std::string::cons
     c = i;
     return true; }
 
-bool verify_svg_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour, int& minute, int& second, int& micro)
+bool verify_svg_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour, int& minute, int& second, int& micro) noexcept
 {   if (c == e) return false;
     ::std::string::const_iterator i = c;
     int h = 0, m = 0, s = 0, ms = 0;
@@ -358,7 +365,7 @@ bool verify_svg_duration (const ::std::string::const_iterator e, ::std::string::
     c = i;
     return true; }
 
-bool verify_svg_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& minute, int& second, int& micro)
+bool verify_svg_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& minute, int& second, int& micro) noexcept
 {   if (c == e) return false;
     ::std::string::const_iterator i = c;
     int m = 0, s = 0, ms = 0;
@@ -373,7 +380,7 @@ bool verify_svg_duration (const ::std::string::const_iterator e, ::std::string::
     c = i;
     return true; }
 
-bool verify_svg_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int64_t& second, int& micro)
+bool verify_svg_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int64_t& second, int& micro) noexcept
 {   if (c == e) return false;
     ::std::string::const_iterator i = c;
     int ms = 0;
@@ -455,7 +462,7 @@ bool verify_duration (const ::std::string& str)
             return false;
     return true; }
 
-bool verify_svg_duration (const ::std::string& str)
+bool verify_svg_duration (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int  h = 0, mn = 0, s = 0, ms = 0;
@@ -466,49 +473,49 @@ bool verify_svg_duration (const ::std::string& str)
             return false;
     return true; }
 
-bool verify_coarse_time_tz (const ::std::string& str)
+bool verify_coarse_time_tz (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int h = 0, m = 0, s = 0, ho = 0, mo = 0;
     return verify_coarse_time_tz (e, i, h, m, s, ho, mo); }
 
-bool verify_month (const ::std::string& str)
+bool verify_month (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int y = 0, m = 0;
     return verify_month (e, i, y, m); }
 
-bool verify_monthday (const ::std::string& str)
+bool verify_monthday (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int m = 0, d = 0;
     return verify_monthday (e, i, m, d); }
 
-bool verify_day (const ::std::string& str)
+bool verify_day (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int d = 0;
     return verify_day (e, i, d); }
 
-bool verify_year (const ::std::string& str)
+bool verify_year (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int y = 0;
     return verify_year (e, i, y); }
 
-bool verify_yearmonth (const ::std::string& str)
+bool verify_yearmonth (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int y = 0, m = 0;
     return verify_yearmonth (e, i, y, m); }
 
-bool verify_timezone (const ::std::string& str)
+bool verify_timezone (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int ho = 0, mo = 0;
     return verify_timezone (e, i, ho, mo); }
 
-bool verify_week (const ::std::string& str)
+bool verify_week (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int y = 0, m = 0;
@@ -592,7 +599,7 @@ bool verify_svg_duration (nitpick& nits, const html_version& , const ::std::stri
     return false; }
 
 // ******************************** note to self: f***ing well sort this out. FFS.  ********************************
-bool test_animation_timing (nitpick& , const html_version& , const ::std::string& , const bool )
+bool test_animation_timing (nitpick& , const html_version& , const ::std::string& , const bool ) noexcept
 {   // 19.2.8 Attributes to control the timing of the animation
 //    ::std::string ss (trim_the_lot_off (s));
 //    if (ss.empty ())

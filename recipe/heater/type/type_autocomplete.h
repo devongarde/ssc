@@ -42,5 +42,5 @@ template < > struct type_master < t_autocompletes > : tidy_string < t_autocomple
             if (! invalid_autocomplete (nits, v, e, vaco_))
                 tidy_string < t_autocompletes > :: status (s_invalid);
         return false; }
-    void reset ()
+    void reset () noexcept
     {   value_.clear (); } };

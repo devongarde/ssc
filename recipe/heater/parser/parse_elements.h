@@ -33,7 +33,7 @@ class elements_node
     void report_missing_closures (const html_version& v, element_node* parent, element_node* ancestor);
     element_node* insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed);
     element_node* find_permitted_parent (const html_version& v, const elem& id, element_node* parent);
-    void repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, bra_element_ket& ket, const bool closing);
+    void repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, const element_node* ancestor, const bra_element_ket& ket, const bool closing);
     void hook_up (element_node* current, element_node*& previous, element_node*& parent, const bool closure, const bool open);
     element_node* insert_closure (const html_version& v,  element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed);
     element_node* insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool open);
@@ -43,19 +43,15 @@ class elements_node
 public:
     elements_node () = default;
     elements_node (const elements_node& en) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	elements_node(elements_node&& en) = default;
-#endif
 	elements_node (nitpick& nits, const ::std::string& content)
     {   invalid_ = ! parse (nits, content); }
     ~elements_node () = default;
     elements_node& operator = (const elements_node& en) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	elements_node& operator = (elements_node&& en) = default;
-#endif
-	void swap (elements_node& en) NOEXCEPT;
-    void reset ();
-    void reset (elements_node& en);
+	void swap (elements_node& en) noexcept;
+    void reset () noexcept;
+    void reset (const elements_node& en);
     bool parse (nitpick& nits, const ::std::string& content);
     void harvest_nits (nitpick& nits);
     element_node* faux_node ();
@@ -66,8 +62,8 @@ public:
     element_node& top ()
     {   PRESUME (! invalid (), __FILE__, __LINE__);
         return ven_.at (0); }
-    html_version version () const { return version_; }
+    html_version version () const noexcept { return version_; }
     ::std::string text ();
     ::std::string rpt ();
-    uint64_t size () const { return ven_.size (); }
-    bool invalid () const { return (invalid_ && (size () > 0)); } };
+    uint64_t size () const noexcept { return ven_.size (); }
+    bool invalid () const noexcept { return (invalid_ && (size () > 0)); } };

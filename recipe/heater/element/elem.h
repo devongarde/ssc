@@ -173,7 +173,7 @@ class elem : public symbol < html_version, e_element >
     bool under_parse (nitpick& nits, const html_version& v, const ::std::string& el, const ident_t n);
     bool parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x);
 public:
-    elem () {}
+    elem () noexcept {}
     elem (const html_version& v, const ::std::string& x) : symbol < html_version, e_element > (v, x) { }
     elem (const elem& e) = default;
     explicit elem (const e_element e) : symbol < html_version, e_element > (e) { }
@@ -181,18 +181,18 @@ public:
     static void init (nitpick& nits);
     static void ignore (const e_element e) { ignored_.set (e); }
     static bool ignored (const e_element e) { return ignored_.test (e); }
-    bool is_unclosed (const html_version& v) const;
-    bool is_closed (const html_version& v) const;
-    bool is_math () const
+    bool is_unclosed (const html_version& v) const noexcept;
+    bool is_closed (const html_version& v) const noexcept;
+    bool is_math () const noexcept
     {   return ((categories () & (EF_MATH | EF_X_MATH)) != 0); }
-    bool is_svg () const
+    bool is_svg () const noexcept
     {   return ((categories () & EF_SVG_CATMASK) != 0); }
-    bool is_transparent (const html_version& v) const;
-    void swap (elem& e)
+    bool is_transparent (const html_version& v) const noexcept;
+    void swap (elem& e) noexcept
     {   symbol < html_version, e_element > :: swap (e); }
-    void reset ()
+    void reset () noexcept
     {   elem e; swap (e); }
-    void reset (const elem& e)
+    void reset (const elem& e) noexcept
     {   elem tmp (e); swap (tmp); }
     void reset (const html_version& v, const ::std::string& s)
     {   elem tmp (v, s); swap (tmp); }
@@ -202,36 +202,36 @@ public:
     void reset (const e_element e)
     {   elem tmp (e);
         swap (tmp); }
-    bool is_lazy (const html_version& v) const;
-    bool is_dynamic () const
+    bool is_lazy (const html_version& v) const noexcept;
+    bool is_dynamic () const noexcept
     {   return ((flags () & EP_5_DYNAMIC) == EP_5_DYNAMIC); }
-    bool refreshed () const
+    bool refreshed () const noexcept
     {   return ((flags () & EP_5_REFRESHED) == EP_5_REFRESHED); }
-    void note_refreshed ()
+    void note_refreshed () noexcept
     {   refresh (EP_5_REFRESHED); }
-    bool wild_attributes (const html_version& v) const
+    bool wild_attributes (const html_version& v) const noexcept
     {   return (v.is_5 () && ((flags () & EP_5_WILDATTR) == EP_5_WILDATTR)); }
     static e_sought_category link_category_sought (const e_element e)
     {   return static_cast < e_sought_category > (EP_GET_XLINKCAT (flags (e))); }
-    e_sought_category link_category_sought () const
+    e_sought_category link_category_sought () const noexcept
     {   return static_cast < e_sought_category > (EP_GET_XLINKCAT (flags ())); }
     static bool fits_link_category (const html_version& v, const e_element e, const e_sought_category cat);
     bool fits_link_category (const html_version& v, const e_sought_category cat) const
     {   return fits_link_category (v, get (), cat); }
-    bool unknown () const
+    bool unknown () const noexcept
     {   return (symbol < html_version, e_element > :: unknown ()) || (symbol < html_version, e_element > :: get () == elem_undefined); } };
 
-inline bool operator == (const elem& lhs, const elem& rhs) { return lhs.get () == rhs.get (); }
-inline bool operator != (const elem& lhs, const elem& rhs) { return lhs.get () != rhs.get (); }
-inline bool operator < (const elem& lhs, const elem& rhs) { return lhs.get () < rhs.get (); }
-inline bool operator <= (const elem& lhs, const elem& rhs) { return lhs.get () <= rhs.get (); }
-inline bool operator > (const elem& lhs, const elem& rhs) { return lhs.get () > rhs.get (); }
-inline bool operator >= (const elem& lhs, const elem& rhs) { return lhs.get () >= rhs.get (); }
+inline bool operator == (const elem& lhs, const elem& rhs) noexcept { return lhs.get () == rhs.get (); }
+inline bool operator != (const elem& lhs, const elem& rhs) noexcept { return lhs.get () != rhs.get (); }
+inline bool operator < (const elem& lhs, const elem& rhs) noexcept { return lhs.get () < rhs.get (); }
+inline bool operator <= (const elem& lhs, const elem& rhs) noexcept { return lhs.get () <= rhs.get (); }
+inline bool operator > (const elem& lhs, const elem& rhs) noexcept { return lhs.get () > rhs.get (); }
+inline bool operator >= (const elem& lhs, const elem& rhs) noexcept { return lhs.get () >= rhs.get (); }
 
-inline bool is_faux_element (const e_element e) { return (e >= elem_faux_document) && (e <= elem_faux_whitespace); }
-inline bool is_custom_element (const e_element e) { return (e == elem_custom); }
-inline bool is_error_element (const e_element e) { return (e == elem_error); }
-inline bool is_undefined_element (const e_element e) { return (e == elem_undefined); }
-inline bool is_standard_element (const e_element e) { return (e >= elem_custom) && (e < elem_error); }
+constexpr inline bool is_faux_element (const e_element e) noexcept { return (e >= elem_faux_document) && (e <= elem_faux_whitespace); }
+constexpr inline bool is_custom_element (const e_element e) noexcept { return (e == elem_custom); }
+constexpr inline bool is_error_element (const e_element e) noexcept { return (e == elem_error); }
+constexpr inline bool is_undefined_element (const e_element e) noexcept { return (e == elem_undefined); }
+constexpr inline bool is_standard_element (const e_element e) noexcept { return (e >= elem_custom) && (e < elem_error); }
 
 void add_elements (const vstr_t& v);

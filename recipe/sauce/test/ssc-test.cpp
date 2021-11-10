@@ -74,8 +74,8 @@ vstr_t readlines (const ::std::string& name)
     if (ifs.bad ())
     {   ::std::cerr << "cannot open " << name << "\n"; return res; }
     else
-    {   const int maxlen = 8191;
-        char sz [maxlen+1];
+    {   constexpr int maxlen = 8191;
+        char sz [maxlen+1] = { 0 };
         while (! ifs.fail ())
         {   ifs.getline (sz, maxlen);
             sz [maxlen] = 0;
@@ -187,7 +187,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         {   examine = false;
             examinations = s;
             continue; }
-        ::std::string::size_type spaced = s.find (' ');
+        const ::std::string::size_type spaced = s.find (' ');
         if (exports || only)
         {   if ((spaced == ::std::string::npos) || spaced == (s.length () - 1))
             {   ::std::cerr << "missing created filename among " << s << " on line "<< line << " of " << f.string () << "\n"; return false; }
@@ -270,7 +270,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         for (auto n : v)
         {   if (n.empty ()) continue;
             ::boost::trim (n);
-            e_nit en = lookup_code (n);
+            const e_nit en = lookup_code (n);
             if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (line "<< line << " of " << f.string () << ")\n";
             else last_nits.push_back (en); } }
     if (! last_nits.empty ()) expect.nits_.insert (::nitted::value_type (last_line, last_nits));
@@ -384,7 +384,7 @@ bool shadowcheck (const vstr_t& line)
     {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
         {   ::std::string n (expected.at (x));
             ::boost::trim (n);
-             e_nit en = lookup_code (n);
+            const e_nit en = lookup_code (n);
             if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (in shadow)\n";
             else if (::boost::lexical_cast < int > (line.at (x)) != static_cast < int > (en))
             {   blooper = true;
@@ -402,7 +402,7 @@ bool exporterrorcheck (const vstr_t& line)
     {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
         {   ::std::string n (expected.at (x));
             ::boost::trim (n);
-             e_nit en = lookup_code (n);
+            const e_nit en = lookup_code (n);
             if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (in exports expected)\n";
             else if (::boost::lexical_cast < int > (line.at (x)) != static_cast < int > (en))
             {   blooper = true;
@@ -415,7 +415,7 @@ bool classcheck (vstr_t& line)
 {   classic::iterator i = expected_classes.find (line.at (0));
     if (i == expected_classes.end ())
     {   if (verbose) ::std::cout << "unexpected class " << line.at (0) << " encountered\n"; return false; }
-    int e = i -> second;
+    const int e = i -> second;
     int c = -1;
     try
     {   c = ::boost::lexical_cast < int > (line.at (1)); }
@@ -436,7 +436,7 @@ bool examinecheck (vstr_t& line)
     {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
         {   ::std::string n (expected.at (x));
             ::boost::trim (n);
-             e_nit en = lookup_code (n);
+            const e_nit en = lookup_code (n);
             if (en == nit_off) ::std::cerr << "no such feedback as '" << n << "' (in shadow)\n";
             else if (::boost::lexical_cast < int > (line.at (x)) != static_cast < int > (en))
             {   blooper = true;
@@ -785,7 +785,7 @@ int main (int argc, char** argv)
 
     for (int a = 1; a < argc; ++a)
     {   if (argv [a] == nullptr) continue;
-        size_t len = strlen (argv [a]);
+        const size_t len = strlen (argv [a]);
         if (len == 0) continue;
         if (argv [a][0] == '-')
         {   if (len == 2)
@@ -800,7 +800,8 @@ int main (int argc, char** argv)
                     case 'T' : trump = true; continue;
                     case 'v' : ++verbose; continue;
                     case 'x' : xn = true; continue;
-                    case 'f' : file = true; continue; }
+                    case 'f' : file = true; continue;
+                    default : break; }
             ::std::cerr << "unknown switch " << argv [a] << "\n" << argv [0] << " -h for help\n\n";
             return ERROR_EXIT; }
         if (file)

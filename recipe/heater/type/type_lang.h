@@ -27,7 +27,7 @@ template < > inline void enum_n < t_lang, e_lang > :: set_value (nitpick& nits, 
     {   enum_base < e_lang, t_lang > :: status (s_invalid); return; }
     original_ = s;
     ::std::string lang (s);
-    ::std::string::size_type pos = s.find ('-');
+    const ::std::string::size_type pos = s.find ('-');
     if (pos != ::std::string::npos) lang = lang.substr (0, pos);
     if ((lang.length () >= 1) && (lang.length () <= 3))
         if (symbol < html_version, e_lang >  :: parse (nits, v, lang, enum_base < e_lang, t_lang > :: value_))

@@ -12,7 +12,8 @@ SSC can be built from various unii command lines using CMake, or with Visual Stu
 Libraries
 ---------
 Before you can build SSC, you may find you need to install and build boost version 1.75 or better, and a recent version
-of the ICU libraries. Most unii have both available as packages.
+of the ICU libraries. Most unii have both available as packages. You will also need Microsoft's GSL library, which can
+be downloaded from https://github.com/Microsoft/GSL .
 
 You may need to set these environment variables:
 BOOST_ROOT to point to the boost source root directory (https://boost.org);
@@ -20,6 +21,7 @@ BOOST_INCLUDEDIR to point to the boost include directory;
 BOOST_LIBRARYDIR to point to the boost lib directory;
 ICU_ROOT to point to the ICU library source root directory (https://icu-project.org/);
 SSCPATH to point to the ssc source directory (https://ssc.lu/).
+GSL_ROOT to point to the GSL root directory (https://github.com/Microsoft/GSL).
 
 
 Windows

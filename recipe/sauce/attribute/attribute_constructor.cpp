@@ -28,7 +28,7 @@ template < class ATTRIBUTE, class ... X > struct attribute_constructor : public 
         auto ptr = attribute_v_ptr (new ATTRIBUTE (box));
         ptr -> parse (nits, v, node);
         return ptr; }
-    static e_animation_type animation_type (const e_attribute ea)
+    static e_animation_type animation_type (const e_attribute ea) noexcept
     {   if (ea == ATTRIBUTE :: whoami ()) return ATTRIBUTE :: animation_type ();
         return attribute_constructor < X... > :: animation_type (ea); } };
 
@@ -37,7 +37,7 @@ template < > struct attribute_constructor < attr_unknown >
     {   auto ptr = attribute_v_ptr (new attr_unknown (box));
         ptr -> parse (nits, v, node);
         return ptr; }
-    static e_animation_type animation_type (const e_attribute ) { return at_none; } };
+    static e_animation_type animation_type (const e_attribute ) noexcept { return at_none; } };
 
 attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, element* box, const attribute_node& node)
 {   if (node.id () <= last_1) return attribute_constructor < ATTRIBUTES_1 > :: make (nits, v, box, node);

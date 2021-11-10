@@ -27,25 +27,25 @@ class webmention
     bool invalid_ = true;
     e_activity activity_ = act_unknown;
 public:
-    webmention () : invalid_ (true), activity_ (act_unknown) {}
+    webmention () = default;
     webmention (const url& source, const url& target, const ::std::string& html);
     webmention (nitpick& nits, ::boost::property_tree::ptree& tree, const ::std::string& container)
         : activity_ (act_static)
     {   try { read (nits, tree, container); }
         catch (...) { invalid_ = true; activity_ = act_unknown; } }
-    void swap (webmention& w) NOEXCEPT
+    void swap (webmention& w) noexcept
     {   source_.swap (w.source_);
         target_.swap (w.target_);
         html_.swap (w.html_);
         when_.swap (w.when_);
         ::std::swap (invalid_, w.invalid_);
         ::std::swap (activity_, w.activity_); }
-    bool invalid () const { return invalid_; }
+    bool invalid () const noexcept { return invalid_; }
     int compare_updated (const webmention& w);
     int compare (const webmention& w);
-    void read (nitpick& nits, ::boost::property_tree::ptree& tree, const ::std::string& container);
+    void read (nitpick& nits, const ::boost::property_tree::ptree& tree, const ::std::string& container);
     void write (::boost::property_tree::ptree& tree, const ::std::string& container);
-    e_activity activity () const { return activity_; }
-    void activity (const e_activity a) { activity_ = a; }
+    e_activity activity () const noexcept { return activity_; }
+    void activity (const e_activity a) noexcept { activity_ = a; }
     ::std::string apply_template (const vstr_t& templates);
     ::std::string report () const; };

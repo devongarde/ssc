@@ -23,12 +23,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 template < > struct type_master < t_colour > : tidy_string < t_colour >
 {   using tidy_string < t_colour > :: tidy_string;
-    static e_animation_type animation_type () { return at_colour; }
+    static e_animation_type animation_type () noexcept { return at_colour; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
     {   tidy_string < t_colour > :: set_value (nits, v, s);
         if (tidy_string < t_colour > :: good ())
         {   const ::std::string& val (tidy_string < t_colour > :: get_string ());
-            ::std::string::size_type len = val.length ();
+            const ::std::string::size_type len = val.length ();
             if ((len == 7) && (val.at (0) == '#') && (val.substr (1).find_first_not_of (HEX) == ::std::string::npos)) return;
             if ((len == 4) && (val.at (0) == '#') && (v.svg () >= sv_1_0) && (val.substr (1).find_first_not_of (HEX) == ::std::string::npos)) return;
             if ((len > 4) && (val.at (len - 1) == ')') && compare_no_case (val.substr (0, 4), "rgb("))
@@ -39,12 +39,12 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
                     if (nums.size () == 3)
                     {   int perky = 0, jollybon = 0;
                         for (auto ss : nums)
-                        {   ::std::string::size_type ssl = ss.length ();
+                        {   const ::std::string::size_type ssl = ss.length ();
                             if (! ss.empty ()) if (ss.at (ssl - 1) == '%') ++perky; }
                         if ((perky != 0) && (perky != 3))
                             nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (val), ": rgb colours must be all relative or all absolute, the two cannot be mixed");
                         else for (auto ss : nums)
-                        {   double d = lexical < double > :: cast (ss);
+                        {   const double d = lexical < double > :: cast (ss);
                             if (d < 0.0)
                                 nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (ss), ": rgb colours cannot be negative");
                             else if ((perky > 0) && (d > 100.0))

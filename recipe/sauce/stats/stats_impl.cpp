@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_httpequiv.h"
 #include "type/type_metaname.h"
 
-void stats::mark_file (const unsigned size)
+void stats::mark_file (const unsigned size) noexcept
 {   ++file_count_;
     if (size < smallest_) smallest_ = size;
     if (size > biggest_) biggest_ = size;
@@ -102,18 +102,18 @@ mmac_t mac_subtitle (const ::std::string& title)
     uint64_t total = 0;
     unsigned count = 0;
     for (unsigned i = 0; i < sty_illegal; ++i)
-    {   unsigned n = schema_.at (static_cast < e_schema_type > (i));
+    {   const unsigned n = schema_.at (static_cast < e_schema_type > (i));
         if (n == 0) continue;
         ++total;
         count += n;
         if (context.tell (e_error))
         {   mmac_t stat = mac_init (itemtype_index_name (make_itemtype_index (static_cast < e_schema_type > (i))), n);
-            unsigned x = schema_property_.family (static_cast < e_schema_type > (i));
+            const unsigned x = schema_property_.family (static_cast < e_schema_type > (i));
             if (x > 0) stat.emplace (nm_stat_detail, ::boost::lexical_cast < ::std::string > (x / n));
             res += apply_macros (ns_stat, table, stat);
             if (context.tell (e_info))
                 for (unsigned m = 0; m < sp_illegal; ++m)
-                {   unsigned y = schema_property_.at (static_cast < e_schema_type > (i), static_cast <e_schema_property> (m));
+                {   const unsigned y = schema_property_.at (static_cast < e_schema_type > (i), static_cast <e_schema_property> (m));
                     if (y > 0)
                     {   mmac_t mac = mac_subinit (itemprop_index_name (make_itemprop_index (static_cast <e_schema_property> (m))), y);
                         res += apply_macros (ns_substat, table, stat, mac); } } } }
@@ -121,7 +121,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     {   mmac_t stat = mac_subtitle ("Property counts");
         ::std::string att;
         for (unsigned m = 0; m < sp_illegal; ++m)
-        {   unsigned x = schema_property_.member (static_cast <e_schema_property> (m));
+        {   const unsigned x = schema_property_.member (static_cast <e_schema_property> (m));
             if (x > 0)
             {   mmac_t item = mac_init (schema_property_name (static_cast <e_schema_property> (m)), x);
                 att += apply_macros (ns_stat, table, stat, item); } }
@@ -141,14 +141,14 @@ mmac_t mac_subtitle (const ::std::string& title)
     uint64_t total = 0;
     unsigned count = 0;
     for (unsigned i = 0; i < last_element_tag; ++i)
-    {   unsigned n = element_.at (i);
+    {   const unsigned n = element_.at (i);
         if (n == 0) continue;
         ++total;
         count += n;
         if (context.tell (e_comment) || (context.tell (e_error) && ((elem::categories (i) & EF_FAUX) == 0)))
         {   mmac_t stat = mac_init (elem::name (i), n);
             if (! context.tell (e_info))
-            {   unsigned x = attribute_.family (i);
+            {   const unsigned x = attribute_.family (i);
                 if (x > 0)
                 {   ::std::string average ("on average ");
                     average += ::boost::lexical_cast < ::std::string > (x / n);
@@ -159,7 +159,7 @@ mmac_t mac_subtitle (const ::std::string& title)
             else
             {   res += apply_macros (ns_stat, table, stat);
                 for (unsigned m = 0; m < last_attribute; ++m)
-                {   unsigned y = attribute_.at (i, static_cast <e_attribute> (m));
+                {   const unsigned y = attribute_.at (i, static_cast <e_attribute> (m));
                     if (y > 0)
                     {   mmac_t mac = mac_subinit (attr::name (static_cast <e_attribute> (m)), y);
                         res += apply_macros (ns_substat, table, stat, mac); } } } } }
@@ -167,7 +167,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     {   mmac_t stat = mac_subtitle ("Attribute counts");
         ::std::string att;
         for (unsigned m = 0; m < last_attribute; ++m)
-        {   unsigned x = attribute_.member (static_cast <e_attribute> (m));
+        {   const unsigned x = attribute_.member (static_cast <e_attribute> (m));
             if (x > 0)
             {   mmac_t item = mac_init (attr::name (static_cast <e_attribute> (m)), x);
                 att += apply_macros (ns_stat, table, stat, item); } }
@@ -181,7 +181,9 @@ mmac_t mac_subtitle (const ::std::string& title)
 ::std::string stats::version_report () const
 {   mmac_t table = mac_title ("Versions");
     ::std::string res;
-    for (auto i : version_.count_) if (i.second > 0) res += apply_macros (ns_stat, context.macros (), table, mac_init (i.first.report (), i.second));
+    for (auto ii = version_.count_.cbegin (); ii != version_.count_.cend (); ++ii)
+        if (ii -> second > 0)
+            res += apply_macros (ns_stat, context.macros (), table, mac_init (ii -> first.report (), ii -> second));
     if (! res.empty ()) res = apply_macros (ns_stats_head, table) + res + apply_macros (ns_stats_foot, table);
     return res; }
 
@@ -284,7 +286,7 @@ mmac_t mac_subtitle (const ::std::string& title)
 {   mmac_t table = mac_title ("References");
     ::std::string res;
     for (unsigned int d = 1; d <= last_doc; ++d)
-    {   int x = ref_.at (static_cast <e_doc> (d));
+    {   const int x = ref_.at (static_cast <e_doc> (d));
         if (x > 0)
         {   mmac_t stat = mac_init (doc_title (static_cast <e_doc> (d)), x);
             res += apply_macros (ns_stat, context.macros (), table, stat); } }
@@ -298,7 +300,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     {   ::std::string sub;
         mmac_t stat1 = mac_subtitle ("pragma");
         for (unsigned i = 0; i < he_error; ++i)
-        {   unsigned n = httpequiv_.at (static_cast < e_httpequiv > (i));
+        {   const unsigned n = httpequiv_.at (static_cast < e_httpequiv > (i));
             if (n)
             {   mmac_t item = mac_init (enum_n < t_httpequiv, e_httpequiv > :: name (static_cast < e_httpequiv > (i)), n);
                 sub += apply_macros (ns_stat, table, stat1, item); } }
@@ -307,7 +309,7 @@ mmac_t mac_subtitle (const ::std::string& title)
             sub.clear (); }
         mmac_t stat2 = mac_subtitle ("metadata");
         for (unsigned i = 0; i < mn_illegal; ++i)
-        {   unsigned n = metaname_.at (static_cast < e_metaname > (i));
+        {   const unsigned n = metaname_.at (static_cast < e_metaname > (i));
             if (n)
             {   mmac_t item = mac_init (enum_n < t_metaname, e_metaname > :: name (static_cast < e_metaname > (i)), n);
                 sub += apply_macros (ns_stat, table, stat2, item); } }

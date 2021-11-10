@@ -24,12 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "microformat/def.h"
 
-#define SF_ENUMERATION          0x10000000
-#define SF_EXTERNAL_ENUMERATION 0x20000000
-#define SF_NO_ITEMID            0x40000000
-#define SF_DEPRECATED           0x80000000
-#define SF_SIMPLE_MASK          0x0FFFFFFF
-#define SF_NO_SIMPLE_TYPE       0
 #define MAKE_SIMPLE_TYPE(T)     static_cast < flags_t > (T)
 
 struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema_type_symbol_table [] =
@@ -2409,7 +2403,7 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { 0, 0 }, { 0, 0 }, "", sty_illegal } };
 
 sch::sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root)
-{   e_schema_type es = parse (nits, v, x, root);
+{   const e_schema_type es = parse (nits, v, x, root);
     if (es != sty_illegal) set (v, es); }
 
 void sch::init (nitpick& nits)
@@ -2498,8 +2492,8 @@ e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::str
                 nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
                 break;
             case s_foaf :
-                {   int n = context.foaf ();
-                    if ((n > 0) && (n < 99)) sv = schema_version (s_foaf, 0, static_cast < char > (n));
+                {   const int n = context.foaf ();
+                    if ((n > 0) && (n < 99)) sv = schema_version (s_foaf, 0, ::gsl::narrow_cast < char > (n));
                     else sv = schema_version (s_foaf, 0, 99); }
                 if (may_apply (sv, s.first (), s.last ())) return s.get ();
                 nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
@@ -2509,8 +2503,8 @@ e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::str
                 nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid here");
                 break;
             case s_rdfa :
-                {   int n = context.rdfa ();
-                    if ((n >= 0) && (n < 4)) sv = schema_version (s_rdfa, 1, static_cast < char > (n));
+                {   const int n = context.rdfa ();
+                    if ((n >= 0) && (n < 4)) sv = schema_version (s_rdfa, 1, ::gsl::narrow_cast < char > (n));
                     else sv = schema_version (s_rdfa, 1, 3); }
                 if (may_apply (sv, s.first (), s.last ())) return s.get ();
                 nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
@@ -2537,35 +2531,35 @@ e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::str
                 break; } }
     return sty_illegal; }
 
-e_schema sch::root () const
+e_schema sch::root () const noexcept
 { return first ().root (); }
 
 e_schema sch::root (const e_schema_type st)
 { return first_version (st).root (); }
 
-bool sch::enumerated () const
+bool sch::enumerated () const noexcept
 { return enumerated_schema_type (flags ()); }
 
-bool sch::has_simple_type () const
+bool sch::has_simple_type () const noexcept
 { return has_simple_schema_type (flags ()); }
 
-bool sch::external_enumerated () const
+bool sch::external_enumerated () const noexcept
 { return external_enumerated_schema_type (flags ()); }
 
-e_type sch::get_simple_type () const
+e_type sch::get_simple_type () const noexcept
 { return get_simple_schema_type (flags ()); }
 
-bool enumerated_schema_type (const flags_t flags)
-{ return (flags & SF_ENUMERATION) == SF_ENUMERATION; }
+//bool enumerated_schema_type (const flags_t flags) noexcept
+//{ return (flags & SF_ENUMERATION) == SF_ENUMERATION; }
 
-bool has_simple_schema_type (const flags_t flags)
-{ return (flags & SF_SIMPLE_MASK) != 0; }
+//bool has_simple_schema_type (const flags_t flags) noexcept
+//{ return (flags & SF_SIMPLE_MASK) != 0; }
 
-bool external_enumerated_schema_type (const flags_t flags)
-{ return (flags & SF_EXTERNAL_ENUMERATION) == SF_EXTERNAL_ENUMERATION; }
+//bool external_enumerated_schema_type (const flags_t flags) noexcept
+//{ return (flags & SF_EXTERNAL_ENUMERATION) == SF_EXTERNAL_ENUMERATION; }
 
-e_type get_simple_schema_type (const flags_t flags)
-{ return static_cast < e_type > (flags & SF_SIMPLE_MASK); }
+//e_type get_simple_schema_type (const flags_t flags) noexcept
+//{ return static_cast < e_type > (flags & SF_SIMPLE_MASK); }
 
-bool is_itemid_ok (const flags_t flags)
-{ return (flags & SF_NO_ITEMID) == 0; }
+//bool is_itemid_ok (const flags_t flags) noexcept
+//{ return (flags & SF_NO_ITEMID) == 0; }

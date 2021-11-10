@@ -29,18 +29,18 @@ class attributes
 {   aar_t aar_;
     ::std::string unrecognised_;
     element& box_;
-    void rebox () NOEXCEPT
+    void rebox () noexcept
     {   for (auto a : aar_) if (a.get () != nullptr) a -> box (&box_); }
 public:
     attributes () = delete;
-    explicit attributes (element& box) : box_ (box) { }
+    explicit attributes (element& box) noexcept : box_ (box) { }
     void reset ()
     {   aar_.fill (attribute_v_ptr ());
         unrecognised_.clear (); }
-    void swap (attributes& w) NOEXCEPT;
+    void swap (attributes& w) noexcept;
     void reconstruct (element_node& en)
     {   parse (en.nits (), en.version (), en.attributes ()); }
-    e_element tag () const;
+    e_element tag () const noexcept;
     bool has (const e_attribute a) const
     {   return aar_.at (a).get () != nullptr; }
     bool set_value (nitpick& nits, const html_version& v, const e_attribute a, const ::std::string& s);
@@ -90,7 +90,8 @@ public:
         return aar_.at (a) -> size (); }
     template < class ATTRIBUTE > typename ATTRIBUTE::value_type get_x () const
     {   if (! has (ATTRIBUTE::whoami ())) return ATTRIBUTE::default_value ();
-        ATTRIBUTE* ap = static_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());
+//        ATTRIBUTE* ap = static_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());
+        ATTRIBUTE* ap = dynamic_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());
         VERIFY_NOT_NULL (ap, __FILE__, __LINE__);
         return ap -> get (); }
     const attribute_v_ptr get (const e_attribute a) const
@@ -103,7 +104,7 @@ public:
     {   if (! has (ATTRIBUTE::whoami ())) return false;
         return get_x < ATTRIBUTE > () == v; }
 
-    bool empty () const;
+    bool empty () const noexcept;
     bool invalid () const;
     bool valid () const;
     void verify_id (element& e);
@@ -115,6 +116,6 @@ public:
     void mark (page& p, const e_attribute a);
     void mark (page& p);
     void shadow (::std::stringstream& ss, const html_version& v, element* e);
-    element& box () NOEXCEPT { return box_; }
-    const element& box () const NOEXCEPT { return box_; }
+    element& box () noexcept { return box_; }
+    const element& box () const noexcept { return box_; }
     ::std::string report () const; };

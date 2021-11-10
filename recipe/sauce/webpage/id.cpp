@@ -80,10 +80,10 @@ void ids_t::cover_arse ()
 bool ids_t::compatible_state (const ::std::string& id, const bool hidden)
 {   return compatible_id_state (is_hidden (id), hidden); }
 
-bool ids_t::compatible_category (const html_version& v, element& e, const e_sought_category cat)
+bool ids_t::compatible_category (const html_version& v, const element& e, const e_sought_category cat)
 {   return e.fits_link_category (v, cat); }
 
-bool compatible_id_state (const bool source, const bool target)
+bool compatible_id_state (const bool source, const bool target) noexcept
 {   if (! target) return true;
     return (source); }
 
@@ -93,7 +93,7 @@ bool ids_t::is_good_id (element& e, const ::std::string& s, const e_category nau
     {   e.pick (naughty_nit, es_error, naughty_cat, "#", s, " doesn't exist"); return false; }
     if (hidden_concern && ! compatible_id_state (e.ancestral_attributes ().test (a_hidden), ids.is_hidden (s)))
     {   e.pick (nit_id_hidden, es_error, naughty_cat, "#", s, " is hidden"); return false; }
-    element* pe = ids.get_element (s);
+    const element* const pe = ids.get_element (s);
     VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     if (! ids.compatible_category (e.node ().version (), *pe, e.link_category_sought ()))
     {   e.pick (nit_id_category, ed_svg_1_1, "17.1.4 Processing of IRI references", es_error, naughty_cat,

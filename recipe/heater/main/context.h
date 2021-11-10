@@ -35,7 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DEFAULT_MAX_FILE_SIZE 4
 #define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
 
-const e_verbose default_output = e_warning;
+constexpr e_verbose default_output = e_warning;
 class hook;
 class replies;
 class corpus;
@@ -72,7 +72,7 @@ class context_t
     ::std::unique_ptr < ::std::ofstream > fos_;
     stats_t         data_;
     ::boost::program_options::options_description validation_;
-    e_svg_processing_mode svg_mode_;
+    e_svg_processing_mode svg_mode_ = spm_none;
     mmac_t          mmac_;
     e_quote_style   quote_style_ = qs_none;
     e_do            do_ = do_booboo;
@@ -96,144 +96,144 @@ class context_t
 public:
     context_t ();
     int parameters (nitpick& nits, int argc, char** argv);
-    bool article () const { return article_; }
-    bool body () const { return body_; }
-    bool cgi () const { return cgi_; }
-    bool checking_urls () const { return checking_urls_; }
-    bool clear () const { return clear_; }
-    int code () const { return code_; }
-    bool codes () const { return codes_; }
+    bool article () const noexcept { return article_; }
+    bool body () const noexcept { return body_; }
+    bool cgi () const noexcept { return cgi_; }
+    bool checking_urls () const noexcept { return checking_urls_; }
+    bool clear () const noexcept { return clear_; }
+    int code () const noexcept { return code_; }
+    bool codes () const noexcept { return codes_; }
     ::boost::filesystem::path config () const { return config_; }
-    e_copy copy () const { return copy_; }
+    e_copy copy () const noexcept { return copy_; }
     ::boost::filesystem::path corpus () const { return corpus_; }
-    bool crosslinks () const { return crosslinks_; }
+    bool crosslinks () const noexcept { return crosslinks_; }
     const vstr_t custom_elements () const { return custom_elements_; }
-    int dc () const { return dc_; }
-    bool dodedu () const { return (copy_ >= c_deduplicate); }
+    int dc () const noexcept { return dc_; }
+    bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }
     const ::std::string domsg () const { return domsg_; }
     const ::std::string environment (const e_environment e) const { return environment_.at (e); }
-    bool export_defined () const { return ! export_root_.empty (); }
+    bool export_defined () const noexcept { return ! export_root_.empty (); }
     const ::std::string export_root () const { return export_root_; }
     const vstr_t exports () const { return exports_; }
     const vstr_t extensions () const { return extensions_; }
-    bool external () const { return external_; }
-    bool fe () const { return fe_; }
+    bool external () const noexcept { return external_; }
+    bool fe () const noexcept { return fe_; }
     const ::std::string filename () const { return filename_; }
-    int foaf () const { return foaf_; }
-    bool forwarded () const { return forwarded_; }
-    bool has_math () const { return version_.has_math (); }
-    bool has_rdfa () const { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
-    bool has_svg () const { return version_.has_svg (); }
-    html_version html_ver () const { return version_; }
-    html_version& html_ver () { return version_; }
-    html_version html_ver (const int major, const int minor);
+    int foaf () const noexcept { return foaf_; }
+    bool forwarded () const  noexcept{ return forwarded_; }
+    bool has_math () const noexcept { return version_.has_math (); }
+    bool has_rdfa () const noexcept { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
+    bool has_svg () const noexcept { return version_.has_svg (); }
+    html_version html_ver () const noexcept { return version_; }
+    html_version& html_ver () noexcept { return version_; }
+    html_version html_ver (const int major, const int minor) noexcept;
     const ::std::string incoming () const { return incoming_; }
     const ::std::string index () const { return index_; }
-    bool info () const { return info_; }
-    bool invalid () const { return ! valid_; }
-    bool jsonld () const { return ! jsonld_; }
+    bool info () const noexcept { return info_; }
+    bool invalid () const noexcept { return ! valid_; }
+    bool jsonld () const noexcept { return ! jsonld_; }
     const vstr_t jsonld_extension () const { return jsonld_ext_; }
-    e_jsonld_version jsonld_version () const { return version_.jsonld_version (); }
+    e_jsonld_version jsonld_version () const noexcept { return version_.jsonld_version (); }
     ::std::string lang () const { return lang_; }
-    bool links () const { return links_; }
-    bool load_css () const { return ! load_css_; }
+    bool links () const noexcept { return links_; }
+    bool load_css () const noexcept { return ! load_css_; }
     const ::std::string macro_end () const { return macro_end_; }
     const ::std::string macro_start () const { return macro_start_; }
-    const mmac_t& macros () const { return mmac_; }
-    mmac_t& macros () { return mmac_; }
-    bool main () const { return main_; }
-    e_math_version math_version () const { return version_.math_version (); }
-    unsigned long max_file_size () const { return static_cast < unsigned long > (max_file_size_); }
-    bool md_export () const { return md_export_; }
+    const mmac_t& macros () const noexcept { return mmac_; }
+    mmac_t& macros () noexcept { return mmac_; }
+    bool main () const noexcept { return main_; }
+    e_math_version math_version () const noexcept { return version_.math_version (); }
+    unsigned long max_file_size () const noexcept { return ::gsl::narrow_cast < unsigned long > (max_file_size_); }
+    bool md_export () const noexcept { return md_export_; }
     const vstr_t mentions () const { return mentions_; }
-    bool meta () const { return meta_; }
-    bool mf_export () const { return mf_export_; }
-    bool mf_verify () const { return mf_verify_; }
-    bool mf_version1 () const { return (mf_version_ & 1) != 0; }
-    bool mf_version2 () const { return (mf_version_ & 2) != 0; }
-    schema_version mf_ver () const;
-    bool microdata () const { return microdata_; }
-    bool microformats () const { return mf_verify_ || mf_export_; }
+    bool meta () const noexcept { return meta_; }
+    bool mf_export () const noexcept { return mf_export_; }
+    bool mf_verify () const noexcept { return mf_verify_; }
+    bool mf_version1 () const noexcept { return (mf_version_ & 1) != 0; }
+    bool mf_version2 () const noexcept { return (mf_version_ & 2) != 0; }
+    schema_version mf_ver () const noexcept;
+    bool microdata () const noexcept { return microdata_; }
+    bool microformats () const noexcept { return mf_verify_ || mf_export_; }
     ::std::string msg () const { return msg_; }
-    bool nids () const { return nids_; }
+    bool nids () const noexcept { return nids_; }
     ::std::string nit_format () const
     {   if (nit_override_.empty () && ! test ()) return nit_format_;
         return nit_override_; }
-    bool nits () const { return nits_; }
-    bool nits_nits_nits () const { return nits_nits_nits_; }
-    bool nochange () const { return nochange_; }
-    bool notify () const { return notify_; }
-    bool not_root () const { return not_root_; }
-    bool once () const { return once_; }
+    bool nits () const noexcept { return nits_; }
+    bool nits_nits_nits () const noexcept { return nits_nits_nits_; }
+    bool nochange () const noexcept { return nochange_; }
+    bool notify () const noexcept { return notify_; }
+    bool not_root () const noexcept { return not_root_; }
+    bool once () const noexcept { return once_; }
     ::std::string output () const { return output_; }
-    bool presume_tags () const { return presume_tags_; }
+    bool presume_tags () const noexcept { return presume_tags_; }
     ::std::string path () const { return path_; }
     const ::std::string persisted () const { return persisted_; }
-    bool process_webmentions () const { return process_webmentions_; }
-    bool progress () const { return progress_; }
-    e_quote_style quote_style () const { return quote_style_; }
-    bool rdfa () const;
-    e_rdf_version rdf_version () const { return version_.rdf_version (); }
-    bool rel () const { return rel_; }
-    bool repeated () const { return repeated_; }
-    e_severity report_error () const { return report_error_; }
-    bool reset () const { return reset_; }
-    bool revoke () const { return revoke_; }
-    bool rfc_1867 () const { return rfc_1867_; }
-    bool rfc_1942 () const { return rfc_1942_; }
-    bool rfc_1980 () const { return rfc_1980_; }
-    bool rfc_2070 () const { return rfc_2070_; }
-    bool rpt_opens () const { return rpt_opens_; }
+    bool process_webmentions () const noexcept { return process_webmentions_; }
+    bool progress () const noexcept { return progress_; }
+    e_quote_style quote_style () const noexcept { return quote_style_; }
+    bool rdfa () const noexcept;
+    e_rdf_version rdf_version () const noexcept { return version_.rdf_version (); }
+    bool rel () const noexcept { return rel_; }
+    bool repeated () const noexcept { return repeated_; }
+    e_severity report_error () const noexcept { return report_error_; }
+    bool reset () const noexcept { return reset_; }
+    bool revoke () const noexcept { return revoke_; }
+    bool rfc_1867 () const noexcept { return rfc_1867_; }
+    bool rfc_1942 () const noexcept { return rfc_1942_; }
+    bool rfc_1980 () const noexcept { return rfc_1980_; }
+    bool rfc_2070 () const noexcept { return rfc_2070_; }
+    bool rpt_opens () const noexcept { return rpt_opens_; }
     const ::std::string root () const { return root_; }
-    bool sarcasm () const { return sarcasm_; }
-    bool schema () const { return schema_; }
-    schema_version schema_ver () const { return schema_ver_; }
+    bool sarcasm () const noexcept { return sarcasm_; }
+    bool schema () const noexcept { return schema_; }
+    schema_version schema_ver () const noexcept { return schema_ver_; }
     const ::std::string secret () const { return secret_; }
     const ::std::string server () const { return server_; }
-    bool shadow_any () const { return shadow_pages (); }
-    bool shadow_comment () const { return shadow_comment_; }
-    bool shadow_changed () const { return shadow_changed_; }
-    bool shadow_enable () const { return shadow_enable_; }
-    bool shadow_files () const { return ((copy_ > c_html) && (copy_ <= c_deduplicate)); }
+    bool shadow_any () const noexcept { return shadow_pages (); }
+    bool shadow_comment () const noexcept { return shadow_comment_; }
+    bool shadow_changed () const noexcept { return shadow_changed_; }
+    bool shadow_enable () const noexcept { return shadow_enable_; }
+    bool shadow_files () const noexcept { return ((copy_ > c_html) && (copy_ <= c_deduplicate)); }
     const vstr_t shadow_ignore () const { return shadow_ignore_; }
-    bool shadow_pages () const { return ((copy_ > c_none) && (copy_ <= c_deduplicate)); }
+    bool shadow_pages () const noexcept { return ((copy_ > c_none) && (copy_ <= c_deduplicate)); }
     const ::std::string shadow_persist () const { return shadow_persist_; }
     const ::std::string shadow_root () const { return shadow_; }
-    bool shadow_ssi () const { return shadow_ssi_; }
-    bool shadow_space () const { return shadow_space_; }
+    bool shadow_ssi () const noexcept { return shadow_ssi_; }
+    bool shadow_space () const noexcept { return shadow_space_; }
     const vstr_t shadows () const { return shadows_; }
     const vstr_t site () const { return site_; }
-    bool slob () const { return slob_; }
-    bool spec () const { return spec_; }
+    bool slob () const noexcept { return slob_; }
+    bool spec () const noexcept { return spec_; }
     ::std::string snippet () const { return snippet_; }
-    bool ssi () const { return ssi_; }
+    bool ssi () const noexcept { return ssi_; }
     const ::std::string stats () const { return stats_; }
-    bool stats_summary () const { return stats_summary_; }
-    bool stats_page () const { return stats_page_; }
+    bool stats_summary () const noexcept { return stats_summary_; }
+    bool stats_page () const noexcept { return stats_page_; }
     const ::std::string stub () const { return stub_; }
-    e_svg_processing_mode svg_mode () const { return svg_mode_; }
-    e_svg_version svg_version () const { return version_.svg_version (); }
+    e_svg_processing_mode svg_mode () const noexcept { return svg_mode_; }
+    e_svg_version svg_version () const noexcept { return version_.svg_version (); }
     const vstr_t templates () const { return templates_; }
-    bool test () const { return test_ && nit_override_.empty (); }
+    bool test () const noexcept { return test_ && nit_override_.empty (); }
     const ::std::string test_header () const { return test_header_; }
-    int title () const { return title_; }
-    e_do todo () const { return do_; }
-    bool unknown_class () const { return ! unknown_class_; }
+    int title () const noexcept { return title_; }
+    e_do todo () const noexcept { return do_; }
+    bool unknown_class () const noexcept { return ! unknown_class_; }
     const ::std::string user () const { return user_; }
-    e_verbose verbose () const { return verbose_; }
+    e_verbose verbose () const noexcept { return verbose_; }
     const vstr_t virtuals () const { return virtuals_; }
     const ::std::string webmention () const { return webmention_; }
     const ::std::string write_path () const { return write_path_; }
-    bool update () const { return update_; }
-    bool versioned () const { return versioned_; }
-    int xsd () const { return xsd_; }
+    bool update () const noexcept { return update_; }
+    bool versioned () const noexcept { return versioned_; }
+    int xsd () const noexcept { return xsd_; }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
     context_t& body (const bool b) { body_ = b; mac (nm_context_body, b); return *this; }
     context_t& cgi (const bool b) { cgi_ = b; mac (nm_context_cgi, b); return *this; }
-    context_t& checking_urls (const bool b) { checking_urls_ = b; return *this; }
+    context_t& checking_urls (const bool b) noexcept { checking_urls_ = b; return *this; }
     context_t& clear (const bool b) { clear_ = b; mac (nm_context_clear, b); return *this; }
     context_t& code (const int i) { code_ = i; mac < int > (nm_context_code, i); return *this; }
-    context_t& codes (const bool b) { codes_ = b; return *this; }
+    context_t& codes (const bool b) noexcept { codes_ = b; return *this; }
     context_t& config (const ::boost::filesystem::path& c) { config_ = c; mac (nm_context_config, c.string ()); return *this; }
     context_t& copy (const int c)
     {   if ((c > c_none) && (c <= c_rpt)) copy_ = static_cast < e_copy > (c);
@@ -242,8 +242,8 @@ public:
         return *this; }
     context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; mac (nm_context_corpus, f.string ()); return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
-    css_cache& css () { return css_; }
-    const css_cache& css () const { return css_; }
+    css_cache& css () noexcept { return css_; }
+    const css_cache& css () const noexcept { return css_; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
     context_t& dc (const int d) { if ((d == 0) || (d == 1)) dc_ = d; mac (nm_context_dc, dc_); return *this; }
     context_t& domsg (const ::std::string& s) { domsg_ = s; return *this; }
@@ -292,7 +292,7 @@ public:
         else version_.math_version (math_none);
         mac < int > (nm_context_math, version_.math_version ());
         return *this; }
-    context_t& math_version (const e_math_version v) { version_.math_version (v); return *this; }
+    context_t& math_version (const e_math_version v) noexcept { version_.math_version (v); return *this; }
     context_t& max_file_size (const long l) { max_file_size_ = l; mac < long > (nm_context_max_file_size, l);return *this; }
     context_t& md_export (const bool b) { md_export_ = b; mac (nm_context_md_export, b); return *this; }
     context_t& mentions (const vstr_t& s) { mentions_ = s; return *this; }
@@ -306,17 +306,17 @@ public:
         mac (nm_context_microdata, b);
         return *this; }
     context_t& msg (const ::std::string& s) { msg_ = s; return *this; }
-    context_t& nids (const bool b) { nids_ = b; return *this; }
+    context_t& nids (const bool b) noexcept { nids_ = b; return *this; }
     context_t& nit_format (const ::std::string& nf)
     {   nit_format_ = nf;
         mmac_.emplace (mn_nits_format, nf);
         return *this; }
     context_t& nit_override (const ::std::string& nf) { nit_override_ = nf; return *this; }
-    context_t& nits (const bool b) { nits_ = b; return *this; }
-    context_t& nits_nits_nits (const bool b) { nits_nits_nits_ = b; return *this; }
-    context_t& nochange (const bool b) { nochange_ = b; return *this; }
-    context_t& notify (const bool b) { notify_ = b; return *this; }
-    context_t& not_root (const bool b) { not_root_ = b; return *this; }
+    context_t& nits (const bool b) noexcept { nits_ = b; return *this; }
+    context_t& nits_nits_nits (const bool b) noexcept { nits_nits_nits_ = b; return *this; }
+    context_t& nochange (const bool b) noexcept { nochange_ = b; return *this; }
+    context_t& notify (const bool b) noexcept { notify_ = b; return *this; }
+    context_t& not_root (const bool b) noexcept { not_root_ = b; return *this; }
     context_t& once (const bool b)
     {   once_ = b;
         if (b) external (b);
@@ -327,14 +327,14 @@ public:
     context_t& persisted (const ::std::string& s) { persisted_ = s; mac (nm_context_persisted, s); return *this; }
     context_t& presume_tags (const bool b) { presume_tags_ = b; mac (nm_context_tags, b); return *this; }
     context_t& process_webmentions (const bool b) { process_webmentions_ = b; mac (nm_context_process_webmentions, b); return *this; }
-    context_t& progress (const bool b) { progress_ = b; return *this; }
-    context_t& quote_style (const e_quote_style qs) { quote_style_ = qs; return *this; }
+    context_t& progress (const bool b) noexcept { progress_ = b; return *this; }
+    context_t& quote_style (const e_quote_style qs) noexcept { quote_style_ = qs; return *this; }
     context_t& rdfa (const bool b) { rdfa_ = b; mac (nm_context_rdfa, b); return *this; }
     context_t& rdf_version (const e_rdf_version v) { version_.rdf_version (v); mac < int > (nm_context_rdf_version, v); return *this; }
     context_t& rel (const bool b) { rel_ = b; mac (nm_context_rel, b); return *this; }
-    context_t& repeated (const bool b) { repeated_ = b; return *this; }
-    context_t& report_error (const e_severity sev) { report_error_ = sev; return *this; }
-    context_t& reset (const bool b) { reset_ = b; return *this; }
+    context_t& repeated (const bool b) noexcept { repeated_ = b; return *this; }
+    context_t& report_error (const e_severity sev) noexcept { report_error_ = sev; return *this; }
+    context_t& reset (const bool b) noexcept { reset_ = b; return *this; }
     context_t& revoke (const bool b)
     {   revoke_ = b;
         if (b) external (b);
@@ -344,7 +344,7 @@ public:
     context_t& rfc_1980 (const bool b) { rfc_1980_ = b; mac (nm_context_rfc_1980, b); return *this; }
     context_t& rfc_2070 (const bool b) { rfc_2070_ = b; mac (nm_context_rfc_2070, b); return *this; }
     context_t& root (const ::std::string& s) { root_ = s; mac (nm_context_root, s); return *this; }
-    context_t& rpt_opens (const bool b) { rpt_opens_ = b; return *this; }
+    context_t& rpt_opens (const bool b) noexcept { rpt_opens_ = b; return *this; }
     context_t& sarcasm (const bool b) { sarcasm_ = b; mac (nm_context_sarcasm, b); return *this; }
     context_t& schema (const bool b)
     {   schema_ = b;
@@ -368,7 +368,7 @@ public:
     context_t& spec (const bool b) { spec_ = b; mac (nm_context_spec, b); return *this; }
     context_t& snippet (const ::std::string& s)
     {   snippet_ = s;
-        mmac_.emplace (nm_context_root, "snippet");
+        mmac_.emplace (nm_context_root, "");
         mmac_.emplace (nm_html_snippet, s);
         quote_style (qs_html);
         return *this; }
@@ -377,39 +377,39 @@ public:
     context_t& stats_page (const bool b) { stats_page_ = b; mac (nm_context_stats_page, b); return *this; }
     context_t& stats_summary (const bool b) { stats_summary_ = b; mac (nm_context_stats_summary, b); return *this; }
     context_t& stub (const ::std::string& s) { stub_ = s; return *this; }
-    context_t& svg_mode (const e_svg_processing_mode m) { svg_mode_ = m; return *this; }
-    context_t& svg_version (const int mjr, const int mnr);
+    context_t& svg_mode (const e_svg_processing_mode m) noexcept { svg_mode_ = m; return *this; }
+    context_t& svg_version (const int mjr, const int mnr) noexcept;
     context_t& svg_version (const e_svg_version v) { version_.svg_version (v); mac < int > (nm_context_svg_version, v); return *this; }
     context_t& templates (const vstr_t& s) { templates_ = s; mac (nm_context_templates, s); return *this; }
     context_t& test (const bool b) { test_ = b; mac (nm_context_test, b); return *this; }
     context_t& test_header (const ::std::string& s) { test_header_ = s; return *this; }
     context_t& title (const int n)
     { if (n <= 0) title_ = 0; else title_ = n; mac < int > (nm_context_title, title_); return *this; }
-    context_t& todo (const e_do e) { do_ = e; return *this; }
-    context_t& unknown_class (const bool b) { unknown_class_ = ! b; return *this; }
+    context_t& todo (const e_do e) noexcept { do_ = e; return *this; }
+    context_t& unknown_class (const bool b) noexcept { unknown_class_ = ! b; return *this; }
     context_t& user (const ::std::string& s) { user_ = s; mac (nm_context_user, s); return *this; }
-    context_t& update (const bool b) { update_ = b; return *this; }
-    context_t& verbose (const e_verbose i) { verbose_ = i; return *this; }
-    context_t& versioned (const bool b) { versioned_ = b; return *this; }
+    context_t& update (const bool b) noexcept { update_ = b; return *this; }
+    context_t& verbose (const e_verbose i) noexcept { verbose_ = i; return *this; }
+    context_t& versioned (const bool b) noexcept { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
     context_t& webmention (nitpick& nits, const ::std::string& w, const e_wm_status status);
     context_t& write_path (const ::std::string& s) { write_path_ = s; mac (nm_context_write_path, s); return *this; }
     context_t& xsd (const int x) { if ((x == 0) || (x == 1)) xsd_ = x; mac < int > (nm_context_xsd, xsd_); return *this; }
-    void reset_webmention ()
+    void reset_webmention () noexcept
     {   webmention_.clear ();
         wm_status_ = wm_undefined; }
     void note_reply (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content)
     {   if (notify ()) replies_.append (file, id, target, content); }
-    replies& get_replies () { return replies_; }
+    replies& get_replies () noexcept { return replies_; }
     void process_outgoing_webmention (nitpick& nits, const html_version& v);
     void process_incoming_webmention (nitpick& nits, const html_version& v);
-    bool tell (const e_verbose n) const { return n <= verbose_; }
+    bool tell (const e_verbose n) const noexcept { return n <= verbose_; }
     void out (const ::std::string& s) const { out () << s; }
     void err (const ::std::string& s) const { err () << ensane (s); }
-    ::std::ostream& out () const { if (fos_) return *fos_; return ::std::cout; }
-    ::std::ostream& err () const { if (fos_) return *fos_; return ::std::cerr; }
+    ::std::ostream& out () const noexcept { if (fos_) return *fos_; return ::std::cout; }
+    ::std::ostream& err () const noexcept { if (fos_) return *fos_; return ::std::cerr; }
     void dot ();
-    void dedot () { dot_ = 0; }
+    void dedot () noexcept { dot_ = 0; }
     void mark (const e_element e)
     {   data_.mark (e); }
     void visible (const e_element e)
@@ -447,8 +447,8 @@ public:
     uint64_t file_count () const
     {   return data_.file_count (); }
     bool severity_exceeded () const;
-    ::boost::program_options::options_description& validation () { return validation_; }
-    const ::boost::program_options::options_description& validation () const { return validation_; }
+    ::boost::program_options::options_description& validation () noexcept { return validation_; }
+    const ::boost::program_options::options_description& validation () const noexcept { return validation_; }
     void consolidate_jsonld ()
     {   for (auto j : jsonld_ext_) extensions_.push_back (j); }
     ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const; };

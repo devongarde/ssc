@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/common.h"
 #define QUOTESEP "\","
 
-const ::std::size_t def_quote_cut = 60;
+constexpr ::std::size_t def_quote_cut = 60;
 
 ::std::string slash_quote (const ::std::string& str);
 ::std::string enquote (const ::std::string& str, const char space, const ::std::string& qs = ::std::string (QUOTESEP));

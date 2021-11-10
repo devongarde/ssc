@@ -87,7 +87,7 @@ bool webmentions::read (nitpick& nits, const ::boost::filesystem::path& filename
         control_filename_ = filename;
         if (! read_header (json, WM, version, control_filename_.string ())) return false;
         generated_filename_ = read_field < ::std::string > (json, WM SEP GENERATE);
-        ::std::size_t count = read_field < ::std::size_t > (json, WM SEP COUNT);
+        const ::std::size_t count = read_field < ::std::size_t > (json, WM SEP COUNT);
         invalid_ = false;
         if (count <= 0) return true;
         w_.reserve (count);
@@ -114,13 +114,13 @@ bool webmentions::write (nitpick& nits)
         for (::std::size_t i = 0; i < w_.size (); ++i)
         {   ::std::string count = WM SEP;
             count += ::boost::lexical_cast < ::std::string > (i);
-            w_ [i].write (json, count); } }
+            w_.at (i).write (json, count); } }
     catch (...)
     {   nits.pick (nit_cannot_write, es_catastrophic, ec_webmention, "Failure when preparing ", control_filename_);
         return false; }
     return replace_file (json, control_filename_); }
 
-bool webmentions::exists (webmention& mensh)
+bool webmentions::exists (const webmention& mensh)
 {   for (auto w : w_)
         if (w.compare (mensh) == 0)
         {   w.activity (act_static);
@@ -147,7 +147,7 @@ bool webmentions::any_invalid () const
     for (::std::size_t i = 0; i < w_.size (); ++i)
     {   res += ::boost::lexical_cast < ::std::string > (i);
         res += ":";
-        res += w_ [i].report (); }
+        res += w_.at (i).report (); }
     return res; }
 
 void webmentions::make_generated_filename (const url& target)
@@ -175,14 +175,14 @@ void webmentions::make_generated_filename (const url& target)
 bool webmentions::load_templates (vstr_t& templates)
 {   templates = context.templates ();
     if (templates.size () <= 4) templates.resize (4);
-    templates [act_insert] = template_path ("new.tpl", templates [act_insert]);
-    if (templates [act_insert].empty ()) return false;
-    templates [act_update] = template_path ("change.tpl", templates [act_update]);
-    if (templates [act_update].empty ()) return false;
-    templates [act_delete] = template_path ("delete.tpl", templates [act_delete]);
-    if (templates [act_delete].empty ()) return false;
-    templates [act_static] = template_path ("static.tpl", templates [act_static]);
-    return (! templates [act_static].empty ()); }
+    ::gsl::at (templates, act_insert) = template_path ("new.tpl", ::gsl::at (templates, act_insert));
+    if (::gsl::at (templates, act_insert).empty ()) return false;
+    ::gsl::at (templates, act_update) = template_path ("change.tpl", ::gsl::at (templates, act_update));
+    if (::gsl::at (templates, act_update).empty ()) return false;
+    ::gsl::at (templates, act_delete) = template_path ("delete.tpl", ::gsl::at (templates, act_delete));
+    if (::gsl::at (templates, act_delete).empty ()) return false;
+    ::gsl::at (templates, act_static) = template_path ("static.tpl", ::gsl::at (templates, act_static));
+    return (! ::gsl::at (templates, act_static).empty ()); }
 
 bool webmentions::create_html ()
 {   vstr_t templates;

@@ -21,31 +21,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type.h"
 
-const ::std::size_t maxfnargs = 6;
+constexpr ::std::size_t maxfnargs = 6;
 
 struct fnarg_t {
+    typedef ::std::array < e_type, maxfnargs > vet_t;
     e_transform_fn      fn_ = tr_nowt;
-    e_type              args_ [maxfnargs];
+    vet_t               args_;
+BOOST_STATIC_ASSERT (maxfnargs > 5);
     fnarg_t (   const e_transform_fn fn = tr_nowt,
                 const e_type t1 = t_unknown, const e_type t2 = t_unknown, const e_type t3 = t_unknown,
-                const e_type t4 = t_unknown, const e_type t5 = t_unknown, const e_type t6 = t_unknown)
+                const e_type t4 = t_unknown, const e_type t5 = t_unknown, const e_type t6 = t_unknown) noexcept
         : fn_ (fn)
-    {   args_ [0] = t1;
-        args_ [1] = t2;
-        args_ [2] = t3;
-        args_ [3] = t4;
-        args_ [4] = t5;
-        args_ [5] = t6; }
+    {   args_.at (0) = t1;
+        args_.at (1) = t2;
+        args_.at (2) = t3;
+        args_.at (3) = t4;
+        args_.at (4) = t5;
+        args_.at (5) = t6; }
     void reset (const e_transform_fn fn = tr_nowt,
                 const e_type t1 = t_unknown, const e_type t2 = t_unknown, const e_type t3 = t_unknown,
-                const e_type t4 = t_unknown, const e_type t5 = t_unknown, const e_type t6 = t_unknown)
+                const e_type t4 = t_unknown, const e_type t5 = t_unknown, const e_type t6 = t_unknown) noexcept
     {   fn_ = fn;
-        args_ [0] = t1;
-        args_ [1] = t2;
-        args_ [2] = t3;
-        args_ [3] = t4;
-        args_ [4] = t5;
-        args_ [5] = t6; } };
+        args_.at (0) = t1;
+        args_.at (1) = t2;
+        args_.at (2) = t3;
+        args_.at (3) = t4;
+        args_.at (4) = t5;
+        args_.at (5) = t6; } };
 
 fnarg_t fnarg [] =
 {   {   tr_matrix, t_real, t_real, t_real, t_real, t_real, t_real },
@@ -66,15 +68,22 @@ typedef ::std::vector < fnarg_t > va_t;
 
 bool checkargs (nitpick& nits, const html_version& v, const e_transform_fn cmd, const vstr_t& args)
 {   static va_t va;
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26446 26482) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initiliser
+#endif // _MSC_VER
     if (va.empty ())
     {   va.resize (max_transform_fn + 1);
         for (int x = 0; fnarg [x].fn_ != tr_nowt; ++x)
             va.at (fnarg [x].fn_).reset (fnarg [x].fn_, fnarg [x].args_ [0], fnarg [x].args_ [1], fnarg [x].args_ [2], fnarg [x].args_ [3], fnarg [x].args_ [4], fnarg [x].args_ [5]); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
     PRESUME (static_cast < ::std::size_t > (cmd) < va.size (), __FILE__, __LINE__);
     PRESUME (va.at (static_cast < ::std::size_t > (cmd)).fn_ == cmd, __FILE__, __LINE__);
-    html_version lh (type_master < t_transform_fn > :: first_version (cmd));
-    ::std::size_t low = lh.minargs ();
-    ::std::size_t high = lh.maxargs ();
+    const html_version lh (type_master < t_transform_fn > :: first_version (cmd));
+    const ::std::size_t low = lh.minargs ();
+    const ::std::size_t high = lh.maxargs ();
     PRESUME (low <= maxfnargs, __FILE__, __LINE__);
     PRESUME (high <= maxfnargs, __FILE__, __LINE__);
     if ((args.size () < low) || (args.size () > high))
@@ -94,8 +103,8 @@ bool checkargs (nitpick& nits, const html_version& v, const e_transform_fn cmd, 
                     "a TRANSFORM ", quote (type_master < t_transform_fn > :: name (cmd)), " expects between ", low, " and ", high, " parameters"); }
     bool res = true;
     for (::std::size_t i = 0; i < ::std::min (high, args.size ()); ++i)
-    {   PRESUME (va.at (cmd).args_ [i] != t_unknown, __FILE__, __LINE__);
-        if (! test_value (nits, v, va.at (cmd).args_ [i], args.at (i))) res = false; }
+    {   PRESUME (va.at (cmd).args_.at (i) != t_unknown, __FILE__, __LINE__);
+        if (! test_value (nits, v, va.at (cmd).args_.at (i), args.at (i))) res = false; }
     return res; }
 
 bool parse_transform (nitpick& nits, const html_version& v, const ::std::string& d)
@@ -119,7 +128,7 @@ bool parse_transform (nitpick& nits, const html_version& v, const ::std::string&
                 {   nits.pick (nit_transform, ed_svg_1_0, "8.5 Modifying the User Coordinate System: the transform attribute", es_error, ec_type, "unexpected ',' in TRANSFORM value");
                     res = false; }
                 had_comma = true;
-                // drop thru'
+                [[fallthrough]];
             case ' ' :
                 switch (state)
                 {   case es_arg :

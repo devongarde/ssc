@@ -35,7 +35,7 @@ void element::reconstruct (sstr_t* access)
 {   if (! node_.invalid ()) return text ();
     return ::std::string ("empty base"); }
 
-void element::swap (element& e) NOEXCEPT
+void element::swap (element& e) noexcept
 {   a_.swap (e.a_);
     mf_.swap (e.mf_);
     name_.swap (e.name_);
@@ -61,19 +61,19 @@ void element::swap (element& e) NOEXCEPT
     ::std::swap (access_, e.access_);
     ::std::swap (vit_, e.vit_); }
 
-ids_t& element::get_ids ()
+ids_t& element::get_ids () noexcept
 {   return page_.get_ids (); }
 
-const ids_t& element::get_ids () const
+const ids_t& element::get_ids () const noexcept
 {   return page_.get_ids (); }
 
-ids_t& element::get_names ()
+ids_t& element::get_names () noexcept
 {   return page_.get_names (); }
 
-const ids_t& element::get_names () const
+const ids_t& element::get_names () const noexcept
 {   return page_.get_names (); }
 
-int element::line () const
+int element::line () const noexcept
 {   return node_.line (); }
 
 element_ptr element::child (const bool canreconstruct)
@@ -224,7 +224,7 @@ void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& w
         case elem_script :
         case elem_style :
         case elem_xmp : allspace = ! node_.is_closure ();
-            // drop thru'
+            [[fallthrough]];
         default :
             ss << "<";
             was_closure = node_.is_closure ();

@@ -1054,7 +1054,7 @@ void attr::init (nitpick& nits)
 e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& key, ::std::string& decl)
 {   ::std::string lc (key), ns;
     nitpick nuts;
-    ns_id id (examine_namespace (nuts, v, namespaces, lc, ns));
+    const ns_id id (examine_namespace (nuts, v, namespaces, lc, ns));
     e_namespace n = ns_error;
     switch (id)
     {   case ns_error :
@@ -1076,7 +1076,7 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_
     if (lc.empty ())
     {   nits.merge (nuts);
         return a_unknown; }
-    symbol < html_version, e_attribute > a (v, lc, n);
+    const symbol < html_version, e_attribute > a (v, lc, n);
     if (a.unknown ())
     {   nits.merge (nuts);
         check_spelling (nits, v, lc); }
@@ -1111,9 +1111,13 @@ void add_attributes (const vstr_t& v)
         switch (x)
         {   case 4 :
                 flags2 = lexical < flags_t > :: cast (args.at (3));
+                [[fallthrough]];
             case 3 :
                 flags = lexical < flags_t > :: cast (args.at (2));
+                [[fallthrough]];
             case 2 :
                 ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
+                [[fallthrough]];
             case 1 :
-                attr::extend (::boost::to_lower_copy (args.at (0)), a_custom, ns, context.html_ver (), html_0, flags, flags2); } } }
+                attr::extend (::boost::to_lower_copy (args.at (0)), a_custom, ns, context.html_ver (), html_0, flags, flags2); break;
+            default : break; } } }

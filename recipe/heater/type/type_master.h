@@ -30,10 +30,17 @@ class element;
 template < e_type TYPE > struct type_master : public string_value < TYPE >
 {   using string_value < TYPE > :: string_value; };
 
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26440) // By the same logic: dalmations are dogs, dalmations have spots, therefore all dogs have spots.
+#endif // _MSC_VER
 template < e_type T > bool test_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   type_master < T > t;
     t.set_value (nits, v, s);
     return t.good (); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
 template < e_type T > bool test_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& id)
 {   type_master < T > t;
@@ -48,13 +55,13 @@ template < e_type T > typename type_master < T > :: value_type examine_value (ni
     if (! t.good ()) return type_master < T > :: default_value ();
     return static_cast < typename type_master < T > :: value_type > (t.get ()); }
 
-template < e_type T > e_animation_type grab_animation_type ()
+template < e_type T > e_animation_type grab_animation_type () noexcept
 {   type_master < T > t;
     return t.animation_type (); }
 
 template < e_type T, e_type P, class SZ > struct string_then_type : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
-    static e_animation_type animation_type () { return grab_animation_type < P > (); }
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -73,13 +80,13 @@ template < e_type T, e_type F, e_type P > struct type_function : tidy_string < T
             nits.pick (nit_empty, es_error, ec_type, "function expected");
         else if (tidy_string < T > :: good ())
         {   ::std::string ss (tidy_string < T > :: get_string ());
-            ::std::string::size_type bra = ss.find ('(');
+            const ::std::string::size_type bra = ss.find ('(');
             if (bra == ::std::string::npos)
                 nits.pick (nit_function, es_error, ec_type, "'(' expected in ", quote (ss));
             else
             {   ::std::string fn (trim_the_lot_off (ss.substr (0, bra)));
                 test_value < F > (nits, v, fn);
-                ::std::string::size_type ket = ss.find (')');
+                const ::std::string::size_type ket = ss.find (')');
                 if (ket == ::std::string::npos)
                     nits.pick (nit_function, es_error, ec_type, "')' expected in ", quote (ss));
                 else
@@ -184,7 +191,7 @@ template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : t
 
 template < e_type T, class SZ, e_type P > struct type_at_least_one : string_vector < T, SZ >
 {   using string_vector < T, SZ > :: string_vector;
-    static e_animation_type animation_type () { return grab_animation_type < P > (); }
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
         if (string_vector < T, SZ > :: empty ())
@@ -198,7 +205,7 @@ template < e_type T, class SZ, e_type P > struct type_at_least_one : string_vect
 
 template < e_type T, class SZ, e_type P > struct type_at_least_none : string_vector < T, SZ >
 {   using string_vector < T, SZ > :: string_vector;
-    static e_animation_type animation_type () { return grab_animation_type < P > (); }
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
         if (string_vector < T, SZ > :: empty ()) return;
@@ -211,7 +218,7 @@ template < e_type T, class SZ, e_type P > struct type_at_least_none : string_vec
 
 template < e_type T, class SZ, e_type P, int N > struct type_exactly_n : string_vector < T, SZ >
 {   using string_vector < T, SZ > :: string_vector;
-    static e_animation_type animation_type () { return grab_animation_type < P > (); }
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
         if (string_vector < T, SZ > :: empty ()) return;
@@ -227,13 +234,13 @@ template < e_type T, class SZ, e_type P, int N > struct type_exactly_n : string_
 template < e_type T, class SZ, e_type P, int FROM, int TO > struct type_range : string_vector < T, SZ >
 {   BOOST_STATIC_ASSERT (FROM < TO);
     using string_vector < T, SZ > :: string_vector;
-    static e_animation_type animation_type () { return grab_animation_type < P > (); }
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
         if (string_vector < T, SZ > :: empty ()) return;
         else if (string_vector < T, SZ > :: good ())
         {   bool ok = true;
-            const int n = static_cast < int > (string_vector < T, SZ > :: size ());
+            const int n = ::gsl::narrow_cast < int > (string_vector < T, SZ > :: size ());
             if ((n < FROM) || (n > TO))
                 nits.pick (nit_not_n, es_error, ec_type, quote (s), ": between ", FROM, " and ", TO, " values expected");
             for (auto arg : string_vector < T, SZ > :: get ())
@@ -243,7 +250,7 @@ template < e_type T, class SZ, e_type P, int FROM, int TO > struct type_range : 
 
 template < e_type T, e_type P, class SZ > struct type_or_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
-    static e_animation_type animation_type () { return grab_animation_type < P > (); }
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -267,7 +274,7 @@ template < e_type T, e_type P, e_type Q, class SZ > struct either_type_or_string
 
 template < e_type T, e_type P, class SZ1, class SZ2 > struct type_or_either_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
-    static e_animation_type animation_type () { return grab_animation_type < P > (); }
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -279,7 +286,7 @@ template < e_type T, e_type P, class SZ1, class SZ2 > struct type_or_either_stri
 
 template < e_type T, e_type P, class SZ1, class SZ2, class SZ3 > struct type_or_any_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
-    static e_animation_type animation_type () { return grab_animation_type < P > (); }
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -300,14 +307,14 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : ti
         else if (tidy_string < T > :: good ())
         {   ::std::string ss (tidy_string < T > :: get_string ());
             PRESUME (SZ :: sz () != nullptr, __FILE__, __LINE__);
-            ::std::string::size_type pos = ss.find_first_of (SZ :: sz ());
+            const ::std::string::size_type pos = ss.find_first_of (SZ :: sz ());
             if (pos != ::std::string::npos)
             {   if (! test_value < P > (nits, v, ss.substr (pos+1), tidy_string < T > :: id ())) tidy_string < T > :: status (s_invalid);
                 else both_ = true;
                 ss = ss.substr (0, pos); }
             if (test_value < U > (nits, v, ss, tidy_string < T > :: id ())) return; }
         tidy_string < T > :: status (s_invalid); }
-    ::std::size_t size () const { return both_ ? 2 : 1; } };
+    ::std::size_t size () const noexcept { return both_ ? 2 : 1; } };
 
 template < e_type T, e_type A, class SZ, e_type B > struct type_opt_then_must : tidy_string < T >
 {   bool both_ = false;
@@ -381,7 +388,7 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_many_then_maybe 
 
 template < e_type T, e_type P, class SZ1, class SZ2 > struct id_or_either_string : type_or_either_string < T, P, SZ1, SZ2 >
 {   using type_or_either_string < T, P, SZ1, SZ2 > :: type_or_either_string;
-    static e_animation_type animation_type () { return grab_animation_type < P > (); }
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void verify_id (element& e)
     {   if (! type_or_either_string < T, P, SZ1, SZ2 > :: good ()) return;
         if (! type_or_either_string < T, P, SZ1, SZ2 > :: has_id ()) return;

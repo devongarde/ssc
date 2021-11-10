@@ -35,13 +35,13 @@ class css_cache
             i -> second -> active (false); } }
     void delete_snippets ();
 public:
-#ifndef NO_MOVE_CONSTRUCTOR
-	css_cache() = default;
-    css_cache (const css_cache& c) = default;
-	css_cache(css_cache&& c) = default;
-    ~css_cache () = default;
-#endif
-    void swap (css_cache& c) NOEXCEPT
+//	css_cache() = default;
+//    css_cache (const css_cache& c) = default;
+//	css_cache (css_cache&& c) = default;
+//    ~css_cache () = default;
+//    css_cache& operator = (const css_cache& ) = default;
+//    css_cache& operator = (css_cache&& ) = default;
+    void swap (css_cache& c) noexcept
     {   csss_.swap (c.csss_); }
     void post_process ()
     {   delete_snippets ();

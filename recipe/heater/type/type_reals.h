@@ -25,7 +25,7 @@ bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, c
 
 template < > struct type_master < t_pt > : tidy_string < t_pt >
 {   using tidy_string < t_pt > :: tidy_string;
-    static e_animation_type animation_type () { return at_coordinate; }
+    static e_animation_type animation_type () noexcept { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_pt > :: set_value (nits, v, s);
         if (tidy_string < t_pt >  :: good ())
@@ -35,7 +35,7 @@ template < > struct type_master < t_pt > : tidy_string < t_pt >
 
 template < > struct type_master < t_2pt > : tidy_string < t_2pt >
 {   using tidy_string < t_2pt > :: tidy_string;
-    static e_animation_type animation_type () { return at_coordinate; }
+    static e_animation_type animation_type () noexcept { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_2pt > :: set_value (nits, v, s);
         if (tidy_string < t_2pt >  :: good ())
@@ -64,7 +64,7 @@ template < > struct type_master < t_filterres > : tidy_string < t_filterres >
 
 template < > struct type_master < t_points > : tidy_string < t_points >
 {   using tidy_string < t_points > :: tidy_string;
-    static e_animation_type animation_type () { return at_coordinate; }
+    static e_animation_type animation_type () noexcept { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_points > :: set_value (nits, v, s);
         if (tidy_string < t_points >  :: good ())

@@ -22,4 +22,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/common.h"
 
 byte_order_mark get_byte_order (::std::string& s);
-e_charcode bom_to_encoding (const byte_order_mark bom);
+e_charcode bom_to_encoding (const byte_order_mark bom) noexcept;

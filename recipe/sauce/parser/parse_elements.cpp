@@ -24,16 +24,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/text.h"
 #include "element/parentage.h"
 
-void elements_node::swap (elements_node& en) NOEXCEPT
+void elements_node::swap (elements_node& en) noexcept
 {   ::std::swap (invalid_, en.invalid_);
     version_.swap (en.version_);
     ven_.swap (en.ven_); }
 
-void elements_node::reset ()
+void elements_node::reset () noexcept
 {   elements_node tmp;
     swap (tmp); }
 
-void elements_node::reset (elements_node& en)
+void elements_node::reset (const elements_node& en)
 {   elements_node tmp (en);
     swap (tmp); }
 
@@ -60,7 +60,7 @@ void elements_node::report_missing_closures (const html_version& v, element_node
     {   if (parent == ancestor) return;
         if (does_apply < html_version > (v, parent -> id ().first (), parent -> id ().last ()))
             if (does_apply < html_version > (v, ancestor -> id ().first (), ancestor -> id ().last ()))
-            {   bool is_lazy = parent -> id ().is_lazy (v);
+            {   const bool is_lazy = parent -> id ().is_lazy (v);
                 const ::std::string n (parent -> id ().name ());
                 parent -> nits_.pick (nit_missing_close, is_lazy ? es_warning : es_error, ec_element, "<", n, "> has no matching </", n, ">"); }
         parent = parent -> parent_; } }
@@ -79,7 +79,7 @@ element_node* elements_node::find_permitted_parent (const html_version& v, const
         parent = parent -> parent_; }
     return nullptr; }
 
-void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, bra_element_ket& ket, const bool closing)
+void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, const element_node* ancestor, const bra_element_ket& ket, const bool closing)
 {   VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     VERIFY_NOT_NULL (ancestor, __FILE__, __LINE__);
     if (does_apply < html_version > (v, id.first (), id.last ()))
@@ -88,7 +88,7 @@ void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v
             {   if (closing) is_permitted_parent (v, id, parent -> id ());
                 else is_permitted_parent (nits, v, id, parent -> id ());
                 nits.pick (nit_inserted_missing_closure, es_warning, ec_element, "inserted missing </", elem :: name (parent -> tag ()), ">");
-                elem def (parent -> tag ());
+                const elem def (parent -> tag ());
                 nitpick defnits (ket.line_, ket.nits_.get_context ());
                 ven_.push_back (element_node (defnits, this, ket.line_, true, parent, def, true, def.name ()));
                 element_node* current = & ven_.back ();
@@ -148,14 +148,14 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
             VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
             previous = parent -> last_; } }
     ven_.push_back (element_node (ket.nits_, this, ket.line_, true, parent, id.get (), presumed, ::std::string (ket.start_, ket.end_)));
-    element_node* current = & ven_.back ();
+    const ::gsl::not_null < element_node* > current = & ven_.back ();
     hook_up (current, previous, parent, matched, false);
     PRESUME (current -> box () == this, __FILE__, __LINE__);
     return current; }
 
 element_node* elements_node::insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
 {   PRESUME (id != elem_faux_document, __FILE__, __LINE__);
-    elem def (default_parent (v, id));
+    const elem def (default_parent (v, id));
     element_node* ancestor = find_permitted_parent (v, def, parent);
     if (ancestor == nullptr)
     {   ancestor = insert_family_tree (v, previous, parent, ket, def, true);
@@ -169,7 +169,7 @@ element_node* elements_node::insert_family_tree (const html_version& v, element_
     VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     previous = parent -> last_;
     ven_.push_back (element_node (defnits, this, ket.line_, false, ancestor, def, presumed, def.name ()));
-    element_node* current = & ven_.back ();
+    const ::gsl::not_null < element_node*> current = & ven_.back ();
     current -> attributes ().box (current);
     hook_up (current, previous, parent, false, true);
     PRESUME (current -> box () == this, __FILE__, __LINE__);
@@ -249,7 +249,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
     for (auto e : elements.ve_)
     {   elem id;
         VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
-        html_version ver (parent -> version_);
+        const html_version ver (parent -> version_);
         switch (e.status_)
         {   case bk_asp :       id.reset (elem_faux_asp); break;
             case bk_cdata :     id.reset (elem_faux_cdata); break;
@@ -281,7 +281,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
                                 break; }
         if (id.unknown ())
         {   ::std::string s (e.start_, e.eofe_);
-            if (static_cast < size_t > (id.ns ()) < first_runtime_namespace)
+            if (::gsl::narrow_cast < size_t > (id.ns ()) < first_runtime_namespace)
                 e.nits_.pick (nit_unknown_element, es_warning, ec_element, PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
             else e.nits_.pick (nit_unknown_element, es_comment, ec_element, PROG " does not know <", ::std::string (s), ">, so cannot verify it");
             if (v.xhtml () && (s == "base"))

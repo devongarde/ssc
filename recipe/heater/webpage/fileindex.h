@@ -32,8 +32,8 @@ class directory;
 
 typedef ::boost::crc_32_type crc_calc;
 typedef crc_calc::value_type crc_t;
-const crc_t crc_initrem = 0xFFFFFFFF; // CRC 32 initial remainder; see boost docs
-const fileindex_t nullfileindex = SIZE_MAX;
+constexpr crc_t crc_initrem = 0xFFFFFFFF; // CRC 32 initial remainder; see boost docs
+constexpr fileindex_t nullfileindex = SIZE_MAX;
 
 #define FX_SCANNED  0x00000001
 #define FX_EXISTS   0x00000002
@@ -85,4 +85,4 @@ void set_lynx (const fileindex_t ndx, const fileindex_t dependency);
 void clear_lynx (const fileindex_t ndx);
 sndx_t get_lynx (const fileindex_t ndx);
 bool needs_update (const fileindex_t ndx, const ::std::time_t& st);
-void reset_fileindices ();
+void reset_fileindices () noexcept;

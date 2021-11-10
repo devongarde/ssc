@@ -26,11 +26,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "utility/lexical.h"
 
-#ifndef NO_PROCESS
-using namespace boost::process;
-using boost::lexical_cast;
-using boost::bad_lexical_cast;
-#endif // NO_PROCESS
+#ifndef NO_BOOST_PROCESS
+#include <boost/process.hpp>
+using namespace ::boost::process;
+using ::boost::lexical_cast;
+using ::boost::bad_lexical_cast;
+#endif // NO_BOOST_PROCESS
 
 int process_curl_result (nitpick& nits, const html_version& v, const vstr_t& r, bool pure_code)
 {   int code = 0;
@@ -45,7 +46,7 @@ int process_curl_result (nitpick& nits, const html_version& v, const vstr_t& r, 
         if (code > 0) break; }
     return code; }
 
-#ifndef NO_PROCESS
+#ifndef NO_BOOST_PROCESS
 int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdline, const int oops, bool pure_code)
 {   int code = 0;
     try
@@ -71,12 +72,12 @@ int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdlin
         code = oops;
         context.external (false); }
     return code; }
-#else // NO_PROCESS
+#else // NO_BOOST_PROCESS
 int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdline, const int oops, bool pure_code)
 {   ::boost::filesystem::path tmp = get_tmp_filename ();
     if (::boost::filesystem::exists (tmp)) ::boost::filesystem::remove (tmp);
     ::std::string cmd = cmdline + " >" + tmp.string ();
-    int res = system (cmd.c_str ());
+    const int res = system (cmd.c_str ());
     if (res != 0)
     {   nits.pick (nit_no_curl, es_catastrophic, ec_link, "Cannot check external links. Please verify your installation of curl");
         return oops; }
@@ -86,8 +87,8 @@ int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdlin
     vstr_t vs;
     int code = 3;
     {   ::std::ifstream sif (tmp.string ().c_str ());
-        const int maxln = 512;
-        char ln [maxln];
+        constexpr int maxln = 512;
+        char ln [maxln] = { 0 };
         while (sif.good () && ! sif.eof ())
         {   sif.getline (ln, maxln - 1);
             ln [maxln - 1] = 0;
@@ -96,7 +97,7 @@ int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdlin
     if (! vs.empty ())
         code = process_curl_result (nits, v, vs, pure_code);
     return code; }
-#endif // NO_PROCESS
+#endif // NO_BOOST_PROCESS
 
 void test_hypertext (nitpick& nits, const html_version& v, const url& u)
 {   if (u.has_domain ())
@@ -110,7 +111,7 @@ void test_hypertext (nitpick& nits, const html_version& v, const url& u)
     if (u.is_https () && ! context.revoke ()) cmdline += "--ssl-norevoke ";
     cmdline += u.original ();
     nits.pick (nit_debug, es_debug, ec_link, context.filename (),  " : ",  quote (cmdline), "\n");
-    int code = call_curl (nits, v, cmdline, 599, true);
+    const int code = call_curl (nits, v, cmdline, 599, true);
     if (code)
     {   context.code (code);
         nits.pick (nit_debug, es_detail, ec_link, "got ", code, "\n"); } }
@@ -132,7 +133,10 @@ bool external::verify (nitpick& nits, const html_version& v, const url& u)
     if (! context.forwarded ()) return true;
     return ((context.code () != 301) && (context.code () != 308)); };   // consider checking for ids
 
-#ifndef NO_PROCESS
+#ifdef NO_BOOST_PROCESS
+::std::string external::load (const url& ) noexcept
+{   return ::std::string (); }
+#else // NO_BOOST_PROCESS
 ::std::string external::load (const url& u)
 {   ::std::string res;
     if (u.empty ()) return res;
@@ -153,10 +157,7 @@ bool external::verify (nitpick& nits, const html_version& v, const url& u)
     catch (...)
     {  res.clear (); }
     return res; }
-#else // NO_PROCESS
-::std::string external::load (const url& )
-{   return ::std::string (); }
-#endif // NO_PROCESS
+#endif // NO_BOOST_PROCESS
 
 bool fetch_common (nitpick& nits, const html_version& v, const url& u, const ::boost::filesystem::path& file, const char* curl)
 {   if (! u.is_usable ())
@@ -168,7 +169,7 @@ bool fetch_common (nitpick& nits, const html_version& v, const url& u, const ::b
     if (u.is_https () && context.revoke ()) cmdline += "--ssl-norevoke ";
     cmdline += u.absolute ();
     if (context.tell (e_debug)) nits.pick (nit_debug, es_debug, ec_webmention, WEBMENTION " http headers sought with ", quote (cmdline));
-    int code = call_curl (nits, v, cmdline, 599, false);
+    const int code = call_curl (nits, v, cmdline, 599, false);
     if (context.tell (e_variable)) nits.pick (nit_debug, es_detail, ec_link, "got ", code, "\n");
     return (code < 300); }
 
@@ -193,7 +194,7 @@ bool mention (nitpick& nits, const html_version& v, const url& source, const url
     cmdline += server.absolute ();
     if (context.tell (e_debug)) nits.pick (nit_debug, es_debug, ec_link, quote (cmdline));
     if (context.nochange ()) return true;
-    int code = call_curl (nits, v, cmdline, 599, false);
+    const int code = call_curl (nits, v, cmdline, 599, false);
     if (context.tell (e_variable)) nits.pick (nit_debug, es_detail, ec_link, "got ", code, "\n");
     validity.insert (validity_t::value_type (server.absolute (), code < 300));
     return (code < 300); }

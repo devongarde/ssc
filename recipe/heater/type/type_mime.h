@@ -115,6 +115,7 @@ template < > inline void enum_n < t_mime, e_mimetype > :: verify_attribute (nitp
                 case mime_message_vnd_si_simp :
                 case mime_text_vnd_si_uricatalogue :
                     if (v >= html_5_0) nits.pick (nit_mime, es_warning, ec_type, quote (s), " is obsolete");
+                    break;
                 default: break; } } }
 
 template < > struct type_master < t_mimelist > : public string_value < t_mimelist >

@@ -69,18 +69,18 @@ context_t& context_t::webmention (nitpick& nits, const ::std::string& w, const e
 {    ::std::string res, srv;
     if (site_.size () > 0)
     {   srv = HTTPS;
-        srv += site_ [0];
+        srv += site_.at (0);
         srv += SLASH; }
     if (link.empty ()) res = srv;
     else
     {   if (link.find (COLON) != link.npos) res = link;
         else
         {   res = srv;
-            if (link [0] != SLASH) res += link;
+            if (link.at (0) != SLASH) res += link;
             else res += link.substr (1); } }
-    ::std::size_t last = res.length () - 1;
+    const ::std::size_t last = res.length () - 1;
     if (can_use_index )
-    {   bool slashed = res [last] == SLASH;
+    {   const bool slashed = res.at (last) == SLASH;
         if (slashed) if (! index ().empty ()) res += index (); }
     return res; }
 
@@ -90,7 +90,7 @@ void context_t::process_outgoing_webmention (nitpick& nits, const html_version& 
 void context_t::process_incoming_webmention (nitpick& nits, const html_version& v)
 {   if (! mentions_.empty ()) hooks_.process (nits, v); }
 
-schema_version context_t::mf_ver () const
+schema_version context_t::mf_ver () const noexcept
 {   switch (mf_version_)
     {   case 1 : return mf_1;
         case 2 : return mf_2;
@@ -98,11 +98,11 @@ schema_version context_t::mf_ver () const
 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
-    int maxish = DEFAULT_LINE_LENGTH - 16;
+    constexpr int maxish = DEFAULT_LINE_LENGTH - 16;
     if ((to - from) > INT8_MAX) return ::std::string (from, to);
-    int len = static_cast < int > (to - from);
+    const int len = ::gsl::narrow_cast < int > (to - from);
     if (len >= maxish) return ::std::string (from, to);
-    int halfish = (maxish - len) / 2;
+    const int halfish = (maxish - len) / 2;
     ::std::string pre, post;
     ::std::string::const_iterator mb, me;
     if ((e - b) <= maxish) { me = e; mb = b; }
@@ -131,7 +131,7 @@ context_t& context_t::shadow_ignore (const vstr_t& s)
     mac (nm_context_shadow_ignore, shadow_ignore_);
     return *this; }
 
-context_t& context_t::svg_version (const int mjr, const int mnr)
+context_t& context_t::svg_version (const int mjr, const int mnr) noexcept
 {   switch (mjr)
     {   case 2 :
             switch (mnr)
@@ -146,6 +146,7 @@ context_t& context_t::svg_version (const int mjr, const int mnr)
                 case 2 : version_.svg_version (sv_1_2_tiny); return *this;
                 case 3 : version_.svg_version (sv_1_2_full); return *this;
                 default : break; }
+            break;
         default : break; }
     version_.svg_version (sv_none);
     return *this; }
@@ -158,7 +159,7 @@ context_t& context_t::ignore (nitpick& nits, const vstr_t& s)
     mac (nm_context_ignore, s);
     return *this; }
 
-html_version context_t::html_ver (const int major, const int minor)
+html_version context_t::html_ver (const int major, const int minor) noexcept
 {   versioned (true);
     switch (major)
     {   case 0 :
@@ -208,7 +209,7 @@ bool context_t::severity_exceeded () const
         if (data_.count (static_cast < e_severity> (x))) return true;
     return false; }
 
-bool context_t::rdfa () const
+bool context_t::rdfa () const noexcept
 {   if (rdfa_) return true;
     if (version_.is_svg_12 ()) return true;
     return (version_ == xhtml_2); }

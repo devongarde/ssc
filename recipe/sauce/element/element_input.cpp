@@ -61,27 +61,27 @@ e_inputtype5 element::get_input_type () const
 void element::examine_input ()
 {   if (node_.version ().mjr () < 5) return;
     element* form_daddy = get_ancestor (elem_form);
-    CONSTEXPR unsigned it_text_search = (1 << static_cast < unsigned > (i5_search)) + (1 << static_cast < unsigned > (i5_text));
-    CONSTEXPR unsigned it_url_tel = (1 << static_cast < unsigned > (i5_tel)) + (1 << static_cast < unsigned > (i5_url));
-    CONSTEXPR unsigned it_hidden = 1 << static_cast < unsigned > (i5_hidden);
-    CONSTEXPR unsigned it_url = 1 << static_cast < unsigned > (i5_url);
-    CONSTEXPR unsigned it_email = 1 << static_cast < unsigned > (i5_email);
-    CONSTEXPR unsigned it_password = 1 << static_cast < unsigned > (i5_password);
-    CONSTEXPR unsigned it_date_time = (1 << static_cast < unsigned > (i5_date)) + (1 << static_cast < unsigned > (i5_datetime)) + (1 << static_cast < unsigned > (i5_datetime_local)) +
+    constexpr unsigned it_text_search = (1 << static_cast < unsigned > (i5_search)) + (1 << static_cast < unsigned > (i5_text));
+    constexpr unsigned it_url_tel = (1 << static_cast < unsigned > (i5_tel)) + (1 << static_cast < unsigned > (i5_url));
+    constexpr unsigned it_hidden = 1 << static_cast < unsigned > (i5_hidden);
+    constexpr unsigned it_url = 1 << static_cast < unsigned > (i5_url);
+    constexpr unsigned it_email = 1 << static_cast < unsigned > (i5_email);
+    constexpr unsigned it_password = 1 << static_cast < unsigned > (i5_password);
+    constexpr unsigned it_date_time = (1 << static_cast < unsigned > (i5_date)) + (1 << static_cast < unsigned > (i5_datetime)) + (1 << static_cast < unsigned > (i5_datetime_local)) +
                                       (1 << static_cast < unsigned > (i5_month)) + (1 << static_cast < unsigned > (i5_time)) + (1 << static_cast < unsigned > (i5_week));
-    CONSTEXPR unsigned it_number = 1 << static_cast < unsigned > (i5_number);
-    CONSTEXPR unsigned it_range = 1 << static_cast < unsigned > (i5_range);
-    CONSTEXPR unsigned it_colour = 1 << static_cast < unsigned > (i5_colour);
-    CONSTEXPR unsigned it_check_radio = (1 << static_cast < unsigned > (i5_checkbox)) + (1 << static_cast < unsigned > (i5_radio));
-    CONSTEXPR unsigned it_file = 1 << static_cast < unsigned > (i5_file);
-    CONSTEXPR unsigned it_submit = 1 << static_cast < unsigned > (i5_submit);
-    CONSTEXPR unsigned it_image = 1 << static_cast < unsigned > (i5_image);
-    e_inputtype5 i5 = get_input_type ();
-    bool alt_known = a_.known (a_alt);
-    bool alt_empty = trim_the_lot_off (a_.get_string (a_alt)).empty ();
-    bool list_known = a_.known (a_list);
-    bool src_known = a_.known (a_src);
-    bool val_known = a_.known (a_value);
+    constexpr unsigned it_number = 1 << static_cast < unsigned > (i5_number);
+    constexpr unsigned it_range = 1 << static_cast < unsigned > (i5_range);
+    constexpr unsigned it_colour = 1 << static_cast < unsigned > (i5_colour);
+    constexpr unsigned it_check_radio = (1 << static_cast < unsigned > (i5_checkbox)) + (1 << static_cast < unsigned > (i5_radio));
+    constexpr unsigned it_file = 1 << static_cast < unsigned > (i5_file);
+    constexpr unsigned it_submit = 1 << static_cast < unsigned > (i5_submit);
+    constexpr unsigned it_image = 1 << static_cast < unsigned > (i5_image);
+    const e_inputtype5 i5 = get_input_type ();
+    const bool alt_known = a_.known (a_alt);
+    const bool alt_empty = trim_the_lot_off (a_.get_string (a_alt)).empty ();
+    const bool list_known = a_.known (a_list);
+    const bool src_known = a_.known (a_src);
+    const bool val_known = a_.known (a_value);
     switch (i5)
     {   case i5_button :
             break;
@@ -186,11 +186,11 @@ void element::examine_input ()
             val_min_max < t_week > ();
             break;
         default : break; }
-    bool maxlen_known = a_.known (a_maxlength);
-    bool minlen_known = a_.known (a_minlength);
+    const bool maxlen_known = a_.known (a_maxlength);
+    const bool minlen_known = a_.known (a_minlength);
     if (maxlen_known || minlen_known)
-    {   ::std::size_t x = maxlen_known ? a_.get_int (a_maxlength) : 0;
-        ::std::size_t n = minlen_known ? a_.get_int (a_minlength) : 0;
+    {   const ::std::size_t x = maxlen_known ? a_.get_int (a_maxlength) : 0;
+        const ::std::size_t n = minlen_known ? a_.get_int (a_minlength) : 0;
         ::std::size_t v = val_known ? a_.get_string (a_value).length () : 0;
         if (maxlen_known && minlen_known) if (n > x) pick (nit_minmax, ed_50, "4.10.5.3.1 The maxlength and minlength attributes", es_error, ec_attribute, "MINLENGTH (", n, ") should not exceed MAXLENGTH (", x, ")");
         if (maxlen_known && val_known) if (v > x) pick (nit_minmax, ed_50, "4.10.5.3.1 The maxlength and minlength attributes", es_error, ec_attribute, "VALUE length (", v, ") should not exceed MAXLENGTH (", x, ")");
@@ -204,7 +204,7 @@ void element::examine_input ()
             pick (nit_illegal_value, ed_50, "4.10.5.3.10 The placeholder attribute", es_error, ec_attribute, "PLACEHOLDER may not contain a newline");
         if (val.length () > MAX_IDEAL_PLACEHOLDER_LENGTH)
             pick (nit_placeholder, ed_50, "4.10.5.3.10 The placeholder attribute", es_warning, ec_attribute, "PLACEHOLDER should have a *short* value"); }
-    unsigned t = 1 << static_cast < unsigned > (i5);
+    const unsigned t = 1 << static_cast < unsigned > (i5);
     ::std::string n (a_.get_string (a_type));
     if (a_.known (a_accept) && ((t & it_file) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "ACCEPT is ignored by type ", quote (n));
@@ -263,7 +263,7 @@ void element::examine_input ()
     if (a_.known (a_width) && ((t & it_image) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "WIDTH is ignored by type ", quote (n));
     if (a_.known (a_role))
-    {   e_aria_role r = static_cast < e_aria_role > (a_.get_int (a_role));
+    {   const e_aria_role r = static_cast < e_aria_role > (a_.get_int (a_role));
         // I considered using bitsets here, but decided they'd be a bugger to maintain. Having said that, I'm not sure this approach is that much better.
         switch (i5)
         {   case i5_button :
@@ -372,7 +372,7 @@ void element::examine_input ()
                         if (node_.version () < html_5_2)
                         {   pick (nit_input_bad_aria, ed_50, "4.10.5.1.6 Password state", es_error, ec_attribute, "do not set ROLE to 'textbox', it is the default");
                             break; }
-                        // drop thru'
+                        [[fallthrough]];
                     default :
                         pick (nit_input_bad_aria, ed_52, "4.10.5.1.6 Password state", es_error, ec_attribute, "invalid <INPUT> ROLE");
                         break; }
@@ -478,11 +478,11 @@ void element::validate_input_id ()
     if (a_.good (a_list))
     {   ::std::string id = a_.get_string (a_list);
         if (get_ids ().has_id (id))
-        {   e_element e = get_ids ().get_tag (id);
+        {   const e_element e = get_ids ().get_tag (id);
             if (e != elem_datalist) pick (nit_bad_datalist_id, ed_50, "4.10.5.3.9 The list attribute", es_error, ec_attribute, quote (id), " is not on a <DATALIST>");
             else
             {   uid_t tuid_first = 0, tuid_last = 0;
                 if (family_uids (elem_form, tuid_first, tuid_last))
-                {   uid_t uid = get_ids ().get_uid (id);
+                {   const uid_t uid = get_ids ().get_uid (id);
                     if ((uid < tuid_first) || (uid > tuid_last))
                         pick (nit_bad_datalist_id, ed_50, "4.10.5.3.9 The list attribute", es_error, ec_attribute, "id ", quote (id), " is on a different <FORM>"); } } } } }

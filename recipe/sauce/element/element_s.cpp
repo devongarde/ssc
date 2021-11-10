@@ -38,7 +38,7 @@ void element::examine_script ()
     {   if (a_.good (a_charset))
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "CHARSET should be omitted when using <SCRIPT> TYPE");
         if (a_.good (a_type))
-        {   e_mimetype mt (static_cast < e_mimetype > (a_.type (a_type)));
+        {   const e_mimetype mt (static_cast < e_mimetype > (a_.type (a_type)));
             switch (mt)
             {   case mime_text_plain :
                 case mime_text_xml :
@@ -77,7 +77,7 @@ void element::examine_script ()
                     jsld = context.jsonld ();
                     break;
                 default :
-                    {   flags_t flags = type_master < t_mime > :: flags (mt);
+                    {   const flags_t flags = type_master < t_mime > :: flags (mt);
                         if ((flags & MIME_SCRIPT) == MIME_SCRIPT)
                             pick (nit_script, ed_50, "4.11.1 The script element", es_info, ec_element, quote (type_master < t_mime > :: name (mt)), " may not be supported by all browsers on all systems");
                         else
@@ -85,7 +85,7 @@ void element::examine_script ()
                             datablock = true; } }
                     break; } } }
     if (datablock)
-        if (a_.good (a_async) || a_.good (a_async) || a_.good (a_charset) || a_.known (a_crossorigin) ||
+        if (a_.good (a_async) || a_.good (a_charset) || a_.known (a_crossorigin) ||
             a_.good (a_defer) || a_.good (a_integrity) || a_.good (a_nomodule) || a_.known (a_numberonce) ||
             a_.good (a_referrerpolicy) || a_.good (a_src))
         pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "no attribute but TYPE should be used with data blocks");
@@ -134,12 +134,12 @@ void element::examine_select ()
 {   if (node_.version ().mjr () < 5) return;
     no_anchor_daddy ();
     int size = 1;
-    bool multiple = a_.known (a_multiple);
-    bool required = a_.known (a_required);
+    const bool multiple = a_.known (a_multiple);
+    const bool required = a_.known (a_required);
     if (a_.good (a_size)) size = a_.get_int (a_size);
     else if (multiple) size = 4;
     if (a_.known (a_role) && (w3_minor_5 (node_.version ()) >= 2))
-    {   e_aria_role r = static_cast < e_aria_role > (a_.get_int (a_role));
+    {   const e_aria_role r = static_cast < e_aria_role > (a_.get_int (a_role));
         if (multiple || (size > 1))
         {   if (r == role_combobox)
                 pick (nit_input_bad_aria, ed_52, "4.10.7 The select element", es_error, ec_attribute, "do not set ROLE to 'combobox', it is the default");
@@ -147,9 +147,10 @@ void element::examine_select ()
                 pick (nit_input_bad_aria, ed_52, "4.10.7 The select element", es_error, ec_attribute, "with MULTIPLE and SIZE greater than one, ARIA cannot be 'menu'"); }
         else if (r == role_combobox)
             pick (nit_input_bad_aria, ed_52, "4.10.7 The select element", es_error, ec_attribute, "do not set ROLE to 'listbox', it is the default"); }
-    if (required && (! multiple) && (size == 1) && (has_child ()))
-    {   uint64_t placeholder = 0, selected = 0;
+    if (required && (! multiple) && (size == 1) && has_child ())
+    {   uint64_t selected = 0;
         int selectedness = 0;
+        bool firstempty = false, first = true;
         for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
         {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
             if (! p -> node_.is_closure ())
@@ -161,21 +162,19 @@ void element::examine_select ()
                     case elem_option :
                         if (p -> a_.known (a_selected))
                             if (selected == 0)
-                            {   selected = p -> uid ();
-                                if (! a_.known (a_placeholder))
-                                    pick (nit_bad_select, ed_jan21, "4.10.7 The select element", es_warning, ec_attribute, "the SELECTED <OPTION> must have a PLACEHOLDER"); }
-                        if ((! p -> a_.known (a_value)) || p -> a_.empty (a_value) || p -> a_.get_string (a_value).empty ())
-                            placeholder = p -> uid ();
-                        else if (p -> a_.known (a_selected))
-                            ++selectedness;
+                                selected = p -> uid ();
+                        if ((p -> a_.known (a_value) && (p -> a_.empty (a_value) || trim_the_lot_off (p -> a_.get_string (a_value)).empty ())) || trim_the_lot_off (p -> text ()).empty ())
+                        {   if (first) firstempty = true; }
+                        else if (p -> a_.known (a_selected)) ++selectedness;
+                        first = false;
                         break;
                     default : break; } }
-        if (placeholder == 0)
+        if (! firstempty)
             pick (nit_bad_select, ed_50, "4.10.7 The select element", es_warning, ec_attribute, "the first child <OPTION> that is not in an <OPTGROUP> should have an empty VALUE");
         if (selectedness == 0)
             pick (nit_bad_select, ed_50, "4.10.7 The select element", es_warning, ec_attribute, "one <OPTION> with a non-empty VALUE should have SELECTED specified");
         else if (selectedness > 1)
-            pick (nit_bad_select, ed_50, "4.10.7 The select element", es_warning, ec_attribute, "<SELECT> has no MULTIPLE yet multiple child <OPTION>s have SELECTED specified"); } }
+            pick (nit_bad_select, ed_50, "4.10.7 The select element", es_warning, ec_attribute, "<SELECT> has no MULTIPLE yet multiple child <OPTION>s have been SELECTED"); } }
 
 void element::examine_share ()
 {   if (! a_.known (a_href) && ! a_.known (a_src))
@@ -191,7 +190,7 @@ void element::examine_share ()
             if (! u.is_simple_id ()) return;
             i = u.id (); }
         if (get_ids ().has_id (i))
-        {   element* pide = get_ids ().get_element (i);
+        {   const element* const pide = get_ids ().get_element (i);
             if (pide != nullptr)
                 for (element* p = parent_; p != nullptr; p = p -> parent_)
                 {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
@@ -200,8 +199,8 @@ void element::examine_share ()
                         break; } } } } }
 
 void element::examine_source ()
-{   bool has_src = a_.known (a_src);
-    bool has_type = a_.known (a_type);
+{   const bool has_src = a_.known (a_src);
+    const bool has_type = a_.known (a_type);
     if (has_src && has_type) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_src), true);
     if (ancestral_elements_.test (elem_picture))
     {   if (! a_.known (a_srcset))
@@ -218,7 +217,7 @@ void element::examine_source ()
         ::std::string s (a_.get_string (a_type));
         mt.set_value (nuts, node_.version (), s);
         if (mt.good ())
-        {   flags_t f = mt.flags ();
+        {   const flags_t f = mt.flags ();
             if ((f & MIME_MULTIPART) == 0)
             {   if (ancestral_elements_.test (elem_audio) && ((f & MIME_AUDIO) == 0))
                     pick (nit_mime, es_warning, ec_attribute, "expecting an audio mimetype");
@@ -239,12 +238,12 @@ void element::examine_summary ()
                         break; } } }
 
 void element::examine_svg ()
-{   bool ancestor = ancestral_elements_.test (elem_svg);
+{   const bool ancestor = ancestral_elements_.test (elem_svg);
     if (a_.good (a_contentscripttype))
-    {   e_mimetype em = a_.get_x < attr_contentscripttype > ();
+    {   const e_mimetype em = a_.get_x < attr_contentscripttype > ();
         check_mimetype_family (nits (), node_.version (), em, MIME_SCRIPT, attr::name (a_contentscripttype)); }
     if (a_.good (a_contentstyletype))
-    {   e_mimetype em = a_.get_x < attr_contentstyletype > ();
+    {   const e_mimetype em = a_.get_x < attr_contentstyletype > ();
         check_mimetype_family (nits (), node_.version (), em, MIME_STYLE, attr::name (a_contentstyletype));
         if (context.html_ver () >= html_jan18)
             if (em == mime_text_css)
@@ -252,7 +251,7 @@ void element::examine_svg ()
             else
                 pick (nit_style_fixed, es_warning, ec_attribute, context.html_ver ().name (), " requires CSS, so ", quote (a_.get_string (a_contentstyletype)), " is problematic"); }
     if (a_.known (a_version))
-    {   e_svg_version sv = static_cast < e_svg_version > (a_.get_int (a_version));
+    {   const e_svg_version sv = static_cast < e_svg_version > (a_.get_int (a_version));
         e_svg_baseprofile prof = sbp_none;
         if (a_.known (a_baseprofile)) prof = static_cast < e_svg_baseprofile > (a_.get_int (a_baseprofile));
         ::std::string svg ("SVG ");
@@ -290,13 +289,13 @@ void element::examine_switch ()
 {   if (! has_child ())
     {   pick (nit_switch, es_comment, ec_element, "bit of a useless <SWITCH>, that"); return; }
     if (node_.version ().is_svg_12 ()) return;
-    flags_t cat = (elem :: categories (parent_ -> tag ()) & EF_SVG_CATMASK);
+    const flags_t cat = (elem :: categories (parent_ -> tag ()) & EF_SVG_CATMASK);
     bool nofaux = false;
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
-        e_element ct = c -> tag ();
+        const e_element ct = c -> tag ();
         nofaux = nofaux || is_standard_element (ct);
-        flags_t kitten = elem :: categories (ct);
+        const flags_t kitten = elem :: categories (ct);
         if ((kitten & cat) == 0)
         {   pick (nit_switch, es_comment, ec_element, "the <SWITCH> beneath <", elem::name (parent_ -> tag ()), "> has an outside context problem with <", elem::name (ct), ">"); return; } }
     if (! nofaux) pick (nit_switch, es_comment, ec_element, "bit of a useless <SWITCH>, that"); }

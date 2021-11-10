@@ -38,12 +38,12 @@ inline bool compare_complain (nitpick& nits, const html_version& v, const ::std:
 {   return compare_complain (nits, v, rhs, lhs); }
 
 template < bool CASE > struct case_must_match
-{   static void validate (nitpick& , const html_version& , const ::std::string& , const ::std::string& ) { }
+{   static void validate (nitpick& , const html_version& , const ::std::string& , const ::std::string& ) noexcept { }
     static bool compare (nitpick& , const html_version& , const char* lhs, const ::std::string& rhs)
     {   return compare_no_case (lhs, rhs); }
     static bool compare (nitpick& , const html_version& , const ::std::string& lhs, const char* rhs)
     {   return compare_no_case (lhs, rhs); }
-    static ::std::string lower (::std::string& s) { return s; } };
+    static ::std::string lower (const ::std::string& s) { return s; } };
 
 template < > struct case_must_match < false >
 {   static void validate (nitpick& nits, const html_version& v, const ::std::string& naam, const ::std::string& s)
@@ -52,7 +52,7 @@ template < > struct case_must_match < false >
     {   return compare_complain (nits, v, lhs, rhs); }
     static bool compare (nitpick& nits, const html_version& v, const ::std::string& lhs, const char* rhs)
     {   return compare_complain (nits, v, lhs, rhs); }
-    static ::std::string lower (::std::string& s) { return ::boost::to_lower_copy (s); } };
+    static ::std::string lower (const ::std::string& s) { return ::boost::to_lower_copy (s); } };
 
 template < class LC > struct careless_case : case_must_match < false > { };
 template < > struct careless_case < sz_false > : case_must_match < true > { };

@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 
 template < class A, class B > struct connection : ::std::pair < A, B >
-{   connection (const A& a, const B& b) : ::std::pair < A, B > (a, b) { } };
+{   connection (const A& a, const B& b) noexcept : ::std::pair < A, B > (a, b) { } };
 
 template < class A, class B > inline bool operator == (const connection < A, B >& lhs, const connection < A, B >& rhs)
 {   return  (lhs.first == rhs.first) &&
@@ -64,8 +64,15 @@ template < class PAIR > class connections
 public:
     void init (nitpick& , const PAIR* standard_members, const ::std::size_t max)
     {   for (::std::size_t i = 0; i < max / sizeof (PAIR); ++i)
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26481)
+#endif // _MSC_VER
         {   b_.insert (standard_members [i].second);
             connexion_.insert (standard_members [i]); } }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
     bool is_plausible_connection (const PAIR& p) const
     {   return (connexion_.find (p) != connexion_.end ()); }
     bool is_plausible_connection (const first_t& a, const second_t& b) const

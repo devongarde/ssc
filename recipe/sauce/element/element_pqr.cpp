@@ -72,7 +72,7 @@ void element::examine_progress ()
 {   if (node_.version ().is_5 ())
     {   check_ancestors (elem_progress, element_bit_set (elem_progress));
         if (a_.known (a_value))
-        {   bool kn = a_.known (a_max);
+        {   const bool kn = a_.known (a_max);
             double max = 1.0;
             double value = 0.0;
             if (kn)
@@ -91,7 +91,7 @@ void element::examine_reln ()
 void element::examine_ruby ()
 {   if (node_.version ().mjr () < 5) return;
     bool had_ruby = false, had_non_ruby = false, had_rt = false, had_rp = false, rp_mode = false;
-    bool is_whatwg = node_.version ().whatwg ();
+    const bool is_whatwg = node_.version ().whatwg ();
     for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (is_standard_element (c -> tag ()) && ! c -> node_.is_closure ())

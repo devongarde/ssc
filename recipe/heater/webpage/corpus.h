@@ -25,4 +25,4 @@ void open_corpus (nitpick& nits, const ::boost::filesystem::path& fn);
 void close_corpus (nitpick& nits);
 void extend_corpus (nitpick& nits, const ::std::string& title, const ::std::string& site_path, const ::std::string& text,
     const ::std::string& author,  const ::std::string& keywords, const ::std::string& description);
-bool has_corpus ();
+bool has_corpus () noexcept;

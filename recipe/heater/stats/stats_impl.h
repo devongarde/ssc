@@ -98,8 +98,8 @@ public:
     {   metaname_.mark (mn); }
     void mark_meta (const e_metaname mn, const ::std::string& val)
     {   meta_value_.mark (mn, tart (val)); }
-    void mark_file (const unsigned size);
-    uint64_t file_count () const
+    void mark_file (const unsigned size) noexcept;
+    uint64_t file_count () const noexcept
     {   return file_count_; }
     unsigned element_count (const e_element e) const
     {   return element_.at (e); }

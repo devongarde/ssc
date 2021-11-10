@@ -5619,7 +5619,14 @@ mpp_t mpp;
 
 void schema_property_init (nitpick& )
 {   PRESUME (mpp.empty (), __FILE__, __LINE__);
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26481)
+#endif // _MSC_VER
     for (property_gen* p = &gentab [0]; p -> prop_ != sp_illegal; ++p)
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         mpp.insert (mpp_t::value_type (p -> prop_, p)); } }
 
@@ -5641,7 +5648,7 @@ vsp_t identify_schema_properties (nitpick& nits, const schema_version& , const :
     res = get_schema_properties (n);
     if (res.empty ())
     {   ::std::string::size_type ends_at = 0;
-        e_schema x = schema_names.starts_with (SCHEMA_CURIE, true, n, &ends_at);
+        const e_schema x = schema_names.starts_with (SCHEMA_CURIE, true, n, &ends_at);
         if (x != s_error)
         {   n = n.substr (ends_at);
             res = get_schema_properties (n, x); }
@@ -5674,21 +5681,21 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
     PRESUME (! vsv.empty (), __FILE__, __LINE__);
     ::std::string name (quote (schema_property_name (prop)) + " (" + schema_names.get (static_cast < e_schema > (get_property_root (prop)), SCHEMA_CURIE) + ")");
     ssch_t ssch (generalise (schema));
-    for (e_schema_type gen : ssch)
+    for (const e_schema_type gen : ssch)
     {   if (is_schema_property (gen, prop))
             for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
             {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
                 if (i -> second -> field_type_ == t_schema_type)
                 {   if ((i -> second -> flags_ & SP_VALUE_TYPENAME) == SP_VALUE_TYPENAME)
                         if (test_enumerated_type (knots, v, false, value))
-                        {   itemtype_index ii = find_itemtype_index (knots, v, value);
+                        {   const itemtype_index ii = find_itemtype_index (knots, v, value);
                             if (ii == make_itemtype_index (i -> second -> field_schema_)) return true;
                                 if (type_category (ii) == itemtype_schema)
                                     if (is_specific_type_of (context.schema_ver (), i -> second -> field_schema_, static_cast < e_schema_type > (ndx_item (ii))))
                                         return true; }
-                    flags_t flags = sch :: flags (i -> second -> field_schema_);
-                    bool en = enumerated_schema_type (flags);
-                    bool ex = external_enumerated_schema_type (flags);
+                    const flags_t flags = sch :: flags (i -> second -> field_schema_);
+                    const bool en = enumerated_schema_type (flags);
+                    const bool ex = external_enumerated_schema_type (flags);
                     if (ex || en) if (test_enumerated_type (knots, v, ex, value)) return true;
                     if (is_link)
                     {   nitpick ohsnoes;
@@ -5711,8 +5718,8 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
                     else
                     {   if (! expected.empty ()) { many = true; expected += ", "; }
                         expected += quote (::std::string (schema_names.get (i -> second -> from_.root (), SCHEMA_CURIE)) + "/" + sch :: name (i -> second -> field_schema_)); } }
-                else if (! vsv [i -> second -> from_.root ()].invalid ())
-                    if (does_apply < schema_version > (vsv [i -> second -> from_.root ()], i -> second -> from_, i -> second -> to_))
+                else if (! vsv.at (i -> second -> from_.root ()).invalid ())
+                    if (does_apply < schema_version > (vsv.at (i -> second -> from_.root ()), i -> second -> from_, i -> second -> to_))
                     {   nitpick nuts;
                         if (i -> second -> from_.deprecated ())
                             nuts.pick (nit_deprecated_schema, es_warning, ec_schema, name, " is deprecated (here)");
@@ -5746,7 +5753,7 @@ bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_sch
 
 bool is_valid_schema_property_int (nitpick& nits, const html_version& , const e_schema_type schema, const e_schema_property prop, const e_schema_type value)
 {   ssch_t ssch (generalise (schema));
-    for (e_schema_type gen : ssch)
+    for (const e_schema_type gen : ssch)
         if (is_schema_property (gen, prop))
             for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
             {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);

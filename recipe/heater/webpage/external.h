@@ -32,7 +32,12 @@ class external
     typedef map_t::value_type value_t;
     map_t url_;
 public:
-    void swap (external& e) NOEXCEPT
+    void swap (external& e) noexcept
     {   url_.swap (e.url_); }
     bool verify (nitpick& nits, const html_version& v, const url& u);
-    ::std::string load (const url& u); };
+#ifdef NO_BOOST_PROCESS
+   ::std::string load (const url& u) noexcept;
+#else // NO_BOOST_PROCESS
+   ::std::string load (const url& u);
+#endif // NO_BOOST_PROCESS
+};

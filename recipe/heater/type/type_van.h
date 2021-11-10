@@ -56,7 +56,7 @@ template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
                 {   tidy_string < t_clear30 > :: status (s_invalid);
                     return; }
                 if (args.size () == 1) return;
-                start = arg.find (args [1]); }
+                start = arg.find (::gsl::at (args, 1)); }
             type_master < t_measure > m;
             m.set_value (nits, v, arg.substr (0, start));
             if (m.good ()) return; }
@@ -89,7 +89,7 @@ template < > struct type_master < t_context_menu > : tidy_string < t_context_men
         if (t.invalid_id (nits, v, ids, pe)) return true;
         if (! ids.has_id (s)) return true;
         if (v != html_5_1) return false;
-        e_element e (ids.get_tag (s));
+        const e_element e (ids.get_tag (s));
         if (e == elem_menu) return false;
         nits.pick (nit_bad_contextmenu, ed_51, "4.11.5. Context menus", es_error, ec_attribute, quote (s), " is <", elem::name (e), ">, not <MENU>");
         string_value < t_context_menu > :: status (s_invalid);
@@ -114,7 +114,7 @@ template < > struct type_master < t_enable_background > : tidy_string < t_enable
             nits.pick (nit_background, es_error, ec_type, "a value is required");
         else if (tidy_string < t_enable_background > :: good ())
         {   vstr_t ss (split_by_space (tidy_string < t_enable_background > :: get_string ()));
-            size_t sz = ss.size ();
+            const size_t sz = ss.size ();
             if (sz > 0)
             {   if (compare_complain (nits, v, "accumulate", ss.at (0)) ||
                     compare_complain (nits, v, "inherit", ss.at (0)))
@@ -249,7 +249,7 @@ template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudon
                     break;
                 case math_3 :
                 case math_4 :
-                    {   ::std::string::size_type len = ss.length ();
+                    {   const ::std::string::size_type len = ss.length ();
                         if (len >= 5)
                             if ((ss.substr (len - 5) == "width") || (ss.substr (len - 5) == "depth"))
                                 ss = ss.substr (0, len - 5);
@@ -297,7 +297,7 @@ template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_spac
 
 template < > struct type_master < t_real_1_2 > : type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real >
 {   using type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real > :: type_one_or_both;
-    static e_animation_type animation_type () { return at_number; } };
+    static e_animation_type animation_type () noexcept { return at_number; } };
 
 template < > struct type_master < t_roles > : string_vector < t_roles, sz_space >
 {   using string_vector < t_roles, sz_space > :: string_vector;
@@ -366,8 +366,8 @@ template < > struct type_master < t_schema_type > : tidy_string < t_schema_type 
                         nits.pick (nit_unrecognised_schema, es_warning, ec_type, quote (s), " is unrecognised by " PROG); } } } }
             catch (...) { }
         tidy_string < t_schema_type > :: status (s_invalid); }
-    e_schema_type schema_type () const { return st_; }
-    e_schema root () const { return mdr_; }
+    e_schema_type schema_type () const noexcept { return st_; }
+    e_schema root () const noexcept { return mdr_; }
     ::std::string vocab () const { return vocab_; } };
 
 template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >
@@ -429,7 +429,7 @@ template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
         u.set_value (nits, v, args.at (0));
         if (u.invalid ()) return false;
         if (args.size () == 1) return true;
-        ::std::string::size_type pos = args.at (1).length ();
+        const ::std::string::size_type pos = args.at (1).length ();
         if (pos > 1)
             switch (args.at (1).at (pos-1))
             {   case 'w' :
@@ -449,19 +449,19 @@ template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (parse (nits, v, s)) tidy_string < t_imcastr > :: status (s_good);
         else tidy_string < t_imcastr > :: status (s_invalid); }
-    bool has_width () const { return has_width_; }
-    bool has_density () const { return has_density_; }
-    void reset ()
+    bool has_width () const noexcept { return has_width_; }
+    bool has_density () const noexcept { return has_density_; }
+    void reset () noexcept
     {   u_.reset (); width_ = 0; density_ = 1.0;
         tidy_string < t_imcastr > :: reset (); }
-    static ::std::string default_value () { return ::std::string (); } };
+    static ::std::string default_value () noexcept { return ::std::string (); } };
 
 template < > struct type_master < t_srcset > : tidy_string < t_srcset >
 {   typedef ::std::vector < type_master < t_imcastr > > vix_t;
     vix_t value_;
     bool has_width_ = false, has_density_ = false;
     using tidy_string < t_srcset > :: tidy_string;
-    void swap (type_master < t_srcset >& t)
+    void swap (type_master < t_srcset >& t) noexcept
     {   value_.swap (t.value_);
         tidy_string < t_srcset >::swap (t); }
     bool parse (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -474,13 +474,13 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
         vstr_t xs (split_by_charset (ss, ","));
         value_.resize (xs.size ());
         bool res = true;
-        ::std::size_t max = xs.size ();
+        const ::std::size_t max = xs.size ();
         for (::std::size_t n = 0; n < max; ++n)
-        {   value_ [n].set_value (nits, v, xs [n]);
-            if (value_ [n].invalid ()) res = false;
-            else if (value_ [n].good ())
-            {   if (value_ [n].has_width ()) has_width_ = true;
-                if (value_ [n].has_density ()) has_density_ = true; } }
+        {   ::gsl::at (value_, n).set_value (nits, v, ::gsl::at (xs, n));
+            if (::gsl::at (value_, n).invalid ()) res = false;
+            else if (::gsl::at (value_, n).good ())
+            {   if (::gsl::at (value_, n).has_width ()) has_width_ = true;
+                if (::gsl::at (value_, n).has_density ()) has_density_ = true; } }
         if (! res)
         {   if (max < 2) nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "SRCSET takes a comma separated list of values, each a url followed by, optionally, a space and a width or a density");
             return false; }
@@ -491,25 +491,25 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
                     return false; }
                 else for (::std::size_t x = 0; x < max - 1; ++x)
                     for (::std::size_t y = x+1; y < max; ++y)
-                        if ((value_ [x].density_ > 0.0) && (value_ [x].density_ == value_ [y].density_))
-                            if (value_ [x].density_ == 1.0)
+                        if ((::gsl::at (value_, x).density_ > 0.0) && (::gsl::at (value_, x).density_ == ::gsl::at (value_, y).density_))
+                            if (::gsl::at (value_, x).density_ == 1.0)
                             {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "in a SRCSET the default density is 1.0, which may only occur once");
                                 return false; }
                             else
-                            {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each density in a SRCSET must be unique (", value_ [x].density_, " is repeated)");
+                            {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each density in a SRCSET must be unique (", ::gsl::at (value_, x).density_, " is repeated)");
                                 return false; }
             if (has_width_)
                 for (::std::size_t x = 0; x < max - 1; ++x)
                     for (::std::size_t y = x+1; y < max; ++y)
-                        if ((value_ [x].width_ > 0) && (value_ [x].width_ == value_ [y].width_))
-                        {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each width in a SRCSET must be unique (", value_ [x].width_, " is repeated)");
+                        if ((::gsl::at (value_, x).width_ > 0) && (::gsl::at (value_, x).width_ == ::gsl::at (value_, y).width_))
+                        {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each width in a SRCSET must be unique (", ::gsl::at (value_, x).width_, " is repeated)");
                             return false; } }
         return res; }
-    bool has_width () const { return has_width_; }
-    bool has_density () const { return has_density_; }
+    bool has_width () const noexcept { return has_width_; }
+    bool has_density () const noexcept { return has_density_; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (parse (nits, v, s)) string_value < t_srcset > :: status (s_good);
         else tidy_string < t_srcset > :: status (s_invalid); }
-    void reset ()
+    void reset () noexcept
     {   value_.clear ();
         tidy_string < t_srcset > :: reset (); } };

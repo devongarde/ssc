@@ -40,7 +40,7 @@ struct seeker_t
 {   fileindex_t page_;    // seeker page
     vcl_t ids_;           // ids being sought
     vsc_t cats_;          // categories of elements sought
-    explicit seeker_t (const fileindex_t n) : page_ (n) { }
+    explicit seeker_t (const fileindex_t n) noexcept : page_ (n) { }
     void emplace_back (const ::std::string& id, const ::std::size_t line, const bool hidden, const vit_t& itemtypes, const e_element e)
     {   ids_.emplace_back (id, line, hidden, itemtypes, e);
         cats_.emplace_back (elem::link_category_sought (e));
@@ -48,12 +48,12 @@ struct seeker_t
 
 typedef ::std::map < fileindex_t, seeker_t > vsk_t;
 
-inline bool operator == (const seeker_t& lhs, const seeker_t& rhs) { return lhs.page_ == rhs.page_; }
-inline bool operator != (const seeker_t& lhs, const seeker_t& rhs) { return lhs.page_ != rhs.page_; }
-inline bool operator < (const seeker_t& lhs, const seeker_t& rhs) { return lhs.page_ < rhs.page_; }
-inline bool operator <= (const seeker_t& lhs, const seeker_t& rhs) { return lhs.page_ <= rhs.page_; }
-inline bool operator > (const seeker_t& lhs, const seeker_t& rhs) { return lhs.page_ > rhs.page_; }
-inline bool operator >= (const seeker_t& lhs, const seeker_t& rhs) { return lhs.page_ >= rhs.page_; }
+inline bool operator == (const seeker_t& lhs, const seeker_t& rhs) noexcept { return lhs.page_ == rhs.page_; }
+inline bool operator != (const seeker_t& lhs, const seeker_t& rhs) noexcept { return lhs.page_ != rhs.page_; }
+inline bool operator < (const seeker_t& lhs, const seeker_t& rhs) noexcept { return lhs.page_ < rhs.page_; }
+inline bool operator <= (const seeker_t& lhs, const seeker_t& rhs) noexcept { return lhs.page_ <= rhs.page_; }
+inline bool operator > (const seeker_t& lhs, const seeker_t& rhs) noexcept { return lhs.page_ > rhs.page_; }
+inline bool operator >= (const seeker_t& lhs, const seeker_t& rhs) noexcept { return lhs.page_ >= rhs.page_; }
 
 struct sought_t
 {   fileindex_t page_;    // sought page
@@ -61,17 +61,17 @@ struct sought_t
     vsk_t seekers_;       // list of seekers searching for ids on this page
     sought_t (const fileindex_t p) : page_ (p) { } };
 
-inline bool operator == (const sought_t& lhs, const sought_t& rhs) { return lhs.page_ == rhs.page_; }
-inline bool operator != (const sought_t& lhs, const sought_t& rhs) { return lhs.page_ != rhs.page_; }
-inline bool operator < (const sought_t& lhs, const sought_t& rhs) { return lhs.page_ < rhs.page_; }
-inline bool operator <= (const sought_t& lhs, const sought_t& rhs) { return lhs.page_ <= rhs.page_; }
-inline bool operator > (const sought_t& lhs, const sought_t& rhs) { return lhs.page_ > rhs.page_; }
-inline bool operator >= (const sought_t& lhs, const sought_t& rhs) { return lhs.page_ >= rhs.page_; }
+inline bool operator == (const sought_t& lhs, const sought_t& rhs) noexcept { return lhs.page_ == rhs.page_; }
+inline bool operator != (const sought_t& lhs, const sought_t& rhs) noexcept { return lhs.page_ != rhs.page_; }
+inline bool operator < (const sought_t& lhs, const sought_t& rhs) noexcept { return lhs.page_ < rhs.page_; }
+inline bool operator <= (const sought_t& lhs, const sought_t& rhs) noexcept { return lhs.page_ <= rhs.page_; }
+inline bool operator > (const sought_t& lhs, const sought_t& rhs) noexcept { return lhs.page_ > rhs.page_; }
+inline bool operator >= (const sought_t& lhs, const sought_t& rhs) noexcept { return lhs.page_ >= rhs.page_; }
 
 typedef ::std::map < fileindex_t, sought_t > vx_t;
 vx_t xlynx;
 
-void declare_crosslinks (const fileindex_t sought, ids_t& ids)
+void declare_crosslinks (const fileindex_t sought, const ids_t& ids)
 {   if (! context.crosslinks ()) return;
     if (ids.empty ()) return;
     vcl_t declare;
@@ -84,7 +84,7 @@ void declare_crosslinks (const fileindex_t sought, ids_t& ids)
         declare.emplace_back (d.first, 0, d.second.hidden_, d.second.types_, d.second.elem_);
     i -> second.declared_.swap (declare); }
 
-void declare_crosslinks (const ::boost::filesystem::path& sought, ids_t& ids)
+void declare_crosslinks (const ::boost::filesystem::path& sought, const ids_t& ids)
 {   if (context.crosslinks ())
         declare_crosslinks (get_fileindex (sought), ids); }
 
@@ -106,7 +106,7 @@ void add_sought (   const ::boost::filesystem::path& seeker, const ::std::size_t
                     const ::std::string& id, const bool hidden, const vit_t& itemtypes, const e_element e)
 {   if (context.crosslinks ()) add_sought (get_fileindex (seeker), line, get_fileindex (sought), id, hidden, itemtypes, e); }
 
-bool null_intersection (const vit_t& lhs, const vit_t& rhs)
+bool null_intersection (const vit_t& lhs, const vit_t& rhs) noexcept
 {   for (auto i : lhs)
         for (auto j : rhs)
             if (i == j) return false;

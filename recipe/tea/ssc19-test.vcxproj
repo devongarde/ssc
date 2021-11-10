@@ -104,42 +104,46 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+    <ClangTidyChecks>
+    </ClangTidyChecks>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
@@ -219,6 +223,7 @@ $(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\to
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <DisableSpecificWarnings>26812</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

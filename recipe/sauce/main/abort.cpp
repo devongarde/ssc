@@ -29,9 +29,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     msg += ::boost::lexical_cast < ::std::string > (line);
     return msg; }
 
-void throw_bad_deference (const char* const var, const char* const fn, const ::std::size_t line)
+void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line)
 {   DBG_ASSERT (false);
-    ::std::string msg ("null pointer deference of ");
+    ::std::string msg ("null pointer dereference of ");
     msg += var;
     msg += file_line (fn, line);
     ::std::cerr << "\n" << msg << "\n";

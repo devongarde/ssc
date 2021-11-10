@@ -529,178 +529,174 @@ class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
     void init (const unsigned char mjr);
-    bool test_extension () const;
+    bool test_extension () const noexcept;
 public:
     html_version () = default;
     explicit html_version (const unsigned char mjr) { init (mjr); }
-    explicit html_version (const schema_version& sv) : version (sv.mjr (), sv.mnr ()), ext_ (NOFLAGS), ext2_ (NOFLAGS) { }
-    html_version (const unsigned char mjr, const unsigned char mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS)
+    explicit html_version (const schema_version& sv) noexcept : version (sv.mjr (), sv.mnr ()), ext_ (NOFLAGS), ext2_ (NOFLAGS) { }
+    html_version (const unsigned char mjr, const unsigned char mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS) noexcept
         : version (mjr, mnr, flags), ext_ (extensions), ext2_ (e2) { }
     html_version (const ::boost::gregorian::date& whatwg, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS);
 	html_version (const html_version& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	html_version (html_version&& ) = default;
-#endif // VS
 	~html_version () = default;
     html_version& operator = (const html_version& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	html_version& operator = (html_version&& ) = default;
-#endif // VS
-    void swap (html_version& v) NOEXCEPT
+    void swap (html_version& v) noexcept
     {   version::swap (v);
         ::std::swap (ext_, v.ext_);
         ::std::swap (ext2_, v.ext2_); }
-    void reset () { html_version v; swap (v); }
-    void reset (const html_version& v) { html_version vv (v); swap (vv); }
-    void set_ext (const flags_t u) { ext_ |= u; }
-    void reset_ext (const flags_t u) { ext_ &= ~u; }
-    bool all_ext (const flags_t u) const { return ((ext_ & u) == u); }
-    bool any_ext (const flags_t u) const { return ((ext_ & u) != 0); }
-    bool no_ext (const flags_t u) const { return ((ext_ & u) == 0); }
-    flags_t ext () const { return ext_; }
-    void set_ext2 (const flags_t u) { ext2_ |= u; }
-    void reset_ext2 (const flags_t u) { ext2_ &= ~u; }
-    bool all_ext2 (const flags_t u) const { return ((ext2_ & u) == u); }
-    bool any_ext2 (const flags_t u) const { return ((ext2_ & u) != 0); }
-    bool no_ext2 (const flags_t u) const { return ((ext2_ & u) == 0); }
-    flags_t ext2 () const { return ext2_; }
-    bool is_not (const unsigned char j, const unsigned char n = 0xFF) const
+    void reset () noexcept { html_version v; swap (v); }
+    void reset (const html_version& v) noexcept { html_version vv (v); swap (vv); }
+    void set_ext (const flags_t u) noexcept { ext_ |= u; }
+    void reset_ext (const flags_t u) noexcept { ext_ &= ~u; }
+    bool all_ext (const flags_t u) const noexcept { return ((ext_ & u) == u); }
+    bool any_ext (const flags_t u) const noexcept { return ((ext_ & u) != 0); }
+    bool no_ext (const flags_t u) const noexcept { return ((ext_ & u) == 0); }
+    flags_t ext () const noexcept { return ext_; }
+    void set_ext2 (const flags_t u) noexcept { ext2_ |= u; }
+    void reset_ext2 (const flags_t u) noexcept { ext2_ &= ~u; }
+    bool all_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) == u); }
+    bool any_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) != 0); }
+    bool no_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) == 0); }
+    flags_t ext2 () const noexcept { return ext2_; }
+    bool is_not (const unsigned char j, const unsigned char n = 0xFF) const noexcept
     {   if (unknown ()) return false;
         if (j != mjr ()) return true;
         return ((n != 0xFF) && (n != mnr ())); }
-    bool is_not (const html_version& v) const
+    bool is_not (const html_version& v) const noexcept
     {   return is_not (v.mjr (), v.mnr ()); }
-    bool any_level () const { return any_flags (HV_LEVEL_MASK); }
-    unsigned char level () const { return (flags () & HV_LEVEL_MASK); }
-    bool is_0 () const { return mjr () == 0; }
-    bool is_1 () const { return mjr () == 1; }
-    bool is_2 () const { return mjr () == 2; }
-    bool is_3 () const { return mjr () == 3; }
-    bool is_4 () const { return mjr () == 4; }
-    bool is_5 () const { return mjr () > 4; }
-    bool is_b4_1 () const { return mjr () < 1; }
-    bool is_b4_2 () const { return mjr () < 2; }
-    bool is_b4_3 () const { return mjr () < 3; }
-    bool is_b4_4 () const { return mjr () < 4; }
-    bool is_b4_5 () const { return mjr () < 5; }
-    bool is_1_or_more () const { return mjr () >= 1; }
-    bool is_2_or_more () const { return mjr () >= 2; }
-    bool is_3_or_more () const { return mjr () >= 3; }
-    bool is_4_or_more () const { return mjr () >= 4; }
-    bool bespoke () const { return all_ext (HE_BESPOKE); }
-    bool chrome () const { return all_ext (HE_CHROME); }
-    bool dinosaur () const { return all_flags (HV_DINOSAUR); }
-    bool experimental () const { return all_ext (HE_EXPERIMENTAL); }
-    bool frameset () const { return all_flags (HV_FRAMESET); }
-    bool ie () const { return all_ext (HE_IE); }
-    bool has_jsonld () const { return any_ext2 (JSONLD_MASK); }
-    bool has_math () const { return any_ext (MATH_MASK); }
-    bool has_rdfa () const { return any_ext (HE_RDFA); }
-    bool has_svg () const { return any_ext (SVG_MASK); }
-    bool has_xlink () const { return any_ext (XLINK_MASK); }
-    int jsonld () const { return static_cast < int > ((ext2 () & JSONLD_MASK) >> JSONLD_SHIFT); }
-    int math () const { return static_cast < int > ((ext () & MATH_MASK) >> MATH_SHIFT); }
-    int rdfa () const { return has_rdfa (); }
-    int svg () const { return static_cast < int > ((ext () & SVG_MASK) >> SVG_SHIFT); }
-    ::std::size_t minargs () const { return static_cast < ::std::size_t > ((ext () & HE_MINARGS_MASK) >> HE_MINARGS_SHIFT); }
-    ::std::size_t maxargs () const { return static_cast < ::std::size_t > ((ext () & HE_MAXARGS_MASK) >> HE_MAXARGS_SHIFT); }
-    ::std::size_t group () const { return static_cast < ::std::size_t > ((ext () & HE_GROUP_MASK) >> HE_GROUP_SHIFT); }
-    bool is_jsonld_10 () const { return (ext2 () & H2_JSONLD_1_0) == H2_JSONLD_1_0; }
-    bool is_jsonld_11 () const { return (ext2 () & H2_JSONLD_1_1) == H2_JSONLD_1_1; }
-    bool is_rdf () const { return (ext () & HE_RDF) != 0; }
-    bool is_rdf_dep () const { return (ext () & HE_RDF_DEP) != 0; }
-    bool is_svg_1 () const { return (ext () & HE_SVG_1) != 0; }
-    bool is_svg_10 () const { return (ext () & HE_SVG_10) == HE_SVG_10; }
-    bool is_svg_11 () const { return (ext () & HE_SVG_11) == HE_SVG_11; }
-    bool is_svg_12 () const { return (ext () & HE_SVG_12) != 0; }
-    bool is_svg_2 () const { return (ext () & HE_SVG_2) != 0; }
-    bool is_svg_20 () const { return (ext () & HE_SVG_20) == HE_SVG_20; }
-    bool is_svg_21 () const { return (ext () & HE_SVG_21) == HE_SVG_21; }
-    bool not_svg () const { return (ext () & HE_NOT_SVG) == HE_NOT_SVG; }
-    bool not_any_svg () const { return (ext () & HE_NOT_SVG) != 0; }
-    bool not_svg_10 () const { return (ext () & HE_NOT_SVG_10) != 0; }
-    bool not_svg_11 () const { return (ext () & HE_NOT_SVG_11) != 0; }
-    bool not_svg_12 () const { return (ext () & HE_NOT_SVG_12) != 0; }
-    bool not_svg_20 () const { return (ext () & HE_NOT_SVG_20) != 0; }
-    bool not_svg_21 () const { return (ext () & HE_NOT_SVG_21) != 0; }
-    e_jsonld_version jsonld_version () const;
-    void jsonld_version (const e_jsonld_version v);
-    e_math_version math_version () const;
-    void math_version (const e_math_version v);
-    e_rdf_version rdf_version () const;
-    void rdf_version (const e_rdf_version v);
-    e_svg_version svg_version () const;
-    void svg_version (const e_svg_version v);
-    bool requires_extension () const;
-    bool is_plain_html () const;
-    int xlink () const { return static_cast < int > ((ext () & XLINK_MASK) >> XLINK_SHIFT); }
+    bool any_level () const noexcept { return any_flags (HV_LEVEL_MASK); }
+    unsigned char level () const noexcept { return (flags () & HV_LEVEL_MASK); }
+    bool is_0 () const noexcept { return mjr () == 0; }
+    bool is_1 () const noexcept { return mjr () == 1; }
+    bool is_2 () const noexcept { return mjr () == 2; }
+    bool is_3 () const noexcept { return mjr () == 3; }
+    bool is_4 () const noexcept { return mjr () == 4; }
+    bool is_5 () const noexcept { return mjr () > 4; }
+    bool is_b4_1 () const noexcept { return mjr () < 1; }
+    bool is_b4_2 () const noexcept { return mjr () < 2; }
+    bool is_b4_3 () const noexcept { return mjr () < 3; }
+    bool is_b4_4 () const noexcept { return mjr () < 4; }
+    bool is_b4_5 () const noexcept { return mjr () < 5; }
+    bool is_1_or_more () const noexcept { return mjr () >= 1; }
+    bool is_2_or_more () const noexcept { return mjr () >= 2; }
+    bool is_3_or_more () const  noexcept{ return mjr () >= 3; }
+    bool is_4_or_more () const noexcept { return mjr () >= 4; }
+    bool bespoke () const noexcept { return all_ext (HE_BESPOKE); }
+    bool chrome () const noexcept { return all_ext (HE_CHROME); }
+    bool dinosaur () const noexcept { return all_flags (HV_DINOSAUR); }
+    bool experimental () const noexcept { return all_ext (HE_EXPERIMENTAL); }
+    bool frameset () const noexcept { return all_flags (HV_FRAMESET); }
+    bool ie () const noexcept { return all_ext (HE_IE); }
+    bool has_jsonld () const noexcept { return any_ext2 (JSONLD_MASK); }
+    bool has_math () const noexcept { return any_ext (MATH_MASK); }
+    bool has_rdfa () const noexcept { return any_ext (HE_RDFA); }
+    bool has_svg () const noexcept { return any_ext (SVG_MASK); }
+    bool has_xlink () const  noexcept{ return any_ext (XLINK_MASK); }
+    int jsonld () const noexcept { return ::gsl::narrow_cast < int > ((ext2 () & JSONLD_MASK) >> JSONLD_SHIFT); }
+    int math () const noexcept { return ::gsl::narrow_cast < int > ((ext () & MATH_MASK) >> MATH_SHIFT); }
+    int rdfa () const noexcept { return has_rdfa (); }
+    int svg () const noexcept { return ::gsl::narrow_cast < int > ((ext () & SVG_MASK) >> SVG_SHIFT); }
+    ::std::size_t minargs () const noexcept { return ::gsl::narrow_cast < ::std::size_t > ((ext () & HE_MINARGS_MASK) >> HE_MINARGS_SHIFT); }
+    ::std::size_t maxargs () const noexcept { return ::gsl::narrow_cast < ::std::size_t > ((ext () & HE_MAXARGS_MASK) >> HE_MAXARGS_SHIFT); }
+    ::std::size_t group () const noexcept { return ::gsl::narrow_cast < ::std::size_t > ((ext () & HE_GROUP_MASK) >> HE_GROUP_SHIFT); }
+    bool is_jsonld_10 () const noexcept { return (ext2 () & H2_JSONLD_1_0) == H2_JSONLD_1_0; }
+    bool is_jsonld_11 () const noexcept { return (ext2 () & H2_JSONLD_1_1) == H2_JSONLD_1_1; }
+    bool is_rdf () const noexcept { return (ext () & HE_RDF) != 0; }
+    bool is_rdf_dep () const noexcept { return (ext () & HE_RDF_DEP) != 0; }
+    bool is_svg_1 () const noexcept { return (ext () & HE_SVG_1) != 0; }
+    bool is_svg_10 () const noexcept { return (ext () & HE_SVG_10) == HE_SVG_10; }
+    bool is_svg_11 () const noexcept { return (ext () & HE_SVG_11) == HE_SVG_11; }
+    bool is_svg_12 () const noexcept { return (ext () & HE_SVG_12) != 0; }
+    bool is_svg_2 () const noexcept { return (ext () & HE_SVG_2) != 0; }
+    bool is_svg_20 () const noexcept { return (ext () & HE_SVG_20) == HE_SVG_20; }
+    bool is_svg_21 () const noexcept { return (ext () & HE_SVG_21) == HE_SVG_21; }
+    bool not_svg () const noexcept { return (ext () & HE_NOT_SVG) == HE_NOT_SVG; }
+    bool not_any_svg () const noexcept { return (ext () & HE_NOT_SVG) != 0; }
+    bool not_svg_10 () const noexcept { return (ext () & HE_NOT_SVG_10) != 0; }
+    bool not_svg_11 () const noexcept { return (ext () & HE_NOT_SVG_11) != 0; }
+    bool not_svg_12 () const noexcept { return (ext () & HE_NOT_SVG_12) != 0; }
+    bool not_svg_20 () const noexcept { return (ext () & HE_NOT_SVG_20) != 0; }
+    bool not_svg_21 () const noexcept { return (ext () & HE_NOT_SVG_21) != 0; }
+    e_jsonld_version jsonld_version () const noexcept;
+    void jsonld_version (const e_jsonld_version v) noexcept;
+    e_math_version math_version () const noexcept;
+    void math_version (const e_math_version v) noexcept;
+    e_rdf_version rdf_version () const noexcept;
+    void rdf_version (const e_rdf_version v) noexcept;
+    e_svg_version svg_version () const noexcept;
+    void svg_version (const e_svg_version v) noexcept;
+    bool requires_extension () const noexcept;
+    bool is_plain_html () const noexcept;
+    int xlink () const noexcept { return ::gsl::narrow_cast < int > ((ext () & XLINK_MASK) >> XLINK_SHIFT); }
     bool check_math_svg (nitpick& nits, const html_version& a, const ::std::string& x) const;
-    bool microdata () const { return any_ext (HE_MICRODATA); }
-    bool mozilla () const { return any_ext (HE_MOZILLA); }
-    bool netscape () const { return any_ext (HE_NETSCAPE); }
-    bool not10 () const { return all_flags (HV_NOT10); }
-    bool not2 () const { return all_flags (HV_NOT2); }
-    bool not2l1 () const { return all_flags (HV_NOT2L1); }
-    bool not3 () const { return any_flags (HV_NOT3); }
-    bool not30 () const { return all_flags (HV_NOT30); }
-    bool not32 () const { return all_flags (HV_NOT32); }
-    bool not4 () const { return all_flags (HV_NOT4); }
-    bool notx1 () const { return all_flags (HV_NOTX1); }
-    bool notx2 () const { return all_flags (HV_NOTX2); }
-    bool notx5 () const { return all_flags (HV_NOTX5); }
-    bool notplus () const { return all_flags (HV_NOTPLUS); }
-    bool not50 () const { return all_flags (HV_NOT50); }
-    bool not51 () const { return all_flags (HV_NOT51); }
-    bool not52 () const { return all_flags (HV_NOT52); }
-    bool not53 () const { return all_flags (HV_NOT53); }
-    bool opera () const { return any_ext (HE_OPERA); }
-    bool reject () const { return all_flags (REJECT); }
-    bool required () const { return all_flags (REQUIRED); }
-    bool rfc_1867 () const { return all_flags (HV_RFC_1867); }
-    bool rfc_1942 () const { return all_flags (HV_RFC_1942); }
-    bool rfc_1980 () const { return all_flags (HV_RFC_1980); }
-    bool rfc_2070 () const { return all_flags (HV_RFC_2070); }
-    bool safari () const { return any_ext (HE_SAFARI); }
-    bool strict () const { return all_flags (HV_STRICT); }
-    bool transitional () const { return all_flags (HV_TRANSITIONAL); }
-    bool w3 () const { return all_flags (HV_W3); }
-    bool webcomponents () const { return any_ext (HE_WEBCOMP); }
-    bool whatwg () const { return all_flags (HV_WHATWG); }
-    bool xhtml () const { return all_flags (HV_XHTML); }
-    bool xhtml_dtd () const { return all_flags (HV_XHTML_DTD); }
-    bool svg_anim (const e_svg_version v) const;
-    bool svg_anim () const { return any_ext (HE_ANIM); }
-    bool svg_anim_10 () const { return any_ext (HE_ANIM_10); }
-    bool svg_anim_11 () const { return any_ext (HE_ANIM_11); }
-    bool svg_anim_12 () const { return any_ext (HE_ANIM_12); }
-    bool svg_anim_20 () const { return any_ext (HE_ANIM_20); }
-    bool svg_anim_21 () const { return any_ext (HE_ANIM_21); }
-    bool svg_limited (const e_svg_version v) const;
-    bool svg_limited () const { return any_ext (HE_LIMITED); }
-    bool svg_limited_10 () const { return any_ext (HE_LIMITED_10); }
-    bool svg_limited_11 () const { return any_ext (HE_LIMITED_11); }
-    bool svg_limited_12 () const { return any_ext (HE_LIMITED_12); }
-    bool svg_limited_20 () const { return any_ext (HE_LIMITED_20); }
-    bool svg_limited_21 () const { return any_ext (HE_LIMITED_21); }
-    bool svg_x2 () const { return any_ext (HE_SVG_X2); }
-    bool svg_old_html () const { return any_ext (HE_SVG_OLD_H); }
-    bool is_a_area () const { return all_flags (HR_A_AREA); }
-    bool is_external () const { return all_flags (HR_EXTERNAL); }
-    bool is_form () const { return all_flags (HR_FORM); }
-    bool is_linkhead () const { return all_flags (HR_LINKHEAD); }
-    bool is_linkbody () const { return all_flags (HR_LINKBODY); }
-    bool is_link () const { return any_flags (HR_LINK); }
-    bool is_mf () const { return any_flags (HR_MF); }
-    bool is_rel () const { return any_flags (HR_ALL); }
-    bool invalid_addendum (const html_version& v) const;
+    bool microdata () const noexcept { return any_ext (HE_MICRODATA); }
+    bool mozilla () const noexcept { return any_ext (HE_MOZILLA); }
+    bool netscape () const noexcept { return any_ext (HE_NETSCAPE); }
+    bool not10 () const noexcept { return all_flags (HV_NOT10); }
+    bool not2 () const noexcept { return all_flags (HV_NOT2); }
+    bool not2l1 () const noexcept { return all_flags (HV_NOT2L1); }
+    bool not3 () const noexcept { return any_flags (HV_NOT3); }
+    bool not30 () const noexcept { return all_flags (HV_NOT30); }
+    bool not32 () const noexcept { return all_flags (HV_NOT32); }
+    bool not4 () const noexcept { return all_flags (HV_NOT4); }
+    bool notx1 () const noexcept { return all_flags (HV_NOTX1); }
+    bool notx2 () const noexcept { return all_flags (HV_NOTX2); }
+    bool notx5 () const noexcept { return all_flags (HV_NOTX5); }
+    bool notplus () const noexcept { return all_flags (HV_NOTPLUS); }
+    bool not50 () const noexcept { return all_flags (HV_NOT50); }
+    bool not51 () const noexcept { return all_flags (HV_NOT51); }
+    bool not52 () const noexcept { return all_flags (HV_NOT52); }
+    bool not53 () const noexcept { return all_flags (HV_NOT53); }
+    bool opera () const noexcept { return any_ext (HE_OPERA); }
+    bool reject () const noexcept { return all_flags (REJECT); }
+    bool required () const noexcept { return all_flags (REQUIRED); }
+    bool rfc_1867 () const noexcept { return all_flags (HV_RFC_1867); }
+    bool rfc_1942 () const noexcept { return all_flags (HV_RFC_1942); }
+    bool rfc_1980 () const noexcept { return all_flags (HV_RFC_1980); }
+    bool rfc_2070 () const noexcept { return all_flags (HV_RFC_2070); }
+    bool safari () const noexcept { return any_ext (HE_SAFARI); }
+    bool strict () const noexcept { return all_flags (HV_STRICT); }
+    bool transitional () const noexcept { return all_flags (HV_TRANSITIONAL); }
+    bool w3 () const noexcept { return all_flags (HV_W3); }
+    bool webcomponents () const noexcept { return any_ext (HE_WEBCOMP); }
+    bool whatwg () const noexcept { return all_flags (HV_WHATWG); }
+    bool xhtml () const noexcept { return all_flags (HV_XHTML); }
+    bool xhtml_dtd () const noexcept { return all_flags (HV_XHTML_DTD); }
+    bool svg_anim (const e_svg_version v) const noexcept;
+    bool svg_anim () const noexcept { return any_ext (HE_ANIM); }
+    bool svg_anim_10 () const noexcept { return any_ext (HE_ANIM_10); }
+    bool svg_anim_11 () const noexcept{ return any_ext (HE_ANIM_11); }
+    bool svg_anim_12 () const noexcept { return any_ext (HE_ANIM_12); }
+    bool svg_anim_20 () const noexcept { return any_ext (HE_ANIM_20); }
+    bool svg_anim_21 () const noexcept { return any_ext (HE_ANIM_21); }
+    bool svg_limited (const e_svg_version v) const noexcept;
+    bool svg_limited () const noexcept { return any_ext (HE_LIMITED); }
+    bool svg_limited_10 () const noexcept { return any_ext (HE_LIMITED_10); }
+    bool svg_limited_11 () const noexcept { return any_ext (HE_LIMITED_11); }
+    bool svg_limited_12 () const noexcept { return any_ext (HE_LIMITED_12); }
+    bool svg_limited_20 () const noexcept { return any_ext (HE_LIMITED_20); }
+    bool svg_limited_21 () const noexcept { return any_ext (HE_LIMITED_21); }
+    bool svg_x2 () const noexcept { return any_ext (HE_SVG_X2); }
+    bool svg_old_html () const noexcept { return any_ext (HE_SVG_OLD_H); }
+    bool is_a_area () const noexcept { return all_flags (HR_A_AREA); }
+    bool is_external () const noexcept { return all_flags (HR_EXTERNAL); }
+    bool is_form () const noexcept { return all_flags (HR_FORM); }
+    bool is_linkhead () const noexcept { return all_flags (HR_LINKHEAD); }
+    bool is_linkbody () const noexcept { return all_flags (HR_LINKBODY); }
+    bool is_link () const noexcept { return any_flags (HR_LINK); }
+    bool is_mf () const noexcept { return any_flags (HR_MF); }
+    bool is_rel () const noexcept { return any_flags (HR_ALL); }
+    bool invalid_addendum (const html_version& v) const noexcept;
     bool deprecated (const html_version& current) const;
-    bool not_production () const { return all_flags (HV_NOTPROD); }
+    bool not_production () const noexcept { return all_flags (HV_NOTPROD); }
     bool parse_doctype (nitpick& nits, const ::std::string& content);
-    bool lazy () const;
+    bool lazy () const noexcept;
     bool valid_charset (const ::std::string& charset) const;
-    bool restricted_charset () const;
-    const char *default_charset () const;
-    const char *alternative_charset () const;
+    bool restricted_charset () const noexcept;
+    const char *default_charset () const noexcept;
+    const char *alternative_charset () const noexcept;
     ::std::string get_doctype () const;
     ::std::string name () const;
     ::std::string report () const; };
@@ -774,14 +770,14 @@ const html_version html_default (html_oct21);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
-int w3_minor_5 (const html_version& v);
-int w3_5_minor (const html_version& v);
+int w3_minor_5 (const html_version& v) noexcept;
+int w3_5_minor (const html_version& v) noexcept;
 e_emi extension_conflict (const html_version& lhs, const html_version& rhs);
-const char *default_charset (const html_version& v);
-const char *alternative_charset (const html_version& v);
-html_version get_min_version (const e_svg_version e);
-html_version get_min_version (const e_math_version e);
-html_version get_min_version (const e_jsonld_version e);
+const char *default_charset (const html_version& v) noexcept;
+const char *alternative_charset (const html_version& v) noexcept;
+html_version get_min_version (const e_svg_version e) noexcept;
+html_version get_min_version (const e_math_version e) noexcept;
+html_version get_min_version (const e_jsonld_version e) noexcept;
 bool overlap (const html_version& lhs_from, const html_version& lhs_to, const html_version& rhs_from, const html_version& rhs_to);
 
 template < > inline bool does_apply < html_version > (const html_version& v, const html_version& from, const html_version& to)

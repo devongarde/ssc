@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020,2021 Dylan Harris
 
+0.0.117
+- now using Microsoft's GSL library (https://github.com/Microsoft/GSL)
+- underlying work / various refinements
+
 0.0.116
 - change default HTML to living standard Oct 2021
 - OpenBSD 6.9 / 7.0

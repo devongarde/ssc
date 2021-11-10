@@ -28,7 +28,7 @@ bool within_real_limits (nitpick& nits, const html_version& , const double val);
 template < > struct type_master < t_base > : public numeric_value < t_base, unsigned int >
 {   typedef true_type has_int_type;
     using numeric_value < t_base, unsigned int > :: numeric_value;
-    static e_animation_type animation_type () { return at_integer; }
+    static e_animation_type animation_type () noexcept { return at_integer; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_base, unsigned int > :: set_value (nits, v, s);
         if (numeric_value < t_base, unsigned int > :: empty ())
@@ -42,8 +42,8 @@ template < > struct type_master < t_base > : public numeric_value < t_base, unsi
 template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpoint >
 {   double value_ = 0.0;
     using type_base < double, t_fixedpoint > :: type_base;
-    static e_animation_type animation_type () { return at_number; }
-    void swap (type_master < t_fixedpoint >& t) NOEXCEPT
+    static e_animation_type animation_type () noexcept { return at_number; }
+    void swap (type_master < t_fixedpoint >& t) noexcept
     {   ::std::swap (value_, t.value_);
         type_base < double, t_fixedpoint >::swap (t); }
     ::std::string get_string () const { return ::boost::lexical_cast < ::std::string > (value_); }
@@ -56,17 +56,17 @@ template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpo
         else
         {   nits.pick (nit_sunk, ed_so_11 , "Number (https://" SCHEMA_ORG "/Number)", es_error, ec_type, quote (s), " contains unexpected characters, not just denary digit(s) and maybe a decimal point");
             type_base < double, t_fixedpoint > :: status (s_invalid); } }
-    static double default_value () { return 0.0; }
-    bool has_value (const double& b) const { return good () && (value_ == b); }
-    int get_int () const { return static_cast < int > (value_  + 0.5); }
-    double get () const { return value_; } };
+    static double default_value () noexcept { return 0.0; }
+    bool has_value (const double& b) const noexcept { return good () && (value_ == b); }
+    int get_int () const noexcept { return static_cast < int > (value_  + 0.5); }
+    double get () const noexcept { return value_; } };
 
 template < > struct type_master < t_percent > : type_master < t_fixedpoint >
 {   using type_master < t_fixedpoint > :: type_master;
-    static e_animation_type animation_type () { return at_percentage; }
+    static e_animation_type animation_type () noexcept { return at_percentage; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
-        ::std::string::size_type len (ss.length ());
+        const ::std::string::size_type len (ss.length ());
         if (len > 1)
             if (ss.at (len - 1) == '%')
             {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 2));
@@ -82,7 +82,7 @@ template < > struct type_master < t_percent > : type_master < t_fixedpoint >
 template < > struct type_master < t_integer > : numeric_value < t_integer, int >
 {   typedef true_type has_int_type;
     using numeric_value < t_integer, int > :: numeric_value;
-    static e_animation_type animation_type () { return at_integer; }
+    static e_animation_type animation_type () noexcept { return at_integer; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_integer, int > :: set_value (nits, v, s);
         if (! numeric_value < t_integer, int > :: good ())
@@ -115,8 +115,8 @@ template < > struct type_master < t_positive > : type_master < t_integer >
 template < > struct type_master < t_real > : type_base < double, t_real >
 {   double value_ = 0.0;
     using type_base < double, t_real > :: type_base;
-    static e_animation_type animation_type () { return at_number; }
-    void swap (type_master < t_real >& t) NOEXCEPT
+    static e_animation_type animation_type () noexcept { return at_number; }
+    void swap (type_master < t_real >& t) noexcept
     {   ::std::swap (value_, t.value_);
         type_base < double, t_real >::swap (t); }
     ::std::string get_string () const { return ::boost::lexical_cast < ::std::string > (value_); }
@@ -130,15 +130,15 @@ template < > struct type_master < t_real > : type_base < double, t_real >
                 return; } }
         else nits.pick (nit_sunk, ed_50, "2.4.4.3 Floating-point numbers", es_error, ec_type, quote (s), " is not a floating point number");
         type_base < double, t_real > :: status (s_invalid); }
-    static double default_value () { return 0.0; }
-    bool has_value (const double& b) const { return good () && (value_ == b); }
-    int get_int () const { return static_cast < int > (value_ + 0.5); }
-    double get () const { return value_; } };
+    static double default_value () noexcept { return 0.0; }
+    bool has_value (const double& b) const noexcept { return good () && (value_ == b); }
+    int get_int () const noexcept { return static_cast < int > (value_ + 0.5); }
+    double get () const noexcept { return value_; } };
 
 template < > struct type_master < t_unsigned > : public numeric_value < t_unsigned, unsigned int >
 {   typedef true_type has_int_type;
     using numeric_value < t_unsigned, unsigned int > :: numeric_value;
-    static e_animation_type animation_type () { return at_integer; }
+    static e_animation_type animation_type () noexcept { return at_integer; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_unsigned, unsigned int > :: set_value (nits, v, s);
         if (! numeric_value < t_unsigned, unsigned int > :: good ())

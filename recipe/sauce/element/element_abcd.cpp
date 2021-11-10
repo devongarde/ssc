@@ -79,7 +79,7 @@ void element::examine_anchor ()
             if (a_.known (a_itemprop))
                 pick (nit_chocolate_teapot, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> with an ITEMPROP requires an HREF."); }
         if (w3_minor_5 (node_.version ()) >= 4)
-        {   attribute_bitset as (descendant_attributes_);
+        {   const attribute_bitset as (descendant_attributes_);
             if (as.test (a_tabindex))
                 pick (nit_tabindex, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> cannot have a descendant with TABINDEX."); } } }
 
@@ -106,8 +106,8 @@ void element::examine_annotation ()
         pick (nit_annotation, es_info, ec_element, "apologies, but " PROG " makes no effort to analyse the content of <", elem::name (tag ()), ">"); }
 
 void element::examine_area ()
-{   bool href_known = a_.known (a_href);
-    bool alt_known = a_.known (a_alt);
+{   const bool href_known = a_.known (a_href);
+    const bool alt_known = a_.known (a_alt);
     if (href_known) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE);
     if (node_.version ().is_5 ())
     {   if (! any (ancestral_elements_, empty_element_bitset | elem_map | elem_template))
@@ -230,7 +230,7 @@ void element::examine_button ()
                 pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "An <BUTTON> element cannot have interactive descendant elements");
             if (descendant_attributes_.test (a_tabindex))
                 pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "An <BUTTON> element cannot have a descendant element with a TABINDEX"); }
-        e_button bu = static_cast < e_button > (a_.get_int (a_type));
+        const e_button bu = static_cast < e_button > (a_.get_int (a_type));
         if (bu != bu_submit)
             if (a_.known (a_formaction) || a_.known (a_formenctype) || a_.known (a_formmethod) || a_.known (a_formnovalidate) || a_.known (a_formtarget) ||
                 a_.known (a_action) || a_.known (a_enctype) || a_.known (a_method) || a_.known (a_novalidate) || a_.known (a_target))
@@ -330,6 +330,7 @@ void element::examine_datalist ()
                 switch (p -> tag ())
                 {   case elem_option :
                         had_option = true;
+                        [[fallthrough]];
                     case elem_script :
                     case elem_template :
                         break;

@@ -26,7 +26,7 @@ template < > struct type_master < t_dosh > : tidy_string < t_dosh >
     double value_ = 0.0;
     e_currency unit_ = e_iso_context;
     using tidy_string < t_dosh > :: tidy_string;
-    void swap (type_master < t_dosh >& t) NOEXCEPT
+    void swap (type_master < t_dosh >& t) noexcept
     {   ::std::swap (value_, t.value_);
         ::std::swap (unit_, t.unit_);
         tidy_string < t_dosh > :: swap (t); }
@@ -34,17 +34,17 @@ template < > struct type_master < t_dosh > : tidy_string < t_dosh >
     {   const vstr_t args (split_by_space (s));
         if (args.size () > 2) return false;
         ::std::string amount;
-        if (args.size () == 1) amount = trim_the_lot_off (args [0]);
+        if (args.size () == 1) amount = trim_the_lot_off (::gsl::at (args, 0));
         if (args.size () == 2)
-        {   const ::std::string c (args [0]);
-            if (symbol < html_version, e_currency > :: find (v, args [0], unit_)) amount = trim_the_lot_off (args [1]);
+        {   const ::std::string c (::gsl::at (args, 0));
+            if (symbol < html_version, e_currency > :: find (v, ::gsl::at (args, 0), unit_)) amount = trim_the_lot_off (::gsl::at (args, 1));
             else if (! symbol < html_version, e_currency > :: find (v, amount, unit_)) return false; }
         if (amount.empty ()) return false;
         bool res = false;
         value_ = lexical < double > :: cast2 (amount, res);
         return res; }
-    bool has_value (const base_type& d) const { return d == value_; }
-    int get_int () const { return static_cast < int > (value_ + 0.5); }
+    bool has_value (const base_type& d) const noexcept { return d == value_; }
+    int get_int () const noexcept { return static_cast < int > (value_ + 0.5); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_dosh > :: set_value (nits, v, s);
         const ::std::string& val (tidy_string < t_dosh > :: get_string ());

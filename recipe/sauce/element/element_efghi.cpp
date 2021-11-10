@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void element::examine_embed ()
 {   if (node_.version ().mjr () < 5) return;
     no_anchor_daddy ();
-    bool src_known = a_.known (a_src);
-    bool type_known = a_.known (a_type);
+    const bool src_known = a_.known (a_src);
+    const bool type_known = a_.known (a_type);
     if (! src_known)
     {   if (a_.known (a_itemprop))
             pick (nit_bad_embed, ed_jul20, "4.8.6 The embed element", es_error, ec_attribute, "SRC is required when ITEMPROP is used on <EMBED>");
@@ -69,12 +69,12 @@ void element::examine_equation ()
     {   pick (nit_operator_required, ed_math_2, "4.4.2.1 Apply (apply)", es_error, ec_element, "<", elem::name (tag ()), "> requires an operator");
         return; }
     if ((fl & EP_ARGS_COUNT_MASK) == 0) return;
-    bool more = (fl & EP_ARGS_MORE) == EP_ARGS_MORE;
-    bool none = (fl & EP_ARGS_0) == EP_ARGS_0;
+    const bool more = (fl & EP_ARGS_MORE) == EP_ARGS_MORE;
+    const bool none = (fl & EP_ARGS_0) == EP_ARGS_0;
     if (more && none) return;
-    bool a1 = (fl & EP_ARGS_1) == EP_ARGS_1;
-    bool a2 = (fl & EP_ARGS_2) == EP_ARGS_2;
-    bool a3 = (fl & EP_ARGS_3) == EP_ARGS_3;
+    const bool a1 = (fl & EP_ARGS_1) == EP_ARGS_1;
+    const bool a2 = (fl & EP_ARGS_2) == EP_ARGS_2;
+    const bool a3 = (fl & EP_ARGS_3) == EP_ARGS_3;
     switch (args)
     {   case 0 : if (none) return;
                  break;
@@ -111,7 +111,7 @@ void element::examine_fe ()
 void element::examine_fecolourmatrix ()
 {   e_matrixtype mt = mt_matrix;
     if (a_.known (a_type)) mt = static_cast < e_matrixtype > (a_.get_int (a_type));
-    bool vals = a_.known (a_values);
+    const bool vals = a_.known (a_values);
     if (mt == mt_luminancetoalpha)
     {   if (vals) pick (nit_colour_matrix, ed_svg_1_1, "15.10 Filter primitive feColorMatrix", es_warning, ec_attribute, "when TYPE is luminance-alpha, VALUES should be omitted");
         return; }
@@ -145,7 +145,7 @@ void element::examine_fecomposite ()
                 pick (nit_fecomposite, es_info, ec_attribute, "K1, K2, K3 and K4 are ignored unless OPERATOR=arithmetic"); }
 
 void element::examine_feconvolvematrix ()
-{   const unsigned max_safe_count = 16;
+{   constexpr unsigned max_safe_count = 16;
     unsigned ordered = 9;
     if (a_.good (a_order))
     {   vstr_t dim (split_by_space (trim_the_lot_off (a_.get_string (a_order))));
@@ -195,7 +195,7 @@ void element::examine_figure ()
         if (node_.version ().whatwg () || (node_.version () == html_5_0))
             for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
             {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
-                e_element tag = c -> node_.tag ();
+                const e_element tag = c -> node_.tag ();
                 if (is_standard_element (tag) && ! c -> node_.is_closure ())
                 {   if (tag != elem_figcaption)
                     {   if (last_was_fig)
@@ -388,7 +388,8 @@ void element::examine_img ()
         if (node_.version () >= html_jan17)
         {   if (a_.valid (a_srcset))
             {   attribute_v_ptr srsptr = a_.get (a_srcset);
-                attr_srcset* const srs = static_cast <attr_srcset*> (srsptr.get ());
+//                const attr_srcset* const srs = static_cast <attr_srcset*> (srsptr.get ());
+                const attr_srcset* const srs = dynamic_cast <attr_srcset*> (srsptr.get ());
                 VERIFY_NOT_NULL (srs, __FILE__, __LINE__);
                 if (srs -> has_width () && ! a_.known (a_sizes))
                 {   complained = true;

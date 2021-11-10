@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT = 0, class LC = sz_true > class symbol : public enlc < LC >
 {   static symbol_table < V, CATEGORY, INIT > table_;
     V first_, last_;
-    VALUE value_ = static_cast < VALUE > (0);
+    VALUE value_ = ::gsl::narrow_cast < VALUE > (0);
     CATEGORY ns_ = INIT;
     bool unknown_ = true;
     flags_t flags_ = NOFLAGS, flags2_ = NOFLAGS;
@@ -36,9 +36,7 @@ public:
     typedef VALUE value_type;
 	symbol () = default;
     symbol (const symbol& s) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	symbol (symbol&&) = default;
-#endif // VS
     explicit symbol (const VALUE& value, const CATEGORY ns = INIT) : value_ (value), ns_ (ns), unknown_ (false)
     {   first_ = table_.first_version (value);
         last_ = table_.final_version (value);
@@ -47,10 +45,8 @@ public:
     explicit symbol (const V& v, const ::std::string& x, const CATEGORY ns = INIT) : ns_ (ns)
     {   unknown_ = ! find (v, x, value_, ns, &first_, &last_, &flags_, &flags2_); }
 	symbol& operator = (const symbol&) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	symbol& operator = (symbol&&) = default;
-#endif // VS
-    void swap (symbol& s) NOEXCEPT
+    void swap (symbol& s) noexcept
     {   ::std::swap (unknown_, s.unknown_);
         ::std::swap (value_, s.value_);
         ::std::swap (ns_, s.ns_);
@@ -87,19 +83,19 @@ public:
     {   table_.extend (key, symbol, value, ns, first, last, flags, flags2); }
     static void extend (const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT, const V& first = html_0, const V& last = html_0, const flags_t flags = 0, const flags_t flags2 = 0)
     {   extend (enlc < LC > :: to (symbol), symbol, value, ns, first, last, flags, flags2); }
-    VALUE get () const { if (unknown_) return static_cast <VALUE> (0); return value_; }
-    V first () const { return first_; }
-    V last () const { return last_; }
-    CATEGORY ns () const { return ns_; }
-    void ns (const CATEGORY n) { ns_ = n; }
-    flags_t flags () const { return flags_; }
-    flags_t categories () const { return flags2_; }
-    void refresh (const flags_t f) { flags_ |= f; }
-    void congeal (const flags_t c) { flags2_ = c; }
-    void set (const V& ver, const VALUE& v, const CATEGORY ns = INIT, const flags_t flags = 0, const flags_t flags2 = 0)
+    VALUE get () const noexcept { if (unknown_) return ::gsl::narrow_cast <VALUE> (0); return value_; }
+    V first () const noexcept { return first_; }
+    V last () const noexcept { return last_; }
+    CATEGORY ns () const noexcept { return ns_; }
+    void ns (const CATEGORY n) noexcept { ns_ = n; }
+    flags_t flags () const noexcept { return flags_; }
+    flags_t categories () const noexcept { return flags2_; }
+    void refresh (const flags_t f) noexcept { flags_ |= f; }
+    void congeal (const flags_t c) noexcept { flags2_ = c; }
+    void set (const V& ver, const VALUE& v, const CATEGORY ns = INIT, const flags_t flags = 0, const flags_t flags2 = 0) noexcept
     {   value_ = v; ns_ = ns; first_ = last_ = ver; flags_ = flags; flags2_ = flags2; unknown_ = false; }
-    operator VALUE () const { return get (); }
-    bool unknown () const { return unknown_; }
+    operator VALUE () const noexcept { return get (); }
+    bool unknown () const noexcept { return unknown_; }
     bool required () const { return first_.required (); }
     ::std::string name (const bool ns_req = false) const
     {   if (unknown_) return "(unknown)";
@@ -114,7 +110,7 @@ public:
     {   return table_.template starts_with < VALUE> (s, ends_at); }
     static ::std::string after_start (const ::std::string& s)
     {   return table_.after_start (s); }
-    bool invalid () const { return unknown_; }
+    bool invalid () const noexcept { return unknown_; }
     bool is_invalid_version (const V& v)
     {   return ((v > last ()) || (v < first ())); }
     static ::std::string table () { return table_.report (); } };

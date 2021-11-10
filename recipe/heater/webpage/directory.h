@@ -42,7 +42,7 @@ class directory
     path_root_ptr root_;
     fileindex_t ndx_ = nullfileindex;
     static external external_;
-    bool add_to_content (nitpick& nits, ::boost::filesystem::directory_entry& i, const ::std::string& site);
+    bool add_to_content (nitpick& nits, const ::boost::filesystem::directory_entry& i, const ::std::string& site);
     bool unguarded_verify_url (nitpick& nits, const html_version& v, const url& u) const;
     void internal_get_disk_path (const ::std::string& item, ::boost::filesystem::path& res) const;
     void internal_get_shadow_path (const ::std::string& item, ::boost::filesystem::path& res) const;
@@ -57,10 +57,10 @@ protected:
 public:
     explicit directory (const path_root_ptr& root);
     directory (const ::std::string& name, const bool offsite);
-    void swap (directory& d) NOEXCEPT;
-    bool is_root () const { return root_.get () != nullptr; }
-    bool empty () const { return content_.empty (); }
-    bool offsite () const { return offsite_; }
+    void swap (directory& d) noexcept;
+    bool is_root () const noexcept { return root_.get () != nullptr; }
+    bool empty () const noexcept { return content_.empty (); }
+    bool offsite () const noexcept { return offsite_; }
     bool scan (nitpick& nits, const ::std::string& site);
     void examine (nitpick& nits);
     uint64_t url_size (nitpick& nits, const url& u) const;

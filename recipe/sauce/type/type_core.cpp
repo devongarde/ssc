@@ -23,8 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string make_tidy (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ()) return s;
-    bool untidy_start = ::std::iswspace (s.at (0));
-    bool untidy_end = ::std::iswspace (s.at (s.length () - 1));
+    const bool untidy_start = ::std::iswspace (s.at (0));
+    const bool untidy_end = ::std::iswspace (s.at (s.length () - 1));
     if (untidy_start && untidy_end)
     {   if (::std::find_if_not (s.cbegin (), s.cend (), ::std::iswspace) == s.cend ())
             return ::std::string ();

@@ -23,10 +23,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_case.h"
 
 template < bool EMPTY > struct is_that
-{    static bool beside_the_point (const ::std::string& ) { return false; } };
+{    static bool beside_the_point (const ::std::string& ) noexcept { return false; } };
 
 template < > struct is_that < true >
-{    static bool beside_the_point (const ::std::string& t) { return t.empty (); } };
+{    static bool beside_the_point (const ::std::string& t) noexcept { return t.empty (); } };
 
 template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY > class two_value : public type_base < base_type, TYPE >, public is_that < EMPTY >
 {   bool true_ = false;
@@ -34,8 +34,8 @@ template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY > cl
 public:
     typedef true_type has_int_type;
     two_value () = default;
-    explicit two_value (element* box) : type_base < base_type, TYPE > (box) { }
-    static e_animation_type animation_type () { return at_other; }
+    explicit two_value (element* box) noexcept : type_base < base_type, TYPE > (box) { }
+    static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const
     {   if (! type_base < base_type, TYPE > :: unknown ())
             if (true_) return ON::sz (); else return OFF::sz ();
@@ -58,15 +58,15 @@ public:
             type_base < base_type, TYPE > :: status (s_invalid);
             return; }
         compare_validate (nits, v, get_string (), pret); }
-    void swap (two_value& t) NOEXCEPT
+    void swap (two_value& t) noexcept
     {   ::std::swap (true_, t.true_);
         type_base < base_type, TYPE > :: swap (t); }
     static bool default_value () { return false; }
     bool has_value (const base_type& b) const { return type_base < base_type, TYPE > :: good () && ((b != static_cast < base_type> (0)) == true_); }
-    base_type get () const
+    base_type get () const noexcept
     {   return static_cast < base_type > (true_); }
-    int get_int () const { return true_ ? 1 : 0; }
-    ::std::size_t type () const { return static_cast < ::std::size_t > (get ()); } };
+    int get_int () const noexcept { return true_ ? 1 : 0; }
+    ::std::size_t type () const noexcept { return static_cast < ::std::size_t > (get ()); } };
 
 template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
     ::std::string two_value < TYPE, base_type, OFF, ON, EMPTY > :: off_;

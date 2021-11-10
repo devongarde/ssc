@@ -22,29 +22,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 #include "type/type_case.h"
 
-e_namespace map_xmlns_to_namespace (const e_xmlns x);
+e_namespace map_xmlns_to_namespace (const e_xmlns x) noexcept;
 
 template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE, E >
 {   typedef typename type_base < TYPE, E > :: value_type value_type;
     typedef typename type_base < TYPE, E > :: base_type base_type;
     typedef true_type has_int_type;
-    value_type value_ = static_cast < value_type > (0);
+    value_type value_ = ::gsl::narrow_cast < value_type > (0);
     ::std::string original_;
     enum_base () = default;
     enum_base (const enum_base& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	enum_base(enum_base&&) = default;
-#endif
 	explicit enum_base (const html_version& v, const ::std::string& s);
-    explicit enum_base (element* box) : type_base < TYPE, E > (box) { }
+    explicit enum_base (element* box) noexcept : type_base < TYPE, E > (box) { }
     enum_base& operator = (const enum_base&) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	enum_base& operator = (enum_base&&) = default;
-#endif
 	~enum_base () = default;
     static ::std::string values (const html_version& ) { return ::std::string (); }
     static ::std::size_t value_count () { return 0; }
-    void swap (enum_base& t) NOEXCEPT;
+    void swap (enum_base& t) noexcept;
     ::std::string get_string () const { return ::std::string (); }
     ::std::string name () const { return ::std::string (); }
     static ::std::string name (const TYPE ) { return ::std::string (); }
@@ -54,18 +50,18 @@ template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE,
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     void post_set_value (nitpick& nits, const html_version& v);
     void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& );
-    static value_type default_value () { return static_cast <value_type> (0); }
-    value_type get () const { return value_; }
-    int get_int () const { return static_cast < int > (value_); }
+    static value_type default_value () noexcept { return static_cast <value_type> (0); }
+    value_type get () const noexcept { return value_; }
+    int get_int () const noexcept { return static_cast < int > (value_); }
     bool has_value (const value_type& b) const { return type_base < TYPE, E > :: good () && (value_ == b); }
-    ::std::size_t type () const { return static_cast < ::std::size_t > (get ()); } };
+    ::std::size_t type () const noexcept { return static_cast < ::std::size_t > (get ()); } };
 
 template < typename TYPE, e_type E > enum_base < TYPE, E > :: enum_base (const html_version& v, const ::std::string& )
 {   enum_base e;
     e.set_value (v, e);
     if (e.good ()) swap (e); }
 
-template < typename TYPE, e_type E > void enum_base < TYPE, E > :: swap (enum_base& t) NOEXCEPT
+template < typename TYPE, e_type E > void enum_base < TYPE, E > :: swap (enum_base& t) noexcept
 {   ::std::swap (value_, t.value_);
     original_.swap (t.original_);
     type_base < TYPE, E >::swap (t); }
@@ -77,7 +73,15 @@ template < typename TYPE, e_type E > void enum_base < TYPE, E > :: set_value (ni
     type_base < TYPE, E > :: status (s_invalid); }
 
 template < typename TYPE, e_type E > void enum_base < TYPE, E > :: verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
+
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26440)
+#endif // _MSC_VER
 template < typename TYPE, e_type E > void enum_base < TYPE, E > :: post_set_value (nitpick& , const html_version& ) { }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
 
 template < > inline void enum_base < e_dir, t_dir > :: verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
 {   if (type_base < e_dir, t_dir > :: good ())
@@ -106,10 +110,8 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
 {   typedef typename enum_base < ENUM, E > :: value_type value_type;
     enum_n () = default;
     enum_n (const enum_n& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
 	enum_n (enum_n&&) = default;
-#endif
-    explicit enum_n (element* box) : enum_base < ENUM, E > (box) { }
+    explicit enum_n (element* box) noexcept : enum_base < ENUM, E > (box) { }
 	~enum_n() = default;
     enum_n& operator = (const enum_n& ) = default;
 #ifndef NO_MOVE_CONSTRUCTOR
@@ -121,8 +123,8 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     {   symbol < html_version, ENUM, CATEGORY, INIT, LC > :: extend (extension, e); }
     static void extend (const vstr_t& extension, const ::std::size_t e = 0)
     {   for (auto ext : extension) extend (ext, e); }
-	static e_animation_type animation_type () { return at_other; }
-    void swap (enum_n& t) NOEXCEPT
+	static e_animation_type animation_type () noexcept { return at_other; }
+    void swap (enum_n& t) noexcept
     {   type_base < ENUM, E >::swap (t);
         symbol < html_version, ENUM, CATEGORY, INIT, LC > :: swap (t); }
     void reset ()
@@ -131,8 +133,8 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     void reset (const enum_n& n)
     {   enum_n tmp (n);
         swap (tmp); }
-    ENUM get () const { return enum_base < ENUM, E > :: value_; }
-    void set (const value_type v) { enum_base < ENUM, E > :: value_ = v; }
+    ENUM get () const noexcept { return enum_base < ENUM, E > :: value_; }
+    void set (const value_type v) noexcept { enum_base < ENUM, E > :: value_ = v; }
     static ::std::string values (const html_version& v)
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: value_list (v); }
     ::std::string get_string () const
@@ -143,8 +145,8 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
         else ss << '=' << r; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
-    bool invalid () const { return enum_base < ENUM, E > :: invalid (); }
-    bool unknown () const { return enum_base < ENUM, E > :: unknown (); }
+    bool invalid () const noexcept { return enum_base < ENUM, E > :: invalid (); }
+    bool unknown () const noexcept { return enum_base < ENUM, E > :: unknown (); }
     ::std::string name () const
     {   return get_string (); }
     static ::std::string name (const ENUM e)
@@ -155,7 +157,7 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: flags (enum_base < ENUM, E > :: value_); }
     static flags_t flags (const ENUM e)
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: flags (e); }
-    html_version first () const { return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first (); }
+    html_version first () const noexcept { return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first (); }
     html_version last () const { return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last (); }
     static ::std::size_t value_count ()
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: value_count (); } };
@@ -168,7 +170,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
     nitpick knots;
     if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "empty value");
     else
-    {   bool parsed = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t);
+    {   const bool parsed = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t);
         if (parsed)
         {   enum_base < ENUM, E > :: value_ = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: get (); // ooops, two values :-(
             careless_case < LC > :: validate (nits, v, get_string (), pret);

@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::size_t which_one_of (const ::std::string& s, const vstr_t& v)
 {   for (::std::size_t x = 0; x < v.size (); ++x)
-        if (compare_no_case (s, v [x])) return x;
+        if (compare_no_case (s, v.at (x))) return x;
     return ::std::string::npos; }
 
 bool is_one_of (const ::std::string& s, const vstr_t& v)
@@ -44,7 +44,7 @@ uintmax_t test_file (const ::boost::filesystem::path& name)
     {   path p (name);
         if (exists (p) && is_regular_file (p))
         {   if (context.max_file_size () != 0)
-            {   uintmax_t sz = file_size (p);
+            {   const uintmax_t sz = file_size (p);
                 if (sz < context.max_file_size ()) return sz; } } }
     catch (...) { }
     return 0; }
@@ -53,7 +53,7 @@ uintmax_t test_file (const ::boost::filesystem::path& name)
 {   using namespace boost::filesystem;
     try
     {   path p (name);
-        if (test_file (p) == 0) ::std::string ();
+        if (test_file (p) == 0) return ::std::string ();
         ifstream f (name);
         if (! f.bad ())
         {   ::std::stringstream res;
@@ -83,13 +83,13 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
             else if ((context.max_file_size () != 0) && (mz > context.max_file_size ()))
                 nits.pick (nit_too_big, es_catastrophic, ec_io, name.string (), " is too big (reconfigure with " GENERAL MAXFILESIZE ")");
             else
-            {   void_ptr vp (alloc_void_ptr (static_cast < ::std::size_t > (mz)));
+            {   void_ptr vp (alloc_void_ptr (::gsl::narrow_cast < ::std::size_t > (mz)));
                 if (vp.get () == nullptr) nits.pick (nit_out_of_memory, es_catastrophic, ec_io, "out of memory reading ", name.string ());
                 else
                 {   fp = fopen (name.string ().c_str (), "rb");
                     if (fp == nullptr) nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", name.string ());
                     else
-                    {   ::std::size_t rd = fread (vp.get (), 1, static_cast < ::std::size_t > (mz), fp);
+                    {   const ::std::size_t rd = fread (vp.get (), 1, ::gsl::narrow_cast < ::std::size_t > (mz), fp);
                         fclose (fp); // if this fails there's sod all we can do about it, so ... :-)
                         fp = nullptr;
                         if (rd == mz) { sz = mz; return vp; }
@@ -177,7 +177,7 @@ vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset)
     bool slashed = false;
     bool deadzone = false;
     for (::std::string::const_iterator i = s.begin (); i != s.end (); ++i)
-    {   bool whitespace = ::std::iswspace (*i);
+    {   const bool whitespace = ::std::iswspace (*i);
         if (::std::iswcntrl (*i) && ! whitespace) continue;
         if (slashed) { current += *i; slashed = false; continue; }
         if (*i == '\\') { slashed = started = true; continue; }
@@ -271,7 +271,7 @@ bool ends_with_example (const ::std::string& s)
     model /= TEMP_FILE_MASK;
     return absolute_name (model); }
 
-bool read_header (::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename)
+bool read_header (const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename)
 {   ::std::string prog = read_field < ::std::string > (json, APP);
     version = read_field < ::std::string > (json, V);
     ::std::string con = read_field < ::std::string > (json, CONTEXT);
@@ -294,7 +294,7 @@ void write_header (::boost::property_tree::ptree& json, const char* k)
     write_field < ::std::string > (json, V, VERSION_STRING);
     write_field < ::std::string > (json, CONTEXT, k); }
 
-bool replace_file (::boost::property_tree::ptree& json, ::boost::filesystem::path& filename)
+bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::filesystem::path& filename)
 {   ::boost::filesystem::path tmp (filename), old (filename);
     tmp += ".tmp";
     old += ".old";
@@ -346,7 +346,7 @@ bool replace_file (::boost::property_tree::ptree& json, ::boost::filesystem::pat
 // for those who habitually spell correctly (unlike me)
 bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s)
 {   typedef enum { d_none, d_johnson, d_anaesthesia, d_oz, d_collins, d_wiki } e_dictionary;
-    const char* dictionary [] =
+    const char* const dictionary [] =
     {   nullptr,
         "Samuel Johnson, A Dictionary of the English Language, first edition, Longman etc., MDCCLV",
         "A Dictionary of Anaesthesia, second edition, Oxford University Press, 2017",
@@ -393,6 +393,10 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
         { nullptr, d_none, nullptr } };
     typedef ssc_map < ::std::string, spellings > map_of_correctness;
     static map_of_correctness ms;
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26446 26482)
+#endif // _MSC_VER
     if (ms.empty ())
         for (::std::size_t i = 0; word [i].spell_ != nullptr; ++i)
             ms.insert (map_of_correctness::value_type (word [i].spell_, word [i]));
@@ -400,28 +404,41 @@ bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s
     map_of_correctness::const_iterator i = ms.find (ss);
     if (i != ms.cend ())
     {   if (i -> second.dict_ != d_none)
-        {   ::std::string ref (dictionary [i -> second.dict_]);
-            if (i -> second.ref_ != nullptr)
-            {   ref += ", page ";
-                ref += i -> second.ref_; }
-            nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, i -> second.spell_, " is spelt correctly"); }
-        else nits.pick (nit_correct_spelling, es_info, ec_incorrectness, i -> second.spell_, " is spelt correctly");
+            if (dictionary [i -> second.dict_] != nullptr)
+            {   ::std::string ref (dictionary [i -> second.dict_]);
+                if (i -> second.ref_ != nullptr)
+                {   ref += ", page ";
+                    ref += i -> second.ref_; }
+                nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, i -> second.spell_, " is spelt correctly");
+                return true; }
+        nits.pick (nit_correct_spelling, es_info, ec_incorrectness, i -> second.spell_, " is spelt correctly");
         return true; }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
     ::std::string sss (ss);
     if (sss.length () > 60) sss = "text";
-    for (::std::size_t x = 0; word [x].spell_ != nullptr; ++x)
-        if (ss.find (word [x].spell_) != ::std::string::npos)
-        {   if (word [x].dict_ != d_none)
-            {   ::std::string ref (dictionary [word [x].dict_]);
-                if (word [x].ref_ != nullptr)
+    for (::std::size_t x = 0; ::gsl::at (word, x).spell_ != nullptr; ++x)
+        if (ss.find (::gsl::at (word, x).spell_) != ::std::string::npos)
+        {   if (::gsl::at (word, x).dict_ != d_none)
+            {   PRESUME (::gsl::at (word, x).dict_ <= d_wiki, __FILE__, __LINE__);
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 6387 26446 26482) // unless, of course, you consider the preceding conditions, linter.
+#endif // _MSC_VER
+                ::std::string ref (dictionary [::gsl::at (word, x).dict_]);
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+                if (::gsl::at (word, x).ref_ != nullptr)
                 {   ref += ", page ";
-                    ref += word [x].ref_; }
-                nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains '", word [x].spell_, "', which is spelt correctly"); }
-            else nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains '", word [x].spell_, "', which is spelt correctly");
+                    ref += ::gsl::at (word, x).ref_; }
+                nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains '", ::gsl::at (word, x).spell_, "', which is spelt correctly"); }
+            else nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains '", ::gsl::at (word, x).spell_, "', which is spelt correctly");
             return true; }
     return false; }
 
-bool is_whitespace (const ::std::string::const_iterator b, const ::std::string::const_iterator e)
+bool is_whitespace (const ::std::string::const_iterator b, const ::std::string::const_iterator e) noexcept
 {   for (::std::string::const_iterator i = b; i != e; ++i)
         if (! ::std::iswspace (*i)) return false;
     return true; }
@@ -434,8 +451,8 @@ bool contains (const vstr_t& con, const ::std::string& val)
 bool ends_with_letters (const html_version& v, const ::std::string& s, const ::std::string& with)
 {   if (s.empty ()) return false;
     if (with.empty ()) return true;
-    ::std::string::size_type len = s.length ();
-    ::std::string::size_type wl = with.length ();
+    const ::std::string::size_type len = s.length ();
+    const ::std::string::size_type wl = with.length ();
     if (wl > len) return false;
     if (v.xhtml ())
     {   if (! ::boost::ends_with (s, with)) return false; }
@@ -446,7 +463,7 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
 
 ::std::string split_at_first_of (::std::string& sauce, const ::std::string& chars)
 {   sauce = trim_the_lot_off (unify_whitespace (sauce));
-    ::std::string::size_type pos = sauce.find_first_of (chars);
+    const ::std::string::size_type pos = sauce.find_first_of (chars);
     ::std::string res;
     if (pos != ::std::string::npos)
         if (pos == 0)
@@ -471,7 +488,7 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
 ::std::string template_path (const ::std::string& fn)
 {   PRESUME (! fn.empty (), __FILE__, __LINE__);
     ::boost::filesystem::path p (fn);
-    bool abs (p.is_absolute ());
+    const bool abs (p.is_absolute ());
     if (! abs) p = ::boost::filesystem::absolute (p);
     ::std::string res (test_template_path (p));
     if (abs || ! res.empty ()) return res;

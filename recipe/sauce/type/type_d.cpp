@@ -44,6 +44,7 @@ bool checkargs (nitpick& nits, const html_version& , const e_d cmd, const vdbl_t
                 if ((args.at (4) != 1.0) && (args.at (4) != 0.0))
                 {   nits.pick (nit_path_spec, ed_svg_1_0, "11.2.1 General information about path data", es_error, ec_type, "a fourth value of '", last, "' is a sweep flag; it must be one or zero");
                     res = false; } }
+            break;
         default : break; }
     return res; }
 
@@ -53,9 +54,9 @@ bool checknum (nitpick& nits, const html_version& , const unsigned int was, unsi
     nits.pick (nit_path_spec, ed_svg_1_0, "11.2.1 General information about path data", es_error, ec_type, "'", last, "' expects ", was, " arguments");
     return false; }
 
-bool numend (nitpick& nits, const html_version& v, const e_d cmd, const unsigned int expected, vdbl_t& args, ::std::string& x, bool& twas, const char last)
+bool numend (nitpick& nits, const html_version& v, const e_d cmd, const unsigned int expected, vdbl_t& args, ::std::string& x, const bool& twas, const char last)
 {   bool res = true;
-    bool xpt = twas && (expected == 0);
+    const bool xpt = twas && (expected == 0);
     if (! x.empty ())
     {   args.push_back (lexical < double > :: cast (x)); x.clear (); }
     if (! args.empty ()) {

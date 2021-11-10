@@ -31,26 +31,22 @@ template < typename TYPE, e_type E, typename CATEGORY = ident_t, CATEGORY INIT =
     ::std::string original_;
     enum_vec_base () = default;
     enum_vec_base (const enum_vec_base& s) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     enum_vec_base (enum_vec_base&&) = default;
-#endif
     explicit enum_vec_base (const html_version& v, const ::std::string& s);
-    explicit enum_vec_base (element* box) : type_base < TYPE, E > (box) { }
+    explicit enum_vec_base (element* box) noexcept : type_base < TYPE, E > (box) { }
     enum_vec_base& operator = (const enum_vec_base&) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
     enum_vec_base& operator = (enum_vec_base&&) = default;
-#endif
     ~enum_vec_base () = default;
     static ::std::string values (const html_version& ) { return ::std::string (); }
     static ::std::size_t value_count () { return 0; }
-    void swap (enum_vec_base& t) NOEXCEPT;
+    void swap (enum_vec_base& t) noexcept;
     ::std::string get_string () const { return ::std::string (); }
     ::std::string name () const { return ::std::string (); }
     static ::std::string name (const TYPE ) { return ::std::string (); }
     ::std::string original () const { return original_; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     static vec_t default_value () { return vec_t (); }
-    ::std::size_t size () const { return value_.size (); }
+    ::std::size_t size () const noexcept { return value_.size (); }
     bool has_value (const base_type& b) const
     {   if (! type_base < TYPE, E > :: good ()) return false;
         return (value_.find (b) != vec_t::npos); }
@@ -70,7 +66,7 @@ template < typename TYPE, e_type E, typename CATEGORY, CATEGORY INIT >
     if (e.good ()) swap (e); }
 
 template < typename TYPE, e_type E, typename CATEGORY, CATEGORY INIT >
-    void enum_vec_base < TYPE, E, CATEGORY, INIT > :: swap (enum_vec_base& t) NOEXCEPT
+    void enum_vec_base < TYPE, E, CATEGORY, INIT > :: swap (enum_vec_base& t) noexcept
 {   ::std::swap (value_, t.value_);
     original_.swap (t.original_);
     type_base < TYPE, E >::swap (t); }
@@ -84,8 +80,8 @@ template < typename TYPE, e_type E, typename CATEGORY, CATEGORY INIT >
 template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT = 0 >
     struct enum_vec : public enum_vec_base < ENUM, E, CATEGORY, INIT >
 {   using enum_vec_base < ENUM, E, CATEGORY, INIT > :: enum_vec_base;
-    static e_animation_type animation_type () { return at_other; }
-    void swap (enum_vec& n)
+    static e_animation_type animation_type () noexcept { return at_other; }
+    void swap (enum_vec& n) noexcept
     {   enum_vec_base < ENUM, E, CATEGORY, INIT > :: swap (n); }
     void reset ()
     {   enum_vec tmp;
@@ -157,12 +153,13 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
 template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
     void enum_constrained_vec < E, ENUM, CATEGORY, INIT > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   enum_vec < E, ENUM, CATEGORY, INIT > :: set_value (nits, v, s);
-    bool first = true, ok = true;
-    const ::std::size_t max_combinable_enum = 32;
+    bool first = true;
+    bool ok = true;
+    constexpr ::std::size_t max_combinable_enum = 32;
     ::std::bitset < max_combinable_enum > bs, gs, said;
     if (enum_vec < E, ENUM, CATEGORY, INIT > :: good ())
     {   for (auto val : enum_vec < E, ENUM, CATEGORY, INIT > :: value_)
-        {   if (val > static_cast < int > (max_combinable_enum))
+        {   if (val > ::gsl::narrow_cast < int > (max_combinable_enum))
             {   PRESUME (false, __FILE__, __LINE__);
                 nits.pick (nit_not_combine, es_catastrophic, ec_type, val.name (), " is too big; abandoning constrained enum check");
                 ok = false; break; }
@@ -170,12 +167,12 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
             {   nits.pick (nit_not_combine, es_error, ec_type, val.name (), " is repeated");
                 ok = false; continue; }
             bs.set (val);
-            flags_t x = val.first ().ext ();
+            const flags_t x = val.first ().ext ();
             if ((x & HE_COMBINES) == 0)
                 if ((! first) || (enum_vec < E, ENUM, CATEGORY, INIT > :: value_.size () > 1))
                 {   nits.pick (nit_not_combine, es_error, ec_type, val.name (), " cannot be combined with any other values");
                     ok = false; }
-            ::std::size_t g = val.first ().group ();
+            const ::std::size_t g = val.first ().group ();
             PRESUME (g <= max_combinable_enum, __FILE__, __LINE__);
             if (g != 0)
                 if (! gs.test (g)) gs.set (g);
@@ -187,7 +184,8 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
                             ss += quote (v2.name ()); }
                     nits.pick (nit_not_combine, es_error, ec_type, ss, " are contradictory, so cannot be combined");
                     said.set (g);
-                    ok = false; } }
+                    ok = false; }
+            first = false; }
         if (ok) return; }
     enum_vec_base < ENUM, E > :: status (s_invalid); }
 
