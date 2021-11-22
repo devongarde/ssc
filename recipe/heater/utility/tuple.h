@@ -23,24 +23,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // derived from https://codereview.stackexchange.com/questions/51407/stdtuple-foreach-implementation/67394#67394, Louis Dionne
 
 #ifdef _MSC_VER
-#pragma warning ( push, 3)
-#pragma warning ( disable : 26457 )
-#pragma warning ( disable : 26483 )
+#pragma warning ( push, 3 )
+#pragma warning ( disable : 26457 26483 )
 #endif // _MSC_VER
 
-#if defined (VS) && (VS <= 13)
-// adapted from more recent VS libraries
-template <class _Ty, _Ty... _Vals> struct integer_sequence
-{   using value_type = _Ty;
-    static size_t size () { return sizeof...(_Vals); } };
-template <size_t... _Vals> using index_sequence = integer_sequence <size_t, _Vals...>;
-
-template < typename TUPLE, typename F, ::std::size_t... INDICES >
-    void for_each_impl (TUPLE&& tuple, F&& f, index_sequence < INDICES... >)
-#else // VS
 template < typename TUPLE, typename F, ::std::size_t... INDICES >
     void for_each_impl (TUPLE&& tuple, F&& f, ::std::index_sequence < INDICES... >)
-#endif // VS
 {   using swallow = int [];
     (void) swallow { 1,
         (f (::std::get < INDICES > (::std::forward < TUPLE > (tuple))), void (), int {}) ... }; }

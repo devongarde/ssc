@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.12)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.0.117 LANGUAGES CXX)
+project (ssc VERSION 0.0.118 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -127,7 +127,7 @@ target_sources (ssc PRIVATE
         ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
             ${H}/type/type_aria.h ${H}/type/type_autocomplete.h ${H}/type/type_base.h ${H}/type/type_case.h ${H}/type/type_charset.h ${H}/type/type_class.h
             ${H}/type/type_colour.h ${H}/type/type_cookie.h ${H}/type/type_core.h ${H}/type/type_csp.h ${H}/type/type_currency.h ${H}/type/type_enum.h
-            ${H}/type/type_enum_vec.h ${H}/type/type_httpequiv.h ${H}/type/type_lang.h ${H}/type/type_master.h ${H}/type/type_media.h
+            ${H}/type/type_enum_vec.h ${H}/type/type_httpequiv.h ${H}/type/type_jsonic.h ${H}/type/type_lang.h ${H}/type/type_master.h ${H}/type/type_media.h
             ${H}/type/type_metaname.h ${H}/type/type_mime.h ${H}/type/type_rdf.h ${H}/type/type_reals.h ${H}/type/type_rel.h ${H}/type/type_relational.h
             ${H}/type/type_time.h ${H}/type/type_url.h ${H}/type/type_van.h ${H}/type/type_basic.h ${H}/type/type_id.h ${H}/type/type_layout.h
             ${H}/type/type_math.h ${H}/type/type_measure.h ${H}/type/type_microdata.h ${H}/type/type_microformat.h ${H}/type/type_misc.h

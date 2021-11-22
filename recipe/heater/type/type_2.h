@@ -127,8 +127,8 @@ template < > struct type_master < t_hv > : two_value < t_hv, e_hv, sz_horizontal
 template < > struct type_master < t_initialvisibility > : two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always, false >
 { using two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always, false > :: two_value; };
 
-template < > struct type_master < t_jsonld_version > : two_value < t_jsonld_version, e_jsonld_version, sz_1_0, sz_1_1, false >
-{ using two_value < t_jsonld_version, e_jsonld_version, sz_1_0, sz_1_1, false > :: two_value; };
+template < > struct type_master < t_js_version > : two_value < t_js_version, e_jsonld_version, sz_1_0, sz_1_1, false >
+{ using two_value < t_js_version, e_jsonld_version, sz_1_0, sz_1_1, false > :: two_value; };
 
 template < > struct type_master < t_layout > : two_value < t_layout, e_layout, sz_irrelevant, sz_relevant, false >
 { using two_value < t_layout, e_layout, sz_irrelevant, sz_relevant, false > :: two_value; };
@@ -228,6 +228,9 @@ template < > struct type_master < t_svg_units > : two_value < t_svg_units, e_svg
 
 template < > struct type_master < t_tbalign > : two_value < t_tbalign, e_tbalign, sz_bottom, sz_top, false >
 { using two_value < t_tbalign, e_tbalign, sz_bottom, sz_top, false > :: two_value; };
+
+template < > struct type_master < t_tfn > : two_value < t_tfn, e_bool, sz_false, sz_true, true >
+{ using two_value < t_tfn, e_bool, sz_false, sz_true, true > :: two_value; };
 
 template < > struct type_master < t_transp > : two_value < t_transp, e_transp, sz_opaque, sz_transparent, false >
 { using two_value < t_transp, e_transp, sz_opaque, sz_transparent, false > :: two_value; };

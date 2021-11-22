@@ -104,42 +104,42 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
@@ -148,10 +148,12 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;SSC_TEST;VS2019;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;SSC_TEST;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -169,12 +171,14 @@ copy $(TargetPath) $(ProjectDir)..\..</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;SSC_TEST;VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;SSC_TEST;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <IntelJCCErratum>true</IntelJCCErratum>
       <GuardEHContMetadata>false</GuardEHContMetadata>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -193,12 +197,14 @@ $(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\to
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;SSC_TEST;VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;SSC_TEST;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <IntelJCCErratum>true</IntelJCCErratum>
       <GuardEHContMetadata>false</GuardEHContMetadata>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -215,10 +221,12 @@ $(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\to
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SSC_TEST;VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SSC_TEST;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -236,11 +244,13 @@ copy $(TargetPath) $(ProjectDir)..\..</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SSC_TEST;VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SSC_TEST;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <IntelJCCErratum>true</IntelJCCErratum>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -261,11 +271,13 @@ $(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\to
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>SSC_TEST;VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SSC_TEST;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <IntelJCCErratum>true</IntelJCCErratum>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

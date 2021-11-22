@@ -334,7 +334,11 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_itemprop);
         TEST_VALUE (t_itemtype);
         TEST_VALUE (t_itemref);
-        TEST_VALUE (t_jsonld_version);
+        TEST_VALUE(t_js_lang);
+        TEST_VALUE(t_js_term);
+        TEST_VALUE(t_js_type);
+        TEST_VALUE(t_js_value);
+        TEST_VALUE(t_js_version);
         TEST_VALUE (t_jtoken);
         TEST_VALUE (t_just_date);
         TEST_VALUE (t_just_time);
@@ -670,6 +674,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_tfmu);
         TEST_VALUE (t_tfa);
         TEST_VALUE (t_tfi);
+        TEST_VALUE (t_tfn);
         TEST_VALUE (t_tfu);
         TEST_VALUE (t_tokens);
         TEST_VALUE (t_transform);

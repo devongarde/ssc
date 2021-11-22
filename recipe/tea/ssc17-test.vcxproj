@@ -102,42 +102,42 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)test-$(Configuration)\</OutDir>
     <IntDir>test-$(Configuration)\</IntDir>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)test-$(Configuration)\</OutDir>
     <IntDir>test-$(Configuration)\</IntDir>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)test-$(Configuration)\</OutDir>
     <IntDir>test-$(Configuration)\</IntDir>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -38,7 +38,6 @@ template < > struct type_master < t_bools > : type_at_least_one < t_bools, sz_sp
 template < > struct type_master < t_charspacing > : type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight >
 { using type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight > :: type_or_any_string; };
 
-
 template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
 {   using tidy_string < t_clear30 > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -73,7 +72,6 @@ template < > struct type_master < t_colour_cii > : type_or_either_string < t_col
 
 template < > struct type_master < t_colour_ni > : type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour >
 { using type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour > :: type_or_any_string; };
-
 
 template < > struct type_master < t_context_menu > : tidy_string < t_context_menu >
 {   using tidy_string < t_context_menu > :: tidy_string;
@@ -147,7 +145,6 @@ template < > struct type_master < t_lcraligns > : type_at_least_one < t_lcralign
 template < > struct type_master < t_lcrds > : type_at_least_one < t_lcrds, sz_space, t_lcrd >
 { using type_at_least_one < t_lcrds, sz_space, t_lcrd > :: type_at_least_one; };
 
-
 template < > struct type_master < t_lcrdss > : string_vector < t_lcrdss, sz_space >
 {   using string_vector < t_lcrdss, sz_space > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -159,7 +156,6 @@ template < > struct type_master < t_lcrdss > : string_vector < t_lcrdss, sz_spac
 
 template < > struct type_master < t_length > : type_either_or < t_length, t_length_absolute, t_length_relative >
 { using type_either_or < t_length, t_length_absolute, t_length_relative > :: type_either_or; };
-
 
 template < > struct type_master < t_linethickness > : tidy_string < t_linethickness >
 {   using tidy_string < t_linethickness > :: tidy_string;
@@ -205,7 +201,6 @@ template < > struct type_master < t_mathaligns > : type_at_least_one < t_mathali
 template < > struct type_master < t_mathnotations > : type_at_least_one < t_mathnotations, sz_space, t_mathnotation >
 { using type_at_least_one < t_mathnotations, sz_space, t_mathnotation > :: type_at_least_one; };
 
-
 template < > struct type_master < t_mathsize > : tidy_string < t_mathsize >
 {   using tidy_string < t_mathsize > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -231,7 +226,6 @@ template < > struct type_master < t_mathspacefit > : type_or_either_string < t_m
 
 template < > struct type_master < t_mathspaceinfinity > : type_or_string < t_mathspaceinfinity, t_mathspace, sz_infinity >
 { using type_or_string < t_mathspaceinfinity, t_mathspace, sz_infinity > :: type_or_string; };
-
 
 template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudonamedspace >
 {   using tidy_string < t_pseudonamedspace > :: tidy_string;
@@ -375,7 +369,7 @@ template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_shape3 > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_shape3 > :: get_string ();
-        if (s.empty ())
+        if (ss.empty ())
         {   nits.pick (nit_empty, es_error, ec_type, "SHAPE requires a value");
             tidy_string < t_shape3 > :: status (s_invalid); }
         else if (good ())

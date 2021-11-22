@@ -175,6 +175,22 @@ template < e_type T, e_type A, e_type B > struct type_either_or : tidy_string < 
             {   nits.merge (nuts); nits.merge (knots); }
         tidy_string < T > :: status (s_invalid); } } };
 
+template < e_type T, e_type A, e_type B > struct type_either_neither : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: empty ())
+        {   tidy_string < T > :: status (s_good);
+            return; }
+        if (tidy_string < T > :: good ())
+        {   nitpick nuts, knots;
+            const ::std::string ss (tidy_string < T > :: get_string ());
+            if (test_value < A > (nuts, v, ss, tidy_string < T > :: id ())) nits.merge (nuts);
+            else if (test_value < B > (knots, v, ss, tidy_string < T > :: id ())) nits.merge (knots);
+            else
+            {   nits.merge (nuts); nits.merge (knots); }
+        tidy_string < T > :: status (s_invalid); } } };
+
 template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : tidy_string < T > // if more alternatives are needed, generalise with template metaprogramming
 {   using tidy_string < T > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -394,3 +410,16 @@ template < e_type T, e_type P, class SZ1, class SZ2 > struct id_or_either_string
         if (! type_or_either_string < T, P, SZ1, SZ2 > :: has_id ()) return;
         if (! ids_t::is_good_id (e, type_or_either_string < T, P, SZ1, SZ2 > :: get_id (), ec_type, nit_unknown, true))
             type_or_either_string < T, P, SZ1, SZ2 > :: status (s_invalid); } };
+
+template < e_type T, e_type P > struct type_or_null : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: empty ())
+        {   tidy_string < T > :: status (s_good);
+            return; }
+        if (tidy_string < T > :: good ())
+        {   const ::std::string ss (tidy_string < T > :: get_string ());
+            if (test_value < P > (nits, v, ss, tidy_string < T > :: id ())) return; }
+        tidy_string < T > :: status (s_invalid); } };
+

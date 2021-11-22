@@ -1568,7 +1568,7 @@ typedef enum
     nit_b64, nit_help, nit_configuration, nit_title, nit_webaddr, nit_copyright, nit_version, nit_info, nit_build, nit_config_version,
     nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file, nit_code_dtd, nit_data_vocabulary, nit_json_error,
     nit_json_internal_error, nit_json_id, nit_vocab, nit_jsonld_context, nit_json_name, nit_json_invalid_node, nit_json_value_object,
-    nit_json_out_of_place,
+    nit_json_out_of_place, nit_json_bad_term,
 
     nit_context,
 
@@ -3417,7 +3417,7 @@ typedef enum {
     t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index,
         t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus,
         t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
-    t_jsonld_version, t_jtoken, t_just_date, t_just_time,
+    t_js_lang, t_js_term, t_js_type, t_js_value, t_js_version, t_jtoken, t_just_date, t_just_time,
     t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind,
     t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length, t_length_absolute,
         t_length_relative, t_lengthadjust, t_linebreak, t_linebreakstyle, t_linecap, t_line_height, t_linejoin, t_linethickness, t_link, t_linkarg, t_linkargs,
@@ -3452,7 +3452,7 @@ typedef enum {
         t_svg_type, t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_svg_viewboxrect, t_sym, t_syncbehaviour,
         t_syncbehaviourdefault,
     t_tableframe, t_tablevalues, t_target, t_tbalign, t_tdscope, t_tel, t_tel_format, t_tendstotype, t_text, t_text_decoration, t_textoverflow, t_text_rendering,
-        t_tfmu, t_tfa, t_tfi, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, t_transition_type,
+        t_tfmu, t_tfa, t_tfi, t_tfn, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, t_transition_type,
         t_transp, t_truefalseempty, t_turbulence_type, t_type, t_typeof, t_tz,
     t_ugeo, t_unicode_bidi, t_unit, t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, t_urange, t_urifn,
         t_urifn_ni, t_urisz, t_url, t_urls,

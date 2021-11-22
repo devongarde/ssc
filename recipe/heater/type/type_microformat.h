@@ -67,18 +67,11 @@ template < > struct type_master < t_sex > : tidy_string < t_sex >
                 sex_ = ::gsl::at (s, 0);
                 gender_ = s.substr (2);
                 break;
-#if ! defined (_MSC_VER) || (VS > 13)
             case ::std::string::npos :
                 if (s.length () != 1) return false;
                 sex_ = ::gsl::at (s, 0);
                 break;
             default:
-#else
-            default :
-                if (pos == ::std::string::npos)
-                {   if (s.length () != 1) return false;
-                    sex_ = s [0]; }
-#endif
                 return false; }
         return (s.substr (0, 1).find_first_of ("FfMmNnOoUu") != s.npos); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

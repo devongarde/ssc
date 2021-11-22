@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 117
-#define VERSION_STRING "0.0.117"
+#define VERSION_RELEASE 118
+#define VERSION_STRING "0.0.118"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -69,25 +69,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // __clang__
 
 #ifdef _MSC_VER
+
 #define NO_BOOST_PROCESS            // it crashed the MSVC 2019 linter, on my system at least
 #define MSVC_NOEXCEPT noexcept
 #include <codeanalysis\warnings.h>
+
 #ifdef WIN32
 #define X32
 #define SMALLINT
 #else // WIN32
 #define X64
 #endif // WIN32
+
 #define NOLYNX
-// 26434
-#pragma warning (disable : 6330 26409 26410 26415 26418 26434 26439 26455 26456 26461 26485)
+#define CLEAN_SHAREDPTR_ARRAY
+
     // The MSVC linter is generally useful, but it has some serious problems.
     // General problem 1: the msvc linter provides no clean mechanism to suppress a spurious warning in place, except through the #...
     //      mechanism. Those #... have to be wrapped in #ifdefs to avoid confusing other compilers. In the worst case, this requires 7 #...
     //      statements to suppress on spurious warning. That is ridiculously clunky, and I'm most definitely NOT going there for specific
     //      warnings which are many times spurious, even if those warnings are useful elsewhere. I think this is a design error with
     //      VC++'s linter, or quite possibly a documentation issue given I couldn't find a reference to easily suppressing spurious
-    //      warnings. Warnings in this category: 26409, 264621, 26485
+    //      warnings. The norm with other linters is a recognisable comment. Warnings in this category: 26409, 264621, 26485.
     // General program 2: the msvc linter just doesn't suss template metaprogramming. It often suggests changes to function signatures that
     //      ignore the detail of other template variants, which, if followed, results in code that cannot compile. If it suggests a template
     //      signature change, it should do so in the metaprogramming context, e.g. ensure it applies to ALL such functions, not just one
@@ -96,25 +99,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     // ...: default constructor may not throw, mark it noexcept .... except if I mark it noexcept, it no fits the default constructor signature...
     // 6330: plus using wchar calls with chars ... actually, those chars are (or should be) utf-8.
     // 26439: comes up on standard class functions; following the suggestion means they no longer fit the signature, so breaks stuff
-    // 26410/5/8: correct, in that particular place. So what? Smart pointers are indeed pointers.
-#pragma warning (push, 3)
-#pragma warning (disable : ALL_CODE_ANALYSIS_WARNINGS) // boost
-#if defined (VS2019)
+    // 26410/5/8: correct, in that particular place. So what? Smart pointers are indeed pointers. An unwrapped pointer (usually) means
+    //            the code doesn't own it.
+#pragma warning (disable : 6330 26409 26410 26415 26418 26434 26439 26455 26456 26461 26485)
+
+// https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=msvc-170
+#if _MSC_VER >= 1930
+#pragma warning (disable : 26812)
 #define _WIN32_WINNT 0x0A00 // 10
-#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // boost
-#define _CRT_SECURE_NO_WARNINGS // boost
-#define VS 19
-#define CLEAN_SHAREDPTR_ARRAY
-#elif defined (VS2017)
+#elif _MSC_VER >= 1920
+#define _WIN32_WINNT 0x0A00 // 10
+#elif _MSC_VER >= 1910
 #define _WIN32_WINNT 0x0603 // 8.1
-#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS // boost
-#define _CRT_SECURE_NO_WARNINGS // boost
-#define VS 17
-#define CLEAN_SHAREDPTR_ARRAY
 #define SMALLINT
-#else // VS...
-#error ssc only builds with VS 2017 / 2019.
-#endif // VS...
+#else // _MSC_VER
+#error ssc only builds with VS 2017 / 2019 / 2022.
+#endif // _MSC_VER
+
+#pragma warning (push, 3)
+#pragma warning (disable : ALL_CODE_ANALYSIS_WARNINGS)
+
+// mostly for boost
+#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+
 #else // _MSC_VER
 #define MSVC_NOEXCEPT
 #endif // _MSC_VER

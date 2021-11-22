@@ -33,7 +33,9 @@ void extra_wotsit (const char* s, const char* c)
     if (sc == extras.cend ()) extras.insert (ustr_t::value_type (::std::string (c), ::std::string (s))); }
 
 void known_wotsit (const char* s, const char* c, const bool suggest)
-{   ::std::string sym (s);
+{   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+    ::std::string sym (s);
     ::std::string cod (c);
     if (suggest)
     {
