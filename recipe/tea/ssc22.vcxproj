@@ -6865,43 +6865,44 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
-    <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
-    <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
+    <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -6929,7 +6930,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -6961,7 +6962,7 @@ $(ProjectDir)..\..\ssc22-test -x $(ProjectDir)..\..\ssc22.exe -v -f $(ProjectDir
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -6990,7 +6991,7 @@ $(ProjectDir)..\..\ssc22-test -x $(ProjectDir)..\..\ssc22.exe -v -f $(ProjectDir
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VS2019;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -7021,7 +7022,7 @@ $(ProjectDir)..\..\ssc22-test -x $(ProjectDir)..\..\ssc22.exe -v -f $(ProjectDir
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -7052,7 +7053,7 @@ $(ProjectDir)..\..\ssc22-test -x $(ProjectDir)..\..\ssc22.exe -v -f $(ProjectDir
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VS2019;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>

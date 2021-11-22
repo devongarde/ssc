@@ -142,7 +142,7 @@ void html_version::init (const unsigned char mjr)
     if (transitional ()) res << "/transitional";
     if (has_svg ()) res << "/SVG-" << type_master < t_svg_version > :: name (svg_version ());
     if (has_math ()) res << "/MathML-" << math_version ();
-//    if (has_jsonld ()) res << "/jsonld-"  << enum_n < t_jsonld_version, e_jsonld_version > :: name (jsonld_version ());
+//    if (has_jsonld ()) res << "/jsonld-"  << enum_n < t_js_version, e_jsonld_version > :: name (jsonld_version ());
     if (has_xlink ()) res << "/xLink";
     if (has_rdfa ()) res << "/rdfa";
     if (chrome ()) res << "/Chrome";

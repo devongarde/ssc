@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // RFC 3986
 
 struct symbol_entry < html_version, e_protocol > protocol_symbol_table [] =
-{   { { HTML_TAGS }, { HTML_UNDEF }, "aaa", pr_aaa },
+{  { { HTML_TAGS }, { HTML_UNDEF }, "aaa", pr_aaa },
     { { HTML_TAGS }, { HTML_UNDEF }, "aaas", pr_aaas },
     { { HTML_TAGS }, { HTML_UNDEF }, "about", pr_about },
     { { HTML_TAGS }, { HTML_UNDEF }, "acap", pr_acap },
@@ -261,7 +261,7 @@ struct symbol_entry < html_version, e_protocol > protocol_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "zoomus", pr_zoomus } };
 
 struct protocol_server
-{   e_protocol protocol_;
+{  e_protocol protocol_;
     e_scheme scheme_; };
 
 protocol_server ps [] =
@@ -317,15 +317,15 @@ protocol_server ps [] =
     { pr_facetime, pt_rfc3986_ignore },
     { pr_fax, pt_rfc3986_ignore },
     { pr_feed, pt_rfc3986_ignore },
-    {   pr_file,    pt_local },
-     { pr_filesystem, pt_rfc3986_ignore },
+    { pr_file, pt_local },
+    { pr_filesystem, pt_rfc3986_ignore },
     { pr_finger, pt_rfc3986_ignore },
     { pr_fish, pt_rfc3986_ignore },
     { pr_fm, pt_rfc3986_ignore },
-   {   pr_ftp,     pt_rfc3986  },
-    {   pr_ftps,    pt_rfc3986  },
+    { pr_ftp, pt_rfc3986 },
+    { pr_ftps, pt_rfc3986 },
     { pr_gemini, pt_rfc3986_ignore },
-    {   pr_geo,     pt_geo   },
+    { pr_geo, pt_geo },
     { pr_gg, pt_rfc3986_ignore },
     { pr_git, pt_rfc3986_ignore },
     { pr_gizmoproject, pt_rfc3986_ignore },
@@ -334,8 +334,8 @@ protocol_server ps [] =
     { pr_gtalk, pt_rfc3986_ignore },
     { pr_h323, pt_rfc3986_ignore },
     { pr_hcp, pt_rfc3986_ignore },
-    {   pr_http,    pt_rfc3986  },
-    {   pr_https,   pt_rfc3986  },
+    { pr_http, pt_rfc3986 },
+    { pr_https, pt_rfc3986 },
     { pr_iax, pt_rfc3986_ignore },
     { pr_icap, pt_rfc3986_ignore },
     { pr_icon, pt_rfc3986_ignore },
@@ -362,11 +362,11 @@ protocol_server ps [] =
     { pr_jms, pt_rfc3986_ignore },
     { pr_keyparc, pt_rfc3986_ignore },
     { pr_lastfm, pt_rfc3986_ignore },
-    {   pr_ldap,    pt_rfc3986_ignore  },
-    { pr_ldaps, pt_rfc3986_ignore  },
+    { pr_ldap, pt_rfc3986_ignore },
+    { pr_ldaps, pt_rfc3986_ignore },
     { pr_magnet, pt_rfc3986_ignore },
     { pr_mailserver, pt_rfc3986_ignore },
-    {   pr_mailto,  pt_rfc3986_ignore },
+    { pr_mailto, pt_rfc3986_ignore },
     { pr_maps, pt_rfc3986_ignore },
     { pr_market, pt_rfc3986_ignore },
     { pr_message, pt_rfc3986_ignore },
@@ -399,7 +399,7 @@ protocol_server ps [] =
     { pr_mumble, pt_rfc3986_ignore },
     { pr_mupdate, pt_rfc3986_ignore },
     { pr_mvn, pt_rfc3986_ignore },
-    {   pr_news,    pt_news  },
+    { pr_news, pt_news },
     { pr_nfs, pt_rfc3986_ignore },
     { pr_ni, pt_rfc3986_ignore },
     { pr_nih, pt_rfc3986_ignore },
@@ -431,12 +431,12 @@ protocol_server ps [] =
     { pr_rsync, pt_rfc3986_ignore },
     { pr_rtmfp, pt_rfc3986_ignore },
     { pr_rtmp, pt_rfc3986_ignore },
-    {   pr_rtsp,    pt_rfc3986_ignore  },
+    { pr_rtsp, pt_rfc3986_ignore },
     { pr_s3, pt_rfc3986_ignore },
     { pr_secondlife, pt_rfc3986_ignore },
     { pr_service, pt_rfc3986_ignore },
     { pr_session, pt_rfc3986_ignore },
-    {   pr_sftp,    pt_rfc3986_ignore  },
+    { pr_sftp, pt_rfc3986_ignore },
     { pr_sgn, pt_rfc3986_ignore },
     { pr_shttp, pt_rfc3986_ignore },
     { pr_sieve, pt_rfc3986_ignore },
@@ -452,7 +452,7 @@ protocol_server ps [] =
     { pr_soap_beeps, pt_rfc3986_ignore },
     { pr_soldat, pt_rfc3986_ignore },
     { pr_spotify, pt_rfc3986_ignore },
-    {   pr_ssh,     pt_rfc3986_ignore  },
+    { pr_ssh, pt_rfc3986_ignore },
     { pr_steam, pt_rfc3986_ignore },
     { pr_stratum, pt_rfc3986_ignore },
     { pr_stun, pt_rfc3986_ignore },
@@ -460,8 +460,8 @@ protocol_server ps [] =
     { pr_snv, pt_rfc3986_ignore },
     { pr_tag, pt_rfc3986_ignore },
     { pr_teamspeak, pt_rfc3986_ignore },
-    {   pr_tel,     pt_tel   },
-    {   pr_telnet,  pt_rfc3986_ignore  },
+    { pr_tel, pt_tel },
+    { pr_telnet, pt_rfc3986_ignore },
     { pr_tftp, pt_rfc3986_ignore },
     { pr_things, pt_rfc3986_ignore },
     { pr_thismessage, pt_rfc3986_ignore },
@@ -473,7 +473,7 @@ protocol_server ps [] =
     { pr_tv, pt_rfc3986_ignore },
     { pr_udp, pt_rfc3986_ignore },
     { pr_unreal, pt_rfc3986_ignore },
-    {   pr_urn,     pt_urn   },
+    { pr_urn, pt_urn },
     { pr_ut2004, pt_rfc3986_ignore },
     { pr_vemmi, pt_rfc3986_ignore },
     { pr_ventrilo, pt_rfc3986_ignore },
@@ -517,6 +517,7 @@ e_scheme protocol::scheme () const
 {   const e_protocol prot = symbol < html_version, e_protocol > :: get ();
     reinit ();
     return ps [prot].scheme_; }
+
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
@@ -526,14 +527,14 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
     ::std::string lc (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)));
     if (lc.empty ()) set (v, current);
     else
-    {   const ::std::string::size_type colon = lc.find (COLON);
+    {  const ::std::string::size_type colon = lc.find (COLON);
         default_ = (colon == ::std::string::npos);
         if (default_) set (v, current);
         else if (colon == 0 || colon == lc.length () - 1)
-        {   nits.pick (nit_invalid_protocol, ed_rfc_3986, "3.1. Scheme", es_error, ec_url, "invalid protocol and/or missing address");
+        {  nits.pick (nit_invalid_protocol, ed_rfc_3986, "3.1. Scheme", es_error, ec_url, "invalid protocol and/or missing address");
             return false; }
         else
-        {   e_protocol prot;
+        {  e_protocol prot;
             if (! symbol < html_version, e_protocol > :: parse (nits, v, lc.substr (0, colon), prot)) set (v, pr_other);
             else set (v, prot); }
         if (! url_schemes < SCHEMES > :: parse (nits, v, scheme (), symbol < html_version, e_protocol > :: get (), x, component_))

@@ -692,6 +692,7 @@ const nitname nitnames [] =
     { nit_json_invalid_node, "json_invalid_node" },
     { nit_json_value_object, "json_value_object" },
     { nit_json_out_of_place, "json_out_of_place" },
+    { nit_json_bad_term, "json_bad_term" },
 
     { nit_off, "" } };
 

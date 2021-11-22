@@ -301,12 +301,10 @@ public:
         return parent_; }
     bool reportable () const noexcept
     {   return ((tag () != elem_undefined) || context.tell (e_splurge) || (child_ != nullptr)); }
-#if VS >= 17
     void pick (const e_nit code, const e_doc doc, const char* const ref, const e_severity severity, const e_category category, char* const msg)
     {   node_.pick (code, doc, ref, severity, category, msg); }
     void pick (const e_nit code, const e_severity severity, const e_category category, const char* msg)
     {   node_.pick (code, severity, category, msg); }
-#endif // VS
     template < typename ... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg)
     {   node_.pick (code, doc, ref, severity, category, msg...); }
     template < typename ... Ts > void pick (const e_nit code, const e_severity severity, const e_category category, Ts... msg)

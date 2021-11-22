@@ -42,6 +42,7 @@ void parse_json_ld (nitpick& , const html_version& , const ::std::string& ) { }
 #include "parser/parse_abb.h"
 #include "url/url.h"
 #include "url/url_sanitise.h"
+#include "type/type_jsonic.h"
 
 // this is not, and not intended to be, a full json-ld interpreter. It exists, mostly, to enable schema testing.
 
@@ -59,13 +60,13 @@ public:
             ::boost::json::error_code ec;
             value_ = ::boost::json::parse (s, ec);
             if (ec)
-            {   nits.pick (nit_json_error, es_error, ec_json, "JSON error: ", ec.message ());
+            {   nits.pick (nit_json_error, es_error, ec_json, "JSON-LD error: ", ec.message ());
                 value_.emplace_null (); } }
         catch (const ::std::exception& x)
-        {   nits.pick (nit_json_error, es_error, ec_json, "JSON exception: ", x.what ());
+        {   nits.pick (nit_json_error, es_error, ec_json, "JSON-LD exception: ", x.what ());
             value_.emplace_null (); }
         catch (...)
-        {   nits.pick (nit_json_error, es_error, ec_json, "unknown JSON exception");
+        {   nits.pick (nit_json_error, es_error, ec_json, "unknown JSON-LD exception");
             value_.emplace_null (); } }
     const ::boost::json::value& val () const noexcept { return value_; } };
 
@@ -298,21 +299,23 @@ void note_token (nitpick& nits, const html_version& v, json_scope& scope, const 
 //    if (! scope.base_.empty ()) return scope.base_ + key;
     return key; }
 
-void note_term (nitpick& nits, json_scope& scope, const char *s, const ::boost::json::value* val)
+void note_term (nitpick& nits, const html_version& v, json_scope& scope, const char *s, const ::boost::json::value* val)
 {   ::std::string key (trim_the_lot_off (s));
     if (key.empty ()) nits.pick (nit_empty, ed_jsonld_1_0, "8.1 terms", es_error, ec_json, "a term must not be empty");
     else
     {   key = expand_term (nits, scope, key);
         msv_t::iterator i = scope.prop_.find (key);
-        if (i == scope.prop_.end ()) scope.prop_.insert (msv_t::value_type (key, val));
-        else nits.pick (nit_json_name, ed_json, "2.2 Objects", es_error, ec_json, "additional term ", quote (key), " ignored"); } }
+        if (i != scope.prop_.end ())
+            nits.pick (nit_json_name, ed_json, "2.2 Objects", es_error, ec_json, "additional term ", quote (key), " ignored");
+        else if (test_value < t_js_term > (nits, v, key))
+            scope.prop_.insert (msv_t::value_type (key, val)); } }
 
 void examine_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o, const e_jtoken tk = jt_error)
 {   for (auto e : o)
     {   if (e.key ().empty ()) continue;
         const char* k = e.key_c_str ();
         VERIFY_NOT_NULL (k, __FILE__, __LINE__);
-        if (*k != '@') note_term (nits, scope, k, &e.value ());
+        if (*k != '@') note_term (nits, v, scope, k, &e.value ());
         else note_token (nits, v, scope, k, e.value (), tk); } }
 
 void process_group_token (nitpick& nits, const html_version& v, json_scope& scope, const vv_t& vv)
@@ -326,10 +329,10 @@ void process_group_token (nitpick& nits, const html_version& v, json_scope& scop
             outer_process_json_ld (nits, v, scope); } } }
 
 
-void process_node (nitpick& nits, const html_version& v, json_scope& scope)
-{   PRESUME (scope.keyword_.size () >= jt_error, __FILE__, __LINE__);
-    if (! scope.keyword_.at (jt_list).empty ()) process_group_token (nits, v, scope, scope.keyword_.at (jt_list));
-    if (! scope.keyword_.at (jt_set).empty ()) process_group_token (nits, v, scope, scope.keyword_.at (jt_set));
+//void process_node (nitpick& nits, const html_version& v, json_scope& scope)
+//{   PRESUME (scope.keyword_.size () >= jt_error, __FILE__, __LINE__);
+//    if (! scope.keyword_.at (jt_list).empty ()) process_group_token (nits, v, scope, scope.keyword_.at (jt_list));
+//    if (! scope.keyword_.at (jt_set).empty ()) process_group_token (nits, v, scope, scope.keyword_.at (jt_set));
 // jt_base,
 //    jt_container, jt_context,
 //    jt_direction,
@@ -346,17 +349,48 @@ void process_node (nitpick& nits, const html_version& v, json_scope& scope)
 
 //    if (! scope.keyword_.at ().empty ()
 
-}
-
+// }
 
 void process_json_ld (nitpick& nits, const html_version& v, json_scope& scope)
-{   for (int i = 0; i < jt_error; ++i)
+{   PRESUME (scope.keyword_.size () >= jt_error, __FILE__, __LINE__);
+    for (int i = 0; i < jt_error; ++i)
         if (! scope.keyword_.at (i).empty ())
-            if ((i == jt_value) || (i == jt_set) || (i == jt_list))
-            {   nits.pick (nit_json_invalid_node, ed_jsonld_1_0, "8.2 Node Objects", es_error, ec_json,
-                           "A JSON-LD node cannot contain @value, @list or @set");
-                return; }
-    process_node (nits, v, scope); }
+                // the specs are badly phrased here. They state some keywords "must be ignored when processed",
+                // then immediately discuss how they are to be processed. What they mean is that the keywords
+                // are not content, but metacontent.
+            switch (i)
+            {   case jt_container :
+                case jt_context :
+                case jt_direction :
+                case jt_graph :
+                case jt_id :
+                case jt_import :
+                case jt_included :
+                case jt_index :
+                case jt_json :
+                case jt_language :
+                    break;
+                case jt_list :
+                    process_group_token (nits, v, scope, scope.keyword_.at (jt_list));
+                    break;
+                case jt_nest :
+                case jt_none :
+                case jt_prefix :
+                case jt_propagate :
+                case jt_protected :
+                case jt_reverse :
+                    break;
+                case jt_set :
+                    process_group_token (nits, v, scope, scope.keyword_.at (jt_set));
+                    break;
+                case jt_type :
+                case jt_value :
+                case jt_version :
+                case jt_vocab :
+                    break;
+                default :
+                    break; }
+    /* process_node (nits, v, scope); */ }
 
 void outer_process_json_ld (nitpick& nits, const html_version& v, json_scope& scope)
 {   bool limited = true;
