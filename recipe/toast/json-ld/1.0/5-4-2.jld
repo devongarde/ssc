@@ -1,0 +1,4 @@
+{
+    "@id": "http://example.org/places#BrewEats",
+    "@type": [ "http://schema.org/Restaurant", "http://schema.org/Brewery" ]
+}

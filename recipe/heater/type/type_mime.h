@@ -47,6 +47,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define MIME_PAGE           0x00100000
 
+#define MIME_JSON_LD        0x00800000
+
 #define MIME_JSON           0x01000000
 #define MIME_ZIP            0x02000000
 #define MIME_CBOR           0x04000000

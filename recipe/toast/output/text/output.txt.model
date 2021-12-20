@@ -1,9 +1,5 @@
-Static Site Checker version 0.0.118
+Static Site Checker version 0.0.119
 (c) 2020,2021 Dylan Harris
-
-*** configuration
-Loading configuration ../toast/output/text/output.conf...
-Writing to ../out/output.txt
 
 
 *** ../toast/output/text/index.html

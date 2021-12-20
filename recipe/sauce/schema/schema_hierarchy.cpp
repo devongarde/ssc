@@ -28,7 +28,7 @@ struct microdata_hierachy
     e_schema_type specific_; };
 
 microdata_hierachy schema_hierarchy [] =
-{ { { s_faux, 1, 0 }, { 0, 0 }, anything, owl_thing },
+{   { { s_faux, 1, 0 }, { 0, 0 }, anything, owl_thing },
     { { s_faux, 1, 0 }, { 0, 0 }, anything, sch_thing },
     { { s_faux, 1, 0 }, { 0, 0 }, anything, xsd_anytype },
 
@@ -2038,7 +2038,7 @@ microdata_hierachy schema_hierarchy [] =
     { { 12, 0 }, { 0, 0 }, sch_sizesystemenumeration, sch_sizesystemimperial },
     { { 12, 0 }, { 0, 0 }, sch_sizesystemenumeration, sch_sizesystemmetric },
     { { 12, 0 }, { 0, 0 }, sch_sizesystemenumeration, sch_wearablesizesystemenumeration },
-    { { 2, 1 }, { 2, 1 }, sch_socialmediaposting, sch_blogposting },
+    { { 2, 1 }, { 2, 2 }, sch_socialmediaposting, sch_blogposting },
     { { 3, 1 }, { 0, 0 }, sch_socialmediaposting, sch_blogposting },
     { { 2, 1 }, { 0, 0 }, sch_socialmediaposting, sch_discussionforumposting },
     { { 2, 0 }, { 0, 0 }, sch_softwareapplication, sch_mobileapplication },
@@ -2550,7 +2550,8 @@ void int_generalise  (const e_schema_type s, ssch_t& ssch)
             for (vmap_t::const_iterator vi = hierarchy.find (i -> second); (vi != hierarchy.cend ()) && (vi -> first == i -> second); ++vi)
                 if (vi -> second != nullptr)
                     if (vi -> second -> specific_ == s)
-                        if (does_apply < schema_version > (vsv.at (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
+//                        if (does_apply < schema_version > (vsv.at (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
+                        if (does_apply < schema_version > (get_default_schema_version (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
                             int_generalise (i -> second, ssch); }
 
 ssch_t generalise (const e_schema_type s)

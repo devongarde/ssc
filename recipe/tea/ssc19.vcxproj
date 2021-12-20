@@ -573,6 +573,9 @@
     <None Include="..\toast\HTML\tags\tags-oddities.html" />
     <None Include="..\toast\HTML\tags\tags.conf" />
     <None Include="..\toast\HTML\tags\tags.spec" />
+    <None Include="..\toast\json-ld\1.0\5-4-1.jld" />
+    <None Include="..\toast\json-ld\1.0\5-4-2.jld" />
+    <None Include="..\toast\json-ld\1.0\5-4-3.jld" />
     <None Include="..\toast\json-ld\1.0\basic-10.jld" />
     <None Include="..\toast\json-ld\1.0\basic-11.jld" />
     <None Include="..\toast\json-ld\1.0\basic-12.jld" />
@@ -591,6 +594,7 @@
     <None Include="..\toast\json-ld\1.0\index.html" />
     <None Include="..\toast\json-ld\1.0\jsonld.conf" />
     <None Include="..\toast\json-ld\1.0\jsonld.spec" />
+    <None Include="..\toast\json-ld\as\balderdash.jld" />
     <None Include="..\toast\json-ld\as\ex-1.jld" />
     <None Include="..\toast\json-ld\as\ex-2.jld" />
     <None Include="..\toast\json-ld\as\ex-3.jld" />
@@ -602,6 +606,11 @@
     <None Include="..\toast\json-ld\as\index.html" />
     <None Include="..\toast\json-ld\as\jsonld.conf" />
     <None Include="..\toast\json-ld\as\jsonld.spec" />
+    <None Include="..\toast\json-ld\schemaorg\action.html" />
+    <None Include="..\toast\json-ld\schemaorg\balderdash.html" />
+    <None Include="..\toast\json-ld\schemaorg\index.html" />
+    <None Include="..\toast\json-ld\schemaorg\jsonld.conf" />
+    <None Include="..\toast\json-ld\schemaorg\jsonld.spec" />
     <None Include="..\toast\link\css-good.css" />
     <None Include="..\toast\link\index.html" />
     <None Include="..\toast\link\link.conf" />

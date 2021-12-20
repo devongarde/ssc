@@ -65,8 +65,7 @@ void element::examine_piecewise ()
                     noted = true; }
                 break;
             default :
-                GRACEFUL_CRASH (__FILE__, __LINE__);
-                break; } } }
+                GRACEFUL_CRASH (__FILE__, __LINE__); } } }
 
 void element::examine_progress ()
 {   if (node_.version ().is_5 ())

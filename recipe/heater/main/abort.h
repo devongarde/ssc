@@ -20,10 +20,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line);
-void throw_bad_presumption (const char* const var, const char* const fn, const ::std::size_t line);
-void graceful_crash (const char* const fn, const ::std::size_t line);
+[[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line);
+[[noreturn]] void throw_bad_presumption (const char* const var, const char* const fn, const ::std::size_t line);
+[[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line);
 
 #define VERIFY_NOT_NULL(PTR,FILE,LINE) { if (nullptr == PTR) throw_bad_dereference (#PTR, FILE, LINE); }
 #define PRESUME(WOT,FILE,LINE) { if (! (WOT)) throw_bad_presumption (#WOT, FILE, LINE); }
 #define GRACEFUL_CRASH(FILE,LINE) { graceful_crash (FILE, LINE); }
+
+#ifdef _MSC_VER
+#define UNREACHABLE(x)
+#define UNBREAKABLE
+#else
+#define UNREACHABLE(x) x
+#define UNBREAKABLE break
+#endif
+
+#ifdef _DEBUG
+#define DEBUGONLY(x) x
+#else
+#define DEBUGONLY(x)
+#endif

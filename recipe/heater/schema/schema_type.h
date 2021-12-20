@@ -31,13 +31,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SF_NO_SIMPLE_TYPE       0
 
 typedef ::std::vector < e_schema_type > vsch_t;
+typedef ::std::set < e_schema_type > ssch_t;
 
-struct sch : symbol < schema_version, e_schema_type, e_schema, s_schema >
+struct sch : symbol < schema_version, e_schema_type, e_schema, s_schema, sz_true >
 {   static e_schema_type parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root = s_schema);
     static void init (nitpick& nits);
     bool unknown () const noexcept
-    {   return (symbol < schema_version, e_schema_type, e_schema, s_schema > :: unknown ()) ||
-        (symbol < schema_version, e_schema_type, e_schema, s_schema > :: get () == sty_illegal); }
+    {   return (symbol < schema_version, e_schema_type, e_schema, s_schema, sz_true > :: unknown ()) ||
+        (symbol < schema_version, e_schema_type, e_schema, s_schema, sz_true > :: get () == sty_illegal); }
     sch () {}
     sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root = s_schema);
     bool enumerated () const noexcept;
@@ -46,12 +47,6 @@ struct sch : symbol < schema_version, e_schema_type, e_schema, s_schema >
     e_schema root () const noexcept;
     static e_schema root (const e_schema_type st);
     e_type get_simple_type () const noexcept; };
-
-//bool enumerated_schema_type (const flags_t flags) noexcept;
-//bool has_simple_schema_type (const flags_t flags) noexcept;
-//bool external_enumerated_schema_type (const flags_t flags) noexcept;
-//e_type get_simple_schema_type (const flags_t flags) noexcept;
-//bool is_itemid_ok (const flags_t flags) noexcept;
 
 constexpr inline bool enumerated_schema_type (const flags_t flags) noexcept
 { return (flags & SF_ENUMERATION) == SF_ENUMERATION; }

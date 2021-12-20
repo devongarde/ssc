@@ -693,6 +693,10 @@ const nitname nitnames [] =
     { nit_json_value_object, "json_value_object" },
     { nit_json_out_of_place, "json_out_of_place" },
     { nit_json_bad_term, "json_bad_term" },
+    { nit_jsonld_type, "jsonld_type" },
+    { nit_missing_schema, "missing_schema" },
+    { nit_jsonld_format, "jsonld_format" },
+    { nit_jsonld_mistype, "jsonld_mistype" },
 
     { nit_off, "" } };
 

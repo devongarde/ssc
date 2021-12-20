@@ -847,4 +847,4 @@ bool elem::fits_link_category (const html_version& v, const e_element e, const e
             return (first_version (e).svg_version () != sv_none);
         default : break; }
     GRACEFUL_CRASH (__FILE__, __LINE__);
-    return false; }
+    UNREACHABLE (return false); }

@@ -481,7 +481,8 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name, sstr_t& s
     switch (todo)
     {   case c_none :
         case c_html :
-        case c_rpt :        GRACEFUL_CRASH (__FILE__, __LINE__); break;
+        case c_rpt :        GRACEFUL_CRASH (__FILE__, __LINE__);
+                            UNBREAKABLE;
         case c_hard :       if (make_hard_link (original, imitation))
                                 nits.pick (nit_shadow_link, es_debug, ec_shadow, "hard linked ", original, " and ", imitation);
                             else nits.pick (nit_shadow_link, es_catastrophic, ec_shadow, "cannot make hard link between ", original, " and ", imitation);

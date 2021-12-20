@@ -44,16 +44,21 @@ template < e_scheme SCHEME > struct url_schemes < SCHEME >
         return equivalent (scheme, lhs, rhs); }
     static bool equivalent (const e_scheme scheme, const vc_t& lhs, const vc_t& rhs)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: equivalent (lhs, rhs);
-        GRACEFUL_CRASH (__FILE__, __LINE__); return false; }
+        GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return false); }
     static bool parse (nitpick& nits, const html_version& v, const e_scheme scheme, const e_protocol prot, const ::std::string& url, vc_t& component)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: parse (nits, v, prot, url, component);
-        GRACEFUL_CRASH (__FILE__, __LINE__); return false; }
+        GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return false); }
     static bool is_valid (const e_scheme scheme, const vc_t& component, bool defaulted)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: is_valid (component, defaulted);
-        GRACEFUL_CRASH (__FILE__, __LINE__); return false; }
+        GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return false); }
     static ::std::string get (const e_scheme scheme, const vc_t& component, bool defaulted)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: get (component, defaulted);
-        GRACEFUL_CRASH (__FILE__, __LINE__);; return ::std::string (); }
+        GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return ::std::string ()); }
     static ::std::string absolute (const e_scheme scheme, const vc_t& component, bool can_use_index, bool defaulted)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: absolute (component, can_use_index, defaulted);
-        GRACEFUL_CRASH (__FILE__, __LINE__); return ::std::string (); } };
+        GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return ::std::string ()); } };

@@ -2427,108 +2427,14 @@ e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::str
     else
     {   if (s.first ().deprecated ())
             nits.pick (nit_deprecated_schema, es_warning, ec_schema, quote (x), " is deprecated");
-        schema_version sv;
-        switch (s.ns ())
-        {   case s_article :
-            case s_as :
-            case s_bibo :
-            case s_book :
-            case s_cc :
-            case s_content :
-            case s_csvw :
-            case s_ctag :
-            case s_dcam :
-            case s_dcat :
-            case s_dcmi :
-            case s_dct :
-            case s_doap :
-            case s_dqv :
-            case s_duv :
-            case s_earl :
-            case s_event :
-            case s_gr :
-            case s_grddl :
-            case s_ical :
-            case s_icaltzd :
-            case s_ldp :
-            case s_locn :
-            case s_ma :
-            case s_music :
-            case s_none :
-            case s_oa :
-            case s_og :
-            case s_odrl :
-            case s_org :
-            case s_owl :
-            case s_poetry :
-            case s_profile :
-            case s_prov :
-            case s_ptr :
-            case s_qb :
-            case s_rdf :
-            case s_rdfg :
-            case s_rdfs :
-            case s_rev :
-            case s_rif :
-            case s_rr :
-            case s_sioc :
-            case s_sioc_s :
-            case s_sioc_t :
-            case s_skos:
-            case s_skosxl:
-            case s_sosa :
-            case s_ssn :
-            case s_time :
-            case s_vcard :
-            case s_video :
-            case s_wdr :
-            case s_wdrs :
-            case s_website :
-            case s_xhv :
-                return s.get ();
-            case s_dc :
-                if (context.dc () == 0) sv = dc_1_0; else sv = dc_1_1;
-                if (may_apply (sv, s.first (), s.last ())) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
-                break;
-            case s_foaf :
-                {   const int n = context.foaf ();
-                    if ((n > 0) && (n < 99)) sv = schema_version (s_foaf, 0, ::gsl::narrow_cast < char > (n));
-                    else sv = schema_version (s_foaf, 0, 99); }
-                if (may_apply (sv, s.first (), s.last ())) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
-                break;
-            case s_microformats :
-                if (may_apply (context.mf_ver (), s.first (), s.last ())) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid here");
-                break;
-            case s_rdfa :
-                {   const int n = context.rdfa ();
-                    if ((n >= 0) && (n < 4)) sv = schema_version (s_rdfa, 1, ::gsl::narrow_cast < char > (n));
-                    else sv = schema_version (s_rdfa, 1, 3); }
-                if (may_apply (sv, s.first (), s.last ())) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
-                break;
-            case s_schema :
-                sv = context.schema_ver ();
-                if (may_apply (sv, s.first (), s.last ())) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
-                break;
-            case s_whatwg :
-                if (v >= html_jul09) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", v.report ()); // yes, html_version
-                break;
-            case s_xsd :
-                if (context.xsd () == 0) sv = xsd_1_0; else sv = xsd_1_1;
-                if (may_apply (sv, s.first (), s.last ())) return s.get ();
-                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ());
-                break;
-            case s_v :
-                if (v >= html_jan12) nits.pick (nit_data_vocabulary, es_warning, ec_schema, "data-vocabulary is deprecated in ", v.report (), " in favour of schema.org");
-                return s.get ();
-            default :
-                nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " requires a schema");
-                break; } }
+        const schema_version sv = corresponding_schema_version (s.ns (), v);
+        if (is_faux_schema (s.ns ()))
+            nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " requires a schema");
+        else if (may_apply (sv, s.first (), s.last ()))
+        {   if ((s.ns () == s_v) && (v >= html_jan12))
+                nits.pick (nit_data_vocabulary, es_warning, ec_schema, "data-vocabulary is deprecated in ", v.report (), " in favour of schema.org");
+            return s.get (); }
+        else nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ()); }
     return sty_illegal; }
 
 e_schema sch::root () const noexcept
@@ -2548,18 +2454,3 @@ bool sch::external_enumerated () const noexcept
 
 e_type sch::get_simple_type () const noexcept
 { return get_simple_schema_type (flags ()); }
-
-//bool enumerated_schema_type (const flags_t flags) noexcept
-//{ return (flags & SF_ENUMERATION) == SF_ENUMERATION; }
-
-//bool has_simple_schema_type (const flags_t flags) noexcept
-//{ return (flags & SF_SIMPLE_MASK) != 0; }
-
-//bool external_enumerated_schema_type (const flags_t flags) noexcept
-//{ return (flags & SF_EXTERNAL_ENUMERATION) == SF_EXTERNAL_ENUMERATION; }
-
-//e_type get_simple_schema_type (const flags_t flags) noexcept
-//{ return static_cast < e_type > (flags & SF_SIMPLE_MASK); }
-
-//bool is_itemid_ok (const flags_t flags) noexcept
-//{ return (flags & SF_NO_ITEMID) == 0; }

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>schema.org action</title>
+</head>
+
+<body>
+
+<h1>schema.org action</h1>
+
+    <!--  John listened to Pink with Steve at Anna's apartment on his iPod. -->
+    <script type="application/ld+json   ">
+    {
+      "@context": "https://schema.org",
+      "@type": "ListenAction",
+      "agent": {
+        "@type": "Person",
+        "name": "John"
+      },
+      "object": {
+        "@type": "MusicGrope",
+        "name": "Pink!"
+      },
+      "participant": {
+        "@type": "Person",
+        "name": "Steve"
+      },
+      "location": {
+        "@type": "Residue",
+        "name": "Ann's apartment"
+      },
+      "instrument": {
+        "@type": "Product",
+        "name": "iPod"
+      },
+      "weather": {
+        "@type": "Forecast",
+        "name": "sleet"
+      }
+    }
+    </script>
+
+</body>
+</html>

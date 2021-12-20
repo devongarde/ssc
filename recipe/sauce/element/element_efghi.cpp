@@ -129,8 +129,7 @@ void element::examine_fecolourmatrix ()
             test_value < t_angle > (node_.nits (), page_.version (), a_.get_string (a_values));
             break;
         default :
-            GRACEFUL_CRASH (__FILE__, __LINE__);
-            break; } }
+            GRACEFUL_CRASH (__FILE__, __LINE__); } }
 
 void element::examine_fecomponenttransfer ()
 {   if (a_.good (a_type))

@@ -120,7 +120,9 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                     t = get_last_write_time (x);
                     arg = womble_time (ln, nits, c, gmtime (&t));
                     break; }
-                case ssi_error : GRACEFUL_CRASH (__FILE__, __LINE__); break;
+                case ssi_error :
+                    GRACEFUL_CRASH (__FILE__, __LINE__);
+                    UNBREAKABLE;
                 default : break; } }
     nits.pick (nit_debug, es_debug, ec_ssi, "get_variable_value: ", quote (var), " == ", quote (arg));
     return arg; }

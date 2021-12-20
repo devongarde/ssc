@@ -70,7 +70,8 @@ void html_version::init (const unsigned char mjr)
         case 5 :
             reset (html_current); break;
         default :
-            GRACEFUL_CRASH (__FILE__, __LINE__); reset (html_current); break; } }
+            GRACEFUL_CRASH (__FILE__, __LINE__);
+            UNREACHABLE (reset (html_current)); } }
 
 ::std::string minor_to_date (const html_version& v)
 {   PRESUME (v.is_5 (), __FILE__, __LINE__);
@@ -480,7 +481,8 @@ bool html_version::deprecated (const html_version& current) const
             {   case 0 : return any_flags (HV_DEPRECATED30);
                 case 2 : return any_flags (HV_DEPRECATED32);
                 default : break; }
-            GRACEFUL_CRASH (__FILE__, __LINE__); break;
+            GRACEFUL_CRASH (__FILE__, __LINE__);
+            UNBREAKABLE;
         case 4:
             switch (current.mnr ())
             {   case 0 :
@@ -489,7 +491,8 @@ bool html_version::deprecated (const html_version& current) const
                 case 3 : return any_flags (HV_DEPRECATEDX11);
                 case 4 : return any_flags (HV_DEPRECATEDX2);
                 default : break; }
-            GRACEFUL_CRASH (__FILE__, __LINE__); break;
+            GRACEFUL_CRASH (__FILE__, __LINE__);
+            UNBREAKABLE;
         default :
             if (current.any_flags (HV_WHATWG))
                 if (any_flags (HV_DEPRECATEDWWG))
@@ -762,7 +765,7 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
                         case 4 : return (! from.notx2 ()) || (from.svg_version () != sv_none) || (from.math_version () != math_none);
                         default : break; }
                     GRACEFUL_CRASH (__FILE__, __LINE__);
-                    break;
+                    UNBREAKABLE;
         default :   if (from.xhtml () && from.notx5 ()) return false;
                     if (context.html_ver ().whatwg () && from.w3 ()) return false;
                     switch (w3_5_minor (v))

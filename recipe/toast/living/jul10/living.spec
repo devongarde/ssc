@@ -483,8 +483,6 @@ PASS ../toast/living/jul10/json.html
 3 inserted_missing_parent missing_close
 4 inserted_missing_parent inserted_missing_closure missing_close
 11 use_quote_code
-14 unrecognised_schema unrecognised_schema
-24 unrecognised_schema unrecognised_schema
 32 use_double_quote_code
 
 PASS ../toast/living/jul10/keygen.html

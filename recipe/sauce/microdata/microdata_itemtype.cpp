@@ -34,12 +34,6 @@ itemtype_index make_itemtype_index (const e_property p)
     if (is_mf_rel (p)) return ::gsl::narrow_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << uint32_category_shift);
     return 0; }
 
-//e_itemtype_category type_category (const itemtype_index ii)
-//{   return static_cast < e_itemtype_category> (ndx_category (static_cast < uint32_t > (ii))); }
-
-//e_schema_type type_itself (const itemtype_index ii)
-//{   return static_cast < e_schema_type> (ndx_item (static_cast < uint32_t > (ii))); }
-
 itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name, const bool propped)
 {   nitpick nuts;
     type_master < t_schema_type > sc;

@@ -598,19 +598,23 @@ typedef enum { itemprop_bespoke, itemprop_schema, itemprop_microformat } e_itemp
 typedef enum { itemtype_none, itemtype_schema, itemtype_microformat, itemtype_rel } e_itemtype_category;
 typedef enum { jsonld_none, jsonld_1_0, jsonld_1_1 } e_jsonld_version;
 
+// these must be in processing order as per processing a JSON-LD object
 typedef enum
-{   jt_base,
-    jt_container, jt_context,
+{   jt_unused,
+    jt_list, jt_set,
+    jt_context,
+    jt_type,
+
+    jt_base,
+    jt_container,
     jt_direction,
     jt_graph,
     jt_id, jt_import, jt_included, jt_index,
     jt_json,
-    jt_language, jt_list,
+    jt_language,
     jt_nest, jt_none,
     jt_prefix, jt_propagate, jt_protected,
     jt_reverse,
-    jt_set,
-    jt_type,
     jt_value, jt_version, jt_vocab,
     jt_error } e_jtoken;
 
@@ -1568,7 +1572,7 @@ typedef enum
     nit_b64, nit_help, nit_configuration, nit_title, nit_webaddr, nit_copyright, nit_version, nit_info, nit_build, nit_config_version,
     nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file, nit_code_dtd, nit_data_vocabulary, nit_json_error,
     nit_json_internal_error, nit_json_id, nit_vocab, nit_jsonld_context, nit_json_name, nit_json_invalid_node, nit_json_value_object,
-    nit_json_out_of_place, nit_json_bad_term,
+    nit_json_out_of_place, nit_json_bad_term, nit_jsonld_type, nit_missing_schema, nit_jsonld_format, nit_jsonld_mistype,
 
     nit_context,
 
@@ -1772,30 +1776,32 @@ typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_
 
 // mostly RDFa common context
 // (good grief : https://lov.linkeddata.es/dataset/lov/vocabs )
-typedef enum {
-    s_none,
-    s_article, s_as,
-    s_bibo, s_book,
-    s_cc, s_content, s_csvw, s_ctag,
-    s_daq, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_doap, s_dqv, s_describedby, s_duv,
-    s_earl, s_event,
-    s_faux, s_foaf, s_frbr_core,
-    s_gr, s_grddl,
-    s_ical, s_icaltzd,
-    s_jsonld,
-    s_ldp, s_licence, s_locn,
-    s_ma, s_microformats, s_music,
-    s_oa, s_odrl, s_og, s_org, s_owl,
-    s_poetry, s_profile, s_prov, s_ptr,
-    s_qb,
-    s_rdf, s_rdfa, s_rdfg, s_rdfs, s_rev, s_rif, s_role, s_rr,
-    s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_sosa, s_ssn,
-    s_taxo, s_time,
-    s_v, s_vcard, s_video, s_void,
-    s_wdr, s_wdrs, s_website, s_whatwg,
-    s_xhv, s_xml, s_xsd,
+
+#define SCHEMAS \
+    s_none, \
+    s_article, s_as, \
+    s_bibo, s_book, \
+    s_cc, s_content, s_csvw, s_ctag, \
+    s_daq, s_dbd, s_dbo, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_doap, s_dqv, s_describedby, s_duv, \
+    s_earl, s_event, \
+    s_faux, s_foaf, s_frbr_core, \
+    s_gr, s_grddl, \
+    s_ical, s_icaltzd, \
+    s_jsonld, \
+    s_ldp, s_licence, s_locn, \
+    s_ma, s_microformats, s_music, \
+    s_oa, s_odrl, s_og, s_org, s_owl, \
+    s_poetry, s_profile, s_prov, s_ptr, \
+    s_qb, \
+    s_rdf, s_rdfa, s_rdfg, s_rdfs, s_rev, s_rif, s_role, s_rr, \
+    s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_sosa, s_ssn, \
+    s_taxo, s_time, \
+    s_v, s_vcard, s_video, s_void, \
+    s_wdr, s_wdrs, s_website, s_whatwg, \
+    s_xhv, s_xml, s_xsd, \
     s_error
-} e_schema;
+
+typedef enum { SCHEMAS } e_schema;
 constexpr ::std::size_t schema_size = s_error;
 typedef ::std::size_t schema_id;
 

@@ -76,7 +76,9 @@ template < > struct type_master < t_illegal > : type_base < mono, t_illegal >
     {   nits.pick (nit_evermore, es_error, ec_type, "always illegal");
         type_base < mono, t_illegal > :: status (s_invalid); }
     static mono default_value () noexcept { return ::gsl::narrow_cast <mono> (0); }
-    mono get () const { GRACEFUL_CRASH (__FILE__, __LINE__); return ::gsl::narrow_cast <mono> (0); } };
+    mono get () const
+    {   GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return ::gsl::narrow_cast <mono> (0)); } };
 
 template < > struct type_master < t_loopie > : tidy_string < t_loopie >
 {   using tidy_string < t_loopie > :: tidy_string;

@@ -12,7 +12,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ssc22-test", "ssc22-test.vc
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "httpd", "..\httpd\", "{D634717B-6097-483E-BF95-E38BB88B23C1}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_53053"
 		Debug.AspNetCompiler.PhysicalPath = "..\httpd\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53053\"

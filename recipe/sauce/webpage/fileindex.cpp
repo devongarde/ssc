@@ -534,7 +534,7 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                 break;
             default :
                 GRACEFUL_CRASH (__FILE__, __LINE__);
-                return false; } }
+                UNREACHABLE (return false); } }
     if (status != fl_site)
     {   vx.clear (); site_x.clear (); disk_x.clear (); mcrc.clear ();
         nits.pick (nit_cannot_read, es_error, ec_crc, p.string (), " is corrupt or truncated; abandoning load");

@@ -10,11 +10,6 @@
 <h1 class="nit-title">ssc report for ..\toast\output\xhtml</h1>
 </header>
 <main>
-<h2 class="nit-section">configuration</h2>
-<p>
-<span class="nit-name">Loading&nbsp;configuration&nbsp;../toast/output/xhtml/output.conf...</span><br/>
-<span class="nit-name">Writing&nbsp;to&nbsp;../out/index.xhtml</span><br/>
-</p>
 <h2 class="nit-section">../toast/output/xhtml/index.html</h2>
 <h3><span class="nit-line">2</span> <span class="nit-mote">&lt;html&gt;</span></h3>
 <p>
@@ -23,7 +18,7 @@
 <br/><br/>
 </main>
 <footer>
-<a href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</a> version 0.0.118<br/>
+<a href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</a> version 0.0.119<br/>
 <a href="https://dylanharris.org/" class="ssc-copyright">(c)&nbsp;2020,2021&nbsp;Dylan&nbsp;Harris</a>
 </footer>
 </body>

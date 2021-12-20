@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // RFC 3986
 
 struct symbol_entry < html_version, e_protocol > protocol_symbol_table [] =
-{  { { HTML_TAGS }, { HTML_UNDEF }, "aaa", pr_aaa },
+{   { { HTML_TAGS }, { HTML_UNDEF }, "aaa", pr_aaa },
     { { HTML_TAGS }, { HTML_UNDEF }, "aaas", pr_aaas },
     { { HTML_TAGS }, { HTML_UNDEF }, "about", pr_about },
     { { HTML_TAGS }, { HTML_UNDEF }, "acap", pr_acap },

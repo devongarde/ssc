@@ -99,7 +99,7 @@ bool invalid_autocomplete (nitpick& nits, const html_version& v, const element* 
         default :
             nits.pick (nit_snafu, ed_52, "4.10.18.7.1. ... the autocomplete attribute", es_error, ec_type, "internal error: AUTOCOMPLETE is on the wrong element!");
             GRACEFUL_CRASH (__FILE__, __LINE__);
-            return false; }
+            UNREACHABLE (return false); }
     const e_inputtype5 i5 = e -> get_input_type ();
     bool res = true;
     for (auto aco : vaco)

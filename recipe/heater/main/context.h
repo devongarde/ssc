@@ -55,8 +55,8 @@ class context_t
     int             code_ = 0, dc_ = 1, foaf_ = 99, title_ = MAX_IDEAL_TITLE_LENGTH, xsd_ = 0;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
-    html_version    version_;
-    schema_version  schema_ver_;
+    html_version    version_ = html_default;
+//    schema_version  schema_ver_  = error_schema;
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
     e_severity      report_error_ = es_error;
@@ -108,7 +108,6 @@ public:
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const noexcept { return crosslinks_; }
     const vstr_t custom_elements () const { return custom_elements_; }
-    int dc () const noexcept { return dc_; }
     bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }
     const ::std::string domsg () const { return domsg_; }
     const ::std::string environment (const e_environment e) const { return environment_.at (e); }
@@ -119,7 +118,6 @@ public:
     bool external () const noexcept { return external_; }
     bool fe () const noexcept { return fe_; }
     const ::std::string filename () const { return filename_; }
-    int foaf () const noexcept { return foaf_; }
     bool forwarded () const  noexcept{ return forwarded_; }
     bool has_math () const noexcept { return version_.has_math (); }
     bool has_rdfa () const noexcept { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
@@ -151,7 +149,6 @@ public:
     bool mf_verify () const noexcept { return mf_verify_; }
     bool mf_version1 () const noexcept { return (mf_version_ & 1) != 0; }
     bool mf_version2 () const noexcept { return (mf_version_ & 2) != 0; }
-    schema_version mf_ver () const noexcept;
     bool microdata () const noexcept { return microdata_; }
     bool microformats () const noexcept { return mf_verify_ || mf_export_; }
     ::std::string msg () const { return msg_; }
@@ -187,7 +184,8 @@ public:
     const ::std::string root () const { return root_; }
     bool sarcasm () const noexcept { return sarcasm_; }
     bool schema () const noexcept { return schema_; }
-    schema_version schema_ver () const noexcept { return schema_ver_; }
+    schema_version schema_ver (const e_schema es = s_schema) const
+    {   return get_default_schema_version (es); }
     const ::std::string secret () const { return secret_; }
     const ::std::string server () const { return server_; }
     bool shadow_any () const noexcept { return shadow_pages (); }
@@ -226,7 +224,6 @@ public:
     const ::std::string write_path () const { return write_path_; }
     bool update () const noexcept { return update_; }
     bool versioned () const noexcept { return versioned_; }
-    int xsd () const noexcept { return xsd_; }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
     context_t& body (const bool b) { body_ = b; mac (nm_context_body, b); return *this; }
     context_t& cgi (const bool b) { cgi_ = b; mac (nm_context_cgi, b); return *this; }
@@ -245,7 +242,6 @@ public:
     css_cache& css () noexcept { return css_; }
     const css_cache& css () const noexcept { return css_; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
-    context_t& dc (const int d) { if ((d == 0) || (d == 1)) dc_ = d; mac (nm_context_dc, dc_); return *this; }
     context_t& domsg (const ::std::string& s) { domsg_ = s; return *this; }
     context_t& environment (const e_environment e, const ::std::string& s);
     context_t& export_root (const ::std::string& s) { export_root_ = s; mac (nm_context_export_root, s); return *this; }
@@ -258,7 +254,6 @@ public:
         return *this; }
     context_t& fe (const bool b) { fe_ = b; mac (nm_context_fe, b); return *this; }
     context_t& filename (const ::std::string& s) { filename_ = s; mac (nm_context_filename, s); return *this; }
-    context_t& foaf (const int f) { if ((f > 0) && (f <= 99)) foaf_ = f; mac < int > (nm_context_foaf, f); return *this; }
     context_t& forwarded (const bool b)
     {   forwarded_ = b;
         mac (nm_context_forward, b);
@@ -299,7 +294,12 @@ public:
     context_t& meta (const bool b) { meta_ = b; mac (nm_context_meta, b); return *this; }
     context_t& mf_export (const bool b) { mf_export_ = b; mac (nm_context_mf_export, b); return *this; }
     context_t& mf_verify (const bool b) { mf_verify_ = b; mac (nm_context_mf_verify, b); return *this; }
-    context_t& mf_version (const unsigned char n) { mf_version_ = n; mac < int > (nm_context_mf_version, n); return *this; }
+    context_t& mf_version (const unsigned char n)
+    {   mf_version_ = n;
+        mac < int > (nm_context_mf_version, n);
+        if (n <= 1) set_default_schema_version (s_microformats, 1, 0);
+        else set_default_schema_version (s_microformats, 2, 0);
+        return *this; }
     context_t& microdata (const bool b)
     {   microdata_ = b;
         if (b) external (b);
@@ -348,10 +348,10 @@ public:
     context_t& sarcasm (const bool b) { sarcasm_ = b; mac (nm_context_sarcasm, b); return *this; }
     context_t& schema (const bool b)
     {   schema_ = b;
-        if (schema_ver_.empty ()) schema_ver_ = schema_default;
+//        if (schema_ver_.empty ()) schema_ver_ = schema_default;
         mac (nm_context_schema, b);
         return *this; }
-    context_t& schema_ver (const schema_version& sv) { schema_ver_.reset (sv); mac (nm_context_schema_version, sv.name ()); return *this; }
+//    context_t& schema_ver (const schema_version& sv) { schema_ver_.reset (sv); mac (nm_context_schema_version, sv.name ()); return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
     context_t& shadow_comment (const bool b) { shadow_comment_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_comment, b); return *this; }
@@ -394,7 +394,6 @@ public:
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
     context_t& webmention (nitpick& nits, const ::std::string& w, const e_wm_status status);
     context_t& write_path (const ::std::string& s) { write_path_ = s; mac (nm_context_write_path, s); return *this; }
-    context_t& xsd (const int x) { if ((x == 0) || (x == 1)) xsd_ = x; mac < int > (nm_context_xsd, xsd_); return *this; }
     void reset_webmention () noexcept
     {   webmention_.clear ();
         wm_status_ = wm_undefined; }

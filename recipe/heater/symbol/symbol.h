@@ -97,14 +97,16 @@ public:
     operator VALUE () const noexcept { return get (); }
     bool unknown () const noexcept { return unknown_; }
     bool required () const { return first_.required (); }
-    ::std::string name (const bool ns_req = false) const
+    ::std::string name (const bool ns_req = false, const bool colonise = true) const
     {   if (unknown_) return "(unknown)";
         ::std::string res (table_.name (get ()));
         if (res.empty ())
         {   res = "(";
             res += ::boost::lexical_cast < ::std::string > (value_);
             res += ")"; }
-        if (ns_req || (ns_ != ns_default)) res = namespace_name (ns_) + ":" + res;
+        if (ns_req || (ns_ != ns_default))
+            if (colonise) res = namespace_name (ns_) + ":" + res;
+            else res = namespace_name (ns_) + res;
         return res; }
     static VALUE starts_with (const ::std::string& s, ::std::string::size_type* ends_at = nullptr)
     {   return table_.template starts_with < VALUE> (s, ends_at); }

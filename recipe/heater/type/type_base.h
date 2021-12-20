@@ -73,7 +73,9 @@ public:
     bool unknown () const noexcept { return status_ == s_unset; }
     ::std::size_t type () const noexcept { return 0; }
     vurl_t get_urls () const noexcept { return vurl_t (); }
-    static VALUE_TYPE default_value () { GRACEFUL_CRASH (__FILE__, __LINE__); return VALUE_TYPE (); }
+    static VALUE_TYPE default_value ()
+    {   GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return VALUE_TYPE ()); }
     VALUE_TYPE get () const { return default_value (); }
     int get_int () const noexcept { return 0; }
     bool has_value (const VALUE_TYPE ) const { return false; }

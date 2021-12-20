@@ -113,7 +113,7 @@ int char2hex (const char ch)
     if (ch >= 'a' && ch <= 'F')
         return ch - 'a' + 10;
     GRACEFUL_CRASH (__FILE__, __LINE__);
-    return 0; }
+    UNREACHABLE (return 0); }
 
 bool is_hex (const char ch) noexcept
 {   if (ch >= '0' && ch <= '9')

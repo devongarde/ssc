@@ -1,0 +1,103 @@
+{
+    "vcard": {
+        "1": {
+            "type": "http:\/\/microformats.org\/profile\/hcard",
+            "prop": {
+                "fn": "Jack Bauer",
+                "photo": "jack-bauer.jpg",
+                "geo": "34.052339;-118.410623",
+                "url": "https:\/\/wikipedia.example.org\/wiki\/Jack_Bauer",
+                "url": "http:\/\/www.jackbauerfacts.example.com\/",
+                "email": "j.bauer@la.ctu.gov.invalid",
+                "rev": "2008-07-20 21:00:00+01:00"
+            },
+            "n": {
+                "3": {
+                    "prop": {
+                        "given-name": "Jack",
+                        "family-name": "Bauer"
+                    }
+                }
+            },
+            "org": {
+                "6": {
+                    "prop": {
+                        "organization-name": "Counter-Terrorist Unit",
+                        "organization-unit": "Los Angeles Division"
+                    }
+                }
+            },
+            "adr": {
+                "9": {
+                    "prop": {
+                        "street-address": "10201 W. Pico Blvd.",
+                        "locality": "Los Angeles",
+                        "region": "CA",
+                        "postal-code": "90064",
+                        "country-name": "United States"
+                    }
+                }
+            },
+            "tel": {
+                "11": {
+                    "prop": {
+                        "value": "+1 (310) 597 3781",
+                        "type": "work",
+                        "type": "voice"
+                    }
+                },
+                "13": {
+                    "prop": {
+                        "value": "+1 (310) 555 3781",
+                        "type": "cell"
+                    }
+                },
+                "15": {
+                    "prop": {
+                        "type": "home",
+                        "value": "01632 960 123"
+                    }
+                }
+            }
+        },
+        "16": {
+            "type": "http:\/\/microformats.org\/profile\/hcard",
+            "prop": {
+                "fn": "Alfred Person"
+            },
+            "n": {
+                "18": {
+                    "prop": {
+                        "given-name": "Alfred",
+                        "family-name": "Person"
+                    }
+                }
+            },
+            "adr": {
+                "21": {
+                    "prop": {
+                        "street-address": "1600 Amphitheatre Parkway",
+                        "street-address": "Building 43, Second Floor",
+                        "locality": "Mountain View",
+                        "region": "CA",
+                        "postal-code": "94043"
+                    }
+                }
+            }
+        },
+        "22": {
+            "type": "http:\/\/microformats.org\/profile\/hcard",
+            "prop": {
+                "fn": "George Washington"
+            },
+            "n": {
+                "24": {
+                    "prop": {
+                        "given-name": "George",
+                        "family-name": "Washington"
+                    }
+                }
+            }
+        }
+    }
+}
