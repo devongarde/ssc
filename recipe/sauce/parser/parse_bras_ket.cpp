@@ -847,7 +847,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                 if (! closure && ! plaintext && ! xmp_mode)
                                     faux_xmp_check (ve_.back (), xmp_tag, xmp_mode, i, x);
                                 aftercab = true;
-                                status = s_dull; text = twas = i+1; break;;
+                                status = s_dull; text = twas = i+1; break;
                     case '<' :  mixed_mess (nits, b, e, i, oel, ano); status = s_open; twas = i; break;
                     case '&' :  mixed_mess (nits, b, e, i, cc, elmt); status= s_amper; twas = i; break;
                     default :   status = s_inside; break; }

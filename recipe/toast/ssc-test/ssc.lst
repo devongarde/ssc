@@ -17,6 +17,8 @@
 ../toast/HTML/minimal/minimal.spec
 ../toast/HTML/Plus/plus.spec
 ../toast/HTML/tags/tags.spec
+../toast/JSON-LD/as/jsonld.spec
+../toast/JSON-LD/schemaorg/jsonld.spec
 ../toast/link/link.spec
 ../toast/living/jul07/living.spec
 ../toast/living/jan08/living.spec

@@ -119,8 +119,9 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
         case itemprop_microformat :
             return true;
         default :
-            GRACEFUL_CRASH (__FILE__, __LINE__); break; }
-    return false; }
+            break; }
+    GRACEFUL_CRASH (__FILE__, __LINE__);
+    UNREACHABLE (return false); }
 
 bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_index itemtype, const itemprop_index ndx, const itemtype_index value)
 {   switch (ndx >> uint32_category_shift)
@@ -131,5 +132,6 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
         case itemprop_microformat :
             return true;
         default :
-            GRACEFUL_CRASH (__FILE__, __LINE__); break; }
-    return false; }
+            break; }
+    GRACEFUL_CRASH (__FILE__, __LINE__);
+    UNREACHABLE (return false); }

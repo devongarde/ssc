@@ -23,238 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "schema/schema_version.h"
 
-// HTML 5 is a living standard form WhatWG, constantly changing.
-// The WhatWG website appeared in 2004, with their first draft
-// of their HTML 5 standard published in June 2007. Many have followed!
-// The W3C HTML standards appeared as follows:
-//   HTML 5.0 28 October 2014
-//   HTML 5.1 first version 1 November 2016
-//   HTML 5.1 second version 3 October 2017
-//   HTML 5.2 14 December 2017
-//   HTML 5.3 18 October 2018
-// The internal versions of HTML5 are thus:
-//   major = year-2000
-//   minor:
-//     high nibble = month
-//      low nibble = day / 2
-
-// use these date ids even though their value is obvious; there is no guarantee that
-// the values will continue to be obvious, e.g., for example, if very early webapp
-// specs should be integrated (not expected, which is why I'm not doing it, but...)
-#define HTML_2005    5
-#define HTML_2006    6
-#define HTML_2007    7
-#define HTML_2008    8
-#define HTML_2009    9
-#define HTML_2010   10
-#define HTML_2011   11
-#define HTML_2012   12
-#define HTML_2013   13
-#define HTML_2014   14
-#define HTML_2015   15
-#define HTML_2016   16
-#define HTML_2017   17
-#define HTML_2018   18
-#define HTML_2019   19
-#define HTML_2020   20
-#define HTML_2021   21
-
-#define MAJOR_TAGS   0
-#define MAJOR_1_0    1
-#define MAJOR_PLUS   1
-#define MAJOR_2_0    2
-#define MAJOR_3_0    3
-#define MAJOR_3_2    3
-#define MAJOR_4_0    4
-#define MAJOR_4_01   4
-#define MAJOR_X1_0   4
-#define MAJOR_X1_1   4
-#define MAJOR_X2_0   4
-
-#define HTML_JAN     (1 << 4)
-#define HTML_FEB     (2 << 4)
-#define HTML_MAR     (3 << 4)
-#define HTML_APR     (4 << 4)
-#define HTML_MAY     (5 << 4)
-#define HTML_JUN     (6 << 4)
-#define HTML_JUL     (7 << 4)
-#define HTML_AUG     (8 << 4)
-#define HTML_SEP     (9 << 4)
-#define HTML_OCT     (10 << 4)
-#define HTML_NOV     (11 << 4)
-#define HTML_DEC     (12 << 4)
-
-#define MINOR_TAGS   1
-#define MINOR_1_0    0
-#define MINOR_PLUS   1
-#define MINOR_2_0    0
-#define MINOR_3_0    0
-#define MINOR_3_2    2
-#define MINOR_4_0    0
-#define MINOR_4_01   1
-#define MINOR_X1_0   2
-#define MINOR_X1_1   3
-#define MINOR_X2_0   4
-
-#define HTML_TAGS   MAJOR_TAGS, MINOR_TAGS
-#define HTML_1_0    MAJOR_1_0, MINOR_1_0
-#define HTML_PLUS   MAJOR_PLUS, MINOR_PLUS
-#define HTML_2_0    MAJOR_2_0, MINOR_2_0
-#define HTML_3_0    MAJOR_3_0, MINOR_3_0
-#define HTML_3_2    MAJOR_3_2, MINOR_3_2
-#define HTML_4_0    MAJOR_4_0, MINOR_4_0
-#define HTML_4_01   MAJOR_4_01, MINOR_4_01
-#define XHTML_1_0   MAJOR_X1_0, MINOR_X1_0
-#define XHTML_1_1   MAJOR_X1_1, MINOR_X1_1
-#define XHTML_2_0   MAJOR_X2_0, MINOR_X2_0
-
-#define MAJOR_5_0   HTML_2014
-#define MAJOR_5_1   HTML_2016
-#define MAJOR_5_2   HTML_2017
-#define MAJOR_5_3   HTML_2018
-#define MINOR_5_0   (HTML_OCT + 14)
-#define MINOR_5_1   (HTML_OCT + 1)
-#define MINOR_5_2   (HTML_DEC + 7)
-#define MINOR_5_3   (HTML_OCT + 9)
-#define HTML_5_0    MAJOR_5_0, MINOR_5_0
-#define HTML_5_1    MAJOR_5_1, MINOR_5_1
-#define HTML_5_2    MAJOR_5_2, MINOR_5_2
-#define HTML_5_3    MAJOR_5_3, MINOR_5_3
-
-#define HTML_JAN05  HTML_2005, (HTML_JAN + 15)
-#define HTML_JUN05  HTML_2005, (HTML_JUN + 15)
-#define HTML_JUL05  HTML_2005, HTML_JUL
-#define HTML_DEC05  HTML_2005, (HTML_DEC + 15)
-#define HTML_JAN06  HTML_2006, HTML_JAN
-#define HTML_JUN06  HTML_2006, (HTML_JUN + 13)
-#define HTML_JUL06  HTML_2006, HTML_JUL
-#define HTML_DEC06  HTML_2006, (HTML_DEC + 15)
-#define HTML_JAN07  HTML_2007, HTML_JAN
-#define HTML_JUN07  HTML_2007, (HTML_JUN + 15)
-#define HTML_JUL07  HTML_2007, HTML_JUL
-#define HTML_OCT07  HTML_2007, HTML_OCT
-#define HTML_DEC07  HTML_2007, (HTML_DEC + 15)
-#define HTML_JAN08  HTML_2008, HTML_JAN
-#define HTML_JUN08  HTML_2008, (HTML_JUN + 13)
-#define HTML_JUL08  HTML_2008, HTML_JUL
-#define HTML_DEC08  HTML_2008, (HTML_DEC + 15)
-#define HTML_JAN09  HTML_2009, HTML_JAN
-#define HTML_JUN09  HTML_2009, (HTML_JUN + 15)
-#define HTML_JUL09  HTML_2009, HTML_JUL
-#define HTML_DEC09  HTML_2009, (HTML_DEC + 15)
-#define HTML_JAN10  HTML_2010, HTML_JAN
-#define HTML_JUN10  HTML_2010, (HTML_JUN + 15)
-#define HTML_JUL10  HTML_2010, HTML_JUL
-#define HTML_DEC10  HTML_2010, (HTML_DEC + 15)
-#define HTML_JAN11  HTML_2011, HTML_JAN
-#define HTML_JUN11  HTML_2011, (HTML_JUN + 15)
-#define HTML_JUL11  HTML_2011, HTML_JUL
-#define HTML_DEC11  HTML_2011, (HTML_DEC + 15)
-#define HTML_JAN12  HTML_2012, HTML_JAN
-#define HTML_JUN12  HTML_2012, (HTML_JUN + 15)
-#define HTML_JUL12  HTML_2012, HTML_JUL
-#define HTML_DEC12  HTML_2012, (HTML_DEC + 15)
-#define HTML_JAN13  HTML_2013, HTML_JAN
-#define HTML_JUN13  HTML_2013, (HTML_JUN + 15)
-#define HTML_FEB13  HTML_2013, (HTML_AUG + 14)
-#define HTML_JUL13  HTML_2013, HTML_JUL
-#define HTML_AUG13  HTML_2013, (HTML_AUG + 3)
-#define HTML_DEC13  HTML_2013, (HTML_DEC + 15)
-#define HTML_JAN14  HTML_2014, HTML_JAN
-#define HTML_JUN14  HTML_2014, (HTML_JUN + 15)
-#define HTML_JUL14  HTML_2014, HTML_JUL
-#define HTML_DEC14  HTML_2014, (HTML_DEC + 15)
-#define HTML_JAN15  HTML_2015, HTML_JAN
-#define HTML_JUN15  HTML_2015, (HTML_JUN + 15)
-#define HTML_JUL15  HTML_2015, HTML_JUL
-#define HTML_DEC15  HTML_2015, (HTML_DEC + 15)
-#define HTML_JAN16  HTML_2016, HTML_JAN
-#define HTML_JUN16  HTML_2016, (HTML_JUN  + 15)
-#define HTML_JUL16  HTML_2016, HTML_JUL
-#define HTML_DEC16  HTML_2016, (HTML_DEC + 15)
-#define HTML_JAN17  HTML_2017, HTML_JAN
-#define HTML_JUN17  HTML_2017, (HTML_JUN + 15)
-#define HTML_JUL17  HTML_2017, HTML_JUL
-#define HTML_NOV17  HTML_2017, HTML_NOV
-#define HTML_DEC17  HTML_2017, (HTML_DEC + 15)
-#define HTML_JAN18  HTML_2018, HTML_JAN
-#define HTML_JUN18  HTML_2018, (HTML_JUN + 15)
-#define HTML_JUL18  HTML_2018, HTML_JUL
-#define HTML_OCT18  HTML_2018, HTML_OCT
-#define HTML_DEC18  HTML_2018, (HTML_DEC + 15)
-#define HTML_JAN19  HTML_2019, HTML_JAN
-#define HTML_JUN19  HTML_2019, (HTML_JUN + 15)
-#define HTML_JUL19  HTML_2019, HTML_JUL
-#define HTML_DEC19  HTML_2019, (HTML_DEC + 15)
-#define HTML_JAN20  HTML_2020, HTML_JAN
-#define HTML_JUN20  HTML_2020, (HTML_JUN + 15)
-#define HTML_JUL20  HTML_2020, HTML_JUL
-#define HTML_DEC20  HTML_2020, (HTML_DEC + 15)
-#define HTML_JAN21  HTML_2021, HTML_JAN
-#define HTML_EOJ21  HTML_2021, (HTML_JAN + 15)
-#define HTML_FEB21  HTML_2021, HTML_FEB
-#define HTML_MAR21  HTML_2021, (HTML_MAR + 15)
-#define HTML_APR21  HTML_2021, HTML_APR
-#define HTML_JUN21  HTML_2021, (HTML_JUN + 15)
-#define HTML_JUL21  HTML_2021, HTML_JUL
-#define HTML_OCT21  HTML_2021, HTML_OCT
-
-#define HTML_CC         HTML_2008, HTML_MAR
-
-#define HTML_DC         XHTML_1_0
-#define HTML_DCTERMS    XHTML_1_0
-
-#define HTML_JSONLD_1_0 HTML_JAN14
-#define HTML_JSONLD_1_1 HTML_JUL20
-
-#define HTML_MATH1      HTML_4_0
-#define HTML_MATH2      XHTML_1_0
-#define HTML_MATH3      HTML_5_0
-#define HTML_MATH4      HTML_APR21
-
-#define HTML_OWL10      XHTML_1_0
-#define HTML_OWL11      HTML_JAN07
-#define HTML_OWL20      HTML_JAN13
-
-#define HTML_RDF10      XHTML_1_0
-#define HTML_RDF10_CON  HTML_JAN11
-#define HTML_RDF11      HTML_JUL12
-#define HTML_RDF11      HTML_JUL12
-#define HTML_RDF11_2    HTML_JUL13
-#define HTML_RDF11_3    HTML_JAN15
-
-#define HTML_RDFA10     HTML_2008, HTML_OCT
-#define HTML_RDFA11     HTML_2012, HTML_JUN
-#define HTML_RDFA112    HTML_2013, HTML_AUG
-#define HTML_RDFA113    HTML_2015, HTML_MAR
-#define HTML_RDFA       HTML_RDFA10
-
-#define HTML_RIF        HTML_JAN07
-
-#define HTML_SKOSXL     HTML_JUN08
-
-#define HTML_TTML       HTML_JAN14
-
-#define HTML_XLINK10    XHTML_1_0
-#define HTML_XLINK11    HTML_JUN10
-
-#define HTML_5_EARLIEST_YEAR    HTML_2005
-#define HTML_5_EARLIEST_MONTH   1
-
-// arbituary: the earliest X/HTML version which an extension can use
-#define HTML_SVG10          XHTML_1_0
-#define HTML_SVG11          XHTML_1_1
-#define HTML_SVG12          XHTML_1_1
-#define HTML_SVG20          HTML_OCT18
-#define HTML_SVG21          HTML_APR21
-
-#define HTML_LATEST_YEAR    HTML_2021
-#define HTML_LATEST_MONTH   10
-
-#define HTML_CURRENT        HTML_OCT21
-
-#define HTML_UNDEF  0, 0
-
 #define HV_LEVEL1       0x0000000000000001
 #define HV_LEVEL2       0x0000000000000002
 #define HV_LEVEL3       0x0000000000000004
@@ -728,6 +496,88 @@ const html_version xhtml_svg_1_2_tiny (HTML_SVG12, HV_XHTML, HE_SVG_12_TINY);
 const html_version xhtml_svg_1_2_full (HTML_SVG12, HV_XHTML, HE_SVG_12_FULL);
 const html_version html_svg_2_0 (HTML_SVG20, 0, HE_SVG_20);
 const html_version html_svg_2_1 (HTML_SVG21, 0, HE_SVG_21);
+
+const html_version html_cc (HTML_CC);
+const html_version html_dc_1_0 (HTML_DC_1_0);
+const html_version html_dc_1_1 (HTML_DC_1_1);
+const html_version html_dcterms_1_0 (HTML_DCTERMS_1_0);
+const html_version html_dcterms_1_1 (HTML_DCTERMS_1_1);
+const html_version html_owl_1_0 (HTML_OWL10);
+const html_version html_owl_1_1 (HTML_OWL11);
+const html_version html_owl_2_0 (HTML_OWL20);
+const html_version html_rdf (HTML_RDF10);
+const html_version html_rdf_1_0 (HTML_RDF10);
+const html_version html_rdf_1_0_con (HTML_RDF10_CON);
+const html_version html_rdf_1_1 (HTML_RDF11);
+const html_version html_rdf_1_1_1 (HTML_RDF11_1);
+const html_version html_rdf_1_1_2 (HTML_RDF11_2);
+const html_version html_rdf_1_1_3 (HTML_RDF11_3);
+const html_version html_rdfa (HTML_RDFA10);
+const html_version html_rdfa_1_0 (HTML_RDFA10);
+const html_version html_rdfa_1_1 (HTML_RDFA11);
+const html_version html_rdfa_1_1_1 (HTML_RDFA111);
+const html_version html_rdfa_1_1_2 (HTML_RDFA112);
+const html_version html_rdfa_1_1_3 (HTML_RDFA113);
+const html_version html_rdfg (HTML_RDFG);
+const html_version html_rdfs (HTML_RDFS);
+const html_version html_review (HTML_REVIEW);
+const html_version html_rif (HTML_RIF);
+const html_version html_role (HTML_ROLE);
+const html_version html_rr (HTML_RR);
+const html_version html_schema_0 (HTML_SCHEMA_0);
+const html_version html_schema_2_0 (HTML_SCHEMA_2_0);
+const html_version html_schema_2_1 (HTML_SCHEMA_2_1);
+const html_version html_schema_2_2 (HTML_SCHEMA_2_2);
+const html_version html_schema_3_0 (HTML_SCHEMA_3_0);
+const html_version html_schema_3_1 (HTML_SCHEMA_3_1);
+const html_version html_schema_3_2 (HTML_SCHEMA_3_2);
+const html_version html_schema_3_3 (HTML_SCHEMA_3_3);
+const html_version html_schema_3_4 (HTML_SCHEMA_3_4);
+const html_version html_schema_3_5 (HTML_SCHEMA_3_5);
+const html_version html_schema_3_6 (HTML_SCHEMA_3_6);
+const html_version html_schema_3_7 (HTML_SCHEMA_3_7);
+const html_version html_schema_3_8 (HTML_SCHEMA_3_8);
+const html_version html_schema_3_9 (HTML_SCHEMA_3_9);
+const html_version html_schema_4 (HTML_SCHEMA_4);
+const html_version html_schema_5 (HTML_SCHEMA_5);
+const html_version html_schema_6 (HTML_SCHEMA_6);
+const html_version html_schema_7_00 (HTML_SCHEMA_7_00);
+const html_version html_schema_7_01 (HTML_SCHEMA_7_01);
+const html_version html_schema_7_02 (HTML_SCHEMA_7_02);
+const html_version html_schema_7_03 (HTML_SCHEMA_7_03);
+const html_version html_schema_7_04 (HTML_SCHEMA_7_04);
+const html_version html_schema_8 (HTML_SCHEMA_8);
+const html_version html_schema_9 (HTML_SCHEMA_9);
+const html_version html_schema_10 (HTML_SCHEMA_10);
+const html_version html_schema_11 (HTML_SCHEMA_11);
+const html_version html_schema_12 (HTML_SCHEMA_12);
+const html_version html_schema_13 (HTML_SCHEMA_13);
+const html_version html_sd (HTML_SD);
+const html_version html_sioc (HTML_SIOC);
+const html_version html_sioc_s (HTML_SIOC);
+const html_version html_sioc_t (HTML_SIOC);
+const html_version html_skos (HTML_SKOS);
+const html_version html_skosxl (HTML_SKOSXL);
+const html_version html_ssn (HTML_SKOS);
+const html_version html_sosa (HTML_SKOS);
+const html_version html_taxo (HTML_SKOS);
+const html_version html_time (HTML_SKOS);
+const html_version html_v (HTML_V);
+const html_version html_vcard (HTML_VCARD);
+const html_version html_video (HTML_VIDEO);
+const html_version html_void (HTML_VOID);
+const html_version html_wdr (HTML_WDR);
+const html_version html_wdrs (HTML_WDRS);
+const html_version html_website (HTML_WEBSITE);
+const html_version html_whatwg (HTML_WHATWG);
+const html_version html_xhv (HTML_XHV);
+const html_version html_xml (HTML_XML);
+const html_version html_xsd_1_0 (HTML_XSD_10);
+const html_version html_xsd_1_1 (HTML_XSD_11);
+
+const html_version html_ttml (HTML_TTML);
+const html_version html_xlink_1_0 (HTML_XLINK10);
+const html_version html_xlink_1_1 (HTML_XLINK11);
 
 const html_version html_jan05 (HTML_JAN05, HV_WHATWG, 0);
 const html_version html_jul05 (HTML_JUL05, HV_WHATWG, 0);

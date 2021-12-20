@@ -6217,4 +6217,4 @@ bool is_schema_property (const e_schema_type s, const e_schema_property p)
 {   mmd_t::const_iterator i = micromap.find (mmd_key (s, p));
     if (i == micromap.cend ()) return false;
     VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
-    return does_apply < schema_version > (context.schema_ver (), i -> second -> from_, i -> second -> to_); };
+    return does_apply < schema_version > (context.schema_ver (sch::root (s)), i -> second -> from_, i -> second -> to_); };

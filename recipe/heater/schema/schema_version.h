@@ -46,28 +46,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define DEFAULT_SCHEMA_ORG_MAJOR 13
 #define DEFAULT_SCHEMA_ORG_MINOR 0
-#define DEFAULT_SCHEMA_ORG_VERSION "13"
+#define DEFAULT_SCHEMA_ORG_VERSION "13.0"
 
 constexpr unsigned char schema_major_max = DEFAULT_SCHEMA_ORG_MAJOR;
 class html_version;
+struct schema_version;
 
+schema_version corresponding_schema_version (const e_schema es, const html_version& v);
+bool set_default_schema_version (const e_schema es, unsigned char mjr, unsigned char mnr);
+schema_version get_default_schema_version (const e_schema es);
+schema_version get_first_schema_version (const e_schema es);
+schema_version get_last_schema_version (const e_schema es);
+int get_schema_version_count (const e_schema es);
+bool is_faux_schema (const e_schema es);
 bool is_valid_schema_version (const e_schema root, const unsigned char mjr, const unsigned char mnr) noexcept;
 
 struct schema_version : public version
 {   schema_version () = default;
     schema_version (const unsigned char mjr, const unsigned char mnr, const flags_t sf = NOFLAGS)
         :   version (mjr, mnr, (static_cast < flags_t > (s_schema) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
-    {   PRESUME (! invalid (), __FILE__, __LINE__); }
+    { }
     schema_version (const e_schema root, const unsigned char mjr, const unsigned char mnr, const flags_t sf = NOFLAGS)
         :   version (mjr, mnr, (static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
-    {   PRESUME (! invalid (), __FILE__, __LINE__); }
+    { }
     schema_version (const schema_version& ) = default;
     schema_version (const html_version& v) noexcept;
 	schema_version (schema_version&& ) = default;
 	~schema_version () = default;
     schema_version& operator = (const schema_version& ) = default;
 	schema_version& operator = (schema_version&&) = default;
-    static void init ();
+    static void init (nitpick& nits);
     void reset () noexcept
     {   schema_version v; swap (v); }
     void reset (const schema_version& v) noexcept
@@ -79,13 +87,16 @@ struct schema_version : public version
         return ((mn != 0xFF) && (mn != mnr ())); }
     bool is_not (const schema_version& v) const noexcept
     {   return is_not (v.mjr (), v.mnr ()); }
-    bool invalid () const noexcept { return ! is_valid_schema_version (root (), mjr (), mnr ()); }
+    bool invalid () const noexcept
+    {   if (root () == s_error) return true;
+        return ! is_valid_schema_version (root (), mjr (), mnr ()); }
     e_schema root () const noexcept
     {   return static_cast < e_schema > (flags () >> SV_ROOT_SHIFT); }
+    ::std::string name () const;
+    static ::std::string name (const e_schema es);
     ::std::string report () const; };
 
 typedef ::std::vector < schema_version > vsv_t;
-extern vsv_t vsv;
 
 const schema_version default_schema (s_none, 0, 0);
 
@@ -107,16 +118,25 @@ const schema_version csvw_1_0 (s_csvw, 1, 0);
 
 const schema_version daq_schema (s_daq, 1, 0);
 
+const schema_version dbd_schema (s_dbd, 1, 0);
+const schema_version dbo_schema (s_dbo, 1, 0);
+const schema_version dbp_schema (s_dbp, 1, 0);
+const schema_version dbp_owl_schema (s_dbp_owl, 1, 0);
+const schema_version dbr_schema (s_dbr, 1, 0);
+
 const schema_version data_catalogue_1 (s_dcat, 1, 0);
 const schema_version data_catalogue_2 (s_dcat, 2, 0);
+
+const schema_version described_by (s_describedby, 1, 0);
 
 const schema_version data_quality (s_dqv, 1, 0);
 
 const schema_version dc_1_0 (s_dc, 1, 0);
 const schema_version dc_1_1 (s_dc, 1, 1);
-const schema_version dcam (s_dcmi, 1, 0);
+const schema_version dcam (s_dcam, 1, 0);
 const schema_version dcmi (s_dcmi, 1, 0);
-const schema_version dublin_core_terms (s_dct, 1, 0);
+const schema_version dublin_core_terms_1_0 (s_dct, 1, 0);
+const schema_version dublin_core_terms_1_1 (s_dct, 1, 1);
 
 const schema_version doap_schema (s_doap, 1, 0);
 
@@ -124,9 +144,13 @@ const schema_version duv_schema (s_duv, 1, 0);
 
 const schema_version earl_schema (s_earl, 1, 0);
 
+const schema_version error_schema (s_error, 0, 0);
+
 const schema_version event_schema (s_event, 1, 0);
 
 const schema_version faux_schema (s_faux, 1, 0);
+
+const schema_version frbr_schema (s_frbr_core, 1, 0);
 
 const schema_version foaf_schema (s_foaf, 0, 99);
 
@@ -138,7 +162,10 @@ const schema_version ical_schema (s_ical, 1, 0);
 
 const schema_version icaltzd_schema (s_icaltzd, 1, 0);
 
-const schema_version jsonld_schema (s_jsonld, 1, 0);
+const schema_version jsonld_schema_1_0 (s_jsonld, 1, 0);
+const schema_version jsonld_schema_1_1 (s_jsonld, 1, 1);
+
+const schema_version licence_schema (s_licence, 1, 0);
 
 const schema_version linked_data_platform (s_ldp, 1, 0);
 
@@ -173,12 +200,15 @@ const schema_version ptr_schema (s_ptr, 1, 0);
 
 const schema_version data_cube (s_qb, 1, 0);
 
-const schema_version rdf_schema (s_rdf, 1, 0);
+const schema_version rdf_1_0_schema (s_rdf, 1, 0);
+const schema_version rdf_1_1_1_schema (s_rdf, 1, 1);
+const schema_version rdf_1_1_2_schema (s_rdf, 1, 2);
+const schema_version rdf_1_1_3_schema (s_rdf, 1, 3);
 
-const schema_version rdfa_1_0 (s_rdfa, 1, 0);
-const schema_version rdfa_1_1_1 (s_rdfa, 1, 1);
-const schema_version rdfa_1_1_2 (s_rdfa, 1, 2);
-const schema_version rdfa_1_1_3 (s_rdfa, 1, 3);
+const schema_version rdfa_1_0_schema (s_rdfa, 1, 0);
+const schema_version rdfa_1_1_1_schema (s_rdfa, 1, 1);
+const schema_version rdfa_1_1_2_schema (s_rdfa, 1, 2);
+const schema_version rdfa_1_1_3_schema (s_rdfa, 1, 3);
 
 const schema_version rdfg_schema (s_rdfg, 1, 0);
 
@@ -188,9 +218,11 @@ const schema_version review_schema (s_rev, 1, 0);
 
 const schema_version rif_schema (s_rif, 1, 0);
 
+const schema_version role_schema (s_role, 1, 0);
+
 const schema_version rr_schema (s_rr, 1, 0);
 
-const schema_version schema_0 (s_schema, 0, 0);
+const schema_version schema_0 (s_schema, 0, 1);
 const schema_version schema_2_0 (s_schema, 2, 0);
 const schema_version schema_2_1 (s_schema, 2, 1);
 const schema_version schema_2_2 (s_schema, 2, 2);
@@ -231,7 +263,9 @@ const schema_version skosxl_schema (s_skosxl, 1, 0);
 
 const schema_version ssn_schema (s_ssn, 1, 0);
 
-const schema_version sosa_schema (s_ssn, 1, 0);
+const schema_version sosa_schema (s_sosa, 1, 0);
+
+const schema_version taxo_schema (s_taxo, 1, 0);
 
 const schema_version time_schema (s_time, 1, 0);
 
@@ -252,6 +286,8 @@ const schema_version website_schema (s_website, 1, 0);
 const schema_version whatwg_schema (s_whatwg, 1, 0);
 
 const schema_version xhv_schema (s_xhv, 1, 0);
+
+const schema_version xml_schema (s_xml, 1, 0);
 
 const schema_version xsd_1_0 (s_xsd, 1, 0);
 const schema_version xsd_1_1 (s_xsd, 1, 1);

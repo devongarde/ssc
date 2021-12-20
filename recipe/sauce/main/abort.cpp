@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     msg += ::boost::lexical_cast < ::std::string > (line);
     return msg; }
 
-void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line)
+[[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line)
 {   DBG_ASSERT (false);
     ::std::string msg ("null pointer dereference of ");
     msg += var;
@@ -37,7 +37,7 @@ void throw_bad_dereference (const char* const var, const char* const fn, const :
     ::std::cerr << "\n" << msg << "\n";
     throw ::std::runtime_error (msg); }
 
-void throw_bad_presumption (const char* const x, const char* const fn, const ::std::size_t line)
+[[noreturn]] void throw_bad_presumption (const char* const x, const char* const fn, const ::std::size_t line)
 {   DBG_ASSERT (false);
     ::boost::filesystem::path p (fn);
     ::std::string msg ("presumption " );
@@ -47,7 +47,7 @@ void throw_bad_presumption (const char* const x, const char* const fn, const ::s
     ::std::cerr << "\n" << msg << "\n";
     throw ::std::runtime_error (msg); }
 
-void graceful_crash (const char* const fn, const ::std::size_t line)
+[[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line)
 {   DBG_ASSERT (false);
     ::std::string msg ("inconsistent internal state");
     msg += file_line (fn, line);

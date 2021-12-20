@@ -94,11 +94,11 @@ bool is_valid_prop (nitpick& nits, const html_version& v, const type_index t, co
         return is_valid_schema_property (nits, v, static_cast < e_schema_type> (t), static_cast < e_schema_property > (ndx), value, is_link);
     if (ndx > sp_illegal) return true;
     GRACEFUL_CRASH (__FILE__, __LINE__);
-    return false; }
+    UNREACHABLE (return false); }
 
 bool is_valid_prop (nitpick& nits, const html_version& v, const type_index t, const prop_index ndx, const type_index value)
 {   if (ndx < sp_illegal)
         return is_valid_schema_property (nits, v, static_cast < e_schema_type> (t), static_cast < e_schema_property > (ndx), static_cast < e_schema_type> (value));
     if (ndx > sp_illegal) return true;
     GRACEFUL_CRASH (__FILE__, __LINE__);
-    return false; }
+    UNREACHABLE (return false); }

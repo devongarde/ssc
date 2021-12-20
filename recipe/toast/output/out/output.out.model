@@ -1,11 +1,7 @@
-Static Site Checker version 0.0.118
+Static Site Checker version 0.0.119
 (c) 2020,2021 Dylan Harris
 
 Root: ..\toast\output\out
-
-*** configuration
-Loading configuration ../toast/output/out/output.conf...
-Writing to ../out/output.out
 
 
 *** ../toast/output/out/index.html

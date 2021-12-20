@@ -759,6 +759,9 @@
     <Filter Include="Toast\JSON-LD\as">
       <UniqueIdentifier>{85c8436f-9b49-4ad8-a16b-dfb09ead0098}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\JSON-LD\schemaorg">
+      <UniqueIdentifier>{a9a45eda-32dd-457c-aa84-5c5d47fa3d56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -21508,6 +21511,33 @@
       <Filter>Toast\JSON-LD\as</Filter>
     </None>
     <None Include="..\toast\json-ld\as\ex-8.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\schemaorg\action.html">
+      <Filter>Toast\JSON-LD\schemaorg</Filter>
+    </None>
+    <None Include="..\toast\json-ld\schemaorg\index.html">
+      <Filter>Toast\JSON-LD\schemaorg</Filter>
+    </None>
+    <None Include="..\toast\json-ld\schemaorg\jsonld.conf">
+      <Filter>Toast\JSON-LD\schemaorg</Filter>
+    </None>
+    <None Include="..\toast\json-ld\schemaorg\jsonld.spec">
+      <Filter>Toast\JSON-LD\schemaorg</Filter>
+    </None>
+    <None Include="..\toast\json-ld\1.0\5-4-1.jld">
+      <Filter>Toast\JSON-LD\1.0</Filter>
+    </None>
+    <None Include="..\toast\json-ld\1.0\5-4-2.jld">
+      <Filter>Toast\JSON-LD\1.0</Filter>
+    </None>
+    <None Include="..\toast\json-ld\1.0\5-4-3.jld">
+      <Filter>Toast\JSON-LD\1.0</Filter>
+    </None>
+    <None Include="..\toast\json-ld\schemaorg\balderdash.html">
+      <Filter>Toast\JSON-LD\schemaorg</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\balderdash.jld">
       <Filter>Toast\JSON-LD\as</Filter>
     </None>
   </ItemGroup>

@@ -90,12 +90,6 @@ void context_t::process_outgoing_webmention (nitpick& nits, const html_version& 
 void context_t::process_incoming_webmention (nitpick& nits, const html_version& v)
 {   if (! mentions_.empty ()) hooks_.process (nits, v); }
 
-schema_version context_t::mf_ver () const noexcept
-{   switch (mf_version_)
-    {   case 1 : return mf_1;
-        case 2 : return mf_2;
-        default : return mf_all; } }
-
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
     constexpr int maxish = DEFAULT_LINE_LENGTH - 16;

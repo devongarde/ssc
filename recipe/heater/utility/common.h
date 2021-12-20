@@ -26,7 +26,6 @@ struct true_type { };
 struct false_type { };
 
 typedef uint64_t ident_t;
-// typedef ::std::size_t ident_t;
 typedef uint32_t uid_t;
 constexpr uid_t uid_max = UINT32_MAX;
 
@@ -169,3 +168,10 @@ inline ::std::string decolonise (::std::string& sauce)
 ::std::string template_path (const ::std::string& def, const ::std::string& arg);
 
 ::std::string once_twice_thrice (const ::std::size_t x);
+
+inline ::std::string x_dot_y (int x, int y)
+{   ::std::string res;
+    res += ::boost::lexical_cast < ::std::string > (x);
+    res += ".";
+    res += ::boost::lexical_cast < ::std::string > (y);
+    return res; }

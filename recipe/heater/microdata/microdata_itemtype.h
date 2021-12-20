@@ -30,9 +30,6 @@ typedef ::std::vector < itemtype_index > vit_t;
 itemtype_index make_itemtype_index (const e_schema_type p);
 itemtype_index make_itemtype_index (const e_property p);
 
-//e_itemtype_category type_category (const itemtype_index ii);
-// e_schema_type type_itself (const itemtype_index ii);
-
 constexpr inline e_itemtype_category type_category (const itemtype_index ii) noexcept
 {   return static_cast < e_itemtype_category> (ndx_category (::gsl::narrow_cast < uint32_t > (ii))); }
 constexpr inline e_schema_type type_itself (const itemtype_index ii) noexcept

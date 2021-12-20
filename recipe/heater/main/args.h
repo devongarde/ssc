@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MICRODATA_  "microdata"
 #define NITS_       "nits"
 #define RDFA_       "rdfa"
+#define SCHEMA_     "schema"
 #define SHADOW_     "shadow"
 #define STATS_      "stats"
 #define SVG_        "svg"
@@ -54,6 +55,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MICRODATA   MICRODATA_ JOIN
 #define NITS        NITS_ JOIN
 #define RDFA        RDFA_ JOIN
+#define SCHEMA      SCHEMA_ JOIN
 #define SHADOW      SHADOW_ JOIN
 #define STATS       STATS_ JOIN
 #define SVG         SVG_ JOIN
@@ -104,6 +106,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define INDEX       "index"
 #define INFO        "info"
 #define LANG        "lang"
+#define LIST        "list"
 #define MAIN        "main"
 #define MAXFILESIZE "maxfilesize"
 #define META        "meta"

@@ -5,7 +5,6 @@ PASS ../toast/RDFa/1.1.3/index.html
 
 PASS ../toast/RDFa/1.1.3/rdf1-example.html
 2 rdfa_version
-27 rdfa_redefine
 
 PASS ../toast/RDFa/1.1.3/rdf2-example.html
 4 rdfa_redefine rdfa_redefine rdfa_version
@@ -32,9 +31,9 @@ PASS ../toast/RDFa/1.1.3/rdf7-example.html
 13 not_schema_property bad_property not_schema_property bad_property bad_property
 14 not_schema_property bad_property
 15 not_schema_property bad_property not_schema_property bad_property bad_property
-20 not_schema_property bad_property
-21 not_schema_property bad_property
-24 not_schema_property bad_property
+20 not_schema_property bad_property not_schema_property bad_property bad_property
+21 not_schema_property bad_property not_schema_property bad_property bad_property
+24 not_schema_property bad_property not_schema_property bad_property bad_property
 31 attribute_required
 44 not_schema_property bad_property not_schema_property bad_property bad_property
 45 not_schema_property bad_property
@@ -82,7 +81,7 @@ PASS ../toast/RDFa/1.1.3/rdf12-example.html
 86 not_schema_property bad_property not_schema_property bad_property bad_property
 87 not_schema_property bad_property
 88 not_schema_property bad_property not_schema_property bad_property bad_property
-89 not_schema_property bad_property
+89 not_schema_property bad_property not_schema_property bad_property bad_property
 93 not_schema_property bad_property
 96 not_schema_property bad_property not_schema_property bad_property bad_property
 100 not_schema_property bad_property
@@ -101,7 +100,7 @@ PASS ../toast/RDFa/1.1.3/rdf13-example.html
 25 not_schema_property bad_property not_schema_property bad_property bad_property
 30 not_schema_property bad_property not_schema_property bad_property bad_property
 33 not_schema_property bad_property not_schema_property bad_property bad_property
-37 not_schema_property bad_property
+37 not_schema_property bad_property not_schema_property bad_property bad_property
 46 not_schema_property bad_property not_schema_property bad_property bad_property
 50 not_schema_property bad_property not_schema_property bad_property bad_property
 55 not_schema_property bad_property

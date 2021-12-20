@@ -23,8 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string version::name () const
 {   ::std::ostringstream res;
-    res << mjr_;
-    if (mnr_ != 0) res << "." << mnr_;
+    res << static_cast < int > (mjr_);
+    if (mnr_ != 0) res << "." << static_cast < int > (mnr_);
     return res.str (); }
 
 ::std::string version::report () const

@@ -358,8 +358,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
 
         (MICRODATA EXPORT, "Export microformat data (only verified data if " MICRODATA MICRODATAARG " is set).")
         (MICRODATA MICRODATAARG ",m", "Check microdata (" PROG " only understands certain microdata schemas).")
-        (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "Export root directory (requires " MICRODATA EXPORT ").")
-        (MICRODATA VERSION, ::boost::program_options::value < ::std::string > (), "Set default " SCHEMA_ORG " version (default: " DEFAULT_SCHEMA_ORG_VERSION ").")
+        (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "Microdata export root directory (requires " MICRODATA EXPORT ").")
         (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory, syntax virtual=directory. Must correspond to " WEBSITE VIRTUAL ".")
 
         (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a catastrophe; may be repeated.")
@@ -376,10 +375,10 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (NITS UNIQUE ",U", "Do not report repeated nits, even if they give more information")
         (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a warning; may be repeated.")
 
-        (RDFA DC, ::boost::program_options::value < int > () -> default_value (1), "preferred minor version of dublin core (default: 1, as in 1.1).")
-        (RDFA FOAF, ::boost::program_options::value < int > () -> default_value (99), "preferred minor version of foaf (default: 99, as in 0.99).")
-        (RDFA VERSION, ::boost::program_options::value < ::std::string > () -> default_value ("1.1.3"), "preferred version of RDFa (default 1.1.3).")
-        (RDFA XSD, ::boost::program_options::value < int > () -> default_value (1), "preferred minor version of XML Schema Types (default: 1, as in 1.1).")
+        (RDFA VERSION, ::boost::program_options::value < ::std::string > () -> default_value ("1.1.3"), "version of RDFa (default 1.1.3).")
+
+        (SCHEMA LIST, "List known schema for microdata and/or RDFa.")
+        (SCHEMA VERSION, ::boost::program_options::value < ::std::string > (), "Set default schema version as SCHEMA X.Y (default: " SCHEMA_ORG " " DEFAULT_SCHEMA_ORG_VERSION ").")
 
         (SHADOW CHANGED,    "Only "
 #ifndef NOLYNX
@@ -523,7 +522,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         else if ((var_.count (DEFCONF) == 0) && env_.count (ENV_CONFIG)) file = env_ [ENV_CONFIG].as < ::std::string > ();
         context.macros ().emplace (nm_config, file.string ());
         if (file_exists (file))
-        {   nits.pick (nit_configuration, es_error, ec_init, ::std::string ("Loading configuration ") + file.string () + "...");
+        {   nits.pick (nit_configuration, es_comment, ec_init, ::std::string ("Loading configuration ") + file.string () + "...");
             context.config (canonical (file)); }
         else
         {   nits.pick (nit_configuration, es_error, ec_init, ::std::string ("Cannot find ") + file.string ());
@@ -552,6 +551,30 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     {   ::std::ostringstream waste_of_space;
         waste_of_space << valid;
         context.domsg (waste_of_space.str ());
+        context.todo (do_simple);
+        return; }
+    if (var_.count (SCHEMA LIST))
+    {   ::std::string res;
+        for (int i = s_none + 1; i < s_error; ++i)
+        {   const e_schema es = static_cast < e_schema > (i);
+            if (is_faux_schema (es)) continue;
+            res += schema_names.get (es, SCHEMA_NAME);
+            schema_version x (get_first_schema_version (es));
+            schema_version y (get_last_schema_version (es));
+            int count = get_schema_version_count (es);
+            PRESUME (count >= 1, __FILE__, __LINE__);
+            if (count == 1)
+            {   PRESUME (x == y, __FILE__, __LINE__);
+                res += " ";
+                res += x_dot_y (x.mjr (), x.mnr ()); }
+            if (count > 1)
+            {   PRESUME (x != y, __FILE__, __LINE__);
+                res += " ";
+                res += x_dot_y (x.mjr (), x.mnr ());
+                if (count == 2) res += ","; else res += "-";
+                res += x_dot_y (y.mjr (), y.mnr ()); }
+            res += "\n"; }
+        context.domsg (res);
         context.todo (do_simple);
         return; }
 
@@ -617,7 +640,7 @@ void options::contextualise (nitpick& nits)
     {   if (var_.count (GENERAL OUTPUT))
         {   context.output (nits, nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
             if (! context.test ())
-                nits.pick (nit_configuration, es_info, ec_init, ::std::string ("Writing to ") + var_ [GENERAL OUTPUT].as < ::std::string > ()); }
+                nits.pick (nit_configuration, es_comment, ec_init, ::std::string ("Writing to ") + var_ [GENERAL OUTPUT].as < ::std::string > ()); }
         if (var_.count (GENERAL PROGRESS))
             ::std::cout << SIMPLE_TITLE;
         if (! context.cgi ())
@@ -701,31 +724,40 @@ void options::contextualise (nitpick& nits)
             else if (ver == "+") context.html_ver (html_plus);
             else if (compare_no_case (ver, "plus")) context.html_ver (html_plus);
             else if (compare_no_case (ver, "tags")) context.html_ver (html_tags);
-            else nits.pick (nit_config_version, es_warning, ec_init, "bad version ", quote (ver)," ignored\n"); } }
+            else nits.pick (nit_config_version, es_warning, ec_init, "bad version ", quote (ver)," ignored"); } }
 
     if (! context.cgi ())
         if (var_.count (WEBSITE ROOT)) context.root (nix_path_to_local (var_ [WEBSITE ROOT].as < ::std::string > ()));
 
     load_template (nits, context.html_ver ());
 
-    if (var_.count (MICRODATA VERSION))
-    {   ::std::string ver (var_ [MICRODATA VERSION].as < ::std::string > ());
-        if (ver.empty ())
-        {   context.schema_ver (schema_version (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR));
-            nits.pick (nit_config_version, es_warning, ec_init, "missing schema.org version; presuming ", DEFAULT_SCHEMA_ORG_MAJOR, ".", DEFAULT_SCHEMA_ORG_MINOR); }
+    if (var_.count (SCHEMA VERSION))
+    {   ::std::string ver (trim_the_lot_off (var_ [SCHEMA VERSION].as < ::std::string > ()));
+        if (ver.empty ()) nits.pick (nit_config_version, es_warning, ec_init, "missing schema and version.");
         else
-        {   const ::std::string::size_type pos = ver.find ('.');
+        {   e_schema es = s_schema;
+            ::std::string::size_type pos = ver.find (':');
+            if (pos != ::std::string::npos)
+            {   ::std::string sch (::boost::to_lower_copy (ver.substr (0, pos)));
+                es = schema_names.find (context.html_ver (), SCHEMA_NAME, sch, true);
+                if ((es == s_none) || (es == s_error))
+                    nits.pick (nit_config_version, es_error, ec_init, "unknown schema ", ver, "; use " SCHEMA LIST " for known schemas versions.");
+                ver = ver.substr (pos+1); }
+            pos = ver.find ('.');
             // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
+            schema_version x (error_schema);
             if (pos == ::std::string::npos)
-                context.schema_ver (schema_version (s_schema, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0));
+                x = schema_version (es, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0);
             else if (pos == 0)
-            {   context.schema_ver (schema_version (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR));
-                nits.pick (nit_config_version, es_warning, ec_init, "missing schema.org version; presuming ", DEFAULT_SCHEMA_ORG_MAJOR, ".", DEFAULT_SCHEMA_ORG_MINOR); }
+                nits.pick (nit_config_version, es_warning, ec_init, "missing schema version");
             else if (pos == ver.length () - 1)
-                context.schema_ver (schema_version (s_schema, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0));
+                x = schema_version (es, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0);
             else if (pos > 0)
-                context.schema_ver (schema_version (s_schema, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
-                                                              ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))))); } }
+                x = schema_version (es, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
+                                                              ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))));
+            if (x.invalid ())
+                nits.pick (nit_config_version, es_error, ec_init, "invalid schema ", quote (x.name ()), " version; use " SCHEMA LIST " to get a list of known versions.");
+            else set_default_schema_version (x.root (), x.mjr (), x.mnr ()); } }
 
     context.microdata (var_.count (VALIDATION MICRODATAARG));
 
@@ -848,13 +880,13 @@ void options::contextualise (nitpick& nits)
                 if (! nitpick::modify_severity (s, es_warning))
                     nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
-        if (var_.count (RDFA DC))
-        {   int n = var_ [RDFA DC].as < int > ();
-            if ((n > 0) && (n <= 1)) context.dc (n); }
+//        if (var_.count (RDFA DC))
+//        {   int n = var_ [RDFA DC].as < int > ();
+//            if ((n > 0) && (n <= 1)) context.dc (n); }
 
-        if (var_.count (RDFA FOAF))
-        {   int n = var_ [RDFA FOAF].as < int > ();
-            if ((n > 0) && (n <= 99)) context.foaf (n); }
+//        if (var_.count (RDFA FOAF))
+//        {   int n = var_ [RDFA FOAF].as < int > ();
+//            if ((n > 0) && (n <= 99)) context.foaf (n); }
 
 //      TO BE REACTIVATED!!! Hopefully.
 //        if (var_.count (RDFA VERSION))
@@ -862,9 +894,9 @@ void options::contextualise (nitpick& nits)
 //            if (rv != "1.0") && (rv != "1.1") && (rv != "1.1.1") && (rv != "1.1.2") && (rv != "1.1.3")
 //            context.rdfa_version (n); }
 
-        if (var_.count (RDFA XSD))
-        {   int n = var_ [RDFA XSD].as < int > ();
-            if ((n > 0) && (n <= 1)) context.xsd (n); }
+//        if (var_.count (RDFA XSD))
+//        {   int n = var_ [RDFA XSD].as < int > ();
+//            if ((n > 0) && (n <= 1)) context.xsd (n); }
 
         context.shadow_comment (var_.count (SHADOW COMMENT));
         context.shadow_changed (var_.count (SHADOW CHANGED));
@@ -1041,8 +1073,7 @@ void options::contextualise (nitpick& nits)
 #undef TEST_VAR
 
         if (context.write_path ().empty ()) context.write_path (context.root ()); }
-    context.consolidate_jsonld ();
-    schema_version::init (); }
+    context.consolidate_jsonld (); }
 
 void pvs (::std::ostringstream& res, const vstr_t& data)
 {   for (auto i : data)
@@ -1071,7 +1102,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
         if (env_.count (REMOTE_HOST)) e << REMOTE_HOST ": " << env_ [REMOTE_HOST].as < ::std::string > () << "\n";
         if (env_.count (REMOTE_ADDR)) e << REMOTE_ADDR ": " << env_ [REMOTE_ADDR].as < ::std::string > () << "\n";
         if (env_.count (REMOTE_USER)) e << REMOTE_USER ": " << env_ [REMOTE_USER].as < ::std::string > () << "\n";
-        if (env_.count (AUTH_TYPE)) e << AUTH_TYPE ": " << env_ [AUTH_TYPE].as < ::std::string > () << "\n";;
+        if (env_.count (AUTH_TYPE)) e << AUTH_TYPE ": " << env_ [AUTH_TYPE].as < ::std::string > () << "\n";
         if (env_.count (CONTENT_TYPE)) e << CONTENT_TYPE ": " << env_ [CONTENT_TYPE].as < ::std::string > () << "\n";
         if (env_.count (CONTENT_LENGTH)) e << CONTENT_LENGTH ": " << env_ [CONTENT_LENGTH].as < ::std::string > () << "\n";
 
@@ -1105,7 +1136,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
         if (var_.count (ENVIRONMENT REMOTE_HOST)) res << ENVIRONMENT REMOTE_HOST ": " << var_ [ENVIRONMENT REMOTE_HOST].as < ::std::string > () << "\n";
         if (var_.count (ENVIRONMENT REMOTE_ADDR)) res << ENVIRONMENT REMOTE_ADDR ": " << var_ [ENVIRONMENT REMOTE_ADDR].as < ::std::string > () << "\n";
         if (var_.count (ENVIRONMENT REMOTE_USER)) res << ENVIRONMENT REMOTE_USER ": " << var_ [ENVIRONMENT REMOTE_USER].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT AUTH_TYPE)) res << ENVIRONMENT AUTH_TYPE ": " << var_ [ENVIRONMENT AUTH_TYPE].as < ::std::string > () << "\n";;
+        if (var_.count (ENVIRONMENT AUTH_TYPE)) res << ENVIRONMENT AUTH_TYPE ": " << var_ [ENVIRONMENT AUTH_TYPE].as < ::std::string > () << "\n";
         if (var_.count (ENVIRONMENT CONTENT_TYPE)) res << ENVIRONMENT CONTENT_TYPE ": " << var_ [ENVIRONMENT CONTENT_TYPE].as < ::std::string > () << "\n";
         if (var_.count (ENVIRONMENT CONTENT_LENGTH)) res << ENVIRONMENT CONTENT_LENGTH ": " << var_ [ENVIRONMENT CONTENT_LENGTH].as < ::std::string > () << "\n";
 
@@ -1130,7 +1161,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (GENERAL SSI)) res << GENERAL SSI "\n";
     if (var_.count (GENERAL TEST)) res << GENERAL TEST "\n";
     if (var_.count (GENERAL USER)) res << GENERAL USER ": " << var_ [GENERAL USER].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL VERBOSE)) res << GENERAL VERBOSE ": " << var_ [GENERAL VERBOSE].as < int > () << "\n";
+    if (var_.count (GENERAL VERBOSE)) res << GENERAL VERBOSE ": " << var_ [GENERAL VERBOSE].as < ::std::string > () << "\n";
     if (var_.count (GENERAL WEBMENTION)) res << GENERAL WEBMENTION "\n";
 
     if (var_.count (HTML TAGS)) res << HTML TAGS "\n";
@@ -1176,13 +1207,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (MICRODATA EXPORT)) res << MICRODATA EXPORT "\n";
     if (var_.count (MICRODATA MICRODATAARG)) res << MICRODATA MICRODATAARG "\n";
     if (var_.count (MICRODATA ROOT)) res << MICRODATA ROOT ": " << var_ [MICRODATA ROOT].as < ::std::string > () << "\n";
-    if (var_.count (MICRODATA VERSION)) res << MICRODATA VERSION ": " << var_ [MICRODATA VERSION].as < ::std::string > () << "\n";
     if (var_.count (MICRODATA VIRTUAL)) { res << MICRODATA VIRTUAL ": "; pvs (res, var_ [MICRODATA VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (RDFA DC)) res << RDFA DC ": " << var_ [RDFA DC].as < int > () <<  "\n";
     if (var_.count (RDFA FOAF)) res << RDFA FOAF ": " << var_ [RDFA FOAF].as < int > () <<  "\n";
     if (var_.count (RDFA VERSION)) res << RDFA VERSION ": " << var_ [RDFA VERSION].as < ::std::string > () <<  "\n";
     if (var_.count (RDFA XSD)) res << RDFA XSD ": " << var_ [RDFA XSD].as < int > () <<  "\n";
+
+    if (var_.count (SCHEMA LIST)) res << SCHEMA LIST "\n";
+    if (var_.count (SCHEMA VERSION)) res << SCHEMA VERSION ": " << var_ [SCHEMA VERSION].as < ::std::string > () << "\n";
 
     if (var_.count (SHADOW CHANGED)) res << SHADOW CHANGED "\n";
     if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT "\n";

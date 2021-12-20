@@ -46,9 +46,9 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_schema_typ
         case s_rdfa :
             return true;
         default :
-            GRACEFUL_CRASH (__FILE__, __LINE__);
             break; }
-    return false; }
+    GRACEFUL_CRASH (__FILE__, __LINE__);
+    UNREACHABLE (return false); }
 
 bool is_valid_property (nitpick& nits, const html_version& v, const e_schema_type t, const e_schema_property p, const e_schema_type value)
 {   switch (sch::root (t))
@@ -67,9 +67,9 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_schema_typ
         case s_rdfa :
             return true;
         default :
-            GRACEFUL_CRASH (__FILE__, __LINE__);
             break; }
-    return false; }
+    GRACEFUL_CRASH (__FILE__, __LINE__);
+    UNREACHABLE (return false); }
 
 template < typename ENUM > ENUM rdf_t::fit_vocab (const html_version& , const ::std::string& ) const
 {   GRACEFUL_CRASH (__FILE__, __LINE__); }

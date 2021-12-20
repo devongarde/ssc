@@ -363,13 +363,12 @@ Name/Value pairs:
     sausage: once in Irish breakfast
 
 Nits Reported:
-    Errors: 5 times
+    Errors: 4 times
     Warnings: 4 times
 
 Nit Categories:
     Attribute: thrice
     Element: twice
-    Init: once
     Schema: twice
     URx: once
 

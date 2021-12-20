@@ -203,7 +203,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/jwt", mime_application_jwt, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/kpml-request+xml", mime_application_kpml_request_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/kpml-response+xml", mime_application_kpml_response_xml, ns_default, MIME_APPLICATION | MIME_XML },
-    { { HTML_4_0 }, { HTML_UNDEF }, "application/ld+json", mime_application_ld_json, ns_default, MIME_APPLICATION | MIME_JSON },
+    { { HTML_4_0 }, { HTML_UNDEF }, "application/ld+json", mime_application_ld_json, ns_default, MIME_APPLICATION | MIME_JSON | MIME_JSON_LD },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/lgr+xml", mime_application_lgr_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/link-format", mime_application_link_format, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/load-control+xml", mime_application_load_control_xml, ns_default, MIME_APPLICATION | MIME_XML },

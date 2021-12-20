@@ -59,10 +59,10 @@ inline bool is_file_linked (const ::boost::filesystem::path& ) noexcept { return
 inline ::boost::filesystem::path resolve_link (const ::boost::filesystem::path& name) { return name; }
 inline bool make_hard_link (const ::boost::filesystem::path& , const ::boost::filesystem::path& )
 {   GRACEFUL_CRASH (__FILE__, __LINE__);
-    return false; }
+    UNREACHABLE (return false); }
 inline bool make_link (const ::boost::filesystem::path& , const ::boost::filesystem::path& )
 {   GRACEFUL_CRASH (__FILE__, __LINE__);
-    return false; }
+    UNREACHABLE (return false); }
 #else // NOLYNX
 bool is_file_linked (const ::boost::filesystem::path& name);
 ::boost::filesystem::path resolve_link (const ::boost::filesystem::path& name);

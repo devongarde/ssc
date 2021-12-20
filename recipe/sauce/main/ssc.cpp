@@ -35,6 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_hierarchy.h"
 #include "microdata/microdata_itemid.h"
 #include "type/type_csp.h"
+#include "schema/schema_version.h"
 #include "schema/schema_structure.h"
 #include "schema/schema_property.h"
 #include "schema/schema_name.h"
@@ -71,6 +72,7 @@ void init (nitpick& nits)
     sch::init (nits);
     schema_name_init (nits);
     schema_property_init (nits);
+    schema_version::init (nits);
     init_nstrs (nits);
     svg_feature_init (nits);
     hierarchy_init (nits);
@@ -228,6 +230,7 @@ int main (int argc, char** argv)
 #endif // _MSC_VER
         context.macros ().emplace (nm_run_args, args);
         res = context.parameters (nuts, argc, argv);
+        if (nuts.worst () <= es_warning) nits.merge (nuts);
         if (context.todo () == do_simple)
         {   ::std::cout << SIMPLE_TITLE << context.domsg ();
             return VALID_RESULT; }

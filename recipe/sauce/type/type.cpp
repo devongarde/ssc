@@ -763,7 +763,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_zero_to_one);
         TEST_VALUE (t_zero_to_ones);
         TEST_VALUE (t_zoompan);
-        default :   nits.pick (nit_type_error, es_catastrophic, ec_type, "type ", t, " missing from test_value");
-                    GRACEFUL_CRASH (__FILE__, __LINE__);
-                    break; }
-    return false; }
+        default : nits.pick (nit_type_error, es_catastrophic, ec_type, "type ", t, " missing from test_value"); }
+    GRACEFUL_CRASH (__FILE__, __LINE__);
+    UNREACHABLE (return false); }

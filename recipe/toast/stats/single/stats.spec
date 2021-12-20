@@ -37,6 +37,5 @@ Ontology:
     name: once
   2 itemtypes used twice
 Nits Reported:
-    Errors: once
     Warnings: twice
 ===
