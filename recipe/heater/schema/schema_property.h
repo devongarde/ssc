@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -23,11 +23,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_name.h"
 #include "microdata/microdata_itemtype.h"
 
+typedef ::std::vector < e_type > vt_t;
+
 void schema_property_init (nitpick& nits);
-e_schema_property identify_schema_property (nitpick& nits, const schema_version& v, const ::std::string& name);
-vsp_t identify_schema_properties (nitpick& nits, const schema_version& v, const ::std::string& name);
+e_schema_property identify_schema_property (const ::std::string& name);
+vsp_t identify_schema_properties (const ::std::string& name);
 bool check_schema_property_version (const schema_version& from, const schema_version& to, const e_schema_property prop, bool& found);
 ::std::string schema_property_name (const e_schema_property prop);
 bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema_type schema, const e_schema_property prop, const ::std::string& value, const bool is_link);
 bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema_type schema, const e_schema_property prop, const e_schema_type value);
 vit_t sought_schema_types (const e_schema_property prop);
+vit_t sought_schema_types (const schema_version& sv, const e_schema_property prop);
+vt_t sought_types (const schema_version& sv, const e_schema_property prop);
+e_schema property_root (const e_schema_property prop);
+bool does_property_apply (const schema_version& sv, const e_schema_property prop);

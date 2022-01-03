@@ -1,0 +1,10 @@
+{
+    "@context": [
+        "http://www.w3.org/ns/csvw",
+        { "@base": "http://example.com/" }
+    ],
+    "@type": "Table",
+    "url": "table.csv",
+    "tableSchema": [ "..." ],
+    "schema:url": { "@id": "table.csv" }
+}

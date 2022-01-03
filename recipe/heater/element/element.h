@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -251,13 +251,7 @@ class element
     void examine_track ();
     void examine_video ();
 public:
-//    element () = default;
-//    element (const element& ) = default;
-//    element (element&& ) = default;
     element (const ::std::string& name, element_node& en, element* parent, page& p);
-//    ~element () = default;
-//    element& operator = (const element& ) = default;
-//    element& operator = (element&& ) = default;
     void swap (element& e) noexcept;
 
     void reconstruct (sstr_t* access);

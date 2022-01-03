@@ -29,7 +29,7 @@ PASS ../toast/other/parsing/parsing-bad.html
 PASS ../toast/other/parsing/person.html
 12 sarcasm
 13 fe
-19 newline_in_string newline_in_string missing_double_quote missing_double_quote attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_repeated unrecognised_attribute unrecognised_attribute attribute_barred attribute_barred unrecognised_attribute invalid_attribute_version wrong_version missing_open missing_open
+19 newline_in_string newline_in_string missing_double_quote missing_double_quote attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_repeated unrecognised_attribute unrecognised_attribute attribute_barred attribute_barred unrecognised_attribute invalid_attribute_version wrong_version bad_vocab missing_open missing_open
 
 PASS ../toast/other/parsing/quotes.html
 2 inserted_missing_parent naughty_lang

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -50,11 +50,6 @@ element_node::element_node (nitpick& nits, elements_node* box, const int line, c
 element_node::element_node (elements_node* box)
     : box_ (box)
 {   VERIFY_NOT_NULL (box_, __FILE__, __LINE__); }
-
-//element_node::~element_node ()
-//{
-//    // When omitted, some versions of VC++ 19 seem to have a spot of bother
-//}
 
 void element_node::reset ()
 {   element_node en (box_);

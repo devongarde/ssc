@@ -17,6 +17,8 @@ ssc.exe -T -Z -o ../out/5.4html5.tst -f ../toast/HTML/5.4/html5.conf
 ssc.exe -T -Z -o ../out/minimalminimal.tst -f ../toast/HTML/minimal/minimal.conf
 ssc.exe -T -Z -o ../out/Plusplus.tst -f ../toast/HTML/Plus/plus.conf
 ssc.exe -T -Z -o ../out/tagstags.tst -f ../toast/HTML/tags/tags.conf
+ssc.exe -T -Z -o ../out/jas.tst -f ../toast/json-ld/as/jsonld.conf
+ssc.exe -T -Z -o ../out/jschemaorg.tst -f ../toast/json-ld/schemaorg/jsonld.conf
 ssc.exe -T -Z -o ../out/linklink.tst -f ../toast/link/link.conf
 ssc.exe -T -Z -o ../out/jul07living.tst -f ../toast/living/jul07/living.conf
 ssc.exe -T -Z -o ../out/jan08living.tst -f ../toast/living/jan08/living.conf
@@ -96,7 +98,10 @@ ssc.exe -T -Z -o ../out/RDFarole.tst -f ../toast/RDFa/role/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFars.tst -f ../toast/RDFa/rs/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFaschema.tst -f ../toast/RDFa/schema/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFasioc.tst -f ../toast/RDFa/sioc/rdfa.conf
-ssc.exe -T -Z -o ../out/RDFavcard.tst -f ../toast/RDFa/vcard/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFavcard1.tst -f ../toast/RDFa/vcard/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFavcard2.tst -f ../toast/RDFa/vcard-2/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFavcard3.tst -f ../toast/RDFa/vcard-3/rdfa.conf
+ssc.exe -T -Z -o ../out/RDFavcard4.tst -f ../toast/RDFa/vcard-4/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFaxsd.tst -f ../toast/RDFa/xsd/rdfa.conf
 ssc.exe -T -Z -o ../out/commentcomment.tst -f ../toast/shadow/comment/comment.conf
 ssc.exe -T -Z -o ../out/copycopy.tst -f ../toast/shadow/copy/copy.conf

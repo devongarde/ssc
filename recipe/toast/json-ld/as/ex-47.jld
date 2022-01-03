@@ -1,0 +1,14 @@
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "summary": "Sally is an acquaintance of John",
+    "type": "Relationship",
+    "subject": {
+        "type": "Person",
+        "name": "Sally"
+    },
+    "relationship": "http://purl.org/vocab/relationship/acquaintanceOf",
+    "object": {
+        "type": "Person",
+        "name": "John"
+    }
+}

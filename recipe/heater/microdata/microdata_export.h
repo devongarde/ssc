@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@ class microdata_export
 {   ::boost::property_tree::ptree tree_;
     bool initiated_ = false;
     uid_t uid_ = 0;
+    ::std::string rpt (const ::boost::property_tree::ptree& tree, const int dent) const;
 public:
     void swap (microdata_export& m);
     void init (const ::std::string& name);
@@ -34,4 +35,5 @@ public:
     void add (const ::std::string& path, const itemprop_index itemprop, const ::std::string& value);
     void add (const ::std::string& path, const itemtype_index itemtype);
     void add (const ::std::string& path, const ::std::string& itemid);
-    ::std::string append_path (const ::std::string& orig, const itemprop_index prop, const bool uid = false, const ::std::string& it = ::std::string ()); };
+    ::std::string append_path (const ::std::string& orig, const itemprop_index prop, const bool uid = false, const ::std::string& it = ::std::string ());
+    ::std::string rpt () const { return rpt (tree_, 0); } };

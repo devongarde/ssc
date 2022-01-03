@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -362,6 +362,7 @@ typedef enum {  dt_collection, dt_dataset, dt_event, dt_image, dt_interactiveres
 typedef enum { dec_left, dec_center, dec_right, dec_justify, dec_decimal } e_decalign;
 typedef enum { ed_auto, ed_sync, ed_async } e_decoding;
 typedef enum { df_cancel, df_perform } e_defaultaction;
+typedef enum { dt_none, dt_a, dt_an, dt_the, dt_auto } e_determiner;
 typedef enum { dv_media, dv_fs, dv_rs232, dv_usb } e_device;
 
 typedef enum {  db_context,
@@ -1446,7 +1447,7 @@ typedef enum { mo_display, mo_inline } e_mode;
 
 // for foaf
 // Note: Myers Briggs Type Indicator and MBTI are registered trademarks of Consulting Psychologists Press Inc. Oxford Psychologists Press Ltd has exclusive rights to the trademark in the UK.
-// Note: pseudoscience
+// Note: it's pseudoscience
 typedef enum { mb_ESTJ, mb_INFP, mb_ESFP, mb_INTJ, mb_ESFJ, mb_INTP, mb_ENFP, mb_ISTJ, mb_ESTP, mb_INFJ, mb_ENFJ, mb_ISTP, mb_ENTJ, mb_ISFP, mb_ENTP, mb_ISFJ } e_myersbriggs;
 
 typedef enum
@@ -1468,7 +1469,7 @@ typedef enum
     ns_rdf, ns_rdfa, ns_rdfs, ns_rddl,
     ns_saxon, ns_smil, ns_smpte, ns_svg,
     ns_tt, ns_ttf, ns_ttp, ns_tts,
-    ns_vcard,
+    ns_v, ns_vcard,
     ns_xalan, ns_xf, ns_xhv, ns_xi, ns_xlink, ns_xhtml, ns_xmlevents, ns_xmlns, ns_xs, ns_xsi, ns_xslt, ns_xtm,
     ns_error } e_namespace;
 
@@ -1573,6 +1574,7 @@ typedef enum
     nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file, nit_code_dtd, nit_data_vocabulary, nit_json_error,
     nit_json_internal_error, nit_json_id, nit_vocab, nit_jsonld_context, nit_json_name, nit_json_invalid_node, nit_json_value_object,
     nit_json_out_of_place, nit_json_bad_term, nit_jsonld_type, nit_missing_schema, nit_jsonld_format, nit_jsonld_mistype,
+    nit_jsonld_encoding, nit_jsonld_map, nit_crap_spec, nit_bad_uid, nit_missing_property,
 
     nit_context,
 
@@ -1630,8 +1632,27 @@ typedef enum
 typedef enum { no_dsssl, no_w3c } e_notations;
 typedef enum { nsd_none, nsd_space, nsd_dashed } e_nsd;
 typedef enum { nuf_refurbished, nuf_new, nuf_used } e_nuf;
-typedef enum { og_musicsong, og_musicalbum, og_musicplaylist, og_musicradiostation, og_videomovie, og_videoepisode, og_videotvshow, og_videoother,
-               og_article, og_book, og_profile, og_website } e_ogtype;
+
+typedef enum {
+    og_activity, og_actor, og_album, og_article, og_athlete, og_author,
+    og_band, og_bar, og_blog, og_book,
+    og_cafe, og_cause, og_company, og_city, og_country,
+    og_director, og_drink,
+    og_food,
+    og_game, og_government,
+    og_hotel,
+    og_landmark,
+    og_movie, og_musician,
+    og_musicsong, og_musicalbum, og_musicplaylist, og_musicradiostation,
+    og_product, og_non_profit,
+    og_politician, og_profile, og_public_figure,
+    og_restaurant,
+    og_school, og_song, og_sport, og_sports_league, og_sports_team, og_state_province,
+    og_tv_show,
+    og_university,
+    og_videomovie, og_videoepisode, og_videotvshow, og_videoother,
+    og_website } e_ogtype;
+
 typedef enum { oo_off, oo_on } e_onoff;
 typedef enum { op_arithmetic, op_atop, op_in, op_out, op_over, op_xor } e_operator;
 typedef enum { or_h, or_v } e_orientation;
@@ -1675,7 +1696,7 @@ typedef enum {
     pr_s3, pr_secondlife, pr_service, pr_session, pr_sftp, pr_sgn, pr_shttp, pr_sieve, pr_sip, pr_sips, pr_skype, pr_slack, pr_smb, pr_sms, pr_snews, pr_snmp,
         pr_soap_beep, pr_soap_beeps, pr_soldat, pr_spotify, pr_ssh, pr_steam, pr_stratum, pr_stun, pr_stuns, pr_snv,
     pr_tag, pr_teamspeak, pr_tel, pr_telnet, pr_tftp, pr_things, pr_thismessage, pr_tn3270, pr_tip, pr_trueconf, pr_turn, pr_turns, pr_tv,
-    pr_udp, pr_unreal, pr_urn, pr_ut2004, pr_vemmi, pr_ventrilo, pr_videotex, pr_view_source, pr_vnc,
+    pr_udp, pr_uid, pr_unreal, pr_urn, pr_ut2004, pr_vemmi, pr_ventrilo, pr_videotex, pr_view_source, pr_vnc,
     pr_wais, pr_webcal, pr_webplus, pr_ws, pr_wss, pr_wtai, pr_wyciwyg, pr_xcon, pr_xcon_userid, pr_xfire, pr_xmlrpc_beep, pr_xmlrpc_beeps, pr_xmpp, pr_xri,
     pr_ymsgr,
     pr_z39_50, pr_z39_50r, pr_z39_50s, pr_zoommtg, pr_zoomus,
@@ -1796,7 +1817,7 @@ typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_
     s_rdf, s_rdfa, s_rdfg, s_rdfs, s_rev, s_rif, s_role, s_rr, \
     s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_sosa, s_ssn, \
     s_taxo, s_time, \
-    s_v, s_vcard, s_video, s_void, \
+    s_v, s_vann, s_vcard, s_video, s_void, \
     s_wdr, s_wdrs, s_website, s_whatwg, \
     s_xhv, s_xml, s_xsd, \
     s_error
@@ -1821,7 +1842,7 @@ typedef enum
     asc_ignore, asc_image, asc_intransitiveactivity, asc_invite, asc_iscontact, asc_isfollowedby, asc_isfollowing, asc_ismember,
     asc_join,
     asc_leave, asc_like, asc_link, asc_listen,
-    asc_mention, asc_move,
+    asc_medialink, asc_mention, asc_move,
     asc_note,
     asc_object, asc_offer, asc_orderedcollection, asc_orderedcollectionpage, asc_organisation,
     asc_page, asc_person, asc_place, asc_profile,
@@ -2378,21 +2399,24 @@ typedef enum
     v_review, v_reviewaggregate,
 
     // vcard
-    vcard_address,
+    vcard_address, vcard_adrproperties, vcard_adrtypes,
     vcard_bbs,
-    vcard_car,
+    vcard_cacquaintance, vcard_cagent, vcard_car, vcard_cchild, vcard_ccolleague, vcard_ccontact, vcard_ccoresident, vcard_ccoworker, vcard_ccrush, vcard_cdate,
+        vcard_cemergency, vcard_female, vcard_cfriend, vcard_cgender, vcard_cgroup, vcard_ckin, vcard_male, vcard_cme, vcard_cmet, vcard_cmuse, vcard_cneighbour,
+        vcard_none, vcard_cother, vcard_cparent, vcard_csibling, vcard_cspouse, vcard_csweetheart, vcard_ctext, vcard_ctextphone, vcard_ctype, vcard_unknown,
     vcard_dom,
-    vcard_email,
+    vcard_email, vcard_emailtypes,
     vcard_fax,
     vcard_home,
-    vcard_internet, vcard_intl, vcard_isdn,
+    vcard_individual, vcard_internet, vcard_intl, vcard_isdn,
     vcard_label, vcard_location,
     vcard_mobile, vcard_modem, vcard_msg,
-    vcard_name,
-    vcard_organisation,
+    vcard_name, vcard_nproperties,
+    vcard_organisation, vcard_orgproperties,
     vcard_pager, vcard_parcel, vcard_pcs, vcard_postal, vcard_pref,
-    vcard_tel,
-    vcard_vcard, vcard_video, vcard_voice,
+    vcard_relatedtype,
+    vcard_tel, vcard_teltypes, vcard_telephonetype, vcard_tztypes,
+    vcard_vcard, vcard_vcardtype, vcard_video, vcard_vkind, vcard_voice,
     vcard_work,
     vcard_x400,
 
@@ -2435,7 +2459,7 @@ typedef enum
     asp_accuracy, asp_actor, asp_altitude, asp_anyof, asp_attachment, asp_attachments, asp_attributedto, asp_audience, asp_author,
     asp_bcc, asp_bto,
     asp_cc, asp_closed, asp_content, asp_contentmap, asp_context, asp_current,
-    asp_deleted, asp_describes, asp_downstreamduplicates, asp_duration,
+    asp_deleted, asp_describes, asp_displayname, asp_downstreamduplicates, asp_duration,
     asp_endtime,
     asp_first, asp_formertype,
     asp_generator,
@@ -2445,11 +2469,11 @@ typedef enum
     asp_mediatype,
     asp_name, asp_namemap,
     asp_next,
-    asp_object, asp_oneof, asp_ordereditems, asp_origin,
+    asp_object, asp_objecttype, asp_oneof, asp_ordereditems, asp_origin,
     asp_partof, asp_prev, asp_preview, asp_provider, asp_published,
     asp_radius, asp_rating, asp_rel, asp_relationship, asp_replies, asp_result,
     asp_startindex, asp_starttime, asp_subject, asp_summary, asp_summarymap,
-    asp_tag, asp_tags, asp_target, asp_to, asp_totalitems, asp_type,
+    asp_tag, asp_tags, asp_target, asp_title, asp_to, asp_totalitems, asp_type,
     asp_units, asp_updated, asp_upstreamduplicates, asp_url,
     asp_verb,
     asp_width,
@@ -2809,15 +2833,18 @@ typedef enum
     oa_via,
 
     // open graph
-    og_article_author, og_article_expiration_date, og_article_modified_time, og_article_published_time, og_article_section, og_article_tag,
-    og_audio, og_audio_secure_url, og_audio_type, og_audio_url,
+    og_article_author, og_article_expiration_time, og_article_modified_time, og_article_published_time, og_article_section, og_article_tag,
+    og_audio, og_audio_album, og_audio_artist, og_audio_secure_url, og_audio_title, og_audio_type, og_audio_url,
     og_book_author, og_book_isbn, og_book_release_date, og_book_tag,
-    od_description, og_determiner,
+    og_country_name,
+    og_description, og_determiner,
+    og_email,
+    og_fax_number,
     og_image, og_image_alt, og_image_height, og_image_secure_url, og_image_type, og_image_url, og_image_width,
-    og_locale, og_locale_alternative,
+    og_latitude, og_locale, og_locale_alternative, og_locality, og_longitude,
     og_music_album, og_music_album_disc, og_music_album_track, og_music_creator, og_music_duration, og_music_musician, og_music_release_date, og_music_song, og_music_song_disc, og_music_song_track,
-    og_profile_first_name, og_profile_gender, og_profile_last_name, og_profile_username,
-    og_site_name,
+    og_phone_number, og_postcode, og_profile_first_name, og_profile_gender, og_profile_last_name, og_profile_username,
+    og_region, og_site_name, og_street_address,
     og_title, og_type,
     og_url,
     og_video, og_video_actor, og_video_actor_role, og_video_alt, og_video_director, og_video_duration, og_video_height, og_video_release_date, og_video_secure_url, og_video_series, og_video_tag, og_video_type, og_video_url,
@@ -2935,7 +2962,7 @@ typedef enum
     rrp_tablename, rrp_template, rrp_termtype,
 
     // schema.org
-    sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptoffer, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol,
+    sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol,
     sp_accessibilityfeature, sp_accessibilityhazard, sp_accessibilitysummary, sp_accesscode, sp_accessmode, sp_accessmodesufficient, sp_accommodationcategory, sp_accommodationfloorplan, sp_accountableperson,
     sp_accountid, sp_accountminimuminflow, sp_accountoverdraftlimit, sp_acquiredfrom, sp_acquirelicensepage, sp_acrisscode, sp_action, sp_actionablefeedbackpolicy, sp_actionaccessibilityrequirement, sp_actionapplication,
     sp_actionoption, sp_actionplatform, sp_actionstatus, sp_activeingredient, sp_activityduration, sp_activityfrequency, sp_actor, sp_additionalname, sp_additionalnumberofguests, sp_additionalproperty, sp_additionaltype,
@@ -3190,25 +3217,35 @@ typedef enum
     v_votes,
     v_worst,
 
+    // vann
+    vann_changes, vann_example, vann_pnp, vann_pnu, vann_termgroup, vann_usagenote,
+
     // vcard
-    vcard_additional_name, vcard_adr, vcard_agent,
+    vcard_additional_name, vcard_adr, vcard_agent, vcard_anniversary,
     vcard_bday,
-    vcard_category, vcard_class, vcard_country_name,
-    vcard_extended_address,
-    vcard_family_name, vcard_fn,
-    vcard_geo, vcard_given_name,
-    vcard_hasemail, vcard_hasfax, vcard_haslabel, vcard_homeadr, vcard_hometel, vcard_honourific_prefix, vcard_honourific_suffix,
-    vcard_key,
-    vcard_latitude, vcard_locality, vcard_logo, vcard_longitude,
-    vcard_mailer, vcard_mobileemail, vcard_mobiletel,
-    vcard_n, vcard_nickname, vcard_note,
-    vcard_org, vcard_organisational_name, vcard_organisational_unit,
-    vcard_personalemail, vcard_phone, vcard_photo, vcard_post_office_box, vcard_postal_code, vcard_prodid,
-    vcard_region, vcard_rev, vcard_role,
-    vcard_sort_string, vcard_sound, vcard_street_address,
-    vcard_title, vcard_tz,
+    vcard_caladruri, vcard_caluri, vcard_category, vcard_categories, vcard_class, vcard_clientpidmap, vcard_country, vcard_country_name,
+    vcard_pemail, vcard_extadd, vcard_extended_address,
+    vcard_family, vcard_family_name, vcard_fburl, vcard_fn,
+    vcard_gender, vcard_geo, vcard_given, vcard_given_name, vcard_group,
+    vcard_hasadditionalname, vcard_hasaddress, vcard_hascalendarbusy, vcard_hascalendarrequest, vcard_hascalendarlink, vcard_hascategory, vcard_hascountryname, vcard_hasemail, vcard_hasfax,
+        vcard_hasfn, vcard_hasfamilyname, vcard_hasgender, vcard_hasgeo, vcard_hasgivenname,
+        vcard_hashonourificprefix, vcard_hashonourificsuffix, vcard_hasinstantmessage, vcard_haskey, vcard_haslanguage, vcard_haslocality, vcard_haslogo, vcard_hasmember,
+        vcard_hasname, vcard_hasnickname, vcard_hasnote, vcard_hasorganisationname, vcard_hasorganisationunit, vcard_hasphoto, vcard_haspostcode, vcard_hasregion, vcard_hasrelated, vcard_hasrole, vcard_hasstreetaddress,
+        vcard_hastelephone, vcard_hastitle, vcard_hasvalue, vcard_homeadr, vcard_hometel, vcard_honourific_prefix, vcard_honourific_suffix,
+    vcard_impp,
+    vcard_key, vcard_kind,
+    vcard_labelp, vcard_lang, vcard_latitude, vcard_locality, vcard_logo, vcard_longitude,
+    vcard_mailer, vcard_member, vcard_mobileemail, vcard_mobiletel,
+    vcard_n, vcard_pname, vcard_nickname, vcard_note,
+    vcard_other, vcard_org, vcard_organisation_name, vcard_organisation_unit, vcard_organisational_unit, vcard_orgname, vcard_orgunit,
+    vcard_pcode, vcard_personalemail, vcard_phone, vcard_photo, vcard_pobox, vcard_post_office_box, vcard_postcode, vcard_ppref, vcard_prefix, vcard_prodid, vcard_profile,
+    vcard_region, vcard_related, vcard_rev, vcard_role,
+    vcard_sort_string, vcard_sound, vcard_source, vcard_street, vcard_street_address, vcard_suffix,
+    vcard_title, vcard_type, vcard_tz,
     vcard_uid, vcard_unlabeledadr, vcard_unlabeledemail, vcard_unlabeledtel, vcard_url,
+    vcard_value,
     vcard_workadr, vcard_workemail, vcard_worktel,
+    vcard_xml,
 
     // void
     void_class, void_classes, void_classpartition,
@@ -3408,7 +3445,7 @@ typedef enum {
         t_coords, t_corp, t_cors, t_cntype, t_crossout, t_css, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source,
         t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, t_cursor, t_cursor_f, t_cursor_i,
     t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_dcmitype, t_decalign,
-        t_decoding, t_defaultaction, t_depth, t_device, t_dingbat, t_dir, t_direction, t_display, t_display_align, t_dominantbaseline, t_dosh, t_dsc,
+        t_decoding, t_defaultaction, t_depth, t_determiner, t_device, t_dingbat, t_dir, t_direction, t_display, t_display_align, t_dominantbaseline, t_dosh, t_dsc,
         t_dsctv, t_dur, t_dur_repeat, t_duration, t_duration_media,
     t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_enable_background, t_enctype, t_end, t_endvaluelist, t_enterkeyhint,
         t_existential, t_expected,
@@ -3423,7 +3460,7 @@ typedef enum {
     t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index,
         t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus,
         t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
-    t_js_lang, t_js_term, t_js_type, t_js_value, t_js_version, t_jtoken, t_just_date, t_just_time,
+    t_js_lang, t_js_lang_map, t_js_map, t_js_term, t_js_type, t_js_value, t_js_version, t_jtoken, t_just_date, t_just_time,
     t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind,
     t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length, t_length_absolute,
         t_length_relative, t_lengthadjust, t_linebreak, t_linebreakstyle, t_linecap, t_line_height, t_linejoin, t_linethickness, t_link, t_linkarg, t_linkargs,
@@ -3438,7 +3475,7 @@ typedef enum {
         t_minute, t_mode, t_month, t_monthday, t_morphology_operator, t_mql, t_mqls, t_myersbriggs,
     t_name, t_nameref, t_namespace, t_namedspace, t_navigation, t_negative, t_nit_macro, t_nit_section, t_not_0, t_not_empty, t_not_neg, t_not_pos,
         t_notation, t_notations, t_nsd, t_nsds, t_nuf, t_num,
-    t_occurence, t_ogtype, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, t_overlay,
+    t_occurence, t_og, t_ogdet, t_ogtype, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, t_overlay,
     t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_panose1, t_percent, t_phase, t_phase_x, t_pics, t_plus_1_7, t_plusstyle, t_pointer_events,
         t_points, t_positive, t_positive_1_2, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio, t_preserveaspectratio10,
         t_preserveaspectratio12, t_print, t_propagate, t_pseudo, t_pseudonamedspace, t_pt,
@@ -3446,7 +3483,7 @@ typedef enum {
     t_rap, t_rating, t_rdf_parsetype, t_rdfa_typeof, t_real, t_real_1_2, t_real_ai, t_real_i, t_reals, t_referrer, t_refresh, t_refx, t_refy, t_regex, t_rel,
         t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents, t_repeatcount, t_restart,
         t_result, t_reveal_trans, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim, t_rowscols,  t_rsvp, t_rules,
-    t_sandbox, t_sandboxen, t_scei, t_schema, t_schema_type, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml,
+    t_sandbox, t_sandboxen, t_scei, t_schema_type, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml,
         t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon,
         t_shape_fn_circlesz, t_shape_fn_ellipsesz, t_shape_fn_polygonsz, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3,
         t_sizes, t_sizex, t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env,
@@ -3460,11 +3497,11 @@ typedef enum {
     t_tableframe, t_tablevalues, t_target, t_tbalign, t_tdscope, t_tel, t_tel_format, t_tendstotype, t_text, t_text_decoration, t_textoverflow, t_text_rendering,
         t_tfmu, t_tfa, t_tfi, t_tfn, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, t_transition_type,
         t_transp, t_truefalseempty, t_turbulence_type, t_type, t_typeof, t_tz,
-    t_ugeo, t_unicode_bidi, t_unit, t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, t_urange, t_urifn,
+    t_ugeo, t_uid, t_unicode_bidi, t_unit, t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, t_urange, t_urifn,
         t_urifn_ni, t_urisz, t_url, t_urls,
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2, t_vector_effect_20,
-        t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vid, t_viewportscreen, t_visibility, t_visibility10, t_visibility11, t_vocab,
-        t_vunit, t_vunits,
+        t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vgender, t_vid, t_viewportscreen, t_visibility, t_visibility10, t_visibility11,
+        t_vkind, t_vocab, t_vrel, t_vtt, t_vtype, t_vunit, t_vunits,
     t_wanted, t_wallclock, t_week, t_whitespace, t_width, t_workertype, t_wrap, t_wrap3, t_writingmode, t_wxhs,
     t_x_content_type_options, t_x_ua_compatible, t_xlinkactuate, t_xlinkactuate_onrequest, t_xlinkactuate_onload, t_xlinkshow, t_xlinkshow_a, t_xlinkshow_e,
         t_xlinkshow_o, t_xlinktype, t_xmllink, t_xmlliteral, t_xmlns, t_xmlspace, t_xmlurl, t_xorder, t_xsdbool,
@@ -3487,6 +3524,12 @@ typedef enum { eva_baseline, eva_sub, eva_super, eva_top, eva_text_top, eva_midd
 typedef enum { vs_viewport, vs_screen } e_viewportscreen;
 typedef enum { vi0_visible, vi0_hidden, vi0_inherit } e_visibility10;
 typedef enum { vi1_visible, vi1_hidden, vi1_collapse, vi1_inherit } e_visibility11;
+typedef enum { vg_female, vg_male, vg_none, vg_other, vg_unknown } e_vgender;
+typedef enum { vk_individual, vk_organisation, vk_group, vk_location } e_vkind;
+typedef enum {  vr_acquaintance, vr_agent, vr_child, vr_colleague, vr_contact, vr_coresident, vr_coworker, vr_crush, vr_date,
+                vr_emergency, vr_friend, vr_kin, vr_me, vr_met, vr_muse, vr_neighbor, vr_parent, vr_sibling, vr_spouse, vr_sweetheart } e_vrel;
+typedef enum { vt_mobile, vt_fax, vt_pager, vt_sms, vt_textphone, vt_video, vt_voice } e_vtt;
+typedef enum { vt_home, vt_work } e_vtype;
 typedef enum { ws_normal, ws_pre, ws_nowrap, ws_pre_wrap, ws_break_spaces, ws_pre_line } e_whitespace;
 typedef enum { wm_undefined, wm_addr, wm_link, wm_root } e_wm_status;
 typedef enum { wt_classic, wt_module } e_workertype;
@@ -3496,8 +3539,8 @@ typedef enum { wm_lrtb, wm_rltb, wm_tbrl, wm_lr, wm_rl, wm_tb, wm_htb, wm_vrl, w
 typedef enum { xls_new, xls_replace } e_xlinkshow_a;
 typedef enum {  x_default, x_xhtml_1, x_xhtml_1_superseded, x_xhtml_11, x_xhtml_2, x_html, x_bibo, x_cc, x_comments, x_crs,
                 x_dbp, x_dbp_owl, x_dbr, x_dc, x_dc_terms, x_dt, x_ex, x_exsl, x_foaf, x_lxslt, x_mathml, x_owl, x_rddl, x_rdf,
-                x_rdfa, x_rdfs, x_rel, x_rng, x_rss, x_saxon, x_smil, x_soapenc11, x_soapenc12, x_svg, x_syn, x_wsdl11, x_wsdl12,
-                x_xf, x_xhv, x_xi, x_xlink, x_xml, x_xmlevents, x_xmlns, x_xsd, x_xslfo, x_xslt, x_xsi } e_xmlns;
+                x_rdfa, x_rdfs, x_rel, x_rng, x_rss, x_saxon, x_smil, x_soapenc11, x_soapenc12, x_svg, x_syn, x_v, x_vcard1, x_vcard,
+                x_wsdl11, x_wsdl12, x_xf, x_xhv, x_xi, x_xlink, x_xml, x_xmlevents, x_xmlns, x_xsd, x_xslfo, x_xslt, x_xsi } e_xmlns;
 typedef enum { xs_default, xs_preserve } e_xmlspace;
 typedef enum { or_document, or_list } e_xorder;
 typedef enum { xb_0, xb_1, db_false, xd_true } e_xsdbool;

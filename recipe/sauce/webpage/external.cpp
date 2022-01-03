@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -54,18 +54,10 @@ int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdlin
         child ext (cmdline, std_out > pipe_stream);
         if (ext.valid () && pipe_stream)
         {   ::std::string line;
-//            bool first = true;
             vstr_t vs;
             while (pipe_stream && ::std::getline (pipe_stream, line))
                 vs.push_back (line);
             code = process_curl_result (nits, v, vs, pure_code); }
-//            {   if (! line.empty () && pure_code)
-//                    code = lexical < int > :: cast (line, 3);
-//                else if (first && ! line.empty ())
-//                {   headers h (nits, v, line);
-//                    code = h.code ();
-//                    first = false; }
-//                if (code > 0) break; } }
         ext.wait (); }
     catch (...)
     {   nits.pick (nit_no_curl, es_catastrophic, ec_link, "Cannot check external links. Please verify your installation of curl");

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -103,7 +103,6 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
         return void_ptr (); }
     if (fp != nullptr) fclose (fp);
     return void_ptr (); }
-
 
 bool write_text_file (const ::std::string& name, const ::std::string& content)
 {   using namespace boost::filesystem;

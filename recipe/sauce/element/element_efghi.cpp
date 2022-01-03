@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -387,7 +387,6 @@ void element::examine_img ()
         if (node_.version () >= html_jan17)
         {   if (a_.valid (a_srcset))
             {   attribute_v_ptr srsptr = a_.get (a_srcset);
-//                const attr_srcset* const srs = static_cast <attr_srcset*> (srsptr.get ());
                 const attr_srcset* const srs = dynamic_cast <attr_srcset*> (srsptr.get ());
                 VERIFY_NOT_NULL (srs, __FILE__, __LINE__);
                 if (srs -> has_width () && ! a_.known (a_sizes))

@@ -1,0 +1,12 @@
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "type": "Image",
+    "name": "My cat taking a nap",
+    "url": "http://example.org/cat.jpeg",
+    "attributedTo": [
+        {
+            "type": "Person",
+            "name": "Sally"
+        }
+    ]
+}

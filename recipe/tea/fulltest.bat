@@ -18,6 +18,8 @@ ssc.exe -f ../toast/HTML/minimal/minimal.conf
 ssc.exe -f ../toast/HTML/Plus/plus.conf
 ssc.exe -f ../toast/HTML/tags/tags.conf
 ssc.exe -f ../toast/link/link.conf
+ssc.exe -f ../toast/json-ld/as/jsonld.conf
+ssc.exe -f ../toast/json-ld/schemaorg/jsonld.conf
 ssc.exe -f ../toast/living/jul07/living.conf
 ssc.exe -f ../toast/living/jan08/living.conf
 ssc.exe -f ../toast/living/jul08/living.conf
@@ -98,6 +100,9 @@ ssc.exe -f ../toast//RDFa/rs/rdfa.conf
 ssc.exe -f ../toast//RDFa/schema/rdfa.conf
 ssc.exe -f ../toast//RDFa/sioc/rdfa.conf
 ssc.exe -f ../toast//RDFa/vcard/rdfa.conf
+ssc.exe -f ../toast//RDFa/vcard-2/rdfa.conf
+ssc.exe -f ../toast//RDFa/vcard-3/rdfa.conf
+ssc.exe -f ../toast//RDFa/vcard-4/rdfa.conf
 ssc.exe -f ../toast//RDFa/xsd/rdfa.conf
 ssc.exe -f ../toast/shadow/comment/comment.conf
 ssc.exe -f ../toast/shadow/copy/copy.conf

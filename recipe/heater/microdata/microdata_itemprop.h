@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,6 @@ itemprop_indices make_itemprop_indices (const vsp_t& vsp);
 itemprop_index make_itemprop_index (const e_property p);
 itemprop_indices make_itemprop_indices (const e_property p);
 
-// e_itemprop_category prop_category (const itemprop_index ii);
 constexpr inline e_itemprop_category prop_category (const itemprop_index ii) noexcept
 {   return static_cast < e_itemprop_category> (::gsl::narrow_cast < uint32_t > (ii) >> uint32_category_shift); }
 

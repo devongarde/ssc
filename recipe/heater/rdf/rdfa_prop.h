@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -34,8 +34,7 @@ prop_indices make_prop_indices (const prop_index p);
 prop_indices make_prop_indices (const e_schema_property p);
 prop_indices make_prop_indices (const vsp_t& vsp);
 ::std::string bespoke_prop_name (const prop_index ii);
-prop_index find_prop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);
-prop_indices find_prop_indices (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);
+prop_indices find_prop_indices (nitpick& nits, const html_version& v, const vsh_t& vs, const ::std::string& name, bool bespoke_permitted);
 ::std::string prop_index_name (const prop_index ndx);
 bool is_valid_prop (nitpick& nits, const html_version& v, const type_index t, const prop_index ndx, const ::std::string& value, const bool is_link);
 bool is_valid_prop (nitpick& nits, const html_version& v, const type_index t, const prop_index ndx, const type_index value);

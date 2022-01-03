@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -34,69 +34,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_master.h"
 #include "parser/html_version.h"
 
-/*
--N
-picks up web mention links, digs through them, finds notification server, and sends appropriate notifications
-Note: will need to keep track of mentions, so changes can be noted as additions, updates or deletes.
-Mentions can be identified by their in-reply-tos, and if there are many of them to the same URL, then so be it.
-Requires microformat processing
-
-Q: Does app:
-    store old pages (where?),
-    talk to version control,
-    require old and new page parameters,
-    or have the user specify precise changes?
-Q: When updating, does app:
-    presume all web mentions have changed,
-    or compare & look for changes?
-I lean towards the latter.
-
--P
-Make note of web mention references in files, but don't actually notify the server of changes.
-Instead, prime the web mention data store so future updates can be notified
-
--C
-Clear the web mention data store. The next time the app is run, it'll be as thought all the web mentions
-are fresh and new.
-
-
--M parameters
-url parameter style encoded webmention references (https://indieweb.org/Webmention-developer), expects:
-source= is site containing mention to this site
-target= is specific page on this site that is mentioned
-both must be given
-
-Q: Given web mentions are dynamic:
-    should the target page be updated in situ
-    should a set of HTML snippet be created, one per web mention, to be assembled during page compilation
-    should frames or something like it be used (NO!)
-
-
-sundry switches
--T insert,update,delete,unchanged
-web mention HTML snippet templates
-
--n
-tell what it would do, don't actually do it
-
-*/
-
-
-/*
-also useful
-
-1. additional HTML elements (as per data, which I've explicitly coded)
-should allow attribute specification too
-
-2. additional rel values
-needs rel type and probably context info
-*/
-
 #define TYPE_HELP "Type '" PROG " -h' for help."
 
 ::std::string env_mapper (::std::string env)
-{  // boost environment variable translator
-
+{
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 4244)
@@ -139,7 +80,7 @@ void options::help (const ::boost::program_options::options_description& aid) co
 {   ::std::string res;
     res =   PROG " [switch...] path.\n\n"
             PROG " is an opinionated HTML nit-picker. It notes broken links, dubious syntax, bad semantics,\n"
-            "etc.. It highlights legal but untidy code.\n";
+            "odd ontology, etc.. It highlights legal but untidy code.\n";
     ::std::ostringstream waste_of_space;
     waste_of_space << aid;
     res +=  waste_of_space.str ();
@@ -221,13 +162,14 @@ void options::process (nitpick& nits, int argc, char* const * argv)
 */
     ::boost::program_options::options_description
         aid (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
-        basic ("Command Line Options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        basic ("Command line options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         cgi (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         cmd (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         config (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         env (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         hidden,
-        primary ("General Options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        ontology ("Set default ontology version", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
+        primary ("General options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         valid ("Add common attribute values", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH);
     ::boost::program_options::positional_options_description pos;
     pos.add (WEBSITE ROOT, 1);
@@ -375,10 +317,9 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (NITS UNIQUE ",U", "Do not report repeated nits, even if they give more information")
         (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a warning; may be repeated.")
 
-        (RDFA VERSION, ::boost::program_options::value < ::std::string > () -> default_value ("1.1.3"), "version of RDFa (default 1.1.3).")
+        (ONTOLOGY LIST, "List known ontology schema for microdata and/or RDFa.")
 
-        (SCHEMA LIST, "List known schema for microdata and/or RDFa.")
-        (SCHEMA VERSION, ::boost::program_options::value < ::std::string > (), "Set default schema version as SCHEMA X.Y (default: " SCHEMA_ORG " " DEFAULT_SCHEMA_ORG_VERSION ").")
+        (RDFA VERSION, ::boost::program_options::value < ::std::string > () -> default_value ("1.1.3"), "version of RDFa (default 1.1.3).")
 
         (SHADOW CHANGED,    "Only "
 #ifndef NOLYNX
@@ -418,6 +359,28 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (VALIDATION MINOR ",m", ::boost::program_options::value < int > (), "Validate HTML 5 with this w3 minor version (e.g. 3 for HTML 5.3).")
         (VALIDATION MICRODATAARG, "Validate HTML5 microdata.")
         	;
+
+    for (int i = s_none + 1; i < s_error; ++i)
+    {   const e_schema es = static_cast < e_schema > (i);
+        if (is_faux_schema (es)) continue;
+        if (get_schema_version_count (es) < 2) continue;
+        ::std::string naam (schema_names.get (es, SCHEMA_NAME));
+        ::std::string arg = ONTOLOGY;
+        arg += naam;
+        ::std::string desc (schema_names.get (es, SCHEMA_DESCRIPTION));
+        desc += ", ";
+        if (get_schema_version_count (es) == 2)
+        {   desc += "either ";
+            desc += get_first_schema_version (es).ver ();
+            desc += " or "; }
+        else
+        {   desc += "between ";
+            desc += get_first_schema_version (es).ver ();
+            desc += " and "; }
+        desc += get_last_schema_version (es).ver ();
+        ontology.add_options ()
+            (arg.c_str (), ::boost::program_options::value < ::std::string > (), desc.c_str ()); }
+
     valid.add_options ()
         (VALIDATION ATTRIB, ::boost::program_options::value < vstr_t > () -> composing (), "Add a custom attribute (name namespace flags ext).")
         (VALIDATION CHARSET, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid charset.")
@@ -436,9 +399,9 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         ;
     valid.add (context.validation ());
 
-    cmd.add (basic).add (primary).add (valid).add (hidden);
-    config.add (primary).add (valid).add (hidden).add (cgi);
-    aid.add (basic).add (primary);
+    cmd.add (basic).add (primary).add (ontology).add (valid).add (hidden);
+    config.add (primary).add (ontology).add (valid).add (hidden).add (cgi);
+    aid.add (basic).add (primary).add (ontology);
     ::std::string loaded;
 
     try
@@ -553,7 +516,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         context.domsg (waste_of_space.str ());
         context.todo (do_simple);
         return; }
-    if (var_.count (SCHEMA LIST))
+    if (var_.count (ONTOLOGY LIST))
     {   ::std::string res;
         for (int i = s_none + 1; i < s_error; ++i)
         {   const e_schema es = static_cast < e_schema > (i);
@@ -609,12 +572,10 @@ void options::process (nitpick& nits, int argc, char* const * argv)
                 nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
                 return; }
             ::boost::program_options::notify (var_); }
-//#ifdef DEBUG
         catch (const ::boost::program_options::error& err)
         {   nits.pick (nit_configuration, es_error, ec_init, "Configuration " ENVIRONMENT_ " error: ", err.what ());
             nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
             return; }
-//#endif // DEBUG
         catch (...)
         {   nits.pick (nit_configuration, es_error, ec_init, "Configuration " ENVIRONMENT_ " query exception.");
             nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
@@ -731,33 +692,31 @@ void options::contextualise (nitpick& nits)
 
     load_template (nits, context.html_ver ());
 
-    if (var_.count (SCHEMA VERSION))
-    {   ::std::string ver (trim_the_lot_off (var_ [SCHEMA VERSION].as < ::std::string > ()));
-        if (ver.empty ()) nits.pick (nit_config_version, es_warning, ec_init, "missing schema and version.");
-        else
-        {   e_schema es = s_schema;
-            ::std::string::size_type pos = ver.find (':');
-            if (pos != ::std::string::npos)
-            {   ::std::string sch (::boost::to_lower_copy (ver.substr (0, pos)));
-                es = schema_names.find (context.html_ver (), SCHEMA_NAME, sch, true);
-                if ((es == s_none) || (es == s_error))
-                    nits.pick (nit_config_version, es_error, ec_init, "unknown schema ", ver, "; use " SCHEMA LIST " for known schemas versions.");
-                ver = ver.substr (pos+1); }
-            pos = ver.find ('.');
+    for (int i = s_none + 1; i < s_error; ++i)
+    {   const e_schema es = static_cast < e_schema > (i);
+        if (is_faux_schema (es)) continue;
+        if (get_schema_version_count (es) < 2) continue;
+        const ::std::string naam (schema_names.get (es, SCHEMA_NAME));
+        ::std::string arg (ONTOLOGY);
+        arg += naam;
+        if (var_.count (arg))
+        {   ::std::string ver (trim_the_lot_off (var_ [arg].as < ::std::string > ()));
+            ::std::string::size_type pos = ver.find ('.');
             // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
             schema_version x (error_schema);
             if (pos == ::std::string::npos)
                 x = schema_version (es, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0);
             else if (pos == 0)
-                nits.pick (nit_config_version, es_warning, ec_init, "missing schema version");
+                nits.pick (nit_config_version, es_warning, ec_init, "missing ontology major version");
             else if (pos == ver.length () - 1)
                 x = schema_version (es, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0);
             else if (pos > 0)
                 x = schema_version (es, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
                                                               ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))));
             if (x.invalid ())
-                nits.pick (nit_config_version, es_error, ec_init, "invalid schema ", quote (x.name ()), " version; use " SCHEMA LIST " to get a list of known versions.");
-            else set_default_schema_version (x.root (), x.mjr (), x.mnr ()); } }
+                nits.pick (nit_config_version, es_error, ec_init, "invalid ontology ", quote (x.name ()), " version; use " ONTOLOGY LIST " to get a list of known versions.");
+            else if (! set_default_schema_version (x.root (), x.mjr (), x.mnr ()))
+                nits.pick (nit_config_version, es_error, ec_init, PROG " dislikes the ", quote (x.name ()), " version specified; use " ONTOLOGY LIST " to get a list of known versions."); } }
 
     context.microdata (var_.count (VALIDATION MICRODATAARG));
 
@@ -880,23 +839,11 @@ void options::contextualise (nitpick& nits)
                 if (! nitpick::modify_severity (s, es_warning))
                     nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
-//        if (var_.count (RDFA DC))
-//        {   int n = var_ [RDFA DC].as < int > ();
-//            if ((n > 0) && (n <= 1)) context.dc (n); }
-
-//        if (var_.count (RDFA FOAF))
-//        {   int n = var_ [RDFA FOAF].as < int > ();
-//            if ((n > 0) && (n <= 99)) context.foaf (n); }
-
 //      TO BE REACTIVATED!!! Hopefully.
 //        if (var_.count (RDFA VERSION))
 //        {   ::std::string rv = var_ [RDFA VERSION].as < ::std::string > ();
 //            if (rv != "1.0") && (rv != "1.1") && (rv != "1.1.1") && (rv != "1.1.2") && (rv != "1.1.3")
 //            context.rdfa_version (n); }
-
-//        if (var_.count (RDFA XSD))
-//        {   int n = var_ [RDFA XSD].as < int > ();
-//            if ((n > 0) && (n <= 1)) context.xsd (n); }
 
         context.shadow_comment (var_.count (SHADOW COMMENT));
         context.shadow_changed (var_.count (SHADOW CHANGED));
@@ -1214,8 +1161,17 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (RDFA VERSION)) res << RDFA VERSION ": " << var_ [RDFA VERSION].as < ::std::string > () <<  "\n";
     if (var_.count (RDFA XSD)) res << RDFA XSD ": " << var_ [RDFA XSD].as < int > () <<  "\n";
 
-    if (var_.count (SCHEMA LIST)) res << SCHEMA LIST "\n";
-    if (var_.count (SCHEMA VERSION)) res << SCHEMA VERSION ": " << var_ [SCHEMA VERSION].as < ::std::string > () << "\n";
+    if (var_.count (ONTOLOGY LIST)) res << ONTOLOGY LIST "\n";
+
+    for (int i = s_none + 1; i < s_error; ++i)
+    {   const e_schema es = static_cast < e_schema > (i);
+        if (is_faux_schema (es)) continue;
+        if (get_schema_version_count (es) < 2) continue;
+        const ::std::string naam (schema_names.get (es, SCHEMA_NAME));
+        ::std::string arg (ONTOLOGY);
+        arg += naam;
+        if (var_.count (arg))
+            res << arg << ": " << var_ [arg].as < ::std::string > () << "\n"; }
 
     if (var_.count (SHADOW CHANGED)) res << SHADOW CHANGED "\n";
     if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT "\n";

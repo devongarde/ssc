@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -224,24 +224,23 @@ void directory::examine (nitpick& nits)
                     try
                     {   ::std::string content (read_text_file (p));
                         if (! content.empty ())
-                            if (is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ()))
+                        {   const e_charcode encoding = bom_to_encoding (get_byte_order (content));
+                            if (encoding == cc_fkd) mac.emplace (nm_page_error, "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)");
+                            else if (is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ()))
                             {   nitpick nuts;
                                 parse_json_ld (nuts, context.html_ver (), content);
                                 ss << nuts.review (mac); }
                             else
-                            {   const e_charcode encoding = bom_to_encoding (get_byte_order (content));
-                                if (encoding == cc_fkd) mac.emplace (nm_page_error, "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)");
+                            {   page web (i.first, updated, content, ndx, this, encoding);
+                                if (web.invalid ()) ss << web.nits ().review (mac);
                                 else
-                                {   page web (i.first, updated, content, ndx, this, encoding);
-                                    if (web.invalid ()) ss << web.nits ().review (mac);
-                                    else
-                                    {   web.examine ();
-                                        web.verify_locale (p);
-                                        web.mf_write (p);
-                                        web.lynx ();
-                                        if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
-                                        ss << web.nits ().review (mac);
-                                        ss << web.report (); } } } }
+                                {   web.examine ();
+                                    web.verify_locale (p);
+                                    web.mf_write (p);
+                                    web.lynx ();
+                                    if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
+                                    ss << web.nits ().review (mac);
+                                    ss << web.report (); } } } }
                     catch (const ::std::system_error& e)
                     {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + context.filename ()); }
                     catch (const ::std::exception& e)

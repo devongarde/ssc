@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -697,6 +697,11 @@ const nitname nitnames [] =
     { nit_missing_schema, "missing_schema" },
     { nit_jsonld_format, "jsonld_format" },
     { nit_jsonld_mistype, "jsonld_mistype" },
+    { nit_jsonld_encoding, "jsonld_encoding" },
+    { nit_jsonld_map, "jsonld_map" },
+    { nit_crap_spec, "crap_spec" },
+    { nit_bad_uid, "bad_uid" },
+    { nit_missing_property, "missing_property" },
 
     { nit_off, "" } };
 

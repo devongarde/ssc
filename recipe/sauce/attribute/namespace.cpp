@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,6 @@ ns_id examine_namespace (nitpick& nits, const html_version& v, const namespaces_
                 if ((namespace_names.flags (standard_name) & NS_PREDECLARED) == NS_PREDECLARED)
                     return standard_name;
             if (namespaces)
-//            if (namespaces.get () != nullptr)
             {   const ident_t id = namespaces -> find_shortform (v, namespace_names, n, false);
                 if ((id != ns_error) && (id != ns_default)) return static_cast < ns_id > (id); }
             nits.pick (nit_bad_namespace, es_error, ec_namespace, quote (n), " has not been declared (using XMLNS)");

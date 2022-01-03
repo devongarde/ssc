@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -175,9 +175,12 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
     if (url.empty ())
     {   nits.pick (nit_url_empty, es_error, ec_url, "empty URL"); return false; }
 
-    if (url.find ('!') != ::std::string::npos)
+    ::std::string::size_type bang = url.find ('!');
+    if (bang != ::std::string::npos)
     {   if (url.find ('.') == ::std::string::npos)
-            nits.pick (nit_bang_path, es_warning, ec_type, "apologies, but " PROG " does not understand bang paths");
+        {   if ((bang == 0) || (bang == url.size () - 1))
+                nits.pick (nit_bang_path, es_warning, ec_type, "if ", quote (url), " is a bang path, it's broken");
+            else nits.pick (nit_bang_path, es_comment, ec_type, PROG " cannot verify bang paths"); }
         else if (s.find ('!') != ::std::string::npos)
             nits.pick (nit_bad_char, ed_rfc_3986, "2. Characters", es_error, ec_url, "bad bang ('!')");
         return false; }

@@ -96,7 +96,6 @@ PASS ../toast/living/jan16/canvas8.html
 15 url_not_found
 19 use_quote_code
 
-
 PASS ../toast/living/jan16/caption.html
 9 inserted_missing_closure missing_close
 13 inserted_missing_closure

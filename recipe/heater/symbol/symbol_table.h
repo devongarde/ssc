@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -55,12 +55,6 @@ public:
             if (it != symbol_.end ())
                 nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "program error: symbol ", t [i].sz_, " already defined (ignoring case)");
             else extend (key, t [i].sz_, static_cast < ::std::size_t > (t [i].v_), t [i].ns_, t [i].first_, t [i].last_, t [i].flags_, t [i].flags2_); } }
-//        for (::std::size_t i = 0; (i < size) && (table [i].sz_ != nullptr); ++i)
-//        {   ::std::string key (enlc < LC > :: to (::std::string (table [i].sz_)));
-//            auto it = symbol_.find (symbol_key (key, table [i].ns_));
-//            if (it != symbol_.end ())
-//                nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "program error: symbol ", table [i].sz_, " already defined (ignoring case)");
-//            else extend (key, table [i].sz_, static_cast < ::std::size_t > (table [i].v_), table [i].ns_, table [i].first_, table [i].last_, table [i].flags_, table [i].flags2_); } }
     bool find (const V& v, const ::std::string& x, ::std::size_t& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr) const
     {   auto i = symbol_.find (symbol_key (x, ns));
         if (behaviour < CATEGORY > :: can_be_default (ns) && (i == symbol_.end ())) i = symbol_.find (symbol_key (x, INIT));

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,6 @@ class page
     bool check_links_ = true;
     bool snippet_ = false;
     stats_t stats_;
-    schema_version schema_version_;
     ssi_compedium ssi_;
     nitpick nits_;
     uid_t euid_ = 0;
@@ -98,8 +97,6 @@ public:
     bool mf_write (const ::boost::filesystem::path& name)
     {   return snippet_ || mf_export_.write (nits_, name); }
     const html_version version () const noexcept { return nodes_.version (); }
-    const schema_version schema_ver () const noexcept { return schema_version_; }
-    void schema_ver (const schema_version& v) noexcept { schema_version_ = v; }
     ::boost::filesystem::path absolute_member (nitpick& nits, const ::boost::filesystem::path& file) const;
     ::std::string load_url (nitpick& nits, const url& u) const;
     void confirm_title () noexcept { has_title_ = true; }

@@ -101,6 +101,9 @@
 ../toast/RDFa/schema/rdfa.spec
 ../toast/RDFa/sioc/rdfa.spec
 ../toast/RDFa/vcard/rdfa.spec
+../toast/RDFa/vcard-2/rdfa.spec
+../toast/RDFa/vcard-3/rdfa.spec
+../toast/RDFa/vcard-4/rdfa.spec
 ../toast/RDFa/xsd/rdfa.spec
 ../toast/shadow/comment/comment.spec
 ../toast/shadow/copy/copy.spec

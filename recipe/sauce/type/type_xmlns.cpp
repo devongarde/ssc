@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -45,40 +45,3 @@ e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::stri
             return static_cast < e_namespace> (next_free_namespace); } }
     s = ss; n.clear ();
     return ns_default; }
-
-e_namespace xmlns_to_namespace (nitpick& nits, const html_version& , const e_xmlns x)
-{   switch (x)
-    {   case x_xhtml_1 :
-        case x_xhtml_1_superseded :
-        case x_xhtml_11 :
-        case x_xhtml_2 :return ns_xhtml;
-        case x_bibo :   return ns_bibo;
-        case x_cc :     return ns_cc;
-        case x_crs :    return ns_crs;
-        case x_dc :     return ns_dc;
-        case x_dc_terms : return ns_dcterms;
-        case x_default : return ns_default;
-        case x_mathml : return ns_math;
-        case x_dbp :    return ns_dbp;
-        case x_dbp_owl : return ns_dbp_owl;
-        case x_dbr :    return ns_dbr;
-        case x_ex :     return ns_ex;
-        case x_foaf :   return ns_foaf;
-        case x_owl :    return ns_owl;
-        case x_rddl :   return ns_rddl;
-        case x_rdf :    return ns_rdf;
-        case x_rdfa :   return ns_rdfa;
-        case x_rdfs :   return ns_rdfs;
-        case x_svg :    return ns_svg;
-        case x_xhv :    return ns_xhv;
-        case x_xlink :  return ns_xlink;
-        case x_xml :    return ns_xhtml;
-        case x_xmlevents : return ns_xmlevents;
-        case x_xmlns :  return ns_xmlns;
-        case x_xsd :    return ns_xs;
-        case x_xsi :    return ns_xsi;
-        case x_html :   return ns_html;
-        default :
-            nits.pick (nit_xmlns_namespace, es_catastrophic, ec_program, XMLNS " ", static_cast < int > (x), " has no corresponding namespace");
-            break; }
-    return ns_error; }

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -158,6 +158,7 @@ struct sz_get { constexpr static char const* sz () { return "get"; } };
 struct sz_gamma { constexpr static char const* sz () { return "gamma"; } };
 struct sz_global { constexpr static char const* sz () { return "global"; } };
 struct sz_grammar { constexpr static char const* sz () { return "grammar"; } };
+struct sz_group { constexpr static char const* sz () { return "group"; } };
 struct sz_gzip { constexpr static char const* sz () { return "gzip"; } };
 struct sz_h { constexpr static char const* sz () { return "h"; } };
 struct sz_hard { constexpr static char const* sz () { return "hard"; } };
@@ -165,6 +166,7 @@ struct sz_hash { constexpr static char const* sz () { return "#"; } };
 struct sz_hidden { constexpr static char const* sz () { return "hidden"; } };
 struct sz_high { constexpr static char const* sz () { return "high"; } };
 struct sz_highlight { constexpr static char const* sz () { return "highlight"; } };
+struct sz_home { constexpr static char const* sz () { return "home"; } };
 struct sz_horiz { constexpr static char const* sz () { return "horiz"; } };
 struct sz_horizontal { constexpr static char const* sz () { return "horizontal"; } };
 struct sz_host { constexpr static char const* sz () { return "host"; } };
@@ -176,6 +178,7 @@ struct sz_indefinite { constexpr static char const* sz () { return "indefinite";
 struct sz_independent { constexpr static char const* sz () { return "independent"; } };
 struct sz_indentalign { constexpr static char const* sz () { return "indentalign"; } };
 struct sz_indentshift { constexpr static char const* sz () { return "indentshift"; } };
+struct sz_individual { constexpr static char const* sz () { return "individual"; } };
 struct sz_infinity { constexpr static char const* sz () { return "infinity"; } };
 struct sz_infixlinebreakstyle { constexpr static char const* sz () { return "infixlinebreakstyle"; } };
 struct sz_infix { constexpr static char const* sz () { return "infix"; } };
@@ -201,6 +204,7 @@ struct sz_linear { constexpr static char const* sz () { return "linear"; } };
 struct sz_line { constexpr static char const* sz () { return "line"; } };
 struct sz_list { constexpr static char const* sz () { return "list"; } };
 struct sz_local { constexpr static char const* sz () { return "local"; } };
+struct sz_location { constexpr static char const* sz () { return "location"; } };
 struct sz_locked { constexpr static char const* sz () { return "locked"; } };
 struct sz_loose { constexpr static char const* sz () { return "loose"; } };
 struct sz_low { constexpr static char const* sz () { return "low"; } };
@@ -254,6 +258,7 @@ struct sz_open { constexpr static char const* sz () { return "open"; } };
 struct sz_openclosed { constexpr static char const* sz () { return "open-closed"; } };
 struct sz_optimisespeed { constexpr static char const* sz () { return "optimizeSpeed"; } };
 struct sz_optimisequality { constexpr static char const* sz () { return "optimizeQuality"; } };
+struct sz_organisation { constexpr static char const* sz () { return "organization"; } };
 struct sz_other { constexpr static char const* sz () { return "other"; } };
 struct sz_out_of_stock { constexpr static char const* sz () { return "out_of_stock"; } };
 struct sz_overlay { constexpr static char const* sz () { return "overlay"; } };
@@ -376,6 +381,7 @@ struct sz_wallclock { constexpr static char const* sz () { return "wallclock"; }
 struct sz_whennotactive { constexpr static char const* sz () { return "whenNotActive"; } };
 struct sz_whenstarted { constexpr static char const* sz () { return "whenStarted"; } };
 struct sz_words { constexpr static char const* sz () { return "words"; } };
+struct sz_work { constexpr static char const* sz () { return "work"; } };
 struct sz_wrap { constexpr static char const* sz () { return "wrap"; } };
 struct sz_XML { constexpr static char const* sz () { return "XML"; } };
 struct sz_yes { constexpr static char const* sz () { return "yes"; } };

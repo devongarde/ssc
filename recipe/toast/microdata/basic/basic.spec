@@ -88,6 +88,7 @@ PASS ../toast/microdata/basic/md-bad.html
 23 requires_itemscope
 26 bad_id
 29 unrecognised_schema unrecognised_schema bad_itemid
+31 correct_spelling
 32 use_quote_code
 
 PASS ../toast/microdata/basic/md-ref.html
@@ -99,4 +100,4 @@ Doris
 urn:isbn:0-330-34032-8
 
 LYNX
-0 423
+0 423 423

@@ -1,0 +1,11 @@
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "summary": "A simple note",
+    "type": "Note",
+    "content": "This is all there is.",
+    "inReplyTo": {
+        "summary": "Previous note",
+        "type": "Note",
+        "content": "What else is there?"
+    }
+}

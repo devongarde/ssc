@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,8 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 #include "type/type_case.h"
-
-e_namespace map_xmlns_to_namespace (const e_xmlns x) noexcept;
 
 template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE, E >
 {   typedef typename type_base < TYPE, E > :: value_type value_type;
@@ -279,6 +277,9 @@ template < > class type_master < t_dcmitype > : public enum_n < t_dcmitype, e_dc
 
 template < > struct type_master < t_decalign > : enum_n < t_decalign, e_decalign >
 { using enum_n < t_decalign, e_decalign > :: enum_n; };
+
+template < > struct type_master < t_determiner > : enum_n < t_determiner, e_determiner >
+{ using enum_n < t_determiner, e_determiner > :: enum_n; };
 
 template < > struct type_master < t_dingbat > : enum_n < t_dingbat, e_dingbat >
 { using enum_n < t_dingbat, e_dingbat > :: enum_n; };
@@ -603,6 +604,15 @@ template < > struct type_master < t_vector_effect_2 > : enum_n < t_vector_effect
 
 template < > struct type_master < t_vertical_align_enum > : enum_n < t_vertical_align_enum, e_vertical_align_enum >
 { using enum_n < t_vertical_align_enum, e_vertical_align_enum > :: enum_n; };
+
+template < > struct type_master < t_vgender > : enum_n < t_vgender, e_vgender >
+{ using enum_n < t_vgender, e_vgender > :: enum_n; };
+
+template < > struct type_master < t_vrel > : enum_n < t_vrel, e_vrel >
+{ using enum_n < t_vrel, e_vrel > :: enum_n; };
+
+template < > struct type_master < t_vtt > : enum_n < t_vtt, e_vtt >
+{ using enum_n < t_vtt, e_vtt > :: enum_n; };
 
 template < > struct type_master < t_whitespace > : enum_n < t_whitespace, e_whitespace >
 { using enum_n < t_whitespace, e_whitespace > :: enum_n; };

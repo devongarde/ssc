@@ -1,0 +1,15 @@
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "name": "A thank-you note",
+    "type": "Note",
+    "content": "Thank you <a href='http://sally.example.org'>@sally</a> for all your hard work! <a href='http://example.org/tags/givingthanks'>#givingthanks</a>",
+    "to": {
+        "name": "Sally",
+        "type": "Person",
+        "id": "http://sally.example.org"
+    },
+    "tag": {
+        "id": "http://example.org/tags/givingthanks",
+        "name": "#givingthanks"
+    }
+}

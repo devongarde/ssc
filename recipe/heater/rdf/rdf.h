@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,6 @@ class page;
 
 typedef ssc_variant < rdf_t*, ::std::string > prop_value;
 typedef ssc_mm < prop_index, prop_value > mrv_t;
-typedef ::std::set < e_schema > vsh_t;
 
 class rdf_t
 {   mrv_t prop_;
@@ -41,18 +40,10 @@ class rdf_t
     prop_indices prepare_prop_indices (nitpick& nits, const html_version& v, const ::std::string& name);
     bool use_parent () const noexcept { return (up_ != nullptr); }
     template < typename ENUM > ENUM fit_vocab (const html_version& v, const ::std::string& name) const;
-    bool is_vocab_defined (const e_schema s)
-    {   if (vocab_.find (s) != vocab_.cend ()) return true;
-        if (up_ != nullptr) return up_ -> is_vocab_defined (s);
-        return false; }
+    bool is_vocab_defined (const e_schema s) const
+    {   vsh_t vs (vocabs ());
+        return (vs.find (s) != vs.cend ()); }
 public:
-    rdf_t () = default;
-    rdf_t (const rdf_t& r) = default;
-    rdf_t (rdf_t&& r) = default;
-    rdf_t& operator = (const rdf_t& r) = default;
-    rdf_t& operator = (rdf_t&& r) = default;
-    ~rdf_t () = default;
-
     void prefixes (prefixes_t* ptr)
     {   PRESUME (type_.empty (), __FILE__, __LINE__);
         PRESUME (prop_.empty (), __FILE__, __LINE__);
@@ -63,13 +54,9 @@ public:
         up_ = u; }
     rdf_t* up () noexcept { return up_; }
     const rdf_t* up () const noexcept { return up_; }
+    vsh_t vocabs () const;
 
-    vty_t type () const
-    {   if (use_parent ())
-        {   VERIFY_NOT_NULL (up_, __FILE__, __LINE__);
-            return up_ -> type (); }
-        return type_; }
-
+    vty_t type () const;
     bool note_prop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, page& p);
     bool note_prop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, rdf_t* scope, page& p);
     e_schema_type note_type (nitpick& nits, const html_version& v, const ::std::string& name, page& p);

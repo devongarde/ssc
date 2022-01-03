@@ -239,8 +239,6 @@ PASS ../toast/living/jan19/example-2.html
 21 mime
 35 use_quote_code
 49 use_quote_code
-54 not_schema_property
-64 not_schema_property
 94 unrecognised_value
 109 use_quote_code
 119 use_quote_code

@@ -762,6 +762,18 @@
     <Filter Include="Toast\JSON-LD\schemaorg">
       <UniqueIdentifier>{a9a45eda-32dd-457c-aa84-5c5d47fa3d56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\JSON-LD\csvw">
+      <UniqueIdentifier>{30a81fa0-96d6-4696-b9de-20fafdf64fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\vcard-2">
+      <UniqueIdentifier>{31782157-e7b8-491e-8444-a8d8e9440bc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\vcard-3">
+      <UniqueIdentifier>{a179a5cc-ce67-4226-8b63-f953006bdc0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\vcard-4">
+      <UniqueIdentifier>{9ec4255c-07a2-449b-8b86-30ee4e82c7c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -21539,6 +21551,765 @@
     </None>
     <None Include="..\toast\json-ld\as\balderdash.jld">
       <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-9.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-10.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-11.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-12.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-13.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-14.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-15.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-16.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-17.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-18.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-19.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-20.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-21.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-22.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-23.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-24.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-25.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-26.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-27.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-28.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-29.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-30.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-31.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-32.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-33.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-34.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-35.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-36.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-37.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-38.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-39.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-40.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-41.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-42.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-43.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-44.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-45.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-46.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-47.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-48.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-49.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-50.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-51.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-52.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-53.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-54.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-55.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-56.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-57.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-58.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-59.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-60.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-61.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-62.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-63.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-64.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-65.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-66.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-67.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-68.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-69.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-70.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-71.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-72.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-73.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-74.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-75.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-76.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-77.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-78.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-79.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-80.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-81.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-82.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-83.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-84.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-85.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-86.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-87.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-88.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-89.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-90.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-91.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-92.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-93.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-94.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-95.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-96.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-97.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-98.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-99.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-100.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-101.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-102.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-103.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-104.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-105.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-106.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-107.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-108.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-109.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-110.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-111.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-112.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-113.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-114.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-115.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-116.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-117.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-118.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-119.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-120.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-121.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-122.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-123.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-124.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-125.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-126.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-127.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-128.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-129.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-130.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-131.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-132.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-133.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-134.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-135.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-136.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-137.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-138.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-139.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-140.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-141.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-142.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-143.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-144.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-145.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-146.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-147.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-148.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-149.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-150.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-151.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-152.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-153.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-154.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-155.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-156.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-157.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-158.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\as\ex-159.jld">
+      <Filter>Toast\JSON-LD\as</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\index.html">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\jsonld.conf">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\jsonld.spec">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\junior-roles.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\organizations.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\professions.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\senior-roles.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-15.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-16.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-17.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-18.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-32.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-33.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-34.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-35.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-118.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-119.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-123.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csvm.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csvw.jsonld">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\earl.jsonld">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\events-1.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\events-2.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\lia-1.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\lia-2.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\linked-14.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\linked-16.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\linked-18.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\metadata.32.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\metadata.33.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-11.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-12.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-14.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-15.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-16.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-17.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-18.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-32.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-33.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-34.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-35.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-36.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-37.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-118.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-119.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-123.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-259.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\test-260.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\tree-11.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\tree-17.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\tree-18.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\tree-36.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\tree-37.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\tree-260.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\uc4-1.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\uc4-2.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\uc4-3.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\user-15.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\user-18.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\xyz-data-schema.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\action.123.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\countries.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\countries_embed-minimal.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\countries_embed-standard.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\csv-12.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-2.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-4.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-14.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-19.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-27.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-30.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-31.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-32.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-33.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-37.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-38.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-39.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-35.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-41.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-42.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-43.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-44.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-45.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-46.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-47.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\json-ld\csvw\example-48.json">
+      <Filter>Toast\JSON-LD\csvw</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard\ontology.html">
+      <Filter>Toast\RDFa\vcard</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\index.html">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\ontology.html">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\rdfa.conf">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\rdfa.spec">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\vcard.html">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\index.html">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\ontology.html">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\rdfa.conf">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\rdfa.spec">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\vcard.html">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\index.html">
+      <Filter>Toast\RDFa\vcard-4</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\ontology.html">
+      <Filter>Toast\RDFa\vcard-4</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\rdfa.conf">
+      <Filter>Toast\RDFa\vcard-4</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\rdfa.spec">
+      <Filter>Toast\RDFa\vcard-4</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\vcard.html">
+      <Filter>Toast\RDFa\vcard-4</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

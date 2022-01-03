@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -158,6 +158,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JAN06  HTML_2006, HTML_JAN
 #define HTML_JUN06  HTML_2006, (HTML_JUN + HTML_30TH)
 #define HTML_JUL06  HTML_2006, HTML_JUL
+#define HTML_OCT06  HTML_2006, HTML_OCT
 #define HTML_DEC06  HTML_2006, (HTML_DEC + HTML_31ST)
 #define HTML_JAN07  HTML_2007, HTML_JAN
 #define HTML_JUN07  HTML_2007, (HTML_JUN + HTML_31ST)
@@ -228,12 +229,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JUN21  HTML_2021, (HTML_JUN + HTML_30TH)
 #define HTML_JUL21  HTML_2021, HTML_JUL
 #define HTML_OCT21  HTML_2021, HTML_OCT
+#define HTML_JAN22  HTML_2022, HTML_JAN
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
-#define HTML_LATEST_YEAR    HTML_2021
-#define HTML_LATEST_MONTH   10
+#define HTML_LATEST_YEAR    HTML_2022
+#define HTML_LATEST_MONTH   1
 
 #define HTML_CURRENT        HTML_OCT21
 
@@ -264,13 +266,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SVG20      HTML_OCT18
 #define HTML_SVG21      HTML_APR21
 
-#define HTML_ARTICLE    HTML_RDF10
-#define HTML_AS         HTML_RDF10_CON
+#define HTML_OG_2010    HTML_JAN10
+#define HTML_OG_2010_END HTML_DEC11
+#define HTML_OG_2012    HTML_JAN12
+#define HTML_OG_2014    HTML_JAN14
+#define HTML_OG_2018    HTML_JAN18
+
+#define HTML_ARTICLE    HTML_OG_2012
+#define HTML_AS_1_0     HTML_RDF10_CON
+#define HTML_AS_2_0     HTML_2017, HTML_MAY
+#define HTML_AS         HTML_AS_1_0
 #define HTML_BIBO       HTML_RDF11
-#define HTML_BOOK       HTML_RDF10
+#define HTML_BOOK       HTML_OG_2012
 #define HTML_CC         HTML_2008, HTML_MAR
 #define HTML_CONTENT    HTML_RDF10
-#define HTML_CSVW       HTML_RDF10_CON
+#define HTML_CSVW       HTML_JAN16
 #define HTML_CTAG       HTML_RDF10_CON
 #define HTML_DAQ        HTML_RDF10_CON
 #define HTML_DBD        HTML_RDF10
@@ -305,28 +315,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_LOCN       HTML_RDF10_CON
 #define HTML_MA         HTML_RDF10_CON
 #define HTML_MF         HTML_RDF10
-#define HTML_MUSIC      HTML_RDF10
+#define HTML_MUSIC      HTML_OG_2012
 #define HTML_OA         HTML_RDF10_CON
 #define HTML_ODRL       HTML_RDF10
-#define HTML_OG         HTML_RDF10
+#define HTML_OG         HTML_OG_2014
 #define HTML_ORG        HTML_RDF10_CON
 #define HTML_OWL10      HTML_RDF10
 #define HTML_OWL11      HTML_JAN07
 #define HTML_OWL20      HTML_JAN13
 #define HTML_OWL        HTML_OWL10
-#define HTML_PROFILE    HTML_RDF10
+#define HTML_PROFILE    HTML_OG_2012
 #define HTML_PROV       HTML_RDF10_CON
 #define HTML_POETRY     HTML_JAN17
 #define HTML_PTR        HTML_RDF10_CON
 #define HTML_QB         HTML_RDF10_CON
 #define HTML_RDFG       HTML_RDF10
 #define HTML_RDFS       HTML_RDF10
-
 #define HTML_REVIEW     HTML_RDF10
 #define HTML_RIF        HTML_JAN07
 #define HTML_ROLE       HTML_RDF10_CON
 #define HTML_RR         HTML_RDF10_CON
-
 #define HTML_SCHEMA_0     HTML_JUN11
 #define HTML_SCHEMA_0_91  HTML_2011, HTML_APR
 #define HTML_SCHEMA_0_93  HTML_2011, HTML_JUN
@@ -381,7 +389,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SCHEMA_12    HTML_MAR21
 #define HTML_SCHEMA_13    HTML_JUL21
 #define HTML_SCHEMA       HTML_SCHEMA_0
-
 #define HTML_SD         HTML_RDF10_CON
 #define HTML_SIOC       HTML_RDF10
 #define HTML_SKOS       HTML_JUN08
@@ -391,12 +398,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_TAXO       HTML_RDF10
 #define HTML_TIME       HTML_RDF10_CON
 #define HTML_V          HTML_RDF10_CON
-#define HTML_VCARD      HTML_RDF10
-#define HTML_VIDEO      HTML_RDF10
+#define HTML_VANN_1_0   HTML_RDF10 
+#define HTML_VANN_1_1   HTML_JAN06
+#define HTML_VANN       HTML_VANN_1_0
+#define HTML_VCARD_2001 HTML_RDF10
+#define HTML_VCARD_2006 HTML_OCT06
+#define HTML_VCARD_2010 HTML_JAN10
+#define HTML_VCARD_2014 HTML_JUN14
+#define HTML_VCARD      HTML_VCARD_2001
+#define HTML_VIDEO      HTML_OG_2012
 #define HTML_VOID       HTML_RDF10_CON
 #define HTML_WDR        HTML_RDF10_CON
 #define HTML_WDRS       HTML_RDF10_CON
-#define HTML_WEBSITE    HTML_RDF10
+#define HTML_WEBSITE    HTML_OG_2012
 #define HTML_WHATWG     HTML_JAN09
 #define HTML_XHV        HTML_RDF10
 #define HTML_XML        HTML_RDF10
@@ -408,10 +422,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HTML_XLINK10    XHTML_1_0
 #define HTML_XLINK11    HTML_JUN10
-
-
-
-
 
 
 class version

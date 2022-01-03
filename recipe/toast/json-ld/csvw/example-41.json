@@ -1,0 +1,10 @@
+{
+    "@context": {
+        "http://www.w3.org/ns/csvw",
+        { "@language": "en" }
+    },
+    "@type": "Table",
+    "url": "http://example.com/table.csv",
+    "tableSchema": [ "..." ],
+    "dc:title": "The title of this Table"
+}

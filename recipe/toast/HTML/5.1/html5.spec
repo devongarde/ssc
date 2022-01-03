@@ -73,7 +73,7 @@ PASS ../toast/HTML/5.1/html5-bad.html
 49 missing_open
 50 bad_email
 51 attribute_unrecognised unrecognised_attribute unrecognised_value
-52 bad_email bang_path bad_email
+52 bad_email bad_email
 53 inserted_missing_closure
 55 unrecognised_value
 56 attributes_on_closure

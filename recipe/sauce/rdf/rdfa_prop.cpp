@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "main/context.h"
+#include "rdf/rdf.h"
 #include "rdf/rdfa_prop.h"
 #include "schema/schema_property.h"
 
@@ -51,11 +52,16 @@ prop_indices make_prop_indices (const vsp_t& vsp)
 {   mpi_t::const_iterator i = bespoke_ids.find (ndx_item (ii));
     if (i != bespoke_ids.cend ()) return i -> second;
     return ::std::string (); }
-
-prop_index find_prop_index (nitpick& nits, const html_version& , const ::std::string& name, bool bespoke_permitted)
+/*
+prop_index find_prop_index (nitpick& nits, const html_version& , const vsh_t& vs, const ::std::string& name, bool bespoke_permitted)
 {   nitpick knots;
-    const e_schema_property mp = identify_schema_property (knots, context.schema_ver (), name);
-    if (mp != sp_illegal) return make_prop_index (mp);
+    e_schema_property mp = sp_illegal;
+    for (auto es : vs)
+    {   knots.reset ();
+        mp = identify_schema_property (name);
+        if (mp != sp_illegal) return make_prop_index (mp); }
+    if (mp == sp_illegal)
+        nits.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is not a recognised schema property");
     if (! bespoke_permitted)
     {   nits.merge (knots);
         nits.pick (nit_bad_property, es_error, ec_rdfa, quote (name), " is not recognised");
@@ -66,11 +72,22 @@ prop_index find_prop_index (nitpick& nits, const html_version& , const ::std::st
     bespoke_ids.emplace (bespoke_prop, name);
     nits.pick (nit_new_property, es_comment, ec_rdfa, "new untyped property ", quote (name), " noted");
     return bespoke_prop; }
-
-prop_indices find_prop_indices (nitpick& nits, const html_version& , const ::std::string& name, bool bespoke_permitted)
+*/
+prop_indices find_prop_indices (nitpick& nits, const html_version& v, const vsh_t& vs, const ::std::string& name, bool bespoke_permitted)
 {   nitpick knots;
-    vsp_t vsp = identify_schema_properties (knots, context.schema_ver (), name);
-    if (! vsp.empty ()) return make_prop_indices (vsp);
+    const vsp_t iv = identify_schema_properties (name);
+    schema_version sv;
+    if (iv.empty ()) knots.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is not a recognised property");
+    else
+    {   vsp_t vsp;
+        for (auto sp : iv)
+        {   const e_schema es = property_root (sp);
+            if (vs.find (es) != vs.cend ())
+            {   if (sv.root () != es) sv = corresponding_schema_version (es, v);
+                if (does_property_apply (sv, sp))
+                    vsp.emplace_back (sp); } }
+        if (! vsp.empty ()) return make_prop_indices (vsp);
+        knots.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is invalid here"); }
     if (! bespoke_permitted)
     {   nits.merge (knots);
         nits.pick (nit_bad_property, es_error, ec_rdfa, quote (name), " is not recognised");

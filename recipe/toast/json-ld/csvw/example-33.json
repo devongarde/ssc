@@ -1,0 +1,29 @@
+{
+    "@id": "http://example.org/schema/senior-roles.json",
+    "@context": "http://www.w3.org/ns/csvw",
+    "aboutUrl": "#role-{ref}",
+    "columns": [
+        {
+            "name": "ref",
+            "titles": "Post Unique Reference"
+        },
+        {
+            "name": "name",
+            "titles": "Name"
+        },
+        {
+            "name": "grade",
+            "titles": "Grade"
+        },
+        {
+            "name": "job",
+            "titles": "Job Title"
+        },
+        {
+            "name": "reportsTo",
+            "titles": "Reports to Senior Post",
+            "valueUrl": "#role-{reportsTo}"
+        }
+    ],
+    "primaryKey": "ref"
+}

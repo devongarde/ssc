@@ -1,0 +1,16 @@
+{
+    "@id": "#gid-1",
+    "schema:url": "#gid-1",
+    "schema:name": "Celtis australis",
+    "trim_cycle": "Large Tree Routine Prune",
+    "schema:event": {
+        "@id": "#event-1",
+        "@type": "schema:Event",
+        "schema:startDate": "2010-10-18"
+    },
+    "schema:location": {
+        "@id": "#location-1",
+        "@type": "schema:PostalAddress",
+        "schema:streetAddress": "ADDISON AV"
+    }
+}

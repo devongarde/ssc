@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -335,6 +335,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_itemtype);
         TEST_VALUE (t_itemref);
         TEST_VALUE(t_js_lang);
+        TEST_VALUE(t_js_lang_map);
+        TEST_VALUE(t_js_map);
         TEST_VALUE(t_js_term);
         TEST_VALUE(t_js_type);
         TEST_VALUE(t_js_value);
@@ -479,6 +481,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_nuf);
         TEST_VALUE (t_num);
         TEST_VALUE (t_occurence);
+        TEST_VALUE (t_og);
         TEST_VALUE (t_ogtype);
         TEST_VALUE (t_onoff);
         TEST_VALUE (t_opacity);
@@ -557,7 +560,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_sandbox);
         TEST_VALUE (t_sandboxen);
         TEST_VALUE (t_scei);
-        TEST_VALUE (t_schema);
+//        TEST_VALUE (t_schema);
         TEST_VALUE (t_schema_type);
         TEST_VALUE (t_scope);
         TEST_VALUE (t_script);
@@ -690,6 +693,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_typeof);
         TEST_VALUE (t_tz);
         TEST_VALUE (t_ugeo);
+        TEST_VALUE (t_uid);
         TEST_VALUE (t_unicode_bidi);
         TEST_VALUE (t_unit);
         TEST_VALUE (t_units);
@@ -721,11 +725,16 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_version);
         TEST_VALUE (t_vertical_align);
         TEST_VALUE (t_vertical_align_enum);
+        TEST_VALUE (t_vgender);
         TEST_VALUE (t_vid);
         TEST_VALUE (t_viewportscreen);
         TEST_VALUE (t_visibility);
         TEST_VALUE (t_visibility10);
         TEST_VALUE (t_visibility11);
+        TEST_VALUE (t_vkind);
+        TEST_VALUE (t_vrel);
+        TEST_VALUE (t_vtt);
+        TEST_VALUE (t_vtype);
         TEST_VALUE (t_vocab);
         TEST_VALUE (t_vunit);
         TEST_VALUE (t_vunits);

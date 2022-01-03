@@ -23,7 +23,7 @@ PASS ../toast/RDFa/imported/linkedresearch.html
 17 url_not_found
 18 url_not_found
 19 no_such_folder url_not_found
-63 schema_domain
+63 schema_domain not_schema_property bad_property not_schema_property bad_property bad_property
 68 id_exists
 189 schema_domain
 209 schema_domain

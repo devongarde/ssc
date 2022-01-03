@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -64,6 +64,7 @@ void microdata_export::add (const ::std::string& path, const ::std::string& item
 
 bool microdata_export::write (nitpick& nits, const ::boost::filesystem::path& file)
 {   if (! context.md_export ()) return true;
+    if (context.tell (e_splurge)) context.out () << file << ":\n" << rpt () << "\n";
     ::boost::filesystem::path json (file);
     json += EXPORT_EXTENSION;
     if (empty ())
@@ -101,3 +102,18 @@ bool microdata_export::write (nitpick& nits, const ::boost::filesystem::path& fi
         if (! delete_file (tmp))
             nits.pick (nit_cannot_update, es_catastrophic, ec_microformat, "Cannot update ", json);
     return false; }
+
+::std::string microdata_export::rpt (const ::boost::property_tree::ptree& tree, const int dent) const
+{   ::std::string res;
+    ::std::string indent (dent*2, ' ');
+    for (auto sub : tree)
+    {   res += indent + sub.first;
+        if (sub.second.size () > 0)
+        {   res += "\n";
+            res += rpt (sub.second, dent+1); }
+        else
+        {   res += ": ";
+            res += sub.second.get_value < ::std::string > ();
+            res += "\n"; } }
+    return res; }
+

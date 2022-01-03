@@ -1,4 +1,4 @@
--f ../toast/json-ld/schemaorg/json.conf
+-f ../toast/json-ld/schemaorg/jsonld.conf
 
 PASS ../toast/json-ld/schemaorg/action.html
 2 naughty_lang

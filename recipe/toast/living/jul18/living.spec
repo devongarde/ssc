@@ -238,8 +238,6 @@ PASS ../toast/living/jul18/example-2.html
 19 mime
 33 use_quote_code
 47 use_quote_code
-52 not_schema_property
-62 not_schema_property
 92 unrecognised_value
 107 use_quote_code
 117 use_quote_code
