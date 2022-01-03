@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -385,6 +385,12 @@ struct symbol_entry < html_version, e_decalign > decalign_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "right", dec_right },
     { { HTML_2_0 }, { HTML_UNDEF }, "justify", dec_justify },
     { { HTML_2_0 }, { HTML_UNDEF }, "decimal", dec_decimal } };
+
+struct symbol_entry < html_version, e_determiner > determiner_symbol_table [] =
+{   { { HTML_OG_2012 }, { HTML_UNDEF }, "a", dt_a },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "an", dt_an },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "the", dt_the },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "auto", dt_auto } };
 
 struct symbol_entry < html_version, e_dingbat > dingbat_symbol_table [] =
 {   { { HTML_3_0 }, { HTML_3_0 }, "ftp", db_ftp },
@@ -1155,6 +1161,8 @@ struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "rdfs", ns_rdfs },
     { { XHTML_1_0 }, { HTML_UNDEF }, "smil", ns_smil },
     { { XHTML_1_0 }, { HTML_UNDEF }, "svg", ns_svg },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "v", ns_v },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "vcard", ns_vcard },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xhv", ns_xhv },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xi", ns_xi },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xlink", ns_xlink },
@@ -1345,18 +1353,53 @@ struct symbol_entry < html_version, e_nit_section > nit_section_symbol_table [] 
     { { HTML_TAGS }, { HTML_UNDEF }, "webmention-head", ns_webmention_head } };
 
 struct symbol_entry < html_version, e_ogtype > ogtype_symbol_table [] =
-{   { { HTML_UNDEF }, { HTML_UNDEF }, "music.song", og_musicsong },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "music.album", og_musicalbum },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "music.playlist", og_musicplaylist },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "music.radio_station", og_musicradiostation },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "video.movie", og_videomovie },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "video.episode", og_videoepisode },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "video.tv_show", og_videotvshow },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "video.other", og_videoother },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "article", og_article },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "book", og_book },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "profile", og_profile },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "website", og_website } };
+{   { { HTML_OG_2010 }, { HTML_DEC11 }, "activity", og_activity },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "actor", og_actor },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "album", og_album },
+    { { HTML_OG_2010 }, { HTML_UNDEF }, "article", og_article },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "athlete", og_athlete },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "author", og_author },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "band", og_band },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "bar", og_bar },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "blog", og_blog },
+    { { HTML_OG_2010 }, { HTML_UNDEF }, "book", og_book },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "cafe", og_cafe },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "cause", og_cause },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "company", og_company },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "city", og_city },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "country", og_country },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "director", og_director },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "drink", og_drink },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "food", og_food },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "game", og_game },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "government", og_government },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "hotel", og_hotel },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "landmark", og_landmark },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "movie", og_movie },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "musician", og_musician },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "music.song", og_musicsong },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "music.album", og_musicalbum },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "music.playlist", og_musicplaylist },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "music.radio_station", og_musicradiostation },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "product", og_product },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "non_profit", og_non_profit },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "politician", og_politician },
+    { { HTML_OG_2010 }, { HTML_UNDEF }, "profile", og_profile },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "public_figure", og_public_figure },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "restaurant", og_restaurant },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "school", og_school },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "song", og_song },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "sport", og_sport },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "sports_league", og_sports_league },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "sports_team", og_sports_team },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "state_province", og_state_province },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "tv_show", og_tv_show },
+    { { HTML_OG_2010 }, { HTML_DEC11 }, "university", og_university },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "video.movie", og_videomovie },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "video.episode", og_videoepisode },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "video.tv_show", og_videotvshow },
+    { { HTML_OG_2012 }, { HTML_UNDEF }, "video.other", og_videoother },
+    { { HTML_OG_2010 }, { HTML_UNDEF }, "website", og_website } };
 
 struct symbol_entry < html_version, e_page_orientation > page_orientation_symbol_table [] =
 {   { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "-270", po_270 },
@@ -1805,6 +1848,46 @@ struct symbol_entry < html_version, e_vertical_align_enum > vertical_align_enum_
     { { HTML_SVG12, 0, HE_SVG_FULL_2 }, { HTML_UNDEF }, "text-bottom", eva_text_bottom },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "inherit", eva_inherit } };
 
+struct symbol_entry < html_version, e_vgender > vgender_symbol_table [] =
+{   { { HTML_VCARD }, { HTML_UNDEF }, "female", vg_female },
+    { { HTML_VCARD }, { HTML_UNDEF }, "male", vg_male },
+    { { HTML_VCARD }, { HTML_UNDEF }, "none", vg_none },
+    { { HTML_VCARD }, { HTML_UNDEF }, "other", vg_other },
+    { { HTML_VCARD }, { HTML_UNDEF }, "unknown", vg_unknown } };
+
+struct symbol_entry < html_version, e_vrel > vrel_symbol_table [] =
+{   { { HTML_VCARD }, { HTML_UNDEF }, "acquaintance", vr_acquaintance },
+    { { HTML_VCARD }, { HTML_UNDEF }, "agent", vr_agent },
+    { { HTML_VCARD }, { HTML_UNDEF }, "child", vr_child },
+    { { HTML_VCARD }, { HTML_UNDEF }, "colleague", vr_colleague },
+    { { HTML_VCARD }, { HTML_UNDEF }, "contact", vr_contact },
+    { { HTML_VCARD }, { HTML_UNDEF }, "coresident", vr_coresident },
+    { { HTML_VCARD }, { HTML_UNDEF }, "coworker", vr_coworker },
+    { { HTML_VCARD }, { HTML_UNDEF }, "crush", vr_crush },
+    { { HTML_VCARD }, { HTML_UNDEF }, "date", vr_date },
+    { { HTML_VCARD }, { HTML_UNDEF }, "emergency", vr_emergency },
+    { { HTML_VCARD }, { HTML_UNDEF }, "friend", vr_friend },
+    { { HTML_VCARD }, { HTML_UNDEF }, "kin", vr_kin },
+    { { HTML_VCARD }, { HTML_UNDEF }, "me", vr_me },
+    { { HTML_VCARD }, { HTML_UNDEF }, "met", vr_met },
+    { { HTML_VCARD }, { HTML_UNDEF }, "muse", vr_muse },
+    { { HTML_VCARD }, { HTML_UNDEF }, "neighbor", vr_neighbor },
+    { { HTML_VCARD }, { HTML_UNDEF }, "parent", vr_parent },
+    { { HTML_VCARD }, { HTML_UNDEF }, "sibling", vr_sibling },
+    { { HTML_VCARD }, { HTML_UNDEF }, "spouse", vr_spouse },
+    { { HTML_VCARD }, { HTML_UNDEF }, "sweetheart", vr_sweetheart } };
+
+struct symbol_entry < html_version, e_vtt > vtt_symbol_table [] =
+{   { { HTML_VCARD }, { HTML_UNDEF }, "cell", vt_mobile },
+    { { HTML_VCARD }, { HTML_UNDEF }, "mobile", vt_mobile },
+    { { HTML_VCARD }, { HTML_UNDEF }, "fax", vt_fax },
+    { { HTML_VCARD }, { HTML_UNDEF }, "pager", vt_pager },
+    { { HTML_VCARD }, { HTML_UNDEF }, "text", vt_sms },
+    { { HTML_VCARD }, { HTML_UNDEF }, "sms", vt_sms },
+    { { HTML_VCARD }, { HTML_UNDEF }, "textphone", vt_textphone },
+    { { HTML_VCARD }, { HTML_UNDEF }, "video", vt_video },
+    { { HTML_VCARD }, { HTML_UNDEF }, "voice", vt_voice } };
+
 struct symbol_entry < html_version, e_whitespace > whitespace_symbol_table [] =
 {   { { HTML_JAN19 }, { HTML_UNDEF }, "normal", ws_normal },
     { { HTML_JAN19 }, { HTML_UNDEF }, "pre", ws_pre },
@@ -1850,6 +1933,9 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP SVG_2000, x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/tr/rec-mathml-19980407", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/graphics/svg/svg-19990706.dtd", x_svg },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/vcard-rdf/3.0#", x_vcard1 },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "rdf.data-vocabulary.org/#", x_v },
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2006/vcard/ns#", x_vcard },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/xhtml/vocab#", x_xhv },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/xlink", x_xlink },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/XML/1998/namespace", x_xml },
@@ -2015,28 +2101,3 @@ void enum_init (nitpick& nits)
     INIT_ENUM (whitespace);
     INIT_ENUM (writingmode);
     INIT_ENUM (xmlns); }
-
-e_namespace map_xmlns_to_namespace (const e_xmlns x) noexcept
-{   switch (x)
-    {   case x_bibo : return ns_bibo;
-        case x_cc : return ns_cc;
-        case x_crs : return ns_crs;
-        case x_dbp : return ns_dbp;
-        case x_dbp_owl : return ns_dbp_owl;
-        case x_dbr : return ns_dbr;
-        case x_dc_terms : return ns_dc;
-        case x_ex : return ns_ex;
-        case x_foaf : return ns_foaf;
-        case x_html : return ns_html;
-        case x_mathml : return ns_math;
-        case x_owl : return ns_owl;
-        case x_rddl : return ns_rddl;
-        case x_rdf : return ns_rdf;
-        case x_rdfa : return ns_rdfa;
-        case x_rdfs : return ns_rdfs;
-        case x_svg : return ns_svg;
-        case x_xhv : return ns_xhv;
-        case x_xlink : return ns_xlink;
-        case x_xsd : return ns_xs;
-        default : break; }
-    return ns_default; }

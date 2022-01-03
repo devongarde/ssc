@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -184,8 +184,7 @@ public:
         return s; }
     ::std::string after_start (const ::std::size_t n, const ::std::string& s, const bool lower) const
     {   if (lower) return after_start_lower (n, s);
-        else return after_start_mixed (n, s); }
-};
+        else return after_start_mixed (n, s); } };
 
 #define ABB_SHORTFORM 0
 #define ABB_LONGFORM ( ABB_SHORTFORM + 1 )
@@ -211,6 +210,7 @@ public:
 
 #define SCHEMA_PREFIX_CONTEXT   0x0000000000000001
 #define SCHEMA_BESPOKE          0x0000000000000002
+#define SCHEMA_CRAPSPEC         0x0000000000000004
 
 typedef n_string_table < e_namespace, ns_error, NAMESPACE_COUNT, 2 > namespace_names_t;
 typedef n_string_table < e_protocol, pr_error, PROTOCOL_COUNT, 1 > protocol_names_t;
@@ -219,4 +219,5 @@ extern namespace_names_t namespace_names;
 extern protocol_names_t protocol_names;
 extern schema_names_t schema_names;
 
+vsh_t rdfa_schema_context ();
 void init_nstrs (nitpick& nits);

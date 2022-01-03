@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,34 +35,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SECRET "secret"
 #define SOURCE "source"
 #define TARGET "target"
-
-/*   turns out this example is just that . the actual contents is entirely random, judging by https://github.com/aaronpk/webmention.io#api
-{
-  "secret": "1234abcd",
-  "source": "http://rhiaro.co.uk/2015/11/1446953889",
-  "target": "http://aaronparecki.com/notes/2015/11/07/4/indiewebcamp",
-  "post": {
-    "type": "entry",
-    "author": {
-      "name": "Amy Guy",
-      "photo": "http://webmention.io/avatar/rhiaro.co.uk/829d3f6e7083d7ee8bd7b20363da84d88ce5b4ce094f78fd1b27d8d3dc42560e.png",
-      "url": "http://rhiaro.co.uk/about#me"
-    },
-    "url": "http://rhiaro.co.uk/2015/11/1446953889",
-    "published": "2015-11-08T03:38:09+00:00",
-    "name": "repost of http://aaronparecki.com/notes/2015/11/07/4/indiewebcamp",
-    "repost-of": "http://aaronparecki.com/notes/2015/11/07/4/indiewebcamp",
-    "wm-property": "repost-of"
-  }
-}
-
-{
-  "secret": "1234abcd",
-  "source": "http://rhiaro.co.uk/2015/11/1446953889",
-  "target": "http://aaronparecki.com/notes/2015/11/07/4/indiewebcamp",
-  "deleted": true
-}
-*/
 
 hook::hook (nitpick& nits, const html_version& v, const ::std::string& filename)
     : deleted_ (false)
@@ -121,8 +93,6 @@ bool hook::process (nitpick& nits, const html_version& v)
         nits.pick (nit_cannot_read, es_error, ec_webmention, "Cannot read ", source_.original ());
     else
     {   ::std::string html = read_text_file (tmp.string ());
-//        const ::std::time_t updated = 0;
-//        page p (nits, source_.original (), updated, html);
         page p (nits, source_.original (), 0, html);
         if (p.invalid ())
             nits.pick (nit_dubious_html, es_error, ec_webmention, source_.original (), " appears to be dubious HTML");

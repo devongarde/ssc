@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -472,6 +472,7 @@ protocol_server ps [] =
     { pr_turns, pt_rfc3986_ignore },
     { pr_tv, pt_rfc3986_ignore },
     { pr_udp, pt_rfc3986_ignore },
+    { pr_uid, pt_rfc3986_ignore },
     { pr_unreal, pt_rfc3986_ignore },
     { pr_urn, pt_urn },
     { pr_ut2004, pt_rfc3986_ignore },

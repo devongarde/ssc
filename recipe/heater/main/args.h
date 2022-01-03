@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,8 +32,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MF_         "microformat"
 #define MICRODATA_  "microdata"
 #define NITS_       "nits"
+#define ONTOLOGY_   "ontology"
 #define RDFA_       "rdfa"
-#define SCHEMA_     "schema"
 #define SHADOW_     "shadow"
 #define STATS_      "stats"
 #define SVG_        "svg"
@@ -54,8 +54,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MATH        MATH_ JOIN
 #define MICRODATA   MICRODATA_ JOIN
 #define NITS        NITS_ JOIN
+#define ONTOLOGY    ONTOLOGY_ JOIN
 #define RDFA        RDFA_ JOIN
-#define SCHEMA      SCHEMA_ JOIN
 #define SHADOW      SHADOW_ JOIN
 #define STATS       STATS_ JOIN
 #define SVG         SVG_ JOIN

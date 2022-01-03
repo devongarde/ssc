@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -626,7 +626,7 @@ element_init_t ei [] =
                     a_rquote, a_scriptlevel, a_scriptminsize, a_scriptsizemultiplier, a_selection, a_separators, a_shift,
                     a_stackalign, a_subscriptshift, a_superscriptshift, a_thickmathspace, a_thinmathspace, a_valign,
                     a_verythickmathspace, a_verythinmathspace, a_veryverythickmathspace, a_veryverythinmathspace,
-                    /* a_schemalocation, */ a_style, a_type, MATH3BREAK, MATH3INDENT, MATH3TOKEN, MATH3SHARED,
+                    a_style, a_type, MATH3BREAK, MATH3INDENT, MATH3TOKEN, MATH3SHARED,
                     MATH3UNIQUE, MATH3UNIPR, WIDEHIGH, LANGCLASS3, a_unknown } },
     { elem_matrix, { MATH3COMMON, a_unknown } },
     { elem_matrixrow, { MATH3COMMON, a_unknown } },

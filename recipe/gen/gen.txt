@@ -302,24 +302,24 @@ These options are available on the command line and in configuration files:
 --nits.warning n        Redefine nit n as a warning; may be repeated (the
                         value of n can be determined using --nits.nids).
 
---schema.list           List known schema versions. See --schema.version
+--ontology.list           List known schema versions. See --schema.version
 
---schema.version "SCHEMA x.y"
-                        Presume schema version X.Y. For example:
-                            --schema.version "xsd 1.1"
-                        These versions apply to RDFa, microdata, and
-                        microformats (using class) analysis. If SCHEMA is
-                        omitted, schema (schema.org) is presumed. If .Y
-                        is omitted, .0 is presumed. X must be present.
-                        Defaults are derived from the HTML version. For a
-                        list of possible values, use --schema.list.
+--ontology.ONT X.Y      Presume version X.Y of ontology ONT. For example:
+                            --ontology.xsd 1.1
+                        defaults usage of XSD to version 1.1. The versions
+                        apply to RDFa, microdata, and microformats (using
+                        class) analysis. If .Y is omitted, .0 is presumed.
+                        X must be present. Unspecified defaults are
+                        derived from the HTML version. For a list of
+                        possible values, use --ontology.list.
 
-                        At the time of writing, the following schema and
-                        versions can be verified:
-                                article 1.0
-                                as 2.0
+                        At the time of writing, the following ontology
+                        versions can be verified. Note that single version
+                        ontologies cannot have their version changed:
+                                article 12,14,18,22
+                                as 1.0,2.0
                                 bibo 1.3
-                                book 1.0
+                                book 12,14,18,22
                                 cc 1.0
                                 content 1.0
                                 csvw 1.0
@@ -351,14 +351,14 @@ These options are available on the command line and in configuration files:
                                 locn 1.0
                                 ma 1.0
                                 mf 1.0-2.255
-                                music 1.0
+                                music 12,14,18,22
                                 oa 1.0
                                 odrl 1.0
-                                og 1.0
+                                og 10,12,14,18,22
                                 org 1.0
                                 owl 1.0,2.0
                                 poetry 1.0
-                                profile 1.0
+                                profile 12,14,18,22
                                 prov 1.0
                                 ptr 1.0
                                 qb 1.0
@@ -382,16 +382,22 @@ These options are available on the command line and in configuration files:
                                 taxo 1.0
                                 time 1.0
                                 v 1.0
-                                vcard 1.0
-                                video 1.0
+                                vann 1.0,1.1
+                                vcard 1,2,3,4
+                                video 12,14,18,22
                                 void 1.0
                                 wdr 1.0
                                 wdrs 1.0
-                                website 1.0
+                                website 12,14,18,22
                                 wwg 1.0
                                 xhv 1.0
                                 xml 1.0
                                 xsd 1.0,1.1
+                        vCard versions correspond to RDFa specs, published in
+                        2001, 2006, 2010 & 2014. They do NOT correspond to vCard
+                        data format specifications.
+                        Open Graph versions correspond to snapshots of the specs
+                        from 2010, 2012, 2014, 2018 & 2022.
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have changed.

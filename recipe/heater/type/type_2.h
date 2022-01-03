@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -240,6 +240,9 @@ template < > struct type_master < t_truefalseempty > : two_value < t_truefalseem
 
 template < > struct type_master < t_viewportscreen > : two_value < t_viewportscreen, e_viewportscreen, sz_viewport, sz_screen, false >
 { using two_value < t_viewportscreen, e_viewportscreen, sz_viewport, sz_screen, false > :: two_value; };
+
+template < > struct type_master < t_vtype > : two_value < t_vtype, e_vtype, sz_home, sz_work, false >
+{ using two_value < t_vtype, e_vtype, sz_home, sz_work, false > :: two_value; };
 
 template < > struct type_master < t_workertype > : two_value < t_workertype, e_workertype, sz_classic, sz_module, false >
 { using two_value < t_workertype, e_workertype, sz_classic, sz_module, false > :: two_value; };

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -497,6 +497,8 @@ const html_version xhtml_svg_1_2_full (HTML_SVG12, HV_XHTML, HE_SVG_12_FULL);
 const html_version html_svg_2_0 (HTML_SVG20, 0, HE_SVG_20);
 const html_version html_svg_2_1 (HTML_SVG21, 0, HE_SVG_21);
 
+const html_version html_as_1_0 (HTML_AS_1_0);
+const html_version html_as_2_0 (HTML_AS_2_0);
 const html_version html_cc (HTML_CC);
 const html_version html_dc_1_0 (HTML_DC_1_0);
 const html_version html_dc_1_1 (HTML_DC_1_1);
@@ -563,7 +565,12 @@ const html_version html_sosa (HTML_SKOS);
 const html_version html_taxo (HTML_SKOS);
 const html_version html_time (HTML_SKOS);
 const html_version html_v (HTML_V);
-const html_version html_vcard (HTML_VCARD);
+const html_version html_vann_1_0 (HTML_VANN_1_0);
+const html_version html_vann_1_1 (HTML_VANN_1_1);
+const html_version html_vcard_2001 (HTML_VCARD_2001);
+const html_version html_vcard_2006 (HTML_VCARD_2006);
+const html_version html_vcard_2010 (HTML_VCARD_2010);
+const html_version html_vcard_2014 (HTML_VCARD_2014);
 const html_version html_video (HTML_VIDEO);
 const html_version html_void (HTML_VOID);
 const html_version html_wdr (HTML_WDR);
@@ -611,6 +618,7 @@ const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MATH_3 | HE_SVG_21);
 const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
+const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_11);

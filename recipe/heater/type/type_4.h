@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -171,6 +171,9 @@ template < > struct type_master < t_valign3 > : four_value < t_valign3, e_valign
 
 template < > struct type_master < t_visibility11 > : four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_collapse, sz_inherit >
 { using four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_collapse, sz_inherit > :: four_value; };
+
+template < > struct type_master < t_vkind > : four_value < t_vkind, e_vkind, sz_individual, sz_organisation, sz_group, sz_location >
+{ using four_value < t_vkind, e_vkind, sz_individual, sz_organisation, sz_group, sz_location > :: four_value; };
 
 template < > struct type_master < t_xsdbool > : four_value < t_xsdbool, e_xsdbool, sz_0, sz_1, sz_false, sz_true >
 { using four_value < t_xsdbool, e_xsdbool, sz_0, sz_1, sz_false, sz_true > :: four_value; };

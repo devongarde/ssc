@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -115,3 +115,18 @@ template < > struct type_master < t_result > : tidy_string < t_result >
     using tidy_string < t_result > :: tidy_string;
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
     { return invalid_id_result (nits, v, tidy_string < t_result > :: value_, e); } };
+
+template < > struct type_master < t_uid > : tidy_string < t_uid >
+{   using tidy_string < t_uid > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   tidy_string < t_uid > :: set_value (nits, v, trim_the_lot_off (ss));
+        if (! tidy_string < t_uid > :: empty ())
+        {   const ::std::string& s = tidy_string < t_uid > :: get_string ();
+            ::std::string::size_type pos = s.find (':');
+            if (pos == ::std::string::npos)
+            {   if (s.find_first_not_of (HEX "-") == ::std::string::npos) return; }
+            else if ((pos > 0) && (pos < (s.length () - 1)))
+            {   if ((pos != 3) || ! compare_no_case ("UID", s.substr (0, 3))) return;
+                if (s.substr (pos+1).find_first_not_of (HEX "-") == ::std::string::npos) return; }
+            nits.pick (nit_bad_uid, es_warning, ec_type, "expecting 'UID:' followed by a long hexadecimal number");
+            tidy_string < t_uid > :: status (s_invalid); } } };

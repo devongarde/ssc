@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -52,11 +52,10 @@ class context_t
                     revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, sarcasm_ = false, schema_ = false,
                     shadow_comment_ = false, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = false, shadow_space_ = false, slob_ = false, spec_ = false, ssi_ = false,
                     stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = false, update_ = false, valid_ = false, versioned_ = false;
-    int             code_ = 0, dc_ = 1, foaf_ = 99, title_ = MAX_IDEAL_TITLE_LENGTH, xsd_ = 0;
+    int             code_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
-    html_version    version_ = html_default;
-//    schema_version  schema_ver_  = error_schema;
+    html_version    version_;
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
     e_severity      report_error_ = es_error;
@@ -348,10 +347,8 @@ public:
     context_t& sarcasm (const bool b) { sarcasm_ = b; mac (nm_context_sarcasm, b); return *this; }
     context_t& schema (const bool b)
     {   schema_ = b;
-//        if (schema_ver_.empty ()) schema_ver_ = schema_default;
         mac (nm_context_schema, b);
         return *this; }
-//    context_t& schema_ver (const schema_version& sv) { schema_ver_.reset (sv); mac (nm_context_schema_version, sv.name ()); return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
     context_t& server (const ::std::string& s) { server_ = s; return *this; }
     context_t& shadow_comment (const bool b) { shadow_comment_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_comment, b); return *this; }

@@ -1,11 +1,11 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.119
+version 0.0.120
 https://ssc.lu/
 
 
 
-(c) 2020,2021 dylan harris
+(c) 2020-2022 dylan harris
 see LICENCE.txt for copyright & licence notice
 see W3-LICENCE.txt for additional copyright & licence information
 
@@ -29,6 +29,7 @@ ssc analyses static HTML snippets, files and sites:
 - processes server side includes, mostly
 - analyses schema.org microdata 2.0 to 13.0
 - analyses microformats v1 & v2
+- RDFa with standard context
 
 with opinions on:
 - standard english where dialect is required
@@ -66,10 +67,12 @@ To build & run:
 3. Set the environment variable ICUPATH to point to the ICU home directory
 4. If need be download, build and install boost 1.67 or better (perhaps from boost.org)
 5. Set the environment variable BOOST to point to the BOOST home directory
-6. -EITHER- build with CMake 3.11 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
-7. -OR- build with recipe\tea\ssc201?.sln in Visual Studios 2017/2019 under Windows
-8. If need be, download, build and install curl (perhaps from curl.haxx.se)
-9. Gleefully run ssc. It will break if you are insufficiently gleeful.
+6. If necessary, download and install Microsoft's GSL library
+7. Set the environment variable GSL_ROOT to point to the GSL home directory
+8. -EITHER- build with CMake 3.11 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
+9. -OR- build with recipe\tea\ssc201?.sln in Visual Studios 2017/2019 under Windows
+10. If need be, download, build and install curl (perhaps from curl.haxx.se)
+11. Gleefully run ssc. It will not work if you are insufficiently gleeful.
 
 
 
@@ -104,4 +107,4 @@ more licences    licences for borrowed external content
 
 written by dylan harris
 mail@ssc.lu
-October 2021
+January 2022

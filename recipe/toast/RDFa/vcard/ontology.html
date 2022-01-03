@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>vcard</title>
+</head>
+
+<body>
+
+<h1>vcard</h1>
+
+<div vocab="http://www.w3.org/2001/vcard-rdf/3.0#"
+ resource="http://example.com/me/corky" typeof="Individual">
+ <span property="fn">Corky Crystal</span>
+ <span property="nickname">Corks</span>
+ <span property="hasTelephone" typeof="Home Voice">
+ <span property="hasValue" href="tel:+61755555555"/>
+ </span>
+ <link property="hasEmail" href="mailto:corky@example.com"/>
+ <span property="hasAddress" typeof="Home">
+ <span property="street-address">111 Lake Drive</span>
+ <span property="locality">WonderCity</span>
+ <span property="postal-code">5555</span>
+ <span property="country-name">Australia</span>
+ </span>
+ </div>
+
+</body>
+</html>

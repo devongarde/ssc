@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -1050,7 +1050,7 @@ void validate_metaname_content (nitpick& nits, const html_version& v, const bool
                     nits.pick (nit_theme_colour, ed_jul20, "4.2.5.1 Standard metadata names", es_error, ec_attribute, "When using <META> NAME=\"theme-color\", CONTENT should be a colour"); }
             break;
         case mn_og_type :
-            test_value < t_ogtype > (nits, v, content);
+            test_value < t_og > (nits, v, content);
             break;
         case mn_og_audio :
         case mn_og_video :

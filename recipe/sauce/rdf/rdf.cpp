@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,6 +41,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_schema_typ
         case s_foaf :
         case s_gr :
         case s_schema :
+        case s_vcard :
             return is_valid_schema_property (nits, v, t, p, value, is_link);
         case s_microformats :
         case s_rdfa :
@@ -62,6 +63,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_schema_typ
         case s_foaf :
         case s_gr :
         case s_schema :
+        case s_vcard :
             return is_valid_schema_property (nits, v, t, p, value);
         case s_microformats :
         case s_rdfa :
@@ -94,12 +96,27 @@ template < > prop_indices rdf_t::fit_vocab < prop_indices > (const html_version&
             ii.emplace_back (pi); }
     return ii; }
 
+vty_t rdf_t::type () const
+{   if (use_parent ())
+    {   VERIFY_NOT_NULL (up_, __FILE__, __LINE__);
+        return up_ -> type (); }
+    return type_; }
+
+vsh_t rdf_t::vocabs () const
+{   vsh_t res (vocab_);
+    if (up_ == nullptr)
+        res.merge (rdfa_schema_context ());
+    else
+        res.merge (up_ -> vocabs ());
+    return res; }
+
 prop_indices rdf_t::prepare_prop_indices (nitpick& nits, const html_version& v, const ::std::string& name)
 {   prop_indices ii;
+    vsh_t vs (vocabs ());
     if (name.find (':') == ::std::string::npos)
         ii = fit_vocab < prop_indices > (v, name);
     if (ii.empty ())
-        ii = find_prop_indices (nits, v, name, false);
+        ii = find_prop_indices (nits, v, vs, name, false);
     if (ii.empty ())
     {   e_schema mr = s_none;
         ::std::string::size_type ends_at = 0;
@@ -107,7 +124,7 @@ prop_indices rdf_t::prepare_prop_indices (nitpick& nits, const html_version& v, 
         if (mr == s_error)
         {   wombats (nits, v, name);
             return ii; }
-        ii = find_prop_indices (nits, v, name.substr (ends_at), false); }
+        ii = find_prop_indices (nits, v, vs, name.substr (ends_at), false); }
     if (ii.empty ())
         nits.pick (nit_bad_property, es_warning, ec_rdfa, quote (name), " is not known");
     return ii; }
@@ -161,7 +178,7 @@ e_schema_type rdf_t::note_type (nitpick& nits, const html_version& v, const ::st
                 wombats (nits, v, xpan);
             else
             {   const sch sc (nits, v, schema_names.after_start (SCHEMA_CURIE, xpan.substr (ends_at), v.xhtml ()), ns);
-                t = sc.get (); } } // }
+                t = sc.get (); } }
     if (t != sty_illegal)
     {   p.mark (t);
         const flags_t flags = sch :: flags (t);
@@ -175,11 +192,14 @@ e_schema_type rdf_t::note_type (nitpick& nits, const html_version& v, const ::st
 e_schema rdf_t::note_vocab (nitpick& nits, const html_version& v, const ::std::string& name, page& )
 {   ::std::string xpan = expand_prefix (v, name);
     const e_schema s = schema_names.find_lower (v, SCHEMA_CURIE, xpan);
-    if (s == s_none)
+    if ((s == s_none) || (s == s_error))
         nits.pick (nit_bad_vocab, es_error, ec_rdfa, PROG " does not know about ", quote (name), " so will be unable to verify its content");
     else if (is_vocab_defined (s))
         nits.pick (nit_vocab_defined, es_warning, ec_rdfa, quote (name), " is already defined");
-    else vocab_.insert (s);
+    else
+    {   if ((schema_names.flags (s) & SCHEMA_CRAPSPEC) == SCHEMA_CRAPSPEC)
+            nits.pick (nit_crap_spec, es_warning, ec_json, quote (schema_names.get (s, SCHEMA_NAME)), " is poorly specified: use an alternative");
+        vocab_.insert (s); }
     return s; }
 
 ::std::string rdf_t::report (const ::std::size_t offset) const
@@ -208,8 +228,8 @@ e_schema rdf_t::note_vocab (nitpick& nits, const html_version& v, const ::std::s
 vty_t rdf_t::sought_types (const html_version& v, const ::std::string& name) const
 {   nitpick nits;
     vit_t res;
-    itemprop_index prop = find_prop_index (nits, v, name, type ().empty ());
-    if (prop != illegal_prop)
+    prop_indices pi = find_prop_indices (nits, v, vocabs (), name, type ().empty ());
+    for (auto prop : pi)
         for (auto i : sought_schema_types (static_cast < e_schema_property > (ndx_item (prop))))
             res.push_back (i);
     return res; }

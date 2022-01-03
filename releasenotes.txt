@@ -1,11 +1,15 @@
 RELEASE NOTES
 static site checker
 https://ssc.lu/
-(c) 2020,2021 Dylan Harris
+(c) 2020-2022 Dylan Harris
+
+0.0.120
+- RDFa
+- added --ontology.list
+- set default schema versions with --ontology.XXX 
 
 0.0.119
-- added --microdata.help
-- enhanced --microdata.version to accept specific schema
+- macos Monterey
 - underlying work
 
 0.0.118

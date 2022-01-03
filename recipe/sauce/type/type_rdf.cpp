@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -92,7 +92,7 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
                 if (id == curie)
                 {   if ((id != s_error) && (id != s_none))
                         if (id < s_error)
-                            nits.pick (nit_rdfa_redefine, ed_rdfa_c, "(entire document)", es_info, ec_rdfa, "it is not necessary to redefine ", quote (name), " given it is defined by default");
+                            nits.pick (nit_rdfa_redefine, ed_rdfa_c, "(entire document)", es_info, ec_rdfa, "it is not necessary to redefine ", quote (name), ", it is defined by default");
                         else nits.pick (nit_rdfa_redefine, es_info, ec_rdfa, quote (name), " has already been defined"); }
                 else
                 {   if ((id < s_error) && (id != s_none))

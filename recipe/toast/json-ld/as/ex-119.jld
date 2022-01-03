@@ -1,0 +1,7 @@
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "type": "Video",
+    "name": "Birds Flying",
+    "url": "http://example.org/video.mkv",
+    "duration": "PT2H"
+}

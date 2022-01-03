@@ -25,7 +25,6 @@ PASS ../toast/type/url/bad.html
 33 url_empty_password
 34 url_empty_password empty_host
 35 url_insecure_password
-41 bang_path
 
 PASS ../toast/type/url/dubious.html
 2 naughty_lang

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,12 +35,6 @@ class css_cache
             i -> second -> active (false); } }
     void delete_snippets ();
 public:
-//	css_cache() = default;
-//    css_cache (const css_cache& c) = default;
-//	css_cache (css_cache&& c) = default;
-//    ~css_cache () = default;
-//    css_cache& operator = (const css_cache& ) = default;
-//    css_cache& operator = (css_cache&& ) = default;
     void swap (css_cache& c) noexcept
     {   csss_.swap (c.csss_); }
     void post_process ()

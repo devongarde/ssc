@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -56,9 +56,6 @@ itemprop_indices make_itemprop_indices (const e_property p)
     res.emplace_back (make_itemprop_index (p));
     return res; }
 
-//constexpr e_itemprop_category prop_category (const itemprop_index ii)
-//{   return static_cast < e_itemprop_category> (static_cast < uint32_t > (ii) >> uint32_category_shift); }
-
 ::std::string bespoke_itemprop_name (const itemprop_index ii)
 {   mii_t::const_iterator i = unknown_ids.find (ndx_item (ii));
     if (i != unknown_ids.cend ()) return i -> second;
@@ -66,12 +63,14 @@ itemprop_indices make_itemprop_indices (const e_property p)
 
 itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted)
 {   nitpick knots;
-    const e_schema_property mp = identify_schema_property (knots, context.schema_ver (), name);
+    const e_schema_property mp = identify_schema_property (name);
     if (mp != sp_illegal) return make_itemprop_index (mp);
+    knots.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is not a recognised property");
     const prop p (knots, v, name);
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_index (p.get ());
     if (! bespoke_permitted)
     {   nits.merge (knots);
+        check_spelling (nits, v, name);
         nits.pick (nit_bad_itemprop, es_error, ec_microdata, quote (name), " is not recognised");
         return illegal_itemprop; }
     min_t::const_iterator ini = unknown_props.find (name);
@@ -83,12 +82,14 @@ itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const 
 
 itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted)
 {   nitpick knots;
-    vsp_t vsp = identify_schema_properties (knots, context.schema_ver (), name);
+    vsp_t vsp = identify_schema_properties (name);
     if (! vsp.empty ()) return make_itemprop_indices (vsp);
+    knots.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is not a recognised property");
     const prop p (knots, v, name);
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_indices (p.get ());
     if (! bespoke_permitted)
     {   nits.merge (knots);
+        check_spelling (nits, v, name);
         nits.pick (nit_bad_itemprop, es_error, ec_microdata, quote (name), " is not recognised");
         return itemprop_indices (); }
     min_t::const_iterator ini = unknown_props.find (name);

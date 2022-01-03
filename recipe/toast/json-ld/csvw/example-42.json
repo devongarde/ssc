@@ -1,0 +1,9 @@
+{
+    "@type": "Table",
+    "url": "http://example.com/table.csv",
+    "tableSchema": [ "..." ],
+    "dc:title": {
+        "@value": "The title of this Table",
+        "@language": "en"
+    }
+}

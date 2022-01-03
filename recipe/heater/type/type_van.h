@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -226,6 +226,23 @@ template < > struct type_master < t_mathspacefit > : type_or_either_string < t_m
 
 template < > struct type_master < t_mathspaceinfinity > : type_or_string < t_mathspaceinfinity, t_mathspace, sz_infinity >
 { using type_or_string < t_mathspaceinfinity, t_mathspace, sz_infinity > :: type_or_string; };
+
+template < > struct type_master < t_og > : type_either_or < t_og, t_ogtype, t_url >
+{   using type_either_or < t_og, t_ogtype, t_url > :: type_either_or;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_og > :: set_value (nits, v, s);
+        if (type_either_or < t_og, t_ogtype, t_url > :: good ())
+        {   nitpick nuts;
+            if (v >= html_jan14)
+            {   url u (nuts, v, s, pr_other);
+                if (! u.invalid () && u.has_absolute_path () && u.is_usable ())
+                {   nits.merge (nuts); return; } }
+            if (test_value < t_ogtype > (nits, v, s)) return;
+            nits.merge (nuts); }
+        type_either_or < t_og, t_ogtype, t_url > :: status (s_invalid); } };
+
+template < > struct type_master < t_ogdet > : type_or_null < t_ogdet, t_determiner >
+{   using type_or_null < t_ogdet, t_determiner > :: type_or_null; };
 
 template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudonamedspace >
 {   using tidy_string < t_pseudonamedspace > :: tidy_string;

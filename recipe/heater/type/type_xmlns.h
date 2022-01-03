@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,8 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_enum.h"
 #include "type/type_case.h"
-
-e_namespace xmlns_to_namespace (nitpick& nits, const html_version& v, const e_xmlns x);
 
 template < > inline void enum_n < t_namespace, e_namespace > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   ::std::string pret (trim_the_lot_off (s));

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -174,4 +174,17 @@ inline ::std::string x_dot_y (int x, int y)
     res += ::boost::lexical_cast < ::std::string > (x);
     res += ".";
     res += ::boost::lexical_cast < ::std::string > (y);
+    return res; }
+
+inline ::std::string x_dot_y (const unsigned char mjr, const unsigned char mnr)
+{   ::std::string res (::boost::lexical_cast < ::std::string > (static_cast < int > (mjr)));
+    res += ".";
+    res += ::boost::lexical_cast < ::std::string > (static_cast < int > (mnr));
+    return res; }
+
+inline ::std::string x_dot_y_ish (const unsigned char mjr, const unsigned char mnr)
+{   ::std::string res (::boost::lexical_cast < ::std::string > (static_cast < int > (mjr)));
+    if (mnr > 0)
+    {   res += ".";
+        res += ::boost::lexical_cast < ::std::string > (static_cast < int > (mnr)); }
     return res; }

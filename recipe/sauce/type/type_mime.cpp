@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -100,7 +100,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/csrattrs", mime_application_csrattrs, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/csta+xml", mime_application_csta_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/CSTAdata+xml", mime_application_CSTAdata_xml, ns_default, MIME_APPLICATION | MIME_XML },
-    { { HTML_4_0 }, { HTML_UNDEF }, "application/csvm+json", mime_application_csvm_json, ns_default, MIME_APPLICATION | MIME_JSON },
+    { { HTML_4_0 }, { HTML_UNDEF }, "application/csvm+json", mime_application_csvm_json, ns_default, MIME_APPLICATION | MIME_JSON | MIME_JSON_LD },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/cwt", mime_application_cwt, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/cybercash", mime_application_cybercash, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/dash+xml", mime_application_dash_xml, ns_default, MIME_APPLICATION | MIME_XML },

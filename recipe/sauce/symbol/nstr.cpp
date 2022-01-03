@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -85,7 +85,10 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { HTML_TTML }, { HTML_UNDEF }, ns_ttf, 0, { "ttf", HTTP_W3 "/ns/ttml#parameter", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
     { { HTML_TTML }, { HTML_UNDEF }, ns_ttp, 0, { "ttp", HTTP_W3 "/ns/ttml#styling", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
     { { HTML_TTML }, { HTML_UNDEF }, ns_tts, 0, { "tts", HTTP_W3 "/ns/ttml/feature/", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_vcard, 0, { "v",  HTTP_W3 "/2006/vcard/ns#", "vcard" } },
+    { { HTML_V }, { HTML_UNDEF }, ns_v, 0, { "v", HTTP "rdf.data-vocabulary.org/#", "data-vocabulary" } },
+    { { HTML_V }, { HTML_UNDEF }, ns_v, 0, { "v", HTTPS "rdf.data-vocabulary.org/#", "data-vocabulary" } },
+    { { HTML_VCARD_2001 }, { HTML_UNDEF }, ns_vcard, NS_DEPRECATED, { "vcard",  HTTP_W3 "/2001/vcard-rdf/3.0#", "vcard (deprecated)" } },
+    { { HTML_VCARD_2006 }, { HTML_UNDEF }, ns_vcard, 0, { "vcard",  HTTP_W3 "/2006/vcard/ns#", "vcard" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_xalan, 0, { "xalan", "http://xml.apache.org/xslt", "Xalan XSLT Extensions" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_xalan, 0, { "lxslt", "http://xml.apache.org/xslt", "Xalan XSLT Extensions" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_xf, 0, { "xf", HTTP_W3 "/2001/08/xquery-operators", "XQuery 1.0" } },
@@ -315,6 +318,7 @@ n_string_entry < e_protocol, 2 > protocol_name_entries [] =
     { { HTML_TAGS }, { HTML_UNDEF }, pr_turns, 0, { "turns", "secure transversal using realys around NAT" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_tv, 0, { "tv", "tv broadcast" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_udp, 0, { "udp", "user datagram" } },
+    { { HTML_TAGS }, { HTML_UNDEF }, pr_uid, 0, { "uid", "universal identifier" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_unreal, 0, { "unreal", "unreal (game)" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_urn, 0, { "urn", "uniform resource name" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_ut2004, 0, { "ut2004", "unreal tournament 2004" } },
@@ -346,36 +350,36 @@ n_string_entry < e_protocol, 2 > protocol_name_entries [] =
     { { HTML_TAGS }, { HTML_UNDEF }, pr_error, 0, { nullptr, nullptr } } };
 
 n_string_entry < e_schema, 3 > schema_name_entries [] =
-{   { { HTML_ARTICLE }, { HTML_UNDEF }, s_article, 0, { "article", "http://ogp.me/ns/article#", "Open Graph Article" } },
-    { { HTML_ARTICLE }, { HTML_UNDEF }, s_article, 0, { "article", "https://ogp.me/ns/article#", "Open Graph Article" } },
-    { { HTML_AS }, { HTML_UNDEF }, s_as, SCHEMA_PREFIX_CONTEXT, { "as", HTTP_W3 "/ns/activitystreams#", "Activity Vocabulary" } },
-    { { HTML_AS }, { HTML_UNDEF }, s_as, 0, { "as", HTTPS_W3 "/ns/activitystreams#", "Activity Vocabulary" } },
-    { { HTML_BIBO }, { HTML_UNDEF }, s_bibo, 0, { "bibo", HTTP PURL_ORG  "/ontology/bibo/", "bibliographic ontology" } },
-    { { HTML_BIBO }, { HTML_UNDEF }, s_bibo, 0, { "bibo", HTTPS PURL_ORG  "/ontology/bibo/", "bibliographic ontology" } },
-    { { HTML_BOOK }, { HTML_UNDEF }, s_book, 0, { "book", "http://ogp.me/ns/book#", "Open Graph Book" } },
-    { { HTML_BOOK }, { HTML_UNDEF }, s_book, 0, { "book", "https://ogp.me/ns/book#", "Open Graph Book" } },
+{   { { HTML_ARTICLE }, { HTML_UNDEF }, s_article, 0, { "article", "http://ogp.me/ns/article#", "open graph article" } },
+    { { HTML_ARTICLE }, { HTML_UNDEF }, s_article, 0, { "article", "https://ogp.me/ns/article#", "open graph article" } },
+    { { HTML_AS }, { HTML_UNDEF }, s_as, SCHEMA_PREFIX_CONTEXT, { "as", HTTP_W3 "/ns/activitystreams#", "activity streams" } },
+    { { HTML_AS }, { HTML_UNDEF }, s_as, 0, { "as", HTTPS_W3 "/ns/activitystreams#", "activity streams" } },
+    { { HTML_BIBO }, { HTML_UNDEF }, s_bibo, SCHEMA_CRAPSPEC, { "bibo", HTTP PURL_ORG "/ontology/bibo/", "bibliographic ontology" } },
+    { { HTML_BIBO }, { HTML_UNDEF }, s_bibo, SCHEMA_CRAPSPEC, { "bibo", HTTPS PURL_ORG "/ontology/bibo/", "bibliographic ontology" } },
+    { { HTML_BOOK }, { HTML_UNDEF }, s_book, 0, { "book", HTTP OGP_ME "/ns/book#", "open graph book" } },
+    { { HTML_BOOK }, { HTML_UNDEF }, s_book, 0, { "book", HTTPS OGP_ME "/ns/book#", "open graph book" } },
     { { HTML_CC }, { HTML_UNDEF }, s_cc, SCHEMA_PREFIX_CONTEXT, { "cc", "http://creativecommons.org/ns#", "creative commons" } },
     { { HTML_CC }, { HTML_UNDEF }, s_cc, 0, { "cc", "https://creativecommons.org/ns#", "creative commons" } },
-    { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", "http://purl.org/rss/1.0/modules/content/", "content" } },
-    { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", "https://purl.org/rss/1.0/modules/content/", "content" } },
-    { { HTML_CSVW }, { HTML_UNDEF }, s_csvw, SCHEMA_PREFIX_CONTEXT, { "csvw", HTTP_W3 "/ns/csvw#", "csvw" } },
-    { { HTML_CSVW }, { HTML_UNDEF }, s_csvw, 0, { "csvw", HTTPS_W3 "/ns/csvw#", "csvw" } },
+    { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", HTTP PURL_ORG "/rss/1.0/modules/content/", "content" } },
+    { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", HTTPS PURL_ORG "/rss/1.0/modules/content/", "content" } },
+    { { HTML_CSVW }, { HTML_UNDEF }, s_csvw, SCHEMA_PREFIX_CONTEXT, { "csvw", HTTP_W3 "/ns/csvw#", "CSV (metadata vocabulary for tabular data)" } },
+    { { HTML_CSVW }, { HTML_UNDEF }, s_csvw, 0, { "csvw", HTTPS_W3 "/ns/csvw#", "CSV (metadata vocabulary for tabular data)" } },
     { { HTML_CTAG }, { HTML_UNDEF }, s_ctag, SCHEMA_PREFIX_CONTEXT, { "ctag", "http://commontag.org/ns#", "ctag" } },
     { { HTML_CTAG }, { HTML_UNDEF }, s_ctag, 0, { "ctag", "https://commontag.org/ns#", "ctag" } },
-    { { HTML_DAQ }, { HTML_UNDEF }, s_daq, 0, { "daq", HTTP "theme-e.adaptcentre.ie/daq/daq.html#", "Dataset Quality Vocabulary" } },
-    { { HTML_DAQ }, { HTML_UNDEF }, s_daq, 0, { "daq", HTTPS "theme-e.adaptcentre.ie/daq/daq.html#", "Dataset Quality Vocabulary" } },
-    { { HTML_DBD }, { HTML_UNDEF }, s_dbd, 0, { "dbp", HTTP DBPEDIA "/datatype/", "dbpedia datatype" } },  // https://www.dbpedia.org/
+    { { HTML_DAQ }, { HTML_UNDEF }, s_daq, 0, { "daq", HTTP "theme-e.adaptcentre.ie/daq/daq.html#", "dataset quality vocabulary" } },
+    { { HTML_DAQ }, { HTML_UNDEF }, s_daq, 0, { "daq", HTTPS "theme-e.adaptcentre.ie/daq/daq.html#", "dataset quality vocabulary" } },
+    { { HTML_DBD }, { HTML_UNDEF }, s_dbd, 0, { "dbd", HTTP DBPEDIA "/datatype/", "dbpedia datatype" } },  // https://www.dbpedia.org/
     { { HTML_DBD }, { HTML_UNDEF }, s_dbd, 0, { "dbd", HTTPS DBPEDIA "/datatype/", "dbpedia datatype" } },  // https://www.dbpedia.org/
     { { HTML_DBO }, { HTML_UNDEF }, s_dbo, 0, { "dbo", HTTP DBPEDIA "/ontology/", "dbpedia ontology" } },  // https://www.dbpedia.org/
-    { { HTML_DBO }, { HTML_UNDEF }, s_dbo, 0, { "dbp", HTTPS DBPEDIA "/ontology/", "dbpedia ontology" } },  // https://www.dbpedia.org/
+    { { HTML_DBO }, { HTML_UNDEF }, s_dbo, 0, { "dbo", HTTPS DBPEDIA "/ontology/", "dbpedia ontology" } },  // https://www.dbpedia.org/
     { { HTML_DBP }, { HTML_UNDEF }, s_dbp, SCHEMA_PREFIX_CONTEXT, { "dbp", HTTP DBPEDIA "/property/", "dbpedia property" } },  // https://www.dbpedia.org/
     { { HTML_DBP }, { HTML_UNDEF }, s_dbp, 0, { "dbp", HTTPS DBPEDIA "/property/", "dbpedia property" } },  // https://www.dbpedia.org/
     { { HTML_DBP_OWL }, { HTML_UNDEF }, s_dbp_owl, SCHEMA_PREFIX_CONTEXT, { "dbp-owl", HTTP DBPEDIA "/ontology/", "dbpedia" } },  // https://www.dbpedia.org/
     { { HTML_DBP_OWL }, { HTML_UNDEF }, s_dbp_owl, 0, { "dbp-owl", HTTPS DBPEDIA "/ontology/", "dbpedia" } },  // https://www.dbpedia.org/
     { { HTML_DBR }, { HTML_UNDEF }, s_dbr, SCHEMA_PREFIX_CONTEXT, { "dbr", HTTP DBPEDIA "/resource/", "dbpedia resources" } },
     { { HTML_DBR }, { HTML_UNDEF }, s_dbr, 0, { "dbr", HTTPS DBPEDIA "/resource/", "dbpedia resources" } },
-    { { HTML_DC }, { HTML_UNDEF }, s_dc, SCHEMA_PREFIX_CONTEXT, { "dc11", HTTP PURL_ORG "/dc/elements/1.1/", "dublin core elements 1.1" } },
-    { { HTML_DC }, { HTML_UNDEF }, s_dc, 0, { "dc11", HTTPS PURL_ORG "/dc/elements/1.1/", "dublin core elements 1.1" } },
+    { { HTML_DC }, { HTML_UNDEF }, s_dc, SCHEMA_PREFIX_CONTEXT, { "dc11", HTTP PURL_ORG "/dc/elements/1.1/", "dublin core elements" } },
+    { { HTML_DC }, { HTML_UNDEF }, s_dc, 0, { "dc11", HTTPS PURL_ORG "/dc/elements/1.1/", "dublin core elements" } },
     { { HTML_DC }, { HTML_UNDEF }, s_dcam, 0, { "dcam", HTTP PURL_ORG "/dc/dcam/", "dublin core vocabulary description" } },
     { { HTML_DC }, { HTML_UNDEF }, s_dcam, 0, { "dcam", HTTPS PURL_ORG "/dc/dcam/", "dublin core vocabulary description" } },
     { { HTML_DC }, { HTML_UNDEF }, s_dcat, SCHEMA_PREFIX_CONTEXT, { "dcat", HTTP_W3 "/ns/dcat#", "data catalogue" } },
@@ -424,24 +428,24 @@ n_string_entry < e_schema, 3 > schema_name_entries [] =
     { { HTML_MA }, { HTML_UNDEF }, s_ma, 0, { "ma", HTTPS_W3 "/ns/ma-ont#", "media resources" } },
     { { HTML_MF }, { HTML_UNDEF }, s_microformats, 0, { "mf", HTTP_MF "/", "microformats" } },
     { { HTML_MF }, { HTML_UNDEF }, s_microformats, 0, { "mf", HTTPS_MF "/", "microformats" } },
-    { { HTML_MUSIC }, { HTML_UNDEF }, s_music, 0, { "music", "http://ogp.me/ns/music#", "Open Graph Music" } },
-    { { HTML_MUSIC }, { HTML_UNDEF }, s_music, 0, { "music", "https://ogp.me/ns/music#", "Open Graph Music" } },
-    { { HTML_OA }, { HTML_UNDEF }, s_oa, SCHEMA_PREFIX_CONTEXT, { "oa", HTTP_W3 "/ns/oa#", "Web Annotation (oa)" } },
-    { { HTML_OA }, { HTML_UNDEF }, s_oa, 0, { "oa", HTTPS_W3 "/ns/oa#", "Web Annotation (oa)" } },
+    { { HTML_MUSIC }, { HTML_UNDEF }, s_music, 0, { "music", HTTP OGP_ME "/ns/music#", "open graph music" } },
+    { { HTML_MUSIC }, { HTML_UNDEF }, s_music, 0, { "music", HTTPS OGP_ME "/ns/music#", "open graph music" } },
+    { { HTML_OA }, { HTML_UNDEF }, s_oa, SCHEMA_PREFIX_CONTEXT, { "oa", HTTP_W3 "/ns/oa#", "web annotation" } },
+    { { HTML_OA }, { HTML_UNDEF }, s_oa, 0, { "oa", HTTPS_W3 "/ns/oa#", "web annotation" } },
     { { HTML_ODRL }, { HTML_UNDEF }, s_odrl, SCHEMA_PREFIX_CONTEXT, { "odrl", HTTP_W3 "/ns/odrl/2/", "open digital rights" } },
     { { HTML_ODRL }, { HTML_UNDEF }, s_odrl, 0, { "odrl", HTTPS_W3 "/ns/odrl/2/", "open digital rights" } },
-    { { HTML_OG }, { HTML_UNDEF }, s_og, SCHEMA_PREFIX_CONTEXT, { "og", "http://ogp.me/ns#", "og" } },
-    { { HTML_OG }, { HTML_UNDEF }, s_og, 0, { "og", "https://ogp.me/ns#", "og" } },
+    { { HTML_OG }, { HTML_UNDEF }, s_og, SCHEMA_PREFIX_CONTEXT, { "og", HTTP OGP_ME "/ns#", "open graph protocol" } },
+    { { HTML_OG }, { HTML_UNDEF }, s_og, 0, { "og", HTTPS OGP_ME "/ns#", "open graph protocol" } },
     { { HTML_ORG }, { HTML_UNDEF }, s_org, SCHEMA_PREFIX_CONTEXT, { "org", HTTP_W3 "/ns/org#", "Organisations" } },
     { { HTML_ORG }, { HTML_UNDEF }, s_org, 0, { "org", HTTPS_W3 "/ns/org#", "Organisations" } },
     { { HTML_OWL }, { HTML_UNDEF }, s_owl, SCHEMA_PREFIX_CONTEXT, { "owl", HTTP_W3 "/2002/07/owl#", "OWL" } },
     { { HTML_OWL }, { HTML_UNDEF }, s_owl, 0, { "owl", HTTPS_W3 "/2002/07/owl#", "OWL" } },
-    { { HTML_PROFILE }, { HTML_UNDEF }, s_profile, 0, { "profile", "http://ogp.me/ns/profile#", "Open Graph Profile" } },
-    { { HTML_PROFILE }, { HTML_UNDEF }, s_profile, 0, { "profile", "https://ogp.me/ns/profile#", "Open Graph Profile" } },
-    { { HTML_PROV }, { HTML_UNDEF }, s_prov, SCHEMA_PREFIX_CONTEXT, { "prov", HTTP_W3 "/ns/prov#", "Provenance Vocabulary" } },
-    { { HTML_PROV }, { HTML_UNDEF }, s_prov, 0, { "prov", HTTPS_W3 "/ns/prov#", "Provenance Vocabulary" } },
-    { { HTML_POETRY }, { HTML_UNDEF }, s_poetry, SCHEMA_BESPOKE, { "poetry", "http://" DYLANHARRIS_ORG "/poetry/", "Poetry" } },
-    { { HTML_POETRY }, { HTML_UNDEF }, s_poetry, SCHEMA_BESPOKE, { "poetry", "https://" DYLANHARRIS_ORG "/poetry/", "Poetry" } },
+    { { HTML_PROFILE }, { HTML_UNDEF }, s_profile, 0, { "profile", HTTP OGP_ME "/ns/profile#", "open graph profile" } },
+    { { HTML_PROFILE }, { HTML_UNDEF }, s_profile, 0, { "profile", HTTPS OGP_ME "/ns/profile#", "open graph profile" } },
+    { { HTML_PROV }, { HTML_UNDEF }, s_prov, SCHEMA_PREFIX_CONTEXT, { "prov", HTTP_W3 "/ns/prov#", "provenance vocabulary" } },
+    { { HTML_PROV }, { HTML_UNDEF }, s_prov, 0, { "prov", HTTPS_W3 "/ns/prov#", "provenance vocabulary" } },
+    { { HTML_POETRY }, { HTML_UNDEF }, s_poetry, SCHEMA_BESPOKE, { "poetry", "http://" DYLANHARRIS_ORG "/poetry/", "poetry" } },
+    { { HTML_POETRY }, { HTML_UNDEF }, s_poetry, SCHEMA_BESPOKE, { "poetry", "https://" DYLANHARRIS_ORG "/poetry/", "poetry" } },
     { { HTML_PTR }, { HTML_UNDEF }, s_ptr, 0, { "ptr", HTTP_W3 "/TR/Content-in-RDF/", "ptr content" } },
     { { HTML_PTR }, { HTML_UNDEF }, s_ptr, 0, { "ptr", HTTPS_W3 "/TR/Content-in-RDF/", "ptr content" } },
     { { HTML_QB }, { HTML_UNDEF }, s_qb, SCHEMA_PREFIX_CONTEXT, { "qb", HTTP PURL_ORG "/linked-data/cube#", "Data Cubes" } },
@@ -462,8 +466,8 @@ n_string_entry < e_schema, 3 > schema_name_entries [] =
     { { HTML_ROLE }, { HTML_UNDEF }, s_role, 0, { "role", HTTPS_W3 "/1999/xhtml/vocab#role", "role" } },
     { { HTML_RR }, { HTML_UNDEF }, s_rr, SCHEMA_PREFIX_CONTEXT, { "rr", HTTP_W3 "/ns/r2rml#", "rdb to rdf" } },
     { { HTML_RR }, { HTML_UNDEF }, s_rr, 0, { "rr", HTTPS_W3 "/ns/r2rml#", "rdb to rdf" } },
-    { { HTML_SCHEMA }, { HTML_UNDEF }, s_schema, SCHEMA_PREFIX_CONTEXT, { "schema", HTTP SCHEMA_ORG "/", "schema.org vocabulary" } },
-    { { HTML_SCHEMA }, { HTML_UNDEF }, s_schema, 0, { "schema", HTTPS SCHEMA_ORG "/", "schema.org vocabulary" } },
+    { { HTML_SCHEMA }, { HTML_UNDEF }, s_schema, SCHEMA_PREFIX_CONTEXT, { "schema", HTTP SCHEMA_ORG "/", "schema.org" } },
+    { { HTML_SCHEMA }, { HTML_UNDEF }, s_schema, 0, { "schema", HTTPS SCHEMA_ORG "/", "schema.org" } },
     { { HTML_SD }, { HTML_UNDEF }, s_sd, SCHEMA_PREFIX_CONTEXT, { "sd", HTTP_W3 "/ns/sparql-service-description#", "sparql service description" } },
     { { HTML_SD }, { HTML_UNDEF }, s_sd, 0, { "sd", HTTPS_W3 "/ns/sparql-service-description#", "sparql service description" } },
     { { HTML_SIOC }, { HTML_UNDEF }, s_sioc, SCHEMA_PREFIX_CONTEXT, { "sioc", "http://rdfs.org/sioc/ns#", "sioc" } },
@@ -484,39 +488,49 @@ n_string_entry < e_schema, 3 > schema_name_entries [] =
     { { HTML_TAXO }, { HTML_UNDEF }, s_taxo, 0, { "taxo", HTTPS PURL_ORG "/rss/1.0/modules/taxonomy/", "taxonomy" } },
     { { HTML_TIME }, { HTML_UNDEF }, s_time, SCHEMA_PREFIX_CONTEXT, { "time", HTTP_W3 "/2006/time#", "time" } },
     { { HTML_TIME }, { HTML_UNDEF }, s_time, 0, { "time", HTTPS_W3 "/2006/time#", "time" } },
-    { { HTML_V }, { HTML_UNDEF }, s_v, SCHEMA_PREFIX_CONTEXT, { "v", HTTP "rdf.data-vocabulary.org/#", "v" } },
-    { { HTML_V }, { HTML_UNDEF }, s_v, 0, { "v", HTTPS "rdf.data-vocabulary.org/#", "v" } },
-    { { HTML_V }, { HTML_UNDEF }, s_v, 0, { "v", HTTP "data-vocabulary.org/", "v" } },
-    { { HTML_V }, { HTML_UNDEF }, s_v, 0, { "v", HTTPS "data-vocabulary.org/", "v" } },
+    { { HTML_V }, { HTML_UNDEF }, s_v, SCHEMA_PREFIX_CONTEXT, { "v", HTTP "rdf.data-vocabulary.org/#", "data-vocabulary" } },
+    { { HTML_V }, { HTML_UNDEF }, s_v, 0, { "v", HTTPS "rdf.data-vocabulary.org/#", "data-vocabulary" } },
+    { { HTML_V }, { HTML_UNDEF }, s_v, 0, { "v", HTTP "data-vocabulary.org/", "data-vocabulary" } },
+    { { HTML_V }, { HTML_UNDEF }, s_v, 0, { "v", HTTPS "data-vocabulary.org/", "data-vocabulary" } },
+    { { HTML_VANN }, { HTML_UNDEF }, s_vann, 0, { "vann", HTTP PURL_ORG "/vocab/vann/", "vocabulary annotating" } },
+    { { HTML_VANN }, { HTML_UNDEF }, s_vann, 0, { "vann", HTTPS PURL_ORG "/vocab/vann/", "vocabulary annotating" } },
     { { HTML_VCARD }, { HTML_UNDEF }, s_vcard, SCHEMA_PREFIX_CONTEXT, { "vcard", HTTP_W3 "/2006/vcard/ns#", "vcard" } },
     { { HTML_VCARD }, { HTML_UNDEF }, s_vcard, 0, { "vcard", HTTPS_W3 "/2006/vcard/ns#", "vcard" } },
     { { HTML_VCARD, SV_DEPRECATED }, { HTML_UNDEF }, s_vcard, 0, { "vcard", HTTP_W3 "/2001/vcard-rdf/3.0#", "vcard (deprecated)" } },
     { { HTML_VCARD, SV_DEPRECATED }, { HTML_UNDEF }, s_vcard, 0, { "vcard", HTTPS_W3 "/2001/vcard-rdf/3.0#", "vcard (deprecated)" } },
-    { { HTML_VIDEO }, { HTML_UNDEF }, s_video, 0, { "video", "http://ogp.me/ns/video#", "Open Graph Video" } },
-    { { HTML_VIDEO }, { HTML_UNDEF }, s_video, 0, { "video", "https://ogp.me/ns/video#", "Open Graph Video" } },
+    { { HTML_VIDEO }, { HTML_UNDEF }, s_video, 0, { "video", HTTP OGP_ME "/ns/video#", "open graph video" } },
+    { { HTML_VIDEO }, { HTML_UNDEF }, s_video, 0, { "video", HTTPS OGP_ME "/ns/video#", "open graph video" } },
     { { HTML_VOID }, { HTML_UNDEF }, s_void, SCHEMA_PREFIX_CONTEXT, { "void", HTTP RDFS_ORG "/ns/void#", "VoID" } },
     { { HTML_VOID }, { HTML_UNDEF }, s_void, 0, { "void", HTTPS RDFS_ORG "/ns/void#", "VoID" } },
-    { { HTML_WDR }, { HTML_UNDEF }, s_wdr, SCHEMA_PREFIX_CONTEXT, { "wdr", HTTP_W3 "/2007/05/powder#", "Protocol for Web Description Resources" } },
-    { { HTML_WDR }, { HTML_UNDEF }, s_wdr, 0, { "wdr", HTTPS_W3 "/2007/05/powder#", "Protocol for Web Description Resources" } },
-    { { HTML_WDRS }, { HTML_UNDEF }, s_wdrs, SCHEMA_PREFIX_CONTEXT, { "wdrs", HTTP_W3 "/2007/05/powder-s#", "Protocol for Web Description Resources" } },
-    { { HTML_WDRS }, { HTML_UNDEF }, s_wdrs, 0, { "wdrs", HTTPS_W3 "/2007/05/powder-s#", "Protocol for Web Description Resources" } },
-    { { HTML_WEBSITE }, { HTML_UNDEF }, s_website, 0, { "website", "http://ogp.me/ns/website#", "Open Graph Website" } },
-    { { HTML_WEBSITE }, { HTML_UNDEF }, s_website, 0, { "website", "https://ogp.me/ns/website#", "Open Graph Website" } },
-    { { HTML_WHATWG }, { HTML_UNDEF }, s_whatwg, 0, { "wwg", HTTP N_WHATWG_ORG "/", "HTTP Living Standard" } },
-    { { HTML_WHATWG }, { HTML_UNDEF }, s_whatwg, 0, { "wwg", HTTPS N_WHATWG_ORG "/", "HTTP Living Standard" } },
-    { { HTML_XHV }, { HTML_UNDEF }, s_xhv, SCHEMA_PREFIX_CONTEXT, { "xhv", HTTP_W3 "/1999/xhtml/vocab#", "RDFa Core 1.1" } },
-    { { HTML_XHV }, { HTML_UNDEF }, s_xhv, 0, { "xhv", HTTPS_W3 "/1999/xhtml/vocab#", "RDFa Core 1.1" } },
-    { { HTML_XML }, { HTML_UNDEF }, s_xml, SCHEMA_PREFIX_CONTEXT, { "xml", HTTP_W3 "/XML/1998/namespace", "Namespaces in XML 1.0" } },
-    { { HTML_XML }, { HTML_UNDEF }, s_xml, 0, { "xml", HTTPS_W3 "/XML/1998/namespace", "Namespaces in XML 1.0" } },
-    { { HTML_XSD }, { HTML_UNDEF }, s_xsd, SCHEMA_PREFIX_CONTEXT, { "xsd", HTTP_W3 "/2001/XMLSchema#", "XML Schema Part 2" } },
-    { { HTML_XSD }, { HTML_UNDEF }, s_xsd, 0, { "xsd", HTTPS_W3 "/2001/XMLSchema#", "XML Schema Part 2" } },
+    { { HTML_WDR }, { HTML_UNDEF }, s_wdr, SCHEMA_PREFIX_CONTEXT, { "wdr", HTTP_W3 "/2007/05/powder#", "web description resources" } },
+    { { HTML_WDR }, { HTML_UNDEF }, s_wdr, 0, { "wdr", HTTPS_W3 "/2007/05/powder#", "web description resources" } },
+    { { HTML_WDRS }, { HTML_UNDEF }, s_wdrs, SCHEMA_PREFIX_CONTEXT, { "wdrs", HTTP_W3 "/2007/05/powder-s#", "web description resources" } },
+    { { HTML_WDRS }, { HTML_UNDEF }, s_wdrs, 0, { "wdrs", HTTPS_W3 "/2007/05/powder-s#", "web description resources" } },
+    { { HTML_WEBSITE }, { HTML_UNDEF }, s_website, 0, { "website", HTTP OGP_ME "/ns/website#", "open graph website" } },
+    { { HTML_WEBSITE }, { HTML_UNDEF }, s_website, 0, { "website", HTTPS OGP_ME "/ns/website#", "open graph qebsite" } },
+    { { HTML_WHATWG }, { HTML_UNDEF }, s_whatwg, 0, { "wwg", HTTP N_WHATWG_ORG "/", "HTML living standard" } },
+    { { HTML_WHATWG }, { HTML_UNDEF }, s_whatwg, 0, { "wwg", HTTPS N_WHATWG_ORG "/", "HTML living standard" } },
+    { { HTML_XHV }, { HTML_UNDEF }, s_xhv, SCHEMA_PREFIX_CONTEXT, { "xhv", HTTP_W3 "/1999/xhtml/vocab#", "RDFa core 1.1" } },
+    { { HTML_XHV }, { HTML_UNDEF }, s_xhv, 0, { "xhv", HTTPS_W3 "/1999/xhtml/vocab#", "RDFa core 1.1" } },
+    { { HTML_XML }, { HTML_UNDEF }, s_xml, SCHEMA_PREFIX_CONTEXT, { "xml", HTTP_W3 "/XML/1998/namespace", "XML 1.0 namespaces" } },
+    { { HTML_XML }, { HTML_UNDEF }, s_xml, 0, { "xml", HTTPS_W3 "/XML/1998/namespace", "XML 1.0 namespaces" } },
+    { { HTML_XSD }, { HTML_UNDEF }, s_xsd, SCHEMA_PREFIX_CONTEXT, { "xsd", HTTP_W3 "/2001/XMLSchema#", "XML schema" } },
+    { { HTML_XSD }, { HTML_UNDEF }, s_xsd, 0, { "xsd", HTTPS_W3 "/2001/XMLSchema#", "XML schema" } },
     { { HTML_RDF10_CON }, { HTML_UNDEF }, s_error, 0, { nullptr, nullptr, nullptr } } };
 
 namespace_names_t namespace_names;
 protocol_names_t protocol_names;
 schema_names_t schema_names;
+vsh_t rdfa_context;
 
 void init_nstrs (nitpick& nits)
 {   namespace_names.init (nits, &namespace_name_entries [0]);
     protocol_names.init (nits, &protocol_name_entries [0]);
-    schema_names.init (nits, &schema_name_entries [0]); }
+    schema_names.init (nits, &schema_name_entries [0]); 
+
+    for (::std::size_t u = 1; u < s_error; ++u)
+        if ((schema_names.flags (static_cast < e_schema > (u)) & SCHEMA_PREFIX_CONTEXT) == SCHEMA_PREFIX_CONTEXT)
+            rdfa_context.insert (static_cast < e_schema > (u)); }
+
+vsh_t rdfa_schema_context ()
+{   return rdfa_context; }

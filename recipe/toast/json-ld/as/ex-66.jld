@@ -1,0 +1,12 @@
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "type": "Note",
+    "name": "Have you seen my cat?",
+    "attachment": [
+        {
+            "type": "Image",
+            "content": "This is what he looks like.",
+            "url": "http://example.org/cat.jpeg"
+        }
+    ]
+}

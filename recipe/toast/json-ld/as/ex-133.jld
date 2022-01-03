@@ -1,0 +1,6 @@
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "name": "Cane Sugar Processing",
+    "type": "Note",
+    "summary": "A simple <em>note</em>"
+}

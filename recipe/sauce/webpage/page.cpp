@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DOCDOT DOCTYPE " ... >"
 
 page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, directory* d, const e_charcode encoding)
-    :   name_ (name), schema_version_ (context.schema_ver ()), updated_ (updated)
+    :   name_ (name), updated_ (updated)
 {   PRESUME (d != nullptr, __FILE__, __LINE__);
     ids_.ndx (x);
     names_.ndx (x, false);
@@ -48,7 +48,7 @@ page::page (const ::std::string& name, const ::std::time_t updated, ::std::strin
     parse (content, encoding); }
 
 page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d, const e_charcode encoding)
-    :   name_ (name), schema_version_ (context.schema_ver ()), updated_ (updated)
+    :   name_ (name), updated_ (updated)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
     ids_.ndx (x);
@@ -89,7 +89,6 @@ void page::swap (page& p)
     nits_.swap (p.nits_);
     nodes_.swap (p.nodes_);
     profiles_.swap (p.profiles_);
-    schema_version_.swap (p.schema_version_);
     ssi_.swap (p.ssi_);
     ::std::swap (updated_, p.updated_);
     ::std::swap (snippet_ , p.snippet_);

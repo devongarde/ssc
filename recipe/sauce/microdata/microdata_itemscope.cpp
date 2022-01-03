@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -44,10 +44,13 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
         type_master < t_schema_type > ts;
         ts.set_value (nits, v, name);
         ::std::string::size_type ends_at = 0;
-        if (schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), name, &ends_at) == s_error)
+        e_schema sc = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), name, &ends_at);
+        if (sc == s_error)
             wombats (nits, v, name);
         else
-        {   const sch s (nits, v, schema_names.after_start (SCHEMA_CURIE, name.substr (ends_at), v.xhtml ()));
+        {   if ((schema_names.flags (sc) & SCHEMA_CRAPSPEC) == SCHEMA_CRAPSPEC)
+                nits.pick (nit_crap_spec, es_warning, ec_microdata, quote (schema_names.get (sc, SCHEMA_NAME)), " is poorly specified: use an alternative");
+            const sch s (nits, v, schema_names.after_start (SCHEMA_CURIE, name.substr (ends_at), v.xhtml ()));
             p.mark (s.get ());
             const flags_t flags = sch :: flags (s.get ());
             if (has_itemid && ((flags & SF_NO_ITEMID) == SF_NO_ITEMID))

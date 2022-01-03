@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -90,7 +90,6 @@ public:
         return aar_.at (a) -> size (); }
     template < class ATTRIBUTE > typename ATTRIBUTE::value_type get_x () const
     {   if (! has (ATTRIBUTE::whoami ())) return ATTRIBUTE::default_value ();
-//        ATTRIBUTE* ap = static_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());
         ATTRIBUTE* ap = dynamic_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());
         VERIFY_NOT_NULL (ap, __FILE__, __LINE__);
         return ap -> get (); }

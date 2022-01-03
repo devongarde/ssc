@@ -20,6 +20,8 @@
 ./ssc -f ../toast/HTML/minimal/minimal.conf
 ./ssc -f ../toast/HTML/Plus/plus.conf
 ./ssc -f ../toast/HTML/tags/tags.conf
+./ssc -f ../toast/json-ld/as/jsonld.conf
+./ssc -f ../toast/json-ld/schemaorg/jsonld.conf
 ./ssc -f ../toast/link/link.conf
 ./ssc -f ../toast/living/jul07/living.conf
 ./ssc -f ../toast/living/jan08/living.conf
@@ -101,6 +103,9 @@
 ./ssc -f ../toast/RDFa/schema/rdfa.conf
 ./ssc -f ../toast/RDFa/sioc/rdfa.conf
 ./ssc -f ../toast/RDFa/vcard/rdfa.conf
+./ssc -f ../toast/RDFa/vcard-2/rdfa.conf
+./ssc -f ../toast/RDFa/vcard-3/rdfa.conf
+./ssc -f ../toast/RDFa/vcard-4/rdfa.conf
 ./ssc -f ../toast/RDFa/xsd/rdfa.conf
 ./ssc -f ../toast/shadow/comment/comment.conf
 ./ssc -f ../toast/shadow/copy/copy.conf

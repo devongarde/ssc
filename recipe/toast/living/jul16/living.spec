@@ -269,8 +269,6 @@ PASS ../toast/living/jul16/example-2.html
 36 mime
 50 use_quote_code
 64 use_quote_code
-69 not_schema_property
-79 not_schema_property
 109 unrecognised_value
 124 use_quote_code
 134 use_quote_code

@@ -1,0 +1,8 @@
+{
+    "name": "inventory_date",
+    "titles": "Inventory Date",
+    "datatype": {
+        "base": "date",
+        "format": "M/d/yyyy"
+    }
+}

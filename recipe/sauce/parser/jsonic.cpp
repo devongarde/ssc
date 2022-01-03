@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -38,6 +38,7 @@ void parse_json_ld (nitpick& , const html_version& , const ::std::string& ) { }
 #include "symbol/nstr.h"
 #include "type/type_enum.h"
 #include "type/type_rdf.h"
+#include "type/type.h"
 #include "microdata/microdata_itemtype.h"
 #include "microdata/microdata_itemprop.h"
 #include "parser/parse_abb.h"
@@ -50,7 +51,6 @@ void parse_json_ld (nitpick& , const html_version& , const ::std::string& ) { }
 
 // this is not, and not intended to be, a full json-ld interpreter. It exists, mostly, to enable schema testing.
 
-const ::boost::json::value& parse_json (nitpick& nits, const ::std::string& s);
 ::std::string rpt (const ::boost::json::value& val, const int indent = 0);
 
 ::std::string rpt_base (const ::boost::json::value& val, const int indent)
@@ -97,20 +97,25 @@ public:
     jsonic (const jsonic& j) = delete;
     void reset () noexcept
     {   value_.emplace_null (); }
-    void parse (nitpick& nits, const ::std::string& s)
-    {   try {
+    void parse (nitpick& nits, const ::std::string& s, const e_charcode encoding)
+    {   if ((encoding != cc_utf8) && (encoding != cc_ansi))
+            nits.pick (nit_jsonld_encoding, es_error, ec_json, "JSON-LD parsing requires ASCII, ANSI or UTF-8.");
+        else try {
             ::boost::json::error_code ec;
-            value_ = ::boost::json::parse (s, ec);
-            if (ec)
-            {   nits.pick (nit_json_error, es_error, ec_json, "JSON-LD error: ", ec.message ());
-                value_.emplace_null (); }
-            else if (context.tell (e_structure)) context.out () << rpt (value_); }
+            ::boost::json::parse_options po;
+            po.allow_comments = true;
+            po.allow_trailing_commas = true;
+            po.allow_invalid_utf8 = (encoding == cc_utf8);
+            value_ = ::boost::json::parse (s, ec, ::boost::json::storage_ptr (), po);
+            if (ec) nits.pick (nit_json_error, es_error, ec_json, "JSON-LD error: ", ec.message ());
+            else
+            {   if (context.tell (e_structure)) context.out () << rpt (value_);
+                return; } }
         catch (const ::std::exception& x)
-        {   nits.pick (nit_json_error, es_error, ec_json, "JSON-LD exception: ", x.what ());
-            value_.emplace_null (); }
+        {   nits.pick (nit_json_error, es_error, ec_json, "JSON-LD exception: ", x.what ()); }
         catch (...)
-        {   nits.pick (nit_json_error, es_error, ec_json, "unknown JSON-LD exception");
-            value_.emplace_null (); } }
+        {   nits.pick (nit_json_error, es_error, ec_json, "unknown JSON-LD exception"); }
+        value_.emplace_null (); }
     const ::boost::json::value& val () const noexcept { return value_; } };
 
 typedef ::std::vector < ::boost::json::value > vv_t;
@@ -144,8 +149,6 @@ jsonic jhbbc;
 void outer_process_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o);
 bool process_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o);
 void examine_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o, const e_jtoken tk = jt_error);
-//bool examine_term (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& key, ::boost::json::value& val);
-//bool examine_terms (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o);
 
 e_schema_property get_schema_property (nitpick& nits, const html_version& v, const ::std::string& s)
 {   ::std::string::size_type after = ::std::string::npos;
@@ -157,7 +160,9 @@ e_schema_property get_schema_property (nitpick& nits, const html_version& v, con
     {   nits.pick (nit_jsonld_type, es_error, ec_json, "schema type ", quote (s), " is incomplete");
         return sp_illegal; }
     schema_version sv (v);
-    e_schema_property sp = identify_schema_property (nits, sv, s.substr (after));
+    e_schema_property sp = identify_schema_property (s.substr (after));
+    if (sp == sp_illegal)
+        nits.pick (nit_not_schema_property, es_error, ec_schema, quote (s.substr (after)), " is not a recognised ", sv.report (), " property");
     const sch sc (nits, v, s.substr (after), es);
     if (sc.unknown ()) return sp_illegal;
     return sp; }
@@ -187,22 +192,49 @@ void note_token (nitpick& nits, const html_version& v, json_scope& scope, const 
 
 e_schema_property wot_prop (nitpick& nits, const html_version& v, const json_scope& scope, const ::std::string& s)
 {   PRESUME (! s.empty (), __FILE__, __LINE__);
-    return identify_schema_property (nits, corresponding_schema_version (scope.schema_, v), s); }
+    schema_version sv (corresponding_schema_version (scope.schema (), v));
+    const e_schema_property sp = identify_schema_property (s);
+    if (sp == sp_illegal)
+        nits.pick (nit_not_schema_property, es_error, ec_schema, quote (s), " is not a recognised ", sv.report (), " property");
+    return sp; }
+
+bool process_map (nitpick& nits, const html_version& v, const ::boost::json::object& o, const e_type key_type)
+{   bool res = true;
+    for (auto e : o)
+    {   if (e.key_c_str () == nullptr) continue;
+        test_value (nits, v, key_type, e.key_c_str ());
+        if (e.value ().kind () != ::boost::json::kind::string)
+        {   nits.pick (nit_jsonld_map, es_error, ec_json, quote (e.key_c_str ()), " must be paired with a string");
+            res = false; } }
+    return res; }
 
 bool process_term_object (nitpick& nits, const html_version& v, json_scope& scope, const e_schema_property p, const ::boost::json::object& o)
-{   json_scope new_scope (&scope);
+{   schema_version sv = get_default_schema_version (scope.schema ());
+    vt_t vt = sought_types (sv, p);
+    nitpick nuts;
+    for (auto st : vt)
+        switch (st)
+        {   case t_js_map :
+                if (process_map (nuts, v, o, t_generic))
+                {   nits.merge (nuts); return false; }
+                break;
+            case t_js_lang_map :
+                if (process_map (nuts, v, o, t_lang))
+                {   nits.merge (nuts); return false; }
+                break;
+            default :
+                break; }
+    json_scope new_scope (&scope);
     examine_json_ld (nits, v, new_scope, o);
     const bool name_type = process_json_ld (nits, v, new_scope, o);
-    nitpick nuts;
     if (name_type)
     {   for (auto st : scope.type_)
             if (is_valid_schema_property (nuts, v, st, p, new_scope.name_, false))
-            {   vit_t sst = sought_schema_types (p);
-                schema_version sv = get_default_schema_version (scope.schema ());
+            {   vit_t sst = sought_schema_types (sv, p);
                 for (auto t : new_scope.type_)
                 {   for (auto tt : sst)
                     {   e_schema_type ti = type_itself (tt);
-                        if ((ti == t) || is_specific_type_of (sv, ti, t) || is_specific_type_of (sv, t, ti)) return name_type; }
+                        if ((ti == t) || is_specific_type_of (ti, t) || is_specific_type_of (t, ti)) return name_type; }
                     nuts.pick (nit_jsonld_type, es_error, ec_json, sch::name (t), " is not a valid type for ", schema_property_name (p)); }
                 nits.merge (nuts);
                 return name_type; } }
@@ -252,7 +284,6 @@ bool note_term (nitpick& nits, const html_version& v, json_scope& scope, const :
                         ::boost::json::object& o = e.as_object ();
                         examine_json_ld (nits, v, subscope, o);
                         process_json_ld (nits, v, subscope, o); }
-//                        examine_terms (nits, v, subscope, e.as_object ()); }
                 break;
             case ::boost::json::kind::string :
                 vs = val.as_string ().c_str ();
@@ -306,8 +337,8 @@ bool examine_terms (nitpick& nits, const html_version& v, json_scope& scope, con
                 {   scope.atless_type_ = true;
                     ::std::string vs = e.value ().as_string ().c_str ();
                     if (process_schema_name_type_string (nits, v, scope, vs) == sty_illegal)
-                        nits.pick (nit_jsonld_mistype, es_warning, ec_json, "were it '@type' for 'type', ", quote (vs), " would be invalid");
-                    else nits.pick (nit_jsonld_mistype, es_info, ec_json, "with ", quote (vs), ", should 'type' be '@type'?"); } }
+                        nits.pick (nit_jsonld_mistype, es_warning, ec_json, "were it '@type', not 'type', ", quote (vs), " would be invalid");
+                    else nits.pick (nit_jsonld_mistype, es_info, ec_json, "for ", quote (vs), ", should 'type' be '@type'?"); } }
     for (auto e : o)
         if (is_suitable_kvp (e, s))
         {   if (! note_term (nits, v, scope, s, e.value ())) name_type = false;
@@ -336,9 +367,9 @@ void process_group_token (nitpick& nits, const html_version& v, json_scope& scop
 void insert_context_object_string (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& key, const ::std::string& s)
 {   const e_schema_type et = process_schema_name_type_string (nits, v, scope, s);
     if (et != sty_illegal)
-    {   for (auto b : scope.bespoke_)
-            if (b.second == et)
-                nits.pick (nit_jsonld_context, es_warning, ec_json, sch::name (et), " is also defined by ", quote (b.first));
+    {   for (auto b : scope.type_)
+            if (b == et)
+            {   nits.pick (nit_jsonld_context, es_warning, ec_json, sch::name (et), " was previously defined"); break; }
         if (context.tell (e_debug)) nits.pick (nit_jsonld_context, es_debug, ec_json, sch::name (et), " recognised as ", key);
         scope.type_.insert (et); } }
 
@@ -408,6 +439,8 @@ void process_context_string (nitpick& nits, const html_version& v, json_scope& s
                     return; } } }
         if (scope.schema_ != s_none) nits.pick (nit_jsonld_context, es_info, ec_json, "Replacing previous @context ", schema_names.get (scope.schema_, SCHEMA_CURIE), " with ", quote (s));
         if (context.tell (e_debug)) nits.pick (nit_jsonld_context, es_debug, ec_json, schema_names.get (sn, SCHEMA_DESCRIPTION), " recognised");
+        if ((schema_names.flags (sn) & SCHEMA_CRAPSPEC) == SCHEMA_CRAPSPEC)
+            nits.pick (nit_crap_spec, es_warning, ec_json, quote (schema_names.get (sn, SCHEMA_NAME)), " is poorly specified: use an alternative");
         scope.schema_ = sn; } }
 
 void process_context (nitpick& nits, const html_version& v, json_scope& scope, const vv_t& vv)
@@ -450,7 +483,6 @@ void process_type (nitpick& nits, const html_version& v, json_scope& scope, cons
                 nits.pick (nit_jsonld_type, ed_jsonld_1_0, "5.4 Specifying the Type", es_error, ec_json, "@type requires a string or an array of strings");
                 break; } }
 
-// ensure members of e_jtoken are defined in the order in which they have to be processed; e.g. context before type before most other things, etc..
 bool process_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o)
 {   PRESUME (scope.keyword_.size () >= jt_error, __FILE__, __LINE__);
     bool name_type = true;
@@ -514,15 +546,10 @@ void outer_process_json_ld (nitpick& nits, const html_version& v, json_scope& sc
     if (gt && (scope.terms_ == 0)) nits.pick (nit_json_invalid_node, ed_jsonld_1_0, "8.2 Node Objects", es_warning, ec_json, "A topmost JSON-LD node must contain more than just @graph and @context");
     else if (limited) nits.pick (nit_json_invalid_node, ed_jsonld_1_0, "8.2 Node Objects", es_warning, ec_json, "A topmost JSON-LD node must contain keywords"); }
 
-const ::boost::json::value& parse_json (nitpick& nits, const ::std::string& s)
-{   jhbbc.reset ();
-    if (! s.empty ()) jhbbc.parse (nits, s);
-    return jhbbc.val (); }
-
-void parse_json_ld (nitpick& nits, const html_version& v, const ::std::string& s)
+void parse_json_ld (nitpick& nits, const html_version& v, const ::std::string& s, const e_charcode encoding)
 {   jhbbc.reset ();
     if (! s.empty ())
-    {   jhbbc.parse (nits, s);
+    {   jhbbc.parse (nits, s, encoding);
         nits.set_context (0, "JSON-LD");
         if (! jhbbc.val ().is_object ()) nits.pick (nit_json_error, es_error, ec_json, "cannot parse as JSON-LD");
         else

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -23,4 +23,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void hierarchy_init (nitpick& nits);
 ssch_t generalise (const e_schema_type s);
-bool is_specific_type_of (const schema_version& sv, const e_schema_type general, const e_schema_type specific);
+bool is_specific_type_of (const e_schema_type general, const e_schema_type specific);

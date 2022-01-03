@@ -1,0 +1,5 @@
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "type": "Application",
+    "name": "Exampletron 3000"
+}

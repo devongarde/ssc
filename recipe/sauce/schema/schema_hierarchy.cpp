@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -73,6 +73,7 @@ microdata_hierachy schema_hierarchy [] =
     { { s_as, 2, 0 }, { 0, 0 }, asc_intransitiveactivity, asc_question },
     { { s_as, 2, 0 }, { 0, 0 }, asc_intransitiveactivity, asc_travel },
 
+    { { s_as, 2, 0 }, { 0, 0 }, asc_link, asc_image },
     { { s_as, 2, 0 }, { 0, 0 }, asc_link, asc_mention },
 
     { { s_as, 2, 0 }, { 0, 0 }, asc_object, asc_activity },
@@ -1159,7 +1160,7 @@ microdata_hierachy schema_hierarchy [] =
     { { 2, 0 }, { 0, 0 }, sch_event, sch_socialevent },
     { { 2, 0 }, { 0, 0 }, sch_event, sch_sportsevent },
     { { 2, 0 }, { 0, 0 }, sch_event, sch_theatreevent },
-    { { 2, 0 }, { 2, 1 }, sch_event, sch_userinteraction },
+    { { 2, 0, SV_DEP_3034 }, { 3, 4 }, sch_event, sch_userinteraction },
     { { 2, 0 }, { 0, 0 }, sch_event, sch_visualartsevent },
     { { 7, 0 }, { 0, 0 }, sch_eventattendancemodeenumeration, sch_mixedeventattendancemode },
     { { 7, 0 }, { 0, 0 }, sch_eventattendancemodeenumeration, sch_offlineeventattendancemode },
@@ -2177,15 +2178,15 @@ microdata_hierachy schema_hierarchy [] =
     { { 9, 0 }, { 0, 0 }, sch_uknonprofittype, sch_uktrust },
     { { 9, 0 }, { 0, 0 }, sch_uknonprofittype, sch_unincorporatedassociationcharity },
     { { 2, 0 }, { 0, 0 }, sch_useaction, sch_wearaction },
-    { { 2, 0 }, { 0, 0 }, sch_userinteraction, sch_userblocks },
-    { { 2, 0 }, { 0, 0 }, sch_userinteraction, sch_usercheckins },
-    { { 2, 0 }, { 0, 0 }, sch_userinteraction, sch_usercomments },
-    { { 2, 0 }, { 0, 0 }, sch_userinteraction, sch_userdownloads },
-    { { 2, 0 }, { 0, 0 }, sch_userinteraction, sch_userlikes },
-    { { 2, 0 }, { 0, 0 }, sch_userinteraction, sch_userpagevisits },
-    { { 2, 0 }, { 0, 0 }, sch_userinteraction, sch_userplays },
-    { { 2, 0 }, { 0, 0 }, sch_userinteraction, sch_userplusones },
-    { { 2, 0 }, { 0, 0 }, sch_userinteraction, sch_usertweets },
+    { { 2, 0 }, { 3, 4 }, sch_userinteraction, sch_userblocks },
+    { { 2, 0 }, { 3, 4 }, sch_userinteraction, sch_usercheckins },
+    { { 2, 0 }, { 3, 4 }, sch_userinteraction, sch_usercomments },
+    { { 2, 0 }, { 3, 4 }, sch_userinteraction, sch_userdownloads },
+    { { 2, 0 }, { 3, 4 }, sch_userinteraction, sch_userlikes },
+    { { 2, 0 }, { 3, 4 }, sch_userinteraction, sch_userpagevisits },
+    { { 2, 0 }, { 3, 4 }, sch_userinteraction, sch_userplays },
+    { { 2, 0 }, { 3, 4 }, sch_userinteraction, sch_userplusones },
+    { { 2, 0 }, { 3, 4 }, sch_userinteraction, sch_usertweets },
     { { 9, 0 }, { 0, 0 }, sch_usnonprofittype, sch_nonprofit501a, },
     { { 9, 0 }, { 0, 0 }, sch_usnonprofittype, sch_nonprofit501c1, },
     { { 9, 0 }, { 0, 0 }, sch_usnonprofittype, sch_nonprofit501c10, },
@@ -2393,46 +2394,140 @@ microdata_hierachy schema_hierarchy [] =
     { { s_time, 1, 0 }, { 0, 0 }, time_temporalunit, time_unityear },
 
     // vcard
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_dom },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_home },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_intl },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_parcel },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_postal },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_pref },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_address, vcard_work },
+    { { s_odrl, 1, 0 }, { 0, 0 }, vcard_cagent, odrl_party },
+    { { s_odrl, 1, 0 }, { 0, 0 }, vcard_individual, odrl_party },
+    { { s_odrl, 1, 0 }, { 0, 0 }, vcard_organisation, odrl_party },
 
-//    { { s_odrl, 1, 0 }, { 0, 0 }, vcard_agent, odrl_party },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_address, vcard_dom },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_address, vcard_home },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_address, vcard_intl },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_address, vcard_parcel },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_address, vcard_postal },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_address, vcard_pref },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_address, vcard_work },
 
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_internet },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_x400 },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_email, vcard_pref },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_adrtypes, vcard_dom },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_adrtypes, vcard_home },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_adrtypes, vcard_intl },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_adrtypes, vcard_label },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_adrtypes, vcard_parcel },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_adrtypes, vcard_postal },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_adrtypes, vcard_pref },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_adrtypes, vcard_work },
 
-//    { { s_odrl, 1, 0 }, { 0, 0 }, vcard_individual, odrl_party },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_email, vcard_internet },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_email, vcard_x400 },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_email, vcard_pref },
 
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_dom },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_home },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_intl },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_parcel },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_postal },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_pref },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_label, vcard_work },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_emailtypes, vcard_internet },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_emailtypes, vcard_x400 },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_emailtypes, vcard_pref },
 
-//    { { s_odrl, 1, 0 }, { 0, 0 }, vcard_organisation, odrl_party },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_cgender, vcard_female },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_cgender, vcard_male },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_cgender, vcard_cother },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_cgender, vcard_none },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_cgender, vcard_unknown },
 
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_bbs },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_car },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_fax },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_home },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_isdn },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_mobile },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_modem },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_msg },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_pager },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_pcs },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_pref },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_video },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_voice },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tel, vcard_work },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_label, vcard_dom },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_label, vcard_home },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_label, vcard_intl },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_label, vcard_parcel },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_label, vcard_postal },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_label, vcard_pref },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_label, vcard_work },
+
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cacquaintance },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cagent },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cchild },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_ccolleague },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_ccontact },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_ccoresident },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_ccoworker },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_ccrush },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cdate },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cemergency },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cfriend },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_ckin },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cme },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cmet },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cmuse },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cneighbour },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cparent },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_csibling },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_cspouse },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_relatedtype, vcard_csweetheart },
+
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_bbs },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_car },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_fax },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_home },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_isdn },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_mobile },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_modem },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_msg },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_pager },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_pcs },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_pref },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_video },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_voice },
+    { { s_vcard, 3, 0 }, { s_vcard, 3, 0 }, vcard_tel, vcard_work },
+
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_dom },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_home },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_isdn },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_internet },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_intl },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_label },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_parcel },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_postal },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_pref },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_work },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_ctype, vcard_x400 },
+
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_bbs },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_car },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_ctext },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_ctextphone },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_fax },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_home },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_isdn },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_mobile },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_modem },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_msg },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_pager },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_pcs },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_pref },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_video },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_voice },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_telephonetype, vcard_work },
+
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_bbs },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_car },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_fax },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_home },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_isdn },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_mobile },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_modem },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_msg },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_pager },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_pcs },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_pref },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_video },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_teltypes, vcard_work },
+
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vcard, vcard_cgroup },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vcard, vcard_individual },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vcard, vcard_organisation },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vcard, vcard_location },
+
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vkind, vcard_cgroup },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vkind, vcard_individual },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vkind, vcard_organisation },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vkind, vcard_location },
+
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vcardtype, vcard_home },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_vcardtype, vcard_work },
 
     // wordnet
 //    { { s_doap, 1, 0 }, { 0, 0 }, wordnet_project, doap_project },
@@ -2550,7 +2645,6 @@ void int_generalise  (const e_schema_type s, ssch_t& ssch)
             for (vmap_t::const_iterator vi = hierarchy.find (i -> second); (vi != hierarchy.cend ()) && (vi -> first == i -> second); ++vi)
                 if (vi -> second != nullptr)
                     if (vi -> second -> specific_ == s)
-//                        if (does_apply < schema_version > (vsv.at (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
                         if (does_apply < schema_version > (get_default_schema_version (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
                             int_generalise (i -> second, ssch); }
 
@@ -2559,7 +2653,7 @@ ssch_t generalise (const e_schema_type s)
     int_generalise (s, res);
     return res; }
 
-bool is_specific_type_of (const schema_version& , const e_schema_type general, const e_schema_type specific)
+bool is_specific_type_of (const e_schema_type general, const e_schema_type specific)
 {   for (vss_t::const_iterator x = generalisations.find (specific); x != generalisations.cend (); x = generalisations.find (x -> second))
         if (x -> second == general) return true;
     return false; }

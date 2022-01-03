@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -44,6 +44,7 @@ itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const 
     if (propped)
     {   const prop p (nuts, v, name);
         if (p.is_class () || p.is_rel ()) return make_itemtype_index (p.get ()); }
+    check_spelling (nits, v, name);
     return invalid_itemtype; }
 
 ::std::string itemtype_index_name (const itemtype_index ndx)

@@ -1,12 +1,12 @@
 BUILD NOTES
 static site checker
 https://ssc.lu/
-(c) 2020,2021 Dylan Harris
+(c) 2020-2022 Dylan Harris
 
 
 Introduction
 ------------
-SSC can be built from various unii command lines using CMake, or with Visual Studios 2017 / 2019 under Windows.
+SSC can be built from various unii command lines using CMake, or with Visual Studios 2017 / 2019 / 2022 under Windows.
 
 
 Libraries
@@ -27,7 +27,7 @@ GSL_ROOT to point to the GSL root directory (https://github.com/Microsoft/GSL).
 Windows
 -------
 To build from Visual Studio, navigate to recipe\tea, open the appropriate .sln file, then build. Both x86 and x64 builds
-work, although the x86 executable cannot analyse larger websites. Visual Studios 2017 & 2019 have been built & tested,
+work, although the x86 executable cannot analyse larger websites. Visual Studios 2017 / 2019 / 2022 have been built & tested,
 for Windows 8.1 & 10.
 
 
@@ -51,11 +51,11 @@ find files they're supposed to delete, rather than saying thank you for the redu
 
 The following have successfully built, although not always under all versions of ssc:
 Linux: Centos 8 amd64, Ubuntu Server 20.04/20.10 amd64
-OpenBSD 6.8: amd64
-MacOS: Big Sur, Catalina, Mojave & High Sierra x64
+OpenBSD 6.8 / 6.9 / 7.0: amd64
+MacOS: Monterey, Big Sur, Catalina, Mojave & High Sierra (all intel x64)
 
 
-OpenBSD 6.8 amd64
------------------
+OpenBSD 6.8 / 6.9 / 7.0 amd64
+-----------------------------
 The versions of boost and cmake in packages are sufficient. You will need to increase significantly the available
 memory setting in login.conf for the build account, if you have not done so already.

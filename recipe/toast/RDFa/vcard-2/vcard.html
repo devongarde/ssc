@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>vcard</title>
+</head>
+
+<body>
+
+<h1>vcard</h1>
+
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vcard="http://www.w3.org/2006/vcard/ns#">
+    
+   <div about="http://example.com/me/corky" typeof="vcard:VCard">
+     <span property="vcard:fn">Corky Crystal</span>, also known as 
+     <span property="vcard:nickname">Corks</span>, lives at
+     <div rel="vcard:adr">
+         <div typeof="vcard:Address vcard:Home">
+            <span property="vcard:street-address">111 Lake Drive</span>, 
+            <span property="vcard:locality">WonderCity</span>, 
+            <span property="vcard:postal-code">5555</span>, 
+            <span property="vcard:country-name">Australia</span>.
+         </div>
+      </div>
+     You can contact her home voice telephone: 
+     <div rel="vcard:tel">
+         <div typeof="vcard:Tel vcard:Home">
+            <span property="rdf:value">+61 7 555 5555</span>
+         </div>
+      </div>
+      or send her an email:
+      <a rel="vcard:email" href="mailto:corky@example.com">corky@example.com</a>.
+   </div>
+</div>
+
+</body>
+</html>

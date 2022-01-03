@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -30,14 +30,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 119
-#define VERSION_STRING "0.0.119"
+#define VERSION_RELEASE 120
+#define VERSION_STRING "0.0.120"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
 #define COPYRIGHT_FORENAME "Dylan"
 #define COPYRIGHT_SURNAME "Harris"
-#define COPYRIGHT_YEAR "2020,2021"
+#define COPYRIGHT_YEAR "2020-2022"
 #define COPYRIGHT_TEXT COPYRIGHT_SYMBOL " " COPYRIGHT_YEAR " " COPYRIGHT_FORENAME " " COPYRIGHT_SURNAME
 #define COPYRIGHT_HTML "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME
 #define COPYRIGHT_WEBADDR "https://" DYLANHARRIS_ORG "/"
@@ -346,6 +346,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define PURL_ORG            "purl.org"
 #define N_WHATWG_ORG        "n.whatwg.org"
 #define RDFS_ORG            "rdfs.org"
+#define OGP_ME              "ogp.me"
 #define W3_ORG              "www.w3.org"
 #define SVG_2000            W3_ORG "/2000/svg"
 #define XMLNS               "xmlns"

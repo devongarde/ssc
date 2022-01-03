@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020,2021 Dylan Harris
+Copyright (c) 2020-2022 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,10 +41,18 @@ struct property_gen
 property_gen gentab [] =
 {   { { 0, 0 }, { 0, 0 }, sp_context, t_unknown },
 
+    // open graph article
+    { { s_article, HTML_2012, 0 }, { 0, 0 }, og_article_author, t_text },
+    { { s_article, HTML_2012, 0 }, { 0, 0 }, og_article_expiration_time, t_datetime },
+    { { s_article, HTML_2012, 0 }, { 0, 0 }, og_article_modified_time, t_datetime },
+    { { s_article, HTML_2012, 0 }, { 0, 0 }, og_article_published_time, t_datetime },
+    { { s_article, HTML_2012, 0 }, { 0, 0 }, og_article_section, t_text },
+    { { s_article, HTML_2012, 0 }, { 0, 0 }, og_article_tag, t_text },
+
     // activity streams etc.
     { { s_as, 2, 0 }, { 0, 0 }, asp_accuracy, t_schema_type, xsd_float },
     { { s_as, 2, 0 }, { 0, 0 }, asp_accuracy, t_real },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_actor, t_schema_type, asc_object },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_actor, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_actor, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_actor, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_altitude, t_schema_type, xsd_float },
@@ -55,13 +63,14 @@ property_gen gentab [] =
     { { s_as, 2, 0 }, { 0, 0 }, asp_attachment, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_attachment, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_attachment, t_url },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_attachments, t_url },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_attachments, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_attributedto, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_attributedto, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_attributedto, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_audience, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_audience, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_audience, t_url },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_author, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_author, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_bcc, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_bcc, t_schema_type, asc_link },
@@ -79,8 +88,8 @@ property_gen gentab [] =
     { { s_as, 2, 0 }, { 0, 0 }, asp_closed, t_datetime },
     { { s_as, 2, 0 }, { 0, 0 }, asp_content, t_schema_type, xsd_string },
     { { s_as, 2, 0 }, { 0, 0 }, asp_content, t_schema_type, rdf_langstring },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_content, t_text },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_contentmap, t_text },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_content, t_text },
+    { { s_as, 2, 0 }, { 0, 0 }, asp_contentmap, t_js_lang_map },
     { { s_as, 2, 0 }, { 0, 0 }, asp_context, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_context, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_context, t_url },
@@ -91,9 +100,12 @@ property_gen gentab [] =
     { { s_as, 2, 0 }, { 0, 0 }, asp_deleted, t_datetime },
     { { s_as, 2, 0 }, { 0, 0 }, asp_describes, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_describes, t_url },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_displayname, t_text },
     { { s_as, 2, 0 }, { 0, 0 }, asp_downstreamduplicates, t_text },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_downstreamduplicates, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_duration, t_schema_type, xsd_duration },
     { { s_as, 2, 0 }, { 0, 0 }, asp_duration, t_duration },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_duration, t_unsigned },
     { { s_as, 2, 0 }, { 0, 0 }, asp_endtime, t_schema_type, xsd_datetime },
     { { s_as, 2, 0 }, { 0, 0 }, asp_endtime, t_datetime },
     { { s_as, 2, 0 }, { 0, 0 }, asp_first, t_schema_type, asc_collectionpage },
@@ -101,20 +113,21 @@ property_gen gentab [] =
     { { s_as, 2, 0 }, { 0, 0 }, asp_first, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_formertype, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_formertype, t_url },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_generator, t_schema_type, asc_object },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_generator, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_generator, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_generator, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_height, t_schema_type, xsd_nonnegativeinteger },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_height, t_unsigned },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_height, t_unsigned },
     { { s_as, 2, 0 }, { 0, 0 }, asp_href, t_schema_type, xsd_anyuri },
     { { s_as, 2, 0 }, { 0, 0 }, asp_href, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_hreflang, t_lang },
     { { s_as, 2, 0 }, { 0, 0 }, asp_icon, t_schema_type, asc_image },
     { { s_as, 2, 0 }, { 0, 0 }, asp_icon, t_schema_type, asc_link },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_icon, t_url },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_id, t_url },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_icon, t_url },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_id, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_image, t_schema_type, asc_image },
     { { s_as, 2, 0 }, { 0, 0 }, asp_image, t_schema_type, asc_link },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_image, t_schema_type, asc_medialink },
     { { s_as, 2, 0 }, { 0, 0 }, asp_image, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_inreplyto, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_inreplyto, t_schema_type, asc_link },
@@ -122,7 +135,7 @@ property_gen gentab [] =
     { { s_as, 2, 0 }, { 0, 0 }, asp_instrument, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_instrument, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_instrument, t_url },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_items, t_schema_type, asc_object },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_items, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_items, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_items, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_last, t_schema_type, asc_collectionpage },
@@ -141,13 +154,15 @@ property_gen gentab [] =
     { { s_as, 2, 0 }, { 0, 0 }, asp_name, t_schema_type, xsd_string },
     { { s_as, 2, 0 }, { 0, 0 }, asp_name, t_schema_type, rdf_langstring },
     { { s_as, 2, 0 }, { 0, 0 }, asp_name, t_text },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_namemap, t_text },
+    { { s_as, 2, 0 }, { 0, 0 }, asp_namemap, t_js_lang_map },
     { { s_as, 2, 0 }, { 0, 0 }, asp_next, t_schema_type, asc_collectionpage },
     { { s_as, 2, 0 }, { 0, 0 }, asp_next, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_next, t_url },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_object, t_schema_type, asc_object },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_object, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_object, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_object, t_url },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_objecttype, t_url },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_objecttype, t_text },
     { { s_as, 2, 0 }, { 0, 0 }, asp_oneof, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_oneof, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_oneof, t_url },
@@ -164,9 +179,9 @@ property_gen gentab [] =
     { { s_as, 2, 0 }, { 0, 0 }, asp_preview, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_preview, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_preview, t_url },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_provider, t_url },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_provider, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_published, t_schema_type, xsd_datetime },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_published, t_datetime },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_published, t_datetime },
     { { s_as, 2, 0 }, { 0, 0 }, asp_radius, t_schema_type, xsd_float },
     { { s_as, 2, 0 }, { 0, 0 }, asp_radius, t_real },
     { { s_as, 2, 0 }, { 0, 0 }, asp_rating, t_schema_type, xsd_float },
@@ -188,31 +203,34 @@ property_gen gentab [] =
     { { s_as, 2, 0 }, { 0, 0 }, asp_subject, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_summary, t_schema_type, xsd_string },
     { { s_as, 2, 0 }, { 0, 0 }, asp_summary, t_schema_type, rdf_langstring },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_summary, t_text },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_summarymap, t_text },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_summary, t_text },
+    { { s_as, 2, 0 }, { 0, 0 }, asp_summarymap, t_js_lang_map },
     { { s_as, 2, 0 }, { 0, 0 }, asp_tag, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_tag, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_tag, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_tags, t_url },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_target, t_schema_type, asc_object },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_target, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_target, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_target, t_url },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_title, t_text },
     { { s_as, 2, 0 }, { 0, 0 }, asp_to, t_schema_type, asc_object },
     { { s_as, 2, 0 }, { 0, 0 }, asp_to, t_schema_type, asc_link },
     { { s_as, 2, 0 }, { 0, 0 }, asp_to, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_totalitems, t_schema_type, xsd_nonnegativeinteger },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_totalitems, t_unsigned },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_totalitems, t_unsigned },
     { { s_as, 2, 0 }, { 0, 0 }, asp_type, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_units, t_as_units },
     { { s_as, 2, 0 }, { 0, 0 }, asp_units, t_url },
     { { s_as, 2, 0 }, { 0, 0 }, asp_updated, t_schema_type, xsd_datetime },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_updated, t_datetime },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_upstreamduplicates, t_text },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_updated, t_datetime },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_upstreamduplicates, t_url },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_upstreamduplicates, t_text },
     { { s_as, 2, 0 }, { 0, 0 }, asp_url, t_schema_type, asc_link },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_url, t_url },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_verb, t_text },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_url, t_url },
+    { { s_as, 1, 0 }, { 1, 0 }, asp_verb, t_url },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_verb, t_text },
     { { s_as, 2, 0 }, { 0, 0 }, asp_width, t_schema_type, xsd_nonnegativeinteger },
-    { { s_as, 2, 0 }, { 0, 0 }, asp_width, t_unsigned },
+    { { s_as, 1, 0 }, { 0, 0 }, asp_width, t_unsigned },
 
     // bibo
     { { s_bibo, 1, 3 }, { 0, 0 }, bibo_abstract, t_schema_type, rdfs_literal },
@@ -331,6 +349,12 @@ property_gen gentab [] =
     { { s_bibo, 1, 3 }, { 0, 0 }, bibo_volume, t_schema_type, rdfs_literal },
     { { s_bibo, 1, 3 }, { 0, 0 }, bibo_volume, t_text },
 
+    // open graph book
+    { { s_book, HTML_2012, 0 }, { 0, 0 }, og_book_author, t_text },
+    { { s_book, HTML_2012, 0 }, { 0, 0 }, og_book_isbn, t_text },
+    { { s_book, HTML_2012, 0 }, { 0, 0 }, og_book_release_date, t_datetime },
+    { { s_book, HTML_2012, 0 }, { 0, 0 }, og_book_tag, t_url },
+
     // creative commons
     { { s_cc, 1, 0 }, { 0, 0 }, cc_attributionname, t_text },
     { { s_cc, 1, 0 }, { 0, 0 }, cc_attributionurl, t_url },
@@ -342,20 +366,6 @@ property_gen gentab [] =
     { { s_cc, 1, 0 }, { 0, 0 }, cc_permits, t_cc_permits },
     { { s_cc, 1, 0 }, { 0, 0 }, cc_prohibits, t_cc_prohibits },
     { { s_cc, 1, 0 }, { 0, 0 }, cc_requires, t_cc_requires },
-
-    // open tag
-    { { s_article, 1, 0 }, { 0, 0 }, og_article_author, t_text },
-    { { s_article, 1, 0 }, { 0, 0 }, og_article_expiration_date, t_datetime },
-    { { s_article, 1, 0 }, { 0, 0 }, og_article_modified_time, t_datetime },
-    { { s_article, 1, 0 }, { 0, 0 }, og_article_published_time, t_datetime },
-    { { s_article, 1, 0 }, { 0, 0 }, og_article_section, t_text },
-    { { s_article, 1, 0 }, { 0, 0 }, og_article_tag, t_text },
-
-    // open tag
-    { { s_book, 1, 0 }, { 0, 0 }, og_book_author, t_text },
-    { { s_book, 1, 0 }, { 0, 0 }, og_book_isbn, t_text },
-    { { s_book, 1, 0 }, { 0, 0 }, og_book_release_date, t_datetime },
-    { { s_book, 1, 0 }, { 0, 0 }, og_book_tag, t_url },
 
     // content
     { { s_content, 1, 0 }, { 0, 0 }, content_encoded, t_text },
@@ -374,7 +384,7 @@ property_gen gentab [] =
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_column, t_schema_type, csv_column },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_columnreference, t_schema_type, xsd_string },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_columnreference, t_text },
-    { { s_csvw, 1, 0 }, { 0, 0 }, csvw_commentprefix, t_schema_type, csv_column },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csvw_commentprefix, t_schema_type, xsd_string },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_commentprefix, t_text },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_datatype, t_schema_type, csv_datatype },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_datatype, t_schema_type, xsd_string },
@@ -444,7 +454,7 @@ property_gen gentab [] =
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_resource, t_schema_type, xsd_anyuri },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_resource, t_url },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_row, t_schema_type, csv_row },
-    { { s_csvw, 1, 0 }, { 0, 0 }, csvw_rowtitle, t_schema_type, xsd_boolean },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csvw_rowtitle, t_schema_type, xsd_string },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_rowtitle, t_text },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_rownum, t_schema_type, xsd_integer },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_rownum, t_integer },
@@ -546,6 +556,8 @@ property_gen gentab [] =
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_accessurl, t_schema_type, rdfs_resource },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_accessurl, t_url },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_accessservice, t_schema_type, dca_dataservice },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_beginning, t_schema_type, time_instant },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_beginning, t_datetime },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_bbox, t_schema_type, rdfs_literal },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_bbox, t_datetime },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_bytesize, t_schema_type, rdfs_literal },
@@ -556,10 +568,13 @@ property_gen gentab [] =
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_centroid, t_datetime },
     { { s_dcat, 2, 0 }, { 0, 0 }, dcat_compressformat, t_schema_type, dct_mediatype },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_contactpoint, t_schema_type, vcard_vcard },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_contactpoint, t_schema_type, vcard_vkind },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_dataset, t_schema_type, dca_dataset },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_distribution, t_schema_type, dca_distribution },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_downloadurl, t_schema_type, rdfs_resource },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_downloadurl, t_url },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_end, t_schema_type, time_instant },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_end, t_datetime },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_enddate, t_schema_type, rdfs_literal },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_enddate, t_schema_type, xsd_date },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_enddate, t_schema_type, xsd_datetime },
@@ -569,15 +584,27 @@ property_gen gentab [] =
     { { s_dcat, 2, 0 }, { 0, 0 }, dcat_endpointdescription, t_schema_type, dca_resource },
     { { s_dcat, 2, 0 }, { 0, 0 }, dcat_endpointurl, t_schema_type, rdfs_resource },
     { { s_dcat, 2, 0 }, { 0, 0 }, dcat_endpointurl, t_url },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_format, t_schema_type, dct_mediatypeorextent },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_frequency, t_schema_type, dct_frequency },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_geometry, t_schema_type, rdfs_literal },
     { { s_dcat, 2, 0 }, { 0, 0 }, dcat_hadrole, t_schema_type, dca_role },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_haspart, t_schema_type, dca_resource },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_homepage, t_schema_type, foaf_document },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_homepage, t_url },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_keyword, t_schema_type, rdfs_literal },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_keyword, t_text },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_landingpage, t_schema_type, foaf_document },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_listingdate, t_schema_type, xsd_gyear },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_listingdate, t_schema_type, xsd_date },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_listingdate, t_schema_type, xsd_gyearmonth },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_listingdate, t_schema_type, xsd_datetime },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_listingdate, t_schema_type, rdfs_literal },
     { { s_dcat, 1, 0 }, { s_dcat, 1, 0 }, dcat_mediatype, t_schema_type, dct_mediatypeorextent },
     { { s_dcat, 2, 0 }, { 0, 0 }, dcat_mediatype, t_schema_type, dct_mediatype },
     { { s_dcat, 2, 0 }, { 0, 0 }, dcat_packageformat, t_schema_type, dct_mediatype },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_primarytopic, t_schema_type, dca_resource },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_qualifiedrelation, t_schema_type, dca_relationship },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dcat_relation, t_schema_type, dca_dataset },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_record, t_schema_type, dca_cataloguerecord },
     { { s_dcat, 2, 0 }, { 0, 0 }, dcat_servesdataset, t_schema_type, dca_dataset },
     { { s_dcat, 1, 0 }, { 0, 0 }, dcat_service, t_schema_type, dca_dataservice },
@@ -828,18 +855,18 @@ property_gen gentab [] =
     { { s_event, 1, 0 }, { 0, 0 }, ep_time, t_schema_type, time_temporalentity },
 
     // foaf
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_account, t_schema_type, foaf_onlineaccount },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_account, t_text },
+    { { s_foaf, 0, 96 }, { 0, 0 }, foaf_account, t_schema_type, foaf_onlineaccount },
+    { { s_foaf, 0, 96 }, { 0, 0 }, foaf_account, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_accountname, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_accountservicehomepage, t_schema_type, foaf_document },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_accountservicehomepage, t_url },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_accountservicehomepage, t_text },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_age, t_unsigned },
+    { { s_foaf, 0, 96 }, { 0, 0 }, foaf_age, t_unsigned },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_aimchatid, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_basednear, t_schema_type, owl_thing }, // actually specifies owl_spatialthing, but that does not exist
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_basednear, t_text },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_birthday, t_datetime },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_birthday, t_text },
+    { { s_foaf, 0, 90 }, { 0, 0 }, foaf_birthday, t_datetime },
+    { { s_foaf, 0, 90 }, { 0, 0 }, foaf_birthday, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_currentproject, t_schema_type, owl_thing },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_currentproject, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_depiction, t_schema_type, owl_thing },
@@ -847,18 +874,18 @@ property_gen gentab [] =
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_depiction, t_url },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_depicts, t_schema_type, owl_thing },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_depicts, t_text },
-    { { s_foaf, 0, 1 }, { s_foaf, 0, 97 }, foaf_dnachecksum, t_text },
+    { { s_foaf, 0, 90 }, { 0, 0 }, foaf_dnachecksum, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_familyname, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_firstname, t_text },
     { { s_foaf, 0, 98 }, { 0, 0 }, foaf_focus, t_schema_type, owl_thing },
     { { s_foaf, 0, 98 }, { 0, 0 }, foaf_focus, t_text },
-    { { s_foaf, 0, 1 }, { s_foaf, 0, 97 }, foaf_fundedby, t_text },
-    { { s_foaf, 0, 1 }, { s_foaf, 0, 95 }, foaf_geekcode, t_text },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_fundedby, t_text },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_geekcode, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_gender, t_gender },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_gender, t_text },
-    { { s_foaf, 0, 1 }, { s_foaf, 0, 96 }, foaf_givenname, t_text },
-    { { s_foaf, 0, 1 }, { s_foaf, 0, 97 }, foaf_holdsaccount, t_schema_type, foaf_onlineaccount },
-    { { s_foaf, 0, 1 }, { s_foaf, 0, 97 }, foaf_holdsaccount, t_text },
+    { { s_foaf, 0, 90 }, { 0, 0 }, foaf_gender, t_text },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_givenname, t_text },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_holdsaccount, t_schema_type, foaf_onlineaccount },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_holdsaccount, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_homepage, t_schema_type, foaf_document },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_homepage, t_url },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_homepage, t_text },
@@ -868,15 +895,15 @@ property_gen gentab [] =
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_interest, t_schema_type, foaf_document },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_interest, t_url },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_interest, t_text },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_isprimarytopicof, t_schema_type, foaf_document },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_isprimarytopicof, t_url },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_isprimarytopicof, t_text },
+    { { s_foaf, 0, 90 }, { 0, 0 }, foaf_isprimarytopicof, t_schema_type, foaf_document },
+    { { s_foaf, 0, 90 }, { 0, 0 }, foaf_isprimarytopicof, t_url },
+    { { s_foaf, 0, 90 }, { 0, 0 }, foaf_isprimarytopicof, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_jabberid, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_knows, t_schema_type, foaf_person },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_knows, t_url },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_knows, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_knows, t_text },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_lastname, t_text },
+    { { s_foaf, 0, 97 }, { 0, 0 }, foaf_lastname, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_logo, t_schema_type, owl_thing },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_logo, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_made, t_schema_type, owl_thing },
@@ -893,9 +920,11 @@ property_gen gentab [] =
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_membershipclass, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_msnchatid, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_myersbriggs, t_myersbriggs },
-    { { s_foaf, 0, 96 }, { 0, 0 }, foaf_openid, t_schema_type, foaf_document },
-    { { s_foaf, 0, 96 }, { 0, 0 }, foaf_openid, t_url },
-    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_openid, t_text },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_name, t_text },
+    { { s_foaf, 0, 1 }, { 0, 0 }, foaf_nick, t_text },
+    { { s_foaf, 0, 91 }, { 0, 0 }, foaf_openid, t_schema_type, foaf_document },
+    { { s_foaf, 0, 91 }, { 0, 0 }, foaf_openid, t_url },
+    { { s_foaf, 0, 91 }, { 0, 0 }, foaf_openid, t_text },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_page, t_schema_type, foaf_document },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_page, t_url },
     { { s_foaf, 0, 1 }, { 0, 0 }, foaf_page, t_text },
@@ -1732,45 +1761,58 @@ property_gen gentab [] =
     { { s_oa, 1, 0 }, { 0, 0 }, oa_textdirection, t_schema_type, oa_direction },
     { { s_oa, 1, 0 }, { 0, 0 }, oa_via, t_url },
 
-    // open graph
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_album, t_text },
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_album_disc, t_1_more },
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_album_track, t_1_more },
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_creator, t_text },
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_duration, t_1_more },
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_musician, t_text },
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_release_date, t_datetime },
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_song, t_text },
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_song_disc, t_1_more },
-    { { s_music, 1, 0 }, { 0, 0 }, og_music_song_track, t_1_more },
+    // open graph music
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_album, t_text },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_album_disc, t_1_more },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_album_track, t_1_more },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_creator, t_text },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_duration, t_1_more },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_musician, t_text },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_release_date, t_datetime },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_song, t_text },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_song_disc, t_1_more },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, og_music_song_track, t_1_more },
 
-    // open tag
-    { { s_og, 1, 0 }, { 0, 0 }, og_audio, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, og_audio_secure_url, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, og_audio_type, t_mime },
-    { { s_og, 1, 0 }, { 0, 0 }, og_audio_url, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, od_description, t_text },
-    { { s_og, 1, 0 }, { 0, 0 }, og_determiner, t_text },
-    { { s_og, 1, 0 }, { 0, 0 }, og_image, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, og_image_alt, t_text },
-    { { s_og, 1, 0 }, { 0, 0 }, og_image_height, t_unsigned },
-    { { s_og, 1, 0 }, { 0, 0 }, og_image_secure_url, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, og_image_type, t_mime },
-    { { s_og, 1, 0 }, { 0, 0 }, og_image_url, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, og_image_width, t_unsigned },
-    { { s_og, 1, 0 }, { 0, 0 }, og_locale, t_lang },
-    { { s_og, 1, 0 }, { 0, 0 }, og_locale_alternative, t_langs },
-    { { s_og, 1, 0 }, { 0, 0 }, og_site_name, t_text },
-    { { s_og, 1, 0 }, { 0, 0 }, og_title, t_text },
-    { { s_og, 1, 0 }, { 0, 0 }, og_type, t_ogtype },
-    { { s_og, 1, 0 }, { 0, 0 }, og_url, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, og_video, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, og_video_alt, t_text },
-    { { s_og, 1, 0 }, { 0, 0 }, og_video_height, t_1_more },
-    { { s_og, 1, 0 }, { 0, 0 }, og_video_secure_url, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, og_video_type, t_mime },
-    { { s_og, 1, 0 }, { 0, 0 }, og_video_url, t_url },
-    { { s_og, 1, 0 }, { 0, 0 }, og_video_width, t_1_more },
+    // open graph
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_audio, t_url },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_audio_album, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_audio_artist, t_text },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_audio_secure_url, t_url },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_audio_title, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_audio_type, t_mime },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_audio_url, t_url },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_country_name, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_description, t_text },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_determiner, t_ogdet },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_email, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_fax_number, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_image, t_url },
+    { { s_og, HTML_OG_2018, 0 }, { 0, 0 }, og_image_alt, t_text },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_image_height, t_unsigned },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_image_secure_url, t_url },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_image_type, t_mime },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_image_url, t_url },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_image_width, t_unsigned },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_latitude, t_fixedpoint },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_locale, t_lang },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_locale_alternative, t_langs },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_locality, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_longitude, t_fixedpoint },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_phone_number, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_postcode, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_region, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_site_name, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { s_og, HTML_OG_2010_END, 0 }, og_street_address, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_title, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_type, t_og },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_url, t_url },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_video, t_url },
+    { { s_og, HTML_OG_2018, 0 }, { 0, 0 }, og_video_alt, t_text },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_video_height, t_1_more },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_video_secure_url, t_url },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_video_type, t_mime },
+    { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, og_video_url, t_url },
+    { { s_og, HTML_OG_2010, 0 }, { 0, 0 }, og_video_width, t_1_more },
 
     // odrl
     { { s_odrl, 1, 0 }, { 0, 0 }, odrlp_action, t_schema_type, odrl_action },
@@ -1867,6 +1909,7 @@ property_gen gentab [] =
     { { s_org, 1, 0 }, { 0, 0 }, orgp_role, t_schema_type, org_role },
     { { s_org, 1, 0 }, { 0, 0 }, orgp_roleproperty, t_schema_type, rdf_property },
     { { s_org, 1, 0 }, { 0, 0 }, orgp_siteaddress, t_schema_type, vcard_vcard },
+    { { s_org, 1, 0 }, { 0, 0 }, orgp_siteaddress, t_schema_type, vcard_vkind },
     { { s_org, 1, 0 }, { 0, 0 }, orgp_siteaddress, t_text },
     { { s_org, 1, 0 }, { 0, 0 }, orgp_siteof, t_schema_type, org_organisation },
     { { s_org, 1, 0 }, { 0, 0 }, orgp_suborganisationof, t_schema_type, org_organisation },
@@ -1959,6 +2002,12 @@ property_gen gentab [] =
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_region, t_text },
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_rhymingscheme, t_text },
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_subform, t_text },
+
+    // open graph profile
+    { { s_profile, HTML_2012, 0 }, { 0, 0 }, og_profile_first_name, t_text },
+    { { s_profile, HTML_2012, 0 }, { 0, 0 }, og_profile_gender, t_text },
+    { { s_profile, HTML_2012, 0 }, { 0, 0 }, og_profile_last_name, t_text },
+    { { s_profile, HTML_2012, 0 }, { 0, 0 }, og_profile_username, t_gender },
 
     // provincial
     { { s_prov, 1, 0 }, { 0, 0 }, pp_actedonbehalfof, t_schema_type, prov_agent },
@@ -2074,12 +2123,6 @@ property_gen gentab [] =
     { { s_qb, 1, 0 }, { 0, 0 }, qbp_slicekey, t_schema_type, qb_slicekey },
     { { s_qb, 1, 0 }, { 0, 0 }, qbp_slicestructure, t_schema_type, qb_slicekey },
     { { s_qb, 1, 0 }, { 0, 0 }, qbp_structure, t_schema_type, qb_datastructuredefinition },
-
-    // open tag
-    { { s_profile, 1, 0 }, { 0, 0 }, og_profile_first_name, t_text },
-    { { s_profile, 1, 0 }, { 0, 0 }, og_profile_gender, t_text },
-    { { s_profile, 1, 0 }, { 0, 0 }, og_profile_last_name, t_text },
-    { { s_profile, 1, 0 }, { 0, 0 }, og_profile_username, t_gender },
 
     // RDF
     { { s_rdf, 1, 0 }, { 0, 0 }, rdf_description, t_text },
@@ -5342,89 +5385,225 @@ property_gen gentab [] =
     { { s_v, 1, 0 }, { 0, 0 }, v_votes, t_unsigned },
     { { s_v, 1, 0 }, { 0, 0 }, v_worst, t_integer },
 
+    // vann
+    { { s_vann, 1, 0 }, { 0, 0 }, vann_changes, t_schema_type, rdfs_resource },
+    { { s_vann, 1, 0 }, { 0, 0 }, vann_example, t_schema_type, rdfs_resource },
+    { { s_vann, 1, 0 }, { 0, 0 }, vann_pnp, t_text },
+    { { s_vann, 1, 0 }, { 0, 0 }, vann_pnu, t_url },
+    { { s_vann, 1, 1 }, { 0, 0 }, vann_termgroup, t_text },
+    { { s_vann, 1, 0 }, { 0, 0 }, vann_usagenote, t_schema_type, rdfs_resource },
 
     // vcard
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_additional_name, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_additional_name, t_schema_type, xsd_string },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_additional_name, t_text },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_adr, t_schema_type, vcard_address },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_agent, t_schema_type, vcard_vcard },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_bday, t_schema_type, xsd_datetime },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_bday, t_schema_type, xsd_date },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_agent, t_text },
+    { { s_vcard, 1, 0 }, { 3, 0 }, vcard_agent, t_schema_type, vcard_vcard },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_agent, t_schema_type, vcard_vcard },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_anniversary, t_schema_type, xsd_gyear },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_anniversary, t_schema_type, xsd_datetime },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_anniversary, t_just_date },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_anniversary, t_datetime },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_bday, t_schema_type, xsd_gyear },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_bday, t_schema_type, xsd_datetimestamp },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_bday, t_schema_type, xsd_datetime },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_bday, t_schema_type, xsd_date },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_bday, t_just_date },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_bday, t_datetime },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_category, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_class, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_country_name, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_extended_address, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_family_name, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_hasfax, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_fn, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_geo, t_schema_type, vcard_location },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_given_name, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_hasemail, t_schema_type, vcard_email },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_haslabel, t_schema_type, vcard_label },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_haslabel, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_homeadr, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_hometel, t_tel },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_key, t_url },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_bday, t_datetime },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_caladruri, t_url },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_caluri, t_url },
+    { { s_vcard, 1, 0 }, { 1, 0 }, vcard_categories, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_category, t_schema_type, xsd_string },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_category, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 3, 0 }, vcard_class, t_text },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_class, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_clientpidmap, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_country, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_country_name, t_schema_type, xsd_string },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_country_name, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_pemail, t_schema_type, vcard_emailtypes },
+    { { s_vcard, 2, 0 }, { s_vcard, 2, 0 }, vcard_pemail, t_email },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_pemail, t_schema_type, vcard_email },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_extadd, t_text },
+    { { s_vcard, 2, 0 }, { 3, 0 }, vcard_extended_address, t_text },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_extended_address, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_family, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_family_name, t_schema_type, xsd_string },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_family_name, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_fburl, t_url },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_group, t_text },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_hasfax, t_tel },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_fn, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 2, 0 }, vcard_fn, t_schema_type, vcard_vcard },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_fn, t_schema_type, xsd_string },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_fn, t_text },
+    { { s_vcard, 4, 0 }, { 4, 0 }, vcard_gender, t_vgender },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_geo, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_geo, t_schema_type, vcard_location },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_geo, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_geo, t_url },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_given, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_given_name, t_schema_type, xsd_string },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_given_name, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasadditionalname, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasaddress, t_schema_type, vcard_address },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hascalendarbusy, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hascalendarrequest, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hascalendarlink, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hascategory, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hascountryname, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasemail, t_schema_type, vcard_email },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasfn, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasfamilyname, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasgender, t_schema_type, vcard_cgender },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasgender, t_gender },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasgender, t_url },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasgeo, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasgeo, t_url },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasgivenname, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hashonourificprefix, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hashonourificsuffix, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasinstantmessage, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_haskey, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_haslanguage, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_haslocality, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_haslogo, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_haslogo, t_url },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasmember, t_schema_type, vcard_vkind },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasname, t_schema_type, vcard_name },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasnickname, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasnote, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasorganisationname, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasorganisationunit, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasphoto, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_haspostcode, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasregion, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasrelated, t_vrel },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasrole, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasstreetaddress, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hastelephone, t_tel },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hastitle, t_schema_type, rdfs_resource },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_hasvalue, t_schema_type, rdfs_resource },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_homeadr, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_hometel, t_tel },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_honourific_prefix, t_schema_type, xsd_string },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_honourific_prefix, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_honourific_suffix, t_schema_type, xsd_string },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_honourific_suffix, t_text },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_impp, t_text },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_key, t_url },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_key, t_b64 },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_key, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_honourific_prefix, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_honourific_suffix, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_latitude, t_schema_type, xsd_float },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_key, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_kind, t_vkind },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_labelp, t_schema_type, vcard_label },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_labelp, t_text },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_labelp, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_lang, t_lang },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_latitude, t_schema_type, xsd_float },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_latitude, t_real },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_latitude, t_schema_type, xsd_float },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_latitude, t_real },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_locality, t_schema_type, xsd_string },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_locality, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_logo, t_url },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_logo, t_url },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_logo, t_b64 },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_logo, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_longitude, t_schema_type, xsd_float },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_mailer, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_mobileemail, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_mobiletel, t_tel },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_logo, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_longitude, t_schema_type, xsd_float },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_longitude, t_real },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_longitude, t_schema_type, xsd_float },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_longitude, t_real },
+    { { s_vcard, 1, 0 }, { s_vcard, 3, 0 }, vcard_mailer, t_text },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_mailer, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_member, t_url },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_member, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_mobileemail, t_email },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_mobiletel, t_tel },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_n, t_schema_type, vcard_name },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_other, t_text },
+    { { s_vcard, 1, 0 }, { 3, 0 }, vcard_pname, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_nickname, t_schema_type, xsd_string },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_nickname, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_note, t_schema_type, xsd_string },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_note, t_text },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_org, t_schema_type, vcard_organisation },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_organisational_name, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_organisational_unit, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_personalemail, t_text },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_organisation_name, t_schema_type, xsd_string },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_organisation_name, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_organisation_unit, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_organisational_unit, t_schema_type, xsd_string },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_organisational_unit, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_orgname, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_orgunit, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_pcode, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_personalemail, t_email },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_phone, t_schema_type, vcard_tel },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_photo, t_url },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_phone, t_tel },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_photo, t_url },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_photo, t_b64 },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_photo, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_post_office_box, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_postal_code, t_text },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_photo, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_pobox, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_post_office_box, t_text },
+    { { s_vcard, 4, 0, SV_DEPRECATED }, { 0, 0 }, vcard_post_office_box, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_postcode, t_schema_type, xsd_string },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_postcode, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_ppref, t_schema_type, vcard_address },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_ppref, t_schema_type, vcard_email },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_ppref, t_schema_type, vcard_label },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_ppref, t_schema_type, vcard_tel },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_prefix, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_prodid, t_schema_type, xsd_string },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_prodid, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_profile, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_region, t_schema_type, xsd_string },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_region, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_rev, t_schema_type, xsd_date },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_rev, t_schema_type, xsd_datetime },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_rev, t_just_date },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_related, t_url },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_related, t_vrel },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_rev, t_schema_type, xsd_date },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_rev, t_schema_type, xsd_datetime },
+    { { s_vcard, 1, 0 }, { s_vcard, 3, 0 }, vcard_rev, t_just_date },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_rev, t_datetime },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_region, t_text },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_region, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_role, t_schema_type, xsd_string },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_role, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_sort_string, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_sound, t_url },
+    { { s_vcard, 4, 0 }, { 3, 0 }, vcard_sort_string, t_schema_type, xsd_string },
+    { { s_vcard, 1, 0 }, { 3, 0 }, vcard_sort_string, t_text },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_sound, t_url },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_sound, t_b64 },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_sound, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_street_address, t_text },
+    { { s_vcard, 3, 0 }, { 0, 0 }, vcard_sound, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_source, t_url },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_street, t_text },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_street_address, t_schema_type, xsd_string },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_street_address, t_text },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_suffix, t_text },
+    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_title, t_schema_type, xsd_string },
     { { s_vcard, 1, 0 }, { 0, 0 }, vcard_title, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_tz, t_text },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_uid, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_unlabeledadr, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_unlabeledemail, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_unlabeledtel, t_tel },
-    { { s_vcard, 1, 0 }, { 0, 0 }, vcard_url, t_url },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_workadr, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_workemail, t_text },
-    { { s_vcard, 1, 0, SV_DEPRECATED }, { 0, 0 }, vcard_worktel, t_tel },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_type, t_vtype },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_type, t_vgender },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_type, t_vtt },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_type, t_vrel },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_tz, t_text },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_tz, t_tz },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_tz, t_schema_type, xsd_string },
+    { { s_vcard, 1, 0 }, { s_vcard, 1, 0 }, vcard_uid, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_uid, t_uid },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_unlabeledadr, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_unlabeledemail, t_email },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_unlabeledtel, t_tel },
+    { { s_vcard, 2, 0 }, { 0, 0 }, vcard_url, t_url },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_value, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_workadr, t_text },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_workemail, t_email },
+    { { s_vcard, 2, 0 }, { s_vcard, 3, 0 }, vcard_worktel, t_tel },
+    { { s_vcard, 4, 0 }, { 0, 0 }, vcard_xml, t_text },
 
-    // open tag
-    { { s_video, 1, 0 }, { 0, 0 }, og_video_actor, t_text },
-    { { s_video, 1, 0 }, { 0, 0 }, og_video_actor_role, t_text },
-    { { s_video, 1, 0 }, { 0, 0 }, og_video_director, t_text },
-    { { s_video, 1, 0 }, { 0, 0 }, og_video_duration, t_1_more },
-    { { s_video, 1, 0 }, { 0, 0 }, og_video_release_date, t_datetime },
-    { { s_video, 1, 0 }, { 0, 0 }, og_video_series, t_url },
-    { { s_video, 1, 0 }, { 0, 0 }, og_video_tag, t_text },
-    { { s_video, 1, 0 }, { 0, 0 }, og_video_writer, t_text },
+    // open graph video
+    { { s_video, HTML_2012, 0 }, { 0, 0 }, og_video_actor, t_text },
+    { { s_video, HTML_2012, 0 }, { 0, 0 }, og_video_actor_role, t_text },
+    { { s_video, HTML_2012, 0 }, { 0, 0 }, og_video_director, t_text },
+    { { s_video, HTML_2012, 0 }, { 0, 0 }, og_video_duration, t_1_more },
+    { { s_video, HTML_2012, 0 }, { 0, 0 }, og_video_release_date, t_datetime },
+    { { s_video, HTML_2012, 0 }, { 0, 0 }, og_video_series, t_url },
+    { { s_video, HTML_2012, 0 }, { 0, 0 }, og_video_tag, t_text },
+    { { s_video, HTML_2012, 0 }, { 0, 0 }, og_video_writer, t_text },
 
     // void
     { { s_void, 1, 0 }, { 0, 0 }, void_class, t_schema_type, rdfs_class },
@@ -5617,7 +5796,7 @@ typedef ::std::vector < e_schema_type > c;
 typedef ::std::multimap < e_schema_property, property_gen* > mpp_t;
 mpp_t mpp;
 
-void schema_property_init (nitpick& )
+void schema_property_init (nitpick& nits)
 {   PRESUME (mpp.empty (), __FILE__, __LINE__);
 #ifdef _MSC_VER
 #pragma warning (push, 3)
@@ -5628,21 +5807,27 @@ void schema_property_init (nitpick& )
 #pragma warning (pop)
 #endif // _MSC_VER
     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
-        mpp.insert (mpp_t::value_type (p -> prop_, p)); } }
+        mpp.insert (mpp_t::value_type (p -> prop_, p)); }
+    for (int i = 1; i < sp_illegal; ++i)
+    {   e_schema_property sp = static_cast < e_schema_property > (i);
+        if (mpp.find (sp) == mpp.cend ())
+        {
+#ifdef _DEBUG
+            context.out () << schema_names.get (property_root (sp), SCHEMA_NAME) << ":" << schema_property_name (sp) << " (" << i << ") missing from property table.\n";
+#endif
+            nits.pick (nit_missing_property, es_catastrophic, ec_init, schema_names.get (property_root (sp), SCHEMA_NAME), ":", schema_property_name (sp), " (", i, ") missing from property table."); } } }
 
-e_schema_property identify_schema_property (nitpick& nits, const schema_version& sv, const ::std::string& name)
+e_schema_property identify_schema_property (const ::std::string& name)
 {   ::std::string n (::boost::to_lower_copy (name));
     e_schema_property p = get_schema_property (n);
     if (p == sp_illegal)
     {   ::std::string::size_type ends_at = 0;
         if (schema_names.starts_with (SCHEMA_CURIE, true, n, &ends_at) != s_error)
         {   n = n.substr (ends_at);
-            p = get_schema_property (n); }
-        if (p == sp_illegal)
-            nits.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is not a ", sv.report (), " property"); }
+            p = get_schema_property (n); } }
     return p; }
 
-vsp_t identify_schema_properties (nitpick& nits, const schema_version& , const ::std::string& name)
+vsp_t identify_schema_properties (const ::std::string& name)
 {   vsp_t res;
     ::std::string n (::boost::to_lower_copy (name));
     res = get_schema_properties (n);
@@ -5651,9 +5836,7 @@ vsp_t identify_schema_properties (nitpick& nits, const schema_version& , const :
         const e_schema x = schema_names.starts_with (SCHEMA_CURIE, true, n, &ends_at);
         if (x != s_error)
         {   n = n.substr (ends_at);
-            res = get_schema_properties (n, x); }
-        if (res.empty ())
-            nits.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is not a recognised property"); }
+            res = get_schema_properties (n, x); } }
     return res; }
 
 bool check_schema_property_version (const schema_version& from, const schema_version& to, const e_schema_property prop, bool& found)
@@ -5678,7 +5861,6 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
 {   nitpick knots;
     ::std::string expected, unfound;
     bool many = false, valid_type = false;
-//    PRESUME (! vsv.empty (), __FILE__, __LINE__);
     ::std::string name (quote (schema_property_name (prop)) + " (" + schema_names.get (static_cast < e_schema > (get_property_root (prop)), SCHEMA_CURIE) + ")");
     ssch_t ssch (generalise (schema));
     for (const e_schema_type gen : ssch)
@@ -5691,7 +5873,7 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& v, const e
                         {   const itemtype_index ii = find_itemtype_index (knots, v, value);
                             if (ii == make_itemtype_index (i -> second -> field_schema_)) return true;
                                 if (type_category (ii) == itemtype_schema)
-                                    if (is_specific_type_of (context.schema_ver (), i -> second -> field_schema_, static_cast < e_schema_type > (ndx_item (ii))))
+                                    if (is_specific_type_of (i -> second -> field_schema_, static_cast < e_schema_type > (ndx_item (ii))))
                                         return true; }
                     const flags_t flags = sch :: flags (i -> second -> field_schema_);
                     const bool en = enumerated_schema_type (flags);
@@ -5753,13 +5935,14 @@ bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_sch
 
 bool is_valid_schema_property_int (nitpick& nits, const html_version& , const e_schema_type schema, const e_schema_property prop, const e_schema_type value)
 {   ssch_t ssch (generalise (schema));
+    const schema_version sv (context.schema_ver (sch::root (schema)));
     for (const e_schema_type gen : ssch)
         if (is_schema_property (gen, prop))
             for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
             {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
                 if (i -> second -> field_type_ == t_schema_type)
-                    if ((i -> second -> field_schema_ == value) || (i -> second -> field_schema_ == sty_context))
-                        if (does_apply < schema_version > (context.schema_ver (), i -> second -> from_, i -> second -> to_))
+                    if ((i -> second -> field_schema_ == value) || (i -> second -> field_schema_ == sty_context) || is_specific_type_of (i -> second -> field_schema_, value))
+                        if (does_apply < schema_version > (sv, i -> second -> from_, i -> second -> to_))
                             return true; }
     nits.pick (nit_bad_property, es_error, ec_schema, quote (schema_property_name (prop)), " cannot have sub-values, or is not a property of ", quote (sch::name (schema)), ", or both");
     return false; }
@@ -5768,11 +5951,35 @@ bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_sch
 {   if (! is_valid_schema_property_int (nits, v, schema, prop, value)) return false;
     return true; }
 
-vit_t sought_schema_types (const e_schema_property prop)
+vit_t sought_schema_types (const schema_version& sv, const e_schema_property prop)
 {   vit_t res;
     for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
     {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if (i -> second -> field_type_ == t_schema_type)
-            if (does_apply < schema_version > (context.schema_ver (), i -> second -> from_, i -> second -> to_))
+            if (does_apply < schema_version > (sv, i -> second -> from_, i -> second -> to_))
                 res.push_back (make_itemtype_index (i -> second -> field_schema_)); }
     return res; }
+
+vit_t sought_schema_types (const e_schema_property prop)
+{   return sought_schema_types (context.schema_ver (), prop); }
+
+vt_t sought_types (const schema_version& sv, const e_schema_property prop)
+{   vt_t res;
+    for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+    {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
+        if (i -> second -> field_type_ != t_schema_type)
+            if (does_apply < schema_version > (sv, i -> second -> from_, i -> second -> to_))
+                res.push_back (i -> second -> field_type_); }
+    return res; }
+
+e_schema property_root (const e_schema_property prop)
+{   PRESUME ((prop != sp_context) && (prop != sp_illegal), __FILE__, __LINE__);
+    mpp_t::const_iterator i = mpp.find (prop);
+    PRESUME (i != mpp.cend (), __FILE__, __LINE__);
+    return i -> second -> from_.root (); }
+
+bool does_property_apply (const schema_version& sv, const e_schema_property prop)
+{   PRESUME ((prop != sp_context) && (prop != sp_illegal), __FILE__, __LINE__);
+    for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> second -> prop_ == prop); ++i)
+        if (does_schema_apply (sv, i -> second -> from_, i -> second -> to_)) return true;
+    return false; }

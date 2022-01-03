@@ -5,6 +5,7 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 8 reputation
 9 reputation
 12 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
+20 not_schema_property bad_property not_schema_property bad_property bad_property
 102 schema_domain
 156 not_schema_property bad_property schema_domain not_schema_property bad_property
 248 schema_domain
