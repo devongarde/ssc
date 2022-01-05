@@ -51,6 +51,7 @@ ssc.exe -T -Z -o ../out/jan21living.tst -f ../toast/living/jan21/living.conf
 ssc.exe -T -Z -o ../out/apr21living.tst -f ../toast/living/apr21/living.conf
 ssc.exe -T -Z -o ../out/jul21living.tst -f ../toast/living/jul21/living.conf
 ssc.exe -T -Z -o ../out/oct21living.tst -f ../toast/living/oct21/living.conf
+ssc.exe -T -Z -o ../out/jan22living.tst -f ../toast/living/jan22/living.conf
 ssc.exe -T -Z -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T -Z -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T -Z -o ../out/3math.tst -f ../toast/math/3/math.conf
@@ -74,7 +75,6 @@ ssc.exe -T -Z -o ../out/ariaaria.tst -f ../toast/other/aria/aria.conf
 ssc.exe -T -Z -o ../out/basebase.tst -f ../toast/other/base/base.conf
 ssc.exe -T -Z -o ../out/charchars.tst -f ../toast/other/characters/chars.conf
 ssc.exe -T -Z -o ../out/CSScss.tst -f ../toast/other/CSS/css.conf
-ssc.exe -T -Z -o ../out/dcdc.tst -f ../toast/other/dc/dc.conf
 ssc.exe -T -Z -o ../out/dfndfn.tst -f ../toast/other/dfn/dfn.conf
 ssc.exe -T -Z -o ../out/dumpdump.tst -f ../toast/other/dump/dump.conf
 ssc.exe -T -Z -o ../out/ignoreignore.tst -f ../toast/other/ignore/ignore.conf
@@ -84,8 +84,6 @@ ssc.exe -T -Z -o ../out/parsingparsing.tst -f ../toast/other/parsing/parsing.con
 ssc.exe -T -Z -o ../out/patternpattern.tst -f ../toast/other/pattern/pattern.conf
 ssc.exe -T -Z -o ../out/simplesimple.tst -f ../toast/other/simple/simple.conf
 ssc.exe -T -Z -o ../out/ssissi.tst -f ../toast/other/ssi/ssi.conf
-ssc.exe -T -Z -o ../out/RDF10.tst -f ../toast/RDF/1.0/rdf.conf
-ssc.exe -T -Z -o ../out/RDF11.tst -f ../toast/RDF/1.1/rdf.conf
 ssc.exe -T -Z -o ../out/RDFa113.tst -f ../toast/RDFa/1.1.3/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFacc.tst -f ../toast/RDFa/cc/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFadc.tst -f ../toast/RDFa/dc/rdfa.conf

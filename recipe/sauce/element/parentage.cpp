@@ -376,21 +376,6 @@ parentage parent_table [] =
     { { HTML_JUL10 }, { HTML_UNDEF }, elem_details, elem_summary },
     { { HTML_JUL07 }, { HTML_DEC09 }, elem_details, elem_legend },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_details, elem_undefined, 0, EF_4_FLOW },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_contributor, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_coverage, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_creator, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_date, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_description, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_format, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_identifier, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_language, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_publisher, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_relation, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_rights, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_source, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_subject, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_title, elem_undefined },
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_dc_type, elem_undefined },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_dfn, elem_dfn, DENY },
     { { HTML_1_0 }, { HTML_1_0 }, elem_dfn, elem_undefined, DENY },
     { { HTML_PLUS }, { HTML_PLUS }, elem_dfn, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
@@ -1999,78 +1984,6 @@ e_element default_parent (const html_version& v, const elem& self) noexcept
         case elem_radialgradient :
         case elem_symbol :
             return elem_defs;
-        case elem_dc_contributor :
-        case elem_dc_coverage :
-        case elem_dc_creator :
-        case elem_dc_date :
-        case elem_dc_description :
-        case elem_dc_format :
-        case elem_dc_identifier :
-        case elem_dc_language :
-        case elem_dc_publisher :
-        case elem_dc_relation :
-        case elem_dc_rights :
-        case elem_dc_source :
-        case elem_dc_subject :
-        case elem_dc_title :
-        case elem_dc_type :
-        case elem_dct_abstract :
-        case elem_dct_accessrights :
-        case elem_dct_accrualmethod :
-        case elem_dct_accrualperiodicity :
-        case elem_dct_accrualpolicy :
-        case elem_dct_alternative :
-        case elem_dct_audience :
-        case elem_dct_available :
-        case elem_dct_bibliographiccitation :
-        case elem_dct_conformsto :
-        case elem_dct_contributor :
-        case elem_dct_coverage :
-        case elem_dct_created :
-        case elem_dct_creator :
-        case elem_dct_date :
-        case elem_dct_dateaccepted :
-        case elem_dct_datecopyrighted :
-        case elem_dct_datesubmitted :
-        case elem_dct_description :
-        case elem_dct_educationlevel :
-        case elem_dct_extent :
-        case elem_dct_format :
-        case elem_dct_hasformat :
-        case elem_dct_haspart :
-        case elem_dct_hasversion :
-        case elem_dct_identifier :
-        case elem_dct_instructionalmethod :
-        case elem_dct_isformatof :
-        case elem_dct_ispartof :
-        case elem_dct_isreferencedby :
-        case elem_dct_isreplacedby :
-        case elem_dct_isrequiredby :
-        case elem_dct_issued :
-        case elem_dct_isversionof :
-        case elem_dct_language :
-        case elem_dct_licence :
-        case elem_dct_mediator :
-        case elem_dct_medium :
-        case elem_dct_modified :
-        case elem_dct_provenance :
-        case elem_dct_publisher :
-        case elem_dct_references :
-        case elem_dct_relation :
-        case elem_dct_replaces :
-        case elem_dct_requires :
-        case elem_dct_rights :
-        case elem_dct_rightsholder :
-        case elem_dct_source :
-        case elem_dct_spatial :
-        case elem_dct_subject :
-        case elem_dct_tableofcontents :
-        case elem_dct_temporal :
-        case elem_dct_title :
-        case elem_dct_type :
-        case elem_dct_valid :
-            if (v.svg ()) return elem_metadata;
-            break;
         case elem_definition_src :
             return elem_font_face;
         case elem_elementdef :

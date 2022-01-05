@@ -118,31 +118,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define SVG_STRUCTURAL SVG_BOX, SVG_COND, SVG_DOC, SVG_GR, SVG_PRES
 
-#define CC_METADATA a_cc_attribution_name, a_cc_attribution_url, a_cc_more_permissions, a_cc_licence, a_cc_permits, a_cc_prohibits, \
-                    a_cc_requires
-
-#define DC_METADATA a_dc_contributor, a_dc_coverage, a_dc_creator, a_dc_date, a_dc_description, a_dc_format, \
-                    a_dc_identifier, a_dc_language, a_dc_publisher, a_dc_relation, a_dc_rights, a_dc_source, a_dc_subject, a_dc_title, \
-                    a_dc_type
-
-#define DCT_METADATA a_dct_abstract, a_dct_accessrights, a_dct_accrualmethod, a_dct_accrualperiodicity, a_dct_accrualpolicy, \
-                    a_dct_alternative,  a_dct_audience, a_dct_available, a_dct_bibliographiccitation, a_dct_conformsto, \
-                    a_dct_contributor, a_dct_coverage, a_dct_created, a_dct_creator,  a_dct_date, a_dct_dateaccepted, \
-                    a_dct_datecopyrighted, a_dct_datesubmitted, a_dct_description, a_dct_educationlevel, a_dct_extent, a_dct_format, \
-                    a_dct_hasformat, a_dct_haspart, a_dct_hasversion, a_dct_identifier, a_dct_instructionalmethod, a_dct_isformatof, \
-                    a_dct_ispartof, a_dct_isreferencedby, a_dct_isreplacedby, a_dct_isrequiredby, a_dct_issued, a_dct_isversionof, \
-                    a_dct_language, a_dct_licence, a_dct_mediator, a_dct_medium, a_dct_modified, a_dct_provenance, a_dct_publisher, \
-                    a_dct_references, a_dct_relation, a_dct_replaces, a_dct_requires, a_dct_rights, a_dct_rightsholder, a_dct_source, \
-                    a_dct_spatial, a_dct_subject, a_dct_tableofcontents, a_dct_temporal, a_dct_title, a_dct_type, a_dct_valid
-
 #define RDF_METADATA a_rdf_about, a_rdf_datatype, a_rdf_id, a_rdf_nodeid, a_rdf_parsetype, a_rdf_resource
 
-#define NOT_CC      DC_METADATA, DCT_METADATA, RDF_METADATA
-#define NOT_DC      CC_METADATA, DCT_METADATA, RDF_METADATA
-#define NOT_DCT     CC_METADATA, DC_METADATA, RDF_METADATA
-#define NOT_RDF     CC_METADATA, DC_METADATA, DCT_METADATA
-
-#define METADATA    CC_METADATA, DC_METADATA, DCT_METADATA, RDF_METADATA
+#define METADATA    RDF_METADATA
 
 #define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
 #define BLUR        a_onfocus, a_onblur
@@ -277,13 +255,6 @@ element_init_t ei [] =
     { elem_card, { a_active, MATH3UNIQUE, METADATA, COMMON5, a_unknown } },
     { elem_cartesianproduct, { MATH3DEFCOM, a_unknown } },
     { elem_cbytes, { MATH3COMMON, a_unknown } },
-    { elem_cc_attribution_name, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_cc_attribution_url, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_cc_more_permissions, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_cc_licence, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_cc_permits, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_cc_prohibits, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_cc_requires, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_cdata, { a_unknown } },
     { elem_ceiling, { MATH3DEFCOM, a_unknown } },
     { elem_centre, { a_unknown } },
@@ -324,76 +295,6 @@ element_init_t ei [] =
     { elem_datagrid, { a_disabled, a_multiple, METADATA, COMMON5, a_unknown } },
     { elem_datalist, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_datatemplate, { METADATA, COMMON5, a_unknown } },
-    { elem_dc_contributor, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_coverage, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_creator, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_date, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_description, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_format, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_identifier, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_language, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_publisher, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_relation, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_rights, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_source, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_subject, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_title, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dc_type, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_abstract, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_accessrights, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_accrualmethod, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_accrualperiodicity, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_accrualpolicy, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_alternative, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_audience, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_available, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_bibliographiccitation, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_conformsto, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_contributor, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_coverage, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_created, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_creator, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_date, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_dateaccepted, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_datecopyrighted, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_datesubmitted, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_description, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_educationlevel, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_extent, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_format, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_hasformat, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_haspart, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_hasversion, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_identifier, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_instructionalmethod, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_isformatof, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_ispartof, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_isreferencedby, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_isreplacedby, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_isrequiredby, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_issued, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_isversionof, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_language, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_licence, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_mediator, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_medium, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_modified, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_provenance, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_publisher, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_references, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_relation, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_replaces, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_requires, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_rights, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_rightsholder, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_source, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_spatial, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_subject, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_tableofcontents, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_temporal, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_title, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_type, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_dct_valid, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_dd, { a_compact, a_clear, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_ddot, { LANGCLASS3, a_unknown } },
     { elem_declare, { a_occurrence, a_nargs, a_scope, a_type, MATH3DEFCOM, a_unknown } },

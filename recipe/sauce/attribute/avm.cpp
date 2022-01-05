@@ -41,27 +41,25 @@ inline uint64_t avm_key (const e_element tag, const e_attribute a) noexcept
         avm.insert (avm_t::value_type (avm_key (havt_##X [index].tag_, havt_##X [index].a_), &havt_##X [index]))
 
 void avm_init (nitpick& )
-{   extern hav_t    havt_a [], havt_b [], havt_c [], havt_d [], havt_e [], havt_f [], havt_g [], havt_h [], havt_i [],
-                    havt_k [], havt_l [], havt_m [], havt_n [], havt_o [], havt_p [], havt_q [], havt_r [], havt_s [],
-                    havt_t [], havt_u [], havt_v [], havt_w [], havt_x [],
-                    havt_cc [], havt_dc [], havt_dct_a [], havt_dct_b [], havt_rdf [];
+{   extern hav_t    havt_a [], havt_b [], havt_c [], havt_d [], havt_e [], havt_f1 [], havt_f2 [], havt_g [], havt_h [], havt_i [],
+                    havt_k [], havt_l [], havt_m1 [], havt_m2 [], havt_n [], havt_o [], havt_p [], havt_q [], havt_r [], havt_s [],
+                    havt_t1 [], havt_t2 [], havt_u [], havt_v [], havt_w [], havt_x [],
+                    havt_rdf [];
 
     AVM_INIT(a);
     AVM_INIT(b);
     AVM_INIT(c);
-    AVM_INIT(cc);
     AVM_INIT(d);
-    AVM_INIT(dc);
-    AVM_INIT(dct_a);
-    AVM_INIT(dct_b);
     AVM_INIT(e);
-    AVM_INIT(f);
+    AVM_INIT(f1);
+    AVM_INIT(f2);
     AVM_INIT(g);
     AVM_INIT(h);
     AVM_INIT(i);
     AVM_INIT(k);
     AVM_INIT(l);
-    AVM_INIT(m);
+    AVM_INIT(m1);
+    AVM_INIT(m2);
     AVM_INIT(n);
     AVM_INIT(o);
     AVM_INIT(p);
@@ -69,7 +67,8 @@ void avm_init (nitpick& )
     AVM_INIT(r);
     AVM_INIT(rdf);
     AVM_INIT(s);
-    AVM_INIT(t);
+    AVM_INIT(t1);
+    AVM_INIT(t2);
     AVM_INIT(u);
     AVM_INIT(v);
     AVM_INIT(w);

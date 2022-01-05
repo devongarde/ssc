@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.12)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.0.120 LANGUAGES CXX)
+project (ssc VERSION 0.0.121 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -142,12 +142,11 @@ target_sources (ssc PRIVATE
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/root.h
         ${S}/attribute/attr.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp ${S}/attribute/avm_data_a.cpp
-             ${S}/attribute/avm_data_b.cpp ${S}/attribute/avm_data_c.cpp ${S}/attribute/avm_data_d.cpp ${S}/attribute/avm_data_e.cpp ${S}/attribute/avm_data_f.cpp
+             ${S}/attribute/avm_data_b.cpp ${S}/attribute/avm_data_c.cpp ${S}/attribute/avm_data_d.cpp ${S}/attribute/avm_data_e.cpp ${S}/attribute/avm_data_f1.cpp ${S}/attribute/avm_data_f2.cpp
              ${S}/attribute/avm_data_g.cpp ${S}/attribute/avm_data_h.cpp ${S}/attribute/avm_data_i.cpp ${S}/attribute/avm_data_k.cpp ${S}/attribute/avm_data_l.cpp
-             ${S}/attribute/avm_data_m.cpp ${S}/attribute/avm_data_n.cpp ${S}/attribute/avm_data_o.cpp ${S}/attribute/avm_data_p.cpp ${S}/attribute/avm_data_q.cpp
-             ${S}/attribute/avm_data_r.cpp ${S}/attribute/avm_data_s.cpp ${S}/attribute/avm_data_t.cpp ${S}/attribute/avm_data_u.cpp ${S}/attribute/avm_data_v.cpp
-             ${S}/attribute/avm_data_w.cpp ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_cc.cpp ${S}/attribute/avm_data_dc.cpp
-             ${S}/attribute/avm_data_dct_a.cpp ${S}/attribute/avm_data_dct_b.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
+             ${S}/attribute/avm_data_m1.cpp ${S}/attribute/avm_data_m2.cpp ${S}/attribute/avm_data_n.cpp ${S}/attribute/avm_data_o.cpp ${S}/attribute/avm_data_p.cpp ${S}/attribute/avm_data_q.cpp
+             ${S}/attribute/avm_data_r.cpp ${S}/attribute/avm_data_s.cpp ${S}/attribute/avm_data_t1.cpp ${S}/attribute/avm_data_t2.cpp ${S}/attribute/avm_data_u.cpp ${S}/attribute/avm_data_v.cpp
+             ${S}/attribute/avm_data_w.cpp ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
         ${S}/css/css.cpp ${S}/css/css_cache.cpp
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp

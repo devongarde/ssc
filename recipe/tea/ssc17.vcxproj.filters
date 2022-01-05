@@ -988,9 +988,6 @@
     <ClCompile Include="..\sauce\attribute\avm_data_e.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_f.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_g.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
@@ -1004,9 +1001,6 @@
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_l.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_m.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_n.cpp">
@@ -1027,9 +1021,6 @@
     <ClCompile Include="..\sauce\attribute\avm_data_s.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_t.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_u.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
@@ -1040,18 +1031,6 @@
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_x.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_cc.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_dc.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_dct_a.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_dct_b.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_rdf.cpp">
@@ -1080,6 +1059,24 @@
     </ClCompile>
     <ClCompile Include="..\sauce\parser\jsonic.cpp">
       <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_f1.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_f2.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_m1.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_m2.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_t1.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_t2.cpp">
+      <Filter>Sauce\attribute</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

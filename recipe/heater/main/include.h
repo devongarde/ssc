@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 120
-#define VERSION_STRING "0.0.120"
+#define VERSION_RELEASE 121
+#define VERSION_STRING "0.0.121"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -113,6 +113,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #elif _MSC_VER >= 1910
 #define _WIN32_WINNT 0x0603 // 8.1
 #define SMALLINT
+#define NOMERGE
 #else // _MSC_VER
 #error ssc only builds with VS 2017 / 2019 / 2022.
 #endif // _MSC_VER

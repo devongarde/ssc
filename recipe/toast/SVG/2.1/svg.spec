@@ -176,7 +176,9 @@ PASS ../toast/SVG/2.1/metadata.svg
 0 title_required
 1 xhtml_5_0
 4 unrecognised_namespace unrecognised_value
-23 attribute_unrecognised_here unrecognised_attribute
+23 attribute_unrecognised_here attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
+24 unknown_element
+29 unknown_element
 
 PASS ../toast/SVG/2.1/mystery.xhtml
 0 title_required

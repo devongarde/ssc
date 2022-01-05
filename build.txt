@@ -12,8 +12,7 @@ SSC can be built from various unii command lines using CMake, or with Visual Stu
 Libraries
 ---------
 Before you can build SSC, you may find you need to install and build boost version 1.75 or better, and a recent version
-of the ICU libraries. Most unii have both available as packages. You will also need Microsoft's GSL library, which can
-be downloaded from https://github.com/Microsoft/GSL .
+of the ICU libraries. Most unii have both available as packages. You will also need Microsoft's GSL library.
 
 You may need to set these environment variables:
 BOOST_ROOT to point to the boost source root directory (https://boost.org);
@@ -27,8 +26,8 @@ GSL_ROOT to point to the GSL root directory (https://github.com/Microsoft/GSL).
 Windows
 -------
 To build from Visual Studio, navigate to recipe\tea, open the appropriate .sln file, then build. Both x86 and x64 builds
-work, although the x86 executable cannot analyse larger websites. Visual Studios 2017 / 2019 / 2022 have been built & tested,
-for Windows 8.1 & 10.
+work, although the x86 executable cannot analyse larger websites, & the build generates heaps of warnings. Visual
+Studios 2017 / 2019 / 2022 have been built & tested, for Windows 8.1 & 10.
 
 
 Unii & mock Unii
@@ -51,8 +50,10 @@ find files they're supposed to delete, rather than saying thank you for the redu
 
 The following have successfully built, although not always under all versions of ssc:
 Linux: Centos 8 amd64, Ubuntu Server 20.04/20.10 amd64
-OpenBSD 6.8 / 6.9 / 7.0: amd64
+OpenBSD 6.8 / 6.9 / 7.0, amd64
 MacOS: Monterey, Big Sur, Catalina, Mojave & High Sierra (all intel x64)
+
+Note: GCC takes a wee while to build.
 
 
 OpenBSD 6.8 / 6.9 / 7.0 amd64

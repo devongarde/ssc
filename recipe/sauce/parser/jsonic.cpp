@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/jsonic.h"
 
 #ifdef NO_JSONIC
-void parse_json_ld (nitpick& , const html_version& , const ::std::string& ) { }
+void parse_json_ld (nitpick& , const html_version& , const ::std::string& , const e_charcode ) { }
 #else // NO_JSONIC
 
 #ifdef _MSC_VER
