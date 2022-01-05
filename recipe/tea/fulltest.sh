@@ -54,6 +54,7 @@
 ./ssc -f ../toast/living/apr21/living.conf
 ./ssc -f ../toast/living/jul21/living.conf
 ./ssc -f ../toast/living/oct21/living.conf
+./ssc -f ../toast/living/jan22/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
@@ -78,7 +79,6 @@
 ./ssc -f ../toast/other/base/base.conf
 ./ssc -f ../toast/other/characters/chars.conf
 ./ssc -f ../toast/other/CSS/css.conf
-./ssc -f ../toast/other/dc/dc.conf
 ./ssc -f ../toast/other/dfn/dfn.conf
 ./ssc -f ../toast/other/dump/dump.conf
 ./ssc -f ../toast/other/ignore/ignore.conf
@@ -88,8 +88,6 @@
 ./ssc -f ../toast/other/pattern/pattern.conf
 ./ssc -f ../toast/other/simple/simple.conf
 ./ssc -f ../toast/other/ssi/ssi.conf
-./ssc -f ../toast/RDF/1.0/rdf.conf
-./ssc -f ../toast/RDF/1.1/rdf.conf
 ./ssc -f ../toast/RDFa/1.1.3/rdfa.conf
 ./ssc -f ../toast/RDFa/cc/rdfa.conf
 ./ssc -f ../toast/RDFa/dc/rdfa.conf

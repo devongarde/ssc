@@ -148,7 +148,9 @@ PASS ../toast/SVG/1.1/example-4.html
 2 naughty_lang
 12 svg_version
 13 unrecognised_namespace unrecognised_value
-33 attribute_unrecognised_here unrecognised_attribute
+33 attribute_unrecognised_here attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
+34 unknown_element
+39 unknown_element
 46 svg_version
 48 unrecognised_namespace
 60 svg_version
@@ -285,7 +287,9 @@ PASS ../toast/SVG/1.1/metadata.svg
 1 xhtml_1_1
 3 svg_version
 4 unrecognised_namespace unrecognised_value
-23 attribute_unrecognised_here unrecognised_attribute
+23 attribute_unrecognised_here attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
+24 unknown_element
+29 unknown_element
 
 PASS ../toast/SVG/1.1/opacity.svg
 0 title_required

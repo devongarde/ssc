@@ -1,4 +1,6 @@
-Built with Visual Studio under Windows & CMake under a unix flavour
+Built with:
+- Visual Studio under Windows
+- CMake under various unii with gcc or clang
 
 To build a release version with cmake:
 cmake .

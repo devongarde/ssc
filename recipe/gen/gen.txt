@@ -15,7 +15,7 @@ ssc (the Static Site Checker) is an opinionated HTML nit-picker, intended for
 people, such as its author, who hand code websites. It doesn't just check
 static websites for broken links, dubious syntax, and bad semantic data, it
 will actively complain about things that are perfectly legal but just a little
-bit untidy.
+bit untidy, such as its author.
 
 Except when serving CGI queries, it recursively scans the directory looking
 for HTML source files to analyse. It produces a list of errors, warnings,
@@ -174,7 +174,7 @@ These options are available on the command line and in configuration files:
                             2007/1/1    WhatWG WebApps draft (January 2007),
                             2007/7/1    WhatWG HTML 5 (July 2007),
                             ...
-                            2021/10/1   WhatWG HTML 5 (October 2021),
+                            2022/1/1   WhatWG HTML 5 (October 2021),
 
                             XHTML 1.0   XHTML 1.0,
                             XHTML 1.1   XHTML 1.1 core,

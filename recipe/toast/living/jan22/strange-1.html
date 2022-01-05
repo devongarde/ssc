@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> strange cases </title> </head>
+ <body>
+
+<p>1<b>2<i>3</b>4</i>5</p>
+
+<b>1<p>2</b>3</p>
+
+<table><b><tr><td>aaa</td></tr>bbb</table>ccc
+<div id=a>
+<script>
+var div = document.getElementById('a');
+parent.document.body.appendChild(div);
+</script>
+<script>
+alert(document.URL);
+</script>
+</div>
+<script>
+alert(document.URL);
+</script>
+
+<form id="outer"><div></form><form id="inner"><input>
+
+<a><table><a>
+<pre>
+Hello.</pre>
+
+<script>
+window.SuperP = class extends HTMLParagraphElement {};
+customElements.define("super-p", SuperP, { extends: "p" });
+</script>
+<div id="container"><p is="super-p">Superb!</p></div>
+<script>
+console.log(container.innerHTML); // <p is="super-p">
+container.innerHTML = container.innerHTML;
+console.log(container.innerHTML); // <p is="super-p">
+console.assert(container.firstChild instanceof SuperP);
+</script>
+<script>
+container.innerHTML = "";
+const p = document.createElement("p", { is: "super-p" });
+container.appendChild(p);
+// The is attribute is not present in the DOM:
+console.assert(!p.hasAttribute("is"));
+// But the element is still a super-p:
+console.assert(p instanceof SuperP);
+</script>
+
+<script>
+console.log(container.innerHTML); // <p is="super-p">
+container.innerHTML = container.innerHTML;
+console.log(container.innerHTML); // <p is="super-p">
+console.assert(container.firstChild instanceof SuperP);
+</script>
+ </body>
+</html>

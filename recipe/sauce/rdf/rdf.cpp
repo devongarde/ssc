@@ -104,10 +104,13 @@ vty_t rdf_t::type () const
 
 vsh_t rdf_t::vocabs () const
 {   vsh_t res (vocab_);
-    if (up_ == nullptr)
-        res.merge (rdfa_schema_context ());
-    else
-        res.merge (up_ -> vocabs ());
+#ifdef NOMERGE
+    if (up_ == nullptr) merge_stuff (res, rdfa_schema_context ());
+    else merge_stuff (res, up_ -> vocabs ());
+#else // NOMERGE
+    if (up_ == nullptr) res.merge (rdfa_schema_context ());
+    else res.merge (up_ -> vocabs ());
+#endif // NOMERGE
     return res; }
 
 prop_indices rdf_t::prepare_prop_indices (nitpick& nits, const html_version& v, const ::std::string& name)

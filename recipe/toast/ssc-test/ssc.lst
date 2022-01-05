@@ -17,8 +17,8 @@
 ../toast/HTML/minimal/minimal.spec
 ../toast/HTML/Plus/plus.spec
 ../toast/HTML/tags/tags.spec
-../toast/JSON-LD/as/jsonld.spec
-../toast/JSON-LD/schemaorg/jsonld.spec
+../toast/json-ld/as/jsonld.spec
+../toast/json-ld/schemaorg/jsonld.spec
 ../toast/link/link.spec
 ../toast/living/jul07/living.spec
 ../toast/living/jan08/living.spec
@@ -51,6 +51,7 @@
 ../toast/living/apr21/living.spec
 ../toast/living/jul21/living.spec
 ../toast/living/oct21/living.spec
+../toast/living/jan22/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -75,7 +76,6 @@
 ../toast/other/base/base.spec
 ../toast/other/characters/chars.spec
 ../toast/other/CSS/css.spec
-../toast/other/dc/dc.spec
 ../toast/other/dfn/dfn.spec
 ../toast/other/dump/dump.spec
 ../toast/other/ignore/ignore.spec
@@ -86,8 +86,6 @@
 ../toast/other/pattern/pattern.spec
 ../toast/other/simple/simple.spec
 ../toast/other/ssi/ssi.spec
-../toast/RDF/1.0/rdf.spec
-../toast/RDF/1.1/rdf.spec
 ../toast/RDFa/1.1.3/rdfa.spec
 ../toast/RDFa/cc/rdfa.spec
 ../toast/RDFa/dc/rdfa.spec

@@ -152,13 +152,6 @@ typedef typed_attribute < t_calcmode, a_calcmode > attr_calcmode;
 typedef typed_attribute < t_existential, a_cancelable > attr_cancelable;
 typedef typed_attribute < t_real, a_cap_height > attr_capheight;
 typedef typed_attribute < t_capture, a_capture > attr_capture;
-typedef typed_attribute < t_text, a_cc_attribution_name > attr_cc_attribution_name;
-typedef typed_attribute < t_url, a_cc_attribution_url > attr_cc_attribution_url;
-typedef typed_attribute < t_url, a_cc_more_permissions > attr_cc_more_permissions;
-typedef typed_attribute < t_url, a_cc_licence > attr_cc_licence;
-typedef typed_attribute < t_cc_permits, a_cc_permits > attr_cc_permits;
-typedef typed_attribute < t_cc_prohibits, a_cc_prohibits > attr_cc_prohibits;
-typedef typed_attribute < t_cc_requires, a_cc_requires > attr_cc_requires;
 typedef typed_attribute < t_url, a_cdgroup > attr_cdgroup;
 typedef typed_attribute < t_text, a_cd > attr_cd;
 typedef typed_attribute < t_generic, a_cell > attr_cell;
@@ -230,76 +223,6 @@ typedef typed_attribute < t_url, a_datasrc > attr_datasrc;
 typedef typed_attribute < t_data, a_datawild > attr_datastar;
 typedef typed_attribute < t_curie, a_datatype > attr_datatype;
 typedef typed_attribute < t_datetime, a_datetime > attr_datetime;
-typedef typed_attribute < t_text, a_dc_contributor > attr_dc_contributor;
-typedef typed_attribute < t_text, a_dc_coverage > attr_dc_coverage;
-typedef typed_attribute < t_text, a_dc_creator > attr_dc_creator;
-typedef typed_attribute < t_datetime, a_dc_date > attr_dc_date;
-typedef typed_attribute < t_text, a_dc_description > attr_dc_description;
-typedef typed_attribute < t_text, a_dc_format > attr_dc_format;
-typedef typed_attribute < t_text, a_dc_identifier > attr_dc_identifier;
-typedef typed_attribute < t_lang, a_dc_language > attr_dc_language;
-typedef typed_attribute < t_text, a_dc_publisher > attr_dc_publisher;
-typedef typed_attribute < t_url, a_dc_relation > attr_dc_relation;
-typedef typed_attribute < t_text, a_dc_rights > attr_dc_rights;
-typedef typed_attribute < t_text, a_dc_source > attr_dc_source;
-typedef typed_attribute < t_text, a_dc_subject > attr_dc_subject;
-typedef typed_attribute < t_text, a_dc_title > attr_dc_title;
-typedef typed_attribute < t_text, a_dc_type > attr_dc_type;
-typedef typed_attribute < t_text, a_dct_abstract > attr_dct_abstract;
-typedef typed_attribute < t_text, a_dct_accessrights > attr_dct_accessrights;
-typedef typed_attribute < t_accrual_method, a_dct_accrualmethod > attr_dct_accrualmethod;
-typedef typed_attribute < t_accrual_periodicity, a_dct_accrualperiodicity > attr_dct_accrualperiodicity;
-typedef typed_attribute < t_accrual_policy, a_dct_accrualpolicy > attr_dct_accrualpolicy;
-typedef typed_attribute < t_text, a_dct_alternative > attr_dct_alternative;
-typedef typed_attribute < t_text, a_dct_audience > attr_dct_audience;
-typedef typed_attribute < t_datetime, a_dct_available > attr_dct_available;
-typedef typed_attribute < t_text, a_dct_bibliographiccitation > attr_dct_bibliographiccitation;
-typedef typed_attribute < t_text, a_dct_conformsto > attr_dct_conformsto;
-typedef typed_attribute < t_text, a_dct_contributor > attr_dct_contributor;
-typedef typed_attribute < t_text, a_dct_coverage > attr_dct_coverage;
-typedef typed_attribute < t_datetime, a_dct_created > attr_dct_created;
-typedef typed_attribute < t_url, a_dct_creator > attr_dct_creator;
-typedef typed_attribute < t_datetime, a_dct_date > attr_dct_date;
-typedef typed_attribute < t_datetime, a_dct_dateaccepted > attr_dct_dateaccepted;
-typedef typed_attribute < t_datetime, a_dct_datecopyrighted > attr_dct_datecopyrighted;
-typedef typed_attribute < t_datetime, a_dct_datesubmitted > attr_dct_datesubmitted;
-typedef typed_attribute < t_text, a_dct_description > attr_dct_description;
-typedef typed_attribute < t_text, a_dct_educationlevel > attr_dct_educationlevel;
-typedef typed_attribute < t_filesize, a_dct_extent > attr_dct_extent;
-typedef typed_attribute < t_text, a_dct_format > attr_dct_format;
-typedef typed_attribute < t_text, a_dct_hasformat > attr_dct_hasformat;
-typedef typed_attribute < t_text, a_dct_haspart > attr_dct_haspart;
-typedef typed_attribute < t_text, a_dct_hasversion > attr_dct_hasversion;
-typedef typed_attribute < t_text, a_dct_identifier > attr_dct_identifier;
-typedef typed_attribute < t_text, a_dct_instructionalmethod > attr_dct_instructionalmethod;
-typedef typed_attribute < t_text, a_dct_isformatof > attr_dct_isformatof;
-typedef typed_attribute < t_text, a_dct_ispartof > attr_dct_ispartof;
-typedef typed_attribute < t_text, a_dct_isreferencedby > attr_dct_isreferencedby;
-typedef typed_attribute < t_text, a_dct_isreplacedby > attr_dct_isreplacedby;
-typedef typed_attribute < t_text, a_dct_isrequiredby > attr_dct_isrequiredby;
-typedef typed_attribute < t_datetime, a_dct_issued > attr_dct_issued;
-typedef typed_attribute < t_text, a_dct_isversionof > attr_dct_isversionof;
-typedef typed_attribute < t_lang, a_dct_language > attr_dct_language;
-typedef typed_attribute < t_url, a_dct_licence > attr_dct_license;
-typedef typed_attribute < t_text, a_dct_mediator > attr_dct_mediator;
-typedef typed_attribute < t_text, a_dct_medium > attr_dct_medium;
-typedef typed_attribute < t_datetime, a_dct_modified > attr_dct_modified;
-typedef typed_attribute < t_text, a_dct_provenance > attr_dct_provenance;
-typedef typed_attribute < t_text, a_dct_publisher > attr_dct_publisher;
-typedef typed_attribute < t_text, a_dct_references > attr_dct_references;
-typedef typed_attribute < t_text, a_dct_relation > attr_dct_relation;
-typedef typed_attribute < t_text, a_dct_replaces > attr_dct_replaces;
-typedef typed_attribute < t_text, a_dct_requires > attr_dct_requires;
-typedef typed_attribute < t_url, a_dct_rights > attr_dct_rights;
-typedef typed_attribute < t_url, a_dct_rightsholder > attr_dct_rightsholder;
-typedef typed_attribute < t_text, a_dct_source > attr_dct_source;
-typedef typed_attribute < t_text, a_dct_spatial > attr_dct_spatial;
-typedef typed_attribute < t_text, a_dct_subject > attr_dct_subject;
-typedef typed_attribute < t_text, a_dct_tableofcontents > attr_dct_tableofcontents;
-typedef typed_attribute < t_text, a_dct_temporal > attr_dct_temporal;
-typedef typed_attribute < t_text, a_dct_title > attr_dct_title;
-typedef typed_attribute < t_text, a_dct_type > attr_dct_type;
-typedef typed_attribute < t_text, a_dct_valid > attr_dct_valid;
 typedef typed_attribute < t_char, a_decimalpoint > attr_decimalpoint;
 typedef typed_attribute < t_existential, a_declare > attr_declare;
 typedef typed_attribute < t_decoding, a_decoding > attr_decoding;
@@ -1175,13 +1098,6 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_cancelable, \
     attr_capheight, \
     attr_capture, \
-    attr_cc_attribution_name, \
-    attr_cc_attribution_url, \
-    attr_cc_more_permissions, \
-    attr_cc_licence, \
-    attr_cc_permits, \
-    attr_cc_prohibits, \
-    attr_cc_requires, \
     attr_cdgroup, \
     attr_cd, \
     attr_cell, \
@@ -1252,76 +1168,6 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_datastar, \
     attr_datatype, \
     attr_datetime, \
-    attr_dc_contributor, \
-    attr_dc_coverage, \
-    attr_dc_creator, \
-    attr_dc_date, \
-    attr_dc_description, \
-    attr_dc_format, \
-    attr_dc_identifier, \
-    attr_dc_language, \
-    attr_dc_publisher, \
-    attr_dc_relation, \
-    attr_dc_rights, \
-    attr_dc_source, \
-    attr_dc_subject, \
-    attr_dc_title, \
-    attr_dc_type, \
-    attr_dct_abstract, \
-    attr_dct_accessrights, \
-    attr_dct_accrualmethod, \
-    attr_dct_accrualperiodicity, \
-    attr_dct_accrualpolicy, \
-    attr_dct_alternative, \
-    attr_dct_audience, \
-    attr_dct_available, \
-    attr_dct_bibliographiccitation, \
-    attr_dct_conformsto, \
-    attr_dct_contributor, \
-    attr_dct_coverage, \
-    attr_dct_created, \
-    attr_dct_creator, \
-    attr_dct_date, \
-    attr_dct_dateaccepted, \
-    attr_dct_datecopyrighted, \
-    attr_dct_datesubmitted, \
-    attr_dct_description, \
-    attr_dct_educationlevel, \
-    attr_dct_extent, \
-    attr_dct_format, \
-    attr_dct_hasformat, \
-    attr_dct_haspart, \
-    attr_dct_hasversion, \
-    attr_dct_identifier, \
-    attr_dct_instructionalmethod, \
-    attr_dct_isformatof, \
-    attr_dct_ispartof, \
-    attr_dct_isreferencedby, \
-    attr_dct_isreplacedby, \
-    attr_dct_isrequiredby, \
-    attr_dct_issued, \
-    attr_dct_isversionof, \
-    attr_dct_language, \
-    attr_dct_license, \
-    attr_dct_mediator, \
-    attr_dct_medium, \
-    attr_dct_modified, \
-    attr_dct_provenance, \
-    attr_dct_publisher, \
-    attr_dct_references, \
-    attr_dct_relation, \
-    attr_dct_replaces, \
-    attr_dct_requires, \
-    attr_dct_rights, \
-    attr_dct_rightsholder, \
-    attr_dct_source, \
-    attr_dct_spatial, \
-    attr_dct_subject, \
-    attr_dct_tableofcontents, \
-    attr_dct_temporal, \
-    attr_dct_title, \
-    attr_dct_type, \
-    attr_dct_valid, \
     attr_decimalpoint, \
     attr_declare, \
     attr_decoding, \

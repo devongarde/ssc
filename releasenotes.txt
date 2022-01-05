@@ -3,10 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+0.0.121
+- Living Standard for Jan 22 (much the same as Oct 21, to be honest)
+- underlying work
+
 0.0.120
 - RDFa
 - added --ontology.list
-- set default schema versions with --ontology.XXX 
+- set default schema versions with --ontology.XXX
 
 0.0.119
 - macos Monterey

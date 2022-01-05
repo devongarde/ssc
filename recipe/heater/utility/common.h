@@ -188,3 +188,8 @@ inline ::std::string x_dot_y_ish (const unsigned char mjr, const unsigned char m
     {   res += ".";
         res += ::boost::lexical_cast < ::std::string > (static_cast < int > (mnr)); }
     return res; }
+
+#ifdef NOMERGE
+template < class T > inline void merge_stuff (T& o, const T& s)
+{   for (auto a : s)  o.insert (a); }
+#endif // NOMERGE

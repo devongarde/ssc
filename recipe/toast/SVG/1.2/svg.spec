@@ -648,6 +648,8 @@ PASS ../toast/SVG/1.2/metadata.svg
 1 xhtml_1_1
 4 svg_version
 16 unknown_element
+17 unknown_element unknown_element
+18 unknown_element
 19 unknown_element
 20 unknown_element
 21 unknown_element

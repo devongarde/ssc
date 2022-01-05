@@ -135,89 +135,6 @@ struct hav_t
     { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowindex }, \
     { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowspan }
 
-#define CC_ATTRIBUTES(ELEM) \
-    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_attribution_name }, \
-    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_attribution_url }, \
-    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_more_permissions }, \
-    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_licence }, \
-    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_permits }, \
-    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_prohibits }, \
-    { { HTML_CC }, { HTML_UNDEF }, ELEM, a_cc_requires }
-
-#define DC_ATTRIBUTES(ELEM) \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_contributor }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_coverage }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_creator }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_date }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_description }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_format }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_identifier }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_language }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_publisher }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_relation }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_rights }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_source }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_subject }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_title }, \
-    { { HTML_DC }, { HTML_UNDEF }, ELEM, a_dc_type }
-
-#define DCTERMS_ATTRIBUTES(ELEM) \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_abstract }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_accessrights }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_accrualmethod }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_accrualperiodicity }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_accrualpolicy }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_alternative }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_audience }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_available }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_bibliographiccitation }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_conformsto }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_contributor }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_coverage }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_created }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_creator }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_date }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_dateaccepted }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_datecopyrighted }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_datesubmitted }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_description }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_educationlevel }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_extent }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_format }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_hasformat }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_haspart }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_hasversion }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_identifier }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_instructionalmethod }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isformatof }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_ispartof }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isreferencedby }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isreplacedby }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isrequiredby }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_issued }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_isversionof }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_language }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_licence }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_mediator }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_medium }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_modified }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_provenance }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_publisher }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_references }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_relation }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_replaces }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_requires }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_rights }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_rightsholder }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_source }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_spatial }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_subject }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_tableofcontents }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_temporal }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_title }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_type }, \
-    { { HTML_DCTERMS }, { HTML_UNDEF }, ELEM, a_dct_valid }
-
 #define MATH1_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
     { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_class }, \
     { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_id }, \
@@ -920,9 +837,6 @@ struct hav_t
     SVG_FILTER_ATTRIBUTES_EX (ELEM, HTML_SVG10)
 
 #define RDF_RFA_ATTRIBUTES(ELEM) \
-    CC_ATTRIBUTES (ELEM), \
-    DC_ATTRIBUTES (ELEM), \
-    DCTERMS_ATTRIBUTES (ELEM), \
     RDF_ATTRIBUTES (ELEM), \
     RDFA_STANDARD_ATTRIBUTES (ELEM)
 
