@@ -112,7 +112,7 @@ void element::examine_script ()
     if (has_child ()) report_script_comment (child_); }
 
 bool element::report_script_comment (element_ptr child)
-{   for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+{   for (element_ptr p = child; p != nullptr; p = p -> sibling_)
     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if (! p -> node_.is_closure ())
             if (p -> tag () == elem_faux_text)

@@ -30,7 +30,7 @@ template < > struct type_master < t_measure > : tidy_string < t_measure > // ver
         {   ::std::string ss = tidy_string < t_measure > :: get_string ();
             if (! ss.empty ())
             {   ::std::string units;
-                const ::std::string::size_type pos = ss.find_first_not_of (DECIMAL " ");
+                const ::std::string::size_type pos = ss.find_first_not_of (SIGNEDDECIMAL " ");
                 if (pos != ::std::string::npos)
                 {   units = ss.substr (pos);
                     ss = ss.substr (0, pos); }

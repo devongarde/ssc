@@ -23,11 +23,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attr.h"
 #include "utility/quote.h"
 #include "type/type.h"
+#include "spell/spell.h"
 
 struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "(unknown)", a_unknown },
     { { HTML_TAGS }, { HTML_UNDEF }, "(custom)", a_custom },
-    { { HTML_4_0 }, { HTML_UNDEF }, "abbr", a_abbr },
+    { { HTML_4_0 }, { HTML_UNDEF }, "abbr", a_abbr, ns_default, AF_SPELT },
     { { HTML_RDF10, 0, HE_RDFA | HE_SVG_12 | HE_ANIM_12 }, { HTML_UNDEF }, "about", a_about },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "about", a_rdf_about, ns_rdf },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, "above", a_above },
@@ -54,7 +55,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JAN17 }, { HTML_UNDEF }, "allowpaymentrequest", a_allowpaymentrequest },
     { { HTML_JUL16 }, { HTML_UNDEF }, "allowusermedia", a_allowusermedia },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "alphabetic", a_alphabetic },
-    { { HTML_1_0 }, { HTML_UNDEF }, "alt", a_alt },
+    { { HTML_1_0 }, { HTML_UNDEF }, "alt", a_alt, ns_default, AF_SPELT },
     { { HTML_MATH1, 0, HE_MATH }, { HTML_UNDEF }, "altimg", a_altimg },
     { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, "altimg-height", a_altimg_height },
     { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, "altimg-valign", a_altimg_valign },
@@ -431,7 +432,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_5_1 }, { HTML_UNDEF }, "keytype", a_keytype },
     { { HTML_JUL10 }, { HTML_UNDEF }, "kind", a_kind },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "knock-out", a_knock_out, ns_default, AF_PROPERTY },
-    { { HTML_3_2 }, { HTML_UNDEF }, "label", a_label },
+    { { HTML_3_2 }, { HTML_UNDEF }, "label", a_label, ns_default, AF_SPELT },
     { { HTML_3_0 }, { HTML_3_0 }, "labels", a_labels },
     { { HTML_PLUS, HV_RFC_2070 | HV_RFC_1942 }, { HTML_UNDEF }, "lang", a_lang },
     { { XHTML_1_0 }, { HTML_UNDEF }, "lang", a_xmllang, ns_xhtml, AF_NOT_NAMESPACED },
@@ -685,7 +686,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "patternUnits", a_patternunits },
     { { HTML_SVG12 }, { HTML_UNDEF }, "phase", a_phase },
     { { HTML_JAN06 }, { HTML_UNDEF }, "ping", a_ping },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "placeholder", a_placeholder },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "placeholder", a_placeholder, ns_default, AF_SPELT },
     { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, "plain", a_plain },
     { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, "playbackOrder", a_playbackorder },
     { { HTML_JAN08 }, { HTML_DEC08 }, "playcount", a_playcount },
@@ -884,7 +885,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "text-rendering", a_text_rendering, ns_default, AF_SVG2_PROPERTY },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "textLength", a_textlength },
     { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, "timelineBegin", a_timelinebegin },
-    { { HTML_1_0 }, { HTML_UNDEF }, "title", a_title },
+    { { HTML_1_0 }, { HTML_UNDEF }, "title", a_title, ns_default, AF_SPELT },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "title", a_xlinktitle, ns_xlink },
     { { HTML_3_0 }, { HTML_UNDEF }, "to", a_to },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "tooltip", a_tooltip, ns_default, AF_PROPERTY },

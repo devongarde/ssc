@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 #include "webpage/id.h"
 #include "microdata/microdata_itemscope.h"
+#include "spell/spell.h"
 
 class directory;
 class url;
@@ -53,7 +54,7 @@ class page
     nitpick nits_;
     uid_t euid_ = 0;
     itemscope_ptr itemscope_;
-    ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_, jsonld_;
+    ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_, jsonld_, phrase_, phrase_lang_;
     url base_;
     ustr_t abbrs_;
     ::std::time_t updated_ = 0;
@@ -77,7 +78,7 @@ public:
     bool check_links () const noexcept { return check_links_ && ! snippet_; }
     void check_links (const bool b) noexcept { check_links_ = b; }
     void examine ();
-    ::std::string find_webmention () const;
+    ::std::string find_webmention (const ::std::string& lang) const;
     ::std::string find_mention_info (const url& u, bool text, bool anything);
     ids_t& get_ids () noexcept { return ids_; }
     const ids_t& get_ids () const noexcept { return ids_; }
@@ -175,6 +176,8 @@ public:
     void add_depend (const fileindex_t dependency)
     {   add_dependency (ids_.ndx (), dependency); }
     void append_jsonld (const ::std::string& j);
+    void phrase (const ::std::string& lang, const ::std::string& s);
+    void phrase (nitpick& nits);
     ::std::string report (); };
 
 ::std::string get_page_url (const ::std::string& url);

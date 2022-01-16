@@ -51,7 +51,7 @@ template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpo
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
     {   value_ = lexical < double > :: cast (trim_the_lot_off (s), 0.0);
-        if ((s.find_first_not_of (DECIMAL) == ::std::string::npos) && (lexical < double > :: test (s)))
+        if ((s.find_first_not_of (SIGNEDDECIMAL) == ::std::string::npos) && (lexical < double > :: test (s)))
             type_base < double, t_fixedpoint > :: status (s_good);
         else
         {   nits.pick (nit_sunk, ed_so_11 , "Number (https://" SCHEMA_ORG "/Number)", es_error, ec_type, quote (s), " contains unexpected characters, not just denary digit(s) and maybe a decimal point");

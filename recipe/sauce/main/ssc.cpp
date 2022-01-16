@@ -39,6 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_structure.h"
 #include "schema/schema_property.h"
 #include "schema/schema_name.h"
+#include "spell/spell.h"
 #include "symbol/nstr.h"
 #include "webpage/root.h"
 #include "webpage/corpus.h"
@@ -74,6 +75,7 @@ void init (nitpick& nits)
     schema_property_init (nits);
     schema_version::init (nits);
     init_nstrs (nits);
+    spell_init (nits);
     svg_feature_init (nits);
     hierarchy_init (nits);
     microdata_init (nits);
@@ -100,6 +102,7 @@ int ciao ()
                 context.out (report_itemids ()); } }
     if (context.stats_summary ()) context.report_stats (true);
     if (context.tell (e_debug)) context.out (fileindex_report ());
+    spell_terminate ();
     if (context.severity_exceeded ()) return ERROR_STATE;
     return VALID_RESULT; }
 
@@ -190,6 +193,7 @@ int examine (nitpick& nits)
                     catch (...)
                     {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examining ", virt.at (n) -> get_disk_path (), " raised an exception");
                         res = ERROR_STATE; } } } } }
+    spell_free ();
     close_corpus (nits);
     fileindex_save_and_close (nits);
     dump_nits (nits, ns_update, ns_update_head, ns_update_foot);
@@ -244,7 +248,7 @@ int main (int argc, char** argv)
             dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = examine (nits);
             if ((res == VALID_RESULT) && context.process_webmentions ())
-            {   context.process_outgoing_webmention (nits, html_current);
+            {   context.process_outgoing_webmention (nits, html_current, context.lang ());
                 context.process_incoming_webmention (nits, html_current);
                 dump_nits (nits, ns_webmention, ns_webmention_head, ns_webmention_foot); }
             const int cr = ciao ();

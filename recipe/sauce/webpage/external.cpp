@@ -27,7 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/lexical.h"
 
 #ifndef NO_BOOST_PROCESS
-#include <boost/process.hpp>
 using namespace ::boost::process;
 using ::boost::lexical_cast;
 using ::boost::bad_lexical_cast;
@@ -49,6 +48,7 @@ int process_curl_result (nitpick& nits, const html_version& v, const vstr_t& r, 
 #ifndef NO_BOOST_PROCESS
 int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdline, const int oops, bool pure_code)
 {   int code = 0;
+    nits.pick (nit_launch, es_debug, ec_link, cmdline);
     try
     {   ipstream pipe_stream;
         child ext (cmdline, std_out > pipe_stream);
@@ -69,7 +69,8 @@ int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdlin
 {   ::boost::filesystem::path tmp = get_tmp_filename ();
     if (::boost::filesystem::exists (tmp)) ::boost::filesystem::remove (tmp);
     ::std::string cmd = cmdline + " >" + tmp.string ();
-    const int res = system (cmd.c_str ());
+    nits.pick (nit_launch, es_debug, ec_link, cmd);
+    const int res = system (cmd.c_str ()); // really must use libcurl
     if (res != 0)
     {   nits.pick (nit_no_curl, es_catastrophic, ec_link, "Cannot check external links. Please verify your installation of curl");
         return oops; }

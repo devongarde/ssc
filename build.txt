@@ -5,37 +5,50 @@ https://ssc.lu/
 
 
 Introduction
-------------
+============
 SSC can be built from various unii command lines using CMake, or with Visual Studios 2017 / 2019 / 2022 under Windows.
 
 
 Libraries
----------
-Before you can build SSC, you may find you need to install and build boost version 1.75 or better, and a recent version
-of the ICU libraries. Most unii have both available as packages. You will also need Microsoft's GSL library.
+=========
+Before you can build SSC, you may find you need to install and build boost version 1.75 or better, a recent version
+of the ICU libraries, a copy of Microsoft's GSL library. Most unii have all available as packages.
 
 You may need to set these environment variables:
 BOOST_ROOT to point to the boost source root directory (https://boost.org);
-BOOST_INCLUDEDIR to point to the boost include directory;
-BOOST_LIBRARYDIR to point to the boost lib directory;
+you may also need to set BOOST_LIBRARYDIR and BOOST_INCLUDEDIR appropriately;
+GSL_ROOT to point to the GSL root directory (https://github.com/Microsoft/GSL).
 ICU_ROOT to point to the ICU library source root directory (https://icu-project.org/);
 SSCPATH to point to the ssc source directory (https://ssc.lu/).
-GSL_ROOT to point to the GSL root directory (https://github.com/Microsoft/GSL).
-
-
-Windows
--------
-To build from Visual Studio, navigate to recipe\tea, open the appropriate .sln file, then build. Both x86 and x64 builds
-work, although the x86 executable cannot analyse larger websites, & the build generates heaps of warnings. Visual
-Studios 2017 / 2019 / 2022 have been built & tested, for Windows 8.1 & 10.
 
 
 Unii & mock Unii
 ----------------
-You will need CMake 3.12 or better on your system.
+Building SSC under unix, including macos, requires a development installation of hunspell
+(https://hunspell.github.io/), & these environment variables defined:
+HUNSPELL_INCLUDE to point to the hunspell include directory 
+HUNSPELL_LIB to point to the hunspell library directory
+HUNSPELL_VERSION, the actual library name (such as "hunspell-1.7.so")
 
-From the home ssc directory, compile thus:
+Once you've got them, navigate to recipe/tea, and run cmake.
 
+Windows
+-------
+The Windows build uses the native Windows spellchecker, so you do not need hunspell.
+
+
+Building
+========
+
+Windows
+-------
+To build from Visual Studio, navigate to recipe/tea, open the appropriate .sln file, then build. Only Visual Studios
+2017 / 2019 / 2022, 64 bit, have been built & tested, for Windows 8.1 & 10. If the 32 bit version builds, it will
+generate oodles of annoying warnings, and the executable won't be able to analyse larger sites.
+
+Unii & mock Unii
+----------------
+You will need CMake 3.12 or better. From the home ssc directory, compile thus:
 cd recipe/tea
 cmake .
 make
@@ -46,17 +59,21 @@ If everything works correctly, then everything will be built, a series of tests 
 saying no failures. Having said that, given SSC is pre-alpha, don't be too surprised to see some warnings or some final test
 errors. Note in particular that complaints about being unable to find or copy files during testing are not of concern, these
 come from scripts that set up or tear down individual tests, and the standard commands used sometimes complain if they can't
-find files they're supposed to delete, rather than saying thank you for the reduced work.
+find files they're supposed to delete, rather than saying thank you for reducing their work.
 
 The following have successfully built, although not always under all versions of ssc:
 Linux: Centos 8 amd64, Ubuntu Server 20.04/20.10 amd64
 OpenBSD 6.8 / 6.9 / 7.0, amd64
-MacOS: Monterey, Big Sur, Catalina, Mojave & High Sierra (all intel x64)
+MacOS: Monterey, Big Sur, Catalina, Mojave, & High Sierra (all intel x64)
 
-Note: GCC takes a wee while to build.
+Note: Use clang if possible, gcc takes a wee while to build.
 
+OpenBSD
+-------
+I've only tested the amd64 build under 6.8 / 6.9 / 7.0.
 
-OpenBSD 6.8 / 6.9 / 7.0 amd64
------------------------------
 The versions of boost and cmake in packages are sufficient. You will need to increase significantly the available
 memory setting in login.conf for the build account, if you have not done so already.
+
+Openbsd 6.8 offers hunspell 1.6, so if you use that version, you will need to set the HUNSPELL_VERSION environment
+variable appropriately.

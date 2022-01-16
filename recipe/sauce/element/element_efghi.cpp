@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 #include "webpage/page.h"
 #include "attribute/attribute_classes.h"
+#include "rdf/rdf.h"
+#include "spell/spell.h"
 
 void element::examine_embed ()
 {   if (node_.version ().mjr () < 5) return;
@@ -317,8 +319,7 @@ void element::examine_hgroup ()
     else if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_template))
         pick (nit_bad_descendant, ed_jul17, "4.3.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <TEMPLATE>, or <H1> ... <H6> children"); }
 
-#define RDFA_VERSION "XHTML+RDFa 1.0"
-void element::examine_html ()
+void element::examine_html (::std::string& lang)
 {   if (node_.version () == html_plus)
         pick (nit_use_htmlplus, es_error, ec_element, "HTML+ uses the <HTMLPLUS> element, not <HTML>");
     else
@@ -335,7 +336,9 @@ void element::examine_html ()
                     pick (nit_naughty_lang, ed_50, "4.1.1 The html element", es_warning, ec_attribute, "use LANG to specify a default language");
             if (node_.version () >= html_jan17)
                 if (a_.known (a_manifest))
-                    pick (nit_avoid_manifest, ed_52, "4.1.1 The html element", es_warning, ec_attribute, "MANIFEST is deprecated & should be avoided because application caches are doomed"); } } }
+                    pick (nit_avoid_manifest, ed_52, "4.1.1 The html element", es_warning, ec_attribute, "MANIFEST is deprecated & should be avoided because application caches are doomed"); }
+        if (a_.known (a_xmllang)) lang = precise_language (a_.original (a_xmllang));
+        if (a_.known (a_lang)) lang = precise_language (a_.original (a_lang)); } }
 
 void element::examine_iframe ()
 {   if (node_.version ().mjr () < 5) return;

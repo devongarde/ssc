@@ -789,7 +789,7 @@ html_version bras_ket::parse (const ::std::string& content)
                                     nits.reset ();
                                     nits.set_context (line_, b, e, soe, i+1);
                                     ve_.emplace_back (nits, line_, collect, i, i, closure, false);
-                                    if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_ncode ", quoted_limited_string (::std::string (collect, i), 30));
+                                    if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_node ", quoted_limited_string (::std::string (collect, i), 30));
                                     nits.reset (); }
                                 else
                                 {   if (twas > text)

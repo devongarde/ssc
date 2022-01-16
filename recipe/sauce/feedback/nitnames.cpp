@@ -702,6 +702,15 @@ const nitname nitnames [] =
     { nit_crap_spec, "crap_spec" },
     { nit_bad_uid, "bad_uid" },
     { nit_missing_property, "missing_property" },
+    { nit_no_spell, "nit_no_spell" },
+    { nit_misspelt, "misspelt" },
+    { nit_bad_list, "bad_list" },
+    { nit_spell_lang, "spell_lang" },
+    { nit_spell_perhaps, "spell_perhaps" },
+    { nit_launch, "launch" },
+    { nit_sent, "sent" },
+    { nit_got, "got" },
+    { nit_bad_dict, "bad_dict" },
 
     { nit_off, "" } };
 

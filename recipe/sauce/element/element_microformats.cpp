@@ -28,11 +28,11 @@ template < class PROPERTY > void mf_postprocess_entry (const microformats_ptr& m
         {   mention = get_microformat_property_value < mf_entry, PROPERTY > (mf);
             wms = wm_addr; } }
 
-void element::seek_webmention (::std::string& mention, e_wm_status& wms)
+void element::seek_webmention (::std::string& mention, e_wm_status& wms, const ::std::string& lang)
 {   bool postprocess = false;
     if (! a_.invalid ())
-    {   if (a_.has (a_class)) postprocess = examine_class ();
-        if (a_.has (a_rel)) examine_rel (a_.get_string (a_rel));
+    {   if (a_.has (a_class)) postprocess = examine_class (lang);
+        if (a_.has (a_rel)) examine_rel (a_.get_string (a_rel), lang);
         if (a_.has (a_href))
         {   ::std::string ref = a_.get_string (a_href);
             if  (mf_ && mf_ -> has (r_webmention))
@@ -42,7 +42,7 @@ void element::seek_webmention (::std::string& mention, e_wm_status& wms)
                 {   mention = ref; wms = wm_addr; } } } }
     for (element_ptr e = child_; e && (wms != wm_link); e = e -> sibling_)
     {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-        e -> seek_webmention (mention, wms); }
+        e -> seek_webmention (mention, wms, lang); }
     if (wms != wm_link)
         if (postprocess)
             if (mf_)
@@ -59,14 +59,14 @@ void element::seek_webmention (::std::string& mention, e_wm_status& wms)
                     mf_postprocess_entry < rsvp_at > (mf_, wms, mention);
                     mf_postprocess_entry < bookmark_of_at > (mf_, wms, mention); } } }
 
-::std::string element::find_webmention ()
+::std::string element::find_webmention (const ::std::string& lang)
 {   ::std::string mention;
     e_wm_status wms = wm_undefined;
     if (has_child ())
     {   element_ptr e = child ();
         do
         {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-            e -> seek_webmention (mention, wms); }
+            e -> seek_webmention (mention, wms, lang); }
         while (wms != wm_link && to_sibling (e)); }
     return mention; }
 

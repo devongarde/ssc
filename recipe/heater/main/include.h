@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 121
-#define VERSION_STRING "0.0.121"
+#define VERSION_RELEASE 122
+#define VERSION_STRING "0.0.122"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -73,6 +73,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NOLYNX
 #define NO_BOOST_PROCESS            // it crashed the MSVC 2019 linter, on my system at least
 #define MSVC_NOEXCEPT noexcept
+#define CLEAN_SHAREDPTR_ARRAY
 #include <codeanalysis\warnings.h>
 
 #ifdef WIN32
@@ -81,9 +82,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #else // WIN32
 #define X64
 #endif // WIN32
-
-#define NOLYNX
-#define CLEAN_SHAREDPTR_ARRAY
 
     // The MSVC linter is generally useful, but it has some serious problems.
     // General problem 1: the msvc linter provides no clean mechanism to suppress a spurious warning in place, except through the #...
@@ -158,6 +156,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <bitset>
 #include <set>
 #include <array>
+#include <codecvt>
+#include <locale>
 #endif // SSC_TEST
 
 #include <boost/version.hpp>
@@ -219,6 +219,10 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #endif
 
 #include <boost/crc.hpp>
+
+#ifndef NO_BOOST_PROCESS
+#include <boost/process.hpp>
+#endif // NO_BOOST_PROCESS
 
 #endif // SSC_TEST
 
@@ -312,7 +316,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define CUOPEN '{'
 #define DENARY "0123456789"
 #define DDD DENARY "-."
-#define DECIMAL DDD "+"
+#define SIGNEDDECIMAL DDD "+"
 #define POSITIVE DENARY "+."
 #define OCTAL "01234567"
 #define HEX DENARY "abcdefABCDEF"
@@ -323,7 +327,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define B64BIN ALPHADDD "+/= "
 #define IDS ALPHADDD "_:"
 #define TEL HEX "+*()-.#*_!~'[]/ "
-#define REAL DECIMAL "Ee"
+#define REAL SIGNEDDECIMAL "Ee"
 #define LINE_SEPARATORS "\n\r\f\v"
 
 #define DEFAULT_DOMAIN "example.org"

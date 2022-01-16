@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.12)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.0.121 LANGUAGES CXX)
+project (ssc VERSION 0.0.122 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -15,7 +15,7 @@ set (TT ${T}/ssc-test)
 set (BV "1.75")
 
 # Debug / Release (https://riptutorial.com/cmake/example/26702/setting-a-release-debug-configuration)
-set (CMAKE_CONFIGURATION_TYPES "Debug;Release;MinSizeRel" CACHE STRING "Configs" FORCE)
+set (CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
 
 if (DEFINED CMAKE_BUILD_TYPE)
   set_property (CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES})
@@ -28,7 +28,7 @@ add_executable (ssc-test)
 add_executable (ssc)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  message ("Only Visual Studios 2015/7/9 are known to build")
+  message ("Only Visual Studios 2017/19/22 are known to build")
   target_compile_definitions (ssc PRIVATE WINDOWS)
   set (D ${R}/..)
 endif ()
@@ -38,6 +38,7 @@ if (UNIX)
   target_compile_definitions (ssc PRIVATE UNIX)
   set (Boost_USE_STATIC_LIBS ON)
   set (Boost_USE_MULTI_THREADED OFF)
+  link_directories (${BOOST_LIBRARYDIR} ${ICU_PATH}/lib)
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
 
@@ -45,53 +46,52 @@ if (UNIX)
       message ("OpenBSD 6.8")
       set (BV "1.67")
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR)
-      target_compile_definitions (ssc PRIVATE OPENBSD O68 NO_PCF_STR NO_PROCESS NO_JSONIC)
+      target_compile_definitions (ssc PRIVATE OPENBSD O68 NO_PCF_STR NO_BOOST_PROCESS NO_JSONIC GENNIX)
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.9")
       message ("OpenBSD 6.9")
       set (BV "1.67")
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR)
-      target_compile_definitions (ssc PRIVATE OPENBSD O69 NO_PCF_STR NO_PROCESS NO_JSONIC)
+      target_compile_definitions (ssc PRIVATE OPENBSD O69 NO_PCF_STR NO_BOOST_PROCESS NO_JSONIC GENNIX)
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-7.0")
       message ("OpenBSD 7.0")
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR)
-      target_compile_definitions (ssc PRIVATE OPENBSD O70 NO_PCF_STR NO_PROCESS)
+      target_compile_definitions (ssc PRIVATE OPENBSD O70 NO_PCF_STR NO_BOOST_PROCESS GENNIX)
     else ()
       message ("unknown, untested version of OpenBSD")
-      target_compile_definitions (ssc PRIVATE OPENBSD NO_PCF_STR NO_PROCESS NO_JSONIC)
+      target_compile_definitions (ssc PRIVATE OPENBSD NO_PCF_STR NO_BOOST_PROCESS NO_JSONIC NOSPELL)
     endif ()
-  endif ()
-
-  if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    message ("Linux: only built under Centos 8 amd64 and Ubuntu Server 20.10 amd64")
+  elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    message ("Linux: only built under Centos 8 amd64 and Ubuntu Server 20.04 amd64")
     set (BV "1.67")
-    target_compile_definitions (ssc PRIVATE LINUX NO_JSONIC)
-  endif ()
-
-  if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    link_directories (${BOOST_LIBRARYDIR} ${ICU_PATH}/lib)
+    target_compile_definitions (ssc PRIVATE LINUX NO_JSONIC GENNIX)
+  elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     if (${CMAKE_SYSTEM} MATCHES "Darwin-21")
       message ("MacOS Monterey")
-      target_compile_definitions (ssc PRIVATE MONTEREY MACOS)
+      target_compile_definitions (ssc PRIVATE MONTEREY MACOS GENNIX)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-20")
       message ("MacOS Big Sur")
-      target_compile_definitions (ssc PRIVATE BIG_SUR MACOS)
+      target_compile_definitions (ssc PRIVATE BIG_SUR MACOS GENNIX)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-19")
       set (BV "1.67")
       message ("MacOS Catalina")
-      target_compile_definitions (ssc PRIVATE CATALINA MACOS NO_JSONIC)
+      target_compile_definitions (ssc PRIVATE CATALINA MACOS NO_JSONIC GENNIX)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-18")
       set (BV "1.67")
       message ("MacOS Mojave")
-      target_compile_definitions (ssc PRIVATE MOJAVE MACOS NO_JSONIC)
+      target_compile_definitions (ssc PRIVATE MOJAVE MACOS NO_JSONIC NOSPELL)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-17")
       set (BV "1.67")
       message ("MacOS High Sierra")
       target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
-      target_compile_definitions (ssc PRIVATE HIGH_SIERRA FUDDYDUDDY MACOS NO_JSONIC)
+      target_compile_definitions (ssc PRIVATE HIGH_SIERRA FUDDYDUDDY MACOS NO_JSONIC NOSPELL)
     else ()
+      set (BV "1.67")
       message ("unknown, untested MacOS")
-      target_compile_definitions (ssc PRIVATE MACOS)
+      target_compile_definitions (ssc PRIVATE MACOS FUDDYDUDDY NO_JSONIC NOSPELL)
     endif ()
+  else ()
+    message ("unknown, untested, system: good luck")
+    target_compile_definitions (ssc PRIVATE NO_JSONIC NOSPELL NO_PCF_STR NO_BOOST_PROCESS)
   endif ()
 
   set (D "~/bin")
@@ -125,6 +125,7 @@ target_sources (ssc PRIVATE
         ${H}/rdf/rdf.h ${H}/rdf/rdfa_prop.h ${H}/rdf/rdfa_type.h
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
+        ${H}/spell/spell.h
         ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats4.h ${H}/stats/stats_impl.h
         ${H}/symbol/nstr.h ${H}/symbol/symbol.h ${H}/symbol/symbol_entry.h ${H}/symbol/symbol_key.h ${H}/symbol/symbol_store.h ${H}/symbol/symbol_table.h
         ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
@@ -166,6 +167,7 @@ target_sources (ssc PRIVATE
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
         ${S}/schema/schema_hierarchy.cpp ${S}/schema/schema_name.cpp ${S}/schema/schema_property.cpp ${S}/schema/schema_structure.cpp
             ${S}/schema/schema_type.cpp ${S}/schema/schema_version.cpp
+        ${S}/spell/spell.cpp ${S}/spell/nixspell.cpp ${S}/spell/winspell.cpp
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
         ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp
         ${S}/type/type.cpp ${S}/type/type_aria.cpp ${S}/type/type_autocomplete.cpp ${S}/type/type_charset.cpp ${S}/type/type_class.cpp ${S}/type/type_colour.cpp
@@ -181,8 +183,8 @@ target_sources (ssc PRIVATE
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/root.cpp
 )
 
-target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIRS} $ENV{GSL_ROOT}/include)
-target_include_directories (ssc PRIVATE ${H} ${BOOST_INCLUDE_DIRS} ${ICU_INCLUDE_DIRS} $ENV{GSL_ROOT}/include)
+target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIR} $ENV{GSL_ROOT}/include)
+target_include_directories (ssc PRIVATE ${H} ${BOOST_INCLUDE_DIR} ${ICU_INCLUDE_DIRS} $ENV{GSL_ROOT}/include $ENV{HUNSPELL_INCLUDE})
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 
@@ -215,6 +217,10 @@ target_link_libraries (ssc PRIVATE Boost::program_options)
 target_link_libraries (ssc PRIVATE Boost::locale)
 target_link_libraries (ssc PRIVATE pthread)
 target_link_libraries (ssc PRIVATE ${ICU_LIBRARIES})
+
+if (UNIX)
+  target_link_libraries (ssc PRIVATE $ENV{HUNSPELL_LIB}/lib$ENV{HUNSPELL_VERSION})
+endif ()
 
 install (TARGETS ssc-test DESTINATION ${D})
 install (TARGETS ssc DESTINATION ${D})

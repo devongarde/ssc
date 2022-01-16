@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "rdf/rdfa_type.h"
 #include "rdf/rdfa_prop.h"
 
+#define RDFA_VERSION "XHTML+RDFa 1.0"
+
 class rdf_t;
 class page;
 

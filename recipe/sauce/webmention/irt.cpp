@@ -86,7 +86,7 @@ bool reply::set_server (const ::std::string& link)
             server_ += link; } }
     return true; }
 
-bool reply::find_server (nitpick& nits, const html_version& v)
+bool reply::find_server (nitpick& nits, const html_version& v, const ::std::string& lang)
 {   if (target_.empty ()) return false;
     bool ok = true;
     bool vrai = context.test_header ().empty ();
@@ -111,7 +111,7 @@ bool reply::find_server (nitpick& nits, const html_version& v)
     if (html.empty ()) return false;
     page p (nits, target_, 0, html);
     p.examine ();
-    ::std::string mention = p.find_webmention ();
+    ::std::string mention = p.find_webmention (lang);
     if (! set_server (mention)) return false;
     if (context.tell (e_comment))
         nits.pick (nit_webmention, es_comment, ec_webmention, "found " WEBMENTION " server ", server_, " for ", target_);
@@ -187,10 +187,10 @@ void reply::mark_delete ()
     if (context.tell (e_all)) res << n << ":" << file_ << ',' << id_ << ',' << server_ << ',' << target_ << ',' << content_ << ::std::endl;
     return res.str (); }
 
-bool reply::enact (nitpick& nits, const html_version& v)
+bool reply::enact (nitpick& nits, const html_version& v, const ::std::string& lang)
 {   PRESUME (activity_ != act_unknown, __FILE__, __LINE__);
     if (activity_ == act_static) return true;
-    if (! find_server (nits, v)) return false;
+    if (! find_server (nits, v, lang)) return false;
     return mention (nits, v, url (nits, v, file_), url (nits, v, target_), url (nits, v, server_)); }
 
 void replies::append (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content)
@@ -265,12 +265,12 @@ bool replies::update_records (nitpick& nits) // not efficient for any real quant
     if (context.tell (e_detail)) report ("post update");
     return res; }
 
- bool replies::enact (nitpick& nits, const html_version& v) // not efficient for any real quantities
+ bool replies::enact (nitpick& nits, const html_version& v, const ::std::string& lang) // not efficient for any real quantities
 {   bool res = false;
     if (context.tell (e_detail)) report ("enact");
     const ::std::size_t mmax = reply_.size ();
     for (::std::size_t z = 0; z < mmax; ++z)
-        if (! reply_.at (z).enact (nits, v))
+        if (! reply_.at (z).enact (nits, v, lang))
         {  if (reply_.at (z).is_deleted ())
                 reply_.at (z).mark_unchanged (); }
         else res = true;
@@ -283,14 +283,14 @@ bool replies::update_records (nitpick& nits) // not efficient for any real quant
         reply_.swap (reply); }
     return res; }
 
-bool replies::process (nitpick& nits, const html_version& v)
+bool replies::process (nitpick& nits, const html_version& v, const ::std::string& lang)
 {   if (! context.notify ()) return true;
     if (context.persisted ().empty ()) return true;
     replies persisted;
     if (! context.clear () && ! persisted.read (context.persisted ())) return false;
     if (! persisted.update_records (nits)) return true;
     if (context.nochange ()) return true;
-    persisted.enact (nits, v); // whatever the webmentions, still update the file
+    persisted.enact (nits, v, lang); // whatever the webmentions, still update the file
     return persisted.write (); }
 
 ::std::string replies::report (const char* comment) const

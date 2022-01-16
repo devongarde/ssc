@@ -735,6 +735,12 @@
     <Filter Include="Toast\RDFa\grddl">
       <UniqueIdentifier>{c2fa1795-9ce9-4292-8359-24ab1f2e8567}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Heater\spell">
+      <UniqueIdentifier>{0043b334-8c17-4240-a5c6-b794c02ef834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\spell">
+      <UniqueIdentifier>{f0cda828-5ac4-49c1-b7de-7154a4d5b49f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1220,6 +1226,9 @@
     <ClInclude Include="..\heater\parser\jsonic.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\spell\spell.h">
+      <Filter>Heater\spell</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1686,6 +1695,15 @@
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_t2.cpp">
       <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\spell\nixspell.cpp">
+      <Filter>Sauce\spell</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\spell\spell.cpp">
+      <Filter>Sauce\spell</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\spell\winspell.cpp">
+      <Filter>Sauce\spell</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

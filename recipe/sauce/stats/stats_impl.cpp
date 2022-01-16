@@ -256,6 +256,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     res += saybe (table, category_.at (ec_rudeness), "Rudeness");
     res += saybe (table, category_.at (ec_schema), "Schema");
     res += saybe (table, category_.at (ec_shadow), "Shadow");
+    res += saybe (table, category_.at (ec_spell), "Spelling");
     res += saybe (table, category_.at (ec_ssi), "SSI");
     res += saybe (table, category_.at (ec_tidyness), "Tidyness");
     res += saybe (table, category_.at (ec_type), "Type");

@@ -61,7 +61,7 @@ class element
     nitpick& nits () noexcept { return node_.nits (); }
     nitpick& nits () const noexcept { return node_.nits (); }
     found_farm find_farm (const e_property prop, element* starter = nullptr);
-    void seek_webmention (::std::string& mention, e_wm_status& wms);
+    void seek_webmention (::std::string& mention, e_wm_status& wms, const ::std::string& lang);
     bool to_sibling (element_ptr& e, const bool canreconstruct = true);
     element* next_element (element* previous);
     template < class PROPERTY > void note_reply ();
@@ -99,7 +99,7 @@ class element
     vit_t supplied_itemtypes ();
     vit_t sought_itemtypes ();
     void span_check ();
-    void pre_examine_element ();
+    void pre_examine_element (::std::string& lang);
     void post_examine_element ();
     void late_examine_element ();
     void examine_about ();
@@ -129,7 +129,7 @@ class element
     void examine_aria_valuemin ();
     void examine_autofocus ();
     void examine_body ();
-    bool examine_class ();
+    bool examine_class (const ::std::string& lang);
     void examine_clip ();
     void examine_colour_profile ();
     void examine_content ();
@@ -148,12 +148,11 @@ class element
     void examine_other ();
     void examine_ref ();
     void examine_registrationmark ();
-    bool examine_rel (const ::std::string& content);
+    bool examine_rel (const ::std::string& content, const ::std::string& lang);
+    void examine_spellcheck (flags_t& flags);
     void examine_style_attr ();
     void examine_xlinkhref ();
     void validate_input_id ();
-    ::std::string text () const { return node_.text (); }
-    ::std::string term () const;
     void examine_abbr ();
     void examine_address ();
     void examine_altglyphdef ();
@@ -201,7 +200,7 @@ class element
     void examine_h123456 ();
     void examine_header ();
     void examine_hgroup ();
-    void examine_html ();
+    void examine_html (::std::string& lang);
     void examine_iframe ();
     void examine_image ();
     void examine_img ();
@@ -250,6 +249,8 @@ class element
     void examine_title ();
     void examine_track ();
     void examine_video ();
+    ::std::string text (const bool simplify = false) const { return node_.text (simplify); }
+    ::std::string term () const;
 public:
     element (const ::std::string& name, element_node& en, element* parent, page& p);
     void swap (element& e) noexcept;
@@ -274,17 +275,18 @@ public:
     bool hidden () const
     {   if (own_attributes_.test (a_hidden)) return true;
         return ancestral_attributes_.test (a_hidden); }
-    void examine_self ( const itemscope_ptr& itemscope = itemscope_ptr (),
+    void examine_self ( const ::std::string& lang,
+                        const itemscope_ptr& itemscope = itemscope_ptr (),
                         const attribute_bitset& ancestral_attributes = attribute_bitset (), const attribute_bitset& sibling_attributes = attribute_bitset (),
                         const flags_t parental_flags = 0);
-    void examine_children (const flags_t flags);
+    void examine_children (const flags_t flags, const ::std::string& lang);
     ::std::string make_children (const int depth, const element_bitset& gf = element_bitset ());
     void verify_document ();
     ::std::string find_date_value () const;
     ::std::string find_text_value () const;
     ::std::string find_url_value () const;
     ::std::string find_html_value () const;
-    ::std::string find_webmention ();
+    ::std::string find_webmention (const ::std::string& lang);
     ::std::string find_mention_info (const url& u, bool text, bool anything);
     ids_t& get_ids () noexcept;
     const ids_t& get_ids () const noexcept;
@@ -295,10 +297,6 @@ public:
         return parent_; }
     bool reportable () const noexcept
     {   return ((tag () != elem_undefined) || context.tell (e_splurge) || (child_ != nullptr)); }
-    void pick (const e_nit code, const e_doc doc, const char* const ref, const e_severity severity, const e_category category, char* const msg)
-    {   node_.pick (code, doc, ref, severity, category, msg); }
-    void pick (const e_nit code, const e_severity severity, const e_category category, const char* msg)
-    {   node_.pick (code, severity, category, msg); }
     template < typename ... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg)
     {   node_.pick (code, doc, ref, severity, category, msg...); }
     template < typename ... Ts > void pick (const e_nit code, const e_severity severity, const e_category category, Ts... msg)

@@ -64,7 +64,7 @@ public:
     bool has_property (const e_rel v, const e_property p) const { return has_property (index (v), p); }
     e_class plausible_vocabulary (const e_property p) const;
     bool is_relational () const;
-    void verify_attributes (nitpick& nits, const html_version& v, const elem& e, element* pe);
+    void verify_attributes (nitpick& nits, const html_version& v, const elem& e, element* pe, const ::std::string& lang);
     bool is_declared (const e_class v) const { return is_declared (index (v)); }
     bool is_declared (const e_rel v) const { return is_declared (index (v)); }
     void set_mf_value (nitpick& nits, const html_version& ver, const e_class v, const e_property pp, element& e) { set_mf_value (nits, ver, index (v), pp, e); }

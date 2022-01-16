@@ -34,6 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "icu/wrapper.h"
 #include "icu/charset.h"
 #include "parser/jsonic.h"
+#include "spell/spell.h"
 
 #define DOCTYPE "<!DOCTYPE"
 #define DOCTYPE_LC "<!doctype"
@@ -132,7 +133,7 @@ void page::examine ()
         document_ -> reconstruct (&access_);
         ::std::string s = document_ -> make_children (0);
         if (context.tell (e_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
-        document_ -> examine_self ();
+        document_ -> examine_self (precise_language (context.lang ()));
         document_ -> verify_document ();
         if (! snippet_)
         {   if (has_corpus ())
@@ -157,10 +158,10 @@ void page::itemscope (const itemscope_ptr itemscope)
     if (itemscope_ -> export_path ().empty ())
         itemscope_ -> set_exporter (md_export (), md_export_.append_path (get_export_root (), null_itemprop, true)); }
 
-::std::string page::find_webmention () const
+::std::string page::find_webmention (const ::std::string& lang) const
 {   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
     if (snippet_) return ::std::string ();
-    return document_ -> find_webmention (); }
+    return document_ -> find_webmention (lang); }
 
 ::std::string page::find_mention_info (const url& u, bool text, bool anything)
 {   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
@@ -270,3 +271,14 @@ void page::base (const url& s)
 
 void page::append_jsonld (const ::std::string& j)
 {   jsonld_ += j + "\n"; }
+
+void page::phrase (const ::std::string& l, const ::std::string& s)
+{   if (! l.empty ())
+    {   phrase_lang_ = l;
+        phrase_ += s; } }
+
+void page::phrase (nitpick& nits)
+{   if (! phrase_.empty ())
+    {   spell (nits, phrase_lang_, phrase_);
+        phrase_lang_.clear ();
+        phrase_.clear (); } }

@@ -1243,6 +1243,8 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-site", nm_context_site },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-slob", nm_context_slob },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-spec", nm_context_spec },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-spell", nm_context_spell },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-spellings", nm_context_spellings },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi", nm_context_ssi },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-export", nm_context_stats_export },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-page", nm_context_stats_page },

@@ -45,7 +45,7 @@ class element_node
     namespaces_ptr namespaces_;
     prefixes_ptr prefixes_, rdf_schemas_;
     rdf_ptr rdf_, rdfa_;
-    ::std::string inner_text () const;
+    ::std::string inner_text (const bool simplify = false) const;
     void init ();
     void manage_reversioner ();
 
@@ -93,7 +93,7 @@ public:
     void reset (const element_node& en);
     void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
     ::std::size_t attribute_count () const noexcept { return va_.size (); }
-    ::std::string text ();
+    ::std::string text (const bool simplify = false);
     ::std::string raw () const { return raw_; }
     void set_raw (const ::std::string& raw) { raw_ = raw; }
     int line () const noexcept { return line_; }

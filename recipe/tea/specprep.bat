@@ -83,6 +83,7 @@ ssc.exe -T -Z -o ../out/nitsnits.tst -f ../toast/other/nits/nits.conf
 ssc.exe -T -Z -o ../out/parsingparsing.tst -f ../toast/other/parsing/parsing.conf
 ssc.exe -T -Z -o ../out/patternpattern.tst -f ../toast/other/pattern/pattern.conf
 ssc.exe -T -Z -o ../out/simplesimple.tst -f ../toast/other/simple/simple.conf
+ssc.exe -T -Z -o ../out/spell.tst -f ../toast/other/spell/spell.conf
 ssc.exe -T -Z -o ../out/ssissi.tst -f ../toast/other/ssi/ssi.conf
 ssc.exe -T -Z -o ../out/RDFa113.tst -f ../toast/RDFa/1.1.3/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFacc.tst -f ../toast/RDFa/cc/rdfa.conf

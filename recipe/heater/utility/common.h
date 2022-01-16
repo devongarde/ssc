@@ -145,6 +145,12 @@ inline void prepend (::std::string& base, const ::std::string& sep, const ::std:
         if (base.empty ()) base = xtr;
         else base = xtr + sep + explain + base; }
 
+inline ::std::string prepend (const ::std::string& pre, const ::std::string& base)
+{   return pre + base; }
+
+inline ::std::string wrap (const ::std::string& pre, const ::std::string& base, const ::std::string& post)
+{   return pre + base + post; }
+
 bool check_spelling (nitpick& nits, const html_version& v, const ::std::string& s);
 bool ends_with_letters (const html_version& v,const ::std::string& s, const ::std::string& with);
 

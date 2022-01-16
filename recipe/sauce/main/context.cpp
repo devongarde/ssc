@@ -84,8 +84,8 @@ context_t& context_t::webmention (nitpick& nits, const ::std::string& w, const e
         if (slashed) if (! index ().empty ()) res += index (); }
     return res; }
 
-void context_t::process_outgoing_webmention (nitpick& nits, const html_version& v)
-{   if (notify ()) replies_.process (nits, v); }
+void context_t::process_outgoing_webmention (nitpick& nits, const html_version& v, const ::std::string& lang)
+{   if (notify ()) replies_.process (nits, v, lang); }
 
 void context_t::process_incoming_webmention (nitpick& nits, const html_version& v)
 {   if (! mentions_.empty ()) hooks_.process (nits, v); }

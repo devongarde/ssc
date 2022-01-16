@@ -28,7 +28,7 @@ template < > struct type_master < t_hunit > : tidy_string < t_hunit > // verify 
         if (! tidy_string < t_hunit > :: empty ())
             if (tidy_string < t_hunit > :: good ())
             {   const ::std::string& ss = tidy_string < t_hunit > :: get_string ();
-                const ::std::string::size_type pos = ss.find_first_not_of (DECIMAL " ");
+                const ::std::string::size_type pos = ss.find_first_not_of (SIGNEDDECIMAL " ");
                 if (pos == ::std::string::npos) return;
                 ::std::string units (ss.substr (pos));
                 switch (units.length ())
@@ -62,7 +62,7 @@ template < > struct type_master < t_vunit > : tidy_string < t_vunit > // verify 
         if (! tidy_string < t_vunit > :: empty ())
             if (tidy_string < t_vunit > :: good ())
             {   const ::std::string& ss = tidy_string < t_vunit > :: get_string ();
-                const ::std::string::size_type pos = ss.find_first_not_of (DECIMAL " ");
+                const ::std::string::size_type pos = ss.find_first_not_of (SIGNEDDECIMAL " ");
                 if (pos == ::std::string::npos) return;
                 ::std::string units (ss.substr (pos));
                 switch (units.length ())
@@ -105,7 +105,7 @@ template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_spac
         bool good = true;
         if (string_vector < t_pseudo, sz_space > :: good ())
             for (auto ss : string_vector < t_pseudo, sz_space > :: get ())
-            {   const ::std::string::size_type pos = ss.find_first_not_of (DECIMAL " ");
+            {   const ::std::string::size_type pos = ss.find_first_not_of (SIGNEDDECIMAL " ");
                 if (pos == ::std::string::npos) continue;
                 if (compare_complain (nits, v, "depth", ss)) continue;
                 if (compare_complain (nits, v, "height", ss)) continue;

@@ -80,9 +80,10 @@ void element_node::swap (element_node& en) noexcept
     sanitised_.swap (en.sanitised_);
     nits_.swap (en.nits_); }
 
-::std::string element_node::text ()
+::std::string element_node::text (const bool simplify)
 {   if (! checked_sanitised_)
-    {   sanitised_ = unify_whitespace (trim_the_lot_off (inner_text ()));
+    {   if (simplify) sanitised_ = unify_whitespace (inner_text (simplify));
+        else sanitised_ = unify_whitespace (trim_the_lot_off (inner_text ()));
         checked_sanitised_ = true; }
     return sanitised_; }
 
@@ -160,7 +161,7 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
         res += kids -> rpt (level + 1); }
     return res; }
 
-::std::string element_node::inner_text () const
+::std::string element_node::inner_text (const bool simplify) const
 {   ::std::string tmp;
     switch (elem_.get ())
     {   case elem_faux_cdata :
@@ -169,7 +170,7 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
             return text_;
         case elem_faux_char :
             if (is_whitespace (text_)) return " ";
-            tmp = interpret_character_code (version_, text_);
+            tmp = interpret_character_code (version_, text_, simplify);
             if (! tmp.empty ()) return tmp;
             return text_;
         case elem_faux_text :

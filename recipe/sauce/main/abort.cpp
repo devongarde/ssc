@@ -41,7 +41,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 {   DBG_ASSERT (false);
     ::boost::filesystem::path p (fn);
     ::std::string msg ("presumption " );
-    msg += x;
+    msg += quote (x);
     msg += ::std::string (" failed");
     msg += file_line (fn, line);
     ::std::cerr << "\n" << msg << "\n";
