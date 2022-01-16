@@ -103,7 +103,7 @@ These options are available on the command line and in configuration files:
 -n
 
 --general.progress      Dump progress information to standard output. This can
--D                      intefere with formatted output.
+-D                      interfere with formatted output.
 
 --general.rdf           Check RDF attributes. This option currently
                         underperforms. An extension to properly support RDF
@@ -185,7 +185,7 @@ These options are available on the command line and in configuration files:
                         Although you can specify exact dates for versions of
                         the WhatWG HTML 5 living standard, currently only
                         broad versions published in January and July are
-                        supported (and April & October 2021). It is expected
+                        supported (quarterly from April 2021). It is expected
                         that, as the standard develops, more precision will be
                         applied to changes in ssc analysis.
 
@@ -239,14 +239,13 @@ These options are available on the command line and in configuration files:
                                 3   MathML 3,
                                 4   MathML 4 (December 2020 draft).
 
---microdata.microdata   Check microdata found in WhatWG microdata attributes
+--microdata.verify      Check microdata found in WhatWG microdata attributes
 -m                      (itemprop, itemtype, etc.). Note that ssc only knows
-                        about schema.org and n.whatwg.org microdata.
+                        about certain ontologies. Find out which with
+                            --ontology.list
 
 --microdata.export      Export schema.org microdata encountered. This data is
-                        exported in JSON format.
-
---microdata.help        List names and versions of schema understood.
+                        exported in JSON format (not JSON-LD).
 
 --microdata.root DIR    When exporting microdata with --microdata.export,
                         write files into the directory DIR. ssc will create
@@ -480,6 +479,30 @@ These options are available on the command line and in configuration files:
 -L v=d                  directory 'd' on the local filesystem. For example:
                             --site.virtual virtual=D:\actual
 
+--spell.accept XXX      XXX is a correct spelling or a word (or a list of words)
+                        in all languages.
+
+--spell.check           Check text spelling. Uses external spelling checkers,
+                        so results may be inconsistent between systems.
+
+--spell.dict LANG,DICT  Unix only. Associate dictionary DICT with LANG. For
+                        example, if the standard English dictionary is en_GB-large:
+                            --spell.dict en-GB,en_GB-large
+                        (Under Windows, ssc uses the OS dictionaries.)
+
+--spell.list FN,LANG    The file FN contains a list of valid spellings for
+                        language LANG (which may include country info). If
+                        LANG is omitted, the valid spellings apply to all
+                        languages. For example:
+                            --spell.list villages.txt,en-IE
+                            --spell.list dorfer.txt,de
+                            --spell.list letzstied.txt
+
+--spell.path PATH       Unix only. Path to spelling executable. Hunspell or
+                        a compatible program is expected. If none is specified,
+                        ssc will seek hunspell. (Under Windows, ssc uses the
+                        OS spellchecker.)
+
 --stats.meta            Produce statistics on <META> usage in <HEAD>. Note
                         that pragmas reported (http-equiv) are those found in
                         the HTML source, not those returned by the HTTP
@@ -691,7 +714,7 @@ PREPARING and UPDATING a SITE
 
 These files are based on the steps I take to update an OpenBSD website.
 
-Presumine a directory containing the following:
+Presume a directory containing the following:
 site.conf    ssc configuration file for a website
 site         shadow output produced by ssc
 

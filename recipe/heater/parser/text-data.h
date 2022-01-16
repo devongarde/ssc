@@ -21,15 +21,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 
-#define WOTSIT_XML      0x00000001
+#define WOTSIT_XML          0x00000001
 
 struct wotsit_t
 {   html_version first_, last_;
-    const char* wotsit_;
+    const char* wotsit_ = nullptr;
     flags_t flags_ = NOFLAGS;
+    const char* simple_ = nullptr;
     wotsit_t () = default;
-    wotsit_t (html_version first, html_version last, const char* wotsit, const flags_t f = NOFLAGS) noexcept
-        :   first_ (first), last_ (last), wotsit_ (wotsit), flags_ (f) { }
+    wotsit_t (html_version first, html_version last, const char* wotsit, const flags_t f = NOFLAGS, const char* simple = nullptr) noexcept
+        :   first_ (first), last_ (last), wotsit_ (wotsit), flags_ (f), simple_ (simple) { }
     wotsit_t (const wotsit_t& w) = default;
     wotsit_t (wotsit_t&& w) = default;
     wotsit_t& operator = (wotsit_t&& w) = default;

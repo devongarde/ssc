@@ -12,7 +12,7 @@ and then try:
     Windows: ssc
     Unix: ./ssc
 
-If it is installed correctly, it should respond with (c) info and a simple usage message.
+If it is installed correctly, it should respond with (c) info.
 
 It is possible to set up configuration files, but, to start, we'll try a simple set of command line
 options. It the HTML files belonging to your website is located in DIR, and the main index file is
@@ -21,6 +21,24 @@ called index.html, then all you need type is:
 ssc DIR
 
 and off it will go, reporting on any issues it finds in all HTML files in DIR and its descendants.
+
+reports
+-------
+When ssc reports issues, it reports the HTML where it realised there was a problem, with the
+corresponding line number. This may be after the actual point of the problem. Consider, for example:
+
+<P>Wombats on taost<A href="https://example.com/superdoopersecretrecipe.html"
+title="what a wonderful page oh so wow" onclick="haltandcatchfire" onhover="winkembarrassingly"
+wimper=frequently>a delicious</A> thing.</P>
+
+The word ssc spots is "taosta". It knows there's a word to check when it gets to the end of the word,
+e.g. at the space that follows it. In this case, the word is interrupted by rather a lot of HTML, which
+is ignored when checking spelling. Because the intervening HTML is so long, crossing a number of lines,
+and ssc reports small snippets of HTML per issue, to avoid spouting too much verbiage, it will not
+show sufficient HTML to see the entire misspelt word. That's why, for some errors, you must take the
+HTML snippet and corresponding line number as a hint, not an absolute. There is an issue, it is near
+the reported HTML and line number, but, in this case, is not actually there. Of course, the report of
+the misspelt word does report the word it considers misspelt (here, "taosta").
 
 
 switches

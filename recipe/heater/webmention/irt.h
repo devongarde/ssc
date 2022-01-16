@@ -25,18 +25,12 @@ class reply
 {   ::std::string file_, id_, server_, target_, content_, when_;
     e_activity activity_ = act_unknown;
     ::std::string clean (const ::std::string& s);
-    bool find_server (nitpick& nits, const html_version& v);
+    bool find_server (nitpick& nits, const html_version& v, const ::std::string& lang);
     bool set_server (const ::std::string& link);
 public:
-//    reply () = delete;
     reply (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content)
         : file_ (file), id_ (id), target_ (target), content_ (clean (content)), activity_ (act_unknown)  { mark (); }
     reply (::boost::property_tree::ptree& tree, const ::std::string& container) : activity_ (act_unknown) { read (tree, container); }
-//    reply (const reply& r) = default;
-//    reply (const reply& r)
-//        :   file_ (r.file_), id_ (r.id_), server_ (r.server_), content_ (r.content_), when_ (r.when_), activity_ (r.activity_) // not target_
-//    { }
-//	reply (reply&&) = default;
     void swap (reply& r) noexcept;
     bool invalid () const noexcept { return file_.empty (); }
     void mark ();
@@ -53,7 +47,7 @@ public:
     void write (::boost::property_tree::ptree& tree, const ::std::string& container);
     ::std::string report (const char* verb) const;
     ::std::string report (const ::std::size_t n) const;
-    bool enact (nitpick& nits, const html_version& v); };
+    bool enact (nitpick& nits, const html_version& v, const ::std::string& lang); };
 
 typedef ::std::vector < reply > vreply_t;
 constexpr ::std::size_t no_reply = UINT_MAX;
@@ -66,10 +60,9 @@ class replies
     bool read (const ::std::string filename);
     bool write ();
     bool update_records (nitpick& nits);
-    bool enact (nitpick& nits, const html_version& v);
+    bool enact (nitpick& nits, const html_version& v, const ::std::string& lang);
 public:
-//    replies () {}
     void swap (replies& r) noexcept { reply_.swap (r.reply_); }
     void append (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content);
     ::std::string report (const char* comment = nullptr) const;
-    bool process (nitpick& nits, const html_version& v); };
+    bool process (nitpick& nits, const html_version& v, const ::std::string& lang); };

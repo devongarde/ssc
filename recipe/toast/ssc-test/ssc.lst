@@ -85,6 +85,7 @@
 ../toast/other/parsing/parsing.spec
 ../toast/other/pattern/pattern.spec
 ../toast/other/simple/simple.spec
+../toast/other/spell/spell.spec
 ../toast/other/ssi/ssi.spec
 ../toast/RDFa/1.1.3/rdfa.spec
 ../toast/RDFa/cc/rdfa.spec

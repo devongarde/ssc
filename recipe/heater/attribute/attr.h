@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define AF_NOT_NAMESPACED   0x0000000000000001
 #define AF_PROPERTY         0x0000000000000002
 #define AF_SVG2_PROPERTY    0x0000000000000004
-#define AP_NAMESPACE_MASK   0x00000000000000FF
+#define AF_SPELT            0x0000000000000008
 
 #define AP_XLINKCAT_MASK    0x000000000000FF00
 #define AP_XLINK_TYPE_SHIFT 8
@@ -42,10 +42,12 @@ struct attr : symbol < html_version, e_attribute >
     static e_attribute parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& key, ::std::string& decl);
     static void init (nitpick& nits);
     static bool is_versioner (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_REVERSIONER) == AF_REVERSIONER; }
+    static bool spellcheck (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_SPELT) == AF_SPELT; }
     constexpr static e_sought_category link_category_sought (const flags_t f) noexcept
     {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (f)); }
     e_sought_category link_category_sought () const noexcept
     {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (flags ())); }
+    bool spellcheck () const noexcept { return (symbol < html_version, e_attribute > :: flags () & AF_SPELT) == AF_SPELT; }
     bool is_versioner () const noexcept { return (symbol < html_version, e_attribute > :: flags () & AF_REVERSIONER) == AF_REVERSIONER; } };
 
 constexpr inline bool is_custom_attribute (const e_attribute a) noexcept { return (a == a_custom); }

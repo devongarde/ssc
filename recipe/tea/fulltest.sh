@@ -117,6 +117,7 @@
 ./ssc -f ../toast/shadow/pages/pages.conf
 ./ssc -f ../toast/shadow/soft/soft.conf
 ./ssc -f ../toast/shadow/softover/softover.conf
+./ssc -f ../toast/shadow/spell/spell.conf
 ./ssc -f ../toast/shadow/ssi/ssi.conf
 ./ssc -f ../toast/shadow/update/update.conf
 ./ssc -f ../toast/snippet/conf/snippet.conf

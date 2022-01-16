@@ -102,6 +102,7 @@
     <ClInclude Include="..\heater\schema\schema_structure.h" />
     <ClInclude Include="..\heater\schema\schema_type.h" />
     <ClInclude Include="..\heater\schema\schema_version.h" />
+    <ClInclude Include="..\heater\spell\spell.h" />
     <ClInclude Include="..\heater\stats\stats.h" />
     <ClInclude Include="..\heater\stats\stats0.h" />
     <ClInclude Include="..\heater\stats\stats1.h" />
@@ -305,6 +306,9 @@
     <ClCompile Include="..\sauce\schema\schema_structure.cpp" />
     <ClCompile Include="..\sauce\schema\schema_type.cpp" />
     <ClCompile Include="..\sauce\schema\schema_version.cpp" />
+    <ClCompile Include="..\sauce\spell\nixspell.cpp" />
+    <ClCompile Include="..\sauce\spell\spell.cpp" />
+    <ClCompile Include="..\sauce\spell\winspell.cpp" />
     <ClCompile Include="..\sauce\stats\stats.cpp" />
     <ClCompile Include="..\sauce\stats\stats_impl.cpp" />
     <ClCompile Include="..\sauce\symbol\nstr.cpp" />
@@ -369,6 +373,10 @@
     <None Include="..\toast\conf\live\betsy-live.conf" />
     <None Include="..\toast\conf\live\corona-live.conf" />
     <None Include="..\toast\conf\live\live.conf" />
+    <None Include="..\toast\conf\sole\corona.conf" />
+    <None Include="..\toast\conf\sole\rose.conf" />
+    <None Include="..\toast\conf\ssc\corona.conf" />
+    <None Include="..\toast\conf\ssc\rose.conf" />
     <None Include="..\toast\conf\upload.sh" />
     <None Include="..\toast\conf\xhtml\conf.conf" />
     <None Include="..\toast\conf\xhtml\conf.spec" />
@@ -6037,6 +6045,16 @@
     <None Include="..\toast\other\simple\index.html" />
     <None Include="..\toast\other\simple\simple.conf" />
     <None Include="..\toast\other\simple\simple.spec" />
+    <None Include="..\toast\other\spell\de.html" />
+    <None Include="..\toast\other\spell\en-gb.html" />
+    <None Include="..\toast\other\spell\mar.html" />
+    <None Include="..\toast\other\spell\en-us.html" />
+    <None Include="..\toast\other\spell\en.html" />
+    <None Include="..\toast\other\spell\index.html" />
+    <None Include="..\toast\other\spell\list-en.html" />
+    <None Include="..\toast\other\spell\list-gb.html" />
+    <None Include="..\toast\other\spell\spell.conf" />
+    <None Include="..\toast\other\spell\spell.spec" />
     <None Include="..\toast\other\ssi\index.html" />
     <None Include="..\toast\other\ssi\ssi-comment.html" />
     <None Include="..\toast\other\ssi\ssi-config.html" />
@@ -7530,7 +7548,9 @@
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
     <Text Include="..\gen\gen.txt" />
+    <Text Include="..\toast\conf\live\wordlist.txt" />
     <Text Include="..\toast\json-ld\README.txt" />
+    <Text Include="..\toast\other\spell\list.txt" />
     <Text Include="..\toast\README.txt" />
     <Text Include="..\toast\shadow\update\README.txt" />
     <Text Include="..\toast\snippet\README.txt" />

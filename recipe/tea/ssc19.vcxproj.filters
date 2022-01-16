@@ -777,6 +777,21 @@
     <Filter Include="Toast\Living\jan22">
       <UniqueIdentifier>{e1570243-2ad7-4d56-9e78-f2b9b21d09f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sauce\spell">
+      <UniqueIdentifier>{f6fbcdce-2c0b-4f11-a885-8816dca3e594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\spell">
+      <UniqueIdentifier>{b81f78fd-ee16-4493-a64a-412239a2660f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\spell">
+      <UniqueIdentifier>{215cf8c1-f54a-4dd2-a44a-ab47f96946a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\sole">
+      <UniqueIdentifier>{32b21948-9f92-44de-b872-ac61529c9ed3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\ssc">
+      <UniqueIdentifier>{95cefb52-c5f6-4133-9d6b-68fbbfc8d2db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1265,6 +1280,9 @@
     <ClInclude Include="..\heater\type\type_jsonic.h">
       <Filter>Heater\type</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\spell\spell.h">
+      <Filter>Heater\spell</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1731,6 +1749,15 @@
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_t2.cpp">
       <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\spell\winspell.cpp">
+      <Filter>Sauce\spell</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\spell\nixspell.cpp">
+      <Filter>Sauce\spell</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\spell\spell.cpp">
+      <Filter>Sauce\spell</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -23049,6 +23076,48 @@
     <None Include="..\toast\living\jan22\ww-10.html">
       <Filter>Toast\Living\jan22</Filter>
     </None>
+    <None Include="..\toast\other\spell\en.html">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\other\spell\en-gb.html">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\other\spell\en-us.html">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\other\spell\index.html">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\other\spell\spell.conf">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\other\spell\spell.spec">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\other\spell\list-en.html">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\other\spell\list-gb.html">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\other\spell\de.html">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\other\spell\mar.html">
+      <Filter>Toast\Other\spell</Filter>
+    </None>
+    <None Include="..\toast\conf\sole\corona.conf">
+      <Filter>Toast\Conf\sole</Filter>
+    </None>
+    <None Include="..\toast\conf\sole\rose.conf">
+      <Filter>Toast\Conf\sole</Filter>
+    </None>
+    <None Include="..\toast\conf\ssc\corona.conf">
+      <Filter>Toast\Conf\ssc</Filter>
+    </None>
+    <None Include="..\toast\conf\ssc\rose.conf">
+      <Filter>Toast\Conf\ssc</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -23295,6 +23364,12 @@
     </Text>
     <Text Include="..\toast\json-ld\README.txt">
       <Filter>Toast\JSON-LD</Filter>
+    </Text>
+    <Text Include="..\toast\other\spell\list.txt">
+      <Filter>Toast\Other\spell</Filter>
+    </Text>
+    <Text Include="..\toast\conf\live\wordlist.txt">
+      <Filter>Toast\Conf\live</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

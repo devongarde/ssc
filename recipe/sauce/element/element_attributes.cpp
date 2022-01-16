@@ -95,7 +95,7 @@ void element::examine_autofocus ()
         pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a(n) <", anc -> autofocus_ -> node_.id ().name (), "> element above has one too");
         anc -> autofocus_ -> pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a(n)  <", node_.id ().name (), "> element below has one too"); } }
 
-bool element::examine_class ()
+bool element::examine_class (const ::std::string& lang)
 {   if (! context.microformats ()) return true;
     ::std::string content (a_.get_string (a_class));
     if (content.empty ()) return false;
@@ -139,7 +139,7 @@ bool element::examine_class ()
                 VERIFY_NOT_NULL (farm.first -> mf_, __FILE__, __LINE__);
                 farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *this);
                 if (context.mf_verify ())
-                {   farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this);
+                {   farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this, lang);
                     if (context.tell (e_detail))
                         pick (nit_prop_set, es_comment, ec_microformat, html_class::name (farm.second),
                             " property ", p.name (), " (", p.get (), ")", " set to ", quote (farm.first -> mf_ -> get_string (farm.second, p.get ())));
@@ -153,7 +153,7 @@ bool element::examine_class ()
                 {   PRESUME (ancestral_farm.first -> mf_, __FILE__, __LINE__);
                     ancestral_farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *prop_vocab_element);
                     if (context.mf_verify ())
-                    {   ancestral_farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this);
+                    {   ancestral_farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this, lang);
                         if (context.tell (e_detail))
                             pick (nit_prop_set, es_comment, ec_microformat,
                                 "parental ", html_class::name (ancestral_farm.second), " property ", p.name (), " (", p.get (), ")",
@@ -300,7 +300,7 @@ void element::examine_other ()
         if (context.math_version () > math_1)
             pick (nit_deprecated_attribute, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "except in MathML 1, OTHER is deprecated"); }
 
-bool element::examine_rel (const ::std::string& content)
+bool element::examine_rel (const ::std::string& content, const ::std::string& lang)
 {   PRESUME (context.microformats (), __FILE__, __LINE__);
     if (content.empty ()) return false;
     vstr_t entries, ve;
@@ -320,7 +320,7 @@ bool element::examine_rel (const ::std::string& content)
             {   if (context.mf_verify ()) pick (nit_duplicate_rel, es_warning, ec_attribute, "ignoring duplicate ", quote (r.name ())); }
             else
             {   mf_ -> declare (r.get ());
-                mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this);
+                mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this, lang);
                 if (context.mf_verify ())
                     if (context.tell (e_variable)) pick (nit_rel_found, es_comment, ec_attribute, "REL type ", quote (r.name ()), " (", r.get (), ") found");
                     else pick (nit_rel_found, es_comment, ec_attribute, "REL type ", quote (r.name ()), " found");
@@ -339,6 +339,12 @@ void element::examine_ref ()
 void element::examine_registrationmark ()
 {   if (! ancestral_elements_.test (elem_rule))
         pick (nit_registration_mark, ed_jan08, "4.12.5 Global attributes for data templates", es_error, ec_attribute, "an element with REGISTRATIONMARK must descend from <RULE>"); }
+
+void element::examine_spellcheck (flags_t& flags)
+{   if (a_.good (a_spellcheck) && ! a_.empty (a_spellcheck))
+    {   int n = a_.get_int (a_spellcheck);
+        if (n == 0) flags |= EP_NOSPELL;
+        else if (n != 0) flags &= ~EP_NOSPELL; } }
 
 void element::examine_style_attr ()
 {   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul07))

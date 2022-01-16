@@ -50,6 +50,10 @@ public:
     {   if (! has (a)) return ::std::string ();
         VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
         return aar_.at (a) -> get_string (); }
+    ::std::string original (const e_attribute a) const
+    {   if (! has (a)) return ::std::string ();
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
+        return aar_.at (a) -> original (); }
     ::std::string get_id (const e_attribute a) const
     {   if (! has (a)) return ::std::string ();
         VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
@@ -111,7 +115,7 @@ public:
     bool invalid_access (nitpick& nits, const html_version& v, sstr_t* ids);
     bool has_url () const;
     bool verify_url (nitpick& nits, const html_version& v, element& e);
-    void verify_attributes (nitpick& nits, const html_version& v, element* pe);
+    void verify_attributes (nitpick& nits, const html_version& v, element* pe, const ::std::string& lang);
     void mark (page& p, const e_attribute a);
     void mark (page& p);
     void shadow (::std::stringstream& ss, const html_version& v, element* e);

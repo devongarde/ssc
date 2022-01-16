@@ -35,6 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ONTOLOGY_   "ontology"
 #define RDFA_       "rdfa"
 #define SHADOW_     "shadow"
+#define SPELL_      "spell"
 #define STATS_      "stats"
 #define SVG_        "svg"
 #define VALIDATION_ "validation"
@@ -57,6 +58,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ONTOLOGY    ONTOLOGY_ JOIN
 #define RDFA        RDFA_ JOIN
 #define SHADOW      SHADOW_ JOIN
+#define SPELL       SPELL_ JOIN
 #define STATS       STATS_ JOIN
 #define SVG         SVG_ JOIN
 #define VALIDATION  VALIDATION_ JOIN
@@ -64,6 +66,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WMIN        WMIN_ JOIN
 #define WMOUT       WMOUT_ JOIN
 
+#define ACCEPT      "accept"
 #define ALL         "all"
 #define ARTICLE     "article"
 #define ATTRIB      "attribute"
@@ -83,10 +86,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CSS_OPTION  "css"
 #define CURRENCY    "currency"
 #define CUSTOM      "custom"
+#define DATAPATH    "datapath"
 #define DBG         "debug"
 #define DC          "dc"
 #define DEFCONF     "defconf"
 #define DETAIL      "detail"
+#define DICT        "dict"
 #define DINGBATARG  "dingbat"
 #define ERR         "error"
 #define ELEMENT     "element"
@@ -120,7 +125,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ONCE        "once"
 #define OUTPUT      "output"
 #define OVERRIDE    "override"
-#define PATH        "datapath"
+#define PATH        "path"
 #define PAGE        "page"
 #define PROGRESS    "progress"
 #define QUOTE       "quote"
@@ -139,8 +144,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SLOB        "slob"
 #define SPACING     "space"
 #define SPEC        "spec"
-#define SPLURGE      "splurge"
+#define SPLURGE     "splurge"
 #define SSI         "ssi"
+#define SUBSTITUTE  "substitute"
 #define SUMMARY     "summary"
 #define TAGS        "tags"
 #define TEST        "test"

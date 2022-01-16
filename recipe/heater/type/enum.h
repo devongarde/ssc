@@ -195,9 +195,9 @@ typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_n
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io, ec_json, ec_link, ec_microdata,
-                ec_microformat, ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema, ec_shadow, ec_ssi, ec_tidyness, ec_type,
-                ec_url, ec_utility, ec_webmention } e_category;
+typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io, ec_json, ec_link,
+                ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema, ec_shadow,
+                ec_spell, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
 const e_category last_category = ec_webmention;
 typedef enum { ccp_derivativeworks, ccp_distribution, ccp_reproduction } e_cc_permits;
 typedef enum { ccr_attribution, ccr_notice, ccr_sharealike, ccr_sourcecode } e_cc_requires;
@@ -1554,8 +1554,8 @@ typedef enum
     nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file, nit_code_dtd, nit_data_vocabulary, nit_json_error,
     nit_json_internal_error, nit_json_id, nit_vocab, nit_jsonld_context, nit_json_name, nit_json_invalid_node, nit_json_value_object,
     nit_json_out_of_place, nit_json_bad_term, nit_jsonld_type, nit_missing_schema, nit_jsonld_format, nit_jsonld_mistype,
-    nit_jsonld_encoding, nit_jsonld_map, nit_crap_spec, nit_bad_uid, nit_missing_property,
-
+    nit_jsonld_encoding, nit_jsonld_map, nit_crap_spec, nit_bad_uid, nit_missing_property, nit_no_spell, nit_misspelt, nit_bad_list,
+    nit_spell_lang, nit_spell_perhaps, nit_launch, nit_sent, nit_got, nit_bad_dict,
     nit_context,
 
     // eon
@@ -1574,9 +1574,9 @@ typedef enum
         nm_context_rdf_version, nm_context_rel, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070,
         nm_context_sarcasm, nm_context_schema, nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
         nm_context_shadow_ignore, nm_context_shadow_persist,nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
-        nm_context_shadows, nm_context_site, nm_context_slob, nm_context_spec, nm_context_ssi, nm_context_stats_export, nm_context_stats_page,
-        nm_context_stats_summary, nm_context_svg_version, nm_context_tags, nm_context_templates, nm_context_test, nm_context_title, nm_context_user,
-        nm_context_version, nm_context_virtuals, nm_context_write_path, nm_context_xsd,
+        nm_context_shadows, nm_context_site, nm_context_slob, nm_context_spec, nm_context_spell, nm_context_spellings, nm_context_ssi,
+        nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_svg_version, nm_context_tags, nm_context_templates,
+        nm_context_test, nm_context_title, nm_context_user, nm_context_version, nm_context_virtuals, nm_context_write_path, nm_context_xsd,
         nm_copy_addr, nm_copy_html, nm_copy_text,
     nm_general_output, nm_general_path, nm_grand_title,
     nm_html_snippet,

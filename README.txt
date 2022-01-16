@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.121
+version 0.0.122
 https://ssc.lu/
 
 
@@ -21,20 +21,20 @@ WARNING: this code is:
 
 ssc analyses static HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- HTML living standard, Jan 2005 to Oct 2021
+- HTML living standard, Jan 2005 to Jan 2022
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
 - finds broken links (requires curl)
 - processes server side includes, mostly
-- analyses schema.org microdata 2.0 to 13.0
-- analyses microformats v1 & v2
-- RDFa with standard context
+- analyses microdata & RDFa
+- analyses RDFa standard context ontologies & others
 
 with opinions on:
 - standard english where dialect is required
 - perfectly legal but sloppy HTML
 - abhorrent rudeness such as autoplay on videos
+- dubious spelling
 
 It does NOT:
 - behave securely: its parser is holier than robin's cow
@@ -62,17 +62,8 @@ analyse website based in directory
 
 
 To build & run:
-1. Set the environment variable SSCPATH to point to the ssc root directory (the one containing recipe)
-2. If need be download, build and install ICU 63_1 or better (perhaps from icu-project.org)
-3. Set the environment variable ICUPATH to point to the ICU home directory
-4. If need be download, build and install boost 1.67 or better (perhaps from boost.org)
-5. Set the environment variable BOOST to point to the BOOST home directory
-6. If necessary, download and install Microsoft's GSL library
-7. Set the environment variable GSL_ROOT to point to the GSL home directory
-8. -EITHER- build with CMake 3.11 or better ("cd recipe/tea" "cmake ." "make" "ctest" "make install")
-9. -OR- build with recipe\tea\ssc201?.sln in Visual Studios 2017/2019 under Windows
-10. If need be, download, build and install curl (perhaps from curl.haxx.se)
-11. Gleefully run ssc. It will not work if you are insufficiently gleeful.
+1. Follow the build instructions in build.txt
+2. Gleefully run ssc. It will misbehave if you are insufficiently gleeful.
 
 
 
@@ -85,12 +76,14 @@ Creator has] an inordinate fondness for beetles.").
 
 
 
-Notes on folder names:
+Notes on names:
 - recipe: a nod to Vernor Vinge's "A Fire Upon the Deep"
 - tea: without tea, nothing works; then there's builders' tea
 - sauce: identifies those who presume; and anyway, it's obvious
 - toast: toasts code; i like burnt toast
 - heater: i'm not stopping now
+- unii: my preferred plural of unix; both unixes and unices sound like they sing castrato
+
 
 
 

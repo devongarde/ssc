@@ -43,7 +43,7 @@ template < > struct type_master < t_angle > : type_master < t_real >
                 else if (v.is_svg_2 () && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; }
                 else if (compare_complain (nits, v, sss, "rad")) { max = static_cast < float > (3.141592653589*2); len -= 3; }
                 else if (compare_complain (nits, v, sss, "deg")) len -= 3; }
-            if (ss.substr (0, len).find_first_not_of (DECIMAL) != ::std::string::npos)
+            if (ss.substr (0, len).find_first_not_of (SIGNEDDECIMAL) != ::std::string::npos)
                 nits.pick (nit_angle, es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
             else
             {   type_master < t_real > :: set_value (nits, v, s);

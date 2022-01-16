@@ -84,6 +84,7 @@ ssc.exe -f ../toast/other/nits/nits.conf
 ssc.exe -f ../toast/other/parsing/parsing.conf
 ssc.exe -f ../toast/other/pattern/pattern.conf
 ssc.exe -f ../toast/other/simple/simple.conf
+ssc.exe -f ../toast/other/spell/spell.conf
 ssc.exe -f ../toast/other/ssi/ssi.conf
 ssc.exe -f ../toast//RDFa/1.1.3/rdfa.conf
 ssc.exe -f ../toast//RDFa/cc/rdfa.conf

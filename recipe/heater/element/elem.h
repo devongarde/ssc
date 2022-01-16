@@ -43,6 +43,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_UNCLOSED12       0x00000000000A0000
 #define EP_UNCLOSED1P2      0x00000000000E0000
 
+#define EP_NOSPELL          0x0000000000800000
+
 #define EP_5_DYNAMIC        0x0000000001000000
 #define EP_5_REFRESHED      0x0000000002000000
 #define EP_5_TRANSPARENT    0x0000000004000000
@@ -65,8 +67,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_HOLDS_ALL        0x0000008000000000
 
 // corresponds to e_category_sought
-#define EP_XLINK_TYPE_MASK   0x0000FF0000000000
-#define EP_XLINK_TYPE_SHIFT  40
+#define EP_XLINK_TYPE_MASK  0x0000FF0000000000
+#define EP_XLINK_TYPE_SHIFT 40
 
 #define EP_SET_XLINKCAT(XXX)  ((flags_t) (XXX) << EP_XLINK_TYPE_SHIFT)
 #define EP_GET_XLINKCAT(XXX)  (((XXX) & EP_XLINK_TYPE_MASK) >> EP_XLINK_TYPE_SHIFT)

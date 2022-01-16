@@ -63,7 +63,7 @@ void known_wotsit (const char* s, const char* c, const bool suggest)
 
 #ifdef _MSC_VER
 #pragma warning (push, 3)
-#pragma warning (disable : 26446 26482) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initiliser
+#pragma warning (disable : 26446 26482) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initialiser
 #endif // _MSC_VER
 void wotsit_init (nitpick& nits)
 {   for (wotsit_count = 0; wotsit_table [wotsit_count].wotsit_ != nullptr; ++wotsit_count)
@@ -135,7 +135,7 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
         if (! may_apply (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_)) invalid = true;
         else known = true; } }
 
-::std::string interpret_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid)
+::std::string interpret_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid, const bool simplify)
 {   PRESUME (! text.empty (), __FILE__, __LINE__);
     vw_t::const_iterator i = wotsit.find (text);
     if (i != wotsit.end ())
@@ -143,6 +143,8 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
         if (! may_apply (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_)) invalid = true;
         else
         {   known = true;
+            if (simplify && (wotsit_table [i -> second].simple_ != nullptr))
+                return wotsit_table [i -> second].simple_;
             auto ci = code_symbol.find (wotsit_table [i -> second].wotsit_);
             if (ci != code_symbol.end ()) return ci -> second; } }
 #ifdef _MSC_VER
@@ -152,15 +154,15 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
     res += text + ';';
     return res; }
 
-::std::string interpret_character_code (const html_version& v, const ::std::string& text)
+::std::string interpret_character_code (const html_version& v, const ::std::string& text, const bool simplify)
 {   bool invalid = false;
     bool known = false;
-    return interpret_character_code (v, text, known, invalid); }
+    return interpret_character_code (v, text, known, invalid, simplify); }
 
-::std::string interpret_character_code (nitpick& nits, const html_version& v, const ::std::string& text)
+::std::string interpret_character_code (nitpick& nits, const html_version& v, const ::std::string& text, const bool simplify)
 {   bool invalid = false;
     bool known = false;
-    ::std::string res (interpret_character_code (v, text, known, invalid));
+    ::std::string res (interpret_character_code (v, text, known, invalid, simplify));
     if (invalid)
         nits.pick (nit_invalid_character_code, es_error, ec_parser, res, " is invalid in ", v.report ());
     else if (! known)
