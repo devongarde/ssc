@@ -1255,3 +1255,6 @@ PASS ../toast/living/jul20/video.html
 
 PASS ../toast/living/jul20/wbr.html
 7 use_double_quote_code use_double_quote_code
+
+update
+0 normalise normalise

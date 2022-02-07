@@ -90,9 +90,15 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
     if (! empty ())
     {   mmac_t inner;
         inner.emplace (nm_nit_line, ::boost::lexical_cast < ::std::string > (line_));
-        inner.emplace (nm_nit_before, before_);
-        inner.emplace (nm_nit_mote, mote_);
-        inner.emplace (nm_nit_after, after_);
+        if (mote_.empty () || is_whitespace (mote_))
+        {   inner.emplace (nm_nit_before, "");
+            if (mote_.empty ()) inner.emplace (nm_nit_mote, before_);
+            else inner.emplace (nm_nit_mote, before_);
+            inner.emplace (nm_nit_after, ""); }
+        else
+        {   inner.emplace (nm_nit_before, before_);
+            inner.emplace (nm_nit_mote, mote_);
+            inner.emplace (nm_nit_after, after_); }
         ::std::string nitbit;
         if (context.nits_nits_nits ())
             nitbit = inner_review (entry, nits_, mac, inner, quote, dq, infoed, eol, hasns);

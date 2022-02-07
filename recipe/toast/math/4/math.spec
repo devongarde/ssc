@@ -38,6 +38,17 @@ PASS ../toast/math/4/math5-example.html
 
 PASS ../toast/math/4/math6-example.html
 2 naughty_lang
+152 impure_mn
+153 impure_mn
+154 impure_mn
+157 impure_mn
+161 impure_mn
+162 impure_mn
+166 impure_mn
+167 impure_mn
+169 impure_mn
+172 impure_mn
+174 impure_mn
 
 PASS ../toast/math/4/math7-example.html
 2 naughty_lang

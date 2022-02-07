@@ -65,5 +65,6 @@ public:
     html_version version () const noexcept { return version_; }
     ::std::string text ();
     ::std::string rpt ();
+    vstr_t words (nitpick& nits, const html_version& v) const;
     uint64_t size () const noexcept { return ven_.size (); }
     bool invalid () const noexcept { return (invalid_ && (size () > 0)); } };

@@ -175,7 +175,7 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
     if (url.empty ())
     {   nits.pick (nit_url_empty, es_error, ec_url, "empty URL"); return false; }
 
-    ::std::string::size_type bang = url.find ('!');
+    const ::std::string::size_type bang = url.find ('!');
     if (bang != ::std::string::npos)
     {   if (url.find ('.') == ::std::string::npos)
         {   if ((bang == 0) || (bang == url.size () - 1))
@@ -265,7 +265,7 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
                 {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "incomplete ipv4 address"); return false; }
                 ipv4 = host; }
             else
-            {   if (host.find_first_not_of (ALPHADDD) != host.npos)
+            {   if (host.find_first_not_of (ALPHANUMERIC) != host.npos)
                 {   nits.pick (nit_invalid_domain, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "illegal character in domain"); return false; }
                 domain = host; } }
 

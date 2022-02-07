@@ -92,14 +92,43 @@ int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdlin
     return code; }
 #endif // NO_BOOST_PROCESS
 
+// https://datatracker.ietf.org/doc/html/rfc2606
+const vstr_t rfc2606_no_no =
+{   "example",
+    "example.com",
+    "example.edu", // technically ok, but seen in the wild
+    "example.net",
+    "example.org",
+    "invalid",
+    "localhost",
+    "test" };
+
+// https://tools.ietf.org/id/draft-chapin-rfc2606bis-00.html
+const vstr_t rfc2606_local =
+{   "corp",
+    "domain",
+    "home",
+    "host",
+    "lan",
+    "local",
+    "localdomain" };
+
 void test_hypertext (nitpick& nits, const html_version& v, const url& u)
 {   if (u.has_domain ())
     {   ::std::string d (u.domain ());
         PRESUME (! d.empty (), __FILE__, __LINE__);
         if (::boost::algorithm::iends_with (d, "invalid"))
         {   context.code (404); return; }
-        if (ends_with_example (d))
-        {   context.code (200); return; } }
+        if (one_of_domain (d, rfc2606_no_no))
+        {   if (context.example ()) nits.pick (nit_example, es_warning, ec_link, "link to test domain ", quote (d), " (see RFC 2606)");
+            context.code (200); return; }
+        if (one_of_domain (d, rfc2606_local))
+        {   if (context.local ()) nits.pick (nit_local, es_info, ec_link, "link to local domain ", quote (d), " (see RFC 2606 bis)");
+            context.code (200); return; }
+        if (one_of_domain (d, context.report ()))
+            nits.pick (nit_report, es_info, ec_link, "link to ", quote (d));
+        if (one_of_domain (d, context.no_ex_check ()))
+            context.code (200); return; }
     ::std::string cmdline ("curl -o NUL --silent --head --write-out %{http_code} ");
     if (u.is_https () && ! context.revoke ()) cmdline += "--ssl-norevoke ";
     cmdline += u.original ();
@@ -175,9 +204,8 @@ bool fetch (nitpick& nits, const html_version& v, const url& u, const ::boost::f
 bool mention (nitpick& nits, const html_version& v, const url& source, const url& target, const url& server)
 {   typedef ssc_map < ::std::string, bool > validity_t;
     static validity_t validity;
-    if (! context.nochange ())
-    {   auto x = validity.find (server.absolute ());
-        if ((x != validity.end ())) if (! x -> second) return false; }
+    auto x = validity.find (server.absolute ());
+    if ((x != validity.end ())) if (! x -> second) return false;
     ::std::string cmdline ("curl -i -d source=");
     cmdline += source.absolute (true);
     cmdline += " -d target=";
@@ -186,7 +214,6 @@ bool mention (nitpick& nits, const html_version& v, const url& source, const url
     if (server.is_https () && ! context.revoke ()) cmdline += "--ssl-norevoke ";
     cmdline += server.absolute ();
     if (context.tell (e_debug)) nits.pick (nit_debug, es_debug, ec_link, quote (cmdline));
-    if (context.nochange ()) return true;
     const int code = call_curl (nits, v, cmdline, 599, false);
     if (context.tell (e_variable)) nits.pick (nit_debug, es_detail, ec_link, "got ", code, "\n");
     validity.insert (validity_t::value_type (server.absolute (), code < 300));

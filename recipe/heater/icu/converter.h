@@ -20,8 +20,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "utility/common.h"
+
+#ifndef NOICU
 #include "feedback/nitpick.h"
 #include "parser/html_version.h"
 
 ::std::string get_standard_converter_name (nitpick& nits, const ::std::string& name);
-::std::string convert_to_utf_8 (nitpick& nits, const ::std::string& name, void_ptr& vp, uintmax_t& sz);
+::std::string convert_to_utf8 (nitpick& nits, const ::std::string& name, void* vp, uintmax_t& sz);
+::std::string normalise_utf8 (nitpick& nits, const ::std::string& s);
+
+#ifdef _MSC_VER
+::std::wstring convert_to_wstring (nitpick& nits, const ::icu::UnicodeString& us);
+::std::wstring convert_to_wstring (const ::std::string& s);
+::std::string normalise_utf8 (nitpick& nits, const ::std::string& s);
+#endif // _MSC_VER
+
+#endif // NOICU

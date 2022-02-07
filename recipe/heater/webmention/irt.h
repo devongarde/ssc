@@ -21,11 +21,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 
+class lingo;
+
 class reply
 {   ::std::string file_, id_, server_, target_, content_, when_;
     e_activity activity_ = act_unknown;
     ::std::string clean (const ::std::string& s);
-    bool find_server (nitpick& nits, const html_version& v, const ::std::string& lang);
+    bool find_server (nitpick& nits, const html_version& v, const lingo& lang);
     bool set_server (const ::std::string& link);
 public:
     reply (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content)
@@ -47,7 +49,7 @@ public:
     void write (::boost::property_tree::ptree& tree, const ::std::string& container);
     ::std::string report (const char* verb) const;
     ::std::string report (const ::std::size_t n) const;
-    bool enact (nitpick& nits, const html_version& v, const ::std::string& lang); };
+    bool enact (nitpick& nits, const html_version& v, const lingo& lang); };
 
 typedef ::std::vector < reply > vreply_t;
 constexpr ::std::size_t no_reply = UINT_MAX;
@@ -60,9 +62,9 @@ class replies
     bool read (const ::std::string filename);
     bool write ();
     bool update_records (nitpick& nits);
-    bool enact (nitpick& nits, const html_version& v, const ::std::string& lang);
+    bool enact (nitpick& nits, const html_version& v, const lingo& lang);
 public:
     void swap (replies& r) noexcept { reply_.swap (r.reply_); }
     void append (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content);
     ::std::string report (const char* comment = nullptr) const;
-    bool process (nitpick& nits, const html_version& v, const ::std::string& lang); };
+    bool process (nitpick& nits, const html_version& v, const lingo& lang); };

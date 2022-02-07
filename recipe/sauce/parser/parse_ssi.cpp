@@ -277,7 +277,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         if (context.shadow_changed ())
         {   nits.pick (nit_ssi, es_debug, ec_shadow, "SSI file ", pt, " last updated ", when);
             if (when > updated) updated = when; }
-        return parse_ssi (nits, v, p, c, read_text_file (pt), updated); }
+        return parse_ssi (nits, v, p, c, read_text_file (nits, pt), updated); }
     else if (validate_virtual (ln, nits, v, vrt, u))
     {   if (! u.invalid ())
             if (p.get_directory () -> verify_url (nits, v, u))

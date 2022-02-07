@@ -361,7 +361,7 @@ void element::examine_mglyph ()
 void element::examine_mn ()
 {   if (page_.version ().math_version () < math_3) return;
     ::std::string x (text ());
-    const ::std::string::size_type pos = x.find_first_not_of (" .,IVXDMLivxdmlxX" HEX);
+    const ::std::string::size_type pos = x.find_first_not_of (" .,IVXMLivxml" HEX);
     if (pos != ::std::string::npos)
         pick (nit_impure_mn, ed_math_3, "3.2.4.4 Numbers that should not be written using <mn> alone", es_warning, ec_element, "Given '", x.at (pos), "', <MN> alone may be unsuitable here"); }
 

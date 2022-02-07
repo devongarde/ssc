@@ -36,7 +36,8 @@ void element::reconstruct (sstr_t* access)
     return ::std::string ("empty base"); }
 
 void element::swap (element& e) noexcept
-{   a_.swap (e.a_);
+{   PRESUME (&page_ == &e.page_, __FILE__, __LINE__);
+    a_.swap (e.a_);
     mf_.swap (e.mf_);
     name_.swap (e.name_);
     sibling_.swap (e.sibling_);
@@ -47,7 +48,7 @@ void element::swap (element& e) noexcept
     node_.swap (e.node_);
     // do not swap icarus_
     ::std::swap (examined_, e.examined_);
-    ::std::swap (page_, e.page_);
+//    ::std::swap (page_, e.page_);
     ::std::swap (parent_, e.parent_);
     ::std::swap (autofocus_, e.autofocus_);
     ::std::swap (ancestral_elements_, e.ancestral_elements_);

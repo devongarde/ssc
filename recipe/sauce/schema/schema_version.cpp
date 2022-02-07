@@ -197,137 +197,137 @@ schema_version corresponding_schema_version (const e_schema es, const html_versi
     return error_schema; }
 
 template < e_schema V > struct schema_detail
-{   static bool is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+{   static bool is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
     {   return (mjr == 1) && (mnr == 0); }
     static ::std::string name (const ::std::string s, const unsigned char mjr, const unsigned char mnr)
     {   ::std::string res (s);
         res += " v";
         res += x_dot_y (mjr, mnr);
         return res; }
-    static schema_version from () { return schema_version (V, 1, 0); }
-    static int count () { return 1; }
-    static bool faux () { return false; }
-    static bool is_this_deprecated (const unsigned char , const unsigned char , const flags_t )
+    static schema_version from () noexcept { return schema_version (V, 1, 0); }
+    static int count () noexcept { return 1; }
+    static bool faux () noexcept { return false; }
+    static bool is_this_deprecated (const unsigned char , const unsigned char , const flags_t ) noexcept
     {   return false; }
-    static schema_version to () { return schema_version (V, 1, 0); } };
+    static schema_version to () noexcept { return schema_version (V, 1, 0); } };
 
-template < > bool schema_detail < s_article > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t )
+template < > bool schema_detail < s_article > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
-template < > schema_version schema_detail < s_article > :: from () { return schema_version (s_article, HTML_2012, 0); }
-template < > int schema_detail < s_article > :: count () { return 4; }
-template < > schema_version schema_detail < s_article > :: to () { return schema_version (s_article, HTML_LATEST_YEAR, 0); }
+template < > schema_version schema_detail < s_article > :: from () noexcept { return schema_version (s_article, HTML_2012, 0); }
+template < > int schema_detail < s_article > :: count () noexcept { return 4; }
+template < > schema_version schema_detail < s_article > :: to () noexcept { return schema_version (s_article, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_as > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_as > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 2) || (mjr == 1); }
-template < > schema_version schema_detail < s_as > :: from () { return schema_version (s_as, 1, 0); }
-template < > int schema_detail < s_as > :: count () { return 2; }
-template < > schema_version schema_detail < s_as > :: to () { return schema_version (s_as, 2, 0); }
+template < > schema_version schema_detail < s_as > :: from () noexcept { return schema_version (s_as, 1, 0); }
+template < > int schema_detail < s_as > :: count () noexcept { return 2; }
+template < > schema_version schema_detail < s_as > :: to () noexcept { return schema_version (s_as, 2, 0); }
 
-template < > bool schema_detail < s_bibo > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_bibo > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   return (mjr == 1) && (mnr == 3); }
-template < > schema_version schema_detail < s_bibo > :: from () { return schema_version (s_bibo, 1, 3); }
-template < > schema_version schema_detail < s_bibo > :: to () { return schema_version (s_bibo, 1, 3); }
+template < > schema_version schema_detail < s_bibo > :: from () noexcept { return schema_version (s_bibo, 1, 3); }
+template < > schema_version schema_detail < s_bibo > :: to () noexcept { return schema_version (s_bibo, 1, 3); }
 
-template < > bool schema_detail < s_book > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t )
+template < > bool schema_detail < s_book > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
-template < > schema_version schema_detail < s_book > :: from () { return schema_version (s_book, HTML_2012, 0); }
-template < > int schema_detail < s_book > :: count () { return 4; }
-template < > schema_version schema_detail < s_book > :: to () { return schema_version (s_book, HTML_LATEST_YEAR, 0); }
+template < > schema_version schema_detail < s_book > :: from () noexcept { return schema_version (s_book, HTML_2012, 0); }
+template < > int schema_detail < s_book > :: count () noexcept { return 4; }
+template < > schema_version schema_detail < s_book > :: to () noexcept { return schema_version (s_book, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_dc > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_dc > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
-template < > schema_version schema_detail < s_dc > :: from () { return schema_version (s_dc, 1, 0); }
-template < > int schema_detail < s_dc > :: count () { return 2; }
-template < > schema_version schema_detail < s_dc > :: to () { return schema_version (s_dc, 1, 1); }
+template < > schema_version schema_detail < s_dc > :: from () noexcept { return schema_version (s_dc, 1, 0); }
+template < > int schema_detail < s_dc > :: count () noexcept { return 2; }
+template < > schema_version schema_detail < s_dc > :: to () noexcept { return schema_version (s_dc, 1, 1); }
 
-template < > bool schema_detail < s_dcat > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_dcat > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 1) || (mjr == 2); }
-template < > schema_version schema_detail < s_dcat > :: from () { return schema_version (s_dcat, 1, 0); }
-template < > int schema_detail < s_dcat > :: count () { return 2; }
-template < > schema_version schema_detail < s_dcat > :: to () { return schema_version (s_dcat, 2, 0); }
+template < > schema_version schema_detail < s_dcat > :: from () noexcept { return schema_version (s_dcat, 1, 0); }
+template < > int schema_detail < s_dcat > :: count () noexcept { return 2; }
+template < > schema_version schema_detail < s_dcat > :: to () noexcept { return schema_version (s_dcat, 2, 0); }
 
-template < > bool schema_detail < s_dct > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_dct > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
-template < > schema_version schema_detail < s_dct > :: from () { return schema_version (s_dct, 1, 0); }
-template < > int schema_detail < s_dct > :: count () { return 2; }
-template < > schema_version schema_detail < s_dct > :: to () { return schema_version (s_dct, 1, 1); }
+template < > schema_version schema_detail < s_dct > :: from () noexcept { return schema_version (s_dct, 1, 0); }
+template < > int schema_detail < s_dct > :: count () noexcept { return 2; }
+template < > schema_version schema_detail < s_dct > :: to () noexcept { return schema_version (s_dct, 1, 1); }
 
-template < > bool schema_detail < s_error > :: is_this_valid (const unsigned char , const unsigned char , const flags_t )
+template < > bool schema_detail < s_error > :: is_this_valid (const unsigned char , const unsigned char , const flags_t ) noexcept
 {   return false; }
-template < > bool schema_detail < s_error > :: faux ()
+template < > bool schema_detail < s_error > :: faux () noexcept
 {   return true; }
 
-template < > bool schema_detail < s_faux > :: faux ()
+template < > bool schema_detail < s_faux > :: faux () noexcept
 {   return true; }
 
-template < > bool schema_detail < s_foaf > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_foaf > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   return (mjr == 0) && (mnr < 100); }
-template < > schema_version schema_detail < s_foaf > :: from () { return schema_version (s_foaf, 0, 1); }
-template < > int schema_detail < s_foaf > :: count () { return 98; }
-template < > schema_version schema_detail < s_foaf > :: to () { return schema_version (s_foaf, 0, 99); }
+template < > schema_version schema_detail < s_foaf > :: from () noexcept { return schema_version (s_foaf, 0, 1); }
+template < > int schema_detail < s_foaf > :: count () noexcept { return 98; }
+template < > schema_version schema_detail < s_foaf > :: to () noexcept { return schema_version (s_foaf, 0, 99); }
 
-template < > bool schema_detail < s_jsonld > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_jsonld > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
-template < > schema_version schema_detail < s_jsonld > :: from () { return schema_version (s_jsonld, 1, 0); }
-template < > int schema_detail < s_jsonld > :: count () { return 2; }
-template < > schema_version schema_detail < s_jsonld > :: to () { return schema_version (s_jsonld, 1, 1); }
+template < > schema_version schema_detail < s_jsonld > :: from () noexcept { return schema_version (s_jsonld, 1, 0); }
+template < > int schema_detail < s_jsonld > :: count () noexcept { return 2; }
+template < > schema_version schema_detail < s_jsonld > :: to () noexcept { return schema_version (s_jsonld, 1, 1); }
 
-template < > bool schema_detail < s_microformats > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t )
+template < > bool schema_detail < s_microformats > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
 {   return (mjr == 1) || (mjr == 2); }
-template < > schema_version schema_detail < s_microformats > :: from () { return schema_version (s_microformats, 1, 0); }
-template < > int schema_detail < s_microformats > :: count () { return 255; }
-template < > schema_version schema_detail < s_microformats > :: to () { return schema_version (s_microformats, 2, 255); }
+template < > schema_version schema_detail < s_microformats > :: from () noexcept { return schema_version (s_microformats, 1, 0); }
+template < > int schema_detail < s_microformats > :: count () noexcept { return 255; }
+template < > schema_version schema_detail < s_microformats > :: to () noexcept { return schema_version (s_microformats, 2, 255); }
 
-template < > bool schema_detail < s_music > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t )
+template < > bool schema_detail < s_music > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
-template < > schema_version schema_detail < s_music > :: from () { return schema_version (s_music, HTML_2012, 0); }
-template < > int schema_detail < s_music > :: count () { return 4; }
-template < > schema_version schema_detail < s_music > :: to () { return schema_version (s_music, HTML_LATEST_YEAR, 0); }
+template < > schema_version schema_detail < s_music > :: from () noexcept { return schema_version (s_music, HTML_2012, 0); }
+template < > int schema_detail < s_music > :: count () noexcept { return 4; }
+template < > schema_version schema_detail < s_music > :: to () noexcept { return schema_version (s_music, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_none > :: is_this_valid (const unsigned char , const unsigned char , const flags_t )
+template < > bool schema_detail < s_none > :: is_this_valid (const unsigned char , const unsigned char , const flags_t ) noexcept
 {   return false; }
-template < > bool schema_detail < s_none > :: faux ()
+template < > bool schema_detail < s_none > :: faux () noexcept
 {   return true; }
 
-template < > bool schema_detail < s_og > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t )
+template < > bool schema_detail < s_og > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
 {   return (mjr >= HTML_2010) && (mjr <= HTML_LATEST_YEAR); }
-template < > schema_version schema_detail < s_og > :: from () { return schema_version (s_og, HTML_2010, 0); }
-template < > int schema_detail < s_og > :: count () { return 5; }
-template < > schema_version schema_detail < s_og > :: to () { return schema_version (s_og, HTML_LATEST_YEAR, 0); }
+template < > schema_version schema_detail < s_og > :: from () noexcept { return schema_version (s_og, HTML_2010, 0); }
+template < > int schema_detail < s_og > :: count () noexcept { return 5; }
+template < > schema_version schema_detail < s_og > :: to () noexcept { return schema_version (s_og, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_owl > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_owl > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 1) || (mjr == 2); }
-template < > schema_version schema_detail < s_owl > :: from () { return schema_version (s_owl, 1, 0); }
-template < > int schema_detail < s_owl > :: count () { return 2; }
-template < > schema_version schema_detail < s_owl > :: to () { return schema_version (s_owl, 2, 0); }
+template < > schema_version schema_detail < s_owl > :: from () noexcept { return schema_version (s_owl, 1, 0); }
+template < > int schema_detail < s_owl > :: count () noexcept { return 2; }
+template < > schema_version schema_detail < s_owl > :: to () noexcept { return schema_version (s_owl, 2, 0); }
 
-template < > bool schema_detail < s_profile > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t )
+template < > bool schema_detail < s_profile > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
-template < > schema_version schema_detail < s_profile > :: from () { return schema_version (s_profile, HTML_2012, 0); }
-template < > int schema_detail < s_profile > :: count () { return 4; }
-template < > schema_version schema_detail < s_profile > :: to () { return schema_version (s_profile, HTML_LATEST_YEAR, 0); }
+template < > schema_version schema_detail < s_profile > :: from () noexcept { return schema_version (s_profile, HTML_2012, 0); }
+template < > int schema_detail < s_profile > :: count () noexcept { return 4; }
+template < > schema_version schema_detail < s_profile > :: to () noexcept { return schema_version (s_profile, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_rdf > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_rdf > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 4); }
-template < > schema_version schema_detail < s_rdf > :: from () { return schema_version (s_rdf, 1, 0); }
-template < > int schema_detail < s_rdf > :: count () { return 4; }
-template < > schema_version schema_detail < s_rdf > :: to () { return schema_version (s_rdf, 1, 3); }
+template < > schema_version schema_detail < s_rdf > :: from () noexcept { return schema_version (s_rdf, 1, 0); }
+template < > int schema_detail < s_rdf > :: count () noexcept { return 4; }
+template < > schema_version schema_detail < s_rdf > :: to () noexcept { return schema_version (s_rdf, 1, 3); }
 
-template < > bool schema_detail < s_rdfa > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_rdfa > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 4); }
-template < > schema_version schema_detail < s_rdfa > :: from () { return schema_version (s_rdfa, 1, 0); }
-template < > int schema_detail < s_rdfa > :: count () { return 4; }
-template < > schema_version schema_detail < s_rdfa > :: to () { return schema_version (s_rdfa, 1, 3); }
+template < > schema_version schema_detail < s_rdfa > :: from () noexcept { return schema_version (s_rdfa, 1, 0); }
+template < > int schema_detail < s_rdfa > :: count () noexcept { return 4; }
+template < > schema_version schema_detail < s_rdfa > :: to () noexcept { return schema_version (s_rdfa, 1, 3); }
 
-template < > bool schema_detail < s_schema > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t flags)
+template < > bool schema_detail < s_schema > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept
 {   if (mjr > schema_major_max) return false;
     switch (mjr)
     {   case 0 :
@@ -349,18 +349,18 @@ template < > bool schema_detail < s_schema > :: is_this_valid (const unsigned ch
         case 9 : return true;
         default : break; }
     return false; }
-template < > schema_version schema_detail < s_schema > :: from () { return schema_version (s_schema, 2, 0); }
-template < > int schema_detail < s_schema > :: count () { return 19; }
-template < > schema_version schema_detail < s_schema > :: to () { return schema_version (s_schema, 13, 0); }
+template < > schema_version schema_detail < s_schema > :: from () noexcept { return schema_version (s_schema, 2, 0); }
+template < > int schema_detail < s_schema > :: count () noexcept { return 19; }
+template < > schema_version schema_detail < s_schema > :: to () noexcept { return schema_version (s_schema, 13, 0); }
 
-template < > bool schema_detail < s_vann > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_vann > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
-template < > schema_version schema_detail < s_vann > :: from () { return schema_version (s_vann, 1, 0); }
-template < > int schema_detail < s_vann > :: count () { return 2; }
-template < > schema_version schema_detail < s_vann > :: to () { return schema_version (s_vann, 1, 1); }
+template < > schema_version schema_detail < s_vann > :: from () noexcept { return schema_version (s_vann, 1, 0); }
+template < > int schema_detail < s_vann > :: count () noexcept { return 2; }
+template < > schema_version schema_detail < s_vann > :: to () noexcept { return schema_version (s_vann, 1, 1); }
 
-template < > bool schema_detail < s_vcard > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t f)
+template < > bool schema_detail < s_vcard > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t f) noexcept
 {   if (mnr != 0) return false;
     switch (mjr)
     {   case 1 :
@@ -369,31 +369,31 @@ template < > bool schema_detail < s_vcard > :: is_this_valid (const unsigned cha
         case 2 : return (f & SV_VC_NOT2) == 0;
         default : break; }
     return false; }
-template < > schema_version schema_detail < s_vcard > :: from () { return vcard_2001; }
-template < > int schema_detail < s_vcard > :: count () { return 4; }
-template < > bool schema_detail < s_vcard > :: is_this_deprecated (const unsigned char mjr, const unsigned char , const flags_t flags)
+template < > schema_version schema_detail < s_vcard > :: from () noexcept { return vcard_2001; }
+template < > int schema_detail < s_vcard > :: count () noexcept { return 4; }
+template < > bool schema_detail < s_vcard > :: is_this_deprecated (const unsigned char mjr, const unsigned char , const flags_t flags) noexcept
     {   if ((flags & SV_DEPRECATED) == SV_DEPRECATED) return true;
         return ((mjr == 4) && ((flags & SV_VC_DEP4) == SV_VC_DEP4)); }
-template < > schema_version schema_detail < s_vcard > :: to () { return vcard_2014; }
+template < > schema_version schema_detail < s_vcard > :: to () noexcept { return vcard_2014; }
 
-template < > bool schema_detail < s_video > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t )
+template < > bool schema_detail < s_video > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
-template < > schema_version schema_detail < s_video > :: from () { return schema_version (s_video, HTML_2012, 0); }
-template < > int schema_detail < s_video > :: count () { return 4; }
-template < > schema_version schema_detail < s_video > :: to () { return schema_version (s_video, HTML_LATEST_YEAR, 0); }
+template < > schema_version schema_detail < s_video > :: from () noexcept { return schema_version (s_video, HTML_2012, 0); }
+template < > int schema_detail < s_video > :: count () noexcept { return 4; }
+template < > schema_version schema_detail < s_video > :: to () noexcept { return schema_version (s_video, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_website > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t )
+template < > bool schema_detail < s_website > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
-template < > schema_version schema_detail < s_website > :: from () { return schema_version (s_website, HTML_2012, 0); }
-template < > int schema_detail < s_website > :: count () { return 4; }
-template < > schema_version schema_detail < s_website > :: to () { return schema_version (s_website, HTML_LATEST_YEAR, 0); }
+template < > schema_version schema_detail < s_website > :: from () noexcept { return schema_version (s_website, HTML_2012, 0); }
+template < > int schema_detail < s_website > :: count () noexcept { return 4; }
+template < > schema_version schema_detail < s_website > :: to () noexcept { return schema_version (s_website, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_xsd > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t )
+template < > bool schema_detail < s_xsd > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
-template < > schema_version schema_detail < s_xsd > :: from () { return schema_version (s_xsd, 1, 0); }
-template < > int schema_detail < s_xsd > :: count () { return 2; }
-template < > schema_version schema_detail < s_xsd > :: to () { return schema_version (s_xsd, 1, 1); }
+template < > schema_version schema_detail < s_xsd > :: from () noexcept { return schema_version (s_xsd, 1, 0); }
+template < > int schema_detail < s_xsd > :: count () noexcept { return 2; }
+template < > schema_version schema_detail < s_xsd > :: to () noexcept { return schema_version (s_xsd, 1, 1); }
 
 template < e_schema V, e_schema... Vs > struct schemas : schemas < Vs... >
 {   static schema_version get_corresponding (const e_schema es, const html_version& v)
@@ -407,22 +407,22 @@ template < e_schema V, e_schema... Vs > struct schemas : schemas < Vs... >
     static ::std::string name (const e_schema es, const unsigned char mjr, const unsigned char mnr)
     {   if (es == V) return schema_detail < V >::name (name (es), mjr, mnr);
         return schemas < Vs... > :: name (es, mjr, mnr); }
-    static schema_version from (const e_schema es)
+    static schema_version from (const e_schema es) noexcept
     {   if (es == V) return schema_detail < V > :: from ();
         return schemas < Vs... > :: from (es); }
-    static schema_version to (const e_schema es)
+    static schema_version to (const e_schema es) noexcept
     {   if (es == V) return schema_detail < V > :: to ();
         return schemas < Vs... > :: to (es); }
-    static int count (const e_schema es)
+    static int count (const e_schema es) noexcept
     {   if (es == V) return schema_detail < V > :: count ();
         return schemas < Vs... > :: count (es); }
-    static bool faux (const e_schema es)
+    static bool faux (const e_schema es) noexcept
     {   if (es == V) return schema_detail < V > :: faux ();
         return schemas < Vs... > :: faux (es); }
-    static bool is_this_deprecated (const e_schema es, const unsigned char mjr, const unsigned char mnr, const flags_t flags)
+    static bool is_this_deprecated (const e_schema es, const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept
     {   if (es == V) return schema_detail < V > :: is_this_deprecated (mjr, mnr, flags);
         return schemas < Vs... > :: is_this_deprecated (es, mjr, mnr, flags); }
-    static bool is_valid (const e_schema es, const unsigned char mjr, const unsigned char mnr, const flags_t flags)
+    static bool is_valid (const e_schema es, const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept
     {   if (es == V) return schema_detail < V > :: is_this_valid (mjr, mnr, flags);
         return schemas < Vs... > :: is_valid (es, mjr, mnr, flags); } };
 
@@ -439,26 +439,26 @@ template < > struct schemas < s_error >
     static ::std::string name (const e_schema )
     {   GRACEFUL_CRASH (__FILE__, __LINE__);
         UNREACHABLE (return "*** NO SUCH SCHEMA "); }
-    static schema_version from (const e_schema )
+    static schema_version from (const e_schema ) noexcept
     {   return error_schema; }
-    static schema_version to (const e_schema )
+    static schema_version to (const e_schema ) noexcept
     {   return error_schema; }
-    static int count (const e_schema )
+    static int count (const e_schema ) noexcept
     {   return 0; }
-    static bool faux (const e_schema )
+    static bool faux (const e_schema ) noexcept
     {   return true; }
-    static bool is_this_deprecated (const e_schema , const unsigned char , const unsigned char , const flags_t )
+    static bool is_this_deprecated (const e_schema , const unsigned char , const unsigned char , const flags_t ) noexcept
     {   return false; }
-    static bool is_valid (const e_schema , const unsigned char , const unsigned char , const flags_t )
+    static bool is_valid (const e_schema , const unsigned char , const unsigned char , const flags_t ) noexcept
     {   return false; } };
 
-schema_version get_first_schema_version (const e_schema es)
+schema_version get_first_schema_version (const e_schema es) noexcept
 {   return schemas < SCHEMAS > :: from (es); }
-schema_version get_last_schema_version (const e_schema es)
+schema_version get_last_schema_version (const e_schema es) noexcept
 {   return schemas < SCHEMAS > :: to (es); }
-int get_schema_version_count (const e_schema es)
+int get_schema_version_count (const e_schema es) noexcept
 {   return schemas < SCHEMAS > :: count (es); }
-bool is_faux_schema (const e_schema es)
+bool is_faux_schema (const e_schema es) noexcept
 {   return schemas < SCHEMAS > :: faux (es); }
 
 schema_version::schema_version (const html_version& v) noexcept
@@ -468,14 +468,14 @@ schema_version::schema_version (const html_version& v) noexcept
 
 void schema_version::init (nitpick& DEBUGONLY (nits))
 {   PRESUME (mss.empty (), __FILE__, __LINE__);
-    for (int i = 0; sh [i].schema_.root () != s_error; ++i)
-        mss.insert (mss_t::value_type (sh [i].schema_.root (), &sh [i]));
+    for (int i = 0; gsl::at (sh, i).schema_.root () != s_error; ++i)
+        mss.insert (mss_t::value_type (gsl::at (sh, i).schema_.root (), &gsl::at (sh, i)));
 #ifdef _DEBUG
     for (int i = 1; i < s_error; ++i)
         if (mss.find (static_cast < e_schema > (i)) == mss.cend ())
             nits.pick (nit_missing_schema, es_catastrophic, ec_schema, "Corresponding HTML version for schema ", i, " missing");
 #endif
-    for (int i = 0; i < s_error; ++i) va [i] = error_schema; }
+    for (int i = 0; i < s_error; ++i) gsl::at (va, i) = error_schema; }
 
 ::std::string schema_version::name (const e_schema es)
 {   if (is_faux_schema (es)) return "";

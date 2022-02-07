@@ -22,10 +22,11 @@ ICU_ROOT to point to the ICU library source root directory (https://icu-project.
 SSCPATH to point to the ssc source directory (https://ssc.lu/).
 
 
-Unii & mock Unii
+Unii & mock unii
 ----------------
-Building SSC under unix, including macos, requires a development installation of hunspell
-(https://hunspell.github.io/), & these environment variables defined:
+Building SSC under unii, including macos, requires a development installation of hunspell
+(https://hunspell.github.io/). Linux requires these environment variables; macos will
+take note of them if they are present (they're not needed under OpenBSD, it just works):
 HUNSPELL_INCLUDE to point to the hunspell include directory 
 HUNSPELL_LIB to point to the hunspell library directory
 HUNSPELL_VERSION, the actual library name (such as "hunspell-1.7.so")
@@ -66,7 +67,7 @@ Linux: Centos 8 amd64, Ubuntu Server 20.04/20.10 amd64
 OpenBSD 6.8 / 6.9 / 7.0, amd64
 MacOS: Monterey, Big Sur, Catalina, Mojave, & High Sierra (all intel x64)
 
-Note: Use clang if possible, gcc takes a wee while to build.
+Note: Use clang if possible, gcc takes a wee while.
 
 OpenBSD
 -------

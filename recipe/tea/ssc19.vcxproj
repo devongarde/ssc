@@ -5,12 +5,12 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Fast|Win32">
-      <Configuration>Fast</Configuration>
+    <ProjectConfiguration Include="profile|Win32">
+      <Configuration>profile</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Fast|x64">
-      <Configuration>Fast</Configuration>
+    <ProjectConfiguration Include="profile|x64">
+      <Configuration>profile</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
@@ -48,6 +48,7 @@
     <ClInclude Include="..\heater\feedback\nitpick.h" />
     <ClInclude Include="..\heater\icu\charset.h" />
     <ClInclude Include="..\heater\icu\converter.h" />
+    <ClInclude Include="..\heater\icu\lingo.h" />
     <ClInclude Include="..\heater\icu\wrapper.h" />
     <ClInclude Include="..\heater\main\args.h" />
     <ClInclude Include="..\heater\main\context.h" />
@@ -102,6 +103,7 @@
     <ClInclude Include="..\heater\schema\schema_structure.h" />
     <ClInclude Include="..\heater\schema\schema_type.h" />
     <ClInclude Include="..\heater\schema\schema_version.h" />
+    <ClInclude Include="..\heater\spell\phrase.h" />
     <ClInclude Include="..\heater\spell\spell.h" />
     <ClInclude Include="..\heater\stats\stats.h" />
     <ClInclude Include="..\heater\stats\stats0.h" />
@@ -251,6 +253,7 @@
     <ClCompile Include="..\sauce\feedback\nitpick.cpp" />
     <ClCompile Include="..\sauce\icu\charset.cpp" />
     <ClCompile Include="..\sauce\icu\converter.cpp" />
+    <ClCompile Include="..\sauce\icu\lingo.cpp" />
     <ClCompile Include="..\sauce\icu\wrapper.cpp" />
     <ClCompile Include="..\sauce\main\context.cpp" />
     <ClCompile Include="..\sauce\main\abort.cpp" />
@@ -259,16 +262,16 @@
     <ClCompile Include="..\sauce\main\standard.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profile|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profile|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">main\standard.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profile|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main\standard.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profile|x64'">main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="..\sauce\main\version.cpp" />
     <ClCompile Include="..\sauce\microdata\microdata_export.cpp" />
@@ -855,12 +858,16 @@
     <None Include="..\toast\json-ld\schemaorg\index.html" />
     <None Include="..\toast\json-ld\schemaorg\jsonld.conf" />
     <None Include="..\toast\json-ld\schemaorg\jsonld.spec" />
-    <None Include="..\toast\link\css-good.css" />
-    <None Include="..\toast\link\index.html" />
-    <None Include="..\toast\link\link.conf" />
-    <None Include="..\toast\link\link.spec" />
-    <None Include="..\toast\link\subdir\target.html" />
-    <None Include="..\toast\link\target.html" />
+    <None Include="..\toast\link\example\index.html" />
+    <None Include="..\toast\link\example\link.conf" />
+    <None Include="..\toast\link\example\link.spec" />
+    <None Include="..\toast\link\link\css-good.css" />
+    <None Include="..\toast\link\link\index.html" />
+    <None Include="..\toast\link\link\link.conf" />
+    <None Include="..\toast\link\link\link.spec" />
+    <None Include="..\toast\link\link\subdir\target.html" />
+    <None Include="..\toast\link\link\target.html" />
+    <None Include="..\toast\link\virtual\target.html" />
     <None Include="..\toast\living\apr21\404.html" />
     <None Include="..\toast\living\apr21\a-1.html" />
     <None Include="..\toast\living\apr21\a.html" />
@@ -6045,16 +6052,6 @@
     <None Include="..\toast\other\simple\index.html" />
     <None Include="..\toast\other\simple\simple.conf" />
     <None Include="..\toast\other\simple\simple.spec" />
-    <None Include="..\toast\other\spell\de.html" />
-    <None Include="..\toast\other\spell\en-gb.html" />
-    <None Include="..\toast\other\spell\mar.html" />
-    <None Include="..\toast\other\spell\en-us.html" />
-    <None Include="..\toast\other\spell\en.html" />
-    <None Include="..\toast\other\spell\index.html" />
-    <None Include="..\toast\other\spell\list-en.html" />
-    <None Include="..\toast\other\spell\list-gb.html" />
-    <None Include="..\toast\other\spell\spell.conf" />
-    <None Include="..\toast\other\spell\spell.spec" />
     <None Include="..\toast\other\ssi\index.html" />
     <None Include="..\toast\other\ssi\ssi-comment.html" />
     <None Include="..\toast\other\ssi\ssi-config.html" />
@@ -6065,10 +6062,6 @@
     <None Include="..\toast\other\ssi\ssi.conf" />
     <None Include="..\toast\other\ssi\ssi.inc" />
     <None Include="..\toast\other\ssi\ssi.spec" />
-    <None Include="..\toast\output\default\default.out.model" />
-    <None Include="..\toast\output\default\index.html" />
-    <None Include="..\toast\output\default\output.conf" />
-    <None Include="..\toast\output\default\output.spec" />
     <None Include="..\toast\output\html\html.nit" />
     <None Include="..\toast\output\html\index.html" />
     <None Include="..\toast\output\html\index.html.model" />
@@ -6405,6 +6398,28 @@
     <None Include="..\toast\snippet\simple\snippet.conf" />
     <None Include="..\toast\snippet\simple\snippet.spec" />
     <None Include="..\toast\snippet\test.html" />
+    <None Include="..\toast\spell\case\case.html" />
+    <None Include="..\toast\spell\case\de.html" />
+    <None Include="..\toast\spell\case\index.html" />
+    <None Include="..\toast\spell\case\spell.conf" />
+    <None Include="..\toast\spell\case\spell.spec" />
+    <None Include="..\toast\spell\noicu\case.html" />
+    <None Include="..\toast\spell\noicu\de.html" />
+    <None Include="..\toast\spell\noicu\index.html" />
+    <None Include="..\toast\spell\noicu\spell.conf" />
+    <None Include="..\toast\spell\noicu\spell.spec" />
+    <None Include="..\toast\spell\spell\case.html" />
+    <None Include="..\toast\spell\spell\de.html" />
+    <None Include="..\toast\spell\spell\en-gb.html" />
+    <None Include="..\toast\spell\spell\en-us.html" />
+    <None Include="..\toast\spell\spell\en.html" />
+    <None Include="..\toast\spell\spell\index.html" />
+    <None Include="..\toast\spell\spell\list-en.html" />
+    <None Include="..\toast\spell\spell\list-gb.html" />
+    <None Include="..\toast\spell\spell\mar.html" />
+    <None Include="..\toast\spell\spell\spell.conf" />
+    <None Include="..\toast\spell\spell\spell.spec" />
+    <None Include="..\toast\spell\spell\wotsits.html" />
     <None Include="..\toast\stats\detail\index.html" />
     <None Include="..\toast\stats\detail\itemref.html" />
     <None Include="..\toast\stats\detail\keyword-1.html" />
@@ -7043,7 +7058,6 @@
     <None Include="..\toast\type\url\index.html" />
     <None Include="..\toast\type\url\url.conf" />
     <None Include="..\toast\type\url\url.spec" />
-    <None Include="..\toast\virtual\target.html" />
     <None Include="..\toast\w3\12458\1574-charset_iso_8859_7_greek.html" />
     <None Include="..\toast\w3\12458\197-iso88591_alias.html" />
     <None Include="..\toast\w3\12458\2329-html401-strict_iframe.html" />
@@ -7550,12 +7564,12 @@
     <Text Include="..\gen\gen.txt" />
     <Text Include="..\toast\conf\live\wordlist.txt" />
     <Text Include="..\toast\json-ld\README.txt" />
-    <Text Include="..\toast\other\spell\list.txt" />
+    <Text Include="..\toast\link\virtual\README.txt" />
     <Text Include="..\toast\README.txt" />
     <Text Include="..\toast\shadow\update\README.txt" />
     <Text Include="..\toast\snippet\README.txt" />
+    <Text Include="..\toast\spell\spell\list.txt" />
     <Text Include="..\toast\tmp\README.txt" />
-    <Text Include="..\toast\virtual\README.txt" />
     <Text Include="..\toast\webmention\headers\1.txt" />
     <Text Include="..\toast\webmention\headers\2.txt" />
     <Text Include="..\toast\webmention\headers\3.txt" />
@@ -7585,20 +7599,20 @@
     <None Include="..\toast\living\jul09\clock.manifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profile|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profile|Win32'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\living\jan10\clock.manifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profile|x64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -7624,7 +7638,7 @@
     <SpectreMitigation>Spectre</SpectreMitigation>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profile|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
@@ -7650,7 +7664,7 @@
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
     <SpectreMitigation>Spectre</SpectreMitigation>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profile|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
@@ -7670,7 +7684,7 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profile|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -7679,7 +7693,7 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profile|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -7693,15 +7707,15 @@
     <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profile|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\vs2019;$(LibraryPath)</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <ClangTidyChecks>
@@ -7711,12 +7725,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\vs2019;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profile|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\vs2019;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -7731,13 +7745,13 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
@@ -7761,7 +7775,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <Optimization>MinSpace</Optimization>
     </ClCompile>
     <Link>
@@ -7769,7 +7783,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>icuin.lib;icuio.lib;icutu.lib;icuuc.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
     </Link>
@@ -7778,7 +7792,7 @@
 $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profile|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -7793,14 +7807,15 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <Optimization>MinSpace</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>icuin.lib;icuio.lib;icutu.lib;icuuc.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
     </Link>
@@ -7823,14 +7838,14 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <ControlFlowGuard>false</ControlFlowGuard>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <DisableSpecificWarnings>26812</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
@@ -7854,7 +7869,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <Optimization>MinSpace</Optimization>
     </ClCompile>
     <Link>
@@ -7862,7 +7877,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>icuin.lib;icuio.lib;icutu.lib;icuuc.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
     </Link>
@@ -7870,7 +7885,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profile|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -7885,19 +7900,22 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <Optimization>MinSpace</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>icuin.lib;icuio.lib;icutu.lib;icuuc.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
+      <Profile>true</Profile>
+      <AdditionalOptions>/LTCG /GENPROFILE %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -318,3 +318,8 @@ element_node* elements_node::faux_node ()
     PRESUME (ven_.size () == 1, __FILE__, __LINE__);
     return &ven_.at (0); }
 
+vstr_t elements_node::words (nitpick& nits, const html_version& v) const
+{   vstr_t res;
+    for (::std::size_t i = 0; i < ven_.size (); ++i)
+        extend (res, ven_.at (i).words (nits, v));
+    return res; }

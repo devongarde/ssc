@@ -61,7 +61,7 @@ bool microformats::is_relational () const
             if (mf.get () -> is_relational ()) return true;
     return false; }
 
-void microformats::verify_attributes (nitpick& nits, const html_version& v, const elem& e, element* pe, const ::std::string& )
+void microformats::verify_attributes (nitpick& nits, const html_version& v, const elem& e, element* pe, const lingo& )
 {   for (auto mf : mf_)
         if (mf.is_allocated ())
             mf.get () -> verify_attribute (nits, v, e, pe); }

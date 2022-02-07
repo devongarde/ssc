@@ -5809,7 +5809,7 @@ void schema_property_init (nitpick& nits)
     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         mpp.insert (mpp_t::value_type (p -> prop_, p)); }
     for (int i = 1; i < sp_illegal; ++i)
-    {   e_schema_property sp = static_cast < e_schema_property > (i);
+    {   const e_schema_property sp = static_cast < e_schema_property > (i);
         if (mpp.find (sp) == mpp.cend ())
         {
 #ifdef _DEBUG

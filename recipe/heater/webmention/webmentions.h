@@ -26,7 +26,7 @@ class webmentions
     bool invalid_ = true;
     ::boost::filesystem::path control_filename_, generated_filename_;
     void make_generated_filename (const url& target);
-    bool load_templates (vstr_t& templates);
+    bool load_templates (nitpick& nits, vstr_t& templates);
 public:
     webmentions () = default;
     webmentions (nitpick& nits, const ::boost::filesystem::path& filename, const url& target)
@@ -45,5 +45,5 @@ public:
     bool write (nitpick& nits);
     bool any_invalid () const;
     bool invalid () const noexcept { return invalid_; }
-    bool create_html ();
+    bool create_html (nitpick& nits);
     ::std::string report () const; };

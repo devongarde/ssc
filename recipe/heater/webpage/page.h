@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/id.h"
 #include "microdata/microdata_itemscope.h"
 #include "spell/spell.h"
+#include "spell/phrase.h"
 
 class directory;
 class url;
@@ -54,31 +55,26 @@ class page
     nitpick nits_;
     uid_t euid_ = 0;
     itemscope_ptr itemscope_;
-    ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_, jsonld_, phrase_, phrase_lang_;
+    ::std::string lang_, charset_, title_, corpus_, keywords_, description_, author_, jsonld_;
+    phrase phrase_;
     url base_;
     ustr_t abbrs_;
     ::std::time_t updated_ = 0;
     friend class tag;
 public:
-    page () = delete;
-    page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d = nullptr, const e_charcode encoding = cc_ansi);
-    page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, directory* d = nullptr, const e_charcode encoding = cc_ansi);
-    explicit page (const ::std::string& content, const e_charcode encoding = cc_ansi);
-    page (const page& ) = default;
-    page (page&& ) noexcept = default;
-    page& operator = (const page& ) = default;
-    page& operator = (page&& ) noexcept = default;
-    ~page () = default;
+    page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d = nullptr);
+    page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, directory* d = nullptr);
+    explicit page (const ::std::string& content);
     void swap (page& p);
     void reset (const page& p);
     nitpick& nits () noexcept { return nits_; }
     const nitpick& nits () const noexcept { return nits_; }
-    bool parse (::std::string& content, const e_charcode encoding = cc_ansi);
+    bool parse (::std::string& content);
     bool invalid () const noexcept { return nodes_.invalid (); }
     bool check_links () const noexcept { return check_links_ && ! snippet_; }
     void check_links (const bool b) noexcept { check_links_ = b; }
     void examine ();
-    ::std::string find_webmention (const ::std::string& lang) const;
+    ::std::string find_webmention (const lingo& lang) const;
     ::std::string find_mention_info (const url& u, bool text, bool anything);
     ids_t& get_ids () noexcept { return ids_; }
     const ids_t& get_ids () const noexcept { return ids_; }
@@ -176,8 +172,10 @@ public:
     void add_depend (const fileindex_t dependency)
     {   add_dependency (ids_.ndx (), dependency); }
     void append_jsonld (const ::std::string& j);
-    void phrase (const ::std::string& lang, const ::std::string& s);
-    void phrase (nitpick& nits);
+    void phrasal (const lingo& lang, const ::std::string& s)
+    {   phrase_.extend (lang, s); }
+    void phrasal (nitpick& nits, const html_version& v)
+    {   phrase_.complete (nits, v); }
     ::std::string report (); };
 
 ::std::string get_page_url (const ::std::string& url);

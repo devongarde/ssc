@@ -125,7 +125,7 @@ bool attributes :: verify_url (nitpick& nits, const html_version& v, element& e)
                         res = false; // this way, all URL errors are reported, not just the first
     return res; }
 
-void attributes :: verify_attributes (nitpick& nits, const html_version& v, element* pe, const ::std::string& lang)
+void attributes :: verify_attributes (nitpick& nits, const html_version& v, element* pe, const lingo& lang)
 {   VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     for (size_t i = 0; i < aar_.size (); ++i)
         if ((aar_.at (i).get () == nullptr) || aar_.at (i) -> unknown ())
@@ -136,7 +136,8 @@ void attributes :: verify_attributes (nitpick& nits, const html_version& v, elem
             if (aar_.at (i) -> good () || aar_.at (i) -> empty ()) aar_.at (i) -> verify_attribute (nits, v, pe -> node ().id (), pe, attr::name (static_cast < e_attribute > (i)));
             if (aar_.at (i) -> verify_version (nits, v, e)) pe -> own_attributes ().set (aar_.at (i) -> id ());
             else nits.pick (nit_wrong_version, es_error, ec_element, ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " is invalid with <", ::boost::to_upper_copy (elem::name (e)), "> in ", v.report ());
-            if (attr::spellcheck (static_cast < e_attribute > (i))) spell (nits, lang, aar_.at (i) -> get_string ()); } }
+            if (attr::spellcheck (static_cast < e_attribute > (i)))
+                spell (nits, v, lang, aar_.at (i) -> get_string ()); } }
 
 void attributes :: mark (page& p, const e_attribute a)
 {   if (has_attribute (box_.tag (), a)) p.mark (box_.tag (), a); }

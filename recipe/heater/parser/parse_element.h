@@ -46,6 +46,7 @@ class element_node
     prefixes_ptr prefixes_, rdf_schemas_;
     rdf_ptr rdf_, rdfa_;
     ::std::string inner_text (const bool simplify = false) const;
+    ::std::string inner_text (nitpick& nits, const html_version& v) const;
     void init ();
     void manage_reversioner ();
 
@@ -76,6 +77,8 @@ class element_node
                 return mummy -> rdfa_;
         return rdf_ptr (); }
 
+    ::std::string word (bool simplify) const;
+    ::std::string word (nitpick& nits, const html_version& v) const;
 public:
     element_node () = default;
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
@@ -162,7 +165,6 @@ public:
 #endif // _MSC_VER
     elem& id () noexcept { return elem_; }
     const elem& id () const noexcept { return elem_; }
-
     const elements_node* box () const noexcept { return box_; }
 
 #ifdef _MSC_VER
@@ -222,6 +224,8 @@ public:
 #pragma warning (pop)
 #endif // _MSC_VER
 
-    e_element tag () const noexcept { return elem_.get (); }
-
+    e_element tag () const noexcept
+    {   return elem_.get (); }
+    vstr_t words (nitpick& nits, const html_version& v) const
+    {   return split_by_space (inner_text (nits, v)); }
     ::std::string rpt (const int level = 0); };

@@ -22,7 +22,8 @@
 ./ssc -f ../toast/HTML/tags/tags.conf
 ./ssc -f ../toast/json-ld/as/jsonld.conf
 ./ssc -f ../toast/json-ld/schemaorg/jsonld.conf
-./ssc -f ../toast/link/link.conf
+./ssc -f ../toast/link/example/link.conf
+./ssc -f ../toast/link/link/link.conf
 ./ssc -f ../toast/living/jul07/living.conf
 ./ssc -f ../toast/living/jan08/living.conf
 ./ssc -f ../toast/living/jul08/living.conf
@@ -117,11 +118,13 @@
 ./ssc -f ../toast/shadow/pages/pages.conf
 ./ssc -f ../toast/shadow/soft/soft.conf
 ./ssc -f ../toast/shadow/softover/softover.conf
-./ssc -f ../toast/shadow/spell/spell.conf
 ./ssc -f ../toast/shadow/ssi/ssi.conf
 ./ssc -f ../toast/shadow/update/update.conf
 ./ssc -f ../toast/snippet/conf/snippet.conf
 ./ssc -f ../toast/snippet/kiwi/snippet.conf
+./ssc -f ../toast/spell/case/ssi.conf
+./ssc -f ../toast/spell/noicu/ssi.conf
+./ssc -f ../toast/spell/spell/ssi.conf
 ./ssc -f ../toast/stats/detail/stats.conf
 ./ssc -f ../toast/stats/single/stats.conf
 ./ssc -f ../toast/stats/summary/stats.conf

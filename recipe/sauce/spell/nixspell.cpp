@@ -19,12 +19,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "spell/spell.h"
 
 #ifdef GENNIX
+#include "spell/spell.h"
 #include "main/context.h"
+#include "parser/text.h"
+#include "icu/lingo.h"
 #include <hunspell.hxx>
 ::boost::filesystem::path dicts;
+
+#define AFFINITY_EXTENSION ".aff"
+#define DICTIONARY_EXTENSION ".dic"
 
 class hun
 {   typedef ::std::shared_ptr < Hunspell > hp_t;
@@ -33,53 +38,97 @@ public:
     bool valid () const { return (hun_.get () != nullptr); }
     void set_dead ()
     {   if (valid ()) hun_.reset (); }
-    explicit hun (nitpick& nits, const ::boost::filesystem::path& p, const ::std::string& lang);
-    int add (const ::std::string& word)
+    explicit hun (nitpick& nits, const ::boost::filesystem::path& p, const lingo& lang);
+    int add (nitpick& nits, const ::std::string& word)
     {   PRESUME (valid (), __FILE__, __LINE__);
-        return hun_ -> add (word); } // delightfully, the return value is undocumented
-    const ::std::string& version () const
+        int n = 0;
+        try
+        {   n = hun_ -> add (word); } // delightfully, the return value is undocumented
+        catch (::std::exception& e)
+        {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot add ", quote (word), " to dictionary (", e.what (), ")");
+            n = -1; }
+        catch (...)
+        {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot add ", quote (word), " to dictionary (unknown exception)");
+            n = -1; }
+        return n; }
+    const ::std::string version (nitpick& nits) const
     {   PRESUME (valid (), __FILE__, __LINE__);
-        return hun_ -> get_version_cpp (); }
-    bool spell (const ::std::string& word) const
+        try
+        {   return hun_ -> get_version_cpp (); }
+        catch (::std::exception& e)
+        {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot get hunspell version (", e.what (), ")"); }
+        catch (...)
+        {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot hunspell version (unknown exception)"); }
+         return ""; }
+    bool spell (nitpick& nits, const ::std::string& word) const
     {   PRESUME (valid (), __FILE__, __LINE__);
-        return hun_ -> spell (word); }
-    vstr_t suggestions (const ::std::string& word) const
+        try
+        {   return hun_ -> spell (word); }
+        catch (::std::exception& e)
+        {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot check spelling of ", quote (word), " (", e.what (), ")"); }
+        catch (...)
+        {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot check spelling of ", quote (word), " (unknown exception)"); }
+        return true; }
+    vstr_t suggestions (nitpick& nits, const ::std::string& word) const
     {   PRESUME (valid (), __FILE__, __LINE__);
-        return hun_ -> suggest (word); } };
+        try
+        {   return hun_ -> suggest (word); }
+        catch (::std::exception& e)
+        {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot get suggestions for ", quote (word), " (", e.what (), ")"); }
+        catch (...)
+        {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot get suggestions for ", quote (word), " (unknown exception)"); }
+       return vstr_t (); } };
 
 typedef ssc_mm < ::std::string, hun > mhun_t;
 mhun_t mh;
 
-::std::string fix_hunspell_lang_param (const ::std::string& lang)
+::std::string fix_hunspell_lang_param (const ::std::string& s)
     // hunspell almost but not quite uses ISO IDs for many dictionary names; it often switches '-' for '_'
-{   ::std::string res (get_dict (lang));
-    if (res.empty ())
-    {   res = lang;
-        ::std::string::size_type pos = res.find ('-');
-        if (pos != ::std::string::npos)
-            res.replace (pos, 1, "_"); }
+{   ::std::string res (s);
+    ::std::string::size_type pos = res.find ('_');
+    if ((pos == 2) || (pos == 3)) res.replace (pos, 1, "-");
     return res; }
 
-hun::hun (nitpick& nits, const ::boost::filesystem::path& p, const ::std::string& lang)
-{   ::std::string base (fix_hunspell_lang_param (lang));
+::std::string make_hunspell_lang_param (const ::std::string& s)
+    // hunspell almost but not quite uses ISO IDs for many dictionary names; it often switches '-' for '_'
+{   ::std::string res (s);
+    ::std::string::size_type pos = res.find ('-');
+    if ((pos == 2) || (pos == 3)) res.replace (pos, 1, "_");
+    return res; }
+
+hun::hun (nitpick& nits, const ::boost::filesystem::path& p, const lingo& lang)
+{   ::std::string dialect (lingo::standard_dialect (lang.dialect ()));
+    ::std::string base (get_lang_dict (dialect));
+    if (base.empty ()) base = make_hunspell_lang_param (dialect);
     ::boost::filesystem::path aff (p);
-    aff /= base; aff += ".aff";
+    aff /= base; aff += AFFINITY_EXTENSION;
     ::boost::filesystem::path dic (p);
-    dic /= base; dic += ".dic";
+    dic /= base; dic += DICTIONARY_EXTENSION;
     if (! ::boost::filesystem::exists (dic))
-    {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot find the dictionary for ", quote (lang), " (seeking ", quote (dic.string ()), ")");
+    {   if (context.spell_deduced ())
+            nits.pick (nit_no_spell, es_comment, ec_spell, "Cannot find the dictionary for ", quote (lang.dialect ()), " (seeking ", quote (dic.string ()), ")");
+        else nits.pick (nit_no_spell, es_error, ec_spell, "Cannot find the dictionary for ", quote (lang.dialect ()), " (seeking ", quote (dic.string ()), ")");
         return; }
     if (! ::boost::filesystem::exists (aff))
-    {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot find the affices for ", quote (lang), " (seeking ", quote (aff.string ()), ")");
+    {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot find the affixes for ", quote (lang.dialect ()), " (seeking ", quote (aff.string ()), ")");
         return; }
-    hun_ = hp_t (new Hunspell (aff.c_str (), dic.c_str ()));
+    try
+    {   hun_ = hp_t (new Hunspell (aff.string ().c_str (), dic.string ().c_str (), nullptr)); }
+    catch (::std::exception& e)
+    {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot create ", quote (lang.dialect ()), " spellchecker (", e.what (), ")");
+        hun_ = nullptr;
+        return; }
+    catch (...)
+    {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot create ", quote (lang.dialect ()), " spellchecker (unknown exception)");
+        hun_ = nullptr;
+        return; }
     if (hun_ == nullptr)
-    {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot create ", quote (lang), " spellchecker");
-        return; } }
+    {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot create ", quote (lang.dialect ()), " spellchecker");
+        return; }
+    nits.pick (nit_dictionary, es_info, ec_spell, "Found dictionary for ", quote (lang.dialect ())); }
 
 void spell_init (nitpick& )
-{   void init_ab ();
-    init_ab (); }
+{  }
 
 void spell_free ()
 {   for (mhun_t::iterator i = mh.begin (); i != mh.end (); ++i)
@@ -88,21 +137,21 @@ void spell_free ()
 void spell_terminate ()
 { }
 
-void apply_wordlist (mhun_t::iterator& hi, const vstr_t& list)
+void apply_wordlist (nitpick& nits, mhun_t::iterator& hi, const vstr_t& list)
 {   for (auto s : list)
         if (! s.empty ())
             for (auto ss : split_by_whitespace_and (s, PUNCTUATION))
-                hi -> second.add (ss); }
+                hi -> second.add (nits, ss); }
 
-void apply_wordlists (mhun_t::iterator& hi, const ::std::string& lang)
+void apply_wordlists (nitpick& nits, mhun_t::iterator& hi, const ::std::string& lang)
 {   for (mssfl_t::const_iterator i = mssfl.find (lang); i != mssfl.cend (); ++i)
-        apply_wordlist (hi, i -> second); }
+        apply_wordlist (nits, hi, i -> second); }
 
-void spell (nitpick& nits, const ::std::string& lang, const ::std::string& text)
-{   PRESUME (! lang.empty (), __FILE__, __LINE__);
-    if (! context.spell ()) return;
-    if (text.empty () || tart (text).empty ()) return;
-    mhun_t::iterator hi = mh.find (lang);
+void spell (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text)
+{   if (! context.spell ()) return;
+    if (text.empty () || tart (text).empty () || lang.invalid ()) return;
+    ::std::string l (lang.dialect ());
+    mhun_t::iterator hi = mh.find (l);
     if (hi != mh.end ())
     {   if (! hi -> second.valid ()) return; }
     else try
@@ -121,52 +170,82 @@ void spell (nitpick& nits, const ::std::string& lang, const ::std::string& text)
                 context.spell (false);
                 return; } }
         hun ha (nits, dicts, lang);
-        if (ha.valid ()) hi = mh.emplace (mhun_t::value_type (lang, ha));
-        if (hi == mh.end ())
-        {   nits.pick (nit_no_exec, es_error, ec_spell, "Attempt to prepare spellchecker for ", lang, " failed badly");
-            context.spell (false);
+        hi = mh.emplace (mhun_t::value_type (l, ha));
+        if (! ha.valid ())
+        {   ha.set_dead ();
+            if (context.spell_deduced ()) nits.pick (nit_no_exec, es_comment, ec_spell, "Unable to initialise spellchecker for ", lang.original ());
+            else nits.pick (nit_no_exec, es_error, ec_spell, "Unable to initialise spellchecker for ", lang.original ());
             return; }
+        if (hi == mh.end ())
+        {   if ((l.size () < 8) && (l.find_first_of ("-_") == ::std::string::npos))
+            {   ::std::string standard = lingo::standard_dialect (l);
+                if (standard != l) hi = mh.emplace (mhun_t::value_type (standard, ha)); }
+            if (hi == mh.end ())
+            {   nits.pick (nit_no_exec, es_error, ec_spell, "Attempt to prepare spellchecker for ", lang.original (), " failed badly");
+                context.spell (false);
+                return; } }
         if (! hi -> second.valid ())
-        {   nits.pick (nit_no_exec, es_error, ec_spell, "Attempt to prepare spellchecker for ", lang, " failed");
-            context.spell (false);
+        {   nits.pick (nit_no_exec, es_error, ec_spell, "Attempt to prepare spellchecker for ", lang.original (), " failed");
+            hi -> second.set_dead ();
             return; }
         if (! hi -> second.valid ()) return;
-        nits.pick (nit_no_exec, es_debug, ec_spell, "Spellchecker ", hi -> second.version (), " for ", lang, " launched");
-        apply_wordlist (hi, context.spellings ());
-        apply_wordlists (hi, "");
-        apply_wordlists (hi, lang);
-        const ::std::string::size_type pos = lang.find ('-');
-        if (pos != ::std::string::npos) apply_wordlists (hi, lang.substr (0, pos));
-        else apply_wordlists (hi, precise_language (lang)); }
+        nits.pick (nit_no_exec, es_debug, ec_spell, "Spellchecker ", hi -> second.version (nits), " for ", lang.original (), " launched");
+        apply_wordlist (nits, hi, context.spellings ());
+        apply_wordlists (nits, hi, "");
+        apply_wordlists (nits, hi, l);
+        const ::std::string::size_type pos = l.find ('-');
+        if (pos != ::std::string::npos) apply_wordlists (nits, hi, l.substr (0, pos));
+        else apply_wordlists (nits, hi, l); }
     catch (const ::std::system_error& ex)
-    {   nits.pick (nit_no_exec, es_error, ec_spell, "Exception when launching spellchecker for ", lang, " (", ex.what (), ")");
+    {   nits.pick (nit_no_exec, es_error, ec_spell, "Exception when launching spellchecker for ", lang.original (), " (", ex.what (), ")");
         context.spell (false);
         return; }
     catch (...)
-    {   nits.pick (nit_no_exec, es_error, ec_spell, "Unknown exception when launching spellchecker for ", lang);
+    {   nits.pick (nit_no_exec, es_error, ec_spell, "Unknown exception when launching spellchecker for ", lang.original ());
         context.spell (false);
         return; }
     PRESUME (! text.empty (), __FILE__, __LINE__);
-    vstr_t tx (split_by_whitespace_and (sweeten (text), PUNCTUATION));
+    ::std::string i (interpret_string (nits, v, text));
+    vstr_t tx (lang.to_words (i));
     for (auto t : tx)
-    {   ::std::string respell;
+    {   if (t.empty ()) continue;
+        if (! lang.is_alpha (t.substr (0, 1))) continue;
+//        if (! iswlower (t.at (0)) && ! iswupper (t.at (0))) continue;
         if (! hi -> second.valid ()) break;
-        if (! hi -> second.spell (t))
-        {   nits.pick (nit_misspelt, es_error, ec_spell, quote (t), " may be misspelt");
-            vstr_t alts = hi -> second.suggestions (t);
-            switch (alts.size ())
-            {   case 0 : break;
-                case 1 :
-                    nits.pick (nit_spell_perhaps, es_info, ec_spell, "was ", quote (alts.at (0)), " intended?");
-                    break;
-                case 2 :
-                    nits.pick (nit_spell_perhaps, es_info, ec_spell, "was either ", quote (alts.at (0)), " or ", quote (alts.at (1)), " intended?");
-                    break;
-                default :
-                    {   ::std::string msg ("was ");
-                        ::std::size_t q = alts.size () - 1;
-                        for (::std::size_t i = 0; i < q; ++i) msg += quote (alts.at (i)) + ", ";
-                        msg += " or " + quote (alts.at (q)) + " intended?";
-                        nits.pick (nit_spell_perhaps, es_info, ec_spell, msg);
-                        break; } } } } }
+        if (! hi -> second.spell (nits, t)) spell_tell (nits, lang, t, hi -> second.suggestions (nits, t)); } }
+
+vstr_t load_dictionaries (nitpick& nits)
+{   if (! context.spell ()) return vstr_t ();
+    ::boost::filesystem::path p (context.spell_path ());
+    PRESUME (! p.empty (), __FILE__, __LINE__);
+    if (!::boost::filesystem::exists (p) || ! ::boost::filesystem::is_directory (p))
+    {   nits.pick (nit_no_spell, es_error, ec_spell, "well, that's weird: ", quote (p.string ()), " has been transmogrified");
+        context.spell (false);
+        return vstr_t (); }
+    vstr_t res;
+    for (const ::boost::filesystem::directory_entry& i : ::boost::filesystem::directory_iterator (p, ::boost::filesystem::directory_options::skip_permission_denied))
+    {   ::boost::filesystem::path d (i.path ());
+        if (! ::boost::filesystem::is_regular_file (d)) continue;
+        if (::boost::filesystem::extension (d) != DICTIONARY_EXTENSION) continue;
+        ::std::string s (d.stem ().string ());
+        ::std::string l (get_dict_lang (s));
+        if (l.empty ())
+            switch (s.length ())
+            {   case 0 :
+		case 1 : continue;
+		case 2 :
+                case 3 : l = s; break;
+                case 5 :
+                case 6 :
+                case 7 :
+                case 8 : l = fix_hunspell_lang_param (s);
+                         break;
+                default : break; }
+        nits.pick (nit_debug, es_debug, ec_spell, "Found dictionary for ", l, " (", d.string (), ")");
+        res.emplace_back (l); }
+    return res; }
+
+::std::string get_supported_locales (nitpick& )
+{   return ""; }
+
 #endif // GENNIX

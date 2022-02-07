@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 vstr_t sections;
 
-#define MACID ALPHADDD "-_"
+#define MACID ALPHANUMERIC "-_"
 
 #define TEST_NIT \
     "[class]\n" \
@@ -178,6 +178,7 @@ vstr_t sections;
     "[doc-head]\n" \
     "{{prog-fullname}} version {{prog-version}}\n" \
     "{{copyright-text}}\n" \
+    "{{time-start}}\n" \
     "\n" \
     "[doc-foot]\n" \
     "\n" \
@@ -463,8 +464,7 @@ vstr_t sections;
     "\n" \
     "[webmention-foot]\n" \
     "</P>\n" \
-    "\n" \
-
+    "\n"
 
 ::std::string enc (const ::std::string& s)
 {   ::std::string res (1, '"');
@@ -592,7 +592,7 @@ bool load_template (nitpick& nits, const html_version& v)
     if (context.test ()) res = load_template_int (nits, v, TEST_NIT);
     else
     {   if (! format.empty ())
-        {   config = template_path ("out.nit", format);
+        {   config = template_path (nits, "out.nit", format);
             if (! config.empty ()) res = load_template_int (nits, v, config);
             if (! res)
             {   context.err () << "Cannot process " << quote (format) << ", reverting to default output format.\n";

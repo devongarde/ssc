@@ -159,7 +159,7 @@ e_schema_property get_schema_property (nitpick& nits, const html_version& v, con
     if (after == ::std::string::npos)
     {   nits.pick (nit_jsonld_type, es_error, ec_json, "schema type ", quote (s), " is incomplete");
         return sp_illegal; }
-    schema_version sv (v);
+    const schema_version sv (v);
     e_schema_property sp = identify_schema_property (s.substr (after));
     if (sp == sp_illegal)
         nits.pick (nit_not_schema_property, es_error, ec_schema, quote (s.substr (after)), " is not a recognised ", sv.report (), " property");
@@ -192,7 +192,7 @@ void note_token (nitpick& nits, const html_version& v, json_scope& scope, const 
 
 e_schema_property wot_prop (nitpick& nits, const html_version& v, const json_scope& scope, const ::std::string& s)
 {   PRESUME (! s.empty (), __FILE__, __LINE__);
-    schema_version sv (corresponding_schema_version (scope.schema (), v));
+    const schema_version sv (corresponding_schema_version (scope.schema (), v));
     const e_schema_property sp = identify_schema_property (s);
     if (sp == sp_illegal)
         nits.pick (nit_not_schema_property, es_error, ec_schema, quote (s), " is not a recognised ", sv.report (), " property");
@@ -209,7 +209,7 @@ bool process_map (nitpick& nits, const html_version& v, const ::boost::json::obj
     return res; }
 
 bool process_term_object (nitpick& nits, const html_version& v, json_scope& scope, const e_schema_property p, const ::boost::json::object& o)
-{   schema_version sv = get_default_schema_version (scope.schema ());
+{   const schema_version sv = get_default_schema_version (scope.schema ());
     vt_t vt = sought_types (sv, p);
     nitpick nuts;
     for (auto st : vt)
@@ -233,7 +233,7 @@ bool process_term_object (nitpick& nits, const html_version& v, json_scope& scop
             {   vit_t sst = sought_schema_types (sv, p);
                 for (auto t : new_scope.type_)
                 {   for (auto tt : sst)
-                    {   e_schema_type ti = type_itself (tt);
+                    {   const e_schema_type ti = type_itself (tt);
                         if ((ti == t) || is_specific_type_of (ti, t) || is_specific_type_of (t, ti)) return name_type; }
                     nuts.pick (nit_jsonld_type, es_error, ec_json, sch::name (t), " is not a valid type for ", schema_property_name (p)); }
                 nits.merge (nuts);
@@ -281,7 +281,7 @@ bool note_term (nitpick& nits, const html_version& v, json_scope& scope, const :
                         note_term (nits, v, scope, s, e);
                     else
                     {   json_scope subscope (&scope);
-                        ::boost::json::object& o = e.as_object ();
+                        const ::boost::json::object& o = e.as_object ();
                         examine_json_ld (nits, v, subscope, o);
                         process_json_ld (nits, v, subscope, o); }
                 break;
@@ -319,11 +319,11 @@ bool is_suitable_kvp (const ::boost::json::key_value_pair& e, ::std::string& s)
     if (s.empty ()) return false;
     return (s.at (0) != '@'); }
 
-bool examine_term (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& key, ::boost::json::value& val)
-{   const ::std::string s = trim_the_lot_off (key);
-    if (s.empty ()) return false;
-    if (s.at (0) == '@') return false;
-    return note_term (nits, v, scope, s, val); }
+//bool examine_term (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& key, const ::boost::json::value& val)
+//{   const ::std::string s = trim_the_lot_off (key);
+//    if (s.empty ()) return false;
+//    if (s.at (0) == '@') return false;
+//    return note_term (nits, v, scope, s, val); }
 
 bool examine_terms (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o)
 {   bool name_type = true;

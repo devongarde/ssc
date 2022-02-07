@@ -68,7 +68,7 @@ bool remove_head (::std::string& s, ::std::string& head, const char ch);
 bool separate_first (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);
 bool separate_last (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);
 bool separate (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);
-bool ends_with_example (const ::std::string& s);
+bool one_of_domain (const ::std::string& s, const vstr_t& v);
 
 inline ::std::string tart (const ::std::string& s)
 {   return unify_whitespace (trim_the_lot_off (s)); }
@@ -85,8 +85,8 @@ inline vstr_t split_by_newline (const ::std::string& s)
 {   return split_by_charset (s, "\n"); }
 vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
 
-::std::string read_text_file (const ::boost::filesystem::path& name);
-::std::string read_text_file (const ::std::string& name);
+::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name);
+::std::string read_text_file (nitpick& nits, const ::std::string& name);
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok = false);
 bool write_text_file (const ::std::string& name, const ::std::string& content);
 ::boost::filesystem::path get_tmp_filename ();
@@ -170,8 +170,8 @@ inline ::std::string substitute_char (::std::string& s, const char from, const c
 inline ::std::string decolonise (::std::string& sauce)
 {   return split_at_first_of (sauce, ":"); }
 
-::std::string template_path (const ::std::string& fn);
-::std::string template_path (const ::std::string& def, const ::std::string& arg);
+::std::string template_path (nitpick& nits, const ::std::string& fn);
+::std::string template_path (nitpick& nits, const ::std::string& def, const ::std::string& arg);
 
 ::std::string once_twice_thrice (const ::std::size_t x);
 
@@ -194,6 +194,9 @@ inline ::std::string x_dot_y_ish (const unsigned char mjr, const unsigned char m
     {   res += ".";
         res += ::boost::lexical_cast < ::std::string > (static_cast < int > (mnr)); }
     return res; }
+
+inline void extend (vstr_t& v, const vstr_t& w)
+{   for (auto s : w) v.emplace_back (s); }
 
 #ifdef NOMERGE
 template < class T > inline void merge_stuff (T& o, const T& s)

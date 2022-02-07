@@ -755,12 +755,12 @@ PASS ../toast/SVG/1.1/svg11.html
 747 svg_version
 772 svg_version
 785 no_lang
-786 invalid_attribute_version wrong_version no_lang
-787 invalid_attribute_version wrong_version no_lang
+786 no_lang invalid_attribute_version wrong_version
+787 no_lang invalid_attribute_version wrong_version
 790 use_quote_code
 794 no_lang
-795 invalid_attribute_version wrong_version no_lang
-796 invalid_attribute_version wrong_version no_lang
+795 no_lang invalid_attribute_version wrong_version
+796 no_lang invalid_attribute_version wrong_version
 798 use_quote_code
 806 svg_version
 807 use_quote_code

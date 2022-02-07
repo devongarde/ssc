@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attribute_classes.h"
 #include "spell/spell.h"
 
-void element::pre_examine_element (::std::string& lang)
+void element::pre_examine_element ()
 {   switch (tag ())
     {   case elem_animate :
         case elem_animatecolour :
@@ -52,7 +52,7 @@ void element::pre_examine_element (::std::string& lang)
         case elem_fecomposite : examine_fecomposite (); break;
         case elem_feconvolvematrix : examine_feconvolvematrix (); break;
         case elem_fn : examine_fn (); break;
-        case elem_html : examine_html (lang); break;
+        case elem_html : examine_html (); break;
         case elem_iframe : examine_iframe (); break;
         case elem_li : examine_li (); break;
         case elem_link : examine_link (); break;
@@ -255,13 +255,13 @@ void element::congeal_dynamism ()
                     pick (nit_missing_dynamic, es_catastrophic, ec_element, "missing dynamic congeal for ", node_.id ().name ());
                     break;  } }
 
-void element::examine_self (const ::std::string& l, const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes, const flags_t parental_flags)
+void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes, const flags_t parental_flags)
 {   if (examined_) return;
     flags_t flags (parental_flags);
     ancestral_attributes_ = ancestral_attributes;
     sibling_attributes_ = sibling_attributes;
     itemscope_ = itemscope;
-    ::std::string lang (l);
+    lingo lang (l);
     const e_element tag = node_.tag ();
     if (! node_.is_closure ())
     {   page_.mark (tag);
@@ -278,15 +278,15 @@ void element::examine_self (const ::std::string& l, const itemscope_ptr& itemsco
         case elem_faux_cdata :
             if ((flags & EP_NOSPELL) == 0)
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
-                    page_.phrase (lang, text ());
+                    page_.phrasal (lang, text ());
             break;
         case elem_faux_whitespace :
-            page_.phrase (nits ());
+            page_.phrasal (nits (), node_.version ());
             break;
         case elem_faux_char :
             if ((flags & EP_NOSPELL) == 0)
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
-                    page_.phrase (lang, text (true));
+                    page_.phrasal (lang, text (true));
             break;
         case elem_faux_text :
             PRESUME (node_.has_parent (), __FILE__, __LINE__);
@@ -296,9 +296,9 @@ void element::examine_self (const ::std::string& l, const itemscope_ptr& itemsco
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
                 {   ::std::string t (text (true));
                     if (! t.empty ())
-                    {   if (t.at (0) == ' ') page_.phrase (nits ());
-                        page_.phrase (lang, t);
-                        if (t.at (t.size () - 1) == ' ') page_.phrase (nits ()); } }
+                    {   if (t.at (0) == ' ') page_.phrasal (nits (), node_.version ());
+                        page_.phrasal (lang, t);
+                        if (t.at (t.size () - 1) == ' ') page_.phrasal (nits (), node_.version ()); } }
             break;
         default :
             if (is_standard_element (tag) && ! node_.is_closure ())
@@ -321,6 +321,20 @@ void element::examine_self (const ::std::string& l, const itemscope_ptr& itemsco
 
                 if (hv.deprecated (node_.version ())) pick (nit_deprecated_element, es_warning, ec_element, "<", elem :: name (tag), "> is deprecated in ", node_.version ().report ());
                 if (hv.experimental ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is experimental; it will probably change, it may be withdrawn");
+
+                if (node_.version ().is_5 ())
+                {   if (a_.known (a_xmllang))
+                        if (! a_.known (a_lang))
+                        {   if (! node_.version ().xhtml ())
+                                if (node_.id ().is_svg () && (node_.version ().svg_version () == sv_1_1))
+                                    if (a_.good (a_xmllang)) pick (nit_no_lang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add lang=", quote (a_.get_string (a_xmllang)));
+                                    else pick (nit_no_lang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add a lang attribute");
+                                else pick (nit_no_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "'Authors must not use LANG in the XML namespace on HTML elements in HTML documents'"); }
+                        else if (a_.known (a_lang) && (a_.get_string (a_lang) != a_.get_string (a_xmllang)))
+                            pick (nit_lang_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "if both LANG and xml:lang are specified, they must have the same value");
+                    if (a_.known (a_spellcheck)) examine_spellcheck (flags); }
+
+                if (a_.known (a_lang) || a_.known (a_xmllang)) examine_langs (lang);
 
                 a_.verify_attributes (nits (), node_.version (), this, lang);
                 ancestral_attributes_ |= own_attributes_;
@@ -350,18 +364,6 @@ void element::examine_self (const ::std::string& l, const itemscope_ptr& itemsco
                             if (a_.known (a_resource)) examine_resource ();
                             if (a_.known (a_rel)) examine_rdfa_rel (a_.get_string (a_rel));
                             if (a_.known (a_rev)) examine_rdfa_rev (a_.get_string (a_rev)); }
-
-                if (node_.version ().is_5 ())
-                {   if (a_.known (a_xmllang))
-                        if (! a_.known (a_lang))
-                        {   if (! node_.version ().xhtml ())
-                                if (node_.id ().is_svg () && (node_.version ().svg_version () == sv_1_1))
-                                    if (a_.good (a_xmllang)) pick (nit_no_lang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add lang=", quote (a_.get_string (a_xmllang)));
-                                    else pick (nit_no_lang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add a lang attribute");
-                                else pick (nit_no_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "'Authors must not use LANG in the XML namespace on HTML elements in HTML documents'"); }
-                        else if (a_.known (a_lang) && (a_.get_string (a_lang) != a_.get_string (a_xmllang)))
-                            pick (nit_lang_xmllang, ed_50, "3.2.5.3 The lang and xml:lang attributes", es_error, ec_attribute, "if both LANG and xml:lang are specified, they must have the same value");
-                    if (a_.known (a_spellcheck)) examine_spellcheck (flags); }
 
                 if (node_.version () >= html_apr21)
                 {   if (a_.known (a_aria_checked)) examine_aria_checked ();
@@ -404,7 +406,7 @@ void element::examine_self (const ::std::string& l, const itemscope_ptr& itemsco
                 a_.invalid_id (nits (), node_.version (), get_ids (), this);
                 a_.invalid_access (nits (), node_.version (), access_);
 
-                pre_examine_element (lang);
+                pre_examine_element ();
 
                 if (a_.known (a_autofocus)) examine_autofocus ();
                 if (a_.known (a_defaultaction)) examine_defaultaction ();
@@ -448,7 +450,7 @@ bool element::to_sibling (element_ptr& e, const bool canreconstruct)
     x.swap (e);
     return true; }
 
-void element::examine_children (const flags_t flags, const ::std::string& lang)
+void element::examine_children (const flags_t flags, const lingo& lang)
 {   if (has_child ())
     {   attribute_bitset ancestral_attributes, sibling_attributes;
         itemscope_ptr itemscope;
@@ -525,7 +527,7 @@ void element::verify ()
     late_examine_element (); }
 
 void element::verify_document ()
-{   page_.phrase (nits ());
+{   page_.phrasal (nits (), node_.version ());
     const bool titled = (node_.version ().mjr () < 5) && (page_.count (elem_title) == 0);
     if (titled)
         pick (nit_title_required, ed_2, "5.2.1. Title", es_error, ec_element, "every document header must have <TITLE>");

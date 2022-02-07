@@ -86,7 +86,7 @@ bool reply::set_server (const ::std::string& link)
             server_ += link; } }
     return true; }
 
-bool reply::find_server (nitpick& nits, const html_version& v, const ::std::string& lang)
+bool reply::find_server (nitpick& nits, const html_version& v, const lingo& lang)
 {   if (target_.empty ()) return false;
     bool ok = true;
     bool vrai = context.test_header ().empty ();
@@ -95,7 +95,7 @@ bool reply::find_server (nitpick& nits, const html_version& v, const ::std::stri
     {   http_temp = get_tmp_filename ();
         ok = fetch_http (nits, v, url (nits, v, target_), http_temp); }
     if (ok)
-    {   ::std::string http (read_text_file (http_temp.string ()));
+    {   ::std::string http (read_text_file (nits, http_temp.string ()));
         headers h (nits, v, http);
         if (h.abusive_site ()) nits.pick (nit_pos_piracy, es_warning, ec_webmention, target_, " uses privacy piracy techniques");
         ::std::string link (h.link (WEBMENTION));
@@ -106,7 +106,7 @@ bool reply::find_server (nitpick& nits, const html_version& v, const ::std::stri
     if (vrai) if (file_exists (http_temp)) delete_file (http_temp);
     ::boost::filesystem::path html_temp (get_tmp_filename ());
     ::std::string html;
-    if (fetch (nits, v, url (nits, v, target_), html_temp)) html = read_text_file (html_temp.string ());
+    if (fetch (nits, v, url (nits, v, target_), html_temp)) html = read_text_file (nits, html_temp.string ());
     if (file_exists (html_temp)) delete_file (html_temp);
     if (html.empty ()) return false;
     page p (nits, target_, 0, html);
@@ -166,16 +166,13 @@ void reply::mark_unchanged ()
     activity_ = act_static; }
 
 void reply::mark_update ()
-{   if (context.nochange () || context.tell (e_info)) report ("Update");
-    activity_ = act_update; mark (); }
+{   activity_ = act_update; mark (); }
 
 void reply::mark_insert ()
-{   if (context.nochange () || context.tell (e_info)) report ("Insert");
-    activity_ = act_insert; mark (); }
+{   activity_ = act_insert; mark (); }
 
 void reply::mark_delete ()
-{   if (context.nochange () || context.tell (e_info)) report ("Delete");
-    activity_ = act_delete; mark (); }
+{   activity_ = act_delete; mark (); }
 
 ::std::string reply::report (const char* verb) const
 {   ::std::ostringstream res;
@@ -187,7 +184,7 @@ void reply::mark_delete ()
     if (context.tell (e_all)) res << n << ":" << file_ << ',' << id_ << ',' << server_ << ',' << target_ << ',' << content_ << ::std::endl;
     return res.str (); }
 
-bool reply::enact (nitpick& nits, const html_version& v, const ::std::string& lang)
+bool reply::enact (nitpick& nits, const html_version& v, const lingo& lang)
 {   PRESUME (activity_ != act_unknown, __FILE__, __LINE__);
     if (activity_ == act_static) return true;
     if (! find_server (nits, v, lang)) return false;
@@ -265,7 +262,7 @@ bool replies::update_records (nitpick& nits) // not efficient for any real quant
     if (context.tell (e_detail)) report ("post update");
     return res; }
 
- bool replies::enact (nitpick& nits, const html_version& v, const ::std::string& lang) // not efficient for any real quantities
+ bool replies::enact (nitpick& nits, const html_version& v, const lingo& lang) // not efficient for any real quantities
 {   bool res = false;
     if (context.tell (e_detail)) report ("enact");
     const ::std::size_t mmax = reply_.size ();
@@ -283,13 +280,12 @@ bool replies::update_records (nitpick& nits) // not efficient for any real quant
         reply_.swap (reply); }
     return res; }
 
-bool replies::process (nitpick& nits, const html_version& v, const ::std::string& lang)
+bool replies::process (nitpick& nits, const html_version& v, const lingo& lang)
 {   if (! context.notify ()) return true;
     if (context.persisted ().empty ()) return true;
     replies persisted;
     if (! context.clear () && ! persisted.read (context.persisted ())) return false;
     if (! persisted.update_records (nits)) return true;
-    if (context.nochange ()) return true;
     persisted.enact (nits, v, lang); // whatever the webmentions, still update the file
     return persisted.write (); }
 

@@ -21,8 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "utility/common.h"
 #include "utility/filesystem.h"
+#include "utility/byteorder.h"
 #include "main/context.h"
 #include "main/args.h"
+#include "icu/converter.h"
 
 #define TEMP_FILE_MASK "%%%%-%%%%-%%%%-%%%%.tmp"
 
@@ -38,33 +40,69 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 bool is_one_of (const ::std::string& s, const vstr_t& v)
 {   return (which_one_of (s, v) != ::std::string::npos); }
 
-uintmax_t test_file (const ::boost::filesystem::path& name)
+bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& mz)
 {   using namespace boost::filesystem;
     try
     {   path p (name);
-        if (exists (p) && is_regular_file (p))
-        {   if (context.max_file_size () != 0)
-            {   const uintmax_t sz = file_size (p);
-                if (sz < context.max_file_size ()) return sz; } } }
+        if (! exists (p)) nits.pick (nit_cannot_open, es_catastrophic, ec_io, PROG " cannot access ", name.string ());
+        else if (! is_regular_file (p)) nits.pick (nit_cannot_open, es_catastrophic, ec_io, name.string (), " is not a normal file");
+        else
+        {   mz = file_size (p);
+            if ((context.max_file_size () == 0) || (mz <= context.max_file_size ())) return true;
+            nits.pick (nit_too_big, es_catastrophic, ec_io, name.string (), " is too big (reconfigure with " GENERAL MAXFILESIZE ")"); } }
     catch (...) { }
-    return 0; }
+    return false; }
 
-::std::string read_text_file (const ::boost::filesystem::path& name)
-{   using namespace boost::filesystem;
-    try
-    {   path p (name);
-        if (test_file (p) == 0) return ::std::string ();
-        ifstream f (name);
-        if (! f.bad ())
-        {   ::std::stringstream res;
-            res << f.rdbuf ();
-            f.close ();
-            return res.str (); } }
-    catch (...) { }
+::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name)
+{   try
+    {   ::boost::filesystem::path p (name);
+        uintmax_t mz = 0;
+        if (test_file (nits, p, mz))
+            if (mz == 0) nits.pick (nit_empty, es_comment, ec_io, name.string (), " is empty");
+            else
+            {   ::boost::filesystem::ifstream f (name, ::std::ios_base::in);
+                if (! f.bad ())
+                {   ::std::stringstream sss;
+                    sss << f.rdbuf ();
+                    f.close ();
+                    ::std::string res (sss.str ());
+                    const e_charcode encoding = bom_to_encoding (get_byte_order (res));
+                    if (encoding != cc_ansi)
+#ifndef NOICU
+                        if (! context.icu ())
+#endif // NOICU
+                        {   if (encoding != cc_utf8)
+                            {   if (encoding == cc_fkd) nits.pick (nit_convert, es_error, ec_file, p.string (), " is in a strange format, so " PROG " cannot process it; " PROG " likes ASCII, ANSI & UTF-8");
+                                else nits.pick (nit_convert, es_error, ec_file,  PROG " cannot convert ", p.string (), " to UTF-8, so cannot to process it");
+                                res.clear (); } }
+#ifndef NOICU
+                        else if (encoding == cc_utf8)
+                        {   nitpick nuts;
+                            ::std::string norm = normalise_utf8 (nuts, res);
+                            if (norm != res)
+                            {   nits.pick (nit_normalise, es_warning, ec_icu, quote (p.string ()), " is not normalised.");
+                                res = norm; } }
+                        else
+                        {   res.clear ();
+                            uintmax_t sz = 0;
+                            void_ptr vp (read_binary_file (nits, p, sz));
+                            if (sz != 0)
+                            {   VERIFY_NOT_NULL (vp.get (), __FILE__, __LINE__);
+                                res = convert_to_utf8 (nits, p.string (), vp.get (), sz);
+                                if (res.empty ())
+                                    nits.pick (nit_convert, es_error, ec_file, PROG " cannot analyse ", p.string (), " because it's in a weird format; " PROG " likes ASCII, ANSI, UTF-8, & UTF-16");
+                                else
+                                    nits.pick (nit_convert, es_comment, ec_page, "Converted ", p.string (), " to UTF-8 internally"); } }
+#endif // NOICU
+                    return res; } } }
+    catch (const ::std::exception& e)
+    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "exception when reading ", name.string (), ": ", e.what ()); }
+    catch (...)
+    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "unknown exception when reading ", name.string ()); }
     return ::std::string (); }
 
-::std::string read_text_file (const ::std::string& name)
-{   return read_text_file (::boost::filesystem::path (name)); }
+::std::string read_text_file (nitpick& nits, const ::std::string& name)
+{   return read_text_file (nits, ::boost::filesystem::path (name)); }
 
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok)
 {   using namespace boost::filesystem;
@@ -73,15 +111,10 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
     try
     {   path p (name);
         uintmax_t mz = 0;
-        if (! exists (p)) nits.pick (nit_cannot_open, es_catastrophic, ec_io, name.string (), " either does not exist or " PROG " cannot access it");
-        else if (! is_regular_file (p)) nits.pick (nit_cannot_open, es_catastrophic, ec_io, name.string (), " is not a standard file");
-        else
-        {   mz = file_size (p);
+        if (test_file (nits, p, mz))
             if (mz == 0)
                 if (zero_ok) nits.pick (nit_empty, es_comment, ec_io, name.string (), " is empty");
                 else nits.pick (nit_empty, es_error, ec_io, name.string (), " is empty");
-            else if ((context.max_file_size () != 0) && (mz > context.max_file_size ()))
-                nits.pick (nit_too_big, es_catastrophic, ec_io, name.string (), " is too big (reconfigure with " GENERAL MAXFILESIZE ")");
             else
             {   void_ptr vp (alloc_void_ptr (::gsl::narrow_cast < ::std::size_t > (mz)));
                 if (vp.get () == nullptr) nits.pick (nit_out_of_memory, es_catastrophic, ec_io, "out of memory reading ", name.string ());
@@ -94,12 +127,12 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
                         fp = nullptr;
                         if (rd == mz) { sz = mz; return vp; }
                         if (rd == 0) nits.pick (nit_cannot_read, es_catastrophic, ec_io, "cannot read any of ", name.string ());
-                        else nits.pick (nit_cannot_read, es_catastrophic, ec_io, "cannot read all of ", name.string ()); } } } } }
+                        else nits.pick (nit_cannot_read, es_catastrophic, ec_io, "cannot read all of ", name.string ()); } } } }
     catch (const ::std::exception& e)
-    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", name.string (), ": ", e.what ());
+    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "exception when reading ", name.string (), ": ", e.what ());
         return void_ptr (); }
     catch (...)
-    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", name.string ());
+    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "unknown exception when reading ", name.string ());
         return void_ptr (); }
     if (fp != nullptr) fclose (fp);
     return void_ptr (); }
@@ -249,20 +282,18 @@ bool separate_first (const ::std::string& s, ::std::string& head, ::std::string&
 bool separate (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch)
 {   return separate_last (s, head, tail, ch); }
 
-bool ends_with_example (const ::std::string& s)
-{   if (s.empty ()) return false;
-    if (s.at (s.length () - 1) == '/')
-        return (::boost::algorithm::iends_with (s, "example/") ||
-                ::boost::algorithm::iends_with (s, "example.com/") ||
-                ::boost::algorithm::iends_with (s, "example.org/") ||
-                ::boost::algorithm::iends_with (s, "example.net/") ||
-                ::boost::algorithm::iends_with (s, "example.edu/"));
-    return (::boost::algorithm::iends_with (s, "example") ||
-            ::boost::algorithm::iends_with (s, "example.com") ||
-            ::boost::algorithm::iends_with (s, "example.org") ||
-            ::boost::algorithm::iends_with (s, "example.net") ||
-            ::boost::algorithm::iends_with (s, "example.edu")); }
-
+bool one_of_domain (const ::std::string& s, const vstr_t& v)
+{   if (s.empty () || v.empty ()) return false;
+    if (s.at (s.length () - 1) != '/')
+    {   for (auto d : v)
+            if (::boost::algorithm::iends_with (s, d))
+                return true;
+        return false; }
+    ::std::string ss (s.substr (0, s.length () - 1));
+    for (auto d : v)
+            if (::boost::algorithm::iends_with (s, d))
+                return true;
+    return false; }
 
 ::boost::filesystem::path get_tmp_filename ()
 {   ::boost::filesystem::path model (temp_dir ());
@@ -475,32 +506,32 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
             sauce = trim_the_lot_off (sauce.substr (pos+1)); }
     return res; }
 
-::std::string test_template_path (::boost::filesystem::path p)
+::std::string test_template_path (nitpick& nits, ::boost::filesystem::path p)
 {   if (! ::boost::filesystem::exists (p))
         p.replace_extension ("nit");
     if (! ::boost::filesystem::exists (p))
         p.replace_extension ("tpl");
     if (! ::boost::filesystem::is_regular_file (p))
         return "";
-    return read_text_file (p.string ()); }
+    return read_text_file (nits, p.string ()); }
 
-::std::string template_path (const ::std::string& fn)
+::std::string template_path (nitpick& nits, const ::std::string& fn)
 {   PRESUME (! fn.empty (), __FILE__, __LINE__);
     ::boost::filesystem::path p (fn);
     const bool abs (p.is_absolute ());
     if (! abs) p = ::boost::filesystem::absolute (p);
-    ::std::string res (test_template_path (p));
+    ::std::string res (test_template_path (nits, p));
     if (abs || ! res.empty ()) return res;
     if (! context.not_root ())
     {   p = ::boost::filesystem::absolute (fn, ::boost::filesystem::path (context.root ()));
-        res = test_template_path (p);
+        res = test_template_path (nits, p);
         if (! res.empty ()) return res; }
     p = ::boost::filesystem::absolute (fn, ::boost::filesystem::path (context.path ()));
-    return test_template_path (p); }
+    return test_template_path (nits, p); }
 
-::std::string template_path (const ::std::string& def, const ::std::string& arg)
-{   if (arg.empty ()) return template_path (def);
-    return template_path (arg); }
+::std::string template_path (nitpick& nits, const ::std::string& def, const ::std::string& arg)
+{   if (arg.empty ()) return template_path (nits, def);
+    return template_path (nits, arg); }
 
 ::std::string once_twice_thrice (const ::std::size_t x)
 {   switch (x)

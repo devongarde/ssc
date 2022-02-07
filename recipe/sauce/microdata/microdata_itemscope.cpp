@@ -44,7 +44,7 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
         type_master < t_schema_type > ts;
         ts.set_value (nits, v, name);
         ::std::string::size_type ends_at = 0;
-        e_schema sc = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), name, &ends_at);
+        const e_schema sc = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), name, &ends_at);
         if (sc == s_error)
             wombats (nits, v, name);
         else

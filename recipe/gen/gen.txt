@@ -36,11 +36,11 @@ These options are only available on the command line:
 -F                      Load the configuration file .ssc/config in the current
                         directory.
 
--h                      Show a summary of switches and exit.
+-h                      Show a summary of switches, then exit.
 
--V                      Show version details and exit.
+-V                      Show version details, then exit.
 
---validation            Show attribute extensions and exits. Attribute
+--validation            Show attribute extensions, then exit. Attribute
                         extensions are additional values that can be
                         associated with attributes on many X/HTML elements.
 
@@ -48,7 +48,10 @@ These options are only available on the command line:
 
 COMMAND LINE AND CONFIGURATION FILES SWITCHES
 
-These options are available on the command line and in configuration files:
+These options are available on the command line and in configuration files.
+Note that all "binary" options, e.g. those apparently without parameters below,
+must actually be given one of "0", "1", "false", "no", "off", "on", "true" or
+"yes" (without the quotes).
 
 --corpus.article        Prefer the content of <ARTICLE> when gathering corpus
                         text.
@@ -67,7 +70,20 @@ These options are available on the command line and in configuration files:
                         a page's content. This is incompatible with
                         --shadow.update.
 
---general.css           Do NOT process .css files.
+--general.class         Report unrecognised classes.
+
+--general.cgi           Check environment variables for snippets of HTML.
+-W                      Expects environment variables as produced by
+                        OpenBSD's native web server, httpd, produced
+                        using <FORM METHOD=GET ...>. Do NOT let ssc
+                        anywhere near untrusted data should you do so,
+                        unless you are very confident about your system
+                        configuration (because it'll defend you against
+                        naughty people who may take advantage of ssc's
+                        pre-alpha nature and its corresponding myriad
+                        flaws). Ignores many options including shadowing.
+
+--general.css           Do NOT process .css files (for class names).
 
 --general.custom EL     Define a custom element <EL> for verifying the IS
                         attribute. May be repeated.
@@ -80,14 +96,17 @@ These options are available on the command line and in configuration files:
                         'catastrophe', 'error' (the default), 'warning',
                         'info', or 'comment'.
 
---general.ignored EL    ignore attributes and content of the element <EL>. May
+--general.file XXX      File for persistent data. Requires -N. See also
+                        --general.datapath. Default extension: .ndx.
+
+--general.ignore EL     ignore attributes and content of the element <EL>. May
                         be repeated.
 
 --general.lang LA       If an X/HTML file does not have a language / dialect
-                        specified (e.g. "en" for generic English, "en_IE" for
-                        Irish English, "lb_LU" for Luxembourgish, etc.),
+                        specified (e.g. "en" for generic English, "en-IE" for
+                        Irish English, "lb-LU" for Luxembourgish, etc.),
                         default to 'LA'. If not given, the default is your
-                        system default, or, if none, then "en_US" (standard
+                        system default, or, if none, then "en-US" (standard
                         American English).
 
 --general.maxfilesize n Do not process HTML source files that exceed n bytes
@@ -99,19 +118,17 @@ These options are available on the command line and in configuration files:
 --general.output        Output to the specified file. If this switch is not
 -o file                 used, standard output is used.
 
---general.nochange      Report what ssc would do, but don't do it.
--n
-
 --general.progress      Dump progress information to standard output. This can
 -D                      interfere with formatted output.
 
---general.rdf           Check RDF attributes. This option currently
-                        underperforms. An extension to properly support RDF
-                        and RDFa is en route.
+--general.rdfa          Check RDFa attributes.
 
 --general.rel           Only mention <LINK> REL values, found neither in the
                         living standard nor at microformats.org, in debug
                         output.
+
+--general.rpt           Report CSS files that are opened. ssc opens CSS files
+                        to verify classes; it does not verify CSS.
 
 --general.slob          Ignore perfectly legal but inefficient, indeed
                         thoroughly slobby, HTML, such as being far too lazy to
@@ -121,7 +138,12 @@ These options are available on the command line and in configuration files:
 -I                      many server side includes, it cannot process those
                         containing formulae. Note that processing SSIs may
                         cause incorrect line numbers to be mentioned when an
-                        issue is described.
+                        issue is reported.
+
+--general.test          Output data in automated test format. Used by ssc-test.
+-T                      Not generally useful. Documented so you can avoid it!
+
+--general.user XXX      Default user for webmentions (default: bert.scroggins)
 
 --general.verbose x     Output nits to the specified verbosity: 'catastrophe',
 -v                      'error', 'warning', 'info', 'comment' (the default),
@@ -149,8 +171,8 @@ These options are available on the command line and in configuration files:
                         overridden by --html.version.
 
 --html.title n          If <TITLE> text is longer than n characters, say so.
--z n                    This applies to child text of a header <TITLE>
-                        element, not the value of TITLE attributes.
+-z n                    This applies to text enclosed by a <TITLE> element in
+                        under <HEAD>, not the value of TITLE attributes.
 
 --html.version X        If no doctype (or xml header) is specified, presume
                         version X of HTML. X can be:
@@ -174,7 +196,7 @@ These options are available on the command line and in configuration files:
                             2007/1/1    WhatWG WebApps draft (January 2007),
                             2007/7/1    WhatWG HTML 5 (July 2007),
                             ...
-                            2022/1/1   WhatWG HTML 5 (October 2021),
+                            2022/1/1    WhatWG HTML 5 (January 2022),
 
                             XHTML 1.0   XHTML 1.0,
                             XHTML 1.1   XHTML 1.1 core,
@@ -185,34 +207,42 @@ These options are available on the command line and in configuration files:
                         Although you can specify exact dates for versions of
                         the WhatWG HTML 5 living standard, currently only
                         broad versions published in January and July are
-                        supported (quarterly from April 2021). It is expected
-                        that, as the standard develops, more precision will be
-                        applied to changes in ssc analysis.
+                        supported (quarterly from April 2021).
 
                         Certain versions of HTML offer variants, such as loose
                         and strict definitions. ssc picks those up from the
-                        <!DOCTYPE ...> in the HTML file, if any, and
-                        carelessly ignores them.
+                        <!DOCTYPE ...> in the HTML file, if any, and then
+                        carefully ignores them.
 
-                        Validation of XHTML is not strict.
+                        Validation of XHTML is even less strict.
 
                         Just to remind you, there are no guarantees of
                         accuracy (or inaccuracy).
 
                         Copies of the appropriate standards can be found
-                        online at source.
+                        online. A copy of the copies referenced during ssc's
+                        development can be found at https://ssc.lu/.
 
 --link.301              Normally, when ssc checks external links
 -3                      (--link.external), it does not report http forwarding
                         errors 301 and 308. Use this switch to have it do so.
+
+--link.example          Report linkd to faux domains, as defined by RFC 2606
+                        (note ssc also reports links to example.edu)
 
 --link.external         Check external links, e.g. those not on the site being
 -e                      checked. This requires a copy of curl on the path.
                         Note that, no matter what the switch, ssc will NOT
                         check certain special site names, such as example.com.
 
+--link.ignore DOMAIN    When checking external links, ignore this domain. May
+                        be repeated.
+
 --link.internal         Check internal links, e.g. those within the website
 -l                      being checked.
+
+--link.local            Report linkd to local domains, such as domains ending
+                        in .lan, .home, .corp, and others.
 
 --link.once             Only report each broken external link once. If, for
 -O                      example, the site has a number of references to a page
@@ -221,6 +251,8 @@ These options are available on the command line and in configuration files:
                         reports every occurrence of the link, it will only
                         check it the first time it encounters it (requires
                         --link.external).
+
+--link.report DOMAIN    Report links to domain. May be repeated.
 
 --link.revoke           Do not check whether https links' certificates have
 -r                      been revoked (requires --link.external).
@@ -241,8 +273,7 @@ These options are available on the command line and in configuration files:
 
 --microdata.verify      Check microdata found in WhatWG microdata attributes
 -m                      (itemprop, itemtype, etc.). Note that ssc only knows
-                        about certain ontologies. Find out which with
-                            --ontology.list
+                        about certain ontologies (see --ontology.list)
 
 --microdata.export      Export schema.org microdata encountered. This data is
                         exported in JSON format (not JSON-LD).
@@ -301,7 +332,7 @@ These options are available on the command line and in configuration files:
 --nits.warning n        Redefine nit n as a warning; may be repeated (the
                         value of n can be determined using --nits.nids).
 
---ontology.list           List known schema versions. See --schema.version
+--ontology.list         List known schema versions. See --schema.version
 
 --ontology.ONT X.Y      Presume version X.Y of ontology ONT. For example:
                             --ontology.xsd 1.1
@@ -490,6 +521,10 @@ These options are available on the command line and in configuration files:
                             --spell.dict en-GB,en_GB-large
                         (Under Windows, ssc uses the OS dictionaries.)
 
+--spell.icu             If "no", do not use the ICU libraries at all (they are
+                        rather slow). This will increase the inaccuracy and
+                        incorrectness of the spell checks.
+
 --spell.list FN,LANG    The file FN contains a list of valid spellings for
                         language LANG (which may include country info). If
                         LANG is omitted, the valid spellings apply to all
@@ -547,6 +582,11 @@ These options are available on the command line and in configuration files:
                         many others. A full set of possible enumerations can
                         be listed using the --validation switch.
 
+--webmention_in.datapath XXX   Path for incoming web mention data files.
+                        When your system receives webmention notifications,
+                        they are saved in this path.
+                        Webmentions are experimental and liable to change.
+
 
 
 CONFIGURATION FILE FORMAT
@@ -569,6 +609,8 @@ examples.
 
 
 ENVIRONMENT
+
+If you set --general.cgi, ssc will check these environment variables:
 
 QUERY_STRING            Run under OpenBSD's httpd server. See notes below.
 SSC_CONFIG              If no configuration file is given on the command line,

@@ -51,7 +51,7 @@ int context_t::parameters (nitpick& nits, int argc, char** argv)
     o.contextualise (nits);
     if (! test () && tell (e_debug)) out (o.report ());
     for (const ::std::string& name : site_)
-        if (name.find_first_not_of (ALPHADDD) != ::std::string::npos)
+        if (name.find_first_not_of (ALPHANUMERIC) != ::std::string::npos)
         {   valid_ = false;
             nits.pick (nit_invalid_domain, es_error, ec_init, quote (name), " is not a valid domain name (do not include protocols)");
             return false; }
@@ -84,7 +84,7 @@ context_t& context_t::webmention (nitpick& nits, const ::std::string& w, const e
         if (slashed) if (! index ().empty ()) res += index (); }
     return res; }
 
-void context_t::process_outgoing_webmention (nitpick& nits, const html_version& v, const ::std::string& lang)
+void context_t::process_outgoing_webmention (nitpick& nits, const html_version& v, const lingo& lang)
 {   if (notify ()) replies_.process (nits, v, lang); }
 
 void context_t::process_incoming_webmention (nitpick& nits, const html_version& v)

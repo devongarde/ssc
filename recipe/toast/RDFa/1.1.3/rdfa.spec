@@ -117,7 +117,7 @@ PASS ../toast/RDFa/1.1.3/rdf13-example.html
 
 PASS ../toast/RDFa/1.1.3/rdf14-example.html
 2 naughty_lang
-9 not_schema_property bad_property no_xmllang
+9 no_xmllang not_schema_property bad_property
 24 not_schema_property bad_property
 
 PASS ../toast/RDFa/1.1.3/rdf15-example.xhtml

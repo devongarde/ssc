@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "attribute/attribute.h"
 #include "webpage/id.h"
+#include "icu/lingo.h"
 
 class page;
 class element;
@@ -115,7 +116,7 @@ public:
     bool invalid_access (nitpick& nits, const html_version& v, sstr_t* ids);
     bool has_url () const;
     bool verify_url (nitpick& nits, const html_version& v, element& e);
-    void verify_attributes (nitpick& nits, const html_version& v, element* pe, const ::std::string& lang);
+    void verify_attributes (nitpick& nits, const html_version& v, element* pe, const lingo& lang);
     void mark (page& p, const e_attribute a);
     void mark (page& p);
     void shadow (::std::stringstream& ss, const html_version& v, element* e);

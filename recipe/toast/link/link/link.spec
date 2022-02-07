@@ -1,6 +1,6 @@
--f ../toast/link/link.conf
+-f ../toast/link/link/link.conf
 
-PASS ../toast/link/index.html
+PASS ../toast/link/link/index.html
 2 naughty_lang
 16 id_exists
 17 empty_link
@@ -20,7 +20,7 @@ PASS ../toast/link/index.html
 84 attempted_escape
 85 no_such_folder url_not_found
 
-PASS ../toast/link/subdir/target.html
+PASS ../toast/link/link/subdir/target.html
 2 naughty_lang
 20 attempted_escape
 23 url_not_found

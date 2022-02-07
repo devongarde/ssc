@@ -64,7 +64,7 @@ class charset_detector
     int32_t charset_match_count_ = 0;
 public:
     charset_detector ()
-    {   detector_ = ucsdet_open (&err_); }
+    {   if (context.icu ()) detector_ = ucsdet_open (&err_); }
     charset_detector (const charset_detector& cd) = default;
     charset_detector (charset_detector&& cd) = default;
     charset_detector& operator = (const charset_detector& cd) = default;
@@ -77,7 +77,7 @@ public:
         cd.detector_ = tmp; }
     void reset () noexcept
     {   if (detector_ != nullptr) ucsdet_close (detector_);
-        detector_ = ucsdet_open (&err_); }
+        if (context.icu ()) detector_ = ucsdet_open (&err_); }
     void reset (const charset_detector& cd) noexcept
     {   charset_detector tmp (cd);
         swap (tmp); }
@@ -87,7 +87,8 @@ public:
     bool valid () const noexcept { return error () <= U_ZERO_ERROR; }
     bool set_text (const char *in, int32_t len);
     charset_detector_matches match_all () noexcept
-    {   charset_match_ = ucsdet_detectAll (detector_, &charset_match_count_, &err_);
+    {   PRESUME (context.icu (), __FILE__, __LINE__);
+        charset_match_ = ucsdet_detectAll (detector_, &charset_match_count_, &err_);
         return charset_detector_matches (charset_match_, charset_match_count_); }
     int32_t match_count () const noexcept {  return charset_match_count_; } };
 
@@ -97,18 +98,20 @@ class converter
 public:
     converter () = delete;
     explicit converter (const ::std::string& name) noexcept
-    {   conv_ = ucnv_open (name.c_str (), &err_); }
+    {   if (context.icu ()) conv_ = ucnv_open (name.c_str (), &err_); }
     converter (const converter& c) = delete;
     converter (converter&& c) = default;
     converter& operator = (const converter& c) = delete;
     converter& operator = (converter&& c) = default;
     ~converter ()
-    {   ucnv_close (conv_); }
+    {   if (context.icu ()) ucnv_close (conv_); }
     void swap (converter& c) noexcept
     {   UConverter* tmp = conv_;
         conv_ = c.conv_;
         c.conv_ = tmp; }
-    void reset () noexcept { ucnv_reset (conv_); }
-    bool convert_to (void_ptr& vp, uintmax_t& sz);
+    void reset () noexcept { if (context.icu ()) ucnv_reset (conv_); }
+    void_ptr convert_to (void* vp, const uintmax_t sz);
     UErrorCode error () const noexcept { return err_; }
-    bool valid () const noexcept { return error () <= U_ZERO_ERROR; } };
+    bool valid () const noexcept
+    {   if (! context.icu ()) return false;
+        return error () <= U_ZERO_ERROR; } };
