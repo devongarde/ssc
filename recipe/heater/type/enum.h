@@ -195,7 +195,7 @@ typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_n
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io, ec_json, ec_link,
+typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_file, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io, ec_json, ec_link,
                 ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema, ec_shadow,
                 ec_spell, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility, ec_webmention } e_category;
 const e_category last_category = ec_webmention;
@@ -1555,7 +1555,8 @@ typedef enum
     nit_json_internal_error, nit_json_id, nit_vocab, nit_jsonld_context, nit_json_name, nit_json_invalid_node, nit_json_value_object,
     nit_json_out_of_place, nit_json_bad_term, nit_jsonld_type, nit_missing_schema, nit_jsonld_format, nit_jsonld_mistype,
     nit_jsonld_encoding, nit_jsonld_map, nit_crap_spec, nit_bad_uid, nit_missing_property, nit_no_spell, nit_misspelt, nit_bad_list,
-    nit_spell_lang, nit_spell_perhaps, nit_launch, nit_sent, nit_got, nit_bad_dict,
+    nit_spell_lang, nit_spell_perhaps, nit_launch, nit_sent, nit_got, nit_bad_dict, nit_deprecated, nit_case, nit_icu_barf,
+    nit_convert, nit_locale, nit_wtf, nit_normalise, nit_dictionary, nit_example, nit_local, nit_report,
     nit_context,
 
     // eon
@@ -1564,17 +1565,17 @@ typedef enum
 typedef enum
 {   nm_none,
     nm_class_name, nm_class_count, nm_class_int, nm_compile_time, nm_config,
-        nm_context_article, nm_context_body, nm_context_css, nm_context_cgi, nm_context_clear, nm_context_code, nm_context_config, nm_context_copy,
-        nm_context_corpus, nm_context_crosslinks, nm_context_custom_elements, nm_context_dc, nm_context_export_root, nm_context_exports,
-        nm_context_extensions, nm_context_fe, nm_context_filename, nm_context_foaf, nm_context_forward, nm_context_hook, nm_context_ignore,
+        nm_context_article, nm_context_body, nm_context_case, nm_context_css, nm_context_cgi, nm_context_clear, nm_context_code, nm_context_config, nm_context_copy,
+        nm_context_corpus, nm_context_crosslinks, nm_context_custom_elements, nm_context_dc, nm_context_example, nm_context_export_root, nm_context_exports,
+        nm_context_extensions, nm_context_fe, nm_context_filename, nm_context_foaf, nm_context_forward, nm_context_hook, nm_context_icu, nm_context_ignore,
         nm_context_info, nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version, nm_context_lang,
-        nm_context_links, nm_context_math, nm_context_main, nm_context_max_file_size,
+        nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size,
         nm_context_md_export, nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata,
-        nm_context_msg, nm_context_once, nm_context_output, nm_context_persisted, nm_context_process_webmentions, nm_context_rdfa,
-        nm_context_rdf_version, nm_context_rel, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070,
+        nm_context_msg, nm_context_no_ex_check, nm_context_once, nm_context_output, nm_context_persisted, nm_context_process_webmentions, nm_context_rdfa,
+        nm_context_rdf_version, nm_context_rel, nm_context_report, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070,
         nm_context_sarcasm, nm_context_schema, nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
         nm_context_shadow_ignore, nm_context_shadow_persist,nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
-        nm_context_shadows, nm_context_site, nm_context_slob, nm_context_spec, nm_context_spell, nm_context_spellings, nm_context_ssi,
+        nm_context_shadows, nm_context_site, nm_context_slob, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi,
         nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_svg_version, nm_context_tags, nm_context_templates,
         nm_context_test, nm_context_title, nm_context_user, nm_context_version, nm_context_virtuals, nm_context_write_path, nm_context_xsd,
         nm_copy_addr, nm_copy_html, nm_copy_text,

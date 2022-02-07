@@ -447,7 +447,7 @@ html_version bras_ket::parse (const ::std::string& content)
                     default :  status = s_dull; }
                 break;
             case s_hex :
-                if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_num ", ch);
+                if (context.tell (e_all)) form_.pick (nit_all, es_all, ec_parser, "s_hex ", ch);
                 switch (ch)
                 {   case ';' :  if (twas > text)
                                 {   nits.set_context (line_, b, e, text, twas);

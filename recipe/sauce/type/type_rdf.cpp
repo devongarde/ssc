@@ -54,7 +54,7 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
             {   if (vrai) nits.pick (nit_prefix_format, ed_rdfa, "5. Attributes and Syntax", es_error, ec_rdfa, "the default prefix ", quote (name), " cannot be redefined");
                 ok = false; }
             else if ((name.find_first_of (ALPHABET) == ::std::string::npos) ||
-                (name.find_first_not_of (ALPHADDD "./-_") != ::std::string::npos))
+                (name.find_first_not_of (ALPHANUMERIC "./-_") != ::std::string::npos))
             {   if (vrai) nits.pick (nit_prefix_format, ed_rdfa, "5. Attributes and Syntax", es_error, ec_rdfa, quote (name), " must start with a letter, and can contain letters, digits, '.', '/', '-', '_'");
                 ok = false; }
             const e_protocol prot = protocol_names.find (v, PROTOCOL_NAME, name, true);

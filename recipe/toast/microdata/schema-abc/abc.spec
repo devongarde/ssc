@@ -180,18 +180,18 @@ PASS ../toast/microdata/schema-abc/categorycode.html
 0 charset_mismatch charset_used charset_invalid
 26 requires_itemscope
 30 bad_itemid
-35 invalid_attribute_version wrong_version no_xmllang svg_rdf
-36 invalid_attribute_version wrong_version no_xmllang svg_rdf
-37 invalid_attribute_version wrong_version no_xmllang svg_rdf
+35 no_xmllang invalid_attribute_version wrong_version svg_rdf
+36 no_xmllang invalid_attribute_version wrong_version svg_rdf
+37 no_xmllang invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-abc/categorycodeset.html
 0 charset_mismatch charset_used charset_invalid
 21 bad_itemid
 26 requires_itemscope bad_itemid
 30 bad_itemid
-35 invalid_attribute_version wrong_version no_xmllang svg_rdf
-36 invalid_attribute_version wrong_version no_xmllang svg_rdf
-37 invalid_attribute_version wrong_version no_xmllang svg_rdf
+35 no_xmllang invalid_attribute_version wrong_version svg_rdf
+36 no_xmllang invalid_attribute_version wrong_version svg_rdf
+37 no_xmllang invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-abc/cemetery.html
 0 charset_mismatch charset_used charset_invalid

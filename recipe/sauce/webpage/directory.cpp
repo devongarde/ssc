@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url.h"
 #include "webpage/crosslink.h"
 #include "parser/jsonic.h"
+#include "icu/converter.h"
 
 external directory::external_;
 
@@ -222,39 +223,36 @@ void directory::examine (nitpick& nits)
                     mac.emplace (nm_page_path, local_path_to_nix (p.string ()));
                     if (context.progress ()) ::std::cout << p.string () << "\n";
                     try
-                    {   ::std::string content (read_text_file (p));
-                        if (! content.empty ())
-                        {   const e_charcode encoding = bom_to_encoding (get_byte_order (content));
-                            if (encoding == cc_fkd) mac.emplace (nm_page_error, "Unsupported byte order (ASCII, ANSI, UTF-8 or UTF-16, please)");
-                            else if (is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ()))
-                            {   nitpick nuts;
-                                parse_json_ld (nuts, context.html_ver (), content);
-                                ss << nuts.review (mac); }
+                    {   ::std::string content (read_text_file (nits, p));
+                        if (is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ()))
+                        {   nitpick nuts;
+                            parse_json_ld (nuts, context.html_ver (), content);
+                            ss << nuts.review (mac); }
+                        else
+                        {   page web (i.first, updated, content, ndx, this);
+                            if (web.invalid ()) ss << web.nits ().review (mac);
                             else
-                            {   page web (i.first, updated, content, ndx, this, encoding);
-                                if (web.invalid ()) ss << web.nits ().review (mac);
-                                else
-                                {   web.examine ();
-                                    web.verify_locale (p);
-                                    web.mf_write (p);
-                                    web.lynx ();
-                                    if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
-                                    ss << web.nits ().review (mac);
-                                    ss << web.report (); } } } }
-                    catch (const ::std::system_error& e)
-                    {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + context.filename ()); }
-                    catch (const ::std::exception& e)
-                    {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + context.filename ()); }
-                    catch (...)
-                    {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + context.filename ()); }
-                    if (! ss.str ().empty ())
-                    {   context.out (apply_macros (ns_page_head, mac));
-                        context.out (ss.str ());
-                        context.out (apply_macros (ns_page_foot, mac)); }
-                    else if (context.tell (e_comment))
-                    {   context.out (apply_macros (ns_page_head, mac));
-                        context.out (apply_macros (ns_page_foot, mac)); }
-                    context.css ().post_process (); }
+                            {   web.examine ();
+                                web.verify_locale (p);
+                                web.mf_write (p);
+                                web.lynx ();
+                                if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
+                                ss << web.nits ().review (mac);
+                                ss << web.report (); } } }
+                catch (const ::std::system_error& e)
+                {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + context.filename ()); }
+                catch (const ::std::exception& e)
+                {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + context.filename ()); }
+                catch (...)
+                {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + context.filename ()); }
+                if (! ss.str ().empty ())
+                {   context.out (apply_macros (ns_page_head, mac));
+                    context.out (ss.str ());
+                    context.out (apply_macros (ns_page_foot, mac)); }
+                else if (context.tell (e_comment))
+                {   context.out (apply_macros (ns_page_head, mac));
+                    context.out (apply_macros (ns_page_foot, mac)); }
+                context.css ().post_process (); }
                 set_flag (ndx, FX_SCANNED); } }
     if (context.shadow_files ())
     {   sstr_t delete_me;
@@ -318,14 +316,14 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
                 if (updated != nullptr)
                 {   ::std::time_t when = get_last_write_time (p);
                     if (when > *updated) *updated = when; }
-                return read_text_file (p); }
+                return read_text_file (nits, p); }
             else if (u.get_scheme () == pt_rfc3986)
                 if (u.has_domain () && is_one_of (u.domain (), context.site ()))
                 {   ::boost::filesystem::path p (get_disk_path (nits, u));
                     if (updated != nullptr)
                     {   ::std::time_t when = get_last_write_time (p);
                         if (when > *updated) *updated = when; }
-                    return read_text_file (p); }
+                    return read_text_file (nits, p); }
                 else
                 {   if (updated != nullptr) time (updated);
                     return external_.load (u); } }

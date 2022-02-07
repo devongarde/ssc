@@ -237,6 +237,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     res += saybe (table, category_.at (ec_css), "CSS");
     res += saybe (table, category_.at (ec_directory), "Directory");
     res += saybe (table, category_.at (ec_element), "Element");
+    res += saybe (table, category_.at (ec_file), "File");
     res += saybe (table, category_.at (ec_incorrectness), "Incorrectness");
     res += saybe (table, category_.at (ec_icu), "ICU");
     res += saybe (table, category_.at (ec_init), "Init");

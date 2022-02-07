@@ -702,7 +702,7 @@ const nitname nitnames [] =
     { nit_crap_spec, "crap_spec" },
     { nit_bad_uid, "bad_uid" },
     { nit_missing_property, "missing_property" },
-    { nit_no_spell, "nit_no_spell" },
+    { nit_no_spell, "no_spell" },
     { nit_misspelt, "misspelt" },
     { nit_bad_list, "bad_list" },
     { nit_spell_lang, "spell_lang" },
@@ -711,6 +711,17 @@ const nitname nitnames [] =
     { nit_sent, "sent" },
     { nit_got, "got" },
     { nit_bad_dict, "bad_dict" },
+    { nit_deprecated, "deprecated" },
+    { nit_case, "case" },
+    { nit_icu_barf, "icu_barf" },
+    { nit_convert, "convert" },
+    { nit_locale, "locale" },
+    { nit_wtf, "wtf" },
+    { nit_normalise, "normalise" },
+    { nit_dictionary, "dictionary" },
+    { nit_example, "example" },
+    { nit_local, "local" },
+    { nit_report, "report" },
 
     { nit_off, "" } };
 

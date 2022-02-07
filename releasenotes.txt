@@ -3,6 +3,12 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+0.0.123
+- improved spell checks with ICU libraries (use --spell.icu swith to disable them)
+- added --link.example, --link.local and --link.report
+- documented certain previously hidden switches
+- various refinements & bug fixes
+
 0.0.122
 - Added spelling checks & spell.xxx switches (requires hunspell 1.7 on unix)
 - Changed behaviour of binary switches (args are now processed, not presumed)

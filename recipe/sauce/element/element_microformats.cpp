@@ -28,7 +28,7 @@ template < class PROPERTY > void mf_postprocess_entry (const microformats_ptr& m
         {   mention = get_microformat_property_value < mf_entry, PROPERTY > (mf);
             wms = wm_addr; } }
 
-void element::seek_webmention (::std::string& mention, e_wm_status& wms, const ::std::string& lang)
+void element::seek_webmention (::std::string& mention, e_wm_status& wms, const lingo& lang)
 {   bool postprocess = false;
     if (! a_.invalid ())
     {   if (a_.has (a_class)) postprocess = examine_class (lang);
@@ -59,7 +59,7 @@ void element::seek_webmention (::std::string& mention, e_wm_status& wms, const :
                     mf_postprocess_entry < rsvp_at > (mf_, wms, mention);
                     mf_postprocess_entry < bookmark_of_at > (mf_, wms, mention); } } }
 
-::std::string element::find_webmention (const ::std::string& lang)
+::std::string element::find_webmention (const lingo& lang)
 {   ::std::string mention;
     e_wm_status wms = wm_undefined;
     if (has_child ())

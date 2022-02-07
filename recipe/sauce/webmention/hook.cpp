@@ -84,7 +84,7 @@ bool hook::update_mention (nitpick& nits, const ::std::string& s)
     if (! mensh.invalid ())
         mentions.merge (mensh);
     if (! mentions.write (nits)) return false;
-    return mentions.create_html (); }
+    return mentions.create_html (nits); }
 
 bool hook::process (nitpick& nits, const html_version& v)
 {   if (! source_.is_usable ()) return false;
@@ -92,7 +92,7 @@ bool hook::process (nitpick& nits, const html_version& v)
     if (! fetch (nits, v, url (nits, v, source_.original ()), tmp))
         nits.pick (nit_cannot_read, es_error, ec_webmention, "Cannot read ", source_.original ());
     else
-    {   ::std::string html = read_text_file (tmp.string ());
+    {   ::std::string html = read_text_file (nits, tmp.string ());
         page p (nits, source_.original (), 0, html);
         if (p.invalid ())
             nits.pick (nit_dubious_html, es_error, ec_webmention, source_.original (), " appears to be dubious HTML");

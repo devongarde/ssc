@@ -20,8 +20,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "parser/html_version.h"
+
+#ifdef NOICU
+void verify_file_charset (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& charset, const void_ptr& vp, const uintmax_t sz) { }
+void verify_file_charset (nitpick& nits, const html_version& v, const ::boost::filesystem::path& p, const ::std::string& charset) { }
+#else // NOICU
 #include "utility/common.h"
 
-::std::string identify_probable_charset (const void_ptr& vp, const uintmax_t sz);
-void verify_file_charset (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& charset, const void_ptr& vp, const uintmax_t sz);
+::std::string identify_probable_charset (const void* vp, const uintmax_t sz);
+void verify_file_charset (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& charset, const void* vp, const uintmax_t sz);
 void verify_file_charset (nitpick& nits, const html_version& v, const ::boost::filesystem::path& p, const ::std::string& charset);
+#endif // NOICU

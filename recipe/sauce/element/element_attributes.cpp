@@ -95,7 +95,7 @@ void element::examine_autofocus ()
         pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a(n) <", anc -> autofocus_ -> node_.id ().name (), "> element above has one too");
         anc -> autofocus_ -> pick (nit_autofocus, es_error, ec_attribute, "there should be one AUTOFOCUS, yet a(n)  <", node_.id ().name (), "> element below has one too"); } }
 
-bool element::examine_class (const ::std::string& lang)
+bool element::examine_class (const lingo& lang)
 {   if (! context.microformats ()) return true;
     ::std::string content (a_.get_string (a_class));
     if (content.empty ()) return false;
@@ -273,6 +273,13 @@ void element::examine_keytimes ()
     if (n != m)
         pick (nit_keytimes, ed_svg_1_1, "19.2.9 Attributes that define animation values over time", es_error, ec_attribute, "KEYTIMES must have the same quantity of numbers as VALUES"); }
 
+void element::examine_langs (lingo& lang)
+{   if (a_.good (a_xmllang))
+    {   lang = lingo (nits (), a_.original (a_xmllang));
+        if (node_.version ().xhtml ()) return; }
+    if (a_.good (a_lang))
+        lang = lingo (nits (), a_.original (a_lang)); }
+
 void element::examine_line_increment ()
 {   if ((! node_.version ().is_svg_12 ()) || (! ancestral_elements_.test (elem_svg)))
         pick (nit_line_increment, ed_svg_1_2_tiny, "10.11.4 The 'line-increment' property", es_error, ec_attribute, "LINE-INCREMENT requires SVG 1.2");
@@ -300,7 +307,7 @@ void element::examine_other ()
         if (context.math_version () > math_1)
             pick (nit_deprecated_attribute, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "except in MathML 1, OTHER is deprecated"); }
 
-bool element::examine_rel (const ::std::string& content, const ::std::string& lang)
+bool element::examine_rel (const ::std::string& content, const lingo& lang)
 {   PRESUME (context.microformats (), __FILE__, __LINE__);
     if (content.empty ()) return false;
     vstr_t entries, ve;
@@ -342,9 +349,8 @@ void element::examine_registrationmark ()
 
 void element::examine_spellcheck (flags_t& flags)
 {   if (a_.good (a_spellcheck) && ! a_.empty (a_spellcheck))
-    {   int n = a_.get_int (a_spellcheck);
-        if (n == 0) flags |= EP_NOSPELL;
-        else if (n != 0) flags &= ~EP_NOSPELL; } }
+        if (a_.get_int (a_spellcheck) == 0) flags |= EP_NOSPELL;
+        else flags &= ~EP_NOSPELL; }
 
 void element::examine_style_attr ()
 {   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul07))

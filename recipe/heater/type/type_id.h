@@ -47,7 +47,7 @@ template < > struct type_master < t_id > : tidy_string < t_id >
                 {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " does not start with a letter");
                     tidy_string < t_id > :: status (s_invalid); }
                 else if (v.mnr () == 0)
-                {   if (s.find_first_not_of (ALPHADDD) != ::std::string::npos)
+                {   if (s.find_first_not_of (ALPHANUMERIC) != ::std::string::npos)
                     {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " may only contain letters or digits");
                         tidy_string < t_id > :: status (s_invalid); } }
                 else if (s.find_first_not_of (IDS) != ::std::string::npos)
@@ -122,7 +122,7 @@ template < > struct type_master < t_uid > : tidy_string < t_uid >
     {   tidy_string < t_uid > :: set_value (nits, v, trim_the_lot_off (ss));
         if (! tidy_string < t_uid > :: empty ())
         {   const ::std::string& s = tidy_string < t_uid > :: get_string ();
-            ::std::string::size_type pos = s.find (':');
+            const ::std::string::size_type pos = s.find (':');
             if (pos == ::std::string::npos)
             {   if (s.find_first_not_of (HEX "-") == ::std::string::npos) return; }
             else if ((pos > 0) && (pos < (s.length () - 1)))

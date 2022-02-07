@@ -50,11 +50,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url.h"
 #include "url/url_sanitise.h"
 #include "webpage/fileindex.h"
+#include "icu/lingo.h"
 
 void init (nitpick& nits)
 {   init_nit_macros ();
     nits_init ();
     nits.set_context (0, PROG " initialisation");
+    spell_init (nits);
+    lingo::init (nits);
     state_init ();
     attr::init (nits);
     avm_init (nits);
@@ -75,7 +78,6 @@ void init (nitpick& nits)
     schema_property_init (nits);
     schema_version::init (nits);
     init_nstrs (nits);
-    spell_init (nits);
     svg_feature_init (nits);
     hierarchy_init (nits);
     microdata_init (nits);
@@ -109,7 +111,7 @@ int ciao ()
 int examine (nitpick& nits)
 {   int res = VALID_RESULT;
     if (context.cgi ())
-    {   page web (context.snippet (), cc_utf8);
+    {   page web (context.snippet ());
         if (! web.invalid ()) web.examine ();
         ::std::string s (web.nits ().review ());
         s += web.report ();
@@ -236,7 +238,8 @@ int main (int argc, char** argv)
         res = context.parameters (nuts, argc, argv);
         if (nuts.worst () <= es_warning) nits.merge (nuts);
         if (context.todo () == do_simple)
-        {   ::std::cout << SIMPLE_TITLE << context.domsg ();
+        {   ::std::cout << FULL_TITLE;
+            ::std::cout << context.domsg ();
             return VALID_RESULT; }
         if (! is_template_loaded ()) load_template (nits, html_default);
         context.out () << apply_macros (ns_doc_head);
@@ -248,7 +251,7 @@ int main (int argc, char** argv)
             dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = examine (nits);
             if ((res == VALID_RESULT) && context.process_webmentions ())
-            {   context.process_outgoing_webmention (nits, html_current, context.lang ());
+            {   context.process_outgoing_webmention (nits, html_current, lingo (nits, "en"));
                 context.process_incoming_webmention (nits, html_current);
                 dump_nits (nits, ns_webmention, ns_webmention_head, ns_webmention_foot); }
             const int cr = ciao ();

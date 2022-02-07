@@ -153,12 +153,6 @@
     <Filter Include="Toast\HTML\Tags">
       <UniqueIdentifier>{ff1bf1b8-2d05-465d-955e-cabd0c6bf484}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Link">
-      <UniqueIdentifier>{5acc5ec3-4e07-4dad-b708-579c1c4aa780}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Link\subdir">
-      <UniqueIdentifier>{845d7545-0e15-46a7-9623-77923f99befa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Math">
       <UniqueIdentifier>{ec3736c0-5f4d-4bb4-86d1-de250f5cd9c4}</UniqueIdentifier>
     </Filter>
@@ -251,9 +245,6 @@
     </Filter>
     <Filter Include="Toast\Type\URL">
       <UniqueIdentifier>{ce4e23b7-822b-48dd-a365-e1b3b6bf289b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Virtual">
-      <UniqueIdentifier>{7de8e895-0e21-46b0-948b-2e1e8f38af49}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\Webmention">
       <UniqueIdentifier>{b3a1edc7-fa28-4efe-b80d-0479544b98ae}</UniqueIdentifier>
@@ -729,9 +720,6 @@
     <Filter Include="Toast\Output\test">
       <UniqueIdentifier>{df5b0bd3-1bfe-4b60-bcd1-ef0817790e44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Output\default">
-      <UniqueIdentifier>{5ac0968c-6a86-4247-a93c-860268ddd27d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\RDFa\grddl">
       <UniqueIdentifier>{c2fa1795-9ce9-4292-8359-24ab1f2e8567}</UniqueIdentifier>
     </Filter>
@@ -783,14 +771,38 @@
     <Filter Include="Heater\spell">
       <UniqueIdentifier>{b81f78fd-ee16-4493-a64a-412239a2660f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Other\spell">
-      <UniqueIdentifier>{215cf8c1-f54a-4dd2-a44a-ab47f96946a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Conf\sole">
       <UniqueIdentifier>{32b21948-9f92-44de-b872-ac61529c9ed3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\Conf\ssc">
       <UniqueIdentifier>{95cefb52-c5f6-4133-9d6b-68fbbfc8d2db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Spell">
+      <UniqueIdentifier>{a40718d0-0d72-47d5-8a01-d7571235ea38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Spell\case">
+      <UniqueIdentifier>{a6f84ffd-e620-4026-b933-d1e072da5308}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Spell\spell">
+      <UniqueIdentifier>{b3210a14-ffdc-4e1a-9f86-c259184c49b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Spell\noicu">
+      <UniqueIdentifier>{3abd3412-4de4-477c-b3fb-85b1073a71d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\link">
+      <UniqueIdentifier>{a471de8b-548b-4f65-aa86-335959ecc1e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\link\link">
+      <UniqueIdentifier>{1e6aa0e5-c096-42ef-964d-c41a2288c1ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\link\example">
+      <UniqueIdentifier>{104f796a-cd11-473a-b902-f5de3aa84afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\link\link\subdir">
+      <UniqueIdentifier>{0f4e61fb-a868-4064-bb1a-a79ccdf34d22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\link\virtual">
+      <UniqueIdentifier>{47c34434-ccca-4839-9362-acd3ab028ac0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1283,6 +1295,12 @@
     <ClInclude Include="..\heater\spell\spell.h">
       <Filter>Heater\spell</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\spell\phrase.h">
+      <Filter>Heater\spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\icu\lingo.h">
+      <Filter>Heater\icu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1759,6 +1777,9 @@
     <ClCompile Include="..\sauce\spell\spell.cpp">
       <Filter>Sauce\spell</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\icu\lingo.cpp">
+      <Filter>Sauce\icu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\stats\single\index.html">
@@ -1928,9 +1949,6 @@
     </None>
     <None Include="..\toast\type\metaname\old.html">
       <Filter>Toast\Type\metaname</Filter>
-    </None>
-    <None Include="..\toast\virtual\target.html">
-      <Filter>Toast\Virtual</Filter>
     </None>
     <None Include="..\toast\webmention\change.tpl">
       <Filter>Toast\Webmention</Filter>
@@ -2792,24 +2810,6 @@
     </None>
     <None Include="..\toast\microdata\addendum\index.html">
       <Filter>Toast\Microdata\Addendum</Filter>
-    </None>
-    <None Include="..\toast\link\subdir\target.html">
-      <Filter>Toast\Link\subdir</Filter>
-    </None>
-    <None Include="..\toast\link\index.html">
-      <Filter>Toast\Link</Filter>
-    </None>
-    <None Include="..\toast\link\link.conf">
-      <Filter>Toast\Link</Filter>
-    </None>
-    <None Include="..\toast\link\link.spec">
-      <Filter>Toast\Link</Filter>
-    </None>
-    <None Include="..\toast\link\target.html">
-      <Filter>Toast\Link</Filter>
-    </None>
-    <None Include="..\toast\link\css-good.css">
-      <Filter>Toast\Link</Filter>
     </None>
     <None Include="..\toast\HTML\Plus\index.html">
       <Filter>Toast\HTML\Plus</Filter>
@@ -20637,15 +20637,6 @@
     <None Include="..\toast\output\xhtml\xhtml.nit">
       <Filter>Toast\Output\xhtml</Filter>
     </None>
-    <None Include="..\toast\output\default\index.html">
-      <Filter>Toast\Output\default</Filter>
-    </None>
-    <None Include="..\toast\output\default\output.conf">
-      <Filter>Toast\Output\default</Filter>
-    </None>
-    <None Include="..\toast\output\default\output.spec">
-      <Filter>Toast\Output\default</Filter>
-    </None>
     <None Include="..\toast\output\html\index.html.model">
       <Filter>Toast\Output\html</Filter>
     </None>
@@ -20660,9 +20651,6 @@
     </None>
     <None Include="..\toast\output\text\output.txt.model">
       <Filter>Toast\Output\text</Filter>
-    </None>
-    <None Include="..\toast\output\default\default.out.model">
-      <Filter>Toast\Output\default</Filter>
     </None>
     <None Include="..\toast\output\xhtml\ssc.css">
       <Filter>Toast\Output\xhtml</Filter>
@@ -23076,36 +23064,6 @@
     <None Include="..\toast\living\jan22\ww-10.html">
       <Filter>Toast\Living\jan22</Filter>
     </None>
-    <None Include="..\toast\other\spell\en.html">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
-    <None Include="..\toast\other\spell\en-gb.html">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
-    <None Include="..\toast\other\spell\en-us.html">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
-    <None Include="..\toast\other\spell\index.html">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
-    <None Include="..\toast\other\spell\spell.conf">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
-    <None Include="..\toast\other\spell\spell.spec">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
-    <None Include="..\toast\other\spell\list-en.html">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
-    <None Include="..\toast\other\spell\list-gb.html">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
-    <None Include="..\toast\other\spell\de.html">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
-    <None Include="..\toast\other\spell\mar.html">
-      <Filter>Toast\Other\spell</Filter>
-    </None>
     <None Include="..\toast\conf\sole\corona.conf">
       <Filter>Toast\Conf\sole</Filter>
     </None>
@@ -23117,6 +23075,102 @@
     </None>
     <None Include="..\toast\conf\ssc\rose.conf">
       <Filter>Toast\Conf\ssc</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\de.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\en.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\en-gb.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\en-us.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\index.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\list-en.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\list-gb.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\mar.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\spell.conf">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\spell.spec">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\case\case.html">
+      <Filter>Toast\Spell\case</Filter>
+    </None>
+    <None Include="..\toast\spell\case\de.html">
+      <Filter>Toast\Spell\case</Filter>
+    </None>
+    <None Include="..\toast\spell\case\spell.conf">
+      <Filter>Toast\Spell\case</Filter>
+    </None>
+    <None Include="..\toast\spell\case\spell.spec">
+      <Filter>Toast\Spell\case</Filter>
+    </None>
+    <None Include="..\toast\spell\case\index.html">
+      <Filter>Toast\Spell\case</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\case.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\spell\wotsits.html">
+      <Filter>Toast\Spell\spell</Filter>
+    </None>
+    <None Include="..\toast\spell\noicu\case.html">
+      <Filter>Toast\Spell\noicu</Filter>
+    </None>
+    <None Include="..\toast\spell\noicu\de.html">
+      <Filter>Toast\Spell\noicu</Filter>
+    </None>
+    <None Include="..\toast\spell\noicu\index.html">
+      <Filter>Toast\Spell\noicu</Filter>
+    </None>
+    <None Include="..\toast\spell\noicu\spell.conf">
+      <Filter>Toast\Spell\noicu</Filter>
+    </None>
+    <None Include="..\toast\spell\noicu\spell.spec">
+      <Filter>Toast\Spell\noicu</Filter>
+    </None>
+    <None Include="..\toast\link\link\css-good.css">
+      <Filter>Toast\link\link</Filter>
+    </None>
+    <None Include="..\toast\link\link\index.html">
+      <Filter>Toast\link\link</Filter>
+    </None>
+    <None Include="..\toast\link\link\link.conf">
+      <Filter>Toast\link\link</Filter>
+    </None>
+    <None Include="..\toast\link\link\link.spec">
+      <Filter>Toast\link\link</Filter>
+    </None>
+    <None Include="..\toast\link\link\subdir\target.html">
+      <Filter>Toast\link\link\subdir</Filter>
+    </None>
+    <None Include="..\toast\link\link\target.html">
+      <Filter>Toast\link\link</Filter>
+    </None>
+    <None Include="..\toast\link\example\index.html">
+      <Filter>Toast\link\example</Filter>
+    </None>
+    <None Include="..\toast\link\example\link.conf">
+      <Filter>Toast\link\example</Filter>
+    </None>
+    <None Include="..\toast\link\example\link.spec">
+      <Filter>Toast\link\example</Filter>
+    </None>
+    <None Include="..\toast\link\virtual\target.html">
+      <Filter>Toast\link\virtual</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -23287,9 +23341,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\toast\virtual\README.txt">
-      <Filter>Toast\Virtual</Filter>
-    </Text>
     <Text Include="..\toast\webmention\headers\1.txt">
       <Filter>Toast\Webmention\Headers</Filter>
     </Text>
@@ -23365,11 +23416,14 @@
     <Text Include="..\toast\json-ld\README.txt">
       <Filter>Toast\JSON-LD</Filter>
     </Text>
-    <Text Include="..\toast\other\spell\list.txt">
-      <Filter>Toast\Other\spell</Filter>
-    </Text>
     <Text Include="..\toast\conf\live\wordlist.txt">
       <Filter>Toast\Conf\live</Filter>
+    </Text>
+    <Text Include="..\toast\spell\spell\list.txt">
+      <Filter>Toast\Spell\spell</Filter>
+    </Text>
+    <Text Include="..\toast\link\virtual\README.txt">
+      <Filter>Toast\link\virtual</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

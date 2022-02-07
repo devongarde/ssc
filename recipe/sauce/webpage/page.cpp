@@ -31,7 +31,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/text.h"
 #include "webpage/crosslink.h"
 #include "webpage/corpus.h"
-#include "icu/wrapper.h"
 #include "icu/charset.h"
 #include "parser/jsonic.h"
 #include "spell/spell.h"
@@ -40,27 +39,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DOCTYPE_LC "<!doctype"
 #define DOCDOT DOCTYPE " ... >"
 
-page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, directory* d, const e_charcode encoding)
+page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, directory* d)
     :   name_ (name), updated_ (updated)
 {   PRESUME (d != nullptr, __FILE__, __LINE__);
     ids_.ndx (x);
     names_.ndx (x, false);
     directory_ = d;
-    parse (content, encoding); }
+    parse (content); }
 
-page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d, const e_charcode encoding)
+page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d)
     :   name_ (name), updated_ (updated)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
     ids_.ndx (x);
     names_.ndx (x, false);
     directory_ = d;
-    parse (content, encoding); }
+    parse (content); }
 
-page::page (const ::std::string& content, const e_charcode encoding)
+page::page (const ::std::string& content)
 {   snippet_ = true;
     ::std::string x (content);
-    parse (x, encoding); }
+    parse (x); }
 
 void page::reset (const page& p)
 {   page tmp (p);
@@ -112,7 +111,7 @@ void page::charset (nitpick& nits, const html_version& v, const ::std::string& c
             nits.pick (nit_not_utf_8, es_error, ec_attribute, v.report (), " requires the " UTF_8 " charset");
     charset_ = cs; }
 
-bool page::parse (::std::string& content, const e_charcode )
+bool page::parse (::std::string& content)
 {   nits_.reset ();
     if (! snippet_)
     {   PRESUME (directory_ != nullptr, __FILE__, __LINE__);
@@ -133,7 +132,7 @@ void page::examine ()
         document_ -> reconstruct (&access_);
         ::std::string s = document_ -> make_children (0);
         if (context.tell (e_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
-        document_ -> examine_self (precise_language (context.lang ()));
+        document_ -> examine_self (lingo (nits_, "en"));
         document_ -> verify_document ();
         if (! snippet_)
         {   if (has_corpus ())
@@ -145,7 +144,7 @@ void page::examine ()
 void page::verify_locale (const ::boost::filesystem::path& p)
 {   if (lang_.empty ())
     {   lang_ = context.lang ();
-        if (lang_.empty ()) lang_ = "lb-LU"; }
+        if (lang_.empty ()) lang_ = STANDARD_ENGLISH; }
     verify_file_charset (nits_, version (), p, charset_); }
 
 ::std::string page::get_export_root () const
@@ -158,7 +157,7 @@ void page::itemscope (const itemscope_ptr itemscope)
     if (itemscope_ -> export_path ().empty ())
         itemscope_ -> set_exporter (md_export (), md_export_.append_path (get_export_root (), null_itemprop, true)); }
 
-::std::string page::find_webmention (const ::std::string& lang) const
+::std::string page::find_webmention (const lingo& lang) const
 {   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
     if (snippet_) return ::std::string ();
     return document_ -> find_webmention (lang); }
@@ -271,14 +270,3 @@ void page::base (const url& s)
 
 void page::append_jsonld (const ::std::string& j)
 {   jsonld_ += j + "\n"; }
-
-void page::phrase (const ::std::string& l, const ::std::string& s)
-{   if (! l.empty ())
-    {   phrase_lang_ = l;
-        phrase_ += s; } }
-
-void page::phrase (nitpick& nits)
-{   if (! phrase_.empty ())
-    {   spell (nits, phrase_lang_, phrase_);
-        phrase_lang_.clear ();
-        phrase_.clear (); } }

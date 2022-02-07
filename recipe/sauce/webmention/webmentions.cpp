@@ -172,21 +172,21 @@ void webmentions::make_generated_filename (const url& target)
     generated_filename_ = base_path;
     generated_filename_ /= stub; }
 
-bool webmentions::load_templates (vstr_t& templates)
+bool webmentions::load_templates (nitpick& nits, vstr_t& templates)
 {   templates = context.templates ();
     if (templates.size () <= 4) templates.resize (4);
-    ::gsl::at (templates, act_insert) = template_path ("new.tpl", ::gsl::at (templates, act_insert));
+    ::gsl::at (templates, act_insert) = template_path (nits, "new.tpl", ::gsl::at (templates, act_insert));
     if (::gsl::at (templates, act_insert).empty ()) return false;
-    ::gsl::at (templates, act_update) = template_path ("change.tpl", ::gsl::at (templates, act_update));
+    ::gsl::at (templates, act_update) = template_path (nits, "change.tpl", ::gsl::at (templates, act_update));
     if (::gsl::at (templates, act_update).empty ()) return false;
-    ::gsl::at (templates, act_delete) = template_path ("delete.tpl", ::gsl::at (templates, act_delete));
+    ::gsl::at (templates, act_delete) = template_path (nits, "delete.tpl", ::gsl::at (templates, act_delete));
     if (::gsl::at (templates, act_delete).empty ()) return false;
-    ::gsl::at (templates, act_static) = template_path ("static.tpl", ::gsl::at (templates, act_static));
+    ::gsl::at (templates, act_static) = template_path (nits, "static.tpl", ::gsl::at (templates, act_static));
     return (! ::gsl::at (templates, act_static).empty ()); }
 
-bool webmentions::create_html ()
+bool webmentions::create_html (nitpick& nits)
 {   vstr_t templates;
-    if (! load_templates (templates)) return false;
+    if (! load_templates (nits, templates)) return false;
     ::std::string content;
     for (auto wm : w_)
         content += wm.apply_template (templates);

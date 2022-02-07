@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 122
-#define VERSION_STRING "0.0.122"
+#define VERSION_RELEASE 123
+#define VERSION_STRING "0.0.123"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -45,30 +45,35 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COPYRIGHT COPYRIGHT_TEXT COPYRIGHT_BRADDR
 #define COPYRIGHT_HTML_FULL "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
 
-#define SIMPLE_TITLE_D \
-            FULLNAME " " VERSION_STRING "d\n" \
-            "(" __DATE__ " " __TIME__ ")\n" \
-            WEBADDR "\n" \
-            COPYRIGHT "\n\n"
-#define SIMPLE_TITLE_N \
-            FULLNAME " " VERSION_STRING "\n" \
-            "(" __DATE__ " " __TIME__ ")\n" \
-            WEBADDR "\n" \
-            COPYRIGHT "\n\n"
+#if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
+#  ifndef DEBUG
+#  define DEBUG
+#  endif // DEBUG
+#define DBG_ASSERT(x) assert (x)
+#else // debug
+#  ifndef NDEBUG
+#  define NDEBUG
+#  endif // NDEBUG
+#define DBG_ASSERT(x)
+#endif // debug
 
-#ifdef DEBUG
-#define SIMPLE_TITLE SIMPLE_TITLE_D
-#else // DEBUG
-#define SIMPLE_TITLE SIMPLE_TITLE_N
-#endif // DEBUG
+#ifdef NOICU
+#define NOSPELL
+#endif // NOICU
 
 #ifdef __clang__
 #pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Wall"
 #pragma GCC diagnostic ignored "-Wextra"
-#endif // __clang__
-
-#ifdef _MSC_VER
+#define COMPILER "c"
+#define MSVC_NOEXCEPT
+#define PROCSIZE "64"
+#elif ! defined (_MSC_VER)
+#define COMPILER "g"
+#define MSVC_NOEXCEPT
+#define PROCSIZE "64"
+#else // __clang__
+#define COMPILER "m"
 
 #define NOLYNX
 #define NO_BOOST_PROCESS            // it crashed the MSVC 2019 linter, on my system at least
@@ -79,8 +84,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef WIN32
 #define X32
 #define SMALLINT
+#define PROCSIZE "32"
 #else // WIN32
 #define X64
+#define PROCSIZE "64"
 #endif // WIN32
 
     // The MSVC linter is generally useful, but it has some serious problems.
@@ -123,14 +130,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 
-#else // _MSC_VER
-#define MSVC_NOEXCEPT
-#endif // _MSC_VER
+#endif // __clang__
 
 #ifdef FUDDYDUDDY
 #define BOOVAR 2
 #define ORDERED
+#define FUDDY "f"
+#else // FUDDYDUDDY
+#define FUDDY
 #endif // FUDDYDUDDY
+
+#ifdef NOSPELL
+#define SPELT
+#else // NOSPELL
+#define SPELT "s"
+#endif // NOSPELL
 
 #include <iostream>
 #include <vector>
@@ -158,6 +172,48 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <array>
 #include <codecvt>
 #include <locale>
+
+#ifndef NOICU
+#include <unicode/uvernum.h>
+#include <unicode/umachine.h>
+#include <unicode/utf.h>
+#include <unicode/utypes.h>
+#include <unicode/uenum.h>
+#include <unicode/utypes.h>
+#include <unicode/putil.h>
+#include <unicode/uiter.h>
+#include <unicode/uloc.h>
+#include <unicode/utext.h>
+#include <unicode/localpointer.h>
+#include <unicode/parseerr.h>
+#include <unicode/stringoptions.h>
+#include <unicode/ucpmap.h>
+
+
+#include <unicode/ucsdet.h>
+#include <unicode/ucnv.h>
+#include <unicode/unistr.h>
+#include <unicode/errorcode.h>
+#include <unicode/normalizer2.h>
+#include <unicode/localematcher.h>
+#include <unicode/brkiter.h>
+#include <unicode/ustring.h>
+#ifdef _MSC_VER
+#pragma comment (lib, "icudt.lib")
+#ifdef _DEBUG
+#pragma comment (lib, "icuind.lib")
+#pragma comment (lib, "icuiod.lib")
+#pragma comment (lib, "icutud.lib")
+#pragma comment (lib, "icuucd.lib")
+#else // _DEBUG
+#pragma comment (lib, "icuin.lib")
+#pragma comment (lib, "icuio.lib")
+#pragma comment (lib, "icutu.lib")
+#pragma comment (lib, "icuuc.lib")
+#endif // _DEBUG
+#endif // _MSC_VER
+#endif // NOICU
+
 #endif // SSC_TEST
 
 #include <boost/version.hpp>
@@ -207,7 +263,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/format.hpp>
-#include <boost/locale.hpp>
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -231,18 +286,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/algorithm/string.hpp>
 #include <gsl/gsl>
 
-#ifndef SSC_TEST
-#include <unicode/ucsdet.h>
-#include <unicode/ucnv.h>
-#ifdef _MSC_VER
-#pragma comment (lib, "icudt.lib")
-#pragma comment (lib, "icuin.lib")
-#pragma comment (lib, "icuio.lib")
-#pragma comment (lib, "icutu.lib")
-#pragma comment (lib, "icuuc.lib")
-#endif // _MSC_VER
-#endif // SSC_TEST
-
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
@@ -250,23 +293,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif
-
-#if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
-#  ifndef DEBUG
-#  define DEBUG
-#  endif // DEBUG
-#else // debug
-#  ifndef NDEBUG
-#  define NDEBUG
-#  endif // NDEBUG
-#endif // debug
-
-#ifdef DEBUG
-// prefer the macros below (PRESUME, etc.)
-#define DBG_ASSERT(x) assert (x)
-#else // DEBUG
-#define DBG_ASSERT(x)
-#endif // DEBUG
 
 #define END_OF_STATS "==="
 #define START_OF_SECTION "***"
@@ -323,9 +349,9 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define UPPERCASE "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define LOWERCASE "abcdefghijklmnopqrstuvwxyz"
 #define ALPHABET UPPERCASE LOWERCASE
-#define ALPHADDD ALPHABET DDD
-#define B64BIN ALPHADDD "+/= "
-#define IDS ALPHADDD "_:"
+#define ALPHANUMERIC ALPHABET DDD
+#define B64BIN ALPHANUMERIC "+/= "
+#define IDS ALPHANUMERIC "_:"
 #define TEL HEX "+*()-.#*_!~'[]/ "
 #define REAL SIGNEDDECIMAL "Ee"
 #define LINE_SEPARATORS "\n\r\f\v"
@@ -341,6 +367,8 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define US_ASCII "US-ASCII"
 #define LATIN_1 "ISO-8859-1"
 #define UTF_8 "UTF-8"
+#define STANDARD_ENGLISH "en-GB"
+#define WEB_ENGLISH "en-US"
 
 #define DISGUSTING "nonce" // Why The F*ck the standards have to reference paedophiles, I have no clue, but I do NOT like it
 
@@ -375,3 +403,74 @@ typedef uint64_t flags_t; // at least 64 bits
 #include "main/abort.h"
 
 #endif // SCC_TEST
+
+#ifdef NO_BOOST_PROCESS
+#define BP_VER
+#else  // NO_BOOST_PROCESS
+#define BP_VER "p"
+#endif // NO_BOOST_PROCESS
+
+#ifdef NO_PCF_STR
+#define NPS_GEN
+#else
+#define NPS_GEN "n"
+#endif
+
+#ifdef NO_JSONIC
+#define JSNIC
+#else // NO_JSONIC
+#define JSNIC "j"
+#endif // NO_JSONIC
+
+#ifndef MACOS
+#define MAC_VER
+#elif defined (MONETERY)
+#define MAC_VER "M"
+#elif defined (BIG_SUR)
+#define MAC_VER "B"
+#elif defined (CATALINA)
+#define MAC_VER "C"
+#elif defined (MOJAVE)
+#define MAC_VER "m"
+#elif defined (HIGH_SIERRA)
+#define MAC_VER "H"
+#else
+#define MAC_VER "?"
+#endif
+
+#ifdef O68
+#define OBSD_VER "8"
+#elif defined (O69)
+#define OBSD_VER "9"
+#elif defined (HIGH_SIERRA)
+#define OBSD_VER "0"
+#elif defined (OPENBSD)
+#define OBSD_VER "O"
+#else
+#define OBSD_VER
+#endif // O68
+
+#ifdef NOICU
+#define ICU_VER
+#else // NOICU
+#define ICU_VER ":" U_ICU_VERSION
+#endif // NOICU
+
+#ifdef DEBUG
+#define DBG_STATUS "d"
+#else // DEBUG
+#define DBG_STATUS
+#endif // DEBUG
+
+#define BASE_TITLE \
+            FULLNAME " " VERSION_STRING "\n" \
+            WEBADDR "\n" \
+            COPYRIGHT "\n"
+
+#define SIMPLE_TITLE BASE_TITLE "\n"
+
+#define FULL_TITLE \
+        BASE_TITLE \
+        "[" __DATE__ " " __TIME__  "] [" \
+        BP_VER DBG_STATUS FUDDY JSNIC NPS_GEN SPELT MAC_VER OBSD_VER ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER "]" \
+        "\n"

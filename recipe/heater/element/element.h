@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/microformat_export.h"
 #include "microdata/microdata_itemscope.h"
 #include "rdf/rdf.h"
+#include "icu/lingo.h"
 
 #define MAX_IDEAL_PLACEHOLDER_LENGTH 24
 
@@ -61,7 +62,7 @@ class element
     nitpick& nits () noexcept { return node_.nits (); }
     nitpick& nits () const noexcept { return node_.nits (); }
     found_farm find_farm (const e_property prop, element* starter = nullptr);
-    void seek_webmention (::std::string& mention, e_wm_status& wms, const ::std::string& lang);
+    void seek_webmention (::std::string& mention, e_wm_status& wms, const lingo& lang);
     bool to_sibling (element_ptr& e, const bool canreconstruct = true);
     element* next_element (element* previous);
     template < class PROPERTY > void note_reply ();
@@ -99,7 +100,7 @@ class element
     vit_t supplied_itemtypes ();
     vit_t sought_itemtypes ();
     void span_check ();
-    void pre_examine_element (::std::string& lang);
+    void pre_examine_element ();
     void post_examine_element ();
     void late_examine_element ();
     void examine_about ();
@@ -129,7 +130,7 @@ class element
     void examine_aria_valuemin ();
     void examine_autofocus ();
     void examine_body ();
-    bool examine_class (const ::std::string& lang);
+    bool examine_class (const lingo& lang);
     void examine_clip ();
     void examine_colour_profile ();
     void examine_content ();
@@ -144,11 +145,12 @@ class element
     void examine_itemtype (const itemscope_ptr& itemscope);
     void examine_keysplines ();
     void examine_keytimes ();
+    void examine_langs (lingo& lang);
     void examine_line_increment ();
     void examine_other ();
     void examine_ref ();
     void examine_registrationmark ();
-    bool examine_rel (const ::std::string& content, const ::std::string& lang);
+    bool examine_rel (const ::std::string& content, const lingo& lang);
     void examine_spellcheck (flags_t& flags);
     void examine_style_attr ();
     void examine_xlinkhref ();
@@ -200,7 +202,7 @@ class element
     void examine_h123456 ();
     void examine_header ();
     void examine_hgroup ();
-    void examine_html (::std::string& lang);
+    void examine_html ();
     void examine_iframe ();
     void examine_image ();
     void examine_img ();
@@ -275,18 +277,18 @@ public:
     bool hidden () const
     {   if (own_attributes_.test (a_hidden)) return true;
         return ancestral_attributes_.test (a_hidden); }
-    void examine_self ( const ::std::string& lang,
+    void examine_self ( const lingo& lang,
                         const itemscope_ptr& itemscope = itemscope_ptr (),
                         const attribute_bitset& ancestral_attributes = attribute_bitset (), const attribute_bitset& sibling_attributes = attribute_bitset (),
                         const flags_t parental_flags = 0);
-    void examine_children (const flags_t flags, const ::std::string& lang);
+    void examine_children (const flags_t flags, const lingo& lang);
     ::std::string make_children (const int depth, const element_bitset& gf = element_bitset ());
     void verify_document ();
     ::std::string find_date_value () const;
     ::std::string find_text_value () const;
     ::std::string find_url_value () const;
     ::std::string find_html_value () const;
-    ::std::string find_webmention (const ::std::string& lang);
+    ::std::string find_webmention (const lingo& lang);
     ::std::string find_mention_info (const url& u, bool text, bool anything);
     ids_t& get_ids () noexcept;
     const ids_t& get_ids () const noexcept;

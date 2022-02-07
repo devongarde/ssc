@@ -161,14 +161,19 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
         res += kids -> rpt (level + 1); }
     return res; }
 
-::std::string element_node::inner_text (const bool simplify) const
+::std::string element_node::word (bool simplify) const
 {   ::std::string tmp;
     switch (elem_.get ())
     {   case elem_faux_cdata :
         case elem_faux_code :
+            if (text_.empty ()) return "";
             if (is_whitespace (text_)) return " ";
+            if (text_.at (0) == 'x') tmp = interpret_character_hex (text_);
+            else tmp = interpret_character_number (text_);
+            if (! tmp.empty ()) return tmp;
             return text_;
         case elem_faux_char :
+            if (text_.empty ()) return "";
             if (is_whitespace (text_)) return " ";
             tmp = interpret_character_code (version_, text_, simplify);
             if (! tmp.empty ()) return tmp;
@@ -176,11 +181,44 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
         case elem_faux_text :
             return text_;
         case elem_faux_whitespace :
-            return " "; // yaboo xml
+            return " ";
         default : break; }
-    if (child_ == nullptr) return ::std::string ();
-    ::std::string res;
+    return ""; }
+
+::std::string element_node::word (nitpick& nits, const html_version& v) const
+{   ::std::string tmp;
+    switch (elem_.get ())
+    {   case elem_faux_cdata :
+        case elem_faux_code :
+            if (text_.empty ()) return "";
+            if (is_whitespace (text_)) return " ";
+            if (text_.at (0) == 'x') tmp = interpret_character_hex (nits, text_);
+            else tmp = interpret_character_number (nits, text_);
+            if (! tmp.empty ()) return tmp;
+            return text_;
+        case elem_faux_char :
+            if (text_.empty ()) return "";
+            if (is_whitespace (text_)) return " ";
+            tmp = interpret_character_code (nits, v, text_, true);
+            if (! tmp.empty ()) return tmp;
+            return text_;
+        case elem_faux_text :
+            return text_;
+        case elem_faux_whitespace :
+            return " ";
+        default : break; }
+    return ""; }
+
+::std::string element_node::inner_text (const bool simplify) const
+{   ::std::string res (word (simplify));
     for (element_node* kids = child_; kids != nullptr; kids = kids -> next_)
     {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
         res += kids -> inner_text (); }
+    return res; }
+
+::std::string element_node::inner_text (nitpick& nits, const html_version& v) const
+{   ::std::string res (word (nits, v));
+    for (element_node* kids = child_; kids != nullptr; kids = kids -> next_)
+    {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
+        res += kids -> inner_text (nits, v); }
     return res; }

@@ -45,14 +45,14 @@ class corpus;
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
 
 class context_t
-{   bool            article_ = false, body_ = true, cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = true, external_ = false, fe_ = false,
-                    forwarded_ = true, info_ = false, jsonld_ = false, load_css_ = true, links_ = true, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false,
-                    mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false, nochange_ = false, notify_ = false, not_root_ = false,
-                    once_ = true, presume_tags_ = false, process_webmentions_ = false, progress_ = false, rdfa_ = true, rel_ = false, repeated_ = false, reset_ = false,
-                    revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, sarcasm_ = false, schema_ = true,
-                    shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false, spec_ = false,
-                    spell_ = true, ssi_ = true,  stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = true, update_ = false, valid_ = false,
-                    versioned_ = false;
+{   bool            article_ = false, body_ = true, case_ = true, cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = true, example_ = true,
+                    external_ = false, fe_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false,
+                    md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false,
+                    notify_ = false, not_root_ = false, once_ = true, presume_tags_ = false, process_webmentions_ = false, progress_ = false, rdfa_ = true, rel_ = false,
+                    repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false,
+                    sarcasm_ = false, schema_ = true, shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true,
+                    slob_ = false, spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false,
+                    unknown_class_ = true, update_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -65,7 +65,7 @@ class context_t
     ::std::string   macro_end_ = "}}", macro_start_ = "{{";
     ::boost::filesystem::path config_, corpus_, spell_path_;
     e_wm_status     wm_status_ = wm_undefined;
-    vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, mentions_, shadow_ignore_, shadows_, site_, spellings_, templates_, virtuals_;
+    vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, mentions_, no_ex_check_, report_, shadow_ignore_, shadows_, site_, spellings_, templates_, virtuals_;
     replies         replies_;
     hooks           hooks_;
     css_cache       css_;
@@ -98,6 +98,7 @@ public:
     int parameters (nitpick& nits, int argc, char** argv);
     bool article () const noexcept { return article_; }
     bool body () const noexcept { return body_; }
+    bool cased () const noexcept { return case_; }
     bool cgi () const noexcept { return cgi_; }
     bool checking_urls () const noexcept { return checking_urls_; }
     bool clear () const noexcept { return clear_; }
@@ -111,6 +112,7 @@ public:
     bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }
     const ::std::string domsg () const { return domsg_; }
     const ::std::string environment (const e_environment e) const { return environment_.at (e); }
+    bool example () const noexcept { return example_; }
     bool export_defined () const noexcept { return ! export_root_.empty (); }
     const ::std::string export_root () const { return export_root_; }
     const vstr_t exports () const { return exports_; }
@@ -125,6 +127,7 @@ public:
     html_version html_ver () const noexcept { return version_; }
     html_version& html_ver () noexcept { return version_; }
     html_version html_ver (const int major, const int minor) noexcept;
+    bool icu () const noexcept { return icu_; }
     const ::std::string incoming () const { return incoming_; }
     const ::std::string index () const { return index_; }
     bool info () const noexcept { return info_; }
@@ -133,6 +136,7 @@ public:
     const vstr_t jsonld_extension () const { return jsonld_ext_; }
     e_jsonld_version jsonld_version () const noexcept { return version_.jsonld_version (); }
     ::std::string lang () const { return lang_; }
+    bool local () const noexcept { return local_; }
     bool links () const noexcept { return links_; }
     bool load_css () const noexcept { return load_css_; }
     const ::std::string macro_end () const { return macro_end_; }
@@ -158,7 +162,7 @@ public:
         return nit_override_; }
     bool nits () const noexcept { return nits_; }
     bool nits_nits_nits () const noexcept { return nits_nits_nits_; }
-    bool nochange () const noexcept { return nochange_; }
+    const vstr_t no_ex_check () const { return no_ex_check_; }
     bool notify () const noexcept { return notify_; }
     bool not_root () const noexcept { return not_root_; }
     bool once () const noexcept { return once_; }
@@ -173,6 +177,7 @@ public:
     e_rdf_version rdf_version () const noexcept { return version_.rdf_version (); }
     bool rel () const noexcept { return rel_; }
     bool repeated () const noexcept { return repeated_; }
+    const vstr_t report () const { return report_; }
     e_severity report_error () const noexcept { return report_error_; }
     bool reset () const noexcept { return reset_; }
     bool revoke () const noexcept { return revoke_; }
@@ -204,6 +209,7 @@ public:
     bool slob () const noexcept { return slob_; }
     bool spec () const noexcept { return spec_; }
     bool spell () const noexcept { return spell_; }
+    bool spell_deduced () const noexcept { return spell_deduced_; }
     const vstr_t spellings () const { return spellings_; }
     ::boost::filesystem::path spell_path () const { return spell_path_; }
     ::std::string snippet () const { return snippet_; }
@@ -229,6 +235,7 @@ public:
     bool versioned () const noexcept { return versioned_; }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
     context_t& body (const bool b) { body_ = b; mac (nm_context_body, b); return *this; }
+    context_t& cased (const bool b) { case_ = b; mac (nm_context_case, b); return *this; }
     context_t& cgi (const bool b) { cgi_ = b; mac (nm_context_cgi, b); return *this; }
     context_t& checking_urls (const bool b) noexcept { checking_urls_ = b; return *this; }
     context_t& clear (const bool b) { clear_ = b; mac (nm_context_clear, b); return *this; }
@@ -247,6 +254,7 @@ public:
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
     context_t& domsg (const ::std::string& s) { domsg_ = s; return *this; }
     context_t& environment (const e_environment e, const ::std::string& s);
+    context_t& example (const bool b) { example_ = b; mac (nm_context_example, b); return *this; }
     context_t& export_root (const ::std::string& s) { export_root_ = s; mac (nm_context_export_root, s); return *this; }
     context_t& exports (const vstr_t& s) { exports_ = s; mac (nm_context_exports, s); return *this; }
     context_t& extensions (const vstr_t& s) { extensions_ = s; mac (nm_context_extensions, s); return *this; }
@@ -265,6 +273,7 @@ public:
     context_t& hook (const ::std::string& s) { hook_ = s; mac (nm_context_hook, s); return *this; }
     context_t& html_ver (const html_version& v)
     {   versioned (true); version_ = v; mac (nm_context_version, version_.name ()); return *this; }
+    context_t& icu (const bool b) { icu_ = b; mac (nm_context_info, b); return *this; }
     context_t& ignore (nitpick& nits, const vstr_t& s);
     context_t& incoming (const ::std::string& s) { incoming_ = s; return *this; }
     context_t& index (const ::std::string& s) { index_ = s; mac (nm_context_index, s); return *this; }
@@ -282,6 +291,7 @@ public:
         mac (nm_context_links, b);
         return *this; }
     context_t& load_css (const bool b) { load_css_ = b; mac (nm_context_css, b); return *this; }
+    context_t& local (const bool b) { local_ = b; mac (nm_context_local, b); return *this; }
     context_t& macro_end (const ::std::string& s) { macro_end_ = s; return *this; }
     context_t& macro_start (const ::std::string& s) { macro_start_ = s; return *this; }
     context_t& main (const bool b) { main_ = b; mac (nm_context_main, b); return *this; }
@@ -317,7 +327,7 @@ public:
     context_t& nit_override (const ::std::string& nf) { nit_override_ = nf; return *this; }
     context_t& nits (const bool b) noexcept { nits_ = b; return *this; }
     context_t& nits_nits_nits (const bool b) noexcept { nits_nits_nits_ = b; return *this; }
-    context_t& nochange (const bool b) noexcept { nochange_ = b; return *this; }
+    context_t& no_ex_check (const vstr_t& s) { no_ex_check_ = s; mac (nm_context_no_ex_check, s); return *this; }
     context_t& notify (const bool b) noexcept { notify_ = b; return *this; }
     context_t& not_root (const bool b) noexcept { not_root_ = b; return *this; }
     context_t& once (const bool b)
@@ -336,6 +346,7 @@ public:
     context_t& rdf_version (const e_rdf_version v) { version_.rdf_version (v); mac < int > (nm_context_rdf_version, v); return *this; }
     context_t& rel (const bool b) { rel_ = b; mac (nm_context_rel, b); return *this; }
     context_t& repeated (const bool b) noexcept { repeated_ = b; return *this; }
+    context_t& report (const vstr_t& s) { report_ = s; mac (nm_context_report, s); return *this; }
     context_t& report_error (const e_severity sev) noexcept { report_error_ = sev; return *this; }
     context_t& reset (const bool b) noexcept { reset_ = b; return *this; }
     context_t& revoke (const bool b)
@@ -374,8 +385,9 @@ public:
         return *this; }
     context_t& spec (const bool b) { spec_ = b; mac (nm_context_spec, b); return *this; }
     context_t& spell (const bool b) { spell_ = b; mac (nm_context_spell, b); return *this; }
+    context_t& spell_deduced (const bool b) { spell_deduced_ = b; return *this; }
     context_t& spellings (const vstr_t& s) { spellings_ = s; mac (nm_context_spellings, s); return *this; }
-    context_t& spell_path (const ::boost::filesystem::path& f) { spell_path_ = f; return *this; }
+    context_t& spell_path (const ::boost::filesystem::path& f) { spell_path_ = f; mac (nm_context_spell_path, f); return *this; }
     context_t& ssi (const bool b) { ssi_ = b; mac (nm_context_ssi, b); return *this; }
     context_t& stats (const ::std::string& s) { stats_ = s; mac (nm_context_stats_export, s); return *this; }
     context_t& stats_page (const bool b) { stats_page_ = b; mac (nm_context_stats_page, b); return *this; }
@@ -404,7 +416,7 @@ public:
     void note_reply (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content)
     {   if (notify ()) replies_.append (file, id, target, content); }
     replies& get_replies () noexcept { return replies_; }
-    void process_outgoing_webmention (nitpick& nits, const html_version& v, const ::std::string& lang);
+    void process_outgoing_webmention (nitpick& nits, const html_version& v, const lingo& lang);
     void process_incoming_webmention (nitpick& nits, const html_version& v);
     bool tell (const e_verbose n) const noexcept { return n <= verbose_; }
     void out (const ::std::string& s) const { out () << s; }

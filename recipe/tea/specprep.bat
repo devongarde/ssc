@@ -19,7 +19,8 @@ ssc.exe -T -Z -o ../out/Plusplus.tst -f ../toast/HTML/Plus/plus.conf
 ssc.exe -T -Z -o ../out/tagstags.tst -f ../toast/HTML/tags/tags.conf
 ssc.exe -T -Z -o ../out/jas.tst -f ../toast/json-ld/as/jsonld.conf
 ssc.exe -T -Z -o ../out/jschemaorg.tst -f ../toast/json-ld/schemaorg/jsonld.conf
-ssc.exe -T -Z -o ../out/linklink.tst -f ../toast/link/link.conf
+ssc.exe -T -Z -o ../out/examplelink.tst -f ../toast/link/example/link.conf
+ssc.exe -T -Z -o ../out/linklink.tst -f ../toast/link/link/link.conf
 ssc.exe -T -Z -o ../out/jul07living.tst -f ../toast/living/jul07/living.conf
 ssc.exe -T -Z -o ../out/jan08living.tst -f ../toast/living/jan08/living.conf
 ssc.exe -T -Z -o ../out/jul08living.tst -f ../toast/living/jul08/living.conf
@@ -83,7 +84,6 @@ ssc.exe -T -Z -o ../out/nitsnits.tst -f ../toast/other/nits/nits.conf
 ssc.exe -T -Z -o ../out/parsingparsing.tst -f ../toast/other/parsing/parsing.conf
 ssc.exe -T -Z -o ../out/patternpattern.tst -f ../toast/other/pattern/pattern.conf
 ssc.exe -T -Z -o ../out/simplesimple.tst -f ../toast/other/simple/simple.conf
-ssc.exe -T -Z -o ../out/spell.tst -f ../toast/other/spell/spell.conf
 ssc.exe -T -Z -o ../out/ssissi.tst -f ../toast/other/ssi/ssi.conf
 ssc.exe -T -Z -o ../out/RDFa113.tst -f ../toast/RDFa/1.1.3/rdfa.conf
 ssc.exe -T -Z -o ../out/RDFacc.tst -f ../toast/RDFa/cc/rdfa.conf
@@ -115,6 +115,9 @@ ssc.exe -T -Z -o ../out/pagespages.tst -f ../toast/shadow/pages/pages.conf
 ssc.exe -T -Z -o ../out/softsoft.tst -f ../toast/shadow/soft/soft.conf
 ssc.exe -T -Z -o ../out/softoversoftover.tst -f ../toast/shadow/softover/softover.conf
 ssc.exe -T -Z -o ../out/ssishssi.tst -f ../toast/shadow/ssi/ssi.conf
+ssc.exe -T -Z -o ../out/case.tst -f ../toast/spell/case/spell.conf
+ssc.exe -T -Z -o ../out/noicu.tst -f ../toast/spell/noicu/spell.conf
+ssc.exe -T -Z -o ../out/spell.tst -f ../toast/spell/spell/spell.conf
 ssc.exe -T -Z -o ../out/updateupdate.tst -f ../toast/shadow/update/update.conf
 ssc.exe -T -Z -o ../out/snippetconf.tst -f ../toast/snippet/conf/snippet.conf
 ssc.exe -T -Z -o ../out/snippetkiwi.tst -f ../toast/snippet/kiwi/snippet.conf

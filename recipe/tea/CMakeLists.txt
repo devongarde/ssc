@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.12)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.0.122 LANGUAGES CXX)
+project (ssc VERSION 0.0.123 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -42,18 +42,24 @@ if (UNIX)
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
 
+    set (HI "/usr/local/include/hunspell")
+    set (HL "/usr/local/lib")
+
     if (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.8")
       message ("OpenBSD 6.8")
+      set (HV "hunspell-1.6.a")
       set (BV "1.67")
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR)
       target_compile_definitions (ssc PRIVATE OPENBSD O68 NO_PCF_STR NO_BOOST_PROCESS NO_JSONIC GENNIX)
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.9")
       message ("OpenBSD 6.9")
+      set (HV "hunspell-1.7.a")
       set (BV "1.67")
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR)
       target_compile_definitions (ssc PRIVATE OPENBSD O69 NO_PCF_STR NO_BOOST_PROCESS NO_JSONIC GENNIX)
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-7.0")
       message ("OpenBSD 7.0")
+      set (HV "hunspell-1.7.a")
       target_compile_definitions (ssc-test PRIVATE NO_PCF_STR)
       target_compile_definitions (ssc PRIVATE OPENBSD O70 NO_PCF_STR NO_BOOST_PROCESS GENNIX)
     else ()
@@ -64,7 +70,37 @@ if (UNIX)
     message ("Linux: only built under Centos 8 amd64 and Ubuntu Server 20.04 amd64")
     set (BV "1.67")
     target_compile_definitions (ssc PRIVATE LINUX NO_JSONIC GENNIX)
+    if (DEFINED $ENV{HUNSPELL_INCLUDE})
+      set (HI $ENV{HUNSPELL_INCLUDE})
+    else ()
+      set (HI "/usr/local/include/hunspell")
+    endif ()
+    if (DEFINED $ENV{HUNSPELL_LIB})
+      set (HL $ENV{HUNSPELL_LIB})
+    else ()
+      set (HL "/usr/local/lib")
+    endif ()
+    if (DEFINED $ENV{HUNSPELL_VERSION})
+      set (HV $ENV{HUNSPELL_VERSION})
+    else ()
+      set (HV "hunspell-1.7.so")
+    endif ()
   elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    if (DEFINED $ENV{HUNSPELL_INCLUDE})
+      set (HI $ENV{HUNSPELL_INCLUDE})
+    else ()
+      set (HI "/opt/local/include/hunspell")
+    endif ()
+    if (DEFINED $ENV{HUNSPELL_LIB})
+      set (HL $ENV{HUNSPELL_LIB})
+    else ()
+      set (HL "/opt/local/lib")
+    endif ()
+    if (DEFINED $ENV{HUNSPELL_VERSION})
+      set (HV $ENV{HUNSPELL_VERSION})
+    else ()
+      set (HV "hunspell-1.7.a")
+    endif ()
     if (${CMAKE_SYSTEM} MATCHES "Darwin-21")
       message ("MacOS Monterey")
       target_compile_definitions (ssc PRIVATE MONTEREY MACOS GENNIX)
@@ -110,7 +146,7 @@ target_sources (ssc PRIVATE
         ${H}/element/elem.h ${H}/element/element.h ${H}/element/element_attribute.h ${H}/element/element_classes.h ${H}/element/parentage.h
             ${H}/element/state.h
         ${H}/feedback/nit.h ${H}/feedback/nitnames.h ${H}/feedback/nitout.h ${H}/feedback/nitpick.h
-        ${H}/icu/charset.h ${H}/icu/converter.h ${H}/icu/wrapper.h
+        ${H}/icu/charset.h ${H}/icu/converter.h ${H}/icu/lingo.h ${H}/icu/wrapper.h
         ${H}/main/abort.h ${H}/main/args.h ${H}/main/context.h ${H}/main/include.h ${H}/main/options.h ${H}/main/standard.h ${H}/main/version.h
         ${H}/microdata/microdata_export.h ${H}/microdata/microdata_itemid.h ${H}/microdata/microdata_itemprop.h ${H}/microdata/microdata_itemscope.h
             ${H}/microdata/microdata_itemtype.h
@@ -125,7 +161,7 @@ target_sources (ssc PRIVATE
         ${H}/rdf/rdf.h ${H}/rdf/rdfa_prop.h ${H}/rdf/rdfa_type.h
         ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h ${H}/schema/schema_type.h
             ${H}/schema/schema_version.h
-        ${H}/spell/spell.h
+        ${H}/spell/spell.h ${H}/spell/phrase.h
         ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats4.h ${H}/stats/stats_impl.h
         ${H}/symbol/nstr.h ${H}/symbol/symbol.h ${H}/symbol/symbol_entry.h ${H}/symbol/symbol_key.h ${H}/symbol/symbol_store.h ${H}/symbol/symbol_table.h
         ${H}/type/enum.h ${H}/type/reldef.h ${H}/type/sz.h ${H}/type/type.h ${H}/type/type_1.h ${H}/type/type_2.h ${H}/type/type_3.h ${H}/type/type_4.h
@@ -137,8 +173,7 @@ target_sources (ssc PRIVATE
             ${H}/type/type_math.h ${H}/type/type_measure.h ${H}/type/type_microdata.h ${H}/type/type_microformat.h ${H}/type/type_misc.h
             ${H}/type/type_numeric.h ${H}/type/type_svg.h ${H}/type/type_varied.h ${H}/type/type_xmlns.h
         ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h ${H}/url/url_schemes.h
-        ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/quote.h
-            ${H}/utility/tuple.h
+        ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
         ${H}/webmention/hook.h ${H}/webmention/irt.h ${H}/webmention/webmention.h ${H}/webmention/webmentions.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/root.h
@@ -155,7 +190,7 @@ target_sources (ssc PRIVATE
             ${S}/element/element_pqr.cpp ${S}/element/element_rdfa.cpp ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp ${S}/element/parentage.cpp
             ${S}/element/state.cpp
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitout.cpp ${S}/feedback/nitpick.cpp
-        ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/wrapper.cpp
+        ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/lingo.cpp ${S}/icu/wrapper.cpp
         ${S}/main/abort.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/main/version.cpp
         ${S}/microdata/microdata_export.cpp ${S}/microdata/microdata_itemid.cpp ${S}/microdata/microdata_itemprop.cpp ${S}/microdata/microdata_itemscope.cpp
             ${S}/microdata/microdata_itemtype.cpp
@@ -184,7 +219,7 @@ target_sources (ssc PRIVATE
 )
 
 target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIR} $ENV{GSL_ROOT}/include)
-target_include_directories (ssc PRIVATE ${H} ${BOOST_INCLUDE_DIR} ${ICU_INCLUDE_DIRS} $ENV{GSL_ROOT}/include $ENV{HUNSPELL_INCLUDE})
+target_include_directories (ssc PRIVATE ${H} ${BOOST_INCLUDE_DIR} ${ICU_INCLUDE_DIRS} $ENV{GSL_ROOT}/include ${HI})
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 
@@ -219,7 +254,7 @@ target_link_libraries (ssc PRIVATE pthread)
 target_link_libraries (ssc PRIVATE ${ICU_LIBRARIES})
 
 if (UNIX)
-  target_link_libraries (ssc PRIVATE $ENV{HUNSPELL_LIB}/lib$ENV{HUNSPELL_VERSION})
+  target_link_libraries (ssc PRIVATE ${HL}/lib${HV})
 endif ()
 
 install (TARGETS ssc-test DESTINATION ${D})
