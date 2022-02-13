@@ -804,6 +804,9 @@
     <Filter Include="Toast\link\virtual">
       <UniqueIdentifier>{47c34434-ccca-4839-9362-acd3ab028ac0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Webmention\1">
+      <UniqueIdentifier>{f413326d-1298-4988-b476-d741a93e85b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -23172,6 +23175,15 @@
     <None Include="..\toast\link\virtual\target.html">
       <Filter>Toast\link\virtual</Filter>
     </None>
+    <None Include="..\toast\webmention\1\index.html">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
+    <None Include="..\toast\webmention\1\wm.conf">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
+    <None Include="..\toast\webmention\1\wm.spec">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -23424,6 +23436,12 @@
     </Text>
     <Text Include="..\toast\link\virtual\README.txt">
       <Filter>Toast\link\virtual</Filter>
+    </Text>
+    <Text Include="..\toast\spell\README.txt">
+      <Filter>Toast\Spell</Filter>
+    </Text>
+    <Text Include="..\..\webmention.txt">
+      <Filter>Info</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

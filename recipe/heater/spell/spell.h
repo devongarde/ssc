@@ -31,7 +31,7 @@ extern mssfl_t mssfl;
 void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::filesystem::path& fn);
 
 #ifndef NOSPELL
-void spell (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text);
+void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text);
 void spell_init (nitpick& nits);
 vstr_t load_dictionaries (nitpick& nits);
 void spell_free ();
@@ -42,7 +42,7 @@ void add_dict (const ::std::string& lang, const ::std::string& dict);
 void spell_tell (nitpick& nits, const lingo& lang, const ::std::string& word, const vstr_t& alt);
 ::std::string get_supported_locales (nitpick& nits);
 #else // NOSPELL
-inline void spell (nitpick& , const lingo& , const ::std::string& ) { }
+inline void check_spelling (nitpick& , const lingo& , const ::std::string& ) { }
 inline void spell_init (nitpick& nits)
 {   nits.pick (nit_no_spell, es_comment, ec_spell, "spell check unavailable"); }
 inline vstr_t load_dictionaries (nitpick& ) { return vstr_t (); }

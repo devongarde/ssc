@@ -49,10 +49,10 @@ class context_t
                     external_ = false, fe_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false,
                     md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false,
                     notify_ = false, not_root_ = false, once_ = true, presume_tags_ = false, process_webmentions_ = false, progress_ = false, rdfa_ = true, rel_ = false,
-                    repeated_ = false, reset_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false,
-                    sarcasm_ = false, schema_ = true, shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true,
-                    slob_ = false, spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false,
-                    unknown_class_ = true, update_ = false, valid_ = false, versioned_ = false;
+                    repeated_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, sarcasm_ = false,
+                    schema_ = true, shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
+                    spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = true, update_ = false,
+                    valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -60,9 +60,9 @@ class context_t
     long            max_file_size_ = DMFS_BYTES;
     e_verbose       verbose_ = default_output;
     e_severity      report_error_ = es_error;
-    ::std::string   domsg_, export_root_, filename_, hook_, incoming_, index_, lang_, msg_, nit_format_, nit_override_, output_, path_, persisted_, root_,
-                    secret_, server_, shadow_, shadow_persist_, snippet_, stats_, stub_, test_header_, user_, webmention_, write_path_;
-    ::std::string   macro_end_ = "}}", macro_start_ = "{{";
+    ::std::string   domsg_, export_root_, filename_, general_info_, incoming_, index_, lang_, macro_end_ = "}}", macro_start_ = "{{", msg_, nit_format_,
+                    nit_override_, output_, path_, persisted_, root_, secret_, server_, shadow_, shadow_persist_, snippet_, stats_, stub_, test_header_, user_,
+                    webmention_, write_path_;
     ::boost::filesystem::path config_, corpus_, spell_path_;
     e_wm_status     wm_status_ = wm_undefined;
     vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, mentions_, no_ex_check_, report_, shadow_ignore_, shadows_, site_, spellings_, templates_, virtuals_;
@@ -121,6 +121,7 @@ public:
     bool fe () const noexcept { return fe_; }
     const ::std::string filename () const { return filename_; }
     bool forwarded () const  noexcept{ return forwarded_; }
+    const ::std::string general_info () const { return general_info_; }
     bool has_math () const noexcept { return version_.has_math (); }
     bool has_rdfa () const noexcept { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
     bool has_svg () const noexcept { return version_.has_svg (); }
@@ -179,7 +180,6 @@ public:
     bool repeated () const noexcept { return repeated_; }
     const vstr_t report () const { return report_; }
     e_severity report_error () const noexcept { return report_error_; }
-    bool reset () const noexcept { return reset_; }
     bool revoke () const noexcept { return revoke_; }
     bool rfc_1867 () const noexcept { return rfc_1867_; }
     bool rfc_1942 () const noexcept { return rfc_1942_; }
@@ -207,7 +207,6 @@ public:
     const vstr_t shadows () const { return shadows_; }
     const vstr_t site () const { return site_; }
     bool slob () const noexcept { return slob_; }
-    bool spec () const noexcept { return spec_; }
     bool spell () const noexcept { return spell_; }
     bool spell_deduced () const noexcept { return spell_deduced_; }
     const vstr_t spellings () const { return spellings_; }
@@ -270,7 +269,7 @@ public:
         mac (nm_context_forward, b);
         if (b) external (b);
         return *this; }
-    context_t& hook (const ::std::string& s) { hook_ = s; mac (nm_context_hook, s); return *this; }
+    context_t& general_info (const ::std::string& s) { general_info_ = s; mac (nm_general_info, s); return *this; }
     context_t& html_ver (const html_version& v)
     {   versioned (true); version_ = v; mac (nm_context_version, version_.name ()); return *this; }
     context_t& icu (const bool b) { icu_ = b; mac (nm_context_info, b); return *this; }
@@ -348,7 +347,6 @@ public:
     context_t& repeated (const bool b) noexcept { repeated_ = b; return *this; }
     context_t& report (const vstr_t& s) { report_ = s; mac (nm_context_report, s); return *this; }
     context_t& report_error (const e_severity sev) noexcept { report_error_ = sev; return *this; }
-    context_t& reset (const bool b) noexcept { reset_ = b; return *this; }
     context_t& revoke (const bool b)
     {   revoke_ = b;
         if (b) external (b);
@@ -383,7 +381,6 @@ public:
         mmac_.emplace (nm_html_snippet, s);
         quote_style (qs_html);
         return *this; }
-    context_t& spec (const bool b) { spec_ = b; mac (nm_context_spec, b); return *this; }
     context_t& spell (const bool b) { spell_ = b; mac (nm_context_spell, b); return *this; }
     context_t& spell_deduced (const bool b) { spell_deduced_ = b; return *this; }
     context_t& spellings (const vstr_t& s) { spellings_ = s; mac (nm_context_spellings, s); return *this; }

@@ -7428,6 +7428,9 @@
     <None Include="..\toast\webapps\jul06\wa2.html" />
     <None Include="..\toast\webapps\jul06\webapps.conf" />
     <None Include="..\toast\webapps\jul06\webapps.spec" />
+    <None Include="..\toast\webmention\1\index.html" />
+    <None Include="..\toast\webmention\1\wm.conf" />
+    <None Include="..\toast\webmention\1\wm.spec" />
     <None Include="..\toast\webmention\change.tpl" />
     <None Include="..\toast\webmention\delete.tpl" />
     <None Include="..\toast\webmention\new.tpl" />
@@ -7561,6 +7564,7 @@
     <Text Include="..\..\README.txt" />
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
+    <Text Include="..\..\webmention.txt" />
     <Text Include="..\gen\gen.txt" />
     <Text Include="..\toast\conf\live\wordlist.txt" />
     <Text Include="..\toast\json-ld\README.txt" />
@@ -7568,6 +7572,7 @@
     <Text Include="..\toast\README.txt" />
     <Text Include="..\toast\shadow\update\README.txt" />
     <Text Include="..\toast\snippet\README.txt" />
+    <Text Include="..\toast\spell\README.txt" />
     <Text Include="..\toast\spell\spell\list.txt" />
     <Text Include="..\toast\tmp\README.txt" />
     <Text Include="..\toast\webmention\headers\1.txt" />

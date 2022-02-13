@@ -16,7 +16,7 @@ PASS ../toast/HTML/minimal/rfc1942.html
 20 inserted_missing_closure
 
 PASS ../toast/HTML/minimal/rfc1980.html
-10 attribute_unrecognised unrecognised_attribute
+10 attribute_unrecognised unrecognised_attribute url_not_found
 12 unknown_element missing_close
 13 unknown_element attribute_unrecognised
 14 unknown_element

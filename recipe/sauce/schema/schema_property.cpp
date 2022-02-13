@@ -5204,7 +5204,7 @@ property_gen gentab [] =
     { { s_sosa, 1, 0 }, { 0, 0 }, sosa_madesampling, t_schema_type, sosa_sampling },
     { { s_sosa, 1, 0 }, { 0, 0 }, sosa_observedproperty, t_schema_type, sosa_observableproperty },
     { { s_sosa, 1, 0 }, { 0, 0 }, sosa_observes, t_schema_type, sosa_sensor },
-//    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_phenomenontime, t_schema_type, time_temporalentity },
+    { { s_sosa, 1, 0 }, { 0, 0 }, sosa_phenomenontime, t_schema_type, time_temporalentity },
     { { s_sosa, 1, 0 }, { 0, 0 }, sosa_phenomenontime, t_duration },
     { { s_sosa, 1, 0 }, { 0, 0 }, sosa_phenomenontime, t_datetime },
     { { s_sosa, 1, 0 }, { 0, 0 }, sosa_usedprocedure, t_schema_type, sosa_procedure },

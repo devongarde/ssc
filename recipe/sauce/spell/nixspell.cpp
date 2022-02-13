@@ -125,7 +125,7 @@ hun::hun (nitpick& nits, const ::boost::filesystem::path& p, const lingo& lang)
     if (hun_ == nullptr)
     {   nits.pick (nit_no_spell, es_error, ec_spell, "Cannot create ", quote (lang.dialect ()), " spellchecker");
         return; }
-    nits.pick (nit_dictionary, es_info, ec_spell, "Found dictionary for ", quote (lang.dialect ())); }
+    nits.pick (nit_dictionary, es_comment, ec_spell, "Found dictionary for ", quote (lang.dialect ())); }
 
 void spell_init (nitpick& )
 {  }
@@ -147,7 +147,7 @@ void apply_wordlists (nitpick& nits, mhun_t::iterator& hi, const ::std::string& 
 {   for (mssfl_t::const_iterator i = mssfl.find (lang); i != mssfl.cend (); ++i)
         apply_wordlist (nits, hi, i -> second); }
 
-void spell (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text)
+void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text)
 {   if (! context.spell ()) return;
     if (text.empty () || tart (text).empty () || lang.invalid ()) return;
     ::std::string l (lang.dialect ());

@@ -49,8 +49,8 @@ void microdata_export::add (const ::std::string& path, const ::std::string& item
     tree_.add (path + JSON_ITEMID, itemid); }
 
 ::std::string microdata_export::append_path (const ::std::string& orig, const itemprop_index prop, const bool uid, const ::std::string& it)
-{   PRESUME (! orig.empty (), __FILE__, __LINE__);
-    ::std::string res (orig);
+{   ::std::string res (orig);
+    if (res.empty ()) res = "faux";
     if (prop != null_itemprop)
     {   res += ".";
         res += itemprop_index_name (prop); }

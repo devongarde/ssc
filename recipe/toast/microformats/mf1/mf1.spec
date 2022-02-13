@@ -50,6 +50,7 @@ PASS ../toast/microformats/mf1/mf1-example.html
 187 use_quote_code
 188 hcard_infer hcard_infer
 196 reputation
+203 no_such_folder url_not_found
 209 hcard_infer
 212 use_double_quote_code
 218 hcard_infer hcard_infer
@@ -62,6 +63,7 @@ PASS ../toast/microformats/mf1/mf1-example.html
 290 use_quote_code
 293 hcard_infer
 295 unrecognised_value
+296 no_such_folder url_not_found
 321 unrecognised_value
 323 unrecognised_value
 339 hcard_infer hcard_infer

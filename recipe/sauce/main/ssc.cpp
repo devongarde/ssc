@@ -207,6 +207,8 @@ int main (int argc, char** argv)
 {   int res = NOTHING_TO_DO;
     bool enfooten = false;
     ::std::string msg;
+    PRESUME (argc > 0, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
     try
     {   const auto start = ::std::chrono::system_clock::now ();
         const std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
@@ -221,8 +223,6 @@ int main (int argc, char** argv)
         PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__);
         nitpick nits, nuts;
         init (nits);
-        PRESUME (argc > 0, __FILE__, __LINE__);
-        VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26481) // erm, linter, you do know about the C++ main function's signature, don't you?
@@ -234,24 +234,27 @@ int main (int argc, char** argv)
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
+        context.macros ().emplace (nm_context_build, BUILD_INFO);
         context.macros ().emplace (nm_run_args, args);
+        context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" BUILD_INFO "]\n");
         res = context.parameters (nuts, argc, argv);
-        if (nuts.worst () <= es_warning) nits.merge (nuts);
         if (context.todo () == do_simple)
         {   ::std::cout << FULL_TITLE;
             ::std::cout << context.domsg ();
             return VALID_RESULT; }
-        if (! is_template_loaded ()) load_template (nits, html_default);
+        if (! is_template_loaded ()) load_template (nuts, html_default);
         context.out () << apply_macros (ns_doc_head);
         enfooten = true;
         dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
-        if (context.todo () == do_booboo) res = ERROR_STATE;
+        if (context.todo () == do_booboo)
+        {   dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
+            res = ERROR_STATE; }
         else
         {   if (! fileindex_load (nuts)) res = ERROR_STATE;
             dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = examine (nits);
             if ((res == VALID_RESULT) && context.process_webmentions ())
-            {   context.process_outgoing_webmention (nits, html_current, lingo (nits, "en"));
+            {   context.process_outgoing_webmention (nits, html_current, lingo (nits, context.lang ()));
                 context.process_incoming_webmention (nits, html_current);
                 dump_nits (nits, ns_webmention, ns_webmention_head, ns_webmention_foot); }
             const int cr = ciao ();
@@ -275,9 +278,11 @@ int main (int argc, char** argv)
     {   msg = "catastrophic exit with an unknown exception";
         res = ERROR_STATE; }
     if (! enfooten)
-    {   if (! msg.empty ()) ::std::cerr << msg << "\n"; }
+    {   if (! msg.empty ()) ::std::cerr << msg << "\n";
+        else ::std::cerr << "catastrophic error of unknown cause with no explanation\n"; }
     else try
     {   if (! msg.empty ()) context.macros ().emplace (nm_run_catastrophe, msg);
+        else context.macros ().emplace (nm_run_catastrophe, "catastrophic error of unknown cause with no explanation");
         context.out () << apply_macros (ns_doc_foot); }
     catch (...)
     {   if (msg.empty ()) msg = "catastrophic exception writing footers\n";

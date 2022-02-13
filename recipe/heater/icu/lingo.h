@@ -28,9 +28,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define DOT_UTF8 ".UTF-8"
 
-typedef ::std::shared_ptr < icu::LocaleMatcher > plm_t;
-typedef ::std::shared_ptr < icu::BreakIterator > pbi_t;
-
 class lingo
 {   ::std::string locale_id_, orig_;
     int32_t uloc_ = 0;

@@ -22,6 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifndef NOSPELL
 #ifdef _MSC_VER
+
+#if _MSC_VER < 1920
+typedef struct IUnknown IUnknown;
+#endif // VS2017
+
 #include <spellcheck.h>
 #include "spell/spell.h"
 #include "main/context.h"
@@ -81,7 +86,7 @@ void apply_wordlists (ISpellChecker* isp, const ::std::string& lang)
     delete [] p;
     return res; }
 
-void spell (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text)
+void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text)
 {   if (scf == nullptr) return;
     if (! context.spell ()) return;
     if (text.empty () || tart (text).empty () || lang.invalid ()) return;
@@ -100,7 +105,6 @@ void spell (nitpick& nits, const html_version& v, const lingo& lang, const ::std
         apply_wordlists (isp, l);
         const ::std::string::size_type pos = l.find ('-');
         if (pos != ::std::string::npos) apply_wordlists (isp, l.substr (0, pos));
-//        else apply_wordlists (isp, lingo::standard_dialect (l));
         apply_wordlists (isp, "");
         apply_wordlist (isp, context.spellings ());
         mlf.insert (mlf_t::value_type (l, isp)); }
@@ -164,7 +168,7 @@ void spell (nitpick& nits, const html_version& v, const lingo& lang, const ::std
     try
     {   for (;;)
         {   ULONG fetched = 0;
-            const HRESULT hr = sl -> Next (1, &dialect, &fetched);
+            if (FAILED (sl -> Next (1, &dialect, &fetched))) break;
             if (fetched == 0) break;
             if (! res.empty ()) res += ", ";
             res += ole2string (dialect);

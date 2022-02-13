@@ -6,36 +6,40 @@ https://ssc.lu/
 
 Introduction
 ============
-SSC can be built from various unii command lines using CMake, or with Visual Studios 2017 / 2019 / 2022 under Windows.
+SSC can be built from various unii command lines using CMake, or with
+Visual Studios 2017 / 2019 / 2022 under Windows.
 
 
 Libraries
 =========
-Before you can build SSC, you may find you need to install and build boost version 1.75 or better, a recent version
-of the ICU libraries, a copy of Microsoft's GSL library. Most unii have all available as packages.
+
+Common dependencies
+-------------------
+You should install boost version 1.75 or better (https://boost.org), a recent
+version of the ICU libraries (https://icu-project.org/), & Microsoft's GSL
+library (https://github.com/Microsoft/GSL). Most unii have most available as
+packages. You can install build and install them yourself if you prefer.
 
 You may need to set these environment variables:
-BOOST_ROOT to point to the boost source root directory (https://boost.org);
-you may also need to set BOOST_LIBRARYDIR and BOOST_INCLUDEDIR appropriately;
-GSL_ROOT to point to the GSL root directory (https://github.com/Microsoft/GSL).
-ICU_ROOT to point to the ICU library source root directory (https://icu-project.org/);
-SSCPATH to point to the ssc source directory (https://ssc.lu/).
+- BOOST_ROOT to point to the boost source root directory (you may also need to
+  set BOOST_LIBRARYDIR and BOOST_INCLUDEDIR appropriately);
+- GSL_ROOT to point to the GSL root directory;
+- ICU_ROOT to point to the ICU library source root directory;
+- SSCPATH to point to the ssc source directory.
 
 
-Unii & mock unii
-----------------
-Building SSC under unii, including macos, requires a development installation of hunspell
-(https://hunspell.github.io/). Linux requires these environment variables; macos will
-take note of them if they are present (they're not needed under OpenBSD, it just works):
-HUNSPELL_INCLUDE to point to the hunspell include directory 
-HUNSPELL_LIB to point to the hunspell library directory
-HUNSPELL_VERSION, the actual library name (such as "hunspell-1.7.so")
+hunspell
+--------
+Building SSC under unii, including macos, requires a development installation
+of hunspell (https://hunspell.github.io/). You may need to set these
+environment variables:
+- HUNSPELL_INCLUDE to point to the hunspell include directory
+- HUNSPELL_LIB to point to the hunspell library directory
+- HUNSPELL_VERSION, the actual library name (such as "hunspell-1.7.so")
 
 Once you've got them, navigate to recipe/tea, and run cmake.
 
-Windows
--------
-The Windows build uses the native Windows spellchecker, so you do not need hunspell.
+The Windows build uses the native Windows spellchecker, not hunspell.
 
 
 Building
@@ -43,38 +47,55 @@ Building
 
 Windows
 -------
-To build from Visual Studio, navigate to recipe/tea, open the appropriate .sln file, then build. Only Visual Studios
-2017 / 2019 / 2022, 64 bit, have been built & tested, for Windows 8.1 & 10. If the 32 bit version builds, it will
-generate oodles of annoying warnings, and the executable won't be able to analyse larger sites.
+To build from Visual Studio, navigate to recipe/tea, open the appropriate .sln
+file, then build. Only Visual Studios  2017 / 2019 / 2022, 64 bit, have been
+built & tested, for Windows 8.1 & 10. If the 32 bit version builds, it will
+generate oodles of annoying warnings, and the executable won't be able to
+analyse larger sites.
 
 Unii & mock Unii
 ----------------
-You will need CMake 3.12 or better. From the home ssc directory, compile thus:
+You will need CMake 3.12 or better. From the home ssc directory, compile a
+normal release build thus:
 cd recipe/tea
 cmake .
 make
 ctest
 make install
 
-If everything works correctly, then everything will be built, a series of tests run, with a final result at the very end
-saying no failures. Having said that, given SSC is pre-alpha, don't be too surprised to see some warnings or some final test
-errors. Note in particular that complaints about being unable to find or copy files during testing are not of concern, these
-come from scripts that set up or tear down individual tests, and the standard commands used sometimes complain if they can't
-find files they're supposed to delete, rather than saying thank you for reducing their work.
+For a debug build:
+cd recipe/tea
+cmake -DCMAKE_BUILD_TYPE=Debug .
+make
+ctest
+make install
 
-The following have successfully built, although not always under all versions of ssc:
-Linux: Centos 8 amd64, Ubuntu Server 20.04/20.10 amd64
-OpenBSD 6.8 / 6.9 / 7.0, amd64
-MacOS: Monterey, Big Sur, Catalina, Mojave, & High Sierra (all intel x64)
+If everything works correctly, then everything will be built, a series of
+tests run, with a final result at the very end saying no failures. Having said
+that, given SSC is pre-alpha, don't be too surprised to see some warnings or
+some final test errors. Note in particular that complaints about being unable
+to find or copy files during testing are not of concern, these come from
+scripts that set up or tear down individual tests, and the standard commands
+used sometimes complain if they can't find files they're supposed to delete,
+which is idiotic given the detail that things are already in the desired
+state.
+
+The following have been successfully built as x64 amd/intel, although not
+always under all versions of ssc:
+Linux: Centos 9 Streams, Centos 8, Ubuntu Server 20.04/20.10
+OpenBSD: 7.0 / 6.9 / 6.8
+MacOS: Monterey, Big Sur, Catalina, Mojave, High Sierra
 
 Note: Use clang if possible, gcc takes a wee while.
+
 
 OpenBSD
 -------
 I've only tested the amd64 build under 6.8 / 6.9 / 7.0.
 
-The versions of boost and cmake in packages are sufficient. You will need to increase significantly the available
-memory setting in login.conf for the build account, if you have not done so already.
+The versions of boost and cmake in packages are sufficient. You will need to
+increase significantly the available memory setting in login.conf for the
+build account, if you have not done so already.
 
-Openbsd 6.8 offers hunspell 1.6, so if you use that version, you will need to set the HUNSPELL_VERSION environment
-variable appropriately.
+Openbsd 6.8 offers hunspell 1.6, so if you use that version, you will need to
+set the HUNSPELL_VERSION environment variable appropriately.

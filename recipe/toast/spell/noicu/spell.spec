@@ -1,4 +1,4 @@
--f ../toast/spell/case/spell.conf
+-f ../toast/spell/noicu/spell.conf
 
-PASS ../toast/spell/case/index.html
+PASS ../toast/spell/noicu/index.html
 2 naughty_lang

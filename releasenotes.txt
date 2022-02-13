@@ -3,8 +3,15 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+0.0.124
+- builds under Centos 9 streams
+- report unexpected content in configuration file
+- use a binary switch to select option, & a new 'no' switch to deselect it
+- documented certain previously hidden switches
+- various refinements & bug fixes
+
 0.0.123
-- improved spell checks with ICU libraries (use --spell.icu swith to disable them)
+- improved spell checks with ICU libraries (use --spell.icu to disable them)
 - added --link.example, --link.local and --link.report
 - documented certain previously hidden switches
 - various refinements & bug fixes
@@ -113,23 +120,29 @@ https://ssc.lu/
 - underlying work
 
 0.0.101
-- MathML 4, Dec 2020 draft (it's early days; MathML 4 is really MathML 3 with post-it notes)
+- MathML 4, Dec 2020 draft (it's early days; MathML 4 is really MathML 3 with
+  post-it notes)
 - can run in the OpenBSD httpd server CGI environment
-   (do NOT expose SSC to untrusted data sources, such as those on the open web, without taking
-    serious precautions: ssc is pre-alpha software, and probably has more bugs than the
-    Creator's Ultimate All-Beetle Extravaganza)
-- --shadow.changed: only update files in the shadow directory when the originals have changed
+   (do NOT expose SSC to untrusted data sources, such as those on the open web,
+    without taking serious precautions: ssc is pre-alpha software, and probably
+    has more bugs than the Creator's Ultimate All-Beetle Extravaganza)
+- --shadow.changed: only update files in the shadow directory when the
+  originals have changed
 - expanded ligature suggestions work across systems
-- recognise the non-standard character codes &bang; (!), &hash; (#), &splat; (*) and &squiggle; (~)
+- recognise the non-standard character codes &bang; (!), &hash; (#), &splat;
+  (*) and &squiggle; (~)
 - improvements to corpus data extraction
 
 0.0.100
-- can nitpick against WhatWG Living Standard April 2021 (except MathML 4 & SVG 2)
-- expanded character code suggestions, particularly for ligatures (Windows only)
+- can nitpick against WhatWG Living Standard April 2021 (except MathML 4 & SVG
+  2)
+- expanded character code suggestions, particularly for ligatures (Windows
+  only)
 - improved aria attribute verification
 - the environment variable SSC_CONFIG can specify a configuration file
 - the environment variable SSC_ARGS can specify command line arguments
-- specify custom elements and custom attributes (see recipe/toast/type/custom/* for example)
+- specify custom elements and custom attributes (see
+  recipe/toast/type/custom/* for example)
 - dump site corpus with -d switch
 
 0.0.99
@@ -143,7 +156,8 @@ https://ssc.lu/
 0.0.97
 - living standard jan 2005 - jan 2021, mostly
 - NOTE : MathML 4 and SVG 2 are not currently understood
-- NOTE : various microdata, including purl.org and n.whatwg.org, are not currently understood
+- NOTE : various microdata, including purl.org and n.whatwg.org, are not
+  currently understood
 - NOTE : no spellchecker
 
 0.0.96
@@ -189,9 +203,10 @@ https://ssc.lu/
 - various refinements
 
 0.0.83
-- partially verifies accept, accept-language, cookie, cross-origin-resource-policy,
-  link, origin, referer (sic), & referrer-policy pragmas
-=
+- partially verifies accept, accept-language, cookie,
+  cross-origin-resource-policy, link, origin, referer (sic), &
+  referrer-policy pragmas
+
 0.0.82
 - --schema.version now accepts + for HTML Plus
 
@@ -205,8 +220,10 @@ https://ssc.lu/
 - check content-security-policy values
 
 0.0.79
-- the --html.version switch accepts a WhatWG living HTML standard date for verification
-- added -z switch to specify maximum advisable <TITLE> text length (default: 32)
+- the --html.version switch accepts a WhatWG living HTML standard date for
+  verification
+- added -z switch to specify maximum advisable <TITLE> text length (default:
+  32)
 
 0.0.78
 - integrated W3 tests into test suite
@@ -217,7 +234,8 @@ https://ssc.lu/
 - various bug fixes
 
 0.0.76
-- added --shadow.ignore to specify extensions of files to ignore when shadowing
+- added --shadow.ignore to specify extensions of files to ignore when
+  shadowing
 
 0.0.75
 - added --microdata.root and --microdata.virtual for microdata exports
@@ -274,12 +292,15 @@ https://ssc.lu/
 
 0.0.62
 - allow ID attributes on templates to filter down to child elements
-- users can add bespoke colours, languages, and SGML declarations (type 'ssc -h' for details)
-- added release notes and build instructions to the source (taken from arts & ego)
+- users can add bespoke colours, languages, and SGML declarations (type
+  'ssc -h' for details)
+- added release notes and build instructions to the source (taken from arts &
+  ego)
 
 0.0.61
 - add more MathML 1 tests, and fix some issues that arose
-- fix issue where SSI #echo looked up variables twice causing incorrect substitutions when values contained variable names
+- fix issue where SSI #echo looked up variables twice causing incorrect
+  substitutions when values contained variable names
 
 0.0.60
 - switched to boost static libraries
@@ -293,7 +314,8 @@ https://ssc.lu/
 
 0.0.58
 - added many READMEs
-- removed private email addresses from test files (even though those addresses were published elsewhere)
+- removed private email addresses from test files (even though those addresses
+  were published elsewhere)
 
 0.0.57
 - removed SVG 1.2 and 2.0 tests for now (until the code is written!)

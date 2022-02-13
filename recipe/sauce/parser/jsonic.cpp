@@ -319,12 +319,6 @@ bool is_suitable_kvp (const ::boost::json::key_value_pair& e, ::std::string& s)
     if (s.empty ()) return false;
     return (s.at (0) != '@'); }
 
-//bool examine_term (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& key, const ::boost::json::value& val)
-//{   const ::std::string s = trim_the_lot_off (key);
-//    if (s.empty ()) return false;
-//    if (s.at (0) == '@') return false;
-//    return note_term (nits, v, scope, s, val); }
-
 bool examine_terms (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o)
 {   bool name_type = true;
     const bool count_terms = (scope.terms_ == 0);

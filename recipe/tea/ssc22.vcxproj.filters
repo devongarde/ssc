@@ -1229,6 +1229,12 @@
     <ClInclude Include="..\heater\spell\spell.h">
       <Filter>Heater\spell</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\icu\lingo.h">
+      <Filter>Heater\icu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\spell\phrase.h">
+      <Filter>Heater\spell</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1704,6 +1710,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\spell\winspell.cpp">
       <Filter>Sauce\spell</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\icu\lingo.cpp">
+      <Filter>Sauce\icu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

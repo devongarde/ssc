@@ -22,9 +22,9 @@ PASS ../toast/type/url/bad.html
 30 url_missing_username
 31 url_empty_password url_missing_username
 32 empty_host
-33 url_empty_password
+33 url_empty_password protocol
 34 url_empty_password empty_host
-35 url_insecure_password
+35 url_insecure_password protocol
 
 PASS ../toast/type/url/dubious.html
 2 naughty_lang
@@ -33,3 +33,5 @@ PASS ../toast/type/url/dubious.html
 
 PASS ../toast/type/url/good.html
 2 naughty_lang
+28 protocol
+29 protocol

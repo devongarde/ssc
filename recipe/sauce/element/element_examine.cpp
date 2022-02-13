@@ -355,7 +355,6 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                         {   if (a_.known (a_vocab)) examine_vocab ();
                             if (a_.known (a_about)) examine_about ();
                             if (a_.known (a_typeof)) examine_typeof ();
-        //                  if (a_.known (a_content)) examine_content ();
                             if (a_.known (a_datatype)) examine_datatype (flags);
                             if (a_.known (a_inlist)) examine_inlist ();
                             if (a_.known (a_instanceof)) examine_instanceof ();

@@ -48,6 +48,7 @@
     <ClInclude Include="..\heater\feedback\nitpick.h" />
     <ClInclude Include="..\heater\icu\charset.h" />
     <ClInclude Include="..\heater\icu\converter.h" />
+    <ClInclude Include="..\heater\icu\lingo.h" />
     <ClInclude Include="..\heater\icu\wrapper.h" />
     <ClInclude Include="..\heater\main\abort.h" />
     <ClInclude Include="..\heater\main\args.h" />
@@ -102,6 +103,7 @@
     <ClInclude Include="..\heater\schema\schema_structure.h" />
     <ClInclude Include="..\heater\schema\schema_type.h" />
     <ClInclude Include="..\heater\schema\schema_version.h" />
+    <ClInclude Include="..\heater\spell\phrase.h" />
     <ClInclude Include="..\heater\spell\spell.h" />
     <ClInclude Include="..\heater\stats\stats.h" />
     <ClInclude Include="..\heater\stats\stats0.h" />
@@ -250,6 +252,7 @@
     <ClCompile Include="..\sauce\feedback\nitpick.cpp" />
     <ClCompile Include="..\sauce\icu\charset.cpp" />
     <ClCompile Include="..\sauce\icu\converter.cpp" />
+    <ClCompile Include="..\sauce\icu\lingo.cpp" />
     <ClCompile Include="..\sauce\icu\wrapper.cpp" />
     <ClCompile Include="..\sauce\main\abort.cpp" />
     <ClCompile Include="..\sauce\main\context.cpp" />

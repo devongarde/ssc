@@ -310,7 +310,6 @@ bool elements_node::has_element (const e_element e) const
         if (ven_.at (i).id () == e) return true;
     return false; }
 
-// temporary, until the XML code is rewritten
 element_node* elements_node::faux_node ()
 {   PRESUME (ven_.size () == 0, __FILE__, __LINE__);
     nitpick nuts;

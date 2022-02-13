@@ -42,6 +42,8 @@ vstr_t sections;
     "\n" \
     "[config-head]\n" \
     "\n" \
+    START_OF_SECTION " configuration\n" \
+    "\n" \
     "[config-foot]\n" \
     "\n" \
     "[doc-head]\n" \

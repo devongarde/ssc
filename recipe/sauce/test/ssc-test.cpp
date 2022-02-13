@@ -60,7 +60,7 @@ typedef ::std::map < ::std::string, vstr_t > mvstr_t;
 
 unsigned verbose = 0;
 bool numbers = false, easy_in = false, only_check_exports = false;
-::std::string expected_lynx, expected_shadow, expected_export_errors, examinations;
+::std::string expected_lynx, expected_mention, expected_shadow, expected_export_errors, examinations;
 classic expected_classes;
 sstr_t expected_itemids;
 vstr_t correct_export, created_export, grand_stats;
@@ -142,6 +142,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
     bool only = false;
     bool overall_stats = false;
     bool shadow = false;
+    bool mention = false;
     sstr_t correct_set, created_set;
     vstr_t stats;
     size_t last_line = static_cast < size_t > (-1);
@@ -187,6 +188,10 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         {   examine = false;
             examinations = s;
             continue; }
+        if (mention)
+        {   mention = false;
+            expected_mention = s;
+            continue; }
         const ::std::string::size_type spaced = s.find (' ');
         if (exports || only)
         {   if ((spaced == ::std::string::npos) || spaced == (s.length () - 1))
@@ -226,16 +231,17 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
             continue; }
         if (cmdline.empty ()) { cmdline = s; continue; }
         else switch (s.at (0))
-        {   case 'C' :  classed = true; examine = exporterrors = shadow = lynx = itemid = exports = file_stats = only = overall_stats = false; continue;
-            case 'E' :  exports = true; examine = exporterrors = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; continue;
-            case 'e' :  exporterrors = true; examine = exports = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; continue;
-            case 'G' :  overall_stats = true; examine = exporterrors = shadow = classed = lynx = exports = itemid = file_stats = only = false; continue;
-            case 'i' :  itemid = true; examine = exporterrors = shadow = classed = lynx = exports = file_stats = only = overall_stats = false; continue;
-            case 'L' :  lynx = true; examine = exporterrors = shadow = classed = itemid = exports = file_stats = only = overall_stats = false; continue;
-            case 'S' :  file_stats = true; stats.clear (); examine = exporterrors = shadow = classed = lynx = exports = itemid = only = overall_stats = false; continue;
-            case 's' :  shadow = true; examine = exporterrors = lynx = classed = itemid = exports = file_stats = only = overall_stats = false; continue;
-            case 'u' :  examine = true; exporterrors = exports = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; continue;
-            case 'O' :  only_check_exports = only = true; examine = exporterrors = exports = shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
+        {   case 'C' :  classed = true; examine = exporterrors = shadow = lynx = itemid = exports = file_stats = only = overall_stats = mention = false; continue;
+            case 'E' :  exports = true; examine = exporterrors = shadow = classed = lynx = itemid = file_stats = only = overall_stats = mention = false; continue;
+            case 'e' :  exporterrors = true; examine = exports = shadow = classed = lynx = itemid = file_stats = only = overall_stats = mention = false; continue;
+            case 'G' :  overall_stats = true; examine = exporterrors = shadow = classed = lynx = exports = itemid = file_stats = only = mention = false; continue;
+            case 'i' :  itemid = true; examine = exporterrors = shadow = classed = lynx = exports = file_stats = only = overall_stats = mention = false; continue;
+            case 'L' :  lynx = true; examine = exporterrors = shadow = classed = itemid = exports = file_stats = only = overall_stats = mention = false; continue;
+            case 'S' :  file_stats = true; stats.clear (); examine = exporterrors = shadow = classed = lynx = exports = itemid = only = overall_stats = mention = false; continue;
+            case 's' :  shadow = true; examine = exporterrors = lynx = classed = itemid = exports = file_stats = only = overall_stats = mention = false; continue;
+            case 'u' :  examine = true; exporterrors = exports = shadow = classed = lynx = itemid = file_stats = only = overall_stats = mention = false; continue;
+            case 'O' :  only_check_exports = only = true; examine = exporterrors = exports = shadow = classed = lynx = itemid = file_stats = overall_stats = mention = false; continue;
+            case 'w' :  mention = true; lynx = examine = exporterrors = shadow = classed = itemid = exports = file_stats = only = overall_stats = false; continue;
             case 'I' :
             case 'F' :
             case 'P' :
@@ -368,7 +374,7 @@ bool crosslinks (const vstr_t& line)
     {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
             if (line.at (x) != expected.at (x))
             {   blooper = true;
-                if (verbose) ::std::cout << "crosslink " << x << " differs\n"; }
+                if (verbose) ::std::cout << "crosslink " << x << " differs (expected " << expected.at (x) << ", got " << line.at (x) << ")\n"; }
         if (! blooper) return true; }
     else if (verbose) ::std::cout << "crosslink counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
     return false; }
@@ -449,6 +455,20 @@ bool itemidcheck (vstr_t& line)
     {   if (verbose) ::std::cout << "unexpected itemid " << line.at (0) << " encountered\n"; return false; }
     expected_itemids.erase (i);
     return true; }
+
+bool mentioncheck (vstr_t& line)
+{   vstr_t expected;
+    bool blooper = false;
+    ::boost::algorithm::split (expected, expected_mention, ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
+    expected_mention.clear ();
+    if (line.size () == expected.size ())
+    {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
+            if (line.at (x) != expected.at (x))
+            {   blooper = true;
+                if (verbose) ::std::cout << "webmention " << x << " differs (expected " << expected.at (x) << ", got " << line.at (x) << ")\n"; }
+        if (! blooper) return true; }
+    else if (verbose) ::std::cout << "webmention counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
+    return false; }
 
 int check_exports ()
 {   if (created_export.size () != correct_export.size ())
@@ -545,6 +565,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
         bool itemid = false;
         bool file_stats = false;
         bool overall_stats = false;
+        bool mention = false;
         vstr_t overall, file;
         for (size_t r = 3; r < results.size (); ++r)
         {   vstr_t line;
@@ -585,6 +606,9 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                     continue; }
                 if (itemid)
                 {   if (! itemidcheck (line)) { oops = true; res = false; }
+                    continue; }
+                if (mention)
+                {   if (! mentioncheck (line)) { oops = true; res = false; }
                     continue; }
                 if (fn.empty ())
                 {   if (verbose) ::std::cout << "expecting filename near beginning of output file\n"; res = false; }
@@ -632,6 +656,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                     else if (fn == "update") examine = true;
                     else if (fn == "shadow") shadow = true;
                     else if (fn == "exports") exporterrors = true;
+                    else if (fn == "webmentions") mention = true;
                     else if (fn == "Statistics") file_stats = true;
                     else if (fn == "Grand") overall_stats = true;
                     else
@@ -672,6 +697,9 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
 
 int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::path& xeq, bool rmtmp, const ::std::string& tmppath, const ::std::string& pre, unsigned& passed, unsigned& failed)
 {   knotted expected;
+    if (verbose && ! ::boost::filesystem::exists (xeq))
+    {   ::std::cout << "Current path: " << ::boost::filesystem::current_path ().string () << "\n";
+        ::std::cout << "Cannot see " << xeq.string () << " as specified\n"; }
     ::std::string cmdline;
     if (! load_expected (f, expected, cmdline))
     {   ::std::cerr << "cannot interpret " << f << "\n";
@@ -690,7 +718,7 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
         ::boost::filesystem::path prepare = canonical (absolute (f));
         prepare.remove_filename ();
         ::boost::filesystem::path clean = prepare;
-        ::std::string switched = xeq.string () + ::std::string (" -F -T 1 ");
+        ::std::string switched = xeq.string () + ::std::string (" -F -T ");
         if (! only_check_exports)
         {   switched += "-o "; switched += tmp.string () + " "; }
         cmdline = switched + cmdline;
@@ -760,7 +788,7 @@ void print_help ()
     ::std::cout << "-n    only report error numbers, not error codes\n";
     ::std::cout << "-N f  nit template file for " PROG "\n";
     ::std::cout << "-t D  temporary file directory (default " <<::boost::filesystem::temp_directory_path ().string () << ")\n";
-    ::std::cout << "-T    Trump switch. FAIL is PASS. bad is good. war is peace. freedom is slavery. ignorance is strength\n";
+    ::std::cout << "-T    FAIL is PASS. Bad is good. Ignorance is strength.\n";
     ::std::cout << "-v    verbose output (repeat for greater verbosity)\n";
     ::std::cout << "-V    print version information and exit\n";
     ::std::cout << "-x X  path of executable to test (default " PROG ")\n";

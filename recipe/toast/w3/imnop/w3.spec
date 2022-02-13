@@ -18,16 +18,23 @@ PASS ../toast/w3/imnop/long-lines.html
 39 unrecognised_value inserted_missing_parent missing_close empty_link unrecognised_value unrecognised_value inserted_missing_closure
 
 PASS ../toast/w3/imnop/no-newlines.html
+11 url_not_found
+12 url_not_found
 15 inserted_missing_parent missing_close
+19 url_not_found
 24 missing_open
 25 inserted_missing_closure
 
 PASS ../toast/w3/imnop/nonSGML-chars.html
 0 charset_mismatch charset_used
+7 attempted_escape attempted_escape no_such_folder url_not_found
+13 attempted_escape attempted_escape no_such_folder url_not_found
+14 attempted_escape attempted_escape
 19 unrecognised_value
 21 not_iso_8859_1
 22 not_iso_8859_1
 23 not_iso_8859_1
+31 attempted_escape attempted_escape url_not_found
 
 PASS ../toast/w3/imnop/outline.html
 1 xhtml_1_0

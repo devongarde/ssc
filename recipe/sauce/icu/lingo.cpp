@@ -79,19 +79,27 @@ int32_t to_utf8 (UChar *sz, const int32_t len, ::std::string& s)
         {   s = res; return actual; }
     return 0; }
 
+bool set_locale (::std::locale& loc, const ::std::string& lang)
+{   try
+    {   loc = ::std::locale (lang);
+        return true; }
+    catch (...) { }
+    return false; }
+
 lingo::lingo (nitpick& nits, const ::std::string& lang) : orig_ (lang)
-{   if (lang.find ('.') != ::std::string::npos) locale_ = ::std::locale (lang);
-    else locale_ = ::std::locale (lang + DOT_UTF8);
+{   if (lang.empty () || ! set_locale (locale_, lang))
+        if (! set_locale (locale_, STANDARD_ENGLISH))
+            locale_ = ::std::locale::classic ();
     if (context.icu ())
     {   int32_t actual = 0;
         UErrorCode err = U_ZERO_ERROR;
-        char locale_id [arbitrary_max];
+        char locale_id [arbitrary_max]; // Reminder to self: ICU locale_id is in non-standard format, namely _ not -.
         const int32_t uloc = uloc_forLanguageTag (standard_dialect (lang).c_str (), locale_id, arbitrary_max, &actual, &err);
         if ((actual == 0) || (actual >= arbitrary_max) || U_FAILURE (err))
             nits.pick (nit_locale, es_warning, ec_spell, "Unknown or unsupported dialect ", quote (lang));
         else
         {   locale_id_ = ::std::string (&::gsl::at (locale_id, 0));
-            nits.pick (nit_locale, es_comment, ec_icu, "Recognised ", dialect ());
+            nits.pick (nit_locale, es_comment, ec_icu, "Half recognised ", lang);
             uloc_ = uloc; } } }
 
 void lingo::init (nitpick& )

@@ -11,10 +11,14 @@ PASS ../toast/w3/acefh/ampersand-as-data_html401.html
 PASS ../toast/w3/acefh/colons.html
 0 charset_mismatch charset_used
 2 xhtml_superseded
+7 attempted_escape attempted_escape no_such_folder url_not_found
+13 attempted_escape attempted_escape no_such_folder url_not_found
+14 attempted_escape attempted_escape
 19 unrecognised_value
 20 bad_namespace unknown_element bad_namespace unknown_element
 21 bad_namespace unknown_element missing_open
 22 bad_namespace unknown_element missing_close inserted_missing_closure
+29 attempted_escape attempted_escape url_not_found
 
 PASS ../toast/w3/acefh/error_pls_warning.html
 2 html_superseded
