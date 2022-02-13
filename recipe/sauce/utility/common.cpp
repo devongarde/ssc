@@ -26,8 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/args.h"
 #include "icu/converter.h"
 
-#define TEMP_FILE_MASK "%%%%-%%%%-%%%%-%%%%.tmp"
-
 #define APP "app"
 #define CONTEXT "context"
 #define V "version"
@@ -298,7 +296,8 @@ bool one_of_domain (const ::std::string& s, const vstr_t& v)
 ::boost::filesystem::path get_tmp_filename ()
 {   ::boost::filesystem::path model (temp_dir ());
     if (model.string ().empty ()) return ::boost::filesystem::path ();
-    model /= TEMP_FILE_MASK;
+    model /= ::boost::filesystem::unique_path ();
+    model += "." PROG;
     return absolute_name (model); }
 
 bool read_header (const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename)

@@ -40,8 +40,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SVG_        "svg"
 #define VALIDATION_ "validation"
 #define WEBSITE_    "site"
-#define WMIN_       "webmention_in"
-#define WMOUT_      "webmention_out"
+#define WMIN_       "wmin"
+#define WMOUT_      "wmout"
 
 #define JOIN        "."
 
@@ -94,6 +94,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DETAIL      "detail"
 #define DICT        "dict"
 #define DINGBATARG  "dingbat"
+#define DONT        "no-"
 #define ERR         "error"
 #define ELEMENT     "element"
 #define ELEMATTR    ELEMENT "-" ATTRIB

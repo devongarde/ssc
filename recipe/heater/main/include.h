@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 123
-#define VERSION_STRING "0.0.123"
+#define VERSION_RELEASE 124
+#define VERSION_STRING "0.0.124"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -198,9 +198,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <unicode/localematcher.h>
 #include <unicode/brkiter.h>
 #include <unicode/ustring.h>
+
 #ifdef _MSC_VER
 #pragma comment (lib, "icudt.lib")
-#ifdef _DEBUG
+#if defined (_DEBUG) && (_MSC_VER >= 1920) && (_MSC_VER < 1930)
 #pragma comment (lib, "icuind.lib")
 #pragma comment (lib, "icuiod.lib")
 #pragma comment (lib, "icutud.lib")
@@ -268,6 +269,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/string_path.hpp>
 #include <boost/log/trivial.hpp>
+#include <boost/logic/tribool.hpp>
 
 #ifdef _MSC_VER
 #pragma warning ( disable : 4701 ) // CRC
@@ -462,15 +464,22 @@ typedef uint64_t flags_t; // at least 64 bits
 #define DBG_STATUS
 #endif // DEBUG
 
+#define BUILD_INFO BP_VER DBG_STATUS FUDDY JSNIC NPS_GEN SPELT MAC_VER OBSD_VER ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+
 #define BASE_TITLE \
             FULLNAME " " VERSION_STRING "\n" \
             WEBADDR "\n" \
             COPYRIGHT "\n"
 
-#define SIMPLE_TITLE BASE_TITLE "\n"
+#define SIMPLE_TITLE BASE_TITLE
 
 #define FULL_TITLE \
         BASE_TITLE \
-        "[" __DATE__ " " __TIME__  "] [" \
-        BP_VER DBG_STATUS FUDDY JSNIC NPS_GEN SPELT MAC_VER OBSD_VER ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER "]" \
+        "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" \
         "\n"
+
+#define TEST_TITLE \
+            FULLNAME " " VERSION_STRING "\n" \
+            "(" __DATE__ " " __TIME__ ")\n" \
+            WEBADDR "\n" \
+            COPYRIGHT "\n\n"

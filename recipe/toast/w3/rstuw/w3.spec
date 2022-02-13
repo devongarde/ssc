@@ -23,5 +23,8 @@ PASS ../toast/w3/rstuw/shorttags2.html
 12 mixed_mess
 13 mixed_mess inserted_missing_closure
 
+PASS ../toast/w3/rstuw/trailing-nul.html
+23 url_not_found
+
 PASS ../toast/w3/rstuw/W11-ht401-namespace.html
 2 attribute_unrecognised_here unrecognised_attribute

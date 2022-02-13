@@ -5,9 +5,13 @@ PASS ../toast/w3/12458/1574-charset_iso_8859_7_greek.html
 
 PASS ../toast/w3/12458/2329-html401-strict_iframe.html
 2 html_superseded
+19 url_not_found
+20 url_not_found
 
 PASS ../toast/w3/12458/2329-html401-transitional_iframe.html
 2 html_superseded
+19 url_not_found
+20 url_not_found
 
 PASS ../toast/w3/12458/2342-opensp_type_X.html
 2 html_superseded

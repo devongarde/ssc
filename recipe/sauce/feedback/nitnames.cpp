@@ -722,6 +722,10 @@ const nitname nitnames [] =
     { nit_example, "example" },
     { nit_local, "local" },
     { nit_report, "report" },
+    { nit_unknown_option, "unknown_option" },
+    { nit_yea_nay, "yea_nay" },
+    { nit_mf_version, "mf_version" },
+    { nit_not_directory, "not_directory" },
 
     { nit_off, "" } };
 

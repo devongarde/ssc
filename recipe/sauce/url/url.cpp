@@ -97,8 +97,7 @@ bool url::verify (nitpick& nits, const html_version& v, element& e)
     if (is_simple_id ()) return true; // verify_id will check the id is valid
     if (is_local () && ! e.get_page ().check_links ()) return true;
     const directory* d = e.get_page ().get_directory ();
-    VERIFY_NOT_NULL (d, __FILE__, __LINE__);
-    if (! d -> verify_url (nits, v, *this)) return false;
+    if (d != nullptr) if (! d -> verify_url (nits, v, *this)) return false;
     if (is_local ())
     {   nitpick nuts;
         ::boost::filesystem::path target (d -> get_disk_path (nuts, *this));

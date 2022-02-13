@@ -175,7 +175,8 @@ void directory::internal_get_export_path (const ::std::string& item, ::boost::fi
 
 bool directory::scan (nitpick& nits, const ::std::string& site)
 {   PRESUME (! offsite_, __FILE__, __LINE__);
-    for (const ::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (get_disk_path ()))
+    const ::boost::filesystem::path disk (get_disk_path ());
+    for (const ::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (disk))
         if (! add_to_content (nits, x, site)) return false;
     return true; }
 

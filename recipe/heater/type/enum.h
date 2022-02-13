@@ -1556,7 +1556,8 @@ typedef enum
     nit_json_out_of_place, nit_json_bad_term, nit_jsonld_type, nit_missing_schema, nit_jsonld_format, nit_jsonld_mistype,
     nit_jsonld_encoding, nit_jsonld_map, nit_crap_spec, nit_bad_uid, nit_missing_property, nit_no_spell, nit_misspelt, nit_bad_list,
     nit_spell_lang, nit_spell_perhaps, nit_launch, nit_sent, nit_got, nit_bad_dict, nit_deprecated, nit_case, nit_icu_barf,
-    nit_convert, nit_locale, nit_wtf, nit_normalise, nit_dictionary, nit_example, nit_local, nit_report,
+    nit_convert, nit_locale, nit_wtf, nit_normalise, nit_dictionary, nit_example, nit_local, nit_report, nit_unknown_option, nit_yea_nay,
+    nit_mf_version, nit_not_directory,
     nit_context,
 
     // eon
@@ -1565,21 +1566,21 @@ typedef enum
 typedef enum
 {   nm_none,
     nm_class_name, nm_class_count, nm_class_int, nm_compile_time, nm_config,
-        nm_context_article, nm_context_body, nm_context_case, nm_context_css, nm_context_cgi, nm_context_clear, nm_context_code, nm_context_config, nm_context_copy,
-        nm_context_corpus, nm_context_crosslinks, nm_context_custom_elements, nm_context_dc, nm_context_example, nm_context_export_root, nm_context_exports,
-        nm_context_extensions, nm_context_fe, nm_context_filename, nm_context_foaf, nm_context_forward, nm_context_hook, nm_context_icu, nm_context_ignore,
-        nm_context_info, nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version, nm_context_lang,
-        nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size,
+        nm_context_article, nm_context_body, nm_context_build, nm_context_case, nm_context_css, nm_context_cgi, nm_context_clear, nm_context_code,
+        nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_custom_elements, nm_context_dc, nm_context_example,
+        nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_fe, nm_context_filename, nm_context_foaf, nm_context_forward,
+        nm_context_icu, nm_context_ignore, nm_context_info, nm_context_index, nm_context_jsonld, nm_context_jsonld_extension,
+        nm_context_jsonld_version, nm_context_lang, nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size,
         nm_context_md_export, nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata,
         nm_context_msg, nm_context_no_ex_check, nm_context_once, nm_context_output, nm_context_persisted, nm_context_process_webmentions, nm_context_rdfa,
-        nm_context_rdf_version, nm_context_rel, nm_context_report, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070,
-        nm_context_sarcasm, nm_context_schema, nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
-        nm_context_shadow_ignore, nm_context_shadow_persist,nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
+        nm_context_rdf_version, nm_context_rel, nm_context_report, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980,
+        nm_context_rfc_2070, nm_context_sarcasm, nm_context_schema, nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed,
+        nm_context_shadow_enable, nm_context_shadow_ignore, nm_context_shadow_persist,nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
         nm_context_shadows, nm_context_site, nm_context_slob, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi,
         nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_svg_version, nm_context_tags, nm_context_templates,
         nm_context_test, nm_context_title, nm_context_user, nm_context_version, nm_context_virtuals, nm_context_write_path, nm_context_xsd,
         nm_copy_addr, nm_copy_html, nm_copy_text,
-    nm_general_output, nm_general_path, nm_grand_title,
+    nm_general_info, nm_general_output, nm_general_path, nm_grand_title,
     nm_html_snippet,
     nm_id_name, nm_id_page, nm_id_line,
     nm_level_name, nm_level_symbol,
@@ -1588,7 +1589,8 @@ typedef enum
     nm_page_error, nm_page_name, nm_page_path, nm_prog_abbrev, nm_prog_build, nm_prog_fullname, nm_prog_version, nm_prog_webaddr,
     nm_query,
     nm_run_args, nm_run_catastrophe, nm_run_environment,
-    nm_stat_count, nm_stat_detail, nm_stat_int, nm_stat_name, nm_stat_subname, nm_stat_subcount, nm_stat_subdetail, nm_stat_subint, nm_stats_subtitle, nm_stats_title, nm_stats_total,
+    nm_stat_count, nm_stat_detail, nm_stat_int, nm_stat_name, nm_stat_subname, nm_stat_subcount, nm_stat_subdetail, nm_stat_subint, nm_stats_subtitle,
+        nm_stats_title, nm_stats_total,
     nm_time_duration, nm_time_finish, nm_time_start,
     nm_max } e_nit_macro;
 
@@ -1850,7 +1852,8 @@ typedef enum
     bibo_patent, bibo_performance, bibo_periodical, bibo_personalcommunication, bibo_personalcommunicationdocument, bibo_proceedings,
     bibo_quote,
     bibo_referencesource, bibo_report,
-    bibo_series, bibo_slide, bibo_slideshow, bibo_standard, bibo_status_accepted, bibo_status_draft, bibo_status_forthcoming, bibo_status_nonpeerreviewed, bibo_status_peerreviewed, bibo_status_published, bibo_status_rejected, bibo_status_unpublished, bibo_statute,
+    bibo_series, bibo_slide, bibo_slideshow, bibo_standard, bibo_status_accepted, bibo_status_draft, bibo_status_forthcoming, bibo_status_nonpeerreviewed, bibo_status_peerreviewed,
+        bibo_status_published, bibo_status_rejected, bibo_status_unpublished, bibo_statute,
     bibo_thesis, bibo_thesisdegree,
     bibo_webpage, bibo_website, bibo_workshop,
 
@@ -1879,11 +1882,13 @@ typedef enum
     dca_relationship, dca_resource, dca_role,
 
     // dcmi type vocabulary
-    dcmi_collection, dcmi_dataset, dcmi_event, dcmi_image, dcmi_interactiveresource, dcmi_movingimage, dcmi_physicalobject, dcmi_service, dcmi_software, dcmi_sound, dcmi_stillimage, dcmi_text,
+    dcmi_collection, dcmi_dataset, dcmi_event, dcmi_image, dcmi_interactiveresource, dcmi_movingimage, dcmi_physicalobject, dcmi_service, dcmi_software, dcmi_sound,
+        dcmi_stillimage, dcmi_text,
 
     // dublin core terms
-    dct_agent, dct_agentclass, dct_bibliographicresource, dct_fileformat, dct_frequency, dct_jurisdiction, dct_licencedocument, dct_linguisticsystem, dct_location, dct_locationperiodorjurisdiction, dct_mediatype,
-    dct_mediatypeorextent, dct_methodofaccrual, dct_methodofinstruction, dct_periodoftime, dct_physicalmedium, dct_physicalresource, dct_policy, dct_provenancestatement, dct_rightsstatement, dct_sizeorduration, dct_standard,
+    dct_agent, dct_agentclass, dct_bibliographicresource, dct_fileformat, dct_frequency, dct_jurisdiction, dct_licencedocument, dct_linguisticsystem, dct_location,
+        dct_locationperiodorjurisdiction, dct_mediatype, dct_mediatypeorextent, dct_methodofaccrual, dct_methodofinstruction, dct_periodoftime, dct_physicalmedium,
+        dct_physicalresource, dct_policy, dct_provenancestatement, dct_rightsstatement, dct_sizeorduration, dct_standard,
 
     // doap
     doap_archrepository,
@@ -1924,18 +1929,34 @@ typedef enum
     event_event, event_factor, event_product,
 
     // foaf
-    foaf_agent, foaf_document, foaf_group, foaf_image, foaf_labelproperty, foaf_onlineaccount, foaf_onlinechataccount, foaf_onlineecommerceaccount, foaf_onlinegamingaccount, foaf_organisation,
-    foaf_person, foaf_personalprofiledocument, foaf_project,
+    foaf_agent, foaf_document, foaf_group, foaf_image, foaf_labelproperty, foaf_onlineaccount, foaf_onlinechataccount, foaf_onlineecommerceaccount,
+        foaf_onlinegamingaccount, foaf_organisation, foaf_person, foaf_personalprofiledocument, foaf_project,
 
     // good relations
-    gr_brand, gr_businessentity, gr_businessentitytype, gr_businessfunction, gr_dayofweek, gr_deliverychargespecification, gr_deliverymethod, gr_deliverymodeparcelservice, gr_individual, gr_licence, gr_location,
-    gr_offering, gr_openinghoursspecification, gr_paymentchargespecification, gr_paymentmethod, gr_paymentmethodcreditcard, gr_pricespecification, gr_productorservice, gr_productorservicemodel, gr_qualitativevalue,
-    gr_quantitativevalue, gr_quantitativevaluefloat, gr_quantitativevalueinteger, gr_someitems, gr_typeandquantitynode, gr_unitpricespecification, gr_warrantypromise, gr_warrantyscope, gr_actualproductorserviceinstance,
-    gr_locationofsalesorserviceprovisioning, gr_n_ary_relations, gr_productorservicessomeinstancesplaceholder,
-    gr_americanexpress, gr_business, gr_bybanktransferinadvance, gr_byinvoice, gr_cash, gr_checkinadvance, gr_cod, gr_constructioninstallation, gr_deliverymodedirectdownload, gr_deliverymodefreight, gr_deliverymodemail,
-    gr_deliverymodeownfleet, gr_deliverymodepickup, gr_dhl, gr_dinersclub, gr_directdebit, gr_discover, gr_dispose, gr_enduser, gr_federalexpress, gr_friday, gr_googlecheckout, gr_jcb, gr_labour_bringin, gr_leaseout,
-    gr_maintain, gr_mastercard, gr_monday, gr_partsandlabour_bringin, gr_partsandlabour_pickup, gr_paypal, gr_payswarm, gr_provideservice, gr_publicholidays, gr_publicinstitution, gr_repair, gr_reseller, gr_saturday,
-    gr_sell, gr_sunday, gr_thursday, gr_tuesday, gr_ups, gr_visa, gr_wednesday, gr_buy,
+    gr_actualproductorserviceinstance, gr_americanexpress,
+    gr_brand, gr_buy, gr_business, gr_businessentity, gr_businessentitytype, gr_businessfunction, gr_bybanktransferinadvance, gr_byinvoice,
+    gr_cash, gr_checkinadvance, gr_cod, gr_constructioninstallation,
+    gr_dayofweek, gr_deliverychargespecification, gr_deliverymethod, gr_deliverymodedirectdownload, gr_deliverymodefreight, gr_deliverymodemail, gr_deliverymodeownfleet,
+        gr_deliverymodeparcelservice, gr_deliverymodepickup, gr_dhl, gr_dinersclub, gr_directdebit, gr_discover, gr_dispose,
+    gr_enduser,
+    gr_federalexpress, gr_friday,
+    gr_googlecheckout,
+    gr_individual,
+    gr_jcb,
+    gr_labour_bringin, gr_leaseout, gr_licence, gr_location, gr_locationofsalesorserviceprovisioning,
+    gr_maintain, gr_mastercard, gr_monday,
+    gr_n_ary_relations,
+    gr_offering, gr_openinghoursspecification,
+    gr_partsandlabour_bringin, gr_partsandlabour_pickup, gr_paymentchargespecification, gr_paymentmethod, gr_paymentmethodcreditcard, gr_paypal, gr_payswarm,
+        gr_pricespecification, gr_productorservice, gr_productorservicemodel, gr_productorservicessomeinstancesplaceholder, gr_provideservice, gr_publicholidays,
+        gr_publicinstitution,
+    gr_qualitativevalue, gr_quantitativevalue, gr_quantitativevaluefloat, gr_quantitativevalueinteger,
+    gr_repair, gr_reseller,
+    gr_saturday, gr_sell, gr_someitems, gr_sunday,
+    gr_thursday, gr_tuesday, gr_typeandquantitynode,
+    gr_unitpricespecification, gr_ups,
+    gr_visa,
+    gr_warrantypromise, gr_warrantyscope, gr_wednesday,
 
     // grddl
     grddl_transformation, grddl_transformationproperty,
@@ -1983,7 +2004,8 @@ typedef enum
     mft_haggregate, mft_hatom, mft_haudio, mft_hcalendar, /* mft_hcard, */ mft_hentry, mft_hlisting, mft_hmedia, mft_hnews, mft_hproduct, mft_hrecipe, mft_hresume, mft_hreview,
 
     // standard microformats v2 vocabulary
-    mft2_hadr, mft2_hbreadcrumb, mft2_hcard, mft2_hcite, mft2_hentry, mft2_hevent, mft2_hfeed, mft2_hgeo, mft2_hitem, mft2_hlisting, mft2_hproduct, mft2_hrecipe, mft2_hresume, mft2_hreview, mft2_haggregate,
+    mft2_hadr, mft2_hbreadcrumb, mft2_hcard, mft2_hcite, mft2_hentry, mft2_hevent, mft2_hfeed, mft2_hgeo, mft2_hitem, mft2_hlisting, mft2_hproduct, mft2_hrecipe, mft2_hresume,
+        mft2_hreview, mft2_haggregate,
 
     // web annotation
     oa_annotation, oa_assessing, oa_autodirection,
@@ -2015,7 +2037,8 @@ typedef enum
     odrl_set,
     odrl_ticket,
 
-    odrl_accepttracking, odrl_adhocshare, odrl_aggregate, odrl_annotate, odrl_anonymize, odrl_append, odrl_appendto, odrl_archive, odrl_attachpolicy, odrl_attachsource, odrl_attribute, odrl_attribution,
+    odrl_accepttracking, odrl_adhocshare, odrl_aggregate, odrl_annotate, odrl_anonymize, odrl_append, odrl_appendto, odrl_archive, odrl_attachpolicy, odrl_attachsource,
+        odrl_attribute, odrl_attribution,
     odrl_commercialize, odrl_commericaluse, odrl_compensate, odrl_concurrentuse, odrl_copy,
     odrl_delete, odrl_derivativeworks, odrl_derive, odrl_digitize, odrl_display, odrl_distribute, odrl_distribution,
     odrl_ensureexclusivity, odrl_execute, odrl_export, odrl_extract, odrl_extractchar, odrl_extractpage, odrl_extractword,
@@ -2027,7 +2050,8 @@ typedef enum
     odrl_obtainconsent,
     odrl_pay, odrl_play, odrl_present, odrl_preview, odrl_print,
     odrl_read, odrl_reproduce, odrl_reproduction, odrl_reviewpolicy,
-    odrl_secondaryuse, odrl_sell, odrl_share, odrl_sharealike, odrl_sharing, odrl_sourcecode, odrl_stream, odrl_synchronize,odrl_texttospeech, odrl_transfer, odrl_transform, odrl_translate,
+    odrl_secondaryuse, odrl_sell, odrl_share, odrl_sharealike, odrl_sharing, odrl_sourcecode, odrl_stream, odrl_synchronize,odrl_texttospeech, odrl_transfer,
+        odrl_transform, odrl_translate,
     odrl_uninstall, odrl_use,
     odrl_watermark, odrl_write, odrl_writeto,
 

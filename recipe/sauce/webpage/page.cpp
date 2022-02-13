@@ -41,7 +41,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, directory* d)
     :   name_ (name), updated_ (updated)
-{   PRESUME (d != nullptr, __FILE__, __LINE__);
+{   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     ids_.ndx (x);
     names_.ndx (x, false);
     directory_ = d;
@@ -132,7 +132,7 @@ void page::examine ()
         document_ -> reconstruct (&access_);
         ::std::string s = document_ -> make_children (0);
         if (context.tell (e_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
-        document_ -> examine_self (lingo (nits_, "en"));
+        document_ -> examine_self (lingo (nits_, context.lang ()));
         document_ -> verify_document ();
         if (! snippet_)
         {   if (has_corpus ())

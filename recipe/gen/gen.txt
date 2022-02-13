@@ -15,14 +15,14 @@ ssc (the Static Site Checker) is an opinionated HTML nit-picker, intended for
 people, such as its author, who hand code websites. It doesn't just check
 static websites for broken links, dubious syntax, and bad semantic data, it
 will actively complain about things that are perfectly legal but just a little
-bit untidy, such as its author.
+bit untidy, like its author.
 
 Except when serving CGI queries, it recursively scans the directory looking
 for HTML source files to analyse. It produces a list of errors, warnings,
 comments, and other hints of imperfection. Once complete, it summarises
 internal site inconsistencies, and can produce some simple statistics.
 
-ssc ignores scripts.
+Scripts are ignored. CSS is only processed for class declarations.
 
 
 
@@ -38,20 +38,28 @@ These options are only available on the command line:
 
 -h                      Show a summary of switches, then exit.
 
+--ontology.list         List known schema versions, then exit.
+
 -V                      Show version details, then exit.
 
 --validation            Show attribute extensions, then exit. Attribute
                         extensions are additional values that can be
-                        associated with attributes on many X/HTML elements.
+                        associated with attributes on some X/HTML elements,
+                        and is intended for use with bespoke extensions of
+                        HTML.
 
 
 
 COMMAND LINE AND CONFIGURATION FILES SWITCHES
 
-These options are available on the command line and in configuration files.
-Note that all "binary" options, e.g. those apparently without parameters below,
-must actually be given one of "0", "1", "false", "no", "off", "on", "true" or
-"yes" (without the quotes).
+These options are available on the command line (with dashes) and in
+configuration files (without dashes). The short form alternative switches
+only work on the command line.
+
+Almost all "binary" options, e.g. those without parameters below that turn
+on a particular feature (which may be the default), have a corresponding
+"no-" switch that turns it off. The "no-" is inserted after the dot, so,
+for example, the contradiction to "--general.class" is "--general.no-class".
 
 --corpus.article        Prefer the content of <ARTICLE> when gathering corpus
                         text.
@@ -332,8 +340,6 @@ must actually be given one of "0", "1", "false", "no", "off", "on", "true" or
 --nits.warning n        Redefine nit n as a warning; may be repeated (the
                         value of n can be determined using --nits.nids).
 
---ontology.list         List known schema versions. See --schema.version
-
 --ontology.ONT X.Y      Presume version X.Y of ontology ONT. For example:
                             --ontology.xsd 1.1
                         defaults usage of XSD to version 1.1. The versions
@@ -510,14 +516,15 @@ must actually be given one of "0", "1", "false", "no", "off", "on", "true" or
 -L v=d                  directory 'd' on the local filesystem. For example:
                             --site.virtual virtual=D:\actual
 
---spell.accept XXX      XXX is a correct spelling or a word (or a list of words)
-                        in all languages.
+--spell.accept XXX      XXX is a correct spelling or a word (or a list of
+                        words) in all languages.
 
 --spell.check           Check text spelling. Uses external spelling checkers,
                         so results may be inconsistent between systems.
 
 --spell.dict LANG,DICT  Unix only. Associate dictionary DICT with LANG. For
-                        example, if the standard English dictionary is en_GB-large:
+                        example, if the standard English dictionary is
+                        en_GB-large:
                             --spell.dict en-GB,en_GB-large
                         (Under Windows, ssc uses the OS dictionaries.)
 
@@ -582,11 +589,7 @@ must actually be given one of "0", "1", "false", "no", "off", "on", "true" or
                         many others. A full set of possible enumerations can
                         be listed using the --validation switch.
 
---webmention_in.datapath XXX   Path for incoming web mention data files.
-                        When your system receives webmention notifications,
-                        they are saved in this path.
-                        Webmentions are experimental and liable to change.
-
+Webmention switches are noted in webmention.txt.
 
 
 CONFIGURATION FILE FORMAT

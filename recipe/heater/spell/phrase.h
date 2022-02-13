@@ -13,6 +13,6 @@ public:
         text_ += s; }
     void complete (nitpick& nits, const html_version& v)
     {   if (! text_.empty ())
-        {   spell (nits, v, lang_, text_);
+        {   check_spelling (nits, v, lang_, text_);
             text_.clear (); } } };
 

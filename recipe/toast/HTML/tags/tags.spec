@@ -27,6 +27,8 @@ PASS ../toast/HTML/tags/tags-bad2.html
 PASS ../toast/HTML/tags/tags-example.html
 1 presume_html_tags
 2 deprecated_element
+4 url_not_found
+12 attempted_escape url_not_found
 
 PASS ../toast/HTML/tags/tags-oddities.html
 1 presume_html_tags

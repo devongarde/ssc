@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.123
+version 0.0.124
 https://ssc.lu/
 
 
@@ -68,21 +68,23 @@ To build & run:
 
 
 NOTE
-SSC can be run in a CGI environment. This is intended for use with OpenBSD's native httpd web server
-(https://man.openbsd.org/httpd.8). You are reminded that SSC is pre-alpha software. Do NOT expose it
-to untrusted data sources, such as the open web, without taking serious precautions. SSC probably has
-more bugs than the Creator's Ultimate All-Beetle Extravaganza (J.B.S. Haldane, apocryphal : "[the
-Creator has] an inordinate fondness for beetles.").
+SSC can be run in a CGI environment. This is intended for use with OpenBSD's
+native httpd web server (https://man.openbsd.org/httpd.8). You are reminded
+that SSC is pre-alpha software. Do NOT expose it to untrusted data sources,
+such as the open web, without taking serious precautions. SSC probably has more
+bugs than the Creator's Ultimate All-Beetle Extravaganza (J.B.S. Haldane,
+apocryphal : "[the Creator has] an inordinate fondness for beetles.").
 
 
 
 Notes on names:
-- recipe: a nod to Vernor Vinge's "A Fire Upon the Deep"
-- tea: without tea, nothing works; then there's builders' tea
-- sauce: identifies those who presume; and anyway, it's obvious
-- toast: toasts code; i like burnt toast
-- heater: i'm not stopping now
-- unii: my preferred plural of unix; both unixes and unices sound like they sing castrato
+- recipe: a nod to Vernor Vinge's "A Fire Upon the Deep";
+- tea: without tea, nothing works; then there's builders' tea;
+- sauce: identifies those who presume; and anyway, it's obvious;
+- toast: toasts code; i like burnt toast;
+- heater: i'm not stopping now;
+- unii: my preferred plural of unix: to my ears, both unixes and unices sound
+  like they sing castrato.
 
 
 

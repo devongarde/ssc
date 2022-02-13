@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "main/options.h"
-#include "main/context.h"
 #include "type/type.h"
 #include "main/args.h"
 #include "utility/filesystem.h"
@@ -36,6 +35,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "spell/spell.h"
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
+#define GOTCHA  "WARNING: The examination of webmentions, RDFa, and ontologies\n" \
+                "(except for schema.org & the living standard), is experimental and\n" \
+                "even less untrustworthy than " PROG " per se."
 
 ::std::string env_mapper (::std::string env)
 {
@@ -80,14 +82,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void options::help (const ::boost::program_options::options_description& aid) const
 {   ::std::string res;
     res =   PROG " [switch...] path.\n\n"
-            PROG " is an opinionated HTML nit-picker. It notes broken links, dubious syntax, bad semantics,\n"
-            "odd ontology, etc.. It highlights legal but untidy code.\n";
+            PROG " is an opinionated HTML nit-picker. It notes broken links, dubious syntax,\n"
+            "bad semantics, odd ontology, etc.. It highlights legal but untidy code.\n";
     ::std::ostringstream waste_of_space;
     waste_of_space << aid;
     res +=  waste_of_space.str ();
     res +=  "\n\n"
-            "Configuration file section names precede each switch dot above (e.g. " GENERAL_ ", " LINKS_ ",\n"
-            WEBSITE_ ", etc.). Option names follow them. For example:\n\n"
+            "Configuration file section names precede each switch dot above (e.g.\n"
+            GENERAL_ ", " LINKS_ "," WEBSITE_ "\n"
+            ", etc.). Option names follow them. For example:\n\n"
             "[" GENERAL_ "]\n"
             VERBOSE "=2\n\n"
             "[" LINKS_ "]\n"
@@ -95,7 +98,8 @@ void options::help (const ::boost::program_options::options_description& aid) co
             "[" WEBSITE_ "]\n"
             EXTENSION "=html\n"
             INDEX "=index.shtml\n"
-            SITE "=" DEFAULT_DOMAIN "\n\n";
+            SITE "=" DEFAULT_DOMAIN "\n\n"
+            GOTCHA "\n\n";
     context.todo (do_simple);
     context.domsg (res); }
 
@@ -123,81 +127,33 @@ e_severity decode_severity (nitpick& nits, const ::std::string& s)
         nits.pick (nit_configuration, es_error, ec_init, "invalid severity");
     return sev; }
 
-bool onoff (nitpick& nits, const ::std::string& ss)
-{   if (ss.empty ()) return true;
-    ::std::string s (trim_the_lot_off (ss));
-    if (s.empty ()) return true;
-    switch (s.at (0))
-    {   case '0' :
-            return false;
-        case '1' :
-        case '2' :
-        case '3' :
-        case '4' :
-        case '5' :
-        case '6' :
-        case '7' :
-        case '8' :
-        case '9' :
-            return true;
-        case 'b' :
-            if (compare_no_case (s, "bu")) return false;
-            break;
-        case 'f' :
-            if (compare_no_case (s, "false")) return false;
-            if (compare_no_case (s, "f")) return false;
-            break;
-        case 'j' :
-            if (compare_no_case (s, "ja")) return false;
-            if (compare_no_case (s, "j")) return false;
-            break;
-        case 'n' :
-            if (compare_no_case (s, "no")) return false;
-            if (compare_no_case (s, "n")) return false;
-            if (compare_no_case (s, "non")) return false;
-            if (compare_no_case (s, "nee")) return false;
-            if (compare_no_case (s, "nein")) return false;
-            break;
-        case 'o' :
-            if (compare_no_case (s, "off")) return false;
-            if (compare_no_case (s, "on")) return true;
-            if (compare_no_case (s, "oui")) return true;
-            break;
-        case 's' :
-            if (compare_no_case (s, "si")) return true;
-            break;
-        case 't' :
-            if (compare_no_case (s, "true")) return true;
-            if (compare_no_case (s, "t")) return true;
-            break;
-        case 'y' :
-            if (compare_no_case (s, "yes")) return true;
-            if (compare_no_case (s, "y")) return true;
-            break;
-        default :
-            break; }
-    nits.pick (nit_configuration, es_error, ec_init, PROG " does not recognise ", quote (s));
-    return true; }
+void options::yea_nay (context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay)
+{   const bool on = var_ [yea].as <bool> ();
+    const bool off = var_ [nay].as <bool> ();
+    if (off)
+    {   if (on) nits.pick (nit_yea_nay, es_info, ec_init, "when both ", nay, " and ", yea, " are used, ", nay, " applies");
+        (context.*fn) (false); }
+    else if (on) (context.*fn) (true); }
 
 void options::process (nitpick& nits, int argc, char* const * argv)
 {   /*  a
         b
-        c persist file   C clear webmention
+        c persist file   C clear webmention cache
         d dump corpus    D dump progress
         e external check E severity error exit
         f config         F load config file from .ssc/config
-        g website root
+        g website root   G Check spelling
         h help           H html snippet
         i index file     I server side includes
-        j
+        j GENERAL SPEC   J GENERAL INFO
         k
         l link check     L virtual directory
         m microdata      M microformat
-        n                N notify webmention
+        n                N notify webmentions
         o output         O rpt ext once
-        p prog dir       P nit output format
+        p prog dir       P NIT OVERRIDE
         q
-        r no revoke chks R reset webmention
+        r no revoke chks
         s domain name    S stats
         t template       T test mode
         u update         U unique
@@ -232,12 +188,12 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     pos.add (WEBSITE ROOT, 1);
     basic.add_options ()
         (CONFIG ",f", ::boost::program_options::value < ::std::string > (), "Load configuration from this file.")
-        (DEFCONF ",F", "Load configuration from " CONFIGURATION ".")
-        (HELP ",h", "Output this information and exit.")
+        (DEFCONF ",F", ::boost::program_options::bool_switch (), "Load configuration from " CONFIGURATION ".")
+        (HELP ",h", ::boost::program_options::bool_switch (), "Output this information and exit.")
         (HTML SNIPPET ",H", ::boost::program_options::value < ::std::string > (), "Only nitpick the given snippet of HTML.")
-        (ONTOLOGY LIST, "List known ontology schema for microdata and/or RDFa, then exit.")
-        (VALIDATION_, "List attribute types that can be given additional valid values, then exit.")
-        (VERSION ",V", "Display version and copyright gen, then exit.")
+        (ONTOLOGY LIST, ::boost::program_options::bool_switch (), "List known ontology schema for microdata and/or RDFa, then exit.")
+        (VALIDATION_, ::boost::program_options::bool_switch (), "List attribute types that can be given additional valid values, then exit.")
+        (VERSION ",V", ::boost::program_options::bool_switch (), "Display version and copyright gen, then exit.")
         ;
     cgi.add_options ()
         (ENVIRONMENT SERVER_SOFTWARE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_SOFTWARE ".")
@@ -284,63 +240,79 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
 
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
-        (JSONLD VERIFY, ::boost::program_options::value < ::std::string > (), "Verify JSON-LD.")
+        (JSONLD VERIFY, ::boost::program_options::bool_switch (), "Experimental: Verify JSON-LD.")
+        (JSONLD DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify JSON-LD.")
         (JSONLD VERSION, ::boost::program_options::value < ::std::string > (), "Presume this version of JSON-LD (1.0 or 1.1, default 1.0).")
 
-        (MICRODATA MICRODATAARG, ::boost::program_options::value < ::std::string > (), "Deprecated synonym for --" MICRODATA VERIFY)
+        (WMIN ACCEPT, ::boost::program_options::bool_switch (), "Process webmentions (experimental).")
+        (WMIN DONT ACCEPT, ::boost::program_options::bool_switch (), "Do not process webmentions.")
+        (WMIN DATAPATH, ::boost::program_options::value < ::std::string > () -> default_value (MENTION), "Path for incoming web mention data files (note --" GENERAL DATAPATH ").")
+        (WMIN MENTION, ::boost::program_options::value < vstr_t > () -> composing (), "A " WEBMENTION ", arg must be source=url,target=url; may be repeated.")
+        (WMIN STUB, ::boost::program_options::value < ::std::string > () -> default_value ("_" PROG), "Mask for file containing " WEBMENTION " HTML snippet.")
+        (WMIN TEMPLATE ",t", ::boost::program_options::value < vstr_t > () -> composing (), "HTML snippets for adding mentions (new, changed, deleted, unchanged); may be repeated.")
+        (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "Use this file to test header parsing.")
+        (WMIN WRITE, ::boost::program_options::value < ::std::string > (), "When writing " WEBMENTION " includes, write them to this path (default: --" WEBSITE ROOT ").")
 
-        (NITS OVERRIDE ",P", ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides " NITS FORMAT ".")
-        (NITS SPEC ",Z", ::boost::program_options::value < ::std::string > (), "Output nit codes, not numbers, in tests (scc-test rejects this format).")
-        (NITS WATCH, ::boost::program_options::value < ::std::string > (), "Output debug nits, which you'll need to manage particular error messages.")
-
-        (WMIN ACCEPT, ::boost::program_options::value < ::std::string > (), "Process webmentions (experimental).")
-        (WMIN DATAPATH, ::boost::program_options::value < ::std::string > () -> default_value (MENTION), "Experimental: path for incoming web mention data files (note --" GENERAL DATAPATH ").") // not yet noted below
-        (WMIN HOOK, ::boost::program_options::value < ::std::string > (), "Experimental: process incoming " WEBMENTION ", in JSON format, in specified file.")
-        (WMIN MENTION, ::boost::program_options::value < vstr_t > () -> composing (), "Experimental: a " WEBMENTION ", string must be source=url,target=url; may be repeated.")
-        (WMIN STUB, ::boost::program_options::value < ::std::string > () -> default_value ("_" PROG), "Experimental: mask for file containing " WEBMENTION " HTML snippet.")
-        (WMIN TEMPLATE ",t", ::boost::program_options::value < vstr_t > () -> composing (), "Experimental: HTML snippets for adding mentions (new, changed, deleted, unchanged, unknown); may be repeated.")
-        (WMIN TEST_HEADER, ::boost::program_options::value < ::std::string > (), "Experimental: use this file to test header parsing code.")
-        (WMIN WRITE , ::boost::program_options::value < ::std::string > (), "Experimental: pwhen writing " WEBMENTION " includes, write them to this path (default: --" WEBSITE ROOT ").")
-
-        (WMOUT CLEAR ",C", ::boost::program_options::value < ::std::string > (), "Experimental: clear out all web mention data.")
-        (WMOUT NOTIFY ",N", ::boost::program_options::value < ::std::string > (), "Experimental: notify appropriate servers of web mention updates.")
-        (WMOUT RESET ",R", ::boost::program_options::value < ::std::string > (), "Experimental: reset web mention data.")
+        (WMOUT CLEAR ",C", ::boost::program_options::bool_switch (), "Clear out the web mention cache.")
+        (WMOUT DONT CLEAR, ::boost::program_options::bool_switch (), "Retain the web mention cache.")
+        (WMOUT NOTIFY ",N", ::boost::program_options::bool_switch (), "Notify appropriate servers of web mention updates.")
+        (WMOUT DONT NOTIFY, ::boost::program_options::bool_switch (), "Do not notify servers of web mention updates.")
         (WMOUT SECRET, ::boost::program_options::value < ::std::string > (), "Experimental: " WEBMENTION " secret.")
-        ;
+    ;
     primary.add_options ()
-        (GENERAL CLASS, ::boost::program_options::value < ::std::string > (), "Report unrecognised classes.")
-        (GENERAL CGI ",W", ::boost::program_options::value < ::std::string > (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
-        (GENERAL CSS_OPTION, ::boost::program_options::value < ::std::string > (), "Process .css files.")
+        (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes.")
+        (GENERAL DONT CLASS, ::boost::program_options::bool_switch (), "Do not report unrecognised classes.")
+        (GENERAL CGI ",W", ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
+        (GENERAL DONT CGI, ::boost::program_options::bool_switch (), "Process a local static website.")
+        (GENERAL CSS_OPTION, ::boost::program_options::bool_switch (), "Process .css files.")
+        (GENERAL DONT CSS_OPTION, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated.")
         (GENERAL DATAPATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "Root directory for all " PROG " files.")
         (GENERAL ERR ",E", ::boost::program_options::value < ::std::string > () -> composing (), "Exit with an error if nits of this severity or worse are generated. Values: '"
             CATASTROPHE "', '" ERR "' (default), '" WARNING "', '" INFO  "', or '" COMMENT  "'.")
         (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "File for persistent data, requires -N (note --" GENERAL DATAPATH ").")
         (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore attributes and content of specified element; may be repeated.")
+        (GENERAL INFO ",J", ::boost::program_options::bool_switch (), "Report " PROG " launch context at startup.")
         (GENERAL LANG, ::boost::program_options::value < ::std::string > () -> composing (), "Default language (such as 'en_GB', 'lb_LU', etc.).")
         (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "Maximum file size to read, in megabytes (zero for no limit).")
         (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "Output file (default to the console).")
-        (GENERAL PROGRESS ",D", ::boost::program_options::value < ::std::string > (), "Dump progress to standard output.")
-        (GENERAL RDFA_, ::boost::program_options::value < ::std::string > (), "Check RDFa attributes.")
-        (GENERAL REL, ::boost::program_options::value < ::std::string > (), "Ignore recognised but non-standard <LINK> REL values.")
-        (GENERAL RPT, ::boost::program_options::value < ::std::string > (), "Report when CSS files opened.")
-        (GENERAL SLOB, ::boost::program_options::value < ::std::string > (), "Do not nitpick untidy HTML such as missing closures.")
-        (GENERAL SSI ",I", ::boost::program_options::value < ::std::string > (), "Process (simple) Server Side Includes.")
-        (GENERAL TEST ",T", ::boost::program_options::value < ::std::string > (), "Output format for automated tests.")
+        (GENERAL PROGRESS ",D", ::boost::program_options::bool_switch (), "Dump progress to standard output.")
+        (GENERAL DONT PROGRESS, ::boost::program_options::bool_switch (), "Don't be quite so noisy.")
+        (GENERAL RDFA_, ::boost::program_options::bool_switch (), "Check RDFa attributes.")
+        (GENERAL DONT RDFA_, ::boost::program_options::bool_switch (), "Do not check RDFa attributes.")
+        (GENERAL REL, ::boost::program_options::bool_switch (), "Ignore recognised but non-standard <LINK> REL values.")
+        (GENERAL DONT REL, ::boost::program_options::bool_switch (), "Nitpick recognised but non-standard <LINK> REL values.")
+        (GENERAL RPT, ::boost::program_options::bool_switch (), "Report when CSS files opened.")
+        (GENERAL DONT RPT, ::boost::program_options::bool_switch (), "Sya nowt when CSS files opened.")
+        (GENERAL SPEC ",j", ::boost::program_options::bool_switch (), "Reset default values of most switches to false.")
+        (GENERAL SLOB, ::boost::program_options::bool_switch (), "Do not nitpick untidy HTML such as missing closures.")
+        (GENERAL DONT SLOB, ::boost::program_options::bool_switch (), "Point out slovenly HTML such as missing closures.")
+        (GENERAL SSI ",I", ::boost::program_options::bool_switch (), "Process (simple) Server Side Includes.")
+        (GENERAL DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
+        (GENERAL TEST ",T", ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
+        (GENERAL DONT TEST, ::boost::program_options::bool_switch (), "Output in format specified by other switches.")
         (GENERAL USER, ::boost::program_options::value < ::std::string > () -> default_value ("bert.scroggins"), "User name to supply when requested (for webmentions).")
         (GENERAL VERBOSE ",v", ::boost::program_options::value < ::std::string > (), "Output these nits and worse. Values: '"
             CATASTROPHE "', '" ERR "', '" WARNING "' (default), '" INFO  "', '" COMMENT  "', or 0 for silence.")
 
-        (CORPUS ARTICLE, ::boost::program_options::value < ::std::string > (), "Prefer the content of <ARTICLE> when gather page corpus.")
-        (CORPUS BODY, ::boost::program_options::value < ::std::string > (), "Prefer the content of <BODY> when gather page corpus.")
-        (CORPUS MAIN, ::boost::program_options::value < ::std::string > (), "Prefer the content of <MAIN> when gather page corpus.")
+        (CORPUS ARTICLE, ::boost::program_options::bool_switch (), "Prefer the content of <ARTICLE> when gather page corpus.")
+        (CORPUS DONT ARTICLE, ::boost::program_options::bool_switch (), "Avoid the content of <ARTICLE> when gather page corpus.")
+        (CORPUS BODY, ::boost::program_options::bool_switch (), "Prefer the content of <BODY> when gather page corpus.")
+        (CORPUS DONT BODY, ::boost::program_options::bool_switch (), "Avoid the content of <BODY> when gather page corpus.")
+        (CORPUS MAIN, ::boost::program_options::bool_switch (), "Prefer the content of <MAIN> when gather page corpus.")
+        (CORPUS DONT MAIN, ::boost::program_options::bool_switch (), "Avoid the content of <MAIN> when gather page corpus.")
         (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
 
-        (HTML RFC1867, ::boost::program_options::value < ::std::string > (), "Consider RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
-        (HTML RFC1942, ::boost::program_options::value < ::std::string > (), "Consider RFC 1867 RFC 1942 (tables) when processing HTML 2.0.")
-        (HTML RFC1980, ::boost::program_options::value < ::std::string > (), "Consider RFC 1867 RFC 1980 (client side image maps) when processing HTML 2.0.")
-        (HTML RFC2070, ::boost::program_options::value < ::std::string > (), "Consider RFC 1867 RFC 2070 (internationalisation) when processing HTML 2.0.")
-        (HTML TAGS, ::boost::program_options::value < ::std::string > (), "Presume HTML files with no DOCTYPE declaration are HTML Tags (CERN version), not HTML 1.0.")
+        (HTML RFC1867, ::boost::program_options::bool_switch (), "Consider RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
+        (HTML DONT RFC1867, ::boost::program_options::bool_switch (), "Ignore RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
+        (HTML RFC1942, ::boost::program_options::bool_switch (), "Consider RFC 1867 RFC 1942 (tables) when processing HTML 2.0.")
+        (HTML DONT RFC1942, ::boost::program_options::bool_switch (), "Ignore RFC 1867 RFC 1942 (tables) when processing HTML 2.0.")
+        (HTML RFC1980, ::boost::program_options::bool_switch (), "Consider RFC 1867 RFC 1980 (client side image maps) when processing HTML 2.0.")
+        (HTML DONT RFC1980, ::boost::program_options::bool_switch (), "Ignore RFC 1867 RFC 1980 (client side image maps) when processing HTML 2.0.")
+        (HTML RFC2070, ::boost::program_options::bool_switch (), "Consider RFC 1867 RFC 2070 (internationalisation) when processing HTML 2.0.")
+        (HTML DONT RFC2070, ::boost::program_options::bool_switch (), "Ignore RFC 1867 RFC 2070 (internationalisation) when processing HTML 2.0.")
+        (HTML TAGS, ::boost::program_options::bool_switch (), "Presume HTML files with no DOCTYPE declaration are HTML Tags (CERN version).")
+        (HTML DONT TAGS, ::boost::program_options::bool_switch (), "Presume HTML files with no DOCTYPE declaration are HTML 1.0.")
         (HTML TITLE ",z", ::boost::program_options::value < int > () -> default_value (MAX_IDEAL_TITLE_LENGTH), "Maximum advisable length of <TITLE> text.")
         (HTML VERSION, ::boost::program_options::value < ::std::string > (),
             "Set the specific version of HTML with DOCTYPE (default '5.2'), or if no DOCTYPE found (default: '1.0'). "
@@ -348,79 +320,95 @@ void options::process (nitpick& nits, int argc, char* const * argv)
             "For XHTML, use XHTML plus version, e.g. 'XHTML 1.0'. "
             "For HTML+, use '+'. For HTML tags, use 'tags'.")
 
-        (LINKS EXAMPLE, ::boost::program_options::value < ::std::string > (), "Issue warning if link to faux domain, such as example.com, found.")
-        (LINKS EXTERNAL ",e", ::boost::program_options::value < ::std::string > (), "Check external links (requires curl, sets --" LINKS CHECK ").")
-        (LINKS FORWARD ",3", ::boost::program_options::value < ::std::string > (), "Report http forwarding errors, e.g. 301 and 308 (sets --" LINKS EXTERNAL ").")
-        (LINKS CHECK ",l", ::boost::program_options::value < ::std::string > (), "Check internal links.")
+        (LINKS CHECK ",l", ::boost::program_options::bool_switch (), "Check internal links.")
+        (LINKS DONT CHECK, ::boost::program_options::bool_switch (), "Ignore internal links.")
+        (LINKS EXAMPLE, ::boost::program_options::bool_switch (), "Issue warning if link to faux domain, such as example.com, found.")
+        (LINKS DONT EXAMPLE, ::boost::program_options::bool_switch (), "Say nothing if link to faux domain, such as example.com, found.")
+        (LINKS EXTERNAL ",e", ::boost::program_options::bool_switch (), "Check external links (requires curl, sets --" LINKS CHECK ").")
+        (LINKS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Ignore external links.")
+        (LINKS FORWARD ",3", ::boost::program_options::bool_switch (), "Report http forwarding errors, e.g. 301 and 308 (sets --" LINKS EXTERNAL ").")
+        (LINKS DONT FORWARD, ::boost::program_options::bool_switch (), "Ignore http forwarding errors, e.g. 301 and 308.")
         (LINKS IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "When checking external links, ignore this domain; may be repeated.")
-        (LINKS LOCAL, ::boost::program_options::value < ::std::string > (), "Issue warning if link to local domain, such as ???.lan or ???.corp, found.")
-        (LINKS ONCE ",O", ::boost::program_options::value < ::std::string > (), "Report each broken external link once (sets --" LINKS EXTERNAL ").")
+        (LINKS LOCAL, ::boost::program_options::bool_switch (), "Issue warning if link to local domain, such as ???.lan or ???.corp, found.")
+        (LINKS DONT LOCAL, ::boost::program_options::bool_switch (), "Don't mention links to local domains.")
+        (LINKS ONCE ",O", ::boost::program_options::bool_switch (), "Report each broken external link once (sets --" LINKS EXTERNAL ").")
+        (LINKS DONT ONCE, ::boost::program_options::bool_switch (), "Report broken links whenever they are found.")
         (LINKS REPORT, ::boost::program_options::value < vstr_t > () -> composing (), "Report links to this domain and its descendants; may be repeated.")
-        (LINKS REVOKE ",r", ::boost::program_options::value < ::std::string > (), "Do not check whether https certificates have been revoked (sets --" LINKS EXTERNAL ").")
-        (LINKS XLINK ",X", ::boost::program_options::value < ::std::string > (), "Check crosslink IDs.")
+        (LINKS REVOKE ",r", ::boost::program_options::bool_switch (), "Do not check whether https certificates have been revoked (sets --" LINKS EXTERNAL ").")
+        (LINKS DONT REVOKE, ::boost::program_options::bool_switch (), "Check whether https certificates have been revoked (sets --" LINKS EXTERNAL ").")
+        (LINKS XLINK ",X", ::boost::program_options::bool_switch (), "Check crosslink IDs.")
+        (LINKS DONT XLINK, ::boost::program_options::bool_switch (), "Do not check crosslink IDs.")
 
-        (MF VERIFY ",M", ::boost::program_options::value < ::std::string > (), "Check microformats in class and rel attributes (see https://" MICROFORMATS_ORG "/).")
-        (MF VERSION, ::boost::program_options::value < int > () -> default_value (3), "Check this version of microformats (1, 2, or 3 for both).")
-        (MF EXPORT, ::boost::program_options::value < ::std::string > (), "Export microformat data (requires --" MF VERIFY ").")
+        (MF VERIFY ",M", ::boost::program_options::bool_switch (), "Check microformats in class and rel attributes (see https://" MICROFORMATS_ORG "/).")
+        (MF DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microformats in class and rel attributes.")
+        (MF VERSION, ::boost::program_options::value < int > (), "Check this version of microformats (1, 2, or 3 for both).")
+        (MF EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (requires --" MF VERIFY ").")
+        (MF DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
 
         (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (default (0): determine by HTML version).")
 
-        (MICRODATA EXPORT, ::boost::program_options::value < ::std::string > (), "Export microformat data (only verified data if --" MICRODATA VERIFY " is set).")
-        (MICRODATA VERIFY ",m", ::boost::program_options::value < ::std::string > (), "Check microdata (" PROG " only understands certain microdata schemas).")
+        (MICRODATA EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (only verified data if --" MICRODATA VERIFY " is set).")
+        (MICRODATA DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
+        (MICRODATA VERIFY ",m", ::boost::program_options::bool_switch (), "Check microdata (" PROG " only understands certain microdata schemas).")
+        (MICRODATA DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microdata.")
         (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "Microdata export root directory (requires --" MICRODATA EXPORT ").")
         (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory, syntax virtual=directory. Must correspond to --" WEBSITE VIRTUAL ".")
 
         (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a catastrophe; may be repeated.")
-        (NITS CODES, ::boost::program_options::value < ::std::string > (), "Output nit codes")
+        (NITS CODES, ::boost::program_options::bool_switch (), "Output nit codes")
+        (NITS DONT CODES, ::boost::program_options::bool_switch (), "Do not output nit codes")
         (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a comment; may be repeated.")
         (NITS DBG, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a debug message; may be repeated.")
         (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "redefiRedefinene nit as an error; may be repeated.")
         (NITS FORMAT, ::boost::program_options::value < ::std::string > (), "Output nits in this format (\"html\" or \"text\", default text).")
         (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as info; may be repeated.")
-        (NITS NIDS, ::boost::program_options::value < ::std::string > (), "Output nit identifiers (used to recategorise nits)")
-        (NITS ROOT, ::boost::program_options::value < ::std::string > (), "Do not search for configuration files in --" WEBSITE ROOT " unless explicitly specified.")
+        (NITS NIDS, ::boost::program_options::bool_switch (), "Output nit identifiers (used to recategorise nits).")
+        (NITS DONT NIDS, ::boost::program_options::bool_switch (), "Do not output nit identifiers.")
+        (NITS OVERRIDE ",P", ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides " NITS FORMAT "; for automation).")
         (NITS QUOTE, ::boost::program_options::value < ::std::string > (), "Output nits in this format (\"html\" or \"text\", default text).")
+        (NITS ROOT, ::boost::program_options::bool_switch (), "Search for configuration files in --" WEBSITE ROOT ".")
+        (NITS DONT ROOT, ::boost::program_options::bool_switch (), "Do not search for configuration files in --" WEBSITE ROOT " unless explicitly specified.")
         (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "Silence nit; may be repeated.")
-        (NITS UNIQUE ",U", ::boost::program_options::value < ::std::string > (), "Do not report repeated nits, even if they give more information")
+        (NITS UNIQUE ",U", ::boost::program_options::bool_switch (), "Do not report repeated nits, even if they give more information.")
+        (NITS DONT UNIQUE, ::boost::program_options::bool_switch (), "Report repeated nits.")
         (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine specified nit as a warning; may be repeated.")
+        (NITS WATCH, ::boost::program_options::bool_switch (), "Output debug nits (for automation).")
+        (NITS DONT WATCH, ::boost::program_options::bool_switch (), "Do not output debug nits.")
 
-        (RDFA VERSION, ::boost::program_options::value < ::std::string > () -> default_value ("1.1.3"), "version of RDFa (default 1.1.3).")
+        (RDFA VERSION, ::boost::program_options::value < ::std::string > () -> default_value ("1.1.3"), "Version of RDFa (default 1.1.3) (experimental).")
 
-        (SHADOW CHANGED, ::boost::program_options::value < ::std::string > (),    "Only "
+        (SHADOW CHANGED, ::boost::program_options::bool_switch (), "Only "
 #ifndef NOLYNX
                             "link/"
 #endif // NOLYNX
                             "copy shadow files when the target doesn't exist, or is older than the original.")
-        (SHADOW COMMENT, ::boost::program_options::value < ::std::string > (), "Do NOT remove comments from shadow pages.")
+        (SHADOW DONT CHANGED, ::boost::program_options::bool_switch (), "Overwrite "
+#ifndef NOLYNX
+                            "link/"
+#endif // NOLYNX
+                            "shadow files even when the target is younger than the original.")
+        (SHADOW COMMENT, ::boost::program_options::bool_switch (), "Do NOT remove comments from shadow pages.")
+        (SHADOW DONT COMMENT, ::boost::program_options::bool_switch (), "Remove comments from shadow pages.")
         (SHADOW COPY, ::boost::program_options::value < ::std::string > (),  "Copy site: 'no' (default), "
 #ifndef NOLYNX
                                                                     "'hard' (links), 'soft' (links), "
 #endif // NOLYNX
                                                                     "'pages', 'all', 'dedu' (deduplicate), 'report'.")
-        (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "Where to persist deduplication and update data.")
-        (SHADOW ENABLE, ::boost::program_options::value < ::std::string > (), "Enable shadowing (set by all other SHADOW options)")
+        (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "File for persisting deduplication and update data.")
+        (SHADOW ENABLE, ::boost::program_options::bool_switch (), "Enable shadowing (set by all other SHADOW options).")
+        (SHADOW DONT ENABLE, ::boost::program_options::bool_switch (), "Disable shadowing.")
         (SHADOW IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore files with this extension; may be repeated.")
-        (SHADOW INFO, ::boost::program_options::value < ::std::string > (), "Insert the generation time in a comment at the top of shadowed pages (after --" SHADOW MSG ").")
+        (SHADOW INFO, ::boost::program_options::bool_switch (), "Insert the generation time in a comment at the top of shadowed pages (after --" SHADOW MSG ").")
+        (SHADOW DONT INFO, ::boost::program_options::bool_switch (), "Do not insert the generation time in a comment at the top of shadowed pages.")
         (SHADOW MSG, ::boost::program_options::value < ::std::string > (), "Insert this text in a comment at the top of shadowed pages.")
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "Shadow output root directory.")
-        (SHADOW SSI, ::boost::program_options::value < ::std::string > (), "Resolve SSIs on shadow pages when --" GENERAL SSI " is set.")
-        (SHADOW SPACING, ::boost::program_options::value < ::std::string > (), "Merge whitespace on shadow pages. Without this option, nit line-numbers may not match shadow pages.")
-        (SHADOW UPDATE, ::boost::program_options::value < ::std::string > (), "Only examine changed pages, or pages with changed dependencies (requires --" SHADOW FICHIER ")")
+        (SHADOW SPACING, ::boost::program_options::bool_switch (), "Merge whitespace on shadow pages. Without this option, nit line-numbers may not match shadow pages.")
+        (SHADOW DONT SPACING, ::boost::program_options::bool_switch (), "Do not merge whitespace on shadow pages.")
+        (SHADOW SSI, ::boost::program_options::bool_switch (), "Resolve SSIs on shadow pages when --" GENERAL SSI " is set.")
+        (SHADOW DONT SSI, ::boost::program_options::bool_switch (), "Do not resolve SSIs on shadow pages.")
+        (SHADOW UPDATE, ::boost::program_options::bool_switch (), "Only examine changed pages, or pages with changed dependencies (requires --" SHADOW FICHIER ")")
+        (SHADOW DONT UPDATE, ::boost::program_options::bool_switch (), "Examine all pages.")
         (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Shadow virtual directory, syntax virtual=shadow; must correspond to --" WEBSITE VIRTUAL "; may be repeated.")
-
-#ifndef NOSPELL
-        (SPELL ACCEPT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore this word in spell checks; may be repeated.")
-        (SPELL CASED, ::boost::program_options::value < ::std::string > (), "Nitpick wrongly cased yet correctly spelt words")
-        (SPELL CHECK, ::boost::program_options::value < ::std::string > (), "Check spelling (see also --" GENERAL LANG ").")
-#ifdef GENNIX
-        (SPELL DICT, ::boost::program_options::value < vstr_t > () -> composing (), "LANG,DICT: associate (hunspell) dictionary with language, e.g. 'en-US,en_US-large'; may be repeated.")
-#endif // GENNIX
-        (SPELL ICU, ::boost::program_options::value < ::std::string > (), "Use the ICU libraries (best for text analysis, but rather slow)")
-        (SPELL LIST, ::boost::program_options::value < vstr_t > () -> composing (), "X,Y: File X contains valid spellings for language Y, one per line; may be repeated")
-#ifdef GENNIX
-        (SPELL PATH, ::boost::program_options::value < ::std::string > (), "Path to (hunspell) dictionaries.")
-#endif // GENNIX
-#endif // NOSPELL
 
         (WEBSITE EXTENSION ",x", ::boost::program_options::value < vstr_t > () -> composing (), "Check files with this extension (default html); may be repeated.")
         (WEBSITE INDEX ",i", ::boost::program_options::value < ::std::string > (), "Index file in directories (default: none).")
@@ -428,15 +416,30 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (WEBSITE SITE ",s", ::boost::program_options::value < vstr_t > () -> composing (), "Domain name(s) for local site (default none); may be repeated.")
         (WEBSITE VIRTUAL ",L", ::boost::program_options::value < vstr_t > () -> composing (), "Define virtual directory, arg syntax virtual=physical; may be repeated.")
 
-        (STATS EXPORT, ::boost::program_options::value < ::std::string > (), "Export collected statistical data.")
-        (STATS META, ::boost::program_options::value < ::std::string > (), "Report on <META> data.")
-        (STATS PAGE, ::boost::program_options::value < ::std::string > (), "Report individual page statistics.")
-        (STATS SUMMARY ",S", ::boost::program_options::value < ::std::string > (), "Report overall statistics.")
+        (SPELL ACCEPT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore this word in spell checks; may be repeated.")
+        (SPELL CASED, ::boost::program_options::bool_switch (), "Nitpick wrongly cased but correctly spelt words.")
+        (SPELL DONT CASED, ::boost::program_options::bool_switch (), "Ignore case when checking spelling.")
+        (SPELL CHECK ",G", ::boost::program_options::bool_switch (), "Check spelling (see also --" GENERAL LANG ").")
+        (SPELL DONT CHECK, ::boost::program_options::bool_switch (), "Do not check spelling.")
+        (SPELL DICT, ::boost::program_options::value < vstr_t > () -> composing (), "LANG,DICT: associate (hunspell) dictionary with language, e.g. 'en-US,en_US-large'; may be repeated (ignored in Windows).")
+        (SPELL ICU, ::boost::program_options::bool_switch (), "Use the International Components for Unicode (ICU) text libraries (high quality but slow).")
+        (SPELL DONT ICU, ::boost::program_options::bool_switch (), "Use standard text libraries (fast but inaccurate).")
+        (SPELL LIST, ::boost::program_options::value < vstr_t > () -> composing (), "FILE,LANG: FILE contains additional valid spellings in LANG; may be repeated.")
+        (SPELL PATH, ::boost::program_options::value < ::std::string > (), "Path to (hunspell) dictionaries (ignored in Windows).")
+
+        (STATS EXPORT, ::boost::program_options::value < ::std::string > (), "Export collected statistical data here.")
+        (STATS META, ::boost::program_options::bool_switch (), "Report on <META> data.")
+        (STATS DONT META, ::boost::program_options::bool_switch (), "Do not report <META> data.")
+        (STATS PAGE, ::boost::program_options::bool_switch (), "Report individual page statistics.")
+        (STATS DONT PAGE, ::boost::program_options::bool_switch (), "Do not report individual page statistics.")
+        (STATS SUMMARY ",S", ::boost::program_options::bool_switch (), "Report overall statistics.")
+        (STATS DONT SUMMARY, ::boost::program_options::bool_switch (), "Do not report overall statistics.")
 
         (SVG VERSION, ::boost::program_options::value < ::std::string > (), "Presumed this version of SVG if version attribute missing (requires HTML 4 or greater).")
 
         (VALIDATION MINOR ",m", ::boost::program_options::value < int > (), "Validate HTML 5 with this w3 minor version (e.g. 3 for HTML 5.3).")
-        (VALIDATION MICRODATAARG, ::boost::program_options::value < ::std::string > (), "Validate HTML5 microdata.")
+        (VALIDATION MICRODATAARG, ::boost::program_options::bool_switch (), "Validate HTML5 microdata.")
+        (VALIDATION DONT MICRODATAARG, ::boost::program_options::bool_switch (), "Do not validate HTML5 microdata.")
         	;
 
     for (int i = s_none + 1; i < s_error; ++i)
@@ -457,6 +460,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
             desc += get_first_schema_version (es).ver ();
             desc += " and "; }
         desc += get_last_schema_version (es).ver ();
+        desc += " (experimental)";
         ontology.add_options ()
             (arg.c_str (), ::boost::program_options::value < ::std::string > (), desc.c_str ()); }
 
@@ -483,6 +487,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     aid.add (basic).add (primary).add (ontology);
     ::std::string loaded;
 
+    nits.set_context (0, "Environment");
     try
     {   ::boost::program_options::store (::boost::program_options::parse_environment (env, ::boost::function1 < ::std::string, ::std::string> (env_mapper)), env_);
         if (env_.count (ENV_ARGS))
@@ -548,6 +553,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
             nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
             return; } }
 
+    nits.set_context (0, "Command Line");
+
     try
     {   ::boost::program_options::store (::boost::program_options::command_line_parser (argc, argv).options (cmd).positional (pos).run (), var_); }
     catch (const ::boost::program_options::error& err)
@@ -558,44 +565,53 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     {   nits.pick (nit_configuration, es_error, ec_init, "Command line parameter error.");
         nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
         return; }
-    if (var_.count (CONFIG) || var_.count (DEFCONF) || env_.count (ENV_CONFIG))
+
+    if (var_.count (CONFIG) || var_ [DEFCONF].as <bool > () || env_.count (ENV_CONFIG))
     {   ::boost::filesystem::path file (CONFIGURATION);
         if (var_.count (CONFIG)) file = var_ [CONFIG].as < ::std::string > ();
-        else if ((var_.count (DEFCONF) == 0) && env_.count (ENV_CONFIG)) file = env_ [ENV_CONFIG].as < ::std::string > ();
+        else if ((! var_ [DEFCONF].as <bool > ()) && env_.count (ENV_CONFIG)) file = env_ [ENV_CONFIG].as < ::std::string > ();
+        nits.set_context (0, file.string ());
         context.macros ().emplace (nm_config, file.string ());
         if (file_exists (file))
-        {   nits.pick (nit_configuration, es_comment, ec_init, ::std::string ("Loading configuration ") + file.string () + "...");
+        {   nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Loading configuration ") + file.string () + "...");
             context.config (canonical (file)); }
         else
         {   nits.pick (nit_configuration, es_error, ec_init, ::std::string ("Cannot find ") + file.string ());
             return; }
+        vstr_t unrecognised;
         try
 #ifdef  NO_PCF_STR
         {   ::std::ifstream fis (file.string ().c_str ());
-            ::boost::program_options::store (::boost::program_options::parse_config_file (fis, config, true), var_); }
+            auto opt = ::boost::program_options::parse_config_file (fis, config, true);
 #else
-        {   ::boost::program_options::store (::boost::program_options::parse_config_file (file.string ().c_str (), config, true), var_); }
+        {   auto opt = ::boost::program_options::parse_config_file (file.string ().c_str (), config, true);
 #endif
+            ::boost::program_options::store (opt, var_);
+            unrecognised = ::boost::program_options::collect_unrecognized (opt.options, ::boost::program_options::include_positional); }
         catch (const ::boost::program_options::error& err)
-        {   nits.pick (nit_configuration, es_error, ec_init, err.what (), " in ", file.string ());
+        {   nits.pick (nit_configuration, es_error, ec_init, "Exception ", quote (err.what ()), " when processing ", file.string ());
             return; }
         catch (...)
-        {   nits.pick (nit_configuration, es_error, ec_init, "Exception when processing ", file.string ());
-            return; } }
+        {   nits.pick (nit_configuration, es_error, ec_init, "Unknown exception when processing ", file.string ());
+            return; }
+        for (auto u : unrecognised)
+            nits.pick (nit_unknown_option, es_warning, ec_init, "Unknown configuration option ", quote (u), " ignored"); }
     ::boost::program_options::notify (var_);
-    if (var_.count (VERSION))
+    if (var_ [GENERAL INFO].as <bool > ())
+        ::std::cout << context.general_info () << "\n";
+    if (var_ [VERSION].as < bool > ())
     {   context.todo (do_simple);
         return; }
-    if (var_.count (HELP))
+    if (var_ [HELP].as < bool > ())
     {   help (aid);
         return; }
-    if (var_.count (VALIDATION_))
+    if (var_ [VALIDATION_].as < bool > ())
     {   ::std::ostringstream waste_of_space;
         waste_of_space << valid;
         context.domsg (waste_of_space.str ());
         context.todo (do_simple);
         return; }
-    if (var_.count (ONTOLOGY LIST))
+    if (var_ [ONTOLOGY LIST].as < bool > ())
     {   ::std::string res;
         for (int i = s_none + 1; i < s_error; ++i)
         {   const e_schema es = static_cast < e_schema > (i);
@@ -621,7 +637,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         return; }
 
     if (! context.cgi () && var_.count (ENVIRONMENT QUERY_STRING))
-    {   context.environment (env_query_string, var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
+    {   nits.set_context (0, "Environment");
+        context.environment (env_query_string, var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
         if (! context.environment (env_query_string).empty ()) try
         {   context.cgi (true);
             if (var_.count (ENVIRONMENT SERVER_SOFTWARE)) context.environment (env_server_software, var_ [ENVIRONMENT SERVER_SOFTWARE].as < ::std::string > ());
@@ -660,7 +677,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
             nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
             return; } }
 
-    if (! context.cgi ()) if (var_.count (GENERAL CGI)) context.cgi (onoff (nits, var_ [GENERAL CGI].as < ::std::string > ()));
+    if (! context.cgi ()) yea_nay (&context_t::cgi, nits, GENERAL CGI, GENERAL DONT CGI);
+    nits.set_context (0, "Configuration");
 
     if (context.cgi ()) context.todo (do_cgi);
     else if (! var_.count (WEBSITE ROOT))
@@ -669,41 +687,47 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     else context.todo (do_examine); }
 
 void options::contextualise (nitpick& nits)
-{   bool progress = false;
-    if (var_.count (GENERAL TEST))
-        if (! onoff (nits, var_ [GENERAL TEST].as < ::std::string > ())) context.test (false);
-        else context.test (true).article (false).body (false).codes (false).crosslinks (false).example (false).external (false).forwarded (false).info (false).jsonld (false)
-                    .links (false).load_css (true).main (false).md_export (false).meta (false).mf_verify (false).microdata (false).nids (true).nits (false).nits_nits_nits (true).not_root (false)
-                    .notify (false).once (false).presume_tags (false) .process_webmentions (false).progress (false).rdfa (false).rel (false).reset (false).revoke (false).rfc_1867 (true)
-                    .rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false).schema (true).shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false)
-                    .shadow_ssi (false).spec (false).spell (false).ssi (false).stats_page (false).stats_summary (false).unknown_class (false).update (false);
+{   yea_nay (&context_t::test, nits, GENERAL TEST, GENERAL DONT TEST);
+    if (context.test () || var_ [GENERAL SPEC].as <bool > ())
+        context.article (false).body (false).cased (false).codes (false).crosslinks (false).example (false).external (false).forwarded (false).icu (true)
+            .info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).meta (false).mf_verify (false).microdata (false)
+            .nids (true).nits (false) .nits_nits_nits (true).not_root (false).notify (false).once (false).presume_tags (false) .process_webmentions (false)
+            .progress (false).rdfa (false) .rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false)
+            .schema (true).shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).
+            ssi (false).stats_page (false).stats_summary (false).unknown_class (false).update (false);
 
-    if (var_.count (WMOUT CLEAR)) context.clear (onoff (nits, var_ [WMOUT CLEAR].as < ::std::string > ()));
+    yea_nay (&context_t::clear, nits, WMOUT CLEAR, WMOUT DONT CLEAR);
 
     if (! context.cgi ())
     {   if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
         if (var_.count (NITS OVERRIDE)) context.nit_override (var_ [NITS OVERRIDE].as < ::std::string > ()); }
 
-    if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose> (decode_severity (nits, var_ [GENERAL VERBOSE].as < ::std::string > ())));
-
     if (context.test () || ! context.cgi ())
     {   if (var_.count (GENERAL OUTPUT))
         {   context.output (nits, nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
             if (! context.test ())
-                nits.pick (nit_configuration, es_comment, ec_init, ::std::string ("Writing to ") + var_ [GENERAL OUTPUT].as < ::std::string > ()); }
-        if (var_.count (GENERAL PROGRESS)) progress = onoff (nits, var_ [GENERAL PROGRESS].as < ::std::string > ());
-        if (progress) if (context.tell (e_info)) ::std::cout << FULL_TITLE; else ::std::cout << SIMPLE_TITLE;
+                nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Writing to ") + var_ [GENERAL OUTPUT].as < ::std::string > ()); }
+        if ((! var_ [GENERAL DONT PROGRESS].as <bool > ()) && var_ [GENERAL PROGRESS].as <bool > ())
+            if (context.test ()) ::std::cout << TEST_TITLE;
+            else if (context.tell (e_info)) ::std::cout << FULL_TITLE;
+            else ::std::cout << SIMPLE_TITLE;
         if (! context.cgi ())
         {   context.path (nix_path_to_local (var_ [GENERAL DATAPATH].as < ::std::string > ()));
             if (! file_exists (context.path ()))
-            {   nits.pick (nit_create_folder, es_info, ec_init, context.path (), " does not exist, am creating it.");
+            {   nits.pick (nit_create_folder, es_info, ec_init, "creating ", context.path ());
                 if (! make_directories (context.path ()))
                     nits.pick (nit_cannot_create_file, es_catastrophic, ec_init, "cannot create ", context.path ()); } } }
 
-    if (var_.count (HTML SNIPPET)) context.snippet (var_ [HTML SNIPPET].as < ::std::string > ());
+    if (var_.count (GENERAL VERBOSE)) context.verbose (static_cast < e_verbose> (decode_severity (nits, var_ [GENERAL VERBOSE].as < ::std::string > ())));
 
-    if (var_.count (MF VERIFY)) context.mf_verify (onoff (nits, var_ [MF VERIFY].as < ::std::string > ()));
-    if (var_.count (MF VERSION)) context.mf_version (static_cast < unsigned char > (var_ [MF VERSION].as < int > ()));
+    if (var_.count (HTML SNIPPET)) context.snippet (var_ [HTML SNIPPET].as < ::std::string > ());
+    yea_nay (&context_t::mf_verify, nits, MF VERIFY, MF DONT VERIFY);
+    if (var_.count (MF VERSION))
+    {   int n = ::boost::lexical_cast < int > (var_ [MF VERSION].as < int > ());
+        if ((n < 1) || (n > 3))
+        {   nits.pick (nit_mf_version, es_warning, ec_init, "invalid microformats version ", quote (n), "; presuming version 2");
+            n = 2; }
+        context.mf_version (::gsl::narrow_cast < unsigned char > (n)); }
 
     if (var_.count (HTML VERSION))
     {   ::std::string ver (var_ [HTML VERSION].as < ::std::string > ());
@@ -776,7 +800,11 @@ void options::contextualise (nitpick& nits)
             else nits.pick (nit_config_version, es_warning, ec_init, "bad version ", quote (ver)," ignored"); } }
 
     if (! context.cgi ())
-        if (var_.count (WEBSITE ROOT)) context.root (nix_path_to_local (var_ [WEBSITE ROOT].as < ::std::string > ()));
+    {   PRESUME (var_.count (WEBSITE ROOT) > 0, __FILE__, __LINE__);
+        const ::std::string arg = var_ [WEBSITE ROOT].as < ::std::string > ();
+        const ::std::string local = nix_path_to_local (arg);
+        if (::boost::filesystem::is_directory (local)) context.root (local);
+        else nits.pick (nit_not_directory, es_error, ec_init, "expecting a directory containing a static website, not ", quote (arg)); }
 
     load_template (nits, context.html_ver ());
 
@@ -806,15 +834,17 @@ void options::contextualise (nitpick& nits)
             else if (! set_default_schema_version (x.root (), x.mjr (), x.mnr ()))
                 nits.pick (nit_config_version, es_error, ec_init, PROG " dislikes the ", quote (x.name ()), " version specified; use " ONTOLOGY LIST " to get a list of known versions."); } }
 
-    if (var_.count (VALIDATION MICRODATAARG)) context.microdata (onoff (nits, var_ [VALIDATION MICRODATAARG].as < ::std::string > ()));
+    if (var_.count (VALIDATION MICRODATAARG)) context.microdata (true);
+    if (var_.count (VALIDATION DONT MICRODATAARG)) context.microdata (false);
 
     if (! context.cgi ())
-    {   if (var_.count (GENERAL CSS_OPTION)) context.load_css (onoff (nits, var_ [GENERAL CSS_OPTION].as < ::std::string > ()));
-        if (var_.count (GENERAL PROGRESS)) context.progress (onoff (nits, var_ [GENERAL PROGRESS].as < ::std::string > ()));
-        if (var_.count (GENERAL RDFA_)) context.rdfa (onoff (nits, var_ [GENERAL RDFA_].as < ::std::string > ()));
-        if (var_.count (GENERAL REL)) context.rel (onoff (nits, var_ [GENERAL REL].as < ::std::string > ()));
-        if (var_.count (GENERAL RPT)) context.rpt_opens (onoff (nits, var_ [GENERAL RPT].as < ::std::string > ()));
-        if (var_.count (GENERAL SSI)) context.ssi (onoff (nits, var_ [GENERAL SSI].as < ::std::string > ()));
+    {   yea_nay (&context_t::load_css, nits, GENERAL CSS_OPTION, GENERAL DONT CSS_OPTION);
+        yea_nay (&context_t::progress, nits, GENERAL PROGRESS, GENERAL DONT PROGRESS);
+        yea_nay (&context_t::rdfa, nits, GENERAL RDFA_, GENERAL DONT RDFA_);
+        yea_nay (&context_t::rel, nits, GENERAL REL, GENERAL DONT REL);
+        yea_nay (&context_t::rpt_opens, nits, GENERAL RPT, GENERAL DONT RPT);
+        yea_nay (&context_t::slob, nits, GENERAL SLOB, GENERAL DONT SLOB);
+        yea_nay (&context_t::ssi, nits, GENERAL SSI, GENERAL DONT SSI);
         context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
 
         constexpr long meg = 1024*1024;
@@ -826,7 +856,7 @@ void options::contextualise (nitpick& nits)
             if (max < 0 || (max > (LONG_MAX / meg))) max = DEFAULT_MAX_FILE_SIZE;
             context.max_file_size (max * meg); }
 
-        if (var_.count (GENERAL CLASS)) context.unknown_class (onoff (nits, var_ [GENERAL CLASS].as < ::std::string > ()));
+        yea_nay (&context_t::unknown_class, nits, GENERAL CLASS, GENERAL DONT CLASS);
         if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
         if (var_.count (GENERAL ERR))
         {   e_severity sev = decode_severity (nits, var_ [GENERAL ERR].as < ::std::string > ());
@@ -838,18 +868,18 @@ void options::contextualise (nitpick& nits)
         if (var_.count (GENERAL USER)) context.user (var_ [GENERAL USER].as < ::std::string > ());
 
         if (var_.count (CORPUS OUTPUT)) context.corpus (nix_path_to_local (var_ [CORPUS OUTPUT].as < ::std::string > ()));
-        if (var_.count (CORPUS ARTICLE)) context.article (onoff (nits, var_ [CORPUS ARTICLE].as < ::std::string > ()));
-        if (var_.count (CORPUS BODY)) context.body (onoff (nits, var_ [CORPUS BODY].as < ::std::string > ()));
-        if (var_.count (CORPUS MAIN)) context.main (onoff (nits, var_ [CORPUS MAIN].as < ::std::string > ()));
+        yea_nay (&context_t::article, nits, CORPUS ARTICLE, CORPUS DONT ARTICLE);
+        yea_nay (&context_t::body, nits, CORPUS BODY, CORPUS DONT BODY);
+        yea_nay (&context_t::main, nits, CORPUS MAIN, CORPUS DONT MAIN);
 
-        if (var_.count (HTML RFC1867)) context.rfc_1867 (onoff (nits, var_ [HTML RFC1867].as < ::std::string > ()));
-        if (var_.count (HTML RFC1942)) context.rfc_1942 (onoff (nits, var_ [HTML RFC1942].as < ::std::string > ()));
-        if (var_.count (HTML RFC1980)) context.rfc_1980 (onoff (nits, var_ [HTML RFC1980].as < ::std::string > ()));
-        if (var_.count (HTML RFC2070)) context.rfc_2070 (onoff (nits, var_ [HTML RFC2070].as < ::std::string > ()));
-        if (var_.count (HTML TAGS)) context.presume_tags (onoff (nits, var_ [HTML TAGS].as < ::std::string > ()));
+        yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
+        yea_nay (&context_t::rfc_1942, nits, HTML RFC1942, HTML DONT RFC1942);
+        yea_nay (&context_t::rfc_1980, nits, HTML RFC1980, HTML DONT RFC1980);
+        yea_nay (&context_t::rfc_2070, nits, HTML RFC2070, HTML DONT RFC2070);
+        yea_nay (&context_t::presume_tags, nits, HTML TAGS, HTML DONT TAGS);
         if (var_.count (HTML TITLE)) context.title (static_cast < unsigned char > (var_ [HTML TITLE].as < int > ()));
 
-        if (var_.count (JSONLD VERIFY)) context.jsonld (onoff (nits, var_ [JSONLD VERIFY].as < ::std::string > ()));
+        yea_nay (&context_t::jsonld, nits, JSONLD VERIFY, JSONLD DONT VERIFY);
         if (var_.count (JSONLD EXTENSION)) context.jsonld_extension (var_ [JSONLD EXTENSION].as < vstr_t > ());
 
         if (var_.count (JSONLD VERSION))
@@ -861,41 +891,37 @@ void options::contextualise (nitpick& nits)
                 else if (ver == "1.1") context.jsonld_version (jsonld_1_1);
                 else nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid json-ld version"); } }
 
-        if (var_.count (LINKS CHECK)) context.links (onoff (nits, var_ [LINKS CHECK].as < ::std::string > ()));
-        if (var_.count (LINKS EXAMPLE)) context.example (onoff (nits, var_ [LINKS EXAMPLE].as < ::std::string > ()));
-        if (var_.count (LINKS EXTERNAL)) context.external (onoff (nits, var_ [LINKS EXTERNAL].as < ::std::string > ()));
-        if (var_.count (LINKS FORWARD)) context.forwarded (onoff (nits, var_ [LINKS FORWARD].as < ::std::string > ()));
+        yea_nay (&context_t::links, nits, LINKS CHECK, LINKS DONT CHECK);
+        yea_nay (&context_t::example, nits, LINKS EXAMPLE, LINKS DONT EXAMPLE);
+        yea_nay (&context_t::external, nits, LINKS EXTERNAL, LINKS DONT EXTERNAL);
+        yea_nay (&context_t::forwarded, nits, LINKS FORWARD, LINKS DONT FORWARD);
         if (var_.count (LINKS IGNORED)) context.no_ex_check (var_ [LINKS IGNORED].as < vstr_t > ());
-        if (var_.count (LINKS LOCAL)) context.local (onoff (nits, var_ [LINKS LOCAL].as < ::std::string > ()));
-        if (var_.count (LINKS ONCE)) context.once (onoff (nits, var_ [LINKS ONCE].as < ::std::string > ()));
+        yea_nay (&context_t::local, nits, LINKS LOCAL, LINKS DONT LOCAL);
+        yea_nay (&context_t::once, nits, LINKS ONCE, LINKS DONT ONCE);
         if (var_.count (LINKS REPORT)) context.report (var_ [LINKS REPORT].as < vstr_t > ());
-        if (var_.count (LINKS REVOKE)) context.revoke (onoff (nits, var_ [LINKS REVOKE].as < ::std::string > ()));
-        if (var_.count (LINKS XLINK)) context.crosslinks (onoff (nits, var_ [LINKS XLINK].as < ::std::string > ()));
+        yea_nay (&context_t::revoke, nits, LINKS REVOKE, LINKS DONT REVOKE);
+        yea_nay (&context_t::crosslinks, nits, LINKS XLINK, LINKS DONT XLINK);
 
         if (var_.count (MATH VERSION))
         {   int n = var_ [MATH VERSION].as < int > ();
             if ((n > 0) && (n < 5)) context.math_version (static_cast < e_math_version > (n)); }
 
-        if (var_.count (MF EXPORT)) context.mf_export (onoff (nits, var_ [MF EXPORT].as < ::std::string > ()));
+        yea_nay (&context_t::mf_export, nits, MF EXPORT, MF DONT EXPORT);
 
-        if (var_.count (MICRODATA EXPORT)) context.md_export (onoff (nits, var_ [MICRODATA EXPORT].as < ::std::string > ()));
-        if (var_.count (MICRODATA VERIFY)) context.schema (onoff (nits, var_ [MICRODATA VERIFY].as < ::std::string > ()));
-        else if (var_.count (MICRODATA MICRODATAARG))
-        {   nits.pick (nit_deprecated, es_warning, ec_init, "The --" MICRODATA MICRODATAARG " switch is deprecated and will soon be withdrawn");
-            context.schema (onoff (nits, var_ [MICRODATA MICRODATAARG].as < ::std::string > ())); }
+        yea_nay (&context_t::md_export, nits, MICRODATA EXPORT, MICRODATA DONT EXPORT);
+        yea_nay (&context_t::schema, nits, MICRODATA VERIFY, MICRODATA DONT VERIFY);
         if (var_.count (MICRODATA ROOT)) context.export_root (nix_path_to_local (var_ [MICRODATA ROOT].as < ::std::string > ()));
         if (var_.count (MICRODATA VIRTUAL)) context.exports (var_ [MICRODATA VIRTUAL].as < vstr_t > ());
 
-        if (var_.count (NITS CODES)) context.codes (onoff (nits, var_ [NITS CODES].as < ::std::string > ()));
-        if (var_.count (NITS NIDS)) context.nids (onoff (nits, var_ [NITS NIDS].as < ::std::string > ()));
+        yea_nay (&context_t::codes, nits, NITS CODES, NITS DONT CODES);
+        yea_nay (&context_t::nids, nits, NITS NIDS, NITS DONT NIDS);
         if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
         if (var_.count (NITS QUOTE))
         {   e_quote_style qs = examine_value < t_quote_style > (nits, html_default, var_ [NITS QUOTE].as < ::std::string > ());
             context.quote_style (qs); }
-        if (var_.count (NITS UNIQUE)) context.nits_nits_nits (onoff (nits, var_ [NITS UNIQUE].as < ::std::string > ()));
-        if (var_.count (NITS ROOT)) context.not_root (onoff (nits, var_ [NITS ROOT].as < ::std::string > ()));
-        if (var_.count (NITS SPEC)) context.spec (onoff (nits, var_ [NITS SPEC].as < ::std::string > ()));
-        if (var_.count (NITS WATCH)) context.nits (onoff (nits, var_ [NITS WATCH].as < ::std::string > ()));
+        yea_nay (&context_t::nits_nits_nits, nits, NITS UNIQUE, NITS DONT UNIQUE);
+        yea_nay (&context_t::not_root, nits, NITS DONT ROOT, NITS ROOT); // note reversal
+        yea_nay (&context_t::nits, nits, NITS WATCH, NITS DONT WATCH);
 
         if (var_.count (NITS CATASTROPHE))
             for (auto s : var_ [NITS CATASTROPHE].as < vstr_t > ())
@@ -938,8 +964,8 @@ void options::contextualise (nitpick& nits)
 //            if (rv != "1.0") && (rv != "1.1") && (rv != "1.1.1") && (rv != "1.1.2") && (rv != "1.1.3")
 //            context.rdfa_version (n); }
 
-        if (var_.count (SHADOW COMMENT)) context.shadow_comment (onoff (nits, var_ [SHADOW COMMENT].as < ::std::string > ()));
-        if (var_.count (SHADOW CHANGED)) context.shadow_changed (onoff (nits, var_ [SHADOW CHANGED].as < ::std::string > ()));
+        yea_nay (&context_t::shadow_changed, nits, SHADOW CHANGED, SHADOW DONT CHANGED);
+        yea_nay (&context_t::shadow_comment, nits, SHADOW COMMENT, SHADOW DONT COMMENT);
 
         if (var_.count (SHADOW COPY))
         {   nitpick nuts;
@@ -955,15 +981,15 @@ void options::contextualise (nitpick& nits)
             if (sh != sh_error) context.copy (static_cast < int > (sh) - 1);
             else nits.pick (nit_config_shadow, es_error, ec_init, "invalid " SHADOW COPY " option"); }
 
-        if (var_.count (SHADOW ENABLE)) context.shadow_comment (onoff (nits, var_ [SHADOW ENABLE].as < ::std::string > ()));
+        yea_nay (&context_t::shadow_enable, nits, SHADOW ENABLE, SHADOW DONT ENABLE);
         if (var_.count (SHADOW FICHIER)) context.shadow_persist (nix_path_to_local (var_ [SHADOW FICHIER].as < ::std::string > ()));
         if (var_.count (SHADOW IGNORED)) context.shadow_ignore (var_ [SHADOW IGNORED].as < vstr_t > ());
-        if (var_.count (SHADOW INFO)) context.info (onoff (nits, var_ [SHADOW INFO].as < ::std::string > ()));
+        yea_nay (&context_t::info, nits, SHADOW INFO, SHADOW DONT INFO);
         if (var_.count (SHADOW MSG)) context.msg (var_ [SHADOW MSG].as < ::std::string > ());
         if (var_.count (SHADOW ROOT)) context.shadow_root (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
-        if (var_.count (SHADOW SPACING)) context.shadow_space (onoff (nits, var_ [SHADOW SPACING].as < ::std::string > ()));
-        if (var_.count (SHADOW SSI)) context.shadow_ssi (onoff (nits, var_ [SHADOW SSI].as < ::std::string > ()));
-        if (var_.count (SHADOW UPDATE)) context.update (onoff (nits, var_ [SHADOW UPDATE].as < ::std::string > ()));
+        yea_nay (&context_t::shadow_space, nits, SHADOW SPACING, SHADOW DONT SPACING);
+        yea_nay (&context_t::shadow_ssi, nits, SHADOW SSI, SHADOW DONT SSI);
+        yea_nay (&context_t::update, nits, SHADOW UPDATE, SHADOW DONT UPDATE);
         if (var_.count (SHADOW VIRTUAL)) context.virtuals (var_ [SHADOW VIRTUAL].as < vstr_t > ());
 
         if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
@@ -975,11 +1001,11 @@ void options::contextualise (nitpick& nits)
 #ifdef NOSPELL
         context.spell (false);
 #else // NOSPELL
-        if (var_.count (SPELL CHECK)) context.spell (onoff (nits, var_ [SPELL CHECK].as < ::std::string > ()));
+        yea_nay (&context_t::spell, nits, SPELL CHECK, SPELL DONT CHECK);
+        yea_nay (&context_t::cased, nits, SPELL CASED, SPELL DONT CASED);
+        yea_nay (&context_t::icu, nits, SPELL ICU, SPELL DONT ICU);
         if (context.spell ())
         {   if (var_.count (SPELL ACCEPT)) context.spellings (var_ [SPELL ACCEPT].as < vstr_t > ());
-            if (var_.count (SPELL CASED)) context.cased (onoff (nits, var_ [SPELL CASED].as < ::std::string > ()));
-            if (var_.count (SPELL ICU)) context.icu (onoff (nits, var_ [SPELL ICU].as < ::std::string > ()));
             if (var_.count (SPELL LIST))
             {   vstr_t lists (var_ [SPELL LIST].as < vstr_t > ());
                 for (auto fl : lists)
@@ -1041,9 +1067,9 @@ void options::contextualise (nitpick& nits)
 #endif // NOSPELL
 
         if (var_.count (STATS EXPORT)) context.stats (var_ [STATS EXPORT].as < ::std::string > ());
-        if (var_.count (STATS META)) context.meta (onoff (nits, var_ [STATS META].as < ::std::string > ()));
-        if (var_.count (STATS PAGE)) context.stats_page (onoff (nits, var_ [STATS PAGE].as < ::std::string > ()));
-        if (var_.count (STATS SUMMARY)) context.stats_summary (onoff (nits, var_ [STATS SUMMARY].as < ::std::string > ()));
+        yea_nay (&context_t::meta, nits, STATS META, STATS DONT META);
+        yea_nay (&context_t::stats_page, nits, STATS PAGE, STATS DONT PAGE);
+        yea_nay (&context_t::stats_summary, nits, STATS SUMMARY, STATS DONT SUMMARY);
 
         if (var_.count (SVG VERSION))
         {   ::std::string ver (var_ [SVG VERSION].as < ::std::string > ());
@@ -1062,17 +1088,15 @@ void options::contextualise (nitpick& nits)
                 if ((slash != ::std::string::npos) && (context.svg_version () == sv_1_2_tiny) && compare_no_case (ps, "full")) context.svg_version (sv_1_2_full); } }
 
         if (! context.cgi ())
-        {   if (var_.count (WMIN ACCEPT)) context.process_webmentions (onoff (nits, var_ [WMIN ACCEPT].as < ::std::string > ()));
+        {   yea_nay (&context_t::process_webmentions, nits, WMIN ACCEPT, WMIN DONT ACCEPT);
             if (var_.count (WMIN WRITE)) context.write_path (var_ [WMIN WRITE].as < ::std::string > ());
             if (var_.count (WMIN STUB)) context.stub (var_ [WMIN STUB].as < ::std::string > ());
             if (var_.count (WMIN DATAPATH)) context.incoming (path_in_context (nix_path_to_local (var_ [WMIN DATAPATH].as < ::std::string > ())));
-            if (var_.count (WMIN HOOK)) context.hook (var_ [WMIN HOOK].as < ::std::string > ());
             if (var_.count (WMIN MENTION)) context.mentions (var_ [WMIN MENTION].as < vstr_t > ());
-            if (var_.count (WMIN TEMPLATE)) context.templates ( var_ [WMIN TEMPLATE].as < vstr_t > ());
+            if (var_.count (WMIN TEMPLATE)) context.templates (var_ [WMIN TEMPLATE].as < vstr_t > ());
             if (var_.count (WMIN TEST_HEADER)) context.test_header (var_ [WMIN TEST_HEADER].as < ::std::string > ());
 
-            if (var_.count (WMOUT NOTIFY)) context.notify (onoff (nits, var_ [WMOUT NOTIFY].as < ::std::string > ()));
-            if (var_.count (WMOUT RESET)) context.reset (onoff (nits, var_ [WMOUT RESET].as < ::std::string > ()));
+            yea_nay (&context_t::notify, nits, WMOUT NOTIFY, WMOUT DONT NOTIFY);
             if (var_.count (WMOUT SECRET)) context.secret (var_ [WMOUT SECRET].as < ::std::string > ()); }
 
         if (var_.count (VALIDATION ATTRIB)) add_attributes (var_ [VALIDATION ATTRIB].as < vstr_t > ());
@@ -1224,12 +1248,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     res << "\n" START_OF_SUBSECTION " Arguments:\n";
 
-    if (var_.count (HELP)) res << HELP "\n";
-    if (var_.count (VERSION)) res << VERSION "\n";
+    if (var_ [HELP].as < bool > ()) res << HELP "\n";
+    if (var_ [VERSION].as < bool > ()) res << VERSION "\n";
 
-    if (var_.count (CORPUS ARTICLE)) res << CORPUS ARTICLE ": " << env_ [CORPUS ARTICLE].as < ::std::string > () << "\n";
-    if (var_.count (CORPUS BODY)) res << CORPUS BODY ": " << env_ [CORPUS BODY].as < ::std::string > () << "\n";
-    if (var_.count (CORPUS MAIN)) res << CORPUS MAIN ": " << env_ [CORPUS MAIN].as < ::std::string > () << "\n";
+    if (var_ [CORPUS ARTICLE].as < bool > ()) res << CORPUS ARTICLE "\n";
+    if (var_ [CORPUS DONT ARTICLE].as < bool > ()) res << CORPUS DONT ARTICLE "\n";
+    if (var_ [CORPUS BODY].as < bool > ()) res << CORPUS BODY "\n";
+    if (var_ [CORPUS DONT BODY].as < bool > ()) res << CORPUS DONT BODY "\n";
+    if (var_ [CORPUS MAIN].as < bool > ()) res << CORPUS MAIN "\n";
+    if (var_ [CORPUS DONT MAIN].as < bool > ()) res << CORPUS DONT MAIN "\n";
     if (var_.count (CORPUS OUTPUT)) res << CORPUS OUTPUT ": " << var_ [CORPUS OUTPUT].as < ::std::string > () << "\n";
 
     if (var_.count (ENVIRONMENT QUERY_STRING))
@@ -1253,75 +1280,110 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
         ::std::string qs (var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
         res << ENVIRONMENT QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; }
 
-    if (var_.count (GENERAL CGI)) res << GENERAL CGI ": " << var_ [GENERAL CGI].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL CLASS)) res << GENERAL CLASS ": " << var_ [GENERAL CLASS].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL CSS_OPTION)) res << GENERAL CSS_OPTION ": " << var_ [GENERAL CSS_OPTION].as < ::std::string > () << "\n";
+    if (var_ [GENERAL CGI].as < bool > ()) res << GENERAL CGI "\n";
+    if (var_ [GENERAL DONT CGI].as < bool > ()) res << GENERAL DONT CGI "\n";
+    if (var_ [GENERAL CLASS].as < bool > ()) res << GENERAL CLASS "\n";
+    if (var_ [GENERAL DONT CLASS].as < bool > ()) res << GENERAL DONT CLASS "\n";
+    if (var_.count (GENERAL CSS_OPTION)) res << GENERAL CSS_OPTION "\n";
+    if (var_.count (GENERAL DONT CSS_OPTION)) res << GENERAL DONT CSS_OPTION "\n";
     if (var_.count (GENERAL CUSTOM)) { res << GENERAL CUSTOM ": "; pvs (res, var_ [GENERAL CUSTOM].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL DATAPATH)) res << GENERAL DATAPATH ": " << var_ [GENERAL DATAPATH].as < ::std::string > () << "\n";
     if (var_.count (GENERAL ERR)) res << GENERAL ERR ": " << var_ [GENERAL ERR].as < ::std::string > () << "\n";
     if (var_.count (GENERAL ENVIRONMENT)) { res << GENERAL ENVIRONMENT ": "; pvs (res, var_ [GENERAL ENVIRONMENT].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL FICHIER)) res << GENERAL FICHIER ": " << var_ [GENERAL FICHIER].as < ::std::string > () << "\n";
+    if (var_ [GENERAL INFO].as < bool > ()) res << GENERAL INFO "\n";
     if (var_.count (GENERAL IGNORED)) { res << GENERAL IGNORED ": "; pvs (res, var_ [GENERAL IGNORED].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL LANG)) res << GENERAL LANG ": " << var_ [GENERAL LANG].as < ::std::string > () << "\n";
     if (var_.count (GENERAL MACROEND)) res << GENERAL MACROEND ": " << var_ [GENERAL MACROEND].as < ::std::string > () << "\n";
     if (var_.count (GENERAL MACROSTART)) res << GENERAL MACROSTART ": " << var_ [GENERAL MACROSTART].as < ::std::string > () << "\n";
     if (var_.count (GENERAL MAXFILESIZE)) res << GENERAL MAXFILESIZE ": " << var_ [GENERAL MAXFILESIZE].as < int > () << "\n";
-    if (var_.count (GENERAL PROGRESS)) res << GENERAL PROGRESS ": " << var_ [GENERAL PROGRESS].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL RDFA_)) res << GENERAL RDFA_ ": " << var_ [GENERAL RDFA_].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL RPT)) res << GENERAL RPT ": " << var_ [GENERAL RPT].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL SSI)) res << GENERAL SSI ": " << var_ [GENERAL SSI].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL TEST)) res << GENERAL TEST ": " << var_ [GENERAL TEST].as < ::std::string > () << "\n";
+    if (var_ [GENERAL PROGRESS].as < bool > ()) res << GENERAL PROGRESS "\n";
+    if (var_ [GENERAL DONT PROGRESS].as < bool > ()) res << GENERAL DONT PROGRESS "\n";
+    if (var_.count (GENERAL RDFA_)) res << GENERAL RDFA_ "\n";
+    if (var_.count (GENERAL DONT RDFA_)) res << GENERAL DONT RDFA_ "\n";
+    if (var_ [GENERAL REL].as < bool > ()) res << GENERAL REL "\n";
+    if (var_ [GENERAL DONT REL].as < bool > ()) res << GENERAL DONT REL "\n";
+    if (var_ [GENERAL RPT].as < bool > ()) res << GENERAL RPT "\n";
+    if (var_ [GENERAL DONT RPT].as < bool > ()) res << GENERAL DONT RPT "\n";
+    if (var_ [GENERAL SLOB].as < bool > ()) res << GENERAL SLOB "\n";
+    if (var_ [GENERAL DONT SLOB].as < bool > ()) res << GENERAL DONT SLOB "\n";
+    if (var_ [GENERAL SPEC].as < bool > ()) res << GENERAL SPEC "\n";
+    if (var_ [GENERAL SSI].as < bool > ()) res << GENERAL SSI "\n";
+    if (var_ [GENERAL DONT SSI].as < bool > ()) res << GENERAL DONT SSI "\n";
+    if (var_ [GENERAL TEST].as < bool > ()) res << GENERAL TEST "\n";
+    if (var_ [GENERAL DONT TEST].as < bool > ()) res << GENERAL DONT TEST "\n";
     if (var_.count (GENERAL USER)) res << GENERAL USER ": " << var_ [GENERAL USER].as < ::std::string > () << "\n";
     if (var_.count (GENERAL VERBOSE)) res << GENERAL VERBOSE ": " << var_ [GENERAL VERBOSE].as < ::std::string > () << "\n";
 
-    if (var_.count (HTML TAGS)) res << HTML TAGS ": " << var_ [HTML TAGS].as < ::std::string > () << "\n";
-    if (var_.count (HTML RFC1867)) res << HTML RFC1867 ": " << var_ [HTML RFC1867].as < ::std::string > () << "\n";
-    if (var_.count (HTML RFC1942)) res << HTML RFC1942 ": " << var_ [HTML RFC1942].as < ::std::string > () << "\n";
-    if (var_.count (HTML RFC1980)) res << HTML RFC1980 ": " << var_ [HTML RFC1980].as < ::std::string > () << "\n";
-    if (var_.count (HTML RFC2070)) res << HTML RFC2070 ": " << var_ [HTML RFC2070].as < ::std::string > () << "\n";
+    if (var_.count (HTML RFC1867)) res << HTML RFC1867 "\n";
+    if (var_.count (HTML DONT RFC1867)) res << HTML DONT RFC1867 "\n";
+    if (var_.count (HTML RFC1942)) res << HTML RFC1942 "\n";
+    if (var_.count (HTML DONT RFC1942)) res << HTML DONT RFC1942 "\n";
+    if (var_.count (HTML RFC1980)) res << HTML RFC1980 "\n";
+    if (var_.count (HTML DONT RFC1980)) res << HTML DONT RFC1980 "\n";
+    if (var_.count (HTML RFC2070)) res << HTML RFC2070 "\n";
+    if (var_.count (HTML DONT RFC2070)) res << HTML DONT RFC2070 "\n";
     if (var_.count (HTML SNIPPET)) res << HTML SNIPPET ": " << var_ [HTML SNIPPET].as < ::std::string > () << "\n";
+    if (var_ [HTML TAGS].as < bool > ()) res << HTML TAGS "\n";
+    if (var_ [HTML DONT TAGS].as < bool > ()) res << HTML DONT TAGS "\n";
     if (var_.count (HTML TITLE)) res << HTML TITLE ": " << var_ [HTML TITLE].as < int > () << "\n";
     if (var_.count (HTML VERSION)) res << HTML VERSION ": " << var_ [HTML VERSION].as < ::std::string > () << "\n";
 
     if (var_.count (JSONLD EXTENSION)) { res << JSONLD EXTENSION ": "; pvs (res, var_ [JSONLD EXTENSION].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (JSONLD VERIFY)) res << JSONLD VERIFY ": " << var_ [JSONLD VERIFY].as < ::std::string > () << "\n";
+    if (var_ [JSONLD VERIFY].as < bool > ()) res << JSONLD VERIFY "\n";
+    if (var_ [JSONLD DONT VERIFY].as < bool > ()) res << JSONLD DONT VERIFY "\n";
     if (var_.count (JSONLD VERSION)) res << JSONLD VERSION ": " << var_ [JSONLD VERSION].as < ::std::string > () << "\n";
 
-    if (var_.count (LINKS CHECK)) res << LINKS CHECK ": " << var_ [LINKS CHECK].as < ::std::string > () << "\n";
-    if (var_.count (LINKS EXAMPLE)) res << LINKS EXAMPLE ": " << var_ [LINKS EXAMPLE].as < ::std::string > () << "\n";
-    if (var_.count (LINKS EXTERNAL)) res << LINKS EXTERNAL ": " << var_ [LINKS EXTERNAL].as < ::std::string > () << "\n";
-    if (var_.count (LINKS FORWARD)) res << LINKS FORWARD ": " << var_ [LINKS FORWARD].as < ::std::string > () << "\n";
+    if (var_ [LINKS CHECK].as < bool > ()) res << LINKS CHECK "\n";
+    if (var_ [LINKS DONT CHECK].as < bool > ()) res << LINKS DONT CHECK "\n";
+    if (var_ [LINKS EXAMPLE].as < bool > ()) res << LINKS EXAMPLE "\n";
+    if (var_ [LINKS DONT EXAMPLE].as < bool > ()) res << LINKS DONT EXAMPLE "\n";
+    if (var_ [LINKS EXTERNAL].as < bool > ()) res << LINKS EXTERNAL "\n";
+    if (var_ [LINKS DONT EXTERNAL].as < bool > ()) res << LINKS DONT EXTERNAL "\n";
+    if (var_ [LINKS FORWARD].as < bool > ()) res << LINKS FORWARD "\n";
+    if (var_ [LINKS DONT FORWARD].as < bool > ()) res << LINKS DONT FORWARD "\n";
     if (var_.count (LINKS IGNORED)) { res << LINKS IGNORED ": "; pvs (res, var_ [LINKS IGNORED].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (LINKS LOCAL)) res << LINKS LOCAL ": " << var_ [LINKS LOCAL].as < ::std::string > () << "\n";
-    if (var_.count (LINKS ONCE)) res << LINKS ONCE ": " << var_ [LINKS ONCE].as < ::std::string > () << "\n";
+    if (var_ [LINKS LOCAL].as < bool > ()) res << LINKS LOCAL "\n";
+    if (var_ [LINKS DONT LOCAL].as < bool > ()) res << LINKS DONT LOCAL "\n";
+    if (var_ [LINKS ONCE].as < bool > ()) res << LINKS ONCE "\n";
+    if (var_ [LINKS DONT ONCE].as < bool > ()) res << LINKS DONT ONCE "\n";
     if (var_.count (LINKS REPORT)) { res << LINKS REPORT ": "; pvs (res, var_ [LINKS REPORT].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (LINKS REVOKE)) res << LINKS REVOKE ": " << var_ [LINKS REVOKE].as < ::std::string > () << "\n";
-    if (var_.count (LINKS XLINK)) res << LINKS XLINK ": " << var_ [LINKS XLINK].as < ::std::string > () << "\n";
+    if (var_ [LINKS REVOKE].as < bool > ()) res << LINKS REVOKE "\n";
+    if (var_ [LINKS DONT REVOKE].as < bool > ()) res << LINKS DONT REVOKE "\n";
+    if (var_ [LINKS XLINK].as < bool > ()) res << LINKS XLINK "\n";
+    if (var_ [LINKS DONT XLINK].as < bool > ()) res << LINKS DONT XLINK "\n";
 
     if (var_.count (MATH VERSION)) res << MATH VERSION ": " << var_ [MATH VERSION].as < int > () << "\n";
 
-    if (var_.count (MICRODATA EXPORT)) res << MICRODATA EXPORT ": " << var_ [MICRODATA EXPORT].as < ::std::string > () << "\n";
-    if (var_.count (MICRODATA VERIFY)) res << MICRODATA VERIFY ": " << var_ [MICRODATA VERIFY].as < ::std::string > () << "\n";
-    if (var_.count (MICRODATA MICRODATAARG)) res << MICRODATA MICRODATAARG ": " << var_ [MICRODATA MICRODATAARG].as < ::std::string > () << "\n";
+    if (var_ [MICRODATA EXPORT].as < bool > ()) res << MICRODATA EXPORT "\n";
+    if (var_ [MICRODATA DONT EXPORT].as < bool > ()) res << MICRODATA DONT EXPORT "\n";
+    if (var_ [MICRODATA VERIFY].as < bool > ()) res << MICRODATA VERIFY "\n";
+    if (var_ [MICRODATA DONT VERIFY].as < bool > ()) res << MICRODATA DONT VERIFY "\n";
     if (var_.count (MICRODATA ROOT)) res << MICRODATA ROOT ": " << var_ [MICRODATA ROOT].as < ::std::string > () << "\n";
     if (var_.count (MICRODATA VIRTUAL)) { res << MICRODATA VIRTUAL ": "; pvs (res, var_ [MICRODATA VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (NITS CATASTROPHE)) { res << NITS CATASTROPHE ": "; pvs (res, var_ [NITS CATASTROPHE].as < vstr_t > ()); res << "\n"; }
+    if (var_ [NITS CODES].as < bool > ()) res << NITS CODES "\n";
+    if (var_ [NITS DONT CODES].as < bool > ()) res << NITS DONT CODES "\n";
     if (var_.count (NITS COMMENT)) { res << NITS COMMENT ": "; pvs (res, var_ [NITS COMMENT].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS DBG)) { res << NITS DBG ": "; pvs (res, var_ [NITS DBG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS ERR)) { res << NITS ERR ": "; pvs (res, var_ [NITS ERR].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS FORMAT)) res << NITS FORMAT ": " << var_ [NITS FORMAT].as < ::std::string > () << "\n";
     if (var_.count (NITS INFO)) { res << NITS INFO ": "; pvs (res, var_ [NITS INFO].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (NITS NIDS)) res << NITS NIDS ": " << var_ [NITS NIDS].as < ::std::string > () << "\n";
+    if (var_ [NITS NIDS].as < bool > ()) res << NITS NIDS "\n";
+    if (var_ [NITS DONT NIDS].as < bool > ()) res << NITS DONT NIDS "\n";
     if (var_.count (NITS OVERRIDE)) res << NITS OVERRIDE ": " << var_ [NITS OVERRIDE].as < ::std::string > () << "\n";
     if (var_.count (NITS SILENCE)) { res << NITS SILENCE ": "; pvs (res, var_ [NITS SILENCE].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (NITS SPEC)) res << NITS SPEC ": " << var_ [NITS SPEC].as < ::std::string > () << "\n";
-    if (var_.count (NITS UNIQUE)) res << NITS UNIQUE ": " << var_ [NITS UNIQUE].as < ::std::string > () << "\n";
+    if (var_ [NITS UNIQUE].as < bool > ()) res << NITS UNIQUE "\n";
+    if (var_ [NITS DONT UNIQUE].as < bool > ()) res << NITS DONT UNIQUE "\n";
     if (var_.count (NITS WARNING)) { res << NITS WARNING ": "; pvs (res, var_ [NITS WARNING].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (NITS WATCH)) res << NITS WATCH ": " << var_ [NITS WATCH].as < ::std::string > () << "\n";
+    if (var_ [NITS WATCH].as < bool > ()) res << NITS WATCH "\n";
+    if (var_ [NITS DONT WATCH].as < bool > ()) res << NITS DONT WATCH "\n";
 
-    if (var_.count (MF EXPORT)) res << MF EXPORT ": " << var_ [MF EXPORT].as < ::std::string > () << "\n";
-    if (var_.count (MF VERIFY)) res << MF VERIFY ": " << var_ [MF VERIFY].as < ::std::string > () << "\n";
+    if (var_ [MF EXPORT].as < bool > ()) res << MF EXPORT "\n";
+    if (var_ [MF DONT EXPORT].as < bool > ()) res << MF DONT EXPORT "\n";
+    if (var_ [MF VERIFY].as < bool > ()) res << MF VERIFY "\n";
+    if (var_ [MF DONT VERIFY].as < bool > ()) res << MF DONT VERIFY "\n";
     if (var_.count (MF VERSION)) res << MF VERSION ": " << var_ [MF VERSION].as < int > () << "\n";
 
     if (var_.count (RDFA DC)) res << RDFA DC ": " << var_ [RDFA DC].as < int > () <<  "\n";
@@ -1341,17 +1403,25 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
         if (var_.count (arg))
             res << arg << ": " << var_ [arg].as < ::std::string > () << "\n"; }
 
-    if (var_.count (SHADOW CHANGED)) res << SHADOW CHANGED ": " << var_ [SHADOW CHANGED].as < ::std::string > () << "\n";
-    if (var_.count (SHADOW COMMENT)) res << SHADOW COMMENT ": " << var_ [SHADOW COMMENT].as < ::std::string > () << "\n";
+    if (var_ [SHADOW CHANGED].as < bool > ()) res << SHADOW CHANGED "\n";
+    if (var_ [SHADOW DONT CHANGED].as < bool > ()) res << SHADOW DONT CHANGED "\n";
+    if (var_ [SHADOW COMMENT].as < bool > ()) res << SHADOW COMMENT "\n";
+    if (var_ [SHADOW DONT COMMENT].as < bool > ()) res << SHADOW DONT COMMENT "\n";
     if (var_.count (SHADOW COPY)) res << SHADOW COPY ": " << var_ [SHADOW COPY].as < ::std::string > () << "\n";
-    if (var_.count (SHADOW ENABLE)) res << SHADOW ENABLE ": " << var_ [SHADOW ENABLE].as < ::std::string > () << "\n";
+    if (var_ [SHADOW ENABLE].as < bool > ()) res << SHADOW ENABLE "\n";
+    if (var_ [SHADOW DONT ENABLE].as < bool > ()) res << SHADOW DONT ENABLE "\n";
     if (var_.count (SHADOW FICHIER)) res << SHADOW FICHIER ": " << var_ [SHADOW FICHIER].as < ::std::string > () << "\n";
     if (var_.count (SHADOW IGNORED)) { res << SHADOW IGNORED ": "; pvs (res, var_ [SHADOW IGNORED].as < vstr_t > ()); res << "\n"; }
+    if (var_ [SHADOW INFO].as < bool > ()) res << SHADOW INFO "\n";
+    if (var_ [SHADOW DONT INFO].as < bool > ()) res << SHADOW DONT INFO "\n";
     if (var_.count (SHADOW MSG)) res << SHADOW MSG ": " << var_ [SHADOW MSG].as < ::std::string > () << "\n";
     if (var_.count (SHADOW ROOT)) res << SHADOW ROOT ": " << var_ [SHADOW ROOT].as < ::std::string > () << "\n";
-    if (var_.count (SHADOW SPACING)) res << SHADOW SPACING ": " << var_ [SHADOW SPACING].as < ::std::string > () << "\n";
-    if (var_.count (SHADOW SSI)) res << SHADOW SSI ": " << var_ [SHADOW SSI].as < ::std::string > () << "\n";
-    if (var_.count (SHADOW UPDATE)) res << SHADOW UPDATE ": " << var_ [SHADOW UPDATE].as < ::std::string > () << "\n";
+    if (var_ [SHADOW SPACING].as < bool > ()) res << SHADOW SPACING "\n";
+    if (var_ [SHADOW DONT SPACING].as < bool > ()) res << SHADOW DONT SPACING "\n";
+    if (var_ [SHADOW SSI].as < bool > ()) res << SHADOW SSI "\n";
+    if (var_ [SHADOW DONT SSI].as < bool > ()) res << SHADOW DONT SSI "\n";
+    if (var_ [SHADOW UPDATE].as < bool > ()) res << SHADOW UPDATE "\n";
+    if (var_ [SHADOW DONT UPDATE].as < bool > ()) res << SHADOW DONT UPDATE "\n";
     if (var_.count (SHADOW VIRTUAL)) { res << SHADOW VIRTUAL ": "; pvs (res, var_ [SHADOW VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (WEBSITE EXTENSION)) { res << WEBSITE EXTENSION ": "; pvs (res, var_ [WEBSITE EXTENSION].as < vstr_t > ()); res << "\n"; }
@@ -1361,21 +1431,23 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (WEBSITE VIRTUAL)) { res << WEBSITE VIRTUAL ": "; pvs (res, var_ [WEBSITE VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (SPELL ACCEPT)) { res << SPELL ACCEPT ": "; pvs (res, var_ [SPELL ACCEPT].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (SPELL CASED)) res << SPELL CASED ": " << var_ [SPELL CASED].as < ::std::string > () << "\n";
-    if (var_.count (SPELL CHECK)) res << SPELL CHECK ": " << var_ [SPELL CHECK].as < ::std::string > () << "\n";
-#ifdef GENNIX
+    if (var_ [SPELL CASED].as < bool > ()) res << SPELL CASED "\n";
+    if (var_ [SPELL DONT CASED].as < bool > ()) res << SPELL DONT CASED "\n";
+    if (var_ [SPELL CHECK].as < bool > ()) res << SPELL CHECK "\n";
+    if (var_ [SPELL DONT CHECK].as < bool > ()) res << SPELL DONT CHECK "\n";
     if (var_.count (SPELL DICT)) { res << SPELL DICT ": "; pvs (res, var_ [SPELL DICT].as < vstr_t > ()); res << "\n"; }
-#endif // GENNIX
-    if (var_.count (SPELL ICU)) res << SPELL ICU ": " << var_ [SPELL ICU].as < ::std::string > () << "\n";
+    if (var_ [SPELL ICU].as < bool > ()) res << SPELL ICU "\n";
+    if (var_ [SPELL DONT ICU].as < bool > ()) res << SPELL DONT ICU "\n";
     if (var_.count (SPELL LIST)) { res << SPELL LIST ": "; pvs (res, var_ [SPELL LIST].as < vstr_t > ()); res << "\n"; }
-#ifdef GENNIX
     if (var_.count (SPELL PATH)) res << SPELL PATH ": " << var_ [SPELL PATH].as < ::std::string > () << "\n";
-#endif // GENNIX
 
     if (var_.count (STATS EXPORT)) res << STATS EXPORT ": " << var_ [STATS EXPORT].as < ::std::string > () << "\n";
-    if (var_.count (STATS META)) res << STATS META ": " << var_ [STATS META].as < ::std::string > () << "\n";
-    if (var_.count (STATS PAGE)) res << STATS PAGE ": " << var_ [STATS PAGE].as < ::std::string > () << "\n";
-    if (var_.count (STATS SUMMARY)) res << STATS SUMMARY ": " << var_ [STATS SUMMARY].as < ::std::string > () << "\n";
+    if (var_ [STATS META].as < bool > ()) res << STATS META "\n";
+    if (var_ [STATS DONT META].as < bool > ()) res << STATS DONT META "\n";
+    if (var_ [STATS PAGE].as < bool > ()) res << STATS PAGE "\n";
+    if (var_ [STATS DONT PAGE].as < bool > ()) res << STATS DONT PAGE "\n";
+    if (var_ [STATS SUMMARY].as < bool > ()) res << STATS SUMMARY "\n";
+    if (var_ [STATS DONT SUMMARY].as < bool > ()) res << STATS DONT SUMMARY "\n";
 
     if (var_.count (SVG VERSION)) res << SVG VERSION ": " << var_ [SVG VERSION].as < ::std::string > () << "\n";
 
@@ -1392,6 +1464,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (VALIDATION LANG)) { res << VALIDATION LANG ": "; pvs (res, var_ [VALIDATION LANG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION MINOR)) res << VALIDATION MINOR ": " << var_ [VALIDATION MINOR].as < int > () << "\n";
     if (var_.count (VALIDATION METANAME)) { res << VALIDATION METANAME ": "; pvs (res, var_ [VALIDATION MIMETYPE].as < vstr_t > ()); res << "\n"; }
+    if (var_ [VALIDATION MICRODATAARG].as < bool > ()) res << VALIDATION MICRODATAARG "\n";
+    if (var_ [VALIDATION DONT MICRODATAARG].as < bool > ()) res << VALIDATION DONT MICRODATAARG "\n";
     if (var_.count (VALIDATION MIMETYPE)) { res << VALIDATION MIMETYPE ": "; pvs (res, var_ [VALIDATION METANAME].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION REL)) { res << VALIDATION REL ": "; pvs (res, var_ [VALIDATION REL].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION SGML)) { res << VALIDATION SGML ": "; pvs (res, var_ [VALIDATION SGML].as < vstr_t > ()); res << "\n"; }
@@ -1489,17 +1563,18 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 #undef RPT_VAR
 
     if (var_.count (WMIN ACCEPT)) res << WMIN ACCEPT ": " << var_ [WMIN ACCEPT].as < ::std::string > () << "\n";
+    if (var_.count (WMIN DONT ACCEPT)) res << WMIN DONT ACCEPT ": " << var_ [WMIN DONT ACCEPT].as < ::std::string > () << "\n";
     if (var_.count (WMIN WRITE)) { res << WMIN WRITE ": "; var_ [WMIN WRITE].as < ::std::string > (); res << "\n"; }
     if (var_.count (WMIN STUB)) res << WMIN STUB ": " << var_ [WMIN STUB].as < ::std::string > () << "\n";
     if (var_.count (WMIN DATAPATH)) res << WMIN DATAPATH ": " << var_ [WMIN DATAPATH].as < ::std::string > () << "\n";
-    if (var_.count (WMIN HOOK)) res << WMIN HOOK ": " << var_ [WMIN HOOK].as < ::std::string > () << "\n";
     if (var_.count (WMIN MENTION)) { res << WMIN MENTION ": "; pvs (res, var_ [WMIN MENTION].as < vstr_t > ()); res << "\n"; }
     if (var_.count (WMIN TEMPLATE)) { res << WMIN TEMPLATE ": "; pvs (res, var_ [WMIN TEMPLATE].as < vstr_t > ()); res << "\n"; }
     if (var_.count (WMIN TEST_HEADER)) res << WMIN TEST_HEADER ": " << var_ [WMIN TEST_HEADER].as < ::std::string > () << "\n";
 
-    if (var_.count (WMOUT CLEAR)) res << WMOUT CLEAR ": " << var_ [WMOUT CLEAR].as < ::std::string > () << "\n";
-    if (var_.count (WMOUT NOTIFY)) res << WMOUT NOTIFY ": " << var_ [WMOUT NOTIFY].as < ::std::string > () << "\n";
-    if (var_.count (WMOUT RESET)) res << WMOUT RESET ": " << var_ [WMOUT RESET].as < ::std::string > () << "\n";
+    if (var_.count (WMOUT CLEAR)) res << WMOUT CLEAR "\n";
+    if (var_.count (WMOUT DONT CLEAR)) res << WMOUT DONT CLEAR "\n";
+    if (var_.count (WMOUT NOTIFY)) res << WMOUT NOTIFY "\n";
+    if (var_.count (WMOUT DONT NOTIFY)) res << WMOUT DONT NOTIFY "\n";
     if (var_.count (WMOUT SECRET)) res << WMOUT SECRET ": " << var_ [WMOUT SECRET].as < ::std::string > () << "\n";
 
     return res.str (); }

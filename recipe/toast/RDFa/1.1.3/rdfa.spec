@@ -5,6 +5,8 @@ PASS ../toast/RDFa/1.1.3/index.html
 
 PASS ../toast/RDFa/1.1.3/rdf1-example.html
 2 naughty_lang
+7 url_not_found
+8 url_not_found
 27 rdfa_redefine
 
 PASS ../toast/RDFa/1.1.3/rdf2-example.html
@@ -136,7 +138,7 @@ PASS ../toast/RDFa/1.1.3/rdf17-example.xhtml
 
 PASS ../toast/RDFa/1.1.3/rdf18-example.html
 2 naughty_lang
-14 naughty_alt
+14 url_not_found naughty_alt
 16 rdfa_redefine rdfa_redefine
 17 use_double_quote_code
 19 use_double_quote_code

@@ -25,12 +25,15 @@ PASS ../toast/HTML/Plus/plus-example.html
 27 inserted_missing_closure
 28 inserted_missing_closure
 33 url_id_unfound
+34 url_not_found
 36 inserted_missing_closure
-56 inserted_missing_closure
+56 inserted_missing_closure attempted_escape url_not_found
 69 inserted_missing_closure
+77 url_not_found
 80 inserted_missing_closure
 85 inserted_missing_closure
 88 inserted_missing_closure
+95 url_not_found
 103 inserted_missing_closure
 104 inserted_missing_closure
 105 inserted_missing_closure missing_close
@@ -53,9 +56,10 @@ PASS ../toast/HTML/Plus/plus-example.html
 132 inserted_missing_closure
 133 inserted_missing_closure missing_close
 138 inserted_missing_closure
+140 attempted_escape url_not_found
 141 inserted_missing_closure missing_close
 143 inserted_missing_closure
-148 inserted_missing_closure
+148 inserted_missing_closure url_not_found
 177 inserted_missing_closure
 179 inserted_missing_closure
 180 inserted_missing_closure

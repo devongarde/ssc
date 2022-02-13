@@ -14,7 +14,7 @@ PASS ../toast/other/ssi/ssi-if.html
 2 naughty_lang
 
 PASS ../toast/other/ssi/ssi-include.html
-0 cannot_read ssi_include_error ssi_include_error no_such_folder cannot_open no_such_folder cannot_open no_such_folder ssi_include_error ssi_include_error cannot_access cannot_read ssi_include_error ssi_include_error no_such_folder cannot_open no_such_folder cannot_open no_such_folder ssi_include_error ssi_include_error cannot_access
+0 cannot_read ssi_include_error ssi_include_error ssi_include_error no_such_folder url_not_found ssi_include_error no_such_folder url_not_found ssi_include_error no_such_folder ssi_include_error ssi_include_error ssi_include_error ssi_include_error cannot_access cannot_read ssi_include_error ssi_include_error ssi_include_error no_such_folder url_not_found ssi_include_error no_such_folder url_not_found ssi_include_error no_such_folder ssi_include_error ssi_include_error ssi_include_error ssi_include_error cannot_access
 2 naughty_lang
 
 PASS ../toast/other/ssi/ssi-vars.html
