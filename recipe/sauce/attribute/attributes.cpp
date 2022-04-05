@@ -153,16 +153,16 @@ void attributes :: shadow (::std::stringstream& ss, const html_version& v, eleme
             a -> shadow (ss, v, e); }
 
 ::std::string attributes :: report () const
-{   if (! context.tell (e_debug)) return ::std::string ();
+{   if (! context.tell (es_debug)) return ::std::string ();
     if (box_.tag () == elem_undefined)
-        if (! context.tell (e_splurge))
+        if (! context.tell (es_splurge))
             return ::std::string ();
     ::std::string res;
     res += elem::name (box_.tag ());
     bool first = true;
     for (auto a : aar_)
         if (a.get () != nullptr)
-            if (! a -> unknown () || context.tell (e_splurge))
+            if (! a -> unknown () || context.tell (es_splurge))
             {   if (first) { res += ": "; first = false; }
                 else res += ", ";
                 res += a -> report (); }

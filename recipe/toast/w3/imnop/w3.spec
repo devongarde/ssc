@@ -18,12 +18,7 @@ PASS ../toast/w3/imnop/long-lines.html
 39 unrecognised_value inserted_missing_parent missing_close empty_link unrecognised_value unrecognised_value inserted_missing_closure
 
 PASS ../toast/w3/imnop/no-newlines.html
-11 url_not_found
-12 url_not_found
-15 inserted_missing_parent missing_close
-19 url_not_found
-24 missing_open
-25 inserted_missing_closure
+1 url_not_found url_not_found inserted_missing_parent missing_close url_not_found missing_open inserted_missing_closure
 
 PASS ../toast/w3/imnop/nonSGML-chars.html
 0 charset_mismatch charset_used

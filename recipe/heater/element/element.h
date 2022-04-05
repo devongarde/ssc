@@ -290,6 +290,8 @@ public:
     ::std::string find_html_value () const;
     ::std::string find_webmention (const lingo& lang);
     ::std::string find_mention_info (const url& u, bool text, bool anything);
+    ::std::string find_mention_hook (const url& u);
+    bool mentions (const url& target);
     ids_t& get_ids () noexcept;
     const ids_t& get_ids () const noexcept;
     ids_t& get_names () noexcept;
@@ -298,7 +300,7 @@ public:
     {   PRESUME (! is_top (), __FILE__, __LINE__);
         return parent_; }
     bool reportable () const noexcept
-    {   return ((tag () != elem_undefined) || context.tell (e_splurge) || (child_ != nullptr)); }
+    {   return ((tag () != elem_undefined) || context.tell (es_splurge) || (child_ != nullptr)); }
     template < typename ... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg)
     {   node_.pick (code, doc, ref, severity, category, msg...); }
     template < typename ... Ts > void pick (const e_nit code, const e_severity severity, const e_category category, Ts... msg)
@@ -335,6 +337,4 @@ public:
     ::std::string report (); };
 
 template < class PROPERTY > void element::note_reply ()
-{   if (! mf_) return;
-    if (is_microformat_property_empty < mf_entry, PROPERTY> (mf_)) return;
-    context.note_reply (name_, a_.get_string (a_id), get_microformat_property_value < mf_entry, PROPERTY > (mf_), text ()); }
+{ }

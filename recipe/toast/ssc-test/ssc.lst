@@ -120,9 +120,6 @@
 ../toast/shadow/update/update.spec
 ../toast/snippet/conf/snippet.spec
 ../toast/snippet/kiwi/snippet.spec
-../toast/spell/case/spell.spec
-../toast/spell/noicu/spell.spec
-../toast/spell/spell/spell.spec
 ../toast/stats/detail/stats.spec
 ../toast/stats/single/stats.spec
 ../toast/stats/summary/stats.spec

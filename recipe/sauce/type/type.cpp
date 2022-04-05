@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void types_init (nitpick& nits)
 {   void charset_init (nitpick& nits);
     void class_init (nitpick& nits);
+    void country_init (nitpick& nits);
     void currency_init (nitpick& nits);
     void fixedcolour_init (nitpick& nits);
     void httpequiv_init (nitpick& nits);
@@ -37,6 +38,7 @@ void types_init (nitpick& nits)
 
     charset_init (nits);
     class_init (nits);
+    country_init (nits);
     currency_init (nits);
     fixedcolour_init (nits);
     httpequiv_init (nits);
@@ -177,6 +179,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_corp);
         TEST_VALUE (t_cors);
         TEST_VALUE (t_cntype);
+        TEST_VALUE (t_country);
         TEST_VALUE (t_crossout);
         TEST_VALUE (t_csp);
         TEST_VALUE (t_css);
@@ -560,7 +563,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_sandbox);
         TEST_VALUE (t_sandboxen);
         TEST_VALUE (t_scei);
-//        TEST_VALUE (t_schema);
         TEST_VALUE (t_schema_type);
         TEST_VALUE (t_scope);
         TEST_VALUE (t_script);

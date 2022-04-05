@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 #include "type/type_case.h"
+#include "spell/spell.h"
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE = false > class three_value : public type_base < base_type, TYPE >
 {   base_type value_ = static_cast < base_type > (0);
@@ -214,9 +215,9 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, boo
     else if (t == b_) value_ = static_cast <base_type> (1);
     else if (t == c_) value_ = static_cast <base_type> (2);
     else
-    {   if (! check_spelling (nits, v, t))
-            if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
-            else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be \"", SZ0::sz (), "\", \"", SZ1::sz (), "\", or \"", SZ2::sz (), "\"");
+    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
+        else if (! check_identifier_spelling (nits, v, t))
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (SZ0::sz ()), ", ", quote (SZ1::sz ()), ", or ", quote (SZ2::sz ()));
         type_base < base_type, TYPE > :: status (s_invalid);
         return; }
     case_must_match < CASE > :: validate (nits, v, get_string (), pret); }

@@ -223,9 +223,9 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
     ::std::string microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: report () const
-{   if (! context.tell (e_comment)) return ::std::string ();
+{   if (! context.tell (es_comment)) return ::std::string ();
     ::std::string res (fyi ());
-    const bool xtra = context.tell (e_detail);
+    const bool xtra = context.tell (es_detail);
     res += name ();
     if (xtra)
     {   res += " (";
@@ -235,7 +235,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
         res += ")"; }
     bool first = true;
     for_each_attribute (p_, [&](auto& p)
-    {   if (! p.unknown () || context.tell (e_splurge))
+    {   if (! p.unknown () || context.tell (es_splurge))
         {   if (first) first = false; else res += ",";
             res += " ";
             res += p.report (); } } );
@@ -281,7 +281,7 @@ template < > struct verify_mf < html_class, h1_card >
                     given_name -> set_value (nits, v, ::gsl::at (components, 0)); }
                 ::std::string naam = given_name -> get_string () + " " + family_name -> get_string ();
                 n -> set_value (nits, v, naam);
-                if (context.tell (e_info)) nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "g/wiki/hCard", es_info, ec_microformat, "hcard n set to ", quote (naam));
+                if (context.tell (es_info)) nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "g/wiki/hCard", es_info, ec_microformat, "hcard n set to ", quote (naam));
                 return; }
             VERIFY_NOT_NULL (nickname, __FILE__, __LINE__);
             if (! nickname -> good () && (components.size () == 1) && ! ::gsl::at (components, 0).empty ())

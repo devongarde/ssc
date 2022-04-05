@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class nit
 {   e_nit code_ = nit_free;
-    e_severity severity_ = es_undefined;
+    e_severity severity_ = es_illegal;
     e_category category_ = ec_undefined;
     e_doc doc_ = ed_mishmash;
     ::std::string ref_; // location in doc; presumes hard coded string

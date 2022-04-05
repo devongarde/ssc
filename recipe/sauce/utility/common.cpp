@@ -135,15 +135,14 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
     if (fp != nullptr) fclose (fp);
     return void_ptr (); }
 
-bool write_text_file (const ::std::string& name, const ::std::string& content)
+bool write_text_file (const ::boost::filesystem::path& n, const ::std::string& content)
 {   using namespace boost::filesystem;
-    path n (name);
     path p (n);
     p += ".tmp";
     try
     {   ofstream f (p);
         if (f.bad ())
-        {   if (context.tell (e_severe))
+        {   if (context.tell (es_catastrophic))
             {   context.err ("Cannot open temporary file ");
                 context.err (p.string ());
                 context.err ("\n"); }
@@ -151,7 +150,7 @@ bool write_text_file (const ::std::string& name, const ::std::string& content)
         try
         {   f << content; }
         catch (...)
-        {   if (context.tell (e_severe))
+        {   if (context.tell (es_catastrophic))
             {   context.err ("Cannot write to temporary file ");
                 context.err (p.string ());
                 context.err ("\n"); }
@@ -159,7 +158,7 @@ bool write_text_file (const ::std::string& name, const ::std::string& content)
         f.close ();
         if (file_exists (n))
             if (! delete_file (n))
-            {   if (context.tell (e_severe))
+            {   if (context.tell (es_catastrophic))
                 {   context.err ("Cannot delete existing file ");
                     context.err (p.string ());
                     context.err ("\n"); }
@@ -168,11 +167,14 @@ bool write_text_file (const ::std::string& name, const ::std::string& content)
         return true; }
     catch (...) { }
     if (file_exists (p)) delete_file (p);
-    if (context.tell (e_error))
+    if (context.tell (es_error))
     {   context.err ("Cannot update ");
         context.err (p.string ());
         context.err ("\n"); }
     return false; }
+
+bool write_text_file (const ::std::string& name, const ::std::string& content)
+{   return write_text_file (::boost::filesystem::path (name), content); }
 
 ::std::string trim_the_lot_off (const ::std::string& s)
 {   return ::boost::trim_copy (s); }
@@ -302,16 +304,17 @@ bool one_of_domain (const ::std::string& s, const vstr_t& v)
 
 bool read_header (const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename)
 {   ::std::string prog = read_field < ::std::string > (json, APP);
-    version = read_field < ::std::string > (json, V);
+    if (context.test ()) version = VERSION_STRING;
+    else version = read_field < ::std::string > (json, VER);
     ::std::string con = read_field < ::std::string > (json, CONTEXT);
     if ((prog != PROG) || (version.substr (0, 3) != "0.0"))
-    {   if (context.tell (e_error))
+    {   if (context.tell (es_error))
         {   context.err (filename);
             context.err (" is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it\n"); }
         return false; }
     if (! expected.empty ())
         if (con != expected)
-        {   if (context.tell (e_error))
+        {   if (context.tell (es_error))
             {   ::std::ostringstream ss;
                 ss << filename << " is not an " PROG " " << expected << " file\n";
                 context.err (ss.str ()); }
@@ -320,7 +323,7 @@ bool read_header (const ::boost::property_tree::ptree& json, const ::std::string
 
 void write_header (::boost::property_tree::ptree& json, const char* k)
 {   write_field < ::std::string > (json, APP, PROG);
-    write_field < ::std::string > (json, V, VERSION_STRING);
+    if (! context.test ()) write_field < ::std::string > (json, VER, VERSION_STRING);
     write_field < ::std::string > (json, CONTEXT, k); }
 
 bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::filesystem::path& filename)
@@ -332,7 +335,7 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
         {   ::boost::property_tree::write_json (filename.string (), json); }
         catch (...)
         {   delete_file (filename);
-            if (context.tell (e_severe))
+            if (context.tell (es_catastrophic))
             {   context.err ("Cannot write ");
                 context.err (filename.string ());
                 context.err ("\n"); }
@@ -343,7 +346,7 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
             rename_file (filename, old); }
         catch (...)
         {   delete_file (tmp);
-            if (context.tell (e_severe))
+            if (context.tell (es_catastrophic))
             {   context.err ("Cannot write ");
                 context.err (tmp.string ());
                 context.err ("\n"); }
@@ -351,7 +354,7 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
         if (! rename_file (tmp, filename))
         {   rename_file (old, filename);
             delete_file (tmp);
-            if (context.tell (e_severe))
+            if (context.tell (es_catastrophic))
             {   context.err ("Cannot replace ");
                 context.err (filename.string ());
                 context.err (" with ");
@@ -372,100 +375,6 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
         res += "] "; }
     return res; }
 
-// for those who habitually spell correctly (unlike me)
-bool check_spelling (nitpick& nits, const html_version& , const ::std::string& s)
-{   typedef enum { d_none, d_johnson, d_anaesthesia, d_oz, d_collins, d_wiki } e_dictionary;
-    const char* const dictionary [] =
-    {   nullptr,
-        "Samuel Johnson, A Dictionary of the English Language, first edition, Longman etc., MDCCLV",
-        "A Dictionary of Anaesthesia, second edition, Oxford University Press, 2017",
-        "Australian Oxford Dictionary, second edition, Oxford University Press, 2004",
-        "Collins English Dictionary",
-        "wikipedia, https://en.wikipedia.org/" };
-    struct spellings
-    {   const char* spell_;
-        e_dictionary dict_;
-        const char* ref_; };
-    spellings word [] =
-    {   { "centre", d_johnson, "348" },
-        { "colour", d_johnson, "409" },
-        { "organisation", d_none, nullptr },
-        { "alternative", d_none, nullptr },
-        { "anaesthesia", d_anaesthesia, nullptr },
-        { "autocapitalise", d_none, nullptr },
-        { "authorise", d_oz, nullptr },
-        { "behaviour", d_johnson, "225" },
-        { "catalogue", d_johnson, "340" },
-        { "colourist", d_none, nullptr },
-        { "coworker", d_none, nullptr },
-        { "dialogue", d_johnson, "585" },
-        { "grey", d_collins, nullptr },
-        { "gynaecologic", d_wiki, "https://en.wikipedia.org/wiki/Gynaecology" },
-        { "haematologic", d_none, nullptr },
-        { "honour", d_none, nullptr },
-        { "licence", d_none, nullptr },
-        { "motorised", d_none, nullptr },
-        { "neighbour", d_johnson, "1356" },
-        { "normalise", d_none, nullptr },
-        { "optimise", d_none, nullptr },
-        { "organiser", d_none, nullptr },
-        { "organise", d_none, nullptr },
-        { "paediatric", d_none, nullptr },
-        { "parlour", d_johnson, "1452" },
-        { "penciller", d_none, nullptr },
-        { "randomised", d_none, nullptr },
-        { "referrer", d_wiki, "https://en.wikipedia.org/wiki/HTTP_referer#Etymology" },
-        { "speciality", d_johnson, "1895" },
-        { "sought", d_none, nullptr },
-        { "theatre", d_johnson, "2042" },
-        { "tyre", d_none, nullptr },
-        { nullptr, d_none, nullptr } };
-    typedef ssc_map < ::std::string, spellings > map_of_correctness;
-    static map_of_correctness ms;
-#ifdef _MSC_VER
-#pragma warning (push, 3)
-#pragma warning (disable : 26446 26482)
-#endif // _MSC_VER
-    if (ms.empty ())
-        for (::std::size_t i = 0; word [i].spell_ != nullptr; ++i)
-            ms.insert (map_of_correctness::value_type (word [i].spell_, word [i]));
-    ::std::string ss (::boost::algorithm::to_lower_copy (trim_the_lot_off (s)));
-    map_of_correctness::const_iterator i = ms.find (ss);
-    if (i != ms.cend ())
-    {   if (i -> second.dict_ != d_none)
-            if (dictionary [i -> second.dict_] != nullptr)
-            {   ::std::string ref (dictionary [i -> second.dict_]);
-                if (i -> second.ref_ != nullptr)
-                {   ref += ", page ";
-                    ref += i -> second.ref_; }
-                nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, i -> second.spell_, " is spelt correctly");
-                return true; }
-        nits.pick (nit_correct_spelling, es_info, ec_incorrectness, i -> second.spell_, " is spelt correctly");
-        return true; }
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif // _MSC_VER
-    ::std::string sss (ss);
-    if (sss.length () > 60) sss = "text";
-    for (::std::size_t x = 0; ::gsl::at (word, x).spell_ != nullptr; ++x)
-        if (ss.find (::gsl::at (word, x).spell_) != ::std::string::npos)
-        {   if (::gsl::at (word, x).dict_ != d_none)
-            {   PRESUME (::gsl::at (word, x).dict_ <= d_wiki, __FILE__, __LINE__);
-#ifdef _MSC_VER
-#pragma warning (push, 3)
-#pragma warning (disable : 6387 26446 26482) // unless, of course, you consider the preceding conditions, linter.
-#endif // _MSC_VER
-                ::std::string ref (dictionary [::gsl::at (word, x).dict_]);
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif // _MSC_VER
-                if (::gsl::at (word, x).ref_ != nullptr)
-                {   ref += ", page ";
-                    ref += ::gsl::at (word, x).ref_; }
-                nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains '", ::gsl::at (word, x).spell_, "', which is spelt correctly"); }
-            else nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains '", ::gsl::at (word, x).spell_, "', which is spelt correctly");
-            return true; }
-    return false; }
 
 bool is_whitespace (const ::std::string::const_iterator b, const ::std::string::const_iterator e) noexcept
 {   for (::std::string::const_iterator i = b; i != e; ++i)

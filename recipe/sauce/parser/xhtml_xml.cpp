@@ -26,8 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 
 bool parse_xml (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line, ::std::string& stylesheet)
-{   // temporary approach until xml etc. is rewritten
-    elements_node fake_a_roony;
+{   elements_node fake_a_roony;
     attributes_node args (fake_a_roony.faux_node ());
     bool ok = false;
     bool style = false;

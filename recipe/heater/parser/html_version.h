@@ -504,6 +504,7 @@ const html_version html_dc_1_0 (HTML_DC_1_0);
 const html_version html_dc_1_1 (HTML_DC_1_1);
 const html_version html_dcterms_1_0 (HTML_DCTERMS_1_0);
 const html_version html_dcterms_1_1 (HTML_DCTERMS_1_1);
+const html_version html_gs1 (HTML_GS1);
 const html_version html_owl_1_0 (HTML_OWL10);
 const html_version html_owl_1_1 (HTML_OWL11);
 const html_version html_owl_2_0 (HTML_OWL20);

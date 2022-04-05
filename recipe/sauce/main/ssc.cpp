@@ -51,6 +51,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url_sanitise.h"
 #include "webpage/fileindex.h"
 #include "icu/lingo.h"
+#include "utility/filesystem.h"
 
 void init (nitpick& nits)
 {   init_nit_macros ();
@@ -90,7 +91,7 @@ void init (nitpick& nits)
 
 int ciao ()
 {   if (context.progress ()) ::std::cout << "\nFinishing\n";
-    if (context.unknown_class () && context.tell (e_warning))
+    if (context.unknown_class () && context.tell (es_warning))
     {   ::std::ostringstream ss;
         context.css ().report_usage (ss);
         if (context.crosslinks ())
@@ -103,7 +104,7 @@ int ciao ()
             if (! empty_itemid ())
                 context.out (report_itemids ()); } }
     if (context.stats_summary ()) context.report_stats (true);
-    if (context.tell (e_debug)) context.out (fileindex_report ());
+    if (context.tell (es_debug)) context.out (fileindex_report ());
     spell_terminate ();
     if (context.severity_exceeded ()) return ERROR_STATE;
     return VALID_RESULT; }
@@ -214,8 +215,8 @@ int main (int argc, char** argv)
         const std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
         ::std::string t (::std::ctime (&start_time));
         t = t.substr (0, t.length () - 1);
-        context.macros ().emplace (nm_time_start, t);
-        context.macros ().emplace (nm_compile_time, __DATE__ " " __TIME__);
+        context.started (t);
+        context.build (__DATE__ " " __TIME__);
         vstr_t v (split_by_charset (VERSION_STRING, "."));
         PRESUME (v.size () == 3, __FILE__, __LINE__);
         PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
@@ -225,7 +226,7 @@ int main (int argc, char** argv)
         init (nits);
 #ifdef _MSC_VER
 #pragma warning (push, 3)
-#pragma warning (disable : 26481) // erm, linter, you do know about the C++ main function's signature, don't you?
+#pragma warning (disable : 26481)
 #endif // _MSC_VER
         ::std::string args (argv [0]);
         for (int i = 1; i < argc; ++i)
@@ -246,17 +247,13 @@ int main (int argc, char** argv)
         context.out () << apply_macros (ns_doc_head);
         enfooten = true;
         dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
-        if (context.todo () == do_booboo)
+        if (context.invalid () || (context.todo () == do_booboo) || (res == ERROR_STATE))
         {   dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = ERROR_STATE; }
         else
         {   if (! fileindex_load (nuts)) res = ERROR_STATE;
             dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = examine (nits);
-            if ((res == VALID_RESULT) && context.process_webmentions ())
-            {   context.process_outgoing_webmention (nits, html_current, lingo (nits, context.lang ()));
-                context.process_incoming_webmention (nits, html_current);
-                dump_nits (nits, ns_webmention, ns_webmention_head, ns_webmention_foot); }
             const int cr = ciao ();
             if (cr > res) res = cr; }
         const auto fin = std::chrono :: system_clock :: now ();

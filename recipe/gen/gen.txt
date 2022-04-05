@@ -56,10 +56,11 @@ These options are available on the command line (with dashes) and in
 configuration files (without dashes). The short form alternative switches
 only work on the command line.
 
-Almost all "binary" options, e.g. those without parameters below that turn
-on a particular feature (which may be the default), have a corresponding
-"no-" switch that turns it off. The "no-" is inserted after the dot, so,
-for example, the contradiction to "--general.class" is "--general.no-class".
+Most binary options, e.g. those without arguments below that turn on a feature
+(which may be the default), have a corresponding "no-" switch to turn it off.
+The "no-" is inserted after the dot, so, for example, the contradiction to
+"--general.class" is "--general.no-class". When both are specified, perhaps in
+a configuration file and on the command line, the "no-" switch always applies.
 
 --corpus.article        Prefer the content of <ARTICLE> when gathering corpus
                         text.
@@ -150,8 +151,6 @@ for example, the contradiction to "--general.class" is "--general.no-class".
 
 --general.test          Output data in automated test format. Used by ssc-test.
 -T                      Not generally useful. Documented so you can avoid it!
-
---general.user XXX      Default user for webmentions (default: bert.scroggins)
 
 --general.verbose x     Output nits to the specified verbosity: 'catastrophe',
 -v                      'error', 'warning', 'info', 'comment' (the default),
@@ -278,6 +277,56 @@ for example, the contradiction to "--general.class" is "--general.no-class".
                                 2   MathML 2,
                                 3   MathML 3,
                                 4   MathML 4 (December 2020 draft).
+
+--mention.accept        Process incoming webmentions (experimental; see notes
+                        on WEBMENTIONS below).
+
+--mention.no-accept     Ignore incoming webmentions.
+
+--mention.clear         SSC keeps a cache of webmention notifications sent.
+                        Delete it. This may mean external sites are renotified
+                        of webmentions referencing them.
+
+--mention.no-clear      Retain the webmention cache.
+
+--mention.datapath XXX  Path for incoming webmention headers files. SSC will
+                        consume files found here.
+
+--mention.mention XXX   Specify a webmention. XXX must be in decoded HTML
+                        parameter format, containing source and target. For
+                        example:
+                        source=http://a.lan/s.htm&target=http://b.lan/t.htm
+
+--mention.notify        Notify external sites of local webmentions
+                        (experimental: see notes below).
+
+--mention.no-notify     Keep mum about local webmentions.
+
+--mention.secret XXX    Set outgoing webmention secret. Be aware that this
+                        is not the world's most secure mechanism for secret
+                        management.
+
+--mention.stub XXX      When generating pages using templates containing
+                        webmentions, add this text to the file stub (default:
+                        "_ssc")
+
+--mention.template XXX  HTML snippets for using when adding templates. These
+                        templates must be specified in the following order:
+                            new, changed, deleted, unchanged
+                        The default values are, respectively
+                            new.tpl, changed.tpl, deleted.tpl, static.tpl
+                        The snippets may contain the following pieces of text,
+                        which will be substituted with the corresponding
+                        webmention content:
+                            {{source}}  URL of page with the mention
+                            {{target}}  URL of page mentioned
+                            {{content}} The HTML content of the mention
+                            {{when}}    The date/time of the mention
+
+--mention.user XXX      Default user for webmentions (default: bert.scroggins)
+
+--mention.write XXX     When adding webmentions to your site, put them in this
+                        path (default: --site.root).
 
 --microdata.verify      Check microdata found in WhatWG microdata attributes
 -m                      (itemprop, itemtype, etc.). Note that ssc only knows
@@ -810,6 +859,43 @@ root=site
 file=site.ndx
 ignore=inc
 info=yes
+
+
+
+WEBMENTIONS
+
+Webmentions (https://www.w3.org/TR/webmention/) are a mechanism by which
+references between websites can be automatically maintained.
+
+SSC's webmention processing is deeply experimental, and not ready for use.
+See the various --mention... switches above.
+
+A website elsewhere may mention your site. It can notify your site using
+webmentions. The webmention will say which page there mentions your site,
+which page on your site gets the mention, when the mention was last changed,
+and provide some contextual information. Although the mention may be in other
+kind of online document (such as PDFs), SSC can only process mentions embedded
+in HTML.
+
+If you use SSC to prepare your static website for your static webserver (as I
+do), it can also apply webmentions. However, SSC does not offer a surrogate
+webserver to collect webmentions; it requires an external mechanism to do so,
+such as a CGI script on your website's server. The data collected should be
+passed to SSC.
+
+SSC uses a set of templates to collect and format the reference and add it to
+your site. The templates cover each type of change that may arrive with a
+webmention notification: add, change, delete, plus unchanged. SSC uses these
+templates to make the appropriate alternation to the appropriate page.
+
+Webmentions can also be directly specified using switches.
+
+As you might guess, there are a good number of switches needed to control SSC's
+webmention processing, all noted above.
+
+Similarly, your site may mention other sites. SSC can notify these other sites
+of the mentions. It keeps a cache of the notifications it has issued, to avoid
+reissuing notifications.
 
 
 

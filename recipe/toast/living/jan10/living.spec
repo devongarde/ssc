@@ -61,12 +61,12 @@ PASS ../toast/living/jan10/base.html
 PASS ../toast/living/jan10/blockquote.html
 7 missing_close
 8 use_quote_code
-12 inserted_missing_closure
-21 use_quote_code
-27 use_quote_code
-30 use_quote_code
-44 use_quote_code
-50 inserted_missing_closure
+11 inserted_missing_closure
+20 use_quote_code
+26 use_quote_code
+29 use_quote_code
+43 use_quote_code
+49 inserted_missing_closure
 
 PASS ../toast/living/jan10/caption.html
 9 inserted_missing_closure missing_close
@@ -810,8 +810,8 @@ PASS ../toast/living/jan10/tls.html
 0 charset_mismatch charset_used charset_invalid
 6 url_not_found
 14 inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
+24 use_double_quote_code
 25 use_double_quote_code
-26 use_double_quote_code
 
 PASS ../toast/living/jan10/ul.html
 9 inserted_missing_closure

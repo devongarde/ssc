@@ -166,6 +166,6 @@ void url::shadow (::std::stringstream& ss, const html_version& v, element* e)
     ss << original (); }
 
 void wombats (nitpick& nits, const html_version& v, const ::std::string& u)
-{   if (u.find ("//") == ::std::string::npos) check_spelling (nits, v, u);
+{   if (u.find ("//") == ::std::string::npos) check_identifier_spelling (nits, v, u);
     else if (u.find ("//wwww") != ::std::string::npos)
         nits.pick (nit_wwww, es_info, ec_namespace, "four 'w's? the world wide web for wombats?!"); }

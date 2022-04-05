@@ -70,7 +70,7 @@ itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const 
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_index (p.get ());
     if (! bespoke_permitted)
     {   nits.merge (knots);
-        check_spelling (nits, v, name);
+        check_identifier_spelling (nits, v, name);
         nits.pick (nit_bad_itemprop, es_error, ec_microdata, quote (name), " is not recognised");
         return illegal_itemprop; }
     min_t::const_iterator ini = unknown_props.find (name);
@@ -89,7 +89,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_indices (p.get ());
     if (! bespoke_permitted)
     {   nits.merge (knots);
-        check_spelling (nits, v, name);
+        check_identifier_spelling (nits, v, name);
         nits.pick (nit_bad_itemprop, es_error, ec_microdata, quote (name), " is not recognised");
         return itemprop_indices (); }
     min_t::const_iterator ini = unknown_props.find (name);

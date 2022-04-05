@@ -88,6 +88,7 @@ vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
 ::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name);
 ::std::string read_text_file (nitpick& nits, const ::std::string& name);
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok = false);
+bool write_text_file (const ::boost::filesystem::path& n, const ::std::string& content);
 bool write_text_file (const ::std::string& name, const ::std::string& content);
 ::boost::filesystem::path get_tmp_filename ();
 bool contains (const vstr_t& con, const ::std::string& val);
@@ -151,7 +152,6 @@ inline ::std::string prepend (const ::std::string& pre, const ::std::string& bas
 inline ::std::string wrap (const ::std::string& pre, const ::std::string& base, const ::std::string& post)
 {   return pre + base + post; }
 
-bool check_spelling (nitpick& nits, const html_version& v, const ::std::string& s);
 bool ends_with_letters (const html_version& v,const ::std::string& s, const ::std::string& with);
 
 inline bool is_hex (const ::std::string::const_iterator& x, const ::std::string::const_iterator& e) noexcept

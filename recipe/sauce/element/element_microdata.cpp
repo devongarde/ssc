@@ -39,8 +39,7 @@ void element::verify_microdata ()
             node_.pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_error, ec_attribute, "missing ITEMSCOPE; ITEMREF ignored"); }
 
 ::std::string element::get_microdata_value () const
-{   // need to rethink template structures, since this should be templated based on the tag
-    switch (tag ())
+{   switch (tag ())
     {   case elem_a :
         case elem_area :
         case elem_link :

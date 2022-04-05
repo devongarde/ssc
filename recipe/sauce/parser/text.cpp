@@ -88,7 +88,7 @@ void known_wotsit (nitpick& nits, const char* s, const char* c, const bool sugge
 
 void text_check (nitpick& nits, const html_version& v, const ::std::string& text)
 {   nits.set_context (0, text);
-    if (context.tell (e_error))
+    if (context.tell (es_error))
     {   char after = text.at (0);
         const ::std::string::size_type equal = text.find ('=', 1);
         if (equal != ::std::string::npos) return; // probably an HREF param that hasn't been normalised

@@ -19,33 +19,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#ifdef HAS_WM
 #include "url/url.h"
+#include "webmention/wm.h"
 
 class webmention
 {   url source_, target_;
-    ::std::string html_, when_;
+    ::std::string mention_, when_, target_source_;
     bool invalid_ = true;
     e_activity activity_ = act_unknown;
 public:
     webmention () = default;
-    webmention (const url& source, const url& target, const ::std::string& html);
-    webmention (nitpick& nits, ::boost::property_tree::ptree& tree, const ::std::string& container)
-        : activity_ (act_static)
-    {   try { read (nits, tree, container); }
-        catch (...) { invalid_ = true; activity_ = act_unknown; } }
-    void swap (webmention& w) noexcept
-    {   source_.swap (w.source_);
-        target_.swap (w.target_);
-        html_.swap (w.html_);
-        when_.swap (w.when_);
-        ::std::swap (invalid_, w.invalid_);
-        ::std::swap (activity_, w.activity_); }
+    webmention (const url& source, const url& target, const ::std::string& mention, const ::std::string& trg_src);
+//    webmention (nitpick& nits, ::boost::property_tree::ptree& tree, const ::std::string& container)
+//        : activity_ (act_static)
+//    {   try { read (nits, tree, container); }
+//        catch (...) { invalid_ = true; activity_ = act_unknown; } }
+    webmention (nitpick& nits, const ::boost::json::object& jo);
     bool invalid () const noexcept { return invalid_; }
     int compare_updated (const webmention& w);
     int compare (const webmention& w);
-    void read (nitpick& nits, const ::boost::property_tree::ptree& tree, const ::std::string& container);
-    void write (::boost::property_tree::ptree& tree, const ::std::string& container);
+    bool save (nitpick& nits, ::boost::json::object& jo);
+//    void read (nitpick& nits, const ::boost::property_tree::ptree& tree, const ::std::string& container);
+//    void write (::boost::property_tree::ptree& tree, const ::std::string& container);
     e_activity activity () const noexcept { return activity_; }
     void activity (const e_activity a) noexcept { activity_ = a; }
     ::std::string apply_template (const vstr_t& templates);
     ::std::string report () const; };
+#endif // HAS_WM

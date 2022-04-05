@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/directory.h"
 #include "url/url.h"
 #include "webpage/crosslink.h"
-#include "parser/jsonic.h"
+#include "schema/jsonld.h"
 #include "icu/converter.h"
 
 external directory::external_;
@@ -241,16 +241,16 @@ void directory::examine (nitpick& nits)
                                 ss << web.nits ().review (mac);
                                 ss << web.report (); } } }
                 catch (const ::std::system_error& e)
-                {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + context.filename ()); }
+                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + context.filename ()); }
                 catch (const ::std::exception& e)
-                {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + context.filename ()); }
+                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + context.filename ()); }
                 catch (...)
-                {   if (context.tell (e_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + context.filename ()); }
+                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + context.filename ()); }
                 if (! ss.str ().empty ())
                 {   context.out (apply_macros (ns_page_head, mac));
                     context.out (ss.str ());
                     context.out (apply_macros (ns_page_foot, mac)); }
-                else if (context.tell (e_comment))
+                else if (context.tell (es_comment))
                 {   context.out (apply_macros (ns_page_head, mac));
                     context.out (apply_macros (ns_page_foot, mac)); }
                 context.css ().post_process (); }
@@ -351,7 +351,7 @@ bool directory::verify_external (nitpick& nits, const html_version& v, const url
     if (res) return true;
     if (context.code () < 300) return true;
     if (context.repeated () && context.once ()) return false;
-    if (! context.tell (e_error)) return false;
+    if (! context.tell (es_error)) return false;
     switch (context.code ())
     {   case 301 :
         case 308 :

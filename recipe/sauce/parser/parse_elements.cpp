@@ -289,7 +289,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
 
         insert (ver, previous, parent, e, id); }
     report_missing_closures (v, parent, document);
-    if (context.tell (e_splurge))
+    if (context.tell (es_splurge))
     {   VERIFY_NOT_NULL (document, __FILE__, __LINE__);
         ::std::cerr << document -> rpt (0); } }
 

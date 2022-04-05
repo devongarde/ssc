@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+#ifdef HAS_WM
 #include "webmention/irt.h"
 #include "main/context.h"
 #include "utility/common.h"
@@ -27,18 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "webpage/directory.h"
 #include "webpage/headers.h"
-
-#define REPLY "reply"
-
-#define V "version"
-#define LENGTH "length"
-
-#define PAGE "page"
-#define ID "id"
-#define SERVER "server"
-#define TARGET "target"
-#define CONTENT "content"
-#define WHEN "when"
+#include "webmention/webmention.h"
 
 void reply::swap (reply& r) noexcept
 {   file_.swap (r.file_);
@@ -89,18 +79,18 @@ bool reply::set_server (const ::std::string& link)
 bool reply::find_server (nitpick& nits, const html_version& v, const lingo& lang)
 {   if (target_.empty ()) return false;
     bool ok = true;
-    bool vrai = context.test_header ().empty ();
-    ::boost::filesystem::path http_temp (context.test_header ());
+    bool vrai = context.header ().empty ();
+    ::boost::filesystem::path http_temp (context.header ());
     if (vrai)
     {   http_temp = get_tmp_filename ();
         ok = fetch_http (nits, v, url (nits, v, target_), http_temp); }
     if (ok)
     {   ::std::string http (read_text_file (nits, http_temp.string ()));
         headers h (nits, v, http);
-        if (h.abusive_site ()) nits.pick (nit_pos_piracy, es_warning, ec_webmention, target_, " uses privacy piracy techniques");
+        if (h.abusive_site ()) if (context.tell (es_warning)) nits.pick (nit_pos_piracy, es_warning, ec_webmention, target_, " uses privacy piracy techniques");
         ::std::string link (h.link (WEBMENTION));
         if (set_server (link))
-        {   nits.pick (nit_webmention, es_comment, ec_webmention, "found " WEBMENTION " server ", server_, " in headers for ", target_);
+        {   if (context.tell (es_comment)) nits.pick (nit_webmention, es_comment, ec_webmention, "found " WEBMENTION " server ", server_, " in headers for ", target_);
             if (vrai) if (file_exists (http_temp)) delete_file (http_temp);
             return true; } }
     if (vrai) if (file_exists (http_temp)) delete_file (http_temp);
@@ -113,7 +103,7 @@ bool reply::find_server (nitpick& nits, const html_version& v, const lingo& lang
     p.examine ();
     ::std::string mention = p.find_webmention (lang);
     if (! set_server (mention)) return false;
-    if (context.tell (e_comment))
+    if (context.tell (es_comment))
         nits.pick (nit_webmention, es_comment, ec_webmention, "found " WEBMENTION " server ", server_, " for ", target_);
     return true; }
 
@@ -162,7 +152,7 @@ void reply::write (::boost::property_tree::ptree& tree, const ::std::string& con
     write_field < ::std::string > (tree, container, WHEN, when_); }
 
 void reply::mark_unchanged ()
- {  if (context.tell (e_info)) report ("Static");
+ {  if (context.tell (es_info)) report ("Static");
     activity_ = act_static; }
 
 void reply::mark_update ()
@@ -176,12 +166,12 @@ void reply::mark_delete ()
 
 ::std::string reply::report (const char* verb) const
 {   ::std::ostringstream res;
-    if (context.tell (e_all)) res << START_OF_SECTION " " << verb << '\n' <<  file_ << '\n' << id_ << '\n' << server_ << '\n' << target_ << '\n' << content_ << '\n' << ::std::endl;
+    if (context.tell (es_all)) res << START_OF_SECTION " " << verb << '\n' <<  file_ << '\n' << id_ << '\n' << server_ << '\n' << target_ << '\n' << content_ << '\n' << ::std::endl;
     return res.str (); }
 
 ::std::string reply::report (const ::std::size_t n) const
 {   ::std::ostringstream res;
-    if (context.tell (e_all)) res << n << ":" << file_ << ',' << id_ << ',' << server_ << ',' << target_ << ',' << content_ << ::std::endl;
+    if (context.tell (es_all)) res << n << ":" << file_ << ',' << id_ << ',' << server_ << ',' << target_ << ',' << content_ << ::std::endl;
     return res.str (); }
 
 bool reply::enact (nitpick& nits, const html_version& v, const lingo& lang)
@@ -190,109 +180,10 @@ bool reply::enact (nitpick& nits, const html_version& v, const lingo& lang)
     if (! find_server (nits, v, lang)) return false;
     return mention (nits, v, url (nits, v, file_), url (nits, v, target_), url (nits, v, server_)); }
 
-void replies::append (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content)
-{   reply_.push_back (reply (file, id, target, content)); }
+reply::reply (nitpick& nits, const ::boost::json::object& jo)
+{    }
 
-bool replies::read (const ::std::string filename)
-{   if (! file_exists (filename)) return true; // no data is mega insert
-    ::boost::property_tree::ptree json;
-    ::boost::property_tree::read_json (filename, json);
-    if (json.empty ()) return false;
-    ::std::string version = read_field < ::std::string > (json, PROG, V);
-    if (version.substr (0, 3) != "0.0") return false;
-    ::std::size_t max = json.get < ::std::size_t > (PROG SEP REPLY SEP LENGTH, 0);
-    if (max == 0) return true;
-    reply_.reserve (max);
-    for (::std::size_t n = 0; n < max; ++n)
-    {   ::std::string count = PROG SEP REPLY SEP;
-        count += ::boost::lexical_cast < ::std::string > (n);
-        reply_.push_back (reply (json, count));
-        if (reply_.back ().invalid ()) return false; }
+bool reply::save (nitpick& nits, ::boost::json::object& jo)
+{   
     return true; }
-
-bool replies::write ()
-{   ::boost::property_tree::ptree json;
-    ::boost::filesystem::path filename (context.persisted ());
-    if (context.tell (e_detail)) report ("write");
-    write_header (json, REPLY);
-    write_field < ::std::size_t > (json, REPLY SEP LENGTH, reply_.size ());
-    for (::std::size_t n = 0; n < reply_.size (); ++n)
-    {   ::std::string count = REPLY SEP;
-        count += ::boost::lexical_cast < ::std::string > (n);
-        reply_ .at (n).write (json, count); }
-    return replace_file (json, filename); }
-
-::std::size_t replies::find (const reply& r)
-{   for (::std::size_t z = 0; z < reply_.size (); ++z)
-        if (reply_.at (z) == r) return z;
-    return no_reply; }
-
-::std::size_t replies::probably_match (const reply& r)
-{   for (::std::size_t z = 0; z < reply_.size (); ++z)
-        if (reply_.at (z).close_but_no_banana (r)) return z;
-    return no_reply; }
-
-bool replies::update_records (nitpick& nits) // not efficient for any real quantities
-{   bool res = false;
-    ::std::size_t mmax = reply_.size ();
-    const ::std::size_t imax = context.get_replies ().reply_.size ();
-    nits.pick (nit_debug, es_debug, ec_webmention, mmax, " previous replies found in ", context.persisted (), ", ", imax, " found in pages");
-    context.get_replies ().report (WEBMENTION);
-    if (context.tell (e_detail)) report ("persisted");
-    for (::std::size_t z = 0; z < mmax; ++z)
-        reply_.at (z).mark_unknown ();
-    for (::std::size_t z = 0; z < imax; ++z)
-    {   ::std::size_t here = find (::gsl::at (context.get_replies ().reply_, z));
-        if (here != no_reply)
-        {   if (reply_.at (here).is_unknown ())
-                reply_.at (here).mark_unchanged (); }
-        else
-        {   here = probably_match (::gsl::at (context.get_replies ().reply_, z));
-            if (here != no_reply)
-                reply_.at (here).mark_update ();
-            else
-            {   reply_.push_back (::gsl::at (context.get_replies ().reply_, z));
-                reply_.back ().mark_insert (); }
-            res = true; } }
-    mmax = reply_.size ();
-    for (::std::size_t z = 0; z < mmax; ++z)
-    {   if (reply_.at (z).is_unknown ())
-        {   res = true;
-            reply_.at (z).mark_delete (); } }
-    if (context.tell (e_detail)) report ("post update");
-    return res; }
-
- bool replies::enact (nitpick& nits, const html_version& v, const lingo& lang) // not efficient for any real quantities
-{   bool res = false;
-    if (context.tell (e_detail)) report ("enact");
-    const ::std::size_t mmax = reply_.size ();
-    for (::std::size_t z = 0; z < mmax; ++z)
-        if (! reply_.at (z).enact (nits, v, lang))
-        {  if (reply_.at (z).is_deleted ())
-                reply_.at (z).mark_unchanged (); }
-        else res = true;
-    if (res)
-    {   vreply_t reply;
-        for (::std::size_t x = 0; x < mmax; ++x)
-            if (! reply_.at (x).is_deleted ())
-                reply.push_back (reply_.at (x));
-        reply.shrink_to_fit ();
-        reply_.swap (reply); }
-    return res; }
-
-bool replies::process (nitpick& nits, const html_version& v, const lingo& lang)
-{   if (! context.notify ()) return true;
-    if (context.persisted ().empty ()) return true;
-    replies persisted;
-    if (! context.clear () && ! persisted.read (context.persisted ())) return false;
-    if (! persisted.update_records (nits)) return true;
-    persisted.enact (nits, v, lang); // whatever the webmentions, still update the file
-    return persisted.write (); }
-
-::std::string replies::report (const char* comment) const
-{   ::std::ostringstream res;
-    if (context.tell (e_info))
-    {   if (comment != nullptr) res << comment << "\n";    // tell?
-        for (::std::size_t s = 0; s < reply_.size (); ++s)
-           res << reply_.at (s).report (s); }
-    return res.str (); }
+#endif // HAS_WM

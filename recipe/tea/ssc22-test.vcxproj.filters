@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -48,6 +48,9 @@
       <Filter>toasty-toast</Filter>
     </None>
     <None Include="..\toast\ssc-test\test.nit">
+      <Filter>toasty-toast</Filter>
+    </None>
+    <None Include="..\toast\ssc-test\all.lst">
       <Filter>toasty-toast</Filter>
     </None>
   </ItemGroup>

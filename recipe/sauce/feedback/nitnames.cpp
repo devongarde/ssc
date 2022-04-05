@@ -726,6 +726,21 @@ const nitname nitnames [] =
     { nit_yea_nay, "yea_nay" },
     { nit_mf_version, "mf_version" },
     { nit_not_directory, "not_directory" },
+    { nit_dubious_mention, "dubious_mention" },
+    { nit_endpoint, "endpoint" },
+    { nit_webmention_css, "webmention_css" },
+    { nit_webmention_external, "webmention_external" },
+    { nit_header_empty, "header_empty" },
+    { nit_header_malformed, "header_malformed" },
+    { nit_http_error, "http_error" },
+    { nit_header_no_data, "header_no_data" },
+    { nit_invalid_mention, "invalid_mention" },
+    { nit_json_version, "json_version" },
+    { nit_json_corrupt, "json_corrupt" },
+    { nit_json_domain, "json_domain" },
+    { nit_dialect, "dialect" },
+    { nit_country, "country" },
+    { nit_languages, "languages" },
 
     { nit_off, "" } };
 

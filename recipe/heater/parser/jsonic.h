@@ -21,4 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "feedback/nitpick.h"
 
-void parse_json_ld (nitpick& nits, const html_version& v, const ::std::string& s, const e_charcode encoding = cc_ansi);
+#ifdef NO_JSONIC
+#else // NO_JSONIC
+class jsonic
+{   ::boost::json::value value_;
+    static ::std::string rpt_base (const ::boost::json::value& val, const int indent);
+public:
+    jsonic () = default;
+    jsonic (const jsonic& j) = delete;
+    void reset () noexcept
+    {   value_.emplace_null (); }
+    const ::boost::json::value& val () const noexcept { return value_; }
+    ::boost::json::value& val () noexcept { return value_; }
+    bool parse (nitpick& nits, const ::std::string& s, const e_charcode encoding);
+    static ::std::string rpt (const ::boost::json::value& val, const int indent = 0)
+    {   return ::std::string (indent*2, ' ') + rpt_base (val, indent); } };
+#endif // NO_JSONIC

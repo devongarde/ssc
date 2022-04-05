@@ -28,6 +28,133 @@ vstr_t sections;
 
 #define MACID ALPHANUMERIC "-_"
 
+#define SPEC_NIT \
+    "[class]\n" \
+    "{{class-name}} {{class-int}}\n" \
+    "\n" \
+    "[class-head]\n" \
+    "\n" \
+    START_OF_SECTION " classes\n" \
+    "\n" \
+    "[class-foot]\n" \
+    "\n" \
+    "[config]\n" \
+    "\n" \
+    "[config-head]\n" \
+    "\n" \
+    START_OF_SECTION " configuration\n" \
+    "\n" \
+    "[config-foot]\n" \
+    "\n" \
+    "[doc-head]\n" \
+    "-f {{config}}\n" \
+    "\n" \
+    "[doc-foot]\n" \
+    "\n" \
+    "[export]\n" \
+    "\n" \
+    "[export-head]\n" \
+    "\n" \
+    START_OF_SECTION " exports\n" \
+    "{{nit-line}} {{nit-ns}}\n" \
+    "\n" \
+    "[export-foot]\n" \
+    "\n" \
+    "[grand-head]\n" \
+    "\n" \
+    START_OF_SECTION " {{grand-title}}\n" \
+    "\n" \
+    "[grand-foot]\n" \
+    END_OF_STATS "\n" \
+    "\n" \
+    "[id]\n" \
+    "{{id-name}} ({{id-page}}:{{id-line}})\n" \
+    "\n" \
+    "[id-head]\n" \
+    "\n" \
+    START_OF_SECTION " itemids\n" \
+    "\n" \
+    "[id-foot]\n" \
+    "\n" \
+    "[init]\n" \
+    "{{nit-explanation}} [{{nit-id}}]\n" \
+    "\n" \
+    "[init-head]\n" \
+    "\n" \
+    START_OF_SECTION " initialisation\n" \
+    "\n" \
+    "[init-foot]\n" \
+    "\n" \
+    "[link]\n" \
+    "\n" \
+    "[link-head]\n" \
+    "\n" \
+    START_OF_SECTION " link errors\n" \
+    "{{nit-line}} {{nit-ns}}\n" \
+    "\n" \
+    "[link-foot]\n" \
+    "\n" \
+    "[nit]\n" \
+    "\n" \
+    "[nits-head]\n" \
+    "{{nit-line}} {{nit-ns}}\n" \
+    "\n" \
+    "[nits-page]\n" \
+    "{{nit-line}} {{nit-ns}}\n" \
+    "\n" \
+    "[nits-foot]\n" \
+    "\n" \
+    "[page-head]\n" \
+    "\n" \
+    "PASS {{page-path}}\n" \
+    "\n" \
+    "[page-foot]\n" \
+    "\n" \
+    "[shadow]\n" \
+    "\n" \
+    "[shadow-head]\n" \
+    "\n" \
+    START_OF_SECTION " shadow\n" \
+    "{{nit-line}} {{nit-ns}}\n" \
+    "\n" \
+    "[shadow-foot]\n" \
+    "\n" \
+    "[stat]\n" \
+    "    {{stat-name||: }}{{stat-count}} {{stat-detail}}\n" \
+    "\n" \
+    "[stats-head]\n" \
+    "{{stats-title||:}}\n" \
+    "\n" \
+    "[stats-foot]\n" \
+    "  {{stats-total}}\n" \
+    "\n" \
+    "[stat-sub]\n" \
+    "      {{stat-subname||: }}{{stat-subcount}} {{stat-subdetail}}\n" \
+    "\n" \
+    "[stats-subhead]\n" \
+    "  {{stats-subtitle||:}}\n" \
+    "\n" \
+    "[stats-subfoot]\n" \
+    "\n" \
+    "[update]\n" \
+    "\n" \
+    "[update-head]\n" \
+    "\n" \
+    START_OF_SECTION " update\n" \
+    "{{nit-line}} {{nit-ns}}\n" \
+    "\n" \
+    "[update-foot]\n" \
+    "\n" \
+    "[webmention]\n" \
+    "\n" \
+    "[webmention-head]\n" \
+    "\n" \
+    START_OF_SECTION " webmentions\n" \
+    "{{nit-line}} {{nit-ns}}\n" \
+    "\n" \
+    "[webmention-foot]\n" \
+    "\n"
+
 #define TEST_NIT \
     "[class]\n" \
     "{{class-name}} {{class-int}}\n" \
@@ -577,6 +704,7 @@ bool load_template_int (nitpick& nits, const html_version& v, const ::std::strin
             case '\r' :
             case '\n' :
             case '\f' :
+            case '\v' :
                 newline = true;
                 if (apres)
                 {   sect_begin = i+1;
@@ -591,7 +719,9 @@ bool load_template (nitpick& nits, const html_version& v)
 {   const ::std::string& format = context.nit_format ();
     ::std::string config;
     bool res = false;
-    if (context.test ()) res = load_template_int (nits, v, TEST_NIT);
+    if (context.test ())
+        if (context.spec ()) res = load_template_int (nits, v, SPEC_NIT);
+        else res = load_template_int (nits, v, TEST_NIT);
     else
     {   if (! format.empty ())
         {   config = template_path (nits, "out.nit", format);
@@ -669,7 +799,7 @@ bool load_template (nitpick& nits, const html_version& v)
 void dump_nits (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
 {   if (! nits.empty ())
 #ifdef NDEBUG
-        if (context.tell (static_cast < e_verbose > (nits.worst ())))
+        if (context.tell (nits.worst ()))
 #endif // NDEBUG
             context.out () << nits.review (entry, head, foot);
     nits.reset (); }

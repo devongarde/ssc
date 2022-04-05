@@ -49,7 +49,7 @@ void attributes_node::push_back_and_report (nitpick& nits, const html_version& v
 {   ::std::string x (name_start, name_end);
     if (keyed.find (x) == keyed.cend ()) keyed.insert (x);
     else if (normal) nits.pick (nit_attribute_repeated, es_warning, ec_attribute, "attribute ", x, " repeated");
-    if (context.tell (e_detail)) nits.pick (nit_attribute_recognised, es_detail, ec_attribute, ::std::string ("found "), x, "=", quote (::std::string (value_start, value_end)));
+    if (context.tell (es_detail)) nits.pick (nit_attribute_recognised, es_detail, ec_attribute, ::std::string ("found "), x, "=", quote (::std::string (value_start, value_end)));
     va_.emplace_back (nits, v, this, name_start, name_end, value_start, value_end, normal);
     if (va_.back ().invalid () && normal) report_invalid (nits, v, attr :: exists (x), name_start, name_end, el); }
 
@@ -58,7 +58,7 @@ void attributes_node::push_back_and_report (nitpick& nits, const html_version& v
 {   ::std::string x (name_start, name_end);
     if (keyed.find (x) == keyed.cend ()) keyed.insert (x);
     else if (normal) nits.pick (nit_attribute_repeated, es_warning, ec_attribute, "attribute ", x, " repeated");
-    if (context.tell (e_detail)) nits.pick (nit_attribute_recognised, es_detail, ec_attribute, ::std::string ("found "), quote (x));
+    if (context.tell (es_detail)) nits.pick (nit_attribute_recognised, es_detail, ec_attribute, ::std::string ("found "), quote (x));
     va_.emplace_back (nits, v, this, name_start, name_end, normal);
     if (va_.back ().invalid () && normal) report_invalid (nits, v, attr :: exists (x), name_start, name_end, el); }
 
@@ -93,6 +93,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
         switch (ch)
         {   case '\n' :
             case '\f' :
+            case '\v' :
                 newline = true;
                 [[fallthrough]];
             case '\r' :
@@ -103,7 +104,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                 break; }
         if (! ::std::iswcntrl (ch)) switch (status)
         {   case s_dull :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_dull ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_dull ", ch);
                 switch (ch)
                 {   case ' ' :  break;
                     case '=' :  if (! el.unknown ()) nits.pick (nit_missing_attribute_name, es_comment, ec_parser, "is an attribute name missing?\n");
@@ -112,7 +113,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                                 {   status = s_key; key_start = i; } }
                 break;
             case s_key :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_key ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_key ", ch);
                 switch (ch)
                 {   case ' ' :  key_end = i;
                                 status = s_keyend;
@@ -134,7 +135,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                                 status = s_dull; break; }
                 break;
             case s_keyend :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_keyend ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_keyend ", ch);
                 switch (ch)
                 {   case ' ' :  break;
                     case '=' :  status = s_assign; break;
@@ -145,7 +146,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                                 break; }
                 break;
             case s_assign :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_assign ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_assign ", ch);
                 switch (ch)
                 {   case ' ' :  break;
                     case '\'' : status = s_key_quote; break;
@@ -154,7 +155,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                                 status = s_val; value_start = i; break; }
                 break;
             case s_val :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_val ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_val ", ch);
                 switch (ch)
                 {   case ' ' :  status = s_dull;
                                 push_back_and_report (nits, v, keyed, key_start, key_end, value_start, i, el, normal);
@@ -169,7 +170,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                                 break; }
                 break;
             case s_key_quote :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_key_quote ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_key_quote ", ch);
                 if (newline) if (normal) nits.pick (nit_newline_in_string, es_warning, ec_parser, "newline in quoted attribute key");
                 switch (ch)
                 {   case '\'' : status = s_purgatory;
@@ -178,7 +179,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                     default :   status = s_value_quote; value_start = i; break; }
                 break;
             case s_key_double_quote :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_key_double_quote ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_key_double_quote ", ch);
                 if (newline) if (normal) nits.pick (nit_newline_in_string, es_warning, ec_parser, "newline in quoted attribute key");
                 switch (ch)
                 {   case '"' :  status = s_purgatory;
@@ -187,7 +188,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                     default :   status = s_value_double_quote; value_start = i; break; }
                 break;
             case s_value_quote :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_value_quote ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_value_quote ", ch);
                 if (newline) if (normal) nits.pick (nit_newline_in_string, es_warning, ec_parser, "newline in string");
                 switch (ch)
                 {   case '\\' :
@@ -203,7 +204,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                         break; }
                 break;
             case s_value_double_quote :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_value_double_quote ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_value_double_quote ", ch);
                 if (newline) if (normal) nits.pick (nit_newline_in_string, es_warning, ec_parser, "newline in string");
                 switch (ch)
                 {   case '\\' :
@@ -219,7 +220,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                         break; }
                 break;
             case s_purgatory :
-                if (context.tell (e_all)) nits.pick (nit_all, es_all, ec_parser, "s_purgatory ", ch);
+                if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_purgatory ", ch);
                 if (::std::iswspace (ch)) status = s_dull;
                 break; } }
     switch (status)

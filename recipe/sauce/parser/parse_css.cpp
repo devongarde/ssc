@@ -45,13 +45,13 @@ void parse_css (nitpick& nits, const html_version& , smsid_t& ids, const ::std::
     {   auto ch = *i;
         bool newline = false;
         switch (ch)
-        {   case '\r' :
-                ++line;
-                break;
-            case '\n' :
+        {   case '\n' :
+            case '\v' :
             case '\f' :
-                newline = true;
                 ++line;
+                [[fallthrough]];
+            case '\r' :
+                newline = true;
                 [[fallthrough]];
             case '\t' :
                 ch = ' ';
@@ -65,7 +65,7 @@ void parse_css (nitpick& nits, const html_version& , smsid_t& ids, const ::std::
                 {   ::std::string x (start, i);
                     if (ids.find (x) == ids.cend ())
                     {   ids.emplace (::std::string (start, i), 0);
-                        if (context.tell (e_debug)) nits.pick (nit_found_css_class, es_debug, ec_css, "Found CSS class ", x);
+                        if (context.tell (es_debug)) nits.pick (nit_found_css_class, es_debug, ec_css, "Found CSS class ", x);
                         ++count; }
                     status = st_dull; }
                 [[fallthrough]];
@@ -101,7 +101,7 @@ void parse_css (nitpick& nits, const html_version& , smsid_t& ids, const ::std::
                 if (ch == '/') status = st_dull;
                 else status = st_comment;
                 break; } }
-    if (context.tell (e_debug))
+    if (context.tell (es_debug))
         switch (count)
         {   case 0 : nits.pick (nit_found_css_class, es_comment, ec_css, "no CSS classes encountered"); break;
             case 1 : nits.pick (nit_found_css_class, es_comment, ec_css, "1 CSS class added"); break;

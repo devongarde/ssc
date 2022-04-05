@@ -73,7 +73,7 @@ void verify_file_charset (nitpick& nits, const html_version& v, const ::std::str
                        if (! matched.at (i).content ())
                             nits.pick (nit_icu, es_catastrophic, ec_icu, errmsg, ": internal ICU ucsdet_detect error (nullptr return)");
                         else
-                        {   if (context.tell (e_debug))
+                        {   if (context.tell (es_debug))
                             {   if (i > 0) rpt << ";";
                                 rpt << i << ":" << matched.at (i).name ();
                                 if (! matched.at (i).valid ()) rpt << " (error " << static_cast < int > (matched.at (i).error ()) << ")";
@@ -93,7 +93,7 @@ void verify_file_charset (nitpick& nits, const html_version& v, const ::std::str
                         nits.pick (nit_charset_used, es_info, ec_page, "'", name, "' appears to use ", matched.at (0).name ()); }
                     if (! validated)
                         nits.pick (nit_charset_invalid, es_error, ec_page, "The actual charset of '", name, "', ", matched.at (0).name (), ", is invalid in ", v.name (), "; prefer ", dcs);
-                    if (context.tell (e_debug)) nits.pick (nit_icu, es_debug, ec_icu, rpt.str ()); } } } }
+                    if (context.tell (es_debug)) nits.pick (nit_icu, es_debug, ec_icu, rpt.str ()); } } } }
     catch (...)
     {   nits.pick (nit_page_charset, es_error, ec_page, name, " is incompatible with charset ", charset); } }
 

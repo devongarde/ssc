@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 #include "type/type_case.h"
+#include "spell/spell.h"
 
 template < bool EMPTY > struct is_that
 {    static bool beside_the_point (const ::std::string& ) noexcept { return false; } };
@@ -54,7 +55,8 @@ public:
         else if (t == on_) true_ = true;
         else
         {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
-            else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be \"", OFF::sz (), "\" or \"", ON::sz (), "\"");
+            else if (! check_identifier_spelling (nits, v, t))
+                nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (OFF::sz ()), " or ", quote (ON::sz ()));
             type_base < base_type, TYPE > :: status (s_invalid);
             return; }
         compare_validate (nits, v, get_string (), pret); }

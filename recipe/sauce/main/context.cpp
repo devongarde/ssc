@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "main/options.h"
 #include "webmention/irt.h"
-#include "webmention/hook.h"
 #include "stats/stats.h"
 #include "element/elem.h"
 #include "utility/quote.h"
@@ -49,19 +48,19 @@ int context_t::parameters (nitpick& nits, int argc, char** argv)
     if (context.todo () == do_booboo) return ERROR_STATE;
     if ((context.todo () != do_examine) && (context.todo () != do_cgi)) return STOP_OK;
     o.contextualise (nits);
-    if (! test () && tell (e_debug)) out (o.report ());
+    if (! test () && tell (es_debug)) out (o.report ());
     for (const ::std::string& name : site_)
         if (name.find_first_not_of (ALPHANUMERIC) != ::std::string::npos)
         {   valid_ = false;
             nits.pick (nit_invalid_domain, es_error, ec_init, quote (name), " is not a valid domain name (do not include protocols)");
-            return false; }
+            return ERROR_STATE; }
     valid_ = context.cgi () || (! root ().empty ());
     return valid_ ? VALID_RESULT : ERROR_STATE; }
 
 context_t& context_t::webmention (nitpick& nits, const ::std::string& w, const e_wm_status status)
 {   if (! w.empty () && status > wm_status_)
     {   webmention_ = w;
-        if (tell (e_variable)) nits.pick (nit_webmention, es_info, ec_init, "setting context_t " WEBMENTION " to ", quote (w));
+        if (tell (es_variable)) nits.pick (nit_webmention, es_info, ec_init, "setting context_t " WEBMENTION " to ", quote (w));
         wm_status_ = status; }
     return *this; }
 
@@ -84,12 +83,6 @@ context_t& context_t::webmention (nitpick& nits, const ::std::string& w, const e
         if (slashed) if (! index ().empty ()) res += index (); }
     return res; }
 
-void context_t::process_outgoing_webmention (nitpick& nits, const html_version& v, const lingo& lang)
-{   if (notify ()) replies_.process (nits, v, lang); }
-
-void context_t::process_incoming_webmention (nitpick& nits, const html_version& v)
-{   if (! mentions_.empty ()) hooks_.process (nits, v); }
-
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
     constexpr int maxish = DEFAULT_LINE_LENGTH - 16;
@@ -108,7 +101,7 @@ void context_t::process_incoming_webmention (nitpick& nits, const html_version& 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
 {   return near_here (b, e, i, i); }
 
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level)
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_severity level)
 {   if (msg.empty () || ! context.tell (level)) return ::std::string ();
     ::std::string res (near_here (b, e, i));
     if (! res.empty ()) res += "\n";

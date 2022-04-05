@@ -50,6 +50,7 @@ class page
     bool style_css_ = true;
     bool check_links_ = true;
     bool snippet_ = false;
+    bool outsider_ = false;
     stats_t stats_;
     ssi_compedium ssi_;
     nitpick nits_;
@@ -64,18 +65,20 @@ class page
 public:
     page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d = nullptr);
     page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, directory* d = nullptr);
-    explicit page (const ::std::string& content);
+    explicit page (const ::std::string& content, const bool outsider = false);
     void swap (page& p);
     void reset (const page& p);
     nitpick& nits () noexcept { return nits_; }
     const nitpick& nits () const noexcept { return nits_; }
     bool parse (::std::string& content);
     bool invalid () const noexcept { return nodes_.invalid (); }
-    bool check_links () const noexcept { return check_links_ && ! snippet_; }
+    bool check_links () const noexcept { return check_links_ && ! snippet_ && ! outsider_; }
     void check_links (const bool b) noexcept { check_links_ = b; }
     void examine ();
     ::std::string find_webmention (const lingo& lang) const;
     ::std::string find_mention_info (const url& u, bool text, bool anything);
+    ::std::string find_mention_hook (const url& u);
+    bool mentions (const url& target);
     ids_t& get_ids () noexcept { return ids_; }
     const ids_t& get_ids () const noexcept { return ids_; }
     ids_t& get_names () noexcept { return names_; }

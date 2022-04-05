@@ -32,6 +32,80 @@ using ::boost::lexical_cast;
 using ::boost::bad_lexical_cast;
 #endif // NO_BOOST_PROCESS
 
+// https://datatracker.ietf.org/doc/html/rfc2606
+const vstr_t rfc2606_no_no =
+{   "example",
+    "example.com",
+    "example.edu", // technically ok, but seen in the wild
+    "example.net",
+    "example.org",
+    "invalid",
+    "localhost",
+    "test" };
+
+// https://tools.ietf.org/id/draft-chapin-rfc2606bis-00.html
+const vstr_t rfc2606_local =
+{   "corp",
+    "domain",
+    "home",
+    "host",
+    "lan",
+    "local",
+    "localdomain" };
+
+#define EXAMPLE_START \
+    "<!DOCTYPE HTML>" \
+    "<HTML lang=\"en-GB\">" \
+    "<HEAD>"
+
+#define EXAMPLE_CENTRE \
+    "</HEAD>" \
+    "<BODY>"
+
+#define EXAMPLE_FINISH \
+    "</BODY>" \
+    "</HTML>"
+
+#define EXAMPLE_HTML \
+    EXAMPLE_START \
+    "<!-- example domain specified -->" \
+    EXAMPLE_CENTRE \
+    "<H1>Example HTML</H1>" \
+    EXAMPLE_FINISH
+
+#define EXAMPLE_SOURCE \
+    EXAMPLE_START \
+    "<!-- example webmention source -->" \
+    EXAMPLE_CENTRE \
+    "<H1>Example Source</H1>" \
+    "<a href=\"https://example.net/subdirectory/target.html\">This is a grate post</a>" \
+    EXAMPLE_FINISH
+
+#define EXAMPLE_TARGET \
+    EXAMPLE_START \
+    "<!-- example webmention target -->" \
+    "<link href=\"https://example.net/endpoint.html\" rel=\"webmention\" />" \
+    EXAMPLE_CENTRE \
+    "<H1>Example Target</H1>" \
+    "<P>How to grate water...</P>" \
+    EXAMPLE_FINISH
+
+#define EXAMPLE_RELATIVE \
+    EXAMPLE_START \
+    "<!-- example webmention target -->" \
+    "<link href=\"../endpoint.html\" rel=\"webmention\" />" \
+    EXAMPLE_CENTRE \
+    "<H1>Example Target</H1>" \
+    "<P>How to grate water...</P>" \
+    EXAMPLE_FINISH
+
+#define EXAMPLE_ENDPOINT \
+    EXAMPLE_START \
+    "<!-- example webmention endpoint -->" \
+    EXAMPLE_CENTRE \
+    "<H1>Example Endpoint</H1>" \
+    EXAMPLE_FINISH
+
 int process_curl_result (nitpick& nits, const html_version& v, const vstr_t& r, bool pure_code)
 {   int code = 0;
     bool first = true;
@@ -92,26 +166,11 @@ int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdlin
     return code; }
 #endif // NO_BOOST_PROCESS
 
-// https://datatracker.ietf.org/doc/html/rfc2606
-const vstr_t rfc2606_no_no =
-{   "example",
-    "example.com",
-    "example.edu", // technically ok, but seen in the wild
-    "example.net",
-    "example.org",
-    "invalid",
-    "localhost",
-    "test" };
+bool is_example_domain (const url& u)
+{   return (one_of_domain (u.domain (), rfc2606_no_no)); }
 
-// https://tools.ietf.org/id/draft-chapin-rfc2606bis-00.html
-const vstr_t rfc2606_local =
-{   "corp",
-    "domain",
-    "home",
-    "host",
-    "lan",
-    "local",
-    "localdomain" };
+bool is_local_domain (const url& u)
+{   return (one_of_domain (u.domain (), rfc2606_local)); }
 
 void test_hypertext (nitpick& nits, const html_version& v, const url& u)
 {   if (u.has_domain ())
@@ -119,10 +178,10 @@ void test_hypertext (nitpick& nits, const html_version& v, const url& u)
         PRESUME (! d.empty (), __FILE__, __LINE__);
         if (::boost::algorithm::iends_with (d, "invalid"))
         {   context.code (404); return; }
-        if (one_of_domain (d, rfc2606_no_no))
+        if (is_example_domain (u))
         {   if (context.example ()) nits.pick (nit_example, es_warning, ec_link, "link to test domain ", quote (d), " (see RFC 2606)");
             context.code (200); return; }
-        if (one_of_domain (d, rfc2606_local))
+        if (is_local_domain (u))
         {   if (context.local ()) nits.pick (nit_local, es_info, ec_link, "link to local domain ", quote (d), " (see RFC 2606 bis)");
             context.code (200); return; }
         if (one_of_domain (d, context.report ()))
@@ -185,14 +244,23 @@ bool fetch_common (nitpick& nits, const html_version& v, const url& u, const ::b
 {   if (! u.is_usable ())
     {   nits.pick (nit_cannot_open, es_error, ec_webmention, "Unable to open ", quote (u.original ()), " to find " WEBMENTION "");
         return false; }
+    if (is_example_domain (u))
+    {   ::std::string fn (u.filename ());
+        if (fn == "source.html") { if (write_text_file (file, EXAMPLE_SOURCE)) return true; }
+        if (fn == "target.html") { if (write_text_file (file, EXAMPLE_TARGET)) return true; }
+        if (fn == "endpoint.html") { if (write_text_file (file, EXAMPLE_ENDPOINT)) return true; }
+        if (fn == "relative.html") { if (write_text_file (file, EXAMPLE_RELATIVE)) return true; }
+        if (write_text_file (file, EXAMPLE_HTML)) return true;
+        nits.pick (nit_cannot_write, es_error, ec_webmention, "Unable to write example HTML to ", quote (file.string ()));
+        return false; }
     ::std::string cmdline (curl);
     cmdline += file.string ();
     cmdline += " ";
     if (u.is_https () && context.revoke ()) cmdline += "--ssl-norevoke ";
     cmdline += u.absolute ();
-    if (context.tell (e_debug)) nits.pick (nit_debug, es_debug, ec_webmention, WEBMENTION " http headers sought with ", quote (cmdline));
+    if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_webmention, WEBMENTION " http headers sought with ", quote (cmdline));
     const int code = call_curl (nits, v, cmdline, 599, false);
-    if (context.tell (e_variable)) nits.pick (nit_debug, es_detail, ec_link, "got ", code, "\n");
+    if (context.tell (es_variable)) nits.pick (nit_debug, es_detail, ec_link, "got ", code, "\n");
     return (code < 300); }
 
 bool fetch_http (nitpick& nits, const html_version& v, const url& u, const ::boost::filesystem::path& file)
@@ -213,8 +281,8 @@ bool mention (nitpick& nits, const html_version& v, const url& source, const url
     cmdline += " ";
     if (server.is_https () && ! context.revoke ()) cmdline += "--ssl-norevoke ";
     cmdline += server.absolute ();
-    if (context.tell (e_debug)) nits.pick (nit_debug, es_debug, ec_link, quote (cmdline));
+    if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_link, quote (cmdline));
     const int code = call_curl (nits, v, cmdline, 599, false);
-    if (context.tell (e_variable)) nits.pick (nit_debug, es_detail, ec_link, "got ", code, "\n");
+    if (context.tell (es_variable)) nits.pick (nit_debug, es_detail, ec_link, "got ", code, "\n");
     validity.insert (validity_t::value_type (server.absolute (), code < 300));
     return (code < 300); }

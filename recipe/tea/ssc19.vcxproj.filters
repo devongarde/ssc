@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Sauce">
@@ -43,9 +43,6 @@
     </Filter>
     <Filter Include="Sauce\utility">
       <UniqueIdentifier>{819a17cf-30af-4980-80b5-3056a3de4de0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sauce\webmention">
-      <UniqueIdentifier>{4d3e249e-7cd2-4785-81ec-308e9f823f6c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sauce\webpage">
       <UniqueIdentifier>{d11fd83d-2a60-41d8-90af-5e7fb82af0cc}</UniqueIdentifier>
@@ -95,9 +92,6 @@
     </Filter>
     <Filter Include="Heater\utility">
       <UniqueIdentifier>{acf09905-2aab-4953-a2d8-9eb6a41efa1c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Heater\webmention">
-      <UniqueIdentifier>{ee86f2ad-4aff-46d9-a61b-1e9ab06b48d8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Heater\webpage">
       <UniqueIdentifier>{d95b5002-4163-4394-8dfd-986e8bbcc54d}</UniqueIdentifier>
@@ -699,9 +693,6 @@
     <Filter Include="Toast\RDFa\vcard">
       <UniqueIdentifier>{4895ad03-5333-435f-b810-9fc846f722ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Tea\templates">
-      <UniqueIdentifier>{15bc2191-bcf8-4d36-bfc6-4feeb51fd3c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Output">
       <UniqueIdentifier>{130f6b98-3fd8-4a89-bd86-78b1561b8d68}</UniqueIdentifier>
     </Filter>
@@ -806,6 +797,18 @@
     </Filter>
     <Filter Include="Toast\Webmention\1">
       <UniqueIdentifier>{f413326d-1298-4988-b476-d741a93e85b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Webmention\2">
+      <UniqueIdentifier>{8bf0d1f2-0098-481a-9b01-7f45db45d171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Webmention\3">
+      <UniqueIdentifier>{b627da3d-4787-4913-aa97-4b6592ebe28b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Webmention\4">
+      <UniqueIdentifier>{f38cade4-d582-459f-80df-9a159e190359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\root">
+      <UniqueIdentifier>{a097eece-e122-482a-ba05-5bc387f2028b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1130,18 +1133,6 @@
     <ClInclude Include="..\heater\utility\tuple.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\webmention\hook.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\irt.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\webmention.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\webmentions.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\webpage\crosslink.h">
       <Filter>Heater\webpage</Filter>
     </ClInclude>
@@ -1303,6 +1294,12 @@
     </ClInclude>
     <ClInclude Include="..\heater\icu\lingo.h">
       <Filter>Heater\icu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\schema\jsonld.h">
+      <Filter>Heater\schema</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_country.h">
+      <Filter>Heater\type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1582,18 +1579,6 @@
     <ClCompile Include="..\sauce\utility\quote.cpp">
       <Filter>Sauce\utility</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\webmention\hook.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\irt.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\webmention.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\webmentions.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\webpage\crosslink.cpp">
       <Filter>Sauce\webpage</Filter>
     </ClCompile>
@@ -1782,6 +1767,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\icu\lingo.cpp">
       <Filter>Sauce\icu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\schema\jsonld.cpp">
+      <Filter>Sauce\schema</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_country.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -20565,18 +20556,6 @@
     <None Include="..\toast\RDFa\vcard\vcard.html">
       <Filter>Toast\RDFa\vcard</Filter>
     </None>
-    <None Include=".ssc\delete.tpl">
-      <Filter>Tea\templates</Filter>
-    </None>
-    <None Include=".ssc\new.tpl">
-      <Filter>Tea\templates</Filter>
-    </None>
-    <None Include=".ssc\static.tpl">
-      <Filter>Tea\templates</Filter>
-    </None>
-    <None Include=".ssc\change.tpl">
-      <Filter>Tea\templates</Filter>
-    </None>
     <None Include="..\toast\output\html\index.html">
       <Filter>Toast\Output\html</Filter>
     </None>
@@ -23184,6 +23163,105 @@
     <None Include="..\toast\webmention\1\wm.spec">
       <Filter>Toast\Webmention\1</Filter>
     </None>
+    <None Include="..\toast\webmention\2\index.html">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\webmention\2\wm.conf">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\webmention\2\wm.spec">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\webmention\3\index.html">
+      <Filter>Toast\Webmention\3</Filter>
+    </None>
+    <None Include="..\toast\webmention\3\wm.conf">
+      <Filter>Toast\Webmention\3</Filter>
+    </None>
+    <None Include="..\toast\webmention\3\wm.spec">
+      <Filter>Toast\Webmention\3</Filter>
+    </None>
+    <None Include="..\toast\webmention\4\index.html">
+      <Filter>Toast\Webmention\4</Filter>
+    </None>
+    <None Include="..\toast\webmention\4\wm.conf">
+      <Filter>Toast\Webmention\4</Filter>
+    </None>
+    <None Include="..\toast\webmention\4\wm.spec">
+      <Filter>Toast\Webmention\4</Filter>
+    </None>
+    <None Include="..\toast\webmention\1\pre.bat">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
+    <None Include="..\toast\webmention\1\pre.sh">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
+    <None Include="..\toast\webmention\4\pre.bat">
+      <Filter>Toast\Webmention\4</Filter>
+    </None>
+    <None Include="..\toast\webmention\4\pre.sh">
+      <Filter>Toast\Webmention\4</Filter>
+    </None>
+    <None Include="..\toast\webmention\3\pre.bat">
+      <Filter>Toast\Webmention\3</Filter>
+    </None>
+    <None Include="..\toast\webmention\3\pre.sh">
+      <Filter>Toast\Webmention\3</Filter>
+    </None>
+    <None Include="..\toast\webmention\2\pre.bat">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\webmention\2\pre.sh">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\other\root\root.conf">
+      <Filter>Toast\Other\root</Filter>
+    </None>
+    <None Include="..\toast\other\root\root.spec">
+      <Filter>Toast\Other\root</Filter>
+    </None>
+    <None Include="..\toast\webmention\1\example.org.ssc.model">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
+    <None Include="..\toast\webmention\2\example.org.ssc.model">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\webmention\1\change.tpl">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
+    <None Include="..\toast\webmention\1\delete.tpl">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
+    <None Include="..\toast\webmention\1\new.tpl">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
+    <None Include="..\toast\webmention\1\static.tpl">
+      <Filter>Toast\Webmention\1</Filter>
+    </None>
+    <None Include="..\toast\webmention\2\change.tpl">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\webmention\2\delete.tpl">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\webmention\2\new.tpl">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\webmention\2\static.tpl">
+      <Filter>Toast\Webmention\2</Filter>
+    </None>
+    <None Include="..\toast\webmention\3\change.tpl">
+      <Filter>Toast\Webmention\3</Filter>
+    </None>
+    <None Include="..\toast\webmention\3\delete.tpl">
+      <Filter>Toast\Webmention\3</Filter>
+    </None>
+    <None Include="..\toast\webmention\3\new.tpl">
+      <Filter>Toast\Webmention\3</Filter>
+    </None>
+    <None Include="..\toast\webmention\3\static.tpl">
+      <Filter>Toast\Webmention\3</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -23422,9 +23500,6 @@
     <Text Include="..\toast\shadow\update\README.txt">
       <Filter>Toast\Shadow\Update</Filter>
     </Text>
-    <Text Include=".ssc\README.txt">
-      <Filter>Tea\templates</Filter>
-    </Text>
     <Text Include="..\toast\json-ld\README.txt">
       <Filter>Toast\JSON-LD</Filter>
     </Text>
@@ -23440,8 +23515,8 @@
     <Text Include="..\toast\spell\README.txt">
       <Filter>Toast\Spell</Filter>
     </Text>
-    <Text Include="..\..\webmention.txt">
-      <Filter>Info</Filter>
+    <Text Include="..\toast\webmention\4\header.txt">
+      <Filter>Toast\Webmention\4</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

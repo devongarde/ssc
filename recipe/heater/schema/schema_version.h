@@ -47,9 +47,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_VC_NOT2      0x00000100
 #define SV_VC_DEP4      0x00000400
 
-#define DEFAULT_SCHEMA_ORG_MAJOR 13
+#define DEFAULT_SCHEMA_ORG_MAJOR 14
 #define DEFAULT_SCHEMA_ORG_MINOR 0
-#define DEFAULT_SCHEMA_ORG_VERSION "13.0"
+#define DEFAULT_SCHEMA_ORG_VERSION "14.0"
 
 constexpr unsigned char schema_major_max = DEFAULT_SCHEMA_ORG_MAJOR;
 class html_version;
@@ -171,6 +171,8 @@ const schema_version good_relations (s_gr, 1, 0);
 
 const schema_version grddl_schema (s_grddl, 1, 0);
 
+const schema_version gs1_schema (s_gs1, 1, 0);
+
 const schema_version ical_schema (s_ical, 1, 0);
 
 const schema_version icaltzd_schema (s_icaltzd, 1, 0);
@@ -270,6 +272,7 @@ const schema_version schema_10 (s_schema, 10, 0);
 const schema_version schema_11 (s_schema, 11, 0);
 const schema_version schema_12 (s_schema, 12, 0);
 const schema_version schema_13 (s_schema, 13, 0);
+const schema_version schema_14 (s_schema, 14, 0);
 const schema_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
 
 const schema_version sd_schema (s_sd, 1, 0);

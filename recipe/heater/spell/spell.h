@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 typedef ssc_mm < ::std::string, vstr_t > mssfl_t;
 extern mssfl_t mssfl;
 
+bool check_identifier_spelling (nitpick& nits, const html_version& v, const ::std::string& s);
 void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::filesystem::path& fn);
 
 #ifndef NOSPELL
@@ -42,15 +43,15 @@ void add_dict (const ::std::string& lang, const ::std::string& dict);
 void spell_tell (nitpick& nits, const lingo& lang, const ::std::string& word, const vstr_t& alt);
 ::std::string get_supported_locales (nitpick& nits);
 #else // NOSPELL
-inline void check_spelling (nitpick& , const lingo& , const ::std::string& ) { }
+inline void check_spelling (nitpick& , const html_version& , const lingo& , const ::std::string& ) { }
 inline void spell_init (nitpick& nits)
 {   nits.pick (nit_no_spell, es_comment, ec_spell, "spell check unavailable"); }
 inline vstr_t load_dictionaries (nitpick& ) { return vstr_t (); }
 inline void spell_free () { }
 inline void spell_terminate () { }
 inline void add_dict (const lingo& , const ::std::string& ) { }
-inline ::std::string get_dict (const lingo& ) { return ::std::string (); }
-inline ::std::string get_dict (const ::std::string& ) { return ::std::string (); }
-void spell_tell (nitpick& , const lingo& , const ::std::string& , const vstr_t& ) { }
-::std::string get_supported_locales (nitpick& ) { return ""; }
+inline ::std::string get_lang_dict (const ::std::string& ) { return ::std::string (); }
+inline ::std::string get_dict_lang (const ::std::string& ) { return ::std::string (); }
+inline void spell_tell (nitpick& , const lingo& , const ::std::string& , const vstr_t& ) { }
+inline ::std::string get_supported_locales (nitpick& ) { return ""; }
 #endif // NOSPELL

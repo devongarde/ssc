@@ -96,22 +96,6 @@ vx_t vx;
 mxp_t site_x, disk_x;  // note ::boost::filesystem::path and ::std::map are not pals
 mcrc_t mcrc;
 
-#ifndef UNIX
-// see also local_path_to_nix declaration in fileindex.h
-// presuming if not unix then windows
-::std::string local_path_to_nix (const ::std::string& s)
-{   ::std::string res (s);
-    ::boost::replace_all (res, "\\", "/");
-    if ((res.length () >= 2) && (res.at (1) == ':')) res = res.substr (2);
-    return res; }
-
-::std::string nix_path_to_local (const ::std::string& s)
-{   if (s.empty ()) return s;
-    ::std::string res (s);
-    ::boost::replace_all (res, "/", "\\");
-    return res; }
-#endif // UNIX
-
 void fileindex_init ()
 {   PRESUME (disk_x.empty (), __FILE__, __LINE__);
     PRESUME (site_x.empty (), __FILE__, __LINE__);
@@ -557,7 +541,7 @@ bool fileindex_load (nitpick& nits)
 {   if (! context.shadow_enable ()) return true;
     bool ok = false;
     if (fileindex_load_internal (nits, ok))
-    {   if (context.tell (e_splurge)) context.out () << fileindex_report ();
+    {   if (context.tell (es_splurge)) context.out () << fileindex_report ();
         return true; }
     if (! ok)
     {   ::boost::filesystem::path p (persist_path ());
@@ -571,7 +555,7 @@ void fileindex_save_and_close (nitpick& nits)
     site_x.clear ();
     disk_x.clear ();
     mcrc.clear ();
-    if (context.tell (e_all)) context.out () << fileindex_report ();
+    if (context.tell (es_all)) context.out () << fileindex_report ();
     ::boost::filesystem::path name (persist_path ());
     ::boost::filesystem::fstream f (name, ::std::ios::out | ::std::ios::trunc);
     if (f.fail ()) nits.pick (nit_cannot_update, es_error, ec_crc, "cannot open ", name.string ());

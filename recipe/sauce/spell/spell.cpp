@@ -19,9 +19,119 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#ifndef NOSPELL
 #include "spell/spell.h"
 #include "main/context.h"
+
+// for those who habitually spell correctly (unlike me)
+bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std::string& s)
+{   typedef enum { d_none, d_johnson, d_anaesthesia, d_oz, d_collins, d_wiki } e_dictionary;
+    const char* const dictionary [] =
+    {   nullptr,
+        "Samuel Johnson, A Dictionary of the English Language, first edition, Longman etc., MDCCLV",
+        "A Dictionary of Anaesthesia, second edition, Oxford University Press, 2017",
+        "Australian Oxford Dictionary, second edition, Oxford University Press, 2004",
+        "Collins English Dictionary",
+        "wikipedia, https://en.wikipedia.org/" };
+    struct spellings
+    {   const char* spell_ = nullptr;
+        e_dictionary dict_ = d_none;
+        const char* ref_ = nullptr;
+        bool dialect_ = false; };
+    spellings word [] =
+    {   { "centre", d_johnson, "348" },
+        { "color", d_none, nullptr, true },
+        { "colour", d_johnson, "409" },
+        { "organisation", d_none, nullptr },
+        { "alternative", d_none, nullptr },
+        { "anaesthesia", d_anaesthesia, nullptr },
+        { "autocapitalise", d_none, nullptr },
+        { "authorise", d_oz, nullptr },
+        { "behaviour", d_johnson, "225" },
+        { "catalogue", d_johnson, "340" },
+        { "colourist", d_none, nullptr },
+        { "coworker", d_none, nullptr },
+        { "dialogue", d_johnson, "585" },
+        { "grey", d_collins, nullptr },
+        { "gynaecologic", d_wiki, "https://en.wikipedia.org/wiki/Gynaecology" },
+        { "haematologic", d_none, nullptr },
+        { "honour", d_none, nullptr },
+        { "licence", d_none, nullptr },
+        { "motorised", d_none, nullptr },
+        { "neighbour", d_johnson, "1356" },
+        { "normalise", d_none, nullptr },
+        { "optimise", d_none, nullptr },
+        { "organiser", d_none, nullptr },
+        { "organise", d_none, nullptr },
+        { "paediatric", d_none, nullptr },
+        { "parlour", d_johnson, "1452" },
+        { "penciller", d_none, nullptr },
+        { "randomised", d_none, nullptr },
+        { "referrer", d_wiki, "https://en.wikipedia.org/wiki/HTTP_referer#Etymology" },
+        { "speciality", d_johnson, "1895" },
+        { "sought", d_none, nullptr },
+        { "theatre", d_johnson, "2042" },
+        { "tyre", d_none, nullptr },
+        { nullptr, d_none, nullptr } };
+    typedef ssc_map < ::std::string, spellings > msp_t;
+    static msp_t ms;
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26446 26482)
+#endif // _MSC_VER
+    if (ms.empty ())
+        for (::std::size_t i = 0; word [i].spell_ != nullptr; ++i)
+            ms.insert (msp_t::value_type (word [i].spell_, word [i]));
+    ::std::string ss (::boost::algorithm::to_lower_copy (trim_the_lot_off (s)));
+    msp_t::const_iterator i = ms.find (ss);
+    if (i != ms.cend ())
+    {   if (i -> second.dict_ != d_none)
+            if (dictionary [i -> second.dict_] != nullptr)
+            {   ::std::string ref (dictionary [i -> second.dict_]);
+                if (i -> second.ref_ != nullptr)
+                {   ref += ", page ";
+                    ref += i -> second.ref_; }
+                if (i -> second.dialect_)
+                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, quote (i -> second.spell_), " is unrecognised, and dialect: is standard english required?");
+                else
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), " is spelt correctly");
+                return true; }
+        if (i -> second.dialect_)
+            nits.pick (nit_dialect, es_comment, ec_incorrectness, quote (i -> second.spell_), " is unrecognised, and dialect: is standard english required?");
+        else
+            nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (i -> second.spell_), " is spelt correctly");
+        return true; }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+    ::std::string sss (ss);
+    if (sss.length () > 60) sss = "text";
+    for (::std::size_t x = 0; ::gsl::at (word, x).spell_ != nullptr; ++x)
+        if (ss.find (::gsl::at (word, x).spell_) != ::std::string::npos)
+        {   if (::gsl::at (word, x).dict_ != d_none)
+            {   PRESUME (::gsl::at (word, x).dict_ <= d_wiki, __FILE__, __LINE__);
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 6387 26446 26482) // unless, of course, you consider the preceding conditions, linter.
+#endif // _MSC_VER
+                ::std::string ref (dictionary [::gsl::at (word, x).dict_]);
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+                if (::gsl::at (word, x).ref_ != nullptr)
+                {   ref += ", page ";
+                    ref += ::gsl::at (word, x).ref_; }
+                if (::gsl::at (word, x).dialect_)
+                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, sss, " contains ", quote (::gsl::at (word, x).spell_), ", which is unrecognised, and dialect: is standard english required?");
+                else
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains ", quote (::gsl::at (word, x).spell_), ", which is spelt correctly"); }
+            else if (::gsl::at (word, x).dialect_)
+                nits.pick (nit_dialect, es_comment, ec_incorrectness, sss, " contains ", quote (::gsl::at (word, x).spell_), ", which is unrecognised, and dialect: is standard english required?");
+            else
+                nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains ", quote (::gsl::at (word, x).spell_), ", which is spelt correctly");
+            return true; }
+    return false; }
+
+#ifndef NOSPELL
 #include "type/type_master.h"
 #include "utility/filesystem.h"
 #include "parser/text.h"
@@ -59,7 +169,7 @@ void spell_tell (nitpick& nits, const lingo& lang, const ::std::string& word, co
         {   if (context.cased ()) nits.pick (nit_case, es_error, ec_spell, "should ", quote (word), " be ", quote (a), "?");
             return; }
     nits.pick (nit_misspelt, es_error, ec_spell, quote (word), " may be misspelt");
-    if (context.tell (e_info)) switch (alt.size ())
+    if (context.tell (es_info)) switch (alt.size ())
     {   case 0 : break;
         case 1 :
             nits.pick (nit_spell_perhaps, es_info, ec_spell, "was ", quote (alt.at (0)), " intended?");

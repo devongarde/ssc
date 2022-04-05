@@ -3,6 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+0.0.125
+- schema.org 14
+- mark schema.org attic content as deprecated
+- gs1 microdata now recognised
+- make default protocol https (it was http)
+- removed webmentions
+- underlying work & bug fixes
+
 0.0.124
 - builds under Centos 9 streams
 - report unexpected content in configuration file
@@ -491,7 +499,6 @@ https://ssc.lu/
 
 0.0.2
 - microformats
-- webmention
 
 0.0.1
 - import swlc

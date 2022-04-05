@@ -33,7 +33,7 @@ class nitpick
     {   mns_t::const_iterator i = mns_.find (code);
         if (i != mns_.cend ()) return i -> second;
         return s; }
-    template < class T > ::std::string inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns) const;
+    template < class T > ::std::string inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns, const bool unfiltered) const;
 public:
     nitpick () = default;
     nitpick (const nitpick& np) = default;
@@ -70,10 +70,12 @@ public:
     void set_context (const int line, const ::std::string::const_iterator b, ::std::string::const_iterator e);
     void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
     void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to);
-    void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
+    void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_severity level = es_comment);
     ::std::string get_context () const { return mote_; }
     int get_line () const  noexcept{ return line_; }
-    ::std::string review (const mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
+    ::std::string review (const mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false) const;
     ::std::string review (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
+    ::std::string unfiltered (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
     e_severity worst () const;
+    ::std::size_t size () const { return nits_.size (); }
     bool empty () const noexcept { return nits_.empty (); } };

@@ -528,7 +528,7 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
     ::std::string lc (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)));
     if (lc.empty ()) set (v, current);
     else
-    {  const ::std::string::size_type colon = lc.find (COLON);
+    {   const ::std::string::size_type colon = lc.find (COLON);
         default_ = (colon == ::std::string::npos);
         if (default_) set (v, current);
         else if (colon == 0 || colon == lc.length () - 1)
@@ -550,9 +550,9 @@ bool protocol::is_valid () const
 {   reinit ();
     return url_schemes < SCHEMES > :: get (scheme (), component_, default_); }
 
-::std::string protocol::absolute (bool can_use_index) const
+::std::string protocol::absolute (const bool can_use_index, const bool force) const
 {   reinit ();
-    return url_schemes < SCHEMES > :: absolute (scheme (), component_, can_use_index, default_); }
+    return url_schemes < SCHEMES > :: absolute (scheme (), component_, can_use_index, (! force) && default_); }
 
 bool protocol::operator == (const protocol& rhs) const
 {   if (scheme () != rhs.scheme ()) return false;

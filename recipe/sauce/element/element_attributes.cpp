@@ -118,7 +118,7 @@ bool element::examine_class (const lingo& lang)
             {   if (context.mf_verify ()) pick (nit_duplicate_microformat, es_warning, ec_microformat, "ignoring duplicate ", quote (c.name ())); }
             else
             {   if (context.mf_verify ())
-                    if (context.tell (e_debug))
+                    if (context.tell (es_debug))
                         pick (nit_mf_found, es_comment, ec_microformat, "microformat vocabulary ", quote (c.name ()), " (", c.get (), ") found");
                     else pick (nit_mf_found, es_comment, ec_microformat, "microformat vocabulary ", quote (c.name ()), " found");
                 mf_ -> declare (c.get ());
@@ -140,7 +140,7 @@ bool element::examine_class (const lingo& lang)
                 farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *this);
                 if (context.mf_verify ())
                 {   farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this, lang);
-                    if (context.tell (e_detail))
+                    if (context.tell (es_detail))
                         pick (nit_prop_set, es_comment, ec_microformat, html_class::name (farm.second),
                             " property ", p.name (), " (", p.get (), ")", " set to ", quote (farm.first -> mf_ -> get_string (farm.second, p.get ())));
                     else pick (nit_prop_set, es_comment, ec_microformat, html_class::name (farm.second),
@@ -154,7 +154,7 @@ bool element::examine_class (const lingo& lang)
                     ancestral_farm.first -> mf_ -> set_mf_value (nits (), node_.version (), farm.second, p.get (), *prop_vocab_element);
                     if (context.mf_verify ())
                     {   ancestral_farm.first -> mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this, lang);
-                        if (context.tell (e_detail))
+                        if (context.tell (es_detail))
                             pick (nit_prop_set, es_comment, ec_microformat,
                                 "parental ", html_class::name (ancestral_farm.second), " property ", p.name (), " (", p.get (), ")",
                                 " set to ", quote (ancestral_farm.first -> mf_ -> get_string (ancestral_farm.second, p.get ())));
@@ -183,7 +183,7 @@ bool element::examine_class (const lingo& lang)
                                 if (! is_plausible_sibling (p.get (), sis.get ())) continue;
                                 mf_ -> set_mf_value (nits (), node_.version (), c.get (), p.get (), *this);
                                 if (context.mf_verify ())
-                                    if (context.tell (e_detail))
+                                    if (context.tell (es_detail))
                                         pick (nit_sibling, es_comment, ec_microformat, html_class::name (farm.second), " property ", p.name (),
                                             " (", p.get (), "), sibling of property ", sis.name (),  " (", sis.get (), "), set to ", quote (mf_ -> get_string (c.get (), p.get ())));
                                     else pick (nit_sibling, es_comment, ec_microformat, html_class::name (farm.second), " property ", p.name (),
@@ -329,7 +329,7 @@ bool element::examine_rel (const ::std::string& content, const lingo& lang)
             {   mf_ -> declare (r.get ());
                 mf_ -> verify_attributes (nits (), node_.version (), node_.id (), this, lang);
                 if (context.mf_verify ())
-                    if (context.tell (e_variable)) pick (nit_rel_found, es_comment, ec_attribute, "REL type ", quote (r.name ()), " (", r.get (), ") found");
+                    if (context.tell (es_variable)) pick (nit_rel_found, es_comment, ec_attribute, "REL type ", quote (r.name ()), " (", r.get (), ") found");
                     else pick (nit_rel_found, es_comment, ec_attribute, "REL type ", quote (r.name ()), " found");
                 const prop p (r);
                 if (! p.invalid ())

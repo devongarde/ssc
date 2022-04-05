@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#ifdef HAS_WM
 #include "utility/common.h"
 
 class lingo;
@@ -33,6 +34,7 @@ public:
     reply (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content)
         : file_ (file), id_ (id), target_ (target), content_ (clean (content)), activity_ (act_unknown)  { mark (); }
     reply (::boost::property_tree::ptree& tree, const ::std::string& container) : activity_ (act_unknown) { read (tree, container); }
+    reply (nitpick& nits, const ::boost::json::object& jo);
     void swap (reply& r) noexcept;
     bool invalid () const noexcept { return file_.empty (); }
     void mark ();
@@ -49,22 +51,10 @@ public:
     void write (::boost::property_tree::ptree& tree, const ::std::string& container);
     ::std::string report (const char* verb) const;
     ::std::string report (const ::std::size_t n) const;
-    bool enact (nitpick& nits, const html_version& v, const lingo& lang); };
+    bool enact (nitpick& nits, const html_version& v, const lingo& lang);
+    bool save (nitpick& nits, ::boost::json::object& jo);
+    bool process (nitpick& nits, const html_version& v); };
 
 typedef ::std::vector < reply > vreply_t;
 constexpr ::std::size_t no_reply = UINT_MAX;
-
-class replies
-{   vreply_t reply_;
-    ::std::size_t size () const noexcept { return reply_.size (); }
-    ::std::size_t find (const reply& r);
-    ::std::size_t probably_match (const reply& r);
-    bool read (const ::std::string filename);
-    bool write ();
-    bool update_records (nitpick& nits);
-    bool enact (nitpick& nits, const html_version& v, const lingo& lang);
-public:
-    void swap (replies& r) noexcept { reply_.swap (r.reply_); }
-    void append (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content);
-    ::std::string report (const char* comment = nullptr) const;
-    bool process (nitpick& nits, const html_version& v, const lingo& lang); };
+#endif // HAS_WM
