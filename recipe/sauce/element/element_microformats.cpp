@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "element/element.h"
 #include "webpage/page.h"
+#include "attribute/attribute_classes.h"
 
 template < class PROPERTY > void mf_postprocess_entry (const microformats_ptr& mf, e_wm_status& wms, ::std::string& mention)
 {   if (wms < wm_addr)
@@ -107,6 +108,31 @@ template < class PROPERTY > struct fmi
         s = e -> find_mention_info (target, b, anything);
     return s; }
 
+::std::string element::find_mention_hook (const url& target)
+{   ::std::string s;
+    if ((tag () == elem_a) || (tag () == elem_link))
+        if (a_.known (a_rel) && a_.known (a_href))
+        {   auto ar (a_.get_x < attr_rel > ());
+            for (auto r : ar)
+                if (r.has_value (r_webmention))
+                {   s = a_.original (a_href); break; } }
+    if (s.empty ())
+        for (element_ptr e = child_; e && s.empty (); e = e -> sibling_)
+            s = e -> find_mention_hook (target);
+    return s; }
+
+bool element::mentions (const url& target)
+{   if (target.is_usable ())
+        if ((tag () == elem_a) || (tag () == elem_link))
+            if (a_.good (a_href))
+            {   nitpick nuts;
+                const ::std::string s (a_.get_string (a_href));
+                const url u (nuts, node_.version (), s);
+                if (u.is_usable () && (u == target)) return true; }
+        for (element_ptr e = child_; e; e = e -> sibling_)
+            if (e -> mentions (target)) return true;
+    return false; }
+
 void element::mf_put_vocab (const e_class v, const prop& p, const ::std::string& itemtype, const ::std::string& itemprop)
 {   PRESUME (! p.invalid (), __FILE__, __LINE__);
     if (context.mf_export ())
@@ -114,12 +140,12 @@ void element::mf_put_vocab (const e_class v, const prop& p, const ::std::string&
         ::std::string val (mf_ -> get_string (v, p.get ()));
         if (! val.empty ())
         {   const ::std::string vs (html_class::name (v));
-            if (context.tell (e_debug)) pick (nit_debug, es_debug, ec_element, "putting ", quote (vs), " in json at ", itemtype);
+            if (context.tell (es_debug)) pick (nit_debug, es_debug, ec_element, "putting ", quote (vs), " in json at ", itemtype);
             page_.export_item (itemtype, vs);
             ::std::string naam (itemprop);
             naam += EXPORT_SEP;
             naam += p.name ();
-            if (context.tell (e_debug)) pick (nit_debug, es_debug, ec_element, "putting ", quote (val), " in json at ", naam);
+            if (context.tell (es_debug)) pick (nit_debug, es_debug, ec_element, "putting ", quote (val), " in json at ", naam);
             page_.export_item (naam, val); } } }
 
 void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
@@ -135,7 +161,7 @@ void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
             if (a_.has (a_title)) title = a_.get_string (a_title);
             if (a_.has (a_type)) type = a_.get_string (a_type);
             page_.export_rel (val, hreflang, media, rels, t, title, type);
-            if (context.tell (e_debug))
+            if (context.tell (es_debug))
                 pick (nit_debug, es_debug, ec_element,
                     "export_rel ", quote (val), ", ", hreflang, ", ", media, ", ",
                     quote (rels), ", ", quote (t), ", ", quote (title), ", ", type); } } }

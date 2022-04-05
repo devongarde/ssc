@@ -53,12 +53,12 @@ void nitpick::merge (nitpick&& np)
     for (auto n : np.nits_)
         nits_.emplace_back (n); }
 
-template < class T > ::std::string nitpick::inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns) const
+template < class T > ::std::string nitpick::inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns, const bool unfiltered) const
 {   extern bool ignore_this_slob_stuff (const e_nit code);
     hasns = false;
     ::std::string res, ns;
     for (auto n : t)
-        if (context.tell (static_cast < e_verbose > (n.severity ())) && ! ignore_this_slob_stuff (n.code ()))
+        if (unfiltered || (context.tell (n.severity ()) && ! ignore_this_slob_stuff (n.code ())))
         {   switch (n.code ())
             {   case nit_context:
                     infoed = true;
@@ -79,12 +79,13 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
             if (n.code () != nit_context)
             {   n.notify ();
                 if (hasns) ns += " "; else hasns = true;
-                ns += ::boost::lexical_cast < ::std::string > (n.code ());
+                if (context.spec ()) ns += lookup_name (n.code ());
+                else ns += ::boost::lexical_cast < ::std::string > (n.code ());
                 res += n.review (entry, mac, outer); } }
     if (hasns) outer.emplace (nm_nit_ns, ns);
     return res; }
 
-::std::string nitpick::review (const mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head) const
+::std::string nitpick::review (const mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered) const
 {   bool quote = false, dq = false, infoed = false, eol = false, hasns = false;
     ::std::string res;
     if (! empty ())
@@ -101,13 +102,13 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
             inner.emplace (nm_nit_after, after_); }
         ::std::string nitbit;
         if (context.nits_nits_nits ())
-            nitbit = inner_review (entry, nits_, mac, inner, quote, dq, infoed, eol, hasns);
+            nitbit = inner_review (entry, nits_, mac, inner, quote, dq, infoed, eol, hasns, unfiltered);
         else
         {   ::std::set < nit > sn;
             for (auto n : nits_)
                 if (sn.find (n) == sn.end ())
                     sn.insert (n);
-            nitbit = inner_review (entry, sn, mac, inner, quote, dq, infoed, eol, hasns); }
+            nitbit = inner_review (entry, sn, mac, inner, quote, dq, infoed, eol, hasns, unfiltered); }
         if (hasns || ! nitbit.empty ())
             if ((page_head != ns_none) && (line_ == 0) && ! context.test ())
                 res = apply_macros (page_head, mac, inner) + nitbit + apply_macros (foot, mac, inner);
@@ -116,6 +117,9 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
 
 ::std::string nitpick::review (const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head) const
 {   return review (context.macros (), entry, head, foot, page_head); }
+
+::std::string nitpick::unfiltered (const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head) const
+{   return review (context.macros (), entry, head, foot, page_head, true); }
 
 nitpick nitpick::nick ()
 {   nitpick tmp;
@@ -135,7 +139,7 @@ bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
     return true; }
 
 e_severity nitpick::worst () const
-{   e_severity res = es_silence;
+{   e_severity res = es_illegal;
     for (auto n : nits_)
         if (n.severity () < res)
             res = n.severity ();
@@ -204,5 +208,5 @@ void nitpick::set_context (const int line, const ::std::string::const_iterator b
 void nitpick::set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
 {   return set_context (line, b, e, i, i); }
 
-void nitpick::set_context (const int , ::std::string::const_iterator , ::std::string::const_iterator , ::std::string::const_iterator , const ::std::string& , const e_verbose )
+void nitpick::set_context (const int , ::std::string::const_iterator , ::std::string::const_iterator , ::std::string::const_iterator , const ::std::string& , const e_severity )
 {   GRACEFUL_CRASH (__FILE__, __LINE__); }

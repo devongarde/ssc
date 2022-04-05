@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_enum.h"
 #include "type/type_case.h"
+#include "spell/spell.h"
 
 bool is_default_role (const html_version& v, const e_element elem, const e_aria_role role);
 bool is_permitted_role (const html_version& v, const e_element elem, const e_aria_role role);
@@ -63,6 +64,6 @@ template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& n
                 enum_base < e_aria_role, t_role > :: post_set_value (nits, v);
                 return; } }
         else
-        {   check_spelling (nits, v, t);
+        {   check_identifier_spelling (nits, v, t);
             nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid here"); } }
     enum_base < e_aria_role, t_role > :: status (s_invalid); }

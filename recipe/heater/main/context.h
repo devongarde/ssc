@@ -21,8 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "feedback/nitpick.h"
 #include "feedback/nitout.h"
-#include "webmention/irt.h"
-#include "webmention/hook.h"
+#include "webmention/converse.h"
 #include "css/css_cache.h"
 #include "stats/stats.h"
 #include "parser/html_version.h"
@@ -35,14 +34,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DEFAULT_MAX_FILE_SIZE 4
 #define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
 
-constexpr e_verbose default_output = e_warning;
-class hook;
+constexpr e_severity default_output = es_warning;
 class replies;
 class corpus;
 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to);
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_verbose level = e_comment);
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_severity level = es_comment);
 
 class context_t
 {   bool            article_ = false, body_ = true, case_ = true, cgi_ = false, checking_urls_ = false, clear_ = false, codes_ = false, crosslinks_ = true, example_ = true,
@@ -51,23 +49,20 @@ class context_t
                     notify_ = false, not_root_ = false, once_ = true, presume_tags_ = false, process_webmentions_ = false, progress_ = false, rdfa_ = true, rel_ = false,
                     repeated_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, sarcasm_ = false,
                     schema_ = true, shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
-                    spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = true, update_ = false,
-                    valid_ = false, versioned_ = false;
+                    spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = true,
+                    update_ = false, valid_ = false, versioned_ = false;
     int             code_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
     html_version    version_;
     long            max_file_size_ = DMFS_BYTES;
-    e_verbose       verbose_ = default_output;
+    e_severity      verbose_ = default_output;
     e_severity      report_error_ = es_error;
-    ::std::string   domsg_, export_root_, filename_, general_info_, incoming_, index_, lang_, macro_end_ = "}}", macro_start_ = "{{", msg_, nit_format_,
-                    nit_override_, output_, path_, persisted_, root_, secret_, server_, shadow_, shadow_persist_, snippet_, stats_, stub_, test_header_, user_,
-                    webmention_, write_path_;
+    ::std::string   build_, domsg_, export_root_, filename_, general_info_, header_, incoming_, index_, lang_, macro_end_ = "}}", macro_start_ = "{{", mention_extension_, msg_, nit_format_,
+                    nit_override_, output_, path_, persisted_, root_, secret_, sender_, shadow_, shadow_persist_, snippet_, started_, stats_, stub_, user_, webmention_, write_path_;
     ::boost::filesystem::path config_, corpus_, spell_path_;
     e_wm_status     wm_status_ = wm_undefined;
     vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, mentions_, no_ex_check_, report_, shadow_ignore_, shadows_, site_, spellings_, templates_, virtuals_;
-    replies         replies_;
-    hooks           hooks_;
     css_cache       css_;
     ::std::unique_ptr < ::std::ofstream > fos_;
     stats_t         data_;
@@ -98,6 +93,7 @@ public:
     int parameters (nitpick& nits, int argc, char** argv);
     bool article () const noexcept { return article_; }
     bool body () const noexcept { return body_; }
+    const ::std::string build () const { return build_; }
     bool cased () const noexcept { return case_; }
     bool cgi () const noexcept { return cgi_; }
     bool checking_urls () const noexcept { return checking_urls_; }
@@ -125,6 +121,7 @@ public:
     bool has_math () const noexcept { return version_.has_math (); }
     bool has_rdfa () const noexcept { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
     bool has_svg () const noexcept { return version_.has_svg (); }
+    const ::std::string header () const { return header_; }
     html_version html_ver () const noexcept { return version_; }
     html_version& html_ver () noexcept { return version_; }
     html_version html_ver (const int major, const int minor) noexcept;
@@ -148,6 +145,7 @@ public:
     e_math_version math_version () const noexcept { return version_.math_version (); }
     unsigned long max_file_size () const noexcept { return ::gsl::narrow_cast < unsigned long > (max_file_size_); }
     bool md_export () const noexcept { return md_export_; }
+    const ::std::string mention_extension () const { return mention_extension_; }
     const vstr_t mentions () const { return mentions_; }
     bool meta () const noexcept { return meta_; }
     bool mf_export () const noexcept { return mf_export_; }
@@ -192,7 +190,7 @@ public:
     schema_version schema_ver (const e_schema es = s_schema) const
     {   return get_default_schema_version (es); }
     const ::std::string secret () const { return secret_; }
-    const ::std::string server () const { return server_; }
+    const ::std::string sender () const { return sender_; }
     bool shadow_any () const noexcept { return shadow_pages (); }
     bool shadow_comment () const noexcept { return shadow_comment_; }
     bool shadow_changed () const noexcept { return shadow_changed_; }
@@ -212,7 +210,9 @@ public:
     const vstr_t spellings () const { return spellings_; }
     ::boost::filesystem::path spell_path () const { return spell_path_; }
     ::std::string snippet () const { return snippet_; }
+    bool spec () const noexcept { return spec_; }
     bool ssi () const noexcept { return ssi_; }
+    const ::std::string started () const { return started_; }
     const ::std::string stats () const { return stats_; }
     bool stats_summary () const noexcept { return stats_summary_; }
     bool stats_page () const noexcept { return stats_page_; }
@@ -221,12 +221,11 @@ public:
     e_svg_version svg_version () const noexcept { return version_.svg_version (); }
     const vstr_t templates () const { return templates_; }
     bool test () const noexcept { return test_ && nit_override_.empty (); }
-    const ::std::string test_header () const { return test_header_; }
     int title () const noexcept { return title_; }
     e_do todo () const noexcept { return do_; }
     bool unknown_class () const noexcept { return unknown_class_; }
     const ::std::string user () const { return user_; }
-    e_verbose verbose () const noexcept { return verbose_; }
+    e_severity verbose () const noexcept { return verbose_; }
     const vstr_t virtuals () const { return virtuals_; }
     const ::std::string webmention () const { return webmention_; }
     const ::std::string write_path () const { return write_path_; }
@@ -234,6 +233,7 @@ public:
     bool versioned () const noexcept { return versioned_; }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
     context_t& body (const bool b) { body_ = b; mac (nm_context_body, b); return *this; }
+    context_t& build (const ::std::string& s) { build_ = s; mac (nm_compile_time, s); return *this; }
     context_t& cased (const bool b) { case_ = b; mac (nm_context_case, b); return *this; }
     context_t& cgi (const bool b) { cgi_ = b; mac (nm_context_cgi, b); return *this; }
     context_t& checking_urls (const bool b) noexcept { checking_urls_ = b; return *this; }
@@ -270,11 +270,12 @@ public:
         if (b) external (b);
         return *this; }
     context_t& general_info (const ::std::string& s) { general_info_ = s; mac (nm_general_info, s); return *this; }
+    context_t& header (const ::std::string& s) { header_ = s; mac (nm_context_mention_header, s); return *this; }
     context_t& html_ver (const html_version& v)
     {   versioned (true); version_ = v; mac (nm_context_version, version_.name ()); return *this; }
     context_t& icu (const bool b) { icu_ = b; mac (nm_context_info, b); return *this; }
     context_t& ignore (nitpick& nits, const vstr_t& s);
-    context_t& incoming (const ::std::string& s) { incoming_ = s; return *this; }
+    context_t& incoming (const ::std::string& s) { incoming_ = s; mac (nm_context_mention_datapath, s); return *this; }
     context_t& index (const ::std::string& s) { index_ = s; mac (nm_context_index, s); return *this; }
     context_t& info (const bool b) { info_ = b; mac (nm_context_info, b); return *this; }
     context_t& jsonld (const bool b) { jsonld_ = b; mac (nm_context_jsonld, b); return *this; }
@@ -302,7 +303,8 @@ public:
     context_t& math_version (const e_math_version v) noexcept { version_.math_version (v); return *this; }
     context_t& max_file_size (const long l) { max_file_size_ = l; mac < long > (nm_context_max_file_size, l);return *this; }
     context_t& md_export (const bool b) { md_export_ = b; mac (nm_context_md_export, b); return *this; }
-    context_t& mentions (const vstr_t& s) { mentions_ = s; return *this; }
+    context_t& mention_extension (const ::std::string& s) { mention_extension_ = s; mac (nm_context_mention_extension, s); return *this; }
+    context_t& mentions (const vstr_t& s) { mentions_ = s; mac (nm_context_mentions, s); return *this; }
     context_t& meta (const bool b) { meta_ = b; mac (nm_context_meta, b); return *this; }
     context_t& mf_export (const bool b) { mf_export_ = b; mac (nm_context_mf_export, b); return *this; }
     context_t& mf_verify (const bool b) { mf_verify_ = b; mac (nm_context_mf_verify, b); return *this; }
@@ -327,7 +329,7 @@ public:
     context_t& nits (const bool b) noexcept { nits_ = b; return *this; }
     context_t& nits_nits_nits (const bool b) noexcept { nits_nits_nits_ = b; return *this; }
     context_t& no_ex_check (const vstr_t& s) { no_ex_check_ = s; mac (nm_context_no_ex_check, s); return *this; }
-    context_t& notify (const bool b) noexcept { notify_ = b; return *this; }
+    context_t& notify (const bool b) noexcept { notify_ = b; mac (nm_context_mention_notify, b); return *this; }
     context_t& not_root (const bool b) noexcept { not_root_ = b; return *this; }
     context_t& once (const bool b)
     {   once_ = b;
@@ -338,7 +340,7 @@ public:
     context_t& path (const ::std::string& s) { path_ = s; mmac_.emplace (nm_general_path, s); return *this; }
     context_t& persisted (const ::std::string& s) { persisted_ = s; mac (nm_context_persisted, s); return *this; }
     context_t& presume_tags (const bool b) { presume_tags_ = b; mac (nm_context_tags, b); return *this; }
-    context_t& process_webmentions (const bool b) { process_webmentions_ = b; mac (nm_context_process_webmentions, b); return *this; }
+    context_t& process_webmentions (const bool b) { process_webmentions_ = b; mac (nm_context_mention_process, b); return *this; }
     context_t& progress (const bool b) noexcept { progress_ = b; return *this; }
     context_t& quote_style (const e_quote_style qs) noexcept { quote_style_ = qs; return *this; }
     context_t& rdfa (const bool b) { rdfa_ = b; mac (nm_context_rdfa, b); return *this; }
@@ -363,7 +365,7 @@ public:
         mac (nm_context_schema, b);
         return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
-    context_t& server (const ::std::string& s) { server_ = s; return *this; }
+    context_t& sender (const ::std::string& s) { sender_ = s; mac (nm_context_mention_sender, s); return *this; }
     context_t& shadow_comment (const bool b) { shadow_comment_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_comment, b); return *this; }
     context_t& shadow_changed (const bool b) { shadow_changed_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_changed, b); return *this; }
     context_t& shadow_enable (const bool b) { shadow_enable_ = b; mac (nm_context_shadow_enable, b); return *this; }
@@ -381,41 +383,36 @@ public:
         mmac_.emplace (nm_html_snippet, s);
         quote_style (qs_html);
         return *this; }
+    context_t& spec (const bool b) { spec_ = b; return *this; }
     context_t& spell (const bool b) { spell_ = b; mac (nm_context_spell, b); return *this; }
     context_t& spell_deduced (const bool b) { spell_deduced_ = b; return *this; }
     context_t& spellings (const vstr_t& s) { spellings_ = s; mac (nm_context_spellings, s); return *this; }
     context_t& spell_path (const ::boost::filesystem::path& f) { spell_path_ = f; mac (nm_context_spell_path, f); return *this; }
     context_t& ssi (const bool b) { ssi_ = b; mac (nm_context_ssi, b); return *this; }
     context_t& stats (const ::std::string& s) { stats_ = s; mac (nm_context_stats_export, s); return *this; }
+    context_t& started (const ::std::string& s) { started_ = s; mac (nm_time_start, s); return *this; }
     context_t& stats_page (const bool b) { stats_page_ = b; mac (nm_context_stats_page, b); return *this; }
     context_t& stats_summary (const bool b) { stats_summary_ = b; mac (nm_context_stats_summary, b); return *this; }
-    context_t& stub (const ::std::string& s) { stub_ = s; return *this; }
+    context_t& stub (const ::std::string& s) { stub_ = s; mac (nm_context_mention_stub, s); return *this; }
     context_t& svg_mode (const e_svg_processing_mode m) noexcept { svg_mode_ = m; return *this; }
     context_t& svg_version (const int mjr, const int mnr) noexcept;
     context_t& svg_version (const e_svg_version v) { version_.svg_version (v); mac < int > (nm_context_svg_version, v); return *this; }
-    context_t& templates (const vstr_t& s) { templates_ = s; mac (nm_context_templates, s); return *this; }
+    context_t& templates (const vstr_t& s) { templates_ = s; mac (nm_context_mention_templates, s); return *this; }
     context_t& test (const bool b) { test_ = b; mac (nm_context_test, b); return *this; }
-    context_t& test_header (const ::std::string& s) { test_header_ = s; return *this; }
     context_t& title (const int n)
     { if (n <= 0) title_ = 0; else title_ = n; mac < int > (nm_context_title, title_); return *this; }
     context_t& todo (const e_do e) noexcept { do_ = e; return *this; }
     context_t& unknown_class (const bool b) noexcept { unknown_class_ = b; return *this; }
-    context_t& user (const ::std::string& s) { user_ = s; mac (nm_context_user, s); return *this; }
+    context_t& user (const ::std::string& s) { user_ = s; mac (nm_context_mention_user, s); return *this; }
     context_t& update (const bool b) noexcept { update_ = b; return *this; }
-    context_t& verbose (const e_verbose i) noexcept { verbose_ = i; return *this; }
+    context_t& verbose (const e_severity i) noexcept { verbose_ = i; return *this; }
     context_t& versioned (const bool b) noexcept { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
     context_t& webmention (nitpick& nits, const ::std::string& w, const e_wm_status status);
-    context_t& write_path (const ::std::string& s) { write_path_ = s; mac (nm_context_write_path, s); return *this; }
-    void reset_webmention () noexcept
-    {   webmention_.clear ();
-        wm_status_ = wm_undefined; }
-    void note_reply (const ::std::string& file, const ::std::string& id, const ::std::string& target, const ::std::string& content)
-    {   if (notify ()) replies_.append (file, id, target, content); }
-    replies& get_replies () noexcept { return replies_; }
-    void process_outgoing_webmention (nitpick& nits, const html_version& v, const lingo& lang);
-    void process_incoming_webmention (nitpick& nits, const html_version& v);
-    bool tell (const e_verbose n) const noexcept { return n <= verbose_; }
+    context_t& write_path (const ::std::string& s) { write_path_ = s; mac (nm_context_mention_write_path, s); return *this; }
+    bool tell (const e_severity n) const noexcept
+    {   if (n == es_undefined) return false;
+        return n <= verbose_; }
     void out (const ::std::string& s) const { out () << s; }
     void err (const ::std::string& s) const { err () << ensane (s); }
     ::std::ostream& out () const noexcept { if (fos_) return *fos_; return ::std::cout; }

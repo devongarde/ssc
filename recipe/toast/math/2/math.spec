@@ -10,6 +10,76 @@ PASS ../toast/math/2/math1-example.html
 219 annotation
 249 annotation
 
+PASS ../toast/math/2/math10-example.html
+2 naughty_lang
+
+PASS ../toast/math/2/math11-example.html
+2 naughty_lang
+130 inserted_missing_parent missing_close
+138 inserted_missing_closure
+230 inserted_missing_parent missing_close
+245 inserted_missing_closure
+355 unrecognised_value
+
+PASS ../toast/math/2/math12-example.html
+2 naughty_lang
+
+PASS ../toast/math/2/math13-example.html
+2 naughty_lang
+144 annotation
+160 annotation
+163 annotation
+167 annotation
+170 annotation
+173 annotation
+191 annotation
+
+PASS ../toast/math/2/math14-example.html
+2 naughty_lang
+
+PASS ../toast/math/2/math15-example.html
+0 charset_mismatch charset_used charset_invalid
+2 naughty_lang
+45 annotation
+60 annotation
+80 annotation
+96 inserted_missing_parent missing_close
+96 math_kids
+96 math_kids
+97 inserted_missing_closure
+124 annotation
+138 annotation
+145 annotation
+150 annotation
+178 annotation
+194 id_exists
+195 id_exists
+196 id_exists
+197 id_exists
+198 id_exists
+199 id_exists
+200 id_exists
+202 id_exists
+203 id_exists
+204 id_exists
+205 id_exists
+206 id_exists
+207 id_exists
+208 id_exists
+211 annotation
+224 unrecognised_namespace unrecognised_value annotation
+254 annotation
+270 arg_count arg_count
+272 bad_namespace unknown_element
+272 bad_namespace unknown_element
+273 bad_namespace unknown_element
+275 bad_namespace unknown_element
+283 annotation
+300 bad_namespace unknown_element
+301 arg_count arg_count
+301 bad_namespace unknown_element
+301 bad_namespace unknown_element
+
 PASS ../toast/math/2/math2-example.xhtml
 1 xhtml_1_0
 
@@ -65,73 +135,8 @@ PASS ../toast/math/2/math9-example.html
 12 deprecated_attribute
 80 deprecated_element
 88 deprecated_element
-137 attempted_escape url_not_found
-156 inserted_missing_parent missing_close
-159 inserted_missing_closure
-162 inserted_missing_parent missing_close
-169 inserted_missing_closure
-
-PASS ../toast/math/2/math10-example.html
-2 naughty_lang
-
-PASS ../toast/math/2/math11-example.html
-2 naughty_lang
-134 inserted_missing_parent missing_close
-143 inserted_missing_closure
-239 inserted_missing_parent missing_close
-254 inserted_missing_closure
-364 unrecognised_value
-
-PASS ../toast/math/2/math12-example.html
-2 naughty_lang
-
-PASS ../toast/math/2/math13-example.html
-2 naughty_lang
-144 annotation
-160 annotation
-163 annotation
-167 annotation
-170 annotation
-173 annotation
-191 annotation
-
-PASS ../toast/math/2/math14-example.html
-2 naughty_lang
-
-PASS ../toast/math/2/math15-example.html
-0 charset_mismatch charset_used charset_invalid
-2 naughty_lang
-45 annotation
-60 annotation
-80 annotation
-96 inserted_missing_parent missing_close math_kids math_kids
-97 inserted_missing_closure
-124 annotation
-138 annotation
-145 annotation
-150 annotation
-178 annotation
-194 id_exists
-195 id_exists
-196 id_exists
-197 id_exists
-198 id_exists
-199 id_exists
-200 id_exists
-202 id_exists
-203 id_exists
-204 id_exists
-205 id_exists
-206 id_exists
-207 id_exists
-208 id_exists
-211 annotation
-224 unrecognised_namespace unrecognised_value annotation
-254 annotation
-270 arg_count arg_count
-272 bad_namespace unknown_element bad_namespace unknown_element
-273 bad_namespace unknown_element
-275 bad_namespace unknown_element
-283 annotation
-300 bad_namespace unknown_element
-301 arg_count arg_count bad_namespace unknown_element bad_namespace unknown_element
+134 attempted_escape url_not_found
+153 inserted_missing_parent missing_close
+156 inserted_missing_closure
+159 inserted_missing_parent missing_close
+166 inserted_missing_closure

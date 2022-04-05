@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 124
-#define VERSION_STRING "0.0.124"
+#define VERSION_RELEASE 125
+#define VERSION_STRING "0.0.125"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -57,9 +57,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DBG_ASSERT(x)
 #endif // debug
 
+#if ! defined (NOSPELL) && ! defined (HUNSPELL) && ! defined (WINSPELL)
+#define NOSPELL
+#endif
+
 #ifdef NOICU
 #define NOSPELL
 #endif // NOICU
+
+#if defined (NOSPELL)
+#if defined (WINSPELL) || defined (HUNSPELL)
+#error Define only one of NOICU, NOSPELL, WINSPELL, or HUNSPELL
+#endif // ...SPELL
+#define SPELT
+#elif defined (WINSPELL) && defined (HUNSPELL)
+#error Define only one of WINSPELL or HUNSPELL
+#elif defined (WINSPELL) && ! defined (_MSC_VER)
+#error WINSPELL requires Windows & Visual Studio
+#else // NOSPELL
+#define SPELT "s"
+#endif // NOSPELL
 
 #ifdef __clang__
 #pragma clang diagnostic push
@@ -93,7 +110,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     // The MSVC linter is generally useful, but it has some serious problems.
     // General problem 1: the msvc linter provides no clean mechanism to suppress a spurious warning in place, except through the #...
     //      mechanism. Those #... have to be wrapped in #ifdefs to avoid confusing other compilers. In the worst case, this requires 7 #...
-    //      statements to suppress on spurious warning. That is ridiculously clunky, and I'm most definitely NOT going there for specific
+    //      statements to suppress one spurious warning. That is ridiculously clunky, and I'm most definitely NOT going there for specific
     //      warnings which are many times spurious, even if those warnings are useful elsewhere. I think this is a design error with
     //      VC++'s linter, or quite possibly a documentation issue given I couldn't find a reference to easily suppressing spurious
     //      warnings. The norm with other linters is a recognisable comment. Warnings in this category: 26409, 264621, 26485.
@@ -102,17 +119,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     //      signature change, it should do so in the metaprogramming context, e.g. ensure it applies to ALL such functions, not just one
     //      or two of them.
     // ... 'X::Y' hides a non-virtual ... 'XX::Y'
-    // ...: default constructor may not throw, mark it noexcept .... except if I mark it noexcept, it no fits the default constructor signature...
+    // ...: default constructor may not throw, mark it noexcept .... except if I mark it noexcept, it no longer fits the default constructor signature...
     // 6330: plus using wchar calls with chars ... actually, those chars are (or should be) utf-8.
     // 26439: comes up on standard class functions; following the suggestion means they no longer fit the signature, so breaks stuff
     // 26410/5/8: correct, in that particular place. So what? Smart pointers are indeed pointers. An unwrapped pointer (usually) means
-    //            the code doesn't own it.
+    //      the code doesn't own it, by convention.
 #pragma warning (disable : 6330 26409 26410 26415 26418 26434 26439 26455 26456 26461 26485)
 
 // https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=msvc-170
 #if _MSC_VER >= 1930
 #pragma warning (disable : 26812)
 #define _WIN32_WINNT 0x0A00 // 10
+#define STRINGPIECE_BIZARRO
 #elif _MSC_VER >= 1920
 #define _WIN32_WINNT 0x0A00 // 10
 #elif _MSC_VER >= 1910
@@ -139,12 +157,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #else // FUDDYDUDDY
 #define FUDDY
 #endif // FUDDYDUDDY
-
-#ifdef NOSPELL
-#define SPELT
-#else // NOSPELL
-#define SPELT "s"
-#endif // NOSPELL
 
 #include <iostream>
 #include <vector>
@@ -188,8 +200,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <unicode/parseerr.h>
 #include <unicode/stringoptions.h>
 #include <unicode/ucpmap.h>
-
-
 #include <unicode/ucsdet.h>
 #include <unicode/ucnv.h>
 #include <unicode/unistr.h>
@@ -213,7 +223,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma comment (lib, "icuuc.lib")
 #endif // _DEBUG
 #endif // _MSC_VER
+
 #endif // NOICU
+
+#if defined (_MSC_VER) && defined (HUNSPELL)
+#define HUNSPELL_STATIC
+#pragma comment (lib, "libhunspell.lib")
+#endif // _MSC_VER && HUNSPELL
 
 #endif // SSC_TEST
 
@@ -280,6 +296,17 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #ifndef NO_BOOST_PROCESS
 #include <boost/process.hpp>
 #endif // NO_BOOST_PROCESS
+
+#ifndef NO_JSONIC
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning ( disable : ALL_CODE_ANALYSIS_WARNINGS ) // boost
+#endif // _MSC_VER
+#include <boost/json.hpp>
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+#endif // NO_JSONIC
 
 #endif // SSC_TEST
 

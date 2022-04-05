@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 
 #ifndef NOSPELL
-#ifdef _MSC_VER
+#ifdef WINSPELL
 
 #if _MSC_VER < 1920
 typedef struct IUnknown IUnknown;
@@ -99,7 +99,27 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
         hr = scf -> CreateSpellChecker (wlang.c_str (), &isp);
         if (FAILED (hr))
         {   mlf.insert (mlf_t::value_type (l, nullptr));
-            nits.pick (nit_dictionary, es_info, ec_spell, PROG " cannot spellcheck ", quote (lang.original ()), " for lack of a dictionary.");
+            nits.pick (nit_dictionary, es_info, ec_spell, PROG " cannot spellcheck ", quote (lang.original ()), " for lack of a dictionary");
+            static bool blangs = true;
+            if (blangs)
+            {   IEnumString* es = nullptr;
+                blangs = false;
+                HRESULT hr2 = scf -> get_SupportedLanguages (&es);
+                if (! FAILED (hr2))
+                    if (es != nullptr)
+                    {   LPOLESTR pole = nullptr;
+                        ::std::string langs;
+                        for (;;)
+                        {   ULONG fetched = 0;
+                            hr = es -> Next (1, &pole, &fetched);
+                            if (fetched == 0) break;
+                            if (! langs.empty ()) langs += ", ";
+                            langs += (ole2string (pole));
+                            CoTaskMemFree (pole);
+                            pole = nullptr; }
+                        es -> Release ();
+                        es = nullptr;
+                        nits.pick (nit_languages, es_info, ec_spell, "languages available: ", langs); } }
             return; }
         VERIFY_NOT_NULL (isp, __FILE__, __LINE__);
         apply_wordlists (isp, l);
@@ -135,7 +155,7 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
                 typo = nullptr;
                 ::std::string booboo = t.substr (pos, len);
                 vstr_t alt;
-                if (context.tell (e_info))
+                if (context.tell (es_info))
                 {   w = convert_to_wstring (booboo);
                     hr = isp -> Suggest (w.c_str (), &suggested);
                     if (FAILED (hr)) suggested = nullptr;
@@ -178,5 +198,5 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
     {   if (dialect != nullptr) CoTaskMemFree (dialect); }
     return res; }
 
-#endif // _MSC_VER
+#endif // WINSPELL
 #endif // NOSPELL

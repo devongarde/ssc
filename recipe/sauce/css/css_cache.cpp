@@ -64,7 +64,7 @@ bool css_cache::note_usage (const ::std::string& id)
     return false; }
 
 void css_cache::report_usage (::std::ostringstream& ss) const
-{   if (context.tell (e_warning))
+{   if (context.tell (es_warning))
     {   smsid_t sum;
         ::std::string cls;
         for (auto i : csss_)

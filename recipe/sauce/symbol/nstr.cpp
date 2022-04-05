@@ -412,6 +412,8 @@ n_string_entry < e_schema, 3 > schema_name_entries [] =
     { { HTML_GR }, { HTML_UNDEF }, s_gr, 0, { "gr", HTTPS PURL_ORG "/goodrelations/v1#", "good relations" } },
     { { HTML_GRDDL }, { HTML_UNDEF }, s_grddl, SCHEMA_PREFIX_CONTEXT, { "grddl", HTTP_W3 "/2003/g/data-view#", "gleaning resource descriptions from dialects of languages" } },
     { { HTML_GRDDL }, { HTML_UNDEF }, s_grddl, 0, { "grddl", HTTPS_W3 "/2003/g/data-view#", "gleaning resource descriptions from dialects of languages" } },
+    { { HTML_GS1 }, { HTML_UNDEF }, s_gs1, 0, { "gs1", HTTP "gs1.org/voc/", "global standards" } },
+    { { HTML_GS1 }, { HTML_UNDEF }, s_gs1, 0, { "gs1", HTTPS "gs1.org/voc/", "global standards" } },
     { { HTML_ICAL }, { HTML_UNDEF }, s_ical, SCHEMA_PREFIX_CONTEXT, { "ical", HTTP_W3 "/2002/12/cal/ical#", "ical" } },
     { { HTML_ICAL }, { HTML_UNDEF }, s_ical, 0, { "ical", HTTPS_W3 "/2002/12/cal/ical#", "ical" } },
     { { HTML_ICALTZD }, { HTML_UNDEF }, s_icaltzd, 0, { "icaltzd", HTTP_W3 "/2002/12/cal/icaltzd#", "icaltzd" } },

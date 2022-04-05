@@ -19,7 +19,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+#include "utility/common.h"
 #include "utility/filesystem.h"
+
+#ifndef UNIX
+// see also local_path_to_nix declaration in fileindex.h
+// presuming if not unix then windows
+::std::string local_path_to_nix (const ::std::string& s)
+{   ::std::string res (s);
+    ::boost::replace_all (res, "\\", "/");
+    if ((res.length () >= 2) && (res.at (1) == ':')) res = res.substr (2);
+    return res; }
+
+::std::string nix_path_to_local (const ::std::string& s)
+{   if (s.empty ()) return s;
+    ::std::string res (s);
+    ::boost::replace_all (res, "/", "\\");
+    return res; }
+
+vstr_t nix_path_to_local (const vstr_t& v)
+{   vstr_t res;
+    for (auto s : v)
+        res.emplace_back (nix_path_to_local (s));
+    return res; }
+#endif // UNIX
 
 ::std::time_t get_last_write_time (const ::boost::filesystem::path& name)
 #ifndef FS_THROWS

@@ -68,6 +68,7 @@ sh_t sh [] =  // latest first
     { frbr_schema, xhtml_1_0 },
     { good_relations, html_rdf_1_0 },
     { grddl_schema, html_rdf_1_0_con },
+    { gs1_schema, html_gs1 },
     { ical_schema, html_rdf_1_0_con },
     { icaltzd_schema, html_rdf_1_0_con },
     { jsonld_schema_1_1, html_jsonld_1_1 },

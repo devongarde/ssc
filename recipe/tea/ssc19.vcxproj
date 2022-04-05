@@ -97,6 +97,7 @@
     <ClInclude Include="..\heater\rdf\rdfa_prop.h" />
     <ClInclude Include="..\heater\rdf\rdf.h" />
     <ClInclude Include="..\heater\rdf\rdfa_type.h" />
+    <ClInclude Include="..\heater\schema\jsonld.h" />
     <ClInclude Include="..\heater\schema\schema_hierarchy.h" />
     <ClInclude Include="..\heater\schema\schema_name.h" />
     <ClInclude Include="..\heater\schema\schema_property.h" />
@@ -136,6 +137,7 @@
     <ClInclude Include="..\heater\type\type_colour.h" />
     <ClInclude Include="..\heater\type\type_cookie.h" />
     <ClInclude Include="..\heater\type\type_core.h" />
+    <ClInclude Include="..\heater\type\type_country.h" />
     <ClInclude Include="..\heater\type\type_csp.h" />
     <ClInclude Include="..\heater\type\type_currency.h" />
     <ClInclude Include="..\heater\type\type_enum.h" />
@@ -178,10 +180,6 @@
     <ClInclude Include="..\heater\utility\lexical.h" />
     <ClInclude Include="..\heater\utility\quote.h" />
     <ClInclude Include="..\heater\utility\tuple.h" />
-    <ClInclude Include="..\heater\webmention\hook.h" />
-    <ClInclude Include="..\heater\webmention\irt.h" />
-    <ClInclude Include="..\heater\webmention\webmention.h" />
-    <ClInclude Include="..\heater\webmention\webmentions.h" />
     <ClInclude Include="..\heater\webpage\corpus.h" />
     <ClInclude Include="..\heater\webpage\crosslink.h" />
     <ClInclude Include="..\heater\webpage\directory.h" />
@@ -303,6 +301,7 @@
     <ClCompile Include="..\sauce\rdf\rdfa_prop.cpp" />
     <ClCompile Include="..\sauce\rdf\rdf.cpp" />
     <ClCompile Include="..\sauce\rdf\rdfa_type.cpp" />
+    <ClCompile Include="..\sauce\schema\jsonld.cpp" />
     <ClCompile Include="..\sauce\schema\schema_hierarchy.cpp" />
     <ClCompile Include="..\sauce\schema\schema_name.cpp" />
     <ClCompile Include="..\sauce\schema\schema_property.cpp" />
@@ -323,6 +322,7 @@
     <ClCompile Include="..\sauce\type\type_class.cpp" />
     <ClCompile Include="..\sauce\type\type_colour.cpp" />
     <ClCompile Include="..\sauce\type\type_core.cpp" />
+    <ClCompile Include="..\sauce\type\type_country.cpp" />
     <ClCompile Include="..\sauce\type\type_csp.cpp" />
     <ClCompile Include="..\sauce\type\type_currency.cpp" />
     <ClCompile Include="..\sauce\type\type_d.cpp" />
@@ -353,10 +353,6 @@
     <ClCompile Include="..\sauce\utility\common.cpp" />
     <ClCompile Include="..\sauce\utility\filesystem.cpp" />
     <ClCompile Include="..\sauce\utility\quote.cpp" />
-    <ClCompile Include="..\sauce\webmention\hook.cpp" />
-    <ClCompile Include="..\sauce\webmention\irt.cpp" />
-    <ClCompile Include="..\sauce\webmention\webmention.cpp" />
-    <ClCompile Include="..\sauce\webmention\webmentions.cpp" />
     <ClCompile Include="..\sauce\webpage\corpus.cpp" />
     <ClCompile Include="..\sauce\webpage\crosslink.cpp" />
     <ClCompile Include="..\sauce\webpage\directory.cpp" />
@@ -6048,6 +6044,8 @@
     <None Include="..\toast\other\pattern\index.html" />
     <None Include="..\toast\other\pattern\pattern.conf" />
     <None Include="..\toast\other\pattern\pattern.spec" />
+    <None Include="..\toast\other\root\root.conf" />
+    <None Include="..\toast\other\root\root.spec" />
     <None Include="..\toast\other\simple\css-good.css" />
     <None Include="..\toast\other\simple\index.html" />
     <None Include="..\toast\other\simple\simple.conf" />
@@ -7428,9 +7426,40 @@
     <None Include="..\toast\webapps\jul06\wa2.html" />
     <None Include="..\toast\webapps\jul06\webapps.conf" />
     <None Include="..\toast\webapps\jul06\webapps.spec" />
+    <None Include="..\toast\webmention\1\change.tpl" />
+    <None Include="..\toast\webmention\1\delete.tpl" />
+    <None Include="..\toast\webmention\1\example.org.ssc.model" />
     <None Include="..\toast\webmention\1\index.html" />
+    <None Include="..\toast\webmention\1\new.tpl" />
+    <None Include="..\toast\webmention\1\pre.bat" />
+    <None Include="..\toast\webmention\1\pre.sh" />
+    <None Include="..\toast\webmention\1\static.tpl" />
     <None Include="..\toast\webmention\1\wm.conf" />
     <None Include="..\toast\webmention\1\wm.spec" />
+    <None Include="..\toast\webmention\2\change.tpl" />
+    <None Include="..\toast\webmention\2\delete.tpl" />
+    <None Include="..\toast\webmention\2\example.org.ssc.model" />
+    <None Include="..\toast\webmention\2\index.html" />
+    <None Include="..\toast\webmention\2\new.tpl" />
+    <None Include="..\toast\webmention\2\pre.bat" />
+    <None Include="..\toast\webmention\2\pre.sh" />
+    <None Include="..\toast\webmention\2\static.tpl" />
+    <None Include="..\toast\webmention\2\wm.conf" />
+    <None Include="..\toast\webmention\2\wm.spec" />
+    <None Include="..\toast\webmention\3\change.tpl" />
+    <None Include="..\toast\webmention\3\delete.tpl" />
+    <None Include="..\toast\webmention\3\index.html" />
+    <None Include="..\toast\webmention\3\new.tpl" />
+    <None Include="..\toast\webmention\3\pre.bat" />
+    <None Include="..\toast\webmention\3\pre.sh" />
+    <None Include="..\toast\webmention\3\static.tpl" />
+    <None Include="..\toast\webmention\3\wm.conf" />
+    <None Include="..\toast\webmention\3\wm.spec" />
+    <None Include="..\toast\webmention\4\index.html" />
+    <None Include="..\toast\webmention\4\pre.bat" />
+    <None Include="..\toast\webmention\4\pre.sh" />
+    <None Include="..\toast\webmention\4\wm.conf" />
+    <None Include="..\toast\webmention\4\wm.spec" />
     <None Include="..\toast\webmention\change.tpl" />
     <None Include="..\toast\webmention\delete.tpl" />
     <None Include="..\toast\webmention\new.tpl" />
@@ -7461,10 +7490,6 @@
     <None Include="..\toast\XHTML\5.0\x5-example.xhtml" />
     <None Include="..\toast\XHTML\5.0\xhtml5.conf" />
     <None Include="..\toast\XHTML\5.0\xhtml5.spec" />
-    <None Include=".ssc\change.tpl" />
-    <None Include=".ssc\delete.tpl" />
-    <None Include=".ssc\new.tpl" />
-    <None Include=".ssc\static.tpl" />
     <None Include="fulltest.bat" />
     <None Include="fulltest.sh" />
     <None Include="specprep.bat" />
@@ -7564,7 +7589,6 @@
     <Text Include="..\..\README.txt" />
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
-    <Text Include="..\..\webmention.txt" />
     <Text Include="..\gen\gen.txt" />
     <Text Include="..\toast\conf\live\wordlist.txt" />
     <Text Include="..\toast\json-ld\README.txt" />
@@ -7575,6 +7599,7 @@
     <Text Include="..\toast\spell\README.txt" />
     <Text Include="..\toast\spell\spell\list.txt" />
     <Text Include="..\toast\tmp\README.txt" />
+    <Text Include="..\toast\webmention\4\header.txt" />
     <Text Include="..\toast\webmention\headers\1.txt" />
     <Text Include="..\toast\webmention\headers\2.txt" />
     <Text Include="..\toast\webmention\headers\3.txt" />
@@ -7585,7 +7610,6 @@
     <Text Include="..\toast\webmention\headers\8.txt" />
     <Text Include="..\toast\webmention\headers\9.txt" />
     <Text Include="..\toast\webmention\README.txt" />
-    <Text Include=".ssc\README.txt" />
     <Text Include="CMakeLists.txt" />
     <Text Include="README.txt" />
   </ItemGroup>
@@ -7704,23 +7728,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(ICU_PATH)\icu\include;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\icu\lib64;$(BOOST)\stage\lib;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(ICU_PATH)\icu\include;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\icu\lib64;$(BOOST)\stage\lib;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profile|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib;$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(ICU_PATH)\icu\include;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\icu\lib64;$(BOOST)\stage\lib;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\vs2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(ICU_PATH)\icu\include;$(GSL)\include;$(HUNSPELL)\src\hunspell;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\icu\lib64;$(BOOST)\stage\lib;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <ClangTidyChecks>
@@ -7729,19 +7753,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\vs2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(ICU_PATH)\icu\include;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\icu\lib64;$(BOOST)\stage\lib;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profile|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(ICU_PATH)\include;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ICU_PATH)\lib64;$(BOOST)\vs2019;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30133\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(ICU_PATH)\icu\include;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ICU_PATH)\icu\lib64;$(BOOST)\stage\lib;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -7771,7 +7795,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -7803,7 +7827,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -7833,7 +7857,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -7865,7 +7889,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -7896,7 +7920,7 @@ $(ProjectDir)..\..\ssc19-test -x $(ProjectDir)..\..\ssc19.exe -v -f $(ProjectDir
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>

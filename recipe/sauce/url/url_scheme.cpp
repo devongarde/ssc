@@ -188,7 +188,8 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
     ::std::string fore, queries;
     if (! separate_first (url, fore, queries, QUESTION)) fore = url;
     if (! separate_first (fore, scheme, hier_part, COLON))
-    {   scheme = PR_HTTP;
+    {   if ((prot == pr_error) || (prot == pr_other)) scheme = PR_HTTPS;  // should it be PRESUME?
+        else scheme = protocol_names.get (prot, PROTOCOL_NAME);
         hier_part = fore;
         absolute = (! hier_part.empty ()) && (hier_part.at (0) == '/'); }
     else

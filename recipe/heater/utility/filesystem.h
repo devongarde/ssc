@@ -19,6 +19,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "utility/common.h"
+
+#ifdef UNIX
+inline ::std::string local_path_to_nix (const ::std::string& s) { return s; }
+inline ::std::string nix_path_to_local (const ::std::string& s) { return s; }
+inline vstr_t nix_path_to_local (const vstr_t& v) { return v; }
+#else // presuming if not unix then windows
+::std::string local_path_to_nix (const ::std::string& win);
+::std::string nix_path_to_local (const ::std::string& nix);
+vstr_t nix_path_to_local (const vstr_t& v);
+#endif // UNIX
 
 #ifdef FS_THROWS
 ::std::time_t get_last_write_time (const ::boost::filesystem::path& name);

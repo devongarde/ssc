@@ -718,7 +718,7 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
         ::boost::filesystem::path prepare = canonical (absolute (f));
         prepare.remove_filename ();
         ::boost::filesystem::path clean = prepare;
-        ::std::string switched = xeq.string () + ::std::string (" -F -T ");
+        ::std::string switched = xeq.string () + ::std::string (" -T ");
         if (! only_check_exports)
         {   switched += "-o "; switched += tmp.string () + " "; }
         cmdline = switched + cmdline;

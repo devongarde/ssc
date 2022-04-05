@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type_enum.h"
+#include "spell/spell.h"
 
 #define MIME_SCRIPT         0x00000001
 #define NOT_SCRIPT          0x00000002
@@ -80,14 +81,14 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
     {   if (symbol < html_version, e_mimetype > :: parse (nits, v, s.substr (0, pos), enum_base < e_mimetype, t_mime > :: value_))
         {   enum_base < e_mimetype, t_mime > :: status (s_good);
             return; } }
-    check_spelling (nits, v, s);
+    check_identifier_spelling (nits, v, s);
     nits.pick (nit_mime, es_warning, ec_type, quote (s), " is not a mimetype known to " PROG);
     enum_base < e_mimetype, t_mime > :: status (s_invalid); }
 
 template < > inline void enum_n < t_mime, e_mimetype > :: verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
 {   ::std::string s (quote (original_));
     if (enum_base < e_mimetype, t_mime > :: good ())
-    {   if (context.tell (e_info))
+    {   if (context.tell (es_info))
             switch (enum_base < e_mimetype, t_mime > :: value_)
             {   case mime_application_font_sfnt :
                 case mime_application_font_woff :

@@ -53,7 +53,7 @@ public:
         symbol < html_version, e_protocol > :: swap (p); }
     bool is_valid () const;
     ::std::string get () const;
-    ::std::string absolute (bool can_use_index) const;
+    ::std::string absolute (const bool can_use_index, const bool force = false) const;
     bool defaulted () const noexcept { return default_; }
     e_protocol get_protocol () const noexcept { return (symbol < html_version, e_protocol > :: get ()); }
     bool unknown () const noexcept { return get_protocol () == pr_other; }

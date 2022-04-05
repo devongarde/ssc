@@ -656,7 +656,7 @@ bool elem::parse (nitpick& nits, const html_version& v, const namespaces_ptr& na
                     break;
 		default : break; } }
     nits.merge (knits);
-    check_spelling (nits, v, el);
+    check_identifier_spelling (nits, v, el);
     return false; }
 
 bool elem::is_unclosed (const html_version& v) const noexcept

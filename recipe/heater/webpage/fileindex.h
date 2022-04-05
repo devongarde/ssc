@@ -45,14 +45,6 @@ constexpr fileindex_t nullfileindex = SIZE_MAX;
 #define FX_DELETED  0x00000080
 #define FX_LINKED   0x00000100
 
-#ifdef UNIX
-inline ::std::string local_path_to_nix (const ::std::string& s) { return s; }
-inline ::std::string nix_path_to_local (const ::std::string& s) { return s; }
-#else // presuming if not unix then windows
-::std::string local_path_to_nix (const ::std::string& win);
-::std::string nix_path_to_local (const ::std::string& nix);
-#endif // UNIX
-
 void fileindex_init ();
 ::boost::filesystem::path persist_path ();
 bool fileindex_load (nitpick& nits);

@@ -45,5 +45,5 @@ inline bool operator <= (const symbol_key& lhs, const symbol_key& rhs) noexcept
 
 template < > struct std::hash < symbol_key >
 {   ::std::size_t operator() (const symbol_key& k) const noexcept
-    {   const ::std::size_t h = ::std::hash < ::std::string > () (k.first); // bollocks
+    {   const ::std::size_t h = ::std::hash < ::std::string > () (k.first);
         return ::std::hash <::std::size_t> () (h ^ static_cast < ::std::size_t > (k.second)); } };

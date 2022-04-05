@@ -28,20 +28,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define P3P  "P3P"
 
 void headers::parse (nitpick& nits, const html_version& , const ::std::string& header)
-{   if (header.empty ()) return;
+{   if (header.empty ())
+    {   nits.pick (nit_header_empty, es_info, ec_link, "empty HTTP header ignored"); return; }
     vstr_t lines (split_by_newline (header));
     vstr_t status (split_by_space (::gsl::at (lines, 0)));
-    if (status.size () < 2) return;
+    if (status.size () < 2)
+    {   nits.pick (nit_header_malformed, es_warning, ec_link, "malformed HTTP header has no status: ignored"); return; }
     code_ = lexical < int > :: cast (status.at (1), 300);
-    if (code_ >= 300) return;
-    if (lines.size () < 2) return;
+    if (code_ >= 300)
+    {   nits.pick (nit_http_error, es_info, ec_link, "header expresses HTTP error ", code_, ": rejected"); return; }
+    if (lines.size () < 2)
+    {   nits.pick (nit_header_malformed, es_warning, ec_link, "malformed HTTP header too small: ignored"); return; }
     for (auto ln : lines)
     {   const ::std::size_t pos (ln.find (':'));
         if ((pos != ln.npos) && (pos > 0) && (pos < ln.length () - 1))
         {   ::std::string key (trim_the_lot_off (ln.substr (0, pos)));
             ::std::string value (trim_the_lot_off (ln.substr (pos + 1)));
             header_.insert (ustrv_t (key, value));
-            if (key == LINK) process_rels (nits, value); } } }
+            if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_link, "Noted header line ", quote (key), ":", quote (value));
+            if (key == LINK) process_rels (nits, value); } }
+    if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_link, header_.size (), " lines processed in HTTP header"); }
 
 void headers::process_rels (nitpick& nits, const ::std::string& value)
 {   vstr_t links (split_by_charset (value, ";"));
@@ -52,7 +58,9 @@ void headers::process_rels (nitpick& nits, const ::std::string& value)
     const ::std::size_t right = target.find ('>');
     if (left == target.npos) return;
     if (right == target.npos) return;
-    if (right <= left) return;
+    if (right <= left)
+    {   if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_link, PROG " is confused by this header text: ", quote (target));
+        return; }
     ::std::string arg0 (trim_the_lot_off (target.substr (left + 1, right - left - 1)));
     for (::std::size_t n = 1; n < len; ++n)
     {   ::std::string arg = trim_the_lot_off (::gsl::at (links, n));
@@ -67,7 +75,7 @@ void headers::process_rels (nitpick& nits, const ::std::string& value)
         {   const ::std::size_t last = rhs.length () - 1;
             if (::gsl::at (rhs, last) != '"') continue;
             rhs = rhs.substr (1, last - 2); }
-        if (context.tell (e_info)) nits.pick (nit_found_rel, es_info, ec_link, "found rel ", rhs, ", link ", arg0);
+        nits.pick (nit_found_rel, es_info, ec_link, "found rel ", rhs, ", link ", arg0);
         links_.insert (ustrv_t (rhs, arg0)); } }
 
 const ::std::string headers::link (const char * rel) const

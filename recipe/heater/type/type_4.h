@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 #include "type/type_case.h"
+#include "spell/spell.h"
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 > class four_value : public type_base < base_type, TYPE >
 {   base_type value_ = static_cast < base_type > (0);
@@ -205,9 +206,9 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
     else if (t == c_) value_ = static_cast <base_type> (2);
     else if (t == d_) value_ = static_cast <base_type> (3);
     else
-    {   if (! check_spelling (nits, v, t))
-            if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
-            else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be \"", SZ0::sz (), "\", \"", SZ1::sz (), "\", \"", SZ2::sz (), "\", or \"", SZ3::sz (), "\"");
+    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
+        else if (! check_identifier_spelling (nits, v, t))
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (SZ0::sz ()), ", ", quote (SZ1::sz ()), ", ", quote (SZ2::sz ()), ", or ", quote (SZ3::sz ()));
         type_base < base_type, TYPE > :: status (s_invalid);
         return; }
     compare_validate (nits, v, get_string (), pret); }

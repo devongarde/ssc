@@ -1650,7 +1650,7 @@ parentage_t parents;
 
 void parentage_init (nitpick& nits)
 {   for (::std::size_t i = 0; (parent_table [i].parent_ != elem_undefined) || (parent_table [i].child_ != elem_undefined); ++i)
-    {   if (context.tell (e_splurge)) nits.pick (nit_splurge, es_splurge, ec_element, "parentage: inserting ", parent_table [i].parent_, ", ", parent_table [i].child_);
+    {   if (context.tell (es_splurge)) nits.pick (nit_splurge, es_splurge, ec_element, "parentage: inserting ", parent_table [i].parent_, ", ", parent_table [i].child_);
         parents.emplace (parent_key (parent_table [i].parent_, parent_table [i].child_), parent_table [i]); } }
 
 #ifdef _MSC_VER

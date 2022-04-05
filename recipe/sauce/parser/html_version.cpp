@@ -438,7 +438,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
         {   if (! found_public && ! found_system)
                 if ((mjr () > 1) || ((mjr () == 1) && (mnr ()== 1)))
                     nits.pick (nit_public_missing, es_info, ec_parser, "Either PUBLIC or SYSTEM expected");
-            if (found_unknown) if (context.tell (e_warning))
+            if (found_unknown) if (context.tell (es_warning))
                 nits.pick (nit_unexpected_doctype_content, es_warning, ec_parser, "Ignoring unexpected content (", quote (wtf), ") found in <!DOCTYPE>"); }
         return true; }
     nits.pick (nit_doctype_incomprehensible, es_catastrophic, ec_parser, PROG " does not understand the <!DOCTYPE> so is abandoning verification");

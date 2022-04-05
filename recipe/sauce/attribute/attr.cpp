@@ -1003,7 +1003,7 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_
     const symbol < html_version, e_attribute > a (v, lc, n);
     if (a.unknown ())
     {   nits.merge (nuts);
-        check_spelling (nits, v, lc); }
+        check_identifier_spelling (nits, v, lc); }
     else
     {   if ((v >= html_jan05) && ((a.flags () & AF_NOT_NAMESPACED) == 0)) nits.merge (nuts);
         if (v.is_svg_2 ())

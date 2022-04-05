@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 #include "type/type_case.h"
+#include "spell/spell.h"
 
 template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE, E >
 {   typedef typename type_base < TYPE, E > :: value_type value_type;
@@ -187,7 +188,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
                 enum_base < ENUM, E > :: post_set_value (nits, v);
                 return; } }
         else
-        {   check_spelling (nits, v, t);
+        {   check_identifier_spelling (nits, v, t);
             nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is invalid here"); } }
     enum_base < ENUM, E > :: status (s_invalid); }
 
@@ -256,6 +257,9 @@ template < > struct type_master < t_comp_op > : enum_n < t_comp_op, e_comp_op >
 
 template < > struct type_master < t_composite_operator > : enum_n < t_composite_operator, e_composite_operator >
 { using enum_n < t_composite_operator, e_composite_operator > :: enum_n; };
+
+template < > struct type_master < t_country > : enum_n < t_country, e_country >
+{ using enum_n < t_country, e_country > :: enum_n; };
 
 template < > struct type_master < t_crossout > : enum_n < t_crossout, e_crossout >
 { using enum_n < t_crossout, e_crossout > :: enum_n; };

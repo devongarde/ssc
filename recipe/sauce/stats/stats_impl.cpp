@@ -106,18 +106,18 @@ mmac_t mac_subtitle (const ::std::string& title)
         if (n == 0) continue;
         ++total;
         count += n;
-        if (context.tell (e_error))
+        if (context.tell (es_error))
         {   mmac_t stat = mac_init (itemtype_index_name (make_itemtype_index (static_cast < e_schema_type > (i))), n);
             const unsigned x = schema_property_.family (static_cast < e_schema_type > (i));
             if (x > 0) stat.emplace (nm_stat_detail, ::boost::lexical_cast < ::std::string > (x / n));
             res += apply_macros (ns_stat, table, stat);
-            if (context.tell (e_info))
+            if (context.tell (es_info))
                 for (unsigned m = 0; m < sp_illegal; ++m)
                 {   const unsigned y = schema_property_.at (static_cast < e_schema_type > (i), static_cast <e_schema_property> (m));
                     if (y > 0)
                     {   mmac_t mac = mac_subinit (itemprop_index_name (make_itemprop_index (static_cast <e_schema_property> (m))), y);
                         res += apply_macros (ns_substat, table, stat, mac); } } } }
-    if (context.tell (e_warning))
+    if (context.tell (es_warning))
     {   mmac_t stat = mac_subtitle ("Property counts");
         ::std::string att;
         for (unsigned m = 0; m < sp_illegal; ++m)
@@ -145,9 +145,9 @@ mmac_t mac_subtitle (const ::std::string& title)
         if (n == 0) continue;
         ++total;
         count += n;
-        if (context.tell (e_comment) || (context.tell (e_error) && ((elem::categories (i) & EF_FAUX) == 0)))
+        if (context.tell (es_comment) || (context.tell (es_error) && ((elem::categories (i) & EF_FAUX) == 0)))
         {   mmac_t stat = mac_init (elem::name (i), n);
-            if (! context.tell (e_info))
+            if (! context.tell (es_info))
             {   const unsigned x = attribute_.family (i);
                 if (x > 0)
                 {   ::std::string average ("on average ");
@@ -163,7 +163,7 @@ mmac_t mac_subtitle (const ::std::string& title)
                     if (y > 0)
                     {   mmac_t mac = mac_subinit (attr::name (static_cast <e_attribute> (m)), y);
                         res += apply_macros (ns_substat, table, stat, mac); } } } } }
-    if (context.tell (e_warning))
+    if (context.tell (es_warning))
     {   mmac_t stat = mac_subtitle ("Attribute counts");
         ::std::string att;
         for (unsigned m = 0; m < last_attribute; ++m)
@@ -219,10 +219,10 @@ mmac_t mac_subtitle (const ::std::string& title)
 {   mmac_t table = mac_title ("Nits Reported");
     ::std::string res;
     res += saybe (table, severity_.at (es_catastrophic), "Catastrophes");
-    if (context.tell (e_error)) res += saybe (table, severity_.at (es_error), "Errors");
-    if (context.tell (e_warning)) res += saybe (table, severity_.at (es_warning), "Warnings");
-    if (context.tell (e_info)) res += saybe (table, severity_.at (es_info), "Info");
-    if (context.tell (e_comment)) res += saybe (table, severity_.at (es_comment), "Comments");
+    if (context.tell (es_error)) res += saybe (table, severity_.at (es_error), "Errors");
+    if (context.tell (es_warning)) res += saybe (table, severity_.at (es_warning), "Warnings");
+    if (context.tell (es_info)) res += saybe (table, severity_.at (es_info), "Info");
+    if (context.tell (es_comment)) res += saybe (table, severity_.at (es_comment), "Comments");
     if (! res.empty ())
         res = apply_macros (ns_stats_head, table) + res + apply_macros (ns_stats_foot, table);
     return res; }
@@ -269,14 +269,14 @@ mmac_t mac_subtitle (const ::std::string& title)
 
 ::std::string stats::file_report () const
 {   ::std::string res;
-    if (context.tell (e_warning)) res = ::boost::lexical_cast < ::std::string > (file_size_) + " bytes read in ";
+    if (context.tell (es_warning)) res = ::boost::lexical_cast < ::std::string > (file_size_) + " bytes read in ";
     res += ::boost::lexical_cast < ::std::string > (file_count_) + " HTML files, with an average of roughly ";
     res += ::boost::lexical_cast < ::std::string > (static_cast < int > (floor (file_size_ / file_count_ + 0.5)));
     res += " bytes per file";
     mmac_t table = mac_title ("File info");
     mmac_t stat = mac_init ("", res);
     res = apply_macros (ns_stat, table, stat);
-    if (context.tell (e_error))
+    if (context.tell (es_error))
     {   ::std::string app = "smallest file: " + ::boost::lexical_cast < ::std::string > (smallest_) + " bytes, ";
         app += "largest file: " + ::boost::lexical_cast < ::std::string > (biggest_) + " bytes";
         mmac_t x = mac_init ("", app);
@@ -338,7 +338,7 @@ mmac_t mac_subtitle (const ::std::string& title)
 
 ::std::string stats::report (const bool grand) const
 {   ::std::string res;
-    if (context.verbose () == e_silent) return res;
+    if ((context.verbose () == es_undefined) || (context.verbose () == es_illegal)) return res;
     mmac_t g;
     if (grand) g.emplace (nm_grand_title, "Grand Totals");
     else g.emplace (nm_grand_title, "Statistics");

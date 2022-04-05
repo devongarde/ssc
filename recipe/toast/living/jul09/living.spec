@@ -53,7 +53,7 @@ PASS ../toast/living/jul09/bibtex.html
 PASS ../toast/living/jul09/blockquote.html
 7 missing_close
 8 missing_close use_quote_code
-12 inserted_missing_closure inserted_missing_closure
+10 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul09/caption.html
 9 inserted_missing_closure missing_close

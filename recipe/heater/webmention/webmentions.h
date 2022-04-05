@@ -19,31 +19,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#ifdef HAS_WM
 #include "webmention/webmention.h"
+// #include "main/context.h"
 
 class webmentions
 {   ::std::vector < webmention > w_;
-    bool invalid_ = true;
-    ::boost::filesystem::path control_filename_, generated_filename_;
-    void make_generated_filename (const url& target);
-    bool load_templates (nitpick& nits, vstr_t& templates);
+    ::std::string id_;
+    ::boost::filesystem::path html_;
+    bool invalid_ = false;
 public:
     webmentions () = default;
-    webmentions (nitpick& nits, const ::boost::filesystem::path& filename, const url& target)
-    {   invalid_ = ! read (nits, filename);
-        make_generated_filename (target); }
-    void swap (webmentions& w) noexcept
-    {   w_.swap (w.w_);
-        ::std::swap (invalid_, w.invalid_); }
-    void reset ()
-    {   w_.clear ();
-        generated_filename_.clear ();
-        invalid_ = control_filename_.string ().empty (); }
-    bool exists (const webmention& mensh);
-    void merge (webmention& mensh);
-    bool read (nitpick& nits, const ::boost::filesystem::path& filename);
-    bool write (nitpick& nits);
+    webmentions (nitpick& nits, const ::boost::json::object& jo);
+//    void reset () { w_.clear (); id_.clear (); html_.clear (); invalid_ = true; }
+//    bool exists (const webmention& mensh);
+//    void merge (webmention& mensh);
     bool any_invalid () const;
-    bool invalid () const noexcept { return invalid_; }
+    ::std::string id () const noexcept { return id_; }
     bool create_html (nitpick& nits);
+    bool save (nitpick& nits, ::boost::json::object& jo);
     ::std::string report () const; };
+
+typedef ssc_map < ::std::string, webmentions > mws_t;
+#endif // HAS_WM

@@ -44,6 +44,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_class.h"
 #include "type/type_colour.h"
 #include "type/type_cookie.h"
+#include "type/type_country.h"
 #include "type/type_currency.h"
 #include "type/type_httpequiv.h"
 #include "type/type_lang.h"
@@ -85,12 +86,12 @@ template < class CATEGORY, e_type TYPE, CATEGORY IDENTITY > ::std::string typed_
     {   res += ": ";
         ::std::string gv (type_master < TYPE > :: get_string ());
         res += quote (gv);
-        if (context.tell (e_comment) && (gv.length () >= def_quote_cut))
+        if (context.tell (es_comment) && (gv.length () >= def_quote_cut))
             res += ::std::string (" [") + ::boost::lexical_cast < ::std::string > (gv.length ()) + "]"; }
     if (type_master < TYPE > :: has_id ())
     {   res += " #";
         res += type_master < TYPE > :: get_id (); }
-    if (context.tell (e_variable))
+    if (context.tell (es_variable))
     {   res += " (";
         res += ::boost::lexical_cast < ::std::string > (static_cast <int> (type_master < TYPE > :: get_type ()));
         res += ")"; }

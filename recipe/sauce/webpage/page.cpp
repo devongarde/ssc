@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/crosslink.h"
 #include "webpage/corpus.h"
 #include "icu/charset.h"
-#include "parser/jsonic.h"
+#include "schema/jsonld.h"
 #include "spell/spell.h"
 
 #define DOCTYPE "<!DOCTYPE"
@@ -56,8 +56,9 @@ page::page (nitpick& nits, const ::std::string& name, const ::std::time_t update
     directory_ = d;
     parse (content); }
 
-page::page (const ::std::string& content)
-{   snippet_ = true;
+page::page (const ::std::string& content, const bool outsider)
+{   if (outsider) outsider_ = true;
+    else snippet_ = true;
     ::std::string x (content);
     parse (x); }
 
@@ -92,6 +93,7 @@ void page::swap (page& p)
     ssi_.swap (p.ssi_);
     ::std::swap (updated_, p.updated_);
     ::std::swap (snippet_ , p.snippet_);
+    ::std::swap (outsider_ , p.outsider_);
     ::std::swap (stats_ , p.stats_);
     ::std::swap (style_css_, p.style_css_);
     title_.swap (p.title_); }
@@ -113,7 +115,7 @@ void page::charset (nitpick& nits, const html_version& v, const ::std::string& c
 
 bool page::parse (::std::string& content)
 {   nits_.reset ();
-    if (! snippet_)
+    if (! snippet_ && ! outsider_)
     {   PRESUME (directory_ != nullptr, __FILE__, __LINE__);
         ssi_.filename_ = name_;
         html_version v (html_5_3);
@@ -124,17 +126,17 @@ bool page::parse (::std::string& content)
 
 void page::examine ()
 {   if ((! document_) && ! nodes_.invalid () && nodes_.version ().known ())
-    {   if ((! snippet_) && context.md_export ()) md_export_.init (get_export_root ());
+    {   if ((! snippet_ && ! outsider_) && context.md_export ()) md_export_.init (get_export_root ());
         document_.reset (new element (name_, nodes_.top (), nullptr, *this));
         context.mark (version ());
         VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
         PRESUME (document_ -> tag () == elem_faux_document, __FILE__, __LINE__);
         document_ -> reconstruct (&access_);
         ::std::string s = document_ -> make_children (0);
-        if (context.tell (e_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
+        if (context.tell (es_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
         document_ -> examine_self (lingo (nits_, context.lang ()));
         document_ -> verify_document ();
-        if (! snippet_)
+        if (! snippet_ && ! outsider_)
         {   if (has_corpus ())
                 extend_corpus (nits_, title_, get_site_path (), corpus_, author_, keywords_, description_);
             if (context.md_export ()) md_export_.write (nits_, get_export_path ()); }
@@ -167,13 +169,23 @@ void page::itemscope (const itemscope_ptr itemscope)
     if (snippet_) return ::std::string ();
     return document_ -> find_mention_info (u, text, anything); }
 
+::std::string page::find_mention_hook (const url& u)
+{   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
+    if (snippet_) return ::std::string ();
+    return document_ -> find_mention_hook (u); }
+
+bool page::mentions (const url& target)
+{   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
+    if (snippet_) return false;
+    return document_ -> mentions (target); }
+
 ::std::string page::load_url (nitpick& nits, const url& u) const
-{   if (snippet_) return ::std::string ();
+{   if (snippet_ || outsider_) return ::std::string ();
     VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return directory_ -> load_url (nits, u); }
 
 ::boost::filesystem::path page::absolute_member (nitpick& nits, const ::boost::filesystem::path& file) const
-{   if (snippet_) return ::std::string ();
+{   if (snippet_ || outsider_) return ::std::string ();
     if (file.string ().find_first_of (":\\/") != ::std::string::npos) return file;
     VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return directory_ -> get_disk_path (nits, local_path_to_nix (file.string ())); }
@@ -193,30 +205,30 @@ void page::itemscope (const itemscope_ptr itemscope)
     return res; }
 
 const ::std::string page::get_site_path () const
-{   if (snippet_) return ::std::string ();
+{   if (snippet_ || outsider_) return ::std::string ();
     VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return join_site_paths (directory_ -> get_site_path (), name ()); }
 
 const ::boost::filesystem::path page::get_disk_path () const
-{   if (snippet_) return ::std::string ();
+{   if (snippet_ || outsider_) return ::std::string ();
     VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return (directory_ -> get_disk_path () / name ()); }
 
 const ::boost::filesystem::path page::get_export_path () const
-{   if (snippet_) return ::std::string ();
+{   if (snippet_ || outsider_) return ::std::string ();
     if (! context.export_defined ()) return get_disk_path ();
     VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return directory_ -> get_export_path () / name (); }
 
 bool page::verify_url (nitpick& nits, const ::std::string& s) const
-{   if (! check_links () || snippet_) return true;
+{   if (! check_links () || snippet_ || outsider_) return true;
     VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     url u (nits, version (), s);
     if (u.is_local () && ! check_links_) return true;
     return directory_ -> verify_url (nits, version (), u); }
 
 void page::lynx ()
-{   if (snippet_) return;
+{   if (snippet_ || outsider_) return;
     if (! context.crosslinks ()) return;
     declare_crosslinks (get_disk_path (), ids_); }
 
@@ -225,7 +237,7 @@ uid_t page::euid () noexcept
     return euid_; }
 
 void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
-{   if (snippet_) return;
+{   if (snippet_ || outsider_) return;
     ::std::stringstream ss;
     bool changed = false;
     try

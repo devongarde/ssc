@@ -41,7 +41,7 @@ PASS ../toast/living/jan09/bb.html
 PASS ../toast/living/jan09/blockquote.html
 7 missing_close
 8 missing_close use_quote_code
-12 inserted_missing_closure inserted_missing_closure
+10 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jan09/datagrid.html
 10 attribute_required

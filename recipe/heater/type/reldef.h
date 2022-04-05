@@ -317,5 +317,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_PRINCIPLES "principles"
 #define R_ITEM_LICENCE "item-license"
 
-// HTML 5.4 to be, July 2020
+// HTML 5.4 maybe to be, July 2020
 #define R_MODULE_PRELOAD "modulepreload"

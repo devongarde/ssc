@@ -21,8 +21,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "url/url_scheme.h"
 
-template < e_scheme SCHEME, e_scheme... S > struct url_schemes : url_schemes < S... >
-{   static bool equivalent (const e_scheme scheme, const vc_t& lhs, const vc_t& rhs)
+template < e_scheme SCHEME, e_scheme... S > struct url_schemes
+{   static bool similar (const e_scheme scheme, const vc_t& lhs, const vc_t& rhs)
+    {   if (lhs.at (es_scheme) != rhs.at (es_scheme)) return false;
+        return equivalent (scheme, lhs, rhs); }
+    static bool equivalent (const e_scheme scheme, const vc_t& lhs, const vc_t& rhs)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: equivalent (lhs, rhs);
         return url_schemes < S... > :: equivalent (scheme, lhs, rhs); }
     static bool parse (nitpick& nits, const html_version& v, const e_scheme scheme, const e_protocol prot, const ::std::string& url, vc_t& component)
@@ -44,21 +47,16 @@ template < e_scheme SCHEME > struct url_schemes < SCHEME >
         return equivalent (scheme, lhs, rhs); }
     static bool equivalent (const e_scheme scheme, const vc_t& lhs, const vc_t& rhs)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: equivalent (lhs, rhs);
-        GRACEFUL_CRASH (__FILE__, __LINE__);
-        UNREACHABLE (return false); }
+        return false; }
     static bool parse (nitpick& nits, const html_version& v, const e_scheme scheme, const e_protocol prot, const ::std::string& url, vc_t& component)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: parse (nits, v, prot, url, component);
-        GRACEFUL_CRASH (__FILE__, __LINE__);
-        UNREACHABLE (return false); }
+        return false; }
     static bool is_valid (const e_scheme scheme, const vc_t& component, bool defaulted)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: is_valid (component, defaulted);
-        GRACEFUL_CRASH (__FILE__, __LINE__);
-        UNREACHABLE (return false); }
+        return false; }
     static ::std::string get (const e_scheme scheme, const vc_t& component, bool defaulted)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: get (component, defaulted);
-        GRACEFUL_CRASH (__FILE__, __LINE__);
-        UNREACHABLE (return ::std::string ()); }
+        return ::std::string (); }
     static ::std::string absolute (const e_scheme scheme, const vc_t& component, bool can_use_index, bool defaulted)
     {   if (SCHEME == scheme) return url_scheme < SCHEME > :: absolute (component, can_use_index, defaulted);
-        GRACEFUL_CRASH (__FILE__, __LINE__);
-        UNREACHABLE (return ::std::string ()); } };
+        return ::std::string (); } };

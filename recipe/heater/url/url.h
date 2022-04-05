@@ -41,8 +41,8 @@ class url
     void set (nitpick& nits, const html_version& v, const ::std::string& u, const e_protocol current)
     {   parse (nits, v, u, current); }
 public:
-    url () noexcept : valid_ (true), current_ (pr_http) { }
-    url (nitpick& nits, const html_version& v, const ::std::string& u, const e_protocol current = pr_http)
+    url () noexcept : valid_ (true), current_ (pr_https) { }
+    url (nitpick& nits, const html_version& v, const ::std::string& u, const e_protocol current = pr_https)
         :   valid_ (true), current_ (current), v_ (v)
     {   set (nits, v, u, current); }
 	url (const url&) = default;
@@ -68,6 +68,11 @@ public:
     bool has_component (const e_component c) const { return ! get_component (c).empty (); }
     ::std::string get_component (const e_component c) const { return protocol_.get_component (c); }
     void reset_component (const e_component c) { return protocol_.reset_component (c); }
+    void set_component (const e_component c, const ::std::string& val) { protocol_.set_component (c, val); }
+    void set_components (const url& u)
+    {   for (int c = es_query; c <= es_extension; ++c)
+            if (! has_component (static_cast < e_component > (c)))
+                set_component (static_cast < e_component > (c), u.get_component (static_cast < e_component > (c))); }
     bool is_protocol (const e_protocol p) const noexcept { return (get_protocol () == p); }
     e_protocol get_protocol () const noexcept { return protocol_.get_protocol (); }
     e_scheme get_scheme () const { return protocol_.scheme (); }
@@ -90,6 +95,7 @@ public:
     bool is_usable () const noexcept { return is_protocol (pr_http) || is_protocol (pr_https); }
     bool is_simple_id () const { return is_local () && ! has_path () && ! has_file () && has_id (); }
     bool invalid () const noexcept { return ! valid_; }
+    bool valid () const noexcept { return valid_; }
     bool tismoi (const url& u) const
     {   return (valid_ && u.valid_ && (protocol_ == u.protocol_)); }
     ::std::size_t arg_count () const noexcept { return params_.size (); }
@@ -105,11 +111,12 @@ public:
     ::std::string original () const { return protocol_.original (); }
     ::std::string get () const
     {   if (invalid ()) return ::std::string (); return protocol_.get (); }
-    ::std::string absolute (bool can_use_index = false) const
-    {   if (invalid ()) return ::std::string (); return protocol_.absolute (can_use_index); }
+    ::std::string absolute (const bool can_use_index = false, const bool force = false) const
+    {   if (invalid ()) return ::std::string (); return protocol_.absolute (can_use_index, force); }
     ::std::string page () const { return get_component (es_authority); }
     ::std::string path () const { return get_component (es_path); }
     ::std::string password () const { return get_component (es_password); }
+    ::std::string scheme () const { return get_component (es_scheme); }
     ::std::string get_filepath () const;
     bool sanity_test () const;
     bool standard_extension (const e_mime_category mime = mc_text) const;

@@ -16,29 +16,32 @@ PASS ../toast/living/jul16/address.html
 12 attempted_escape no_such_folder url_not_found
 13 url_not_found
 
-PASS ../toast/living/jul16/aside.html
-0 charset_mismatch charset_used charset_invalid
-19 use_quote_code
-22 use_quote_code
-25 use_quote_code
-
 PASS ../toast/living/jul16/aside-2.html
 0 charset_mismatch charset_used charset_invalid
 16 missing_close
 17 inserted_missing_closure
 22 url_not_found
-23 inserted_missing_closure missing_close url_not_found
+23 inserted_missing_closure missing_close
+23 url_not_found
 24 inserted_missing_closure
 32 use_quote_code
 35 use_quote_code
-43 missing_close url_not_found
+43 missing_close
+43 url_not_found
 44 inserted_missing_closure
 57 use_quote_code
-60 missing_close url_not_found
+60 missing_close
+60 url_not_found
 61 inserted_missing_closure
 65 url_not_found
 66 url_not_found
 67 url_not_found
+
+PASS ../toast/living/jul16/aside.html
+0 charset_mismatch charset_used charset_invalid
+19 use_quote_code
+22 use_quote_code
+25 use_quote_code
 
 PASS ../toast/living/jul16/b.html
 0 charset_mismatch charset_used charset_invalid
@@ -48,27 +51,29 @@ PASS ../toast/living/jul16/blockquote.html
 0 charset_mismatch charset_used charset_invalid
 7 missing_close
 8 use_quote_code
-12 inserted_missing_closure
-21 use_quote_code
-27 use_quote_code
-30 use_quote_code
-44 use_quote_code
-50 use_double_quote_code
-60 inserted_missing_closure
-69 use_quote_code
-71 use_double_quote_code
-72 use_double_quote_code
-87 inserted_missing_closure
+10 inserted_missing_closure
+19 use_quote_code
+25 use_quote_code
+28 use_quote_code
+42 use_quote_code
+48 use_double_quote_code
+57 inserted_missing_closure
+66 use_quote_code
+68 use_double_quote_code
+69 use_double_quote_code
+84 inserted_missing_closure
 
 PASS ../toast/living/jul16/canvas3.html
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
 3 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/jul16/canvas4.html
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
 3 element_offsite_base
 9 inserted_missing_parent inserted_missing_closure missing_close
-160 inserted_missing_closure
+158 inserted_missing_closure
 
 PASS ../toast/living/jul16/canvas5.html
 0 charset_mismatch charset_used charset_invalid
@@ -87,7 +92,8 @@ PASS ../toast/living/jul16/canvas7.html
 2 naughty_lang
 4 long_title
 15 url_not_found
-16 url_not_found url_not_found
+16 url_not_found
+16 url_not_found
 21 use_quote_code
 
 PASS ../toast/living/jul16/canvas8.html
@@ -96,18 +102,23 @@ PASS ../toast/living/jul16/canvas8.html
 15 url_not_found
 19 use_quote_code
 
-
 PASS ../toast/living/jul16/caption.html
 9 inserted_missing_closure missing_close
 13 inserted_missing_closure
 
 PASS ../toast/living/jul16/data.html
 10 unrecognised_value
-11 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+11 wrong_parent inserted_missing_closure
+11 wrong_parent inserted_missing_closure
 12 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
-13 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-14 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-15 inserted_missing_closure wrong_parent inserted_missing_closure missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+13 wrong_parent inserted_missing_closure
+13 wrong_parent inserted_missing_closure
+14 inserted_missing_closure wrong_parent inserted_missing_closure
+14 wrong_parent inserted_missing_closure
+14 wrong_parent inserted_missing_closure
+15 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+15 wrong_parent inserted_missing_closure
+15 wrong_parent inserted_missing_closure missing_close
 16 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul16/datalist.html
@@ -120,9 +131,11 @@ PASS ../toast/living/jul16/datalist.html
 
 PASS ../toast/living/jul16/dd.html
 0 charset_mismatch charset_used charset_invalid
-8 unrecognised_value use_quote_code
+8 unrecognised_value
+8 use_quote_code
 9 unrecognised_value
-13 unrecognised_value use_quote_code
+13 unrecognised_value
+13 use_quote_code
 14 unrecognised_value
 16 unrecognised_value
 
@@ -165,113 +178,125 @@ PASS ../toast/living/jul16/embed.html
 10 reputation url_not_found
 
 PASS ../toast/living/jul16/et.html
-8 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+8 wrong_parent inserted_missing_closure
+8 wrong_parent inserted_missing_closure
 9 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
-10 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-11 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-12 inserted_missing_closure wrong_parent inserted_missing_closure missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+10 wrong_parent inserted_missing_closure
+10 wrong_parent inserted_missing_closure
+11 inserted_missing_closure wrong_parent inserted_missing_closure
+11 wrong_parent inserted_missing_closure
+11 wrong_parent inserted_missing_closure
+12 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+12 wrong_parent inserted_missing_closure
+12 wrong_parent inserted_missing_closure missing_close
 13 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-17 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+17 wrong_parent inserted_missing_closure
+17 wrong_parent inserted_missing_closure
 18 no_such_folder url_not_found
 19 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
-20 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+20 wrong_parent inserted_missing_closure
+20 wrong_parent inserted_missing_closure
 21 no_such_folder url_not_found
-22 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+22 inserted_missing_closure wrong_parent inserted_missing_closure
+22 wrong_parent inserted_missing_closure
+22 wrong_parent inserted_missing_closure
 23 no_such_folder url_not_found
-24 inserted_missing_closure wrong_parent inserted_missing_closure missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+24 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+24 wrong_parent inserted_missing_closure
+24 wrong_parent inserted_missing_closure missing_close
 25 no_such_folder url_not_found
 26 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-
-PASS ../toast/living/jul16/example.html
-6 missing_close
-6 inserted_missing_closure
-6 missing_open
-10 url_not_found
-29 url_not_found
-30 inserted_missing_closure
-30 url_not_found
-31 inserted_missing_closure missing_close
-31 url_not_found
-32 inserted_missing_closure
-34 url_not_found
-45 url_not_found
-54 inserted_missing_closure inserted_missing_closure
-55 inserted_missing_closure inserted_missing_closure
-56 inserted_missing_closure inserted_missing_closure
-66 inserted_missing_closure inserted_missing_closure
-66 missing_open
-68 inserted_missing_closure unrecognised_value
-70 input_bad_aria
-72 inserted_missing_closure
-78 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
-94 attribute_unrecognised unrecognised_attribute unrecognised_value
-96 unrecognised_value
-100 url_not_found
-105 data_type
-105 attribute_required attribute_required
-105 attribute_required
-123 url_not_found
-129 use_quote_code
-132 url_not_found
-133 url_not_found
-134 url_not_found
-136 use_quote_code
-142 url_not_found
-145 url_not_found
-146 inserted_missing_closure missing_close
-147 inserted_missing_closure
-151 use_quote_code
-156 url_not_found
-159 url_not_found
-160 inserted_missing_closure missing_close
-161 inserted_missing_closure
-164 use_quote_code
-168 unrecognised_namespace unknown_element
-171 unknown_element
-175 newline_in_string
-175 newline_in_string
-177 unrecognised_value
-178 use_double_quote_code use_quote_code
-179 unrecognised_value
-180 inserted_missing_closure unrecognised_value
-181 unrecognised_value
-182 use_quote_code use_double_quote_code
-182 inserted_missing_closure unrecognised_value
-182 use_double_quote_code
-183 unrecognised_value
-183 use_double_quote_code
-186 newline_in_string
-186 newline_in_string
-187 newline_in_string
-187 newline_in_string
-192 only_elements
-199 unrecognised_value
-201 unrecognised_value
-208 unrecognised_value no_such_folder url_not_found
 
 PASS ../toast/living/jul16/example-2.html
 4 url_not_found style_not_css
 5 url_not_found
 6 url_not_found
 10 url_not_found
-13 url_not_found
-15 url_not_found
+12 url_not_found
+14 url_not_found
+16 url_not_found
 17 url_not_found
 18 url_not_found
-19 url_not_found
+20 no_such_folder url_not_found
 21 no_such_folder url_not_found
 22 no_such_folder url_not_found
 23 no_such_folder url_not_found
 24 no_such_folder url_not_found
 25 no_such_folder url_not_found
-26 no_such_folder url_not_found
-35 url_not_found
-36 mime
-50 use_quote_code
-64 use_quote_code
-109 unrecognised_value
-124 use_quote_code
-134 use_quote_code
+34 url_not_found
+35 mime
+49 use_quote_code
+63 use_quote_code
+108 unrecognised_value
+123 use_quote_code
+133 use_quote_code
+
+PASS ../toast/living/jul16/example.html
+6 missing_close
+6 inserted_missing_closure
+6 missing_open
+10 url_not_found
+28 url_not_found
+29 inserted_missing_closure
+29 url_not_found
+30 inserted_missing_closure missing_close
+30 url_not_found
+31 inserted_missing_closure
+32 url_not_found
+43 url_not_found
+52 inserted_missing_closure inserted_missing_closure
+53 inserted_missing_closure inserted_missing_closure
+54 inserted_missing_closure inserted_missing_closure
+63 inserted_missing_closure inserted_missing_closure
+63 missing_open
+64 inserted_missing_closure unrecognised_value
+66 input_bad_aria
+68 inserted_missing_closure
+74 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute
+88 attribute_unrecognised unrecognised_attribute unrecognised_value
+90 unrecognised_value
+94 url_not_found
+99 data_type
+99 attribute_required attribute_required
+99 attribute_required
+116 url_not_found
+122 use_quote_code
+125 url_not_found
+126 url_not_found
+127 url_not_found
+129 use_quote_code
+135 url_not_found
+138 url_not_found
+139 inserted_missing_closure missing_close
+140 inserted_missing_closure
+144 use_quote_code
+148 url_not_found
+151 url_not_found
+152 inserted_missing_closure missing_close
+153 inserted_missing_closure
+156 use_quote_code
+160 unrecognised_namespace unknown_element
+163 unknown_element
+166 newline_in_string
+166 newline_in_string
+168 unrecognised_value
+169 use_double_quote_code use_quote_code
+170 unrecognised_value
+171 inserted_missing_closure unrecognised_value
+172 unrecognised_value
+173 use_quote_code use_double_quote_code
+173 inserted_missing_closure unrecognised_value
+173 use_double_quote_code
+174 unrecognised_value
+174 use_double_quote_code
+177 newline_in_string
+177 newline_in_string
+178 newline_in_string
+178 newline_in_string
+183 only_elements
+190 unrecognised_value
+192 unrecognised_value
+199 unrecognised_value no_such_folder url_not_found
 
 PASS ../toast/living/jul16/fieldset.html
 12 pattern
@@ -285,9 +310,11 @@ PASS ../toast/living/jul16/fieldset.html
 49 inserted_missing_closure
 
 PASS ../toast/living/jul16/figure.html
-21 newline_in_string newline_in_string url_not_found
+21 newline_in_string
+21 newline_in_string url_not_found
 25 use_quote_code
-29 use_double_quote_code inserted_missing_closure
+29 use_double_quote_code
+29 inserted_missing_closure
 30 url_not_found
 35 inserted_missing_closure
 36 url_not_found
@@ -296,17 +323,13 @@ PASS ../toast/living/jul16/figure.html
 46 use_quote_code
 55 url_not_found
 57 url_not_found
-60 newline_in_string newline_in_string url_not_found
+60 newline_in_string
+60 newline_in_string url_not_found
+65 url_not_found
 67 url_not_found
 69 url_not_found
-71 url_not_found
-78 url_not_found
-85 use_quote_code
-
-PASS ../toast/living/jul16/footer.html
-2 naughty_lang
-9 attempted_escape
-18 attempted_escape
+76 url_not_found
+83 use_quote_code
 
 PASS ../toast/living/jul16/footer-2.html
 0 charset_mismatch charset_used charset_invalid
@@ -326,12 +349,20 @@ PASS ../toast/living/jul16/footer-3.html
 17 attribute_required no_such_folder url_not_found naughty_alt
 19 no_such_folder url_not_found
 21 attribute_required no_such_folder url_not_found naughty_alt
-23 use_quote_code no_such_folder url_not_found
+23 use_quote_code
+23 no_such_folder url_not_found
 26 url_not_found
-27 inserted_missing_closure url_not_found
-28 inserted_missing_closure missing_close url_not_found
+27 inserted_missing_closure
+27 url_not_found
+28 inserted_missing_closure missing_close
+28 url_not_found
 29 inserted_missing_closure
 32 url_not_found
+
+PASS ../toast/living/jul16/footer.html
+2 naughty_lang
+9 attempted_escape
+18 attempted_escape
 
 PASS ../toast/living/jul16/formex.html
 15 url_not_found
@@ -339,7 +370,8 @@ PASS ../toast/living/jul16/formex.html
 32 url_not_found
 37 url_not_found
 61 url_not_found
-63 missing_close inserted_missing_closure
+63 missing_close
+63 inserted_missing_closure
 74 bad_autocomplete
 75 inserted_missing_closure
 76 inserted_missing_closure missing_close
@@ -384,12 +416,17 @@ PASS ../toast/living/jul16/forms.html
 195 inserted_missing_closure missing_close
 196 inserted_missing_closure
 249 unrecognised_value
-254 inserted_missing_closure use_quote_code
+254 inserted_missing_closure
+254 use_quote_code
 255 inserted_missing_closure
-257 use_double_quote_code inserted_missing_closure
-259 inserted_missing_closure use_quote_code unrecognised_value
+257 use_double_quote_code
+257 inserted_missing_closure
+259 inserted_missing_closure
+259 use_quote_code
+259 unrecognised_value
 260 inserted_missing_closure
-262 use_double_quote_code inserted_missing_closure missing_close
+262 use_double_quote_code
+262 inserted_missing_closure missing_close
 267 inserted_missing_closure
 
 PASS ../toast/living/jul16/h-1.html
@@ -401,20 +438,23 @@ PASS ../toast/living/jul16/h-2.html
 PASS ../toast/living/jul16/h-3.html
 6 use_quote_code
 
+PASS ../toast/living/jul16/header-2.html
+2 naughty_lang
+14 url_not_found
+15 inserted_missing_closure
+15 url_not_found
+16 inserted_missing_closure missing_close
+16 url_not_found
+17 inserted_missing_closure
+21 use_quote_code
+
 PASS ../toast/living/jul16/header.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 
-PASS ../toast/living/jul16/header-2.html
-2 naughty_lang
-14 url_not_found
-15 inserted_missing_closure url_not_found
-16 inserted_missing_closure missing_close url_not_found
-17 inserted_missing_closure
-21 use_quote_code
-
 PASS ../toast/living/jul16/hgroup-2.html
-18 newline_in_string newline_in_string illegal_value
+18 newline_in_string
+18 newline_in_string illegal_value
 19 inserted_missing_closure
 21 inserted_missing_closure
 22 input_bad_mix
@@ -430,43 +470,55 @@ PASS ../toast/living/jul16/hr.html
 49 use_quote_code
 58 use_quote_code
 
-PASS ../toast/living/jul16/hs-7.html
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
-3 inserted_missing_parent inserted_missing_closure missing_close
-18 inserted_missing_closure
-19 use_quote_code
-
-PASS ../toast/living/jul16/hs-8.html
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
-3 inserted_missing_parent inserted_missing_closure missing_close
-31 inserted_missing_closure
-33 use_quote_code
-
-PASS ../toast/living/jul16/hs-9.html
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
-3 inserted_missing_parent inserted_missing_closure missing_close
-
 PASS ../toast/living/jul16/hs-10.html
 0 title_required
-5 use_double_quote_code inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+5 use_double_quote_code
+5 inserted_missing_parent missing_close naughty_lang
+5 inserted_missing_parent missing_close
 
 PASS ../toast/living/jul16/hs-11.html
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close long_title
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
+2 long_title
 3 inserted_missing_parent inserted_missing_closure missing_close
 5 use_quote_code
 
 PASS ../toast/living/jul16/hs-12.html
 0 charset_mismatch charset_used charset_invalid
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close long_title use_quote_code
-3 inserted_missing_parent inserted_missing_closure missing_close use_quote_code
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
+2 long_title
+2 use_quote_code
+3 inserted_missing_parent inserted_missing_closure missing_close
+3 use_quote_code
 11 use_quote_code
 13 wrong_parent
 16 use_quote_code
 
 PASS ../toast/living/jul16/hs-13.html
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
 3 inserted_missing_parent inserted_missing_closure missing_close
 16 use_quote_code
+
+PASS ../toast/living/jul16/hs-7.html
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
+3 inserted_missing_parent inserted_missing_closure missing_close
+18 inserted_missing_closure
+19 use_quote_code
+
+PASS ../toast/living/jul16/hs-8.html
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
+3 inserted_missing_parent inserted_missing_closure missing_close
+31 inserted_missing_closure
+33 use_quote_code
+
+PASS ../toast/living/jul16/hs-9.html
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
+3 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/jul16/i.html
 0 charset_mismatch charset_used charset_invalid
@@ -475,7 +527,8 @@ PASS ../toast/living/jul16/iframe.html
 0 charset_mismatch charset_used charset_invalid
 9 missing_close
 14 use_quote_code
-16 missing_close no_such_folder url_not_found
+16 missing_close
+16 no_such_folder url_not_found
 17 inserted_missing_closure
 19 no_such_folder url_not_found
 20 inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1
@@ -490,7 +543,8 @@ PASS ../toast/living/jul16/iframe.html
 39 url_not_found
 41 url_not_found
 45 attribute_required no_such_folder url_not_found naughty_alt
-46 no_such_folder url_not_found url_id_unfound
+46 no_such_folder url_not_found
+46 url_id_unfound
 48 wrong_parent
 57 inserted_missing_closure
 
@@ -511,30 +565,53 @@ PASS ../toast/living/jul16/img.html
 25 use_quote_code
 31 url_not_found
 32 use_quote_code
-43 newline_in_string newline_in_string url_not_found
+43 newline_in_string
+43 newline_in_string url_not_found
 45 use_quote_code
 51 use_quote_code
 52 url_not_found
 61 url_not_found naughty_alt
-67 url_not_found url_not_found
-68 url_not_found url_not_found
-69 url_not_found url_not_found
-72 interactive url_not_found url_not_found naughty_alt url_not_found naughty_alt
-73 interactive url_not_found url_not_found naughty_alt url_not_found naughty_alt
+67 url_not_found
+67 url_not_found
+68 url_not_found
+68 url_not_found
+69 url_not_found
+69 url_not_found
+72 interactive
+72 url_not_found
+72 url_not_found naughty_alt
+72 url_not_found naughty_alt
+73 interactive
+73 url_not_found
+73 url_not_found naughty_alt
+73 url_not_found naughty_alt
 74 url_not_found naughty_alt
-76 interactive url_not_found url_not_found
+76 interactive
+76 url_not_found
+76 url_not_found
 77 url_not_found
-78 interactive url_not_found
-79 url_not_found url_not_found url_not_found
-81 interactive url_not_found
-82 url_not_found naughty_alt url_not_found naughty_alt
-83 interactive url_not_found
-84 url_not_found naughty_alt url_not_found naughty_alt url_not_found naughty_alt
+78 interactive
+78 url_not_found
+79 url_not_found
+79 url_not_found
+79 url_not_found
+81 interactive
+81 url_not_found
+82 url_not_found naughty_alt
+82 url_not_found naughty_alt
+83 interactive
+83 url_not_found
+84 url_not_found naughty_alt
+84 url_not_found naughty_alt
+84 url_not_found naughty_alt
 92 newline_in_string no_such_folder url_not_found
-98 newline_in_string newline_in_string url_not_found
+98 newline_in_string
+98 newline_in_string url_not_found
 105 url_not_found
-111 no_such_folder url_not_found no_such_folder url_not_found naughty_alt
-112 no_such_folder url_not_found no_such_folder url_not_found naughty_alt
+111 no_such_folder url_not_found
+111 no_such_folder url_not_found naughty_alt
+112 no_such_folder url_not_found
+112 no_such_folder url_not_found naughty_alt
 119 url_not_found
 127 url_not_found
 132 use_quote_code
@@ -546,26 +623,37 @@ PASS ../toast/living/jul16/img.html
 159 url_not_found
 166 no_such_folder url_not_found naughty_alt
 175 no_such_folder url_not_found naughty_alt
-189 newline_in_string newline_in_string no_such_folder url_not_found
+189 newline_in_string
+189 newline_in_string no_such_folder url_not_found
 201 no_such_folder url_not_found
 208 url_not_found naughty_alt
 211 url_not_found naughty_alt
 216 use_quote_code
-222 url_not_found url_not_found naughty_alt
-225 url_not_found url_not_found naughty_alt
+222 url_not_found
+222 url_not_found naughty_alt
+225 url_not_found
 225 url_not_found naughty_alt
-226 url_not_found naughty_alt url_not_found naughty_alt
+225 url_not_found naughty_alt
+226 url_not_found naughty_alt
+226 url_not_found naughty_alt
 231 url_not_found
-233 url_not_found naughty_alt url_not_found
-245 newline_in_string newline_in_string url_not_found
-252 newline_in_string newline_in_string url_not_found
-260 newline_in_string newline_in_string no_such_folder url_not_found
-268 newline_in_string newline_in_string no_such_folder url_not_found
-277 newline_in_string newline_in_string url_not_found
+233 url_not_found naughty_alt
+233 url_not_found
+245 newline_in_string
+245 newline_in_string url_not_found
+252 newline_in_string
+252 newline_in_string url_not_found
+260 newline_in_string
+260 newline_in_string no_such_folder url_not_found
+268 newline_in_string
+268 newline_in_string no_such_folder url_not_found
+277 newline_in_string
+277 newline_in_string url_not_found
 280 attribute_required url_not_found
 286 attribute_required url_not_found naughty_alt
 293 attribute_required url_not_found
-308 newline_in_string newline_in_string url_not_found
+308 newline_in_string
+308 newline_in_string url_not_found
 314 attribute_required url_not_found naughty_alt
 321 wrong_parent inserted_missing_closure
 322 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
@@ -606,20 +694,25 @@ PASS ../toast/living/jul16/input.html
 86 inserted_missing_closure missing_close
 88 inserted_missing_closure
 93 url_not_found
-95 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+95 wrong_parent inserted_missing_closure
+95 wrong_parent inserted_missing_closure
+95 wrong_parent inserted_missing_closure
 96 inserted_missing_closure wrong_parent inserted_missing_closure
 98 wrong_parent inserted_missing_closure
 99 wrong_parent inserted_missing_closure
-100 wrong_parent inserted_missing_closure bad_form
+100 wrong_parent inserted_missing_closure
+100 bad_form
 101 inserted_missing_closure wrong_parent inserted_missing_closure
 103 wrong_parent inserted_missing_closure
 104 wrong_parent inserted_missing_closure
-105 wrong_parent inserted_missing_closure bad_form
+105 wrong_parent inserted_missing_closure
+105 bad_form
 106 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 107 pattern
 108 wrong_parent inserted_missing_closure
 109 wrong_parent inserted_missing_closure
-110 wrong_parent inserted_missing_closure missing_close bad_form
+110 wrong_parent inserted_missing_closure missing_close
+110 bad_form
 111 inserted_missing_closure inserted_missing_closure
 112 bad_form
 117 url_not_found
@@ -644,9 +737,11 @@ PASS ../toast/living/jul16/input.html
 199 minmax minmax
 201 inserted_missing_closure
 204 inserted_missing_closure
-205 inserted_missing_closure use_quote_code
+205 inserted_missing_closure
+205 use_quote_code
 206 inserted_missing_closure
-207 inserted_missing_closure missing_close use_quote_code
+207 inserted_missing_closure missing_close
+207 use_quote_code
 208 inserted_missing_closure
 
 PASS ../toast/living/jul16/keygen.html
@@ -698,21 +793,6 @@ PASS ../toast/living/jul16/links-tag2.html
 PASS ../toast/living/jul16/ls1.html
 8 url_not_found
 
-PASS ../toast/living/jul16/ls4.html
-0 charset_mismatch charset_used charset_invalid
-
-PASS ../toast/living/jul16/ls5.html
-0 charset_mismatch charset_used charset_invalid
-
-PASS ../toast/living/jul16/ls6.html
-3 contradictory_namespace no_xmllang
-5 use_quote_code
-8 unrecognised_namespace unknown_element
-9 unknown_element unknown_element
-10 unknown_element
-11 unknown_element unknown_element
-12 unknown_element
-
 PASS ../toast/living/jul16/ls10.html
 5 element_offsite_base
 
@@ -745,20 +825,39 @@ PASS ../toast/living/jul16/ls17.html
 13 only_elements
 25 only_elements
 
+PASS ../toast/living/jul16/ls4.html
+0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/living/jul16/ls5.html
+0 charset_mismatch charset_used charset_invalid
+
+PASS ../toast/living/jul16/ls6.html
+3 contradictory_namespace no_xmllang
+5 use_quote_code
+8 unrecognised_namespace unknown_element
+9 unknown_element
+9 unknown_element
+10 unknown_element
+11 unknown_element
+11 unknown_element
+12 unknown_element
+
 PASS ../toast/living/jul16/main.html
 3 inserted_missing_parent missing_close
 14 inserted_missing_parent inserted_missing_closure missing_close
 18 attempted_escape no_such_folder url_not_found
 19 attempted_escape no_such_folder url_not_found
 22 missing_close
-23 use_quote_code inserted_missing_closure
+23 use_quote_code
+23 inserted_missing_closure
 32 missing_close
 33 inserted_missing_closure
 34 inserted_missing_closure
 
 PASS ../toast/living/jul16/map.html
 0 charset_mismatch charset_used charset_invalid
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
 3 inserted_missing_parent inserted_missing_closure missing_close
 7 no_such_folder url_not_found
 12 missing_close
@@ -775,9 +874,11 @@ PASS ../toast/living/jul16/map.html
 PASS ../toast/living/jul16/mark.html
 9 use_quote_code
 16 use_quote_code
-25 unrecognised_value unrecognised_value
+25 unrecognised_value
+25 unrecognised_value
 27 unrecognised_value
-28 unrecognised_value unrecognised_value
+28 unrecognised_value
+28 unrecognised_value
 29 unrecognised_value
 46 use_quote_code
 48 use_quote_code
@@ -786,7 +887,7 @@ PASS ../toast/living/jul16/mark.html
 PASS ../toast/living/jul16/me.html
 7 url_not_found
 31 url_not_found
-61 url_not_found autoplay
+60 url_not_found autoplay
 
 PASS ../toast/living/jul16/menu.html
 8 unrecognised_value
@@ -801,10 +902,12 @@ PASS ../toast/living/jul16/meter.html
 10 bad_meter
 11 bad_meter
 16 inserted_missing_closure
-17 inserted_missing_closure inserted_missing_closure missing_close
+17 inserted_missing_closure
+17 inserted_missing_closure missing_close
 18 inserted_missing_closure
 21 inserted_missing_closure
-22 inserted_missing_closure inserted_missing_closure missing_close
+22 inserted_missing_closure
+22 inserted_missing_closure missing_close
 23 inserted_missing_closure
 27 inserted_missing_closure
 28 missing_open
@@ -862,42 +965,72 @@ PASS ../toast/living/jul16/p.html
 
 PASS ../toast/living/jul16/param.html
 9 mime
-16 newline_in_string newline_in_string url_not_found
+16 newline_in_string
+16 newline_in_string url_not_found
 21 url_not_found
 
 PASS ../toast/living/jul16/q.html
 7 use_double_quote_code
 10 use_quote_code
 12 use_double_quote_code
-16 use_double_quote_code use_quote_code
+16 use_double_quote_code
+16 use_quote_code
 17 use_double_quote_code
 23 use_double_quote_code use_quote_code
 
 PASS ../toast/living/jul16/ruby.html
-10 missing_close inserted_missing_closure
-12 missing_close inserted_missing_closure missing_close inserted_missing_closure missing_close inserted_missing_closure missing_close
+10 missing_close
+10 inserted_missing_closure
+12 missing_close
+12 inserted_missing_closure
+12 missing_close
+12 inserted_missing_closure
+12 missing_close
+12 inserted_missing_closure
+12 missing_close
 13 inserted_missing_closure
-15 missing_close inserted_missing_closure missing_close inserted_missing_closure missing_close inserted_missing_closure
-18 missing_close inserted_missing_closure
-26 missing_close inserted_missing_closure
-28 missing_close inserted_missing_closure
-30 missing_close inserted_missing_closure
-32 missing_close inserted_missing_closure
-34 inserted_missing_closure missing_close inserted_missing_closure
-35 inserted_missing_closure missing_close inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
-36 inserted_missing_closure missing_close inserted_missing_closure
+15 missing_close
+15 inserted_missing_closure
+15 missing_close
+15 inserted_missing_closure
+15 missing_close
+15 inserted_missing_closure
+18 missing_close
+18 inserted_missing_closure
+26 missing_close
+26 inserted_missing_closure
+28 missing_close
+28 inserted_missing_closure
+30 missing_close
+30 inserted_missing_closure
+32 missing_close
+32 inserted_missing_closure
+34 inserted_missing_closure missing_close
+34 inserted_missing_closure
+35 inserted_missing_closure missing_close
+35 inserted_missing_closure
+35 inserted_missing_closure missing_close
+35 inserted_missing_closure
+35 inserted_missing_closure missing_close
+35 inserted_missing_closure
+36 inserted_missing_closure missing_close
+36 inserted_missing_closure
 39 inserted_missing_closure
-40 inserted_missing_closure inserted_missing_closure
-41 inserted_missing_closure inserted_missing_closure missing_close
+40 inserted_missing_closure
+40 inserted_missing_closure
+41 inserted_missing_closure
+41 inserted_missing_closure missing_close
 42 inserted_missing_closure
-44 missing_close inserted_missing_closure
+44 missing_close
+44 inserted_missing_closure
 59 missing_close
 60 inserted_missing_closure
 
 PASS ../toast/living/jul16/samp.html
 7 use_quote_code
 9 unrecognised_value
-13 unrecognised_value unrecognised_value
+13 unrecognised_value
+13 unrecognised_value
 16 unrecognised_value
 
 PASS ../toast/living/jul16/script.html
@@ -920,7 +1053,8 @@ PASS ../toast/living/jul16/select.html
 45 inserted_missing_closure
 46 inserted_missing_closure
 47 inserted_missing_closure
-48 use_quote_code inserted_missing_closure
+48 use_quote_code
+48 inserted_missing_closure
 49 inserted_missing_closure missing_close
 50 inserted_missing_closure
 
@@ -933,7 +1067,8 @@ PASS ../toast/living/jul16/small.html
 23 use_double_quote_code
 
 PASS ../toast/living/jul16/source.html
-6 inserted_missing_parent missing_close media_descendants url_not_found
+6 inserted_missing_parent missing_close media_descendants
+6 url_not_found
 7 url_not_found
 8 url_not_found
 9 url_not_found
@@ -953,14 +1088,23 @@ PASS ../toast/living/jul16/source.html
 39 inserted_missing_closure
 
 PASS ../toast/living/jul16/span.html
-6 unrecognised_value unrecognised_value unrecognised_value
-7 unrecognised_value unrecognised_value
-8 unrecognised_value unrecognised_value
-9 lonely_ampersand unrecognised_value
-10 unrecognised_value unrecognised_value
-11 unrecognised_value unrecognised_value
+6 unrecognised_value
+6 unrecognised_value
+6 unrecognised_value
+7 unrecognised_value
+7 unrecognised_value
+8 unrecognised_value
+8 unrecognised_value
+9 lonely_ampersand
+9 unrecognised_value
+10 unrecognised_value
+10 unrecognised_value
+11 unrecognised_value
+11 unrecognised_value
 12 unrecognised_value
-13 lonely_ampersand unrecognised_value unrecognised_value
+13 lonely_ampersand
+13 unrecognised_value
+13 unrecognised_value
 14 unrecognised_value
 15 unrecognised_value
 
@@ -1014,7 +1158,8 @@ PASS ../toast/living/jul16/table.html
 93 inserted_missing_closure id_exists
 94 inserted_missing_closure missing_close
 95 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-107 inserted_missing_parent id_exists
+107 inserted_missing_parent
+107 id_exists
 108 wrong_parent inserted_missing_closure
 109 wrong_parent inserted_missing_closure
 110 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
@@ -1039,17 +1184,86 @@ PASS ../toast/living/jul16/table.html
 150 inserted_missing_closure
 151 inserted_missing_closure
 152 inserted_missing_closure
-153 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-154 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-155 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+153 wrong_parent inserted_missing_closure
+153 wrong_parent inserted_missing_closure
+153 wrong_parent inserted_missing_closure
+153 wrong_parent inserted_missing_closure
+153 wrong_parent inserted_missing_closure
+153 wrong_parent inserted_missing_closure
+153 wrong_parent inserted_missing_closure
+153 wrong_parent inserted_missing_closure
+154 inserted_missing_closure wrong_parent inserted_missing_closure
+154 wrong_parent inserted_missing_closure
+154 wrong_parent inserted_missing_closure
+154 wrong_parent inserted_missing_closure
+154 wrong_parent inserted_missing_closure
+154 wrong_parent inserted_missing_closure
+154 wrong_parent inserted_missing_closure
+154 wrong_parent inserted_missing_closure
+154 wrong_parent inserted_missing_closure
+155 inserted_missing_closure wrong_parent inserted_missing_closure
+155 wrong_parent inserted_missing_closure
+155 wrong_parent inserted_missing_closure
+155 wrong_parent inserted_missing_closure
+155 wrong_parent inserted_missing_closure
+155 wrong_parent inserted_missing_closure
+155 wrong_parent inserted_missing_closure
+155 wrong_parent inserted_missing_closure
+155 wrong_parent inserted_missing_closure
 156 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-157 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-158 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-159 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+157 wrong_parent inserted_missing_closure
+157 wrong_parent inserted_missing_closure
+157 wrong_parent inserted_missing_closure
+157 wrong_parent inserted_missing_closure
+157 wrong_parent inserted_missing_closure
+157 wrong_parent inserted_missing_closure
+157 wrong_parent inserted_missing_closure
+157 wrong_parent inserted_missing_closure
+158 inserted_missing_closure wrong_parent inserted_missing_closure
+158 wrong_parent inserted_missing_closure
+158 wrong_parent inserted_missing_closure
+158 wrong_parent inserted_missing_closure
+158 wrong_parent inserted_missing_closure
+158 wrong_parent inserted_missing_closure
+158 wrong_parent inserted_missing_closure
+158 wrong_parent inserted_missing_closure
+158 wrong_parent inserted_missing_closure
+159 inserted_missing_closure wrong_parent inserted_missing_closure
+159 wrong_parent inserted_missing_closure
+159 wrong_parent inserted_missing_closure
+159 wrong_parent inserted_missing_closure
+159 wrong_parent inserted_missing_closure
+159 wrong_parent inserted_missing_closure
+159 wrong_parent inserted_missing_closure
+159 wrong_parent inserted_missing_closure
+159 wrong_parent inserted_missing_closure
 160 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
-161 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-162 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-163 inserted_missing_closure wrong_parent inserted_missing_closure missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+161 wrong_parent inserted_missing_closure
+161 wrong_parent inserted_missing_closure
+161 wrong_parent inserted_missing_closure
+161 wrong_parent inserted_missing_closure
+161 wrong_parent inserted_missing_closure
+161 wrong_parent inserted_missing_closure
+161 wrong_parent inserted_missing_closure
+161 wrong_parent inserted_missing_closure
+162 inserted_missing_closure wrong_parent inserted_missing_closure
+162 wrong_parent inserted_missing_closure
+162 wrong_parent inserted_missing_closure
+162 wrong_parent inserted_missing_closure
+162 wrong_parent inserted_missing_closure
+162 wrong_parent inserted_missing_closure
+162 wrong_parent inserted_missing_closure
+162 wrong_parent inserted_missing_closure
+162 wrong_parent inserted_missing_closure
+163 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+163 wrong_parent inserted_missing_closure
+163 wrong_parent inserted_missing_closure
+163 wrong_parent inserted_missing_closure
+163 wrong_parent inserted_missing_closure
+163 wrong_parent inserted_missing_closure
+163 wrong_parent inserted_missing_closure
+163 wrong_parent inserted_missing_closure
+163 wrong_parent inserted_missing_closure missing_close
 164 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul16/td.html
@@ -1069,7 +1283,8 @@ PASS ../toast/living/jul16/td.html
 28 inserted_missing_closure wrong_parent inserted_missing_closure
 30 wrong_parent inserted_missing_closure
 31 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
-33 inserted_missing_closure missing_close missing_close attribute_barred
+33 inserted_missing_closure missing_close
+33 missing_close attribute_barred
 34 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul16/te.html
@@ -1096,15 +1311,25 @@ PASS ../toast/living/jul16/te.html
 80 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 84 inserted_missing_closure
 85 inserted_missing_closure
-86 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+86 wrong_parent inserted_missing_closure
+86 wrong_parent inserted_missing_closure
+86 wrong_parent inserted_missing_closure
 87 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-89 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+89 inserted_missing_closure
+89 wrong_parent inserted_missing_closure
+89 wrong_parent inserted_missing_closure
 90 inserted_missing_closure wrong_parent inserted_missing_closure
-91 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+91 inserted_missing_closure
+91 wrong_parent inserted_missing_closure
+91 wrong_parent inserted_missing_closure
 92 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
-94 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+94 inserted_missing_closure
+94 wrong_parent inserted_missing_closure
+94 wrong_parent inserted_missing_closure
 95 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
-96 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+96 inserted_missing_closure
+96 wrong_parent inserted_missing_closure
+96 wrong_parent inserted_missing_closure missing_close
 97 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul16/template1.html
@@ -1112,29 +1337,54 @@ PASS ../toast/living/jul16/template1.html
 16 inserted_missing_closure
 
 PASS ../toast/living/jul16/template2.html
-2 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
+2 inserted_missing_parent missing_close naughty_lang
+2 inserted_missing_parent missing_close
 10 inserted_missing_parent inserted_missing_closure missing_close
-13 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+13 wrong_parent inserted_missing_closure
+13 wrong_parent inserted_missing_closure
+13 wrong_parent inserted_missing_closure
 14 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
-16 missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+16 missing_close
+16 wrong_parent inserted_missing_closure
+16 wrong_parent inserted_missing_closure
+16 wrong_parent inserted_missing_closure missing_close
 17 inserted_missing_closure inserted_missing_closure
 18 inserted_missing_closure
 
 PASS ../toast/living/jul16/textarea.html
 12 use_quote_code use_double_quote_code
 21 bad_textarea
-31 newline_in_string newline_in_string
+31 newline_in_string
+31 newline_in_string
 
 PASS ../toast/living/jul16/th.html
-8 wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+8 wrong_parent inserted_missing_closure
+8 wrong_parent inserted_missing_closure
+8 wrong_parent inserted_missing_closure
 9 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-10 inserted_missing_closure inserted_missing_closure wrong_parent inserted_missing_closure
-11 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-12 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
+10 inserted_missing_closure
+10 inserted_missing_closure
+10 wrong_parent inserted_missing_closure
+11 inserted_missing_closure wrong_parent inserted_missing_closure
+11 wrong_parent inserted_missing_closure
+11 wrong_parent inserted_missing_closure
+11 wrong_parent inserted_missing_closure
+12 inserted_missing_closure wrong_parent inserted_missing_closure
+12 wrong_parent inserted_missing_closure
+12 wrong_parent inserted_missing_closure
+12 wrong_parent inserted_missing_closure
 13 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
-14 inserted_missing_closure inserted_missing_closure wrong_parent inserted_missing_closure
-15 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
-16 inserted_missing_closure wrong_parent inserted_missing_closure missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+14 inserted_missing_closure
+14 inserted_missing_closure
+14 wrong_parent inserted_missing_closure
+15 inserted_missing_closure wrong_parent inserted_missing_closure
+15 wrong_parent inserted_missing_closure
+15 wrong_parent inserted_missing_closure
+15 wrong_parent inserted_missing_closure
+16 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
+16 wrong_parent inserted_missing_closure
+16 wrong_parent inserted_missing_closure
+16 wrong_parent inserted_missing_closure missing_close
 17 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul16/thead.html
@@ -1147,7 +1397,8 @@ PASS ../toast/living/jul16/thead.html
 18 wrong_parent inserted_missing_closure
 19 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
 22 wrong_parent inserted_missing_closure
-23 wrong_parent inserted_missing_closure attribute_required naughty_alt
+23 wrong_parent inserted_missing_closure
+23 attribute_required naughty_alt
 24 wrong_parent inserted_missing_closure
 25 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 27 wrong_parent inserted_missing_closure
@@ -1162,10 +1413,12 @@ PASS ../toast/living/jul16/time.html
 PASS ../toast/living/jul16/tls.html
 0 charset_mismatch charset_used charset_invalid
 6 url_not_found
-15 inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
-26 unrecognised_value
+15 inserted_missing_closure
+15 inserted_missing_closure missing_close
+15 inserted_missing_closure
+25 unrecognised_value
+28 use_double_quote_code
 29 use_double_quote_code
-30 use_double_quote_code
 
 PASS ../toast/living/jul16/track.html
 0 charset_mismatch charset_used charset_invalid
@@ -1194,8 +1447,10 @@ PASS ../toast/living/jul16/us-2.html
 16 url_not_found naughty_alt
 
 PASS ../toast/living/jul16/us-4.html
-12 inserted_missing_closure url_not_found
-13 inserted_missing_closure missing_close url_not_found
+12 inserted_missing_closure
+12 url_not_found
+13 inserted_missing_closure missing_close
+13 url_not_found
 14 inserted_missing_closure
 
 PASS ../toast/living/jul16/us-5.html
@@ -1210,4 +1465,5 @@ PASS ../toast/living/jul16/video.html
 31 url_not_found
 
 PASS ../toast/living/jul16/wbr.html
-7 use_double_quote_code use_double_quote_code
+7 use_double_quote_code
+7 use_double_quote_code

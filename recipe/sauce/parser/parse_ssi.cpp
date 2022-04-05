@@ -449,13 +449,28 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
     ::std::string from (input), to, cmd;
     ::std::string::const_iterator start = from.cbegin (), var = from.cbegin (), args = from.cbegin (), b = from.cbegin (), e = from.cend ();
     int line = 1, nlc = 0;
+    bool nr = true;
     c.if_ = true;
     for (::std::string::const_iterator i = b; i != e; ++i)
-    {   if ((*i == '\f') || (*i == '\r') || (*i == '\n'))
-        {   if (++nlc < 3) to += *i;
-            ++line;
-            continue; }
-        if (*i == '\t') { to += *i; continue; }
+    {   switch (*i)
+        {   case '\f' :
+            case '\n' :
+                if (++nlc < 3) to += *i;
+                ++line; nr = true;
+                continue;
+            case '\v' :
+                if (++nlc < 3) to += '\n';
+                ++line; nr = true;
+                continue;
+            case '\r' :
+                if (nr) to += *i;
+                nr = false;
+                continue;
+            case '\t' :
+                to += *i; nr = true;
+                continue;
+            default :
+                nr = true; break; }
         if (! ::std::iswspace (*i) && ! ::std::iswcntrl (*i)) nlc = 0;
         switch (status)
         {   case es_dull :
@@ -539,7 +554,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
     if (linechange)
     {   nits.set_context (0, c.filename_);
         nits.pick (nit_linechange, es_comment, ec_ssi, "SSI substitution may have caused some line numbers to change"); }
-    if (! shush && revised && context.tell (e_splurge))
+    if (! shush && revised && context.tell (es_splurge))
     {   context.out ("\nSSI parsing changed content to:\n");
         context.out (to);
         context.out ("\n"); }

@@ -53,8 +53,7 @@ public:
     {   attribute_node tmp (an);
         swap (tmp); }
     void reset (attribute_node&& an) noexcept
-    {   // attribute_node tmp (an);
-        swap (an); }
+    {   swap (an); }
     e_attribute id () const noexcept { return id_; }
     bool invalid () const noexcept { return id_ == a_unknown; }
     bool has_key () const noexcept { return has_key_; }

@@ -100,6 +100,25 @@ void code_map_init (nitpick& nits)
         if (ds == ::std::string::npos) break;
         if (ds == 0 || res.at (ds-1) != COLON) res.replace (ds, 2, "/");
         ++ds; }
+    ds = 0;
+    while (true)
+    {   ds = res.find ("/./", ds);
+        if (ds == ::std::string::npos) break;
+        if (ds == 0 || res.at (ds-1) != COLON) res.replace (ds, 3, "/");
+        ++ds; }
+    if ((res.length () > 2) && (res.substr (res.length () - 2) == "/."))
+        res = res.substr (0, res.length () - 2);
+    ds = 0;
+    while (true)
+    {   ds = res.find ("/..", ds);
+        if (ds == ::std::string::npos) break;
+        if (ds > 0)
+        {   ::std::size_t prev = res.substr (0, ds).rfind ('/');
+            if (prev != ::std::string::npos)
+                if ((prev == 0) || (res.at (prev - 1) != COLON))
+                {   PRESUME (prev < ds, __FILE__, __LINE__);
+                    res.replace (prev, ds-prev+3, "/"); } }
+        ++ds; }
     return res; }
 
 ::std::string desanitise (const ::std::string& s)

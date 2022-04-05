@@ -417,14 +417,7 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 {   if (a_.known (a_rel)) examine_rel (a_.get_string (a_rel), lang);
                     if (a_.known (a_rev)) examine_rel (a_.get_string (a_rev), lang); }
 
-                if (mf_ && a_.has (a_href))
-                    if (a_.known (a_href))
-                    {   ::std::string href (a_.get_string (a_href));
-                        VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
-                        if  (mf_ -> allocated (r_webmention))
-                            context.webmention (nits (), href, tag == elem_link ? wm_link : wm_addr);
-                        if (mf_ -> allocated (r_in_reply_to))
-                            context.note_reply (name_, a_.get_string (a_id), href, quoted_limited_string (text ())); } } }
+                } }
 
     examine_children (flags, lang);
 
@@ -479,11 +472,11 @@ void element::examine_children (const flags_t flags, const lingo& lang)
 ::std::string element::make_children (const int depth, const element_bitset& ancestral_elements)
 {   ::std::string res;
     ancestral_elements_ = ancestral_elements;
-    if (context.tell (e_structure))
+    if (context.tell (es_structure))
     {   res += ::std::string (static_cast < size_t > (depth) * 2, ' ');
         if (node_.is_closure ()) res += "/";
         res += node_.id ().name ();
-        if (context.tell (e_detail) && (node_.id () == elem_faux_text))
+        if (context.tell (es_detail) && (node_.id () == elem_faux_text))
         {   res += " ";
             res += text (); }
         res += "\n"; }

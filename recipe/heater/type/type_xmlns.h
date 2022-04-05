@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_enum.h"
 #include "type/type_case.h"
+#include "spell/spell.h"
 
 template < > inline void enum_n < t_namespace, e_namespace > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   ::std::string pret (trim_the_lot_off (s));
@@ -36,7 +37,7 @@ template < > inline void enum_n < t_namespace, e_namespace > :: set_value (nitpi
         v.check_math_svg (nits, from, name ());
         nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report ()); }
     else
-    {   check_spelling (nits, v, t);
+    {   check_identifier_spelling (nits, v, t);
         nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid here"); }
     enum_base < e_namespace, t_namespace > :: status (s_invalid); }
 

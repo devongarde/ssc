@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+#ifdef HAS_WM
 #include "webmention/webmentions.h"
 #include "main/context.h"
 #include "utility/filesystem.h"
@@ -66,11 +67,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // or leave it to website author to define an include, e.g. <!--#include or <link rel="include" etc., & write file to be included
 //
 
-#define WM "webmention"
-#define COUNT "count"
-#define GENERATE "generate"
+webmentions::webmentions (nitpick& nits, const ::boost::json::object& jo)
+{
+
+}
+
+bool webmentions::save (nitpick& nits, ::boost::json::object& jo)
+{
+
+    return true; }
 
 
+/*
 bool webmentions::read (nitpick& nits, const ::boost::filesystem::path& filename)
 {   if (filename.string ().empty ()) return false; // no webmention
     control_filename_ = filename;
@@ -86,7 +94,7 @@ bool webmentions::read (nitpick& nits, const ::boost::filesystem::path& filename
     {   ::std::string version;
         control_filename_ = filename;
         if (! read_header (json, WM, version, control_filename_.string ())) return false;
-        generated_filename_ = read_field < ::std::string > (json, WM SEP GENERATE);
+        include_filename_ = read_field < ::std::string > (json, WM SEP GENERATE);
         const ::std::size_t count = read_field < ::std::size_t > (json, WM SEP COUNT);
         invalid_ = false;
         if (count <= 0) return true;
@@ -110,7 +118,7 @@ bool webmentions::write (nitpick& nits)
     try
     {   write_header (json, WM);
         write_field < ::std::size_t > (json, WM SEP COUNT, w_.size ());
-        if (! generated_filename_.empty ()) write_field < ::std::string > (json, WM SEP GENERATE, generated_filename_.string ());
+        if (! include_filename_.empty ()) write_field < ::std::string > (json, WM SEP GENERATE, include_filename_.string ());
         for (::std::size_t i = 0; i < w_.size (); ++i)
         {   ::std::string count = WM SEP;
             count += ::boost::lexical_cast < ::std::string > (i);
@@ -135,7 +143,7 @@ void webmentions::merge (webmention& mensh)
         if (! exists (mensh))
         {   mensh.activity (act_insert);
             w_.push_back (mensh); } }
-
+*/
 bool webmentions::any_invalid () const
 {   if (invalid_) return true;
     for (auto wm : w_)
@@ -149,11 +157,11 @@ bool webmentions::any_invalid () const
         res += ":";
         res += w_.at (i).report (); }
     return res; }
-
-void webmentions::make_generated_filename (const url& target)
-{   if (! generated_filename_.empty ()) return;
+/*
+void webmentions::make_include_filename (const url& target)
+{   if (! include_filename_.empty ()) return;
     ::boost::filesystem::path base_path = context.write_path ();
-    base_path += target.path ();
+    base_path /= target.path ();
     ::boost::filesystem::path filename = target.page ();
     if (filename.empty ()) filename = context.index ();
     ::std::string stub = filename.stem ().string ();
@@ -163,31 +171,30 @@ void webmentions::make_generated_filename (const url& target)
     {   stub += "_";
         stub += id; }
     stub += context.stub ();
-    if (ext.empty ())
-    {   ext += context.extensions ().at (0);
-        if (ext.empty ())
-            ext = "html";
-        stub += "."; }
     stub += ext;
-    generated_filename_ = base_path;
-    generated_filename_ /= stub; }
+    stub += context.mention_extension ();
+    include_filename_ = nix_path_to_local (base_path.string ()); // path can get /= wrong, mixing / & \: Windows handles it, dunno about other OSs.
+    include_filename_ /= stub; }
 
-bool webmentions::load_templates (nitpick& nits, vstr_t& templates)
+::std::string webmentions::load_template (nitpick& nits, const ::std::string& supplied, const char* defname, const char* deftmp)
+{   ::std::string res (template_path (nits, defname, supplied));
+    if (! res.empty ()) return res;
+    return deftmp; }
+
+void webmentions::load_templates (nitpick& nits, vstr_t& templates)
 {   templates = context.templates ();
     if (templates.size () <= 4) templates.resize (4);
-    ::gsl::at (templates, act_insert) = template_path (nits, "new.tpl", ::gsl::at (templates, act_insert));
-    if (::gsl::at (templates, act_insert).empty ()) return false;
-    ::gsl::at (templates, act_update) = template_path (nits, "change.tpl", ::gsl::at (templates, act_update));
-    if (::gsl::at (templates, act_update).empty ()) return false;
-    ::gsl::at (templates, act_delete) = template_path (nits, "delete.tpl", ::gsl::at (templates, act_delete));
-    if (::gsl::at (templates, act_delete).empty ()) return false;
-    ::gsl::at (templates, act_static) = template_path (nits, "static.tpl", ::gsl::at (templates, act_static));
-    return (! ::gsl::at (templates, act_static).empty ()); }
+    ::gsl::at (templates, act_insert) = load_template (nits, ::gsl::at (templates, act_insert), "new.tpl", NEW_SNIPPET);
+    ::gsl::at (templates, act_update) = load_template (nits, ::gsl::at (templates, act_update), "change.tpl", CHANGE_SNIPPET);
+    ::gsl::at (templates, act_delete) = load_template (nits, ::gsl::at (templates, act_delete), "delete.tpl", DELETE_SNIPPET);
+    ::gsl::at (templates, act_static) = load_template (nits, ::gsl::at (templates, act_static), "static.tpl", STATIC_SNIPPET); }
 
 bool webmentions::create_html (nitpick& nits)
 {   vstr_t templates;
-    if (! load_templates (nits, templates)) return false;
+    load_templates (nits, templates);
     ::std::string content;
     for (auto wm : w_)
         content += wm.apply_template (templates);
-    return write_text_file (generated_filename_.string (), content); }
+    return write_text_file (include_filename_.string (), content); }
+ */
+#endif // HAS_WM

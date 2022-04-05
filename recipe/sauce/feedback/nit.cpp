@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "feedback/nitout.h"
 
-nit::nit () : code_ (nit_free), severity_ (es_undefined), category_ (ec_undefined), doc_ (ed_mishmash)
+nit::nit () : code_ (nit_free), severity_ (es_illegal), category_ (ec_undefined), doc_ (ed_mishmash)
 {   if (context.nits ()) context.out ("adding empty nit\n"); }
 
 nit::nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg)
@@ -67,16 +67,19 @@ void nit::notify () const
 {   ::std::ostringstream res;
     unsigned m = 1;
     switch (severity)
-    {   case es_undefined : m = 90000; res << "?"; break;
+    {   case es_illegal :
+        case es_undefined : m = 110000; res << "?"; break;
         case es_catastrophic : res << "F"; break;  // F failure
         case es_error : m = 10000; res << "E"; break;
         case es_warning : m = 20000; res << "W"; break;
         case es_info : m = 30000; res << "I"; break;
         case es_comment : m = 40000; res << "C"; break;
         case es_debug : m = 50000; res << "D"; break;
-        case es_detail : m = 60000; res << ":"; break;
-        case es_splurge : m = 70000; res << "."; break;
-        default : m = 8000; res << " "; break; }
+        case es_variable : m = 60000; res << "V"; break;
+        case es_structure : m = 70000; res << "S"; break;
+        case es_detail : m = 80000; res << ":"; break;
+        case es_splurge : m = 90000; res << "."; break;
+        default : m = 10000; res << " "; break; }
     res << ::std::setw (4) << (m + static_cast < unsigned > (code));
     return res.str (); }
 

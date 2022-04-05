@@ -19,38 +19,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#ifdef HAS_WM
 #include "url/url.h"
+#include "webmention/webmentions.h"
 
 class hook
 {   url source_, target_;
-    bool deleted_ = false, valid_ = false;
-    bool parse (nitpick& nits, const html_version& v, const ::std::string& filename);
+    mws_t mentions_;
+    bool valid_ = false;
     void check ();
-    bool update_mention (nitpick& nits, const ::std::string& s);
+    bool update_mention (nitpick& nits, const ::std::string& mention, const ::std::string& trg_src);
 public:
     hook () = default;
     hook (const hook& h) = default;
     hook (hook&& h) = default;
+    hook (nitpick& nits, const ::boost::json::object& jo);
     ~hook () = default;
     hook& operator = (const hook& ) = default;
     hook& operator = (hook&& ) = default;
-    hook (nitpick& nits, const html_version& v, const ::std::string& filename);
     hook (nitpick& nits, const html_version& v, const ::std::string& source, const ::std::string& target);
-    void swap (hook& h) noexcept
-    {   source_.swap (h.source_);
-        target_.swap (h.target_);
-        ::std::swap (deleted_, h.deleted_);
-        ::std::swap (valid_, h.valid_); }
     url source () const { return source_; }
     url target () const { return target_; }
-    bool deleted () const noexcept { return deleted_; }
     bool invalid () const noexcept { return ! valid_; }
-    bool process (nitpick& nits, const html_version& v); };
+    bool save (nitpick& nits, ::boost::json::object& jo);
+    void merge (nitpick& nits, const hook& h);
+    ::std::string page_path () const;
+    bool process (nitpick& nits, const html_version& v, const vstr_t& templates); };
 
-class hooks
-{   ::std::vector < hook > hooks_;
-public:
-//    hooks () {}
-    void swap (hooks& h) noexcept { hooks_.swap (h.hooks_); }
-    bool empty () const noexcept { return hooks_.empty (); }
-    bool process (nitpick& nits, const html_version& v); };
+typedef ssc_map < ::std::string, hook > mh_t;
+#endif // HAS_WM
