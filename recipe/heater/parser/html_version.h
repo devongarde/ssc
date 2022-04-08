@@ -620,6 +620,7 @@ const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
+const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MATH_4 | HE_SVG_21);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_11);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_11);

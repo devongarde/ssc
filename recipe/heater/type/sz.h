@@ -287,6 +287,7 @@ struct sz_refurbished { constexpr static char const* sz () { return "refurbished
 struct sz_relative { constexpr static char const* sz () { return "relative"; } };
 struct sz_relevant { constexpr static char const* sz () { return "relevant"; } };
 struct sz_remove { constexpr static char const* sz () { return "remove"; } };
+struct sz_render { constexpr static char const* sz () { return "render"; } };
 struct sz_repeat { constexpr static char const* sz () { return "repeat"; } };
 struct sz_replace { constexpr static char const* sz () { return "replace"; } };
 struct sz_reset { constexpr static char const* sz () { return "reset"; } };
@@ -361,6 +362,7 @@ struct sz_turbulence { constexpr static char const* sz () { return "turbulence";
 struct sz_twosided { constexpr static char const* sz () { return "two-sided"; } };
 struct sz_undefined { constexpr static char const* sz () { return "undefined"; } };
 struct sz_up { constexpr static char const* sz () { return "up"; } };
+struct sz_until_found { constexpr static char const* sz () { return "until-found"; } };
 struct sz_url { constexpr static char const* sz () { return "url"; } };
 struct sz_usb { constexpr static char const* sz () { return "usb"; } };
 struct sz_use_credentials { constexpr static char const* sz () { return "use-credentials"; } };

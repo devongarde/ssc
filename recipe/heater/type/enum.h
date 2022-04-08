@@ -70,7 +70,7 @@ typedef enum
         a_as, a_ascent, a_async, a_at, a_attributename, a_attributetype, a_audio, a_audio_level, a_autobuffer, a_autocapitalise, a_autocomplete,
         a_autocorrect, a_autofocus, a_autopictureinpicture, a_autoplay, a_autosubmit, a_axes, a_axis, a_azimuth,
     a_background, a_background_fill, a_balance, a_bandwidth, a_base, a_basefrequency, a_baseline, a_baseline_shift, a_baseprofile, a_bbox, a_begin,
-        a_behaviour, a_below, a_bevelled, a_bgcolour, a_bias, a_border, a_bottommargin, a_box, a_bubbles, a_buffered, a_buffered_rendering, a_by,
+        a_behaviour, a_below, a_bevelled, a_bgcolour, a_bias, a_blocking, a_border, a_bottommargin, a_box, a_bubbles, a_buffered, a_buffered_rendering, a_by,
     a_cache, a_calcmode, a_cancelable, a_cap_height, a_capture, a_cd, a_cdgroup, a_cell, a_cellpadding, a_cellspacing, a_challenge, a_char, a_charalign,
         a_charoff, a_charset, a_charspacing, a_checked, a_cite, a_class, a_classid, a_clear, a_clip, a_clip_path, a_clip_rule, a_clippathunits,
         a_clip_to_self, a_close, a_closure, a_code, a_codebase, a_codetype, a_coldef, a_colour, a_colour_interpolation, a_colour_interpolation_filters,
@@ -383,7 +383,7 @@ typedef enum { do_booboo, do_cgi, do_examine, do_simple } e_do;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
-                ed_apr21, ed_jul21,
+                ed_apr21, ed_jul21, ed_apr22,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
                 ed_math_1, ed_math_2, ed_math_3, ed_math_4,
                 ed_iso_8859_1, ed_csp,
@@ -552,6 +552,7 @@ typedef enum { f4_blank, f4_parent, f4_self, fr_top } e_frame4;
 typedef enum { g_female, g_male } e_gender;
 typedef enum { gu_userspaceonuse, gu_objectboundingbox } e_gradientunits;
 typedef enum { al_left, al_center, al_right, al_justify, al_char } e_halign;
+typedef enum { eh_hidden, eh_untilfound } e_hidden;
 
 typedef enum
 {   he_context,
@@ -1574,7 +1575,7 @@ typedef enum
     nit_convert, nit_locale, nit_wtf, nit_normalise, nit_dictionary, nit_example, nit_local, nit_report, nit_unknown_option, nit_yea_nay,
     nit_mf_version, nit_not_directory, nit_dubious_mention, nit_endpoint, nit_webmention_css, nit_webmention_external,
     nit_header_empty, nit_header_malformed, nit_http_error, nit_header_no_data, nit_invalid_mention, nit_json_version, nit_json_corrupt,
-    nit_json_domain, nit_dialect, nit_country, nit_languages,
+    nit_json_domain, nit_dialect, nit_country, nit_languages, nit_hidden, nit_blocking,
 
     nit_context,
 
@@ -1794,7 +1795,7 @@ typedef enum { ri_auto, ri_perceptual, ri_relativecolourimetric, ri_saturation, 
 typedef enum { re_always, re_whennotactive, re_never } e_restart;
 typedef enum { ru_none, ru_groups, ru_rows, ru_cols, ru_all } e_rules;
 typedef enum { rs_yes, rs_no, rs_maybe, rs_interested } e_rsvp;
-typedef enum {  sand_unknown, sand_adwua, sand_asabua, sand_atnbua, sand_ad, sand_forms, sand_modals, sand_orientation, sand_pointer,
+typedef enum {  sand_unknown, sand_adwua, sand_asabua, sand_atnbua, sand_atntcp, sand_ad, sand_forms, sand_modals, sand_orientation, sand_pointer,
                 sand_popups, sand_popupescape, sand_presentation, sand_origin, sand_scripts, sand_navigation } e_sandbox;
 typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_inherit } e_scei;
 
@@ -3823,7 +3824,7 @@ typedef enum {
         t_arabic_form, t_aria_autocomplete, t_aria_invalidity, t_aria_live, t_aria_pressed, t_aria_sort, t_as, t_as_units, t_attributename,
         t_attributetype, t_audio_level, t_autocapitalise, t_autocomplete, t_autocompletes, t_autocompletevaried,
     t_b64, t_background, t_bandwidth, t_base, t_baselineshift, t_bb, t_beginarg, t_beginfn, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour,
-        t_border, t_bool, t_bools, t_buffered_rendering, t_button, t_byte,
+        t_blocking, t_border, t_bool, t_bools, t_buffered_rendering, t_button, t_byte,
     t_cache, t_cachekey, t_caches, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_channelselector, t_char,
         t_charset, t_charsets, t_charspacing, t_citype, t_class, t_clear, t_clear30, t_clip, t_clip_path_rule, t_closure, t_colour, t_colour_ci,
         t_colour_cii, t_colour_i, t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri,
@@ -3843,7 +3844,7 @@ typedef enum {
         t_font_variant_numeric,  t_font_variant_numerics, t_font_variant_position, t_form, t_format, t_formaturi, t_frame, t_frame4, t_framespacing,
         t_frequency,
     t_gender, t_generic, t_glyphname, t_glyphnames, t_groupalign,
-    t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hour, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
+    t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hidden, t_hidden_ex, t_hour, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
     t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index,
         t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus,
         t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,

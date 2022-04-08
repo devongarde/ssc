@@ -133,6 +133,22 @@ template < > struct type_master < t_enable_background > : tidy_string < t_enable
 template < > struct type_master < t_font_families > : type_at_least_one < t_font_families, sz_comma, t_font_family >
 { using type_at_least_one < t_font_families, sz_comma, t_font_family > :: type_at_least_one; };
 
+template < > struct type_master < t_hidden_ex > : public tidy_string < t_hidden_ex >
+{   using tidy_string < t_hidden_ex > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_hidden_ex > :: set_value (nits, v, s);
+        if (tidy_string < t_hidden_ex > :: empty ())
+            tidy_string < t_hidden_ex > :: status (s_good);
+        else
+        {   type_master < t_hidden > hh;
+            hh.set_value (nits, v, s);
+            if (hh.good ())
+            {   if ((hh.get_int () == eh_hidden) || (v >= html_apr22))
+                {   tidy_string < t_hidden_ex > :: status (s_good);
+                    return; } }
+            nits.pick (nit_hidden, es_error, ec_type, "invalid HIDDEN attribute value");
+            tidy_string < t_hidden_ex > :: status (s_invalid); }} };
+
 template < > struct type_master < t_indentalign2 > : type_or_string < t_indentalign2, t_indentalign, sz_indentalign >
 { using type_or_string < t_indentalign2, t_indentalign, sz_indentalign > :: type_or_string; };
 
@@ -331,7 +347,7 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_sandboxen, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_sandboxen, sz_space > :: good ())
-        {   bool allgood = true, script = false, origin = false, topnav = false, topnavuser = false;
+        {   bool allgood = true, script = false, origin = false, topnav = false, topnavuser = false, topnavprot = false;
             for (auto arg : string_vector < t_sandboxen, sz_space > :: get ())
             {   type_master < t_sandbox > sb;
                 sb.set_value (nits, v, arg);
@@ -341,11 +357,14 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
                     case sand_origin : origin = true; break;
                     case sand_navigation : topnav = true; break;
                     case sand_atnbua : topnavuser = true; break;
+                    case sand_atntcp : topnavprot = true; break;
                     default : break; } }
             if (script && origin)
                 nits.pick (nit_overallowed, ed_50, "4.7.2 The iframe element", es_warning, ec_attribute, "'allow-scripts' and 'allow-same-origin', used together, defeat the sandbox");
             if (topnav && topnavuser)
                 nits.pick (nit_overallowed, ed_jan21, "4.8.5 The iframe element", es_warning, ec_attribute, "it is redundant to specify both 'allow-top-navigation' and 'allow-top-navigation-by-user-activation' in SANDBOX");
+            if (topnavprot && (topnavuser || topnav))
+                nits.pick (nit_overallowed, ed_apr22, "4.8.5 The iframe element", es_error, ec_attribute, "'allow-top-navigation-to-custom-protocols' can be combined with neither 'allow-top-navigation' nor 'allow-top-navigation-by-user-activation' in SANDBOX");
             if (allgood) return; }
         string_vector < t_sandboxen, sz_space > :: status (s_invalid); } };
 

@@ -371,6 +371,17 @@ PASS ../toast/living/jan22/et.html
 25 no_such_folder url_not_found
 26 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 
+PASS ../toast/living/jan22/extra.html
+5 attribute_unrecognised_here unrecognised_attribute link_rel_off
+6 attribute_unrecognised_here unrecognised_attribute
+7 attribute_unrecognised_here unrecognised_attribute link_rel_off
+8 attribute_unrecognised_here unrecognised_attribute
+9 attribute_unrecognised_here unrecognised_attribute
+14 invalid_attribute_version wrong_version
+26 hidden
+30 attribute_unrecognised_here unrecognised_attribute
+33 attribute_unrecognised_here unrecognised_attribute
+
 PASS ../toast/living/jan22/fieldset.html
 9 inserted_missing_closure
 10 inserted_missing_closure

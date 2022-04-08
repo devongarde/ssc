@@ -1517,6 +1517,7 @@ struct symbol_entry < html_version, e_sandbox > sandbox_symbol_table [] =
     { { HTML_JUL20, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-storage-access-by-user-activation", sand_asabua },
     { { HTML_JAN11, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation", sand_navigation },
     { { HTML_JUL17, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation-by-user-activation", sand_atnbua },
+    { { HTML_APR22, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation-to-custom-protocols", sand_atntcp },
     { { HTML_JUL20 }, { HTML_UNDEF }, "allow-downloads", sand_ad } };
 
 struct symbol_entry < html_version, e_scei > scei_symbol_table [] =

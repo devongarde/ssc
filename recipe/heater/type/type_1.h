@@ -41,6 +41,9 @@ template < > struct type_master < t_1 > : one_value < t_1, sz_1 >
 template < > struct type_master < t_bb > : one_value < t_bb, sz_makeapp >
 { using one_value < t_bb, sz_makeapp > :: one_value; };
 
+template < > struct type_master < t_blocking > : one_value < t_blocking, sz_render >
+{ using one_value < t_blocking, sz_render > :: one_value; };
+
 template < > struct type_master < t_cc_prohibits > : one_value < t_cc_prohibits, sz_cc_commercialuse >
 { using one_value < t_cc_prohibits, sz_cc_commercialuse > :: one_value; };
 
@@ -69,4 +72,4 @@ template < e_type TYPE, class SZ > void one_value < TYPE, SZ > :: set_value (nit
         if ((t == SZ::sz ())) type_base < mono, TYPE > :: status (s_good);
         else
         {   type_base < mono, TYPE > :: status (s_invalid);
-            nits.pick (nit_unrecognised_value, es_error, ec_type, "if ", quote (t), " has a value, it must be \"", SZ::sz (), "\""); } } }
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (t), " is invalid here; the only valid value is ", quote (SZ::sz ())); } } }

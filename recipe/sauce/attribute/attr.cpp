@@ -148,6 +148,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_MATH2, 0, HE_MATH_2_3_4 }, { HTML_UNDEF }, "bevelled", a_bevelled },
     { { HTML_3_2, HV_DEPRECATED4 }, { HTML_UNDEF }, "bgcolor", a_bgcolour },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "bias", a_bias },
+    { { HTML_APR22 }, { HTML_UNDEF }, "blocking", a_blocking },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "border", a_border },
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { HTML_4_01 }, "bottommargin", a_bottommargin },
     { { HTML_3_0 }, { HTML_3_0 }, "box", a_box },

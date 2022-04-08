@@ -6,8 +6,9 @@ https://ssc.lu/
 
 Introduction
 ============
-SSC can be built from various unii command lines using CMake, or with
-Visual Studios 2017 / 2019 / 2022 under Windows.
+SSC can be built from various unii using CMake, or with Visual Studios
+2017 / 2019 / 2022 under Windows. I have built & tested it under x64 in
+selected OSs.
 
 
 Libraries
@@ -48,10 +49,8 @@ Building
 Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the appropriate .sln
-file, then build. Only Visual Studios  2017 / 2019 / 2022, 64 bit, have been
-built & tested, for Windows 8.1 & 10. If the 32 bit version builds, it will
-generate oodles of annoying warnings, and the executable won't be able to
-analyse larger sites.
+file, then build. Only Visual Studios 2017 / 2019 / 2022, 64 bit, have been
+built & tested, for Windows 8.1 & 10.
 
 Unii & mock Unii
 ----------------
@@ -77,12 +76,11 @@ some final test errors. Note in particular that complaints about being unable
 to find or copy files during testing are not of concern, these come from
 scripts that set up or tear down individual tests, and the standard commands
 used sometimes complain if they can't find files they're supposed to delete,
-which is idiotic given the detail that things are already in the desired
-state.
+which is a bit silly given things are already in the desired state.
 
 The following have been successfully built as x64 amd/intel, although not
 always under all versions of ssc:
-Linux: Centos 9 Streams, Centos 8, Ubuntu Server 20.04/20.10
+Linux: Centos 8/9 Streams, Ubuntu Server 20.04/20.10
 OpenBSD: 7.0 / 6.9 / 6.8
 MacOS: Monterey, Big Sur, Catalina, Mojave, High Sierra
 

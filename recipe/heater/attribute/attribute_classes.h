@@ -140,6 +140,7 @@ typedef typed_attribute < t_idref, a_below > attr_below;
 typedef typed_attribute < t_bool, a_bevelled > attr_bevelled;
 typedef typed_attribute < t_colour, a_bgcolour > attr_bgcolour;
 typedef typed_attribute < t_real, a_bias > attr_bias;
+typedef typed_attribute < t_blocking, a_blocking > attr_blocking;
 typedef typed_attribute < t_border, a_border > attr_border;
 typedef typed_attribute < t_unsigned, a_bottommargin > attr_bottommargin;
 typedef typed_attribute < t_existential, a_box > attr_box;
@@ -348,7 +349,7 @@ typedef typed_attribute < t_url, a_handler > attr_handler;
 typedef typed_attribute < t_real, a_hanging > attr_hanging;
 typedef typed_attribute < t_idrefs, a_headers > attr_headers;
 typedef typed_attribute < t_height, a_height > attr_height;
-typedef typed_attribute < t_existential, a_hidden > attr_hidden;
+typedef typed_attribute < t_hidden_ex, a_hidden > attr_hidden;
 typedef typed_attribute < t_real, a_high > attr_high;
 typedef typed_attribute < t_real, a_horiz_adv_x > attr_horizadvx;
 typedef typed_attribute < t_real, a_horiz_origin_x > attr_horizoriginx;
@@ -1086,6 +1087,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_bevelled, \
     attr_bgcolour, \
     attr_bias, \
+    attr_blocking, \
     attr_border, \
     attr_bottommargin, \
     attr_box, \

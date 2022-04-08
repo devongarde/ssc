@@ -56,6 +56,7 @@
 ./ssc -f ../toast/living/jul21/living.conf
 ./ssc -f ../toast/living/oct21/living.conf
 ./ssc -f ../toast/living/jan22/living.conf
+./ssc -f ../toast/living/apr22/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf

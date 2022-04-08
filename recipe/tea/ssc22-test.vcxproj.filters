@@ -55,13 +55,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ssc22-test.rc">
-      <Filter>Resources</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="resource1.h">
       <Filter>Resources</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ssc22-test.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

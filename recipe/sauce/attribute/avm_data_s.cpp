@@ -33,6 +33,7 @@ hav_t havt_s [] =
     MATH3_DEFS_ATTRIBUTES (elem_scalarproduct),
 
     { { HTML_JUL06 }, { HTML_UNDEF }, elem_script, a_async },
+    { { HTML_APR22 }, { HTML_UNDEF }, elem_script, a_blocking },
     { { HTML_JUL08 }, { HTML_JUN17 }, elem_script, a_charset },
     { { HTML_5_2, HV_W3 }, { HTML_5_2 }, elem_script, a_charset },
     { { HTML_JAN13 }, { HTML_UNDEF }, elem_script, a_crossorigin },
@@ -174,6 +175,7 @@ hav_t havt_s [] =
     HTML23_CLID_ATTRIBUTES (elem_strong),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_strong),
 
+    { { HTML_APR22 }, { HTML_UNDEF }, elem_style, a_blocking },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_style, a_disabled },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_style, a_media },
     { { HTML_JAN16 }, { HTML_DEC17 }, elem_style, a_numberonce },

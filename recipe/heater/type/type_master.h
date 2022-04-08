@@ -52,7 +52,7 @@ template < e_type T > bool test_value (nitpick& nits, const html_version& v, con
 template < e_type T > typename type_master < T > :: value_type examine_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   type_master < T > t;
     t.set_value (nits, v, s);
-    if (! t.good ()) return type_master < T > :: default_value ();
+    if (! t.good ()) return static_cast < typename type_master < T > :: value_type > (type_master < T > :: default_value ());
     return static_cast < typename type_master < T > :: value_type > (t.get ()); }
 
 template < e_type T > e_animation_type grab_animation_type () noexcept

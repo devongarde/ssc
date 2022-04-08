@@ -5,14 +5,6 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Fast|Win32">
-      <Configuration>Fast</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Fast|x64">
-      <Configuration>Fast</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -267,16 +259,12 @@
     <ClCompile Include="..\sauce\main\standard.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">main\standard.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main\standard.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="..\sauce\main\version.cpp" />
     <ClCompile Include="..\sauce\microdata\microdata_export.cpp" />
@@ -1117,6 +1105,253 @@
     <None Include="..\toast\living\apr21\ww-7.html" />
     <None Include="..\toast\living\apr21\ww-8.html" />
     <None Include="..\toast\living\apr21\ww-9.html" />
+    <None Include="..\toast\living\apr22\404.html" />
+    <None Include="..\toast\living\apr22\a-1.html" />
+    <None Include="..\toast\living\apr22\a.html" />
+    <None Include="..\toast\living\apr22\abbr.html" />
+    <None Include="..\toast\living\apr22\accesskey.html" />
+    <None Include="..\toast\living\apr22\address.html" />
+    <None Include="..\toast\living\apr22\aks.html" />
+    <None Include="..\toast\living\apr22\area.html" />
+    <None Include="..\toast\living\apr22\article-1.html" />
+    <None Include="..\toast\living\apr22\article-2.html" />
+    <None Include="..\toast\living\apr22\aside-2.html" />
+    <None Include="..\toast\living\apr22\aside.html" />
+    <None Include="..\toast\living\apr22\autofocus.html" />
+    <None Include="..\toast\living\apr22\b-1.html" />
+    <None Include="..\toast\living\apr22\b.html" />
+    <None Include="..\toast\living\apr22\base.html" />
+    <None Include="..\toast\living\apr22\bdi.html" />
+    <None Include="..\toast\living\apr22\blockquote.html" />
+    <None Include="..\toast\living\apr22\body.html" />
+    <None Include="..\toast\living\apr22\br.html" />
+    <None Include="..\toast\living\apr22\browsing-1.html" />
+    <None Include="..\toast\living\apr22\browsing-2.html" />
+    <None Include="..\toast\living\apr22\browsing-3.html" />
+    <None Include="..\toast\living\apr22\browsing-4.html" />
+    <None Include="..\toast\living\apr22\button.html" />
+    <None Include="..\toast\living\apr22\canvas1.html" />
+    <None Include="..\toast\living\apr22\canvas2.html" />
+    <None Include="..\toast\living\apr22\canvas3.html" />
+    <None Include="..\toast\living\apr22\caption.html" />
+    <None Include="..\toast\living\apr22\cdata.html" />
+    <None Include="..\toast\living\apr22\cite.html" />
+    <None Include="..\toast\living\apr22\cm.html" />
+    <None Include="..\toast\living\apr22\code.html" />
+    <None Include="..\toast\living\apr22\commands.html" />
+    <None Include="..\toast\living\apr22\conformance.html" />
+    <None Include="..\toast\living\apr22\custom-1.html" />
+    <None Include="..\toast\living\apr22\custom-2.html" />
+    <None Include="..\toast\living\apr22\custom-3.html" />
+    <None Include="..\toast\living\apr22\custom-4.html" />
+    <None Include="..\toast\living\apr22\data.html" />
+    <None Include="..\toast\living\apr22\datalist.html" />
+    <None Include="..\toast\living\apr22\datamodel.html" />
+    <None Include="..\toast\living\apr22\dd.html" />
+    <None Include="..\toast\living\apr22\del.html" />
+    <None Include="..\toast\living\apr22\details.html" />
+    <None Include="..\toast\living\apr22\dfn.html" />
+    <None Include="..\toast\living\apr22\dialogue.html" />
+    <None Include="..\toast\living\apr22\div.html" />
+    <None Include="..\toast\living\apr22\dl.html" />
+    <None Include="..\toast\living\apr22\dragondrops.html" />
+    <None Include="..\toast\living\apr22\dt.html" />
+    <None Include="..\toast\living\apr22\editing-1.html" />
+    <None Include="..\toast\living\apr22\editing-2.html" />
+    <None Include="..\toast\living\apr22\el.html" />
+    <None Include="..\toast\living\apr22\em.html" />
+    <None Include="..\toast\living\apr22\embed.html" />
+    <None Include="..\toast\living\apr22\ep.html" />
+    <None Include="..\toast\living\apr22\et.html" />
+    <None Include="..\toast\living\apr22\extra.html" />
+    <None Include="..\toast\living\apr22\fieldset.html" />
+    <None Include="..\toast\living\apr22\figcaption.html" />
+    <None Include="..\toast\living\apr22\figure-1.html" />
+    <None Include="..\toast\living\apr22\figure-2.html" />
+    <None Include="..\toast\living\apr22\footer-2.html" />
+    <None Include="..\toast\living\apr22\footer-3.html" />
+    <None Include="..\toast\living\apr22\footer.html" />
+    <None Include="..\toast\living\apr22\form.html" />
+    <None Include="..\toast\living\apr22\formex.html" />
+    <None Include="..\toast\living\apr22\forms.html" />
+    <None Include="..\toast\living\apr22\h-1.html" />
+    <None Include="..\toast\living\apr22\h-2.html" />
+    <None Include="..\toast\living\apr22\h-3.html" />
+    <None Include="..\toast\living\apr22\head-1.html" />
+    <None Include="..\toast\living\apr22\head-2.html" />
+    <None Include="..\toast\living\apr22\header-2.html" />
+    <None Include="..\toast\living\apr22\header.html" />
+    <None Include="..\toast\living\apr22\hgroup-2.html" />
+    <None Include="..\toast\living\apr22\hgroup.html" />
+    <None Include="..\toast\living\apr22\hidden.html" />
+    <None Include="..\toast\living\apr22\history-1.html" />
+    <None Include="..\toast\living\apr22\history-2.html" />
+    <None Include="..\toast\living\apr22\history-3.html" />
+    <None Include="..\toast\living\apr22\history-4.html" />
+    <None Include="..\toast\living\apr22\hr.html" />
+    <None Include="..\toast\living\apr22\hs-1.html" />
+    <None Include="..\toast\living\apr22\hs-10.html" />
+    <None Include="..\toast\living\apr22\hs-11.html" />
+    <None Include="..\toast\living\apr22\hs-12.html" />
+    <None Include="..\toast\living\apr22\hs-13.html" />
+    <None Include="..\toast\living\apr22\hs-2.html" />
+    <None Include="..\toast\living\apr22\hs-3.html" />
+    <None Include="..\toast\living\apr22\hs-4.html" />
+    <None Include="..\toast\living\apr22\hs-5.html" />
+    <None Include="..\toast\living\apr22\hs-6.html" />
+    <None Include="..\toast\living\apr22\hs-7.html" />
+    <None Include="..\toast\living\apr22\hs-8.html" />
+    <None Include="..\toast\living\apr22\hs-9.html" />
+    <None Include="..\toast\living\apr22\html.html" />
+    <None Include="..\toast\living\apr22\i.html" />
+    <None Include="..\toast\living\apr22\idioms.html" />
+    <None Include="..\toast\living\apr22\iframe.html" />
+    <None Include="..\toast\living\apr22\im.html" />
+    <None Include="..\toast\living\apr22\imedia.html" />
+    <None Include="..\toast\living\apr22\img.html" />
+    <None Include="..\toast\living\apr22\index.html" />
+    <None Include="..\toast\living\apr22\input.html" />
+    <None Include="..\toast\living\apr22\ins.html" />
+    <None Include="..\toast\living\apr22\intro-1.html" />
+    <None Include="..\toast\living\apr22\intro-2.html" />
+    <None Include="..\toast\living\apr22\intro-3.html" />
+    <None Include="..\toast\living\apr22\json.html" />
+    <None Include="..\toast\living\apr22\kbd.html" />
+    <None Include="..\toast\living\apr22\label.html" />
+    <None Include="..\toast\living\apr22\li.html" />
+    <None Include="..\toast\living\apr22\link.html" />
+    <None Include="..\toast\living\apr22\links-alternate.html" />
+    <None Include="..\toast\living\apr22\links-bookmark.html" />
+    <None Include="..\toast\living\apr22\links-help.html" />
+    <None Include="..\toast\living\apr22\links-icon.html" />
+    <None Include="..\toast\living\apr22\links-licence.html" />
+    <None Include="..\toast\living\apr22\links-modulepreload.html" />
+    <None Include="..\toast\living\apr22\links-noopener.html" />
+    <None Include="..\toast\living\apr22\links-noreferrer.html" />
+    <None Include="..\toast\living\apr22\links-opener.html" />
+    <None Include="..\toast\living\apr22\links-tag.html" />
+    <None Include="..\toast\living\apr22\links-tag2.html" />
+    <None Include="..\toast\living\apr22\living.conf" />
+    <None Include="..\toast\living\apr22\living.spec" />
+    <None Include="..\toast\living\apr22\lwp.html" />
+    <None Include="..\toast\living\apr22\main-1.html" />
+    <None Include="..\toast\living\apr22\main-2.html" />
+    <None Include="..\toast\living\apr22\map.html" />
+    <None Include="..\toast\living\apr22\mark.html" />
+    <None Include="..\toast\living\apr22\math.html" />
+    <None Include="..\toast\living\apr22\me.html" />
+    <None Include="..\toast\living\apr22\menu.html" />
+    <None Include="..\toast\living\apr22\meta-1.html" />
+    <None Include="..\toast\living\apr22\meta-2.html" />
+    <None Include="..\toast\living\apr22\meter.html" />
+    <None Include="..\toast\living\apr22\microdata-1.html" />
+    <None Include="..\toast\living\apr22\microdata-2.html" />
+    <None Include="..\toast\living\apr22\microsyntax.html" />
+    <None Include="..\toast\living\apr22\nav-1.html" />
+    <None Include="..\toast\living\apr22\nav-2.html" />
+    <None Include="..\toast\living\apr22\nav-3.html" />
+    <None Include="..\toast\living\apr22\noscript.html" />
+    <None Include="..\toast\living\apr22\object.html" />
+    <None Include="..\toast\living\apr22\ol.html" />
+    <None Include="..\toast\living\apr22\optgroup.html" />
+    <None Include="..\toast\living\apr22\output.html" />
+    <None Include="..\toast\living\apr22\p.html" />
+    <None Include="..\toast\living\apr22\param.html" />
+    <None Include="..\toast\living\apr22\pre.html" />
+    <None Include="..\toast\living\apr22\progress.html" />
+    <None Include="..\toast\living\apr22\q.html" />
+    <None Include="..\toast\living\apr22\rp.html" />
+    <None Include="..\toast\living\apr22\ruby.html" />
+    <None Include="..\toast\living\apr22\s.html" />
+    <None Include="..\toast\living\apr22\samp.html" />
+    <None Include="..\toast\living\apr22\script.html" />
+    <None Include="..\toast\living\apr22\scripting-1.html" />
+    <None Include="..\toast\living\apr22\scripting-2.html" />
+    <None Include="..\toast\living\apr22\scripting-3.html" />
+    <None Include="..\toast\living\apr22\scripting-4.html" />
+    <None Include="..\toast\living\apr22\scripting-5.html" />
+    <None Include="..\toast\living\apr22\scripting-6.html" />
+    <None Include="..\toast\living\apr22\scripting-7.html" />
+    <None Include="..\toast\living\apr22\scripting-8.html" />
+    <None Include="..\toast\living\apr22\scripting-9.html" />
+    <None Include="..\toast\living\apr22\section-1.html" />
+    <None Include="..\toast\living\apr22\section-2.html" />
+    <None Include="..\toast\living\apr22\select.html" />
+    <None Include="..\toast\living\apr22\selectors.html" />
+    <None Include="..\toast\living\apr22\small.html" />
+    <None Include="..\toast\living\apr22\source.html" />
+    <None Include="..\toast\living\apr22\span.html" />
+    <None Include="..\toast\living\apr22\ssah-1.html" />
+    <None Include="..\toast\living\apr22\ssah-2.html" />
+    <None Include="..\toast\living\apr22\ssah-3.html" />
+    <None Include="..\toast\living\apr22\ssah-4.html" />
+    <None Include="..\toast\living\apr22\ssah-5.xhtml" />
+    <None Include="..\toast\living\apr22\ssah-6.html" />
+    <None Include="..\toast\living\apr22\strange-1.html" />
+    <None Include="..\toast\living\apr22\strange-2.html" />
+    <None Include="..\toast\living\apr22\strange-3.html" />
+    <None Include="..\toast\living\apr22\strange-4.html" />
+    <None Include="..\toast\living\apr22\strong.html" />
+    <None Include="..\toast\living\apr22\style.html" />
+    <None Include="..\toast\living\apr22\subsup.html" />
+    <None Include="..\toast\living\apr22\systemstate.html" />
+    <None Include="..\toast\living\apr22\table.html" />
+    <None Include="..\toast\living\apr22\tc.html" />
+    <None Include="..\toast\living\apr22\td.html" />
+    <None Include="..\toast\living\apr22\te.html" />
+    <None Include="..\toast\living\apr22\template1.html" />
+    <None Include="..\toast\living\apr22\template2.html" />
+    <None Include="..\toast\living\apr22\textarea.html" />
+    <None Include="..\toast\living\apr22\th.html" />
+    <None Include="..\toast\living\apr22\thead.html" />
+    <None Include="..\toast\living\apr22\time.html" />
+    <None Include="..\toast\living\apr22\title-1.html" />
+    <None Include="..\toast\living\apr22\title-2.html" />
+    <None Include="..\toast\living\apr22\tls.html" />
+    <None Include="..\toast\living\apr22\track.html" />
+    <None Include="..\toast\living\apr22\u.html" />
+    <None Include="..\toast\living\apr22\ul.html" />
+    <None Include="..\toast\living\apr22\us-1.html" />
+    <None Include="..\toast\living\apr22\us-10.html" />
+    <None Include="..\toast\living\apr22\us-2.html" />
+    <None Include="..\toast\living\apr22\us-3.html" />
+    <None Include="..\toast\living\apr22\us-4.html" />
+    <None Include="..\toast\living\apr22\us-5.html" />
+    <None Include="..\toast\living\apr22\us-6.html" />
+    <None Include="..\toast\living\apr22\us-7.html" />
+    <None Include="..\toast\living\apr22\us-8.html" />
+    <None Include="..\toast\living\apr22\us-9.html" />
+    <None Include="..\toast\living\apr22\var.html" />
+    <None Include="..\toast\living\apr22\vcard.html" />
+    <None Include="..\toast\living\apr22\vevent.html" />
+    <None Include="..\toast\living\apr22\video.html" />
+    <None Include="..\toast\living\apr22\wbr.html" />
+    <None Include="..\toast\living\apr22\work.html" />
+    <None Include="..\toast\living\apr22\ws-1.html" />
+    <None Include="..\toast\living\apr22\ws-10.html" />
+    <None Include="..\toast\living\apr22\ws-11.html" />
+    <None Include="..\toast\living\apr22\ws-12.html" />
+    <None Include="..\toast\living\apr22\ws-13.html" />
+    <None Include="..\toast\living\apr22\ws-14.html" />
+    <None Include="..\toast\living\apr22\ws-15.html" />
+    <None Include="..\toast\living\apr22\ws-2.html" />
+    <None Include="..\toast\living\apr22\ws-3.html" />
+    <None Include="..\toast\living\apr22\ws-4.html" />
+    <None Include="..\toast\living\apr22\ws-5.html" />
+    <None Include="..\toast\living\apr22\ws-6.html" />
+    <None Include="..\toast\living\apr22\ws-7.html" />
+    <None Include="..\toast\living\apr22\ws-8.html" />
+    <None Include="..\toast\living\apr22\ws-9.html" />
+    <None Include="..\toast\living\apr22\ww-1.html" />
+    <None Include="..\toast\living\apr22\ww-10.html" />
+    <None Include="..\toast\living\apr22\ww-2.html" />
+    <None Include="..\toast\living\apr22\ww-3.html" />
+    <None Include="..\toast\living\apr22\ww-4.html" />
+    <None Include="..\toast\living\apr22\ww-5.html" />
+    <None Include="..\toast\living\apr22\ww-6.html" />
+    <None Include="..\toast\living\apr22\ww-7.html" />
+    <None Include="..\toast\living\apr22\ww-8.html" />
+    <None Include="..\toast\living\apr22\ww-9.html" />
     <None Include="..\toast\living\jan08\a.html" />
     <None Include="..\toast\living\jan08\abbr.html" />
     <None Include="..\toast\living\jan08\address.html" />
@@ -3048,6 +3283,7 @@
     <None Include="..\toast\living\jan22\embed.html" />
     <None Include="..\toast\living\jan22\ep.html" />
     <None Include="..\toast\living\jan22\et.html" />
+    <None Include="..\toast\living\jan22\extra.html" />
     <None Include="..\toast\living\jan22\fieldset.html" />
     <None Include="..\toast\living\jan22\figcaption.html" />
     <None Include="..\toast\living\jan22\figure-1.html" />
@@ -6065,10 +6301,6 @@
     <None Include="..\toast\other\ssi\ssi.conf" />
     <None Include="..\toast\other\ssi\ssi.inc" />
     <None Include="..\toast\other\ssi\ssi.spec" />
-    <None Include="..\toast\output\default\default.out.model" />
-    <None Include="..\toast\output\default\index.html" />
-    <None Include="..\toast\output\default\output.conf" />
-    <None Include="..\toast\output\default\output.spec" />
     <None Include="..\toast\output\html\html.nit" />
     <None Include="..\toast\output\html\index.html" />
     <None Include="..\toast\output\html\index.html.model" />
@@ -7544,9 +7776,6 @@
     <Text Include="README.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ssc.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <Xml Include="..\toast\w3\12458\5031-root_dash.xml" />
     <Xml Include="..\toast\w3\imnop\plane20-char.xml" />
     <Xml Include="..\toast\w3\text\textxml_html401.xml" />
@@ -7558,21 +7787,20 @@
     <None Include="..\toast\living\jul09\clock.manifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\living\jan10\clock.manifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">true</ExcludedFromBuild>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ssc.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -7589,15 +7817,6 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-    <SpectreMitigation>Spectre</SpectreMitigation>
-    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
@@ -7623,15 +7842,6 @@
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
     <SpectreMitigation>Spectre</SpectreMitigation>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
-    <SpectreMitigation>Spectre</SpectreMitigation>
-  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -7643,16 +7853,10 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -7666,11 +7870,6 @@
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_PATH)\icu\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_PATH)\icu\lib64;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_PATH)\icu\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_PATH)\icu\lib64;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_PATH)\icu\include</IncludePath>
@@ -7680,11 +7879,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_PATH)\icu\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_PATH)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_PATH)\icu\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_PATH)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
@@ -7749,37 +7943,6 @@
 $(ProjectDir)..\..\ssc22-test -x $(ProjectDir)..\..\ssc22.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Fast|Win32'">
-    <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <IntelJCCErratum>true</IntelJCCErratum>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <HeapReserveSize>33554432</HeapReserveSize>
-      <StackReserveSize>67108864</StackReserveSize>
-    </Link>
-    <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..
-$(ProjectDir)..\..\ssc22-test -x $(ProjectDir)..\..\ssc22.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
@@ -7826,36 +7989,6 @@ $(ProjectDir)..\..\ssc22-test -x $(ProjectDir)..\..\ssc22.exe -v -f $(ProjectDir
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <Optimization>MinSpace</Optimization>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <HeapReserveSize>33554432</HeapReserveSize>
-      <StackReserveSize>67108864</StackReserveSize>
-    </Link>
-    <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Fast|x64'">
-    <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <IntelJCCErratum>true</IntelJCCErratum>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
