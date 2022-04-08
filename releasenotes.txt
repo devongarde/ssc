@@ -3,12 +3,17 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+0.0.126
+- Living Standard for April 2022
+- remove x32 build from VS projects
+
 0.0.125
 - schema.org 14
 - mark schema.org attic content as deprecated
 - gs1 microdata now recognised
 - make default protocol https (it was http)
 - removed webmentions
+- spelling tests taken out of standard tests; they depend on computer configuration
 - underlying work & bug fixes
 
 0.0.124

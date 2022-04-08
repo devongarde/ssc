@@ -209,7 +209,7 @@ struct symbol_entry < html_version, e_rel > rel_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, R_META, r_meta },
     { { HTML_4_0, HR_MF }, { HTML_UNDEF }, R_MICROPUB, r_micropub },
     { { HTML_4_0 }, { HTML_UNDEF }, R_MICROSUMMARY, r_microsummary },
-    { { HTML_JAN18, HR_LINK | HR_EXTERNAL | HV_WHATWG }, { HTML_UNDEF }, "modulepreload", r_modulepreload },
+    { { HTML_JAN18, HR_LINK | HR_EXTERNAL | HV_WHATWG }, { HTML_UNDEF }, R_MODULE_PRELOAD, r_modulepreload },
     { { HTML_4_0 }, { HTML_UNDEF }, R_MONITOR, r_monitor },
     { { HTML_4_0 }, { HTML_UNDEF }, R_MONITOR_GROUP, r_monitor_group },
     { { HTML_4_0, HR_MF }, { HTML_UNDEF }, R_MUSE, r_muse },

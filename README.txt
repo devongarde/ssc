@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.125
+version 0.0.126
 https://ssc.lu/
 
 
@@ -27,14 +27,12 @@ ssc analyses static HTML snippets, files and sites:
 - XHTML 1.0/1.1/2.0/5.x
 - finds broken links (requires curl)
 - processes server side includes, mostly
-- analyses microdata & RDFa
-- analyses RDFa standard context ontologies & others
+- analyses common microdata & RDFa ontologies
 
 with opinions on:
 - standard english where dialect is required
 - perfectly legal but sloppy HTML
 - abhorrent rudeness such as autoplay on videos
-- dubious spelling
 
 It does NOT:
 - behave securely: its parser is holier than robin's cow
@@ -102,4 +100,4 @@ more licences    licences for borrowed external content
 
 written by dylan harris
 mail@ssc.lu
-January 2022
+April 2022

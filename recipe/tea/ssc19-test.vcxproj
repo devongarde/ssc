@@ -99,8 +99,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SSCPATH)\recipe\heater;$(BOOST);$(SSCPATH)\recipe\heater;$(BOOST);$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST)\vs2019;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_PATH)\icu\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>

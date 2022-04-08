@@ -940,6 +940,7 @@ struct hav_t
     { { HTML_5_0, HV_W3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_generator_unable }, \
     { { HTML_JAN09, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_hidden }, \
     { { HTML_JUL12, 0, HE_NOT_SVG }, { HTML_JUN14 }, ELEM, a_inert }, \
+    { { HTML_APR22, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_inert }, \
     { { HTML_JUL18, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_inputmode }, \
     { { HTML_JUL07, 0, HE_NOT_SVG }, { HTML_DEC08 }, ELEM, a_irrelevant }, \
     { { HTML_JUL16, HV_NOT51 | HV_NOT52 }, { HTML_UNDEF }, ELEM, a_is }, \

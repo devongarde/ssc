@@ -186,7 +186,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                             tags        HTML tags (1991, informal),
                             1.0         HTML 1.0 (June 1993 draft),
                             +           HTML Plus (November 1993 draft),
-                            2.0         HTML 2.0 (RFC 1860),
+                            2.0         HTML 2.0,
                             3.0         HTML 3.0 (March 1995 draft),
                             3.2         HTML 3.2,
                             4.0         HTML 4.0,
@@ -198,12 +198,15 @@ a configuration file and on the command line, the "no-" switch always applies.
                             5.1         W3 HTML 5.1,
                             5.2         W3 HTML 5.2,
                             5.3         W3 HTML 5.3 (October 2018 draft),
+
                             2005/1/1    WhatWG WebApps draft (January 2005),
-                            ...
+                            ...         (halfly)
                             2007/1/1    WhatWG WebApps draft (January 2007),
                             2007/7/1    WhatWG HTML 5 (July 2007),
-                            ...
-                            2022/1/1    WhatWG HTML 5 (January 2022),
+                            ...         (halfly)
+                            2021/1/1    WhatWG HTML 5 (January 2021),
+                            ...         (quarterly)
+                            2022/4/1    WhatWG HTML 5 (April 2022),
 
                             XHTML 1.0   XHTML 1.0,
                             XHTML 1.1   XHTML 1.1 core,
@@ -214,7 +217,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                         Although you can specify exact dates for versions of
                         the WhatWG HTML 5 living standard, currently only
                         broad versions published in January and July are
-                        supported (quarterly from April 2021).
+                        supported (quarterly from 2021).
 
                         Certain versions of HTML offer variants, such as loose
                         and strict definitions. ssc picks those up from the
@@ -277,56 +280,6 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 2   MathML 2,
                                 3   MathML 3,
                                 4   MathML 4 (December 2020 draft).
-
---mention.accept        Process incoming webmentions (experimental; see notes
-                        on WEBMENTIONS below).
-
---mention.no-accept     Ignore incoming webmentions.
-
---mention.clear         SSC keeps a cache of webmention notifications sent.
-                        Delete it. This may mean external sites are renotified
-                        of webmentions referencing them.
-
---mention.no-clear      Retain the webmention cache.
-
---mention.datapath XXX  Path for incoming webmention headers files. SSC will
-                        consume files found here.
-
---mention.mention XXX   Specify a webmention. XXX must be in decoded HTML
-                        parameter format, containing source and target. For
-                        example:
-                        source=http://a.lan/s.htm&target=http://b.lan/t.htm
-
---mention.notify        Notify external sites of local webmentions
-                        (experimental: see notes below).
-
---mention.no-notify     Keep mum about local webmentions.
-
---mention.secret XXX    Set outgoing webmention secret. Be aware that this
-                        is not the world's most secure mechanism for secret
-                        management.
-
---mention.stub XXX      When generating pages using templates containing
-                        webmentions, add this text to the file stub (default:
-                        "_ssc")
-
---mention.template XXX  HTML snippets for using when adding templates. These
-                        templates must be specified in the following order:
-                            new, changed, deleted, unchanged
-                        The default values are, respectively
-                            new.tpl, changed.tpl, deleted.tpl, static.tpl
-                        The snippets may contain the following pieces of text,
-                        which will be substituted with the corresponding
-                        webmention content:
-                            {{source}}  URL of page with the mention
-                            {{target}}  URL of page mentioned
-                            {{content}} The HTML content of the mention
-                            {{when}}    The date/time of the mention
-
---mention.user XXX      Default user for webmentions (default: bert.scroggins)
-
---mention.write XXX     When adding webmentions to your site, put them in this
-                        path (default: --site.root).
 
 --microdata.verify      Check microdata found in WhatWG microdata attributes
 -m                      (itemprop, itemtype, etc.). Note that ssc only knows
@@ -428,6 +381,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 frbr_core 1.0
                                 gr 1.0
                                 grddl 1.0
+                                gs1 1.0
                                 ical 1.0
                                 icaltzd 1.0
                                 jsonld 1.0,1.1
@@ -455,7 +409,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 2.0-13.0
+                                schema 2.0-14.0
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -684,9 +638,6 @@ value > 0.
 
 OUTPUT TEMPLATE
 
-Warning: output templates is work in progress, and may be subject to
-significant breaking change in future versions of ssc.
-
 The --nit.format switch allows control of output format. It takes a file name.
 The format of that text file is a sequence of fixed section names, enclosed in
 square brackets on their own lines, each optionally followed by text. In that
@@ -696,7 +647,7 @@ For example:
 [dog-section]
 My pet dog {{dog-name}} is a {{bad-dog}}.
 
-For examples, browse toast/output/*.nit
+For examples, browse recipe/toast/output/*.nit
 
 If no file is specified, or if the file cannot be loaded, a default template is
 used.
@@ -859,43 +810,6 @@ root=site
 file=site.ndx
 ignore=inc
 info=yes
-
-
-
-WEBMENTIONS
-
-Webmentions (https://www.w3.org/TR/webmention/) are a mechanism by which
-references between websites can be automatically maintained.
-
-SSC's webmention processing is deeply experimental, and not ready for use.
-See the various --mention... switches above.
-
-A website elsewhere may mention your site. It can notify your site using
-webmentions. The webmention will say which page there mentions your site,
-which page on your site gets the mention, when the mention was last changed,
-and provide some contextual information. Although the mention may be in other
-kind of online document (such as PDFs), SSC can only process mentions embedded
-in HTML.
-
-If you use SSC to prepare your static website for your static webserver (as I
-do), it can also apply webmentions. However, SSC does not offer a surrogate
-webserver to collect webmentions; it requires an external mechanism to do so,
-such as a CGI script on your website's server. The data collected should be
-passed to SSC.
-
-SSC uses a set of templates to collect and format the reference and add it to
-your site. The templates cover each type of change that may arrive with a
-webmention notification: add, change, delete, plus unchanged. SSC uses these
-templates to make the appropriate alternation to the appropriate page.
-
-Webmentions can also be directly specified using switches.
-
-As you might guess, there are a good number of switches needed to control SSC's
-webmention processing, all noted above.
-
-Similarly, your site may mention other sites. SSC can notify these other sites
-of the mentions. It keeps a cache of the notifications it has issued, to avoid
-reissuing notifications.
 
 
 

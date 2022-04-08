@@ -123,6 +123,9 @@ template < > struct type_master < t_focushighlight > : two_value < t_focushighli
 template < > struct type_master < t_gender > : two_value < t_gender, e_gender, sz_female, sz_male, false >
 { using two_value < t_gender, e_gender, sz_female, sz_male, false > :: two_value; };
 
+template < > struct type_master < t_hidden > : two_value < t_hidden, e_hidden, sz_hidden, sz_until_found, true >
+{ using two_value < t_hidden, e_hidden, sz_hidden, sz_until_found, true > :: two_value; };
+
 template < > struct type_master < t_hv > : two_value < t_hv, e_hv, sz_horizontal, sz_vertical, false >
 { using two_value < t_hv, e_hv, sz_horizontal, sz_vertical, false > :: two_value; };
 

@@ -741,6 +741,8 @@ const nitname nitnames [] =
     { nit_dialect, "dialect" },
     { nit_country, "country" },
     { nit_languages, "languages" },
+    { nit_hidden, "hidden" },
+    { nit_blocking, "blocking" },
 
     { nit_off, "" } };
 

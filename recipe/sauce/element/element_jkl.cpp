@@ -103,11 +103,12 @@ void element::examine_link ()
     const bool has_imagesrcset = a_.known (a_imagesrcset);
     const bool has_imagesizes = a_.known (a_imagesizes);
     const bool has_type = a_.known (a_type);
-    const bool href = a_.known (a_href);
+    const bool has_href = a_.known (a_href);
+    const bool has_blocking = a_.known (a_blocking);
     bool icon = false, preload = false, modulepreload = false, maskicon = false, serviceworker = false, stylesheet = false, external = has_imagesrcset, as_image = false;
     VERIFY_NOT_NULL (parent_, __FILE__, __LINE__);
     const e_element mummy = parent_ -> tag ();
-    if (href && has_type) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_href), false);
+    if (has_href && has_type) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_href), false);
     if (tis5)
     {   if (node_.version () <= html_jul07)
         {   if (mummy != elem_head)
@@ -122,7 +123,7 @@ void element::examine_link ()
         if (has_rel && has_itemprop)
         {   pick (nit_link_rel_off, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "<LINK > must have either REL or ITEMPROP, but not both");
             return; } }
-    if (href && ! external)
+    if (has_href && ! external)
     {   vurl_t vu (a_.get_urls (a_href));
         for (auto u : vu)
             if (! u.is_simple_id ())
@@ -134,6 +135,8 @@ void element::examine_link ()
             pick (nit_as_not_image, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "if IMAGESRCSET is used, AS must be set to \"image\"");
         if (has_imagesizes)
             pick (nit_as_not_image, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "if IMAGESIZES is used, AS must be set to \"image\""); }
+    if (has_blocking && ! has_rel)
+        pick (nit_blocking, ed_apr22, "4.2.4 The link element", es_error, ec_attribute, "<LINK> with BLOCKING requires REL");
     if (! has_property)
     {   if (! has_rel)
         {   if (tis5)
@@ -143,7 +146,7 @@ void element::examine_link ()
                     pick (nit_link_rel_off, ed_jul20, "4.2.4 The link element", es_error, ec_attribute, "<LINK> must have either REL or ITEMPROP");
             return; }
         if (node_.version () >= html_jul20)
-            if (! href && ! has_imagesrcset)
+            if (! has_href && ! has_imagesrcset)
                 pick (nit_link, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, "<LINK> requires HREF or IMAGESRCSET"); }
     if (has_rel)
     {   ::std::string content (a_.get_string (a_rel));
@@ -212,7 +215,9 @@ void element::examine_link ()
                 case r_canonical : check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE); headonly = false; break;
                 default : headonly = false; break; }
             if (headonly && ! ancestral_elements_.test (elem_head))
-                pick (nit_rel_head, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, "<LINK> with REL=", quote (s), " should be under <HEAD>"); } }
+                pick (nit_rel_head, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, "<LINK> with REL=", quote (s), " should be under <HEAD>");
+            if (has_blocking && ! stylesheet && ! preload && ! modulepreload)
+                pick (nit_blocking, ed_apr22, "4.2.4 The link element", es_error, ec_attribute, "<LINK> with BLOCKING requires REL='stylesheet', REL='preload', or REL='modulepreload'."); } }
     if (tis5)
     {   if (! icon) if (a_.known (a_sizes))
             pick (nit_daft_rel_attr, ed_50, "4.2.4 The link element", es_error, ec_attribute, "SIZES requires REL=\"icon\"");
@@ -248,7 +253,7 @@ void element::examine_link ()
             {   pick (nit_style_not_css, ed_50, "4.2.4 The link element", es_warning, ec_css, "REL=\"stylesheet\" requires TYPE=\"text/css\"; ignoring non-CSS stylesheet");
                 return; } }
         if (context.unknown_class () && context.load_css ())
-            if (href && a_.good (a_href))
+            if (has_href && a_.good (a_href))
                 if (is_css || page_.style_css ())
                 {   vurl_t v (a_.get_urls (a_href));
                     for (auto u : v)

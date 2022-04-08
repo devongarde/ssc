@@ -106,6 +106,7 @@ hav_t havt_l [] =
     SVG_XLINK_ATTRIBUTES (elem_lineargradient),
 
     { { HTML_JUL16 }, { HTML_UNDEF }, elem_link, a_as },
+    { { HTML_APR22 }, { HTML_UNDEF }, elem_link, a_blocking },
     { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { XHTML_2_0 }, elem_link, a_charset },
     { { HTML_JUL17 }, { HTML_UNDEF }, elem_link, a_colour },
     { { HTML_JAN13 }, { HTML_UNDEF }, elem_link, a_crossorigin },

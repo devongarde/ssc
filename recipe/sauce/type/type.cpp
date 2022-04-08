@@ -121,6 +121,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_beginvalues);
         TEST_VALUE (t_beginvaluelist);
         TEST_VALUE (t_behaviour);
+        TEST_VALUE (t_blocking);
         TEST_VALUE (t_border);
         TEST_VALUE (t_bool);
         TEST_VALUE (t_bools);
@@ -295,6 +296,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_hash_fn);
         TEST_VALUE (t_height);
         TEST_VALUE (t_hex);
+        TEST_VALUE (t_hidden);
+        TEST_VALUE (t_hidden_ex);
         TEST_VALUE (t_hour);
         TEST_VALUE (t_html);
         TEST_VALUE (t_html_boolean);
