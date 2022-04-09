@@ -21,6 +21,10 @@ if (DEFINED CMAKE_BUILD_TYPE)
   set_property (CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES})
 endif ()
 
+if (DEFINED ENV{BOOST} AND NOT DEFINED ENV{BOOST_ROOT})
+  set (BOOST_ROOT ${BOOST})
+endif ()
+
 set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an installation path")
 set (CMAKE_DEBUG_POSTFIX "d")
 
@@ -38,7 +42,7 @@ if (UNIX)
   target_compile_definitions (ssc PRIVATE UNIX)
   set (Boost_USE_STATIC_LIBS ON)
   set (Boost_USE_MULTI_THREADED OFF)
-  link_directories (${BOOST_LIBRARYDIR} ${ICU_PATH}/lib)
+  link_directories (${BOOST_LIBRARYDIR} ${ICU_ROOT}/lib)
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
 
@@ -68,6 +72,7 @@ if (UNIX)
     endif ()
   elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     message ("Linux: only built under Centos 8/9 amd64 and Ubuntu Server 20.04 amd64")
+    set (Boost_NO_SYSTEM_PATHS ON) # Under Linux, CMake's boost detection is ropey. Build you own.
     set (BV "1.67")
     target_compile_definitions (ssc PRIVATE LINUX NO_JSONIC HUNSPELL BOOST_BIND_GLOBAL_PLACEHOLDERS)
     if (DEFINED ENV{HUNSPELL_INCLUDE})
@@ -221,8 +226,8 @@ target_sources (ssc PRIVATE
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/root.cpp
 )
 
-target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIR} $ENV{GSL_ROOT}/include)
-target_include_directories (ssc PRIVATE ${H} ${BOOST_INCLUDE_DIR} ${ICU_INCLUDE_DIRS} $ENV{GSL_ROOT}/include ${HI})
+target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIR} $ENV{GSL}/include)
+target_include_directories (ssc PRIVATE ${H} ${BOOST_INCLUDE_DIR} ${ICU_INCLUDE_DIRS} $ENV{GSL}/include ${HI})
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 

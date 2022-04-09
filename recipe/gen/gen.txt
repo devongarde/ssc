@@ -609,7 +609,7 @@ OPTION=123456
 Switches that do not have a long form version cannot be used in a
 configuration file.
 
-Each ssc tests (in the toast folder) has a configuration file; browse them for
+Each ssc test (in the toast folder) has a configuration file; browse them for
 examples.
 
 
@@ -664,9 +664,9 @@ ssc -V
 To check the static web side source directory /home/site/wwwroot:
 ssc /home/site/wwwroot
 
-To check a static website for example.com,  in the current directory, that
-uses server side includes, including verification of external links, with very
-verbose output:
+To check a static website for example.com which uses server side includes, that
+lies in the current directory, with verification of external links, giving
+rather verbose output:
 ssc -e -I -x html -x shtml -s example.com -v 5 -i index.shtml
 
 To check a static web side in the current directory, with a virtual directory,

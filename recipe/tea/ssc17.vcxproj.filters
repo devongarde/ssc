@@ -626,6 +626,12 @@
     <ClInclude Include="..\heater\spell\phrase.h">
       <Filter>Heater\spell</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\type\type_country.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\schema\jsonld.h">
+      <Filter>Heater\schema</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1104,6 +1110,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\icu\lingo.cpp">
       <Filter>Sauce\icu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_country.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\schema\jsonld.cpp">
+      <Filter>Sauce\schema</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

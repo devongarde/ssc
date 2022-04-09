@@ -63,6 +63,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef NOICU
 #define NOSPELL
+#else // NOICU
+#define BOOST_HAS_ICU
 #endif // NOICU
 
 #if defined (NOSPELL)
@@ -89,9 +91,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMPILER "g"
 #define MSVC_NOEXCEPT
 #define PROCSIZE "64"
-#else // __clang__
+#else
 #define COMPILER "m"
-
 #define NOLYNX
 #define NO_BOOST_PROCESS            // it crashed the MSVC 2019 linter, on my system at least
 #define MSVC_NOEXCEPT noexcept
@@ -122,8 +123,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     // ...: default constructor may not throw, mark it noexcept .... except if I mark it noexcept, it no longer fits the default constructor signature...
     // 6330: plus using wchar calls with chars ... actually, those chars are (or should be) utf-8.
     // 26439: comes up on standard class functions; following the suggestion means they no longer fit the signature, so breaks stuff
-    // 26410/5/8: correct, in that particular place. So what? Smart pointers are indeed pointers. An unwrapped pointer (usually) means
-    //      the code doesn't own it, by convention.
+    // 26410/5/8: correct, in that particular place. So what? Smart pointers are indeed pointers. By convention, an unwrapped pointer means
+    //      the code doesn't own it.
 #pragma warning (disable : 6330 26409 26410 26415 26418 26434 26439 26455 26456 26461 26485)
 
 // https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=msvc-170
