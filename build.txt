@@ -22,12 +22,12 @@ library (https://github.com/Microsoft/GSL). Most unii have most available as
 packages. You can install build and install them yourself if you prefer.
 
 You may need to set these environment variables:
-- BOOST_ROOT to point to the boost source root directory (you may also need to
-  set BOOST_LIBRARYDIR and BOOST_INCLUDEDIR appropriately);
-- GSL_ROOT to point to the GSL root directory;
-- ICU_ROOT to point to the ICU library source root directory;
-- SSCPATH to point to the ssc source directory.
-
+- BOOST: if you're not using your operating system's packaged flavour of boost,
+  then set BOOST to your boost source root directory (CMake may welcome
+  BOOST_LIBRARYDIR & BOOST_INCLUDEDIR being set appropriately);
+- ICU_ROOT: similarly, if you're not using your operating system's packaged
+  ICU, set ICU_ROOT to your ICU library source root directory;
+- GSL: set it to your GSL root directory.
 
 hunspell
 --------
@@ -40,7 +40,10 @@ environment variables:
 
 Once you've got them, navigate to recipe/tea, and run cmake.
 
-The Windows build uses the native Windows spellchecker, not hunspell.
+winspell
+--------
+The Windows build, by default, uses the native Windows spellchecker, although,
+in multilingual contexts, that doesn't work so well, unless you use Windows 11.
 
 
 Building
@@ -87,13 +90,23 @@ MacOS: Monterey, Big Sur, Catalina, Mojave, High Sierra
 Note: Use clang if possible, gcc takes a wee while.
 
 
+Linux
+-----
+CMake is poor at spotting rather obvious things such as standard boost library
+distributions under Linux, and doesn't even know which flavour of Linux it's
+running on, so ssc's CMake configuration presumes that, under Linux, you've
+built your own boost.
+
+
 OpenBSD
 -------
-I've only tested the amd64 build under 6.8 / 6.9 / 7.0.
+I've only tested the amd64 build under 7.0 and 6.9 (and, with older versions
+of ssc, 6.8).
 
-The versions of boost and cmake in packages are sufficient. You will need to
-increase significantly the available memory setting in login.conf for the
-build account, if you have not done so already.
+The versions of boost and cmake supplied in packages work.
+
+You will need to increase significantly the available memory setting in
+login.conf for the build account, if you have not done so already.
 
 Openbsd 6.8 offers hunspell 1.6, so if you use that version, you will need to
 set the HUNSPELL_VERSION environment variable appropriately.
