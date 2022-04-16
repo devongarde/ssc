@@ -876,19 +876,19 @@ void add_element_attributes (const vstr_t& v)
         if (args.size () < 2) continue;
         const elem el (context.html_ver (), args.at (0));
         if (el.invalid ())
-        {   context.err ("the element '");
-            context.err (args.at (0));
-            context.err ("' is not recognised\n"); }
+        {   outstr.err ("the element '");
+            outstr.err (args.at (0));
+            outstr.err ("' is not recognised\n"); }
         else if (args.at (1).find (':') != ::std::string::npos)
-            context.err ("apologies, but " PROG " does not support adding attributes in non-standard namespaces (yet)\n");
+            outstr.err ("apologies, but " PROG " does not support adding attributes in non-standard namespaces (yet)\n");
         else
         {   ::std::string ns;
             namespaces_ptr ptr;
             const e_attribute a = attr :: parse (nuts, context.html_ver (), ptr, args.at (1), ns);
             if (a == a_error)
-            {   context.err ("the attribute '");
-                context.err (args.at (1));
-                context.err ("' is not recognised\n"); }
+            {   outstr.err ("the attribute '");
+                outstr.err (args.at (1));
+                outstr.err ("' is not recognised\n"); }
             else element_add_attribute (el.get (), a); } } }
 
 #ifdef DEBUG

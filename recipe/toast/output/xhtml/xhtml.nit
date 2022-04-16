@@ -147,14 +147,3 @@
 
 [update-foot]
 </p>
-
-[webmention]
-<span class="nit-name">{{nit-explanation}}</span> <span class="nit-id">[{{nit-id}}]</span><br/>
-
-[webmention-head]
-<h2 class="nit-section">webmentions</h2>
-<p>
-
-[webmention-foot]
-</p>
-

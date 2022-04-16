@@ -57,7 +57,7 @@ const nitname nitnames [] =
     { nit_badtarget, "badtarget" },
     { nit_cannot_create_file, "cannot_create_file" },
     { nit_cannot_delete, "cannot_delete" },
-    { nit_cannot_find_mention, "cannot_find_mention" },
+    { nit_blocking, "blocking" },
     { nit_cannot_load_css, "cannot_load_css" },
     { nit_cannot_open, "cannot_open" },
     { nit_cannot_read, "cannot_read" },
@@ -212,7 +212,6 @@ const nitname nitnames [] =
     { nit_use_double_quote_code, "use_double_quote_code" },
     { nit_use_quote_code, "use_quote_code" },
     { nit_value_expected, "value_expected" },
-    { nit_webmention, "webmention" },
     { nit_write_wrote, "write_wrote" },
     { nit_wrong_parent, "wrong_parent" },
     { nit_wrong_secret, "wrong_secret" },
@@ -726,15 +725,11 @@ const nitname nitnames [] =
     { nit_yea_nay, "yea_nay" },
     { nit_mf_version, "mf_version" },
     { nit_not_directory, "not_directory" },
-    { nit_dubious_mention, "dubious_mention" },
     { nit_endpoint, "endpoint" },
-    { nit_webmention_css, "webmention_css" },
-    { nit_webmention_external, "webmention_external" },
     { nit_header_empty, "header_empty" },
     { nit_header_malformed, "header_malformed" },
     { nit_http_error, "http_error" },
     { nit_header_no_data, "header_no_data" },
-    { nit_invalid_mention, "invalid_mention" },
     { nit_json_version, "json_version" },
     { nit_json_corrupt, "json_corrupt" },
     { nit_json_domain, "json_domain" },
@@ -742,7 +737,6 @@ const nitname nitnames [] =
     { nit_country, "country" },
     { nit_languages, "languages" },
     { nit_hidden, "hidden" },
-    { nit_blocking, "blocking" },
 
     { nit_off, "" } };
 
@@ -767,7 +761,6 @@ void nits_init ()
             if (! bitten.at (x))
                 ::std::cerr << " " << x;
         ::std::cerr << "\n"; } }
-
 
 e_nit lookup_code (const ::std::string& name)
 {   nitmap::const_iterator i = quick_nit.find (name);

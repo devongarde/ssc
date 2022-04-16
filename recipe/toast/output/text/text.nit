@@ -116,13 +116,3 @@ Duration: come on, be honest, you hardly noticed
 *** update
 
 [update-foot]
-
-[webmention]
-{{nit-explanation}} [{{nit-id}}]
-
-[webmention-head]
-
-*** webmentions
-
-[webmention-foot]
-

@@ -45,9 +45,9 @@ bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, 
         mac.emplace (nm_id_name, i.first);
         mac.emplace (nm_id_page, i.second.path_);
         mac.emplace (nm_id_line, ::boost::lexical_cast < ::std::string > (i.second.line_));
-        res += apply_macros (ns_itemid, mac); }
+        res += macro.apply (ns_itemid, mac); }
     if (! res.empty ())
-        res = apply_macros (ns_id_head) + res + apply_macros (ns_id_foot);
+        res = macro.apply (ns_id_head) + res + macro.apply (ns_id_foot);
     return res; }
 
 bool empty_itemid ()

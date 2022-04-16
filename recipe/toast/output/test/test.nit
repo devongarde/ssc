@@ -116,12 +116,3 @@ test output
 {{nit-line}} {{nit-ns}}
 
 [update-foot]
-
-[webmention]
-
-[webmention-head]
-
-*** webmentions
-{{nit-line}} {{nit-ns}}
-
-[webmention-foot]

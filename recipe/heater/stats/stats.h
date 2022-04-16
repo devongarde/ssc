@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 #include "attribute/attr.h"
 #include "parser/html_version.h"
+#include "main/output.h"
 
 class stats;
 
@@ -54,4 +55,10 @@ public:
     unsigned count (const e_element e) const;
     unsigned count (const e_severity s) const;
     unsigned visible_count (const e_element e) const;
+    bool severity_exceeded () const;
     ::std::string report (const bool grand) const; };
+
+extern stats_t overall;
+
+inline void report_global_stats (const bool grand)
+{   outstr.out (overall.report (grand)); }

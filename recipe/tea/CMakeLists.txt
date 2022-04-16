@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.12)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.0.126 LANGUAGES CXX)
+project (ssc VERSION 0.0.127 LANGUAGES CXX)
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
@@ -152,7 +152,8 @@ target_sources (ssc PRIVATE
             ${H}/element/state.h
         ${H}/feedback/nit.h ${H}/feedback/nitnames.h ${H}/feedback/nitout.h ${H}/feedback/nitpick.h
         ${H}/icu/charset.h ${H}/icu/converter.h ${H}/icu/lingo.h ${H}/icu/wrapper.h
-        ${H}/main/abort.h ${H}/main/args.h ${H}/main/context.h ${H}/main/include.h ${H}/main/options.h ${H}/main/standard.h ${H}/main/version.h
+        ${H}/main/abort.h ${H}/main/args.h ${H}/main/context.h ${H}/main/include.h ${H}/main/options.h ${H}/main/output.h ${H}/main/standard.h
+            ${H}/main/version.h
         ${H}/microdata/microdata_export.h ${H}/microdata/microdata_itemid.h ${H}/microdata/microdata_itemprop.h ${H}/microdata/microdata_itemscope.h
             ${H}/microdata/microdata_itemtype.h
         ${H}/microformat/connection.h ${H}/microformat/family.h ${H}/microformat/field.h ${H}/microformat/microformat.h
@@ -180,8 +181,6 @@ target_sources (ssc PRIVATE
         ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h ${H}/url/url_schemes.h
         ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/common.h ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/quote.h
             ${H}/utility/tuple.h
-        ${H}/webmention/converse.h ${H}/webmention/hook.h ${H}/webmention/hooks.h ${H}/webmention/irt.h ${H}/webmention/irts.h ${H}/webmention/webmention.h
-            ${H}/webmention/webmentions.h ${H}/webmention/wm.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/root.h
         ${S}/attribute/attr.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp ${S}/attribute/avm_data_a.cpp
@@ -198,7 +197,7 @@ target_sources (ssc PRIVATE
             ${S}/element/state.cpp
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitout.cpp ${S}/feedback/nitpick.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/lingo.cpp ${S}/icu/wrapper.cpp
-        ${S}/main/abort.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/main/version.cpp
+        ${S}/main/abort.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/output.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/main/version.cpp
         ${S}/microdata/microdata_export.cpp ${S}/microdata/microdata_itemid.cpp ${S}/microdata/microdata_itemprop.cpp ${S}/microdata/microdata_itemscope.cpp
             ${S}/microdata/microdata_itemtype.cpp
         ${S}/microformat/family.cpp ${S}/microformat/field.cpp ${S}/microformat/microformat_constructor.cpp ${S}/microformat/microformat_export.cpp
@@ -220,8 +219,6 @@ target_sources (ssc PRIVATE
             ${S}/type/type_xmlns.cpp
         ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
         ${S}/utility/byteorder.cpp ${S}/utility/common.cpp ${S}/utility/filesystem.cpp ${S}/utility/quote.cpp
-        ${S}/webmention/converse.cpp ${S}/webmention/hook.cpp ${S}/webmention/hooks.cpp ${S}/webmention/irt.cpp ${S}/webmention/irts.cpp
-            ${S}/webmention/webmention.cpp ${S}/webmention/webmentions.cpp
         ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/root.cpp
 )

@@ -29,6 +29,7 @@ class nitpick
     static mns_t mns_;
     ::std::string before_, mote_, after_;
     int line_ = 0;
+    static bool fe_, sarcasm_;
     static e_severity user_severity (const e_nit code, const e_severity s)
     {   mns_t::const_iterator i = mns_.find (code);
         if (i != mns_.cend ()) return i -> second;
@@ -78,4 +79,9 @@ public:
     ::std::string unfiltered (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
     e_severity worst () const;
     ::std::size_t size () const { return nits_.size (); }
-    bool empty () const noexcept { return nits_.empty (); } };
+    bool empty () const noexcept { return nits_.empty (); }
+
+    static void fe (const bool b) noexcept { fe_ = b; }
+    static bool fe () noexcept { return fe_; }
+    static void sarcasm (const bool b) noexcept { sarcasm_ = b; }
+    static bool sarcasm () noexcept { return sarcasm_; } };

@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats.h"
 #include "stats/stats_impl.h"
 
+stats_t overall;
+
 stats_t::stats_t ()
 {   p_ = new stats;
     VERIFY_NOT_NULL (p_, __FILE__, __LINE__); }
@@ -111,3 +113,7 @@ unsigned stats_t::count (const e_severity s) const
 unsigned stats_t::visible_count (const e_element e) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> visible_count (e); }
+
+bool stats_t::severity_exceeded () const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> severity_exceeded (); }

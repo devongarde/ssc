@@ -22,9 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/common.h"
 #include "main/context.h"
 
-#define DEFAULT_LINE_LENGTH 120
-#define DESCRIPTION_LENGTH 80
-
 class options
 {   ::boost::program_options::variables_map var_, env_;
     void help (const ::boost::program_options::options_description& aid) const;

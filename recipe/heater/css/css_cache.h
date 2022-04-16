@@ -27,7 +27,7 @@ typedef csss_t::iterator csss_it;
 typedef csss_t::const_iterator csss_cit;
 typedef ::std::pair < csss_it, bool > csss_pt;
 
-class css_cache
+class css_cache_t
 {   csss_t csss_;
     void deactivate_all ()
     {   for (csss_it i = csss_.begin (); i != csss_.end (); ++i)
@@ -35,7 +35,7 @@ class css_cache
             i -> second -> active (false); } }
     void delete_snippets ();
 public:
-    void swap (css_cache& c) noexcept
+    void swap (css_cache_t& c) noexcept
     {   csss_.swap (c.csss_); }
     void post_process ()
     {   delete_snippets ();
@@ -45,3 +45,5 @@ public:
     bool note_usage (const ::std::string& id);
     void report_usage (::std::ostringstream& ss) const;
     bool has_id (const ::std::string& id) const; };
+
+extern css_cache_t css_cache;

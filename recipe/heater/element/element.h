@@ -62,7 +62,6 @@ class element
     nitpick& nits () noexcept { return node_.nits (); }
     nitpick& nits () const noexcept { return node_.nits (); }
     found_farm find_farm (const e_property prop, element* starter = nullptr);
-    void seek_webmention (::std::string& mention, e_wm_status& wms, const lingo& lang);
     bool to_sibling (element_ptr& e, const bool canreconstruct = true);
     element* next_element (element* previous);
     template < class PROPERTY > void note_reply ();
@@ -288,10 +287,6 @@ public:
     ::std::string find_text_value () const;
     ::std::string find_url_value () const;
     ::std::string find_html_value () const;
-    ::std::string find_webmention (const lingo& lang);
-    ::std::string find_mention_info (const url& u, bool text, bool anything);
-    ::std::string find_mention_hook (const url& u);
-    bool mentions (const url& target);
     ids_t& get_ids () noexcept;
     const ids_t& get_ids () const noexcept;
     ids_t& get_names () noexcept;

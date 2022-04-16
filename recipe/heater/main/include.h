@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 126
-#define VERSION_STRING "0.0.126"
+#define VERSION_RELEASE 127
+#define VERSION_STRING "0.0.127"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -44,6 +44,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COPYRIGHT_BRADDR " (" COPYRIGHT_WEBADDR ")"
 #define COPYRIGHT COPYRIGHT_TEXT COPYRIGHT_BRADDR
 #define COPYRIGHT_HTML_FULL "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
+
+#define DEFAULT_LINE_LENGTH 120
+#define DESCRIPTION_LENGTH 80
 
 #if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
 #  ifndef DEBUG

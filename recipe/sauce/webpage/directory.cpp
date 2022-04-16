@@ -194,7 +194,7 @@ bool directory::add_to_content (nitpick& nits, const ::boost::filesystem::direct
     if (is_regular_file (q))
         return content_.insert (value_t (f, nullptr)).second;
     if (is_directory (q))
-    {   context.dot ();
+    {   outstr.dot ();
         return content_.insert (value_t (f, self_ptr (new directory (nits, f, ndx, this, p)))).second; }
     return false; }
 
@@ -215,7 +215,6 @@ void directory::examine (nitpick& nits)
             const ::std::time_t updated = last_write (ndx);
             if (! get_flag (ndx, FX_SCANNED))
             {   ::std::string sp (get_site_path () + i.first);
-                context.filename (sp);
                 if (avoid_update (sp, true))
                     nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (p.string ()), " is up-to-date");
                 else
@@ -224,12 +223,12 @@ void directory::examine (nitpick& nits)
                     mac.emplace (nm_page_path, local_path_to_nix (p.string ()));
                     if (context.progress ()) ::std::cout << p.string () << "\n";
                     try
-                    {   ::std::string content (read_text_file (nits, p));
-                        if (is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ()))
-                        {   nitpick nuts;
-                            parse_json_ld (nuts, context.html_ver (), content);
-                            ss << nuts.review (mac); }
-                        else
+                    {   nitpick nuts;
+                        ::std::string content (read_text_file (nuts, p));
+                        const bool jld = is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ());
+                        if (jld) parse_json_ld (nuts, context.html_ver (), content);
+                        ss << nuts.review (mac);
+                        if (! jld)
                         {   page web (i.first, updated, content, ndx, this);
                             if (web.invalid ()) ss << web.nits ().review (mac);
                             else
@@ -241,19 +240,19 @@ void directory::examine (nitpick& nits)
                                 ss << web.nits ().review (mac);
                                 ss << web.report (); } } }
                 catch (const ::std::system_error& e)
-                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + context.filename ()); }
+                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + sp); }
                 catch (const ::std::exception& e)
-                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + context.filename ()); }
+                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + sp); }
                 catch (...)
-                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + context.filename ()); }
+                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + sp); }
                 if (! ss.str ().empty ())
-                {   context.out (apply_macros (ns_page_head, mac));
-                    context.out (ss.str ());
-                    context.out (apply_macros (ns_page_foot, mac)); }
+                {   outstr.out (macro.apply (ns_page_head, mac));
+                    outstr.out (ss.str ());
+                    outstr.out (macro.apply (ns_page_foot, mac)); }
                 else if (context.tell (es_comment))
-                {   context.out (apply_macros (ns_page_head, mac));
-                    context.out (apply_macros (ns_page_foot, mac)); }
-                context.css ().post_process (); }
+                {   outstr.out (macro.apply (ns_page_head, mac));
+                    outstr.out (macro.apply (ns_page_foot, mac)); }
+                css_cache.post_process (); }
                 set_flag (ndx, FX_SCANNED); } }
     if (context.shadow_files ())
     {   sstr_t delete_me;
@@ -333,54 +332,55 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
 
 bool directory::verify_url (nitpick& nits, const html_version& v, const url& u) const
 {   if (! context.links ()) return true;
-    if (context.checking_urls ()) return true;
+    static bool checking_urls = false;
+    if (checking_urls) return true;
     bool res = false;
     try
-    {   context.checking_urls (true);
+    {   checking_urls = true;
         res = unguarded_verify_url (nits, v, u);
-        context.checking_urls (false); }
+        checking_urls = false; }
     catch (...)
     {   nits.pick (nit_virtual_exception, es_catastrophic, ec_directory, "verify_url (2) ", quote (u.original ()));
-        context.checking_urls (false);
+        checking_urls = false;
         throw;  }
     return res; }
 
 bool directory::verify_external (nitpick& nits, const html_version& v, const url& u) const
-{   if (! context.external ()) return true;
-    const bool res = external_.verify (nits, v, u);
-    if (res) return true;
-    if (context.code () < 300) return true;
-    if (context.repeated () && context.once ()) return false;
+{   int code = 0;
+    bool repeated = false;
+    if (external_.verify (nits, v, u, code, repeated)) return true;
+    if (code < 300) return true;
+    if (repeated && context.once ()) return false;
     if (! context.tell (es_error)) return false;
-    switch (context.code ())
+    switch (code)
     {   case 301 :
         case 308 :
-            nits.pick (nit_308, es_info, ec_link, quote (u.original ()), " has moved (", context.code (), ")");
+            nits.pick (nit_308, es_info, ec_link, quote (u.original ()), " has moved (", code, ")");
             break;
         case 400 :
-            nits.pick (nit_400, es_error, ec_link, quote (u.original ()), " is a malformed or bad link (", context.code (), ")");
+            nits.pick (nit_400, es_error, ec_link, quote (u.original ()), " is a malformed or bad link (", code, ")");
             break;
         case 401 :
-            nits.pick (nit_401, es_warning, ec_link, quote (u.original ()), " is unauthorised (", context.code (), ")");
+            nits.pick (nit_401, es_warning, ec_link, quote (u.original ()), " is unauthorised (", code, ")");
             break;
         case 403 :
-            nits.pick (nit_403, es_warning, ec_link, quote (u.original ()), " is forbidden (", context.code (), ")");
+            nits.pick (nit_403, es_warning, ec_link, quote (u.original ()), " is forbidden (", code, ")");
             break;
         case 404 :
         case 410 :
-            nits.pick (nit_404, es_error, ec_link, quote (u.original ()), " is broken (", context.code (), ")");
+            nits.pick (nit_404, es_error, ec_link, quote (u.original ()), " is broken (", code, ")");
             break;
         case 407 :
-            nits.pick (nit_407, es_info, ec_link, quote (u.original ()), " is blocked by a proxy (", context.code (), ")");
+            nits.pick (nit_407, es_info, ec_link, quote (u.original ()), " is blocked by a proxy (", code, ")");
             break;
         case 408 :
-            nits.pick (nit_408, es_comment, ec_link, quote (u.original ()), " has timed out (", context.code (), ")");
+            nits.pick (nit_408, es_comment, ec_link, quote (u.original ()), " has timed out (", code, ")");
             break;
         case 451 :
-            nits.pick (nit_451, es_warning, ec_link, quote (u.original ()), " is censored (", context.code (), ")");
+            nits.pick (nit_451, es_warning, ec_link, quote (u.original ()), " is censored (", code, ")");
             break;
         default :
-            nits.pick (nit_link, es_warning, ec_link, quote (u.original ()), " is unavailable (", context.code (), ")");
+            nits.pick (nit_link, es_warning, ec_link, quote (u.original ()), " is unavailable (", code, ")");
             break; }
     return false;}
 

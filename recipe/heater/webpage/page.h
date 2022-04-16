@@ -75,10 +75,6 @@ public:
     bool check_links () const noexcept { return check_links_ && ! snippet_ && ! outsider_; }
     void check_links (const bool b) noexcept { check_links_ = b; }
     void examine ();
-    ::std::string find_webmention (const lingo& lang) const;
-    ::std::string find_mention_info (const url& u, bool text, bool anything);
-    ::std::string find_mention_hook (const url& u);
-    bool mentions (const url& target);
     ids_t& get_ids () noexcept { return ids_; }
     const ids_t& get_ids () const noexcept { return ids_; }
     ids_t& get_names () noexcept { return names_; }
@@ -109,37 +105,37 @@ public:
     void charset (nitpick& nits, const html_version& v, const ::std::string& cs);
     void mark (const e_element e)
     {   stats_.mark (e);
-        context.mark (e); }
+        overall.mark (e); }
     void visible (const e_element e)
     {   stats_.visible (e);
-        context.visible (e); }
+        overall.visible (e); }
     void mark_abbr (const ::std::string& a, const ::std::string& b)
     {   stats_.mark_abbr (a, b);
-        context.mark_abbr (a, b); }
+        overall.mark_abbr (a, b); }
     void mark_dfn (const ::std::string& a, const ::std::string& b)
     {   stats_.mark_dfn (a, b);
-        context.mark_dfn (a, b); }
+        overall.mark_dfn (a, b); }
     void mark_dtdd (const ::std::string& a, const ::std::string& b)
     {   stats_.mark_dtdd (a, b);
-        context.mark_dtdd (a, b); }
+        overall.mark_dtdd (a, b); }
     void mark (const e_element f, const e_attribute m)
     {   stats_.mark (f, m);
-        context.mark (f, m); }
+        overall.mark (f, m); }
     void mark (const e_schema_type s)
     {   stats_.mark (s);
-        context.mark (s); }
+        overall.mark (s); }
     void mark (const e_schema_type s, const e_schema_property p)
     {   stats_.mark (s, p);
-        context.mark (s, p); }
+        overall.mark (s, p); }
     void mark_meta (const e_httpequiv he)
     {   stats_.mark_meta (he);
-        context.mark_meta (he); }
+        overall.mark_meta (he); }
     void mark_meta (const e_metaname mn)
     {   stats_.mark_meta (mn);
-        context.mark_meta (mn); }
+        overall.mark_meta (mn); }
     void mark_meta (const e_metaname mn, const ::std::string& val)
     {   stats_.mark_meta (mn, val);
-        context.mark_meta (mn, val); }
+        overall.mark_meta (mn, val); }
     unsigned count (const e_element e) const
     {   return stats_.count (e); }
     unsigned visible_count (const e_element e) const

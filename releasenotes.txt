@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+0.0.127
+- recognises different gs1 versions
+- underlying work
+
 0.0.126
 - Living Standard for April 2022
 - remove x32 build from VS projects

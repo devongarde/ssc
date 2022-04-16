@@ -44,9 +44,6 @@
     <Filter Include="Sauce\utility">
       <UniqueIdentifier>{819a17cf-30af-4980-80b5-3056a3de4de0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sauce\webmention">
-      <UniqueIdentifier>{4d3e249e-7cd2-4785-81ec-308e9f823f6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sauce\webpage">
       <UniqueIdentifier>{d11fd83d-2a60-41d8-90af-5e7fb82af0cc}</UniqueIdentifier>
     </Filter>
@@ -95,9 +92,6 @@
     </Filter>
     <Filter Include="Heater\utility">
       <UniqueIdentifier>{acf09905-2aab-4953-a2d8-9eb6a41efa1c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Heater\webmention">
-      <UniqueIdentifier>{ee86f2ad-4aff-46d9-a61b-1e9ab06b48d8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Heater\webpage">
       <UniqueIdentifier>{d95b5002-4163-4394-8dfd-986e8bbcc54d}</UniqueIdentifier>
@@ -1091,18 +1085,6 @@
     <ClInclude Include="..\heater\utility\tuple.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\webmention\hook.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\irt.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\webmention.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\webmentions.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\webpage\crosslink.h">
       <Filter>Heater\webpage</Filter>
     </ClInclude>
@@ -1262,23 +1244,14 @@
     <ClInclude Include="..\heater\spell\phrase.h">
       <Filter>Heater\spell</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\webmention\converse.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\hooks.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\irts.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\wm.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\schema\jsonld.h">
       <Filter>Heater\schema</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\type\type_country.h">
       <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\main\output.h">
+      <Filter>Heater\main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1558,18 +1531,6 @@
     <ClCompile Include="..\sauce\utility\quote.cpp">
       <Filter>Sauce\utility</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\webmention\hook.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\irt.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\webmention.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\webmentions.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\webpage\crosslink.cpp">
       <Filter>Sauce\webpage</Filter>
     </ClCompile>
@@ -1759,20 +1720,14 @@
     <ClCompile Include="..\sauce\icu\lingo.cpp">
       <Filter>Sauce\icu</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\webmention\converse.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\hooks.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\irts.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\schema\jsonld.cpp">
       <Filter>Sauce\schema</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\type\type_country.cpp">
       <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\main\output.cpp">
+      <Filter>Sauce\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -23780,6 +23735,9 @@
     </None>
     <None Include="..\toast\living\apr22\extra.html">
       <Filter>Toast\Living\apr22</Filter>
+    </None>
+    <None Include="..\toast\shadow\update\post.bat">
+      <Filter>Toast\Shadow\Update</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

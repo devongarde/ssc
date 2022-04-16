@@ -56,7 +56,7 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
         {   nits.pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_comment, ec_attribute, "FYI, ", quote (s), " was a draft HTML 5 standard class name.");
             if ((v.mjr () != HTML_2007) || (v.mnr () >= HTML_JUL)) t.status (s_invalid); }
         if (t.invalid ())
-            if (context.css ().note_usage (s))
+            if (css_cache.note_usage (s))
             {   nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", quote (s), " recognised");
                 t.status (s_good); }
             else

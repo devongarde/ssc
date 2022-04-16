@@ -19,8 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "main/context.h"
 #include "feedback/nitout.h"
+#include "main/context.h"
 #include "webpage/directory.h"
 #include "attribute/attr.h"
 #include "attribute/avm.h"
@@ -54,7 +54,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/filesystem.h"
 
 void init (nitpick& nits)
-{   init_nit_macros ();
+{   macro.init ();
     nits_init ();
     nits.set_context (0, PROG " initialisation");
     spell_init (nits);
@@ -93,20 +93,20 @@ int ciao ()
 {   if (context.progress ()) ::std::cout << "\nFinishing\n";
     if (context.unknown_class () && context.tell (es_warning))
     {   ::std::ostringstream ss;
-        context.css ().report_usage (ss);
+        css_cache.report_usage (ss);
         if (context.crosslinks ())
         {   nitpick nits;
             reconcile_crosslinks (nits);
-            if (! nits.empty ()) dump_nits (nits, ns_link, ns_link_head, ns_link_foot);
-            context.out () << ::std::endl; }
+            if (! nits.empty ()) macro.dump_nits (nits, ns_link, ns_link_head, ns_link_foot);
+            outstr.out () << ::std::endl; }
         {   if (! ss.str ().empty ())
-                context.out (ss.str ());
+                outstr.out (ss.str ());
             if (! empty_itemid ())
-                context.out (report_itemids ()); } }
-    if (context.stats_summary ()) context.report_stats (true);
-    if (context.tell (es_debug)) context.out (fileindex_report ());
+                outstr.out (report_itemids ()); } }
+    if (context.stats_summary ()) report_global_stats (true);
+    if (context.tell (es_debug)) outstr.out (fileindex_report ());
     spell_terminate ();
-    if (context.severity_exceeded ()) return ERROR_STATE;
+    if (overall.severity_exceeded ()) return ERROR_STATE;
     return VALID_RESULT; }
 
 int examine (nitpick& nits)
@@ -116,8 +116,8 @@ int examine (nitpick& nits)
         if (! web.invalid ()) web.examine ();
         ::std::string s (web.nits ().review ());
         s += web.report ();
-        if (context.test ()) context.out (START_OF_SECTION " " SNIPPET "\n");
-        context.out (s);
+        if (context.test ()) outstr.out (START_OF_SECTION " " SNIPPET "\n");
+        outstr.out (s);
         return res; }
     open_corpus (nits, context.corpus ());
     paths_root virt (paths_root::virtual_roots ());
@@ -199,9 +199,9 @@ int examine (nitpick& nits)
     spell_free ();
     close_corpus (nits);
     fileindex_save_and_close (nits);
-    dump_nits (nits, ns_update, ns_update_head, ns_update_foot);
-    dump_nits (exp, ns_export, ns_export_head, ns_export_foot);
-    dump_nits (shadow, ns_shadow, ns_shadow_head, ns_shadow_foot);
+    macro.dump_nits (nits, ns_update, ns_update_head, ns_update_foot);
+    macro.dump_nits (exp, ns_export, ns_export_head, ns_export_foot);
+    macro.dump_nits (shadow, ns_shadow, ns_shadow_head, ns_shadow_foot);
     return res; };
 
 int main (int argc, char** argv)
@@ -235,24 +235,24 @@ int main (int argc, char** argv)
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
-        context.macros ().emplace (nm_context_build, BUILD_INFO);
-        context.macros ().emplace (nm_run_args, args);
+        macro.set (nm_context_build, BUILD_INFO);
+        macro.set (nm_run_args, args);
         context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" BUILD_INFO "]\n");
         res = context.parameters (nuts, argc, argv);
         if (context.todo () == do_simple)
         {   ::std::cout << FULL_TITLE;
             ::std::cout << context.domsg ();
             return VALID_RESULT; }
-        if (! is_template_loaded ()) load_template (nuts, html_default);
-        context.out () << apply_macros (ns_doc_head);
+        if (! macro.is_template_loaded ()) macro.load_template (nuts, html_default);
+        outstr.out () << macro.apply (ns_doc_head);
         enfooten = true;
-        dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
+        macro.dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
         if (context.invalid () || (context.todo () == do_booboo) || (res == ERROR_STATE))
-        {   dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
+        {   macro.dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = ERROR_STATE; }
         else
         {   if (! fileindex_load (nuts)) res = ERROR_STATE;
-            dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
+            macro.dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = examine (nits);
             const int cr = ciao ();
             if (cr > res) res = cr; }
@@ -261,8 +261,8 @@ int main (int argc, char** argv)
         const std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
         t = ::std::ctime (&end_time);
         t = t.substr (0, t.length () - 1);
-        context.macros ().emplace (nm_time_finish, t);
-        context.macros ().emplace (nm_time_duration, ::boost::lexical_cast < ::std::string > (floor ((elapsed_seconds.count () * 1000.0) + 0.5) / 1000.0)); }
+        macro.set (nm_time_finish, t);
+        macro.set (nm_time_duration, ::boost::lexical_cast < ::std::string > (floor ((elapsed_seconds.count () * 1000.0) + 0.5) / 1000.0)); }
     catch (const ::std::system_error& e)
     {   msg = "catastrophic exit with system error ";
         msg += e.what ();
@@ -278,9 +278,9 @@ int main (int argc, char** argv)
     {   if (! msg.empty ()) ::std::cerr << msg << "\n";
         else ::std::cerr << "catastrophic error of unknown cause with no explanation\n"; }
     else try
-    {   if (! msg.empty ()) context.macros ().emplace (nm_run_catastrophe, msg);
-        else context.macros ().emplace (nm_run_catastrophe, "catastrophic error of unknown cause with no explanation");
-        context.out () << apply_macros (ns_doc_foot); }
+    {   if (! msg.empty ()) macro.set (nm_run_catastrophe, msg);
+        else macro.set (nm_run_catastrophe, "catastrophic error of unknown cause with no explanation");
+        outstr.out () << macro.apply (ns_doc_foot); }
     catch (...)
     {   if (msg.empty ()) msg = "catastrophic exception writing footers\n";
         ::std::cerr << msg << "\n";

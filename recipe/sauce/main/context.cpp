@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "main/context.h"
 #include "main/options.h"
-#include "webmention/irt.h"
 #include "stats/stats.h"
 #include "element/elem.h"
 #include "utility/quote.h"
@@ -33,22 +32,16 @@ context_t::context_t ()
     :   validation_ ("Additional attribute values (check " PROG "'s source code for context)", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH)
 {   environment_.resize (env_max); };
 
-context_t& context_t::output (nitpick& nits, const ::std::string& s)
-{   output_ = s;
-    mmac_.emplace (nm_general_output, s);
-    fos_.reset (new ::std::ofstream (s));
-    if (fos_ -> fail ())
-    {   nits.pick (nit_cannot_open, es_catastrophic, ec_init, "cannot open ", s, " for output.");
-        fos_.reset (); }
-    mac (nm_context_output, s);
-    return *this; }
-
 int context_t::parameters (nitpick& nits, int argc, char** argv)
 {   options o (nits, argc, argv);
     if (context.todo () == do_booboo) return ERROR_STATE;
     if ((context.todo () != do_examine) && (context.todo () != do_cgi)) return STOP_OK;
     o.contextualise (nits);
-    if (! test () && tell (es_debug)) out (o.report ());
+    if (! test () && tell (es_debug))
+    {   ::std::string s (o.report ());
+        outstr.init (nits, s);
+        mac (nm_context_output, s); }
+
     for (const ::std::string& name : site_)
         if (name.find_first_not_of (ALPHANUMERIC) != ::std::string::npos)
         {   valid_ = false;
@@ -56,13 +49,6 @@ int context_t::parameters (nitpick& nits, int argc, char** argv)
             return ERROR_STATE; }
     valid_ = context.cgi () || (! root ().empty ());
     return valid_ ? VALID_RESULT : ERROR_STATE; }
-
-context_t& context_t::webmention (nitpick& nits, const ::std::string& w, const e_wm_status status)
-{   if (! w.empty () && status > wm_status_)
-    {   webmention_ = w;
-        if (tell (es_variable)) nits.pick (nit_webmention, es_info, ec_init, "setting context_t " WEBMENTION " to ", quote (w));
-        wm_status_ = status; }
-    return *this; }
 
 ::std::string context_t::make_absolute_url (const ::std::string& link, bool can_use_index ) const
 {    ::std::string res, srv;
@@ -81,31 +67,6 @@ context_t& context_t::webmention (nitpick& nits, const ::std::string& w, const e
     if (can_use_index )
     {   const bool slashed = res.at (last) == SLASH;
         if (slashed) if (! index ().empty ()) res += index (); }
-    return res; }
-
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
-{   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
-    constexpr int maxish = DEFAULT_LINE_LENGTH - 16;
-    if ((to - from) > INT8_MAX) return ::std::string (from, to);
-    const int len = ::gsl::narrow_cast < int > (to - from);
-    if (len >= maxish) return ::std::string (from, to);
-    const int halfish = (maxish - len) / 2;
-    ::std::string pre, post;
-    ::std::string::const_iterator mb, me;
-    if ((e - b) <= maxish) { me = e; mb = b; }
-    else
-    {   if ((b + halfish) >= from) mb = b; else { mb = from - halfish; pre = "..."; }
-        if ((e - halfish) <= to) me = e; else { me = to + halfish; post = "..."; } }
-    return pre + ::std::string (mb, from) + " " BEFORE_MOTE " " + ::std::string (from, to) + " " AFTER_MOTE " " + ::std::string (to, me) + post; }
-
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
-{   return near_here (b, e, i, i); }
-
-::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_severity level)
-{   if (msg.empty () || ! context.tell (level)) return ::std::string ();
-    ::std::string res (near_here (b, e, i));
-    if (! res.empty ()) res += "\n";
-    res += fyi () + msg + "\n";
     return res; }
 
 context_t& context_t::shadow_ignore (const vstr_t& s)
@@ -183,26 +144,12 @@ html_version context_t::html_ver (const int major, const int minor) noexcept
             break; }
     return version_; }
 
-::std::string context_t::ensane (const ::std::string& s) const
-{   if (cgi ()) return enwotsit (s);
-    return s; }
 
 context_t& context_t::environment (const e_environment e, const ::std::string& s)
 {   environment_.at (e) = s.substr (0, ARGLEN_MAX);
     return *this; }
 
-bool context_t::severity_exceeded () const
-{   for (int x = 1; x <= static_cast < int > (report_error_); ++x)
-        if (data_.count (static_cast < e_severity> (x))) return true;
-    return false; }
-
 bool context_t::rdfa () const noexcept
 {   if (rdfa_) return true;
     if (version_.is_svg_12 ()) return true;
     return (version_ == xhtml_2); }
-
-void context_t::dot ()
-{   if (progress ())
-        if (dot_ == INT_MAX) dot_ = 0;
-        else if ((++dot_ % 100) == 0)
-        {   ::std::cout << "."; ::std::cout.flush (); } }

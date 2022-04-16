@@ -381,7 +381,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 frbr_core 1.0
                                 gr 1.0
                                 grddl 1.0
-                                gs1 1.0
+                                gs1 1.1-1.5
                                 ical 1.0
                                 icaltzd 1.0
                                 jsonld 1.0,1.1
@@ -591,9 +591,6 @@ a configuration file and on the command line, the "no-" switch always applies.
                         http-equiv, lang, metaname, mimetype, rel, SGML, and
                         many others. A full set of possible enumerations can
                         be listed using the --validation switch.
-
-Webmention switches are noted in webmention.txt.
-
 
 CONFIGURATION FILE FORMAT
 

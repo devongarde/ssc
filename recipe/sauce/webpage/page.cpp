@@ -114,21 +114,21 @@ void page::charset (nitpick& nits, const html_version& v, const ::std::string& c
     charset_ = cs; }
 
 bool page::parse (::std::string& content)
-{   nits_.reset ();
+{   //nits_.reset ();
     if (! snippet_ && ! outsider_)
     {   PRESUME (directory_ != nullptr, __FILE__, __LINE__);
         ssi_.filename_ = name_;
         html_version v (html_5_3);
         content = parse_ssi (nits_, v, *this, ssi_, content, updated_); }
     const bool res = nodes_.parse (nits_, content);
-    context.mark_file (::gsl::narrow_cast < unsigned > (content.size ()));
+    overall.mark_file (::gsl::narrow_cast < unsigned > (content.size ()));
     return res; }
 
 void page::examine ()
 {   if ((! document_) && ! nodes_.invalid () && nodes_.version ().known ())
     {   if ((! snippet_ && ! outsider_) && context.md_export ()) md_export_.init (get_export_root ());
         document_.reset (new element (name_, nodes_.top (), nullptr, *this));
-        context.mark (version ());
+        overall.mark (version ());
         VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
         PRESUME (document_ -> tag () == elem_faux_document, __FILE__, __LINE__);
         document_ -> reconstruct (&access_);
@@ -158,26 +158,6 @@ void page::itemscope (const itemscope_ptr itemscope)
     VERIFY_NOT_NULL (itemscope_, __FILE__, __LINE__);
     if (itemscope_ -> export_path ().empty ())
         itemscope_ -> set_exporter (md_export (), md_export_.append_path (get_export_root (), null_itemprop, true)); }
-
-::std::string page::find_webmention (const lingo& lang) const
-{   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
-    if (snippet_) return ::std::string ();
-    return document_ -> find_webmention (lang); }
-
-::std::string page::find_mention_info (const url& u, bool text, bool anything)
-{   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
-    if (snippet_) return ::std::string ();
-    return document_ -> find_mention_info (u, text, anything); }
-
-::std::string page::find_mention_hook (const url& u)
-{   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
-    if (snippet_) return ::std::string ();
-    return document_ -> find_mention_hook (u); }
-
-bool page::mentions (const url& target)
-{   VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
-    if (snippet_) return false;
-    return document_ -> mentions (target); }
 
 ::std::string page::load_url (nitpick& nits, const url& u) const
 {   if (snippet_ || outsider_) return ::std::string ();
