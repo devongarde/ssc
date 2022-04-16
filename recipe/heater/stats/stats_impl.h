@@ -107,5 +107,6 @@ public:
     {   return severity_.at (s); }
     unsigned visible_count (const e_element e) const
     {   return visible_.at (e); }
+    bool severity_exceeded () const;
     ::std::string report (const bool grand) const; };
 

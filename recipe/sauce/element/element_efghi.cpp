@@ -106,9 +106,9 @@ void element::examine_equation ()
     pick (nit_arg_count, ed_math_2, "4.4.2.1 Apply (apply)", es_info, ec_element, msg); }
 
 void element::examine_fe ()
-{   if (! context.fe ())
+{   if (! nitpick::fe ())
     {   pick (nit_fe, es_info, ec_element, "the real irony is someone's forgotten &lt; and &gt;");
-        context.fe (true); } }
+        nitpick::fe (true); } }
 
 void element::examine_fecolourmatrix ()
 {   e_matrixtype mt = mt_matrix;

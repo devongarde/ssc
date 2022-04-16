@@ -29,48 +29,6 @@ template < class PROPERTY > void mf_postprocess_entry (const microformats_ptr& m
         {   mention = get_microformat_property_value < mf_entry, PROPERTY > (mf);
             wms = wm_addr; } }
 
-void element::seek_webmention (::std::string& mention, e_wm_status& wms, const lingo& lang)
-{   bool postprocess = false;
-    if (! a_.invalid ())
-    {   if (a_.has (a_class)) postprocess = examine_class (lang);
-        if (a_.has (a_rel)) examine_rel (a_.get_string (a_rel), lang);
-        if (a_.has (a_href))
-        {   ::std::string ref = a_.get_string (a_href);
-            if  (mf_ && mf_ -> has (r_webmention))
-            {   if (tag () == elem_link)
-                {   mention = ref; wms = wm_link; return; }
-                else if (wms < wm_addr)
-                {   mention = ref; wms = wm_addr; } } } }
-    for (element_ptr e = child_; e && (wms != wm_link); e = e -> sibling_)
-    {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-        e -> seek_webmention (mention, wms, lang); }
-    if (wms != wm_link)
-        if (postprocess)
-            if (mf_)
-            {   if (mf_ -> has (h_entry))
-                {   mf_postprocess_entry < in_reply_to_at > (mf_, wms, mention);
-                    mf_postprocess_entry < like_of_at > (mf_, wms, mention);
-                    mf_postprocess_entry < repost_of_at > (mf_, wms, mention);
-                    mf_postprocess_entry < rsvp_at > (mf_, wms, mention);
-                    mf_postprocess_entry < bookmark_of_at > (mf_, wms, mention); }
-                if (mf_ -> has (h1_card))
-                {   mf_postprocess_entry < in_reply_to_at > (mf_, wms, mention);
-                    mf_postprocess_entry < like_of_at > (mf_, wms, mention);
-                    mf_postprocess_entry < repost_of_at > (mf_, wms, mention);
-                    mf_postprocess_entry < rsvp_at > (mf_, wms, mention);
-                    mf_postprocess_entry < bookmark_of_at > (mf_, wms, mention); } } }
-
-::std::string element::find_webmention (const lingo& lang)
-{   ::std::string mention;
-    e_wm_status wms = wm_undefined;
-    if (has_child ())
-    {   element_ptr e = child ();
-        do
-        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-            e -> seek_webmention (mention, wms, lang); }
-        while (wms != wm_link && to_sibling (e)); }
-    return mention; }
-
 found_farm element::find_farm (const e_property p, element* starter)
 {   if (! is_top ())
         for (element* ancestor = (starter == nullptr) ? this : starter; (ancestor != nullptr) && ! ancestor -> is_top (); ancestor = ancestor -> parent ())
@@ -80,58 +38,6 @@ found_farm element::find_farm (const e_property p, element* starter)
                 if (v != c_error) return found_farm (ancestor, v);
                 if (ancestor -> is_top ()) break; }
     return found_farm (nullptr, c_error); }
-
-template < class PROPERTY > struct fmi
-{   static ::std::string xgv (const microformats_ptr& mf, ::std::string& s)
-    {   if (s.empty ())
-            s = get_microformat_property_value < mf_entry, PROPERTY > (mf);
-        return s; } };
-
-::std::string element::find_mention_info (const url& target, bool b, bool anything)
-{   ::std::string s;
-    if (mf_)
-    {   if (mf_ -> is_declared (h_entry))
-        {   s = fmi < in_reply_to_at > :: xgv (mf_, s);
-            s = fmi < like_of_at > :: xgv (mf_, s);
-            s = fmi < repost_of_at > :: xgv (mf_, s);
-            s = fmi < rsvp_at > :: xgv (mf_, s);
-            s = fmi < bookmark_of_at > :: xgv (mf_, s);
-            if (! s.empty ()) if (target.tismoi (url (nits (), node_.version (), s)))
-                return text ();
-            s.clear (); }
-        if (mf_ -> is_declared (r_in_reply_to))
-            s = get_microformat_property_value < mf_in_reply_to, in_reply_to_rt > (mf_);
-        if (! s.empty ())
-            if (target.tismoi (url (nits (), node_.version (), s)))
-                return text (); }
-    for (element_ptr e = child_; e && s.empty (); e = e -> sibling_)
-        s = e -> find_mention_info (target, b, anything);
-    return s; }
-
-::std::string element::find_mention_hook (const url& target)
-{   ::std::string s;
-    if ((tag () == elem_a) || (tag () == elem_link))
-        if (a_.known (a_rel) && a_.known (a_href))
-        {   auto ar (a_.get_x < attr_rel > ());
-            for (auto r : ar)
-                if (r.has_value (r_webmention))
-                {   s = a_.original (a_href); break; } }
-    if (s.empty ())
-        for (element_ptr e = child_; e && s.empty (); e = e -> sibling_)
-            s = e -> find_mention_hook (target);
-    return s; }
-
-bool element::mentions (const url& target)
-{   if (target.is_usable ())
-        if ((tag () == elem_a) || (tag () == elem_link))
-            if (a_.good (a_href))
-            {   nitpick nuts;
-                const ::std::string s (a_.get_string (a_href));
-                const url u (nuts, node_.version (), s);
-                if (u.is_usable () && (u == target)) return true; }
-        for (element_ptr e = child_; e; e = e -> sibling_)
-            if (e -> mentions (target)) return true;
-    return false; }
 
 void element::mf_put_vocab (const e_class v, const prop& p, const ::std::string& itemtype, const ::std::string& itemprop)
 {   PRESUME (! p.invalid (), __FILE__, __LINE__);

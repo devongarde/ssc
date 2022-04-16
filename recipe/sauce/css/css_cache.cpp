@@ -24,7 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "feedback/nitout.h"
 
-bool css_cache::parse_file (nitpick& nits, const page& p, const url& u)
+css_cache_t css_cache;
+
+bool css_cache_t::parse_file (nitpick& nits, const page& p, const url& u)
 {   csss_it cc = csss_.find (u.original ());
     if (cc == csss_.cend ())
         return csss_.insert (csss_vt (u.original (), css_ptr (new css (nits, p, u)))).second;
@@ -33,7 +35,7 @@ bool css_cache::parse_file (nitpick& nits, const page& p, const url& u)
     cc -> second -> active (true);
     return true; }
 
-bool css_cache::parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding)
+bool css_cache_t::parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding)
 {   csss_it cc = csss_.find (content);
     if (cc == csss_.cend ())
         return csss_.insert (csss_vt (content, css_ptr (new css (nits, v, content, encoding, true)))).second;
@@ -42,7 +44,7 @@ bool css_cache::parse (nitpick& nits, const html_version& v, const ::std::string
     cc -> second -> active (true);
     return true; }
 
-void css_cache::delete_snippets ()
+void css_cache_t::delete_snippets ()
 {   csss_it i = csss_.begin ();
     while (i != csss_.end ())
     {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
@@ -50,20 +52,20 @@ void css_cache::delete_snippets ()
             i = csss_.erase (i);
         else ++i; } }
 
-bool css_cache::has_id (const ::std::string& id) const
+bool css_cache_t::has_id (const ::std::string& id) const
 {   for (csss_cit i = csss_.cbegin (); i != csss_.cend (); ++i)
     {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if (i -> second -> has_id (id)) return true; }
     return false; }
 
-bool css_cache::note_usage (const ::std::string& id)
+bool css_cache_t::note_usage (const ::std::string& id)
 {   for (auto i : csss_)
     {   VERIFY_NOT_NULL (i.second, __FILE__, __LINE__);
         if (i.second -> note_usage (id))
             return true; }
     return false; }
 
-void css_cache::report_usage (::std::ostringstream& ss) const
+void css_cache_t::report_usage (::std::ostringstream& ss) const
 {   if (context.tell (es_warning))
     {   smsid_t sum;
         ::std::string cls;
@@ -76,6 +78,6 @@ void css_cache::report_usage (::std::ostringstream& ss) const
             mac.emplace (nm_class_name, i.first);
             mac.emplace (nm_class_int, lex);
             mac.emplace (nm_class_count, once_twice_thrice (i.second));
-            cls += apply_macros (ns_class, mac); }
+            cls += macro.apply (ns_class, mac); }
         if (! cls.empty ())
-            ss << apply_macros (ns_class_head) << cls << apply_macros (ns_class_foot); } }
+            ss << macro.apply (ns_class_head) << cls << macro.apply (ns_class_foot); } }

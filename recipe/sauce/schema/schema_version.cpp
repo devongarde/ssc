@@ -68,7 +68,13 @@ sh_t sh [] =  // latest first
     { frbr_schema, xhtml_1_0 },
     { good_relations, html_rdf_1_0 },
     { grddl_schema, html_rdf_1_0_con },
-    { gs1_schema, html_gs1 },
+    { gs1_10, html_gs10 },
+    { gs1_11, html_gs11 },
+    { gs1_12, html_gs12 },
+    { gs1_13, html_gs13 },
+    { gs1_14, html_gs14 },
+    { gs1_15, html_gs15 },
+    { gs1_151, html_gs151 },
     { ical_schema, html_rdf_1_0_con },
     { icaltzd_schema, html_rdf_1_0_con },
     { jsonld_schema_1_1, html_jsonld_1_1 },
@@ -270,6 +276,17 @@ template < > bool schema_detail < s_foaf > :: is_this_valid (const unsigned char
 template < > schema_version schema_detail < s_foaf > :: from () noexcept { return schema_version (s_foaf, 0, 1); }
 template < > int schema_detail < s_foaf > :: count () noexcept { return 98; }
 template < > schema_version schema_detail < s_foaf > :: to () noexcept { return schema_version (s_foaf, 0, 99); }
+
+template < > bool schema_detail < s_gs1 > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+{   if (mjr != 1) return false;
+    if (mnr == 51) return true;
+    if ((mnr < 0) || (mnr > 5)) return false;
+    return true; }
+template < > schema_version schema_detail < s_gs1 > :: from () noexcept { return schema_version (s_gs1, 1, 0); }
+template < > int schema_detail < s_gs1 > :: count () noexcept { return 7; }
+template < > bool schema_detail < s_gs1 > :: is_this_deprecated (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+{   return ((mjr == 1) && (mnr == 0)); }
+template < > schema_version schema_detail < s_gs1 > :: to () noexcept { return schema_version (s_gs1, 1, 51); }
 
 template < > bool schema_detail < s_jsonld > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;

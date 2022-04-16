@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
@@ -47,6 +39,7 @@
     <ClInclude Include="..\heater\main\include.h" />
     <ClInclude Include="..\heater\main\abort.h" />
     <ClInclude Include="..\heater\main\options.h" />
+    <ClInclude Include="..\heater\main\output.h" />
     <ClInclude Include="..\heater\main\standard.h" />
     <ClInclude Include="..\heater\main\version.h" />
     <ClInclude Include="..\heater\microdata\microdata_export.h" />
@@ -171,14 +164,6 @@
     <ClInclude Include="..\heater\utility\lexical.h" />
     <ClInclude Include="..\heater\utility\quote.h" />
     <ClInclude Include="..\heater\utility\tuple.h" />
-    <ClInclude Include="..\heater\webmention\converse.h" />
-    <ClInclude Include="..\heater\webmention\hook.h" />
-    <ClInclude Include="..\heater\webmention\hooks.h" />
-    <ClInclude Include="..\heater\webmention\irt.h" />
-    <ClInclude Include="..\heater\webmention\irts.h" />
-    <ClInclude Include="..\heater\webmention\webmention.h" />
-    <ClInclude Include="..\heater\webmention\webmentions.h" />
-    <ClInclude Include="..\heater\webmention\wm.h" />
     <ClInclude Include="..\heater\webpage\corpus.h" />
     <ClInclude Include="..\heater\webpage\crosslink.h" />
     <ClInclude Include="..\heater\webpage\directory.h" />
@@ -255,14 +240,11 @@
     <ClCompile Include="..\sauce\main\context.cpp" />
     <ClCompile Include="..\sauce\main\abort.cpp" />
     <ClCompile Include="..\sauce\main\options.cpp" />
+    <ClCompile Include="..\sauce\main\output.cpp" />
     <ClCompile Include="..\sauce\main\ssc.cpp" />
     <ClCompile Include="..\sauce\main\standard.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">main\standard.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -348,13 +330,6 @@
     <ClCompile Include="..\sauce\utility\common.cpp" />
     <ClCompile Include="..\sauce\utility\filesystem.cpp" />
     <ClCompile Include="..\sauce\utility\quote.cpp" />
-    <ClCompile Include="..\sauce\webmention\converse.cpp" />
-    <ClCompile Include="..\sauce\webmention\hook.cpp" />
-    <ClCompile Include="..\sauce\webmention\hooks.cpp" />
-    <ClCompile Include="..\sauce\webmention\irt.cpp" />
-    <ClCompile Include="..\sauce\webmention\irts.cpp" />
-    <ClCompile Include="..\sauce\webmention\webmention.cpp" />
-    <ClCompile Include="..\sauce\webmention\webmentions.cpp" />
     <ClCompile Include="..\sauce\webpage\corpus.cpp" />
     <ClCompile Include="..\sauce\webpage\crosslink.cpp" />
     <ClCompile Include="..\sauce\webpage\directory.cpp" />
@@ -6588,6 +6563,7 @@
     <None Include="..\toast\shadow\update\old.html" />
     <None Include="..\toast\shadow\update\old.html.model" />
     <None Include="..\toast\shadow\update\old.inc" />
+    <None Include="..\toast\shadow\update\post.bat" />
     <None Include="..\toast\shadow\update\pre.bat" />
     <None Include="..\toast\shadow\update\pre.sh" />
     <None Include="..\toast\shadow\update\test.css" />
@@ -7787,14 +7763,10 @@
     <None Include="..\toast\living\jul09\clock.manifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\living\jan10\clock.manifest">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
@@ -7804,27 +7776,12 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <Keyword>Win32Proj</Keyword>
+    <Keyword>x64Proj</Keyword>
     <ProjectGuid>{267ff320-a1f2-453b-b242-bd51eb2c54d6}</ProjectGuid>
     <RootNamespace>ssc22</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-    <SpectreMitigation>Spectre</SpectreMitigation>
-    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -7847,12 +7804,6 @@
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -7860,16 +7811,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include</IncludePath>
@@ -7883,66 +7824,6 @@
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <GenerateMapFile>true</GenerateMapFile>
-      <HeapReserveSize>33554432</HeapReserveSize>
-      <StackReserveSize>67108864</StackReserveSize>
-    </Link>
-    <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
-      <IntelJCCErratum>true</IntelJCCErratum>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <Optimization>MinSpace</Optimization>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <HeapReserveSize>33554432</HeapReserveSize>
-      <StackReserveSize>67108864</StackReserveSize>
-    </Link>
-    <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..
-$(ProjectDir)..\..\ssc22-test -x $(ProjectDir)..\..\ssc22.exe -v -f $(ProjectDir)..\toast\ssc-test\ssc.lst</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>

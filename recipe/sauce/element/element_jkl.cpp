@@ -161,13 +161,13 @@ void element::examine_link ()
             if (tis5 && (r.get () != r_curie))
             {   const html_version from (r.first ());
                 if (! may_apply (node_.version (), from, r.last ()))
-                {   if (from.is_mf ()) pick (nit_link_rel_off, es_comment, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report ());
-                    else pick (nit_link_rel_off, es_info, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report ());
+                {   if (from.is_mf ()) pick (nit_link_rel_off, es_comment, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report (), " (3)");
+                    else pick (nit_link_rel_off, es_info, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report (), " (2)");
                     continue; }
                 if (! from.is_rel ())
                 {   e_severity sv = es_info;
                     if (context.rel ()) sv = es_debug; else if (from.is_mf ()) sv = es_comment;
-                    pick (nit_link_rel_off, sv, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report ());
+                    pick (nit_link_rel_off, sv, ec_attribute, "<LINK> REL=", quote (s), " is not standard in ", node_.version ().report (), " (1)");
                     continue; }
                 if (! from.is_mf ())
                     if (! from.is_link ())
@@ -259,4 +259,4 @@ void element::examine_link ()
                     for (auto u : v)
                         if (! u.invalid ())
                         {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
-                            context.css ().parse_file (nits (), page_, u); } } } }
+                            css_cache.parse_file (nits (), page_, u); } } } }

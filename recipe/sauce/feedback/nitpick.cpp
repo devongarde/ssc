@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitout.h"
 
 nitpick::mns_t nitpick::mns_;
+bool nitpick::fe_ = false;
+bool nitpick::sarcasm_ = false;
 
 void nitpick::swap (nitpick& np) noexcept
 {   ::std::swap (line_, np.line_);
@@ -111,15 +113,15 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
             nitbit = inner_review (entry, sn, mac, inner, quote, dq, infoed, eol, hasns, unfiltered); }
         if (hasns || ! nitbit.empty ())
             if ((page_head != ns_none) && (line_ == 0) && ! context.test ())
-                res = apply_macros (page_head, mac, inner) + nitbit + apply_macros (foot, mac, inner);
-            else res = apply_macros (head, mac, inner) + nitbit + apply_macros (foot, mac, inner); }
+                res = macro.apply (page_head, mac, inner) + nitbit + macro.apply (foot, mac, inner);
+            else res = macro.apply (head, mac, inner) + nitbit + macro.apply (foot, mac, inner); }
     return res; }
 
 ::std::string nitpick::review (const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head) const
-{   return review (context.macros (), entry, head, foot, page_head); }
+{   return review (macro.macros (), entry, head, foot, page_head); }
 
 ::std::string nitpick::unfiltered (const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head) const
-{   return review (context.macros (), entry, head, foot, page_head, true); }
+{   return review (macro.macros (), entry, head, foot, page_head, true); }
 
 nitpick nitpick::nick ()
 {   nitpick tmp;
@@ -151,7 +153,7 @@ void nitpick::set_context (const int line, const ::std::string& c)
     {   if (context.nits ())
         {   ::std::ostringstream ss;
             ss << "set context to " << r << " (line " << line << ")\n";
-            context.out (ss.str ()); }
+            outstr.out (ss.str ()); }
         line_ = line;
         before_.clear (); after_.clear ();
         mote_.assign (r); }

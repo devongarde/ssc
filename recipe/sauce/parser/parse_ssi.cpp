@@ -113,7 +113,6 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                         if (arg.length () == 0) arg = "/";
                         else if (arg.at (arg.length () - 1) != '/') arg += '/';
                     arg += c.filename_; break; }
-                case ssi_USER_NAME : arg = context.user (); break;
                 case ssi_LAST_MODIFIED :
                 {   ::boost::filesystem::path x (p.get_directory () -> get_disk_path ());
                     x /= c.filename_;
@@ -555,7 +554,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
     {   nits.set_context (0, c.filename_);
         nits.pick (nit_linechange, es_comment, ec_ssi, "SSI substitution may have caused some line numbers to change"); }
     if (! shush && revised && context.tell (es_splurge))
-    {   context.out ("\nSSI parsing changed content to:\n");
-        context.out (to);
-        context.out ("\n"); }
+    {   outstr.out ("\nSSI parsing changed content to:\n");
+        outstr.out (to);
+        outstr.out ("\n"); }
     return to; }

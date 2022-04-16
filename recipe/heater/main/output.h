@@ -19,19 +19,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#ifdef HAS_WM
-#include "webmention/hook.h"
-/*
-hook === page
-webmentions === id
-webmention === mention
-*/
+#include "feedback/nitpick.h"
+#include "feedback/nitout.h"
+#include "feedback/nitout.h"
 
-class hooks
-{   mh_t hooks_;
+class output_streams_t
+{   ::std::unique_ptr < ::std::ofstream > fos_;
+    ::std::string name_;
+    unsigned dot_ = 0;
+    ::std::string ensane (const ::std::string& s) const;
 public:
-    bool load (nitpick& nits, const ::boost::json::object& jo);
-    bool save (nitpick& nits, ::boost::json::object& jo);
-    bool empty () const noexcept;
-    bool process (nitpick& nits, const html_version& v, const vstr_t& templates, const vstr_t& mentions); };
-#endif // HAS_WM
+    void init (nitpick& nits, const ::std::string& s);
+    void out (const ::std::string& s) const { out () << s; }
+    void err (const ::std::string& s) const { err () << ensane (s); }
+    ::std::ostream& out () const noexcept { if (fos_) return *fos_; return ::std::cout; }
+    ::std::ostream& err () const noexcept { if (fos_) return *fos_; return ::std::cerr; }
+    void dot ();
+    void dedot (unsigned n = 0) noexcept { dot_ = n; } };
+
+extern output_streams_t outstr;

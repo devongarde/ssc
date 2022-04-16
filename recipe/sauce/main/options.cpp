@@ -35,9 +35,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "spell/spell.h"
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
-#define GOTCHA  "WARNING: The examination of webmentions, RDFa, and ontologies\n" \
-                "(except for schema.org & the living standard), is experimental and\n" \
-                "even less untrustworthy than " PROG " per se."
+#define GOTCHA  "WARNING: The examination of RDFa and ontologies (but for schema.org &\n" \
+                "the living standard), is experimental and even less trustworthy than\n" \
+                PROG " per se."
 
 ::std::string env_mapper (::std::string env)
 {
@@ -143,7 +143,7 @@ void options::yea_nay (context_t& (context_t::*fn) (const bool ), nitpick& nits,
 void options::process (nitpick& nits, int argc, char* const * argv)
 {   /*  a
         b
-        c persist file   C clear webmention cache
+        c persist file
         d dump corpus    D dump progress
         e external check E severity error exit
         f config         F load config file from .ssc/config
@@ -154,7 +154,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         k
         l link check     L virtual directory
         m microdata      M microformat
-        n                N notify webmentions
+        n               
         o output         O rpt ext once
         p prog dir       P NIT OVERRIDE
         q
@@ -163,7 +163,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         t template       T test mode
         u update         U unique
         v verbose        V version
-        w webmention     W cgi
+        w                W cgi
         x extensions     X check crosslinked ids
         y
         z title max      Z spec
@@ -269,7 +269,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL LANG, ::boost::program_options::value < ::std::string > () -> composing (), "Default language (such as 'en_GB', 'lb_LU', etc.).")
         (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "Maximum file size to read, in megabytes (zero for no limit).")
         (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "Output file (default to the console).")
-        (GENERAL PROGRESS ",D", ::boost::program_options::bool_switch (), "Dump progress to standard output.")
+        (GENERAL PROGRESS ",D", ::boost::program_options::bool_switch (), "Dump progress to standard macro.")
         (GENERAL DONT PROGRESS, ::boost::program_options::bool_switch (), "Don't be quite so noisy.")
         (GENERAL RDFA_, ::boost::program_options::bool_switch (), "Check RDFa attributes.")
         (GENERAL DONT RDFA_, ::boost::program_options::bool_switch (), "Do not check RDFa attributes.")
@@ -487,7 +487,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         {   ::std::string e (env_ [ENV_ARGS].as < ::std::string > ());
             vstr_t env_args (split_by_space (e));
             if (! env_args.empty ())
-            {   context.macros ().emplace (nm_run_environment, e);
+            {   macro.set (nm_run_environment, e);
                 ::boost::program_options::store (::boost::program_options::command_line_parser (env_args).options (cmd).positional (pos).run (), var_); } } }
     catch (const ::boost::program_options::error& err)
     {   nits.pick (nit_configuration, es_error, ec_init, "Environment error: ", err.what ());
@@ -508,7 +508,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         context.environment (env_query_string, qu);
         if (! context.environment (env_query_string).empty ()) try
         {   context.cgi (true);
-            context.macros ().emplace (nm_query, qu);
+            macro.set (nm_query, qu);
             if (env_.count (SERVER_SOFTWARE)) context.environment (env_server_software, env_ [SERVER_SOFTWARE].as < ::std::string > ());
             if (env_.count (SERVER_NAME)) context.environment (env_server_name, env_ [SERVER_NAME].as < ::std::string > ());
             if (env_.count (GATEWAY_INTERFACE)) context.environment (env_gateway_interface, env_ [GATEWAY_INTERFACE].as < ::std::string > ());
@@ -564,7 +564,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         if (var_.count (CONFIG)) file = var_ [CONFIG].as < ::std::string > ();
         else if ((! var_ [DEFCONF].as <bool > ()) && env_.count (ENV_CONFIG)) file = env_ [ENV_CONFIG].as < ::std::string > ();
         nits.set_context (0, file.string ());
-        context.macros ().emplace (nm_config, file.string ());
+        macro.set (nm_config, file.string ());
         if (file_exists (file))
         {   nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Loading configuration ") + file.string () + "...");
             context.config (canonical (file)); }
@@ -686,7 +686,7 @@ void options::contextualise (nitpick& nits)
     if (context.test () || var_ [GENERAL SPEC].as <bool > ())
         context.article (false).body (false).cased (false).codes (false).crosslinks (false).example (false).external (false).forwarded (false).icu (true)
             .info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).meta (false).mf_verify (false).microdata (false)
-            .nids (true).nits (false) .nits_nits_nits (true).not_root (false).notify (false).once (false).presume_tags (false) .process_webmentions (false)
+            .nids (true).nits (false) .nits_nits_nits (true).not_root (false).once (false).presume_tags (false)
             .progress (false).rdfa (false) .rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false)
             .schema (true).shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).
             ssi (false).stats_page (false).stats_summary (false).unknown_class (false).update (false);
@@ -697,7 +697,7 @@ void options::contextualise (nitpick& nits)
 
     if (context.test () || ! context.cgi ())
     {   if (var_.count (GENERAL OUTPUT))
-        {   context.output (nits, nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
+        {   outstr.init (nits, nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
             if (! context.test ())
                 nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Writing to ") + var_ [GENERAL OUTPUT].as < ::std::string > ()); }
         if ((! var_ [GENERAL DONT PROGRESS].as <bool > ()) && var_ [GENERAL PROGRESS].as <bool > ())
@@ -802,7 +802,7 @@ void options::contextualise (nitpick& nits)
             else if (::boost::filesystem::is_directory (local)) context.root (local);
             else nits.pick (nit_not_directory, es_error, ec_init, "expecting a directory containing a static website, not ", quote (arg)); } }
 
-    load_template (nits, context.html_ver ());
+    macro.load_template (nits, context.html_ver ());
 
     for (int i = s_none + 1; i < s_error; ++i)
     {   const e_schema es = static_cast < e_schema > (i);
@@ -1190,7 +1190,7 @@ void options::contextualise (nitpick& nits)
         TEST_VAR (xmlns);
 #undef TEST_VAR
 
-        if (context.write_path ().empty ()) context.write_path (context.root ()); }
+        }
     context.consolidate_jsonld (); }
 
 void pvs (::std::ostringstream& res, const vstr_t& data)

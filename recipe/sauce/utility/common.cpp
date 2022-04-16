@@ -78,7 +78,7 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
                         {   nitpick nuts;
                             ::std::string norm = normalise_utf8 (nuts, res);
                             if (norm != res)
-                            {   nits.pick (nit_normalise, es_warning, ec_icu, quote (p.string ()), " is not normalised.");
+                            {   nits.pick (nit_normalise, es_warning, ec_icu, quote (p.string ()), " is not normalised UTF-8");
                                 res = norm; } }
                         else
                         {   res.clear ();
@@ -143,34 +143,34 @@ bool write_text_file (const ::boost::filesystem::path& n, const ::std::string& c
     {   ofstream f (p);
         if (f.bad ())
         {   if (context.tell (es_catastrophic))
-            {   context.err ("Cannot open temporary file ");
-                context.err (p.string ());
-                context.err ("\n"); }
+            {   outstr.err ("Cannot open temporary file ");
+                outstr.err (p.string ());
+                outstr.err ("\n"); }
             return false; }
         try
         {   f << content; }
         catch (...)
         {   if (context.tell (es_catastrophic))
-            {   context.err ("Cannot write to temporary file ");
-                context.err (p.string ());
-                context.err ("\n"); }
+            {   outstr.err ("Cannot write to temporary file ");
+                outstr.err (p.string ());
+                outstr.err ("\n"); }
             return false; }
         f.close ();
         if (file_exists (n))
             if (! delete_file (n))
             {   if (context.tell (es_catastrophic))
-                {   context.err ("Cannot delete existing file ");
-                    context.err (p.string ());
-                    context.err ("\n"); }
+                {   outstr.err ("Cannot delete existing file ");
+                    outstr.err (p.string ());
+                    outstr.err ("\n"); }
                 return false; }
         rename_file (p, n);
         return true; }
     catch (...) { }
     if (file_exists (p)) delete_file (p);
     if (context.tell (es_error))
-    {   context.err ("Cannot update ");
-        context.err (p.string ());
-        context.err ("\n"); }
+    {   outstr.err ("Cannot update ");
+        outstr.err (p.string ());
+        outstr.err ("\n"); }
     return false; }
 
 bool write_text_file (const ::std::string& name, const ::std::string& content)
@@ -309,15 +309,15 @@ bool read_header (const ::boost::property_tree::ptree& json, const ::std::string
     ::std::string con = read_field < ::std::string > (json, CONTEXT);
     if ((prog != PROG) || (version.substr (0, 3) != "0.0"))
     {   if (context.tell (es_error))
-        {   context.err (filename);
-            context.err (" is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it\n"); }
+        {   outstr.err (filename);
+            outstr.err (" is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it\n"); }
         return false; }
     if (! expected.empty ())
         if (con != expected)
         {   if (context.tell (es_error))
             {   ::std::ostringstream ss;
                 ss << filename << " is not an " PROG " " << expected << " file\n";
-                context.err (ss.str ()); }
+                outstr.err (ss.str ()); }
             return false; }
     return true; }
 
@@ -336,9 +336,9 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
         catch (...)
         {   delete_file (filename);
             if (context.tell (es_catastrophic))
-            {   context.err ("Cannot write ");
-                context.err (filename.string ());
-                context.err ("\n"); }
+            {   outstr.err ("Cannot write ");
+                outstr.err (filename.string ());
+                outstr.err ("\n"); }
             return false; } }
     else
     {   try
@@ -347,19 +347,19 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
         catch (...)
         {   delete_file (tmp);
             if (context.tell (es_catastrophic))
-            {   context.err ("Cannot write ");
-                context.err (tmp.string ());
-                context.err ("\n"); }
+            {   outstr.err ("Cannot write ");
+                outstr.err (tmp.string ());
+                outstr.err ("\n"); }
             return false; }
         if (! rename_file (tmp, filename))
         {   rename_file (old, filename);
             delete_file (tmp);
             if (context.tell (es_catastrophic))
-            {   context.err ("Cannot replace ");
-                context.err (filename.string ());
-                context.err (" with ");
-                context.err (tmp.string ());
-                context.err ("\n"); }
+            {   outstr.err ("Cannot replace ");
+                outstr.err (filename.string ());
+                outstr.err (" with ");
+                outstr.err (tmp.string ());
+                outstr.err ("\n"); }
             return false; }
        delete_file (old); }
     return true; }
@@ -454,3 +454,29 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
         default :
             if (x >= UINT_MAX) return "many";
             return ::boost::lexical_cast < ::std::string > (x); } }
+
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
+{   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
+    constexpr int maxish = DEFAULT_LINE_LENGTH - 16;
+    if ((to - from) > INT8_MAX) return ::std::string (from, to);
+    const int len = ::gsl::narrow_cast < int > (to - from);
+    if (len >= maxish) return ::std::string (from, to);
+    const int halfish = (maxish - len) / 2;
+    ::std::string pre, post;
+    ::std::string::const_iterator mb, me;
+    if ((e - b) <= maxish) { me = e; mb = b; }
+    else
+    {   if ((b + halfish) >= from) mb = b; else { mb = from - halfish; pre = "..."; }
+        if ((e - halfish) <= to) me = e; else { me = to + halfish; post = "..."; } }
+    return pre + ::std::string (mb, from) + " " BEFORE_MOTE " " + ::std::string (from, to) + " " AFTER_MOTE " " + ::std::string (to, me) + post; }
+
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
+{   return near_here (b, e, i, i); }
+
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_severity level)
+{   if (msg.empty () || ! context.tell (level)) return ::std::string ();
+    ::std::string res (near_here (b, e, i));
+    if (! res.empty ()) res += "\n";
+    res += fyi () + msg + "\n";
+    return res; }
+

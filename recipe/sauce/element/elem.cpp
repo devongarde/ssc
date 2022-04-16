@@ -615,7 +615,6 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "view", elem_view },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "vkern", elem_vkern, ns_default, EP_CLOSED },
     { { HTML_2_0, HV_NOT324XX }, { HTML_UNDEF }, "wbr", elem_wbr, ns_default, EP_CLOSED, EF_EMPH | EF_5_FLOW | EF_5_PHRASE },
-    { { HTML_JAN05 }, { HTML_UNDEF }, "webmention", elem_webmention },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "xa", elem_xa, ns_default, EP_SVG_12_TRANS, EF_S_G | EF_SVG_CONTAIN },
     { { HTML_2_0, 0, HE_IE }, { HTML_4_01 }, "xml", elem_xml, ns_default, EP_SIMPLE },
     { { HTML_TAGS, HV_DEPRECATED123 }, { HTML_3_2 }, "xmp", elem_xmp, ns_default, EP_SIMPLE | EP_XMP, EF_LIT },
@@ -712,9 +711,9 @@ void add_elements (const vstr_t& v)
         ::std::size_t x = args.size ();
         if (x > 4)
         {   x = 4;
-            context.err ("ignoring extra arguments for '");
-            context.err (args.at (0));
-            context.err ("'\n"); }
+            outstr.err ("ignoring extra arguments for '");
+            outstr.err (args.at (0));
+            outstr.err ("'\n"); }
         e_namespace ns = ns_default;
         flags_t flags = NOFLAGS, flags2 = NOFLAGS;
         switch (x)

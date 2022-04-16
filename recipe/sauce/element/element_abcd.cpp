@@ -184,17 +184,17 @@ void element::examine_base ()
                         pick (nit_base_b4_lynx, ed_50, "4.2.3 The base element", es_error, ec_element, "a <BASE> with TARGET or HREF must appear before any element with a link"); }
     if (! a_.known (a_href))
     {   if (a_.known (a_target))
-        {   pick (nit_target, es_warning, ec_element, context.filename (), " has TARGET; " PROG " is abandoning local link checks");
+        {   pick (nit_target, es_warning, ec_element, "TARGET forces " PROG " to abandon local link checks");
             page_.check_links (false); }
         else if (page_.version ()  >= html_jul07)
-           pick (nit_base, ed_50, "4.2.3 The base element", es_error, ec_element, context.filename (), "<BASE> must have an HREF or a TARGET attribute");
+           pick (nit_base, ed_50, "4.2.3 The base element", es_error, ec_element, "<BASE> must have an HREF or a TARGET attribute");
         return; }
     check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE);
     url u (nits (), node_.version (), a_.get_string (a_href));
     if (u.empty ())
         pick (nit_empty, es_error, ec_element, "ignoring empty <BASE>");
     else if (u.has_component (es_fragment) || u.has_component (es_query))
-    {   pick (nit_element_bizarre_base, es_error, ec_element, context.filename (), " ignoring bizarre <BASE> ", quote (u.original ())); }
+    {   pick (nit_element_bizarre_base, es_error, ec_element, "ignoring bizarre <BASE> ", quote (u.original ())); }
     else
     {   if (! u.is_local ())
         {   pick (nit_element_offsite_base, es_warning, ec_element, "WARNING: Because of the offsite <BASE> ", quote (u.original ()), ", " PROG " is abandoning local link checks");

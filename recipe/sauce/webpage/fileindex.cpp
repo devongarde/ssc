@@ -541,7 +541,7 @@ bool fileindex_load (nitpick& nits)
 {   if (! context.shadow_enable ()) return true;
     bool ok = false;
     if (fileindex_load_internal (nits, ok))
-    {   if (context.tell (es_splurge)) context.out () << fileindex_report ();
+    {   if (context.tell (es_splurge)) outstr.out () << fileindex_report ();
         return true; }
     if (! ok)
     {   ::boost::filesystem::path p (persist_path ());
@@ -555,7 +555,7 @@ void fileindex_save_and_close (nitpick& nits)
     site_x.clear ();
     disk_x.clear ();
     mcrc.clear ();
-    if (context.tell (es_all)) context.out () << fileindex_report ();
+    if (context.tell (es_all)) outstr.out () << fileindex_report ();
     ::boost::filesystem::path name (persist_path ());
     ::boost::filesystem::fstream f (name, ::std::ios::out | ::std::ios::trunc);
     if (f.fail ()) nits.pick (nit_cannot_update, es_error, ec_crc, "cannot open ", name.string ());
@@ -613,12 +613,12 @@ void fileindex_save_and_close (nitpick& nits)
 
 void dedu (nitpick& nits)
 {   if (context.progress ())
-    {   ::std::cout << "Deduplicating ."; context.dedot (); }
+    {   ::std::cout << "Deduplicating ."; outstr.dedot (15); }
     for (fileindex_t i = 0; i < vx.size (); ++i)
     {   index_t& x = vx.at (i);
         if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)
             if (! is_webpage (x.site_path_, context.extensions ()))
-            {   context.dot ();
+            {   outstr.dot ();
                 crc_t crc = get_crc (nits, i);
                 if (crc == crc_initrem) continue;
                 mcrc_t::const_iterator ci = mcrc.find (crc);

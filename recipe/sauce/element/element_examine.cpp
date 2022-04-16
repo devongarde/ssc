@@ -273,7 +273,7 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
             {   url u (node_.nits (), node_.version (), node_.text ());
                 if (! u.invalid ())
                 {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
-                    context.css ().parse_file (node_.nits (), page_, u); } }
+                    css_cache.parse_file (node_.nits (), page_, u); } }
             break;
         case elem_faux_cdata :
             if ((flags & EP_NOSPELL) == 0)

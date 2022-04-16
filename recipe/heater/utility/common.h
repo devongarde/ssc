@@ -202,3 +202,7 @@ inline void extend (vstr_t& v, const vstr_t& w)
 template < class T > inline void merge_stuff (T& o, const T& s)
 {   for (auto a : s)  o.insert (a); }
 #endif // NOMERGE
+
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to);
+::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_severity level = es_comment);

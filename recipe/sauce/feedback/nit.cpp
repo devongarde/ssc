@@ -26,21 +26,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitout.h"
 
 nit::nit () : code_ (nit_free), severity_ (es_illegal), category_ (ec_undefined), doc_ (ed_mishmash)
-{   if (context.nits ()) context.out ("adding empty nit\n"); }
+{   if (context.nits ()) outstr.out ("adding empty nit\n"); }
 
 nit::nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg)
     : code_ (code), severity_ (severity), category_ (category), doc_ (doc), ref_ (ref), msg_ (msg)
 {   if (context.nits ())
     {   ::std::ostringstream ss;
         ss << "adding ref nit " << severity << ", " << msg << "\n";
-        context.out (ss.str ()); } }
+        outstr.out (ss.str ()); } }
 
 nit::nit (const e_nit code, const e_severity severity, const e_category category, const ::std::string& msg)
     : code_ (code), severity_ (severity), category_ (category), doc_ (ed_mishmash), msg_ (msg)
 {   if (context.nits ())
     {   ::std::ostringstream ss;
         ss << "adding nit " << severity << ", " << msg << "\n";
-        context.out (ss.str ()); } }
+        outstr.out (ss.str ()); } }
 
 void nit::swap (nit& n) noexcept
 {   ::std::swap (code_, n.code_);
@@ -59,9 +59,9 @@ void nit::reset (const nit& n)
     swap (tmp); }
 
 void nit::notify () const
-{   context.mark (severity_);
-    context.mark (category_);
-    context.mark (doc_); }
+{   overall.mark (severity_);
+    overall.mark (category_);
+    overall.mark (doc_); }
 
 ::std::string nitcode (const e_nit code, const e_severity severity)
 {   ::std::ostringstream res;
@@ -125,7 +125,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
     {   values.emplace (nm_nit_ref, "");
         values.emplace (nm_nit_doc, "");
         values.emplace (nm_nit_doc_long, ""); }
-    return apply_macros (entry, mac, outer, values); }
+    return macro.apply (entry, mac, outer, values); }
 
 ::std::string doc_title (const e_doc doc)
 {   switch (doc)

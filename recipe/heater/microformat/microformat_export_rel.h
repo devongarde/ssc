@@ -94,10 +94,10 @@ public:
             v.insert (data);
             tins_t tin = target_.insert (pus_t (key, v));
             if (! tin.second)
-            {   if (context.tell (es_splurge)) context.err ("t_export insert 1 failed\n");
+            {   if (context.tell (es_splurge)) outstr.err ("t_export insert 1 failed\n");
                 return; } }
         us_t& ss = target_.at (key); // phew, single threaded!
-        if (! ss.insert (data).second) if (context.tell (es_splurge)) context.err ("t_export insert 2 failed\n"); }
+        if (! ss.insert (data).second) if (context.tell (es_splurge)) outstr.err ("t_export insert 2 failed\n"); }
     void put (::boost::property_tree::ptree& tree)
     // https://stackoverflow.com/questions/2114466/creating-json-arrays-in-boost-using-property-trees
     {   for (auto i : target_)

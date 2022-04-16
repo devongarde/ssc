@@ -218,6 +218,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JUL19  HTML_2019, HTML_JUL
 #define HTML_DEC19  HTML_2019, (HTML_DEC + HTML_31ST)
 #define HTML_JAN20  HTML_2020, HTML_JAN
+#define HTML_FEB20  HTML_2020, HTML_FEB
 #define HTML_JUN20  HTML_2020, (HTML_JUN + HTML_30TH)
 #define HTML_JUL20  HTML_2020, HTML_JUL
 #define HTML_DEC20  HTML_2020, (HTML_DEC + HTML_31ST)
@@ -228,6 +229,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_APR21  HTML_2021, HTML_APR
 #define HTML_JUN21  HTML_2021, (HTML_JUN + HTML_30TH)
 #define HTML_JUL21  HTML_2021, HTML_JUL
+#define HTML_SEP21  HTML_2021, HTML_SEP
 #define HTML_OCT21  HTML_2021, HTML_OCT
 #define HTML_JAN22  HTML_2022, HTML_JAN
 #define HTML_APR22  HTML_2022, HTML_APR
@@ -306,7 +308,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_FRBR       HTML_RDF10
 #define HTML_GR         HTML_RDF10
 #define HTML_GRDDL      HTML_RDF10_CON
-#define HTML_GS1        HTML_JAN15
+#define HTML_GS10       HTML_JAN15
+#define HTML_GS11       HTML_DEC16
+#define HTML_GS12       HTML_DEC17
+#define HTML_GS13       HTML_FEB20
+#define HTML_GS14       HTML_FEB21
+#define HTML_GS15       HTML_MAR21
+#define HTML_GS151      HTML_SEP21
 #define HTML_ICAL       HTML_RDF10_CON
 #define HTML_ICALTZD    HTML_RDF10_CON
 #define HTML_JSONLD_1_0 HTML_JAN14

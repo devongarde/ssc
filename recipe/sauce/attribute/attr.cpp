@@ -1028,9 +1028,9 @@ void add_attributes (const vstr_t& v)
         ::std::size_t x = args.size ();
         if (x > 4)
         {   x = 4;
-            context.err ("ignoring extra arguments for '");
-            context.err (args.at (0));
-            context.err ("'\n"); }
+            outstr.err ("ignoring extra arguments for '");
+            outstr.err (args.at (0));
+            outstr.err ("'\n"); }
         e_namespace ns = ns_default;
         flags_t flags = NOFLAGS, flags2 = NOFLAGS;
         switch (x)

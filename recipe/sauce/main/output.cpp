@@ -18,21 +18,27 @@ Licence along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#ifdef HAS_WM
-#define AUTHOR      "author"
-#define CONTENT     "content"
-#define COUNT       "count"
-#define DELETED     "deleted"
-#define GENERATE    "generate"
-#define ID          "id"
-#define LENGTH      "length"
-#define PAGE        "page"
-#define POST        "post"
-#define REPLY       "reply"
-#define SECRET      "secret"
-#define SERVER      "server"
-#define SOURCE      "source"
-#define TARGET      "target"
-#define WHEN        "when"
-#define WM          "webmention"
-#endif // HAS_WM
+#include "main/standard.h"
+#include "main/output.h"
+#include "main/context.h"
+#include "parser/text.h"
+
+output_streams_t outstr;
+
+void output_streams_t::init (nitpick& nits, const ::std::string& s)
+{   name_ = s;
+    macro.set (nm_general_output, s);
+    fos_.reset (new ::std::ofstream (s));
+    if (fos_ -> fail ())
+    {   nits.pick (nit_cannot_open, es_catastrophic, ec_init, "cannot open ", s, " for output.");
+        fos_.reset (); } }
+
+::std::string output_streams_t::ensane (const ::std::string& s) const
+{   if (context.cgi ()) return enwotsit (s);
+    return s; }
+
+void output_streams_t::dot ()
+{   if (context.progress ())
+        if (dot_ == INT_MAX) dot_ = 0;
+        else if ((++dot_ % 100) == 0)
+        {   ::std::cout << "."; ::std::cout.flush (); } }

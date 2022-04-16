@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_enum.h"
 #include "type/type_master.h"
 
+macro_t macro;
 vstr_t sections;
 
 #define MACID ALPHANUMERIC "-_"
@@ -144,15 +145,6 @@ vstr_t sections;
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[update-foot]\n" \
-    "\n" \
-    "[webmention]\n" \
-    "\n" \
-    "[webmention-head]\n" \
-    "\n" \
-    START_OF_SECTION " webmentions\n" \
-    "{{nit-line}} {{nit-ns}}\n" \
-    "\n" \
-    "[webmention-foot]\n" \
     "\n"
 
 #define TEST_NIT \
@@ -274,15 +266,6 @@ vstr_t sections;
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[update-foot]\n" \
-    "\n" \
-    "[webmention]\n" \
-    "\n" \
-    "[webmention-head]\n" \
-    "\n" \
-    START_OF_SECTION " webmentions\n" \
-    "{{nit-line}} {{nit-ns}}\n" \
-    "\n" \
-    "[webmention-foot]\n" \
     "\n"
 
 #define TEXT_NIT \
@@ -402,15 +385,6 @@ vstr_t sections;
     START_OF_SECTION " update\n" \
     "\n" \
     "[update-foot]\n" \
-    "\n" \
-    "[webmention]\n" \
-    "{{nit-explanation}} [{{nit-id}}]\n" \
-    "\n" \
-    "[webmention-head]\n" \
-    "\n" \
-    START_OF_SECTION " webmentions\n" \
-    "\n" \
-    "[webmention-foot]\n" \
     "\n"
 
 #define HTML_NIT \
@@ -583,16 +557,6 @@ vstr_t sections;
     "\n" \
     "[update-foot]\n" \
     "</P>\n" \
-    "\n" \
-    "[webmention]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
-    "\n" \
-    "[webmention-head]\n" \
-    "<H2 class=\"nit-section\">webmentions</H2>\n" \
-    "<P>\n" \
-    "\n" \
-    "[webmention-foot]\n" \
-    "</P>\n" \
     "\n"
 
 ::std::string enc (const ::std::string& s)
@@ -641,7 +605,7 @@ vstr_t sections;
             default :  res += *i; break; }
     return res; }
 
-::std::string nit_content (const ::std::string& s)
+::std::string macro_t::nit_content (const ::std::string& s)
 {   switch (context.quote_style ())
     {   case qs_c : return enc (s);
         case qs_csv : return encsv (s);
@@ -650,20 +614,19 @@ vstr_t sections;
         case qs_single : return endouble (s, '\'');
         default : return s; } }
 
-bool is_template_loaded () noexcept
+bool macro_t::is_template_loaded () noexcept
 { return ! sections.empty (); }
 
-void init_nit_macros ()
-{   mmac_t& m = context.macros ();
-    m.emplace (nm_prog_abbrev, PROG);
-    m.emplace (nm_copy_addr, COPYRIGHT_WEBADDR);
-    m.emplace (nm_copy_html, COPYRIGHT_HTML);
-    m.emplace (nm_copy_text, COPYRIGHT_TEXT);
-    m.emplace (nm_prog_fullname, FULLNAME);
-    m.emplace (nm_prog_version, VERSION_STRING);
-    m.emplace (nm_prog_webaddr, WEBADDR); }
+void macro_t::init ()
+{   mmac_.emplace (nm_prog_abbrev, PROG);
+    mmac_.emplace (nm_copy_addr, COPYRIGHT_WEBADDR);
+    mmac_.emplace (nm_copy_html, COPYRIGHT_HTML);
+    mmac_.emplace (nm_copy_text, COPYRIGHT_TEXT);
+    mmac_.emplace (nm_prog_fullname, FULLNAME);
+    mmac_.emplace (nm_prog_version, VERSION_STRING);
+    mmac_.emplace (nm_prog_webaddr, WEBADDR); }
 
-bool load_template_int (nitpick& nits, const html_version& v, const ::std::string& config)
+bool macro_t::load_template_int (nitpick& nits, const html_version& v, const ::std::string& config)
 {   sections.clear ();
     sections.resize (ns_max);
     bool newline = true, apres = false, res = false;
@@ -691,7 +654,7 @@ bool load_template_int (nitpick& nits, const html_version& v, const ::std::strin
                     {   ::std::string msg ("unrecognised section [");
                         msg += nom;
                         msg += "] ignored\n";
-                        context.err (msg);
+                        outstr.err (msg);
                         ns = ns_none; }
                     else res = true;
                     sq_begin = config.cend ();
@@ -715,7 +678,7 @@ bool load_template_int (nitpick& nits, const html_version& v, const ::std::strin
                 break; }
     return res; }
 
-bool load_template (nitpick& nits, const html_version& v)
+bool macro_t::load_template (nitpick& nits, const html_version& v)
 {   const ::std::string& format = context.nit_format ();
     ::std::string config;
     bool res = false;
@@ -727,7 +690,7 @@ bool load_template (nitpick& nits, const html_version& v)
         {   config = template_path (nits, "out.nit", format);
             if (! config.empty ()) res = load_template_int (nits, v, config);
             if (! res)
-            {   context.err () << "Cannot process " << quote (format) << ", reverting to default output format.\n";
+            {   outstr.err () << "Cannot process " << quote (format) << ", reverting to default output format.\n";
                 nits.pick (nit_template_file, es_catastrophic, ec_init, "Cannot process ", quote (format), ", reverting to default output format)"); } }
         if (! res)
             if (! context.snippet ().empty ()) res = load_template_int (nits, v, HTML_NIT);
@@ -735,7 +698,7 @@ bool load_template (nitpick& nits, const html_version& v)
     PRESUME (res, __FILE__, __LINE__);
     return res; }
 
-::std::string apply_macros_int (const ::std::string& tpl, const mmac_t& values)
+::std::string macro_t::apply_macros_int (const ::std::string& tpl, const mmac_t& values)
 {   if (tpl.empty ()) return ::std::string ();
     bool subbed = false;
     ::std::string res;
@@ -750,21 +713,21 @@ bool load_template (nitpick& nits, const html_version& v)
         prepos = pos;
         ::std::string::size_type epos = tpl.find (context.macro_end (), pos+len);
         if (epos == ::std::string::npos) break;
-        ::std::string macro = tpl.substr (pos+len, epos-pos-len);
-        if (! macro.empty ())
+        ::std::string m = tpl.substr (pos+len, epos-pos-len);
+        if (! m.empty ())
         {   ::std::string b,a;
-            const ::std::string::size_type bp = macro.find_first_not_of (MACID);
+            const ::std::string::size_type bp = m.find_first_not_of (MACID);
             if (bp != ::std::string::npos)
-            {   const char ch = macro.at (bp);
-                b = macro.substr (bp+1);
-                macro = macro.substr (0, bp);
+            {   const char ch = m.at (bp);
+                b = m.substr (bp+1);
+                m = m.substr (0, bp);
                 const ::std::string::size_type ap = b.find (ch);
                 if (ap != ::std::string::npos)
                 {   a = b.substr (ap+1);
                     b = b.substr (0, ap); } }
-            const e_nit_macro m = examine_value < t_nit_macro > (nuts, html_default, macro);
-            if (m != nm_none)
-            {   mmac_t::const_iterator ci = values.find (m);
+            const e_nit_macro mac = examine_value < t_nit_macro > (nuts, html_default, m);
+            if (mac != nm_none)
+            {   mmac_t::const_iterator ci = values.find (mac);
                 if (ci != values.cend ())
                 {   if (! ci -> second.empty ())
                         res += b + nit_content (ci -> second) + a;
@@ -776,30 +739,30 @@ bool load_template (nitpick& nits, const html_version& v)
     if (subbed) return apply_macros_int (res, values);
     return res; }
 
-::std::string apply_macros (const e_nit_section& sct)
+::std::string macro_t::apply (const e_nit_section& sct)
 {   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
-    return apply_macros_int (sections.at (sct), context.macros ()); }
+    return apply_macros_int (sections.at (sct), mmac_); }
 
-::std::string apply_macros (const e_nit_section& sct, const mmac_t& values)
+::std::string macro_t::apply (const e_nit_section& sct, const mmac_t& values)
 {   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
-    return apply_macros_int (apply_macros (sct), values); }
+    return apply_macros_int (apply (sct), values); }
 
-::std::string apply_macros (const e_nit_section& sct, const mmac_t& values1, const mmac_t& values2)
+::std::string macro_t::apply (const e_nit_section& sct, const mmac_t& values1, const mmac_t& values2)
 {   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
-    return apply_macros_int (apply_macros (sct, values1), values2); }
+    return apply_macros_int (apply (sct, values1), values2); }
 
-::std::string apply_macros (const e_nit_section& sct, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3)
+::std::string macro_t::apply (const e_nit_section& sct, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3)
 {   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
-    return apply_macros_int (apply_macros (sct, values1, values2), values3); }
+    return apply_macros_int (apply (sct, values1, values2), values3); }
 
-::std::string apply_macros (const e_nit_section& sct, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3, const mmac_t& values4)
+::std::string macro_t::apply (const e_nit_section& sct, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3, const mmac_t& values4)
 {   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
-    return apply_macros_int (apply_macros (sct, values1, values2, values3), values4); }
+    return apply_macros_int (apply (sct, values1, values2, values3), values4); }
 
-void dump_nits (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
+void macro_t::dump_nits (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
 {   if (! nits.empty ())
 #ifdef NDEBUG
         if (context.tell (nits.worst ()))
 #endif // NDEBUG
-            context.out () << nits.review (entry, head, foot);
+            outstr.out () << nits.review (entry, head, foot);
     nits.reset (); }

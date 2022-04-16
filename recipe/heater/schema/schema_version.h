@@ -171,7 +171,13 @@ const schema_version good_relations (s_gr, 1, 0);
 
 const schema_version grddl_schema (s_grddl, 1, 0);
 
-const schema_version gs1_schema (s_gs1, 1, 0);
+const schema_version gs1_10 (s_gs1, 1, 0);
+const schema_version gs1_11 (s_gs1, 1, 1);
+const schema_version gs1_12 (s_gs1, 1, 2);
+const schema_version gs1_13 (s_gs1, 1, 3);
+const schema_version gs1_14 (s_gs1, 1, 4);
+const schema_version gs1_15 (s_gs1, 1, 5);
+const schema_version gs1_151 (s_gs1, 1, 51);
 
 const schema_version ical_schema (s_ical, 1, 0);
 

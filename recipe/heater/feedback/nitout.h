@@ -26,13 +26,24 @@ typedef ssc_map < e_nit_macro, ::std::string > mmac_t;
 class nitpick;
 class html_version;
 
-void init_nit_macros ();
-bool is_template_loaded () noexcept;
-bool load_template (nitpick& nits, const html_version& v);
-void dump_nits (nitpick& nits, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot);
-::std::string nit_content (const ::std::string& s);
-::std::string apply_macros (const e_nit_section& section);
-::std::string apply_macros (const e_nit_section& section, const mmac_t& values);
-::std::string apply_macros (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2);
-::std::string apply_macros (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3);
-::std::string apply_macros (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3, const mmac_t& values4);
+class macro_t
+{   mmac_t mmac_;
+    bool load_template_int (nitpick& nits, const html_version& v, const ::std::string& config);
+    ::std::string apply_macros_int (const ::std::string& tpl, const mmac_t& values);
+public:
+    void init ();
+    const mmac_t& macros () const noexcept { return mmac_; }
+//    mmac_t& macros () noexcept { return mmac_; }
+    void set (const e_nit_macro m, const ::std::string& s) { mmac_.emplace (m, s); }
+    void set (const e_nit_macro m, ::std::string&& s) { mmac_.emplace (m, s); }
+    bool is_template_loaded () noexcept;
+    bool load_template (nitpick& nits, const html_version& v);
+    void dump_nits (nitpick& nits, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot);
+    ::std::string nit_content (const ::std::string& s);
+    ::std::string apply (const e_nit_section& section);
+    ::std::string apply (const e_nit_section& section, const mmac_t& values);
+    ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2);
+    ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3);
+    ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3, const mmac_t& values4); };
+
+extern macro_t macro;
