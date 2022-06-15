@@ -18,7 +18,9 @@
             },
             "p-org": {
                 "3": {
-                    "type": "http:\/\/microformats.org\/profile\/h-card",
+                    "type": "http:\/\/microformats.org\/profile\/h-card"
+                },
+                "4": {
                     "prop": {
                         "u-url": "https:\/\/mozilla.example.org\/",
                         "p-name": "Gozilla Foundation"

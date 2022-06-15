@@ -2,8 +2,9 @@
 
 PASS ../toast/microdata/schema-tuv/theatreevent.html
 12 use_quote_code
+13 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 19 no_such_folder url_not_found
-21 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+21 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-tuv/touristattraction.html
 0 charset_mismatch charset_used charset_invalid
@@ -17,15 +18,15 @@ PASS ../toast/microdata/schema-tuv/touristattraction.html
 123 use_quote_code use_double_quote_code use_quote_code
 138 not_schema_property
 139 not_schema_property
+140 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 196 not_schema_property
 197 not_schema_property
-200 no_tel
-201 no_tel
 203 not_schema_property
 
 PASS ../toast/microdata/schema-tuv/touristdestination.html
 0 charset_mismatch charset_used charset_invalid
 16 newline_in_string newline_in_string
+50 bad_property
 
 PASS ../toast/microdata/schema-tuv/touristtrip.html
 0 charset_mismatch charset_used charset_invalid
@@ -51,18 +52,30 @@ PASS ../toast/microdata/schema-tuv/trip.html
 107 use_quote_code use_double_quote_code
 
 PASS ../toast/microdata/schema-tuv/tvepisode.html
+23 bad_property
+28 bad_property
+32 bad_property
+42 bad_property
+45 bad_property
 54 invalid_attribute_version wrong_version svg_rdf
 62 invalid_attribute_version wrong_version svg_rdf
 63 invalid_attribute_version wrong_version svg_rdf
-76 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
-77 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+76 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+77 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-tuv/tvseason.html
+23 bad_property
+28 bad_property
+32 bad_property
+42 bad_property
+45 bad_property
 54 invalid_attribute_version wrong_version svg_rdf
 62 invalid_attribute_version wrong_version svg_rdf
 63 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-tuv/tvseries.html
+14 bad_property
+17 bad_property
 26 invalid_attribute_version wrong_version svg_rdf
 34 invalid_attribute_version wrong_version svg_rdf
 35 invalid_attribute_version wrong_version svg_rdf
@@ -75,6 +88,7 @@ PASS ../toast/microdata/schema-tuv/unitpricespecification.html
 
 PASS ../toast/microdata/schema-tuv/videogame-1.html
 14 no_such_folder url_not_found
+45 bad_property
 52 data_type
 53 attribute_required attribute_required
 

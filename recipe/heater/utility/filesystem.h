@@ -45,7 +45,7 @@ bool make_directories (const ::boost::filesystem::path& name);
 bool make_directory (const ::boost::filesystem::path& name);
 bool delete_file (const ::boost::filesystem::path& name);
 bool rename_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to);
-bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const ::boost::filesystem::copy_option opt);
+bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const BOOST_COPY_OPTION opt);
 ::boost::filesystem::path temp_dir ();
 #else // FS_THROWS
 ::std::time_t get_last_write_time (const ::boost::filesystem::path& name) noexcept;
@@ -61,7 +61,7 @@ bool make_directories (const ::boost::filesystem::path& name) noexcept;
 bool make_directory (const ::boost::filesystem::path& name) noexcept;
 bool delete_file (const ::boost::filesystem::path& name) noexcept;
 bool rename_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to) noexcept;
-bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const ::boost::filesystem::copy_option opt) noexcept;
+bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const BOOST_COPY_OPTION opt) noexcept;
 ::boost::filesystem::path temp_dir ();
 #endif // FS_THROWS
 

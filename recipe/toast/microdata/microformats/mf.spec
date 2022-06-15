@@ -42,16 +42,18 @@ PASS ../toast/microdata/microformats/hnews.html
 
 PASS ../toast/microdata/microformats/hproduct.html
 8 deprecated_schema
+16 bad_property bad_property bad_property
 
 PASS ../toast/microdata/microformats/hrecipe.html
 7 deprecated_schema
 
 PASS ../toast/microdata/microformats/hresume.html
 7 deprecated_schema
+13 bad_property bad_property
 26 deprecated_schema
 30 deprecated_schema
-35 deprecated_schema
-39 deprecated_schema
+35 deprecated_schema bad_property
+39 deprecated_schema bad_property
 
 PASS ../toast/microdata/microformats/hreview-aggregate.html
 10 deprecated_schema

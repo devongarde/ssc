@@ -715,6 +715,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_urisz);
         TEST_VALUE (t_url);
         TEST_VALUE (t_urls);
+        TEST_VALUE (t_urltemplate);
         TEST_VALUE (t_valign);
         TEST_VALUE (t_valign3);
         TEST_VALUE (t_valign_tmb);

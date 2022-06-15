@@ -152,3 +152,5 @@ template < > struct type_master < t_xmlurl > : type_master < t_url >
         if (type_master < t_url > :: good () && ! v.xhtml ())
         {   nits.pick (nit_requires_xhtml, es_error, ec_type, quote (s), " is only valid in XHTML");
             type_base < url, t_url > :: status (s_invalid); } } };
+
+// TBD: t_urltemplate, re RFC 6570

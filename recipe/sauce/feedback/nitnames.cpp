@@ -343,7 +343,7 @@ const nitname nitnames [] =
     { nit_id_hidden, "id_hidden" },
     { nit_empty_link, "empty_link" },
     { nit_requires_itemscope, "requires_itemscope" },
-    { nit_requires_itemtype, "requires_itemtype" },
+    { nit_missing_itemtype, "missing_itemtype" },
     { nit_bad_itemprop, "bad_itemprop" },
     { nit_double_gin_and_tonic, "double_gin_and_tonic" },
     { nit_lang_xmllang, "lang_xmllang" },

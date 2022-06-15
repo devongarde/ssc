@@ -543,6 +543,7 @@ PASS ../toast/living/jan10/meter.html
 
 PASS ../toast/living/jan10/microdata.html
 20 url_not_found
+34 missing_itemtype
 53 attribute_required url_not_found
 54 inserted_missing_closure missing_close
 55 inserted_missing_closure
@@ -562,8 +563,6 @@ PASS ../toast/living/jan10/microdata.html
 86 url_not_found naughty_alt
 89 schema_domain
 95 url_not_found naughty_alt
-135 unrecognised_schema unrecognised_schema not_schema_property bad_itemprop
-142 unrecognised_schema unrecognised_schema not_schema_property bad_itemprop
 
 PASS ../toast/living/jan10/mt.html
 6 missing_close inserted_missing_closure missing_open
@@ -833,7 +832,7 @@ PASS ../toast/living/jan10/vcard.html
 44 use_quote_code
 45 use_quote_code
 47 use_quote_code
-49 bad_property bad_property
+49 bad_property bad_property bad_property bad_property
 53 missing_close
 56 inserted_missing_closure
 

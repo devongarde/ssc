@@ -165,7 +165,7 @@ void url::shadow (::std::stringstream& ss, const html_version& v, element* e)
             {   u2.shadow (ss, v, e); return; } } }
     ss << original (); }
 
-void wombats (nitpick& nits, const html_version& v, const ::std::string& u)
+void world_wide_wombat_web (nitpick& nits, const html_version& v, const ::std::string& u)
 {   if (u.find ("//") == ::std::string::npos) check_identifier_spelling (nits, v, u);
     else if (u.find ("//wwww") != ::std::string::npos)
-        nits.pick (nit_wwww, es_info, ec_namespace, "four 'w's? the world wide web for wombats?!"); }
+        nits.pick (nit_wwww, es_info, ec_namespace, "four 'w's? the world wide wombat web?!"); }

@@ -247,7 +247,7 @@ bool rename_file (const ::boost::filesystem::path& from, const ::boost::filesyst
         {   return false; } }
     return true; }
 
-bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const ::boost::filesystem::copy_option opt)
+bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const BOOST_COPY_OPTION opt)
 #ifndef FS_THROWS
     noexcept
 #endif // FS_THROWS

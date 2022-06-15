@@ -130,10 +130,10 @@ PASS ../toast/living/jul18/dl.html
 73 inserted_missing_closure
 76 inserted_missing_closure missing_close
 78 inserted_missing_closure
-84 inserted_missing_closure
+84 inserted_missing_closure missing_itemtype
 87 inserted_missing_closure
 89 inserted_missing_closure
-91 inserted_missing_closure
+91 inserted_missing_closure missing_itemtype
 94 inserted_missing_closure missing_close
 96 inserted_missing_closure
 
@@ -196,6 +196,8 @@ PASS ../toast/living/jul18/example-2.html
 19 mime
 33 use_quote_code
 47 use_quote_code
+51 bad_property bad_property bad_property bad_property
+61 bad_property bad_property bad_property bad_property
 92 unrecognised_value
 107 use_quote_code
 117 use_quote_code
@@ -818,7 +820,7 @@ PASS ../toast/living/jul18/ls16.html
 16 url_not_found
 17 url_not_found
 18 url_not_found
-23 not_schema_property unrecognised_value bad_itemprop
+23 bad_property
 42 url_not_found
 43 url_not_found
 44 url_not_found

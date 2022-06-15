@@ -47,11 +47,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_VC_NOT2      0x00000100
 #define SV_VC_DEP4      0x00000400
 
-#define DEFAULT_SCHEMA_ORG_MAJOR 14
-#define DEFAULT_SCHEMA_ORG_MINOR 0
+#define MAX_SCHEMA_ORG_MAJOR 14
+#define MAX_SCHEMA_ORG_MINOR 0
+#define MIN_SCHEMA_ORG_MAJOR 0
+#define MIN_SCHEMA_ORG_MINOR 10
+#define DEFAULT_SCHEMA_ORG_MAJOR MAX_SCHEMA_ORG_MAJOR
+#define DEFAULT_SCHEMA_ORG_MINOR MAX_SCHEMA_ORG_MINOR
 #define DEFAULT_SCHEMA_ORG_VERSION "14.0"
 
-constexpr unsigned char schema_major_max = DEFAULT_SCHEMA_ORG_MAJOR;
 class html_version;
 struct schema_version;
 typedef ::std::set < e_schema > vsh_t;
@@ -163,7 +166,7 @@ const schema_version event_schema (s_event, 1, 0);
 
 const schema_version faux_schema (s_faux, 1, 0);
 
-const schema_version frbr_schema (s_frbr_core, 1, 0);
+const schema_version frbr_schema (s_frbr, 1, 0);
 
 const schema_version foaf_schema (s_foaf, 0, 99);
 
@@ -250,7 +253,51 @@ const schema_version role_schema (s_role, 1, 0);
 
 const schema_version rr_schema (s_rr, 1, 0);
 
+// schema versions before version 2.0 are not properly versioned IMHO.
+// I've used (www.)schema.org and archive.org to get a rough set up as below.
+// Versions before 0.91, dug up from archive.org are undocumented on schema.org
+// (May 2022)), so I've assigned arbituary numbers which are liable to change
+// should I find better documentation. Versions before June 2011 probably
+// exist somewhere, but they're not under www.schema.org on archive.org.
+
 const schema_version schema_0 (s_schema, 0, 1);
+const schema_version schema_jun11 (s_schema, 0, 10);
+const schema_version schema_jul11 (s_schema, 0, 15);
+const schema_version schema_aug11 (s_schema, 0, 20);
+const schema_version schema_sep11 (s_schema, 0, 25);
+const schema_version schema_oct11 (s_schema, 0, 30);
+const schema_version schema_nov11 (s_schema, 0, 35);
+const schema_version schema_dec11 (s_schema, 0, 40);
+const schema_version schema_jan12 (s_schema, 0, 45);
+const schema_version schema_feb12 (s_schema, 0, 50);
+const schema_version schema_mar12 (s_schema, 0, 55);
+const schema_version schema_apr12 (s_schema, 0, 60);
+const schema_version schema_0_91 (s_schema, 0, 91);
+const schema_version schema_0_93 (s_schema, 0, 93);
+const schema_version schema_0_94 (s_schema, 0, 94);
+const schema_version schema_0_95 (s_schema, 0, 95);
+const schema_version schema_0_96 (s_schema, 0, 96);
+const schema_version schema_0_97 (s_schema, 0, 97);
+const schema_version schema_0_98 (s_schema, 0, 98);
+const schema_version schema_0_99 (s_schema, 0, 99);
+const schema_version schema_1_0A (s_schema, 1, 0);
+const schema_version schema_1_0B (s_schema, 1, 1);
+const schema_version schema_1_0C (s_schema, 1, 2);
+const schema_version schema_1_0D (s_schema, 1, 3);
+const schema_version schema_1_0E (s_schema, 1, 4);
+const schema_version schema_1_0F (s_schema, 1, 5);
+const schema_version schema_1_1 (s_schema, 1, 10);
+const schema_version schema_1_2 (s_schema, 1, 20);
+const schema_version schema_1_3 (s_schema, 1, 30);
+const schema_version schema_1_4 (s_schema, 1, 40);
+const schema_version schema_1_5 (s_schema, 1, 50);
+const schema_version schema_1_6 (s_schema, 1, 60);
+const schema_version schema_1_7 (s_schema, 1, 70);
+const schema_version schema_1_8 (s_schema, 1, 80);
+const schema_version schema_1_9 (s_schema, 1, 90);
+const schema_version schema_1_91 (s_schema, 1, 91);
+const schema_version schema_1_92 (s_schema, 1, 92);
+const schema_version schema_1_93 (s_schema, 1, 93);
 const schema_version schema_2_0 (s_schema, 2, 0);
 const schema_version schema_2_1 (s_schema, 2, 1);
 const schema_version schema_2_2 (s_schema, 2, 2);

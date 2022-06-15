@@ -8,7 +8,9 @@
             },
             "founder": {
                 "2": {
-                    "type": "http:\/\/schema.org\/Person",
+                    "type": "http:\/\/schema.org\/Person"
+                },
+                "3": {
                     "prop": {
                         "description": "this is mostly valid information about thingy",
                         "name": "Tiddles",
@@ -17,15 +19,17 @@
                 }
             }
         },
-        "3": {
+        "4": {
             "type": "http:\/\/schema.org\/Organization",
             "prop": {
                 "name": "Tiddles the wonder cat TNG",
                 "url": "https:\/\/example.com\/tiddles2.html"
             },
             "founder": {
-                "4": {
-                    "type": "http:\/\/schema.org\/Person",
+                "5": {
+                    "type": "http:\/\/schema.org\/Person"
+                },
+                "6": {
                     "prop": {
                         "description": "this is mostly valid information about thingy",
                         "name": "Tiddles",

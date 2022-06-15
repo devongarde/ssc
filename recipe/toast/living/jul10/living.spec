@@ -694,6 +694,7 @@ PASS ../toast/living/jul10/microdata-2.html
 PASS ../toast/living/jul10/microdata.html
 4 missing_close
 20 url_not_found
+34 missing_itemtype
 52 missing_close
 53 inserted_missing_parent inserted_missing_closure inserted_missing_closure missing_close only_once
 53 missing_close dl_ancestor
@@ -1282,7 +1283,7 @@ PASS ../toast/living/jul10/vcard.html
 44 use_quote_code
 45 use_quote_code
 47 use_quote_code
-49 bad_property bad_property
+49 bad_property bad_property bad_property bad_property
 53 missing_close
 56 inserted_missing_closure
 

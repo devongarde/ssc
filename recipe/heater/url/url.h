@@ -125,4 +125,4 @@ public:
 
 typedef ::std::vector < url > vurl_t;
 vurl_t split_urls_by_space (nitpick& nits, const html_version& v, const ::std::string& s);
-void wombats (nitpick& nits, const html_version& v, const ::std::string& u);
+void world_wide_wombat_web (nitpick& nits, const html_version& v, const ::std::string& u);

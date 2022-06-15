@@ -11,6 +11,7 @@ PASS ../toast/microdata/schema-wxyz/webpage-1.html
 49 use_quote_code
 
 PASS ../toast/microdata/schema-wxyz/webpage-2.html
+12 bad_property bad_property bad_property
 13 unrecognised_value
 17 no_such_folder url_not_found
 
@@ -18,6 +19,4 @@ PASS ../toast/microdata/schema-wxyz/winery.html
 0 charset_mismatch charset_used charset_invalid
 25 not_schema_property
 26 not_schema_property
-29 no_tel
-30 no_tel
 32 not_schema_property

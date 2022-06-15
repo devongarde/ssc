@@ -125,7 +125,7 @@ prop_indices rdf_t::prepare_prop_indices (nitpick& nits, const html_version& v, 
         ::std::string::size_type ends_at = 0;
         mr = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), name, &ends_at);
         if (mr == s_error)
-        {   wombats (nits, v, name);
+        {   world_wide_wombat_web (nits, v, name);
             return ii; }
         ii = find_prop_indices (nits, v, vs, name.substr (ends_at), false); }
     if (ii.empty ())
@@ -141,7 +141,7 @@ bool rdf_t::note_prop (nitpick& nits, const html_version& v, const ::std::string
             {   prop_.emplace (prop, prop_value (value));
                 p.mark (static_cast < e_schema_type > (i), static_cast < e_schema_property > (prop));
                 return true; } }
-   wombats (nits, v, xpan);
+   world_wide_wombat_web (nits, v, xpan);
    return false; }
 
 bool rdf_t::note_prop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& , rdf_t* scope, page& p)
@@ -163,7 +163,7 @@ bool rdf_t::note_prop (nitpick& nits, const html_version& v, const ::std::string
                         nuts.reset (); } } }
     if (! ok)
     {   nits.merge (knots);
-        wombats (nits, v, xpan); }
+        world_wide_wombat_web (nits, v, xpan); }
     return ok; }
 
 e_schema_type rdf_t::note_type (nitpick& nits, const html_version& v, const ::std::string& name, page& p)
@@ -178,7 +178,7 @@ e_schema_type rdf_t::note_type (nitpick& nits, const html_version& v, const ::st
             ::std::string::size_type ends_at = 0;
             const e_schema ns = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), xpan, &ends_at);
             if (ns == s_error)
-                wombats (nits, v, xpan);
+                world_wide_wombat_web (nits, v, xpan);
             else
             {   const sch sc (nits, v, schema_names.after_start (SCHEMA_CURIE, xpan.substr (ends_at), v.xhtml ()), ns);
                 t = sc.get (); } }

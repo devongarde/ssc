@@ -406,8 +406,8 @@ n_string_entry < e_schema, 3 > schema_name_entries [] =
     { { HTML_FAUX }, { HTML_UNDEF }, s_faux, 0, { "__FAUX__", "https://" SSC_LU "/faux#", "faux schema used for internal ssc processing" } },
     { { HTML_FOAF }, { HTML_UNDEF }, s_foaf, SCHEMA_PREFIX_CONTEXT, { "foaf", "http://xmlns.com/foaf/0.1/", "friend of a friend" } },
     { { HTML_FOAF }, { HTML_UNDEF }, s_foaf, 0, { "foaf", "https://xmlns.com/foaf/0.1/", "friend of a friend" } },
-    { { HTML_FRBR }, { HTML_UNDEF }, s_frbr_core, 0, { "frbr_core", HTTP PURL_ORG "/vocab/frbr/core#", "frbr_core" } },  // https://vocab.org/
-    { { HTML_FRBR }, { HTML_UNDEF }, s_frbr_core, 0, { "frbr_core", HTTPS PURL_ORG "/vocab/frbr/core#", "frbr_core" } },  // https://vocab.org/
+    { { HTML_FRBR }, { HTML_UNDEF }, s_frbr, 0, { "frbr_core", HTTP PURL_ORG "/vocab/frbr/core#", "frbr_core" } },
+    { { HTML_FRBR }, { HTML_UNDEF }, s_frbr, 0, { "frbr_core", HTTPS PURL_ORG "/vocab/frbr/core#", "frbr_core" } },
     { { HTML_GR }, { HTML_UNDEF }, s_gr, SCHEMA_PREFIX_CONTEXT, { "gr", HTTP PURL_ORG "/goodrelations/v1#", "good relations" } },
     { { HTML_GR }, { HTML_UNDEF }, s_gr, 0, { "gr", HTTPS PURL_ORG "/goodrelations/v1#", "good relations" } },
     { { HTML_GRDDL }, { HTML_UNDEF }, s_grddl, SCHEMA_PREFIX_CONTEXT, { "grddl", HTTP_W3 "/2003/g/data-view#", "gleaning resource descriptions from dialects of languages" } },

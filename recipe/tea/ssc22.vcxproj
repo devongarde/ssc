@@ -7735,6 +7735,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\build.txt" />
+    <Text Include="..\..\CMakeLists.txt" />
     <Text Include="..\..\LICENCE.txt" />
     <Text Include="..\..\LICENSE.txt" />
     <Text Include="..\..\README.txt" />
@@ -7748,7 +7749,6 @@
     <Text Include="..\toast\tmp\README.txt" />
     <Text Include="..\toast\virtual\README.txt" />
     <Text Include=".ssc\README.txt" />
-    <Text Include="CMakeLists.txt" />
     <Text Include="README.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -23911,9 +23911,6 @@
     <Text Include="..\toast\virtual\README.txt">
       <Filter>Toast\Virtual</Filter>
     </Text>
-    <Text Include="CMakeLists.txt">
-      <Filter>Tea</Filter>
-    </Text>
     <Text Include="README.txt">
       <Filter>Tea</Filter>
     </Text>
@@ -23955,6 +23952,9 @@
     </Text>
     <Text Include="..\toast\spell\spell\list.txt">
       <Filter>Toast\Spell\spell</Filter>
+    </Text>
+    <Text Include="..\..\CMakeLists.txt">
+      <Filter>Tea</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

@@ -109,8 +109,7 @@ Configuration Files
 ===================
 
 SSC will accept configuration files in INI file format. Here are some examples,
-mostly adapted from
-the tests:
+mostly adapted from the tests:
 
 
 A simple configuration file

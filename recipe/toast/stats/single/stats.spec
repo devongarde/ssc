@@ -30,7 +30,7 @@ Elements:
 Ontology:
     http://schema.org/Article: once
       description: once
-    http://schema.org/Webpage: once
+    http://schema.org/WebPage: once
       name: once
   Property counts:
     description: once

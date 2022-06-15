@@ -33,9 +33,9 @@ class microdata_itemscope
     vit_t type_;
     microdata_export* export_ = nullptr;
     ::std::string export_path_;
-    itemscope_ptr parent_;
+    itemscope_ptr parent_, parent2_;
     itemprop_indices prepare_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value);
-    bool use_parent () const noexcept { return (type_.empty () && (parent_.get () != nullptr)); }
+    bool use_parent () const noexcept { return (has_parent () && type_.empty ()); }
 public:
     void swap (microdata_itemscope& mi);
     void note_itemtype (nitpick& nits, const html_version& v, const ::std::string& name, page& p, const bool has_itemid);
@@ -48,7 +48,11 @@ public:
             return parent_ -> type (); }
         return type_; }
     void parent (const itemscope_ptr& parent) noexcept { parent_ = parent; }
+    void parent2 (const itemscope_ptr& parent) noexcept { parent2_ = parent; }
     itemscope_ptr& parent () noexcept { return parent_; }
+    itemscope_ptr& parent2 () noexcept { return parent2_; }
+    bool has_parent () const noexcept { return (parent_.get () != nullptr); }
+    bool has_parent2 () const noexcept { return (parent2_.get () != nullptr); }
     vit_t sought_itemtypes (const html_version& v, const ::std::string& name) const;
     ::std::string report (const ::std::size_t offset = 0) const;
     void set_exporter (microdata_export* exporter, const ::std::string& export_path)

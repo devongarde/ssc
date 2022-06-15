@@ -4,6 +4,7 @@ PASS ../toast/microdata/basic/examples.html
 9 double_gin_and_tonic
 38 url_not_found
 47 url_not_found naughty_alt
+67 missing_itemtype
 86 attribute_required url_not_found
 92 attribute_required url_not_found
 96 schema_domain
@@ -50,6 +51,7 @@ PASS ../toast/microdata/basic/itemprop.html
 20 attempted_escape no_such_folder url_not_found
 34 url_not_found
 45 url_not_found naughty_alt
+78 missing_itemtype
 97 newline_in_string newline_in_string
 101 attribute_required url_not_found
 112 attribute_required url_not_found
@@ -64,6 +66,7 @@ PASS ../toast/microdata/basic/itemprop.html
 162 not_schema_property
 
 PASS ../toast/microdata/basic/itemref.html
+15 missing_itemtype
 27 missing_close
 32 url_id_unfound
 35 inserted_missing_closure
@@ -91,8 +94,13 @@ PASS ../toast/microdata/basic/md-bad.html
 31 correct_spelling
 32 use_quote_code
 
+PASS ../toast/microdata/basic/md-lynx.html
+11 missing_itemtype
+16 missing_itemtype
+
 PASS ../toast/microdata/basic/md-ref.html
 14 not_schema_property
+18 missing_itemtype
 
 itemids
 #mozOrg
