@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 127
-#define VERSION_STRING "0.0.127"
+#define VERSION_RELEASE 128
+#define VERSION_STRING "0.0.128"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -162,11 +162,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define FUDDY
 #endif // FUDDYDUDDY
 
+#include <fstream>
 #include <iostream>
 #include <vector>
 #include <set>
 #include <assert.h>
 #include <map>
+
+#ifdef UNIX
+#include <unistd.h>
+#endif // UNIX
 
 #ifndef SSC_TEST
 #include <string>
@@ -254,6 +259,33 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define NO_DIROPTS
 #endif // 1.72
 
+#if BOOST_MINOR > 78
+#define BOOST_FILESYSTEM_VERSION 4
+#endif // BOOST_MINOR
+
+#if BOOST_FILESYSTEM_VERSION == 4
+#define BOOST_COPY_OPTION ::boost::filesystem::copy_options
+#define BOOST_OVERWRITE overwrite_existing
+#define BOOST_PSTR(P) P.c_str ()
+#define BOOST_FSTREAM ::std::fstream
+#define BOOST_IFSTREAM ::std::ifstream
+#define BOOST_OFSTREAM ::std::ofstream
+#else // BOOST_FILESYSTEM_VERSION
+#define BOOST_COPY_OPTION ::boost::filesystem::copy_option
+#define BOOST_OVERWRITE overwrite_if_exists
+#define BOOST_PSTR(P) P
+#define BOOST_FSTREAM ::boost::filesystem::fstream
+#define BOOST_IFSTREAM ::boost::filesystem::ifstream
+#define BOOST_OFSTREAM ::boost::filesystem::ofstream
+#endif // BOOST_FILESYSTEM_VERSION
+
+#define BOOST_FSTREAM_CNSTR(F,P) BOOST_FSTREAM F (BOOST_PSTR (P))
+#define BOOST_FSTREAM_CNSTRO(F,P,O) BOOST_FSTREAM F (BOOST_PSTR (P), O)
+#define BOOST_IFSTREAM_CNSTR(F,P) BOOST_IFSTREAM F (BOOST_PSTR (P))
+#define BOOST_IFSTREAM_CNSTRO(F,P,O) BOOST_IFSTREAM F (BOOST_PSTR (P), O)
+#define BOOST_OFSTREAM_CNSTR(F,P) BOOST_OFSTREAM F (BOOST_PSTR (P))
+#define BOOST_OFSTREAM_CNSTRO(F,P,O) BOOST_OFSTREAM F (BOOST_PSTR (P), O)
+
 #ifndef SSC_TEST
 #if BOOVAR == 1
 #include <boost/variant.hpp>
@@ -281,15 +313,18 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define ssc_mm ::std::unordered_multimap
 #endif // ORDERED
 
-#include <boost/date_time/gregorian/gregorian.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/chrono.hpp>
+#include <boost/date_time.hpp>
 #include <boost/format.hpp>
+#include <boost/lockfree/queue.hpp>
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/string_path.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/logic/tribool.hpp>
+#include <boost/system.hpp>
+#include <boost/thread.hpp>
 
 #ifdef _MSC_VER
 #pragma warning ( disable : 4701 ) // CRC

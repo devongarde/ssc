@@ -25,8 +25,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 #include "webpage/directory.h"
 
-//#define PERSIST_NDX 0
-//#define PERSIST_SIZE (PERSIST_NDX + 1)
 #define PERSIST_SIZE 0
 #define PERSIST_LAST_WRITE (PERSIST_SIZE + 1)
 #define PERSIST_FLAGS (PERSIST_LAST_WRITE + 1)
@@ -233,7 +231,7 @@ crc_t get_crc (nitpick& nits, const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     if (! get_flag (ndx, FX_CRC))
     {   crc_calc crc;
-        ::boost::filesystem::ifstream f (::gsl::at (vx, ndx).disk_path_, ::std::ios_base::in);
+        BOOST_IFSTREAM_CNSTRO (f, ::gsl::at (vx, ndx).disk_path_, ::std::ios_base::in);
         if (f.bad ())
         {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot read ", ::gsl::at (vx, ndx).disk_path_);
             set_crc (ndx, 0);
@@ -397,7 +395,7 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
 bool fileindex_load_internal (nitpick& nits, bool& ok)
 {   ::boost::filesystem::path p (persist_path ());
     if (! file_exists (p)) return true;
-    ::boost::filesystem::fstream f (p, ::std::ios::in);
+    BOOST_FSTREAM_CNSTRO (f, p, ::std::ios::in);
     if (f.fail ())
     {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot open ", p.string ());
         return false; }
@@ -557,7 +555,7 @@ void fileindex_save_and_close (nitpick& nits)
     mcrc.clear ();
     if (context.tell (es_all)) outstr.out () << fileindex_report ();
     ::boost::filesystem::path name (persist_path ());
-    ::boost::filesystem::fstream f (name, ::std::ios::out | ::std::ios::trunc);
+    BOOST_FSTREAM_CNSTRO (f, name, ::std::ios::out | ::std::ios::trunc);
     if (f.fail ()) nits.pick (nit_cannot_update, es_error, ec_crc, "cannot open ", name.string ());
     else
     {   mndx_t mndx; ::std::size_t x = 0;

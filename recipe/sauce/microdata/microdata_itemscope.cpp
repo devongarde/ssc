@@ -46,7 +46,7 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
         ::std::string::size_type ends_at = 0;
         const e_schema sc = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), name, &ends_at);
         if (sc == s_error)
-            wombats (nits, v, name);
+            world_wide_wombat_web (nits, v, name);
         else
         {   if ((schema_names.flags (sc) & SCHEMA_CRAPSPEC) == SCHEMA_CRAPSPEC)
                 nits.pick (nit_crap_spec, es_warning, ec_microdata, quote (schema_names.get (sc, SCHEMA_NAME)), " is poorly specified: use an alternative");
@@ -93,7 +93,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                     return true; }
                 knots.merge (nuts); nuts.reset (); }
     nits.merge (knots);
-    wombats (nits, v, name);
+    world_wide_wombat_web (nits, v, name);
     return false; }
 
 bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, itemscope_ptr& scope, page& p)
@@ -118,7 +118,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                             return true; }
                         knots.merge (nuts); nuts.reset (); } }
     nits.merge (knots);
-    wombats (nits, v, name);
+    world_wide_wombat_web (nits, v, name);
     return false; }
 
 ::std::string microdata_itemscope::report (const ::std::size_t offset) const

@@ -55,7 +55,7 @@ bool microformat_export::write (nitpick& nits, const ::boost::filesystem::path& 
     ::boost::filesystem::path tmp (json);
     tmp += ".tmp";
     try
-    {   ::boost::filesystem::ofstream f (tmp);
+    {   BOOST_OFSTREAM_CNSTR (f, tmp);
         if (f.bad ())
         {   nits.pick (nit_cannot_create_file, es_catastrophic, ec_microformat, "Cannot open temporary file ", tmp);
             return false; }

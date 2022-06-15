@@ -231,7 +231,7 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
             if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)
             {   file_permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
                 changed = true; } }
-        ::boost::filesystem::ofstream f (s, ::std::ios_base::trunc | ::std::ios_base::out);
+        BOOST_FSTREAM_CNSTRO (f, s, ::std::ios_base::trunc | ::std::ios_base::out);
         if (f.fail ())
             nits.pick (nit_cannot_create_file, es_catastrophic, ec_shadow, "cannot create ", s.string ());
         else

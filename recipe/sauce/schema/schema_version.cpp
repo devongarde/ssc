@@ -118,6 +118,7 @@ sh_t sh [] =  // latest first
     { rif_schema, html_rif },
     { role_schema, html_role },
     { rr_schema, html_rr },
+    { schema_14, html_schema_14 },
     { schema_13, html_schema_13 },
     { schema_12, html_schema_12 },
     { schema_11, html_schema_11 },
@@ -145,6 +146,43 @@ sh_t sh [] =  // latest first
     { schema_2_2, html_schema_2_2 },
     { schema_2_1, html_schema_2_1 },
     { schema_2_0, html_schema_2_0 },
+    { schema_1_93, html_schema_1_93 },
+    { schema_1_92, html_schema_1_92 },
+    { schema_1_91, html_schema_1_91 },
+    { schema_1_9, html_schema_1_9 },
+    { schema_1_8, html_schema_1_8 },
+    { schema_1_7, html_schema_1_7 },
+    { schema_1_6, html_schema_1_6 },
+    { schema_1_5, html_schema_1_5 },
+    { schema_1_4, html_schema_1_4 },
+    { schema_1_3, html_schema_1_3 },
+    { schema_1_2, html_schema_1_2 },
+    { schema_1_1, html_schema_1_1 },
+    { schema_1_0F, html_schema_1_0F },
+    { schema_1_0E, html_schema_1_0E },
+    { schema_1_0D, html_schema_1_0D },
+    { schema_1_0C, html_schema_1_0C },
+    { schema_1_0B, html_schema_1_0B },
+    { schema_1_0A, html_schema_1_0A },
+    { schema_0_99, html_schema_0_99 },
+    { schema_0_98, html_schema_0_98 },
+    { schema_0_97, html_schema_0_97 },
+    { schema_0_96, html_schema_0_96 },
+    { schema_0_95, html_schema_0_95 },
+    { schema_0_94, html_schema_0_94 },
+    { schema_0_93, html_schema_0_93 },
+    { schema_0_91, html_schema_0_91 },
+    { schema_apr12, html_schema_apr12 },
+    { schema_mar12, html_schema_mar12 },
+    { schema_feb12, html_schema_feb12 },
+    { schema_jan12, html_schema_jan12 },
+    { schema_dec11, html_schema_dec11 },
+    { schema_nov11, html_schema_nov11 },
+    { schema_oct11, html_schema_oct11 },
+    { schema_sep11, html_schema_sep11 },
+    { schema_aug11, html_schema_aug11 },
+    { schema_jul11, html_schema_jul11 },
+    { schema_jun11, html_schema_jun11 },
     { schema_0, html_schema_0 },
     { sd_schema, html_sd },
     { sioc_schema, html_sioc },
@@ -346,10 +384,10 @@ template < > int schema_detail < s_rdfa > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_rdfa > :: to () noexcept { return schema_version (s_rdfa, 1, 3); }
 
 template < > bool schema_detail < s_schema > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept
-{   if (mjr > schema_major_max) return false;
+{   if (mjr > MAX_SCHEMA_ORG_MAJOR) return false;
     switch (mjr)
-    {   case 0 :
-        case 1 : return false;
+    {   case 0 : return (mnr > 0);
+        case 1 : return true;
         case 2 : return (mnr < 3);
         case 3 : break;
         case 7 : return (mnr < 5);
@@ -367,9 +405,9 @@ template < > bool schema_detail < s_schema > :: is_this_valid (const unsigned ch
         case 9 : return true;
         default : break; }
     return false; }
-template < > schema_version schema_detail < s_schema > :: from () noexcept { return schema_version (s_schema, 2, 0); }
-template < > int schema_detail < s_schema > :: count () noexcept { return 19; }
-template < > schema_version schema_detail < s_schema > :: to () noexcept { return schema_version (s_schema, 13, 0); }
+template < > schema_version schema_detail < s_schema > :: from () noexcept { return schema_version (s_schema, MIN_SCHEMA_ORG_MAJOR, MIN_SCHEMA_ORG_MINOR); }
+template < > int schema_detail < s_schema > :: count () noexcept { return 65; }
+template < > schema_version schema_detail < s_schema > :: to () noexcept { return schema_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
 
 template < > bool schema_detail < s_vann > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;

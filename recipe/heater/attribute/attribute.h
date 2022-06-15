@@ -103,7 +103,7 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
             return false; }
         if (! excluded_)
         {   excluded_ = attr :: first_version (IDENTITY).invalid_addendum (v);
-            if (excluded_) nits.pick (nit_excluded_attribute, es_warning, ec_attribute, "the attribute ", quote (name ()), " is part of extension to ", v.report (), " that is not being applied"); }
+            if (excluded_) nits.pick (nit_excluded_attribute, es_warning, ec_attribute, "the attribute ", quote (name ()), " is invalid in pure ", v.report ()); }
         deprecated_ = is_deprecated_attribute_version (v, tag, IDENTITY);
         if (deprecated_) nits.pick (nit_deprecated_attribute, es_warning, ec_attribute, name (), " is deprecated in ", v.report ());
         else if (not_production_attribute (v, tag, IDENTITY))

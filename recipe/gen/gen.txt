@@ -122,7 +122,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                         in size (default: 4M). Specify 0 for unlimited,
                         although be warned that ssc is stunningly stupid in
                         such circumstances and may even attempt to load files
-                        that exceed available memory.
+                        bigger than available memory.
 
 --general.output        Output to the specified file. If this switch is not
 -o file                 used, standard output is used.
@@ -237,13 +237,13 @@ a configuration file and on the command line, the "no-" switch always applies.
 -3                      (--link.external), it does not report http forwarding
                         errors 301 and 308. Use this switch to have it do so.
 
---link.example          Report linkd to faux domains, as defined by RFC 2606
-                        (note ssc also reports links to example.edu)
+--link.example          Report links to faux domains, as defined by RFC 2606
+                        (note ssc also reports links to example.edu).
 
 --link.external         Check external links, e.g. those not on the site being
 -e                      checked. This requires a copy of curl on the path.
-                        Note that, no matter what the switch, ssc will NOT
-                        check certain special site names, such as example.com.
+                        Note that ssc will NOT check RFC 2606 links, such as
+                        example.com (see --link.example).
 
 --link.ignore DOMAIN    When checking external links, ignore this domain. May
                         be repeated.
@@ -251,7 +251,7 @@ a configuration file and on the command line, the "no-" switch always applies.
 --link.internal         Check internal links, e.g. those within the website
 -l                      being checked.
 
---link.local            Report linkd to local domains, such as domains ending
+--link.local            Report links to local domains, such as domains ending
                         in .lan, .home, .corp, and others.
 
 --link.once             Only report each broken external link once. If, for
@@ -259,12 +259,12 @@ a configuration file and on the command line, the "no-" switch always applies.
                         that does not exist, ssc will only report the first
                         instance of the broken link. Note that, even if it
                         reports every occurrence of the link, it will only
-                        check it the first time it encounters it (requires
+                        check it the first time it's encountered (requires
                         --link.external).
 
 --link.report DOMAIN    Report links to domain. May be repeated.
 
---link.revoke           Do not check whether https links' certificates have
+--link.revoke           Do not check whether links' https certificates have
 -r                      been revoked (requires --link.external).
 
 --link.xlink            Check crosslink IDs on the site being analysed. For
@@ -319,7 +319,7 @@ a configuration file and on the command line, the "no-" switch always applies.
 --nits.comment n        Redefine nit n as a comment; may be repeated (the
                         value of n can be determined using --nits.nids).
 
---nits.debug   n        Redefine nit n as a debug message; may be repeated
+--nits.debug n          Redefine nit n as a debug message; may be repeated
                         (the value of n can be determined using --nits.nids).
 
 --nits.error n          Redefine nit n as an error; may be repeated (the
@@ -393,7 +393,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 music 12,14,18,22
                                 oa 1.0
                                 odrl 1.0
-                                og 10,12,14,18,22
+                                og 10,12,14,18,22 (see below)
                                 org 1.0
                                 owl 1.0,2.0
                                 poetry 1.0
@@ -409,7 +409,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 2.0-14.0
+                                schema 0.10-14.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -422,7 +422,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 time 1.0
                                 v 1.0
                                 vann 1.0,1.1
-                                vcard 1,2,3,4
+                                vcard 1,2,3,4 (see below)
                                 video 12,14,18,22
                                 void 1.0
                                 wdr 1.0
@@ -433,10 +433,44 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 xml 1.0
                                 xsd 1.0,1.1
                         vCard versions correspond to RDFa specs, published in
-                        2001, 2006, 2010 & 2014. They do NOT correspond to vCard
-                        data format specifications.
-                        Open Graph versions correspond to snapshots of the specs
-                        from 2010, 2012, 2014, 2018 & 2022.
+                        2001, 2006, 2010 & 2014. They do NOT correspond to
+                        vCard data format specifications.
+                        Open Graph versions correspond to snapshots of the
+                        specs from 2010, 2012, 2014, 2018 & 2022.
+                        Most versions of schema (schema.org) should be
+                        specified by their version number, but this doesn't
+                        work with early versions, which should be specified as
+                        follows:
+                                Use         For
+                                0.10        June 2011
+                                0.15        July 2011
+                                0.20        August 2011
+                                0.25        September 2011
+                                0.30        October 2011
+                                0.35        November 2011
+                                0.40        December 2011
+                                0.45        January 2012
+                                0.50        February 2012
+                                0.55        March 2012
+                                0.60        April 2012
+                                0.91-0.99   as version number
+                                1.0         1.0a
+                                1.1         1.0b
+                                1.2         1.0c
+                                1.3         1.0d
+                                1.4         1.0e
+                                1.5         1.0f
+                                1.10        1.1
+                                1.20        1.2
+                                1.30        1.3
+                                1.40        1.4
+                                1.50        1.5
+                                1.60        1.6
+                                1.70        1.7
+                                1.80        1.8
+                                1.90        1.9
+                                1.91...     as version number
+
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have changed.
@@ -483,8 +517,8 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --shadow.root dir       Where to write the shadowed site.
 
---shadow.ssi            Do NOT resolve SSIs when shadowing, even if
-                        --general.ssi is set.
+--shadow.ssi            Do NOT resolve Server Side Includes when shadowing,
+                        even if --general.ssi is set.
 
 --shadow.space          Leave excess/repeated spaces and blank lines in the
                         shadowed files untidily untouched.
@@ -515,7 +549,7 @@ a configuration file and on the command line, the "no-" switch always applies.
 -g dir                  recursively scan the directory analysing any HTML
                         files it finds. The default is the current directory.
 
---site.virtual v=d      The HTML virtual directory 'v' is located in actual
+--site.virtual v=d      The virtual directory 'v' is located in actual
 -L v=d                  directory 'd' on the local filesystem. For example:
                             --site.virtual virtual=D:\actual
 
@@ -575,22 +609,66 @@ a configuration file and on the command line, the "no-" switch always applies.
                         identify its version, the version is derived from the
                         version of the host X/HTML code.
 
+--validation.attribute ATT
+                        Add the custom attribute ATT. This attribute will
+                        be ignored, not validated.
+
+--validation.charset CH Accept CH as a charset. May be repeated.
+
+--validation.class CL   Add the valid class CL. May be repeated.
+
+--validation.color COL  Accept COL as a colour. May be repeated.
+
+--validation.colour COL Accept COL as a colour. May be repeated.
+
+--validation.country CC Accept CC as a valid two-letter country code. May be
+                        repeated.
+
+--validation.currency CUR
+                        Accept CUR as a valid currency. May be repeated.
+
+--validation.element EL Accept <EL> as a valid element. This element will be
+                        ignored, not validated. May be repeated.
+
+--validation.element-attribute EL,ATT
+                        Accept the known attribute ATT on the element <EL>.
+                        Doesn't work with namespaces (names containing ':').
+                        May be repeated.
+
+--validation.extension EXT
+                        Accept the extension EXT as a mimetype file extension.
+                        May be repeated.
+
+--validation.httpequiv HEQ
+                        Accept HEQ as a valid macro for httpequiv on <META>
+                        elements. May be repeated.
+
+--validation.lang LANG  Accept LANG as a valid language code. May be repeated.
+
 --validation.minor x    When validating W3 HTML 5 source code, using this
 -m x                    minor version of W3 HTML 5. Valid values are 0, 1, 2,
-                        and 3. WhatWG versions are determined by date,
+                        and 3 (draft). WhatWG versions are determined by date,
                         corresponding roughly to the date of the (online)
                         publication of the specific version. See the
                         --html.version switch.
 
+--validation.metaname M
+                        Accept M as valid for the NAME attribute of the <META>
+                        element. The VALUE will be ignored. May be repeated.
+
 --validation.microdata  Validate (schema.org) microdata.
 
---validation.*          Add a permitted value to a particular HTML
-                        enumeration. Can be repeated. Extendable enumerations
-                        include charset, class (valid values may also be
-                        picked up from CSS files), colour, currency,
-                        http-equiv, lang, metaname, mimetype, rel, SGML, and
-                        many others. A full set of possible enumerations can
-                        be listed using the --validation switch.
+--validation.mimetype MT
+                        Accept MT as a valid mimetype. May be repeated.
+
+--validation.sgml SGML  Accept SGML as a valid SGML schema identification (as
+                        found in <!DOCTYPE ...>. May be repeated.
+
+--validation.XXX YYY    Accept YYY as a valid value for attribute type XXX.
+                        For a list of possible values of XXX, use the command
+                        line switch --validation.
+
+
 
 CONFIGURATION FILE FORMAT
 

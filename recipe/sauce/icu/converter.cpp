@@ -66,11 +66,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 {   if (! context.icu ()) return s;
     static bool bad_normaliser = false;
     if (bad_normaliser) return s;
-//#ifdef STRINGPIECE_BIZARRO
     icu::UnicodeString us (icu::UnicodeString::fromUTF8 (icu::StringPiece (s.c_str ())));
-//#else // STRINGPIECE_BIZARRO
-//    icu::UnicodeString us (icu::UnicodeString::fromUTF8 (icu::StringPiece (s)));
-//#endif // STRINGPIECE_BIZARRO
     icu::UnicodeString out;
     UErrorCode err = U_ZERO_ERROR;
     const icu::Normalizer2* norm = icu::Normalizer2::getNFCInstance (err);

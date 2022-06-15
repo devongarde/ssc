@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "url/url_protocol.h"
 #include "url/url_schemes.h"
+#include "utility/quote.h"
 
 // RFC 3986
 
@@ -532,7 +533,7 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
         default_ = (colon == ::std::string::npos);
         if (default_) set (v, current);
         else if (colon == 0 || colon == lc.length () - 1)
-        {  nits.pick (nit_invalid_protocol, ed_rfc_3986, "3.1. Scheme", es_error, ec_url, "invalid protocol and/or missing address");
+        {   nits.pick (nit_invalid_protocol, ed_rfc_3986, "3.1. Scheme", es_error, ec_url, quote (lc) + ": invalid protocol and/or missing address");
             return false; }
         else
         {  e_protocol prot;

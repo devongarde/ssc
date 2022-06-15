@@ -489,12 +489,12 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name, sstr_t& s
                                 nits.pick (nit_shadow_link, es_debug, ec_shadow, "soft linked ", original, " and ", imitation);
                             else nits.pick (nit_shadow_link, es_catastrophic, ec_shadow, "cannot make soft link between ", original, " and ", imitation);
                             break;
-        case c_copy :       if (duplicate_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists))
+        case c_copy :       if (duplicate_file (original, imitation, BOOST_COPY_OPTION::BOOST_OVERWRITE))
                                 nits.pick (nit_shadow_copy, es_debug, ec_shadow, "copied ", original, " to ", imitation);
                             else nits.pick (nit_shadow_copy, es_catastrophic, ec_shadow, "cannot copy ", original, " to ", imitation);
                             break;
         case c_deduplicate :if (isdu (ndx)) break;
-                            if (duplicate_file (original, imitation, ::boost::filesystem::copy_option::overwrite_if_exists))
+                            if (duplicate_file (original, imitation, BOOST_COPY_OPTION::BOOST_OVERWRITE))
                                 nits.pick (nit_shadow_copy, es_debug, ec_shadow, "copied ", original, " to ", imitation);
                             else nits.pick (nit_shadow_copy, es_catastrophic, ec_shadow, "cannot copy ", original, " to ", imitation);
                             break; }

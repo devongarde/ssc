@@ -71,9 +71,10 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
     VERIFY_NOT_NULL (new_scope.get (), __FILE__, __LINE__);
     if (itemscope.get () == nullptr)
         new_scope -> set_exporter (page_.md_export (), page_.md_export () -> append_path (page_.get_export_root (), null_itemprop, true));
-    else
+    else                                                                                                                                      
     {   bool se = false;
         if (! a_.known (a_itemtype)) new_scope -> parent (itemscope);
+        new_scope -> parent2 (itemscope);
         ::std::string value (get_microdata_value ());
         if (a_.known (a_itemprop))
             for (auto name : a_.get_x < attr_itemprop > ())
@@ -87,18 +88,22 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
         itemscope -> note_itemid (node_.nits (), node_.version (), a_.get_string (a_itemid));
     return itemscope; }
 
-void element::examine_itemprop (const itemscope_ptr& itemscope)
+void element::examine_itemprop (itemscope_ptr& itemscope)
 {   if (itemscope.get () == nullptr)
         if (node_.version ().mjr () < 10) return;
         else if (ancestral_attributes_.test (a_id)) // an ancestral id suggests an itemref
             pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_comment, ec_microdata, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ITEMPROP requires ITEMSCOPE on the current or an ancestral element");
         else pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_warning, ec_microdata, "ITEMPROP requires ITEMSCOPE on the current or an ancestral element");
     else
-    if (! a_.known (a_itemscope) && ! a_.known (a_itemtype))
     {   ::std::string value (get_microdata_value ());
         const bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
+        const bool mummy_expected = (a_.known (a_itemscope) || a_.known (a_itemtype));
+        const bool check_mummy = mummy_expected && itemscope -> has_parent2 ();
         for (auto name : a_.get_x < attr_itemprop > ())
-            itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, is_link, page_); } }
+            if (! mummy_expected) itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, is_link, page_);
+            else if (check_mummy) itemscope -> parent2 () -> note_itemprop (node_.nits (), node_.version (), name, value, itemscope, page_);
+            else if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_warning, ec_schema, "although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE");
+            else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_warning, ec_schema, "although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE or ITEMSCOPE"); } }
 
 void element::examine_itemref (const itemscope_ptr& itemscope)
 {   if (icarus_) pick (nit_icarus, es_info, ec_attribute, "Oh Momus, oh Icarus, why do you torment me so?");

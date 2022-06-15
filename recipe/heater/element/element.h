@@ -139,7 +139,7 @@ class element
     void examine_href ();
     void examine_headers ();
     itemscope_ptr examine_itemscope (itemscope_ptr& itemscope);
-    void examine_itemprop (const itemscope_ptr& itemscope);
+    void examine_itemprop (itemscope_ptr& itemscope);
     void examine_itemref (const itemscope_ptr& itemscope);
     void examine_itemtype (const itemscope_ptr& itemscope);
     void examine_keysplines ();

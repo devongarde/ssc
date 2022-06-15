@@ -783,6 +783,16 @@ int main (int argc, char** argv)
     if (argv == nullptr) return 4; // WTF
     if (argc < 2) { print_version (); return 0; }
 
+#ifdef UNIX
+    // kludge for CMakeLists.txt move, itself a kludge to appease build packaging
+    ::boost::filesystem::path tea (::boost::filesystem::current_path ());
+    tea /= "recipe";
+    tea /= "tea";
+    if (::boost::filesystem::exists (tea))
+        if (::boost::filesystem::is_directory (tea))
+            chdir (tea.c_str ());
+#endif // UNIX
+
     for (int a = 1; a < argc; ++a)
     {   if (argv [a] == nullptr) continue;
         const size_t len = strlen (argv [a]);

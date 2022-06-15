@@ -103,7 +103,7 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
         {   if (standard_name == ns_default)
                 nits.pick (nit_unrecognised_namespace, es_catastrophic, ec_namespace, PROG " does not know about the default namespace ", quote (schema), ", so cannot properly verify its content");
             else nits.pick (nit_unrecognised_namespace, es_warning, ec_namespace, PROG " does not know about ", quote (schema), ", so will be unable to verify ", quote (xmlns));
-            wombats (nits, v, schema); } }
+            world_wide_wombat_web (nits, v, schema); } }
     switch (standard_name)
     {   case ns_default :
             if (standard_schema == ns_error)

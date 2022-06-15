@@ -1,7 +1,7 @@
 {
     "work": {
         "1": {
-            "type": "http:\/\/www.w3.org\/2006\/vcard\/ns#Work",
+            "type": "http:\/\/purl.org\/vocab\/frbr\/core#Work",
             "prop": {
                 "work": "http:\/\/example.org\/mypond.jpeg",
                 "title": "My Pond",

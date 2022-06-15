@@ -2,16 +2,13 @@
 
 PASS ../toast/microdata/schema-hijkl/hotel.html
 0 charset_mismatch charset_used charset_invalid
-23 no_tel
 24 attempted_escape no_such_folder url_not_found
 32 attempted_escape no_such_folder url_not_found
 36 attempted_escape no_such_folder url_not_found
-45 no_tel
 47 attribute_required attempted_escape no_such_folder url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-hijkl/hotelroom.html
 0 charset_mismatch charset_used charset_invalid
-17 no_tel
 19 attribute_required attempted_escape no_such_folder url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-hijkl/howto.html
@@ -111,7 +108,7 @@ PASS ../toast/microdata/schema-hijkl/investmentordeposit.html
 12 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/itemlist.html
-28 requires_itemscope
+28 requires_itemscope missing_itemtype
 57 use_quote_code
 66 use_quote_code
 78 use_quote_code
@@ -126,29 +123,29 @@ PASS ../toast/microdata/schema-hijkl/legislation.html
 19 invalid_attribute_version wrong_version svg_rdf
 20 inserted_missing_closure
 21 inserted_missing_parent
-33 requires_itemscope url_not_found
+33 requires_itemscope missing_itemtype url_not_found
 39 url_not_found
 40 url_not_found
-46 requires_itemscope url_not_found
+46 requires_itemscope missing_itemtype url_not_found
 52 url_not_found
 58 url_not_found
 59 url_not_found
 64 use_double_quote_code
-75 url_not_found
-81 url_not_found
+75 bad_property url_not_found
+81 bad_property url_not_found
 88 attribute_unrecognised_here unrecognised_attribute
-92 url_not_found
-98 url_not_found
+92 bad_property url_not_found
+98 bad_property url_not_found
 
 PASS ../toast/microdata/schema-hijkl/legislationobject.html
 11 use_double_quote_code
 12 bad_itemid
 18 bad_itemid
-22 url_not_found bad_itemid
-28 url_not_found bad_itemid
+22 bad_property url_not_found bad_itemid
+28 bad_property url_not_found bad_itemid
 35 attribute_unrecognised_here unrecognised_attribute
-39 url_not_found bad_itemid
-45 url_not_found bad_itemid
+39 bad_property url_not_found bad_itemid
+45 bad_property url_not_found bad_itemid
 
 PASS ../toast/microdata/schema-hijkl/library.html
 19 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf
@@ -185,9 +182,7 @@ PASS ../toast/microdata/schema-hijkl/locationfeaturespecification.html
 42 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/localbusiness.html
-22 no_tel
 40 mixed_mess
-48 no_tel
 116 inserted_missing_closure
 
 itemids

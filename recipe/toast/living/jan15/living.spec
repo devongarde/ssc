@@ -833,7 +833,7 @@ PASS ../toast/living/jan15/ls16.html
 16 url_not_found
 17 url_not_found
 18 url_not_found
-23 not_schema_property unrecognised_value bad_itemprop
+23 bad_property
 42 url_not_found
 43 url_not_found
 44 url_not_found

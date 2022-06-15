@@ -193,6 +193,8 @@ PASS ../toast/living/jul13/example-2.html
 34 mime
 48 use_quote_code
 62 use_quote_code
+66 bad_property bad_property bad_property bad_property
+76 bad_property bad_property bad_property bad_property
 107 unrecognised_value
 122 use_quote_code
 132 use_quote_code
@@ -738,7 +740,6 @@ PASS ../toast/living/jul13/ls15.html
 16 url_not_found
 17 url_not_found
 18 url_not_found
-23 not_schema_property unrecognised_value bad_itemprop
 42 url_not_found
 43 url_not_found
 44 url_not_found

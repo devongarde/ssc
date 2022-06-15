@@ -2,6 +2,7 @@
 
 PASS ../toast/living/apr21/404.html
 50 link_rel_off
+59 missing_itemtype
 64 unrecognised_value
 71 unrecognised_value unrecognised_value
 74 unrecognised_value
@@ -313,10 +314,10 @@ PASS ../toast/living/apr21/dl.html
 73 inserted_missing_closure
 76 inserted_missing_closure missing_close
 78 inserted_missing_closure
-84 inserted_missing_closure
+84 inserted_missing_closure missing_itemtype
 87 inserted_missing_closure
 89 inserted_missing_closure
-91 inserted_missing_closure
+91 inserted_missing_closure missing_itemtype
 94 inserted_missing_closure missing_close
 96 inserted_missing_closure
 
@@ -1299,6 +1300,7 @@ PASS ../toast/living/apr21/meter.html
 PASS ../toast/living/apr21/microdata-1.html
 30 url_not_found
 39 url_not_found
+58 missing_itemtype
 77 url_not_found
 82 url_not_found
 86 schema_domain
@@ -1354,7 +1356,7 @@ PASS ../toast/living/apr21/nav-2.html
 16 url_not_found
 17 url_not_found
 18 url_not_found
-23 not_schema_property unrecognised_value bad_itemprop
+23 bad_property
 42 url_not_found
 43 url_not_found
 44 url_not_found

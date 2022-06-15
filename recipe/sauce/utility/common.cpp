@@ -58,7 +58,7 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
         if (test_file (nits, p, mz))
             if (mz == 0) nits.pick (nit_empty, es_comment, ec_io, name.string (), " is empty");
             else
-            {   ::boost::filesystem::ifstream f (name, ::std::ios_base::in);
+            {   BOOST_IFSTREAM_CNSTRO (f, name, ::std::ios_base::in);
                 if (! f.bad ())
                 {   ::std::stringstream sss;
                     sss << f.rdbuf ();
@@ -140,7 +140,7 @@ bool write_text_file (const ::boost::filesystem::path& n, const ::std::string& c
     path p (n);
     p += ".tmp";
     try
-    {   ofstream f (p);
+    {   BOOST_OFSTREAM_CNSTR (f, p);
         if (f.bad ())
         {   if (context.tell (es_catastrophic))
             {   outstr.err ("Cannot open temporary file ");

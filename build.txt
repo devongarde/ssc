@@ -38,7 +38,7 @@ environment variables:
 - HUNSPELL_LIB to point to the hunspell library directory
 - HUNSPELL_VERSION, the actual library name (such as "hunspell-1.7.so")
 
-Once you've got them, navigate to recipe/tea, and run cmake.
+Once you've got them, you can run cmake from the project root directory.
 
 winspell
 --------
@@ -53,20 +53,18 @@ Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the appropriate .sln
 file, then build. Only Visual Studios 2017 / 2019 / 2022, 64 bit, have been
-built & tested, for Windows 8.1 & 10.
+built & tested, for Windows 8.1 & 10. I have not tested it under Windows 11.
 
 Unii & mock Unii
 ----------------
 You will need CMake 3.12 or better. From the home ssc directory, compile a
 normal release build thus:
-cd recipe/tea
 cmake .
 make
 ctest
 make install
 
 For a debug build:
-cd recipe/tea
 cmake -DCMAKE_BUILD_TYPE=Debug .
 make
 ctest
