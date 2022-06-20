@@ -343,6 +343,7 @@ PASS ../toast/microdata/schema-pqrs/service.html
 76 inserted_missing_closure
 
 PASS ../toast/microdata/schema-pqrs/softwareapplication.html
+119 bespoke_obsolete
 146 url_not_found
 157 no_such_folder url_not_found
 159 url_not_found link_rel_off

@@ -111,7 +111,7 @@ Elements:
   14 elements used 54 times
 Headers:
   pragma:
-    refresh: once
+    Refresh: once
   name:
     author:
       doris: once
@@ -162,7 +162,7 @@ Elements:
   16 elements used 82 times
 Headers:
   pragma:
-    content-security-policy: once
+    Content-Security-Policy: once
   name:
     author:
       doris: once
@@ -328,8 +328,8 @@ Ontology:
   3 itemtypes used 7 times
 Headers:
   pragma:
-    content-security-policy: once 
-    refresh: once 
+    Content-Security-Policy: once 
+    Refresh: once 
   metadata:
     description: once 
   name:

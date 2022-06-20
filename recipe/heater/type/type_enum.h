@@ -179,11 +179,15 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
                 nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ()); }
             else if (f.reject ())
                 nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());
+            else if (f.out_of_scope ())
+                nits.pick (nit_out_of_scope, es_error, ec_type, quote (s), " is out of scope for an HTML server");
             else
             {   if (f.deprecated (v))
                     nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report ());
-                else if ((f.ext () & HE_M3_NONSTAND) != 0)
-                    nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers.");
+                if ((f.ext () & HE_M3_NONSTAND) != 0)
+                    nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers");
+                else if (f.bespoke ())
+                    nits.pick (nit_bespoke_obsolete, es_error, ec_type, quote (s), " is bespoke and/or obsolete, so unlikely to be supported by all browser.");
                 enum_base < ENUM, E > :: status (s_good);
                 enum_base < ENUM, E > :: post_set_value (nits, v);
                 return; } }

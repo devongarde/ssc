@@ -471,7 +471,6 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 1.90        1.9
                                 1.91...     as version number
 
-
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have changed.
 

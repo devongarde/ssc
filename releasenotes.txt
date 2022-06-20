@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+0.0.129
+- improve diagnostics of invalid HTTP-EQUIV entries
+- underlying work
+
 0.0.128
 - Moved CMakeLists.txt to project root to appease certain packagers
 - process schema.org versions before v2.0
