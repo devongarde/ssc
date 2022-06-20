@@ -1,6 +1,7 @@
 -f ../toast/living/jan22/living.conf
 
 PASS ../toast/living/jan22/404.html
+12 bespoke_obsolete
 50 link_rel_off
 59 missing_itemtype
 64 unrecognised_value

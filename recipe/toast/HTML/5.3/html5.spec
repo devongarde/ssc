@@ -57,7 +57,7 @@ PASS ../toast/HTML/5.3/example-5.html
 
 PASS ../toast/HTML/5.3/html5-bad.html
 2 naughty_lang
-5 mime
+5 bespoke_obsolete mime
 7 only_once
 11 default_role
 17 missing_close

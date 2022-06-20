@@ -458,7 +458,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, "over", elem_over, ns_default, EP_CLOSED },
     { { HTML_3_0 }, { HTML_3_0 }, "overlay", elem_overlay, ns_default, EP_CLOSED },
     { { HTML_TAGS }, { HTML_UNDEF }, "p", elem_p, ns_default, EP_UNCLOSED1T | EP_LAZY, EF_BODY | EF_TABLE | EF_PARA | EF_3_BLOCK | EF_32_BLOCK | EF_4_BLOCK | EF_X2_STRUCT | EF_5_FLOW | EF_5_PALPABLE },
-    { { HTML_3_2 }, { HTML_UNDEF }, "param", elem_param, ns_default, EP_CLOSED },
+    { { HTML_3_2 }, { HTML_JUN22 }, "param", elem_param, ns_default, EP_CLOSED },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "page", elem_page },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "pageSet", elem_pageset, ns_default, 0, EF_SVG_STR | EF_SVG_CONTAIN },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "parseType", elem_rdf_parsetype, ns_rdf, 0, EF_RDF },

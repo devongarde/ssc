@@ -20,6 +20,7 @@ PASS ../toast/w3/rstuw/shorttags.html
 
 PASS ../toast/w3/rstuw/shorttags2.html
 2 html_superseded
+7 bespoke_obsolete
 12 mixed_mess
 13 mixed_mess inserted_missing_closure
 

@@ -23739,6 +23739,9 @@
     <None Include="..\toast\shadow\update\post.bat">
       <Filter>Toast\Shadow\Update</Filter>
     </None>
+    <None Include="..\toast\type\httpequiv\bad.html">
+      <Filter>Toast\Type\httpequiv</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">

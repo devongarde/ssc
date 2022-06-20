@@ -1,7 +1,7 @@
 -f ../toast/HTML/4.01/html4.conf
 
 PASS ../toast/HTML/4.01/html4-bad.html
-5 mime
+5 bespoke_obsolete mime
 12 deprecated_element unrecognised_value bad_colour deprecated_attribute
 15 inserted_missing_closure
 16 missing_open
@@ -127,6 +127,7 @@ PASS ../toast/HTML/4.01/html4-deprecated.html
 
 PASS ../toast/HTML/4.01/html4-example.html
 0 charset_mismatch charset_used
+10 bespoke_obsolete
 15 bad_datetime
 96 inserted_missing_closure inserted_missing_closure missing_close missing_close
 97 inserted_missing_closure inserted_missing_closure

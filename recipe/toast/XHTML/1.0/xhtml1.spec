@@ -28,6 +28,7 @@ PASS ../toast/XHTML/1.0/mathml-1.xhtml
 
 PASS ../toast/XHTML/1.0/math-example.xhtml
 1 xhtml_1_0
+5 xhtml_enum_lc
 7 reputation
 12 unknown_element unknown_element
 

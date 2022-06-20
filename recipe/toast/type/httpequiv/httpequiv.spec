@@ -2,8 +2,17 @@
 
 PASS ../toast/type/httpequiv/accept.html
 2 naughty_lang
-5 empty
-7 mime mime
+5 out_of_scope
+6 out_of_scope 
+7 out_of_scope 
+8 out_of_scope 
+9 out_of_scope 
+10 out_of_scope 
+
+PASS ../toast/type/httpequiv/bad.html
+2 naughty_lang
+5 out_of_scope
+6 out_of_scope
 
 PASS ../toast/type/httpequiv/cache.html
 2 naughty_lang
@@ -18,7 +27,6 @@ PASS ../toast/type/httpequiv/cookie.html
 
 PASS ../toast/type/httpequiv/corp.html
 2 naughty_lang
-8 unrecognised_value
 
 PASS ../toast/type/httpequiv/index.html
 2 naughty_lang

@@ -255,7 +255,7 @@ const nitname nitnames [] =
     { nit_use_htmlplus, "use_htmlplus" },
     { nit_inserted_missing_closure, "inserted_missing_closure" },
     { nit_inserted_missing_parent, "inserted_missing_parent" },
-    { nit_equiv_error, "equiv_error" },
+    { nit_out_of_scope, "out_of_scope" },
     { nit_ignoring_extra_content, "ignoring_extra_content" },
     { nit_missing_content, "missing_content" },
     { nit_equiv_refresh, "equiv_refresh" },
@@ -737,6 +737,7 @@ const nitname nitnames [] =
     { nit_country, "country" },
     { nit_languages, "languages" },
     { nit_hidden, "hidden" },
+    { nit_bespoke_obsolete, "bespoke_obsolete" },
 
     { nit_off, "" } };
 

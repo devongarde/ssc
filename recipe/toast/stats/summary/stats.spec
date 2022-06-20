@@ -99,8 +99,8 @@ Ontology:
   3 itemtypes used 7 times
 Headers:
   pragma:
-    content-security-policy: once 
-    refresh: once 
+    Content-Security-Policy: once 
+    Refresh: once 
   metadata:
     description: once 
   name:

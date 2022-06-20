@@ -123,6 +123,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HV_XHTML_DTD    0x4000000000000000
 
+#define HV_OUTOFSCOPE   0x8000000000000000
+
 #define HV_NOT3         ( HV_NOT30 | HV_NOT32 )
 #define HV_NOT234       ( HV_NOT2 | HV_NOT3 | HV_NOT32 | HV_NOT4 )
 #define HV_NOT324       ( HV_NOT32 | HV_NOT4 | HV_NOTX1 )
@@ -418,6 +420,7 @@ public:
     bool not52 () const noexcept { return all_flags (HV_NOT52); }
     bool not53 () const noexcept { return all_flags (HV_NOT53); }
     bool opera () const noexcept { return any_ext (HE_OPERA); }
+    bool out_of_scope () const noexcept { return all_flags (HV_OUTOFSCOPE); }
     bool reject () const noexcept { return all_flags (REJECT); }
     bool required () const noexcept { return all_flags (REQUIRED); }
     bool rfc_1867 () const noexcept { return all_flags (HV_RFC_1867); }

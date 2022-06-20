@@ -12,7 +12,7 @@ PASS ../toast/w3/imnop/iso-html.html
 PASS ../toast/w3/imnop/long-lines.html
 1 xhtml_1_0
 5 xhtml_enum_lc
-6 xhtml_enum_lc missing_content charset_missing
+6 missing_content charset_missing
 7 xhtml_enum_lc
 12 unrecognised_value
 39 unrecognised_value inserted_missing_parent missing_close empty_link unrecognised_value unrecognised_value inserted_missing_closure

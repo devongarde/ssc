@@ -7199,6 +7199,7 @@
     <None Include="..\toast\type\custom\custom.spec" />
     <None Include="..\toast\type\custom\index.html" />
     <None Include="..\toast\type\httpequiv\accept.html" />
+    <None Include="..\toast\type\httpequiv\bad.html" />
     <None Include="..\toast\type\httpequiv\cache.html" />
     <None Include="..\toast\type\httpequiv\cookie.html" />
     <None Include="..\toast\type\httpequiv\corp.html" />
