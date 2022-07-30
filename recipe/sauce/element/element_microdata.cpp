@@ -89,21 +89,25 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
     return itemscope; }
 
 void element::examine_itemprop (itemscope_ptr& itemscope)
-{   if (itemscope.get () == nullptr)
-        if (node_.version ().mjr () < 10) return;
-        else if (ancestral_attributes_.test (a_id)) // an ancestral id suggests an itemref
-            pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_comment, ec_microdata, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ITEMPROP requires ITEMSCOPE on the current or an ancestral element");
-        else pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_warning, ec_microdata, "ITEMPROP requires ITEMSCOPE on the current or an ancestral element");
-    else
-    {   ::std::string value (get_microdata_value ());
-        const bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
-        const bool mummy_expected = (a_.known (a_itemscope) || a_.known (a_itemtype));
-        const bool check_mummy = mummy_expected && itemscope -> has_parent2 ();
-        for (auto name : a_.get_x < attr_itemprop > ())
-            if (! mummy_expected) itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, is_link, page_);
-            else if (check_mummy) itemscope -> parent2 () -> note_itemprop (node_.nits (), node_.version (), name, value, itemscope, page_);
-            else if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_warning, ec_schema, "although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE");
-            else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_warning, ec_schema, "although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE or ITEMSCOPE"); } }
+{    if (! ancestral_elements_.test (elem_template))
+        if (itemscope.get () == nullptr)
+        {   if (node_.version ().mjr () >= 10)
+                if (ancestral_attributes_.test (a_id)) // an ancestral id suggests an itemref
+                    pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_comment, ec_microdata, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ITEMPROP requires ITEMSCOPE on the current or an ancestral element");
+                else pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_warning, ec_microdata, "ITEMPROP requires ITEMSCOPE on the current or an ancestral element"); }
+        else
+        {   ::std::string value (get_microdata_value ());
+            const bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
+            const bool mummy_expected = (a_.known (a_itemscope) || a_.known (a_itemtype));
+            const bool check_mummy = mummy_expected && itemscope -> has_parent2 ();
+            for (auto name : a_.get_x < attr_itemprop > ())
+                if (! mummy_expected) itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, is_link, page_);
+                else if (check_mummy) itemscope -> parent2 () -> note_itemprop (node_.nits (), node_.version (), name, value, itemscope, page_);
+                else if (ancestral_attributes_.test (a_id))
+                    if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_info, ec_schema, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then, although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE");
+                    else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_info, ec_schema, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then, although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE or ITEMSCOPE");
+                else if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_warning, ec_schema, "although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE");
+                    else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_warning, ec_schema, "although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE or ITEMSCOPE"); } }
 
 void element::examine_itemref (const itemscope_ptr& itemscope)
 {   if (icarus_) pick (nit_icarus, es_info, ec_attribute, "Oh Momus, oh Icarus, why do you torment me so?");

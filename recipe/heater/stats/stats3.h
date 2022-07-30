@@ -37,6 +37,12 @@ public:
     stats3 ()
     {   count_.resize (static_cast <::std::size_t> (max_enum + 1), base_t ()); }
     const base_t& at (const ENUM& e) const { return count_.at (e); }
-    void mark (const ENUM& e, const VALUE& k)
-    {   if (e <= max_enum) count_.at (e).mark (k);
-        else count_.at (undefined_enum).mark (k); } };
+    void mark (const ENUM& e, const VALUE& k, const unsigned u = 1)
+    {   if (e <= max_enum) count_.at (e).mark (k, u);
+        else count_.at (undefined_enum).mark (k, u); }
+    void accumulate (stats3 < VALUE, ENUM, max_enum, undefined_enum >& o) const
+    {   PRESUME (o.count_.size () >= count_.size (), __FILE__, __LINE__);
+        for (unsigned u = 0; u < count_.size (); ++u)
+            count_.at (u).accumulate (o.count_.at (u)); } };
+
+typedef stats3 < ::std::string, e_metaname, mn_illegal, mn_context > meta_value_stats;

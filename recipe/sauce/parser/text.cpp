@@ -26,9 +26,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "icu/converter.h"
 
 typedef ssc_map < ::std::string, ::std::size_t > vw_t;
-vw_t wotsit, inverted_wotsit;
-ustr_t symbol_code, code_symbol, extras;
-::std::size_t wotsit_count = 0;
+
+struct text_bits
+{   vw_t wotsit_, inverted_wotsit_;
+    ustr_t symbol_code_, code_symbol_, extras_;
+    ::std::size_t wotsit_count_ = 0;
+    ::std::size_t max_wotsit_length_ = 0; };
+
+typedef ::std::unique_ptr < text_bits > tb_ptr;
+tb_ptr tb;
 
 void extra_wotsit (nitpick& nits, const char* s, const char* c);
 void known_wotsit (nitpick& nits, const char* s, const char* c, const bool suggest);
@@ -38,11 +44,17 @@ void known_wotsit (nitpick& nits, const char* s, const char* c, const bool sugge
 #pragma warning (disable : 26446 26482) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initialiser
 #endif // _MSC_VER
 void wotsit_init (nitpick& nits)
-{   for (wotsit_count = 0; wotsit_table [wotsit_count].wotsit_ != nullptr; ++wotsit_count)
-    {   ::std::string w (normalise_utf8 (nits, wotsit_table [wotsit_count].wotsit_));
-        if (wotsit.find (w) != wotsit.end ())
-            nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "Program error: wotsit ", w, " already defined");
-        else wotsit.insert (vw_t::value_type (w, wotsit_count)); }
+{   tb = tb_ptr (new text_bits);
+    VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
+    for (tb -> wotsit_count_ = 0; wotsit_table [tb -> wotsit_count_].wotsit_ != nullptr; ++(tb -> wotsit_count_))
+    {   ::std::string w (normalise_utf8 (nits, wotsit_table [tb -> wotsit_count_].wotsit_));
+        if (tb -> wotsit_.find (w) != tb -> wotsit_.end ())
+            nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "Program error: wotsit_ ", w, " already defined");
+        else
+        {   tb -> wotsit_.insert (vw_t::value_type (w, tb -> wotsit_count_));
+            const ::std::size_t len = w.length ();
+            if (len > tb -> max_wotsit_length_) tb -> max_wotsit_length_ = len; } }
+    tb -> max_wotsit_length_ += 5; // to help catch typos
     for (int i = 0; known_symbols [i].symbol_ != nullptr; ++i)
         known_wotsit (nits, known_symbols [i].symbol_, known_symbols [i].code_, known_symbols [i].suggest_);
     for (int i = 0; xtra [i].symbol_ != nullptr; ++i)
@@ -52,14 +64,16 @@ void wotsit_init (nitpick& nits)
 #endif // _MSC_VER
 
 void extra_wotsit (nitpick& nits, const char* s, const char* c)
-{   ::std::string sym (normalise_utf8 (nits, s));
+{   VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
+    ::std::string sym (normalise_utf8 (nits, s));
     ::std::string cod (normalise_utf8 (nits, c));
-    auto sc = extras.find (cod);
-    if (sc == extras.cend ()) extras.insert (ustr_t::value_type (cod, sym)); }
+    auto sc = tb -> extras_.find (cod);
+    if (sc == tb -> extras_.cend ()) tb -> extras_.insert (ustr_t::value_type (cod, sym)); }
 
 void known_wotsit (nitpick& nits, const char* s, const char* c, const bool suggest)
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
     VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
     ::std::string sym (normalise_utf8 (nits, s));
     ::std::string cod (normalise_utf8 (nits, c));
     if (suggest)
@@ -76,15 +90,15 @@ void known_wotsit (nitpick& nits, const char* s, const char* c, const bool sugge
                     ::std::cerr << "Character " << sym << " (&" << cod << ";) is suggested.\n";
                     break; }
 #endif // DEBUG
-        auto sc = symbol_code.find (s);
-        if (sc == symbol_code.cend ()) symbol_code.insert (ustr_t::value_type (sym, cod)); }
-    auto cs = code_symbol.find (c);
-    if (cs == code_symbol.cend ()) code_symbol.insert (ustr_t::value_type (cod, sym));
-    auto ws = wotsit.find (s);
-    if (ws != wotsit.cend ())
-    {   auto iw = inverted_wotsit.find (c);
-        if (iw == inverted_wotsit.cend ())
-            inverted_wotsit.insert (vw_t::value_type (::std::string (c), ws -> second)); } }
+        auto sc = tb -> symbol_code_.find (s);
+        if (sc == tb -> symbol_code_.cend ()) tb -> symbol_code_.insert (ustr_t::value_type (sym, cod)); }
+    auto cs = tb -> code_symbol_.find (c);
+    if (cs == tb -> code_symbol_.cend ()) tb -> code_symbol_.insert (ustr_t::value_type (cod, sym));
+    auto ws = tb -> wotsit_.find (s);
+    if (ws != tb -> wotsit_.cend ())
+    {   auto iw = tb -> inverted_wotsit_.find (c);
+        if (iw == tb -> inverted_wotsit_.cend ())
+            tb -> inverted_wotsit_.insert (vw_t::value_type (::std::string (c), ws -> second)); } }
 
 void text_check (nitpick& nits, const html_version& v, const ::std::string& text)
 {   nits.set_context (0, text);
@@ -120,15 +134,17 @@ void text_check (nitpick& nits, const html_version& v, const ::std::string& text
                     else if (text.substr (1).find_first_not_of (DENARY) != ::std::string::npos)
                         nits.pick (nit_invalid_denary, es_warning, ec_parser, "invalid denary character code"); }
                 return; } }
-        vw_t::const_iterator i = wotsit.find (text.c_str ());
-        if (i == wotsit.end ())
+        VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
+        vw_t::const_iterator i = tb -> wotsit_.find (text.c_str ());
+        if (i == tb -> wotsit_.end ())
             nits.pick (nit_bizarre_character_code, es_error, ec_parser, "&", text, "; is neither a known text entity nor a normalised URL");
         else
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26446 26482) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initiliser
 #endif // _MSC_VER
-        {   PRESUME (i -> second < wotsit_count, __FILE__, __LINE__);
+        {   VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
+            PRESUME (i -> second < tb -> wotsit_count_, __FILE__, __LINE__);
             if (! does_apply < html_version > (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_))
                 nits.pick (nit_code_unrecognised_here, es_warning, ec_parser, "&", text, "; is invalid in ", v.report ());
             else if (v.is_5 () && v.xhtml () && ! v.xhtml_dtd ())
@@ -136,25 +152,27 @@ void text_check (nitpick& nits, const html_version& v, const ::std::string& text
                     nits.pick (nit_code_dtd, ed_jul21, "14.1 Writing documents in the XML syntax", es_error, ec_parser, "to be valid, &", text, "; requires an appropriate DTD in <!DOCTYPE ...> in ", v.report ()); } } }
 
 void examine_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid)
-{   PRESUME (! text.empty (), __FILE__, __LINE__);
-    vw_t::const_iterator i = wotsit.find (text);
-    if (i != wotsit.end ())
-    {   PRESUME (i -> second < wotsit_count, __FILE__, __LINE__);
+{   VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
+    PRESUME (! text.empty (), __FILE__, __LINE__);
+    vw_t::const_iterator i = tb -> wotsit_.find (text);
+    if (i != tb -> wotsit_.end ())
+    {   PRESUME (i -> second <tb ->  wotsit_count_, __FILE__, __LINE__);
         if (! may_apply (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_)) invalid = true;
         else known = true; } }
 
 ::std::string interpret_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid, const bool simplify)
-{   PRESUME (! text.empty (), __FILE__, __LINE__);
-    vw_t::const_iterator i = wotsit.find (text);
-    if (i != wotsit.cend ())
-    {   PRESUME (i -> second < wotsit_count, __FILE__, __LINE__);
+{   VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
+    PRESUME (! text.empty (), __FILE__, __LINE__);
+    vw_t::const_iterator i = tb -> wotsit_.find (text);
+    if (i != tb -> wotsit_.cend ())
+    {   PRESUME (i -> second < tb -> wotsit_count_, __FILE__, __LINE__);
         if (! may_apply (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_)) invalid = true;
         else
         {   known = true;
             if (simplify && (wotsit_table [i -> second].simple_ != nullptr))
                 return wotsit_table [i -> second].simple_;
-            auto ci = code_symbol.find (wotsit_table [i -> second].wotsit_);
-            if (ci != code_symbol.cend ()) return ci -> second; } }
+            auto ci = tb -> code_symbol_.find (wotsit_table [i -> second].wotsit_);
+            if (ci != tb -> code_symbol_.cend ()) return ci -> second; } }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
@@ -172,9 +190,9 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
     bool known = false;
     ::std::string res (interpret_character_code (v, text, known, invalid, simplify));
     if (invalid)
-        nits.pick (nit_invalid_character_code, es_error, ec_parser, res, " is invalid in ", v.report ());
+        nits.pick (nit_invalid_character_code, es_error, ec_parser, quote (res), " is invalid in ", v.report ());
     else if (! known)
-        nits.pick (nit_invalid_character_code, es_error, ec_parser, res, " is unrecognised");
+        nits.pick (nit_invalid_character_code, es_error, ec_parser, quote (res), " is unrecognised");
     return res; }
 
 ::std::string interpret_character_number (const ::std::string& text)
@@ -248,17 +266,20 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
     return ::std::string (1, ::gsl::narrow_cast <char> (n)); }
 
 ::std::string get_character_code (const ::std::string& text)
-{   auto ci = symbol_code.find (text);
-    if (ci != symbol_code.end ()) return ci -> second;
+{  VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
+     auto ci = tb -> symbol_code_.find (text);
+    if (ci != tb -> symbol_code_.end ()) return ci -> second;
     return ::std::string (); }
 
 ::std::string get_extra (const ::std::string& text)
-{   auto ci = extras.find (text);
-    if (ci != extras.end ()) return get_character_code (ci -> second);
+{   VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
+    auto ci = tb -> extras_.find (text);
+    if (ci != tb -> extras_.end ()) return get_character_code (ci -> second);
     return ::std::string (); }
 
 ::std::string enwotsit (const ::std::string& s)
 {   ::std::string res;
+    VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
     for (::std::string::const_iterator i = s.cbegin (); i != s.cend (); ++i)
     {   switch (*i)
         {   case ' ' :
@@ -266,8 +287,8 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
                 continue;
             default :
                 break; }
-        auto ci = symbol_code.find (::std::string (1, *i));
-        if (ci == symbol_code.end ())
+        auto ci = tb -> symbol_code_.find (::std::string (1, *i));
+        if (ci == tb -> symbol_code_.end ())
             res += *i;
         else
         {   res += "&";
@@ -278,6 +299,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
 ::std::string interpret_string (nitpick& nits, const html_version& v, const ::std::string& s)
 {   ::std::string res;
     ::std::string special;
+    VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
     bool code = false, bs = false;
     for (::std::string::const_iterator i = s.cbegin (); i != s.cend (); ++i)
         switch (*i)
@@ -294,9 +316,10 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
                 else if (bs) { bs = false; special += ';'; }
                 else if (! special.empty ())
                 {   ::std::string got;
-                    if (special.front () != '#') got = interpret_character_code (nits, v, special, true);
-                    else if ((special.length () > 1) && (special.at (1) == 'x')) got = interpret_character_hex (nits, special.substr (2));
-                    else got = interpret_character_number (nits, special.substr (1));
+                    if (special.length () <= tb -> max_wotsit_length_)
+                        if (special.front () != '#') got = interpret_character_code (nits, v, special, true);
+                        else if ((special.length () > 1) && (special.at (1) == 'x')) got = interpret_character_hex (nits, special.substr (2));
+                        else got = interpret_character_number (nits, special.substr (1));
                     if (got.empty ()) { res += '&'; res += special; res += ';'; }
                     else res += got;
                     special.clear ();

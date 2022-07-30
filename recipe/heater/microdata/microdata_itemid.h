@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class element;
 
+void init_itemid ();
 ::std::string report_itemids ();
 bool empty_itemid ();
 bool invalid_itemid (nitpick& nits, const html_version& v, const ::std::string& id, const element* const e);

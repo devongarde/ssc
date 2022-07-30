@@ -34,8 +34,12 @@ class external
     typedef map_t::value_type value_t;
     map_t url_;
 public:
-    void swap (external& e) noexcept
-    {   url_.swap (e.url_); }
+    external () = default;
+    external (const external& ) = delete;
+    external (external&& ) = delete;
+    ~external () = default;
+    external& operator = (const external& ) = delete;
+    external& operator = (external&& ) = delete;
     bool verify (nitpick& nits, const html_version& v, const url& u, int& code, bool& repeated);
 #ifdef NO_BOOST_PROCESS
    ::std::string load (const url& u) noexcept;

@@ -1,0 +1,52 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Catch" -->
+<!--#set var="poet" value="Diana S. Adams" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#adams">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2013">
+  <meta itemprop="inLanguage" content="en-CA">
+  <meta itemprop="datePublished" content="2013-06-01">
+ 
+<img SRC="catch.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><a href="/authors/index.shtml#adams" class="poet"><!--#echo encoding="none" var="poet" --></a><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">24</span>pp, &euro;5, June 2013<br>
+ISBN <span itemprop="isbn">979-10-90394-40-7</span><br>
+<span class="wee">The cover image is by <a href="<!--#echo encoding="none" var="artsego" -->"><!--#echo encoding="none" var="editor" --></a>.</span>
+</p>
+
+<p class="published-quote">
+I don&rsquo;t know too many poets who could find beauty in reticence. It&rsquo;s eerie in the way <a href="/authors/index.shtml#adams" class="poet"><!--#echo encoding="none" var="poet" --></a> manages to turn the dramatic pause into something as special as a personal revelation. She&rsquo;s the mistress of the herky&ndash;jerky procession. Her line breaks stun us with their warped generosity, their cautious love. <span  class="published-quoted">Steve Fellner, <a href="http://pansypoetics.blogspot.com/">pansypoetics.blogspot.com</a></span>
+</p>
+
+<p class="published-quote">
+Here are the many&ndash;fold surprises found in conflicting worlds, rendered with such subtlety of phrasing and a wholly alarming availability. These poetic gifts make for a kind of heightened awareness, even as we fall rather helplessly into each of these miniatures. One is reminded of the way Ritsos has of unsettling us with narrative, reaching deep into the emotions, and even deeper into the unconscious. <a href="/authors/index.shtml#adams" class="poet"><!--#echo encoding="none" var="poet" --></a> dreams up poems that are so richly alive with the small dramas that turn large in our sleep, where time and space wait, suspended. <span  class="published-quoted">Jeffrey Levine, author of Jubilo</span>
+</p>
+
+</div>
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

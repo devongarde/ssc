@@ -253,23 +253,27 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (NITS DONT SPEC, ::boost::program_options::bool_switch (), "Do not output nits in test spec format.")
     ;
     primary.add_options ()
-        (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes.")
+        (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes (consider --" GENERAL CSS ".")
         (GENERAL DONT CLASS, ::boost::program_options::bool_switch (), "Do not report unrecognised classes.")
+        (GENERAL CLASSIC, ::boost::program_options::bool_switch (), "Report all classes used (requires --" GENERAL CLASS ".")
+        (GENERAL DONT CLASSIC, ::boost::program_options::bool_switch (), "Do not report all classes used.")
         (GENERAL CGI ",W", ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
         (GENERAL DONT CGI, ::boost::program_options::bool_switch (), "Process a local static website.")
-        (GENERAL CSS_OPTION, ::boost::program_options::bool_switch (), "Process .css files.")
+        (GENERAL CSS_OPTION, ::boost::program_options::bool_switch (), "Process .css files (for class names only).")
         (GENERAL DONT CSS_OPTION, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated.")
         (GENERAL DATAPATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "Root directory for most " PROG " files.")
         (GENERAL ERR ",E", ::boost::program_options::value < ::std::string > () -> composing (), "Exit with an error if nits of this severity or worse are generated. Values: '"
             CATASTROPHE "', '" ERR "' (default), '" WARNING "', '" INFO  "', or '" COMMENT  "'.")
+        (GENERAL EXCLUDE, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore files that match this posix regular expression; may be repeated.")
         (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "File for persistent data, requires -N (note --" GENERAL DATAPATH ").")
+        (GENERAL GIT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore git internal files.")
         (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore attributes and content of specified element; may be repeated.")
         (GENERAL INFO ",J", ::boost::program_options::bool_switch (), "Report " PROG " launch context at startup.")
         (GENERAL LANG, ::boost::program_options::value < ::std::string > () -> composing (), "Default language (such as 'en_GB', 'lb_LU', etc.).")
         (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "Maximum file size to read, in megabytes (zero for no limit).")
         (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "Output file (default to the console).")
-        (GENERAL PROGRESS ",D", ::boost::program_options::bool_switch (), "Dump progress to standard macro.")
+        (GENERAL PROGRESS ",D", ::boost::program_options::bool_switch (), "Dump progress to standard macro -> ")
         (GENERAL DONT PROGRESS, ::boost::program_options::bool_switch (), "Don't be quite so noisy.")
         (GENERAL RDFA_, ::boost::program_options::bool_switch (), "Check RDFa attributes.")
         (GENERAL DONT RDFA_, ::boost::program_options::bool_switch (), "Do not check RDFa attributes.")
@@ -284,6 +288,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
         (GENERAL TEST ",T", ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
         (GENERAL DONT TEST, ::boost::program_options::bool_switch (), "Output in format specified by other switches.")
+        (GENERAL THREAD, ::boost::program_options::value < int > () -> default_value (::std::thread::hardware_concurrency ()), "Number of threads (default appropriate for the hardware).")
         (GENERAL VERBOSE ",v", ::boost::program_options::value < ::std::string > (), "Output these nits and worse. Values: '"
             CATASTROPHE "', '" ERR "', '" WARNING "' (default), '" INFO  "', '" COMMENT  "', or 0 for silence.")
 
@@ -331,12 +336,6 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (LINKS XLINK ",X", ::boost::program_options::bool_switch (), "Check crosslink IDs.")
         (LINKS DONT XLINK, ::boost::program_options::bool_switch (), "Do not check crosslink IDs.")
 
-        (MF VERIFY ",M", ::boost::program_options::bool_switch (), "Check microformats in class and rel attributes (see https://" MICROFORMATS_ORG "/).")
-        (MF DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microformats in class and rel attributes.")
-        (MF VERSION, ::boost::program_options::value < int > (), "Check this version of microformats (1, 2, or 3 for both).")
-        (MF EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (requires --" MF VERIFY ").")
-        (MF DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
-
         (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (default (0): determine by HTML version).")
 
         (MICRODATA EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (only verified data if --" MICRODATA VERIFY " is set).")
@@ -345,6 +344,12 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (MICRODATA DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microdata.")
         (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "Microdata export root directory (requires --" MICRODATA EXPORT ").")
         (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory, syntax virtual=directory. Must correspond to --" WEBSITE VIRTUAL ".")
+
+        (MF VERIFY ",M", ::boost::program_options::bool_switch (), "Check microformats in class and rel attributes (see https://" MICROFORMATS_ORG "/).")
+        (MF DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microformats in class and rel attributes.")
+        (MF VERSION, ::boost::program_options::value < int > (), "Check this version of microformats (1, 2, or 3 for both).")
+        (MF EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (requires --" MF VERIFY ").")
+        (MF DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
 
         (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a catastrophe; may be repeated.")
         (NITS CODES, ::boost::program_options::bool_switch (), "Output nit codes")
@@ -357,7 +362,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (NITS NIDS, ::boost::program_options::bool_switch (), "Output nit identifiers (used to recategorise nits).")
         (NITS DONT NIDS, ::boost::program_options::bool_switch (), "Do not output nit identifiers.")
         (NITS OVERRIDE ",P", ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides " NITS FORMAT "; for automation).")
-        (NITS QUOTE, ::boost::program_options::value < ::std::string > (), "Output nits in this format (\"html\" or \"text\", default text).")
+        (NITS QUOTE, ::boost::program_options::value < ::std::string > (), "Quote nits in this format (\"html\" or \"text\", default text).")
         (NITS ROOT, ::boost::program_options::bool_switch (), "By default, seek nit output template files in --" WEBSITE ROOT ".")
         (NITS DONT ROOT, ::boost::program_options::bool_switch (), "Do not seek nit output template files in --" WEBSITE ROOT ", unless explicitly specified.")
         (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "Silence nit; may be repeated.")
@@ -488,7 +493,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         {   ::std::string e (env_ [ENV_ARGS].as < ::std::string > ());
             vstr_t env_args (split_by_space (e));
             if (! env_args.empty ())
-            {   macro.set (nm_run_environment, e);
+            {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+                macro -> set (nm_run_environment, e);
                 ::boost::program_options::store (::boost::program_options::command_line_parser (env_args).options (cmd).positional (pos).run (), var_); } } }
     catch (const ::boost::program_options::error& err)
     {   nits.pick (nit_configuration, es_error, ec_init, "Environment error: ", err.what ());
@@ -509,7 +515,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         context.environment (env_query_string, qu);
         if (! context.environment (env_query_string).empty ()) try
         {   context.cgi (true);
-            macro.set (nm_query, qu);
+            VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+            macro -> set (nm_query, qu);
             if (env_.count (SERVER_SOFTWARE)) context.environment (env_server_software, env_ [SERVER_SOFTWARE].as < ::std::string > ());
             if (env_.count (SERVER_NAME)) context.environment (env_server_name, env_ [SERVER_NAME].as < ::std::string > ());
             if (env_.count (GATEWAY_INTERFACE)) context.environment (env_gateway_interface, env_ [GATEWAY_INTERFACE].as < ::std::string > ());
@@ -565,7 +572,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         if (var_.count (CONFIG)) file = var_ [CONFIG].as < ::std::string > ();
         else if ((! var_ [DEFCONF].as <bool > ()) && env_.count (ENV_CONFIG)) file = env_ [ENV_CONFIG].as < ::std::string > ();
         nits.set_context (0, file.string ());
-        macro.set (nm_config, file.string ());
+        VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        macro -> set (nm_config, file.string ());
         if (file_exists (file))
         {   nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Loading configuration ") + file.string () + "...");
             context.config (canonical (file)); }
@@ -676,7 +684,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
 
     if (context.cgi ()) context.todo (do_cgi);
     else if (! var_.count (WEBSITE ROOT))
-    {   nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
+    {   context.domsg ("\n" TYPE_HELP "\n");
+        context.todo (do_simple);
         return; }
     else context.todo (do_examine); }
 
@@ -684,13 +693,16 @@ void options::contextualise (nitpick& nits)
 {   yea_nay (&context_t::test, nits, GENERAL TEST, GENERAL DONT TEST);
     yea_nay (&context_t::spec, nits, NITS SPEC, NITS DONT SPEC);
 
-    if (context.test () || var_ [GENERAL SPEC].as <bool > ())
-        context.article (false).body (false).cased (false).codes (false).crosslinks (false).example (false).external (false).forwarded (false).icu (true)
-            .info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).meta (false).mf_verify (false).microdata (false)
-            .nids (true).nits (false) .nits_nits_nits (true).not_root (false).once (false).presume_tags (false)
-            .progress (false).rdfa (false) .rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false)
-            .schema (true).shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).
-            ssi (false).stats_page (false).stats_summary (false).unknown_class (false).update (false);
+    if (context.test () || var_ [GENERAL SPEC].as <bool> ())
+        context.article (false).body (false).cased (false).classic (false).codes (false).crosslinks (false).example (false).external (false).forwarded (false)
+            .icu (true).info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).meta (false).mf_verify (false)
+            .microdata (false).nids (true).nits (false) .nits_nits_nits (true).not_root (false).once (false).presume_tags (false).progress (false)
+            .rdfa (false) .rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false).schema (true)
+            .shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).ssi (false)
+            .stats_page (false).stats_summary (false).unknown_class (false).update (false);
+
+    if (var_.count (GENERAL THREAD)) context.fred (var_ [GENERAL THREAD].as < int > ());
+    else context.fred (0);
 
     if (! context.cgi ())
     {   if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
@@ -699,12 +711,15 @@ void options::contextualise (nitpick& nits)
     if (context.test () || ! context.cgi ())
     {   if (var_.count (GENERAL OUTPUT))
         {   outstr.init (nits, nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
+#ifndef EXPAND_TEST
             if (! context.test ())
-                nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Writing to ") + var_ [GENERAL OUTPUT].as < ::std::string > ()); }
+                nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Writing to ") + var_ [GENERAL OUTPUT].as < ::std::string > ());
+#endif // EXPAND_TEST
+        }
         if ((! var_ [GENERAL DONT PROGRESS].as <bool > ()) && var_ [GENERAL PROGRESS].as <bool > ())
-            if (context.test ()) ::std::cout << TEST_TITLE;
-            else if (context.tell (es_info)) ::std::cout << FULL_TITLE;
-            else ::std::cout << SIMPLE_TITLE;
+            if (context.test ()) ::std::cout << szTestTitle;
+            else if (context.tell (es_info)) ::std::cout << szFullTitle;
+            else ::std::cout << szSimpleTitle;
         if (! context.cgi ())
         {   context.path (nix_path_to_local (var_ [GENERAL DATAPATH].as < ::std::string > ()));
             if (! file_exists (context.path ()))
@@ -732,7 +747,7 @@ void options::contextualise (nitpick& nits)
                 else if (compare_no_case (ver.substr (0, 5), "xhtml")) { ver = trim_the_lot_off (ver.substr (5)); xhtml = true; }
             const ::std::string::size_type pos = ver.find ('.');
             if (pos != ::std::string::npos)
-            {   int mjr = 1, mnr = 0xFF;
+            {   int mjr = 1, mnr = USHRT_MAX;
                 if (pos == ver.length () - 1) mjr = lexical < int > :: cast (ver.substr (0, pos));
                 else if (pos == 0) { mjr = 0; mnr = 1; }
                 else
@@ -803,7 +818,8 @@ void options::contextualise (nitpick& nits)
             else if (::boost::filesystem::is_directory (local)) context.root (local);
             else nits.pick (nit_not_directory, es_error, ec_init, "expecting a directory containing a static website, not ", quote (arg)); } }
 
-    macro.load_template (nits, context.html_ver ());
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    macro -> load_template (nits, context.html_ver ());
 
     for (int i = s_none + 1; i < s_error; ++i)
     {   const e_schema es = static_cast < e_schema > (i);
@@ -835,7 +851,9 @@ void options::contextualise (nitpick& nits)
     if (var_.count (VALIDATION DONT MICRODATAARG)) context.microdata (false);
 
     if (! context.cgi ())
-    {   yea_nay (&context_t::load_css, nits, GENERAL CSS_OPTION, GENERAL DONT CSS_OPTION);
+    {   yea_nay (&context_t::unknown_class, nits, GENERAL CLASS, GENERAL DONT CLASS);
+        yea_nay (&context_t::classic, nits, GENERAL CLASSIC, GENERAL DONT CLASSIC);
+        yea_nay (&context_t::load_css, nits, GENERAL CSS_OPTION, GENERAL DONT CSS_OPTION);
         yea_nay (&context_t::progress, nits, GENERAL PROGRESS, GENERAL DONT PROGRESS);
         yea_nay (&context_t::rdfa, nits, GENERAL RDFA_, GENERAL DONT RDFA_);
         yea_nay (&context_t::rel, nits, GENERAL REL, GENERAL DONT REL);
@@ -853,11 +871,12 @@ void options::contextualise (nitpick& nits)
             if (max < 0 || (max > (LONG_MAX / meg))) max = DEFAULT_MAX_FILE_SIZE;
             context.max_file_size (max * meg); }
 
-        yea_nay (&context_t::unknown_class, nits, GENERAL CLASS, GENERAL DONT CLASS);
         if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
         if (var_.count (GENERAL ERR))
         {   e_severity sev = decode_severity (nits, var_ [GENERAL ERR].as < ::std::string > ());
             if (sev != es_undefined) context.report_error (sev); }
+        if (var_.count (GENERAL EXCLUDE)) context.exclude (nits, var_ [GENERAL EXCLUDE].as < vstr_t > ());
+        if (var_.count (GENERAL GIT)) context.exclude (nits, ".git");
         if (var_.count (GENERAL IGNORED)) context.ignore (nits, var_ [GENERAL IGNORED].as < vstr_t > ());
         if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());
         if (var_.count (GENERAL MACROEND)) context.macro_end (var_ [GENERAL MACROEND].as < ::std::string > ());
@@ -1200,7 +1219,9 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
 ::std::string options::report () const
 {   ::std::ostringstream res;
+#ifndef EXPAND_TEST
     if (context.test ()) return res.str ();
+#endif // EXPAND_TEST
 
     ::std::ostringstream e;
 
@@ -1269,12 +1290,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [GENERAL DONT CGI].as < bool > ()) res << GENERAL DONT CGI "\n";
     if (var_ [GENERAL CLASS].as < bool > ()) res << GENERAL CLASS "\n";
     if (var_ [GENERAL DONT CLASS].as < bool > ()) res << GENERAL DONT CLASS "\n";
+    if (var_ [GENERAL CLASSIC].as < bool > ()) res << GENERAL CLASSIC "\n";
+    if (var_ [GENERAL DONT CLASSIC].as < bool > ()) res << GENERAL DONT CLASSIC "\n";
     if (var_.count (GENERAL CSS_OPTION)) res << GENERAL CSS_OPTION "\n";
     if (var_.count (GENERAL DONT CSS_OPTION)) res << GENERAL DONT CSS_OPTION "\n";
     if (var_.count (GENERAL CUSTOM)) { res << GENERAL CUSTOM ": "; pvs (res, var_ [GENERAL CUSTOM].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL DATAPATH)) res << GENERAL DATAPATH ": " << var_ [GENERAL DATAPATH].as < ::std::string > () << "\n";
     if (var_.count (GENERAL ERR)) res << GENERAL ERR ": " << var_ [GENERAL ERR].as < ::std::string > () << "\n";
     if (var_.count (GENERAL ENVIRONMENT)) { res << GENERAL ENVIRONMENT ": "; pvs (res, var_ [GENERAL ENVIRONMENT].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (GENERAL EXCLUDE)) { res << GENERAL EXCLUDE ": "; pvs (res, var_ [GENERAL EXCLUDE].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL FICHIER)) res << GENERAL FICHIER ": " << var_ [GENERAL FICHIER].as < ::std::string > () << "\n";
     if (var_ [GENERAL INFO].as < bool > ()) res << GENERAL INFO "\n";
     if (var_.count (GENERAL IGNORED)) { res << GENERAL IGNORED ": "; pvs (res, var_ [GENERAL IGNORED].as < vstr_t > ()); res << "\n"; }
@@ -1297,6 +1321,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [GENERAL DONT SSI].as < bool > ()) res << GENERAL DONT SSI "\n";
     if (var_ [GENERAL TEST].as < bool > ()) res << GENERAL TEST "\n";
     if (var_ [GENERAL DONT TEST].as < bool > ()) res << GENERAL DONT TEST "\n";
+    if (var_.count (GENERAL THREAD)) res << GENERAL THREAD ": " << var_ [GENERAL THREAD].as < int > () << "\n";
     if (var_.count (GENERAL VERBOSE)) res << GENERAL VERBOSE ": " << var_ [GENERAL VERBOSE].as < ::std::string > () << "\n";
 
     if (var_.count (HTML RFC1867)) res << HTML RFC1867 "\n";

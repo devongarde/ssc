@@ -795,6 +795,18 @@
     <Filter Include="Toast\Living\apr22">
       <UniqueIdentifier>{0f6e704d-2441-401b-ac33-8479cd000f9b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Heater\coop">
+      <UniqueIdentifier>{ee096f6b-63ee-40b3-a247-899c623fe629}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\coop">
+      <UniqueIdentifier>{ad64ca33-1ed8-453e-b264-b143f1bc433f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Third Party">
+      <UniqueIdentifier>{056e573f-656b-45d7-97c6-9b1037e3a61a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Third Party\Hward Hinnant Date">
+      <UniqueIdentifier>{113e3b2e-7532-4dae-b1ab-7397678c2877}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1286,6 +1298,54 @@
     <ClInclude Include="..\heater\type\type_country.h">
       <Filter>Heater\type</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\coop\fred.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\kew.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\knickers.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\lox.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\webpage\q.h">
+      <Filter>Heater\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\chrono_io.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\date.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\ios.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\islamic.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\iso_week.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\julian.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\ptz.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\solar_hijri.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\tz.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\tz_private.h">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\main\output.h">
+      <Filter>Heater\main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1758,6 +1818,27 @@
     </ClCompile>
     <ClCompile Include="..\sauce\type\type_country.cpp">
       <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\fred.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\kew.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\knickers.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\lox.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\webpage\q.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third\date\tz.cpp">
+      <Filter>Third Party\Hward Hinnant Date</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\main\output.cpp">
+      <Filter>Sauce\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,51 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="How Esmerelda Estrus ..." -->
+<!--#set var="poet" value="J. Bradley" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#bradley">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2011-09-01">
+  
+<img SRC="esmeralda.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">28</span>pp, September 2011, &euro;5<br>
+ISBN <span itemprop="isbn">979-10-90394-09-4</span>
+</p>
+
+<p class="published-quote">
+What do the words &lsquo;epic poem&rsquo; conjure up for you? Thoughts of gods, myths and battles &ndash; Beowulf, Homer, Dante and Milton perhaps? Maybe you think of Pound, Carlos Williams and Walcott, each of whom adapted and modernised the epic form. Most people probably don&rsquo;t think of sex, vernacular language and frequent references to popular culture, all of which <!--#echo encoding="none" var="poet" -->&rsquo;s <span class="book-title"><!--#echo encoding="none" var="title" --></span> has in abundance.
+&hellip;
+Overall, it&rsquo;s a seething, dark romp of a poem. Accessible and fun, truthful and surprising, Bradley&rsquo;s pamphlet hooked me from the start. I&rsquo;m particularly reminded of Jane Holland&rsquo;s Boudicca &amp; Co. There are also similarities to some of Neil Rollinson&rsquo;s work, perhaps with a side order of Eliot. This is a captivating poem for the 21st century. Anyone with an interest in contemporary, intelligent narrative poetry should buy this book.
+<span class="published-quoted">Lindsay Holland, <A href="http://sabotagereviews.com/2011/11/10/how-esmeralda-estrus-got-her-revenge-by-j-bradley/">Sabotage Reviews</a>.</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

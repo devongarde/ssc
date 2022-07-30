@@ -26,7 +26,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 // VALUE is presumed to be an enum or an int
 template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT = 0, class LC = sz_true > class symbol : public enlc < LC >
-{   static symbol_table < V, CATEGORY, INIT > table_;
+{   typedef symbol_table < V, CATEGORY, INIT > table_t;
+    typedef ::std::shared_ptr < table_t > table_ptr;
+    static table_ptr table_;
     V first_, last_;
     VALUE value_ = ::gsl::narrow_cast < VALUE > (0);
     CATEGORY ns_ = INIT;
@@ -38,10 +40,11 @@ public:
     symbol (const symbol& s) = default;
 	symbol (symbol&&) = default;
     explicit symbol (const VALUE& value, const CATEGORY ns = INIT) : value_ (value), ns_ (ns), unknown_ (false)
-    {   first_ = table_.first_version (value);
-        last_ = table_.final_version (value);
-        flags_ = table_.flags (value);
-        flags2_ = table_.flags2 (value); }
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        first_ = table_ -> first_version (value);
+        last_ = table_ -> final_version (value);
+        flags_ = table_ -> flags (value);
+        flags2_ = table_ -> flags2 (value); }
     explicit symbol (const V& v, const ::std::string& x, const CATEGORY ns = INIT) : ns_ (ns)
     {   unknown_ = ! find (v, x, value_, ns, &first_, &last_, &flags_, &flags2_); }
 	symbol& operator = (const symbol&) = default;
@@ -57,30 +60,57 @@ public:
     void reset () { symbol tmp; swap (tmp); }
     void reset (const VALUE& v) { symbol tmp (v); swap (tmp); }
     static void init (nitpick& nits, const symbol_entry < V, VALUE, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
-    {   table_.template init < VALUE, LC > (nits, table, size, wildcards); }
+    {   table_ = table_ptr (new table_t);
+        VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        table_ -> template init < VALUE, LC > (nits, table, size, wildcards); }
     static bool find (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
-    {   return table_.template find < VALUE, LC > (v, x, res, ns, first, last, flags, flags2); }
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> template find < VALUE, LC > (v, x, res, ns, first, last, flags, flags2); }
     static VALUE find (const V& v, const ::std::string& x, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
-    {   return static_cast < VALUE > (table_.find (v, enlc < LC > :: to (x), ns, first, last, flags, flags2)); }
-    static bool exists (const ::std::string& x) { return table_.exists (x); }
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return static_cast < VALUE > (table_ -> find (v, enlc < LC > :: to (x), ns, first, last, flags, flags2)); }
+    static bool exists (const ::std::string& x)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> exists (x); }
     static bool parse (nitpick& , const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
-    {   return table_.template parse < VALUE, LC > (v, x, res, ns, first, last, flags, flags2); }
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> template parse < VALUE, LC > (v, x, res, ns, first, last, flags, flags2); }
     bool parse (nitpick& , const V& v, const ::std::string& x, const CATEGORY ns = INIT)
-    {   unknown_ = ! table_.template parse < VALUE, LC > (v, x, value_, ns, &first_, &last_, &flags_, &flags2_);
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        unknown_ = ! table_ -> template parse < VALUE, LC > (v, x, value_, ns, &first_, &last_, &flags_, &flags2_);
         if (unknown_) return false;
         ns_ = ns; return true; }
-    static ::std::string value_list (const V& v) { return table_.value_list (v); }
-    static ::std::size_t value_count (const V& v) { return table_.value_count (v); }
-    static ::std::string name (const VALUE x, const bool ns_req = false) { return table_.name (x, ns_req); }
-    static bool is_invalid_version (const V& v, const VALUE x) { return table_.is_invalid_version (v, x); }
-    static V first_version (const VALUE x) { return table_.first_version (x); }
-    static V final_version (const VALUE x) { return table_.final_version (x); }
-    static CATEGORY category (const VALUE x) { return table_.ns (x); }
-    static flags_t flags (const VALUE x) { return table_.flags (x); }
-    static flags_t categories (const VALUE x) { return table_.flags2 (x); }
+    static ::std::string value_list (const V& v)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> value_list (v); }
+    static ::std::size_t value_count (const V& v)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> value_count (v); }
+    static ::std::string name (const VALUE x, const bool ns_req = false)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> name (x, ns_req); }
+    static bool is_invalid_version (const V& v, const VALUE x)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> is_invalid_version (v, x); }
+    static V first_version (const VALUE x)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> first_version (x); }
+    static V final_version (const VALUE x)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> final_version (x); }
+    static CATEGORY category (const VALUE x)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> ns (x); }
+    static flags_t flags (const VALUE x)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> flags (x); }
+    static flags_t categories (const VALUE x)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> flags2 (x); }
     static void extend (const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT,
                         const V& first = html_0, const V& last = html_0, const flags_t flags = 0, const flags_t flags2 = 0)
-    {   table_.extend (key, symbol, value, ns, first, last, flags, flags2); }
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        table_ -> extend (key, symbol, value, ns, first, last, flags, flags2); }
     static void extend (const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT, const V& first = html_0, const V& last = html_0, const flags_t flags = 0, const flags_t flags2 = 0)
     {   extend (enlc < LC > :: to (symbol), symbol, value, ns, first, last, flags, flags2); }
     VALUE get () const noexcept { if (unknown_) return ::gsl::narrow_cast <VALUE> (0); return value_; }
@@ -99,7 +129,8 @@ public:
     bool required () const { return first_.required (); }
     ::std::string name (const bool ns_req = false, const bool colonise = true) const
     {   if (unknown_) return "(unknown)";
-        ::std::string res (table_.name (get ()));
+        VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        ::std::string res (table_ -> name (get ()));
         if (res.empty ())
         {   res = "(";
             res += ::boost::lexical_cast < ::std::string > (value_);
@@ -109,13 +140,17 @@ public:
             else res = namespace_name (ns_) + res;
         return res; }
     static VALUE starts_with (const ::std::string& s, ::std::string::size_type* ends_at = nullptr)
-    {   return table_.template starts_with < VALUE> (s, ends_at); }
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> template starts_with < VALUE> (s, ends_at); }
     static ::std::string after_start (const ::std::string& s)
-    {   return table_.after_start (s); }
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> after_start (s); }
     bool invalid () const noexcept { return unknown_; }
     bool is_invalid_version (const V& v)
     {   return ((v > last ()) || (v < first ())); }
-    static ::std::string table () { return table_.report (); } };
+    static ::std::string table ()
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> report (); } };
 
 template < class V, typename VALUE, typename CATEGORY, CATEGORY INIT, class LC >
-    symbol_table < V, CATEGORY, INIT > symbol < V, VALUE, CATEGORY, INIT, LC > :: table_;
+    typename symbol < V, VALUE, CATEGORY, INIT, LC > :: table_ptr  symbol < V, VALUE, CATEGORY, INIT, LC > :: table_;

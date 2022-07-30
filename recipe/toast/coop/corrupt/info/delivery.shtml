@@ -1,0 +1,79 @@
+<!--#include virtual="/plumbing/html-en.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="delivery policy" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/info-section.inc" -->
+<!--#include virtual="/plumbing/html-top.inc" -->
+
+<h1><span class="corrupttitle"><!--#echo encoding="none" var="name" --></span><br>
+<!--#echo encoding="none" var="title" --></h1>
+
+<ol><li>Introduction
+<ol><li>This policy contains details of the delivery methods, periods and charges that apply to orders for our products made through our website or by telephone or email.</li>
+<li>This policy does not create legally enforceable rights and obligations; it merely indicates our usual practice in relation to the delivery of products.</li>
+</ol></li>
+
+<li>Free delivery
+<ol><li>We offer free standard delivery to all addresses on all orders of &euro;50 or more.</li>
+<li>All other orders will be subject to delivery charges as detailed in Section 5.</li>
+</ol></li>
+
+<li>Geographical limitations
+<ol><li>We will usually be able to deliver to all countries and territories in the European Economic Area, North America, Australia and New Zealand.</li>
+<li>We may from time to time agree to delivery products to other countries and territories.</li>
+</ol></li>
+
+<li>Delivery methods and periods
+<ol><li>The methods that we use to deliver our products, and the time periods within which delivery is usually completed, are those specified by Post Luxembourg.</li>
+<li>If you place your order before 4pm on a working day, these time periods run from the close of business on that day; if you place your order after 4pm on a working day, or on a non&ndash;working day, these time periods run from the close of business on the next following working day.</li>
+<li>The delivery periods set out in this Section 4 are indicative only, and whilst we will make every effort to ensure that you receive your delivery in good time, we do not guarantee delivery before the end of the stated period.</li>
+<li>We may conduct fraud screening checks before dispatching the product, and these checks may delay your delivery. If the delivery is likely to be delayed as a result of fraud screening checks, we will notify you.</li>
+</ol></li>
+
+<li>Delivery charges
+<ol><li>Delivery charges will be calculated by our website and automatically applied to your order during the checkout process, or alternatively quoted by us.</li>
+<li>Applicable delivery charges will depend upon the value of the products in your order.</li>
+<li>Our delivery charges are as follows:
+<ol><li>&euro;4 for an order of less that &euro;10;</li>
+<li>free for an order of &euro;50 or more; and</li>
+<li>&euro;9 otherwise.</li></ol></li>
+</ol></li>
+
+<li>Delivery tracking
+<ol><li>Delivery tracking is available when provided by Post Luxembourg.</li>
+<li>To track your delivery, enter your order number (which is provided in your delivery information email) into our delivery service provider&rsquo;s website here:
+<A href="http://www.trackandtrace.lu/">http://www.trackandtrace.lu/</a>.</li>
+</ol></li>
+
+<li>Receipt and signature
+<ol><li>Tracked deliveries must be received in person at the delivery address, and a signature must be provided.</li>
+<li>Our delivery service provider may notify you in advance of attempting to make a delivery requiring signature.</li>
+</ol></li>
+
+<li>Additional deliveries
+<ol><li>If an initial delivery attempt is unsuccessful, our delivery service provider may make at least 1 more attempt to deliver the products in your order.</li>
+</ol></li>
+
+<li>Collection
+<ol><li>If your products remain undelivered despite our delivery service provider making an attempt to deliver them, the delivery service provider will leave a card at your address, with instructions on how you may collect your products, including a time limit for collection.</li>
+</ol></li>
+
+<li>Delivery problems
+<ol><li>If you experience any problems with a delivery, please contact us using the contact details that we publish on our website or otherwise notify to you.</li>
+<li>If our delivery service provider is unable to deliver your products, and such failure is your fault, and you do not collect your products from our delivery service provider within the relevant time limit, we may agree to arrange for re&ndash;delivery of the products; however, we reserve the right to charge you for the actual costs of re&ndash;delivery (even where the initial delivery was free of charge).</li>
+<li>An indicative list of the situations where a failure to deliver will be your fault is set out below:
+<ol><li>you provided the wrong address for delivery;</li>
+<li>there is a mistake in the address for delivery that was provided;</li>
+<li>the address for delivery is not reasonably accessible;</li>
+<li>the address for delivery cannot safely be accessed;</li>
+<li>if in&ndash;person receipt is not required, there is no easy and secure means of leaving the products at the address for delivery and there is no person available to accept delivery; or</li>
+<li>if in&ndash;person receipt is required, there is no person available at the address for delivery to accept delivery and provide a signature.</li>
+</ol></li></ol></li></ol>
+
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

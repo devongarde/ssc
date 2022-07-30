@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string get_standard_converter_name (nitpick& nits, const ::std::string& name)
 {   if (context.icu ())
-    {   static int converter_count = 0;
+    {   static ::std::atomic_int converter_count = 0;
         if (converter_count == 0)
         {   converter_count = ucnv_countAvailable ();
             if (converter_count == 0)
@@ -64,7 +64,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string normalise_utf8 (nitpick& nits, const ::std::string& s)
 {   if (! context.icu ()) return s;
-    static bool bad_normaliser = false;
+    static ::std::atomic_bool bad_normaliser = false;
     if (bad_normaliser) return s;
     icu::UnicodeString us (icu::UnicodeString::fromUTF8 (icu::StringPiece (s.c_str ())));
     icu::UnicodeString out;

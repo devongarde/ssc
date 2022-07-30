@@ -21,6 +21,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "feedback/nitnames.h"
 
+const char* szSimpleTitle = SIMPLE_TITLE;
+const char* szFullTitle = FULL_TITLE;
+const char* szTestTitle = TEST_TITLE;
+
+
 typedef struct {
     e_nit nit_;
     const char* sz_; } nitname;
@@ -738,6 +743,9 @@ const nitname nitnames [] =
     { nit_languages, "languages" },
     { nit_hidden, "hidden" },
     { nit_bespoke_obsolete, "bespoke_obsolete" },
+    { nit_regex, "regex" },
+    { nit_fred_borked, "fred_borked" },
+    { nit_kew_borked, "kew_borked" },
 
     { nit_off, "" } };
 

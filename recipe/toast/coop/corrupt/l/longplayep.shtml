@@ -1,0 +1,58 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="long play e.p." -->
+<!--#set var="poet" value="steven dalachinsky" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#dalachinsky">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2011-09-01">
+  
+<img SRC="longplayep.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+the complete Evan Parker Poems<br>
+A5, <span itemprop="numberOfPages">40</span>pp, September 2011, &euro;5<br>
+ISBN <span itemprop="isbn">979-10-90394-07-0</span><br>
+The cover image is by the author.
+</p>
+
+<p class="published-quote">
+Poetry &amp; Jazz: possibly the most truly autochthonous North American art combo. Both a high &amp; a popular tradition, way too neglected by the high literati &amp; their low theory&ndash;pundits as a formal &amp; spontaneous process that happens &ldquo;inside / the skillside of the skull&rdquo;&mdash;as the amazing Steven Dalachinsky has it in this lovely, lovely book, a set of poems that sets him squarely (hiply?) in a line starting (in my book) with Kenneth Rexroth &amp; culminating today with, well, maestro Dalachin&ndash; sky, an unequaled delight, a must. <span class="published-quoted">Pierre Joris</span>
+</p>
+
+<p class="published-quote">
+If the definition of the &ldquo;true&rdquo; poet is someone who translates events around him into words AS THEY HAPPEN, then Steve Dalachinsky is one of the few I know&mdash;I&ldquo;ve seen him scribble a poem on a scrap of paper at a viewing&mdash;and if that definition is widened to include being BORN with the natural rhythms of the Universe, the MUSIC OF LIFE, in yr veins, and then being able to infuse yr work with this music, then Steve is the only true poet I know. <span class="published-quoted">Ron Kolm, author of The Plastic Factory, editor of The Worst Book I Ever Read</span>
+</p>
+
+<p class="published-quote">
+Steve Dalachinsky has understood the wish made by John Coltrane of a multi&ndash; directional expression: what he hears in the music (of Evan Parker, this time) is nothing less than the realm of possibilities, possible images, possible ideas, possible meanings. You, the readers, are invited to the wedding party of chaos and cosmos. <span class="published-quoted">Alexandre Pierrepont, dreamer, poet, surrealist, anthropologist</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

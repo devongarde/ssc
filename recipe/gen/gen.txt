@@ -38,6 +38,8 @@ These options are only available on the command line:
 
 -h                      Show a summary of switches, then exit.
 
+-H snippet              Only nitpick this snippet of html
+
 --ontology.list         List known schema versions, then exit.
 
 -V                      Show version details, then exit.
@@ -81,6 +83,8 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --general.class         Report unrecognised classes.
 
+--general.classic       Report all classes used.
+
 --general.cgi           Check environment variables for snippets of HTML.
 -W                      Expects environment variables as produced by
                         OpenBSD's native web server, httpd, produced
@@ -105,11 +109,18 @@ a configuration file and on the command line, the "no-" switch always applies.
                         'catastrophe', 'error' (the default), 'warning',
                         'info', or 'comment'.
 
+--general.exclude REG   Ignore all files that match the posix regular
+                        expression REG. May be repeated.
+
 --general.file XXX      File for persistent data. Requires -N. See also
                         --general.datapath. Default extension: .ndx.
 
+--general.git           Ignore internal git files
+
 --general.ignore EL     ignore attributes and content of the element <EL>. May
                         be repeated.
+
+--general.info          Report launch context when starting
 
 --general.lang LA       If an X/HTML file does not have a language / dialect
                         specified (e.g. "en" for generic English, "en-IE" for
@@ -143,6 +154,9 @@ a configuration file and on the command line, the "no-" switch always applies.
                         thoroughly slobby, HTML, such as being far too lazy to
                         get round to bothering to close elements.
 
+--general.spec          Reset the values of most switches to false
+-j
+
 --general.ssi           Process Server Side Includes. Although ssc can process
 -I                      many server side includes, it cannot process those
                         containing formulae. Note that processing SSIs may
@@ -151,6 +165,10 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --general.test          Output data in automated test format. Used by ssc-test.
 -T                      Not generally useful. Documented so you can avoid it!
+
+--general.thread N      Use N threads when running. Defaults to a value
+                        appropriate for the hardware. Too high a value can
+                        cause problems.
 
 --general.verbose x     Output nits to the specified verbosity: 'catastrophe',
 -v                      'error', 'warning', 'info', 'comment' (the default),
@@ -165,7 +183,7 @@ a configuration file and on the command line, the "no-" switch always applies.
 --html.rfc1942          Ignore the RFC 1942 (tables) extension when processing
                         HTML 2.0.
 
---html.rfc19802         Ignore the RFC 1980 (client side image maps) extension
+--html.rfc1980          Ignore the RFC 1980 (client side image maps) extension
                         when processing HTML 2.0.
 
 --html.rfc2070          Ignore the RFC 2070 (internationalisation) extension
@@ -237,6 +255,9 @@ a configuration file and on the command line, the "no-" switch always applies.
 -3                      (--link.external), it does not report http forwarding
                         errors 301 and 308. Use this switch to have it do so.
 
+--link.check            Check internal links, e.g. those within the website
+-l                      being analysed.
+
 --link.example          Report links to faux domains, as defined by RFC 2606
                         (note ssc also reports links to example.edu).
 
@@ -245,11 +266,11 @@ a configuration file and on the command line, the "no-" switch always applies.
                         Note that ssc will NOT check RFC 2606 links, such as
                         example.com (see --link.example).
 
+--link.forward          Report HTTP forwarding errors encountered when checking
+                        external links (e.g. 301 and 308)
+
 --link.ignore DOMAIN    When checking external links, ignore this domain. May
                         be repeated.
-
---link.internal         Check internal links, e.g. those within the website
--l                      being checked.
 
 --link.local            Report links to local domains, such as domains ending
                         in .lan, .home, .corp, and others.
@@ -262,7 +283,8 @@ a configuration file and on the command line, the "no-" switch always applies.
                         check it the first time it's encountered (requires
                         --link.external).
 
---link.report DOMAIN    Report links to domain. May be repeated.
+--link.report DOMAIN    Report links to domain and its descendents. May be
+                        repeated.
 
 --link.revoke           Do not check whether links' https certificates have
 -r                      been revoked (requires --link.external).
@@ -281,10 +303,6 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 3   MathML 3,
                                 4   MathML 4 (December 2020 draft).
 
---microdata.verify      Check microdata found in WhatWG microdata attributes
--m                      (itemprop, itemtype, etc.). Note that ssc only knows
-                        about certain ontologies (see --ontology.list)
-
 --microdata.export      Export schema.org microdata encountered. This data is
                         exported in JSON format (not JSON-LD).
 
@@ -292,18 +310,22 @@ a configuration file and on the command line, the "no-" switch always applies.
                         write files into the directory DIR. ssc will create
                         the directory tree structure as appropriate.
 
+--microdata.verify      Check microdata found in WhatWG microdata attributes
+-m                      (itemprop, itemtype, etc.). Note that ssc only knows
+                        about certain ontologies (see --ontology.list)
+
 --microdata.virtual v=d When exporting microdata using --microdata.export,
                         export the contents of virtual directory 'v' to 'd'.
                         'v' must match a directory identified with
                         --site.virtual. For example:
                             --microdata.virtual virtual=X:\virtual.
 
---microformat.verify    Verify Microformats data in class and rel attributes
--M                      (see https://microformats.org/).
-
 --microformat.export    Export microformat data encountered in JSON format.
                         This option will write files in the same directory as
                         the source, with the extension .json.
+
+--microformat.verify    Verify Microformats data in class and rel attributes
+-M                      (see https://microformats.org/).
 
 --microformat.version x Presume microformats version x. The following values
                         are current accepted:
@@ -333,14 +355,31 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --nits.nids             Output nit ids, which can be used to redefine nits.
 
+--nits.override F       Use this output format, not the one specified by
+                        --nits.format. F is a template file (see OUTPUT
+                        TEMPLATE below). This switch is intended to aid
+                        automation.
+
 --nits.quote X          Specify quote style when using nit.format. X can be
                         one of 'text' or 'html'.
+
+--nits.root             By default, seek nit output template files in the
+                        website root.
 
 --nits.silence n        Silence nit n; may be repeated (the value of n can be
                         determined using --nits.nids).
 
+--nits.unique           Do not output repeated nits, even if they may contain
+                        additional information.
+
 --nits.warning n        Redefine nit n as a warning; may be repeated (the
                         value of n can be determined using --nits.nids).
+
+--nits.watch            Output debug nits (intended for automation).
+
+--rdfa.version          When checking RDFa files, presume this version
+                        (default: 1.1.3). Note, RDFa analyis is incomplete,
+                        and only intended for supporting HTML analysis.
 
 --ontology.ONT X.Y      Presume version X.Y of ontology ONT. For example:
                             --ontology.xsd 1.1
@@ -516,11 +555,11 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --shadow.root dir       Where to write the shadowed site.
 
---shadow.ssi            Do NOT resolve Server Side Includes when shadowing,
-                        even if --general.ssi is set.
-
 --shadow.space          Leave excess/repeated spaces and blank lines in the
                         shadowed files untidily untouched.
+
+--shadow.ssi            Do NOT resolve Server Side Includes when shadowing,
+                        even if --general.ssi is set.
 
 --shadow.update         Only examine files that have changed since the last
 -u                      time ssc ran. This is incompatible with --corpus.file.
@@ -555,6 +594,8 @@ a configuration file and on the command line, the "no-" switch always applies.
 --spell.accept XXX      XXX is a correct spelling or a word (or a list of
                         words) in all languages.
 
+--spell.cased           Nitpick correctly spelt but wrongly cased words.
+
 --spell.check           Check text spelling. Uses external spelling checkers,
                         so results may be inconsistent between systems.
 
@@ -580,6 +621,8 @@ a configuration file and on the command line, the "no-" switch always applies.
                         a compatible program is expected. If none is specified,
                         ssc will seek hunspell. (Under Windows, ssc uses the
                         OS spellchecker.)
+
+--stats.export F        Export stats to file F.
 
 --stats.meta            Produce statistics on <META> usage in <HEAD>. Note
                         that pragmas reported (http-equiv) are those found in

@@ -159,7 +159,7 @@ public:
 #pragma warning (push, 3)
 #pragma warning ( disable : 26460 )
 #endif // _MSC_VER
-    void merge (nitpick&& np) { nits_.merge (np); }
+//    void merge (nitpick&& np) { nits_.merge (np); }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER

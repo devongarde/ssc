@@ -23,8 +23,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "type/type_enum.h"
 #include "type/type_master.h"
+#include "coop/lox.h"
 
-macro_t macro;
+macro_uptr macro;
+
 vstr_t sections;
 
 #define MACID ALPHANUMERIC "-_"
@@ -559,6 +561,11 @@ vstr_t sections;
     "</P>\n" \
     "\n"
 
+void init_macro ()
+{   macro = macro_uptr (new macro_t);
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    macro -> init (); }
+
 ::std::string enc (const ::std::string& s)
 {   ::std::string res (1, '"');
     for (::std::string::const_iterator i = s.begin (); i != s.end (); ++i)
@@ -605,6 +612,14 @@ vstr_t sections;
             default :  res += *i; break; }
     return res; }
 
+void macro_t::set (const e_nit_macro m, const ::std::string& s)
+{   flox f (lox_flox);
+    mmac_.emplace (m, s); }
+
+void macro_t::set (const e_nit_macro m, ::std::string&& s)
+{   flox f (lox_flox);
+    mmac_.emplace (m, s); }
+
 ::std::string macro_t::nit_content (const ::std::string& s)
 {   switch (context.quote_style ())
     {   case qs_c : return enc (s);
@@ -614,11 +629,13 @@ vstr_t sections;
         case qs_single : return endouble (s, '\'');
         default : return s; } }
 
-bool macro_t::is_template_loaded () noexcept
-{ return ! sections.empty (); }
+bool macro_t::is_template_loaded ()
+{   PRESUME (! fred.inited (), __FILE__, __LINE__);
+    return ! sections.empty (); }
 
 void macro_t::init ()
-{   mmac_.emplace (nm_prog_abbrev, PROG);
+{   PRESUME (! fred.inited (), __FILE__, __LINE__);
+    mmac_.emplace (nm_prog_abbrev, PROG);
     mmac_.emplace (nm_copy_addr, COPYRIGHT_WEBADDR);
     mmac_.emplace (nm_copy_html, COPYRIGHT_HTML);
     mmac_.emplace (nm_copy_text, COPYRIGHT_TEXT);
@@ -679,18 +696,21 @@ bool macro_t::load_template_int (nitpick& nits, const html_version& v, const ::s
     return res; }
 
 bool macro_t::load_template (nitpick& nits, const html_version& v)
-{   const ::std::string& format = context.nit_format ();
+{   PRESUME (! fred.inited (), __FILE__, __LINE__);
+    const ::std::string& format = context.nit_format ();
     ::std::string config;
     bool res = false;
+#ifndef EXPAND_TEST
     if (context.test ())
         if (context.spec ()) res = load_template_int (nits, v, SPEC_NIT);
         else res = load_template_int (nits, v, TEST_NIT);
     else
+#endif // EXPAND_TEST
     {   if (! format.empty ())
         {   config = template_path (nits, "out.nit", format);
             if (! config.empty ()) res = load_template_int (nits, v, config);
             if (! res)
-            {   outstr.err () << "Cannot process " << quote (format) << ", reverting to default output format.\n";
+            {   outstr.err (::std::string ("Cannot process ") + quote (format) + ", reverting to default output format.\n");
                 nits.pick (nit_template_file, es_catastrophic, ec_init, "Cannot process ", quote (format), ", reverting to default output format)"); } }
         if (! res)
             if (! context.snippet ().empty ()) res = load_template_int (nits, v, HTML_NIT);
@@ -741,6 +761,7 @@ bool macro_t::load_template (nitpick& nits, const html_version& v)
 
 ::std::string macro_t::apply (const e_nit_section& sct)
 {   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
+    flox f (lox_flox);
     return apply_macros_int (sections.at (sct), mmac_); }
 
 ::std::string macro_t::apply (const e_nit_section& sct, const mmac_t& values)
@@ -764,5 +785,5 @@ void macro_t::dump_nits (nitpick& nits, const e_nit_section& entry, const e_nit_
 #ifdef NDEBUG
         if (context.tell (nits.worst ()))
 #endif // NDEBUG
-            outstr.out () << nits.review (entry, head, foot);
+            outstr.out (nits.review (entry, head, foot));
     nits.reset (); }

@@ -71,7 +71,7 @@ bool jsonic::parse (nitpick& nits, const ::std::string& s, const e_charcode enco
         value_ = ::boost::json::parse (s, ec, ::boost::json::storage_ptr (), po);
         if (ec) nits.pick (nit_json_error, es_error, ec_json, "JSON error: ", ec.message ());
         else
-        {   if (context.tell (es_structure)) outstr.out () << rpt (value_);
+        {   if (context.tell (es_structure)) outstr.out (rpt (value_));
             return true; } }
     catch (const ::std::exception& x)
     {   nits.pick (nit_json_error, es_error, ec_json, "JSON exception: ", x.what ()); }

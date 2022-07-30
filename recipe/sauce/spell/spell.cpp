@@ -139,13 +139,17 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
 #include "icu/charset.h"
 #include "icu/converter.h"
 
-mssfl_t mssfl;
+mssfl_uptr mssfl;
+
+// mssfl_t mssfl;
 
 void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::filesystem::path& fn)
 {   ::std::string list (normalise_utf8 (nits, read_text_file (nits, fn)));
     if (list.empty ())
         nits.pick (nit_cannot_open, es_error, ec_init, quote (fn.string ()), " is missing, is inaccessible, is not text, is too big, or is empty");
-    else mssfl.insert (mssfl_t::value_type (lang, split_by_whitespace_and (list))); }
+    else
+    {   VERIFY_NOT_NULL (mssfl.get (), __FILE__, __LINE__);
+        mssfl -> insert (mssfl_t::value_type (lang, split_by_whitespace_and (list))); } }
 
 ustr_t langdict, dictlang;
 

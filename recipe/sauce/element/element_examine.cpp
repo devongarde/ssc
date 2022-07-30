@@ -273,7 +273,8 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
             {   url u (node_.nits (), node_.version (), node_.text ());
                 if (! u.invalid ())
                 {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
-                    css_cache.parse_file (node_.nits (), page_, u); } }
+                    VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
+                    css_cache -> parse_file (node_.nits (), page_, u); } }
             break;
         case elem_faux_cdata :
             if ((flags & EP_NOSPELL) == 0)
@@ -582,6 +583,7 @@ void element::verify_document ()
     for (element_ptr e = child_; e; e = e -> sibling_)
     {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
         res << e -> report (); }
+    nits ().accumulate (page_.nits ());
     return res.str (); }
 
 element* element::next_element (element* previous)

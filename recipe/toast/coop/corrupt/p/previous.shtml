@@ -1,0 +1,80 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Previous Vertigos" -->
+<!--#set var="poet" value="Nina Karacosta" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#karacosta">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2011-02-01">
+  
+<img SRC="previous.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">24</span>pp, February 2011, &euro;5<br>
+ISBN <span itemprop="isbn">979-10-90394-01-8</span><br>
+The cover image is &ldquo;Compasses And The Elastic Eye&rdquo;, by the author.<br>
+Le traduction en fran&ccedil;ais, par Anne Talvaz, est <a href="/v/vertiges.shtml">Vertiges Pr&eacute;c&eacute;dents</a>.
+</p>
+
+<p class="published-quote">
+The vertigo in the title of Nina Karacosta&rsquo;s <span class="book-title"><!--#echo encoding="none" var="title" --></span>&rsquo;s draws attention to a whirling or spinning movement, to the causes and history of that motion and the narrator&rsquo;s attitudes to those movements. Poems flicker and wobble in the collection. They situate the vertigo within relationships and the narrative search for an adequate response to a specific dizziness by finding a form for each instance. This produces an inventive openness to self, self and others, to self and place and to self and the ground upon which she walks. The self is not always stationary but rather seen in suspension or truncation. It is this openness to the vagaries of the self and its relations and in disturbance to dizzying motion, most graphically in poems such as &lsquo;Can&rsquo;t Talk About It&rsquo;, &lsquo;The Story Of Everything&rsquo;, &lsquo;Psychotropic Hurrah&rsquo; and &lsquo;Under&rsquo; that makes this collection such a cracking read. I thoroughly recommend this collection.
+<span class="published-quoted">
+David Caddy, editor of Tears in the Fence
+</span></p>
+
+<p class="published-quote">
+Karacosta&rsquo;s imagery is often exotic, with orchids and hummingbirds, peyote and spices, but these are counterbalanced with altogether more biological terms: photosphere, embroid, analgetic membranes, mitochondria, fluid flesh. Here is a poet who aims to subvert our expectations at every turn. The result is a kind of schizophrenia that is intriguing.
+<span class="published-quoted">
+Read Afric McGlinchey&rsquo;s full review at Sabotage Reviews.
+</span></p>
+
+<p class="published-quote">
+<span class="book-title"><!--#echo encoding="none" var="title" --></span> is a collection of memories, advice to self, and reflections captured in windows.  <!--#echo encoding="none" var="poet" -->&rsquo;s first collection is mysteriously original; told through a megaphone.  The voice of a very wise underground soul cascading through the rugged cliffs on a distant seascape.  Oddly, this voice is so fresh, so recently acquired, it&rsquo;s as if the speaker is telling herself this ancient advice for the very first time.  There is a power here, which at times seems to startle the speaker.  &ldquo;i   can   maybe   write  a   pow  wow  poem&rdquo;.
+</p>
+
+<p class="published-quote">
+ 
+Reading these poems is like reading a Tarot spread:  there is a lot going on but if you look closer there is even more going on and everything seems to be telling you about this very moment.  An awareness that isn&rsquo;t logical.  A travelling through time and space on a bus that never leaves the station.  Scaling the walls of the interior.
+</p>
+
+<pre class="published-quote">
+                                Harsh chchbit rapid call
+                                in the glass palaces of your childhood
+                                where he
+                                whispers his yellow skin
+                                on horizontal branches of tree.
+</pre>
+
+<p class="published-quote">
+This is a meditation on letting go of the past and capturing the hidden mysteries of all the previousness.  An attempt at isolating it in order to learn from it. Talk back to it. Karacosta has a keen sense for the dreamy.  These poems dig down and burrow.  They are naturally occurring.  &ldquo;I had crystals hidden into my earth. / I was a crow.&rdquo;  Things are definitely not what they appear to be; unraveling and unraveling like &ldquo;worn out legs / away from summer.&rdquo;
+<span class="published-quoted">
+Susanna Fry
+</span></p>
+
+</div>
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

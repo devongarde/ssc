@@ -516,7 +516,7 @@ struct symbol_entry < html_version, e_fontname > fontname_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "Verdana", fn_verdana } };
 
 struct symbol_entry < html_version, e_font_variant_2 > font_variant_2_symbol_table [] =
-{   { { HTML_SVG20 }, { HTML_UNDEF }, "normal", fv2_normal },
+{   // { { HTML_SVG20 }, { HTML_UNDEF }, "normal", fv2_normal },
     { { HTML_SVG20 }, { HTML_UNDEF }, "none", fv2_none },
     { { HTML_SVG20, 0, HE_COMBINES | HE_GROUP (1) }, { HTML_UNDEF }, "common", fv2_common },
     { { HTML_SVG20, 0, HE_COMBINES | HE_GROUP (1) }, { HTML_UNDEF }, "no_common-ligatures", fv2_no_common },
@@ -1184,6 +1184,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-case", nm_context_case },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-cgi", nm_context_cgi },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css", nm_context_css },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-classic", nm_context_classic },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-clear", nm_context_clear },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-config", nm_context_config },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-copy", nm_context_copy },
@@ -1197,6 +1198,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-extensions", nm_context_extensions },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-foaf", nm_context_foaf },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-forward", nm_context_forward },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-thread", nm_context_fred },
     { { HTML_TAGS }, { HTML_UNDEF }, "general-info", nm_general_info },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-icu", nm_context_icu },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-ignore", nm_context_ignore },
@@ -1985,8 +1987,195 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < html_version, e_##XX >)); \
     context.validation ().add_options () (VALIDATION #XX, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid '" #XX "'.")
 
+void init_1 ()
+{   type_master < t_1 > :: init ();
+    type_master < t_bb > :: init ();
+    type_master < t_blocking > :: init ();
+    type_master < t_cc_prohibits > :: init ();
+    type_master < t_html_boolean > :: init ();
+    type_master < t_keygentype > :: init ();
+    type_master < t_svg_content > :: init ();
+    type_master < t_svg_phase > :: init ();
+    type_master < t_xmllink > :: init (); }
+
+void init_2 ()
+{   type_master < t_10 > :: init ();
+    type_master < t_accumulate > :: init ();
+    type_master < t_additive > :: init ();
+    type_master < t_bool > :: init ();
+    type_master < t_capture > :: init ();
+    type_master < t_compositing > :: init ();
+    type_master < t_connect > :: init ();
+    type_master < t_coordinatesystem > :: init ();
+    type_master < t_cors > :: init ();
+    type_master < t_dataformatas > :: init ();
+    type_master < t_defaultaction > :: init ();
+    type_master < t_editable > :: init ();
+    type_master < t_fill_ve > :: init ();
+    type_master < t_fillanim > :: init ();
+    type_master < t_focushighlight > :: init ();
+    type_master < t_gender > :: init ();
+    type_master < t_hidden > :: init ();
+    type_master < t_hv > :: init ();
+    type_master < t_initialvisibility > :: init ();
+    type_master < t_js_version > :: init ();
+    type_master < t_layout > :: init ();
+    type_master < t_lengthadjust > :: init ();
+    type_master < t_loading > :: init ();
+    type_master < t_lralign > :: init ();
+    type_master < t_markerunits > :: init ();
+    type_master < t_mathdisplay > :: init ();
+    type_master < t_mathfontstyle > :: init ();
+    type_master < t_mathfontweight > :: init ();
+    type_master < t_mathmode > :: init ();
+    type_master < t_mathorder > :: init ();
+    type_master < t_mathscope > :: init ();
+    type_master < t_meetslice > :: init ();
+    type_master < t_morphology_operator > :: init ();
+    type_master < t_notations > :: init ();
+    type_master < t_onoff > :: init ();
+    type_master < t_orientation > :: init ();
+    type_master < t_overlay > :: init ();
+    type_master < t_propagate > :: init ();
+    type_master < t_settype > :: init ();
+    type_master < t_spacing > :: init ();
+    type_master < t_ssi_f > :: init ();
+    type_master < t_ssi_sizefmt > :: init ();
+    type_master < t_startend > :: init ();
+    type_master < t_stitchtiles > :: init ();
+    type_master < t_streamedcontents > :: init ();
+    type_master < t_svg_direction2 > :: init ();
+    type_master < t_svg_fontvariant_ff > :: init ();
+    type_master < t_svg_method > :: init ();
+    type_master < t_svg_playbackorder > :: init ();
+    type_master < t_svg_side > :: init ();
+    type_master < t_svg_timelinebegin > :: init ();
+    type_master < t_svg_units > :: init ();
+    type_master < t_tbalign > :: init ();
+    type_master < t_tfn > :: init ();
+    type_master < t_transp > :: init ();
+    type_master < t_truefalseempty > :: init ();
+    type_master < t_viewportscreen > :: init ();
+    type_master < t_vtype > :: init ();
+    type_master < t_workertype > :: init ();
+    type_master < t_wrap > :: init ();
+    type_master < t_wrap3 > :: init ();
+    type_master < t_xlinkshow_a > :: init ();
+    type_master < t_xmlspace > :: init ();
+    type_master < t_xorder > :: init ();
+    type_master < t_yesno > :: init ();
+    type_master < t_yesnoempty > :: init ();
+    type_master < t_zoompan > :: init (); }
+
+void init_3 ()
+{   type_master < t_aria_live > :: init ();
+    type_master < t_attributetype > :: init ();
+    type_master < t_behaviour > :: init ();
+    type_master < t_button > :: init ();
+    type_master < t_cc_permits > :: init ();
+    type_master < t_command > :: init ();
+    type_master < t_controlslist > :: init ();
+    type_master < t_corp > :: init ();
+    type_master < t_csvw_direction > :: init ();
+    type_master < t_decoding > :: init ();
+    type_master < t_dsc > :: init ();
+    type_master < t_edgemode > :: init ();
+    type_master < t_edi > :: init ();
+    type_master < t_enctype > :: init ();
+    type_master < t_fill_rule > :: init ();
+    type_master < t_font_variant_position > :: init ();
+    type_master < t_fontnia > :: init ();
+    type_master < t_importance > :: init ();
+    type_master < t_infixlinebreakstyle > :: init ();
+    type_master < t_keytype > :: init ();
+    type_master < t_lcralign > :: init ();
+    type_master < t_lraalign > :: init ();
+    type_master < t_mathform > :: init ();
+    type_master < t_mathframe > :: init ();
+    type_master < t_mathoccurence > :: init ();
+    type_master < t_menuitem > :: init ();
+    type_master < t_menutype > :: init ();
+    type_master < t_mf_class > :: init ();
+    type_master < t_mf_status > :: init ();
+    type_master < t_nsd > :: init ();
+    type_master < t_nuf > :: init ();
+    type_master < t_preload5 > :: init ();
+    type_master < t_restart > :: init ();
+    type_master < t_scrolling > :: init ();
+    type_master < t_shape_rcp > :: init ();
+    type_master < t_spacer > :: init ();
+    type_master < t_spreadmethod > :: init ();
+    type_master < t_ssi_echo > :: init ();
+    type_master < t_ssi_include > :: init ();
+    type_master < t_svg_direction > :: init ();
+    type_master < t_svg_fontvariant > :: init ();
+    type_master < t_tendstotype > :: init ();
+    type_master < t_tfa > :: init ();
+    type_master < t_tfi > :: init ();
+    type_master < t_tfu > :: init ();
+    type_master < t_units > :: init ();
+    type_master < t_valign_tmb > :: init ();
+    type_master < t_valuetype > :: init ();
+    type_master < t_vector_effect_12 > :: init ();
+    type_master < t_visibility10 > :: init (); }
+
+void init_4 ()
+{   type_master < t_actiontype2 > :: init ();
+    type_master < t_align2070 > :: init ();
+    type_master < t_aligndec > :: init ();
+    type_master < t_alignfig > :: init ();
+    type_master < t_arabicenum > :: init ();
+    type_master < t_aria_autocomplete > :: init ();
+    type_master < t_aria_invalidity > :: init ();
+    type_master < t_buffered_rendering > :: init ();
+    type_master < t_calcmode > :: init ();
+    type_master < t_captionalign > :: init ();
+    type_master < t_cc_requires > :: init ();
+    type_master < t_channelselector > :: init ();
+    type_master < t_content_encoding > :: init ();
+    type_master < t_device > :: init ();
+    type_master < t_dsctv > :: init ();
+    type_master < t_edit > :: init ();
+    type_master < t_effect > :: init ();
+    type_master < t_frame4 > :: init ();
+    type_master < t_larnalign > :: init ();
+    type_master < t_lcrd > :: init ();
+    type_master < t_lcrnalign > :: init ();
+    type_master < t_linebreakstyle > :: init ();
+    type_master < t_linecap > :: init ();
+    type_master < t_linejoin > :: init ();
+    type_master < t_mathclosure > :: init ();
+    type_master < t_mathside > :: init ();
+    type_master < t_mf_availability > :: init ();
+    type_master < t_mf_category > :: init ();
+    type_master < t_paint_order > :: init ();
+    type_master < t_phase_x > :: init ();
+    type_master < t_rsvp > :: init ();
+    type_master < t_shadowinherit > :: init ();
+    type_master < t_shape4 > :: init ();
+    type_master < t_size3 > :: init ();
+    type_master < t_ssi_config > :: init ();
+    type_master < t_ssi_set > :: init ();
+    type_master < t_svg_baseprofile > :: init ();
+    type_master < t_syncbehaviour > :: init ();
+    type_master < t_syncbehaviourdefault > :: init ();
+    type_master < t_tdscope > :: init ();
+    type_master < t_tfmu > :: init ();
+    type_master < t_uplr > :: init ();
+    type_master < t_valign3 > :: init ();
+    type_master < t_visibility11 > :: init ();
+    type_master < t_vkind > :: init ();
+    type_master < t_xsdbool > :: init (); };
+
 void enum_init (nitpick& nits)
-{   INIT_ENUM (action);
+{   init_1 ();
+    init_2 ();
+    init_3 ();
+    init_4 ();
+    INIT_ENUM (accrual_method);
+    INIT_ENUM (accrual_periodicity);
+    INIT_ENUM (accrual_policy);
+    INIT_ENUM (action);
     INIT_ENUM (align3);
     INIT_ENUM (alignment_baseline);
     INIT_ENUM (alignplus);
@@ -1994,9 +2183,11 @@ void enum_init (nitpick& nits)
     INIT_ENUM (as_units);
     INIT_ENUM (autocapitalise);
     INIT_ENUM (autocomplete);
+    INIT_ENUM (baselineshift);
     INIT_ENUM (beginfn);
     INIT_ENUM (cachekey);
     INIT_ENUM (citype);
+    INIT_ENUM (colour_interpolation);
     INIT_ENUM (colour_rendering);
     INIT_ENUM (cookieid);
     INIT_ENUM (cntype);
@@ -2004,7 +2195,9 @@ void enum_init (nitpick& nits)
     INIT_ENUM (composite_operator);
     INIT_ENUM (crossout);
     INIT_ENUM (cursor);
+    INIT_ENUM (dcmitype);
     INIT_ENUM (decalign);
+    INIT_ENUM (determiner);
     INIT_ENUM (dingbat);
     INIT_ENUM (dir);
     INIT_ENUM (display_align);
@@ -2013,11 +2206,16 @@ void enum_init (nitpick& nits)
     INIT_ENUM (figalign);
     INIT_ENUM (filter_in);
     INIT_ENUM (fontname);
+    INIT_ENUM (font_enum);
+    INIT_ENUM (font_variant_2);
     INIT_ENUM (font_variant_caps);
+    INIT_ENUM (font_variant_east_asian);
     INIT_ENUM (font_variant_ligature);
+    INIT_ENUM (font_variant_numeric);
+    INIT_ENUM (formaturi);
     INIT_ENUM (halign);
-    INIT_ENUM (image_rendering);
     INIT_ENUM (icalfreq);
+    INIT_ENUM (image_rendering);
     INIT_ENUM (icc);
     INIT_ENUM (indentalign);
     INIT_ENUM (inky);
@@ -2089,6 +2287,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (svg_overflow);
     INIT_ENUM (svg_type);
     INIT_ENUM (svg_version);
+    INIT_ENUM (svg_version_grand);
     INIT_ENUM (tableframe);
     INIT_ENUM (text_decoration);
     INIT_ENUM (text_rendering);
@@ -2100,6 +2299,9 @@ void enum_init (nitpick& nits)
     INIT_ENUM (unicode_bidi);
     INIT_ENUM (vector_effect_2);
     INIT_ENUM (vertical_align_enum);
+    INIT_ENUM (vgender);
+    INIT_ENUM (vrel);
+    INIT_ENUM (vtt);
     INIT_ENUM (whitespace);
     INIT_ENUM (writingmode);
     INIT_ENUM (xmlns); }

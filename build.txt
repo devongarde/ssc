@@ -44,7 +44,8 @@ Once you've got them, you can run cmake from the project root directory.
 winspell
 --------
 The Windows build, by default, uses the native Windows spellchecker, although,
-before Windows 11, that doesn't seem to work so well in multilingual contexts.
+except for Windows 11, that doesn't seem to work so well in multilingual
+contexts.
 
 
 Building
@@ -78,12 +79,12 @@ some final test errors. Note in particular that complaints about being unable
 to find or copy files during testing are not of concern, these come from
 scripts that set up or tear down individual tests, and the standard commands
 used sometimes complain if they can't find files they're supposed to delete,
-which is a bit silly given things are already in the desired state.
+which is a bit silly given that means things are already in the desired state.
 
 The following have been successfully built as x64 amd/intel, although not
 always under all versions of ssc:
 Linux: Centos 8/9 Streams, Ubuntu Server 20.04/20.10
-OpenBSD: 7.0 / 6.9 / 6.8
+OpenBSD: 7.1 / 7.0 / 6.9 / 6.8
 MacOS: Monterey, Big Sur, Catalina, Mojave, High Sierra
 
 Note: Use clang if possible, gcc takes a wee while.
@@ -100,7 +101,8 @@ built your own boost.
 OpenBSD
 -------
 I've only tested the amd64 build under 7.0 and 6.9 (and, with older versions
-of ssc, 6.8).
+of ssc, 6.8). I have made some cursory tests with 7.1, but not yet done things
+properly, mostly because life got in the way.
 
 The versions of boost and cmake supplied in packages work.
 

@@ -106,7 +106,7 @@ void lingo::init (nitpick& )
 {   for (int i = 0; ::gsl::at (ab, i).a_ != nullptr; ++i)
 #ifdef DEBUG
         if (mab.find (::std::string (::gsl::at (ab, i).a_)) != mab.cend ())
-            outstr.err () << ::std::string (::gsl::at (ab, i).a_) << " repeated in standard language table.\n";
+            outstr.err (::std::string (::gsl::at (ab, i).a_) + " repeated in standard language table.\n");
         else
 #endif // DEBUG
             mab.insert (::std::pair (::std::string (::gsl::at (ab, i).a_), ::std::string (ab [i].b_))); }

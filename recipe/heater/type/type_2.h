@@ -36,6 +36,7 @@ public:
     typedef true_type has_int_type;
     two_value () = default;
     explicit two_value (element* box) noexcept : type_base < base_type, TYPE > (box) { }
+    static void init ();
     static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const
     {   if (! type_base < base_type, TYPE > :: unknown ())
@@ -43,23 +44,7 @@ public:
         return ::std::string (); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   ::std::string pret (trim_the_lot_off (s));
-        ::std::string t (case_must_match < false >::lower (pret));
-        type_base < base_type, TYPE > :: status (s_good);
-        if (is_that < EMPTY > :: beside_the_point (t)) return;
-        if (off_.empty ())
-        {   off_ = ::boost::to_lower_copy (::std::string (OFF::sz ()));
-            on_ =  ::boost::to_lower_copy (::std::string (ON::sz ())); }
-        if (t == off_) true_ = false;
-        else if (t == on_) true_ = true;
-        else
-        {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
-            else if (! check_identifier_spelling (nits, v, t))
-                nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (OFF::sz ()), " or ", quote (ON::sz ()));
-            type_base < base_type, TYPE > :: status (s_invalid);
-            return; }
-        compare_validate (nits, v, get_string (), pret); }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     void swap (two_value& t) noexcept
     {   ::std::swap (true_, t.true_);
         type_base < base_type, TYPE > :: swap (t); }
@@ -275,3 +260,25 @@ template < > struct type_master < t_yesnoempty > : two_value < t_yesnoempty, e_y
 
 template < > struct type_master < t_zoompan > : two_value < t_zoompan, e_zoompan, sz_disable, sz_magnify, false >
 { using two_value < t_zoompan, e_zoompan, sz_disable, sz_magnify, false > :: two_value; };
+
+template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
+    void two_value < TYPE, base_type, OFF, ON, EMPTY > :: init ()
+{   off_ = ::boost::to_lower_copy (::std::string (OFF::sz ()));
+    on_ =  ::boost::to_lower_copy (::std::string (ON::sz ())); }
+
+template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
+    void two_value < TYPE, base_type, OFF, ON, EMPTY > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   ::std::string pret (trim_the_lot_off (s));
+    ::std::string t (case_must_match < false >::lower (pret));
+    type_base < base_type, TYPE > :: status (s_good);
+    if (is_that < EMPTY > :: beside_the_point (t)) return;
+    PRESUME (! off_.empty (), __FILE__, __LINE__);
+    if (t == off_) true_ = false;
+    else if (t == on_) true_ = true;
+    else
+    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
+        else if (! check_identifier_spelling (nits, v, t))
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (OFF::sz ()), " or ", quote (ON::sz ()));
+        type_base < base_type, TYPE > :: status (s_invalid);
+        return; }
+    compare_validate (nits, v, get_string (), pret); }

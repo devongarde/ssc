@@ -187,13 +187,13 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
                 if ((f.ext () & HE_M3_NONSTAND) != 0)
                     nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers");
                 else if (f.bespoke ())
-                    nits.pick (nit_bespoke_obsolete, es_error, ec_type, quote (s), " is bespoke and/or obsolete, so unlikely to be supported by all browser.");
+                    nits.pick (nit_bespoke_obsolete, es_warning, ec_type, quote (s), " is bespoke and/or obsolete, so unlikely to be supported by many browsers.");
                 enum_base < ENUM, E > :: status (s_good);
                 enum_base < ENUM, E > :: post_set_value (nits, v);
                 return; } }
         else
         {   check_identifier_spelling (nits, v, t);
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is invalid here"); } }
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is invalid here (", static_cast < int> (E), ")"); } }
     enum_base < ENUM, E > :: status (s_invalid); }
 
 template < > class type_master < t_accrual_method > : public enum_n < t_accrual_method, e_accrual_method >
@@ -484,11 +484,11 @@ template < > struct type_master < t_page_orientation > : enum_n < t_page_orienta
 template < > struct type_master < t_paintkeyword > : enum_n < t_paintkeyword, e_paintkeyword >
 { using enum_n < t_paintkeyword, e_paintkeyword > :: enum_n; };
 
-template < > struct type_master < t_print > : enum_n < t_print, e_print >
-{ using enum_n < t_print, e_print > :: enum_n; };
-
 template < > struct type_master < t_pointer_events > : enum_n < t_pointer_events, e_pointer_events >
 { using enum_n < t_pointer_events, e_pointer_events > :: enum_n; };
+
+template < > struct type_master < t_print > : enum_n < t_print, e_print >
+{ using enum_n < t_print, e_print > :: enum_n; };
 
 template < > struct type_master < t_quote_style > : enum_n < t_quote_style, e_quote_style >
 { using enum_n < t_quote_style, e_quote_style > :: enum_n; };
@@ -520,9 +520,6 @@ template < > struct type_master < t_shadow > : enum_n < t_shadow, e_shadow >
 template < > struct type_master < t_shape7 > : enum_n < t_shape7, e_shape7 >
 { using enum_n < t_shape7, e_shape7 > :: enum_n; };
 
-template < > struct type_master < t_ssi > : enum_n < t_ssi, e_ssi >
-{ using enum_n < t_ssi, e_ssi > :: enum_n; };
-
 template < > struct type_master < t_sgml > : enum_n < t_sgml, e_sgml >
 { using enum_n < t_sgml, e_sgml > :: enum_n; };
 
@@ -531,6 +528,9 @@ template < > struct type_master < t_shape_rendering > : enum_n < t_shape_renderi
 
 template < > struct type_master < t_smei > : enum_n < t_smei, e_smei >
 { using enum_n < t_smei, e_smei > :: enum_n; };
+
+template < > struct type_master < t_ssi > : enum_n < t_ssi, e_ssi >
+{ using enum_n < t_ssi, e_ssi > :: enum_n; };
 
 template < > struct type_master < t_ssi_comparison > : enum_n < t_ssi_comparison, e_ssi_comparison >
 { using enum_n < t_ssi_comparison, e_ssi_comparison > :: enum_n; };

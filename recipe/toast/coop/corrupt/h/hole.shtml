@@ -1,0 +1,68 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Hole In My Side" -->
+<!--#set var="poet" value="Troy Yorke" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#woolley">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2014">
+  <meta itemprop="inLanguage" content="en-CA">
+  <meta itemprop="datePublished" content="2014-11-01">
+  
+<img SRC="hole.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+US Trade, <span itemprop="numberOfPages">132</span>pp, &euro;15, November 2014<br>
+ISBN <span itemprop="isbn">979-10-90394-29-2</span><br>
+The cover image is by <!--#echo encoding="none" var="poet" -->.
+</p>
+
+<p class="published-quote">
+<!--#echo encoding="none" var="poet" -->&rsquo;s poetry is a sensual and confrontational experience that tickles not only the ear, but also the eye through it&rsquo;s imaginative layout on the page. The language is rich with imagery that is both visceral and delightfully earthy and vulgar. It speaks of the contemporary experience of sex, love, violence and desire with a clear, twinkling eye that makes each selection something to be savoured again and again. This is a book I would highly recommend.
+<span class="published-quoted">Brad Fraser, Writer/Director</span>
+</p>
+
+<p class="published-quote">
+i love ths book<br>
+th amayzing love pomes ar palpable<br>
+sum surprising<br>
+th big pickshur pomes ar also remarkabul<br>
+&ldquo;awestruck&rdquo; ovrwhelming<br>
+th vizual pomes ar sew wundrful<br>
+lifts th reedr byond<br>
+a wundrful work<br>
+daring incisiv n rapturous<br>
+<span class="published-quoted">bill bissett, &lsquo;poet n paintr&rsquo;</span>
+</p>
+
+<p class="published-quote">
+<!--#echo encoding="none" var="poet" --> says it best in his poem &ldquo;Wandering Eye Thru a Waterfall&rdquo;; these poems are &ldquo;one rip-roaring rush of wrong splashed hard up the forbidden&hellip;&rdquo; They leak and they harp like beautifully plucked high-strung ball-breaking ballads. They howl like randy wolverines rabid with wit and foresight. Bearing concise debauched glimpses of life, splashed with lurid and luscious observations that would make a moon-hooker blush with inter-galactic bliss&mdash;if you just lie down and suck back these poems &ldquo;behind a pale sheet of nobody&rdquo; they will leave you choking&mdash;and gasping&mdash;for more.
+<span class="published-quoted">David Bateman, Performance Poet</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

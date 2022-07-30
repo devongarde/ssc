@@ -371,7 +371,8 @@ Name/Value pairs:
   
 Nits Reported:
     Errors: 4 times 
-    Warnings: 7 times 
+    Warnings: 6 times 
+    Info: once 
   
 Nit Categories:
     Attribute: thrice 

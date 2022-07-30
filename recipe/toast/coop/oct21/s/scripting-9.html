@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> scripting hcf </title> </head>
+ <body>
+
+<script>
+while (true) { /* loop */ }
+</script>
+
+<button onclick="Promise.resolve('import(`./example.mjs`)').then(eval)">Click me</button>
+<button onclick="import('./foo.mjs')">Click me</button>
+
+<button id="test">Start Demo</button>
+<script>
+var button = document.getElementById('test');
+button.addEventListener('click', function () { alert('ONE') }, false);
+button.setAttribute('onclick', "alert('NOT CALLED')"); // event handler listener is registered
+here
+button.addEventListener('click', function () { alert('THREE') }, false);
+button.onclick = function () { alert('TWO'); };
+button.addEventListener('click', function () { alert('FOUR') }, false);
+</script>
+
+<button id="test">Start Demo</button>
+<script>
+var button = document.getElementById('test');
+button.addEventListener('click', function () { alert('ONE') }, false);
+button.setAttribute('onclick', "alert('NOT CALLED')"); // event handler is activated here
+button.addEventListener('click', function () { alert('TWO') }, false);
+button.onclick = null; // but deactivated here
+button.addEventListener('click', function () { alert('THREE') }, false);
+button.onclick = function () { alert('FOUR'); }; // and re-activated here
+button.addEventListener('click', function () { alert('FIVE') }, false);
+</script>
+
+</body>
+</html>

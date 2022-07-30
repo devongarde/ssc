@@ -39,10 +39,24 @@ public:
     {   return family_.at (e); }
     unsigned member (const MEMBER m) const
     {   return member_.at (m); }
-    void mark (const FAMILY f, const MEMBER m)
+    void mark (const FAMILY f, const MEMBER m, const unsigned u = 1)
     {   PRESUME (m <= max_member, __FILE__, __LINE__);
-        ++(family_.at (f));
-        ++(member_.at (m));
+        family_.at (f) += u;
+        member_.at (m) += u;
         uint64_t i = index (f, m);
-        if (count_.find (i) != count_.cend ()) ++(count_.at (i));
-        else count_.insert (counter_t :: value_type (i, 1)); } };
+        if (count_.find (i) != count_.cend ()) count_.at (i) += u;
+        else count_.insert (counter_t :: value_type (i, u)); }
+    void accumulate (stats2 < FAMILY, MEMBER, max_family, max_member >& o) const
+    {   PRESUME (o.family_.size () >= family_.size (), __FILE__, __LINE__);
+        PRESUME (o.member_.size () >= member_.size (), __FILE__, __LINE__);
+        for (unsigned i = 0; i < family_.size (); ++i)
+            o.family_.at (i) += family_.at (i);
+        for (unsigned i = 0; i < member_.size (); ++i)
+            o.member_.at (i) += member_.at (i);
+        for (auto item : count_)
+            if (item.second > 0)
+                if (o.count_.find (item.first) != o.count_.cend ()) o.count_.at (item.first) += item.second;
+                else o.count_.insert (counter_t :: value_type (item.first, item.second)); } };
+
+typedef stats2 < e_element, e_attribute, last_element_tag, last_attribute > attribute_stats;
+typedef stats2 < e_schema_type, e_schema_property, sty_illegal, sp_illegal > schema_property_stats;

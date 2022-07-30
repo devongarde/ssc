@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 129
-#define VERSION_STRING "0.0.129"
+#define VERSION_RELEASE 130
+#define VERSION_STRING "0.0.130"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -60,9 +60,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DBG_ASSERT(x)
 #endif // debug
 
-#if ! defined (NOSPELL) && ! defined (HUNSPELL) && ! defined (WINSPELL)
+#if defined (SSC_TEST)
+#define NOICU
+#elif ! defined (NOSPELL) && ! defined (HUNSPELL) && ! defined (WINSPELL)
 #define NOSPELL
-#endif
+#endif // SSC_TEST
 
 #ifdef NOICU
 #define NOSPELL
@@ -193,6 +195,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <array>
 #include <codecvt>
 #include <locale>
+#include <shared_mutex>
+#include <thread>
+#include <atomic>
 
 #ifndef NOICU
 #include <unicode/uvernum.h>
@@ -323,6 +328,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/property_tree/string_path.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/logic/tribool.hpp>
+#include <boost/regex.hpp>
 #include <boost/system.hpp>
 #include <boost/thread.hpp>
 
@@ -346,6 +352,10 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #pragma warning (pop)
 #endif // _MSC_VER
 #endif // NO_JSONIC
+
+// https://howardhinnant.github.io/date/date.html
+#include <date/date.h>
+#include <date/tz.h>
 
 #endif // SSC_TEST
 
@@ -530,22 +540,15 @@ typedef uint64_t flags_t; // at least 64 bits
 #define DBG_STATUS
 #endif // DEBUG
 
-#define BUILD_INFO BP_VER DBG_STATUS FUDDY JSNIC NPS_GEN SPELT MAC_VER OBSD_VER ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+// Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
+// #define EXPAND_TEST
 
-#define BASE_TITLE \
-            FULLNAME " " VERSION_STRING "\n" \
-            WEBADDR "\n" \
-            COPYRIGHT "\n"
+#define BUILD_INFO   BP_VER DBG_STATUS FUDDY JSNIC NPS_GEN SPELT MAC_VER OBSD_VER ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BASE_TITLE   FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n"
+#define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
+#define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
+#define TEST_TITLE   FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
 
-#define SIMPLE_TITLE BASE_TITLE
-
-#define FULL_TITLE \
-        BASE_TITLE \
-        "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" \
-        "\n"
-
-#define TEST_TITLE \
-            FULLNAME " " VERSION_STRING "\n" \
-            "(" __DATE__ " " __TIME__ ")\n" \
-            WEBADDR "\n" \
-            COPYRIGHT "\n\n"
+extern const char* szSimpleTitle;
+extern const char* szFullTitle;
+extern const char* szTestTitle;

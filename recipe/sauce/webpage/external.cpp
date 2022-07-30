@@ -171,13 +171,16 @@ int test_connection (nitpick& nits, const html_version& v, const url& u)
     return 0; }
 
 bool external::verify (nitpick& nits, const html_version& v, const url& u, int& code, bool& repeated)
-{   if (u.empty ()) { code = 400; return false; }
-    auto e = url_.find (u.absolute ());
-    repeated = (e != url_.end ());
-    if (repeated) code = e -> second;
-    else
+{   ::std::string ua = u.absolute ();
+    if (u.empty ()) { code = 400; return false; }
+    {   lox l (lox_external);
+        auto e = url_.find (ua);
+        repeated = (e != url_.cend ());
+        if (repeated) code = e -> second; }
+    if (! repeated)
     {   code = test_connection (nits, v, u);
-        url_.insert (value_t (u.absolute (), code)); }
+        lox l (lox_external);
+        url_.insert (value_t (ua, code)); }
     if ((code >= 400) && (code < 500)) return false;
     if (! context.forwarded ()) return true;
     return ((code != 301) && (code != 308)); };   // consider checking for ids

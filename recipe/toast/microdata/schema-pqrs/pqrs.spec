@@ -20,7 +20,6 @@ PASS ../toast/microdata/schema-pqrs/performancerole.html
 
 PASS ../toast/microdata/schema-pqrs/performingartstheatre.html
 12 use_quote_code
-13 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 19 no_such_folder url_not_found
 21 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 
@@ -373,9 +372,6 @@ PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 349 unrecognised_value unrecognised_value
 350 no_such_folder url_not_found unrecognised_value
 351 no_such_folder url_not_found unrecognised_value
-357 missing_itemtype
-363 missing_itemtype
-372 missing_itemtype
 389 unrecognised_value unrecognised_value
 390 unrecognised_value
 391 no_such_folder url_not_found unrecognised_value

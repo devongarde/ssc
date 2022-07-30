@@ -1,0 +1,59 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Wolf Down" -->
+<!--#set var="poet" value="Anthony Liccione" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#liccione">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2011-12-01">
+  
+<img SRC="wolfdown.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+US Trade, <span itemprop="numberOfPages">84</span>pp, &euro;12, December 2011<br>
+ISBN <span itemprop="isbn">979-10-90394-20-9</span><br>
+The cover image is Wolf Eat Wolf<a href="http://magnhildopdol.blogspot.com/"><span itemprop="contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Magnhild</span> <span itemprop="familyName">Opd&oslash;l</span></span></span></a>
+</p>
+
+<p class="published-details">
+View <a href="https://www.youtube.com/watch?v=Xerb8AerJKg">a video of Illusion</a>, a poem from the book.
+</p>
+
+<p class="published-quote">
+Knowing what&ldquo;s out there in the world doesn&ldquo;t mean you also have to let it destroy you. The good is taken with the bad in <span class="book-title"><!--#echo encoding="none" var="title" --></span>, and the transition from one to the other is seamless, and the mark of a writer as tired yet willing and eager to continue on. It is the gratitude of still being alive, coming through the minor and severe hells of an ordinary day more or less intact. It is not something easily gained in life, but it&ldquo;s always worth trying for. The writer capable of telling us of their journey through this as well as Liccione will never lack for material. When the material is as good as that which is found in <span class="book-title"><!--#echo encoding="none" var="title" --></span> we gain almost as much as he does. Just by reading what&rsquo;s on his mind. <em>Gabriel Ricard, Unlikely Blog</em>
+</p>
+
+<p class="published-quote">
+The first indication of what to expect in Anthony Liccione&ldquo;s <span class="book-title"><!--#echo encoding="none" var="title" --></span> is his biography on the back. The bio is a grim and sobering reminder of the kind of hard knocks life can deliver and his poems follow the same trajectory: raw, dark, and unforgiving.
+<span class="book-title"><!--#echo encoding="none" var="title" --></span>&ldquo;s template is the dull, routine, and unflattering part of life. But what gives this book its edge is Liccione&ldquo;s poetic skill, which lies in his ability to deftly lift scenarios out of the ordinary and stain them with gloom. He hops from news stories turned tragic in One to distasteful corners of society in The Dance of Ignorance, delivering his poems with an unflinching, surgical eye. &ldquo;As I write,&rdquo; he says in Starvation, again &ldquo;the world grows uglier&hellip;&rdquo;
+The world&ldquo;s ugliness, no doubt, has informed Liccione&ldquo;s style and he serves it up cold: in death beds and at the back of police cars. He paints domesticity as a sort of grim banality (What tomorrow may bring); treats domestic violence with disturbing routine (Coping with cops, that drive with a dozen donuts on the front seat); and allows us to be a fly on the wall as a man receives his medical death sentence (Bad news, too soon). Bleak, yes. But in dark holes, there&rsquo;s that occasional light. And in <span class="book-title"><!--#echo encoding="none" var="title" --></span>, poems like Sense of freedom remind us that sparks of happiness can exist even within the darkest of writers. <a href="http://www.undergroundvoices.com/UVWolfDownReview.htm"><span class="published-quoted">Underground Voices</span></a>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

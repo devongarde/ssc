@@ -26,8 +26,7 @@ class url;
 class page;
 
 class css
-{   static bool parsing_;
-    bool active_ = false;
+{   bool active_ = false;
     bool snippet_ = false;
     smsid_t ids_;
     void check_for_standard_classes (nitpick& nits, const html_version& v);
@@ -38,8 +37,6 @@ public:
     ~css () = default;
     css& operator = (const css& ) = default;
     css& operator = (css&& ) = default;
-    explicit css (nitpick& nits, const page& p, const url& u)
-    {   parse_file (nits, p, u); }
     css (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding, bool snippet = false)
         :   snippet_ (snippet)
     {   parse (nits, v, content, encoding); }
@@ -56,7 +53,6 @@ public:
     bool has_id (const ::std::string& id) const { return active_ && ids_.find (id) != ids_.end (); }
     bool note_usage (const ::std::string& id);
     void tally (smsid_t& ids) const;
-    bool parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding = cc_ansi);
-    bool parse_file (nitpick& nits, const page& p, const url& u); };
+    bool parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding = cc_ansi); };
 
 typedef ::std::shared_ptr < css > css_ptr;

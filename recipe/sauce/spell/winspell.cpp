@@ -42,7 +42,8 @@ constexpr int sweetmax = 8192;
 bool com = false;
 
 void spell_init (nitpick& nits)
-{   HRESULT hr = CoInitializeEx (nullptr, COINIT_MULTITHREADED);
+{   mssfl = mssfl_uptr (new mssfl_t);
+    HRESULT hr = CoInitializeEx (nullptr, COINIT_MULTITHREADED);
     if (FAILED (hr)) nits.pick (nit_no_spell, es_warning, ec_spell, "Cannot initialise COM (error ", hr, ")");
     else
     {   com = true;
@@ -71,7 +72,8 @@ void apply_wordlist (ISpellChecker* isp, const vstr_t& list)
                 isp -> Ignore (::std::wstring_convert <::std::codecvt_utf8 <wchar_t>> ().from_bytes (ss).c_str ()); }
 
 void apply_wordlists (ISpellChecker* isp, const ::std::string& lang)
-{   for (mssfl_t::const_iterator i = mssfl.find (lang); i != mssfl.cend (); ++i)
+{   VERIFY_NOT_NULL (mssfl.get (), __FILE__, __LINE__);
+    for (mssfl_t::const_iterator i = mssfl -> find (lang); i != mssfl -> cend (); ++i)
         apply_wordlist (isp, i -> second); }
 
 ::std::string ole2string (LPOLESTR pwsz, UINT codepage = CP_UTF8)
@@ -100,10 +102,10 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
         if (FAILED (hr))
         {   mlf.insert (mlf_t::value_type (l, nullptr));
             nits.pick (nit_dictionary, es_info, ec_spell, PROG " cannot spellcheck ", quote (lang.original ()), " for lack of a dictionary");
-            static bool blangs = true;
+            static ::std::atomic_bool blangs = true;
             if (blangs)
-            {   IEnumString* es = nullptr;
-                blangs = false;
+            {   blangs = false;
+                IEnumString* es = nullptr;
                 HRESULT hr2 = scf -> get_SupportedLanguages (&es);
                 if (! FAILED (hr2))
                     if (es != nullptr)

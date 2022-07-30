@@ -1,0 +1,54 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="IMAGINARYLOVEPOEMS" -->
+<!--#set var="poet" value="Emily Critchley" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#critchley">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2011-12-01">
+  
+<img SRC="imaginary.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">36</span>pp, &euro;5, December 2011<br>
+ISBN <span itemprop="isbn">979-10-90394-17-9</span>
+</p>
+
+<p class="published-quote">
+These are poems that love their poetic history and sweep you off your page. They contain wings reigning over sleepy echoes, temporary motion, ornamental self, all but true. Imaginary love in poem gardens toads. Whatever happens after all stays here and jiggles about for your reading pleasure.
+<span class="published-quoted">Ian Patterson</span>
+</p>
+
+<p class="published-quote">
+The queen of the Greenwich world time writes, with the cut of a grace that can be heard all over the hill, to the end to impossibly sexy growth. Nobody, especially &ldquo;here among men&rdquo;, will get round or past it. Quietness is a vector of real courage they don&rdquo;t yet think, a male Opheliac obliterates the nunnery. The only realistic thing right now, not scared to suppose supposed green, is this. This weakness stronger than any ithyphallos, a pop-up militia in the dungeon sky, and no simple war left in it. This book. This book by Emily makes me think about the beautiful things we can still do. Care, and what &lsquo;future growth&rsquo; would really be. Parisian pariciding. Richness of spirit for &lsquo;half perfectly again&rsquo;. Not just hard questions. It&rsquo;s what &lsquo;happens when my standing reserve: you?&rsquo; flies too close: &lsquo;There is still time&rsquo;. It&rsquo;s that courage is not what you think.
+<span class="published-quoted">Jonty Tiplady</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

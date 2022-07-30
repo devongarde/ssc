@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "webpage/fileindex.h"
 #include "webpage/directory.h"
+#include "coop/lox.h"
 
 #define PERSIST_SIZE 0
 #define PERSIST_LAST_WRITE (PERSIST_SIZE + 1)
@@ -103,6 +104,11 @@ void fileindex_init ()
 #endif // ORDERED
 }
 
+void inner_set_flag (const fileindex_t ndx, const fileindex_flags flag);
+void inner_reset_flag (const fileindex_t ndx, const fileindex_flags flag);
+bool inner_get_any_flag (const fileindex_t ndx, const fileindex_flags flag);
+bool inner_get_every_flag (const fileindex_t ndx, const fileindex_flags flag);
+
 void reset_fileindices () noexcept
 {   vx.clear ();
     site_x.clear ();
@@ -120,23 +126,24 @@ void reindex (const fileindex_t ndx)
     unindex (ndx);
     if (! ::gsl::at (vx, ndx).site_path_.empty ()) site_x.emplace (mxp_t::value_type (::gsl::at (vx, ndx).site_path_, ndx));
     if (! ::gsl::at (vx, ndx).disk_path_.empty ()) disk_x.emplace (mxp_t::value_type (::gsl::at (vx, ndx).disk_path_.string (), ndx));
-    if (get_flag (ndx, FX_CRC))
-        if (! get_flag (ndx, (FX_DELETED | FX_BORKED | FX_DIR)))
+    if (inner_get_any_flag (ndx, FX_CRC))
+        if (! inner_get_any_flag (ndx, (FX_DELETED | FX_BORKED | FX_DIR)))
             if (::gsl::at (vx, ndx).crc_ != crc_initrem)
             {   mcrc.emplace (mcrc_t::value_type (::gsl::at (vx, ndx).crc_, ndx)); return; }
-    reset_flag (ndx, FX_CRC); }
+    inner_reset_flag (ndx, FX_CRC); }
 
 void note_deleted (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    reset_flag (ndx, FX_STALE);
-    if (! get_flag (ndx, FX_DELETED))
-    {   set_flag (ndx, FX_DELETED);
+    inner_reset_flag (ndx, FX_STALE);
+    if (! inner_get_any_flag (ndx, FX_DELETED))
+    {   inner_set_flag (ndx, FX_DELETED);
         unindex (ndx); } }
 
 void update_fileindex (const fileindex_t ndx, const fileindex_flags ff)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    index_t& x = ::gsl::at (vx, ndx);
-    const ::boost::filesystem::path& name (x.disk_path_);
+    ::boost::filesystem::path name;
+    const index_t& xx = ::gsl::at (vx, ndx);
+    name = xx.disk_path_;
     fileindex_flags f (ff);
     uintmax_t s = 0;
     ::std::time_t lw = 0;
@@ -151,16 +158,17 @@ void update_fileindex (const fileindex_t ndx, const fileindex_flags ff)
     else
     {   s = get_file_size (name);
         lw = get_last_write_time (name); }
+    index_t& x = ::gsl::at (vx, ndx);
     x.flags_ = f;
     if ((x.size_ != s) || (::gsl::at (vx, ndx).last_write_ != lw))
     {   if (x.crc_ != crc_initrem)
         {   mcrc.erase (x.crc_); x.crc_ = crc_initrem; }
         x.flags_ &= ~FX_CRC; }
-    reset_flag (ndx, FX_STALE);
+    inner_reset_flag (ndx, FX_STALE);
     x.size_ = s;
     x.last_write_ = lw; }
 
-fileindex_t insert_disk_path (const ::boost::filesystem::path& name, const fileindex_flags flags)
+fileindex_t inner_insert_disk_path (const ::boost::filesystem::path& name, const fileindex_flags flags)
 {   if (name.empty ()) return nullfileindex;
     ::boost::filesystem::path canon (canonical_name (name));
     fileindex_t xin = nullfileindex;
@@ -174,11 +182,17 @@ fileindex_t insert_disk_path (const ::boost::filesystem::path& name, const filei
     reindex (xin);
     return xin; }
 
+fileindex_t insert_disk_path (const ::boost::filesystem::path& name, const fileindex_flags flags)
+{   lox l (lox_fileindex);
+    return inner_insert_disk_path (name, flags); }
+
 fileindex_t insert_directory_path (const ::boost::filesystem::path& name)
-{   return insert_disk_path (name, FX_DIR); }
+{   lox l (lox_fileindex);
+    return inner_insert_disk_path (name, FX_DIR); }
 
 void add_site_path (const ::std::string& name, const fileindex_t s)
 {   PRESUME (s < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     if (! compare_no_case (name, ::gsl::at (vx, s).site_path_))
     {   site_x.erase (::gsl::at (vx, s).site_path_);
         ::gsl::at (vx, s).site_path_ = name; }
@@ -186,50 +200,77 @@ void add_site_path (const ::std::string& name, const fileindex_t s)
     if (! i.second) i.first -> second = s; }
 
 fileindex_t get_fileindex (const ::boost::filesystem::path& name)
-{   mxp_t :: const_iterator i = disk_x.find (name.string ());
+{   lox l (lox_fileindex);
+    mxp_t :: const_iterator i = disk_x.find (name.string ());
     if (i != disk_x.cend ()) return i -> second;
-    return insert_disk_path (name); }
+    return inner_insert_disk_path (name, 0); }
 
 fileindex_t get_fileindex (const ::std::string& name)
-{   mxp_t :: const_iterator i = site_x.find (name);
+{   lox l (lox_fileindex);
+    mxp_t :: const_iterator i = site_x.find (name);
     if (i != site_x.cend ()) return i -> second;
     return nullfileindex; }
 
 ::boost::filesystem::path get_disk_path (const fileindex_t ndx)
 {   if (ndx >= vx.size ()) return ::boost::filesystem::path ();
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).disk_path_; }
 
 ::std::string get_site_path (const fileindex_t ndx)
 {   if (ndx >= vx.size ()) return ::std::string ();
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).site_path_; }
 
 fileindex_flags get_flags (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).flags_; }
 
-bool get_flag (const fileindex_t ndx, const fileindex_flags flag)
+bool inner_get_any_flag (const fileindex_t ndx, const fileindex_flags flag)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return (::gsl::at (vx, ndx).flags_ & flag) != 0; }
 
-void set_flag (const fileindex_t ndx, const fileindex_flags flag)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    ::gsl::at (vx, ndx).flags_ |= flag; }
+bool get_any_flag (const fileindex_t ndx, const fileindex_flags flag)
+{   lox l (lox_fileindex);
+    return inner_get_any_flag (ndx, flag); }
 
-void reset_flag (const fileindex_t ndx, const fileindex_flags flag)
+bool inner_get_every_flag (const fileindex_t ndx, const fileindex_flags flag)
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    return (::gsl::at (vx, ndx).flags_ & flag) == flag; }
+
+bool get_every_flag (const fileindex_t ndx, const fileindex_flags flag)
+{   lox l (lox_fileindex);
+    return inner_get_every_flag (ndx, flag); }
+
+void inner_set_flag (const fileindex_t ndx, const fileindex_flags flag)
+{   ::gsl::at (vx, ndx).flags_ |= flag; }
+
+void set_flag (const fileindex_t ndx, const fileindex_flags flag)
+{   lox l (lox_fileindex);
+    inner_set_flag (ndx, flag); }
+
+void inner_reset_flag (const fileindex_t ndx, const fileindex_flags flag)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     ::gsl::at (vx, ndx).flags_ &= ~flag; }
 
+void reset_flag (const fileindex_t ndx, const fileindex_flags flag)
+{   lox l (lox_fileindex);
+    inner_reset_flag (ndx, flag); }
+
 uintmax_t get_size (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).size_; }
 
 ::std::time_t last_write (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).last_write_; }
 
+// only called from dedu, has same presumptions
 crc_t get_crc (nitpick& nits, const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    if (! get_flag (ndx, FX_CRC))
+    if (! inner_get_any_flag (ndx, FX_CRC))
     {   crc_calc crc;
         BOOST_IFSTREAM_CNSTRO (f, ::gsl::at (vx, ndx).disk_path_, ::std::ios_base::in);
         if (f.bad ())
@@ -276,10 +317,11 @@ crc_t get_crc (nitpick& nits, const fileindex_t ndx)
         set_crc (ndx, crc.checksum ()); }
     return ::gsl::at (vx, ndx).crc_; }
 
+// only called (indirectly) from dedu, has same presumptions
 void set_crc (const fileindex_t ndx, const crc_t& crc)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     ::gsl::at (vx, ndx).crc_ = crc;
-    set_flag (ndx, FX_CRC); }
+    inner_set_flag (ndx, FX_CRC); }
 
 ::std::string fileindex_report ()
 {   if (context.test ()) return ::std::string ();
@@ -392,31 +434,46 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
     else p = context.config ().replace_extension ("ndx");
     return p; }
 
-bool fileindex_load_internal (nitpick& nits, bool& ok)
+bool fileindex_load_internal (nitpick& nits, bool& ok)  // this presumes is run before threading starts
 {   ::boost::filesystem::path p (persist_path ());
     if (! file_exists (p)) return true;
+    if (context.progress ()) ::std::cout << "Loading " << p.string () << " ...\n";
     BOOST_FSTREAM_CNSTRO (f, p, ::std::ios::in);
     if (f.fail ())
     {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot open ", p.string ());
-        return false; }
+        ok = true; return false; }
     reset_fileindices ();
     enum { fl_prog, fl_version, fl_root, fl_virtual_count, fl_virtual, fl_count, fl_site, fl_disk, fl_data } status = fl_prog;
-    constexpr int max = 4096;
-    char buf [max] = { 0 };
+#define BUFLEN 32767
+#if BUFLEN < 255
+#error fileindex BUFLEN is too short 
+#endif
+    constexpr size_t buflen = BUFLEN;
+#undef BUFLEN
+    auto up = ::std::unique_ptr <char []> (new char [buflen]);
+    char* buf = up.get ();
     fileindex_t count = 0;
     ::std::size_t virtual_count = 0, got = 0;
     ::std::string site;
     ::boost::filesystem::path disk;
     bool whoops = false;
     while (! f.eof ())
-    {   buf [0] = 0;
-        f.getline (&buf [0], max - 1);
+    {   *buf = 0;
+        f.getline (buf, buflen - 1);
         if (f.eof ()) break;
         if (f.fail ())
         {   nits.pick (nit_cannot_read, es_error, ec_crc, "error reading from ", p.string ());
+            nits.pick (nit_cannot_read, es_debug, ec_crc, "perhaps increase the value of max in fileindex_load_internal");
             ok = false; return false; }
-        if ((buf [0] == 0) || (buf [0] == '#')) continue;
-        buf [max - 1] = 0;
+        if ((*buf == 0) || (*buf == '#')) continue;
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26481)
+#endif // _MSC_VER
+        buf [buflen-1] = 0;
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
         switch (status)
         {   case fl_prog :
                 if (strcmp (FULLNAME, buf) != 0)
@@ -424,10 +481,10 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                     ok = true; return false; }
                 status = fl_version; break;
             case fl_version :
-                {   vstr_t a (split_by_charset (&buf [0], "."));
+                {   vstr_t a (split_by_charset (buf, "."));
                     if (a.size () != 3)
                     {   nits.pick (nit_cannot_read, es_error, ec_crc, p.string (), " appears corrupt");
-                        return false; }
+                        ok = false; return false; }
                     else
                     {   vstr_t v (split_by_charset (VERSION_STRING, "."));
                         PRESUME (v.size () == 3, __FILE__, __LINE__);
@@ -454,16 +511,23 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                         ok = true; return false; } }
                 status = fl_virtual; break;
             case fl_virtual :
-                if ((buf [0] == '-') && (buf [1] == 0))
+#if _MSC_VER >= 1930
+#pragma warning (push, 3)
+#pragma warning (disable : 26481)
+#endif
+                if ((*buf == '-') && (buf [1] == 0))
+#if _MSC_VER >= 1930
+#pragma warning (pop)
+#endif // _MSC_VER
                 {   if (got < virtual_count)
                     {   nits.pick (nit_virtual_change, es_error, ec_crc, "missing virtual roots; ", p.string (), " appears to be corrupt");
-                        whoops = true; }
+                        whoops = true; ok = true; return false; }
                     while (got < context.virtuals ().size ())
                     {   nits.pick (nit_virtual_change, es_error, ec_crc, "virtual root ", quote (context.virtuals ().at (got)), " is new");
                         ok = true; whoops = true; ++got; }
                     if (whoops)
                     {   nits.pick (nit_abandon, es_info, ec_crc, p.string (), " is incompatible with " PROG " version " VERSION_STRING "; abandoning load");
-                        return false; }
+                        ok = true; return false; }
                     status = fl_count; }
                 else if (got < context.virtuals ().size ())
                 {   if (! compare_no_case (context.virtuals ().at (got), buf))
@@ -491,7 +555,7 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                 disk = buf;
                 status = fl_data; break;
             case fl_data :
-                {   vstr_t args (split_by_charset (&buf [0], ","));
+                {   vstr_t args (split_by_charset (buf, ","));
                     if (args.size () != PERSIST_ARG_COUNT) break;
                     {   uintmax_t size = lexical < uintmax_t > :: cast (args.at (PERSIST_SIZE));
                         ::std::time_t last_write = lexical < ::std::time_t > :: cast (args.at (PERSIST_LAST_WRITE));
@@ -515,17 +579,15 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                     status = fl_site; }
                 break;
             default :
-                GRACEFUL_CRASH (__FILE__, __LINE__);
-                UNREACHABLE (return false); } }
+                 nits.pick (nit_cannot_read, es_error, ec_crc, p.string (), " appears corrupt, or was not written by " PROG);
+                 ok = true; return false; } }
     if (status != fl_site)
-    {   vx.clear (); site_x.clear (); disk_x.clear (); mcrc.clear ();
-        nits.pick (nit_cannot_read, es_error, ec_crc, p.string (), " is corrupt or truncated; abandoning load");
-        reset_fileindices (); return false; }
+    {   nits.pick (nit_cannot_read, es_error, ec_crc, p.string (), " is corrupt or truncated; abandoning load");
+        ok = false; return false; }
     vx.shrink_to_fit ();
     if (count < vx.size ())
-    {   vx.clear (); site_x.clear (); disk_x.clear (); mcrc.clear ();
-        nits.pick (nit_cannot_read, es_catastrophic, ec_crc, p.string (), " is inconsistent; abandoning load");
-        reset_fileindices (); return false; }
+    {   nits.pick (nit_cannot_read, es_catastrophic, ec_crc, p.string (), " is inconsistent; abandoning load");
+        ok = false; return false; }
     count = vx.size ();
     for (fileindex_t ndx = 0; ndx < count; ++ndx)
     {   if (! ::gsl::at (vx, ndx).site_path_.empty ()) site_x.emplace (mxp_t::value_type (::gsl::at (vx, ndx).site_path_, ndx));
@@ -539,8 +601,9 @@ bool fileindex_load (nitpick& nits)
 {   if (! context.shadow_enable ()) return true;
     bool ok = false;
     if (fileindex_load_internal (nits, ok))
-    {   if (context.tell (es_splurge)) outstr.out () << fileindex_report ();
+    {   if (context.tell (es_splurge)) outstr.out (fileindex_report ());
         return true; }
+    reset_fileindices (); 
     if (! ok)
     {   ::boost::filesystem::path p (persist_path ());
         if (file_exists (p))
@@ -548,12 +611,12 @@ bool fileindex_load (nitpick& nits)
             else nits.pick (nit_cannot_delete, es_error, ec_crc, "cannot delete bad file ", p.string ()); }
     return false; }
 
-void fileindex_save_and_close (nitpick& nits)
+void fileindex_save_and_close (nitpick& nits) // presumes run once threading is finished (or before it starts)
 {   if (! context.shadow_enable ()) return;
     site_x.clear ();
     disk_x.clear ();
     mcrc.clear ();
-    if (context.tell (es_all)) outstr.out () << fileindex_report ();
+    if (context.tell (es_all)) outstr.out (fileindex_report ());
     ::boost::filesystem::path name (persist_path ());
     BOOST_FSTREAM_CNSTRO (f, name, ::std::ios::out | ::std::ios::trunc);
     if (f.fail ()) nits.pick (nit_cannot_update, es_error, ec_crc, "cannot open ", name.string ());
@@ -609,9 +672,10 @@ void fileindex_save_and_close (nitpick& nits)
                 {   nits.pick (nit_cannot_write, es_error, ec_crc, "cannot write to ", name.string ());
                     break; } } } }
 
-void dedu (nitpick& nits)
+void dedu (nitpick& nits) // presumes run between scan and examine phases
 {   if (context.progress ())
     {   ::std::cout << "Deduplicating ."; outstr.dedot (15); }
+    lox l (lox_fileindex);
     for (fileindex_t i = 0; i < vx.size (); ++i)
     {   index_t& x = vx.at (i);
         if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)
@@ -629,40 +693,59 @@ void dedu (nitpick& nits)
                             nits.pick (nit_duplicate, es_info, ec_crc, x.disk_path_, " duplicates ", vx.at (x.dedu_).disk_path_);
                             continue; } }
                 mcrc.emplace (crc, i); } }
-    if (context.progress ())  ::std::cout << ::std::endl; }
+    if (context.progress ()) ::std::cout << ::std::endl; }
 
 bool isdu (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).dedu_ != nullfileindex; }
 
 fileindex_t du (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).dedu_; }
 
 void add_dependency (const fileindex_t ndx, const fileindex_t dependency)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     ::gsl::at (vx, ndx).dx_.emplace (dependency); }
 
 void clear_dependencies (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     ::gsl::at (vx, ndx).dx_.clear (); }
 
 sndx_t get_dependencies (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).dx_; }
 
 void set_lynx (const fileindex_t ndx, const fileindex_t l)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox lx (lox_fileindex);
     ::gsl::at (vx, ndx).lx_.emplace (l); }
 
 void clear_lynx (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     ::gsl::at (vx, ndx).lx_.clear (); }
 
 sndx_t get_lynx (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).lx_; }
 
 bool needs_update (const fileindex_t ndx, const ::std::time_t& st)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).needs_update (st); }
+
+fileindex_t get_fileindex_count ()
+{   lox l (lox_fileindex);
+    return static_cast < fileindex_t > (vx.size ()); }
+
+bool try_set_flag (const fileindex_t ndx, const fileindex_flags flag)
+{   lox l (lox_fileindex);
+    if (inner_get_any_flag (ndx, flag)) return false;
+    inner_set_flag (ndx, flag);
+    return true; }

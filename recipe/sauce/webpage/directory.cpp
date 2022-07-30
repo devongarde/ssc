@@ -26,16 +26,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "webpage/directory.h"
 #include "url/url.h"
+#include "url/url_sanitise.h"
 #include "webpage/crosslink.h"
 #include "schema/jsonld.h"
 #include "icu/converter.h"
+#include "webpage/q.h"
+#include "coop/kew.h"
+#include "coop/knickers.h"
 
 external directory::external_;
 
-directory::directory (nitpick& nits, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check)
+directory::directory (nitpick* ticks, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check)
     : name_ (name), offsite_ (false), mummy_ (mummy), ndx_ (ndx)
 {   PRESUME (mummy_ != nullptr, __FILE__, __LINE__);
-    if (check) scan (nits, site); }
+    if (check) scan (ticks, site); }
 
 directory::directory (const path_root_ptr& root)
     : name_ (root -> get_site_path ()), offsite_ (false), mummy_ (nullptr), root_ (root)
@@ -173,38 +177,44 @@ void directory::internal_get_export_path (const ::std::string& item, ::boost::fi
 {   ::std::string p (join_site_paths (u.path (), u.filename ()));
     return get_export_path (nits, p); }
 
-bool directory::scan (nitpick& nits, const ::std::string& site)
+bool directory::scan (nitpick* ticks, const ::std::string& site)
 {   PRESUME (! offsite_, __FILE__, __LINE__);
     const ::boost::filesystem::path disk (get_disk_path ());
     for (const ::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (disk))
-        if (! add_to_content (nits, x, site)) return false;
+        if (! context.excluded (x.path ()))
+            if (! add_to_content (ticks, x, site)) return false;
     return true; }
 
-bool directory::add_to_content (nitpick& nits, const ::boost::filesystem::directory_entry& i, const ::std::string& site)
-{   ::boost::filesystem::path q (i.path ());
+bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::directory_entry& i, const ::std::string& site)
+{   ::boost::filesystem::path qp (i.path ());
     fileindex_t ndx = nullfileindex;
-    if (is_folder (q)) ndx = insert_directory_path (q);
-    else ndx = insert_disk_path (q, 0);
+    if (is_folder (qp)) ndx = insert_directory_path (qp);
+    else ndx = insert_disk_path (qp, 0);
     ::std::string p;
     if (site.empty ()) p = get_site_path ();
     else p = site;
-    ::std::string f (local_path_to_nix (q.filename ().string ()));
+    ::std::string f (local_path_to_nix (qp.filename ().string ()));
     p = join_site_paths (p, f);
     add_site_path (p, ndx);
-    if (is_regular_file (q))
+    if (is_regular_file (qp))
         return content_.insert (value_t (f, nullptr)).second;
-    if (is_directory (q))
+    if (is_directory (qp))
     {   outstr.dot ();
-        return content_.insert (value_t (f, self_ptr (new directory (nits, f, ndx, this, p)))).second; }
+        dir_ptr dp (new directory (ticks, f, ndx, this, p, false)); 
+        if (content_.insert (value_t (f, dp)).second)
+        {   q.push (q_entry (ticks, dp, st_scan));
+            return true; } }
     return false; }
 
-void directory::examine (nitpick& nits)
+void directory::examine (nitpick* ticks)
 {   PRESUME (! offsite_, __FILE__, __LINE__);
+    nitpick nits;
+    knickers k (nits, ticks);
     if (context.shadow_any ()) shadow_folder (nits);
     sstr_t shadowed;
     for (auto i : content_)
         if (i.second != nullptr)
-            i.second -> examine (nits);
+            q.push (q_entry (ticks, i.second, st_examine));
         else if (! is_webpage (i.first, context.extensions ()))
         {   if (context.shadow_files ()) shadow_file (nits, i.first, shadowed); }
         else
@@ -212,8 +222,7 @@ void directory::examine (nitpick& nits)
             ::std::ostringstream ss;
             const ::boost::filesystem::path p (get_disk_path () / i.first);
             const fileindex_t ndx (get_fileindex (p));
-            const ::std::time_t updated = last_write (ndx);
-            if (! get_flag (ndx, FX_SCANNED))
+            if (! get_any_flag (ndx, FX_SCANNED))
             {   ::std::string sp (get_site_path () + i.first);
                 if (avoid_update (sp, true))
                     nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (p.string ()), " is up-to-date");
@@ -228,8 +237,9 @@ void directory::examine (nitpick& nits)
                         const bool jld = is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ());
                         if (jld) parse_json_ld (nuts, context.html_ver (), content);
                         ss << nuts.review (mac);
+                        nuts.accumulate (nits);
                         if (! jld)
-                        {   page web (i.first, updated, content, ndx, this);
+                        {   page web (i.first, last_write (ndx), content, ndx, this);
                             if (web.invalid ()) ss << web.nits ().review (mac);
                             else
                             {   web.examine ();
@@ -238,7 +248,8 @@ void directory::examine (nitpick& nits)
                                 web.lynx ();
                                 if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / i.first);
                                 ss << web.nits ().review (mac);
-                                ss << web.report (); } } }
+                                ss << web.report (); }
+                             web.nits ().accumulate (nits); } }
                 catch (const ::std::system_error& e)
                 {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + sp); }
                 catch (const ::std::exception& e)
@@ -246,14 +257,15 @@ void directory::examine (nitpick& nits)
                 catch (...)
                 {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + sp); }
                 if (! ss.str ().empty ())
-                {   outstr.out (macro.apply (ns_page_head, mac));
+                {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+                    outstr.out (macro -> apply (ns_page_head, mac));
                     outstr.out (ss.str ());
-                    outstr.out (macro.apply (ns_page_foot, mac)); }
+                    outstr.out (macro -> apply (ns_page_foot, mac)); }
                 else if (context.tell (es_comment))
-                {   outstr.out (macro.apply (ns_page_head, mac));
-                    outstr.out (macro.apply (ns_page_foot, mac)); }
-                css_cache.post_process (); }
-                set_flag (ndx, FX_SCANNED); } }
+                {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+                    outstr.out (macro -> apply (ns_page_head, mac));
+                    outstr.out (macro -> apply (ns_page_foot, mac)); } }
+            set_flag (ndx, FX_SCANNED); } }
     if (context.shadow_files ())
     {   sstr_t delete_me;
 #ifdef NO_DIROPTS
@@ -269,32 +281,6 @@ void directory::examine (nitpick& nits)
         for (auto z : delete_me)
         {   nits.pick (nit_shadow_delete, es_comment, ec_shadow, "removing ", z);
             delete_file (z); } } }
-
-bool directory::unguarded_verify_url (nitpick& nits, const html_version& v, const url& u) const
-{   if (u.empty ()) return false; // self?
-    if (u.has_protocol ())
-    {   if (u.get_scheme () != pt_rfc3986) return true;
-        if (u.has_domain () && ! is_one_of (u.domain (), context.site ()))
-            return verify_external (nits, v, u); }
-    ::boost::filesystem::path p (get_disk_path (nits, u));
-    if (p.empty ())
-        if (u.has_query () || u.is_simple_id ())
-            return true;
-    const fileindex_t ndx (get_fileindex (p));
-    if (get_flag (ndx, (FX_SCANNED | FX_EXISTS))) return true;
-    if (! get_flag (ndx, FX_TESTED))
-    {   set_flag (ndx, FX_TESTED);
-        if (file_exists (p))
-        {   bool vrai = is_file (p);
-            if (! vrai)
-                if (is_folder (p))
-                {   p /= context.index ();
-                    vrai = is_file (p); }
-            if (vrai)
-            {   set_flag (ndx, FX_EXISTS);
-                return true; } } }
-    nits.pick (nit_url_not_found, es_error, ec_url, quote (u.original ()), " not found");
-    return false; }
 
 uint64_t directory::url_size (nitpick& nits, const url& u) const
 {   if (! u.empty () && ! u.has_protocol ()) try
@@ -330,20 +316,53 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
     catch (...) { }
     return ::std::string (); }
 
-bool directory::verify_url (nitpick& nits, const html_version& v, const url& u) const
+void directory::maintain_fileindex (nitpick& nits, const ::boost::filesystem::path& p, const ::std::string& up, fileindex_t ndx, const fileindex_flags flags) const
+{   if (ndx == nullfileindex)
+    {   ndx = insert_disk_path (p, flags);
+        ::std::string sp = get_site_path (nits, up);
+        add_site_path (sp, ndx); }
+    else set_flag (ndx, flags); }
+
+bool directory::verify_local (nitpick& nits, const html_version& , const url& u, const bool fancy) const
+{   ::boost::filesystem::path p (get_disk_path (nits, u));
+    if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_ssi, "seeking ", p.string ());
+    if (p.empty ())
+        if (u.has_query () || u.is_simple_id ())
+            return fancy;
+    dear d (lox_dear);
+    const fileindex_t ndx (get_fileindex (p));
+    if (ndx != nullfileindex)
+        if (get_any_flag (ndx, FX_BORKED)) return false;
+        else if ((! fancy) && get_any_flag (ndx, FX_DIR)) return false;
+        else if (get_any_flag (ndx, FX_TESTED))
+            return (get_any_flag (ndx, (FX_SCANNED | FX_EXISTS)));
+    if (is_file (p))
+    {   maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED | FX_EXISTS);
+        return true; }
+    if (fancy)
+        if (is_folder (p))
+        {   ::boost::filesystem::path p2 = p / context.index ();
+            if (is_file (p2))
+            {   maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED | FX_EXISTS | FX_DIR);
+                maintain_fileindex (nits, p2, sanitise (u.absolute () + "/" + context.index ()), ndx, FX_TESTED | FX_EXISTS);
+                return true; }
+            maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED | FX_EXISTS | FX_DIR);
+            maintain_fileindex (nits, p2, sanitise (u.absolute () + "/" + context.index ()), ndx, FX_TESTED);
+            return false; }
+    maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED);
+    return false; }
+
+bool directory::verify_url (nitpick& nits, const html_version& v, const url& u, const bool fancy) const
 {   if (! context.links ()) return true;
-    static bool checking_urls = false;
-    if (checking_urls) return true;
-    bool res = false;
-    try
-    {   checking_urls = true;
-        res = unguarded_verify_url (nits, v, u);
-        checking_urls = false; }
-    catch (...)
-    {   nits.pick (nit_virtual_exception, es_catastrophic, ec_directory, "verify_url (2) ", quote (u.original ()));
-        checking_urls = false;
-        throw;  }
-    return res; }
+    if (u.is_self ()) return fancy;
+    if (u.empty ()) return false; // self?
+    if (u.has_protocol ())
+    {   if (u.get_scheme () != pt_rfc3986) return true;
+        if (u.has_domain () && ! is_one_of (u.domain (), context.site ()))
+            return verify_external (nits, v, u); }
+    if (verify_local (nits, v, u, fancy)) return true;
+    nits.pick (nit_url_not_found, es_error, ec_url, quote (u.original ()), " not found");
+    return false; }
 
 bool directory::verify_external (nitpick& nits, const html_version& v, const url& u) const
 {   int code = 0;
@@ -442,14 +461,15 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name, sstr_t& s
     if (ndx == nullfileindex)
     {   nits.pick (nit_internal_file_error, es_catastrophic, ec_shadow, "internal data error: lost information about ", original.string ());
         return false; }
-    if (get_flag (ndx, FX_BORKED))
+    if (get_any_flag (ndx, FX_BORKED))
     {   nits.pick (nit_shadow_failed, es_warning, ec_shadow, "cannot shadow borked file ", original.string ());
         return true; }
     ::boost::filesystem::path imitation (get_shadow_path () / name);
     shadowed.emplace (imitation.string ());
-    if (avoid_update (original, imitation, false))
-    {   nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (original.string ()), " is up-to-date");
-        return true; }
+    if (file_exists (imitation))
+        if (avoid_update (original, imitation, false))
+        {   nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (original.string ()), " is up-to-date");
+            return true; }
     bool changed = false;
     ::boost::filesystem::file_status stat;
 #ifndef NOLYNX

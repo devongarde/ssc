@@ -51,7 +51,7 @@ struct nitwit
     unsigned        flags_ = 0; };
 typedef ::std::map < ::std::string, nitwit > knotted;
 
-typedef ::std::map < ::std::string, int > classic;
+typedef ::std::map < ::std::string, int > classic_t;
 typedef ::std::set < ::std::string > sstr_t;
 typedef ::std::map < ::std::string, vstr_t > mvstr_t;
 
@@ -61,10 +61,10 @@ typedef ::std::map < ::std::string, vstr_t > mvstr_t;
 unsigned verbose = 0;
 bool numbers = false, easy_in = false, only_check_exports = false;
 ::std::string expected_lynx, expected_shadow, expected_export_errors, examinations;
-classic expected_classes;
-sstr_t expected_itemids;
-vstr_t correct_export, created_export, grand_stats;
-mvstr_t page_stats;
+//classic_t expected_classes;
+// sstr_t expected_itemids;
+// vstr_t correct_export, created_export, grand_stats;
+//mvstr_t page_stats;
 ::boost::filesystem::path grand_stats_fn;
 
 vstr_t readlines (const ::std::string& name)
@@ -119,7 +119,7 @@ bool load_file_list (char* name, filelist& specs)
                 return res + ")"; } }
     return ::boost::lexical_cast < ::std::string > (static_cast < size_t > (nit)); }
 
-bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std::string& cmdline)
+bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std::string& cmdline, classic_t& expected_classes, sstr_t& expected_itemids, mvstr_t& page_stats, vstr_t& correct_export, vstr_t& created_export, vstr_t& grand_stats)
 {   correct_export.clear ();
     created_export.clear ();
     if (! testfile (f)) return false;
@@ -220,7 +220,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
             catch (...) { }
             if (c < 0)
             {   ::std::cerr << "bad class count on line "<< line << " of " << f.string () << "\n"; return false; }
-            auto res = expected_classes.insert (::classic::value_type (n, c));
+            auto res = expected_classes.insert (::classic_t::value_type (n, c));
             if (! res.second)
             {   ::std::cerr << "class '" << n << "' repeated on line "<< line << " of " << f.string () << "\n"; return false; }
             continue; }
@@ -287,13 +287,13 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         res += tim (n); }
     return res; }
 
-bool examine_results_header (vstr_t& results)
+bool examine_results_header (vstr_t& results, const ::boost::filesystem::path& tmp)
 {   if (results.size () < 3)
-    {   if (verbose) ::std::cout << "too little output\n"; return false; }
+    {   if (verbose) ::std::cout << "too little output ( " << tmp.string () << ")\n"; return false; }
     if (results.at (0) != PROG)
-    {   if (verbose) ::std::cout << "not " PROG " (expected '" PROG "', got '" << results.at (0) << "')\n"; return false; }
+    {   if (verbose) ::std::cout << "not " PROG ": expected '" PROG "', got '" << results.at (0) << "' (" << tmp.string () << ")\n"; return false; }
     if (results.at (1) != VERSION_STRING)
-    {   if (verbose) ::std::cout << "this copy of " TESTPROG " can only test " PROG " version " VERSION_STRING ", not version " << results.at (1) << "\n"; return false; }
+    {   if (verbose) ::std::cout << "this copy of " TESTPROG " can only test " PROG " version " VERSION_STRING ", not version " << results.at (1) << " (" << tmp.string () << ")\n"; return false; }
     return true; }
 
 bool examine_results_one_file (const ::std::string& fn, nitted& expect, nitted& got)
@@ -409,8 +409,8 @@ bool exporterrorcheck (const vstr_t& line)
     else if (verbose) ::std::cout << "export errors differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
     return false; }
 
-bool classcheck (vstr_t& line)
-{   classic::iterator i = expected_classes.find (line.at (0));
+bool classcheck (vstr_t& line, classic_t& expected_classes)
+{   classic_t::iterator i = expected_classes.find (line.at (0));
     if (i == expected_classes.end ())
     {   if (verbose) ::std::cout << "unexpected class " << line.at (0) << " encountered\n"; return false; }
     const int e = i -> second;
@@ -443,13 +443,14 @@ bool examinecheck (vstr_t& line)
     else if (verbose) ::std::cout << "update counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
     return false; }
 
-bool itemidcheck (vstr_t& line)
+bool itemidcheck (vstr_t& line, sstr_t& expected_itemids)
 {   sstr_t::iterator i = expected_itemids.find (line.at (0));
     if (i == expected_itemids.end ())
     {   if (verbose) ::std::cout << "unexpected itemid " << line.at (0) << " encountered\n"; return false; }
     expected_itemids.erase (i);
     return true; }
-int check_exports ()
+
+int check_exports (vstr_t& correct_export, vstr_t& created_export)
 {   if (created_export.size () != correct_export.size ())
     {   ::std::cout << "internal error: created and correct exports have a different count ("
             << created_export.size () << ", " << correct_export.size () << ")\n";
@@ -517,20 +518,20 @@ bool compare_stats (const vstr_t& expected, const vstr_t& got, const ::std::stri
     {   if (verbose) ::std::cout << name << " stats too long (expected lines " << expected.size () << ", got lines " << got.size () <<")\n"; return false; }
    return true; }
 
-bool check_file_stats (const ::boost::filesystem::path& fn, const vstr_t& file)
+bool check_file_stats (const ::boost::filesystem::path& fn, const vstr_t& file, mvstr_t& page_stats)
 {   mvstr_t::const_iterator i = page_stats.find (fn.string ());
     if (i == page_stats.cend ())
     {   if (verbose) ::std::cout << "no stats expected for " << fn << "\n";
         return false; }
     return compare_stats (i -> second, file, fn.string ()); }
 
-bool check_overall_stats (const vstr_t& overall)
+bool check_overall_stats (const vstr_t& overall, vstr_t& grand_stats)
 {   return compare_stats (grand_stats, overall, "grand"); }
 
-bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsigned& failed)
+bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsigned& failed, classic_t& expected_classes, const ::boost::filesystem::path& tmp, sstr_t& expected_itemids, mvstr_t page_stats, vstr_t& correct_export, vstr_t& created_export, vstr_t& grand_stats)
 {   bool res = true;
     if (! only_check_exports)
-    {   if (! examine_results_header (results)) return false;
+    {   if (! examine_results_header (results, tmp)) return false;
         nitted got;
         nitwit expect;
         ::std::string fn, previous;
@@ -552,7 +553,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
             {   done = (results.at (r) == END_OF_STATS); }
             if (done)
             {   if (! file.empty ())
-                {   if (! previous.empty ()) if (! check_file_stats (previous, file)) { ++failed; res = false; }
+                {   if (! previous.empty ()) if (! check_file_stats (previous, file, page_stats)) { ++failed; res = false; }
                     file.clear (); }
                 file_stats = overall_stats = false; continue; }
             if (overall_stats) { overall.push_back (results.at (r)); continue; }
@@ -560,7 +561,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
             ::boost::algorithm::split (line, results.at (r), ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);
             if (line.empty ())
             {   if (! file.empty ())
-                {   if (! previous.empty ()) if (! check_file_stats (previous, file)) { ++failed; res = false; }
+                {   if (! previous.empty ()) if (! check_file_stats (previous, file, page_stats)) { ++failed; res = false; }
                     file.clear (); }
                 file_stats = overall_stats = false; continue; }
             if (line.size () < 2)
@@ -577,13 +578,13 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                 {   if (! exporterrorcheck (line)) { oops = true; res = false; }
                     exporterrors = false; shush = true; continue; }
                 if (classes)
-                {   if (! classcheck (line)) { oops = true; res = false; }
+                {   if (! classcheck (line, expected_classes)) { oops = true; res = false; }
                     continue; }
                 if (examine)
                 {   if (! examinecheck (line)) { oops = true; res = false; }
                     continue; }
                 if (itemid)
-                {   if (! itemidcheck (line)) { oops = true; res = false; }
+                {   if (! itemidcheck (line, expected_itemids)) { oops = true; res = false; }
                     continue; }
                 if (fn.empty ())
                 {   if (verbose) ::std::cout << "expecting filename near beginning of output file\n"; res = false; }
@@ -614,7 +615,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                 got.insert (nitted::value_type (ln, ns)); }
             else
             {   if (! file.empty ())
-                {   if (! fn.empty ()) if (! check_file_stats (fn, file)) { ++failed; res = false; }
+                {   if (! fn.empty ()) if (! check_file_stats (fn, file, page_stats)) { ++failed; res = false; }
                     file.clear (); }
                 classes = lynx = itemid = file_stats = overall_stats = false;
                 if (shush) shush = false;
@@ -641,9 +642,9 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                 {   previous = fn;
                     expect = i -> second;
                     if ((expect.flags_ & NW_IGNORE) != 0) shush = true; } } }
-        if (! file.empty ()) if (! previous.empty ()) if (! check_file_stats (previous, file)) { ++failed; res = false; }
+        if (! file.empty ()) if (! previous.empty ()) if (! check_file_stats (previous, file, page_stats)) { ++failed; res = false; }
         if (! overall.empty () || ! grand_stats.empty ())
-        {   if (! check_overall_stats (overall)) { ++failed; res = false; }
+        {   if (! check_overall_stats (overall, grand_stats)) { ++failed; res = false; }
             overall.clear (); grand_stats.clear (); }
         page_stats.clear ();
         if (! examine_results_once (expected, expect, got, fn, passed, failed)) res = false;
@@ -654,28 +655,32 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
         if (! expected_classes.empty ())
         {   res = false;
             oops = true;
-            for (auto i : expected_classes)
-                if (verbose) ::std::cout << "class " << i.first << " missing\n";
-            expected_classes.clear (); }
+            if (verbose)
+                for (auto i : expected_classes)
+                    ::std::cout << "class " << i.first << " missing\n"; }
         if (! expected_itemids.empty ())
         {   res = false;
             oops = true;
-            for (auto i : expected_itemids)
-                if (verbose) ::std::cout << "itemid " << i << " missing\n";
-            expected_itemids.clear (); }
+            if (verbose) 
+                for (auto i : expected_itemids)
+                    ::std::cout << "itemid " << i << " missing\n"; }
         if (oops) ++failed; }
-    int x = check_exports ();
+    int x = check_exports (correct_export, created_export);
     if (x != 0)
     {   res = false; failed += x; }
     return res; }
 
 int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::path& xeq, bool rmtmp, const ::std::string& tmppath, const ::std::string& pre, unsigned& passed, unsigned& failed)
 {   knotted expected;
+    classic_t expected_classes;
+    sstr_t expected_itemids;
+    mvstr_t page_stats;
+    vstr_t correct_export, created_export, grand_stats;
     if (verbose && ! ::boost::filesystem::exists (xeq))
     {   ::std::cout << "Current path: " << ::boost::filesystem::current_path ().string () << "\n";
         ::std::cout << "Cannot see " << xeq.string () << " as specified\n"; }
     ::std::string cmdline;
-    if (! load_expected (f, expected, cmdline))
+    if (! load_expected (f, expected, cmdline, expected_classes, expected_itemids, page_stats, correct_export, created_export, grand_stats))
     {   ::std::cerr << "cannot interpret " << f << "\n";
         return ERROR_EXIT; }
     if ((cmdline == FAUX_CMD) && pre.empty ())
@@ -743,7 +748,7 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
             for (auto s : results) ::std::cout << s << "\n";
             ::std::cout << "\n"; }
         if (rmtmp && pre.empty ()) ::boost::filesystem::remove (tmp); }
-    if (! examine_results (expected, results, passed, failed)) return ERROR_EXIT;
+    if (! examine_results (expected, results, passed, failed, expected_classes, tmp, expected_itemids, page_stats, correct_export, created_export, grand_stats)) return ERROR_EXIT;
     return 0; }
 
 void print_version ()

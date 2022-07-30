@@ -1,0 +1,62 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Organ Speech" -->
+<!--#set var="poet" value="Megan Fernandes" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#fernandes">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2011-11-01">
+
+<img SRC="organspeech.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">40</span>pp, &euro;5, November 2011<br>
+ISBN <span itemprop="isbn">979-10-90394-10-0</span><br>
+The cover image is by <span itemprop = "contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Joshua</span> <span itemprop="familyName">Neves</span></span></span> and <span itemprop = "contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Graham</span> <span itemprop="familyName">Bury</span></span></span>.
+</p>
+
+<p class="published-quote">
+It is exciting to discover a new poet and a new press. <!--#echo encoding="none" var="poet" --> is a sophisticated and sensitive writer, and her poems are, by turn, surprising, vivid and affecting. <span class="book-title"><!--#echo encoding="none" var="title" --></span> is unnervingly good.
+<span class="published-quoted">Read more of <a href="http://sabotagereviews.com/2011/12/07/organ-speech-by-megan-fernandes/">Charles Whalley&rsquo;s piece</a> in Sabotage Reviews</span>.
+</p>
+
+<p class="published-quote">
+From <!--#echo encoding="none" var="poet" --> you can learn that language has an energy of its own, much like the (Kinetics) of a pink leaf, running somehow parallel to us, able sometimes to be spooned up &amp; turned over, like the air, or different coloured light, in the hands of only the very carefulest listeners and observers&mdash;like Fernandes. You can learn how adjectives are palpable as meat and why young women cheat and about pennies from Yeats&rsquo; poems. You can learn what queens do with little boys behind blue-rutted buses; about dinosaurs &amp; neurons and the catastrophe of gestures. You can learn about the soft anger of the poet &amp; certain other overlooked corners of the brain; about movement &amp; food stuffs &amp; ontologies &amp; joy. She can teach you all this.
+<span class="published-quoted">Emily Critchley</span>
+</p>
+
+<p class="published-quote">
+Neurons, synapses, matter, planets and energy describe memories and their relation to the present tense. &lsquo;The sounds grows.&rsquo; Imagine a poetry that anthropomorphises cellular process, that excavates the operations beneath ontology, which is philosophy, which is a body in motion, sense organs all open: this is that. <span class="book-title"><!--#echo encoding="none" var="title" --></span> is provocative, lyrical, suspenseful, exciting, sexy, and full of ideas. TOUCH EVERYTHING
+<span class="published-quoted">Marianne Morris</span>
+</p>
+
+</div>
+
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

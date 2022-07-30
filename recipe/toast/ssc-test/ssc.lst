@@ -1,5 +1,10 @@
 ../toast/conf/html/conf.spec
 ../toast/conf/xhtml/conf.spec
+../toast/coop/corrupt/corrupt.spec
+../toast/coop/corrupt/corrupt2.spec
+../toast/coop/corrupt/corrupt512.spec
+../toast/coop/oct21/living.spec
+../toast/coop/schema-abc/abc.spec
 ../toast/csp/1/csp.spec
 ../toast/csp/2/csp.spec
 ../toast/csp/3/csp.spec

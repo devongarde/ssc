@@ -1,0 +1,53 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="LOW LEVEL FLYING" -->
+<!--#set var="poet" value="John Kliphan" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#kliphan">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2012">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2012-03-01">
+  
+<img SRC="lowlevelflying.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+US Trade, <span itemprop="numberOfPages">148</span>pp, &euro;12, March 2012<br>
+ISBN <span itemprop="isbn">979-10-90394-31-5</span><br>
+The cover image is by <a href="http://www.petercunninghamphotography.com/" itemprop="contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Peter</span> <span itemprop="familyName">Cunningham</span></span></a>.<br>
+Published posthumously for <!--#echo encoding="none" var="poet" -->&rsquo;s wake.
+</p>
+
+<p class="published-quote">
+<!--#echo encoding="none" var="poet" --> (b.1933, Boston &ndash; d. 2012, Paris) was a passionate and compassionate poet, teacher and lawyer. His poems are direct in approach, accessible yet incisive, lyrical  by nature and often humorous. First published in Boston, then San Francisco, where he lived for many years, he befriended the Beats and was counsel for the North Beach art community. In the 1980&rsquo;s Kliphan moved to Paris, where he founded and directed the Live Poets Society, an internationally recognized series of readings celebrating the oral tradition of poetry while providing a venue for new voices and verse in Paris, the city&rsquo;s longest&ndash;running series of its kind. Invited to perform his work at poetry readings around the world, Kliphan was author of three books of poetry as well as individual poems and various articles published in the United States and Europe.
+<span class="published-quoted">Jennifer Pinard</span>
+</p>
+
+</div>
+
+
+<br>
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

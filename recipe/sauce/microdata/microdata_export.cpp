@@ -64,7 +64,7 @@ void microdata_export::add (const ::std::string& path, const ::std::string& item
 
 bool microdata_export::write (nitpick& nits, const ::boost::filesystem::path& file)
 {   if (! context.md_export ()) return true;
-    if (context.tell (es_splurge)) outstr.out () << file << ":\n" << rpt () << "\n";
+    if (context.tell (es_splurge)) outstr.out (file.string () + ":\n" + rpt () + "\n");
     ::boost::filesystem::path json (file);
     json += EXPORT_EXTENSION;
     if (empty ())

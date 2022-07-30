@@ -1,0 +1,53 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="I-spy and shanty" -->
+<!--#set var="poet" value="Kate Noakes" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#noakes">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2014">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2014-03-01">
+  
+<img SRC="ispyshanty.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+US Trade, <span itemprop="numberOfPages">96</span>pp, &euro;15, March 2014<br>
+ISBN <span itemprop="isbn">979-10-90394-45-2</span><br>
+<span class="wee">The cover image is by <a href="<!--#echo encoding="none" var="artsego" -->"><!--#echo encoding="none" var="editor" --></a>.</span>
+</p>
+
+<p class="published-quote">
+Kate Noakes&rsquo; poetry has always treasured vivid language, and does so here&mdash;just savour her nectar&ndash;sipping bat that &lsquo;gigolos away the dark&rsquo;. But this rich and varied new collection also strikes a new note, as quietly compact as the water&ndash;worn stones that appear in several poems, spare but alive with implications, like a whole life in wartime conveyed  by &lsquo;And now / the kissing away of two long winters. Him here.&rsquo; <span class="published-quoted">Philip Gross</span>
+</p>
+
+<p class="published-quote">
+<!--#echo encoding="none" var="poet" --> is a poet on the road, on the wing, in transit, yet rooted in place,childhood, family, love. She records detail as in a journal, gathering experience, words,traveller&rsquo;s tales. A pebble is &lsquo;a travelling spot&rsquo; that ends as &lsquo;nothing but light&rsquo;, teller of Earth&rsquo;s journey. The pebble&rsquo;s beginning is the poet&rsquo;s beginning, a child pond&ndash;dipping, picking up stones. A memorable poem records her grandfather throwing his medals into the river on his way home from the war, as if horror could be washed away. It survives in his grand&ndash;daughter&rsquo;s imagination, and in her vivid poems. <span class="published-quoted">Gillian Clarke</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

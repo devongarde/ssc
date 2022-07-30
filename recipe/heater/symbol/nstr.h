@@ -21,8 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 #include "type/enum.h"
-#include "feedback/nitpick.h"
 #include "parser/html_version.h"
+#include "feedback/nitpick.h"
 
 // ensure last entry id_ == ERR
 template < typename ENUM, ::std::size_t N > struct n_string_entry

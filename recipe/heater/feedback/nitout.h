@@ -33,17 +33,19 @@ class macro_t
 public:
     void init ();
     const mmac_t& macros () const noexcept { return mmac_; }
-//    mmac_t& macros () noexcept { return mmac_; }
-    void set (const e_nit_macro m, const ::std::string& s) { mmac_.emplace (m, s); }
-    void set (const e_nit_macro m, ::std::string&& s) { mmac_.emplace (m, s); }
-    bool is_template_loaded () noexcept;
+    void set (const e_nit_macro m, const ::std::string& s);
+    void set (const e_nit_macro m, ::std::string&& s);
+    bool is_template_loaded ();
     bool load_template (nitpick& nits, const html_version& v);
     void dump_nits (nitpick& nits, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot);
-    ::std::string nit_content (const ::std::string& s);
+    static ::std::string nit_content (const ::std::string& s);
     ::std::string apply (const e_nit_section& section);
     ::std::string apply (const e_nit_section& section, const mmac_t& values);
     ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2);
     ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3);
     ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3, const mmac_t& values4); };
 
-extern macro_t macro;
+void init_macro ();
+
+typedef ::std::unique_ptr < macro_t > macro_uptr;
+extern macro_uptr macro;

@@ -42,6 +42,10 @@ template < class T > class stats4
     typedef ab < T > ab_t;
     typedef ::std::map < ab_t, unsigned > counter_t;
     counter_t count_;
+    void mark (const ab_t& e, const unsigned u = 1)
+    {   typename counter_t::iterator i = count_.find (e);
+        if (i == count_.end ()) count_.insert (typename counter_t::value_type (e, u));
+        else i -> second += u; }
 public:
     typedef typename counter_t :: const_iterator cit;
     stats4 () = default;
@@ -52,8 +56,10 @@ public:
         return i -> second; }
     cit cbegin () const { return count_.cbegin (); }
     cit cend () const { return count_.cend (); }
-    void mark (const T& a, const T& b)
-    {   const ab_t e (a, b);
-        typename counter_t::iterator i = count_.find (e);
-        if (i == count_.end ()) count_.insert (typename counter_t::value_type (e, 1));
-        else i -> second += 1; } };
+    void mark (const T& a, const T& b, const unsigned u = 1)
+    {   mark (ab_t (a, b), u); }
+    void accumulate (stats4 < T >& o) const
+    {   for (auto item : count_)
+            o.mark (item.first, item.second); } };
+
+typedef stats4 < ::std::string > term_stats;

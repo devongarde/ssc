@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "type/type.h"
 #include "feedback/nitout.h"
+#include "coop/lox.h"
 
 nit::nit () : code_ (nit_free), severity_ (es_illegal), category_ (ec_undefined), doc_ (ed_mishmash)
 {   if (context.nits ()) outstr.out ("adding empty nit\n"); }
@@ -57,11 +58,6 @@ void nit::reset ()
 void nit::reset (const nit& n)
 {   nit tmp (n);
     swap (tmp); }
-
-void nit::notify () const
-{   overall.mark (severity_);
-    overall.mark (category_);
-    overall.mark (doc_); }
 
 ::std::string nitcode (const e_nit code, const e_severity severity)
 {   ::std::ostringstream res;
@@ -125,7 +121,8 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
     {   values.emplace (nm_nit_ref, "");
         values.emplace (nm_nit_doc, "");
         values.emplace (nm_nit_doc_long, ""); }
-    return macro.apply (entry, mac, outer, values); }
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    return macro -> apply (entry, mac, outer, values); }
 
 ::std::string doc_title (const e_doc doc)
 {   switch (doc)

@@ -29,8 +29,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "utility/quote.h"
 #include "type/type.h"
+#include "coop/lox.h"
 
 constexpr ::std::size_t max_separation = 30;
+
+typedef ::std::unique_ptr < ustr_t > minc_t;
+minc_t minc;
+
+void init_ssi ()
+{   minc = minc_t (new ustr_t); }
+
+bool get_previous_include (const ::std::string& name, ::std::string& content)
+{   VERIFY_NOT_NULL (minc, __FILE__ ,__LINE__);
+    lox l (lox_ssi);
+    auto i = minc -> find (name);
+    if (i == minc -> cend ()) return false;
+    content = i -> second;
+    return true; }
+
+void add_include (const ::std::string& name, const ::std::string& content)
+{   VERIFY_NOT_NULL (minc, __FILE__ ,__LINE__);
+    lox l (lox_ssi);
+    auto i = minc -> find (name);
+    if (i == minc -> cend ())
+        minc -> insert (ustr_t::value_type (name, content)); }
 
 ssi_compedium::ssi_compedium ()
     :   echomsg_ ("[Value Undefined]"), errmsg_ ("[Oops, something broke.]"), timefmt_ ("%Y %b %d %R"),
@@ -51,16 +73,6 @@ void set_ssi_context (::std::string& ln, nitpick& nits, e_severity )
 {   if (ln.empty ()) return;
     nits.set_context (0, ln);
     ln.clear (); }
-
-::std::string womble_time (::std::string& ln, nitpick& nits, const ssi_compedium& c, const struct tm* const lwt)
-{   constexpr ::std::size_t len = 256;
-    char t [len];
-    if (strftime (t, len - 1, c.timefmt_.c_str (), lwt) == 0)
-    {   set_ssi_context (ln, nits, es_error);
-        nits.pick (nit_ssi_include_error, es_error, ec_ssi, "invalid time format");
-        return c.errmsg_; }
-    t [255] = 0;
-    return ::std::string (t); }
 
 template < class ENUM, e_type TYPE > bool value (::std::string& ln, nitpick& nits, const html_version& v, ENUM& e, const ::std::string& arg, bool required = false)
 {   type_master < TYPE > x;
@@ -94,7 +106,8 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
 ::std::string get_variable_value (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const ::std::string& var, bool required = false, bool noenv = false)
 {   ::std::string arg (uq (var));
     ustr_t::const_iterator i = c.var_.find (arg);
-    if (i != c.var_.cend ()) arg = i -> second;
+    if (i != c.var_.cend ())
+        arg = i -> second;
     else
     {   e_ssi_env env = ssi_error;
         time_t t = 0;
@@ -103,27 +116,40 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
             {   set_ssi_context (ln, nits, es_error);
                 nits.pick (nit_invalid_set, es_error, ec_ssi, "apologies, but " PROG " cannot set environment variables"); }
             else switch (env)
-            {   case ssi_DATE_GMT : { time (&t); arg = womble_time (ln, nits, c, gmtime (&t)); } break;
-                case ssi_DATE_LOCAL : { time (&t); arg = womble_time (ln, nits, c, localtime (&t)); } break;
-                case ssi_DOCUMENT_NAME : arg = c.filename_; break;
+            {   case ssi_DATE_GMT :
+                    {   ::std::ostringstream ss;
+                        ss << ::date::format ("%D %T %Z", ::date::floor <::std::chrono::milliseconds> (::std::chrono::system_clock::now ()));
+                        arg = ss.str (); }
+                    break;
+                case ssi_DATE_LOCAL :
+                    {   ::std::ostringstream ss;
+                        ss << ::date::make_zoned (::date::current_zone (), ::std::chrono::system_clock::now ());
+                        arg = ss.str (); }
+                    break;
+                case ssi_DOCUMENT_NAME :
+                    arg = c.filename_;
+                    break;
                 case ssi_DOCUMENT_PATH_INFO : arg = p.get_directory () -> get_site_path (); break;
                 case ssi_DOCUMENT_URI :
-                {   arg = p.get_directory () -> get_site_path ();
-                    if ((c.filename_.length () > 0) && (c.filename_.at (0) != '/'))
-                        if (arg.length () == 0) arg = "/";
-                        else if (arg.at (arg.length () - 1) != '/') arg += '/';
-                    arg += c.filename_; break; }
+                    {   arg = p.get_directory () -> get_site_path ();
+                        if ((c.filename_.length () > 0) && (c.filename_.at (0) != '/'))
+                            if (arg.length () == 0) arg = "/";
+                            else if (arg.at (arg.length () - 1) != '/') arg += '/';
+                        arg += c.filename_; }
+                    break;
                 case ssi_LAST_MODIFIED :
-                {   ::boost::filesystem::path x (p.get_directory () -> get_disk_path ());
-                    x /= c.filename_;
-                    t = get_last_write_time (x);
-                    arg = womble_time (ln, nits, c, gmtime (&t));
-                    break; }
+                    {   ::boost::filesystem::path x (p.get_directory () -> get_disk_path ());
+                        x /= c.filename_;
+                        t = get_last_write_time (x);
+                        ::std::ostringstream ss;
+                        ss << ::date::format ("%D %T %Z", ::date::floor <::std::chrono::milliseconds> (::std::chrono::system_clock::from_time_t (t)));
+                        arg = ss.str (); }
+                    break;
                 case ssi_error :
                     GRACEFUL_CRASH (__FILE__, __LINE__);
                     UNBREAKABLE;
                 default : break; } }
-    nits.pick (nit_debug, es_debug, ec_ssi, "get_variable_value: ", quote (var), " == ", quote (arg));
+    if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_ssi, "get_variable_value: ", quote (var), " == ", quote (arg));
     return arg; }
 
 bool validate_file (::std::string& ln, nitpick& nits, const page& p, const ::std::string& f)
@@ -218,7 +244,9 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot determine that information");
         return c.errmsg_; }
 
-    return womble_time (ln, nits, c, localtime (&lwt)); }
+    ::std::ostringstream ss;
+    ss << ::date::make_zoned (::date::current_zone (), ::std::chrono::system_clock::from_time_t (lwt));
+    return ss.str (); }
 
 ::std::string fsize_command (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const vstr_t& args)
 {   ::std::string file, vrt, arg;
@@ -254,7 +282,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     return ::boost::lexical_cast < ::std::string > (size); }
 
 ::std::string include_command (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const vstr_t& args, ::std::time_t& updated)
-{   ::std::string file, vrt, onerror, arg;
+{   ::std::string file, vrt, onerror, arg, content;
     url u;
     for (auto s : args)
     {   e_ssi_include e = ssi_include_file;
@@ -270,22 +298,29 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, "<!--#INCLUDE ... --> requires one of 'file' or 'virtual'"); }
     else if (validate_file (ln, nits, p, file))
     {   ::boost::filesystem::path pt (p.get_directory () -> get_disk_path (nits, file));
-        const fileindex_t ndx = get_fileindex (pt);
-        p.add_depend (ndx);
-        ::std::time_t when = last_write (ndx);
-        if (context.shadow_changed ())
-        {   nits.pick (nit_ssi, es_debug, ec_shadow, "SSI file ", pt, " last updated ", when);
-            if (when > updated) updated = when; }
-        return parse_ssi (nits, v, p, c, read_text_file (nits, pt), updated); }
+        if (! get_previous_include (pt.string (), content))
+        {   const fileindex_t ndx = get_fileindex (pt);
+            p.add_depend (ndx);
+            ::std::time_t when = last_write (ndx);
+            if (context.shadow_changed ())
+            {   nits.pick (nit_ssi, es_debug, ec_ssi, "SSI file ", pt, " last updated ", when);
+                if (when > updated) updated = when; }
+            content = read_text_file (nits, pt);
+            add_include (pt.string (), content); }
+        return parse_ssi (nits, v, p, c, content, updated); }
     else if (validate_virtual (ln, nits, v, vrt, u))
     {   if (! u.invalid ())
-            if (p.get_directory () -> verify_url (nits, v, u))
-            {   ::std::time_t when = updated;
-                ::std::string content (p.get_directory () -> load_url (nits, u, &when));
-                if (context.shadow_changed ())
-                {   nitpick knots;
-                    nits.pick (nit_ssi, es_debug, ec_shadow, "SSI virtual ", p.get_directory () ->get_disk_path (knots, u), " last updated ", when);
-                    if (when > updated) updated = when; }
+        {   if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_ssi, "Seeking ", quote (u.absolute ()));
+            if (! get_previous_include (u.absolute (), content))
+                if (p.get_directory () -> verify_url (nits, v, u, false))
+                {   ::std::time_t when = updated;
+                    content = p.get_directory () -> load_url (nits, u, &when);
+                    add_include (u.absolute (), content);
+                    if (context.shadow_changed ())
+                    {   nitpick knots;
+                        nits.pick (nit_ssi, es_debug, ec_shadow, "SSI virtual ", p.get_directory () ->get_disk_path (knots, u), " last updated ", when);
+                        if (when > updated) updated = when; } }
+            if (! content.empty ())
                 return parse_ssi (nits, v, p, c, content, updated); }
         set_ssi_context (ln, nits, es_error);
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot verify ", file); }
@@ -317,6 +352,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     {   if (dec == ssi_encoding_url) value = decode (value);
         if (enc == ssi_encoding_url) value = sanitise (value);
         ustr_t::iterator i = c.var_.find (var);
+        if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_ssi, "setting ", quote (var), " to ", quote (value));
         if (i == c.var_.end ())
             c.var_.insert (ustr_t::value_type (var, value));
         else
@@ -368,13 +404,15 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, const pag
 ::std::string else_command (nitpick& nits, ssi_compedium& c, const bool inif)
 {   if (! inif)
         nits.pick (nit_no_if, es_error, ec_ssi, "<!--#ELSE--> requires a preceding <!--#IF-->");
-    else c.if_ = ! c.iffed_;
+    else
+        c.if_ = ! c.iffed_;
     return ::std::string (); }
 
 ::std::string endif_command (nitpick& nits, ssi_compedium& c, bool& inif)
 {   if (! inif)
         nits.pick (nit_no_if, es_error, ec_ssi, "<!--#ENDIF--> requires a preceding <!--#IF-->");
-    else { c.if_ = true; c.iffed_ = inif = false; }
+    else
+        c.if_ = true; c.iffed_ = inif = false;
     return ::std::string (); }
 
 ::std::string process_ssi (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& cmd, const ::std::string& a, bool& linechange, bool& inif, ::std::time_t& updated)

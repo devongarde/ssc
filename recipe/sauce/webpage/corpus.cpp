@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "utility/filesystem.h"
+#include "parser/text.h"
 #include "webpage/corpus.h"
 
 ::boost::filesystem::path corpus_file;
@@ -32,7 +33,7 @@ void open_corpus (nitpick& nits, const ::boost::filesystem::path& fn)
 {   if (fn.empty ()) return;
     if (file_exists (fn))
         if (! delete_file (fn))
-        {   nits.pick (nit_cannot_delete, es_catastrophic, ec_microformat, "Cannot remove existing ", corpus_file);
+        {   nits.pick (nit_cannot_delete, es_catastrophic, ec_corpus, "Cannot remove existing ", corpus_file);
             return; }
     corpus_file = fn;
     try
@@ -40,7 +41,7 @@ void open_corpus (nitpick& nits, const ::boost::filesystem::path& fn)
         if (! dump.bad ()) return; }
     catch (...) { }
     if (file_exists (fn)) delete_file (fn);
-    nits.pick (nit_cannot_create_file, es_catastrophic, ec_microformat, "Cannot create ", corpus_file);
+    nits.pick (nit_cannot_create_file, es_catastrophic, ec_corpus, "Cannot create ", corpus_file);
     corpus_file.clear (); }
 
 void close_corpus (nitpick& nits)
@@ -49,7 +50,7 @@ void close_corpus (nitpick& nits)
     {   dump.close (); return; }
     catch (...)
     { }
-    nits.pick (nit_cannot_update, es_info, ec_microformat, "Cannot close ", corpus_file);
+    nits.pick (nit_cannot_update, es_info, ec_corpus, "Cannot close ", corpus_file);
     corpus_file.clear (); }
 
 void extend_corpus (nitpick& nits, const ::std::string& title, const ::std::string& site_path, const ::std::string& text,
@@ -58,16 +59,20 @@ void extend_corpus (nitpick& nits, const ::std::string& title, const ::std::stri
     if (dump.bad ()) return;
     if (text.empty ()) return;
     try
-    {   dump    << "<page>\n<url>" << site_path << "</url>\n"
-                << "<content>" << text << "</content>\n";
-        if (! dump.bad () && ! title.empty ()) dump << "<title>" << title << "</title>\n";
-        if (! dump.bad () && ! author.empty ()) dump << "<author>" << author << "</author>\n";
-        if (! dump.bad () && ! description.empty ()) dump << "<description>" << description << "</description>\n";
-        if (! dump.bad () && ! keywords.empty ()) dump << "<keywords>" << keywords << "</keywords>\n";
-        if (! dump.bad ()) dump << "</page>\n";
-        if (! dump.bad ()) return; }
+    {   ::std::stringstream c;
+        c   << "<page>\n  <url>" << enwotsit (site_path) << "</url>\n"
+            << "  <content>" << enwotsit (text) << "</content>\n";
+        if (! c.bad () && ! title.empty ()) c << "  <title>" << enwotsit (title) << "</title>\n";
+        if (! c.bad () && ! author.empty ()) c << "  <author>" << enwotsit (author) << "</author>\n";
+        if (! c.bad () && ! description.empty ()) c << "  <description>" << enwotsit (description) << "</description>\n";
+        if (! c.bad () && ! keywords.empty ()) c << "  <keywords>" << enwotsit (keywords) << "</keywords>\n";
+        if (! c.bad ())
+        {   c << "</page>\n";
+            if (! c.bad ())
+            {   dump << c.str ();
+                if (! dump.bad ()) return; } } }
     catch (...) { }
-    nits.pick (nit_cannot_update, es_catastrophic, ec_microformat, "Cannot write to ", corpus_file);
+    nits.pick (nit_cannot_update, es_catastrophic, ec_corpus, "Cannot write to ", corpus_file);
     try
     {   dump.close (); }
     catch (...)

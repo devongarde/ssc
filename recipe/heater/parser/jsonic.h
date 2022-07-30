@@ -21,8 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "feedback/nitpick.h"
 
-#ifdef NO_JSONIC
-#else // NO_JSONIC
+#ifndef NO_JSONIC
 class jsonic
 {   ::boost::json::value value_;
     static ::std::string rpt_base (const ::boost::json::value& val, const int indent);

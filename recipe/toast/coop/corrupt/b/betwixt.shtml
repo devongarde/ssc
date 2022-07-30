@@ -1,0 +1,94 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Betwixt" -->
+<!--#set var="poet" value="Jennifer K. Dick" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#dick">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2011-05-01">
+
+<img SRC="betwixt.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><a href="/authors/index.shtml#dick" class="poet"><!--#echo encoding="none" var="poet" --></a><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">30</span>pp, &euro;5, May 2011<br>
+ISBN <span itemprop="isbn">979&ndash;10&ndash;90394&ndash;03&ndash;2</span><br>
+The cover image is &ldquo;Mirror Mirror&rdquo;, a two plate solar etching by
+<span itemprop = "contributor" itemscope itemtype="https://schema.org/Person"><a href="http://michelewinkler.com/" itemprop="sameAs url"><span itemprop="name"><span itemprop="givenName">Michele</span> <span itemprop="familyName">Winkler</span></span></a></span>.
+</p>
+
+<p class="published-quote">
+&lsquo;<span class="book-title"><!--#echo encoding="none" var="title" --></span>&rsquo; penetrates deeply beneath and betwixt the narrative of Orpheus and Eurydice. These intermediate and indeterminate spin-offs from the motif are set in a stuttering, probing movement that is ever present in an ongoing gaze that is both backward and forward-looking. The transformative registers and play that Dick draws upon incites the reader through linguistic and sonic verve to question the framework and creases of male and female identity and to see the fragility of pastoral stability and the proximity of loss. Her voice is unerring and unmasking. I love it.
+<span class="published-quoted">
+David Caddy, editor of Tears in the Fence
+</span>
+</p>
+
+<p class="published-quote">
+&ldquo;In the ec-, ec- ectoplasm of the echo,&rdquo; <a href="/authors/index.shtml#dick" class="poet"><!--#echo encoding="none" var="poet" --></a>&rsquo;s new concerto sings vibrato, rocking us boldly into shadowscape of the serpentine underworld of starboard saints the order of Orpheus and Eurydice, those Hansels and Gretels. Lushly and lavishly into the underworld we descend to look and to never look back, to forage forward and toward her lyrical horizon, sinking cock-eared and then tipping into her dreamscapes, begging, &ldquo;make it double,&rdquo; please.
+<span class="published-quoted">
+Sandy Florian, author of The Tree of No
+</span>
+</p>
+
+<p class="published-quote">
+In the sinuous descents of <a href="/authors/index.shtml#dick" class="poet"><!--#echo encoding="none" var="poet" --></a>&rsquo;s <span class="book-title"><!--#echo encoding="none" var="title" --></span>, we are among the debris of doxa not left to lie around an ailing modernist Thames or Rhime, but rather bound up again in the fascicle of a deeper myth-going gauntlet. Eurydice is the by-proxy birth of the lyric, of both its sad and smiling aspects (the marriage ceremony and the broken quest), two divided faces which both promise never to look back. Sex and scalpel, fusion and fissuring, no identity is left unknit in this astonishing revival. So we too may go deeper, into the passages of our choosing: &ldquo;just follow the tracks in the dark, steady, steadying.&rdquo;
+<span class="published-quoted">
+Nicholas Manning, author of Novaless
+</span>
+</p>
+
+<p class="published-quote">
+In <a href="/authors/index.shtml#dick" class="poet"><!--#echo encoding="none" var="poet" --></a>&rsquo;s wonderful rewinding of &ldquo;loosely wound&rdquo; myth, Orpheus and Eurydice are strung out on contemporary anxieties and pulled through the compelling lines of a tensely rhythmic language, an element at once familiar and strange. Description is unsteady, under revision, and flatness and depth make sudden shifts the characters (including reader and writer) negotiate, making forward movement exciting: the stakes are still high, even as we&rsquo;re reminded the game is lost. Meanwhile the field of the author&rsquo;s attention is mobile, errant, including the frame or what takes place elsewhere, beyond (around, askew to) a &ldquo;story.&rdquo; The subject of this splendid collection is the texture of understanding in its uneasy motion through the &ldquo;sonorous dark&rdquo;&mdash;in other words, the work of love.
+<span class="published-quoted">
+Laura Mullen
+</span>
+</p>
+
+<p class="published-quote">
+<a href="/authors/index.shtml#dick" class="poet"><!--#echo encoding="none" var="poet" --></a>&rsquo;s <span class="book-title"><!--#echo encoding="none" var="title" --></span> occurs at intermission&mdash;the point at which one act is made historical even as another supplants it. Inside this book, Eurydice and Orpheus wander the streets of Paris (which is also New York), Hades looks strangely like the Metro, and everything pickpockets the attributes of everything else. &ldquo;Already what&rsquo;s awaiting is rerouted,&rdquo; Dick writes, as the tectonics of identity shift, destabilize and reconstitute, ushering forth a postmodern noir that sizzles with cosmopolitan smarts. Just further proof that poetry, like life, brooks no stasis: all is syncopation.
+<span class="published-quoted">
+Chris Pusateri, author of Anon
+</span>
+</p>
+
+<p class="published-quote">
+<span class="book-title"><!--#echo encoding="none" var="title" --></span> is a contemporary myth. It&rsquo;s a &ldquo;gaze cast,&rdquo; where the unseen are momentarily seen&mdash;within shadow, under the pale light. It&rsquo;s a dicey game of chance, in which time folds in on itself. Intimacy is held captive and released: &ldquo;To: think only of her. Not to forget: she is. To: know this.&rdquo; The impulse to turn leaves us standing still. In awe. Marveling at <a href="/authors/index.shtml#dick" class="poet"><!--#echo encoding="none" var="poet" --></a>&rsquo;s &ldquo;condensation of meaning.&rdquo;
+<span class="published-quoted">
+Michelle Naka Pierce, author of Beloved Integer
+</span>
+</p>
+
+<p class="published-quote">
+These poems reward several readings, evoking each time a different aspect of the multi-layered complexities of our worlds, both old and new.
+<span class="published-quoted">
+Read Afric McGlinchey&rsquo;s full review at <a href="http://sabotagereviews.com/2011/06/17/previous-vertigos-by-nina-karacosta-betwixt-by-jennifer-k-dick-corrupt-press/">Sabotage Reviews</a>.
+</span>
+</p>
+
+</div>
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

@@ -46,15 +46,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 #include "webpage/page.h"
 #include "parser/text.h"
+#include "parser/parse_ssi.h"
 #include "type/type.h"
 #include "url/url.h"
 #include "url/url_sanitise.h"
 #include "webpage/fileindex.h"
 #include "icu/lingo.h"
 #include "utility/filesystem.h"
+#include "coop/lox.h"
+#include "webpage/q.h"
+#include "coop/kew.h"
+#include "coop/knickers.h"
 
 void init (nitpick& nits)
-{   macro.init ();
+{   init_css_cache ();
+    init_macro ();
+    init_itemid ();
+    init_itemprop ();
+    init_rdfa_prop ();
+    init_ssi ();
     nits_init ();
     nits.set_context (0, PROG " initialisation");
     spell_init (nits);
@@ -83,22 +93,23 @@ void init (nitpick& nits)
     hierarchy_init (nits);
     microdata_init (nits);
     url::init (nits);
-    wotsit_init (nits);
-#ifdef DEBUG
-    // avm_elem_crosscheck ();
-#endif
-}
+    wotsit_init (nits); }
 
 int ciao ()
-{   if (context.progress ()) ::std::cout << "\nFinishing\n";
+{   PRESUME (! fred.activity (), __FILE__, __LINE__);
+    if (context.progress ()) ::std::cout << "\nFinishing\n";
     if (context.unknown_class () && context.tell (es_warning))
     {   ::std::ostringstream ss;
-        css_cache.report_usage (ss);
+        VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
+        css_cache -> report_usage (ss);
         if (context.crosslinks ())
         {   nitpick nits;
             reconcile_crosslinks (nits);
-            if (! nits.empty ()) macro.dump_nits (nits, ns_link, ns_link_head, ns_link_foot);
-            outstr.out () << ::std::endl; }
+            if (! nits.empty ())
+            {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+                macro -> dump_nits (nits, ns_link, ns_link_head, ns_link_foot); }
+            nits.accumulate (&overall);
+            outstr.out ("\n"); }
         {   if (! ss.str ().empty ())
                 outstr.out (ss.str ());
             if (! empty_itemid ())
@@ -115,14 +126,15 @@ int examine (nitpick& nits)
     {   page web (context.snippet ());
         if (! web.invalid ()) web.examine ();
         ::std::string s (web.nits ().review ());
+            web.nits ().accumulate (&overall);
         s += web.report ();
         if (context.test ()) outstr.out (START_OF_SECTION " " SNIPPET "\n");
         outstr.out (s);
         return res; }
+    nitpick shadow, exp;
     open_corpus (nits, context.corpus ());
     paths_root virt (paths_root::virtual_roots ());
     virt.add_root (nix_path_to_local (context.root ()), "/");
-    nitpick shadow, exp;
     if (! context.shadow_root ().empty ())
     {   VERIFY_NOT_NULL (virt.at (0), __FILE__, __LINE__);
         if (! virt.at (0) -> shadow_root (shadow, context.shadow_root ()))
@@ -139,7 +151,7 @@ int examine (nitpick& nits)
             if (! virt.add_shadow (shadow, vv))
             {   res = ERROR_STATE; break; } }
     if (res != ERROR_STATE)
-       for (auto v : context.exports ())
+        for (auto v : context.exports ())
             if (! virt.add_export (exp, v))
             {   res = ERROR_STATE; break; }
     if (res != ERROR_STATE)
@@ -148,60 +160,68 @@ int examine (nitpick& nits)
         vd.reserve (vmax);
         for (::std::size_t n = 0; n < vmax; ++n)
             vd.emplace_back (new directory (virt.at (n)));
-        for (::std::size_t n = 0; n < vmax; ++n)
-        {   if (context.progress ())
-            {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                ::std::cout << "Scanning " << virt.at (n) -> get_disk_path ().string () << " ."; }
-            try
-            {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
-                VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                if (! vd.at (n) -> scan (nits, virt.at (n) -> get_site_path ()))
-                {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " failed");
-                    res = ERROR_STATE; } }
-            catch (const ::std::system_error& e)
-            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised system error ", e.what ());
-                res = ERROR_STATE; }
-            catch (const ::std::exception& e)
-            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised the exception ", e.what ());
-                res = ERROR_STATE; }
-            catch (...)
-            {   nits.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised an exception");
-                res = ERROR_STATE; }
-            if (context.progress ()) ::std::cout << ::std::endl; }
-        if (res == VALID_RESULT)
-        {   PRESUME (vd.size () > 0, __FILE__, __LINE__);
-            ::std::size_t n = integrate_virtuals (virt, vd);
-            if (n != 0)
-            {   nits.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());
-                res = ERROR_STATE; }
-            else
-            {   if (context.dodedu ()) dedu (shadow);
-                for (n = 0; n < vmax; ++n)
-                {   if (context.progress ())
-                    {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                        ::std::cout << "Checking " << virt.at (n) -> get_disk_path ().string () << ::std::endl; }
-                    try
-                    {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
-                        VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                        if (vd.at (n) -> empty ())
-                            nits.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
-                        else
-                            vd.at (n) -> examine (nits); }
-                    catch (const ::std::system_error& e)
-                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examining ", virt.at (n) -> get_disk_path (), " raise the system error ", e.what ());
+        if (! fred.init (nits)) res = ERROR_STATE;
+        else
+        {   nitpick nuts;
+            knickers k (nuts, &nits);
+            for (::std::size_t n = 0; n < vmax; ++n)
+            {   if (context.progress ())
+                {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+                    ::std::cout << "Scanning " << virt.at (n) -> get_disk_path ().string () << " ." << ::std::endl; }
+                try
+                {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
+                    VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+                    if (! vd.at (n) -> scan (&nits, virt.at (n) -> get_site_path ()))
+                    {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " failed");
+                        res = ERROR_STATE; } }
+                catch (const ::std::system_error& e)
+                {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised system error ", e.what ());
+                    res = ERROR_STATE; }
+                catch (const ::std::exception& e)
+                {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised the exception ", e.what ());
+                    res = ERROR_STATE; }
+                catch (...)
+                {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised an exception");
+                    res = ERROR_STATE; }
+                if (res == ERROR_STATE) fred.abandon ();
+                if (context.progress ()) ::std::cout << ::std::endl; }
+            if (res == VALID_RESULT)
+            {   if (fred.abandoned ()) res = ERROR_STATE;
+                else
+                {   PRESUME (vd.size () > 0, __FILE__, __LINE__);
+                    ::std::this_thread::yield ();
+                    while (fred.dqe ())
+                        if (q.empty () && ! fred.activity ()) break;
+                    ::std::size_t n = integrate_virtuals (virt, vd);
+                    if (n != 0)
+                    {   nuts.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());
                         res = ERROR_STATE; }
-                    catch (const ::std::exception& e)
-                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examining ", virt.at (n) -> get_disk_path (), " raised the exception ", e.what ());
-                        res = ERROR_STATE; }
-                    catch (...)
-                    {   nits.pick (nit_examine_failed, es_catastrophic, ec_init, "examining ", virt.at (n) -> get_disk_path (), " raised an exception");
-                        res = ERROR_STATE; } } } } }
-    spell_free ();
-    close_corpus (nits);
-    fileindex_save_and_close (nits);
-    macro.dump_nits (nits, ns_update, ns_update_head, ns_update_foot);
-    macro.dump_nits (exp, ns_export, ns_export_head, ns_export_foot);
-    macro.dump_nits (shadow, ns_shadow, ns_shadow_head, ns_shadow_foot);
+                    else
+                    {   if (context.dodedu ()) dedu (shadow);
+                        for (n = 0; n < vmax; ++n)
+                        {   if (context.progress ())
+                            {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+                                ::std::cout << "Checking " << virt.at (n) -> get_disk_path ().string () << "." << ::std::endl; }
+                            VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
+                            VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+                            if (vd.at (n) -> empty ())
+                                nuts.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
+                            else
+                                q.push (q_entry (&nits, vd.at (n), st_examine)); }
+                        ::std::this_thread::yield ();
+                        while (fred.dqe ())
+                            if (q.empty () && ! fred.activity ()) break; } } }
+            fred.done ();
+            if (! context.classic ())
+            {   VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
+                css_cache -> post_process (); }
+            spell_free ();
+            close_corpus (nuts);
+            fileindex_save_and_close (nuts); } }
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    macro -> dump_nits (nits, ns_update, ns_update_head, ns_update_foot);
+    macro -> dump_nits (exp, ns_export, ns_export_head, ns_export_foot);
+    macro -> dump_nits (shadow, ns_shadow, ns_shadow_head, ns_shadow_foot);
     return res; };
 
 int main (int argc, char** argv)
@@ -215,8 +235,6 @@ int main (int argc, char** argv)
         const std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
         ::std::string t (::std::ctime (&start_time));
         t = t.substr (0, t.length () - 1);
-        context.started (t);
-        context.build (__DATE__ " " __TIME__);
         vstr_t v (split_by_charset (VERSION_STRING, "."));
         PRESUME (v.size () == 3, __FILE__, __LINE__);
         PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
@@ -224,6 +242,8 @@ int main (int argc, char** argv)
         PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__);
         nitpick nits, nuts;
         init (nits);
+        context.started (t);
+        context.build (__DATE__ " " __TIME__);
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26481)
@@ -235,25 +255,30 @@ int main (int argc, char** argv)
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
-        macro.set (nm_context_build, BUILD_INFO);
-        macro.set (nm_run_args, args);
+        VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        macro -> set (nm_context_build, BUILD_INFO);
+        macro -> set (nm_run_args, args);
         context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" BUILD_INFO "]\n");
         res = context.parameters (nuts, argc, argv);
+#ifdef DEBUG
+        avm_elem_crosscheck ();
+#endif
         if (context.todo () == do_simple)
-        {   ::std::cout << FULL_TITLE;
+        {   ::std::cout << szFullTitle;
             ::std::cout << context.domsg ();
             return VALID_RESULT; }
-        if (! macro.is_template_loaded ()) macro.load_template (nuts, html_default);
-        outstr.out () << macro.apply (ns_doc_head);
+        if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);
+        outstr.out (macro -> apply (ns_doc_head));
         enfooten = true;
-        macro.dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
+        macro -> dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
         if (context.invalid () || (context.todo () == do_booboo) || (res == ERROR_STATE))
-        {   macro.dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
+        {   macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = ERROR_STATE; }
         else
         {   if (! fileindex_load (nuts)) res = ERROR_STATE;
-            macro.dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
+            macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = examine (nits);
+            nits.accumulate (&overall);
             const int cr = ciao ();
             if (cr > res) res = cr; }
         const auto fin = std::chrono :: system_clock :: now ();
@@ -261,28 +286,28 @@ int main (int argc, char** argv)
         const std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
         t = ::std::ctime (&end_time);
         t = t.substr (0, t.length () - 1);
-        macro.set (nm_time_finish, t);
-        macro.set (nm_time_duration, ::boost::lexical_cast < ::std::string > (floor ((elapsed_seconds.count () * 1000.0) + 0.5) / 1000.0)); }
+        macro -> set (nm_time_finish, t);
+        macro -> set (nm_time_duration, ::boost::lexical_cast < ::std::string > (floor ((elapsed_seconds.count () * 1000.0) + 0.5) / 1000.0)); }
     catch (const ::std::system_error& e)
-    {   msg = "catastrophic exit with system error ";
+    {   msg = "catastrophic exit with system error: ";
         msg += e.what ();
         res = ERROR_STATE; }
     catch (const ::std::exception& e)
-    {   msg = "catastrophic exit with the exception ";
+    {   msg = "catastrophic exit with exception: ";
         msg += e.what ();
         res = ERROR_STATE; }
     catch (...)
     {   msg = "catastrophic exit with an unknown exception";
         res = ERROR_STATE; }
     if (! enfooten)
-    {   if (! msg.empty ()) ::std::cerr << msg << "\n";
-        else ::std::cerr << "catastrophic error of unknown cause with no explanation\n"; }
+    {   if (! msg.empty ()) ::std::cerr << msg << "\n"; }
     else try
-    {   if (! msg.empty ()) macro.set (nm_run_catastrophe, msg);
-        else macro.set (nm_run_catastrophe, "catastrophic error of unknown cause with no explanation");
-        outstr.out () << macro.apply (ns_doc_foot); }
+    {   if (! msg.empty ()) macro -> set (nm_run_catastrophe, msg);
+        outstr.out (macro -> apply (ns_doc_foot));
+        if (! msg.empty ()) outstr.err (msg + "\n"); }
     catch (...)
     {   if (msg.empty ()) msg = "catastrophic exception writing footers\n";
         ::std::cerr << msg << "\n";
         res = ERROR_STATE; }
+    fred.done ();
     return res; };

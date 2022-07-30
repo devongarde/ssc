@@ -22,18 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "feedback/nitout.h"
 #include "feedback/nitout.h"
+#include "coop/lox.h"
 
 class output_streams_t
 {   ::std::unique_ptr < ::std::ofstream > fos_;
     ::std::string name_;
     unsigned dot_ = 0;
     ::std::string ensane (const ::std::string& s) const;
-public:
-    void init (nitpick& nits, const ::std::string& s);
-    void out (const ::std::string& s) const { out () << s; }
-    void err (const ::std::string& s) const { err () << ensane (s); }
     ::std::ostream& out () const noexcept { if (fos_) return *fos_; return ::std::cout; }
     ::std::ostream& err () const noexcept { if (fos_) return *fos_; return ::std::cerr; }
+public:
+    void init (nitpick& nits, const ::std::string& s);
+    void out (const ::std::string& s) const { lox l (lox_out); out () << s; }
+    void err (const ::std::string& s) const { lox l (lox_out); err () << ensane (s); }
     void dot ();
     void dedot (unsigned n = 0) noexcept { dot_ = n; } };
 

@@ -762,6 +762,180 @@
     <Filter Include="Toast\Living\apr22">
       <UniqueIdentifier>{a64959fd-bf02-4ba7-a069-be820c899e9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Heater\coop">
+      <UniqueIdentifier>{184c5ef9-102d-4140-82b0-45c70524d072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\coop">
+      <UniqueIdentifier>{eb8c634c-4d3c-4b2a-9706-77896ba8a179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Third Party">
+      <UniqueIdentifier>{0d1df970-5d98-456c-8d3b-8a5002242c08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Third Party\Howard Hinnant Date">
+      <UniqueIdentifier>{18a61120-6f42-45ec-9363-7cb6cd2cd791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop">
+      <UniqueIdentifier>{2bb45e09-7968-47e9-ba44-7d138c1d1fe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt">
+      <UniqueIdentifier>{71d5b820-56b4-479c-bfe2-c82396492fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21">
+      <UniqueIdentifier>{5caed077-e0a9-4433-ac02-b2093a58845c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\schema-abc">
+      <UniqueIdentifier>{28b94ae4-6eb1-41da-b1e7-57e2c4704d92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\schema-abc\a">
+      <UniqueIdentifier>{abad5c77-6ce1-412f-b696-94910e6b1a4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\schema-abc\b">
+      <UniqueIdentifier>{805d2b5b-9d8a-48b0-854b-e280b3f75ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\schema-abc\c">
+      <UniqueIdentifier>{0086432d-52c2-4cbb-9f4b-889b0aeaac77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\a">
+      <UniqueIdentifier>{49dea9f7-085c-4f50-a10f-70d71b65499c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\b">
+      <UniqueIdentifier>{04e29e8c-2e2c-407d-ad86-2a4d243ad367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\c">
+      <UniqueIdentifier>{a8cee070-e370-4dad-ad64-e1f888a20caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\d">
+      <UniqueIdentifier>{1b6c7c33-e4b3-470b-8a65-6b47be342a16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\authors">
+      <UniqueIdentifier>{91fa05c1-723f-4c6c-990c-4bf28d788b66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\e">
+      <UniqueIdentifier>{6ad8c19a-17cb-4d74-a654-9cab2dbfc765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\g">
+      <UniqueIdentifier>{a32f3131-0177-4061-8668-69df4b11a716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\h">
+      <UniqueIdentifier>{4534927c-fba9-4bbb-8a03-9ba5e51d381a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\i">
+      <UniqueIdentifier>{d50e9826-81ca-455f-aa6f-d4fb3e294afc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\js">
+      <UniqueIdentifier>{601d60d7-20c4-435e-9d49-1d0175a54c67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\k">
+      <UniqueIdentifier>{0ef6b6db-736d-4cbd-9031-cb8e32a14135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\l">
+      <UniqueIdentifier>{d7e525a7-87d0-4033-b754-845f24f3e88f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\m">
+      <UniqueIdentifier>{2e817715-eb0e-4543-b95a-7afce3f46afc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\o">
+      <UniqueIdentifier>{7ed75f7c-3b42-475b-ba5b-43da1c5ef173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\p">
+      <UniqueIdentifier>{bf461317-4ce4-440f-a050-d44fb9e45b6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\plumbing">
+      <UniqueIdentifier>{7d0f58f5-7725-46a1-a7e3-bc3b2c77115e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\r">
+      <UniqueIdentifier>{48c95382-bc02-4773-ba8c-ed729e341f3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\s">
+      <UniqueIdentifier>{70a314e5-f7b2-4a39-acc7-4a7187522e37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\t">
+      <UniqueIdentifier>{d0c88d57-63e3-443d-a070-d7c8953b48f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\u">
+      <UniqueIdentifier>{8121bbe0-f730-4632-9211-29c9db9825c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\v">
+      <UniqueIdentifier>{e2ef42e5-01a7-4f44-8a87-365827340d0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\w">
+      <UniqueIdentifier>{3b43e808-a2cc-485d-b882-b9d89f5d16af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\x">
+      <UniqueIdentifier>{9767cad1-90ed-4c89-b8be-56b3db0fdd04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\a">
+      <UniqueIdentifier>{09458a23-0717-42e3-94cc-53f57d2240af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\b">
+      <UniqueIdentifier>{3cadd30d-67ba-4322-b4ba-faa8642e602a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\c">
+      <UniqueIdentifier>{3ee32f21-eda5-4617-aa0e-0cfd2870ec98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\d">
+      <UniqueIdentifier>{b7e38e48-592c-4a3f-9aa4-830cfbd3efff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\e">
+      <UniqueIdentifier>{b20c99ba-d84a-4c93-9fee-29b7736bd0c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\f">
+      <UniqueIdentifier>{a566d6f4-1d51-4478-92c9-64f0e1d66286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\h">
+      <UniqueIdentifier>{07312422-f6f4-40fd-9950-c4d717fe0dbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\i">
+      <UniqueIdentifier>{41957662-e3a1-4ddf-9d46-c0c24f449f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\j">
+      <UniqueIdentifier>{6c6d6e7c-bdef-48d6-972c-08954c6a8b07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\k">
+      <UniqueIdentifier>{28b380ff-c6d7-432e-a501-5e03c813d0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\l">
+      <UniqueIdentifier>{f59c5744-c08b-4f5f-8cb9-16ecfca38584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\m">
+      <UniqueIdentifier>{796da414-938d-4edd-9ba6-21ef711e0b01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\n">
+      <UniqueIdentifier>{b9f2b137-1b42-4977-a5ba-0a024bd8b3bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\o">
+      <UniqueIdentifier>{7f61ef6b-b480-4185-ba02-e1b02d0638e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\schema-abc\empty">
+      <UniqueIdentifier>{36ccb947-2d78-4613-9bf5-d32b41ac9c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\p">
+      <UniqueIdentifier>{e8b12aef-10d9-48b6-a8a1-213f7abd9d70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\q">
+      <UniqueIdentifier>{cae1c346-e482-44df-8986-550211cdcb9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\r">
+      <UniqueIdentifier>{834d786b-ca3b-462e-a60f-8433eba7641a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\s">
+      <UniqueIdentifier>{00dae3ec-a6b8-43f0-84cb-1370d2d03146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\t">
+      <UniqueIdentifier>{627da1a4-2599-4146-a733-82063e459d1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\u">
+      <UniqueIdentifier>{58b4af8d-481a-43f0-b0da-5c539121025e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\v">
+      <UniqueIdentifier>{ef1ff84a-e1ae-4852-b3b7-6af05a183f71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\oct21\w">
+      <UniqueIdentifier>{ad5c26c6-e2f2-42c3-a1c1-273cf20ac0c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\corrupt\info">
+      <UniqueIdentifier>{c517cb1e-8989-415f-9dd7-d2c5d57fe29e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1253,6 +1427,51 @@
     <ClInclude Include="..\heater\main\output.h">
       <Filter>Heater\main</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\coop\fred.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\kew.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\lox.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\webpage\q.h">
+      <Filter>Heater\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\knickers.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\chrono_io.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\date.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\ios.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\islamic.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\iso_week.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\julian.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\ptz.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\solar_hijri.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\tz.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\tz_private.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1728,6 +1947,24 @@
     </ClCompile>
     <ClCompile Include="..\sauce\main\output.cpp">
       <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\fred.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\kew.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\lox.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\webpage\q.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\knickers.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third\date\tz.cpp">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -23742,6 +23979,1161 @@
     <None Include="..\toast\type\httpequiv\bad.html">
       <Filter>Toast\Type\httpequiv</Filter>
     </None>
+    <None Include="..\toast\coop\schema-abc\abc.conf">
+      <Filter>Toast\coop\schema-abc</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\abc.spec">
+      <Filter>Toast\coop\schema-abc</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\index.html">
+      <Filter>Toast\coop\schema-abc</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\administrativearea.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\aggregateoffer.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\aggregaterating-1.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\aggregaterating-2.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\alignmentobject.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\amusementpark.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\answer.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\archivecomponent.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\archiveorganisation.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\article.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\atlas.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\audiobook.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\audioobject.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\blogposting.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\book-1.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\book-2.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\book-3.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\breadcrumblist.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\broadcastevent.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\broadcastfrequencyspecification.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\broadcastservice.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\brokerageaccount.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\bankaccount.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\bankorcreditunion.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\cableorsatelliteservice.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\car.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\categorycode.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\categorycodeset.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\cemetery.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\chapter.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\civicstructure.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\claimreview.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\collection.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\collegeoruniversity-1.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\collegeoruniversity-2.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\comiccoverart.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\comicissue.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\conversation.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\corporation.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\course.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\courseinstance.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\coverart.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\creativework-1.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\creativework-2.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\creditcard.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\a\ant.shtml">
+      <Filter>Toast\coop\corrupt\a</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\o\organspeech.shtml">
+      <Filter>Toast\coop\corrupt\o</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\o\onecolumbusleap.shtml">
+      <Filter>Toast\coop\corrupt\o</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\o\orantes.shtml">
+      <Filter>Toast\coop\corrupt\o</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\p\peneloping.shtml">
+      <Filter>Toast\coop\corrupt\p</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\p\previous.shtml">
+      <Filter>Toast\coop\corrupt\p</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\p\parted.shtml">
+      <Filter>Toast\coop\corrupt\p</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\product-section.inc">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\results.shtml">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\songshade.css">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\under.inc">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\var.inc">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\header.inc">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\html-en.inc">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\html-end.inc">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\html-top.inc">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\info-section.inc">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\plumbing\longer-section.inc">
+      <Filter>Toast\coop\corrupt\plumbing</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\r\roadkill.shtml">
+      <Filter>Toast\coop\corrupt\r</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\r\roadsong.shtml">
+      <Filter>Toast\coop\corrupt\r</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\s\stwah.shtml">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\s\suspension.shtml">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\s\sc.shtml">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\s\shelf.shtml">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\s\shipfur.shtml">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\s\silentg.shtml">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\s\skypp.shtml">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\s\standardform.shtml">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\s\stonebride.shtml">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\t\turnpush.shtml">
+      <Filter>Toast\coop\corrupt\t</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\t\tweet.shtml">
+      <Filter>Toast\coop\corrupt\t</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\t\thesunbrings.shtml">
+      <Filter>Toast\coop\corrupt\t</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\t\trialballoons.shtml">
+      <Filter>Toast\coop\corrupt\t</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\u\understory.shtml">
+      <Filter>Toast\coop\corrupt\u</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\v\verisimilitude.shtml">
+      <Filter>Toast\coop\corrupt\v</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\v\vertiges.shtml">
+      <Filter>Toast\coop\corrupt\v</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\w\weak.shtml">
+      <Filter>Toast\coop\corrupt\w</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\w\wolfdown.shtml">
+      <Filter>Toast\coop\corrupt\w</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\x\xmas.shtml">
+      <Filter>Toast\coop\corrupt\x</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\m\m.shtml">
+      <Filter>Toast\coop\corrupt\m</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\m\mammals.shtml">
+      <Filter>Toast\coop\corrupt\m</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\m\misscanada.shtml">
+      <Filter>Toast\coop\corrupt\m</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\l\lilith.shtml">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\l\limitedesir.shtml">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\l\longplayep.shtml">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\l\lowlevelflying.shtml">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\l\left.shtml">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\k\kg.shtml">
+      <Filter>Toast\coop\corrupt\k</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\js\awstats_misc_tracker.js">
+      <Filter>Toast\coop\corrupt\js</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\delivery.shtml">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\details.inc">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\pp.inc">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\privacy.shtml">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\returns.shtml">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\sale.shtml">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\submissions.shtml">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\thanx.shtml">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\use.shtml">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\about.shtml">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\info\cart.shtml">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\i\imaginary.shtml">
+      <Filter>Toast\coop\corrupt\i</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\i\impression.shtml">
+      <Filter>Toast\coop\corrupt\i</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\i\ispyshanty.shtml">
+      <Filter>Toast\coop\corrupt\i</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\h\hen.shtml">
+      <Filter>Toast\coop\corrupt\h</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\h\hole.shtml">
+      <Filter>Toast\coop\corrupt\h</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\g\garden.shtml">
+      <Filter>Toast\coop\corrupt\g</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\g\gia.shtml">
+      <Filter>Toast\coop\corrupt\g</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\g\gifted.shtml">
+      <Filter>Toast\coop\corrupt\g</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\g\glittery.shtml">
+      <Filter>Toast\coop\corrupt\g</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\e\esmeralda.shtml">
+      <Filter>Toast\coop\corrupt\e</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\e\elsewhere.shtml">
+      <Filter>Toast\coop\corrupt\e</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\e\endofstreet.shtml">
+      <Filter>Toast\coop\corrupt\e</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\d\dcav.shtml">
+      <Filter>Toast\coop\corrupt\d</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\d\dejavu.shtml">
+      <Filter>Toast\coop\corrupt\d</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\c\catch.shtml">
+      <Filter>Toast\coop\corrupt\c</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\c\chemical.shtml">
+      <Filter>Toast\coop\corrupt\c</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\c\circuits.shtml">
+      <Filter>Toast\coop\corrupt\c</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\b\bulletsorchids.shtml">
+      <Filter>Toast\coop\corrupt\b</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\b\buriton.shtml">
+      <Filter>Toast\coop\corrupt\b</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\b\betwixt.shtml">
+      <Filter>Toast\coop\corrupt\b</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\authors\index.shtml">
+      <Filter>Toast\coop\corrupt\authors</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\living.spec">
+      <Filter>Toast\coop\oct21</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\404.html">
+      <Filter>Toast\coop\oct21</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\living.conf">
+      <Filter>Toast\coop\oct21</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\o\object.html">
+      <Filter>Toast\coop\oct21\o</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\o\ol.html">
+      <Filter>Toast\coop\oct21\o</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\o\optgroup.html">
+      <Filter>Toast\coop\oct21\o</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\o\output.html">
+      <Filter>Toast\coop\oct21\o</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\p\p.html">
+      <Filter>Toast\coop\oct21\p</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\p\param.html">
+      <Filter>Toast\coop\oct21\p</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\p\pre.html">
+      <Filter>Toast\coop\oct21\p</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\p\progress.html">
+      <Filter>Toast\coop\oct21\p</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\q\q.html">
+      <Filter>Toast\coop\oct21\q</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\r\rp.html">
+      <Filter>Toast\coop\oct21\r</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\r\ruby.html">
+      <Filter>Toast\coop\oct21\r</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\scripting-9.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\section-1.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\section-2.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\select.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\selectors.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\small.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\source.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\span.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\ssah-1.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\ssah-2.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\ssah-3.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\ssah-4.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\ssah-5.xhtml">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\ssah-6.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\strange-1.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\strange-2.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\strange-3.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\strange-4.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\strong.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\style.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\subsup.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\systemstate.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\s.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\samp.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\script.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\scripting-1.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\scripting-2.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\scripting-3.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\scripting-4.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\scripting-5.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\scripting-6.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\scripting-7.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\s\scripting-8.html">
+      <Filter>Toast\coop\oct21\s</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\time.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\title-1.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\title-2.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\tls.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\track.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\table.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\tc.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\td.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\te.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\template1.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\template2.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\textarea.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\th.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\t\thead.html">
+      <Filter>Toast\coop\oct21\t</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-6.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-7.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-8.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-9.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-10.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\u.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\ul.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-1.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-2.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-3.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-4.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\u\us-5.html">
+      <Filter>Toast\coop\oct21\u</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\v\var.html">
+      <Filter>Toast\coop\oct21\v</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\v\vcard.html">
+      <Filter>Toast\coop\oct21\v</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\v\vevent.html">
+      <Filter>Toast\coop\oct21\v</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\v\video.html">
+      <Filter>Toast\coop\oct21\v</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-3.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-4.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-5.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-6.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-7.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-8.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-9.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-10.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-11.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-12.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-13.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-14.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-15.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-1.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-2.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-3.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-4.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-5.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-6.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-7.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-8.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-9.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ww-10.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\wbr.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\work.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-1.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\w\ws-2.html">
+      <Filter>Toast\coop\oct21\w</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\n\nav-2.html">
+      <Filter>Toast\coop\oct21\n</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\n\nav-3.html">
+      <Filter>Toast\coop\oct21\n</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\n\noscript.html">
+      <Filter>Toast\coop\oct21\n</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\n\nav-1.html">
+      <Filter>Toast\coop\oct21\n</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\meta-2.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\meter.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\microdata-1.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\microdata-2.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\microsyntax.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\main-1.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\main-2.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\map.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\mark.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\math.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\me.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\menu.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\m\meta-1.html">
+      <Filter>Toast\coop\oct21\m</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\link.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-alternate.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-bookmark.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-help.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-icon.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-licence.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-modulepreload.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-noopener.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-noreferrer.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-opener.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-tag.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\links-tag2.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\lwp.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\label.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\l\li.html">
+      <Filter>Toast\coop\oct21\l</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\k\kbd.html">
+      <Filter>Toast\coop\oct21\k</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\j\json.html">
+      <Filter>Toast\coop\oct21\j</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\im.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\imedia.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\img.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\input.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\ins.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\intro-1.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\intro-2.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\intro-3.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\i.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\idioms.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\i\iframe.html">
+      <Filter>Toast\coop\oct21\i</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hgroup.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hgroup-2.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hidden.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\history-1.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\history-2.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\history-3.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\history-4.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hr.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-1.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-2.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-3.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-4.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-5.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-6.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-7.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-8.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-9.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-10.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-11.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-12.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\hs-13.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\html.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\h-1.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\h-2.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\h-3.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\head-1.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\head-2.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\header.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\h\header-2.html">
+      <Filter>Toast\coop\oct21\h</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\footer-3.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\form.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\formex.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\forms.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\fieldset.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\figcaption.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\figure-1.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\figure-2.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\footer.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\f\footer-2.html">
+      <Filter>Toast\coop\oct21\f</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\e\editing-1.html">
+      <Filter>Toast\coop\oct21\e</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\e\editing-2.html">
+      <Filter>Toast\coop\oct21\e</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\e\el.html">
+      <Filter>Toast\coop\oct21\e</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\e\em.html">
+      <Filter>Toast\coop\oct21\e</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\e\embed.html">
+      <Filter>Toast\coop\oct21\e</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\e\ep.html">
+      <Filter>Toast\coop\oct21\e</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\e\et.html">
+      <Filter>Toast\coop\oct21\e</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\dialogue.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\div.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\dl.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\dragondrops.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\dt.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\data.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\datalist.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\datamodel.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\dd.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\del.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\details.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\d\dfn.html">
+      <Filter>Toast\coop\oct21\d</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\code.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\commands.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\conformance.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\custom-1.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\custom-2.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\custom-3.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\custom-4.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\canvas1.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\canvas2.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\canvas3.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\caption.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\cdata.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\cite.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\c\cm.html">
+      <Filter>Toast\coop\oct21\c</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\br.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\browsing-1.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\browsing-2.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\browsing-3.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\browsing-4.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\button.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\b.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\b-1.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\base.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\bdi.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\blockquote.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\b\body.html">
+      <Filter>Toast\coop\oct21\b</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\area.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\article-1.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\article-2.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\aside.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\aside-2.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\autofocus.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\a.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\a-1.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\abbr.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\accesskey.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\address.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\a\aks.html">
+      <Filter>Toast\coop\oct21\a</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\corrupt.conf">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\corrupt.spec">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\corrupt2.conf">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\corrupt2.spec">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\corrupt-me.rss">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\index.html">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\index.shtml">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\search.shtml">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\corrupt512.conf">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\corrupt\corrupt512.spec">
+      <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\coop\oct21\index.html">
+      <Filter>Toast\coop\oct21</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -23909,6 +25301,195 @@
     <Image Include="..\toast\shadow\dedudiff\z.jpg">
       <Filter>Toast\Shadow\DeduDiff</Filter>
     </Image>
+    <Image Include="..\toast\coop\corrupt\a\add.gif">
+      <Filter>Toast\coop\corrupt\a</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\a\ant.jpg">
+      <Filter>Toast\coop\corrupt\a</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\o\organspeech.jpg">
+      <Filter>Toast\coop\corrupt\o</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\o\onecolumbusleap.jpg">
+      <Filter>Toast\coop\corrupt\o</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\o\orantes.jpg">
+      <Filter>Toast\coop\corrupt\o</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\p\peneloping.jpg">
+      <Filter>Toast\coop\corrupt\p</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\p\previous.jpg">
+      <Filter>Toast\coop\corrupt\p</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\p\parted.jpg">
+      <Filter>Toast\coop\corrupt\p</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\r\roadkill.jpg">
+      <Filter>Toast\coop\corrupt\r</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\r\roadsong.jpg">
+      <Filter>Toast\coop\corrupt\r</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\s\suspension.jpg">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\s\sc.jpg">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\s\shelf.jpg">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\s\shipfur.jpg">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\s\silentg.jpg">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\s\skypp.jpg">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\s\standardform.jpg">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\s\stonebride.jpg">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\s\stwah.jpg">
+      <Filter>Toast\coop\corrupt\s</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\t\tweet.jpg">
+      <Filter>Toast\coop\corrupt\t</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\t\thesunbrings.jpg">
+      <Filter>Toast\coop\corrupt\t</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\t\trialballoons.jpg">
+      <Filter>Toast\coop\corrupt\t</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\t\turnpush.jpg">
+      <Filter>Toast\coop\corrupt\t</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\u\understory.jpg">
+      <Filter>Toast\coop\corrupt\u</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\v\verisimilitude.jpg">
+      <Filter>Toast\coop\corrupt\v</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\v\vertiges.jpg">
+      <Filter>Toast\coop\corrupt\v</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\w\weak.jpg">
+      <Filter>Toast\coop\corrupt\w</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\w\wolfdown.jpg">
+      <Filter>Toast\coop\corrupt\w</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\x\xmas.jpg">
+      <Filter>Toast\coop\corrupt\x</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\m\mammals.jpg">
+      <Filter>Toast\coop\corrupt\m</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\m\misscanada.jpg">
+      <Filter>Toast\coop\corrupt\m</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\m\m.jpg">
+      <Filter>Toast\coop\corrupt\m</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\l\limitedesir.jpg">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\l\longplayep.jpg">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\l\lowlevelflying.jpg">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\l\left.jpg">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\l\lilith.jpg">
+      <Filter>Toast\coop\corrupt\l</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\k\kg.jpg">
+      <Filter>Toast\coop\corrupt\k</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\info\add.gif">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\info\cart.gif">
+      <Filter>Toast\coop\corrupt\info</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\i\imaginary.jpg">
+      <Filter>Toast\coop\corrupt\i</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\i\impression.jpg">
+      <Filter>Toast\coop\corrupt\i</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\i\ispyshanty.jpg">
+      <Filter>Toast\coop\corrupt\i</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\h\hen.jpg">
+      <Filter>Toast\coop\corrupt\h</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\h\hole.jpg">
+      <Filter>Toast\coop\corrupt\h</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\g\gia.jpg">
+      <Filter>Toast\coop\corrupt\g</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\g\gifted.jpg">
+      <Filter>Toast\coop\corrupt\g</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\g\glittery.jpg">
+      <Filter>Toast\coop\corrupt\g</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\g\garden.jpg">
+      <Filter>Toast\coop\corrupt\g</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\e\esmeralda.jpg">
+      <Filter>Toast\coop\corrupt\e</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\e\elsewhere.jpg">
+      <Filter>Toast\coop\corrupt\e</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\e\endofstreet.jpg">
+      <Filter>Toast\coop\corrupt\e</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\d\dcav.jpg">
+      <Filter>Toast\coop\corrupt\d</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\d\dejavu.jpg">
+      <Filter>Toast\coop\corrupt\d</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\c\catch.jpg">
+      <Filter>Toast\coop\corrupt\c</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\c\chemical.jpg">
+      <Filter>Toast\coop\corrupt\c</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\c\circuits.jpg">
+      <Filter>Toast\coop\corrupt\c</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\b\buriton.jpg">
+      <Filter>Toast\coop\corrupt\b</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\b\betwixt.jpg">
+      <Filter>Toast\coop\corrupt\b</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\b\bulletsorchids.jpg">
+      <Filter>Toast\coop\corrupt\b</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\favicon.ico">
+      <Filter>Toast\coop\corrupt</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\logo.jpg">
+      <Filter>Toast\coop\corrupt</Filter>
+    </Image>
+    <Image Include="..\toast\coop\corrupt\smalllogo.jpg">
+      <Filter>Toast\coop\corrupt</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\toast\virtual\README.txt">
@@ -23959,6 +25540,12 @@
     <Text Include="..\..\CMakeLists.txt">
       <Filter>Tea</Filter>
     </Text>
+    <Text Include="..\toast\coop\corrupt\README.txt">
+      <Filter>Toast\coop\corrupt</Filter>
+    </Text>
+    <Text Include="..\toast\coop\corrupt\robots.txt">
+      <Filter>Toast\coop\corrupt</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\toast\w3\12458\5031-root_dash.xml">
@@ -23978,6 +25565,9 @@
     </Xml>
     <Xml Include="..\toast\w3\imnop\plane20-char.xml">
       <Filter>Toast\W3\imnop</Filter>
+    </Xml>
+    <Xml Include="..\toast\coop\corrupt\sitemap.xml">
+      <Filter>Toast\coop\corrupt</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>

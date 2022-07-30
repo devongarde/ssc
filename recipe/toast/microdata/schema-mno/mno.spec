@@ -3,20 +3,6 @@
 PASS ../toast/microdata/schema-mno/map.html
 16 no_such_folder url_not_found
 
-PASS ../toast/microdata/schema-mno/medicalcause.html
-90 bad_property
-93 bad_property
-100 bad_property
-103 bad_property
-106 bad_property
-
-PASS ../toast/microdata/schema-mno/medicalcondition.html
-90 bad_property
-93 bad_property
-100 bad_property
-103 bad_property
-106 bad_property
-
 PASS ../toast/microdata/schema-mno/mediaobject.html
 13 script
 20 bad_datetime
@@ -32,30 +18,9 @@ PASS ../toast/microdata/schema-mno/medicalguidelinerecommendation.html
 42 bad_itemid
 87 missing_open
 
-PASS ../toast/microdata/schema-mno/medicalriskfactor.html
-90 bad_property
-93 bad_property
-100 bad_property
-103 bad_property
-106 bad_property
-
 PASS ../toast/microdata/schema-mno/medicalscholarlyarticle.html
 31 bad_itemid
 42 bad_itemid
-
-PASS ../toast/microdata/schema-mno/medicalsignorsymptom.html
-90 bad_property
-93 bad_property
-100 bad_property
-103 bad_property
-106 bad_property
-
-PASS ../toast/microdata/schema-mno/medicalsymptom.html
-90 bad_property
-93 bad_property
-100 bad_property
-103 bad_property
-106 bad_property
 
 PASS ../toast/microdata/schema-mno/medicalwebpage.html
 23 missing_close
@@ -230,8 +195,6 @@ PASS ../toast/microdata/schema-mno/offercatalogue.html
 40 inserted_missing_closure
 
 PASS ../toast/microdata/schema-mno/ondemandevent.html
-14 bad_property
-17 bad_property
 26 invalid_attribute_version wrong_version svg_rdf
 34 invalid_attribute_version wrong_version svg_rdf
 35 invalid_attribute_version wrong_version svg_rdf

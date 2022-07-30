@@ -137,8 +137,6 @@ PASS ../toast/microdata/schema-abc/book-3.html
 28 no_such_folder url_not_found
 
 PASS ../toast/microdata/schema-abc/broadcastevent.html
-14 bad_property
-17 bad_property
 26 invalid_attribute_version wrong_version svg_rdf
 34 invalid_attribute_version wrong_version svg_rdf
 35 invalid_attribute_version wrong_version svg_rdf
@@ -156,8 +154,6 @@ PASS ../toast/microdata/schema-abc/broadcastfrequencyspecification.html
 23 bad_property
 
 PASS ../toast/microdata/schema-abc/broadcastservice.html
-14 bad_property
-17 bad_property
 26 invalid_attribute_version wrong_version svg_rdf
 34 invalid_attribute_version wrong_version svg_rdf
 35 invalid_attribute_version wrong_version svg_rdf
@@ -234,7 +230,6 @@ PASS ../toast/microdata/schema-abc/collegeoruniversity-1.html
 15 bad_property
 
 PASS ../toast/microdata/schema-abc/collegeoruniversity-2.html
-12 bad_property bad_property bad_property
 13 unrecognised_value
 17 no_such_folder url_not_found
 
@@ -281,7 +276,6 @@ PASS ../toast/microdata/schema-abc/creativework-2.html
 136 no_such_folder url_not_found
 138 no_such_folder url_not_found
 146 use_quote_code
-147 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 153 no_such_folder url_not_found
 155 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 190 use_quote_code

@@ -25,10 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 stats_t overall;
 
 stats_t::stats_t ()
-{   p_ = new stats;
+{   p_ = stats_ptr (new stats);
     VERIFY_NOT_NULL (p_, __FILE__, __LINE__); }
-
-stats_t::~stats_t () { delete p_; }
 
 void stats_t::mark (const e_element e)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
@@ -50,17 +48,17 @@ void stats_t::mark_dtdd (const ::std::string& a, const ::std::string& b)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark_dtdd (a, b); }
 
-void stats_t::mark (const e_severity s)
+void stats_t::mark (const e_severity s, const unsigned n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    p_ -> mark (s); }
+    p_ -> mark (s, n); }
 
-void stats_t::mark (const e_category c)
+void stats_t::mark (const e_category c, const unsigned n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    p_ -> mark (c); }
+    p_ -> mark (c, n); }
 
-void stats_t::mark (const e_doc d)
+void stats_t::mark (const e_doc d, const unsigned n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    p_ -> mark (d); }
+    p_ -> mark (d, n); }
 
 void stats_t::mark (const html_version& v)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
@@ -117,3 +115,13 @@ unsigned stats_t::visible_count (const e_element e) const
 bool stats_t::severity_exceeded () const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> severity_exceeded (); }
+
+void stats_t::accumulate () const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (overall.p_, __FILE__, __LINE__);
+    p_ -> accumulate (*overall.p_); }
+
+void stats_t::accumulate (stats_t& s) const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (s.p_, __FILE__, __LINE__);
+    p_ -> accumulate (*s.p_); }

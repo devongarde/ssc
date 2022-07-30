@@ -1,0 +1,66 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="A SHORT CIRCUIT" -->
+<!--#set var="poet" value="George Vance" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#vance">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2011-05-01">
+  
+<img SRC="sc.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A4, <span itemprop="numberOfPages">96</span>pp, &euro;12, May 2011<br>
+ISBN <span itemprop="isbn">979-10-90394-00-1</span><br>
+The cover image is by the author.
+</p>
+
+<p class="published-quote">
+To have so much of the collected work of <!--#echo encoding="none" var="poet" --> under one cover is a real treat. I&rsquo;ve been reading Vance&rsquo;s poetry for almost two decades. His word fugues and constructs are smart, witty, full of graceful aper&ccedil;us, and challenging. Read them once, read them twice&mdash;never the same river.
+<span class="published-quoted">
+J. Sydney Jones, author of Viennese Mysteries
+</span>
+</p>
+
+<p class="published-quote">
+godzilla&rsquo;sinheaven, and here below are poems fiddling dancing dazzling drizzling in black and white, all senses contend before our eyes, spinfoam gossamer, tree-suns&rsquo; threesomes (not treason), sentences that require attention. Look closely: Sometimes after smiles, intimacies lurk to creep into our minds. Sir Real, George Vance, is a wondrous one-man Word Ensemble of Paris.
+<span class="published-quoted">
+John Litweiler, author of Mojo Snake Minuet
+</span>
+</p>
+
+<p class="published-quote">
+A lot of contemporary poetry is uninteresting, uninviting, unreadable. This cannot be said of A Short Circuit. It&rsquo;s exciting!
+<span class="published-quoted">
+Gabriel Rosenstock
+</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="PayPal - The safer, easier way to pay online!"  class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

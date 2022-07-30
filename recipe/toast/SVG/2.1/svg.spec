@@ -8,7 +8,6 @@ PASS ../toast/SVG/2.1/animation-1.xhtml
 PASS ../toast/SVG/2.1/animation-2.xhtml
 1 xhtml_5_0
 6 contradictory_namespace
-7 not_animatable
 11 contradictory_namespace
 12 url_not_found
 

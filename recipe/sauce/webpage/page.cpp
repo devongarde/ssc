@@ -34,6 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "icu/charset.h"
 #include "schema/jsonld.h"
 #include "spell/spell.h"
+#include "coop/lox.h"
 
 #define DOCTYPE "<!DOCTYPE"
 #define DOCTYPE_LC "<!doctype"
@@ -114,21 +115,20 @@ void page::charset (nitpick& nits, const html_version& v, const ::std::string& c
     charset_ = cs; }
 
 bool page::parse (::std::string& content)
-{   //nits_.reset ();
-    if (! snippet_ && ! outsider_)
+{   if (! snippet_ && ! outsider_)
     {   PRESUME (directory_ != nullptr, __FILE__, __LINE__);
         ssi_.filename_ = name_;
         html_version v (html_5_3);
         content = parse_ssi (nits_, v, *this, ssi_, content, updated_); }
     const bool res = nodes_.parse (nits_, content);
-    overall.mark_file (::gsl::narrow_cast < unsigned > (content.size ()));
+    stats_.mark_file (::gsl::narrow_cast < unsigned > (content.size ()));
     return res; }
 
 void page::examine ()
 {   if ((! document_) && ! nodes_.invalid () && nodes_.version ().known ())
     {   if ((! snippet_ && ! outsider_) && context.md_export ()) md_export_.init (get_export_root ());
         document_.reset (new element (name_, nodes_.top (), nullptr, *this));
-        overall.mark (version ());
+        stats_.mark (version ());
         VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
         PRESUME (document_ -> tag () == elem_faux_document, __FILE__, __LINE__);
         document_ -> reconstruct (&access_);
@@ -172,8 +172,10 @@ void page::itemscope (const itemscope_ptr itemscope)
 
 ::std::string page::report ()
 {   ::std::ostringstream res;
-    if (document_.get () != nullptr)
-        res << document_ -> report ();
+    if (document_.get () != nullptr) res << document_ -> report ();
+    nits_.accumulate (&stats_);
+    {   lox curly (lox_stats);
+        stats_.accumulate (); }
     if (context.stats_page ()) res << stats_.report (false);
     return res.str (); }
 
@@ -225,7 +227,7 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
         {   if (context.shadow_changed ())
             {   if (updated_ == 0) updated_ = get_last_write_time (get_disk_path ());
                 const ::std::time_t target = get_last_write_time (s);
-                nits.pick (nit_debug, es_debug, ec_shadow, get_disk_path (), " last updated ", updated_, ", ", s, " last updated ", target);
+                if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_shadow, get_disk_path (), " last updated ", updated_, ", ", s, " last updated ", target);
                 if (target >= updated_) return; }
             const ::boost::filesystem::file_status stat = file_data (s);
             if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)

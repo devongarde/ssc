@@ -34,6 +34,7 @@ PASS ../toast/SVG/1.1/animation-6.xhtml
 PASS ../toast/SVG/1.1/bidi-1.svg
 0 charset_mismatch charset_used
 1 xhtml_1_1
+4 svg_version
 5 invalid_attribute_version wrong_version
 6 invalid_attribute_version wrong_version
 9 use_quote_code
@@ -41,6 +42,7 @@ PASS ../toast/SVG/1.1/bidi-1.svg
 PASS ../toast/SVG/1.1/bidi-2.svg
 0 charset_mismatch charset_used
 1 xhtml_1_1
+4 svg_version
 5 invalid_attribute_version wrong_version
 6 invalid_attribute_version wrong_version
 9 use_quote_code
@@ -733,7 +735,6 @@ PASS ../toast/SVG/1.1/svg11.html
 579 use_quote_code
 585 svg_version
 587 use_double_quote_code
-588 class_microformat_property
 606 svg_version
 608 use_double_quote_code
 624 svg_version
@@ -754,13 +755,13 @@ PASS ../toast/SVG/1.1/svg11.html
 738 svg_version
 747 svg_version
 772 svg_version
-785 no_lang
-786 no_lang invalid_attribute_version wrong_version
-787 no_lang invalid_attribute_version wrong_version
+785 no_xmllang
+786 no_xmllang
+787 no_xmllang
 790 use_quote_code
-794 no_lang
-795 no_lang invalid_attribute_version wrong_version
-796 no_lang invalid_attribute_version wrong_version
+794 no_xmllang
+795 no_xmllang
+796 no_xmllang
 798 use_quote_code
 806 svg_version
 807 use_quote_code
@@ -964,7 +965,6 @@ PASS ../toast/SVG/1.1/use-7.svg
 1 xhtml_1_1
 5 svg_version
 6 use_quote_code
-10 unrecognised_value
 
 PASS ../toast/SVG/1.1/use-8.svg
 0 title_required
