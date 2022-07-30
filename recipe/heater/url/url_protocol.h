@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "symbol/symbol.h"
+#include "coop/lox.h"
 
 constexpr ::std::size_t last_component = static_cast <::std::size_t> (es_extension);
 constexpr ::std::size_t component_count = last_component + 1;
@@ -28,15 +29,9 @@ typedef vstr_t vc_t;
 
 class protocol : public symbol < html_version, e_protocol >
 {   bool default_ = false;
-    mutable vc_t component_;
-    void reinit () const
-    {   if (component_.size () == 0)
-        try
-        {   component_.resize (component_count); }
-        catch (...)
-        {   GRACEFUL_CRASH (__FILE__, __LINE__); } }
+    vc_t component_;
 public:
-    protocol () noexcept = default;
+    protocol () { component_.resize (component_count); }
     protocol (const protocol& rhs) = default;
     protocol (protocol&& rhs) = default;
     ~protocol () = default;
@@ -54,24 +49,28 @@ public:
     bool is_valid () const;
     ::std::string get () const;
     ::std::string absolute (const bool can_use_index, const bool force = false) const;
-    bool defaulted () const noexcept { return default_; }
-    e_protocol get_protocol () const noexcept { return (symbol < html_version, e_protocol > :: get ()); }
-    bool unknown () const noexcept { return get_protocol () == pr_other; }
+    bool defaulted () const noexcept
+    {   return default_; }
+    e_protocol get_protocol () const noexcept
+    {   return (symbol < html_version, e_protocol > :: get ()); }
+    bool unknown () const noexcept
+    {   return get_protocol () == pr_other; }
     bool has_component (const e_component c) const
-    {   reinit ();
+    {   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
         return ! get_component (c).empty (); }
     ::std::string original () const
-    {   reinit ();
+    {   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
         return ::gsl::at (component_, es_original); }
     ::std::string get_component (const e_component c) const
-    {   reinit ();
+    {   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
         return ::gsl::at (component_, c); }
     void reset_component (const e_component c)
-    {   reinit ();
+    {   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
         ::gsl::at (component_, c).clear (); }
     void set_component (const e_component c, const ::std::string& val)
-    {   reinit ();
+    {   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
         ::gsl::at (component_, c) = val; }
-    bool is_protocol (const e_protocol p) const noexcept { return (get_protocol () == p); }
+    bool is_protocol (const e_protocol p) const noexcept
+    {   return (get_protocol () == p); }
     e_scheme scheme () const;
     static void init (nitpick& nits); };

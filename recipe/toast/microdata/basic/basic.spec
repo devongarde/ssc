@@ -1,5 +1,8 @@
 -f ../toast/microdata/basic/basic.conf
 
+PASS ../toast/microdata/basic/961020.html
+20 missing_itemtype
+
 PASS ../toast/microdata/basic/examples.html
 9 double_gin_and_tonic
 38 url_not_found

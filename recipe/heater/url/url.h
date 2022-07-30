@@ -94,6 +94,10 @@ public:
     bool is_local () const { return protocol_.defaulted () && ! empty (); }
     bool is_usable () const noexcept { return is_protocol (pr_http) || is_protocol (pr_https); }
     bool is_simple_id () const { return is_local () && ! has_path () && ! has_file () && has_id (); }
+    bool is_self () const
+    {   if (has_file () || has_path () || has_domain () || has_protocol () || has_extension ()) return false;
+        if (! is_local ()) return false;
+        return has_id () || has_query () || has_args (); }
     bool invalid () const noexcept { return ! valid_; }
     bool valid () const noexcept { return valid_; }
     bool tismoi (const url& u) const

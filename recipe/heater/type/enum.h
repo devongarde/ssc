@@ -195,9 +195,9 @@ typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_n
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_crc, ec_css, ec_directory, ec_element, ec_file, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io, ec_json, ec_link,
-                ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema, ec_shadow,
-                ec_spell, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility } e_category;
+typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_corpus, ec_crc, ec_css, ec_directory, ec_element, ec_file, ec_fred, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io,
+                ec_json, ec_link, ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema,
+                ec_shadow, ec_spell, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility } e_category;
 const e_category last_category = ec_utility;
 typedef enum { ccp_derivativeworks, ccp_distribution, ccp_reproduction } e_cc_permits;
 typedef enum { ccr_attribution, ccr_notice, ccr_sharealike, ccr_sourcecode } e_cc_requires;
@@ -296,6 +296,7 @@ typedef enum {  cop_clear, cop_src, cop_dst, cop_src_over, cop_dst_over, cop_src
                 cop_exclusion, cop_inherit } e_comp_op;
 typedef enum { co_arithmetic, co_atop, co_in, co_lighter, co_out, co_over, co_xor } e_composite_operator;
 typedef enum { com_normal, com_knockout } e_compositing;
+typedef enum { cv_examine, cv_stage, cv_purgatory, cv_scan, cv_done, cv_max } e_condvar;
 typedef enum { con_line, con_none } e_connect;
 typedef enum { ce_gzip, ce_compress, ce_deflate, ce_identity } e_content_encoding;
 typedef enum { cl_nodownload, cl_nofullscreen, cl_noremoteplayback } e_controlslist;
@@ -549,6 +550,7 @@ typedef enum {
     furi_trig, furi_turtle, } e_formaturi;
 
 typedef enum { f4_blank, f4_parent, f4_self, fr_top } e_frame4;
+typedef enum { fred_maestro, fred_bloggs } e_fred;
 typedef enum { g_female, g_male } e_gender;
 typedef enum { gu_userspaceonuse, gu_objectboundingbox } e_gradientunits;
 typedef enum { al_left, al_center, al_right, al_justify, al_char } e_halign;
@@ -556,34 +558,7 @@ typedef enum { eh_hidden, eh_untilfound } e_hidden;
 
 typedef enum
 {   he_context,
-/*
-    he_allow, he_cache_control, he_content_disposition, he_content_encoding, he_content_language, he_content_location, he_content_script_type,
-    he_content_security_policy, he_content_security_policy_report_only, he_content_style_type, he_content_type, he_date,
-    he_default_style, he_etag, he_expires, he_ext_cache, he_imagetoolbar, he_last_modified, he_location, he_pics_label, he_pragma,
-    he_refresh, he_set_cookie, he_vary, he_window_target, he_www_authenticate, he_x_ua_compatible,
-    // HTML 2
-    he_keywords, he_reply_to,
-    // WhatWg
-    he_accept, he_accept_language, he_cookie, he_corp, he_link, he_origin, he_referrer, he_referrer_policy, he_x_content_type_options,
-    // Ms DHTML
-    he_page_enter, he_page_exit, he_site_enter, he_site_exit,
-    // deprecated
-    he_x_content_security_policy, he_webkit_csp, he_warning,
-    // to be understood
-    he_clear_site_data, he_accept_ch, he_accept_ch_lifetime, 
-    // invalid for an HTTP server
-    he_accept_encoding, he_age, he_authorisation,
-    he_connection, he_content_dpr, he_device_memory, he_downlink, he_dpr,
-    he_ect, he_except,
-    he_if_match, he_if_modified_since, he_if_none_match, he_if_unmodified_since,
-    he_keep_alive,
-    he_max_forwards,
-    he_proxy_authenticate, he_proxy_authorisation,
-    he_rtt,
-    he_save_data, he_sec_ua, he_sec_ua_arch, he_sec_ua_bitness, he_sec_ua_full_version, he_sec_ua_full_version_list,
-    he_sec_ua_mobile, he_sec_ua_model, he_sec_ua_platform, he_sec_ua_platform_version,
-    he_viewport_width, he_width,
-*/
+
     he_accept, he_accept_additions, he_accept_ch, he_accept_ch_lifetime, he_accept_charset, he_accept_datetime, he_accept_encoding, he_accept_features, he_accept_language,
         he_accept_patch, he_accept_post, he_accept_ranges, he_access_control, he_access_control_allow_credentials, he_access_control_allow_headers, he_access_control_allow_methods,
         he_access_control_allow_origin, he_access_control_expose_headers, he_access_control_max_age, he_access_control_request_headers, he_access_control_request_method, he_age,
@@ -696,6 +671,7 @@ typedef enum
     jt_value, jt_version, jt_vocab,
     jt_error } e_jtoken;
 
+typedef enum { kew_none, kew_scan, kew_examine, kew_error } e_kew;
 typedef enum { ky_dsa, ky_ec, ky_rsa } e_keytype;
 typedef enum { k_subtitles, k_captions, k_descriptions, k_chapters, k_metadata } e_kind;
 
@@ -791,6 +767,7 @@ typedef enum { li_1, li_a, li_A, li_i, li_I } e_listtype;
 typedef enum { b_eager, b_lazy } e_loading;
 typedef enum {  ls_lefttop, ls_stackedrightright, ls_mediumstackedrightright, ls_shortstackedrightright, ls_righttop,
                 ls_leftslashright, ls_leftketbraright, ls_rightequalright, ls_stackedleftleft, ls_stackedleftlinetop } e_longdivstyle;
+typedef enum { lox_none, lox_crosslinks, lox_css, lox_dear, lox_done, lox_external, lox_fileindex, lox_flox, lox_id, lox_nits, lox_ns, lox_out, lox_purgatory, lox_q, lox_ssi, lox_stats, lox_time, lox_wait, lox_error } e_lox;
 typedef enum { lra_all, lra_left, lra_right } e_lraalign;
 typedef enum { lr_left, lr_right } e_lralign;
 typedef enum { mah_go, mah_done, mah_next, mah_search, mah_send } e_mah;
@@ -1656,7 +1633,7 @@ typedef enum
     nit_convert, nit_locale, nit_wtf, nit_normalise, nit_dictionary, nit_example, nit_local, nit_report, nit_unknown_option, nit_yea_nay,
     nit_mf_version, nit_not_directory, nit_endpoint, nit_header_empty, nit_header_malformed, nit_http_error, nit_header_no_data,
     nit_json_version, nit_json_corrupt, nit_json_domain, nit_dialect, nit_country, nit_languages, nit_hidden, nit_bespoke_obsolete,
-
+    nit_regex, nit_fred_borked, nit_kew_borked,
     nit_context,
 
     // eon
@@ -1665,20 +1642,19 @@ typedef enum
 typedef enum
 {   nm_none,
     nm_class_name, nm_class_count, nm_class_int, nm_compile_time, nm_config,
-        nm_context_article, nm_context_body, nm_context_build, nm_context_case, nm_context_css, nm_context_cgi, nm_context_clear,
+        nm_context_article, nm_context_body, nm_context_build, nm_context_case, nm_context_css, nm_context_cgi, nm_context_classic, nm_context_clear,
         nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_custom_elements, nm_context_dc, nm_context_example,
-        nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_foaf,
-        nm_context_forward, nm_context_icu, nm_context_ignore, nm_context_info, nm_context_index, nm_context_jsonld, nm_context_jsonld_extension,
-        nm_context_jsonld_version, nm_context_lang, nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size,
-        nm_context_md_export, nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version,
-        nm_context_microdata, nm_context_msg, nm_context_no_ex_check, nm_context_once, nm_context_output, nm_context_persisted, nm_context_rdfa,
-        nm_context_rdf_version, nm_context_rel, nm_context_report, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980,
-        nm_context_rfc_2070, nm_context_schema, nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed,
-        nm_context_shadow_enable, nm_context_shadow_ignore, nm_context_shadow_persist,nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
-        nm_context_shadows, nm_context_site, nm_context_slob, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi,
-        nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_svg_version, nm_context_tags,
-        nm_context_test, nm_context_title, nm_context_version, nm_context_virtuals, nm_context_xsd,
-        nm_copy_addr, nm_copy_html, nm_copy_text,
+        nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_foaf, nm_context_forward, nm_context_fred, nm_context_icu,
+        nm_context_ignore, nm_context_info, nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version,
+        nm_context_lang, nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size, nm_context_md_export,
+        nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_msg,
+        nm_context_no_ex_check, nm_context_once, nm_context_output, nm_context_persisted, nm_context_rdfa, nm_context_rdf_version, nm_context_rel,
+        nm_context_report, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980,  nm_context_rfc_2070, nm_context_schema,
+        nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore,
+        nm_context_shadow_persist,nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space, nm_context_shadows, nm_context_site,
+        nm_context_slob, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi, nm_context_stats_export,
+        nm_context_stats_page, nm_context_stats_summary, nm_context_svg_version, nm_context_tags, nm_context_test, nm_context_title,
+        nm_context_version, nm_context_virtuals, nm_context_xsd, nm_copy_addr, nm_copy_html, nm_copy_text,
     nm_general_info, nm_general_output, nm_general_path, nm_grand_title,
     nm_html_snippet,
     nm_id_name, nm_id_page, nm_id_line,
@@ -2665,7 +2641,7 @@ typedef enum
     sch_misconceptionshealthaspect, sch_missingcontext, sch_mixedeventattendancemode, sch_mixtapealbum, sch_molecularentity, sch_mobileapplication, sch_mobilephoneshop, sch_mobilewebplatform, sch_monday, sch_monetaryamount, sch_monetaryamountdistribution,
     sch_monetarygrant, sch_moneytransfer, sch_mortgageloan, sch_mosque, sch_motel, sch_motorcycle, sch_motorcycledealer, sch_msrp, sch_motorcyclerepair, sch_motorisedbicycle, sch_mountain, sch_moveaction, sch_movie,
     sch_movieclip, sch_filmhireshop, sch_movieseries, sch_movietheatre, sch_removers, sch_mri, sch_multicellularparasite, sch_multicentretrial, sch_multiplayer, sch_muscle, sch_musculoskeletal, sch_musculoskeletalexam,
-    sch_museum, sch_musicalbum, sch_musicalbumproductiontype, sch_musicalbumreleasetype, sch_musiccomposition, sch_musicevent, sch_musicgroup, sch_musicplaylist, sch_musicrecording, sch_musicrelease, sch_musicreleaseformattype,
+    sch_museum, sch_musical_bum, sch_musicalbumproductiontype, sch_musicalbumreleasetype, sch_musiccomposition, sch_musicevent, sch_musicgroup, sch_musicplaylist, sch_musicrecording, sch_musicrelease, sch_musicreleaseformattype,
     sch_musicshop, sch_musicvenue, sch_musicvideoobject,
 
     sch_nailsalon, sch_narcoticconsideration, sch_neck, sch_nerve, sch_neuro, sch_neurologic, sch_newcondition, sch_newsarticle, sch_newsmediaorganisation, sch_newspaper, sch_ngo, sch_nightclub, sch_nlnonprofittype, sch_noninvasiveprocedure,
@@ -3861,6 +3837,7 @@ typedef enum { ssi_encoding_base64, ssi_encoding_none, ssi_encoding_entity, ssi_
 typedef enum { ssi_DATE_GMT, ssi_DATE_LOCAL, ssi_DOCUMENT_ARGS, ssi_DOCUMENT_NAME, ssi_DOCUMENT_PATH_INFO, ssi_DOCUMENT_URI, ssi_LAST_MODIFIED, ssi_QUERY_STRING_UNESCAPED, ssi_USER_NAME, ssi_error } e_ssi_env;
 typedef enum { ssi_f_file, ssi_f_virtual } e_ssi_f;
 typedef enum { ssi_include_file, ssi_include_onerror, ssi_include_virtual } e_ssi_include;
+typedef enum { st_init, st_scan, st_purgatory, st_examine, st_finish, st_max } e_stage; // must be in processing order
 typedef enum { se_start, se_end } e_startend;
 typedef enum { stt_stitch, stt_nostitch } e_stitchtiles;
 typedef enum { sc_keep, sc_discard } e_streamedcontents;

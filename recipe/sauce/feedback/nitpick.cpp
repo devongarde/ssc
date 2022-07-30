@@ -23,6 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "main/options.h"
 #include "feedback/nitout.h"
+#include "stats/stats.h"
+#include "coop/lox.h"
 
 nitpick::mns_t nitpick::mns_;
 bool nitpick::fe_ = false;
@@ -46,14 +48,8 @@ void nitpick::reset (const nitpick& np)
 void nitpick::merge (const nitpick& np)
 {   if (mote_.empty ())
     {   before_ = np.before_; after_ = np.after_; mote_ = np.mote_; }
-    for (auto n : np.nits_)
-        nits_.emplace_back (n); }
-
-void nitpick::merge (nitpick&& np)
-{   if (mote_.empty ())
-    {   before_ = np.before_; after_ = np.after_; mote_ = np.mote_; }
-    for (auto n : np.nits_)
-        nits_.emplace_back (n); }
+    nits_.insert (nits_.end (), np.nits_.cbegin (), np.nits_.cend ());
+    np.accumulate (*this); }
 
 template < class T > ::std::string nitpick::inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns, const bool unfiltered) const
 {   extern bool ignore_this_slob_stuff (const e_nit code);
@@ -79,7 +75,7 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
                     break;
                 default : break; }
             if (n.code () != nit_context)
-            {   n.notify ();
+            {   notify (n);
                 if (hasns) ns += " "; else hasns = true;
                 if (context.spec ()) ns += lookup_name (n.code ());
                 else ns += ::boost::lexical_cast < ::std::string > (n.code ());
@@ -112,16 +108,19 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
                     sn.insert (n);
             nitbit = inner_review (entry, sn, mac, inner, quote, dq, infoed, eol, hasns, unfiltered); }
         if (hasns || ! nitbit.empty ())
+        {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
             if ((page_head != ns_none) && (line_ == 0) && ! context.test ())
-                res = macro.apply (page_head, mac, inner) + nitbit + macro.apply (foot, mac, inner);
-            else res = macro.apply (head, mac, inner) + nitbit + macro.apply (foot, mac, inner); }
+                res = macro -> apply (page_head, mac, inner) + nitbit + macro -> apply (foot, mac, inner);
+            else res = macro -> apply (head, mac, inner) + nitbit + macro -> apply (foot, mac, inner); } }
     return res; }
 
 ::std::string nitpick::review (const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head) const
-{   return review (macro.macros (), entry, head, foot, page_head); }
+{   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    return review (macro -> macros (), entry, head, foot, page_head); }
 
 ::std::string nitpick::unfiltered (const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head) const
-{   return review (macro.macros (), entry, head, foot, page_head, true); }
+{   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    return review (macro -> macros (), entry, head, foot, page_head, true); }
 
 nitpick nitpick::nick ()
 {   nitpick tmp;
@@ -212,3 +211,29 @@ void nitpick::set_context (const int line, ::std::string::const_iterator b, ::st
 
 void nitpick::set_context (const int , ::std::string::const_iterator , ::std::string::const_iterator , ::std::string::const_iterator , const ::std::string& , const e_severity )
 {   GRACEFUL_CRASH (__FILE__, __LINE__); }
+
+void nitpick::accumulate (nitpick& n) const
+{   if (! stats_) return;
+    n.stats_ = true;
+    for (unsigned i = 0; i < severity_.size (); ++i) n.severity_.mark (static_cast < e_severity > (i), severity_.at (static_cast < e_severity > (i)));
+    for (unsigned i = 0; i < category_.size (); ++i) n.category_.mark (static_cast < e_category > (i), category_.at (static_cast < e_category > (i)));
+    for (unsigned i = 0; i < doc_.size (); ++i) n.doc_.mark (static_cast < e_doc > (i), doc_.at (static_cast < e_doc > (i))); }
+
+void nitpick::accumulate (stats_t* s) const
+{   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
+    if (! stats_) return;
+    for (unsigned i = 0; i < severity_.size (); ++i)
+        if (severity_.at (static_cast < e_severity > (i)) > 0)
+            s -> mark (static_cast < e_severity > (i), severity_.at (static_cast < e_severity > (i)));
+    for (unsigned i = 0; i < category_.size (); ++i)
+        if (category_.at (static_cast < e_category > (i)) > 0)
+            s -> mark (static_cast < e_category > (i), category_.at (static_cast < e_category > (i)));
+    for (unsigned i = 0; i < doc_.size (); ++i)
+        if (doc_.at (static_cast < e_doc > (i)) > 0)
+            s -> mark (static_cast < e_doc > (i), doc_.at (static_cast < e_doc > (i))); }
+
+void nitpick::notify (const nit& n) const
+{   stats_ = true;
+    severity_.mark (n.severity ());
+    category_.mark (n.category ());
+    doc_.mark (n.doc ()); }

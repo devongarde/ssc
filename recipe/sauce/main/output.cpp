@@ -27,7 +27,8 @@ output_streams_t outstr;
 
 void output_streams_t::init (nitpick& nits, const ::std::string& s)
 {   name_ = s;
-    macro.set (nm_general_output, s);
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    macro -> set (nm_general_output, s);
     fos_.reset (new ::std::ofstream (s));
     if (fos_ -> fail ())
     {   nits.pick (nit_cannot_open, es_catastrophic, ec_init, "cannot open ", s, " for output.");

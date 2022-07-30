@@ -60,21 +60,21 @@ struct schema_version;
 typedef ::std::set < e_schema > vsh_t;
 
 schema_version corresponding_schema_version (const e_schema es, const html_version& v);
-bool set_default_schema_version (const e_schema es, unsigned char mjr, unsigned char mnr);
+bool set_default_schema_version (const e_schema es, unsigned short mjr, unsigned short mnr);
 schema_version get_default_schema_version (const e_schema es);
 schema_version get_first_schema_version (const e_schema es) noexcept;
 schema_version get_last_schema_version (const e_schema es) noexcept;
 int get_schema_version_count (const e_schema es) noexcept;
 bool is_faux_schema (const e_schema es) noexcept;
-bool is_valid_schema_version (const e_schema root, const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept;
-bool is_schema_deprecated (const e_schema root, const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept;
+bool is_valid_schema_version (const e_schema root, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept;
+bool is_schema_deprecated (const e_schema root, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept;
 
 struct schema_version : public version
 {   schema_version () = default;
-    schema_version (const unsigned char mjr, const unsigned char mnr, const flags_t sf = NOFLAGS) noexcept
+    schema_version (const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS) noexcept
         :   version (mjr, mnr, (static_cast < flags_t > (s_schema) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
     { }
-    schema_version (const e_schema root, const unsigned char mjr, const unsigned char mnr, const flags_t sf = NOFLAGS) noexcept
+    schema_version (const e_schema root, const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS) noexcept
         :   version (mjr, mnr, (static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
     { }
     schema_version (const schema_version& ) = default;
@@ -91,10 +91,10 @@ struct schema_version : public version
     bool deprecated () const noexcept
     {   if ((flags () & SV_DEPRECATED) == SV_DEPRECATED) return true;
         return is_schema_deprecated (root (), mjr (), mnr (), flags ()); }
-    bool is_not (const unsigned char mj, const unsigned char mn = 0xFF) const noexcept
+    bool is_not (const unsigned short mj, const unsigned short mn = USHRT_MAX) const noexcept
     {   if (unknown ()) return false;
         if (mj != mjr ()) return true;
-        return ((mn != 0xFF) && (mn != mnr ())); }
+        return ((mn != USHRT_MAX) && (mn != mnr ())); }
     bool is_not (const schema_version& v) const noexcept
     {   return is_not (v.mjr (), v.mnr ()); }
     bool invalid () const noexcept

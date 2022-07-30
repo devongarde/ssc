@@ -1,0 +1,37 @@
+<!--#include virtual="/plumbing/html-en.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="search results" -->
+<!--#set var="description" value="corrupt search results" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<meta NAME="description" CONTENT="<!--#echo encoding="none" var="description" -->">
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/info-section.inc" -->
+<!--#include virtual="/plumbing/html-top.inc" -->
+
+<h1 class="corrupttitle"><!--#echo encoding="none" var="title" --></h1>
+
+<form method=get enctype="multipart/form-data" action="/cgi-bin/cc" class=front accept-charset="UTF-8">
+
+<input type=search name=P maxlength=120 value="$html{$query}" placeholder="search for ... ?" required>
+
+<br><br>
+    
+<button type=submit>
+go
+</button>
+    
+</form>
+    
+<br><br>
+
+$hitlist{
+<h4><a href="$html{$field{url}}">$html{$or{$field{caption},$field{title},$prettyurl{$field{url}},Untitled}}</a></h4><p>
+<a href="$html{$field{url}}">$snippet{$field{sample}}</a><br>
+<a href="$html{$field{url}}" class=wee>$html{$prettyurl{$field{url}}}</a>
+</p>
+}
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->
+    

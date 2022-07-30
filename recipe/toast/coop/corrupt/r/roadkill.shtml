@@ -1,0 +1,53 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Roadkill" -->
+<!--#set var="poet" value="Michelle Noteboom" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#karacosta">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2013">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2013-07-01">
+  
+<img SRC="roadkill.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+US Trade, <span itemprop="numberOfPages">84</span>pp, &euro;12, July 2013<br>
+ISBN <span itemprop="isbn">979-10-90394-11-7</span><br>
+The cover design is by <span itemprop = "contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Fr&eacute;d&eacute;ric</span> <span itemprop="familyName">Forte</span></span></span> using an image by <span itemprop = "contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Daniel</span> <span itemprop="additionalName">Levin</span> <span itemprop="familyName">Becker</span></span></span>.
+</p>
+
+<p class="published-quote">
+Making the most of a collision of dictions, on the one hand, while spanning era, class, and mood on the other, Noteboom sails directly and fearlessly into the quotidian&mdash;yet with an astronomical dimension. This collection is fueled by a recogni- tion of the great range that language can cover, and that it can create. Often irreverent and almost always sassy, Noteboom&rsquo;s texts make language travel at tremendous speed, and she&rsquo;s an excellent chronicler of every inch of territory she makes it cover. It&rsquo;s a startling and marvellous ride! <span class="published-quoted">Cole Swensen</span>
+</p>
+
+<p class="published-quote">
+This is one roadkill that simply refuses to stay down. A book that shows the vapidness of our daily monotony colliding head-on with unfilled desires and yearnings to be whole and happy; and the obviously laughable impossibility of just that given our fractured society. &ldquo;Can we blame this on Capitalism, too?&rdquo; Noteboom asks. Good question. Even a better read. Roadkill leaves plenty of room for the reader to confront and ponder, and have a good belly laugh or two during the trip. <span class="published-quoted">Joe Ross</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

@@ -27,23 +27,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class stats;
 
 class stats_t
-{   stats* p_ = nullptr;
+{   typedef ::std::shared_ptr < stats > stats_ptr;
+    stats_ptr p_;
 public:
     stats_t ();
-    ~stats_t ();
     stats_t (const stats_t& ) = default;
     stats_t (stats_t&& ) = default;
     stats_t& operator = (const stats_t& ) = default;
     stats_t& operator = (stats_t&& ) = default;
+    ~stats_t () = default;
     void mark (const e_element e);
     void visible (const e_element e);
     void mark_abbr (const ::std::string& a, const ::std::string& b);
     void mark_dfn (const ::std::string& a, const ::std::string& b);
     void mark_dtdd (const ::std::string& a, const ::std::string& b);
     void mark (const html_version& v);
-    void mark (const e_severity s);
-    void mark (const e_category c);
-    void mark (const e_doc d);
+    void mark (const e_severity s, const unsigned n = 1);
+    void mark (const e_category c, const unsigned n = 1);
+    void mark (const e_doc d, const unsigned n = 1);
     void mark (const e_element f, const e_attribute m);
     void mark (const e_schema_type s);
     void mark (const e_schema_type s, const e_schema_property p);
@@ -56,6 +57,8 @@ public:
     unsigned count (const e_severity s) const;
     unsigned visible_count (const e_element e) const;
     bool severity_exceeded () const;
+    void accumulate () const;
+    void accumulate (stats_t& s) const;
     ::std::string report (const bool grand) const; };
 
 extern stats_t overall;

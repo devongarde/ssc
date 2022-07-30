@@ -7,13 +7,6 @@ PASS ../toast/microdata/schema-defg/datacatalogue.html
 66 invalid_attribute_version wrong_version svg_rdf
 67 inserted_missing_closure
 
-PASS ../toast/microdata/schema-defg/ddxelement.html
-90 bad_property
-93 bad_property
-100 bad_property
-103 bad_property
-106 bad_property
-
 PASS ../toast/microdata/schema-defg/definedterm.html
 20 use_quote_code
 28 use_quote_code
@@ -106,7 +99,6 @@ PASS ../toast/microdata/schema-defg/event.html
 230 no_such_folder url_not_found
 232 no_such_folder url_not_found
 240 use_quote_code
-241 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 247 no_such_folder url_not_found
 249 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 260 unrecognised_value

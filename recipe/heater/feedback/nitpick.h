@@ -21,6 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "feedback/nit.h"
 #include "utility/lexical.h"
+#include "stats/stats1.h"
+
+class stats_t;
 
 class nitpick
 {   typedef ::std::vector < nit > vn_t;
@@ -30,6 +33,10 @@ class nitpick
     ::std::string before_, mote_, after_;
     int line_ = 0;
     static bool fe_, sarcasm_;
+    mutable severity_stats severity_;
+    mutable category_stats category_;
+    mutable ref_stats doc_;
+    mutable bool stats_ = false;
     static e_severity user_severity (const e_nit code, const e_severity s)
     {   mns_t::const_iterator i = mns_.find (code);
         if (i != mns_.cend ()) return i -> second;
@@ -38,16 +45,14 @@ class nitpick
 public:
     nitpick () = default;
     nitpick (const nitpick& np) = default;
-	nitpick(nitpick&& np) = default;
+	nitpick (nitpick&& np) = default;
 	explicit nitpick (const ::std::string& c) : mote_ (c) { }
     explicit nitpick (const int line, const ::std::string& c) : mote_ (c), line_ (line) { }
     explicit nitpick (const int line, const ::std::string& b, const ::std::string& m, const ::std::string& a)
         :   before_ (b), mote_ (m), after_ (a), line_ (line) { }
-	~nitpick() = default;
+	~nitpick () = default;
     nitpick& operator = (const nitpick& np) = default;
 	nitpick& operator = (nitpick&& np) = default;
-    nitpick& operator += (const nitpick& np) { merge (np); return *this; }
-    nitpick& operator += (nitpick&& np) { merge (np); return *this; }
     static void modify_severity (const e_nit code, const e_severity s)
     {   mns_.emplace (mns_t::value_type (code, s)); }
     static bool modify_severity (const ::std::string& name, const e_severity s);
@@ -55,7 +60,6 @@ public:
     void reset ();
     void reset (const nitpick& np);
     void merge (const nitpick& np);
-    void merge (nitpick&& np);
     nitpick nick ();
 
     template < typename... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg)
@@ -78,10 +82,13 @@ public:
     ::std::string review (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
     ::std::string unfiltered (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
     e_severity worst () const;
-    ::std::size_t size () const { return nits_.size (); }
+    ::std::size_t size () const noexcept { return nits_.size (); }
     bool empty () const noexcept { return nits_.empty (); }
 
     static void fe (const bool b) noexcept { fe_ = b; }
     static bool fe () noexcept { return fe_; }
     static void sarcasm (const bool b) noexcept { sarcasm_ = b; }
-    static bool sarcasm () noexcept { return sarcasm_; } };
+    static bool sarcasm () noexcept { return sarcasm_; }
+    void accumulate (nitpick& n) const;
+    void accumulate (stats_t* s) const;
+    void notify (const nit& n) const; };

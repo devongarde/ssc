@@ -37,11 +37,12 @@ e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::stri
             const e_namespace e = type_master < t_namespace > :: find (v, s);
             if (e != ns_default) return ns_xmlns;
             n = XMLNS;
-            static ::std::size_t next_free_namespace = first_runtime_namespace;
+            static ::std::atomic_size_t next_free_namespace = first_runtime_namespace;
             if (next_free_namespace == 0xFF)
             {   nits.pick (nit_no_namespaces_left, es_catastrophic, ec_program, PROG " has no capacity for another XMLNS namespace");
                 return ns_default; }
+            lox l (lox_ns);
             type_master < t_namespace > :: extend (s, ++next_free_namespace);
-            return static_cast < e_namespace> (next_free_namespace); } }
+            return static_cast < e_namespace> (static_cast < ::std::size_t > (next_free_namespace)); } }
     s = ss; n.clear ();
     return ns_default; }

@@ -3048,8 +3048,8 @@ property_gen gentab [] =
     { { 1, 20 }, { 0, 0 }, sp_aircraft, t_schema_type, sch_vehicle },
     { { 1, 20 }, { 0, 0 }, sp_aircraft, t_schema_type, sch_text },
     { { 1, 20 }, { 0, 0 }, sp_aircraft, t_text },
-    { { 0, 91 }, { 0, 0 }, sp_album, t_schema_type, sch_musicalbum },
-    { { 0, 10 }, { 1, 90 }, sp_albums, t_schema_type, sch_musicalbum },
+    { { 0, 91 }, { 0, 0 }, sp_album, t_schema_type, sch_musical_bum },
+    { { 0, 10 }, { 1, 90 }, sp_albums, t_schema_type, sch_musical_bum },
     { { 2, 0 }, { 0, 0 }, sp_albumproductiontype, t_schema_type, sch_musicalbumproductiontype },
     { { 2, 0 }, { 0, 0 }, sp_albumrelease, t_schema_type, sch_musicrelease },
     { { 2, 0 }, { 0, 0 }, sp_albumreleasetype, t_schema_type, sch_musicalbumreleasetype },
@@ -4245,7 +4245,7 @@ property_gen gentab [] =
     { { 0, 10 }, { 0, 0 }, sp_image, t_schema_type, sch_url },
     { { 0, 10 }, { 0, 0 }, sp_image, t_url },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sp_imagingtechnique, t_schema_type, sch_medicalimagingtechnique },
-    { { 0, 10 }, { 0, 0 }, sp_inalbum, t_schema_type, sch_musicalbum },
+    { { 0, 10 }, { 0, 0 }, sp_inalbum, t_schema_type, sch_musical_bum },
     { { 2, 0 }, { 0, 0 }, sp_inbroadcastlineup, t_schema_type, sch_cableorsatelliteservice },
     { { 0, 60 }, { 1, 93 }, sp_incentives, t_schema_type, sch_text },
     { { 0, 60 }, { 1, 93 }, sp_incentives, t_text },
@@ -5211,7 +5211,7 @@ property_gen gentab [] =
     { { 0, 95 }, { 0, 0 }, sp_releasenotes, t_text },
     { { 0, 95 }, { 0, 0 }, sp_releasenotes, t_schema_type, sch_url },
     { { 0, 95 }, { 0, 0 }, sp_releasenotes, t_url },
-    { { 2, 0 }, { 0, 0 }, sp_releaseof, t_schema_type, sch_musicalbum },
+    { { 2, 0 }, { 0, 0 }, sp_releaseof, t_schema_type, sch_musical_bum },
     { { 1, 92 }, { 0, 0 }, sp_releasedevent, t_schema_type, sch_publicationevent },
     { { 3, 5 }, { 0, 0 }, sp_relevantoccupation, t_schema_type, sch_occupation },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sp_relevantspeciality, t_schema_type, sch_medicalspeciality },
@@ -6659,7 +6659,7 @@ void schema_property_init (nitpick& nits)
         if (mpp.find (sp) == mpp.cend ())
         {
 #ifdef _DEBUG
-            outstr.out () << schema_names.get (property_root (sp), SCHEMA_NAME) << ":" << schema_property_name (sp) << " (" << i << ") missing from property table.\n";
+            outstr.out (schema_names.get (property_root (sp), SCHEMA_NAME) + ::std::string (":") + schema_property_name (sp) + " missing from property table.\n");
 #endif
             nits.pick (nit_missing_property, es_catastrophic, ec_init, schema_names.get (property_root (sp), SCHEMA_NAME), ":", schema_property_name (sp), " (", i, ") missing from property table."); } } }
 

@@ -1,0 +1,70 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="about corrupt press" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/info-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<h1><span class="corrupttitle"><!--#echo encoding="none" var="name" --></span><br>
+about</h1>
+
+<p>
+<img src="/logo.jpg" title="about corrupt press" class="inline_illustration_right w30">
+</p>
+
+<p>
+When I moved to Paris in December 2009, I found many interesting anglophone poets,
+a lively scene, magazines, but no small press. Worse, some British, 
+Irish and American poetry presses seemed unwilling to publish poets from their abroad. 
+In consequence, good poets weren&rsquo;t getting published. 
+</p>
+
+<p>
+Non&ndash;anglophone English can be an interesting source of new language. 
+The poetry may sometimes seem odd to native speakers, but is it error, 
+a style that&rsquo;s not yet established, a different grammar, 
+an effect a native speaker would struggle to achieve, or what? 
+That&rsquo;s why I welcome poetry from poets whose mother tongues exclude English.
+</p>
+
+<p>
+Those poetry sects, civil warriors lobbing creosotic grenades, farting in general directions: 
+I don&rsquo;t care for them. I do care for interesting poetry, high quality poetry, from anywhere. 
+I do care for different poetry, doing things well I&rsquo;ve not seen done before. 
+I do care for traditional poetry, doing the same again, very well indeed. 
+I want to be excited by poetry, and I don&rsquo;t care if it&rsquo;s Stockhausen or stuck.
+</p>
+
+<p>
+Books are tools for putting poems into heads. 
+It&rsquo;s the poetry, not the tool, so corrupt press books are simple. 
+No tool is perfect; books lose sound, speech loses sight, ebooks need fuel. 
+Corrupt press is considering other tools, but want to get it right&mdash;right for putting poems in heads,
+right as business practice.
+</p>
+
+<p>
+You can contact the press at <a href="mailto:<!--#echo encoding="none" var="email" -->"><!--#echo encoding="none" var="email" --></a>.
+</p>
+
+<p>
+Incidentally, here&rsquo;s the formal history:
+I created the press when living in Paris.
+I moved it to Scotland in 2012, where I incorporated it as a limited company,
+but wound that down in 2016 because of Brexit.
+Now, here in Luxembourg, I am a sole trader, trading as <a href="/index.shtml">corrupt press</a>.
+</p>
+
+<p class="dated">
+<a href="<!--#echo encoding="none" var="artsego" -->"><!--#echo encoding="none" var="editor" --></a><br>
+October 2021
+</p>
+
+<br>
+<br>
+
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

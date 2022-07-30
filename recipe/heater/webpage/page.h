@@ -104,38 +104,27 @@ public:
     const ::std::string& charset () const noexcept { return charset_; }
     void charset (nitpick& nits, const html_version& v, const ::std::string& cs);
     void mark (const e_element e)
-    {   stats_.mark (e);
-        overall.mark (e); }
+    {   stats_.mark (e); }
     void visible (const e_element e)
-    {   stats_.visible (e);
-        overall.visible (e); }
+    {   stats_.visible (e); }
     void mark_abbr (const ::std::string& a, const ::std::string& b)
-    {   stats_.mark_abbr (a, b);
-        overall.mark_abbr (a, b); }
+    {   stats_.mark_abbr (a, b); }
     void mark_dfn (const ::std::string& a, const ::std::string& b)
-    {   stats_.mark_dfn (a, b);
-        overall.mark_dfn (a, b); }
+    {   stats_.mark_dfn (a, b); }
     void mark_dtdd (const ::std::string& a, const ::std::string& b)
-    {   stats_.mark_dtdd (a, b);
-        overall.mark_dtdd (a, b); }
+    {   stats_.mark_dtdd (a, b); }
     void mark (const e_element f, const e_attribute m)
-    {   stats_.mark (f, m);
-        overall.mark (f, m); }
+    {   stats_.mark (f, m); }
     void mark (const e_schema_type s)
-    {   stats_.mark (s);
-        overall.mark (s); }
+    {   stats_.mark (s); }
     void mark (const e_schema_type s, const e_schema_property p)
-    {   stats_.mark (s, p);
-        overall.mark (s, p); }
+    {   stats_.mark (s, p); }
     void mark_meta (const e_httpequiv he)
-    {   stats_.mark_meta (he);
-        overall.mark_meta (he); }
+    {   stats_.mark_meta (he); }
     void mark_meta (const e_metaname mn)
-    {   stats_.mark_meta (mn);
-        overall.mark_meta (mn); }
+    {   stats_.mark_meta (mn); }
     void mark_meta (const e_metaname mn, const ::std::string& val)
-    {   stats_.mark_meta (mn, val);
-        overall.mark_meta (mn, val); }
+    {   stats_.mark_meta (mn, val); }
     unsigned count (const e_element e) const
     {   return stats_.count (e); }
     unsigned visible_count (const e_element e) const

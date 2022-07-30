@@ -29,8 +29,15 @@ typedef ssc_map < prop_index, ::std::string > mpi_t;
 
 prop_index bespoke_prop = static_cast < prop_index > (sp_illegal);
 
-mpn_t bespoke_props;
-mpi_t bespoke_ids;
+typedef ::std::unique_ptr < mpn_t > mpn_uptr;
+typedef ::std::unique_ptr < mpi_t > mpi_uptr;
+
+mpn_uptr bespoke_props;
+mpi_uptr bespoke_ids;
+
+void init_rdfa_prop ()
+{   bespoke_props = mpn_uptr (new mpn_t);   
+    bespoke_ids = mpi_uptr (new mpi_t); }
 
 prop_indices make_prop_indices (const prop_index p)
 {   prop_indices res;
@@ -49,8 +56,9 @@ prop_indices make_prop_indices (const vsp_t& vsp)
     return res; }
 
 ::std::string bespoke_prop_name (const prop_index ii)
-{   mpi_t::const_iterator i = bespoke_ids.find (ndx_item (ii));
-    if (i != bespoke_ids.cend ()) return i -> second;
+{   VERIFY_NOT_NULL (bespoke_ids.get (), __FILE__, __LINE__);
+    mpi_t::const_iterator i = bespoke_ids -> find (ndx_item (ii));
+    if (i != bespoke_ids -> cend ()) return i -> second;
     return ::std::string (); }
 /*
 prop_index find_prop_index (nitpick& nits, const html_version& , const vsh_t& vs, const ::std::string& name, bool bespoke_permitted)
@@ -92,10 +100,12 @@ prop_indices find_prop_indices (nitpick& nits, const html_version& v, const vsh_
     {   nits.merge (knots);
         nits.pick (nit_bad_property, es_error, ec_rdfa, quote (name), " is not recognised");
         return prop_indices (); }
-    mpn_t::const_iterator ini = bespoke_props.find (name);
-    if (ini != bespoke_props.cend ()) return make_prop_indices (ini -> second);
-    bespoke_props.emplace (name, ++bespoke_prop);
-    bespoke_ids.emplace (bespoke_prop, name);
+    VERIFY_NOT_NULL (bespoke_props.get (), __FILE__, __LINE__);
+    VERIFY_NOT_NULL (bespoke_ids.get (), __FILE__, __LINE__);
+    mpn_t::const_iterator ini = bespoke_props -> find (name);
+    if (ini != bespoke_props -> cend ()) return make_prop_indices (ini -> second);
+    bespoke_props -> emplace (name, ++bespoke_prop);
+    bespoke_ids -> emplace (bespoke_prop, name);
     nits.pick (nit_new_property, es_comment, ec_rdfa, "new untyped property ", quote (name), " noted");
     return make_prop_indices (bespoke_prop); }
 

@@ -129,6 +129,7 @@ bool is_attribute_rejected (const html_version& v, const e_element tag, const e_
 #ifdef DEBUG
 void avm_elem_crosscheck ()
 {   void avm_class_crosscheck (const e_element e, const e_attribute a);
-    for (auto a : avm)
-        avm_class_crosscheck (a.second -> tag_, a.second -> a_); }
+    if (context.tell (es_detail))
+        for (auto a : avm)
+            avm_class_crosscheck (a.second -> tag_, a.second -> a_); }
 #endif // DEBUG

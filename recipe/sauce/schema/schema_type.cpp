@@ -2656,7 +2656,7 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "Musculoskeletal", sch_musculoskeletal },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "MusculoskeletalExam", sch_musculoskeletalexam },
     { { 0, 10  }, { 0, 0 }, "Museum", sch_museum },
-    { { 0, 10 }, { 0, 0 }, "MusicalBum", sch_musicalbum }, // sorry, can't resist the childishness
+    { { 0, 10 }, { 0, 0 }, "MusicAlbum", sch_musical_bum }, // sorry, can't resist the childishness
     { { 1, 92 }, { 0, 0 }, "MusicAlbumProductionType", sch_musicalbumproductiontype, s_schema, SF_ENUMERATION },
     { { 1, 92 }, { 0, 0 }, "MusicAlbumReleaseType", sch_musicalbumreleasetype, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "MusicComposition", sch_musiccomposition },

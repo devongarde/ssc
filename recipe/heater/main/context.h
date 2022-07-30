@@ -41,7 +41,7 @@ class replies;
 class corpus;
 
 class context_t
-{   bool            article_ = false, body_ = true, case_ = true, cgi_ = false, clear_ = false, codes_ = false, crosslinks_ = true, example_ = true,
+{   bool            article_ = false, body_ = true, case_ = true, cgi_ = false, classic_ = false, clear_ = false, codes_ = false, crosslinks_ = true, example_ = true,
                     external_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false,
                     md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false,
                     not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true, rel_ = false,
@@ -49,7 +49,7 @@ class context_t
                     schema_ = true, shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
                     spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = true,
                     update_ = false, valid_ = false, versioned_ = false;
-    int             title_ = MAX_IDEAL_TITLE_LENGTH;
+    int             fred_ = 1, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
     html_version    version_;
@@ -60,31 +60,38 @@ class context_t
                     nit_override_, path_, persisted_, root_, secret_, shadow_, shadow_persist_, snippet_, started_, stats_;
     ::boost::filesystem::path config_, corpus_, spell_path_;
     vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, no_ex_check_, report_, shadow_ignore_, shadows_, site_, spellings_, virtuals_;
-    css_cache_t       css_;
+    css_cache_t     css_;
     ::boost::program_options::options_description validation_;
+    vwild_t         exclude_;
     e_svg_processing_mode svg_mode_ = spm_none;
     e_quote_style   quote_style_ = qs_none;
     e_do            do_ = do_booboo;
     friend class options;
     template < typename T > void mac (const e_nit_macro ns, const T n)
-    {   macro.set (ns, ::boost::lexical_cast < ::std::string > (n)); }
+    {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        macro -> set (ns, ::boost::lexical_cast < ::std::string > (n)); }
     void mac (const e_nit_macro ns, const bool b)
-    {   if (b) macro.set (ns, "true");
-        else macro.set (ns, "false"); }
+    {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        if (b) macro -> set (ns, "true");
+        else macro -> set (ns, "false"); }
     void mac (const e_nit_macro ns, const ::std::string& s)
-    {   macro.set (ns, s); }
+    {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        macro -> set (ns, s); }
    void mac (const e_nit_macro ns, const char *sz)
-    {   macro.set (ns, ::std::string (sz)); }
+    {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        macro -> set (ns, ::std::string (sz)); }
     void mac (const e_nit_macro ns, const vstr_t& s)
     {   ::std::string ss;
         for (auto sss: s)
         {   if (! ss.empty ()) ss += ",";
             ss += quote (sss); }
-        macro.set (ns, ss); }
+        VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        macro -> set (ns, ss); }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
     context_t& body (const bool b) { body_ = b; mac (nm_context_body, b); return *this; }
     context_t& cased (const bool b) { case_ = b; mac (nm_context_case, b); return *this; }
     context_t& cgi (const bool b) { cgi_ = b; mac (nm_context_cgi, b); return *this; }
+    context_t& classic (const bool b) { classic_ = b; mac (nm_context_classic, b); return *this; }
     context_t& clear (const bool b) { clear_ = b; mac (nm_context_clear, b); return *this; }
     context_t& codes (const bool b) noexcept { codes_ = b; return *this; }
     context_t& config (const ::boost::filesystem::path& c) { config_ = c; mac (nm_context_config, c.string ()); return *this; }
@@ -99,6 +106,8 @@ class context_t
     context_t& domsg (const ::std::string& s) { domsg_ = s; return *this; }
     context_t& environment (const e_environment e, const ::std::string& s);
     context_t& example (const bool b) { example_ = b; mac (nm_context_example, b); return *this; }
+    context_t& exclude (nitpick& nits, const vstr_t& s);
+    context_t& exclude (nitpick& nits, const ::std::string& s);
     context_t& export_root (const ::std::string& s) { export_root_ = s; mac (nm_context_export_root, s); return *this; }
     context_t& exports (const vstr_t& s) { exports_ = s; mac (nm_context_exports, s); return *this; }
     context_t& extensions (const vstr_t& s) { extensions_ = s; mac (nm_context_extensions, s); return *this; }
@@ -111,6 +120,11 @@ class context_t
     {   forwarded_ = b;
         if (b) external (b);
         mac (nm_context_forward, b);
+        return *this; }
+    context_t& fred (const int i)
+    {   if (i < 1) fred_ = ::std::thread::hardware_concurrency ();
+        else fred_ = i;
+        mac (nm_context_info, fred_);
         return *this; }
     context_t& html_ver (const html_version& v)
     {   versioned (true); version_ = v; mac (nm_context_version, version_.name ()); return *this; }
@@ -161,7 +175,8 @@ class context_t
     context_t& nids (const bool b) noexcept { nids_ = b; return *this; }
     context_t& nit_format (const ::std::string& nf)
     {   nit_format_ = nf;
-        macro.set (mn_nits_format, nf);
+        VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        macro -> set (mn_nits_format, nf);
         return *this; }
     context_t& nit_override (const ::std::string& nf) { nit_override_ = nf; return *this; }
     context_t& nits (const bool b) noexcept { nits_ = b; return *this; }
@@ -173,7 +188,11 @@ class context_t
         mac (nm_context_once, b);
         if (b) external (b);
         return *this; }
-    context_t& path (const ::std::string& s) { path_ = s; macro.set (nm_general_path, s); return *this; }
+    context_t& path (const ::std::string& s)
+    {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        path_ = s;
+        macro -> set (nm_general_path, s);
+        return *this; }
     context_t& persisted (const ::std::string& s) { persisted_ = s; mac (nm_context_persisted, s); return *this; }
     context_t& presume_tags (const bool b) { presume_tags_ = b; mac (nm_context_tags, b); return *this; }
     context_t& progress (const bool b) noexcept { progress_ = b; return *this; }
@@ -210,9 +229,10 @@ class context_t
     context_t& site (const vstr_t& s) { site_ = s; mac (nm_context_site, s); return *this; }
     context_t& slob (const bool b) { slob_ = b; mac (nm_context_slob, b); return *this; }
     context_t& snippet (const ::std::string& s)
-    {   snippet_ = s;
-        macro.set (nm_context_root, "");
-        macro.set (nm_html_snippet, s);
+    {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        snippet_ = s;
+        macro -> set (nm_context_root, "");
+        macro -> set (nm_html_snippet, s);
         quote_style (qs_html);
         return *this; }
     context_t& spec (const bool b) { spec_ = b; return *this; }
@@ -246,6 +266,7 @@ public:
     context_t& build (const ::std::string& s) { build_ = s; mac (nm_compile_time, s); return *this; }
     bool cased () const noexcept { return case_; }
     bool cgi () const noexcept { return cgi_; }
+    bool classic () const noexcept { return classic_; }
     bool clear () const noexcept { return clear_; }
     bool codes () const noexcept { return codes_; }
     ::boost::filesystem::path config () const { return config_; }
@@ -257,12 +278,14 @@ public:
     const ::std::string domsg () const { return domsg_; }
     const ::std::string environment (const e_environment e) const { return environment_.at (e); }
     bool example () const noexcept { return example_; }
+    bool excluded (const ::boost::filesystem::path& p) const;
     bool export_defined () const noexcept { return ! export_root_.empty (); }
     const ::std::string export_root () const { return export_root_; }
     const vstr_t exports () const { return exports_; }
     const vstr_t extensions () const { return extensions_; }
     bool external () const noexcept { return external_; }
-    bool forwarded () const  noexcept{ return forwarded_; }
+    bool forwarded () const noexcept{ return forwarded_; }
+    int fred () const noexcept{ return fred_; }
     const ::std::string general_info () const { return general_info_; }
     context_t& general_info (const ::std::string& s) { general_info_ = s; mac (nm_general_info, s); return *this; }
     bool has_math () const noexcept { return version_.has_math (); }

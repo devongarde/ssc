@@ -1,0 +1,24 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="thank you" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/info-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<h1><span class="corrupttitle"><!--#echo encoding="none" var="name" --></span><br>
+thank you for your purchase</h1>
+
+<p>
+Thank you for your purchase. It has been completed successfully,
+and a receipt has been emailed to you.
+You may <A href="https://www.paypal.com/">log on to your paypal account</a> to view details of this transaction.
+</p>
+
+<p>
+<a href="/index.shtml">Click here to continue shopping</a>.
+</p>
+
+</div>
+
+<!--#include virtual="/plumbing/html-end.inc" -->

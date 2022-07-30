@@ -30,28 +30,36 @@ struct itemid
         :   path_ (path), line_ (line) { } };
 
 typedef ::std::map < ::std::string, itemid > miid_t;
-miid_t miid;
+typedef ::std::unique_ptr < miid_t > miid_uptr;
+miid_uptr miid;
+
+void init_itemid ()
+{   miid = miid_uptr (new miid_t); }
 
 bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, const ::std::string& path, const int line)
-{   auto i = miid.emplace (id, itemid (path, line));
+{   VERIFY_NOT_NULL (miid.get (), __FILE__, __LINE__);
+    auto i = miid -> emplace (id, itemid (path, line));
     if (i.second) return true;
     nits.pick (nit_bad_itemid, ed_microdata, "5.1.4 Global identifiers for items", es_warning, ec_microdata, quote (id), " is not unique; see line ", i.first -> second.line_, " of ", i.first -> second.path_);
     return false; }
 
 ::std::string report_itemids ()
 {   ::std::string res;
-    for (auto i : miid)
-    {   mmac_t mac;
-        mac.emplace (nm_id_name, i.first);
-        mac.emplace (nm_id_page, i.second.path_);
-        mac.emplace (nm_id_line, ::boost::lexical_cast < ::std::string > (i.second.line_));
-        res += macro.apply (ns_itemid, mac); }
-    if (! res.empty ())
-        res = macro.apply (ns_id_head) + res + macro.apply (ns_id_foot);
+    if (! empty_itemid ())
+    {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        VERIFY_NOT_NULL (miid.get (), __FILE__, __LINE__);
+    for (auto i : *miid)
+        {   mmac_t mac;
+            mac.emplace (nm_id_name, i.first);
+            mac.emplace (nm_id_page, i.second.path_);
+            mac.emplace (nm_id_line, ::boost::lexical_cast < ::std::string > (i.second.line_));
+            res += macro -> apply (ns_itemid, mac); }
+        if (! res.empty ())
+            res = macro -> apply (ns_id_head) + res + macro -> apply (ns_id_foot); }
     return res; }
 
 bool empty_itemid ()
-{   return miid.empty (); }
+{   return (miid.get () == nullptr) || miid -> empty (); }
 
 bool invalid_itemid (nitpick& nits, const html_version& v, const ::std::string& id, const element* const e)
 {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);

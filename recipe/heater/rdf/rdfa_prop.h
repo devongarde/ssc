@@ -26,6 +26,8 @@ typedef ::std::vector < prop_index > prop_indices;
 constexpr prop_index illegal_prop = 0xFFFFFFFF;
 constexpr prop_index null_prop = 0;
 
+void init_rdfa_prop ();
+
 inline prop_index make_prop_index (const e_schema_property p)
 {   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
     return static_cast < prop_index> (p); }

@@ -26,24 +26,25 @@ typedef csss_t::value_type csss_vt;
 typedef csss_t::iterator csss_it;
 typedef csss_t::const_iterator csss_cit;
 typedef ::std::pair < csss_it, bool > csss_pt;
+typedef ::std::map < ::std::string, ::std::string > ss_t;
+typedef ::std::shared_ptr < ss_t > ss_ptr;
+typedef ss_t::value_type ss_vt;
 
 class css_cache_t
 {   csss_t csss_;
-    void deactivate_all ()
-    {   for (csss_it i = csss_.begin (); i != csss_.end (); ++i)
-        {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
-            i -> second -> active (false); } }
+    ss_ptr ss_;
+    void deactivate_all ();
     void delete_snippets ();
 public:
     void swap (css_cache_t& c) noexcept
     {   csss_.swap (c.csss_); }
-    void post_process ()
-    {   delete_snippets ();
-        deactivate_all (); }
-    bool parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding = cc_ansi);
+    void post_process ();
+    bool parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding = cc_ansi, const bool snippet = true);
     bool parse_file (nitpick& nits, const page& p, const url& u);
     bool note_usage (const ::std::string& id);
     void report_usage (::std::ostringstream& ss) const;
     bool has_id (const ::std::string& id) const; };
 
-extern css_cache_t css_cache;
+typedef ::std::unique_ptr < css_cache_t > css_uptr;
+extern css_uptr css_cache;
+void init_css_cache ();

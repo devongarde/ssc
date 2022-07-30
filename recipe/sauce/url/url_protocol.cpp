@@ -517,7 +517,7 @@ void protocol::init (nitpick& nits)
 
 e_scheme protocol::scheme () const
 {   const e_protocol prot = symbol < html_version, e_protocol > :: get ();
-    reinit ();
+    PRESUME (component_.size () == component_count, __FILE__, __LINE__);
     return ps [prot].scheme_; }
 
 #ifdef _MSC_VER
@@ -525,7 +525,7 @@ e_scheme protocol::scheme () const
 #endif // _MSC_VER
 
 bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_protocol current)
-{   reinit ();
+{   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
     ::std::string lc (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)));
     if (lc.empty ()) set (v, current);
     else
@@ -544,18 +544,18 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
     return true; }
 
 bool protocol::is_valid () const
-{   reinit ();
+{   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
     return url_schemes < SCHEMES > :: is_valid (scheme (), component_, default_); }
 
 ::std::string protocol::get () const
-{   reinit ();
+{   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
     return url_schemes < SCHEMES > :: get (scheme (), component_, default_); }
 
 ::std::string protocol::absolute (const bool can_use_index, const bool force) const
-{   reinit ();
+{   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
     return url_schemes < SCHEMES > :: absolute (scheme (), component_, can_use_index, (! force) && default_); }
 
 bool protocol::operator == (const protocol& rhs) const
 {   if (scheme () != rhs.scheme ()) return false;
-    reinit ();
+    PRESUME (component_.size () == component_count, __FILE__, __LINE__);
     return url_schemes < SCHEMES > :: similar (scheme (), component_, rhs.component_); }

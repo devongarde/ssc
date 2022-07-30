@@ -1,0 +1,62 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="D&eacute;ja Vu" -->
+<!--#set var="poet" value="Bonny Finberg" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#finberg">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2011-09-01">
+  
+<img SRC="dejavu.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><A href="http://bonny-finberg.blogspot.com/" class="poet"><!--#echo encoding="none" var="poet" --></a><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">36</span>pp, colour, September 2011, &euro;8<br>
+ISBN <span itemprop="isbn">979-10-90394-15-5</span><br>
+The cover image is &ldquo;D&eacute;ja Vu&rdquo; by <A href="http://bonny-finberg.blogspot.com/">the author</a>.
+</p>
+
+<p class="published-quote">
+In <span class="book-title"><!--#echo encoding="none" var="title" --></span> <!--#echo encoding="none" var="poet" --> cracks open the disparateness that makes up the unlikely assemblage known as &ldquo;I&rdquo; as well as its many adjacent and tangential beings. The poet&rsquo;s memory is both hers and others, including the Meat Soldier. The poems are visceral and kaleidoscopic, sensual and disturbing. Not only is Novel in 24 Chapters magnificent, but it serves as a key to the rest of the book. Each poem is another chapter in a novel without a beginning, middle, or end, a novel which embraces language in all its soulful ecstasy and wintry cheerlessness, the highs and lows of being alive and open in these perilous times. As Ted Berrigan used to say&mdash;It&rsquo;s Terrific. <span class="published-quoted">John Yau</span>
+</p>
+
+<p class="published-quote">
+I&rsquo;m reminded of Plath, Shapcott and Selima Hill. There are similarities to experimental poets; Emily Critchley comes to mind. But there&rsquo;s also a considerable freshness to Finberg&rsquo;s work, particularly when her use of photographic art is taken into account. She is, I&rsquo;m sure, a poet we&rsquo;ll be reading much more from in the future. I strongly recommend buying this pamphlet.
+<span class="published-quoted">Lindsay Holland, Sabotage Reviews</span>.
+</p>
+
+<p class="published-quote">
+<!--#echo encoding="none" var="poet" -->&rsquo;s evocative narrative-imagery seeps through the eyes, settling comfortably in the mind. It rises like a heat mirage with an internal dream logic worthy of Anais Nin. <span class="book-title"><!--#echo encoding="none" var="title" --></span> is marked by beauty, concision and, most importantly, a profound wisdom, tempered by keen humor and satiric wit, that can only be attained through encounters with the divine. <span class="published-quoted">Darius James</span>
+</p>
+
+<p class="published-quote">
+The d&eacute;ja vu in this collection is the act of magic one rarely finds in the interplay of image and word. In this powerful book Finberg provides her dual magic  by presenting photos that, though surreal, make us feel rooted in place. Poems that, while rooted in the &ldquo;real,&rdquo; display dreamlike qualities. Both ground us, yet pull us away from the mundane, to the unlimited possibilities of the here and now. <span class="published-quoted">Steve Dalachinsky</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

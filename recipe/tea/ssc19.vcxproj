@@ -22,6 +22,10 @@
     <ClInclude Include="..\heater\attribute\avm.h" />
     <ClInclude Include="..\heater\attribute\avm_data.h" />
     <ClInclude Include="..\heater\attribute\namespace.h" />
+    <ClInclude Include="..\heater\coop\fred.h" />
+    <ClInclude Include="..\heater\coop\kew.h" />
+    <ClInclude Include="..\heater\coop\knickers.h" />
+    <ClInclude Include="..\heater\coop\lox.h" />
     <ClInclude Include="..\heater\css\css.h" />
     <ClInclude Include="..\heater\css\css_cache.h" />
     <ClInclude Include="..\heater\element\elem.h" />
@@ -43,6 +47,7 @@
     <ClInclude Include="..\heater\main\include.h" />
     <ClInclude Include="..\heater\main\abort.h" />
     <ClInclude Include="..\heater\main\options.h" />
+    <ClInclude Include="..\heater\main\output.h" />
     <ClInclude Include="..\heater\main\standard.h" />
     <ClInclude Include="..\heater\main\version.h" />
     <ClInclude Include="..\heater\microdata\microdata_export.h" />
@@ -176,7 +181,18 @@
     <ClInclude Include="..\heater\webpage\headers.h" />
     <ClInclude Include="..\heater\webpage\id.h" />
     <ClInclude Include="..\heater\webpage\page.h" />
+    <ClInclude Include="..\heater\webpage\q.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
+    <ClInclude Include="..\third\date\chrono_io.h" />
+    <ClInclude Include="..\third\date\date.h" />
+    <ClInclude Include="..\third\date\ios.h" />
+    <ClInclude Include="..\third\date\islamic.h" />
+    <ClInclude Include="..\third\date\iso_week.h" />
+    <ClInclude Include="..\third\date\julian.h" />
+    <ClInclude Include="..\third\date\ptz.h" />
+    <ClInclude Include="..\third\date\solar_hijri.h" />
+    <ClInclude Include="..\third\date\tz.h" />
+    <ClInclude Include="..\third\date\tz_private.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +228,10 @@
     <ClCompile Include="..\sauce\attribute\avm_data_w.cpp" />
     <ClCompile Include="..\sauce\attribute\avm_data_x.cpp" />
     <ClCompile Include="..\sauce\attribute\namespace.cpp" />
+    <ClCompile Include="..\sauce\coop\fred.cpp" />
+    <ClCompile Include="..\sauce\coop\kew.cpp" />
+    <ClCompile Include="..\sauce\coop\knickers.cpp" />
+    <ClCompile Include="..\sauce\coop\lox.cpp" />
     <ClCompile Include="..\sauce\css\css.cpp" />
     <ClCompile Include="..\sauce\css\css_cache.cpp" />
     <ClCompile Include="..\sauce\element\elem.cpp" />
@@ -244,6 +264,7 @@
     <ClCompile Include="..\sauce\main\context.cpp" />
     <ClCompile Include="..\sauce\main\abort.cpp" />
     <ClCompile Include="..\sauce\main\options.cpp" />
+    <ClCompile Include="..\sauce\main\output.cpp" />
     <ClCompile Include="..\sauce\main\ssc.cpp" />
     <ClCompile Include="..\sauce\main\standard.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -343,7 +364,13 @@
     <ClCompile Include="..\sauce\webpage\headers.cpp" />
     <ClCompile Include="..\sauce\webpage\id.cpp" />
     <ClCompile Include="..\sauce\webpage\page.cpp" />
+    <ClCompile Include="..\sauce\webpage\q.cpp" />
     <ClCompile Include="..\sauce\webpage\root.cpp" />
+    <ClCompile Include="..\third\date\tz.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profile|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\conf\corrupt\corona-corrupt.conf" />
@@ -7869,7 +7896,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(GSL)\include;$(HUNSPELL)\src\hunspell;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third;$(GSL)\include;$(HUNSPELL)\src\hunspell;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
@@ -7879,12 +7906,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profile|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

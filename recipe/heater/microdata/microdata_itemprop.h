@@ -26,6 +26,7 @@ typedef ::std::vector < itemprop_index > itemprop_indices;
 constexpr itemprop_index illegal_itemprop = 0xFFFFFFFF;
 constexpr itemprop_index null_itemprop = 0;
 
+void init_itemprop ();
 itemprop_index make_itemprop_index (const e_schema_property p);
 itemprop_indices make_itemprop_indices (const e_schema_property p);
 itemprop_indices make_itemprop_indices (const vsp_t& vsp);

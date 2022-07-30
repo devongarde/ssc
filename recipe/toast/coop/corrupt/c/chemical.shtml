@@ -1,0 +1,45 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="moral hazard ..." -->
+<!--#set var="poet" value="rufo quintavalle" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#quintavalle">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2013">
+  <meta itemprop="inLanguage" content="en-GB">
+  <meta itemprop="datePublished" content="2013-12-01">
+
+<img SRC="chemical.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><a href="/authors/index.shtml#quintavalle" class="poet"><!--#echo encoding="none" var="poet" --></a><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">40</span>pp, &euro;8, December 2013<br>
+ISBN <span itemprop="isbn">979-10-90394-44-5</span><br>
+The cover image is by the author.
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

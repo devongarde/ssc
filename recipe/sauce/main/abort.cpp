@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line)
 {   DBG_ASSERT (false);
-    ::std::string msg ("null pointer dereference of ");
+    ::std::string msg ("null dereference of ");
     msg += var;
     msg += file_line (fn, line);
     ::std::cerr << "\n" << msg << "\n";
@@ -53,3 +53,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     msg += file_line (fn, line);
     ::std::cerr << "\n" << msg << "\n";
     throw ::std::runtime_error (msg); }
+
+[[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line) noexcept
+{   DBG_ASSERT (false);
+    try
+    {   ::std::string msg ("inconsistent internal state");
+        msg += file_line (fn, line);
+        ::std::cerr << "\n" << msg << "\n"; }
+    catch (...)
+    {   ::std::printf ("\ngraceless crash cannot even state origin\n"); }
+    ::std::terminate (); }

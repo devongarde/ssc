@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // issues: not just / versus \  but also root version X: and \\xyzzy\ and how
 // WSL and other utilities mount windows volumes in 'nix
 
-typedef ::std::size_t fileindex_t;
+typedef unsigned long long fileindex_t;
 typedef unsigned int fileindex_flags;
 typedef ::std::set < fileindex_t > sndx_t;
 class directory;
@@ -44,6 +44,7 @@ constexpr fileindex_t nullfileindex = SIZE_MAX;
 #define FX_STALE    0x00000040
 #define FX_DELETED  0x00000080
 #define FX_LINKED   0x00000100
+#define FX_WAITAMO  0x00000200
 
 void fileindex_init ();
 ::boost::filesystem::path persist_path ();
@@ -57,12 +58,14 @@ fileindex_t get_fileindex (const ::std::string& name);
 ::boost::filesystem::path get_disk_path (const fileindex_t ndx);
 ::std::string get_site_path (const fileindex_t ndx);
 fileindex_flags get_flags (const fileindex_t ndx);
-bool get_flag (const fileindex_t ndx, const fileindex_flags flag);
+bool get_any_flag (const fileindex_t ndx, const fileindex_flags flag);
+bool get_every_flag (const fileindex_t ndx, const fileindex_flags flag);
+void inner_set_flag (const fileindex_t ndx, const fileindex_flags flag);
+bool try_set_flag (const fileindex_t ndx, const fileindex_flags flag);
 void set_flag (const fileindex_t ndx, const fileindex_flags flag);
 void reset_flag (const fileindex_t ndx, const fileindex_flags flag);
 uintmax_t get_size (const fileindex_t ndx);
 ::std::time_t last_write (const fileindex_t ndx);
-crc_t get_crc (nitpick& nits, const fileindex_t ndx);
 void set_crc (const fileindex_t ndx, const crc_t& crc);
 ::std::string fileindex_report ();
 ::std::string join_site_paths (const ::std::string& lhs, const ::std::string& rhs);
@@ -78,3 +81,4 @@ void clear_lynx (const fileindex_t ndx);
 sndx_t get_lynx (const fileindex_t ndx);
 bool needs_update (const fileindex_t ndx, const ::std::time_t& st);
 void reset_fileindices () noexcept;
+fileindex_t get_fileindex_count ();

@@ -27,8 +27,22 @@ template < class ENUM, ENUM max_enum, ENUM undefined_enum > class stats1
 public:
     stats1 ()
     {   count_.resize (static_cast <::std::size_t> (max_enum + 1), 0); }
+    static unsigned size () { return max_enum + 1; }
     unsigned at (const ENUM e) const
     {   return count_.at (e); }
-    void mark (const ENUM e)
-    {   if (e <= max_enum) ++count_.at (e);
-        else ++(count_.at (undefined_enum)); } };
+    void mark (const ENUM e, const unsigned u = 1)
+    {   if (e <= max_enum) count_.at (e) += u;
+        else count_.at (undefined_enum) += u; }
+    void accumulate (stats1 < ENUM, max_enum, undefined_enum >& o) const
+    {   PRESUME (o.count_.size () >= count_.size (), __FILE__, __LINE__);
+        for (unsigned i = 0; i < count_.size (); ++i)
+            if (count_.at (i) > 0)
+                o.mark (static_cast < ENUM > (i), count_.at (i)); } };
+
+typedef stats1 < e_element, last_element_tag, elem_undefined > element_stats;
+typedef stats1 < e_category, last_category, ec_undefined > category_stats;
+typedef stats1 < e_severity, last_severity, es_undefined > severity_stats;
+typedef stats1 < e_doc, last_doc, ed_mishmash > ref_stats;
+typedef stats1 < e_schema_type, sty_illegal, sty_context > schema_stats;
+typedef stats1 < e_httpequiv, he_error, he_context > httpequiv_stats;
+typedef stats1 < e_metaname, mn_illegal, mn_context > metaname_stats;

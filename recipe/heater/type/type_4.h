@@ -29,6 +29,7 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
 public:
     typedef true_type has_int_type;
     using type_base < base_type, TYPE > :: type_base;
+    static void init ();
     static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const;
     void shadow (::std::stringstream& ss, const html_version& , element* )
@@ -192,15 +193,18 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
     return ::std::string (); }
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    void four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: init ()
+{   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
+    b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
+    c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ()));
+    d_ = ::boost::to_lower_copy (::std::string (SZ3::sz ())); }
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
     void four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   ::std::string pret (trim_the_lot_off (s));
     ::std::string t (case_must_match < false >::lower (pret));
     type_base < base_type, TYPE > :: status (s_good);
-    if (a_.empty ())
-    {   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
-        b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
-        c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ()));
-        d_ = ::boost::to_lower_copy (::std::string (SZ3::sz ())); }
+    PRESUME (! a_.empty (), __FILE__, __LINE__);
     if (t == a_) value_ = static_cast <base_type> (0);
     else if (t == b_) value_ = static_cast <base_type> (1);
     else if (t == c_) value_ = static_cast <base_type> (2);

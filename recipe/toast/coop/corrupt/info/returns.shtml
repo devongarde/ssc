@@ -1,0 +1,70 @@
+<!--#include virtual="/plumbing/html-en.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="returns policy" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/info-section.inc" -->
+<!--#include virtual="/plumbing/html-top.inc" -->
+
+<h1><span class="corrupttitle"><!--#echo encoding="none" var="name" --></span><br>
+<!--#echo encoding="none" var="title" --></h1>
+
+<ol>
+<li>Introduction
+<ol><li>We understand that from time to time you may wish to return a product to us.</li>
+<li>We have created this policy to enable you to return products to us in appropriate circumstances.</li>
+<li>This policy applies to all of our customers, irrespective of their geographical location.</li>
+<li>This policy applies to all orders submitted through our website.</li>
+<li>This document does not affect any statutory rights you may have as a consumer.</li>
+</ol></li>
+
+<li>Returns
+<ol><li>If you have no other legal right to return a product and receive a refund or exchange, then you will nonetheless be entitled to return a product to us and receive a refund in accordance with this policy if:
+<ol><li>we receive the returned product within 60 days following the date of dispatch of the product to you;</li>
+<li>the returned product is in a condition enabling us to sell the product as new;</li>
+<li>you comply with the procedure set out in this policy in relation to the return of the product; and</li>
+<li>none of the exclusions set out in this policy apply.</li></ol></li>
+</ol></li>
+
+<li>Returns procedure
+<ol><li>In order to take advantage of your rights under this policy, you must contact us to obtain a return authorisation number, and then send the product to us with a covering note quoting that number.</li>
+<li>Products returned under this policy must be returned to an address we specify.</li>
+<li>You will be responsible for paying postage costs associated with returns under this policy.</li>
+</ol></li>
+
+<li>Exclusions
+<ol><li>The following kinds of products may not be returned under this policy:
+<ol><li>DVDs, CDs and other audio or video or audio&ndash;visual recordings;</li>
+<li>computer software (whether on CD&ndash;ROM, DVD&ndash;ROM or otherwise);</li>
+<li>newspapers, periodicals, magazines or similar products;</li>
+<li>any product made to your specification;</li>
+<li>any product made to order;</li>
+<li>any product personalised or adapted for you; or</li>
+<li>gift vouchers.</li></ol></li>
+</ol></li>
+
+<li>Refunds
+<ol><li>We will give you a refund for the price you paid to us in respect of any product properly returned by you in accordance with this policy.</li>
+<li>We will not refund to you the original delivery charges relating to the returned product.</li>
+<li>We will not refund to you any costs you incur in returning the product to us.</li>
+<li>We will usually refund any money received from you using the same method originally used by you to pay for your purchase.</li>
+<li>We will process the refund due to you as soon as possible and, in any event, within 30 days following the day we receive your returned product.</li>
+</ol></li>
+
+<li>Improper returns
+<ol><li>If you return a product in contravention of this policy, and you do not have any other legal right to a refund or exchange in respect of that product:
+<ol><li>we will not refund the purchase price or exchange the product;</li>
+<li>we may retain the returned product until you pay to us such additional amount as we may charge for re&ndash;delivery of the returned product; and</li>
+<li>if we do not receive payment of such additional amount within 14 days of issuing a request for payment, we may destroy or otherwise dispose of the returned product in our sole discretion without any liability to you.</li></ol></li>
+</ol></li></ol>
+
+<ol>
+<!--#include virtual="details.inc" -->
+</ol>
+
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

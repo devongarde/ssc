@@ -1,0 +1,331 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="corrupt press" -->
+<!--#set var="description" value="corrupt press puts poetry in peoples&rsquo; heads" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<meta name="google-site-verification" content="wibble">
+<meta NAME="description" CONTENT="<!--#echo encoding="none" var="description" -->">
+<meta NAME="keywords" CONTENT="poetry,publisher,books">
+<!--#include virtual="/plumbing/header.inc" -->
+
+<div  itemscope itemtype="https://schema.org/WebSite" itemref="dh">
+  <meta itemprop="datePublished" content="2011-19-09">
+  <meta itemprop="dateModified" content="2018-12-23">
+  <meta itemprop="description" content="<!--#echo encoding="none" var="description" -->">
+  <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <link itemprop="url" href="https://corruptpress.com/">
+  <meta itemprop="schemaVersion" content="https://schema.org/version/3.1/">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="title" -->">
+</div>
+
+<style type="text/css">
+.front img { padding: 0.5em; width: 125px; }
+</style>
+
+<div class="site">
+<div class="front" itemscope itemtype="https://schema.org/WebPage" itemref="dh">
+  <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="title" -->">
+
+<!--#include virtual="/plumbing/html-top.inc" -->
+
+<p class="chunk">
+<A href="/info/about.shtml"><img src="/logo.jpg" title="about corrupt press" class="illustration" alt="corrupt press logo, a manky 'C'"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/l/lilith.shtml"><img SRC="/l/lilith.jpg" alt="cover image" title="Lilith by Jennifer K Dick, Crown Quarto, 176pp, &euro;15, summer 2019." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/s/silentg.shtml"><img SRC="/s/silentg.jpg" alt="cover image" title="The Silent G by Arpine Konyalian Grenier, US Trade, 81pp, &euro;15, spring 2019." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/s/stwah.shtml"><img SRC="/s/stwah.jpg" alt="cover image" title="some time we are heroes by reuben woolley, US Trade, 81pp, &euro;15, autumn 2018." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/k/kg.shtml"><img SRC="/k/kg.jpg" alt="cover image" title="KALEIDOgraph by Nina Karacosta &amp; Anamar&iacute;a Crowe Serrano, US Trade, 38pp, &euro;15, spring 2017." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/e/elsewhere.shtml"><img SRC="/e/elsewhere.jpg" alt="cover image" title="ELSEWHERE by Filippa Bahrke, A5, 20pp, &euro;6, autumn 2016." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/h/hen.shtml"><img SRC="/h/hen.jpg" alt="cover image" title="hhereenow by Rufo Quintavalle, US Trade, 88pp, &euro;15, autumn 2016." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/s/shelf.shtml"><img SRC="/s/shelf.jpg" alt="cover image" title="Shelf 1&ndash;15 by Rufo Quintavalle with translation in French by Ian Monk, A5, 28pp, October 2015." class="illustration"></a>
+</p>
+
+
+
+<p class="chunk">
+<A href="/h/hole.shtml"><img SRC="/h/hole.jpg" alt="cover image" title="Hole In My Side: Redemption of the Moon-Hooker by Troy Yorke, US Trade, 132pp, &euro;15, November 2014." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/s/skypp.shtml"><img SRC="/s/skypp.jpg" alt="cover image" title="Sky + + by Sarah Chapman, A5, 24pp, &euro;6, September 2014." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/g/gifted.shtml"><img SRC="/g/gifted.jpg" alt="cover image" title="Gifted by Patrick Williamson, A5, 36pp, &euro;8, September 2014." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/l/left.shtml"><img SRC="/l/left.jpg" alt="cover image" title="Left of the Dial by Alex Stolis, A5, 28pp, &euro;6, September 2014." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/i/impression.shtml"><img SRC="/i/impression.jpg" alt="cover image" title="Impression of a Life by M. K. Sukach, A5, 28pp, &euro;6, September 2014." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/s/suspension.shtml"><img SRC="/s/suspension.jpg" alt="cover image" title="IN A FORM OF SUSPENSION by Pansy Maurer&ndash;Alvarez, US Publisher, 64pp, April 2014, &euro;15." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/i/ispyshanty.shtml"><img SRC="/i/ispyshanty.jpg" alt="cover image" title="I-spy and shanty by Kate Noakes, US Trade, 96pp, February 2014, &euro;15." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/u/understory.shtml"><img SRC="/u/understory.jpg" alt="cover image" title="The Understory by Rod Mengham, A5, 24pp, February 2014, &euro;6." class="illustration"></a>
+</p>
+
+
+
+<p class="chunk">
+<A href="/c/chemical.shtml"><img SRC="/c/chemical.jpg" alt="cover image" title="moral hazard and the chemical sweats by Rufo Quintavalle, 40pp, December 2013, &euro;8." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/s/stonebride.shtml"><img SRC="/s/stonebride.jpg" alt="cover image" title="Stone Bridge Madrigals by Nicolette Wong, 28pp, December 2013, &euro;6." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/r/roadkill.shtml"><img SRC="/r/roadkill.jpg" alt="cover image" title="Roadkill by Michelle Noteboom, US Trade, 84pp, July 2013, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/g/glittery.shtml"><img SRC="/g/glittery.jpg" alt="cover image" title="Glittery City by Bibi Jacob, A5, 20pp, September 2013, May 2014, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/b/bulletsorchids.shtml"><img SRC="/b/bulletsorchids.jpg" alt="cover image" title="Bullets &amp; Orchids by Rewa Zeinati, A5, 20pp, June 2013, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/c/catch.shtml"><img SRC="/c/catch.jpg" alt="cover image" title="Catch by Diana S. Adams, A5, 20pp, June 2013, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/m/m.shtml"><img SRC="/m/m.jpg" alt="cover image" title="m by Lily Robert&ndash;Foley, US Trade, 266pp, May 2013, &euro;18." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/t/thesunbrings.shtml"><img SRC="/t/thesunbrings.jpg" alt="cover image" title="The Sun Brings by Christophe Lamiot Enos, US Trade, 120pp, April 2013, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/c/circuits.shtml"><img SRC="/c/circuits.jpg" alt="cover image" title="Circuits by Jennifer K Dick, US Trade, 82pp, March 2013, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/s/shipfur.shtml"><img SRC="/s/shipfur.jpg" alt="cover image" title="Ships Made of Fake Fur by James Jewell, 24pp, October 2012, &euro;4." class="illustration"></a>
+</p>
+
+
+
+<p class="chunk">
+<A href="/g/gia.shtml"><img SRC="/g/gia.jpg" alt="cover image" title="Giacomettrics by Amy Hollowell, US Trade, 76pp, November 2012, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/t/turnpush.shtml"><img SRC="/t/turnpush.jpg" alt="cover image" title="turn push | turn pull by kit fryatt, A5, 28pp, August 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/m/misscanada.shtml"><img SRC="/m/misscanada.jpg" alt="cover image" title="Miss Canada by rob mclennan, A5, 28pp, July 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/w/weak.shtml"><img SRC="/w/weak.jpg" alt="cover image" title="Weakdays by R L Raymond, A5, 32pp, July 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/t/trialballoons.shtml"><img SRC="/t/trialballoons.jpg" alt="cover image" title="Trial Balloons, by Alexander Dickow, A5, 36pp, June 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/x/xmas.shtml"><img SRC="/x/xmas.jpg" alt="cover image" title="XMAS COLLAGE by George Vance, A5, 28pp, June 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/e/endofstreet.shtml"><img SRC="/e/endofstreet.jpg" alt="cover image" title="At The End Of The Street by Jay Passer, 32pp, June 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/g/garden.shtml"><img SRC="/g/garden.jpg" alt="cover image" title="Garden (dec unit) by Monty Reid, A5, 28pp, May 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+
+<p class="chunk">
+<A href="/l/limitedesir.shtml"><img SRC="/l/limitedesir.jpg" alt="cover image" title="limite d&eacute;sir by Meghan McNealy, A5, 28pp, May 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/s/standardform.shtml"><img SRC="/s/standardform.jpg" alt="cover image" title="Standard Form for Language Resentment by Freke R&auml;ih&auml;, US Trade 64pp, April 2012, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/l/lowlevelflying.shtml"><img SRC="/l/lowlevelflying.jpg" alt="cover image" title="LOW LEVEL FLYING by John Kliphan, 148pp, March 2012, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/v/vertiges.shtml"><img SRC="/v/vertiges.jpg" alt="cover image" title="Vertiges Pr&eacute;c&eacute;dents par Nina Karacosta (traduit par Anne Talvaz), A5, 28pp, Janvier 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/a/ant.shtml"><img SRC="/a/ant.jpg" alt="cover image" title="ANT&mdash;SMALL AND AMOROUS by Pansy Maurer&ndash;Alvarez, US Trade, 64pp, January 2012, &euro;12. BILINGUAL." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/b/buriton.shtml"><img SRC="/b/buriton.jpg" alt="cover image" title="Bacon, Bits &amp; Buriton by Patrick Williamson, A5, 28pp, January 2012, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/i/imaginary.shtml"><img SRC="/i/imaginary.jpg" alt="cover image" title="IMAGINARYLOVEPOEMS by Emily Critchley, A5, 36pp, December 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/t/tweet.shtml"><img SRC="/t/tweet.jpg" alt="cover image" title="TWEET TWEET TWEET by Greg Santos, A5, 32pp inc&euro;. colour, December 2011, &euro;8." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/w/wolfdown.shtml"><img SRC="/w/wolfdown.jpg" alt="cover image" title="Wolf Down by Anthony Liccione, US Trade, 84pp, December 2011, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/o/orantes.shtml"><img SRC="/o/orantes.jpg" alt="cover image" title="orantes linguis by William J. Doan, A5, 28pp, November 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/o/organspeech.shtml"><img SRC="/o/organspeech.jpg" alt="cover image" title="Organ Speech by Megan Fernandes, A5, 40pp, November 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/p/parted.shtml"><img SRC="/p/parted.jpg" alt="cover image" title="Parted by justina semetaite, A5, 28pp, November 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/p/peneloping.shtml"><img SRC="/p/peneloping.jpg" alt="cover image" title="Peneloping by Amy Hollowell, A5, 32pp, November 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/d/dejavu.shtml"><img SRC="/d/dejavu.jpg" alt="cover image" title="D&eacute;ja Vu by Bonny Finberg, A5, 36pp inc&euro;. colour, September 2011, &euro;8." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/l/longplayep.shtml"><img SRC="/l/longplayep.jpg" alt="cover image" title="Long Play E.P. the complete Evan Parker Poems by steven dalachinsky, 40pp, September 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/e/esmeralda.shtml"><img SRC="/e/esmeralda.jpg" alt="cover image" title="How Esmeralda Estrus Got Her Revenge by J. Bradley, A5, 28pp, September 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/m/mammals.shtml"><img SRC="/m/mammals.jpg" alt="cover image" title="Mammals of Hoarfrost by Pearl Pirie, 28pp, September 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/o/onecolumbusleap.shtml"><img SRC="/o/onecolumbusleap.jpg" alt="cover image" title="one columbus leap by Anamar&iacute;a Crowe Serrano, A5, 28pp, September 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/r/roadsong.shtml"><img SRC="/r/roadsong.jpg" alt="cover image" title="road song for by lars palm, US Trade, 100pp, September 2011, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/v/verisimilitude.shtml"><img SRC="/v/verisimilitude.jpg" alt="cover image" title="Versimilitude by Suzanne Allen, A5, 24pp, June 2011, May 2014, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/d/dcav.shtml"><img SRC="/d/dcav.jpg" alt="cover image" title="Dog, cock, ape and viper by Rufo Quintavalle, pocket book, 103pp, June 2011, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/s/sc.shtml"><img SRC="/s/sc.jpg" alt="cover image" title="A SHORT CIRCUIT by George Vance, A4, 84pp, May 2011, &euro;12." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/b/betwixt.shtml"><img SRC="/b/betwixt.jpg" alt="cover image" title="Betwixt by Jennifer K Dick, A5, 24pp, May 2011, &euro;5." class="illustration"></a>
+</p>
+
+
+<p class="chunk">
+<A href="/p/previous.shtml"><img SRC="/p/previous.jpg" alt="cover image" title="Previous Vertigos by Nina Karacosta, A5, 24pp, February 2011, &euro;5." class="illustration"></a>
+</p>
+
+<p class="butter">
+<a href="https://dylanharris.org/goodies/goodies/books.shtml">publisher&rsquo;s&nbsp;books</a>
+</p>
+
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

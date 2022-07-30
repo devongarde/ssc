@@ -1,0 +1,51 @@
+<!--#include virtual="/plumbing/html-en.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Vertiges Pr&eacute;c&eacute;dents" -->
+<!--#set var="poet" value="Nina Karacosta" -->
+<!--#set var="trans" value="Anne Talvaz" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#karacosta">
+</div>
+
+<div itemprop="translator" itemscope itemtype="https://schema.org/Person" id="trans">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="trans" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#talvaz">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet trans">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2012">
+  <meta itemprop="inLanguage" content="en-GB">
+  <meta itemprop="datePublished" content="2012-01-01">
+  
+<img SRC="/v/vertiges.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+Traduction au fran&ccedil;ais, par <!--#echo encoding="none" var="trans" -->, de <A href="/p/previous.shtml">Previous Vertigos</a><br>
+A5, <span itemprop="numberOfPages">28</span>pp, &euro;5, Janvier 2012<br>
+ISBN <span itemprop="isbn">979-10-90394-25-4</span></p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

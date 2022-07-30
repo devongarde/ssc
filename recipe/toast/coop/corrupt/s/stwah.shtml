@@ -1,0 +1,61 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="some time we are heroes" -->
+<!--#set var="poet" value="reuben woolley" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#woolley">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2018">
+  <meta itemprop="inLanguage" content="en-GB">
+  <meta itemprop="datePublished" content="2018-09-15">
+
+<img SRC="stwah.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+US Trade, <span itemprop="numberOfPages">81</span>pp, &euro;15, September 2018<br>
+ISBN <span itemprop="isbn">979-10-90394-58-2</span><br>
+The cover image is by <span itemprop="contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Jan Stead</span></span>
+</p>
+
+<p class="published-quote">
+Reuben Woolley&rsquo;s <em>some time we are heroes</em> traces the frayed relationship between two people in terms of a despairing yet lyrical crisis. Images of water, dancing, drinking and singing run through the book in poems whose lines shift nervously to produce a kind of sharp&ndash;edged jazz that touches both nerve and heart. <span class="published-quoted">George Szirtes</span>
+</p>
+<p class="published-quote">
+John and Mary, whose trials began in children&rsquo;s post&ndash;war picture books, are pitched into existential tribulations in a dystopian universe, akin to Popa&rsquo;s. These poems occupy the worlds of both myth and physics with flashes of folk&ndash;surrealism. Woolley&rsquo;s language is spare, his syntax and word&ndash;choice paint an off&ndash;kilter logic. His use of white space allows the poems, and their imaginative journeys, to perform themselves on the page. <span class="published-quoted">Helen Ivory</span>
+</p>
+<p class="published-quote">
+In a line with our most ambitious striving for a new poetry and poetics, Woolley&rsquo;s poems are both innovative in their means and open to the ruptures &amp; struggles of our time that have broken apart the stories &amp; myths that once held our world together &mdash; or that purported to do so. The results here are unique to his own special view of history &amp; masterfully compelling. <span class="published-quoted">Jerome Rothenberg</span>
+</p>
+<p class="published-quote">
+I commend to you this stylistically distinctive collection of poems where the universality of human relationships is, among many moving impressions, a haunting as well as affirming exploration.
+<span class="published-quoted">Mike Ferguson,
+<A href="https://mikeandenglish.wordpress.com/2018/12/20/some-time-we-are-heroes-by-reuben-woolley-corrupt-press/">mikeandenglish blog</a></span>
+</p>
+
+</div>
+
+<br>
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

@@ -26,7 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define PUNCTUATION ",/;:"
 
 typedef ssc_mm < ::std::string, vstr_t > mssfl_t;
-extern mssfl_t mssfl;
+typedef ::std::unique_ptr < mssfl_t > mssfl_uptr;
+extern mssfl_uptr mssfl;
 
 bool check_identifier_spelling (nitpick& nits, const html_version& v, const ::std::string& s);
 void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::filesystem::path& fn);
@@ -45,7 +46,8 @@ void spell_tell (nitpick& nits, const lingo& lang, const ::std::string& word, co
 #else // NOSPELL
 inline void check_spelling (nitpick& , const html_version& , const lingo& , const ::std::string& ) { }
 inline void spell_init (nitpick& nits)
-{   nits.pick (nit_no_spell, es_comment, ec_spell, "spell check unavailable"); }
+{   mssfl = mssfl_uptr (new mssfl_t);
+    nits.pick (nit_no_spell, es_comment, ec_spell, "spell check unavailable"); }
 inline vstr_t load_dictionaries (nitpick& ) { return vstr_t (); }
 inline void spell_free () { }
 inline void spell_terminate () { }

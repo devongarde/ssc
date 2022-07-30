@@ -3,6 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+0.0.130
+- performance improvement with multithreading
+- can exclude files from processing, such as git files
+- can list all classes used, not just those defined in CSS files
+- uses Howard Hinnant's date library (from https://github.com/HowardHinnant/date)
+- fix schema hierarchy property type checks
+- underlying work
+
 0.0.129
 - improve diagnostics of invalid HTTP-EQUIV entries
 - underlying work

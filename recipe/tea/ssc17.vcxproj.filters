@@ -44,9 +44,6 @@
     <Filter Include="Sauce\utility">
       <UniqueIdentifier>{819a17cf-30af-4980-80b5-3056a3de4de0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sauce\webmention">
-      <UniqueIdentifier>{4d3e249e-7cd2-4785-81ec-308e9f823f6c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sauce\webpage">
       <UniqueIdentifier>{d11fd83d-2a60-41d8-90af-5e7fb82af0cc}</UniqueIdentifier>
     </Filter>
@@ -99,9 +96,6 @@
     <Filter Include="Heater\utility">
       <UniqueIdentifier>{acf09905-2aab-4953-a2d8-9eb6a41efa1c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Heater\webmention">
-      <UniqueIdentifier>{ee86f2ad-4aff-46d9-a61b-1e9ab06b48d8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Heater\webpage">
       <UniqueIdentifier>{d95b5002-4163-4394-8dfd-986e8bbcc54d}</UniqueIdentifier>
     </Filter>
@@ -131,6 +125,18 @@
     </Filter>
     <Filter Include="Sauce\spell">
       <UniqueIdentifier>{9e8e8071-cdc7-4857-ae75-3bb54291d934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\coop">
+      <UniqueIdentifier>{a583e599-904f-4ad1-b26b-1211b95f72f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\coop">
+      <UniqueIdentifier>{8edcc31e-916e-4445-aa70-1fc835093834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Third Party">
+      <UniqueIdentifier>{00816e01-3b7f-4906-824d-06bdf755a3a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Third Party\Howard Hinnant Date">
+      <UniqueIdentifier>{a3d83071-6bea-4f82-98c3-b9497ac5f50e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -461,18 +467,6 @@
     <ClInclude Include="..\heater\utility\tuple.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\webmention\hook.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\irt.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\webmention.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\webmention\webmentions.h">
-      <Filter>Heater\webmention</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\webpage\crosslink.h">
       <Filter>Heater\webpage</Filter>
     </ClInclude>
@@ -631,6 +625,54 @@
     </ClInclude>
     <ClInclude Include="..\heater\schema\jsonld.h">
       <Filter>Heater\schema</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\fred.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\kew.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\knickers.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\lox.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\main\output.h">
+      <Filter>Heater\main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\webpage\q.h">
+      <Filter>Heater\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\chrono_io.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\date.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\ios.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\islamic.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\iso_week.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\julian.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\ptz.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\solar_hijri.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\tz.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third\date\tz_private.h">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -910,18 +952,6 @@
     <ClCompile Include="..\sauce\utility\quote.cpp">
       <Filter>Sauce\utility</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\webmention\hook.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\irt.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\webmention.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\webmention\webmentions.cpp">
-      <Filter>Sauce\webmention</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\webpage\crosslink.cpp">
       <Filter>Sauce\webpage</Filter>
     </ClCompile>
@@ -1116,6 +1146,27 @@
     </ClCompile>
     <ClCompile Include="..\sauce\schema\jsonld.cpp">
       <Filter>Sauce\schema</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\main\output.cpp">
+      <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\fred.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\kew.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\knickers.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\coop\lox.cpp">
+      <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\webpage\q.cpp">
+      <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third\date\tz.cpp">
+      <Filter>Third Party\Howard Hinnant Date</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

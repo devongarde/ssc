@@ -5239,10 +5239,10 @@ microdata_structure schema_structure [] =
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_muscle, sp_nerve, },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_muscle, sp_origin },
 
-    { { 2, 0 }, { 0, 0 }, sch_musicalbum, sp_albumproductiontype },
-    { { 2, 0 }, { 0, 0 }, sch_musicalbum, sp_albumrelease },
-    { { 2, 0 }, { 0, 0 }, sch_musicalbum, sp_albumreleasetype },
-    { { 0, 10 }, { 0, 0 }, sch_musicalbum, sp_byartist },
+    { { 2, 0 }, { 0, 0 }, sch_musical_bum, sp_albumproductiontype },
+    { { 2, 0 }, { 0, 0 }, sch_musical_bum, sp_albumrelease },
+    { { 2, 0 }, { 0, 0 }, sch_musical_bum, sp_albumreleasetype },
+    { { 0, 10 }, { 0, 0 }, sch_musical_bum, sp_byartist },
 
     { { 0, 91 }, { 0, 0 }, sch_musicgroup, sp_album },
     { { 0, 10 }, { 1, 90 }, sch_musicgroup, sp_albums },

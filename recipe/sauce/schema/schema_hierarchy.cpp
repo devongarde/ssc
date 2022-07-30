@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "schema/schema_hierarchy.h"
+#include "main/context.h"
 
 struct microdata_hierachy
 {   schema_version from_;
@@ -2879,7 +2880,7 @@ microdata_hierachy schema_hierarchy [] =
     { { 1, 92 }, { 0, 0 }, sch_musicalbumreleasetype, sch_broadcastrelease },
     { { 1, 92 }, { 0, 0 }, sch_musicalbumreleasetype, sch_eprelease },
     { { 1, 92 }, { 0, 0 }, sch_musicalbumreleasetype, sch_singlerelease },
-    { { 0, 10 }, { 0, 0 }, sch_musicplaylist, sch_musicalbum },
+    { { 0, 10 }, { 0, 0 }, sch_musicplaylist, sch_musical_bum },
     { { 2, 0 }, { 0, 0 }, sch_musicplaylist, sch_musicrelease },
     { { 3, 5 }, { 0, 0 }, sch_musicreleaseformattype, sch_cdformat },
     { { 3, 5 }, { 0, 0 }, sch_musicreleaseformattype, sch_cassetteformat },
@@ -3740,8 +3741,8 @@ microdata_hierachy schema_hierarchy [] =
 
     { { 0, 0 }, { 0, 0 }, sty_illegal, sty_illegal } };
 
-typedef ssc_mm < e_schema_type, microdata_hierachy* > vmap_t;
-typedef ssc_mm < e_schema_type, e_schema_type > vss_t;
+typedef ::std::multimap < e_schema_type, microdata_hierachy* > vmap_t;
+typedef ::std::multimap < e_schema_type, e_schema_type > vss_t;
 vmap_t hierarchy;
 vss_t generalisations;
 
@@ -3759,20 +3760,20 @@ void hierarchy_init (nitpick& nits)
                     if ((vi -> second -> specific_ == schema_hierarchy [x].specific_) && (vi -> second -> general_ != schema_hierarchy [x].general_))
                         if (overlap (schema_hierarchy [x].from_, schema_hierarchy [x].to_, vi -> second -> from_, vi -> second -> to_))
                             nits.pick (nit_schema_hierarchy, es_catastrophic, ec_schema, "multiple generalisations for ", sch::name (schema_hierarchy [x].specific_), " (", schema_hierarchy [x].specific_, ")");
+        if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_schema, sch::name (schema_hierarchy [x].general_), " : ", sch::name (schema_hierarchy [x].specific_)); 
         generalisations.emplace (vss_t::value_type (schema_hierarchy [x].specific_, schema_hierarchy [x].general_)); } }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
 
 void int_generalise  (const e_schema_type s, ssch_t& ssch)
-{   ssch.insert (s);
+{   if (ssch.find (s) == ssch.cend ()) ssch.insert (s);
     for (vss_t::const_iterator i = generalisations.find (s); (i != generalisations.cend ()) && (i -> first == s); ++i)
-        if (ssch.find (i -> second) == ssch.cend ())
-            for (vmap_t::const_iterator vi = hierarchy.find (i -> second); (vi != hierarchy.cend ()) && (vi -> first == i -> second); ++vi)
-                if (vi -> second != nullptr)
-                    if (vi -> second -> specific_ == s)
-                        if (does_apply < schema_version > (get_default_schema_version (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
-                            int_generalise (i -> second, ssch); }
+        for (vmap_t::const_iterator vi = hierarchy.find (i -> second); (vi != hierarchy.cend ()) && (vi -> first == i -> second); ++vi)
+            if (vi -> second != nullptr)
+                if (vi -> second -> specific_ == s)
+                    if (does_apply < schema_version > (get_default_schema_version (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
+                        int_generalise (i -> second, ssch); }
 
 ssch_t generalise (const e_schema_type s)
 {   ssch_t res;
@@ -3780,7 +3781,9 @@ ssch_t generalise (const e_schema_type s)
     return res; }
 
 bool is_specific_type_of (const e_schema_type general, const e_schema_type specific)
-{   for (vss_t::const_iterator x = generalisations.find (specific); x != generalisations.cend (); x = generalisations.find (x -> second))
+{   for (vss_t::const_iterator x = generalisations.find (specific); x != generalisations.cend (); ++x)
+    {   if (x -> first != specific) break;
         if (x -> second == general) return true;
+        if (is_specific_type_of (general, x -> second)) return true; }
     return false; }
 

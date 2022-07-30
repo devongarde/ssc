@@ -464,11 +464,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 
 class version
-{   unsigned char mjr_ = 0, mnr_ = 0;
+{   unsigned short mjr_ = 0, mnr_ = 0;
     flags_t flags_ = NOFLAGS;
 public:
     version () = default;
-    version (const unsigned char mjr, const unsigned char mnr, const flags_t flags = NOFLAGS) noexcept
+    version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS) noexcept
         :   mjr_ (mjr), mnr_ (mnr), flags_ (flags) { }
 	version (const version& ) = default;
 	version (version&& ) = default;
@@ -481,12 +481,12 @@ public:
         ::std::swap (flags_, v.flags_); }
     void reset () noexcept { version v; swap (v); }
     void reset (const version& v) noexcept { version vv (v); swap (vv); }
-    void set_mjr (const unsigned char mjr, const unsigned char mnr = 0) noexcept
+    void set_mjr (const unsigned short mjr, const unsigned short mnr = 0) noexcept
     {   mjr_ = mjr; mnr_ = mnr; }
     bool unknown () const noexcept { return (mjr_ == 0) && (mnr_ == 0); }
     bool known () const noexcept { return ! unknown (); }
-    unsigned char mjr () const noexcept { return mjr_; }
-    unsigned char mnr () const noexcept { return mnr_; }
+    unsigned short mjr () const noexcept { return mjr_; }
+    unsigned short mnr () const noexcept { return mnr_; }
     void set_flags (const flags_t u) noexcept { flags_ |= u; }
     void reset_flags (const flags_t u) noexcept { flags_ &= ~u; }
     bool all_flags (const flags_t u) const noexcept { return ((flags_ & u) == u); }

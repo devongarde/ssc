@@ -612,15 +612,14 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_ssi_encoding);
         TEST_VALUE (t_ssi_env);
         TEST_VALUE (t_ssi_f);
-        TEST_VALUE (t_start);
-        TEST_VALUE (t_startend);
-        TEST_VALUE (t_stitchtiles);
-        TEST_VALUE (t_streamedcontents);
-        TEST_VALUE (t_svg_feature);
         TEST_VALUE (t_ssi_include);
         TEST_VALUE (t_ssi_set);
         TEST_VALUE (t_ssi_sizefmt);
+        TEST_VALUE (t_start);
+        TEST_VALUE (t_startend);
         TEST_VALUE (t_step);
+        TEST_VALUE (t_stitchtiles);
+        TEST_VALUE (t_streamedcontents);
         TEST_VALUE (t_style);
         TEST_VALUE (t_svg_align);
         TEST_VALUE (t_svg_baselineshift);
@@ -631,6 +630,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_direction2);
         TEST_VALUE (t_svg_display);
         TEST_VALUE (t_svg_duration);
+        TEST_VALUE (t_svg_feature);
         TEST_VALUE (t_svg_features);
         TEST_VALUE (t_svg_fontstretch);
         TEST_VALUE (t_svg_fontstretch_ff);

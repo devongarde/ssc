@@ -40,7 +40,7 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
     else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
     {   y = HTML_LATEST_YEAR; m = HTML_LATEST_MONTH; }
     PRESUME ((m > 0) && (m < 13), __FILE__, __LINE__);
-    set_mjr (::gsl::narrow_cast <unsigned char> (y), ::gsl::narrow_cast <unsigned char> (m * 16));
+    set_mjr (::gsl::narrow_cast <unsigned short> (y), ::gsl::narrow_cast <unsigned short> (m * 16));
     if (no_ext (MATH_MASK))
         if (mjr () <= HTML_2010) set_ext (HE_MATH_1);
         else if (mjr () <= HTML_2014) set_ext (HE_MATH_2);
@@ -55,7 +55,7 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
         if (*this >= html_jul20) set_ext2 (H2_JSONLD_1_1);
         else if (mjr () >= HTML_2014) set_ext2 (H2_JSONLD_1_0); }
 
-void html_version::init (const unsigned char mjr)
+void html_version::init (const unsigned short mjr)
 {   switch (mjr)
     {   case 0 :
             reset (html_tags); break;

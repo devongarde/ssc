@@ -1,0 +1,59 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Bullets &amp; Orchids" --><!--#set var="poet" value="Rewa Zeinati" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#zeinati">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2013">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2013-06-01">
+  
+<img SRC="bulletsorchids.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><a href="/authors/index.shtml#zeinati" class="poet"><!--#echo encoding="none" var="poet" --></a><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">24</span>pp, &euro;5, June 2013<br>
+ISBN <span itemprop="isbn">979-10-90394-41-4</span><br>
+<span class="wee">The cover image is by <a href="<!--#echo encoding="none" var="artsego" -->"><!--#echo encoding="none" var="editor" --></a>.</span>
+</p>
+
+<p class="published-quote">
+Stunning text exquisitely tuned to the traumas/torments/delicate presences of our (utterly mysterious but knowable, in smaller ways) times. In 58 spare, but enormous segments of poetry, <a href="/authors/index.shtml#zeinati" class="poet"><!--#echo encoding="none" var="poet" --></a> transports and elevates her readers into and beyond the confounding. It is rare to read text that feels like such a full breath. <span class="published-quoted">Naomi Shihab Nye</span>
+</p>
+
+<p class="published-quote">
+This is not your usual quiet, well mannered, little poetry book. In fact, it may not be a poetry book. It is most probably a journey: one where you can follow the workings of an intelligent mind on its surreal path through past and present, family and current day Middle East. This is not a book that will spoon-feed you. There is a refusal to give you words that you don&rsquo;t need. There are no explanations. You are expected to be grown up. But OMG, the images. &ldquo;I saw bullets though. Many were shaped like tongues.&rdquo; You need to be on board this trip. Me? I&rsquo;m going round again. This woman is the real deal. <span class="published-quoted">Frank Dullaghan</span>
+</p>
+
+<p class="published-quote">
+As the Arab street meets the determination of country to remain unchanged or even to re-invent the past, <a href="/authors/index.shtml#zeinati" class="poet"><!--#echo encoding="none" var="poet" --></a> keeps asking &ldquo;where will it go from here?&rdquo; In this amazing poetry sequence, nothing familiar remains, unless it be the fact that all aspects of our lives intersect: marriage, divorce, devotion to tradition, passion for change. The voice pushing out the declarations in this poetry turns to a syntax of interruption, one that remakes the Arab world in the speaker&rsquo;s own image: fresh, honest, questioning, and challenging. Above all, this fervent poetry represents the latest flowering of the Middle East, surprising yet unstoppable, betokening individual life. <span class="published-quoted">Steven M. Schreiner</span>
+</p>
+
+<p class="published-quote">
+A raw and gripping new voice. <span class="published-quoted">Nathalie Handal</span>
+</p>
+
+</div>
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

@@ -27,17 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/html_version.h"
 
 typedef stats0 < html_version > version_stats;
-typedef stats4 < ::std::string > term_stats;
-typedef stats1 < e_element, last_element_tag, elem_undefined > element_stats;
-typedef stats1 < e_category, last_category, ec_undefined > category_stats;
-typedef stats1 < e_severity, last_severity, es_undefined > severity_stats;
-typedef stats1 < e_doc, last_doc, ed_mishmash > ref_stats;
-typedef stats2 < e_element, e_attribute, last_element_tag, last_attribute > attribute_stats;
-typedef stats1 < e_schema_type, sty_illegal, sty_context > schema_stats;
-typedef stats2 < e_schema_type, e_schema_property, sty_illegal, sp_illegal > schema_property_stats;
-typedef stats1 < e_httpequiv, he_error, he_context > httpequiv_stats;
-typedef stats1 < e_metaname, mn_illegal, mn_context > metaname_stats;
-typedef stats3 < ::std::string, e_metaname, mn_illegal, mn_context > meta_value_stats;
 
 class stats
 {   element_stats element_, visible_;
@@ -78,14 +67,14 @@ public:
     {   dfn_.mark (tart (a), tart (b)); }
     void mark_dtdd (const ::std::string& a, const ::std::string& b)
     {   dtdd_.mark (tart (a), tart (b)); }
-    void mark (const e_severity s)
-    {   severity_.mark (s); }
-    void mark (const e_category c)
-    {   category_.mark (c); }
+    void mark (const e_severity s, const unsigned n = 1)
+    {   severity_.mark (s, n); }
+    void mark (const e_category c, const unsigned n = 1)
+    {   category_.mark (c, n); }
     void mark (const html_version& v)
     {   version_.mark (v); }
-    void mark (const e_doc d)
-    {   ref_.mark (d); }
+    void mark (const e_doc d, const unsigned n = 1)
+    {   ref_.mark (d, n); }
     void mark (const e_element f, const e_attribute m)
     {   attribute_.mark (f, m); }
     void mark (const e_schema_type s)
@@ -108,5 +97,6 @@ public:
     unsigned visible_count (const e_element e) const
     {   return visible_.at (e); }
     bool severity_exceeded () const;
+    void accumulate (stats& o) const;
     ::std::string report (const bool grand) const; };
 

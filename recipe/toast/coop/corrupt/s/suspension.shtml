@@ -1,0 +1,54 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="IN A FORM OF SUSPENSION" -->
+<!--#set var="poet" value="Pansy Maurer-Alvarez" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#alvarez">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2014">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="datePublished" content="2014-04-01">
+  
+<img SRC="suspension.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+US Trade, <span itemprop="numberOfPages">64</span>pp, &euro;15, April 2014<br>
+ISBN <span itemprop="isbn">979-10-90394-46-9</span><br>
+<span class="wee">The cover image is by <a href="<!--#echo encoding="none" var="artsego" -->"><!--#echo encoding="none" var="editor" --></a>.</span>
+</p>
+
+<p class="published-quote">
+Poets have often been the patsies for a predetermined set of truths, even as love, joy, safety, and sanctity rarely resemble what they&rsquo;re purported to be. Poets become reduced to intellectualism and academicism&mdash;their truths provincially categorized before they&rsquo;ve been written. When these constraints prove insufficient, a poet may only have her own instincts to rely on. In her new book, <span class="book-title"><!--#echo encoding="none" var="title" --></span>, <!--#echo encoding="none" var="poet" --> forgoes prescribed meaning, favoring her sonic palette as a guide to the pleasures of poetry. These are passionate poems, &ldquo;authentically uncertain,&rdquo; where &ldquo;late temperate nature echoes revelations.&rdquo; These poems inhabit a space of wild observation, offering moments of fused-grammar joy (&ldquo;mimosa is composed of Seville&rdquo;), but grounded by a delight in physicality. &ldquo;I wanted to unleash brash themes, I wanted their warped gleam to hold me cleft to my own light,&rdquo; she writes. Joy, social detail, a love for language, an urban wit, all combine in this book into an &rdquo;invisible room &hellip;grazed by pale orbs of song.&ldquo;
+<span class="published-quoted">Edmund Berrigan</span>
+</p>
+
+<p class="published-quote">
+<span class="book-title"><!--#echo encoding="none" var="title" --></span> is a lush, erotic book that presents the reader with the amorous wardrobe of being. Feminine, incisive, capricious, and analytical, the poems move the reader with their throbbing pulsations, and cool lacunas. Distortion, sound clusters, and a slight aura of La Belle &Eacute;poque color the poems. Maurer-Alvarez uses cacophony as a structuring principle; the clattering of sound creates momentum; the breaking down of sound clusters reduces the heaviness of language and allows the reader to participate in the deconstruction of connectivity. The main theme of romanticism externalized and defused becomes the central reference point of the poems. The tension between the often-bleak reality beyond the self and its intimacy fades from time to time. The poet then speaks in a clear personal voice; the &ldquo;bare literary figurine&rdquo; becomes a mature woman reflecting on her life, on sexuality, on presence, and the immense potential of language to liberate and redefine the human spirit.
+<span class="published-quoted">Andrea Moorhead</span></p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

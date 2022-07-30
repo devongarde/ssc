@@ -1,0 +1,62 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="road song for" -->
+<!--#set var="poet" value="lars palm" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#palm">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-GB">
+  <meta itemprop="datePublished" content="2011-09-01">
+  
+<img SRC="roadsong.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+US Trade, <span itemprop="numberOfPages">100</span>pp, &euro;12, September 2011<br>
+ISBN <span itemprop="isbn">979-10-90394-12-4</span><br>
+The cover image is by
+<span itemprop = "contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Petra</span> <span itemprop="familyName">Palm</span></span></span>
+</p>
+
+<p class="published-quote">
+In the concise verses and prose poems of road song for, Lars Palm reminds us&ndash;as he always does&ndash;of the music of everyday English, from overheard conversations to pop lyrics. Often light in tone but never slight, Palm&rsquo;s work is carefully built to look effortless. &mdash; <span class="published-quoted">Amanda Laughtland</span>
+</p>
+
+<p class="published-quote">
+This is a wonderful book of impulsive and magical, lyrical poetry. &mdash; <span class="published-quoted"><a href="https://www.stridemagazine.co.uk/">Robert Loydell, Stride Magazine</a>.</span>
+</p>
+
+<p class="published-quote">
+D e p r e s s u r e  placement is in a sociocultural and sociogeographic sense poetry; oncesilence.gov: as every twig snapped; as non-equivalence: delusions are a wonderful tool for all manner of artists, whom are subject to Lars Palm, who often use them to cast a clearer light on reality; and reality this is, what comes after this, is [ repeat ] &mdash; <span class="published-quoted">Freke R&auml;ih&auml;</span>
+</p>
+
+<p class="published-quote">
+Inte honungss&ouml;tt direkt men m&auml;ttande och n&auml;rande likas&aring; &mdash; not dripping with honey but filling &amp; nourishing as well &mdash; <span class="published-quoted">Albert Herranz</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

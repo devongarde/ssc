@@ -1,0 +1,63 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="Parted" -->
+<!--#set var="poet" value="justina semetaite" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#semetaite">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2011">
+  <meta itemprop="inLanguage" content="en-GB">
+  <meta itemprop="datePublished" content="2011-11-01">
+  
+<img SRC="parted.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><span  class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">28</span>pp, &euro;5, November 2011<br>
+ISBN <span itemprop="isbn">979-10-90394-23-0</span><br>
+The cover image is a detail from Boat by
+<span itemprop = "contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Migle</span> <span itemprop="familyName">Semetaite</span></span></span>.
+</p>
+
+<p class="published-quote">
+why have we not heard of Justina Semetaite until now? with <span class="book-title"><!--#echo encoding="none" var="title" --></span> this wrong will be corrected. when she talks to herself about good-byes &ldquo;The garden is empty, or is it my eyes?&rdquo; when she writes postcards &ldquo;Through your white, glossy moss.&rdquo; when in the long powerful closing poem &ldquo;maybe the blossoms of books, maybe the sound of trees, maybe the wall, greeting an old woman&rsquo;s flickers.&rdquo; this is just the beginning, right?
+<span class="published-quoted">lars palm, author of road song for</span>
+</p>
+
+<p class="published-quote">
+From the opening lines of Justina Semetaite&rsquo;s <span class="book-title"><!--#echo encoding="none" var="title" --></span>, &ldquo;The jelly shadows of the birds / sitting on the fence,&rdquo; we know we are in good poetic company: the kind that&rsquo;s able to think laterally about language, treat it as the physical stuff that it is, whilst also working it lyrically, languidly, in a book as private yet communal as singing the national anthem (but which one? ).
+</p>
+
+<p class="published-quote">
+-&mdash;so good to be back&mdash;-<br>
+such a sadness / a mouthful of mustard
+</p>
+
+<p class="published-quote">
+Semetaite&rsquo;s zeugma (are birds on the fence or just their jelly shadows?) and other happy language disruptions (choosing an &lsquo;of&rsquo; in place of a &lsquo;to&rsquo; because it sounds &amp; means better) are proof if any were needed that being &lsquo;between&rsquo; languages can be a definite advantage. Her idiosyncratic metaphors are fresh as drunk energy, her sounds satisfying as the &ldquo;pop of a stranger&rsquo;s umbrella&rdquo;.
+<span class="published-quoted">Emily Critchley, author of ImaginaryLovePoems</span>
+</p>
+
+</div>
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

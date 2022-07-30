@@ -11,7 +11,6 @@ PASS ../toast/microdata/schema-wxyz/webpage-1.html
 49 use_quote_code
 
 PASS ../toast/microdata/schema-wxyz/webpage-2.html
-12 bad_property bad_property bad_property
 13 unrecognised_value
 17 no_such_folder url_not_found
 

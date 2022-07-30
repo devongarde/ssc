@@ -128,7 +128,7 @@ hun::hun (nitpick& nits, const ::boost::filesystem::path& p, const lingo& lang)
     nits.pick (nit_dictionary, es_comment, ec_spell, "Found dictionary for ", quote (lang.dialect ())); }
 
 void spell_init (nitpick& )
-{  }
+{  mssfl = mssfl_uptr (new mssfl_t); }
 
 void spell_free ()
 {   for (mhun_t::iterator i = mh.begin (); i != mh.end (); ++i)
@@ -144,7 +144,8 @@ void apply_wordlist (nitpick& nits, mhun_t::iterator& hi, const vstr_t& list)
                 hi -> second.add (nits, ss); }
 
 void apply_wordlists (nitpick& nits, mhun_t::iterator& hi, const ::std::string& lang)
-{   for (mssfl_t::const_iterator i = mssfl.find (lang); i != mssfl.cend (); ++i)
+{   VERIFY_NOT_NULL (mssfl.get (), __FILE__, __LINE__);
+    for (mssfl_t::const_iterator i = mssfl -> find (lang); i != mssfl -> cend (); ++i)
         apply_wordlist (nits, hi, i -> second); }
 
 void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text)
@@ -241,7 +242,7 @@ vstr_t load_dictionaries (nitpick& nits)
                 case 8 : l = fix_hunspell_lang_param (s);
                          break;
                 default : break; }
-        nits.pick (nit_debug, es_debug, ec_spell, "Found dictionary for ", l, " (", d.string (), ")");
+        if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_spell, "Found dictionary for ", l, " (", d.string (), ")");
         res.emplace_back (l); }
     return res; }
 

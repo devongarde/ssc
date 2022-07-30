@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>schema article</title>
+</head>
+
+<body>
+
+<h1>schema article</h1>
+
+    <div itemscope itemtype="https://schema.org/Article">
+      <span itemprop="name">How to Tie a Reef Knot</span>
+      by <span itemprop="author">John Doe</span>
+      This article has been tweeted 1203 times and contains 78 user comments.
+      <div itemprop="interactionStatistic" itemscope itemtype="https://schema.org/InteractionCounter">
+        <div itemprop="interactionService" itemscope itemid="http://www.twitter.com" itemtype="https://schema.org/WebSite">
+          <meta itemprop="name" content="Twitter" />
+        </div>
+        <meta itemprop="interactionType" content="https://schema.org/ShareAction"/>
+        <meta itemprop="userInteractionCount" content="1203" />
+      </div>
+      <div itemprop="interactionStatistic" itemscope itemtype="https://schema.org/InteractionCounter">
+        <meta itemprop="interactionType" content="https://schema.org/CommentAction"/>
+        <meta itemprop="userInteractionCount" content="78" />
+      </div>
+    </div>
+
+    <!-- A list of the issues for a single volume of a given periodical. -->
+    <div itemscope itemtype="https://schema.org/Periodical">
+      <h1 itemprop="name">The Lancet</h1>
+      <p>Volume 376, July 2010-December 2010</p>
+      <p>Published by <span itemprop="publisher">Elsevier</span>
+      <ul>
+        <li>ISSN: <span itemprop="issn">0140-6736</span></li>
+      </ul>
+      <h3>Issues:</h3>
+      <div itemprop="hasPart" itemscope itemtype="https://schema.org/PublicationVolume" itemid="#vol376">
+        <meta itemprop="volumeNumber" content="376">
+        <ul>
+          <li itemprop="hasPart" itemscope itemtype="https://schema.org/PublicationIssue" itemid="#iss9734">No.
+            <span itemprop="issueNumber">9734</span>
+            <time datetime="2010-07-03" itemprop="datePublished">Jul 3, 2010</time>
+            p <span itemprop="pageStart">1</span>-<span itemprop="pageEnd">68</span>
+          </li>
+          <li itemprop="hasPart" itemscope itemtype="https://schema.org/PublicationIssue" itemid="#iss9735">No.
+            <span itemprop="issueNumber">9735</span>
+            <time datetime="2010-07-03" itemprop="datePublished">Jul 10, 2010</time>
+            p <span itemprop="pageStart">69</span>-<span itemprop="pageEnd">140</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- An article, fully linked to the issue, volume, and periodical in which it was published -->
+    <div itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <strong>Title:</strong> <span itemprop="name">Be Careful What You Wish For: FRBR, Some Lacunae, A Review</span><br />
+      <strong>Author:</strong> <span itemprop="author">Smiraglia, Richard P.</span><br />
+      <strong>Subjects:</strong> <span itemprop="about">Catalog</span> ; <span itemprop="about">Works</span> <br />
+      <strong>Is Part Of:</strong>
+      <div itemprop="isPartOf" itemscope itemtype="https://schema.org/PublicationIssue" itemid="#issue">
+        <span itemscope itemtype="https://schema.org/Periodical" itemid="#periodical">
+          <span itemprop="name">Cataloging &amp; Classification Quarterly</span>,
+        </span>
+        <span itemprop="datePublished">2012</span>,
+        Vol.<span itemprop="isPartOf" itemscope
+                  itemtype="https://schema.org/PublicationVolume"><link
+                  itemprop="isPartOf" href="#periodical" /><span
+                  itemprop="volumeNumber">50</span></span>(<span
+              itemprop="issueNumber">5</span>),
+      </div>
+      <div>
+        p.<span itemprop="pageStart">360</span>-<span itemprop="pageEnd">368</span> [Peer Reviewed Journal]<br />
+        <strong>Description:</strong>
+        <span itemprop="description">The library catalog as a catalog of works
+          was an infectious idea, which together with research led to
+          reconceptualization in the form of the FRBR conceptual model. Two
+          categories of lacunae emerge—the expression entity, and gaps in the
+          model such as aggregates and dynamic documents. Evidence needed to
+          extend the FRBR model is available in contemporary research on
+          instantiation. The challenge for the bibliographic community is to
+          begin to think of FRBR as a form of knowledge organization system,
+          adding a final dimension to classification. The articles in the present
+          special issue offer a compendium of the promise of the FRBR
+          model.</span>
+      </div>
+      <span itemscope itemtype="https://schema.org/Periodical" itemid="#periodical">
+        <strong>Publisher:</strong>
+        <span itemprop="publisher">Taylor &amp; Francis Group</span><br />
+        <strong>Source:</strong> Routledge, Taylor &amp; Francis Group<br />
+        <strong>ISSN:</strong> <span itemprop="issn">0163-9374</span> ;<br />
+        <strong>E-ISSN:</strong> <span itemprop="issn">1544-4554</span> ;<br />
+      </span>
+      <strong>DOI:</strong>
+      <a itemprop="sameAs" href="https://doi.org/10.1080/01639374.2012.682254">10.1080/01639374.2012.682254</a>
+    </div>
+
+</body>
+</html>

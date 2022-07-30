@@ -142,7 +142,8 @@ Name/Value pairs:
   
 Nits Reported:
     Errors: 4 times 
-    Warnings: 6 times 
+    Warnings: 5 times 
+    Info: once 
   
 Nit Categories:
     Attribute: twice 

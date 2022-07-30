@@ -221,7 +221,7 @@ typedef ::std::multimap < e_schema, sh_t* > mss_t;
 mss_t mss;
 ::std::array < schema_version, s_error > va;
 
-bool set_default_schema_version (const e_schema es, unsigned char mjr, unsigned char mnr)
+bool set_default_schema_version (const e_schema es, unsigned short mjr, unsigned short mnr)
 {   PRESUME (es < s_error, __FILE__, __LINE__);
     if (! is_valid_schema_version (es, mjr, mnr, NOFLAGS)) return false;
     va.at (es) = schema_version (es, mjr, mnr);
@@ -242,9 +242,9 @@ schema_version corresponding_schema_version (const e_schema es, const html_versi
     return error_schema; }
 
 template < e_schema V > struct schema_detail
-{   static bool is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+{   static bool is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
     {   return (mjr == 1) && (mnr == 0); }
-    static ::std::string name (const ::std::string s, const unsigned char mjr, const unsigned char mnr)
+    static ::std::string name (const ::std::string s, const unsigned short mjr, const unsigned short mnr)
     {   ::std::string res (s);
         res += " v";
         res += x_dot_y (mjr, mnr);
@@ -252,56 +252,56 @@ template < e_schema V > struct schema_detail
     static schema_version from () noexcept { return schema_version (V, 1, 0); }
     static int count () noexcept { return 1; }
     static bool faux () noexcept { return false; }
-    static bool is_this_deprecated (const unsigned char , const unsigned char , const flags_t ) noexcept
+    static bool is_this_deprecated (const unsigned short , const unsigned short , const flags_t ) noexcept
     {   return false; }
     static schema_version to () noexcept { return schema_version (V, 1, 0); } };
 
-template < > bool schema_detail < s_article > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_article > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > schema_version schema_detail < s_article > :: from () noexcept { return schema_version (s_article, HTML_2012, 0); }
 template < > int schema_detail < s_article > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_article > :: to () noexcept { return schema_version (s_article, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_as > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_as > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 2) || (mjr == 1); }
 template < > schema_version schema_detail < s_as > :: from () noexcept { return schema_version (s_as, 1, 0); }
 template < > int schema_detail < s_as > :: count () noexcept { return 2; }
 template < > schema_version schema_detail < s_as > :: to () noexcept { return schema_version (s_as, 2, 0); }
 
-template < > bool schema_detail < s_bibo > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_bibo > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   return (mjr == 1) && (mnr == 3); }
 template < > schema_version schema_detail < s_bibo > :: from () noexcept { return schema_version (s_bibo, 1, 3); }
 template < > schema_version schema_detail < s_bibo > :: to () noexcept { return schema_version (s_bibo, 1, 3); }
 
-template < > bool schema_detail < s_book > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_book > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > schema_version schema_detail < s_book > :: from () noexcept { return schema_version (s_book, HTML_2012, 0); }
 template < > int schema_detail < s_book > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_book > :: to () noexcept { return schema_version (s_book, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_dc > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_dc > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
 template < > schema_version schema_detail < s_dc > :: from () noexcept { return schema_version (s_dc, 1, 0); }
 template < > int schema_detail < s_dc > :: count () noexcept { return 2; }
 template < > schema_version schema_detail < s_dc > :: to () noexcept { return schema_version (s_dc, 1, 1); }
 
-template < > bool schema_detail < s_dcat > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_dcat > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 1) || (mjr == 2); }
 template < > schema_version schema_detail < s_dcat > :: from () noexcept { return schema_version (s_dcat, 1, 0); }
 template < > int schema_detail < s_dcat > :: count () noexcept { return 2; }
 template < > schema_version schema_detail < s_dcat > :: to () noexcept { return schema_version (s_dcat, 2, 0); }
 
-template < > bool schema_detail < s_dct > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_dct > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
 template < > schema_version schema_detail < s_dct > :: from () noexcept { return schema_version (s_dct, 1, 0); }
 template < > int schema_detail < s_dct > :: count () noexcept { return 2; }
 template < > schema_version schema_detail < s_dct > :: to () noexcept { return schema_version (s_dct, 1, 1); }
 
-template < > bool schema_detail < s_error > :: is_this_valid (const unsigned char , const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_error > :: is_this_valid (const unsigned short , const unsigned short , const flags_t ) noexcept
 {   return false; }
 template < > bool schema_detail < s_error > :: faux () noexcept
 {   return true; }
@@ -309,81 +309,81 @@ template < > bool schema_detail < s_error > :: faux () noexcept
 template < > bool schema_detail < s_faux > :: faux () noexcept
 {   return true; }
 
-template < > bool schema_detail < s_foaf > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_foaf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   return (mjr == 0) && (mnr < 100); }
 template < > schema_version schema_detail < s_foaf > :: from () noexcept { return schema_version (s_foaf, 0, 1); }
 template < > int schema_detail < s_foaf > :: count () noexcept { return 98; }
 template < > schema_version schema_detail < s_foaf > :: to () noexcept { return schema_version (s_foaf, 0, 99); }
 
-template < > bool schema_detail < s_gs1 > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_gs1 > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     if (mnr == 51) return true;
     if ((mnr < 0) || (mnr > 5)) return false;
     return true; }
 template < > schema_version schema_detail < s_gs1 > :: from () noexcept { return schema_version (s_gs1, 1, 0); }
 template < > int schema_detail < s_gs1 > :: count () noexcept { return 7; }
-template < > bool schema_detail < s_gs1 > :: is_this_deprecated (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_gs1 > :: is_this_deprecated (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   return ((mjr == 1) && (mnr == 0)); }
 template < > schema_version schema_detail < s_gs1 > :: to () noexcept { return schema_version (s_gs1, 1, 51); }
 
-template < > bool schema_detail < s_jsonld > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_jsonld > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
 template < > schema_version schema_detail < s_jsonld > :: from () noexcept { return schema_version (s_jsonld, 1, 0); }
 template < > int schema_detail < s_jsonld > :: count () noexcept { return 2; }
 template < > schema_version schema_detail < s_jsonld > :: to () noexcept { return schema_version (s_jsonld, 1, 1); }
 
-template < > bool schema_detail < s_microformats > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_microformats > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr == 1) || (mjr == 2); }
 template < > schema_version schema_detail < s_microformats > :: from () noexcept { return schema_version (s_microformats, 1, 0); }
 template < > int schema_detail < s_microformats > :: count () noexcept { return 255; }
 template < > schema_version schema_detail < s_microformats > :: to () noexcept { return schema_version (s_microformats, 2, 255); }
 
-template < > bool schema_detail < s_music > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_music > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > schema_version schema_detail < s_music > :: from () noexcept { return schema_version (s_music, HTML_2012, 0); }
 template < > int schema_detail < s_music > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_music > :: to () noexcept { return schema_version (s_music, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_none > :: is_this_valid (const unsigned char , const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_none > :: is_this_valid (const unsigned short , const unsigned short , const flags_t ) noexcept
 {   return false; }
 template < > bool schema_detail < s_none > :: faux () noexcept
 {   return true; }
 
-template < > bool schema_detail < s_og > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_og > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2010) && (mjr <= HTML_LATEST_YEAR); }
 template < > schema_version schema_detail < s_og > :: from () noexcept { return schema_version (s_og, HTML_2010, 0); }
 template < > int schema_detail < s_og > :: count () noexcept { return 5; }
 template < > schema_version schema_detail < s_og > :: to () noexcept { return schema_version (s_og, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_owl > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_owl > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 1) || (mjr == 2); }
 template < > schema_version schema_detail < s_owl > :: from () noexcept { return schema_version (s_owl, 1, 0); }
 template < > int schema_detail < s_owl > :: count () noexcept { return 2; }
 template < > schema_version schema_detail < s_owl > :: to () noexcept { return schema_version (s_owl, 2, 0); }
 
-template < > bool schema_detail < s_profile > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_profile > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > schema_version schema_detail < s_profile > :: from () noexcept { return schema_version (s_profile, HTML_2012, 0); }
 template < > int schema_detail < s_profile > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_profile > :: to () noexcept { return schema_version (s_profile, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_rdf > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_rdf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 4); }
 template < > schema_version schema_detail < s_rdf > :: from () noexcept { return schema_version (s_rdf, 1, 0); }
 template < > int schema_detail < s_rdf > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_rdf > :: to () noexcept { return schema_version (s_rdf, 1, 3); }
 
-template < > bool schema_detail < s_rdfa > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_rdfa > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 4); }
 template < > schema_version schema_detail < s_rdfa > :: from () noexcept { return schema_version (s_rdfa, 1, 0); }
 template < > int schema_detail < s_rdfa > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_rdfa > :: to () noexcept { return schema_version (s_rdfa, 1, 3); }
 
-template < > bool schema_detail < s_schema > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept
+template < > bool schema_detail < s_schema > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept
 {   if (mjr > MAX_SCHEMA_ORG_MAJOR) return false;
     switch (mjr)
     {   case 0 : return (mnr > 0);
@@ -409,14 +409,14 @@ template < > schema_version schema_detail < s_schema > :: from () noexcept { ret
 template < > int schema_detail < s_schema > :: count () noexcept { return 65; }
 template < > schema_version schema_detail < s_schema > :: to () noexcept { return schema_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
 
-template < > bool schema_detail < s_vann > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_vann > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
 template < > schema_version schema_detail < s_vann > :: from () noexcept { return schema_version (s_vann, 1, 0); }
 template < > int schema_detail < s_vann > :: count () noexcept { return 2; }
 template < > schema_version schema_detail < s_vann > :: to () noexcept { return schema_version (s_vann, 1, 1); }
 
-template < > bool schema_detail < s_vcard > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t f) noexcept
+template < > bool schema_detail < s_vcard > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t f) noexcept
 {   if (mnr != 0) return false;
     switch (mjr)
     {   case 1 :
@@ -427,24 +427,24 @@ template < > bool schema_detail < s_vcard > :: is_this_valid (const unsigned cha
     return false; }
 template < > schema_version schema_detail < s_vcard > :: from () noexcept { return vcard_2001; }
 template < > int schema_detail < s_vcard > :: count () noexcept { return 4; }
-template < > bool schema_detail < s_vcard > :: is_this_deprecated (const unsigned char mjr, const unsigned char , const flags_t flags) noexcept
+template < > bool schema_detail < s_vcard > :: is_this_deprecated (const unsigned short mjr, const unsigned short , const flags_t flags) noexcept
     {   if ((flags & SV_DEPRECATED) == SV_DEPRECATED) return true;
         return ((mjr == 4) && ((flags & SV_VC_DEP4) == SV_VC_DEP4)); }
 template < > schema_version schema_detail < s_vcard > :: to () noexcept { return vcard_2014; }
 
-template < > bool schema_detail < s_video > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_video > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > schema_version schema_detail < s_video > :: from () noexcept { return schema_version (s_video, HTML_2012, 0); }
 template < > int schema_detail < s_video > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_video > :: to () noexcept { return schema_version (s_video, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_website > :: is_this_valid (const unsigned char mjr, const unsigned char , const flags_t ) noexcept
+template < > bool schema_detail < s_website > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > schema_version schema_detail < s_website > :: from () noexcept { return schema_version (s_website, HTML_2012, 0); }
 template < > int schema_detail < s_website > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_website > :: to () noexcept { return schema_version (s_website, HTML_LATEST_YEAR, 0); }
 
-template < > bool schema_detail < s_xsd > :: is_this_valid (const unsigned char mjr, const unsigned char mnr, const flags_t ) noexcept
+template < > bool schema_detail < s_xsd > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
 template < > schema_version schema_detail < s_xsd > :: from () noexcept { return schema_version (s_xsd, 1, 0); }
@@ -460,7 +460,7 @@ template < e_schema V, e_schema... Vs > struct schemas : schemas < Vs... >
     static ::std::string name (const e_schema es)
     {   if (es == V) return schema_names.get (V, SCHEMA_NAME);
         return schemas < Vs... > :: name (es); }
-    static ::std::string name (const e_schema es, const unsigned char mjr, const unsigned char mnr)
+    static ::std::string name (const e_schema es, const unsigned short mjr, const unsigned short mnr)
     {   if (es == V) return schema_detail < V >::name (name (es), mjr, mnr);
         return schemas < Vs... > :: name (es, mjr, mnr); }
     static schema_version from (const e_schema es) noexcept
@@ -475,10 +475,10 @@ template < e_schema V, e_schema... Vs > struct schemas : schemas < Vs... >
     static bool faux (const e_schema es) noexcept
     {   if (es == V) return schema_detail < V > :: faux ();
         return schemas < Vs... > :: faux (es); }
-    static bool is_this_deprecated (const e_schema es, const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept
+    static bool is_this_deprecated (const e_schema es, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept
     {   if (es == V) return schema_detail < V > :: is_this_deprecated (mjr, mnr, flags);
         return schemas < Vs... > :: is_this_deprecated (es, mjr, mnr, flags); }
-    static bool is_valid (const e_schema es, const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept
+    static bool is_valid (const e_schema es, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept
     {   if (es == V) return schema_detail < V > :: is_this_valid (mjr, mnr, flags);
         return schemas < Vs... > :: is_valid (es, mjr, mnr, flags); } };
 
@@ -489,7 +489,7 @@ template < > struct schemas < s_error >
     static schema_version get_default (const e_schema )
     {   GRACEFUL_CRASH (__FILE__, __LINE__);
         UNREACHABLE (return default_schema); }
-    static ::std::string name (const e_schema , const unsigned char , const unsigned char )
+    static ::std::string name (const e_schema , const unsigned short , const unsigned short )
     {   GRACEFUL_CRASH (__FILE__, __LINE__);
         UNREACHABLE (return "*** NO SUCH SCHEMA "); }
     static ::std::string name (const e_schema )
@@ -503,9 +503,9 @@ template < > struct schemas < s_error >
     {   return 0; }
     static bool faux (const e_schema ) noexcept
     {   return true; }
-    static bool is_this_deprecated (const e_schema , const unsigned char , const unsigned char , const flags_t ) noexcept
+    static bool is_this_deprecated (const e_schema , const unsigned short , const unsigned short , const flags_t ) noexcept
     {   return false; }
-    static bool is_valid (const e_schema , const unsigned char , const unsigned char , const flags_t ) noexcept
+    static bool is_valid (const e_schema , const unsigned short , const unsigned short , const flags_t ) noexcept
     {   return false; } };
 
 schema_version get_first_schema_version (const e_schema es) noexcept
@@ -555,13 +555,13 @@ bool overlap (const schema_version& lhs_from, const schema_version& lhs_to, cons
     if ((lhs_from > rhs_to) && ! rhs_to.unknown ()) return false;
     return (lhs_to.unknown () || (lhs_to >= rhs_from)); }
 
-bool is_valid_schema_version (const e_schema root, const unsigned char j, const unsigned char n, const flags_t flags) noexcept
+bool is_valid_schema_version (const e_schema root, const unsigned short j, const unsigned short n, const flags_t flags) noexcept
 {   return schemas < SCHEMAS > :: is_valid (root, j, n, flags); }
 
 bool is_valid_schema_version (const schema_version& sv) noexcept
 {   return schemas < SCHEMAS > :: is_valid (sv.root (), sv.mjr (), sv.mnr (), sv.flags ()); }
 
-bool is_schema_deprecated (const e_schema root, const unsigned char mjr, const unsigned char mnr, const flags_t flags) noexcept
+bool is_schema_deprecated (const e_schema root, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept
 {   return schemas < SCHEMAS > :: is_this_deprecated (root, mjr, mnr, flags); }
 
 bool does_schema_apply (const schema_version& v, const schema_version& from, const schema_version& to) MSVC_NOEXCEPT

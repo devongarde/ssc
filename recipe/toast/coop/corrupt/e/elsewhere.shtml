@@ -1,0 +1,78 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="ELSEWHERE" -->
+<!--#set var="poet" value="Filippa Bahrke" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#bahrke">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2016">
+  <meta itemprop="inLanguage" content="en-GB">
+  <meta itemprop="datePublished" content="2016-12-01">
+  
+<img SRC="elsewhere.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+
+<h1><span class="poet"><!--#echo encoding="none" var="poet" --></span><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+A5, <span itemprop="numberOfPages">20</span>pp, December 2016, &euro;6<br>
+ISBN <span itemprop="isbn">979-10-90394-55-1</span><br>
+The cover image is by <span itemprop="contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Agnes</span> <span itemprop="familyName">Binett</span></span></span>.
+</p>
+
+<p class="published-quote">
+Bahrke&rsquo;s lyric explorations here both cleverly and beautifully interrogate the status of the self vis a vis the &lsquo;other&rsquo; in a transnational world:
+</p>
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I chase<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I of no accents<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and washed out flags<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Can we lie down here<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;till the snow turns to straw<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start a new language<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I want to unlearn<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wipe those clouded yesterdays<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from off my eyes
+</p>
+
+<p>
+The borderlessness of her themes mirrors this writer&rsquo;s refusal to choose between either daring experimentalism or lyric beauty, when both are &lsquo;ours to ride&rsquo;.
+</p>
+
+<p>
+Hooray for this wonderful maiden voyage, this &lsquo;route / of belief in elsewhere&rsquo;!<br>
+<span class="published-quoted">Emily Critchley</span>
+</p>
+
+<br>
+
+<p class="published-quote">
+The young Swedish writer, <!--#echo encoding="none" var="poet" -->, wouldn&rsquo;t be the first person to have fallen in love, moved to Paris and published a book of poems. But as far as I know she is the only one to have stolen the fat apple from the mouth of capitalism&rsquo;s swollen pig and woken up to discover that &ldquo;the turkey we stuffed/ has stuffed us&rdquo;. This is a promising debut and a reminder that if you are looking for what might constitute European literature in these troubled post&ndash;Brexit days then corrupt press and its sprawling catalogue of trans&ndash;national, contemporary poetry is as good a place as any to turn.<br>
+<span class="published-quoted">Rufo Quintavalle, member of Oulipo</span>
+</p>
+
+</div>
+
+
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

@@ -298,13 +298,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
-    void init (const unsigned char mjr);
+    void init (const unsigned short mjr);
     bool test_extension () const noexcept;
 public:
     html_version () = default;
-    explicit html_version (const unsigned char mjr) { init (mjr); }
+    explicit html_version (const unsigned short mjr) { init (mjr); }
     explicit html_version (const schema_version& sv) noexcept : version (sv.mjr (), sv.mnr ()), ext_ (NOFLAGS), ext2_ (NOFLAGS) { }
-    html_version (const unsigned char mjr, const unsigned char mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS) noexcept
+    html_version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS) noexcept
         : version (mjr, mnr, flags), ext_ (extensions), ext2_ (e2) { }
     html_version (const ::boost::gregorian::date& whatwg, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS);
 	html_version (const html_version& ) = default;
@@ -330,14 +330,14 @@ public:
     bool any_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) != 0); }
     bool no_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) == 0); }
     flags_t ext2 () const noexcept { return ext2_; }
-    bool is_not (const unsigned char j, const unsigned char n = 0xFF) const noexcept
+    bool is_not (const unsigned short j, const unsigned short n = USHRT_MAX) const noexcept
     {   if (unknown ()) return false;
         if (j != mjr ()) return true;
-        return ((n != 0xFF) && (n != mnr ())); }
+        return ((n != USHRT_MAX) && (n != mnr ())); }
     bool is_not (const html_version& v) const noexcept
     {   return is_not (v.mjr (), v.mnr ()); }
     bool any_level () const noexcept { return any_flags (HV_LEVEL_MASK); }
-    unsigned char level () const noexcept { return (flags () & HV_LEVEL_MASK); }
+    unsigned short level () const noexcept { return (flags () & HV_LEVEL_MASK); }
     bool is_0 () const noexcept { return mjr () == 0; }
     bool is_1 () const noexcept { return mjr () == 1; }
     bool is_2 () const noexcept { return mjr () == 2; }

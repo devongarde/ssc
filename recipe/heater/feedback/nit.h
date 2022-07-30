@@ -46,9 +46,10 @@ public:
     void reset ();
     void reset (const nit& n);
     ::std::string review (const e_nit_section& entry, const mmac_t& mac, const mmac_t& outer) const;
-    void notify () const;
     e_nit code () const noexcept { return code_; }
     e_severity severity () const noexcept { return severity_; }
+    e_category category () const noexcept { return category_; }
+    e_doc doc () const noexcept { return doc_; }
     ::std::string msg () const { return msg_; }
     bool empty () const noexcept { return code_ == nit_free; } };
 

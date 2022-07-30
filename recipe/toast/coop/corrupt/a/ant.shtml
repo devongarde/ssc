@@ -1,0 +1,59 @@
+<!--#include virtual="/plumbing/html-en.inc" --><!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="ANT&mdash;SMALL AND AMOROUS" -->
+<!--#set var="poet" value="Pansy Maurer&ndash;Alvarez" -->
+<!--#set var="trans" value="Anne Talvaz" -->
+<title><!--#echo encoding="none" var="title" --></title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
+
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#alvarez">
+</div>
+
+<div itemprop="translator" itemscope itemtype="https://schema.org/Person" id="trans">
+  <meta itemprop="name" content="<!--#echo encoding="none" var="trans" -->">
+  <meta itemprop="sameAs url" content="/authors/index.shtml#talvaz">
+</div>
+
+<div itemscope itemtype="https://schema.org/Book" itemref="editor poet trans">
+  <meta itemprop="bookFormat" content="Paperback">
+  <meta itemprop="bookEdition" content="first">
+  <meta itemprop="genre" content="poetry">
+  <meta itemprop="copyrightYear" content="2012">
+  <meta itemprop="inLanguage" content="en-US">
+  <meta itemprop="inLanguage" content="fr-FR">
+  <meta itemprop="datePublished" content="2012-01-01">
+  
+<img SRC="ant.jpg" alt="<!--#echo encoding="none" var="title" --> cover" class="inline_illustration_right mw30">
+
+<h1><a href="/authors/index.shtml#alvarez" class="poet"><!--#echo encoding="none" var="poet" --></a><br>
+<span itemprop="name"><!--#echo encoding="none" var="title" --></span></h1>
+
+<p class="published-details">
+In English and French, traduit de l&rsquo;anglais (Etats&ndash;Unis) par <A href="/authors/index.shtml#talvaz"><!--#echo encoding="none" var="trans" --></a><br>
+US Trade, <span itemprop="numberOfPages">64</span>pp, &euro;12, January 2012<br>
+ISBN <span itemprop="isbn">979&ndash;10&ndash;90394&ndash;06&ndash;3</span><br>
+The cover image is &ldquo;59&rdquo; collage, 2010 by
+<span itemprop = "contributor" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><span itemprop="givenName">Sarah</span> <span itemprop="familyName">Petlin</span></span></span>.
+</p>
+
+<p class="published-quote">
+I deeply admire the intelligent and passionate poetry of <a href="/authors/index.shtml#alvarez" class="poet"><!--#echo encoding="none" var="poet" --></a>. &hellip; Perhaps paradoxically, as a poet she is both distant and painfully close, chilly and burning, &hellip; In a quiet way, her poems even have the ability to make ordinary words strange. <span class="published-quoted">Elinor Nauen</span>
+</p>
+
+<p class="published-quote">
+<a href="/authors/index.shtml#alvarez" class="poet"><!--#echo encoding="none" var="poet" --></a> is &hellip; able to translate all the seen and unseen promptings of the day into colorful, sometimes surreal, imagery and musical lines. <span class="published-quoted">Harvey Shapiro</span>
+</p>
+
+</div>
+
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="blinken lichten">
+<input type="image" src="/a/add.gif" name="submit" alt="HeavyDuty&mdash;The safer, easier way to pay online!" class="illustration">
+<img alt="" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></form>
+
+</div>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

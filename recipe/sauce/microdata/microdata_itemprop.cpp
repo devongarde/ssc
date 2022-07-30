@@ -25,11 +25,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 typedef ssc_map < ::std::string, itemprop_index > min_t;
 typedef ssc_map < itemprop_index, ::std::string > mii_t;
+typedef ::std::unique_ptr < min_t > min_uptr;
+typedef ::std::unique_ptr < mii_t > mii_uptr;
 
 itemprop_index bespoke_itemprop = 0;
 
-min_t unknown_props;
-mii_t unknown_ids;
+min_uptr unknown_props;
+mii_uptr unknown_ids;
+
+void init_itemprop ()
+{   unknown_props = min_uptr (new min_t); 
+    unknown_ids = mii_uptr (new mii_t); }
 
 itemprop_index make_itemprop_index (const e_schema_property p)
 {   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
@@ -57,8 +63,9 @@ itemprop_indices make_itemprop_indices (const e_property p)
     return res; }
 
 ::std::string bespoke_itemprop_name (const itemprop_index ii)
-{   mii_t::const_iterator i = unknown_ids.find (ndx_item (ii));
-    if (i != unknown_ids.cend ()) return i -> second;
+{   VERIFY_NOT_NULL (unknown_ids.get (), __FILE__, __LINE__);
+    mii_t::const_iterator i = unknown_ids -> find (ndx_item (ii));
+    if (i != unknown_ids -> cend ()) return i -> second;
     return ::std::string (); }
 
 itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted)
@@ -73,10 +80,12 @@ itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const 
         check_identifier_spelling (nits, v, name);
         nits.pick (nit_bad_itemprop, es_error, ec_microdata, quote (name), " is not recognised");
         return illegal_itemprop; }
-    min_t::const_iterator ini = unknown_props.find (name);
-    if (ini != unknown_props.cend ()) return ini -> second;
-    unknown_props.emplace (name, ++bespoke_itemprop);
-    unknown_ids.emplace (bespoke_itemprop, name);
+    VERIFY_NOT_NULL (unknown_props.get (), __FILE__, __LINE__);
+    VERIFY_NOT_NULL (unknown_ids.get (), __FILE__, __LINE__);
+    min_t::const_iterator ini = unknown_props -> find (name);
+    if (ini != unknown_props -> cend ()) return ini -> second;
+    unknown_props -> emplace (name, ++bespoke_itemprop);
+    unknown_ids -> emplace (bespoke_itemprop, name);
     nits.pick (nit_new_itemprop, es_comment, ec_microdata, "new untyped itemprop ", quote (name), " noted");
     return bespoke_itemprop; }
 
@@ -92,10 +101,12 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
         check_identifier_spelling (nits, v, name);
         nits.pick (nit_bad_itemprop, es_error, ec_microdata, quote (name), " is not recognised");
         return itemprop_indices (); }
-    min_t::const_iterator ini = unknown_props.find (name);
-    if (ini != unknown_props.cend ()) return make_itemprop_indices (ini -> second);
-    unknown_props.emplace (name, ++bespoke_itemprop);
-    unknown_ids.emplace (bespoke_itemprop, name);
+    VERIFY_NOT_NULL (unknown_props.get (), __FILE__, __LINE__);
+    VERIFY_NOT_NULL (unknown_ids.get (), __FILE__, __LINE__);
+    min_t::const_iterator ini = unknown_props -> find (name);
+    if (ini != unknown_props -> cend ()) return make_itemprop_indices (ini -> second);
+    unknown_props -> emplace (name, ++bespoke_itemprop);
+    unknown_ids -> emplace (bespoke_itemprop, name);
     nits.pick (nit_new_itemprop, es_comment, ec_microdata, "new untyped itemprop ", quote (name), " noted");
     return make_itemprop_indices (bespoke_itemprop); }
 

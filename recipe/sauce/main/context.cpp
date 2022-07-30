@@ -144,7 +144,6 @@ html_version context_t::html_ver (const int major, const int minor) noexcept
             break; }
     return version_; }
 
-
 context_t& context_t::environment (const e_environment e, const ::std::string& s)
 {   environment_.at (e) = s.substr (0, ARGLEN_MAX);
     return *this; }
@@ -153,3 +152,22 @@ bool context_t::rdfa () const noexcept
 {   if (rdfa_) return true;
     if (version_.is_svg_12 ()) return true;
     return (version_ == xhtml_2); }
+
+context_t& context_t::exclude (nitpick& nits, const ::std::string& s)
+{   try
+    {   wild_t w (s, ::boost::regex::basic_regex::extended);
+        exclude_.push_back (w); }
+    catch (...)
+    {   nits.pick (nit_regex, es_error, ec_init, "ignoring the invalid regular expression ", quote (s)); }
+    return *this; }
+
+context_t& context_t::exclude (nitpick& nits, const vstr_t& s)
+{   for (auto ss : s)
+        exclude (nits, ss);
+    return *this; }
+
+bool context_t::excluded (const ::boost::filesystem::path& p) const
+{   for (auto w : exclude_)
+        if (::boost::regex_search (p.string (), w))
+            return true;
+    return false; }

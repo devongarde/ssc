@@ -30,7 +30,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "parser/parse_css.h"
 
-bool css::parsing_ = false;
 bool dotty = false;
 smsid_t callback_ids;
 
@@ -41,16 +40,6 @@ bool css::parse (nitpick& nits, const html_version& v, const ::std::string& cont
     check_for_standard_classes (nits, v);
     active_ = true;
     return true; }
-
-bool css::parse_file (nitpick& nits, const page& p, const url& u)
-{   nits.set_context (0, u.original ());
-    if (context.rpt_opens ())
-        nits.pick (nit_opening_file, es_debug, ec_css, "Loading ", absolute_name (u.original ()));
-    ::std::string content (p.load_url (nits, u));
-    if (content.empty ())
-    {   nits.pick (nit_cannot_load_css, es_error, ec_css, "Cannot load ", quote (u.original ()), ", or it is empty");
-        return false; }
-    return parse (nits, p.version (), content, bom_to_encoding (get_byte_order (content))); }
 
 void css::check_for_standard_classes (nitpick& nits, const html_version& v)
 {   for (auto id : ids_)

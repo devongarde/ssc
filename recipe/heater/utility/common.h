@@ -40,6 +40,8 @@ typedef ssc_map < ::std::size_t, ::std::string > misd_t;
 typedef ustr_t::value_type ustrv_t;
 typedef ::std::basic_string < char32_t > string32;
 typedef ::std::basic_stringstream < char32_t > stringstream32;
+typedef ::boost::basic_regex < char > wild_t;
+typedef ::std::vector < wild_t > vwild_t;
 
 #ifdef _MSC_VER
 #pragma warning (push, 3)
@@ -182,13 +184,13 @@ inline ::std::string x_dot_y (int x, int y)
     res += ::boost::lexical_cast < ::std::string > (y);
     return res; }
 
-inline ::std::string x_dot_y (const unsigned char mjr, const unsigned char mnr)
+inline ::std::string x_dot_y (const unsigned short mjr, const unsigned short mnr)
 {   ::std::string res (::boost::lexical_cast < ::std::string > (static_cast < int > (mjr)));
     res += ".";
     res += ::boost::lexical_cast < ::std::string > (static_cast < int > (mnr));
     return res; }
 
-inline ::std::string x_dot_y_ish (const unsigned char mjr, const unsigned char mnr)
+inline ::std::string x_dot_y_ish (const unsigned short mjr, const unsigned short mnr)
 {   ::std::string res (::boost::lexical_cast < ::std::string > (static_cast < int > (mjr)));
     if (mnr > 0)
     {   res += ".";
