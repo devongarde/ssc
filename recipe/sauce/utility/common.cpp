@@ -143,34 +143,26 @@ bool write_text_file (const ::boost::filesystem::path& n, const ::std::string& c
     {   BOOST_OFSTREAM_CNSTR (f, p);
         if (f.bad ())
         {   if (context.tell (es_catastrophic))
-            {   outstr.err ("Cannot open temporary file ");
-                outstr.err (p.string ());
-                outstr.err ("\n"); }
+            {   outstr.err ("Cannot open temporary file ", p.string (), "\n"); }
             return false; }
         try
         {   f << content; }
         catch (...)
         {   if (context.tell (es_catastrophic))
-            {   outstr.err ("Cannot write to temporary file ");
-                outstr.err (p.string ());
-                outstr.err ("\n"); }
+            {   outstr.err ("Cannot write to temporary file ", p.string (), "\n"); }
             return false; }
         f.close ();
         if (file_exists (n))
             if (! delete_file (n))
             {   if (context.tell (es_catastrophic))
-                {   outstr.err ("Cannot delete existing file ");
-                    outstr.err (p.string ());
-                    outstr.err ("\n"); }
+                {   outstr.err ("Cannot delete existing file ", p.string (), "\n"); }
                 return false; }
         rename_file (p, n);
         return true; }
     catch (...) { }
     if (file_exists (p)) delete_file (p);
     if (context.tell (es_error))
-    {   outstr.err ("Cannot update ");
-        outstr.err (p.string ());
-        outstr.err ("\n"); }
+    {   outstr.err ("Cannot update ", p.string (), "\n"); }
     return false; }
 
 bool write_text_file (const ::std::string& name, const ::std::string& content)
@@ -309,8 +301,7 @@ bool read_header (const ::boost::property_tree::ptree& json, const ::std::string
     ::std::string con = read_field < ::std::string > (json, CONTEXT);
     if ((prog != PROG) || (version.substr (0, 3) != "0.0"))
     {   if (context.tell (es_error))
-        {   outstr.err (filename);
-            outstr.err (" is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it\n"); }
+        {   outstr.err (filename, " is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it\n"); }
         return false; }
     if (! expected.empty ())
         if (con != expected)
@@ -336,9 +327,7 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
         catch (...)
         {   delete_file (filename);
             if (context.tell (es_catastrophic))
-            {   outstr.err ("Cannot write ");
-                outstr.err (filename.string ());
-                outstr.err ("\n"); }
+            {   outstr.err ("Cannot write ", filename.string (), "\n"); }
             return false; } }
     else
     {   try
@@ -347,19 +336,13 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
         catch (...)
         {   delete_file (tmp);
             if (context.tell (es_catastrophic))
-            {   outstr.err ("Cannot write ");
-                outstr.err (tmp.string ());
-                outstr.err ("\n"); }
+                outstr.err ("Cannot write ", tmp.string (), "\n");
             return false; }
         if (! rename_file (tmp, filename))
         {   rename_file (old, filename);
             delete_file (tmp);
             if (context.tell (es_catastrophic))
-            {   outstr.err ("Cannot replace ");
-                outstr.err (filename.string ());
-                outstr.err (" with ");
-                outstr.err (tmp.string ());
-                outstr.err ("\n"); }
+                outstr.err ("Cannot replace ", filename.string (), " with ", tmp.string (), "\n");
             return false; }
        delete_file (old); }
     return true; }

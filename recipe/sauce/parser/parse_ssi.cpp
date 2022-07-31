@@ -592,7 +592,5 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
     {   nits.set_context (0, c.filename_);
         nits.pick (nit_linechange, es_comment, ec_ssi, "SSI substitution may have caused some line numbers to change"); }
     if (! shush && revised && context.tell (es_splurge))
-    {   outstr.out ("\nSSI parsing changed content to:\n");
-        outstr.out (to);
-        outstr.out ("\n"); }
+    {   outstr.out ("\nSSI parsing changed content to:\n", to, "\n"); }
     return to; }

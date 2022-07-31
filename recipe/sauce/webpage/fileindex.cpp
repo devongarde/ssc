@@ -437,7 +437,7 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
 bool fileindex_load_internal (nitpick& nits, bool& ok)  // this presumes is run before threading starts
 {   ::boost::filesystem::path p (persist_path ());
     if (! file_exists (p)) return true;
-    if (context.progress ()) ::std::cout << "Loading " << p.string () << " ...\n";
+    if (context.progress ()) outstr.out ("Loading " , p.string (), " ...\n");
     BOOST_FSTREAM_CNSTRO (f, p, ::std::ios::in);
     if (f.fail ())
     {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot open ", p.string ());
@@ -674,7 +674,7 @@ void fileindex_save_and_close (nitpick& nits) // presumes run once threading is 
 
 void dedu (nitpick& nits) // presumes run between scan and examine phases
 {   if (context.progress ())
-    {   ::std::cout << "Deduplicating ."; outstr.dedot (15); }
+    {   outstr.out ("Deduplicating ."); outstr.dedot (15); }
     lox l (lox_fileindex);
     for (fileindex_t i = 0; i < vx.size (); ++i)
     {   index_t& x = vx.at (i);

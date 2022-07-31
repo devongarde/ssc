@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> output </title> </head>
+ <body>
+
+<form onsubmit="return false" oninput="o.value = a.valueAsNumber + b.valueAsNumber">
+ <input id=a type=number step=any> +
+ <input id=b type=number step=any> =
+ <output id=o for="a b"></output>
+</form>
+
+<output id="result"></output>
+<script>
+ var primeSource = new WebSocket('ws://primes.example.net/');
+ primeSource.onmessage = function (event) {
+ document.getElementById('result').value = event.data;
+ }
+</script>
+
+ </body>
+</html>
