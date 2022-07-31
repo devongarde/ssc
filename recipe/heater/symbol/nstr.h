@@ -75,7 +75,6 @@ public:
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
-    ENUM err () const { return ERROR_VALUE; }
     const char* get (const ENUM id, const ::std::size_t n) const
     {   PRESUME (n < N, __FILE__, __LINE__);
         const data_t *pd = piece (id);

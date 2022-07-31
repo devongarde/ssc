@@ -230,7 +230,7 @@ void directory::examine (nitpick* ticks)
                 {   mmac_t mac;
                     mac.emplace (nm_page_name, i.first);
                     mac.emplace (nm_page_path, local_path_to_nix (p.string ()));
-                    if (context.progress ()) ::std::cout << p.string () << "\n";
+                    if (context.progress ()) outstr.out (p.string (), "\n");
                     try
                     {   nitpick nuts;
                         ::std::string content (read_text_file (nuts, p));
@@ -258,13 +258,10 @@ void directory::examine (nitpick* ticks)
                 {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + sp); }
                 if (! ss.str ().empty ())
                 {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-                    outstr.out (macro -> apply (ns_page_head, mac));
-                    outstr.out (ss.str ());
-                    outstr.out (macro -> apply (ns_page_foot, mac)); }
+                    outstr.out (macro -> apply (ns_page_head, mac), ss.str (), macro -> apply (ns_page_foot, mac)); }
                 else if (context.tell (es_comment))
                 {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-                    outstr.out (macro -> apply (ns_page_head, mac));
-                    outstr.out (macro -> apply (ns_page_foot, mac)); } }
+                    outstr.out (macro -> apply (ns_page_head, mac), macro -> apply (ns_page_foot, mac)); } }
             set_flag (ndx, FX_SCANNED); } }
     if (context.shadow_files ())
     {   sstr_t delete_me;

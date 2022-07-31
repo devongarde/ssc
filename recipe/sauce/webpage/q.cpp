@@ -31,7 +31,7 @@ bool d_q (q_entry& qe)
     bool res = true;
     nitpick nits;
     knickers k (nits, qe.ticks_);
-    if (context.progress ()) ::std::cout << qe.dir_ -> get_disk_path ().string () << " (" << qe.stage_ << ")." << ::std::endl;
+    if (context.progress ()) outstr.out (qe.dir_ -> get_disk_path ().string (), " (", ::boost::lexical_cast < ::std::string > (qe.stage_), ").\n");
     try
     {   switch (qe.stage_)
         {   case st_scan :

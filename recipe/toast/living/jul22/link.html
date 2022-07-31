@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="A" type="text/plain">
+<link rel="stylesheet" href="B" type="text/css">
+<link rel="stylesheet" href="C">
+
+<title>link</title>
+
+<link rel="author license" href="/about">
+<link rel="preload" as="image"
+imagesrcset="wolf_400px.jpg 400w, wolf_800px.jpg 800w, wolf_1600px.jpg 1600w"
+imagesizes="50vw">
+
+<link rel="preload" as="image"
+imagesrcset="dog-cropped-1x.jpg, dog-cropped-2x.jpg 2x"
+media="(max-width: 800px)">
+<link rel="preload" as="image"
+imagesrcset="dog-wide-1x.jpg, dog-wide-2x.jpg 2x"
+media="(min-width: 801px)">
+<link disabled rel="alternate stylesheet" href="css/pooh"></head><body>
+<!-- ... later, or perhaps inserted dynamically ... -->
+<img src="wolf.jpg" alt="A rad wolf"
+srcset="wolf_400px.jpg 400w, wolf_800px.jpg 800w, wolf_1600px.jpg 1600w"
+sizes="50vw">
+
+<!-- ... later, or perhaps inserted dynamically ... -->
+<picture>
+<source srcset="dog-cropped-1x.jpg, dog-cropped-2x.jpg 2x"
+media="(max-width: 800px)">
+<img src="dog-wide-1x.jpg" srcset="dog-wide-2x.jpg 2x"
+alt="An awesome dog">
+</picture></body>
+</html>

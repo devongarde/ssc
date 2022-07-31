@@ -33,9 +33,35 @@ class output_streams_t
     ::std::ostream& err () const noexcept { if (fos_) return *fos_; return ::std::cerr; }
 public:
     void init (nitpick& nits, const ::std::string& s);
-    void out (const ::std::string& s) const { lox l (lox_out); out () << s; }
-    void err (const ::std::string& s) const { lox l (lox_out); err () << ensane (s); }
+    void out (const ::std::string& s) const
+    {   lox l (lox_out);
+        out () << s; }
+    void out (const ::std::string& s1, const ::std::string& s2) const
+    {   lox l (lox_out);
+        out () << s1 << s2; }
+    void out (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3)
+    {   lox l (lox_out);
+        out () << s1 << s2 << s3; }
+    void out (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3, const ::std::string& s4)
+    {   lox l (lox_out);
+        out () << s1 << s2 << s3 << s4; }
+    void out (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3, const ::std::string& s4, const ::std::string& s5)
+    {   lox l (lox_out);
+        out () << s1 << s2 << s3 << s4 << s5; }
+    void err (const ::std::string& s) const
+    {   lox l (lox_out);
+        err () << ensane (s); }
+    void err (const ::std::string& s1, const ::std::string& s2) const
+    {   lox l (lox_out);
+        err () << ensane (s1) << ensane (s2); }
+    void err (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3) const
+    {   lox l (lox_out);
+        err () << ensane (s1) << ensane (s2) << ensane (s3); }
+    void err (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3, const ::std::string& s4, const ::std::string& s5) const
+    {   lox l (lox_out);
+        err () << ensane (s1) << ensane (s2) << ensane (s3) << ensane (s4) << ensane (s5); }
     void dot ();
-    void dedot (unsigned n = 0) noexcept { dot_ = n; } };
+    void dedot (unsigned n = 0) noexcept
+    {   dot_ = n; } };
 
 extern output_streams_t outstr;

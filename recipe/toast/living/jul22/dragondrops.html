@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> dragon drops </title> </head>
+ <body>
+
+<h1> hearty mints </h1>
+
+<p>What fruits do you like?</p>
+<ol ondragstart="dragStartHandler(event)">
+<li draggable="true" data-value="fruit-apple">Apples</li>
+<li draggable="true" data-value="fruit-orange">Oranges</li>
+<li draggable="true" data-value="fruit-pear">Pears</li>
+</ol>
+<script>
+var internalDNDType = 'text/x-example'; // set this to something specific to your site
+function dragStartHandler(event) {
+if (event.target instanceof HTMLLIElement) {
+// use the element's data-value="" attribute as the value to be moving:
+event.dataTransfer.setData(internalDNDType, event.target.dataset.value);
+event.dataTransfer.effectAllowed = 'move'; // only allow moves
+} else {
+event.preventDefault(); // don't allow selection to be dragged
+}
+}
+</script><p>Drop your favorite fruits below:</p>
+<ol ondragenter="dragEnterHandler(event)" ondragover="dragOverHandler(event)"
+ondrop="dropHandler(event)">
+</ol>
+<script>
+var internalDNDType = 'text/x-example'; // set this to something specific to your site
+function dragEnterHandler(event) {
+var items = event.dataTransfer.items;
+for (var i = 0; i < items.length; ++i) {
+var item = items[i];
+if (item.kind == 'string' && item.type == internalDNDType) {
+event.preventDefault();
+return;
+}
+}
+}
+function dragOverHandler(event) {
+event.dataTransfer.dropEffect = 'move';
+event.preventDefault();
+}
+function dropHandler(event) {
+var li = document.createElement('li');
+var data = event.dataTransfer.getData(internalDNDType);
+if (data == 'fruit-apple') {
+li.textContent = 'Apples';
+} else if (data == 'fruit-orange') {
+li.textContent = 'Oranges';
+} else if (data == 'fruit-pear') {
+li.textContent = 'Pears';
+} else {
+li.textContent = 'Unknown Fruit';
+}
+event.target.appendChild(li);
+}
+</script><p>What fruits do you like?</p>
+<ol ondragstart="dragStartHandler(event)" ondragend="dragEndHandler(event)">
+...as before...
+</ol>
+<script>
+function dragStartHandler(event) {
+// ...as before...
+}
+function dragEndHandler(event) {
+if (event.dataTransfer.dropEffect == 'move') {
+// remove the dragged element
+event.target.parentNode.removeChild(event.target);
+}
+}
+</script>
+ </body>
+</html>
