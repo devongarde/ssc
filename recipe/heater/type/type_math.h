@@ -97,7 +97,6 @@ template < > struct type_master < t_mathvertauto > : type_or_string < t_mathvert
 template < > struct type_master < t_vunits > : type_at_least_none < t_vunits, sz_space, t_vunit >
 { using type_at_least_none < t_vunits, sz_space, t_vunit > :: type_at_least_none; };
 
-
 template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_space > // verify against HTML 5.0, 2.4.4.4
 {   using string_vector < t_pseudo, sz_space > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -139,3 +138,6 @@ template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_spac
         if (good) return;
         nits.pick (nit_bad_vunit, es_error, ec_type, quote (s), ": expecting a measurement, and/or maybe 'depth', 'height', 'lspace' or 'width'");
         string_vector < t_pseudo, sz_space > :: status (s_invalid); } };
+
+template < > struct type_master < t_intent > : type_one_of_four < t_intent, t_intent_conlit, t_real, t_intent_ref, t_intent_app >
+{ using type_one_of_four < t_intent, t_intent_conlit, t_real, t_intent_ref, t_intent_app > :: type_one_of_four; };

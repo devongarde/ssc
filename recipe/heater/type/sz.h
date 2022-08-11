@@ -308,6 +308,7 @@ struct sz_screen { constexpr static char const* sz () { return "screen"; } };
 struct sz_self { constexpr static char const* sz () { return "self"; } };
 struct sz_semicolon { constexpr static char const* sz () { return ";"; } };
 struct sz_sentences { constexpr static char const* sz () { return "sentences"; } };
+struct sz_silent { constexpr static char const* sz () { return "silent"; } };
 struct sz_simple { constexpr static char const* sz () { return "simple"; } };
 struct sz_sizefmt { constexpr static char const* sz () { return "sizefmt"; } };
 struct sz_slice { constexpr static char const* sz () { return "slice"; } };

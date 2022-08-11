@@ -162,7 +162,7 @@ struct symbol_entry < html_version, e_fixedcolour > fixedcolour_symbol_table [] 
     { { HTML_3_2 }, { HTML_UNDEF }, "teal", fc_teal },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "thistle", fc_thistle },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "tomato", fc_tomato },
-    { { HTML_MATH2, 0, HE_MATH_2 }, { HTML_UNDEF }, "transparent", fc_transparent },
+    { { HTML_MATH2, 0, 0, H2_MATH_2 }, { HTML_UNDEF }, "transparent", fc_transparent },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "turquoise", fc_turquoise },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "violet", fc_violet },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "wheat", fc_wheat },

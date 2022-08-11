@@ -40,16 +40,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DOCTYPE_LC "<!doctype"
 #define DOCDOT DOCTYPE " ... >"
 
-page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, directory* d)
-    :   name_ (name), updated_ (updated)
+page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, const directory* d)
+    :   name_ (name), directory_ (d), updated_ (updated)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     ids_.ndx (x);
     names_.ndx (x, false);
-    directory_ = d;
     parse (content); }
 
-page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d)
-    :   name_ (name), updated_ (updated)
+page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d)
+    :   name_ (name), directory_ (d), updated_ (updated)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
     ids_.ndx (x);
@@ -74,6 +73,7 @@ void page::swap (page& p)
     charset_.swap (p.charset_);
     ::std::swap (check_links_, p.check_links_);
     corpus_.swap (p.corpus_);
+    css_.swap (p.css_);
     description_.swap (p.description_);
     dfns_.swap (p.dfns_);
     ::std::swap (directory_, p.directory_);
@@ -92,12 +92,12 @@ void page::swap (page& p)
     nodes_.swap (p.nodes_);
     profiles_.swap (p.profiles_);
     ssi_.swap (p.ssi_);
+    title_.swap (p.title_);
     ::std::swap (updated_, p.updated_);
     ::std::swap (snippet_ , p.snippet_);
     ::std::swap (outsider_ , p.outsider_);
     ::std::swap (stats_ , p.stats_);
-    ::std::swap (style_css_, p.style_css_);
-    title_.swap (p.title_); }
+    ::std::swap (style_css_, p.style_css_); }
 
 void page::lang (nitpick& nits, const html_version& , const ::std::string& l)
 {   if (! lang_.empty ())

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "microformat/microformats.h"
 
-typedef ::std::unique_ptr < microformats > microformats_ptr;
+typedef ::std::shared_ptr < microformats > microformats_ptr;
 
 template < class VOCAB, class PROPERTY > ::std::string get_microformat_property_value (const microformats_ptr& pmf)
 {   ::std::string res;

@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "feedback/nitout.h"
 #include "main/output.h"
-#include "css/css_cache.h"
 #include "stats/stats.h"
 #include "parser/html_version.h"
 #include "schema/schema_version.h"
@@ -60,7 +59,6 @@ class context_t
                     nit_override_, path_, persisted_, root_, secret_, shadow_, shadow_persist_, snippet_, started_, stats_;
     ::boost::filesystem::path config_, corpus_, spell_path_;
     vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, no_ex_check_, report_, shadow_ignore_, shadows_, site_, spellings_, virtuals_;
-    css_cache_t     css_;
     ::boost::program_options::options_description validation_;
     vwild_t         exclude_;
     e_svg_processing_mode svg_mode_ = spm_none;
@@ -121,11 +119,7 @@ class context_t
         if (b) external (b);
         mac (nm_context_forward, b);
         return *this; }
-    context_t& fred (const int i)
-    {   if (i < 1) fred_ = ::std::thread::hardware_concurrency ();
-        else fred_ = i;
-        mac (nm_context_info, fred_);
-        return *this; }
+    context_t& fred (const int i);
     context_t& html_ver (const html_version& v)
     {   versioned (true); version_ = v; mac (nm_context_version, version_.name ()); return *this; }
     context_t& icu (const bool b) { icu_ = b; mac (nm_context_info, b); return *this; }
@@ -150,8 +144,12 @@ class context_t
     context_t& macro_start (const ::std::string& s) { macro_start_ = s; return *this; }
     context_t& main (const bool b) { main_ = b; mac (nm_context_main, b); return *this; }
     context_t& math_version (const int v)
-    {   if ((v >= 1) && (v <= 4)) version_.math_version (static_cast < e_math_version > (v));
-        else version_.math_version (math_none);
+    {   switch (v)
+        {   case 4 : version_.math_version (math_4_22); break;
+            case 1 :
+            case 2 :
+            case 3 : version_.math_version (static_cast < e_math_version > (v)); break;
+            default : version_.math_version (math_none); }
         mac < int > (nm_context_math, version_.math_version ());
         return *this; }
     context_t& math_version (const e_math_version v) noexcept { version_.math_version (v); return *this; }

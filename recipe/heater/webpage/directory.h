@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "utility/common.h"
-#include "css/css_cache.h"
 #include "webpage/crosslink.h"
 #include "webpage/root.h"
 #include "element/state.h"
@@ -50,10 +49,10 @@ class directory
     ::std::string internal_get_site_path (nitpick& nits, const ::std::string& item) const;
     bool verify_external (nitpick& nits, const html_version& v, const url& u) const;
     bool verify_local (nitpick& nits, const html_version& v, const url& u, const bool fancy = true) const;
-    bool shadow_folder (nitpick& nits);
-    bool shadow_file (nitpick& nits, const ::std::string& name, sstr_t& shadowed);
-    bool avoid_update (const ::boost::filesystem::path& original, const ::boost::filesystem::path& shadow, const bool page);
-    bool avoid_update (const ::std::string& name, const bool page);
+    bool shadow_folder (nitpick& nits) const;
+    bool shadow_file (nitpick& nits, const ::std::string& name, sstr_t& shadowed) const;
+    bool avoid_update (const ::boost::filesystem::path& original, const ::boost::filesystem::path& shadow, const bool page) const;
+    bool avoid_update (const ::std::string& name, const bool page) const;
 protected:
     directory (nitpick* ticks, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check = true);
 public:
@@ -64,7 +63,8 @@ public:
     bool empty () const noexcept { return content_.empty (); }
     bool offsite () const noexcept { return offsite_; }
     bool scan (nitpick* ticks, const ::std::string& site);
-    void examine (nitpick* ticks);
+    void examine (nitpick* ticks, dir_ptr me_me_me) const;
+    void examine_page (nitpick* ticks, const ::std::string& file) const;
     uint64_t url_size (nitpick& nits, const url& u) const;
     ::std::time_t url_last_write_time (nitpick& nits, const url& u) const;
     ::std::string load_url (nitpick& nits, const url& u, ::std::time_t* updated = nullptr) const;

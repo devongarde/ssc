@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/directory.h"
 #include "attribute/attr.h"
 #include "attribute/avm.h"
-#include "css/css_cache.h"
+#include "css/css_global.h"
 #include "element/elem.h"
 #include "element/element_classes.h"
 #include "microformat/family.h"
@@ -53,18 +53,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 #include "icu/lingo.h"
 #include "utility/filesystem.h"
+#include "utility/cache.h"
 #include "coop/lox.h"
 #include "webpage/q.h"
 #include "coop/kew.h"
 #include "coop/knickers.h"
 
 void init (nitpick& nits)
-{   init_css_cache ();
+{   init_cache ();
+    init_css ();
     init_macro ();
     init_itemid ();
     init_itemprop ();
     init_rdfa_prop ();
-    init_ssi ();
+    init_crosslinks ();
     nits_init ();
     nits.set_context (0, PROG " initialisation");
     spell_init (nits);
@@ -97,11 +99,10 @@ void init (nitpick& nits)
 
 int ciao ()
 {   PRESUME (! fred.activity (), __FILE__, __LINE__);
-    if (context.progress ()) ::std::cout << "\nFinishing\n";
     if (context.unknown_class () && context.tell (es_warning))
     {   ::std::ostringstream ss;
-        VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
-        css_cache -> report_usage (ss);
+        VERIFY_NOT_NULL (css_global.get (), __FILE__, __LINE__);
+        css_global -> report_usage (ss);
         if (context.crosslinks ())
         {   nitpick nits;
             reconcile_crosslinks (nits);
@@ -110,10 +111,10 @@ int ciao ()
                 macro -> dump_nits (nits, ns_link, ns_link_head, ns_link_foot); }
             nits.accumulate (&overall);
             outstr.out ("\n"); }
-        {   if (! ss.str ().empty ())
-                outstr.out (ss.str ());
-            if (! empty_itemid ())
-                outstr.out (report_itemids ()); } }
+        if (! ss.str ().empty ())
+            outstr.out (ss.str ());
+        if (! empty_itemid ())
+            outstr.out (report_itemids ()); }
     if (context.stats_summary ()) report_global_stats (true);
     if (context.tell (es_debug)) outstr.out (fileindex_report ());
     spell_terminate ();
@@ -165,10 +166,7 @@ int examine (nitpick& nits)
         {   nitpick nuts;
             knickers k (nuts, &nits);
             for (::std::size_t n = 0; n < vmax; ++n)
-            {   if (context.progress ())
-                {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                    ::std::cout << "Scanning " << virt.at (n) -> get_disk_path ().string () << " ." << ::std::endl; }
-                try
+            {   try
                 {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
                     VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
                     if (! vd.at (n) -> scan (&nits, virt.at (n) -> get_site_path ()))
@@ -183,8 +181,7 @@ int examine (nitpick& nits)
                 catch (...)
                 {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised an exception");
                     res = ERROR_STATE; }
-                if (res == ERROR_STATE) fred.abandon ();
-                if (context.progress ()) ::std::cout << ::std::endl; }
+                if (res == ERROR_STATE) fred.abandon (); }
             if (res == VALID_RESULT)
             {   if (fred.abandoned ()) res = ERROR_STATE;
                 else
@@ -199,10 +196,7 @@ int examine (nitpick& nits)
                     else
                     {   if (context.dodedu ()) dedu (shadow);
                         for (n = 0; n < vmax; ++n)
-                        {   if (context.progress ())
-                            {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                                ::std::cout << "Checking " << virt.at (n) -> get_disk_path ().string () << "." << ::std::endl; }
-                            VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
+                        {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
                             VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
                             if (vd.at (n) -> empty ())
                                 nuts.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
@@ -212,9 +206,7 @@ int examine (nitpick& nits)
                         while (fred.dqe ())
                             if (q.empty () && ! fred.activity ()) break; } } }
             fred.done ();
-            if (! context.classic ())
-            {   VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
-                css_cache -> post_process (); }
+            if (context.progress ()) ::std::cout << "finishing\n";
             spell_free ();
             close_corpus (nuts);
             fileindex_save_and_close (nuts); } }
@@ -267,6 +259,7 @@ int main (int argc, char** argv)
         {   ::std::cout << szFullTitle;
             ::std::cout << context.domsg ();
             return VALID_RESULT; }
+        if (context.progress ()) ::std::cout << "\npreparing\n";
         if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);
         outstr.out (macro -> apply (ns_doc_head));
         enfooten = true;

@@ -28,6 +28,8 @@ class jsonic
 public:
     jsonic () = default;
     jsonic (const jsonic& j) = delete;
+    explicit jsonic (nitpick& nits, const ::std::string& s, const e_charcode encoding)
+    {   parse (nits, s, encoding); }
     void reset () noexcept
     {   value_.emplace_null (); }
     const ::boost::json::value& val () const noexcept { return value_; }

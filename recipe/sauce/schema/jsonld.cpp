@@ -65,7 +65,7 @@ struct json_scope
         return s_none; }
 };
 
-jsonic jhbbc;
+// jsonic jhbbc;
 
 void outer_process_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o);
 bool process_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o);
@@ -370,8 +370,7 @@ void process_context (nitpick& nits, const html_version& v, json_scope& scope, c
                 break;
             default :
                 nits.pick (nit_jsonld_context, ed_jsonld_1_0, "5.1 The Context", es_error, ec_json, "@context can only be a string (containing a schema type), or a map.");
-                break; }
-}
+                break; } }
 
 void process_single_type (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::value& val)
 {   PRESUME (val.kind () == ::boost::json::kind::string, __FILE__, __LINE__);
@@ -462,10 +461,9 @@ void outer_process_json_ld (nitpick& nits, const html_version& v, json_scope& sc
     else if (limited) nits.pick (nit_json_invalid_node, ed_jsonld_1_0, "8.2 Node Objects", es_warning, ec_json, "A topmost JSON-LD node must contain keywords"); }
 
 void parse_json_ld (nitpick& nits, const html_version& v, const ::std::string& s, const e_charcode encoding)
-{   jhbbc.reset ();
-    if (! s.empty ())
-    {   jhbbc.parse (nits, s, encoding);
-        nits.set_context (0, "JSON-LD");
+{   if (! s.empty ())
+    {   nits.set_context (0, "JSON-LD");
+        jsonic jhbbc (nits, s, encoding);
         if (! jhbbc.val ().is_object ()) nits.pick (nit_json_error, es_error, ec_json, "cannot parse as JSON-LD");
         else
         {   json_scope scope;

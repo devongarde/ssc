@@ -66,6 +66,8 @@ void set_flag (const fileindex_t ndx, const fileindex_flags flag);
 void reset_flag (const fileindex_t ndx, const fileindex_flags flag);
 uintmax_t get_size (const fileindex_t ndx);
 ::std::time_t last_write (const fileindex_t ndx);
+crc_t calc_crc (nitpick& nits, const ::boost::filesystem::path& dp);
+crc_t get_crc (nitpick& nits, const fileindex_t ndx);
 void set_crc (const fileindex_t ndx, const crc_t& crc);
 ::std::string fileindex_report ();
 ::std::string join_site_paths (const ::std::string& lhs, const ::std::string& rhs);

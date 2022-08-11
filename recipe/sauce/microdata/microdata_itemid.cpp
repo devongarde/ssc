@@ -38,6 +38,7 @@ void init_itemid ()
 
 bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, const ::std::string& path, const int line)
 {   VERIFY_NOT_NULL (miid.get (), __FILE__, __LINE__);
+    lox l (lox_itemid);
     auto i = miid -> emplace (id, itemid (path, line));
     if (i.second) return true;
     nits.pick (nit_bad_itemid, ed_microdata, "5.1.4 Global identifiers for items", es_warning, ec_microdata, quote (id), " is not unique; see line ", i.first -> second.line_, " of ", i.first -> second.path_);
@@ -48,7 +49,8 @@ bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, 
     if (! empty_itemid ())
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         VERIFY_NOT_NULL (miid.get (), __FILE__, __LINE__);
-    for (auto i : *miid)
+        lox l (lox_itemid);
+        for (auto i : *miid)
         {   mmac_t mac;
             mac.emplace (nm_id_name, i.first);
             mac.emplace (nm_id_page, i.second.path_);
@@ -59,7 +61,8 @@ bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, 
     return res; }
 
 bool empty_itemid ()
-{   return (miid.get () == nullptr) || miid -> empty (); }
+{   lox l (lox_itemid);
+    return (miid.get () == nullptr) || miid -> empty (); }
 
 bool invalid_itemid (nitpick& nits, const html_version& v, const ::std::string& id, const element* const e)
 {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);

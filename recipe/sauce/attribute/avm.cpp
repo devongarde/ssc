@@ -23,11 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/avm_data.h"
 #include "main/context.h"
 
-typedef ::std::multimap < uint64_t, hav_t* > avm_t;
-avm_t avm;
-
-inline uint64_t avm_key (const e_element tag, const e_attribute a) noexcept
-{   return (static_cast < uint64_t > (tag) << 32) + static_cast < uint64_t > (a); }
+typedef ::std::multimap < e_attribute, hav_t* > avm_t;
+typedef ::std::array < avm_t, elem_error > vavm_t;
+vavm_t avm;
 
 #ifdef _MSC_VER
 #pragma warning ( push, 3)
@@ -38,13 +36,16 @@ inline uint64_t avm_key (const e_element tag, const e_attribute a) noexcept
 
 #define AVM_INIT(X) \
     for (int index = 0; havt_##X [index].tag_ != elem_error; ++index) \
-        avm.insert (avm_t::value_type (avm_key (havt_##X [index].tag_, havt_##X [index].a_), &havt_##X [index]))
+    {   PRESUME (havt_##X [index].tag_ < elem_error, __FILE__, __LINE__); \
+        avm.at (havt_##X [index].tag_).insert (avm_t::value_type (havt_##X [index].a_, &havt_##X [index])); }
 
 void avm_init (nitpick& )
 {   extern hav_t    havt_a [], havt_b [], havt_c [], havt_d [], havt_e [], havt_f1 [], havt_f2 [], havt_g [], havt_h [], havt_i [],
                     havt_k [], havt_l [], havt_m1 [], havt_m2 [], havt_n [], havt_o [], havt_p [], havt_q [], havt_r [], havt_s [],
                     havt_t1 [], havt_t2 [], havt_u [], havt_v [], havt_w [], havt_x [],
                     havt_rdf [];
+
+    avm.fill (avm_t ());
 
     AVM_INIT(a);
     AVM_INIT(b);
@@ -80,48 +81,48 @@ void avm_init (nitpick& )
 
 bool is_invalid_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
 {   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;
-    for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
-            (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == tag) && (i -> second -> a_ == a);
+    for (   avm_t::const_iterator i = avm.at (tag).find (a);
+            (i != avm.at (tag).cend ()) && (i -> second -> a_ == a);
             ++i)
         if (may_apply (v, i -> second -> first_, i -> second -> last_)) return false;
-    for (   avm_t::const_iterator i = avm.find (avm_key (elem_undefined, a));
-            (i != avm.cend ()) && (i -> second != nullptr)  && (i -> second -> tag_ == elem_undefined) && (i -> second -> a_ == a);
+    for (   avm_t::const_iterator i = avm.at (elem_undefined).find (a);
+            (i != avm.at (elem_undefined).cend ()) && (i -> second -> a_ == a);
             ++i)
         if (may_apply (v, i -> second -> first_, i -> second ->last_)) return false;
     return true; }
 
 bool is_deprecated_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
 {   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;
-    for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
-            (i != avm.cend ()) && (i -> second != nullptr) && (i -> second-> tag_ == tag) && (i -> second-> a_ == a);
+    for (   avm_t::const_iterator i = avm.at (tag).find (a);
+            (i != avm.at (tag).cend ()) && (i -> second-> a_ == a);
             ++i)
         if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.deprecated (v);
-    for (   avm_t::const_iterator i = avm.find (avm_key (elem_undefined, a));
-            (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == elem_undefined) && (i -> second -> a_ == a);
+    for (   avm_t::const_iterator i = avm.at (elem_undefined).find (a);
+            (i != avm.at (elem_undefined).cend ()) && (i -> second -> a_ == a);
             ++i)
         if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.deprecated (v);
     return false; }
 
 bool not_production_attribute (const html_version& v, const e_element tag, const e_attribute a)
 {   if (v.known () && v.is_5 () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
-        for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
-                (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == tag) && (i -> second -> a_ == a);
+        for (   avm_t::const_iterator i = avm.at (tag).find (a);
+                (i != avm.at (tag).cend ()) && (i -> second -> a_ == a);
                 ++i)
             if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.not_production ();
     return false; }
 
 bool is_attribute_required (const html_version& v, const e_element tag, const e_attribute a)
 {   if (v.known () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
-        for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
-                (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == tag) && (i -> second -> a_ == a);
+        for (   avm_t::const_iterator i = avm.at (tag).find (a);
+                (i != avm.at (tag).cend ()) && (i -> second -> a_ == a);
                 ++i)
             if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.required ();
     return false; }
 
 bool is_attribute_rejected (const html_version& v, const e_element tag, const e_attribute a)
 {   if (v.known () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
-        for (   avm_t::const_iterator i = avm.find (avm_key (tag, a));
-                (i != avm.cend ()) && (i -> second != nullptr) && (i -> second -> tag_ == tag) && (i -> second -> a_ == a);
+        for (   avm_t::const_iterator i = avm.at (tag).find (a);
+                (i != avm.at (tag).cend ()) && (i -> second -> a_ == a);
                 ++i)
             if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.reject ();
     return false; }
@@ -130,6 +131,7 @@ bool is_attribute_rejected (const html_version& v, const e_element tag, const e_
 void avm_elem_crosscheck ()
 {   void avm_class_crosscheck (const e_element e, const e_attribute a);
     if (context.tell (es_detail))
-        for (auto a : avm)
-            avm_class_crosscheck (a.second -> tag_, a.second -> a_); }
+        for (int e = 0; e < elem_error; ++e)
+            for (auto a : avm.at (e))
+                avm_class_crosscheck (e, a.first); }
 #endif // DEBUG

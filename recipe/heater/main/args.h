@@ -84,6 +84,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMMENT     "comment"
 #define CONFIG      "config"
 #define COPY        "copy"
+#define CORE        "core"
 #define COUNTRY     "country"
 #define CSS_OPTION  "css"
 #define CURRENCY    "currency"
@@ -97,6 +98,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DICT        "dict"
 #define DINGBATARG  "dingbat"
 #define DONT        "no-"
+#define DRAFT       "draft"
 #define ERR         "error"
 #define ELEMENT     "element"
 #define ELEMATTR    ELEMENT "-" ATTRIB

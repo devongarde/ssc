@@ -30,29 +30,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "type/type.h"
 #include "coop/lox.h"
+#include "utility/cache.h"
 
 constexpr ::std::size_t max_separation = 30;
-
-typedef ::std::unique_ptr < ustr_t > minc_t;
-minc_t minc;
-
-void init_ssi ()
-{   minc = minc_t (new ustr_t); }
-
-bool get_previous_include (const ::std::string& name, ::std::string& content)
-{   VERIFY_NOT_NULL (minc, __FILE__ ,__LINE__);
-    lox l (lox_ssi);
-    auto i = minc -> find (name);
-    if (i == minc -> cend ()) return false;
-    content = i -> second;
-    return true; }
-
-void add_include (const ::std::string& name, const ::std::string& content)
-{   VERIFY_NOT_NULL (minc, __FILE__ ,__LINE__);
-    lox l (lox_ssi);
-    auto i = minc -> find (name);
-    if (i == minc -> cend ())
-        minc -> insert (ustr_t::value_type (name, content)); }
 
 ssi_compedium::ssi_compedium ()
     :   echomsg_ ("[Value Undefined]"), errmsg_ ("[Oops, something broke.]"), timefmt_ ("%Y %b %d %R"),
@@ -296,32 +276,21 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     if (file.empty () && vrt.empty ())
     {   set_ssi_context (ln, nits, es_error);
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, "<!--#INCLUDE ... --> requires one of 'file' or 'virtual'"); }
-    else if (validate_file (ln, nits, p, file))
-    {   ::boost::filesystem::path pt (p.get_directory () -> get_disk_path (nits, file));
-        if (! get_previous_include (pt.string (), content))
-        {   const fileindex_t ndx = get_fileindex (pt);
-            p.add_depend (ndx);
-            ::std::time_t when = last_write (ndx);
-            if (context.shadow_changed ())
-            {   nits.pick (nit_ssi, es_debug, ec_ssi, "SSI file ", pt, " last updated ", when);
-                if (when > updated) updated = when; }
-            content = read_text_file (nits, pt);
-            add_include (pt.string (), content); }
-        return parse_ssi (nits, v, p, c, content, updated); }
-    else if (validate_virtual (ln, nits, v, vrt, u))
-    {   if (! u.invalid ())
-        {   if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_ssi, "Seeking ", quote (u.absolute ()));
-            if (! get_previous_include (u.absolute (), content))
-                if (p.get_directory () -> verify_url (nits, v, u, false))
-                {   ::std::time_t when = updated;
-                    content = p.get_directory () -> load_url (nits, u, &when);
-                    add_include (u.absolute (), content);
-                    if (context.shadow_changed ())
+    else
+    {   if (validate_file (ln, nits, p, file))
+        {   ::boost::filesystem::path pt (p.get_directory () -> get_disk_path (nits, file));
+            if (cached_file (nits, pt, content))
+                return parse_ssi (nits, v, p, c, content, updated); }
+        else if (validate_virtual (ln, nits, v, vrt, u))
+            if (! u.invalid ())
+            {   ::std::time_t when = updated;
+                if (cached_url (nits, v, p.get_directory (), u, content, when))
+                {   if (context.shadow_changed ())
                     {   nitpick knots;
                         nits.pick (nit_ssi, es_debug, ec_shadow, "SSI virtual ", p.get_directory () ->get_disk_path (knots, u), " last updated ", when);
-                        if (when > updated) updated = when; } }
-            if (! content.empty ())
-                return parse_ssi (nits, v, p, c, content, updated); }
+                        if (when > updated) updated = when; }
+                    if (! content.empty ())
+                        return parse_ssi (nits, v, p, c, content, updated); } }
         set_ssi_context (ln, nits, es_error);
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot verify ", file); }
     return c.errmsg_; }

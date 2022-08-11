@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 #include "webpage/id.h"
 
+void init_crosslinks ();
 void declare_crosslinks (const fileindex_t sought, const ids_t& ids);
 void declare_crosslinks (const ::boost::filesystem::path& sought, const ids_t& ids);
 void add_sought (const fileindex_t seeker, const ::std::size_t line, const fileindex_t sought, const ::std::string& id, const bool hidden, const vit_t& itemtypes, const e_element e);

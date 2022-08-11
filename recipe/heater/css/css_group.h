@@ -26,25 +26,15 @@ typedef csss_t::value_type csss_vt;
 typedef csss_t::iterator csss_it;
 typedef csss_t::const_iterator csss_cit;
 typedef ::std::pair < csss_it, bool > csss_pt;
-typedef ::std::map < ::std::string, ::std::string > ss_t;
-typedef ::std::shared_ptr < ss_t > ss_ptr;
-typedef ss_t::value_type ss_vt;
 
-class css_cache_t
+class css_group_t
 {   csss_t csss_;
-    ss_ptr ss_;
-    void deactivate_all ();
-    void delete_snippets ();
 public:
-    void swap (css_cache_t& c) noexcept
+    void swap (css_group_t& c) noexcept
     {   csss_.swap (c.csss_); }
-    void post_process ();
     bool parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding = cc_ansi, const bool snippet = true);
     bool parse_file (nitpick& nits, const page& p, const url& u);
     bool note_usage (const ::std::string& id);
     void report_usage (::std::ostringstream& ss) const;
+    void accumulate () const;
     bool has_id (const ::std::string& id) const; };
-
-typedef ::std::unique_ptr < css_cache_t > css_uptr;
-extern css_uptr css_cache;
-void init_css_cache ();

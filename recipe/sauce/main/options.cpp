@@ -178,6 +178,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         8
         9
 */
+
     ::boost::program_options::options_description
         aid (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         basic ("Command line options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
@@ -255,7 +256,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     primary.add_options ()
         (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes (consider --" GENERAL CSS ".")
         (GENERAL DONT CLASS, ::boost::program_options::bool_switch (), "Do not report unrecognised classes.")
-        (GENERAL CLASSIC, ::boost::program_options::bool_switch (), "Report all classes used (requires --" GENERAL CLASS ".")
+        (GENERAL CLASSIC, ::boost::program_options::bool_switch (), "Report all classes used, not just those in .CSS files (requires --" GENERAL CLASS ".")
         (GENERAL DONT CLASSIC, ::boost::program_options::bool_switch (), "Do not report all classes used.")
         (GENERAL CGI ",W", ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
         (GENERAL DONT CGI, ::boost::program_options::bool_switch (), "Process a local static website.")
@@ -273,7 +274,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL LANG, ::boost::program_options::value < ::std::string > () -> composing (), "Default language (such as 'en_GB', 'lb_LU', etc.).")
         (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "Maximum file size to read, in megabytes (zero for no limit).")
         (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "Output file (default to the console).")
-        (GENERAL PROGRESS ",D", ::boost::program_options::bool_switch (), "Dump progress to standard macro -> ")
+        (GENERAL PROGRESS ",D", ::boost::program_options::bool_switch (), "Report progress")
         (GENERAL DONT PROGRESS, ::boost::program_options::bool_switch (), "Don't be quite so noisy.")
         (GENERAL RDFA_, ::boost::program_options::bool_switch (), "Check RDFa attributes.")
         (GENERAL DONT RDFA_, ::boost::program_options::bool_switch (), "Do not check RDFa attributes.")
@@ -288,7 +289,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
         (GENERAL TEST ",T", ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
         (GENERAL DONT TEST, ::boost::program_options::bool_switch (), "Output in format specified by other switches.")
-        (GENERAL THREAD, ::boost::program_options::value < int > () -> default_value (::std::thread::hardware_concurrency ()), "Number of threads (default appropriate for the hardware).")
+        (GENERAL THREAD, ::boost::program_options::value < int > () -> default_value (fred_t::suggested ()), "Number of threads (default appropriate for the hardware).")
         (GENERAL VERBOSE ",v", ::boost::program_options::value < ::std::string > (), "Output these nits and worse. Values: '"
             CATASTROPHE "', '" ERR "', '" WARNING "' (default), '" INFO  "', '" COMMENT  "', or 0 for silence.")
 
@@ -336,6 +337,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (LINKS XLINK ",X", ::boost::program_options::bool_switch (), "Check crosslink IDs.")
         (LINKS DONT XLINK, ::boost::program_options::bool_switch (), "Do not check crosslink IDs.")
 
+        (MATH CORE, ::boost::program_options::bool_switch (), "For MathML 4 only, MathML 4 Core (May 2022 draft).")
+        (MATH DRAFT, ::boost::program_options::value < int > () -> default_value (0), "For MathML 4 only, which draft (2020 or 2022).")
         (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (default (0): determine by HTML version).")
 
         (MICRODATA EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (only verified data if --" MICRODATA VERIFY " is set).")
@@ -708,6 +711,10 @@ void options::contextualise (nitpick& nits)
     {   if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
         if (var_.count (NITS OVERRIDE)) context.nit_override (var_ [NITS OVERRIDE].as < ::std::string > ()); }
 
+    if (var_.count (GENERAL VERBOSE)) context.verbose (decode_severity (nits, var_ [GENERAL VERBOSE].as < ::std::string > ()));
+    if (var_.count (HTML SNIPPET)) context.snippet (var_ [HTML SNIPPET].as < ::std::string > ());
+    yea_nay (&context_t::mf_verify, nits, MF VERIFY, MF DONT VERIFY);
+
     if (context.test () || ! context.cgi ())
     {   if (var_.count (GENERAL OUTPUT))
         {   outstr.init (nits, nix_path_to_local (var_ [GENERAL OUTPUT].as < ::std::string > ()));
@@ -726,10 +733,6 @@ void options::contextualise (nitpick& nits)
             {   nits.pick (nit_create_folder, es_comment, ec_init, "creating ", context.path ());
                 if (! make_directories (context.path ()))
                     nits.pick (nit_cannot_create_file, es_catastrophic, ec_init, "cannot create ", context.path ()); } } }
-
-    if (var_.count (GENERAL VERBOSE)) context.verbose (decode_severity (nits, var_ [GENERAL VERBOSE].as < ::std::string > ()));
-    if (var_.count (HTML SNIPPET)) context.snippet (var_ [HTML SNIPPET].as < ::std::string > ());
-    yea_nay (&context_t::mf_verify, nits, MF VERIFY, MF DONT VERIFY);
 
     if (var_.count (MF VERSION))
     {   int n = ::boost::lexical_cast < int > (var_ [MF VERSION].as < int > ());
@@ -919,7 +922,23 @@ void options::contextualise (nitpick& nits)
 
         if (var_.count (MATH VERSION))
         {   int n = var_ [MATH VERSION].as < int > ();
-            if ((n > 0) && (n < 5)) context.math_version (static_cast < e_math_version > (n)); }
+            switch (n)
+            {   case 0 : break;
+                case 1 : context.math_version (math_1); break;
+                case 2 : context.math_version (math_2); break;
+                case 3 : context.math_version (math_3); break;
+                case 4 : context.math_version (math_4_22); break;
+                default : nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid MathML version"); context.math_version (math_none); } }
+
+        if (var_.count (MATH CORE)) if (context.math_version () > math_3) context.math_version (math_core_22);
+
+        if (var_.count (MATH DRAFT))
+        {   int n = var_ [MATH DRAFT].as < int > ();
+            switch (n)
+            {   case 0 : break;
+                case 2020: case 20 : if (context.math_version () > math_3) context.math_version (math_4_20); break;
+                case 2022: case 22 : if (context.math_version () > math_3) context.math_version (math_4_22); break;
+                default : nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid MathML 4 draft"); break; } }
 
         yea_nay (&context_t::mf_export, nits, MF EXPORT, MF DONT EXPORT);
 
@@ -1362,6 +1381,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [LINKS XLINK].as < bool > ()) res << LINKS XLINK "\n";
     if (var_ [LINKS DONT XLINK].as < bool > ()) res << LINKS DONT XLINK "\n";
 
+    if (var_.count (MATH CORE)) res << MATH CORE "\n";
+    if (var_.count (MATH DRAFT)) res << MATH DRAFT ": " << var_ [MATH DRAFT].as < int > () << "\n";
     if (var_.count (MATH VERSION)) res << MATH VERSION ": " << var_ [MATH VERSION].as < int > () << "\n";
 
     if (var_ [MICRODATA EXPORT].as < bool > ()) res << MICRODATA EXPORT "\n";

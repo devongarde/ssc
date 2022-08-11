@@ -262,6 +262,9 @@ template < > struct type_master < t_comp_op > : enum_n < t_comp_op, e_comp_op >
 template < > struct type_master < t_composite_operator > : enum_n < t_composite_operator, e_composite_operator >
 { using enum_n < t_composite_operator, e_composite_operator > :: enum_n; };
 
+template < > struct type_master < t_conlit > : enum_n < t_conlit, e_conlit >
+{ using enum_n < t_conlit, e_conlit > :: enum_n; };
+
 template < > struct type_master < t_country > : enum_n < t_country, e_country >
 { using enum_n < t_country, e_country > :: enum_n; };
 

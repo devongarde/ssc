@@ -58,6 +58,11 @@ constexpr uint32_t uint32_category_shift =  28;
 constexpr uint32_t uint32_item_mask =       0x0FFFFFFF;
 constexpr uint32_t uint32_category_mask =   0xF0000000;
 
+#define TALLY_TO_MAX(tot,inc,mx) \
+    {   if (tot < mx) \
+            if (mx - tot <= inc) tot = mx; \
+            else tot += inc; }
+
 constexpr inline uint32_t ndx_category (const uint32_t x) noexcept { return (x & uint32_category_mask) >> uint32_category_shift; }
 constexpr inline uint32_t ndx_item (const uint32_t x) noexcept { return (x & uint32_item_mask); }
 
@@ -86,6 +91,7 @@ inline vstr_t split_by_space (const ::std::string& s)
 inline vstr_t split_by_newline (const ::std::string& s)
 {   return split_by_charset (s, "\n"); }
 vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
+vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset);
 
 ::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name);
 ::std::string read_text_file (nitpick& nits, const ::std::string& name);

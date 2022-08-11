@@ -27,7 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class output_streams_t
 {   ::std::unique_ptr < ::std::ofstream > fos_;
     ::std::string name_;
-    unsigned dot_ = 0;
     ::std::string ensane (const ::std::string& s) const;
     ::std::ostream& out () const noexcept { if (fos_) return *fos_; return ::std::cout; }
     ::std::ostream& err () const noexcept { if (fos_) return *fos_; return ::std::cerr; }
@@ -59,9 +58,6 @@ public:
         err () << ensane (s1) << ensane (s2) << ensane (s3); }
     void err (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3, const ::std::string& s4, const ::std::string& s5) const
     {   lox l (lox_out);
-        err () << ensane (s1) << ensane (s2) << ensane (s3) << ensane (s4) << ensane (s5); }
-    void dot ();
-    void dedot (unsigned n = 0) noexcept
-    {   dot_ = n; } };
+        err () << ensane (s1) << ensane (s2) << ensane (s3) << ensane (s4) << ensane (s5); } };
 
 extern output_streams_t outstr;

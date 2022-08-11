@@ -109,8 +109,8 @@ PASS ../toast/HTML/5.3/html5-bad-2.html
 
 PASS ../toast/HTML/5.3/html5-example.html
 2 naughty_lang
-8 url_not_found cannot_open cannot_load_css
-9 url_not_found cannot_open cannot_load_css
+8 url_not_found url_not_found
+9 url_not_found url_not_found
 10 url_not_found
 85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required

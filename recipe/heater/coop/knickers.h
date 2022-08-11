@@ -37,4 +37,5 @@ public:
     explicit knickers (nitpick& nits, nitpick* ticks)
             : nits_ (nits), ticks_ (ticks)
     {   VERIFY_NOT_NULL (ticks, __FILE__, __LINE__); }
+    void accumulate_and_clear ();
     ~knickers (); };

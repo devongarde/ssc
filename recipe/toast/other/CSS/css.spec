@@ -2,7 +2,7 @@
 
 PASS ../toast/other/CSS/css-bad.html
 2 naughty_lang
-5 url_not_found cannot_open cannot_load_css
+5 url_not_found url_not_found
 8 attribute_unrecognised unrecognised_attribute
 10 unrecognised_value
 12 unrecognised_value
@@ -18,7 +18,6 @@ PASS ../toast/other/CSS/css-dubious.html
 
 PASS ../toast/other/CSS/css-empty.html
 2 naughty_lang
-5 cannot_load_css
 10 unrecognised_value
 
 PASS ../toast/other/CSS/css-good.html

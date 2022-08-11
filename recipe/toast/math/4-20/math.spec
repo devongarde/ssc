@@ -1,12 +1,12 @@
--f ../toast/math/4/math.conf
+-f ../toast/math/4-20/math.conf
 
-PASS ../toast/math/4/index.html
+PASS ../toast/math/4-20/index.html
 2 naughty_lang
 
-PASS ../toast/math/4/math1-example.html
+PASS ../toast/math/4-20/math1-example.html
 2 naughty_lang
 
-PASS ../toast/math/4/math2-example.html
+PASS ../toast/math/4-20/math2-example.html
 2 naughty_lang
 24 math_kids
 53 url_not_found
@@ -15,7 +15,7 @@ PASS ../toast/math/4/math2-example.html
 123 impure_mn
 351 math_kids
 
-PASS ../toast/math/4/math3-example.html
+PASS ../toast/math/4-20/math3-example.html
 2 naughty_lang
 119 math_empty
 120 unknown_element
@@ -30,13 +30,13 @@ PASS ../toast/math/4/math3-example.html
 144 math_kids
 145 math_kids
 
-PASS ../toast/math/4/math4-example.html
+PASS ../toast/math/4-20/math4-example.html
 2 naughty_lang
 
-PASS ../toast/math/4/math5-example.html
+PASS ../toast/math/4-20/math5-example.html
 2 naughty_lang
 
-PASS ../toast/math/4/math6-example.html
+PASS ../toast/math/4-20/math6-example.html
 2 naughty_lang
 152 impure_mn
 153 impure_mn
@@ -50,7 +50,7 @@ PASS ../toast/math/4/math6-example.html
 172 impure_mn
 174 impure_mn
 
-PASS ../toast/math/4/math7-example.html
+PASS ../toast/math/4-20/math7-example.html
 2 naughty_lang
 59 not_an_integer
 64 not_an_integer
@@ -59,7 +59,7 @@ PASS ../toast/math/4/math7-example.html
 238 math_kids
 246 math_kids
 
-PASS ../toast/math/4/math8-example.html
+PASS ../toast/math/4-20/math8-example.html
 2 naughty_lang
 89 bad_share
 121 inserted_missing_parent missing_close
@@ -69,7 +69,7 @@ PASS ../toast/math/4/math8-example.html
 149 inserted_missing_parent missing_close
 152 inserted_missing_closure
 
-PASS ../toast/math/4/math9-example.html
+PASS ../toast/math/4-20/math9-example.html
 2 naughty_lang
 21 inserted_missing_parent missing_close
 25 inserted_missing_closure
@@ -111,7 +111,7 @@ PASS ../toast/math/4/math9-example.html
 349 math_kids
 358 unrecognised_namespace unrecognised_value unrecognised_value
 
-PASS ../toast/math/4/math10-example.html
+PASS ../toast/math/4-20/math10-example.html
 2 naughty_lang
 29 impure_mn
 38 impure_mn
@@ -124,10 +124,10 @@ PASS ../toast/math/4/math10-example.html
 191 impure_mn
 230 impure_mn
 
-PASS ../toast/math/4/math11-example.html
+PASS ../toast/math/4-20/math11-example.html
 2 naughty_lang
 
-PASS ../toast/math/4/math12-example.html
+PASS ../toast/math/4-20/math12-example.html
 2 naughty_lang
 91 math_kids
 96 math_kids
@@ -152,7 +152,7 @@ PASS ../toast/math/4/math12-example.html
 407 math_kids
 408 math_kids
 
-PASS ../toast/math/4/math13-example.html
+PASS ../toast/math/4-20/math13-example.html
 2 naughty_lang
 169 inserted_missing_parent missing_close
 182 inserted_missing_closure
@@ -161,24 +161,24 @@ PASS ../toast/math/4/math13-example.html
 203 inserted_missing_parent missing_close
 225 inserted_missing_closure
 
-PASS ../toast/math/4/math14-example.html
+PASS ../toast/math/4-20/math14-example.html
 2 naughty_lang
 183 math_kids
 192 math_kids
 193 math_kids
 383 unrecognised_value
 
-PASS ../toast/math/4/math15-example.html
+PASS ../toast/math/4-20/math15-example.html
 2 naughty_lang
 27 unrecognised_value
 
-PASS ../toast/math/4/math16-example.html
+PASS ../toast/math/4-20/math16-example.html
 2 naughty_lang
 16 impure_mn
 35 unrecognised_value
 50 unrecognised_value
 
-PASS ../toast/math/4/math17-example.html
+PASS ../toast/math/4-20/math17-example.html
 2 naughty_lang
 96 no_such_folder url_not_found
 97 no_such_folder url_not_found
@@ -189,10 +189,10 @@ PASS ../toast/math/4/math17-example.html
 147 inserted_missing_parent missing_close
 155 inserted_missing_closure
 
-PASS ../toast/math/4/math18-example.html
+PASS ../toast/math/4-20/math18-example.html
 2 naughty_lang
 
-PASS ../toast/math/4/math19-example.html
+PASS ../toast/math/4-20/math19-example.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 16 url_not_found

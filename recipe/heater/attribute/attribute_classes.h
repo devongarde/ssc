@@ -58,6 +58,7 @@ typedef typed_attribute < t_real, a_amplitude > attr_amplitude;
 typedef typed_attribute < t_generic, a_animate > attr_animate;
 typedef typed_attribute < t_arabic_form, a_arabic_form > attr_arabic_form;
 typedef typed_attribute < t_urls, a_archive > attr_archive;
+typedef typed_attribute < t_text, a_arg > attr_arg;
 typedef typed_attribute < t_idref, a_aria_activedescendant > attr_ariaactivedescendant;
 typedef typed_attribute < t_bool, a_aria_atomic > attr_ariaatomic;
 typedef typed_attribute < t_aria_autocomplete, a_aria_autocomplete > attr_ariaautocomplete;
@@ -392,6 +393,7 @@ typedef typed_attribute < t_inlist, a_inlist > attr_inlist;
 typedef typed_attribute < t_inputmode, a_inputmode > attr_inputmode;
 typedef typed_attribute < t_generic, a_instanceof > attr_instanceof;
 typedef typed_attribute < t_text, a_integrity > attr_integrity;
+typedef typed_attribute < t_intent, a_intent > attr_intent;
 typedef typed_attribute < t_real, a_intercept > attr_intercept;
 typedef typed_attribute < t_text, a_intrinsicsize > attr_intrinsicsize;
 typedef typed_attribute < t_html_boolean, a_irrelevant > attr_irrelevant;
@@ -1007,6 +1009,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_animate, \
     attr_arabic_form, \
     attr_archive, \
+    attr_arg, \
     attr_ariaactivedescendant, \
     attr_ariaatomic, \
     attr_ariaautocomplete, \
@@ -1343,6 +1346,7 @@ const e_attribute last_1 = a_glyph_orientation_horizontal;
     attr_inputmode, \
     attr_instanceof, \
     attr_integrity, \
+    attr_intent, \
     attr_intercept, \
     attr_intrinsicsize, \
     attr_irrelevant, \

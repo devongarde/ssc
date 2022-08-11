@@ -58,10 +58,10 @@ typedef enum { as_ascending, as_descending, as_none, as_other } e_aria_sort;
 
 typedef enum
 {   a_unknown, a_custom,
-        a_abbr, a_about, a_above, a_accent, a_accent_height, a_accentunder, a_accept, a_accept_charset, a_accesskey, a_accumulate, a_action,
-        a_actiontype, a_activate, a_active, a_additive, a_align, a_alignment_baseline, a_alignmentscope, a_alink, a_allow, a_allow_zoom_and_pan,
-        a_allowfullscreen, a_allowpaymentrequest, a_allowusermedia, a_alphabetic, a_alt, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign,
-        a_alttext, a_amplitude, a_animate, a_arabic_form, a_archive, a_aria_activedescendant, a_aria_atomic, a_aria_autocomplete, a_aria_busy, a_aria_checked,
+        a_abbr, a_about, a_above, a_accent, a_accent_height, a_accentunder, a_accept, a_accept_charset, a_accesskey, a_accumulate, a_action, a_actiontype,
+        a_activate, a_active, a_additive, a_align, a_alignment_baseline, a_alignmentscope, a_alink, a_allow, a_allow_zoom_and_pan, a_allowfullscreen,
+        a_allowpaymentrequest, a_allowusermedia, a_alphabetic, a_alt, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign, a_alttext,
+        a_amplitude, a_animate, a_arabic_form, a_archive, a_arg, a_aria_activedescendant, a_aria_atomic, a_aria_autocomplete, a_aria_busy, a_aria_checked,
         a_aria_colcount, a_aria_colindex, a_aria_colspan, a_aria_controls, a_aria_current, a_aria_describedby, a_aria_details, a_aria_disabled,
         a_aria_dropeffect, a_aria_errormessage, a_aria_expanded, a_aria_flowto, a_aria_grabbed, a_aria_haspopup, a_aria_hidden, a_aria_invalid, a_aria_label,
         a_aria_labelledby, a_aria_level, a_aria_live, a_aria_modal, a_aria_multiline, a_aria_multiselectable, a_aria_orientation, a_aria_owns,
@@ -98,7 +98,7 @@ typedef enum
     a_icon, a_id, a_ideographic, a_idref, a_if, a_image_rendering, a_imagemap, a_imagesizes, a_imagesrcset, a_implements, a_importance,
         a_in, a_in2, a_incremental, a_indent, a_indentalign, a_indentalignfirst, a_indentalignlast, a_indentshift, a_indentshiftfirst,
         a_indentshiftlast, a_indenttarget, a_index, a_inert, a_infixlinebreakstyle, a_initialvisibility, a_inline_size, a_inlist,
-        a_inputmode, a_instanceof, a_integrity, a_intercept, a_intrinsicsize, a_irrelevant, a_is, a_ismap, a_isolation, a_item, a_itemid,
+        a_inputmode, a_instanceof, a_integrity, a_intent, a_intercept, a_intrinsicsize, a_irrelevant, a_is, a_ismap, a_isolation, a_item, a_itemid,
         a_itemprop, a_itemref, a_itemscope, a_itemtype, a_itstranslate,
     a_k, a_k1, a_k2, a_k3, a_k4, a_kernelmatrix, a_kernelunitlength, a_kerning, a_key, a_keyparams, a_keypoints, a_keysplines, a_keytimes,
         a_keytype, a_kind, a_knock_out,
@@ -192,12 +192,13 @@ typedef enum { br_auto, br_dynamic, br_static, br_inherit } e_buffered_rendering
 typedef enum { bu_button, bu_submit, bu_reset } e_button;
 typedef enum { bm_ansi, bm_utf8, bm_utf16_be, bm_utf16_le, bm_utf32_be, bm_utf32_le, bm_utf7, bm_utf1, bm_utf_ebcdic, bm_scsu, bm_bocu_1, bm_gb_1830, bm_error } byte_order_mark;
 typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_notransform, ck_onlyifcached } e_cachekey;
+typedef enum { cs_free, cs_loading, cs_empty, cs_content, cs_error } e_cache_state;
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_corpus, ec_crc, ec_css, ec_directory, ec_element, ec_file, ec_fred, ec_html, ec_icu, ec_incorrectness, ec_init, ec_io,
-                ec_json, ec_link, ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema,
-                ec_shadow, ec_spell, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility } e_category;
+typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_cache, ec_corpus, ec_crc, ec_css, ec_directory, ec_element, ec_file, ec_fred, ec_html, ec_icu, ec_incorrectness,
+                ec_init, ec_io, ec_json, ec_link, ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness,
+                ec_schema, ec_shadow, ec_spell, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility } e_category;
 const e_category last_category = ec_utility;
 typedef enum { ccp_derivativeworks, ccp_distribution, ccp_reproduction } e_cc_permits;
 typedef enum { ccr_attribution, ccr_notice, ccr_sharealike, ccr_sourcecode } e_cc_requires;
@@ -297,6 +298,44 @@ typedef enum {  cop_clear, cop_src, cop_dst, cop_src_over, cop_dst_over, cop_src
 typedef enum { co_arithmetic, co_atop, co_in, co_lighter, co_out, co_over, co_xor } e_composite_operator;
 typedef enum { com_normal, com_knockout } e_compositing;
 typedef enum { cv_examine, cv_stage, cv_purgatory, cv_scan, cv_done, cv_max } e_condvar;
+
+typedef enum {
+    icl_absolute_complement, icl_absolute_value, icl_acceleration, icl_adjacent, icl_adjugate, icl_aligned_equation, icl_and, icl_angle, icl_angle_angle,
+        icl_angular_description, icl_annotation, icl_approaches, icl_approximately, icl_aqueous, icl_arc, icl_area, icl_array, icl_average,
+    icl_base, icl_binomial_coefficient, icl_blank, icl_braced_group,
+    icl_celsius, icl_centimeter, icl_cents, icl_change, icl_circle, icl_common_logarithm, icl_complex_square_root, icl_compound_name, icl_conditional_probability,
+        icl_congruent, icl_conjugate, icl_constraint, icl_continued_fraction,
+    icl_day_period, icl_defined_as, icl_degrees, icl_delimited_subexpression, icl_derivative_operator, icl_determinant, icl_diameter, icl_direction_of_approach,
+        icl_discriminant, icl_distance, icl_divide, icl_dollar,
+    icl_element_of, icl_ellipsis, icl_empty_set, icl_equal, icl_error_function, icl_euler_number, icl_evaluate, icl_evaluates_to, icl_exaannum,
+    icl_factorial, icl_fenced_group, icl_final, icl_first_derivative, icl_focus, icl_foot, icl_fraction, icl_function_composition,
+    icl_gas, icl_giga_base_pair, icl_giga_nucleotide, icl_gigaannum, icl_golden_ratio, icl_gram, icl_greater_than, icl_greater_than_or_equal,
+        icl_greatest_common_divisor,
+    icl_hypotenuse,
+    icl_identically_equal, icl_identity_matrix, icl_iff, icl_imaginary_part, icl_imaginary_unit, icl_implies, icl_inch, icl_indexed_argument, icl_initial,
+        icl_integral, icl_interchange_rows, icl_interquartile_range, icl_intersection, icl_interval, icl_inverse_function, icl_inverse_matrix,
+    icl_kilo_nucleotide, icl_kiloannum, icl_kilogram, icl_kilometer, icl_kilonewton,
+    icl_least_common_denominator, icl_least_common_multiple, icl_length_of_segment, icl_less_than, icl_less_than_or_equal, icl_limit, icl_line, icl_line_segment,
+        icl_liquid, icl_list_separator, icl_liter,
+    icl_magnitude, icl_matrix, icl_matrix_by, icl_matrix_order, icl_mean_absolute_deviation, icl_measure, icl_measure_of_angle, icl_mega_nucleotide,
+        icl_megaannum, icl_meter, icl_miles_per_hour, icl_milliliter, icl_minus, icl_more_than,
+    icl_natural_logarithm, icl_negated_operator, icl_negative, icl_negative_ion, icl_neutral, icl_not_element_of, icl_not_equal, icl_nth_derivative,
+        icl_nucleotide, icl_number, icl_number_of, icl_number_set, icl_operator_range,
+    icl_opposite, icl_or, icl_ordered_pair, icl_ordinal_mark, icl_ounce, icl_outcome,
+    icl_parallel, icl_parenthetical, icl_particular_value_of, icl_percent, icl_permutation_symbol, icl_perpendicular, icl_petaannum, icl_ph, icl_pi,
+        icl_piecewise, icl_plus, icl_plus_or_minus, icl_point, icl_point_at, icl_polynomial_arguments_degree_center, icl_position, icl_positive, icl_positive_ion,
+        icl_pound, icl_power, icl_probability, icl_progression, icl_proper_subset_of, icl_proper_superset_of,
+    icl_qualified_operator,
+    icl_radian, icl_radius, icl_range_separator, icl_rate, icl_ratio, icl_ray, icl_real_numbers, icl_real_part, icl_rectangle, icl_remainder,
+        icl_remainder_function, icl_repeating_digits, icl_root,
+    icl_second_derivative, icl_sequence_range, icl_set, icl_set_difference, icl_shape, icl_side_angle_side, icl_side_side_side, icl_solid, icl_square,
+        icl_square_root, icl_subset_of_or_equal, icl_such_that, icl_sum, icl_system_of_equations,
+    icl_teraannum, icl_time_separator, icl_times, icl_ton, icl_transform, icl_translates_to, icl_translation, icl_transpose, icl_triangle,
+        icl_triangle_similarity, icl_trigonometric_function, icl_union,
+    icl_unit, icl_unit_vector,
+    icl_variable, icl_vector, icl_velocity, icl_volume
+} e_conlit;
+
 typedef enum { con_line, con_none } e_connect;
 typedef enum { ce_gzip, ce_compress, ce_deflate, ce_identity } e_content_encoding;
 typedef enum { cl_nodownload, cl_nofullscreen, cl_noremoteplayback } e_controlslist;
@@ -386,7 +425,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
                 ed_apr21, ed_jul21, ed_apr22,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
-                ed_math_1, ed_math_2, ed_math_3, ed_math_4,
+                ed_math_1, ed_math_2, ed_math_3, ed_math_4_20, ed_math_4_22,
                 ed_iso_8859_1, ed_csp,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
                 ed_w3, ed_mql, ed_ariaAug2020, ed_ariaApr2021, ed_mozilla, ed_ecma,
@@ -647,6 +686,7 @@ typedef enum { i2_checkbox, i2_file, i2_hidden, i2_image, i2_password, i2_radio,
 typedef enum { i4_button, i4_checkbox, i4_file, i4_hidden, i4_image, i4_password, i4_radio, i4_reset, i4_submit, i4_text } e_inputtype4;
 typedef enum {  i5_button, i5_checkbox, i5_colour, i5_date, i5_datetime, i5_datetime_local, i5_email, i5_file, i5_hidden, i5_image, i5_month, i5_number,
                 i5_password, i5_radio, i5_reset, i5_range, i5_search, i5_submit, i5_tel, i5_text, i5_time, i5_url, i5_week } e_inputtype5;
+typedef enum { ih_infix, ih_postfix, ih_prefix, ih_silent } e_intent_hint;
 typedef enum { itemprop_bespoke, itemprop_schema, itemprop_microformat } e_itemprop_category;
 typedef enum { itemtype_none, itemtype_schema, itemtype_microformat, itemtype_rel } e_itemtype_category;
 typedef enum { jsonld_none, jsonld_1_0, jsonld_1_1 } e_jsonld_version;
@@ -767,7 +807,8 @@ typedef enum { li_1, li_a, li_A, li_i, li_I } e_listtype;
 typedef enum { b_eager, b_lazy } e_loading;
 typedef enum {  ls_lefttop, ls_stackedrightright, ls_mediumstackedrightright, ls_shortstackedrightright, ls_righttop,
                 ls_leftslashright, ls_leftketbraright, ls_rightequalright, ls_stackedleftleft, ls_stackedleftlinetop } e_longdivstyle;
-typedef enum { lox_none, lox_crosslinks, lox_css, lox_dear, lox_done, lox_external, lox_fileindex, lox_flox, lox_id, lox_nits, lox_ns, lox_out, lox_purgatory, lox_q, lox_ssi, lox_stats, lox_time, lox_wait, lox_error } e_lox;
+typedef enum {  lox_none, lox_cache, lox_crosslinks, lox_css, lox_dear, lox_done, lox_external, lox_fileindex, lox_flox, lox_itemid, lox_itemprop, lox_nits, lox_ns, lox_out, lox_purgatory, lox_q,
+                lox_rdfa, lox_stats, lox_time, lox_wait, lox_xlynx, lox_error } e_lox;
 typedef enum { lra_all, lra_left, lra_right } e_lraalign;
 typedef enum { lr_left, lr_right } e_lralign;
 typedef enum { mah_go, mah_done, mah_next, mah_search, mah_send } e_mah;
@@ -780,7 +821,7 @@ typedef enum { mo_prefix, mo_infix, mo_functionmodel } e_mathoccurence;
 typedef enum { mo_numeric, mo_lexicographic } m_mathorder;
 typedef enum { ov_elide, ov_linebreak, ov_scale, ov_scroll, ov_truncate } e_mathoverflow;
 typedef enum { ms_global, ms_local } e_mathscope;
-typedef enum { math_none, math_1, math_2, math_3, math_4 } e_math_version;
+typedef enum { math_none, math_1, math_2, math_3, math_4_20, math_core_22, math_4_22 } e_math_version;
 typedef enum { mf_infix, mf_prefix, mf_postfix } e_mathform;
 typedef enum { fmw_bold, fmw_normal } e_math_fontweight;
 typedef enum { mf_dash, mf_none, mf_solid } e_mathframe;
@@ -1633,7 +1674,7 @@ typedef enum
     nit_convert, nit_locale, nit_wtf, nit_normalise, nit_dictionary, nit_example, nit_local, nit_report, nit_unknown_option, nit_yea_nay,
     nit_mf_version, nit_not_directory, nit_endpoint, nit_header_empty, nit_header_malformed, nit_http_error, nit_header_no_data,
     nit_json_version, nit_json_corrupt, nit_json_domain, nit_dialect, nit_country, nit_languages, nit_hidden, nit_bespoke_obsolete,
-    nit_regex, nit_fred_borked, nit_kew_borked,
+    nit_regex, nit_fred_borked, nit_kew_borked, nit_internal_cache_error, nit_mtr_required, nit_mtd_required, nit_bad_intent,
     nit_context,
 
     // eon
@@ -3919,7 +3960,7 @@ typedef enum {
     t_cache, t_cachekey, t_caches, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_channelselector, t_char,
         t_charset, t_charsets, t_charspacing, t_citype, t_class, t_clear, t_clear30, t_clip, t_clip_path_rule, t_closure, t_colour, t_colour_ci,
         t_colour_cii, t_colour_i, t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri,
-        t_colour_rendering, t_colour_v, t_command, t_compact, t_comp_op, t_composite_operator, t_compositing, t_conditional, t_connect,
+        t_colour_rendering, t_colour_v, t_command, t_compact, t_comp_op, t_composite_operator, t_compositing, t_conditional, t_conlit, t_connect,
         t_content_encoding, t_content_encodings, t_content_type, t_context_menu, t_controlslist, t_cookie, t_cookieid, t_cookies, t_coordinatesystem,
         t_coords, t_corp, t_cors, t_country, t_cntype, t_crossout, t_css, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source,
         t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, t_cursor, t_cursor_f, t_cursor_i,
@@ -3938,7 +3979,8 @@ typedef enum {
     t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hidden, t_hidden_ex, t_hour, t_html, t_html_boolean, t_httpequiv, t_hv, t_hunit,
     t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index,
         t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus,
-        t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
+        t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_intent, t_intent_app, t_intent_args, t_intent_conlit, t_intent_hint,
+        t_intent_ref, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
     t_js_lang, t_js_lang_map, t_js_map, t_js_term, t_js_type, t_js_value, t_js_version, t_jtoken, t_just_date, t_just_time,
     t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind,
     t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length, t_length_absolute,

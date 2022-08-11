@@ -1,3 +1,8 @@
+../toast/math/1/math.spec
+../toast/math/2/math.spec
+../toast/math/3/math.spec
+../toast/math/4-20/math.spec
+../toast/math/4-22/math.spec
 ../toast/conf/html/conf.spec
 ../toast/conf/xhtml/conf.spec
 ../toast/coop/corrupt/corrupt.spec
@@ -60,10 +65,6 @@
 ../toast/living/jan22/living.spec
 ../toast/living/apr22/living.spec
 ../toast/living/jul22/living.spec
-../toast/math/1/math.spec
-../toast/math/2/math.spec
-../toast/math/3/math.spec
-../toast/math/4/math.spec
 ../toast/microdata/12/schema.spec
 ../toast/microdata/addendum/add.spec
 ../toast/microdata/basic/basic.spec
@@ -82,6 +83,7 @@
 ../toast/other/abbr/abbr.spec
 ../toast/other/aria/aria.spec
 ../toast/other/base/base.spec
+../toast/other/blob/blob.spec
 ../toast/other/characters/chars.spec
 ../toast/other/CSS/css.spec
 ../toast/other/dfn/dfn.spec

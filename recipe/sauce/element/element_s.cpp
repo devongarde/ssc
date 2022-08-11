@@ -303,5 +303,5 @@ void element::examine_switch ()
 void element::examine_style ()
 {   if (node_.version () > html_plus)
         if (! a_.known (a_type) || (a_.get_string (a_type) == CSS_TYPE))
-        {   VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
-            css_cache -> parse (nits (), node_.version (), text ()); } }
+        {   //VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
+            page_.css ().parse (nits (), node_.version (), text ()); } }

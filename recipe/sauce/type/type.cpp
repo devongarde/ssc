@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void types_init (nitpick& nits)
 {   void charset_init (nitpick& nits);
     void class_init (nitpick& nits);
+    void conlit_init (nitpick& nits);
     void country_init (nitpick& nits);
     void currency_init (nitpick& nits);
     void fixedcolour_init (nitpick& nits);
@@ -38,6 +39,7 @@ void types_init (nitpick& nits)
 
     charset_init (nits);
     class_init (nits);
+    conlit_init (nits);
     country_init (nits);
     currency_init (nits);
     fixedcolour_init (nits);
@@ -166,6 +168,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_composite_operator);
         TEST_VALUE (t_compositing);
         TEST_VALUE (t_conditional);
+        TEST_VALUE (t_conlit);
         TEST_VALUE (t_connect);
         TEST_VALUE (t_content_encoding);
         TEST_VALUE (t_content_encodings);
@@ -333,6 +336,12 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_inputtype4);
         TEST_VALUE (t_inputtype5);
         TEST_VALUE (t_integer);
+        TEST_VALUE (t_intent);
+        TEST_VALUE (t_intent_app);
+        TEST_VALUE (t_intent_args);
+        TEST_VALUE (t_intent_conlit);
+        TEST_VALUE (t_intent_hint);
+        TEST_VALUE (t_intent_ref);
         TEST_VALUE (t_is);
         TEST_VALUE (t_isbn);
         TEST_VALUE (t_issn);

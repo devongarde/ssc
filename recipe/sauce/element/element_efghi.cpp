@@ -235,7 +235,7 @@ void element::examine_fn ()
 {   e_math_version mv = node_.version ().math_version ();
     if (mv == math_none) mv = page_.version ().math_version ();
     if (mv < math_3) return;
-    pick (nit_no_fn, ed_math_3, "F.2 Changes between MathML 2.0 Second Edition and MathML 3.0", es_error, ec_element, "<FN> is not part of MathML 3."); }
+    pick (nit_no_fn, ed_math_3, "F.2 Changes between MathML 2.0 Second Edition and MathML 3.0", es_error, ec_element, "<FN> is not part of MathML 3 or greater."); }
 
 void element::examine_fontymacfontface ()
 {   if (node_.version ().svg_version () != sv_1_1) return;

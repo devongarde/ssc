@@ -191,7 +191,7 @@ template < e_type T, e_type A, e_type B > struct type_either_neither : tidy_stri
             {   nits.merge (nuts); nits.merge (knots); }
         tidy_string < T > :: status (s_invalid); } } };
 
-template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : tidy_string < T > // if more alternatives are needed, generalise with template metaprogramming
+template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
@@ -203,6 +203,21 @@ template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : t
             else if (test_value < C > (knits, v, ss, tidy_string < T > :: id ())) nits.merge (knits);
             else
             {   nits.merge (nuts); nits.merge (knots); nits.merge (knits); }
+        tidy_string < T > :: status (s_invalid); } } };
+
+template < e_type T, e_type A, e_type B, e_type C, e_type D > struct type_one_of_four : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
+        {   nitpick nuts, knots, knits, knats;
+            const ::std::string ss (tidy_string < T > :: get_string ());
+            if (test_value < A > (nuts, v, ss, tidy_string < T > :: id ())) nits.merge (nuts);
+            else if (test_value < B > (knots, v, ss, tidy_string < T > :: id ())) nits.merge (knots);
+            else if (test_value < C > (knits, v, ss, tidy_string < T > :: id ())) nits.merge (knits);
+            else if (test_value < D > (knats, v, ss, tidy_string < T > :: id ())) nits.merge (knats);
+            else
+            {   nits.merge (nuts); nits.merge (knots); nits.merge (knits); nits.merge (knats); }
         tidy_string < T > :: status (s_invalid); } } };
 
 template < e_type T, class SZ, e_type P > struct type_at_least_one : string_vector < T, SZ >

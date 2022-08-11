@@ -2138,6 +2138,7 @@ void init_4 ()
     type_master < t_edit > :: init ();
     type_master < t_effect > :: init ();
     type_master < t_frame4 > :: init ();
+    type_master < t_intent_hint > :: init ();
     type_master < t_larnalign > :: init ();
     type_master < t_lcrd > :: init ();
     type_master < t_lcrnalign > :: init ();

@@ -267,59 +267,62 @@ uintmax_t get_size (const fileindex_t ndx)
     lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).last_write_; }
 
-// only called from dedu, has same presumptions
-crc_t get_crc (nitpick& nits, const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    if (! inner_get_any_flag (ndx, FX_CRC))
-    {   crc_calc crc;
-        BOOST_IFSTREAM_CNSTRO (f, ::gsl::at (vx, ndx).disk_path_, ::std::ios_base::in);
-        if (f.bad ())
-        {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot read ", ::gsl::at (vx, ndx).disk_path_);
-            set_crc (ndx, 0);
-            return crc_initrem; }
-        unsigned long max = context.max_file_size ();
-        if (max == 0) max = DMFS_BYTES;
+crc_t calc_crc (nitpick& nits, const ::boost::filesystem::path& dp)
+{   crc_calc crc;
+    BOOST_IFSTREAM_CNSTRO (f, dp, ::std::ios_base::in);
+    if (f.bad ())
+    {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot read ", dp);
+        return crc_initrem; }
+    unsigned long max = context.max_file_size ();
+    if (max == 0) max = DMFS_BYTES;
 #ifdef CLEAN_SHAREDPTR_ARRAY
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26414) // isn't that precisely what the code does?
 #endif // _MSC_VER
-        ::std::shared_ptr < char [] > buf (new char [max]);
-        if (buf.get () == nullptr)
+    ::std::shared_ptr < char [] > buf (new char [max]);
+    if (buf.get () == nullptr)
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
 #else // CLEAN_SHAREDPTR_ARRAY
-	    char* buf = (char *) malloc (max);
-        if (buf == nullptr)
+	char* buf = (char *) malloc (max);
+    if (buf == nullptr)
 #endif // CLEAN_SHAREDPTR_ARRAY
-        {   f.close ();
-            nits.pick (nit_out_of_memory, es_error, ec_crc, "out of memory reading ", ::gsl::at (vx, ndx).disk_path_);
-            set_crc (ndx, 0);
-            return crc_initrem; }
+    {   f.close ();
+        nits.pick (nit_out_of_memory, es_error, ec_crc, "out of memory reading ", dp);
+        return crc_initrem; }
 #ifdef CLEAN_SHAREDPTR_ARRAY
-        while (! f.eof ())
-        {   f.read (buf.get (), max);
-            const ::std::streamsize s = f.gcount ();
-            if (s == 0) break;
-            crc.process_bytes (buf.get (), ::gsl::narrow_cast < ::std::size_t > (s)); }
+    while (! f.eof ())
+    {   f.read (buf.get (), max);
+        const ::std::streamsize s = f.gcount ();
+        if (s == 0) break;
+        crc.process_bytes (buf.get (), ::gsl::narrow_cast < ::std::size_t > (s)); }
 #else // CLEAN_SHAREDPTR_ARRAY
-        try
-        {   while (! f.eof ())
-            {   f.read (buf, max);
-                ::std::streamsize s = f.gcount ();
-                if (s == 0) break;
-                crc.process_bytes (buf, s); } }
-        catch (...)
-        {   free (buf); throw; }
-        free (buf); buf = nullptr;
+    try
+    {   while (! f.eof ())
+        {   f.read (buf, max);
+            ::std::streamsize s = f.gcount ();
+            if (s == 0) break;
+            crc.process_bytes (buf, s); } }
+    catch (...)
+    {   free (buf); throw; }
+    free (buf); buf = nullptr;
 #endif // CLEAN_SHAREDPTR_ARRAY
-        set_crc (ndx, crc.checksum ()); }
+    return crc.checksum (); }
+
+crc_t get_crc (nitpick& nits, const fileindex_t ndx)
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    if (! inner_get_any_flag (ndx, FX_CRC))
+    {   crc_t crc = calc_crc (nits, get_disk_path (ndx));
+        set_crc (ndx, crc);
+        return crc; }
+    lox l (lox_fileindex);
     return ::gsl::at (vx, ndx).crc_; }
 
-// only called (indirectly) from dedu, has same presumptions
 void set_crc (const fileindex_t ndx, const crc_t& crc)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
     ::gsl::at (vx, ndx).crc_ = crc;
     inner_set_flag (ndx, FX_CRC); }
 
@@ -434,8 +437,9 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
     else p = context.config ().replace_extension ("ndx");
     return p; }
 
-bool fileindex_load_internal (nitpick& nits, bool& ok)  // this presumes is run before threading starts
-{   ::boost::filesystem::path p (persist_path ());
+bool fileindex_load_internal (nitpick& nits, bool& ok)
+{   PRESUME (! fred.inited (), __FILE__, __LINE__);
+    ::boost::filesystem::path p (persist_path ());
     if (! file_exists (p)) return true;
     if (context.progress ()) outstr.out ("Loading " , p.string (), " ...\n");
     BOOST_FSTREAM_CNSTRO (f, p, ::std::ios::in);
@@ -611,8 +615,9 @@ bool fileindex_load (nitpick& nits)
             else nits.pick (nit_cannot_delete, es_error, ec_crc, "cannot delete bad file ", p.string ()); }
     return false; }
 
-void fileindex_save_and_close (nitpick& nits) // presumes run once threading is finished (or before it starts)
+void fileindex_save_and_close (nitpick& nits)
 {   if (! context.shadow_enable ()) return;
+    PRESUME (! fred.activity (), __FILE__, __LINE__);
     site_x.clear ();
     disk_x.clear ();
     mcrc.clear ();
@@ -673,16 +678,15 @@ void fileindex_save_and_close (nitpick& nits) // presumes run once threading is 
                     break; } } } }
 
 void dedu (nitpick& nits) // presumes run between scan and examine phases
-{   if (context.progress ())
-    {   outstr.out ("Deduplicating ."); outstr.dedot (15); }
-    lox l (lox_fileindex);
+{   if (context.progress ()) ::std::cout << "Deduplicating\n";  
     for (fileindex_t i = 0; i < vx.size (); ++i)
     {   index_t& x = vx.at (i);
         if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)
             if (! is_webpage (x.site_path_, context.extensions ()))
-            {   outstr.dot ();
+            {   //outstr.dot ();
                 crc_t crc = get_crc (nits, i);
                 if (crc == crc_initrem) continue;
+                lox l (lox_fileindex);
                 mcrc_t::const_iterator ci = mcrc.find (crc);
                 if (ci != mcrc.cend ())
                     if (ci -> second != i)
@@ -692,8 +696,7 @@ void dedu (nitpick& nits) // presumes run between scan and examine phases
                             else x.dedu_ = y.dedu_;
                             nits.pick (nit_duplicate, es_info, ec_crc, x.disk_path_, " duplicates ", vx.at (x.dedu_).disk_path_);
                             continue; } }
-                mcrc.emplace (crc, i); } }
-    if (context.progress ()) ::std::cout << ::std::endl; }
+                mcrc.emplace (crc, i); } } }
 
 bool isdu (const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);

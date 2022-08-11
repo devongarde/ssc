@@ -164,6 +164,7 @@ bool element::check_math_children (const int expected, const bool or_more)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (! c -> node_.is_closure ()) if (c -> node_.id ().is_math ()) ++n; }
     if ((n == expected) || (or_more && (n > expected))) return true;
+    if (node_.version ().math_version () >= math_4_22) return true;
     if (or_more)
         pick (nit_math_kids, ed_math_2, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<", elem::name (tag ()), "> has  ", n, " math child elements; it requires ", expected, " or more");
     else pick (nit_math_kids, ed_math_2, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<", elem::name (tag ()), "> has  ", n, " math child elements; it requires ", expected);

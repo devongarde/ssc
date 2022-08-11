@@ -253,7 +253,7 @@ void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
         {   ::std::string ver (trim_the_lot_off (a.get_string ()));
             auto val = examine_value < t_xmlns > (knots, v, ver);
             switch (val)
-            {   case x_mathml : if (! v.math ()) v.set_ext (HE_MATH_1); break;
+            {   case x_mathml : if (! v.math ()) v.set_ext2 (H2_MATH_1); break;
                 case x_svg : if (! v.svg ()) v.set_ext (HE_SVG_10); break;
                 case x_xlink : if (! v.xlink ()) v.set_ext (HE_XLINK_1_0); break;
                 case x_xhtml_1_superseded :
@@ -329,7 +329,9 @@ e_math_version attributes_node::get_math (const html_version& v) const
                 default : GRACEFUL_CRASH (__FILE__, __LINE__);
                           UNREACHABLE (return math_1); }
         default : break; }
-    if (v >= html_apr21) return math_4;
+    if (v >= html_jul22) return math_4_22;
+    if (v >= html_apr22) return math_core_22;
+    if (v >= html_apr21) return math_4_20;
     if (v >= html_5_0) return math_3;
     return math_2; }
 

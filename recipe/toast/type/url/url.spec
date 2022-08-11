@@ -29,7 +29,7 @@ PASS ../toast/type/url/bad.html
 PASS ../toast/type/url/dubious.html
 2 naughty_lang
 11 unknown_protocol
-12 url_insecure_password
+12 url_insecure_password protocol
 
 PASS ../toast/type/url/good.html
 2 naughty_lang

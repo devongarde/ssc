@@ -80,6 +80,7 @@ itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const 
         check_identifier_spelling (nits, v, name);
         nits.pick (nit_bad_itemprop, es_error, ec_microdata, quote (name), " is not recognised");
         return illegal_itemprop; }
+    lox l (lox_itemprop);
     VERIFY_NOT_NULL (unknown_props.get (), __FILE__, __LINE__);
     VERIFY_NOT_NULL (unknown_ids.get (), __FILE__, __LINE__);
     min_t::const_iterator ini = unknown_props -> find (name);
@@ -101,6 +102,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
         check_identifier_spelling (nits, v, name);
         nits.pick (nit_bad_itemprop, es_error, ec_microdata, quote (name), " is not recognised");
         return itemprop_indices (); }
+    lox l (lox_itemprop);
     VERIFY_NOT_NULL (unknown_props.get (), __FILE__, __LINE__);
     VERIFY_NOT_NULL (unknown_ids.get (), __FILE__, __LINE__);
     min_t::const_iterator ini = unknown_props -> find (name);

@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 #include "utility/quote.h"
 #include "parser/text.h"
+#include "coop/fred.h"
 
 context_t context;
 
@@ -171,3 +172,11 @@ bool context_t::excluded (const ::boost::filesystem::path& p) const
         if (::boost::regex_search (p.string (), w))
             return true;
     return false; }
+
+context_t& context_t::fred (const int i)
+{   int nmt = fred_t::no_more_than (); // <=> :-(
+    if (i > nmt) fred_ = nmt;
+    else if (i > 0) fred_ = i;
+    else fred_ = fred_t::suggested ();
+    mac (nm_context_info, fred_);
+    return *this; }

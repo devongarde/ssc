@@ -69,15 +69,20 @@ inline bool operator > (const sought_t& lhs, const sought_t& rhs) noexcept { ret
 inline bool operator >= (const sought_t& lhs, const sought_t& rhs) noexcept { return lhs.page_ >= rhs.page_; }
 
 typedef ::std::map < fileindex_t, sought_t > vx_t;
-vx_t xlynx;
+typedef ::std::unique_ptr < vx_t > vx_ptr;
+vx_ptr xlynx;
+
+void init_crosslinks ()
+{   xlynx = vx_ptr (new vx_t); }
 
 void declare_crosslinks (const fileindex_t sought, const ids_t& ids)
 {   if (! context.crosslinks ()) return;
     if (ids.empty ()) return;
+    lox l (lox_xlynx);
     vcl_t declare;
-    vx_t::iterator i = xlynx.find (sought);
-    if (i == xlynx.cend ())
-    {   auto p = xlynx.emplace (::std::pair < fileindex_t, sought_t > (sought, sought_t (ids.ndx ())));
+    vx_t::iterator i = xlynx -> find (sought);
+    if (i == xlynx -> cend ())
+    {   auto p = xlynx -> emplace (::std::pair < fileindex_t, sought_t > (sought, sought_t (ids.ndx ())));
         PRESUME (p.second, __FILE__, __LINE__);
         i = p.first; }
     for (auto d : ids.mif ())
@@ -91,9 +96,10 @@ void declare_crosslinks (const ::boost::filesystem::path& sought, const ids_t& i
 void add_sought (const fileindex_t seeker, const ::std::size_t line, const fileindex_t sought, const ::std::string& id, const bool hidden, const vit_t& itemtypes, const e_element e)
 {   if (! context.crosslinks ()) return;
     if (seeker == sought) return;
-    vx_t::iterator sought_i = xlynx.find (sought);
-    if (sought_i == xlynx.cend ())
-    {   auto xe = xlynx.emplace (::std::pair < fileindex_t, sought_t > (sought, sought_t (sought)));
+    lox l (lox_xlynx);
+    vx_t::iterator sought_i = xlynx -> find (sought);
+    if (sought_i == xlynx -> cend ())
+    {   auto xe = xlynx -> emplace (::std::pair < fileindex_t, sought_t > (sought, sought_t (sought)));
         sought_i = xe.first; }
     vsk_t& seek (sought_i -> second.seekers_);
     vsk_t::iterator seek_i = seek.find (seeker);
@@ -162,7 +168,8 @@ void append_typename (::std::string& res, const itemtype_index it, bool& first)
 
 void reconcile_crosslinks (nitpick& nits)
 {   if (context.crosslinks ())
-        for (auto ix : xlynx)
+    {   PRESUME (! fred.activity (), __FILE__, __LINE__);
+        for (auto ix : *xlynx)
             for (auto is : ix.second.seekers_)
                 if (ix.second.page_ != is.second.page_)
                     for (auto c : is.second.ids_)
@@ -185,4 +192,4 @@ void reconcile_crosslinks (nitpick& nits)
                             if (context.test ()) nits.pick (nit_id_category, es_error, ec_link, is.second.page_, " ", c.line_, " ", ix.second.page_ , " ", c.id_);
                             else nits.pick (nit_id_category, ed_svg_1_1, "17.1.4 Processing of IRI references", es_error, ec_link,
                                 get_disk_path (is.second.page_).string (), " ", c.line_, ": ", get_disk_path (ix.second.page_).string (),
-                                    "#", c.id_, ": <", elem::name (get_element (ix.second.declared_, c.id_)), "> is an unsuitable target for <", elem::name (c.e_), ">"); } }
+                                    "#", c.id_, ": <", elem::name (get_element (ix.second.declared_, c.id_)), "> is an unsuitable target for <", elem::name (c.e_), ">"); } } }

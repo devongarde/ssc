@@ -318,7 +318,7 @@ template < > schema_version schema_detail < s_foaf > :: to () noexcept { return 
 template < > bool schema_detail < s_gs1 > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     if (mnr == 51) return true;
-    if ((mnr < 0) || (mnr > 5)) return false;
+    if (mnr > 5) return false;
     return true; }
 template < > schema_version schema_detail < s_gs1 > :: from () noexcept { return schema_version (s_gs1, 1, 0); }
 template < > int schema_detail < s_gs1 > :: count () noexcept { return 7; }

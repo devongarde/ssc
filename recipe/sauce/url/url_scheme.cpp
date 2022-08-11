@@ -138,10 +138,14 @@ bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
     else if (context.site ().empty ()) // FFS!
         res += DEFAULT_DOMAIN;
     else res += context.site ().at (0);
+    if (! res.empty ())
+        if (! component.at (es_path).empty () || (! component.at (es_file).empty ()) || can_use_index)
+            if (res.at (res.size () - 1) != SLASH)
+                res += SLASH;
     if (! component.at (es_path).empty ())
-    {   if (::gsl::at (component.at (es_path), 0) != SLASH)
-            res += SLASH;
-        res += component.at (es_path);
+    {   if ((::gsl::at (component.at (es_path), 0) == SLASH) && ! res.empty ())
+            res += component.at (es_path).substr (1);
+        else res += component.at (es_path);
         ::std::string::size_type len = component.at (es_path).length () - 1;
         if (::gsl::at (component.at (es_path), len) != SLASH)
             res += SLASH;

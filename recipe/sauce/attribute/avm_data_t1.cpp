@@ -107,7 +107,7 @@ hav_t havt_t1 [] =
 
     STANDARD_HTML5_ATTRIBUTES (elem_template),
 
-    { { HTML_MATH2, 0, HE_MATH_2_3_4 }, { HTML_UNDEF }, elem_tendsto, a_type },
+    { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, elem_tendsto, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_tendsto),
 
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_text, a_editable },

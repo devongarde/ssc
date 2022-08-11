@@ -36,21 +36,42 @@ lox::lox (const e_lox l)
     fred.set_lox (l);
     l_ = l;
     un_ = false;
-    vmx.at (l).lock (); }
+#ifdef RPT_LOX
+    ::std::cout << ::std::this_thread::get_id () << " trying to lock " << l_ << ::std::endl;
+#endif // RPT_LOX
+    vmx.at (l).lock ();
+#ifdef RPT_LOX
+    ::std::cout << ::std::this_thread::get_id () << " locked " << l_ << ::std::endl;
+#endif // RPT_LOX
+    }
 
 flox::flox (const e_lox l)
 {   if (! fred.started ()) return;
     PRESUME (l == lox_flox, __FILE__, __LINE__);
     PRESUME (! fred.get_flox (), __FILE__, __LINE__);
     fred.set_flox (true);
-    vmx.at (lox_flox).lock (); }
+#ifdef RPT_LOX
+   ::std::cout << ::std::this_thread::get_id () << " trying to lock flox" << ::std::endl;
+#endif // RPT_LOX
+    vmx.at (lox_flox).lock ();
+#ifdef RPT_LOX
+    ::std::cout << ::std::this_thread::get_id () << " locked flox" << ::std::endl; 
+#endif // RPT_LOX
+    }
 
 dear::dear (const e_lox l)
 {   if (! fred.started ()) return;
     PRESUME (l == lox_dear, __FILE__, __LINE__);
     PRESUME (! fred.get_dear (), __FILE__, __LINE__);
     fred.set_dear (true);
-    vmx.at (lox_dear).lock (); }
+#ifdef RPT_LOX
+    ::std::cout << ::std::this_thread::get_id () << " trying to lock dear" << ::std::endl;
+#endif // RPT_LOX
+    vmx.at (lox_dear).lock ();
+#ifdef RPT_LOX
+    |::std::cout << ::std::this_thread::get_id () << " locked dear" << ::std::endl;
+#endif // RPT_LOX
+    }
 
 void whoopsie (const e_lox l, const char * sz, const ::std::exception& e) noexcept
 {   try
@@ -64,7 +85,10 @@ lox::~lox ()
     const e_lox l = l_;
     try
     {   PRESUME (fred.get_lox () == l_, __FILE__, __LINE__);
-        l_ = lox_none;
+#ifdef RPT_LOX
+        ::std::cout << ::std::this_thread::get_id () << " unlocking " << l_ << ::std::endl;
+#endif // RPT_LOX
+       l_ = lox_none;
         vmx.at (l).unlock ();
         fred.set_lox (lox_none);
         return; }
@@ -80,6 +104,9 @@ flox::~flox ()
 {   if (! fred.started ()) return;
     try
     {   PRESUME (fred.get_flox (), __FILE__, __LINE__);
+#ifdef RPT_LOX
+        ::std::cout << ::std::this_thread::get_id () << " unlocking flox" << ::std::endl;
+#endif // RPT_LOX
         vmx.at (lox_flox).unlock ();
         fred.set_flox (false);
         return; }
@@ -95,6 +122,9 @@ dear::~dear ()
 {   if (! fred.started ()) return;
     try
     {   PRESUME (fred.get_dear (), __FILE__, __LINE__);
+#ifdef RPT_LOX
+        ::std::cout << ::std::this_thread::get_id () << " unlocking dear" << ::std::endl;
+#endif // RPT_LOX
         vmx.at (lox_dear).unlock ();
         fred.set_dear (false);
         return; }

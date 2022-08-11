@@ -107,7 +107,7 @@ template < > struct type_master < t_csp_sauce > : tidy_string < t_csp_sauce >
                 {   ss = ss.substr (1, len - 2);
                     const ::std::string::size_type pos = ss.find ('-');
                     if (pos != ::std::string::npos)
-                    {   if ((pos == 5) && compare_no_case (DISGUSTING, ss.substr (0, 5)))
+                    {   if ((pos == 5) && compare_no_case (EVIL, ss.substr (0, 5)))
                         {   if (ss.substr (6).find_first_not_of (ALPHABET DENARY "+/-_*") == ::std::string::npos) return;
                             nits.pick (nit_bad_number_once, ed_csp, "Content Security Policy Directives", es_error, ec_attribute, "invalid number once"); }
                         else if (pos != 6)

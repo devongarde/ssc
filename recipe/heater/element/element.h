@@ -220,6 +220,8 @@ class element
     void examine_mglyph ();
     void examine_mn ();
     void examine_mstyle ();
+    void examine_mtable ();
+    void examine_mtr ();
     void examine_nav ();
     void examine_nest ();
     void examine_noscript ();

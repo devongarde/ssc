@@ -19,70 +19,45 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "css/css_cache.h"
+#include "css/css_group.h"
+#include "css/css_global.h"
 #include "url/url.h"
 #include "webpage/page.h"
 #include "feedback/nitout.h"
 #include "coop/lox.h"
 #include "utility/filesystem.h"
+#include "utility/cache.h"
 
-css_uptr css_cache;
-
-void init_css_cache ()
-{   css_cache = css_uptr (new css_cache_t); }
-
-bool css_cache_t::parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding, const bool snippet)
-{   lox l (lox_css);
-    csss_it cc = csss_.find (content);
+bool css_group_t::parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding, const bool snippet)
+{   csss_it cc = csss_.find (content);
     if (cc == csss_.cend ())
         return csss_.insert (csss_vt (content, css_ptr (new css (nits, v, content, encoding, snippet)))).second;
     VERIFY_NOT_NULL (cc -> second, __FILE__, __LINE__);
     if (cc -> second -> invalid ()) return false;
-    cc -> second -> active (true);
     return true; }
 
-bool css_cache_t::parse_file (nitpick& nits, const page& p, const url& u)
+bool css_group_t::parse_file (nitpick& nits, const page& p, const url& u)
 {   if (! u.valid ()) return false;
     nits.set_context (0, u.original ());
-    ::std::string content, ua (u.absolute ());
-    if (ss_.get () != nullptr )
-    {   lox l (lox_css);
-        auto i = ss_ -> find (ua);
-        if (i != ss_ -> cend ())
-            content = i -> second; }
-    if (content.empty ())
-    {   if (context.rpt_opens ())
-            nits.pick (nit_opening_file, es_debug, ec_css, "Loading ", absolute_name (u.original ()));
-        content = p.load_url (nits, u);
-        if (content.empty ())
-            nits.pick (nit_cannot_load_css, es_error, ec_css, "Cannot load ", quote (u.original ()), ", or it is empty");
-        if (ss_.get () == nullptr)
-        {   ss_ptr ssp (new ss_t);
-            VERIFY_NOT_NULL (ssp.get (), __FILE__, __LINE__);
-            lox l (lox_css);
-            ss_ = ssp;
-            ::std::this_thread::yield (); }
-        lox l (lox_css);
-        ss_ -> insert (ss_vt (ua, content)); }
-    if (content.empty ()) return false;
+    ::std::string content; ::std::time_t when;
+    if (! cached_url (nits, p.version (), p.get_directory (), u, content, when)) return false;
+    if (content.empty ()) return true;
     return parse (nits, p.version (), content, bom_to_encoding (get_byte_order (content)), false); }
 
-bool css_cache_t::has_id (const ::std::string& id) const
-{   lox l (lox_css);
-    for (csss_cit i = csss_.cbegin (); i != csss_.cend (); ++i)
+bool css_group_t::has_id (const ::std::string& id) const
+{   for (csss_cit i = csss_.cbegin (); i != csss_.cend (); ++i)
     {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if (i -> second -> has_id (id)) return true; }
     return false; }
 
-bool css_cache_t::note_usage (const ::std::string& id)
-{   lox l (lox_css);
-    for (auto i : csss_)
+bool css_group_t::note_usage (const ::std::string& id)
+{   for (auto i : csss_)
     {   VERIFY_NOT_NULL (i.second, __FILE__, __LINE__);
         if (i.second -> note_usage (id))
             return true; }
     return false; }
 
-void css_cache_t::report_usage (::std::ostringstream& ss) const
+void css_group_t::report_usage (::std::ostringstream& ss) const
 {   if (context.tell (es_warning))
     {   smsid_t sum;
         ::std::string cls;
@@ -100,19 +75,10 @@ void css_cache_t::report_usage (::std::ostringstream& ss) const
         if (! cls.empty ())
             ss << macro -> apply (ns_class_head) << cls << macro -> apply (ns_class_foot); } }
 
-void css_cache_t::delete_snippets ()
-{   csss_it i = csss_.begin ();
-    while (i != csss_.end ())
-    {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
-        if (i -> second -> snippet ())
-            i = csss_.erase (i);
-        else ++i; } }
-
-void css_cache_t::deactivate_all ()
-{   for (csss_it i = csss_.begin (); i != csss_.end (); ++i)
-    {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
-        i -> second -> active (false); } }
-
-void css_cache_t::post_process ()
-{   delete_snippets ();
-    deactivate_all (); }
+void css_group_t::accumulate () const
+{   if (csss_.empty ()) return;
+    lox l (lox_css);
+    for (auto i : csss_)
+    {   VERIFY_NOT_NULL (i.second, __FILE__, __LINE__);
+        const css_ptr& p = i.second;
+        p -> tally (css_global -> ho ()); } }

@@ -259,5 +259,5 @@ void element::examine_link ()
                     for (auto u : v)
                         if (! u.invalid ())
                         {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
-                            VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
-                            css_cache -> parse_file (nits (), page_, u); } } } }
+                            //VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
+                            page_.css ().parse_file (nits (), page_, u); } } } }
