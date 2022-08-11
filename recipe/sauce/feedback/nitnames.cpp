@@ -746,6 +746,10 @@ const nitname nitnames [] =
     { nit_regex, "regex" },
     { nit_fred_borked, "fred_borked" },
     { nit_kew_borked, "kew_borked" },
+    { nit_internal_cache_error, "internal_cache_error" },
+    { nit_mtr_required, "mtr_required" },
+    { nit_mtd_required, "mtd_required" },
+    { nit_bad_intent, "bad_intent" },
 
     { nit_off, "" } };
 

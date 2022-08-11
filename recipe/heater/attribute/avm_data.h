@@ -135,14 +135,14 @@ struct hav_t
     { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowindex }, \
     { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowspan }
 
-#define MATH1_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_class }, \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_id }, \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_other }, \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1 ) }, { HTML_UNDEF }, ELEM, a_style }
+#define MATH1_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS, MF) \
+    { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1 | MF ) }, { HTML_UNDEF }, ELEM, a_class }, \
+    { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1 | MF ) }, { HTML_UNDEF }, ELEM, a_id }, \
+    { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1 | MF ) }, { HTML_UNDEF }, ELEM, a_other }, \
+    { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1 | MF ) }, { HTML_UNDEF }, ELEM, a_style }
 
 #define MATH1_STANDARD_ATTRIBUTES(ELEM) \
-    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, 0)
+    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, 0, 0)
 
 #define MATH1_FONT_ATTRIBUTES(ELEM) \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_colour }, \
@@ -186,77 +186,77 @@ struct hav_t
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowlines }, \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowspacing }
 
-#define MATH2_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
-    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_2 ) ), \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xlinkhref }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xlinktype }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xmlns }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_xref }
+#define MATH2_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS, MF) \
+    MATH1_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS, ( H2_MATH_2 | MF ) ), \
+    { { HTML_MATH2, 0, FLAGS, ( H2_MATH_2 | MF ) }, { HTML_UNDEF }, ELEM, a_xlinkhref }, \
+    { { HTML_MATH2, 0, FLAGS, ( H2_MATH_2 | MF ) }, { HTML_UNDEF }, ELEM, a_xlinktype }, \
+    { { HTML_MATH2, 0, FLAGS, ( H2_MATH_2 | MF ) }, { HTML_UNDEF }, ELEM, a_xmlns }, \
+    { { HTML_MATH2, 0, FLAGS, ( H2_MATH_2 | MF ) }, { HTML_UNDEF }, ELEM, a_xref }
 
 #define MATH2_STANDARD_ATTRIBUTES(ELEM) \
-    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, 0)
+    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, 0, 0)
 
-#define MATH2_DEFS_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH1, 0, ( FLAGS | HE_MATH_1_2 ) }, { HTML_UNDEF }, ELEM, a_definitionurl }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_encoding }, \
-    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
+#define MATH2_DEFS_ATTRIBUTES_EX(ELEM, FLAGS, MF) \
+    { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1_2 | MF ) }, { HTML_UNDEF }, ELEM, a_definitionurl }, \
+    { { HTML_MATH2, 0, FLAGS, ( H2_MATH_2 | MF ) }, { HTML_UNDEF }, ELEM, a_encoding }, \
+    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS, H2_MATH_2)
 
 #define MATH2_DEFS_ATTRIBUTES(ELEM) \
-    MATH2_DEFS_ATTRIBUTES_EX (ELEM, 0)
+    MATH2_DEFS_ATTRIBUTES_EX (ELEM, 0, 0)
 
-#define MATH2_FONT_ATTRIBUTES_EX(ELEM, FLAGS) \
+#define MATH2_FONT_ATTRIBUTES_EX(ELEM, FLAGS, MF) \
     MATH1_FONT_ATTRIBUTES (ELEM), \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathsize }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathvariant }
+    { { HTML_MATH2, 0, FLAGS, ( MF | H2_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
+    { { HTML_MATH2, 0, FLAGS, ( MF | H2_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
+    { { HTML_MATH2, 0, FLAGS, ( MF | H2_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathsize }, \
+    { { HTML_MATH2, 0, FLAGS, ( MF | H2_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_mathvariant }
 
 #define MATH2_FONT_ATTRIBUTES(ELEM) \
-    MATH2_FONT_ATTRIBUTES_EX (ELEM,0) \
+    MATH2_FONT_ATTRIBUTES_EX (ELEM, 0, 0) \
 
-#define MATH2_TABLE_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_columnwidth }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_minlabelspacing }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_side }, \
-    { { HTML_MATH2, 0, ( FLAGS | HE_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_width }, \
+#define MATH2_TABLE_ATTRIBUTES_EX(ELEM, FLAGS, MF) \
+    { { HTML_MATH2, 0, FLAGS, ( MF | H2_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_columnwidth }, \
+    { { HTML_MATH2, 0, FLAGS, ( MF | H2_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_minlabelspacing }, \
+    { { HTML_MATH2, 0, FLAGS, ( MF | H2_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_side }, \
+    { { HTML_MATH2, 0, FLAGS, ( MF | H2_MATH_2 ) }, { HTML_UNDEF }, ELEM, a_width }, \
     MATH1_TABLE_ATTRIBUTES (ELEM)
 
 #define MATH2_TABLE_ATTRIBUTES(ELEM) \
     MATH2_TABLE_ATTRIBUTES_EX (ELEM, 0)
 
 #define MATH3_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH3, 0, ( FLAGS | HE_MATH_3_4 ) }, { HTML_UNDEF }, ELEM, a_href }, \
-    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_3_4 ) )
+    { { HTML_MATH3, 0, FLAGS, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_href }, \
+    MATH2_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS, H2_MATH_3_4 )
 
 #define MATH3_STANDARD_ATTRIBUTES(ELEM) \
     MATH3_STANDARD_ATTRIBUTES_EX (ELEM, 0)
 
 #define MATH3_DEFS_ATTRIBUTES_EX(ELEM, FLAGS) \
-    MATH2_DEFS_ATTRIBUTES_EX (ELEM, ( FLAGS | HE_MATH_3_4 ) ), \
+    MATH2_DEFS_ATTRIBUTES_EX (ELEM, FLAGS, H2_MATH_3_4), \
     MATH3_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
 
 #define MATH3_DEFS_ATTRIBUTES(ELEM) \
     MATH3_DEFS_ATTRIBUTES_EX (ELEM, 0)
 
 #define MATH3_FONT_ATTRIBUTES(ELEM) \
-    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_dir }, \
-    MATH2_FONT_ATTRIBUTES_EX (ELEM, HE_MATH_3_4)
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_dir }, \
+    MATH2_FONT_ATTRIBUTES_EX (ELEM, 0, H2_MATH_3_4)
 
 #define MATH3_TABLE_ATTRIBUTES(ELEM) \
-    MATH2_TABLE_ATTRIBUTES_EX (ELEM, HE_MATH_3_4)
+    MATH2_TABLE_ATTRIBUTES_EX (ELEM, 0, H2_MATH_3_4)
 
 #define MATH3_PRES_ATTRIBUTES_EX(ELEM, FLAGS) \
-    { { HTML_MATH3, 0, ( FLAGS | HE_MATH_3_4 ) }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
-    { { HTML_MATH3, 0, ( FLAGS | HE_MATH_3_4 ) }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
+    { { HTML_MATH3, 0, FLAGS, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
+    { { HTML_MATH3, 0, FLAGS, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
     MATH3_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
 
 #define MATH3_PRES_ATTRIBUTES(ELEM) \
     MATH3_PRES_ATTRIBUTES_EX (ELEM, 0)
 
 #define MATH3_TOKEN_ATTRIBUTES(ELEM) \
-    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_dir }, \
-    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathsize }, \
-    { { HTML_MATH3, 0, HE_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathvariant }
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_dir }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathsize }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathvariant }
 
 #define MATH3_LINEINDENT_ATTRIBUTES(ELEM) \
     { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalign }, \
@@ -270,6 +270,14 @@ struct hav_t
     { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreakmultichar }, \
     { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreakstyle }, \
     { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_lineleading }
+
+#define MATH4_PRES_ATTRIBUTES_EX(ELEM, FLAGS) \
+    { { HTML_MATH4_22, 0, FLAGS, H2_MATH_4_22 }, { HTML_UNDEF }, ELEM, a_arg }, \
+    { { HTML_MATH4_22, 0, FLAGS, H2_MATH_4_22 }, { HTML_UNDEF }, ELEM, a_intent }, \
+    MATH3_PRES_ATTRIBUTES_EX (ELEM, FLAGS)
+
+#define MATH4_PRES_ATTRIBUTES(ELEM) \
+    MATH4_PRES_ATTRIBUTES_EX (ELEM, 0)
 
 #define RDF_ATTRIBUTES(ELEM) \
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_about }, \

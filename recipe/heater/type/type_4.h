@@ -96,6 +96,9 @@ template < > struct type_master < t_effect > : four_value < t_effect, e_effect, 
 template < > struct type_master < t_frame4 > : four_value < t_frame4, e_frame4, sz__blank, sz__parent, sz__self, sz__top >
 { using four_value < t_frame4, e_frame4, sz__blank, sz__parent, sz__self, sz__top > :: four_value; };
 
+template < > struct type_master < t_intent_hint > : four_value < t_intent_hint, e_intent_hint, sz_infix, sz_postfix, sz_prefix, sz_silent >
+{ using four_value < t_intent_hint, e_intent_hint, sz_infix, sz_postfix, sz_prefix, sz_silent > :: four_value; };
+
 template < > struct type_master < t_larnalign > : four_value < t_larnalign, e_larnalign, sz_left, sz_all, sz_right, sz_none >
 { using four_value < t_larnalign, e_larnalign, sz_left, sz_all, sz_right, sz_none > :: four_value; };
 

@@ -49,7 +49,9 @@ void element::examine_math ()
     switch (mv)
     {   case math_2 : break;
         case math_3 :
-        case math_4 :
+        case math_4_20 :
+        case math_core_22 :
+        case math_4_22 :
             if (a_.known (a_macros))
                 pick (nit_deprecated_attribute, ed_math_3, "2.2.2 Deprecated Attributes", es_warning, ec_attribute, "the attribute MACROS is deprecated in MathML 3");
             if (a_.known (a_mode))
@@ -374,6 +376,16 @@ void element::examine_mstyle ()
     bs &= own_attributes_;
     if (bs.any ())
         pick (nit_deprecated_attribute, es_warning, ec_attribute, "the ...MATHSPACE attributes are deprecated in MathML 3"); }
+
+void element::examine_mtable ()
+{   if (page_.version ().math_version () < math_4_22) return;
+    if (! descendant_elements_.test (elem_mtr))
+        pick (nit_mtr_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTABLE> requires <MTR> children"); }
+
+void element::examine_mtr ()
+{   if (page_.version ().math_version () < math_4_22) return;
+    if (! descendant_elements_.test (elem_mtd))
+        pick (nit_mtd_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTR> requires <MTD> children"); }
 
 void element::examine_nav ()
 {   if (has_this_descendant (elem_main))

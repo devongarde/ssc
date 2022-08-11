@@ -735,6 +735,7 @@ PASS ../toast/SVG/1.1/svg11.html
 579 use_quote_code
 585 svg_version
 587 use_double_quote_code
+588 class_microformat_property
 606 svg_version
 608 use_double_quote_code
 624 svg_version
@@ -965,6 +966,7 @@ PASS ../toast/SVG/1.1/use-7.svg
 1 xhtml_1_1
 5 svg_version
 6 use_quote_code
+10 unrecognised_value
 
 PASS ../toast/SVG/1.1/use-8.svg
 0 title_required

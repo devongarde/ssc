@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type_class.h"
 #include "microformat/def.h"
+#include "element/element.h"
+#include "webpage/page.h"
 
 struct symbol_entry < html_version, e_class > class_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, H1_ATOM, h1_atom },
@@ -317,3 +319,7 @@ bool check_class_spelling (nitpick& nits, const html_version& , const ::std::str
     else if (original == "h-calendar") nits.pick (nit_confusion, es_warning, ec_microformat, quote (s), ": it's " H_EVENT ", not h-calendar");
     else return false;
     return true; }
+
+bool note_class_usage (element* p, const ::std::string& s)
+{   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+    return p -> get_page ().css ().note_usage (s); }

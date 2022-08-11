@@ -36,6 +36,9 @@ template < > struct type_master < t_base > : public numeric_value < t_base, unsi
         else if (numeric_value < t_base, unsigned int > :: good ())
         {   if (v.math_version () < math_2) return;
             if ((value_ >= 2) && (value_ <= 36)) return;
+            if (v.math_version () >= math_4_22)
+            {   nits.pick (nit_base, ed_math_4_22, "4.2.1.3 Non-Strict uses of <cn>", es_warning, ec_type, "rendering of a value of BASE greater than 36 is browser dependent");
+                return; }
             nits.pick (nit_base, ed_math_2, "4.4.1.1 Number (cn)", es_error, ec_type, quote (s), " is not between 2 and 36 (inclusive)"); }
         numeric_value < t_base, unsigned int > :: status (s_invalid); } };
 

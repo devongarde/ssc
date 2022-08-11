@@ -165,9 +165,6 @@
     <Filter Include="Toast\Math\3">
       <UniqueIdentifier>{5dc91c69-1191-40ef-8952-4b40e633f412}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Math\4">
-      <UniqueIdentifier>{c3cee7fd-cbd5-4066-8b90-6dd41186da92}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Microdata">
       <UniqueIdentifier>{4a8633ad-0984-4735-a7a1-011003b7d800}</UniqueIdentifier>
     </Filter>
@@ -939,6 +936,18 @@
     <Filter Include="Toast\Living\jul22">
       <UniqueIdentifier>{09ea154b-f45f-4204-a0d6-112e8e9f01e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Math\4-20">
+      <UniqueIdentifier>{c3cee7fd-cbd5-4066-8b90-6dd41186da92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Math\4-22">
+      <UniqueIdentifier>{936f87da-2497-48be-b037-ce21b626bd80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Math\4-22-core">
+      <UniqueIdentifier>{918d08b8-d873-4b82-b4e7-2daedfdb08ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\blob">
+      <UniqueIdentifier>{9d6f7286-4993-4233-b59f-851f61599889}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -957,9 +966,6 @@
       <Filter>Heater\attribute</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\css\css.h">
-      <Filter>Heater\css</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\css\css_cache.h">
       <Filter>Heater\css</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\element\element_attribute.h">
@@ -1475,6 +1481,18 @@
     <ClInclude Include="..\third\date\tz_private.h">
       <Filter>Third Party\Howard Hinnant Date</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\utility\cache.h">
+      <Filter>Heater\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\coop\tls.h">
+      <Filter>Heater\coop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_global.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_group.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1490,9 +1508,6 @@
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\css_cache.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_attributes.cpp">
@@ -1968,6 +1983,18 @@
     </ClCompile>
     <ClCompile Include="..\third\date\tz.cpp">
       <Filter>Third Party\Howard Hinnant Date</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\utility\cache.cpp">
+      <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_intent.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_global.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_group.cpp">
+      <Filter>Sauce\css</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -17736,72 +17763,6 @@
     <None Include="..\toast\living\apr21\imedia.html">
       <Filter>Toast\Living\apr21</Filter>
     </None>
-    <None Include="..\toast\math\4\math9-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math10-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math11-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math12-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math13-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math14-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math15-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math16-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math17-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math18-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math19-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\index.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math.conf">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math.spec">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math1-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math2-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math3-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math4-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math5-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math6-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math7-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
-    <None Include="..\toast\math\4\math8-example.html">
-      <Filter>Toast\Math\4</Filter>
-    </None>
     <None Include="..\toast\snippet\simple\pre.bat">
       <Filter>Toast\Snippet\Simple</Filter>
     </None>
@@ -25872,6 +25833,138 @@
     <None Include="..\toast\living\jul22\ww-10.html">
       <Filter>Toast\Living\jul22</Filter>
     </None>
+    <None Include="..\toast\math\4-20\index.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math.conf">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math.spec">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math1-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math2-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math3-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math4-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math5-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math6-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math7-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math8-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math9-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math10-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math11-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math12-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math13-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math14-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math15-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math16-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math17-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math18-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-20\math19-example.html">
+      <Filter>Toast\Math\4-20</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\index.html">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\math.conf">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\math.spec">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\math\4-22-core\index.html">
+      <Filter>Toast\Math\4-22-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-22-core\math.conf">
+      <Filter>Toast\Math\4-22-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-22-core\math.spec">
+      <Filter>Toast\Math\4-22-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-22-core\core-1.html">
+      <Filter>Toast\Math\4-22-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\math2-example.html">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\math3-example.html">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\math4-example.html">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\math5-example.html">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\math6-example.html">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\math7-example.html">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\math\4-22\math2-example.xhtml">
+      <Filter>Toast\Math\4-22</Filter>
+    </None>
+    <None Include="..\toast\other\blob\harris-none.pdf">
+      <Filter>Toast\Other\blob</Filter>
+    </None>
+    <None Include="..\toast\other\blob\harris-truth.pdf">
+      <Filter>Toast\Other\blob</Filter>
+    </None>
+    <None Include="..\toast\other\blob\index.html">
+      <Filter>Toast\Other\blob</Filter>
+    </None>
+    <None Include="..\toast\other\blob\blob.conf">
+      <Filter>Toast\Other\blob</Filter>
+    </None>
+    <None Include="..\toast\other\blob\blob.spec">
+      <Filter>Toast\Other\blob</Filter>
+    </None>
+    <None Include="..\toast\other\blob\css-good.css">
+      <Filter>Toast\Other\blob</Filter>
+    </None>
+    <None Include="..\toast\other\blob\europe.pdf">
+      <Filter>Toast\Other\blob</Filter>
+    </None>
+    <None Include="..\toast\other\blob\harris-brexit.pdf">
+      <Filter>Toast\Other\blob</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -26227,6 +26320,96 @@
     </Image>
     <Image Include="..\toast\coop\corrupt\smalllogo.jpg">
       <Filter>Toast\coop\corrupt</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\mere-small.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\meta.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\nye-small.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\olas.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\placeholder.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\plein.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\shine-small.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smallantwerp.png">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smallbtb.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smallbtbkfs.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smalldefense.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smalleurope.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smallfs.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smallmetaverse.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smallplaceholder.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smallplein.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smallsmoke.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\smoke-cover.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\squareantwerp.png">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\squaremeta.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\squareplaceholder.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\ufo-small.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\25-small.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\7595.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\antwerp.png">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\A-small.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\autumn-small.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\defense.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\defense-small.jpg">
+      <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\blob\fs.jpg">
+      <Filter>Toast\Other\blob</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

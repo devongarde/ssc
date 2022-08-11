@@ -30,16 +30,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     return msg; }
 
 [[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line)
-{   DBG_ASSERT (false);
-    ::std::string msg ("null dereference of ");
+{   ::std::string msg ("null dereference of ");
     msg += var;
     msg += file_line (fn, line);
     ::std::cerr << "\n" << msg << "\n";
     throw ::std::runtime_error (msg); }
 
 [[noreturn]] void throw_bad_presumption (const char* const x, const char* const fn, const ::std::size_t line)
-{   DBG_ASSERT (false);
-    ::boost::filesystem::path p (fn);
+{   ::boost::filesystem::path p (fn);
     ::std::string msg ("presumption " );
     msg += quote (x);
     msg += ::std::string (" failed");
@@ -48,15 +46,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     throw ::std::runtime_error (msg); }
 
 [[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line)
-{   DBG_ASSERT (false);
-    ::std::string msg ("inconsistent internal state");
+{   ::std::string msg ("inconsistent internal state");
     msg += file_line (fn, line);
     ::std::cerr << "\n" << msg << "\n";
     throw ::std::runtime_error (msg); }
 
 [[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line) noexcept
-{   DBG_ASSERT (false);
-    try
+{   try
     {   ::std::string msg ("inconsistent internal state");
         msg += file_line (fn, line);
         ::std::cerr << "\n" << msg << "\n"; }

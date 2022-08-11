@@ -271,7 +271,7 @@ PASS ../toast/SVG/2.0/styling-1.svg
 PASS ../toast/SVG/2.0/styling-2.svg
 0 title_required
 1 xhtml_5_0
-3 url_not_found rel_head cannot_open cannot_load_css
+3 url_not_found rel_head url_not_found
 
 PASS ../toast/SVG/2.0/styling-3.html
 0 charset_mismatch charset_used charset_invalid

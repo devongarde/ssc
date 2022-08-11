@@ -37,9 +37,3 @@ void output_streams_t::init (nitpick& nits, const ::std::string& s)
 ::std::string output_streams_t::ensane (const ::std::string& s) const
 {   if (context.cgi ()) return enwotsit (s);
     return s; }
-
-void output_streams_t::dot ()
-{   if (context.progress ())
-        if (dot_ == INT_MAX) dot_ = 0;
-        else if ((++dot_ % 100) == 0)
-        {   ::std::cout << "."; ::std::cout.flush (); } }

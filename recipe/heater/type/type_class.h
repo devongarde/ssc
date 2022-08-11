@@ -36,6 +36,7 @@ constexpr ::std::size_t class_size = static_cast < ::std::size_t > (c_error + 1)
 constexpr ::std::size_t vocab_size = static_cast < ::std::size_t > (h_aggregate + 1);  // not last minus first because of c_context etc.
 
 bool check_class_spelling (nitpick& nits, const html_version& v, const ::std::string& original);
+bool note_class_usage (element* p, const ::std::string& s);
 
 template < > inline void enum_n < t_class, e_class > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   enum_base < e_class, t_class > :: original_ = s;
@@ -55,9 +56,9 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
         if (is_whatwg_class (t.get ()))
         {   nits.pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_comment, ec_attribute, "FYI, ", quote (s), " was a draft HTML 5 standard class name.");
             if ((v.mjr () != HTML_2007) || (v.mnr () >= HTML_JUL)) t.status (s_invalid); }
-        VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
+        VERIFY_NOT_NULL (box (), __FILE__, __LINE__);
         if (t.invalid ())
-            if (css_cache -> note_usage (s))
+            if (note_class_usage (box (), s))
             {   nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", quote (s), " recognised");
                 t.status (s_good); }
             else

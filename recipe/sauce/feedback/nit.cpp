@@ -148,7 +148,8 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_math_1 : return "MathML 1.01";
         case ed_math_2 : return "MathML 2 2nd Ed.";
         case ed_math_3 : return "MathML 3 2nd Ed.";
-        case ed_math_4 : return "MathML 4";
+        case ed_math_4_20 : return "MathML 4 (Jan 2019 draft)";
+        case ed_math_4_22 : return "MathML 4 (Aug 2022 draft)";
         case ed_mimetype : return "IANA media types";
         case ed_rdfa : return "RDFa";
         case ed_rdfa_c : return "RDFa Context";
@@ -241,7 +242,8 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_math_1 : return "MathML 1.01";
         case ed_math_2 : return "MathML 2.0 Second Edition";
         case ed_math_3 : return "MathML 3.0 Second Edition";
-        case ed_math_4 : return "MathML 4.0, draft, January 2019";
+        case ed_math_4_20 : return "MathML 4.0, draft, January 2019";
+        case ed_math_4_22 : return "MathML 4.0, draft, August 2022";
         case ed_iso_8859_1 : return "ISO/IEC 8859-1:1998";
         case ed_ecma : return "ECMAScript 2022 Language Specification, 22.2.1 Patterns, March 2021";
         case ed_mimetype : return "IANA Media Types, February 2019";

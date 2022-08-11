@@ -179,6 +179,8 @@ void element::post_examine_element ()
         case elem_mstack : check_mscarries_pos (); break;
         case elem_msubsup :
         case elem_munderover : check_math_children (3); break;
+        case elem_mtable : examine_mtable (); break;
+        case elem_mtr : examine_mtr (); break;
         case elem_nav : examine_nav (); break;
         case elem_noscript : examine_noscript (); break;
         case elem_object : examine_object (); break;
@@ -273,8 +275,7 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
             {   url u (node_.nits (), node_.version (), node_.text ());
                 if (! u.invalid ())
                 {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
-                    VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
-                    css_cache -> parse_file (node_.nits (), page_, u); } }
+                    page_.css ().parse_file (node_.nits (), page_, u); } }
             break;
         case elem_faux_cdata :
             if ((flags & EP_NOSPELL) == 0)

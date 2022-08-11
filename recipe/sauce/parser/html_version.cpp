@@ -41,11 +41,13 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
     {   y = HTML_LATEST_YEAR; m = HTML_LATEST_MONTH; }
     PRESUME ((m > 0) && (m < 13), __FILE__, __LINE__);
     set_mjr (::gsl::narrow_cast <unsigned short> (y), ::gsl::narrow_cast <unsigned short> (m * 16));
-    if (no_ext (MATH_MASK))
-        if (mjr () <= HTML_2010) set_ext (HE_MATH_1);
-        else if (mjr () <= HTML_2014) set_ext (HE_MATH_2);
-        else if (mjr () <= HTML_2019) set_ext (HE_MATH_3);
-        else set_ext (HE_MATH_4);
+    if (no_ext2 (MATH_MASK))
+        if (mjr () <= HTML_2010) set_ext2 (H2_MATH_1);
+        else if (mjr () <= HTML_2014) set_ext2 (H2_MATH_2);
+        else if (mjr () <= HTML_2020) set_ext2 (H2_MATH_3);
+        else if (mjr () <= HTML_2021) set_ext2 (H2_MATH_4_20);
+        else if (mjr () <= HTML_2022) set_ext2 (H2_MATH_C_22);
+        else set_ext2 (H2_MATH_4_22);
     if (no_ext (SVG_MASK))
         if (*this >= html_apr21) set_ext (HE_SVG_21);
         else if (*this >= html_5_3) set_ext (HE_SVG_20);
@@ -142,7 +144,7 @@ void html_version::init (const unsigned short mjr)
     if (frameset ()) res << "/frameset";
     if (transitional ()) res << "/transitional";
     if (has_svg ()) res << "/SVG-" << type_master < t_svg_version > :: name (svg_version ());
-    if (has_math ()) res << "/MathML-" << math_version ();
+    if (has_math ()) res << "/MathML-" << math_version_name ();
     if (has_xlink ()) res << "/xLink";
     if (has_rdfa ()) res << "/rdfa";
     if (chrome ()) res << "/Chrome";
@@ -250,19 +252,19 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_math1 :
                     if (note_parsed_version (nits, nit_math, html_4_0, "HTML 4.0 with MathML 1"))
-                    {   set_ext (HE_MATH_1); found_html = true; }
+                    {   set_ext2 (H2_MATH_1); found_html = true; }
                     break;
                 case doc_math2 :
                     if (note_parsed_version (nits, nit_math, xhtml_1_0, "XHTML 1.0 with MathML 2"))
-                    {   set_ext (HE_MATH_2); found_html = true; }
+                    {   set_ext2 (H2_MATH_2); found_html = true; }
                     break;
                 case doc_math3 :
                     if (note_parsed_version (nits, nit_math, html_5_0, "HTML 5.0 with MathML 3"))
-                    {   set_ext (HE_MATH_3); found_html = true; }
+                    {   set_ext2 (H2_MATH_3); found_html = true; }
                     break;
                 case doc_math4 :
                     if (note_parsed_version (nits, nit_math, html_apr21, "Living Standard (April 2021) with MathML 4"))
-                    {   set_ext (HE_MATH_4); found_html = true; }
+                    {   set_ext2 (H2_MATH_4); found_html = true; }
                     break;
                 case doc_svg10 :
                     if (note_parsed_version (nits, nit_svg, xhtml_svg_1_0, "HTML 4.00 with SVG 1.0"))
@@ -281,16 +283,16 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     {   svg_version (sv_2_1); found_html = true; }
                     break;
                 case doc_compound_m :
-                    if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_MATH_2), "XHTML 1.1 with MathML 2"))
-                    {   set_ext (HE_MATH_2); math_version (math_2); found_html = true; }
+                    if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, 0, H2_MATH_2), "XHTML 1.1 with MathML 2"))
+                    {   set_ext2 (H2_MATH_2); math_version (math_2); found_html = true; }
                     break;
                 case doc_compound_1_0 :
-                    if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_SVG_10 | HE_MATH_2), "XHTML 1.1 with SVG 1.0 & MathML 2"))
-                    {   set_ext (HE_MATH_2); set_ext (HE_SVG_10); math_version (math_2); svg_version (sv_1_0); found_html = true; }
+                    if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_SVG_10, H2_MATH_2), "XHTML 1.1 with SVG 1.0 & MathML 2"))
+                    {   set_ext2 (H2_MATH_2); set_ext (HE_SVG_10); math_version (math_2); svg_version (sv_1_0); found_html = true; }
                     break;
                 case doc_compound_1_1 :
-                    if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_SVG_11 | HE_MATH_2), "XHTML 1.1 with SVG 1.1 & MathML 2"))
-                    {   set_ext (HE_MATH_2); set_ext (HE_SVG_11); math_version (math_2); svg_version (sv_1_1); found_html = true; }
+                    if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_SVG_11, H2_MATH_2), "XHTML 1.1 with SVG 1.1 & MathML 2"))
+                    {   set_ext2 (H2_MATH_2); set_ext (HE_SVG_11); math_version (math_2); svg_version (sv_1_1); found_html = true; }
                     break;
                 case doc_xhtml10_basic :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Basic")) set_flags (HV_BASIC);
@@ -447,13 +449,14 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
 bool html_version::deprecated (const html_version& current) const
 {   switch (context.math_version ())
     {   case math_2 :
-            if (current.all_ext (HE_M2_DEPRECAT)) return true;
+            if (current.all_ext (H2_M2_DEPRECAT)) return true;
             break;
         case math_3 :
-            if (current.all_ext (HE_M3_DEPRECAT)) return true;
+            if (current.all_ext (H2_M3_DEPRECAT)) return true;
             break;
-        case math_4 :
-            if (current.all_ext (HE_M4_DEPRECAT)) return true;
+        case math_4_20 :
+        case math_4_22 :
+            if (current.all_ext (H2_M4_DEPRECAT)) return true;
             break;
         default : break; }
     if (current.rdf_version () == rdf_deprecated) return true;
@@ -531,6 +534,16 @@ bool is_excluded (const html_version& lhs, const html_version& rhs, const flags_
     a &= b;
     return (a == 0); }
 
+bool is_excluded2 (const html_version& lhs, const html_version& rhs, const flags_t mask)
+{   PRESUME (mask != 0, __FILE__, __LINE__);
+    // have encountered occasional bugs with 64 bit manipulation on some platforms (a & b), but the &= operator appears reliable, so ...
+    flags_t a = mask, b = mask;
+    a &= lhs.ext2 ();
+    b &= rhs.ext2 ();
+    if ((a == 0) || (b == 0)) return false;
+    a &= b;
+    return (a == 0); }
+
 e_emi rdfa_conflict (const html_version& lhs, const html_version& rhs)
 {   PRESUME (! lhs.is_b4_4 (), __FILE__, __LINE__);
     PRESUME (rhs.has_rdfa (), __FILE__, __LINE__);
@@ -542,7 +555,7 @@ e_emi math_conflict (const html_version& lhs, const html_version& rhs)
 {   PRESUME (! lhs.is_b4_4 (), __FILE__, __LINE__);
     PRESUME (rhs.has_math (), __FILE__, __LINE__);
     if (! lhs.has_math ()) return emi_math;
-    if (is_excluded (lhs, rhs, MATH_MASK)) return emi_not_this_math;
+    if (is_excluded2 (lhs, rhs, MATH_MASK)) return emi_not_this_math;
     return emi_good; }
 
 e_emi svg_conflict (const html_version& lhs, const html_version& rhs)
@@ -624,11 +637,22 @@ void html_version::svg_version (const e_svg_version v) noexcept
         default : break; } }
 
 e_math_version html_version::math_version () const noexcept
-{   if (all_ext (HE_MATH_4)) return math_4;
-    if (all_ext (HE_MATH_3)) return math_3;
-    if (all_ext (HE_MATH_2)) return math_2;
-    if (all_ext (HE_MATH_1)) return math_1;
+{   if (all_ext2 (H2_MATH_4_22)) return math_4_22;
+    if (all_ext2 (H2_MATH_C_22)) return math_core_22;
+    if (all_ext2 (H2_MATH_4_20)) return math_4_20;
+    if (all_ext2 (H2_MATH_3)) return math_3;
+    if (all_ext2 (H2_MATH_2)) return math_2;
+    if (all_ext2 (H2_MATH_1)) return math_1;
     return math_none; }
+
+::std::string html_version::math_version_name () const
+{   if (all_ext2 (H2_MATH_4_22)) return "4-Aug22";
+     if (all_ext2 (H2_MATH_C_22)) return "core-May22";
+    if (all_ext2 (H2_MATH_4_20)) return "4-Dec20";
+    if (all_ext2 (H2_MATH_3)) return "3";
+    if (all_ext2 (H2_MATH_2)) return "2";
+    if (all_ext2 (H2_MATH_1)) return "1";
+    return ""; }
 
 e_jsonld_version html_version::jsonld_version () const noexcept
 {   if (all_ext2 (H2_JSONLD_1_1)) return jsonld_1_1;
@@ -636,12 +660,14 @@ e_jsonld_version html_version::jsonld_version () const noexcept
     return jsonld_none; }
 
 void html_version::math_version (const e_math_version v) noexcept
-{   reset_ext (MATH_MASK);
+{   reset_ext2 (MATH_MASK);
     switch (v)
-    {   case math_1 : set_ext (HE_MATH_1); break;
-        case math_2 : set_ext (HE_MATH_2); break;
-        case math_3 : set_ext (HE_MATH_3); break;
-        case math_4 : set_ext (HE_MATH_4); break;
+    {   case math_1 : set_ext2 (H2_MATH_1); break;
+        case math_2 : set_ext2 (H2_MATH_2); break;
+        case math_3 : set_ext2 (H2_MATH_3); break;
+        case math_4_20 : set_ext2 (H2_MATH_4_20); break;
+        case math_core_22 : set_ext2 (H2_MATH_C_22); break;
+        case math_4_22 : set_ext2 (H2_MATH_4_22); break;
         default : break; } }
 
 void html_version::jsonld_version (const e_jsonld_version v) noexcept
@@ -835,7 +861,9 @@ html_version get_min_version (const e_math_version e) noexcept
     {   case math_1 : return html_math_1;
         case math_2 : return xhtml_math_2;
         case math_3 : return html_math_3;
-        case math_4 : return html_math_4;
+        case math_4_20 : return html_math_4_20;
+        case math_core_22 : return html_math_core_22;
+        case math_4_22 : return html_math_4_22;
         default : return html_0; } }
 
 html_version get_min_version (const e_jsonld_version e) noexcept

@@ -137,23 +137,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HV_DEPRECATED_MASK 0x0000000FFF800000
 
-#define HE_MATH_1       0x0000000000000001
-#define HE_MATH_2       0x0000000000000002
-#define HE_MATH_3       0x0000000000000004
-#define HE_MATH_4       0x0000000000000008
-
-#define HE_MATH_1_2     ( HE_MATH_1 | HE_MATH_2 )
-#define HE_MATH_2_3_4   ( HE_MATH_2 | HE_MATH_3 | HE_MATH_4 )
-#define HE_MATH_3_4     ( HE_MATH_3 | HE_MATH_4 )
-#define HE_MATH         ( HE_MATH_1_2 | HE_MATH_3_4 )
-#define MATH_MASK       HE_MATH
-
-#define HE_SVG_10       0x0000000000000010
-#define HE_SVG_11       0x0000000000000020
-#define HE_SVG_12_TINY  0x0000000000000040
-#define HE_SVG_12_FULL  0x0000000000000080
-#define HE_SVG_20       0x0000000000000100
-#define HE_SVG_21       0x0000000000000200
+#define HE_SVG_10       0x0000000000000001
+#define HE_SVG_11       0x0000000000000002
+#define HE_SVG_12_TINY  0x0000000000000004
+#define HE_SVG_12_FULL  0x0000000000000008
+#define HE_SVG_20       0x0000000000000010
+#define HE_SVG_21       0x0000000000000020
 
 #define HE_SVG_12       ( HE_SVG_12_TINY | HE_SVG_12_FULL )
 #define HE_SVG_10_11    ( HE_SVG_10 | HE_SVG_11 )
@@ -179,8 +168,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_SVG          ( HE_SVG_1 | HE_SVG_2 )
 #define SVG_MASK        HE_SVG
 
-#define HE_XLINK_1_0    0x0000000000000400
-#define HE_XLINK_1_1    0x0000000000000800
+#define HE_XLINK_1_0    0x0000000000000100
+#define HE_XLINK_1_1    0x0000000000000200
 
 #define XLINK_MASK      ( HE_XLINK_1_0 | HE_XLINK_1_1 )
 
@@ -223,13 +212,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_GROUP_SHIFT  24
 #define HE_GROUP(XXXX)  ((flags_t) XXXX << HE_GROUP_SHIFT)
 
-#define HE_M2_DEPRECAT  0x0000000010000000
-#define HE_M3_DEPRECAT  0x0000000020000000
-#define HE_M4_DEPRECAT  0x0000000040000000
-
-#define MATH_SHIFT      0
-#define SVG_SHIFT       4
-#define XLINK_SHIFT     9
+#define SVG_SHIFT       0
+#define XLINK_SHIFT     8
 #define RDF_SHIFT       12
 
 #define HE_EXPERIMENTAL 0x0000000080000000
@@ -294,6 +278,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define JSONLD_MASK     ( H2_JSONLD_1_0 | H2_JSONLD_1_1 )
 #define JSONLD_SHIFT    0
+
+#define H2_MATH_1       0x0000000000000010
+#define H2_MATH_2       0x0000000000000020
+#define H2_MATH_3       0x0000000000000040
+#define H2_MATH_4_20    0x0000000000000080
+#define H2_MATH_C_22    0x0000000000000100
+#define H2_MATH_4_22    0x0000000000000200
+
+#define H2_MATH_4       ( H2_MATH_4_20 | H2_MATH_C_22 | H2_MATH_4_22 )
+
+#define H2_MATH_1_2     ( H2_MATH_1 | H2_MATH_2 )
+#define H2_MATH_1_2_3   ( H2_MATH_1_2 | H2_MATH_3 )
+#define H2_MATH_1_2_3_4_20 ( H2_MATH_1_2_3 | H2_MATH_4_20 )
+#define H2_MATH_2_3_4   ( H2_MATH_2 | H2_MATH_3 | H2_MATH_4 )
+#define H2_MATH_3_4_20  ( H2_MATH_3 | H2_MATH_4_20 )
+#define H2_MATH_3_4     ( H2_MATH_3 | H2_MATH_4 )
+#define H2_MATH         ( H2_MATH_1_2 | H2_MATH_3_4 )
+#define MATH_MASK       H2_MATH
+
+#define MATH_SHIFT      4
+
+#define H2_M2_DEPRECAT  0x0000000000001000
+#define H2_M3_DEPRECAT  0x0000000000002000
+#define H2_M4_DEPRECAT  0x0000000000004000
+
+
+
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS;
@@ -360,12 +371,12 @@ public:
     bool frameset () const noexcept { return all_flags (HV_FRAMESET); }
     bool ie () const noexcept { return all_ext (HE_IE); }
     bool has_jsonld () const noexcept { return any_ext2 (JSONLD_MASK); }
-    bool has_math () const noexcept { return any_ext (MATH_MASK); }
+    bool has_math () const noexcept { return any_ext2 (MATH_MASK); }
     bool has_rdfa () const noexcept { return any_ext (HE_RDFA); }
     bool has_svg () const noexcept { return any_ext (SVG_MASK); }
     bool has_xlink () const  noexcept{ return any_ext (XLINK_MASK); }
     int jsonld () const noexcept { return ::gsl::narrow_cast < int > ((ext2 () & JSONLD_MASK) >> JSONLD_SHIFT); }
-    int math () const noexcept { return ::gsl::narrow_cast < int > ((ext () & MATH_MASK) >> MATH_SHIFT); }
+    int math () const noexcept { return ::gsl::narrow_cast < int > ((ext2 () & MATH_MASK) >> MATH_SHIFT); }
     int rdfa () const noexcept { return has_rdfa (); }
     int svg () const noexcept { return ::gsl::narrow_cast < int > ((ext () & SVG_MASK) >> SVG_SHIFT); }
     ::std::size_t minargs () const noexcept { return ::gsl::narrow_cast < ::std::size_t > ((ext () & HE_MINARGS_MASK) >> HE_MINARGS_SHIFT); }
@@ -392,6 +403,7 @@ public:
     e_jsonld_version jsonld_version () const noexcept;
     void jsonld_version (const e_jsonld_version v) noexcept;
     e_math_version math_version () const noexcept;
+    ::std::string math_version_name () const;
     void math_version (const e_math_version v) noexcept;
     e_rdf_version rdf_version () const noexcept;
     void rdf_version (const e_rdf_version v) noexcept;
@@ -489,10 +501,12 @@ const html_version xhtml_2 (XHTML_2_0, HV_XHTML);
 
 const html_version html_jsonld_1_0 (HTML_JSONLD_1_0, 0, 0, H2_JSONLD_1_0);
 const html_version html_jsonld_1_1 (HTML_JSONLD_1_1, 0, 0, H2_JSONLD_1_1);
-const html_version html_math_1 (HTML_MATH1, 0, HE_MATH_1);
-const html_version xhtml_math_2 (HTML_MATH2, HV_XHTML, HE_MATH_2);
-const html_version html_math_3 (HTML_MATH3, 0, HE_MATH_1);
-const html_version html_math_4 (HTML_MATH4, 0, HE_MATH_1);
+const html_version html_math_1 (HTML_MATH1, 0, 0, H2_MATH_1);
+const html_version xhtml_math_2 (HTML_MATH2, HV_XHTML, 0, H2_MATH_2);
+const html_version html_math_3 (HTML_MATH3, 0, 0, H2_MATH_3);
+const html_version html_math_4_20 (HTML_MATH4_20, 0, 0, H2_MATH_4_20);
+const html_version html_math_core_22 (HTML_MATH4_20, 0, 0, H2_MATH_C_22);
+const html_version html_math_4_22 (HTML_MATH4_20, 0, 0, H2_MATH_4_22);
 const html_version xhtml_svg_1_0 (HTML_SVG10, HV_XHTML, HE_SVG_10);
 const html_version xhtml_svg_1_1 (HTML_SVG11, HV_XHTML, HE_SVG_11);
 const html_version xhtml_svg_1_2_tiny (HTML_SVG12, HV_XHTML, HE_SVG_12_TINY);
@@ -640,40 +654,40 @@ const html_version html_jan06 (HTML_JAN06, HV_WHATWG, HE_MICRODATA);
 const html_version html_jan07 (HTML_JAN07, HV_WHATWG, HE_MICRODATA);
 const html_version html_jul07 (HTML_JUL07, HV_WHATWG, HE_MICRODATA);
 const html_version html_jan08 (HTML_JAN08, HV_WHATWG, HE_MICRODATA);
-const html_version html_jul08 (HTML_JUL08, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jan09 (HTML_JAN09, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jul09 (HTML_JUL09, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jan10 (HTML_JAN10, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jul10 (HTML_JUL10, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jan12 (HTML_JAN12, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jul12 (HTML_JUL12, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jan13 (HTML_JAN13, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jul13 (HTML_JUL13, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jan14 (HTML_JAN14, HV_WHATWG, HE_MICRODATA | HE_MATH_2 | HE_SVG_11);
-const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_11);
-const html_version html_jan16 (HTML_JAN16, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_11);
-const html_version html_jul16 (HTML_JUL16, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_11);
-const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_11);
-const html_version html_jul17 (HTML_JUL17, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_11);
-const html_version html_jan18 (HTML_JAN18, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_11);
-const html_version html_jul18 (HTML_OCT18, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_11);
-const html_version html_oct18 (HTML_JUL18, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_20);
-const html_version html_jan19 (HTML_JAN19, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_20);
-const html_version html_jul19 (HTML_JUL19, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_20);
-const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_20);
-const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_20);
-const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MICRODATA | HE_MATH_3 | HE_SVG_21);
-const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MICRODATA | HE_MATH_4 | HE_SVG_21);
-const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MICRODATA | HE_MATH_4 | HE_SVG_21);
-const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MICRODATA | HE_MATH_4 | HE_SVG_21);
-const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MICRODATA | HE_MATH_4 | HE_SVG_21);
-const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_MATH_4 | HE_SVG_21);
-const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_MATH_4 | HE_SVG_21);
-const html_version html_5_0 (HTML_5_0, HV_W3, HE_MATH_2 | HE_SVG_11);
-const html_version html_5_1 (HTML_5_1, HV_W3, HE_MATH_2 | HE_SVG_11);
-const html_version html_5_2 (HTML_5_2, HV_W3, HE_MATH_3 | HE_SVG_11);
-const html_version html_5_3 (HTML_5_3, HV_W3, HE_MATH_3 | HE_SVG_11);
-const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MICRODATA | HE_MATH_4 | HE_SVG_21);
+const html_version html_jul08 (HTML_JUL08, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jan09 (HTML_JAN09, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jul09 (HTML_JUL09, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jan10 (HTML_JAN10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jul10 (HTML_JUL10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jan12 (HTML_JAN12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jul12 (HTML_JUL12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jan13 (HTML_JAN13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jul13 (HTML_JUL13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jan14 (HTML_JAN14, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2);
+const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3);
+const html_version html_jan16 (HTML_JAN16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3);
+const html_version html_jul16 (HTML_JUL16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3);
+const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3);
+const html_version html_jul17 (HTML_JUL17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3);
+const html_version html_jan18 (HTML_JAN18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3);
+const html_version html_jul18 (HTML_OCT18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3);
+const html_version html_oct18 (HTML_JUL18, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3);
+const html_version html_jan19 (HTML_JAN19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3);
+const html_version html_jul19 (HTML_JUL19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3);
+const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3);
+const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3);
+const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3);
+const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
+const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
+const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
+const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
+const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C_22);
+const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_22);
+const html_version html_5_0 (HTML_5_0, HV_W3, HE_SVG_11, H2_MATH_2);
+const html_version html_5_1 (HTML_5_1, HV_W3, HE_SVG_11, H2_MATH_2);
+const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3);
+const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3);
+const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
 const html_version html_default (html_jul22);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);

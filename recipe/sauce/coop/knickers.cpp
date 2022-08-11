@@ -28,3 +28,12 @@ knickers::~knickers ()
 {   if (! nits_.empty ())
     {   lox l (lox_nits);
         try { ticks_ -> merge (nits_); } catch (...) { } } }
+
+void knickers::accumulate_and_clear ()
+{   if (! nits_.empty ())
+    {   lox l (lox_nits);
+        try {
+            nits_.accumulate (*ticks_);
+            nits_.reset (); }
+        catch (...) { } } }
+

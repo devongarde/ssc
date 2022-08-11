@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_export.h"
 #include "microformat/microformat_export.h"
 #include "css/css.h"
+#include "css/css_group.h"
 #include "parser/parse_elements.h"
 #include "stats/stats.h"
 #include "parser/parse_ssi.h"
@@ -45,7 +46,7 @@ class page
     ::std::string name_;
     microdata_export md_export_;
     microformat_export mf_export_;
-    directory* directory_ = nullptr;
+    const directory* directory_ = nullptr;
     bool has_title_ = false;
     bool style_css_ = true;
     bool check_links_ = true;
@@ -61,10 +62,11 @@ class page
     url base_;
     ustr_t abbrs_;
     ::std::time_t updated_ = 0;
+    css_group_t css_;
     friend class tag;
 public:
-    page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, directory* d = nullptr);
-    page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, directory* d = nullptr);
+    page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d = nullptr);
+    page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, const directory* d = nullptr);
     explicit page (const ::std::string& content, const bool outsider = false);
     void swap (page& p);
     void reset (const page& p);
@@ -98,6 +100,8 @@ public:
     void confirm_title () noexcept { has_title_ = true; }
     void style_css (const bool b) noexcept { style_css_ = b; }
     bool style_css () const noexcept { return style_css_; }
+    css_group_t& css () { return css_; }
+    const css_group_t& css () const { return css_; }
     bool charset_defined () const noexcept { return ! charset_.empty (); }
     const ::std::string& lang () const noexcept { return lang_; }
     void lang (nitpick& nits, const html_version& v, const ::std::string& l);

@@ -167,20 +167,25 @@ int test_hypertext (nitpick& nits, const html_version& v, const url& u)
 
 int test_connection (nitpick& nits, const html_version& v, const url& u)
 {   if (u.is_usable ()) return test_hypertext (nits, v, u);
-    nits.pick (nit_protocol, es_info, ec_link, "unable to check ", u.get_component (es_scheme));
+//    nits.pick (nit_protocol, es_info, ec_link, "unable to verify ", u.get_component (es_scheme));
     return 0; }
 
 bool external::verify (nitpick& nits, const html_version& v, const url& u, int& code, bool& repeated)
 {   ::std::string ua = u.absolute ();
-    if (u.empty ()) { code = 400; return false; }
-    {   lox l (lox_external);
-        auto e = url_.find (ua);
-        repeated = (e != url_.cend ());
-        if (repeated) code = e -> second; }
-    if (! repeated)
-    {   code = test_connection (nits, v, u);
-        lox l (lox_external);
-        url_.insert (value_t (ua, code)); }
+    if (u.empty ())
+    {   code = 400; return false; }
+    if (! u.is_usable ())
+    {   nits.pick (nit_protocol, es_info, ec_link, "unable to verify ", u.get_component (es_scheme));
+        code = 0; }
+    else
+    {   {   lox l (lox_external);
+            auto e = url_.find (ua);
+            repeated = (e != url_.cend ());
+            if (repeated) code = e -> second; }
+        if (! repeated)
+        {   code = test_connection (nits, v, u);
+            lox l (lox_external);
+            url_.insert (value_t (ua, code)); } }
     if ((code >= 400) && (code < 500)) return false;
     if (! context.forwarded ()) return true;
     return ((code != 301) && (code != 308)); };   // consider checking for ids

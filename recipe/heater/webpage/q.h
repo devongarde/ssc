@@ -24,11 +24,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct q_entry
 {   nitpick* ticks_ = nullptr;
     dir_ptr dir_;
+    ::std::string page_;
     e_stage stage_ = st_init;
     q_entry () = delete;
     q_entry (const q_entry& ) = default;
     q_entry (q_entry&& ) = default;
-    explicit q_entry (nitpick* ticks, dir_ptr dir, const e_stage s) : ticks_ (ticks), dir_ (dir), stage_ (s) { }
+    explicit q_entry (nitpick* ticks, dir_ptr dir, const e_stage s, const ::std::string& page = ::std::string ()) : ticks_ (ticks), dir_ (dir), page_ (page), stage_ (s) { }
     explicit q_entry (const e_stage s) : ticks_ (nullptr), dir_ (), stage_ (s) { }
     q_entry& operator = (const q_entry& ) = default;
     q_entry& operator = (q_entry&& ) = default;
@@ -39,6 +40,7 @@ struct q_entry
     {   return ! empty (); }
     void swap (q_entry& qe) noexcept
     {   dir_.swap (qe.dir_);
+        page_.swap (qe.page_);
         ::std::swap (ticks_, qe.ticks_);
         ::std::swap (stage_, qe.stage_); } };
 

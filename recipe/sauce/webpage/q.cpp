@@ -25,13 +25,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/knickers.h"
 #include "webpage/q.h"
 
+const char* stage_name [] =
+{   "initialising ", "scanning ", "staying ", "processing ", "finishing ", "max " };
+
 bool d_q (q_entry& qe)
 {   VERIFY_NOT_NULL (qe.ticks_, __FILE__, __LINE__);
     VERIFY_NOT_NULL (qe.dir_, __FILE__, __LINE__);
     bool res = true;
     nitpick nits;
     knickers k (nits, qe.ticks_);
-    if (context.progress ()) outstr.out (qe.dir_ -> get_disk_path ().string (), " (", ::boost::lexical_cast < ::std::string > (qe.stage_), ").\n");
+    if (context.progress ())
+    {   ::std::string msg;
+        if (qe.page_.empty ())
+        {   msg = ::gsl::at (stage_name, qe.stage_);
+            msg += qe.dir_ -> get_disk_path ().string (); }
+        else
+        {   msg = "reviewing ";
+            msg += (qe.dir_ -> get_disk_path () / qe.page_).string (); }
+        msg += "\n";
+        ::std::cout << msg; }
     try
     {   switch (qe.stage_)
         {   case st_scan :
@@ -40,7 +52,8 @@ bool d_q (q_entry& qe)
                     res = false; }
                 break;
             case st_examine :
-                qe.dir_ -> examine (qe.ticks_);
+                if (qe.page_.empty ()) qe.dir_ -> examine (qe.ticks_, qe.dir_);
+                else qe.dir_ -> examine_page (qe.ticks_, qe.page_);
                 break;
             case st_finish :
                 res = false;

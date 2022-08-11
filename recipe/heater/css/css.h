@@ -26,8 +26,7 @@ class url;
 class page;
 
 class css
-{   bool active_ = false;
-    bool snippet_ = false;
+{   bool snippet_ = false;
     smsid_t ids_;
     void check_for_standard_classes (nitpick& nits, const html_version& v);
 public:
@@ -41,17 +40,14 @@ public:
         :   snippet_ (snippet)
     {   parse (nits, v, content, encoding); }
     void swap (css& c) noexcept
-    {   ::std::swap (active_, c.active_);
-        ::std::swap (snippet_, c.snippet_);
+    {   ::std::swap (snippet_, c.snippet_);
         ids_.swap (c.ids_); }
     void reset () noexcept { ids_.clear (); }
     bool invalid () const noexcept { return false; }
-    bool active () const noexcept { return active_; }
-    void active (const bool b) noexcept { active_ = b; }
     bool snippet () const noexcept { return snippet_; }
     void snippet (const bool b)  noexcept{ snippet_ = b; }
-    bool has_id (const ::std::string& id) const { return active_ && ids_.find (id) != ids_.end (); }
-    bool note_usage (const ::std::string& id);
+    bool has_id (const ::std::string& id) const { return ids_.find (id) != ids_.end (); }
+    bool note_usage (const ::std::string& id, const unsigned int n = 1);
     void tally (smsid_t& ids) const;
     bool parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding = cc_ansi); };
 

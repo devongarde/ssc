@@ -64,6 +64,7 @@ chunk 58
 corrupttitle 11
 dated 1
 first-under 70
+front 2
 gen 46
 illustration 117
 info 11

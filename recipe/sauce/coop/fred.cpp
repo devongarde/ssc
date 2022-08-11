@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/enum.h"
 #include "main/context.h"
+#include "coop/tls.h"
 #include "coop/fred.h"
 #include "webpage/q.h"
 #include "coop/kew.h"
@@ -91,6 +92,7 @@ void fred_t::abandon ()
 bool fred_t::init (nitpick& nits)
 {   PRESUME (! fred.inited (), __FILE__, __LINE__);
     const int qu = context.fred ();
+    PRESUME (qu > 0, __FILE__, __LINE__);
     if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_fred, qu, " threads");
     const ::std::thread::id f = ::std::this_thread::get_id ();
     if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_fred, "Maestro fred: ", f);
@@ -101,23 +103,24 @@ bool fred_t::init (nitpick& nits)
     for (int i = 1; i < qu; ++i)
     {   tls_ptr p (new fred_tls ());
         vtls_.at (i) = p; }
-    nitpick nuts;
-    knickers k (nuts, &nits);
-    for (int i = 1; i < qu; ++i)
-    {   try
-        {   vt_.emplace_back (::std::thread (&fred_t::fred_minion, this, &nits));
-            const ::std::thread::id d = vt_.at (vt_.size () - 1).get_id ();
-            insert_tls (i, d);
-            ::std::this_thread::yield ();
-            if (context.tell (es_detail)) nuts.pick (nit_detail, es_detail, ec_fred, "Minion fred ", i, ": ", d); }
-        catch (const ::std::system_error& e)
-        {   nuts.pick (nit_fred_borked, es_catastrophic, ec_fred, "cannot create fred, system error: ", e.what ()); return false; }
-        catch (const ::std::exception& e)
-        {   nuts.pick (nit_fred_borked, es_catastrophic, ec_fred, "cannot create fred, exception: ", e.what ()); return false; }
-        catch (...)
-        {   nuts.pick (nit_fred_borked, es_catastrophic, ec_fred, "cannot create fred: unknown exception"); return false; } }
+    if (qu > 1)
+    {   nitpick nuts;
+        knickers k (nuts, &nits);
+        for (int i = 1; i < qu; ++i)
+        {   try
+            {   vt_.emplace_back (::std::thread (&fred_t::fred_minion, this, &nits));
+                const ::std::thread::id d = vt_.at (vt_.size () - 1).get_id ();
+                insert_tls (i, d);
+                ::std::this_thread::yield ();
+                if (context.tell (es_detail)) nuts.pick (nit_detail, es_detail, ec_fred, "Minion fred ", i, ": ", d); }
+            catch (const ::std::system_error& e)
+            {   nuts.pick (nit_fred_borked, es_catastrophic, ec_fred, "cannot create fred, system error: ", e.what ()); return false; }
+            catch (const ::std::exception& e)
+            {   nuts.pick (nit_fred_borked, es_catastrophic, ec_fred, "cannot create fred, exception: ", e.what ()); return false; }
+            catch (...)
+            {   nuts.pick (nit_fred_borked, es_catastrophic, ec_fred, "cannot create fred: unknown exception"); return false; } } }
     started_ = true;
-    ::std::this_thread::yield (); 
+    ::std::this_thread::yield ();
     return true; }
 
 void fred_t::one_less () noexcept
@@ -134,4 +137,19 @@ void fred_t::done ()
     for (auto i = vt_.begin (); i != vt_.end (); ++i)
         if (i -> get_id () != ::std::this_thread::get_id ())
             if (i -> joinable ())
-                i -> join ();  }
+                i -> join (); }
+
+int fred_t::suggested ()
+{   const int hc = ::std::thread::hardware_concurrency ();
+#ifdef _MSC_VER
+    int res = hc -  1;
+#else  // _MSC_VER
+    int res = hc / 2;
+#endif // _MSC_VER
+    if (res < 2)
+        if (hc > 2) res = 2;
+        else res = 1;
+    return res; }
+
+int fred_t::no_more_than ()
+{   return ::std::thread::hardware_concurrency () * 2; }

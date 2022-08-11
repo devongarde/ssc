@@ -34,7 +34,7 @@ struct text_bits
     ::std::size_t max_wotsit_length_ = 0; };
 
 typedef ::std::unique_ptr < text_bits > tb_ptr;
-tb_ptr tb;
+tb_ptr tb; // read only after initialisation, so no locking necessary
 
 void extra_wotsit (nitpick& nits, const char* s, const char* c);
 void known_wotsit (nitpick& nits, const char* s, const char* c, const bool suggest);
@@ -155,7 +155,7 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
 {   VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
     PRESUME (! text.empty (), __FILE__, __LINE__);
     vw_t::const_iterator i = tb -> wotsit_.find (text);
-    if (i != tb -> wotsit_.end ())
+    if (i != tb -> wotsit_.cend ())
     {   PRESUME (i -> second <tb ->  wotsit_count_, __FILE__, __LINE__);
         if (! may_apply (v, wotsit_table [i -> second].first_, wotsit_table [i -> second].last_)) invalid = true;
         else known = true; } }
@@ -268,13 +268,13 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
 ::std::string get_character_code (const ::std::string& text)
 {  VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
      auto ci = tb -> symbol_code_.find (text);
-    if (ci != tb -> symbol_code_.end ()) return ci -> second;
+    if (ci != tb -> symbol_code_.cend ()) return ci -> second;
     return ::std::string (); }
 
 ::std::string get_extra (const ::std::string& text)
 {   VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
     auto ci = tb -> extras_.find (text);
-    if (ci != tb -> extras_.end ()) return get_character_code (ci -> second);
+    if (ci != tb -> extras_.cend ()) return get_character_code (ci -> second);
     return ::std::string (); }
 
 ::std::string enwotsit (const ::std::string& s)
@@ -288,7 +288,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
             default :
                 break; }
         auto ci = tb -> symbol_code_.find (::std::string (1, *i));
-        if (ci == tb -> symbol_code_.end ())
+        if (ci == tb -> symbol_code_.cend ())
             res += *i;
         else
         {   res += "&";

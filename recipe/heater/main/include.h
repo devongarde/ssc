@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 0
-#define VERSION_RELEASE 131
-#define VERSION_STRING "0.0.131"
+#define VERSION_RELEASE 132
+#define VERSION_STRING "0.0.132"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -430,6 +430,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define ALPHANUMERIC ALPHABET DDD
 #define B64BIN ALPHANUMERIC "+/= "
 #define IDS ALPHANUMERIC "_:"
+#define HYPHENATED ALPHANUMERIC "-"
 #define TEL HEX "+*()-.#*_!~'[]/ "
 #define REAL SIGNEDDECIMAL "Ee"
 #define LINE_SEPARATORS "\n\r\f\v"
@@ -448,7 +449,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define STANDARD_ENGLISH "en-GB"
 #define WEB_ENGLISH "en-US"
 
-#define DISGUSTING "nonce" // Why The F*ck the standards have to reference paedophiles, I have no clue, but I do NOT like it
+#define EVIL "nonce" // Why the f*ck the powers that be decided to embed a word for paedophile in the standards, I have no clue, but I do not like it.
 
 #define MAX_IDEAL_TITLE_LENGTH 32
 

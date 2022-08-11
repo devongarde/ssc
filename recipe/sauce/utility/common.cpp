@@ -194,6 +194,7 @@ vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter)
 vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset)
 {   ::std::string cs;
     if (charset != nullptr) cs.assign (charset);
+    PRESUME (cs.find_first_of ("\"\\") == ::std::string::npos, __FILE__, __LINE__);
     vstr_t v;
     ::std::string current;
     bool started = false;
@@ -205,7 +206,7 @@ vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset)
         if (::std::iswcntrl (*i) && ! whitespace) continue;
         if (slashed) { current += *i; slashed = false; continue; }
         if (*i == '\\') { slashed = started = true; continue; }
-        else if (*i == '"')
+        if (*i == '"')
         {   if (! started) started = true;
             if (! quoted) { quoted = true; continue; }
             if (quoted) { started = quoted = false; deadzone = true; v.push_back (current); current.clear (); continue; } }
@@ -213,6 +214,43 @@ vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset)
         {   deadzone = false;
             if (! started) continue;
             if (! quoted) { started = quoted = false; if (! current.empty ()) v.push_back (current); current.clear (); continue; } }
+        if (deadzone) continue;
+        if (! started) { started = true; quoted = false; }
+        current += *i; }
+    if (! current.empty ()) v.push_back (current);
+    return v; }
+
+vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset)
+{   ::std::string cs;
+    if (charset != nullptr) cs.assign (charset);
+    PRESUME (cs.find_first_of ("\"\\") == ::std::string::npos, __FILE__, __LINE__);
+    vstr_t v;
+    ::std::string current;
+    bool started = false;
+    bool quoted = false;
+    bool slashed = false;
+    bool deadzone = false;
+    for (::std::string::const_iterator i = s.begin (); i != s.end (); ++i)
+    {   const bool whitespace = ::std::iswspace (*i);
+        if (::std::iswcntrl (*i) && ! whitespace) continue;
+        if (slashed) { current += *i; slashed = false; continue; }
+        if (*i == '\\') { slashed = started = true; continue; }
+        if (*i == '"')
+        {   if (! started) started = true;
+            if (! quoted) { quoted = true; continue; }
+            if (quoted) { started = quoted = false; deadzone = true; v.push_back (current); current.clear (); continue; } }
+        else if (whitespace)
+        {   deadzone = false;
+            if (! started) continue;
+            if (! quoted) { started = quoted = false; if (! current.empty ()) v.push_back (current); current.clear (); continue; } }
+        else if ((charset != nullptr) && (cs.find (*i) != ::std::string::npos))
+        {   deadzone = false;
+            if (! quoted)
+            {   started = quoted = false;
+                if (! current.empty ()) v.push_back (current);
+                current.clear ();
+                v.push_back (::std::string (1, *i));
+                continue; } }
         if (deadzone) continue;
         if (! started) { started = true; quoted = false; }
         current += *i; }

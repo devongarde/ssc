@@ -30,15 +30,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "parser/parse_css.h"
 
-bool dotty = false;
-smsid_t callback_ids;
-
 bool css::parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding)
 {   if (invalid ()) return false;
     if (content.empty ()) return true;
     parse_css (nits, v, ids_, content, encoding);
     check_for_standard_classes (nits, v);
-    active_ = true;
     return true; }
 
 void css::check_for_standard_classes (nitpick& nits, const html_version& v)
@@ -49,20 +45,17 @@ void css::check_for_standard_classes (nitpick& nits, const html_version& v)
         else if (c.is_microformat_vocabulary ())
             nits.pick (nit_class_microformat_vocabulary, es_warning, ec_css, "CSS identifier ", quote (id.first), " is a microformat vocabulary"); } }
 
-bool css::note_usage (const ::std::string& id)
-{   if (! active_) return false;
+bool css::note_usage (const ::std::string& id, const unsigned int n)
+{   PRESUME (n > 0, __FILE__, __LINE__);
     smsid_t::iterator i = ids_.find (id);
     if (i == ids_.end ()) return false;
-    if (i -> second < UINT_MAX)
-        i -> second += 1;
+    TALLY_TO_MAX (i -> second, n, SIZE_MAX);
     return true; }
 
 void css::tally (smsid_t& ids) const
-{   for (auto local : ids_)
-        if (local.second > 0)
-        {   smsid_t::iterator sum = ids.find (local.first);
-            if (sum == ids.end ())
-                ids.insert (local);
-            else if (sum -> second < UINT_MAX)
-                if (UINT_MAX - sum -> second <= local.second) sum -> second = UINT_MAX;
-                else sum -> second += local.second; } }
+{   if (context.classic () || ! snippet_)
+        for (auto local : ids_)
+            if (local.second > 0)
+            {   smsid_t::iterator sum = ids.find (local.first);
+                if (sum == ids.end ()) ids.insert (local);
+                else TALLY_TO_MAX (sum -> second, local.second, SIZE_MAX); } }

@@ -30,7 +30,7 @@ PASS ../toast/XHTML/1.0/math-example.xhtml
 1 xhtml_1_0
 5 xhtml_enum_lc
 7 reputation
-12 unknown_element unknown_element
+12 invalid_attribute_version wrong_version
 
 PASS ../toast/XHTML/1.0/parsing.xhtml
 1 xhtml_1_0
