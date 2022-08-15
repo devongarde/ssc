@@ -122,13 +122,13 @@ void element::examine_fecolourmatrix ()
         return; }
     switch (mt)
     {   case mt_matrix :
-            test_value < t_matrix_values > (node_.nits (), page_.version (), a_.get_string (a_values));
+            test_value < t_matrix_values > (node_.nits (), page_ -> version (), a_.get_string (a_values));
             break;
         case mt_saturate :
-            test_value < t_zero_to_one > (node_.nits (), page_.version (), a_.get_string (a_values));
+            test_value < t_zero_to_one > (node_.nits (), page_ -> version (), a_.get_string (a_values));
             break;
         case mt_huerotate :
-            test_value < t_angle > (node_.nits (), page_.version (), a_.get_string (a_values));
+            test_value < t_angle > (node_.nits (), page_ -> version (), a_.get_string (a_values));
             break;
         default :
             GRACEFUL_CRASH (__FILE__, __LINE__); } }
@@ -233,7 +233,7 @@ void element::examine_font ()
 
 void element::examine_fn ()
 {   e_math_version mv = node_.version ().math_version ();
-    if (mv == math_none) mv = page_.version ().math_version ();
+    if (mv == math_none) mv = page_ -> version ().math_version ();
     if (mv < math_3) return;
     pick (nit_no_fn, ed_math_3, "F.2 Changes between MathML 2.0 Second Edition and MathML 3.0", es_error, ec_element, "<FN> is not part of MathML 3 or greater."); }
 
@@ -353,7 +353,7 @@ void element::examine_image ()
     {   const ::std::string& naam = a_.get_id (a_name);
         if (! naam.empty ())
             if (! compare_no_case (naam, sz_srgb :: sz ()))
-                if (page_.profiles ().find (naam) == page_.profiles ().cend ())
+                if (page_ -> profiles ().find (naam) == page_ -> profiles ().cend ())
                     pick (nit_colour_profile, es_info, ec_attribute, "colour profile ", quote (naam), " might not have been declared"); } }
 
 void element::examine_img ()
@@ -402,17 +402,17 @@ void element::examine_img ()
                     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                         if (p -> tag () == elem_figure)
                         {   bool alone = true;
-                            for (element_ptr ac = p -> child_; alone && (ac != nullptr); ac = ac -> sibling_)
-                                if (is_standard_element (ac -> tag ()))
-                                    if (! ac -> node_.is_closure ())
-                                        switch (ac -> tag ())
+                            for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+                                if (is_standard_element (p -> tag ()))
+                                    if (! p -> node_.is_closure ())
+                                        switch (p -> tag ())
                                         {   case elem_img :
                                                 continue;
                                             case elem_figcaption :
-                                                if ((! ac -> text ().empty ()) && (! is_whitespace (ac -> text ()))) figured = true;
+                                                if ((! p -> text ().empty ()) && (! is_whitespace (p -> text ()))) figured = true;
                                                 break;
                                             default :
-                                                if (((ac -> node_.id ().flags ()) & EF_5_FLOW) == EF_5_FLOW)
+                                                if (((p -> node_.id ().flags ()) & EF_5_FLOW) == EF_5_FLOW)
                                                     figured = alone = false;
                                                 break; }
                             break; } }
@@ -423,10 +423,10 @@ void element::examine_img ()
                     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                         if (p -> tag () == elem_a)
                         {   if (! p -> text ().empty ()) alt_required = false;
-                            else for (element_ptr ac = p -> child_; ac != nullptr; ac = ac -> sibling_)
-                                if (! ac -> node_.is_closure ())
-                                    if (is_standard_element (ac -> tag ()))
-                                        if (ac.get () != this)
+                            else for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+                                if (! p -> node_.is_closure ())
+                                    if (is_standard_element (p -> tag ()))
+                                        if (p != this)
                                         {   alone = false; break; }
                             break; } }
                     if (alt_required)
@@ -441,7 +441,7 @@ void element::examine_img ()
                     if (! alt_known)
                     {   complained = true; pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_error, ec_element, "here, ALT is required on <IMG>"); } }
         if (! complained)
-            if (page_.version () < html_feb21)
+            if (page_ -> version () < html_feb21)
                 if ((! ancestor_figure) || (node_.version () == html_5_0))
                     if (! alt_known)
                         pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_warning, ec_element, "with exceptions, ALT is required on <IMG>");

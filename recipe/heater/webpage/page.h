@@ -69,7 +69,6 @@ public:
     page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, const directory* d = nullptr);
     explicit page (const ::std::string& content, const bool outsider = false);
     void swap (page& p);
-    void reset (const page& p);
     nitpick& nits () noexcept { return nits_; }
     const nitpick& nits () const noexcept { return nits_; }
     bool parse (::std::string& content);

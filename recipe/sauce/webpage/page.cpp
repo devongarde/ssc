@@ -62,14 +62,11 @@ page::page (const ::std::string& content, const bool outsider)
     ::std::string x (content);
     parse (x); }
 
-void page::reset (const page& p)
-{   page tmp (p);
-    swap (tmp); }
-
 void page::swap (page& p)
 {   abbrs_.swap (p.abbrs_);
     access_.swap (p.access_);
     author_.swap (p.author_);
+    base_.swap (p.base_);
     charset_.swap (p.charset_);
     ::std::swap (check_links_, p.check_links_);
     corpus_.swap (p.corpus_);
@@ -79,9 +76,11 @@ void page::swap (page& p)
     ::std::swap (directory_, p.directory_);
     document_.swap (p.document_);
     ::std::swap (euid_, p.euid_);
+    glyphs_.swap (p.glyphs_);
     ::std::swap (has_title_, p.has_title_);
     ids_.swap (p.ids_);
     itemscope_.swap (p.itemscope_);
+    jsonld_.swap (p.jsonld_);
     lang_.swap (p.lang_);
     keywords_.swap (p.keywords_);
     md_export_.swap (p.md_export_);
@@ -90,14 +89,15 @@ void page::swap (page& p)
     names_.swap (p.names_);
     nits_.swap (p.nits_);
     nodes_.swap (p.nodes_);
-    profiles_.swap (p.profiles_);
-    ssi_.swap (p.ssi_);
-    title_.swap (p.title_);
-    ::std::swap (updated_, p.updated_);
-    ::std::swap (snippet_ , p.snippet_);
     ::std::swap (outsider_ , p.outsider_);
-    ::std::swap (stats_ , p.stats_);
-    ::std::swap (style_css_, p.style_css_); }
+    ::std::swap (phrase_, p.phrase_);
+    profiles_.swap (p.profiles_);
+    ::std::swap (snippet_ , p.snippet_);
+    ssi_.swap (p.ssi_);
+    stats_.swap (p.stats_);
+    ::std::swap (style_css_, p.style_css_);
+    title_.swap (p.title_);
+    ::std::swap (updated_, p.updated_); }
 
 void page::lang (nitpick& nits, const html_version& , const ::std::string& l)
 {   if (! lang_.empty ())
@@ -118,7 +118,7 @@ bool page::parse (::std::string& content)
 {   if (! snippet_ && ! outsider_)
     {   PRESUME (directory_ != nullptr, __FILE__, __LINE__);
         ssi_.filename_ = name_;
-        html_version v (html_5_3);
+        const html_version v (html_5_3);
         content = parse_ssi (nits_, v, *this, ssi_, content, updated_); }
     const bool res = nodes_.parse (nits_, content);
     stats_.mark_file (::gsl::narrow_cast < unsigned > (content.size ()));
@@ -127,7 +127,7 @@ bool page::parse (::std::string& content)
 void page::examine ()
 {   if ((! document_) && ! nodes_.invalid () && nodes_.version ().known ())
     {   if ((! snippet_ && ! outsider_) && context.md_export ()) md_export_.init (get_export_root ());
-        document_.reset (new element (name_, nodes_.top (), nullptr, *this));
+        document_.reset (new element (name_, nodes_.top (), nullptr, this));
         stats_.mark (version ());
         VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
         PRESUME (document_ -> tag () == elem_faux_document, __FILE__, __LINE__);

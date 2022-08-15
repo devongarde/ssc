@@ -36,6 +36,8 @@ public:
     stats_t& operator = (const stats_t& ) = default;
     stats_t& operator = (stats_t&& ) = default;
     ~stats_t () = default;
+    void swap (stats_t& s) noexcept
+    {   p_.swap (s.p_); }
     void mark (const e_element e);
     void visible (const e_element e);
     void mark_abbr (const ::std::string& a, const ::std::string& b);

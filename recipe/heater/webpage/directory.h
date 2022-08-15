@@ -50,7 +50,7 @@ class directory
     bool verify_external (nitpick& nits, const html_version& v, const url& u) const;
     bool verify_local (nitpick& nits, const html_version& v, const url& u, const bool fancy = true) const;
     bool shadow_folder (nitpick& nits) const;
-    bool shadow_file (nitpick& nits, const ::std::string& name, sstr_t& shadowed) const;
+    bool shadow_file (nitpick& nits, const ::std::string& name) const;
     bool avoid_update (const ::boost::filesystem::path& original, const ::boost::filesystem::path& shadow, const bool page) const;
     bool avoid_update (const ::std::string& name, const bool page) const;
 protected:

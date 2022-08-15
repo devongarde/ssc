@@ -117,7 +117,7 @@ public:
     {   if (invalid ()) return ::std::string (); return protocol_.get (); }
     ::std::string absolute (const bool can_use_index = false, const bool force = false) const
     {   if (invalid ()) return ::std::string (); return protocol_.absolute (can_use_index, force); }
-    ::std::string page () const { return get_component (es_authority); }
+    ::std::string webpage () const { return get_component (es_authority); }
     ::std::string path () const { return get_component (es_path); }
     ::std::string password () const { return get_component (es_password); }
     ::std::string scheme () const { return get_component (es_scheme); }

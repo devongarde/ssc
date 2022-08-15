@@ -108,12 +108,11 @@ void element::examine_script ()
             pick (nit_bad_script, ed_jul20, "4.12.1 The script element", es_error, ec_element, "INTEGRITY requires SRC");
         if (a_.known (a_async))
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "ASYNC requires SRC"); }
-    if (jsld) page_.append_jsonld (content ());
-    if (has_child ()) report_script_comment (child_); }
+    if (jsld) page_ -> append_jsonld (content ());
+    if (has_child ()) report_script_comment (child_.get ()); }
 
-bool element::report_script_comment (element_ptr child)
-{   for (element_ptr p = child; p != nullptr; p = p -> sibling_)
-    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+bool element::report_script_comment (element* child)
+{   for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
         if (! p -> node_.is_closure ())
             if (p -> tag () == elem_faux_text)
             {   if ((p -> node_.text ().find ("<!--") != ::std::string::npos) ||
@@ -122,7 +121,7 @@ bool element::report_script_comment (element_ptr child)
                 {   pick (nit_bad_script, ed_jan14, "4.12.1.2 Restrictions for contents of script elements", es_warning, ec_element, "within the <SCRIPT> content, replace '<!--', '<script', and '</script', even if its quoted, with '<\\!--', '<\\script', and '<\\/script', respectively");
                     return true; } }
             else if (p -> has_child ())
-                if (report_script_comment (p -> child_)) return true; }
+                if (report_script_comment (p -> child_.get ())) return true;
     return false; }
 
 void element::examine_section ()
@@ -151,8 +150,7 @@ void element::examine_select ()
     {   uint64_t selected = 0;
         int selectedness = 0;
         bool firstempty = false, first = true;
-        for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
-        {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
             if (! p -> node_.is_closure ())
                 switch (p -> tag ())
                 {   case elem_optgroup :
@@ -168,7 +166,7 @@ void element::examine_select ()
                         else if (p -> a_.known (a_selected)) ++selectedness;
                         first = false;
                         break;
-                    default : break; } }
+                    default : break; }
         if (! firstempty)
             pick (nit_bad_select, ed_50, "4.10.7 The select element", es_warning, ec_attribute, "the first child <OPTION> that is not in an <OPTGROUP> should have an empty VALUE");
         if (selectedness == 0)
@@ -304,4 +302,4 @@ void element::examine_style ()
 {   if (node_.version () > html_plus)
         if (! a_.known (a_type) || (a_.get_string (a_type) == CSS_TYPE))
         {   //VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
-            page_.css ().parse (nits (), node_.version (), text ()); } }
+            page_ -> css ().parse (nits (), node_.version (), text ()); } }

@@ -41,6 +41,7 @@ ssi_compedium::ssi_compedium ()
 
 void ssi_compedium::swap (ssi_compedium& ssi) noexcept
 {   var_.swap (ssi.var_);
+    dx_.swap (ssi.dx_);
     ::std::swap (echomsg_, ssi.echomsg_);
     ::std::swap (errmsg_, ssi.errmsg_);
     ::std::swap (timefmt_, ssi.timefmt_);

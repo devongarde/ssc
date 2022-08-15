@@ -254,10 +254,10 @@ void element::examine_link ()
                 return; } }
         if (context.unknown_class () && context.load_css ())
             if (has_href && a_.good (a_href))
-                if (is_css || page_.style_css ())
+                if (is_css || page_ -> style_css ())
                 {   vurl_t v (a_.get_urls (a_href));
                     for (auto u : v)
                         if (! u.invalid ())
                         {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
                             //VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
-                            page_.css ().parse_file (nits (), page_, u); } } } }
+                            page_ -> css ().parse_file (nits (), *page_, u); } } } }

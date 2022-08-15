@@ -63,6 +63,18 @@ constexpr uint32_t uint32_category_mask =   0xF0000000;
             if (mx - tot <= inc) tot = mx; \
             else tot += inc; }
 
+template < class T > class reverter
+{   T& p_;
+    const T t_;
+public:
+    reverter () = delete;
+    reverter (const reverter& ) = delete;
+    reverter (reverter&& ) = delete;
+    explicit reverter (T& t) : p_ (t), t_ (t) { }
+    reverter& operator = (const reverter& ) = delete;
+    reverter& operator = (reverter&& ) = delete;
+    ~reverter () { if (p_ != t_) p_ = t_; } };
+
 constexpr inline uint32_t ndx_category (const uint32_t x) noexcept { return (x & uint32_category_mask) >> uint32_category_shift; }
 constexpr inline uint32_t ndx_item (const uint32_t x) noexcept { return (x & uint32_item_mask); }
 

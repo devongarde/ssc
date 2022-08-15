@@ -39,6 +39,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         case bk_xml : return (ln (l) + "XML..."); }
     return ::std::string (); }
 
+void bra_element_ket::swap (bra_element_ket& bek)
+{   arg_.swap (bek.arg_);
+    nits_.swap (bek.nits_);
+    ::std::swap (start_, bek.start_);
+    ::std::swap (eofe_, bek.eofe_);
+    ::std::swap (end_, bek.end_);
+    ::std::swap (line_, bek.line_);
+    ::std::swap (status_, bek.status_);
+    ::std::swap (suspender_, bek.suspender_);
+    ::std::swap (closure_, bek.closure_);
+    ::std::swap (closed_, bek.closed_);
+    ::std::swap (tested_, bek.tested_); }
+
 ::std::string bra_element_ket::rpt () const
 {   ::std::string res (faux_rpt (status_, line_, start_, end_));
     if (! res.empty ())

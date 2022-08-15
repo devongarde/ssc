@@ -97,15 +97,16 @@ bool url::verify (nitpick& nits, const html_version& v, element& e)
     if (is_simple_id ()) return true; // verify_id will check the id is valid
     if (is_local () && ! e.get_page ().check_links ()) return true;
     const directory* d = e.get_page ().get_directory ();
-    if (d != nullptr) if (! d -> verify_url (nits, v, *this)) return false;
-    if (is_local ())
-    {   nitpick nuts;
-        ::boost::filesystem::path target (d -> get_disk_path (nuts, *this));
-        e.get_page ().note_lynx (get_fileindex (target));
-        if (context.crosslinks () && has_id () && (has_path () || has_file ()))
-        {   if (target.empty ()) return false;
-            if (get_fileindex (e.get_page ().get_disk_path ()) != get_fileindex (target))
-                add_sought (e.get_page ().get_disk_path (), e.node ().line (), target, id (), e.own_attributes ().test (a_hidden), e.own_itemtype (), e.node ().id ()); } }
+    if (d != nullptr)
+    {   if (! d -> verify_url (nits, v, *this)) return false;
+        if (is_local ())
+        {   nitpick nuts;
+            ::boost::filesystem::path target (d -> get_disk_path (nuts, *this));
+            e.get_page ().note_lynx (get_fileindex (target));
+            if (context.crosslinks () && has_id () && (has_path () || has_file ()))
+            {   if (target.empty ()) return false;
+                if (get_fileindex (e.get_page ().get_disk_path ()) != get_fileindex (target))
+                    add_sought (e.get_page ().get_disk_path (), e.node ().line (), target, id (), e.own_attributes ().test (a_hidden), e.own_itemtype (), e.node ().id ()); } } }
     return true; }
 
 void url::verify_id (element& e)

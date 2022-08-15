@@ -33,9 +33,8 @@ void element::examine_table ()
     typedef enum { to_start, to_caption, to_colgroup, to_head, to_foot_start, to_tr, to_foot_end } table_order;
     table_order tor = to_start;
     bool ooo = false, footed = false, doubled = false, mixed = false, body = false, tr = false;
-    for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
-    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
-        if (! p -> node_.is_closure ())
+    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    {   if (! p -> node_.is_closure ())
         {   switch (p -> tag ())
             {   case elem_caption :
                     doubled = (tor == to_caption);
@@ -70,13 +69,13 @@ void element::examine_table ()
                     footed = true;
                     break;
                 default : break; }
-        if (ooo)
-            if (w3_minor_5 (node_.version ()) == 0)
-                pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "<TABLE> children in wrong order (<CAPTION>, <COLGROUP>s, <THEAD>, <TFOOT>, <TR>s or <TBODY>s, <TFOOT>, with only one <TFOOT>)");
-            else pick (nit_table_children, ed_51, "4.9.1 The table element", es_error, ec_element, "<TABLE> children in wrong order (<CAPTION>, <COLGROUP>s, <THEAD>, <TR>s or <TBODY>s, <TFOOT>)");
-        if (doubled) pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "only one <CAPTION>, <THEAD>, <TFOOT> per <TABLE>");
-        if (mixed) pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "either <TBODY>s or <TR>s, not both");
-        if (ooo || doubled || mixed) break; } } }
+            if (ooo)
+                if (w3_minor_5 (node_.version ()) == 0)
+                    pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "<TABLE> children in wrong order (<CAPTION>, <COLGROUP>s, <THEAD>, <TFOOT>, <TR>s or <TBODY>s, <TFOOT>, with only one <TFOOT>)");
+                else pick (nit_table_children, ed_51, "4.9.1 The table element", es_error, ec_element, "<TABLE> children in wrong order (<CAPTION>, <COLGROUP>s, <THEAD>, <TR>s or <TBODY>s, <TFOOT>)");
+            if (doubled) pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "only one <CAPTION>, <THEAD>, <TFOOT> per <TABLE>");
+            if (mixed) pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "either <TBODY>s or <TR>s, not both");
+            if (ooo || doubled || mixed) break; } } }
 
 void element::examine_td ()
 {   if (node_.version ().mjr () < 5) return;
@@ -127,12 +126,12 @@ void element::examine_title ()
 {   if (! node_.version ().has_svg ()) only_one_of ();
     ::std::string ttl (text ());
     if (! ancestral_elements_.test (elem_head)) return;
-    page_.title (ttl);
+    page_ -> title (ttl);
     if (is_whitespace (ttl))
         pick (nit_text_content, es_warning, ec_element, "<TITLE> text should be more than whitespace");
     else if (ttl.length () > ::gsl::narrow_cast < unsigned int > (context.title ()))
         pick (nit_long_title, ed_tags, "TITLE section", es_warning, ec_element, "the TITLE text (", quote (ttl.substr (0, context.title ())), "...) is too long");
-    page_.confirm_title (); }
+    page_ -> confirm_title (); }
 
 void element::examine_track ()
 {   if (node_.version ().is_5 ())

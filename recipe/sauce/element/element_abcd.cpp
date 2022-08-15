@@ -27,10 +27,10 @@ void element::examine_abbr ()
 {   ::std::string t (term ());
     ::std::string ab (trim_the_lot_off (text ()));
     if (t.empty () || ab.empty ()) return;
-    page_.mark_abbr (ab, t);
-    ustr_t::const_iterator i = page_.abbrs ().find (ab);
-    if (i == page_.abbrs ().cend ())
-        page_.abbrs ().insert (ustrv_t (ab, t));
+    page_ -> mark_abbr (ab, t);
+    ustr_t::const_iterator i = page_ -> abbrs ().find (ab);
+    if (i == page_ -> abbrs ().cend ())
+        page_ -> abbrs ().insert (ustrv_t (ab, t));
     else if (i -> second != t)
         pick (nit_contradictory_expansion, es_warning, ec_element, quote (ab), " has a different expansion above (", quote (t), " versus ", quote (i -> second)); }
 
@@ -146,7 +146,7 @@ void element::examine_area ()
                 default : break; } } } }
 
 void element::examine_article ()
-{   if (! context.corpus ().empty ()) if (context.article ()) page_.corpus (text ());
+{   if (! context.corpus ().empty ()) if (context.article ()) page_ -> corpus (text ());
     if (node_.version ().w3 ())
         if (has_this_descendant (elem_main))
             pick (nit_no_main_kids, ed_50, "4.3.2 The article element", es_warning, ec_element, "<ARTICLE> can have no <MAIN> descendants"); }
@@ -185,8 +185,8 @@ void element::examine_base ()
     if (! a_.known (a_href))
     {   if (a_.known (a_target))
         {   pick (nit_target, es_warning, ec_element, "TARGET forces " PROG " to abandon local link checks");
-            page_.check_links (false); }
-        else if (page_.version ()  >= html_jul07)
+            page_ -> check_links (false); }
+        else if (page_ -> version ()  >= html_jul07)
            pick (nit_base, ed_50, "4.2.3 The base element", es_error, ec_element, "<BASE> must have an HREF or a TARGET attribute");
         return; }
     check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE);
@@ -198,8 +198,8 @@ void element::examine_base ()
     else
     {   if (! u.is_local ())
         {   pick (nit_element_offsite_base, es_warning, ec_element, "WARNING: Because of the offsite <BASE> ", quote (u.original ()), ", " PROG " is abandoning local link checks");
-            page_.check_links (false); }
-        page_.base (u); } }
+            page_ -> check_links (false); }
+        page_ -> base (u); } }
 
 void element::examine_bind ()
 {   if (! check_math_children (3, true)) return;
@@ -218,7 +218,7 @@ void element::examine_bind ()
         pick (nit_bad_bind, ed_math_3, "4.2.6.1 Bindings", es_error, ec_element, "<BVAR> cannot be the last child of <BIND>"); }
 
 void element::examine_body ()
-{   if (! context.corpus ().empty ()) if (context.body () || ! page_.corpus ()) page_.corpus (text ()); }
+{   if (! context.corpus ().empty ()) if (context.body () || ! page_ -> corpus ()) page_ -> corpus (text ()); }
 
 void element::examine_button ()
 {   if (node_.version ().is_5 ())
@@ -274,9 +274,9 @@ void element::examine_colour_profile ()
         {   const ::std::string& naam (a_.get_string (a_name));
             if (compare_no_case (naam, sz_srgb :: sz ()))
                 pick (nit_colour_profile, es_warning, ec_attribute, "standard colour profiles cannot be redefined");
-            else if (page_.profiles ().find (naam) != page_.profiles ().cend ())
+            else if (page_ -> profiles ().find (naam) != page_ -> profiles ().cend ())
                 pick (nit_colour_profile, es_warning, ec_attribute, "colour profile ", quote (naam), " previously defined");
-            else page_.profiles ().insert (naam); } }
+            else page_ -> profiles ().insert (naam); } }
 
 void element::examine_data ()
 {   if (ancestral_elements_.test (elem_svg))
@@ -295,8 +295,7 @@ void element::examine_datagrid ()
 {   if (has_child ())
     {   bool had_table = false, had_select = false, had_datalist = false, had_other = false;
         int n = 0;
-        for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
-        {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
             if (is_standard_element (p -> tag ()) && ! p -> node_.is_closure ())
                 switch (p -> tag ())
                 {   case elem_datalist :
@@ -313,7 +312,7 @@ void element::examine_datagrid ()
                         break;
                    default :
                         had_other = true;
-                        break; } }
+                        break; }
         if (n > 1)
             pick (nit_bad_datagrid, ed_jan07, "3.18.2. The datagrid element", es_error, ec_element, "a <DATAGRID> can have only one <DATALIST>, <SELECT> or <TABLE> child");
         if (had_other)
@@ -324,9 +323,8 @@ void element::examine_datalist ()
 {   if (! has_child ()) pick (nit_bad_datalist, ed_50, "4.10.8 The datalist element", es_warning, ec_element, "is the empty <DATALIST> intentional");
     else
     {   bool had_option = false, had_other = false;
-        for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
+        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
             if (is_standard_element (p -> tag ()) && ! p -> node_.is_closure ())
-            {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                 switch (p -> tag ())
                 {   case elem_option :
                         had_option = true;
@@ -336,7 +334,7 @@ void element::examine_datalist ()
                         break;
                     default :
                         had_other = true;
-                        break; } }
+                        break; }
         if (had_other)
             if (had_option)
             {   pick (nit_bad_datalist, ed_50, "4.10.8 The datalist element", es_error, ec_element, "a <DATALIST> can have <OPTION> children, or other children, but not both"); }
@@ -373,12 +371,12 @@ void element::examine_dd ()
 void element::examine_dfn ()
 {   ::std::string t (term ());
     if (! t.empty ())
-        page_.mark_dfn (t, trim_the_lot_off (parent_ -> text ()));
+        page_ -> mark_dfn (t, trim_the_lot_off (parent_ -> text ()));
     if (node_.version ().is_5 ())
     {   if (! t.empty () && (node_.version () < html_jul08))
-            if (page_.dfns ().find (t) != page_.dfns ().cend ())
+            if (page_ -> dfns ().find (t) != page_ -> dfns ().cend ())
                 pick (nit_repeated_definition, ed_jan07, "3.12.8. The dfn element", es_error, ec_element, quote (t), " has already been defined");
-            else page_.dfns ().insert (t);
+            else page_ -> dfns ().insert (t);
         check_ancestors (elem_dfn, element_bit_set (elem_dfn)); } }
 
 void element::examine_dialogue ()
@@ -438,7 +436,7 @@ void element::examine_dl ()
                         dd = true;
                         if (! dt) pick (nit_no_dd, ed_50, "4.4.8. The dl element", es_error, ec_element, "<DD> must be preceded by <DT>");
                         s = tart (c -> text ());
-                        if (! s.empty ()) for (auto t : terms) page_.mark_dtdd (t, s);
+                        if (! s.empty ()) for (auto t : terms) page_ -> mark_dtdd (t, s);
                         if (node_.version () < html_jan17) break;
                         if (div) pick (nit_dl_div, ed_52, "4.4.9. The dl element", es_error, ec_element, "<DL> can have <DT>/<DD> children, or <DIV> children, but not both");
                         else dtdd = true;

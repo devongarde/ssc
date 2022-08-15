@@ -68,15 +68,21 @@ void element_node::swap (element_node& en) noexcept
     ::std::swap (previous_, en.previous_);
     ::std::swap (line_, en.line_);
     ::std::swap (closure_, en.closure_);
+    ::std::swap (closed_, en.closed_);
     ::std::swap (checked_sanitised_, en.checked_sanitised_);
     ::std::swap (presumed_, en.presumed_);
     ::std::swap (box_, en.box_);
     prefixes_.swap (en.prefixes_);
+    rdf_schemas_.swap (en.rdf_schemas_);
+    rdf_.swap (en.rdf_);
+    rdfa_.swap (en.rdfa_);
+    version_.swap (en.version_);
     namespaces_.swap (en.namespaces_);
     version_.swap (en.version_);
     elem_.swap (en.elem_);
     va_.swap (en.va_);
     text_.swap (en.text_);
+    raw_.swap (en.raw_);
     sanitised_.swap (en.sanitised_);
     nits_.swap (en.nits_); }
 
