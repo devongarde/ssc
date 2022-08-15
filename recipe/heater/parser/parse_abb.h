@@ -27,6 +27,10 @@ struct abb_t
     ::std::string short_, long_;
     abb_t (const ident_t id, const ::std::string& shortform, const ::std::string& longform)
         :   id_ (id), short_ (shortform), long_ (longform) { }
+    void swap (abb_t& a)
+    {   ::std::swap (id_, a.id_);
+        short_.swap (a.short_);
+        long_.swap (a.long_); }
     ::std::string rpt () const
     {   return ::boost::lexical_cast < ::std::string > (id_) + " (" + short_ + ": " + long_ + ")"; } };
 

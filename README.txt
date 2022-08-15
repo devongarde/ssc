@@ -1,12 +1,20 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.132
+version 0.0.133
 https://ssc.lu/
 
 
 
 (c) 2020-2022 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
+
+
+The American English version follows the British.
+
+
+
+British English
+===============
 
 
 
@@ -18,15 +26,15 @@ WARNING: this code is:
 
 
 
-ssc analyses static HTML snippets, files and sites:
+ssc analyses static X/HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- HTML living standard, Jan 2005 to Apr 2022
+- HTML living standard, Jan 2005 to Jul 2022
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
 - finds broken links (requires curl)
-- processes server side includes, mostly
-- analyses common microdata & RDFa ontologies
+- server side includes, mostly
+- common microdata & RDFa ontologies
 
 with opinions on:
 - standard english where dialect is required
@@ -97,6 +105,118 @@ more licences    licences for borrowed external content
 
 
 
+
+REMINDER
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+
+
+
 written by dylan harris
 mail@ssc.lu
-April 2022
+August 2022
+
+
+
+
+
+
+American English
+===============
+
+
+This code offers the perfect diagnosis to your HTML static website problems,
+especially the ones you don't realise are condeming your site to be ignored
+by the rest of the internet.
+
+
+
+ssc analyses static X/HTML snippets, files and sites:
+- HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
+- HTML living standard, Jan 2005 to Jul 2022
+- SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
+- MathML 1/2/3/4-draft
+- XHTML 1.0/1.1/2.0/5.x
+- finds broken links (requires curl)
+- server side includes
+- microdata & RDFa ontologies
+
+with opinions on:
+- perfectly legal but sloppy HTML
+- abhorrent rudeness such as autoplay on videos
+
+It does NOT:
+- analyse or understand scripts
+- analyse or understand XML or derivatives except XHTML
+
+It can output:
+- 'repaired' HTML
+- HTML with resolved Server Side Includes
+- JSON summaries of microformat and microdata content
+- website statistical information
+- updated website with datafile deduplication
+
+
+ssc -h
+for a usage summary.
+
+ssc -f config_file
+analyse site using preprepared configuration
+
+ssc directory
+analyse website based in directory
+
+
+
+To build & run:
+1. Follow the build instructions in build.txt
+2. Gleefully run ssc. It will misbehave if you are insufficiently gleeful.
+
+
+
+NOTE
+SSC can be run in a CGI environment.
+
+
+
+Notes on names:
+- recipe: a nod to Vernor Vinge's "A Fire Upon the Deep";
+- tea: without tea, nothing works;
+- sauce: makes the dull delicious;
+- toast: toasts code;
+- heater: i'm not stopping now;
+- unii: a plural of unix that doesn't sound like it sings castrato.
+
+
+
+
+SEE ALSO
+build.txt        notes on building ssc
+gen.txt          a model man page
+usage.txt        how to use ssc
+releasenotes.txt a history of releases
+LICENCE.txt      ssc licence information
+LICENSE.txt      formal GPL 3 licence
+more licences    licences for borrowed external content
+
+
+
+
+LEGAL REMINDER
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+This is a translation of the British English readme. If the two conflict,
+the British English applies.
+
+
+
+
+written by dylan harris
+mail@ssc.lu
+August 2022

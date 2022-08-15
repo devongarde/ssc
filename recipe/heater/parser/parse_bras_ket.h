@@ -33,6 +33,7 @@ class bras_ket
 public:
     void swap (bras_ket& bk) noexcept
     {   ve_.swap (bk.ve_);
+        form_.swap (bk.form_);
         ::std::swap (line_, bk.line_); }
     html_version parse (const ::std::string& content);
     html_version parse (const nitpick& nits, const ::std::string& content)

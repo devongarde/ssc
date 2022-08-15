@@ -29,7 +29,7 @@ struct q_entry
     q_entry () = delete;
     q_entry (const q_entry& ) = default;
     q_entry (q_entry&& ) = default;
-    explicit q_entry (nitpick* ticks, dir_ptr dir, const e_stage s, const ::std::string& page = ::std::string ()) : ticks_ (ticks), dir_ (dir), page_ (page), stage_ (s) { }
+    explicit q_entry (nitpick* ticks, dir_ptr dir, const e_stage s, const ::std::string& p = ::std::string ()) : ticks_ (ticks), dir_ (dir), page_ (p), stage_ (s) { }
     explicit q_entry (const e_stage s) : ticks_ (nullptr), dir_ (), stage_ (s) { }
     q_entry& operator = (const q_entry& ) = default;
     q_entry& operator = (q_entry&& ) = default;

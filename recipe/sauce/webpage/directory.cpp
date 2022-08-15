@@ -210,46 +210,50 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
 void directory::examine_page (nitpick* ticks, const ::std::string& file) const
 {   nitpick nits;
     knickers k (nits, ticks);
-    ::std::ostringstream ss;
-    const ::boost::filesystem::path p (get_disk_path () / file);
-    const fileindex_t ndx (get_fileindex (p));
-    if (! get_any_flag (ndx, FX_SCANNED))
-    {   ::std::string sp (get_site_path () + file);
-        if (avoid_update (sp, true))
-        {   if (context.tell (es_comment)) nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (p.string ()), " is up-to-date"); }
-        else
-        {   mmac_t mac;
-            mac.emplace (nm_page_name, file);
-            mac.emplace (nm_page_path, local_path_to_nix (p.string ()));
-            try
-            {   ::std::string content (read_text_file (nits, p));
-                const bool jld = is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ());
-                if (jld) parse_json_ld (nits, context.html_ver (), content);
-                ss << nits.review (mac);
-                if (! jld)
-                {   page web (file, last_write (ndx), content, ndx, this);
-                    if (web.invalid ()) ss << web.nits ().review (mac);
-                    else
-                    {   web.examine ();
-                        web.verify_locale (p);
-                        web.mf_write (p);
-                        web.lynx ();
-                        web.css ().accumulate ();
-                        if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / file);
-                        ss << web.nits ().review (mac);
-                        ss << web.report (); }
-                    web.nits ().accumulate (nits); } }
-            catch (const ::std::system_error& e)
-            {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + sp); }
-            catch (const ::std::exception& e)
-            {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + sp); }
-            catch (...)
-            {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + sp); }
-            if (! ss.str ().empty ())
-            {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-                outstr.out (macro -> apply (ns_page_head, mac), ss.str (), macro -> apply (ns_page_foot, mac)); }
-            k.accumulate_and_clear (); }
-        set_flag (ndx, FX_SCANNED); } }
+    if (! is_webpage (file, context.extensions ()))
+    {   PRESUME (context.shadow_files (), __FILE__, __LINE__);
+        shadow_file (nits, file); }
+    else
+    {   ::std::ostringstream ss;
+        const ::boost::filesystem::path p (get_disk_path () / file);
+        const fileindex_t ndx (get_fileindex (p));
+        if (! get_any_flag (ndx, FX_SCANNED))
+        {   ::std::string sp (get_site_path () + file);
+            if (avoid_update (sp, true))
+            {   if (context.tell (es_comment)) nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (p.string ()), " is up-to-date"); }
+            else
+            {   mmac_t mac;
+                mac.emplace (nm_page_name, file);
+                mac.emplace (nm_page_path, local_path_to_nix (p.string ()));
+                try
+                {   ::std::string content (read_text_file (nits, p));
+                    const bool jld = is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ());
+                    if (jld) parse_json_ld (nits, context.html_ver (), content);
+                    ss << nits.review (mac);
+                    if (! jld)
+                    {   page web (file, last_write (ndx), content, ndx, this);
+                        if (web.invalid ()) ss << web.nits ().review (mac);
+                        else
+                        {   web.examine ();
+                            web.verify_locale (p);
+                            web.mf_write (p);
+                            web.lynx ();
+                            web.css ().accumulate ();
+                            if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / file);
+                            ss << web.nits ().review (mac);
+                            ss << web.report (); }
+                        web.nits ().accumulate (nits); } }
+                catch (const ::std::system_error& e)
+                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + sp); }
+                catch (const ::std::exception& e)
+                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + sp); }
+                catch (...)
+                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + sp); }
+                if (! ss.str ().empty ())
+                {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+                    outstr.out (macro -> apply (ns_page_head, mac), ss.str (), macro -> apply (ns_page_foot, mac)); }
+                k.accumulate_and_clear (); }
+            set_flag (ndx, FX_SCANNED); } } }
 
 void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
 {   PRESUME (! offsite_, __FILE__, __LINE__);
@@ -258,13 +262,12 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
     if (context.shadow_any ()) shadow_folder (nits);
     sstr_t shadowed;
     for (auto i : content_)
-        if (i.second != nullptr)
-            q.push (q_entry (ticks, i.second, st_examine));
-        else if (! is_webpage (i.first, context.extensions ()))
-        {   if (context.shadow_files ()) shadow_file (nits, i.first, shadowed); }
+        if (i.second != nullptr) q.push (q_entry (ticks, i.second, st_examine));
         else
         {   shadowed.emplace ((get_shadow_path () / i.first).string ());
-            q.push (q_entry (ticks, me_me_me, st_examine, i.first)); }
+            if (context.shadow_files () || is_webpage (i.first, context.extensions ()))
+                q.push (q_entry (ticks, me_me_me, st_examine, i.first)); }
+    ::std::this_thread::yield ();
     if (context.shadow_files ())
     {   sstr_t delete_me;
 #ifdef NO_DIROPTS
@@ -447,7 +450,7 @@ bool directory::shadow_folder (nitpick& nits) const
             return false; }
     return true; }
 
-bool directory::shadow_file (nitpick& nits, const ::std::string& name, sstr_t& shadowed) const
+bool directory::shadow_file (nitpick& nits, const ::std::string& name) const
 {   PRESUME (context.shadow_files (), __FILE__, __LINE__);
     ::boost::filesystem::path original (get_disk_path () / name);
     if (contains (context.shadow_ignore (), original.extension ().string ()))
@@ -464,7 +467,6 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name, sstr_t& s
     {   nits.pick (nit_shadow_failed, es_warning, ec_shadow, "cannot shadow borked file ", original.string ());
         return true; }
     ::boost::filesystem::path imitation (get_shadow_path () / name);
-    shadowed.emplace (imitation.string ());
     if (file_exists (imitation))
         if (avoid_update (original, imitation, false))
         {   nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (original.string ()), " is up-to-date");

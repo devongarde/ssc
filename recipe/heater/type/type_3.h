@@ -30,17 +30,25 @@ public:
     typedef true_type has_int_type;
     using type_base < base_type, TYPE > :: type_base;
     static void init ();
-    static e_animation_type animation_type () noexcept { return at_other; }
+    static e_animation_type animation_type () noexcept
+    {   return at_other; }
     ::std::string get_string () const;
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
-    void swap (three_value& t) noexcept { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }
-    static base_type default_value () { return static_cast <base_type> (0); }
-    base_type get () const noexcept { return value_; }
-    int get_int () const noexcept { return static_cast < int > (value_); }
-    bool has_value (const base_type& b) const { return type_base < base_type, TYPE > :: good () && (value_ == b); }
-    ::std::size_t type () const noexcept { return static_cast < ::std::size_t > (get ()); } };
+    void swap (three_value& t) noexcept
+    {   ::std::swap (value_, t.value_);
+        type_base < base_type, TYPE >::swap (t); }
+    static base_type default_value ()
+    {   return static_cast <base_type> (0); }
+    base_type get () const noexcept
+    {   return value_; }
+    int get_int () const noexcept
+    {   return static_cast < int > (value_); }
+    bool has_value (const base_type& b) const
+    {   return type_base < base_type, TYPE > :: good () && (value_ == b); }
+    ::std::size_t type () const noexcept
+    {   return static_cast < ::std::size_t > (get ()); } };
 
 template < > struct type_master < t_aria_live > : three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite >
 { using three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite > :: three_value; };

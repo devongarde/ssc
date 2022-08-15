@@ -33,7 +33,8 @@ public:
 	parameters& operator = (parameters&&) = default;
     bool operator == (const parameters& rhs) const;
     ~parameters () = default;
-    void swap (parameters& p) noexcept { key_value_.swap (p.key_value_); }
+    void swap (parameters& p) noexcept
+    {   key_value_.swap (p.key_value_); }
     bool empty () const noexcept { return key_value_.empty (); }
     ::std::size_t size () const noexcept { return key_value_.size (); }
     ::std::string assemble () const;

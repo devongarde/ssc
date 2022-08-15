@@ -22,8 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 #include "webpage/page.h"
 
-element::element (const ::std::string& name, element_node& en, element* parent, page& p)
-    :   node_ (en), a_ (*this), examined_ (false), page_ (p), parent_ (parent), name_ (name), uid_ (page_.euid ()) { }
+element::element (const ::std::string& name, element_node& en, element* parent, page* p)
+    :   node_ (en), a_ (*this), examined_ (false), page_ (p), parent_ (parent), name_ (name), uid_ (0)
+{   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+    uid_ = page_ -> euid (); }
 
 void element::reconstruct (sstr_t* access)
 {   if (reconstructed_) return;
@@ -36,8 +38,7 @@ void element::reconstruct (sstr_t* access)
     return ::std::string ("empty base"); }
 
 void element::swap (element& e) noexcept
-{   PRESUME (&page_ == &e.page_, __FILE__, __LINE__);
-    a_.swap (e.a_);
+{   a_.swap (e.a_);
     mf_.swap (e.mf_);
     name_.swap (e.name_);
     sibling_.swap (e.sibling_);
@@ -47,10 +48,11 @@ void element::swap (element& e) noexcept
     results_.swap (e.results_);
     node_.swap (e.node_);
     // do not swap icarus_
+    ::std::swap (page_, e.page_);
     ::std::swap (examined_, e.examined_);
-//    ::std::swap (page_, e.page_);
     ::std::swap (parent_, e.parent_);
     ::std::swap (autofocus_, e.autofocus_);
+    ::std::swap (reconstructed_, e.reconstructed_);
     ::std::swap (ancestral_elements_, e.ancestral_elements_);
     ::std::swap (sibling_elements_, e.sibling_elements_);
     ::std::swap (descendant_elements_, e.descendant_elements_);
@@ -63,37 +65,37 @@ void element::swap (element& e) noexcept
     ::std::swap (vit_, e.vit_); }
 
 ids_t& element::get_ids () noexcept
-{   return page_.get_ids (); }
+{   return page_ -> get_ids (); }
 
 const ids_t& element::get_ids () const noexcept
-{   return page_.get_ids (); }
+{   return page_ -> get_ids (); }
 
 ids_t& element::get_names () noexcept
-{   return page_.get_names (); }
+{   return page_ -> get_names (); }
 
 const ids_t& element::get_names () const noexcept
-{   return page_.get_names (); }
+{   return page_ -> get_names (); }
 
 int element::line () const noexcept
 {   return node_.line (); }
 
-element_ptr element::child (const bool canreconstruct)
+element_ptr element::make_child ()
  {  PRESUME (has_child (), __FILE__, __LINE__);
-    if (! child_)
+    if (child_.get () == nullptr)
         child_.reset (new element (name_, node_.child (), this, page_));
-    else if (canreconstruct && ! child_ -> reconstructed_)
-        child_ -> reconstruct (access_);
     return child_; }
 
-element_ptr element::next (const bool canreconstruct)
+element_ptr element::make_next ()
  {  PRESUME (has_next (), __FILE__, __LINE__);
-    if (! sibling_)
+    if (sibling_.get () == nullptr)
         sibling_.reset (new element (name_, node_.next (), parent_, page_));
-    else
-    {   VERIFY_NOT_NULL (sibling_, __FILE__, __LINE__);
-        if (canreconstruct && ! sibling_ -> reconstructed_)
-            sibling_ -> reconstruct (access_); }
     return sibling_; }
+
+bool element::make_sibling (element_ptr& e)
+{   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+    if (! e -> has_next ()) return false;
+    e = e -> make_next ();
+    return true; }
 
 element* element::get_ancestor (const e_element e) const
 {   element* anc = parent_;
@@ -148,12 +150,12 @@ void element::no_anchor_daddy ()
             pick (nit_interactive, ed_50, "4.5.1 The a element", es_warning, ec_element, "<A> cannot have an interactive descendant element."); }
 
 bool element::only_one_of ()
-{   if (page_.count (tag ()) == 1) return true;
+{   if (page_ -> count (tag ()) == 1) return true;
     pick (nit_only_once, es_error, ec_element, "there should only be one <", node_.id ().name (), "> per page");
     return false; }
 
 bool element::only_one_visible_of ()
-{   if (page_.visible_count (tag ()) == 1) return true;
+{   if (page_ -> visible_count (tag ()) == 1) return true;
     pick (nit_only_once, es_error, ec_element, "there should only be one visible (not hidden) <", node_.id ().name (), "> per page");
     return false; }
 
@@ -237,11 +239,8 @@ void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& w
             ss << ">";
             was_nl = false;
             break; }
-    if (has_child ())
-    {   element_ptr e = child ();
-        do
-        {   e -> do_shadow (ss, v, was_closure, allspace, was_nl); }
-        while (to_sibling (e)); } }
+    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        p -> do_shadow (ss, v, was_closure, allspace, was_nl); }
 
 void element::shadow (::std::stringstream& ss, const html_version& v)
 {   bool was_closure = false;
@@ -250,10 +249,10 @@ void element::shadow (::std::stringstream& ss, const html_version& v)
     do_shadow (ss, v, was_closure, allspace, was_nl); }
 
 bool element::has_glyph (const ::std::string& s) const
-{   return page_.get_glyphs ().has_id (s); }
+{   return page_ -> get_glyphs ().has_id (s); }
 
 void element::add_glyph (const ::std::string& s)
-{   page_.get_glyphs ().insert_id (s, this); }
+{   page_ -> get_glyphs ().insert_id (s, this); }
 
 ns_id element::verify_namespace (::std::string& s, ::std::string n)
 {   return examine_namespace (nits (), node ().version (), node_.namespaces (), s, n); }

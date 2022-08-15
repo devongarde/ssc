@@ -125,13 +125,13 @@ void element::post_examine_element ()
         case elem_condition :
         case elem_degree :
         case elem_lowlimit :
-        case elem_uplimit : if (page_.version ().math () <= math_1) break;
+        case elem_uplimit : if (page_ -> version ().math () <= math_1) break;
                             check_math_children (1); break;
         case elem_datagrid : examine_datagrid (); break;
         case elem_datalist : examine_datalist (); break;
         case elem_dfn : examine_dfn (); break;
         case elem_dd : examine_dd (); break;
-        case elem_declare : if (page_.version ().math () > math_1) check_math_children (1, 2);
+        case elem_declare : if (page_ -> version ().math () > math_1) check_math_children (1, 2);
                             break;
         case elem_details : examine_details (); break;
         case elem_div : examine_div (); break;
@@ -142,7 +142,7 @@ void element::post_examine_element ()
         case elem_fieldset : examine_fieldset (); break;
         case elem_figure : examine_figure (); break;
         case elem_filter : examine_filter (); break;
-        case elem_fn : if (page_.version ().math () > math_1) check_math_children (1);
+        case elem_fn : if (page_ -> version ().math () > math_1) check_math_children (1);
                        break;
         case elem_font : examine_font (); break;
         case elem_font_face : examine_fontymacfontface (); break;
@@ -158,7 +158,7 @@ void element::post_examine_element ()
         case elem_header : examine_header (); break;
         case elem_img : examine_img (); break;
         case elem_input : examine_input (); break;
-        case elem_interval :if (page_.version ().math () <= math_1) break;
+        case elem_interval :if (page_ -> version ().math () <= math_1) break;
                             [[fallthrough]];
         case elem_piece :   check_math_children (2); break;
         case elem_label : examine_label (); break;
@@ -266,29 +266,29 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
     lingo lang (l);
     const e_element tag = node_.tag ();
     if (! node_.is_closure ())
-    {   page_.mark (tag);
-        if (! a_.known (a_hidden)) page_.visible (tag);
-        a_.mark (page_); }
+    {   page_ -> mark (tag);
+        if (! a_.known (a_hidden)) page_ -> visible (tag);
+        a_.mark (*page_); }
     bool postprocess = false, post_examine = false;
     switch (tag)
     {   case elem_faux_stylesheet :
             {   url u (node_.nits (), node_.version (), node_.text ());
                 if (! u.invalid ())
                 {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
-                    page_.css ().parse_file (node_.nits (), page_, u); } }
+                    page_ -> css ().parse_file (node_.nits (), *page_, u); } }
             break;
         case elem_faux_cdata :
             if ((flags & EP_NOSPELL) == 0)
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
-                    page_.phrasal (lang, text ());
+                    page_ -> phrasal (lang, text ());
             break;
         case elem_faux_whitespace :
-            page_.phrasal (nits (), node_.version ());
+            page_ -> phrasal (nits (), node_.version ());
             break;
         case elem_faux_char :
             if ((flags & EP_NOSPELL) == 0)
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
-                    page_.phrasal (lang, text (true));
+                    page_ -> phrasal (lang, text (true));
             break;
         case elem_faux_text :
             PRESUME (node_.has_parent (), __FILE__, __LINE__);
@@ -298,9 +298,9 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
                 {   ::std::string t (text (true));
                     if (! t.empty ())
-                    {   if (t.at (0) == ' ') page_.phrasal (nits (), node_.version ());
-                        page_.phrasal (lang, t);
-                        if (t.at (t.size () - 1) == ' ') page_.phrasal (nits (), node_.version ()); } }
+                    {   if (t.at (0) == ' ') page_ -> phrasal (nits (), node_.version ());
+                        page_ -> phrasal (lang, t);
+                        if (t.at (t.size () - 1) == ' ') page_ -> phrasal (nits (), node_.version ()); } }
             break;
         default :
             if (is_standard_element (tag) && ! node_.is_closure ())
@@ -382,7 +382,7 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 if (a_.known (a_clip)) examine_clip ();
                 if (a_.known (a_content)) examine_content ();
                 if (a_.known (a_href)) examine_href ();
-                if (a_.known (a_itemscope)) examine_itemscope (itemscope_);
+                if (a_.known (a_itemscope)) examine_itemscope (itemscope_, true);
                 if (a_.known (a_itemtype)) examine_itemtype (itemscope_);
 
                 if (a_.known (a_itemprop))
@@ -437,13 +437,6 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
             mf_ -> verify (nits (), node_.version ()); }
     examined_ = true; }
 
-bool element::to_sibling (element_ptr& e, const bool canreconstruct)
-{   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-    if (! e -> has_next ()) return false;
-    element_ptr x (e -> next (canreconstruct));
-    x.swap (e);
-    return true; }
-
 void element::examine_children (const flags_t flags, const lingo& lang)
 {   if (has_child ())
     {   attribute_bitset ancestral_attributes, sibling_attributes;
@@ -453,23 +446,19 @@ void element::examine_children (const flags_t flags, const lingo& lang)
         else
         {   ancestral_attributes = ancestral_attributes_;
             itemscope = itemscope_; }
-        element_ptr e = child ();
-        do
-        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-            e -> examine_self (lang, itemscope, ancestral_attributes, sibling_attributes, flags);
-            if (e -> node_.is_closure ())
-                closure_uid_ = e -> uid_;
+        VERIFY_NOT_NULL (child_.get (), __FILE__, __LINE__);
+        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        {   p -> reconstruct (access_);
+            p -> examine_self (lang, itemscope, ancestral_attributes, sibling_attributes, flags);
+            if (p -> node_.is_closure ())
+                closure_uid_ = p -> uid_;
             else
-            {   sibling_attributes |= e -> own_attributes_;
+            {   sibling_attributes |= p -> own_attributes_;
                 if (tag () != elem_template)
-                {   descendant_attributes_ |= e -> descendant_attributes_;
-                    descendant_attributes_ |= e -> own_attributes_; } } }
-        while (to_sibling (e));
-        e = child ();
-        do
-        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-            e -> sibling_attributes_ = sibling_attributes; }
-        while (to_sibling (e)); } }
+                {   descendant_attributes_ |= p -> descendant_attributes_;
+                    descendant_attributes_ |= p -> own_attributes_; } } }
+        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+            p -> sibling_attributes_ = sibling_attributes; } }
 
 ::std::string element::make_children (const int depth, const element_bitset& ancestral_elements)
 {   ::std::string res;
@@ -484,7 +473,7 @@ void element::examine_children (const flags_t flags, const lingo& lang)
         res += "\n"; }
     if (has_child ())
     {   element_bitset ancestors, siblings;
-        element_ptr e = child (false);
+        element_ptr e = make_child ();
         if (tag () == elem_template) ancestors.set (elem_template);
         else ancestors = ancestral_elements_ | node_.tag ();
         do
@@ -495,21 +484,14 @@ void element::examine_children (const flags_t flags, const lingo& lang)
                 if (tag () != elem_template)
                 {   descendant_elements_ |= e -> descendant_elements_;
                     descendant_elements_ |= e -> node_.tag (); } } }
-        while (to_sibling (e, false));
-        e = child (false);
-        do
-        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+        while (make_sibling (e));
+        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
             e -> sibling_elements_ = siblings; }
-        while (to_sibling (e, false)); }
     return res; }
 
 void element::verify_children ()
-{   if (has_child ())
-    {   element_ptr e = child ();
-        do
-        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-            e -> verify (); }
-        while (to_sibling (e)); } }
+{   for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        p -> verify (); }
 
 void element::verify ()
 {   VERIFY_NOT_NULL (access_, __FILE__, __LINE__);
@@ -521,8 +503,8 @@ void element::verify ()
     late_examine_element (); }
 
 void element::verify_document ()
-{   page_.phrasal (nits (), node_.version ());
-    const bool titled = (node_.version ().mjr () < 5) && (page_.count (elem_title) == 0);
+{   page_ -> phrasal (nits (), node_.version ());
+    const bool titled = (node_.version ().mjr () < 5) && (page_ -> count (elem_title) == 0);
     if (titled)
         pick (nit_title_required, ed_2, "5.2.1. Title", es_error, ec_element, "every document header must have <TITLE>");
     switch (node_.version ().mjr ())
@@ -567,13 +549,13 @@ void element::verify_document ()
                                             "given the <INPUT TYPE=file>, prefer METHOD=post"); } } } } }
             break;
         case 4 :
-            if ((page_.count (elem_frameset) > 0) && (page_.count (elem_body) > 0))
+            if ((page_ -> count (elem_frameset) > 0) && (page_ -> count (elem_body) > 0))
                 pick (nit_frameset_body, ed_4, "16.2 Layout of frames", es_error, ec_element, "either <FRAMESET> or <BODY>, not both");
             break;
         default :
-            if (page_.count (elem_title) == 0)
+            if (page_ -> count (elem_title) == 0)
                 pick (nit_title_required, ed_2, "5.2.1. Title", es_warning, ec_element, "the document header has no <TITLE>");
-            if (! page_.charset_defined ())
+            if (! page_ -> charset_defined ())
                 pick (nit_charset_redefined, ed_50, "4.2.5.5 Specifying the document's character encoding", es_comment, ec_element, "Consider specifying a charset in the document header");
             break; }
     verify (); }
@@ -581,10 +563,9 @@ void element::verify_document ()
 ::std::string element::report ()
 {   ::std::ostringstream res;
     res << nits ().review ();
-    for (element_ptr e = child_; e; e = e -> sibling_)
-    {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-        res << e -> report (); }
-    nits ().accumulate (page_.nits ());
+    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        res << p -> report ();
+    nits ().accumulate (page_ -> nits ());
     return res.str (); }
 
 element* element::next_element (element* previous)
@@ -597,16 +578,7 @@ element* element::next_element (element* previous)
     {   VERIFY_NOT_NULL (res, __FILE__, __LINE__);
         res = res -> parent ();
         if (res == nullptr) break;
-#ifdef _MSC_VER
-#pragma warning (push, 3)
-#pragma warning ( disable : 26815 )
-    // the pointee is valid until the page is unloaded, which only occurs after the
-    // examination is complete. Furthermore, this code does not own the pointee.
-#endif // _MSC_VER
-        if (res -> has_next ()) return res -> next ().get ();
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif // _MSC_VER
+        if (res -> sibling_.get () != nullptr) return res -> sibling_.get ();
     } while (res -> tag () != elem_faux_document);
     return nullptr; }
 
@@ -619,7 +591,7 @@ element* element::find_next (const e_element e, element* previous)
 
 element* element::find_first (const e_element e)
 {   if (! has_child ()) return nullptr;
-    return find_next (e, child ().get ()); }
+    return find_next (e, child_.get ()); }
 
 bool element::family_uids (const e_element e, uid_t& from, uid_t& to) const
 {   if (tag () == e)

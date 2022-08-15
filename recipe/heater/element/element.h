@@ -45,11 +45,11 @@ class element
 {   element_node& node_;
     attributes a_;
     bool examined_ = false, icarus_ = false, reconstructed_ = false;
-    page& page_;
+    page* page_ = nullptr;
     element* parent_ = nullptr;
-    element_ptr sibling_ = nullptr, child_ = nullptr;
+    element_ptr sibling_, child_;
     element* autofocus_ = nullptr;
-    microformats_ptr mf_ = nullptr;
+    microformats_ptr mf_;
     ::std::string name_;
     sstr_t* access_ = nullptr;
     element_bitset ancestral_elements_, sibling_elements_, descendant_elements_;
@@ -62,7 +62,7 @@ class element
     nitpick& nits () noexcept { return node_.nits (); }
     nitpick& nits () const noexcept { return node_.nits (); }
     found_farm find_farm (const e_property prop, element* starter = nullptr);
-    bool to_sibling (element_ptr& e, const bool canreconstruct = true);
+    bool make_sibling (element_ptr& e);
     element* next_element (element* previous);
     template < class PROPERTY > void note_reply ();
     template < e_type T > void val_min_max (const bool cyclic = false);
@@ -94,7 +94,7 @@ class element
     ::std::string get_microdata_value () const;
     void verify_microdata ();
     ::std::string get_rdfa_value () const;
-    bool report_script_comment (element_ptr parent);
+    bool report_script_comment (element* parent);
     void walk_itemprop (itemscope_ptr itemscope);
     vit_t supplied_itemtypes ();
     vit_t sought_itemtypes ();
@@ -138,7 +138,7 @@ class element
     void examine_font ();
     void examine_href ();
     void examine_headers ();
-    itemscope_ptr examine_itemscope (itemscope_ptr& itemscope);
+    itemscope_ptr examine_itemscope (itemscope_ptr& itemscope, const bool pagify);
     void examine_itemprop (itemscope_ptr& itemscope);
     void examine_itemref (const itemscope_ptr& itemscope);
     void examine_itemtype (const itemscope_ptr& itemscope);
@@ -255,7 +255,7 @@ class element
     ::std::string text (const bool simplify = false) const { return node_.text (simplify); }
     ::std::string term () const;
 public:
-    element (const ::std::string& name, element_node& en, element* parent, page& p);
+    element (const ::std::string& name, element_node& en, element* parent, page* p);
     void swap (element& e) noexcept;
 
     void reconstruct (sstr_t* access);
@@ -267,8 +267,8 @@ public:
     bool has_next () const noexcept
     {   return node_.has_next (); }
     ::std::string content () const;
-    element_ptr child (const bool canreconstruct = true);
-    element_ptr next (const bool canreconstruct = true);
+    element_ptr make_child ();
+    element_ptr make_next ();
     e_element tag () const noexcept
     {   return node_.tag (); }
     bool invalid () const noexcept
@@ -320,8 +320,8 @@ public:
     const attribute_bitset& own_attributes () const noexcept { return own_attributes_; }
     attribute_bitset& own_attributes () noexcept { return own_attributes_; }
     void shadow (::std::stringstream& ss, const html_version& v);
-    const page& get_page () const noexcept { return page_; }
-    page& get_page () noexcept { return page_; }
+    const page& get_page () const noexcept { return *page_; }
+    page& get_page () noexcept { return *page_; }
     bool has_glyph (const ::std::string& s) const;
     void add_glyph (const ::std::string& s);
     e_sought_category link_category_sought () const noexcept { return node_.id ().link_category_sought (); }

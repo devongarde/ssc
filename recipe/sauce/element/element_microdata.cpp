@@ -65,12 +65,12 @@ void element::verify_microdata ()
         default :
             return node_.text (); } }
 
-itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
-{   VERIFY_NOT_NULL (page_.md_export (), __FILE__, __LINE__);
+itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope, const bool pagify)
+{   VERIFY_NOT_NULL (page_ -> md_export (), __FILE__, __LINE__);
     itemscope_ptr new_scope (new microdata_itemscope ());
     VERIFY_NOT_NULL (new_scope.get (), __FILE__, __LINE__);
     if (itemscope.get () == nullptr)
-        new_scope -> set_exporter (page_.md_export (), page_.md_export () -> append_path (page_.get_export_root (), null_itemprop, true));
+        new_scope -> set_exporter (page_ -> md_export (), page_ -> md_export () -> append_path (page_ -> get_export_root (), null_itemprop, true));
     else                                                                                                                                      
     {   bool se = false;
         if (! a_.known (a_itemtype)) new_scope -> parent (itemscope);
@@ -79,11 +79,12 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope)
         if (a_.known (a_itemprop))
             for (auto name : a_.get_x < attr_itemprop > ())
             {   se = true;
-                itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, new_scope, page_); }
-        if (! se) new_scope -> set_exporter (page_.md_export (), page_.md_export () -> append_path (itemscope -> export_path (), null_itemprop, true)); }
+                itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, new_scope, *page_); }
+        if (! se) new_scope -> set_exporter (page_ -> md_export (), page_ -> md_export () -> append_path (itemscope -> export_path (), null_itemprop, true)); }
     itemscope = new_scope;
-    if (page_.itemscope ().get () == nullptr)
-        page_.itemscope (itemscope);
+    if (pagify)
+        if (page_ -> itemscope ().get () == nullptr)
+            page_ -> itemscope (itemscope);
     if (a_.known (a_itemid))
         itemscope -> note_itemid (node_.nits (), node_.version (), a_.get_string (a_itemid));
     return itemscope; }
@@ -101,8 +102,8 @@ void element::examine_itemprop (itemscope_ptr& itemscope)
             const bool mummy_expected = (a_.known (a_itemscope) || a_.known (a_itemtype));
             const bool check_mummy = mummy_expected && itemscope -> has_parent2 ();
             for (auto name : a_.get_x < attr_itemprop > ())
-                if (! mummy_expected) itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, is_link, page_);
-                else if (check_mummy) itemscope -> parent2 () -> note_itemprop (node_.nits (), node_.version (), name, value, itemscope, page_);
+                if (! mummy_expected) itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, is_link, *page_);
+                else if (check_mummy) itemscope -> parent2 ().lock () -> note_itemprop (node_.nits (), node_.version (), name, value, itemscope, *page_);
                 else if (ancestral_attributes_.test (a_id))
                     if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_info, ec_schema, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then, although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE");
                     else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_info, ec_schema, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then, although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE or ITEMSCOPE");
@@ -110,7 +111,7 @@ void element::examine_itemprop (itemscope_ptr& itemscope)
                     else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_warning, ec_schema, "although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE or ITEMSCOPE"); } }
 
 void element::examine_itemref (const itemscope_ptr& itemscope)
-{   if (icarus_) pick (nit_icarus, es_info, ec_attribute, "Oh Momus, oh Icarus, why do you torment me so?");
+{   if (icarus_) pick (nit_icarus, es_warning, ec_attribute, "Oh Momus, oh Icarus, why do you torment me so (with ITEMREF recursion)?");
     else if (itemscope.get () != nullptr)
         if (a_.known (a_itemscope) && a_.known (a_itemtype) && a_.known (a_itemref))
             for (auto name : a_.get_x < attr_itemref > ())
@@ -126,7 +127,7 @@ void element::examine_itemtype (const itemscope_ptr& itemscope)
     if (a_.known (a_itemscope))
     {   VERIFY_NOT_NULL (itemscope, __FILE__, __LINE__);
         for (auto name : a_.get_x < attr_itemtype > ())
-            itemscope -> note_itemtype (node_.nits (), node_.version (), name, page_, has_itemid); } }
+            itemscope -> note_itemtype (node_.nits (), node_.version (), name, *page_, has_itemid); } }
 
 vit_t element::own_itemtype () const
 {   if (! a_.good (a_itemtype)) return vit_t ();
@@ -134,19 +135,13 @@ vit_t element::own_itemtype () const
     return itemscope_ -> type (); }
 
 void element::walk_itemprop (itemscope_ptr itemscope)
-{   itemscope_ptr tmp = itemscope_;
-    itemscope_ptr sub = itemscope;
-    if (a_.known (a_itemscope)) sub = examine_itemscope (itemscope);
-    if (a_.known (a_itemtype)) examine_itemtype (itemscope);
-    if (a_.known (a_itemprop)) examine_itemprop (itemscope);
-    if (a_.known (a_itemref)) examine_itemref (itemscope);
-    itemscope_ = tmp;
-    if (has_child ())
-    {   element_ptr e = child ();
-        do {
-            VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-            e -> walk_itemprop (sub);
-        } while (to_sibling (e)); } }
+{   {   reverter < itemscope_ptr > r (itemscope_);
+        if (a_.known (a_itemscope)) examine_itemscope (itemscope, false);
+        if (a_.known (a_itemtype)) examine_itemtype (itemscope);
+        if (a_.known (a_itemprop)) examine_itemprop (itemscope);
+        if (a_.known (a_itemref)) examine_itemref (itemscope); }
+    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        p -> walk_itemprop (itemscope); }
 
 vit_t element::supplied_itemtypes ()
 {   return own_itemtype (); }

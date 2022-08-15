@@ -27,13 +27,14 @@ class page;
 typedef ::std::shared_ptr < microdata_itemscope > itemscope_ptr;
 typedef ssc_variant < itemscope_ptr, ::std::string > itemprop_value;
 typedef ssc_mm < itemprop_index, itemprop_value > mpv_t;
+typedef ::std::weak_ptr < microdata_itemscope > itemscope_wptr;
 
 class microdata_itemscope
 {   mpv_t itemprop_;
     vit_t type_;
     microdata_export* export_ = nullptr;
     ::std::string export_path_;
-    itemscope_ptr parent_, parent2_;
+    itemscope_wptr parent_, parent2_;
     itemprop_indices prepare_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value);
     bool use_parent () const noexcept { return (has_parent () && type_.empty ()); }
 public:
@@ -44,28 +45,28 @@ public:
     bool note_itemid (nitpick& nits, const html_version& v, const ::std::string& name);
     vit_t type () const
     {   if (use_parent ())
-        {   VERIFY_NOT_NULL (parent_, __FILE__, __LINE__);
-            return parent_ -> type (); }
+        {   VERIFY_NOT_NULL (parent_.lock (), __FILE__, __LINE__);
+            return parent_.lock () -> type (); }
         return type_; }
     void parent (const itemscope_ptr& parent) noexcept { parent_ = parent; }
     void parent2 (const itemscope_ptr& parent) noexcept { parent2_ = parent; }
-    itemscope_ptr& parent () noexcept { return parent_; }
-    itemscope_ptr& parent2 () noexcept { return parent2_; }
-    bool has_parent () const noexcept { return (parent_.get () != nullptr); }
-    bool has_parent2 () const noexcept { return (parent2_.get () != nullptr); }
+    itemscope_wptr& parent () noexcept { return parent_; }
+    itemscope_wptr& parent2 () noexcept { return parent2_; }
+    bool has_parent () const noexcept { return (parent_.lock () != nullptr); }
+    bool has_parent2 () const noexcept { return (parent2_.lock () != nullptr); }
     vit_t sought_itemtypes (const html_version& v, const ::std::string& name) const;
     ::std::string report (const ::std::size_t offset = 0) const;
     void set_exporter (microdata_export* exporter, const ::std::string& export_path)
     {   export_ = exporter; export_path_ = export_path; }
     ::std::string export_path () const
     {   if (use_parent ())
-        {   VERIFY_NOT_NULL (parent_, __FILE__, __LINE__);
-            return parent_ -> export_path (); }
+        {   VERIFY_NOT_NULL (parent_.lock (), __FILE__, __LINE__);
+            return parent_.lock () -> export_path (); }
         return export_path_; }
     microdata_export* exporter () const
     {   if (use_parent ())
-        {   VERIFY_NOT_NULL (parent_, __FILE__, __LINE__);
-            return parent_ -> exporter (); }
+        {   VERIFY_NOT_NULL (parent_.lock (), __FILE__, __LINE__);
+            return parent_.lock () -> exporter (); }
         return export_; }
     bool write (nitpick& nits, const ::boost::filesystem::path& name); };
 

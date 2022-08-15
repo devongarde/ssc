@@ -31,6 +31,10 @@ public:
     stats2 ()
     {   family_.resize (static_cast <::std::size_t> (max_family + 1), 0);
         member_.resize (static_cast <::std::size_t> (max_member + 1), 0); }
+    void swap (stats2& s2)
+    {   count_.swap (s2.count_);
+        family_.swap (s2.family_);
+        member_.swap (s2.member_); }
     unsigned at (const FAMILY f, const MEMBER m) const
     {   counter_t::const_iterator i = count_.find (index (f, m));
         if (i == count_.cend ()) return 0;

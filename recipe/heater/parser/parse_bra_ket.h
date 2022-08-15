@@ -49,11 +49,12 @@ public:
         : start_ (s), eofe_ (e), end_ (e), line_ (line), status_ (bk_text), closure_ (false), closed_ (true), tested_ (false), nits_ (nits.nick ())
     { }
     bra_element_ket (const bra_element_ket& bek) = default;
-	bra_element_ket(bra_element_ket&& bek) = default;
+	bra_element_ket (bra_element_ket&& bek) = default;
 	~bra_element_ket () = default;
     bra_element_ket& operator = (const bra_element_ket& bek) = default;
 	bra_element_ket& operator = (bra_element_ket&& bek) = default;
     e_element suspender ();
+    void swap (bra_element_ket& bek);
     bool is_xmp ();
     bool is_plaintext ();
     bool is_whitespace () const noexcept;

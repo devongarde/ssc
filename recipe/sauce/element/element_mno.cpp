@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_metaname.h"
 
 void element::examine_main ()
-{   if (! context.corpus ().empty ()) if (context.main ()) page_.corpus (text ());
+{   if (! context.corpus ().empty ()) if (context.main ()) page_ -> corpus (text ());
     if (! a_.known (a_hidden)) only_one_visible_of ();
     if ((node_.version ().is_5 ()))
         if (node_.version ().w3 ())
@@ -45,7 +45,7 @@ void element::examine_map ()
 void element::examine_math ()
 {   if (! has_child ()) return;
     e_math_version mv = node_.version ().math_version ();
-    if (mv == math_none) mv = page_.version ().math_version ();
+    if (mv == math_none) mv = page_ -> version ().math_version ();
     switch (mv)
     {   case math_2 : break;
         case math_3 :
@@ -60,15 +60,14 @@ void element::examine_math ()
         default :
             return; }
     bool other = false; bool content = false;
-    for (element_ptr c = child_; c != nullptr; c = c -> sibling_)
-    {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
-        if (c -> node_.id ().first ().has_math () || c -> node_.id ().is_math ())
-            if (! c -> node_.is_closure ())
+    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        if (p -> node_.id ().first ().has_math () || p -> node_.id ().is_math ())
+            if (! p -> node_.is_closure ())
             {   content = true;
-                if (c -> node_.tag () != elem_declare) other = true;
+                if (p -> node_.tag () != elem_declare) other = true;
                 else if (other)
                 {   pick (nit_declare_first, ed_math_2, "4.4.2.8 Declare (declare)", es_error, ec_element, "All <DECLARE> elements must occur at the beginning of a <MATH> element");
-                    break; } } }
+                    break; } }
     if (! content)
         if (! context.html_ver ().has_math ()) pick (nit_math, es_warning, ec_element, "MathML is not configured");
         else pick (nit_math_empty, ed_math_3, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<MATH> should contain some math."); }
@@ -81,9 +80,8 @@ void element::examine_media_element (e_element , const char* ref, const char* na
     const bool has_src = a_.known (a_src);
     if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), family);
     sstr_t track_check; ::std::string tmp;
-    for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
-    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
-        if(! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
+    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        if (! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
             switch (p -> node_.tag ())
             {   case elem_source :
                     if (has_src)
@@ -123,7 +121,7 @@ void element::examine_media_element (e_element , const char* ref, const char* na
                     break;
                 default :
                     had_other = true;
-                    break; } }
+                    break; }
     element_bitset bs (descendant_elements_);
     bs &= media_bitset;
     if (bs.any ())
@@ -133,16 +131,12 @@ void element::examine_menu ()
 {   if (node_.version ().is_5 ())
         if (a_.has (a_type))
             if (node_.version () >= html_jul17)
-            {   if (has_child ())
-                {   element_ptr e = child ();
-                    const element_bitset bs (faux_bitset | script_bitset | elem_li);
-                    do
-                    {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-                        if (! e -> node_.is_closure ())
-                            if (! bs.test (e -> node_.id ()))
-                            {   pick (nit_menu_child, ed_jul20, "3.18.4. The menu element", es_error, ec_element, "<MENU> may only have <LI> and script children");
-                                break; } }
-                    while (to_sibling (e)); } }
+            {   const element_bitset bs (faux_bitset | script_bitset | elem_li);
+                for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+                    if (! p -> node_.is_closure ())
+                        if (! bs.test (p -> node_.id ()))
+                        {   pick (nit_menu_child, ed_jul20, "3.18.4. The menu element", es_error, ec_element, "<MENU> may only have <LI> and script children");
+                            break; } }
             else
             {   bool has_li = false;
                 bool has_other = false;
@@ -150,17 +144,14 @@ void element::examine_menu ()
                 const element_bitset muhrme = empty_element_bitset | elem_menuitem | elem_hr | elem_menu;
                 const e_menutype mt = static_cast < e_menutype > (a_.get_int (a_type));
                 if (node_.version () >= html_jan06)
-                {   if (has_child ())
-                    {   element_ptr e = child ();
-                        do
-                        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-                            if (! e -> node_.is_closure ()) continue;
-                            if (faux_bitset.test (e -> node_.id ())) continue;
-                            if (script_bitset.test (e -> node_.id ()) && (node_.version () >= html_jul13)) continue;
-                            if (e -> node_.id () == elem_li) has_li = true;
-                            else if (muhrme.test (e -> node_.id ())) has_muhrme = true;
+                    if (has_child ())
+                    {   for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+                        {   if (! p -> node_.is_closure ()) continue;
+                            if (faux_bitset.test (p -> node_.id ())) continue;
+                            if (script_bitset.test (p -> node_.id ()) && (node_.version () >= html_jul13)) continue;
+                            if (p -> node_.id () == elem_li) has_li = true;
+                            else if (muhrme.test (p -> node_.id ())) has_muhrme = true;
                             else has_other = true; }
-                        while (to_sibling (e));
                         if (node_.version () < html_jan13)
                         {   if (has_li && (has_other || has_muhrme))
                                 pick (nit_menu_child, ed_jan10, "4.11.3 The menu element", es_error, ec_element, "<MENU> can have <LI> children, or other children, but not both"); }
@@ -171,7 +162,7 @@ void element::examine_menu ()
                                 if (! has_muhrme)
                                     pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'popup' has no <MENUITEM>, <HR> or <MENU> children"); }
                             if ((mt == mt_toolbar) && ! has_li)
-                                pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'toolbar' should have <LI> children"); } } }
+                                pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'toolbar' should have <LI> children"); } }
                 switch (mt)
                 {   case mt_context :
                         if ((node_.version () < html_jul07) || ((node_.version () >= html_jan13) && (node_.version () < html_jan16)))
@@ -191,8 +182,7 @@ void element::examine_menu ()
 
 void element::examine_menubar ()
 {   bool had_li = false, had_other = false;
-    for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
-    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
         if (! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
             if (p -> node_.tag () == elem_li)
             {   if (had_other)
@@ -203,7 +193,7 @@ void element::examine_menubar ()
             {   if (had_li)
                 {   pick (nit_menubar, ed_jan05, "6.3.2. Menu bars: the menubar element", es_error, ec_element, "<MENUBAR> can have <LI> children, or other children, but not a mixture of them");
                     break; }
-                had_other = true; } } }
+                had_other = true; } }
 
 void element::examine_meta ()
 {   const bool in_head = ancestral_elements_.test (elem_head);
@@ -234,12 +224,12 @@ void element::examine_meta ()
             pick (nit_bad_meta_place, ed_50, "4.2.5 The meta element", es_error, ec_element, "CHARSET can only be used on a <META> in a <HEAD>");
         else if (a_.known (a_content))
             pick (nit_no_content, ed_50, "4.2.5 The meta element", es_error, ec_element, "CONTENT cannot be used with CHARSET");
-        else if (page_.charset_defined ())
+        else if (page_ -> charset_defined ())
             pick (nit_charset_redefined, ed_50, "4.2.5 The meta element", es_error, ec_element, "there can be no more than one <META> with a CHARSET per document");
         else
         {   type_master < t_charset > cs;
-            cs.set_value (nits (), page_.version (), a_.get_string (a_charset));
-            if (cs.good ()) page_.charset (nits (), page_.version (), cs.get_string ()); } }
+            cs.set_value (nits (), page_ -> version (), a_.get_string (a_charset));
+            if (cs.good ()) page_ -> charset (nits (), page_ -> version (), cs.get_string ()); } }
     else if (hek)
     {   if (! in_head)
             pick (nit_bad_meta_place, ed_50, "4.2.5 The meta element", es_error, ec_element, "HTTP-EQUIV can only be used on a <META> in a <HEAD>");
@@ -256,15 +246,15 @@ void element::examine_meta ()
 #pragma warning (pop)
 #endif // _MSC_VER
             if (he != nullptr)
-            {   ::std::string ct (validate_httpequiv_content (nits (), node_.version (), he -> get (), trim_the_lot_off (a_.get_string (a_content)), page_));
+            {   ::std::string ct (validate_httpequiv_content (nits (), node_.version (), he -> get (), trim_the_lot_off (a_.get_string (a_content)), *page_));
                 switch (he -> get_int ())
                 {   case he_content_style_type :
-                        page_.style_css (compare_no_case (CSS_TYPE, ct));
-                        if (! page_.style_css ()) pick (nit_style_not_css, es_comment, ec_element, "the default style is NOT css");
+                        page_ -> style_css (compare_no_case (CSS_TYPE, ct));
+                        if (! page_ -> style_css ()) pick (nit_style_not_css, es_comment, ec_element, "the default style is NOT css");
                         break;
                     case he_location :
                     case he_refresh :
-                        page_.verify_url (nits (), ct);
+                        page_ -> verify_url (nits (), ct);
                         break;
                     default : break; } } } }
     else if (nk)
@@ -277,12 +267,12 @@ void element::examine_meta ()
             mn.set_value (nuts, node_.version (), a_.get_string (a_name));
             PRESUME (a_.good (a_name), __FILE__, __LINE__);
             const e_metaname emn = mn.get ();
-            validate_metaname_content (nits (), node_.version (), in_head, emn, con, page_);
+            validate_metaname_content (nits (), node_.version (), in_head, emn, con, *page_);
             validate_metaname_url (nits (), node_.version (), in_head, emn, con, *this);
             switch (emn)
-            {   case mn_author : page_.author (con); break;
-                case mn_description : page_.description (con); break;
-                case mn_keywords : page_.keywords (con); break;
+            {   case mn_author : page_ -> author (con); break;
+                case mn_description : page_ -> description (con); break;
+                case mn_keywords : page_ -> keywords (con); break;
                 case mn_theme_colour : bad_med = false; break;
                 default : break; } }
     if (bad_med && a_.good (a_media))
@@ -333,7 +323,7 @@ void element::examine_meter ()
             if (max < optimum) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "OPTIMUM (", optimum, ") cannot exceed MAX (", max, ")"); } } }
 
 void element::examine_mglyph ()
-{   if (page_.version ().math_version () == math_2)
+{   if (page_ -> version ().math_version () == math_2)
     {   attribute_bitset as (own_attributes_);
         as.reset (a_fontfamily);
         as.reset (a_index);
@@ -346,7 +336,7 @@ void element::examine_mglyph ()
             pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "INDEX is required for correct usage of <MGLYPH> in MathML 2");
         if (! a_.known (a_alt))
             pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "ALT, is required for correct usage of <MGLYPH> in MathML 2"); }
-    else if (page_.version ().math_version () >= math_3)
+    else if (page_ -> version ().math_version () >= math_3)
     {   if (! a_.known (a_src))
             pick (nit_mglyph_alt_src, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "SRC is required for correct usage of <MGLYPH> in MathML 3");
         if (! a_.known (a_alt))
@@ -361,14 +351,14 @@ void element::examine_mglyph ()
             pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "INDEX is deprecated with <MGLYPH> in MathML 3"); } }
 
 void element::examine_mn ()
-{   if (page_.version ().math_version () < math_3) return;
+{   if (page_ -> version ().math_version () < math_3) return;
     ::std::string x (text ());
     const ::std::string::size_type pos = x.find_first_not_of (" .,IVXMLivxml" HEX);
     if (pos != ::std::string::npos)
         pick (nit_impure_mn, ed_math_3, "3.2.4.4 Numbers that should not be written using <mn> alone", es_warning, ec_element, "Given '", x.at (pos), "', <MN> alone may be unsuitable here"); }
 
 void element::examine_mstyle ()
-{   if (page_.version ().math_version () < math_3) return;
+{   if (page_ -> version ().math_version () < math_3) return;
     if (a_.known (a_background))
         pick (nit_attribute_unrecognised_here, ed_math_3, "3.3.4.2 Attributes", es_error, ec_attribute, "the BACKGROUND attribute is not associated with <MSTYLE> in MathML 3");
     attribute_bitset bs = empty_attribute_bitset | a_verythickmathspace | a_verythinmathspace | a_veryverythickmathspace | a_veryverythinmathspace |
@@ -378,12 +368,12 @@ void element::examine_mstyle ()
         pick (nit_deprecated_attribute, es_warning, ec_attribute, "the ...MATHSPACE attributes are deprecated in MathML 3"); }
 
 void element::examine_mtable ()
-{   if (page_.version ().math_version () < math_4_22) return;
+{   if (page_ -> version ().math_version () < math_4_22) return;
     if (! descendant_elements_.test (elem_mtr))
         pick (nit_mtr_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTABLE> requires <MTR> children"); }
 
 void element::examine_mtr ()
-{   if (page_.version ().math_version () < math_4_22) return;
+{   if (page_ -> version ().math_version () < math_4_22) return;
     if (! descendant_elements_.test (elem_mtd))
         pick (nit_mtd_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTR> requires <MTD> children"); }
 
@@ -448,8 +438,7 @@ void element::examine_object ()
             if (a_.get_string (a_data).find (":") != ::std::string::npos)
                 pick (nit_typemustmatch, ed_50, "4.7.4 The object element", es_info, ec_element, "consider specifying TYPEMUSTMATCH, for added security"); }
     bool had_flow = false;
-    for (element_ptr p = child_; p != nullptr; p = p -> sibling_)
-    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
         if (! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
             switch (p -> node_.tag ())
             {   case elem_param :
@@ -461,7 +450,7 @@ void element::examine_object ()
                     // drop thru'
                     [[fallthrough]];
                 default :
-                    if ((node_.version ().mjr () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } } }
+                    if ((node_.version ().mjr () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } }
 
 void element::examine_option ()
 {   if (node_.version ().is_5 ())
@@ -477,8 +466,7 @@ void element::examine_option ()
                 else if (! a_.known (a_label))
                     no_whitespace = ! ancestral_elements_.test (elem_datalist);
                 else no_content = a_.known (a_value); }
-            for (element_ptr p = child_; (p != nullptr); p = p -> sibling_)
-            {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+            for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
                 if (! is_faux_element (p -> tag ()))
                 {   if ((p -> node_.is_closure ()) && (p -> tag () == elem_option) && (! p -> node_.presumed ()))
                         bad_whitespace = had_whitespace;
@@ -496,7 +484,7 @@ void element::examine_option ()
                         if (! bad_whitespace) bad_whitespace = proto_whitespace;
                         break;
                     default :
-                        break; } }
+                        break; }
             if (no_content)
             {   if (had_text)
                     pick (nit_bad_option, ed, "4.10.10 The option element", es_error, ec_element, "<OPTION> with both LABEL and VALUE cannot have content"); }

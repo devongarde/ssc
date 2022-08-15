@@ -26,7 +26,7 @@ template < class V, typename CATEGORY, CATEGORY INIT > struct symbol_store
     ::std::string   sz_;
     ::std::size_t   v_ = 0;
     CATEGORY        ns_ = INIT;
-    flags_t        flags_ = 0, flags2_ = 0;
+    flags_t         flags_ = 0, flags2_ = 0;
 	symbol_store () = default;
     symbol_store (const symbol_store& ss) = default;
 	symbol_store (symbol_store&& ss) = default;

@@ -35,7 +35,9 @@ public:
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
-    void swap (four_value& t) noexcept { ::std::swap (value_, t.value_); type_base < base_type, TYPE >::swap (t); }
+    void swap (four_value& t) noexcept
+    {   ::std::swap (value_, t.value_);
+        type_base < base_type, TYPE >::swap (t); }
     static base_type default_value () { return static_cast <base_type> (0); }
     base_type get () const noexcept { return value_; }
     int get_int () const { return static_cast < int > (value_); }

@@ -27,6 +27,8 @@ template < class T > class stats0
 public:
     typedef typename counter_t :: const_iterator cit;
     stats0 () = default;
+    void swap (stats0& s0)
+    {   count_.swap (s0.count_); }
     unsigned at (const T& e) const
     {   typename counter_t::const_iterator i = count_.find (e);
         if (i == count_.cend ()) return 0;

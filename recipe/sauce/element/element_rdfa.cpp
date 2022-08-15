@@ -62,7 +62,7 @@ void element::examine_about ()
     {   node_.prepare_rdfa ();
         VERIFY_NOT_NULL (node_.rdfa (), __FILE__, __LINE__);
         ::std::string s (a_.get_string (a_about));
-        if (s.find (':') == ::std::string::npos) s = page_.get_absolute_url (s); } }
+        if (s.find (':') == ::std::string::npos) s = page_ -> get_absolute_url (s); } }
 
 void element::examine_datatype (flags_t& flags)
 {   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
@@ -75,7 +75,7 @@ void element::examine_datatype (flags_t& flags)
         if (nowt) flags |= EF_NULL_DATATYPE;
         else
         {   ::std::string dt (tart (a_.get_string (a_datatype)));
-            const e_schema_type t = ptr -> note_type (node_.nits (), node_.version (), dt, page_);
+            const e_schema_type t = ptr -> note_type (node_.nits (), node_.version (), dt, *page_);
             switch (t)
             {   case rdf_xmlliteral :
                     flags |= EF_XL_DATATYPE;
@@ -114,7 +114,7 @@ void element::examine_property ()
         vstr_t props (split_by_space (a_.get_string (a_property)));
         nitpick knots;
         for (auto p : props)
-            ptr -> note_prop (node_.nits (), node_.version (), p, value, is_link, page_); } }
+            ptr -> note_prop (node_.nits (), node_.version (), p, value, is_link, *page_); } }
 
 // I need to distinguish rev and rel
 void element::examine_rdfa_rel (const ::std::string& prop)
@@ -129,7 +129,7 @@ void element::examine_rdfa_rel (const ::std::string& prop)
         vstr_t rels (split_by_space (prop));
         nitpick knots;
         for (auto r : rels)
-            ptr -> note_prop (knots, node_.version (), r, value, is_link, page_);
+            ptr -> note_prop (knots, node_.version (), r, value, is_link, *page_);
         if (! context.microformats ()) nits ().merge (knots); } }
 
 void element::examine_rdfa_rev (const ::std::string& prop)
@@ -144,7 +144,7 @@ void element::examine_rdfa_rev (const ::std::string& prop)
         vstr_t revs (split_by_space (prop));
         nitpick knots;
         for (auto r : revs)
-            ptr -> note_prop (node_.nits (), node_.version (), r, value, is_link, page_);
+            ptr -> note_prop (node_.nits (), node_.version (), r, value, is_link, *page_);
         if (! context.microformats ()) nits ().merge (knots); } }
 
 void element::examine_resource ()
@@ -163,7 +163,7 @@ void element::examine_typeof ()
         vstr_t vals (split_by_space (value));
         nitpick knots;
         for (auto r : vals)
-            ptr -> note_type (node_.nits (), node_.version (), r, page_); } }
+            ptr -> note_type (node_.nits (), node_.version (), r, *page_); } }
 
 void element::examine_vocab ()
 {   PRESUME (context.has_rdfa (), __FILE__, __LINE__);
@@ -172,5 +172,5 @@ void element::examine_vocab ()
     {   node_.prepare_rdfa ();
         rdf_ptr ptr = node_.rdfa ();
         VERIFY_NOT_NULL (ptr.get (), __FILE__, __LINE__);
-        ptr -> note_vocab (node_.nits (), node_.version (), a_.get_string (a_vocab), page_); } }
+        ptr -> note_vocab (node_.nits (), node_.version (), a_.get_string (a_vocab), *page_); } }
 

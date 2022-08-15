@@ -35,7 +35,11 @@ void nitpick::swap (nitpick& np) noexcept
     nits_.swap (np.nits_);
     after_.swap (np.after_);
     before_.swap (np.before_);
-    mote_.swap (np.mote_); }
+    mote_.swap (np.mote_);
+    severity_.swap (np.severity_);
+    category_.swap (np.category_);
+    doc_.swap (np.doc_);
+    ::std::swap (stats_, np.stats_); }
 
 void nitpick::reset ()
 {   nitpick np;

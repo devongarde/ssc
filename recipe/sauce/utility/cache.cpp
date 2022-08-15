@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 struct cache_t
 {   e_cache_state cs_ = cs_loading;
-    time_t when_;
+    time_t when_ = 0;
     ::std::string content_; };
 
 typedef ssc_map < ::std::string, cache_t > mc_t;

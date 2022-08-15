@@ -32,9 +32,10 @@ typedef enum { ip_itemscope, ip_string } itemprop_member;
 void microdata_itemscope::swap (microdata_itemscope& mi)
 {   itemprop_.swap (mi.itemprop_);
     type_.swap (mi.type_);
-    parent_.swap (mi.parent_);
+    ::std::swap (export_, mi.export_);
     export_path_.swap (mi.export_path_);
-    ::std::swap (export_, mi.export_); }
+    parent_.swap (mi.parent_);
+    parent2_.swap (mi.parent2_); }
 
 void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, const ::std::string& name, page& p, const bool has_itemid)
 {   nitpick nuts;

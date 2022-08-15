@@ -37,7 +37,7 @@ void element::span_check ()
             pick (nit_1000, ed_50, "4.9.11 Attributes common to td and th element", es_error, ec_attribute, "ROWSPAN must be a positive integer less than 65535"); } }
 
 void element::examine_accesskey ()
-{   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul09))
+{   if ((page_ -> version ().mjr () > 4) && (page_ -> version () < html_jul09))
         pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "ACCESSKEY requires a different version of HTML"); }
 
 void element::examine_animation_attributes ()
@@ -244,7 +244,7 @@ void element::examine_headers ()
                         pick (nit_bad_header_id, ed_50, "4.9.11 Attributes common to td and th elements", es_error, ec_attribute, "id ", quote (s), " is on a <TH> in a different <TABLE>"); } } }
 
 void element::examine_href ()
-{   if (page_.version () == xhtml_2) return;
+{   if (page_ -> version () == xhtml_2) return;
     if (node_.id ().is_math ())
         if (context.math_version () < math_3)
             if (tag () != elem_image)
@@ -295,12 +295,8 @@ void element::examine_descendant_in (const element* filter)
             if (! filter -> has_result (s))
             {   node_.merge (nuts);
                 pick (nit_bad_result, ed_svg_1_1, "15.7.2 Common attributes", es_error, ec_attribute, quote (s), " is neither a filter primitive nor a result associated with the current filter"); } }
-    if (has_child ())
-    {   element_ptr e = child ();
-        do
-        {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-            e -> examine_descendant_in (filter); }
-        while (to_sibling (e)); } }
+    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        p -> examine_descendant_in (filter); }
 
 void element::examine_other ()
 {   if (node_.id ().is_math ())
@@ -353,7 +349,7 @@ void element::examine_spellcheck (flags_t& flags)
         else flags &= ~EP_NOSPELL; }
 
 void element::examine_style_attr ()
-{   if ((page_.version ().mjr () > 4) && (page_.version () < html_jul07))
+{   if ((page_ -> version ().mjr () > 4) && (page_ -> version () < html_jul07))
         pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "STYLE requires a different version of HTML"); }
 
 void element::examine_xlinkhref ()
