@@ -446,8 +446,8 @@ void element::examine_children (const flags_t flags, const lingo& lang)
         else
         {   ancestral_attributes = ancestral_attributes_;
             itemscope = itemscope_; }
-        VERIFY_NOT_NULL (child_.get (), __FILE__, __LINE__);
-        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        VERIFY_NOT_NULL (child_, __FILE__, __LINE__);
+        for (element* p = child_; p != nullptr; p = p -> sibling_)
         {   p -> reconstruct (access_);
             p -> examine_self (lang, itemscope, ancestral_attributes, sibling_attributes, flags);
             if (p -> node_.is_closure ())
@@ -457,7 +457,7 @@ void element::examine_children (const flags_t flags, const lingo& lang)
                 if (tag () != elem_template)
                 {   descendant_attributes_ |= p -> descendant_attributes_;
                     descendant_attributes_ |= p -> own_attributes_; } } }
-        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        for (element* p = child_; p != nullptr; p = p -> sibling_)
             p -> sibling_attributes_ = sibling_attributes; } }
 
 ::std::string element::make_children (const int depth, const element_bitset& ancestral_elements)
@@ -473,9 +473,9 @@ void element::examine_children (const flags_t flags, const lingo& lang)
         res += "\n"; }
     if (has_child ())
     {   element_bitset ancestors, siblings;
-        element_ptr e = make_child ();
         if (tag () == elem_template) ancestors.set (elem_template);
         else ancestors = ancestral_elements_ | node_.tag ();
+        element* e = make_child ();
         do
         {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
             res += e -> make_children (depth + 1, ancestors);
@@ -485,12 +485,12 @@ void element::examine_children (const flags_t flags, const lingo& lang)
                 {   descendant_elements_ |= e -> descendant_elements_;
                     descendant_elements_ |= e -> node_.tag (); } } }
         while (make_sibling (e));
-        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
-            e -> sibling_elements_ = siblings; }
+        for (element* p = child_; p != nullptr; p = p -> sibling_)
+            p -> sibling_elements_ = siblings; }
     return res; }
 
 void element::verify_children ()
-{   for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+{   for (element* p = child_; p != nullptr; p = p -> sibling_)
         p -> verify (); }
 
 void element::verify ()
@@ -563,22 +563,22 @@ void element::verify_document ()
 ::std::string element::report ()
 {   ::std::ostringstream res;
     res << nits ().review ();
-    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
         res << p -> report ();
     nits ().accumulate (page_ -> nits ());
     return res.str (); }
 
 element* element::next_element (element* previous)
 {   if (previous == nullptr) return nullptr;
-    if (previous -> has_child ()) return previous -> child_.get ();
-    if (previous -> has_next ()) return previous -> sibling_.get ();
+    if (previous -> has_child ()) return previous -> child_;
+    if (previous -> has_next ()) return previous -> sibling_;
     if (previous -> parent () == nullptr) return nullptr;
     element* res = previous;
     do
     {   VERIFY_NOT_NULL (res, __FILE__, __LINE__);
         res = res -> parent ();
         if (res == nullptr) break;
-        if (res -> sibling_.get () != nullptr) return res -> sibling_.get ();
+        if (res -> sibling_ != nullptr) return res -> sibling_;
     } while (res -> tag () != elem_faux_document);
     return nullptr; }
 
@@ -591,7 +591,7 @@ element* element::find_next (const e_element e, element* previous)
 
 element* element::find_first (const e_element e)
 {   if (! has_child ()) return nullptr;
-    return find_next (e, child_.get ()); }
+    return find_next (e, child_); }
 
 bool element::family_uids (const e_element e, uid_t& from, uid_t& to) const
 {   if (tag () == e)
@@ -612,7 +612,7 @@ bool element::family_uids (const e_element e, uid_t& from, uid_t& to) const
             if (has_child ())
             {   const element_bitset bs (empty_element_bitset | elem_abbr | elem_faux_comment |elem_faux_ssi | elem_faux_stylesheet | elem_faux_whitespace);
                 element* abr = nullptr;
-                for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+                for (element* c = child_; c != nullptr; c = c -> sibling_)
                 {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
                     if (! c -> node_.is_closure ())
                     {   if (! bs.test (c -> tag ())) return text ();

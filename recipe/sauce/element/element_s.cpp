@@ -109,19 +109,19 @@ void element::examine_script ()
         if (a_.known (a_async))
             pick (nit_bad_script, ed_50, "4.11.1 The script element", es_error, ec_element, "ASYNC requires SRC"); }
     if (jsld) page_ -> append_jsonld (content ());
-    if (has_child ()) report_script_comment (child_.get ()); }
+    if (has_child ()) report_script_comment (); }
 
-bool element::report_script_comment (element* child)
-{   for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+bool element::report_script_comment ()
+{   for (element* p = child_; p != nullptr; p = p -> sibling_)
         if (! p -> node_.is_closure ())
             if (p -> tag () == elem_faux_text)
             {   if ((p -> node_.text ().find ("<!--") != ::std::string::npos) ||
                     (p -> node_.text ().find ("<script") != ::std::string::npos) ||
                     (p -> node_.text ().find ("</script") != ::std::string::npos))
-                {   pick (nit_bad_script, ed_jan14, "4.12.1.2 Restrictions for contents of script elements", es_warning, ec_element, "within the <SCRIPT> content, replace '<!--', '<script', and '</script', even if its quoted, with '<\\!--', '<\\script', and '<\\/script', respectively");
+                {   pick (nit_bad_script, ed_jan14, "4.12.1.2 Restrictions for contents of script elements", es_warning, ec_element, "within the <SCRIPT> content, replace '<!--', '<script' and '</script' (even if quoted), with '<\\!--', '<\\script' and '<\\/script', respectively");
                     return true; } }
             else if (p -> has_child ())
-                if (report_script_comment (p -> child_.get ())) return true;
+                if (report_script_comment ()) return true;
     return false; }
 
 void element::examine_section ()
@@ -150,7 +150,7 @@ void element::examine_select ()
     {   uint64_t selected = 0;
         int selectedness = 0;
         bool firstempty = false, first = true;
-        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        for (element* p = child_; p != nullptr; p = p -> sibling_)
             if (! p -> node_.is_closure ())
                 switch (p -> tag ())
                 {   case elem_optgroup :
@@ -226,7 +226,7 @@ void element::examine_summary ()
 {   if ((node_.version () < html_5_1) || (node_.version () >= html_jul20)) return;
     bool heading = false;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (is_standard_element (c -> tag ()) && (! c -> node_.is_closure ()))
                 if (header_bitset.test (c -> tag ()))
@@ -289,7 +289,7 @@ void element::examine_switch ()
     if (node_.version ().is_svg_12 ()) return;
     const flags_t cat = (elem :: categories (parent_ -> tag ()) & EF_SVG_CATMASK);
     bool nofaux = false;
-    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    for (element* c = child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         const e_element ct = c -> tag ();
         nofaux = nofaux || is_standard_element (ct);

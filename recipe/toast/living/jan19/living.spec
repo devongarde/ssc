@@ -622,9 +622,9 @@ PASS ../toast/living/jan19/img.html
 268 newline_in_string no_such_folder url_not_found
 277 newline_in_string
 277 newline_in_string url_not_found
-280 attribute_required url_not_found
+280 attribute_required url_not_found naughty_alt
 286 attribute_required url_not_found naughty_alt
-293 attribute_required url_not_found
+293 attribute_required url_not_found naughty_alt
 308 newline_in_string
 308 newline_in_string url_not_found
 314 attribute_required url_not_found naughty_alt
@@ -780,7 +780,7 @@ PASS ../toast/living/jan19/links-licence.html
 0 charset_mismatch charset_used charset_invalid
 5 no_such_folder url_not_found
 10 attempted_escape
-13 attribute_required no_such_folder url_not_found
+13 attribute_required no_such_folder url_not_found naughty_alt
 19 attempted_escape
 
 PASS ../toast/living/jan19/links-modulepreload.html

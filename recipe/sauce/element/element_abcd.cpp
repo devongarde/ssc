@@ -42,7 +42,7 @@ void element::examine_address ()
 void element::examine_altglyphdef ()
 {   bool ref = false, item = false, bad = false;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
             switch (c -> tag ())
             {   case elem_altglyphitem :
                     if (ref) bad = true; else item = true;
@@ -86,7 +86,7 @@ void element::examine_anchor ()
 void element::examine_animatemotion ()
 {   bool had = false;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
             if (c -> tag () == elem_mpath)
                 if (! had) had = true;
                 else
@@ -205,7 +205,7 @@ void element::examine_bind ()
 {   if (! check_math_children (3, true)) return;
     bool first = true, other = false, bound = false;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   if (c -> tag () != elem_bvar) other = true;
             else if (first)
             {   pick (nit_bad_bind, ed_math_3, "4.2.6.1 Bindings", es_error, ec_element, "<BVAR> cannot be the first child of <BIND>");
@@ -295,7 +295,7 @@ void element::examine_datagrid ()
 {   if (has_child ())
     {   bool had_table = false, had_select = false, had_datalist = false, had_other = false;
         int n = 0;
-        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        for (element* p = child_; p != nullptr; p = p -> sibling_)
             if (is_standard_element (p -> tag ()) && ! p -> node_.is_closure ())
                 switch (p -> tag ())
                 {   case elem_datalist :
@@ -323,7 +323,7 @@ void element::examine_datalist ()
 {   if (! has_child ()) pick (nit_bad_datalist, ed_50, "4.10.8 The datalist element", es_warning, ec_element, "is the empty <DATALIST> intentional");
     else
     {   bool had_option = false, had_other = false;
-        for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+        for (element* p = child_; p != nullptr; p = p -> sibling_)
             if (is_standard_element (p -> tag ()) && ! p -> node_.is_closure ())
                 switch (p -> tag ())
                 {   case elem_option :
@@ -345,7 +345,7 @@ void element::examine_details ()
 {   no_anchor_daddy ();
     bool first = true;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (is_standard_element (c -> tag ()) && (! c -> node_.is_closure ()))
                 if (first) first = false;
@@ -390,7 +390,7 @@ void element::examine_div ()
 {   if (has_child () && (node_.version () >= html_jan17))
     {   bool dt = false, dd = false;
         if (parent_ -> tag () == elem_dl)
-        {   for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        {   for (element* c = child_; c != nullptr; c = c -> sibling_)
             {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
                 if (! c -> node_.is_closure ())
                 {   if (faux_bitset.test (c -> tag ())) continue;
@@ -414,7 +414,7 @@ void element::examine_dl ()
 {   bool dtdd = false, dt = false, div = false, dd = false;
     vstr_t terms; ::std::string s;
     if (has_child () && (node_.version ().is_5 ()))
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (! c -> node_.is_closure ())
                 switch (c -> tag ())

@@ -60,7 +60,7 @@ void element::examine_math ()
         default :
             return; }
     bool other = false; bool content = false;
-    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
         if (p -> node_.id ().first ().has_math () || p -> node_.id ().is_math ())
             if (! p -> node_.is_closure ())
             {   content = true;
@@ -80,7 +80,7 @@ void element::examine_media_element (e_element , const char* ref, const char* na
     const bool has_src = a_.known (a_src);
     if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), family);
     sstr_t track_check; ::std::string tmp;
-    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
         if (! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
             switch (p -> node_.tag ())
             {   case elem_source :
@@ -132,7 +132,7 @@ void element::examine_menu ()
         if (a_.has (a_type))
             if (node_.version () >= html_jul17)
             {   const element_bitset bs (faux_bitset | script_bitset | elem_li);
-                for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+                for (element* p = child_; p != nullptr; p = p -> sibling_)
                     if (! p -> node_.is_closure ())
                         if (! bs.test (p -> node_.id ()))
                         {   pick (nit_menu_child, ed_jul20, "3.18.4. The menu element", es_error, ec_element, "<MENU> may only have <LI> and script children");
@@ -145,7 +145,7 @@ void element::examine_menu ()
                 const e_menutype mt = static_cast < e_menutype > (a_.get_int (a_type));
                 if (node_.version () >= html_jan06)
                     if (has_child ())
-                    {   for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+                    {   for (element* p = child_; p != nullptr; p = p -> sibling_)
                         {   if (! p -> node_.is_closure ()) continue;
                             if (faux_bitset.test (p -> node_.id ())) continue;
                             if (script_bitset.test (p -> node_.id ()) && (node_.version () >= html_jul13)) continue;
@@ -182,7 +182,7 @@ void element::examine_menu ()
 
 void element::examine_menubar ()
 {   bool had_li = false, had_other = false;
-    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
         if (! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
             if (p -> node_.tag () == elem_li)
             {   if (had_other)
@@ -438,7 +438,7 @@ void element::examine_object ()
             if (a_.get_string (a_data).find (":") != ::std::string::npos)
                 pick (nit_typemustmatch, ed_50, "4.7.4 The object element", es_info, ec_element, "consider specifying TYPEMUSTMATCH, for added security"); }
     bool had_flow = false;
-    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
         if (! p -> node_.is_closure () && is_standard_element (p -> node_.tag ()))
             switch (p -> node_.tag ())
             {   case elem_param :
@@ -466,7 +466,7 @@ void element::examine_option ()
                 else if (! a_.known (a_label))
                     no_whitespace = ! ancestral_elements_.test (elem_datalist);
                 else no_content = a_.known (a_value); }
-            for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+            for (element* p = child_; p != nullptr; p = p -> sibling_)
                 if (! is_faux_element (p -> tag ()))
                 {   if ((p -> node_.is_closure ()) && (p -> tag () == elem_option) && (! p -> node_.presumed ()))
                         bad_whitespace = had_whitespace;

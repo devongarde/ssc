@@ -68,7 +68,7 @@ SSC has a number of switches:
 	6 Debug
 	7... more and more debug
 
--I	        Process (simple) Server Side Includes
+-I	        Process Server Side Includes
 -g dir      set website root directory (defaults to current directory)
 -x xxx      treat files with extension xxx as HTML/XHTML (may be repeated)
 -i file     file is index file in directories (default index.html)
@@ -85,7 +85,7 @@ SSC has a number of switches:
 -X	        Check crosslinked IDs (e.g. id attribute)
 
 -M	        Check microformats.org set using class attribute
--m	        Check schema.org data set using WhatWG microdata attributes
+-m	        Check ontologies set using WhatWG microdata attributes
 
 -S	        Report site statistics
 
@@ -195,8 +195,7 @@ Actually, SSC will report on any microdata it finds, no matter what. Note that,
 if you use itemref in your pages, ssc may give false warnings in the section
 referenced by the itemref. This is because ssc does not always know that the
 referenced data is not intended to be used in its own right, unless you put it
-under a TEMPLATE
-element.
+under a TEMPLATE element.
 
 You can export the microdata encountered in JSON file format by using the
 export setting (not shown).
@@ -271,7 +270,7 @@ Indeed, many enumerated attribute values can be extended in this way. Use the
 
 arts & ego
 ----------
-This is the configuration file I use to analyse my site.
+This is the configuration file I used to analyse my site.
 
 [general]
 verbose=4
@@ -301,4 +300,4 @@ summary=yes
 My site has been built by hand over the decades, and is full of errors. I wrote
 ssc because I was frustrated that I could find no tool to properly check it.
 Unfortunately, SSC is too successful: it finds hundreds of errors in arts &
-ego. I am slowly repairing the site accordingly.
+ego. I am slowly making the repairs.

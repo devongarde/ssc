@@ -41,8 +41,8 @@ void element::swap (element& e) noexcept
 {   a_.swap (e.a_);
     mf_.swap (e.mf_);
     name_.swap (e.name_);
-    sibling_.swap (e.sibling_);
-    child_.swap (e.child_);
+    ::std::swap (sibling_, e.sibling_);
+    ::std::swap (child_, e.child_);
     radio_kids_.swap (e.radio_kids_);
     itemscope_.swap (e.itemscope_);
     results_.swap (e.results_);
@@ -64,6 +64,16 @@ void element::swap (element& e) noexcept
     ::std::swap (access_, e.access_);
     ::std::swap (vit_, e.vit_); }
 
+void element::cleanup ()
+{   if (child_ != nullptr)
+    {   child_ -> cleanup ();
+        delete child_;
+        child_ = nullptr; }
+    if (sibling_ != nullptr)
+    {   sibling_ -> cleanup ();
+        delete sibling_;
+        sibling_ = nullptr; } }
+
 ids_t& element::get_ids () noexcept
 {   return page_ -> get_ids (); }
 
@@ -79,19 +89,19 @@ const ids_t& element::get_names () const noexcept
 int element::line () const noexcept
 {   return node_.line (); }
 
-element_ptr element::make_child ()
+element* element::make_child ()
  {  PRESUME (has_child (), __FILE__, __LINE__);
-    if (child_.get () == nullptr)
-        child_.reset (new element (name_, node_.child (), this, page_));
+    if (child_ == nullptr)
+        child_ = new element (name_, node_.child (), this, page_);
     return child_; }
 
-element_ptr element::make_next ()
+element* element::make_next ()
  {  PRESUME (has_next (), __FILE__, __LINE__);
-    if (sibling_.get () == nullptr)
-        sibling_.reset (new element (name_, node_.next (), parent_, page_));
+    if (sibling_ == nullptr)
+        sibling_ = new element (name_, node_.next (), parent_, page_);
     return sibling_; }
 
-bool element::make_sibling (element_ptr& e)
+bool element::make_sibling (element*& e)
 {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
     if (! e -> has_next ()) return false;
     e = e -> make_next ();
@@ -108,7 +118,7 @@ element* element::get_ancestor (const e_element e) const
 
 bool element::has_this_child (const e_element e) const
 {   if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (c -> tag () == e) return true; }
     return false; }
@@ -132,7 +142,7 @@ void element::check_descendants (const e_element self, const element_bitset& gf,
 
 bool element::has_invalid_child (const element_bitset& gf)
 {   if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (! c -> node ().is_closure ())
                 if (! faux_bitset.test (c -> tag ()) && ! gf.test (c -> tag ())) return true; }
@@ -162,7 +172,7 @@ bool element::only_one_visible_of ()
 bool element::check_math_children (const int expected, const bool or_more)
 {   int n = 0;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (! c -> node_.is_closure ()) if (c -> node_.id ().is_math ()) ++n; }
     if ((n == expected) || (or_more && (n > expected))) return true;
@@ -176,7 +186,7 @@ void element::check_math_children (const int from, const int to)
 {   PRESUME (to > from, __FILE__, __LINE__);
     int n = 0;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (! c -> node_.is_closure ()) if (c -> node_.id ().is_math ()) ++n; }
     if ((n < from) || (n > to))
@@ -185,7 +195,7 @@ void element::check_math_children (const int from, const int to)
 void element::check_mscarries_pos ()
 {   bool last = false;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             last = (c -> tag () == elem_mscarries); }
     if (last)
@@ -239,7 +249,7 @@ void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& w
             ss << ">";
             was_nl = false;
             break; }
-    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
         p -> do_shadow (ss, v, was_closure, allspace, was_nl); }
 
 void element::shadow (::std::stringstream& ss, const html_version& v)

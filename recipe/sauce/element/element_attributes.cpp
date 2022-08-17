@@ -295,7 +295,7 @@ void element::examine_descendant_in (const element* filter)
             if (! filter -> has_result (s))
             {   node_.merge (nuts);
                 pick (nit_bad_result, ed_svg_1_1, "15.7.2 Common attributes", es_error, ec_attribute, quote (s), " is neither a filter primitive nor a result associated with the current filter"); } }
-    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
         p -> examine_descendant_in (filter); }
 
 void element::examine_other ()

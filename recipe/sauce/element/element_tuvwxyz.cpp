@@ -33,7 +33,7 @@ void element::examine_table ()
     typedef enum { to_start, to_caption, to_colgroup, to_head, to_foot_start, to_tr, to_foot_end } table_order;
     table_order tor = to_start;
     bool ooo = false, footed = false, doubled = false, mixed = false, body = false, tr = false;
-    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
     {   if (! p -> node_.is_closure ())
         {   switch (p -> tag ())
             {   case elem_caption :

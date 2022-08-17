@@ -50,7 +50,7 @@ void element::examine_equation ()
     bool start = true;
     int args = 0;
     e_element op = elem_undefined;
-    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    for (element* c = child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (c -> node_.id ().is_math ())
             if (start)
@@ -164,7 +164,7 @@ void element::examine_feconvolvematrix ()
 void element::examine_felighting ()
 {   int cc = 0;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             switch (c -> tag ())
             {   case elem_fedistantlight :
@@ -177,7 +177,7 @@ void element::examine_felighting ()
 void element::examine_fieldset ()
 {   bool first = true;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (is_standard_element (c -> tag ()) && (! c -> node_.is_closure ()))
                 if (first) first = false;
@@ -194,7 +194,7 @@ void element::examine_figure ()
 {   bool had_figcaption = false, first = true, last_was_fig = false;
     if (has_child () && (node_.version ().is_5 ()))
         if (node_.version ().whatwg () || (node_.version () == html_5_0))
-            for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+            for (element* c = child_; c != nullptr; c = c -> sibling_)
             {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
                 const e_element tag = c -> node_.tag ();
                 if (is_standard_element (tag) && ! c -> node_.is_closure ())
@@ -216,7 +216,7 @@ void element::examine_filter ()
 void element::examine_font ()
 {   if (has_child () && (node_.version ().svg_version () > sv_none) && (node_.version ().svg_version () < sv_2_0) && ancestral_elements_.test (elem_svg))
     {   bool faced = false;
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
             if (c -> tag () == elem_font_face)
             {   faced = true; break; }
         if (! faced) pick (nit_fontface, ed_svg_1_0, "20.3 The 'font' element", es_error, ec_element, "SVG's <FONT> requires a <FONT-FACE> child"); }
@@ -242,7 +242,7 @@ void element::examine_fontymacfontface ()
     if (! descendant_elements_.test (elem_font_face_src)) return;
     bool had = false;
     if (has_child ())
-        for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             if (c -> tag () == elem_font_face_src)
                 if (! had) had = true;
@@ -402,7 +402,7 @@ void element::examine_img ()
                     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                         if (p -> tag () == elem_figure)
                         {   bool alone = true;
-                            for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+                            for (element* p = child_; p != nullptr; p = p -> sibling_)
                                 if (is_standard_element (p -> tag ()))
                                     if (! p -> node_.is_closure ())
                                         switch (p -> tag ())
@@ -423,7 +423,7 @@ void element::examine_img ()
                     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                         if (p -> tag () == elem_a)
                         {   if (! p -> text ().empty ()) alt_required = false;
-                            else for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+                            else for (element* p = child_; p != nullptr; p = p -> sibling_)
                                 if (! p -> node_.is_closure ())
                                     if (is_standard_element (p -> tag ()))
                                         if (p != this)

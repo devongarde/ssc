@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void element::examine_picture ()
 {   bool was_img = false, had_img = false, order_warn = false;
     element* prev = nullptr;
-    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    for (element* c = child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (! c -> node_.is_closure ())
             switch (c -> tag ())
@@ -53,7 +53,7 @@ void element::examine_picture ()
 
 void element::examine_piecewise ()
 {   bool otherwise = false, noted = false;
-    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    for (element* c = child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
         switch (c -> tag ())
@@ -91,7 +91,7 @@ void element::examine_ruby ()
 {   if (node_.version ().mjr () < 5) return;
     bool had_ruby = false, had_non_ruby = false, had_rt = false, had_rp = false, rp_mode = false;
     const bool is_whatwg = node_.version ().whatwg ();
-    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    for (element* c = child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (is_standard_element (c -> tag ()) && ! c -> node_.is_closure ())
             if (is_whatwg)

@@ -700,8 +700,8 @@ PASS ../toast/living/jan21/img.html
 402 inserted_missing_closure
 403 missing_close
 404 inserted_missing_closure
-407 attribute_required url_not_found
-415 attribute_required url_not_found
+407 attribute_required url_not_found naughty_alt
+415 attribute_required url_not_found naughty_alt
 429 newline_in_string
 429 newline_in_string url_not_found
 435 attribute_required url_not_found naughty_alt
@@ -850,7 +850,7 @@ PASS ../toast/living/jan21/links-licence.html
 0 charset_mismatch charset_used charset_invalid
 5 no_such_folder url_not_found
 10 attempted_escape
-13 attribute_required no_such_folder url_not_found
+13 attribute_required no_such_folder url_not_found naughty_alt
 20 attempted_escape
 
 PASS ../toast/living/jan21/links-modulepreload.html

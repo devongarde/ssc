@@ -1,28 +1,10 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.133
+version 0.0.134
 https://ssc.lu/
-
-
 
 (c) 2020-2022 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
-
-
-The American English version follows the British.
-
-
-
-British English
-===============
-
-
-
-WARNING: this code is:
-- incomplete
-- pre-alpha
-- IT PROBABLY WON'T BEHAVE AS YOU EXPECT :-)
-- do NOT feed it untrusted data
 
 
 
@@ -30,7 +12,7 @@ ssc analyses static X/HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
 - HTML living standard, Jan 2005 to Jul 2022
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
-- MathML 1/2/3/4-draft
+- MathML 1/2/3/4 draft Jul 2022
 - XHTML 1.0/1.1/2.0/5.x
 - finds broken links (requires curl)
 - server side includes, mostly
@@ -42,17 +24,17 @@ with opinions on:
 - abhorrent rudeness such as autoplay on videos
 
 It does NOT:
-- behave securely: its parser is holier than robin's cow
 - analyse or understand scripts
 - analyse or understand styles, beyond nicking class names from CSS
-- analyse or understand XML or derivatives except as noted above
+- analyse or understand XML or derivatives, except as noted above
 
 It can output:
 - 'repaired' HTML (not XHTML)
-- HTML with resolved Server Side Includes
-- JSON summaries of microformat and microdata content
+- HTML with resolved server side includes
+- JSONs of ontological content
 - website statistical information
-- updated website with datafile deduplication
+- deduplicated websites
+
 
 
 ssc -h
@@ -75,10 +57,8 @@ To build & run:
 NOTE
 SSC can be run in a CGI environment. This is intended for use with OpenBSD's
 native httpd web server (https://man.openbsd.org/httpd.8). You are reminded
-that SSC is pre-alpha software. Do NOT expose it to untrusted data sources,
-such as the open web, without taking serious precautions. SSC probably has more
-bugs than the Creator's Ultimate All-Beetle Extravaganza (J.B.S. Haldane,
-apocryphal : "[the Creator has] an inordinate fondness for beetles.").
+that SSC is pre-beta software. Do NOT expose it to untrusted data sources,
+such as the open web, without taking precautions.
 
 
 
@@ -93,7 +73,6 @@ Notes on names:
 
 
 
-
 SEE ALSO
 build.txt        notes on building ssc
 gen.txt          a model man page
@@ -105,6 +84,15 @@ more licences    licences for borrowed external content
 
 
 
+Background
+I have a website, arts & ego, at https://dylanharris.org/. It has approaching
+60G of original content. It contains hand coded HTMLs 2, 3, 4 & 5. It is a
+complete mess. Despite a long search, I could not find any tools to properly
+diagnose its flaws.
+
+Then came covid.
+
+
 
 REMINDER
 This program is distributed in the hope that it will be useful,
@@ -114,109 +102,6 @@ GNU General Public License for more details.
 
 
 
-
-written by dylan harris
-mail@ssc.lu
-August 2022
-
-
-
-
-
-
-American English
-===============
-
-
-This code offers the perfect diagnosis to your HTML static website problems,
-especially the ones you don't realise are condeming your site to be ignored
-by the rest of the internet.
-
-
-
-ssc analyses static X/HTML snippets, files and sites:
-- HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- HTML living standard, Jan 2005 to Jul 2022
-- SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
-- MathML 1/2/3/4-draft
-- XHTML 1.0/1.1/2.0/5.x
-- finds broken links (requires curl)
-- server side includes
-- microdata & RDFa ontologies
-
-with opinions on:
-- perfectly legal but sloppy HTML
-- abhorrent rudeness such as autoplay on videos
-
-It does NOT:
-- analyse or understand scripts
-- analyse or understand XML or derivatives except XHTML
-
-It can output:
-- 'repaired' HTML
-- HTML with resolved Server Side Includes
-- JSON summaries of microformat and microdata content
-- website statistical information
-- updated website with datafile deduplication
-
-
-ssc -h
-for a usage summary.
-
-ssc -f config_file
-analyse site using preprepared configuration
-
-ssc directory
-analyse website based in directory
-
-
-
-To build & run:
-1. Follow the build instructions in build.txt
-2. Gleefully run ssc. It will misbehave if you are insufficiently gleeful.
-
-
-
-NOTE
-SSC can be run in a CGI environment.
-
-
-
-Notes on names:
-- recipe: a nod to Vernor Vinge's "A Fire Upon the Deep";
-- tea: without tea, nothing works;
-- sauce: makes the dull delicious;
-- toast: toasts code;
-- heater: i'm not stopping now;
-- unii: a plural of unix that doesn't sound like it sings castrato.
-
-
-
-
-SEE ALSO
-build.txt        notes on building ssc
-gen.txt          a model man page
-usage.txt        how to use ssc
-releasenotes.txt a history of releases
-LICENCE.txt      ssc licence information
-LICENSE.txt      formal GPL 3 licence
-more licences    licences for borrowed external content
-
-
-
-
-LEGAL REMINDER
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-This is a translation of the British English readme. If the two conflict,
-the British English applies.
-
-
-
-
-written by dylan harris
+dylan harris
 mail@ssc.lu
 August 2022

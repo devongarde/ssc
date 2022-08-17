@@ -232,17 +232,21 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                     ss << nits.review (mac);
                     if (! jld)
                     {   page web (file, last_write (ndx), content, ndx, this);
-                        if (web.invalid ()) ss << web.nits ().review (mac);
-                        else
-                        {   web.examine ();
-                            web.verify_locale (p);
-                            web.mf_write (p);
-                            web.lynx ();
-                            web.css ().accumulate ();
-                            if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / file);
-                            ss << web.nits ().review (mac);
-                            ss << web.report (); }
-                        web.nits ().accumulate (nits); } }
+                        try
+                        {   if (web.invalid ()) ss << web.nits ().review (mac);
+                            else
+                            {   web.examine ();
+                                web.verify_locale (p);
+                                web.mf_write (p);
+                                web.lynx ();
+                                web.css ().accumulate ();
+                                if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / file);
+                                ss << web.nits ().review (mac);
+                                ss << web.report (); }
+                            web.nits ().accumulate (nits);
+                            web.cleanup (); }
+                        catch (...)
+                        {   web.cleanup (); throw; } } }
                 catch (const ::std::system_error& e)
                 {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + sp); }
                 catch (const ::std::exception& e)
