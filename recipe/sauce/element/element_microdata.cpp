@@ -140,7 +140,7 @@ void element::walk_itemprop (itemscope_ptr itemscope)
         if (a_.known (a_itemtype)) examine_itemtype (itemscope);
         if (a_.known (a_itemprop)) examine_itemprop (itemscope);
         if (a_.known (a_itemref)) examine_itemref (itemscope); }
-    for (element* p = child_.get (); p != nullptr; p = p -> sibling_.get ())
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
         p -> walk_itemprop (itemscope); }
 
 vit_t element::supplied_itemtypes ()

@@ -36,7 +36,7 @@ class page;
 class element;
 typedef ::std::vector < element* > velptr_t;
 typedef ::std::pair < element*, e_class > found_farm;
-typedef ::std::shared_ptr < element > element_ptr;
+//typedef ::std::shared_ptr < element > element_ptr;
 
 #define EF_NULL_DATATYPE    0x00000001
 #define EF_XL_DATATYPE      0x00000002
@@ -47,7 +47,8 @@ class element
     bool examined_ = false, icarus_ = false, reconstructed_ = false;
     page* page_ = nullptr;
     element* parent_ = nullptr;
-    element_ptr sibling_, child_;
+    element* sibling_ = nullptr;
+    element* child_ = nullptr;
     element* autofocus_ = nullptr;
     microformats_ptr mf_;
     ::std::string name_;
@@ -62,7 +63,7 @@ class element
     nitpick& nits () noexcept { return node_.nits (); }
     nitpick& nits () const noexcept { return node_.nits (); }
     found_farm find_farm (const e_property prop, element* starter = nullptr);
-    bool make_sibling (element_ptr& e);
+    bool make_sibling (element*& e);
     element* next_element (element* previous);
     template < class PROPERTY > void note_reply ();
     template < e_type T > void val_min_max (const bool cyclic = false);
@@ -94,7 +95,7 @@ class element
     ::std::string get_microdata_value () const;
     void verify_microdata ();
     ::std::string get_rdfa_value () const;
-    bool report_script_comment (element* parent);
+    bool report_script_comment ();
     void walk_itemprop (itemscope_ptr itemscope);
     vit_t supplied_itemtypes ();
     vit_t sought_itemtypes ();
@@ -256,7 +257,9 @@ class element
     ::std::string term () const;
 public:
     element (const ::std::string& name, element_node& en, element* parent, page* p);
+    ~element () { cleanup (); }
     void swap (element& e) noexcept;
+    void cleanup ();
 
     void reconstruct (sstr_t* access);
     const element_node& node () const noexcept
@@ -267,8 +270,8 @@ public:
     bool has_next () const noexcept
     {   return node_.has_next (); }
     ::std::string content () const;
-    element_ptr make_child ();
-    element_ptr make_next ();
+    element* make_child ();
+    element* make_next ();
     e_element tag () const noexcept
     {   return node_.tag (); }
     bool invalid () const noexcept

@@ -8,8 +8,8 @@ PASS ../toast/microdata/basic/examples.html
 38 url_not_found
 47 url_not_found naughty_alt
 67 missing_itemtype
-86 attribute_required url_not_found
-92 attribute_required url_not_found
+86 attribute_required url_not_found naughty_alt
+92 attribute_required url_not_found naughty_alt
 96 schema_domain
 100 url_not_found naughty_alt
 103 schema_domain
@@ -56,8 +56,8 @@ PASS ../toast/microdata/basic/itemprop.html
 45 url_not_found naughty_alt
 78 missing_itemtype
 97 newline_in_string newline_in_string
-101 attribute_required url_not_found
-112 attribute_required url_not_found
+101 attribute_required url_not_found naughty_alt
+112 attribute_required url_not_found naughty_alt
 119 schema_domain bad_itemid
 122 inserted_missing_closure
 123 inserted_missing_closure

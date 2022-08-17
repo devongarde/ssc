@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 bool element::naughty_label_descendents (const element* e, const uid_t uid, bool& first)
 {   bool res = false;
     VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-    for (element* c = e -> child_.get (); c != nullptr; c = c -> sibling_.get ())
+    for (element* c = e -> child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (is_standard_element (c -> tag ()) && ! c -> node_.is_closure ())
         {   if (c -> uid_ != uid)
@@ -65,7 +65,7 @@ void element::examine_label ()
 void element::examine_lambda ()
 {   if (node_.version ().math () < math_2) return;
     bool domain = false, other = false, bnoted = false, dnoted = false;
-    for (element* c = child_.get (); c != nullptr; c = c -> sibling_.get ())
+    for (element* c = child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (c -> node_.id ().is_math () && ! c -> node_.is_closure ())
             switch (c -> tag ())

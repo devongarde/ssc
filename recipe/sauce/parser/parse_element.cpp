@@ -78,7 +78,6 @@ void element_node::swap (element_node& en) noexcept
     rdfa_.swap (en.rdfa_);
     version_.swap (en.version_);
     namespaces_.swap (en.namespaces_);
-    version_.swap (en.version_);
     elem_.swap (en.elem_);
     va_.swap (en.va_);
     text_.swap (en.text_);

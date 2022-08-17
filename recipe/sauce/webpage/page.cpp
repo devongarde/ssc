@@ -74,7 +74,7 @@ void page::swap (page& p)
     description_.swap (p.description_);
     dfns_.swap (p.dfns_);
     ::std::swap (directory_, p.directory_);
-    document_.swap (p.document_);
+    ::std::swap (document_, p.document_);
     ::std::swap (euid_, p.euid_);
     glyphs_.swap (p.glyphs_);
     ::std::swap (has_title_, p.has_title_);
@@ -98,6 +98,12 @@ void page::swap (page& p)
     ::std::swap (style_css_, p.style_css_);
     title_.swap (p.title_);
     ::std::swap (updated_, p.updated_); }
+
+void page::cleanup ()
+{   if (document_ != nullptr)
+    {   document_ -> cleanup ();
+        delete document_;
+        document_ = nullptr; } }
 
 void page::lang (nitpick& nits, const html_version& , const ::std::string& l)
 {   if (! lang_.empty ())
@@ -125,23 +131,28 @@ bool page::parse (::std::string& content)
     return res; }
 
 void page::examine ()
-{   if ((! document_) && ! nodes_.invalid () && nodes_.version ().known ())
-    {   if ((! snippet_ && ! outsider_) && context.md_export ()) md_export_.init (get_export_root ());
-        document_.reset (new element (name_, nodes_.top (), nullptr, this));
-        stats_.mark (version ());
-        VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
-        PRESUME (document_ -> tag () == elem_faux_document, __FILE__, __LINE__);
-        document_ -> reconstruct (&access_);
-        ::std::string s = document_ -> make_children (0);
-        if (context.tell (es_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
-        document_ -> examine_self (lingo (nits_, context.lang ()));
-        document_ -> verify_document ();
-        if (! snippet_ && ! outsider_)
-        {   if (has_corpus ())
-                extend_corpus (nits_, title_, get_site_path (), corpus_, author_, keywords_, description_);
-            if (context.md_export ()) md_export_.write (nits_, get_export_path ()); }
-        if (! jsonld_.empty ()) parse_json_ld (nits_, version (), jsonld_);
-        ids_.cover_arse (); } }
+{   if ((document_ == nullptr) && (! nodes_.invalid ()) && nodes_.version ().known ())
+    {   if ((! snippet_ && ! outsider_) && context.md_export ())
+            md_export_.init (get_export_root ());
+        try
+        {   document_ = new element (name_, nodes_.top (), nullptr, this);
+            stats_.mark (version ());
+            VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
+            PRESUME (document_ -> tag () == elem_faux_document, __FILE__, __LINE__);
+            document_ -> reconstruct (&access_);
+            ::std::string s = document_ -> make_children (0);
+            if (context.tell (es_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
+            document_ -> examine_self (lingo (nits_, context.lang ()));
+            document_ -> verify_document ();
+            if (! snippet_ && ! outsider_)
+            {   if (has_corpus ())
+                    extend_corpus (nits_, title_, get_site_path (), corpus_, author_, keywords_, description_);
+                if (context.md_export ()) md_export_.write (nits_, get_export_path ()); }
+            if (! jsonld_.empty ()) parse_json_ld (nits_, version (), jsonld_);
+            ids_.cover_arse (); }
+        catch (...)
+        {   cleanup ();
+            throw; } } }
 
 void page::verify_locale (const ::boost::filesystem::path& p)
 {   if (lang_.empty ())
@@ -172,7 +183,7 @@ void page::itemscope (const itemscope_ptr itemscope)
 
 ::std::string page::report ()
 {   ::std::ostringstream res;
-    if (document_.get () != nullptr) res << document_ -> report ();
+    if (document_ != nullptr) res << document_ -> report ();
     nits_.accumulate (&stats_);
     {   lox curly (lox_stats);
         stats_.accumulate (); }
@@ -237,7 +248,7 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
         if (f.fail ())
             nits.pick (nit_cannot_create_file, es_catastrophic, ec_shadow, "cannot create ", s.string ());
         else
-        {   if (document_.get () != nullptr) document_ -> shadow (ss, version ());
+        {   if (document_ != nullptr) document_ -> shadow (ss, version ());
             f << ss.str ();
             f.close ();
             if (changed) file_permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms); } }

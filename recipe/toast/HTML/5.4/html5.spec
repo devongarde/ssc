@@ -429,9 +429,9 @@ PASS ../toast/HTML/5.4/html5-example.html
 1776 no_such_folder url_not_found
 1779 no_such_folder url_not_found
 1780 no_such_folder url_not_found
-1781 attribute_required no_such_folder url_not_found
+1781 attribute_required no_such_folder url_not_found naughty_alt
 1783 no_such_folder url_not_found
-1785 attribute_required no_such_folder url_not_found
+1785 attribute_required no_such_folder url_not_found naughty_alt
 1787 use_quote_code no_such_folder url_not_found
 1790 url_not_found
 1791 inserted_missing_closure url_not_found

@@ -125,12 +125,16 @@ int examine (nitpick& nits)
 {   int res = VALID_RESULT;
     if (context.cgi ())
     {   page web (context.snippet ());
-        if (! web.invalid ()) web.examine ();
-        ::std::string s (web.nits ().review ());
-            web.nits ().accumulate (&overall);
-        s += web.report ();
-        if (context.test ()) outstr.out (START_OF_SECTION " " SNIPPET "\n");
-        outstr.out (s);
+        try
+        {   if (! web.invalid ()) web.examine ();
+            ::std::string s (web.nits ().review ());
+                web.nits ().accumulate (&overall);
+            s += web.report ();
+            web.cleanup ();
+            if (context.test ()) outstr.out (START_OF_SECTION " " SNIPPET "\n");
+            outstr.out (s); }
+        catch (...)
+        {   web.cleanup (); throw; }
         return res; }
     nitpick shadow, exp;
     open_corpus (nits, context.corpus ());

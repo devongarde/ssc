@@ -946,8 +946,8 @@ PASS ../toast/coop/oct21/i/img.html
 401 inserted_missing_closure
 402 missing_close
 403 inserted_missing_closure
-406 url_not_found
-414 url_not_found
+406 url_not_found naughty_alt
+414 url_not_found naughty_alt
 428 newline_in_string
 428 newline_in_string url_not_found
 434 url_not_found
@@ -1180,7 +1180,7 @@ PASS ../toast/coop/oct21/l/links-licence.html
 0 charset_mismatch charset_used charset_invalid
 5 no_such_folder url_not_found
 10 attempted_escape
-13 no_such_folder url_not_found
+13 no_such_folder url_not_found naughty_alt
 20 attempted_escape
 
 PASS ../toast/coop/oct21/l/links-modulepreload.html
@@ -1302,8 +1302,8 @@ PASS ../toast/coop/oct21/m/microdata-1.html
 30 url_not_found
 39 url_not_found
 58 missing_itemtype
-77 url_not_found
-82 url_not_found
+77 url_not_found naughty_alt
+82 url_not_found naughty_alt
 86 schema_domain
 90 url_not_found
 94 schema_domain
@@ -2126,7 +2126,7 @@ PASS ../toast/coop/oct21/w/wbr.html
 7 use_double_quote_code
 
 PASS ../toast/coop/oct21/w/work.html
-7 relative_path url_not_found
+7 relative_path url_not_found naughty_alt
 10 missing_close
 16 inserted_missing_closure
 

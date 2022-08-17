@@ -32,7 +32,7 @@ PASS ../toast/microdata/export/vevent.html
 PASS ../toast/microdata/export/work.html
 0 write_wrote
 2 naughty_lang
-8 attribute_required
+8 attribute_required naughty_alt
 11 missing_close
 17 inserted_missing_closure
 

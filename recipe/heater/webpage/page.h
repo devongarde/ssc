@@ -41,7 +41,7 @@ class url;
 class page
 {   ids_t ids_, names_, glyphs_;
     sstr_t access_, dfns_, profiles_;
-    element_ptr document_;
+    element* document_ = nullptr;
     elements_node nodes_;
     ::std::string name_;
     microdata_export md_export_;
@@ -68,7 +68,9 @@ public:
     page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d = nullptr);
     page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, const directory* d = nullptr);
     explicit page (const ::std::string& content, const bool outsider = false);
+    ~page () { cleanup (); }
     void swap (page& p);
+    void cleanup ();
     nitpick& nits () noexcept { return nits_; }
     const nitpick& nits () const noexcept { return nits_; }
     bool parse (::std::string& content);
