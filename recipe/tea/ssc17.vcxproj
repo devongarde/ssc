@@ -23,7 +23,8 @@
     <ClInclude Include="..\heater\coop\knickers.h" />
     <ClInclude Include="..\heater\coop\lox.h" />
     <ClInclude Include="..\heater\css\css.h" />
-    <ClInclude Include="..\heater\css\css_cache.h" />
+    <ClInclude Include="..\heater\css\css_global.h" />
+    <ClInclude Include="..\heater\css\css_group.h" />
     <ClInclude Include="..\heater\element\elem.h" />
     <ClInclude Include="..\heater\element\element.h" />
     <ClInclude Include="..\heater\element\element_attribute.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="..\heater\url\url_schemes.h" />
     <ClInclude Include="..\heater\utility\bigvector.h" />
     <ClInclude Include="..\heater\utility\byteorder.h" />
+    <ClInclude Include="..\heater\utility\cache.h" />
     <ClInclude Include="..\heater\utility\common.h" />
     <ClInclude Include="..\heater\utility\filesystem.h" />
     <ClInclude Include="..\heater\utility\lexical.h" />
@@ -228,7 +230,8 @@
     <ClCompile Include="..\sauce\coop\knickers.cpp" />
     <ClCompile Include="..\sauce\coop\lox.cpp" />
     <ClCompile Include="..\sauce\css\css.cpp" />
-    <ClCompile Include="..\sauce\css\css_cache.cpp" />
+    <ClCompile Include="..\sauce\css\css_global.cpp" />
+    <ClCompile Include="..\sauce\css\css_group.cpp" />
     <ClCompile Include="..\sauce\element\elem.cpp" />
     <ClCompile Include="..\sauce\element\element.cpp" />
     <ClCompile Include="..\sauce\element\element_abcd.cpp" />
@@ -324,6 +327,7 @@
     <ClCompile Include="..\sauce\type\type_d.cpp" />
     <ClCompile Include="..\sauce\type\type_enum.cpp" />
     <ClCompile Include="..\sauce\type\type_httpequiv.cpp" />
+    <ClCompile Include="..\sauce\type\type_intent.cpp" />
     <ClCompile Include="..\sauce\type\type_lang.cpp" />
     <ClCompile Include="..\sauce\type\type_media.cpp" />
     <ClCompile Include="..\sauce\type\type_metaname.cpp" />
@@ -346,6 +350,7 @@
     <ClCompile Include="..\sauce\url\url_sanitise.cpp" />
     <ClCompile Include="..\sauce\url\url_scheme.cpp" />
     <ClCompile Include="..\sauce\utility\byteorder.cpp" />
+    <ClCompile Include="..\sauce\utility\cache.cpp" />
     <ClCompile Include="..\sauce\utility\common.cpp" />
     <ClCompile Include="..\sauce\utility\filesystem.cpp" />
     <ClCompile Include="..\sauce\utility\quote.cpp" />

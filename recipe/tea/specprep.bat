@@ -1,5 +1,10 @@
 ssc.exe -T --nits.spec -o ../out/confhtml.tst -f ../toast/conf/html/conf.conf
 ssc.exe -T --nits.spec -o ../out/confxhtml.tst -f ../toast/conf/xhtml/conf.conf
+ssc.exe -T --nits.spec -o ../out/coopcorrupt.tst -f ../toast/coop/corrupt/corrupt.conf
+ssc.exe -T --nits.spec -o ../out/coopcorrupt2.tst -f ../toast/coop/corrupt/corrupt2.conf
+ssc.exe -T --nits.spec -o ../out/coopcorrupt512.tst -f ../toast/coop/corrupt/corrupt512.conf
+ssc.exe -T --nits.spec -o ../out/coopliving.tst -f ../toast/coop/oct21/living.conf
+ssc.exe -T --nits.spec -o ../out/coopabc.tst -f ../toast/coop/schema-abc/abc.conf
 ssc.exe -T --nits.spec -o ../out/1csp.tst -f ../toast/csp/1/csp.conf
 ssc.exe -T --nits.spec -o ../out/2csp.tst -f ../toast/csp/2/csp.conf
 ssc.exe -T --nits.spec -o ../out/3csp.tst -f ../toast/csp/3/csp.conf
@@ -54,9 +59,12 @@ ssc.exe -T --nits.spec -o ../out/jul21living.tst -f ../toast/living/jul21/living
 ssc.exe -T --nits.spec -o ../out/oct21living.tst -f ../toast/living/oct21/living.conf
 ssc.exe -T --nits.spec -o ../out/jan22living.tst -f ../toast/living/jan22/living.conf
 ssc.exe -T --nits.spec -o ../out/apr22living.tst -f ../toast/living/apr22/living.conf
+ssc.exe -T --nits.spec -o ../out/jul22living.tst -f ../toast/living/jul22/living.conf
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf
+ssc.exe -T --nits.spec -o ../out/420math.tst -f ../toast/math/4-20/math.conf
+ssc.exe -T --nits.spec -o ../out/422math.tst -f ../toast/math/4-22/math.conf
 ssc.exe -T --nits.spec -o ../out/12schema.tst -f ../toast/microdata/12/schema.conf
 ssc.exe -T --nits.spec -o ../out/addendumadd.tst -f ../toast/microdata/addendum/add.conf
 ssc.exe -T --nits.spec -o ../out/basicbasic.tst -f ../toast/microdata/basic/basic.conf
@@ -75,6 +83,7 @@ ssc.exe -T --nits.spec -o ../out/relrel.tst -f ../toast/microformats/rel/rel.con
 ssc.exe -T --nits.spec -o ../out/abbrabbr.tst -f ../toast/other/abbr/abbr.conf
 ssc.exe -T --nits.spec -o ../out/ariaaria.tst -f ../toast/other/aria/aria.conf
 ssc.exe -T --nits.spec -o ../out/basebase.tst -f ../toast/other/base/base.conf
+ssc.exe -T --nits.spec -o ../out/blobblob.tst -f ../toast/other/blob/blob.conf
 ssc.exe -T --nits.spec -o ../out/charchars.tst -f ../toast/other/characters/chars.conf
 ssc.exe -T --nits.spec -o ../out/CSScss.tst -f ../toast/other/CSS/css.conf
 ssc.exe -T --nits.spec -o ../out/dfndfn.tst -f ../toast/other/dfn/dfn.conf

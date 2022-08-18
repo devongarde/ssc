@@ -1,10 +1,10 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.134
-https://ssc.lu/
-
+version 0.1.0
 (c) 2020-2022 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
+https://ssc.lu/
+https://github.com/devongarde/ssc
 
 
 
@@ -50,15 +50,40 @@ analyse website based in directory
 
 To build & run:
 1. Follow the build instructions in build.txt
-2. Gleefully run ssc. It will misbehave if you are insufficiently gleeful.
+2. Gleefully run ssc. It will misbehave if you are insufficiently
+   gleeful.
 
 
 
-NOTE
-SSC can be run in a CGI environment. This is intended for use with OpenBSD's
-native httpd web server (https://man.openbsd.org/httpd.8). You are reminded
-that SSC is pre-beta software. Do NOT expose it to untrusted data sources,
-such as the open web, without taking precautions.
+This is an alpha version of ssc. Despite heavy testing, it may contain
+unexpected features. If you encounter such an bug, please help improve
+ssc by collecting the following information (where relevant):
+- version of ssc;
+- precise version of the operating system;
+- hardware architecture and system information;
+- detailed description of the error and how to cause it;
+- copy of output file showing the error;
+- copy of pages/website being analysed;
+- precise command used;
+- configuration file(s) used, if any;
+- any ndx file or other pre-existing file used during the run;
+- any known workarounds or solutions;
+- a blues or dance interpretation of the 'feature';
+and emailing everything to mail@ssc.lu (if the collected files are more
+than small, please use a public fileserver and email the link). Do NOT
+send anything confidential. Furthermore, unless you request otherwise,
+we reserve the right to publish some or all of the information sent in
+future versions of ssc, usually in the test suite. If you have a fix,
+you are invited to submit a pull request on github. Thank you.
+Github address: https://github.com/devongarde/ssc
+
+
+
+SSC can be run in a CGI environment. This is intended for use with
+OpenBSD's native httpd web server (https://man.openbsd.org/httpd.8).
+You are reminded that SSC is pre-production software. Do NOT expose it
+to untrusted data sources, such as the open web, without taking
+precautions.
 
 
 
@@ -68,8 +93,8 @@ Notes on names:
 - sauce: identifies those who presume; and anyway, it's obvious;
 - toast: toasts code; i like burnt toast;
 - heater: i'm not stopping now;
-- unii: my preferred plural of unix: to my ears, both unixes and unices sound
-  like they sing castrato.
+- unii: my preferred plural of unix: to my ears, both unixes and unices
+  sound like they sing castrato.
 
 
 
@@ -85,12 +110,15 @@ more licences    licences for borrowed external content
 
 
 Background
-I have a website, arts & ego, at https://dylanharris.org/. It has approaching
-60G of original content. It contains hand coded HTMLs 2, 3, 4 & 5. It is a
-complete mess. Despite a long search, I could not find any tools to properly
-diagnose its flaws.
+I have a website, arts & ego, at https://dylanharris.org/. It has
+approaching 60G of original content. It contains hand coded HTMLs 2,
+3, 4 & 5. It is a complete mess. Despite a long search, I could not
+find any tools to properly diagnose its flaws. Anything I did find
+was at most cursory.
 
-Then came covid.
+Then came the cow flu*.
+
+* corvid means crow, thus covid means cow.
 
 
 

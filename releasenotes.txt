@@ -3,6 +3,9 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+ 0.1.0
+- FIRST ALPHA RELEASE!!
+
  0.0.134
 - further performance improvements
 - underlying work

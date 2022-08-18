@@ -371,6 +371,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\port\openbsd\DESCR" />
+    <None Include="..\port\openbsd\Makefile" />
     <None Include="..\toast\conf\corrupt\corona-corrupt.conf" />
     <None Include="..\toast\conf\corrupt\corrupt.conf" />
     <None Include="..\toast\conf\html\conf.conf" />
@@ -8518,6 +8520,7 @@
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
     <Text Include="..\gen\gen.txt" />
+    <Text Include="..\port\openbsd\README.txt" />
     <Text Include="..\toast\coop\corrupt\README.txt" />
     <Text Include="..\toast\coop\corrupt\robots.txt" />
     <Text Include="..\toast\README.txt" />

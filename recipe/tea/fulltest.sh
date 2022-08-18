@@ -3,6 +3,11 @@
 
 ./ssc -f ../toast/conf/html/conf.conf
 ./ssc -f ../toast/conf/xhtml/conf.conf
+./ssc -f ../toast/coop/corrupt/corrupt.conf
+./ssc -f ../toast/coop/corrupt/corrupt2.conf
+./ssc -f ../toast/coop/corrupt/corrupt512.conf
+./ssc -f ../toast/coop/oct21/living.conf
+./ssc -f ../toast/coop/schema-abc/abc.conf
 ./ssc -f ../toast/csp/1/csp.conf
 ./ssc -f ../toast/csp/2/csp.conf
 ./ssc -f ../toast/csp/3/csp.conf
@@ -57,10 +62,12 @@
 ./ssc -f ../toast/living/oct21/living.conf
 ./ssc -f ../toast/living/jan22/living.conf
 ./ssc -f ../toast/living/apr22/living.conf
+./ssc -f ../toast/living/jul22/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
-./ssc -f ../toast/math/4/math.conf
+./ssc -f ../toast/math/4-20/math.conf
+./ssc -f ../toast/math/4-22/math.conf
 ./ssc -f ../toast/microdata/12/schema.conf
 ./ssc -f ../toast/microdata/addendum/add.conf
 ./ssc -f ../toast/microdata/basic/basic.conf
@@ -79,6 +86,7 @@
 ./ssc -f ../toast/other/abbr/abbr.conf
 ./ssc -f ../toast/other/aria/aria.conf
 ./ssc -f ../toast/other/base/base.conf
+./ssc -f ../toast/other/lob/blob.conf
 ./ssc -f ../toast/other/characters/chars.conf
 ./ssc -f ../toast/other/CSS/css.conf
 ./ssc -f ../toast/other/dfn/dfn.conf

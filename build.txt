@@ -8,7 +8,7 @@ Introduction
 ============
 SSC can be built from various unii using CMake, or with Visual Studios
 2017 / 2019 / 2022 under Windows. I have built & tested it under x64 in
-selected OSs.
+selected OSs on intel/amd architecture.
 
 
 Libraries
@@ -55,7 +55,8 @@ Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the appropriate .sln
 file, then build. Only Visual Studios 2017 / 2019 / 2022, 64 bit, have been
-built & tested, for intel Windows 8.1, 10 & 11.
+built & tested, for intel Windows 8.1, 10 & 11. I've not built ssc using CMake
+under Windows.
 
 Unii & mock Unii
 ----------------
@@ -83,7 +84,7 @@ which is a bit silly given that means things are already in the desired state.
 
 The following have been successfully built as x64 amd/intel, although not
 always under all versions of ssc:
-Linux: Centos 8/9 Streams, Ubuntu Server 20.04/20.10
+Linux: Centos 8 Streams, Ubuntu Server 20.04
 OpenBSD: 7.1 / 7.0 / 6.9 / 6.8
 MacOS: Monterey, Big Sur, Catalina, Mojave, High Sierra
 
@@ -92,10 +93,9 @@ Note: Use clang if possible, gcc takes a wee while.
 
 Linux
 -----
-CMake is poor at spotting rather obvious things such as standard boost library
-distributions under Linux, and doesn't even know which flavour of Linux it's
-running on, so ssc's CMake configuration presumes that, under Linux, you've
-built your own boost.
+CMake seems poor at spotting rather obvious things such as standard boost
+library distributions under Linux, so it's hit and miss as to whether it will
+build. I've had success with Centos 8 and Ubuntu 20.04.
 
 
 OpenBSD

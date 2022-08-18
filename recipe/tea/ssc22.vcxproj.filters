@@ -948,6 +948,12 @@
     <Filter Include="Toast\Other\blob">
       <UniqueIdentifier>{9d6f7286-4993-4233-b59f-851f61599889}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Port">
+      <UniqueIdentifier>{3fbb5eed-deba-44f8-932d-aed1323c6f07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Port\OpenBSD">
+      <UniqueIdentifier>{1130bf8f-89b5-4569-ae91-0bd4c5807fb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -25965,6 +25971,12 @@
     <None Include="..\toast\other\blob\harris-brexit.pdf">
       <Filter>Toast\Other\blob</Filter>
     </None>
+    <None Include="..\port\openbsd\DESCR">
+      <Filter>Port\OpenBSD</Filter>
+    </None>
+    <None Include="..\port\openbsd\Makefile">
+      <Filter>Port\OpenBSD</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -26466,6 +26478,9 @@
     </Text>
     <Text Include="..\toast\coop\corrupt\robots.txt">
       <Filter>Toast\coop\corrupt</Filter>
+    </Text>
+    <Text Include="..\port\openbsd\README.txt">
+      <Filter>Port\OpenBSD</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
