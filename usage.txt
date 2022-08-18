@@ -6,45 +6,50 @@ https://ssc.lu/
 
 Running SSC
 ===========
-To run SSC, install curl (if necessary), bring up the command line, change to
-the install directory, and then try:
+To run SSC, bring up the command line, change to ssc's installation
+directory, and type:
 
     Windows: ssc
     Unix: ./ssc
 
 If it is installed correctly, it should respond with (c) info.
 
-It is possible to set up configuration files, but, to start, we'll try a simple
-set of command line options. It the HTML files belonging to your website is
-located in DIR, and the main index file is called index.html, then all you need
-type is:
+It is possible to set up configuration files, but, to start, we'll try
+a simple set of command line options. It the HTML files belonging to
+your website is located in DIR, and the main index file is called
+index.html, then all you need type is:
 
 ssc DIR
 
-and off it will go, reporting on any issues it finds in all HTML files in DIR
-and its descendants.
+and off it will go, reporting on any issues it finds in all HTML files
+in DIR and its descendants.
+
+To have ssc verify external links, curl must be installed.
+
 
 reports
 -------
-When ssc reports issues, it reports the HTML where it realised there was a
-problem, with the corresponding line number. This may be after the actual point
-of the problem. Consider, for example:
+When ssc reports issues, it reports the HTML where it realised there
+was a problem, with the corresponding line number. This may be after
+the actual point of the problem. Consider, for example:
 
-<P>Wombats on taost<A href="https://example.com/superdoopersecretrecipe.html"
+<P>Taost<A href="https://example.com/superdoopersecretrecipe.html"
 title="what a wonderful page oh so wow" onclick="haltandcatchfire"
-onhover="winkembarrassingly" wimper=frequently>a delicious</A> thing.</P>
+onhover="winkembarrassingly" wimper=frequently>d wombats are a
+delicious</A> thing.</P>
 
-The word ssc spots is "taosta". It knows there's a word to check when it gets
-to the end of the word, e.g. at the space that follows it. In this case, the
-word is interrupted by rather a lot of HTML, which is ignored when checking
-spelling. Because the intervening HTML is so long, crossing a number of lines,
-and ssc reports small snippets of HTML per issue, to avoid spouting too much
-verbiage, it will not show sufficient HTML to see the entire misspelt word.
-That's why, for some errors, you must take the HTML snippet and corresponding
-line number as a hint, not an absolute. There is an issue, it is near the
-reported HTML and line number, but, in this case, is not actually there. Of
-course, the report of the misspelt word does report the word it considers
-misspelt (here, "taosta").
+The word ssc spots is "taostd". It knows there's a word to check when
+it gets to the end of the word, e.g. at the space that follows it. In
+this case, the word is interrupted by rather a lot of HTML, which is
+ignored when checking spelling. Because the intervening HTML is so
+long, crossing a number of lines, and ssc reports small snippets of
+HTML per issue, to avoid spouting too much verbiage, it will not show
+sufficient HTML to see the entire misspelt word. That's why, for some
+errors, you must take the HTML snippet and corresponding line number as
+a hint, not an absolute. There is an issue, it is near the reported
+HTML and line number, but, in this case, is not actually there. Of
+course, the report of the misspelt word does report the word it
+considers misspelt (here, "taostd").
 
 
 switches
@@ -70,14 +75,15 @@ SSC has a number of switches:
 
 -I	        Process Server Side Includes
 -g dir      set website root directory (defaults to current directory)
--x xxx      treat files with extension xxx as HTML/XHTML (may be repeated)
+-x xxx      treat files with extension xxx as HTML/XHTML (may be
+            repeated)
 -i file     file is index file in directories (default index.html)
 -s dom      dom is the local site’s domain name (may be repeated)
--L arg      Define virtual directory (arg is formatted ‘virtual=physical’)
-            (may be repeated)
+-L arg      Define virtual directory (arg is formatted
+            ‘virtual=physical’) (may be repeated)
 
--e	        Check external links (each link is checked once per run, not once
-            per encounter)
+-e	        Check external links (each link is checked once per run,
+            not once per encounter)
 -3	        Report HTTP 301 and 308 as errors (e.g. forwarding)
 -l	        Check internal links
 -O	        Report each broken link only once, not each time it occurs
@@ -95,21 +101,22 @@ A longer list of switches is given by the -h switch.
 Environment
 -----------
 SSC will process the following environment variables:
-SSC_CONFIG  name of configuration file if none given on the command line
+SSC_CONFIG  name of configuration file if none given on the command
+            line
 SSC_ARGS    command line switches
 
-SSC will recognise when it is running in a CGI environment by processing
-QUERY_STRING and other CGI environment variables. In such circumstances,
-QUERY_STRING must contain a parameter called html.snippet, with an appropriate
-value.
+SSC will recognise when it is running in a CGI environment by
+processing QUERY_STRING and other CGI environment variables. In such
+circumstances, QUERY_STRING must contain a parameter called
+html.snippet, with an appropriate value.
 
 
 
 Configuration Files
 ===================
 
-SSC will accept configuration files in INI file format. Here are some examples,
-mostly adapted from the tests:
+SSC will accept configuration files in INI file format. Here are some
+examples, mostly adapted from the tests:
 
 
 A simple configuration file
@@ -125,11 +132,13 @@ extension=html
 index=index.html
 root=~/www/htdocs
 
-The website for example.edu can be found in ~/www.htdocs. Standard index files
-are called index.html, and html files always have the html extension.
+The website for example.edu can be found in ~/www.htdocs. Standard
+index files are called index.html, and html files always have the html
+extension.
 
-The configuration outputs errors, warnings and info messages to ssc.out. It
-analyses class identifiers, so will scan CSS files for class names.
+The configuration outputs errors, warnings and info messages to
+ssc.out. It analyses class identifiers, so will scan CSS files for
+class names.
 
 
 Links and virtual directories
@@ -150,12 +159,13 @@ check=yes
 external=yes
 xlink=yes
 
-Beyond the previous example, SSC will also check links, including external
-links and crosslinked ids.
+Beyond the previous example, SSC will also check links, including
+external links and crosslinked ids.
 
-The configuration file specifies a virtual directory. When a link refers to the
-local directory /net, SSC will seek the corresponding file(s) in tests/virtual
-(relative to the current directory, not the root).
+The configuration file specifies a virtual directory. When a link
+refers to the local directory /net, SSC will seek the corresponding
+file(s) in tests/virtual (relative to the current directory, not the
+root).
 
 
 Microformats
@@ -174,8 +184,8 @@ root=~/www/htdocs
 [microformat]
 verify=yes
 
-The only new thing here is to turn on microformats analysis (class analysis is
-required).
+The only new thing here is to turn on microformats analysis (class
+analysis is required).
 
 
 Microdata
@@ -191,14 +201,14 @@ extension=html
 index=index.html
 root=~/www/htdocs
 
-Actually, SSC will report on any microdata it finds, no matter what. Note that,
-if you use itemref in your pages, ssc may give false warnings in the section
-referenced by the itemref. This is because ssc does not always know that the
-referenced data is not intended to be used in its own right, unless you put it
-under a TEMPLATE element.
+Actually, SSC will report on any microdata it finds, no matter what.
+Note that, if you use itemref in your pages, ssc may give false
+warnings in the section referenced by the itemref. This is because ssc
+does not always know that the referenced data is not intended to be
+used in its own right, unless you put it under a TEMPLATE element.
 
-You can export the microdata encountered in JSON file format by using the
-export setting (not shown).
+You can export the microdata encountered in JSON file format by using
+the export setting (not shown).
 
 
 Statistics
@@ -219,11 +229,11 @@ root=~/www/htdocs
 [stats]
 summary=yes
 
-Turn on summary statistics, which produces a grand total at the end of a
-complete run (add page=yes below summary for individual page stats).
+Turn on summary statistics, which produces a grand total at the end of
+a complete run (add page=yes below summary for individual page stats).
 
-Note that server side includes have been turned on using general.ssi, and files
-with the SHTML extension will be treated as web pages.
+Note that server side includes have been turned on using general.ssi,
+and files with the SHTML extension will be treated as web pages.
 
 
 MathML 2
@@ -256,16 +266,17 @@ citype=set
 citype=var-x
 citype=vector
 
-What's interesting here is the validation section. The MathML documentation
-lists a specific set of values that can be used with the TYPE attribute on the
-CI element. The examples in the specification give this attribute many
-additional, and apparently illegal, values. (This apparent inconsistency is not
-uncommon amongst web specifications.) The way to avoid SSC complaining about
-these extra values is to give CI TYPE additional values in the configuration
-file, as noted.
+What's interesting here is the validation section. The MathML
+documentation lists a specific set of values that can be used with the
+TYPE attribute on the CI element. The examples in the specification
+give this attribute many additional, and apparently illegal, values.
+(This apparent inconsistency is not uncommon amongst web
+specifications.) The way to avoid SSC complaining about these extra
+values is to give CI TYPE additional values in the configuration file,
+as noted.
 
-Indeed, many enumerated attribute values can be extended in this way. Use the
---validation switch to get a complete list.
+Indeed, many enumerated attribute values can be extended in this way.
+Use the --validation switch to get a complete list.
 
 
 arts & ego
@@ -297,7 +308,7 @@ verify=yes
 [stats]
 summary=yes
 
-My site has been built by hand over the decades, and is full of errors. I wrote
-ssc because I was frustrated that I could find no tool to properly check it.
-Unfortunately, SSC is too successful: it finds hundreds of errors in arts &
-ego. I am slowly making the repairs.
+My site has been built by hand over the decades, and is full of errors.
+I wrote ssc because I was frustrated that I could find no tool to
+properly check it. Unfortunately, SSC is too successful: it finds
+hundreds of errors in arts & ego. I am slowly making the repairs.

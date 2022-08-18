@@ -827,9 +827,6 @@
     <ClInclude Include="..\heater\css\css.h">
       <Filter>Heater\css</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\css\css_cache.h">
-      <Filter>Heater\css</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\element\element_attribute.h">
       <Filter>Heater\element</Filter>
     </ClInclude>
@@ -1346,6 +1343,15 @@
     <ClInclude Include="..\heater\main\output.h">
       <Filter>Heater\main</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\css\css_global.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_group.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\utility\cache.h">
+      <Filter>Heater\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1361,9 +1367,6 @@
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\css_cache.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_attributes.cpp">
@@ -1839,6 +1842,18 @@
     </ClCompile>
     <ClCompile Include="..\sauce\main\output.cpp">
       <Filter>Sauce\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_global.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_group.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\utility\cache.cpp">
+      <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_intent.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

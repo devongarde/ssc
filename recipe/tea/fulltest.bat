@@ -1,5 +1,10 @@
 ssc.exe -f ../toast/conf/html/conf.conf
 ssc.exe -f ../toast/conf/xhtml/conf.conf
+ssc.exe -f ../toast/coop/corrupt/corrupt.conf
+ssc.exe -f ../toast/coop/corrupt/corrupt2.conf
+ssc.exe -f ../toast/coop/corrupt/corrupt512.conf
+ssc.exe -f ../toast/coop/oct21/living.conf
+ssc.exe -f ../toast/coop/schema-abc/abc.conf
 ssc.exe -f ../toast/csp/1/csp.conf
 ssc.exe -f ../toast/csp/2/csp.conf
 ssc.exe -f ../toast/csp/3/csp.conf
@@ -54,10 +59,12 @@ ssc.exe -f ../toast/living/jul21/living.conf
 ssc.exe -f ../toast/living/oct21/living.conf
 ssc.exe -f ../toast/living/jan22/living.conf
 ssc.exe -f ../toast/living/apr22/living.conf
+ssc.exe -f ../toast/living/jul22/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf
-ssc.exe -f ../toast/math/4/math.conf
+ssc.exe -f ../toast/math/4-20/math.conf
+ssc.exe -f ../toast/math/4-22/math.conf
 ssc.exe -f ../toast/microdata/12/schema.conf
 ssc.exe -f ../toast/microdata/addendum/add.conf
 ssc.exe -f ../toast/microdata/basic/basic.conf
@@ -76,6 +83,7 @@ ssc.exe -f ../toast/microformats/rel/rel.conf
 ssc.exe -f ../toast/other/abbr/abbr.conf
 ssc.exe -f ../toast/other/aria/aria.conf
 ssc.exe -f ../toast/other/base/base.conf
+ssc.exe -f ../toast/other/blob/blob.conf
 ssc.exe -f ../toast/other/characters/chars.conf
 ssc.exe -f ../toast/other/CSS/css.conf
 ssc.exe -f ../toast/other/dfn/dfn.conf
