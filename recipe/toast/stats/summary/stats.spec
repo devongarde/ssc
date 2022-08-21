@@ -156,7 +156,7 @@ References:
     HTML 5 living standard (July 2020): thrice 
   
 Versions:
-    HTML5/20210101/SVG-2.0/MathML-core-May22/WhatWG: 5 times 
+    HTML5/20210101/SVG-2.0/MathML-4(Dec20)/WhatWG: 5 times 
   
 File info:
      3783 bytes read in 5 HTML files, with an average of roughly 757 bytes per file

@@ -33,14 +33,22 @@ hav_t havt_g [] =
     SVG_GRAPHICAL_EVENT_ATTRIBUTES (elem_g),
     SVG_PRESENTATION_ATTRIBUTES (elem_g),
     SVG_LANGSPACE_ATTRIBUTES_10 (elem_g),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTML5_ATTRIBUTES (elem_gauge),
+hav_t havt_gauge [] =
+{   STANDARD_HTML5_ATTRIBUTES (elem_gauge),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_gcd),
+hav_t havt_gcd [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_gcd),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_geq),
+hav_t havt_geq [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_geq),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_arabic_form },
+hav_t havt_glyph [] =
+{   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_arabic_form },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_d },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_glyphname },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_glyph, a_horiz_adv_x },
@@ -52,17 +60,22 @@ hav_t havt_g [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, a_vert_origin_y },
     SVG_HTML_ATTRIBUTES (elem_glyph),
     SVG_PRESENTATION_ATTRIBUTES (elem_glyph),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyphref, a_format },
+hav_t havt_glyphref [] =
+{   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyphref, a_format },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyphref, a_glyphref },
     SVG_DXY_ATTRIBUTES(elem_glyphref),
     SVG_HTML_ATTRIBUTES (elem_glyphref),
     SVG_PRESENTATION_ATTRIBUTES (elem_glyphref),
     SVG_XLINK_ATTRIBUTES(elem_glyphref),
     SVG_XY_ATTRIBUTES(elem_glyphref),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_grad),
+hav_t havt_grad [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_grad),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_gt),
-
+hav_t havt_gt [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_gt),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

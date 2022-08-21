@@ -365,8 +365,6 @@ line, the "no-" switch always applies.
                         repeated (the value of n can be determined
                         using --nits.nids below).
 
---nits.codes            Output nit codes.
-
 --nits.comment n        Redefine nit n as a comment; may be repeated
                         (the value of n can be determined using
                         --nits.nids).

@@ -100,6 +100,16 @@ context_t& context_t::svg_version (const int mjr, const int mnr) noexcept
     version_.svg_version (sv_none);
     return *this; }
 
+context_t& context_t::math_version (const int v)
+{   switch (v)
+    {   case 1 : version_.math_version (math_1); break;
+        case 2 : version_.math_version (math_2); break;
+        case 3 : version_.math_version (math_3); break;
+        case 4 : version_.math_version (math_4_22); break;
+        default : version_.math_version (math_none); }
+    mac < int > (nm_context_math, version_.math_version ());
+    return *this; }
+
 context_t& context_t::ignore (nitpick& nits, const vstr_t& s)
 {   e_element e = elem_undefined;
     for (auto ss : s)

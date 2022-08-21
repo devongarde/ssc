@@ -25,57 +25,85 @@ hav_t havt_b [] =
 {   HTMLPLUS_ATTRIBUTES (elem_b),
     HTML23_CLID_ATTRIBUTES (elem_b),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_b),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JUL08 }, { HTML_DEC09 }, elem_bb, a_type },
+hav_t havt_bb [] =
+{   { { HTML_JUL08 }, { HTML_DEC09 }, elem_bb, a_type },
     STANDARD_HTML5_ATTRIBUTES (elem_bb),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTML3_CLID_ATTRIBUTES (elem_banner),
+hav_t havt_banner [] =
+{   HTML3_CLID_ATTRIBUTES (elem_banner),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTML3_CLID_ATTRIBUTES (elem_bar),
+hav_t havt_bar [] =
+{   HTML3_CLID_ATTRIBUTES (elem_bar),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0, REQUIRED }, { HTML_4_01 }, elem_base, a_href },
+hav_t havt_base [] =
+{   { { HTML_2_0, REQUIRED }, { HTML_4_01 }, elem_base, a_href },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_base, a_href },
     { { HTML_3_0 }, { HTML_3_0 }, elem_base, a_id },
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_base, a_target },
     STANDARD_HTML5_ATTRIBUTES (elem_base),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_basefont, a_colour },
+hav_t havt_basefont [] =
+{   { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_basefont, a_colour },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_basefont, a_face },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_basefont, a_size },
     HTML4_STANDARD_TSL_ATTRIBUTES (elem_basefont, MAJOR_4_0, MINOR_4_0),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN11 }, { HTML_UNDEF }, elem_bdi, a_dir },
+hav_t havt_bdi [] =
+{   { { HTML_JAN11 }, { HTML_UNDEF }, elem_bdi, a_dir },
     STANDARD_HTML5_ATTRIBUTES (elem_bdi),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0, HV_RFC_2070 | REQUIRED }, { HTML_2_0 }, elem_bdo, a_dir },
+hav_t havt_bdo [] =
+{   { { HTML_2_0, HV_RFC_2070 | REQUIRED }, { HTML_2_0 }, elem_bdo, a_dir },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_bdo, a_dir },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_bdo, a_lang },
     HTML2_CLID_ATTRIBUTES (elem_bdo),
     STANDARD_HTML5_ATTRIBUTES (elem_bdo),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_3_0 }, { HTML_3_0 }, elem_below, a_sym },
+hav_t havt_below [] =
+{   { { HTML_3_0 }, { HTML_3_0 }, elem_below, a_sym },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0 }, { HTML_UNDEF }, elem_bgsound, a_balance },
+hav_t havt_bgsound [] =
+{   { { HTML_2_0 }, { HTML_UNDEF }, elem_bgsound, a_balance },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_bgsound, a_loop },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_bgsound, a_src },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_bgsound, a_volume },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTML3_CLID_ATTRIBUTES (elem_big),
+hav_t havt_big [] =
+{   HTML3_CLID_ATTRIBUTES (elem_big),
     COMMON_HTML4_ATTRIBUTES (elem_big),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_STANDARD_ATTRIBUTES (elem_bind),
+hav_t havt_bind [] =
+{   MATH3_STANDARD_ATTRIBUTES (elem_bind),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN05 }, { HTML_DEC06 }, elem_blockquote, a_active },
+hav_t havt_blockquote [] =
+{   { { HTML_JAN05 }, { HTML_DEC06 }, elem_blockquote, a_active },
     { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_blockquote, a_align },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_blockquote, a_cite },
     { { HTML_3_0 }, { HTML_3_0 }, elem_blockquote, a_clear },
     { { HTML_3_0 }, { HTML_3_0 }, elem_blockquote, a_nowrap },
     HTML23_CLID_ATTRIBUTES (elem_blockquote),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_blockquote),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    XHTML2_ATTRIBUTES (elem_blockcode),
+hav_t havt_blockcode [] =
+{   XHTML2_ATTRIBUTES (elem_blockcode),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_alink },
+hav_t havt_body [] =
+{   { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_alink },
     { { HTML_3_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_background },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_bgcolour },
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { XHTML_2_0 }, elem_body, a_bottommargin },
@@ -108,14 +136,20 @@ hav_t havt_b [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_vlink },
     HTML23_CLID_ATTRIBUTES (elem_body),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_body),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_3_0 }, { HTML_3_0 }, elem_box, a_size },
+hav_t havt_box [] =
+{   { { HTML_3_0 }, { HTML_3_0 }, elem_box, a_size },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_3_0 }, { HTML_3_0 }, elem_bq, a_clear },
+hav_t havt_bq [] =
+{   { { HTML_3_0 }, { HTML_3_0 }, elem_bq, a_clear },
     { { HTML_3_0 }, { HTML_3_0 }, elem_bq, a_nowrap },
     HTML3_CLID_ATTRIBUTES (elem_bq),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_id },
+hav_t havt_br [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_id },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_class },
     { { HTML_2_0, HV_RFC_1942 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_br, a_clear },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_title },
@@ -125,10 +159,14 @@ hav_t havt_b [] =
     HTML4_STANDARD_SCRIPT_ATTRIBUTES (elem_br, HTML_2005, 0),
     HTML4_STANDARD_LANG_ATTRIBUTES (elem_br, HTML_2005, 0),
     EXTRA_HTML5_ATTRIBUTES (elem_br),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_3_0 }, { HTML_3_0 }, elem_bt, a_class },
+hav_t havt_bt [] =
+{   { { HTML_3_0 }, { HTML_3_0 }, elem_bt, a_class },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN09 }, { HTML_JUN09 }, elem_button, a_action },
+hav_t havt_button [] =
+{   { { HTML_JAN09 }, { HTML_JUN09 }, elem_button, a_action },
     { { HTML_JAN20, 0, HE_MOZILLA }, { HTML_UNDEF }, elem_button, a_autocomplete },
     { { HTML_JAN09 }, { HTML_DEC19 }, elem_button, a_autofocus },
     { { HTML_JAN05 }, { HTML_DEC05 }, elem_button, a_command },
@@ -154,10 +192,12 @@ hav_t havt_b [] =
     { { HTML_4_0 }, { HTML_UNDEF }, elem_button, a_value },
     HTML4_FORM_ATTRIBUTES (elem_button),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_button),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_STANDARD_ATTRIBUTES (elem_bvar),
+hav_t havt_bvar [] =
+{   MATH3_STANDARD_ATTRIBUTES (elem_bvar),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTMLPLUS_ATTRIBUTES (elem_byline),
-
-
+hav_t havt_byline [] =
+{   HTMLPLUS_ATTRIBUTES (elem_byline),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

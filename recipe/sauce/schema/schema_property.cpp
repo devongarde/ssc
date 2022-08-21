@@ -6812,8 +6812,8 @@ bool is_valid_schema_property_int (nitpick& nits, const html_version& , const e_
                         if (does_apply < schema_version > (sv, i -> second -> from_, i -> second -> to_))
                             return true;
                         else version = true; }
-    if (version) nits.pick (nit_bad_property, es_error, ec_schema, "In ", sv.report (), ", ", quote (schema_property_name (prop)), " cannot have sub-values, and/or is not a property of ", quote (sch::name (schema)));
-    else nits.pick (nit_bad_property, es_error, ec_schema, quote (schema_property_name (prop)), " cannot have sub-values, and/or is not a property of ", quote (sch::name (schema)));
+    if (version) nits.pick (nit_bad_property, es_error, ec_schema, "In ", sv.report (), ", ", quote (schema_property_name (prop)), " cannot have those sub-values, and/or is not a property of ", quote (sch::name (schema)));
+    else nits.pick (nit_bad_property, es_error, ec_schema, quote (schema_property_name (prop)), " cannot have those sub-values, and/or is not a property of ", quote (sch::name (schema)));
     return false; }
 
 bool is_valid_schema_property (nitpick& nits, const html_version& v, const e_schema_type schema, const e_schema_property prop, const e_schema_type value)

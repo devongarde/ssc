@@ -373,6 +373,7 @@
   <ItemGroup>
     <None Include="..\port\openbsd\DESCR" />
     <None Include="..\port\openbsd\Makefile" />
+    <None Include="..\port\openbsd\pkg\PLIST" />
     <None Include="..\toast\conf\corrupt\corona-corrupt.conf" />
     <None Include="..\toast\conf\corrupt\corrupt.conf" />
     <None Include="..\toast\conf\html\conf.conf" />
@@ -6544,10 +6545,6 @@
     <None Include="..\toast\math\4-20\math7-example.html" />
     <None Include="..\toast\math\4-20\math8-example.html" />
     <None Include="..\toast\math\4-20\math9-example.html" />
-    <None Include="..\toast\math\4-22-core\core-1.html" />
-    <None Include="..\toast\math\4-22-core\index.html" />
-    <None Include="..\toast\math\4-22-core\math.conf" />
-    <None Include="..\toast\math\4-22-core\math.spec" />
     <None Include="..\toast\math\4-22\index.html" />
     <None Include="..\toast\math\4-22\math.conf" />
     <None Include="..\toast\math\4-22\math.spec" />
@@ -6558,6 +6555,10 @@
     <None Include="..\toast\math\4-22\math5-example.html" />
     <None Include="..\toast\math\4-22\math6-example.html" />
     <None Include="..\toast\math\4-22\math7-example.html" />
+    <None Include="..\toast\math\4-core\core-1.html" />
+    <None Include="..\toast\math\4-core\index.html" />
+    <None Include="..\toast\math\4-core\math.conf" />
+    <None Include="..\toast\math\4-core\math.spec" />
     <None Include="..\toast\microdata\12\index.html" />
     <None Include="..\toast\microdata\12\schema.conf" />
     <None Include="..\toast\microdata\12\schema.spec" />

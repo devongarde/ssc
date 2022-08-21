@@ -25,10 +25,14 @@ hav_t havt_i [] =
 {   HTMLPLUS_ATTRIBUTES (elem_i),
     HTML23_CLID_ATTRIBUTES (elem_i),
     STANDARD_HTML5_ATTRIBUTES (elem_i),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_ident),
+hav_t havt_ident [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_ident),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0 }, { XHTML_2_0 }, elem_iframe, a_align },
+hav_t havt_iframe [] =
+{   { { HTML_4_0 }, { XHTML_2_0 }, elem_iframe, a_align },
     { { HTML_JUL18, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, elem_iframe, a_allow },
     { { HTML_JAN13, 0, HV_NOT50 }, { HTML_UNDEF }, elem_iframe, a_allowfullscreen },
     { { HTML_JAN17 }, { HTML_DEC20 }, elem_iframe, a_allowpaymentrequest },
@@ -56,8 +60,10 @@ hav_t havt_i [] =
     { { HTML_JUL08 }, { HTML_UNDEF }, elem_iframe, a_width },
     SVG_PRESENTATION_ATTRIBUTES_2 (elem_iframe),
     SVG_HTML_ATTRIBUTES (elem_iframe),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_above },
+hav_t havt_ilayer [] =
+{   { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_above },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_background },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_below },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_bgcolour },
@@ -74,8 +80,10 @@ hav_t havt_i [] =
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_top },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_visibility },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_ilayer, a_zindex },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_PLUS }, { HTML_PLUS }, elem_image, a_align },
+hav_t havt_image [] =
+{   { { HTML_PLUS }, { HTML_PLUS }, elem_image, a_align },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_image, a_crossorigin },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_image, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_image, a_href },
@@ -96,12 +104,18 @@ hav_t havt_i [] =
     SVG_LANGSPACE_ATTRIBUTES_10 (elem_image),
     SVG_PRESENTATION_ATTRIBUTES (elem_image),
     SVG_XLINK_ATTRIBUTES (elem_image),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_imaginary),
+hav_t havt_imaginary [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_imaginary),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_imaginaryi),
+hav_t havt_imaginaryi [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_imaginaryi),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_1_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_img, a_align },
+hav_t havt_img [] =
+{   { { HTML_1_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_img, a_align },
     { { HTML_1_0 }, { XHTML_2_0 }, elem_img, a_alt },
     { { HTML_JAN05, REQUIRED }, { HTML_EOJ21 }, elem_img, a_alt },
     { { HTML_FEB21 }, { HTML_UNDEF }, elem_img, a_alt },
@@ -131,14 +145,22 @@ hav_t havt_i [] =
     HTMLPLUS_ATTRIBUTES (elem_img),
     HTML23_CLID_ATTRIBUTES (elem_img),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_img),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_implies),
+hav_t havt_implies [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_implies),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_in),
+hav_t havt_in [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_in),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_infinity),
+hav_t havt_infinity [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_infinity),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0, HV_RFC_1867 | HV_NOT32 }, { HTML_UNDEF }, elem_input, a_accept },
+hav_t havt_input [] =
+{   { { HTML_2_0, HV_RFC_1867 | HV_NOT32 }, { HTML_UNDEF }, elem_input, a_accept },
     { { HTML_JAN09 }, { HTML_JUN09 }, elem_input, a_action },
     { { HTML_PLUS, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_input, a_align },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_input, a_alt },
@@ -200,27 +222,41 @@ hav_t havt_i [] =
     HTML23_CLID_ATTRIBUTES (elem_input),
     HTML4_FORM_ATTRIBUTES (elem_input),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_input),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_ins, a_cite },
+hav_t havt_ins [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, elem_ins, a_cite },
     { { HTML_3_0 }, { HTML_3_0 }, elem_ins, a_class },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_ins, a_datetime },
     { { HTML_3_0 }, { HTML_3_0 }, elem_ins, a_id },
     { { HTML_3_0 }, { HTML_3_0 }, elem_ins, a_lang },
     HTML3_CLID_ATTRIBUTES (elem_ins),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_ins),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_int),
+hav_t havt_int [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_int),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_integers),
+hav_t havt_integers [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_integers),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_intersect),
+hav_t havt_intersect [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_intersect),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_interval, a_closure },
+hav_t havt_interval [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, elem_interval, a_closure },
     MATH3_STANDARD_ATTRIBUTES (elem_interval),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_inverse),
+hav_t havt_inverse [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_inverse),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_isindex, a_class },
+hav_t havt_isindex [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, elem_isindex, a_class },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_isindex, a_dir },
     { { HTML_3_0 }, { HTML_3_0 }, elem_isindex, a_href },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_isindex, a_id },
@@ -229,9 +265,10 @@ hav_t havt_i [] =
     { { HTML_4_0, HV_NOTPROD }, { HTML_UNDEF }, elem_isindex, a_style },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_isindex, a_title },
     HTML2_CLID_ATTRIBUTES (elem_isindex),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_3_0 }, { HTML_3_0 }, elem_item, a_align },
+hav_t havt_item [] =
+{   { { HTML_3_0 }, { HTML_3_0 }, elem_item, a_align },
     { { HTML_3_0 }, { HTML_3_0 }, elem_item, a_colspan },
     { { HTML_3_0 }, { HTML_3_0 }, elem_item, a_rowspan },
-
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

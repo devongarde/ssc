@@ -21,17 +21,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "attribute/avm_data.h"
 
-hav_t havt_k [] =
+hav_t havt_kbd [] =
 {   HTMLPLUS_ATTRIBUTES (elem_kbd),
     HTML23_CLID_ATTRIBUTES (elem_kbd),
     STANDARD_HTML5_ATTRIBUTES (elem_kbd),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JUL09 }, { HTML_UNDEF }, elem_keygen, a_autofocus },
+hav_t havt_keygen [] =
+{   { { HTML_JUL09 }, { HTML_UNDEF }, elem_keygen, a_autofocus },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_keygen, a_challenge },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_keygen, a_disabled },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_keygen, a_form },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_keygen, a_keytype },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_keygen, a_name },
     STANDARD_HTML5_ATTRIBUTES (elem_keygen),
-
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

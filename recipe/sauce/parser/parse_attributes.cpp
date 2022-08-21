@@ -330,7 +330,7 @@ e_math_version attributes_node::get_math (const html_version& v) const
                           UNREACHABLE (return math_1); }
         default : break; }
     if (v >= html_jul22) return math_4_22;
-    if (v >= html_apr22) return math_core_22;
+//    if (v >= html_apr22) return math_core;
     if (v >= html_apr21) return math_4_20;
     if (v >= html_5_0) return math_3;
     return math_2; }

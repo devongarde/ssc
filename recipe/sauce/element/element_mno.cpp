@@ -43,14 +43,14 @@ void element::examine_map ()
                 pick (nit_name_id, ed_50, "4.7.11 The map element", es_error, ec_attribute, "If NAME and ID are both specified, they must have the same value"); }
 
 void element::examine_math ()
-{   if (! has_child ()) return;
+{   if (node_.version ().mjr () < 4) return;
     e_math_version mv = node_.version ().math_version ();
     if (mv == math_none) mv = page_ -> version ().math_version ();
     switch (mv)
     {   case math_2 : break;
         case math_3 :
         case math_4_20 :
-        case math_core_22 :
+        case math_core :
         case math_4_22 :
             if (a_.known (a_macros))
                 pick (nit_deprecated_attribute, ed_math_3, "2.2.2 Deprecated Attributes", es_warning, ec_attribute, "the attribute MACROS is deprecated in MathML 3");
