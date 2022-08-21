@@ -283,18 +283,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_MATH_2       0x0000000000000020
 #define H2_MATH_3       0x0000000000000040
 #define H2_MATH_4_20    0x0000000000000080
-#define H2_MATH_C_22    0x0000000000000100
-#define H2_MATH_4_22    0x0000000000000200
+#define H2_MATH_4_22    0x0000000000000100
+#define H2_MATH_C       0x0000000000000200
 
-#define H2_MATH_4       ( H2_MATH_4_20 | H2_MATH_C_22 | H2_MATH_4_22 )
+#define H2_MATH_4       ( H2_MATH_4_20 | H2_MATH_4_22 )
 
 #define H2_MATH_1_2     ( H2_MATH_1 | H2_MATH_2 )
 #define H2_MATH_1_2_3   ( H2_MATH_1_2 | H2_MATH_3 )
 #define H2_MATH_1_2_3_4_20 ( H2_MATH_1_2_3 | H2_MATH_4_20 )
 #define H2_MATH_2_3_4   ( H2_MATH_2 | H2_MATH_3 | H2_MATH_4 )
+#define H2_MATH_2_3_4_C ( H2_MATH_2_3_4 | H2_MATH_C )
 #define H2_MATH_3_4_20  ( H2_MATH_3 | H2_MATH_4_20 )
 #define H2_MATH_3_4     ( H2_MATH_3 | H2_MATH_4 )
-#define H2_MATH         ( H2_MATH_1_2 | H2_MATH_3_4 )
+#define H2_MATHML       ( H2_MATH_1_2 | H2_MATH_3_4 )
+#define H2_MATH         ( H2_MATHML | H2_MATH_C )
 #define MATH_MASK       H2_MATH
 
 #define MATH_SHIFT      4
@@ -505,8 +507,8 @@ const html_version html_math_1 (HTML_MATH1, 0, 0, H2_MATH_1);
 const html_version xhtml_math_2 (HTML_MATH2, HV_XHTML, 0, H2_MATH_2);
 const html_version html_math_3 (HTML_MATH3, 0, 0, H2_MATH_3);
 const html_version html_math_4_20 (HTML_MATH4_20, 0, 0, H2_MATH_4_20);
-const html_version html_math_core_22 (HTML_MATH4_20, 0, 0, H2_MATH_C_22);
-const html_version html_math_4_22 (HTML_MATH4_20, 0, 0, H2_MATH_4_22);
+const html_version html_math_core (HTML_MATH4_C, 0, 0, H2_MATH_C);
+const html_version html_math_4_22 (HTML_MATH4_22, 0, 0, H2_MATH_4_22);
 const html_version xhtml_svg_1_0 (HTML_SVG10, HV_XHTML, HE_SVG_10);
 const html_version xhtml_svg_1_1 (HTML_SVG11, HV_XHTML, HE_SVG_11);
 const html_version xhtml_svg_1_2_tiny (HTML_SVG12, HV_XHTML, HE_SVG_12_TINY);
@@ -681,14 +683,14 @@ const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, 
 const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
 const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
 const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
-const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C_22);
+const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
 const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_22);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3);
 const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3);
-const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
-const html_version html_default (html_jul22);
+const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_22);
+const html_version html_default (html_current);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);

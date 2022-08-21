@@ -1298,7 +1298,7 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_set, elem_script },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_set, elem_switch },
     { { HTML_5_2, 0, HE_NOT_SVG }, { HTML_UNDEF }, elem_set, elem_undefined, 0, EF_M_DQ },
-    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, elem_set, elem_undefined, 0, EF_M_CONTENTEXPR },
+    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_set, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_set, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_1_0, 0, HE_NOT_SVG }, { HTML_UNDEF }, elem_set, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_JAN05 }, { HTML_JUN05 }, elem_sidebar, elem_undefined, 0, EF_5_FLOW },

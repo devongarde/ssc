@@ -25,8 +25,10 @@ hav_t havt_u [] =
 {   HTMLPLUS_ATTRIBUTES (elem_u),
     HTML3_CLID_ATTRIBUTES (elem_u),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_u),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_ul, a_align },
+hav_t havt_ul [] =
+{   { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_ul, a_align },
     { { HTML_3_0, HV_NOT32 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_ul, a_clear },
     { { HTML_PLUS, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_ul, a_compact },
     { { HTML_3_0 }, { HTML_3_0 }, elem_ul, a_dingbat },
@@ -38,12 +40,18 @@ hav_t havt_u [] =
     HTMLPLUS_ATTRIBUTES (elem_ul),
     HTML23_CLID_ATTRIBUTES (elem_ul),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_ul),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_union),
+hav_t havt_union [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_union),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_STANDARD_ATTRIBUTES (elem_uplimit),
+hav_t havt_uplimit [] =
+{   MATH3_STANDARD_ATTRIBUTES (elem_uplimit),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_use, a_externalresourcesrequired },
+hav_t havt_use [] =
+{   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_use, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_use, a_href },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_use, a_transform },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_use, a_transin },
@@ -57,5 +65,4 @@ hav_t havt_u [] =
     SVG_LANGSPACE_ATTRIBUTES_10 (elem_use),
     SVG_PRESENTATION_ATTRIBUTES (elem_use),
     SVG_XLINK_ATTRIBUTES (elem_use),
-
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

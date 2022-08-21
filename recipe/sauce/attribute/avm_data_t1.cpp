@@ -21,21 +21,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "attribute/avm_data.h"
 
-hav_t havt_t1 [] =
+hav_t havt_t [] =
 {   { { HTML_3_0 }, { HTML_3_0 }, elem_t, a_class },
     { { HTML_JAN06 }, { HTML_JUN06 }, elem_t, a_datetime },
     STANDARD_HTML5_ATTRIBUTES (elem_t),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, elem_tab, a_align },
+hav_t havt_tab [] =
+{   { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, elem_tab, a_align },
     { { HTML_PLUS }, { HTML_PLUS }, elem_tab, a_at },
     { { HTML_3_0 }, { HTML_3_0 }, elem_tab, a_dp },
     { { HTML_3_0 }, { HTML_3_0 }, elem_tab, a_id },
     { { HTML_3_0 }, { HTML_3_0 }, elem_tab, a_indent },
     { { HTML_3_0 }, { HTML_3_0 }, elem_tab, a_to },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTML5_ATTRIBUTES (elem_tabbox),
+hav_t havt_tabbox [] =
+{   STANDARD_HTML5_ATTRIBUTES (elem_tabbox),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_table, a_align },
+hav_t havt_table [] =
+{   { { HTML_2_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_table, a_align },
     { { HTML_3_2, 0, HE_BESPOKE }, { XHTML_2_0 }, elem_table, a_background },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_table, a_bgcolour },
     { { HTML_PLUS, HV_DEPRECATED4 | HV_RFC_2070 }, { XHTML_2_0 }, elem_table, a_border },
@@ -63,12 +69,18 @@ hav_t havt_t1 [] =
     HTMLPLUS_ATTRIBUTES (elem_table),
     HTML23_CLID_ATTRIBUTES (elem_table),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_table),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_tan),
+hav_t havt_tan [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_tan),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_tanh),
+hav_t havt_tanh [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_tanh),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_tbody, a_align },
+hav_t havt_tbody [] =
+{   { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_tbody, a_align },
     { { HTML_2_0, 0, HE_IE | HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_tbody, a_bgcolour },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_tbody, a_char },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3}, { XHTML_2_0 }, elem_tbody, a_charoff },
@@ -76,11 +88,15 @@ hav_t havt_t1 [] =
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_tbody, a_valign },
     HTML2_CLID_ATTRIBUTES (elem_tbody),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_tbody),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    SVG_CONDITIONAL_ATTRIBUTES (elem_tbreak),
+hav_t havt_tbreak [] =
+{   SVG_CONDITIONAL_ATTRIBUTES (elem_tbreak),
     SVG_HTML_ATTRIBUTES (elem_tbreak),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0 }, { XHTML_2_0 }, elem_td, a_abbr },
+hav_t havt_td [] =
+{   { { HTML_4_0 }, { XHTML_2_0 }, elem_td, a_abbr },
     { { HTML_PLUS, HV_DEPRECATED4 | HV_RFC_1942 }, { XHTML_2_0 }, elem_td, a_align },
     { { HTML_2_0 }, { HTML_3_0 }, elem_td, a_axes },
     { { HTML_2_0, HV_NOT32 }, { XHTML_2_0 }, elem_td, a_axis },
@@ -104,13 +120,19 @@ hav_t havt_t1 [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_td, a_width },
     HTML23_CLID_ATTRIBUTES (elem_td),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_td),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTML5_ATTRIBUTES (elem_template),
+hav_t havt_template [] =
+{   STANDARD_HTML5_ATTRIBUTES (elem_template),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, elem_tendsto, a_type },
+hav_t havt_tendsto [] =
+{   { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, elem_tendsto, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_tendsto),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_text, a_editable },
+hav_t havt_text [] =
+{   { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_text, a_editable },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_text, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_text, a_hyphens },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_text, a_inline_size },
@@ -138,8 +160,10 @@ hav_t havt_t1 [] =
     SVG_LANGSPACE_ATTRIBUTES_10 (elem_text),
     SVG_PRESENTATION_ATTRIBUTES (elem_text),
     SVG_XY_ATTRIBUTES (elem_text),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_3_0 }, { HTML_3_0 }, elem_textarea, a_align },
+hav_t havt_textarea [] =
+{   { { HTML_3_0 }, { HTML_3_0 }, elem_textarea, a_align },
     { { HTML_5_3 }, { HTML_5_3 }, elem_textarea, a_autocapitalise },
     { { HTML_JAN13, HV_NOT50 | HV_NOT51 }, { HTML_UNDEF }, elem_textarea, a_autocomplete },
     { { HTML_JAN09 }, { HTML_DEC19 }, elem_textarea, a_autofocus },
@@ -182,8 +206,10 @@ hav_t havt_t1 [] =
     SVG_CONDITIONAL_ATTRIBUTES (elem_textarea),
     SVG_HTML_ATTRIBUTES (elem_textarea),
     SVG_PRESENTATION_ATTRIBUTES (elem_textarea),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_textpath, a_externalresourcesrequired },
+hav_t havt_textpath [] =
+{   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_textpath, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_textpath, a_href },
     { { HTML_SVG10, 0, HE_SVG_10_2 }, { HTML_UNDEF }, elem_textpath, a_lengthadjust },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_textpath, a_method },
@@ -199,5 +225,4 @@ hav_t havt_t1 [] =
     SVG_LANGSPACE_ATTRIBUTES_10 (elem_textpath),
     SVG_PRESENTATION_ATTRIBUTES (elem_textpath),
     SVG_XLINK_ATTRIBUTES (elem_textpath),
-
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

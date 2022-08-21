@@ -15,6 +15,9 @@ PASS ../toast/shadow/dedu/c/index.html
 shadow
 0 shadow duplicate duplicate duplicate duplicate
 
+update
+0 shadow_copy shadow_copy shadow_copy shadow_copy
+
 CLASS
 doris 4
 info 4

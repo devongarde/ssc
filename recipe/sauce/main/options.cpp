@@ -313,8 +313,9 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (HTML DONT TAGS, ::boost::program_options::bool_switch (), "Presume HTML with no DOCTYPE is HTML 1.0.")
         (HTML TITLE ",z", ::boost::program_options::value < int > () -> default_value (MAX_IDEAL_TITLE_LENGTH), "Maximum advisable length of <TITLE> text.")
         (HTML VERSION, ::boost::program_options::value < ::std::string > (),
-            "Set the specific version of HTML with DOCTYPE (default '5.2'), or if no DOCTYPE found (default: '1.0'). "
-            "For specific WhatWG living standard, give date (e.g. '2021/4/1'). "
+            "Set the specific version of HTML with DOCTYPE (default '2022/7/1'), or if no DOCTYPE found (default '1.0'). "
+            "For a W3 standard, give its version (e.g. '5.2'). "
+            "For a WhatWG living standard, give its date (e.g. '2015/7/1'). "
             "For XHTML, use XHTML plus version, e.g. 'XHTML 1.0'. "
             "For HTML+, use '+'. For HTML tags, use 'tags'.")
 
@@ -337,7 +338,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (LINKS XLINK ",X", ::boost::program_options::bool_switch (), "Check crosslink IDs.")
         (LINKS DONT XLINK, ::boost::program_options::bool_switch (), "Do not check crosslink IDs.")
 
-        (MATH CORE, ::boost::program_options::bool_switch (), "For MathML 4 only, MathML 4 Core (May 2022 draft).")
+        (MATH CORE, ::boost::program_options::bool_switch (), "MathML Core (May 2022 draft).")
         (MATH DRAFT, ::boost::program_options::value < int > () -> default_value (0), "For MathML 4 only, which draft (2020 or 2022).")
         (MATH VERSION, ::boost::program_options::value < int > () -> default_value (0), "preferred version of MathML (default (0): determine by HTML version).")
 
@@ -355,8 +356,6 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (MF DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
 
         (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a catastrophe; may be repeated.")
-        (NITS CODES, ::boost::program_options::bool_switch (), "Output nit codes")
-        (NITS DONT CODES, ::boost::program_options::bool_switch (), "Do not output nit codes")
         (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a comment; may be repeated.")
         (NITS DBG, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a debug message; may be repeated.")
         (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as an error; may be repeated.")
@@ -517,7 +516,12 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     {   ::std::string qu (env_ [QUERY_STRING].as < ::std::string > ());
         context.environment (env_query_string, qu);
         if (! context.environment (env_query_string).empty ()) try
-        {   context.cgi (true);
+        {   context.cgi (true).article (false).body (false).cased (false).classic (false).crosslinks (false).example (false)
+                .external (false).forwarded (false).icu (true).info (true).jsonld (false).links (false).load_css (false).main (false)
+                .md_export (false).meta (true).mf_verify (true).microdata (true).not_root (false).once (true).presume_tags (false).progress (false)
+                .rdfa (false).rel (true).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false).schema (true)
+                .shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).ssi (false)
+                .stats_page (false).stats_summary (false).unknown_class (false).update (false);
             VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
             macro -> set (nm_query, qu);
             if (env_.count (SERVER_SOFTWARE)) context.environment (env_server_software, env_ [SERVER_SOFTWARE].as < ::std::string > ());
@@ -697,7 +701,7 @@ void options::contextualise (nitpick& nits)
     yea_nay (&context_t::spec, nits, NITS SPEC, NITS DONT SPEC);
 
     if (context.test () || var_ [GENERAL SPEC].as <bool> ())
-        context.article (false).body (false).cased (false).classic (false).codes (false).crosslinks (false).example (false).external (false).forwarded (false)
+        context.article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).external (false).forwarded (false)
             .icu (true).info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).meta (false).mf_verify (false)
             .microdata (false).nids (true).nits (false) .nits_nits_nits (true).not_root (false).once (false).presume_tags (false).progress (false)
             .rdfa (false) .rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false).schema (true)
@@ -741,7 +745,7 @@ void options::contextualise (nitpick& nits)
             n = 2; }
         context.mf_version (::gsl::narrow_cast < unsigned char > (n)); }
 
-    if (var_.count (HTML VERSION))
+    if (var_.count (HTML VERSION) > 0)
     {   ::std::string ver (var_ [HTML VERSION].as < ::std::string > ());
         if (! ver.empty ())
         {   bool xhtml = false;
@@ -930,7 +934,7 @@ void options::contextualise (nitpick& nits)
                 case 4 : context.math_version (math_4_22); break;
                 default : nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid MathML version"); context.math_version (math_none); } }
 
-        if (var_.count (MATH CORE)) if (context.math_version () > math_3) context.math_version (math_core_22);
+        if (var_ [MATH CORE].as < bool > ()) context.math_version (math_core);
 
         if (var_.count (MATH DRAFT))
         {   int n = var_ [MATH DRAFT].as < int > ();
@@ -947,7 +951,6 @@ void options::contextualise (nitpick& nits)
         if (var_.count (MICRODATA ROOT)) context.export_root (nix_path_to_local (var_ [MICRODATA ROOT].as < ::std::string > ()));
         if (var_.count (MICRODATA VIRTUAL)) context.exports (var_ [MICRODATA VIRTUAL].as < vstr_t > ());
 
-        yea_nay (&context_t::codes, nits, NITS CODES, NITS DONT CODES);
         yea_nay (&context_t::nids, nits, NITS NIDS, NITS DONT NIDS);
         if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
         if (var_.count (NITS QUOTE))
@@ -1381,7 +1384,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [LINKS XLINK].as < bool > ()) res << LINKS XLINK "\n";
     if (var_ [LINKS DONT XLINK].as < bool > ()) res << LINKS DONT XLINK "\n";
 
-    if (var_.count (MATH CORE)) res << MATH CORE "\n";
+    if (var_.count (MATH CORE)) res << MATH CORE ": " << var_ [MATH DRAFT].as < bool > () << "\n";
     if (var_.count (MATH DRAFT)) res << MATH DRAFT ": " << var_ [MATH DRAFT].as < int > () << "\n";
     if (var_.count (MATH VERSION)) res << MATH VERSION ": " << var_ [MATH VERSION].as < int > () << "\n";
 
@@ -1393,8 +1396,6 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (MICRODATA VIRTUAL)) { res << MICRODATA VIRTUAL ": "; pvs (res, var_ [MICRODATA VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
     if (var_.count (NITS CATASTROPHE)) { res << NITS CATASTROPHE ": "; pvs (res, var_ [NITS CATASTROPHE].as < vstr_t > ()); res << "\n"; }
-    if (var_ [NITS CODES].as < bool > ()) res << NITS CODES "\n";
-    if (var_ [NITS DONT CODES].as < bool > ()) res << NITS DONT CODES "\n";
     if (var_.count (NITS COMMENT)) { res << NITS COMMENT ": "; pvs (res, var_ [NITS COMMENT].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS DBG)) { res << NITS DBG ": "; pvs (res, var_ [NITS DBG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS ERR)) { res << NITS ERR ": "; pvs (res, var_ [NITS ERR].as < vstr_t > ()); res << "\n"; }

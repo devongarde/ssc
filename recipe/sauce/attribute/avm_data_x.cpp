@@ -21,11 +21,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "attribute/avm_data.h"
 
-hav_t havt_x [] =
+hav_t havt_xa [] =
 {   SVG_HTML_ATTRIBUTES (elem_xa),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTML23_CLID_ATTRIBUTES (elem_xmp),
+hav_t havt_xmp [] =
+{   HTML23_CLID_ATTRIBUTES (elem_xmp),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_xor),
-
+hav_t havt_xor [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_xor),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

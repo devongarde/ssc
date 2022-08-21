@@ -1,4 +1,0 @@
-ssc is an opinionated HTML nitpicker for static X/HTML websites, analysing
-most versions of HTML, XHTML, SVG, & MathML, including ontologies. It can
-produce detailed reports, 'repaired' HTML with resolved server side includes,
-site statistics, and more.

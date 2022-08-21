@@ -42,20 +42,22 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
     PRESUME ((m > 0) && (m < 13), __FILE__, __LINE__);
     set_mjr (::gsl::narrow_cast <unsigned short> (y), ::gsl::narrow_cast <unsigned short> (m * 16));
     if (no_ext2 (MATH_MASK))
-        if (mjr () <= HTML_2010) set_ext2 (H2_MATH_1);
-        else if (mjr () <= HTML_2014) set_ext2 (H2_MATH_2);
-        else if (mjr () <= HTML_2020) set_ext2 (H2_MATH_3);
-        else if (mjr () <= HTML_2021) set_ext2 (H2_MATH_4_20);
-        else if (mjr () <= HTML_2022) set_ext2 (H2_MATH_C_22);
-        else set_ext2 (H2_MATH_4_22);
+        if (mjr () >= 4)
+            if (mjr () <= HTML_2010) set_ext2 (H2_MATH_1);
+            else if (mjr () <= HTML_2014) set_ext2 (H2_MATH_2);
+            else if (mjr () <= HTML_2020) set_ext2 (H2_MATH_3);
+            else if (mjr () <= HTML_2022) set_ext2 (H2_MATH_4_20);
+            else set_ext2 (H2_MATH_4_22);
     if (no_ext (SVG_MASK))
-        if (*this >= html_apr21) set_ext (HE_SVG_21);
-        else if (*this >= html_5_3) set_ext (HE_SVG_20);
-        else if (mjr () > HTML_2008) set_ext (HE_SVG_12_TINY);
-        else set_ext (HE_SVG_11);
+        if (mjr () >= 4)
+            if (*this >= html_apr21) set_ext (HE_SVG_21);
+            else if (*this >= html_5_3) set_ext (HE_SVG_20);
+            else if (mjr () > HTML_2008) set_ext (HE_SVG_12_TINY);
+            else set_ext (HE_SVG_11);
     if (no_ext2 (JSONLD_MASK))
-        if (*this >= html_jul20) set_ext2 (H2_JSONLD_1_1);
-        else if (mjr () >= HTML_2014) set_ext2 (H2_JSONLD_1_0); }
+        if (mjr () >= 5)
+            if (*this >= html_jul20) set_ext2 (H2_JSONLD_1_1);
+            else if (mjr () >= HTML_2014) set_ext2 (H2_JSONLD_1_0); }
 
 void html_version::init (const unsigned short mjr)
 {   switch (mjr)
@@ -638,7 +640,7 @@ void html_version::svg_version (const e_svg_version v) noexcept
 
 e_math_version html_version::math_version () const noexcept
 {   if (all_ext2 (H2_MATH_4_22)) return math_4_22;
-    if (all_ext2 (H2_MATH_C_22)) return math_core_22;
+    if (all_ext2 (H2_MATH_C)) return math_core;
     if (all_ext2 (H2_MATH_4_20)) return math_4_20;
     if (all_ext2 (H2_MATH_3)) return math_3;
     if (all_ext2 (H2_MATH_2)) return math_2;
@@ -646,9 +648,11 @@ e_math_version html_version::math_version () const noexcept
     return math_none; }
 
 ::std::string html_version::math_version_name () const
-{   if (all_ext2 (H2_MATH_4_22)) return "4-Aug22";
-     if (all_ext2 (H2_MATH_C_22)) return "core-May22";
-    if (all_ext2 (H2_MATH_4_20)) return "4-Dec20";
+{
+    if (all_ext2 (H2_MATH_4_22)) return "4(Aug22)";
+    if (all_ext2 (H2_MATH_C))
+        return "core";
+    if (all_ext2 (H2_MATH_4_20)) return "4(Dec20)";
     if (all_ext2 (H2_MATH_3)) return "3";
     if (all_ext2 (H2_MATH_2)) return "2";
     if (all_ext2 (H2_MATH_1)) return "1";
@@ -666,7 +670,7 @@ void html_version::math_version (const e_math_version v) noexcept
         case math_2 : set_ext2 (H2_MATH_2); break;
         case math_3 : set_ext2 (H2_MATH_3); break;
         case math_4_20 : set_ext2 (H2_MATH_4_20); break;
-        case math_core_22 : set_ext2 (H2_MATH_C_22); break;
+        case math_core : set_ext2 (H2_MATH_C); break;
         case math_4_22 : set_ext2 (H2_MATH_4_22); break;
         default : break; } }
 
@@ -862,7 +866,7 @@ html_version get_min_version (const e_math_version e) noexcept
         case math_2 : return xhtml_math_2;
         case math_3 : return html_math_3;
         case math_4_20 : return html_math_4_20;
-        case math_core_22 : return html_math_core_22;
+        case math_core : return html_math_core;
         case math_4_22 : return html_math_4_22;
         default : return html_0; } }
 

@@ -21,47 +21,76 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "attribute/avm_data.h"
 
-hav_t havt_n [] =
+hav_t havt_naturalnumbers [] =
 {   MATH3_DEFS_ATTRIBUTES (elem_naturalnumbers),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN05 }, { HTML_DEC06 }, elem_nav, a_active },
+hav_t havt_nav [] =
+{   { { HTML_JAN05 }, { HTML_DEC06 }, elem_nav, a_active },
     STANDARD_HTML5_ATTRIBUTES (elem_nav),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN05 }, { HTML_DEC06 }, elem_navigation, a_active },
+hav_t havt_navigation [] =
+{   { { HTML_JAN05 }, { HTML_DEC06 }, elem_navigation, a_active },
     STANDARD_HTML5_ATTRIBUTES (elem_navigation),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_neq),
+hav_t havt_neq [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_neq),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN08 }, { HTML_DEC08 }, elem_nest, a_filter },
+hav_t havt_nest [] =
+{   { { HTML_JAN08 }, { HTML_DEC08 }, elem_nest, a_filter },
     { { HTML_JAN08 }, { HTML_DEC08 }, elem_nest, a_mode },
     STANDARD_HTML5_ATTRIBUTES (elem_nest),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_TAGS }, { HTML_1_0 }, elem_nextid, a_n },
+hav_t havt_nextid [] =
+{   { { HTML_TAGS }, { HTML_1_0 }, elem_nextid, a_n },
     { { HTML_1_0, REQUIRED }, { HTML_3_0 }, elem_nextid, a_n },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    XHTML2_ATTRIBUTES (elem_nl),
+hav_t havt_nl [] =
+{   XHTML2_ATTRIBUTES (elem_nl),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    COMMON_HTML4_ATTRIBUTES (elem_noframes),
+hav_t havt_noframes [] =
+{   COMMON_HTML4_ATTRIBUTES (elem_noframes),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_none, a_xmlns },
+hav_t havt_none [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, elem_none, a_xmlns },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_noscript),
+hav_t havt_noscript [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_noscript),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_not),
+hav_t havt_not [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_not),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_3_0 }, { HTML_3_0 }, elem_note, a_clear },
+hav_t havt_note [] =
+{   { { HTML_3_0 }, { HTML_3_0 }, elem_note, a_clear },
     { { HTML_PLUS, HV_NOT2 }, { HTML_PLUS }, elem_note, a_role },
     { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, elem_note, a_src },
     { { HTML_3_0 }, { HTML_3_0 }, elem_note, a_md },
     HTMLPLUS_ATTRIBUTES (elem_note),
     HTML3_CLID_ATTRIBUTES (elem_note),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_notanumber),
+hav_t havt_notanumber [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_notanumber),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_notin),
+hav_t havt_notin [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_notin),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_notprsubset),
+hav_t havt_notprsubset [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_notprsubset),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_notsubset),
-
+hav_t havt_notsubset [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_notsubset),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

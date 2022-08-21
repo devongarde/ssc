@@ -21,14 +21,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "attribute/avm_data.h"
 
-hav_t havt_e [] =
+hav_t havt_element [] =
 {   STANDARD_HTML5_ATTRIBUTES (elem_element),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_elementdef, a_name },
+hav_t havt_elementdef [] =
+{   { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_elementdef, a_name },
     SVG_HTML_ATTRIBUTES (elem_elementdef),
     SVG_PRESENTATION_ATTRIBUTES (elem_elementdef),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_ellipse, a_externalresourcesrequired },
+hav_t havt_ellipse [] =
+{   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_ellipse, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_ellipse, a_pathlength },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_ellipse, a_transform },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_ellipse, a_will_change },
@@ -40,12 +44,16 @@ hav_t havt_e [] =
     SVG_LANGSPACE_ATTRIBUTES_10 (elem_ellipse),
     SVG_PRESENTATION_ATTRIBUTES (elem_ellipse),
     SVG_RXY_ATTRIBUTES (elem_ellipse),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTMLPLUS_ATTRIBUTES (elem_em),
+hav_t havt_em [] =
+{   HTMLPLUS_ATTRIBUTES (elem_em),
     HTML3_CLID_ATTRIBUTES (elem_em),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_em),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_height },
+hav_t havt_embed [] =
+{   { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_height },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_src },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_type },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_width },
@@ -54,31 +62,50 @@ hav_t havt_e [] =
     { { HTML_JAN07, REJECT }, { HTML_UNDEF }, elem_embed, a_name },
     { { HTML_JAN07, REJECT }, { HTML_UNDEF }, elem_embed, a_vspace },
     STANDARD_HTML5_ATTRIBUTES (elem_embed),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_emptyset),
+hav_t havt_emptyset [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_emptyset),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_eq),
+hav_t havt_eq [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_eq),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_equivalent),
+hav_t havt_equivalent [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_equivalent),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_eulergamma),
+hav_t havt_eulergamma [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_eulergamma),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN05 }, { HTML_JUN08 }, elem_event_source, a_onevent },
+hav_t havt_event_source [] =
+{   { { HTML_JAN05 }, { HTML_JUN08 }, elem_event_source, a_onevent },
     { { HTML_JAN05 }, { HTML_JUN08 }, elem_event_source, a_src },
     STANDARD_HTML5_ATTRIBUTES (elem_event_source),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JUL08 }, { HTML_JUN09 }, elem_eventsource, a_src },
+hav_t havt_eventsource [] =
+{   { { HTML_JUL08 }, { HTML_JUN09 }, elem_eventsource, a_src },
     STANDARD_HTML5_ATTRIBUTES (elem_eventsource),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_exists),
+hav_t havt_exists [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_exists),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_exp),
+hav_t havt_exp [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_exp),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_exponentiale),
+hav_t havt_exponentiale [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_exponentiale),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, a_namespace },
+hav_t havt_extensiondefs [] =
+{   { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, a_namespace },
     SVG_HTML_ATTRIBUTES (elem_extensiondefs),
     SVG_PRESENTATION_ATTRIBUTES (elem_extensiondefs),
     SVG_XLINK_ATTRIBUTES (elem_extensiondefs),
-
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

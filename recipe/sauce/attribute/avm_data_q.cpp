@@ -27,9 +27,12 @@ hav_t havt_q [] =
     HTMLPLUS_ATTRIBUTES (elem_q),
     HTML23_CLID_ATTRIBUTES (elem_q),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_q),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTMLPLUS_ATTRIBUTES (elem_quote),
+hav_t havt_quote [] =
+{   HTMLPLUS_ATTRIBUTES (elem_quote),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_quotient),
-
+hav_t havt_quotient [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_quotient),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

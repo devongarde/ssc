@@ -942,9 +942,6 @@
     <Filter Include="Toast\Math\4-22">
       <UniqueIdentifier>{936f87da-2497-48be-b037-ce21b626bd80}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Math\4-22-core">
-      <UniqueIdentifier>{918d08b8-d873-4b82-b4e7-2daedfdb08ea}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Other\blob">
       <UniqueIdentifier>{9d6f7286-4993-4233-b59f-851f61599889}</UniqueIdentifier>
     </Filter>
@@ -953,6 +950,12 @@
     </Filter>
     <Filter Include="Port\OpenBSD">
       <UniqueIdentifier>{1130bf8f-89b5-4569-ae91-0bd4c5807fb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Math\4-core">
+      <UniqueIdentifier>{918d08b8-d873-4b82-b4e7-2daedfdb08ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Port\OpenBSD\pkg">
+      <UniqueIdentifier>{6e5527dc-a219-48d1-9346-4aad7081fff4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -25914,18 +25917,6 @@
     <None Include="..\toast\math\4-22\math.spec">
       <Filter>Toast\Math\4-22</Filter>
     </None>
-    <None Include="..\toast\math\4-22-core\index.html">
-      <Filter>Toast\Math\4-22-core</Filter>
-    </None>
-    <None Include="..\toast\math\4-22-core\math.conf">
-      <Filter>Toast\Math\4-22-core</Filter>
-    </None>
-    <None Include="..\toast\math\4-22-core\math.spec">
-      <Filter>Toast\Math\4-22-core</Filter>
-    </None>
-    <None Include="..\toast\math\4-22-core\core-1.html">
-      <Filter>Toast\Math\4-22-core</Filter>
-    </None>
     <None Include="..\toast\math\4-22\math2-example.html">
       <Filter>Toast\Math\4-22</Filter>
     </None>
@@ -25976,6 +25967,21 @@
     </None>
     <None Include="..\port\openbsd\Makefile">
       <Filter>Port\OpenBSD</Filter>
+    </None>
+    <None Include="..\toast\math\4-core\core-1.html">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-core\index.html">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-core\math.conf">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-core\math.spec">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\port\openbsd\pkg\PLIST">
+      <Filter>Port\OpenBSD\pkg</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

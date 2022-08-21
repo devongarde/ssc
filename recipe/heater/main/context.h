@@ -26,7 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/html_version.h"
 #include "schema/schema_version.h"
 #include "feedback/nitout.h"
-#include "main/output.h"
 
 #define VALID_RESULT 0
 #define STOP_OK 1
@@ -40,7 +39,7 @@ class replies;
 class corpus;
 
 class context_t
-{   bool            article_ = false, body_ = true, case_ = true, cgi_ = false, classic_ = false, clear_ = false, codes_ = false, crosslinks_ = true, example_ = true,
+{   bool            article_ = false, body_ = true, case_ = true, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
                     external_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false,
                     md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false,
                     not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true, rel_ = false,
@@ -75,7 +74,7 @@ class context_t
     void mac (const e_nit_macro ns, const ::std::string& s)
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (ns, s); }
-   void mac (const e_nit_macro ns, const char *sz)
+    void mac (const e_nit_macro ns, const char *sz)
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (ns, ::std::string (sz)); }
     void mac (const e_nit_macro ns, const vstr_t& s)
@@ -88,10 +87,9 @@ class context_t
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
     context_t& body (const bool b) { body_ = b; mac (nm_context_body, b); return *this; }
     context_t& cased (const bool b) { case_ = b; mac (nm_context_case, b); return *this; }
-    context_t& cgi (const bool b) { cgi_ = b; mac (nm_context_cgi, b); return *this; }
+    context_t& cgi (const bool b) { cgi_ = b; mac (nm_context_cgi, b); spell (false); return *this; }
     context_t& classic (const bool b) { classic_ = b; mac (nm_context_classic, b); return *this; }
     context_t& clear (const bool b) { clear_ = b; mac (nm_context_clear, b); return *this; }
-    context_t& codes (const bool b) noexcept { codes_ = b; return *this; }
     context_t& config (const ::boost::filesystem::path& c) { config_ = c; mac (nm_context_config, c.string ()); return *this; }
     context_t& copy (const int c)
     {   if ((c > c_none) && (c <= c_rpt)) copy_ = static_cast < e_copy > (c);
@@ -143,15 +141,7 @@ class context_t
     context_t& macro_end (const ::std::string& s) { macro_end_ = s; return *this; }
     context_t& macro_start (const ::std::string& s) { macro_start_ = s; return *this; }
     context_t& main (const bool b) { main_ = b; mac (nm_context_main, b); return *this; }
-    context_t& math_version (const int v)
-    {   switch (v)
-        {   case 4 : version_.math_version (math_4_22); break;
-            case 1 :
-            case 2 :
-            case 3 : version_.math_version (static_cast < e_math_version > (v)); break;
-            default : version_.math_version (math_none); }
-        mac < int > (nm_context_math, version_.math_version ());
-        return *this; }
+    context_t& math_version (const int v);
     context_t& math_version (const e_math_version v) noexcept { version_.math_version (v); return *this; }
     context_t& max_file_size (const long l) { max_file_size_ = l; mac < long > (nm_context_max_file_size, l);return *this; }
     context_t& md_export (const bool b) { md_export_ = b; mac (nm_context_md_export, b); return *this; }
@@ -266,7 +256,6 @@ public:
     bool cgi () const noexcept { return cgi_; }
     bool classic () const noexcept { return classic_; }
     bool clear () const noexcept { return clear_; }
-    bool codes () const noexcept { return codes_; }
     ::boost::filesystem::path config () const { return config_; }
     e_copy copy () const noexcept { return copy_; }
     ::boost::filesystem::path corpus () const { return corpus_; }

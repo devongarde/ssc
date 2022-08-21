@@ -3,8 +3,15 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+ 0.1.1
+- trial OpenBSD port
+- avoid clang clanger
+- underlying work
+
  0.1.0
 - FIRST ALPHA RELEASE!!
+- further performance improvements
+- underlying work
 
  0.0.134
 - further performance improvements

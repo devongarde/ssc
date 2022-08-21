@@ -276,7 +276,7 @@ template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudon
                     break;
                 case math_3 :
                 case math_4_20 :
-                case math_core_22 :
+                case math_core :
                 case math_4_22 :
                     {   const ::std::string::size_type len = ss.length ();
                         if (len >= 5)

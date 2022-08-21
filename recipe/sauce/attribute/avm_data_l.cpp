@@ -25,17 +25,25 @@ hav_t havt_l [] =
 {   { { HTML_PLUS }, { HTML_PLUS }, elem_l, a_align },
     HTMLPLUS_ATTRIBUTES (elem_l),
     XHTML2_ATTRIBUTES (elem_l),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_label, a_for },
+hav_t havt_label [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, elem_label, a_for },
     { { HTML_JAN09, HV_NOT51 }, { HTML_DEC16 }, elem_label, a_form },
     HTML3_CLID_ATTRIBUTES (elem_label),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_label),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_STANDARD_ATTRIBUTES (elem_lambda),
+hav_t havt_lambda [] =
+{   MATH3_STANDARD_ATTRIBUTES (elem_lambda),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_laplacian),
+hav_t havt_laplacian [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_laplacian),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_above },
+hav_t havt_layer [] =
+{   { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_above },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_background },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_below },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_bgcolour },
@@ -52,17 +60,27 @@ hav_t havt_l [] =
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_top },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_visibility },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, elem_layer, a_zindex },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_lcm),
+hav_t havt_lcm [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_lcm),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_legend, a_align },
+hav_t havt_legend [] =
+{   { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_legend, a_align },
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_legend),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_leq),
+hav_t havt_leq [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_leq),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTML3_CLID_ATTRIBUTES (elem_lh),
+hav_t havt_lh [] =
+{   HTML3_CLID_ATTRIBUTES (elem_lh),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_li, a_align },
+hav_t havt_li [] =
+{   { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_li, a_align },
     { { HTML_3_0 }, { HTML_3_0 }, elem_li, a_clear },
     { { HTML_3_0 }, { HTML_3_0 }, elem_li, a_dingbat },
     { { HTML_3_0 }, { HTML_3_0 }, elem_li, a_md },
@@ -73,10 +91,14 @@ hav_t havt_l [] =
     HTMLPLUS_ATTRIBUTES (elem_li),
     HTML23_CLID_ATTRIBUTES (elem_li),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_li),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_limit),
+hav_t havt_limit [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_limit),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_line, a_externalresourcesrequired },
+hav_t havt_line [] =
+{   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_line, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_line, a_pathlength },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_line, a_transform },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_line, a_will_change },
@@ -91,8 +113,10 @@ hav_t havt_l [] =
     SVG_HTML_ATTRIBUTES (elem_line),
     SVG_LANGSPACE_ATTRIBUTES_10 (elem_line),
     SVG_PRESENTATION_ATTRIBUTES (elem_line),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_lineargradient, a_externalresourcesrequired },
+hav_t havt_lineargradient [] =
+{   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_lineargradient, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_lineargradient, a_href },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_lineargradient, a_spreadmethod },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_lineargradient, a_x1 },
@@ -104,8 +128,10 @@ hav_t havt_l [] =
     SVG_HTML_ATTRIBUTES (elem_lineargradient),
     SVG_PRESENTATION_ATTRIBUTES (elem_lineargradient),
     SVG_XLINK_ATTRIBUTES (elem_lineargradient),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JUL16 }, { HTML_UNDEF }, elem_link, a_as },
+hav_t havt_link [] =
+{   { { HTML_JUL16 }, { HTML_UNDEF }, elem_link, a_as },
     { { HTML_APR22 }, { HTML_UNDEF }, elem_link, a_blocking },
     { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { XHTML_2_0 }, elem_link, a_charset },
     { { HTML_JUL17 }, { HTML_UNDEF }, elem_link, a_colour },
@@ -142,11 +168,15 @@ hav_t havt_l [] =
     { { HTML_JUL17 }, { HTML_DEC17 }, elem_link, a_workertype },
     HTML23_CLID_ATTRIBUTES (elem_link),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_link),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_list, a_order },
+hav_t havt_list [] =
+{   { { XHTML_1_0 }, { HTML_UNDEF }, elem_list, a_order },
     MATH3_STANDARD_ATTRIBUTES (elem_list),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_defaultaction },
+hav_t havt_listener [] =
+{   { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_defaultaction },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_event },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_handler },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_observer },
@@ -154,22 +184,37 @@ hav_t havt_l [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_propagate },
     XHTML2_ATTRIBUTES (elem_listener),
     SVG_HTML_ATTRIBUTES (elem_listener),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTML23_CLID_ATTRIBUTES (elem_listing),
+hav_t havt_listing [] =
+{   HTML23_CLID_ATTRIBUTES (elem_listing),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    HTMLPLUS_ATTRIBUTES (elem_lit),
+hav_t havt_lit [] =
+{   HTMLPLUS_ATTRIBUTES (elem_lit),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_ln),
+hav_t havt_ln [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_ln),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    SVG_HTML_ATTRIBUTES (elem_loc),
+hav_t havt_loc [] =
+{   SVG_HTML_ATTRIBUTES (elem_loc),
     SVG_XLINK_ATTRIBUTES (elem_loc),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_log),
+hav_t havt_log [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_log),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_STANDARD_ATTRIBUTES (elem_logbase),
+hav_t havt_logbase [] =
+{   MATH3_STANDARD_ATTRIBUTES (elem_logbase),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_STANDARD_ATTRIBUTES (elem_lowlimit),
+hav_t havt_lowlimit [] =
+{   MATH3_STANDARD_ATTRIBUTES (elem_lowlimit),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_lt),
-
+hav_t havt_lt [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_lt),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "attribute/avm_data.h"
 
-hav_t havt_w [] =
+hav_t havt_wbr [] =
 {   STANDARD_HTML5_ATTRIBUTES(elem_wbr),
-
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

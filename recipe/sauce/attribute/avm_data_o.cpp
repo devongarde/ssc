@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "attribute/avm_data.h"
 
-hav_t havt_o [] =
+hav_t havt_object [] =
 {   { { HTML_4_0 }, { XHTML_2_0 }, elem_object, a_archive },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_object, a_align },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_object, a_border },
@@ -46,8 +46,10 @@ hav_t havt_o [] =
     { { HTML_4_0 }, { HTML_UNDEF }, elem_object, a_width },
     HTML4_FORM_ATTRIBUTES (elem_object),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_object),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_ol, a_align },
+hav_t havt_ol [] =
+{   { { HTML_2_0, HV_RFC_2070 }, { HTML_2_0 }, elem_ol, a_align },
     { { HTML_3_0 }, { HTML_3_0 }, elem_ol, a_clear },
     { { HTML_PLUS, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_ol, a_compact },
     { { HTML_3_0 }, { HTML_3_0 }, elem_ol, a_continue },
@@ -59,12 +61,16 @@ hav_t havt_o [] =
     HTMLPLUS_ATTRIBUTES (elem_ol),
     HTML23_CLID_ATTRIBUTES (elem_ol),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_ol),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_4_0 }, { HTML_UNDEF }, elem_optgroup, a_disabled },
+hav_t havt_optgroup [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, elem_optgroup, a_disabled },
     { { HTML_4_0, REQUIRED }, { HTML_UNDEF }, elem_optgroup, a_label },
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_optgroup),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN05 }, { HTML_DEC05 }, elem_option, a_command },
+hav_t havt_option [] =
+{   { { HTML_JAN05 }, { HTML_DEC05 }, elem_option, a_command },
     { { HTML_PLUS, HV_NOT2 | HV_NOT32 }, { HTML_UNDEF }, elem_option, a_disabled },
     { { HTML_3_0 }, { HTML_3_0 }, elem_option, a_error },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_option, a_label },
@@ -73,19 +79,29 @@ hav_t havt_o [] =
     { { HTML_2_0 }, { HTML_UNDEF }, elem_option, a_value },
     HTML23_CLID_ATTRIBUTES (elem_option),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_option),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_or),
+hav_t havt_or [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_or),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_STANDARD_ATTRIBUTES (elem_otherwise),
+hav_t havt_otherwise [] =
+{   MATH3_STANDARD_ATTRIBUTES (elem_otherwise),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    MATH3_DEFS_ATTRIBUTES (elem_outerproduct),
+hav_t havt_outerproduct [] =
+{   MATH3_DEFS_ATTRIBUTES (elem_outerproduct),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_JAN09 }, { HTML_UNDEF }, elem_output, a_for },
+hav_t havt_output [] =
+{   { { HTML_JAN09 }, { HTML_UNDEF }, elem_output, a_for },
     { { HTML_JAN09 }, { HTML_UNDEF }, elem_output, a_form },
     { { HTML_JAN09 }, { HTML_UNDEF }, elem_output, a_name },
     STANDARD_HTML5_ATTRIBUTES (elem_output),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_height },
+hav_t havt_overlay [] =
+{   { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_height },
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_imagemap },
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_md },
     { { HTML_3_0, REQUIRED }, { HTML_3_0 }, elem_overlay, a_src },
@@ -93,5 +109,4 @@ hav_t havt_o [] =
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_width },
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_x },
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_y },
-
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

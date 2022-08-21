@@ -821,7 +821,7 @@ typedef enum { mo_prefix, mo_infix, mo_functionmodel } e_mathoccurence;
 typedef enum { mo_numeric, mo_lexicographic } m_mathorder;
 typedef enum { ov_elide, ov_linebreak, ov_scale, ov_scroll, ov_truncate } e_mathoverflow;
 typedef enum { ms_global, ms_local } e_mathscope;
-typedef enum { math_none, math_1, math_2, math_3, math_4_20, math_core_22, math_4_22 } e_math_version;
+typedef enum { math_none, math_1, math_2, math_3, math_4_20, math_4_22, math_core } e_math_version;
 typedef enum { mf_infix, mf_prefix, mf_postfix } e_mathform;
 typedef enum { fmw_bold, fmw_normal } e_math_fontweight;
 typedef enum { mf_dash, mf_none, mf_solid } e_mathframe;

@@ -21,53 +21,98 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "attribute/avm_data.h"
 
-hav_t havt_rdf [] =
+hav_t havt_rdf_1 [] =
 {   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_1),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_2),
+hav_t havt_rdf_2 [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_2),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_3),
+hav_t havt_rdf_3 [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_3),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_4),
+hav_t havt_rdf_4 [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_4),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_5),
+hav_t havt_rdf_5 [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_5),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_6),
+hav_t havt_rdf_6 [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_6),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_7),
+hav_t havt_rdf_7 [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_7),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_8),
+hav_t havt_rdf_8 [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_8),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_9),
+hav_t havt_rdf_9 [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_9),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_about),
+hav_t havt_rdf_about [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_about),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_abouteach),
+hav_t havt_rdf_abouteach [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_abouteach),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_abouteachprefix),
+hav_t havt_rdf_abouteachprefix [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_abouteachprefix),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_alt),
+hav_t havt_rdf_alt [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_alt),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_bag),
+hav_t havt_rdf_bag [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_bag),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_bagid),
+hav_t havt_rdf_bagid [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_bagid),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_datatype),
+hav_t havt_rdf_datatype [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_datatype),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_description),
+hav_t havt_rdf_description [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_description),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_id),
+hav_t havt_rdf_id [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_id),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_li),
+hav_t havt_rdf_li [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_li),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_nodeid),
+hav_t havt_rdf_nodeid [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_nodeid),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_parsetype),
+hav_t havt_rdf_parsetype [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_parsetype),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_rdf),
+hav_t havt_rdf_rdf [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_rdf),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_resource),
+hav_t havt_rdf_resource [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_resource),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_seq),
-
+hav_t havt_rdf_seq [] =
+{   STANDARD_HTMLS_4_5_ATTRIBUTES (elem_rdf_seq),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
