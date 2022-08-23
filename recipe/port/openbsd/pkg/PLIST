@@ -1,0 +1,7 @@
+@bin bin/ssc
+share/doc/ssc/
+share/doc/ssc/LICENCE.txt
+share/doc/ssc/LICENSE.txt
+share/doc/ssc/README.txt
+share/doc/ssc/gen.txt
+share/doc/ssc/usage.txt

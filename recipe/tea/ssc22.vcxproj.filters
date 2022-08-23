@@ -25962,9 +25962,6 @@
     <None Include="..\toast\other\blob\harris-brexit.pdf">
       <Filter>Toast\Other\blob</Filter>
     </None>
-    <None Include="..\port\openbsd\DESCR">
-      <Filter>Port\OpenBSD</Filter>
-    </None>
     <None Include="..\port\openbsd\Makefile">
       <Filter>Port\OpenBSD</Filter>
     </None>
@@ -25981,6 +25978,9 @@
       <Filter>Toast\Math\4-core</Filter>
     </None>
     <None Include="..\port\openbsd\pkg\PLIST">
+      <Filter>Port\OpenBSD\pkg</Filter>
+    </None>
+    <None Include="..\port\openbsd\pkg\DESCR">
       <Filter>Port\OpenBSD\pkg</Filter>
     </None>
   </ItemGroup>

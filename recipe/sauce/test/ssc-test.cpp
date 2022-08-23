@@ -88,14 +88,14 @@ vstr_t readlines (const ::std::string& name)
 bool testfile (const ::boost::filesystem::path& s, const ::std::string& context = ::std::string ())
 {   if (only_check_exports || (s == SNIPPET)) return true;
     if (! ::boost::filesystem::exists (s))
-    {   ::std::cerr << "cannot find " << s << context << "\n"; return false; }
+    {   ::std::cerr << "cannot find " << s << ::std::endl << context << "\n"; return false; }
     else if (! ::boost::filesystem::is_regular_file (s))
-    {   ::std::cerr << "cannot load " << s << context << "\n"; return false; }
+    {   ::std::cerr << "cannot load " << s << ::std::endl << context << "\n"; return false; }
     return true; }
 
 bool testxeq (const ::boost::filesystem::path& s, const ::std::string& context = ::std::string ())
 {   if (! ::boost::filesystem::exists (s))
-    {   ::std::cerr << "cannot find " << s << context << "\n"; return false; }
+    {   ::std::cerr << "cannot find " << s << ::std::endl << context << "\n"; return false; }
     return true; }
 
 bool load_file_list (char* name, filelist& specs)

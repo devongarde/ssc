@@ -59,7 +59,9 @@ class context_t
     ::boost::filesystem::path config_, corpus_, spell_path_;
     vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, no_ex_check_, report_, shadow_ignore_, shadows_, site_, spellings_, virtuals_;
     ::boost::program_options::options_description validation_;
+#ifndef NO_BOOST_REGEX
     vwild_t         exclude_;
+#endif // NO_BOOST_REGEX
     e_svg_processing_mode svg_mode_ = spm_none;
     e_quote_style   quote_style_ = qs_none;
     e_do            do_ = do_booboo;

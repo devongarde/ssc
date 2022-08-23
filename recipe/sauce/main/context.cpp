@@ -164,6 +164,10 @@ bool context_t::rdfa () const noexcept
     if (version_.is_svg_12 ()) return true;
     return (version_ == xhtml_2); }
 
+#ifdef NO_BOOST_REGEX
+context_t& context_t::exclude (nitpick& , const ::std::string& )
+{  return *this; }
+#else // NO_BOOST_REGEX
 context_t& context_t::exclude (nitpick& nits, const ::std::string& s)
 {   try
     {   wild_t w (s, ::boost::regex::basic_regex::extended);
@@ -171,17 +175,23 @@ context_t& context_t::exclude (nitpick& nits, const ::std::string& s)
     catch (...)
     {   nits.pick (nit_regex, es_error, ec_init, "ignoring the invalid regular expression ", quote (s)); }
     return *this; }
+#endif // NO_BOOST_REGEX
 
 context_t& context_t::exclude (nitpick& nits, const vstr_t& s)
 {   for (auto ss : s)
         exclude (nits, ss);
     return *this; }
 
+#ifdef NO_BOOST_REGEX   
+bool context_t::excluded (const ::boost::filesystem::path& ) const
+{   return false; }
+#else // NO_BOOST_REGEX
 bool context_t::excluded (const ::boost::filesystem::path& p) const
 {   for (auto w : exclude_)
         if (::boost::regex_search (p.string (), w))
             return true;
     return false; }
+#endif // NO_BOOST_REGEX
 
 context_t& context_t::fred (const int i)
 {   int nmt = fred_t::no_more_than (); // <=> :-(

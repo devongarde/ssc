@@ -208,6 +208,7 @@ $(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\to
     <Text Include="..\toast\ssc-test\unreported.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\sauce\test\test.sh" />
     <None Include="..\toast\ssc-test\all.lst" />
     <None Include="..\toast\ssc-test\input.spec" />
     <None Include="..\toast\ssc-test\ssc.lst" />

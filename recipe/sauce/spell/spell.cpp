@@ -131,6 +131,8 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
             return true; }
     return false; }
 
+mssfl_uptr mssfl;
+
 #ifndef NOSPELL
 #include "type/type_master.h"
 #include "utility/filesystem.h"
@@ -139,10 +141,6 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
 #include "icu/charset.h"
 #include "icu/converter.h"
 #include "utility/cache.h"
-
-mssfl_uptr mssfl;
-
-// mssfl_t mssfl;
 
 void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::filesystem::path& fn)
 {   ::std::string list;

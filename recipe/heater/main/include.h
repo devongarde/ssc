@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 1
-#define VERSION_STRING "0.1.1"
+#define VERSION_RELEASE 2
+#define VERSION_STRING "0.1.2"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -240,11 +240,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #endif // NOICU
 
-#if defined (_MSC_VER) && defined (HUNSPELL)
-#define HUNSPELL_STATIC
-#pragma comment (lib, "libhunspell.lib")
-#endif // _MSC_VER && HUNSPELL
-
 #endif // SSC_TEST
 
 #include <boost/version.hpp>
@@ -256,13 +251,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
+#if BOOST_MINOR < 72
+#define NO_DIROPTS
+#ifdef HUNSPELL
+#undef HUNSPELL
+#endif // HUNSPELL
+#ifndef NOSPELL
+#define NOSPELL
+#endif // HUNSPELL
+#endif // 1.72
+
 #if BOOST_MINOR < 73
 #define FS_THROWS
 #endif // 1.73
 
-#if BOOST_MINOR < 72
-#define NO_DIROPTS
-#endif // 1.72
+#if BOOST_MINOR < 76
+#define NO_BOOST_REGEX
+#endif // 1.75
 
 #if BOOST_MINOR > 78
 #define BOOST_FILESYSTEM_VERSION 4
@@ -275,6 +280,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define BOOST_FSTREAM ::std::fstream
 #define BOOST_IFSTREAM ::std::ifstream
 #define BOOST_OFSTREAM ::std::ofstream
+#define BOOST_EXTENSION(P) P.extension ()
 #else // BOOST_FILESYSTEM_VERSION
 #define BOOST_COPY_OPTION ::boost::filesystem::copy_option
 #define BOOST_OVERWRITE overwrite_if_exists
@@ -282,6 +288,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define BOOST_FSTREAM ::boost::filesystem::fstream
 #define BOOST_IFSTREAM ::boost::filesystem::ifstream
 #define BOOST_OFSTREAM ::boost::filesystem::ofstream
+#define BOOST_EXTENSION(P) ::boost::filesystem::extension (d)
 #endif // BOOST_FILESYSTEM_VERSION
 
 #define BOOST_FSTREAM_CNSTR(F,P) BOOST_FSTREAM F (BOOST_PSTR (P))
@@ -292,6 +299,12 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define BOOST_OFSTREAM_CNSTRO(F,P,O) BOOST_OFSTREAM F (BOOST_PSTR (P), O)
 
 #ifndef SSC_TEST
+
+#if defined (_MSC_VER) && defined (HUNSPELL)
+#define HUNSPELL_STATIC
+#pragma comment (lib, "libhunspell.lib")
+#endif // _MSC_VER && HUNSPELL
+
 #if BOOVAR == 1
 #include <boost/variant.hpp>
 #define ssc_variant ::boost::variant
@@ -328,8 +341,17 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/property_tree/string_path.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/logic/tribool.hpp>
+#ifndef NO_BOOST_REGEX   
 #include <boost/regex.hpp>
+#endif
+
+#if BOOST_MINOR > 75
 #include <boost/system.hpp>
+#else // BOOST_MINOR
+#include <boost/system/error_code.hpp>
+#include <boost/system/system_error.hpp>
+#endif // BOOST_MINOR
+
 #include <boost/thread.hpp>
 
 #ifdef _MSC_VER
