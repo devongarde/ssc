@@ -371,8 +371,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\port\openbsd\DESCR" />
     <None Include="..\port\openbsd\Makefile" />
+    <None Include="..\port\openbsd\pkg\DESCR" />
     <None Include="..\port\openbsd\pkg\PLIST" />
     <None Include="..\toast\conf\corrupt\corona-corrupt.conf" />
     <None Include="..\toast\conf\corrupt\corrupt.conf" />

@@ -141,15 +141,8 @@ void fred_t::done ()
 
 int fred_t::suggested ()
 {   const int hc = ::std::thread::hardware_concurrency ();
-#ifdef _MSC_VER
-    int res = hc -  1;
-#else  // _MSC_VER
-    int res = hc / 2;
-#endif // _MSC_VER
-    if (res < 2)
-        if (hc > 2) res = 2;
-        else res = 1;
-    return res; }
+    if (hc > 2) return hc - 1;
+    return hc; }
 
 int fred_t::no_more_than ()
 {   return ::std::thread::hardware_concurrency () * 2; }

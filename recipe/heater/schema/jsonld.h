@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 
 #ifdef NO_JSONIC
-inline void parse_json_ld (nitpick& nits, const html_version& v, const ::std::string& s, const e_charcode encoding = cc_ansi) { }
+inline void parse_json_ld (nitpick& , const html_version& , const ::std::string& , const e_charcode  = cc_ansi) { }
 #else // NO_JSONIC
 void parse_json_ld (nitpick& nits, const html_version& v, const ::std::string& s, const e_charcode encoding = cc_ansi);
 #endif // NO_JSONIC

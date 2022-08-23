@@ -1066,16 +1066,27 @@ void options::contextualise (nitpick& nits)
             else
             {   bool found = false;
                 vstr_t check =
-                {   "/opt/local/share/hunspell", // macos macports
-                    "/usr/local/share/mozilla-dicts", // OpenBSD
-                    "/usr/share/myspell",  // centos
+                {   "/usr/local/share/mozilla-dicts", // OpenBSD
+                    "/opt/local/share/hunspell", // macports
                     "/opt/local/share/myspell",
                     "/opt/local/share/mozilla-dicts",
                     "/usr/share/mozilla-dicts",
-                    "/usr/share/hunspell",
+                    "/usr/share/hunspell", // SuSE
+                    "/usr/share/doc/hunspell", // ubuntu
                     "/usr/share/myspell",
                     "/usr/local/share/hunspell",
-                    "/usr/local/share/myspell" };
+                    "/usr/local/share/myspell",
+                    "/usr/share/doc/hunspell-en",
+                    "/usr/share/doc/hunspell-en-GB",
+                    "/usr/share/doc/hunspell-en-gb",
+                    "/usr/share/doc/hunspell-en-US",
+                    "/usr/share/doc/hunspell-en-us",
+                    "/usr/share/doc/hunspell-fr",
+                    "/usr/share/doc/hunspell-de",
+                    "/usr/share/doc/hunspell-de-de",
+                    "/usr/share/doc/hunspell-de-DE",
+                    "/usr/share/doc/hunspell-nl",
+                    "/usr/share/doc/hunspell-lb" };
                 for (auto dd : check)
                     if (::boost::filesystem::exists (dd))
                         if (::boost::filesystem::is_directory (dd))

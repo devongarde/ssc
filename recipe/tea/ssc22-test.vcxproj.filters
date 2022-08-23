@@ -53,6 +53,9 @@
     <None Include="..\toast\ssc-test\all.lst">
       <Filter>toasty-toast</Filter>
     </None>
+    <None Include="..\sauce\test\test.sh">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource1.h">

@@ -211,7 +211,6 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
     for (auto t : tx)
     {   if (t.empty ()) continue;
         if (! lang.is_alpha (t.substr (0, 1))) continue;
-//        if (! iswlower (t.at (0)) && ! iswupper (t.at (0))) continue;
         if (! hi -> second.valid ()) break;
         if (! hi -> second.spell (nits, t)) spell_tell (nits, lang, t, hi -> second.suggestions (nits, t)); } }
 
@@ -227,7 +226,7 @@ vstr_t load_dictionaries (nitpick& nits)
     for (const ::boost::filesystem::directory_entry& i : ::boost::filesystem::directory_iterator (p, ::boost::filesystem::directory_options::skip_permission_denied))
     {   ::boost::filesystem::path d (i.path ());
         if (! ::boost::filesystem::is_regular_file (d)) continue;
-        if (::boost::filesystem::extension (d) != DICTIONARY_EXTENSION) continue;
+        if (BOOST_EXTENSION (d) != DICTIONARY_EXTENSION) continue;
         ::std::string s (d.stem ().string ());
         ::std::string l (get_dict_lang (s));
         if (l.empty ())
