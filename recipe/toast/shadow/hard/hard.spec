@@ -1,4 +1,4 @@
--f ../toast/shadow/hard/hard.conf
+-N 1 -f ../toast/shadow/hard/hard.conf
 
 PASS ../toast/shadow/hard/index.html
 2 naughty_lang

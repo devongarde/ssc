@@ -41,9 +41,4 @@ public:
     external& operator = (const external& ) = delete;
     external& operator = (external&& ) = delete;
     bool verify (nitpick& nits, const html_version& v, const url& u, int& code, bool& repeated);
-#ifdef NO_BOOST_PROCESS
-   ::std::string load (const url& u) noexcept;
-#else // NO_BOOST_PROCESS
-   ::std::string load (const url& u);
-#endif // NO_BOOST_PROCESS
-};
+   ::std::string load (nitpick& nits, const url& u); };

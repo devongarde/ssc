@@ -157,6 +157,7 @@
     <ClInclude Include="..\heater\type\type_van.h" />
     <ClInclude Include="..\heater\type\type_varied.h" />
     <ClInclude Include="..\heater\type\type_xmlns.h" />
+    <ClInclude Include="..\heater\url\curl.h" />
     <ClInclude Include="..\heater\url\url.h" />
     <ClInclude Include="..\heater\url\url_parameters.h" />
     <ClInclude Include="..\heater\url\url_protocol.h" />
@@ -181,16 +182,6 @@
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\q.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
-    <ClInclude Include="..\third\date\chrono_io.h" />
-    <ClInclude Include="..\third\date\date.h" />
-    <ClInclude Include="..\third\date\ios.h" />
-    <ClInclude Include="..\third\date\islamic.h" />
-    <ClInclude Include="..\third\date\iso_week.h" />
-    <ClInclude Include="..\third\date\julian.h" />
-    <ClInclude Include="..\third\date\ptz.h" />
-    <ClInclude Include="..\third\date\solar_hijri.h" />
-    <ClInclude Include="..\third\date\tz.h" />
-    <ClInclude Include="..\third\date\tz_private.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -345,6 +336,7 @@
     <ClCompile Include="..\sauce\type\type_url.cpp" />
     <ClCompile Include="..\sauce\type\type_varied.cpp" />
     <ClCompile Include="..\sauce\type\type_xmlns.cpp" />
+    <ClCompile Include="..\sauce\url\curl.cpp" />
     <ClCompile Include="..\sauce\url\url.cpp" />
     <ClCompile Include="..\sauce\url\url_parameters.cpp" />
     <ClCompile Include="..\sauce\url\url_protocol.cpp" />
@@ -365,10 +357,6 @@
     <ClCompile Include="..\sauce\webpage\page.cpp" />
     <ClCompile Include="..\sauce\webpage\q.cpp" />
     <ClCompile Include="..\sauce\webpage\root.cpp" />
-    <ClCompile Include="..\third\date\tz.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\port\openbsd\Makefile" />
@@ -1246,12 +1234,16 @@
     <None Include="..\toast\json-ld\schemaorg\index.html" />
     <None Include="..\toast\json-ld\schemaorg\jsonld.conf" />
     <None Include="..\toast\json-ld\schemaorg\jsonld.spec" />
-    <None Include="..\toast\link\css-good.css" />
-    <None Include="..\toast\link\index.html" />
-    <None Include="..\toast\link\link.conf" />
-    <None Include="..\toast\link\link.spec" />
-    <None Include="..\toast\link\subdir\target.html" />
-    <None Include="..\toast\link\target.html" />
+    <None Include="..\toast\link\external\index.html" />
+    <None Include="..\toast\link\external\link.conf" />
+    <None Include="..\toast\link\external\link.spec" />
+    <None Include="..\toast\link\link\css-good.css" />
+    <None Include="..\toast\link\link\index.html" />
+    <None Include="..\toast\link\link\link.conf" />
+    <None Include="..\toast\link\link\link.spec" />
+    <None Include="..\toast\link\link\subdir\target.html" />
+    <None Include="..\toast\link\link\target.html" />
+    <None Include="..\toast\link\virtual\target.html" />
     <None Include="..\toast\living\apr21\404.html" />
     <None Include="..\toast\living\apr21\a-1.html" />
     <None Include="..\toast\living\apr21\a.html" />
@@ -8524,6 +8516,7 @@
     <Text Include="..\port\openbsd\README.txt" />
     <Text Include="..\toast\coop\corrupt\README.txt" />
     <Text Include="..\toast\coop\corrupt\robots.txt" />
+    <Text Include="..\toast\link\virtual\README.txt" />
     <Text Include="..\toast\README.txt" />
     <Text Include="..\toast\shadow\update\README.txt" />
     <Text Include="..\toast\snippet\README.txt" />
@@ -8596,16 +8589,18 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third;$(CURL)\include</IncludePath>
+    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(CURL)\debug\lib;$(LibraryPath)</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third;$(CURL)\include</IncludePath>
+    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(CURL)\lib</LibraryPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -8627,7 +8622,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
@@ -8659,7 +8654,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
       <Profile>true</Profile>

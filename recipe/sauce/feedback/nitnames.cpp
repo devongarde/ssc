@@ -750,6 +750,8 @@ const nitname nitnames [] =
     { nit_mtr_required, "mtr_required" },
     { nit_mtd_required, "mtd_required" },
     { nit_bad_intent, "bad_intent" },
+    { nit_cannot_scan, "cannot_scan" },
+    { nit_thread, "thread" },
 
     { nit_off, "" } };
 

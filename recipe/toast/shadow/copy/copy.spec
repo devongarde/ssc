@@ -1,4 +1,4 @@
--f ../toast/shadow/copy/copy.conf
+-N 1 -f ../toast/shadow/copy/copy.conf
 
 PASS ../toast/shadow/copy/html-bad.html
 0 charset_mismatch charset_used charset_invalid

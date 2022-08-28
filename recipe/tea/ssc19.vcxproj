@@ -161,6 +161,7 @@
     <ClInclude Include="..\heater\type\type_van.h" />
     <ClInclude Include="..\heater\type\type_varied.h" />
     <ClInclude Include="..\heater\type\type_xmlns.h" />
+    <ClInclude Include="..\heater\url\curl.h" />
     <ClInclude Include="..\heater\url\url.h" />
     <ClInclude Include="..\heater\url\url_parameters.h" />
     <ClInclude Include="..\heater\url\url_protocol.h" />
@@ -185,16 +186,6 @@
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\q.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
-    <ClInclude Include="..\third\date\chrono_io.h" />
-    <ClInclude Include="..\third\date\date.h" />
-    <ClInclude Include="..\third\date\ios.h" />
-    <ClInclude Include="..\third\date\islamic.h" />
-    <ClInclude Include="..\third\date\iso_week.h" />
-    <ClInclude Include="..\third\date\julian.h" />
-    <ClInclude Include="..\third\date\ptz.h" />
-    <ClInclude Include="..\third\date\solar_hijri.h" />
-    <ClInclude Include="..\third\date\tz.h" />
-    <ClInclude Include="..\third\date\tz_private.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -351,6 +342,7 @@
     <ClCompile Include="..\sauce\type\type_url.cpp" />
     <ClCompile Include="..\sauce\type\type_varied.cpp" />
     <ClCompile Include="..\sauce\type\type_xmlns.cpp" />
+    <ClCompile Include="..\sauce\url\curl.cpp" />
     <ClCompile Include="..\sauce\url\url.cpp" />
     <ClCompile Include="..\sauce\url\url_parameters.cpp" />
     <ClCompile Include="..\sauce\url\url_protocol.cpp" />
@@ -371,11 +363,6 @@
     <ClCompile Include="..\sauce\webpage\page.cpp" />
     <ClCompile Include="..\sauce\webpage\q.cpp" />
     <ClCompile Include="..\sauce\webpage\root.cpp" />
-    <ClCompile Include="..\third\date\tz.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profile|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\conf\corrupt\corona-corrupt.conf" />
@@ -7901,8 +7888,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third;$(GSL)\include;$(HUNSPELL)\src\hunspell;$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(CURL)/include;$(ProjectDir)..\third;$(GSL)\include;$(HUNSPELL)\src\hunspell;$(IncludePath)</IncludePath>
+    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(CURL)\debug\lib;$(LibraryPath)</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <ClangTidyChecks>
@@ -7911,12 +7898,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(CURL)/include;$(ProjectDir)..\third;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(CURL)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profile|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(ProjectDir)..\third;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(CURL)/include;$(ProjectDir)..\third;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -7940,7 +7927,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
@@ -7972,7 +7959,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>icuin.lib;icuio.lib;icutu.lib;icuuc.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>icuin.lib;icuio.lib;icutu.lib;icuuc.lib;icudt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
     </Link>

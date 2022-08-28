@@ -47,7 +47,7 @@ class context_t
                     schema_ = true, shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
                     spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = true,
                     update_ = false, valid_ = false, versioned_ = false;
-    int             fred_ = 1, title_ = MAX_IDEAL_TITLE_LENGTH;
+    int             fred_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
     html_version    version_;

@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 2
-#define VERSION_STRING "0.1.2"
+#define VERSION_RELEASE 3
+#define VERSION_STRING "0.1.3"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -99,7 +99,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #else
 #define COMPILER "m"
 #define NOLYNX
-#define NO_BOOST_PROCESS            // it crashed the MSVC 2019 linter, on my system at least
 #define MSVC_NOEXCEPT noexcept
 #define CLEAN_SHAREDPTR_ARRAY
 #include <codeanalysis\warnings.h>
@@ -175,6 +174,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <unistd.h>
 #endif // UNIX
 
+#ifdef _MSC_VER
+#include <windows.h>
+#endif // _MSC_VER
+
 #ifndef SSC_TEST
 #include <string>
 #include <string_view>
@@ -200,26 +203,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <atomic>
 
 #ifndef NOICU
-#include <unicode/uvernum.h>
-#include <unicode/umachine.h>
-#include <unicode/utf.h>
-#include <unicode/utypes.h>
-#include <unicode/uenum.h>
-#include <unicode/utypes.h>
-#include <unicode/putil.h>
-#include <unicode/uiter.h>
-#include <unicode/uloc.h>
-#include <unicode/utext.h>
-#include <unicode/localpointer.h>
-#include <unicode/parseerr.h>
-#include <unicode/stringoptions.h>
-#include <unicode/ucpmap.h>
 #include <unicode/ucsdet.h>
 #include <unicode/ucnv.h>
 #include <unicode/unistr.h>
 #include <unicode/errorcode.h>
 #include <unicode/normalizer2.h>
-#include <unicode/localematcher.h>
 #include <unicode/brkiter.h>
 #include <unicode/ustring.h>
 
@@ -251,14 +239,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
+#if BOOST_MINOR < 67
+#define NO_PCF_STR
+#endif // BOOST_MINOR
+
 #if BOOST_MINOR < 72
 #define NO_DIROPTS
-#ifdef HUNSPELL
-#undef HUNSPELL
-#endif // HUNSPELL
-#ifndef NOSPELL
-#define NOSPELL
-#endif // HUNSPELL
+//#ifdef HUNSPELL
+//#undef HUNSPELL
+//#endif // HUNSPELL
+//#ifndef NOSPELL
+//#define NOSPELL
+//#endif // HUNSPELL
 #endif // 1.72
 
 #if BOOST_MINOR < 73
@@ -345,7 +337,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/regex.hpp>
 #endif
 
-#if BOOST_MINOR > 75
+#if BOOST_MINOR > 76
 #include <boost/system.hpp>
 #else // BOOST_MINOR
 #include <boost/system/error_code.hpp>
@@ -360,10 +352,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
 #include <boost/crc.hpp>
 
-#ifndef NO_BOOST_PROCESS
-#include <boost/process.hpp>
-#endif // NO_BOOST_PROCESS
-
 #ifndef NO_JSONIC
 #ifdef _MSC_VER
 #pragma warning (push, 3)
@@ -375,10 +363,9 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #endif // _MSC_VER
 #endif // NO_JSONIC
 
-// https://howardhinnant.github.io/date/date.html
-#include <date/date.h>
-#include <date/tz.h>
-
+#ifndef NOCURL
+#include <curl/curl.h>
+#endif // NOCURL
 #endif // SSC_TEST
 
 #include <boost/filesystem.hpp>
@@ -505,11 +492,11 @@ typedef uint64_t flags_t; // at least 64 bits
 
 #endif // SCC_TEST
 
-#ifdef NO_BOOST_PROCESS
-#define BP_VER
-#else  // NO_BOOST_PROCESS
-#define BP_VER "p"
-#endif // NO_BOOST_PROCESS
+#ifdef NOCURL
+#define CURLY
+#else // NO_JSONIC
+#define CURLY "c"
+#endif // NO_JSONIC
 
 #ifdef NO_PCF_STR
 #define NPS_GEN
@@ -523,33 +510,49 @@ typedef uint64_t flags_t; // at least 64 bits
 #define JSNIC "j"
 #endif // NO_JSONIC
 
-#ifndef MACOS
-#define MAC_VER
-#elif defined (MONETERY)
-#define MAC_VER "M"
+#if defined (MONETERY)
+#define OS_VER "MM"
 #elif defined (BIG_SUR)
-#define MAC_VER "B"
+#define OS_VER "MB"
 #elif defined (CATALINA)
-#define MAC_VER "C"
+#define OS_VER "MC"
 #elif defined (MOJAVE)
-#define MAC_VER "m"
+#define OS_VER "Mm"
 #elif defined (HIGH_SIERRA)
-#define MAC_VER "H"
-#else
-#define MAC_VER "?"
-#endif
+#define OS_VER "MH"
+#elif defined (MACOS)
+#define OS_VER "M"
+#endif // MONETERY
 
-#ifdef O68
-#define OBSD_VER "8"
+#ifdef O71
+#define OS_VER "O71"
+#elif defined (O70)
+#define OS_VER "O70"
 #elif defined (O69)
-#define OBSD_VER "9"
-#elif defined (HIGH_SIERRA)
-#define OBSD_VER "0"
+#define OS_VER "O69"
+elif defined (O68)
+#define OS_VER "O68"
 #elif defined (OPENBSD)
-#define OBSD_VER "O"
-#else
-#define OBSD_VER
-#endif // O68
+#define OS_VER "O"
+#endif // O71
+
+#ifdef F131
+#define OS_VER "F131"
+#elif defined (FREEBSD)
+#define OS_VER "F"
+#endif // O71
+
+#ifdef _MSC_VER
+#define OS_VER "W"
+#endif // _MSC_VER
+
+#ifdef LINUX
+#define OS_VER "L"
+#endif // LINUX
+
+#ifndef OS_VER
+#define OS_VER "?"
+#endif // OS_VER
 
 #ifdef NOICU
 #define ICU_VER
@@ -566,11 +569,13 @@ typedef uint64_t flags_t; // at least 64 bits
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST
 
-#define BUILD_INFO   BP_VER DBG_STATUS FUDDY JSNIC NPS_GEN SPELT MAC_VER OBSD_VER ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":" OS_VER ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
 #define BASE_TITLE   FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
 #define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
 #define TEST_TITLE   FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
+
+#define TYPE_HELP "Type '" PROG " -h' for help."
 
 extern const char* szSimpleTitle;
 extern const char* szFullTitle;

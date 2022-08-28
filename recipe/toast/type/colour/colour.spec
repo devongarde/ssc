@@ -1,4 +1,4 @@
--f ../toast/type/colour/colour.conf
+-N 1 -f ../toast/type/colour/colour.conf
 
 PASS ../toast/type/colour/index.html
 2 naughty_lang

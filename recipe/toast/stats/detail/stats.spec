@@ -1,4 +1,4 @@
--f ../toast/stats/detail/stats.conf
+-N 1 -f ../toast/stats/detail/stats.conf
 
 PASS ../toast/stats/detail/index.html
 2 naughty_lang

@@ -1,4 +1,4 @@
--f ../toast/SVG/2.0/svg.conf
+-N 1 -f ../toast/SVG/2.0/svg.conf
 
 PASS ../toast/SVG/2.0/animation-1.xhtml
 0 title_required

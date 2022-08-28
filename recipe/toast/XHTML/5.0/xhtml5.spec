@@ -1,4 +1,4 @@
--f ../toast/XHTML/5.0/xhtml5.conf
+-N 1 -f ../toast/XHTML/5.0/xhtml5.conf
 
 PASS ../toast/XHTML/5.0/index.xhtml
 2 naughty_lang

@@ -94,6 +94,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DBG         "debug"
 #define DC          "dc"
 #define DEFCONF     "defconf"
+#define DEFTHRD     "defthrd"
 #define DETAIL      "detail"
 #define DICT        "dict"
 #define DINGBATARG  "dingbat"

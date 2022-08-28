@@ -110,6 +110,9 @@ line, the "no-" switch always applies.
 --general.datapath dir  Look for any configuration, caches, and other
 -p dir                  useful files, in this directory.
 
+--general.defthrd N     If --general.thread is not goiven, then set the
+-N N                    number of threads to N.
+
 --general.error x       If nits of the specified category or worse are
 -E                      generated, then exit with an error code. Values
                         are: 'catastrophe', 'error' (the default),
@@ -177,8 +180,8 @@ line, the "no-" switch always applies.
                         you can avoid it!
 
 --general.thread N      Use N threads when running. Defaults to a value
-                        appropriate for the hardware. Too high a value
-                        can cause problems.
+-n N                    appropriate for the hardware. Too high a value
+                        can cause problems. See also --general.defthrd.
 
 --general.verbose x     Output nits to the specified verbosity:
 -v                      'catastrophe', 'error', 'warning', 'info',
@@ -276,12 +279,11 @@ line, the "no-" switch always applies.
 
 --link.example          Report links to faux domains, as defined by RFC
                         2606 (note ssc also reports links to
-                        example.edu).
+                        example.edu, example.gov & example.mil).
 
 --link.external         Check external links, e.g. those not on the
--e                      site being checked. This requires a copy of
-                        curl on the path. Note that ssc will NOT check
-                        RFC 2606 links, such as example.com (see
+-e                      site being checked. Note that ssc will NOT
+                        check RFC 2606 links, such as example.com (see
                         --link.example).
 
 --link.forward          Report HTTP forwarding errors encountered when
@@ -992,11 +994,9 @@ info=yes
 
 
 
-
 SEE ALSO
 tidy
 linkchecker
-
 
 
 

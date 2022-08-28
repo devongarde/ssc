@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/q.h"
 
 const char* stage_name [] =
-{   "initialising ", "scanning ", "staying ", "processing ", "finishing ", "max " };
+{   "initialising ", "scanning ", "processing ", "finishing ", "max " };
 
 bool d_q (q_entry& qe)
 {   VERIFY_NOT_NULL (qe.ticks_, __FILE__, __LINE__);
@@ -47,9 +47,7 @@ bool d_q (q_entry& qe)
     try
     {   switch (qe.stage_)
         {   case st_scan :
-                if (! qe.dir_ -> scan (qe.ticks_, qe.dir_ -> get_site_path ()))
-                {   nits.pick (nit_scan_failed, es_catastrophic, ec_fred, "scan of ", qe.dir_ -> get_disk_path (), " failed");
-                    res = false; }
+                qe.dir_ -> scan (qe.ticks_, qe.dir_ -> get_site_path ());
                 break;
             case st_examine :
                 if (qe.page_.empty ()) qe.dir_ -> examine (qe.ticks_, qe.dir_);

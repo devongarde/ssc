@@ -1,4 +1,4 @@
--f ../toast/microdata/schema-hijkl/hijkl.conf
+-N 1 -f ../toast/microdata/schema-hijkl/hijkl.conf
 
 PASS ../toast/microdata/schema-hijkl/hotel.html
 0 charset_mismatch charset_used charset_invalid

@@ -61,10 +61,6 @@ typedef ::std::map < ::std::string, vstr_t > mvstr_t;
 unsigned verbose = 0;
 bool numbers = false, easy_in = false, only_check_exports = false;
 ::std::string expected_lynx, expected_shadow, expected_export_errors, examinations;
-//classic_t expected_classes;
-// sstr_t expected_itemids;
-// vstr_t correct_export, created_export, grand_stats;
-//mvstr_t page_stats;
 ::boost::filesystem::path grand_stats_fn;
 
 vstr_t readlines (const ::std::string& name)

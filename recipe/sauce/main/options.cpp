@@ -34,7 +34,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/html_version.h"
 #include "spell/spell.h"
 
-#define TYPE_HELP "Type '" PROG " -h' for help."
 #define GOTCHA  "WARNING: The examination of RDFa and ontologies (but for schema.org &\n" \
                 "the living standard), is experimental and even less trustworthy than\n" \
                 PROG " per se."
@@ -154,7 +153,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         k
         l link check     L virtual directory
         m microdata      M microformat
-        n               
+        n GENERAL THREAD N GENERAL DEFTHRD              
         o output         O rpt ext once
         p prog dir       P NIT OVERRIDE
         q
@@ -261,6 +260,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL CGI ",W", ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
         (GENERAL DONT CGI, ::boost::program_options::bool_switch (), "Process a local static website.")
         (GENERAL CSS_OPTION, ::boost::program_options::bool_switch (), "Process .css files (for class names only).")
+        (GENERAL DEFTHRD ",N", ::boost::program_options::value < int > () -> default_value (0), "If no setting specifies the thread count, set it to this.")
         (GENERAL DONT CSS_OPTION, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated.")
         (GENERAL DATAPATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "Root directory for most " PROG " files.")
@@ -289,7 +289,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
         (GENERAL TEST ",T", ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
         (GENERAL DONT TEST, ::boost::program_options::bool_switch (), "Output in format specified by other switches.")
-        (GENERAL THREAD, ::boost::program_options::value < int > () -> default_value (fred_t::suggested ()), "Number of threads (default appropriate for the hardware).")
+        (GENERAL THREAD ",n", ::boost::program_options::value < int > () -> default_value (fred_t::suggested ()), "Number of threads (default appropriate for the hardware).")
         (GENERAL VERBOSE ",v", ::boost::program_options::value < ::std::string > (), "Output these nits and worse. Values: '"
             CATASTROPHE "', '" ERR "', '" WARNING "' (default), '" INFO  "', '" COMMENT  "', or 0 for silence.")
 
@@ -323,7 +323,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (LINKS DONT CHECK, ::boost::program_options::bool_switch (), "Ignore internal links.")
         (LINKS EXAMPLE, ::boost::program_options::bool_switch (), "Issue warning if link to faux domain, such as example.com, found.")
         (LINKS DONT EXAMPLE, ::boost::program_options::bool_switch (), "Say nothing if link to faux domain, such as example.com, found.")
-        (LINKS EXTERNAL ",e", ::boost::program_options::bool_switch (), "Check external links (requires curl, sets --" LINKS CHECK ").")
+        (LINKS EXTERNAL ",e", ::boost::program_options::bool_switch (), "Check external links (sets --" LINKS CHECK ").")
         (LINKS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Ignore external links.")
         (LINKS FORWARD ",3", ::boost::program_options::bool_switch (), "Report http forwarding errors, e.g. 301 and 308 (sets --" LINKS EXTERNAL ").")
         (LINKS DONT FORWARD, ::boost::program_options::bool_switch (), "Ignore http forwarding errors, e.g. 301 and 308.")
@@ -709,6 +709,7 @@ void options::contextualise (nitpick& nits)
             .stats_page (false).stats_summary (false).unknown_class (false).update (false);
 
     if (var_.count (GENERAL THREAD)) context.fred (var_ [GENERAL THREAD].as < int > ());
+    else if (var_.count (GENERAL DEFTHRD)) context.fred (var_ [GENERAL DEFTHRD].as < int > ());
     else context.fred (0);
 
     if (! context.cgi ())
@@ -821,9 +822,9 @@ void options::contextualise (nitpick& nits)
         if (arg.empty ()) nits.pick (nit_no_such_folder, es_error, ec_init, "that --" WEBSITE ROOT " is a little too spaced out for " PROG);
         else
         {   const ::std::string local = nix_path_to_local (arg);
-            if (! ::boost::filesystem::exists (local)) nits.pick (nit_no_such_folder, es_error, ec_init, PROG " cannot access the directory ", quote (arg));
+            if (! ::boost::filesystem::exists (local)) nits.pick (nit_no_such_folder, es_error, ec_init, PROG " cannot access the directory ", quote (local));
             else if (::boost::filesystem::is_directory (local)) context.root (local);
-            else nits.pick (nit_not_directory, es_error, ec_init, "expecting a directory containing a static website, not ", quote (arg)); } }
+            else nits.pick (nit_not_directory, es_error, ec_init, "expecting a directory containing a static website, not ", quote (local)); } }
 
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     macro -> load_template (nits, context.html_ver ());
@@ -1244,7 +1245,12 @@ void options::contextualise (nitpick& nits)
 #undef TEST_VAR
 
         }
-    context.consolidate_jsonld (); }
+    context.consolidate_jsonld ();
+#ifdef NOCURL
+    if (context.external ())
+        nits.pick (nit_no_curl, es_warning, ec_init, "Unfortunately, this build of " PROG " cannot verify external links");
+#endif // NOCURL
+}
 
 void pvs (::std::ostringstream& res, const vstr_t& data)
 {   for (auto i : data)
@@ -1329,6 +1335,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (GENERAL DONT CSS_OPTION)) res << GENERAL DONT CSS_OPTION "\n";
     if (var_.count (GENERAL CUSTOM)) { res << GENERAL CUSTOM ": "; pvs (res, var_ [GENERAL CUSTOM].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL DATAPATH)) res << GENERAL DATAPATH ": " << var_ [GENERAL DATAPATH].as < ::std::string > () << "\n";
+    if (var_.count (GENERAL DEFTHRD)) res << GENERAL DEFTHRD ": " << var_ [GENERAL DEFTHRD].as < int > () << "\n";
     if (var_.count (GENERAL ERR)) res << GENERAL ERR ": " << var_ [GENERAL ERR].as < ::std::string > () << "\n";
     if (var_.count (GENERAL ENVIRONMENT)) { res << GENERAL ENVIRONMENT ": "; pvs (res, var_ [GENERAL ENVIRONMENT].as < vstr_t > ()); res << "\n"; }
     if (var_.count (GENERAL EXCLUDE)) { res << GENERAL EXCLUDE ": "; pvs (res, var_ [GENERAL EXCLUDE].as < vstr_t > ()); res << "\n"; }

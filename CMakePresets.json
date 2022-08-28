@@ -32,6 +32,21 @@
             "vendor": { "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": { "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}" } }
         },
         {
+            "name": "macos-release",
+            "displayName": "macOS Release",
+            "description": "Target a remote macOS system.",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": { "CMAKE_BUILD_TYPE": "Release" },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Darwin"
+            },
+            "vendor": { "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": { "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}" } }
+        },
+        {
             "name": "macos-debug",
             "displayName": "macOS Debug",
             "description": "Target a remote macOS system.",

@@ -1,4 +1,4 @@
--f ../toast/microdata/schema-tuv/tuv.conf
+-N 1 -f ../toast/microdata/schema-tuv/tuv.conf
 
 PASS ../toast/microdata/schema-tuv/theatreevent.html
 12 use_quote_code

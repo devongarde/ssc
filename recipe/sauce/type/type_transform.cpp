@@ -102,7 +102,8 @@ bool checkargs (nitpick& nits, const html_version& v, const e_transform_fn cmd, 
                 nits.pick (nit_transform, ed_css_transform, "9. The Transform Functions", es_error, ec_type,
                     "a TRANSFORM ", quote (type_master < t_transform_fn > :: name (cmd)), " expects between ", low, " and ", high, " parameters"); }
     bool res = true;
-    for (::std::size_t i = 0; i < ::std::min (high, args.size ()); ++i)
+    const ::std::size_t loopto = (high < args.size ()) ? high : args.size ();
+    for (::std::size_t i = 0; i < loopto; ++i)
     {   PRESUME (va.at (cmd).args_.at (i) != t_unknown, __FILE__, __LINE__);
         if (! test_value (nits, v, va.at (cmd).args_.at (i), args.at (i))) res = false; }
     return res; }
