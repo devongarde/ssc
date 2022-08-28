@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/q.h"
 #include "coop/kew.h"
 #include "coop/knickers.h"
+#include "url/curl.h"
  
 fred_t fred;
 
@@ -93,7 +94,7 @@ bool fred_t::init (nitpick& nits)
 {   PRESUME (! fred.inited (), __FILE__, __LINE__);
     const int qu = context.fred ();
     PRESUME (qu > 0, __FILE__, __LINE__);
-    if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_fred, qu, " threads");
+    nits.pick (nit_thread, es_comment, ec_fred, qu, " threads");
     const ::std::thread::id f = ::std::this_thread::get_id ();
     if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_fred, "Maestro fred: ", f);
     vtls_.resize (qu);

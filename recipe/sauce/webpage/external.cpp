@@ -23,20 +23,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/common.h"
 #include "webpage/headers.h"
 #include "url/url.h"
+#include "url/curl.h"
 #include "utility/quote.h"
 #include "utility/lexical.h"
-
-#ifndef NO_BOOST_PROCESS
-using namespace ::boost::process;
-using ::boost::lexical_cast;
-using ::boost::bad_lexical_cast;
-#endif // NO_BOOST_PROCESS
 
 // https://datatracker.ietf.org/doc/html/rfc2606
 const vstr_t rfc2606_no_no =
 {   "example",
     "example.com",
-    "example.edu", // technically invalid, but seen in the wild
+    "example.edu", // technically not included, but seen in the wild
+    "example.gov", // to be consistent
+    "example.mil", // & to complete the set
     "example.net",
     "example.org",
     "invalid",
@@ -73,72 +70,13 @@ const vstr_t rfc2606_local =
     "<H1>Example HTML</H1>" \
     EXAMPLE_FINISH
 
-int process_curl_result (nitpick& nits, const html_version& v, const vstr_t& r, bool pure_code)
-{   int code = 0;
-    bool first = true;
-    for (auto line : r)
-    {   if (! line.empty () && pure_code)
-            code = lexical < int > :: cast (line, 3);
-        else if (first && ! line.empty ())
-        {   headers h (nits, v, line);
-            code = h.code ();
-            first = false; }
-        if (code > 0) break; }
-    return code; }
-
-#ifndef NO_BOOST_PROCESS
-int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdline, const int oops, bool pure_code)
-{   int code = 0;
-    nits.pick (nit_launch, es_debug, ec_link, cmdline);
-    try
-    {   ipstream pipe_stream;
-        child ext (cmdline, std_out > pipe_stream);
-        if (ext.valid () && pipe_stream)
-        {   ::std::string line;
-            vstr_t vs;
-            while (pipe_stream && ::std::getline (pipe_stream, line))
-                vs.push_back (line);
-            code = process_curl_result (nits, v, vs, pure_code); }
-        ext.wait (); }
-    catch (...)
-    {   nits.pick (nit_no_curl, es_catastrophic, ec_link, "Cannot check external links. Please verify your installation of curl");
-        return oops; }
-    return code; }
-#else // NO_BOOST_PROCESS
-int call_curl (nitpick& nits, const html_version& v, const ::std::string& cmdline, const int oops, bool pure_code)
-{   ::boost::filesystem::path tmp = get_tmp_filename ();
-    if (::boost::filesystem::exists (tmp)) ::boost::filesystem::remove (tmp);
-    ::std::string cmd = cmdline + " >" + tmp.string ();
-    nits.pick (nit_launch, es_debug, ec_link, cmd);
-    const int res = system (cmd.c_str ()); // really must use libcurl
-    if (res != 0)
-    {   nits.pick (nit_no_curl, es_catastrophic, ec_link, "Cannot check external links. Please verify your installation of curl");
-        return oops; }
-    if (! ::boost::filesystem::exists (tmp))
-    {   nits.pick (nit_no_curl, es_catastrophic, ec_link, "Cannot find curl results (cannot find ", quote (tmp.string ()), ")");
-        return oops; }
-    vstr_t vs;
-    int code = 3;
-    {   ::std::ifstream sif (tmp.string ().c_str ());
-        constexpr int maxln = 512;
-        char ln [maxln] = { 0 };
-        while (sif.good () && ! sif.eof ())
-        {   sif.getline (ln, maxln - 1);
-            ln [maxln - 1] = 0;
-            vs.push_back (ln); } }
-    ::boost::filesystem::remove (tmp);
-    if (! vs.empty ())
-        code = process_curl_result (nits, v, vs, pure_code);
-    return code; }
-#endif // NO_BOOST_PROCESS
-
 bool is_example_domain (const url& u)
 {   return (one_of_domain (u.domain (), rfc2606_no_no)); }
 
 bool is_local_domain (const url& u)
 {   return (one_of_domain (u.domain (), rfc2606_local)); }
 
-int test_hypertext (nitpick& nits, const html_version& v, const url& u)
+int test_hypertext (nitpick& nits, const html_version& , const url& u)
 {   if (! context.external ()) return 0;
     if (u.has_domain ())
     {   ::std::string d (u.domain ());
@@ -155,11 +93,7 @@ int test_hypertext (nitpick& nits, const html_version& v, const url& u)
             nits.pick (nit_report, es_info, ec_link, "link to ", quote (d));
         if (one_of_domain (d, context.no_ex_check ()))
             return 200; }
-    ::std::string cmdline ("curl -o NUL --silent --head --write-out %{http_code} ");
-    if (u.is_https () && ! context.revoke ()) cmdline += "--ssl-norevoke ";
-    cmdline += u.original ();
-    if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_link, quote (cmdline));
-    int code = call_curl (nits, v, cmdline, 599, true);
+    int code = curl_test (nits, u, u.is_https () && ! context.revoke ());
     if (code != 0)
     {   if (context.tell (es_debug)) nits.pick (nit_debug, es_detail, ec_link, "got ", code);
         if (code < 0) code = 0; }
@@ -190,28 +124,9 @@ bool external::verify (nitpick& nits, const html_version& v, const url& u, int& 
     if (! context.forwarded ()) return true;
     return ((code != 301) && (code != 308)); };   // consider checking for ids
 
-#ifdef NO_BOOST_PROCESS
-::std::string external::load (const url& ) noexcept
-{   return ::std::string (); }
-#else // NO_BOOST_PROCESS
-::std::string external::load (const url& u)
+::std::string external::load (nitpick& nits, const url& u)
 {   ::std::string res;
     if (u.empty ()) return res;
-    ::std::string cmdline ("curl ");
-    if (context.max_file_size () != 0)
-    {   cmdline += "--max-filesize ";
-        cmdline += ::boost::lexical_cast < ::std::string > (context.max_file_size ());
-        cmdline += " "; }
-    cmdline += u.original ();
-    try
-    {   ipstream pipe_stream;
-        child ext (cmdline, std_out > pipe_stream);
-        if (ext.valid () && pipe_stream)
-        {   ::std::string line;
-            while (pipe_stream && ::std::getline (pipe_stream, line))
-                res += line; }
-        ext.wait (); }
-    catch (...)
-    {  res.clear (); }
+    if (curl_fetch (nits, u, u.is_https () && ! context.revoke (), res) != 0)
+        res.clear ();
     return res; }
-#endif // NO_BOOST_PROCESS

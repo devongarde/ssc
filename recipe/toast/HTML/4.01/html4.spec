@@ -1,4 +1,4 @@
--f ../toast/HTML/4.01/html4.conf
+-N 1 -f ../toast/HTML/4.01/html4.conf
 
 PASS ../toast/HTML/4.01/html4-bad.html
 5 bespoke_obsolete mime

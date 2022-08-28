@@ -1,4 +1,4 @@
--f ../toast/other/img/img.conf
+-N 1 -f ../toast/other/img/img.conf
 
 PASS ../toast/other/img/index.html
 12 bad_srcset bad_srcset

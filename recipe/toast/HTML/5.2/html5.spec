@@ -1,4 +1,4 @@
--f ../toast/HTML/5.2/html5.conf
+-N 1 -f ../toast/HTML/5.2/html5.conf
 
 PASS ../toast/HTML/5.2/example-1.html
 2 naughty_lang

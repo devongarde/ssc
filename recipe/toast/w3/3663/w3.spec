@@ -1,4 +1,4 @@
--f ../toast/w3/3663/w3.conf
+-N 1 -f ../toast/w3/3663/w3.conf
 
 PASS ../toast/w3/3663/3663-svg-10-doctype.svg
 0 title_required

@@ -1,4 +1,4 @@
--f ../toast/other/base/base.conf
+-N 1 -f ../toast/other/base/base.conf
 
 PASS ../toast/other/base/bad-base.html
 2 naughty_lang

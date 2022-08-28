@@ -1,4 +1,4 @@
--f ../toast/HTML/3.2/html32.conf
+-N 1 -f ../toast/HTML/3.2/html32.conf
 
 PASS ../toast/HTML/3.2/html32.html
 7 bad_datetime

@@ -1,4 +1,4 @@
--f ../toast/webapps/jul06/webapps.conf
+-N 1 -f ../toast/webapps/jul06/webapps.conf
 
 PASS ../toast/webapps/jul06/a.html
 9 url_not_found

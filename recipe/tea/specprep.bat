@@ -24,7 +24,7 @@ ssc.exe -T --nits.spec -o ../out/Plusplus.tst -f ../toast/HTML/Plus/plus.conf
 ssc.exe -T --nits.spec -o ../out/tagstags.tst -f ../toast/HTML/tags/tags.conf
 ssc.exe -T --nits.spec -o ../out/jas.tst -f ../toast/json-ld/as/jsonld.conf
 ssc.exe -T --nits.spec -o ../out/jschemaorg.tst -f ../toast/json-ld/schemaorg/jsonld.conf
-ssc.exe -T --nits.spec -o ../out/examplelink.tst -f ../toast/link/example/link.conf
+ssc.exe -T --nits.spec -o ../out/exlink.tst -f ../toast/link/external/link.conf
 ssc.exe -T --nits.spec -o ../out/linklink.tst -f ../toast/link/link/link.conf
 ssc.exe -T --nits.spec -o ../out/jul07living.tst -f ../toast/living/jul07/living.conf
 ssc.exe -T --nits.spec -o ../out/jan08living.tst -f ../toast/living/jan08/living.conf

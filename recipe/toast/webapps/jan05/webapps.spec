@@ -1,4 +1,4 @@
--f ../toast/webapps/jan05/webapps.conf
+-N 1 -f ../toast/webapps/jan05/webapps.conf
 
 PASS ../toast/webapps/jan05/a.html
 1 draft_html_5

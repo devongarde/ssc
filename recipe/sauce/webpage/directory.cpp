@@ -182,11 +182,12 @@ bool directory::scan (nitpick* ticks, const ::std::string& site)
     const ::boost::filesystem::path disk (get_disk_path ());
     for (const ::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (disk))
         if (! context.excluded (x.path ()))
-            if (! add_to_content (ticks, x, site)) return false;
+            add_to_content (ticks, x, site);
     return true; }
 
 bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::directory_entry& i, const ::std::string& site)
-{   ::boost::filesystem::path qp (i.path ());
+{   VERIFY_NOT_NULL (ticks, __FILE__, __LINE__);
+    ::boost::filesystem::path qp (i.path ());
     fileindex_t ndx = nullfileindex;
     if (is_folder (qp)) ndx = insert_directory_path (qp);
     else ndx = insert_disk_path (qp, 0);
@@ -205,6 +206,10 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
         if (content_.insert (value_t (f, dp)).second)
         {   q.push (q_entry (ticks, dp, st_scan));
             return true; } }
+    set_flag (ndx, FX_BORKED);
+    nitpick nits;
+    knickers k (nits, ticks);
+    nits.pick (nit_cannot_scan, es_warning, ec_directory, "Cannot scan ", quote (p));
     return false; }
 
 void directory::examine_page (nitpick* ticks, const ::std::string& file) const
@@ -318,7 +323,7 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
                     return read_text_file (nits, p); }
                 else
                 {   if (updated != nullptr) time (updated);
-                    return external_.load (u); } }
+                    return external_.load (nits, u); } }
     catch (...) { }
     return ::std::string (); }
 

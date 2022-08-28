@@ -1,4 +1,4 @@
--f ../toast/microdata/schema-wxyz/wxyz.conf
+-N 1 -f ../toast/microdata/schema-wxyz/wxyz.conf
 
 PASS ../toast/microdata/schema-wxyz/webpage-1.html
 10 no_such_folder url_not_found

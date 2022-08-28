@@ -807,8 +807,8 @@ typedef enum { li_1, li_a, li_A, li_i, li_I } e_listtype;
 typedef enum { b_eager, b_lazy } e_loading;
 typedef enum {  ls_lefttop, ls_stackedrightright, ls_mediumstackedrightright, ls_shortstackedrightright, ls_righttop,
                 ls_leftslashright, ls_leftketbraright, ls_rightequalright, ls_stackedleftleft, ls_stackedleftlinetop } e_longdivstyle;
-typedef enum {  lox_none, lox_cache, lox_crosslinks, lox_css, lox_dear, lox_done, lox_external, lox_fileindex, lox_flox, lox_itemid, lox_itemprop, lox_nits, lox_ns, lox_out, lox_purgatory, lox_q,
-                lox_rdfa, lox_stats, lox_time, lox_wait, lox_xlynx, lox_error } e_lox;
+typedef enum {  lox_none, lox_cache, lox_crosslinks, lox_css, lox_curl, lox_dear, lox_external, lox_fileindex, lox_flox, lox_itemid, lox_itemprop, lox_nits, lox_ns, lox_out,
+                lox_q, lox_rdfa, lox_stats, lox_time, lox_xlynx, lox_error } e_lox;
 typedef enum { lra_all, lra_left, lra_right } e_lraalign;
 typedef enum { lr_left, lr_right } e_lralign;
 typedef enum { mah_go, mah_done, mah_next, mah_search, mah_send } e_mah;
@@ -1675,6 +1675,7 @@ typedef enum
     nit_mf_version, nit_not_directory, nit_endpoint, nit_header_empty, nit_header_malformed, nit_http_error, nit_header_no_data,
     nit_json_version, nit_json_corrupt, nit_json_domain, nit_dialect, nit_country, nit_languages, nit_hidden, nit_bespoke_obsolete,
     nit_regex, nit_fred_borked, nit_kew_borked, nit_internal_cache_error, nit_mtr_required, nit_mtd_required, nit_bad_intent,
+    nit_cannot_scan, nit_thread,
     nit_context,
 
     // eon
@@ -3878,7 +3879,7 @@ typedef enum { ssi_encoding_base64, ssi_encoding_none, ssi_encoding_entity, ssi_
 typedef enum { ssi_DATE_GMT, ssi_DATE_LOCAL, ssi_DOCUMENT_ARGS, ssi_DOCUMENT_NAME, ssi_DOCUMENT_PATH_INFO, ssi_DOCUMENT_URI, ssi_LAST_MODIFIED, ssi_QUERY_STRING_UNESCAPED, ssi_USER_NAME, ssi_error } e_ssi_env;
 typedef enum { ssi_f_file, ssi_f_virtual } e_ssi_f;
 typedef enum { ssi_include_file, ssi_include_onerror, ssi_include_virtual } e_ssi_include;
-typedef enum { st_init, st_scan, st_purgatory, st_examine, st_finish, st_max } e_stage; // must be in processing order
+typedef enum { st_init, st_scan, st_examine, st_finish, st_max } e_stage; // must be in processing order
 typedef enum { se_start, se_end } e_startend;
 typedef enum { stt_stitch, stt_nostitch } e_stitchtiles;
 typedef enum { sc_keep, sc_discard } e_streamedcontents;

@@ -22,7 +22,7 @@ ssc.exe -f ../toast/HTML/5.4/html5.conf
 ssc.exe -f ../toast/HTML/minimal/minimal.conf
 ssc.exe -f ../toast/HTML/Plus/plus.conf
 ssc.exe -f ../toast/HTML/tags/tags.conf
-ssc.exe -f ../toast/link/example/link.conf
+ssc.exe -f ../toast/link/external/link.conf
 ssc.exe -f ../toast/link/link/link.conf
 ssc.exe -f ../toast/json-ld/as/jsonld.conf
 ssc.exe -f ../toast/json-ld/schemaorg/jsonld.conf

@@ -20,9 +20,6 @@
     <Filter Include="Sauce\main">
       <UniqueIdentifier>{6a1060c6-7c5d-41b3-9ff5-c807e2c29f4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sauce\microdata">
-      <UniqueIdentifier>{6128eee8-2f45-409f-b2b9-f1ab3573dcf5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sauce\microformat">
       <UniqueIdentifier>{cc965c0e-a763-4280-862c-b205e2c2ee1f}</UniqueIdentifier>
     </Filter>
@@ -53,9 +50,6 @@
     <Filter Include="Heater">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Heater\attribute">
-      <UniqueIdentifier>{19ea1061-547d-4eed-8370-9cddf950002a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Heater\css">
       <UniqueIdentifier>{c9f42355-86c6-4587-b7ec-876b7e5f0d01}</UniqueIdentifier>
@@ -149,9 +143,6 @@
     </Filter>
     <Filter Include="Toast\Link">
       <UniqueIdentifier>{5acc5ec3-4e07-4dad-b708-579c1c4aa780}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Link\subdir">
-      <UniqueIdentifier>{845d7545-0e15-46a7-9623-77923f99befa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\Math">
       <UniqueIdentifier>{ec3736c0-5f4d-4bb4-86d1-de250f5cd9c4}</UniqueIdentifier>
@@ -765,12 +756,6 @@
     <Filter Include="Sauce\coop">
       <UniqueIdentifier>{eb8c634c-4d3c-4b2a-9706-77896ba8a179}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Third Party">
-      <UniqueIdentifier>{0d1df970-5d98-456c-8d3b-8a5002242c08}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Third Party\Howard Hinnant Date">
-      <UniqueIdentifier>{18a61120-6f42-45ec-9363-7cb6cd2cd791}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\coop">
       <UniqueIdentifier>{2bb45e09-7968-47e9-ba44-7d138c1d1fe1}</UniqueIdentifier>
     </Filter>
@@ -956,6 +941,24 @@
     </Filter>
     <Filter Include="Port\OpenBSD\pkg">
       <UniqueIdentifier>{6e5527dc-a219-48d1-9346-4aad7081fff4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Link\virtual">
+      <UniqueIdentifier>{1db4d210-e5c1-4a21-b287-b58360450d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Link\external">
+      <UniqueIdentifier>{69542a36-18e6-4d74-aa0a-307746c21ada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Link\link">
+      <UniqueIdentifier>{d8ea297d-362a-424f-86e6-6e6bb9239003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Link\link\subdir">
+      <UniqueIdentifier>{e0bf7f09-7dc7-441b-b344-35c92d59d84b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\attribute">
+      <UniqueIdentifier>{19ea1061-547d-4eed-8370-9cddf950002a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\microformat\microdata">
+      <UniqueIdentifier>{6128eee8-2f45-409f-b2b9-f1ab3573dcf5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1460,36 +1463,6 @@
     <ClInclude Include="..\heater\coop\knickers.h">
       <Filter>Heater\coop</Filter>
     </ClInclude>
-    <ClInclude Include="..\third\date\chrono_io.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third\date\date.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third\date\ios.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third\date\islamic.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third\date\iso_week.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third\date\julian.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third\date\ptz.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third\date\solar_hijri.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third\date\tz.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
-    <ClInclude Include="..\third\date\tz_private.h">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\utility\cache.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
@@ -1501,6 +1474,9 @@
     </ClInclude>
     <ClInclude Include="..\heater\css\css_group.h">
       <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\url\curl.h">
+      <Filter>Heater\url</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1589,19 +1565,19 @@
       <Filter>Sauce\main</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_export.cpp">
-      <Filter>Sauce\microdata</Filter>
+      <Filter>Sauce\microformat\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemid.cpp">
-      <Filter>Sauce\microdata</Filter>
+      <Filter>Sauce\microformat\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemprop.cpp">
-      <Filter>Sauce\microdata</Filter>
+      <Filter>Sauce\microformat\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemscope.cpp">
-      <Filter>Sauce\microdata</Filter>
+      <Filter>Sauce\microformat\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemtype.cpp">
-      <Filter>Sauce\microdata</Filter>
+      <Filter>Sauce\microformat\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microformat\microformat_constructor.cpp">
       <Filter>Sauce\microformat</Filter>
@@ -1990,9 +1966,6 @@
     <ClCompile Include="..\sauce\coop\knickers.cpp">
       <Filter>Sauce\coop</Filter>
     </ClCompile>
-    <ClCompile Include="..\third\date\tz.cpp">
-      <Filter>Third Party\Howard Hinnant Date</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\utility\cache.cpp">
       <Filter>Sauce\utility</Filter>
     </ClCompile>
@@ -2004,6 +1977,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\css\css_group.cpp">
       <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\url\curl.cpp">
+      <Filter>Sauce\url</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3023,24 +2999,6 @@
     </None>
     <None Include="..\toast\microdata\addendum\index.html">
       <Filter>Toast\Microdata\Addendum</Filter>
-    </None>
-    <None Include="..\toast\link\subdir\target.html">
-      <Filter>Toast\Link\subdir</Filter>
-    </None>
-    <None Include="..\toast\link\index.html">
-      <Filter>Toast\Link</Filter>
-    </None>
-    <None Include="..\toast\link\link.conf">
-      <Filter>Toast\Link</Filter>
-    </None>
-    <None Include="..\toast\link\link.spec">
-      <Filter>Toast\Link</Filter>
-    </None>
-    <None Include="..\toast\link\target.html">
-      <Filter>Toast\Link</Filter>
-    </None>
-    <None Include="..\toast\link\css-good.css">
-      <Filter>Toast\Link</Filter>
     </None>
     <None Include="..\toast\HTML\Plus\index.html">
       <Filter>Toast\HTML\Plus</Filter>
@@ -25983,6 +25941,36 @@
     <None Include="..\port\openbsd\pkg\DESCR">
       <Filter>Port\OpenBSD\pkg</Filter>
     </None>
+    <None Include="..\toast\link\virtual\target.html">
+      <Filter>Toast\Link\virtual</Filter>
+    </None>
+    <None Include="..\toast\link\external\index.html">
+      <Filter>Toast\Link\external</Filter>
+    </None>
+    <None Include="..\toast\link\external\link.conf">
+      <Filter>Toast\Link\external</Filter>
+    </None>
+    <None Include="..\toast\link\external\link.spec">
+      <Filter>Toast\Link\external</Filter>
+    </None>
+    <None Include="..\toast\link\link\css-good.css">
+      <Filter>Toast\Link\link</Filter>
+    </None>
+    <None Include="..\toast\link\link\index.html">
+      <Filter>Toast\Link\link</Filter>
+    </None>
+    <None Include="..\toast\link\link\link.conf">
+      <Filter>Toast\Link\link</Filter>
+    </None>
+    <None Include="..\toast\link\link\link.spec">
+      <Filter>Toast\Link\link</Filter>
+    </None>
+    <None Include="..\toast\link\link\target.html">
+      <Filter>Toast\Link\link</Filter>
+    </None>
+    <None Include="..\toast\link\link\subdir\target.html">
+      <Filter>Toast\Link\link\subdir</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -26487,6 +26475,9 @@
     </Text>
     <Text Include="..\port\openbsd\README.txt">
       <Filter>Port\OpenBSD</Filter>
+    </Text>
+    <Text Include="..\toast\link\virtual\README.txt">
+      <Filter>Toast\Link\virtual</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

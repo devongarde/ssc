@@ -1,4 +1,4 @@
--f ../toast/csp/1/csp.conf
+-N 1 -f ../toast/csp/1/csp.conf
 
 PASS ../toast/csp/1/index.html
 2 naughty_lang

@@ -1,4 +1,4 @@
--f ../toast/w3/html20/w3.conf
+-N 1 -f ../toast/w3/html20/w3.conf
 
 PASS ../toast/w3/html20/html20-strict.html
 0 charset_mismatch charset_used

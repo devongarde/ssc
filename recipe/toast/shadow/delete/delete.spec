@@ -1,4 +1,4 @@
--f ../toast/shadow/delete/delete.conf
+-N 1 -f ../toast/shadow/delete/delete.conf
 
 PASS ../toast/shadow/delete/index.html
 2 naughty_lang

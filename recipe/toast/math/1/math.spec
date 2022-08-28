@@ -1,4 +1,4 @@
--f ../toast/math/1/math.conf
+-N 1 -f ../toast/math/1/math.conf
 
 PASS ../toast/math/1/index.html
 2 naughty_lang

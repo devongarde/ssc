@@ -1,4 +1,4 @@
--f ../toast/microdata/schema-defg/defg.conf
+-N 1 -f ../toast/microdata/schema-defg/defg.conf
 
 PASS ../toast/microdata/schema-defg/datacatalogue.html
 23 use_double_quote_code

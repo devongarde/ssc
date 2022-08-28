@@ -27,7 +27,7 @@
 ./ssc -f ../toast/HTML/tags/tags.conf
 ./ssc -f ../toast/json-ld/as/jsonld.conf
 ./ssc -f ../toast/json-ld/schemaorg/jsonld.conf
-./ssc -f ../toast/link/example/link.conf
+./ssc -f ../toast/link/external/link.conf
 ./ssc -f ../toast/link/link/link.conf
 ./ssc -f ../toast/living/jul07/living.conf
 ./ssc -f ../toast/living/jan08/living.conf

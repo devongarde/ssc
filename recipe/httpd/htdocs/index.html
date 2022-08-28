@@ -45,6 +45,7 @@ FOOTER,HEADER,LI,MAIN,PRE { color:#999999 }
 <A href="#about">README</A><BR>
 <A href="#usage">usage</A><BR>
 <A href="#issues">known issues</A><BR>
+<A href="#bugs">bug reporting</A><BR>
 <A href="#build">build</A><BR>
 <A href="#sauce">download</A><BR>
 <A href="#boot">boot notes</A><BR>
@@ -62,7 +63,6 @@ FOOTER,HEADER,LI,MAIN,PRE { color:#999999 }
 The static site checker is an opinionated HTML nitpicker, a command&ndash;line tool to validate static HTML &amp; XHTML websites.
 I built it to nitpick my hand&ndash;coded
 <A href="https://dylanharris.org/">identity website</A>.
-I&rsquo;m making it available should others find it useful.
 </P>
 
 <P>
@@ -70,8 +70,13 @@ It should not be used on untrusted content; its parsers are holier than <A href=
 </P>
 
 <P>
+If you want to try it, play with the form below, or, if you&rsquo;re really enthusiastic,
+<a href="src/ssc-v0.1.2.tgz" type="application/gzip">here&rsquo;s the current source</a>.
+</P>
+
+<P>
 <A href="https://harris.eu.com/">Dylan Harris</A><BR>
-April 2022
+August 2022
 </P>
 
 </section>
@@ -140,15 +145,16 @@ April 2022
 <option value="2021/07/01">Living Standard July 2021</option>
 <option value="2021/10/01">Living Standard October 2021</option>
 <option value="2022/01/01">Living Standard January 2022</option>
-<option value="2022/04/01" selected>Living Standard April 2022</option>
+<option value="2022/04/01">Living Standard April 2022</option>
+<option value="2022/07/01" selected>Living Standard July 2022</option>
 <option value="2005/07/01">WebApps January 2005</option>
 <option value="2005/01/01">WebApps July 2005</option>
 <option value="2006/07/01">WebApps January 2006</option>
 <option value="2006/01/01">WebApps July 2006</option>
 <option value="2007/07/01">WebApps January 2007</option>
-<option value=4.2>XHML 1.0</option>
-<option value=4.3>XHML 1.1</option>
-<option value=4.4>XHML 2.0</option>
+<option value=4.2>XHTML 1.0</option>
+<option value=4.3>XHTML 1.1</option>
+<option value=4.4>XHTML 2.0</option>
 </select>
 </label>
 
@@ -179,7 +185,7 @@ Submit
 
 </form>
 
-<h3>notes</h3>
+<h3>note</h3>
 
 <P>
 SSC is a <em>site</em> checker, not a page checker, yet here you can only input a page, at most.
@@ -188,141 +194,118 @@ Testing a web site would require proof of control of that site, and I&rsquo;m no
 </p>
 
 <P>
-SSC is pre&ndash;alpha software. It has more errors than Fido has fleas. This page is a demo of its potential, that&rsquo;s all.
+Not all features are available. For example, spell checking and link checking are disabled.
+There is a fairly tight limit on the size of a snippet.
+</p>
+
+<P>
+SSC is &alpha; software. This form demos of its potential, that&rsquo;s all.
 Do not presume reported issues are correct. Do not presume unreported issues aren&rsquo;t issues.
 If you&rsquo;re unsure, check against the appropriate standard. There is no guarantee of anything, let alone accuracy.
 </P>
-
-<P>
-There is a fairly tight limit on the size of a snippet.
-</p>
 
 </section>
 
 <HR>
 
 <section id="why">
-<h2>why ssc</h2>
+<h2>why SSC</h2>
 
 <p>
 Why did I make the static site checker? Aren&rsquo;t there a lot of other HTML validators around?
-Well, first of all, I&rsquo;ve not found a website validator, only web page validators.
-Perhaps I didn&rsquo;t search sufficiently.
+When I checked a few years ago; I couldn&rsquo;t find a web site validator, only web page validators.
+Things may have improved. Anyway, my google fu is poo.
 </p>
 
 <p>
-I have a fairly big website, with more than 100,000 pages. I&rsquo;m too impatient
-to run each through a validator individually; I want to validate my site as a whole.
-Some errors occur between pages, not specifically on pages:
-not just missing links, but, for example,
-it&rsquo;s invalid to link to an otherwise valid id on another page when that id&rsquo;s element,
-or one of its ancestors, is HIDDEN.
+My <a href="https://dylanharris.org/">identity website</a> has more than 100,000 pages. I&rsquo;m too impatient
+to push each through a validator one by one; I want to validate my site as a whole.
+Furthermore, single page validators can&rsquo;t catch inter&ndash;page errors, such as
+broken internal links, let alone hidden links
+(an otherwise valid link to a HIDDEN element).
 </p>
 
 <p>
-The validators I did find were incomplete. Now, admittedly, I checked these out a few years ago,
-and some may well have got better.
-Editor based validators are certainly very useful,
-but they only work on individual pages, not sites.
-You have to edit a page to get it validated, and if you have rather a lot of them,
-that&rsquo;s a lot of time wasted opening and closing individual pages.
-To expand that ID example above, if, in a specialist editor, you add HIDDEN attribute to an element
-which has an id on a child element,
-does that editor then name &amp; shame the other page you&rsquo;ve just invalidated?
+Many people avoid such problems by using frameworks.
+I find frameworks awful. IMAO, they produce dull, boring, trite design.
+The visual arts world has had centuries to develop excellent form for a rectangular space.
+Most 21<sup>st</sup> frameworks are so crude they haven&rsquo;t even absorbed 14<sup>th</sup> century visual arts&rsquo; ideas,
+when painters broke out of rectangular form in a rectangular frame.
+So much is possible, so much hasn&rsquo;t happened.
+I want to break this dull, stultifying, archaic, conservatism.
 </p>
 
 <p>
-All this are part of the reason why many people use frameworks. (Another, the obvious one, is to get a site up quickly.)
-One of the difficulties I have with frameworks, is that,
-most of all, so many web frameworks are, visually speaking, boring and trite.
-The visual arts world has had centuries to work out excellent form and vision to fit in a rectangular space,
-and it seems to me the modern web hasn&rsquo;t noticed. The best that can be said is that
-some of them have approached the advances made in the 14<sup>th</sup> century,
-and that&rsquo;s just in the Western artistic tradition. So much more is possible, yet it hasn&rsquo;t happened.
-I want to break free from this dull, stultifying conservatism.
+Maybe I&rsquo;m making the wrong comparison, that the web isn&rsquo;t about image, it&rsquo;s about type.
+The Western visual arts never did really suss mixing writing and form
+(that&rsquo;s not really true, but, IMAO, such arts never escaped their context).
+However, the Eastern visual arts most certainly did, and frameworks haven&rsquo;t noticed them either.
 </p>
 
 <p>
-It may be that I&rsquo;m making the wrong comparison, that the web isn&rsquo;t about image, it&rsquo;s about type.
-The comparison should not be with pictures, but papers. There&rsquo;s certainly something to that.
-The Western visual high arts never did really suss mixing writing and form
-(actually, that&rsquo;s not really true, but, IMHO, such arts never broke out of their context).
-But arts from Japan, for example, certainly did, and the web doesn&rsquo;t seem to have noticed them either.
+Enough of this. Rather than criticising other people for not doing, I should do. 
+I need to make some example sites. That&rsquo;s where SSC comes in.
 </p>
 
 <p>
-Also, to be absolutely fair, there are experimental websites mixing imaginary and text rather well. But then we get back to my point
-about the 14<sup>th</sup> century. Those I&rsquo;ve seen, and I&rsquo;ve certainly not seen as many as there are, nor come close to it,
-those I&rsquo;ve seen still seem not to have noticed the visual forms changes made since the middle ages.
+If I am to build a site using an experimental visual process, I can&rsquo;t use frameworks.
+If I can&rsquo;t use frameworks, I have to hand code.
+And there&rsquo;s the key problem: HTML is such a convoluted, evolved mess,
+that the people who designed it, in their own design presentations, make errors.
+Ok, I only found this out by testing SSC on them,
+which conveniently illustrates that HTML is overcomplicated.
+I&rsquo;m not going
+to reveal names because these people are working hard to make the web a better place.
+Let&rsquo;s just say <a href="https://www.w3.org/">W3</a> had broken links,
+<a href="https://whatwg.org/">WhatWG</a> referenced withdrawn ontologies,
+and many other authors&rsquo; sites have other internal inconsistencies.
+That the people who define the web make mistakes using their own design in their own documents that
+espouse their design, helps explain why most stick to dull, formulaic, boring, frameworks.
+To be fair, my HTML code is far worse than any of these mild examples of technical naughtiness.
 </p>
 
 <p>
-Anyway, enough of this. Rather than criticising other people for not doing, I should do. I should make my point,
-not by criticising others for not thinking of it, but by example. I need to knock up some example sites. That&rsquo;s where SSC comes in.
-</p>
-
-<p>
-You see, if I am to build a site using what is effectively an experimental visual process, I can&rsquo;t use existing web site design frameworks.
-But if I can&rsquo;t use a framework, I have to hand code everything. And there&rsquo;s a key problem: HTML is such a convoluted, evolved mess,
-that the people who design it, in their own design presentations, make errors.
-Ok, I only found this out by testing SSC on them, which perhaps illustrates my point about things being overcomplicated.
-Anyway, I&rsquo;m not going
-to reveal any names because these people are actually working hard to make the web a better place. Let&rsquo;s just say W3 has broken links,
-WhatWG references withdrawn standards, and many other authors&rsquo; sites have other internal inconsistencies.
-I must mention that my HTML code is far worse than any of these mild examples of technical naughtiness.
-But the fact that the people who define the web make mistakes in the usage of their design in the documents that
-espouse the design, does rather explain why most other people are forced to use dull, formulaic, archaic, boring, tools.
-</p>
-
-<p>
-I&rsquo;ve not yet built a site inspired by the visual art world&rsquo;s lessons in form and layout.
-My efforts have been spent in building the tool to make that possible.
-But now, I contend, it is at least a little more possible than it was.
+I&rsquo;ve yet to build a site inspired by visual art&rsquo;s form and layout.
+My efforts have been spent building SSC, a tool to make that practical.
 </p>
 
 <p>
 Since I&rsquo;m here, I&rsquo;ll list other issues I have with frameworks:
 </p>
 
-<ol>
+<ul>
 <li>
 They have to be regularly maintained. Every time an update comes out, that update has to be applied to a site,
-or, alternatively, the update is ignored and the site becomes vulnerable to exploits blocked by the update,
-and published when the update is released. This is time lost.
+or the site becomes vulnerable to the exploits published by the update.
+Time is lost playing patch catchup.
 </li>
 <li>
-Updates for frameworks don&rsquo;t always work.
-Instead of fixing issues, they break the site.
-This why I dropped my experimental Drupal site a few years ago.
-This is why I stopped using NextCloud.
+Updates for frameworks sometimes fail;
+instead of fixing issues, they break sites.
+That&rsquo;s why <a href="https://dylanharris.org/past/aei/2010/index.html">I dropped Drupal</a>.
+That&rsquo;s why I swore off NextCloud.
 </li>
 <li>
-Frameworks are usually written in scripted languages, such as PHP.
-Scripts are unavoidably insecure compared to no scripts: a script cannot be hacked if it does not exist.
-Thus a site with no scripts is inherently more secure than a site with scripts.
-For example, there are, as I write,
-<A href="https://www.cvedetails.com/product/128/PHP-PHP.html?vendor_id=74">five known vulnerabilities in PHP</a>,
-a very popular server scripting language (better than it once was, admittedly).
-If you use PHP, your site, in principle, has those vulnerabilities, and you have to spend time mitigating them.
-If you do not use PHP, your site cannot have those vulnerabilities.
-This is why <a href="https://dylanharris.org/">my sites</a> have no scripts,
-and another reason why SSC does not analyse scripts (the main one being lack of time).
-I do accept that sophisticated sites have no choice but to use scripts,
-but I suggest many sites use them unnecessarily.
+Frameworks use scripted languages, such as PHP.
+There were, in October 2021,
+<A href="https://www.cvedetails.com/product/128/PHP-PHP.html?vendor_id=74">five known vulnerabilities in PHP</a>
+(far better than time was).
+Other frameworks use other scripted languages with other problems.
 </li>
 <li>
-The worst of them all, for me, is that some frameworks, and many scripts, pull in code
-residing on other sites, in third&ndash;party repositories and the like, as the script is run.
-If you do that, this means the integrity and security of your site is entirely dependent on the security of the repository.
-There are unfortunately many examples of
+IMAO, frameworks&rsquo; and scripts&rsquo; worst flaw is many import code at runtime from
+third&ndash;party repositories.
+Their integrity and security is dependent on that of the repository,
+over which a site owner (usually) has no control.
+There are many examples of
 <a href="https://www.theallineed.com/technology/20210330/php-source-code-repository-hacked/">repositories being hacked</a>,
-and, in consequence, all the site that used those repositories are broken in turn.
+breaking the security and intergrity of all sites that use them.
 </li>
-</ol>
+</ul>
 
 <P>
 <A href="https://harris.eu.com/">Dylan Harris</A><BR>
-October 2021
+August 2022
 </P>
 
 </section>
@@ -335,34 +318,23 @@ October 2021
 <pre>
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.0.127
-https://ssc.lu/
-
-
-
-(c) 2020&ndash;2022 dylan harris
-see LICENCE.txt for copyright &amp; licence notice
-see W3-LICENCE.txt for additional copyright &amp; licence information
-
-
-
-WARNING: this code is:
-&mdash; incomplete
-&mdash; pre&mdash;alpha
-&mdash; IT PROBABLY WON&rsquo;T BEHAVE AS YOU EXPECT :-)
-&mdash; do NOT feed it untrusted data
+version 0.1.1
+(c) 2020-2022 dylan harris
+see LICENCE.txt &amp; LICENSE.txt for copyright &amp; licence notice
+<a href="https://ssc.lu/">https://ssc.lu/</a>
+<a href="https://github.com/devongarde/ssc">https://github.com/devongarde/ssc</a>
 
 
 
 ssc analyses static HTML snippets, files and sites:
 &mdash; HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3&ndash;draft
-&mdash; HTML living standard, Jan 2005 to Apr 2022
+&mdash; HTML living standard, Jan 2005 to Jul 2022
 &mdash; SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
-&mdash; MathML 1/2/3/4&ndash;draft
+&mdash; MathML 1/2/3/4&ndash;draft Jul 2022
 &mdash; XHTML 1.0/1.1/2.0/5.x
-&mdash; finds broken links (requires curl)
+&mdash; finds broken links
 &mdash; processes server side includes, mostly
-&mdash; checks microdata &amp; RDFa
+&mdash; common microdata &amp; RDFa ontologies
 
 with opinions on:
 &mdash; standard english where dialect is required
@@ -373,14 +345,14 @@ It does NOT:
 &mdash; behave securely: its parser is holier than robin&rsquo;s cow
 &mdash; analyse or understand scripts
 &mdash; analyse or understand styles, beyond nicking class names from CSS
-&mdash; analyse or understand XML or derivatives except as noted above
+&mdash; analyse or understand XML or derivatives, except as noted above
 
 It can output:
 &mdash; &lsquo;repaired&rsquo; HTML (not XHTML)
 &mdash; HTML with resolved Server Side Includes
-&mdash; JSON summaries of microformat and microdata content
+&mdash; JSON summaries of ontological content
 &mdash; website statistical information
-&mdash; updated website with datafile deduplication
+&mdash; deduplicated websites
 
 
 ssc -h
@@ -400,9 +372,31 @@ To build &amp; run:
 
 
 
-NOTE
+This is an &alpha; version of ssc. Despite heavy testing, it may contain
+unexpected features. If you encounter such an bug, please help improve
+ssc by collecting the following information (where relevant):
+- version of ssc;
+- precise version of the operating system;
+- hardware architecture and system information;
+- detailed description of the error and how to cause it;
+- copy of output file showing the error;
+- copy of pages/website being analysed;
+- precise command used;
+- configuration file(s) used, if any;
+- any ndx file or other pre&ndash;existing file used during the run;
+- any known workarounds or solutions;
+- a blues or dance interpretation of the &lsquo;feature&rsquo;;
+and emailing everything to mail@ssc.lu (if the collected files are more
+than small, please use a public fileserver and email the link). Do NOT
+send anything confidential. Furthermore, unless you request otherwise,
+we reserve the right to publish some or all of the information sent in
+future versions of ssc, usually in the test suite. If you have a fix,
+you are invited to submit a pull request on github. Thank you.
+
+
+
 SSC can be run in a CGI environment. This is intended for use with OpenBSD&rsquo;s native httpd web server
-(https://man.openbsd.org/httpd.8). You are reminded that SSC is pre-alpha software. Do NOT expose it
+(https://man.openbsd.org/httpd.8). You are reminded that SSC is &alpha; software. Do NOT expose it
 to untrusted data sources, such as the open web, without taking serious precautions. SSC probably has
 more bugs than the Creator&rsquo;s Ultimate All&ndash;Beetle Extravaganza (J.B.S. Haldane, apocryphal : &ldquo;[the
 Creator has] an inordinate fondness for beetles.&rdquo;).
@@ -433,7 +427,7 @@ more licences    licences for borrowed external content
 
 written by dylan harris
 mail@ssc.lu
-April 2022
+August 2022
 </pre>
 </section>
 
@@ -483,6 +477,8 @@ These options are only available on the command line:
 
 -h                      Show a summary of switches, then exit.
 
+-H snippet              Only nitpick this snippet of html
+
 --ontology.list         List known schema versions, then exit.
 
 -V                      Show version details, then exit.
@@ -507,29 +503,31 @@ The "no-" is inserted after the dot, so, for example, the contradiction to
 "--general.class" is "--general.no-class". When both are specified, perhaps in
 a configuration file and on the command line, the "no-" switch always applies.
 
---corpus.article        Prefer the content of <ARTICLE> when gathering corpus
+--corpus.article        Prefer the content of &lt;ARTICLE&gt; when gathering corpus
                         text.
 
---corpus.body           Prefer the content of <BODY> when gathering corpus
+--corpus.body           Prefer the content of &lt;BODY&gt; when gathering corpus
                         text. This is the default.
 
---corpus.main           Prefer the content of <MAIN> when gathering corpus
+--corpus.main           Prefer the content of &lt;MAIN&gt; when gathering corpus
                         text.
 
 --corpus.output file    Dump XML corpus of site into file. This is intended
                         for use by a local search engine. If none of
                         --corpus.article, --corpus.body, or --corpus.main are
-                        specified, the content of <BODY> is used. If more than
+                        specified, the content of &lt;BODY&gt; is used. If more than
                         one are specified, then the text collected depends on
                         a page's content. This is incompatible with
                         --shadow.update.
 
 --general.class         Report unrecognised classes.
 
+--general.classic       Report all classes used.
+
 --general.cgi           Check environment variables for snippets of HTML.
 -W                      Expects environment variables as produced by
                         OpenBSD's native web server, httpd, produced
-                        using <FORM METHOD=GET ...>. Do NOT let ssc
+                        using &lt;FORM METHOD=GET &hellip;&gt;. Do NOT let ssc
                         anywhere near untrusted data should you do so,
                         unless you are very confident about your system
                         configuration (because it'll defend you against
@@ -539,7 +537,7 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --general.css           Do NOT process .css files (for class names).
 
---general.custom EL     Define a custom element <EL> for verifying the IS
+--general.custom EL     Define a custom element &lt;EL&gt; for verifying the IS
                         attribute. May be repeated.
 
 --general.datapath dir  Look for any configuration, caches, and other useful
@@ -550,11 +548,18 @@ a configuration file and on the command line, the "no-" switch always applies.
                         'catastrophe', 'error' (the default), 'warning',
                         'info', or 'comment'.
 
+--general.exclude REG   Ignore all files that match the posix regular
+                        expression REG. May be repeated.
+
 --general.file XXX      File for persistent data. Requires -N. See also
                         --general.datapath. Default extension: .ndx.
 
---general.ignore EL     ignore attributes and content of the element <EL>. May
+--general.git           Ignore internal git files
+
+--general.ignore EL     ignore attributes and content of the element &lt;EL&gt;. May
                         be repeated.
+
+--general.info          Report launch context when starting
 
 --general.lang LA       If an X/HTML file does not have a language / dialect
                         specified (e.g. "en" for generic English, "en-IE" for
@@ -567,7 +572,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                         in size (default: 4M). Specify 0 for unlimited,
                         although be warned that ssc is stunningly stupid in
                         such circumstances and may even attempt to load files
-                        that exceed available memory.
+                        bigger than available memory.
 
 --general.output        Output to the specified file. If this switch is not
 -o file                 used, standard output is used.
@@ -577,7 +582,7 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --general.rdfa          Check RDFa attributes.
 
---general.rel           Only mention <LINK> REL values, found neither in the
+--general.rel           Only mention &lt;LINK&gt; REL values, found neither in the
                         living standard nor at microformats.org, in debug
                         output.
 
@@ -588,6 +593,9 @@ a configuration file and on the command line, the "no-" switch always applies.
                         thoroughly slobby, HTML, such as being far too lazy to
                         get round to bothering to close elements.
 
+--general.spec          Reset the values of most switches to false
+-j
+
 --general.ssi           Process Server Side Includes. Although ssc can process
 -I                      many server side includes, it cannot process those
                         containing formulae. Note that processing SSIs may
@@ -596,6 +604,10 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --general.test          Output data in automated test format. Used by ssc-test.
 -T                      Not generally useful. Documented so you can avoid it!
+
+--general.thread N      Use N threads when running. Defaults to a value
+                        appropriate for the hardware. Too high a value can
+                        cause problems.
 
 --general.verbose x     Output nits to the specified verbosity: 'catastrophe',
 -v                      'error', 'warning', 'info', 'comment' (the default),
@@ -610,7 +622,7 @@ a configuration file and on the command line, the "no-" switch always applies.
 --html.rfc1942          Ignore the RFC 1942 (tables) extension when processing
                         HTML 2.0.
 
---html.rfc19802         Ignore the RFC 1980 (client side image maps) extension
+--html.rfc1980          Ignore the RFC 1980 (client side image maps) extension
                         when processing HTML 2.0.
 
 --html.rfc2070          Ignore the RFC 2070 (internationalisation) extension
@@ -622,9 +634,9 @@ a configuration file and on the command line, the "no-" switch always applies.
                         Tags specification (the one at CERN). This is
                         overridden by --html.version.
 
---html.title n          If <TITLE> text is longer than n characters, say so.
--z n                    This applies to text enclosed by a <TITLE> element in
-                        under <HEAD>, not the value of TITLE attributes.
+--html.title n          If &lt;TITLE&gt; text is longer than n characters, say so.
+-z n                    This applies to text enclosed by a &lt;TITLE&gt; element in
+                        under &lt;HEAD&gt;, not the value of TITLE attributes.
 
 --html.version X        If no doctype (or xml header) is specified, presume
                         version X of HTML. X can be:
@@ -666,7 +678,7 @@ a configuration file and on the command line, the "no-" switch always applies.
 
                         Certain versions of HTML offer variants, such as loose
                         and strict definitions. ssc picks those up from the
-                        <!DOCTYPE ...> in the HTML file, if any, and then
+                        &lt;!DOCTYPE &hellip;&gt; in the HTML file, if any, and then
                         carefully ignores them.
 
                         Validation of XHTML is even less strict.
@@ -682,21 +694,23 @@ a configuration file and on the command line, the "no-" switch always applies.
 -3                      (--link.external), it does not report http forwarding
                         errors 301 and 308. Use this switch to have it do so.
 
---link.example          Report linkd to faux domains, as defined by RFC 2606
-                        (note ssc also reports links to example.edu)
+--link.check            Check internal links, e.g. those within the website
+-l                      being analysed.
+
+--link.example          Report links to faux domains, as defined by RFC 2606
+                        (note ssc also reports links to example.edu).
 
 --link.external         Check external links, e.g. those not on the site being
--e                      checked. This requires a copy of curl on the path.
-                        Note that, no matter what the switch, ssc will NOT
-                        check certain special site names, such as example.com.
+-e                      checked. Note that ssc will NOT check RFC 2606 links,
+                        such as example.com (see --link.example).
+
+--link.forward          Report HTTP forwarding errors encountered when checking
+                        external links (e.g. 301 and 308)
 
 --link.ignore DOMAIN    When checking external links, ignore this domain. May
                         be repeated.
 
---link.internal         Check internal links, e.g. those within the website
--l                      being checked.
-
---link.local            Report linkd to local domains, such as domains ending
+--link.local            Report links to local domains, such as domains ending
                         in .lan, .home, .corp, and others.
 
 --link.once             Only report each broken external link once. If, for
@@ -704,12 +718,13 @@ a configuration file and on the command line, the "no-" switch always applies.
                         that does not exist, ssc will only report the first
                         instance of the broken link. Note that, even if it
                         reports every occurrence of the link, it will only
-                        check it the first time it encounters it (requires
+                        check it the first time it's encountered (requires
                         --link.external).
 
---link.report DOMAIN    Report links to domain. May be repeated.
+--link.report DOMAIN    Report links to domain and its descendents. May be
+                        repeated.
 
---link.revoke           Do not check whether https links' certificates have
+--link.revoke           Do not check whether links' https certificates have
 -r                      been revoked (requires --link.external).
 
 --link.xlink            Check crosslink IDs on the site being analysed. For
@@ -726,10 +741,6 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 3   MathML 3,
                                 4   MathML 4 (December 2020 draft).
 
---microdata.verify      Check microdata found in WhatWG microdata attributes
--m                      (itemprop, itemtype, etc.). Note that ssc only knows
-                        about certain ontologies (see --ontology.list)
-
 --microdata.export      Export schema.org microdata encountered. This data is
                         exported in JSON format (not JSON-LD).
 
@@ -737,18 +748,22 @@ a configuration file and on the command line, the "no-" switch always applies.
                         write files into the directory DIR. ssc will create
                         the directory tree structure as appropriate.
 
+--microdata.verify      Check microdata found in WhatWG microdata attributes
+-m                      (itemprop, itemtype, etc.). Note that ssc only knows
+                        about certain ontologies (see --ontology.list)
+
 --microdata.virtual v=d When exporting microdata using --microdata.export,
                         export the contents of virtual directory 'v' to 'd'.
                         'v' must match a directory identified with
                         --site.virtual. For example:
                             --microdata.virtual virtual=X:\virtual.
 
---microformat.verify    Verify Microformats data in class and rel attributes
--M                      (see https://microformats.org/).
-
 --microformat.export    Export microformat data encountered in JSON format.
                         This option will write files in the same directory as
                         the source, with the extension .json.
+
+--microformat.verify    Verify Microformats data in class and rel attributes
+-M                      (see https://microformats.org/).
 
 --microformat.version x Presume microformats version x. The following values
                         are current accepted:
@@ -759,12 +774,10 @@ a configuration file and on the command line, the "no-" switch always applies.
 --nits.catastrophe n    redefine nit n as a catastrophe; may be repeated (the
                         value of n can be determined using --nits.nids below).
 
---nits.codes            Output nit codes.
-
 --nits.comment n        Redefine nit n as a comment; may be repeated (the
                         value of n can be determined using --nits.nids).
 
---nits.debug   n        Redefine nit n as a debug message; may be repeated
+--nits.debug n          Redefine nit n as a debug message; may be repeated
                         (the value of n can be determined using --nits.nids).
 
 --nits.error n          Redefine nit n as an error; may be repeated (the
@@ -778,14 +791,31 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --nits.nids             Output nit ids, which can be used to redefine nits.
 
+--nits.override F       Use this output format, not the one specified by
+                        --nits.format. F is a template file (see OUTPUT
+                        TEMPLATE below). This switch is intended to aid
+                        automation.
+
 --nits.quote X          Specify quote style when using nit.format. X can be
                         one of 'text' or 'html'.
+
+--nits.root             By default, seek nit output template files in the
+                        website root.
 
 --nits.silence n        Silence nit n; may be repeated (the value of n can be
                         determined using --nits.nids).
 
+--nits.unique           Do not output repeated nits, even if they may contain
+                        additional information.
+
 --nits.warning n        Redefine nit n as a warning; may be repeated (the
                         value of n can be determined using --nits.nids).
+
+--nits.watch            Output debug nits (intended for automation).
+
+--rdfa.version          When checking RDFa files, presume this version
+                        (default: 1.1.3). Note, RDFa analyis is incomplete,
+                        and only intended for supporting HTML analysis.
 
 --ontology.ONT X.Y      Presume version X.Y of ontology ONT. For example:
                             --ontology.xsd 1.1
@@ -826,7 +856,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 frbr_core 1.0
                                 gr 1.0
                                 grddl 1.0
-                                gs1 1.0
+                                gs1 1.1-1.5
                                 ical 1.0
                                 icaltzd 1.0
                                 jsonld 1.0,1.1
@@ -838,7 +868,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 music 12,14,18,22
                                 oa 1.0
                                 odrl 1.0
-                                og 10,12,14,18,22
+                                og 10,12,14,18,22 (see below)
                                 org 1.0
                                 owl 1.0,2.0
                                 poetry 1.0
@@ -854,7 +884,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 2.0-14.0
+                                schema 0.10-14.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -867,7 +897,7 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 time 1.0
                                 v 1.0
                                 vann 1.0,1.1
-                                vcard 1,2,3,4
+                                vcard 1,2,3,4 (see below)
                                 video 12,14,18,22
                                 void 1.0
                                 wdr 1.0
@@ -878,10 +908,43 @@ a configuration file and on the command line, the "no-" switch always applies.
                                 xml 1.0
                                 xsd 1.0,1.1
                         vCard versions correspond to RDFa specs, published in
-                        2001, 2006, 2010 & 2014. They do NOT correspond to vCard
-                        data format specifications.
-                        Open Graph versions correspond to snapshots of the specs
-                        from 2010, 2012, 2014, 2018 & 2022.
+                        2001, 2006, 2010 & 2014. They do NOT correspond to
+                        vCard data format specifications.
+                        Open Graph versions correspond to snapshots of the
+                        specs from 2010, 2012, 2014, 2018 & 2022.
+                        Most versions of schema (schema.org) should be
+                        specified by their version number, but this doesn't
+                        work with early versions, which should be specified as
+                        follows:
+                                Use         For
+                                0.10        June 2011
+                                0.15        July 2011
+                                0.20        August 2011
+                                0.25        September 2011
+                                0.30        October 2011
+                                0.35        November 2011
+                                0.40        December 2011
+                                0.45        January 2012
+                                0.50        February 2012
+                                0.55        March 2012
+                                0.60        April 2012
+                                0.91-0.99   as version number
+                                1.0         1.0a
+                                1.1         1.0b
+                                1.2         1.0c
+                                1.3         1.0d
+                                1.4         1.0e
+                                1.5         1.0f
+                                1.10        1.1
+                                1.20        1.2
+                                1.30        1.3
+                                1.40        1.4
+                                1.50        1.5
+                                1.60        1.6
+                                1.70        1.7
+                                1.80        1.8
+                                1.90        1.9
+                                1.91...     as version number
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have changed.
@@ -928,11 +991,11 @@ a configuration file and on the command line, the "no-" switch always applies.
 
 --shadow.root dir       Where to write the shadowed site.
 
---shadow.ssi            Do NOT resolve SSIs when shadowing, even if
-                        --general.ssi is set.
-
 --shadow.space          Leave excess/repeated spaces and blank lines in the
                         shadowed files untidily untouched.
+
+--shadow.ssi            Do NOT resolve Server Side Includes when shadowing,
+                        even if --general.ssi is set.
 
 --shadow.update         Only examine files that have changed since the last
 -u                      time ssc ran. This is incompatible with --corpus.file.
@@ -960,12 +1023,14 @@ a configuration file and on the command line, the "no-" switch always applies.
 -g dir                  recursively scan the directory analysing any HTML
                         files it finds. The default is the current directory.
 
---site.virtual v=d      The HTML virtual directory 'v' is located in actual
+--site.virtual v=d      The virtual directory 'v' is located in actual
 -L v=d                  directory 'd' on the local filesystem. For example:
                             --site.virtual virtual=D:\actual
 
 --spell.accept XXX      XXX is a correct spelling or a word (or a list of
                         words) in all languages.
+
+--spell.cased           Nitpick correctly spelt but wrongly cased words.
 
 --spell.check           Check text spelling. Uses external spelling checkers,
                         so results may be inconsistent between systems.
@@ -993,7 +1058,9 @@ a configuration file and on the command line, the "no-" switch always applies.
                         ssc will seek hunspell. (Under Windows, ssc uses the
                         OS spellchecker.)
 
---stats.meta            Produce statistics on <META> usage in <HEAD>. Note
+--stats.export F        Export stats to file F.
+
+--stats.meta            Produce statistics on &lt;META&gt; usage in &lt;HEAD&gt;. Note
                         that pragmas reported (http-equiv) are those found in
                         the HTML source, not those returned by the HTTP
                         protocol. Remember that many web servers (not all)
@@ -1020,22 +1087,65 @@ a configuration file and on the command line, the "no-" switch always applies.
                         identify its version, the version is derived from the
                         version of the host X/HTML code.
 
+--validation.attribute ATT
+                        Add the custom attribute ATT. This attribute will
+                        be ignored, not validated.
+
+--validation.charset CH Accept CH as a charset. May be repeated.
+
+--validation.class CL   Add the valid class CL. May be repeated.
+
+--validation.color COL  Accept COL as a colour. May be repeated.
+
+--validation.colour COL Accept COL as a colour. May be repeated.
+
+--validation.country CC Accept CC as a valid two-letter country code. May be
+                        repeated.
+
+--validation.currency CUR
+                        Accept CUR as a valid currency. May be repeated.
+
+--validation.element EL Accept &lt;EL&gt; as a valid element. This element will be
+                        ignored, not validated. May be repeated.
+
+--validation.element-attribute EL,ATT
+                        Accept the known attribute ATT on the element &lt;EL&gt;.
+                        Doesn't work with namespaces (names containing ':').
+                        May be repeated.
+
+--validation.extension EXT
+                        Accept the extension EXT as a mimetype file extension.
+                        May be repeated.
+
+--validation.httpequiv HEQ
+                        Accept HEQ as a valid macro for httpequiv on &lt;META&gt;
+                        elements. May be repeated.
+
+--validation.lang LANG  Accept LANG as a valid language code. May be repeated.
+
 --validation.minor x    When validating W3 HTML 5 source code, using this
 -m x                    minor version of W3 HTML 5. Valid values are 0, 1, 2,
-                        and 3. WhatWG versions are determined by date,
+                        and 3 (draft). WhatWG versions are determined by date,
                         corresponding roughly to the date of the (online)
                         publication of the specific version. See the
                         --html.version switch.
 
+--validation.metaname M
+                        Accept M as valid for the NAME attribute of the &lt;META&gt;
+                        element. The VALUE will be ignored. May be repeated.
+
 --validation.microdata  Validate (schema.org) microdata.
 
---validation.*          Add a permitted value to a particular HTML
-                        enumeration. Can be repeated. Extendable enumerations
-                        include charset, class (valid values may also be
-                        picked up from CSS files), colour, currency,
-                        http-equiv, lang, metaname, mimetype, rel, SGML, and
-                        many others. A full set of possible enumerations can
-                        be listed using the --validation switch.
+--validation.mimetype MT
+                        Accept MT as a valid mimetype. May be repeated.
+
+--validation.sgml SGML  Accept SGML as a valid SGML schema identification (as
+                        found in &lt;!DOCTYPE &hellip;&gt;. May be repeated.
+
+--validation.XXX YYY    Accept YYY as a valid value for attribute type XXX.
+                        For a list of possible values of XXX, use the command
+                        line switch --validation.
+
 
 
 CONFIGURATION FILE FORMAT
@@ -1276,23 +1386,21 @@ ssc is written by Dylan Harris, https://ssc.lu/.
 <h2>known issues</h2>
 
 <p>
-SSC is pre&ndash;alpha software. It doesn&rsquo;t do what it&rsquo;s supposed to do, and what it&rsquo;s supposed to do is wrong.
+SSC is &alpha; software. It doesn&rsquo;t do what it&rsquo;s supposed to do, and what it&rsquo;s supposed to do is wrong.
 </p>
 
 <ul><li>
-SSC is built based on my understanding of various standards. My understanding is certainly wrong. I will have misread some text, and misunderstood what I read correctly;
+SSC is built based on my understanding of various standards. My understanding is certainly wrong. I will have misread some text, and misunderstood what I read correctly.
 </li><li>
-I had to make a number of compromises when building the code. Quite a lot of the checks are incomplete or even entirely missing;
+I had to make a number of compromises when building the code. Some checks are incomplete or even entirely missing.
 </li><li>
-I put my emphasis on standards that are actively followed, and put little effort, beyond the basics, into those that were never properly implemented;
+I put my emphasis on standards that are actively followed, and put little effort, beyond the basics, into those that were never properly implemented.
 </li><li>
-I built an evolving product, reflecting evolving standards: biological evolution made the dodo, linguistic evolution made &lsquo;hippopotamus&rsquo;<SUP>*</SUP>, I made SSC;
+I built an evolving product, reflecting evolving standards: biological evolution made the dodo, linguistic evolution made &lsquo;hippopotamus&rsquo;<SUP>*</SUP>, I made ssc.
 </li><li>
 The code was built to get something working. In many places, it is horrible. A great deal of refactoring could take place, had I the time.
 </li><li>
 No attempt was made to write secure code. It should only be run on trusted data. In particular, a great weakness of much software is the parser, and the parsers in SSC were handmade using hopeless optimism and bizarre ideas.
-</li><li>
-No attempt was made to write multi&ndash;threading code (I consider SSC disk bound, and never mind that disks have evolved to SSDs since I started the project);
 </li><li>
 The tests are incomplete. Emphasis is placed on HTML 5, but even those tests suffer from missing content.
 </li></ul>
@@ -1303,8 +1411,55 @@ hosts a list of
 <a href="https://github.com/devongarde/ssc/issues">known issues</a>.
 </p>
 
-<P><SUP>*</SUP> How can such a dangerous animal have such a cuddly name? It&rsquo;s like calling the Hound of Hell &lsquo;<a href="https://harrypotter.fandom.com/wiki/Fluffy">Fluffy</A>&rsquo;.
+<P><SUP>*</SUP> How can such a dangerous animal have such a cuddly name? It&rsquo;s like calling a Hound of Hell &lsquo;<a href="https://harrypotter.fandom.com/wiki/Fluffy">Fluffy</A>&rsquo;,
+or Death&rsquo;s horse <a href="https://en.wikipedia.org/wiki/Death_(Discworld)#Binky">Binky</a>.
 </P>
+</section>
+
+<HR>
+
+<section id="bugs">
+<h2>bug reporting</h2>
+
+<p>
+SSC is &alpha; software. Despite heavy testing, it may contain
+unexpected features. If you encounter such an bug, please help improve
+ssc by collecting the following information (where relevant):
+</p>
+
+<ul><li>
+version of ssc;
+</li><li>
+precise version of the operating system;
+</li><li>
+hardware architecture and system information;
+</li><li>
+detailed description of the error and how to cause it;
+</li><li>
+copy of output file showing the error;
+</li><li>
+copy of pages/website being analysed;
+</li><li>
+precise command used;
+</li><li>
+configuration file(s) used, if any;
+</li><li>
+any ndx file or other pre-existing file used during the run;
+</li><li>
+any known workarounds or solutions;
+</li><li>
+a blues or dance interpretation of the 'feature'.
+</li></ul>
+
+<p>
+and emailing everything to <a href="mailto:mail@ssc.lu">mail@ssc.lu</a> (if the collected files are more
+than small, please use a public fileserver and email the link). Do NOT
+send anything confidential. Furthermore, unless you request otherwise,
+we reserve the right to publish some or all of the information sent in
+future versions of ssc, usually in the test suite. If you have a fix,
+you are invited to submit a pull request on <a href="https://github.com/devongarde/ssc">github</a>. Thank you.
+</p>
+
 </section>
 
 <HR>
@@ -1408,7 +1563,7 @@ Note: Use clang if possible, gcc takes a wee while.
 
 OpenBSD
 -------
-I've only tested the amd64 build under 6.8 / 6.9 / 7.0.
+I've only tested the amd64 build under 6.8 / 6.9 / 7.0 / 7.1.
 
 The versions of boost and cmake in packages are sufficient. You will need to
 increase significantly the available memory setting in login.conf for the
@@ -1421,7 +1576,8 @@ set the HUNSPELL_VERSION environment variable appropriately.
 <h3>notes</h3>
 
 <p>
-If everything works correctly, then everything will be built, a series of tests run, with a final result at the very end saying no failures. Having said that, given SSC is pre&ndash;alpha, don&rsquo;t be too surprised to see some warnings or some final test errors.
+If everything works correctly, then everything will be built, a series of tests run, with a final result at the very end saying no failures.
+Having said that, given SSC is &alpha;, don&rsquo;t be too surprised to see some warnings or some final test errors.
 </p>
 
 </section>
@@ -1431,7 +1587,215 @@ If everything works correctly, then everything will be built, a series of tests 
 <section id="sauce">
 <h2>source</h2>
 
+<h3>0.1.2</h3>
+
+<ul>
+<li>
+trial OpenBSD port
+</li>
+<li>
+Linux builds require lsb_release
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.2.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-08-23">22 8 23</time>
+</li>
+</ul>
+
+<h3>0.1.1</h3>
+
+<ul>
+<li>
+avoid clang clanger
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.1.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-08-21">22 8 21</time>
+</li>
+</ul>
+
+<h3>0.1.0</h3>
+
+<ul>
+<li>
+the very first &alpha; release!
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.0.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-08-19">22 8 19</time>
+</li>
+</ul>
+
+<h3>0.0.134</h3>
+
+<ul>
+<li>
+further performance improvements
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v134-sauce.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-08-17">22 8 17</time>
+</li>
+</ul>
+
+<h3>0.0.133</h3>
+
+<ul>
+<li>
+further performance improvements
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v133-sauce.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-08-15">22 8 15</time>
+</li>
+</ul>
+
+<h3>0.0.132</h3>
+
+<ul>
+<li>
+further performance improvements
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v132-sauce.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-08-13">22 8 13</time>
+</li>
+</ul>
+
+<h3>0.0.131</h3>
+
+<ul>
+<li>
+living standard for July 2022
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v131-sauce.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-07-31">22 7 31</time>
+</li>
+</ul>
+
+<h3>0.0.130</h3>
+
+<ul>
+<li>
+performance improvement with multithreading
+</li>
+<li>
+can exclude files from processing, such as git files
+</li>
+<li>
+can list all classes used, not just those defined in CSS files
+</li>
+<li>
+uses <a href="https://github.com/HowardHinnant/date">Howard Hinnant&rsquo;s date library</a>
+</li>
+<li>
+fix schema hierarchy property type checks
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v130-sauce.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-07-30">22 7 30</time>
+</li>
+</ul>
+
+<h3>0.0.129</h3>
+
+<ul>
+<li>
+improve diagnostics of invalid HTTP-EQUIV entries
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v129-sauce.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-06-20">22 6 20</time>
+</li>
+</ul>
+
+<h3>0.0.128</h3>
+
+<ul>
+<li>
+Moved CMakeLists.txt to project root to appease certain packagers
+</li>
+<li>
+process schema.org versions before v2.0
+</li>
+<li>
+fixed some ontology verification bugs
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v128-sauce.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-06-16">22 6 16</time>
+</li>
+</ul>
+
 <h3>0.0.127</h3>
+
+<ul>
+<li>
+all versions of the <a href="https://www.gs1.org/voc/">gs1 ontology</a> now recognised
+</li>
+<li>
+various refinements &amp; bug fixes
+</li>
+<li>
+<A href="src/ssc-v127-sauce.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2022-04-16">22 4 16</time>
+</li>
+</ul>
+
+<h3>0.0.126</h3>
 
 <ul>
 <li>
@@ -1940,7 +2304,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-05-0
 <li>
 can run in the <A href="https://www.openbsd.org/">OpenBSD</a> 6.8 <A href="https://man.openbsd.org/httpd">httpd</a> server CGI environment
 (do NOT expose SSC to untrusted data sources, such as those on the open web, without taking
-serious precautions: SSC is pre&ndash;alpha software, and probably has more bugs than the
+serious precautions: SSC is &alpha; software, and probably has more bugs than the
 Creator&rsquo;s Ultimate All&ndash;Beetle Extravaganza)
 </li>
 <li>
@@ -2149,7 +2513,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-1
 underlying work
 </li>
 <li>
-<A href="src/ssc-v90-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v90-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-12">21 3 12</time>
@@ -2197,7 +2561,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-0
 underlying work
 </li>
 <li>
-<A href="src/ssc-v87-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v87-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-25">21 2 25</time>
@@ -2211,7 +2575,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-2
 underlying work
 </li>
 <li>
-<A href="src/ssc-v86-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v86-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-15">21 2 15</time>
@@ -2225,7 +2589,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-1
 additional stats options, reporting &lt;DT&gt;&lt;DD&gt;, &lt;ABBR&gt;>, &amp; &lt;DFN&gt; content
 </li>
 <li>
-<A href="src/ssc-v85-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v85-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-12">21 2 12</time>
@@ -2239,7 +2603,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-1
 underlying work
 </li>
 <li>
-<A href="src/ssc-v84-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v84-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-01">21 2 01</time>
@@ -2253,7 +2617,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-0
 verifies various new living standard referenced http-equiv pragmas
 </li>
 <li>
-<A href="src/ssc-v83-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v83-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-01">21 2 01</time>
@@ -2284,7 +2648,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-2
 --schema.minor removed
 </li>
 <li>
-<A href="src/ssc-v81-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v81-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-24">21 1 24</time>
@@ -2304,7 +2668,7 @@ adds --stats.meta to generate stats on &lt;META&gt; usage in &lt;HEAD&gt;
 checks content-security-policy values
 </li>
 <li>
-<A href="src/ssc-v80-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v80-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-18">21 1 18</time>
@@ -2318,7 +2682,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-1
 A new -z switch to specify the maximum preferred length of title text;
 </li>
 <li>
-<A href="src/ssc-v79-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v79-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-15">21 1 15</time>
@@ -2346,7 +2710,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-0
 checks that the HTML page and the charset declared on it (if any) have something in common
 </li>
 <li>
-<A href="src/ssc-v77-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v77-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-20">20 12 20</time>
@@ -2360,7 +2724,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-12-2
 added --shadow.ignore to ignore files with specified extension
 </li>
 <li>
-<A href="src/ssc-v76-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v76-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-13">20 12 13</time>
@@ -2399,7 +2763,7 @@ can process <a href="https://schema.org">schema.org</a> 11.0 microdata;
 includes some microdata refinements.
 </li>
 <li>
-<A href="src/ssc-v74-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v74-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-06">20 12 6</time>
@@ -2416,7 +2780,7 @@ Export &lsquo;repaired&rsquo; HTML files, including processing of Server Side In
 Deduplicate non&ndash;HTML files. When used with export, it copies one version of the file and modifies links appropriately.
 </li>
 <li>
-<A href="src/ssc-v73-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v73-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-05">20 12 5</time>
@@ -2427,7 +2791,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-12-0
 
 <ul>
 <li>
-<A href="src/ssc-v71-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v71-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-11-25">20 11 25</time>
@@ -2438,7 +2802,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-11-2
 
 <ul>
 <li>
-<A href="src/ssc-v70-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v70-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-11-22">20 11 22</time>
@@ -2449,7 +2813,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-11-2
 
 <ul>
 <li>
-<A href="src/ssc-v60-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v60-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-10-29">20 10 29</time>
@@ -2460,7 +2824,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-10-2
 
 <ul>
 <li>
-<A href="src/ssc-v55-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v55-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-10-20">20 10 20</time>
@@ -2471,7 +2835,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-10-2
 
 <ul>
 <li>
-<A href="src/ssc-v2-sauce.zip" type="application/zip">download source</a>
+<A href="src/ssc-v2-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-04-20">20 4 20</time>
@@ -2506,6 +2870,11 @@ toast: toasts code; i like burnt toast
 heater: i&rsquo;m not stopping now
 </li>
 </ul>
+
+<P>
+Here&rsquo;s a <a href="ssc-v010-spex.tgz" type="application/gzip">reference documentation collection</a> (it&rsquo;s big).
+</P>
+
 </section>
 
 <HR>

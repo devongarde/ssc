@@ -48,6 +48,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/text.h"
 #include "parser/parse_ssi.h"
 #include "type/type.h"
+#include "url/curl.h"
 #include "url/url.h"
 #include "url/url_sanitise.h"
 #include "webpage/fileindex.h"
@@ -95,10 +96,11 @@ void init (nitpick& nits)
     hierarchy_init (nits);
     microdata_init (nits);
     url::init (nits);
-    wotsit_init (nits); }
+    wotsit_init (nits);
+    curl_init (); }
 
 int ciao ()
-{   PRESUME (! fred.activity (), __FILE__, __LINE__);
+{   curl_done ();
     if (context.unknown_class () && context.tell (es_warning))
     {   ::std::ostringstream ss;
         VERIFY_NOT_NULL (css_global.get (), __FILE__, __LINE__);
@@ -210,7 +212,6 @@ int examine (nitpick& nits)
                         while (fred.dqe ())
                             if (q.empty () && ! fred.activity ()) break; } } }
             fred.done ();
-            if (context.progress ()) ::std::cout << "finishing\n";
             spell_free ();
             close_corpus (nuts);
             fileindex_save_and_close (nuts); } }
@@ -270,6 +271,7 @@ int main (int argc, char** argv)
         macro -> dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
         if (context.invalid () || (context.todo () == do_booboo) || (res == ERROR_STATE))
         {   macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
+            if (msg.empty ()) msg = "\n" TYPE_HELP "\n";
             res = ERROR_STATE; }
         else
         {   if (! fileindex_load (nuts)) res = ERROR_STATE;
@@ -307,4 +309,7 @@ int main (int argc, char** argv)
         ::std::cerr << msg << "\n";
         res = ERROR_STATE; }
     fred.done ();
+    if (context.progress ())
+        if (outstr.name ().empty ()) ::std::cout << "finished\n";
+        else ::std::cout << "results written to " << outstr.name () << "\n";
     return res; };

@@ -1,4 +1,4 @@
--f ../toast/HTML/minimal/minimal.conf
+-N 1 -f ../toast/HTML/minimal/minimal.conf
 
 PASS ../toast/HTML/minimal/rfc1867.html
 10 invalid_attribute_version wrong_version

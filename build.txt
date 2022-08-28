@@ -6,9 +6,9 @@ https://ssc.lu/
 
 Introduction
 ============
-SSC can be built from various unii using CMake, or with Visual Studios
-2017 / 2019 / 2022 under Windows. I have built & tested it under x64 in
-selected OSs on intel/amd architecture.
+SSC can be built on various unii with CMake and gcc or clang, or with
+Visual Studios 2019 / 2022 under Windows. I have built & tested a
+64-bit version in selected OSs on intel/amd architecture.
 
 
 Libraries
@@ -17,27 +17,15 @@ Libraries
 Common dependencies
 -------------------
 You need boost version 1.75 or better (https://boost.org), a recent
-version of the ICU libraries (https://icu-project.org/), & Microsoft's
-GSL library (https://github.com/Microsoft/GSL). Most unii and mock
-unii have these available as packages.
-
-You may need to set these environment variables:
-- BOOST: if you're not using your operating system's packaged flavour
-  of boost, then set BOOST to your boost source root directory (CMake
-  may welcome BOOST_LIBRARYDIR & BOOST_INCLUDEDIR being set
-  appropriately);
-- ICU_ROOT: similarly, if you're not using your operating system's
-  packaged ICU, set ICU_ROOT to your ICU library source root directory;
-- GSL: set it to your GSL root directory.
+version of the ICU libraries (https://icu-project.org/), Microsoft's
+GSL library (https://github.com/Microsoft/GSL), and a recent version of
+libcurl (https://curl.se/). Usually, an Operating System's package
+system has an appropriate version ready to install.
 
 hunspell
 --------
 Building SSC under unii, including macos, requires a development
-installation of hunspell (https://hunspell.github.io/). You may need to
-set these environment variables:
-- HUNSPELL_INCLUDE to point to the hunspell include directory
-- HUNSPELL_LIB to point to the hunspell library directory
-- HUNSPELL_VERSION, the actual library name (such as "hunspell-1.7.so")
+installation of hunspell (https://hunspell.github.io/).
 
 Once you've got them, you can run cmake from the project root
 directory.
@@ -48,21 +36,34 @@ The Windows build, by default, uses the native Windows spellchecker,
 although, except for Windows 11, that doesn't seem to work so well in
 multilingual contexts.
 
+
 Building
 ========
 
 Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
-appropriate .sln file, then build. Only Visual Studios 2017 / 2019 /
-2022, 64 bit, have been built & tested, for intel Windows 8.1, 10 & 11.
+appropriate .sln file, then build. Only Visual Studios 2019 / 2022,
+64 bit, have been built & tested, for intel Windows 8.1, 10 & 11.
 I've not built ssc using CMake under Windows.
+
+Note the included solutions presume Microsoft's VCPKG manager. There
+are alternatives.
+
+You may need to set these environment variables:
+- BOOST: if you're not using your operating system's packaged flavour of boost,
+  then set BOOST to your boost source root directory;
+- ICU_ROOT: similarly, if you're not using your operating system's packaged
+  ICU, set ICU_ROOT to your ICU library source root directory;
+- GSL: set it to your GSL root directory.
+
 
 Unii & mock Unii
 ----------------
-You will need CMake 3.12 or better. On Linux, you will also need
-lsb-release. From the home ssc directory, compile a normal release
-build thus:
+You will need CMake 3.19 or better. On Linux, you will also need
+lsb-release. These can be found in most distributions' standard
+packages.
+From the home ssc directory, compile a normal build thus:
 cmake .
 make
 ctest
@@ -84,32 +85,49 @@ individual tests, and the standard commands used sometimes complain if
 they can't find files they're supposed to delete, which is a bit silly
 given that means things are already in the desired state.
 
-The following have been successfully built as x64 amd/intel, although
-not always under all versions of ssc:
-Linux: Ubuntu 20.04 / 22.04, SuSE tumbleweed, Alma Linux 9
-OpenBSD: 7.1 / 7.0 / 6.9 / 6.8
-MacOS: Monterey, Big Sur, Catalina, Mojave, High Sierra
+The following have been successfully built as x64 amd/intel:
+FreeBSD:  13.1
+Linux:    Alma Linux 9, AOSC, Centos 8 / 9*, SUSE Tumbleweed,
+          Ubuntu 20.04 / 22.04
+MacOS:    Monterey, Big Sur, Catalina, Mojave
+OpenBSD:  7.1 / 7.0 / 6.9
 
-Note: Use clang if possible, gcc takes a wee while.
-
-
-Linux
------
-CMake seems poor at spotting rather obvious things such as standard boost
-library distributions under Linux, so it's hit and miss as to whether it will
-build. I've had success with Centos 8 and Ubuntu 20.04.
-
+* Because Centos 9 doesn't offer lsb-release, the appropriate CMake
+command is:
+  cmake . -DFLAVOUR=CentosOSStream -DFLAVOUR_VER=9
 
 OpenBSD
 -------
-I've only tested the amd64 build under 7.0 and 6.9 (and, with older versions
-of ssc, 6.8). I have made some cursory tests with 7.1, but not yet done things
-properly, mostly because life got in the way.
+You will need to increase significantly the available memory setting
+for your build account in login.conf, if you have not done so already.
 
-The versions of boost and cmake supplied in packages work.
 
-You will need to increase significantly the available memory setting in
-login.conf for the build account, if you have not done so already.
+Supporting libraries
+====================
 
-Openbsd 6.8 offers hunspell 1.6, so if you use that version, you will need to
-set the HUNSPELL_VERSION environment variable appropriately.
+GSL
+---
+If you can't find a copy of Microsoft's GSL in your system's standard
+package suite, then grab a current copy from its github repository
+(https://github.com/Microsoft/GSL) and unpack it. In Windows, add the
+root directory to your local path. In Unii, do the following:
+    cmake .
+    make
+    sudo make install
+
+Curl
+----
+This is in every standard unix flavour repository that I've met, but
+not so easy for Windows. I suggest the following:
+
+  Install the Microsoft repository vcpkg (https://vcpkg.org)
+  Run up the visual studio 64bit native command prompt
+  Run the vcpkg bootstrap batch file, noting the comments
+  Enter "vcpkg install curl:x64-windows"
+  Add an environment variable to your account for CURL, perhaps:
+    CURL=****\project\lib\vcpkg\installed\x64-windows
+  Add the installation bin directory to your local path
+    ****\project\lib\vcpkg\installed\x64-windows\bin
+  If you plan to debug, also add debug\bin
+    ****\project\lib\vcpkg\installed\x64-windows\debug\bin
+  

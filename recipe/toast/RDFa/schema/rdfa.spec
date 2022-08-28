@@ -1,4 +1,4 @@
--f ../toast/RDFa/schema/rdfa.conf
+-N 1 -f ../toast/RDFa/schema/rdfa.conf
 
 PASS ../toast/RDFa/schema/creativework.html
 11 vocab_defined

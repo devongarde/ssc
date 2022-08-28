@@ -1,4 +1,4 @@
--f ../toast/microdata/schema-mno/mno.conf
+-N 1 -f ../toast/microdata/schema-mno/mno.conf
 
 PASS ../toast/microdata/schema-mno/map.html
 16 no_such_folder url_not_found

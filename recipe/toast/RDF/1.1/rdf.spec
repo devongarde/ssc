@@ -1,4 +1,4 @@
--f ../toast/RDF/1.1/rdf.conf
+-N 1 -f ../toast/RDF/1.1/rdf.conf
 
 PASS ../toast/RDF/1.1/index.html
 2 rdfa_version

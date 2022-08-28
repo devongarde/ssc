@@ -24,8 +24,6 @@ ssc DIR
 and off it will go, reporting on any issues it finds in all HTML files
 in DIR and its descendants.
 
-To have ssc verify external links, curl must be installed.
-
 
 reports
 -------

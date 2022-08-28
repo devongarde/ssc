@@ -128,7 +128,7 @@ hun::hun (nitpick& nits, const ::boost::filesystem::path& p, const lingo& lang)
     nits.pick (nit_dictionary, es_comment, ec_spell, "Found dictionary for ", quote (lang.dialect ())); }
 
 void spell_init (nitpick& )
-{  mssfl = mssfl_uptr (new mssfl_t); }
+{   mssfl = mssfl_uptr (new mssfl_t); }
 
 void spell_free ()
 {   for (mhun_t::iterator i = mh.begin (); i != mh.end (); ++i)
@@ -223,7 +223,11 @@ vstr_t load_dictionaries (nitpick& nits)
         context.spell (false);
         return vstr_t (); }
     vstr_t res;
+#ifdef NO_DIROPTS
+    for (const ::boost::filesystem::directory_entry& i : ::boost::filesystem::directory_iterator (p))
+#else // NO_DIROPTS
     for (const ::boost::filesystem::directory_entry& i : ::boost::filesystem::directory_iterator (p, ::boost::filesystem::directory_options::skip_permission_denied))
+#endif // NO_DIROPTS
     {   ::boost::filesystem::path d (i.path ());
         if (! ::boost::filesystem::is_regular_file (d)) continue;
         if (BOOST_EXTENSION (d) != DICTIONARY_EXTENSION) continue;

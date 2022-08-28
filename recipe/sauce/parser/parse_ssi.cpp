@@ -99,12 +99,18 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
             else switch (env)
             {   case ssi_DATE_GMT :
                     {   ::std::ostringstream ss;
-                        ss << ::date::format ("%D %T %Z", ::date::floor <::std::chrono::milliseconds> (::std::chrono::system_clock::now ()));
+                        ::boost::gregorian::date_input_facet* facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
+                        ss.imbue (::std::locale (::std::locale (), facet));
+//                        ss << ::date::format ("%D %T %Z", ::date::floor <::std::chrono::milliseconds> (::std::chrono::system_clock::now ()));
+                        ss << ::boost::posix_time::second_clock::universal_time ();
                         arg = ss.str (); }
                     break;
                 case ssi_DATE_LOCAL :
                     {   ::std::ostringstream ss;
-                        ss << ::date::make_zoned (::date::current_zone (), ::std::chrono::system_clock::now ());
+                        ::boost::gregorian::date_input_facet* facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
+                        ss.imbue (::std::locale (::std::locale (), facet));
+//                        ss << ::date::make_zoned (::date::current_zone (), ::std::chrono::system_clock::now ());
+                        ss << ::boost::posix_time::second_clock::local_time ();
                         arg = ss.str (); }
                     break;
                 case ssi_DOCUMENT_NAME :
@@ -123,7 +129,10 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                         x /= c.filename_;
                         t = get_last_write_time (x);
                         ::std::ostringstream ss;
-                        ss << ::date::format ("%D %T %Z", ::date::floor <::std::chrono::milliseconds> (::std::chrono::system_clock::from_time_t (t)));
+                        ::boost::gregorian::date_input_facet* facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
+                        ss.imbue (::std::locale (::std::locale (), facet));
+                        ss << ::boost::posix_time::from_time_t (t);
+//                        ss << ::date::format ("%D %T %Z", ::date::floor <::std::chrono::milliseconds> (::std::chrono::system_clock::from_time_t (t)));
                         arg = ss.str (); }
                     break;
                 case ssi_error :
@@ -226,7 +235,10 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         return c.errmsg_; }
 
     ::std::ostringstream ss;
-    ss << ::date::make_zoned (::date::current_zone (), ::std::chrono::system_clock::from_time_t (lwt));
+    ::boost::gregorian::date_input_facet* facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
+    ss.imbue (::std::locale (::std::locale (), facet));
+    ss << ::boost::posix_time::from_time_t (lwt);
+//    ss << ::date::make_zoned (::date::current_zone (), ::std::chrono::system_clock::from_time_t (lwt));
     return ss.str (); }
 
 ::std::string fsize_command (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const vstr_t& args)

@@ -1,4 +1,4 @@
--f ../toast/type/custom/custom.conf
+-N 1 -f ../toast/type/custom/custom.conf
 
 PASS ../toast/type/custom/index.html
 2 naughty_lang

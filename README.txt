@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.2
+version 0.1.3
 (c) 2020-2022 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -14,7 +14,7 @@ ssc analyses static X/HTML snippets, files and sites:
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4 draft Jul 2022
 - XHTML 1.0/1.1/2.0/5.x
-- finds broken links (requires curl)
+- finds broken links
 - server side includes, mostly
 - common microdata & RDFa ontologies
 
@@ -118,7 +118,9 @@ was at most cursory.
 
 Then came the cow flu*.
 
-* corvid means crow, thus covid means cow.
+* corvid means crow, thus covid means cow**.
+
+** by the rules of sympathetic spelling.
 
 
 

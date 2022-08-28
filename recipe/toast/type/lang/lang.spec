@@ -1,4 +1,4 @@
--f ../toast/type/lang/lang.conf
+-N 1 -f ../toast/type/lang/lang.conf
 
 PASS ../toast/type/lang/index.html
 2 naughty_lang

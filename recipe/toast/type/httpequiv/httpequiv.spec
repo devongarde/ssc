@@ -1,4 +1,4 @@
--f ../toast/type/httpequiv/httpequiv.conf
+-N 1 -f ../toast/type/httpequiv/httpequiv.conf
 
 PASS ../toast/type/httpequiv/accept.html
 2 naughty_lang

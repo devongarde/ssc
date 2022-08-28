@@ -1,4 +1,4 @@
--f ../toast/HTML/4.00/html4.conf
+-N 1 -f ../toast/HTML/4.00/html4.conf
 
 PASS ../toast/HTML/4.00/html4-simple.html
 4 long_title

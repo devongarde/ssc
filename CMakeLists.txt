@@ -1,17 +1,17 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.2 LANGUAGES CXX)
+project (ssc VERSION 0.1.3 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED True)
 
 # presumes stuff about ssc directory structure ... :-(
-set (R ${CMAKE_CURRENT_SOURCE_DIR}/recipe)
+set (R ${CMAKE_SOURCE_DIR}/recipe)
 set (H ${R}/heater)
-set (TH ${R}/third)
 set (S ${R}/sauce)
 set (T ${R}/toast)
 set (TT ${T}/ssc-test)
+set (TEA ${R}/tea)
 
 set (BV "1.75")
 
@@ -22,10 +22,6 @@ if (DEFINED CMAKE_BUILD_TYPE)
   set_property (CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES})
 endif ()
 
-if (DEFINED ENV{BOOST} AND NOT DEFINED ENV{BOOST_ROOT})
-  set (BOOST_ROOT ${BOOST})
-endif ()
-
 set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an installation path")
 set (CMAKE_DEBUG_POSTFIX "d")
 
@@ -33,108 +29,138 @@ add_executable (ssc-test)
 add_executable (ssc)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-  message ("Only Visual Studios 2017/19/22 are known to build")
-  target_compile_definitions (ssc PRIVATE WINDOWS)
-  set (D ${R}/..)
-endif ()
-
-if (UNIX)
-  # USE_OS_TZDB is for Howard Hinnant's date library
-  target_compile_definitions (ssc-test PRIVATE UNIX USE_OS_TZDB)
-  target_compile_definitions (ssc PRIVATE UNIX USE_OS_TZDB)
-
+  message (FATAL_ERROR "Use the included Visual Studio 2019/2022 solutions to build under Windows (https://visualstudio.microsoft.com/downloads/)")
+elseif (UNIX)
   set (Boost_USE_STATIC_LIBS ON)
   set (Boost_USE_MULTI_THREADED ON)
   set (Boost_USE_DEBUG_LIBS OFF)
   set (Boost_USE_DEBUG_RUNTIME OFF)
 
   if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
-
-    set (HI "/usr/local/include/hunspell")
-    set (HL "/usr/local/lib")
     set (DOCU "/usr/local/share/doc/ssc")
     set (D "/usr/local/bin")
-    set (HV "hunspell-1.7.a")
-    target_compile_definitions (ssc-test PRIVATE NO_PCF_STR)
+    set (INC "/usr/local/include/" "/usr/local/include/hunspell")
+    set (LD "/usr/local/lib")
+    set (LIB "/usr/local/lib/libhunspell-1.7.a")
+    target_compile_definitions (ssc-test PRIVATE UNIX NO_PCF_STR)
 
     if (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.8")
       message ("OpenBSD 6.8")
-      set (HV "hunspell-1.6.a")
+      set (LIB "/usr/local/lib/libhunspell-1.6.a")
       set (BV "1.67")
-      target_compile_definitions (ssc PRIVATE OPENBSD O68 NO_PCF_STR NO_BOOST_PROCESS NO_JSONIC HUNSPELL)
+      target_compile_definitions (ssc PRIVATE UNIX OPENBSD O68 NO_PCF_STR NO_JSONIC HUNSPELL)
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-6.9")
       message ("OpenBSD 6.9")
       set (BV "1.67")
-      target_compile_definitions (ssc PRIVATE OPENBSD O69 NO_PCF_STR NO_BOOST_PROCESS NO_JSONIC HUNSPELL)
+      target_compile_definitions (ssc PRIVATE UNIX OPENBSD O69 NO_PCF_STR NO_JSONIC HUNSPELL)
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-7.0")
       message ("OpenBSD 7.0")
-      target_compile_definitions (ssc PRIVATE OPENBSD O70 NO_PCF_STR NO_BOOST_PROCESS HUNSPELL)
+      target_compile_definitions (ssc PRIVATE UNIX OPENBSD O70 NO_PCF_STR HUNSPELL)
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-7.1")
       message ("OpenBSD 7.1")
-      target_compile_definitions (ssc PRIVATE OPENBSD O71 NO_PCF_STR NO_BOOST_PROCESS HUNSPELL)
-#      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O1")
-#      set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O1")
+      target_compile_definitions (ssc PRIVATE UNIX OPENBSD O71 NO_PCF_STR HUNSPELL)
     else ()
-      message ("unknown, untested version of OpenBSD")
-      target_compile_definitions (ssc PRIVATE OPENBSD NO_PCF_STR NO_BOOST_PROCESS NO_JSONIC NOSPELL)
+      message (WARNING "untested version of OpenBSD")
+      target_compile_definitions (ssc PRIVATE UNIX OPENBSD OMG NO_PCF_STR NO_JSONIC HUNSPELL)
+    endif ()
+  elseif (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
+    set (DOCU "/usr/local/share/doc/ssc")
+    set (D "/usr/local/bin")
+    set (INC "/usr/local/include/" "/usr/local/include/hunspell")
+    set (LD "/usr/local/lib")
+    set (LIB "/usr/local/lib/libhunspell-1.7.a")
+    target_compile_definitions (ssc-test PRIVATE UNIX NO_PCF_STR)
+    set (NO_CURL "1")
+    if (${CMAKE_SYSTEM} MATCHES "FreeBSD-13.1")
+      message ("FreeBSD 13.1")
+      target_compile_definitions (ssc PRIVATE UNIX FREEBSD F131 NO_PCF_STR HUNSPELL NOCURL)
+    elseif (${CMAKE_SYSTEM} MATCHES "FreeBSD-12.3")
+      message ("FreeBSD 12.3")
+      target_compile_definitions (ssc PRIVATE UNIX FREEBSD F123 NO_PCF_STR HUNSPELL NOCURL)
+    else ()
+      message (WARNING "untested version of FreeBSD")
+      target_compile_definitions (ssc PRIVATE UNIX FREEBSD OMG NO_PCF_STR NO_JSONIC HUNSPELL NOCURL)
     endif ()
   elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    find_program(LSB_RELEASE lsb_release)
-    execute_process(COMMAND ${LSB_RELEASE} -is
+    if (DEFINED FLAVOUR)
+      SET (LSB_RELEASE_ID_SHORT "${FLAVOUR}")
+    elseif (DEFINED ENV{FLAVOUR})
+      SET (LSB_RELEASE_ID_SHORT ENV{FLAVOUR})
+    else ()
+      find_program (LSB_RELEASE lsb_release)
+      execute_process (COMMAND ${LSB_RELEASE} -is
         OUTPUT_VARIABLE LSB_RELEASE_ID_SHORT OUTPUT_STRIP_TRAILING_WHITESPACE)
-    target_compile_definitions (ssc PRIVATE LINUX NO_JSONIC HUNSPELL BOOST_BIND_GLOBAL_PLACEHOLDERS)
+    endif ()
+    if (DEFINED FLAVOUR_VER)
+      SET (LSB_RELEASE_VER_SHORT "${FLAVOUR_VER}")
+    elseif (DEFINED ENV{FLAVOUR_VER})
+      SET (LSB_RELEASE_VER_SHORT ENV{FLAVOUR_VER})
+    else ()
+      find_program (LSB_RELEASE lsb_release)
+      execute_process (COMMAND ${LSB_RELEASE} -rs
+        OUTPUT_VARIABLE LSB_RELEASE_VER_SHORT OUTPUT_STRIP_TRAILING_WHITESPACE)
+    endif ()
+    if ("${LSB_RELEASE_ID_SHORT}" STREQUAL "")
+      message (WARNING "Unknown flavour of Linux; please install lsb_release or specify FLAVOUR and FLAVOUR_VER")
+      target_compile_definitions (ssc PRIVATE UNIX LINUX OMG NO_JSONIC HUNSPELL BOOST_BIND_GLOBAL_PLACEHOLDERS)
+      target_compile_definitions (ssc-test PRIVATE UNIX)
+    else ()
+      message (${LSB_RELEASE_ID_SHORT} " " ${LSB_RELEASE_VER_SHORT} " Linux")
+      target_compile_definitions (ssc PRIVATE UNIX LINUX NO_JSONIC HUNSPELL BOOST_BIND_GLOBAL_PLACEHOLDERS)
+      target_compile_definitions (ssc-test PRIVATE UNIX)
+    endif ()
     set (BV "1.67")
-    set (HL "/usr/lib64/")
-    set (HI "/usr/include/hunspell")
-    set (HV "hunspell-1.7.so")
     set (D "/usr/local/bin")
     set (DOCU "/usr/share/doc/ssc")
+    set (INC "/usr/include/" "/usr/local/include/" "/usr/include/hunspell" "/usr/include/x86_64-linux-gnu/")
+    set (LD "/usr/lib64/")
+    set (LIB "/usr/lib64/libhunspell-1.7.so")
     set (Boost_USE_STATIC_LIBS OFF)
     if (${LSB_RELEASE_ID_SHORT} MATCHES "Ubuntu")
-      set (HL "/usr/lib/x86_64-linux-gnu/")
-    elseif (${LSB_RELEASE_ID_SHORT} MATCHES "Debian")
-      set (HL "/usr/lib/x86_64-linux-gnu/")
-      set (CMAKE_CXX_COMPILER /usr/bin/gcc)
+      set (LD "/usr/lib/x86_64-linux-gnu/")
+      set (LIB "/usr/lib/x86_64-linux-gnu/libhunspell-1.7.so")
+    elseif (${LSB_RELEASE_ID_SHORT} MATCHES "CentOSStream")
+      if (${LSB_RELEASE_VER_SHORT} MATCHES "8")
+        set (BV "1.66")
+        set (LIB "/usr/lib64/libhunspell-1.6.so")
+      endif ()
     endif ()
   elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (D "/opt/local/bin")
     set (DOCU "/opt/local/share/doc")
-    set (HI "/opt/local/include/hunspell")
-    set (HL "/opt/local/lib")
-    set (HV "hunspell-1.7.a")
+    set (INC "/usr/local/include/" "/opt/local/include/" "/opt/local/include/hunspell")
+    set (LD "/usr/local/lib" "/opt/local/lib")
+    set (LIB "/opt/local/lib/libhunspell-1.7.a")
+    set (Boost_USE_STATIC_LIBS OFF)
+    target_compile_definitions (ssc-test PRIVATE UNIX)
     if (${CMAKE_SYSTEM} MATCHES "Darwin-21")
       message ("MacOS Monterey")
-      target_compile_definitions (ssc PRIVATE MONTEREY MACOS HUNSPELL)
+      target_compile_definitions (ssc PRIVATE MONTEREY MACOS UNIX HUNSPELL)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-20")
       message ("MacOS Big Sur")
-      target_compile_definitions (ssc PRIVATE BIG_SUR MACOS HUNSPELL)
+      target_compile_definitions (ssc PRIVATE BIG_SUR MACOS UNIX HUNSPELL)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-19")
       set (BV "1.67")
       message ("MacOS Catalina")
-      target_compile_definitions (ssc PRIVATE CATALINA MACOS NO_JSONIC HUNSPELL)
+      target_compile_definitions (ssc PRIVATE CATALINA MACOS UNIX NO_JSONIC HUNSPELL)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-18")
       set (BV "1.67")
       message ("MacOS Mojave")
-      target_compile_definitions (ssc PRIVATE MOJAVE MACOS NO_JSONIC NOSPELL)
-    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-17")
-      set (BV "1.67")
-      message ("MacOS High Sierra")
-      target_compile_definitions (ssc-test PRIVATE FUDDYDUDDY)
-      target_compile_definitions (ssc PRIVATE HIGH_SIERRA FUDDYDUDDY MACOS NO_JSONIC NOSPELL)
+      target_compile_definitions (ssc PRIVATE MOJAVE MACOS UNIX NO_JSONIC NOSPELL)
     else ()
       set (BV "1.67")
-      message ("unknown, untested MacOS")
-      target_compile_definitions (ssc PRIVATE MACOS FUDDYDUDDY NO_JSONIC NOSPELL)
+      message (WARNING "unknown, untested MacOS")
+      target_compile_definitions (ssc PRIVATE MACOS UNIX FUDDYDUDDY NO_JSONIC NOSPELL)
     endif ()
   else ()
-    message ("unknown, untested, system: good luck")
+    message (WARNING "unknown, untested, system: good luck")
     set (D "~/bin")
-    target_compile_definitions (ssc PRIVATE NO_JSONIC NOSPELL NO_PCF_STR NO_BOOST_PROCESS)
+    target_compile_definitions (ssc PRIVATE MACOS OMG NO_JSONIC NOSPELL NO_PCF_STR)
   endif ()
 
+  target_link_libraries (ssc PRIVATE ${LIB})
 endif ()
 
-link_directories (${BOOST_LIBRARYDIR} ${ICU_ROOT})
 find_package (Boost ${BV} REQUIRED COMPONENTS system chrono date_time filesystem locale program_options regex thread)
 find_package (ICU 60.0 REQUIRED COMPONENTS dt in io tu uc)
 find_package (Iconv REQUIRED)
@@ -142,7 +168,6 @@ find_package (Iconv REQUIRED)
 # better to list the build files in one place (here) rather than litter all the source directories with a gadzillion untidy wee files
 target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h ${S}/feedback/nitnames.cpp)
 target_sources (ssc PRIVATE
-        ${TH}/date/date.h ${TH}/date/tz.h ${TH}/date/tz_private.h
         ${H}/attribute/attr.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h ${H}/attribute/avm.h
             ${H}/attribute/avm_data.h ${H}/attribute/namespace.h
         ${H}/coop/fred.h ${H}/coop/kew.h ${H}/coop/knickers.h ${H}/coop/lox.h ${H}/coop/tls.h
@@ -177,12 +202,11 @@ target_sources (ssc PRIVATE
             ${H}/type/type_relational.h ${H}/type/type_time.h ${H}/type/type_url.h ${H}/type/type_van.h ${H}/type/type_basic.h ${H}/type/type_id.h
             ${H}/type/type_layout.h ${H}/type/type_math.h ${H}/type/type_measure.h ${H}/type/type_microdata.h ${H}/type/type_microformat.h
             ${H}/type/type_misc.h ${H}/type/type_numeric.h ${H}/type/type_svg.h ${H}/type/type_varied.h ${H}/type/type_xmlns.h
-        ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h ${H}/url/url_schemes.h
+        ${H}/url/curl.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h ${H}/url/url_schemes.h
         ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/filesystem.h ${H}/utility/lexical.h
             ${H}/utility/quote.h ${H}/utility/tuple.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/root.h
-        ${TH}/date/tz.cpp
         ${S}/attribute/attr.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp ${S}/attribute/avm_data_a.cpp
              ${S}/attribute/avm_data_b.cpp ${S}/attribute/avm_data_c.cpp ${S}/attribute/avm_data_d.cpp ${S}/attribute/avm_data_e.cpp
              ${S}/attribute/avm_data_f1.cpp ${S}/attribute/avm_data_f2.cpp ${S}/attribute/avm_data_g.cpp ${S}/attribute/avm_data_h.cpp
@@ -220,14 +244,17 @@ target_sources (ssc PRIVATE
             ${S}/type/type_mime.cpp ${S}/type/type_numeric.cpp ${S}/type/type_paint.cpp ${S}/type/type_rdf.cpp ${S}/type/type_reals.cpp ${S}/type/type_rel.cpp
             ${S}/type/type_sgml.cpp ${S}/type/type_svg_feature.cpp ${S}/type/type_time.cpp ${S}/type/type_transform.cpp ${S}/type/type_url.cpp
             ${S}/type/type_varied.cpp ${S}/type/type_xmlns.cpp
-        ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
+        ${S}/url/curl.cpp ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
         ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/common.cpp ${S}/utility/filesystem.cpp ${S}/utility/quote.cpp
         ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/q.cpp ${S}/webpage/root.cpp
 )
 
-target_include_directories (ssc-test PRIVATE ${H} ${BOOST_INCLUDE_DIR} $ENV{GSL}/include)
-target_include_directories (ssc PRIVATE ${H} ${TH} ${BOOST_INCLUDE_DIR} ${ICU_INCLUDE_DIRS} $ENV{GSL}/include ${HI})
+target_precompile_headers (ssc PRIVATE ${H}/main/include.h)
+
+target_include_directories (ssc-test PRIVATE ${H} ${INC})
+target_include_directories (ssc PRIVATE ${H} ${INC})
+link_directories (${LD})
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 
@@ -238,7 +265,6 @@ if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
   target_compile_options (ssc-test PRIVATE "-g;-O0;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-result;-Wno-deprecated-declarations")
   target_compile_options (ssc PRIVATE "-g;-O0;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-deprecated-declarations")
 else ()
-  message ("release")
   target_compile_definitions (ssc-test PRIVATE NDEBUG)
   target_compile_definitions (ssc PRIVATE NDEBUG)
   target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-implicit-fallthrough;-Wno-misleading-indentation;-Wno-unused-result;-Wno-unused-parameter;-Wno-deprecated-declarations")
@@ -258,8 +284,8 @@ target_link_libraries (ssc PRIVATE Boost::thread)
 target_link_libraries (ssc PRIVATE pthread)
 target_link_libraries (ssc PRIVATE ${ICU_LIBRARIES})
 
-if (UNIX)
-  target_link_libraries (ssc PRIVATE ${HL}/lib${HV})
+if ("${NO_CURL}" STREQUAL "")
+  target_link_libraries (ssc PRIVATE curl)       
 endif ()
 
 install (TARGETS ssc DESTINATION ${D})
@@ -267,5 +293,5 @@ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/README.txt ${R}/gen/gen.txt ${CMAKE_C
 
 enable_testing ()
 
-add_test (NAME toasty_toast COMMAND ssc-test -d -i ${TT}/output.txt ${TT}/input.spec)
-add_test (NAME toast COMMAND ssc-test -v -x ${CMAKE_CURRENT_SOURCE_DIR}/ssc -f ${TT}/ssc.lst)
+add_test (NAME toasty_toast WORKING_DIRECTORY ${TEA} COMMAND ssc-test -d -i ${TT}/output.txt ${TT}/input.spec)
+add_test (NAME toast WORKING_DIRECTORY ${TEA} COMMAND ssc-test -v -x ${CMAKE_CURRENT_BINARY_DIR}/ssc -f ${TT}/ssc.lst)

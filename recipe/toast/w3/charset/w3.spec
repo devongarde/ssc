@@ -1,4 +1,4 @@
--f ../toast/w3/charset/w3.conf
+-N 1 -f ../toast/w3/charset/w3.conf
 
 PASS ../toast/w3/charset/charset_mismatch-http_meta.html.utf8
 0 charset_mismatch charset_used

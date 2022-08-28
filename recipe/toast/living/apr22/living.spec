@@ -1,4 +1,4 @@
--f ../toast/living/apr22/living.conf
+-N 1 -f ../toast/living/apr22/living.conf
 
 PASS ../toast/living/apr22/404.html
 12 bespoke_obsolete

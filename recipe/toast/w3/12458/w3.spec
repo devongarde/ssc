@@ -1,4 +1,4 @@
--f ../toast/w3/12458/w3.conf
+-N 1 -f ../toast/w3/12458/w3.conf
 
 PASS ../toast/w3/12458/1574-charset_iso_8859_7_greek.html
 2 html_superseded
