@@ -25,7 +25,7 @@ class fred_t
 {   mid_t tls_; // must not be modified once threading starts
     vtls_t vtls_;
     ::std::atomic_int count_ = 0;
-    ::std::atomic_int active_ = 0;
+    ::std::atomic_int inactive_ = 0;
     ::std::atomic_bool started_ = false;
     ::std::atomic_bool abandon_ = false;
     vth_t vt_;
@@ -33,14 +33,23 @@ class fred_t
     void fred_minion (nitpick* ticks);
 public:
     bool init (nitpick& nits);
+    void await ();
     void done ();
     bool inited () const noexcept { return ! tls_.empty (); }
     bool abandoned () const noexcept { return abandon_; }
     bool started () const noexcept { return started_; }
     void abandon ();
-    void active () noexcept { try { active_ += 1; } catch (...) { /* abort */ } }
-    void inactive () noexcept { try { active_ -= 1; } catch (...) { /* abort */ } }
-    bool activity () const noexcept { return active_ > 0; }
+    void active () noexcept
+    {   try
+        {   inactive_ -= 1;
+            PRESUME (inactive_ >= 0, __FILE__ , __LINE__); }
+        catch (...) { /* abort? */ } }
+    void inactive () noexcept
+    {   try
+        {   inactive_ += 1; }
+        catch (...) { /* abort? */ } }
+    bool activity () const noexcept
+    {   return (count_ > 0) && (inactive_ < count_); }
     fred_tls& tls ();
     const fred_tls& tls () const;
     void insert_tls (const int n, const ::std::thread::id& fid);
@@ -55,7 +64,10 @@ public:
     void set_dear (const bool b) { if (inited ()) tls ().dear_ = b; }
     int count () const noexcept { return count_; }
     void one_more () noexcept { ++count_; }
-    void one_less () noexcept;
+    void one_less () noexcept { if (count_ > 0) --count_; }
+    void yield ()
+    {   if (count_ > 0) ::std::this_thread::yield (); }
+    static void onexit ();
     static int suggested ();
     static int no_more_than (); };
 
@@ -70,9 +82,9 @@ struct faffing
     faffing operator = (faffing&& ) = delete; };
 
 struct counting
-{   counting () { fred.one_more (); fred.active (); }
+{   counting () { fred.one_more (); }
     counting (const counting& ) = delete;
     counting (counting&& ) = delete;
-    ~counting () { fred.inactive (); fred.one_less (); }
+    ~counting () { fred.one_less (); }
     counting operator = (const counting& ) = delete;
     counting operator = (counting&& ) = delete; };

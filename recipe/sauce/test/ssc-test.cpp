@@ -552,6 +552,7 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                 {   if (! previous.empty ()) if (! check_file_stats (previous, file, page_stats)) { ++failed; res = false; }
                     file.clear (); }
                 file_stats = overall_stats = false; continue; }
+            if (results.at (r).at (0) == COMMENT_CHAR) continue;
             if (overall_stats) { overall.push_back (results.at (r)); continue; }
             if (file_stats) { file.push_back (results.at (r)); continue; }
             ::boost::algorithm::split (line, results.at (r), ::boost::algorithm::is_space (), ::boost::algorithm::token_compress_on);

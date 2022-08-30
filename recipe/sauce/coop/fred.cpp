@@ -52,17 +52,23 @@ void fred_t::insert_tls (const int n, const ::std::thread::id& fid)
 
 bool fred_t::dqe ()
 {   q_entry t (st_max);
-    if (! q.pop (t))
-        ::std::this_thread::yield ();
-    else if (t.valid ())
+    const bool maestro = (tls ().fred_ == fred_maestro);
+    while (! q.pop (t))
+    {   if (maestro || (count_ == 0)) return false;
+        faffing f;
+        while (q.empty ())
+        {   if (abandon_) return false;
+//            if (! q.activity ()) return false;
+            ::std::this_thread::yield (); } }
+    if (t.valid ())
     {   if (context.tell (es_detail))
         {   lox l (lox_nits);
             t.ticks_ -> pick (nit_detail, es_detail, ec_fred, "Fred ", ::std::this_thread::get_id (), " stage ", t.stage_, " processing ", t.dir_ -> get_site_path ()); }
-        if (! d_q (t)) return false; }
+        d_q (t); }
     else if (t.ticks_ != nullptr)
     {   lox l (lox_nits);
         t.ticks_ -> pick (nit_kew_borked, es_error, ec_fred, "Fred ", ::std::this_thread::get_id (), " stage ", t.stage_, ", got borked directory"); }
-    return ! abandon_; }
+    return true; }
 
 void fred_t::fred_minion (nitpick* ticks)
 {   counting c;
@@ -75,7 +81,7 @@ void fred_t::fred_minion (nitpick* ticks)
     knickers k (nits, ticks);
     if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_fred, "Starting fred ", i);
     try
-    {   while (! abandon_) dqe (); }
+    {   while (dqe ()); }
     catch (const ::std::system_error& e)
     {   nits.pick (nit_fred_borked, es_catastrophic, ec_fred, "minion system error ", e.what ()); }
     catch (const ::std::exception& e)
@@ -85,10 +91,7 @@ void fred_t::fred_minion (nitpick* ticks)
     if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_fred, "Ending fred ", ::std::this_thread::get_id ()); }
 
 void fred_t::abandon ()
-{   abandon_ = true;
-    for (int i = 0; i < context.fred (); ++i)
-        q.push (q_entry (st_finish));
-    ::std::this_thread::yield (); }
+{   abandon_ = true; }
 
 bool fred_t::init (nitpick& nits)
 {   PRESUME (! fred.inited (), __FILE__, __LINE__);
@@ -120,18 +123,10 @@ bool fred_t::init (nitpick& nits)
             {   nuts.pick (nit_fred_borked, es_catastrophic, ec_fred, "cannot create fred, exception: ", e.what ()); return false; }
             catch (...)
             {   nuts.pick (nit_fred_borked, es_catastrophic, ec_fred, "cannot create fred: unknown exception"); return false; } } }
+    ::std::atexit (fred_t::onexit);
+    while (count_ < qu - 1) ::std::this_thread::yield ();
     started_ = true;
-    ::std::this_thread::yield ();
     return true; }
-
-void fred_t::one_less () noexcept
-{   if (count_ > 0)
-    {   --count_;
-        if (count_ == 0)
-            try
-            {   abandon (); }
-            catch (...)
-            { } } }
 
 void fred_t::done ()
 {   abandon ();
@@ -139,6 +134,15 @@ void fred_t::done ()
         if (i -> get_id () != ::std::this_thread::get_id ())
             if (i -> joinable ())
                 i -> join (); }
+
+void fred_t::await ()
+{   if (context.fred () > 1)
+        while (dqe () || activity ())
+            ::std::this_thread::yield ();
+    done (); }
+
+void fred_t::onexit ()
+{   fred.done (); }
 
 int fred_t::suggested ()
 {   const int hc = ::std::thread::hardware_concurrency ();

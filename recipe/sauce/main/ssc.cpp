@@ -123,6 +123,14 @@ int ciao ()
     if (overall.severity_exceeded ()) return ERROR_STATE;
     return VALID_RESULT; }
 
+void trundle ()
+{   if (context.fred () == 1)
+        while (fred.dqe ());
+    else
+    {   ::std::this_thread::yield ();
+        while (fred.dqe () || q.activity ())
+            ::std::this_thread::yield (); } }
+
 int examine (nitpick& nits)
 {   int res = VALID_RESULT;
     if (context.cgi ())
@@ -167,54 +175,44 @@ int examine (nitpick& nits)
         vd.reserve (vmax);
         for (::std::size_t n = 0; n < vmax; ++n)
             vd.emplace_back (new directory (virt.at (n)));
+        nitpick nuts;
+        knickers k (nuts, &nits);
         if (! fred.init (nits)) res = ERROR_STATE;
-        else
-        {   nitpick nuts;
-            knickers k (nuts, &nits);
-            for (::std::size_t n = 0; n < vmax; ++n)
-            {   try
-                {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
-                    VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                    if (! vd.at (n) -> scan (&nits, virt.at (n) -> get_site_path ()))
-                    {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (n) -> get_disk_path (), " failed");
-                        res = ERROR_STATE; } }
-                catch (const ::std::system_error& e)
-                {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised system error ", e.what ());
+        else try
+        {   for (::std::size_t x = 0; (res != ERROR_STATE) && (x < vmax); ++x)
+            {   VERIFY_NOT_NULL (vd.at (x), __FILE__, __LINE__);
+                VERIFY_NOT_NULL (virt.at (x), __FILE__, __LINE__);
+                if (! vd.at (x) -> scan (&nits, virt.at (x) -> get_site_path ()))
+                {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (x) -> get_disk_path (), " failed");
+                    res = ERROR_STATE; } }
+            if (res != VALID_RESULT) fred.abandon ();
+            else
+            {   PRESUME (vd.size () > 0, __FILE__, __LINE__);
+                trundle ();
+                ::std::size_t n = integrate_virtuals (virt, vd);
+                if (n != 0)
+                {   nuts.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());
                     res = ERROR_STATE; }
-                catch (const ::std::exception& e)
-                {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised the exception ", e.what ());
-                    res = ERROR_STATE; }
-                catch (...)
-                {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scanning ", virt.at (n) -> get_disk_path (), " raised an exception");
-                    res = ERROR_STATE; }
-                if (res == ERROR_STATE) fred.abandon (); }
-            if (res == VALID_RESULT)
-            {   if (fred.abandoned ()) res = ERROR_STATE;
                 else
-                {   PRESUME (vd.size () > 0, __FILE__, __LINE__);
-                    ::std::this_thread::yield ();
-                    while (fred.dqe ())
-                        if (q.empty () && ! fred.activity ()) break;
-                    ::std::size_t n = integrate_virtuals (virt, vd);
-                    if (n != 0)
-                    {   nuts.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());
-                        res = ERROR_STATE; }
-                    else
-                    {   if (context.dodedu ()) dedu (shadow);
-                        for (n = 0; n < vmax; ++n)
-                        {   VERIFY_NOT_NULL (vd.at (n), __FILE__, __LINE__);
-                            VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
-                            if (vd.at (n) -> empty ())
-                                nuts.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
-                            else
-                                q.push (q_entry (&nits, vd.at (n), st_examine)); }
-                        ::std::this_thread::yield ();
-                        while (fred.dqe ())
-                            if (q.empty () && ! fred.activity ()) break; } } }
-            fred.done ();
+                {   if (context.dodedu ()) dedu (shadow);
+                    for (n = 0; n < vmax; ++n)
+                        if (vd.at (n) -> empty ())
+                            nuts.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
+                        else q.push (q_entry (&nits, vd.at (n), st_folder));
+                    trundle (); } }
+            fred.await ();
             spell_free ();
             close_corpus (nuts);
-            fileindex_save_and_close (nuts); } }
+            fileindex_save_and_close (nuts); }
+        catch (const ::std::system_error& e)
+        {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "system error ", e.what ());
+            res = ERROR_STATE; }
+        catch (const ::std::exception& e)
+        {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "exception ", e.what ());
+            res = ERROR_STATE; }
+        catch (...)
+        {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "unknown exception");
+            res = ERROR_STATE; } }
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     macro -> dump_nits (nits, ns_update, ns_update_head, ns_update_foot);
     macro -> dump_nits (exp, ns_export, ns_export_head, ns_export_foot);

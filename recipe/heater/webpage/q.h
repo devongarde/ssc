@@ -38,10 +38,7 @@ struct q_entry
     {   return (ticks_ == nullptr) || (dir_.get () == nullptr); }
     bool valid () const
     {   return ! empty (); }
-    void swap (q_entry& qe) noexcept
-    {   dir_.swap (qe.dir_);
-        page_.swap (qe.page_);
-        ::std::swap (ticks_, qe.ticks_);
-        ::std::swap (stage_, qe.stage_); } };
+    ::std::string rpt () const;
+    void swap (q_entry& qe) noexcept; };
 
 bool d_q (q_entry& qe);

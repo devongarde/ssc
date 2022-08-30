@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     msg += p.filename ().string ();
     msg += " line ";
     msg += ::boost::lexical_cast < ::std::string > (line);
+    msg += " (aborting)";
     return msg; }
 
 [[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line)

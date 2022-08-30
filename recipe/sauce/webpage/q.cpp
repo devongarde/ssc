@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/q.h"
 
 const char* stage_name [] =
-{   "initialising ", "scanning ", "processing ", "finishing ", "max " };
+{   "initialising ", "scanning ", "processing ", "reviewing ", "max " };
 
 bool d_q (q_entry& qe)
 {   VERIFY_NOT_NULL (qe.ticks_, __FILE__, __LINE__);
@@ -35,26 +35,20 @@ bool d_q (q_entry& qe)
     nitpick nits;
     knickers k (nits, qe.ticks_);
     if (context.progress ())
-    {   ::std::string msg;
-        if (qe.page_.empty ())
-        {   msg = ::gsl::at (stage_name, qe.stage_);
-            msg += qe.dir_ -> get_disk_path ().string (); }
-        else
-        {   msg = "reviewing ";
-            msg += (qe.dir_ -> get_disk_path () / qe.page_).string (); }
-        msg += "\n";
+    {   ::std::string msg (::gsl::at (stage_name, qe.stage_));
+        msg += qe.dir_ -> get_disk_path ().string () + "\n";
         ::std::cout << msg; }
     try
     {   switch (qe.stage_)
         {   case st_scan :
                 qe.dir_ -> scan (qe.ticks_, qe.dir_ -> get_site_path ());
                 break;
-            case st_examine :
-                if (qe.page_.empty ()) qe.dir_ -> examine (qe.ticks_, qe.dir_);
-                else qe.dir_ -> examine_page (qe.ticks_, qe.page_);
+            case st_file :
+                qe.dir_ -> examine_page (qe.ticks_, qe.page_);
                 break;
-            case st_finish :
-                res = false;
+            case st_folder :
+                PRESUME (qe.page_.empty (), __FILE__, __LINE__);
+                qe.dir_ -> examine (qe.ticks_, qe.dir_);
                 break;
             default :
                 nits.pick (nit_scan_failed, es_catastrophic, ec_fred, "internal error: invalid queue stage ", qe.stage_);
@@ -70,3 +64,21 @@ bool d_q (q_entry& qe)
     {   nits.pick (nit_scan_failed, es_catastrophic, ec_fred, qe.stage_, " ", qe.dir_ -> get_disk_path (), " raised an unknown exception");
         res = false; }
     return res; }
+
+::std::string q_entry::rpt () const
+{   ::std::ostringstream ss;
+    switch (stage_)
+    {   case st_init : ss << "init "; break;
+        case st_scan : ss << "scan "; break;
+        case st_file : ss << "file "; break;
+        case st_folder : ss << "folder "; break;
+        default : ss << "?? "; break; }
+    if (dir_.get () != nullptr) ss << dir_ -> get_site_path ();
+    ss << page_;
+    return ss.str (); }
+
+void q_entry::swap (q_entry& qe) noexcept
+{   dir_.swap (qe.dir_);
+    page_.swap (qe.page_);
+    ::std::swap (ticks_, qe.ticks_);
+    ::std::swap (stage_, qe.stage_); }

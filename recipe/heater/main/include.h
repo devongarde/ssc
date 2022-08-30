@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 3
-#define VERSION_STRING "0.1.3"
+#define VERSION_RELEASE 4
+#define VERSION_STRING "0.1.4"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -491,6 +491,9 @@ typedef uint64_t flags_t; // at least 64 bits
 #include "main/abort.h"
 
 #endif // SCC_TEST
+
+#define COMMENT_CHAR '/'
+#define COMMENT_STRCHAR "/"
 
 #ifdef NOCURL
 #define CURLY
