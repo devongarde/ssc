@@ -23,15 +23,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "webpage/q.h"
 #include "coop/kew.h"
+#include "coop/kew.h"
+#include "main/output.h"
 
 kew q;
 
 bool kew::pop (q_entry& t)
 {   if (fred.abandoned ()) return false;
-    faffing f;
     lox l (lox_q);
     if (kew_.empty ())
-    {   empty_ = true; return false; };
+    {   empty_ = true; return false; }
     t.swap (kew_.front ());
     kew_.pop_front ();
+    empty_ = kew_.empty ();
     return true; }

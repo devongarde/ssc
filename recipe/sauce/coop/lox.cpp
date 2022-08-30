@@ -26,8 +26,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 typedef ::std::array < ::std::mutex, lox_error > vmx_t;
 vmx_t vmx;
 
+bool dont_bother ()
+{   if (context.fred () == 1) return true;
+    return ! fred.started (); }
+
 lox::lox (const e_lox l)
-{   if (! fred.started ()) return;
+{   if (dont_bother ()) return;
     PRESUME (l < lox_error, __FILE__, __LINE__);
     PRESUME (l != lox_flox, __FILE__, __LINE__);
     PRESUME (l != lox_dear, __FILE__, __LINE__);
@@ -46,7 +50,7 @@ lox::lox (const e_lox l)
     }
 
 flox::flox (const e_lox l)
-{   if (! fred.started ()) return;
+{   if (dont_bother ()) return;
     PRESUME (l == lox_flox, __FILE__, __LINE__);
     PRESUME (! fred.get_flox (), __FILE__, __LINE__);
     fred.set_flox (true);
@@ -60,7 +64,7 @@ flox::flox (const e_lox l)
     }
 
 dear::dear (const e_lox l)
-{   if (! fred.started ()) return;
+{   if (dont_bother ()) return;
     PRESUME (l == lox_dear, __FILE__, __LINE__);
     PRESUME (! fred.get_dear (), __FILE__, __LINE__);
     fred.set_dear (true);
@@ -80,7 +84,7 @@ void whoopsie (const e_lox l, const char * sz, const ::std::exception& e) noexce
     {   fprintf (stderr, "exception in mutex exception processing; aborting."); } }
 
 lox::~lox ()
-{   if (! fred.started ()) return;
+{   if (dont_bother ()) return;
     if (un_) return;
     const e_lox l = l_;
     try
@@ -89,7 +93,7 @@ lox::~lox ()
         ::std::cout << ::std::this_thread::get_id () << " unlocking " << l_ << ::std::endl;
 #endif // RPT_LOX
        l_ = lox_none;
-        vmx.at (l).unlock ();
+        vmx.at (l).unlock (); // hey, mr. vc, have you spotted that try ... catch construction??
         fred.set_lox (lox_none);
         return; }
     catch (const ::std::system_error& e)
@@ -101,7 +105,7 @@ lox::~lox ()
     GRACELESS_CRASH (__FILE__, __LINE__); }
 
 flox::~flox ()
-{   if (! fred.started ()) return;
+{   if (dont_bother ()) return;
     try
     {   PRESUME (fred.get_flox (), __FILE__, __LINE__);
 #ifdef RPT_LOX
@@ -119,7 +123,7 @@ flox::~flox ()
     GRACELESS_CRASH (__FILE__, __LINE__); }
 
 dear::~dear ()
-{   if (! fred.started ()) return;
+{   if (dont_bother ()) return;
     try
     {   PRESUME (fred.get_dear (), __FILE__, __LINE__);
 #ifdef RPT_LOX

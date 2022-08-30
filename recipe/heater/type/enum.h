@@ -3879,7 +3879,7 @@ typedef enum { ssi_encoding_base64, ssi_encoding_none, ssi_encoding_entity, ssi_
 typedef enum { ssi_DATE_GMT, ssi_DATE_LOCAL, ssi_DOCUMENT_ARGS, ssi_DOCUMENT_NAME, ssi_DOCUMENT_PATH_INFO, ssi_DOCUMENT_URI, ssi_LAST_MODIFIED, ssi_QUERY_STRING_UNESCAPED, ssi_USER_NAME, ssi_error } e_ssi_env;
 typedef enum { ssi_f_file, ssi_f_virtual } e_ssi_f;
 typedef enum { ssi_include_file, ssi_include_onerror, ssi_include_virtual } e_ssi_include;
-typedef enum { st_init, st_scan, st_examine, st_finish, st_max } e_stage; // must be in processing order
+typedef enum { st_init, st_scan, st_file, st_folder, st_max } e_stage; // must be in processing order
 typedef enum { se_start, se_end } e_startend;
 typedef enum { stt_stitch, stt_nostitch } e_stitchtiles;
 typedef enum { sc_keep, sc_discard } e_streamedcontents;

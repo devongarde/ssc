@@ -38,6 +38,8 @@ public:
         kew_.emplace_back (t); }
     bool empty () const
     {   return empty_; }
+    bool activity () const
+    {   return (! empty_) || fred.activity (); }
     bool pop (q_entry& t); };
 
 extern kew q;

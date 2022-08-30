@@ -260,7 +260,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL CGI ",W", ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
         (GENERAL DONT CGI, ::boost::program_options::bool_switch (), "Process a local static website.")
         (GENERAL CSS_OPTION, ::boost::program_options::bool_switch (), "Process .css files (for class names only).")
-        (GENERAL DEFTHRD ",N", ::boost::program_options::value < int > () -> default_value (0), "If no setting specifies the thread count, set it to this.")
+        (GENERAL DEFTHRD ",N", ::boost::program_options::value < int > (), "If no setting specifies the thread count, set it to this.")
         (GENERAL DONT CSS_OPTION, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated.")
         (GENERAL DATAPATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "Root directory for most " PROG " files.")
@@ -289,7 +289,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
         (GENERAL TEST ",T", ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
         (GENERAL DONT TEST, ::boost::program_options::bool_switch (), "Output in format specified by other switches.")
-        (GENERAL THREAD ",n", ::boost::program_options::value < int > () -> default_value (fred_t::suggested ()), "Number of threads (default appropriate for the hardware).")
+        (GENERAL THREAD ",n", ::boost::program_options::value < int > (), "Number of threads (default appropriate for the hardware).")
         (GENERAL VERBOSE ",v", ::boost::program_options::value < ::std::string > (), "Output these nits and worse. Values: '"
             CATASTROPHE "', '" ERR "', '" WARNING "' (default), '" INFO  "', '" COMMENT  "', or 0 for silence.")
 
@@ -1402,7 +1402,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [LINKS XLINK].as < bool > ()) res << LINKS XLINK "\n";
     if (var_ [LINKS DONT XLINK].as < bool > ()) res << LINKS DONT XLINK "\n";
 
-    if (var_.count (MATH CORE)) res << MATH CORE ": " << var_ [MATH DRAFT].as < bool > () << "\n";
+    if (var_.count (MATH CORE)) res << MATH CORE ": " << var_ [MATH CORE].as < bool > () << "\n";
     if (var_.count (MATH DRAFT)) res << MATH DRAFT ": " << var_ [MATH DRAFT].as < int > () << "\n";
     if (var_.count (MATH VERSION)) res << MATH VERSION ": " << var_ [MATH VERSION].as < int > () << "\n";
 

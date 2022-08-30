@@ -86,7 +86,7 @@
 ./ssc -f ../toast/other/abbr/abbr.conf
 ./ssc -f ../toast/other/aria/aria.conf
 ./ssc -f ../toast/other/base/base.conf
-./ssc -f ../toast/other/lob/blob.conf
+./ssc -f ../toast/other/blob/blob.conf
 ./ssc -f ../toast/other/characters/chars.conf
 ./ssc -f ../toast/other/CSS/css.conf
 ./ssc -f ../toast/other/dfn/dfn.conf
@@ -131,9 +131,9 @@
 ./ssc -f ../toast/shadow/update/update.conf
 ./ssc -f ../toast/snippet/conf/snippet.conf
 ./ssc -f ../toast/snippet/kiwi/snippet.conf
-./ssc -f ../toast/spell/case/ssi.conf
-./ssc -f ../toast/spell/noicu/ssi.conf
-./ssc -f ../toast/spell/spell/ssi.conf
+./ssc -f ../toast/spell/case/spell.conf
+./ssc -f ../toast/spell/noicu/spell.conf
+./ssc -f ../toast/spell/spell/spell.conf
 ./ssc -f ../toast/stats/detail/stats.conf
 ./ssc -f ../toast/stats/single/stats.conf
 ./ssc -f ../toast/stats/summary/stats.conf

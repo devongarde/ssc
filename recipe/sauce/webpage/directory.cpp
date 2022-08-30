@@ -271,11 +271,11 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
     if (context.shadow_any ()) shadow_folder (nits);
     sstr_t shadowed;
     for (auto i : content_)
-        if (i.second != nullptr) q.push (q_entry (ticks, i.second, st_examine));
+        if (i.second != nullptr) q.push (q_entry (ticks, i.second, st_folder));
         else
         {   shadowed.emplace ((get_shadow_path () / i.first).string ());
             if (context.shadow_files () || is_webpage (i.first, context.extensions ()))
-                q.push (q_entry (ticks, me_me_me, st_examine, i.first)); }
+                q.push (q_entry (ticks, me_me_me, st_file, i.first)); }
     ::std::this_thread::yield ();
     if (context.shadow_files ())
     {   sstr_t delete_me;
