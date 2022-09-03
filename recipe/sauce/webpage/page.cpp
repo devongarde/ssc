@@ -127,7 +127,7 @@ bool page::parse (::std::string& content)
         const html_version v (html_5_3);
         content = parse_ssi (nits_, v, *this, ssi_, content, updated_); }
     const bool res = nodes_.parse (nits_, content);
-    stats_.mark_file (::gsl::narrow_cast < unsigned > (content.size ()));
+    stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ()));
     return res; }
 
 void page::examine ()

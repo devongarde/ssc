@@ -372,7 +372,7 @@ void element::examine_input ()
                         if (node_.version () < html_5_2)
                         {   pick (nit_input_bad_aria, ed_50, "4.10.5.1.6 Password state", es_error, ec_attribute, "do not set ROLE to 'textbox', it is the default");
                             break; }
-                        [[fallthrough]];
+                        FALLTHROUGH;
                     default :
                         pick (nit_input_bad_aria, ed_52, "4.10.5.1.6 Password state", es_error, ec_attribute, "invalid <INPUT> ROLE");
                         break; }

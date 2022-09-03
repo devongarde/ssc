@@ -579,7 +579,7 @@ bool linkarg_set_value (nitpick& nits, const html_version& v, const ::std::strin
         switch (examine_value < t_linkparam > (nits, v, param))
         {   case lp_rev :
                 nits.pick (nit_bad_link_pragma, ed_rfc_8288, "3. Link Serialisation in HTTP Headers", es_warning, ec_type, "rev is deprecated");
-                [[fallthrough]];
+                FALLTHROUGH;
             case lp_rel :
                 if (arg.find_first_not_of (ALPHANUMERIC) != ::std::string::npos)
                 {   nits.pick (nit_nocando, ed_rfc_8288, "3. Link Serialisation in HTTP Headers", es_info, ec_type, "apologies, but ", PROG, " cannot verify this rel/rev");

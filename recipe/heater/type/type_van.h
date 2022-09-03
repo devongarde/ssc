@@ -55,7 +55,7 @@ template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
                 {   tidy_string < t_clear30 > :: status (s_invalid);
                     return; }
                 if (args.size () == 1) return;
-                start = arg.find (::gsl::at (args, 1)); }
+                start = arg.find (GSL_AT (args, 1)); }
             type_master < t_measure > m;
             m.set_value (nits, v, arg.substr (0, start));
             if (m.good ()) return; }
@@ -508,11 +508,11 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
         bool res = true;
         const ::std::size_t max = xs.size ();
         for (::std::size_t n = 0; n < max; ++n)
-        {   ::gsl::at (value_, n).set_value (nits, v, ::gsl::at (xs, n));
-            if (::gsl::at (value_, n).invalid ()) res = false;
-            else if (::gsl::at (value_, n).good ())
-            {   if (::gsl::at (value_, n).has_width ()) has_width_ = true;
-                if (::gsl::at (value_, n).has_density ()) has_density_ = true; } }
+        {   GSL_AT (value_, n).set_value (nits, v, GSL_AT (xs, n));
+            if (GSL_AT (value_, n).invalid ()) res = false;
+            else if (GSL_AT (value_, n).good ())
+            {   if (GSL_AT (value_, n).has_width ()) has_width_ = true;
+                if (GSL_AT (value_, n).has_density ()) has_density_ = true; } }
         if (! res)
         {   if (max < 2) nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "SRCSET takes a comma separated list of values, each a url followed by, optionally, a space and a width or a density");
             return false; }
@@ -523,18 +523,18 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
                     return false; }
                 else for (::std::size_t x = 0; x < max - 1; ++x)
                     for (::std::size_t y = x+1; y < max; ++y)
-                        if ((::gsl::at (value_, x).density_ > 0.0) && (::gsl::at (value_, x).density_ == ::gsl::at (value_, y).density_))
-                            if (::gsl::at (value_, x).density_ == 1.0)
+                        if ((GSL_AT (value_, x).density_ > 0.0) && (GSL_AT (value_, x).density_ == GSL_AT (value_, y).density_))
+                            if (GSL_AT (value_, x).density_ == 1.0)
                             {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "in a SRCSET the default density is 1.0, which may only occur once");
                                 return false; }
                             else
-                            {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each density in a SRCSET must be unique (", ::gsl::at (value_, x).density_, " is repeated)");
+                            {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each density in a SRCSET must be unique (", GSL_AT (value_, x).density_, " is repeated)");
                                 return false; }
             if (has_width_)
                 for (::std::size_t x = 0; x < max - 1; ++x)
                     for (::std::size_t y = x+1; y < max; ++y)
-                        if ((::gsl::at (value_, x).width_ > 0) && (::gsl::at (value_, x).width_ == ::gsl::at (value_, y).width_))
-                        {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each width in a SRCSET must be unique (", ::gsl::at (value_, x).width_, " is repeated)");
+                        if ((GSL_AT (value_, x).width_ > 0) && (GSL_AT (value_, x).width_ == GSL_AT (value_, y).width_))
+                        {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "each width in a SRCSET must be unique (", GSL_AT (value_, x).width_, " is repeated)");
                             return false; } }
         return res; }
     bool has_width () const noexcept { return has_width_; }

@@ -238,7 +238,7 @@ void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& w
         case elem_script :
         case elem_style :
         case elem_xmp : allspace = ! node_.is_closure ();
-            [[fallthrough]];
+            FALLTHROUGH;
         default :
             ss << "<";
             was_closure = node_.is_closure ();

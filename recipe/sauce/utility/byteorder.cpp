@@ -32,7 +32,7 @@ byte_order_mark get_byte_order (::std::string& str)
 #pragma warning (push, 3)
 #pragma warning (disable : 26490)
 #endif //  _MSC_VER
-    {   const auto s = ::gsl::span (reinterpret_cast < const unsigned char* > (str.data ()), len);
+    {   const auto s = GSL_SPAN (reinterpret_cast < const unsigned char* > (str.data ()), len);
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif //  _MSC_VER

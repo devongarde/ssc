@@ -6,9 +6,13 @@ https://ssc.lu/
 
 Introduction
 ============
-SSC can be built on various unii with CMake and gcc or clang, or with
-Visual Studios 2019 / 2022 under Windows. I have built & tested a
-64-bit version in selected OSs on intel/amd architecture.
+SSC can be built on various unii with CMake and gcc or clang,
+supporting C++ 17 or better, or with Visual Studios 2017 / 2019 / 2022
+under Windows. I have built & tested a 64-bit version in selected OSs
+on intel/amd architecture.
+
+Although ssc builds and runs with older compilers on older systems, not
+all features are available on them.
 
 
 Libraries
@@ -18,9 +22,12 @@ Common dependencies
 -------------------
 You need boost version 1.75 or better (https://boost.org), a recent
 version of the ICU libraries (https://icu-project.org/), Microsoft's
-GSL library (https://github.com/Microsoft/GSL), and a recent version of
-libcurl (https://curl.se/). Usually, an Operating System's package
-system has an appropriate version ready to install.
+GSL library (https://github.com/Microsoft/GSL) (or define NO_GSL), and
+a recent version of libcurl (https://curl.se/)*. Usually, an Operating
+System's package system has an appropriate version ready to install.
+
+*libcurl requires a thread-safe underlying SSL library: see
+https://curl.se/libcurl/c/threadsafe.html
 
 hunspell
 --------
@@ -43,8 +50,8 @@ Building
 Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
-appropriate .sln file, then build. Only Visual Studios 2019 / 2022,
-64 bit, have been built & tested, for intel Windows 8.1, 10 & 11.
+appropriate .sln file, then build. Only Visual Studios 2017 / 2019 /
+2022, 64 bit, have been built & tested, for intel Windows 10 & 11.
 I've not built ssc using CMake under Windows.
 
 Note the included solutions presume Microsoft's VCPKG manager. There
@@ -86,10 +93,11 @@ they can't find files they're supposed to delete, which is a bit silly
 given that means things are already in the desired state.
 
 The following have been successfully built as x64 amd/intel:
-FreeBSD:  13.1
+FreeBSD:  12.3 / 13.1
 Linux:    Alma Linux 9, AOSC, Centos 8 / 9*, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
-MacOS:    Monterey, Big Sur, Catalina, Mojave
+MacOS:    Monterey, Big Sur, Catalina, Mojave, High Sierra, Sierra,
+          and El Capitan
 OpenBSD:  7.1 / 7.0 / 6.9
 
 * Because Centos 9 doesn't offer lsb-release, the appropriate CMake
@@ -100,6 +108,30 @@ OpenBSD
 -------
 You will need to increase significantly the available memory setting
 for your build account in login.conf, if you have not done so already.
+
+
+Testing
+=======
+
+Windows
+-------
+Under Visual Studio, run ssc??-test using these arguments:
+
+  -v -x $(ProjectDir)..\..\ssc.exe
+    -f $(ProjectDir)..\toast\ssc-test\ssc.lst
+(all one line)
+
+Add '-d' if you want the test utility to retain intemediate files.
+
+CMake
+-----
+Under CMake, run ctest:
+  ctest -V
+
+Dimitude
+--------
+The testing utility is rather stupid; it will test features that are
+not built, causing failures.
 
 
 Supporting libraries

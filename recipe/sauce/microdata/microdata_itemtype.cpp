@@ -30,8 +30,8 @@ itemtype_index make_itemtype_index (const e_schema_type p)
 
 itemtype_index make_itemtype_index (const e_property p)
 {   PRESUME (p <= first_illegal, __FILE__, __LINE__);
-    if (is_mf_class (p)) return ::gsl::narrow_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_microformat) << uint32_category_shift);
-    if (is_mf_rel (p)) return ::gsl::narrow_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << uint32_category_shift);
+    if (is_mf_class (p)) return GSL_NARROW_CAST < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_microformat) << uint32_category_shift);
+    if (is_mf_rel (p)) return GSL_NARROW_CAST < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << uint32_category_shift);
     return 0; }
 
 itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name, const bool propped)

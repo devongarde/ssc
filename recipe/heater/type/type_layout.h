@@ -98,8 +98,8 @@ template < > struct type_master < t_wxhs > : type_base < ::std::string, t_wxhs >
         value_.resize (xs.size ());
         bool res = true;
         for (::std::size_t n = 0; n < xs.size (); ++n)
-        {   ::gsl::at (value_, n).set_value (nits, v, ::gsl::at (xs, n));
-            if (::gsl::at (value_, n).invalid ()) res = false; }
+        {   GSL_AT (value_, n).set_value (nits, v, GSL_AT (xs, n));
+            if (GSL_AT (value_, n).invalid ()) res = false; }
         return res; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (parse (nits, v, s)) type_base < ::std::string, t_wxhs > :: status (s_good);

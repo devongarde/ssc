@@ -114,13 +114,13 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
                 if (zero_ok) nits.pick (nit_empty, es_comment, ec_io, name.string (), " is empty");
                 else nits.pick (nit_empty, es_error, ec_io, name.string (), " is empty");
             else
-            {   void_ptr vp (alloc_void_ptr (::gsl::narrow_cast < ::std::size_t > (mz)));
+            {   void_ptr vp (alloc_void_ptr (GSL_NARROW_CAST < ::std::size_t > (mz)));
                 if (vp.get () == nullptr) nits.pick (nit_out_of_memory, es_catastrophic, ec_io, "out of memory reading ", name.string ());
                 else
                 {   fp = fopen (name.string ().c_str (), "rb");
                     if (fp == nullptr) nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", name.string ());
                     else
-                    {   const ::std::size_t rd = fread (vp.get (), 1, ::gsl::narrow_cast < ::std::size_t > (mz), fp);
+                    {   const ::std::size_t rd = fread (vp.get (), 1, GSL_NARROW_CAST < ::std::size_t > (mz), fp);
                         fclose (fp); // if this fails there's sod all we can do about it, so ... :-)
                         fp = nullptr;
                         if (rd == mz) { sz = mz; return vp; }
@@ -480,7 +480,7 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
     constexpr int maxish = DEFAULT_LINE_LENGTH - 16;
     if ((to - from) > INT8_MAX) return ::std::string (from, to);
-    const int len = ::gsl::narrow_cast < int > (to - from);
+    const int len = GSL_NARROW_CAST < int > (to - from);
     if (len >= maxish) return ::std::string (from, to);
     const int halfish = (maxish - len) / 2;
     ::std::string pre, post;

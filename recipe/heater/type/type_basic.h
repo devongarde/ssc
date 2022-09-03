@@ -75,10 +75,10 @@ template < > struct type_master < t_illegal > : type_base < mono, t_illegal >
     void set_value (nitpick& nits, const html_version& , const ::std::string& )
     {   nits.pick (nit_evermore, es_error, ec_type, "always illegal");
         type_base < mono, t_illegal > :: status (s_invalid); }
-    static mono default_value () noexcept { return ::gsl::narrow_cast <mono> (0); }
+    static mono default_value () noexcept { return GSL_NARROW_CAST <mono> (0); }
     mono get () const
     {   GRACEFUL_CRASH (__FILE__, __LINE__);
-        UNREACHABLE (return ::gsl::narrow_cast <mono> (0)); } };
+        UNREACHABLE (return GSL_NARROW_CAST <mono> (0)); } };
 
 template < > struct type_master < t_loopie > : tidy_string < t_loopie >
 {   using tidy_string < t_loopie > :: tidy_string;

@@ -60,8 +60,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/kew.h"
 #include "coop/knickers.h"
 
+::std::string build_info, test_title, simple_title, full_title;
+
 void init (nitpick& nits)
-{   init_cache ();
+{   
+//#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":" OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+//#define BASE_TITLE   FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n"
+//#define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
+//#define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
+//#define TEST_TITLE   FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
+
+    build_info = DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":";
+    build_info += OS;
+    build_info += ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER;
+    simple_title = FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n" COPYRIGHT_TEXT "\n";
+    full_title = FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n" COPYRIGHT "\n[" __DATE__ " " __TIME__ "] [" DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":";
+    full_title += build_info + COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER "]" "\n";
+    test_title = FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n";
+
+    init_cache ();
     init_css ();
     init_macro ();
     init_itemid ();
@@ -70,6 +87,7 @@ void init (nitpick& nits)
     init_crosslinks ();
     nits_init ();
     nits.set_context (0, PROG " initialisation");
+    types_init (nits);
     spell_init (nits);
     lingo::init (nits);
     state_init ();
@@ -84,7 +102,6 @@ void init (nitpick& nits)
     fileindex_init ();
     family_init (nits);
     sibling_init (nits);
-    types_init (nits);
     parentage_init (nits);
     protocol::init (nits);
     sch::init (nits);
@@ -251,15 +268,15 @@ int main (int argc, char** argv)
 #pragma warning (pop)
 #endif // _MSC_VER
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-        macro -> set (nm_context_build, BUILD_INFO);
+        macro -> set (nm_context_build, build_info);
         macro -> set (nm_run_args, args);
-        context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" BUILD_INFO "]\n");
+        context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + build_info + "]\n");
         res = context.parameters (nuts, argc, argv);
 #ifdef DEBUG
         avm_elem_crosscheck ();
 #endif
         if (context.todo () == do_simple)
-        {   ::std::cout << szFullTitle;
+        {   ::std::cout << full_title;
             ::std::cout << context.domsg ();
             return VALID_RESULT; }
         if (context.progress ()) ::std::cout << "\npreparing\n";

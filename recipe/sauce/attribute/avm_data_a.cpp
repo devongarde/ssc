@@ -234,6 +234,7 @@ hav_t havt_annotation [] =
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation, a_name },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation, a_src },
     MATH3_STANDARD_ATTRIBUTES (elem_annotation),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_annotation),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_annotation_xml [] =
@@ -243,6 +244,7 @@ hav_t havt_annotation_xml [] =
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation_xml, a_name },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation_xml, a_src },
     MATH3_STANDARD_ATTRIBUTES (elem_annotation_xml),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_annotation_xml),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_applet [] =

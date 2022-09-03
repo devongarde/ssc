@@ -33,20 +33,20 @@ template < > struct type_master < t_hunit > : tidy_string < t_hunit > // verify 
                 ::std::string units (ss.substr (pos));
                 switch (units.length ())
                 {   case 1 :
-                        if (::gsl::at (units, 0) == '%') return;
+                        if (GSL_AT (units, 0) == '%') return;
                         break;
                     case 2 :
-                        switch (::gsl::at (units, 0))
+                        switch (GSL_AT (units, 0))
                         {   case 'c' :
                             case 'e' :
                             case 'm' :
-                                if (::gsl::at (units, 1) == 'm') return;
+                                if (GSL_AT (units, 1) == 'm') return;
                                 break;
                             case 'i' :
-                                if (::gsl::at (units, 1) == 'n') return;
+                                if (GSL_AT (units, 1) == 'n') return;
                                 break;
                             case 'p' :
-                                if ((::gsl::at (units, 1) == 'c') || (::gsl::at (units, 1) == 't') || (::gsl::at (units, 1) == 'x')) return;
+                                if ((GSL_AT (units, 1) == 'c') || (GSL_AT (units, 1) == 't') || (GSL_AT (units, 1) == 'x')) return;
                                 break;
                             default :
                                 break; }
@@ -67,22 +67,22 @@ template < > struct type_master < t_vunit > : tidy_string < t_vunit > // verify 
                 ::std::string units (ss.substr (pos));
                 switch (units.length ())
                 {   case 1 :
-                        if (::gsl::at (units, 0) == '%') return;
+                        if (GSL_AT (units, 0) == '%') return;
                         break;
                     case 2 :
-                        switch (::gsl::at (units, 0))
+                        switch (GSL_AT (units, 0))
                         {   case 'c' :
                             case 'm' :
-                                if (::gsl::at (units, 1) == 'm') return;
+                                if (GSL_AT (units, 1) == 'm') return;
                                 break;
                             case 'e' :
-                                if (::gsl::at (units, 1) == 'x') return;
+                                if (GSL_AT (units, 1) == 'x') return;
                                 break;
                             case 'i' :
-                                if (::gsl::at (units, 1) == 'n') return;
+                                if (GSL_AT (units, 1) == 'n') return;
                                 break;
                             case 'p' :
-                                if ((::gsl::at (units, 1) == 'c') || (::gsl::at (units, 1) == 't') || (::gsl::at (units, 1) == 'x')) return;
+                                if ((GSL_AT (units, 1) == 'c') || (GSL_AT (units, 1) == 't') || (GSL_AT (units, 1) == 'x')) return;
                                 break;
                             default :
                                 break;  }
@@ -113,22 +113,22 @@ template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_spac
                 ::std::string units (ss.substr (pos));
                 switch (units.length ())
                 {   case 1 :
-                        if (::gsl::at (units, 0) == '%') continue;
+                        if (GSL_AT (units, 0) == '%') continue;
                         break;
                     case 2 :
-                        switch (::gsl::at (units, 0))
+                        switch (GSL_AT (units, 0))
                         {   case 'c' :
                             case 'm' :
-                                if (::gsl::at (units, 1) == 'm') continue;
+                                if (GSL_AT (units, 1) == 'm') continue;
                                 break;
                             case 'e' :
-                                if ((::gsl::at (units, 1) == 'x') || (::gsl::at (units, 1) == 'm')) continue;
+                                if ((GSL_AT (units, 1) == 'x') || (GSL_AT (units, 1) == 'm')) continue;
                                 break;
                             case 'i' :
-                                if (::gsl::at (units, 1) == 'n') continue;
+                                if (GSL_AT (units, 1) == 'n') continue;
                                 break;
                             case 'p' :
-                                if ((::gsl::at (units, 1) == 'c') || (::gsl::at (units, 1) == 't') || (::gsl::at (units, 1) == 'x')) continue;
+                                if ((GSL_AT (units, 1) == 'c') || (GSL_AT (units, 1) == 't') || (GSL_AT (units, 1) == 'x')) continue;
                                 break;
                             default :
                                 break;  }

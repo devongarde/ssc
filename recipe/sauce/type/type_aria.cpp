@@ -549,10 +549,10 @@ rolemap default_roles, permitted_roles;
 
 void role_init (nitpick& nits)
 {   type_master < t_role > :: init (nits, role_symbol_table, sizeof (role_symbol_table) / sizeof (symbol_entry < html_version, e_aria_role >));
-    for (::std::size_t i = 0; ::gsl::at (default_role, i).elem_ != elem_undefined; ++i)
-        default_roles.insert (rmv (role_key (::gsl::at (default_role, i).elem_, ::gsl::at (default_role, i).role_), ::gsl::at (default_role, i)));
-    for (::std::size_t i = 0; ::gsl::at (permitted_role, i).elem_ != elem_undefined; ++i)
-        permitted_roles.insert (rmv (role_key (::gsl::at (permitted_role, i).elem_, ::gsl::at (permitted_role, i).role_), ::gsl::at (permitted_role, i))); }
+    for (::std::size_t i = 0; GSL_AT (default_role, i).elem_ != elem_undefined; ++i)
+        default_roles.insert (rmv (role_key (GSL_AT (default_role, i).elem_, GSL_AT (default_role, i).role_), GSL_AT (default_role, i)));
+    for (::std::size_t i = 0; GSL_AT (permitted_role, i).elem_ != elem_undefined; ++i)
+        permitted_roles.insert (rmv (role_key (GSL_AT (permitted_role, i).elem_, GSL_AT (permitted_role, i).role_), GSL_AT (permitted_role, i))); }
 
 bool is_role_lookup (const rolemap& rm, const html_version& v, const e_element elem, const e_aria_role role, flags_t* flags = nullptr)
 {   for (   rmi i = rm.find (role_key (elem, role));

@@ -54,7 +54,7 @@ itemprop_indices make_itemprop_indices (const vsp_t& vsp)
 
 itemprop_index make_itemprop_index (const e_property p)
 {   PRESUME (p <= first_illegal, __FILE__, __LINE__);
-    return ::gsl::narrow_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_microformat) << uint32_category_shift); }
+    return GSL_NARROW_CAST < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_microformat) << uint32_category_shift); }
 
 itemprop_indices make_itemprop_indices (const e_property p)
 {   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
@@ -120,7 +120,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
             case itemprop_schema :
                 return schema_property_name (static_cast < e_schema_property > (ndx_item (ndx)));
             case itemprop_microformat :
-                return prop::name (::gsl::narrow_cast < e_property > (ndx_item (ndx)));
+                return prop::name (GSL_NARROW_CAST < e_property > (ndx_item (ndx)));
             default : break; }
     return "illegal"; }
 

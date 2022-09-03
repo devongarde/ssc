@@ -125,13 +125,13 @@ void element::post_examine_element ()
         case elem_condition :
         case elem_degree :
         case elem_lowlimit :
-        case elem_uplimit : if (page_ -> version ().math () <= math_1) break;
+        case elem_uplimit : if (node_.version ().math () <= math_1) break;
                             check_math_children (1); break;
         case elem_datagrid : examine_datagrid (); break;
         case elem_datalist : examine_datalist (); break;
         case elem_dfn : examine_dfn (); break;
         case elem_dd : examine_dd (); break;
-        case elem_declare : if (page_ -> version ().math () > math_1) check_math_children (1, 2);
+        case elem_declare : if (node_.version ().math () > math_1) check_math_children (1, 2);
                             break;
         case elem_details : examine_details (); break;
         case elem_div : examine_div (); break;
@@ -142,7 +142,7 @@ void element::post_examine_element ()
         case elem_fieldset : examine_fieldset (); break;
         case elem_figure : examine_figure (); break;
         case elem_filter : examine_filter (); break;
-        case elem_fn : if (page_ -> version ().math () > math_1) check_math_children (1);
+        case elem_fn : if (node_.version ().math () > math_1) check_math_children (1);
                        break;
         case elem_font : examine_font (); break;
         case elem_font_face : examine_fontymacfontface (); break;
@@ -158,8 +158,8 @@ void element::post_examine_element ()
         case elem_header : examine_header (); break;
         case elem_img : examine_img (); break;
         case elem_input : examine_input (); break;
-        case elem_interval :if (page_ -> version ().math () <= math_1) break;
-                            [[fallthrough]];
+        case elem_interval :if (node_.version ().math () <= math_1) break;
+             FALLTHROUGH;
         case elem_piece :   check_math_children (2); break;
         case elem_label : examine_label (); break;
         case elem_math : examine_math (); break;

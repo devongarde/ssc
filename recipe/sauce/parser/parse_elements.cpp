@@ -148,7 +148,7 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
             VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
             previous = parent -> last_; } }
     ven_.push_back (element_node (ket.nits_, this, ket.line_, true, parent, id.get (), presumed, ::std::string (ket.start_, ket.end_)));
-    const ::gsl::not_null < element_node* > current = & ven_.back ();
+    GSL_NOT_NULL (element_node*) current = & ven_.back ();
     hook_up (current, previous, parent, matched, false);
     PRESUME (current -> box () == this, __FILE__, __LINE__);
     return current; }
@@ -169,7 +169,7 @@ element_node* elements_node::insert_family_tree (const html_version& v, element_
     VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     previous = parent -> last_;
     ven_.push_back (element_node (defnits, this, ket.line_, false, ancestor, def, presumed, def.name ()));
-    const ::gsl::not_null < element_node*> current = & ven_.back ();
+    GSL_NOT_NULL (element_node*) current = & ven_.back ();
     current -> attributes ().box (current);
     hook_up (current, previous, parent, false, true);
     PRESUME (current -> box () == this, __FILE__, __LINE__);
@@ -281,7 +281,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
                                 break; }
         if (id.unknown ())
         {   ::std::string s (e.start_, e.eofe_);
-            if (::gsl::narrow_cast < size_t > (id.ns ()) < first_runtime_namespace)
+            if (GSL_NARROW_CAST < size_t > (id.ns ()) < first_runtime_namespace)
                 e.nits_.pick (nit_unknown_element, es_warning, ec_element, PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
             else e.nits_.pick (nit_unknown_element, es_comment, ec_element, PROG " does not know <", ::std::string (s), ">, so cannot verify it");
             if (v.xhtml () && (s == "base"))

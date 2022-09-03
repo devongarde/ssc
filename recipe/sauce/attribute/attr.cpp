@@ -1036,13 +1036,13 @@ void add_attributes (const vstr_t& v)
         switch (x)
         {   case 4 :
                 flags2 = lexical < flags_t > :: cast (args.at (3));
-                [[fallthrough]];
+                FALLTHROUGH;
             case 3 :
                 flags = lexical < flags_t > :: cast (args.at (2));
-                [[fallthrough]];
+                FALLTHROUGH;
             case 2 :
                 ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
-                [[fallthrough]];
+                FALLTHROUGH;
             case 1 :
                 attr::extend (::boost::to_lower_copy (args.at (0)), a_custom, ns, context.html_ver (), html_0, flags, flags2); break;
             default : break; } } }

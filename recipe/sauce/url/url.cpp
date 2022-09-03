@@ -36,14 +36,14 @@ bool url::operator == (const url& rhs) const
 
 void url::init (nitpick& )
 {   standard_text_extensions_.resize (3);
-    ::gsl::at (standard_text_extensions_, 0) = "html";
-    ::gsl::at (standard_text_extensions_, 1) = "shtml";
-    ::gsl::at (standard_text_extensions_, 2) = "htm";
+    GSL_AT (standard_text_extensions_, 0) = "html";
+    GSL_AT (standard_text_extensions_, 1) = "shtml";
+    GSL_AT (standard_text_extensions_, 2) = "htm";
     standard_image_extensions_.resize (4);
-    ::gsl::at (standard_image_extensions_, 0) = "jpg";
-    ::gsl::at (standard_image_extensions_, 1) = "jpeg";
-    ::gsl::at (standard_image_extensions_, 2) = "gif";
-    ::gsl::at (standard_image_extensions_, 3) = "png"; }
+    GSL_AT (standard_image_extensions_, 0) = "jpg";
+    GSL_AT (standard_image_extensions_, 1) = "jpeg";
+    GSL_AT (standard_image_extensions_, 2) = "gif";
+    GSL_AT (standard_image_extensions_, 3) = "png"; }
 
 void url::swap (url& u) noexcept
 {   ::std::swap (valid_, u.valid_);

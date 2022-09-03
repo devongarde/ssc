@@ -48,7 +48,7 @@ public:
     template < typename VALUE, class LC > void init (nitpick& nits, const symbol_entry < V, VALUE, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
     {   VERIFY_NOT_NULL (table, __FILE__, __LINE__);
         wildcards_ = wildcards;
-        const auto t = ::gsl::span (table, size);
+        const auto t = GSL_SPAN (table, size);
         for (::std::size_t i = 0; (i < size) && (t [i].sz_ != nullptr); ++i)
         {   ::std::string key (enlc < LC > :: to (::std::string (t [i].sz_)));
             auto it = symbol_.find (symbol_key (key, t [i].ns_));
@@ -86,7 +86,7 @@ public:
     template < typename VALUE, class LC > bool find (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr) const
     {   ::std::size_t val = 0;
         if (! find (v, enlc < LC > :: to (x), val, ns, first, last, flags, flags2)) return false;
-        res = ::gsl::narrow_cast < VALUE > (val); return true; }
+        res = GSL_NARROW_CAST < VALUE > (val); return true; }
     bool exists (const ::std::string& x, const CATEGORY ns = INIT) const
     {   return (symbol_.find (symbol_key (x, ns)) != symbol_.end ()); }
     bool parse (const V& v, const ::std::string& x, ::std::size_t& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
@@ -94,7 +94,7 @@ public:
     template < typename VALUE, class LC > bool parse (const V& v, const ::std::string& x, VALUE& res, const CATEGORY ns = INIT, V* first = nullptr, V* last = nullptr, flags_t* flags = nullptr, flags_t* flags2 = nullptr)
     {   ::std::size_t val = 0;
         if (! parse (v, enlc < LC > :: to (x), val, ns, first, last, flags, flags2)) return false;
-        res = ::gsl::narrow_cast < VALUE > (val);
+        res = GSL_NARROW_CAST < VALUE > (val);
         return true; }
     ::std::string value_list (const V& v) const
     {   ::std::string res;

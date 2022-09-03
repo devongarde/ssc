@@ -24,14 +24,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class fred_t
 {   mid_t tls_; // must not be modified once threading starts
     vtls_t vtls_;
-    ::std::atomic_int count_ = 0;
-    ::std::atomic_int inactive_ = 0;
-    ::std::atomic_bool started_ = false;
-    ::std::atomic_bool abandon_ = false;
+    ::std::atomic_int count_;
+    ::std::atomic_int inactive_;
+    ::std::atomic_bool started_;
+    ::std::atomic_bool abandon_;
     vth_t vt_;
     int tls_int () const;
     void fred_minion (nitpick* ticks);
 public:
+    fred_t () : count_ (0), inactive_ (0), started_ (false), abandon_ (false) { }
+    fred_t (const fred_t& ) = default;
+    fred_t (fred_t&& ) = default;
+    ~fred_t () = default;
+    fred_t& operator = (const fred_t& ) = default;
+    fred_t& operator = (fred_t&& ) = default;
     bool init (nitpick& nits);
     void await ();
     void done ();

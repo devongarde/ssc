@@ -31,7 +31,7 @@ void headers::parse (nitpick& nits, const html_version& , const ::std::string& h
 {   if (header.empty ())
     {   nits.pick (nit_header_empty, es_info, ec_link, "empty HTTP header ignored"); return; }
     vstr_t lines (split_by_newline (header));
-    vstr_t status (split_by_space (::gsl::at (lines, 0)));
+    vstr_t status (split_by_space (GSL_AT (lines, 0)));
     if (status.size () < 2)
     {   nits.pick (nit_header_malformed, es_warning, ec_link, "malformed HTTP header has no status: ignored"); return; }
     code_ = lexical < int > :: cast (status.at (1), 300);
@@ -53,7 +53,7 @@ void headers::process_rels (nitpick& nits, const ::std::string& value)
 {   vstr_t links (split_by_charset (value, ";"));
     const ::std::size_t len = links.size ();
     if (len < 2) return;
-    ::std::string target (trim_the_lot_off (::gsl::at (links, 0)));
+    ::std::string target (trim_the_lot_off (GSL_AT (links, 0)));
     const ::std::size_t left = target.find ('<');
     const ::std::size_t right = target.find ('>');
     if (left == target.npos) return;
@@ -63,7 +63,7 @@ void headers::process_rels (nitpick& nits, const ::std::string& value)
         return; }
     ::std::string arg0 (trim_the_lot_off (target.substr (left + 1, right - left - 1)));
     for (::std::size_t n = 1; n < len; ++n)
-    {   ::std::string arg = trim_the_lot_off (::gsl::at (links, n));
+    {   ::std::string arg = trim_the_lot_off (GSL_AT (links, n));
         const ::std::size_t semi = arg.find ("=");
         if (semi == arg.npos) continue;
         ::std::string lhs = trim_the_lot_off (arg.substr (0, semi));
@@ -71,9 +71,9 @@ void headers::process_rels (nitpick& nits, const ::std::string& value)
         if (lhs != REL) continue;
         ::std::string rhs = trim_the_lot_off (arg.substr (semi+1));
         if (rhs.empty ()) continue;
-        if (::gsl::at (rhs, 0) == '"')
+        if (GSL_AT (rhs, 0) == '"')
         {   const ::std::size_t last = rhs.length () - 1;
-            if (::gsl::at (rhs, last) != '"') continue;
+            if (GSL_AT (rhs, last) != '"') continue;
             rhs = rhs.substr (1, last - 2); }
         nits.pick (nit_found_rel, es_info, ec_link, "found rel ", rhs, ", link ", arg0);
         links_.insert (ustrv_t (rhs, arg0)); } }

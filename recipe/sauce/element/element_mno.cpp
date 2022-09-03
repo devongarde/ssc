@@ -45,7 +45,7 @@ void element::examine_map ()
 void element::examine_math ()
 {   if (node_.version ().mjr () < 4) return;
     e_math_version mv = node_.version ().math_version ();
-    if (mv == math_none) mv = page_ -> version ().math_version ();
+    if (mv == math_none) mv = node_.version ().math_version ();
     switch (mv)
     {   case math_2 : break;
         case math_3 :
@@ -229,7 +229,7 @@ void element::examine_meta ()
         else
         {   type_master < t_charset > cs;
             cs.set_value (nits (), page_ -> version (), a_.get_string (a_charset));
-            if (cs.good ()) page_ -> charset (nits (), page_ -> version (), cs.get_string ()); } }
+            if (cs.good ()) page_ -> charset (nits (), node_.version (), cs.get_string ()); } }
     else if (hek)
     {   if (! in_head)
             pick (nit_bad_meta_place, ed_50, "4.2.5 The meta element", es_error, ec_element, "HTTP-EQUIV can only be used on a <META> in a <HEAD>");
@@ -323,7 +323,7 @@ void element::examine_meter ()
             if (max < optimum) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "OPTIMUM (", optimum, ") cannot exceed MAX (", max, ")"); } } }
 
 void element::examine_mglyph ()
-{   if (page_ -> version ().math_version () == math_2)
+{   if (node_.version ().math_version () == math_2)
     {   attribute_bitset as (own_attributes_);
         as.reset (a_fontfamily);
         as.reset (a_index);
@@ -336,7 +336,7 @@ void element::examine_mglyph ()
             pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "INDEX is required for correct usage of <MGLYPH> in MathML 2");
         if (! a_.known (a_alt))
             pick (nit_mglyph_alt_src, ed_math_2, "3.2.9.2 Attributes", es_warning, ec_attribute, "ALT, is required for correct usage of <MGLYPH> in MathML 2"); }
-    else if (page_ -> version ().math_version () >= math_3)
+    else if (node_.version ().math_version () >= math_3)
     {   if (! a_.known (a_src))
             pick (nit_mglyph_alt_src, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "SRC is required for correct usage of <MGLYPH> in MathML 3");
         if (! a_.known (a_alt))
@@ -351,14 +351,14 @@ void element::examine_mglyph ()
             pick (nit_deprecated_attribute, ed_math_3, "3.2.1.2 Using images to represent symbols <mglyph/>", es_warning, ec_attribute, "INDEX is deprecated with <MGLYPH> in MathML 3"); } }
 
 void element::examine_mn ()
-{   if (page_ -> version ().math_version () < math_3) return;
+{   if ((node_.version ().math_version () == math_core) || (node_.version ().math_version () < math_3)) return;
     ::std::string x (text ());
     const ::std::string::size_type pos = x.find_first_not_of (" .,IVXMLivxml" HEX);
     if (pos != ::std::string::npos)
         pick (nit_impure_mn, ed_math_3, "3.2.4.4 Numbers that should not be written using <mn> alone", es_warning, ec_element, "Given '", x.at (pos), "', <MN> alone may be unsuitable here"); }
 
 void element::examine_mstyle ()
-{   if (page_ -> version ().math_version () < math_3) return;
+{   if (node_.version ().math_version () < math_3) return;
     if (a_.known (a_background))
         pick (nit_attribute_unrecognised_here, ed_math_3, "3.3.4.2 Attributes", es_error, ec_attribute, "the BACKGROUND attribute is not associated with <MSTYLE> in MathML 3");
     attribute_bitset bs = empty_attribute_bitset | a_verythickmathspace | a_verythinmathspace | a_veryverythickmathspace | a_veryverythinmathspace |
@@ -368,12 +368,12 @@ void element::examine_mstyle ()
         pick (nit_deprecated_attribute, es_warning, ec_attribute, "the ...MATHSPACE attributes are deprecated in MathML 3"); }
 
 void element::examine_mtable ()
-{   if (page_ -> version ().math_version () < math_4_22) return;
+{   if (node_.version ().math_version () < math_4_22) return;
     if (! descendant_elements_.test (elem_mtr))
         pick (nit_mtr_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTABLE> requires <MTR> children"); }
 
 void element::examine_mtr ()
-{   if (page_ -> version ().math_version () < math_4_22) return;
+{   if (node_.version ().math_version () < math_4_22) return;
     if (! descendant_elements_.test (elem_mtd))
         pick (nit_mtd_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTR> requires <MTD> children"); }
 
@@ -448,7 +448,7 @@ void element::examine_object ()
                 case elem_caption :
                     if (node_.version () == xhtml_2) break;
                     // drop thru'
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 default :
                     if ((node_.version ().mjr () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } }
 

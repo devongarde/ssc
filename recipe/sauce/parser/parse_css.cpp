@@ -49,10 +49,10 @@ void parse_css (nitpick& nits, const html_version& , smsid_t& ids, const ::std::
             case '\v' :
             case '\f' :
                 ++line;
-                [[fallthrough]];
+                FALLTHROUGH;
             case '\r' :
                 newline = true;
-                [[fallthrough]];
+                FALLTHROUGH;
             case '\t' :
                 ch = ' ';
                 break;
@@ -68,7 +68,7 @@ void parse_css (nitpick& nits, const html_version& , smsid_t& ids, const ::std::
                         if (context.tell (es_debug)) nits.pick (nit_found_css_class, es_debug, ec_css, "Found CSS class ", x);
                         ++count; }
                     status = st_dull; }
-                [[fallthrough]];
+                FALLTHROUGH;
             case st_dull :
                 switch (ch)
                 {   case '.' :  status = st_class_start; break;

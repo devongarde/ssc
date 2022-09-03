@@ -165,8 +165,8 @@ void nitpick::set_context (const int line, const ::std::string& c)
 void nitpick::set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
     constexpr int maxish = DEFAULT_LINE_LENGTH - 16;
-    const int len = ::gsl::narrow_cast < int > (to - from);
-    const int maxlen = ::gsl::narrow_cast < int > (e - from);
+    const int len = GSL_NARROW_CAST < int > (to - from);
+    const int maxlen = GSL_NARROW_CAST < int > (e - from);
     before_.clear (); after_.clear ();
     if (maxlen == 0)
         mote_.clear ();

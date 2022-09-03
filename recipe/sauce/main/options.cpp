@@ -729,9 +729,9 @@ void options::contextualise (nitpick& nits)
 #endif // EXPAND_TEST
         }
         if ((! var_ [GENERAL DONT PROGRESS].as <bool > ()) && var_ [GENERAL PROGRESS].as <bool > ())
-            if (context.test ()) ::std::cout << szTestTitle;
-            else if (context.tell (es_info)) ::std::cout << szFullTitle;
-            else ::std::cout << szSimpleTitle;
+            if (context.test ()) ::std::cout << test_title;
+            else if (context.tell (es_info)) ::std::cout << full_title;
+            else ::std::cout << simple_title;
         if (! context.cgi ())
         {   context.path (nix_path_to_local (var_ [GENERAL DATAPATH].as < ::std::string > ()));
             if (! file_exists (context.path ()))
@@ -744,7 +744,7 @@ void options::contextualise (nitpick& nits)
         if ((n < 1) || (n > 3))
         {   nits.pick (nit_mf_version, es_warning, ec_init, "invalid microformats version ", quote (n), "; presuming version 2");
             n = 2; }
-        context.mf_version (::gsl::narrow_cast < unsigned char > (n)); }
+        context.mf_version (GSL_NARROW_CAST < unsigned char > (n)); }
 
     if (var_.count (HTML VERSION) > 0)
     {   ::std::string ver (var_ [HTML VERSION].as < ::std::string > ());
@@ -842,14 +842,14 @@ void options::contextualise (nitpick& nits)
             // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
             schema_version x (error_schema);
             if (pos == ::std::string::npos)
-                x = schema_version (es, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver)), 0);
+                x = schema_version (es, GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver)), 0);
             else if (pos == 0)
                 nits.pick (nit_config_version, es_warning, ec_init, "missing ontology major version");
             else if (pos == ver.length () - 1)
-                x = schema_version (es, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0);
+                x = schema_version (es, GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0);
             else if (pos > 0)
-                x = schema_version (es, ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
-                                                              ::gsl::narrow_cast < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))));
+                x = schema_version (es, GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
+                                                              GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))));
             if (x.invalid ())
                 nits.pick (nit_config_version, es_error, ec_init, "invalid ontology ", quote (x.name ()), " version; use " ONTOLOGY LIST " to get a list of known versions.");
             else if (! set_default_schema_version (x.root (), x.mjr (), x.mnr ()))
@@ -1010,8 +1010,8 @@ void options::contextualise (nitpick& nits)
             ::std::string s (var_ [SHADOW COPY].as < ::std::string  > ());
             e_shadow sh = examine_value < t_shadow > (nuts, html_tags, s);
             if (sh == sh_error)
-                if ((s.length () == 1) && (::gsl::at (s, 0) >= '0') && (::gsl::at (s, 0) <= '7'))
-                {   sh = static_cast < e_shadow > (::gsl::at (s, 0) - '0' + 1);
+                if ((s.length () == 1) && (GSL_AT (s, 0) >= '0') && (GSL_AT (s, 0) <= '7'))
+                {   sh = static_cast < e_shadow > (GSL_AT (s, 0) - '0' + 1);
 #ifdef NOLYNX
                     if ((sh == sh_hard) || (sh == sh_soft)) sh = sh_copy;
 #endif // NOLYNX

@@ -186,7 +186,7 @@ void element::examine_base ()
     {   if (a_.known (a_target))
         {   pick (nit_target, es_warning, ec_element, "TARGET forces " PROG " to abandon local link checks");
             page_ -> check_links (false); }
-        else if (page_ -> version ()  >= html_jul07)
+        else if (node_.version ()  >= html_jul07)
            pick (nit_base, ed_50, "4.2.3 The base element", es_error, ec_element, "<BASE> must have an HREF or a TARGET attribute");
         return; }
     check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE);
@@ -328,7 +328,7 @@ void element::examine_datalist ()
                 switch (p -> tag ())
                 {   case elem_option :
                         had_option = true;
-                        [[fallthrough]];
+                        FALLTHROUGH;
                     case elem_script :
                     case elem_template :
                         break;

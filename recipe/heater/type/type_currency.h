@@ -34,10 +34,10 @@ template < > struct type_master < t_dosh > : tidy_string < t_dosh >
     {   const vstr_t args (split_by_space (s));
         if (args.size () > 2) return false;
         ::std::string amount;
-        if (args.size () == 1) amount = trim_the_lot_off (::gsl::at (args, 0));
+        if (args.size () == 1) amount = trim_the_lot_off (GSL_AT (args, 0));
         if (args.size () == 2)
-        {   const ::std::string c (::gsl::at (args, 0));
-            if (symbol < html_version, e_currency > :: find (v, ::gsl::at (args, 0), unit_)) amount = trim_the_lot_off (::gsl::at (args, 1));
+        {   const ::std::string c (GSL_AT (args, 0));
+            if (symbol < html_version, e_currency > :: find (v, GSL_AT (args, 0), unit_)) amount = trim_the_lot_off (GSL_AT (args, 1));
             else if (! symbol < html_version, e_currency > :: find (v, amount, unit_)) return false; }
         if (amount.empty ()) return false;
         bool res = false;

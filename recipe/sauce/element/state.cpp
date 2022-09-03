@@ -59,7 +59,7 @@ void state_init ()
         if (bs.test (i))
         {   if (! res.empty ()) res += ", ";
             res += "<";
-            res += elem::name (::gsl::narrow_cast < e_element > (i));
+            res += elem::name (GSL_NARROW_CAST < e_element > (i));
             res += ">";}
     return res; }
 

@@ -187,19 +187,19 @@ template < > struct type_master < t_font > : tidy_string < t_font >
                 {   case fs_style :
                         if (test_value < t_fontstyle > (knits, v, s))
                         {   state = fs_variant; break; }
-                        [[fallthrough]];
+                        FALLTHROUGH;
                     case fs_variant :
                         if (test_value < t_fontvariant > (knits, v, s))
                         {   state = fs_weight; break; }
-                        [[fallthrough]];
+                        FALLTHROUGH;
                     case fs_weight :
                         if (test_value < t_fontweight > (knits, v, s))
                         {   state = fs_stretch; break; }
-                        [[fallthrough]];
+                        FALLTHROUGH;
                     case fs_stretch :
                         if (test_value < t_fontstretch > (knits, v, s))
                         {   state = fs_size; break; }
-                        [[fallthrough]];
+                        FALLTHROUGH;
                     case fs_size :
                         pos = s.find ('/');
                         if (pos == ::std::string::npos)
@@ -208,11 +208,11 @@ template < > struct type_master < t_font > : tidy_string < t_font >
                         else if (test_value < t_fontsize > (knits, v, s.substr (0, pos)) &&
                                  test_value < t_measure > (knits, v, s.substr (pos)))
                         {   state = fs_family; break; }
-                        [[fallthrough]];
+                        FALLTHROUGH;
                     case fs_family :
                         if (test_value < t_font_family > (knits, v, s))
                         {   state = fs_done; break; }
-                        [[fallthrough]];
+                        FALLTHROUGH;
                     default :
                         nits.pick (nit_font_enum, es_error, ec_type, quote (s), " is not a known FONT property");
                         res = false; break; }

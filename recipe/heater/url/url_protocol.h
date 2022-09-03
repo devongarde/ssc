@@ -60,16 +60,16 @@ public:
         return ! get_component (c).empty (); }
     ::std::string original () const
     {   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
-        return ::gsl::at (component_, es_original); }
+        return GSL_AT (component_, es_original); }
     ::std::string get_component (const e_component c) const
     {   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
-        return ::gsl::at (component_, c); }
+        return GSL_AT (component_, c); }
     void reset_component (const e_component c)
     {   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
-        ::gsl::at (component_, c).clear (); }
+        GSL_AT (component_, c).clear (); }
     void set_component (const e_component c, const ::std::string& val)
     {   PRESUME (component_.size () == component_count, __FILE__, __LINE__);
-        ::gsl::at (component_, c) = val; }
+        GSL_AT (component_, c) = val; }
     bool is_protocol (const e_protocol p) const noexcept
     {   return (get_protocol () == p); }
     e_scheme scheme () const;

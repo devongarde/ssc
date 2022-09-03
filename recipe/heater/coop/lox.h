@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/fred.h"
 
 class lox
-{   e_lox l_ = lox_none;    // this must be thread static
-    ::std::atomic_bool un_ = false;
+{   e_lox l_;
+    ::std::atomic_bool un_;
 public:
     lox () = delete;
     lox (const lox& ) = delete;

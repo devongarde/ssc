@@ -310,3 +310,27 @@ My site has been built by hand over the decades, and is full of errors.
 I wrote ssc because I was frustrated that I could find no tool to
 properly check it. Unfortunately, SSC is too successful: it finds
 hundreds of errors in arts & ego. I am slowly making the repairs.
+
+
+Potential gotchas
+=================
+
+Versions
+--------
+For HTML, ssc defaults to a version of the living standard that's
+contemporary to the version of ssc. The same applies to other document
+types. In all cases, though, if the document itself specifies a
+particular version (such as HTML 3.2), then that applies.
+
+The version indicated by the DOCTYPE can be very broad. For example,
+the HTML 5 doctype specifies HTML 5 alone, but not which flavour (W3 or
+living standard), nor which revision.
+
+If you are verifying HTML, and it contains some MathML, SVG, or other
+such snippets, then ssc will attempt to guess the version of the latter
+from the former (unless you tell it which to use).
+
+All this is why that, if you want to be precise about document
+verification, specify versions, either with a switch or an entry in a
+configuration file. If your HTML contains MathML/SVG/etc. snippets,
+then specify those versions too.

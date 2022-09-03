@@ -105,29 +105,29 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
 #endif // _MSC_VER
     ::std::string sss (ss);
     if (sss.length () > 60) sss = "text";
-    for (::std::size_t x = 0; ::gsl::at (word, x).spell_ != nullptr; ++x)
-        if (ss.find (::gsl::at (word, x).spell_) != ::std::string::npos)
-        {   if (::gsl::at (word, x).dict_ != d_none)
-            {   PRESUME (::gsl::at (word, x).dict_ <= d_wiki, __FILE__, __LINE__);
+    for (::std::size_t x = 0; GSL_AT (word, x).spell_ != nullptr; ++x)
+        if (ss.find (GSL_AT (word, x).spell_) != ::std::string::npos)
+        {   if (GSL_AT (word, x).dict_ != d_none)
+            {   PRESUME (GSL_AT (word, x).dict_ <= d_wiki, __FILE__, __LINE__);
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 6387 26446 26482) // unless, of course, you consider the preceding conditions, linter.
 #endif // _MSC_VER
-                ::std::string ref (dictionary [::gsl::at (word, x).dict_]);
+                ::std::string ref (dictionary [GSL_AT (word, x).dict_]);
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
-                if (::gsl::at (word, x).ref_ != nullptr)
+                if (GSL_AT (word, x).ref_ != nullptr)
                 {   ref += ", page ";
-                    ref += ::gsl::at (word, x).ref_; }
-                if (::gsl::at (word, x).dialect_)
-                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, sss, " contains ", quote (::gsl::at (word, x).spell_), ", which is unrecognised, and dialect: is standard english required?");
+                    ref += GSL_AT (word, x).ref_; }
+                if (GSL_AT (word, x).dialect_)
+                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is unrecognised, and dialect: is standard english required?");
                 else
-                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains ", quote (::gsl::at (word, x).spell_), ", which is spelt correctly"); }
-            else if (::gsl::at (word, x).dialect_)
-                nits.pick (nit_dialect, es_comment, ec_incorrectness, sss, " contains ", quote (::gsl::at (word, x).spell_), ", which is unrecognised, and dialect: is standard english required?");
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is spelt correctly"); }
+            else if (GSL_AT (word, x).dialect_)
+                nits.pick (nit_dialect, es_comment, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is unrecognised, and dialect: is standard english required?");
             else
-                nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains ", quote (::gsl::at (word, x).spell_), ", which is spelt correctly");
+                nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is spelt correctly");
             return true; }
     return false; }
 
@@ -171,7 +171,7 @@ void spell_tell (nitpick& nits, const lingo& lang, const ::std::string& word, co
         if (lang.no_case_compare (a, word))
         {   if (context.cased ()) nits.pick (nit_case, es_error, ec_spell, "should ", quote (word), " be ", quote (a), "?");
             return; }
-    nits.pick (nit_misspelt, es_error, ec_spell, quote (word), " may be misspelt");
+    nits.pick (nit_misspelt, es_error, ec_spell, quote (enwotsit (word)), " may be misspelt");
     if (context.tell (es_info)) switch (alt.size ())
     {   case 0 : break;
         case 1 :

@@ -210,7 +210,8 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
     vstr_t tx (lang.to_words (i));
     for (auto t : tx)
     {   if (t.empty ()) continue;
-        if (! lang.is_alpha (t.substr (0, 1))) continue;
+//        if (! lang.is_alpha (t.substr (0, 1))) continue;
+        if (! lang.is_alpha (t)) continue;
         if (! hi -> second.valid ()) break;
         if (! hi -> second.spell (nits, t)) spell_tell (nits, lang, t, hi -> second.suggestions (nits, t)); } }
 

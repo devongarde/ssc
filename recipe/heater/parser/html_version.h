@@ -295,6 +295,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_MATH_2_3_4_C ( H2_MATH_2_3_4 | H2_MATH_C )
 #define H2_MATH_3_4_20  ( H2_MATH_3 | H2_MATH_4_20 )
 #define H2_MATH_3_4     ( H2_MATH_3 | H2_MATH_4 )
+#define H2_MATH_2_C     ( H2_MATH_2 | H2_MATH_C )
+#define H2_MATH_4_22_C  ( H2_MATH_4_22 | H2_MATH_C )
 #define H2_MATHML       ( H2_MATH_1_2 | H2_MATH_3_4 )
 #define H2_MATH         ( H2_MATHML | H2_MATH_C )
 #define MATH_MASK       H2_MATH
@@ -314,7 +316,7 @@ class html_version : public version
     void init (const unsigned short mjr);
     bool test_extension () const noexcept;
 public:
-    html_version () = default;
+    html_version () : ext_ (NOFLAGS), ext2_ (NOFLAGS) { }
     explicit html_version (const unsigned short mjr) { init (mjr); }
     explicit html_version (const schema_version& sv) noexcept : version (sv.mjr (), sv.mnr ()), ext_ (NOFLAGS), ext2_ (NOFLAGS) { }
     html_version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS) noexcept
@@ -377,13 +379,13 @@ public:
     bool has_rdfa () const noexcept { return any_ext (HE_RDFA); }
     bool has_svg () const noexcept { return any_ext (SVG_MASK); }
     bool has_xlink () const  noexcept{ return any_ext (XLINK_MASK); }
-    int jsonld () const noexcept { return ::gsl::narrow_cast < int > ((ext2 () & JSONLD_MASK) >> JSONLD_SHIFT); }
-    int math () const noexcept { return ::gsl::narrow_cast < int > ((ext2 () & MATH_MASK) >> MATH_SHIFT); }
+    int jsonld () const noexcept { return GSL_NARROW_CAST < int > ((ext2 () & JSONLD_MASK) >> JSONLD_SHIFT); }
+    int math () const noexcept { return GSL_NARROW_CAST < int > ((ext2 () & MATH_MASK) >> MATH_SHIFT); }
     int rdfa () const noexcept { return has_rdfa (); }
-    int svg () const noexcept { return ::gsl::narrow_cast < int > ((ext () & SVG_MASK) >> SVG_SHIFT); }
-    ::std::size_t minargs () const noexcept { return ::gsl::narrow_cast < ::std::size_t > ((ext () & HE_MINARGS_MASK) >> HE_MINARGS_SHIFT); }
-    ::std::size_t maxargs () const noexcept { return ::gsl::narrow_cast < ::std::size_t > ((ext () & HE_MAXARGS_MASK) >> HE_MAXARGS_SHIFT); }
-    ::std::size_t group () const noexcept { return ::gsl::narrow_cast < ::std::size_t > ((ext () & HE_GROUP_MASK) >> HE_GROUP_SHIFT); }
+    int svg () const noexcept { return GSL_NARROW_CAST < int > ((ext () & SVG_MASK) >> SVG_SHIFT); }
+    ::std::size_t minargs () const noexcept { return GSL_NARROW_CAST < ::std::size_t > ((ext () & HE_MINARGS_MASK) >> HE_MINARGS_SHIFT); }
+    ::std::size_t maxargs () const noexcept { return GSL_NARROW_CAST < ::std::size_t > ((ext () & HE_MAXARGS_MASK) >> HE_MAXARGS_SHIFT); }
+    ::std::size_t group () const noexcept { return GSL_NARROW_CAST < ::std::size_t > ((ext () & HE_GROUP_MASK) >> HE_GROUP_SHIFT); }
     bool is_jsonld_10 () const noexcept { return (ext2 () & H2_JSONLD_1_0) == H2_JSONLD_1_0; }
     bool is_jsonld_11 () const noexcept { return (ext2 () & H2_JSONLD_1_1) == H2_JSONLD_1_1; }
     bool is_rdf () const noexcept { return (ext () & HE_RDF) != 0; }
@@ -404,6 +406,7 @@ public:
     bool not_svg_21 () const noexcept { return (ext () & HE_NOT_SVG_21) != 0; }
     e_jsonld_version jsonld_version () const noexcept;
     void jsonld_version (const e_jsonld_version v) noexcept;
+    bool math_4_core () const noexcept;
     e_math_version math_version () const noexcept;
     ::std::string math_version_name () const;
     void math_version (const e_math_version v) noexcept;
@@ -413,7 +416,7 @@ public:
     void svg_version (const e_svg_version v) noexcept;
     bool requires_extension () const noexcept;
     bool is_plain_html () const noexcept;
-    int xlink () const noexcept { return ::gsl::narrow_cast < int > ((ext () & XLINK_MASK) >> XLINK_SHIFT); }
+    int xlink () const noexcept { return GSL_NARROW_CAST < int > ((ext () & XLINK_MASK) >> XLINK_SHIFT); }
     bool check_math_svg (nitpick& nits, const html_version& a, const ::std::string& x) const;
     bool microdata () const noexcept { return any_ext (HE_MICRODATA); }
     bool mozilla () const noexcept { return any_ext (HE_MOZILLA); }
@@ -486,7 +489,7 @@ public:
     ::std::string name () const;
     ::std::string report () const; };
 
-const html_version html_0;
+const html_version html_0 (HTML_NULL);
 const html_version html_tags (HTML_TAGS);
 const html_version html_1 (HTML_1_0);
 const html_version html_plus (HTML_PLUS);
@@ -684,12 +687,12 @@ const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, 
 const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
 const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
 const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20);
-const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_22);
+const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3);
 const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3);
-const html_version html_current (HTML_CURRENT, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_22);
+const html_version html_current (html_jul22);
 const html_version html_default (html_current);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
